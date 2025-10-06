@@ -25,18 +25,18 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="PatchMapNode" type="MarginContainer" node_paths=PackedStringArray("eventIconsContainer")]
+[node name="PatchMapNode" type="MarginContainer" node_paths=PackedStringArray("iconRect", "highlightPanel", "markPanel", "adjacentHighlightPanel", "unknownLabel", "eventIconsContainer")]
 custom_minimum_size = Vector2(80, 80)
 offset_right = 64.0
 offset_bottom = 64.0
 mouse_default_cursor_shape = 2
 script = ExtResource("2")
-IconPath = NodePath("InnerContainer/MarginContainer/MarginContainer/TextureRect")
-HighlightPanelPath = NodePath("InnerContainer/HoveredHighlight")
-MarkPanelPath = NodePath("InnerContainer/PlayerHereHighlight")
-AdjacentPanelPath = NodePath("InnerContainer/AdjacentToHighlight")
-UnknownLabelPath = NodePath("InnerContainer/MarginContainer/MarginContainer/UnknownLabel")
 UnknownTextureFilePath = "res://assets/textures/gui/bevel/PatchAbyss.svg"
+iconRect = NodePath("InnerContainer/MarginContainer/MarginContainer/TextureRect")
+highlightPanel = NodePath("InnerContainer/HoveredHighlight")
+markPanel = NodePath("InnerContainer/PlayerHereHighlight")
+adjacentHighlightPanel = NodePath("InnerContainer/AdjacentToHighlight")
+unknownLabel = NodePath("InnerContainer/MarginContainer/MarginContainer/UnknownLabel")
 eventIconsContainer = NodePath("EventIcons")
 
 [node name="InnerContainer" type="MarginContainer" parent="."]

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cf67gfjmc2hh1" path="res://src/gui_common/MicheDetailsPanel.cs" id="1_ow3ua"]
 [ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5_1t1od"]
 
-[node name="MicheDetailsPanel" type="MarginContainer"]
+[node name="MicheDetailsPanel" type="MarginContainer" node_paths=PackedStringArray("micheDetailsLabel")]
 custom_minimum_size = Vector2(352, 300)
 offset_right = 352.0
 offset_bottom = 562.0
@@ -14,7 +14,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 script = ExtResource("1_ow3ua")
-MicheDetailsLabelPath = NodePath("ScrollContainer/VBoxContainer/MicheInfoLabel")
+micheDetailsLabel = NodePath("ScrollContainer/VBoxContainer/MicheInfoLabel")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2

@@ -17,7 +17,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="UndiscoveredOrganellesTooltip" type="PanelContainer"]
+[node name="UndiscoveredOrganellesTooltip" type="PanelContainer" node_paths=PackedStringArray("nameLabel", "unlockTextLabel")]
 custom_minimum_size = Vector2(350, 0)
 offset_right = 350.0
 offset_bottom = 155.0
@@ -25,8 +25,8 @@ mouse_filter = 2
 theme = ExtResource("9")
 theme_override_styles/panel = SubResource("1")
 script = ExtResource("7")
-NameLabelPath = NodePath("MarginContainer/VBoxContainer/Header/Title")
-UnlockTextPath = NodePath("MarginContainer/VBoxContainer/UnlockText")
+nameLabel = NodePath("MarginContainer/VBoxContainer/Header/Title")
+unlockTextLabel = NodePath("MarginContainer/VBoxContainer/UnlockText")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

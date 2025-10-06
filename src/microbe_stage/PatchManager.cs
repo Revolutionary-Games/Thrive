@@ -16,6 +16,7 @@ public class PatchManager : IChildPropertiesLoadCallback
     private readonly List<CreatedSpawner> microbeSpawners = new();
 
     private SpawnSystem spawnSystem;
+    private MicrobeTerrainSystem terrainSystem;
     private ProcessSystem processSystem;
     private CompoundCloudSystem compoundCloudSystem;
     private TimedLifeSystem timedLife;
@@ -35,10 +36,11 @@ public class PatchManager : IChildPropertiesLoadCallback
     /// </remarks>
     private bool skipDespawn;
 
-    public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
+    public PatchManager(SpawnSystem spawnSystem, MicrobeTerrainSystem terrainSystem, ProcessSystem processSystem,
         CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight3D worldLight)
     {
         this.spawnSystem = spawnSystem;
+        this.terrainSystem = terrainSystem;
         this.processSystem = processSystem;
         this.compoundCloudSystem = compoundCloudSystem;
         this.timedLife = timedLife;
@@ -84,6 +86,8 @@ public class PatchManager : IChildPropertiesLoadCallback
             // Despawn old entities
             spawnSystem.DespawnAll();
 
+            terrainSystem.DespawnAll();
+
             // And also all timed entities
             timedLife.DespawnAll();
 
@@ -100,6 +104,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         // Update environment for the process system
         processSystem.SetBiome(currentPatch.Biome);
+        terrainSystem.SetPatch(currentPatch);
 
         // Apply spawn system settings
         UpdateSpawners(currentPatch, spawnEnvironment);
@@ -349,7 +354,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         worldLight.LightColor = biome.Sunlight.Colour;
         worldLight.LightEnergy = biome.Sunlight.Energy * lightLevel;
-        worldLight.LightSpecular = biome.Sunlight.Specular;
+        worldLight.LightSpecular = biome.Sunlight.Specular * lightLevel;
     }
 
     private void UnmarkAllSpawners()

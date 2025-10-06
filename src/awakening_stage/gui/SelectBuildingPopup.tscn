@@ -1,22 +1,23 @@
 [gd_scene load_steps=3 format=3 uid="uid://borrsf8mdual2"]
 
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="Script" uid="uid://dq7avc5py7nbb" path="res://src/awakening_stage/gui/SelectBuildingPopup.cs" id="2"]
 
-[node name="SelectBuildingPopup" type="Control"]
+[node name="SelectBuildingPopup" type="Control" node_paths=PackedStringArray("popup", "buttonsContainer", "cancelButton")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2")
-PopupPath = NodePath("CustomWindow")
-ButtonsContainerPath = NodePath("CustomWindow/VBoxContainer/ScrollContainer/ButtonContainer")
-CancelButtonPath = NodePath("CustomWindow/VBoxContainer/Cancel")
+popup = NodePath("CustomWindow")
+buttonsContainer = NodePath("CustomWindow/VBoxContainer/ScrollContainer/ButtonContainer")
+cancelButton = NodePath("CustomWindow/VBoxContainer/Cancel")
 
 [node name="CustomWindow" parent="." instance=ExtResource("1")]
-anchors_preset = 0
 offset_right = 0.0
 offset_bottom = 0.0
 WindowTitle = "SELECT_STRUCTURE_POPUP_TITLE"

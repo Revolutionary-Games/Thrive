@@ -59,6 +59,10 @@ public class InProgressLoad
     {
         CheatManager.OnCheatsDisabled();
 
+        // Need to early report to achievements that no cheats are used so that previous cheat use does not leak
+        // into loaded saves
+        AchievementsManager.ReportNewGameStarted(false);
+
         IsLoading = true;
         SceneManager.Instance.DetachCurrentScene();
         PauseManager.Instance.AddPause(nameof(InProgressLoad));
@@ -198,7 +202,9 @@ public class InProgressLoad
 
                 if (success)
                 {
-                    MainMenu.OnEnteringGame();
+                    bool cheated = save!.Info.CheatsUsed || save.SavedProperties is { CheatsUsed: true };
+
+                    MainMenu.OnEnteringGame(cheated);
                     LoadingScreen.Instance.QueueActionForWhenHidden(() =>
                         SaveStatusOverlay.Instance.ShowMessage(message), 0.5f);
 

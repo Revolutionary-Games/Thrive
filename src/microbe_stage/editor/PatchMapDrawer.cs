@@ -20,12 +20,6 @@ public partial class PatchMapDrawer : Control
     [Export(PropertyHint.ColorNoAlpha)]
     public Color HighlightedConnectionColor = Colors.Cyan;
 
-    [Export]
-    public NodePath? PatchNodeContainerPath;
-
-    [Export]
-    public NodePath LineContainerPath = null!;
-
 #pragma warning disable CA2213
     [Export]
     public ShaderMaterial MonochromeMaterial = null!;
@@ -45,7 +39,11 @@ public partial class PatchMapDrawer : Control
 
 #pragma warning disable CA2213
     private PackedScene nodeScene = null!;
+
+    [Export]
     private Control patchNodeContainer = null!;
+
+    [Export]
     private Control lineContainer = null!;
 #pragma warning restore CA2213
 
@@ -144,9 +142,6 @@ public partial class PatchMapDrawer : Control
     public override void _Ready()
     {
         base._Ready();
-
-        patchNodeContainer = GetNode<Control>(PatchNodeContainerPath);
-        lineContainer = GetNode<Control>(LineContainerPath);
 
         nodeScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/PatchMapNode.tscn");
 
@@ -287,18 +282,12 @@ public partial class PatchMapDrawer : Control
         }
     }
 
-    protected override void Dispose(bool disposing)
+    public void ClearMap()
     {
-        if (disposing)
-        {
-            if (PatchNodeContainerPath != null)
-            {
-                PatchNodeContainerPath.Dispose();
-                LineContainerPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
+        lineContainer.QueueFreeChildren(false);
+        patchNodeContainer.FreeChildren();
+        nodes.Clear();
+        connections.Clear();
     }
 
     private static Vector2 ClosestPoint(Vector2 comparisonPoint, Vector2 point1, Vector2 point2)
@@ -1050,10 +1039,7 @@ public partial class PatchMapDrawer : Control
     /// </summary>
     private void RebuildMap()
     {
-        lineContainer.QueueFreeChildren(false);
-        patchNodeContainer.FreeChildren();
-        nodes.Clear();
-        connections.Clear();
+        ClearMap();
 
         if (Map == null)
         {

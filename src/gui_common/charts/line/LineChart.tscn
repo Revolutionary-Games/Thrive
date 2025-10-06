@@ -23,7 +23,7 @@ region_rect = Rect2(0, 0, 1, 258)
 texture = ExtResource("5")
 region_rect = Rect2(0, 0, 258, 1)
 
-[node name="LineChart" type="VBoxContainer"]
+[node name="LineChart" type="VBoxContainer" node_paths=PackedStringArray("inspectButton", "extraLegendContainer", "legendContainer", "drawArea", "horizontalLabelsContainer", "verticalLabelsContainer", "verticalLabel", "horizontalLabel")]
 custom_minimum_size = Vector2(0, 95)
 anchors_preset = 2
 anchor_top = 1.0
@@ -38,14 +38,14 @@ mouse_filter = 2
 theme = ExtResource("3")
 theme_override_constants/separation = 0
 script = ExtResource("4")
-HorizontalLabelPath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/xAxisLabel")
-VerticalLabelPath = NodePath("VBoxContainer/yAxisLabel")
-VerticalTicksContainerPath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate/Labels")
-HorizontalTicksContainerPath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer/Labels")
-DrawAreaPath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Drawer")
-LegendsContainerPath = NodePath("MarginContainer/LegendContainer")
-ExtraLegendContainerPath = NodePath("ChartPopup/MarginContainer/VBoxContainer/HBoxContainer/GridContainer")
-InspectButtonPath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/InspectButton")
+horizontalLabel = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/xAxisLabel")
+verticalLabel = NodePath("VBoxContainer/yAxisLabel")
+verticalLabelsContainer = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate/Labels")
+horizontalLabelsContainer = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer/Labels")
+drawArea = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Drawer")
+legendContainer = NodePath("MarginContainer/LegendContainer")
+extraLegendContainer = NodePath("ChartPopup/MarginContainer/VBoxContainer/HBoxContainer/GridContainer")
+inspectButton = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/InspectButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

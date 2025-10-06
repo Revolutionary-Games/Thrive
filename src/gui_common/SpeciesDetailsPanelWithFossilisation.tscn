@@ -6,14 +6,14 @@
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="4_33ll2"]
 [ext_resource type="PackedScene" uid="uid://dew8qwd0buvnb" path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" id="6"]
 
-[node name="SpeciesDetailsPanelWithFossilisation" type="VBoxContainer"]
+[node name="SpeciesDetailsPanelWithFossilisation" type="VBoxContainer" node_paths=PackedStringArray("speciesDetailsPanel", "fossilisationButton", "fossilisationDialog")]
 offset_right = 352.0
 offset_bottom = 598.0
 theme = ExtResource("3")
 script = ExtResource("1")
-SpeciesDetailsPanelPath = NodePath("SpeciesDetailsPanel")
-FossilisationButtonPath = NodePath("FossiliseButton")
-FossilisationDialogPath = NodePath("FossilisationDialog")
+speciesDetailsPanel = NodePath("SpeciesDetailsPanel")
+fossilisationButton = NodePath("FossiliseButton")
+fossilisationDialog = NodePath("FossilisationDialog")
 
 [node name="SpeciesDetailsPanel" parent="." instance=ExtResource("2")]
 layout_mode = 2

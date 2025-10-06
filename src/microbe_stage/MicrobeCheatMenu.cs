@@ -5,67 +5,43 @@
 /// </summary>
 public partial class MicrobeCheatMenu : CheatMenu
 {
-    [Export]
-    public NodePath? InfiniteCompoundsPath;
-
-    [Export]
-    public NodePath GodModePath = null!;
-
-    [Export]
-    public NodePath DisableAIPath = null!;
-
-    [Export]
-    public NodePath UnlimitGrowthSpeedPath = null!;
-
-    [Export]
-    public NodePath LockTimePath = null!;
-
-    [Export]
-    public NodePath SpeedSliderPath = null!;
-
-    [Export]
-    public NodePath PlayerDividePath = null!;
-
-    [Export]
-    public NodePath SpawnEnemyPath = null!;
-
-    [Export]
-    public NodePath DespawnAllEntitiesPath = null!;
-
-    [Export]
-    public NodePath ManuallySetTimePath = null!;
-
-    [Export]
-    public NodePath TargetTimePath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private CheckBox infiniteCompounds = null!;
+
+    [Export]
     private CheckBox godMode = null!;
+
+    [Export]
     private CheckBox disableAI = null!;
+
+    [Export]
     private CheckBox unlimitGrowthSpeed = null!;
+
+    [Export]
     private CheckBox lockTime = null!;
+
+    [Export]
     private Slider speed = null!;
+
+    [Export]
     private Button playerDivide = null!;
+
+    [Export]
     private Button spawnEnemy = null!;
+
+    [Export]
     private Button despawnAllEntities = null!;
+
+    [Export]
     private CheckBox manuallySetTime = null!;
+
+    [Export]
     private Slider targetTime = null!;
 #pragma warning restore CA2213
 
     public override void _Ready()
     {
-        infiniteCompounds = GetNode<CheckBox>(InfiniteCompoundsPath);
-        godMode = GetNode<CheckBox>(GodModePath);
-        disableAI = GetNode<CheckBox>(DisableAIPath);
-        unlimitGrowthSpeed = GetNode<CheckBox>(UnlimitGrowthSpeedPath);
-        lockTime = GetNode<CheckBox>(LockTimePath);
-        speed = GetNode<Slider>(SpeedSliderPath);
-        playerDivide = GetNode<Button>(PlayerDividePath);
-        despawnAllEntities = GetNode<Button>(DespawnAllEntitiesPath);
-        spawnEnemy = GetNode<Button>(SpawnEnemyPath);
-        manuallySetTime = GetNode<CheckBox>(ManuallySetTimePath);
-        targetTime = GetNode<Slider>(TargetTimePath);
-
         playerDivide.Connect(BaseButton.SignalName.Pressed, new Callable(this, nameof(OnPlayerDivideClicked)));
         spawnEnemy.Connect(BaseButton.SignalName.Pressed, new Callable(this, nameof(OnSpawnEnemyClicked)));
         despawnAllEntities.Connect(BaseButton.SignalName.Pressed,
@@ -84,29 +60,6 @@ public partial class MicrobeCheatMenu : CheatMenu
         speed.Value = CheatManager.Speed;
         manuallySetTime.ButtonPressed = CheatManager.ManuallySetTime;
         targetTime.Value = CheatManager.DayNightFraction;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (InfiniteCompoundsPath != null)
-            {
-                InfiniteCompoundsPath.Dispose();
-                GodModePath.Dispose();
-                DisableAIPath.Dispose();
-                UnlimitGrowthSpeedPath.Dispose();
-                LockTimePath.Dispose();
-                SpeedSliderPath.Dispose();
-                PlayerDividePath.Dispose();
-                SpawnEnemyPath.Dispose();
-                DespawnAllEntitiesPath.Dispose();
-                ManuallySetTimePath.Dispose();
-                TargetTimePath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void OnPlayerDivideClicked()

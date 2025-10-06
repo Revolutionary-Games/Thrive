@@ -875,6 +875,24 @@ public partial class SimulationParameters : Node
         {
             entry.Value.Resolve(this);
         }
+
+        // Warn if there are duplicate organelle button orders
+        var seenOrders = new Dictionary<OrganelleDefinition.OrganelleGroup, HashSet<int>>();
+
+        foreach (var entry in organelles)
+        {
+            if (!seenOrders.TryGetValue(entry.Value.EditorButtonGroup, out var group))
+            {
+                group = new HashSet<int>();
+                seenOrders.Add(entry.Value.EditorButtonGroup, group);
+            }
+
+            if (!group.Add(entry.Value.EditorButtonOrder))
+            {
+                GD.PrintErr($"Duplicate editor button order detected! In group {entry.Value.EditorButtonGroup} " +
+                    $"value {entry.Value.EditorButtonOrder} is used multiple times.");
+            }
+        }
     }
 
     private List<CompoundDefinition> ComputeCloudCompounds()

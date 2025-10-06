@@ -1,92 +1,48 @@
 // Thrive customization. Disable all warnings from this third party code
+
 #pragma warning disable
 
 namespace gdUnit4.addons.gdUnit4.src.dotnet;
 
+#if GDUNIT4NET_API_V5
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-
+using GdUnit4;
 using GdUnit4.Api;
-using GdUnit4.Core.Discovery;
-
 using Godot;
 using Godot.Collections;
 
 // GdUnit4 GDScript - C# API wrapper
 // ReSharper disable once CheckNamespace
-public partial class GdUnit4CSharpApi : RefCounted
+public partial class GdUnit4CSharpApi : GdUnit4NetApiGodotBridge
 {
     [Signal]
     public delegate void ExecutionCompletedEventHandler();
 
-    private static readonly object LockObject = new();
-
-    private static Type? apiType;
-    private static Assembly? gdUnit4Api;
     private CancellationTokenSource? executionCts;
 
     public override void _Notification(int what)
     {
         if (what != NotificationPredelete)
             return;
+
         executionCts?.Dispose();
         executionCts = null;
     }
 
-    private static Assembly GetApi()
-    {
-        if (gdUnit4Api != null)
-            return gdUnit4Api;
-        lock (LockObject)
-            return gdUnit4Api ??= Assembly.Load("gdUnit4Api");
-    }
-
-    private static Type GetApiType()
-    {
-        if (apiType != null)
-            return apiType;
-        apiType = GetApi().GetType("GdUnit4.GdUnit4NetApiGodotBridge");
-        return apiType!;
-    }
-
-    private static Version GdUnit4NetVersion()
-        => GetApi().GetName().Version!;
-
-    private static T InvokeApiMethod<T>(string methodName, params object[] args)
-    {
-        var method = GetApiType().GetMethod(methodName) ??
-                     throw new MethodAccessException($"Can't invoke method {methodName}");
-        return (T)method.Invoke(null, args)!;
-    }
-
-    public static bool FindGdUnit4NetAssembly()
-    {
-        try
-        {
-            return GetApi().GetType("GdUnit4.GdUnit4NetApiGodotBridge") != null;
-        }
-        catch (Exception)
-        {
-            return false;
-        }
-    }
-
-    public static string Version()
-        => GdUnit4NetVersion().ToString();
-
-    public static bool IsTestSuite(CSharpScript script)
-        => InvokeApiMethod<bool>("IsTestSuite", script);
+    public static bool IsApiLoaded()
+        => true;
 
     public static Array<Dictionary> DiscoverTests(CSharpScript sourceScript)
     {
         try
         {
             // Get the list of test case descriptors from the API
-            var testCaseDescriptors = InvokeApiMethod<List<TestCaseDescriptor>>("DiscoverTestsFromScript", sourceScript);
+            var testCaseDescriptors = DiscoverTestsFromScript(sourceScript);
+
             // Convert each TestCaseDescriptor to a Dictionary
             return testCaseDescriptors
                 .Select(descriptor => new Dictionary
@@ -128,7 +84,7 @@ public partial class GdUnit4CSharpApi : RefCounted
             executionCts = new CancellationTokenSource();
 
             var testSuiteNodes = new List<TestSuiteNode> { BuildTestSuiteNodeFrom(tests) };
-            InvokeApiMethod<Task>("ExecuteAsync", testSuiteNodes, listener, executionCts.Token)
+            ExecuteAsync(testSuiteNodes, listener, executionCts.Token)
                 .GetAwaiter()
                 .OnCompleted(() => EmitSignal(SignalName.ExecutionCompleted));
         }
@@ -151,10 +107,6 @@ public partial class GdUnit4CSharpApi : RefCounted
         }
     }
 
-    public static Dictionary CreateTestSuite(string sourcePath, int lineNumber, string testSuitePath)
-        => InvokeApiMethod<Dictionary>("CreateTestSuite", sourcePath, lineNumber, testSuitePath);
-
-
     // Convert a set of Tests stored as Dictionaries to TestSuiteNode
     // all tests are assigned to a single test suit
     internal static TestSuiteNode BuildTestSuiteNodeFrom(Array<Dictionary> tests)
@@ -172,15 +124,14 @@ public partial class GdUnit4CSharpApi : RefCounted
         // Create TestCaseNodes for each test in the suite
         var testCaseNodes = tests
             .Select(test => new TestCaseNode
-                {
-                    Id = Guid.Parse(test["guid"].AsString()),
-                    ParentId = suiteId,
-                    ManagedMethod = test["test_name"].AsString(),
-                    LineNumber = test["line_number"].AsInt32(),
-                    AttributeIndex = test["attribute_index"].AsInt32(),
-                    RequireRunningGodotEngine = test["require_godot_runtime"].AsBool()
-                }
-            )
+            {
+                Id = Guid.Parse(test["guid"].AsString()),
+                ParentId = suiteId,
+                ManagedMethod = test["test_name"].AsString(),
+                LineNumber = test["line_number"].AsInt32(),
+                AttributeIndex = test["attribute_index"].AsInt32(),
+                RequireRunningGodotEngine = test["require_godot_runtime"].AsBool()
+            })
             .ToList();
 
         return new TestSuiteNode
@@ -194,3 +145,35 @@ public partial class GdUnit4CSharpApi : RefCounted
         };
     }
 }
+#else
+using Godot;
+using Godot.Collections;
+
+public partial class GdUnit4CSharpApi : RefCounted
+{
+    [Signal]
+    public delegate void ExecutionCompletedEventHandler();
+
+    public static bool IsApiLoaded()
+    {
+        GD.PushWarning("No `gdunit4.api` dependency found, check your project dependencies.");
+        return false;
+    }
+
+
+    public static string Version()
+        => "Unknown";
+
+    public static Array<Dictionary> DiscoverTests(CSharpScript sourceScript) => new();
+
+    public void ExecuteAsync(Array<Dictionary> tests, Callable listener)
+    {
+    }
+
+    public static bool IsTestSuite(CSharpScript script)
+        => false;
+
+    public static Dictionary CreateTestSuite(string sourcePath, int lineNumber, string testSuitePath)
+        => new();
+}
+#endif

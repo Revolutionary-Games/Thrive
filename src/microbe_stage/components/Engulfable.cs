@@ -2,7 +2,8 @@
 
 using System;
 using System.Collections.Generic;
-using DefaultEcs;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
@@ -15,19 +16,19 @@ using Xoshiro.PRNG32;
 public struct Engulfable
 {
     /// <summary>
-    ///   Stores the original scale when this becomes engulfed so that it can be always restored (in some
-    ///   situations storing this in the transport animation will cause problems with not being able to reliably
-    ///   restore this, so this extra variable is used to get this to be problem free)
+    ///   Stores the original scale when this becomes engulfed so that it can always be restored.
+    ///   In some situations storing this in the transport animation will cause problems with not being able to reliably
+    ///   restore this, so this extra variable is used to get this to be problem-free.
     /// </summary>
     public Vector3 OriginalScale;
 
     /// <summary>
-    ///   If this is being engulfed then this is not default and is a reference to the entity (trying to) eating us
+    ///   If this is being engulfed, then this is not null and is a reference to the entity (trying to) eating us
     /// </summary>
     public Entity HostileEngulfer;
 
     /// <summary>
-    ///   If not null then the engulfer must have the specified enzyme to be able to eat this
+    ///   If not null, then the engulfer must have the specified enzyme to be able to eat this
     /// </summary>
     public Enzyme? RequisiteEnzymeToDigest;
 
@@ -55,7 +56,7 @@ public struct Engulfable
     public float DigestedAmount;
 
     /// <summary>
-    ///   When this is engulfed this gets the total amount of compounds that exist here for digestion progress.
+    ///   When this is engulfed, this stores the total quantity of compounds available for digestion.
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -67,13 +68,10 @@ public struct Engulfable
     public int OriginalRenderPriority;
 
     /// <summary>
-    ///   The current step of phagocytosis process this engulfable is currently in. If not phagocytized,
+    ///   The current step of the phagocytosis process this engulfable is currently in. If not phagocytized,
     ///   state is None.
     /// </summary>
     public PhagocytosisPhase PhagocytosisStep;
-
-    // This might not need a reference to the hostile engulfer as this should have AttachedToEntity to mark what
-    // this is attached to
 
     /// <summary>
     ///   If this is partially digested when ejected from an engulfer, this is destroyed (with a dissolve animation
@@ -81,18 +79,27 @@ public struct Engulfable
     /// </summary>
     public bool DestroyIfPartiallyDigested;
 
+    public Engulfable(PhagocytosisPhase phase, Entity hostileEngulfer)
+    {
+        if (phase != PhagocytosisPhase.None || hostileEngulfer != Entity.Null)
+            throw new ArgumentException("This must be initialized to not be in engulfed state");
+
+        PhagocytosisStep = phase;
+        HostileEngulfer = hostileEngulfer;
+    }
+
     [JsonIgnore]
     public float AdjustedEngulfSize => BaseEngulfSize * (1 - DigestedAmount);
 
     public class BulkTransportAnimation
     {
         /// <summary>
-        ///   If false the animation is complete and doesn't require actions
+        ///   If false, the animation is complete and doesn't require actions
         /// </summary>
         public bool Interpolate;
 
         /// <summary>
-        ///   Used to only trigger the digestion eject once
+        ///   Used to only trigger the digestion ejected once
         /// </summary>
         public bool DigestionEjectionStarted;
 
@@ -150,7 +157,7 @@ public static class EngulfableHelpers
 
             if (cellProperties.CreatedMembrane != null)
             {
-                // Make membrane not wiggle to make it look better
+                // Make the membrane not wiggle to make it look better
                 cellProperties.CreatedMembrane.WigglyNess = 0;
             }
         }
@@ -178,7 +185,7 @@ public static class EngulfableHelpers
         // Force mode to normal
         if (entity.Has<MicrobeControl>())
         {
-            // Cells are yanked from colonies so this doesn't need to use colony aware set
+            // Cells are yanked from colonies, so this doesn't need to use the colony-aware set
             entity.Get<MicrobeControl>().State = MicrobeState.Normal;
         }
 
@@ -336,8 +343,7 @@ public static class EngulfableHelpers
                     GD.Print("Creating timed life now as safety fallback");
                     var recorder = worldSimulation.StartRecordingEntityCommands();
 
-                    var entityRecord = recorder.Record(entity);
-                    entityRecord.Set(new TimedLife(10));
+                    recorder.Add(entity, new TimedLife(10));
 
                     worldSimulation.FinishRecordingEntityCommands(recorder);
                 }

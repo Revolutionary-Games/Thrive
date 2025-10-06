@@ -49,9 +49,16 @@ public partial class CreditsScroll : Control
     private GameCredits credits = null!;
 
 #pragma warning disable CA2213
+    [Export]
     private Control logo = null!;
+
+    [Export]
     private Control revolutionaryGames = null!;
+
+    [Export]
     private Control supportedBy = null!;
+
+    [Export]
     private Control developersHeading = null!;
 #pragma warning restore CA2213
 
@@ -79,18 +86,6 @@ public partial class CreditsScroll : Control
     public bool ShowGPLLicense { get; set; } = true;
 
     [Export]
-    public NodePath LogoPath { get; set; } = null!;
-
-    [Export]
-    public NodePath RevolutionaryGamesPath { get; set; } = null!;
-
-    [Export]
-    public NodePath SupportedByPath { get; set; } = null!;
-
-    [Export]
-    public NodePath DevelopersHeadingPath { get; set; } = null!;
-
-    [Export]
     public LabelSettings TeamNameFont { get; set; } = null!;
 
     [Export]
@@ -103,11 +98,6 @@ public partial class CreditsScroll : Control
 
         if (SectionNameFont == null)
             throw new InvalidOperationException($"{nameof(SectionNameFont)} not set");
-
-        logo = GetNode<Control>(LogoPath);
-        revolutionaryGames = GetNode<Control>(RevolutionaryGamesPath);
-        supportedBy = GetNode<Control>(SupportedByPath);
-        developersHeading = GetNode<Control>(DevelopersHeadingPath);
 
         credits = SimulationParameters.Instance.GetCredits();
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://njelpsugkine"]
 
 [ext_resource type="Script" uid="uid://bi4uxx3fuf2uu" path="res://src/society_stage/SocietyStage.cs" id="1"]
-[ext_resource type="PackedScene" path="res://src/society_stage/StrategicCamera.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cd1w0b7mbdwcu" path="res://src/society_stage/StrategicCamera.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://bguijfqnuki3m" path="res://assets/textures/environment/Terrain_01_Albedo.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://ccd7geklqgvfv" path="res://assets/textures/environment/Terrain_01_Normals.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://bd2vlm5yma24i" path="res://assets/textures/environment/Terrain_02_Normals.png" id="5"]
@@ -35,13 +35,13 @@ uv1_scale = Vector3(42, 42, 42)
 material = SubResource("4")
 size = Vector2(400, 400)
 
-[node name="SocietyStage" type="Node"]
+[node name="SocietyStage" type="Node" node_paths=PackedStringArray("selectBuildingPopup", "industrialStageConfirmPopup", "strategicCamera", "pauseMenu", "hudRoot")]
 script = ExtResource("1")
-SelectBuildingPopupPath = NodePath("SelectBuildingPopup")
-IndustrialStageConfirmPopupPath = NodePath("ConfirmIndustrialStage")
-StrategicCameraPath = NodePath("World/StrategicCamera")
-PauseMenuPath = NodePath("PauseMenu")
-HUDRootPath = NodePath("SocietyHUD")
+selectBuildingPopup = NodePath("SelectBuildingPopup")
+industrialStageConfirmPopup = NodePath("ConfirmIndustrialStage")
+strategicCamera = NodePath("World/StrategicCamera")
+pauseMenu = NodePath("PauseMenu")
+hudRoot = NodePath("SocietyHUD")
 
 [node name="World" type="Node" parent="."]
 
@@ -75,8 +75,6 @@ mesh = SubResource("5")
 menu = NodePath("../PauseMenu")
 
 [node name="SelectBuildingPopup" parent="." instance=ExtResource("9")]
-layout_mode = 3
-anchors_preset = 15
 
 [node name="ConfirmIndustrialStage" parent="." instance=ExtResource("11")]
 custom_minimum_size = Vector2(500, 0)

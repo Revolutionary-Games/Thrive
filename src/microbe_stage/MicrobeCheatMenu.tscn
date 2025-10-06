@@ -4,21 +4,21 @@
 [ext_resource type="Script" uid="uid://beiybaokjbygb" path="res://src/microbe_stage/MicrobeCheatMenu.cs" id="2"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="4_4g68c"]
 
-[node name="MicrobeCheatMenu" instance=ExtResource("1")]
+[node name="MicrobeCheatMenu" node_paths=PackedStringArray("infiniteCompounds", "godMode", "disableAI", "unlimitGrowthSpeed", "lockTime", "speed", "playerDivide", "spawnEnemy", "despawnAllEntities", "manuallySetTime", "targetTime") instance=ExtResource("1")]
 offset_right = 0.0
 offset_bottom = 0.0
 script = ExtResource("2")
-InfiniteCompoundsPath = NodePath("VBoxContainer/InfiniteCompounds")
-GodModePath = NodePath("VBoxContainer/GodMode")
-DisableAIPath = NodePath("VBoxContainer/DisableAI")
-UnlimitGrowthSpeedPath = NodePath("VBoxContainer/UnlimitGrowthSpeed")
-LockTimePath = NodePath("VBoxContainer/LockTime")
-SpeedSliderPath = NodePath("VBoxContainer/Speed/SpeedSlider")
-PlayerDividePath = NodePath("VBoxContainer/PlayerDuplicate")
-SpawnEnemyPath = NodePath("VBoxContainer/SpawnEnemy")
-DespawnAllEntitiesPath = NodePath("VBoxContainer/DespawnAllEntities")
-ManuallySetTimePath = NodePath("VBoxContainer/ManuallySetTime")
-TargetTimePath = NodePath("VBoxContainer/TargetTime/TimeSlider")
+infiniteCompounds = NodePath("VBoxContainer/InfiniteCompounds")
+godMode = NodePath("VBoxContainer/GodMode")
+disableAI = NodePath("VBoxContainer/DisableAI")
+unlimitGrowthSpeed = NodePath("VBoxContainer/UnlimitGrowthSpeed")
+lockTime = NodePath("VBoxContainer/LockTime")
+speed = NodePath("VBoxContainer/Speed/SpeedSlider")
+playerDivide = NodePath("VBoxContainer/PlayerDuplicate")
+spawnEnemy = NodePath("VBoxContainer/SpawnEnemy")
+despawnAllEntities = NodePath("VBoxContainer/DespawnAllEntities")
+manuallySetTime = NodePath("VBoxContainer/ManuallySetTime")
+targetTime = NodePath("VBoxContainer/TargetTime/TimeSlider")
 WindowTitle = "CHEATS"
 Resizable = true
 Exclusive = true

@@ -8,29 +8,22 @@ using Godot;
 /// </summary>
 public partial class OrganelleUpgradeGUI : Control
 {
-    [Export]
-    public NodePath? PopupPath;
-
-    [Export]
-    public NodePath OrganelleSpecificContentPath = null!;
-
-    [Export]
-    public NodePath ScrollContainerPath = null!;
-
-    [Export]
-    public NodePath GeneralUpgradesContainerPath = null!;
-
-    [Export]
-    public NodePath UpgradeSelectorButtonsContainerPath = null!;
-
     private readonly Dictionary<string, MicrobePartSelection> generalUpgradeSelectorButtons = new();
 
 #pragma warning disable CA2213
+    [Export]
     private CustomConfirmationDialog popup = null!;
+
+    [Export]
     private Container organelleSpecificContent = null!;
+
+    [Export]
     private ScrollContainer scrollContainer = null!;
 
+    [Export]
     private Control generalUpgradesContainer = null!;
+
+    [Export]
     private Container upgradeSelectorButtonsContainer = null!;
 
     private PackedScene upgradeSelectionButtonScene = null!;
@@ -51,13 +44,6 @@ public partial class OrganelleUpgradeGUI : Control
 
     public override void _Ready()
     {
-        popup = GetNode<CustomConfirmationDialog>(PopupPath);
-        organelleSpecificContent = GetNode<Container>(OrganelleSpecificContentPath);
-        scrollContainer = GetNode<ScrollContainer>(ScrollContainerPath);
-
-        generalUpgradesContainer = GetNode<Control>(GeneralUpgradesContainerPath);
-        upgradeSelectorButtonsContainer = GetNode<Container>(UpgradeSelectorButtonsContainerPath);
-
         upgradeSelectionButtonScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/MicrobePartSelection.tscn");
         generalUpgradeButtonGroup = new ButtonGroup();
 
@@ -186,15 +172,6 @@ public partial class OrganelleUpgradeGUI : Control
     {
         if (disposing)
         {
-            if (PopupPath != null)
-            {
-                PopupPath.Dispose();
-                OrganelleSpecificContentPath.Dispose();
-                ScrollContainerPath.Dispose();
-                GeneralUpgradesContainerPath.Dispose();
-                UpgradeSelectorButtonsContainerPath.Dispose();
-            }
-
             ReleaseTooltips();
         }
 

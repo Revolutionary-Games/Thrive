@@ -8,7 +8,12 @@
       "AgentProjectileMacrolide",
       "AgentProjectileCyanide",
       "AgentProjectileChannelInhibitor",
-      "SiderophoreProjectile"
+      "SiderophoreProjectile",
+      "ClayTerrain1",
+      "ClayTerrain2",
+      "QuartzTerrain1",
+      "QuartzTerrain2",
+      "QuartzTerrain3"
     ],
     "RequiredScenes": [
       {
@@ -117,6 +122,9 @@
         "Path": "res://assets/models/organelles/Thermoplast.tscn"
       },
       {
+        "Path": "res://assets/models/organelles/Hydrogenosome.tscn"
+      },
+      {
         "Path": "res://src/microbe_stage/CellGraphicsPreload.tscn",
         "EstimatedTimeRequired": 0.02
       },
@@ -125,6 +133,9 @@
       },
       {
         "Path": "res://src/microbe_stage/MicrobeCommonPreload.tscn"
+      },
+      {
+        "Path": "res://src/multicellular_stage/IntercellularConnection.tscn"
       }
     ]
   },

@@ -6,16 +6,16 @@
 [ext_resource type="PackedScene" uid="uid://ddi31qylscfyh" path="res://src/saving/SaveList.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="5"]
 
-[node name="NewSaveMenu" type="Control"]
+[node name="NewSaveMenu" type="Control" node_paths=PackedStringArray("saveButton", "attemptWriteFailAccept", "overwriteConfirm", "saveNameBox", "saveList")]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource("1")
 script = ExtResource("2")
-SaveListPath = NodePath("VBoxContainer/VBoxContainer/SaveList")
-SaveNameBoxPath = NodePath("VBoxContainer/VBoxContainer/HBoxContainer/SaveName")
-OverwriteConfirmPath = NodePath("OverwriteConfirm")
-AttemptWriteFailAcceptPath = NodePath("AttemptWriteFailAccept")
-SaveButtonPath = NodePath("VBoxContainer/VBoxContainer/HBoxContainer/Save")
+saveList = NodePath("VBoxContainer/VBoxContainer/SaveList")
+saveNameBox = NodePath("VBoxContainer/VBoxContainer/HBoxContainer/SaveName")
+overwriteConfirm = NodePath("OverwriteConfirm")
+attemptWriteFailAccept = NodePath("AttemptWriteFailAccept")
+saveButton = NodePath("VBoxContainer/VBoxContainer/HBoxContainer/Save")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0

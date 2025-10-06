@@ -4,14 +4,14 @@
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="3_nhauy"]
 
-[node name="InputGroupItem" type="VBoxContainer"]
+[node name="InputGroupItem" type="VBoxContainer" node_paths=PackedStringArray("inputActionsContainer", "inputGroupHeader")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource("2")
 script = ExtResource("1")
-InputGroupHeaderPath = NodePath("VBoxContainer/InputGroupHeader")
-InputActionsContainerPath = NodePath("VBoxContainer/PanelContainer/MarginContainer/InputActionsContainer")
+inputGroupHeader = NodePath("VBoxContainer/InputGroupHeader")
+inputActionsContainer = NodePath("VBoxContainer/PanelContainer/MarginContainer/InputActionsContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2

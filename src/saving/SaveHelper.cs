@@ -27,6 +27,7 @@ public static class SaveHelper
         "0.5.9.0-alpha",
         "0.6.4.0-alpha",
         "0.6.6.0-alpha",
+        "0.8.4.0-alpha",
     };
 
     private static readonly IReadOnlyList<MainGameState> StagesAllowingPrototypeSaving = new[]
@@ -60,7 +61,7 @@ public static class SaveHelper
     public enum QuickLoadError
     {
         /// <summary>
-        ///   No error, quick load is successful (or error is not handled).
+        ///   No error, a quick load is successful (or error is not handled).
         /// </summary>
         None,
 
@@ -80,7 +81,7 @@ public static class SaveHelper
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Used for knowing whether to show confirmation dialog on the pause menu when exiting the game.
+    ///     Used for knowing whether to show a confirmation dialog on the pause menu when exiting the game.
     ///   </para>
     /// </remarks>
     /// <returns>True if the last save is still recent, false if otherwise.</returns>
@@ -272,6 +273,78 @@ public static class SaveHelper
             {
                 result = result.OrderBy(s =>
                     FileAccess.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, s))).ToList();
+
+                break;
+            }
+        }
+
+        return result;
+    }
+
+    public static IEnumerable<(string SaveName, SaveInformation SaveInfo)> CreateListOfAutoSavesForGame(
+        Guid playthrough, SaveOrder order = SaveOrder.LastModifiedFirst)
+    {
+        var result = new List<(string SaveName, SaveInformation SaveInfo)>();
+
+        using var directory = DirAccess.Open(Constants.SAVE_FOLDER);
+
+        if (directory == null)
+            return result;
+
+        if (directory.ListDirBegin() != Error.Ok)
+        {
+            GD.PrintErr("Failed to begin listing files in saves folder");
+            return result;
+        }
+
+        while (true)
+        {
+            var filename = directory.GetNext();
+
+            if (string.IsNullOrEmpty(filename))
+                break;
+
+            if (!filename.EndsWith(Constants.SAVE_EXTENSION, StringComparison.Ordinal))
+                continue;
+
+            if (!Constants.AutoSaveRegex.IsMatch(filename))
+                continue;
+
+            // Skip folders
+            if (!directory.FileExists(filename))
+                continue;
+
+            // Need to load the save info here to determine the playthrough ID
+            try
+            {
+                var saveInfo = global::Save.LoadJustInfoFromSave(filename);
+                if (saveInfo.PlaythroughID != playthrough)
+                    continue;
+
+                result.Add((filename, saveInfo));
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr($"Failed to load save info for {filename}: {e}");
+            }
+        }
+
+        directory.ListDirEnd();
+
+        switch (order)
+        {
+            case SaveOrder.LastModifiedFirst:
+            {
+                result = result.OrderByDescending(s =>
+                    FileAccess.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, s.SaveName))).ToList();
+
+                break;
+            }
+
+            case SaveOrder.FirstModifiedFirst:
+            {
+                result = result.OrderBy(s =>
+                    FileAccess.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, s.SaveName))).ToList();
 
                 break;
             }
@@ -545,9 +618,19 @@ public static class SaveHelper
 
     private static void PerformSave(InProgressSave inProgress, Save save)
     {
-        // Ensure prototype state flag is also in the info data for use by the save list
-        save.Info.IsPrototype = save.SavedProperties?.InPrototypes ??
+        if (save.SavedProperties == null)
             throw new InvalidOperationException("Saved properties of a save to write to disk is unset");
+
+        // Ensure the prototype state flag is also in the info data for use by the save list (and other properties
+        // that are useful for quick access)
+        save.Info.IsPrototype = save.SavedProperties.InPrototypes;
+
+        save.Info.PlaythroughID = save.SavedProperties.PlaythroughID;
+
+        save.Info.GameState = save.GameState;
+
+        // Ensure the cheat state flag is copied
+        save.Info.CheatsUsed = save.SavedProperties.CheatsUsed;
 
         try
         {

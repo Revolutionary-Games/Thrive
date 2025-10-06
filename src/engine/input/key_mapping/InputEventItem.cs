@@ -12,12 +12,6 @@ using Godot;
 /// </remarks>
 public partial class InputEventItem : MarginContainer
 {
-    [Export]
-    public NodePath? ButtonPath;
-
-    [Export]
-    public NodePath XButtonPath = null!;
-
     private readonly StringName uiSelectAction = new("ui_select");
     private readonly StringName uiAcceptAction = new("ui_accept");
 
@@ -25,8 +19,12 @@ public partial class InputEventItem : MarginContainer
     [Export]
     private LabelSettings graphicalLabelSettings = null!;
 
+    [Export]
     private Button button = null!;
+
+    [Export]
     private Button xButton = null!;
+
     private bool wasPressingButton;
 
     private Control? alternativeButtonContentToText;
@@ -110,9 +108,6 @@ public partial class InputEventItem : MarginContainer
 
     public override void _Ready()
     {
-        button = GetNode<Button>(ButtonPath);
-        xButton = GetNode<Button>(XButtonPath);
-
         if (JustAdded)
         {
             OnRebindButtonPressed();
@@ -213,7 +208,7 @@ public partial class InputEventItem : MarginContainer
         try
         {
             var old = AssociatedEvent;
-            AssociatedEvent = new SpecifiedInputKey(newInput, true);
+            AssociatedEvent = new SpecifiedInputKey(newInput);
 
             // Check conflicts, and don't proceed if there is a conflict
             if (CheckNewKeyConflicts(newInput, groupList, old))
@@ -383,13 +378,23 @@ public partial class InputEventItem : MarginContainer
         // If receiving another input to rebind, then queued modifier key rebinding is cancelled
         modifierKeyStatus = ModifierKeyMode.None;
 
+        GetViewport().SetInputAsHandled();
+
+        Rebind(@event);
+    }
+
+    /// <summary>
+    ///   Rebinds this <see cref="InputEventItem"/> to use the given <see cref="InputEvent"/>; checks for conflicts.
+    /// </summary>
+    public void Rebind(InputEvent inputEvent)
+    {
         // The old key input event. Null if this event is assigned a value the first time.
         var old = AssociatedEvent;
 
         try
         {
             // TODO: allow controlling if physical keys or key labels should be used when rebinding by the user
-            AssociatedEvent = new SpecifiedInputKey(@event, true);
+            AssociatedEvent = new SpecifiedInputKey(inputEvent);
         }
         catch (Exception e)
         {
@@ -397,11 +402,16 @@ public partial class InputEventItem : MarginContainer
             return;
         }
 
-        GetViewport().SetInputAsHandled();
-
-        // Check conflicts, and don't proceed if there is a conflict
-        if (CheckNewKeyConflicts(@event, groupList, old))
-            return;
+        if (GroupList != null)
+        {
+            // Check conflicts, and don't proceed if there is a conflict
+            if (CheckNewKeyConflicts(inputEvent, GroupList, old))
+                return;
+        }
+        else
+        {
+            GD.PrintErr("InputEventItem has no group list");
+        }
 
         OnKeybindingSuccessfullyChanged();
     }
@@ -444,12 +454,6 @@ public partial class InputEventItem : MarginContainer
     {
         if (disposing)
         {
-            if (ButtonPath != null)
-            {
-                ButtonPath.Dispose();
-                XButtonPath.Dispose();
-            }
-
             uiSelectAction.Dispose();
             uiAcceptAction.Dispose();
         }

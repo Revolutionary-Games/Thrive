@@ -8,26 +8,20 @@ using Container = Godot.Container;
 /// </summary>
 public partial class InteractablePopup : Control
 {
-    [Export]
-    public NodePath? PopupPath;
-
-    [Export]
-    public NodePath ButtonsContainerPath = null!;
-
-    [Export]
-    public NodePath CancelButtonPath = null!;
-
-    [Export]
-    public NodePath ExtraInfoLabelPath = null!;
-
 #pragma warning disable CA2213
     [Export]
     public LabelSettings InteractionButtonFont = null!;
 
+    [Export]
     private CustomWindow popup = null!;
+
+    [Export]
     private Container buttonsContainer = null!;
+
+    [Export]
     private Button cancelButton = null!;
 
+    [Export]
     private Label extraInfoLabel = null!;
 #pragma warning restore CA2213
 
@@ -42,11 +36,6 @@ public partial class InteractablePopup : Control
 
     public override void _Ready()
     {
-        popup = GetNode<CustomWindow>(PopupPath);
-        buttonsContainer = GetNode<Container>(ButtonsContainerPath);
-        cancelButton = GetNode<Button>(CancelButtonPath);
-        extraInfoLabel = GetNode<Label>(ExtraInfoLabelPath);
-
         // This is invisible in the editor to make it nicer to edit things
         Visible = true;
     }
@@ -141,22 +130,6 @@ public partial class InteractablePopup : Control
 
         // Something else than our popup is focused, so don't do anything to not mess with unexpected parts of the game
         return false;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (PopupPath != null)
-            {
-                PopupPath.Dispose();
-                ButtonsContainerPath.Dispose();
-                CancelButtonPath.Dispose();
-                ExtraInfoLabelPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void OptionSelected(InteractionType interactionType)

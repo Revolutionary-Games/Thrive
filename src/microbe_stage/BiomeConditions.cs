@@ -105,7 +105,7 @@ public class BiomeConditions : IBiomeConditions, ICloneable
 
     /// <summary>
     ///   The normal, large timescale compound amounts. The maximum amounts compounds are at during a day in this
-    ///   patch (if they wary during a day).
+    ///   patch (if they vary during a day).
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -117,7 +117,7 @@ public class BiomeConditions : IBiomeConditions, ICloneable
 
     /// <summary>
     ///   Allows access to modification of the compound values in the biome permanently. Should only be used by
-    ///   auto-evo or map generator. After changing <see cref="AverageCompounds"/> must to be updated.
+    ///   auto-evo or map generator. After changing <see cref="AverageCompounds"/> must be updated.
     ///   <see cref="ModifyLongTermCondition"/> is the preferred method to update this data which handles that
     ///   automatically. Or for more advanced handling (of gases especially):
     ///   <see cref="ApplyLongTermCompoundChanges"/>
@@ -185,6 +185,24 @@ public class BiomeConditions : IBiomeConditions, ICloneable
     }
 
     /// <summary>
+    ///   Modifies the densities of all chunks that contain the specified compound by the specified multiplier.
+    /// </summary>
+    /// <param name="compound">The compound to look for in chunks</param>
+    /// <param name="densityMultiplier">The multiplier to apply to the density of the chunks</param>
+    public void ModifyChunksDensitiesByCompound(Compound compound, float densityMultiplier)
+    {
+        foreach (var chunkKey in Chunks.Keys)
+        {
+            var chunk = Chunks[chunkKey];
+            if (chunk.Compounds != null && chunk.Compounds.ContainsKey(compound))
+            {
+                chunk.Density *= densityMultiplier;
+                Chunks[chunkKey] = chunk;
+            }
+        }
+    }
+
+    /// <summary>
     ///   Applies a set of compound value changes all at once. Handles environmental compound more intelligently than
     ///   pure <see cref="ModifyLongTermCondition"/>. Note should be only called for long-timescale operations like
     ///   <see cref="IWorldEffect"/> (and also this allocates some temporary work memory)
@@ -209,7 +227,23 @@ public class BiomeConditions : IBiomeConditions, ICloneable
             var definition = simulationParameters.GetCompoundDefinition(entry.Key);
             if (!definition.IsEnvironmental)
             {
+                bool updateCloudSize = false;
+
                 if (!TryGetCompound(entry.Key, CompoundAmountType.Biome, out var existing))
+                {
+                    updateCloudSize = true;
+                }
+                else
+                {
+                    // Make sure the cloud size is set (as the above fetch can succeed but return a value with no
+                    // amount set)
+                    if (existing.Amount <= 0)
+                    {
+                        updateCloudSize = true;
+                    }
+                }
+
+                if (updateCloudSize)
                 {
                     if (!newCloudSizes.TryGetValue(entry.Key, out var cloudSize))
                     {
@@ -281,7 +315,7 @@ public class BiomeConditions : IBiomeConditions, ICloneable
         if (previousOther > MathUtils.EPSILON)
             totalGases += previousOther;
 
-        // Finally scale each compound by its fraction of the total and apply it
+        // Finally, scale each compound by its fraction of the total and apply it
         foreach (var gas in gases)
         {
             TryGetCompound(gas.Key, CompoundAmountType.Biome, out var result);
@@ -306,20 +340,28 @@ public class BiomeConditions : IBiomeConditions, ICloneable
     /// </summary>
     /// <param name="compound">The compound to modify</param>
     /// <param name="newValue">New value to set</param>
-    public void ModifyLongTermCondition(Compound compound, BiomeCompoundProperties newValue)
+    /// <param name="allowNegatives">
+    ///   If the developer knows that negative value should be applied then this value needs to set set to true
+    /// </param>
+    public void ModifyLongTermCondition(Compound compound, BiomeCompoundProperties newValue,
+        bool allowNegatives = false)
     {
         // Ensure negative values can't be calculated and applied accidentally. This is here as conditions are modified
-        // from many places so the easiest and safes thing is to just clamp stuff to non-zero here
-        if (newValue.Ambient < 0)
-            newValue.Ambient = 0;
+        // from many places so the easiest and safes thing is to just clamp stuff to non-zero here. There are some
+        // exceptions to this rule, like the temperature, which can be negative.
+        if (!allowNegatives)
+        {
+            if (newValue.Ambient < 0)
+                newValue.Ambient = 0;
 
-        if (newValue.Density < 0)
-            newValue.Density = 0;
+            if (newValue.Density < 0)
+                newValue.Density = 0;
 
-        // As this is the cloud size, this is unlikely to be wrong, but probably better to check here than to cause
-        // weird issues in cloud spawning
-        if (newValue.Amount < 0)
-            newValue.Amount = 0;
+            // As this is the cloud size, this is unlikely to be wrong, but probably better to check here than to cause
+            // weird issues in cloud spawning
+            if (newValue.Amount < 0)
+                newValue.Amount = 0;
+        }
 
         ChangeableCompounds[compound] = newValue;
 

@@ -31,6 +31,9 @@ func value() -> Variant:
 	return _value
 
 
+func int_value() -> int:
+	return _value
+
 func value_as_string() -> String:
 	return _value
 
@@ -48,11 +51,11 @@ func set_value(p_value :Variant) -> void:
 		TYPE_STRING:
 			_value = str(p_value)
 		TYPE_BOOL:
-			_value = convert(p_value, TYPE_BOOL)
+			_value = type_convert(p_value, TYPE_BOOL)
 		TYPE_INT:
-			_value = convert(p_value, TYPE_INT)
+			_value = type_convert(p_value, TYPE_INT)
 		TYPE_FLOAT:
-			_value = convert(p_value, TYPE_FLOAT)
+			_value = type_convert(p_value, TYPE_FLOAT)
 		_:
 			_value = p_value
 

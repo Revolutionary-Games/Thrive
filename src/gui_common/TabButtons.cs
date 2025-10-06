@@ -30,44 +30,33 @@ public partial class TabButtons : HBoxContainer
     [Export]
     public bool MoveIndicatorsTakeUpSpaceWhileInvisible;
 
-    [Export]
-    public NodePath? LeftContainerPath;
-
-    [Export]
-    public NodePath LeftPaddingPath = null!;
-
-    [Export]
-    public NodePath LeftButtonIndicatorPath = null!;
-
-    [Export]
-    public NodePath RightContainerPath = null!;
-
-    [Export]
-    public NodePath RightPaddingPath = null!;
-
-    [Export]
-    public NodePath RightButtonIndicatorPath = null!;
-
-    [Export]
-    public NodePath TabButtonsContainerPath = null!;
-
-    [Export]
-    public NodePath TabButtonsContainerNoWrapPath = null!;
-
     private readonly List<Control> tabButtons = new();
 
     private TabLevel levelOnScreen = TabLevel.Primary;
 
 #pragma warning disable CA2213
+    [Export]
     private Container? leftContainer;
+
+    [Export]
     private Control leftPadding = null!;
+
+    [Export]
     private KeyPrompt? leftButtonIndicator;
 
+    [Export]
     private Container rightContainer = null!;
+
+    [Export]
     private Control rightPadding = null!;
+
+    [Export]
     private KeyPrompt rightButtonIndicator = null!;
 
+    [Export]
     private Container tabButtonsContainer = null!;
+
+    [Export]
     private Container tabButtonsContainerNoWrap = null!;
 #pragma warning restore CA2213
 
@@ -114,17 +103,6 @@ public partial class TabButtons : HBoxContainer
     {
         if (NodeReferencesResolved)
             return;
-
-        leftContainer = GetNode<Container>(LeftContainerPath);
-        leftPadding = GetNode<Control>(LeftPaddingPath);
-        leftButtonIndicator = GetNode<KeyPrompt>(LeftButtonIndicatorPath);
-
-        rightContainer = GetNode<Container>(RightContainerPath);
-        rightPadding = GetNode<Control>(RightPaddingPath);
-        rightButtonIndicator = GetNode<KeyPrompt>(RightButtonIndicatorPath);
-
-        tabButtonsContainer = GetNode<Container>(TabButtonsContainerPath);
-        tabButtonsContainerNoWrap = GetNode<Container>(TabButtonsContainerNoWrapPath);
 
         NodeReferencesResolved = true;
     }
@@ -261,26 +239,6 @@ public partial class TabButtons : HBoxContainer
         TryToMoveToPreviousTab();
 
         return true;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (LeftContainerPath != null)
-            {
-                LeftContainerPath.Dispose();
-                LeftPaddingPath.Dispose();
-                LeftButtonIndicatorPath.Dispose();
-                RightContainerPath.Dispose();
-                RightPaddingPath.Dispose();
-                RightButtonIndicatorPath.Dispose();
-                TabButtonsContainerPath.Dispose();
-                TabButtonsContainerNoWrapPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void TryToMoveToNextTab()

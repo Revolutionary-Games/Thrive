@@ -11,6 +11,25 @@ public static class StringUtils
 {
     public const int INDENT_AMOUNT = 4;
 
+    public static string FormatMutationPointCost(double cost)
+    {
+        string result;
+
+        if (cost < 0)
+        {
+            // Negative MP cost means it actually gives MP
+            // To convey that to the player, we need to explicitly prefix the cost with a positive sign
+            result = "+" + Math.Round(Math.Abs(cost), Constants.MUTATION_POINTS_DECIMALS)
+                .ToString(CultureInfo.CurrentCulture);
+        }
+        else
+        {
+            result = Math.Round(cost, Constants.MUTATION_POINTS_DECIMALS).ToString(CultureInfo.CurrentCulture);
+        }
+
+        return result;
+    }
+
     /// <summary>
     ///   Truncates large numbers with suffix added (e.g. M for million).
     ///   Adapted from https://stackoverflow.com/a/30181106 to allow negatives and translation.

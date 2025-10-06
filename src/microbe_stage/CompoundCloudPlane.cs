@@ -734,8 +734,11 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
                 break;
 
             // Skip if compound is non-useful or disallowed to be absorbed
-            if (!compoundDefinitions[i]!.IsAbsorbable || !storage.IsUseful(compound))
+            if (!compoundDefinitions[i]!.IsAbsorbable
+                || (!storage.IsUseful(compound) && !compoundDefinitions[i]!.AlwaysAbsorbable))
+            {
                 continue;
+            }
 
             // Loop here to retry in case we read stale data
             while (true)
@@ -899,7 +902,15 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
                     var velocity = fluidSystem!.VelocityAt(
-                        new Vector2(worldPos.X + x * resolution, worldPos.Z + y * resolution)) * VISCOSITY;
+                        new Vector2(worldPos.X + x * resolution, worldPos.Z + y * resolution));
+
+                    if (MathF.Abs(velocity.X) + MathF.Abs(velocity.Y) <
+                        Constants.CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD)
+                    {
+                        velocity = Vector2.Zero;
+                    }
+
+                    velocity *= VISCOSITY;
 
                     // This is run in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.X);
@@ -942,7 +953,15 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
                     var velocity = fluidSystem!.VelocityAt(
-                        new Vector2(worldPos.X + x * resolution, worldPos.Z + y * resolution)) * VISCOSITY;
+                        new Vector2(worldPos.X + x * resolution, worldPos.Z + y * resolution));
+
+                    if (MathF.Abs(velocity.X) + MathF.Abs(velocity.Y) <
+                        Constants.CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD)
+                    {
+                        velocity = Vector2.Zero;
+                    }
+
+                    velocity *= VISCOSITY;
 
                     // This is run in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.X);

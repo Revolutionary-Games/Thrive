@@ -38,7 +38,7 @@ public class Patch
     private readonly Dictionary<Species, long> gameplayPopulations = new();
 
     /// <summary>
-    ///   The current effects on patch node (shown in the patch map)
+    ///   The current effects on the patch node (shown in the patch map)
     /// </summary>
     [JsonProperty]
     private readonly List<WorldEffectTypes> activeWorldEffectVisuals = new();
@@ -46,7 +46,8 @@ public class Patch
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
 
-    public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchRegion region)
+    public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchRegion region,
+        long additionalDataSeed)
     {
         Name = name;
         ID = id;
@@ -55,12 +56,16 @@ public class Patch
         currentSnapshot =
             new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone(), biomeTemplate.Background);
         Region = region;
+
+        DynamicDataSeed = additionalDataSeed;
     }
 
-    public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchSnapshot currentSnapshot)
+    public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchSnapshot currentSnapshot,
+        long additionalDatAseed)
         : this(name, id, biomeTemplate, currentSnapshot)
     {
         BiomeType = biomeType;
+        DynamicDataSeed = additionalDatAseed;
     }
 
     [JsonConstructor]
@@ -176,6 +181,12 @@ public class Patch
     public bool HasDayAndNight => Biome.HasCompoundsThatVary();
 
     /// <summary>
+    ///   Seed for generating dynamic runtime data for this patch (for example terrain)
+    /// </summary>
+    [JsonProperty]
+    public long DynamicDataSeed { get; private set; }
+
+    /// <summary>
     ///   Adds all neighbors recursively to the provided <see cref="HashSet{T}"/>
     /// </summary>
     /// <param name="patch">The <see cref="Patch"/> to start from</param>
@@ -250,7 +261,7 @@ public class Patch
     }
 
     /// <summary>
-    ///   Looks for a species with the specified name in this patch
+    ///   Looks for a species with the specified id in this patch
     /// </summary>
     public Species? FindSpeciesByID(uint id)
     {
@@ -382,6 +393,11 @@ public class Patch
         gameplayPopulations.Clear();
     }
 
+    public bool IsSurfacePatch()
+    {
+        return Depth[0] == 0 && BiomeType != BiomeType.Cave;
+    }
+
     public float GetCompoundAmountForDisplay(Compound compound,
         CompoundAmountType amountType = CompoundAmountType.Current)
     {
@@ -399,9 +415,8 @@ public class Patch
             case Compound.Carbondioxide:
             case Compound.Nitrogen:
                 return GetAmbientCompoundInSnapshot(snapshot, compound, CompoundAmountType.Biome) * 100;
-            case Compound.Iron:
-                return GetTotalChunkCompoundAmountInSnapshot(snapshot, compound);
             case Compound.Radiation:
+            case Compound.Iron:
                 return GetTotalChunkCompoundAmountInSnapshot(snapshot, compound);
             default:
             {
@@ -590,7 +605,7 @@ public class Patch
     /// </summary>
     /// <param name="description">The event's description</param>
     /// <param name="highlight">If true, the event will be highlighted in the timeline UI</param>
-    /// <param name="showInReport">If true, the event will be shown on report tab main page</param>
+    /// <param name="showInReport">If true, the event will be shown on the report tab main page</param>
     /// <param name="iconPath">Resource path to the icon of the event</param>
     public void LogEvent(LocalizedString description, bool highlight = false,
         bool showInReport = false, string? iconPath = null)

@@ -5,20 +5,18 @@
 /// </summary>
 public partial class SpeciesDetailsPanel : MarginContainer
 {
-    [Export]
-    public NodePath? SpeciesDetailsLabelPath;
-
-    [Export]
-    public NodePath SpeciesPreviewPath = null!;
-
-    [Export]
-    public NodePath HexPreviewPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
+    public SpeciesPreview SpeciesPreview = null!;
+
+    [Export]
     private CustomRichTextLabel? speciesDetailsLabel;
-    private SpeciesPreview speciesPreview = null!;
+
+    [Export]
     private CellHexesPreview hexesPreview = null!;
 #pragma warning restore CA2213
+
+    private ulong speciesVisualHash;
 
     private Species? previewSpecies;
 
@@ -27,11 +25,13 @@ public partial class SpeciesDetailsPanel : MarginContainer
         get => previewSpecies;
         set
         {
-            if (previewSpecies == value)
+            var newHash = value?.GetVisualHashCode() ?? 0UL;
+
+            if (newHash == speciesVisualHash)
                 return;
 
             previewSpecies = value;
-
+            speciesVisualHash = newHash;
             if (speciesDetailsLabel != null)
                 UpdateSpeciesPreview();
         }
@@ -40,10 +40,6 @@ public partial class SpeciesDetailsPanel : MarginContainer
     public override void _Ready()
     {
         base._Ready();
-
-        speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
-        speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
-        hexesPreview = GetNode<CellHexesPreview>(HexPreviewPath);
 
         if (previewSpecies != null)
             UpdateSpeciesPreview();
@@ -61,40 +57,14 @@ public partial class SpeciesDetailsPanel : MarginContainer
         Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (SpeciesDetailsLabelPath != null)
-            {
-                SpeciesDetailsLabelPath.Dispose();
-                SpeciesPreviewPath.Dispose();
-                HexPreviewPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     /// <summary>
     ///   Updates displayed species information based on the set preview species.
     /// </summary>
     private void UpdateSpeciesPreview()
     {
-        speciesPreview.PreviewSpecies = PreviewSpecies;
+        SpeciesPreview.PreviewSpecies = PreviewSpecies;
 
-        if (PreviewSpecies == null)
-        {
-            hexesPreview.PreviewSpecies = null;
-        }
-        else if (PreviewSpecies is MicrobeSpecies microbeSpecies)
-        {
-            hexesPreview.PreviewSpecies = microbeSpecies;
-        }
-        else
-        {
-            GD.PrintErr("Unknown species type to preview: ", PreviewSpecies, " (", PreviewSpecies.GetType().Name, ")");
-        }
+        hexesPreview.PreviewSpecies = PreviewSpecies;
 
         speciesDetailsLabel!.ExtendedBbcode = PreviewSpecies?.GetDetailString();
     }

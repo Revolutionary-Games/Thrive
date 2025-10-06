@@ -1,6 +1,6 @@
 ﻿namespace Components;
 
-using DefaultEcs;
+using Arch.Core;
 using Godot;
 
 /// <summary>
@@ -10,7 +10,7 @@ using Godot;
 public struct AttachedToEntity
 {
     /// <summary>
-    ///   Entity this is attached to. Should be valid whenever this component exists
+    ///   Entity this is attached to. Should be valid whenever this component exists.
     /// </summary>
     public Entity AttachedTo;
 

@@ -153,7 +153,7 @@ _data = {
 &"RESET": SubResource("3")
 }
 
-[node name="Thriveopedia" type="Control"]
+[node name="Thriveopedia" type="Control" node_paths=PackedStringArray("backButton", "forwardButton", "pageContainer", "pageTreeContainer", "pageTreeContainerAnim", "pageTitle", "viewOnlineButton", "pageTree", "homePage")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -162,15 +162,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2")
 script = ExtResource("1")
-BackButtonPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/BackButton")
-ForwardButtonPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/ForwardButton")
-PageContainerPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer")
-PageTreeContainerPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2")
-PageTreeContainerAnimPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/AnimationPlayer")
-PageTitlePath = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/PageTitle")
-ViewOnlineButtonPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/ViewOnlineButton")
-PageTreePath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
-HomePagePath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer/ThriveopediaHomePage")
+backButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/BackButton")
+forwardButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/ForwardButton")
+pageContainer = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer")
+pageTreeContainer = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2")
+pageTreeContainerAnim = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/AnimationPlayer")
+pageTitle = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/PageTitle")
+viewOnlineButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/ViewOnlineButton")
+pageTree = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
+homePage = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer/ThriveopediaHomePage")
 
 [node name="Overlay" type="ColorRect" parent="."]
 layout_mode = 0

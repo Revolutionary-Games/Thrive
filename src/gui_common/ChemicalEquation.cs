@@ -175,13 +175,18 @@ public partial class ChemicalEquation : VBoxContainer
     {
         if (ShowSpinner && EquationFromProcess != null)
         {
-            currentSpinnerRotation += (float)delta * EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed
-                * ExternalSpeedModifier;
+            // Do not process the spinning if the game is paused (this node itself needs to be unpaused so that
+            // scrolling works)
+            if (!PauseManager.Instance.Paused)
+            {
+                currentSpinnerRotation += (float)delta * EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed
+                    * ExternalSpeedModifier;
 
-            // TODO: should we at some point subtract like 100000*360 from the spinner rotation to avoid float range
-            // exceeding?
+                // TODO: should we at some point subtract like 100000*360 from the spinner rotation to avoid float range
+                // exceeding?
 
-            spinner!.RotationDegrees = (int)currentSpinnerRotation % 360;
+                spinner!.RotationDegrees = (int)currentSpinnerRotation % 360;
+            }
         }
 
         if (AutoRefreshProcess)

@@ -5,9 +5,9 @@
 [ext_resource type="Script" uid="uid://ck7qeqnf21dri" path="res://src/gui_common/art_gallery/GalleryCardAudio.cs" id="3"]
 [ext_resource type="PackedScene" uid="uid://c4i1ie8aqbswd" path="res://src/gui_common/art_gallery/GalleryCard.tscn" id="4"]
 
-[node name="GalleryCardAudio" instance=ExtResource("4")]
+[node name="GalleryCardAudio" node_paths=PackedStringArray("playbackControls") instance=ExtResource("4")]
 script = ExtResource("3")
-PlaybackControlsPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/PlaybackControls")
+playbackControls = NodePath("MarginContainer/VBoxContainer/MarginContainer/PlaybackControls")
 MissingTexture = ExtResource("2")
 CanBeShownInASlideshow = false
 

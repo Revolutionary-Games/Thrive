@@ -23,22 +23,8 @@ public partial class HUDBottomBar : HBoxContainer
     [Export]
     public bool ShowProcessesButton = true;
 
-    [Export]
-    public NodePath? PauseButtonPath;
-
-    [Export]
-    public NodePath CompoundsButtonPath = null!;
-
-    [Export]
-    public NodePath EnvironmentButtonPath = null!;
-
-    [Export]
-    public NodePath ProcessPanelButtonPath = null!;
-
-    [Export]
-    public NodePath SuicideButtonPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private PlayButton pauseButton = null!;
 
     [Export]
@@ -47,9 +33,16 @@ public partial class HUDBottomBar : HBoxContainer
     [Export]
     private BaseButton? speedButton;
 
+    [Export]
     private TextureButton? compoundsButton;
+
+    [Export]
     private TextureButton? environmentButton;
+
+    [Export]
     private TextureButton? processPanelButton;
+
+    [Export]
     private TextureButton? suicideButton;
 #pragma warning restore CA2213
 
@@ -178,36 +171,12 @@ public partial class HUDBottomBar : HBoxContainer
 
     public override void _Ready()
     {
-        pauseButton = GetNode<PlayButton>(PauseButtonPath);
-
-        compoundsButton = GetNode<TextureButton>(CompoundsButtonPath);
-        environmentButton = GetNode<TextureButton>(EnvironmentButtonPath);
-        processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
-        suicideButton = GetNode<TextureButton>(SuicideButtonPath);
-
         UpdateCompoundButton();
         UpdateEnvironmentButton();
         UpdateProcessPanelButton();
         UpdateSpeedButton();
 
         UpdateButtonVisibility();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (PauseButtonPath != null)
-            {
-                PauseButtonPath.Dispose();
-                CompoundsButtonPath.Dispose();
-                EnvironmentButtonPath.Dispose();
-                ProcessPanelButtonPath.Dispose();
-                SuicideButtonPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void MenuPressed()

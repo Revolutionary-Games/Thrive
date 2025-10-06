@@ -5,12 +5,6 @@
 /// </summary>
 public partial class GalleryCard : Button
 {
-    [Export]
-    public NodePath? TitleLabelPath;
-
-    [Export]
-    public NodePath TextureRectPath = null!;
-
 #pragma warning disable CA2213
     [Export]
     public Texture2D MissingTexture = null!;
@@ -19,8 +13,12 @@ public partial class GalleryCard : Button
     private readonly NodePath modulationReference = new("modulate");
 
 #pragma warning disable CA2213
-    private Label? titleLabel;
-    private TextureRect? imagePreview;
+    [Export]
+    private Label titleLabel = null!;
+
+    [Export]
+    private TextureRect imagePreview = null!;
+
     private Texture2D? thumbnail;
 #pragma warning restore CA2213
 
@@ -33,7 +31,7 @@ public partial class GalleryCard : Button
     [Export]
     public bool CanBeShownInASlideshow { get; set; } = true;
 
-    public Asset Asset { get; set; } = null!;
+    public Asset? Asset { get; set; }
 
     public Texture2D Thumbnail
     {
@@ -47,9 +45,6 @@ public partial class GalleryCard : Button
 
     public override void _Ready()
     {
-        titleLabel = GetNode<Label>(TitleLabelPath);
-        imagePreview = GetNode<TextureRect>(TextureRectPath);
-
         UpdatePreview();
     }
 
@@ -71,12 +66,6 @@ public partial class GalleryCard : Button
     {
         if (disposing)
         {
-            if (TitleLabelPath != null)
-            {
-                TitleLabelPath.Dispose();
-                TextureRectPath.Dispose();
-            }
-
             modulationReference.Dispose();
         }
 
@@ -85,7 +74,7 @@ public partial class GalleryCard : Button
 
     private void UpdatePreview()
     {
-        if (titleLabel == null || imagePreview == null)
+        if (Asset == null)
             return;
 
         titleLabel.Text = string.IsNullOrEmpty(Asset.Title) ? Asset.FileName : Asset.Title;

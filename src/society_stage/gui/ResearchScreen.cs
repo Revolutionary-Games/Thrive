@@ -6,15 +6,11 @@ using Godot;
 /// </summary>
 public partial class ResearchScreen : CustomWindow
 {
-    [Export]
-    public NodePath? TechWebGUIPath;
-
-    [Export]
-    public NodePath CurrentResearchProgressLabelPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private TechWebGUI techWebGUI = null!;
 
+    [Export]
     private Label currentResearchProgressLabel = null!;
 #pragma warning restore CA2213
 
@@ -22,14 +18,6 @@ public partial class ResearchScreen : CustomWindow
     public delegate void OnStartResearchingEventHandler(string technology);
 
     public TechWeb? AvailableTechnologies { get; set; }
-
-    public override void _Ready()
-    {
-        base._Ready();
-
-        techWebGUI = GetNode<TechWebGUI>(TechWebGUIPath);
-        currentResearchProgressLabel = GetNode<Label>(CurrentResearchProgressLabelPath);
-    }
 
     public void DisplayProgress(TechnologyProgress? currentResearch)
     {
@@ -58,20 +46,6 @@ public partial class ResearchScreen : CustomWindow
         {
             GD.PrintErr("Available technologies not set for research screen before opening");
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (TechWebGUIPath != null)
-            {
-                TechWebGUIPath.Dispose();
-                CurrentResearchProgressLabelPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void ForwardStartResearch(string technology)

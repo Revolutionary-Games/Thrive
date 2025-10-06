@@ -7,31 +7,24 @@ using Godot;
 /// </summary>
 public partial class ControllerDeadzoneConfiguration : CustomWindow
 {
-    [Export]
-    public NodePath? VisualizationContainerPath;
-
-    [Export]
-    public NodePath StartButtonPath = null!;
-
-    [Export]
-    public NodePath ApplyButtonPath = null!;
-
-    [Export]
-    public NodePath StatusLabelPath = null!;
-
-    [Export]
-    public NodePath ExplanationLabelPath = null!;
-
     private const double SettleDownTimeStart = 4.5f;
     private const double SettleDownTimeIncreaseMultiplier = 5;
 
 #pragma warning disable CA2213
+    [Export]
     private ControllerInputAxisVisualizationContainer visualizationContainer = null!;
 
+    [Export]
     private Button startButton = null!;
+
+    [Export]
     private Button applyButton = null!;
 
+    [Export]
     private Label statusLabel = null!;
+
+    [Export]
+    private Label explanationLabel = null!;
 
 #pragma warning restore CA2213
 
@@ -48,14 +41,7 @@ public partial class ControllerDeadzoneConfiguration : CustomWindow
 
     public override void _Ready()
     {
-        visualizationContainer = GetNode<ControllerInputAxisVisualizationContainer>(VisualizationContainerPath);
-
-        startButton = GetNode<Button>(StartButtonPath);
-        applyButton = GetNode<Button>(ApplyButtonPath);
-
-        statusLabel = GetNode<Label>(StatusLabelPath);
-
-        GetNode<Label>(ExplanationLabelPath).RegisterCustomFocusDrawer();
+        explanationLabel.RegisterCustomFocusDrawer();
 
         // TODO: add separate sliders in this GUI to manually tweak all deadzones
     }
@@ -126,23 +112,6 @@ public partial class ControllerDeadzoneConfiguration : CustomWindow
     {
         base.OnHidden();
         OnCancel();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (VisualizationContainerPath != null)
-            {
-                VisualizationContainerPath.Dispose();
-                StartButtonPath.Dispose();
-                ApplyButtonPath.Dispose();
-                StatusLabelPath.Dispose();
-                ExplanationLabelPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void OnCancel()

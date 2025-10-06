@@ -9,49 +9,38 @@ public partial class SlideScreen : TopLevelContainer
     public const float SLIDESHOW_INTERVAL = 6.0f;
     public const float TOOLBAR_DISPLAY_DURATION = 4.0f;
 
-    [Export]
-    public NodePath? SlideTextureRectPath;
-
-    [Export]
-    public NodePath SlideToolbarPath = null!;
-
-    [Export]
-    public NodePath SlideCloseButtonPath = null!;
-
-    [Export]
-    public NodePath SlideShowModeButtonPath = null!;
-
-    [Export]
-    public NodePath SlideTitleLabelPath = null!;
-
-    [Export]
-    public NodePath ModelViewerContainerPath = null!;
-
-    [Export]
-    public NodePath ModelViewerPath = null!;
-
-    [Export]
-    public NodePath ModelHolderPath = null!;
-
-    [Export]
-    public NodePath ModelViewerCameraPath = null!;
-
-    [Export]
-    public NodePath PlaybackControlsPath = null!;
-
     private readonly NodePath modulateAlphaReference = new("modulate:a");
 
 #pragma warning disable CA2213
-    private CrossFadableTextureRect? slideTextureRect;
-    private Control? toolbar;
-    private Button? closeButton;
-    private Button? slideShowModeButton;
-    private Label? slideTitleLabel;
-    private CrossFadableGalleryViewport? modelViewerContainer;
-    private SubViewport? modelViewer;
-    private Node3D? modelHolder;
-    private OrbitCamera? modelViewerCamera;
-    private PlaybackControls? playbackControls;
+    [Export]
+    private CrossFadableTextureRect slideTextureRect = null!;
+
+    [Export]
+    private Control toolbar = null!;
+
+    [Export]
+    private Button closeButton = null!;
+
+    [Export]
+    private Button slideShowModeButton = null!;
+
+    [Export]
+    private Label slideTitleLabel = null!;
+
+    [Export]
+    private CrossFadableGalleryViewport modelViewerContainer = null!;
+
+    [Export]
+    private SubViewport modelViewer = null!;
+
+    [Export]
+    private Node3D modelHolder = null!;
+
+    [Export]
+    private OrbitCamera modelViewerCamera = null!;
+
+    [Export]
+    private PlaybackControls playbackControls = null!;
 #pragma warning restore CA2213
 
     private double toolbarHideTimer;
@@ -108,17 +97,6 @@ public partial class SlideScreen : TopLevelContainer
 
     public override void _Ready()
     {
-        slideTextureRect = GetNode<CrossFadableTextureRect>(SlideTextureRectPath);
-        toolbar = GetNode<Control>(SlideToolbarPath);
-        closeButton = GetNode<Button>(SlideCloseButtonPath);
-        slideShowModeButton = GetNode<Button>(SlideShowModeButtonPath);
-        slideTitleLabel = GetNode<Label>(SlideTitleLabelPath);
-        modelViewerContainer = GetNode<CrossFadableGalleryViewport>(ModelViewerContainerPath);
-        modelViewer = GetNode<SubViewport>(ModelViewerPath);
-        modelHolder = GetNode<Node3D>(ModelHolderPath);
-        modelViewerCamera = GetNode<OrbitCamera>(ModelViewerCameraPath);
-        playbackControls = GetNode<PlaybackControls>(PlaybackControlsPath);
-
         UpdateScreen();
     }
 
@@ -140,7 +118,7 @@ public partial class SlideScreen : TopLevelContainer
         {
             toolbarHideTimer -= delta;
 
-            if (toolbar?.Modulate.A < 1)
+            if (toolbar.Modulate.A < 1)
             {
                 var tween = CreateTween();
                 tween.Parallel();
@@ -299,20 +277,6 @@ public partial class SlideScreen : TopLevelContainer
     {
         if (disposing)
         {
-            if (SlideTextureRectPath != null)
-            {
-                SlideTextureRectPath.Dispose();
-                SlideToolbarPath.Dispose();
-                SlideCloseButtonPath.Dispose();
-                SlideShowModeButtonPath.Dispose();
-                SlideTitleLabelPath.Dispose();
-                ModelViewerContainerPath.Dispose();
-                ModelViewerPath.Dispose();
-                ModelHolderPath.Dispose();
-                ModelViewerCameraPath.Dispose();
-                PlaybackControlsPath.Dispose();
-            }
-
             modulateAlphaReference.Dispose();
         }
 
@@ -330,18 +294,19 @@ public partial class SlideScreen : TopLevelContainer
             return;
         }
 
-        if (items == null || slideTextureRect == null)
+        if (items == null)
             return;
 
         var item = items[currentSlideIndex];
-        slideTextureRect.Image = GD.Load(item.Asset.ResourcePath) as Texture2D;
+
+        slideTextureRect.Image = GD.Load(item.Asset!.ResourcePath) as Texture2D;
 
         if (slideTextureRect.Image != null)
             return;
 
         // If texture loading fails, the selected item is a model
         // These are handled here
-        modelViewerContainer!.BeginFade();
+        modelViewerContainer.BeginFade();
     }
 
     private void UpdateScreen()
@@ -353,7 +318,7 @@ public partial class SlideScreen : TopLevelContainer
 
     private void UpdateSlide()
     {
-        if (items == null || slideTitleLabel == null || slideTextureRect == null || slideShowModeButton == null)
+        if (items == null)
             return;
 
         var item = items[currentSlideIndex];
@@ -362,7 +327,7 @@ public partial class SlideScreen : TopLevelContainer
         slideShowModeButton.SetPressedNoSignal(slideshowMode);
         slideShowModeButton.Visible = item.CanBeShownInASlideshow;
 
-        slideTitleLabel.Text = string.IsNullOrEmpty(item.Asset.Title) ? item.Asset.FileName : item.Asset.Title;
+        slideTitleLabel.Text = string.IsNullOrEmpty(item.Asset!.Title) ? item.Asset.FileName : item.Asset.Title;
         slideTextureRect.Texture = GD.Load(item.Asset.ResourcePath) as Texture2D;
     }
 
@@ -370,14 +335,13 @@ public partial class SlideScreen : TopLevelContainer
     {
         var item = items?[currentSlideIndex] as GalleryCardModel;
 
-        if (item?.Asset.Type != AssetType.ModelScene || modelHolder == null || modelViewer == null ||
-            modelViewerCamera == null)
+        if (item?.Asset?.Type != AssetType.ModelScene)
         {
-            modelViewerContainer?.Hide();
+            modelViewerContainer.Hide();
             return;
         }
 
-        modelViewerContainer?.Show();
+        modelViewerContainer.Show();
         modelHolder.QueueFreeChildren();
 
         modelViewer.Msaa3D = Settings.Instance.MSAAResolution;
@@ -400,10 +364,7 @@ public partial class SlideScreen : TopLevelContainer
     {
         var item = items?[currentSlideIndex] as GalleryCardAudio;
 
-        if (playbackControls == null || slideTextureRect == null)
-            return;
-
-        if (item?.Asset.Type != AssetType.AudioPlayback)
+        if (item?.Asset?.Type != AssetType.AudioPlayback)
         {
             playbackControls.Hide();
             playbackControls.AudioPlayer = null;
@@ -411,7 +372,7 @@ public partial class SlideScreen : TopLevelContainer
         }
 
         playbackControls.AudioPlayer = item.Player;
-        playbackControls?.Show();
+        playbackControls.Show();
 
         // TODO: Temporary until there's a proper "album" art for audios
         slideTextureRect.Texture = item.MissingTexture;
@@ -419,9 +380,6 @@ public partial class SlideScreen : TopLevelContainer
 
     private void UpdateHandles()
     {
-        if (toolbar == null || closeButton == null)
-            return;
-
         toolbar.Visible = slideControlsVisible;
         closeButton.Visible = slideControlsVisible;
     }
@@ -463,7 +421,7 @@ public partial class SlideScreen : TopLevelContainer
 
     private void OnCloseButtonUpdate()
     {
-        var icon = closeButton!.GetChild<TextureRect>(0);
+        var icon = closeButton.GetChild<TextureRect>(0);
 
         if (closeButton.GetDrawMode() == BaseButton.DrawMode.Pressed)
         {

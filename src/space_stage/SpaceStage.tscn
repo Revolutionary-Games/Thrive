@@ -68,16 +68,16 @@ emission = Color(0.843137, 0.780392, 0.627451, 1)
 emission_energy_multiplier = 10.0
 disable_receive_shadows = true
 
-[node name="SpaceStage" type="Node"]
+[node name="SpaceStage" type="Node" node_paths=PackedStringArray("nameLabelSystem", "ascensionMoveConfirmationPopup", "ascensionCongratulationsPopup", "descendConfirmationPopup", "godTools", "strategicCamera", "pauseMenu", "hudRoot")]
 script = ExtResource("1")
-NameLabelSystemPath = NodePath("StrategicEntityNameLabelSystem")
-AscensionMoveConfirmationPopupPath = NodePath("AscensionConfirmation")
-AscensionCongratulationsPopupPath = NodePath("AscensionCongratulationsPopup")
-DescendSetupPopupPath = NodePath("DescendConfirmationDialog")
-GodToolsPath = NodePath("GodToolsPopup")
-StrategicCameraPath = NodePath("World/StrategicCamera")
-PauseMenuPath = NodePath("PauseMenu")
-HUDRootPath = NodePath("SpaceHUD")
+nameLabelSystem = NodePath("StrategicEntityNameLabelSystem")
+ascensionMoveConfirmationPopup = NodePath("AscensionConfirmation")
+ascensionCongratulationsPopup = NodePath("AscensionCongratulationsPopup")
+descendConfirmationPopup = NodePath("DescendConfirmationDialog")
+godTools = NodePath("GodToolsPopup")
+strategicCamera = NodePath("World/StrategicCamera")
+pauseMenu = NodePath("PauseMenu")
+hudRoot = NodePath("SpaceHUD")
 
 [node name="World" type="Node" parent="."]
 
@@ -120,8 +120,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.7012, 0, 0)
 
 [node name="StrategicEntityNameLabelSystem" parent="." instance=ExtResource("10")]
 visible = false
-layout_mode = 3
-anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2
 

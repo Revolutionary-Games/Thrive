@@ -5,18 +5,14 @@
 /// </summary>
 public partial class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
 {
-    [Export]
-    public NodePath? TitleLabelPath;
-
-    [Export]
-    public NodePath DescriptionLabelPath = null!;
-
-    [Export]
-    public NodePath ArtistLabelPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Label? titleLabel;
+
+    [Export]
     private Label? descriptionLabel;
+
+    [Export]
     private Label? artistLabel;
 #pragma warning restore CA2213
 
@@ -66,10 +62,6 @@ public partial class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
 
     public override void _Ready()
     {
-        titleLabel = GetNode<Label>(TitleLabelPath);
-        descriptionLabel = GetNode<Label>(DescriptionLabelPath);
-        artistLabel = GetNode<Label>(ArtistLabelPath);
-
         UpdateContent();
     }
 
@@ -83,21 +75,6 @@ public partial class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
     {
         base._ExitTree();
         Localization.Instance.OnTranslationsChanged -= UpdateContent;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (TitleLabelPath != null)
-            {
-                TitleLabelPath.Dispose();
-                DescriptionLabelPath.Dispose();
-                ArtistLabelPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void UpdateContent()

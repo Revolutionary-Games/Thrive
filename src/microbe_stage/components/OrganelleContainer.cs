@@ -3,7 +3,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DefaultEcs;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
@@ -89,6 +90,11 @@ public struct OrganelleContainer
     ///   How much the organelles provide radiation protection
     /// </summary>
     public int RadiationProtection;
+
+    /// <summary>
+    ///   Do the organelles provide hydrogen sulfide immunity
+    /// </summary>
+    public bool HydrogenSulfideProtection;
 
     /// <summary>
     ///   How many heat-collecting organelles this container has
@@ -212,7 +218,7 @@ public static class OrganelleContainerHelpers
         Entity other)
     {
         // Can only bind with microbes
-        if (!other.Has<MicrobeSpeciesMember>())
+        if (!other.IsAliveAndHas<MicrobeSpeciesMember>())
             return false;
 
         // Things with missing binding agents can't bind (this is just an extra safety check and an excuse to make
@@ -502,6 +508,7 @@ public static class OrganelleContainerHelpers
         container.OrganellesCapacity = 0;
         container.HasSignalingAgent = false;
         container.HasBindingAgent = false;
+        container.HydrogenSulfideProtection = false;
         container.HeatCollection = 0;
         container.OxygenUsingOrganelles = 0;
         container.RadiationProtection = 0;
@@ -582,6 +589,9 @@ public static class OrganelleContainerHelpers
 
             if (organelleDefinition.HasBindingFeature)
                 container.HasBindingAgent = true;
+
+            if (organelleDefinition.HasHydrogenSulfideProtection)
+                container.HydrogenSulfideProtection = true;
 
             if (organelleDefinition.HasRadiationProtection)
                 ++container.RadiationProtection;

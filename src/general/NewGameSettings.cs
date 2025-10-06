@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using Godot;
-using Xoshiro.PRNG64;
 using Container = Godot.Container;
 
 /// <summary>
@@ -18,168 +17,77 @@ public partial class NewGameSettings : ControlWithInput
     [Export]
     public bool Descending;
 
-    [Export]
-    public NodePath? BasicOptionsPath;
-
-    [Export]
-    public NodePath AdvancedOptionsPath = null!;
-
-    [Export]
-    public NodePath BasicButtonPath = null!;
-
-    [Export]
-    public NodePath BackButtonPath = null!;
-
-    [Export]
-    public NodePath AdvancedButtonPath = null!;
-
-    [Export]
-    public NodePath TabButtonsPath = null!;
-
-    [Export]
-    public NodePath DifficultyTabPath = null!;
-
-    [Export]
-    public NodePath PlanetTabPath = null!;
-
-    [Export]
-    public NodePath MiscTabPath = null!;
-
-    [Export]
-    public NodePath DifficultyTabButtonPath = null!;
-
-    [Export]
-    public NodePath PlanetTabButtonPath = null!;
-
-    [Export]
-    public NodePath MiscTabButtonPath = null!;
-
-    [Export]
-    public NodePath DifficultyPresetButtonPath = null!;
-
-    [Export]
-    public NodePath DifficultyPresetAdvancedButtonPath = null!;
-
-    [Export]
-    public NodePath MPMultiplierPath = null!;
-
-    [Export]
-    public NodePath MPMultiplierReadoutPath = null!;
-
-    [Export]
-    public NodePath MutationRatePath = null!;
-
-    [Export]
-    public NodePath MutationRateReadoutPath = null!;
-
-    [Export]
-    public NodePath CompoundDensityPath = null!;
-
-    [Export]
-    public NodePath CompoundDensityReadoutPath = null!;
-
-    [Export]
-    public NodePath PlayerDeathPopulationPenaltyPath = null!;
-
-    [Export]
-    public NodePath PlayerDeathPopulationPenaltyReadoutPath = null!;
-
-    [Export]
-    public NodePath GlucoseDecayRatePath = null!;
-
-    [Export]
-    public NodePath GlucoseDecayRateReadoutPath = null!;
-
-    [Export]
-    public NodePath OsmoregulationMultiplierPath = null!;
-
-    [Export]
-    public NodePath OsmoregulationMultiplierReadoutPath = null!;
-
-    [Export]
-    public NodePath FogOfWarModeDropdownPath = null!;
-
-    [Export]
-    public NodePath FogOfWarModeDescriptionPath = null!;
-
-    [Export]
-    public NodePath FreeGlucoseCloudButtonPath = null!;
-
-    [Export]
-    public NodePath LimitGrowthRateButtonPath = null!;
-
-    [Export]
-    public NodePath OrganelleUnlocksEnabledPath = null!;
-
-    [Export]
-    public NodePath LifeOriginButtonPath = null!;
-
-    [Export]
-    public NodePath LifeOriginButtonAdvancedPath = null!;
-
-    [Export]
-    public NodePath LAWKButtonPath = null!;
-
-    [Export]
-    public NodePath LAWKAdvancedButtonPath = null!;
-
-    [Export]
-    public NodePath DayNightCycleButtonPath = null!;
-
-    [Export]
-    public NodePath DayLengthContainerPath = null!;
-
-    [Export]
-    public NodePath DayLengthPath = null!;
-
-    [Export]
-    public NodePath DayLengthReadoutPath = null!;
-
-    [Export]
-    public NodePath GameSeedPath = null!;
-
-    [Export]
-    public NodePath GameSeedAdvancedPath = null!;
-
-    [Export]
-    public NodePath IncludeMulticellularButtonPath = null!;
-
-    [Export]
-    public NodePath EasterEggsButtonPath = null!;
-
-    [Export]
-    public NodePath StartButtonPath = null!;
-
-    [Export]
-    public NodePath CheckOptionsMenuAdviceContainerPath = null!;
-
 #pragma warning disable CA2213
 
     // Main controls
+    [Export]
     private PanelContainer basicOptions = null!;
-    private PanelContainer advancedOptions = null!;
+
+    [Export]
+    private HBoxContainer advancedOptionsContainer = null!;
+
+    [Export]
     private TabButtons tabButtons = null!;
+
+    [Export]
     private Control difficultyTab = null!;
+
+    [Export]
     private Control planetTab = null!;
+
+    [Export]
     private Control miscTab = null!;
+
+    [Export]
     private Button difficultyTabButton = null!;
+
+    [Export]
     private Button planetTabButton = null!;
+
+    [Export]
     private Button miscTabButton = null!;
+
+    [Export]
     private Button basicButton = null!;
+
+    [Export]
     private Button advancedButton = null!;
+
+    [Export]
     private Button backButton = null!;
+
+    [Export]
     private Button startButton = null!;
 
     // Difficulty controls
+    [Export]
     private OptionButton difficultyPresetButton = null!;
+
+    [Export]
     private OptionButton difficultyPresetAdvancedButton = null!;
+
+    [Export]
     private HSlider mpMultiplier = null!;
+
+    [Export]
     private LineEdit mpMultiplierReadout = null!;
+
+    [Export]
     private HSlider aiMutationRate = null!;
+
+    [Export]
     private LineEdit aiMutationRateReadout = null!;
+
+    [Export]
     private HSlider compoundDensity = null!;
+
+    [Export]
     private LineEdit compoundDensityReadout = null!;
+
+    [Export]
     private HSlider playerDeathPopulationPenalty = null!;
+
+    [Export]
     private LineEdit playerDeathPopulationPenaltyReadout = null!;
 
     [Export]
@@ -188,9 +96,16 @@ public partial class NewGameSettings : ControlWithInput
     [Export]
     private LineEdit playerSpeciesAIPopulationStrengthReadout = null!;
 
+    [Export]
     private HSlider glucoseDecayRate = null!;
+
+    [Export]
     private LineEdit glucoseDecayRateReadout = null!;
+
+    [Export]
     private HSlider osmoregulationMultiplier = null!;
+
+    [Export]
     private LineEdit osmoregulationMultiplierReadout = null!;
 
     [Export]
@@ -199,44 +114,62 @@ public partial class NewGameSettings : ControlWithInput
     [Export]
     private LineEdit autoEvoStrengthReadout = null!;
 
+    [Export]
     private OptionButton fogOfWarModeDropdown = null!;
+
+    [Export]
     private Label fogOfWarModeDescription = null!;
 
     [Export]
     private OptionButton reproductionCompoundsDropdown = null!;
 
-    private Button freeGlucoseCloudButton = null!;
+    [Export]
+    private CheckButton freeGlucoseCloudButton = null!;
 
     [Export]
-    private Button switchSpeciesOnExtinctionButton = null!;
+    private CheckButton switchSpeciesOnExtinctionButton = null!;
 
-    private Button limitGrowthRateButton = null!;
-    private Button organelleUnlocksEnabled = null!;
+    [Export]
+    private CheckButton limitGrowthRateButton = null!;
+
+    [Export]
+    private CheckButton organelleUnlocksEnabled = null!;
 
     // Planet controls
+    [Export]
     private OptionButton lifeOriginButton = null!;
-    private OptionButton lifeOriginButtonAdvanced = null!;
-    private Button lawkButton = null!;
-    private Button lawkAdvancedButton = null!;
-    private Button dayNightCycleButton = null!;
-    private HSlider dayLength = null!;
-    private LineEdit dayLengthReadout = null!;
-    private VBoxContainer dayLengthContainer = null!;
-    private LineEdit gameSeed = null!;
-    private LineEdit gameSeedAdvanced = null!;
 
     [Export]
-    private OptionButton worldSizeButton = null!;
+    private CheckButton lawkButton = null!;
+
+    [Export]
+    private LineEdit gameSeed = null!;
+
+    [Export]
+    private PlanetSettings planetSettings = null!;
+
+    [Export]
+    private Control planetStatisticsSpacer = null!;
+
+    [Export]
+    private PanelContainer planetStatisticsContainer = null!;
+
+    [Export]
+    private PlanetStatistics planetStatistics = null!;
 
     // Misc controls
-    private Button includeMulticellularButton = null!;
-    private Button easterEggsButton = null!;
+    [Export]
+    private CheckButton includeMulticellularButton = null!;
+
+    [Export]
+    private CheckButton easterEggsButton = null!;
 
     // Other
+    [Export]
     private Container checkOptionsMenuAdviceContainer = null!;
 
     [Export]
-    private CheckBox experimentalFeatures = null!;
+    private CheckButton experimentalFeatures = null!;
 
     [Export]
     private Label experimentalExplanation = null!;
@@ -247,12 +180,12 @@ public partial class NewGameSettings : ControlWithInput
 
     private SelectedOptionsTab selectedOptionsTab;
 
+    private bool isUpdatingCurrentTabsSeed;
+
     /// <summary>
     ///   If not null, this is used as the base to start a new descended game
     /// </summary>
     private GameProperties? descendedGame;
-
-    private long latestValidSeed;
 
     private IEnumerable<DifficultyPreset> difficultyPresets = null!;
     private DifficultyPreset normal = null!;
@@ -269,8 +202,8 @@ public partial class NewGameSettings : ControlWithInput
 
     private enum SelectedOptionsTab
     {
-        Difficulty,
         Planet,
+        Difficulty,
         Miscellaneous,
     }
 
@@ -279,53 +212,6 @@ public partial class NewGameSettings : ControlWithInput
 
     public override void _Ready()
     {
-        basicOptions = GetNode<PanelContainer>(BasicOptionsPath);
-        advancedOptions = GetNode<PanelContainer>(AdvancedOptionsPath);
-        basicButton = GetNode<Button>(BasicButtonPath);
-        advancedButton = GetNode<Button>(AdvancedButtonPath);
-        tabButtons = GetNode<TabButtons>(TabButtonsPath);
-        difficultyTab = GetNode<Control>(DifficultyTabPath);
-        planetTab = GetNode<Control>(PlanetTabPath);
-        miscTab = GetNode<Control>(MiscTabPath);
-        difficultyTabButton =
-            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, DifficultyTabButtonPath));
-        planetTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, PlanetTabButtonPath));
-        miscTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, MiscTabButtonPath));
-
-        difficultyPresetButton = GetNode<OptionButton>(DifficultyPresetButtonPath);
-        difficultyPresetAdvancedButton = GetNode<OptionButton>(DifficultyPresetAdvancedButtonPath);
-        mpMultiplier = GetNode<HSlider>(MPMultiplierPath);
-        mpMultiplierReadout = GetNode<LineEdit>(MPMultiplierReadoutPath);
-        aiMutationRate = GetNode<HSlider>(MutationRatePath);
-        aiMutationRateReadout = GetNode<LineEdit>(MutationRateReadoutPath);
-        compoundDensity = GetNode<HSlider>(CompoundDensityPath);
-        compoundDensityReadout = GetNode<LineEdit>(CompoundDensityReadoutPath);
-        playerDeathPopulationPenalty = GetNode<HSlider>(PlayerDeathPopulationPenaltyPath);
-        playerDeathPopulationPenaltyReadout = GetNode<LineEdit>(PlayerDeathPopulationPenaltyReadoutPath);
-        glucoseDecayRate = GetNode<HSlider>(GlucoseDecayRatePath);
-        glucoseDecayRateReadout = GetNode<LineEdit>(GlucoseDecayRateReadoutPath);
-        osmoregulationMultiplier = GetNode<HSlider>(OsmoregulationMultiplierPath);
-        osmoregulationMultiplierReadout = GetNode<LineEdit>(OsmoregulationMultiplierReadoutPath);
-        fogOfWarModeDropdown = GetNode<OptionButton>(FogOfWarModeDropdownPath);
-        fogOfWarModeDescription = GetNode<Label>(FogOfWarModeDescriptionPath);
-        freeGlucoseCloudButton = GetNode<Button>(FreeGlucoseCloudButtonPath);
-        limitGrowthRateButton = GetNode<Button>(LimitGrowthRateButtonPath);
-        organelleUnlocksEnabled = GetNode<Button>(OrganelleUnlocksEnabledPath);
-        lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
-        lifeOriginButtonAdvanced = GetNode<OptionButton>(LifeOriginButtonAdvancedPath);
-        lawkButton = GetNode<Button>(LAWKButtonPath);
-        lawkAdvancedButton = GetNode<Button>(LAWKAdvancedButtonPath);
-        dayNightCycleButton = GetNode<Button>(DayNightCycleButtonPath);
-        dayLengthContainer = GetNode<VBoxContainer>(DayLengthContainerPath);
-        dayLength = GetNode<HSlider>(DayLengthPath);
-        dayLengthReadout = GetNode<LineEdit>(DayLengthReadoutPath);
-        gameSeed = GetNode<LineEdit>(GameSeedPath);
-        gameSeedAdvanced = GetNode<LineEdit>(GameSeedAdvancedPath);
-        includeMulticellularButton = GetNode<Button>(IncludeMulticellularButtonPath);
-        easterEggsButton = GetNode<Button>(EasterEggsButtonPath);
-        backButton = GetNode<Button>(BackButtonPath);
-        startButton = GetNode<Button>(StartButtonPath);
-
         // Difficulty presets need to be set here as the value sets below will trigger difficulty change callbacks
         var simulationParameters = SimulationParameters.Instance;
 
@@ -355,8 +241,6 @@ public partial class NewGameSettings : ControlWithInput
         autoEvoStrengthMultiplier.MinValue = Constants.MIN_AUTO_EVO_STRENGTH_MULTIPLIER;
         autoEvoStrengthMultiplier.MaxValue = Constants.MAX_AUTO_EVO_STRENGTH_MULTIPLIER;
 
-        checkOptionsMenuAdviceContainer = GetNode<Container>(CheckOptionsMenuAdviceContainerPath);
-
         // Add items to the fog of war dropdown
         foreach (var mode in new[] { FogOfWarMode.Ignored, FogOfWarMode.Regular, FogOfWarMode.Intense })
         {
@@ -370,10 +254,7 @@ public partial class NewGameSettings : ControlWithInput
         // Do this in case default values in NewGameSettings.tscn don't match the normal preset
         InitialiseToPreset(normal);
 
-        var seed = GenerateNewRandomSeed();
-        gameSeed.Text = seed;
-        gameSeedAdvanced.Text = seed;
-        SetSeed(seed);
+        planetSettings.GenerateAndSetRandomSeed();
 
         // Make sure non-lawk options are disabled if lawk is set to true on start-up
         UpdateLifeOriginOptions(lawkButton.ButtonPressed);
@@ -387,6 +268,8 @@ public partial class NewGameSettings : ControlWithInput
             backButton.Visible = false;
             checkOptionsMenuAdviceContainer.Visible = false;
         }
+
+        OnPlanetSettingsChanged();
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
@@ -457,21 +340,32 @@ public partial class NewGameSettings : ControlWithInput
         UpdateSelectedDifficultyPresetControl();
 
         lifeOriginButton.Selected = (int)settings.Origin;
-
         lawkButton.ButtonPressed = settings.LAWK;
         experimentalFeatures.ButtonPressed = settings.ExperimentalFeatures;
         OnExperimentalFeaturesChanged(settings.ExperimentalFeatures);
-        dayNightCycleButton.ButtonPressed = settings.DayNightCycleEnabled;
-        dayLength.Value = settings.DayLength;
+
+        planetSettings.SetWorldSize(settings.WorldSize);
+        planetSettings.SetWorldTemperature(settings.WorldTemperature);
+        planetSettings.SetOceanicCoverage(settings.WorldOceanicCoverage);
+        planetSettings.SetWorldGeologicalActivity(settings.GeologicalActivity);
+        planetSettings.SetWorldClimateInstability(settings.ClimateInstability);
+
+        planetSettings.SetHydrogenSulfideLevel(settings.HydrogenSulfideLevel);
+        planetSettings.SetGlucoseLevel(settings.GlucoseLevel);
+        planetSettings.SetIronLevel(settings.IronLevel);
+        planetSettings.SetAmmoniaLevel(settings.AmmoniaLevel);
+        planetSettings.SetPhosphatesLevel(settings.PhosphatesLevel);
+        planetSettings.SetRadiationLevel(settings.RadiationLevel);
+
+        planetSettings.SetLifeOrigin(settings.Origin);
+        planetSettings.SetDayNightCycle(settings.DayNightCycleEnabled);
+        planetSettings.SetDayLength(settings.DayLength);
+        planetSettings.SetLawkOnly(settings.LAWK);
 
         // Copy the seed from the settings, as there isn't one method to set this, this is done a bit clumsily like
         // this
         var seedText = settings.Seed.ToString();
-        gameSeed.Text = seedText;
-        gameSeedAdvanced.Text = seedText;
-        SetSeed(seedText);
-
-        worldSizeButton.Selected = (int)settings.WorldSize;
+        planetSettings.SetSeed(seedText);
 
         // Always set prototypes to true as the player must have been there to descend
         includeMulticellularButton.ButtonPressed = true;
@@ -489,74 +383,15 @@ public partial class NewGameSettings : ControlWithInput
         if (valid)
         {
             GUICommon.MarkInputAsValid(gameSeed);
-            GUICommon.MarkInputAsValid(gameSeedAdvanced);
             startButton.Disabled = false;
             startButton.TooltipText = Localization.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP");
         }
         else
         {
             GUICommon.MarkInputAsInvalid(gameSeed);
-            GUICommon.MarkInputAsInvalid(gameSeedAdvanced);
             startButton.Disabled = true;
             startButton.TooltipText = Localization.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED");
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (BasicOptionsPath != null)
-            {
-                BasicOptionsPath.Dispose();
-                AdvancedOptionsPath.Dispose();
-                BasicButtonPath.Dispose();
-                AdvancedButtonPath.Dispose();
-                TabButtonsPath.Dispose();
-                DifficultyTabPath.Dispose();
-                PlanetTabPath.Dispose();
-                MiscTabPath.Dispose();
-                DifficultyTabButtonPath.Dispose();
-                PlanetTabButtonPath.Dispose();
-                MiscTabButtonPath.Dispose();
-                DifficultyPresetButtonPath.Dispose();
-                DifficultyPresetAdvancedButtonPath.Dispose();
-                MPMultiplierPath.Dispose();
-                MPMultiplierReadoutPath.Dispose();
-                MutationRatePath.Dispose();
-                MutationRateReadoutPath.Dispose();
-                CompoundDensityPath.Dispose();
-                CompoundDensityReadoutPath.Dispose();
-                PlayerDeathPopulationPenaltyPath.Dispose();
-                PlayerDeathPopulationPenaltyReadoutPath.Dispose();
-                GlucoseDecayRatePath.Dispose();
-                GlucoseDecayRateReadoutPath.Dispose();
-                OsmoregulationMultiplierPath.Dispose();
-                OsmoregulationMultiplierReadoutPath.Dispose();
-                FogOfWarModeDropdownPath.Dispose();
-                FogOfWarModeDescriptionPath.Dispose();
-                FreeGlucoseCloudButtonPath.Dispose();
-                LimitGrowthRateButtonPath.Dispose();
-                OrganelleUnlocksEnabledPath.Dispose();
-                LifeOriginButtonPath.Dispose();
-                LifeOriginButtonAdvancedPath.Dispose();
-                LAWKButtonPath.Dispose();
-                LAWKAdvancedButtonPath.Dispose();
-                DayNightCycleButtonPath.Dispose();
-                DayLengthContainerPath.Dispose();
-                DayLengthPath.Dispose();
-                DayLengthReadoutPath.Dispose();
-                GameSeedPath.Dispose();
-                GameSeedAdvancedPath.Dispose();
-                IncludeMulticellularButtonPath.Dispose();
-                EasterEggsButtonPath.Dispose();
-                BackButtonPath.Dispose();
-                StartButtonPath.Dispose();
-                CheckOptionsMenuAdviceContainerPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void InitialiseToPreset(DifficultyPreset preset)
@@ -564,28 +399,16 @@ public partial class NewGameSettings : ControlWithInput
         OnDifficultyPresetSelected(preset.Index);
     }
 
-    private string GenerateNewRandomSeed()
-    {
-        var random = new XoShiRo256starstar();
-
-        string result;
-
-        // Generate seeds until valid (0 is not considered valid)
-        do
-        {
-            result = random.Next64().ToString();
-        }
-        while (result == "0");
-
-        return result;
-    }
-
     private void SetSeed(string text)
     {
-        bool valid = long.TryParse(text, out var seed) && seed > 0;
+        var valid = long.TryParse(text, out var seed) && seed > 0;
+
+        // Don't update the text when editing, otherwise the caret will go to the beginning
+        if (!isUpdatingCurrentTabsSeed)
+            gameSeed.Text = text;
+        isUpdatingCurrentTabsSeed = false;
+
         ReportValidityOfGameSeed(valid);
-        if (valid)
-            latestValidSeed = seed;
     }
 
     /// <summary>
@@ -594,7 +417,7 @@ public partial class NewGameSettings : ControlWithInput
     private void ChangeSettingsTab(string newTabName)
     {
         // Convert from the string binding to an enum.
-        SelectedOptionsTab selection = (SelectedOptionsTab)Enum.Parse(typeof(SelectedOptionsTab), newTabName);
+        var selection = (SelectedOptionsTab)Enum.Parse(typeof(SelectedOptionsTab), newTabName);
 
         // Pressing the same button that's already active, so just return.
         if (selection == selectedOptionsTab)
@@ -603,6 +426,9 @@ public partial class NewGameSettings : ControlWithInput
         difficultyTab.Hide();
         planetTab.Hide();
         miscTab.Hide();
+
+        planetStatisticsSpacer.Hide();
+        planetStatisticsContainer.Hide();
 
         switch (selection)
         {
@@ -613,6 +439,8 @@ public partial class NewGameSettings : ControlWithInput
             case SelectedOptionsTab.Planet:
                 planetTab.Show();
                 planetTabButton.ButtonPressed = true;
+                planetStatisticsSpacer.Show();
+                planetStatisticsContainer.Show();
                 break;
             case SelectedOptionsTab.Miscellaneous:
                 miscTab.Show();
@@ -627,9 +455,10 @@ public partial class NewGameSettings : ControlWithInput
         selectedOptionsTab = selection;
     }
 
-    private void StartGame()
+    private WorldGenerationSettings GetGameSettings()
     {
         var settings = new WorldGenerationSettings();
+        var planetGenerationSettings = planetSettings.GetPlanetSettings();
 
         var difficulty = SimulationParameters.Instance.GetDifficultyPresetByIndex(difficultyPresetButton.Selected);
 
@@ -660,17 +489,35 @@ public partial class NewGameSettings : ControlWithInput
             settings.Difficulty = difficulty;
         }
 
-        settings.Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected;
-        settings.LAWK = lawkButton.ButtonPressed;
         settings.ExperimentalFeatures = experimentalFeatures.ButtonPressed;
         OnExperimentalFeaturesChanged(settings.ExperimentalFeatures);
-        settings.DayNightCycleEnabled = dayNightCycleButton.ButtonPressed;
-        settings.DayLength = (int)dayLength.Value;
-        settings.Seed = latestValidSeed;
-        settings.WorldSize = (WorldGenerationSettings.WorldSizeEnum)worldSizeButton.Selected;
 
         settings.IncludeMulticellular = includeMulticellularButton.ButtonPressed;
         settings.EasterEggs = easterEggsButton.ButtonPressed;
+
+        settings.WorldSize = planetGenerationSettings.WorldSize;
+        settings.WorldTemperature = planetGenerationSettings.WorldTemperature;
+        settings.WorldOceanicCoverage = planetGenerationSettings.WorldOceanicCoverage;
+        settings.GeologicalActivity = planetGenerationSettings.GeologicalActivity;
+        settings.ClimateInstability = planetGenerationSettings.ClimateInstability;
+        settings.HydrogenSulfideLevel = planetGenerationSettings.HydrogenSulfideLevel;
+        settings.GlucoseLevel = planetGenerationSettings.GlucoseLevel;
+        settings.IronLevel = planetGenerationSettings.IronLevel;
+        settings.AmmoniaLevel = planetGenerationSettings.AmmoniaLevel;
+        settings.PhosphatesLevel = planetGenerationSettings.PhosphatesLevel;
+        settings.RadiationLevel = planetGenerationSettings.RadiationLevel;
+        settings.Origin = planetGenerationSettings.Origin;
+        settings.DayNightCycleEnabled = planetGenerationSettings.DayNightCycleEnabled;
+        settings.DayLength = planetGenerationSettings.DayLength;
+        settings.LAWK = planetGenerationSettings.LAWK;
+        settings.Seed = planetGenerationSettings.Seed;
+
+        return settings;
+    }
+
+    private void StartGame()
+    {
+        var settings = GetGameSettings();
 
         // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
         // before the stage music starts)
@@ -678,9 +525,8 @@ public partial class NewGameSettings : ControlWithInput
 
         void OnStartGame()
         {
-            MainMenu.OnEnteringGame();
+            MainMenu.OnEnteringGame(false);
 
-            // TODO: Add loading screen while changing between scenes
             var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instantiate();
             microbeStage.CurrentGame = GameProperties.StartNewMicrobeGame(settings);
 
@@ -748,7 +594,7 @@ public partial class NewGameSettings : ControlWithInput
         basicOptions.Visible = !advanced;
         backButton.Visible = !advanced && !Descending;
         basicButton.Visible = advanced;
-        advancedOptions.Visible = advanced;
+        advancedOptionsContainer.Visible = advanced;
         tabButtons.Visible = advanced;
     }
 
@@ -999,11 +845,9 @@ public partial class NewGameSettings : ControlWithInput
         UpdateSelectedDifficultyPresetControl();
     }
 
-    private void OnLifeOriginSelected(int index)
+    private void OnLifeOriginSelected(WorldGenerationSettings.LifeOrigin value)
     {
-        // Set both buttons here as we only received a signal from one of them
-        lifeOriginButton.Selected = index;
-        lifeOriginButtonAdvanced.Selected = index;
+        planetSettings.SetLifeOrigin(value);
     }
 
     // This and a few other callbacks are not currently needed to detect anything, but I left them in, in case we
@@ -1015,23 +859,19 @@ public partial class NewGameSettings : ControlWithInput
 
     private void OnLAWKToggled(bool pressed)
     {
-        // Set both buttons here as we only received a signal from one of them
-        lawkButton.ButtonPressed = pressed;
-        lawkAdvancedButton.ButtonPressed = pressed;
-
         UpdateLifeOriginOptions(pressed);
+        planetSettings.SetLawkOnly(pressed);
     }
 
-    private void OnDayNightCycleToggled(bool pressed)
+    private void OnPlanetGeneratorSeedChanged(string seed)
     {
-        dayLengthContainer.Modulate = pressed ? Colors.White : new Color(1.0f, 1.0f, 1.0f, 0.5f);
-        dayLength.Editable = pressed;
+        SetSeed(seed);
     }
 
-    private void OnDayLengthChanged(double length)
+    private void OnLawkPlanetSettingChanged(bool pressed)
     {
-        length = Math.Round(length, 1);
-        dayLengthReadout.Text = length.ToString(CultureInfo.CurrentCulture);
+        lawkButton.ButtonPressed = pressed;
+        UpdateLifeOriginOptions(pressed);
     }
 
     private void UpdateLifeOriginOptions(bool lawk)
@@ -1039,38 +879,29 @@ public partial class NewGameSettings : ControlWithInput
         // If we've switched to LAWK only, disable panspermia
         var panspermiaIndex = (int)WorldGenerationSettings.LifeOrigin.Panspermia;
         lifeOriginButton.SetItemDisabled(panspermiaIndex, lawk);
-        lifeOriginButtonAdvanced.SetItemDisabled(panspermiaIndex, lawk);
 
         // If we had selected panspermia, reset to vents
         if (lawk && lifeOriginButton.Selected == panspermiaIndex)
         {
             lifeOriginButton.Selected = (int)WorldGenerationSettings.LifeOrigin.Vent;
-            lifeOriginButtonAdvanced.Selected = (int)WorldGenerationSettings.LifeOrigin.Vent;
         }
+    }
+
+    private void OnLifeOriginPlanetSettingChanged(int index)
+    {
+        lifeOriginButton.Selected = index;
     }
 
     private void OnGameSeedChangedFromBasic(string text)
     {
-        // Need different methods to handle each view; otherwise we overwrite caret position
-        gameSeedAdvanced.Text = text;
-        SetSeed(text);
-    }
-
-    private void OnGameSeedChangedFromAdvanced(string text)
-    {
-        // Need different methods to handle each view; otherwise we overwrite caret position
-        gameSeed.Text = text;
-        SetSeed(text);
+        isUpdatingCurrentTabsSeed = true;
+        planetSettings.SetSeed(text);
     }
 
     private void OnRandomisedGameSeedPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-
-        var seed = GenerateNewRandomSeed();
-        gameSeed.Text = seed;
-        gameSeedAdvanced.Text = seed;
-        SetSeed(seed);
+        planetSettings.GenerateAndSetRandomSeed();
     }
 
     private void OnWorldSizeSelected(int index)
@@ -1105,5 +936,11 @@ public partial class NewGameSettings : ControlWithInput
     {
         experimentalWarning.Visible = enabled;
         experimentalExplanation.Visible = !enabled;
+    }
+
+    private void OnPlanetSettingsChanged()
+    {
+        var newGame = GameProperties.StartNewMicrobeGame(GetGameSettings());
+        planetStatistics.UpdateStatistics(newGame.GameWorld.Map);
     }
 }

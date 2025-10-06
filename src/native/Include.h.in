@@ -91,13 +91,14 @@
 #define UNUSED(x) (void)x
 
 // Size in bytes that physics body user data is (used for collision callbacks). Has to be a macro to work in C.
-#define PHYSICS_USER_DATA_SIZE 8
+// This must match what is defined on the C# side.
+#define PHYSICS_USER_DATA_SIZE 12
 
 // Note this only works in 64-bit mode right now. The extra +3 at the end is to account for padding
 #define PHYSICS_COLLISION_DATA_SIZE (PHYSICS_USER_DATA_SIZE * 2 + POINTER_SIZE * 2 + 13 + 3)
 
-// The second + 4 is padding here
-#define PHYSICS_RAY_DATA_SIZE (PHYSICS_USER_DATA_SIZE + POINTER_SIZE + 4 + 4)
+// The third + 4 is padding here
+#define PHYSICS_RAY_DATA_SIZE (PHYSICS_USER_DATA_SIZE + POINTER_SIZE + 4 + 4 + 4)
 
 // When defined the collision listener will automatically resolve sub-shape indexes on the first level
 #define AUTO_RESOLVE_FIRST_LEVEL_SHAPE_INDEX
@@ -146,6 +147,17 @@
 
 // This is needed to allow including this in the C interop header
 #ifdef __cplusplus
+
+#ifdef _MSC_VER
+#define BEGIN_GODOT_INCLUDES
+#define END_GODOT_INCLUDES
+#else
+#define BEGIN_GODOT_INCLUDES _Pragma("GCC diagnostic push")           \
+    _Pragma("GCC diagnostic ignored \"-Wunused-parameter\"")          \
+    _Pragma("GCC diagnostic ignored \"-Wpedantic\"")                  \
+    _Pragma("GCC diagnostic ignored \"-Wunused-but-set-parameter\"")
+#define END_GODOT_INCLUDES _Pragma("GCC diagnostic pop")
+#endif
 
 namespace Thrive
 {

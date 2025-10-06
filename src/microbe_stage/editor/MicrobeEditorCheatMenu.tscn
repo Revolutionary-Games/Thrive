@@ -3,11 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="Script" uid="uid://b8pglhtmiphys" path="res://src/microbe_stage/editor/MicrobeEditorCheatMenu.cs" id="2"]
 
-[node name="MicrobeEditorCheatMenu" instance=ExtResource("1")]
+[node name="MicrobeEditorCheatMenu" node_paths=PackedStringArray("infiniteMp") instance=ExtResource("1")]
 offset_right = 0.0
 offset_bottom = 0.0
 script = ExtResource("2")
-InfiniteMpPath = NodePath("VBoxContainer/InfiniteMP")
+infiniteMp = NodePath("VBoxContainer/InfiniteMP")
 WindowTitle = "CHEATS"
 Resizable = true
 

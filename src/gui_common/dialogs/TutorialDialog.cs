@@ -8,10 +8,8 @@ using Godot;
 /// [Tool]
 public partial class TutorialDialog : CustomWindow
 {
-    [Export]
-    public NodePath? LabelPath;
-
 #pragma warning disable CA2213
+    [Export]
     private CustomRichTextLabel? label;
 #pragma warning restore CA2213
 
@@ -53,8 +51,6 @@ public partial class TutorialDialog : CustomWindow
 
     public override void _Ready()
     {
-        label = GetNode<CustomRichTextLabel>(LabelPath);
-
         CheckShownTextVersion();
         UpdateLabel();
     }
@@ -92,16 +88,6 @@ public partial class TutorialDialog : CustomWindow
         tween.SetEase(Tween.EaseType.Out);
 
         tween.TweenProperty(this, "scale", Vector2.One, 0.3).From(Vector2.Zero).SetDelay(ShowDelay);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            LabelPath?.Dispose();
-        }
-
-        base.Dispose(disposing);
     }
 
     private void UpdateLabel()

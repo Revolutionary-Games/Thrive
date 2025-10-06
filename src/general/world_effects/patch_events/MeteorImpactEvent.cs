@@ -47,11 +47,6 @@ public class MeteorImpactEvent : IWorldEffect
         TryToTriggerEvent(totalTimePassed);
     }
 
-    private bool IsSurfacePatch(Patch patch)
-    {
-        return patch.Depth[0] == 0 && patch.BiomeType != BiomeType.Cave;
-    }
-
     private void TryToTriggerEvent(double totalTimePassed)
     {
         if (!AreConditionsMet())
@@ -86,7 +81,7 @@ public class MeteorImpactEvent : IWorldEffect
         var surfacePatches = new List<Patch>();
         foreach (var patch in targetWorld.Map.Patches.Values)
         {
-            if (IsSurfacePatch(patch))
+            if (patch.IsSurfacePatch())
                 surfacePatches.Add(patch);
         }
 
@@ -105,7 +100,7 @@ public class MeteorImpactEvent : IWorldEffect
         {
             foreach (var adjacent in selectedPatch.Adjacent)
             {
-                if (adjacent.Region.ID == selectedPatch.Region.ID && IsSurfacePatch(adjacent))
+                if (adjacent.Region.ID == selectedPatch.Region.ID && adjacent.IsSurfacePatch())
                 {
                     modifiedPatchesIds.Add(adjacent.ID);
                 }
@@ -117,7 +112,7 @@ public class MeteorImpactEvent : IWorldEffect
         {
             foreach (var patch in adjacentRegion.Patches)
             {
-                if (IsSurfacePatch(patch))
+                if (patch.IsSurfacePatch())
                 {
                     modifiedPatchesIds.Add(patch.ID);
                 }
@@ -127,7 +122,21 @@ public class MeteorImpactEvent : IWorldEffect
 
     private bool AreConditionsMet()
     {
-        return random.NextFloat() <= Constants.METEOR_IMPACT_CHANCE;
+        return random.NextFloat() <= GetImpactChance();
+    }
+
+    private float GetImpactChance()
+    {
+        switch (targetWorld.WorldSettings.GeologicalActivity)
+        {
+            case WorldGenerationSettings.GeologicalActivityEnum.Dormant:
+                return Constants.METEOR_IMPACT_CHANCE * 0.5f;
+            case WorldGenerationSettings.GeologicalActivityEnum.Active:
+                return Constants.METEOR_IMPACT_CHANCE * 2;
+            case WorldGenerationSettings.GeologicalActivityEnum.Average:
+            default:
+                return Constants.METEOR_IMPACT_CHANCE;
+        }
     }
 
     private void ChangePatchProperties(Patch patch, double totalTimePassed)
@@ -197,8 +206,9 @@ public class MeteorImpactEvent : IWorldEffect
 
             if (!hasCompound)
             {
-                GD.PrintErr($"Meteor impact event encountered patch with unexpectedly no {compoundName.ToString()}");
-                return;
+                // This is adding a new compound
+                GD.Print($"Impact event is adding a new compound {compoundName} that was not present before " +
+                    $"in {patch.Name}");
             }
 
             var definition = SimulationParameters.Instance.GetCompoundDefinition(compoundName);
@@ -209,7 +219,7 @@ public class MeteorImpactEvent : IWorldEffect
                 currentCompoundLevel.Density = levelChange;
 
                 // TODO: instead of hardcoding the fallback value, maybe this could look in the event template biome?
-                currentCompoundLevel.Amount = currentCompoundLevel.Amount == 0 ? 10000 : currentCompoundLevel.Amount;
+                currentCompoundLevel.Amount = currentCompoundLevel.Amount == 0 ? 125000 : currentCompoundLevel.Amount;
                 tempCompoundChanges[compoundName] = currentCompoundLevel.Density;
                 tempCloudSizes[compoundName] = currentCompoundLevel.Amount;
             }
@@ -274,8 +284,8 @@ public class MeteorImpactEvent : IWorldEffect
 
             if (!hasCompound)
             {
-                GD.PrintErr($"Meteor impact event encountered patch with unexpectedly no {compoundName.ToString()}");
-                return;
+                GD.PrintErr("Did not find compound to reduce after impact event ended");
+                continue;
             }
 
             var definition = SimulationParameters.Instance.GetCompoundDefinition(compoundName);
@@ -288,7 +298,7 @@ public class MeteorImpactEvent : IWorldEffect
                 tempCloudSizes[compoundName] = currentCompoundLevel.Amount;
             }
 
-            // CO2 is not reduced back to normal values
+            // CO2 (and other gases) are not reduced back to normal values
         }
 
         patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, tempCompoundChanges, tempCloudSizes);

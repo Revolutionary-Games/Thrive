@@ -7,17 +7,13 @@ using Newtonsoft.Json;
 public partial class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess,
     IStructureSelectionReceiver<StructureDefinition>
 {
-    [Export]
-    public NodePath? SelectBuildingPopupPath;
-
-    [Export]
-    public NodePath IndustrialStageConfirmPopupPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private SelectBuildingPopup selectBuildingPopup = null!;
 
     private PackedScene structureScene = null!;
 
+    [Export]
     private CustomConfirmationDialog industrialStageConfirmPopup = null!;
 
     private Node3D? buildingToPlaceGhost;
@@ -77,9 +73,6 @@ public partial class SocietyStage : StrategyStageBase, ISocietyStructureDataAcce
         base.ResolveNodeReferences();
 
         HUD = GetNode<SocietyHUD>("SocietyHUD");
-
-        selectBuildingPopup = GetNode<SelectBuildingPopup>(SelectBuildingPopupPath);
-        industrialStageConfirmPopup = GetNode<CustomConfirmationDialog>(IndustrialStageConfirmPopupPath);
 
         // Systems
         structureSystem = new SocietyStructureSystem(rootOfDynamicallySpawned);
@@ -280,20 +273,6 @@ public partial class SocietyStage : StrategyStageBase, ISocietyStructureDataAcce
     protected override void PerformQuickSave()
     {
         SaveHelper.ShowErrorAboutPrototypeSaving(this);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (SelectBuildingPopupPath != null)
-            {
-                SelectBuildingPopupPath.Dispose();
-                IndustrialStageConfirmPopupPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void HandlePopulationGrowth()

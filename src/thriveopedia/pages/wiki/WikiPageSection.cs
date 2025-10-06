@@ -6,18 +6,14 @@
 /// </summary>
 public partial class WikiPageSection : VBoxContainer
 {
-    [Export]
-    public NodePath? HeadingPath;
-
-    [Export]
-    public NodePath SeparatorPath = null!;
-
-    [Export]
-    public NodePath BodyPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Label? heading;
+
+    [Export]
     private HSeparator? separator;
+
+    [Export]
     private CustomRichTextLabel? body;
 #pragma warning restore CA2213
 
@@ -48,25 +44,7 @@ public partial class WikiPageSection : VBoxContainer
     {
         base._Ready();
 
-        heading = GetNode<Label>(HeadingPath);
-        separator = GetNode<HSeparator>(SeparatorPath);
-        body = GetNode<CustomRichTextLabel>(BodyPath);
         UpdateText();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (HeadingPath != null)
-            {
-                HeadingPath.Dispose();
-                SeparatorPath.Dispose();
-                BodyPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void UpdateText()

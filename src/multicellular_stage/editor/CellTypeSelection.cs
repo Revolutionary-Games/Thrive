@@ -14,34 +14,20 @@ public partial class CellTypeSelection : MicrobePartSelection
     private Texture2D? cellImage;
 
     [Export]
-    private ProgressBar atpProductionBar = null!;
-
-    [Export]
-    private ProgressBar atpConsumptionBar = null!;
-
-    [Export]
     private Control atpBalanceWarningBadge = null!;
 #pragma warning restore CA2213
 
     private IImageTask? imageTask;
 
-    private bool enableATPBalanceDisplay = true;
+    private bool showInsufficientATPWarning;
 
-    private float energyProduction;
-    private float energyConsumption;
-    private float maxEnergyValue;
-
-    public bool EnableATPBalanceBars
+    public bool ShowInsufficientATPWarning
     {
-        get => enableATPBalanceDisplay;
+        get => showInsufficientATPWarning;
         set
         {
-            if (enableATPBalanceDisplay == value)
-                return;
-
-            enableATPBalanceDisplay = value;
-
-            UpdateATPBalanceBarVisibility();
+            showInsufficientATPWarning = value;
+            UpdateWarningBadge();
         }
     }
 
@@ -55,44 +41,6 @@ public partial class CellTypeSelection : MicrobePartSelection
 
             ReportTypeChanged();
             cellType = value;
-        }
-    }
-
-    public float EnergyProduction
-    {
-        get => energyProduction;
-        set
-        {
-            energyProduction = value;
-
-            UpdateProductionBar();
-            UpdateWarningBadge();
-        }
-    }
-
-    public float EnergyConsumption
-    {
-        get => energyConsumption;
-        set
-        {
-            energyConsumption = value;
-
-            UpdateConsumptionBar();
-            UpdateWarningBadge();
-        }
-    }
-
-    /// <summary>
-    ///   The maximum production/consumption across all other cell type selection buttons.
-    /// </summary>
-    public float MaxEnergyValue
-    {
-        get => maxEnergyValue;
-        set
-        {
-            maxEnergyValue = value;
-
-            UpdateATPBalanceDisplay();
         }
     }
 
@@ -139,49 +87,8 @@ public partial class CellTypeSelection : MicrobePartSelection
         imageTask = null;
     }
 
-    public void UpdateATPBalanceBarVisibility()
-    {
-        atpConsumptionBar.Visible = enableATPBalanceDisplay;
-        atpProductionBar.Visible = enableATPBalanceDisplay;
-
-        if (!enableATPBalanceDisplay)
-            atpBalanceWarningBadge.Visible = false;
-    }
-
-    public void SetEnergyBalanceValues(float newProduction, float newConsumption)
-    {
-        energyProduction = newProduction;
-        energyConsumption = newConsumption;
-
-        UpdateATPBalanceDisplay();
-    }
-
-    public void UpdateATPBalanceDisplay()
-    {
-        UpdateProductionBar();
-        UpdateConsumptionBar();
-
-        UpdateWarningBadge();
-    }
-
     private void UpdateWarningBadge()
     {
-        atpBalanceWarningBadge.Visible = enableATPBalanceDisplay && energyConsumption > energyProduction;
-    }
-
-    private void UpdateProductionBar()
-    {
-        atpProductionBar.Value = 100.0f * energyProduction / maxEnergyValue;
-
-        atpProductionBar.TooltipText = Localization.Translate("CELL_TYPE_BUTTON_ATP_PRODUCTION")
-            .FormatSafe(MathF.Round(energyProduction, 2));
-    }
-
-    private void UpdateConsumptionBar()
-    {
-        atpConsumptionBar.Value = 100.0f * energyConsumption / maxEnergyValue;
-
-        atpConsumptionBar.TooltipText = Localization.Translate("CELL_TYPE_BUTTON_ATP_CONSUMPTION")
-            .FormatSafe(MathF.Round(energyConsumption, 2));
+        atpBalanceWarningBadge.Visible = showInsufficientATPWarning;
     }
 }

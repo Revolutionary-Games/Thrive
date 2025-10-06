@@ -143,6 +143,13 @@ func find_test_by_id(id: GdUnitGUID) -> GdUnitTestCase:
 	return null
 
 
+func get_discovered_tests() -> Array[GdUnitTestCase]:
+	var discovered_tests: Array[GdUnitTestCase] = []
+	for test_sets: Array[GdUnitTestCase] in _discover_cache.values():
+		discovered_tests.append_array(test_sets)
+	return discovered_tests
+
+
 ## Discovers tests in a script and tracks changes.[br]
 ## [br]
 ## Handles both GDScript and C# test suites.[br]
@@ -151,6 +158,10 @@ func find_test_by_id(id: GdUnitGUID) -> GdUnitTestCase:
 ## [param script] The test script to analyze[br]
 ## [param discover_sink] Optional callback for test discovery events
 func discover(script: Script, discover_sink: Callable = default_discover_sink) -> void:
+	# Verify the script has no errors before run test discovery
+	var result := script.reload(true)
+	if result != OK:
+		return
 
 	if _is_debug:
 		_discovered_changes["changed_tests"] = Array([], TYPE_OBJECT, "RefCounted", GdUnitTestCase)

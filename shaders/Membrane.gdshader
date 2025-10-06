@@ -102,5 +102,7 @@ void fragment(){
 
     ALBEDO = final.rgb;
     ALPHA = fresnel(3.0, adjustedNormals, adjustedView) * round(cutoff);
-    ROUGHNESS = 0.7f;
+    METALLIC = 0.0f;
+    ROUGHNESS = 0.5f;
+    SPECULAR = 1.0f;
 }

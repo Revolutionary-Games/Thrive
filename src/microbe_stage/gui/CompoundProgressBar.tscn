@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://clnc61bm71h04"]
+[gd_scene load_steps=6 format=3 uid="uid://clnc61bm71h04"]
 
 [ext_resource type="Script" uid="uid://mj3dsqw5jf12" path="res://src/microbe_stage/gui/CompoundProgressBar.cs" id="1_dosnj"]
+[ext_resource type="LabelSettings" uid="uid://u7fwx3p3shvk" path="res://src/gui_common/fonts/Body-Regular-Small-Shadow.tres" id="2_txlhc"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="2_xwjgn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cwyqo"]
@@ -21,6 +22,7 @@ icon = NodePath("Icon")
 progressBar = NodePath("Bar")
 nameLabel = NodePath("Bar/Name")
 amountLabel = NodePath("Value")
+compactLabelSettings = ExtResource("2_txlhc")
 
 [node name="Icon" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(25, 25)

@@ -1,5 +1,6 @@
 ﻿using System;
-using DefaultEcs;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -8,8 +9,8 @@ using Newtonsoft.Json;
 /// </summary>
 public class EntityReferenceConverter : JsonConverter<Entity>
 {
-    private const string AlwaysRemovedPart = "Entity ";
-    private static readonly string DefaultEntityStr = default(Entity).ToString().Substring(AlwaysRemovedPart.Length);
+    private const string AlwaysRemovedPart = "Entity = ";
+    private static readonly string DefaultEntityStr = Entity.Null.ToString().Substring(AlwaysRemovedPart.Length);
 
     private readonly SaveContext context;
 
@@ -18,22 +19,22 @@ public class EntityReferenceConverter : JsonConverter<Entity>
         this.context = context;
 
 #if DEBUG
-        if (DefaultEntityStr != "0:0.0")
+        if (DefaultEntityStr != "{ Id = -1, WorldId = 0, Version = -1 }")
             throw new Exception("Text format for Entity ToString has changed");
 #endif
     }
 
     public override void WriteJson(JsonWriter writer, Entity value, JsonSerializer serializer)
     {
-        if (value == default)
+        if (value == Entity.Null)
         {
             writer.WriteValue(value.ToString());
             return;
         }
 
         // Don't write non-alive entities or entities that no longer want to be saved
-        if (context.SkipSavingEntity(value) || !value.IsAlive)
-            value = default;
+        if (context.SkipSavingEntity(value) || !value.IsAlive())
+            value = Entity.Null;
 
         writer.WriteValue(value.ToString());
     }
@@ -47,7 +48,7 @@ public class EntityReferenceConverter : JsonConverter<Entity>
         var old = reader.Value as string ??
             throw new Exception("Entity reference is null, or not string (should be default instead of null always)");
 
-        // Need to remove the "Entity " part of the string
+        // Need to remove the `Entity ` prefix part of the string
 #if DEBUG
         if (!old.Contains(AlwaysRemovedPart))
             throw new Exception("Unexpected entity reference string format");
@@ -64,13 +65,13 @@ public class EntityReferenceConverter : JsonConverter<Entity>
         }
 
         if (old == DefaultEntityStr)
-            return default(Entity);
+            return Entity.Null;
 
-        // If already loaded return the entity
+        // If already loaded returns the entity
         if (context.OldToNewEntityMapping.TryGetValue(old, out var existing))
             return existing;
 
-        var newValue = context.ProcessedEntityWorld.CreateEntity();
+        var newValue = context.ProcessedEntityWorld.Create();
         context.OldToNewEntityMapping[old] = newValue;
 
         return newValue;

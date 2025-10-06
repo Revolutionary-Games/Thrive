@@ -68,9 +68,7 @@ func is_equal(expected :Variant) -> GdUnitDictionaryAssert:
 	if not GdObjects.equals(current, expected):
 		var c := GdAssertMessages.format_dict(current)
 		var e := GdAssertMessages.format_dict(expected)
-		var diff := GdDiffTool.string_diff(c, e)
-		var curent_diff := GdAssertMessages.colored_array_div(diff[1])
-		return report_error(GdAssertMessages.error_equal(curent_diff, e))
+		return report_error(GdAssertMessages.error_equal(c, e))
 	return report_success()
 
 
@@ -89,9 +87,7 @@ func is_same(expected :Variant) -> GdUnitDictionaryAssert:
 	if not is_same(current, expected):
 		var c := GdAssertMessages.format_dict(current)
 		var e := GdAssertMessages.format_dict(expected)
-		var diff := GdDiffTool.string_diff(c, e)
-		var curent_diff := GdAssertMessages.colored_array_div(diff[1])
-		return report_error(GdAssertMessages.error_is_same(curent_diff, e))
+		return report_error(GdAssertMessages.error_is_same(c, e))
 	return report_success()
 
 

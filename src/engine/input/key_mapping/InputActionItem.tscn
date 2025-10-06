@@ -16,15 +16,15 @@ content_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxEmpty" id="3"]
 
-[node name="InputActionItem" type="VBoxContainer"]
+[node name="InputActionItem" type="VBoxContainer" node_paths=PackedStringArray("inputEventsContainer", "inputActionHeader", "addInputEvent")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource("2")
 script = ExtResource("1")
-AddInputEventPath = NodePath("InputEventsContainer/AddEventButton")
-InputActionHeaderPath = NodePath("InputActionHeader")
-InputEventsContainerPath = NodePath("InputEventsContainer")
+addInputEvent = NodePath("InputEventsContainer/AddEventButton")
+inputActionHeader = NodePath("InputActionHeader")
+inputEventsContainer = NodePath("InputEventsContainer")
 
 [node name="InputActionHeader" type="Label" parent="."]
 editor_description = "PLACEHOLDER"

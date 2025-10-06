@@ -6,10 +6,8 @@ using Godot;
 /// </summary>
 public partial class AvailableConstructionProjectItem : HBoxContainer
 {
-    [Export]
-    public NodePath? ButtonPath;
-
 #pragma warning disable CA2213
+    [Export]
     private Button? button;
 #pragma warning restore CA2213
 
@@ -48,7 +46,6 @@ public partial class AvailableConstructionProjectItem : HBoxContainer
 
     public override void _Ready()
     {
-        button = GetNode<Button>(ButtonPath);
         UpdateText();
         ApplyDisabledState();
     }
@@ -57,7 +54,6 @@ public partial class AvailableConstructionProjectItem : HBoxContainer
     {
         if (disposing)
         {
-            ButtonPath?.Dispose();
             OnItemSelectedHandler = null;
         }
 

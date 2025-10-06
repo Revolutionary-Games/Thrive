@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://cwot2e52r7lx0"]
+[gd_scene load_steps=61 format=3 uid="uid://cwot2e52r7lx0"]
 
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://0hb8nq18ljr8" path="res://src/microbe_stage/editor/LightConfigurationPanel.tscn" id="3_yy73o"]
@@ -113,6 +113,22 @@ region_rect = Rect2(0, 0, 258, 1)
 [sub_resource type="StyleBoxEmpty" id="37"]
 
 [sub_resource type="StyleBoxEmpty" id="36"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk5n4"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.666667, 1, 0.941176, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="23"]
 content_margin_left = 5.0
@@ -497,7 +513,7 @@ _data = {
 &"ShowTopPanel": SubResource("Animation_pcyan")
 }
 
-[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("growthOrderTabButton", "toleranceTabButton", "growthOrderTab", "growthOrderGUI", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "showGrowthOrderCoordinates", "growthOrderNumberContainer", "micheViewer", "organismStatisticsPanel", "rightPanel", "rightPanelScrollContainer", "bottomRightPanel", "tutorialAnimationPlayer")]
+[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("structureTabButton", "appearanceTabButton", "behaviourTabButton", "growthOrderTabButton", "toleranceTabButton", "structureTab", "appearanceTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "partsSelectionContainer", "membraneTypeSelection", "totalEnergyLabel", "autoEvoPredictionFailedLabel", "bestPatchLabel", "worstPatchLabel", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "autoEvoPredictionPanel", "rigiditySlider", "membraneColorPicker", "negativeAtpPopup", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "organelleMenu", "organelleUpgradeGUI", "showGrowthOrderCoordinates", "growthOrderNumberContainer", "micheViewer", "organismStatisticsPanel", "autoEvoPredictionExplanationPopup", "autoEvoPredictionExplanationLabel", "rightPanel", "rightPanelScrollContainer", "bottomRightPanel", "tutorialAnimationPlayer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -509,55 +525,53 @@ grow_vertical = 2
 pivot_offset = Vector2(1705, 266)
 theme = ExtResource("6")
 script = ExtResource("4")
-TopPanelPath = NodePath("TopPanel")
-TabButtonsPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons")
-StructureTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure")
-AppearanceTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Membrane")
-BehaviourTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour")
-StructureTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
-AppearanceTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane")
-BehaviourTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
-PartsSelectionContainerPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection")
-MembraneTypeSelectionPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes")
-AutoEvoPredictionPanelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel")
-TotalEnergyLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Total")
-AutoEvoPredictionFailedLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Failed")
-WorstPatchLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Worst/Value")
-BestPatchLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Best/Value")
-MembraneColorPickerPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/TweakedColourPicker")
-RigiditySliderPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider")
-NegativeAtpPopupPath = NodePath("NegativeAtpWarning")
-OrganelleMenuPath = NodePath("OrganellePopupMenu")
-AutoEvoPredictionExplanationPopupPath = NodePath("PredictionExplanation")
-AutoEvoPredictionExplanationLabelPath = NodePath("PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ExplanationText")
-OrganelleUpgradeGUIPath = NodePath("OrganelleUpgradeGUI")
+structureTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure")
+appearanceTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Membrane")
+behaviourTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour")
 growthOrderTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Growth")
 toleranceTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerances")
+structureTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
+appearanceTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane")
+behaviourEditor = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
 growthOrderTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth")
 growthOrderGUI = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker")
 tolerancesEditor = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor")
 toleranceTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance")
 toleranceWarningContainer = NodePath("ToleranceWarnings")
+partsSelectionContainer = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection")
+membraneTypeSelection = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes")
+totalEnergyLabel = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Total")
+autoEvoPredictionFailedLabel = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Failed")
+bestPatchLabel = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Best/Value")
+worstPatchLabel = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Worst/Value")
 organelleSuggestionLoadingIndicator = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer/SugestionLoading")
 organelleSuggestionLabel = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer/SuggestionValue")
+autoEvoPredictionPanel = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel")
+rigiditySlider = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider")
+membraneColorPicker = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/TweakedColourPicker")
+negativeAtpPopup = NodePath("NegativeAtpWarning")
 pendingEndosymbiosisPopup = NodePath("CompleteEndosymbiosisWarning")
 endosymbiosisButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/Endosymbiosis")
 endosymbiosisPopup = NodePath("EndosymbiosisPopup")
+organelleMenu = NodePath("OrganellePopupMenu")
+organelleUpgradeGUI = NodePath("OrganelleUpgradeGUI")
 showGrowthOrderCoordinates = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/Coordinates")
 growthOrderNumberContainer = NodePath("GrowthOrderNumberContainer")
 micheViewer = NodePath("PopupMicheViewer")
 organismStatisticsPanel = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel")
+autoEvoPredictionExplanationPopup = NodePath("PredictionExplanation")
+autoEvoPredictionExplanationLabel = NodePath("PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ExplanationText")
 rightPanel = NodePath("RightPanel")
 rightPanelScrollContainer = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel/VBoxContainer/Body/ScrollContainer")
 bottomRightPanel = NodePath("BottomRight")
 tutorialAnimationPlayer = NodePath("TutorialAnimations")
 toleranceWarningsFont = ExtResource("28_qclxk")
-IslandErrorPath = NodePath("IslandError")
-MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
-ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
-CancelButtonPath = NodePath("BottomRight/HBoxContainer/CancelButton")
-FinishWarningBadgePath = NodePath("BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
-FinishOrNextButtonPath = NodePath("BottomRight/HBoxContainer/ConfirmButton")
+islandPopup = NodePath("IslandError")
+componentBottomLeftButtons = NodePath("EditorComponentBottomLeftButtons")
+mutationPointsBar = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
+cancelButton = NodePath("BottomRight/HBoxContainer/CancelButton")
+finishButtonWarningBadge = NodePath("BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
+finishOrNextButton = NodePath("BottomRight/HBoxContainer/ConfirmButton")
 
 [node name="GrowthOrderNumberContainer" type="Control" parent="."]
 visible = false
@@ -1191,6 +1205,7 @@ focus_next = NodePath("../ConfirmButton")
 mouse_force_pass_scroll_events = false
 theme_override_colors/font_disabled_color = Color(0.498039, 0.529412, 0.541176, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_tk5n4")
 theme_override_styles/hover = SubResource("23")
 theme_override_styles/pressed = SubResource("24")
 theme_override_styles/normal = SubResource("25")

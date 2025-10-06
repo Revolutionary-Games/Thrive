@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-23 10:31+0300\n"
-"PO-Revision-Date: 2025-02-06 13:29+0000\n"
+"POT-Creation-Date: 2025-09-15 11:08+0200\n"
+"PO-Revision-Date: 2025-05-27 06:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
 "Language: th_TH\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -52,6 +52,19 @@ msgid "ABYSSOPELAGIC"
 msgstr "เขตเหวนรก"
 
 msgid "ACCEPT"
+msgstr ""
+
+#, fuzzy
+msgid "ACHIEVEMENTS"
+msgstr "การเคลื่อนไหว"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+msgid "ACHIEVEMENT_LOCKED"
 msgstr ""
 
 msgid "ACTION_AWAKEN"
@@ -178,6 +191,10 @@ msgstr "แอมโมเนีย"
 
 #, fuzzy
 msgid "AMMONIA_COST"
+msgstr "แอมโมเนีย"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "แอมโมเนีย"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -359,6 +376,10 @@ msgid "AUTO_EVO"
 msgstr ""
 
 #, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "{0: F1}% เสร็จสิ้น {1: n0} / {2: n0} ขั้นตอน"
+
+#, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "{0: F1}% เสร็จสิ้น {1: n0} / {2: n0} ขั้นตอน"
 
@@ -399,6 +420,21 @@ msgstr ""
 msgid "AVAILABLE_MODS"
 msgstr ""
 
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr ""
 
@@ -417,6 +453,9 @@ msgstr "แบ็กสแลช"
 
 msgid "BACKSPACE"
 msgstr "พื้นที่ด้านหลัง"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -495,6 +534,12 @@ msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
 msgid "BEST_PATCH_COLON"
+msgstr ""
+
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
 msgstr ""
 
 msgid "BIG_IRON_CHUNK"
@@ -618,6 +663,9 @@ msgstr ""
 msgid "CANNOT_ENGULF"
 msgstr ""
 
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
+
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
@@ -695,12 +743,6 @@ msgstr "ดำเนินการต่อ"
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
-msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr ""
-
-msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr ""
-
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -717,6 +759,10 @@ msgstr "ท็อกซินแวคิวโอลเป็นแวคิว
 msgid "CHEATS"
 msgstr "โหมดโกง"
 
+#, fuzzy
+msgid "CHEATS_USED_NOTICE"
+msgstr "ยกเลิก"
+
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "เปิดใช้งานโกงคีย์"
 
@@ -729,6 +775,7 @@ msgstr ""
 msgid "CHEMOPLAST"
 msgstr "เคโมพลาสต์"
 
+#, fuzzy
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "chemoplast เป็นโครงสร้างเมมเบรนสองชั้นที่มีโปรตีนที่สามารถเปลี่ยนไฮโดรเจนซัลไฟด์น้ำและก๊าซคาร์บอนไดออกไซด์เป็นน้ำตาลกลูโคสในกระบวนการที่เรียกว่า Hydrogen Sulfide Chemosynthesis อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์"
 
@@ -763,6 +810,7 @@ msgstr "การสังเคราะห์ด้วยเคมี"
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "คีโมสังเคราะห์โปรตีน"
 
+#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "โปรตีนสังเคราะห์ Chemosynthesizing เป็นกลุ่มโปรตีนขนาดเล็กในไซโทพลาซึมที่สามารถเปลี่ยนไฮโดรเจนซัลไฟด์น้ำและก๊าซคาร์บอนไดออกไซด์เป็นน้ำตาลกลูโคสในกระบวนการที่เรียกว่า Hydrogen Sulfide Chemosynthesis อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์ เนื่องจากโปรตีนสังเคราะห์ทางเคมีจะแขวนลอยอยู่ในไซโตพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
@@ -790,6 +838,7 @@ msgstr ""
 msgid "CHLOROPLAST"
 msgstr "คลอโรพลาสต์"
 
+#, fuzzy
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr "คลอโรพลาสต์เป็นโครงสร้างเมมเบรนสองชั้นที่มีรงควัตถุไวแสงซ้อนกันในถุงเยื่อ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต เม็ดสีในคลอโรพลาสต์สามารถใช้พลังงานของแสงเพื่อผลิตน้ำตาลกลูโคสจากน้ำและก๊าซคาร์บอนไดออกไซด์ในกระบวนการที่เรียกว่าการสังเคราะห์ด้วยแสง เม็ดสีเหล่านี้เป็นสิ่งที่ให้สีที่โดดเด่น อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์และความเข้มของแสง"
 
@@ -803,6 +852,7 @@ msgstr ""
 msgid "CHROMATIC_ABERRATION"
 msgstr "ความผิดปกติของสี:"
 
+#, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "ผลิต [เจริญเติบโต:สารประกอบ]กลูโคส[/เจริญเติบโต:สารประกอบ] อัตรามาตราส่วนด้วยความเข้มข้นของ [การเจริญเติบโต:สารประกอบ]คาร์บอนไดออกไซด์[/การเจริญเติบโต:สารประกอบ] และความเข้มของ [การเจริญเติบโต:สารประกอบ]แสงแดด[/การเจริญเติบโต:สารประกอบ]"
 
@@ -835,6 +885,22 @@ msgid "CLEAR_CACHE"
 msgstr ""
 
 msgid "CLICK_TO_SELECT"
+msgstr ""
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
 msgstr ""
 
 msgid "CLOSE"
@@ -1013,6 +1079,25 @@ msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "สารประกอบของเมฆ"
 
 #, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "สารประกอบของเมฆ"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "สารประกอบของเมฆ"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "ดำเนินการต่อ"
+
+#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "สารประกอบของเมฆ"
 
@@ -1082,6 +1167,14 @@ msgstr "ดำเนินการต่อ"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr ""
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr "ปกติ"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr ""
@@ -1280,6 +1373,10 @@ msgstr ""
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "สารประกอบของเมฆ"
+
 msgid "CPU_THREADS"
 msgstr ""
 
@@ -1413,12 +1510,14 @@ msgstr "ชื่อผู้ใช้ที่กำหนดเอง:"
 msgid "CYTOPLASM"
 msgstr "ไซโทพลาซึม"
 
+#, fuzzy
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "ภายในที่เหนอะหนะของเซลล์ ไซโทพลาสซึมเป็นส่วนผสมพื้นฐานของไอออนโปรตีนและสารอื่น ๆ ที่ละลายในน้ำที่เติมภายในเซลล์ หนึ่งในฟังก์ชั่นที่ทำคือไกลโคไลซิสการเปลี่ยนกลูโคสเป็นพลังงาน ATP สำหรับเซลล์ที่ขาดออร์แกเนลล์เพื่อให้มีการเผาผลาญขั้นสูงมากขึ้นนี่คือสิ่งที่พวกเขาต้องพึ่งพาเพื่อเป็นพลังงาน นอกจากนี้ยังใช้เพื่อเก็บโมเลกุลในเซลล์และเพื่อขยายขนาดของเซลล์"
 
 msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr "ไซโทพลาสซึมไกลโคไลซิส"
 
+#, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "เปลี่ยน [thrive:compound]glucose[/thrive:compound] เป็น [thrive:compound]atp[/thrive:compound]"
 
@@ -1823,6 +1922,23 @@ msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"โครงสร้างโปรคาริโอต\n"
+"\n"
+"เมตาโบโลโซม: ผลิต ATP จากกลูโคส\n"
+"\n"
+"Chemosynthisizing Proteins: ผลิตกลูโคสครึ่งหนึ่งจากไฮโดรเจนซัลไฟด์เป็นเคมีโมพลาสต์ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้เวลาถึง 1 Hex\n"
+"\n"
+"Thylakoids: ผลิตกลูโคสในปริมาณ 1 ใน 3 เป็นคลอโรพลาสต์ปกติ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้ 1 Hex\n"
+"\n"
+"Rusticyanin: แปลงเหล็กเป็น ATP\n"
+"\n"
+"Nitrogenase: แปลงไนโตรเจนในบรรยากาศและ ATP เป็นแอมโมเนียแบบไม่ใช้ออกซิเจน\n"
+"\n"
+"ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 "โครงสร้างโปรคาริโอต\n"
@@ -1838,6 +1954,10 @@ msgstr ""
 "Nitrogenase: แปลงไนโตรเจนในบรรยากาศและ ATP เป็นแอมโมเนียแบบไม่ใช้ออกซิเจน\n"
 "\n"
 "ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
+
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
 
 msgid "EFFECTIVE_VALUE"
 msgstr ""
@@ -1944,6 +2064,9 @@ msgid "ENERGY_SOURCES"
 msgstr ""
 
 msgid "ENERGY_SUMMARY_LINE"
+msgstr ""
+
+msgid "ENGULF_CELL_OR_CHUNK"
 msgstr ""
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
@@ -2311,6 +2434,10 @@ msgstr ""
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "การจัดเก็บ"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
@@ -2425,12 +2552,31 @@ msgstr "กดปุ่มเลิกทำในตัวแก้ไขเพ
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "กดปุ่มเลิกทำในตัวแก้ไขเพื่อแก้ไขข้อผิดพลาด"
 
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
+
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "ตั้งค่า"
 
 msgid "GENERATION_COLON"
 msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -2475,6 +2621,10 @@ msgstr "กลูโคส"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "กลูโคส"
+
 msgid "GLYCOLYSIS"
 msgstr "ไกลโคไลซิส"
 
@@ -2484,6 +2634,9 @@ msgstr ""
 #, fuzzy
 msgid "GOD_TOOLS_TITLE"
 msgstr "ดำเนินการต่อ"
+
+msgid "GOING_NUCLEAR"
+msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
 msgstr ""
@@ -2595,7 +2748,23 @@ msgstr "Nitrogenase เป็นโปรตีนที่สามารถใ
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "ไฮโดรเจนซัลไฟด์"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
+msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+
 msgid "HYDROGEN_SULFIDE"
+msgstr "ไฮโดรเจนซัลไฟด์"
+
+#, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "ไฮโดรเจนซัลไฟด์"
 
 #, fuzzy
@@ -2837,6 +3006,9 @@ msgstr ""
 msgid "IRON"
 msgstr "เหล็ก"
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 #, fuzzy
 msgid "IRON_OXIDATION"
 msgstr "ตั้งค่า"
@@ -2988,6 +3160,14 @@ msgstr "แท็บ"
 
 msgid "KEY_UP"
 msgstr "ขึ้น"
+
+#, fuzzy
+msgid "KILL_50_MICROBES"
+msgstr "ไนโตรเจน"
+
+#, fuzzy
+msgid "KILL_MICROBES_PROGRESS"
+msgstr "สร้างจุลินทรีย์ฟรี"
 
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
@@ -3394,6 +3574,18 @@ msgstr ""
 msgid "MACROSCOPIC_STAGE"
 msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
 
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "การสังเคราะห์ด้วยเคมี"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "เปิดใช้งานตัวแก้ไข"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3495,9 +3687,11 @@ msgstr "แดนสนธยา"
 msgid "METABOLOSOMES"
 msgstr "เมตาโบโลโซม"
 
+#, fuzzy
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "เมตาโบโลโซมเป็นกลุ่มของโปรตีนที่ห่อหุ้มด้วยเปลือกโปรตีน พวกเขาสามารถเปลี่ยนกลูโคสเป็น ATP ในอัตราที่สูงกว่าที่ทำได้ในไซโตพลาสซึมในกระบวนการที่เรียกว่า Aerobic Respiration อย่างไรก็ตามมันต้องการออกซิเจนในการทำงานและระดับออกซิเจนในสิ่งแวดล้อมที่ต่ำลงจะทำให้อัตราการผลิต ATP ช้าลง เนื่องจากเมตาโบโซมถูกแขวนไว้ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
+#, fuzzy
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "เปลี่ยน [thrive:compound]glucose[/thrive:compound] เป็น [thrive:compound]atp[/thrive:compound] อัตรามาตราส่วนด้วยความเข้มข้นของ [thrive:compound]oxygen[/thrive:compound]"
 
@@ -3549,6 +3743,10 @@ msgstr ""
 msgid "MICHE_DETAIL_TEXT"
 msgstr "เมาส์ขวา"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "แพร่กระจายไปยังแพทช์:"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3573,6 +3771,10 @@ msgstr ""
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
+msgstr "แพร่กระจายไปยังแพทช์:"
 
 msgid "MICHE_TREE"
 msgstr ""
@@ -3709,6 +3911,10 @@ msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "เอาออร์แกเนลล์ออก"
 
 #, fuzzy
+msgid "MICROBE_RIPPLE_EFFECT"
+msgstr "เอาออร์แกเนลล์ออก"
+
+#, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "โครงสร้างโปรคาริโอต\n"
@@ -3799,6 +4005,14 @@ msgstr ""
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr "เอาออร์แกเนลล์ออก"
 
+#, fuzzy
+msgid "MICROBIAL_MASSACRE"
+msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
+
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
+
 msgid "MIDDLE_MOUSE"
 msgstr "เมาส์กลาง"
 
@@ -3874,6 +4088,7 @@ msgstr ""
 msgid "MITOCHONDRION"
 msgstr "ไมโตคอนดริออน"
 
+#, fuzzy
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr "โรงไฟฟ้าของเซลล์ mitochondrion (พหูพจน์: mitochondria) เป็นโครงสร้างเมมเบรนสองชั้นที่เต็มไปด้วยโปรตีนและเอนไซม์ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต สามารถเปลี่ยนกลูโคสเป็น ATP ได้อย่างมีประสิทธิภาพสูงกว่าที่ทำได้ในไซโตพลาสซึมในกระบวนการที่เรียกว่า Aerobic Respiration อย่างไรก็ตามมันต้องการออกซิเจนในการทำงานและระดับออกซิเจนในสิ่งแวดล้อมที่ต่ำลงจะทำให้อัตราการผลิต ATP ช้าลง"
 
@@ -4249,6 +4464,7 @@ msgstr "ไนโตรเจน"
 msgid "NITROGENASE"
 msgstr "ไนโตรเจน"
 
+#, fuzzy
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
@@ -4259,6 +4475,7 @@ msgstr "Nitrogenase เป็นโปรตีนที่สามารถใ
 msgid "NITROPLAST"
 msgstr "พลาสติดตรึงไนโตรเจน"
 
+#, fuzzy
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "Nitrogen Fixing Plastid เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและออกซิเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบแอโรบิค"
 
@@ -4309,6 +4526,13 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "ไฮโดรเจนซัลไฟด์"
+
+msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
+msgstr ""
+
 msgid "NOTICE_RADIATION_DAMAGE"
 msgstr ""
 
@@ -4339,6 +4563,10 @@ msgstr ""
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "เปิดโฟลเดอร์สกรีนช็อต"
+
+#, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "ปกติ"
 
 #, fuzzy
 msgid "NO_MODS_ENABLED"
@@ -4677,6 +4905,9 @@ msgstr "เลื่อนขึ้น"
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
+msgid "PATCHES_NUMBER"
+msgstr ""
+
 #, fuzzy
 msgid "PATCH_COLON"
 msgstr "ก่อนหน้า:"
@@ -4781,6 +5012,10 @@ msgstr "ฟอสเฟต"
 msgid "PHOSPHATES_COST"
 msgstr "ฟอสเฟต"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "ฟอสเฟต"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "การสังเคราะห์ด้วยแสง"
 
@@ -4796,14 +5031,18 @@ msgstr "วางออร์แกเนลล์"
 msgid "PLANET"
 msgstr ""
 
-msgid "PLANET_DETAILS_STRING"
+msgid "PLANET_CUSTOMIZER"
 msgstr ""
 
-msgid "PLANET_GENERATION_TEASER"
+msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "สถิติ"
 
 #, fuzzy
 msgid "PLAYER"
@@ -4961,6 +5200,10 @@ msgid "RADIATION"
 msgstr "ระบบหายใจแบบแอโรบิค"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "ระบบหายใจแบบแอโรบิค"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "ก้อนเหล็กขนาดใหญ่"
 
@@ -4982,6 +5225,16 @@ msgstr ""
 msgid "RAW_VALUE_COLON"
 msgstr "เกมส์ใหม่"
 
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "วางออร์แกเนลล์"
+
 msgid "READING_SAVE_DATA"
 msgstr ""
 
@@ -5002,6 +5255,13 @@ msgid "REDO_THE_LAST_ACTION"
 msgstr "ทำซ้ำการกระทำล่าสุด"
 
 msgid "REFRESH"
+msgstr ""
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "สัตว์นักล่า"
+
+msgid "REGIONS_NUMBER"
 msgstr ""
 
 msgid "RENDER_SCALE"
@@ -5052,6 +5312,10 @@ msgstr "ค้นหา"
 
 msgid "RESET"
 msgstr "รีเซ็ต"
+
+#, fuzzy
+msgid "RESET_ACHIEVEMENTS"
+msgstr "เพื่อเพิ่มการเคลื่อนไหว"
 
 #, fuzzy
 msgid "RESET_DEADZONES"
@@ -5149,6 +5413,18 @@ msgstr "กลับไปที่เมนู"
 msgid "REVEAL_ALL_PATCHES"
 msgstr "แพร่กระจายไปยังแพทช์:"
 
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "เปิดใช้งานตัวแก้ไข"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "ฟอสเฟตวางไข่"
+
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr ""
 
@@ -5235,6 +5511,9 @@ msgid "SAVE_AND_CONTINUE"
 msgstr "บันทึกและดำเนินการต่อ"
 
 msgid "SAVE_AUTOSAVE"
+msgstr ""
+
+msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
@@ -5479,6 +5758,10 @@ msgid "SHOW_ITEM_COORDINATES"
 msgstr "\"{0}\" - {1}"
 
 #, fuzzy
+msgid "SHOW_MAP"
+msgstr "แสดงความช่วยเหลือ"
+
+#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "\"{0}\" - {1}"
 
@@ -5564,6 +5847,10 @@ msgstr "ซิลิกา"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "SIMULATION_CONFIG"
+msgstr "ต้นทุน ออสโมซิส"
 
 #, fuzzy
 msgid "SIXTEEN_TIMES"
@@ -5881,6 +6168,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
@@ -5902,6 +6192,10 @@ msgstr ""
 msgid "SURVIVAL_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "นิวเคลียส"
+
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
 
@@ -5913,6 +6207,9 @@ msgstr ""
 
 msgid "SYSREQ"
 msgstr "SysRq"
+
+msgid "TAB_CHANGE_BLOCKED_WHILE_ACTION_IN_PROGRESS"
+msgstr ""
 
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr ""
@@ -5937,6 +6234,14 @@ msgstr "จับภาพหน้าจอ"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "ก่อนหน้า:"
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "บันทึกและดำเนินการต่อ"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "ระบบหายใจแบบแอโรบิค"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -6036,6 +6341,10 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
+msgid "THE_EDITOR"
+msgstr "เปิดใช้งานตัวแก้ไข"
+
+#, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "เทอร์โมพลาสต์เป็นโครงสร้างเมมเบรนสองชั้นที่มีเม็ดสีทนความร้อนซ้อนกันในถุงเยื่อ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต เม็ดสีในเทอร์โมพลาสต์สามารถใช้พลังงานของความแตกต่างของความร้อนในสภาพแวดล้อมเพื่อผลิตน้ำตาลกลูโคสจากน้ำและก๊าซคาร์บอนไดออกไซด์ในกระบวนการที่เรียกว่าการสังเคราะห์ด้วยความร้อน อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์และอุณหภูมิ"
 
@@ -6079,9 +6388,14 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr ""
 
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "การเคลื่อนไหว"
+
 msgid "THYLAKOIDS"
 msgstr "ไทลาคอยด์"
 
+#, fuzzy
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Thylakoids เป็นกลุ่มของโปรตีนและเก็บวัตถุที่ไวแสง เม็ดสีสามารถใช้พลังงานของแสงเพื่อผลิตน้ำตาลกลูโคสจากน้ำและก๊าซคาร์บอนไดออกไซด์ในกระบวนการที่เรียกว่าการสังเคราะห์ด้วยแสง เม็ดสีเหล่านี้เป็นสิ่งที่ทำให้พวกเขามีสีที่โดดเด่น อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์และความเข้มของแสง เนื่องจาก thylakoids ถูกแขวนอยู่ในไซโตพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
@@ -6242,6 +6556,10 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr "เมาส์ขวา"
+
+#, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
@@ -6382,10 +6700,6 @@ msgstr "จับภาพหน้าจอ"
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "บทช่วยสอน"
-
-#, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "แทงเซลล์อื่นด้วยสิ่งนี้"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6596,6 +6910,10 @@ msgstr "สร้างจุลินทรีย์ฟรี"
 #, fuzzy
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "วางออร์แกเนลล์"
+
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "แทงเซลล์อื่นด้วยสิ่งนี้"
 
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
@@ -6816,6 +7134,9 @@ msgstr ""
 msgid "UPSCALE_FSR_22"
 msgstr ""
 
+msgid "UPSCALE_METHOD"
+msgstr ""
+
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
@@ -6880,6 +7201,9 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "แวคิวโอลเป็นออร์แกเนลล์เยื่อภายในที่ใช้สำหรับเก็บในเซลล์ ประกอบด้วยถุงหลายอันโครงสร้างของเยื่อขนาดเล็กที่ใช้กันอย่างแพร่หลายในเซลล์เพื่อการจัดเก็บที่หลอมรวมเข้าด้วยกัน เต็มไปด้วยน้ำซึ่งใช้บรรจุโมเลกุลเอนไซม์ของแข็งและสารอื่น ๆ รูปร่างของพวกมันเป็นของเหลวและอาจแตกต่างกันไประหว่างเซลล์"
 
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VENTS_ARE_HOME"
 msgstr ""
 
 msgid "VERSION_COLON"
@@ -7682,6 +8006,38 @@ msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
 #, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "เทอร์โมพลาสต์เป็นโครงสร้างเมมเบรนสองชั้นที่มีเม็ดสีทนความร้อนซ้อนกันในถุงเยื่อ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต เม็ดสีในเทอร์โมพลาสต์สามารถใช้พลังงานของความแตกต่างของความร้อนในสภาพแวดล้อมเพื่อผลิตน้ำตาลกลูโคสจากน้ำและก๊าซคาร์บอนไดออกไซด์ในกระบวนการที่เรียกว่าการสังเคราะห์ด้วยความร้อน อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์และอุณหภูมิ"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
@@ -8178,6 +8534,10 @@ msgstr "เคโมพลาสต์"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "ไนโตรเจน"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "ไนโตรเจน"
 
 #, fuzzy
@@ -8769,6 +9129,24 @@ msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
 #, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "เพื่อเพิ่มการเคลื่อนไหว"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "เพื่อเพิ่มการเคลื่อนไหว"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "เพื่อเพิ่มการเคลื่อนไหว"
 
@@ -8793,6 +9171,26 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "อุณหภูมิ"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "อุณหภูมิ"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "อุณหภูมิ"
 
 msgid "WORST_PATCH_COLON"
 msgstr ""
@@ -8827,11 +9225,31 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
 msgid "ZOOM_IN"
 msgstr "ซูมเข้า"
 
 msgid "ZOOM_OUT"
 msgstr "ซูมออก"
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "ตั้งค่า"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "\"{0}\" - {1}"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "เพื่อเพิ่มการเคลื่อนไหว"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "เพื่อเพิ่มการเคลื่อนไหว"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
@@ -9063,10 +9481,6 @@ msgstr "ซูมออก"
 #~ msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
 
 #, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "การสังเคราะห์ด้วยเคมี"
-
-#, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"
 #~ msgstr "ไกลโคไลซิส"
 
@@ -9083,10 +9497,6 @@ msgstr "ซูมออก"
 #, fuzzy
 #~ msgid "WIKI_LIPASE"
 #~ msgstr "เปลี่ยน [thrive:compound]glucose[/thrive:compound] เป็น [thrive:compound]atp[/thrive:compound]"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_EDITOR"
-#~ msgstr "สร้างจุลินทรีย์ฟรี"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"

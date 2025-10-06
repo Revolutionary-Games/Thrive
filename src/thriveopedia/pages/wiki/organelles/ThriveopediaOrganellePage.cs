@@ -5,10 +5,8 @@
 /// </summary>
 public partial class ThriveopediaOrganellePage : ThriveopediaWikiPage
 {
-    [Export]
-    public NodePath? InfoBoxPath;
-
 #pragma warning disable CA2213
+    [Export]
     private OrganelleInfoBox infoBox = null!;
 #pragma warning restore CA2213
 
@@ -23,18 +21,6 @@ public partial class ThriveopediaOrganellePage : ThriveopediaWikiPage
     {
         base._Ready();
 
-        infoBox = GetNode<OrganelleInfoBox>(InfoBoxPath);
-
         infoBox.Organelle = Organelle;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            InfoBoxPath?.Dispose();
-        }
-
-        base.Dispose(disposing);
     }
 }

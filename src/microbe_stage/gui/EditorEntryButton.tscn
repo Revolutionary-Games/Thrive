@@ -206,7 +206,7 @@ stretch_mode = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_xveqw")
+&"": SubResource("AnimationLibrary_xveqw")
 }
 
 [connection signal="mouse_entered" from="." to="." method="OnEditorButtonMouseEnter"]

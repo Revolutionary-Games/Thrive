@@ -7,22 +7,16 @@ using Godot;
 /// </summary>
 public partial class CustomPopupMenu : TopLevelContainer
 {
-    [Export]
-    public NodePath? PanelContainerPath;
-
-    [Export]
-    public NodePath ContainerPath = null!;
-
 #pragma warning disable CA2213 // Disposable fields should be disposed
+    [Export]
     private PanelContainer panelContainer = null!;
+
+    [Export]
     private Container container = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
     public override void _Ready()
     {
-        panelContainer = GetNode<PanelContainer>(PanelContainerPath);
-        container = GetNode<Container>(ContainerPath);
-
         ResolveNodeReferences();
         RemapDynamicChildren();
     }
@@ -58,19 +52,5 @@ public partial class CustomPopupMenu : TopLevelContainer
             .SetTrans(Tween.TransitionType.Circ)
             .SetEase(Tween.EaseType.Out);
         tween.TweenCallback(new Callable(this, nameof(OnClosingAnimationFinished)));
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (PanelContainerPath != null)
-            {
-                PanelContainerPath.Dispose();
-                ContainerPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 }

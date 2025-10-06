@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Shows cell stats (e.g. Storage: 2.1, Hp: 50, etc) for the organism statistics display.
 ///   Also functions as a comparison for old value with a new one, indicated with an up/down icon.
+///   (can be disabled with <see cref="UseChangeIndicator"/>)
 /// </summary>
 [JsonObject(MemberSerialization.OptIn)]
 public partial class CellStatsIndicator : HBoxContainer
@@ -25,11 +26,11 @@ public partial class CellStatsIndicator : HBoxContainer
     [Export]
     public Texture2D? Icon;
 
-    [Export]
-    public NodePath? ValuePath;
-
     private Label? descriptionLabel;
+
+    [Export]
     private Label? valueLabel;
+
     private TextureRect? changeIndicator;
     private TextureRect? iconRect;
 
@@ -41,6 +42,7 @@ public partial class CellStatsIndicator : HBoxContainer
     private string description = "unset";
     private string? format;
     private float value;
+    private bool useChangeIndicator = true;
 
     [JsonProperty]
     private float? initialValue;
@@ -98,10 +100,20 @@ public partial class CellStatsIndicator : HBoxContainer
         }
     }
 
+    [Export]
+    public bool UseChangeIndicator
+    {
+        get => useChangeIndicator;
+        set
+        {
+            useChangeIndicator = value;
+            UpdateChangeIndicator();
+        }
+    }
+
     public override void _Ready()
     {
         descriptionLabel = GetNode<Label>("Description");
-        valueLabel = GetNode<Label>(ValuePath);
         changeIndicator = GetNode<TextureRect>("Indicator");
         iconRect = GetNode<TextureRect>("Icon");
 
@@ -160,20 +172,16 @@ public partial class CellStatsIndicator : HBoxContainer
         valueLabel.Text = formattedValue;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            ValuePath?.Dispose();
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateChangeIndicator()
     {
         if (changeIndicator == null)
             return;
+
+        if (!useChangeIndicator)
+        {
+            changeIndicator.Visible = false;
+            return;
+        }
 
         if (initialValue.HasValue && !float.IsNaN(initialValue.Value) && !float.IsNaN(Value))
         {

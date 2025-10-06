@@ -6,11 +6,10 @@ using Godot;
 /// </summary>
 public partial class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
 {
-    [Export]
-    public NodePath? PlaybackControlsPath;
-
 #pragma warning disable CA2213
-    private PlaybackControls? playbackControls;
+    [Export]
+    private PlaybackControls playbackControls = null!;
+
     private AudioStreamPlayer? ownPlayer;
 #pragma warning restore CA2213
 
@@ -35,42 +34,30 @@ public partial class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
         }
     }
 
-    public bool Playing => playbackControls?.Playing ?? false;
+    public bool Playing => playbackControls.Playing;
 
     public override void _Ready()
     {
         base._Ready();
-
-        playbackControls = GetNode<PlaybackControls>(PlaybackControlsPath);
 
         EnsurePlayerExist();
     }
 
     public void StartPlayback()
     {
-        playbackControls?.StartPlayback();
+        playbackControls.StartPlayback();
     }
 
     public void StopPlayback()
     {
-        playbackControls?.StopPlayback();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            PlaybackControlsPath?.Dispose();
-        }
-
-        base.Dispose(disposing);
+        playbackControls.StopPlayback();
     }
 
     private void EnsurePlayerExist()
     {
         if (ownPlayer == null)
         {
-            ownPlayer = new AudioStreamPlayer { Stream = GD.Load<AudioStream>(Asset.ResourcePath), VolumeLinear = 0 };
+            ownPlayer = new AudioStreamPlayer { Stream = GD.Load<AudioStream>(Asset!.ResourcePath), VolumeLinear = 0 };
             UpdatePlaybackBar();
             AddChild(ownPlayer);
         }
@@ -78,9 +65,6 @@ public partial class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
 
     private void UpdatePlaybackBar()
     {
-        if (playbackControls == null)
-            return;
-
         playbackControls.AudioPlayer = ownPlayer;
     }
 

@@ -1,6 +1,6 @@
 ﻿namespace Components;
 
-using DefaultEcs;
+using Arch.Core;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -30,4 +30,9 @@ public struct SiderophoreProjectile
     /// </summary>
     [JsonIgnore]
     public bool ProjectileInitialized;
+
+    public SiderophoreProjectile(Entity sender)
+    {
+        Sender = sender;
+    }
 }

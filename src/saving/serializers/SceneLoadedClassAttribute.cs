@@ -18,7 +18,7 @@ public class SceneLoadedClassAttribute : Attribute
     public string ScenePath { get; }
 
     /// <summary>
-    ///   If true the type this is on implements IGodotEarlyNodeResolve
+    ///   If true, the type this is on implements IGodotEarlyNodeResolve
     /// </summary>
     public bool UsesEarlyResolve { get; set; } = true;
 }

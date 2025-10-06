@@ -1,11 +1,13 @@
 // ------------------------------------ //
 #include "ExtensionInterop.h"
 
+BEGIN_GODOT_INCLUDES;
 #include <godot_cpp/classes/array_mesh.hpp>
 #include <godot_cpp/classes/object.hpp>
 #include <godot_cpp/core/object.hpp>
 #include <godot_cpp/variant/variant.hpp>
 #include <godot_cpp/variant/vector3.hpp>
+END_GODOT_INCLUDES;
 
 #include "atlas/atlas_unwrap.hpp"
 #include "core/ThriveConfig.hpp"

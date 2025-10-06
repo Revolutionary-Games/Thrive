@@ -140,12 +140,31 @@ public class MicrobeSpecies : Species, ICellDefinition
         return true;
     }
 
+    public void UpdateIsBacteria()
+    {
+        var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+        IsBacteria = true;
+        var organelles = Organelles.Organelles;
+        var count = organelles.Count;
+
+        for (int i = 0; i < count; ++i)
+        {
+            var organelle = organelles[i];
+            if (organelle.Definition == nucleus)
+            {
+                IsBacteria = false;
+                break;
+            }
+        }
+    }
+
     public override void OnEdited()
     {
         base.OnEdited();
 
         RepositionToOrigin();
         UpdateInitialCompounds();
+        UpdateIsBacteria();
 
         cachedFillTimes.Clear();
     }
@@ -322,9 +341,10 @@ public class MicrobeSpecies : Species, ICellDefinition
         // This code also exists in CellType visual calculation
         var count = Organelles.Count;
 
-        hash ^= PersistentStringHash.GetHash(MembraneType.InternalName) * 5743 ^
-            (ulong)MembraneRigidity.GetHashCode() * 5749 ^
-            (IsBacteria ? 1UL : 0UL) * 5779UL ^ (ulong)count * 131;
+        hash ^= PersistentStringHash.GetHash(MembraneType.InternalName) * 5743;
+        hash ^= (ulong)MembraneRigidity.GetHashCode() * 5749;
+        hash ^= (IsBacteria ? 1UL : 0UL) * 5779UL;
+        hash ^= (ulong)count * 131;
 
         var list = Organelles.Organelles;
 
@@ -348,7 +368,27 @@ public class MicrobeSpecies : Species, ICellDefinition
                 MembraneRigidity,
                 BaseSpeed,
                 BaseRotationSpeed,
-                BaseHexSize);
+                BaseHexSize) + "\n" +
+            Localization.Translate("TOLERANCE_DETAIL_TEXT").FormatSafe(Tolerances.PreferredTemperature,
+                Tolerances.TemperatureTolerance,
+                Tolerances.PressureMinimum,
+                Tolerances.PressureMaximum,
+                Math.Round(Tolerances.OxygenResistance * 100, 2),
+                Math.Round(Tolerances.UVResistance * 100, 2));
+    }
+
+    protected override Dictionary<Compound, float> CalculateTotalReproductionCost()
+    {
+        var result = base.CalculateTotalReproductionCost();
+
+        int organelleCount = Organelles.Organelles.Count;
+
+        for (int i = 0; i < organelleCount; ++i)
+        {
+            result.Merge(Organelles.Organelles[i].Definition.InitialComposition);
+        }
+
+        return result;
     }
 
     private void CalculateRotationSpeed()

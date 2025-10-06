@@ -11,16 +11,16 @@
 [ext_resource type="PackedScene" uid="uid://de2sohb3fjvc1" path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn" id="9_v3ojp"]
 [ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="10_vh50g"]
 
-[node name="MulticellularEditor" type="Node"]
+[node name="MulticellularEditor" type="Node" node_paths=PackedStringArray("reportTab", "patchMapTab", "bodyPlanEditorTab", "cellEditorTab", "noCellTypeSelected", "pauseMenu", "editorTabSelector", "editorGUIBaseNode")]
 script = ExtResource("1_kpf0e")
-ReportTabPath = NodePath("EarlyMulticellularEditorGUI/Report")
-PatchMapTabPath = NodePath("EarlyMulticellularEditorGUI/PatchMap")
-BodyPlanEditorTabPath = NodePath("EarlyMulticellularEditorGUI/CellBodyPlanEditorComponent")
-CellEditorTabPath = NodePath("EarlyMulticellularEditorGUI/CellEditor")
-NoCellTypeSelectedPath = NodePath("EarlyMulticellularEditorGUI/NoCellSelected")
-PauseMenuPath = NodePath("PauseMenu")
-EditorGUIBaseNodePath = NodePath("EarlyMulticellularEditorGUI")
-EditorTabSelectorPath = NodePath("EarlyMulticellularEditorGUI/MicrobeEditorTabButtons")
+reportTab = NodePath("EarlyMulticellularEditorGUI/Report")
+patchMapTab = NodePath("EarlyMulticellularEditorGUI/PatchMap")
+bodyPlanEditorTab = NodePath("EarlyMulticellularEditorGUI/CellBodyPlanEditorComponent")
+cellEditorTab = NodePath("EarlyMulticellularEditorGUI/CellEditor")
+noCellTypeSelected = NodePath("EarlyMulticellularEditorGUI/NoCellSelected")
+pauseMenu = NodePath("PauseMenu")
+editorTabSelector = NodePath("EarlyMulticellularEditorGUI/MicrobeEditorTabButtons")
+editorGUIBaseNode = NodePath("EarlyMulticellularEditorGUI")
 
 [node name="EditorWorld" parent="." instance=ExtResource("2_aqkc2")]
 
@@ -33,22 +33,22 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_th7yq")
 
-[node name="CellBodyPlanEditorComponent" parent="EarlyMulticellularEditorGUI" instance=ExtResource("4_6ypjp")]
+[node name="CellBodyPlanEditorComponent" parent="EarlyMulticellularEditorGUI" node_paths=PackedStringArray("cameraFollow", "camera", "editorArrow", "editorGrid") instance=ExtResource("4_6ypjp")]
 visible = false
 layout_mode = 1
-CameraPath = NodePath("../../EditorWorld/PrimaryCamera")
-EditorArrowPath = NodePath("../../EditorWorld/EditorArrow")
-EditorGridPath = NodePath("../../EditorWorld/Grid")
-CameraFollowPath = NodePath("../../EditorWorld/CameraLookAt")
+cameraFollow = NodePath("../../EditorWorld/CameraLookAt")
+camera = NodePath("../../EditorWorld/PrimaryCamera")
+editorArrow = NodePath("../../EditorWorld/EditorArrow")
+editorGrid = NodePath("../../EditorWorld/Grid")
 
-[node name="CellEditor" parent="EarlyMulticellularEditorGUI" instance=ExtResource("5_qhuw3")]
+[node name="CellEditor" parent="EarlyMulticellularEditorGUI" node_paths=PackedStringArray("cameraFollow", "camera", "editorArrow", "editorGrid") instance=ExtResource("5_qhuw3")]
 visible = false
 layout_mode = 1
 IsMulticellularEditor = true
-CameraPath = NodePath("../../EditorWorld/PrimaryCamera")
-EditorArrowPath = NodePath("../../EditorWorld/EditorArrow")
-EditorGridPath = NodePath("../../EditorWorld/Grid")
-CameraFollowPath = NodePath("../../EditorWorld/CameraLookAt")
+cameraFollow = NodePath("../../EditorWorld/CameraLookAt")
+camera = NodePath("../../EditorWorld/PrimaryCamera")
+editorArrow = NodePath("../../EditorWorld/EditorArrow")
+editorGrid = NodePath("../../EditorWorld/Grid")
 
 [node name="Report" parent="EarlyMulticellularEditorGUI" instance=ExtResource("6_1w772")]
 layout_mode = 1

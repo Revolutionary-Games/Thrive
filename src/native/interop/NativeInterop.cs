@@ -353,7 +353,7 @@ public static class NativeInterop
 
 #if DEBUG
 
-        // Pause debugger when detecting a native assertion fail to give some idea as to what's going on
+        // Pause the debugger when detecting a native assertion fail to give some idea as to what's going on
         if (message.Contains("assert failed"))
         {
             if (Debugger.IsAttached)
@@ -383,8 +383,18 @@ public static class NativeInterop
         CheckSizeOfType<JQuat>(4 * 4);
         CheckSizeOfType<JColour>(4 * 4);
 
-        CheckSizeOfType<PhysicsCollision>(48);
+        // These must match the configuration in the relevant C++ files or otherwise things will break badly
+        CheckSizeOfType<PhysicsCollision>(56);
+        CheckSizeOfType<PhysicsRayWithUserData>(32);
+
         CheckSizeOfType<SubShapeDefinition>(40);
+
+        // Ensure user data size. If this changes, the macro on the C++ side must be updated.
+        if (NativePhysicsBody.EntityDataSize != 12)
+        {
+            throw new Exception(
+                "Unexpected size for Entity data size to physics, check C# side definition matches C++");
+        }
     }
 
     private static void CheckSizeOfType<T>(int expected)

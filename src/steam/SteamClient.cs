@@ -24,6 +24,7 @@ public sealed class SteamClient : ISteamClient
     private Callback<GameOverlayActivated_t>? overlayToggledCallback;
     private Callback<UserStatsReceived_t>? statsReceivedCallback;
     private Callback<UserStatsStored_t>? statsStoredCallback;
+    private Callback<UserAchievementStored_t>? achievementStoredCallback;
     private Callback<SteamShutdown_t>? shutdownCallback;
     private CallResult<CreateItemResult_t>? createItemCallback;
     private Callback<DownloadItemResult_t>? downloadItemCallback;
@@ -128,6 +129,9 @@ public sealed class SteamClient : ISteamClient
         statsStoredCallback =
             new Callback<UserStatsStored_t>(t =>
                 receiver.UserStatsStored(t.m_nGameID, (int)t.m_eResult));
+        achievementStoredCallback =
+            new Callback<UserAchievementStored_t>(t =>
+                receiver.UserAchievementStored(t.m_nGameID, t.m_nCurProgress, t.m_nMaxProgress, t.m_bGroupAchievement));
 
         shutdownCallback =
             new Callback<SteamShutdown_t>(_ => receiver.ShutdownRequested());
@@ -334,6 +338,51 @@ public sealed class SteamClient : ISteamClient
         SteamFriends.ActivateGameOverlayToWebPage($"steam://url/CommunityFilePage/{itemId}");
     }
 
+    public bool GetSteamStatistic(string name, out int data)
+    {
+        return SteamUserStats.GetStat(name, out data);
+    }
+
+    public bool GetSteamStatistic(string name, out float data)
+    {
+        return SteamUserStats.GetStat(name, out data);
+    }
+
+    public bool SetSteamStatistic(string name, int data)
+    {
+        return SteamUserStats.SetStat(name, data);
+    }
+
+    public bool SetSteamStatistic(string name, float data)
+    {
+        return SteamUserStats.SetStat(name, data);
+    }
+
+    public bool GetSteamAchievement(string name, out bool achieved)
+    {
+        return SteamUserStats.GetAchievement(name, out achieved);
+    }
+
+    public bool SetSteamAchievement(string name)
+    {
+        return SteamUserStats.SetAchievement(name);
+    }
+
+    public bool IndicateAchievementProgress(string name, uint currentProgress, uint maxProgress)
+    {
+        return SteamUserStats.IndicateAchievementProgress(name, currentProgress, maxProgress);
+    }
+
+    public bool SaveSteamStats()
+    {
+        return SteamUserStats.StoreStats();
+    }
+
+    public bool ResetAllSteamAchievements()
+    {
+        return SteamUserStats.ResetAllStats(true);
+    }
+
     public void GenericSteamworksError(string failedSignal, string message)
     {
         GD.PrintErr("Steamworks error ", failedSignal, ": ", message);
@@ -364,6 +413,20 @@ public sealed class SteamClient : ISteamClient
     }
 
     public void UserStatsStored(ulong game, int result)
+    {
+        if (result == (int)EResult.k_EResultOK)
+        {
+#if DEBUG
+            GD.Print("Steam achievement save complete");
+#endif
+        }
+        else
+        {
+            GD.PrintErr("Saving achievements to Steam failed: ", result);
+        }
+    }
+
+    public void UserAchievementStored(ulong game, uint currentProgress, uint maxProgress, bool groupAchievement)
     {
     }
 
@@ -450,6 +513,7 @@ public sealed class SteamClient : ISteamClient
         overlayToggledCallback?.Dispose();
         statsReceivedCallback?.Dispose();
         statsStoredCallback?.Dispose();
+        achievementStoredCallback?.Dispose();
         shutdownCallback?.Dispose();
         createItemCallback?.Dispose();
         downloadItemCallback?.Dispose();

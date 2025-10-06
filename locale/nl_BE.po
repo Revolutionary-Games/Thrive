@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-23 10:31+0300\n"
-"PO-Revision-Date: 2025-04-04 10:42+0000\n"
+"POT-Creation-Date: 2025-09-15 11:08+0200\n"
+"PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
 "Language: nl_BE\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -48,6 +48,19 @@ msgid "ABYSSOPELAGIC"
 msgstr "Abyssopelagisch"
 
 msgid "ACCEPT"
+msgstr ""
+
+#, fuzzy
+msgid "ACHIEVEMENTS"
+msgstr "Basisbeweging"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+msgid "ACHIEVEMENT_LOCKED"
 msgstr ""
 
 msgid "ACTION_AWAKEN"
@@ -187,6 +200,10 @@ msgstr "Ammoniak"
 
 #, fuzzy
 msgid "AMMONIA_COST"
+msgstr "Ammoniak"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "Ammoniak"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -376,6 +393,10 @@ msgstr "Automatisch opslaan tijdens het spelen"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
+#, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Auto-Evo Verkenningshulpmiddel"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo Verkenningshulpmiddel"
 
@@ -415,6 +436,21 @@ msgstr "Beschikbare Bouwprojecten"
 msgid "AVAILABLE_MODS"
 msgstr "Beschikbare mods"
 
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr "Ontwaakfase"
 
@@ -432,6 +468,9 @@ msgstr "Terug"
 
 msgid "BACKSPACE"
 msgstr "Terug"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -512,6 +551,12 @@ msgstr "Resultaten:"
 
 msgid "BEST_PATCH_COLON"
 msgstr "Beste Zone:"
+
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr ""
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Groot Brok Ijzer"
@@ -627,6 +672,9 @@ msgstr "Kan Gebruikte Celtype Niet Verwijderen"
 msgid "CANNOT_ENGULF"
 msgstr "Kan niet verzwelgen"
 
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
+
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Kan een metabal niet verplaatsen naar de afstammelingenboom"
 
@@ -701,14 +749,6 @@ msgstr "Pauzeer het spel"
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr "Pauzeer het spel"
 
-#, fuzzy
-msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "{0}: -{1} ATP"
-
-#, fuzzy
-msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "ATP Productie"
-
 msgid "CELL_TYPE_NAME"
 msgstr "Celtypenaam"
 
@@ -724,6 +764,10 @@ msgstr "De gifstoffenvacuole is een vacuole die speciaal aangepast is voor de sp
 
 msgid "CHEATS"
 msgstr "Cheats"
+
+#, fuzzy
+msgid "CHEATS_USED_NOTICE"
+msgstr "Onvoltooid."
 
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheattoetsen ingeschakeld"
@@ -840,6 +884,24 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Verwijder het geselecteerde"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Actieve microben rennen en tuimelen als er niets interessants gebeurt.\n"
+"Sessiele microben zullen stationair zijn en wachten tot de omgeving verandert voordat ze handelen."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Sluit"
@@ -1030,6 +1092,25 @@ msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Wolken met chemische stoffen"
 
 #, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Balansen van de Chemische Verbindingen"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Balansen van de Chemische Verbindingen"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Wolken met chemische stoffen"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Balansen van de Chemische Verbindingen"
+
+#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "Balansen van de Chemische Verbindingen"
 
@@ -1101,6 +1182,14 @@ msgstr "Pauze menu"
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Pauze menu"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr "Bevestig Stoppen"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "Verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 #, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
@@ -1304,6 +1393,10 @@ msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanope (Blauw-Geel)"
 
 #, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "Wolken met chemische stoffen"
+
+#, fuzzy
 msgid "CPU_THREADS"
 msgstr "Threads:"
 
@@ -1438,6 +1531,7 @@ msgstr "Aangepaste gebruikersnaam:"
 msgid "CYTOPLASM"
 msgstr "Cytoplasma"
 
+#, fuzzy
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
 
@@ -1905,6 +1999,16 @@ msgstr ""
 "Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"Welkom bij de Microbe Editor.\n"
+"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
+"\n"
+"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
+"\n"
+"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 "Welkom bij de Microbe Editor.\n"
@@ -1913,6 +2017,10 @@ msgstr ""
 "In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
 "\n"
 "Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
+
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "Processen"
 
 #, fuzzy
 msgid "EFFECTIVE_VALUE"
@@ -2030,6 +2138,9 @@ msgid "ENERGY_SOURCES"
 msgstr ""
 
 msgid "ENERGY_SUMMARY_LINE"
+msgstr ""
+
+msgid "ENGULF_CELL_OR_CHUNK"
 msgstr ""
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
@@ -2412,6 +2523,10 @@ msgstr "Verwijder lokale Data"
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "Verwijder lokale gegevens met betrekking tot dit item. Handig als je de verkeerde ID hebt ingevoerd of een nieuwe versie naar een ander item wilt uploaden."
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "Opslag"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Error: {0}"
 
@@ -2536,12 +2651,33 @@ msgstr "Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corri
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corrigeren"
 
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
+
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "Generatie:"
 
 msgid "GENERATION_COLON"
 msgstr "Generatie:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Actieve microben rennen en tuimelen als er niets interessants gebeurt.\n"
+"Sessiele microben zullen stationair zijn en wachten tot de omgeving verandert voordat ze handelen."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -2586,6 +2722,10 @@ msgstr "Glucose"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}m onder zeeniveau"
+
 msgid "GLYCOLYSIS"
 msgstr "Glycolyse"
 
@@ -2595,6 +2735,9 @@ msgstr "God modus"
 #, fuzzy
 msgid "GOD_TOOLS_TITLE"
 msgstr "Voeg een nieuwe sneltoets toe"
+
+msgid "GOING_NUCLEAR"
+msgstr ""
 
 #, fuzzy
 msgid "GOOGLY_EYE_CELL"
@@ -2709,7 +2852,23 @@ msgstr "Nitrogenase is een eiwit dat [thrive:compound type=\"nitrogen\"][/thrive
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Waterstofsulfide"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "Nitrogenase is een eiwit dat [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] kan gebruiken om [thrive:compound type=\"ammonia\"][/thrive:compound] aan te maken, een belangrijke voedingsstof voor de groei van cellen. Dit proces noemt men [b]anaerobe waterstoffixatie[/b]. Omdat nitrogenase een suspensie in de cytoplasma is, voert de omliggende vloeistof [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
+msgstr "Verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
 msgid "HYDROGEN_SULFIDE"
+msgstr "Waterstofsulfide"
+
+#, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "Waterstofsulfide"
 
 #, fuzzy
@@ -2956,6 +3115,9 @@ msgstr "Protanope (Rood-Groen)"
 msgid "IRON"
 msgstr "Ijzer"
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 #, fuzzy
 msgid "IRON_OXIDATION"
 msgstr "Donaties"
@@ -3107,6 +3269,14 @@ msgstr "Tab"
 
 msgid "KEY_UP"
 msgstr "Boven"
+
+#, fuzzy
+msgid "KILL_50_MICROBES"
+msgstr "Stikstofase"
+
+#, fuzzy
+msgid "KILL_MICROBES_PROGRESS"
+msgstr "Microbebewerker"
 
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
@@ -3535,6 +3705,18 @@ msgstr "Word Macroscopisch ({0}/{1})"
 msgid "MACROSCOPIC_STAGE"
 msgstr "Microbestadium"
 
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "(kost van organellen, membranen en andere items in de bewerker)"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Chemosynthese"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "Verschuif strategische weergave wanneer muis aan de schermrand is"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3635,6 +3817,7 @@ msgstr "Mesopelagisch"
 msgid "METABOLOSOMES"
 msgstr "Metabolosomen"
 
+#, fuzzy
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "Metabolosomen zijn clusters van proteïnen verpakt in eiwitomhulsels. Ze zijn in staat om veel sneller glucose om te zetten in ATP dan cytoplasma, dit door middel van een proces genaamd aerobe respiratie. Het heeft echter wel zuurstof nodig om te functioneren en lagere zuurstofniveaus in de omgeving vertragen dus de ATP-productie. Omdat de metabolosomen direct in het cytoplasma zijn gesuspendeerd, voert de omringende vloeistof enige glycolyse uit."
 
@@ -3691,6 +3874,10 @@ msgstr ""
 msgid "MICHE_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "ontstaan door verschillende selectiedruk"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3715,6 +3902,10 @@ msgstr ""
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
+msgstr "ontstaan door verschillende selectiedruk"
 
 msgid "MICHE_TREE"
 msgstr ""
@@ -3849,6 +4040,10 @@ msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "  {0}: Gevonden in {1} soort(en), gemiddeld {2} per soort"
 
 #, fuzzy
+msgid "MICROBE_RIPPLE_EFFECT"
+msgstr "  {0}: Gevonden in {1} soort(en), gemiddeld {2} per soort"
+
+#, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "Houd je gezondheidsbalk naast de ATP-balk (rechtsonder) in de gaten.\n"
@@ -3936,6 +4131,14 @@ msgstr ""
 "Terwijl jij stoffen verdient, jouw cel gebruikt een beetje voor voortplanting.\n"
 "\n"
 "Met genoeg stoffen, organellen zullen zich verdelen en verdubbelen. Wanneer al de organellen zich hebben verdeeld, kan jouw cel voortplanten en de bewerker binnenkomen."
+
+#, fuzzy
+msgid "MICROBIAL_MASSACRE"
+msgstr "Microbestadium"
+
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "Microbestadium"
 
 msgid "MIDDLE_MOUSE"
 msgstr "Midden muis"
@@ -4466,6 +4669,13 @@ msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Basisbeweging"
 
 #, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Waterstofsulfide"
+
+msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
+msgstr ""
+
+#, fuzzy
 msgid "NOTICE_RADIATION_DAMAGE"
 msgstr "Bewerker is nu klaar om er in te gaan"
 
@@ -4494,6 +4704,10 @@ msgstr "Geen gebeurtenissen opgenomen"
 
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Geen map van fossielen gevonden"
+
+#, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "Bevestig Stoppen"
 
 msgid "NO_MODS_ENABLED"
 msgstr "Mods Uitgeschakeld"
@@ -4844,6 +5058,10 @@ msgid "PAST_DEVELOPERS"
 msgstr "Eerdere ontwikkelaars"
 
 #, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "Grot"
+
+#, fuzzy
 msgid "PATCH_COLON"
 msgstr "Beste Zone:"
 
@@ -4956,6 +5174,10 @@ msgstr "Fosfaat"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfaat"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Fosfaat"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosynthese"
 
@@ -4972,14 +5194,19 @@ msgid "PLANET"
 msgstr ""
 
 #, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Bij cursor:"
+
+#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Open Logs Folder"
 
-msgid "PLANET_GENERATION_TEASER"
-msgstr ""
-
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Statistieken"
 
 #, fuzzy
 msgid "PLAYER"
@@ -5142,6 +5369,10 @@ msgid "RADIATION"
 msgstr "Aërobe Ademhaling"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Aërobe Ademhaling"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Groot Brok Ijzer"
 
@@ -5162,6 +5393,16 @@ msgstr "Raw"
 #, fuzzy
 msgid "RAW_VALUE_COLON"
 msgstr "Snelheid:"
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Meercellige Fase"
 
 msgid "READING_SAVE_DATA"
 msgstr "Opgeslagen gegevens lezen"
@@ -5185,6 +5426,14 @@ msgstr "Voer de laatste actie opnieuw uit"
 
 msgid "REFRESH"
 msgstr "Vernieuwen"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Organellen"
+
+#, fuzzy
+msgid "REGIONS_NUMBER"
+msgstr "ID nummer"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5237,6 +5486,10 @@ msgstr "Zoek(toets)"
 
 msgid "RESET"
 msgstr "Resetten"
+
+#, fuzzy
+msgid "RESET_ACHIEVEMENTS"
+msgstr "voor het verhogen van de"
 
 #, fuzzy
 msgid "RESET_DEADZONES"
@@ -5335,6 +5588,18 @@ msgid "REVEAL_ALL_PATCHES"
 msgstr "verspreid naar gebieden:"
 
 #, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Ga naar het volgende bewerkertabblad"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "{0} bevolking veranderd met {1} door: {2}"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Toon meer info"
+
+#, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Door Revolutionary Games Studio"
 
@@ -5422,6 +5687,10 @@ msgstr "Opslaan en doorgaan"
 
 msgid "SAVE_AUTOSAVE"
 msgstr "Automatisch opslaan"
+
+#, fuzzy
+msgid "SAVE_CHEATS_USED"
+msgstr "Gebruikte ruimte:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. Weet je zeker dat je {0} definitief wilt verwijderen?"
@@ -5670,6 +5939,10 @@ msgid "SHOW_ITEM_COORDINATES"
 msgstr "Toon tutorials"
 
 #, fuzzy
+msgid "SHOW_MAP"
+msgstr "Laat hulp zien"
+
+#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Grot"
 
@@ -5743,6 +6016,10 @@ msgstr "Siliciumdioxide"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Dit membraan heeft een sterke wand van siliciumdioxide. Het kan algemene schade goed weerstaan en is zeer resistent tegen fysieke schade. Het heeft ook minder energie nodig om zijn vorm te behouden. Echter, het vertraagt de cel met een grote factor en de cel absorbeert stoffen minder snel."
+
+#, fuzzy
+msgid "SIMULATION_CONFIG"
+msgstr "Osmoregulatiekosten"
 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
@@ -6064,6 +6341,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr "succesvolle moord"
 
@@ -6085,6 +6365,10 @@ msgstr "Supporters"
 msgid "SURVIVAL_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "Nucleus"
+
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
 
@@ -6096,6 +6380,10 @@ msgstr ""
 
 msgid "SYSREQ"
 msgstr "SysRq(toets)"
+
+#, fuzzy
+msgid "TAB_CHANGE_BLOCKED_WHILE_ACTION_IN_PROGRESS"
+msgstr "Actie geblokkeerd tijdens dat er een andere aan het verwerken is"
 
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr ""
@@ -6120,6 +6408,14 @@ msgstr "Neem een schermopname"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "HP:"
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Huidige discussies:"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "Aërobe Ademhaling"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -6226,6 +6522,10 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
+msgid "THE_EDITOR"
+msgstr "Ga naar het volgende bewerkertabblad"
+
+#, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Kaart met plekken"
 
@@ -6269,9 +6569,14 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr "Thrive Licenties"
 
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Basisbeweging"
+
 msgid "THYLAKOIDS"
 msgstr "Thylakoïden"
 
+#, fuzzy
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Thylakoïden zijn clusters van proteïnen en fotosensitieve pigmenten. De pigmenten kunnen lichtenergie gebruiken om glucose te produceren uit water en koolstofdioxide in een proces dat men fotosynthese noemt. Deze pigmenten zorgen ook voor hun opvallende kleur. De snelheid van hun glucoseproductie staat in verband met de concentratie van koolstofdioxide en de lichtintensiteit. Doordat de thylakoïden als een suspensie zitten in het cytoplasma, voert de omliggende vloeistof glycolyse uit."
 
@@ -6422,6 +6727,10 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr "{0} (x{1})"
+
+#, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr "Toon / verstop omgeving en verbindingen"
 
@@ -6568,13 +6877,6 @@ msgstr "Probeer wat schermopnamen te nemen!"
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutorial"
-
-#, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr ""
-"Gefocuste microben zullen over grotere afstanden naar brokken of prooien zoeken\n"
-"en misschien veel ambitieuzer over brokken zijn.\n"
-"Responsieve microben zullen sneller overschakelen naar nieuwe doelen."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6864,6 +7166,13 @@ msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Microbe editor laden"
 
 #, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr ""
+"Gefocuste microben zullen over grotere afstanden naar brokken of prooien zoeken\n"
+"en misschien veel ambitieuzer over brokken zijn.\n"
+"Responsieve microben zullen sneller overschakelen naar nieuwe doelen."
+
+#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial"
 
@@ -7084,6 +7393,9 @@ msgstr ""
 msgid "UPSCALE_FSR_22"
 msgstr ""
 
+msgid "UPSCALE_METHOD"
+msgstr ""
+
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
@@ -7148,6 +7460,10 @@ msgstr "De vacuole zal {0} eenheden van de geselecteerde stof opslaan"
 
 msgid "VALUE_WITH_UNIT"
 msgstr ""
+
+#, fuzzy
+msgid "VENTS_ARE_HOME"
+msgstr "Geen gebeurtenissen opgenomen"
 
 #, fuzzy
 msgid "VERSION_COLON"
@@ -7984,6 +8300,38 @@ msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "Nitrogenase is een proteïne dat stikstof en cellulaire energie in de vorm van ATP kan gebruiken om ammoniak, een belangrijke stof voor de groei van cellen, aan te maken. Dit proces noemt men Anaërobe stikstoffixatie. Doordat nitrogenase als een suspensie in het cytoplasma zit, voert de omliggende vloeistof glycolyse uit."
 
 #, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "Nitrogenase is een proteïne dat stikstof en cellulaire energie in de vorm van ATP kan gebruiken om ammoniak, een belangrijke stof voor de groei van cellen, aan te maken. Dit proces noemt men Anaërobe stikstoffixatie. Doordat nitrogenase als een suspensie in het cytoplasma zit, voert de omliggende vloeistof glycolyse uit."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "Nitrogenase is een proteïne dat stikstof en cellulaire energie in de vorm van ATP kan gebruiken om ammoniak, een belangrijke stof voor de groei van cellen, aan te maken. Dit proces noemt men Anaërobe stikstoffixatie. Doordat nitrogenase als een suspensie in het cytoplasma zit, voert de omliggende vloeistof glycolyse uit."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "Nitrogenase is een proteïne dat stikstof en cellulaire energie in de vorm van ATP kan gebruiken om ammoniak, een belangrijke stof voor de groei van cellen, aan te maken. Dit proces noemt men Anaërobe stikstoffixatie. Doordat nitrogenase als een suspensie in het cytoplasma zit, voert de omliggende vloeistof glycolyse uit."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "De thermoplast is een door twee membranen omsloten celorganel dat warmtegevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. Het is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is voor diens gebruik. De pigmenten in de thermoplast zijn in staat om de energie van hitteverschillen in de omgeving te gebruiken om glucose uit water en gasvormige koolstofdioxide te produceren in een proces dat thermosyntese heet. De snelheid van de glucoseproductie hangt af van de koolstofdioxideconcentratie en de temperatuur."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Nitrogenase is een proteïne dat stikstof en cellulaire energie in de vorm van ATP kan gebruiken om ammoniak, een belangrijke stof voor de groei van cellen, aan te maken. Dit proces noemt men Anaërobe stikstoffixatie. Doordat nitrogenase als een suspensie in het cytoplasma zit, voert de omliggende vloeistof glycolyse uit."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "Nitrogenase is een proteïne dat stikstof en cellulaire energie in de vorm van ATP kan gebruiken om ammoniak, een belangrijke stof voor de groei van cellen, aan te maken. Dit proces noemt men Anaërobe stikstoffixatie. Doordat nitrogenase als een suspensie in het cytoplasma zit, voert de omliggende vloeistof glycolyse uit."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "Nitrogenase is een proteïne dat stikstof en cellulaire energie in de vorm van ATP kan gebruiken om ammoniak, een belangrijke stof voor de groei van cellen, aan te maken. Dit proces noemt men Anaërobe stikstoffixatie. Doordat nitrogenase als een suspensie in het cytoplasma zit, voert de omliggende vloeistof glycolyse uit."
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Maakt binding met andere cellen mogelijk. Dit is de eerste stap naar meercelligheid. Wanneer uw cel deel uitmaakt van een kolonie, worden verbindingen tussen cellen gedeeld. Je kunt de editor niet openen als je deel uitmaakt van een kolonie, dus je moet de binding opheffen als je eenmaal genoeg verbindingen hebt verzameld om je cel te verdelen."
 
@@ -8016,6 +8364,7 @@ msgstr ""
 msgid "WIKI_LYSOSOME_INTRO"
 msgstr "Metabolosomen zijn clusters van proteïnen verpakt in eiwitomhulsels. Ze zijn in staat om veel sneller glucose om te zetten in ATP dan cytoplasma, dit door middel van een proces genaamd aerobe respiratie. Het heeft echter wel zuurstof nodig om te functioneren en lagere zuurstofniveaus in de omgeving vertragen dus de ATP-productie. Omdat de metabolosomen direct in het cytoplasma zijn gesuspendeerd, voert de omringende vloeistof enige glycolyse uit."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_MODIFICATIONS"
 msgstr ""
 "Verander de lysosoom om de eiwit erin te selecteren. Lysosomen hebben standaard [b]lipase[/b], die een enkele of dubbele membraan als doelwit hebben.\n"
@@ -8025,6 +8374,7 @@ msgstr ""
 msgid "WIKI_LYSOSOME_PROCESSES"
 msgstr "Geen processen."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
 msgstr "Een cel heeft een nucleus nodig om lysosomen te evolueren."
 
@@ -8208,6 +8558,7 @@ msgstr ""
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Geen gevolgen."
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr "De krachtcentrale van de cel. Mitochondriën (of mitochondria) doen aan [b]Aerobe Dissimilatie[/b], of het omzetten van [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] met gebruik van [thrive:compound type=\"oxygen\"][/thrive:compound]. Mitochondriën doen deze functie meer doeltreffend dan andere organellen zoals <a href=\"/wiki/Metabolosomes\" title=\"Metabolosomes\">Metabolosomen</a>."
 
@@ -8221,6 +8572,7 @@ msgstr ""
 "\n"
 "Aerobe Celademhaling is een van de hoofdmethodes van energieopwekking. Het heeft een constante inbreng van glucose nodig maar schaalt met de hoeveelheid van zuurstof in de omgeving."
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
 msgstr "Een cel moet een <a href=\"/wiki/Nucleus\" title=\"Nucleus\">Nucleus</a> hebben om Mitochondriën te evolueren."
 
@@ -8504,6 +8856,10 @@ msgstr "Mitochondrium"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Stikstofase"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "Stikstofase"
 
 #, fuzzy
@@ -8931,12 +9287,14 @@ msgstr "Thylakoïden zijn clusters van eiwitten en fotosensitieve pigmenten. De 
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "Geen aanpassingen"
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_PROCESSES"
 msgstr ""
 "[b]Fotosynthese door Chromatoforen:[/b] [b]Zonlicht + Koolstofdioxide[/b] → [b]Glucose + Zuurstof[/b]\n"
 "\n"
 "[b]Glycolyse:[/b] [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]"
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
 msgstr "Geen vereisten"
 
@@ -8944,6 +9302,7 @@ msgstr "Geen vereisten"
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
 msgstr "Thylakoïden zijn clusters van proteïnen en fotosensitieve pigmenten. De pigmenten kunnen lichtenergie gebruiken om glucose te produceren uit water en koolstofdioxide in een proces dat men fotosynthese noemt. Deze pigmenten zorgen ook voor hun opvallende kleur. De snelheid van hun glucoseproductie staat in verband met de concentratie van koolstofdioxide en de lichtintensiteit. Doordat de thylakoïden als een suspensie zitten in het cytoplasma, voert de omliggende vloeistof glycolyse uit."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_STRATEGY"
 msgstr ""
 "Thylakoïden hebben licht nodig (gemeten in lux) om glucose te genereren, en dus zijn alleen toegankelijk in wateroppervlakkige gebieden zoals de fotische zone of getijdenpoelen. Dus het is heel belangrijk dat de speler garandeert dat zij in een vatbaar gebied leven voordat ze op fotosynthese terugvallen. Wanneer je gevestigd bent is het bouwen van een effectieve autotroof zo simple als verzekeren dat er een netto positieve glucose productie in de cel is en genoeg energie is om het te behouden. Als het eruit ziet dat je misschien niet genoeg glucose gaat maken om levend te blijven, word niet bang! veel van een cel haar energieverbruik is van het bewegen en dat is ter keuze voor een cel dat geen voedsel moet vinden dus stilzitten kan de netto glucose productie vergroten.\n"
@@ -9078,6 +9437,27 @@ msgstr ""
 "Doe latere faseprototypen erbij: {0}\n"
 "Doe Paaseieren erbij: {1}"
 
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "Relatief aan de wereld"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr ""
+"Gefocuste microben zullen over grotere afstanden naar brokken of prooien zoeken\n"
+"en misschien veel ambitieuzer over brokken zijn.\n"
+"Responsieve microben zullen sneller overschakelen naar nieuwe doelen."
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "Relatief aan de wereld"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Relatief aan de wereld"
 
@@ -9105,6 +9485,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Voeg een nieuwe sneltoets toe"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Temperatuur"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Gefocuste microben zullen over grotere afstanden naar brokken of prooien zoeken\n"
+"en misschien veel ambitieuzer over brokken zijn.\n"
+"Responsieve microben zullen sneller overschakelen naar nieuwe doelen."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Slechtste Zone:"
@@ -9140,11 +9543,42 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "U kunt de toekomstige ontwikkeling van Thrive op Patreon ondersteunen."
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr ""
+"Gefocuste microben zullen over grotere afstanden naar brokken of prooien zoeken\n"
+"en misschien veel ambitieuzer over brokken zijn.\n"
+"Responsieve microben zullen sneller overschakelen naar nieuwe doelen."
+
 msgid "ZOOM_IN"
 msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Generatie:"
+
+#, fuzzy
+#~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+#~ msgstr "{0}: -{1} ATP"
+
+#, fuzzy
+#~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+#~ msgstr "ATP Productie"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m onder zeeniveau"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m onder zeeniveau"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "Relatief aan de wereld"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
@@ -9366,10 +9800,6 @@ msgstr "Uitzoomen"
 #~ msgstr "Bewustzijnsfase"
 
 #, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Chemosynthese"
-
-#, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"
 #~ msgstr "Glycolyse"
 
@@ -9384,10 +9814,6 @@ msgstr "Uitzoomen"
 #, fuzzy
 #~ msgid "WIKI_LIPASE"
 #~ msgstr "Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_EDITOR"
-#~ msgstr "Microbebewerker"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"

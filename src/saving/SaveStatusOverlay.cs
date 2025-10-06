@@ -7,32 +7,25 @@ using Saving;
 /// </summary>
 public partial class SaveStatusOverlay : Control
 {
-    [Export]
-    public NodePath? StatusLabelPath;
-
-    [Export]
-    public NodePath AnimationPlayerPath = null!;
-
-    [Export]
-    public NodePath ErrorDialogPath = null!;
-
-    [Export]
-    public NodePath ErrorJsonDebugAdvicePath = null!;
-
-    [Export]
-    public NodePath ErrorJsonDebugLabelPath = null!;
-
     private const string DebugMeta = "DEBUG";
     private const string FolderMeta = "FOLDER";
 
     private static SaveStatusOverlay? instance;
 
 #pragma warning disable CA2213
+    [Export]
     private Label statusLabel = null!;
+
+    [Export]
     private AnimationPlayer animationPlayer = null!;
 
+    [Export]
     private ErrorDialog errorDialog = null!;
+
+    [Export]
     private Control errorJsonDebugAdvice = null!;
+
+    [Export]
     private CustomRichTextLabel errorJsonDebugLabel = null!;
 #pragma warning restore CA2213
 
@@ -53,13 +46,6 @@ public partial class SaveStatusOverlay : Control
 
     public override void _Ready()
     {
-        statusLabel = GetNode<Label>(StatusLabelPath);
-        animationPlayer = GetNode<AnimationPlayer>(AnimationPlayerPath);
-
-        errorDialog = GetNode<ErrorDialog>(ErrorDialogPath);
-        errorJsonDebugAdvice = GetNode<Control>(ErrorJsonDebugAdvicePath);
-        errorJsonDebugLabel = GetNode<CustomRichTextLabel>(ErrorJsonDebugLabelPath);
-
         Visible = false;
         hidden = true;
     }
@@ -143,23 +129,6 @@ public partial class SaveStatusOverlay : Control
         // That way users would always have the critical context for a saving error
 
         errorDialog.ShowError(title, message, exception, returnToMenu, onClosed, allowExceptionCopy);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (StatusLabelPath != null)
-            {
-                StatusLabelPath.Dispose();
-                AnimationPlayerPath.Dispose();
-                ErrorDialogPath.Dispose();
-                ErrorJsonDebugAdvicePath.Dispose();
-                ErrorJsonDebugLabelPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void ExternalSetStatus(bool visible)

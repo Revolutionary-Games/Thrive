@@ -10,15 +10,6 @@ using Godot;
 public partial class PhotoStudio : SubViewport
 {
     [Export]
-    public NodePath? CameraPath;
-
-    [Export]
-    public NodePath RenderedObjectHolderPath = null!;
-
-    [Export]
-    public NodePath SimulationWorldsParentPath = null!;
-
-    [Export]
     public bool UseBackgroundSceneLoad;
 
     [Export]
@@ -58,9 +49,13 @@ public partial class PhotoStudio : SubViewport
 
     private Node3D? instancedScene;
 
+    [Export]
     private Camera3D camera = null!;
+
+    [Export]
     private Node3D renderedObjectHolder = null!;
 
+    [Export]
     private Node simulationWorldsParent = null!;
 
     private PackedScene? taskScene;
@@ -100,12 +95,7 @@ public partial class PhotoStudio : SubViewport
     /// <returns>The distance to use</returns>
     public static float CameraDistanceFromRadiusOfObject(float radius)
     {
-        if (radius <= 0)
-            throw new ArgumentException("radius needs to be over 0");
-
-        float angle = Constants.PHOTO_STUDIO_CAMERA_HALF_ANGLE;
-
-        return MathF.Tan(MathF.PI * 0.5f - MathUtils.DEGREES_TO_RADIANS * angle) * radius;
+        return MathUtils.CameraDistanceFromRadiusOfObject(radius, Constants.PHOTO_STUDIO_CAMERA_FOV);
     }
 
     public override void _Ready()
@@ -116,10 +106,6 @@ public partial class PhotoStudio : SubViewport
         instance = this;
 
         base._Ready();
-
-        camera = GetNode<Camera3D>(CameraPath);
-        renderedObjectHolder = GetNode<Node3D>(RenderedObjectHolderPath);
-        simulationWorldsParent = GetNode(SimulationWorldsParentPath);
 
         // We manually trigger rendering when we want
         RenderTargetUpdateMode = UpdateMode.Disabled;
@@ -395,13 +381,6 @@ public partial class PhotoStudio : SubViewport
     {
         if (disposing)
         {
-            if (CameraPath != null)
-            {
-                CameraPath.Dispose();
-                RenderedObjectHolderPath.Dispose();
-                SimulationWorldsParentPath.Dispose();
-            }
-
             foreach (var entry in worldSimulations)
             {
                 entry.Value.Dispose();

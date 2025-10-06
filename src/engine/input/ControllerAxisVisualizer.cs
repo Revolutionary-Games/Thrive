@@ -18,43 +18,33 @@ public partial class ControllerAxisVisualizer : MarginContainer
     [Export]
     public float CrossLineWidth = 2;
 
-    [Export]
-    public NodePath? DrawerNodePath;
-
-    [Export]
-    public NodePath HorizontalLabelPath = null!;
-
-    [Export]
-    public NodePath HorizontalRawValuePath = null!;
-
-    [Export]
-    public NodePath HorizontalDeadzoneValuePath = null!;
-
-    [Export]
-    public NodePath VerticalLabelPath = null!;
-
-    [Export]
-    public NodePath VerticalRawValuePath = null!;
-
-    [Export]
-    public NodePath VerticalDeadzoneValuePath = null!;
-
     // The following 2 variables are for hiding the second axis when not configured
-    [Export]
-    public NodePath VerticalRawDisplayerPath = null!;
-
-    [Export]
-    public NodePath VerticalDeadzoneDisplayerPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Control drawerNode = null!;
+
+    [Export]
     private Label horizontalLabel = null!;
+
+    [Export]
     private Label horizontalRawValue = null!;
+
+    [Export]
     private Label horizontalDeadzoneValue = null!;
+
+    [Export]
     private Label verticalLabel = null!;
+
+    [Export]
     private Label verticalRawValue = null!;
+
+    [Export]
     private Label verticalDeadzoneValue = null!;
+
+    [Export]
     private Control verticalRawDisplayer = null!;
+
+    [Export]
     private Control verticalDeadzoneDisplayer = null!;
 #pragma warning restore CA2213
 
@@ -75,16 +65,6 @@ public partial class ControllerAxisVisualizer : MarginContainer
 
     public override void _Ready()
     {
-        drawerNode = GetNode<Control>(DrawerNodePath);
-        horizontalLabel = GetNode<Label>(HorizontalLabelPath);
-        horizontalRawValue = GetNode<Label>(HorizontalRawValuePath);
-        horizontalDeadzoneValue = GetNode<Label>(HorizontalDeadzoneValuePath);
-        verticalLabel = GetNode<Label>(VerticalLabelPath);
-        verticalRawValue = GetNode<Label>(VerticalRawValuePath);
-        verticalDeadzoneValue = GetNode<Label>(VerticalDeadzoneValuePath);
-        verticalRawDisplayer = GetNode<Control>(VerticalRawDisplayerPath);
-        verticalDeadzoneDisplayer = GetNode<Control>(VerticalDeadzoneDisplayerPath);
-
         drawerNode.Connect(CanvasItem.SignalName.Draw, new Callable(this, nameof(OnDrawerDraw)));
 
         SetVerticalAxisDisplay(false);
@@ -214,27 +194,6 @@ public partial class ControllerAxisVisualizer : MarginContainer
         {
             ReadDeadzone(verticalDeadzoneValue, verticalAxis, newValue);
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (DrawerNodePath != null)
-            {
-                DrawerNodePath.Dispose();
-                HorizontalLabelPath.Dispose();
-                HorizontalRawValuePath.Dispose();
-                HorizontalDeadzoneValuePath.Dispose();
-                VerticalLabelPath.Dispose();
-                VerticalRawValuePath.Dispose();
-                VerticalDeadzoneValuePath.Dispose();
-                VerticalRawDisplayerPath.Dispose();
-                VerticalDeadzoneDisplayerPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void OnDrawerDraw()

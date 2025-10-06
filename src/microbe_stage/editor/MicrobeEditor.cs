@@ -8,31 +8,27 @@ using Newtonsoft.Json;
 ///   Main class of the microbe editor
 /// </summary>
 [JsonObject(IsReference = true)]
-[SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditor.tscn")]
+[SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditor.tscn", UsesEarlyResolve = false)]
 public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
 {
-    [Export]
-    public NodePath? ReportTabPath;
-
-    [Export]
-    public NodePath PatchMapTabPath = null!;
-
-    [Export]
-    public NodePath CellEditorTabPath = null!;
-
     private const string ADVANCED_TABS_SHOWN_BEFORE = "editor_advanced_tabs";
+
+    private const double EMERGENCY_SHOW_TABS_AFTER_SECONDS = 4;
 
 #pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    [Export]
     private MicrobeEditorReportComponent reportTab = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    [Export]
     private MicrobeEditorPatchMap patchMapTab = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    [Export]
     private CellEditorComponent cellEditorTab = null!;
 
     private MicrobeEditorTutorialGUI tutorialGUI = null!;
@@ -43,6 +39,9 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     /// </summary>
     [JsonProperty]
     private MicrobeSpecies? editedSpecies;
+
+    private bool checkingTabVisibility;
+    private double tabCheckVisibilityTimer = 10;
 
     public override bool CanCancelAction => cellEditorTab.Visible && cellEditorTab.CanCancelAction;
 
@@ -107,6 +106,12 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         }
     }
 
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+        CheckTabVisibilityAfterTutorial(delta);
+    }
+
     public void SendAutoEvoResultsToReportComponent()
     {
         if (autoEvoResults == null)
@@ -152,6 +157,12 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
             // Remember if advanced cell editor tabs have been seen for tutorial purposes
             if (cellEditorTab.AreAdvancedTabsVisible())
                 CurrentGame.SetBool(ADVANCED_TABS_SHOWN_BEFORE, true);
+
+            if (!history.CanUndo())
+            {
+                // Nothing done in the whole editor cycle
+                AchievementEvents.ReportExitEditorWithoutChanges();
+            }
         }
 
         return result;
@@ -164,9 +175,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     protected override void ResolveDerivedTypeNodeReferences()
     {
-        reportTab = GetNode<MicrobeEditorReportComponent>(ReportTabPath);
-        patchMapTab = GetNode<MicrobeEditorPatchMap>(PatchMapTabPath);
-        cellEditorTab = GetNode<CellEditorComponent>(CellEditorTabPath);
         tutorialGUI = GetNode<MicrobeEditorTutorialGUI>("TutorialGUI");
     }
 
@@ -415,6 +423,8 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
                 cellEditorTab.Show();
                 SetEditorObjectVisibility(true);
                 cellEditorTab.UpdateCamera();
+
+                StartTimerForSafetyTabShow();
                 break;
             }
 
@@ -429,21 +439,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         editedSpecies = species ?? throw new NullReferenceException("didn't find edited species");
 
         base.SetupEditedSpecies();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (ReportTabPath != null)
-            {
-                ReportTabPath.Dispose();
-                PatchMapTabPath.Dispose();
-                CellEditorTabPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void UpdateAutoEvoToReportTab()
@@ -479,5 +474,44 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         CurrentGame.GameWorld.UnlockProgress.UnlockAll = true;
         cellEditorTab.UnlockAllOrganelles();
+    }
+
+    private void StartTimerForSafetyTabShow()
+    {
+        checkingTabVisibility = true;
+        tabCheckVisibilityTimer = EMERGENCY_SHOW_TABS_AFTER_SECONDS;
+    }
+
+    /// <summary>
+    ///   Makes sure that due to some tutorials not triggering when they have been done out of order in different
+    ///   saves, won't leave editor tabs permanently hidden during some tutorial cycles.
+    /// </summary>
+    private void CheckTabVisibilityAfterTutorial(double delta)
+    {
+        if (!checkingTabVisibility)
+            return;
+
+        tabCheckVisibilityTimer -= delta;
+
+        if (tabCheckVisibilityTimer > 0)
+            return;
+
+        checkingTabVisibility = false;
+
+        if (TutorialState.Enabled)
+        {
+            if (!TutorialState.TutorialActive())
+            {
+                // Tutorial is likely sequence broken, so it won't continue, show tabs to not get the player stuck
+                if (editorTabSelector == null || !editorTabSelector.Visible)
+                    GD.Print("Showing tabs as tutorial is not active while it probably should be");
+                ShowTabBar(true);
+            }
+        }
+        else
+        {
+            // Make sure tabs are shown if the tutorial is turned off
+            ShowTabBar(true);
+        }
     }
 }

@@ -175,7 +175,14 @@ public class Settings
     /// <summary>
     ///   Sets whether the blur will use a lower resolution.
     /// </summary>
+    [JsonProperty]
     public SettingValue<bool> MicrobeBackgroundBlurLowQuality { get; private set; } = new(false);
+
+    /// <summary>
+    ///   Sets whether microbes make ripples as they move
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> MicrobeRippleEffect { get; private set; } = new(true);
 
     /// <summary>
     ///   Sets whether the camera will slightly tilt toward cursor
@@ -700,7 +707,7 @@ public class Settings
     {
         return new InputDataList(InputMap.GetActions()
             .ToDictionary(p => p.ToString(),
-                p => InputMap.ActionGetEvents(p).Select(x => new SpecifiedInputKey(x, false)).ToList()));
+                p => InputMap.ActionGetEvents(p).Select(x => new SpecifiedInputKey(x)).ToList()));
     }
 
     /// <summary>

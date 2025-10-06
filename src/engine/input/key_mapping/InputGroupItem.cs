@@ -10,14 +10,11 @@ using Godot;
 /// </summary>
 public partial class InputGroupItem : VBoxContainer
 {
-    [Export]
-    public NodePath? InputGroupHeaderPath;
-
-    [Export]
-    public NodePath InputActionsContainerPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Label? inputGroupHeader;
+
+    [Export]
     private VBoxContainer inputActionsContainer = null!;
 #pragma warning restore CA2213
 
@@ -71,9 +68,6 @@ public partial class InputGroupItem : VBoxContainer
         if (AssociatedList == null)
             throw new InvalidOperationException($"{nameof(AssociatedList)} can't be null");
 
-        inputGroupHeader = GetNode<Label>(InputGroupHeaderPath);
-        inputActionsContainer = GetNode<VBoxContainer>(InputActionsContainerPath);
-
         ApplyGroupName();
 
         // Add the actions to the godot scene tree
@@ -124,20 +118,6 @@ public partial class InputGroupItem : VBoxContainer
         // When the result is attached to the scene tree it attaches the child objects. So it *must* be attached
         // at least one otherwise the child objects leak
         return result;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (InputGroupHeaderPath != null)
-            {
-                InputGroupHeaderPath.Dispose();
-                InputActionsContainerPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void ApplyGroupName()

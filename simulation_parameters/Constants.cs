@@ -20,18 +20,15 @@ public static class Constants
     public const float SIMULATION_MAX_DELTA_TIME = 0.2f;
 
     /// <summary>
-    ///   How often entity simulation optimizes the number of used threads (should be less than 1)
-    /// </summary>
-    public const float SIMULATION_OPTIMIZE_THREADS_INTERVAL = 0.3f;
-
-    /// <summary>
-    ///   Controls the number of threads used by the entity systems. The number of cells is divided by this and that is
-    ///   the max number of threads.
+    ///   Controls the number of threads used by the entity systems. The number of cells is divided by this,
+    ///   and that is the max number of threads.
     /// </summary>
     public const int SIMULATION_CELLS_PER_THREAD_ESTIMATE = 25;
 
+    public const float SIMULATION_REQUIRED_FAST_MODE_SUCCESS_RATE = 0.45f;
+
     // The following variables define the number of entities each thread running a system of that category needs to be
-    // able to process for threading to be used at all. For example if there are 40 entities and 4 threads to be used
+    // able to process for threading to be used at all. For example, if there are 40 entities and 4 threads to be used
     // and a system specifies 10 entities per thread, that system will run multithreaded (4 * 10 {40} <= 40).
     // But if there was a system that wanted at least 15 entities per thread, that would run purely *single threaded*
     // (4 * 15 {60} <= 40)
@@ -190,6 +187,22 @@ public static class Constants
     public const float CLOUD_MAX_INTENSITY_SHOWN = 1000;
 
     public const float CLOUD_CHEAT_DENSITY = 16000.0f;
+
+    public const float TERRAIN_GRID_SIZE = 200;
+    public const float TERRAIN_GRID_SIZE_INV = 1 / TERRAIN_GRID_SIZE;
+    public const float TERRAIN_EDGE_PROTECTION_SIZE = 1;
+
+    /// <summary>
+    ///   Adds randomness to microbe terrain height so that there's no z-fighting if terrain ends up overlapping
+    /// </summary>
+    public const float TERRAIN_HEIGHT_RANDOMNESS = 0.001f;
+
+    /// <summary>
+    ///   In how big the radius (in terms of grid cells) around the player terrain is spawned in.
+    ///   If too low, then pop in is visible and the spawn system can spawn stuff in that then gets covered
+    ///   by the terrain.
+    /// </summary>
+    public const int TERRAIN_SPAWN_AREA_NUMBER = 4;
 
     public const int MEMBRANE_RESOLUTION = 10;
     public const int MEMBRANE_VERTICAL_RESOLUTION = 7;
@@ -389,6 +402,8 @@ public static class Constants
     /// </summary>
     public const float CURRENT_FORCE_CELL_MULTIPLIER = 15;
 
+    public const float CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD = 0.15f;
+
     public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
     public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
 
@@ -500,13 +515,13 @@ public static class Constants
     /// <summary>
     ///   Controls with how much speed agents are fired
     /// </summary>
-    public const float AGENT_EMISSION_VELOCITY = 18.5f;
+    public const float AGENT_EMISSION_VELOCITY = 25.0f;
 
-    public const float OXYTOXY_DAMAGE = 15.0f;
+    public const float OXYTOXY_DAMAGE = 25.0f;
 
-    public const float CYTOTOXIN_DAMAGE = 12.0f;
+    public const float CYTOTOXIN_DAMAGE = 20.0f;
 
-    public const float OXYGEN_INHIBITOR_DAMAGE = 14.0f;
+    public const float OXYGEN_INHIBITOR_DAMAGE = 23.0f;
 
     public const float CHANNEL_INHIBITOR_ATP_DEBUFF = 0.5f;
     public const float CHANNEL_INHIBITOR_DEBUFF_DURATION = 15;
@@ -537,7 +552,7 @@ public static class Constants
     /// <summary>
     ///   How much a cell's speed is slowed when travelling through slime
     /// </summary>
-    public const float MUCILAGE_IMPEDE_FACTOR = 4.0f;
+    public const float MUCILAGE_IMPEDE_FACTOR = 5.0f;
 
     /// <summary>
     ///   How much a cell's speed is increased when secreting slime (scaling with secreted compound amount)
@@ -559,12 +574,15 @@ public static class Constants
     /// </summary>
     public const float MUCOCYST_SPEED_MULTIPLIER = 0.01f;
 
-    public const float MUCOCYST_MINIMUM_MUCILAGE = 0.2f;
+    /// <summary>
+    ///   What fraction of the mucilage capacity is required to activate mucocyst (slime jet upgrade)
+    /// </summary>
+    public const float MUCOCYST_ACTIVATION_MUCILAGE_FRACTION = 0.5f;
 
     /// <summary>
     ///   How much mucocyst (slime jet upgrade) drains mucilage per second
     /// </summary>
-    public const float MUCOCYST_MUCILAGE_DRAIN = 0.5f;
+    public const float MUCOCYST_MUCILAGE_DRAIN = 0.7f;
 
     public const float TOXIN_PROJECTILE_PHYSICS_SIZE = 1;
 
@@ -748,6 +766,14 @@ public static class Constants
     /// </summary>
     public const float HEALTH_REGEN_STOP_DAMAGE_THRESHOLD = 0.15f;
 
+    public const float HYDROGEN_SULFIDE_DAMAGE_INTERVAL = 0.75f;
+
+    public const float HYDROGEN_SULFIDE_DAMAGE_THESHOLD = 0.05f;
+
+    public const float HYDROGEN_SULFIDE_DAMAGE = 2.0f;
+
+    public const float HYDROGEN_SULFIDE_DAMAGE_COMPOUND_DRAIN = 0.2f;
+
     public const float RADIATION_STRENGTH_MULTIPLIER = 0.02f;
 
     /// <summary>
@@ -775,6 +801,17 @@ public static class Constants
     public const float SCREEN_DAMAGE_FLASH_THRESHOLD = 0.2f;
 
     public const float SCREEN_DAMAGE_FLASH_DECAY_SPEED = 1.0f;
+
+    public const float MICROBE_CAMERA_MIN_HEIGHT = 3.0f;
+
+    public const float MICROBE_CAMERA_MAX_HEIGHT = 80.0f;
+
+    public const float MULTICELLULAR_CAMERA_MIN_HEIGHT = 8.0f;
+
+    /// <summary>
+    ///   The highest that the dynamic multicellular camera max height can get.
+    /// </summary>
+    public const float MULTICELLULAR_CAMERA_MAX_HEIGHT = 180.0f;
 
     /// <summary>
     ///   Cells need at least this much ATP to regenerate health passively. This is now less than one to allow cells
@@ -1345,8 +1382,13 @@ public static class Constants
     public const float VOLCANISM_FLOOR_CO2_STRENGTH = 0.010f;
     public const float VOLCANISM_FLOOR_CO2_THRESHOLD = 0.1f;
 
-    public const float MIN_HYDROGEN_SULFIDE_FRACTION = 0.496f;
-    public const double HYDROGEN_SULFIDE_ENVIRONMENT_EATING_MULTIPLIER = 0.00000002;
+    public const float MIN_HYDROGEN_SULFIDE_FRACTION = 0.517f;
+    public const double HYDROGEN_SULFIDE_ENVIRONMENT_EATING_MULTIPLIER = 0.00000001;
+    public const float HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR = 0.3f;
+
+    public const float HYDROGEN_SULFIDE_NATURAL_DECAY_INCREASE_PER_OXYGEN = 0.021f;
+    public const float HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR_OXYGEN = 0.1f;
+    public const float HYDROGEN_SULFIDE_OXYGEN_TOTAL_CUTOFF = 0.01f;
 
     /// <summary>
     ///   Below this value oxygen doesn't cause iron chunks to become less common
@@ -1367,8 +1409,8 @@ public static class Constants
     public const float OTHER_GASES_DECAY_SPEED = 0.08f;
 
     // Patch event variables
-    public const int VENT_ERUPTION_CHANCE = 15;
-    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.00004f;
+    public const float VENT_ERUPTION_CHANCE = 0.15f;
+    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.001f;
     public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
 
     public const float GLOBAL_GLACIATION_OXYGEN_THRESHOLD = 0.07f;
@@ -1432,6 +1474,13 @@ public static class Constants
     /// </summary>
     public const float MOVEMENT_MODE_SELECTION_DELAY = 1.55f;
 
+    /// <summary>
+    ///   The size ratio an entity has to be in relation to the player for the engulfable tutorial to point to it.
+    ///   This is to increase the chances of catching the target entity during the tutorial to reduce player
+    ///   frustration. Increase the value to target bigger and slower entities, but less of them.
+    /// </summary>
+    public const float TUTORIAL_ENGULFABLE_SIZE_RATIO = 0.35f;
+
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 12.0f;
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY_CONTROLLER = 1.0f;
     public const float MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME = 2.2f;
@@ -1450,6 +1499,8 @@ public static class Constants
     public const float HIDE_MICROBE_SPECIES_MEMBER_DIED_AFTER = 60;
 
     public const float DAY_NIGHT_TUTORIAL_LIGHT_MIN = 0.01f;
+
+    public const int TRIGGER_BINDING_AGENTS_TUTORIAL_AFTER_SESSIONS_WITH_NUCLEUS = 7;
 
     /// <summary>
     ///   Used to limit how often the hover indicator panels are updated. The default value is every 0.1 seconds.
@@ -1578,6 +1629,9 @@ public static class Constants
     public const string SAVE_FOLDER = "user://saves";
     public const string FOSSILISED_SPECIES_FOLDER = "user://fossils";
     public const string AUTO_EVO_EXPORT_FOLDER = "user://auto-evo_exports";
+
+    public const string ACHIEVEMENTS_CONFIGURATION = "res://simulation_parameters/common/achievements.json";
+    public const string ACHIEVEMENTS_PROGRESS_SAVE = "user://achievements.bin";
 
     public const string TUTORIAL_DATA_FILE = "user://tutorials.json.gz";
 
@@ -1711,7 +1765,8 @@ public static class Constants
     public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 3000.0f;
 
     public const int ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS = 2;
-    public const int PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS = 3;
+    public const int PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS = 2;
+    public const int DETAILED_PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS = 3;
 
     public const float COMPOUND_BAR_VALUE_ANIMATION_TIME = 0.10f;
 
@@ -1764,7 +1819,7 @@ public static class Constants
     public const int ENDOSYMBIOSIS_COST_MIN = 2;
 
     /// <summary>
-    ///   If membrane scene is updated this should be updated as well
+    ///   If the membrane scene is updated this should be updated as well
     /// </summary>
     public const int MICROBE_DEFAULT_RENDER_PRIORITY = 18;
 
@@ -1779,7 +1834,7 @@ public static class Constants
     public const float MAX_AI_MUTATION_RATE = 3;
     public const float MIN_COMPOUND_DENSITY = 0.2f;
     public const float MAX_COMPOUND_DENSITY = 2;
-    public const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 1;
+    public const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 0.6f;
     public const float MAX_PLAYER_DEATH_POPULATION_PENALTY = 5;
     public const float MIN_GLUCOSE_DECAY = 0.3f;
     public const float MAX_GLUCOSE_DECAY = 0.95f;
@@ -1787,6 +1842,25 @@ public static class Constants
     public const float MAX_OSMOREGULATION_MULTIPLIER = 2;
     public const float MIN_AUTO_EVO_STRENGTH_MULTIPLIER = 0.01f;
     public const float MAX_AUTO_EVO_STRENGTH_MULTIPLIER = 1.0f;
+
+    // Min/max values for each customizable planet generation option
+    public const int TEMPERATURE_COLD_MIN = -4;
+    public const int TEMPERATURE_COLD_MAX = 1;
+    public const int TEMPERATURE_TEMPERATE_MIN = -2;
+    public const int TEMPERATURE_TEMPERATE_MAX = 2;
+    public const int TEMPERATURE_WARM_MIN = 0;
+    public const int TEMPERATURE_WARM_MAX = 6;
+
+    public const float COMPOUND_LEVEL_VERY_LOW_MIN = 0.3f;
+    public const float COMPOUND_LEVEL_VERY_LOW_MAX = 0.5f;
+    public const float COMPOUND_LEVEL_LOW_MIN = 0.7f;
+    public const float COMPOUND_LEVEL_LOW_MAX = 0.8f;
+    public const float COMPOUND_LEVEL_AVERAGE_MIN = 0.9f;
+    public const float COMPOUND_LEVEL_AVERAGE_MAX = 1.1f;
+    public const float COMPOUND_LEVEL_HIGH_MIN = 1.1f;
+    public const float COMPOUND_LEVEL_HIGH_MAX = 1.2f;
+    public const float COMPOUND_LEVEL_VERY_HIGH_MIN = 1.3f;
+    public const float COMPOUND_LEVEL_VERY_HIGH_MAX = 1.5f;
 
     public const float CURRENT_MAP_PATCH_INDICATOR_HALF_BLINK_INTERVAL = 0.5f;
 
@@ -1980,6 +2054,9 @@ public static class Constants
 
     public const string CONDITION_GREEN_COLOUR = "#70f423";
     public const string CONDITION_RED_COLOUR = "#ff4d4d";
+
+    public const ulong ACHIEVEMENT_DATA_VALUE = 7484237571489941;
+    public const bool IGNORE_CHEATS_FOR_ACHIEVEMENTS_IN_DEBUG = false;
 
     /// <summary>
     ///   Also see <see cref="AUTO_EVO_BASE_DIGESTION_SCORE"/>

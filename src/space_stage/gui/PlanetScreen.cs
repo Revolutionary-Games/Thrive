@@ -5,14 +5,11 @@
 /// </summary>
 public partial class PlanetScreen : CustomWindow
 {
-    [Export]
-    public NodePath? ShortStatsLabelPath;
-
-    [Export]
-    public NodePath GodToolsButtonPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Label shortStatsLabel = null!;
+
+    [Export]
     private Button godToolsButton = null!;
 #pragma warning restore CA2213
 
@@ -22,14 +19,6 @@ public partial class PlanetScreen : CustomWindow
 
     [Signal]
     public delegate void OnOpenGodToolsEventHandler(GodotObject unit);
-
-    public override void _Ready()
-    {
-        base._Ready();
-
-        shortStatsLabel = GetNode<Label>(ShortStatsLabelPath);
-        godToolsButton = GetNode<Button>(GodToolsButtonPath);
-    }
 
     public override void _Process(double delta)
     {
@@ -74,20 +63,6 @@ public partial class PlanetScreen : CustomWindow
         Show();
 
         godToolsButton.Visible = showGodTools;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (ShortStatsLabelPath != null)
-            {
-                ShortStatsLabelPath.Dispose();
-                GodToolsButtonPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void UpdateAllPlanetInfo()

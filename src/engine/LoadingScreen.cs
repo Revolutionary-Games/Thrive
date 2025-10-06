@@ -7,27 +7,6 @@ using Godot;
 /// </summary>
 public partial class LoadingScreen : Control
 {
-    [Export]
-    public NodePath? ArtworkPath;
-
-    [Export]
-    public NodePath ArtDescriptionPath = null!;
-
-    [Export]
-    public NodePath LoadingMessagePath = null!;
-
-    [Export]
-    public NodePath LoadingDescriptionPath = null!;
-
-    [Export]
-    public NodePath TipLabelPath = null!;
-
-    [Export]
-    public NodePath RandomizeTimerPath = null!;
-
-    [Export]
-    public NodePath SpinnerPath = null!;
-
     /// <summary>
     ///   How fast the loading indicator spins
     /// </summary>
@@ -41,13 +20,25 @@ public partial class LoadingScreen : Control
     private readonly List<(Action Action, double Delay)> postLoadingActions = new();
 
 #pragma warning disable CA2213
+    [Export]
     private CrossFadableTextureRect artworkRect = null!;
+
+    [Export]
     private Label? artDescriptionLabel;
+
+    [Export]
     private Label? loadingMessageLabel;
+
+    [Export]
     private Label? loadingDescriptionLabel;
+
+    [Export]
     private CustomRichTextLabel? tipLabel;
+
+    [Export]
     private Control spinner = null!;
 
+    [Export]
     private Timer randomizeTimer = null!;
 #pragma warning restore CA2213
 
@@ -130,14 +121,6 @@ public partial class LoadingScreen : Control
 
     public override void _Ready()
     {
-        artworkRect = GetNode<CrossFadableTextureRect>(ArtworkPath);
-        artDescriptionLabel = GetNode<Label>(ArtDescriptionPath);
-        loadingMessageLabel = GetNode<Label>(LoadingMessagePath);
-        loadingDescriptionLabel = GetNode<Label>(LoadingDescriptionPath);
-        tipLabel = GetNode<CustomRichTextLabel>(TipLabelPath);
-        randomizeTimer = GetNode<Timer>(RandomizeTimerPath);
-        spinner = GetNode<Control>(SpinnerPath);
-
         UpdateMessage();
         UpdateDescription();
         UpdateTip();
@@ -240,25 +223,6 @@ public partial class LoadingScreen : Control
 
         artworkRect.Image = GD.Load<Texture2D>(artwork.ResourcePath);
         ArtDescription = artwork.BuildDescription(true);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (ArtworkPath != null)
-            {
-                ArtworkPath.Dispose();
-                ArtDescriptionPath.Dispose();
-                LoadingMessagePath.Dispose();
-                LoadingDescriptionPath.Dispose();
-                TipLabelPath.Dispose();
-                RandomizeTimerPath.Dispose();
-                SpinnerPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void OnBecomeVisible()

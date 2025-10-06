@@ -5,32 +5,14 @@
 /// </summary>
 public partial class MicrobeEditorCheatMenu : CheatMenu
 {
-    [Export]
-    public NodePath? InfiniteMpPath;
-
 #pragma warning disable CA2213
+    [Export]
     private CheckBox infiniteMp = null!;
 #pragma warning restore CA2213
-
-    public override void _Ready()
-    {
-        infiniteMp = GetNode<CheckBox>(InfiniteMpPath);
-        base._Ready();
-    }
 
     public override void ReloadGUI()
     {
         infiniteMp.ButtonPressed = CheatManager.InfiniteMP;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            InfiniteMpPath?.Dispose();
-        }
-
-        base.Dispose(disposing);
     }
 
     private void OnRevealAllPatchesPressed()

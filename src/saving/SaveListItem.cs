@@ -13,52 +13,43 @@ public partial class SaveListItem : PanelContainer
     [Export]
     public bool Loadable = true;
 
-    [Export]
-    public NodePath? SaveNamePath;
-
-    [Export]
-    public NodePath ScreenshotPath = null!;
-
-    [Export]
-    public NodePath VersionPath = null!;
-
-    [Export]
-    public NodePath VersionWarningPath = null!;
-
-    [Export]
-    public NodePath TypePath = null!;
-
-    [Export]
-    public NodePath CreatedAtPath = null!;
-
-    [Export]
-    public NodePath CreatedByPath = null!;
-
-    [Export]
-    public NodePath CreatedOnPlatformPath = null!;
-
-    [Export]
-    public NodePath DescriptionPath = null!;
-
-    [Export]
-    public NodePath LoadButtonPath = null!;
-
-    [Export]
-    public NodePath HighlightPath = null!;
-
     private static readonly object ResizeLock = new();
 
 #pragma warning disable CA2213
+    [Export]
     private Label? saveNameLabel;
+
+    [Export]
     private TextureRect screenshot = null!;
+
+    [Export]
     private Label version = null!;
+
+    [Export]
     private Label versionWarning = null!;
+
+    [Export]
     private Label type = null!;
+
+    [Export]
     private Label createdAt = null!;
+
+    [Export]
     private Label createdBy = null!;
+
+    [Export]
     private Label createdOnPlatform = null!;
+
+    [Export]
+    private Label tags = null!;
+
+    [Export]
     private Label description = null!;
+
+    [Export]
     private Button loadButton = null!;
+
+    [Export]
     private Panel? highlightPanel;
 #pragma warning restore CA2213
 
@@ -104,7 +95,7 @@ public partial class SaveListItem : PanelContainer
     public delegate void OnDifferentVersionPrototypeLoadedEventHandler();
 
     /// <summary>
-    ///   Triggered when this is loaded without a problem. This is triggered when the load is already in progress
+    ///   Triggered when this is loaded without a problem. This is triggered when the load is already in progress,
     ///   so this is more of an informative callback for components that need to know when a save load was done.
     /// </summary>
     [Signal]
@@ -158,18 +149,6 @@ public partial class SaveListItem : PanelContainer
         if (string.IsNullOrEmpty(SaveName))
             throw new InvalidOperationException($"{nameof(SaveName)} is required");
 
-        saveNameLabel = GetNode<Label>(SaveNamePath);
-        screenshot = GetNode<TextureRect>(ScreenshotPath);
-        version = GetNode<Label>(VersionPath);
-        versionWarning = GetNode<Label>(VersionWarningPath);
-        type = GetNode<Label>(TypePath);
-        createdAt = GetNode<Label>(CreatedAtPath);
-        createdBy = GetNode<Label>(CreatedByPath);
-        createdOnPlatform = GetNode<Label>(CreatedOnPlatformPath);
-        description = GetNode<Label>(DescriptionPath);
-        loadButton = GetNode<Button>(LoadButtonPath);
-        highlightPanel = GetNode<Panel>(HighlightPath);
-
         loadButton.Visible = Loadable;
 
         UpdateName();
@@ -198,7 +177,7 @@ public partial class SaveListItem : PanelContainer
 
         // General info
 
-        // If save is valid compare version numbers
+        // If save is valid, compare version numbers
         if (!isBroken)
         {
             versionDifference = VersionUtils.Compare(save.Info.ThriveVersion, Constants.Version);
@@ -235,6 +214,16 @@ public partial class SaveListItem : PanelContainer
         createdBy.Text = save.Info.Creator;
         createdOnPlatform.Text = save.Info.Platform;
         description.Text = save.Info.Description;
+
+        if (save.Info.CheatsUsed)
+        {
+            tags.Visible = true;
+            tags.Text = Localization.Translate("SAVE_CHEATS_USED");
+        }
+        else
+        {
+            tags.Visible = false;
+        }
 
         loadingData = false;
     }
@@ -295,29 +284,6 @@ public partial class SaveListItem : PanelContainer
         }
 
         EmitSignal(SignalName.OnProblemFreeSaveLoaded);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (SaveNamePath != null)
-            {
-                SaveNamePath.Dispose();
-                ScreenshotPath.Dispose();
-                VersionPath.Dispose();
-                VersionWarningPath.Dispose();
-                TypePath.Dispose();
-                CreatedAtPath.Dispose();
-                CreatedByPath.Dispose();
-                CreatedOnPlatformPath.Dispose();
-                DescriptionPath.Dispose();
-                LoadButtonPath.Dispose();
-                HighlightPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void LoadSaveData()

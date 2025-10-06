@@ -6,33 +6,23 @@
 public partial class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSelectionReceiver<SpaceStructureDefinition>
 {
     // TODO: merge the common parts with the society stage hud into its own sub-scenes
-    [Export]
-    public NodePath? PopulationLabelPath;
-
-    [Export]
-    public NodePath PlanetScreenPopupPath = null!;
-
-    [Export]
-    public NodePath FleetPopupPath = null!;
-
-    [Export]
-    public NodePath ConstructionPopupPath = null!;
-
-    [Export]
-    public NodePath StructurePopupPath = null!;
-
-    [Export]
-    public NodePath DescendButtonPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Label populationLabel = null!;
 
+    [Export]
     private PlanetScreen planetScreenPopup = null!;
+
+    [Export]
     private SpaceFleetInfoPopup fleetPopup = null!;
+
+    [Export]
     private SpaceConstructionPopup constructionPopup = null!;
 
+    [Export]
     private SpaceStructureInfoPopup structurePopup = null!;
 
+    [Export]
     private Button descendButton = null!;
 
     private SpaceFleet? fleetToConstructWith;
@@ -45,19 +35,6 @@ public partial class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSele
 
     // TODO: real button referencing text for this
     protected override string UnPauseHelpText => "TODO: unpause text for this stage";
-
-    public override void _Ready()
-    {
-        base._Ready();
-
-        populationLabel = GetNode<Label>(PopulationLabelPath);
-        planetScreenPopup = GetNode<PlanetScreen>(PlanetScreenPopupPath);
-        fleetPopup = GetNode<SpaceFleetInfoPopup>(FleetPopupPath);
-        constructionPopup = GetNode<SpaceConstructionPopup>(ConstructionPopupPath);
-        structurePopup = GetNode<SpaceStructureInfoPopup>(StructurePopupPath);
-
-        descendButton = GetNode<Button>(DescendButtonPath);
-    }
 
     public override void Init(SpaceStage containedInStage)
     {
@@ -149,24 +126,6 @@ public partial class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSele
         }
 
         stage!.StartPlacingStructure(fleetToConstructWith, structureDefinition);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (PopulationLabelPath != null)
-            {
-                PopulationLabelPath.Dispose();
-                PlanetScreenPopupPath.Dispose();
-                FleetPopupPath.Dispose();
-                ConstructionPopupPath.Dispose();
-                StructurePopupPath.Dispose();
-                DescendButtonPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void UpdateButtonState()

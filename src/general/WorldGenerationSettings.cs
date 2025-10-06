@@ -37,6 +37,15 @@ public class WorldGenerationSettings
         DaytimeFraction = defaultDayNight.DaytimeFraction;
     }
 
+    /// <summary>
+    ///   Represents possible origins of life.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do not reorder, remove, or change values without updating the OptionButton in corresponding scene files.
+    ///     The GUI depends on these specific enum values and their order for correct mapping.
+    ///   </para>
+    /// </remarks>
     public enum LifeOrigin
     {
         [Description("LIFE_ORIGIN_VENTS")]
@@ -71,6 +80,117 @@ public class WorldGenerationSettings
     }
 
     /// <summary>
+    ///   The possible temperature settings for the planet
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do not reorder, remove, or change values without updating the OptionButton in corresponding scene files.
+    ///     The GUI depends on these specific enum values and their order for correct mapping.
+    ///   </para>
+    /// </remarks>
+    public enum WorldTemperatureEnum
+    {
+        [Description("WORLD_TEMPERATURE_COLD")]
+        Cold = 0,
+
+        [Description("WORLD_TEMPERATURE_TEMPERATE")]
+        Temperate = 1,
+
+        [Description("WORLD_TEMPERATURE_WARM")]
+        Warm = 2,
+    }
+
+    /// <summary>
+    ///   The possible sea level options for the planet
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do not reorder, remove, or change values without updating the OptionButton in corresponding scene files.
+    ///     The GUI depends on these specific enum values and their order for correct mapping.
+    ///   </para>
+    /// </remarks>
+    public enum WorldOceanicCoverageEnum
+    {
+        [Description("WORLD_OCEANIC_COVERAGE_SMALL")]
+        Small = 0,
+
+        [Description("WORLD_OCEANIC_COVERAGE_MEDIUM")]
+        Medium = 1,
+
+        [Description("WORLD_OCEANIC_COVERAGE_LARGE")]
+        Large = 2,
+    }
+
+    /// <summary>
+    ///   The geological activity levels of the planet
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do not reorder, remove, or change values without updating the OptionButton in corresponding scene files.
+    ///     The GUI depends on these specific enum values and their order for correct mapping.
+    ///   </para>
+    /// </remarks>
+    public enum GeologicalActivityEnum
+    {
+        [Description("GEOLOGICAL_ACTIVITY_DORMANT")]
+        Dormant = 0,
+
+        [Description("GEOLOGICAL_ACTIVITY_AVERAGE")]
+        Average = 1,
+
+        [Description("GEOLOGICAL_ACTIVITY_ACTIVE")]
+        Active = 2,
+    }
+
+    /// <summary>
+    ///   The possible climate instability settings for the planet
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do not reorder, remove, or change values without updating the OptionButton in corresponding scene files.
+    ///     The GUI depends on these specific enum values and their order for correct mapping.
+    ///   </para>
+    /// </remarks>
+    public enum ClimateInstabilityEnum
+    {
+        [Description("CLIMATE_STABILITY_STABLE")]
+        Low = 0,
+
+        [Description("CLIMATE_STABILITY_AVERAGE")]
+        Medium = 1,
+
+        [Description("CLIMATE_STABILITY_UNSTABLE")]
+        High = 2,
+    }
+
+    /// <summary>
+    ///   The possible compound levels settings for the planet
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do not reorder, remove, or change values without updating the OptionButton in corresponding scene files.
+    ///     The GUI depends on these specific enum values and their order for correct mapping.
+    ///   </para>
+    /// </remarks>
+    public enum CompoundLevel
+    {
+        [Description("COMPOUND_LEVEL_VERY_LOW")]
+        VeryLow = 0,
+
+        [Description("COMPOUND_LEVEL_LOW")]
+        Low = 1,
+
+        [Description("COMPOUND_LEVEL_AVERAGE")]
+        Average = 2,
+
+        [Description("COMPOUND_LEVEL_HIGH")]
+        High = 3,
+
+        [Description("COMPOUND_LEVEL_VERY_HIGH")]
+        VeryHigh = 4,
+    }
+
+    /// <summary>
     ///   Whether this game is restricted to only LAWK parts and abilities
     /// </summary>
     public bool LAWK { get; set; }
@@ -99,6 +219,45 @@ public class WorldGenerationSettings
     ///   Size of World
     /// </summary>
     public WorldSizeEnum WorldSize { get; set; } = WorldSizeEnum.Medium;
+
+    /// <summary>
+    ///   Temperature of World
+    /// </summary>
+    public WorldTemperatureEnum WorldTemperature { get; set; } = WorldTemperatureEnum.Temperate;
+
+    /// <summary>
+    ///   Sea level of World
+    /// </summary>
+    public WorldOceanicCoverageEnum WorldOceanicCoverage { get; set; } = WorldOceanicCoverageEnum.Medium;
+
+    /// <summary>
+    ///   Geological activity of World
+    /// </summary>
+    public GeologicalActivityEnum GeologicalActivity { get; set; } = GeologicalActivityEnum.Average;
+
+    /// <summary>
+    ///   Climate instability of World
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This value should not be changed as it might break world restoring from global glaciation event
+    ///     <see cref="GlobalGlaciationEvent"/>. If it needs to be changed then the way the world is restored
+    ///     needs to be changed as well.
+    ///   </para>
+    /// </remarks>
+    public ClimateInstabilityEnum ClimateInstability { get; set; } = ClimateInstabilityEnum.Medium;
+
+    public CompoundLevel HydrogenSulfideLevel { get; set; } = CompoundLevel.Average;
+
+    public CompoundLevel GlucoseLevel { get; set; } = CompoundLevel.Average;
+
+    public CompoundLevel IronLevel { get; set; } = CompoundLevel.Average;
+
+    public CompoundLevel AmmoniaLevel { get; set; } = CompoundLevel.Average;
+
+    public CompoundLevel PhosphatesLevel { get; set; } = CompoundLevel.Average;
+
+    public CompoundLevel RadiationLevel { get; set; } = CompoundLevel.Average;
 
     // The following are helper proxies to the values from the difficulty
     [JsonIgnore]
@@ -171,7 +330,7 @@ public class WorldGenerationSettings
     /// </summary>
     public string GetTranslatedDifficultyString()
     {
-        string translatedDifficulty = Difficulty is DifficultyPreset difficulty ?
+        var translatedDifficulty = Difficulty is DifficultyPreset difficulty ?
             difficulty.Name :
             Localization.Translate("DIFFICULTY_PRESET_CUSTOM");
 

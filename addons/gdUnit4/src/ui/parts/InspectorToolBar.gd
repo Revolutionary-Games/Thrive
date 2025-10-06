@@ -5,6 +5,8 @@ signal run_overall_pressed(debug: bool)
 signal run_pressed(debug: bool)
 signal stop_pressed()
 
+const  InspectorTreeMainPanel := preload("res://addons/gdUnit4/src/ui/parts/InspectorTreeMainPanel.gd")
+
 @onready var _version_label: Control = %version
 @onready var _button_wiki: Button = %help
 @onready var _tool_button: Button = %tool
@@ -12,7 +14,6 @@ signal stop_pressed()
 @onready var _button_run: Button = %run
 @onready var _button_run_debug: Button = %debug
 @onready var _button_stop: Button = %stop
-
 
 
 const SETTINGS_SHORTCUT_MAPPING := {
@@ -23,11 +24,16 @@ const SETTINGS_SHORTCUT_MAPPING := {
 }
 
 
-@warning_ignore("return_value_discarded")
 func _ready() -> void:
+	var inspector :InspectorTreeMainPanel = get_parent().get_parent().find_child("MainPanel", false, false)
+	if inspector == null:
+		push_error("Internal error, can't connect to the test inspector!")
+	else:
+		inspector.tree_item_selected.connect(_on_inspector_selected)
+		run_pressed.connect(inspector._on_run_pressed)
+
 	GdUnit4Version.init_version_label(_version_label)
 	var command_handler := GdUnitCommandHandler.instance()
-	run_pressed.connect(command_handler._on_run_pressed)
 	run_overall_pressed.connect(command_handler._on_run_overall_pressed)
 	stop_pressed.connect(command_handler._on_stop_pressed)
 	command_handler.gdunit_runner_start.connect(_on_gdunit_runner_start)
@@ -35,7 +41,6 @@ func _ready() -> void:
 	GdUnitSignals.instance().gdunit_settings_changed.connect(_on_gdunit_settings_changed)
 	init_buttons()
 	init_shortcuts(command_handler)
-
 
 
 func init_buttons() -> void:
@@ -46,6 +51,9 @@ func init_buttons() -> void:
 	_button_stop.icon = GdUnitUiTools.get_icon("Stop")
 	_tool_button.icon = GdUnitUiTools.get_icon("Tools")
 	_button_wiki.icon = GdUnitUiTools.get_icon("HelpSearch")
+	# Set run buttons initial disabled
+	_button_run.disabled = true
+	_button_run_debug.disabled = true
 
 
 func init_shortcuts(command_handler: GdUnitCommandHandler) -> void:
@@ -56,6 +64,12 @@ func init_shortcuts(command_handler: GdUnitCommandHandler) -> void:
 	# register for shortcut changes
 	@warning_ignore("return_value_discarded")
 	GdUnitSignals.instance().gdunit_settings_changed.connect(_on_settings_changed.bind(command_handler))
+
+
+func _on_inspector_selected(item: TreeItem) -> void:
+	var button_disabled := item == null
+	_button_run.disabled = button_disabled
+	_button_run_debug.disabled = button_disabled
 
 
 func _on_runoverall_pressed(debug:=false) -> void:
@@ -79,8 +93,6 @@ func _on_gdunit_runner_start() -> void:
 
 func _on_gdunit_runner_stop(_client_id: int) -> void:
 	_button_run_overall.disabled = false
-	_button_run.disabled = false
-	_button_run_debug.disabled = false
 	_button_stop.disabled = true
 
 

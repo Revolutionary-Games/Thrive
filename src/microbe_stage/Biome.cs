@@ -37,6 +37,8 @@ public class Biome : IRegistryType
     /// </summary>
     public LightDetails Sunlight = new();
 
+    public Color EnvironmentColour = new(0, 0, 0, 1);
+
     /// <summary>
     ///   How much the temperature in this biome varies on a microscopic scale when moving around
     /// </summary>
@@ -44,13 +46,12 @@ public class Biome : IRegistryType
 
     public float CompoundCloudBrightness = 1.0f;
 
-    public float WaterCurrentSpeed = 1.0f;
+    public WaterCurrentsDetails WaterCurrents = new();
 
-    public float WaterCurrentChaoticness = 1.0f;
-
-    public float WaterCurrentScale = 1.0f;
-
-    public int WaterCurrentParticleCount = 300;
+    /// <summary>
+    ///   Optional static terrain that is spawned when playing in this patch
+    /// </summary>
+    public TerrainConfiguration? Terrain;
 
     /// <summary>
     ///   Total gas volume of this biome when it is a single patch.
@@ -110,6 +111,14 @@ public class Biome : IRegistryType
                 "temperature variance scale needs to be over 0");
         }
 
+        if (EnvironmentColour.A < 1.0f)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "Environment colour alpha needs to be 1");
+        }
+
+        Terrain?.Check(name);
+
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
     }
 
@@ -158,5 +167,32 @@ public class Biome : IRegistryType
         ///   position with these coordinates.
         /// </summary>
         public Vector3 Direction = new(0.25f, -0.3f, 0.75f);
+    }
+
+    public class WaterCurrentsDetails
+    {
+        /// <summary>
+        ///   How much the currents push objects and clouds
+        /// </summary>
+        public float Speed = 1.0f;
+
+        /// <summary>
+        ///   How quickly the currents shift
+        /// </summary>
+        public float Chaoticness = 1.0f;
+
+        /// <summary>
+        ///   The reverse scale of the currents noise map. The higher this value, the more frequent the currents.
+        /// </summary>
+        public float InverseScale = 1.0f;
+
+        /// <summary>
+        ///   Whether the particle system should use trails.
+        /// </summary>
+        public bool UseTrails;
+
+        public Color Colour = new(1.0f, 1.0f, 1.0f, 1.0f);
+
+        public int ParticleCount = 300;
     }
 }

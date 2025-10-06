@@ -70,7 +70,7 @@ func save_config(path: String = CONFIG_FILE) -> GdUnitResult:
 
 func load_config(path: String = CONFIG_FILE) -> GdUnitResult:
 	if not FileAccess.file_exists(path):
-		return GdUnitResult.error("Can't find test runner configuration '%s'! Please select a test to run." % path)
+		return GdUnitResult.warn("Can't find test runner configuration '%s'! Please select a test to run." % path)
 	var file := FileAccess.open(path, FileAccess.READ)
 	if file == null:
 		var error := FileAccess.get_open_error()

@@ -10,16 +10,14 @@ using Newtonsoft.Json;
 [GodotAbstract]
 public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResolve
 {
-    [Export]
-    public NodePath? PauseMenuPath;
-
-    [Export]
-    public NodePath HUDRootPath = null!;
-
 #pragma warning disable CA2213
     protected Node world = null!;
     protected Node rootOfDynamicallySpawned = null!;
+
+    [Export]
     protected PauseMenu pauseMenu = null!;
+
+    [Export]
     protected Control hudRoot = null!;
 
     protected Node3D? graphicsPreloadNode;
@@ -121,10 +119,40 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
 
         world = GetNode<Node>("World");
         rootOfDynamicallySpawned = world.GetNode<Node>("DynamicallySpawned");
-        pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
-        hudRoot = GetNode<Control>(HUDRootPath);
-
         NodeReferencesResolved = true;
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        if (AchievementsManager.HasUsedCheats)
+        {
+            Invoke.Instance.QueueForObject(() =>
+            {
+                if (CurrentGame != null)
+                {
+                    if (CurrentGame.CheatsUsed != true)
+                    {
+                        GD.Print("Copying cheats used state to current game on scene enter tree");
+                        CurrentGame.ReportCheatsUsed();
+                    }
+                }
+                else
+                {
+                    GD.PrintErr("Stage base expected current game data to be initialized already");
+                }
+            }, this);
+        }
+
+        AchievementsManager.OnPlayerHasCheatedEvent += OnCheatsUsed;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        AchievementsManager.OnPlayerHasCheatedEvent -= OnCheatsUsed;
     }
 
     public override void _Process(double delta)
@@ -156,7 +184,7 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
             wantsToSave = false;
         }
 
-        GameWorld.Process((float)delta);
+        GameWorld.Process((float)delta * GetWorldTimeMultiplier());
 
         elapsedSinceLightLevelUpdate += delta;
         if (elapsedSinceLightLevelUpdate > Constants.LIGHT_LEVEL_UPDATE_INTERVAL)
@@ -174,6 +202,11 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     public virtual void StartNewGame()
     {
         OnGameStarted();
+    }
+
+    public virtual float GetWorldTimeMultiplier()
+    {
+        return 1;
     }
 
     public virtual void OnBlankScreenBeforeFadeIn()
@@ -487,17 +520,26 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
         GD.PrintErr("Non-implemented God tools opening for entity in stage type: ", GetType().Name);
     }
 
-    protected override void Dispose(bool disposing)
+    protected virtual void OnCheatsUsed()
     {
-        if (disposing)
+        if (CurrentGame == null)
         {
-            if (PauseMenuPath != null)
-            {
-                PauseMenuPath.Dispose();
-                HUDRootPath.Dispose();
-            }
+            Invoke.Instance.QueueForObject(ApplyCheatsUsedFlag, this);
+            return;
         }
 
-        base.Dispose(disposing);
+        ApplyCheatsUsedFlag();
+    }
+
+    private void ApplyCheatsUsedFlag()
+    {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Current game has not been set even though it should be initialized");
+
+        if (CurrentGame.CheatsUsed)
+            return;
+
+        GD.Print("Detected player used cheats for the first time in this game");
+        CurrentGame.ReportCheatsUsed();
     }
 }

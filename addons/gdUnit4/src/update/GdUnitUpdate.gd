@@ -18,7 +18,7 @@ var _download_url :String
 
 
 func _ready() -> void:
-	init_progress(5)
+	init_progress(6)
 
 
 func _process(_delta :float) -> void:
@@ -56,6 +56,8 @@ func message_h4(message: String, color: Color, show_spinner := true) -> void:
 	if show_spinner:
 		_progress_content.add_image(_spinner_img)
 	_progress_content.append_text(" [font_size=16]%s[/font_size]" % _colored(message, color))
+	if _debug_mode:
+		prints(message)
 
 
 @warning_ignore("return_value_discarded")
@@ -91,12 +93,71 @@ func run_update() -> void:
 	else:
 		copy_directory(tmp_path, "res://")
 
+	await update_progress("Patch invalid UID's")
+	await patch_uids()
+
+	await rebuild_project()
+
 	await update_progress("New GdUnit version successfully installed, Restarting Godot please wait.")
 	await get_tree().create_timer(3).timeout
 	enable_gdUnit()
 	hide()
 	delete_directory("res://addons/.gdunit_update")
 	restart_godot()
+
+
+func patch_uids(path := "res://addons/gdUnit4/src/") -> void:
+	var to_reimport: PackedStringArray
+	for file in DirAccess.get_files_at(path):
+		var file_path := path.path_join(file)
+		var ext := file.get_extension()
+
+		if ext == "tscn" or ext == "scn" or ext == "tres" or ext == "res":
+			message_h4("Patch GdUnit4 scene: '%s'" % file, Color.WEB_GREEN)
+			remove_uids_from_file(file_path)
+		elif FileAccess.file_exists(file_path + ".import"):
+			to_reimport.append(file_path)
+
+	if not to_reimport.is_empty():
+		message_h4("Reimport resources '%s'" % ", ".join(to_reimport), Color.WEB_GREEN)
+		if Engine.is_editor_hint():
+			EditorInterface.get_resource_filesystem().reimport_files(to_reimport)
+
+	for dir in DirAccess.get_directories_at(path):
+		if not dir.begins_with("."):
+			patch_uids(path.path_join(dir))
+	await get_tree().process_frame
+
+
+func remove_uids_from_file(file_path: String) -> bool:
+	var file := FileAccess.open(file_path, FileAccess.READ)
+	if file == null:
+		print("Failed to open file: ", file_path)
+		return false
+
+	var original_content := file.get_as_text()
+	file.close()
+
+	# Remove UIDs using regex
+	var regex := RegEx.new()
+	regex.compile("(\\[ext_resource[^\\]]*?)\\s+uid=\"uid://[^\"]*\"")
+
+	var modified_content := regex.sub(original_content, "$1", true)
+
+	# Check if any changes were made
+	if original_content != modified_content:
+		prints("Patched invalid uid's out in '%s'" % file_path)
+		# Write the modified content back
+		file = FileAccess.open(file_path, FileAccess.WRITE)
+		if file == null:
+			print("Failed to write to file: ", file_path)
+			return false
+
+		file.store_string(modified_content)
+		file.close()
+		return true
+
+	return false
 
 
 func restart_godot() -> void:
@@ -234,6 +295,26 @@ func download_release() -> void:
 		push_warning("Update information cannot be retrieved from GitHub! \n Error code: %d : %s" % [response.status(), response.response()])
 		message_h4("Download the update failed! Try it later again.", Color.INDIAN_RED)
 		await get_tree().create_timer(3).timeout
+
+
+func rebuild_project() -> void:
+	# Check if this is a Godot .NET runtime instance
+	if not ClassDB.class_exists("CSharpScript"):
+		return
+
+	update_progress("Rebuild the project ...")
+	await get_tree().process_frame
+
+	var output := []
+	var exit_code := OS.execute("dotnet", ["build"], output)
+	if exit_code == -1:
+		message_h4("Rebuild the project failed, check your project dependencies.", Color.INDIAN_RED)
+		await get_tree().create_timer(3).timeout
+		return
+
+	for out: String in output:
+		print_rich("[color=DEEP_SKY_BLUE] 		%s" % out.strip_edges())
+	await get_tree().process_frame
 
 
 func _on_confirmed() -> void:

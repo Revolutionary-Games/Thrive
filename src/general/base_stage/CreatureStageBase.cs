@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Arch.Core;
 using Components;
 using Godot;
 using Newtonsoft.Json;
@@ -28,11 +29,21 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
     [JsonProperty]
     protected double playerRespawnTimer;
 
+    [JsonProperty]
+    protected int deathsSinceLastEditorExit;
+
     /// <summary>
     ///   True when the player is extinct in the current patch. The player can still move to another patch.
     /// </summary>
     [JsonProperty]
     protected bool playerExtinctInCurrentPatch;
+
+    private double timeSinceSimulationPerformanceCheck;
+
+    /// <summary>
+    ///   Used to trigger actions when the player goes from being alive to being not there (i.e. having died)
+    /// </summary>
+    private bool lastSeenPlayerAlive;
 
     public CreatureStageBase()
     {
@@ -66,8 +77,9 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
     public TSimulation WorldSimulation { get; private set; } = null!;
 
     /// <summary>
-    ///   True when transitioning to the editor. Note this should only be unset *after* switching scenes to the editor
-    ///   otherwise some tree exit operations won't run correctly.
+    ///   True when transitioning to the editor.
+    ///   Note this should only be unset *after* switching scenes to the editor because otherwise some tree exit
+    ///   operations won't run correctly.
     /// </summary>
     [JsonIgnore]
     public bool MovingToEditor { get; set; }
@@ -122,7 +134,15 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             else
             {
                 // Respawn the player once the timer is up
-                playerRespawnTimer -= delta;
+                playerRespawnTimer -= delta * GetWorldTimeMultiplier();
+
+                if (lastSeenPlayerAlive)
+                {
+                    lastSeenPlayerAlive = false;
+                    ++deathsSinceLastEditorExit;
+
+                    OnPlayerDeath(deathsSinceLastEditorExit);
+                }
 
                 if (playerRespawnTimer <= 0)
                 {
@@ -131,8 +151,22 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             }
         }
 
+        // Track fast speed mode performance
+        if (HasPlayer)
+        {
+            timeSinceSimulationPerformanceCheck += delta;
+
+            if (timeSinceSimulationPerformanceCheck >= 1)
+            {
+                timeSinceSimulationPerformanceCheck = 0;
+                CheckPerformanceEnoughForSimulationSpeed();
+            }
+
+            lastSeenPlayerAlive = true;
+        }
+
         // Start auto-evo if stage entry finished, don't need to auto save,
-        // settings have auto-evo be started during gameplay and auto-evo is not already started
+        // settings have auto-evo be started during gameplay and auto-evo is not yet started
         if (TransitionFinished && !wantsToSave && Settings.Instance.RunAutoEvoDuringGamePlay)
         {
             GameWorld.IsAutoEvoFinished(true);
@@ -145,15 +179,11 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             float totalEntityWeight = 0;
             int totalEntityCount = 0;
 
-            foreach (var entity in WorldSimulation.EntitySystem)
+            WorldSimulation.EntitySystem.Query(new QueryDescription().WithAll<Spawned>(), (ref Spawned spawned) =>
             {
                 ++totalEntityCount;
-
-                if (!entity.Has<Spawned>())
-                    continue;
-
-                totalEntityWeight += entity.Get<Spawned>().EntityWeight;
-            }
+                totalEntityWeight += spawned.EntityWeight;
+            });
 
             debugOverlay.ReportEntities(totalEntityWeight, totalEntityCount);
         }
@@ -169,6 +199,11 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         SpawnPlayer();
 
         base.StartNewGame();
+    }
+
+    public override float GetWorldTimeMultiplier()
+    {
+        return WorldSimulation.WorldTimeScale;
     }
 
     /// <summary>
@@ -188,6 +223,8 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         }
 
         // Now the editor increases the generation, so we don't do that here any more
+
+        deathsSinceLastEditorExit = 0;
 
         // Make sure the player is spawned
         SpawnPlayer();
@@ -354,7 +391,7 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             }
             else if (GameWorld.Map.CurrentPatch.GetSpeciesGameplayPopulation(playerSpecies) <= 0)
             {
-                // Has run out of population in current patch but not globally
+                // Has run out of population in the current patch but not globally
                 PlayerExtinctInPatch();
             }
 
@@ -364,6 +401,14 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
 
         // Player is not extinct, so can respawn
         SpawnPlayer();
+    }
+
+    /// <summary>
+    ///   Triggered when the player is detected as being deleted after having been previously alive
+    /// </summary>
+    /// <param name="deathsSinceEditor">How many times the player has died since the editor</param>
+    protected virtual void OnPlayerDeath(int deathsSinceEditor)
+    {
     }
 
     protected override bool IsGameOver()
@@ -491,6 +536,23 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         }
 
         // TODO: to be fully accurate we probably should re-trigger auto-evo to start from scratch here
+    }
+
+    private void CheckPerformanceEnoughForSimulationSpeed()
+    {
+        if (WorldSimulation.WorldTimeScale <= 1)
+            return;
+
+        var simulationRatio = WorldSimulation.GetAndResetTrackedSimulationSpeedRatio();
+
+        if (simulationRatio < Constants.SIMULATION_REQUIRED_FAST_MODE_SUCCESS_RATE)
+        {
+            GD.Print($"Disabling fast mode as ratio of managing to simulate fast mode is only: {simulationRatio}");
+            BaseHUD.HUDMessages.ShowMessage(new SimpleHUDMessage(
+                Localization.Translate("CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"),
+                DisplayDuration.Long));
+            BaseHUD.ApplySpeedMode(false);
+        }
     }
 
     private void AdjustTolerancesToWorkInPatch(MicrobeSpecies species, Patch currentPatch)

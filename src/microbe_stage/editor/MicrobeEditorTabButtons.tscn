@@ -71,7 +71,7 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_kbxi1"]
 
-[node name="MicrobeEditorTabButtons" type="MarginContainer"]
+[node name="MicrobeEditorTabButtons" type="MarginContainer" node_paths=PackedStringArray("reportTabButton", "patchMapButton", "cellEditorButton", "cellTypeTab")]
 offset_right = 278.0
 offset_bottom = 38.0
 theme = ExtResource("1_nn6st")
@@ -80,11 +80,10 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 script = ExtResource("2")
-TabButtonsPath = NodePath("TabButtons")
-ReportTabButtonPath = NodePath("TabButtons/ReportButton")
-PatchMapButtonPath = NodePath("TabButtons/PatchMapButton")
-CellEditorButtonPath = NodePath("TabButtons/CellEditorButton")
-CellTypeTabPath = NodePath("TabButtons/CellTypeEditorButton")
+reportTabButton = NodePath("TabButtons/ReportButton")
+patchMapButton = NodePath("TabButtons/PatchMapButton")
+cellEditorButton = NodePath("TabButtons/CellEditorButton")
+cellTypeTab = NodePath("TabButtons/CellTypeEditorButton")
 
 [node name="TabButtons" parent="." instance=ExtResource("3")]
 layout_mode = 2

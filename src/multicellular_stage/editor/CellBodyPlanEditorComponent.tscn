@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dylo35brdi0js"]
+[gd_scene load_steps=36 format=3 uid="uid://dylo35brdi0js"]
 
 [ext_resource type="Script" uid="uid://ctqyvjb6wvagi" path="res://src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://ipvxtakaph16" path="res://src/multicellular_stage/editor/CellPopupMenu.tscn" id="3"]
@@ -87,6 +87,22 @@ corner_radius_bottom_left = 5
 [sub_resource type="StyleBoxEmpty" id="7"]
 
 [sub_resource type="StyleBoxEmpty" id="8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_55mmr"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.666667, 1, 0.941176, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="12"]
 content_margin_left = 5.0
@@ -310,7 +326,7 @@ _data = {
 &"show": SubResource("44")
 }
 
-[node name="CellBodyPlanEditorComponent" type="Control" node_paths=PackedStringArray("organismStatisticsPanel", "negativeAtpPopup")]
+[node name="CellBodyPlanEditorComponent" type="Control" node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "structureTab", "reproductionTab", "behaviourEditor", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "negativeAtpPopup", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -319,29 +335,28 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5")
 script = ExtResource("1")
-TabButtonsPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons")
-StructureTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure")
-ReproductionTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction")
-BehaviourTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour")
-StructureTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
-ReproductionTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction")
-BehaviourTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
-CellTypeSelectionListPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Cells")
-ModifyTypeButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify")
-DeleteTypeButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete")
-DuplicateTypeButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate")
-CannotDeleteInUseTypeDialogPath = NodePath("CannotDeleteInUseType")
-DuplicateCellTypeDialogPath = NodePath("NewCellTypeSetup")
-DuplicateCellTypeNamePath = NodePath("NewCellTypeSetup/VBoxContainer2/NewName")
-CellPopupMenuPath = NodePath("CellPopupMenu")
+structureTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure")
+reproductionTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction")
+behaviourTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour")
+structureTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
+reproductionTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction")
+behaviourEditor = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
+cellTypeSelectionList = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Cells")
+modifyTypeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify")
+deleteTypeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete")
+duplicateTypeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate")
+cannotDeleteInUseTypeDialog = NodePath("CannotDeleteInUseType")
+duplicateCellTypeDialog = NodePath("NewCellTypeSetup")
+duplicateCellTypeName = NodePath("NewCellTypeSetup/VBoxContainer2/NewName")
+cellPopupMenu = NodePath("CellPopupMenu")
 organismStatisticsPanel = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel")
 negativeAtpPopup = NodePath("NegativeAtpWarning")
-IslandErrorPath = NodePath("IslandError")
-MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
-ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
-CancelButtonPath = NodePath("BottomRight/HBoxContainer/CancelButton")
-FinishWarningBadgePath = NodePath("BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
-FinishOrNextButtonPath = NodePath("BottomRight/HBoxContainer/ConfirmButton")
+islandPopup = NodePath("IslandError")
+componentBottomLeftButtons = NodePath("EditorComponentBottomLeftButtons")
+mutationPointsBar = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
+cancelButton = NodePath("BottomRight/HBoxContainer/CancelButton")
+finishButtonWarningBadge = NodePath("BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
+finishOrNextButton = NodePath("BottomRight/HBoxContainer/ConfirmButton")
 
 [node name="TopPanel" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -549,11 +564,11 @@ disabled = true
 selected = 0
 item_count = 1
 popup/item_0/text = "REPRODUCTION_BUDDING"
+popup/item_0/id = 0
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource("9")]
 visible = false
 layout_mode = 2
-FinishOrNextButtonPath = NodePath("")
 
 [node name="RightPanel" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(285, 657)
@@ -615,6 +630,7 @@ layout_mode = 2
 mouse_force_pass_scroll_events = false
 theme_override_colors/font_disabled_color = Color(0.498039, 0.529412, 0.541176, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_55mmr")
 theme_override_styles/hover = SubResource("12")
 theme_override_styles/pressed = SubResource("13")
 theme_override_styles/normal = SubResource("14")
@@ -656,7 +672,7 @@ expand_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge"]
 libraries = {
-"": SubResource("AnimationLibrary_1nh8x")
+&"": SubResource("AnimationLibrary_1nh8x")
 }
 
 [node name="IslandError" parent="." instance=ExtResource("7")]

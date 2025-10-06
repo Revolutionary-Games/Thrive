@@ -730,7 +730,7 @@ public partial class CustomRichTextLabel : RichTextLabel
             if (!GetSpeciesFromMeta(metaString, out var species))
                 return;
 
-            if (species is not MicrobeSpecies)
+            if (species is not MicrobeSpecies and not MulticellularSpecies)
                 return;
 
             var tooltip = ToolTipManager.Instance.GetToolTip<SpeciesPreviewTooltip>("speciesPreview");

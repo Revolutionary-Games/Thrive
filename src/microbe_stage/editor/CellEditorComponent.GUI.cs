@@ -835,12 +835,6 @@ public partial class CellEditorComponent
             return;
         }
 
-        if (camera == null)
-        {
-            GD.PrintErr("Camera must be set for growth order numbers");
-            return;
-        }
-
         growthOrderNumberContainer.Visible = true;
 
         // Setup tracking for what gets used
@@ -879,7 +873,7 @@ public partial class CellEditorComponent
                 createdGrowthOrderLabels.Add(order, graphicalLabel);
             }
 
-            graphicalLabel.Position = camera.UnprojectPosition(Hex.AxialToCartesian(editedMicrobeOrganelle.Position));
+            graphicalLabel.Position = camera!.UnprojectPosition(Hex.AxialToCartesian(editedMicrobeOrganelle.Position));
             graphicalLabel.Visible = true;
             graphicalLabel.Marked = true;
         }

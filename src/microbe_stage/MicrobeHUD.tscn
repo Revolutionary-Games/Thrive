@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bt2fv82h01ice"]
+[gd_scene load_steps=54 format=3 uid="uid://bt2fv82h01ice"]
 
 [ext_resource type="PackedScene" uid="uid://ddbq6kni0re0u" path="res://src/gui_common/RadialPopup.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://5tclk2e3nffb" path="res://assets/textures/gui/bevel/ATP.svg" id="18_aod78"]
 [ext_resource type="Texture2D" uid="uid://siahiwtfm578" path="res://assets/textures/gui/bevel/actions/SlimeJetAction.png" id="21"]
 [ext_resource type="PackedScene" uid="uid://jjb8ei8wuuk" path="res://src/microbe_stage/gui/EditorEntryButton.tscn" id="23_satig"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="25_joiju"]
 [ext_resource type="Texture2D" uid="uid://bqtewn0kgu43l" path="res://assets/textures/gui/bevel/actions/CellSprint.png" id="32_qhyce"]
 [ext_resource type="Texture2D" uid="uid://bskaacurefwt0" path="res://assets/textures/gui/bevel/part_upgrades/MucocystIcon.svg" id="33_qrk4q"]
 [ext_resource type="Texture2D" uid="uid://cx6phrsjqkebq" path="res://assets/textures/gui/bevel/actions/Siderophore.svg" id="34_bs2fk"]
@@ -19,6 +20,7 @@
 [ext_resource type="LabelSettings" uid="uid://bgokf8pxiak4n" path="res://src/gui_common/fonts/Title-SemiBold-Tiny.tres" id="39_2oma1"]
 [ext_resource type="PackedScene" uid="uid://bocoy7fjgtnue" path="res://src/microbe_stage/gui/HeatAccumulationBar.tscn" id="39_al48g"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="39_nfpcw"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="40_e4my1"]
 [ext_resource type="Texture2D" uid="uid://on8072s1tlly" path="res://assets/textures/gui/bevel/Hitpoints.png" id="42"]
 [ext_resource type="Texture2D" uid="uid://o0q204t8ees3" path="res://assets/textures/gui/bevel/AtpBar.png" id="43"]
 [ext_resource type="Texture2D" uid="uid://budtxbmecqr3l" path="res://assets/textures/gui/bevel/dataValueBackground.png" id="44"]
@@ -267,7 +269,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "siderophoreHotkey", "multicellularButton", "multicellularConfirmPopup", "macroscopicButton", "heatAccumulationBar", "environmentPanel", "compoundsPanel", "editorButton", "mucocystHotkey", "sprintHotkey", "strainBar", "damageScreenEffect", "pausePrompt", "pauseInfo", "hudMessages")]
+[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "siderophoreHotkey", "multicellularButton", "multicellularConfirmPopup", "previousSaveLoadAdvicePopup", "macroscopicButton", "heatAccumulationBar", "mouseHoverPanel", "environmentPanel", "compoundsPanel", "editorButton", "mucocystHotkey", "engulfHotkey", "secreteSlimeHotkey", "ejectEngulfedHotkey", "signalingAgentsHotkey", "atpBar", "healthBar", "atpLabel", "hpLabel", "populationLabel", "hintText", "packControlRadial", "bottomLeftBar", "sprintHotkey", "strainBar", "damageScreenEffect", "hotBar", "fireToxinHotkey", "processPanel", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -287,36 +289,36 @@ unbindAllHotkey = NodePath("ScrollContainer/HotBar/UnbindAll")
 siderophoreHotkey = NodePath("ScrollContainer/HotBar/Siderophore")
 multicellularButton = NodePath("BottomRight/VBoxContainer/Control/Multicellular")
 multicellularConfirmPopup = NodePath("StagePrototypeConfirm")
+previousSaveLoadAdvicePopup = NodePath("RevertToEditor")
 macroscopicButton = NodePath("BottomRight/VBoxContainer/Control/Macroscopic")
 heatAccumulationBar = NodePath("HeatAccumulationBar")
-MouseHoverPanelPath = NodePath("TopRight/MouseHoverPanel")
-AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
-HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
-PopulationLabelPath = NodePath("BottomRight/VBoxContainer/PopulationData/Value")
-PatchOverlayPath = NodePath("../PatchNameOverlay")
-AtpBarPath = NodePath("BottomRight/ATPBar")
-HealthBarPath = NodePath("BottomRight/HealthBar")
-ProcessPanelPath = NodePath("ProcessPanel")
-HintTextPath = NodePath("HintText")
-HotBarPath = NodePath("ScrollContainer/HotBar")
-EngulfHotkeyPath = NodePath("ScrollContainer/HotBar/Engulfment")
-SecreteSlimeHotkeyPath = NodePath("ScrollContainer/HotBar/SecreteSlime")
-SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
-MicrobeControlRadialPath = NodePath("RadialPopup")
-FireToxinHotkeyPath = NodePath("ScrollContainer/HotBar/FireToxin")
-EjectEngulfedHotkeyPath = NodePath("ScrollContainer/HotBar/EjectEngulfed")
-BottomLeftBarPath = NodePath("BottomLeft/HUDBottomBar")
 FossilisationButtonScene = ExtResource("58")
 MicrobePickupOrganelleSound = ExtResource("18")
 ExtinctionBoxScene = ExtResource("54")
 PatchExtinctionBoxScene = ExtResource("60")
+mouseHoverPanel = NodePath("TopRight/MouseHoverPanel")
 environmentPanel = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 compoundsPanel = NodePath("BottomLeft/LeftPanels/CompoundPanels")
 editorButton = NodePath("BottomRight/EditorButton")
 mucocystHotkey = NodePath("ScrollContainer/HotBar/Mucocyst")
+engulfHotkey = NodePath("ScrollContainer/HotBar/Engulfment")
+secreteSlimeHotkey = NodePath("ScrollContainer/HotBar/SecreteSlime")
+ejectEngulfedHotkey = NodePath("ScrollContainer/HotBar/EjectEngulfed")
+signalingAgentsHotkey = NodePath("ScrollContainer/HotBar/SignalingAgents")
+atpBar = NodePath("BottomRight/ATPBar")
+healthBar = NodePath("BottomRight/HealthBar")
+atpLabel = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
+hpLabel = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
+populationLabel = NodePath("BottomRight/VBoxContainer/PopulationData/Value")
+hintText = NodePath("HintText")
+packControlRadial = NodePath("RadialPopup")
+bottomLeftBar = NodePath("BottomLeft/HUDBottomBar")
 sprintHotkey = NodePath("ScrollContainer/HotBar/Sprint")
 strainBar = NodePath("Strain")
 damageScreenEffect = NodePath("DamageEffect")
+hotBar = NodePath("ScrollContainer/HotBar")
+fireToxinHotkey = NodePath("ScrollContainer/HotBar/FireToxin")
+processPanel = NodePath("ProcessPanel")
 strainBarRedFill = SubResource("StyleBoxFlat_b2vtv")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
@@ -601,6 +603,48 @@ grow_vertical = 0
 [node name="PauseInfo" parent="PausePrompt" index="1"]
 offset_bottom = -24.0
 
+[node name="RevertToEditor" parent="." instance=ExtResource("40_e4my1")]
+custom_minimum_size = Vector2(290, 120)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -310.0
+offset_top = 194.0
+offset_right = -10.0
+offset_bottom = 314.0
+grow_horizontal = 0
+WindowTitle = "REVERT_TO_EDITOR_PROMPT"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RevertToEditor"]
+custom_minimum_size = Vector2(290, 100)
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 167.0
+
+[node name="SizeHack" type="Control" parent="RevertToEditor/VBoxContainer"]
+editor_description = "Can't get the label to not blow up the popup size without this hack node here"
+layout_mode = 2
+
+[node name="Label" type="Label" parent="RevertToEditor/VBoxContainer/SizeHack"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 31.0
+text = "REVERT_TO_EDITOR_EXPLANATION"
+label_settings = ExtResource("25_joiju")
+autowrap_mode = 3
+
+[node name="Control" type="Control" parent="RevertToEditor/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LoadSave" type="Button" parent="RevertToEditor/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "REVERT_TO_EDITOR"
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(415, 69)
 layout_mode = 1
@@ -799,6 +843,8 @@ show_percentage = false
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
 [connection signal="ToggleProcessPressed" from="ProcessPanel" to="." method="ToggleProcessPressed"]
 [connection signal="hidden" from="ProcessPanel" to="." method="OnProcessPanelClosed"]
+[connection signal="Closed" from="RevertToEditor" to="." method="OnRevertPromptClosed"]
+[connection signal="pressed" from="RevertToEditor/VBoxContainer/LoadSave" to="." method="OnAcceptRevertPrompt"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Engulfment" to="." method="OnEngulfmentPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/EjectEngulfed" to="." method="OnEjectEngulfedPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/FireToxin" to="." method="OnFireToxinPressed"]

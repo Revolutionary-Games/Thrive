@@ -31,7 +31,7 @@ _data = {
 &"FadeIn": SubResource("2")
 }
 
-[node name="ExtinctionBox" type="Control" node_paths=PackedStringArray("continueText", "continueButton")]
+[node name="ExtinctionBox" type="Control" node_paths=PackedStringArray("extinctionMenu", "loadMenu", "continueText", "continueButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,8 +40,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3")
 script = ExtResource("4")
-ExtinctionMenuPath = NodePath("ExtinctionBoxMenu")
-LoadMenuPath = NodePath("CenterContainer/LoadMenu")
+extinctionMenu = NodePath("ExtinctionBoxMenu")
+loadMenu = NodePath("CenterContainer/LoadMenu")
 continueText = NodePath("ExtinctionBoxMenu/PanelContainer/MarginContainer/VBoxContainer/ContinueText")
 continueButton = NodePath("ExtinctionBoxMenu/Continue")
 Movable = false
@@ -146,7 +146,7 @@ text = "RETURN_TO_MENU"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_exnap")
+&"": SubResource("AnimationLibrary_exnap")
 }
 autoplay = "FadeIn"
 

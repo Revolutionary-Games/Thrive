@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Arch.Core;
+using Arch.Core.Extensions;
 using AutoEvo;
-using DefaultEcs;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
@@ -11,10 +12,10 @@ using Systems;
 /// <summary>
 ///   The cell editor component combining the organelle and other editing logic with the GUI for it
 /// </summary>
-[SceneLoadedClass("res://src/microbe_stage/editor/CellEditorComponent.tscn")]
+[SceneLoadedClass("res://src/microbe_stage/editor/CellEditorComponent.tscn", UsesEarlyResolve = false)]
 public partial class CellEditorComponent :
     HexEditorComponentBase<ICellEditorData, CombinedEditorAction, EditorAction, OrganelleTemplate, CellType>,
-    ICellEditorComponent, IGodotEarlyNodeResolve
+    ICellEditorComponent
 {
     [Export]
     public bool IsMulticellularEditor;
@@ -24,72 +25,6 @@ public partial class CellEditorComponent :
 
     [Export]
     public int MaxToleranceWarnings = 3;
-
-    [Export]
-    public NodePath? TopPanelPath;
-
-    [Export]
-    public NodePath TabButtonsPath = null!;
-
-    [Export]
-    public NodePath StructureTabButtonPath = null!;
-
-    [Export]
-    public NodePath AppearanceTabButtonPath = null!;
-
-    [Export]
-    public NodePath BehaviourTabButtonPath = null!;
-
-    [Export]
-    public NodePath StructureTabPath = null!;
-
-    [Export]
-    public NodePath AppearanceTabPath = null!;
-
-    [Export]
-    public NodePath BehaviourTabPath = null!;
-
-    [Export]
-    public NodePath PartsSelectionContainerPath = null!;
-
-    [Export]
-    public NodePath MembraneTypeSelectionPath = null!;
-
-    [Export]
-    public NodePath AutoEvoPredictionPanelPath = null!;
-
-    [Export]
-    public NodePath TotalEnergyLabelPath = null!;
-
-    [Export]
-    public NodePath AutoEvoPredictionFailedLabelPath = null!;
-
-    [Export]
-    public NodePath WorstPatchLabelPath = null!;
-
-    [Export]
-    public NodePath BestPatchLabelPath = null!;
-
-    [Export]
-    public NodePath MembraneColorPickerPath = null!;
-
-    [Export]
-    public NodePath RigiditySliderPath = null!;
-
-    [Export]
-    public NodePath NegativeAtpPopupPath = null!;
-
-    [Export]
-    public NodePath OrganelleMenuPath = null!;
-
-    [Export]
-    public NodePath AutoEvoPredictionExplanationPopupPath = null!;
-
-    [Export]
-    public NodePath AutoEvoPredictionExplanationLabelPath = null!;
-
-    [Export]
-    public NodePath OrganelleUpgradeGUIPath = null!;
 
     /// <summary>
     ///   Temporary hex memory for use by the main thread in this component
@@ -112,8 +47,13 @@ public partial class CellEditorComponent :
 #pragma warning disable CA2213
 
     // Selection menu tab selector buttons
+    [Export]
     private Button structureTabButton = null!;
+
+    [Export]
     private Button appearanceTabButton = null!;
+
+    [Export]
     private Button behaviourTabButton = null!;
 
     [Export]
@@ -122,11 +62,15 @@ public partial class CellEditorComponent :
     [Export]
     private Button toleranceTabButton = null!;
 
+    [Export]
     private PanelContainer structureTab = null!;
+
+    [Export]
     private PanelContainer appearanceTab = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    [Export]
     private BehaviourEditorSubComponent behaviourEditor = null!;
 
     [Export]
@@ -148,12 +92,22 @@ public partial class CellEditorComponent :
     [Export]
     private Container toleranceWarningContainer = null!;
 
+    [Export]
     private VBoxContainer partsSelectionContainer = null!;
+
+    [Export]
     private CollapsibleList membraneTypeSelection = null!;
 
+    [Export]
     private CellStatsIndicator totalEnergyLabel = null!;
+
+    [Export]
     private Label autoEvoPredictionFailedLabel = null!;
+
+    [Export]
     private Label bestPatchLabel = null!;
+
+    [Export]
     private Label worstPatchLabel = null!;
 
     [Export]
@@ -162,11 +116,16 @@ public partial class CellEditorComponent :
     [Export]
     private Label organelleSuggestionLabel = null!;
 
+    [Export]
     private Control autoEvoPredictionPanel = null!;
 
+    [Export]
     private Slider rigiditySlider = null!;
+
+    [Export]
     private TweakedColourPicker membraneColorPicker = null!;
 
+    [Export]
     private CustomConfirmationDialog negativeAtpPopup = null!;
 
     [Export]
@@ -178,7 +137,10 @@ public partial class CellEditorComponent :
     [Export]
     private EndosymbiosisPopup endosymbiosisPopup = null!;
 
+    [Export]
     private OrganellePopupMenu organelleMenu = null!;
+
+    [Export]
     private OrganelleUpgradeGUI organelleUpgradeGUI = null!;
 
     [Export]
@@ -193,7 +155,10 @@ public partial class CellEditorComponent :
     [Export]
     private OrganismStatisticsPanel organismStatisticsPanel = null!;
 
+    [Export]
     private CustomWindow autoEvoPredictionExplanationPopup = null!;
+
+    [Export]
     private CustomRichTextLabel autoEvoPredictionExplanationLabel = null!;
 
     [Export]
@@ -224,6 +189,7 @@ public partial class CellEditorComponent :
     private OrganelleDefinition bindingAgent = null!;
 
     private OrganelleDefinition cytoplasm = null!;
+    private OrganelleDefinition chemoSynthesizingProteins = null!;
 
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
@@ -351,7 +317,7 @@ public partial class CellEditorComponent :
 
             previewMicrobeSpecies.MembraneRigidity = value;
 
-            if (previewMicrobe.IsAlive)
+            if (previewMicrobe.IsAlive())
                 previewSimulation!.ApplyMicrobeRigidity(previewMicrobe, previewMicrobeSpecies.MembraneRigidity);
         }
     }
@@ -378,13 +344,13 @@ public partial class CellEditorComponent :
 
             previewMicrobeSpecies.Colour = value;
 
-            if (previewMicrobe.IsAlive)
+            if (previewMicrobe.IsAlive())
                 previewSimulation!.ApplyMicrobeColour(previewMicrobe, previewMicrobeSpecies.Colour);
         }
     }
 
     /// <summary>
-    ///   The name of organelle type that is selected to be placed
+    ///   The name of the organelle type that is selected to be placed
     /// </summary>
     [JsonIgnore]
     public string? ActiveActionName
@@ -525,15 +491,15 @@ public partial class CellEditorComponent :
         }
     }
 
+    [JsonIgnore]
+    public Func<string, bool>? ValidateNewCellTypeName { get; set; }
+
     /// <summary>
     ///   True when there are pending endosymbiosis actions. Only works after editor is fully initialized.
     /// </summary>
     [JsonIgnore]
     public bool HasFinishedPendingEndosymbiosis =>
         Editor.EditorReady && Editor.EditedBaseSpecies.Endosymbiosis.HasCompleteEndosymbiosis();
-
-    [JsonIgnore]
-    public bool NodeReferencesResolved { get; private set; }
 
     protected override bool ForceHideHover => MicrobePreviewMode;
 
@@ -586,15 +552,7 @@ public partial class CellEditorComponent :
     {
         base._Ready();
 
-        ResolveNodeReferences();
-
         // This works only after this is attached to the scene tree
-        var tabButtons = GetNode<TabButtons>(TabButtonsPath);
-        structureTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, StructureTabButtonPath));
-        appearanceTabButton =
-            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, AppearanceTabButtonPath));
-        behaviourTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, BehaviourTabButtonPath));
-
         // Hidden in the Godot editor to make selecting other things easier
         organelleUpgradeGUI.Visible = true;
 
@@ -614,6 +572,7 @@ public partial class CellEditorComponent :
             GD.Load<PackedScene>("res://src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesTooltip.tscn");
 
         cytoplasm = SimulationParameters.Instance.GetOrganelleType("cytoplasm");
+        chemoSynthesizingProteins = SimulationParameters.Instance.GetOrganelleType("chemoSynthesizingProteins");
 
         SetupMicrobePartSelections();
 
@@ -621,45 +580,14 @@ public partial class CellEditorComponent :
         RegisterTooltips();
     }
 
-    public override void ResolveNodeReferences()
-    {
-        if (NodeReferencesResolved)
-            return;
-
-        base.ResolveNodeReferences();
-
-        NodeReferencesResolved = true;
-
-        structureTab = GetNode<PanelContainer>(StructureTabPath);
-
-        appearanceTab = GetNode<PanelContainer>(AppearanceTabPath);
-
-        behaviourEditor = GetNode<BehaviourEditorSubComponent>(BehaviourTabPath);
-
-        partsSelectionContainer = GetNode<VBoxContainer>(PartsSelectionContainerPath);
-        membraneTypeSelection = GetNode<CollapsibleList>(MembraneTypeSelectionPath);
-
-        totalEnergyLabel = GetNode<CellStatsIndicator>(TotalEnergyLabelPath);
-        autoEvoPredictionFailedLabel = GetNode<Label>(AutoEvoPredictionFailedLabelPath);
-        worstPatchLabel = GetNode<Label>(WorstPatchLabelPath);
-        bestPatchLabel = GetNode<Label>(BestPatchLabelPath);
-
-        autoEvoPredictionPanel = GetNode<Control>(AutoEvoPredictionPanelPath);
-
-        rigiditySlider = GetNode<Slider>(RigiditySliderPath);
-        membraneColorPicker = GetNode<TweakedColourPicker>(MembraneColorPickerPath);
-
-        negativeAtpPopup = GetNode<CustomConfirmationDialog>(NegativeAtpPopupPath);
-        organelleMenu = GetNode<OrganellePopupMenu>(OrganelleMenuPath);
-        organelleUpgradeGUI = GetNode<OrganelleUpgradeGUI>(OrganelleUpgradeGUIPath);
-
-        autoEvoPredictionExplanationPopup = GetNode<CustomWindow>(AutoEvoPredictionExplanationPopupPath);
-        autoEvoPredictionExplanationLabel = GetNode<CustomRichTextLabel>(AutoEvoPredictionExplanationLabelPath);
-    }
-
     public override void Init(ICellEditorData owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
+
+        if (IsMulticellularEditor && ValidateNewCellTypeName == null)
+        {
+            throw new InvalidOperationException("The new cell type name validation callback needs to be set");
+        }
 
         if (!IsMulticellularEditor)
         {
@@ -905,6 +833,16 @@ public partial class CellEditorComponent :
         // As auto-evo results can modify the patch data, we only want to calculate the effectiveness of organelles in
         // the current patch once that data is ready (and whenever the selected patch changes of course)
         OnPatchDataReady();
+
+        if (!Editor.IsLoadedFromSave)
+        {
+            if (HasNucleus)
+            {
+                AchievementEvents.ReportPlayerSurvivedWithNucleus();
+            }
+
+            SendChemosynthesisInfoToAchievements();
+        }
     }
 
     [RunOnKeyDown("e_primary")]
@@ -1013,7 +951,7 @@ public partial class CellEditorComponent :
         // It is easiest to just replace all
         editedProperties.Organelles.Clear();
 
-        // Even in multicellular context, it should always be safe to apply the organelle growth order
+        // Even in a multicellular context, it should always be safe to apply the organelle growth order
         foreach (var organelle in growthOrderGUI.ApplyOrderingToItems(editedMicrobeOrganelles.Organelles))
         {
             var organelleToAdd = (OrganelleTemplate)organelle.Clone();
@@ -1462,12 +1400,7 @@ public partial class CellEditorComponent :
 
     public float CalculateHitpoints()
     {
-        var maxHitpoints = Membrane.Hitpoints + Rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
-
-        // Tolerances affect health
-        maxHitpoints *= CalculateLatestTolerances().HealthModifier;
-
-        return maxHitpoints;
+        return MicrobeInternalCalculations.CalculateHealth(CalculateLatestTolerances(), Membrane, Rigidity);
     }
 
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
@@ -1675,32 +1608,6 @@ public partial class CellEditorComponent :
     {
         if (disposing)
         {
-            if (TopPanelPath != null)
-            {
-                TopPanelPath.Dispose();
-                TabButtonsPath.Dispose();
-                StructureTabButtonPath.Dispose();
-                AppearanceTabButtonPath.Dispose();
-                BehaviourTabButtonPath.Dispose();
-                StructureTabPath.Dispose();
-                AppearanceTabPath.Dispose();
-                BehaviourTabPath.Dispose();
-                PartsSelectionContainerPath.Dispose();
-                MembraneTypeSelectionPath.Dispose();
-                AutoEvoPredictionPanelPath.Dispose();
-                TotalEnergyLabelPath.Dispose();
-                AutoEvoPredictionFailedLabelPath.Dispose();
-                WorstPatchLabelPath.Dispose();
-                BestPatchLabelPath.Dispose();
-                MembraneColorPickerPath.Dispose();
-                RigiditySliderPath.Dispose();
-                NegativeAtpPopupPath.Dispose();
-                OrganelleMenuPath.Dispose();
-                AutoEvoPredictionExplanationPopupPath.Dispose();
-                AutoEvoPredictionExplanationLabelPath.Dispose();
-                OrganelleUpgradeGUIPath.Dispose();
-            }
-
             previewSimulation?.Dispose();
         }
 
@@ -1743,6 +1650,10 @@ public partial class CellEditorComponent :
 
         EnqueueAction(action);
 
+        // Note that due to undo/redo this can trigger multiple times so any achievement about multiple endosymbiosis
+        // completions would require changing this
+        AchievementEvents.ReportEndosymbiosisCompleted();
+
         return true;
     }
 
@@ -1751,7 +1662,7 @@ public partial class CellEditorComponent :
         if (previewSimulation == null)
             throw new InvalidOperationException("Component needs to be initialized first");
 
-        if (previewMicrobe.IsAlive && previewMicrobeSpecies != null)
+        if (previewMicrobe.IsAlive() && previewMicrobeSpecies != null)
             return false;
 
         if (cellPreviewVisualsRoot == null)
@@ -2739,14 +2650,31 @@ public partial class CellEditorComponent :
             .Visible = IsMacroscopicEditor;
     }
 
+    private bool HasNewName()
+    {
+        if (Editor.EditedCellProperties == null)
+        {
+            return false;
+        }
+
+        return Editor.EditedCellProperties.FormattedName != newName;
+    }
+
     private void OnSpeciesNameChanged(string newText)
     {
         newName = newText;
 
         if (IsMulticellularEditor)
         {
-            // TODO: somehow update the architecture so that we can know here if the name conflicts with another type
-            componentBottomLeftButtons.ReportValidityOfName(!string.IsNullOrWhiteSpace(newText));
+            if (HasNewName())
+            {
+                componentBottomLeftButtons.ReportValidityOfName(ValidateNewCellTypeName!(newText));
+            }
+            else
+            {
+                // The name hasn't changed and should remain valid
+                componentBottomLeftButtons.ReportValidityOfName(true);
+            }
         }
     }
 
@@ -2890,10 +2818,13 @@ public partial class CellEditorComponent :
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        selectedSelectionMenuTab = selection;
-        ApplySelectionMenuTab();
+        if (!BlockTabSwitchIfInProgressAction(CanCancelAction))
+        {
+            selectedSelectionMenuTab = selection;
+            tutorialState?.SendEvent(TutorialEventType.CellEditorTabChanged, new StringEventArgs(tab), this);
+        }
 
-        tutorialState?.SendEvent(TutorialEventType.CellEditorTabChanged, new StringEventArgs(tab), this);
+        ApplySelectionMenuTab();
     }
 
     private void ApplySelectionMenuTab()
@@ -3199,6 +3130,54 @@ public partial class CellEditorComponent :
         micheViewer.ShowMiches(Editor.CurrentPatch, predictionMiches, Editor.CurrentGame.GameWorld.WorldSettings);
 
         autoEvoPredictionExplanationPopup.Hide();
+    }
+
+    private void SendChemosynthesisInfoToAchievements()
+    {
+        float chemosynthesis = 0;
+        bool ignoredCytoplasm = false;
+
+        foreach (var organelleTemplate in editedMicrobeOrganelles)
+        {
+            // Ignore one cytoplasm
+            if (organelleTemplate.Definition == cytoplasm && !ignoredCytoplasm)
+            {
+                ignoredCytoplasm = true;
+                continue;
+            }
+
+            var definition = organelleTemplate.Definition;
+
+            foreach (var process in definition.RunnableProcesses)
+            {
+                bool productionProcess = process.Process.Outputs.Any(c => c.Key.ID is Compound.Glucose or Compound.ATP);
+
+                bool chemosynthesisProcess = process.Process.Inputs.Any(c => c.Key.ID is Compound.Hydrogensulfide);
+
+                if (productionProcess && !chemosynthesisProcess)
+                {
+                    // Ignore glucolysis in chemo-synthesising proteins
+                    if (organelleTemplate.Definition == chemoSynthesizingProteins)
+                    {
+                        continue;
+                    }
+
+                    // Uses some other energy source than chemosynthesis
+                    return;
+                }
+
+                if (chemosynthesisProcess)
+                {
+                    chemosynthesis += process.Process.Outputs.SumValues();
+                }
+            }
+        }
+
+        // The threshold is pretty low as the chemo-synthesising proteins don't produce much
+        if (chemosynthesis > 0.03)
+        {
+            AchievementEvents.ReportPlayerUsesChemosynthesis();
+        }
     }
 
     private class PendingAutoEvoPrediction

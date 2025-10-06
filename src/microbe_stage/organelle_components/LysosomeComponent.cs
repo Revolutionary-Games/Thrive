@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Arch.Core;
 using Components;
-using DefaultEcs;
 
 /// <summary>
 ///   Adds extra digestion enzymes to an organelle
@@ -10,21 +10,29 @@ public class LysosomeComponent : IOrganelleComponent
 {
     public bool UsesSyncProcess { get; set; }
 
+    public static void CalculateLysosomeActiveEnzymes(LysosomeUpgrades? lysosomeData, Dictionary<Enzyme, int> result)
+    {
+        if (lysosomeData == null)
+        {
+            result[SimulationParameters.Instance.GetEnzyme(Constants.LIPASE_ENZYME)] = 1;
+            return;
+        }
+
+        var enzyme = lysosomeData.Enzyme;
+        result[enzyme] = 1;
+    }
+
     public void OnAttachToCell(PlacedOrganelle organelle)
     {
         var configuration = organelle.Upgrades?.CustomUpgradeData;
 
-        var enzyme = configuration is LysosomeUpgrades upgrades ?
-            upgrades.Enzyme :
-            SimulationParameters.Instance.GetEnzyme(Constants.LIPASE_ENZYME);
-
         // TODO: avoid allocating memory like this for each lysosome component
         // Could most likely refactor the PlacedOrganelle.GetEnzymes to take in the container.AvailableEnzymes
         // dictionary and write updated values to that
-        organelle.OverriddenEnzymes = new Dictionary<Enzyme, int>
-        {
-            { enzyme, 1 },
-        };
+        var enzymes = new Dictionary<Enzyme, int>();
+        CalculateLysosomeActiveEnzymes(configuration as LysosomeUpgrades, enzymes);
+
+        organelle.OverriddenEnzymes = enzymes;
     }
 
     public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,

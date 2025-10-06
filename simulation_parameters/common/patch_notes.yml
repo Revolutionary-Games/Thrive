@@ -928,3 +928,73 @@
     - Some native library build tweaks
     - Updated unit testing packages
     - Updated translations
+
+0.8.3:
+  IntroductionText: |
+    This release brings achievements and starting planet customization to the microbe stage. Also a new visual ripple effect has been added along with many more smaller bug fixes and new features for the microbe stage. The multicellular prototype has also received quite many improvements, the most major will probably be the fix to the cell layouts not being exactly remembered between editor sessions.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.8.3
+  PatchNotes:
+    - Implemented a set of 12 microbe achievements
+    - Added simple planet customization options to the new game screen
+    - Added new hydrogenosome organelle
+    - Added a microbe movement ripple effect
+    - Improved auto-evo generation diversity
+    - Made hydrogen sulfide diffuse between patches and buffed events that generate it
+    - Increased max zoom out distance when playing as a large cell colony
+    - Intercellular matrix is now represented in the multicellular stage with visual links
+    - Implemented preview images of multicellular species
+    - The multicellular editor now remembers the exact hex layout between sessions and no longer does a conversion process that sometimes shifted cells around
+    - Implemented tooltips for multicellular cell selection buttons
+    - Added a graphical setting that slightly tilts the camera towards the cursor, which can be enabled in the game settings
+    - Made water currents affect bigger cells more strongly to be able to push them around
+    - Updated the icon for hydrogenase
+    - Tweaked balancing of the easy difficulty preset
+    - Tweaked balancing of toxins
+    - Mucocyst activation now requires 50% stored mucocyst to activate it
+    - Buffed thermosynthesis and radiosynthesis by 20%
+    - Microbe colonies now have passive reproduction enabled for them in the form of gaining free compounds needed for reproduction while part of a colony
+    - Added an in-game list of achievements
+    - There is now a new look to our options menu with checkboxes replaced by toggle buttons and various other tweaks were also made like moving options around
+    - Metabolic stability pressure in auto-evo no longer penalizes sessile species as harshly
+    - Fixed digestion being stuck at 0 / 0 when engulfed cell produces resources
+    - Fixed tolerance tooltips sometimes always showing debuffs when the theoretically perfect tolerances calculation failed due to not taking organelle effects into account
+    - Fixed the glaciation event ending leaving light levels in some cases to be incorrect
+    - Fixed the move to patch button staying active when the patch extinction popup was triggered multiple times in a row
+    - Fixed engulfing in cell colonies using capacity information from the wrong cell
+    - Fixed key rebinding when there were conflicts not working
+    - Fixed queued chunk spawns being able to spawn too close to the player's position
+    - Fixed errors when glaciation ended related to re-applying original patch conditions
+    - Fixed the 2x game speed mode not speeding up the day/night cycle
+    - Fixed a problem with cell type colours not updating by making the colour part of the visual hash for them
+    - Fixed ATP warning staying active in the multicellular editor
+    - Fixed iron meteor event not being able to add iron to a patch that didn't have any iron
+    - Fixed the hydrogenase tooltip claiming that the organelle used hydrogen as an input when in reality the fermentation process results in hydrogen being released
+    - Fixed species preview images not updating when the species mutated
+    - Fixed freebuild species missing tooltips showing what they look like. Note that species that go immediately extinct still don't have tooltips.
+    - Fixed the process panel list being empty if opened initially when the game is paused
+    - Fixed auto-evo being able to place macroscopic organelles in the microbe species
+    - Fixed the timeline tab showing nonsensical glucose reductions if playing a single Thrive playthrough for a very large number of generations
+    - Compound bars in compact mode now use a font with shadow for better visibility of numbers against the bar backgrounds
+    - Improved the handling of scrollbars in the timeline tab with too tall scrollbars being now less likely to appear, but they still do sometimes
+    - Fixed jittery creature movement in the ascension ceremony screen
+    - Fixed editor cancel button focused mode visuals
+    - Fixed organelle names in tooltips not updating when changing the game language
+    - Fixed chemical equation titles not updating on language change
+    - Made signalling agents from colony members available for use even if the primary cell doesn't have them
+    - Save list now has a tag for saves that cheats have been used in
+    - Added a popup message the first time cheats are used in a game
+    - Removed accidentally leftover text in the new game setup screen about passive reproduction
+    - Cell type editor now validates the new type name immediately on entering the name
+    - Made sure species bacteria status is always up to date in the species class
+    - Made the editor tabs disallow swapping between them if there is an in-progress action that needs to be completed first
+    - Improved the direct stage start cell for multicellular
+    - Converted all NodePaths in our code to direct node references that were added with Godot 4. Hopefully this makes long Thrive play sessions a bit more stable.
+    - "Steam: added achievements"
+    - Updated an outdated command in our setup documentation
+    - Made our game export script to delete the test runner before starting as that caused failures
+    - Tweaked our code checking tools to not report false positives on some Godot scene files
+    - Tweaked our code checking tool ignore list
+    - Updated unit testing framework, including updating gdUnit4
+    - Updated xunit version
+    - Updated Thriveopedia content
+    - Updated translations

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-23 10:31+0300\n"
-"PO-Revision-Date: 2025-04-04 10:42+0000\n"
+"POT-Creation-Date: 2025-09-15 11:08+0200\n"
+"PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
 "Language: ca\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -49,6 +49,19 @@ msgid "ABYSSOPELAGIC"
 msgstr "Zona abissal"
 
 msgid "ACCEPT"
+msgstr ""
+
+#, fuzzy
+msgid "ACHIEVEMENTS"
+msgstr "Capacitat de moviment"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+msgid "ACHIEVEMENT_LOCKED"
 msgstr ""
 
 #, fuzzy
@@ -183,6 +196,10 @@ msgstr "Amoníac"
 
 #, fuzzy
 msgid "AMMONIA_COST"
+msgstr "Amoníac"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "Amoníac"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -367,6 +384,10 @@ msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
 #, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "estat d'execució:"
+
+#, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "estat d'execució:"
 
@@ -405,6 +426,21 @@ msgstr ""
 msgid "AVAILABLE_MODS"
 msgstr "Mods Disponibles"
 
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr ""
 
@@ -423,6 +459,9 @@ msgstr "Enrere"
 
 msgid "BACKSPACE"
 msgstr "Enrere"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -506,6 +545,12 @@ msgstr ""
 
 msgid "BEST_PATCH_COLON"
 msgstr "Millor Medi:"
+
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr ""
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Gran tros de Ferro"
@@ -624,6 +669,9 @@ msgstr "No es pot eliminar el Tipus de Cèl·lula"
 msgid "CANNOT_ENGULF"
 msgstr "No pot engolir"
 
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
+
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "No es pot moure una metabola en el seu arbre de descendents"
 
@@ -696,14 +744,6 @@ msgstr "El valor utilitzat per generar el món, que ha de ser un nombre enter po
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr "El valor utilitzat per generar el món, que ha de ser un nombre enter positiu"
 
-#, fuzzy
-msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "{0}: -{1} ATP"
-
-#, fuzzy
-msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "Producció d'ATP"
-
 msgid "CELL_TYPE_NAME"
 msgstr "Nom del Tipus de Cèl·lula"
 
@@ -720,6 +760,10 @@ msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la pr
 msgid "CHEATS"
 msgstr "Trucs"
 
+#, fuzzy
+msgid "CHEATS_USED_NOTICE"
+msgstr "Avortat."
+
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Trucs activats"
 
@@ -732,6 +776,7 @@ msgstr "Mostrar / amagar els procesos del microbi"
 msgid "CHEMOPLAST"
 msgstr "Quimioplast"
 
+#, fuzzy
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "El Quimioplast és una estructura de doble membrana que conté proteïnes que transformen Àcid Sulfhídric, Aigua i Diòxid de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La velocitat de producció de Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni."
 
@@ -762,6 +807,7 @@ msgstr "Quimiosíntesi"
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Proteïnes Quimiosintetitzadores"
 
+#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "Les Proteïnes Quimiosintetitzadores són cúmuls de proteïnes suspeses en el Citoplasma, capaçes de transformar l'Àcid Sulfhídric, l'Aigua i el Diòxid de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La velocitat de la producció de Glucosa és proporcional a la concentració de Diòxid de Carboni. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida que el Citoplasma. Com que les Proteïnes Quimiosintetitzadores estan suspeses en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
 
@@ -786,6 +832,7 @@ msgstr "Aquesta membrana té una paret, de manera que està més ben protegida, 
 msgid "CHLOROPLAST"
 msgstr "Cloroplast"
 
+#, fuzzy
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr "El cloroplast és una estructura de doble membrana que conté pigments sensibles a la Llum, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Els seus pigments, són capaços de fer servir la Llum per produïr Glucosa, mitjançant Aigua i Diòxid de Carboni, en un procés anomenat Fotosíntesi. Aquests pigments també li donen un color distintiu. La velocitat de producció de Glucosa augmenta proporcionalment amb la concentració de Diòxid de Carboni i la intensitat de la Llum."
 
@@ -829,6 +876,24 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Eliminar tot el que ha estat seleccionat"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Els microbis actius es mouran continuament per trobar recursos.\n"
+"Els microbis sèssils es mantindran relativament quiets, esperant a que l'entorn canviï abans d'actuar."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Tancar"
@@ -1013,6 +1078,25 @@ msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Densitat de núvols de Compostos"
 
 #, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Equilibri de Compostos"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Equilibri de Compostos"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Núvols de Compostos"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Equilibri de Compostos"
+
+#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "Equilibri de Compostos"
 
@@ -1083,6 +1167,14 @@ msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Alguns paràmetres no són vàlids"
 
 #, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr "Confirmar Sortida"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Tritanopia (Blau-Groc)"
 
@@ -1101,6 +1193,7 @@ msgstr "Selecciona un Indret per a veure'n els detalls"
 msgid "CONTINUE_THRIVING"
 msgstr "Començar a prosperar"
 
+#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 "Has assolit el final de la part \"completa\" de Thrive.\n"
@@ -1289,6 +1382,10 @@ msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (Blau-Groc)"
 
 #, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "{0} consum"
+
+#, fuzzy
 msgid "CPU_THREADS"
 msgstr "Fils:"
 
@@ -1418,6 +1515,7 @@ msgstr "Nom d'usuari propi:"
 msgid "CYTOPLASM"
 msgstr "Citoplasma"
 
+#, fuzzy
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "És la substància que forma l'interior de la cèl·lula. El Citoplasma és una barreja d'ions, proteïnes i altres substàncies dissoltes a l'aigua. Una de les seves funcions principals és dur a terme el procés de Fermentació, en el qual la Glucosa és transformada en ATP. Moltes cèl·lules simples, que no tenen orgànuls especialitzats, depenen totalment del seu citoplasma per tal de viure - és a dir, per tal de nutrir-se, relacionar-se i reproduïr-se."
 
@@ -1857,6 +1955,15 @@ msgstr ""
 "Quan estiguis a punt, fes clic al botó \"següent\", a baix a la dreta."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"Aquest és l'editor de microbi, on pots fer evolucionar la teva espècie invertint punts de mutació (MP). En cada generació disposaràs de 100 MP per invertir, de manera que no cal que n'estalviïs!\n"
+"\n"
+"L'hexàgon del centre de la pantalla és la teva cèl·lula, formada per una sola part de citoplasma.\n"
+"\n"
+"Per continuar, selecciona una part del tauler de l'esquerra. Tot seguit, fes clic-esquerra a l'hexàgon per a col·locar-la. Pots fer rotar les parts amb les tecles [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 "Aquest és l'editor de microbi, on pots fer evolucionar la teva espècie invertint punts de mutació (MP). En cada generació disposaràs de 100 MP per invertir, de manera que no cal que n'estalviïs!\n"
@@ -1864,6 +1971,10 @@ msgstr ""
 "L'hexàgon del centre de la pantalla és la teva cèl·lula, formada per una sola part de citoplasma.\n"
 "\n"
 "Per continuar, selecciona una part del tauler de l'esquerra. Tot seguit, fes clic-esquerra a l'hexàgon per a col·locar-la. Pots fer rotar les parts amb les tecles [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "Estadi de Microbi"
 
 #, fuzzy
 msgid "EFFECTIVE_VALUE"
@@ -1983,6 +2094,9 @@ msgstr "Fonts d'energia:"
 
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "L'energia total recol·lectada és {0} amb un cost individual de {1} resultant en una població no ajustada de {2}"
+
+msgid "ENGULF_CELL_OR_CHUNK"
+msgstr ""
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr ""
@@ -2368,6 +2482,10 @@ msgstr "Eliminar Dades Locals"
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "Eliminar dades locals referents a aquest item. És útil si has introduït l'ID equivocat o vols carregar una nova versió a un item diferent."
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "Emmagatzematge:"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Error: {0}"
 
@@ -2485,12 +2603,33 @@ msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
 
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
+
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "Generació:"
 
 msgid "GENERATION_COLON"
 msgstr "Generació:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Els microbis actius es mouran continuament per trobar recursos.\n"
+"Els microbis sèssils es mantindran relativament quiets, esperant a que l'entorn canviï abans d'actuar."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -2535,6 +2674,10 @@ msgstr "Glucosa"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Les concentracions de Glucosa han disminuït dràsticament!"
 
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}m sota el nivell del mar"
+
 msgid "GLYCOLYSIS"
 msgstr "Glicòlisi"
 
@@ -2544,6 +2687,9 @@ msgstr "Mode Déu"
 #, fuzzy
 msgid "GOD_TOOLS_TITLE"
 msgstr "Han passat: {0:#,#} anys"
+
+msgid "GOING_NUCLEAR"
+msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "Cèl·lula d'ulls amorosos"
@@ -2659,7 +2805,23 @@ msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient b
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Àcid Sulfhídric"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
+msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
 msgid "HYDROGEN_SULFIDE"
+msgstr "Àcid Sulfhídric"
+
+#, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "Àcid Sulfhídric"
 
 #, fuzzy
@@ -2910,6 +3072,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Ferro"
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 #, fuzzy
 msgid "IRON_OXIDATION"
 msgstr "Donacions"
@@ -3061,6 +3226,14 @@ msgstr "Pestanya"
 
 msgid "KEY_UP"
 msgstr "Amunt"
+
+#, fuzzy
+msgid "KILL_50_MICROBES"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "KILL_MICROBES_PROGRESS"
+msgstr "Editor de Microbi"
 
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
@@ -3448,6 +3621,7 @@ msgstr "Síntesi de mucílag"
 msgid "LYSOSOME"
 msgstr "Lisosoma"
 
+#, fuzzy
 msgid "LYSOSOME_DESCRIPTION"
 msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidrolítics que poden trencar diverses biomolècules. Els lisosomes permeten a la cèl·lula digerir materials ingerits mitjançant endocitosi i netejar els productes de rebuig de la cèl·lula en un procés anomenat autofàgia."
 
@@ -3465,6 +3639,18 @@ msgstr "Esdevenir un Organisme Macroscòpic ({0}/{1})"
 #, fuzzy
 msgid "MACROSCOPIC_STAGE"
 msgstr "Estadi de Microbi"
+
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "(cost d'orgànuls, membranes i altres elements a l'editor)"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Quimiosíntesi"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "Habilitar l'editor"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -3564,6 +3750,7 @@ msgstr "Zona mesopelàgica"
 msgid "METABOLOSOMES"
 msgstr "Metabolosomes"
 
+#, fuzzy
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana de proteïnes. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida i eficient que el Citoplasma. No obstant, necessita grans quantitats d'Oxigen atmosfèric per funcionar amb eficàcia, i nivells d'Oxigen més baixos en reduïran la velocitat de producció d'ATP. Com que els Metabolosomes estan suspesos en el Citoplasma, el fluid que els envolta duu a terme una certa glicòlisi."
 
@@ -3647,6 +3834,10 @@ msgstr ""
 "[b]Comportament[/b]\n"
 "  {5}"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "[b][u]{0}[/u][/b] s'ha dividit de [b][u]{1}[/u][/b] com a noves espècies degut a diferents pressions selectives"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3672,6 +3863,10 @@ msgstr "Predació de {0}"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
+msgstr "Predació de {0}"
 
 msgid "MICHE_TREE"
 msgstr ""
@@ -3806,6 +4001,10 @@ msgstr "Estadístiques de la Cèl·lula"
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "Estadístiques de la Cèl·lula"
 
+#, fuzzy
+msgid "MICROBE_RIPPLE_EFFECT"
+msgstr "Estadístiques de la Cèl·lula"
+
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Estadi[/b]\n"
@@ -3907,6 +4106,14 @@ msgstr ""
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr "Estadístiques de la Cèl·lula"
 
+#, fuzzy
+msgid "MICROBIAL_MASSACRE"
+msgstr "Estadi de Microbi"
+
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "Estadi de Microbi"
+
 msgid "MIDDLE_MOUSE"
 msgstr "Clic del mig del ratolí"
 
@@ -3993,6 +4200,7 @@ msgstr "Falta un nom"
 msgid "MITOCHONDRION"
 msgstr "Mitocondri"
 
+#, fuzzy
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr "És el pal de paller de la generació d'energia per la cèl·lula. Els Mitocondris són una estructura de membrana doble curulla de proteïnes i enzims. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per la cèl·lula eucariota, que actua com un hoste. Produeix grans quantitats d'ATP, a partir de Glucosa i Oxigen, amb una gran eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
 
@@ -4399,6 +4607,7 @@ msgstr "Nitrogen"
 msgid "NITROGENASE"
 msgstr "Nitrogenasa"
 
+#, fuzzy
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
 
@@ -4408,6 +4617,7 @@ msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:c
 msgid "NITROPLAST"
 msgstr "Plastidi Fixador de Nitrogen"
 
+#, fuzzy
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "El Plast de Fixació de Nitrogen és una proteïna que produeix Amoníac, un component important en el creixement i reproducció de les cèl·lules, mitjançant Nitrogen, Oxigen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Aeròbica."
 
@@ -4458,6 +4668,13 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Capacitat de moviment"
 
+#, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Àcid Sulfhídric"
+
+msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
+msgstr ""
+
 msgid "NOTICE_RADIATION_DAMAGE"
 msgstr ""
 
@@ -4487,6 +4704,10 @@ msgstr "Cap esdeveniment registrat"
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "No s'ha trobar el directori d'arxius de guardat"
+
+#, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "Confirmar Sortida"
 
 #, fuzzy
 msgid "NO_MODS_ENABLED"
@@ -4826,6 +5047,10 @@ msgid "PAST_DEVELOPERS"
 msgstr "Desenvolupadors passats"
 
 #, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "{0} {1}"
+
+#, fuzzy
 msgid "PATCH_COLON"
 msgstr "Millor Medi:"
 
@@ -4936,6 +5161,10 @@ msgstr "Fosfat"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfat"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Fosfat"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosíntesi"
 
@@ -4952,14 +5181,19 @@ msgid "PLANET"
 msgstr "Planeta"
 
 #, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "A sota del Cursor:"
+
+#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Obrir Carpeta"
 
-msgid "PLANET_GENERATION_TEASER"
-msgstr "Pròximament, generació planetària!"
-
 msgid "PLANET_RANDOM_SEED"
 msgstr "Llavor de planeta aleatòria"
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Estadístiques"
 
 #, fuzzy
 msgid "PLAYER"
@@ -5116,6 +5350,10 @@ msgid "RADIATION"
 msgstr "Respiració aeròbica"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Respiració aeròbica"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Gran tros de Ferro"
 
@@ -5135,6 +5373,16 @@ msgstr "\"Raw\""
 #, fuzzy
 msgid "RAW_VALUE_COLON"
 msgstr "Nou nom:"
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Estadi Multicel·lular"
 
 msgid "READING_SAVE_DATA"
 msgstr "Llegint les dades guardades"
@@ -5158,6 +5406,14 @@ msgstr "Refer la darrera acció"
 
 msgid "REFRESH"
 msgstr "Refrescar"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Orgànuls"
+
+#, fuzzy
+msgid "REGIONS_NUMBER"
+msgstr "Nombre d'ID"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5205,6 +5461,10 @@ msgstr "Cercar"
 
 msgid "RESET"
 msgstr "Reset"
+
+#, fuzzy
+msgid "RESET_ACHIEVEMENTS"
+msgstr "per augmentar la"
 
 #, fuzzy
 msgid "RESET_DEADZONES"
@@ -5302,6 +5562,18 @@ msgid "REVEAL_ALL_PATCHES"
 msgstr "s'ha escampat a les zones:"
 
 #, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Anar a la següent pestanya de l'editor"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "(velocitat a la qual les espècies de la IA muten)"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Mostrar Més Informació"
+
+#, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Per Revolutionary Games Studio"
 
@@ -5388,6 +5660,10 @@ msgstr "Guardar i continuar"
 
 msgid "SAVE_AUTOSAVE"
 msgstr "Autoguardat"
+
+#, fuzzy
+msgid "SAVE_CHEATS_USED"
+msgstr "Espai emprat pels arxius:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "L'acció d'eliminar aquest arxiu de guardat és irreversible, esteu segur que voleu eliminar permanentment l'arxiu {0}?"
@@ -5627,6 +5903,10 @@ msgid "SHOW_ITEM_COORDINATES"
 msgstr "Mostrar tutorials"
 
 #, fuzzy
+msgid "SHOW_MAP"
+msgstr "Mostrar tauler d'ajuda"
+
+#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
@@ -5693,6 +5973,10 @@ msgstr "Silici"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una forta paret de silici. Pot resistir les agressions externes, sobretot les de naturalesa física. També consumeix poca energia. No obstant, fa que la cèl·lula esdevingui lenta, i que absorbeixi els nutrients a poc a poc."
+
+#, fuzzy
+msgid "SIMULATION_CONFIG"
+msgstr "Cost d'Osmoregulació"
 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
@@ -6018,6 +6302,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr "acció de caça exitosa"
 
@@ -6039,6 +6326,10 @@ msgstr "Partidaris"
 msgid "SURVIVAL_TITLE"
 msgstr ""
 
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "Requereix nucli"
+
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Commutar a la vista de càmera frontal"
 
@@ -6050,6 +6341,10 @@ msgstr "Commutar a la vista de càmera superior"
 
 msgid "SYSREQ"
 msgstr "Requeriments"
+
+#, fuzzy
+msgid "TAB_CHANGE_BLOCKED_WHILE_ACTION_IN_PROGRESS"
+msgstr "Acció bloquejada mentre una altra s'està duent a terme"
 
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr ""
@@ -6074,6 +6369,14 @@ msgstr "Fer una captura de pantalla"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "Tipus:"
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Fils actuals:"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "Respiració aeròbica"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -6179,6 +6482,10 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
+msgid "THE_EDITOR"
+msgstr "Anar a la següent pestanya de l'editor"
+
+#, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Mapa d'Indrets del món"
 
@@ -6222,9 +6529,14 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr "Llicències de Thrive"
 
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Capacitat de moviment"
+
 msgid "THYLAKOIDS"
 msgstr "Tilacoide"
 
+#, fuzzy
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Els Tilacoides són cúmuls de proteïnes i pigments fotosensibles. Aquests pigments són capaços de fer servir l'energia provinent d'una font de Llum (com ara una estrella) i, combinant-la amb una certa quantitat d'Aigua i Diòxid de Carboni, produïr Glucosa, en un procés anomenat Fotosíntesi. Aquests pigments també donen un color característic als Tilacoides. La velocitat de producció de Glucosa és proporcional a la concentració de Diòxid de Carboni i a la intensitat de la Llum. Com que els Tilacoides estan suspesos en el Citoplasma, aquest fluid duu a terme una certa Fermentació."
 
@@ -6370,6 +6682,20 @@ msgstr "{0}: +{1} ATP"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]Espècies[/b]\n"
+"  {0}:{1}\n"
+"[b]Generació[/b]\n"
+"  {2}\n"
+"[b]Població[/b]\n"
+"  {3}\n"
+"[b]Color[/b]\n"
+"  #{4}\n"
+"[b]Comportament[/b]\n"
+"  {5}"
 
 #, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
@@ -6519,10 +6845,6 @@ msgid "TUTORIAL"
 msgstr "Tutorial"
 
 #, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "(comença cada generació amb un núvol de glucosa gratuït proper)"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Aquest és el mapa de zones.\n"
@@ -6533,6 +6855,7 @@ msgstr ""
 "\n"
 "Selecciona una zona per continuar."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Aquest tauler mostra una predicció de la teva futura població. Aquests nombres provenen de la simulació del sistema auto-evo.\n"
@@ -6676,6 +6999,7 @@ msgstr ""
 "\n"
 "Selecciona una zona per continuar."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Eliminar orgànuls també costa Punts de Mutació, a menys que els hagis col·locat en la sessió actual de l'editor.\n"
@@ -6816,6 +7140,10 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Carregant l'Editor Multicel·lular Primerenc"
+
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "(comença cada generació amb un núvol de glucosa gratuït proper)"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Veure ara"
@@ -7036,6 +7364,9 @@ msgstr ""
 msgid "UPSCALE_FSR_22"
 msgstr ""
 
+msgid "UPSCALE_METHOD"
+msgstr ""
+
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
@@ -7100,6 +7431,10 @@ msgstr "Augmenta l'espai d'emmagatzematge de la cèl·lula."
 
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VENTS_ARE_HOME"
+msgstr "Cap esdeveniment registrat"
 
 msgid "VERSION_COLON"
 msgstr "Versió:"
@@ -7914,6 +8249,38 @@ msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
 
 #, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "La termosintasa és una proteïna que fa servir la convecció tèrmica per canviar la seva forma, permetent-li plegar-se i adherir-se a l'ADP quan és exposada a la temperature, tot seguit desplegar-se i reciclar-la en ATP quan s'exposa a temperatures més baixes en un procés anomenat termosíntesi. La velocitat de la producció d'ATP és proporcional a la temperatura."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
@@ -8438,6 +8805,10 @@ msgstr "Quimioplast"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "Nitrogenasa"
 
 #, fuzzy
@@ -9015,6 +9386,27 @@ msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
 #, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "per augmentar la"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr ""
+"Els microbis centrats buscaran recursos o preses més llunyans\n"
+"i és possible que siguin molt més ambiciosos respecte a uns mateixos recursos.\n"
+"Els microbis sensibles canviaran d'objectius més aviat."
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "per augmentar la"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "per augmentar la"
 
@@ -9042,6 +9434,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Han passat: {0:#,#} anys"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Temperatura"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Temperatura"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Els microbis centrats buscaran recursos o preses més llunyans\n"
+"i és possible que siguin molt més ambiciosos respecte a uns mateixos recursos.\n"
+"Els microbis sensibles canviaran d'objectius més aviat."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Temperatura"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Temperatura"
 
 msgid "WORST_PATCH_COLON"
 msgstr "Pitjor Medi:"
@@ -9078,11 +9493,45 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Pots donar suport al desenvolupament futur de Thrive a Patreon."
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr ""
+"Els microbis centrats buscaran recursos o preses més llunyans\n"
+"i és possible que siguin molt més ambiciosos respecte a uns mateixos recursos.\n"
+"Els microbis sensibles canviaran d'objectius més aviat."
+
 msgid "ZOOM_IN"
 msgstr "Enfocar la visió de la càmera"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Generació:"
+
+#, fuzzy
+#~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+#~ msgstr "{0}: -{1} ATP"
+
+#, fuzzy
+#~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+#~ msgstr "Producció d'ATP"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m sota el nivell del mar"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m sota el nivell del mar"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "per augmentar la"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "Pròximament, generació planetària!"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
@@ -9315,10 +9764,6 @@ msgstr "Zoom enfora"
 #~ msgstr "Estadi de Microbi"
 
 #, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Quimiosíntesi"
-
-#, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"
 #~ msgstr "Glicòlisi"
 
@@ -9333,10 +9778,6 @@ msgstr "Zoom enfora"
 #, fuzzy
 #~ msgid "WIKI_LIPASE"
 #~ msgstr "Lipasa"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_EDITOR"
-#~ msgstr "Editor de Microbi"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"

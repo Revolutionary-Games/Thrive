@@ -39,7 +39,7 @@ public partial class GalleryCardModel : GalleryCard
         }
 
         // Avoid allocating extra memory if already has a preview for this
-        var hash = ModelPreview.HashForPath(Asset.ResourcePath);
+        var hash = ModelPreview.HashForPath(Asset!.ResourcePath);
 
         imageTask = PhotoStudio.Instance.TryGetFromCache(hash) ??
             PhotoStudio.Instance.GenerateImage(new ModelPreview(Asset.ResourcePath, Asset.MeshNodePath!));

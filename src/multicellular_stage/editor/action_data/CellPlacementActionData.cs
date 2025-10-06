@@ -15,21 +15,8 @@ public class CellPlacementActionData : HexPlacementActionData<HexWithData<CellTe
     {
     }
 
-    protected override double CalculateCostInternal()
+    protected override double CalculateBaseCostInternal()
     {
         return PlacedHex.Data?.CellType.MPCost ?? throw new InvalidOperationException("Hex with no data");
-    }
-
-    protected override CombinableActionData CreateDerivedMoveAction(HexRemoveActionData<HexWithData<CellTemplate>,
-        MulticellularSpecies> data)
-    {
-        return new CellMoveActionData(data.RemovedHex, data.Location, Location,
-            data.Orientation, Orientation);
-    }
-
-    protected override CombinableActionData CreateDerivedPlacementAction(
-        HexMoveActionData<HexWithData<CellTemplate>, MulticellularSpecies> data)
-    {
-        return new CellPlacementActionData(PlacedHex, data.NewLocation, data.NewRotation);
     }
 }

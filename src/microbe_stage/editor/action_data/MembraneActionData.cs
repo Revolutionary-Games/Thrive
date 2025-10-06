@@ -1,4 +1,6 @@
-﻿[JSONAlwaysDynamicType]
+﻿using System.Collections.Generic;
+
+[JSONAlwaysDynamicType]
 public class MembraneActionData : EditorCombinableActionData<CellType>
 {
     public MembraneType OldMembrane;
@@ -10,33 +12,49 @@ public class MembraneActionData : EditorCombinableActionData<CellType>
         NewMembrane = newMembrane;
     }
 
-    protected override double CalculateCostInternal()
+    public static double CalculateCost(MembraneType oldMembrane, MembraneType newMembrane)
     {
-        return NewMembrane.EditorCost;
+        if (oldMembrane == newMembrane)
+            return 0;
+
+        return newMembrane.EditorCost;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override double CalculateBaseCostInternal()
     {
-        if (other is MembraneActionData membraneActionData)
-        {
-            // If changed back to the old membrane
-            if (membraneActionData.NewMembrane == OldMembrane && NewMembrane == membraneActionData.OldMembrane)
-                return ActionInterferenceMode.CancelsOut;
+        return CalculateCost(OldMembrane, NewMembrane);
+    }
 
-            // If changed membrane twice
-            if (membraneActionData.NewMembrane == OldMembrane || NewMembrane == membraneActionData.OldMembrane)
-                return ActionInterferenceMode.Combinable;
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
+    {
+        var cost = CalculateBaseCostInternal();
+        double refund = 0;
+        bool seenOther = false;
+
+        var count = history.Count;
+        for (int i = 0; i < insertPosition && i < count; ++i)
+        {
+            var other = history[i];
+
+            // If the membrane got changed again
+            if (other is MembraneActionData membraneActionData && MatchesContext(membraneActionData))
+            {
+                if (!seenOther)
+                {
+                    seenOther = true;
+                    cost = CalculateCost(membraneActionData.OldMembrane, NewMembrane);
+                }
+
+                refund += other.GetCalculatedSelfCost() - other.GetCalculatedRefundCost();
+            }
         }
 
-        return ActionInterferenceMode.NoInterference;
+        return (cost, refund);
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        var membraneActionData = (MembraneActionData)other;
-        if (OldMembrane == membraneActionData.NewMembrane)
-            return new MembraneActionData(membraneActionData.OldMembrane, NewMembrane);
-
-        return new MembraneActionData(membraneActionData.NewMembrane, OldMembrane);
+        return false;
     }
 }

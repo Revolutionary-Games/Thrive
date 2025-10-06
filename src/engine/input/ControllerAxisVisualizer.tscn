@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://m23iuynrxl6c" path="res://src/engine/input/ControllerAxisVisualizer.cs" id="4"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="4_146wt"]
 
-[node name="ControllerAxisVisualizer" type="MarginContainer"]
+[node name="ControllerAxisVisualizer" type="MarginContainer" node_paths=PackedStringArray("verticalDeadzoneDisplayer", "verticalRawDisplayer", "verticalDeadzoneValue", "verticalRawValue", "verticalLabel", "horizontalDeadzoneValue", "horizontalRawValue", "horizontalLabel", "drawerNode")]
 offset_right = 273.0
 offset_bottom = 210.0
 focus_mode = 2
@@ -14,15 +14,15 @@ theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 script = ExtResource("4")
-DrawerNodePath = NodePath("VBoxContainer/DrawArea")
-HorizontalLabelPath = NodePath("VBoxContainer/TextContainer/Horizontal")
-HorizontalRawValuePath = NodePath("VBoxContainer/TextContainer/RawDisplayer/RawValue")
-HorizontalDeadzoneValuePath = NodePath("VBoxContainer/TextContainer/DeadzoneDisplayer/DeadzoneValue")
-VerticalLabelPath = NodePath("VBoxContainer/TextContainer/Vertical")
-VerticalRawValuePath = NodePath("VBoxContainer/TextContainer/RawDisplayer2/RawValue")
-VerticalDeadzoneValuePath = NodePath("VBoxContainer/TextContainer/DeadzoneDisplayer2/DeadzoneValue")
-VerticalRawDisplayerPath = NodePath("VBoxContainer/TextContainer/RawDisplayer2")
-VerticalDeadzoneDisplayerPath = NodePath("VBoxContainer/TextContainer/DeadzoneDisplayer2")
+drawerNode = NodePath("VBoxContainer/DrawArea")
+horizontalLabel = NodePath("VBoxContainer/TextContainer/Horizontal")
+horizontalRawValue = NodePath("VBoxContainer/TextContainer/RawDisplayer/RawValue")
+horizontalDeadzoneValue = NodePath("VBoxContainer/TextContainer/DeadzoneDisplayer/DeadzoneValue")
+verticalLabel = NodePath("VBoxContainer/TextContainer/Vertical")
+verticalRawValue = NodePath("VBoxContainer/TextContainer/RawDisplayer2/RawValue")
+verticalDeadzoneValue = NodePath("VBoxContainer/TextContainer/DeadzoneDisplayer2/DeadzoneValue")
+verticalRawDisplayer = NodePath("VBoxContainer/TextContainer/RawDisplayer2")
+verticalDeadzoneDisplayer = NodePath("VBoxContainer/TextContainer/DeadzoneDisplayer2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2

@@ -5,16 +5,15 @@
 /// </summary>
 public partial class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
 {
-    [Export]
-    public NodePath? SpeciesPreviewPath;
-
-    [Export]
-    public NodePath HexPreviewPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private SpeciesPreview? speciesPreview;
+
+    [Export]
     private CellHexesPreview? hexesPreview;
 #pragma warning restore CA2213
+
+    private ulong speciesVisualHash;
 
     private Species? previewSpecies;
 
@@ -23,10 +22,13 @@ public partial class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
         get => previewSpecies;
         set
         {
-            if (previewSpecies == value)
+            var newHash = value?.GetVisualHashCode() ?? 0UL;
+
+            if (newHash == speciesVisualHash)
                 return;
 
             previewSpecies = value;
+            speciesVisualHash = newHash;
             UpdateSpeciesPreview();
         }
     }
@@ -45,25 +47,8 @@ public partial class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
     {
         base._Ready();
 
-        speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
-        hexesPreview = GetNode<CellHexesPreview>(HexPreviewPath);
-
         if (previewSpecies != null)
             UpdateSpeciesPreview();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (SpeciesPreviewPath != null)
-            {
-                SpeciesPreviewPath.Dispose();
-                HexPreviewPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     /// <summary>
@@ -85,14 +70,6 @@ public partial class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
         DisplayName = PreviewSpecies.FormattedName;
         Description = PreviewSpecies.FormattedName;
 
-        if (PreviewSpecies is MicrobeSpecies microbeSpecies)
-        {
-            hexesPreview.PreviewSpecies = microbeSpecies;
-        }
-        else
-        {
-            GD.PrintErr("Unknown species type to preview: ", PreviewSpecies, " (", PreviewSpecies.GetType().Name, ")");
-            hexesPreview.PreviewSpecies = null;
-        }
+        hexesPreview.PreviewSpecies = PreviewSpecies;
     }
 }

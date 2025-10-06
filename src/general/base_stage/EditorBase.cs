@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using AutoEvo;
@@ -37,18 +38,13 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     where TAction : EditorAction
     where TStage : Node, IReturnableGameState
 {
-    [Export]
-    public NodePath? PauseMenuPath;
-
-    [Export]
-    public NodePath EditorGUIBaseNodePath = null!;
-
-    [Export]
-    public NodePath? EditorTabSelectorPath;
-
 #pragma warning disable CA2213
     protected Node world = null!;
+
+    [Export]
     protected PauseMenu pauseMenu = null!;
+
+    [Export]
     protected MicrobeEditorTabButtons? editorTabSelector;
 #pragma warning restore CA2213
 
@@ -81,6 +77,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     protected GameProperties? currentGame;
 
 #pragma warning disable CA2213
+    [Export]
     private Control editorGUIBaseNode = null!;
 #pragma warning restore CA2213
 
@@ -234,27 +231,31 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
         world = GetNode("EditorWorld");
         RootOfDynamicallySpawned = world.GetNode<Node3D>("DynamicallySpawned");
-        pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
-        editorGUIBaseNode = GetNode<Control>(EditorGUIBaseNodePath);
-
-        if (EditorTabSelectorPath != null)
-            editorTabSelector = GetNode<MicrobeEditorTabButtons>(EditorTabSelectorPath);
 
         ResolveDerivedTypeNodeReferences();
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        AchievementsManager.OnPlayerHasCheatedEvent += OnCheatsUsed;
     }
 
     public override void _ExitTree()
     {
         base._ExitTree();
 
-        // As we will no longer return to the stage we need to free it, if we have it
-        // This might be disposed if this was loaded from a save and we loaded another save
+        AchievementsManager.OnPlayerHasCheatedEvent -= OnCheatsUsed;
+
+        // As we will no longer return to the stage, we need to free it if we have it
+        // This might be disposed if this was loaded from a save, and we loaded another save
         try
         {
             if (IsLoadedFromSave)
             {
                 // When loaded from save, the stage needs to be attached as a scene for the callbacks that reattach
-                // children to run, otherwise some objects won't be correctly deleted
+                // children to run; otherwise some objects won't be correctly deleted
                 if (ReturnToStage != null)
                     SceneManager.Instance.AttachAndDetachScene(ReturnToStage);
             }
@@ -850,6 +851,20 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         {
             editorComponent.OnEditorReady();
         }
+
+        // Sanity-check the species status for easier problem reporting during development
+        if (CurrentGame.GameWorld.PlayerSpecies.IsExtinct ||
+            CurrentGame.GameWorld.Map.GetSpeciesGlobalSimulationPopulation(CurrentGame.GameWorld.PlayerSpecies) < 1)
+        {
+            GD.PrintErr("Player species is extinct when starting the editor. This should not happen!");
+            GD.PrintErr("Something has incorrectly killed off the player species" +
+                "even though the player survived to the editor");
+
+#if DEBUG
+            if (Debugger.IsAttached)
+                Debugger.Break();
+#endif
+        }
     }
 
     protected void SetEditorTab(EditorTab tab)
@@ -1008,20 +1023,15 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         stage.OnReturnFromEditor();
     }
 
-    protected override void Dispose(bool disposing)
+    protected virtual void OnCheatsUsed()
     {
-        if (disposing)
+        if (!EditorReady)
         {
-            if (PauseMenuPath != null)
-            {
-                PauseMenuPath.Dispose();
-                EditorGUIBaseNodePath.Dispose();
-            }
-
-            EditorTabSelectorPath?.Dispose();
+            Invoke.Instance.QueueForObject(ApplyCheatsUsedFlag, this);
+            return;
         }
 
-        base.Dispose(disposing);
+        ApplyCheatsUsedFlag();
     }
 
     private void MakeSureEditorReturnIsGood()
@@ -1100,5 +1110,17 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     private void StartMusic()
     {
         Jukebox.Instance.PlayCategory(MusicCategory);
+    }
+
+    private void ApplyCheatsUsedFlag()
+    {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Current game has not been set even though it should be initialized");
+
+        if (CurrentGame.CheatsUsed)
+            return;
+
+        GD.Print("Detected player used cheats for the first time in this game (in the editor)");
+        CurrentGame.ReportCheatsUsed();
     }
 }
