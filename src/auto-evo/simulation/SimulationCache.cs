@@ -421,13 +421,11 @@ public class SimulationCache
         var hasChemoreceptor = false;
         foreach (var organelle in species.Organelles.Organelles)
         {
-            if (!organelle.Definition.HasChemoreceptorComponent)
+            var organelleTargetCompound = organelle.GetActiveTargetCompound();
+            if (organelleTargetCompound == Compound.Invalid)
                 continue;
 
-            if (organelle.GetActiveTargetCompound() == Compound.Invalid)
-                continue;
-
-            if (SimulationParameters.GetCompound(organelle.GetActiveTargetCompound()) == compound)
+            if (organelleTargetCompound == compound.ID)
                 hasChemoreceptor = true;
         }
 
@@ -459,13 +457,11 @@ public class SimulationCache
         var hasChemoreceptor = false;
         foreach (var organelle in species.Organelles.Organelles)
         {
-            if (!organelle.Definition.HasChemoreceptorComponent)
+            var organelleTargetCompound = organelle.GetActiveTargetCompound();
+            if (organelleTargetCompound == Compound.Invalid)
                 continue;
 
-            if (organelle.GetActiveTargetCompound() == Compound.Invalid)
-                continue;
-
-            if (SimulationParameters.GetCompound(organelle.GetActiveTargetCompound()) == compound)
+            if (organelleTargetCompound == compound.ID)
                 hasChemoreceptor = true;
         }
 
