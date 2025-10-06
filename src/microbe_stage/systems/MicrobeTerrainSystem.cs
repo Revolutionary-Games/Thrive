@@ -582,7 +582,7 @@ internal class SpawnedTerrainGroup(Vector3 position, float radius, uint groupId)
 
     public uint GroupId = groupId;
 
-    public bool MembersFetched = false;
+    public bool MembersFetched;
 
     public int ExpectedMemberCount;
 
