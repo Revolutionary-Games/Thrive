@@ -1298,7 +1298,7 @@ public class NativeLibs
         // ReSharper disable StringLiteralTypo
         startInfo.ArgumentList.Add($"-DCMAKE_INSTALL_PREFIX={intelInstallFolder}");
         startInfo.ArgumentList.Add("-DCMAKE_OSX_ARCHITECTURES=x86_64");
-        startInfo.ArgumentList.Add("-DCMAKE_CXX_FLAGS=-march=prescott");
+        startInfo.ArgumentList.Add("-DCMAKE_CXX_FLAGS=-march=sandybridge");
 
         // ReSharper restore StringLiteralTypo
 
