@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Godot;
 
 /// <summary>
@@ -432,15 +431,10 @@ public partial class InputEventItem : MarginContainer
     /// </remarks>
     public void Delete()
     {
-        var nextFocusPath = new string?[]
-        {
-            button.FocusNeighborLeft, button.FocusNeighborRight, Action?.FocusNeighborTop, Action?.FocusNeighborBottom,
-        }.First(a => !string.IsNullOrEmpty(a) && a != ".");
+        var path = BestNodeToSwitchFocusTo();
 
-        if (nextFocusPath != null)
-        {
-            GetNode<Control>(nextFocusPath)?.GrabFocus();
-        }
+        if (!path.IsEmpty)
+            GetNode<Control>(path).GrabFocus();
 
         Action?.Inputs.Remove(this);
         GroupList?.ControlsChanged();
@@ -480,6 +474,39 @@ public partial class InputEventItem : MarginContainer
         }
 
         base.Dispose(disposing);
+    }
+
+    /// <summary>
+    ///   Finds a good neighbooring node to switch focus to. Returns an empty path if no such node is found.
+    /// </summary>
+    private NodePath BestNodeToSwitchFocusTo()
+    {
+        NodePath root = ".";
+
+        if (!button.FocusNeighborLeft.IsEmpty && button.FocusNeighborLeft != root)
+        {
+            return button.FocusNeighborLeft;
+        }
+
+        if (!button.FocusNeighborRight.IsEmpty && button.FocusNeighborRight != root)
+        {
+            return button.FocusNeighborRight;
+        }
+
+        if (Action != null)
+        {
+            if (!Action.FocusNeighborTop.IsEmpty && Action.FocusNeighborTop != root)
+            {
+                return Action.FocusNeighborTop;
+            }
+
+            if (!Action.FocusNeighborBottom.IsEmpty && Action.FocusNeighborBottom != root)
+            {
+                return Action.FocusNeighborBottom;
+            }
+        }
+
+        return string.Empty;
     }
 
     private bool CheckNewKeyConflicts(InputEvent @event, InputGroupList groupList, SpecifiedInputKey? old)
