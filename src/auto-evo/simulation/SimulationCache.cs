@@ -473,7 +473,8 @@ public class SimulationCache
 
         if (hasChemoreceptor)
         {
-            if (chunk.Compounds?.TryGetValue(compound.ID, out var compoundAmount) != true)
+            // We use null suppression here as this method is only meant to be called on chunks that are known to contain the given compound
+            if (!chunk.Compounds!.TryGetValue(compound.ID, out var compoundAmount))
                 throw new ArgumentException("Chunk does not contain compound");
 
             cached = Constants.AUTO_EVO_CHEMORECEPTOR_BASE_SCORE
