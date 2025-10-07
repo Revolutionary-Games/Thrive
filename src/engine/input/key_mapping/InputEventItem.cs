@@ -506,7 +506,7 @@ public partial class InputEventItem : MarginContainer
             }
         }
 
-        return string.Empty;
+        return new NodePath();
     }
 
     private bool CheckNewKeyConflicts(InputEvent @event, InputGroupList groupList, SpecifiedInputKey? old)
