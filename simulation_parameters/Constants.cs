@@ -530,7 +530,7 @@ public static class Constants
     public const float MACROLIDE_DEBUFF_DURATION = 5;
 
     public const float TOXIN_TOXICITY_DAMAGE_MODIFIER_STRENGTH = 0.5f;
-    public const float DEFAULT_TOXICITY = 0.5f;
+    public const float DEFAULT_TOXICITY = 0.0f;
 
     /// <summary>
     ///   Each oxygen using organelle in a cell increases damage caused by oxygen-inhibiting toxin by this amount,

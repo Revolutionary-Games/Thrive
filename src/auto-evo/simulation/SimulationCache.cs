@@ -301,6 +301,13 @@ public class SimulationCache
                 hasChemoreceptor = true;
         }
 
+        var preyOxygenUsingOrganellesCount = 0;
+        foreach (var organelle in prey.Organelles.Organelles)
+        {
+            if (organelle.Definition.IsOxygenMetabolism)
+                preyOxygenUsingOrganellesCount += 1;
+        }
+
         // Only assign engulf score if one can actually engulf (and digest)
         var engulfmentScore = 0.0f;
         if (predatorHexSize / preyHexSize >
@@ -345,10 +352,27 @@ public class SimulationCache
         // Pili are much more useful if the microbe can close to melee
         pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
 
+        // Damaging toxin section
+
+        // Not an ideal solution, but accounts for the fact that the oxytoxy and cyanide processes require oxygen to run
+        biomeConditions.Compounds.TryGetValue(Compound.Oxygen, out BiomeCompoundProperties oxygen);
+        if (oxygen.Ambient == 0)
+        {
+            oxytoxyScore = 0;
+            oxygenMetabolismInhibitorScore = 0;
+        }
+
+        oxytoxyScore *= 1 - Math.Min(preyOxygenUsingOrganellesCount * Constants.OXYTOXY_DAMAGE_DEBUFF_PER_ORGANELLE,
+            Constants.OXYTOXY_DAMAGE_DEBUFF_MAX);
+        oxygenMetabolismInhibitorScore *= 1 + Math.Min(
+            preyOxygenUsingOrganellesCount * Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_PER_ORGANELLE,
+            Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_MAX);
+        var damagingToxinScore = oxytoxyScore + cytotoxinScore + oxygenMetabolismInhibitorScore;
+
         // Predators are less likely to use toxin against larger prey, unless they are opportunistic
         if (preyHexSize > predatorHexSize)
         {
-            oxytoxyScore *= predator.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+            damagingToxinScore *= predator.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
         }
 
         // If you can store enough to kill the prey, producing more isn't as important
@@ -356,15 +380,15 @@ public class SimulationCache
             prey.MembraneType.Hitpoints * prey.MembraneType.ToxinResistance;
         if (storageToKillRatio > 1)
         {
-            oxytoxyScore = MathF.Pow(oxytoxyScore, 0.8f);
+            damagingToxinScore = MathF.Pow(damagingToxinScore, 0.8f);
         }
         else
         {
-            oxytoxyScore = MathF.Pow(oxytoxyScore, storageToKillRatio * 0.8f);
+            damagingToxinScore = MathF.Pow(damagingToxinScore, storageToKillRatio * 0.8f);
         }
 
-        // Prey that resist toxin are obviously weaker to it
-        oxytoxyScore /= prey.MembraneType.ToxinResistance;
+        // Prey that resist toxin are of course vulnerable to being hunted with it
+        damagingToxinScore /= prey.MembraneType.ToxinResistance;
 
         // If you have a chemoreceptor, active hunting types are more effective
         if (hasChemoreceptor)
@@ -372,8 +396,8 @@ public class SimulationCache
             pilusScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
             pilusScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
                 * float.Sqrt(preyIndividualCost);
-            oxytoxyScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
-            oxytoxyScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
+            damagingToxinScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
+            damagingToxinScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
                 * float.Sqrt(preyIndividualCost);
         }
 
@@ -386,7 +410,7 @@ public class SimulationCache
         }
 
         cached = (scoreMultiplier * behaviourScore *
-                (pilusScore + engulfmentScore + oxytoxyScore + predatorSlimeJetScore) -
+                (pilusScore + engulfmentScore + damagingToxinScore + predatorSlimeJetScore) -
                 (preySlimeJetScore + preyMucocystsScore)) /
             GetEnergyBalanceForSpecies(predator, biomeConditions).TotalConsumption;
 
