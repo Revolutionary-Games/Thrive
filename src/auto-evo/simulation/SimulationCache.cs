@@ -551,7 +551,7 @@ public class SimulationCache
         cachedResolvedTolerances.Clear();
     }
 
-    public (float PilusScore, float AverageToxicityScore, float OxytoxyScore, float CytotoxinScore,
+    public (float PilusScore, float AverageToxicity, float OxytoxyScore, float CytotoxinScore,
         float MacrolideScore, float ChannelInhibitorScore, float OxygenMetabolismInhibitorScore, float SlimeJetScore,
         float MucocystsScore)
         GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
@@ -559,7 +559,7 @@ public class SimulationCache
         if (cachedPredationToolsRawScores.TryGetValue(microbeSpecies, out var cached))
             return cached;
 
-        var averageToxicityScore = 0.0f;
+        var averageToxicity = 0.0f;
         var totalToxicity = 0.0f;
         var totalToxinScore = 0.0f;
         var everyToxinScore = 0.0f;
@@ -657,6 +657,10 @@ public class SimulationCache
         }
 
         // Matching current gameplay mechanics of the toxin organelles:
+
+        // Averaging out toxicity, as gameplay also does
+        averageToxicity = totalToxicity / totalToxinOrganellesCount;
+
         // Pooled production of toxin compound, equally distributed among all available toxin types (firing in sequence)
         if (totalToxinTypesCount != 0)
         {
@@ -664,20 +668,28 @@ public class SimulationCache
         }
 
         if (hasOxytoxy)
-            oxytoxyScore = everyToxinScore;
+        {
+            oxytoxyScore = everyToxinScore * (Constants.OXYTOXY_DAMAGE / Constants.CYTOTOXIN_DAMAGE) *
+                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(averageToxicity, ToxinType.Oxytoxy);
+        }
+
         if (hasCytoxin)
-            cytotoxinScore = everyToxinScore;
+        {
+            cytotoxinScore = everyToxinScore *
+                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(averageToxicity, ToxinType.Cytotoxin);
+        }
+
         if (hasMacrolide)
             macrolideScore = everyToxinScore;
         if (hasChannelInhibitor)
             channelInhibitorScore = everyToxinScore;
-        if (hasMacrolide)
-            macrolideScore = everyToxinScore;
         if (hasOxygenMetabolismInhibitor)
-            oxygenMetabolismInhibitorScore = everyToxinScore;
-
-        // Averaging out toxicity, as gameplay also does
-        averageToxicityScore = totalToxicity / totalToxinOrganellesCount;
+        {
+            oxygenMetabolismInhibitorScore = everyToxinScore *
+                (Constants.OXYGEN_INHIBITOR_DAMAGE / Constants.CYTOTOXIN_DAMAGE) *
+                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(
+                    averageToxicity, ToxinType.OxygenMetabolismInhibitor);
+        }
 
         // Having lots of extra pili, slime jets and mucocysts doesn't really help much
         pilusScore *= MathF.Sqrt(pilusCount);
@@ -686,7 +698,7 @@ public class SimulationCache
 
         slimeJetScore *= slimeJetsMultiplier;
 
-        var predationToolsRawScores = (pilusScore, averageToxicityScore, oxytoxyScore,
+        var predationToolsRawScores = (pilusScore, averageToxicity, oxytoxyScore,
             cytotoxinScore, macrolideScore, channelInhibitorScore, oxygenMetabolismInhibitorScore, slimeJetScore,
             mucocystsScore);
 
