@@ -72,6 +72,26 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
         return false;
     }
 
+    public float GetActiveToxicity()
+    {
+        if (Upgrades?.CustomUpgradeData is ToxinUpgrades toxinData)
+        {
+            return toxinData.Toxicity;
+        }
+
+        return Constants.DEFAULT_TOXICITY;
+    }
+
+    public ToxinType GetActiveToxin()
+    {
+        if (Upgrades?.CustomUpgradeData is ToxinUpgrades toxinData)
+        {
+            return toxinData.BaseType;
+        }
+
+        return ToxinType.Cytotoxin;
+    }
+
     public Species? GetActiveTargetSpecies()
     {
         if (Definition.HasChemoreceptorComponent &&
