@@ -41,6 +41,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
     private float playerProtectionRadiusSquared = 20 * 20;
 
     private int maxSpawnAttempts = 10;
+    private int differentClusterTypeAttempts = 3;
 
     [JsonProperty]
     private long baseSeed;
@@ -175,7 +176,9 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
         if (!playerHasMoved)
             return;
 
+#if DEBUG
         printedClustersTightWarning = false;
+#endif
 
         // Check if player moved terrain grids and if so perform an operation
         var playerGrid = PositionToTerrainCell(nextPlayerPosition);
@@ -364,13 +367,32 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
         {
             --clusters;
 
-            SpawnNewCluster(cell, result, recorder, random);
+            int retries = differentClusterTypeAttempts;
+            for (int i = 0; i < retries; ++i)
+            {
+                // Try a few random clusters in case one fits
+                if (SpawnNewCluster(cell, result, recorder, random))
+                    break;
+            }
+
+            // TODO: if we want to pack in terrain tighter, we might need an algorithm to try to slide the conflicting
+            // terrain clusters until they can be placed
+
+            // If ran out of attempts, we'll just ignore as the terrain is too crowded
+            if (!printedClustersTightWarning)
+            {
+                GD.Print("Terrain is so dense that can't find places to put more");
+                printedClustersTightWarning = true;
+            }
         }
 
+        // TODO: might want to remove this print entirely as it's only really useful when tweaking chunk spawn rates
+#if DEBUG
         if (result.Count < wantedClusters)
         {
             GD.Print($"Could only spawn {result.Count} terrain clusters out of wanted {wantedClusters}");
         }
+#endif
 
         SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
 
@@ -379,7 +401,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
         unsuccessfulFetches = 0;
     }
 
-    private void SpawnNewCluster(Vector2I baseCell, List<SpawnedTerrainCluster> spawned, CommandBuffer recorder,
+    private bool SpawnNewCluster(Vector2I baseCell, List<SpawnedTerrainCluster> spawned, CommandBuffer recorder,
         XoShiRo128starstar random)
     {
         var cluster = terrainConfiguration!.GetRandomCluster(random);
@@ -428,18 +450,12 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
             if (overlaps)
                 continue;
 
-            // No problems, can spawn the cluster
+            // No problems can spawn the cluster
             spawned.Add(SpawnCluster(cluster, position, recorder, random));
-            return;
+            return true;
         }
 
-        // If ran out of attempts, we'll just ignore as the terrain is too crowded
-
-        if (!printedClustersTightWarning)
-        {
-            GD.Print("Terrain is so dense that can't find places to put more");
-            printedClustersTightWarning = true;
-        }
+        return false;
     }
 
     private SpawnedTerrainCluster SpawnCluster(TerrainConfiguration.TerrainClusterConfiguration cluster,

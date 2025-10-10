@@ -1,5 +1,5 @@
 ﻿/// <summary>
-///   Identifiers for <see cref="VisualResourceData"/>. Exact values are used in saves so new values must be appended
+///   Identifiers for <see cref="VisualResourceData"/>. Exact values are used in saves, so new values must be appended
 ///   at the end.
 /// </summary>
 public enum VisualResourceIdentifier
@@ -42,4 +42,11 @@ public enum VisualResourceIdentifier
     QuartzTerrain1,
     QuartzTerrain2,
     QuartzTerrain3,
+
+    PyriteTerrain1,
+    PyriteTerrain2,
+    ChalcopyriteTerrain1,
+    ChalcopyriteTerrain2,
+    SerpentiniteTerrain1,
+    SerpentiniteTerrain2,
 }

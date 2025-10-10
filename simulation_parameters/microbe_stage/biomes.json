@@ -547,7 +547,7 @@
       "MaxClusters": 5,
       "PotentialClusters": [
         {
-          "RelativeChance": 5,
+          "RelativeChance": 1,
           "TerrainGroups": [
             {
               "RelativePosition": {
@@ -557,75 +557,13 @@
               },
               "Chunks": [
                 {
-                  "Visuals": "ClayTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk1.shape",
-                  "Radius": 13,
+                  "Visuals": "PyriteTerrain1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/PyriteTerrainChunk1.shape",
+                  "Radius": 14.6,
                   "RelativePosition": {
                     "x": 0,
                     "y": 0,
                     "z": 0
-                  },
-                  "RandomizeRotation": true
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "RelativeChance": 3,
-          "TerrainGroups": [
-            {
-              "RelativePosition": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "Chunks": [
-                {
-                  "Visuals": "ClayTerrain2",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk2.shape",
-                  "Radius": 13,
-                  "RelativePosition": {
-                    "x": 0,
-                    "y": 0,
-                    "z": 0
-                  },
-                  "RandomizeRotation": true
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "RelativeChance": 2,
-          "TerrainGroups": [
-            {
-              "RelativePosition": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "RandomizeRotation": true,
-              "Chunks": [
-                {
-                  "Visuals": "ClayTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk1.shape",
-                  "Radius": 13,
-                  "RelativePosition": {
-                    "x": 0,
-                    "y": 0,
-                    "z": 0
-                  },
-                  "RandomizeRotation": true
-                },
-                {
-                  "Visuals": "ClayTerrain2",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk2.shape",
-                  "Radius": 13,
-                  "RelativePosition": {
-                    "x": 0,
-                    "y": 0,
-                    "z": 22
                   },
                   "RandomizeRotation": true
                 }
@@ -635,7 +573,6 @@
         },
         {
           "RelativeChance": 1,
-          "RandomizeRotation": true,
           "TerrainGroups": [
             {
               "RelativePosition": {
@@ -645,73 +582,109 @@
               },
               "Chunks": [
                 {
-                  "Visuals": "ClayTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk1.shape",
-                  "Radius": 13,
+                  "Visuals": "PyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/PyriteTerrainChunk2.shape",
+                  "Radius": 18,
                   "RelativePosition": {
                     "x": 0,
                     "y": 0,
                     "z": 0
                   },
                   "RandomizeRotation": true
-                },
-                {
-                  "Visuals": "ClayTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk1.shape",
-                  "Radius": 13,
-                  "RelativePosition": {
-                    "x": -8,
-                    "y": 3.25,
-                    "z": 12
-                  },
-                  "RandomizeRotation": true
-                },
-                {
-                  "Visuals": "ClayTerrain2",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk2.shape",
-                  "Radius": 13,
-                  "RelativePosition": {
-                    "x": 0,
-                    "y": 0,
-                    "z": 22
-                  },
-                  "RandomizeRotation": true
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "RelativeChance": 1,
+          "TerrainGroups": [
             {
               "RelativePosition": {
                 "x": 0,
                 "y": 0,
-                "z": 65
+                "z": 0
               },
               "Chunks": [
                 {
-                  "Visuals": "ClayTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk1.shape",
-                  "Radius": 13,
+                  "Visuals": "ChalcopyriteTerrain1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.shape",
+                  "Radius": 14.8,
                   "RelativePosition": {
                     "x": 0,
                     "y": 0,
-                    "z": 22
+                    "z": 0
                   },
                   "RandomizeRotation": true
-                },
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "RelativeChance": 1,
+          "TerrainGroups": [
+            {
+              "RelativePosition": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "Chunks": [
                 {
-                  "Visuals": "ClayTerrain1",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk1.shape",
-                  "Radius": 13,
+                  "Visuals": "ChalcopyriteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk2.shape",
+                  "Radius": 14.8,
                   "RelativePosition": {
-                    "x": 24,
-                    "y": 2,
-                    "z": 18
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
                   },
                   "RandomizeRotation": true
-                },
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "RelativeChance": 1,
+          "TerrainGroups": [
+            {
+              "RelativePosition": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "Chunks": [
                 {
-                  "Visuals": "ClayTerrain2",
-                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk2.shape",
-                  "Radius": 13,
+                  "Visuals": "SerpentiniteTerrain1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/SerpentiniteTerrainChunk1.shape",
+                  "Radius": 12.8,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "RandomizeRotation": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "RelativeChance": 1,
+          "TerrainGroups": [
+            {
+              "RelativePosition": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "Chunks": [
+                {
+                  "Visuals": "SerpentiniteTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/SerpentiniteTerrainChunk2.shape",
+                  "Radius": 17.5,
                   "RelativePosition": {
                     "x": 0,
                     "y": 0,
@@ -2205,7 +2178,7 @@
       "MaxClusters": 5,
       "PotentialClusters": [
         {
-          "RelativeChance": 3,
+          "RelativeChance": 5,
           "TerrainGroups": [
             {
               "RelativePosition": {
@@ -2239,6 +2212,133 @@
                 "z": 0
               },
               "Chunks": [
+                {
+                  "Visuals": "ClayTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk2.shape",
+                  "Radius": 13,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "RandomizeRotation": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "RelativeChance": 2,
+          "TerrainGroups": [
+            {
+              "RelativePosition": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "RandomizeRotation": true,
+              "Chunks": [
+                {
+                  "Visuals": "ClayTerrain1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk1.shape",
+                  "Radius": 13,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "RandomizeRotation": true
+                },
+                {
+                  "Visuals": "ClayTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk2.shape",
+                  "Radius": 13,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 22
+                  },
+                  "RandomizeRotation": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "RelativeChance": 1,
+          "RandomizeRotation": true,
+          "TerrainGroups": [
+            {
+              "RelativePosition": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "Chunks": [
+                {
+                  "Visuals": "ClayTerrain1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk1.shape",
+                  "Radius": 13,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "RandomizeRotation": true
+                },
+                {
+                  "Visuals": "ClayTerrain1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk1.shape",
+                  "Radius": 13,
+                  "RelativePosition": {
+                    "x": -8,
+                    "y": 3.25,
+                    "z": 12
+                  },
+                  "RandomizeRotation": true
+                },
+                {
+                  "Visuals": "ClayTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk2.shape",
+                  "Radius": 13,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 22
+                  },
+                  "RandomizeRotation": true
+                }
+              ]
+            },
+            {
+              "RelativePosition": {
+                "x": 0,
+                "y": 0,
+                "z": 65
+              },
+              "Chunks": [
+                {
+                  "Visuals": "ClayTerrain1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk1.shape",
+                  "Radius": 13,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 22
+                  },
+                  "RandomizeRotation": true
+                },
+                {
+                  "Visuals": "ClayTerrain1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk1.shape",
+                  "Radius": 13,
+                  "RelativePosition": {
+                    "x": 24,
+                    "y": 2,
+                    "z": 18
+                  },
+                  "RandomizeRotation": true
+                },
                 {
                   "Visuals": "ClayTerrain2",
                   "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk2.shape",
