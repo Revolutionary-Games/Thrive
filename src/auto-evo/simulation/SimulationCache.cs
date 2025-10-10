@@ -43,6 +43,12 @@ public class SimulationCache
 
     private readonly Dictionary<(MicrobeSpecies, MicrobeSpecies, IBiomeConditions), float> predationScores = new();
 
+    private readonly Dictionary<(MicrobeSpecies, CompoundDefinition, IBiomeConditions), float>
+        chemoreceptorCloudScores = new();
+
+    private readonly Dictionary<(MicrobeSpecies, ChunkConfiguration, CompoundDefinition, IBiomeConditions), float>
+        chemoreceptorChunkScores = new();
+
     private readonly Dictionary<(TweakedProcess, float, IBiomeConditions), ProcessSpeedInformation>
         cachedProcessSpeeds = new();
 
@@ -279,12 +285,19 @@ public class SimulationCache
         var predatorSpeed = GetSpeedForSpecies(predator);
         var preyHexSize = GetBaseHexSizeForSpecies(prey);
         var preySpeed = GetSpeedForSpecies(prey);
+        var preyIndividualCost = MichePopulation.CalculateMicrobeIndividualCost(prey, biomeConditions, this);
         var enzymesScore = GetEnzymesScore(predator, prey.MembraneType.DissolverEnzyme);
         var (pilusScore, oxytoxyScore, predatorSlimeJetScore, _) =
             GetPredationToolsRawScores(predator);
         var (_, _, preySlimeJetScore, preyMucocystsScore) = GetPredationToolsRawScores(prey);
 
         var behaviourScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+        var hasChemoreceptor = false;
+        foreach (var organelle in predator.Organelles.Organelles)
+        {
+            if (organelle.Definition.HasChemoreceptorComponent && organelle.GetActiveTargetSpecies() == prey)
+                hasChemoreceptor = true;
+        }
 
         // Only assign engulf score if one can actually engulf (and digest)
         var engulfmentScore = 0.0f;
@@ -300,6 +313,16 @@ public class SimulationCache
                 // You catch more preys if you are fast, and if they are slow.
                 // This incentivizes engulfment strategies in these cases.
                 catchScore += predatorSpeed / preySpeed;
+
+                // If you have a chemoreceptor, active hunting types are more effective
+                if (hasChemoreceptor)
+                {
+                    catchScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
+
+                    // Uses crude estimate of population density assuming same energy capture
+                    catchScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
+                        * float.Sqrt(preyIndividualCost);
+                }
             }
 
             // ... but you may also catch them by luck (e.g. when they run into you),
@@ -341,6 +364,17 @@ public class SimulationCache
         // Prey that resist toxin are obviously weaker to it
         oxytoxyScore /= prey.MembraneType.ToxinResistance;
 
+        // If you have a chemoreceptor, active hunting types are more effective
+        if (hasChemoreceptor)
+        {
+            pilusScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
+            pilusScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
+                * float.Sqrt(preyIndividualCost);
+            oxytoxyScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
+            oxytoxyScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
+                * float.Sqrt(preyIndividualCost);
+        }
+
         var scoreMultiplier = 1.0f;
 
         if (!predator.CanEngulf)
@@ -370,6 +404,80 @@ public class SimulationCache
         cached = MicrobeInternalCalculations.UsesDayVaryingCompounds(species.Organelles, biomeConditions, null);
 
         cachedUsesVaryingCompounds.Add(key, cached);
+        return cached;
+    }
+
+    public float GetChemoreceptorCloudScore(MicrobeSpecies species, CompoundDefinition compound,
+        BiomeConditions biomeConditions)
+    {
+        var key = (species, compound, biomeConditions);
+
+        if (chemoreceptorCloudScores.TryGetValue(key, out var cached))
+        {
+            return cached;
+        }
+
+        cached = 0.0f;
+        var hasChemoreceptor = false;
+        foreach (var organelle in species.Organelles.Organelles)
+        {
+            var organelleTargetCompound = organelle.GetActiveTargetCompound();
+            if (organelleTargetCompound == Compound.Invalid)
+                continue;
+
+            if (organelleTargetCompound == compound.ID)
+                hasChemoreceptor = true;
+        }
+
+        if (hasChemoreceptor)
+        {
+            if (biomeConditions.AverageCompounds.TryGetValue(compound.ID, out var compoundData))
+            {
+                cached = Constants.AUTO_EVO_CHEMORECEPTOR_BASE_SCORE
+                    + Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CLOUD_SCORE
+                    / (compoundData.Density * compoundData.Amount);
+            }
+        }
+
+        chemoreceptorCloudScores.Add(key, cached);
+        return cached;
+    }
+
+    public float GetChemoreceptorChunkScore(MicrobeSpecies species, ChunkConfiguration chunk,
+        CompoundDefinition compound, BiomeConditions biomeConditions)
+    {
+        var key = (species, chunk, compound, biomeConditions);
+
+        if (chemoreceptorChunkScores.TryGetValue(key, out var cached))
+        {
+            return cached;
+        }
+
+        cached = 0.0f;
+        var hasChemoreceptor = false;
+        foreach (var organelle in species.Organelles.Organelles)
+        {
+            var organelleTargetCompound = organelle.GetActiveTargetCompound();
+            if (organelleTargetCompound == Compound.Invalid)
+                continue;
+
+            if (organelleTargetCompound == compound.ID)
+                hasChemoreceptor = true;
+        }
+
+        if (hasChemoreceptor)
+        {
+            // We use null suppression here
+            // as this method is only meant to be called on chunks that are known to contain the given compound
+            if (!chunk.Compounds!.TryGetValue(compound.ID, out var compoundAmount))
+                throw new ArgumentException("Chunk does not contain compound");
+
+            cached = Constants.AUTO_EVO_CHEMORECEPTOR_BASE_SCORE
+                + Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CHUNK_SCORE
+                / (chunk.Density * MathF.Pow(compoundAmount.Amount, Constants.AUTO_EVO_CHUNK_AMOUNT_NERF));
+        }
+
+        chemoreceptorChunkScores.Add(key, cached);
         return cached;
     }
 
@@ -407,6 +515,8 @@ public class SimulationCache
         cachedCompoundScores.Clear();
         cachedGeneratedCompound.Clear();
         predationScores.Clear();
+        chemoreceptorCloudScores.Clear();
+        chemoreceptorChunkScores.Clear();
         cachedProcessSpeeds.Clear();
         cachedPredationToolsRawScores.Clear();
         cachedEnzymeScores.Clear();
