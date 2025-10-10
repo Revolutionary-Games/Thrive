@@ -21,7 +21,7 @@ var _decoders := {
 	TYPE_PACKED_COLOR_ARRAY: _on_type_Array.bind(TYPE_PACKED_COLOR_ARRAY),
 	TYPE_PACKED_VECTOR2_ARRAY: _on_type_Array.bind(TYPE_PACKED_VECTOR2_ARRAY),
 	TYPE_PACKED_VECTOR3_ARRAY: _on_type_Array.bind(TYPE_PACKED_VECTOR3_ARRAY),
-	GdObjects.TYPE_PACKED_VECTOR4_ARRAY: _on_type_Array.bind(GdObjects.TYPE_PACKED_VECTOR4_ARRAY),
+	TYPE_PACKED_VECTOR4_ARRAY: _on_type_Array.bind(TYPE_PACKED_VECTOR4_ARRAY),
 	TYPE_DICTIONARY: _on_type_Dictionary,
 	TYPE_RID: _on_type_RID,
 	TYPE_NODE_PATH: _on_type_NodePath,
@@ -126,7 +126,7 @@ func _on_type_Array(value: Variant, type: int) -> String:
 				return "PackedVector3Array()"
 			return "PackedVector3Array([%s])" % ", ".join(vectors)
 
-		GdObjects.TYPE_PACKED_VECTOR4_ARRAY:
+		TYPE_PACKED_VECTOR4_ARRAY:
 			var vectors := PackedStringArray()
 			for vector: Vector4 in value:
 				@warning_ignore("return_value_discarded")

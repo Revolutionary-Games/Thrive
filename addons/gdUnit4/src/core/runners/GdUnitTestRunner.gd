@@ -8,9 +8,9 @@ extends "res://addons/gdUnit4/src/core/runners/GdUnitTestSessionRunner.gd"
 ## - Messages to report progress[br]
 ## - Events to report test results[br]
 
-
 ## The TCP client used to connect to the GdUnit server
 @onready var _client: GdUnitTcpClient = $GdUnitTcpClient
+@onready var _version_label: Control = %Version
 
 
 func _init() -> void:
@@ -21,6 +21,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	super()
+	GdUnit4Version.init_version_label(_version_label)
 
 	var config_result := _runner_config.load_config()
 	if config_result.is_error():
