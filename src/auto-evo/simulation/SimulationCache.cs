@@ -285,7 +285,10 @@ public class SimulationCache
         var predatorSpeed = GetSpeedForSpecies(predator);
         var preyHexSize = GetBaseHexSizeForSpecies(prey);
         var preySpeed = GetSpeedForSpecies(prey);
+        var slowedPreySpeed = preySpeed;
         var preyIndividualCost = MichePopulation.CalculateMicrobeIndividualCost(prey, biomeConditions, this);
+        var preyEnergyBalance = GetEnergyBalanceForSpecies(prey, biomeConditions);
+        var preyOsmoregulationCost = preyEnergyBalance.Osmoregulation;
         var enzymesScore = GetEnzymesScore(predator, prey.MembraneType.DissolverEnzyme);
         var (pilusScore, toxicity, oxytoxyScore, cytotoxinScore, macrolideScore,
                 channelInhibitorScore, oxygenMetabolismInhibitorScore, predatorSlimeJetScore, _) =
@@ -311,14 +314,26 @@ public class SimulationCache
         // Calculating "hit chance" modifier from toxicity
         var toxicityHitFactor = 1 - toxicity / Constants.AUTO_EVO_TOXICITY_HIT_MODIFIER;
 
-        // Calculating how much prey is slowed down by macrolide, and how frequently they are succesfully slowed down
-        var macrolidedPreySpeed = preySpeed * (1 - Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF *
-            MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.Macrolide));
-        var macrolidedProportion = 1.0f - MathF.Exp(-Constants.AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING *
-            macrolideScore * toxicityHitFactor);
+        // Calculating prey energy production altered by channel inhbitor
+        var inhibitedPreyEnergyProduction = preyEnergyBalance.TotalProduction *
+            Constants.CHANNEL_INHIBITOR_ATP_DEBUFF *
+            MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.ChannelInhibitor);
 
-        if (predator.PlayerSpecies)
-            GD.Print(toxicity, " and ", toxicityHitFactor, " and ", macrolideScore, " and ", macrolidedProportion);
+        // If inhibited energy production would affect movement, add (part of) the inhibitor score to macrolide score
+        if (inhibitedPreyEnergyProduction < preyEnergyBalance.TotalConsumption)
+        {
+            var channelInhibitorSlowFactor = Math.Min(
+                Math.Max(inhibitedPreyEnergyProduction - preyOsmoregulationCost, 0) /
+                preyEnergyBalance.TotalMovement, 1);
+            macrolideScore += channelInhibitorScore * channelInhibitorSlowFactor;
+            slowedPreySpeed *= 1 - channelInhibitorSlowFactor;
+        }
+
+        // Calculating how much prey is slowed down by macrolide, and how frequently they are succesfully slowed down
+        slowedPreySpeed *= 1 - Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF *
+            MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.Macrolide);
+        var slowedProportion = 1.0f - MathF.Exp(-Constants.AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING *
+            macrolideScore * toxicityHitFactor);
 
         // Only assign engulf score if one can actually engulf (and digest)
         var engulfmentScore = 0.0f;
@@ -333,14 +348,14 @@ public class SimulationCache
             {
                 // You catch more preys if you are fast, and if they are slow.
                 // This incentivizes engulfment strategies in these cases.
-                catchScore += (predatorSpeed / preySpeed) * (1 - macrolidedProportion);
+                catchScore += (predatorSpeed / preySpeed) * (1 - slowedProportion);
             }
 
-            if (predatorSpeed > macrolidedPreySpeed)
+            if (predatorSpeed > slowedPreySpeed)
             {
                 // You catch more preys if you are fast, and if they are slow.
                 // This incentivizes engulfment strategies in these cases.
-                catchScore += (predatorSpeed / macrolidedPreySpeed) * macrolidedProportion;
+                catchScore += (predatorSpeed / slowedPreySpeed) * slowedProportion;
             }
 
             // If you have a chemoreceptor, active hunting types are more effective
@@ -372,8 +387,8 @@ public class SimulationCache
         pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
         if (predatorSpeed ! > preySpeed)
         {
-            pilusScore *= predatorSpeed > macrolidedPreySpeed ?
-                macrolidedProportion + Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY :
+            pilusScore *= predatorSpeed > slowedPreySpeed ?
+                slowedProportion + Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY :
                 Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
         }
 
