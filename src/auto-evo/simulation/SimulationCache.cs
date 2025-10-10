@@ -409,6 +409,10 @@ public class SimulationCache
             Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_MAX);
         var damagingToxinScore = oxytoxyScore + cytotoxinScore + oxygenMetabolismInhibitorScore;
 
+        // If toxin-inhibited energy production is lower than osmoregulation cost, channel inhibitor is a damaging toxin
+        if (inhibitedPreyEnergyProduction < preyOsmoregulationCost)
+            damagingToxinScore += channelInhibitorScore;
+
         // Predators are less likely to use toxin against larger prey, unless they are opportunistic
         if (preyHexSize > predatorHexSize)
         {
