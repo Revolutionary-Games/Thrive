@@ -1,3 +1,7 @@
+// Thrive customization. Disable all warnings from this third party code
+
+#pragma warning disable
+
 // Copyright (c) 2025 Mike Schulze
 // MIT License - See LICENSE file in the repository root for full license text
 #pragma warning disable IDE1006
