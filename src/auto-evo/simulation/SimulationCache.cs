@@ -732,8 +732,8 @@ public class SimulationCache
         {
             oxygenMetabolismInhibitorScore = everyToxinScore *
                 (Constants.OXYGEN_INHIBITOR_DAMAGE / Constants.CYTOTOXIN_DAMAGE) *
-                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(
-                    averageToxicity, ToxinType.OxygenMetabolismInhibitor);
+                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(averageToxicity,
+                    ToxinType.OxygenMetabolismInhibitor);
         }
 
         // Having lots of extra pili, slime jets and mucocysts doesn't really help much
