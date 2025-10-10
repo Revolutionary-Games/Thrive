@@ -89,12 +89,18 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             return;
         }
 
-        // Position is used to calculate the look direction
         var lookVector = control.LookAtPoint - position.Position;
         lookVector.Y = 0;
         var lookVectorLength = lookVector.Length();
 
         var turnAngle = (position.Rotation * Vector3.Forward).SignedAngleTo(lookVector, Vector3.Up);
+
+        if (Settings.Instance.MicrobeMembraneTurnBend)
+        {
+            cellProperties.MeshTurnDistance = MathF.Round(turnAngle * 10.0f) * 0.1f / (organelles.LengthWidthRatio *
+                0.1f * cellProperties.Radius);
+        }
+
         var unsignedTurnAngle = Math.Abs(turnAngle);
 
         // Linear function reaching 1 at CELL_TURN_INFLECTION_RADIANS

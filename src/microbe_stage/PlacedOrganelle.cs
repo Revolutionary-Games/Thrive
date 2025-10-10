@@ -70,6 +70,12 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
     public Node3D? OrganelleGraphics { get; private set; }
 
     /// <summary>
+    ///   The transform the organelle visual node is supposed to be at
+    /// </summary>
+    [JsonIgnore]
+    public Transform3D TargetVisualsTransform { get; set; }
+
+    /// <summary>
     ///   Graphics metadata that is set to valid data if <see cref="OrganelleGraphics"/> is not null.
     /// </summary>
     [JsonIgnore]

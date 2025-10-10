@@ -99,8 +99,15 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
     [Query]
     [All<CellProperties, SpatialInstance, EntityMaterial, RenderPriorityOverride>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update(ref OrganelleContainer organelleContainer, in Entity entity)
+    private void Update([Data] in float delta, ref OrganelleContainer organelleContainer, in Entity entity)
     {
+        ref var cellProperties = ref entity.Get<CellProperties>();
+
+        if (cellProperties.CreatedMembrane != null)
+        {
+            SetMembraneTurn(cellProperties.CreatedMembrane!, ref cellProperties, ref organelleContainer, delta);
+        }
+
         if (organelleContainer.OrganelleVisualsCreated)
             return;
 
@@ -110,8 +117,6 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             GD.PrintErr("Missing organelles list for MicrobeVisualsSystem");
             return;
         }
-
-        ref var cellProperties = ref entity.Get<CellProperties>();
 
         ref var spatialInstance = ref entity.Get<SpatialInstance>();
 
@@ -182,8 +187,6 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         }
         else
         {
-            // Existing membrane should have its properties updated to make sure they are up to date.
-            // For example, an engulfed cell has its membrane wigglyness removed
             SetMembraneDisplayData(cellProperties.CreatedMembrane, data, ref cellProperties);
         }
 
@@ -280,6 +283,26 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         cellProperties.ApplyMembraneWigglyness(membrane);
     }
 
+    private void SetMembraneTurn(Membrane membrane, ref CellProperties cellProperties,
+        ref OrganelleContainer organelles, float delta)
+    {
+        cellProperties.ApplyMembraneTurn(membrane, delta);
+
+        if (organelles.CreatedOrganelleVisuals == null)
+            return;
+
+        foreach (var visual in organelles.CreatedOrganelleVisuals)
+        {
+            var visualParent = (Node3D)visual.Value.GetParent();
+            var verticalPos = visualParent.Position.Z;
+            if (verticalPos < 0)
+            {
+                visualParent.Position = visual.Key.TargetVisualsTransform.Origin + new Vector3(verticalPos, 0, 0) *
+                    membrane.Turn * 0.7f;
+            }
+        }
+    }
+
     /// <summary>
     ///   Creates visuals for organelles in a container
     /// </summary>
@@ -334,6 +357,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
                 {
                     Transform = transform,
                 };
+
+                placedOrganelle.TargetVisualsTransform = transform;
 
                 var visualsInstance = graphicsInfo.LoadedScene.Instantiate<Node3D>();
                 placedOrganelle.ReportCreatedGraphics(visualsInstance, graphicsInfo);
