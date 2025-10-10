@@ -308,6 +308,16 @@ public class SimulationCache
                 preyOxygenUsingOrganellesCount += 1;
         }
 
+        // Calculating how much prey is slowed down by macrolide, and how frequently they are succesfully slowed down
+        var toxicityHitFactor = 1 - toxicity / Constants.AUTO_EVO_TOXICITY_HIT_MODIFIER;
+        var macrolidedPreySpeed = preySpeed * (1 - Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF *
+            MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.Macrolide));
+        var macrolidedProportion = 1.0f - MathF.Exp(-Constants.AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING *
+            macrolideScore * toxicityHitFactor);
+
+        if (predator.PlayerSpecies)
+            GD.Print(toxicity, " and ", toxicityHitFactor, " and ", macrolideScore, " and ", macrolidedProportion);
+
         // Only assign engulf score if one can actually engulf (and digest)
         var engulfmentScore = 0.0f;
         if (predatorHexSize / preyHexSize >
@@ -321,17 +331,24 @@ public class SimulationCache
             {
                 // You catch more preys if you are fast, and if they are slow.
                 // This incentivizes engulfment strategies in these cases.
-                catchScore += predatorSpeed / preySpeed;
+                catchScore += (predatorSpeed / preySpeed) * (1 - macrolidedProportion);
+            }
 
-                // If you have a chemoreceptor, active hunting types are more effective
-                if (hasChemoreceptor)
-                {
-                    catchScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
+            if (predatorSpeed > macrolidedPreySpeed)
+            {
+                // You catch more preys if you are fast, and if they are slow.
+                // This incentivizes engulfment strategies in these cases.
+                catchScore += (predatorSpeed / macrolidedPreySpeed) * macrolidedProportion;
+            }
 
-                    // Uses crude estimate of population density assuming same energy capture
-                    catchScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
-                        * float.Sqrt(preyIndividualCost);
-                }
+            // If you have a chemoreceptor, active hunting types are more effective
+            if (hasChemoreceptor)
+            {
+                catchScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
+
+                // Uses crude estimate of population density assuming same energy capture
+                catchScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
+                    * float.Sqrt(preyIndividualCost);
             }
 
             // ... but you may also catch them by luck (e.g. when they run into you),
@@ -351,6 +368,12 @@ public class SimulationCache
 
         // Pili are much more useful if the microbe can close to melee
         pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+        if (predatorSpeed ! > preySpeed)
+        {
+            pilusScore *= predatorSpeed > macrolidedPreySpeed ?
+                macrolidedProportion + Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY :
+                Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+        }
 
         // Damaging toxin section
 
