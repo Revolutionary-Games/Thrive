@@ -659,7 +659,8 @@ public class SimulationCache
         // Matching current gameplay mechanics of the toxin organelles:
 
         // Averaging out toxicity, as gameplay also does
-        averageToxicity = totalToxicity / totalToxinOrganellesCount;
+        if (totalToxinOrganellesCount != 0)
+            averageToxicity = totalToxicity / totalToxinOrganellesCount;
 
         // Pooled production of toxin compound, equally distributed among all available toxin types (firing in sequence)
         if (totalToxinTypesCount != 0)
