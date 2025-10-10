@@ -37,7 +37,7 @@ public class ThreadedRunSimulator
     /// <summary>
     ///   After finding the new best result, how long to look at more attempts
     /// </summary>
-    private readonly TimeSpan timeToLookForMoreResults = TimeSpan.FromSeconds(10);
+    private readonly TimeSpan timeToLookForMoreResults = TimeSpan.FromSeconds(30);
 
     private readonly object resultLock = new();
 

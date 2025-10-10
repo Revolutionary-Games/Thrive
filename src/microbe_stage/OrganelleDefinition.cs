@@ -300,6 +300,8 @@ public class OrganelleDefinition : IRegistryType
 
     public bool HasLysosomeComponent { get; private set; }
 
+    public bool HasChemoreceptorComponent { get; private set; }
+
     /// <summary>
     ///   True when this organelle is one that uses oxygen as a process input (and is metabolism-related). This is
     ///   used to adjust toxin effects that have a distinction between oxygen breathers and others.
@@ -825,6 +827,7 @@ public class OrganelleDefinition : IRegistryType
         HasCiliaComponent = HasComponentFactory<CiliaComponentFactory>();
         HasAgentVacuoleComponent = HasComponentFactory<AgentVacuoleComponentFactory>();
         HasSlimeJetComponent = HasComponentFactory<SlimeJetComponentFactory>();
+        HasChemoreceptorComponent = HasComponentFactory<ChemoreceptorComponentFactory>();
         HasLysosomeComponent = HasComponentFactory<LysosomeComponentFactory>();
 
         HasBindingFeature = HasFeatureTag(OrganelleFeatureTag.BindingAgent);

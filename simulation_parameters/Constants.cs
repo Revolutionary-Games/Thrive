@@ -188,6 +188,22 @@ public static class Constants
 
     public const float CLOUD_CHEAT_DENSITY = 16000.0f;
 
+    public const float TERRAIN_GRID_SIZE = 200;
+    public const float TERRAIN_GRID_SIZE_INV = 1 / TERRAIN_GRID_SIZE;
+    public const float TERRAIN_EDGE_PROTECTION_SIZE = 1;
+
+    /// <summary>
+    ///   Adds randomness to microbe terrain height so that there's no z-fighting if terrain ends up overlapping
+    /// </summary>
+    public const float TERRAIN_HEIGHT_RANDOMNESS = 0.001f;
+
+    /// <summary>
+    ///   In how big the radius (in terms of grid cells) around the player terrain is spawned in.
+    ///   If too low, then pop in is visible and the spawn system can spawn stuff in that then gets covered
+    ///   by the terrain.
+    /// </summary>
+    public const int TERRAIN_SPAWN_AREA_NUMBER = 4;
+
     public const int MEMBRANE_RESOLUTION = 10;
     public const int MEMBRANE_VERTICAL_RESOLUTION = 7;
     public const float MEMBRANE_HEIGHT_MULTIPLIER = 1.0f;
@@ -1289,6 +1305,11 @@ public static class Constants
     public const float AUTO_EVO_SLIME_JET_SCORE = 6;
     public const float AUTO_EVO_MUCOCYST_SCORE = 40;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
+    public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER = 1.18f;
+    public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER = 0.7f;
+    public const float AUTO_EVO_CHEMORECEPTOR_BASE_SCORE = 0.4f;
+    public const float AUTO_EVO_CHEMORECEPTOR_VARIABLE_CLOUD_SCORE = 8;
+    public const float AUTO_EVO_CHEMORECEPTOR_VARIABLE_CHUNK_SCORE = 0.00007f;
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.2f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
