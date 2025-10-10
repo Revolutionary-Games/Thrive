@@ -1,41 +1,35 @@
 ## An Assertion Tool to verify boolean values
-class_name GdUnitBoolAssert
+@abstract class_name GdUnitBoolAssert
 extends GdUnitAssert
 
 
 ## Verifies that the current value is null.
-func is_null() -> GdUnitBoolAssert:
-	return self
+@abstract func is_null() -> GdUnitBoolAssert
 
 
 ## Verifies that the current value is not null.
-func is_not_null() -> GdUnitBoolAssert:
-	return self
+@abstract func is_not_null() -> GdUnitBoolAssert
 
 
 ## Verifies that the current value is equal to the given one.
-@warning_ignore("unused_parameter")
-func is_equal(expected :Variant) -> GdUnitBoolAssert:
-	return self
+@abstract func is_equal(expected: Variant) -> GdUnitBoolAssert
 
 
 ## Verifies that the current value is not equal to the given one.
-@warning_ignore("unused_parameter")
-func is_not_equal(expected :Variant) -> GdUnitBoolAssert:
-	return self
-
-
-## Verifies that the current value is true.
-func is_true() -> GdUnitBoolAssert:
-	return self
-
-
-## Verifies that the current value is false.
-func is_false() -> GdUnitBoolAssert:
-	return self
+@abstract func is_not_equal(expected: Variant) -> GdUnitBoolAssert
 
 
 ## Overrides the default failure message by given custom message.
-@warning_ignore("unused_parameter")
-func override_failure_message(message :String) -> GdUnitBoolAssert:
-	return self
+@abstract func override_failure_message(message: String) -> GdUnitBoolAssert
+
+
+## Appends a custom message to the failure message.
+@abstract func append_failure_message(message: String) -> GdUnitBoolAssert
+
+
+## Verifies that the current value is true.
+@abstract func is_true() -> GdUnitBoolAssert
+
+
+## Verifies that the current value is false.
+@abstract func is_false() -> GdUnitBoolAssert

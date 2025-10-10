@@ -1,41 +1,52 @@
-// Thrive customization. Disable all warnings from this third party code
-
-#pragma warning disable
-
+// Copyright (c) 2025 Mike Schulze
+// MIT License - See LICENSE file in the repository root for full license text
+#pragma warning disable IDE1006
 namespace gdUnit4.addons.gdUnit4.src.dotnet;
+#pragma warning restore IDE1006
 
 #if GDUNIT4NET_API_V5
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+
 using GdUnit4;
 using GdUnit4.Api;
+
 using Godot;
 using Godot.Collections;
 
-// GdUnit4 GDScript - C# API wrapper
-// ReSharper disable once CheckNamespace
+/// <summary>
+///     The GdUnit4 GDScript - C# API wrapper.
+/// </summary>
 public partial class GdUnit4CSharpApi : GdUnit4NetApiGodotBridge
 {
+    /// <summary>
+    ///     The signal to be emitted when the execution is completed.
+    /// </summary>
     [Signal]
+#pragma warning disable CA1711
     public delegate void ExecutionCompletedEventHandler();
+#pragma warning restore CA1711
 
+#pragma warning disable CA2213, SA1201
     private CancellationTokenSource? executionCts;
+#pragma warning restore CA2213, SA1201
 
-    public override void _Notification(int what)
-    {
-        if (what != NotificationPredelete)
-            return;
-
-        executionCts?.Dispose();
-        executionCts = null;
-    }
-
+    /// <summary>
+    ///     Indicates if the API loaded.
+    /// </summary>
+    /// <returns>Returns true if the API already loaded.</returns>
     public static bool IsApiLoaded()
         => true;
 
+    /// <summary>
+    ///     Runs test discovery on the given script.
+    /// </summary>
+    /// <param name="sourceScript">The script to be scanned.</param>
+    /// <returns>The list of tests discovered as dictionary.</returns>
     public static Array<Dictionary> DiscoverTests(CSharpScript sourceScript)
     {
         try
@@ -54,7 +65,7 @@ public partial class GdUnit4CSharpApi : GdUnit4NetApiGodotBridge
                     ["line_number"] = descriptor.LineNumber,
                     ["attribute_index"] = descriptor.AttributeIndex,
                     ["require_godot_runtime"] = descriptor.RequireRunningGodotEngine,
-                    ["code_file_path"] = descriptor.CodeFilePath ?? "",
+                    ["code_file_path"] = descriptor.CodeFilePath ?? string.Empty,
                     ["simple_name"] = descriptor.SimpleName,
                     ["fully_qualified_name"] = descriptor.FullyQualifiedName,
                     ["assembly_location"] = descriptor.AssemblyPath
@@ -65,13 +76,31 @@ public partial class GdUnit4CSharpApi : GdUnit4NetApiGodotBridge
                     return array;
                 });
         }
+#pragma warning disable CA1031
         catch (Exception e)
+#pragma warning restore CA1031
         {
             GD.PrintErr($"Error discovering tests: {e.Message}\n{e.StackTrace}");
+#pragma warning disable IDE0028 // Do not catch general exception types
             return new Array<Dictionary>();
+#pragma warning restore IDE0028 // Do not catch general exception types
         }
     }
 
+    /// <inheritdoc />
+    public override void _Notification(int what)
+    {
+        if (what != NotificationPredelete)
+            return;
+        executionCts?.Dispose();
+        executionCts = null;
+    }
+
+    /// <summary>
+    ///     Executes the tests and using the listener for reporting the results.
+    /// </summary>
+    /// <param name="tests">A list of tests to be executed.</param>
+    /// <param name="listener">The listener to report the results.</param>
     public void ExecuteAsync(Array<Dictionary> tests, Callable listener)
     {
         try
@@ -83,25 +112,33 @@ public partial class GdUnit4CSharpApi : GdUnit4NetApiGodotBridge
             // Create new cancellation token source
             executionCts = new CancellationTokenSource();
 
+            Debug.Assert(tests != null, nameof(tests) + " != null");
             var testSuiteNodes = new List<TestSuiteNode> { BuildTestSuiteNodeFrom(tests) };
             ExecuteAsync(testSuiteNodes, listener, executionCts.Token)
                 .GetAwaiter()
                 .OnCompleted(() => EmitSignal(SignalName.ExecutionCompleted));
         }
+#pragma warning disable CA1031
         catch (Exception e)
+#pragma warning restore CA1031
         {
             GD.PrintErr($"Error executing tests: {e.Message}\n{e.StackTrace}");
             Task.Run(() => { }).GetAwaiter().OnCompleted(() => EmitSignal(SignalName.ExecutionCompleted));
         }
     }
 
+    /// <summary>
+    ///     Will cancel the current test execution.
+    /// </summary>
     public void CancelExecution()
     {
         try
         {
             executionCts?.Cancel();
         }
+#pragma warning disable CA1031
         catch (Exception e)
+#pragma warning restore CA1031
         {
             GD.PrintErr($"Error cancelling execution: {e.Message}");
         }
@@ -151,29 +188,29 @@ using Godot.Collections;
 
 public partial class GdUnit4CSharpApi : RefCounted
 {
-    [Signal]
-    public delegate void ExecutionCompletedEventHandler();
+	[Signal]
+	public delegate void ExecutionCompletedEventHandler();
 
-    public static bool IsApiLoaded()
-    {
-        GD.PushWarning("No `gdunit4.api` dependency found, check your project dependencies.");
-        return false;
-    }
+	public static bool IsApiLoaded()
+	{
+		GD.PushWarning("No `gdunit4.api` dependency found, check your project dependencies.");
+		return false;
+	}
 
 
-    public static string Version()
-        => "Unknown";
+	public static string Version()
+		=> "Unknown";
 
-    public static Array<Dictionary> DiscoverTests(CSharpScript sourceScript) => new();
+	public static Array<Dictionary> DiscoverTests(CSharpScript sourceScript) => new();
 
-    public void ExecuteAsync(Array<Dictionary> tests, Callable listener)
-    {
-    }
+	public void ExecuteAsync(Array<Dictionary> tests, Callable listener)
+	{
+	}
 
-    public static bool IsTestSuite(CSharpScript script)
-        => false;
+	public static bool IsTestSuite(CSharpScript script)
+		=> false;
 
-    public static Dictionary CreateTestSuite(string sourcePath, int lineNumber, string testSuitePath)
-        => new();
+	public static Dictionary CreateTestSuite(string sourcePath, int lineNumber, string testSuitePath)
+		=> new();
 }
 #endif

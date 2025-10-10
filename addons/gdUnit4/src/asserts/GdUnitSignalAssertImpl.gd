@@ -50,12 +50,12 @@ func failure_message() -> String:
 	return _current_failure_message
 
 
-func override_failure_message(message :String) -> GdUnitSignalAssert:
+func override_failure_message(message: String) -> GdUnitSignalAssert:
 	_custom_failure_message = message
 	return self
 
 
-func append_failure_message(message :String) -> GdUnitSignalAssert:
+func append_failure_message(message: String) -> GdUnitSignalAssert:
 	_additional_failure_message = message
 	return self
 
@@ -68,6 +68,26 @@ func wait_until(timeout := 2000) -> GdUnitSignalAssert:
 	else:
 		_timeout = timeout
 	return self
+
+
+func is_null() -> GdUnitSignalAssert:
+	if _emitter != null:
+		return report_error(GdAssertMessages.error_is_null(_emitter))
+	return report_success()
+
+
+func is_not_null() -> GdUnitSignalAssert:
+	if _emitter == null:
+		return report_error(GdAssertMessages.error_is_not_null())
+	return report_success()
+
+
+func is_equal(_expected: Variant) -> GdUnitSignalAssert:
+	return report_error("Not implemented")
+
+
+func is_not_equal(_expected: Variant) -> GdUnitSignalAssert:
+	return report_error("Not implemented")
 
 
 # Verifies the signal exists checked the emitter

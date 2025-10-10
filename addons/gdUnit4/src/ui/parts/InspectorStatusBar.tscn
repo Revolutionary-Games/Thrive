@@ -192,7 +192,7 @@ size_flags_vertical = 0
 [node name="Label" type="Label" parent="VBoxContainer/tree_tools"]
 layout_mode = 2
 size_flags_horizontal = 0
-text = "Statisitics"
+text = "Statistics"
 
 [node name="tree_buttons" type="HBoxContainer" parent="VBoxContainer/tree_tools"]
 layout_mode = 2
@@ -237,7 +237,7 @@ popup/item_3/id = 3
 [node name="btn_tree_mode" type="MenuButton" parent="VBoxContainer/tree_tools/tree_buttons"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "Sets tree presentaion mode."
+tooltip_text = "Sets tree presentation mode."
 icon = SubResource("ImageTexture_8lbfl")
 flat = false
 item_count = 2

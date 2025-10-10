@@ -14,13 +14,12 @@ var _save_settings: bool = false
 
 static func instance() -> GdUnitTestSessionHookService:
 	return GdUnitSingleton.instance("GdUnitTestSessionHookService", func()->GdUnitTestSessionHookService:
-		if GdUnitSettings.is_feature_enabled(GdUnitSettings.HOOK_SETTINGS_VISIBLE):
-			GdUnitSignals.instance().gdunit_message.emit("Installing GdUnit4 session system hooks.")
+		GdUnitSignals.instance().gdunit_message.emit("Installing GdUnit4 session system hooks.")
 		var service := GdUnitTestSessionHookService.new()
 		# Register default system hooks here
-		service.register(GdUnitHtmlReporterTestSessionHook.new(), true)
-		service.register(GdUnitXMLReporterTestSessionHook.new(), true)
 		service._save_settings = false
+		service.register(GdUnitHtmlReporterTestSessionHook.new())
+		service.register(GdUnitXMLReporterTestSessionHook.new())
 		service.load_hook_settings()
 		service._save_settings = true
 		return service
@@ -48,17 +47,23 @@ func load_hook(hook_resourc_path: String) -> GdUnitResult:
 	return GdUnitResult.success(script.new())
 
 
-func register(hook: GdUnitTestSessionHook, is_system_hook := false) -> GdUnitResult:
+func enable_hook(hook: GdUnitTestSessionHook, enabled: bool) -> void:
+	_enable_hook(hook, enabled)
+	GdUnitSignals.instance().gdunit_message.emit("Session hook '{name}' {enabled}.".format({
+		"name": hook.name,
+		"enabled": "enabled" if enabled else "disabled"})
+	)
+	save_hock_setttings()
+
+
+func register(hook: GdUnitTestSessionHook, enabled: bool = true) -> GdUnitResult:
 	if find_custom(hook) != -1:
 		return GdUnitResult.error("A hook instance of '%s' is already registered." % hook.get_script().resource_path)
 
-	hook.set_meta("SYSTEM_HOOK", is_system_hook)
+	_enable_hook(hook, enabled)
 	enigne_hooks.append(hook)
-	if not is_system_hook:
-		save_hock_setttings()
-
-	if GdUnitSettings.is_feature_enabled(GdUnitSettings.HOOK_SETTINGS_VISIBLE):
-		GdUnitSignals.instance().gdunit_message.emit("Session hook '%s' installed." % hook.name)
+	save_hock_setttings()
+	GdUnitSignals.instance().gdunit_message.emit("Session hook '%s' installed." % hook.name)
 
 	return GdUnitResult.success()
 
@@ -113,7 +118,9 @@ func execute(hook_func: String, session: GdUnitTestSession, reverse := false) ->
 	for hook_index in enigne_hooks.size():
 		var index := enigne_hooks.size()-hook_index-1 if reverse else hook_index
 		var hook: = enigne_hooks[index]
-		if OS.is_stdout_verbose() and GdUnitSettings.is_feature_enabled(GdUnitSettings.HOOK_SETTINGS_VISIBLE):
+		if not is_enabled(hook):
+			continue
+		if OS.is_stdout_verbose():
 			GdUnitSignals.instance().gdunit_message.emit("Session hook '%s' > %s()" % [hook.name, hook_func])
 		var result: GdUnitResult = await hook.call(hook_func, session)
 		if result == null:
@@ -134,24 +141,51 @@ func save_hock_setttings() -> void:
 	if not _save_settings:
 		return
 
-	GdUnitSettings.set_session_hooks(enigne_hooks
-		.filter(func(hook: GdUnitTestSessionHook) -> bool: return not hook.get_meta("SYSTEM_HOOK"))
-		.map(func(hook: GdUnitTestSessionHook) -> String: return hook.get_script().resource_path)
-	)
+	var hooks_to_save: Dictionary[String, bool] = {}
+	for hook in enigne_hooks:
+		var enabled: bool = hook.get_meta("enabled")
+		hooks_to_save[hook.get_script().resource_path] = enabled
+
+	GdUnitSettings.set_session_hooks(hooks_to_save)
 
 
 func load_hook_settings() -> void:
 	var hooks_resource_paths := GdUnitSettings.get_session_hooks()
-	if not hooks_resource_paths.is_empty():
-		GdUnitSignals.instance().gdunit_message.emit("Installing GdUnit4 session hooks.")
-	for hock_path in hooks_resource_paths:
+	if hooks_resource_paths.is_empty():
+		return
+
+	for hock_path: String in hooks_resource_paths.keys():
+		var enabled := hooks_resource_paths[hock_path]
+
+		# Do not reinstall already installed hooks
+		var existing_hook: GdUnitTestSessionHook = enigne_hooks.filter(func(element: GdUnitTestSessionHook) -> bool:
+			return element.get_script().resource_path == hock_path
+		).front()
+		# Applay enabled settings
+		if existing_hook != null:
+			_enable_hook(existing_hook, enabled)
+			continue
+
+		# Load additional hooks
 		var result := load_hook(hock_path)
 		if result.is_error():
 			push_error(result.error_message())
 			continue
 
+		GdUnitSignals.instance().gdunit_message.emit("Installing GdUnit4 session hooks.")
 		var hook: GdUnitTestSessionHook = result.value()
-		result = register(hook)
+
+		result = register(hook, enabled)
 		if result.is_error():
 			push_error(result.error_message())
 			continue
+
+
+static func is_enabled(hook: GdUnitTestSessionHook) -> bool:
+	if hook.has_meta("enabled"):
+		return hook.get_meta("enabled")
+	return true
+
+
+func _enable_hook(hook: GdUnitTestSessionHook, enabled: bool) -> void:
+	hook.set_meta("enabled", enabled)
