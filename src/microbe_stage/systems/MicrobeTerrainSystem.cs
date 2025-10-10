@@ -175,7 +175,9 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
         if (!playerHasMoved)
             return;
 
+#if DEBUG
         printedClustersTightWarning = false;
+#endif
 
         // Check if player moved terrain grids and if so perform an operation
         var playerGrid = PositionToTerrainCell(nextPlayerPosition);
@@ -367,10 +369,13 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
             SpawnNewCluster(cell, result, recorder, random);
         }
 
+        // TODO: might want to remove this print entirely as it's only really useful when tweaking chunk spawn rates
+#if DEBUG
         if (result.Count < wantedClusters)
         {
             GD.Print($"Could only spawn {result.Count} terrain clusters out of wanted {wantedClusters}");
         }
+#endif
 
         SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
 
