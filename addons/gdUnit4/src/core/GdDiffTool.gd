@@ -1,4 +1,5 @@
-# A tool to find differences between two objects
+# Myers' Diff Algorithm implementation
+# Based on "An O(ND) Difference Algorithm and Its Variations" by Eugene W. Myers
 class_name GdDiffTool
 extends RefCounted
 
@@ -7,79 +8,144 @@ const DIV_ADD :int = 214
 const DIV_SUB :int = 215
 
 
-static func _diff(lb: PackedByteArray, rb: PackedByteArray, lookup: Array[Array], ldiff: Array, rdiff: Array) -> void:
-	var loffset := lb.size()
-	var roffset := rb.size()
+class Edit:
+	enum Type { EQUAL, INSERT, DELETE }
+	var type: Type
+	var character: int
 
-	while true:
-		#if last character of X and Y matches
-		if loffset > 0 && roffset > 0 && lb[loffset - 1] == rb[roffset - 1]:
-			loffset -= 1
-			roffset -= 1
-			ldiff.push_front(lb[loffset])
-			rdiff.push_front(rb[roffset])
-			continue
-		#current character of Y is not present in X
-		else: if (roffset > 0 && (loffset == 0 || lookup[loffset][roffset - 1] >= lookup[loffset - 1][roffset])):
-			roffset -= 1
-			ldiff.push_front(rb[roffset])
-			ldiff.push_front(DIV_ADD)
-			rdiff.push_front(rb[roffset])
-			rdiff.push_front(DIV_SUB)
-			continue
-		#current character of X is not present in Y
-		else: if (loffset > 0 && (roffset == 0 || lookup[loffset][roffset - 1] < lookup[loffset - 1][roffset])):
-			loffset -= 1
-			ldiff.push_front(lb[loffset])
-			ldiff.push_front(DIV_SUB)
-			rdiff.push_front(lb[loffset])
-			rdiff.push_front(DIV_ADD)
-			continue
-		break
+	func _init(t: Type, chr: int) -> void:
+		type = t
+		character = chr
 
 
-# lookup[i][j] stores the length of LCS of substring X[0..i-1], Y[0..j-1]
-static func _createLookUp(lb: PackedByteArray, rb: PackedByteArray) -> Array[Array]:
-	var lookup: Array[Array] = []
-	@warning_ignore("return_value_discarded")
-	lookup.resize(lb.size() + 1)
-	for i in lookup.size():
-		var x := []
-		@warning_ignore("return_value_discarded")
-		x.resize(rb.size() + 1)
-		lookup[i] = x
-	return lookup
+# Main entry point - returns [ldiff, rdiff]
+static func string_diff(left: Variant, right: Variant) -> Array[PackedInt32Array]:
+	var lb := PackedInt32Array() if left == null else str(left).to_utf32_buffer().to_int32_array()
+	var rb := PackedInt32Array() if right == null else str(right).to_utf32_buffer().to_int32_array()
+
+	# Early exit for identical strings
+	if lb == rb:
+		return [lb.duplicate(), rb.duplicate()]
+
+	var edits := _myers_diff(lb, rb)
+	return _edits_to_diff_format(edits)
 
 
-static func _buildLookup(lb: PackedByteArray, rb: PackedByteArray) -> Array[Array]:
-	var lookup := _createLookUp(lb, rb)
-	# first column of the lookup table will be all 0
-	for i in lookup.size():
-		lookup[i][0] = 0
-	# first row of the lookup table will be all 0
-	for j :int in lookup[0].size():
-		lookup[0][j] = 0
+# Core Myers' algorithm
+static func _myers_diff(a: PackedInt32Array, b: PackedInt32Array) -> Array[Edit]:
+	var n := a.size()
+	var m := b.size()
+	var max_d := n + m
 
-	# fill the lookup table in bottom-up manner
-	for i in range(1, lookup.size()):
-		for j in range(1, lookup[0].size()):
-			# if current character of left and right matches
-			if lb[i - 1] == rb[j - 1]:
-				lookup[i][j] = lookup[i - 1][j - 1] + 1;
-			# else if current character of left and right don't match
+	# V array stores the furthest reaching x coordinate for each k-line
+	# We need indices from -max_d to max_d, so we offset by max_d
+	var v := PackedInt32Array()
+	v.resize(2 * max_d + 1)
+	v.fill(-1)
+	v[max_d + 1] = 0  # k=1 starts at x=0
+
+	var trace := []  # Store V arrays for each d to backtrack later
+
+	# Find the edit distance
+	for d in range(0, max_d + 1):
+		# Store current V for backtracking
+		trace.append(v.duplicate())
+
+		for k in range(-d, d + 1, 2):
+			var k_offset := k + max_d
+
+			# Decide whether to move down or right
+			var x: int
+			if k == -d or (k != d and v[k_offset - 1] < v[k_offset + 1]):
+				x = v[k_offset + 1]  # Move down (insert from b)
 			else:
-				lookup[i][j] = max(lookup[i - 1][j], lookup[i][j - 1]);
-	return lookup
+				x = v[k_offset - 1] + 1  # Move right (delete from a)
+
+			var y := x - k
+
+			# Follow diagonal as far as possible (matching characters)
+			while x < n and y < m and a[x] == b[y]:
+				x += 1
+				y += 1
+
+			v[k_offset] = x
+
+			# Check if we've reached the end
+			if x >= n and y >= m:
+				return _backtrack(a, b, trace, d, max_d)
+
+	# Should never reach here for valid inputs
+	return []
 
 
-static func string_diff(left :Variant, right :Variant) -> Array[PackedByteArray]:
-	var lb := PackedByteArray() if left == null else str(left).to_utf8_buffer()
-	var rb := PackedByteArray() if right == null else str(right).to_utf8_buffer()
-	var ldiff := Array()
-	var rdiff := Array()
-	var lookup := _buildLookup(lb, rb);
-	_diff(lb, rb, lookup, ldiff, rdiff)
-	return [PackedByteArray(ldiff), PackedByteArray(rdiff)]
+# Backtrack through the edit graph to build the edit script
+static func _backtrack(a: PackedInt32Array, b: PackedInt32Array, trace: Array, d: int, max_d: int) -> Array[Edit]:
+	var edits: Array[Edit] = []
+	var x := a.size()
+	var y := b.size()
+
+	# Walk backwards through each d value
+	for depth in range(d, -1, -1):
+		var v: PackedInt32Array = trace[depth]
+		var k := x - y
+		var k_offset := k + max_d
+
+		# Determine previous k
+		var prev_k: int
+		if k == -depth or (k != depth and v[k_offset - 1] < v[k_offset + 1]):
+			prev_k = k + 1
+		else:
+			prev_k = k - 1
+
+		var prev_k_offset := prev_k + max_d
+		var prev_x := v[prev_k_offset]
+		var prev_y := prev_x - prev_k
+
+		# Extract diagonal (equal) characters
+		while x > prev_x and y > prev_y:
+			x -= 1
+			y -= 1
+			#var char_array := PackedInt32Array([a[x]])
+			edits.insert(0, Edit.new(Edit.Type.EQUAL, a[x]))
+
+		# Record the edit operation
+		if depth > 0:
+			if x == prev_x:
+				# Insert from b
+				y -= 1
+				#var char_array := PackedInt32Array([b[y]])
+				edits.insert(0, Edit.new(Edit.Type.INSERT, b[y]))
+			else:
+				# Delete from a
+				x -= 1
+				#var char_array := PackedInt32Array([a[x]])
+				edits.insert(0, Edit.new(Edit.Type.DELETE, a[x]))
+
+	return edits
+
+
+# Convert edit script to the DIV_ADD/DIV_SUB format
+static func _edits_to_diff_format(edits: Array[Edit]) -> Array[PackedInt32Array]:
+	var ldiff := PackedInt32Array()
+	var rdiff := PackedInt32Array()
+
+	for edit in edits:
+		match edit.type:
+			Edit.Type.EQUAL:
+				ldiff.append(edit.character)
+				rdiff.append(edit.character)
+			Edit.Type.INSERT:
+				ldiff.append(DIV_ADD)
+				ldiff.append(edit.character)
+				rdiff.append(DIV_SUB)
+				rdiff.append(edit.character)
+			Edit.Type.DELETE:
+				ldiff.append(DIV_SUB)
+				ldiff.append(edit.character)
+				rdiff.append(DIV_ADD)
+				rdiff.append(edit.character)
+
+	return [ldiff, rdiff]
 
 
 # prototype

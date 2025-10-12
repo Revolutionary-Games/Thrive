@@ -23,6 +23,7 @@ func _execute(context :GdUnitExecutionContext) -> void:
 			reports))
 	GdUnitFileAccess.clear_tmp()
 	# Guard that checks if all doubled (spy/mock) objects are released
-	GdUnitClassDoubler.check_leaked_instances()
+	await GdUnitClassDoubler.check_leaked_instances()
 	# we hide the scene/main window after runner is finished
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MINIMIZED)
+	if not Engine.is_embedded_in_editor():
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MINIMIZED)

@@ -88,6 +88,12 @@ public class TerrainConfiguration : IRegistryType
             if (Radius <= 0.5f)
                 throw new InvalidRegistryDataException(name, GetType().Name, "Terrain chunk radius is unset");
 
+            if (Radius > 0.5f * Constants.TERRAIN_GRID_SIZE)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "Terrain chunk is so big it's not going to fit");
+            }
+
             if (string.IsNullOrEmpty(CollisionShapePath))
                 throw new InvalidRegistryDataException(name, GetType().Name, "Collision shape path is empty");
 
@@ -142,7 +148,7 @@ public class TerrainConfiguration : IRegistryType
                     "Terrain calculated radius is less than 1");
             }
 
-            // If other prevention radius is not set, set it automatically
+            // If the other terrain prevention radius is not set, set it automatically
             if (OtherTerrainPreventionRadius < 1)
                 OtherTerrainPreventionRadius = Radius;
         }

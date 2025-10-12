@@ -79,7 +79,7 @@ const INSPECTOR_TOOLBAR_BUTTON_RUN_OVERALL = GROUP_UI_TOOLBAR + "/run_overall"
 
 # Feature flags
 const GROUP_FEATURE = MAIN_CATEGORY + "/feature"
-const HOOK_SETTINGS_VISIBLE = GROUP_FEATURE + "/hook_settings_visible"
+
 
 # defaults
 # server connection timeout in minutes
@@ -130,7 +130,7 @@ static func setup() -> void:
 		"Show 'Run overall Tests' button in the inspector toolbar")
 	create_property_if_need(TEMPLATE_TS_GD, GdUnitTestSuiteTemplate.default_GD_template(), "Test suite template to use")
 	create_shortcut_properties_if_need()
-	create_property_if_need(SESSION_HOOKS, PackedStringArray())
+	create_property_if_need(SESSION_HOOKS, {} as Dictionary[String,bool])
 	migrate_properties()
 
 
@@ -207,12 +207,15 @@ static func set_log_path(path :String) -> void:
 	ProjectSettings.save()
 
 
-static func get_session_hooks() -> PackedStringArray:
+static func get_session_hooks() -> Dictionary[String, bool]:
 	var property := get_property(SESSION_HOOKS)
-	return property.value() if property != null else []
+	if property == null:
+		return {}
+	var hooks: Dictionary[String, bool] = property.value()
+	return hooks
 
 
-static func set_session_hooks(hooks: PackedStringArray) -> void:
+static func set_session_hooks(hooks: Dictionary[String, bool]) -> void:
 	var property := get_property(SESSION_HOOKS)
 	property.set_value(hooks)
 	update_property(property)

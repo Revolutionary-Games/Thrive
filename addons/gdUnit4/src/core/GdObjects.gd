@@ -6,8 +6,6 @@ const GdUnitTools := preload("res://addons/gdUnit4/src/core/GdUnitTools.gd")
 
 
 # introduced with Godot 4.3.beta1
-const TYPE_PACKED_VECTOR4_ARRAY = 38 #TYPE_PACKED_VECTOR4_ARRAY
-
 const TYPE_VOID 	= 1000
 const TYPE_VARARG 	= 1001
 const TYPE_VARIANT	= 1002
@@ -18,10 +16,6 @@ const TYPE_NODE 	= 2001
 const TYPE_CONTROL	= 2002
 const TYPE_CANVAS	= 2003
 const TYPE_ENUM		= 2004
-
-
-# used as default value for varargs
-const TYPE_VARARG_PLACEHOLDER_VALUE = "__null__"
 
 
 const TYPE_AS_STRING_MAPPINGS := {

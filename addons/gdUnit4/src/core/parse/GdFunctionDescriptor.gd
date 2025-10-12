@@ -101,6 +101,8 @@ func return_type() -> int:
 
 
 func return_type_as_string() -> String:
+	if return_type() == TYPE_NIL:
+		return "void"
 	if (return_type() == TYPE_OBJECT or return_type() == GdObjects.TYPE_ENUM) and not _return_class.is_empty():
 		return _return_class
 	return GdObjects.type_as_string(return_type())
@@ -110,7 +112,17 @@ func set_argument_value(arg_name: String, value: String) -> void:
 	var argument: GdFunctionArgument = _args.filter(func(arg: GdFunctionArgument) -> bool:
 		return arg.name() == arg_name
 		).front()
-	argument.set_value(value)
+	if argument != null:
+		argument.set_value(value)
+
+
+func enrich_arguments(arguments: Array[Dictionary]) -> void:
+	for arg_index: int in arguments.size():
+		var arg: Dictionary = arguments[arg_index]
+		if arg["type"] != GdObjects.TYPE_VARARG:
+			var arg_name: String = arg["name"]
+			var arg_value: String = arg["value"]
+			set_argument_value(arg_name, arg_value)
 
 
 func enrich_file_info(p_source_path: String, p_line_number: int) -> void:
@@ -225,10 +237,7 @@ static func _build_varargs(p_is_vararg :bool) -> Array[GdFunctionArgument]:
 	var varargs_ :Array[GdFunctionArgument] = []
 	if not p_is_vararg:
 		return varargs_
-	# if function has vararg we need to handle this manually by adding 10 default arguments
-	var type := GdObjects.TYPE_VARARG
-	for index in 10:
-		varargs_.push_back(GdFunctionArgument.new("vararg%d_" % index, type, '"%s"' % GdObjects.TYPE_VARARG_PLACEHOLDER_VALUE))
+	varargs_.push_back(GdFunctionArgument.new("varargs", GdObjects.TYPE_VARARG, ''))
 	return varargs_
 
 

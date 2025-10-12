@@ -59,12 +59,12 @@ func failure_message() -> String:
 	return _current_failure_message
 
 
-func override_failure_message(message :String) -> GdUnitFuncAssert:
+func override_failure_message(message: String) -> GdUnitFuncAssert:
 	_custom_failure_message = message
 	return self
 
 
-func append_failure_message(message :String) -> GdUnitFuncAssert:
+func append_failure_message(message: String) -> GdUnitFuncAssert:
 	_additional_failure_message = message
 	return self
 
@@ -98,12 +98,12 @@ func is_true() -> GdUnitFuncAssert:
 	return self
 
 
-func is_equal(expected :Variant) -> GdUnitFuncAssert:
+func is_equal(expected: Variant) -> GdUnitFuncAssert:
 	await _validate_callback(cb_is_equal, expected)
 	return self
 
 
-func is_not_equal(expected :Variant) -> GdUnitFuncAssert:
+func is_not_equal(expected: Variant) -> GdUnitFuncAssert:
 	await _validate_callback(cb_is_not_equal, expected)
 	return self
 
