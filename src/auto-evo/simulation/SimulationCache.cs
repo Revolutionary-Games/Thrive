@@ -311,8 +311,10 @@ public class SimulationCache
                 preyOxygenUsingOrganellesCount += 1;
         }
 
-        // Calculating "hit chance" modifier from toxicity
-        var toxicityHitFactor = 1 - toxicity / Constants.AUTO_EVO_TOXICITY_HIT_MODIFIER;
+        // Calculating "hit chance" modifier from prey size and predator toxicity
+        var sizeHitFactor = Constants.AUTO_EVO_SIZE_AFFECTED_PROJECTILE_MISS_FACTOR / float.Sqrt(preyHexSize);
+        var toxicityHitFactor = toxicity / Constants.AUTO_EVO_TOXICITY_HIT_MODIFIER;
+        var hitProportion = 1 - sizeHitFactor - toxicityHitFactor;
 
         // Calculating prey energy production altered by channel inhbitor
         var inhibitedPreyEnergyProduction = preyEnergyBalance.TotalProduction *
@@ -333,7 +335,7 @@ public class SimulationCache
         slowedPreySpeed *= 1 - Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF *
             MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.Macrolide);
         var slowedProportion = 1.0f - MathF.Exp(-Constants.AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING *
-            macrolideScore * toxicityHitFactor);
+            macrolideScore * hitProportion);
 
         // Only assign engulf score if one can actually engulf (and digest)
         var engulfmentScore = 0.0f;
@@ -412,6 +414,9 @@ public class SimulationCache
         // If toxin-inhibited energy production is lower than osmoregulation cost, channel inhibitor is a damaging toxin
         if (inhibitedPreyEnergyProduction < preyOsmoregulationCost)
             damagingToxinScore += channelInhibitorScore;
+
+        // Applying projectile hit chance to damaging toxins
+        damagingToxinScore *= hitProportion;
 
         // Predators are less likely to use toxin against larger prey, unless they are opportunistic
         if (preyHexSize > predatorHexSize)
