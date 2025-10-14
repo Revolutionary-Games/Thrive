@@ -386,7 +386,6 @@ public class SimulationCache
             predatorSlimeJetScore *= 0.5f;
 
         // Pili are much more useful if the microbe can close to melee
-        pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
         if (predatorSpeed ! > preySpeed)
         {
             pilusScore *= predatorSpeed > slowedPreySpeed ?
