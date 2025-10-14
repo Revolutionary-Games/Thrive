@@ -519,7 +519,7 @@ public static class Constants
 
     public const float OXYTOXY_DAMAGE = 25.0f;
 
-    public const float CYTOTOXIN_DAMAGE = 20.0f;
+    public const float CYTOTOXIN_DAMAGE = 18.0f;
 
     public const float OXYGEN_INHIBITOR_DAMAGE = 23.0f;
 
