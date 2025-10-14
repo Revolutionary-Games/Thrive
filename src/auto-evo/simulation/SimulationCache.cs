@@ -436,7 +436,7 @@ public class SimulationCache
             damagingToxinScore = MathF.Pow(damagingToxinScore, storageToKillRatio * 0.8f);
         }
 
-        // Prey that resist toxin are of course vulnerable to being hunted with it
+        // Prey that resist toxin are of course less vulnerable to being hunted with it
         damagingToxinScore /= prey.MembraneType.ToxinResistance;
 
         // If you have a chemoreceptor, active hunting types are more effective
