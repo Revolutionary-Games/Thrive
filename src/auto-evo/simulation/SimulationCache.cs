@@ -318,8 +318,8 @@ public class SimulationCache
 
         // Calculating prey energy production altered by channel inhbitor
         var inhibitedPreyEnergyProduction = preyEnergyBalance.TotalProduction *
-            Constants.CHANNEL_INHIBITOR_ATP_DEBUFF *
-            MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.ChannelInhibitor);
+            (1 - Constants.CHANNEL_INHIBITOR_ATP_DEBUFF *
+                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.ChannelInhibitor));
 
         // If inhibited energy production would affect movement, add (part of) the inhibitor score to macrolide score
         if (inhibitedPreyEnergyProduction < preyEnergyBalance.TotalConsumption)
