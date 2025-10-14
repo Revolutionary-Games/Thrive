@@ -1,0 +1,15 @@
+﻿namespace Saving;
+
+using SharedBase.Archive;
+
+/// <summary>
+///   Thrive-specific types that archives can contain. Values may never be removed or reordered!
+/// </summary>
+public enum ThriveArchiveObjectType : uint
+{
+    InvalidThrive = ArchiveObjectType.StartOfCustomTypes,
+
+    Vector3,
+    Vector4,
+    Quaternion,
+}
