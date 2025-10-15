@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
+using Saving.Serializers;
 using DirAccess = Godot.DirAccess;
 using FileAccess = Godot.FileAccess;
 using Path = System.IO.Path;
@@ -19,8 +20,8 @@ public static class SaveHelper
     ///   This is a list of known versions where save compatibility is very broken and loading needs to be prevented
     ///   (unless there exists a version converter)
     /// </summary>
-    private static readonly List<string> KnownSaveIncompatibilityPoints = new()
-    {
+    private static readonly List<string> KnownSaveIncompatibilityPoints =
+    [
         "0.5.3.0",
         "0.5.3.1",
         "0.5.5.0-alpha",
@@ -28,14 +29,19 @@ public static class SaveHelper
         "0.6.4.0-alpha",
         "0.6.6.0-alpha",
         "0.8.4.0-alpha",
-    };
+    ];
 
-    private static readonly IReadOnlyList<MainGameState> StagesAllowingPrototypeSaving = new[]
-    {
+    private static readonly IReadOnlyList<MainGameState> StagesAllowingPrototypeSaving =
+    [
         MainGameState.MicrobeStage,
-    };
+    ];
 
     private static DateTime? lastSave;
+
+    // Just in case multiple threads might want to access this
+    private static object archiveManagerUseLock = new();
+
+    private static ThriveArchiveManager? cachedArchiveManager;
 
     public enum SaveOrder
     {
@@ -632,9 +638,20 @@ public static class SaveHelper
         // Ensure the cheat state flag is copied
         save.Info.CheatsUsed = save.SavedProperties.CheatsUsed;
 
+        save.Info.SaveVersion = SaveInformation.CURRENT_SAVE_VERSION;
+
         try
         {
+            lock (archiveManagerUseLock)
+            {
+                cachedArchiveManager ??= new ThriveArchiveManager();
+                save.SerializeData(cachedArchiveManager);
+            }
+
+            save.Info.HashOfArchiveContents = save.GetArchiveHash();
+
             save.SaveToFile();
+            save.Dispose();
             inProgress.ReportStatus(true, Localization.Translate("SAVING_SUCCEEDED"));
         }
         catch (Exception e)
@@ -643,6 +660,12 @@ public static class SaveHelper
             if (Debugger.IsAttached)
                 Debugger.Break();
 #endif
+
+            // Ensure archive manager is in good state
+            lock (archiveManagerUseLock)
+            {
+                cachedArchiveManager?.Clear();
+            }
 
             // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
             if (!Constants.CATCH_SAVE_ERRORS)

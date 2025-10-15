@@ -1,6 +1,4 @@
-﻿namespace Saving;
-
-using SharedBase.Archive;
+﻿using SharedBase.Archive;
 
 /// <summary>
 ///   Thrive-specific types that archives can contain. Values may never be removed or reordered!
@@ -12,4 +10,12 @@ public enum ThriveArchiveObjectType : uint
     Vector3,
     Vector4,
     Quaternion,
+
+    Save,
+    SaveInformation,
+    GameProperties,
+    MicrobeStage,
+    TutorialState,
+    GameWorld,
+    WorldGenerationSettings,
 }

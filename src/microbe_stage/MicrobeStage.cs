@@ -8,6 +8,7 @@ using Arch.Core.Extensions;
 using Components;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Main class for managing the microbe stage
@@ -16,8 +17,11 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 [DeserializedCallbackTarget]
 [UseThriveSerializer]
-public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>, IMicrobeSpawnEnvironment
+public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>, IMicrobeSpawnEnvironment,
+    IArchivable
 {
+    public const int SERIALIZATION_VERSION = 1;
+
     private readonly Dictionary<MicrobeSpecies, ResolvedMicrobeTolerances> resolvedTolerancesCache = new();
 
     private OrganelleDefinition cytoplasm = null!;

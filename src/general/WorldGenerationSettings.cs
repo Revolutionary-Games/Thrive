@@ -1,14 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
-using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Player configurable options for creating the game world
 /// </summary>
-[JsonObject(IsReference = true)]
-public class WorldGenerationSettings
+public class WorldGenerationSettings : IArchivable
 {
     [JsonConstructor]
     public WorldGenerationSettings(IDifficulty difficulty)

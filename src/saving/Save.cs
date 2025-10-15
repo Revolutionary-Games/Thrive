@@ -2,20 +2,28 @@
 using System.Formats.Tar;
 using System.IO;
 using System.IO.Compression;
+using System.Security.Cryptography;
 using System.Text;
 using Godot;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Saving.Serializers;
+using SharedBase.Archive;
 using FileAccess = Godot.FileAccess;
 
 /// <summary>
 ///   A class representing a single saved game
 /// </summary>
-public class Save
+public sealed class Save : IArchivable, IDisposable
 {
-    public const string SAVE_SAVE_JSON = "save.json";
+    public const ushort SERIALIZATION_VERSION = 1;
+
+    public const string SAVE_SAVE_ARCHIVE = "save.bin";
     public const string SAVE_INFO_JSON = "info.json";
     public const string SAVE_SCREENSHOT = "screenshot.png";
+
+    // Temporary data for saving the archive data
+    private MemoryStream? saveArchiveData;
 
     /// <summary>
     ///   Name of this save on disk
@@ -50,13 +58,11 @@ public class Save
     /// <summary>
     ///   Screenshot for this save
     /// </summary>
-    [JsonIgnore]
     public Image? Screenshot { get; set; }
 
     /// <summary>
     ///   The scene-object to switch to once this save is loaded
     /// </summary>
-    [JsonIgnore]
     public ILoadableGameState? TargetScene
     {
         get
@@ -72,6 +78,10 @@ public class Save
             }
         }
     }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.Save;
+    public bool CanBeReferencedInArchive => false;
 
     /// <summary>
     ///   Loads a save from a file or throws an exception
@@ -167,20 +177,18 @@ public class Save
         string saveName)
     {
         var target = SaveFileInfo.SaveNameToPath(saveName);
-        var (infoStr, saveStr, screenshotData) = LoadDataFromFile(target, true, true, true);
+        var (infoStr, saveArchive, screenshotData) = LoadDataFromFile(target, true, true, true);
 
         if (string.IsNullOrEmpty(infoStr))
             throw new IOException("couldn't find info content in save");
 
-        if (string.IsNullOrEmpty(saveStr))
-            throw new IOException("couldn't find save content in save file");
+        if (saveArchive == null)
+            throw new IOException("couldn't find save archive content in save file");
 
         var infoResult = ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr) ??
             throw new JsonException("SaveInformation object was deserialized as null");
 
-        // Don't use the normal deserialization as we don't want to actually create the game state, instead we want
-        // a JSON structure
-        var saveResult = JObject.Parse(saveStr);
+        _ = infoResult;
 
         var imageResult = new Image();
 
@@ -189,28 +197,71 @@ public class Save
             imageResult.LoadPngFromBuffer(screenshotData);
         }
 
-        return (infoResult, saveResult, imageResult);
+        // TODO: reimplementing save upgrading
+        throw new NotSupportedException("Loading JSON structure from save is not supported anymore");
+
+        // return (infoResult, saveResult, imageResult);
     }
 
     public static void WriteSaveJSONToFile(SaveInformation saveInfo, JObject saveStructure, Image? screenshot,
         string saveName)
     {
-        var serialized = saveStructure.ToString(Formatting.None);
+        throw new NotImplementedException("Save upgrading is not reimplemented");
+    }
 
-        WriteRawSaveDataToFile(saveInfo, serialized, screenshot, saveName);
+    /// <summary>
+    ///   Serializes the main data into an archive, must be called before saving this to a file.
+    /// </summary>
+    /// <param name="archiveManager">Archive manager to perform the serialization with</param>
+    public void SerializeData(ThriveArchiveManager archiveManager)
+    {
+        if (saveArchiveData == null)
+        {
+            saveArchiveData = new MemoryStream();
+        }
+        else
+        {
+            saveArchiveData.Position = 0;
+            saveArchiveData.SetLength(0);
+        }
+
+        using var writer = new SArchiveMemoryWriter(saveArchiveData, archiveManager, false);
+
+        archiveManager.OnStartNewWrite(writer);
+
+        writer.WriteArchiveHeader(ISArchiveWriter.ArchiveHeaderVersion, "thrive", Constants.VersionFull);
+
+        writer.WriteObject(this);
+
+        writer.WriteArchiveFooter();
+        archiveManager.OnFinishWrite(writer);
+
+        saveArchiveData.Position = 0;
+    }
+
+    public string GetArchiveHash()
+    {
+        if (saveArchiveData == null)
+            throw new InvalidOperationException("Archive data is not set, call SerializeData first");
+
+        saveArchiveData.Position = 0;
+        var result = SHA1.HashData(saveArchiveData);
+        saveArchiveData.Position = 0;
+
+        return Convert.ToHexStringLower(result);
     }
 
     /// <summary>
     ///   Writes this save to disk.
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     In order to save the screenshot as png this needs to save it to a temporary file on disk.
-    ///   </para>
-    /// </remarks>
     public void SaveToFile()
     {
-        WriteRawSaveDataToFile(Info, ThriveJsonConverter.Instance.SerializeObject(this), Screenshot, Name);
+        if (saveArchiveData == null)
+            throw new InvalidOperationException("Archive data is not set, call SerializeData first");
+
+        saveArchiveData.Position = 0;
+
+        WriteRawSaveDataToFile(Info, saveArchiveData, Screenshot, Name);
     }
 
     /// <summary>
@@ -227,7 +278,69 @@ public class Save
         MicrobeEditor = null;
     }
 
-    private static void WriteRawSaveDataToFile(SaveInformation saveInfo, string saveContent, Image? screenshot,
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(Name);
+        writer.WriteObject(Info);
+        writer.Write((int)GameState);
+
+        if (SavedProperties == null)
+        {
+            writer.WriteNullObject();
+        }
+        else
+        {
+            writer.WriteObject(SavedProperties);
+        }
+
+        if (MicrobeStage == null)
+        {
+            writer.WriteNullObject();
+        }
+        else
+        {
+            writer.WriteObject(MicrobeStage);
+        }
+
+        if (MicrobeEditor == null)
+        {
+            writer.WriteNullObject();
+        }
+        else
+        {
+            throw new NotImplementedException("Editor save not done yet");
+
+            // writer.WriteObject(MicrobeEditor);
+        }
+
+        // Other properties are not saved
+    }
+
+    public void Dispose()
+    {
+        saveArchiveData?.Dispose();
+    }
+
+    internal static Save ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new Save();
+
+        instance.Name = reader.ReadString() ?? throw new NullArchiveObjectException();
+        instance.Info = reader.ReadObject<SaveInformation>() ?? throw new NullArchiveObjectException();
+        instance.GameState = (MainGameState)reader.ReadInt32();
+
+        instance.SavedProperties = reader.ReadObject<GameProperties>();
+
+        instance.MicrobeStage = reader.ReadObject<MicrobeStage>();
+        instance.MicrobeEditor = reader.ReadObject<MicrobeEditor>();
+
+        return instance;
+    }
+
+    private static void WriteRawSaveDataToFile(SaveInformation saveInfo, Stream saveContent, Image? screenshot,
         string saveName)
     {
         FileHelpers.MakeSureDirectoryExists(Constants.SAVE_FOLDER);
@@ -238,7 +351,7 @@ public class Save
         WriteDataToSaveFile(target, justInfo, saveContent, screenshot);
     }
 
-    private static void WriteDataToSaveFile(string target, string justInfo, string serialized, Image? screenshot)
+    private static void WriteDataToSaveFile(string target, string justInfo, Stream serialized, Image? screenshot)
     {
         using var file = FileAccess.Open(target, FileAccess.ModeFlags.Write);
         if (file == null)
@@ -253,7 +366,7 @@ public class Save
 
         // Use the size that is in most cases basically the final size for the stream to avoid storage reallocations
         // as much as possible
-        using var entryContent = new MemoryStream(serialized.Length);
+        using var entryContent = new MemoryStream(justInfo.Length);
         using var entryWriter = new StreamWriter(entryContent, Encoding.UTF8);
 
         TarHelper.OutputEntry(tar, SAVE_INFO_JSON, justInfo, entryContent, entryWriter);
@@ -266,7 +379,7 @@ public class Save
                 TarHelper.OutputEntry(tar, SAVE_SCREENSHOT, data);
         }
 
-        TarHelper.OutputEntry(tar, SAVE_SAVE_JSON, serialized, entryContent, entryWriter);
+        TarHelper.OutputEntry(tar, SAVE_SAVE_ARCHIVE, serialized);
     }
 
     private static (SaveInformation? Info, Save? Save, Image? Screenshot) LoadFromFile(string file, bool info,
@@ -275,7 +388,7 @@ public class Save
         if (!FileAccess.FileExists(file))
             throw new ArgumentException("save with the given name doesn't exist");
 
-        var (infoStr, saveStr, screenshotData) = LoadDataFromFile(file, info, save, screenshot);
+        var (infoStr, saveArchive, screenshotData) = LoadDataFromFile(file, info, save, screenshot);
 
         readFinished?.Invoke();
 
@@ -288,24 +401,31 @@ public class Save
             infoResult = ParseSaveInfo(infoStr);
         }
 
-        if (save)
-        {
-            if (string.IsNullOrEmpty(saveStr))
-            {
-                throw new IOException("couldn't find save content in save file");
-            }
-
-            // This deserializes a huge tree of objects
-            saveResult = ThriveJsonConverter.Instance.DeserializeObject<Save>(saveStr) ??
-                throw new JsonException("Save data is null");
-        }
-
         if (screenshot)
         {
             if (screenshotData != null)
                 imageResult = TarHelper.ImageFromBuffer(screenshotData);
 
             // Not a critical error that screenshot is missing even if it was requested
+        }
+
+        if (save)
+        {
+            if (saveArchive == null)
+            {
+                throw new IOException("couldn't find save archive content in the save file (is it a really old file?)");
+            }
+
+            // Loading is not as time-sensitive as writing, so we just crudely make a new manager here
+            var manager = new ThriveArchiveManager();
+            var reader = new SArchiveMemoryReader(new MemoryStream(saveArchive), manager, true);
+
+            manager.OnStartNewRead(reader);
+
+            // This deserializes a huge tree of objects!
+            saveResult = reader.ReadObject<Save>() ?? throw new NullArchiveObjectException("Save data is null");
+
+            manager.OnFinishRead(reader);
         }
 
         return (infoResult, saveResult, imageResult);
@@ -322,11 +442,11 @@ public class Save
             throw new JsonException("SaveInformation is null");
     }
 
-    private static (string? InfoStr, string? SaveStr, byte[]? Screenshot) LoadDataFromFile(string file, bool info,
+    private static (string? InfoStr, byte[]? SaveArchive, byte[]? Screenshot) LoadDataFromFile(string file, bool info,
         bool save, bool screenshot)
     {
         string? infoStr = null;
-        string? saveStr = null;
+        byte[]? archiveData = null;
         byte[]? screenshotData = null;
 
         // Used for early stop in reading
@@ -370,12 +490,13 @@ public class Save
                 infoStr = TarHelper.ReadStringEntry(tarEntry);
                 --itemsToRead;
             }
-            else if (tarEntry.Name == SAVE_SAVE_JSON)
+            else if (tarEntry.Name == SAVE_SAVE_ARCHIVE)
             {
                 if (!save)
                     continue;
 
-                saveStr = TarHelper.ReadStringEntry(tarEntry);
+                // TODO: theoretically the new archive format would allow us to create a stream for direct reading here
+                archiveData = TarHelper.ReadBytesEntry(tarEntry);
                 --itemsToRead;
             }
             else if (tarEntry.Name == SAVE_SCREENSHOT)
@@ -396,6 +517,6 @@ public class Save
                 break;
         }
 
-        return (infoStr, saveStr, screenshotData);
+        return (infoStr, archiveData, screenshotData);
     }
 }

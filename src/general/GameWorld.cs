@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using AutoEvo;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Xoshiro.PRNG64;
 
 /// <summary>
@@ -16,10 +16,10 @@ using Xoshiro.PRNG64;
 ///     but now this is just a collection of data regarding the world.
 ///   </para>
 /// </remarks>
-[JsonObject(IsReference = true)]
-[UseThriveSerializer]
-public class GameWorld : ISaveLoadable
+public class GameWorld : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Stores some instances to be used between many different auto-evo runs
     /// </summary>

@@ -2,76 +2,65 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   This contains the single game settings.
 ///   This is recreated when starting a new game
 /// </summary>
-[JsonObject(IsReference = true)]
-public class GameProperties
+public class GameProperties : IArchivable
 {
-    [JsonProperty]
-    private readonly Dictionary<string, bool> setBoolStatuses = new();
+    public const int SERIALIZATION_VERSION = 1;
 
-    [JsonProperty]
-    private bool freeBuild;
-
-    [JsonProperty]
-    private bool cheatsUsed;
+    private readonly Dictionary<string, bool> setBoolStatuses;
 
     private GameProperties(WorldGenerationSettings? settings = null, Species? startingSpecies = null)
     {
         settings ??= new WorldGenerationSettings();
         GameWorld = new GameWorld(settings, startingSpecies);
         TutorialState = new TutorialState();
+        setBoolStatuses = new Dictionary<string, bool>();
     }
 
-    [JsonConstructor]
-    private GameProperties(GameWorld gameWorld, TutorialState tutorialState)
+    // Archive constructor
+    private GameProperties(GameWorld gameWorld, TutorialState tutorialState, Dictionary<string, bool> boolStatuses)
     {
         GameWorld = gameWorld;
         TutorialState = tutorialState;
+        setBoolStatuses = boolStatuses;
     }
 
     /// <summary>
     ///   The world this game is played in. Has all the species and map data
     /// </summary>
-    [JsonProperty]
     public GameWorld GameWorld { get; }
 
     /// <summary>
-    ///   When true the player is in freebuild mode and various things
+    ///   When true, the player is in freebuild mode, and various things
     ///   should be disabled / different.
     /// </summary>
-    [JsonIgnore]
-    public bool FreeBuild => freeBuild;
+    public bool FreeBuild { get; private set; }
 
     /// <summary>
     ///   True if the player has cheated in this game
     /// </summary>
-    [JsonIgnore]
-    public bool CheatsUsed => cheatsUsed;
+    public bool CheatsUsed { get; private set; }
 
     /// <summary>
     ///   True when the player is currently ascended and should be allowed to do anything
     /// </summary>
-    [JsonProperty]
     public bool Ascended { get; private set; }
 
     /// <summary>
     ///   Counts how many times the player has ascended with the current game in total
     /// </summary>
-    [JsonProperty]
     public int AscensionCounter { get; private set; }
 
     /// <summary>
     ///   The tutorial state for this game
     /// </summary>
-    [JsonProperty]
     public TutorialState TutorialState { get; }
 
-    // TODO: start using this to prevent saving
     /// <summary>
     ///   Set to true when the player has entered the stage prototypes and some extra restrictions apply
     /// </summary>
@@ -80,12 +69,13 @@ public class GameProperties
     /// <summary>
     ///   ID of this playthrough
     /// </summary>
-    [JsonProperty]
     public Guid PlaythroughID { get; private set; } = Guid.NewGuid();
 
-    // Not saved for now as this is only in prototypes
-    [JsonIgnore]
     public TechWeb TechWeb { get; private set; } = new();
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.GameProperties;
+    public bool CanBeReferencedInArchive => true;
 
     /// <summary>
     ///   Starts a new game in the microbe stage
@@ -301,7 +291,7 @@ public class GameProperties
     public void EnterFreeBuild()
     {
         GD.Print("Entering freebuild mode");
-        freeBuild = true;
+        FreeBuild = true;
     }
 
     public void EnterPrototypes()
@@ -327,7 +317,7 @@ public class GameProperties
 
     public void ReportCheatsUsed()
     {
-        cheatsUsed = true;
+        CheatsUsed = true;
     }
 
     public void BecomeDescendedVersionOf(GameProperties descendedGame)
@@ -343,6 +333,48 @@ public class GameProperties
 
         // Modify the game and world to make sure the descension perks are applied
         ApplyDescensionPerks();
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(GameWorld);
+        writer.WriteObject(TutorialState);
+        writer.WriteObject(setBoolStatuses);
+
+        writer.Write(FreeBuild);
+        writer.Write(CheatsUsed);
+        writer.Write(Ascended);
+        writer.Write(AscensionCounter);
+        writer.Write(InPrototypes);
+        writer.Write(PlaythroughID.ToString());
+
+        // Not saved for now as this is only used in the prototypes
+
+        // writer.WriteObject(TechWeb);
+    }
+
+    internal static GameProperties ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new GameProperties(reader.ReadObject<GameWorld>() ?? throw new NullArchiveObjectException(),
+            reader.ReadObject<TutorialState>() ?? throw new NullArchiveObjectException(),
+            reader.ReadObject<Dictionary<string, bool>>() ?? throw new NullArchiveObjectException());
+
+        reader.ReportObjectConstructorDone(instance);
+
+        instance.FreeBuild = reader.ReadBool();
+        instance.CheatsUsed = reader.ReadBool();
+        instance.Ascended = reader.ReadBool();
+        instance.AscensionCounter = reader.ReadInt32();
+        instance.InPrototypes = reader.ReadBool();
+        instance.PlaythroughID = Guid.Parse(reader.ReadString() ?? throw new NullArchiveObjectException());
+
+        // Not saved currently
+        // instance.TechWeb = reader.ReadObject<TechWeb>() ?? throw new NullArchiveObjectException();
+
+        return instance;
     }
 
     private static MicrobeSpecies MakePlayerOrganellesMakeSenseForMulticellular(GameProperties game)

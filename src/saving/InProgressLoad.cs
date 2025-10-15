@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using Godot;
-using Saving;
 
 /// <summary>
 ///   Holds data needed for an in-progress load action.
@@ -87,7 +86,6 @@ public class InProgressLoad
 
                 // Let all suppressed deletions happen
                 TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
-                JSONDebug.FlushJSONTracesOut();
 
                 // Continue after transition finishes
                 return;
@@ -196,8 +194,6 @@ public class InProgressLoad
                 // Stop suppressing loaded node deletion
                 TemporaryLoadedNodeDeleter.Instance.RemoveDeletionHold(Constants.DELETION_HOLD_LOAD);
 
-                JSONDebug.FlushJSONTracesOut();
-
                 PauseManager.Instance.Resume(nameof(InProgressLoad));
 
                 if (success)
@@ -251,6 +247,15 @@ public class InProgressLoad
         catch (Exception e2)
         {
             return Localization.Translate("SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE").FormatSafe(e2);
+        }
+
+        try
+        {
+            save.Dispose();
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Failed to dispose save: ", e);
         }
 
         return string.Empty;
