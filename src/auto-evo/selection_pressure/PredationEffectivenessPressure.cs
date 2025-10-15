@@ -32,6 +32,7 @@ public class PredationEffectivenessPressure : SelectionPressure
             new UpgradeToxinOrganelle(organelle => organelle.HasAgentVacuoleComponent, ToxinType.Macrolide, "both"),
             new UpgradeToxinOrganelle(organelle => organelle.HasAgentVacuoleComponent, ToxinType.ChannelInhibitor, "both"),
             new UpgradeToxinOrganelle(organelle => organelle.HasAgentVacuoleComponent, ToxinType.OxygenMetabolismInhibitor, "both"),
+            new UpgradeOrganelle(organelle => organelle.HasPilusComponent, "injectisome"),
             new UpgradeOrganelle(organelle => organelle.HasMovementComponent, new FlagellumUpgrades(0.5f)),
             new UpgradeOrganelle(organelle => organelle.HasLysosomeComponent,
                 new LysosomeUpgrades(SimulationParameters.Instance.GetEnzyme(Constants.CHITINASE_ENZYME))),
