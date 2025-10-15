@@ -5,8 +5,8 @@ using System.Linq;
 using AutoEvo;
 
 /// <summary>
-/// Specific mutationstrategy for toxin-launching organelles
-/// applies a fixed toxin type and adjusts toxicity upward, downward, or in both directions
+   /// Specific mutationstrategy for toxin-launching organelles
+   /// applies a fixed toxin type and randomly adjusts toxicity upward, downward, or in both directions
 /// </summary>
 public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
 {
@@ -17,12 +17,12 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
     private string? upgradeName;
 
     /// <summary>
-    /// Updates a toxin-launching organelle with a given toxin type,
-    /// and randomly moves toxicity in a given direction.
+       /// Updates a toxin-launching organelle with a given toxin type,
+       /// and randomly moves toxicity in a given direction.
     /// </summary>
     /// <param name="criteria">Organelle requirement to apply</param>
     /// <param name="toxinType">The toxin type to assign</param>
-    /// <param name="direction"> "increase", "decrease", or "both". To decide what to do with toxicity
+    /// <param name="direction"> "increase", "decrease", or "both" to decide what to do with toxicity
     /// </param>
     public UpgradeToxinOrganelle(Func<OrganelleDefinition, bool> criteria, ToxinType toxinType, string direction)
     {
@@ -35,8 +35,7 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
     // We don't want this to repeat, since changing toxicity does not cost MP
     public bool Repeatable => false;
 
-    public List<Tuple<MicrobeSpecies, double>>? MutationsOf(
-        MicrobeSpecies baseSpecies, double mp, bool lawk,
+    public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
         if (allOrganelles.Count == 0)
@@ -121,7 +120,7 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
                     break;
 
                 case "both":
-                    change *= random.NextDouble() < 0.5 ? -1f : 1f;
+                    change *= random.NextDouble() < 0.5 ? -1.0f : 1.0f;
                     toxinData.Toxicity = Math.Clamp(toxinData.Toxicity + change, -1.0f, 1.0f);
                     break;
             }

@@ -385,7 +385,6 @@ public class SimulationCache
         if (predatorSpeed > preySpeed)
             predatorSlimeJetScore *= 0.5f;
 
-
         // Prey that resist physical damage are of course less vulnerable to being hunted with it
         pilusScore /= prey.MembraneType.PhysicalResistance;
 
@@ -772,14 +771,14 @@ public class SimulationCache
         }
         else
         {
-            pilusScore = 0;
-            injectisomeScore = 0;
+            pilusScore *= slimeJetsCount;
+            injectisomeScore *= mucocystsCount;
         }
 
         slimeJetScore *= slimeJetsMultiplier;
 
-        var predationToolsRawScores = (pilusScore, injectisomeScore, averageToxicity, 
-            oxytoxyScore, cytotoxinScore, macrolideScore, channelInhibitorScore, oxygenMetabolismInhibitorScore, 
+        var predationToolsRawScores = (pilusScore, injectisomeScore, averageToxicity,
+            oxytoxyScore, cytotoxinScore, macrolideScore, channelInhibitorScore, oxygenMetabolismInhibitorScore,
             slimeJetScore, mucocystsScore);
 
         cachedPredationToolsRawScores.Add(microbeSpecies, predationToolsRawScores);
