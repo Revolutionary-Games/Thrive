@@ -52,7 +52,7 @@ public class SimulationCache
     private readonly Dictionary<(TweakedProcess, float, IBiomeConditions), ProcessSpeedInformation>
         cachedProcessSpeeds = new();
 
-    private readonly Dictionary<MicrobeSpecies, (float, float, float, float, float, float, float, float, float)>
+    private readonly Dictionary<MicrobeSpecies, (float, float, float, float, float, float, float, float, float, float)>
         cachedPredationToolsRawScores = new();
 
     private readonly Dictionary<(MicrobeSpecies, string), float> cachedEnzymeScores = new();
@@ -290,10 +290,10 @@ public class SimulationCache
         var preyEnergyBalance = GetEnergyBalanceForSpecies(prey, biomeConditions);
         var preyOsmoregulationCost = preyEnergyBalance.Osmoregulation;
         var enzymesScore = GetEnzymesScore(predator, prey.MembraneType.DissolverEnzyme);
-        var (pilusScore, toxicity, oxytoxyScore, cytotoxinScore, macrolideScore,
+        var (pilusScore, injectisomeScore, toxicity, oxytoxyScore, cytotoxinScore, macrolideScore,
                 channelInhibitorScore, oxygenMetabolismInhibitorScore, predatorSlimeJetScore, _) =
             GetPredationToolsRawScores(predator);
-        var (_, _, _, _, _, _, _, preySlimeJetScore, preyMucocystsScore) = GetPredationToolsRawScores(prey);
+        var (_, _, _, _, _, _, _, _, preySlimeJetScore, preyMucocystsScore) = GetPredationToolsRawScores(prey);
 
         var behaviourScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
@@ -385,12 +385,23 @@ public class SimulationCache
         if (predatorSpeed > preySpeed)
             predatorSlimeJetScore *= 0.5f;
 
+
+        // Prey that resist physical damage are of course less vulnerable to being hunted with it
+        pilusScore /= prey.MembraneType.PhysicalResistance;
+
+        // But prey that resist toxin damage are less vulnerable to the injectisome
+        injectisomeScore /= prey.MembraneType.ToxinResistance;
+
+        // Combine pili for further calculations
+        pilusScore += injectisomeScore;
+
         // Pili are much more useful if the microbe can close to melee
         if (predatorSpeed ! > preySpeed)
         {
-            pilusScore *= predatorSpeed > slowedPreySpeed ?
-                slowedProportion + Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY :
-                Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+            if (predatorSpeed > slowedPreySpeed)
+                pilusScore *= slowedProportion + Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+            else
+                pilusScore *= Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
         }
 
         // Damaging toxin section
@@ -599,7 +610,7 @@ public class SimulationCache
         cachedResolvedTolerances.Clear();
     }
 
-    public (float PilusScore, float AverageToxicity, float OxytoxyScore, float CytotoxinScore,
+    public (float PilusScore, float InjectisomeScore, float AverageToxicity, float OxytoxyScore, float CytotoxinScore,
         float MacrolideScore, float ChannelInhibitorScore, float OxygenMetabolismInhibitorScore, float SlimeJetScore,
         float MucocystsScore)
         GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
@@ -617,6 +628,7 @@ public class SimulationCache
         var channelInhibitorScore = 0.0f;
         var oxygenMetabolismInhibitorScore = 0.0f;
         var pilusScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
+        var injectisomeScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
         var slimeJetScore = Constants.AUTO_EVO_SLIME_JET_SCORE;
         var mucocystsScore = Constants.AUTO_EVO_MUCOCYST_SCORE;
 
@@ -625,6 +637,7 @@ public class SimulationCache
         var totalToxinOrganellesCount = 0;
         var totalToxinTypesCount = 0;
         var pilusCount = 0;
+        var injectisomeCount = 0;
         var slimeJetsCount = 0;
         var mucocystsCount = 0;
         var slimeJetsMultiplier = 1.0f;
@@ -641,6 +654,12 @@ public class SimulationCache
 
             if (organelle.Definition.HasPilusComponent)
             {
+                if (organelle.Upgrades.HasInjectisomeUpgrade())
+                {
+                    ++injectisomeCount;
+                    continue;
+                }
+
                 ++pilusCount;
                 continue;
             }
@@ -741,15 +760,27 @@ public class SimulationCache
         }
 
         // Having lots of extra pili, slime jets and mucocysts doesn't really help much
-        pilusScore *= MathF.Sqrt(pilusCount);
         slimeJetScore *= MathF.Sqrt(slimeJetsCount);
         mucocystsScore *= MathF.Sqrt(mucocystsCount);
 
+        // Having lots of extra pili also does not help, even if they are two different types
+        if (pilusCount != 0 || injectisomeCount != 0)
+        {
+            var pilusScale = MathF.Sqrt(pilusCount + injectisomeCount) / (pilusCount + injectisomeCount);
+            pilusScore = pilusCount * pilusScale;
+            injectisomeScore = injectisomeCount * pilusScale;
+        }
+        else
+        {
+            pilusScore = 0;
+            injectisomeScore = 0;
+        }
+
         slimeJetScore *= slimeJetsMultiplier;
 
-        var predationToolsRawScores = (pilusScore, averageToxicity, oxytoxyScore,
-            cytotoxinScore, macrolideScore, channelInhibitorScore, oxygenMetabolismInhibitorScore, slimeJetScore,
-            mucocystsScore);
+        var predationToolsRawScores = (pilusScore, injectisomeScore, averageToxicity, 
+            oxytoxyScore, cytotoxinScore, macrolideScore, channelInhibitorScore, oxygenMetabolismInhibitorScore, 
+            slimeJetScore, mucocystsScore);
 
         cachedPredationToolsRawScores.Add(microbeSpecies, predationToolsRawScores);
         return predationToolsRawScores;
