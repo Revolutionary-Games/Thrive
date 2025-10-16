@@ -86,7 +86,10 @@ public class MicrobeStageWelcome : TutorialPhase, IArchiveUpdatable
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
     {
-        // Base version is not our version
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        // Base version is not our version, so we pass 1 here
         base.ReadPropertiesFromArchive(reader, 1);
 
         gameLifeOrigin = (WorldGenerationSettings.LifeOrigin)reader.ReadInt32();
