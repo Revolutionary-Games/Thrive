@@ -18,4 +18,11 @@ public enum ThriveArchiveObjectType : uint
     TutorialState,
     GameWorld,
     WorldGenerationSettings,
+    WorldStatsTracker,
+    SimpleStatistic,
+    DamageStatistic,
+    ReproductionStatistic,
+    UnlockProgress,
+    DayNightCycle,
+    ReproductionOrganelleData,
 }

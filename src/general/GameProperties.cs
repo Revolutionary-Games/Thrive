@@ -358,9 +358,9 @@ public class GameProperties : IArchivable
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var instance = new GameProperties(reader.ReadObject<GameWorld>() ?? throw new NullArchiveObjectException(),
-            reader.ReadObject<TutorialState>() ?? throw new NullArchiveObjectException(),
-            reader.ReadObject<Dictionary<string, bool>>() ?? throw new NullArchiveObjectException());
+        var instance = new GameProperties(reader.ReadObjectNotNull<GameWorld>(),
+            reader.ReadObjectNotNull<TutorialState>(),
+            reader.ReadObjectNotNull<Dictionary<string, bool>>());
 
         reader.ReportObjectConstructorDone(instance);
 
@@ -372,7 +372,7 @@ public class GameProperties : IArchivable
         instance.PlaythroughID = Guid.Parse(reader.ReadString() ?? throw new NullArchiveObjectException());
 
         // Not saved currently
-        // instance.TechWeb = reader.ReadObject<TechWeb>() ?? throw new NullArchiveObjectException();
+        // instance.TechWeb = reader.ReadObjectNotNull<TechWeb>();
 
         return instance;
     }

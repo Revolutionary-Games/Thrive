@@ -329,7 +329,7 @@ public sealed class Save : IArchivable, IDisposable
         var instance = new Save();
 
         instance.Name = reader.ReadString() ?? throw new NullArchiveObjectException();
-        instance.Info = reader.ReadObject<SaveInformation>() ?? throw new NullArchiveObjectException();
+        instance.Info = reader.ReadObjectNotNull<SaveInformation>();
         instance.GameState = (MainGameState)reader.ReadInt32();
 
         instance.SavedProperties = reader.ReadObject<GameProperties>();

@@ -1,20 +1,18 @@
 ﻿using System;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Controller for variation in sunlight during an in-game day for the current game.
 /// </summary>
-[JsonObject(IsReference = true)]
-[UseThriveSerializer]
-public class DayNightCycle : IDaylightInfo
+public class DayNightCycle : IDaylightInfo, IArchivable
 {
-    [JsonProperty]
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private bool isEnabled;
 
     /// <summary>
     ///   Number of real-time seconds per in-game day.
     /// </summary>
-    [JsonProperty]
     private int realTimePerDay;
 
     /// <summary>
@@ -25,13 +23,11 @@ public class DayNightCycle : IDaylightInfo
     ///     This exists as it only needs to be calculated once, and the calculation for it is confusing.
     ///   </para>
     /// </remarks>
-    [JsonIgnore]
     private float daytimeMultiplier;
 
     /// <summary>
     ///   How big a part of the day is considered to be the day. Defaults to 0.5f.
     /// </summary>
-    [JsonIgnore]
     private float daytimeFraction;
 
     /// <summary>
@@ -49,10 +45,8 @@ public class DayNightCycle : IDaylightInfo
     /// <summary>
     ///   Current position in the day/night cycle, expressed as a fraction of the day elapsed so far.
     /// </summary>
-    [JsonProperty]
     public float FractionOfDayElapsed { get; set; }
 
-    [JsonIgnore]
     public float AverageSunlight { get; private set; }
 
     /// <summary>
@@ -60,26 +54,26 @@ public class DayNightCycle : IDaylightInfo
     ///   light = max(-(FractionOfDayElapsed - 0.5)^2 * daytimeMultiplier + 1, 0)
     ///   desmos: https://www.desmos.com/calculator/vrrk1bkac2
     /// </summary>
-    [JsonIgnore]
     public float DayLightFraction =>
         isEnabled ? CalculatePointwiseSunlight(FractionOfDayElapsed, daytimeMultiplier) : 1.0f;
 
     /// <summary>
     ///   How long a single day/night cycle lasts in realtime seconds of gameplay
     /// </summary>
-    [JsonIgnore]
     public float DayLengthRealtimeSeconds => realTimePerDay;
 
     /// <summary>
     ///   How long until the night starts. When negative it is currently night.
     /// </summary>
-    [JsonIgnore]
     public float DayFractionUntilNightStart => FractionOfDayElapsed > daytimeFraction * 0.5f ?
         1 - daytimeFraction * 0.5f - FractionOfDayElapsed :
         -FractionOfDayElapsed - daytimeFraction * 0.5f;
 
-    [JsonIgnore]
     public float SecondsUntilNightStart => DayFractionUntilNightStart * DayLengthRealtimeSeconds;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.DayNightCycle;
+    public bool CanBeReferencedInArchive => true;
 
     public static float CalculateDayTimeMultiplier(float daytimeFraction)
     {
@@ -94,6 +88,36 @@ public class DayNightCycle : IDaylightInfo
             return 1;
 
         return CalculateAverageSunlight(daytimeMultiplier);
+    }
+
+    public static DayNightCycle ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new DayNightCycle
+        {
+            isEnabled = reader.ReadBool(),
+            realTimePerDay = reader.ReadInt32(),
+            daytimeMultiplier = reader.ReadFloat(),
+            daytimeFraction = reader.ReadFloat(),
+            FractionOfDayElapsed = reader.ReadFloat(),
+        };
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(isEnabled);
+        writer.Write(realTimePerDay);
+        writer.Write(daytimeMultiplier);
+        writer.Write(daytimeFraction);
+        writer.Write(FractionOfDayElapsed);
+    }
+
+    public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
     }
 
     /// <summary>
