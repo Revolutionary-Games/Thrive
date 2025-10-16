@@ -1,7 +1,6 @@
 ﻿namespace Tutorial;
 
 using System;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
@@ -16,7 +15,6 @@ public abstract class EditorEntryCountingTutorial : TutorialPhase
         CanTrigger = false;
     }
 
-    [JsonProperty]
     public int NumberOfEditorEntries { get; set; }
 
     protected abstract int TriggersOnNthEditorSession { get; }
