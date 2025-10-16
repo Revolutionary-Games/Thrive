@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   A container for patches that are joined together
 /// </summary>
-[UseThriveSerializer]
-public class PatchMap : ISaveLoadable
+public class PatchMap : ISaveLoadable, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private Patch? currentPatch;
 
     /// <summary>
@@ -55,11 +57,28 @@ public class PatchMap : ISaveLoadable
         }
     }
 
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.PatchMap;
+    public bool CanBeReferencedInArchive => false;
+
     [JsonProperty]
     private List<(int Id1, int Id2)> PatchAdjacencies { get; set; } = new();
 
     [JsonProperty]
     private List<(int Id1, int Id2)> RegionAdjacencies { get; set; } = new();
+
+    public static PatchMap ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        throw new NotImplementedException();
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        throw new NotImplementedException();
+    }
 
     /// <summary>
     ///   Adds a new patch to the map. Throws if can't add

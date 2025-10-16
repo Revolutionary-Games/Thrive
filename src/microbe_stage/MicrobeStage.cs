@@ -180,12 +180,21 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         set => tempPatchManagerBrightness = value;
     }
 
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeStage;
+    public bool CanBeReferencedInArchive => true;
+
     public override MainGameState GameState => MainGameState.MicrobeStage;
 
     protected override ICreatureStageHUD BaseHUD => HUD;
 
     private LocalizedString CurrentPatchName =>
         GameWorld.Map.CurrentPatch?.Name ?? throw new InvalidOperationException("no current patch");
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        throw new NotImplementedException();
+    }
 
     /// <summary>
     ///   This method gets called the first time the stage scene is put into an active scene tree.

@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
 using Saving.Serializers;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Class that represents a species. This is an abstract base for
@@ -16,7 +17,7 @@ using Saving.Serializers;
 [JSONAlwaysDynamicType]
 [UseThriveConverter]
 [UseThriveSerializer]
-public abstract class Species : ICloneable
+public abstract class Species : ICloneable, IArchivable
 {
     /// <summary>
     ///   This is not an auto property to make save compatibility easier
@@ -155,6 +156,12 @@ public abstract class Species : ICloneable
 
     [JsonIgnore]
     public bool IsExtinct => Population <= 0;
+
+    public abstract ushort CurrentArchiveVersion { get; }
+    public abstract ArchiveObjectType ArchiveObjectType { get; }
+    public bool CanBeReferencedInArchive => true;
+
+
 
     /// <summary>
     ///   Triggered when this species is changed somehow. Should update any data that is cached in the species
@@ -316,10 +323,12 @@ public abstract class Species : ICloneable
     /// <returns>Size factor of this species</returns>
     public abstract float GetPredationTargetSizeFactor();
 
+    public abstract void WriteToArchive(ISArchiveWriter writer);
+
     /// <summary>
     ///   Creates a cloned version of the species. This should only
     ///   really be used if you need to modify a species while
-    ///   referring to the old data. In for example the Mutations
+    ///   referring to the old data. In, for example, the Mutations
     ///   code.
     /// </summary>
     /// <returns>Deep-cloned instance of this object</returns>
@@ -426,4 +435,6 @@ public abstract class Species : ICloneable
         if (!PlayerSpecies)
             throw new InvalidOperationException("Cannot apply an immediate population change to an AI species");
     }
+
+
 }
