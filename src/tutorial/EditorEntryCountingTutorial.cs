@@ -2,6 +2,7 @@
 
 using System;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   A tutorial that counts how many times the editor has been entered and allows derived classes access to that
@@ -26,6 +27,20 @@ public abstract class EditorEntryCountingTutorial : TutorialPhase
         CheckEventEditorEntryEvent(eventType);
 
         return false;
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        base.WritePropertiesToArchive(writer);
+
+        writer.Write(NumberOfEditorEntries);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        base.ReadPropertiesFromArchive(reader, version);
+
+        NumberOfEditorEntries = reader.ReadInt32();
     }
 
     private bool CheckEventEditorEntryEvent(TutorialEventType eventType)
