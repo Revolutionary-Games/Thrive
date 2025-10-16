@@ -1,13 +1,38 @@
 ﻿namespace Tutorial;
 
 using System;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Tells the player how to reproduce if they have taken a long while
 /// </summary>
-public class MicrobeReproduction : TutorialPhase
+public class MicrobeReproduction : TutorialPhase, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public override string ClosedByName => "MicrobeReproduction";
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.TutorialMicrobeReproduction;
+
+    public bool CanBeReferencedInArchive => true;
+
+    public static MicrobeReproduction ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new MicrobeReproduction();
+        instance.ReadPropertiesFromArchive(reader, version);
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        WritePropertiesToArchive(writer);
+    }
 
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {

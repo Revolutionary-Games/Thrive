@@ -172,7 +172,7 @@ public class TutorialState : ITutorialInput, IArchivable
         reader.ReadObjectProperties(instance.MicrobeMovementExplanation);
         reader.ReadObjectProperties(instance.GlucoseCollecting);
         reader.ReadObjectProperties(instance.MicrobeStayingAlive);
-        reader.ReadObjectProperties(instance.MicrobeReproduction);
+        instance.MicrobeReproduction = reader.ReadObject<MicrobeReproduction>();
         reader.ReadObjectProperties(instance.MicrobePressEditorButton);
         reader.ReadObjectProperties(instance.MicrobeUnbind);
         reader.ReadObjectProperties(instance.MicrobeEngulfmentExplanation);
@@ -234,7 +234,7 @@ public class TutorialState : ITutorialInput, IArchivable
         writer.WriteObjectProperties(MicrobeMovementExplanation);
         writer.WriteObjectProperties(GlucoseCollecting);
         writer.WriteObjectProperties(MicrobeStayingAlive);
-        writer.WriteObjectProperties(MicrobeReproduction);
+        writer.WriteObject(MicrobeReproduction);
         writer.WriteObjectProperties(MicrobePressEditorButton);
         writer.WriteObjectProperties(MicrobeUnbind);
         writer.WriteObjectProperties(MicrobeEngulfmentExplanation);

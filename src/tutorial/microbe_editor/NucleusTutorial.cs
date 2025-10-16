@@ -2,24 +2,30 @@
 
 using System;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Prompts the player to eventually place a nucleus for further progression
 /// </summary>
 public class NucleusTutorial : EditorEntryCountingTutorial
 {
-    private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
+    public const ushort SERIALIZATION_VERSION = 1;
+
+    private readonly string cellEditorTab = nameof(EditorTab.CellEditor);
 
     private readonly OrganelleDefinition nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
-    [JsonProperty]
     private bool hasNucleus;
 
     public NucleusTutorial()
     {
         CanTrigger = false;
     }
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.TutorialNucleusTutorial;
 
     public override string ClosedByName => "NucleusTutorial";
 
@@ -111,5 +117,23 @@ public class NucleusTutorial : EditorEntryCountingTutorial
         }
 
         return false;
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        base.WritePropertiesToArchive(writer);
+
+        writer.Write(hasNucleus);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        // Base version is not our version, so we pass 1 here
+        base.ReadPropertiesFromArchive(reader, 1);
+
+        hasNucleus = reader.ReadBool();
     }
 }
