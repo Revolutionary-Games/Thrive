@@ -29,5 +29,14 @@ public enum ThriveArchiveObjectType : uint
     GlobalGlaciationEvent,
     MeteorImpactEvent,
     UnderwaterVentEruptionEffect,
-    Meteor
+    Meteor,
+    GlucoseReductionEffect,
+    CompoundDiffusionEffect,
+    HydrogenSulfideConsumptionEffect,
+    NitrogenControlEffect,
+    IronOxidationEffect,
+    MarineSnowDensityEffect,
+    PhotosynthesisProductionEffect,
+    VolcanismEffect,
+    PatchMap,
 }
