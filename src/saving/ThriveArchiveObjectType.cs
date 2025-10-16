@@ -87,4 +87,8 @@ public enum ThriveArchiveObjectType : uint
     TutorialPatchMap,
     TutorialStaySmallTutorial,
     TutorialTolerancesTabTutorial,
+    DifficultyPreset,
+    AutoEvoConfiguration,
+    CustomDifficulty,
+    PredefinedAutoEvoConfiguration,
 }

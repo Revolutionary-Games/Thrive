@@ -59,6 +59,11 @@ public class MacroscopicSpecies : Species
     [JsonIgnore]
     public override string StringCode => ThriveJsonConverter.Instance.SerializeObject(this);
 
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.MacroscopicSpecies;
+
     public static MacroscopicSpeciesType CalculateMacroscopicTypeFromLayout(MetaballLayout<MacroscopicMetaball> layout,
         float scale)
     {
@@ -76,9 +81,6 @@ public class MacroscopicSpecies : Species
 
         return MacroscopicSpeciesType.Macroscopic;
     }
-
-    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
-    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MacroscopicSpecies;
 
     public override void WriteToArchive(ISArchiveWriter writer)
     {

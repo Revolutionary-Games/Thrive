@@ -36,7 +36,6 @@ public class ThriveJsonConverter : IDisposable
         // All the thrive serializers need to be registered here
         thriveConverters =
         [
-            new RegistryTypeConverter(context),
             new GodotColorConverter(),
             new GodotBasisConverter(),
             new GodotQuaternionConverter(),

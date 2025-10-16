@@ -337,9 +337,8 @@ public class WorldGenerationSettings : IArchivable
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        throw new NotImplementedException();
-        //writer.WriteObject(Difficulty);
-        //writer.WriteObject(AutoEvoConfiguration);
+        writer.WriteObject(Difficulty);
+        writer.WriteObject(AutoEvoConfiguration);
 
         writer.Write(LAWK);
         writer.Write(ExperimentalFeatures);

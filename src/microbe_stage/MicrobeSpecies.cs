@@ -136,6 +136,9 @@ public class MicrobeSpecies : Species, ICellDefinition
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeSpecies;
+
     public static bool StateHasStabilizedImpl(IWorldSimulation worldSimulation)
     {
         // This is stabilized as long as the default no background operations check passes
@@ -160,9 +163,6 @@ public class MicrobeSpecies : Species, ICellDefinition
             }
         }
     }
-
-    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
-    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeSpecies;
 
     public override void WriteToArchive(ISArchiveWriter writer)
     {
