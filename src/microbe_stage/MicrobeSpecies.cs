@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Newtonsoft.Json;
 using Saving.Serializers;
+using SharedBase.Archive;
 using Systems;
 using Vector3 = Godot.Vector3;
 
@@ -16,6 +17,8 @@ using Vector3 = Godot.Vector3;
 [UseThriveSerializer]
 public class MicrobeSpecies : Species, ICellDefinition
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
         cachedFillTimes = new();
 
@@ -156,6 +159,14 @@ public class MicrobeSpecies : Species, ICellDefinition
                 break;
             }
         }
+    }
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeSpecies;
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        throw new NotImplementedException();
     }
 
     public override void OnEdited()

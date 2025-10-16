@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
 using Saving.Serializers;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Represents a macroscopic species that is 3D and composed of placed tissues
@@ -15,6 +16,8 @@ using Saving.Serializers;
 [UseThriveSerializer]
 public class MacroscopicSpecies : Species
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public MacroscopicSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
     }
@@ -72,6 +75,14 @@ public class MacroscopicSpecies : Species
         }
 
         return MacroscopicSpeciesType.Macroscopic;
+    }
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MacroscopicSpecies;
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        throw new NotImplementedException();
     }
 
     public override void OnEdited()

@@ -39,4 +39,7 @@ public enum ThriveArchiveObjectType : uint
     PhotosynthesisProductionEffect,
     VolcanismEffect,
     PatchMap,
+    MicrobeSpecies,
+    MacroscopicSpecies,
+    MulticellularSpecies,
 }

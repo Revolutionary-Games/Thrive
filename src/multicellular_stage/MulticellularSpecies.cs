@@ -5,6 +5,7 @@ using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Saving.Serializers;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
@@ -17,6 +18,8 @@ using Systems;
 [UseThriveSerializer]
 public class MulticellularSpecies : Species, ISimulationPhotographable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public MulticellularSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
     }
@@ -49,6 +52,16 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
     [JsonIgnore]
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.MulticellularSpecies;
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        throw new NotImplementedException();
+    }
 
     public override void OnEdited()
     {
