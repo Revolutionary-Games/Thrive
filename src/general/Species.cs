@@ -161,8 +161,6 @@ public abstract class Species : ICloneable, IArchivable
     public abstract ArchiveObjectType ArchiveObjectType { get; }
     public bool CanBeReferencedInArchive => true;
 
-
-
     /// <summary>
     ///   Triggered when this species is changed somehow. Should update any data that is cached in the species
     ///   regarding its properties, including <see cref="RepositionToOrigin"/>
@@ -435,6 +433,4 @@ public abstract class Species : ICloneable, IArchivable
         if (!PlayerSpecies)
             throw new InvalidOperationException("Cannot apply an immediate population change to an AI species");
     }
-
-
 }

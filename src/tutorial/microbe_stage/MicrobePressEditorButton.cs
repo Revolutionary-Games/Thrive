@@ -71,13 +71,6 @@ public class MicrobePressEditorButton : TutorialPhase
         ProcessWhileHidden = false;
     }
 
-    public override void WritePropertiesToArchive(ISArchiveWriter writer)
-    {
-        base.WritePropertiesToArchive(writer);
-
-        // PressEditorButtonControl is intentionally not serialized
-    }
-
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)

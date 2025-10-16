@@ -46,11 +46,6 @@ public class MicrobeEngulfmentStorageFull : TutorialPhase
         return false;
     }
 
-    public override void WritePropertiesToArchive(ISArchiveWriter writer)
-    {
-        base.WritePropertiesToArchive(writer);
-    }
-
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
