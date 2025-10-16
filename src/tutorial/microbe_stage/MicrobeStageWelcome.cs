@@ -1,16 +1,17 @@
 ﻿namespace Tutorial;
 
 using System;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   A welcome popup to the stage
 /// </summary>
-public class MicrobeStageWelcome : TutorialPhase
+public class MicrobeStageWelcome : TutorialPhase, IArchiveUpdatable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private Action? patchNamePopup;
 
-    [JsonProperty]
     private WorldGenerationSettings.LifeOrigin gameLifeOrigin;
 
     private WorldGenerationSettings.LifeOrigin appliedGUILifeOrigin = WorldGenerationSettings.LifeOrigin.Vent;
@@ -21,6 +22,11 @@ public class MicrobeStageWelcome : TutorialPhase
     }
 
     public override string ClosedByName => "MicrobeStageWelcome";
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.TutorialMicrobeStageWelcome;
 
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {
@@ -69,5 +75,20 @@ public class MicrobeStageWelcome : TutorialPhase
     {
         patchNamePopup?.Invoke();
         base.Hide();
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        base.WritePropertiesToArchive(writer);
+
+        writer.Write((int)gameLifeOrigin);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        // Base version is not our version
+        base.ReadPropertiesFromArchive(reader, 1);
+
+        gameLifeOrigin = (WorldGenerationSettings.LifeOrigin)reader.ReadInt32();
     }
 }

@@ -42,4 +42,5 @@ public enum ThriveArchiveObjectType : uint
     MicrobeSpecies,
     MacroscopicSpecies,
     MulticellularSpecies,
+    TutorialMicrobeStageWelcome,
 }
