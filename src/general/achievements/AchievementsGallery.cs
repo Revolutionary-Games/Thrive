@@ -6,7 +6,7 @@ using Godot;
 /// </summary>
 public partial class AchievementsGallery : Control
 {
-    private readonly List<AchievementCard> achievementCards = new();
+    private readonly Dictionary<int, AchievementCard> achievementCards = new();
 
 #pragma warning disable CA2213
     [Export]
@@ -23,22 +23,30 @@ public partial class AchievementsGallery : Control
         base._Ready();
 
         cardScene = GD.Load<PackedScene>("res://src/general/achievements/AchievementCard.tscn");
+
+        // Add all achievement cards
+
+        bool first = true;
+
+        foreach (var achievement in AchievementsManager.Instance.GetAchievements())
+        {
+            var instance = cardScene.Instantiate<AchievementCard>();
+            instance.Visible = false;
+
+            cardContainer.AddChild(instance);
+            achievementCards.Add(achievement.Identifier, instance);
+
+            if (first)
+            {
+                first = false;
+                grabberToUpdate.NodeToGiveFocusTo = instance.GetPath();
+            }
+        }
     }
 
     public void Refresh()
     {
         // Refresh the cards
-
-        // TODO: could do a lighter refresh than this, but for now the performance of this is sufficient with the
-        // achievement count we have currently
-        foreach (var achievementCard in achievementCards)
-        {
-            achievementCard.QueueFree();
-        }
-
-        achievementCards.Clear();
-
-        bool first = true;
 
         foreach (var achievement in AchievementsManager.Instance.GetAchievements())
         {
@@ -46,17 +54,12 @@ public partial class AchievementsGallery : Control
             if (achievement.HideIfNotAchieved && !achievement.Achieved)
                 continue;
 
-            var instance = cardScene.Instantiate<AchievementCard>();
+            achievementCards.TryGetValue(achievement.Identifier, out var achievementCard);
 
-            instance.UpdateDataFrom(achievement, AchievementsManager.Instance.GetStats());
-
-            cardContainer.AddChild(instance);
-            achievementCards.Add(instance);
-
-            if (first)
+            if (achievementCard != null)
             {
-                first = false;
-                grabberToUpdate.NodeToGiveFocusTo = instance.GetPath();
+                achievementCard.UpdateDataFrom(achievement, AchievementsManager.Instance.GetStats());
+                achievementCard.Visible = true;
             }
         }
     }
