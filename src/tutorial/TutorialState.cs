@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Tutorial;
 
 /// <summary>
 ///   State of the tutorials for a game of Thrive
 /// </summary>
-[JsonObject(IsReference = true)]
-public class TutorialState : ITutorialInput, ISaveLoadable
+public class TutorialState : ITutorialInput, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   True when the tutorial has paused the game
     /// </summary>
-    [JsonProperty]
     private bool hasPaused;
 
     private bool needsToApplyEvenIfDisabled;
@@ -30,162 +30,113 @@ public class TutorialState : ITutorialInput, ISaveLoadable
     ///   When this is true, tutorials that have already been seen by the player in any playthrough are automatically
     ///   marked as already complete.
     /// </summary>
-    [JsonProperty]
     public bool DisableShowingAlreadySeenTutorials { get; private set; }
 
     // Tutorial states
 
-    [JsonProperty]
     public MicrobeStageWelcome MicrobeStageWelcome { get; private set; } = new();
 
-    [JsonProperty]
     public MicrobeMovement MicrobeMovement { get; private set; } = new();
 
-    [JsonProperty]
     public MicrobeMovementExplanation MicrobeMovementExplanation { get; private set; } = new();
 
-    [JsonProperty]
     public GlucoseCollecting GlucoseCollecting { get; private set; } = new();
 
-    [JsonProperty]
     public MicrobeStayingAlive MicrobeStayingAlive { get; private set; } = new();
 
-    [JsonProperty]
     public MicrobeReproduction MicrobeReproduction { get; private set; } = new();
 
-    [JsonProperty]
     public MicrobePressEditorButton MicrobePressEditorButton { get; private set; } = new();
 
-    [JsonProperty]
     public MicrobeUnbind MicrobeUnbind { get; private set; } = new();
 
-    [JsonProperty]
     public MicrobeEngulfmentExplanation MicrobeEngulfmentExplanation { get; private set; } = new();
 
-    [JsonProperty]
     public MicrobeEngulfedExplanation MicrobeEngulfedExplanation { get; private set; } = new();
 
-    [JsonProperty]
     public CheckTheHelpMenu CheckTheHelpMenu { get; private set; } = new();
 
-    [JsonProperty]
     public MicrobeEngulfmentStorageFull EngulfmentStorageFull { get; private set; } = new();
 
-    [JsonProperty]
     public OpenProcessPanelTutorial OpenProcessPanelTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public ProcessPanelTutorial ProcessPanelTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public ResourcesAfterSplitTutorial ResourcesAfterSplitTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public MigrationTutorial MigrationTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public EditorReportWelcome EditorReportWelcome { get; private set; } = new();
 
-    [JsonProperty]
     public Tutorial.PatchMap PatchMap { get; private set; } = new();
 
-    [JsonProperty]
     public CellEditorIntroduction CellEditorIntroduction { get; private set; } = new();
 
-    [JsonProperty]
     public EditorUndoTutorial EditorUndoTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public EditorRedoTutorial EditorRedoTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public EditorTutorialEnd EditorTutorialEnd { get; private set; } = new();
 
-    [JsonProperty]
     public AutoEvoPrediction AutoEvoPrediction { get; private set; } = new();
 
-    [JsonProperty]
     public StaySmallTutorial StaySmallTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public ChemoreceptorPlacementTutorial ChemoreceptorPlacementTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public NegativeAtpBalanceTutorial NegativeAtpBalanceTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public AtpBalanceIntroduction AtpBalanceIntroduction { get; private set; } = new();
 
-    [JsonProperty]
     public CompoundBalancesTutorial CompoundBalancesTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public FoodChainTabTutorial FoodChainTabTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public LeaveColonyTutorial LeaveColonyTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public PausingTutorial PausingTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public SpeciesMemberDiedTutorial SpeciesMemberDiedTutorial { get; private set; } = new();
 
     /// <summary>
     ///   Tutorial for the become multicellular button. Needs to be before <see cref="MulticellularWelcome"/>
     ///   as this should see the become multicellular event before that other tutorial consumes it.
     /// </summary>
-    [JsonProperty]
     public BecomeMulticellularTutorial BecomeMulticellularTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public MulticellularWelcome MulticellularWelcome { get; private set; } = new();
 
-    [JsonProperty]
     public DayNightTutorial DayNightTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public OrganelleDivisionTutorial OrganelleDivisionTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public MadeNoChangesTutorial MadeNoChangesTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public FlagellumPlacementTutorial FlagellumPlacementTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public DigestionStatTutorial DigestionStatTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public ModifyOrganelleTutorial ModifyOrganelleTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public TolerancesTabTutorial TolerancesTabTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public OpenTolerancesTabTutorial OpenTolerancesTabTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public EarlyGameGoalTutorial EarlyGameGoalTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public NucleusTutorial NucleusTutorial { get; private set; } = new();
 
-    [JsonProperty]
     public BindingAgentsTutorial BindingAgentsTutorial { get; private set; } = new();
 
     // End of tutorial state variables
 
-    [JsonProperty]
     public double TotalElapsed { get; private set; }
 
     /// <summary>
     ///   True if any of the tutorials are active that want to pause the game
     /// </summary>
-    [JsonIgnore]
     public bool WantsGamePaused => Tutorials.Any(t => t.WantsPaused);
 
-    [JsonIgnore]
     public IEnumerable<TutorialPhase> Tutorials
     {
         get
@@ -196,6 +147,133 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             cachedTutorials = BuildListOfAllTutorials();
             return cachedTutorials;
         }
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.TutorialState;
+    public bool CanBeReferencedInArchive => true;
+
+    public static TutorialState ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new TutorialState
+        {
+            hasPaused = reader.ReadBool(),
+            Enabled = reader.ReadBool(),
+            TotalElapsed = reader.ReadDouble(),
+            DisableShowingAlreadySeenTutorials = reader.ReadBool(),
+        };
+
+        // All the tutorials
+        reader.ReadObjectProperties(instance.MicrobeStageWelcome);
+        reader.ReadObjectProperties(instance.MicrobeMovement);
+        reader.ReadObjectProperties(instance.MicrobeMovementExplanation);
+        reader.ReadObjectProperties(instance.GlucoseCollecting);
+        reader.ReadObjectProperties(instance.MicrobeStayingAlive);
+        reader.ReadObjectProperties(instance.MicrobeReproduction);
+        reader.ReadObjectProperties(instance.MicrobePressEditorButton);
+        reader.ReadObjectProperties(instance.MicrobeUnbind);
+        reader.ReadObjectProperties(instance.MicrobeEngulfmentExplanation);
+        reader.ReadObjectProperties(instance.MicrobeEngulfedExplanation);
+        reader.ReadObjectProperties(instance.CheckTheHelpMenu);
+        reader.ReadObjectProperties(instance.EngulfmentStorageFull);
+        reader.ReadObjectProperties(instance.OpenProcessPanelTutorial);
+        reader.ReadObjectProperties(instance.ProcessPanelTutorial);
+        reader.ReadObjectProperties(instance.ResourcesAfterSplitTutorial);
+        reader.ReadObjectProperties(instance.MigrationTutorial);
+        reader.ReadObjectProperties(instance.EditorReportWelcome);
+        reader.ReadObjectProperties(instance.PatchMap);
+        reader.ReadObjectProperties(instance.CellEditorIntroduction);
+        reader.ReadObjectProperties(instance.EditorUndoTutorial);
+        reader.ReadObjectProperties(instance.EditorRedoTutorial);
+        reader.ReadObjectProperties(instance.EditorTutorialEnd);
+        reader.ReadObjectProperties(instance.AutoEvoPrediction);
+        reader.ReadObjectProperties(instance.StaySmallTutorial);
+        reader.ReadObjectProperties(instance.ChemoreceptorPlacementTutorial);
+        reader.ReadObjectProperties(instance.NegativeAtpBalanceTutorial);
+        reader.ReadObjectProperties(instance.AtpBalanceIntroduction);
+        reader.ReadObjectProperties(instance.CompoundBalancesTutorial);
+        reader.ReadObjectProperties(instance.FoodChainTabTutorial);
+        reader.ReadObjectProperties(instance.LeaveColonyTutorial);
+        reader.ReadObjectProperties(instance.PausingTutorial);
+        reader.ReadObjectProperties(instance.SpeciesMemberDiedTutorial);
+        reader.ReadObjectProperties(instance.BecomeMulticellularTutorial);
+        reader.ReadObjectProperties(instance.MulticellularWelcome);
+        reader.ReadObjectProperties(instance.DayNightTutorial);
+        reader.ReadObjectProperties(instance.OrganelleDivisionTutorial);
+        reader.ReadObjectProperties(instance.MadeNoChangesTutorial);
+        reader.ReadObjectProperties(instance.FlagellumPlacementTutorial);
+        reader.ReadObjectProperties(instance.DigestionStatTutorial);
+        reader.ReadObjectProperties(instance.ModifyOrganelleTutorial);
+        reader.ReadObjectProperties(instance.TolerancesTabTutorial);
+        reader.ReadObjectProperties(instance.OpenTolerancesTabTutorial);
+        reader.ReadObjectProperties(instance.EarlyGameGoalTutorial);
+        reader.ReadObjectProperties(instance.NucleusTutorial);
+        reader.ReadObjectProperties(instance.BindingAgentsTutorial);
+
+        if (instance.DisableShowingAlreadySeenTutorials)
+        {
+            instance.OnCompleteTutorialsAlreadySeen();
+        }
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(hasPaused);
+        writer.Write(Enabled);
+        writer.Write(TotalElapsed);
+        writer.Write(DisableShowingAlreadySeenTutorials);
+
+        // All the tutorials
+        writer.WriteObjectProperties(MicrobeStageWelcome);
+        writer.WriteObjectProperties(MicrobeMovement);
+        writer.WriteObjectProperties(MicrobeMovementExplanation);
+        writer.WriteObjectProperties(GlucoseCollecting);
+        writer.WriteObjectProperties(MicrobeStayingAlive);
+        writer.WriteObjectProperties(MicrobeReproduction);
+        writer.WriteObjectProperties(MicrobePressEditorButton);
+        writer.WriteObjectProperties(MicrobeUnbind);
+        writer.WriteObjectProperties(MicrobeEngulfmentExplanation);
+        writer.WriteObjectProperties(MicrobeEngulfedExplanation);
+        writer.WriteObjectProperties(CheckTheHelpMenu);
+        writer.WriteObjectProperties(EngulfmentStorageFull);
+        writer.WriteObjectProperties(OpenProcessPanelTutorial);
+        writer.WriteObjectProperties(ProcessPanelTutorial);
+        writer.WriteObjectProperties(ResourcesAfterSplitTutorial);
+        writer.WriteObjectProperties(MigrationTutorial);
+        writer.WriteObjectProperties(EditorReportWelcome);
+        writer.WriteObjectProperties(PatchMap);
+        writer.WriteObjectProperties(CellEditorIntroduction);
+        writer.WriteObjectProperties(EditorUndoTutorial);
+        writer.WriteObjectProperties(EditorRedoTutorial);
+        writer.WriteObjectProperties(EditorTutorialEnd);
+        writer.WriteObjectProperties(AutoEvoPrediction);
+        writer.WriteObjectProperties(StaySmallTutorial);
+        writer.WriteObjectProperties(ChemoreceptorPlacementTutorial);
+        writer.WriteObjectProperties(NegativeAtpBalanceTutorial);
+        writer.WriteObjectProperties(AtpBalanceIntroduction);
+        writer.WriteObjectProperties(CompoundBalancesTutorial);
+        writer.WriteObjectProperties(FoodChainTabTutorial);
+        writer.WriteObjectProperties(LeaveColonyTutorial);
+        writer.WriteObjectProperties(PausingTutorial);
+        writer.WriteObjectProperties(SpeciesMemberDiedTutorial);
+        writer.WriteObjectProperties(BecomeMulticellularTutorial);
+        writer.WriteObjectProperties(MulticellularWelcome);
+        writer.WriteObjectProperties(DayNightTutorial);
+        writer.WriteObjectProperties(OrganelleDivisionTutorial);
+        writer.WriteObjectProperties(MadeNoChangesTutorial);
+        writer.WriteObjectProperties(FlagellumPlacementTutorial);
+        writer.WriteObjectProperties(DigestionStatTutorial);
+        writer.WriteObjectProperties(ModifyOrganelleTutorial);
+        writer.WriteObjectProperties(TolerancesTabTutorial);
+        writer.WriteObjectProperties(OpenTolerancesTabTutorial);
+        writer.WriteObjectProperties(EarlyGameGoalTutorial);
+        writer.WriteObjectProperties(NucleusTutorial);
+        writer.WriteObjectProperties(BindingAgentsTutorial);
     }
 
     /// <summary>
@@ -415,14 +493,6 @@ public class TutorialState : ITutorialInput, ISaveLoadable
     public void OnNextPressed()
     {
         throw new NotImplementedException();
-    }
-
-    public void FinishLoading(ISaveContext? context)
-    {
-        if (DisableShowingAlreadySeenTutorials)
-        {
-            OnCompleteTutorialsAlreadySeen();
-        }
     }
 
     /// <summary>
