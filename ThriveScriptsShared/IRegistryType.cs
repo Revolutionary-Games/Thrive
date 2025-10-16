@@ -35,7 +35,7 @@ public interface IRegistryType : IRegistryAssignable
 /// <summary>
 ///   Helper base implementing archive support for registry types
 /// </summary>
-public abstract class RegistryType : IRegistryType
+public abstract class RegistryType : IRegistryType, IArchivable
 {
     public ushort CurrentArchiveVersion => IRegistryType.SERIALIZATION_VERSION;
 
