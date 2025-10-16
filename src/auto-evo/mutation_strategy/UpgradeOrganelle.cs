@@ -9,14 +9,16 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
     private readonly FrozenSet<OrganelleDefinition> allOrganelles;
     private readonly IComponentSpecificUpgrades? customUpgrade;
     private readonly string? upgradeName;
+    private readonly bool shouldRepeat;
 
     public UpgradeOrganelle(Func<OrganelleDefinition, bool> criteria, IComponentSpecificUpgrades customUpgrade)
     {
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
+        shouldRepeat = true;
         this.customUpgrade = customUpgrade;
     }
 
-    public UpgradeOrganelle(Func<OrganelleDefinition, bool> criteria, string upgradeName)
+    public UpgradeOrganelle(Func<OrganelleDefinition, bool> criteria, string upgradeName, bool shouldRepeat)
     {
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
         foreach (var organelle in allOrganelles)
@@ -27,10 +29,11 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
             }
         }
 
+        this.shouldRepeat = shouldRepeat;
         this.upgradeName = upgradeName;
     }
 
-    public bool Repeatable => false;
+    public bool Repeatable => shouldRepeat;
 
     public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
