@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
@@ -117,6 +118,14 @@ public class ReproductionStatistic : IStatistic, IArchiveUpdatable
             (ArchiveObjectType)ThriveArchiveObjectType.ReproductionOrganelleData;
 
         public bool CanBeReferencedInArchive => false; // Not for ArchiveUpdatable
+
+        public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+        {
+            if (type != (ArchiveObjectType)ThriveArchiveObjectType.ReproductionOrganelleData)
+                throw new NotSupportedException();
+
+            ((ReproductionOrganelleData)obj).WriteToArchive(writer);
+        }
 
         public static ReproductionOrganelleData ReadFromArchive(ISArchiveReader reader, ushort version)
         {

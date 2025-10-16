@@ -91,4 +91,8 @@ public enum ThriveArchiveObjectType : uint
     AutoEvoConfiguration,
     CustomDifficulty,
     PredefinedAutoEvoConfiguration,
+    OrganelleDefinition,
+    Biome,
+    SpeciesRecordLite,
+    GenerationRecord,
 }

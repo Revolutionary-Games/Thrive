@@ -163,7 +163,7 @@ public class GameWorld : IArchivable
         }
 
         // Create the initial generation by adding only the player species
-        var initialSpeciesRecord = new SpeciesRecordLite((Species)PlayerSpecies.Clone(), PlayerSpecies.Population);
+        var initialSpeciesRecord = new SpeciesRecordLite(PlayerSpecies.Population, (Species)PlayerSpecies.Clone());
         GenerationHistory.Add(0, new GenerationRecord(0,
             new Dictionary<uint, SpeciesRecordLite> { { PlayerSpecies.ID, initialSpeciesRecord } }));
 
@@ -463,7 +463,7 @@ public class GameWorld : IArchivable
                 worldSpecies[randomSpecies.ID] = randomSpecies;
 
                 GenerationHistory[0].AllSpeciesData
-                    .Add(randomSpecies.ID, new SpeciesRecordLite(randomSpecies, population));
+                    .Add(randomSpecies.ID, new SpeciesRecordLite(population, randomSpecies));
 
                 entry.Value.AddSpecies(randomSpecies, population);
             }

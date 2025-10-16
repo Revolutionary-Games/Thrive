@@ -5,6 +5,7 @@ using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Saving.Serializers;
+using SharedBase.Archive;
 using ThriveScriptsShared;
 using UnlockConstraints;
 
@@ -13,7 +14,7 @@ using UnlockConstraints;
 /// </summary>
 /// <remarks>
 ///   <para>
-///     Actual concrete placed organelles are PlacedOrganelle
+///     Actual, concrete placed organelles are PlacedOrganelle
 ///     objects. There should be only a single OrganelleTemplate
 ///     instance in existence for each organelle defined in
 ///     organelles.json.
@@ -21,7 +22,7 @@ using UnlockConstraints;
 /// </remarks>
 [TypeConverter($"Saving.Serializers.{nameof(OrganelleDefinitionStringConverter)}")]
 #pragma warning disable CA1001 // Owns Godot resource that is fine to stay for the program lifetime
-public class OrganelleDefinition : IRegistryType
+public class OrganelleDefinition : RegistryType
 #pragma warning restore CA1001
 {
     /// <summary>
@@ -278,7 +279,8 @@ public class OrganelleDefinition : IRegistryType
     [JsonIgnore]
     public Vector3 ModelOffset => modelOffset;
 
-    public string InternalName { get; set; } = null!;
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.OrganelleDefinition;
 
     // Faster checks for specific components
     public bool HasPilusComponent { get; private set; }
@@ -513,7 +515,7 @@ public class OrganelleDefinition : IRegistryType
         return null;
     }
 
-    public void Check(string name)
+    public override void Check(string name)
     {
         if (string.IsNullOrEmpty(Name))
         {
@@ -795,7 +797,7 @@ public class OrganelleDefinition : IRegistryType
         }
     }
 
-    public void ApplyTranslations()
+    public override void ApplyTranslations()
     {
         TranslationHelper.ApplyTranslations(this);
 

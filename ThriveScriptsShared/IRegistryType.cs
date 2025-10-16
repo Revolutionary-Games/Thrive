@@ -43,6 +43,11 @@ public abstract class RegistryType : IRegistryType, IArchivable
 
     public bool CanBeReferencedInArchive => IRegistryType.REGISTRY_USE_REFERENCES;
 
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        writer.Write(((IRegistryType)obj).InternalName);
+    }
+
     public void WriteToArchive(ISArchiveWriter writer)
     {
         // Write as the internal name which will be looked up in fresh registry data on a load
