@@ -1304,7 +1304,7 @@ public static class Constants
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 35;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
-    public const float AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING = 0.05f;
+    public const float AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING = 0.06f;
     public const float AUTO_EVO_SIZE_AFFECTED_PROJECTILE_MISS_FACTOR = 0.5f;
     public const float AUTO_EVO_TOXICITY_HIT_MODIFIER = 4.0f;
     public const float AUTO_EVO_SLIME_JET_SCORE = 6;
@@ -1320,6 +1320,8 @@ public static class Constants
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
+
+    public const float AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS = 1.5f;
 
     public const int AI_FOLLOW_PLAYER_MIGRATION_TO_EMPTY_PATCH_THRESHOLD = 2;
 
