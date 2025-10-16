@@ -1,7 +1,9 @@
-﻿/// <summary>
-///   Time dependent effects running on a world
+﻿using SharedBase.Archive;
+
+/// <summary>
+///   Time-dependent effects running on a world
 /// </summary>
-public interface IWorldEffect
+public interface IWorldEffect : IArchivable
 {
     /// <summary>
     ///   Called when added to a world. The best time to do dynamic casts

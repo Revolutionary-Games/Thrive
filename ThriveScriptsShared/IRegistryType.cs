@@ -1,9 +1,17 @@
 ﻿namespace ThriveScriptsShared;
 
+using SharedBase.Archive;
+
 public interface IRegistryType : IRegistryAssignable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
+    // Instead of writing the string name multiple times, we write object references
+    // TODO: determine which is better
+    public const bool REGISTRY_USE_REFERENCES = true;
+
     /// <summary>
-    ///   The name referred to this registry object in json
+    ///   The name referred to this registry object in JSON (and saves)
     /// </summary>
     public string InternalName { get; set; }
 
@@ -22,4 +30,33 @@ public interface IRegistryType : IRegistryAssignable
     ///   Fetch translations (if needed) for this object
     /// </summary>
     public void ApplyTranslations();
+}
+
+/// <summary>
+///   Helper base implementing archive support for registry types
+/// </summary>
+public abstract class RegistryType : IRegistryType
+{
+    public ushort CurrentArchiveVersion => IRegistryType.SERIALIZATION_VERSION;
+
+    public abstract ArchiveObjectType ArchiveObjectType { get; }
+
+    public bool CanBeReferencedInArchive => IRegistryType.REGISTRY_USE_REFERENCES;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        // Write as the internal name which will be looked up in fresh registry data on a load
+        writer.Write(InternalName);
+    }
+
+    public string InternalName { get; set; } = null!;
+
+    public abstract void Check(string name);
+
+    public abstract void ApplyTranslations();
+
+    public override string ToString()
+    {
+        return InternalName;
+    }
 }

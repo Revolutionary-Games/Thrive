@@ -261,28 +261,27 @@ public class GameWorld : IArchivable
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var instance =
-            new GameWorld(reader.ReadObjectNotNull<WorldGenerationSettings>());
+        var instance = new GameWorld(reader.ReadObject<WorldGenerationSettings>());
 
         reader.ReportObjectConstructorDone(instance);
 
         reader.ReadObjectProperties(instance.UnlockProgress);
         reader.ReadObjectProperties(instance.StatisticsTracker);
-        instance.LightCycle = reader.ReadObjectNotNull<DayNightCycle>();
+        instance.LightCycle = reader.ReadObject<DayNightCycle>();
 
-        instance.GenerationHistory = reader.ReadObjectNotNull<Dictionary<int, GenerationRecord>>();
+        instance.GenerationHistory = reader.ReadObject<Dictionary<int, GenerationRecord>>();
         instance.speciesIdCounter = reader.ReadUInt32();
 
-        instance.worldSpecies = reader.ReadObjectNotNull<Dictionary<uint, Species>>();
-        instance.eventsLog = reader.ReadObjectNotNull<Dictionary<double, List<GameEventDescription>>>();
+        instance.worldSpecies = reader.ReadObject<Dictionary<uint, Species>>();
+        instance.eventsLog = reader.ReadObject<Dictionary<double, List<GameEventDescription>>>();
 
-        instance.PlayerSpecies = reader.ReadObjectNotNull<Species>();
-        instance.Map = reader.ReadObjectNotNull<PatchMap>();
-        instance.TimedEffects = reader.ReadObjectNotNull<TimedWorldOperations>();
+        instance.PlayerSpecies = reader.ReadObject<Species>();
+        instance.Map = reader.ReadObject<PatchMap>();
+        instance.TimedEffects = reader.ReadObject<TimedWorldOperations>();
 
         instance.TotalPassedTime = reader.ReadDouble();
 
-        instance.CurrentExternalEffects = reader.ReadObject<List<ExternalEffect>>();
+        instance.CurrentExternalEffects = reader.ReadObjectOrNull<List<ExternalEffect>>();
 
         if (instance.Map == null || instance.PlayerSpecies == null)
             throw new InvalidOperationException("Map or player species was not loaded correctly for a saved world");

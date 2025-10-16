@@ -329,13 +329,13 @@ public sealed class Save : IArchivable, IDisposable
         var instance = new Save();
 
         instance.Name = reader.ReadString() ?? throw new NullArchiveObjectException();
-        instance.Info = reader.ReadObjectNotNull<SaveInformation>();
+        instance.Info = reader.ReadObject<SaveInformation>();
         instance.GameState = (MainGameState)reader.ReadInt32();
 
-        instance.SavedProperties = reader.ReadObject<GameProperties>();
+        instance.SavedProperties = reader.ReadObjectOrNull<GameProperties>();
 
-        instance.MicrobeStage = reader.ReadObject<MicrobeStage>();
-        instance.MicrobeEditor = reader.ReadObject<MicrobeEditor>();
+        instance.MicrobeStage = reader.ReadObjectOrNull<MicrobeStage>();
+        instance.MicrobeEditor = reader.ReadObjectOrNull<MicrobeEditor>();
 
         return instance;
     }
@@ -423,7 +423,7 @@ public sealed class Save : IArchivable, IDisposable
             manager.OnStartNewRead(reader);
 
             // This deserializes a huge tree of objects!
-            saveResult = reader.ReadObject<Save>() ?? throw new NullArchiveObjectException("Save data is null");
+            saveResult = reader.ReadObjectOrNull<Save>() ?? throw new NullArchiveObjectException("Save data is null");
 
             manager.OnFinishRead(reader);
         }

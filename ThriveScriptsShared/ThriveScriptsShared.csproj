@@ -13,4 +13,8 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RevolutionaryGamesCommon\SharedBase\SharedBase.csproj" />
+  </ItemGroup>
+
 </Project>

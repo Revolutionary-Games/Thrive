@@ -60,9 +60,8 @@ public class ReproductionStatistic : IStatistic, IArchiveUpdatable
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
         TimesReproduced = reader.ReadInt32();
-        ReproducedInBiomes = reader.ReadObjectNotNull<Dictionary<Biome, int>>();
-        ReproducedWithOrganelle =
-            reader.ReadObjectNotNull<Dictionary<OrganelleDefinition, ReproductionOrganelleData>>();
+        ReproducedInBiomes = reader.ReadObject<Dictionary<Biome, int>>();
+        ReproducedWithOrganelle = reader.ReadObject<Dictionary<OrganelleDefinition, ReproductionOrganelleData>>();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -128,7 +127,7 @@ public class ReproductionStatistic : IStatistic, IArchiveUpdatable
             {
                 TotalGenerations = reader.ReadInt32(),
                 GenerationsInARow = reader.ReadInt32(),
-                CountInGenerations = reader.ReadObjectNotNull<List<int>>(),
+                CountInGenerations = reader.ReadObject<List<int>>(),
             };
 
             return instance;

@@ -127,13 +127,13 @@ public class UnlockProgress : IArchiveUpdatable
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
         unlockedOrganelles.Clear();
-        foreach (var item in reader.ReadObjectNotNull<List<OrganelleDefinition>>())
+        foreach (var item in reader.ReadObject<List<OrganelleDefinition>>())
         {
             unlockedOrganelles.Add(item);
         }
 
         recentlyUnlocked.Clear();
-        foreach (var item in reader.ReadObjectNotNull<List<OrganelleDefinition>>())
+        foreach (var item in reader.ReadObject<List<OrganelleDefinition>>())
         {
             recentlyUnlocked.Add(item);
         }

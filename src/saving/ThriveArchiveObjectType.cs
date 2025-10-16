@@ -25,4 +25,9 @@ public enum ThriveArchiveObjectType : uint
     UnlockProgress,
     DayNightCycle,
     ReproductionOrganelleData,
+    TimedWorldOperations,
+    GlobalGlaciationEvent,
+    MeteorImpactEvent,
+    UnderwaterVentEruptionEffect,
+    Meteor
 }

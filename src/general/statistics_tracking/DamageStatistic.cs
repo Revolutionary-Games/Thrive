@@ -35,6 +35,6 @@ public class DamageStatistic : IStatistic, IArchiveUpdatable
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        DamageByType = reader.ReadObjectNotNull<Dictionary<string, float>>();
+        DamageByType = reader.ReadObject<Dictionary<string, float>>();
     }
 }

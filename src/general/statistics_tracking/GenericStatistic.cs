@@ -26,7 +26,7 @@ public abstract class GenericStatistic<T> : IStatistic, IArchiveUpdatable
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        Value = reader.ReadObjectNotNull<T>();
+        Value = reader.ReadObject<T>();
     }
 }
 
