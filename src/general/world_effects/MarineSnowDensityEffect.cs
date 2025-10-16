@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Adjusts marine snow densities in patches to correlate with populations of species (so that it makes sense for
 ///   it to appear only after there are microbes that are assumed to have died to create the marine snow)
 /// </summary>
-[JSONDynamicTypeAllowed]
 public class MarineSnowDensityEffect : IWorldEffect
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private const string MarineSnowConfiguration = "marineSnow";
     private const string TemplateBiomeForMarineSnow = "mesopelagic";
     private const float DepthDifferenceForMarineSnowFalling = 10;
@@ -15,12 +16,28 @@ public class MarineSnowDensityEffect : IWorldEffect
 
     private readonly HashSet<OrganelleDefinition> availableOrganelles = new();
 
-    [JsonProperty]
-    private GameWorld targetWorld;
+    private readonly GameWorld targetWorld;
 
     public MarineSnowDensityEffect(GameWorld targetWorld)
     {
         this.targetWorld = targetWorld;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MarineSnowDensityEffect;
+    public bool CanBeReferencedInArchive => false;
+
+    public static MarineSnowDensityEffect ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new MarineSnowDensityEffect(reader.ReadObject<GameWorld>());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(targetWorld);
     }
 
     public void OnRegisterToWorld()

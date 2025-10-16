@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Adds CO2 (and other) volcanism caused compounds to patches (up to a limit)
 /// </summary>
-[JSONDynamicTypeAllowed]
 public class VolcanismEffect : IWorldEffect
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private readonly Dictionary<Compound, float> addedCo2 = new();
 
     // ReSharper disable once CollectionNeverUpdated.Local
@@ -16,12 +17,28 @@ public class VolcanismEffect : IWorldEffect
     /// </summary>
     private readonly Dictionary<Compound, float> cloudSizesDummy = new();
 
-    [JsonProperty]
-    private GameWorld targetWorld;
+    private readonly GameWorld targetWorld;
 
     public VolcanismEffect(GameWorld targetWorld)
     {
         this.targetWorld = targetWorld;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.VolcanismEffect;
+    public bool CanBeReferencedInArchive => false;
+
+    public static VolcanismEffect ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new VolcanismEffect(reader.ReadObject<GameWorld>());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(targetWorld);
     }
 
     public void OnRegisterToWorld()
@@ -55,7 +72,7 @@ public class VolcanismEffect : IWorldEffect
             }
             else if (patchKeyValue.Value.BiomeType is BiomeType.Seafloor)
             {
-                // And to be fair lets give a bit of CO2 also to ocean floor from underwater volcanoes
+                // And to be fair, let's give a bit of CO2 also to the ocean floor from underwater volcanoes
                 ProduceCO2(patchKeyValue.Value, Constants.VOLCANISM_FLOOR_CO2_STRENGTH,
                     Constants.VOLCANISM_FLOOR_CO2_THRESHOLD);
             }
@@ -72,7 +89,7 @@ public class VolcanismEffect : IWorldEffect
             return;
         }
 
-        // Add to existing if threshold is low enough
+        // Add to existing if the threshold is low enough
         if (amount.Ambient >= threshold)
             return;
 

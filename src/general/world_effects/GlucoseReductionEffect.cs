@@ -1,14 +1,15 @@
 ﻿using System;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
-///   An effect reducing the glucose amount (for the microbe stage to make early game easier, and the late game harder)
+///   An effect reducing the glucose amount (for the microbe stage to make the early game easier,
+///   and the late game harder)
 /// </summary>
-[JSONDynamicTypeAllowed]
 public class GlucoseReductionEffect : IWorldEffect
 {
-    [JsonProperty]
-    private GameWorld targetWorld;
+    public const ushort SERIALIZATION_VERSION = 1;
+
+    private readonly GameWorld targetWorld;
 
     public GlucoseReductionEffect(GameWorld targetWorld)
     {
@@ -16,6 +17,27 @@ public class GlucoseReductionEffect : IWorldEffect
     }
 
     public bool IncludeAllPatchesInGlucoseReductionDisplay { get; set; }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.GlucoseReductionEffect;
+    public bool CanBeReferencedInArchive => false;
+
+    public static GlucoseReductionEffect ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new GlucoseReductionEffect(reader.ReadObject<GameWorld>())
+        {
+            IncludeAllPatchesInGlucoseReductionDisplay = reader.ReadBool(),
+        };
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(targetWorld);
+        writer.Write(IncludeAllPatchesInGlucoseReductionDisplay);
+    }
 
     public void OnRegisterToWorld()
     {

@@ -1,20 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
-///   Reduces amount of iron (down to a minimum) when oxygen goes up to simulate oxidation making iron less available
+///   Reduces the amount of iron (down to a minimum) when oxygen goes up to simulate oxidation making iron less available
 /// </summary>
-[JSONDynamicTypeAllowed]
 public class IronOxidationEffect : IWorldEffect
 {
-    [JsonProperty]
-    private GameWorld targetWorld;
+    public const ushort SERIALIZATION_VERSION = 1;
+
+    private readonly GameWorld targetWorld;
 
     public IronOxidationEffect(GameWorld targetWorld)
     {
         this.targetWorld = targetWorld;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.IronOxidationEffect;
+    public bool CanBeReferencedInArchive => false;
+
+    public static IronOxidationEffect ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new IronOxidationEffect(reader.ReadObject<GameWorld>());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(targetWorld);
     }
 
     public void OnRegisterToWorld()

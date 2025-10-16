@@ -1,20 +1,37 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
 ///   Creates oxygen based on photosynthesizers (and removes carbon). And does the vice versa for oxygen consumption
 ///   to balance things out.
 /// </summary>
-[JSONDynamicTypeAllowed]
 public class PhotosynthesisProductionEffect : IWorldEffect
 {
-    [JsonProperty]
-    private GameWorld targetWorld;
+    public const ushort SERIALIZATION_VERSION = 1;
+
+    private readonly GameWorld targetWorld;
 
     public PhotosynthesisProductionEffect(GameWorld targetWorld)
     {
         this.targetWorld = targetWorld;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.PhotosynthesisProductionEffect;
+    public bool CanBeReferencedInArchive => false;
+
+    public static PhotosynthesisProductionEffect ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new PhotosynthesisProductionEffect(reader.ReadObject<GameWorld>());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(targetWorld);
     }
 
     public void OnRegisterToWorld()

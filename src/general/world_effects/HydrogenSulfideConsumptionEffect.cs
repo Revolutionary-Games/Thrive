@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
@@ -7,15 +7,32 @@ using Systems;
 ///   <see cref="UnderwaterVentEruptionEffect"/> otherwise adding infinite hydrogen sulfide. This has a minimum floor
 ///   to ensure that if eruptions don't happen enough that hydrogen sulfide eaters aren't completely nonviable.
 /// </summary>
-[JSONDynamicTypeAllowed]
 public class HydrogenSulfideConsumptionEffect : IWorldEffect
 {
-    [JsonProperty]
-    private GameWorld targetWorld;
+    public const ushort SERIALIZATION_VERSION = 1;
+
+    private readonly GameWorld targetWorld;
 
     public HydrogenSulfideConsumptionEffect(GameWorld targetWorld)
     {
         this.targetWorld = targetWorld;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.HydrogenSulfideConsumptionEffect;
+    public bool CanBeReferencedInArchive => false;
+
+    public static HydrogenSulfideConsumptionEffect ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new HydrogenSulfideConsumptionEffect(reader.ReadObject<GameWorld>());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(targetWorld);
     }
 
     public void OnRegisterToWorld()
