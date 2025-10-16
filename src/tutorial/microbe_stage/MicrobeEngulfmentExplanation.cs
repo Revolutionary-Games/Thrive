@@ -2,11 +2,12 @@
 
 using System;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 public class MicrobeEngulfmentExplanation : TutorialPhase
 {
-    [JsonProperty]
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private Vector3? chunkPosition;
 
     public MicrobeEngulfmentExplanation()
@@ -15,6 +16,11 @@ public class MicrobeEngulfmentExplanation : TutorialPhase
     }
 
     public override string ClosedByName => "MicrobeEngulfmentExplanation";
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.TutorialMicrobeEngulfmentExplanation;
 
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {
@@ -56,6 +62,31 @@ public class MicrobeEngulfmentExplanation : TutorialPhase
         }
 
         return false;
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        base.WritePropertiesToArchive(writer);
+
+        if (chunkPosition != null)
+        {
+            writer.WriteAnyRegisteredValueAsObject(chunkPosition.Value);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        // Base always uses version 1 currently
+        base.ReadPropertiesFromArchive(reader, 1);
+
+        chunkPosition = reader.ReadObject<Vector3>();
     }
 
     public override Vector3? GetPositionGuidance()

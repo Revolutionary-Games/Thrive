@@ -1,10 +1,18 @@
 ﻿namespace Tutorial;
 
 using System;
+using SharedBase.Archive;
 
 public class MicrobeEngulfmentStorageFull : TutorialPhase
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public override string ClosedByName => "MicrobeEngulfmentStorageFull";
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.TutorialMicrobeEngulfmentStorageFull;
 
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {
@@ -36,5 +44,18 @@ public class MicrobeEngulfmentStorageFull : TutorialPhase
         }
 
         return false;
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        base.WritePropertiesToArchive(writer);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        base.ReadPropertiesFromArchive(reader, 1);
     }
 }

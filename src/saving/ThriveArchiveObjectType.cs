@@ -45,4 +45,9 @@ public enum ThriveArchiveObjectType : uint
     TutorialMicrobeStageWelcome,
     TutorialMicrobeMovement,
     TutorialGlucoseCollecting,
+    TutorialMicrobeEngulfedExplanation,
+    TutorialMicrobeEngulfmentExplanation,
+    TutorialMicrobeEngulfmentStorageFull,
+    TutorialMicrobeMovementExplanation,
+    TutorialMicrobePressEditorButton,
 }
