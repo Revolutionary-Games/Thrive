@@ -21,9 +21,9 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
     /// Updates a toxin-launching organelle with a given toxin type,
     /// and randomly moves toxicity in a given direction.
     /// </summary>
-    ///   <param name="criteria">Organelle requirement to apply</param>
-    ///   <param name="upgradeName">The name of the upgrade to apply</param>
-    ///   <param name="direction">"increase", "decrease", or "both" to decide what to do with toxicity
+    /// <param name="criteria">Organelle requirement to apply</param>
+    /// <param name="upgradeName">The name of the upgrade to apply</param>
+    /// <param name="direction">"increase", "decrease", or "both" to decide what to do with toxicity
     /// </param>
     public UpgradeToxinOrganelle(Func<OrganelleDefinition, bool> criteria, string upgradeName, string direction)
     {
