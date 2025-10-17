@@ -144,7 +144,11 @@ public class GlucoseCollecting : TutorialPhase
     {
         base.WritePropertiesToArchive(writer);
 
-        writer.WriteAnyRegisteredValueAsObject(glucosePosition);
+        writer.Write(glucosePosition != null);
+        if (glucosePosition != null)
+        {
+            writer.Write(glucosePosition.Value);
+        }
 
         if (nextTutorial != null)
         {
@@ -164,7 +168,8 @@ public class GlucoseCollecting : TutorialPhase
         // Base version is not our version, so we pass 1 here
         base.ReadPropertiesFromArchive(reader, 1);
 
-        glucosePosition = reader.ReadObjectOrNull<Vector3>();
+        var hasPosition = reader.ReadBool();
+        glucosePosition = hasPosition ? reader.ReadVector3() : null;
         nextTutorial = reader.ReadObjectOrNull<MicrobeReproduction>();
     }
 }

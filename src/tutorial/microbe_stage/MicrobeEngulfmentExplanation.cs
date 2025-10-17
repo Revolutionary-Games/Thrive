@@ -68,13 +68,10 @@ public class MicrobeEngulfmentExplanation : TutorialPhase
     {
         base.WritePropertiesToArchive(writer);
 
+        writer.Write(chunkPosition != null);
         if (chunkPosition != null)
         {
-            writer.WriteAnyRegisteredValueAsObject(chunkPosition.Value);
-        }
-        else
-        {
-            writer.WriteNullObject();
+            writer.Write(chunkPosition.Value);
         }
     }
 
@@ -86,7 +83,8 @@ public class MicrobeEngulfmentExplanation : TutorialPhase
         // Base always uses version 1 currently
         base.ReadPropertiesFromArchive(reader, 1);
 
-        chunkPosition = reader.ReadObject<Vector3>();
+        bool hasChunkPosition = reader.ReadBool();
+        chunkPosition = hasChunkPosition ? reader.ReadVector3() : null;
     }
 
     public override Vector3? GetPositionGuidance()
