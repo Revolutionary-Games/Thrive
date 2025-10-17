@@ -771,8 +771,8 @@ public class SimulationCache
         }
         else
         {
-            pilusScore *= slimeJetsCount;
-            injectisomeScore *= mucocystsCount;
+            pilusScore *= pilusCount;
+            injectisomeScore *= injectisomeCount;
         }
 
         slimeJetScore *= slimeJetsMultiplier;
