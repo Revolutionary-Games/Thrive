@@ -3,6 +3,7 @@ using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Linq;
 using AutoEvo;
+using Godot;
 
 /// <summary>
    /// Specific mutationstrategy for toxin-launching organelles
@@ -11,29 +12,29 @@ using AutoEvo;
 public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
 {
     private readonly Func<OrganelleDefinition, bool> criteria;
-    private readonly ToxinType toxinType;
     private readonly FrozenSet<OrganelleDefinition> allOrganelles;
     private readonly string direction;
-    private string? upgradeName;
+    private readonly string? upgradeName;
+    private ToxinType toxinType;
 
     /// <summary>
        /// Updates a toxin-launching organelle with a given toxin type,
        /// and randomly moves toxicity in a given direction.
     /// </summary>
     /// <param name="criteria">Organelle requirement to apply</param>
-    /// <param name="toxinType">The toxin type to assign</param>
+    /// <param name="upgradeName">The name of the upgrade to apply</param>
     /// <param name="direction"> "increase", "decrease", or "both" to decide what to do with toxicity
     /// </param>
-    public UpgradeToxinOrganelle(Func<OrganelleDefinition, bool> criteria, ToxinType toxinType, string direction)
+    public UpgradeToxinOrganelle(Func<OrganelleDefinition, bool> criteria, string upgradeName, string direction)
     {
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
         this.criteria = criteria;
-        this.toxinType = toxinType;
+        this.upgradeName = upgradeName;
         this.direction = direction.ToLowerInvariant();
     }
 
     // We don't want this to repeat, since changing toxicity does not cost MP
-    public bool Repeatable => false;
+    public bool Repeatable => true;
 
     public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
@@ -42,6 +43,12 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
         {
             return null;
         }
+
+        // If a cheaper organelle upgrade gets added, this will need to be updated
+        if (mp < 10)
+            return null;
+
+        double mpcost = 0;
 
         bool validMutations = false;
 
@@ -73,7 +80,24 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
 
             organelle.Upgrades ??= new OrganelleUpgrades();
 
-            // Ensure there is a ToxinUpgrades entry
+            if (organelle.Upgrades.UnlockedFeatures.Contains(upgradeName!))
+                continue;
+
+            foreach (var availableUpgrade in organelle.Definition.AvailableUpgrades)
+            {
+                var availableUpgradeName = availableUpgrade.Key;
+                if (availableUpgradeName == upgradeName)
+                {
+                    toxinType = ToxinUpgradeNames.ToxinTypeFromName(availableUpgrade.Key);
+                    mpcost = availableUpgrade.Value.MPCost;
+                    break;
+                }
+            }
+
+            if (mpcost > mp)
+                break;
+
+            // Start applying changes
             if (organelle.Upgrades.CustomUpgradeData is not ToxinUpgrades toxinData)
             {
                 toxinData = new ToxinUpgrades(toxinType, 0.0f);
@@ -84,27 +108,8 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
                 toxinData.BaseType = toxinType;
             }
 
-            // Make organelle Upgrade match the toxin type
-            switch (toxinType)
-            {
-                case ToxinType.Oxytoxy:
-                    upgradeName = "oxytoxy";
-                    break;
-                case ToxinType.Cytotoxin:
-                    upgradeName = "none";
-                    break;
-                case ToxinType.Macrolide:
-                    upgradeName = "macrolide";
-                    break;
-                case ToxinType.ChannelInhibitor:
-                    upgradeName = "channel";
-                    break;
-                case ToxinType.OxygenMetabolismInhibitor:
-                    upgradeName = "oxygen_inhibitor";
-                    break;
-            }
-
             organelle.Upgrades.UnlockedFeatures.Add(upgradeName!);
+            mp -= mpcost;
 
             // Adjust toxicity
             var change = (float)(random.NextDouble() * Constants.AUTO_EVO_MUTATION_TOXICITY_STEP);
@@ -126,6 +131,6 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
             }
         }
 
-        return [Tuple.Create(newSpecies, mp)];
+        return [Tuple.Create(newSpecies, mp - mpcost)];
     }
 }
