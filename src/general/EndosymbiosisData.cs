@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Endosymbiosis data for a single <see cref="Species"/> tracking its relationships to other species
 /// </summary>
-public class EndosymbiosisData
+public class EndosymbiosisData : IArchiveUpdatable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Species that have been engulfed (and how many times) that are candidates for endosymbiosis (or being tracked
     ///   progress towards finalizing endosymbiosis)
@@ -32,6 +35,12 @@ public class EndosymbiosisData
     /// </summary>
     [JsonProperty]
     public List<Endosymbiont>? Endosymbionts { get; private set; }
+
+    [JsonIgnore]
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    [JsonIgnore]
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.EndosymbiosisData;
 
     public OrganelleDefinition GetOrganelleTypeForInProgressSymbiosis(Species symbiontSpecies)
     {
@@ -246,7 +255,23 @@ public class EndosymbiosisData
         return cloned;
     }
 
+    public void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(EngulfedSpecies);
+
+        writer.WriteObjectOrNull(StartedEndosymbiosis);
+        writer.WriteObjectOrNull(Endosymbionts);
+    }
+
+    public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        EngulfedSpecies = reader.ReadObject<Dictionary<Species, int>>();
+        StartedEndosymbiosis = reader.ReadObjectOrNull<InProgressEndosymbiosis>();
+        Endosymbionts = reader.ReadObjectOrNull<List<Endosymbiont>>();
+    }
+
     public class InProgressEndosymbiosis(Species species, int requiredCount, OrganelleDefinition targetOrganelle)
+        : IArchivable
     {
         [JsonProperty]
         public Species Species { get; } = species;
@@ -271,6 +296,36 @@ public class EndosymbiosisData
 
         [JsonIgnore]
         public bool IsComplete => CurrentlyAcquiredCount >= RequiredCount;
+
+        [JsonIgnore]
+        public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+        [JsonIgnore]
+        public ArchiveObjectType ArchiveObjectType =>
+            (ArchiveObjectType)ThriveArchiveObjectType.InProgressEndosymbiosis;
+
+        [JsonIgnore]
+        public bool CanBeReferencedInArchive => false;
+
+        public static InProgressEndosymbiosis ReadFromArchive(ISArchiveReader reader, ushort version)
+        {
+            if (version is > SERIALIZATION_VERSION or <= 0)
+                throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+            return new InProgressEndosymbiosis(reader.ReadObject<Species>(), reader.ReadInt32(),
+                reader.ReadObject<OrganelleDefinition>())
+            {
+                CurrentlyAcquiredCount = reader.ReadInt32(),
+            };
+        }
+
+        public void WriteToArchive(ISArchiveWriter writer)
+        {
+            writer.WriteObject(Species);
+            writer.Write(RequiredCount);
+            writer.WriteObject(TargetOrganelle);
+            writer.Write(CurrentlyAcquiredCount);
+        }
 
         public InProgressEndosymbiosis Clone()
         {

@@ -95,4 +95,13 @@ public enum ThriveArchiveObjectType : uint
     Biome,
     SpeciesRecordLite,
     GenerationRecord,
+    BehaviourDictionary,
+    EndosymbiosisData,
+    InProgressEndosymbiosis,
+    EnvironmentalTolerances,
+    MembraneType,
+    OrganelleLayout,
+
+    // Special flag types
+    ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,
 }

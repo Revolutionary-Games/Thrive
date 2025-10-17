@@ -12,6 +12,11 @@ using SharedBase.Archive;
 ///   Class that represents a species. This is an abstract base for
 ///   use by all stage-specific species classes.
 /// </summary>
+/// <remarks>
+///   <para>
+///     This must remain JSON serializable until fossil files are switched over to the archive system.
+///   </para>
+/// </remarks>
 [JsonObject(IsReference = true)]
 [TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
 [JSONAlwaysDynamicType]
@@ -78,6 +83,7 @@ public abstract class Species : ICloneable, IArchivable
     ///   This value has additional constraints compared to plain Colour,
     ///   for example ensuring full opacity to avoid transparency, which can cause rendering bugs.
     /// </summary>
+    [JsonIgnore]
     public Color GUIColour
     {
         get
@@ -157,8 +163,13 @@ public abstract class Species : ICloneable, IArchivable
     [JsonIgnore]
     public bool IsExtinct => Population <= 0;
 
+    [JsonIgnore]
     public abstract ushort CurrentArchiveVersion { get; }
+
+    [JsonIgnore]
     public abstract ArchiveObjectType ArchiveObjectType { get; }
+
+    [JsonIgnore]
     public bool CanBeReferencedInArchive => true;
 
     /// <summary>
@@ -172,7 +183,7 @@ public abstract class Species : ICloneable, IArchivable
     }
 
     /// <summary>
-    ///   Repositions the structure of the species according to stage specific rules
+    ///   Repositions the structure of the species according to stage-specific rules
     /// </summary>
     /// <returns>True when repositioning happened, false if this was already positioned correctly</returns>
     public abstract bool RepositionToOrigin();
@@ -402,6 +413,40 @@ public abstract class Species : ICloneable, IArchivable
         // There can only be one player species at a time, so to avoid adding a method to reset this flag when
         // mutating, this property is just not copied
         // species.PlayerSpecies = PlayerSpecies;
+    }
+
+    protected virtual void WriteBasePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(ID);
+        writer.Write(Genus);
+        writer.Write(Epithet);
+
+        writer.WriteObject(InitialCompounds);
+        writer.Write(Colour);
+        writer.Write(Obsolete);
+        writer.WriteObject((IArchivable)Behaviour);
+        writer.Write(Population);
+        writer.Write(Generation);
+        writer.Write(PlayerSpecies);
+
+        writer.WriteObjectProperties(Endosymbiosis);
+        writer.WriteObjectProperties(Tolerances);
+    }
+
+    protected virtual void ReadNonConstructorBaseProperties(ISArchiveReader reader, ushort version)
+    {
+        if (version != 1)
+            throw new InvalidArchiveVersionException(version, 1);
+
+        InitialCompounds = reader.ReadObject<Dictionary<Compound, float>>();
+        Colour = reader.ReadColor();
+        Obsolete = reader.ReadBool();
+        Behaviour = reader.ReadObject<BehaviourDictionary>();
+        Population = reader.ReadInt32();
+        Generation = reader.ReadInt32();
+        PlayerSpecies = reader.ReadBool();
+        reader.ReadObjectProperties(Endosymbiosis);
+        reader.ReadObjectProperties(Tolerances);
     }
 
     protected virtual Dictionary<Compound, float> CalculateBaseReproductionCost()

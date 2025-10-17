@@ -166,7 +166,14 @@ public class MicrobeSpecies : Species, ICellDefinition
 
     public override void WriteToArchive(ISArchiveWriter writer)
     {
-        throw new NotImplementedException();
+        WriteBasePropertiesToArchive(writer);
+
+        writer.Write(IsBacteria);
+        writer.WriteObject(MembraneType);
+        writer.Write(MembraneRigidity);
+
+        writer.WriteObject(Organelles);
+        writer.Write(BaseRotationSpeed);
     }
 
     public override void OnEdited()

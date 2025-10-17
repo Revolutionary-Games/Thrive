@@ -1,11 +1,12 @@
 ﻿using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 using ThriveScriptsShared;
 
 /// <summary>
 ///   Defines properties of a membrane type
 /// </summary>
-public class MembraneType : IRegistryType
+public class MembraneType : RegistryType
 {
     /// <summary>
     ///   User readable name
@@ -49,15 +50,15 @@ public class MembraneType : IRegistryType
     [JsonIgnore]
     public Texture2D? LoadedIcon;
 
-    public string InternalName { get; set; } = null!;
-
     [JsonIgnore]
     public string UntranslatedName { get; private set; } = null!;
 
     [JsonIgnore]
     public bool CanEngulf => !CellWall;
 
-    public void Check(string name)
+    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MembraneType;
+
+    public override void Check(string name)
     {
         if (string.IsNullOrEmpty(IconPath))
         {
@@ -100,7 +101,7 @@ public class MembraneType : IRegistryType
         LoadedIcon = GD.Load<Texture2D>(IconPath);
     }
 
-    public void ApplyTranslations()
+    public override void ApplyTranslations()
     {
         TranslationHelper.ApplyTranslations(this);
     }

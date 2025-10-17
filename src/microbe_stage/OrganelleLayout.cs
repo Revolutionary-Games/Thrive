@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   A list of positioned organelles. Verifies that they don't overlap
 /// </summary>
 /// <typeparam name="T">The type of organelle contained in this layout</typeparam>
 [UseThriveSerializer]
-public class OrganelleLayout<T> : HexLayout<T>
+public class OrganelleLayout<T> : HexLayout<T>, IArchivable
     where T : class, IPositionedOrganelle, ICloneable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public OrganelleLayout(Action<T> onAdded, Action<T>? onRemoved = null) : base(onAdded, onRemoved)
     {
     }
@@ -28,7 +31,7 @@ public class OrganelleLayout<T> : HexLayout<T>
     public int HexCount => existingHexes.Sum(h => h.Definition.HexCount);
 
     /// <summary>
-    ///   The center of mass of the contained organelles.
+    ///   The center of mass for the contained organelles.
     /// </summary>
     [JsonIgnore]
     public Hex CenterOfMass
@@ -56,6 +59,31 @@ public class OrganelleLayout<T> : HexLayout<T>
 
             return Hex.CartesianToAxial(weightedSum / count);
         }
+    }
+
+    [JsonIgnore]
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    [JsonIgnore]
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ExtendedOrganelleLayout;
+
+    [JsonIgnore]
+    public bool CanBeReferencedInArchive => false;
+
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        // TODO: callback reading and actual type resolving
+        throw new NotImplementedException();
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(existingHexes);
+        writer.WriteDelegate(onAdded);
+        writer.WriteDelegate(onRemoved);
     }
 
     public override bool CanPlace(T hex, List<Hex> temporaryStorage, List<Hex> temporaryStorage2)

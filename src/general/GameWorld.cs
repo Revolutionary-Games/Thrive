@@ -311,14 +311,7 @@ public class GameWorld : IArchivable
 
         writer.Write(TotalPassedTime);
 
-        if (CurrentExternalEffects == null)
-        {
-            writer.WriteNullObject();
-        }
-        else
-        {
-            writer.WriteObject(CurrentExternalEffects);
-        }
+        writer.WriteObjectOrNull(CurrentExternalEffects);
     }
 
     /// <summary>
