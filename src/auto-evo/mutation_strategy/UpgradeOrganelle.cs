@@ -9,14 +9,16 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
     private readonly FrozenSet<OrganelleDefinition> allOrganelles;
     private readonly IComponentSpecificUpgrades? customUpgrade;
     private readonly string? upgradeName;
+    private readonly bool shouldRepeat;
 
     public UpgradeOrganelle(Func<OrganelleDefinition, bool> criteria, IComponentSpecificUpgrades customUpgrade)
     {
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
+        shouldRepeat = false;
         this.customUpgrade = customUpgrade;
     }
 
-    public UpgradeOrganelle(Func<OrganelleDefinition, bool> criteria, string upgradeName)
+    public UpgradeOrganelle(Func<OrganelleDefinition, bool> criteria, string upgradeName, bool shouldRepeat)
     {
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
         foreach (var organelle in allOrganelles)
@@ -27,10 +29,11 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
             }
         }
 
+        this.shouldRepeat = shouldRepeat;
         this.upgradeName = upgradeName;
     }
 
-    public bool Repeatable => false;
+    public bool Repeatable => shouldRepeat;
 
     public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
@@ -39,6 +42,12 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
         {
             return null;
         }
+
+        // If a cheaper organelle upgrade gets added, this will need to be updated
+        if (mp < 10)
+            return null;
+
+        double mpcost = 0;
 
         bool validMutations = false;
 
@@ -70,23 +79,34 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
 
                 if (allOrganelles.Contains(organelle.Definition))
                 {
-                    // TODO: Once this is used with an upgrade that costs MP this will need to factor that in
+                    foreach (var availableUpgrade in organelle.Definition.AvailableUpgrades)
+                    {
+                        var availableUpgradeName = availableUpgrade.Key;
+                        if (availableUpgradeName == upgradeName)
+                        {
+                            mpcost = availableUpgrade.Value.MPCost;
+                        }
+                    }
+
+                    // returning here in the loop to make sure that only one organelle gets upgraded
                     organelle.Upgrades ??= new OrganelleUpgrades();
                     if (customUpgrade != null)
                     {
                         organelle.Upgrades.CustomUpgradeData = customUpgrade;
+                        mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp));
+                        return mutated;
                     }
 
-                    if (upgradeName != null && !organelle.Upgrades.UnlockedFeatures.Contains(upgradeName))
+                    if (upgradeName != null && !organelle.Upgrades.UnlockedFeatures.Contains(upgradeName) &&
+                        mpcost <= mp)
                     {
                         organelle.Upgrades.UnlockedFeatures.Add(upgradeName);
+                        mp -= mpcost;
+                        mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp));
+                        return mutated;
                     }
                 }
             }
-
-            mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp));
-
-            return mutated;
         }
 
         return null;
