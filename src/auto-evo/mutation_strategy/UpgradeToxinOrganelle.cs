@@ -3,7 +3,6 @@ using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Linq;
 using AutoEvo;
-using Godot;
 
 /// <summary>
    /// Specific mutationstrategy for toxin-launching organelles
@@ -130,8 +129,11 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
                     toxinData.Toxicity = Math.Clamp(toxinData.Toxicity + change, -1.0f, 1.0f);
                     break;
             }
+
+            // returning here so that only one organelle gets mutated per run of UpgradeToxinOrganelle
+            return [Tuple.Create(newSpecies, mp - mpcost)];
         }
 
-        return [Tuple.Create(newSpecies, mp - mpcost)];
+        return null;
     }
 }
