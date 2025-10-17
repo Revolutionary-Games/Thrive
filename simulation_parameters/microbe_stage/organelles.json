@@ -826,6 +826,7 @@
         "IsDefault": true,
         "Name": "TOXIN_CYTOTOXIN",
         "Description": "TOXIN_CYTOTOXIN_DESCRIPTION",
+        "MPCost": 10,
         "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
       },
       "oxytoxy": {
@@ -1142,7 +1143,8 @@
       "none": {
         "IsDefault": true,
         "Name": "UPGRADE_NAME_NONE",
-        "Description": "UPGRADE_DESCRIPTION_NONE"
+        "Description": "UPGRADE_DESCRIPTION_NONE",
+        "MPCost": 20
       },
       "mucocyst": {
         "Name": "UPGRADE_SLIME_JET_MUCOCYST",

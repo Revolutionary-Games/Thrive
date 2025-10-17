@@ -14,7 +14,7 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
     public UpgradeOrganelle(Func<OrganelleDefinition, bool> criteria, IComponentSpecificUpgrades customUpgrade)
     {
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
-        shouldRepeat = true;
+        shouldRepeat = false;
         this.customUpgrade = customUpgrade;
     }
 
@@ -42,6 +42,12 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
         {
             return null;
         }
+
+        // If a cheaper organelle upgrade gets added, this will need to be updated
+        if (mp < 10)
+            return null;
+
+        double mpcost = 0;
 
         bool validMutations = false;
 
@@ -73,16 +79,29 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
 
                 if (allOrganelles.Contains(organelle.Definition))
                 {
-                    // TODO: Once this is used with an upgrade that costs MP this will need to factor that in
+                    foreach (var availableUpgrade in organelle.Definition.AvailableUpgrades)
+                    {
+                        var availableUpgradeName = availableUpgrade.Key;
+                        if (availableUpgradeName == upgradeName)
+                        {
+                            mpcost = availableUpgrade.Value.MPCost;
+                        }
+                    }
+
+                    if (mpcost > mp)
+                        return null;
+
                     organelle.Upgrades ??= new OrganelleUpgrades();
                     if (customUpgrade != null)
                     {
                         organelle.Upgrades.CustomUpgradeData = customUpgrade;
                     }
 
-                    if (upgradeName != null && !organelle.Upgrades.UnlockedFeatures.Contains(upgradeName))
+                    if (upgradeName != null && !organelle.Upgrades.UnlockedFeatures.Contains(upgradeName) &&
+                        mpcost < mp)
                     {
                         organelle.Upgrades.UnlockedFeatures.Add(upgradeName);
+                        mp -= mpcost;
                     }
                 }
             }
