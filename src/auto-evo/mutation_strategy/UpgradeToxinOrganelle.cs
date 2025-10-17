@@ -5,9 +5,9 @@ using System.Linq;
 using AutoEvo;
 
 /// <summary>
-/// Specific mutationstrategy for toxin-launching organelles
-/// applies a fixed toxin type based on given upgradename
-/// and randomly adjusts toxicity upward, downward, or in both directions
+///   Specific mutationstrategy for toxin-launching organelles
+///   applies a fixed toxin type based on given upgradename
+///   and randomly adjusts toxicity upward, downward, or in both directions
 /// </summary>
 public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
 {
@@ -18,12 +18,12 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
     private ToxinType toxinType;
 
     /// <summary>
-       /// Updates a toxin-launching organelle with a given toxin type,
-       /// and randomly moves toxicity in a given direction.
+    /// Updates a toxin-launching organelle with a given toxin type,
+    /// and randomly moves toxicity in a given direction.
     /// </summary>
-    /// <param name="criteria">Organelle requirement to apply</param>
-    /// <param name="upgradeName">The name of the upgrade to apply</param>
-    /// <param name="direction"> "increase", "decrease", or "both" to decide what to do with toxicity
+    ///   <param name="criteria">Organelle requirement to apply</param>
+    ///   <param name="upgradeName">The name of the upgrade to apply</param>
+    ///   <param name="direction">"increase", "decrease", or "both" to decide what to do with toxicity
     /// </param>
     public UpgradeToxinOrganelle(Func<OrganelleDefinition, bool> criteria, string upgradeName, string direction)
     {
