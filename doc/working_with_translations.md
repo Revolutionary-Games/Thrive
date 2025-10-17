@@ -84,7 +84,7 @@ localization`. This will extract the translation keys from the game
 files, and also update the `.po` files if the template (`.pot`) has
 changed. Unfortunately merging `master` branch to your branch will often cause
 merge conflicts in `.po` files if someone else merged their changes to `master`,
-so it is recommended to setup custom merge driver.
+so it is recommended to setup a custom merge driver (instructions are in the setup instructions file).
 
 gettext automatically "guesses" some text which might be right when a new translation
 key appears in a file. This is fine as the texts are marked as needing changes (fuzzy),
