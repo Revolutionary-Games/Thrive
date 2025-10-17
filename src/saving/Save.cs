@@ -284,23 +284,8 @@ public sealed class Save : IArchivable, IDisposable
         writer.WriteObject(Info);
         writer.Write((int)GameState);
 
-        if (SavedProperties == null)
-        {
-            writer.WriteNullObject();
-        }
-        else
-        {
-            writer.WriteObject(SavedProperties);
-        }
-
-        if (MicrobeStage == null)
-        {
-            writer.WriteNullObject();
-        }
-        else
-        {
-            writer.WriteObject(MicrobeStage);
-        }
+        writer.WriteObjectOrNull(SavedProperties);
+        writer.WriteObjectOrNull(MicrobeStage);
 
         if (MicrobeEditor == null)
         {

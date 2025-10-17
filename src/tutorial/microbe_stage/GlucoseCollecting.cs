@@ -150,14 +150,7 @@ public class GlucoseCollecting : TutorialPhase
             writer.Write(glucosePosition.Value);
         }
 
-        if (nextTutorial != null)
-        {
-            writer.WriteObject(nextTutorial);
-        }
-        else
-        {
-            writer.WriteNullObject();
-        }
+        writer.WriteObjectOrNull(nextTutorial);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)

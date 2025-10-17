@@ -57,15 +57,7 @@ public class MeteorImpactEvent : IWorldEffect
         writer.WriteObject(targetWorld);
         writer.WriteAnyRegisteredValueAsObject(random);
         writer.WriteGenericCollection(modifiedPatchesIds);
-
-        if (selectedMeteor != null)
-        {
-            writer.WriteObject(selectedMeteor);
-        }
-        else
-        {
-            writer.WriteNullObject();
-        }
+        writer.WriteObjectOrNull(selectedMeteor);
     }
 
     public void OnRegisterToWorld()
