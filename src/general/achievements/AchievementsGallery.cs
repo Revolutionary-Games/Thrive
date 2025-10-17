@@ -54,9 +54,7 @@ public partial class AchievementsGallery : Control
             if (achievement.HideIfNotAchieved && !achievement.Achieved)
                 continue;
 
-            achievementCards.TryGetValue(achievement.Identifier, out var achievementCard);
-
-            if (achievementCard != null)
+            if (achievementCards.TryGetValue(achievement.Identifier, out var achievementCard))
             {
                 achievementCard.UpdateDataFrom(achievement, AchievementsManager.Instance.GetStats());
                 achievementCard.Visible = true;
