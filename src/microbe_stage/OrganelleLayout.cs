@@ -13,8 +13,6 @@ using SharedBase.Archive;
 public class OrganelleLayout<T> : HexLayout<T>, IArchivable
     where T : class, IPositionedOrganelle, ICloneable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
-
     public OrganelleLayout(Action<T> onAdded, Action<T>? onRemoved = null) : base(onAdded, onRemoved)
     {
     }
@@ -62,7 +60,7 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable
     }
 
     [JsonIgnore]
-    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ushort CurrentArchiveVersion => OrganelleLayoutExtensions.SERIALIZATION_VERSION;
 
     [JsonIgnore]
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ExtendedOrganelleLayout;
@@ -70,20 +68,27 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable
     [JsonIgnore]
     public bool CanBeReferencedInArchive => false;
 
-    public static object ReadFromArchive(ISArchiveReader reader, ushort version)
-    {
-        if (version is > SERIALIZATION_VERSION or <= 0)
-            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
-
-        // TODO: callback reading and actual type resolving
-        throw new NotImplementedException();
-    }
-
     public void WriteToArchive(ISArchiveWriter writer)
     {
         writer.WriteObject(existingHexes);
-        writer.WriteDelegate(onAdded);
-        writer.WriteDelegate(onRemoved);
+
+        if (onAdded != null)
+        {
+            writer.WriteDelegate(onAdded);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
+
+        if (onRemoved != null)
+        {
+            writer.WriteDelegate(onRemoved);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
     }
 
     public override bool CanPlace(T hex, List<Hex> temporaryStorage, List<Hex> temporaryStorage2)
@@ -320,5 +325,36 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable
         }
 
         return false;
+    }
+}
+
+public static class OrganelleLayoutExtensions
+{
+    public const ushort SERIALIZATION_VERSION = 1;
+
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var data = reader.ReadObject<IList<IPositionedOrganelle>>();
+
+        // Fetch the actual type of the organelle and create a new instance
+        var dataType = data.GetType().GetGenericArguments()[0];
+
+        var genericTypeArguments = new[] { dataType };
+        var layoutClass = typeof(OrganelleLayout<>).MakeGenericType(genericTypeArguments);
+
+        var delegateType = typeof(Action<>).MakeGenericType(genericTypeArguments);
+
+        var constructor = layoutClass.GetConstructor([delegateType, delegateType]);
+        if (constructor == null)
+            throw new InvalidOperationException($"No constructor found for {layoutClass.Name}");
+
+        var addedDelegate = reader.ReadDelegate(delegateType);
+        var deletedDelegate = reader.ReadDelegate(delegateType);
+
+        var instance = constructor.Invoke([addedDelegate, deletedDelegate]);
+        return instance;
     }
 }
