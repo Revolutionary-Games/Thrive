@@ -778,7 +778,7 @@ public class SimulationCache
         slimeJetScore *= slimeJetsMultiplier;
 
         // bonus score for upgrades because auto-evo does not like adding them much
-        injectisomeScore *= Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS;
+        injectisomeScore *= Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS_SMALL;
         oxytoxyScore *= Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS;
         macrolideScore *= Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS;
         channelInhibitorScore *= Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS;
