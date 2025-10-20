@@ -114,6 +114,10 @@ public enum ThriveArchiveObjectType : uint
     GameEventDescription,
     LocalizedString,
     LocalizedStringBuilder,
+    PatchRegion,
+    Patch,
+    PatchSnapshot,
+    BiomeConditions,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,

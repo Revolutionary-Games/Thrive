@@ -1,22 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using Godot;
-using Newtonsoft.Json;
 using Nito.Collections;
-using Saving.Serializers;
+using SharedBase.Archive;
 
 /// <summary>
 ///   A patch is an instance of a Biome with some species in it
 /// </summary>
-[JsonObject(IsReference = true)]
-[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
-[JSONAlwaysDynamicType]
-[UseThriveConverter]
-[UseThriveSerializer]
-public class Patch
+public class Patch : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
     private static readonly LocalizedString UnknownPatchName = new LocalizedString("UNKNOWN_PATCH");
@@ -27,23 +22,19 @@ public class Patch
     /// <summary>
     ///   The current snapshot of this patch.
     /// </summary>
-    [JsonProperty]
     private readonly PatchSnapshot currentSnapshot;
 
     /// <summary>
     ///   The gameplay adjusted populations (only if set for a species, otherwise missing).
     ///   <see cref="GetSpeciesGameplayPopulation"/>
     /// </summary>
-    [JsonProperty]
     private readonly Dictionary<Species, long> gameplayPopulations = new();
 
     /// <summary>
     ///   The current effects on the patch node (shown in the patch map)
     /// </summary>
-    [JsonProperty]
     private readonly List<WorldEffectTypes> activeWorldEffectVisuals = new();
 
-    [JsonProperty]
     private Deque<PatchSnapshot> history = new();
 
     public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchRegion region,
@@ -61,45 +52,43 @@ public class Patch
     }
 
     public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchSnapshot currentSnapshot,
-        long additionalDatAseed)
-        : this(name, id, biomeTemplate, currentSnapshot)
-    {
-        BiomeType = biomeType;
-        DynamicDataSeed = additionalDatAseed;
-    }
-
-    [JsonConstructor]
-    public Patch(LocalizedString name, int id, Biome biomeTemplate, PatchSnapshot currentSnapshot)
+        long additionalDataSeed)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
         this.currentSnapshot = currentSnapshot;
+        BiomeType = biomeType;
+        DynamicDataSeed = additionalDataSeed;
     }
 
-    [JsonProperty]
+    private Patch(LocalizedString name, int id, Biome biomeTemplate, PatchSnapshot currentSnapshot,
+        Dictionary<Species, long> gameplayPopulations, List<WorldEffectTypes> activeWorldEffectVisuals)
+    {
+        Name = name;
+        ID = id;
+        BiomeTemplate = biomeTemplate;
+        this.currentSnapshot = currentSnapshot;
+        this.gameplayPopulations = gameplayPopulations;
+        this.activeWorldEffectVisuals = activeWorldEffectVisuals;
+    }
+
     public int ID { get; }
 
-    [JsonIgnore]
     public ISet<Patch> Adjacent { get; } = new HashSet<Patch>();
 
-    [JsonProperty]
     public Biome BiomeTemplate { get; }
 
-    [JsonProperty]
     public LocalizedString Name { get; private set; }
 
     /// <summary>
     ///   The region this patch belongs to. This has nullability suppression here to solve the circular dependency with
     ///   <see cref="PatchRegion.Patches"/>
     /// </summary>
-    [JsonProperty]
     public PatchRegion Region { get; private set; } = null!;
 
-    [JsonProperty]
     public BiomeType BiomeType { get; private set; }
 
-    [JsonProperty]
     public int[] Depth { get; private set; } = { -1, -1 };
 
     /// <summary>
@@ -111,7 +100,6 @@ public class Patch
     ///     perform additional checks and apply visibility to the region
     ///   </para>
     /// </remarks>
-    [JsonProperty]
     public MapElementVisibility Visibility { get; set; } = MapElementVisibility.Hidden;
 
     /// <summary>
@@ -122,13 +110,10 @@ public class Patch
     /// <summary>
     ///   List of all the recorded snapshot of this patch. Useful for statistics.
     /// </summary>
-    [JsonIgnore]
     public IReadOnlyList<PatchSnapshot> History => history;
 
-    [JsonIgnore]
     public PatchSnapshot CurrentSnapshot => currentSnapshot;
 
-    [JsonIgnore]
     public double TimePeriod
     {
         get => currentSnapshot.TimePeriod;
@@ -138,13 +123,10 @@ public class Patch
     /// <summary>
     ///   List of all species and their populations in this patch
     /// </summary>
-    [JsonIgnore]
     public Dictionary<Species, long> SpeciesInPatch => currentSnapshot.SpeciesInPatch;
 
-    [JsonIgnore]
     public BiomeConditions Biome => currentSnapshot.Biome;
 
-    [JsonIgnore]
     public string Background => currentSnapshot.Background ?? BiomeTemplate.Background;
 
     /// <summary>
@@ -155,7 +137,6 @@ public class Patch
     /// <summary>
     ///   The name of the patch the player should see; this accounts for fog of war and <see cref="Visibility"/>
     /// </summary>
-    [JsonIgnore]
     public LocalizedString VisibleName
     {
         get
@@ -177,14 +158,16 @@ public class Patch
     /// <summary>
     ///   True when this patch has compounds that vary during the day / night cycle
     /// </summary>
-    [JsonIgnore]
     public bool HasDayAndNight => Biome.HasCompoundsThatVary();
 
     /// <summary>
-    ///   Seed for generating dynamic runtime data for this patch (for example terrain)
+    ///   Seed for generating dynamic runtime data for this patch (for example, terrain)
     /// </summary>
-    [JsonProperty]
     public long DynamicDataSeed { get; private set; }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.Patch;
+    public bool CanBeReferencedInArchive => true;
 
     /// <summary>
     ///   Adds all neighbors recursively to the provided <see cref="HashSet{T}"/>
@@ -200,6 +183,63 @@ public class Patch
                 CollectNeighbours(neighbour, set);
             }
         }
+    }
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.Patch)
+            throw new NotSupportedException();
+
+        ((Patch)obj).WriteToArchive(writer);
+    }
+
+    public static Patch ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new Patch(reader.ReadObject<LocalizedString>(), reader.ReadInt32(), reader.ReadObject<Biome>(),
+            reader.ReadObject<PatchSnapshot>(), reader.ReadObject<Dictionary<Species, long>>(),
+            reader.ReadObject<List<WorldEffectTypes>>())
+        {
+            BiomeType = (BiomeType)reader.ReadInt32(),
+            Depth = reader.ReadObject<int[]>(),
+            Visibility = (MapElementVisibility)reader.ReadInt32(),
+            ScreenCoordinates = reader.ReadObject<Vector2>(),
+            DynamicDataSeed = reader.ReadInt64(),
+        };
+
+        reader.ReportObjectConstructorDone(instance);
+
+        foreach (var item in reader.ReadObject<List<Patch>>())
+        {
+            instance.Adjacent.Add(item);
+        }
+
+        instance.Region = reader.ReadObject<PatchRegion>();
+        instance.history = reader.ReadObject<Deque<PatchSnapshot>>();
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(Name);
+        writer.Write(ID);
+        writer.WriteObject(BiomeTemplate);
+        writer.WriteObject(currentSnapshot);
+        writer.WriteObject(gameplayPopulations);
+        writer.WriteObject(activeWorldEffectVisuals);
+        writer.Write((int)BiomeType);
+        writer.WriteObject(Depth);
+        writer.Write((int)Visibility);
+        writer.Write(ScreenCoordinates);
+        writer.Write(DynamicDataSeed);
+
+        writer.WriteGenericCollection(Adjacent);
+        writer.WriteObject(Region);
+
+        writer.WriteObject(history);
     }
 
     /// <summary>
@@ -701,8 +741,10 @@ public class Patch
 /// <summary>
 ///   Snapshot of a patch at some point in time.
 /// </summary>
-public class PatchSnapshot : ICloneable
+public class PatchSnapshot : ICloneable, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public double TimePeriod;
 
     public Dictionary<Species, long> SpeciesInPatch = new();
@@ -717,6 +759,42 @@ public class PatchSnapshot : ICloneable
     {
         Biome = biome;
         Background = background;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.PatchSnapshot;
+    public bool CanBeReferencedInArchive => false;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.PatchSnapshot)
+            throw new NotSupportedException();
+
+        ((PatchSnapshot)obj).WriteToArchive(writer);
+    }
+
+    public static PatchSnapshot ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new PatchSnapshot(reader.ReadObject<BiomeConditions>(), reader.ReadString())
+        {
+            TimePeriod = reader.ReadDouble(),
+            SpeciesInPatch = reader.ReadObject<Dictionary<Species, long>>(),
+            RecordedSpeciesInfo = reader.ReadObject<Dictionary<Species, SpeciesInfo>>(),
+            EventsLog = reader.ReadObject<List<GameEventDescription>>(),
+        };
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(Biome);
+        writer.Write(Background);
+        writer.Write(TimePeriod);
+        writer.WriteObject(SpeciesInPatch);
+        writer.WriteObject(RecordedSpeciesInfo);
+        writer.WriteObject(EventsLog);
     }
 
     public void ReplaceSpecies(Species old, Species newSpecies)

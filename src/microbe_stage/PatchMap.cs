@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
@@ -17,21 +16,17 @@ public class PatchMap : ISaveLoadable, IArchivable
     /// <summary>
     ///   The list of patches. DO NOT MODIFY THE DICTIONARY FROM OUTSIDE THIS CLASS
     /// </summary>
-    [JsonProperty]
     public Dictionary<int, Patch> Patches { get; private set; } = new();
 
     /// <summary>
     ///   The regions in this map
     /// </summary>
-    [JsonProperty]
     public Dictionary<int, PatchRegion> Regions { get; private set; } = new();
 
-    [JsonIgnore]
     public Vector2 Center =>
         Regions.Values.Aggregate(Vector2.Zero, (current, region) => current + region.ScreenCoordinates)
         / Regions.Count;
 
-    [JsonProperty]
     public FogOfWarMode FogOfWar { get; set; }
 
     /// <summary>
@@ -61,10 +56,8 @@ public class PatchMap : ISaveLoadable, IArchivable
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.PatchMap;
     public bool CanBeReferencedInArchive => false;
 
-    [JsonProperty]
     private List<(int Id1, int Id2)> PatchAdjacencies { get; set; } = new();
 
-    [JsonProperty]
     private List<(int Id1, int Id2)> RegionAdjacencies { get; set; } = new();
 
     public static PatchMap ReadFromArchive(ISArchiveReader reader, ushort version)
@@ -72,12 +65,25 @@ public class PatchMap : ISaveLoadable, IArchivable
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        throw new NotImplementedException();
+        return new PatchMap
+        {
+            currentPatch = reader.ReadObjectOrNull<Patch>(),
+            Patches = reader.ReadObject<Dictionary<int, Patch>>(),
+            Regions = reader.ReadObject<Dictionary<int, PatchRegion>>(),
+            PatchAdjacencies = reader.ReadObject<List<(int Id1, int Id2)>>(),
+            RegionAdjacencies = reader.ReadObject<List<(int Id1, int Id2)>>(),
+            FogOfWar = (FogOfWarMode)reader.ReadInt32(),
+        };
     }
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        throw new NotImplementedException();
+        writer.WriteObjectOrNull(currentPatch);
+        writer.WriteObject(Patches);
+        writer.WriteObject(Regions);
+        writer.WriteObject(PatchAdjacencies);
+        writer.WriteObject(RegionAdjacencies);
+        writer.Write((int)FogOfWar);
     }
 
     /// <summary>
