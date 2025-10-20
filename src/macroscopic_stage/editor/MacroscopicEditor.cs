@@ -10,7 +10,6 @@ using Environment = Godot.Environment;
 /// </summary>
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/macroscopic_stage/editor/MacroscopicEditor.tscn", UsesEarlyResolve = false)]
-[DeserializedCallbackTarget]
 public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicStage>, IEditorReportData,
     ICellEditorData
 {

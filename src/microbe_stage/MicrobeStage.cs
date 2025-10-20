@@ -15,7 +15,6 @@ using SharedBase.Archive;
 /// </summary>
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
-[DeserializedCallbackTarget]
 [UseThriveSerializer]
 public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>, IMicrobeSpawnEnvironment,
     IArchivable
@@ -1698,35 +1697,35 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     }
 
     // These need to use Invoke as during gameplay code these can be called in a multithreaded way
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnPlayerReproductionStatusChanged(Entity player, bool ready)
     {
         Invoke.Instance.QueueForObject(() => OnCanEditStatusChanged(ready &&
             (!player.IsAliveAndHas<MicrobeColony>() || GameWorld.PlayerSpecies is not MicrobeSpecies)), this);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnPlayerUnbindEnabled(Entity player)
     {
         Invoke.Instance.QueueForObject(
             () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbindEnabled, EventArgs.Empty, this), this);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnPlayerUnbound(Entity player)
     {
         Invoke.Instance.QueueForObject(
             () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbound, EventArgs.Empty, this), this);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnPlayerIngesting(Entity player, Entity ingested)
     {
         Invoke.Instance.QueueForObject(
             () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfing, EventArgs.Empty, this), this);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnPlayerEngulfedByHostile(Entity player, Entity hostile)
     {
         Invoke.Instance.QueueForObject(() =>
@@ -1758,21 +1757,21 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         }, this);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnPlayerEjectedFromHostileEngulfer(Entity player)
     {
         // Re-check the reproduction status with the normal reproduction status check
         OnPlayerReproductionStatusChanged(player, player.Get<OrganelleContainer>().AllOrganellesDivided);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnPlayerEngulfmentLimitReached(Entity player)
     {
         Invoke.Instance.QueueForObject(
             () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentFull, EventArgs.Empty, this), this);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnPlayerEngulfmentNearlyEmpty(Entity player)
     {
         Invoke.Instance.QueueForObject(
@@ -1780,7 +1779,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             this);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnPlayerOrganelleDuplicated(Entity player, PlacedOrganelle organelle)
     {
         if (organelle.Definition.InternalName == cytoplasm.InternalName)
@@ -1791,7 +1790,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             this);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnPlayerNoticeMessage(Entity player, IHUDMessage message)
     {
         Invoke.Instance.QueueForObject(() => HUD.HUDMessages.ShowMessage(message), this);
@@ -1800,7 +1799,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     /// <summary>
     ///   Updates the chemoreception lines. Not called in a multithreaded way
     /// </summary>
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void HandlePlayerChemoreception(Entity microbe,
         List<(Compound Compound, Color Colour, Vector3 Target)>? activeCompoundDetections,
         List<(Species Species, Entity Entity, Color Colour, Vector3 Target)>? activeSpeciesDetections)

@@ -48,8 +48,6 @@ public class ThriveJsonConverter : IDisposable
             new CompoundCloudPlaneConverter(context),
             new CompoundConverter(),
 
-            new CallbackConverter(),
-
             new ConditionSetConverter(),
 
             // Specific Godot Node converter types

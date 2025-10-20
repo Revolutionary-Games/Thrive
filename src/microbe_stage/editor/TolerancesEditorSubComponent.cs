@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Handles showing tolerance adaptation controls (sliders) and applying their changes
 /// </summary>
 [JsonObject(MemberSerialization.OptIn)]
-[DeserializedCallbackTarget]
 [IgnoreNoMethodsTakingInput]
 [SceneLoadedClass("res://src/microbe_stage/editor/TolerancesEditorSubComponent.tscn", UsesEarlyResolve = false)]
 public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEditorData>
@@ -964,7 +964,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         uvToleranceMarker.OptimalValue = requiredUVResistance;
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoToleranceChangeAction(ToleranceActionData data)
     {
         CurrentTolerances.CopyFrom(data.NewTolerances);
@@ -980,7 +980,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         OnChanged();
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoToleranceChangeAction(ToleranceActionData data)
     {
         CurrentTolerances.CopyFrom(data.OldTolerances);
