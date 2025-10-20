@@ -88,7 +88,6 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
                         }
                     }
 
-                    // returning here in the loop to make sure that only one organelle gets upgraded
                     organelle.Upgrades ??= new OrganelleUpgrades();
                     if (customUpgrade != null)
                     {
@@ -103,10 +102,11 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
                         organelle.Upgrades.UnlockedFeatures.Add(upgradeName);
                         mp -= mpcost;
                         mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp));
-                        return mutated;
                     }
                 }
             }
+
+            return mutated;
         }
 
         return null;

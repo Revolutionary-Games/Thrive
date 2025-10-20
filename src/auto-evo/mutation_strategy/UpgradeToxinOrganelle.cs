@@ -68,6 +68,8 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
         if (!validMutations)
             return null;
 
+        var mutated = new List<Tuple<MicrobeSpecies, double>>();
+
         var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
         organelleList = newSpecies.Organelles.Organelles;
 
@@ -129,10 +131,10 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
                     break;
             }
 
-            // returning here so that only one organelle gets mutated per run of UpgradeToxinOrganelle
-            return [Tuple.Create(newSpecies, mp - mpcost)];
+            mp -= mpcost;
+            mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp));
         }
 
-        return null;
+        return mutated;
     }
 }
