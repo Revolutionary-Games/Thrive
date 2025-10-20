@@ -20,8 +20,7 @@ public class ThriveArchiveManager : DefaultArchiveManager
 
     private void RegisterEnums()
     {
-        // This uses a few extra bytes, but it shouldn't matter as custom enums write object headers anyway
-        RegisterEnumType((ArchiveObjectType)ThriveArchiveObjectType.CompoundEnum, ArchiveEnumType.Int32,
+        RegisterEnumType((ArchiveObjectType)ThriveArchiveObjectType.CompoundEnum, ArchiveEnumType.UInt16,
             typeof(Compound));
     }
 
