@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Arch.Core;
 using Components;
+using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Adds extra digestion enzymes to an organelle
@@ -63,12 +65,36 @@ public class LysosomeComponentFactory : IOrganelleComponentFactory
 [JSONDynamicTypeAllowed]
 public class LysosomeUpgrades : IComponentSpecificUpgrades
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public LysosomeUpgrades(Enzyme enzyme)
     {
         Enzyme = enzyme;
     }
 
     public Enzyme Enzyme { get; set; }
+
+    [JsonIgnore]
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    [JsonIgnore]
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.LysosomeUpgrades;
+
+    [JsonIgnore]
+    public bool CanBeReferencedInArchive => false;
+
+    public static LysosomeUpgrades ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new LysosomeUpgrades(reader.ReadObject<Enzyme>());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(Enzyme);
+    }
 
     public bool Equals(IComponentSpecificUpgrades? other)
     {

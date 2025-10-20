@@ -27,6 +27,11 @@ public class ThriveArchiveManager : DefaultArchiveManager
     private void RegisterBaseObjects()
     {
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Save, typeof(Save), Save.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.LocalizedString, typeof(LocalizedString),
+            LocalizedString.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.LocalizedStringBuilder,
+            typeof(LocalizedStringBuilder), LocalizedStringBuilder.WriteToArchive);
     }
 
     private void RegisterRegistryTypes()
@@ -48,5 +53,14 @@ public class ThriveArchiveManager : DefaultArchiveManager
             typeof(GenerationRecord), GenerationRecord.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpeciesRecordLite,
             typeof(SpeciesRecordLite), SpeciesRecordLite.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Species,
+            typeof(Species), Species.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleTemplate,
+            typeof(OrganelleTemplate), OrganelleTemplate.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GameEventDescription,
+            typeof(GameEventDescription), GameEventDescription.WriteToArchive);
     }
 }

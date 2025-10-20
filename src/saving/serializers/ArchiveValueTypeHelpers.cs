@@ -51,4 +51,15 @@ public static class ArchiveValueTypeHelpers
     {
         return new Color(reader.ReadFloat(), reader.ReadFloat(), reader.ReadFloat(), reader.ReadFloat());
     }
+
+    public static void Write(this ISArchiveWriter writer, Hex value)
+    {
+        writer.Write(value.Q);
+        writer.Write(value.R);
+    }
+
+    public static Hex ReadHex(this ISArchiveReader reader)
+    {
+        return new Hex(reader.ReadInt32(), reader.ReadInt32());
+    }
 }

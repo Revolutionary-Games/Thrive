@@ -102,6 +102,18 @@ public enum ThriveArchiveObjectType : uint
     MembraneType,
     OrganelleLayout,
     CompoundEnum,
+    Species,
+    OrganelleTemplate,
+    OrganelleUpgrades,
+    Enzyme,
+    LysosomeUpgrades,
+    FlagellumUpgrades,
+    StorageComponentUpgrades,
+    ToxinUpgrades,
+    ChemoreceptorUpgrades,
+    GameEventDescription,
+    LocalizedString,
+    LocalizedStringBuilder,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,

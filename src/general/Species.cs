@@ -172,6 +172,11 @@ public abstract class Species : ICloneable, IArchivable
     [JsonIgnore]
     public bool CanBeReferencedInArchive => true;
 
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        ((Species)obj).WriteToArchive(writer);
+    }
+
     /// <summary>
     ///   Triggered when this species is changed somehow. Should update any data that is cached in the species
     ///   regarding its properties, including <see cref="RepositionToOrigin"/>

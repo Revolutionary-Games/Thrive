@@ -1,4 +1,6 @@
-﻿using ThriveScriptsShared;
+﻿using Newtonsoft.Json;
+using SharedBase.Archive;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Allows cell to store more stuff
@@ -35,12 +37,36 @@ public class StorageComponentFactory : IOrganelleComponentFactory
 [JSONDynamicTypeAllowed]
 public class StorageComponentUpgrades : IComponentSpecificUpgrades
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public StorageComponentUpgrades(Compound specializedFor)
     {
         SpecializedFor = specializedFor;
     }
 
     public Compound SpecializedFor { get; set; }
+
+    [JsonIgnore]
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    [JsonIgnore]
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.StorageComponentUpgrades;
+
+    [JsonIgnore]
+    public bool CanBeReferencedInArchive => false;
+
+    public static StorageComponentUpgrades ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new StorageComponentUpgrades((Compound)reader.ReadInt32());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write((int)SpecializedFor);
+    }
 
     public bool Equals(IComponentSpecificUpgrades? other)
     {

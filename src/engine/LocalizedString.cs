@@ -6,6 +6,7 @@ using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Saving.Serializers;
+using SharedBase.Archive;
 
 /// <summary>
 ///   String that can be localized on demand for different locales.
@@ -14,13 +15,15 @@ using Saving.Serializers;
 /// </summary>
 /// <remarks>
 ///   <para>
-///     This class can be used on its own, but was designed for the use within LocalizedStringBuilder.
+///     This class can be used on its own but was designed for the use within LocalizedStringBuilder.
 ///   </para>
 /// </remarks>
 [JSONDynamicTypeAllowed]
 [TypeConverter($"Saving.Serializers.{nameof(LocalizedStringTypeConverter)}")]
-public class LocalizedString : IFormattable, IEquatable<LocalizedString>
+public class LocalizedString : IFormattable, IEquatable<LocalizedString>, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     [JsonProperty]
     private readonly string translationKey;
 
@@ -46,6 +49,38 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>
     /// </summary>
     [JsonIgnore]
     public string TranslationKey => translationKey;
+
+    [JsonIgnore]
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    [JsonIgnore]
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.LocalizedString;
+
+    [JsonIgnore]
+    public bool CanBeReferencedInArchive => false;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.LocalizedString)
+            throw new NotSupportedException();
+
+        ((LocalizedString)obj).WriteToArchive(writer);
+    }
+
+    public static LocalizedString ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new LocalizedString(reader.ReadString() ?? throw new NullArchiveObjectException(),
+            reader.ReadObjectOrNull<object[]>());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(translationKey);
+        writer.WriteObjectOrNull(formatStringArgs);
+    }
 
     /// <summary>
     ///   Override current format arguments (reusing the existing args array if possible). Note that only the first

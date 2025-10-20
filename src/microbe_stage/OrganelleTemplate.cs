@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Basically just adding the positioning info on top of OrganelleDefinition.
@@ -9,8 +10,10 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [JSONDynamicTypeAllowed]
-public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, IPlayerReadableName
+public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, IPlayerReadableName, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     [JsonProperty]
     public readonly OrganelleDefinition Definition;
 
@@ -46,9 +49,45 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
     [JsonIgnore]
     public IReadOnlyList<Hex> RotatedHexes => Definition.GetRotatedHexes(Orientation);
 
+    [JsonIgnore]
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    [JsonIgnore]
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.OrganelleTemplate;
+
+    [JsonIgnore]
+    public bool CanBeReferencedInArchive => true;
+
 #pragma warning disable CA1033
     OrganelleDefinition IPositionedOrganelle.Definition => Definition;
 #pragma warning restore CA1033
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.OrganelleTemplate)
+            throw new NotSupportedException();
+
+        ((OrganelleTemplate)obj).WriteToArchive(writer);
+    }
+
+    public static OrganelleTemplate ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new OrganelleTemplate(reader.ReadObject<OrganelleDefinition>(), reader.ReadHex(), reader.ReadInt32())
+        {
+            Upgrades = reader.ReadObject<OrganelleUpgrades>(),
+        };
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(Definition);
+        writer.Write(Position);
+        writer.Write(Orientation);
+        writer.WriteObjectOrNull(Upgrades);
+    }
 
     public bool MatchesDefinition(IActionHex other)
     {

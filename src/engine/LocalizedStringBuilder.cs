@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Like a StringBuilder but with on demand localization.
@@ -17,14 +18,21 @@ using Newtonsoft.Json;
 ///   </para>
 /// </remarks>
 [JSONDynamicTypeAllowed]
-public class LocalizedStringBuilder : IFormattable
+public class LocalizedStringBuilder : IFormattable, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Things to format into this builder. This is no longer <see cref="IFormattable"/> as string would throw an
     ///   error on JSON load.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: the above constraint should no longer be true with the archive format
+    ///   </para>
+    /// </remarks>
     [JsonProperty]
-    private readonly List<object> items = new();
+    private readonly List<object> items;
 
     private readonly StringBuilder stringBuilder;
     private string formatString = string.Empty;
@@ -33,12 +41,30 @@ public class LocalizedStringBuilder : IFormattable
     public LocalizedStringBuilder()
     {
         stringBuilder = new StringBuilder();
+        items = new List<object>();
     }
 
     public LocalizedStringBuilder(int capacity)
     {
         stringBuilder = new StringBuilder(capacity);
+        items = new List<object>();
     }
+
+    private LocalizedStringBuilder(List<object> items, string formatString)
+    {
+        this.items = items;
+        this.formatString = formatString;
+        stringBuilder = new StringBuilder();
+    }
+
+    [JsonIgnore]
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    [JsonIgnore]
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.LocalizedStringBuilder;
+
+    [JsonIgnore]
+    public bool CanBeReferencedInArchive => false;
 
     [JsonProperty]
     private string? FormatString
@@ -64,6 +90,29 @@ public class LocalizedStringBuilder : IFormattable
     public static explicit operator LocalizedStringBuilder(string value)
     {
         return new LocalizedStringBuilder { FormatString = value };
+    }
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.LocalizedStringBuilder)
+            throw new NotSupportedException();
+
+        ((LocalizedStringBuilder)obj).WriteToArchive(writer);
+    }
+
+    public static LocalizedStringBuilder ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new LocalizedStringBuilder(reader.ReadObject<List<object>>(),
+            reader.ReadString() ?? throw new NullArchiveObjectException());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(items);
+        writer.Write(formatString);
     }
 
     public LocalizedStringBuilder Append(LocalizedString translatingString)

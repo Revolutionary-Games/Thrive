@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Arch.Core;
 using Components;
 using Godot;
+using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Adds radar capability to a cell
@@ -93,6 +95,8 @@ public class ChemoreceptorComponentFactory : IOrganelleComponentFactory
 [JSONDynamicTypeAllowed]
 public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public ChemoreceptorUpgrades(Compound targetCompound, Species? targetSpecies,
         float searchRange, float searchAmount, Color lineColour)
     {
@@ -108,6 +112,33 @@ public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
     public float SearchRange { get; set; }
     public float SearchAmount { get; set; }
     public Color LineColour { get; set; }
+
+    [JsonIgnore]
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    [JsonIgnore]
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ChemoreceptorUpgrades;
+
+    [JsonIgnore]
+    public bool CanBeReferencedInArchive => false;
+
+    public static ChemoreceptorUpgrades ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new ChemoreceptorUpgrades((Compound)reader.ReadInt32(), reader.ReadObjectOrNull<Species>(),
+            reader.ReadFloat(), reader.ReadFloat(), reader.ReadColor());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write((int)TargetCompound);
+        writer.WriteObjectOrNull(TargetSpecies);
+        writer.Write(SearchRange);
+        writer.Write(SearchAmount);
+        writer.Write(LineColour);
+    }
 
     public bool Equals(IComponentSpecificUpgrades? other)
     {
