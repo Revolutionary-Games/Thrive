@@ -11,6 +11,11 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
     private readonly string? upgradeName;
     private readonly bool shouldRepeat;
 
+    /// <summary>
+    ///   Updates an organelle type with the given upgrade custom data
+    /// </summary>
+    /// <param name="criteria">Organelle requirement to apply</param>
+    /// <param name="customUpgrade">The custom data to be applied as an upgrade to the organelle</param>
     public UpgradeOrganelle(Func<OrganelleDefinition, bool> criteria, IComponentSpecificUpgrades customUpgrade)
     {
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
@@ -18,6 +23,14 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
         this.customUpgrade = customUpgrade;
     }
 
+    /// <summary>
+    ///   Updates an organelle type with the given upgrade, creating a new species to test for every additional
+    ///   organelle upgraded.
+    /// </summary>
+    /// <param name="criteria">Organelle requirement to apply</param>
+    /// <param name="upgradeName">The name of the upgrade (from organelles.json) to apply</param>
+    /// <param name="shouldRepeat">Determines whether this mutation strategy can be used multiple times
+    ///   should be false for any upgrade that does not cost MP</param>
     public UpgradeOrganelle(Func<OrganelleDefinition, bool> criteria, string upgradeName, bool shouldRepeat)
     {
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
