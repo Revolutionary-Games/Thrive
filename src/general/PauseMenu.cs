@@ -14,6 +14,9 @@ public partial class PauseMenu : TopLevelContainer
     private Thriveopedia thriveopedia = null!;
 
     [Export]
+    private AchievementsView achievementsView = null!;
+
+    [Export]
     private Control loadMenu = null!;
 
     [Export]
@@ -72,6 +75,7 @@ public partial class PauseMenu : TopLevelContainer
     {
         Primary,
         Thriveopedia,
+        Achievements,
         Load,
         Options,
         Save,
@@ -323,6 +327,7 @@ public partial class PauseMenu : TopLevelContainer
         {
             ActiveMenuType.Primary => primaryMenu,
             ActiveMenuType.Thriveopedia => thriveopedia,
+            ActiveMenuType.Achievements => achievementsView,
             ActiveMenuType.Load => loadMenu,
             ActiveMenuType.Options => optionsMenu,
             ActiveMenuType.Save => saveMenu,
@@ -433,6 +438,14 @@ public partial class PauseMenu : TopLevelContainer
         ActiveMenu = ActiveMenuType.Primary;
     }
 
+    private void OpenAchievementsPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        ActiveMenu = ActiveMenuType.Achievements;
+        achievementsView.OpenPopup();
+    }
+
     private void OpenLoadPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -460,6 +473,11 @@ public partial class PauseMenu : TopLevelContainer
     }
 
     private void OnThriveopediaClosed()
+    {
+        ActiveMenu = ActiveMenuType.Primary;
+    }
+
+    private void OnAchievementsClosed()
     {
         ActiveMenu = ActiveMenuType.Primary;
     }
