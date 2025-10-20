@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 using SharedBase.Archive;
 
 /// <summary>
@@ -19,6 +20,11 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable
 
     [JsonConstructor]
     public OrganelleLayout()
+    {
+    }
+
+    internal OrganelleLayout(List<T> existingData, Action<T>? onAdded, Action<T>? onRemoved) : base(existingData,
+        onAdded, onRemoved)
     {
     }
 
@@ -60,7 +66,7 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable
     }
 
     [JsonIgnore]
-    public ushort CurrentArchiveVersion => OrganelleLayoutExtensions.SERIALIZATION_VERSION;
+    public ushort CurrentArchiveVersion => OrganelleLayoutSerializer.SERIALIZATION_VERSION;
 
     [JsonIgnore]
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ExtendedOrganelleLayout;
@@ -325,36 +331,5 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable
         }
 
         return false;
-    }
-}
-
-public static class OrganelleLayoutExtensions
-{
-    public const ushort SERIALIZATION_VERSION = 1;
-
-    public static object ReadFromArchive(ISArchiveReader reader, ushort version)
-    {
-        if (version is > SERIALIZATION_VERSION or <= 0)
-            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
-
-        var data = reader.ReadObject<IList<IPositionedOrganelle>>();
-
-        // Fetch the actual type of the organelle and create a new instance
-        var dataType = data.GetType().GetGenericArguments()[0];
-
-        var genericTypeArguments = new[] { dataType };
-        var layoutClass = typeof(OrganelleLayout<>).MakeGenericType(genericTypeArguments);
-
-        var delegateType = typeof(Action<>).MakeGenericType(genericTypeArguments);
-
-        var constructor = layoutClass.GetConstructor([delegateType, delegateType]);
-        if (constructor == null)
-            throw new InvalidOperationException($"No constructor found for {layoutClass.Name}");
-
-        var addedDelegate = reader.ReadDelegate(delegateType);
-        var deletedDelegate = reader.ReadDelegate(delegateType);
-
-        var instance = constructor.Invoke([addedDelegate, deletedDelegate]);
-        return instance;
     }
 }
