@@ -12,9 +12,17 @@ public class ThriveArchiveManager : DefaultArchiveManager
     public ThriveArchiveManager() : base(true)
     {
         // Register custom types for Thrive
+        RegisterEnums();
         RegisterBaseObjects();
         RegisterRegistryTypes();
         RegisterOtherObjects();
+    }
+
+    private void RegisterEnums()
+    {
+        // This uses a few extra bytes, but it shouldn't matter as custom enums write object headers anyway
+        RegisterEnumType((ArchiveObjectType)ThriveArchiveObjectType.CompoundEnum, ArchiveEnumType.Int32,
+            typeof(Compound));
     }
 
     private void RegisterBaseObjects()

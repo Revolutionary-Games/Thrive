@@ -101,6 +101,7 @@ public enum ThriveArchiveObjectType : uint
     EnvironmentalTolerances,
     MembraneType,
     OrganelleLayout,
+    CompoundEnum,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,
