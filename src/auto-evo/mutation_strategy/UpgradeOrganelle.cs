@@ -99,6 +99,7 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
                         if (availableUpgradeName == upgradeName)
                         {
                             mpcost = availableUpgrade.Value.MPCost;
+                            break;
                         }
                     }
 
