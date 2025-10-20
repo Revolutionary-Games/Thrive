@@ -105,8 +105,22 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
                     if (customUpgrade != null)
                     {
                         organelle.Upgrades.CustomUpgradeData = customUpgrade;
-                        mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp));
-                        return mutated;
+
+                        // preparation for if mp cost is added to some custom upgrades in the future
+                        // Should remove condition once all upgrades have an mp cost
+                        if (mpcost != 0)
+                        {
+                            mp -= mpcost;
+                            mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp));
+                        }
+
+                        // temporary solution for chemoreceptors, which should not all be upgraded
+                        // should be removed once chemoreceptor target change costs MP
+                        if (organelle.Definition.HasChemoreceptorComponent)
+                        {
+                            mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp));
+                            return mutated;
+                        }
                     }
 
                     if (upgradeName != null && !organelle.Upgrades.UnlockedFeatures.Contains(upgradeName) &&
@@ -118,6 +132,10 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
                     }
                 }
             }
+
+            // for custom upgrades that have no mpcost for now
+            if (customUpgrade != null && mpcost == 0)
+                mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp));
 
             return mutated;
         }
