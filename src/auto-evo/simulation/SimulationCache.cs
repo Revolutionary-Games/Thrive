@@ -782,7 +782,7 @@ public class SimulationCache
         oxytoxyScore *= Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS;
         macrolideScore *= Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS;
         channelInhibitorScore *= Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS;
-        oxygenMetabolismInhibitorScore *= Constants.OXYGEN_INHIBITOR_DAMAGE;
+        oxygenMetabolismInhibitorScore *= Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS;
 
         var predationToolsRawScores = (pilusScore, injectisomeScore, averageToxicity,
             oxytoxyScore, cytotoxinScore, macrolideScore, channelInhibitorScore, oxygenMetabolismInhibitorScore,
