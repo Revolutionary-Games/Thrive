@@ -1,11 +1,15 @@
 ﻿using System;
+using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Properties of a compound in a given <see cref="BiomeConditions"/>. Has info on how common / available the
 ///   compound is.
 /// </summary>
-public struct BiomeCompoundProperties : IEquatable<BiomeCompoundProperties>
+public struct BiomeCompoundProperties : IEquatable<BiomeCompoundProperties>, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   How much compound there is in each spawned cloud (<see cref="CompoundCloudSystem"/>) of this type
     /// </summary>
@@ -23,6 +27,15 @@ public struct BiomeCompoundProperties : IEquatable<BiomeCompoundProperties>
     /// </summary>
     public float Ambient;
 
+    [JsonIgnore]
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    [JsonIgnore]
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.BiomeCompoundProperties;
+
+    [JsonIgnore]
+    public bool CanBeReferencedInArchive => false;
+
     public static bool operator ==(BiomeCompoundProperties left, BiomeCompoundProperties right)
     {
         return left.Equals(right);
@@ -31,6 +44,34 @@ public struct BiomeCompoundProperties : IEquatable<BiomeCompoundProperties>
     public static bool operator !=(BiomeCompoundProperties left, BiomeCompoundProperties right)
     {
         return !(left == right);
+    }
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.BiomeCompoundProperties)
+            throw new NotSupportedException();
+
+        ((BiomeCompoundProperties)obj).WriteToArchive(writer);
+    }
+
+    public static BiomeCompoundProperties ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new BiomeCompoundProperties
+        {
+            Amount = reader.ReadFloat(),
+            Density = reader.ReadFloat(),
+            Ambient = reader.ReadFloat(),
+        };
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(Amount);
+        writer.Write(Density);
+        writer.Write(Ambient);
     }
 
     /// <summary>

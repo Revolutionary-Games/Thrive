@@ -118,6 +118,12 @@ public enum ThriveArchiveObjectType : uint
     Patch,
     PatchSnapshot,
     BiomeConditions,
+    BiomeCompoundProperties,
+    ChunkConfiguration,
+    ChunkScene,
+    ChunkCompound,
+    SpeciesInfo,
+    WorldEffectTypes,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,

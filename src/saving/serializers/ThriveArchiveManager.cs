@@ -22,6 +22,9 @@ public class ThriveArchiveManager : DefaultArchiveManager
     {
         RegisterEnumType((ArchiveObjectType)ThriveArchiveObjectType.CompoundEnum, ArchiveEnumType.UInt16,
             typeof(Compound));
+
+        RegisterEnumType((ArchiveObjectType)ThriveArchiveObjectType.WorldEffectTypes, ArchiveEnumType.Int32,
+            typeof(WorldEffectTypes));
     }
 
     private void RegisterBaseObjects()
@@ -32,6 +35,9 @@ public class ThriveArchiveManager : DefaultArchiveManager
             LocalizedString.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.LocalizedStringBuilder,
             typeof(LocalizedStringBuilder), LocalizedStringBuilder.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BiomeCompoundProperties,
+            typeof(BiomeCompoundProperties), BiomeCompoundProperties.WriteToArchive);
     }
 
     private void RegisterRegistryTypes()
@@ -54,6 +60,9 @@ public class ThriveArchiveManager : DefaultArchiveManager
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpeciesRecordLite,
             typeof(SpeciesRecordLite), SpeciesRecordLite.WriteToArchive);
 
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpeciesInfo,
+            typeof(SpeciesInfo), SpeciesInfo.WriteToArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Species,
             typeof(Species), Species.WriteToArchive);
 
@@ -62,5 +71,20 @@ public class ThriveArchiveManager : DefaultArchiveManager
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GameEventDescription,
             typeof(GameEventDescription), GameEventDescription.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ChunkConfiguration,
+            typeof(ChunkConfiguration), ChunkConfiguration.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ChunkScene,
+            typeof(ChunkConfiguration.ChunkScene), ChunkConfiguration.ChunkScene.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ChunkCompound,
+            typeof(ChunkConfiguration.ChunkCompound), ChunkConfiguration.ChunkCompound.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Patch,
+            typeof(Patch), Patch.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchRegion,
+            typeof(PatchRegion), PatchRegion.WriteToArchive);
     }
 }
