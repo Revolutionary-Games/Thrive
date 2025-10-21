@@ -1348,6 +1348,7 @@ public static class Constants
 
     public const int AUTO_EVO_ORGANELLE_ADD_ATTEMPTS = 15;
     public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 15;
+    public const int AUTO_EVO_ORGANELLE_UPGRADE_ATTEMPTS = 5;
 
     public const float AUTO_EVO_TOLERANCE_PERFECT_CHANCE = 0.02f;
 

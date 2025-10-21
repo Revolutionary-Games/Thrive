@@ -83,61 +83,51 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
         {
             var mutated = new List<Tuple<MicrobeSpecies, double>>();
 
-            var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+            var eligibleOrganelles = new List<OrganelleTemplate>();
 
-            organelleList = newSpecies.Organelles.Organelles;
-            count = organelleList.Count;
-            for (var i = 0; i < count; ++i)
+            foreach (var organelle in baseSpecies.Organelles.Organelles)
             {
-                var organelle = organelleList[i];
-
                 if (allOrganelles.Contains(organelle.Definition))
-                {
-                    foreach (var availableUpgrade in organelle.Definition.AvailableUpgrades)
-                    {
-                        var availableUpgradeName = availableUpgrade.Key;
-                        if (availableUpgradeName == upgradeName)
-                        {
-                            mpcost = availableUpgrade.Value.MPCost;
-                            break;
-                        }
-                    }
-
-                    organelle.Upgrades ??= new OrganelleUpgrades();
-                    if (customUpgrade != null)
-                    {
-                        organelle.Upgrades.CustomUpgradeData = customUpgrade;
-
-                        // preparation for if mp cost is added to some custom upgrades in the future
-                        // Should remove condition once all upgrades have an mp cost
-                        if (mpcost != 0)
-                        {
-                            mp -= mpcost;
-                            mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp));
-                        }
-
-                        // temporary solution for chemoreceptors, which should not all be upgraded
-                        // should be removed once chemoreceptor target change costs MP
-                        if (organelle.Definition.HasChemoreceptorComponent)
-                        {
-                            mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp));
-                            return mutated;
-                        }
-                    }
-
-                    if (upgradeName != null && !organelle.Upgrades.UnlockedFeatures.Contains(upgradeName) &&
-                        mpcost <= mp)
-                    {
-                        organelle.Upgrades.UnlockedFeatures.Add(upgradeName);
-                        mp -= mpcost;
-                        mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp));
-                    }
-                }
+                    eligibleOrganelles.Add(organelle);
             }
 
-            // for custom upgrades that have no mpcost for now
-            if (customUpgrade != null && mpcost == 0)
-                mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp));
+            var eligibleOrganelleSample = eligibleOrganelles
+                .OrderBy(_ => random.Next())
+                .Take(Constants.AUTO_EVO_ORGANELLE_UPGRADE_ATTEMPTS);
+
+            foreach (var baseSpeciesOrganelle in eligibleOrganelleSample)
+            {
+                var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+
+                var organelle = newSpecies.Organelles.Organelles
+                    .First(organelle => organelle.Position == baseSpeciesOrganelle.Position);
+
+                foreach (var availableUpgrade in organelle.Definition.AvailableUpgrades)
+                {
+                    var availableUpgradeName = availableUpgrade.Key;
+                    if (availableUpgradeName == upgradeName)
+                    {
+                        mpcost = availableUpgrade.Value.MPCost;
+                        break;
+                    }
+                }
+
+                organelle.Upgrades ??= new OrganelleUpgrades();
+
+                if (customUpgrade != null)
+                {
+                    organelle.Upgrades.CustomUpgradeData = customUpgrade;
+                    mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp - mpcost));
+                }
+
+                if (upgradeName != null &&
+                    !organelle.Upgrades.UnlockedFeatures.Contains(upgradeName) &&
+                    mpcost <= mp)
+                {
+                    organelle.Upgrades.UnlockedFeatures.Add(upgradeName);
+                    mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp - mpcost));
+                }
+            }
 
             return mutated;
         }
