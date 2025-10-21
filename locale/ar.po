@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-09-15 11:08+0200\n"
-"PO-Revision-Date: 2025-09-02 08:54+0000\n"
-"Last-Translator: khalid <khalid50540@gmail.com>\n"
+"PO-Revision-Date: 2025-10-21 17:38+0000\n"
+"Last-Translator: youseftulbah <yousef.m.tulbah@gmail.com>\n"
 "Language-Team: Arabic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -51,28 +51,25 @@ msgid "ACCEPT"
 msgstr "موافقة"
 
 msgid "ACHIEVEMENTS"
-msgstr "الانجازات"
+msgstr "الإنجازات"
 
 msgid "ACHIEVEMENTS_TOTAL"
-msgstr "الانجازات {0} / {1}"
+msgstr "الإنجازات {1}/{0}"
 
-#, fuzzy
 msgid "ACHIEVEMENT_ACHIEVED"
-msgstr "مكتملة"
+msgstr "منجز"
 
-#, fuzzy
 msgid "ACHIEVEMENT_LOCKED"
-msgstr "مغلق"
+msgstr "غير منجز"
 
-#, fuzzy
 msgid "ACTION_AWAKEN"
-msgstr "استيقاظ ({0:F1} / {1:F1})"
+msgstr "استيقاظ / ({1:F1}/{0:F1} )"
 
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "استمر إلى مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+msgstr "انتقل إلى مرحلة الاستيقاظ والتي تصبح متاحةً عند توفر قوة عقل كافية (أي أنسجة ذات محاور عصبية)."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr "النشاط مغلق طالما يوجد نشاط اخر قيد التنفيذ"
+msgstr "حظر النشاط أثناء تنفيذ نشاط آخر"
 
 msgid "ACTION_DELETE"
 msgstr "حذف"
@@ -87,7 +84,7 @@ msgid "ACTION_HALF_POPULATION"
 msgstr "تقليص عدد السكان الى النصف"
 
 msgid "ACTION_TELEPORT"
-msgstr "التنقل عن بعد"
+msgstr "النقل الآلي"
 
 msgid "ACTIVE"
 msgstr "نشط"
@@ -97,20 +94,20 @@ msgstr "عدد الخيوط البرمجية:"
 
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
-"الميكروبات النشطة سوف تهييم وتمرح اذا لم يحدث شي مثير للاهتمام.\n"
-"الميكروبات الراكدة ستكون ثابتة في مكانها وتنتظر حدوث تغير في محيطه قبل اتخاذ اي قرار."
+"تتحرك الميكروبات النشطة عشوائيًا في غياب حافز مثير للإهتمام.\n"
+"لا تتحرك الراكدة إلا استجابةً للتغيرات البيئية."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr "التحققات الإضافية اكتشفت خطأ: {0}"
+msgstr "اكتشفت التحققات الإضافية خطأ: {0}"
 
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr "اضف رمز ربط جديد"
+msgstr "إضافة رابط مفتاح جديد"
 
 msgid "ADVANCED_VIEW"
 msgstr "مفصل"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
-msgstr "افتح منظور التثبيت المفصل"
+msgstr "فتح عرض التثبيت المفصل"
 
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "تثبيت النيتروجين الهوائي"
@@ -122,91 +119,108 @@ msgid "AEROBIC_RESPIRATION"
 msgstr "التنفس الهوائي"
 
 msgid "AGENTS"
-msgstr "عملاء مستقلين"
+msgstr "عملاء مستقلون"
 
 msgid "AGENTS_COLON"
-msgstr "عملاء مستقلين:"
+msgstr "عملاء مستقلون:"
 
 msgid "AGENT_NAME"
 msgstr "العميل المستقل {0}"
 
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"تطارد الميكروبات العدوانية فرائسها عبر مسافات أبعد،\n"
+"وتميل إلى قتال المفترسين عند تعرضها للهجوم.\n"
+"تتجنب الميكروبات المسالمة الاشتباك عن بعد،\n"
+"ونادرًا ما تستخدم السموم ضد المفترسين."
 
 msgid "AGGRESSIVE"
-msgstr "عنيف"
+msgstr "عدواني"
 
 msgid "AI_MUTATION_RATE"
-msgstr ""
+msgstr "معدل تحور الذكاء الإصطناعي"
 
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr ""
+msgstr "(أي سرعة التغير في سلالات الذكاء الإصطناعي)"
 
 msgid "ALL"
-msgstr "كل شىء"
+msgstr "الكل"
 
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
-msgstr ""
+msgstr "السماح بالانتقال إلى سلالة قريبة عند الانقراض"
 
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
-msgstr ""
+msgstr "(أي تتاح متابعة اللعبة بسلالة مختلفة عند الانقراض بدلًا من إنهائها)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr ""
+msgstr "الإحصاءات العامة لجميع العوالم"
 
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
+"[b]الأجيال:[/b]\n"
+"  {0}\n"
+"[b]إجمالي الأنواع:[/b]\n"
+"  المتوسط {1}؛ الانحراف المعياري {2}\n"
+"[b]الأنواع الباقية على قيد الحياة:[/b]\n"
+"  المتوسط {3}؛ الانحراف المعياري {4}\n"
+"[b]عدد الأنواع في كل رقعة:[/b]\n"
+"  المتوسط {5}؛ الانحراف المعياري {6}\n"
+"[b]إجمالي الكائنات في كل رقعة:[/b]\n"
+"  المتوسط {7}؛ الانحراف المعياري {8}\n"
+"[b]متوسط حجم الخلية للأنواع الميكروبية (بالوحدة السداسية):[/b]\n"
+"  المتوسط {9}؛ الانحراف المعياري {10}\n"
+"[b]بيانات الأُعضية العامة:[/b]"
 
 msgid "ALREADY_ASCENDED"
-msgstr ""
+msgstr "لقد أتممت الصعود مسبقًا"
 
 msgid "ALT"
-msgstr ""
+msgstr "Alt"
 
 msgid "ALWAYS_VISIBLE"
-msgstr ""
+msgstr "ظاهر دائمًا"
 
 msgid "AMBIANCE_VOLUME"
-msgstr ""
+msgstr "مستوى صوت الأجواء"
 
 msgid "AMMONIA"
-msgstr ""
+msgstr "الأمونيا"
 
 msgid "AMMONIA_COST"
-msgstr ""
+msgstr "تكلفة الأمونيا:"
 
 msgid "AMMONIA_LEVELS"
-msgstr ""
+msgstr "مستوى الأمونيا"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr ""
+msgstr "عدد ملفات الحفظ التلقائي المحفوظة:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
+msgstr "عدد ملفات الحفظ السريع المحفوظة:"
 
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr ""
+msgstr "تثبيت النيتروجين اللاهوائي"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "و"
 
 msgid "ANISOTROPIC_FILTERING"
-msgstr ""
+msgstr "الترشيح متباين الخواص:"
 
 msgid "ANTIALIASING_MSAA_TAA"
-msgstr ""
+msgstr "التنعيم متعدد العينات + التنعيم الزمني"
 
 msgid "ANTI_ALIASING_FXAA"
-msgstr ""
+msgstr "التنعيم التقريبي السريع"
 
 msgid "ANTI_ALIASING_MODE"
-msgstr ""
+msgstr "نمط تنعيم الحواف:"
 
 msgid "ANTI_ALIASING_MSAA"
-msgstr ""
+msgstr "التنعيم متعدد العينات"
 
 msgid "ANTI_ALIASING_TAA"
-msgstr ""
+msgstr "التنعيم الزمني"
 
 msgid "APPEARANCE"
 msgstr "المظهر"
@@ -218,10 +232,10 @@ msgid "APPLY_CHANGES"
 msgstr "تأكيد التغييرات"
 
 msgid "APRIL"
-msgstr ""
+msgstr "أبريل"
 
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr "هل أنت متأكد بأنك تريد اعادة ضبط كل الاعدادات للقيم الافتراضية؟"
+msgstr "هل أنت متأكد بأنك تريد إعادة ضبط جميع الإعدادات إلى قيمها الافتراضية؟"
 
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "هل أنت متأكد من أنك تريد إعادة ضبط إعدادات الأزرار إلى الإعدادات الإفتراضية؟"
@@ -2905,216 +2919,221 @@ msgid "KEY_STOP"
 msgstr ""
 
 msgid "KEY_TAB"
-msgstr ""
+msgstr "Tab"
 
 msgid "KEY_UP"
-msgstr ""
+msgstr "مفتاح الأعلى"
 
-#, fuzzy
 msgid "KILL_50_MICROBES"
-msgstr "فترة الميكروبات"
+msgstr "اقتل 50 ميكروبًا"
 
-#, fuzzy
 msgid "KILL_MICROBES_PROGRESS"
-msgstr "فترة الميكروبات"
+msgstr "اقتل {1}/{0} ميكروبًا"
 
 msgid "KILO_ABBREVIATION"
-msgstr ""
+msgstr "{0} ألفًا"
 
 msgid "KP0"
-msgstr ""
+msgstr "Num 0"
 
 msgid "KP1"
-msgstr ""
+msgstr "Num 1"
 
+#, fuzzy
 msgid "KP2"
-msgstr ""
+msgstr "Num 2"
 
+#, fuzzy
 msgid "KP3"
-msgstr ""
+msgstr "Num 3"
 
+#, fuzzy
 msgid "KP4"
-msgstr ""
+msgstr "Num 4"
 
+#, fuzzy
 msgid "KP5"
-msgstr ""
+msgstr "Num 5"
 
+#, fuzzy
 msgid "KP6"
-msgstr ""
+msgstr "Num 6"
 
+#, fuzzy
 msgid "KP7"
-msgstr ""
+msgstr "Num 7"
 
+#, fuzzy
 msgid "KP8"
-msgstr ""
+msgstr "Num 8"
 
 msgid "KP9"
-msgstr ""
+msgstr "Num 9"
 
 msgid "KPADD"
-msgstr ""
+msgstr "Num +"
 
 msgid "KPDIVIDE"
-msgstr ""
+msgstr "Num /"
 
 msgid "KPENTER"
-msgstr ""
+msgstr "Num Enter"
 
 msgid "KPMULTIPLY"
-msgstr ""
+msgstr "Num *"
 
 msgid "KPPERIOD"
-msgstr ""
+msgstr "Num ."
 
 msgid "KPSUBTRACT"
-msgstr ""
+msgstr "Num -"
 
 msgid "LANGUAGE"
-msgstr ""
+msgstr "اللغة:"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
-msgstr ""
+msgstr "هذه اللغة مكتملة بنسبة {0}%"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
-msgstr ""
+msgstr "لا تزال هذه اللغة قيد التطوير (مكتملة بنسبة {0}%)"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
-msgstr ""
+msgstr "هذه الترجمة ناقصة جدًا (مكتملة بنسبة {0}%)، يرجى مساعدتنا فيها!"
 
 msgid "LARGE_SULFUR_CHUNK"
-msgstr ""
+msgstr "قطعة كبريت كبيرة"
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr ""
+msgstr "لا يمكن حذف العضية الأخيرة"
 
 msgid "LAUNCH0"
-msgstr ""
+msgstr "إطلاق 0"
 
 msgid "LAUNCH1"
-msgstr ""
+msgstr "إطلاق 1"
 
 msgid "LAUNCH2"
-msgstr ""
+msgstr "إطلاق 2"
 
 msgid "LAUNCH3"
-msgstr ""
+msgstr "إطلاق 3"
 
 msgid "LAUNCH4"
-msgstr ""
+msgstr "إطلاق 4"
 
 msgid "LAUNCH5"
-msgstr ""
+msgstr "إطلاق 5"
 
 msgid "LAUNCH6"
-msgstr ""
+msgstr "إطلاق 6"
 
 msgid "LAUNCH7"
-msgstr ""
+msgstr "إطلاق 7"
 
 msgid "LAUNCH8"
-msgstr ""
+msgstr "إطلاق 8"
 
 msgid "LAUNCH9"
-msgstr ""
+msgstr "إطلاق 9"
 
 msgid "LAUNCHA"
-msgstr ""
+msgstr "إطلاق A"
 
 msgid "LAUNCHB"
-msgstr ""
+msgstr "إطلاق B"
 
 msgid "LAUNCHC"
-msgstr ""
+msgstr "إطلاق C"
 
 msgid "LAUNCHD"
-msgstr ""
+msgstr "إطلاق D"
 
 msgid "LAUNCHE"
-msgstr ""
+msgstr "إطلاق E"
 
 msgid "LAUNCHF"
-msgstr ""
+msgstr "إطلاق F"
 
 msgid "LAUNCHMAIL"
-msgstr ""
+msgstr "البريد"
 
 msgid "LAUNCHMEDIA"
-msgstr ""
+msgstr "الوسائط"
 
 msgid "LAWK_ONLY"
-msgstr ""
+msgstr "نمط الحياة كما نعرفها فقط"
 
 msgid "LAWK_ONLY_EXPLANATION"
-msgstr ""
+msgstr "(يقتصر الأجزاء والقدرات على ما في الحياة كما نعرفها فقط)"
 
 msgid "LEAD_ARTIST"
-msgstr ""
+msgstr "الفنان الرئيسي"
 
 msgid "LEAD_ARTISTS"
-msgstr ""
+msgstr "الفنانون الرئيسيون"
 
 msgid "LEAD_DEVELOPERS"
-msgstr ""
+msgstr "المطورون الرئيسيون"
 
 msgid "LEAD_GAME_DESIGNER"
-msgstr ""
+msgstr "مصمم اللعبة الرئيسي"
 
 msgid "LEAD_GAME_DESIGNERS"
-msgstr ""
+msgstr "مصممو اللعبة الرئيسيون"
 
 msgid "LEAD_OUTREACH_PEOPLE"
-msgstr ""
+msgstr "قادة فريق التواصل"
 
 msgid "LEAD_OUTREACH_PERSON"
-msgstr ""
+msgstr "قائد فريق التواصل"
 
 msgid "LEAD_PROGRAMMER"
-msgstr ""
+msgstr "مبرمج رئيسي"
 
 msgid "LEAD_PROGRAMMERS"
-msgstr ""
+msgstr "مبرمجون رئيسيون"
 
 msgid "LEAD_PROJECT_MANAGER"
-msgstr ""
+msgstr "مدير المشروع الرئيسي"
 
 msgid "LEAD_PROJECT_MANAGERS"
-msgstr ""
+msgstr "مديرو المشروع الرئيسيون"
 
 msgid "LEAD_TESTER"
-msgstr ""
+msgstr "مختبر رئيسي"
 
 msgid "LEAD_TESTERS"
-msgstr ""
+msgstr "مختبرون رئيسيون"
 
 msgid "LEAD_THEORIST"
-msgstr ""
+msgstr "المنظر الرئيسي"
 
 msgid "LEAD_THEORISTS"
-msgstr ""
+msgstr "المنظرون الرئيسيون"
 
 msgid "LEFT_ARROW"
-msgstr ""
+msgstr "←"
 
 msgid "LEFT_MOUSE"
-msgstr ""
+msgstr "زر الفأرة الأيسر"
 
 msgid "LICENSES"
-msgstr ""
+msgstr "التراخيص"
 
 msgid "LICENSES_COVERING_THRIVE"
-msgstr ""
+msgstr "تظهر هنا تراخيص تغطي أجزاء من Thrive"
 
 msgid "LIFE_ORIGIN"
-msgstr ""
+msgstr "أصل الحياة"
 
 msgid "LIFE_ORIGIN_EXPLANATION"
-msgstr ""
+msgstr "(موقع البداية)"
 
 msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr ""
+msgstr "التبذر الشامل (عشوائي)"
 
 msgid "LIFE_ORIGIN_POND"
-msgstr ""
+msgstr "بركة صغيرة دافئة"
 
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr ""
@@ -6131,7 +6150,7 @@ msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "TOXISOME"
-msgstr ""
+msgstr "عضية إنتاج السم"
 
 msgid "TOXISOME_DESCRIPTION"
 msgstr ""
