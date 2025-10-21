@@ -112,6 +112,9 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
                     }
                 }
 
+                if (mpcost > mp)
+                    break;
+
                 organelle.Upgrades ??= new OrganelleUpgrades();
 
                 if (customUpgrade != null)
@@ -121,8 +124,7 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
                 }
 
                 if (upgradeName != null &&
-                    !organelle.Upgrades.UnlockedFeatures.Contains(upgradeName) &&
-                    mpcost <= mp)
+                    !organelle.Upgrades.UnlockedFeatures.Contains(upgradeName))
                 {
                     organelle.Upgrades.UnlockedFeatures.Add(upgradeName);
                     mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp - mpcost));
