@@ -47,7 +47,7 @@ public class PatchRegion : IArchivable
     /// <summary>
     ///   Regions this is next to
     /// </summary>
-    public ISet<PatchRegion> Adjacent { get; } = new HashSet<PatchRegion>();
+    public ISet<PatchRegion> Adjacent { get; private set; } = new HashSet<PatchRegion>();
 
     public Dictionary<int, HashSet<Patch>> PatchAdjacencies { get; private set; } = new();
 
@@ -114,10 +114,7 @@ public class PatchRegion : IArchivable
 
         reader.ReportObjectConstructorDone(instance);
 
-        foreach (var item in reader.ReadObject<List<PatchRegion>>())
-        {
-            instance.Adjacent.Add(item);
-        }
+        instance.Adjacent = reader.ReadObject<HashSet<PatchRegion>>();
 
         instance.PatchAdjacencies = reader.ReadObject<Dictionary<int, HashSet<Patch>>>();
         instance.Patches = reader.ReadObject<List<Patch>>();
@@ -135,14 +132,14 @@ public class PatchRegion : IArchivable
         writer.Write(Height);
         writer.Write(Width);
 
-        writer.WriteGenericCollection(Adjacent);
+        writer.WriteObject(Adjacent);
         writer.WriteObject(PatchAdjacencies);
         writer.WriteObject(Patches);
         writer.Write((int)Visibility);
     }
 
     /// <summary>
-    ///   Adds a connection to region
+    ///   Adds a connection to a region
     /// </summary>
     /// <returns>True if this was new, false if already added</returns>
     public bool AddNeighbour(PatchRegion region)

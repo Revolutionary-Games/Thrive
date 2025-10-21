@@ -116,8 +116,8 @@ public class UnlockProgress : IArchiveUpdatable
 
     public void WritePropertiesToArchive(ISArchiveWriter writer)
     {
-        writer.WriteGenericCollection(unlockedOrganelles);
-        writer.WriteGenericCollection(recentlyUnlocked);
+        writer.WriteObject(unlockedOrganelles);
+        writer.WriteObject(recentlyUnlocked);
         writer.Write(UnlockAll);
     }
 
@@ -127,13 +127,13 @@ public class UnlockProgress : IArchiveUpdatable
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
         unlockedOrganelles.Clear();
-        foreach (var item in reader.ReadObject<List<OrganelleDefinition>>())
+        foreach (var item in reader.ReadObject<HashSet<OrganelleDefinition>>())
         {
             unlockedOrganelles.Add(item);
         }
 
         recentlyUnlocked.Clear();
-        foreach (var item in reader.ReadObject<List<OrganelleDefinition>>())
+        foreach (var item in reader.ReadObject<HashSet<OrganelleDefinition>>())
         {
             recentlyUnlocked.Add(item);
         }

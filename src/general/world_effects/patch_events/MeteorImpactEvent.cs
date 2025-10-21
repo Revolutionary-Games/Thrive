@@ -27,11 +27,11 @@ public class MeteorImpactEvent : IWorldEffect
         random = new XoShiRo256starstar(randomSeed);
     }
 
-    private MeteorImpactEvent(GameWorld targetWorld, XoShiRo256starstar random, List<int> modifiedPatchesIds)
+    private MeteorImpactEvent(GameWorld targetWorld, XoShiRo256starstar random, HashSet<int> modifiedPatchesIds)
     {
         this.targetWorld = targetWorld;
         this.random = random;
-        this.modifiedPatchesIds = modifiedPatchesIds.ToHashSet();
+        this.modifiedPatchesIds = modifiedPatchesIds;
     }
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
@@ -44,7 +44,7 @@ public class MeteorImpactEvent : IWorldEffect
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
         var instance = new MeteorImpactEvent(reader.ReadObject<GameWorld>(), reader.ReadObject<XoShiRo256starstar>(),
-            reader.ReadObject<List<int>>())
+            reader.ReadObject<HashSet<int>>())
         {
             selectedMeteor = reader.ReadObjectOrNull<Meteor>(),
         };
@@ -56,7 +56,7 @@ public class MeteorImpactEvent : IWorldEffect
     {
         writer.WriteObject(targetWorld);
         writer.WriteAnyRegisteredValueAsObject(random);
-        writer.WriteGenericCollection(modifiedPatchesIds);
+        writer.WriteObject(modifiedPatchesIds);
         writer.WriteObjectOrNull(selectedMeteor);
     }
 

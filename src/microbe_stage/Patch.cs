@@ -75,7 +75,7 @@ public class Patch : IArchivable
 
     public int ID { get; }
 
-    public ISet<Patch> Adjacent { get; } = new HashSet<Patch>();
+    public ISet<Patch> Adjacent { get; private set; } = new HashSet<Patch>();
 
     public Biome BiomeTemplate { get; }
 
@@ -211,10 +211,7 @@ public class Patch : IArchivable
 
         reader.ReportObjectConstructorDone(instance);
 
-        foreach (var item in reader.ReadObject<List<Patch>>())
-        {
-            instance.Adjacent.Add(item);
-        }
+        instance.Adjacent = reader.ReadObject<HashSet<Patch>>();
 
         instance.Region = reader.ReadObject<PatchRegion>();
         instance.history = reader.ReadObject<Deque<PatchSnapshot>>();
@@ -236,7 +233,7 @@ public class Patch : IArchivable
         writer.Write(ScreenCoordinates);
         writer.Write(DynamicDataSeed);
 
-        writer.WriteGenericCollection(Adjacent);
+        writer.WriteObject(Adjacent);
         writer.WriteObject(Region);
 
         writer.WriteObject(history);
