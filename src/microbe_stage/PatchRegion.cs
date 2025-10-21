@@ -100,7 +100,7 @@ public class PatchRegion : IArchivable
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.PatchRegion)
             throw new NotSupportedException();
 
-        ((PatchRegion)obj).WriteToArchive(writer);
+        writer.WriteObject((PatchRegion)obj);
     }
 
     public static PatchRegion ReadFromArchive(ISArchiveReader reader, ushort version)

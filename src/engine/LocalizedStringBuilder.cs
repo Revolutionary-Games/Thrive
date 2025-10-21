@@ -97,7 +97,7 @@ public class LocalizedStringBuilder : IFormattable, IArchivable
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.LocalizedStringBuilder)
             throw new NotSupportedException();
 
-        ((LocalizedStringBuilder)obj).WriteToArchive(writer);
+        writer.WriteObject((LocalizedStringBuilder)obj);
     }
 
     public static LocalizedStringBuilder ReadFromArchive(ISArchiveReader reader, ushort version)

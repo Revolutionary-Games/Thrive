@@ -45,7 +45,7 @@ public class GameEventDescription : IArchivable
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.GameEventDescription)
             throw new NotSupportedException();
 
-        ((GameEventDescription)obj).WriteToArchive(writer);
+        writer.WriteObject((GameEventDescription)obj);
     }
 
     public static GameEventDescription ReadFromArchive(ISArchiveReader reader, ushort version)

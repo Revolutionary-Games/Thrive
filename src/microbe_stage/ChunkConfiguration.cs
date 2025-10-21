@@ -84,7 +84,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.ChunkConfiguration)
             throw new NotSupportedException();
 
-        ((ChunkConfiguration)obj).WriteToArchive(writer);
+        writer.WriteObject((ChunkConfiguration)obj);
     }
 
     public static ChunkConfiguration ReadFromArchive(ISArchiveReader reader, ushort version)
@@ -205,7 +205,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
             if (type != (ArchiveObjectType)ThriveArchiveObjectType.ChunkCompound)
                 throw new NotSupportedException();
 
-            ((ChunkCompound)obj).WriteToArchive(writer);
+            writer.WriteObject((ChunkCompound)obj);
         }
 
         // ReSharper disable once MemberHidesStaticFromOuterClass
@@ -338,7 +338,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
             if (type != (ArchiveObjectType)ThriveArchiveObjectType.ChunkScene)
                 throw new NotSupportedException();
 
-            ((ChunkScene)obj).WriteToArchive(writer);
+            writer.WriteObject((ChunkScene)obj);
         }
 
         // ReSharper disable once MemberHidesStaticFromOuterClass

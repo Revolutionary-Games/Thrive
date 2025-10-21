@@ -86,7 +86,7 @@ public class GenerationRecord : IArchivable
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.GenerationRecord)
             throw new NotSupportedException();
 
-        ((GenerationRecord)obj).WriteToArchive(writer);
+        writer.WriteObject((GenerationRecord)obj);
     }
 
     public static GenerationRecord ReadFromArchive(ISArchiveReader reader, ushort version)

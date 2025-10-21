@@ -67,7 +67,7 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.OrganelleTemplate)
             throw new NotSupportedException();
 
-        ((OrganelleTemplate)obj).WriteToArchive(writer);
+        writer.WriteObject((OrganelleTemplate)obj);
     }
 
     public static OrganelleTemplate ReadFromArchive(ISArchiveReader reader, ushort version)

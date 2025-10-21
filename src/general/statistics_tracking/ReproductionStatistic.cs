@@ -124,7 +124,7 @@ public class ReproductionStatistic : IStatistic, IArchiveUpdatable
             if (type != (ArchiveObjectType)ThriveArchiveObjectType.ReproductionOrganelleData)
                 throw new NotSupportedException();
 
-            ((ReproductionOrganelleData)obj).WriteToArchive(writer);
+            writer.WriteObject((ReproductionOrganelleData)obj);
         }
 
         public static ReproductionOrganelleData ReadFromArchive(ISArchiveReader reader, ushort version)

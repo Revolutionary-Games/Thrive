@@ -64,7 +64,7 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>, IArchi
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.LocalizedString)
             throw new NotSupportedException();
 
-        ((LocalizedString)obj).WriteToArchive(writer);
+        writer.WriteObject((LocalizedString)obj);
     }
 
     public static LocalizedString ReadFromArchive(ISArchiveReader reader, ushort version)

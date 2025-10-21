@@ -38,7 +38,7 @@ public class SpeciesRecordLite : SpeciesRecord, IArchivable
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.SpeciesRecordLite)
             throw new NotSupportedException();
 
-        ((SpeciesRecordLite)obj).WriteToArchive(writer);
+        writer.WriteObject((SpeciesRecordLite)obj);
     }
 
     public static SpeciesRecordLite ReadFromArchive(ISArchiveReader reader, ushort version)

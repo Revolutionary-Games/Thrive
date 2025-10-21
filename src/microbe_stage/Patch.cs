@@ -190,7 +190,7 @@ public class Patch : IArchivable
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.Patch)
             throw new NotSupportedException();
 
-        ((Patch)obj).WriteToArchive(writer);
+        writer.WriteObject((Patch)obj);
     }
 
     public static Patch ReadFromArchive(ISArchiveReader reader, ushort version)
@@ -767,7 +767,7 @@ public class PatchSnapshot : ICloneable, IArchivable
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.PatchSnapshot)
             throw new NotSupportedException();
 
-        ((PatchSnapshot)obj).WriteToArchive(writer);
+        writer.WriteObject((PatchSnapshot)obj);
     }
 
     public static PatchSnapshot ReadFromArchive(ISArchiveReader reader, ushort version)

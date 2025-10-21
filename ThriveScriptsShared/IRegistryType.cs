@@ -45,7 +45,11 @@ public abstract class RegistryType : IRegistryType, IArchivable
 
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
-        writer.Write(((IRegistryType)obj).InternalName);
+        writer.WriteObject((RegistryType)obj);
+
+        // This is probably not good enough as no object header would let the right deserialize callback to run
+
+        // writer.Write(((IRegistryType)obj).InternalName);
     }
 
     public void WriteToArchive(ISArchiveWriter writer)

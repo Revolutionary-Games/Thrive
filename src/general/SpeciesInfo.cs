@@ -27,7 +27,7 @@ public class SpeciesInfo : IArchivable
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.SpeciesInfo)
             throw new NotSupportedException();
 
-        ((SpeciesInfo)obj).WriteToArchive(writer);
+        writer.WriteObject((SpeciesInfo)obj);
     }
 
     public static SpeciesInfo ReadFromArchive(ISArchiveReader reader, ushort version)

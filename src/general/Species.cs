@@ -174,7 +174,7 @@ public abstract class Species : ICloneable, IArchivable
 
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
-        ((Species)obj).WriteToArchive(writer);
+        writer.WriteObject((Species)obj);
     }
 
     /// <summary>

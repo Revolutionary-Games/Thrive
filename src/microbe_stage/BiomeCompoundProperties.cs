@@ -51,7 +51,7 @@ public struct BiomeCompoundProperties : IEquatable<BiomeCompoundProperties>, IAr
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.BiomeCompoundProperties)
             throw new NotSupportedException();
 
-        ((BiomeCompoundProperties)obj).WriteToArchive(writer);
+        writer.WriteObject((BiomeCompoundProperties)obj);
     }
 
     public static BiomeCompoundProperties ReadFromArchive(ISArchiveReader reader, ushort version)
