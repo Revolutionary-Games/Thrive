@@ -70,12 +70,24 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
 
         var mutated = new List<Tuple<MicrobeSpecies, double>>();
 
-        var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
-        organelleList = newSpecies.Organelles.Organelles;
+        var eligibleOrganelles = new List<OrganelleTemplate>();
 
-        for (var i = 0; i < count; ++i)
+        foreach (var organelle in baseSpecies.Organelles.Organelles)
         {
-            var organelle = organelleList[i];
+            if (criteria(organelle.Definition))
+                eligibleOrganelles.Add(organelle);
+        }
+
+        var eligibleOrganelleSample = eligibleOrganelles
+            .OrderBy(_ => random.Next())
+            .Take(Constants.AUTO_EVO_ORGANELLE_UPGRADE_ATTEMPTS);
+
+        foreach (var baseSpeciesOrganelle in eligibleOrganelleSample)
+        {
+            var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+
+            var organelle = newSpecies.Organelles.Organelles
+                .First(organelle => organelle.Position == baseSpeciesOrganelle.Position);
             if (!criteria(organelle.Definition))
                 continue;
 
@@ -110,7 +122,6 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
             }
 
             organelle.Upgrades.UnlockedFeatures.Add(upgradeName!);
-            mp -= mpcost;
 
             // Adjust toxicity
             var change = (float)(random.NextDouble() * Constants.AUTO_EVO_MUTATION_TOXICITY_STEP);
@@ -131,8 +142,7 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
                     break;
             }
 
-            mp -= mpcost;
-            mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp));
+            mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp - mpcost));
         }
 
         return mutated;
