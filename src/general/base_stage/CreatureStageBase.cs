@@ -3,19 +3,19 @@ using System.Linq;
 using Arch.Core;
 using Components;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Base stage for the stages where the player controls a single creature
 /// </summary>
 /// <typeparam name="TPlayer">The type of the player object</typeparam>
 /// <typeparam name="TSimulation">The type of simulation this stage uses</typeparam>
-[JsonObject(IsReference = true)]
-[UseThriveSerializer]
 [GodotAbstract]
 public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreatureStage
     where TSimulation : class, IWorldSimulation, new()
 {
+    protected const ushort SERIALIZATION_VERSION_CREATURE = 1;
+
 #pragma warning disable CA2213
     protected DirectionalLight3D worldLight = null!;
 #pragma warning restore CA2213
@@ -23,19 +23,15 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
     /// <summary>
     ///   Used to differentiate between spawning the player the first time and respawning
     /// </summary>
-    [JsonProperty]
     protected bool spawnedPlayer;
 
-    [JsonProperty]
     protected double playerRespawnTimer;
 
-    [JsonProperty]
     protected int deathsSinceLastEditorExit;
 
     /// <summary>
     ///   True when the player is extinct in the current patch. The player can still move to another patch.
     /// </summary>
-    [JsonProperty]
     protected bool playerExtinctInCurrentPatch;
 
     private double timeSinceSimulationPerformanceCheck;
@@ -54,26 +50,23 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         WorldSimulation = worldSimulation;
     }
 
-    // TODO: eventually convert this just to a Entity without having any generic type configurability here
+    // TODO: eventually convert this just to a Entity without having any generic type configurability here once
+    // macroscopic starts using entities
     /// <summary>
     ///   The current player or null.
     /// </summary>
     /// <remarks>
     ///   <para>
     ///     This is JSON ignored as the entity reference can't be loaded currently, see why here:
-    ///     <see cref="SaveContext.OldToNewEntityMapping"/>
+    ///     <see cref="Saving.Serializers.ThriveArchiveManager.OldToNewEntityMapping"/>
     ///   </para>
     /// </remarks>
-    [JsonIgnore]
     public TPlayer? Player { get; protected set; }
 
-    [JsonIgnore]
     public virtual bool HasPlayer => throw new GodotAbstractPropertyNotOverriddenException();
 
-    [JsonIgnore]
     public virtual bool HasAlivePlayer => throw new GodotAbstractPropertyNotOverriddenException();
 
-    [JsonProperty]
     public TSimulation WorldSimulation { get; private set; } = null!;
 
     /// <summary>
@@ -81,10 +74,8 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
     ///   Note this should only be unset *after* switching scenes to the editor because otherwise some tree exit
     ///   operations won't run correctly.
     /// </summary>
-    [JsonIgnore]
     public bool MovingToEditor { get; set; }
 
-    [JsonIgnore]
     protected virtual ICreatureStageHUD BaseHUD => throw new GodotAbstractPropertyNotOverriddenException();
 
     public override void ResolveNodeReferences()
@@ -322,6 +313,32 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
     public virtual void SetSpecialViewMode(ViewMode mode)
     {
         GD.PrintErr("This stage doesn't support view mode: " + mode);
+    }
+
+    protected override void WriteBasePropertiesToArchive(ISArchiveWriter writer)
+    {
+        base.WriteBasePropertiesToArchive(writer);
+
+        writer.Write(spawnedPlayer);
+        writer.Write(playerRespawnTimer);
+        writer.Write(deathsSinceLastEditorExit);
+        writer.Write(playerExtinctInCurrentPatch);
+        writer.WriteObject(WorldSimulation);
+    }
+
+    protected override void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_CREATURE or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_CREATURE);
+
+        // Base uses different versioning than us
+        base.ReadBasePropertiesFromArchive(reader, 1);
+
+        spawnedPlayer = reader.ReadBool();
+        playerRespawnTimer = reader.ReadDouble();
+        deathsSinceLastEditorExit = reader.ReadInt32();
+        playerExtinctInCurrentPatch = reader.ReadBool();
+        WorldSimulation = reader.ReadObject<TSimulation>();
     }
 
     protected override void SetupStage()
@@ -589,4 +606,6 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             species.Tolerances.PressureMaximum = optimal.PressureMaximum;
         }
     }
+
+
 }

@@ -11,4 +11,9 @@ public interface IWorldEffect : IArchivable
     public void OnRegisterToWorld();
 
     public void OnTimePassed(double elapsed, double totalTimePassed);
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        writer.WriteObject((IWorldEffect)obj);
+    }
 }

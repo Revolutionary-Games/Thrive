@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 using ThriveScriptsShared;
 
 /// <summary>
 ///   Configures how microbe terrain is spawned for a patch
 /// </summary>
-public class TerrainConfiguration : IRegistryType
+public class TerrainConfiguration : RegistryType
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public List<TerrainClusterConfiguration> PotentialClusters = new();
 
     public int MinClusters;
@@ -16,9 +19,10 @@ public class TerrainConfiguration : IRegistryType
 
     private int totalChance;
 
-    public string InternalName { get; set; } = null!;
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.TerrainConfiguration;
 
-    public void Check(string name)
+    public override void Check(string name)
     {
         if (PotentialClusters == null! || PotentialClusters.Count < 1)
         {
@@ -56,7 +60,7 @@ public class TerrainConfiguration : IRegistryType
         return PotentialClusters[^1];
     }
 
-    public void ApplyTranslations()
+    public override void ApplyTranslations()
     {
     }
 

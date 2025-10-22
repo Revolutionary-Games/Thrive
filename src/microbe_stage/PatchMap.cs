@@ -7,7 +7,7 @@ using SharedBase.Archive;
 /// <summary>
 ///   A container for patches that are joined together
 /// </summary>
-public class PatchMap : ISaveLoadable, IArchivable
+public class PatchMap : IArchivable
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
@@ -65,7 +65,7 @@ public class PatchMap : ISaveLoadable, IArchivable
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        return new PatchMap
+        var instance = new PatchMap
         {
             currentPatch = reader.ReadObjectOrNull<Patch>(),
             Patches = reader.ReadObject<Dictionary<int, Patch>>(),
@@ -74,6 +74,10 @@ public class PatchMap : ISaveLoadable, IArchivable
             RegionAdjacencies = reader.ReadObject<List<(int Id1, int Id2)>>(),
             FogOfWar = (FogOfWarMode)reader.ReadInt32(),
         };
+
+        instance.RecreateAdjacencies();
+
+        return instance;
     }
 
     public void WriteToArchive(ISArchiveWriter writer)
@@ -528,11 +532,6 @@ public class PatchMap : ISaveLoadable, IArchivable
         {
             patch.Value.ApplyVisibility(MapElementVisibility.Shown);
         }
-    }
-
-    public void FinishLoading(ISaveContext? context)
-    {
-        RecreateAdjacencies();
     }
 
     private void RecreateAdjacencies()

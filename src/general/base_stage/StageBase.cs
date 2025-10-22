@@ -1,15 +1,15 @@
 ﻿using System;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Base for all stages
 /// </summary>
-[JsonObject(IsReference = true)]
-[UseThriveSerializer]
 [GodotAbstract]
 public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResolve
 {
+    public const ushort SERIALIZATION_VERSION_STAGE_BASE = 1;
+
 #pragma warning disable CA2213
     protected Node world = null!;
     protected Node rootOfDynamicallySpawned = null!;
@@ -23,13 +23,11 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     protected Node3D? graphicsPreloadNode;
 #pragma warning restore CA2213
 
-    [JsonProperty]
     protected Random random = new();
 
     /// <summary>
     ///   True when the player is extinct
     /// </summary>
-    [JsonProperty]
     protected bool gameOver;
 
     /// <summary>
@@ -61,28 +59,21 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     /// <summary>
     ///   The main current game object holding various details
     /// </summary>
-    [JsonProperty]
     public GameProperties? CurrentGame { get; set; }
 
-    [JsonIgnore]
     public GameWorld GameWorld => CurrentGame?.GameWorld ?? throw new InvalidOperationException("Game not started yet");
 
     /// <summary>
     ///   True when the player is ascended and they should be let to do crazy stuff
     /// </summary>
-    [JsonIgnore]
     public bool Ascended => CurrentGame?.Ascended == true;
 
-    [JsonIgnore]
     public Node GameStateRoot => this;
 
-    [JsonIgnore]
     public bool IsLoadedFromSave { get; set; }
 
-    [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
 
-    [JsonIgnore]
     public virtual MainGameState GameState => throw new GodotAbstractPropertyNotOverriddenException();
 
     /// <summary>
@@ -94,7 +85,6 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     ///     had that as well) but with the needed <see cref="ICreatureStage"/> that seems no longer possible
     ///   </para>
     /// </remarks>
-    [JsonIgnore]
     public bool TransitionFinished
     {
         get => transitionFinished;
@@ -105,11 +95,12 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
         }
     }
 
+    public bool CanBeReferencedInArchive => true;
+
     /// <summary>
     ///   True when the stage is showing a loading screen and waiting to start.
     ///   Normal processing should be skipped in this state.
     /// </summary>
-    [JsonIgnore]
     protected LoadState StageLoadingState { get; private set; }
 
     public virtual void ResolveNodeReferences()
@@ -277,6 +268,25 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
         {
             GD.PrintErr("Unknown godot passed object to open god tools for: ", godotEntity);
         }
+    }
+
+    protected virtual void WriteBasePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObjectOrNull(CurrentGame);
+        writer.Write(gameOver);
+        writer.WriteAnyRegisteredValueAsObject(random);
+    }
+
+    protected virtual void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_STAGE_BASE or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_STAGE_BASE);
+
+        IsLoadedFromSave = true;
+
+        CurrentGame = reader.ReadObject<GameProperties>();
+        gameOver = reader.ReadBool();
+        random = reader.ReadObject<Random>();
     }
 
     /// <summary>

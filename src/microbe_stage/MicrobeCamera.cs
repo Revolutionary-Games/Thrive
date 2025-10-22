@@ -1,15 +1,17 @@
 ﻿using System;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Camera script for the microbe stage and the cell editor
 /// </summary>
-public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera
+public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, IArchiveUpdatable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
-    ///   Automatically process the camera position while game is paused (used to still process zooming easily while
-    ///   microbe stage is paused)
+    ///   Automatically process the camera position while the game is paused (used to still process zooming easily
+    ///   while the microbe stage is paused)
     /// </summary>
     [Export]
     public bool AutoProcessWhilePaused;
@@ -18,54 +20,45 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera
     ///   How fast the camera zooming is
     /// </summary>
     [Export]
-    [JsonProperty]
     public float ZoomSpeed = 1.4f;
 
     /// <summary>
     ///   The height at which the camera starts at
     /// </summary>
     [Export]
-    [JsonProperty]
     public float DefaultCameraHeight = 40.0f;
 
     /// <summary>
     ///   Min height the camera can be scrolled to
     /// </summary>
     [Export]
-    [JsonProperty]
     public float MinCameraHeight = Constants.MICROBE_CAMERA_MIN_HEIGHT;
 
     /// <summary>
     ///   Maximum height the camera can be scrolled to
     /// </summary>
     [Export]
-    [JsonProperty]
     public float MaxCameraHeight = Constants.MICROBE_CAMERA_MAX_HEIGHT;
 
     [Export]
-    [JsonProperty]
     public float InterpolateSpeed = 0.3f;
 
     [Export]
-    [JsonProperty]
     public float InterpolateZoomSpeed = 0.3f;
 
     [Export]
-    [JsonProperty]
     public float CursorTiltSpeed = 0.15f;
 
     /// <summary>
     ///   Size of fragment of camera-cursor vector to use to tilt the camera
     /// </summary>
     [Export]
-    [JsonProperty]
     public float CursorTiltAmplitude = 0.04f;
 
     /// <summary>
     ///   Now required with native physics to ensure that there's no occasional hitching with the camera
     /// </summary>
     [Export]
-    [JsonProperty]
     public float SnapWithDistanceLessThan = 7.0f;
 
     /// <summary>
@@ -75,7 +68,6 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera
     public float LightLevelInterpolateSpeed = 4;
 
 #pragma warning disable CA2213
-    [JsonIgnore]
     [Export]
     private BackgroundPlane backgroundPlane = null!;
 #pragma warning restore CA2213
@@ -93,7 +85,6 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera
 
     private Vector3 lastCursorTilt = new(0, 0, 0);
 
-    [JsonProperty]
     private float lightLevel = 1.0f;
 
     [Signal]
@@ -117,7 +108,6 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera
     /// <summary>
     ///   Current relative light level for the camera (between 0 and 1).
     /// </summary>
-    [JsonIgnore]
     public float LightLevel
     {
         get => lightLevel;
@@ -133,7 +123,6 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera
     /// <summary>
     ///   Returns the position the player is pointing to with their cursor
     /// </summary>
-    [JsonIgnore]
     public Vector3 CursorWorldPos
     {
         get
@@ -148,7 +137,6 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera
     /// <summary>
     ///   Returns the position the player is visually pointing to with their cursor, taking screen effects into account
     /// </summary>
-    [JsonIgnore]
     public Vector3 CursorVisualWorldPos
     {
         get
@@ -161,6 +149,9 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera
     }
 
     public bool IsLoadedFromSave { get; set; }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeCamera;
 
     public override void _Ready()
     {
@@ -306,6 +297,41 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera
     public void SetBackground(Background background)
     {
         backgroundPlane.SetBackground(background);
+    }
+
+    public void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(ZoomSpeed);
+        writer.Write(DefaultCameraHeight);
+        writer.Write(MinCameraHeight);
+        writer.Write(MaxCameraHeight);
+        writer.Write(InterpolateSpeed);
+        writer.Write(InterpolateZoomSpeed);
+        writer.Write(CursorTiltSpeed);
+        writer.Write(CursorTiltAmplitude);
+        writer.Write(SnapWithDistanceLessThan);
+        writer.Write(lightLevel);
+        writer.Write(CameraHeight);
+        writer.Write(FramerateAdjustZoomSpeed);
+    }
+
+    public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        ZoomSpeed = reader.ReadFloat();
+        DefaultCameraHeight = reader.ReadFloat();
+        MinCameraHeight = reader.ReadFloat();
+        MaxCameraHeight = reader.ReadFloat();
+        InterpolateSpeed = reader.ReadFloat();
+        InterpolateZoomSpeed = reader.ReadFloat();
+        CursorTiltSpeed = reader.ReadFloat();
+        CursorTiltAmplitude = reader.ReadFloat();
+        SnapWithDistanceLessThan = reader.ReadFloat();
+        lightLevel = reader.ReadFloat();
+        CameraHeight = reader.ReadFloat();
+        FramerateAdjustZoomSpeed = reader.ReadBool();
     }
 
     private void UpdateCursorWorldPos()

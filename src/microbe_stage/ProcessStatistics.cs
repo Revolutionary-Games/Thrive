@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Godot;
-using Newtonsoft.Json;
 using Nito.Collections;
 
 /// <summary>
 ///   Holds process running statistics information
 /// </summary>
-public class ProcessStatistics
+public sealed class ProcessStatistics
 {
     /// <summary>
     ///   Temporary memory to use for <see cref="RemoveUnused"/> to avoid small constant allocations. This is no longer
@@ -21,13 +20,6 @@ public class ProcessStatistics
     /// <summary>
     ///   The processes and their associated speed statistics
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This is JSON ignore to ensure that this object can exist in saves, but won't store non-savable information
-    ///     like the process statistics object. That's the situation now but maybe some other design would be better...
-    ///   </para>
-    /// </remarks>
-    [JsonIgnore]
     public Dictionary<TweakedProcess, SingleProcessStatistics> Processes { get; } = new();
 
     public void MarkAllUnused()

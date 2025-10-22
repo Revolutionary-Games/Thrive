@@ -1,21 +1,64 @@
 ﻿namespace Saving.Serializers;
 
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Arch.Core;
 using AutoEvo;
 using SharedBase.Archive;
 using ThriveScriptsShared;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Thrive-customised archive manager that registers custom types
 /// </summary>
-public class ThriveArchiveManager : DefaultArchiveManager
+public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
 {
     public ThriveArchiveManager() : base(true)
     {
+        RegisterThirdPartyTypes();
+
+        // RegisterEngineTypes();
+
         // Register custom types for Thrive
         RegisterEnums();
         RegisterBaseObjects();
         RegisterRegistryTypes();
         RegisterOtherObjects();
+    }
+
+    /// <summary>
+    ///   List of entities to not save when writing a world to a save
+    /// </summary>
+    public HashSet<Entity> UnsavedEntities { get; } = new();
+
+    public World? ProcessedEntityWorld { get; set; }
+
+    // TODO: should game stages be allowed to keep their player references with this? This is currently cleared after
+    // an entity world is finished loading
+    public Dictionary<Entity, Entity> OldToNewEntityMapping { get; } = new();
+
+    public int ActiveProcessedWorldId { get; set; } = -1;
+
+    public override void OnFinishWrite(ISArchiveWriter writer)
+    {
+        base.OnFinishWrite(writer);
+
+        UnsavedEntities.Clear();
+        ProcessedEntityWorld = null;
+        OldToNewEntityMapping.Clear();
+        ActiveProcessedWorldId = -1;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public bool SkipSavingEntity(in Entity value)
+    {
+        return UnsavedEntities.Contains(value);
+    }
+
+    private void RegisterThirdPartyTypes()
+    {
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.XoShiRo256StarStar, typeof(XoShiRo256starstar),
+            ThirdPartyTypeHelpers.WriteXoShiRo256StarStar);
     }
 
     private void RegisterEnums()
@@ -86,5 +129,14 @@ public class ThriveArchiveManager : DefaultArchiveManager
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchRegion,
             typeof(PatchRegion), PatchRegion.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchSnapshot,
+            typeof(PatchSnapshot), PatchSnapshot.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BaseWorldEffect,
+            typeof(IWorldEffect), IWorldEffect.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExternalEffect,
+            typeof(ExternalEffect), ExternalEffect.WriteToArchive);
     }
 }

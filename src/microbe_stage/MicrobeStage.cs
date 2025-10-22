@@ -7,16 +7,12 @@ using Arch.Core;
 using Arch.Core.Extensions;
 using Components;
 using Godot;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
 ///   Main class for managing the microbe stage
 /// </summary>
-[JsonObject(IsReference = true)]
-[SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
-[UseThriveSerializer]
-public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>, IMicrobeSpawnEnvironment,
+public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>, IMicrobeSpawnEnvironment,
     IArchivable
 {
     public const int SERIALIZATION_VERSION = 1;
@@ -65,19 +61,15 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     /// </summary>
     private double elapsedSinceEntityPositionCheck = Constants.TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL + 1;
 
-    [JsonProperty]
     private bool wonOnce;
 
-    [JsonProperty]
     private double movementModeShowTimer;
 
-    [JsonProperty]
     private bool playerInColony;
 
     /// <summary>
     ///   Used to mark the first time the player turns off tutorials in the game
     /// </summary>
-    [JsonProperty]
     private bool tutorialCanceledOnce;
 
     /// <summary>
@@ -86,27 +78,23 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     /// </summary>
     private bool waitingForWelcomeTutorialToEnd;
 
-    [JsonProperty]
     private bool environmentPanelAutomaticallyOpened;
 
     /// <summary>
     ///   Used to give increasing numbers to player offspring to know which is the latest
     /// </summary>
-    [JsonProperty]
     private int playerOffspringTotalCount;
 
     private float maxLightLevel;
 
     private float templateMaxLightLevel;
 
-    [JsonProperty]
     private bool appliedPlayerGodMode;
 
     private bool appliedUnlimitGrowthSpeed;
 
     private bool loadSaveAdviceTriggered;
 
-    [JsonProperty]
     private bool loadSaveAdviseSuppressed;
 
     private string? foundPreviousEditorSave;
@@ -117,62 +105,42 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     /// </summary>
     private bool switchedPatchInEditorForCompounds;
 
-    // Because this is a scene-loaded class, we can't do the following to avoid a temporary unused world simulation
-    // from being created
-    // [JsonConstructor]
-    // public MicrobeStage(MicrobeWorldSimulation worldSimulation) : base(worldSimulation)
-    // {
-    // }
-
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     public CompoundCloudSystem Clouds { get; private set; } = null!;
 
     /// <summary>
     ///   The main camera. This needs to be after anything with AssignOnlyChildItemsOnDeserialize due to load order
     /// </summary>
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     public MicrobeCamera Camera { get; private set; } = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     public MicrobeHUD HUD { get; private set; } = null!;
 
-    [JsonIgnore]
     public MicrobeInspectInfo HoverInfo { get; private set; } = null!;
 
-    [JsonIgnore]
     public TutorialState TutorialState =>
         CurrentGame?.TutorialState ?? throw new InvalidOperationException("Game not started yet");
 
-    [JsonIgnore]
     public override bool HasPlayer => Player.IsAlive();
 
-    [JsonIgnore]
     public override bool HasAlivePlayer => HasPlayer && IsPlayerAlive();
 
-    [JsonIgnore]
     public IDaylightInfo DaylightInfo => GameWorld.LightCycle;
 
     public WorldGenerationSettings WorldSettings => GameWorld.WorldSettings;
 
-    [JsonIgnore]
     public BiomeConditions CurrentBiome => GameWorld.Map.CurrentPatch?.Biome ??
         throw new InvalidOperationException("no current patch set");
 
+    // TODO: these two can now be made differently probably with the new save archive format
     /// <summary>
     ///   Makes saving information related to the patch manager work. This checks the patch manager against null to
     ///   make saves made in the editor after loading a save made in the editor work.
     /// </summary>
-    [JsonProperty]
     public Patch? SavedPatchManagerPatch
     {
         get => patchManager == null! ? tempPatchManagerCurrentPatch : patchManager.ReadPreviousPatchForSave();
         set => tempPatchManagerCurrentPatch = value;
     }
 
-    [JsonProperty]
     public float SavedPatchManagerBrightness
     {
         get => patchManager == null! ? tempPatchManagerBrightness : patchManager.ReadBrightnessForSave();
@@ -181,7 +149,6 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeStage;
-    public bool CanBeReferencedInArchive => true;
 
     public override MainGameState GameState => MainGameState.MicrobeStage;
 
@@ -190,9 +157,37 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     private LocalizedString CurrentPatchName =>
         GameWorld.Map.CurrentPatch?.Name ?? throw new InvalidOperationException("no current patch");
 
+    public static MicrobeStage ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var scene = GD.Load<PackedScene>("res://src/microbe_stage/MicrobeStage.tsc");
+        var instance = scene.Instantiate<MicrobeStage>();
+
+        // Base version is different from this version
+        instance.ReadBasePropertiesFromArchive(reader, 1);
+
+        return instance;
+    }
+
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        throw new NotImplementedException();
+        WriteBasePropertiesToArchive(writer);
+
+        writer.Write(wonOnce);
+        writer.Write(movementModeShowTimer);
+        writer.Write(playerInColony);
+        writer.Write(tutorialCanceledOnce);
+        writer.Write(environmentPanelAutomaticallyOpened);
+        writer.Write(playerOffspringTotalCount);
+        writer.Write(appliedPlayerGodMode);
+        writer.Write(loadSaveAdviseSuppressed);
+        writer.WriteObjectProperties(Clouds);
+        writer.WriteObjectProperties(Camera);
+        writer.WriteObjectProperties(HUD);
+        writer.WriteObjectOrNull(SavedPatchManagerPatch);
+        writer.Write(SavedPatchManagerBrightness);
     }
 
     /// <summary>
