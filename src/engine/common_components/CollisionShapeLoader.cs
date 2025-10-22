@@ -1,6 +1,5 @@
 ﻿namespace Components;
 
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
@@ -9,8 +8,6 @@ using SharedBase.Archive;
 public struct CollisionShapeLoader : IArchivableComponent
 {
     public const ushort SERIALIZATION_VERSION = 1;
-
-
 
     public string CollisionResourcePath;
 
@@ -34,7 +31,6 @@ public struct CollisionShapeLoader : IArchivableComponent
     /// <summary>
     ///   Must be set to false if parameters are changed for the shape to be reloaded
     /// </summary>
-    [JsonIgnore]
     public bool ShapeLoaded;
 
     public CollisionShapeLoader(string resourcePath, float density)
@@ -52,8 +48,10 @@ public struct CollisionShapeLoader : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.Write(CollisionResourcePath);
+        writer.Write(Density);
+        writer.Write(ApplyDensity);
+        writer.Write(SkipForceRecreateBodyIfCreated);
     }
 }
 
@@ -66,8 +64,10 @@ public static class CollisionShapeLoaderHelpers
 
         return new CollisionShapeLoader
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            CollisionResourcePath = reader.ReadString()!,
+            Density = reader.ReadFloat(),
+            ApplyDensity = reader.ReadBool(),
+            SkipForceRecreateBodyIfCreated = reader.ReadBool(),
         };
     }
 }

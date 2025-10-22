@@ -29,8 +29,7 @@ public struct CurrentAffected : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.Write(EffectStrength);
     }
 }
 
@@ -43,8 +42,7 @@ public static class CurrentAffectedHelpers
 
         return new CurrentAffected
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            EffectStrength = reader.ReadFloat(),
         };
     }
 }

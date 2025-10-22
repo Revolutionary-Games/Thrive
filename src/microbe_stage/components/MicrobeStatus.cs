@@ -1,7 +1,7 @@
 ﻿namespace Components;
 
-using SharedBase.Archive;
 using Godot;
+using SharedBase.Archive;
 
 /// <summary>
 ///   A collection place for various microbe status flags and variables that don't have more sensible components
@@ -36,8 +36,13 @@ public struct MicrobeStatus : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.Write(LastLinearVelocity);
+        writer.Write(LastLinearAcceleration);
+        writer.Write(MovementSoundCooldownTimer);
+        writer.Write(LastCheckedATPDamage);
+        writer.Write(LastCheckedOxytoxyDigestionDamage);
+        writer.Write(TimeUntilChemoreceptionUpdate);
+        writer.Write(ConsumeReproductionCompoundsReverse);
     }
 }
 
@@ -50,8 +55,13 @@ public static class MicrobeStatusHelpers
 
         return new MicrobeStatus
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            LastLinearVelocity = reader.ReadVector3(),
+            LastLinearAcceleration = reader.ReadVector3(),
+            MovementSoundCooldownTimer = reader.ReadFloat(),
+            LastCheckedATPDamage = reader.ReadFloat(),
+            LastCheckedOxytoxyDigestionDamage = reader.ReadFloat(),
+            TimeUntilChemoreceptionUpdate = reader.ReadFloat(),
+            ConsumeReproductionCompoundsReverse = reader.ReadBool(),
         };
     }
 }

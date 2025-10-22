@@ -1,11 +1,10 @@
 ﻿namespace Components;
 
 using Godot;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
-///   Specifies simple colour changing animations
+///   Specifies simple colour-changing animations
 /// </summary>
 public struct ColourAnimation : IArchivableComponent
 {
@@ -51,7 +50,6 @@ public struct ColourAnimation : IArchivableComponent
     /// <summary>
     ///   True when whatever entity / stage-specific system that handles applying the colour is done with this entity
     /// </summary>
-    [JsonIgnore]
     public bool ColourApplied;
 
     public ColourAnimation(Color defaultColour)
@@ -75,7 +73,6 @@ public struct ColourAnimation : IArchivableComponent
     ///   The current colour value that should be displayed. Note that this component by itself is not enough to
     ///   get this to display anywhere.
     /// </summary>
-    [JsonIgnore]
     public Color CurrentColour
     {
         get
@@ -92,8 +89,15 @@ public struct ColourAnimation : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.Write(DefaultColour);
+        writer.Write(AnimationTargetColour);
+        writer.Write(AnimationStartColour);
+        writer.Write(AnimationDuration);
+        writer.Write(AnimationUserInfo);
+        writer.Write(AnimationElapsed);
+        writer.Write(AutoReverseAnimation);
+        writer.Write(Animating);
+        writer.Write(AnimateOnlyFirstMaterial);
     }
 }
 
@@ -106,8 +110,15 @@ public static class ColourAnimationHelpers
 
         return new ColourAnimation
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            DefaultColour = reader.ReadColor(),
+            AnimationTargetColour = reader.ReadColor(),
+            AnimationStartColour = reader.ReadColor(),
+            AnimationDuration = reader.ReadFloat(),
+            AnimationUserInfo = reader.ReadInt32(),
+            AnimationElapsed = reader.ReadFloat(),
+            AutoReverseAnimation = reader.ReadBool(),
+            Animating = reader.ReadBool(),
+            AnimateOnlyFirstMaterial = reader.ReadBool(),
         };
     }
 

@@ -1,6 +1,5 @@
 ﻿namespace Components;
 
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
@@ -27,7 +26,6 @@ public struct AnimationControl : IArchivableComponent
     /// <summary>
     ///   Set to false when any properties change in this component to re-apply them
     /// </summary>
-    [JsonIgnore]
     public bool AnimationApplied;
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
@@ -35,8 +33,8 @@ public struct AnimationControl : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.Write(AnimationPlayerPath);
+        writer.Write(StopPlaying);
     }
 }
 
@@ -49,8 +47,8 @@ public static class AnimationControlHelpers
 
         return new AnimationControl
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            AnimationPlayerPath = reader.ReadString(),
+            StopPlaying = reader.ReadBool(),
         };
     }
 }

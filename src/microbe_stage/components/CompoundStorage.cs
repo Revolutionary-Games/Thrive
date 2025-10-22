@@ -1,8 +1,8 @@
 ﻿namespace Components;
 
-using SharedBase.Archive;
 using System.Collections.Generic;
 using Godot;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Entity has storage space for compounds
@@ -18,8 +18,7 @@ public struct CompoundStorage : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.WriteObject(Compounds);
     }
 }
 
@@ -32,8 +31,7 @@ public static class CompoundStorageHelpers
 
         return new CompoundStorage
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            Compounds = reader.ReadObject<CompoundBag>(),
         };
     }
 

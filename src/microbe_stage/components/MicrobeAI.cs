@@ -1,12 +1,12 @@
 ﻿namespace Components;
 
-using SharedBase.Archive;
 using System;
 using System.Collections.Generic;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>

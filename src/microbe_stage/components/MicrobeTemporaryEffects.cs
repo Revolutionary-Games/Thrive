@@ -1,7 +1,6 @@
 ﻿namespace Components;
 
 using SharedBase.Archive;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   Has some temporary effects that can affect microbes (like toxins)
@@ -32,7 +31,6 @@ public struct MicrobeTemporaryEffects : IArchivableComponent
     ///     all microbes.
     ///   </para>
     /// </remarks>
-    [JsonIgnore]
     public bool StateApplied;
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
@@ -40,8 +38,11 @@ public struct MicrobeTemporaryEffects : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.Write(SpeedDebuffDuration);
+        writer.Write(ATPDebuffDuration);
+
+        // Skip writing flag so that everything is re-checked after a load as this is not performance intensive and
+        // that will be safe to try to re-apply anyway
     }
 }
 
@@ -54,8 +55,8 @@ public static class MicrobeTemporaryEffectsHelpers
 
         return new MicrobeTemporaryEffects
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            SpeedDebuffDuration = reader.ReadFloat(),
+            ATPDebuffDuration = reader.ReadFloat(),
         };
     }
 }

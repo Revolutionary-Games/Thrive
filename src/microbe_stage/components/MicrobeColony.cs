@@ -1,6 +1,5 @@
 ﻿namespace Components;
 
-using SharedBase.Archive;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +8,7 @@ using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Microbe colony newMember. This component is added to the colony lead cell. This contains the overall info

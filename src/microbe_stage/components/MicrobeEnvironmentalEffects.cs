@@ -25,8 +25,9 @@ public struct MicrobeEnvironmentalEffects : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.Write(OsmoregulationMultiplier);
+        writer.Write(HealthMultiplier);
+        writer.Write(ProcessSpeedModifier);
     }
 }
 
@@ -39,8 +40,9 @@ public static class MicrobeEnvironmentalEffectsHelpers
 
         return new MicrobeEnvironmentalEffects
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            OsmoregulationMultiplier = reader.ReadFloat(),
+            HealthMultiplier = reader.ReadFloat(),
+            ProcessSpeedModifier = reader.ReadFloat(),
         };
     }
 

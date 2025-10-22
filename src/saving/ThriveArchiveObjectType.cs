@@ -217,6 +217,8 @@ public enum ThriveArchiveObjectType : uint
 
     AgentProperties,
     CellType,
+    SoundEffectSlot,
+    CompoundBag,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,

@@ -38,8 +38,16 @@ public struct FadeOutActions : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.Write(FadeTime);
+        writer.Write(DisableCollisions);
+        writer.Write(RemoveVelocity);
+        writer.Write(RemoveAngularVelocity);
+        writer.Write(DisableParticles);
+        writer.Write(UsesMicrobialDissolveEffect);
+        writer.Write(VentCompounds);
+
+        // There was probably a bug in the JSON version with it writing CallbackRegistered,
+        // even though that is a flag for non-persistent state which needs reapplying after loading
     }
 }
 
@@ -52,8 +60,13 @@ public static class FadeOutActionsHelpers
 
         return new FadeOutActions
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            FadeTime = reader.ReadFloat(),
+            DisableCollisions = reader.ReadBool(),
+            RemoveVelocity = reader.ReadBool(),
+            RemoveAngularVelocity = reader.ReadBool(),
+            DisableParticles = reader.ReadBool(),
+            UsesMicrobialDissolveEffect = reader.ReadBool(),
+            VentCompounds = reader.ReadBool(),
         };
     }
 }

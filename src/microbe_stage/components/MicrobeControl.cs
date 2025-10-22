@@ -1,10 +1,10 @@
 ﻿namespace Components;
 
-using SharedBase.Archive;
 using System;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
@@ -68,7 +68,7 @@ public struct MicrobeControl : IArchivableComponent
     /// <remarks>
     ///   <para>
     ///     This is a byte to increase the size of this struct less, and it is unlikely there needs to be more than
-    ///     256 types of toxins to be fired so overflows are not serious.
+    ///     256 types of toxins to be fired, so overflows are not serious.
     ///   </para>
     /// </remarks>
     public byte FiredToxinCount;
@@ -118,8 +118,21 @@ public struct MicrobeControl : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        // Keep the order in sync with ReadFromArchive
+        writer.Write(LookAtPoint);
+        writer.Write(MovementDirection);
+        writer.Write((int)QueuedToxinToEmit);
+        writer.Write(QueuedSiderophoreToEmit);
+        writer.Write(SlimeSecretionCooldown);
+        writer.Write(QueuedSlimeSecretionTime);
+        writer.Write(AgentEmissionCooldown);
+        writer.Write(ForcedStateRemaining);
+        writer.Write((int)State);
+        writer.Write(FiredToxinCount);
+        writer.Write(SlowedBySlime);
+        writer.Write(OutOfSprint);
+        writer.Write(Sprinting);
+        writer.Write(MucocystEffectsApplied);
     }
 }
 
@@ -132,8 +145,20 @@ public static class MicrobeControlHelpers
 
         return new MicrobeControl
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            LookAtPoint = reader.ReadVector3(),
+            MovementDirection = reader.ReadVector3(),
+            QueuedToxinToEmit = (Compound)reader.ReadInt32(),
+            QueuedSiderophoreToEmit = reader.ReadBool(),
+            SlimeSecretionCooldown = reader.ReadFloat(),
+            QueuedSlimeSecretionTime = reader.ReadFloat(),
+            AgentEmissionCooldown = reader.ReadFloat(),
+            ForcedStateRemaining = reader.ReadFloat(),
+            State = (MicrobeState)reader.ReadInt32(),
+            FiredToxinCount = reader.ReadInt8(),
+            SlowedBySlime = reader.ReadBool(),
+            OutOfSprint = reader.ReadBool(),
+            Sprinting = reader.ReadBool(),
+            MucocystEffectsApplied = reader.ReadBool(),
         };
     }
 

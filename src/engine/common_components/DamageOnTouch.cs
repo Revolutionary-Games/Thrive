@@ -1,6 +1,5 @@
 ﻿namespace Components;
 
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
@@ -35,13 +34,11 @@ public struct DamageOnTouch : IArchivableComponent
     /// <summary>
     ///   Internal variable, don't modify
     /// </summary>
-    [JsonIgnore]
     public bool StartedDestroy;
 
     /// <summary>
     ///   Internal variable, don't modify
     /// </summary>
-    [JsonIgnore]
     public bool RegisteredWithCollisions;
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
@@ -49,8 +46,10 @@ public struct DamageOnTouch : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.Write(DamageType);
+        writer.Write(DamageAmount);
+        writer.Write(DestroyOnTouch);
+        writer.Write(UsesMicrobialDissolveEffect);
     }
 }
 
@@ -63,8 +62,10 @@ public static class DamageOnTouchHelpers
 
         return new DamageOnTouch
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            DamageType = reader.ReadString()!,
+            DamageAmount = reader.ReadFloat(),
+            DestroyOnTouch = reader.ReadBool(),
+            UsesMicrobialDissolveEffect = reader.ReadBool(),
         };
     }
 }

@@ -2,7 +2,6 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
@@ -33,7 +32,6 @@ public struct SoundEffectPlayer : IArchivableComponent
     /// </summary>
     public bool AutoDetectPlayer;
 
-    [JsonIgnore]
     public bool SoundsApplied;
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
@@ -41,13 +39,17 @@ public struct SoundEffectPlayer : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.WriteObjectOrNull(SoundEffectSlots);
+        writer.Write(AbsoluteMaxDistanceSquared);
+        writer.Write(SoundVolumeMultiplier);
+        writer.Write(AutoDetectPlayer);
     }
 }
 
-public struct SoundEffectSlot
+public struct SoundEffectSlot : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   What this slot should be playing
     /// </summary>
@@ -65,18 +67,50 @@ public struct SoundEffectSlot
 
     /// <summary>
     ///   If true then this sound keeps playing (looping) and <see cref="Play"/> never automatically stops. Can
-    ///   be set to false in order to stop the audio playing after the current loop or manually immediately stopped.
+    ///   be set false to stop the audio playing after the current loop or manually immediately stopped.
     /// </summary>
     public bool Loop;
 
     /// <summary>
     ///   Internal flag, don't touch
     /// </summary>
-    [JsonIgnore]
     public ushort InternalPlayingState;
 
-    [JsonIgnore]
     public bool InternalAppliedState;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.SoundEffectSlot;
+    public bool CanBeReferencedInArchive => false;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.SoundEffectSlot)
+            throw new NotSupportedException();
+
+        writer.WriteObject((SoundEffectSlot)obj);
+    }
+
+    public static SoundEffectSlot ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new SoundEffectSlot
+        {
+            SoundFile = reader.ReadString(),
+            Volume = reader.ReadFloat(),
+            Play = reader.ReadBool(),
+            Loop = reader.ReadBool(),
+        };
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(SoundFile);
+        writer.Write(Volume);
+        writer.Write(Play);
+        writer.Write(Loop);
+    }
 }
 
 public static class SoundEffectPlayerHelpers
@@ -88,8 +122,10 @@ public static class SoundEffectPlayerHelpers
 
         return new SoundEffectPlayer
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            SoundEffectSlots = reader.ReadObjectOrNull<SoundEffectSlot[]>(),
+            AbsoluteMaxDistanceSquared = reader.ReadFloat(),
+            SoundVolumeMultiplier = reader.ReadFloat(),
+            AutoDetectPlayer = reader.ReadBool(),
         };
     }
 

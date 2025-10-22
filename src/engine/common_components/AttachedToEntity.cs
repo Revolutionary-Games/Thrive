@@ -45,8 +45,10 @@ public struct AttachedToEntity : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.WriteAnyRegisteredValueAsObject(AttachedTo);
+        writer.Write(RelativePosition);
+        writer.Write(RelativeRotation);
+        writer.Write(DeleteIfTargetIsDeleted);
     }
 }
 
@@ -66,8 +68,10 @@ public static class AttachedToEntityHelpers
 
         return new AttachedToEntity
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            AttachedTo = reader.ReadObject<Entity>(),
+            RelativePosition = reader.ReadVector3(),
+            RelativeRotation = reader.ReadQuaternion(),
+            DeleteIfTargetIsDeleted = reader.ReadBool(),
         };
     }
 

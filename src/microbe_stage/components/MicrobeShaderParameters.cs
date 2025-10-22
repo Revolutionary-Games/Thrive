@@ -1,10 +1,10 @@
 ﻿namespace Components;
 
-using SharedBase.Archive;
 using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Allows control over the few (animation) shader parameters available in the microbe stage for some entities.

@@ -34,8 +34,11 @@ public struct CompoundVenter : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.Write(VentEachCompoundPerSecond);
+        writer.Write(VentingPrevented);
+        writer.Write(DestroyOnEmpty);
+        writer.Write(UsesMicrobialDissolveEffect);
+        writer.Write(RanOutOfVentableCompounds);
     }
 }
 
@@ -48,8 +51,11 @@ public static class CompoundVenterHelpers
 
         return new CompoundVenter
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            VentEachCompoundPerSecond = reader.ReadFloat(),
+            VentingPrevented = reader.ReadBool(),
+            DestroyOnEmpty = reader.ReadBool(),
+            UsesMicrobialDissolveEffect = reader.ReadBool(),
+            RanOutOfVentableCompounds = reader.ReadBool(),
         };
     }
 

@@ -1,7 +1,7 @@
 ﻿namespace Components;
 
-using SharedBase.Archive;
 using System.Collections.Generic;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Entity that can absorb compounds from <see cref="CompoundCloudSystem"/>. Requires <see cref="WorldPosition"/>
@@ -42,8 +42,19 @@ public struct CompoundAbsorber : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        if (TotalAbsorbedCompounds != null)
+        {
+            writer.WriteObject(TotalAbsorbedCompounds);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
+
+        writer.Write(AbsorbRadius);
+        writer.Write(AbsorbSpeed);
+        writer.Write(AbsorptionRatio);
+        writer.Write(OnlyAbsorbUseful);
     }
 }
 
@@ -56,8 +67,11 @@ public static class CompoundAbsorberHelpers
 
         return new CompoundAbsorber
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            TotalAbsorbedCompounds = reader.ReadObject<Dictionary<Compound, float>>(),
+            AbsorbRadius = reader.ReadFloat(),
+            AbsorbSpeed = reader.ReadFloat(),
+            AbsorptionRatio = reader.ReadFloat(),
+            OnlyAbsorbUseful = reader.ReadBool(),
         };
     }
 }
