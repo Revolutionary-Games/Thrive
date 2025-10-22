@@ -1,6 +1,6 @@
 ﻿using Arch.Core;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 using World = Arch.Core.World;
 
@@ -10,6 +10,8 @@ using World = Arch.Core.World;
 /// </summary>
 public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     // Base systems
     private AnimationControlSystem animationControlSystem = null!;
     private AttachedEntityPositionSystem attachedEntityPositionSystem = null!;
@@ -50,8 +52,6 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private EngulfedHandlingSystem engulfedHandlingSystem = null!;
     private EngulfingSystem engulfingSystem = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     private EntitySignalingSystem entitySignalingSystem = null!;
 
     private IrradiationSystem irradiationSystem = null!;
@@ -97,38 +97,66 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     {
     }
 
-    [JsonConstructor]
-    public MicrobeWorldSimulation(World entities) : base(entities)
+    protected MicrobeWorldSimulation(World entities) : base(entities)
     {
     }
 
     // External system references
 
-    [JsonIgnore]
     public CompoundCloudSystem CloudSystem { get; private set; } = null!;
 
     // Systems accessible to the outside as these have some very specific methods to be called on them
-    [JsonIgnore]
     public CameraFollowSystem CameraFollowSystem { get; private set; } = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     public SpawnSystem SpawnSystem { get; private set; } = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     public MicrobeTerrainSystem MicrobeTerrainSystem { get; private set; } = null!;
 
-    [JsonIgnore]
     public ProcessSystem ProcessSystem { get; private set; } = null!;
 
     // TODO: could replace this reference in PatchManager by it just calling ClearPlayerLocationDependentCaches
-    [JsonIgnore]
     public TimedLifeSystem TimedLifeSystem { get; private set; } = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     public FluidCurrentsSystem FluidCurrentsSystem { get; private set; } = null!;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.MicrobeWorldSimulation;
+
+    public static MicrobeWorldSimulation ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        // Read this first from the archive and discard as we need the next thing for the constructor
+        UnsavedEntities temp = new([]);
+        reader.ReadObjectProperties(temp);
+
+        var instance = new MicrobeWorldSimulation(reader.ReadObject<World>());
+
+        reader.ReportObjectConstructorDone(instance);
+
+        // The base version is different from ours
+        instance.ReadBasePropertiesFromArchive(reader, 1);
+
+        reader.ReadObjectProperties(instance.entitySignalingSystem);
+        instance.MicrobeTerrainSystem = reader.ReadObject<MicrobeTerrainSystem>();
+        instance.SpawnSystem = reader.ReadObject<SpawnSystem>();
+        reader.ReadObjectProperties(instance.FluidCurrentsSystem);
+
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        WriteBasePropertiesToArchive(writer);
+
+        entitySignalingSystem.WritePropertiesToArchive(writer);
+        writer.WriteObject(MicrobeTerrainSystem);
+        writer.WriteObject(SpawnSystem);
+        FluidCurrentsSystem.WritePropertiesToArchive(writer);
+    }
 
     /// <summary>
     ///   First initialization step which creates all the system objects. When loading from a save objects of this

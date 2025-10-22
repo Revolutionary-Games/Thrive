@@ -5,7 +5,7 @@ using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using World = Arch.Core.World;
 
 /// <summary>
@@ -14,17 +14,16 @@ using World = Arch.Core.World;
 ///   types implementing this interface are in charge of running the gameplay simulation side of things. For example,
 ///   microbe moving around, processing compounds, colliding, rendering etc.
 /// </summary>
-[UseThriveSerializer]
 public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 {
+    public const ushort SERIALIZATION_VERSION_BASE = 1;
+
     /// <summary>
     ///   Stores entities that are ignored on save. This field must be before <see cref="entities"/> for saving
     ///   to work correctly.
     /// </summary>
-    [JsonProperty]
     protected readonly UnsavedEntities entitiesToNotSave;
 
-    [JsonProperty]
     protected readonly World entities;
 
     protected readonly Queue<Entity> queuedForDelete = new();
@@ -32,10 +31,8 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     /// <summary>
     ///   Used to tell a few systems the approximate player position which might not always exist
     /// </summary>
-    [JsonIgnore]
     protected Vector3? reportedPlayerPosition;
 
-    [JsonProperty]
     protected float minimumTimeBetweenLogicUpdates = 1 / 60.0f;
 
     protected float accumulatedLogicTime;
@@ -67,8 +64,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         entitiesToNotSave = new UnsavedEntities(queuedForDelete);
     }
 
-    [JsonConstructor]
-    public WorldSimulation(World entities)
+    protected WorldSimulation(World entities)
     {
         this.entities = entities;
         entitiesToNotSave = new UnsavedEntities(queuedForDelete);
@@ -88,7 +84,6 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     ///     entities having specific components.
     ///   </para>
     /// </remarks>
-    [JsonIgnore]
     public World EntitySystem => entities;
 
     // TODO: if required add a property that exposes the spawn system total entity weight here
@@ -96,19 +91,15 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     /// <summary>
     ///   When set to false disables AI running
     /// </summary>
-    [JsonProperty]
     public bool RunAI { get; set; } = true;
 
     /// <summary>
     ///   Player position used to control the simulation accuracy around the player (and despawn things too far away)
     /// </summary>
-    [JsonProperty]
     public Vector3 PlayerPosition { get; private set; }
 
-    [JsonIgnore]
     public bool Initialized { get; private set; }
 
-    [JsonIgnore]
     public bool Processing { get; private set; }
 
     /// <summary>
@@ -121,11 +112,13 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     ///     now values in the range 1-3 are the best working (though the upper range depends on performance).
     ///   </para>
     /// </remarks>
-    [JsonProperty]
     public float WorldTimeScale { get; set; } = 1;
 
-    [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
+
+    public abstract ushort CurrentArchiveVersion { get; }
+    public abstract ArchiveObjectType ArchiveObjectType { get; }
+    public bool CanBeReferencedInArchive => true;
 
     public void ResolveNodeReferences()
     {
@@ -552,6 +545,8 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     {
     }
 
+    public abstract void WriteToArchive(ISArchiveWriter writer);
+
     /// <summary>
     ///   Note that often when this is disposed, the Nodes are already disposed, so this has to skip releasing them.
     ///   If that is not the case, it is required to call <see cref="FreeNodeResources"/> before calling Dispose.
@@ -560,6 +555,32 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     {
         Dispose(true);
         GC.SuppressFinalize(this);
+    }
+
+    protected virtual void WriteBasePropertiesToArchive(ISArchiveWriter writer)
+    {
+        lock (entitiesToNotSave)
+        {
+            writer.WriteObjectProperties(entitiesToNotSave);
+        }
+
+        writer.WriteAnyRegisteredValueAsObject(entities);
+        writer.Write(minimumTimeBetweenLogicUpdates);
+        writer.Write(RunAI);
+        writer.Write(PlayerPosition);
+        writer.Write(WorldTimeScale);
+    }
+
+    protected virtual void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_BASE or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_BASE);
+
+        // The first two properties must be read already by the time this is called due to being used for construction
+        minimumTimeBetweenLogicUpdates = reader.ReadFloat();
+        RunAI = reader.ReadBool();
+        PlayerPosition = reader.ReadVector3();
+        WorldTimeScale = reader.ReadFloat();
     }
 
     /// <summary>

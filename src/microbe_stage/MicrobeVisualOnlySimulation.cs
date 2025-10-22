@@ -5,6 +5,7 @@ using Arch.Core.Extensions;
 using Arch.System;
 using Components;
 using Godot;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
@@ -28,6 +29,11 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
     private Node visualsParent = null!;
 #pragma warning restore CA2213
+
+    public override ushort CurrentArchiveVersion => 1;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        throw new NotSupportedException("This class is not meant t obe saved");
 
     /// <summary>
     ///   Initialises this visual simulation for use
@@ -416,6 +422,11 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     public override bool HasSystemsWithPendingOperations()
     {
         return microbeVisualsSystem.HasPendingOperations();
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        throw new NotSupportedException("This class is not meant to be saved");
     }
 
     protected override void InitSystemsEarly()

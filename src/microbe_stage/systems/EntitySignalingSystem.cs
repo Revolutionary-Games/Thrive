@@ -7,7 +7,7 @@ using Arch.Core.Extensions;
 using Arch.System;
 using Components;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using World = Arch.Core.World;
 
 /// <summary>
@@ -16,12 +16,12 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(WorldPosition))]
 [RunsBefore(typeof(MicrobeAISystem))]
 [RuntimeCost(1)]
-[JsonObject(MemberSerialization.OptIn)]
-public partial class EntitySignalingSystem : BaseSystem<World, float>
+public partial class EntitySignalingSystem : BaseSystem<World, float>, IArchiveUpdatable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private readonly Dictionary<ulong, List<(Entity Entity, Vector3 Position)>> entitiesOnChannels = new();
 
-    [JsonProperty]
     private float elapsedSinceUpdate;
 
     private bool timeToUpdate;
@@ -30,12 +30,8 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>
     {
     }
 
-    [JsonConstructor]
-    public EntitySignalingSystem(float elapsedSinceUpdate) :
-        base(TemporarySystemHelper.GetDummyWorldForLoad())
-    {
-        this.elapsedSinceUpdate = elapsedSinceUpdate;
-    }
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.EntitySignalingSystem;
 
     public override void Update(in float delta)
     {
@@ -88,6 +84,19 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>
         {
             value.Clear();
         }
+    }
+
+    public void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(elapsedSinceUpdate);
+    }
+
+    public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        elapsedSinceUpdate = reader.ReadFloat();
     }
 
     [Query]

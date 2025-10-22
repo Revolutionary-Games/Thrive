@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Arch.Core;
-using Newtonsoft.Json;
+using Saving.Serializers;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Keeps track of entities that should not be saved. This is a separate class to make save converters possible to
@@ -8,24 +9,19 @@ using Newtonsoft.Json;
 /// </summary>
 /// <remarks>
 ///   <para>
-///     It is a bit hacky how this sets <see cref="SaveContext.UnsavedEntities"/> when this is being saved. That works
-///     as long as this is always serialized before the entity system.
+///     It is a bit hacky how this sets <see cref="ThriveArchiveManager.UnsavedEntities"/> when this is being saved.
+///     That works as long as this is always serialized before the entity world.
 ///   </para>
 /// </remarks>
-public sealed class UnsavedEntities
+public sealed class UnsavedEntities : IArchiveUpdatable
 {
     private readonly List<Entity> entities = new();
 
     private IReadOnlyCollection<Entity>? additionalIgnoreSource;
 
-    [JsonConstructor]
-    public UnsavedEntities()
-    {
-    }
-
     /// <summary>
     ///   Allows setting an additional source of entities to ignore saving. This is used to not save the entities that
-    ///   should be destroyed in a world (if save happens to trigger while there are pending deletes)
+    ///   should be destroyed in a World (if save happens to trigger while there are pending deletes)
     /// </summary>
     /// <param name="additionalIgnores">
     ///   Additional entities to ignore (this list is only read once a save is being made)
@@ -34,6 +30,9 @@ public sealed class UnsavedEntities
     {
         additionalIgnoreSource = additionalIgnores;
     }
+
+    public ushort CurrentArchiveVersion => 1;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.UnsavedEntities;
 
     public void Add(in Entity entity)
     {
@@ -50,7 +49,7 @@ public sealed class UnsavedEntities
         return entities.Remove(entity);
     }
 
-    public void ActivateOnContext(SaveContext context)
+    public void ActivateOnContext(ISaveContext context)
     {
         var unsaved = context.UnsavedEntities;
 
@@ -71,5 +70,14 @@ public sealed class UnsavedEntities
     public void SetExtraIgnoreSource(IReadOnlyCollection<Entity> additionalIgnores)
     {
         additionalIgnoreSource = additionalIgnores;
+    }
+
+    public void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        ActivateOnContext((ISaveContext)writer.WriteManager);
+    }
+
+    public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
     }
 }
