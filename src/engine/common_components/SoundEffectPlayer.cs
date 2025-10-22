@@ -43,6 +43,10 @@ public struct SoundEffectPlayer : IArchivableComponent
         writer.Write(AbsoluteMaxDistanceSquared);
         writer.Write(SoundVolumeMultiplier);
         writer.Write(AutoDetectPlayer);
+
+        // Actual sound players are not restored from a save.
+        // They are a game engine thing, so we don't save the applied state here to ensure that the sounds resume
+        // correctly on a load (it used to be a JSON ignore field).
     }
 }
 

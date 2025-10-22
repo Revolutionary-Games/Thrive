@@ -1087,8 +1087,16 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             }
 
             ref var timed = ref Player.Get<TimedLife>();
-            timed.FadeTimeRemaining =
-                Math.Min(Constants.MAX_PLAYER_DYING_TIME, timed.FadeTimeRemaining ?? float.MaxValue);
+
+            if (timed.FadeTimeRemainingSet)
+            {
+                timed.FadeTimeRemaining = Math.Min(Constants.MAX_PLAYER_DYING_TIME, timed.FadeTimeRemaining);
+            }
+            else
+            {
+                timed.FadeTimeRemaining = Constants.MAX_PLAYER_DYING_TIME;
+                timed.FadeTimeRemainingSet = true;
+            }
         }
     }
 

@@ -27,7 +27,7 @@ public static class EntityWorldSerializers
             SERIALIZATION_VERSION);
 
         // Don't write non-alive entities or entities that no longer want to be saved
-        if (manager.SkipSavingEntity(entity) || !entity.IsAlive())
+        if (manager.SkipSavingEntity(entity) || entity == default(Entity) || !entity.IsAlive())
         {
             entity = Entity.Null;
         }
@@ -58,13 +58,13 @@ public static class EntityWorldSerializers
         if (manager.ProcessedEntityWorld == null)
             throw new FormatException("Cannot load an Entity reference without a currently being loaded entity World");
 
-        // Null doesn't need mapping
-        var nullEntity = Entity.Null;
-        if (id == nullEntity.Id && worldId == nullEntity.WorldId && entityVersion == nullEntity.Version)
-            return Entity.Null;
-
         // Force create an old reference
         var old = Entity.MakeHackedEntity(id, worldId, entityVersion);
+
+        // Null doesn't need mapping
+        var nullEntity = Entity.Null;
+        if (old == nullEntity || old == default(Entity))
+            return Entity.Null;
 
         // If already loaded returns the entity
         if (manager.OldToNewEntityMapping.TryGetValue(old, out var existing))
