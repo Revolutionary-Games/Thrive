@@ -41,9 +41,9 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>, IArchiveU
 
         // TODO: this could also be multithreaded as long as this finishes before the Update calls start running and
         // there's locking on the data lists
-        UpdateSignalSendQuery(World, delta);
+        UpdateSignalSendQuery(World);
 
-        UpdateSignalReceiveQuery(World, delta);
+        UpdateSignalReceiveQuery(World);
     }
 
     public override void BeforeUpdate(in float delta)
@@ -101,8 +101,7 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>, IArchiveU
 
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void UpdateSignalSend([Data] in float delta, ref CommandSignaler signaling, ref WorldPosition position,
-        in Entity entity)
+    private void UpdateSignalSend(ref CommandSignaler signaling, ref WorldPosition position, in Entity entity)
     {
         if (signaling.QueuedSignalingCommand != null)
         {
@@ -129,8 +128,7 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>, IArchiveU
     // TODO: could parallelize
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void UpdateSignalReceive([Data] in float delta, ref CommandSignaler signaling, ref WorldPosition position,
-        in Entity entity)
+    private void UpdateSignalReceive(ref CommandSignaler signaling, ref WorldPosition position, in Entity entity)
     {
         // Find the closest signaller on the channel this entity is on
         bool foundSignal = false;

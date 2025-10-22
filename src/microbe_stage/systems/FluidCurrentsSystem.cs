@@ -130,7 +130,7 @@ public partial class FluidCurrentsSystem : BaseSystem<World, float>, IArchiveUpd
     [Query(Parallel = true)]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref Physics physics, ref WorldPosition position,
-        ref ManualPhysicsControl physicsControl, ref CurrentAffected currentAffected, in Entity entity)
+        ref ManualPhysicsControl physicsControl, ref CurrentAffected currentAffected)
     {
         if (physics.Body == null)
             return;
