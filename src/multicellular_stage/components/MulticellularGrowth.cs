@@ -7,7 +7,6 @@ using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 using Systems;
 
@@ -70,7 +69,6 @@ public struct MulticellularGrowth : IArchivableComponent
         this.CalculateTotalBodyPlanCompounds(species);
     }
 
-    [JsonIgnore]
     public bool IsFullyGrownMulticellular => NextBodyPlanCellToGrowIndex >=
         (TargetCellLayout?.Count ?? throw new InvalidOperationException("Unknown full layout"));
 
@@ -79,8 +77,35 @@ public struct MulticellularGrowth : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.WriteObjectOrNull(LostPartsOfBodyPlan);
+        writer.WriteObjectOrNull(CompoundsNeededForNextCell);
+
+        if (CompoundsUsedForMulticellularGrowth != null)
+        {
+            writer.WriteObject(CompoundsUsedForMulticellularGrowth);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
+
+        if (TotalNeededForMulticellularGrowth != null)
+        {
+            writer.WriteObject(TotalNeededForMulticellularGrowth);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
+
+        writer.WriteObjectOrNull(TargetCellLayout);
+
+        writer.Write(ResumeBodyPlanAfterReplacingLost.HasValue);
+        if (ResumeBodyPlanAfterReplacingLost.HasValue)
+            writer.Write(ResumeBodyPlanAfterReplacingLost.Value);
+
+        writer.Write(NextBodyPlanCellToGrowIndex);
+        writer.Write(EnoughResourcesForBudding);
     }
 }
 
@@ -91,11 +116,28 @@ public static class MulticellularGrowthHelpers
         if (version is > MulticellularGrowth.SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, MulticellularGrowth.SERIALIZATION_VERSION);
 
-        return new MulticellularGrowth
+        var instance = new MulticellularGrowth
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            LostPartsOfBodyPlan = reader.ReadObjectOrNull<List<int>>(),
+            CompoundsNeededForNextCell = reader.ReadObjectOrNull<List<(Compound Compound, float AmountNeeded)>>(),
+            CompoundsUsedForMulticellularGrowth = reader.ReadObjectOrNull<Dictionary<Compound, float>>(),
+            TotalNeededForMulticellularGrowth = reader.ReadObjectOrNull<Dictionary<Compound, float>>(),
+            TargetCellLayout = reader.ReadObjectOrNull<CellLayout<CellTemplate>>(),
         };
+
+        if (reader.ReadBool())
+        {
+            instance.ResumeBodyPlanAfterReplacingLost = reader.ReadInt32();
+        }
+        else
+        {
+            instance.ResumeBodyPlanAfterReplacingLost = null;
+        }
+
+        instance.NextBodyPlanCellToGrowIndex = reader.ReadInt32();
+        instance.EnoughResourcesForBudding = reader.ReadBool();
+
+        return instance;
     }
 
     /// <summary>
