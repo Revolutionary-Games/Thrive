@@ -2,7 +2,9 @@
 
 using System.IO;
 using System.Text;
+using global::Saving.Serializers;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 using Xoshiro.PRNG64;
 using Xunit;
 
@@ -10,18 +12,19 @@ public class RandomConverterTests
 {
     private const int SequenceVerifyLength = 25;
 
+    private readonly ThriveArchiveManager manager = new();
+
     [Theory]
     [InlineData(12323, 1)]
     [InlineData(12323, 0)]
     [InlineData(54656453, 5)]
     [InlineData(null, 0)]
     [InlineData(null, 1)]
-    public static void RandomConverter_StateResumesCorrectly(int? seed, int initialValuesToTake)
+    public void RandomConverter_StateResumesCorrectly(int? seed, int initialValuesToTake)
     {
-        var serializer = new JsonSerializer
-        {
-            Converters = { new RandomConverter() },
-        };
+        var memoryStream = new MemoryStream();
+        var writer = new SArchiveMemoryWriter(memoryStream, manager);
+        var reader = new SArchiveMemoryReader(memoryStream, manager);
 
         XoShiRo256starstar original;
         if (seed != null)
@@ -38,22 +41,12 @@ public class RandomConverterTests
             original.Next64U();
         }
 
-        var memoryBuffer = new MemoryStream();
+        writer.WriteAnyRegisteredValueAsObject(original);
 
-        var textWriter = new StreamWriter(memoryBuffer, Encoding.UTF8);
+        Assert.NotEqual(0, memoryStream.Position);
+        memoryStream.Seek(0, SeekOrigin.Begin);
 
-        serializer.Serialize(textWriter, original);
-
-        textWriter.Flush();
-
-        Assert.NotEqual(0, memoryBuffer.Position);
-        memoryBuffer.Seek(0, SeekOrigin.Begin);
-
-        var textReader = new StreamReader(memoryBuffer, Encoding.UTF8);
-
-        var jsonReader = new JsonTextReader(textReader);
-
-        var deserialized = serializer.Deserialize<XoShiRo256starstar>(jsonReader);
+        var deserialized = reader.ReadObjectOrNull<XoShiRo256starstar>();
 
         Assert.NotNull(deserialized);
 

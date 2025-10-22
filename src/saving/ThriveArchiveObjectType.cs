@@ -142,6 +142,7 @@ public enum ThriveArchiveObjectType : uint
     FluidCurrentsSystem,
     TerrainConfiguration,
     SpawnSystem,
+    Random,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,

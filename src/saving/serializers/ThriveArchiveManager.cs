@@ -59,6 +59,8 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
     {
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.XoShiRo256StarStar, typeof(XoShiRo256starstar),
             ThirdPartyTypeHelpers.WriteXoShiRo256StarStar);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.XoShiRo256StarStar, typeof(XoShiRo256starstar),
+            ThirdPartyTypeHelpers.ReadXoShiRo256StarStarFromArchive);
     }
 
     private void RegisterEnums()

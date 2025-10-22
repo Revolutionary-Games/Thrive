@@ -37,7 +37,6 @@ public class ThriveJsonConverter : IDisposable
             new GodotQuaternionConverter(),
             new PackedSceneConverter(),
             new SystemVector4ArrayConverter(),
-            new RandomConverter(),
             new ConvexPolygonShapeConverter(),
             new NodePathConverter(),
 
