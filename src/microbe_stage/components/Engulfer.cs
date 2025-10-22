@@ -7,7 +7,6 @@ using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 using Systems;
 
@@ -28,7 +27,6 @@ public struct Engulfer : IArchivableComponent
     ///   something this cannot fully engulf. The value is how long since the object was expelled. Values are
     ///   automatically removed once the time reaches <see cref="Constants.ENGULF_EJECTED_COOLDOWN"/>
     /// </summary>
-    [JsonConverter(typeof(DictionaryWithJSONKeysConverter<Entity, float>))]
     public Dictionary<Entity, float>? ExpelledObjects;
 
     /// <summary>
@@ -47,7 +45,6 @@ public struct Engulfer : IArchivableComponent
     ///     the ingested objects. Maximum should be this cell's own <see cref="Engulfable.BaseEngulfSize"/>.
     ///   </para>
     /// </remarks>
-    [JsonProperty("UsedIngestionCapacity")]
     public float UsedEngulfingCapacity;
 
     /// <summary>
@@ -61,8 +58,20 @@ public struct Engulfer : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.WriteObjectOrNull(EngulfedObjects);
+
+        if (ExpelledObjects != null)
+        {
+            writer.WriteObject(ExpelledObjects);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
+
+        writer.Write(EngulfingSize);
+        writer.Write(UsedEngulfingCapacity);
+        writer.Write(EngulfStorageSize);
     }
 }
 
@@ -75,8 +84,11 @@ public static class EngulferHelpers
 
         return new Engulfer
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            EngulfedObjects = reader.ReadObjectOrNull<List<Entity>>(),
+            ExpelledObjects = reader.ReadObjectOrNull<Dictionary<Entity, float>>(),
+            EngulfingSize = reader.ReadFloat(),
+            UsedEngulfingCapacity = reader.ReadFloat(),
+            EngulfStorageSize = reader.ReadFloat(),
         };
     }
 

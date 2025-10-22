@@ -66,8 +66,21 @@ public struct Health : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        if (RecentDamageReceived == null)
+        {
+            writer.WriteNullObject();
+        }
+        else
+        {
+            writer.WriteObject(RecentDamageReceived);
+        }
+
+        writer.Write(CurrentHealth);
+        writer.Write(MaxHealth);
+        writer.Write(HealthRegenCooldown);
+        writer.Write(Invulnerable);
+        writer.Write(Dead);
+        writer.Write(DeathProcessed);
     }
 }
 
@@ -80,8 +93,13 @@ public static class HealthHelpers
 
         return new Health
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            RecentDamageReceived = reader.ReadObject<List<DamageEventNotice>>(),
+            CurrentHealth = reader.ReadFloat(),
+            MaxHealth = reader.ReadFloat(),
+            HealthRegenCooldown = reader.ReadFloat(),
+            Invulnerable = reader.ReadBool(),
+            Dead = reader.ReadBool(),
+            DeathProcessed = reader.ReadBool(),
         };
     }
 

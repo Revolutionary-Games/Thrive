@@ -58,8 +58,9 @@ public struct DelayedMicrobeColony : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.WriteAnyRegisteredValueAsObject(FinishAttachingToColony);
+        writer.Write(AttachIndex);
+        writer.Write(GrowAdditionalMembers);
     }
 }
 
@@ -72,8 +73,9 @@ public static class DelayedMicrobeColonyHelpers
 
         return new DelayedMicrobeColony
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            FinishAttachingToColony = reader.ReadObject<Entity>(),
+            AttachIndex = reader.ReadInt32(),
+            GrowAdditionalMembers = reader.ReadInt32(),
         };
     }
 }

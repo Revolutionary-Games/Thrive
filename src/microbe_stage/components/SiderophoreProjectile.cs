@@ -1,7 +1,6 @@
 ﻿namespace Components;
 
 using Arch.Core;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
@@ -30,7 +29,6 @@ public struct SiderophoreProjectile : IArchivableComponent
     ///   Used by systems internally to know when they have processed the initial adding of a siderophore. Should not be
     ///   modified from other places.
     /// </summary>
-    [JsonIgnore]
     public bool ProjectileInitialized;
 
     public SiderophoreProjectile(Entity sender)
@@ -43,8 +41,9 @@ public struct SiderophoreProjectile : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.WriteAnyRegisteredValueAsObject(Sender);
+        writer.Write(Amount);
+        writer.Write(IsUsed);
     }
 }
 
@@ -57,8 +56,9 @@ public static class SiderophoreProjectileHelpers
 
         return new SiderophoreProjectile
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            Sender = reader.ReadObject<Entity>(),
+            Amount = reader.ReadFloat(),
+            IsUsed = reader.ReadBool(),
         };
     }
 }

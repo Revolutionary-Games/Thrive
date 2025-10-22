@@ -3,7 +3,6 @@
 using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
@@ -34,7 +33,6 @@ public struct MicrobeShaderParameters : IArchivableComponent
     /// <summary>
     ///   Always reset this to false after changing something to have the changes apply
     /// </summary>
-    [JsonIgnore]
     public bool ParametersApplied;
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
@@ -42,8 +40,9 @@ public struct MicrobeShaderParameters : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.Write(DissolveValue);
+        writer.Write(DissolveAnimationSpeed);
+        writer.Write(PlayAnimations);
     }
 }
 
@@ -56,8 +55,9 @@ public static class MicrobeShaderParametersHelpers
 
         return new MicrobeShaderParameters
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            DissolveValue = reader.ReadFloat(),
+            DissolveAnimationSpeed = reader.ReadFloat(),
+            PlayAnimations = reader.ReadBool(),
         };
     }
 

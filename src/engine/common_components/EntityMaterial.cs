@@ -1,7 +1,6 @@
 ﻿namespace Components;
 
 using Godot;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
@@ -11,7 +10,6 @@ public struct EntityMaterial : IArchivableComponent
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
-    [JsonIgnore]
     public ShaderMaterial[]? Materials;
 
     /// <summary>
@@ -36,7 +34,6 @@ public struct EntityMaterial : IArchivableComponent
     /// <summary>
     ///   Internal flag, don't modify
     /// </summary>
-    [JsonIgnore]
     public bool MaterialFetchPerformed;
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
@@ -44,8 +41,9 @@ public struct EntityMaterial : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.Write(AutoRetrieveModelPath);
+        writer.Write(AutoRetrieveFromSpatial);
+        writer.Write(AutoRetrieveAssumesNodeIsDirectlyAttached);
     }
 }
 
@@ -58,8 +56,9 @@ public static class EntityMaterialHelpers
 
         return new EntityMaterial
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            AutoRetrieveModelPath = reader.ReadString(),
+            AutoRetrieveFromSpatial = reader.ReadBool(),
+            AutoRetrieveAssumesNodeIsDirectlyAttached = reader.ReadBool(),
         };
     }
 }

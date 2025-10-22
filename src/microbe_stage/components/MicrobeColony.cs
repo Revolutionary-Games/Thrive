@@ -7,7 +7,6 @@ using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
@@ -37,14 +36,12 @@ public struct MicrobeColony : IArchivableComponent
     ///   detect which cells are also lost if one cell is lost. Key is the dependent cell and the value is its
     ///   parent.
     /// </summary>
-    [JsonConverter(typeof(DictionaryWithJSONKeysConverter<Entity, Entity>))]
     public Dictionary<Entity, Entity> ColonyStructure;
 
     /// <summary>
     ///   The colony compounds. Use the <see cref="MicrobeColonyHelpers.GetCompounds"/> for accessing this as it
     ///   automatically sets this up if missing.
     /// </summary>
-    [JsonIgnore]
     public ColonyCompoundBag? ColonyCompounds;
 
     public float ColonyRotationSpeed;
@@ -152,13 +149,26 @@ public struct MicrobeColony : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.WriteObject(ColonyMembers);
+        writer.WriteAnyRegisteredValueAsObject(Leader);
+        writer.WriteObject(ColonyStructure);
+        writer.Write(ColonyRotationSpeed);
+        writer.Write((int)ColonyState);
+        writer.Write(HexCount);
+        writer.Write(CanEngulf);
+        writer.Write(DerivedStatisticsCalculated);
+        writer.Write(EntityWeightApplied);
     }
 }
 
 public static class MicrobeColonyHelpers
 {
+    // TODO: implement this (will need to swap all users of the member list to also read a new count variable
+    // from the colony class)
+    // public static readonly ArrayPool<Entity> MicrobeColonyMemberListPool = ArrayPool<Entity>.Create(100, 50);
+
+    private static readonly List<Entity> DependentMembersToRemove = new();
+
     public static MicrobeColony ReadFromArchive(ISArchiveReader reader, ushort version)
     {
         if (version is > MicrobeColony.SERIALIZATION_VERSION or <= 0)
@@ -166,16 +176,17 @@ public static class MicrobeColonyHelpers
 
         return new MicrobeColony
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            ColonyMembers = reader.ReadObject<Entity[]>(),
+            Leader = reader.ReadObject<Entity>(),
+            ColonyStructure = reader.ReadObject<Dictionary<Entity, Entity>>(),
+            ColonyRotationSpeed = reader.ReadFloat(),
+            ColonyState = (MicrobeState)reader.ReadInt32(),
+            HexCount = reader.ReadInt32(),
+            CanEngulf = reader.ReadBool(),
+            DerivedStatisticsCalculated = reader.ReadBool(),
+            EntityWeightApplied = reader.ReadBool(),
         };
     }
-
-    // TODO: implement this (will need to swap all users of the member list to also read a new count variable
-    // from the colony class)
-    // public static readonly ArrayPool<Entity> MicrobeColonyMemberListPool = ArrayPool<Entity>.Create(100, 50);
-
-    private static readonly List<Entity> DependentMembersToRemove = new();
 
     public static ColonyCompoundBag GetCompounds(this ref MicrobeColony colony)
     {

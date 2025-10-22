@@ -46,8 +46,16 @@ public struct CommandSignaler : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.Write(ReceivedCommandSource);
+        writer.WriteAnyRegisteredValueAsObject(ReceivedCommandFromEntity);
+        writer.Write(SignalingChannel);
+
+        writer.Write(QueuedSignalingCommand.HasValue);
+        if (QueuedSignalingCommand.HasValue)
+            writer.Write((int)QueuedSignalingCommand.Value);
+
+        writer.Write((int)Command);
+        writer.Write((int)ReceivedCommand);
     }
 }
 
@@ -58,10 +66,21 @@ public static class CommandSignalerHelpers
         if (version is > CommandSignaler.SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, CommandSignaler.SERIALIZATION_VERSION);
 
-        return new CommandSignaler
+        var instance = new CommandSignaler
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            ReceivedCommandSource = reader.ReadVector3(),
+            ReceivedCommandFromEntity = reader.ReadObject<Entity>(),
+            SignalingChannel = reader.ReadUInt64(),
         };
+
+        if (reader.ReadBool())
+        {
+            instance.QueuedSignalingCommand = (MicrobeSignalCommand)reader.ReadInt32();
+        }
+
+        instance.Command = (MicrobeSignalCommand)reader.ReadInt32();
+        instance.ReceivedCommand = (MicrobeSignalCommand)reader.ReadInt32();
+
+        return instance;
     }
 }

@@ -2,7 +2,6 @@
 
 using System;
 using Godot;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
@@ -21,7 +20,6 @@ public struct Physics : IArchivableComponent
 
     public Vector3 AngularVelocity;
 
-    [JsonIgnore]
     public NativePhysicsBody? Body;
 
     public float? LinearDamping;
@@ -34,13 +32,11 @@ public struct Physics : IArchivableComponent
     /// <summary>
     ///   Set to false if the new velocities should apply to the entity
     /// </summary>
-    [JsonIgnore]
     public bool VelocitiesApplied;
 
     /// <summary>
     ///   Set to false if new damping values are set
     /// </summary>
-    [JsonIgnore]
     public bool DampingApplied;
 
     /// <summary>
@@ -75,10 +71,8 @@ public struct Physics : IArchivableComponent
     /// <summary>
     ///   Internal variable for the body disabling system, don't touch elsewhere
     /// </summary>
-    [JsonIgnore]
     public bool InternalDisableState;
 
-    [JsonIgnore]
     public bool InternalDisableCollisionState;
 
     [Flags]
@@ -102,8 +96,33 @@ public struct Physics : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.Write(Velocity);
+        writer.Write(AngularVelocity);
+
+        writer.Write(TrackVelocity);
+        writer.Write((byte)AxisLock);
+        writer.Write((byte)DisableCollisionState);
+        writer.Write(BodyDisabled);
+
+        if (LinearDamping.HasValue)
+        {
+            writer.Write(true);
+            writer.Write(LinearDamping.Value);
+        }
+        else
+        {
+            writer.Write(false);
+        }
+
+        if (AngularDamping.HasValue)
+        {
+            writer.Write(true);
+            writer.Write(AngularDamping.Value);
+        }
+        else
+        {
+            writer.Write(false);
+        }
     }
 }
 
@@ -114,11 +133,35 @@ public static class PhysicsHelpers
         if (version is > Physics.SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, Physics.SERIALIZATION_VERSION);
 
-        return new Physics
+        var physics = new Physics
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            Velocity = reader.ReadVector3(),
+            AngularVelocity = reader.ReadVector3(),
+            TrackVelocity = reader.ReadBool(),
+            AxisLock = (Physics.AxisLockType)reader.ReadInt8(),
+            DisableCollisionState = (Physics.CollisionState)reader.ReadInt8(),
+            BodyDisabled = reader.ReadBool(),
         };
+
+        if (reader.ReadBool())
+        {
+            physics.LinearDamping = reader.ReadFloat();
+        }
+        else
+        {
+            physics.LinearDamping = null;
+        }
+
+        if (reader.ReadBool())
+        {
+            physics.AngularDamping = reader.ReadFloat();
+        }
+        else
+        {
+            physics.AngularDamping = null;
+        }
+
+        return physics;
     }
 
     public static void SetCollisionDisableState(this ref Physics physics, bool disableCollisions)
@@ -131,7 +174,7 @@ public static class PhysicsHelpers
     /// <summary>
     ///   Returns true only if the body is created and not currently disabled (or waiting to be re-enabled)
     /// </summary>
-    /// <returns>True when body is fully usable</returns>
+    /// <returns>True when the body is fully usable</returns>
     public static bool IsBodyEffectivelyEnabled(this ref Physics physics)
     {
         return physics.Body != null && !physics.BodyDisabled && !physics.InternalDisableState;

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Arch.Core;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
@@ -19,26 +18,22 @@ public struct PhysicsSensor : IArchivableComponent
     ///   The shape this sensor has. Must be non-null to activate the sensor functionality. Changing this after
     ///   the sensor is created only applies when <see cref="ApplyNewShape"/> is set.
     /// </summary>
-    [JsonIgnore]
     public PhysicsShape? ActiveArea;
 
     /// <summary>
     ///   Set to a valid body by the sensor system while a shape is set and this is not disabled
     /// </summary>
-    [JsonIgnore]
     public NativePhysicsBody? SensorBody;
 
     /// <summary>
     ///   Collisions detected by this sensor. Count of valid entries is in <see cref="ActiveCollisionCountPtr"/>.
     ///   Use the special helper
     /// </summary>
-    [JsonIgnore]
     public PhysicsCollision[]? ActiveCollisions;
 
     /// <summary>
     ///   Pointer to the detected bodies count variable
     /// </summary>
-    [JsonIgnore]
     public IntPtr ActiveCollisionCountPtr;
 
     /// <summary>
@@ -84,7 +79,6 @@ public struct PhysicsSensor : IArchivableComponent
     /// <summary>
     ///   Internal variable, don't modify
     /// </summary>
-    [JsonIgnore]
     public bool InternalDisabledState;
 
     public PhysicsSensor(int maxActiveContacts = Constants.MAX_SIMULTANEOUS_COLLISIONS_SENSOR)
@@ -108,8 +102,12 @@ public struct PhysicsSensor : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.Write(MaxActiveContacts);
+        writer.Write(Disabled);
+        writer.Write(DetectSleepingBodies);
+        writer.Write(DetectStaticBodies);
+        writer.Write(DetectSelfEntityCollision);
+        writer.Write(ApplyNewShape);
     }
 }
 
@@ -120,11 +118,17 @@ public static class PhysicsSensorHelpers
         if (version is > PhysicsSensor.SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, PhysicsSensor.SERIALIZATION_VERSION);
 
-        return new PhysicsSensor
+        var result = new PhysicsSensor
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            MaxActiveContacts = reader.ReadInt32(),
+            Disabled = reader.ReadBool(),
+            DetectSleepingBodies = reader.ReadBool(),
+            DetectStaticBodies = reader.ReadBool(),
+            DetectSelfEntityCollision = reader.ReadBool(),
+            ApplyNewShape = reader.ReadBool(),
         };
+
+        return result;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

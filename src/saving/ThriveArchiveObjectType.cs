@@ -209,6 +209,7 @@ public enum ThriveArchiveObjectType : uint
     ComponentSoundEffectPlayer,
     ComponentSoundListener,
     ComponentSpatialInstance,
+    ComponentMicrobeEventCallbacks,
     ComponentSpawned,
     ComponentSpeciesMember,
     ComponentStaticBodyMarker,
@@ -219,6 +220,7 @@ public enum ThriveArchiveObjectType : uint
     CellType,
     SoundEffectSlot,
     CompoundBag,
+    BulkTransportAnimation,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,

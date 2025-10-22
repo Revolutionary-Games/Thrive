@@ -46,8 +46,10 @@ public struct MicrobePhysicsExtraData : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.Write(A PROPERTY);
-        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+        writer.Write(TotalShapeCount);
+        writer.Write(MicrobeShapesCount);
+        writer.Write(PilusCount);
+        writer.Write(PilusInjectisomeCount);
     }
 }
 
@@ -60,8 +62,10 @@ public static class MicrobePhysicsExtraDataHelpers
 
         return new MicrobePhysicsExtraData
         {
-            AProperty = reader.ReadFloat(),
-            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+            TotalShapeCount = reader.ReadInt32(),
+            MicrobeShapesCount = reader.ReadInt32(),
+            PilusCount = reader.ReadInt32(),
+            PilusInjectisomeCount = reader.ReadInt32(),
         };
     }
 
