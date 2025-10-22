@@ -606,6 +606,4 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             species.Tolerances.PressureMaximum = optimal.PressureMaximum;
         }
     }
-
-
 }
