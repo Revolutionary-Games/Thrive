@@ -8,15 +8,17 @@ using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
 ///   Base properties of a microbe (separate from the species info as multicellular species-object couldn't
 ///   work there)
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct CellProperties
+public struct CellProperties : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Base colour of the cell. This is used when initializing organelles as it would otherwise be difficult to
     ///   obtain the colour
@@ -80,10 +82,31 @@ public struct CellProperties
 
     [JsonIgnore]
     public float Radius => IsBacteria ? UnadjustedRadius * 0.5f : UnadjustedRadius;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentCellProperties;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
 }
 
 public static class CellPropertiesHelpers
 {
+    public static CellProperties ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > CellProperties.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, CellProperties.SERIALIZATION_VERSION);
+
+        return new CellProperties
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
+
     /// <summary>
     ///   The default visual position if the organelle is on the microbe's center
     ///   TODO: this should be made organelle type specific, chemoreceptors and pilus should point backward

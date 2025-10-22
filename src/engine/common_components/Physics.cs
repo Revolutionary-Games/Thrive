@@ -3,13 +3,15 @@
 using System;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Physics body for an entity
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct Physics
+public struct Physics : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Allows direct physics state control. <see cref="VelocitiesApplied"/> need to be false for this to apply.
     ///   Only applies on body creation unless also <see cref="ManualPhysicsControl"/> component exists on the
@@ -47,15 +49,15 @@ public struct Physics
     public bool TrackVelocity;
 
     /// <summary>
-    ///   Sets the axis lock type applied when the body is created (for example constraining to the Y-axis).
+    ///   Sets the axis lock type applied when the body is created (for example, constraining to the Y-axis).
     ///   This limitation exists because there's currently no need to allow physics bodies to add / remove the
-    ///   axis lock dynamically, so if this value is changed then the body needs to be forcefully recreated.
+    ///   axis lock dynamically, so if this value is changed, then the body needs to be forcefully recreated.
     /// </summary>
     public AxisLockType AxisLock;
 
     /// <summary>
     ///   When set to <see cref="CollisionState.DisableCollisions"/>, this disables all *further*
-    ///   collisions for the object. This doesn't stop any existing collisions. To do that the physics body needs
+    ///   collisions for the object. This doesn't stop any existing collisions. To do that, the physics body needs
     ///   to be removed entirely from the world with <see cref="Physics.BodyDisabled"/>.
     /// </summary>
     public CollisionState DisableCollisionState;
@@ -63,7 +65,7 @@ public struct Physics
     // TODO: flags for teleporting the physics body to current WorldPosition
 
     /// <summary>
-    ///   When the body is disabled the body state is no longer read into the position variables allowing custom
+    ///   When the body is disabled, the body state is no longer read into the position variables allowing custom
     ///   control. And it is removed from the physics system to not interact with anything. Note that if the
     ///   <see cref="Systems.PhysicsBodyDisablingSystem"/> has not run yet the actual state might not match.
     ///   So use
@@ -94,10 +96,31 @@ public struct Physics
         EnableCollisions = 1,
         DisableCollisions = 2,
     }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentPhysics;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
 }
 
 public static class PhysicsHelpers
 {
+    public static Physics ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > Physics.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, Physics.SERIALIZATION_VERSION);
+
+        return new Physics
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
+
     public static void SetCollisionDisableState(this ref Physics physics, bool disableCollisions)
     {
         physics.DisableCollisionState = disableCollisions ?

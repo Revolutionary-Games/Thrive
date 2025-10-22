@@ -3,14 +3,16 @@
 using System;
 using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Entity that can play sound effects (short sounds). Requires a <see cref="WorldPosition"/> to function.
 /// </summary>
 [ComponentIsReadByDefault]
-[JSONDynamicTypeAllowed]
-public struct SoundEffectPlayer
+public struct SoundEffectPlayer : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public SoundEffectSlot[]? SoundEffectSlots;
 
     /// <summary>
@@ -33,6 +35,15 @@ public struct SoundEffectPlayer
 
     [JsonIgnore]
     public bool SoundsApplied;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentSoundEffectPlayer;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
 }
 
 public struct SoundEffectSlot
@@ -70,6 +81,18 @@ public struct SoundEffectSlot
 
 public static class SoundEffectPlayerHelpers
 {
+    public static SoundEffectPlayer ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SoundEffectPlayer.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SoundEffectPlayer.SERIALIZATION_VERSION);
+
+        return new SoundEffectPlayer
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
+
     /// <summary>
     ///   Starts playing a new sound effect
     /// </summary>

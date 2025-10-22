@@ -1,5 +1,6 @@
 ﻿namespace Components;
 
+using SharedBase.Archive;
 using System;
 using System.Collections.Generic;
 using Arch.Core;
@@ -12,9 +13,10 @@ using Systems;
 ///   AI for a single Microbe (enables the <see cref="MicrobeAISystem"/>. to run on this). And also the memory for
 ///   the AI.
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct MicrobeAI
+public struct MicrobeAI : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public float TimeUntilNextThink;
 
     public float PreviousAngle;
@@ -50,10 +52,31 @@ public struct MicrobeAI
 
     [JsonProperty]
     public bool HasBeenNearPlayer;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMicrobeAI;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
 }
 
 public static class MicrobeAIHelpers
 {
+    public static MicrobeAI ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > MicrobeAI.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, MicrobeAI.SERIALIZATION_VERSION);
+
+        return new MicrobeAI
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
+
     /// <summary>
     ///   Resets AI status when this AI-controlled microbe is removed from a colony
     /// </summary>

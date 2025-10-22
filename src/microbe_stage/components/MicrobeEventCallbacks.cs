@@ -1,5 +1,6 @@
 ﻿namespace Components;
 
+using SharedBase.Archive;
 using System;
 using System.Collections.Generic;
 using Arch.Core;
@@ -10,9 +11,10 @@ using Godot;
 ///   Entity that triggers various microbe event callbacks when things happen to it. This is mostly used for
 ///   connecting the player cell to the GUI and game stage.
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct MicrobeEventCallbacks
+public struct MicrobeEventCallbacks : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Triggers whenever the player enters unbind mode
     ///   <remarks>
@@ -59,10 +61,31 @@ public struct MicrobeEventCallbacks
     ///   event forwarders which are destroyed when the colony is disbanded)
     /// </summary>
     public bool IsTemporary;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMicrobeEventCallbacks;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
 }
 
 public static class MicrobeEventCallbackHelpers
 {
+    public static MicrobeEventCallbacks ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > MicrobeEventCallbacks.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, MicrobeEventCallbacks.SERIALIZATION_VERSION);
+
+        return new MicrobeEventCallbacks
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
+
     /// <summary>
     ///   Send a microbe notice message to the entity if possible
     /// </summary>

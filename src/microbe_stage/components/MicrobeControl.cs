@@ -1,5 +1,6 @@
 ﻿namespace Components;
 
+using SharedBase.Archive;
 using System;
 using Arch.Core;
 using Arch.Core.Extensions;
@@ -9,9 +10,10 @@ using Systems;
 /// <summary>
 ///   Control variables for specifying how a microbe wants to move / behave
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct MicrobeControl
+public struct MicrobeControl : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   The point towards which the microbe will move to point to
     /// </summary>
@@ -110,10 +112,31 @@ public struct MicrobeControl
         Sprinting = false;
         MucocystEffectsApplied = false;
     }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMicrobeControl;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
 }
 
 public static class MicrobeControlHelpers
 {
+    public static MicrobeControl ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > MicrobeControl.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, MicrobeControl.SERIALIZATION_VERSION);
+
+        return new MicrobeControl
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
+
     /// <summary>
     ///   Sets microbe state in a way that also applies the state to a colony if the entity is a lead cell
     /// </summary>

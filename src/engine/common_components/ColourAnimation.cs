@@ -2,15 +2,17 @@
 
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Specifies simple colour changing animations
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct ColourAnimation
+public struct ColourAnimation : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
-    ///   The default colour that can be returned to. For example stores the base microbe colour to reset to after
+    ///   The default colour that can be returned to. For example, stores the base microbe colour to reset to after
     ///   animating.
     /// </summary>
     public Color DefaultColour;
@@ -84,10 +86,31 @@ public struct ColourAnimation
             return AnimationStartColour.Lerp(AnimationTargetColour, AnimationElapsed / AnimationDuration);
         }
     }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentColourAnimation;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
 }
 
 public static class ColourAnimationHelpers
 {
+    public static ColourAnimation ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > ColourAnimation.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, ColourAnimation.SERIALIZATION_VERSION);
+
+        return new ColourAnimation
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
+
     /// <summary>
     ///   Plays a flashing animation
     /// </summary>
@@ -96,7 +119,7 @@ public static class ColourAnimationHelpers
     /// <param name="duration">How long the change to the target colour takes</param>
     /// <param name="priority">
     ///   Used to skip previous animations, if this is higher than current
-    ///   <see cref="ColourAnimation.AnimationUserInfo"/> then this replaces the current animation. Otherwise this
+    ///   <see cref="ColourAnimation.AnimationUserInfo"/> then this replaces the current animation. Otherwise, this
     ///   is silently ignored.
     /// </param>
     public static void Flash(this ref ColourAnimation animation, Color targetColour, float duration,

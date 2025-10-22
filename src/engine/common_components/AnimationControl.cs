@@ -1,14 +1,16 @@
 ﻿namespace Components;
 
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Allows controlling <see cref="Godot.AnimationPlayer"/> in a <see cref="SpatialInstance"/> (note that if
 ///   spatial is recreated <see cref="AnimationApplied"/> needs to be set to false for the animation to reapply)
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct AnimationControl
+public struct AnimationControl : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     // TODO: add speed / animation to play fields to make this generally useful
 
     /// <summary>
@@ -27,4 +29,28 @@ public struct AnimationControl
     /// </summary>
     [JsonIgnore]
     public bool AnimationApplied;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentAnimationControl;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
+}
+
+public static class AnimationControlHelpers
+{
+    public static AnimationControl ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > AnimationControl.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, AnimationControl.SERIALIZATION_VERSION);
+
+        return new AnimationControl
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
 }

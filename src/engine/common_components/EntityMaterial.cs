@@ -2,13 +2,15 @@
 
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Access to a material defined on an entity
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct EntityMaterial
+public struct EntityMaterial : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     [JsonIgnore]
     public ShaderMaterial[]? Materials;
 
@@ -36,4 +38,28 @@ public struct EntityMaterial
     /// </summary>
     [JsonIgnore]
     public bool MaterialFetchPerformed;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentEntityMaterial;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
+}
+
+public static class EntityMaterialHelpers
+{
+    public static EntityMaterial ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > EntityMaterial.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, EntityMaterial.SERIALIZATION_VERSION);
+
+        return new EntityMaterial
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
 }

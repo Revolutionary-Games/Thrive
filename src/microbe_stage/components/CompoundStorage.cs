@@ -1,19 +1,42 @@
 ﻿namespace Components;
 
+using SharedBase.Archive;
 using System.Collections.Generic;
 using Godot;
 
 /// <summary>
 ///   Entity has storage space for compounds
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct CompoundStorage
+public struct CompoundStorage : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public CompoundBag Compounds;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentCompoundStorage;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
 }
 
 public static class CompoundStorageHelpers
 {
+    public static CompoundStorage ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > CompoundStorage.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, CompoundStorage.SERIALIZATION_VERSION);
+
+        return new CompoundStorage
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
+
     /// <summary>
     ///   Vent all remaining compounds immediately
     /// </summary>

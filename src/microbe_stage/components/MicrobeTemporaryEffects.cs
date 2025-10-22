@@ -1,13 +1,15 @@
 ﻿namespace Components;
 
+using SharedBase.Archive;
 using Newtonsoft.Json;
 
 /// <summary>
 ///   Has some temporary effects that can affect microbes (like toxins)
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct MicrobeTemporaryEffects
+public struct MicrobeTemporaryEffects : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   How long this microbe will have a base movement speed penalty (if 0 or less not currently debuffed).
     ///   Must set <see cref="StateApplied"/> to false after modification.
@@ -32,4 +34,28 @@ public struct MicrobeTemporaryEffects
     /// </remarks>
     [JsonIgnore]
     public bool StateApplied;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMicrobeTemporaryEffects;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
+}
+
+public static class MicrobeTemporaryEffectsHelpers
+{
+    public static MicrobeTemporaryEffects ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > MicrobeTemporaryEffects.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, MicrobeTemporaryEffects.SERIALIZATION_VERSION);
+
+        return new MicrobeTemporaryEffects
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
 }

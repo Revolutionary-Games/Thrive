@@ -1,5 +1,6 @@
 ﻿namespace Components;
 
+using SharedBase.Archive;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,10 @@ using Newtonsoft.Json;
 ///   Microbe colony newMember. This component is added to the colony lead cell. This contains the overall info
 ///   about the cell colony or multicellular creature.
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct MicrobeColony
+public struct MicrobeColony : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   All colony members of this colony. The cell at index 0 has to be the <see cref="Leader"/>. Only modify
     ///   this data through the helper methods to ensure everything is consistent.
@@ -144,10 +146,31 @@ public struct MicrobeColony
         DerivedStatisticsCalculated = false;
         EntityWeightApplied = false;
     }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMicrobeColony;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
 }
 
 public static class MicrobeColonyHelpers
 {
+    public static MicrobeColony ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > MicrobeColony.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, MicrobeColony.SERIALIZATION_VERSION);
+
+        return new MicrobeColony
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
+
     // TODO: implement this (will need to swap all users of the member list to also read a new count variable
     // from the colony class)
     // public static readonly ArrayPool<Entity> MicrobeColonyMemberListPool = ArrayPool<Entity>.Create(100, 50);

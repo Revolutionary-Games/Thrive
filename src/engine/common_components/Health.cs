@@ -6,9 +6,10 @@ using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
+using SharedBase.Archive;
 
 /// <summary>
-///   Things that have a health and can be damaged
+///   Things that have a health statistic and can be damaged
 /// </summary>
 /// <remarks>
 ///   <para>
@@ -17,9 +18,10 @@ using Godot;
 ///   </para>
 /// </remarks>
 [ComponentIsReadByDefault]
-[JSONDynamicTypeAllowed]
-public struct Health
+public struct Health : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public List<DamageEventNotice>? RecentDamageReceived;
 
     public float CurrentHealth;
@@ -36,14 +38,14 @@ public struct Health
     public bool Invulnerable;
 
     /// <summary>
-    ///   Simple flag to check if this entity has died. A stage specific death system will set this flag when
+    ///   Simple flag to check if this entity has died. A stage-specific death system will set this flag when
     ///   an entity runs out of health (or some other condition is fulfilled for death)
     /// </summary>
     public bool Dead;
 
     /// <summary>
     ///   This health class is stage agnostic, so each stage needs its own entity death system to handle dying.
-    ///   To at least make that easier this flag exists for such a system to store the info on if it has already
+    ///   To at least make that easier, this flag exists for such a system to store the info on if it has already
     ///   handled a dead entity or not.
     /// </summary>
     public bool DeathProcessed;
@@ -58,10 +60,31 @@ public struct Health
         DeathProcessed = false;
         RecentDamageReceived = null;
     }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentHealth;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
 }
 
 public static class HealthHelpers
 {
+    public static Health ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > Health.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, Health.SERIALIZATION_VERSION);
+
+        return new Health
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
+
     public static float CalculateMicrobeHealth(MembraneType membraneType, float membraneRigidity,
         ref readonly MicrobeEnvironmentalEffects environmentalEffects)
     {

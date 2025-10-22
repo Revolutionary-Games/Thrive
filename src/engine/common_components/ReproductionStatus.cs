@@ -1,30 +1,53 @@
 ﻿namespace Components;
 
 using System.Collections.Generic;
+using SharedBase.Archive;
 
 /// <summary>
 ///   General info about the reproduction status of a creature
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct ReproductionStatus
+public struct ReproductionStatus : IArchivableComponent
 {
-    public Dictionary<Compound, float>? MissingCompoundsForBaseReproduction;
+    public const ushort SERIALIZATION_VERSION = 1;
 
-    // TODO: remove if unused for now (is currently unused -hhyyrylainen)
-    public bool ReadyToReproduce;
+    public Dictionary<Compound, float>? MissingCompoundsForBaseReproduction;
 
     public ReproductionStatus(IReadOnlyDictionary<Compound, float> baseReproductionCost)
     {
         MissingCompoundsForBaseReproduction = baseReproductionCost.CloneShallow();
+    }
 
-        ReadyToReproduce = false;
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentReproductionStatus;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        if (MissingCompoundsForBaseReproduction != null)
+        {
+            writer.WriteObject(MissingCompoundsForBaseReproduction);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
     }
 }
 
 public static class ReproductionStatusHelpers
 {
+    public static ReproductionStatus ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > ReproductionStatus.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, ReproductionStatus.SERIALIZATION_VERSION);
+
+        return new ReproductionStatus
+        {
+            MissingCompoundsForBaseReproduction = reader.ReadObject<Dictionary<Compound, float>>(),
+        };
+    }
+
     /// <summary>
-    ///   Sets up the base reproduction cost that is on top of the normal costs (for microbes)
+    ///   Sets up the base reproduction cost on top of the normal costs (for microbes)
     /// </summary>
     public static void SetupRequiredBaseReproductionCompounds(this ref ReproductionStatus reproductionStatus,
         Species species)

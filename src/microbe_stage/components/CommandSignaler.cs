@@ -2,14 +2,16 @@
 
 using Arch.Core;
 using Godot;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Sends and receivers command signals (signaling agent). Requires a <see cref="WorldPosition"/> to function
 ///   as the origin of the signaling command.
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct CommandSignaler
+public struct CommandSignaler : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Stores the position the command signal was received from. Only valid if <see cref="ReceivedCommand"/> is
     ///   not <see cref="MicrobeSignalCommand.None"/>.
@@ -38,4 +40,28 @@ public struct CommandSignaler
     public MicrobeSignalCommand ReceivedCommand;
 
     // TODO: should this have a bool flag to disable this component when the microbe doesn't have a signaling agent?
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentCommandSignaler;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
+}
+
+public static class CommandSignalerHelpers
+{
+    public static CommandSignaler ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > CommandSignaler.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, CommandSignaler.SERIALIZATION_VERSION);
+
+        return new CommandSignaler
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
 }

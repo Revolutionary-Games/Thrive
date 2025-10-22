@@ -2,13 +2,15 @@
 
 using Arch.Core;
 using Godot;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Entity data regarding being attached to another entity
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct AttachedToEntity
+public struct AttachedToEntity : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Entity this is attached to. Should be valid whenever this component exists.
     /// </summary>
@@ -37,6 +39,15 @@ public struct AttachedToEntity
         RelativeRotation = relativeRotation;
         DeleteIfTargetIsDeleted = false;
     }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentAttachedToEntity;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
 }
 
 public static class AttachedToEntityHelpers
@@ -47,6 +58,18 @@ public static class AttachedToEntityHelpers
     ///   multiple different places on exactly the same frame.
     /// </summary>
     public static readonly object EntityAttachRelationshipModifyLock = new();
+
+    public static AttachedToEntity ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > AttachedToEntity.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, AttachedToEntity.SERIALIZATION_VERSION);
+
+        return new AttachedToEntity
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
 
     /// <summary>
     ///   Creates the position in a cell colony for multicellular body plan part. Note that unlike before this uses

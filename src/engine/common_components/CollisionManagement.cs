@@ -8,13 +8,15 @@ using System.Threading;
 using Arch.Core;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Allows modifying <see cref="Physics"/> collisions of this entity
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct CollisionManagement
+public struct CollisionManagement : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Collisions experienced by this entity note that <see cref="RecordActiveCollisions"/> needs to be 1 or
     ///   more for this list to the populated. Don't reassign this list as otherwise it will stop being updated
@@ -82,10 +84,31 @@ public struct CollisionManagement
     /// </summary>
     [JsonIgnore]
     public bool CollisionIgnoresUsed;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentCollisionManagement;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
 }
 
 public static class CollisionManagementHelpers
 {
+    public static CollisionManagement ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > CollisionManagement.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, CollisionManagement.SERIALIZATION_VERSION);
+
+        return new CollisionManagement
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
+
     public static void StartCollisionRecording(this ref CollisionManagement collisionManagement, int maxCollisions)
     {
         if (collisionManagement.RecordActiveCollisions >= maxCollisions)

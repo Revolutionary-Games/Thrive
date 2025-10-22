@@ -6,13 +6,15 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Arch.Core;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Physics object that detects objects inside it (similar to Godot <see cref="Godot.Area3D"/>)
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct PhysicsSensor
+public struct PhysicsSensor : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   The shape this sensor has. Must be non-null to activate the sensor functionality. Changing this after
     ///   the sensor is created only applies when <see cref="ApplyNewShape"/> is set.
@@ -100,10 +102,31 @@ public struct PhysicsSensor
         ApplyNewShape = false;
         InternalDisabledState = false;
     }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentPhysicsSensor;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
 }
 
 public static class PhysicsSensorHelpers
 {
+    public static PhysicsSensor ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > PhysicsSensor.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, PhysicsSensor.SERIALIZATION_VERSION);
+
+        return new PhysicsSensor
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int GetActiveCollisions(this ref PhysicsSensor physicsSensor, out PhysicsCollision[]? collisions)
     {

@@ -8,14 +8,16 @@ using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
 ///   Keeps track of multicellular growth data
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct MulticellularGrowth
+public struct MulticellularGrowth : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   List of cells that need to be regrown, after being lost, in
     ///   <see cref="MulticellularGrowthHelpers.AddMulticellularGrowthCell"/>
@@ -71,10 +73,31 @@ public struct MulticellularGrowth
     [JsonIgnore]
     public bool IsFullyGrownMulticellular => NextBodyPlanCellToGrowIndex >=
         (TargetCellLayout?.Count ?? throw new InvalidOperationException("Unknown full layout"));
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMulticellularGrowth;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
 }
 
 public static class MulticellularGrowthHelpers
 {
+    public static MulticellularGrowth ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > MulticellularGrowth.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, MulticellularGrowth.SERIALIZATION_VERSION);
+
+        return new MulticellularGrowth
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
+
     /// <summary>
     ///   Adds the next cell missing from this multicellular species' body plan to this microbe's colony
     /// </summary>

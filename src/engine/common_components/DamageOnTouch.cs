@@ -1,13 +1,15 @@
 ﻿namespace Components;
 
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Damages any entities touched by this entity. Requires <see cref="CollisionManagement"/>
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct DamageOnTouch
+public struct DamageOnTouch : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   The name of the caused damage type this deals
     /// </summary>
@@ -41,4 +43,28 @@ public struct DamageOnTouch
     /// </summary>
     [JsonIgnore]
     public bool RegisteredWithCollisions;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentDamageOnTouch;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
+}
+
+public static class DamageOnTouchHelpers
+{
+    public static DamageOnTouch ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > DamageOnTouch.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, DamageOnTouch.SERIALIZATION_VERSION);
+
+        return new DamageOnTouch
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
 }

@@ -1,18 +1,18 @@
 ﻿namespace Components;
 
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Holds a physics shape once one is ready and then allows creating a physics body from it
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct PhysicsShapeHolder
+public struct PhysicsShapeHolder : IArchivableComponent
 {
-    [JsonIgnore]
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public PhysicsShape? Shape;
 
     /// <summary>
-    ///   When true the body is created as a static body that cannot move
+    ///   When true, the body is created as a static body that cannot move
     /// </summary>
     public bool BodyIsStatic;
 
@@ -21,12 +21,33 @@ public struct PhysicsShapeHolder
     ///   Will be automatically reset to false afterwards.
     /// </summary>
     public bool UpdateBodyShapeIfCreated;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentPhysicsShapeHolder;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(BodyIsStatic);
+        writer.Write(UpdateBodyShapeIfCreated);
+    }
 }
 
-public static class PhysicsShapeHolderExtensions
+public static class PhysicsShapeHolderHelpers
 {
+    public static PhysicsShapeHolder ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > PhysicsShapeHolder.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, PhysicsShapeHolder.SERIALIZATION_VERSION);
+
+        return new PhysicsShapeHolder
+        {
+            BodyIsStatic = reader.ReadBool(),
+            UpdateBodyShapeIfCreated = reader.ReadBool(),
+        };
+    }
+
     /// <summary>
-    ///   Gets the mass of a shape holder's shape if exist (if doesn't exist sets mass to 1000)
+    ///   Gets the mass of a shape holder's shape if exist (if it doesn't exist sets mass to 1000)
     /// </summary>
     /// <param name="shapeHolder">Shape holder to look at</param>
     /// <param name="mass">The found shape mass or 1000 if not found</param>

@@ -1,5 +1,6 @@
 ﻿namespace Components;
 
+using SharedBase.Archive;
 using System;
 using System.Collections.Generic;
 using Arch.Core;
@@ -12,9 +13,10 @@ using Xoshiro.PRNG32;
 /// <summary>
 ///   Something that can be engulfed by a microbe
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct Engulfable
+public struct Engulfable : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Stores the original scale when this becomes engulfed so that it can always be restored.
     ///   In some situations storing this in the transport animation will cause problems with not being able to reliably
@@ -91,6 +93,15 @@ public struct Engulfable
     [JsonIgnore]
     public float AdjustedEngulfSize => BaseEngulfSize * (1 - DigestedAmount);
 
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentEngulfable;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
+
     public class BulkTransportAnimation
     {
         /// <summary>
@@ -114,6 +125,18 @@ public struct Engulfable
 
 public static class EngulfableHelpers
 {
+    public static Engulfable ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > Engulfable.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, Engulfable.SERIALIZATION_VERSION);
+
+        return new Engulfable
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
+
     /// <summary>
     ///   Effective size of the engulfable for engulfability calculations
     /// </summary>

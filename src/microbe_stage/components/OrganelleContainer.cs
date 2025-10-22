@@ -1,5 +1,6 @@
 ﻿namespace Components;
 
+using SharedBase.Archive;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,10 @@ using Systems;
 /// <summary>
 ///   Entity that contains <see cref="PlacedOrganelle"/>
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct OrganelleContainer
+public struct OrganelleContainer : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Instances of all the organelles in this entity. This is saved but components are not saved. This means
     ///   that components are re-created when a save is loaded.
@@ -169,12 +171,33 @@ public struct OrganelleContainer
 
     // TODO: maybe put the process list refresh variable here and a some new system to regenerate the process list?
     // instead of just doing it when changing the organelles?
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentOrganelleContainer;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
 }
 
 public static class OrganelleContainerHelpers
 {
     private static readonly Lazy<Enzyme> Lipase = new(() =>
         SimulationParameters.Instance.GetEnzyme(Constants.LIPASE_ENZYME));
+
+    public static OrganelleContainer ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > OrganelleContainer.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, OrganelleContainer.SERIALIZATION_VERSION);
+
+        return new OrganelleContainer
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
+    }
 
     /// <summary>
     ///   Returns the check result whether this microbe can digest the target (has the enzyme necessary).

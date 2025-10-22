@@ -1,13 +1,15 @@
 ﻿namespace Components;
 
 using Arch.Core;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Holds operation info for delayed microbe colony operations
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct DelayedMicrobeColony
+public struct DelayedMicrobeColony : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   If not default, then this entity wants to attach to a colony after initialization. Note that this entity
     ///   must already have a <see cref="AttachedToEntity"/> component added.
@@ -49,5 +51,29 @@ public struct DelayedMicrobeColony
         AttachIndex = targetIndex;
 
         GrowAdditionalMembers = 0;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentDelayedMicrobeColony;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
+}
+
+public static class DelayedMicrobeColonyHelpers
+{
+    public static DelayedMicrobeColony ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > DelayedMicrobeColony.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, DelayedMicrobeColony.SERIALIZATION_VERSION);
+
+        return new DelayedMicrobeColony
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
     }
 }

@@ -1,13 +1,17 @@
 ﻿namespace Components;
 
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Specifies a collision shape resource to be loaded into a <see cref="PhysicsShapeHolder"/>
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct CollisionShapeLoader
+public struct CollisionShapeLoader : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
+
+
     public string CollisionResourcePath;
 
     /// <summary>
@@ -41,5 +45,29 @@ public struct CollisionShapeLoader
 
         SkipForceRecreateBodyIfCreated = false;
         ShapeLoaded = false;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentCollisionShapeLoader;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(A PROPERTY);
+        writer.WriteObject(A PROPERTY OF COMPLEX TYPE);
+    }
+}
+
+public static class CollisionShapeLoaderHelpers
+{
+    public static CollisionShapeLoader ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > CollisionShapeLoader.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, CollisionShapeLoader.SERIALIZATION_VERSION);
+
+        return new CollisionShapeLoader
+        {
+            AProperty = reader.ReadFloat(),
+            AnotherProperty = reader.ReadObject<PropertyTypeGoesHere>(),
+        };
     }
 }
