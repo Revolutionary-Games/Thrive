@@ -61,6 +61,16 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             ThirdPartyTypeHelpers.WriteXoShiRo256StarStar);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.XoShiRo256StarStar, typeof(XoShiRo256starstar),
             ThirdPartyTypeHelpers.ReadXoShiRo256StarStarFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EntityWorld, typeof(World),
+            EntityWorldSerializers.WriteEntityWorldToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EntityWorld, typeof(World),
+            EntityWorldSerializers.ReadEntityWorldFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Entity, typeof(Entity),
+            EntityWorldSerializers.WriteEntityReferenceToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Entity, typeof(Entity),
+            EntityWorldSerializers.ReadEntityReferenceFromArchiveBoxed);
     }
 
     private void RegisterEnums()

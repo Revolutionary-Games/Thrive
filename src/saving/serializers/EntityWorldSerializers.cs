@@ -37,6 +37,11 @@ public static class EntityWorldSerializers
         writer.Write(entity.Version);
     }
 
+    public static object ReadEntityReferenceFromArchiveBoxed(ISArchiveReader reader, ushort version)
+    {
+        return ReadEntityReferenceFromArchive(reader, version);
+    }
+
     public static Entity ReadEntityReferenceFromArchive(ISArchiveReader reader, ushort version)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
