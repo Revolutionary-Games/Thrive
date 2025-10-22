@@ -1,6 +1,7 @@
 ﻿using System;
 using Godot;
 using SharedBase.Archive;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Base for all stages
@@ -23,7 +24,7 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     protected Node3D? graphicsPreloadNode;
 #pragma warning restore CA2213
 
-    protected Random random = new();
+    protected XoShiRo256starstar random = new();
 
     /// <summary>
     ///   True when the player is extinct
@@ -286,7 +287,7 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
 
         CurrentGame = reader.ReadObject<GameProperties>();
         gameOver = reader.ReadBool();
-        random = reader.ReadObject<Random>();
+        random = reader.ReadObject<XoShiRo256starstar>();
     }
 
     /// <summary>
