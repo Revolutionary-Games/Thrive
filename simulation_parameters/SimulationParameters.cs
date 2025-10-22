@@ -115,9 +115,9 @@ public partial class SimulationParameters : Node
         {
             var deserializers = new JsonConverter[]
             {
-                new DirectTypeLoadOverride(typeof(CompoundDefinition), null),
-                new DirectTypeLoadOverride(typeof(Enzyme), null),
-                new DirectTypeLoadOverride(typeof(Biome), null),
+                new DirectTypeLoadOverride(typeof(CompoundDefinition)),
+                new DirectTypeLoadOverride(typeof(Enzyme)),
+                new DirectTypeLoadOverride(typeof(Biome)),
             };
 
             compounds = LoadRegistry<CompoundDefinition>("res://simulation_parameters/microbe_stage/compounds.json",
@@ -132,7 +132,7 @@ public partial class SimulationParameters : Node
 
             deserializers =
             [
-                new DirectTypeLoadOverride(typeof(OrganelleDefinition), null),
+                new DirectTypeLoadOverride(typeof(OrganelleDefinition)),
             ];
 
             organelles = LoadRegistry<OrganelleDefinition>("res://simulation_parameters/microbe_stage/organelles.json",
@@ -186,27 +186,27 @@ public partial class SimulationParameters : Node
 
         worldResources =
             LoadRegistry<WorldResource>("res://simulation_parameters/awakening_stage/world_resources.json",
-                [new DirectTypeLoadOverride(typeof(WorldResource), null)]);
+                [new DirectTypeLoadOverride(typeof(WorldResource))]);
 
         equipment =
             LoadRegistry<EquipmentDefinition>("res://simulation_parameters/awakening_stage/equipment.json",
-                [new DirectTypeLoadOverride(typeof(EquipmentDefinition), null)]);
+                [new DirectTypeLoadOverride(typeof(EquipmentDefinition))]);
 
         craftingRecipes =
             LoadRegistry<CraftingRecipe>("res://simulation_parameters/awakening_stage/crafting_recipes.json",
-                [new DirectTypeLoadOverride(typeof(CraftingRecipe), null)]);
+                [new DirectTypeLoadOverride(typeof(CraftingRecipe))]);
 
         structures =
             LoadRegistry<StructureDefinition>("res://simulation_parameters/awakening_stage/structures.json",
-                [new DirectTypeLoadOverride(typeof(StructureDefinition), null)]);
+                [new DirectTypeLoadOverride(typeof(StructureDefinition))]);
 
         unitTypes =
             LoadRegistry<UnitType>("res://simulation_parameters/industrial_stage/units.json",
-                [new DirectTypeLoadOverride(typeof(UnitType), null)]);
+                [new DirectTypeLoadOverride(typeof(UnitType))]);
 
         spaceStructures =
             LoadRegistry<SpaceStructureDefinition>("res://simulation_parameters/space_stage/space_structures.json",
-                [new DirectTypeLoadOverride(typeof(SpaceStructureDefinition), null)]);
+                [new DirectTypeLoadOverride(typeof(SpaceStructureDefinition))]);
 
         technologies =
             LoadRegistry<Technology>("res://simulation_parameters/awakening_stage/technologies.json");

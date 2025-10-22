@@ -91,19 +91,6 @@ public class ActionHistory<T>
     }
 
     /// <summary>
-    ///   Makes sure all actions in the action history don't point to outdated callback targets (due to loading a save)
-    /// </summary>
-    /// <param name="newTarget">The new target object</param>
-    /// <typeparam name="TTarget">The type of objects in the callbacks to override</typeparam>
-    public void ReTargetCallbacksInHistory<TTarget>(TTarget newTarget)
-    {
-        foreach (var action in Actions)
-        {
-            SaveApplyHelper.ReTargetCallbacks(action, newTarget);
-        }
-    }
-
-    /// <summary>
     ///   Deletes the entire action history. Used for now to work with editors that have partially done undo history
     /// </summary>
     internal void Nuke()
