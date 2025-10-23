@@ -79,7 +79,15 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>, IArchi
     public void WriteToArchive(ISArchiveWriter writer)
     {
         writer.Write(translationKey);
-        writer.WriteObjectOrNull(formatStringArgs);
+
+        if (formatStringArgs != null)
+        {
+            writer.WriteObject(formatStringArgs);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
     }
 
     /// <summary>
@@ -93,7 +101,7 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>, IArchi
     /// </exception>
     /// <remarks>
     ///   <para>
-    ///     I'm not fully sure if this is a good optimization to do or if this is just pointless complication
+    ///     I'm not fully sure if this is a good optimization to do or if this is just a pointless complication.
     ///     -hhyyrylainen
     ///   </para>
     /// </remarks>

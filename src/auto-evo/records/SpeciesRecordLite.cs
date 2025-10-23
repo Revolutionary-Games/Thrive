@@ -46,8 +46,8 @@ public class SpeciesRecordLite : SpeciesRecord, IArchivable
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        return new SpeciesRecordLite(reader.ReadInt64(), reader.ReadObjectOrNull<uint>(),
-            reader.ReadObjectOrNull<uint>(), reader.ReadObjectOrNull<Species>());
+        return new SpeciesRecordLite(reader.ReadInt64(), reader.ReadObjectOrNull<uint?>(),
+            reader.ReadObjectOrNull<uint?>(), reader.ReadObjectOrNull<Species>());
     }
 
     public override void WriteToArchive(ISArchiveWriter writer)

@@ -150,8 +150,10 @@ public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
         return new BiomeConditions(reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>(),
-            new Dictionary<Compound, BiomeCompoundProperties>(), new Dictionary<Compound, BiomeCompoundProperties>(),
-            new Dictionary<Compound, BiomeCompoundProperties>(), new Dictionary<Compound, BiomeCompoundProperties>())
+            reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>(),
+            reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>(),
+            reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>(),
+            reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>())
         {
             Chunks = reader.ReadObject<Dictionary<string, ChunkConfiguration>>(),
             Pressure = reader.ReadFloat(),

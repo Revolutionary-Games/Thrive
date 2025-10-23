@@ -62,14 +62,6 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
     OrganelleDefinition IPositionedOrganelle.Definition => Definition;
 #pragma warning restore CA1033
 
-    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
-    {
-        if (type != (ArchiveObjectType)ThriveArchiveObjectType.OrganelleTemplate)
-            throw new NotSupportedException();
-
-        writer.WriteObject((OrganelleTemplate)obj);
-    }
-
     public static OrganelleTemplate ReadFromArchive(ISArchiveReader reader, ushort version)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
@@ -77,7 +69,7 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
 
         return new OrganelleTemplate(reader.ReadObject<OrganelleDefinition>(), reader.ReadHex(), reader.ReadInt32())
         {
-            Upgrades = reader.ReadObject<OrganelleUpgrades>(),
+            Upgrades = reader.ReadObjectOrNull<OrganelleUpgrades>(),
         };
     }
 
