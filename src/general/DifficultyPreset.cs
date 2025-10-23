@@ -92,7 +92,7 @@ public class DifficultyPreset : RegistryType, IDifficulty
     public string UntranslatedName =>
         untranslatedName ?? throw new InvalidOperationException("Translations not initialized");
 
-    public static object ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         return SimulationParameters.Instance.GetDifficultyPreset(ReadInternalName(reader, version));
     }

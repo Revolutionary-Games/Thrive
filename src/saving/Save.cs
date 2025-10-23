@@ -306,7 +306,7 @@ public sealed class Save : IArchivable, IDisposable
         saveArchiveData?.Dispose();
     }
 
-    internal static Save ReadFromArchive(ISArchiveReader reader, ushort version)
+    internal static Save ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

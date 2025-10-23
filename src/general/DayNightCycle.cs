@@ -90,7 +90,7 @@ public class DayNightCycle : IDaylightInfo, IArchivable
         return CalculateAverageSunlight(daytimeMultiplier);
     }
 
-    public static DayNightCycle ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static DayNightCycle ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

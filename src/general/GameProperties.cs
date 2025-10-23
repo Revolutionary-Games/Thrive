@@ -353,7 +353,7 @@ public class GameProperties : IArchivable
         // writer.WriteObject(TechWeb);
     }
 
-    internal static GameProperties ReadFromArchive(ISArchiveReader reader, ushort version)
+    internal static GameProperties ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
@@ -362,7 +362,7 @@ public class GameProperties : IArchivable
             reader.ReadObject<TutorialState>(),
             reader.ReadObject<Dictionary<string, bool>>());
 
-        reader.ReportObjectConstructorDone(instance);
+        reader.ReportObjectConstructorDone(instance, referenceId);
 
         instance.FreeBuild = reader.ReadBool();
         instance.CheatsUsed = reader.ReadBool();

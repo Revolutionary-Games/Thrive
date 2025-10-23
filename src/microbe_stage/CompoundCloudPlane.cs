@@ -70,7 +70,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         writer.WriteObject((CompoundCloudPlane)obj);
     }
 
-    public static CompoundCloudPlane ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static CompoundCloudPlane ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

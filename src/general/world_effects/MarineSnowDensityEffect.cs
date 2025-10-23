@@ -27,7 +27,7 @@ public class MarineSnowDensityEffect : IWorldEffect
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MarineSnowDensityEffect;
     public bool CanBeReferencedInArchive => false;
 
-    public static MarineSnowDensityEffect ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static MarineSnowDensityEffect ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

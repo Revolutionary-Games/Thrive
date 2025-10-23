@@ -149,7 +149,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
         writer.WriteObject((PlacedOrganelle)obj);
     }
 
-    public static PlacedOrganelle ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static PlacedOrganelle ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
@@ -162,7 +162,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
             IsDuplicate = reader.ReadBool(),
         };
 
-        reader.ReportObjectConstructorDone(instance);
+        reader.ReportObjectConstructorDone(instance, referenceId);
 
         instance.SisterOrganelle = reader.ReadObjectOrNull<PlacedOrganelle>();
 

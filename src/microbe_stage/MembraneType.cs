@@ -59,7 +59,7 @@ public class MembraneType : RegistryType
     [JsonIgnore]
     public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MembraneType;
 
-    public static object ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         return SimulationParameters.Instance.GetMembrane(ReadInternalName(reader, version));
     }

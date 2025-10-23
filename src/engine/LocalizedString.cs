@@ -67,7 +67,7 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>, IArchi
         writer.WriteObject((LocalizedString)obj);
     }
 
-    public static LocalizedString ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static LocalizedString ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

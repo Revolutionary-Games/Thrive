@@ -17,7 +17,7 @@ public interface IWorldEffect : IArchivable
         writer.WriteObject((IWorldEffect)obj);
     }
 
-    public static IWorldEffect ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static IWorldEffect ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         return reader.ReadObject<IWorldEffect>();
     }

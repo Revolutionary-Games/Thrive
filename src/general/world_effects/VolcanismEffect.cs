@@ -28,7 +28,7 @@ public class VolcanismEffect : IWorldEffect
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.VolcanismEffect;
     public bool CanBeReferencedInArchive => false;
 
-    public static VolcanismEffect ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static VolcanismEffect ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

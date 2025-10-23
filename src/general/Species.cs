@@ -177,14 +177,14 @@ public abstract class Species : ICloneable, IArchivable
         writer.WriteObject((Species)obj);
     }
 
-    public static object ReadFromArchive(ISArchiveReader reader, Type knownType, ushort version)
+    public static object ReadFromArchive(ISArchiveReader reader, Type knownType, ushort version, int referenceId)
     {
         // This forwards the reading to the correct version of the species
         if (typeof(MicrobeSpecies) == knownType)
-            return MicrobeSpecies.ReadFromArchive(reader, version);
+            return MicrobeSpecies.ReadFromArchive(reader, version, referenceId);
 
         if (typeof(MulticellularSpecies) == knownType)
-            return MulticellularSpecies.ReadFromArchive(reader, version);
+            return MulticellularSpecies.ReadFromArchive(reader, version, referenceId);
 
         throw new NotSupportedException($"Unknown species type for read forwarding: {knownType}");
     }

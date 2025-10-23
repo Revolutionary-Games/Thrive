@@ -332,7 +332,7 @@ public class OrganelleDefinition : RegistryType
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.OrganelleDefinition;
 
-    public static object ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         return SimulationParameters.Instance.GetOrganelleType(ReadInternalName(reader, version));
     }

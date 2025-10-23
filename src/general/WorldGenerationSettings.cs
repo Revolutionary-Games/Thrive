@@ -299,14 +299,14 @@ public class WorldGenerationSettings : IArchivable
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.WorldGenerationSettings;
     public bool CanBeReferencedInArchive => true;
 
-    public static WorldGenerationSettings ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static WorldGenerationSettings ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
         var instance = new WorldGenerationSettings(reader.ReadObject<IDifficulty>());
 
-        reader.ReportObjectConstructorDone(instance);
+        reader.ReportObjectConstructorDone(instance, referenceId);
 
         instance.AutoEvoConfiguration = reader.ReadObject<IAutoEvoConfiguration>();
 

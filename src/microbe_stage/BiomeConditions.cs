@@ -144,7 +144,7 @@ public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.BiomeConditions;
     public bool CanBeReferencedInArchive => false;
 
-    public static BiomeConditions ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static BiomeConditions ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

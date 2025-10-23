@@ -193,7 +193,7 @@ public class Patch : IArchivable
         writer.WriteObject((Patch)obj);
     }
 
-    public static Patch ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static Patch ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
@@ -209,7 +209,7 @@ public class Patch : IArchivable
             DynamicDataSeed = reader.ReadInt64(),
         };
 
-        reader.ReportObjectConstructorDone(instance);
+        reader.ReportObjectConstructorDone(instance, referenceId);
 
         instance.Adjacent = reader.ReadObject<HashSet<Patch>>();
 
@@ -773,7 +773,7 @@ public class PatchSnapshot : ICloneable, IArchivable
         writer.WriteObject((PatchSnapshot)obj);
     }
 
-    public static PatchSnapshot ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static PatchSnapshot ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

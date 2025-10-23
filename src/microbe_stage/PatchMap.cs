@@ -60,7 +60,7 @@ public class PatchMap : IArchivable
 
     private List<(int Id1, int Id2)> RegionAdjacencies { get; set; } = new();
 
-    public static PatchMap ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static PatchMap ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

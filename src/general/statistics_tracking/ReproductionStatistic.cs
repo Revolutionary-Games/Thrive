@@ -127,7 +127,7 @@ public class ReproductionStatistic : IStatistic, IArchiveUpdatable
             writer.WriteObject((ReproductionOrganelleData)obj);
         }
 
-        public static ReproductionOrganelleData ReadFromArchive(ISArchiveReader reader, ushort version)
+        public static ReproductionOrganelleData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
         {
             if (version is > SERIALIZATION_VERSION_ORGANELLE or <= 0)
                 throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_ORGANELLE);

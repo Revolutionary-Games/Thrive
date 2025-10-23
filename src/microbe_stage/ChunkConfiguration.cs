@@ -112,7 +112,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
         };
     }
 
-    public static object ReadFromArchiveBoxed(ISArchiveReader reader, ushort version)
+    public static object ReadFromArchiveBoxed(ISArchiveReader reader, ushort version, int referenceId)
     {
         return ReadFromArchive(reader, version);
     }
@@ -226,7 +226,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
         }
 
         // ReSharper disable once MemberHidesStaticFromOuterClass
-        public static object ReadFromArchiveBoxed(ISArchiveReader reader, ushort version)
+        public static object ReadFromArchiveBoxed(ISArchiveReader reader, ushort version, int referenceId)
         {
             return ReadFromArchive(reader, version);
         }
@@ -353,7 +353,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
         }
 
         // ReSharper disable once MemberHidesStaticFromOuterClass
-        public static ChunkScene ReadFromArchive(ISArchiveReader reader, ushort version)
+        public static object ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
         {
             if (version is > SERIALIZATION_VERSION_SCENE or <= 0)
                 throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_SCENE);

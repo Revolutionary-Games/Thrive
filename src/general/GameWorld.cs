@@ -256,14 +256,14 @@ public class GameWorld : IArchivable
         species.OnEdited();
     }
 
-    public static GameWorld ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static GameWorld ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
         var instance = new GameWorld(reader.ReadObject<WorldGenerationSettings>());
 
-        reader.ReportObjectConstructorDone(instance);
+        reader.ReportObjectConstructorDone(instance, referenceId);
 
         reader.ReadObjectProperties(instance.UnlockProgress);
         reader.ReadObjectProperties(instance.StatisticsTracker);

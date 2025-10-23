@@ -146,7 +146,7 @@ public class MicrobeSpecies : Species, ICellDefinition
         return true;
     }
 
-    public static MicrobeSpecies ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static MicrobeSpecies ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
@@ -155,7 +155,7 @@ public class MicrobeSpecies : Species, ICellDefinition
             reader.ReadString() ?? throw new NullArchiveObjectException(),
             reader.ReadString() ?? throw new NullArchiveObjectException());
 
-        reader.ReportObjectConstructorDone(instance);
+        reader.ReportObjectConstructorDone(instance, referenceId);
 
         instance.ReadNonConstructorBaseProperties(reader, 1);
 

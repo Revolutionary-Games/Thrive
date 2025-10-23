@@ -38,7 +38,7 @@ public class MeteorImpactEvent : IWorldEffect
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MeteorImpactEvent;
     public bool CanBeReferencedInArchive => false;
 
-    public static MeteorImpactEvent ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static MeteorImpactEvent ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

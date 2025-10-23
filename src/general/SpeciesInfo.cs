@@ -30,7 +30,7 @@ public class SpeciesInfo : IArchivable
         writer.WriteObject((SpeciesInfo)obj);
     }
 
-    public static SpeciesInfo ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static SpeciesInfo ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

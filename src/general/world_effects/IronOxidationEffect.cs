@@ -21,7 +21,7 @@ public class IronOxidationEffect : IWorldEffect
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.IronOxidationEffect;
     public bool CanBeReferencedInArchive => false;
 
-    public static IronOxidationEffect ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static IronOxidationEffect ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

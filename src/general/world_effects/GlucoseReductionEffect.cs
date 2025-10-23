@@ -22,7 +22,7 @@ public class GlucoseReductionEffect : IWorldEffect
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.GlucoseReductionEffect;
     public bool CanBeReferencedInArchive => false;
 
-    public static GlucoseReductionEffect ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static GlucoseReductionEffect ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

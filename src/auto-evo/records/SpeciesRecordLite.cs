@@ -41,7 +41,7 @@ public class SpeciesRecordLite : SpeciesRecord, IArchivable
         writer.WriteObject((SpeciesRecordLite)obj);
     }
 
-    public static SpeciesRecordLite ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static SpeciesRecordLite ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

@@ -28,7 +28,7 @@ public class CompoundDiffusionEffect : IWorldEffect
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CompoundDiffusionEffect;
     public bool CanBeReferencedInArchive => false;
 
-    public static CompoundDiffusionEffect ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static CompoundDiffusionEffect ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

@@ -62,7 +62,7 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
     OrganelleDefinition IPositionedOrganelle.Definition => Definition;
 #pragma warning restore CA1033
 
-    public static OrganelleTemplate ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static OrganelleTemplate ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

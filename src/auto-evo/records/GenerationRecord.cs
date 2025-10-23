@@ -89,7 +89,7 @@ public class GenerationRecord : IArchivable
         writer.WriteObject((GenerationRecord)obj);
     }
 
-    public static GenerationRecord ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static GenerationRecord ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

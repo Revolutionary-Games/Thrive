@@ -66,7 +66,7 @@ public class PredefinedAutoEvoConfiguration : RegistryType, IAutoEvoConfiguratio
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.PredefinedAutoEvoConfiguration;
 
-    public static object ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         var name = ReadInternalName(reader, version);
         if (name != SimulationParameters.AUTO_EVO_CONFIGURATION_NAME)

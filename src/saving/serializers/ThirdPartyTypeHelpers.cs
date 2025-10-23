@@ -22,7 +22,8 @@ public static class ThirdPartyTypeHelpers
         serializer1.Write(writer, (XoShiRo256starstar)obj);
     }
 
-    public static XoShiRo256starstar ReadXoShiRo256StarStarFromArchive(ISArchiveReader reader, ushort version)
+    public static XoShiRo256starstar ReadXoShiRo256StarStarFromArchive(ISArchiveReader reader, ushort version,
+        int referenceId)
     {
         serializer1 ??= new XoshiroStarSerializer();
         return serializer1.Read(reader, version);

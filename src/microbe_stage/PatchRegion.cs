@@ -103,7 +103,7 @@ public class PatchRegion : IArchivable
         writer.WriteObject((PatchRegion)obj);
     }
 
-    public static PatchRegion ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static PatchRegion ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
@@ -112,7 +112,7 @@ public class PatchRegion : IArchivable
             reader.ReadString() ?? throw new NullArchiveObjectException(),
             (RegionType)reader.ReadInt32(), reader.ReadVector2(), reader.ReadFloat(), reader.ReadFloat());
 
-        reader.ReportObjectConstructorDone(instance);
+        reader.ReportObjectConstructorDone(instance, referenceId);
 
         instance.Adjacent = reader.ReadObject<HashSet<PatchRegion>>();
 

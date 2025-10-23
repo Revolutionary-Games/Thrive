@@ -37,7 +37,7 @@ public static class EntityWorldSerializers
         writer.Write(entity.Version);
     }
 
-    public static object ReadEntityReferenceFromArchiveBoxed(ISArchiveReader reader, ushort version)
+    public static object ReadEntityReferenceFromArchiveBoxed(ISArchiveReader reader, ushort version, int referenceId)
     {
         return ReadEntityReferenceFromArchive(reader, version);
     }
@@ -131,7 +131,7 @@ public static class EntityWorldSerializers
         writer.Write((byte)0);
     }
 
-    public static World ReadEntityWorldFromArchive(ISArchiveReader reader, ushort version)
+    public static object ReadEntityWorldFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

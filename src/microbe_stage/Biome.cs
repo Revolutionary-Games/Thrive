@@ -73,7 +73,7 @@ public class Biome : RegistryType
     [JsonIgnore]
     public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.Biome;
 
-    public static object ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         return SimulationParameters.Instance.GetBiome(ReadInternalName(reader, version));
     }

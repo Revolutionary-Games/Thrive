@@ -33,7 +33,7 @@ public class UnderwaterVentEruptionEffect : IWorldEffect
 
     public bool CanBeReferencedInArchive => false;
 
-    public static UnderwaterVentEruptionEffect ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static UnderwaterVentEruptionEffect ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

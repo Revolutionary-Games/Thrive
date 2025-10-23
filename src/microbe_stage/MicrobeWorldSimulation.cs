@@ -124,7 +124,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.MicrobeWorldSimulation;
 
-    public static MicrobeWorldSimulation ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static MicrobeWorldSimulation ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
@@ -135,7 +135,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         var instance = new MicrobeWorldSimulation(reader.ReadObject<World>());
 
-        reader.ReportObjectConstructorDone(instance);
+        reader.ReportObjectConstructorDone(instance, referenceId);
 
         // The base version is different from ours
         instance.ReadBasePropertiesFromArchive(reader, 1);
