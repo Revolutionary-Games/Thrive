@@ -325,5 +325,3 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable
         return false;
     }
 }
-
-
