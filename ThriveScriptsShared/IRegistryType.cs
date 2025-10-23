@@ -45,11 +45,9 @@ public abstract class RegistryType : IRegistryType, IArchivable
 
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
-        writer.WriteObject((RegistryType)obj);
-
-        // This is probably not good enough as no object header would let the right deserialize callback to run
-
-        // writer.Write(((IRegistryType)obj).InternalName);
+        // This must match what the WriteToArchive method does. And the simplest thing is to write just the internal
+        // name and let the archive machinery map to the right read method
+        writer.Write(((IRegistryType)obj).InternalName);
     }
 
     public void WriteToArchive(ISArchiveWriter writer)
@@ -67,5 +65,13 @@ public abstract class RegistryType : IRegistryType, IArchivable
     public override string ToString()
     {
         return InternalName;
+    }
+
+    protected static string ReadInternalName(ISArchiveReader reader, ushort version)
+    {
+        if (version is > IRegistryType.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, IRegistryType.SERIALIZATION_VERSION);
+
+        return reader.ReadString() ?? throw new NullArchiveObjectException();
     }
 }

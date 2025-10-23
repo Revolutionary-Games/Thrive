@@ -56,7 +56,13 @@ public class MembraneType : RegistryType
     [JsonIgnore]
     public bool CanEngulf => !CellWall;
 
+    [JsonIgnore]
     public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MembraneType;
+
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        return SimulationParameters.Instance.GetMembrane(ReadInternalName(reader, version));
+    }
 
     public override void Check(string name)
     {

@@ -279,9 +279,6 @@ public class OrganelleDefinition : RegistryType
     [JsonIgnore]
     public Vector3 ModelOffset => modelOffset;
 
-    public override ArchiveObjectType ArchiveObjectType =>
-        (ArchiveObjectType)ThriveArchiveObjectType.OrganelleDefinition;
-
     // Faster checks for specific components
     public bool HasPilusComponent { get; private set; }
     public bool HasMovementComponent { get; private set; }
@@ -330,6 +327,15 @@ public class OrganelleDefinition : RegistryType
     [JsonIgnore]
     public string UntranslatedName =>
         untranslatedName ?? throw new InvalidOperationException("Translations not initialized");
+
+    [JsonIgnore]
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.OrganelleDefinition;
+
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        return SimulationParameters.Instance.GetOrganelleType(ReadInternalName(reader, version));
+    }
 
     /// <summary>
     ///   Gets the visual scene that should be used to represent this organelle (if there is one)

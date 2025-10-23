@@ -38,6 +38,11 @@ public class Enzyme : RegistryType
     [JsonIgnore]
     public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.Enzyme;
 
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        return SimulationParameters.Instance.GetEnzyme(ReadInternalName(reader, version));
+    }
+
     public override void Check(string name)
     {
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);

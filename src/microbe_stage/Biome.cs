@@ -70,7 +70,13 @@ public class Biome : RegistryType
     private string? untranslatedName;
 #pragma warning restore 169,649
 
+    [JsonIgnore]
     public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.Biome;
+
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        return SimulationParameters.Instance.GetBiome(ReadInternalName(reader, version));
+    }
 
     public override void Check(string name)
     {

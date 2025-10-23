@@ -42,6 +42,11 @@ public class BioProcess : RegistryType
     [JsonIgnore]
     public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.BioProcess;
 
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        return SimulationParameters.Instance.GetBioProcess(ReadInternalName(reader, version));
+    }
+
     public override void Check(string name)
     {
         if (inputsRaw == null || outputsRaw == null)

@@ -92,6 +92,11 @@ public class DifficultyPreset : RegistryType, IDifficulty
     public string UntranslatedName =>
         untranslatedName ?? throw new InvalidOperationException("Translations not initialized");
 
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        return SimulationParameters.Instance.GetDifficultyPreset(ReadInternalName(reader, version));
+    }
+
     public void SetGrowthRateLimitCheatOverride(bool newLimitSetting)
     {
         applyGrowthOverride = true;

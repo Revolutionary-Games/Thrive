@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using SharedBase.Archive;
 using ThriveScriptsShared;
 
@@ -61,8 +62,18 @@ public class PredefinedAutoEvoConfiguration : RegistryType, IAutoEvoConfiguratio
     [JsonProperty]
     public bool RefundMigrationsInExtinctions { get; private set; }
 
+    [JsonIgnore]
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.PredefinedAutoEvoConfiguration;
+
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        var name = ReadInternalName(reader, version);
+        if (name != SimulationParameters.AUTO_EVO_CONFIGURATION_NAME)
+            throw new FormatException($"Auto-evo object had unexpected name: {name}");
+
+        return SimulationParameters.Instance.AutoEvoConfiguration;
+    }
 
     public override void Check(string name)
     {
