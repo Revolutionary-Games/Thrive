@@ -46,7 +46,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
     /// <summary>
     ///   The name of the kind of damage type this chunk inflicts.
     /// </summary>
-    public string DamageType;
+    public string? DamageType;
 
     public Dictionary<Compound, ChunkCompound>? Compounds;
 
@@ -58,7 +58,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
     /// <summary>
     ///   The type of enzyme needed to break down this chunk.
     /// </summary>
-    public string DissolverEnzyme;
+    public string? DissolverEnzyme;
 
     [JsonIgnore]
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
@@ -105,10 +105,10 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
             VentAmount = reader.ReadFloat(),
             Damages = reader.ReadFloat(),
             DeleteOnTouch = reader.ReadBool(),
-            DamageType = reader.ReadString() ?? throw new NullArchiveObjectException(),
+            DamageType = reader.ReadString(),
             Compounds = reader.ReadObjectOrNull<Dictionary<Compound, ChunkCompound>>(),
             EasterEgg = reader.ReadBool(),
-            DissolverEnzyme = reader.ReadString() ?? throw new NullArchiveObjectException(),
+            DissolverEnzyme = reader.ReadString(),
         };
     }
 
