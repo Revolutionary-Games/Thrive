@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   A list of positioned cells. Verifies that they don't overlap
@@ -16,9 +17,11 @@ using Newtonsoft.Json;
 /// <typeparam name="T">The type of organelle contained in this layout</typeparam>
 [UseThriveSerializer]
 [JsonObject(IsReference = true)]
-public class CellLayout<T> : HexLayout<T>
+public class CellLayout<T> : HexLayout<T>, IArchivable
     where T : class, IPositionedCell
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public CellLayout(Action<T> onAdded, Action<T>? onRemoved = null) : base(onAdded, onRemoved)
     {
     }
@@ -27,7 +30,6 @@ public class CellLayout<T> : HexLayout<T>
     {
     }
 
-    [JsonConstructor]
     public CellLayout(List<T> existingHexes, Action<T>? onAdded = null, Action<T>? onRemoved = null) : base(
         existingHexes, onAdded, onRemoved)
     {
@@ -56,6 +58,30 @@ public class CellLayout<T> : HexLayout<T>
 
             return Hex.CartesianToAxial(weightedSum / count);
         }
+    }
+
+    [JsonIgnore]
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    [JsonIgnore]
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CellLayout;
+
+    [JsonIgnore]
+    public bool CanBeReferencedInArchive => true;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.ReproductionOrganelleData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((ReproductionStatistic.ReproductionOrganelleData)obj);
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(existingHexes);
+        writer.WriteDelegateOrNull(onAdded);
+        writer.WriteDelegateOrNull(onRemoved);
     }
 
     protected override void GetHexComponentPositions(T hex, List<Hex> result)

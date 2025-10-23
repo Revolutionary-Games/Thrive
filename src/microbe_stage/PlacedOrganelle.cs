@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
 ///   An organelle that has been placed in a simulated microbe. Very different from <see cref="OrganelleTemplate"/> and
 ///   <see cref="OrganelleDefinition"/>.
 /// </summary>
-public class PlacedOrganelle : IPositionedOrganelle, ICloneable
+public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private readonly List<Compound> tempCompoundsToProcess = new();
 
     private bool growthValueDirty = true;
@@ -19,7 +21,6 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
     /// <summary>
     ///   The compounds still needed to divide. Initialized from Definition.InitialComposition
     /// </summary>
-    [JsonProperty]
     private Dictionary<Compound, float> compoundsLeft;
 
     private Quaternion cachedExternalOrientation = Quaternion.Identity;
@@ -40,11 +41,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
         ResetGrowth();
     }
 
-    /// <summary>
-    ///   JSON constructor that avoid re-running some core logic
-    /// </summary>
-    [JsonConstructor]
-    public PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation,
+    private PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation,
         Dictionary<Compound, float> compoundsLeft, OrganelleUpgrades? upgrades)
     {
         Definition = definition;
@@ -66,25 +63,22 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
     /// <summary>
     ///   The graphics child node of this organelle
     /// </summary>
-    [JsonIgnore]
+
     public Node3D? OrganelleGraphics { get; private set; }
 
     /// <summary>
     ///   Graphics metadata that is set to valid data if <see cref="OrganelleGraphics"/> is not null.
     /// </summary>
-    [JsonIgnore]
     public LoadedSceneWithModelInfo LoadedGraphicsSceneInfo { get; private set; }
 
     /// <summary>
     ///   Animation player this organelle has
     /// </summary>
-    [JsonIgnore]
     public AnimationPlayer? OrganelleAnimation { get; private set; }
 
     /// <summary>
     ///   Value between 0 and 1 on how far along to splitting this organelle is
     /// </summary>
-    [JsonIgnore]
     public float GrowthValue
     {
         get
@@ -106,7 +100,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     In the original organelle WasSplit is true and in the
+    ///     In the original organelle WasSplit is true, and in the
     ///     created duplicate IsDuplicate is true. SisterOrganelle is
     ///     set in the original organelle.
     ///   </para>
@@ -116,13 +110,11 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
     public PlacedOrganelle? SisterOrganelle { get; set; }
 
     /// <summary>
-    ///   The components instantiated for this placed organelle. Not saved as components are re-created on save load.
+    ///   The components instantiated for this placed organelle. Not saved as components are re-created on a save load.
     ///   See the <see cref="Components.OrganelleContainer"/> comments about saving.
     /// </summary>
-    [JsonIgnore]
     public List<IOrganelleComponent> Components { get; } = new();
 
-    [JsonProperty]
     public OrganelleUpgrades? Upgrades { get; private set; }
 
     /// <summary>
@@ -130,17 +122,65 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
     ///   not saved right now as this is only used by <see cref="LysosomeComponent"/> which will re-add when the
     ///   component is re-initialized.
     /// </summary>
-    [JsonIgnore]
     public Dictionary<Enzyme, int>? OverriddenEnzymes { get; set; }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.PlacedOrganelle;
+
+    /// <summary>
+    ///   This needs to be referenceable due to the sister organelle reference
+    /// </summary>
+    public bool CanBeReferencedInArchive => true;
 
     public static Color CalculateHSVForOrganelle(Color rawColour)
     {
         // Get hue saturation and brightness for the colour
 
-        // According to stack overflow HSV and HSB are the same thing
+        // According to StackOverflow, HSV and HSB are the same thing
         rawColour.ToHsv(out var hue, out var saturation, out var brightness);
 
         return Color.FromHsv(hue, saturation * 2, brightness);
+    }
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.PlacedOrganelle)
+            throw new NotSupportedException();
+
+        writer.WriteObject((PlacedOrganelle)obj);
+    }
+
+    public static PlacedOrganelle ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new PlacedOrganelle(reader.ReadObject<OrganelleDefinition>(), reader.ReadHex(),
+            reader.ReadInt32(), reader.ReadObject<Dictionary<Compound, float>>(),
+            reader.ReadObjectOrNull<OrganelleUpgrades>())
+        {
+            WasSplit = reader.ReadBool(),
+            IsDuplicate = reader.ReadBool(),
+        };
+
+        reader.ReportObjectConstructorDone(instance);
+
+        instance.SisterOrganelle = reader.ReadObjectOrNull<PlacedOrganelle>();
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(Definition);
+        writer.Write(Position);
+        writer.Write(Orientation);
+        writer.WriteObject(compoundsLeft);
+        writer.WriteObjectOrNull(Upgrades);
+
+        writer.Write(WasSplit);
+        writer.Write(IsDuplicate);
+        writer.WriteObjectOrNull(SisterOrganelle);
     }
 
     /// <summary>
@@ -163,13 +203,13 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
     ///   Gives organelles more compounds to grow (or takes free compounds).
     ///   If <see cref="allowedCompoundUse"/> goes to 0 stops early and doesn't use any more compounds.
     /// </summary>
-    /// <returns>True when this has grown a bit and visuals transform needs to be re-applied</returns>
+    /// <returns>True, when this has grown a bit and visual transform needs to be re-applied</returns>
     public bool GrowOrganelle(CompoundBag compounds, ref float allowedCompoundUse, ref float freeCompoundsLeft,
         bool reverseCompoundsLeftOrder)
     {
         float totalTaken = 0;
 
-        // Find compounds that should be processed. Sadly it seems that this always needs to loop all even if the
+        // Find compounds that should be processed. Sadly, it seems that this always needs to loop all even if the
         // compound usage limit will cut this short, as otherwise the consume in reverse mode isn't possible to make
         // without allocating extra memory
         foreach (var entry in compoundsLeft)

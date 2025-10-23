@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using SharedBase.Archive;
 
 public static class ArchiveValueTypeHelpers
@@ -12,6 +13,25 @@ public static class ArchiveValueTypeHelpers
     public static Vector2 ReadVector2(this ISArchiveReader reader)
     {
         return new Vector2(reader.ReadFloat(), reader.ReadFloat());
+    }
+
+    public static void Write(this ISArchiveWriter writer, Vector2I value)
+    {
+        writer.Write(value.X);
+        writer.Write(value.Y);
+    }
+
+    public static Vector2I ReadVector2I(this ISArchiveReader reader)
+    {
+        return new Vector2I(reader.ReadInt32(), reader.ReadInt32());
+    }
+
+    public static void WriteVector2I(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.Vector2I)
+            throw new NotSupportedException();
+
+        writer.Write((Vector2I)obj);
     }
 
     public static void Write(this ISArchiveWriter writer, Vector3 value)

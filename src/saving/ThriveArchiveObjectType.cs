@@ -7,8 +7,11 @@ public enum ThriveArchiveObjectType : uint
 {
     InvalidThrive = ArchiveObjectType.StartOfCustomTypes,
 
+    Vector2,
+    Vector2I,
     Vector3,
     Vector4,
+    Color,
     Quaternion,
 
     Save,
@@ -221,6 +224,15 @@ public enum ThriveArchiveObjectType : uint
     SoundEffectSlot,
     CompoundBag,
     BulkTransportAnimation,
+    CellLayout,
+    PlacedOrganelle,
+    ToxinType,
+    TweakedProcess,
+    BioProcess,
+    DamageEventNotice,
+    SpawnedTerrainCluster,
+    SpawnedTerrainGroup,
+    CompoundCloudPlane,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,

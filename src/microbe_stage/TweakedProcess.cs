@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   A concrete process that organelle does. Applies a modifier to the process
@@ -10,9 +10,10 @@ using Newtonsoft.Json;
 ///     data packing when this is used in lists.
 ///   </para>
 /// </remarks>
-public struct TweakedProcess : IEquatable<TweakedProcess>
+public struct TweakedProcess : IEquatable<TweakedProcess>, IArchivable
 {
-    [JsonProperty]
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public readonly BioProcess Process;
 
     public float Rate;
@@ -29,12 +30,15 @@ public struct TweakedProcess : IEquatable<TweakedProcess>
     /// </remarks>
     internal bool Marked;
 
-    [JsonConstructor]
     public TweakedProcess(BioProcess process, float rate = 1.0f)
     {
         Rate = rate;
         Process = process;
     }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.TweakedProcess;
+    public bool CanBeReferencedInArchive => false;
 
     public static bool operator ==(TweakedProcess left, TweakedProcess right)
     {
@@ -44,6 +48,32 @@ public struct TweakedProcess : IEquatable<TweakedProcess>
     public static bool operator !=(TweakedProcess left, TweakedProcess right)
     {
         return !(left == right);
+    }
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.TweakedProcess)
+            throw new NotSupportedException();
+
+        writer.WriteObject((TweakedProcess)obj);
+    }
+
+    public static TweakedProcess ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new TweakedProcess(reader.ReadObject<BioProcess>(), reader.ReadFloat())
+        {
+            SpeedMultiplier = reader.ReadFloat(),
+        };
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(Process);
+        writer.Write(Rate);
+        writer.Write(SpeedMultiplier);
     }
 
     public override bool Equals(object? obj)

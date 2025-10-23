@@ -322,11 +322,13 @@ public static class HealthHelpers
 }
 
 /// <summary>
-///   Notice to an entity that it took damage. Used for example to play sounds or other feedback about taking
+///   Notice to an entity that it took damage. Used, for example, to play sounds or other feedback about taking
 ///   damage
 /// </summary>
-public class DamageEventNotice
+public class DamageEventNotice : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public string DamageSource;
     public float Amount;
 
@@ -334,5 +336,31 @@ public class DamageEventNotice
     {
         DamageSource = damageSource;
         Amount = amount;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.DamageEventNotice;
+    public bool CanBeReferencedInArchive => false;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.DamageEventNotice)
+            throw new NotSupportedException();
+
+        writer.WriteObject((DamageEventNotice)obj);
+    }
+
+    public static DamageEventNotice ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new DamageEventNotice(reader.ReadString() ?? throw new NullArchiveObjectException(), reader.ReadFloat());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(DamageSource);
+        writer.Write(Amount);
     }
 }

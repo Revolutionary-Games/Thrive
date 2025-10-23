@@ -157,6 +157,14 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     private LocalizedString CurrentPatchName =>
         GameWorld.Map.CurrentPatch?.Name ?? throw new InvalidOperationException("no current patch");
 
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.MicrobeStage)
+            throw new NotSupportedException();
+
+        writer.WriteObject((MicrobeStage)obj);
+    }
+
     public static MicrobeStage ReadFromArchive(ISArchiveReader reader, ushort version)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)

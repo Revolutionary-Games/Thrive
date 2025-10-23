@@ -77,24 +77,8 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable
     public void WriteToArchive(ISArchiveWriter writer)
     {
         writer.WriteObject(existingHexes);
-
-        if (onAdded != null)
-        {
-            writer.WriteDelegate(onAdded);
-        }
-        else
-        {
-            writer.WriteNullObject();
-        }
-
-        if (onRemoved != null)
-        {
-            writer.WriteDelegate(onRemoved);
-        }
-        else
-        {
-            writer.WriteNullObject();
-        }
+        writer.WriteDelegateOrNull(onAdded);
+        writer.WriteDelegateOrNull(onRemoved);
     }
 
     public override bool CanPlace(T hex, List<Hex> temporaryStorage, List<Hex> temporaryStorage2)

@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Arch.Core;
 using AutoEvo;
+using Components;
+using Godot;
 using SharedBase.Archive;
+using Systems;
 using ThriveScriptsShared;
 using Xoshiro.PRNG64;
 
@@ -16,14 +19,14 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
     public ThriveArchiveManager() : base(true)
     {
         RegisterThirdPartyTypes();
-
-        // RegisterEngineTypes();
+        RegisterEngineTypes();
 
         // Register custom types for Thrive
         RegisterEnums();
         RegisterBaseObjects();
         RegisterRegistryTypes();
         RegisterOtherObjects();
+        RegisterComponentParts();
     }
 
     /// <summary>
@@ -73,6 +76,12 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             EntityWorldSerializers.ReadEntityReferenceFromArchiveBoxed);
     }
 
+    private void RegisterEngineTypes()
+    {
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Vector2I, typeof(Vector2I),
+            ArchiveValueTypeHelpers.WriteVector2I);
+    }
+
     private void RegisterEnums()
     {
         RegisterEnumType((ArchiveObjectType)ThriveArchiveObjectType.CompoundEnum, ArchiveEnumType.UInt16,
@@ -80,6 +89,9 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
 
         RegisterEnumType((ArchiveObjectType)ThriveArchiveObjectType.WorldEffectTypes, ArchiveEnumType.Int32,
             typeof(WorldEffectTypes));
+
+        RegisterEnumType((ArchiveObjectType)ThriveArchiveObjectType.ToxinType, ArchiveEnumType.Int32,
+            typeof(ToxinType));
     }
 
     private void RegisterBaseObjects()
@@ -101,6 +113,10 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleDefinition, typeof(OrganelleDefinition),
             RegistryType.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Biome, typeof(Biome),
+            RegistryType.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Enzyme, typeof(Enzyme),
+            RegistryType.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BioProcess, typeof(BioProcess),
             RegistryType.WriteToArchive);
     }
 
@@ -150,5 +166,40 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExternalEffect,
             typeof(ExternalEffect), ExternalEffect.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PlacedOrganelle,
+            typeof(PlacedOrganelle), PlacedOrganelle.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PlacedOrganelle,
+            typeof(PlacedOrganelle), PlacedOrganelle.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.TweakedProcess,
+            typeof(TweakedProcess), TweakedProcess.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MicrobeStage,
+            typeof(MicrobeStage), MicrobeStage.WriteToArchive);
+    }
+
+    private void RegisterComponentParts()
+    {
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SoundEffectSlot,
+            typeof(SoundEffectSlot), SoundEffectSlot.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.DamageEventNotice,
+            typeof(DamageEventNotice), DamageEventNotice.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MicrobeTerrainSystem,
+            typeof(MicrobeTerrainSystem), MicrobeTerrainSystem.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpawnedTerrainCluster,
+            typeof(MicrobeTerrainSystem.SpawnedTerrainCluster),
+            MicrobeTerrainSystem.SpawnedTerrainCluster.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpawnedTerrainGroup,
+            typeof(SpawnedTerrainGroup), SpawnedTerrainGroup.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPlane,
+            typeof(CompoundCloudPlane), CompoundCloudPlane.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPlane,
+            typeof(CompoundCloudPlane), CompoundCloudPlane.ReadFromArchive);
     }
 }
