@@ -205,7 +205,7 @@ public class Patch : IArchivable
             BiomeType = (BiomeType)reader.ReadInt32(),
             Depth = reader.ReadObject<int[]>(),
             Visibility = (MapElementVisibility)reader.ReadInt32(),
-            ScreenCoordinates = reader.ReadObject<Vector2>(),
+            ScreenCoordinates = reader.ReadVector2(),
             DynamicDataSeed = reader.ReadInt64(),
         };
 
@@ -214,7 +214,10 @@ public class Patch : IArchivable
         instance.Adjacent = reader.ReadObject<HashSet<Patch>>();
 
         instance.Region = reader.ReadObject<PatchRegion>();
-        instance.history = reader.ReadObject<Deque<PatchSnapshot>>();
+
+        // Sadly need to make a temporary list here to copy the data as we don't have a separate deque deserializer
+        // which would be just duplicated code from the list reader
+        instance.history = new Deque<PatchSnapshot>(reader.ReadObject<List<PatchSnapshot>>());
 
         return instance;
     }

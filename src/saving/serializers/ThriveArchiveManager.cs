@@ -27,6 +27,7 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterRegistryTypes();
         RegisterOtherObjects();
         RegisterComponentParts();
+        RegisterWorldEffects();
     }
 
     /// <summary>
@@ -251,9 +252,6 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchMap,
             typeof(PatchMap), PatchMap.ReadFromArchive);
 
-        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BaseWorldEffect,
-            typeof(IWorldEffect), IWorldEffect.WriteToArchive);
-
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExternalEffect,
             typeof(ExternalEffect), ExternalEffect.WriteToArchive);
 
@@ -291,5 +289,39 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(CompoundCloudPlane), CompoundCloudPlane.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPlane,
             typeof(CompoundCloudPlane), CompoundCloudPlane.ReadFromArchive);
+    }
+
+    private void RegisterWorldEffects()
+    {
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.TimedWorldOperations,
+            typeof(TimedWorldOperations), TimedWorldOperations.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BaseWorldEffect,
+            typeof(IWorldEffect), IWorldEffect.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BaseWorldEffect,
+            typeof(IWorldEffect), IWorldEffect.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GlobalGlaciationEvent,
+            typeof(GlobalGlaciationEvent), GlobalGlaciationEvent.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MeteorImpactEvent,
+            typeof(MeteorImpactEvent), MeteorImpactEvent.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.UnderwaterVentEruptionEffect,
+            typeof(UnderwaterVentEruptionEffect), UnderwaterVentEruptionEffect.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GlucoseReductionEffect,
+            typeof(GlucoseReductionEffect), GlucoseReductionEffect.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CompoundDiffusionEffect,
+            typeof(CompoundDiffusionEffect), CompoundDiffusionEffect.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.HydrogenSulfideConsumptionEffect,
+            typeof(HydrogenSulfideConsumptionEffect), HydrogenSulfideConsumptionEffect.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.NitrogenControlEffect,
+            typeof(NitrogenControlEffect), NitrogenControlEffect.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.IronOxidationEffect,
+            typeof(IronOxidationEffect), IronOxidationEffect.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MarineSnowDensityEffect,
+            typeof(MarineSnowDensityEffect), MarineSnowDensityEffect.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PhotosynthesisProductionEffect,
+            typeof(PhotosynthesisProductionEffect), PhotosynthesisProductionEffect.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.VolcanismEffect,
+            typeof(VolcanismEffect), VolcanismEffect.ReadFromArchive);
     }
 }
