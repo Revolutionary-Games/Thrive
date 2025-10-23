@@ -177,6 +177,18 @@ public abstract class Species : ICloneable, IArchivable
         writer.WriteObject((Species)obj);
     }
 
+    public static object ReadFromArchive(ISArchiveReader reader, Type knownType, ushort version)
+    {
+        // This forwards the reading to the correct version of the species
+        if (typeof(MicrobeSpecies) == knownType)
+            return MicrobeSpecies.ReadFromArchive(reader, version);
+
+        if (typeof(MulticellularSpecies) == knownType)
+            return MulticellularSpecies.ReadFromArchive(reader, version);
+
+        throw new NotSupportedException($"Unknown species type for read forwarding: {knownType}");
+    }
+
     /// <summary>
     ///   Triggered when this species is changed somehow. Should update any data that is cached in the species
     ///   regarding its properties, including <see cref="RepositionToOrigin"/>
@@ -447,7 +459,7 @@ public abstract class Species : ICloneable, IArchivable
         Colour = reader.ReadColor();
         Obsolete = reader.ReadBool();
         Behaviour = reader.ReadObject<BehaviourDictionary>();
-        Population = reader.ReadInt32();
+        Population = reader.ReadInt64();
         Generation = reader.ReadInt32();
         PlayerSpecies = reader.ReadBool();
         reader.ReadObjectProperties(Endosymbiosis);

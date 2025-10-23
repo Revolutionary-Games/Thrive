@@ -54,7 +54,7 @@ public struct BiomeCompoundProperties : IEquatable<BiomeCompoundProperties>, IAr
         writer.WriteObject((BiomeCompoundProperties)obj);
     }
 
-    public static BiomeCompoundProperties ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static object ReadFromArchiveBoxed(ISArchiveReader reader, ushort version)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

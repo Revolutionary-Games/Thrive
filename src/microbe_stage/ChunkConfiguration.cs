@@ -112,6 +112,11 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
         };
     }
 
+    public static object ReadFromArchiveBoxed(ISArchiveReader reader, ushort version)
+    {
+        return ReadFromArchive(reader, version);
+    }
+
     public void WriteToArchive(ISArchiveWriter writer)
     {
         writer.Write(Name);
@@ -220,6 +225,12 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
             };
         }
 
+        // ReSharper disable once MemberHidesStaticFromOuterClass
+        public static object ReadFromArchiveBoxed(ISArchiveReader reader, ushort version)
+        {
+            return ReadFromArchive(reader, version);
+        }
+
         public void WriteToArchive(ISArchiveWriter writer)
         {
             writer.Write(Amount);
@@ -311,7 +322,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
         }
 
         [JsonConstructor]
-        private ChunkScene(string scenePath)
+        public ChunkScene(string scenePath)
         {
             ScenePath = scenePath;
 

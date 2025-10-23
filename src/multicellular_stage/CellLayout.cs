@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Saving.Serializers;
 using SharedBase.Archive;
 
 /// <summary>
@@ -20,8 +21,6 @@ using SharedBase.Archive;
 public class CellLayout<T> : HexLayout<T>, IArchivable
     where T : class, IPositionedCell
 {
-    public const ushort SERIALIZATION_VERSION = 1;
-
     public CellLayout(Action<T> onAdded, Action<T>? onRemoved = null) : base(onAdded, onRemoved)
     {
     }
@@ -61,20 +60,20 @@ public class CellLayout<T> : HexLayout<T>, IArchivable
     }
 
     [JsonIgnore]
-    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ushort CurrentArchiveVersion => HexLayoutSerializer.SERIALIZATION_VERSION;
 
     [JsonIgnore]
-    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CellLayout;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ExtendedCellLayout;
 
     [JsonIgnore]
     public bool CanBeReferencedInArchive => true;
 
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
-        if (type != (ArchiveObjectType)ThriveArchiveObjectType.ReproductionOrganelleData)
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.ExtendedCellLayout)
             throw new NotSupportedException();
 
-        writer.WriteObject((ReproductionStatistic.ReproductionOrganelleData)obj);
+        writer.WriteObject((IArchivable)obj);
     }
 
     public void WriteToArchive(ISArchiveWriter writer)

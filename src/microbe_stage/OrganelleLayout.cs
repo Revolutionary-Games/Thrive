@@ -66,13 +66,21 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable
     }
 
     [JsonIgnore]
-    public ushort CurrentArchiveVersion => OrganelleLayoutSerializer.SERIALIZATION_VERSION;
+    public ushort CurrentArchiveVersion => HexLayoutSerializer.SERIALIZATION_VERSION;
 
     [JsonIgnore]
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ExtendedOrganelleLayout;
 
     [JsonIgnore]
     public bool CanBeReferencedInArchive => false;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.ExtendedOrganelleLayout)
+            throw new NotSupportedException();
+
+        writer.WriteObject((IArchivable)obj);
+    }
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
@@ -317,3 +325,5 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable
         return false;
     }
 }
+
+

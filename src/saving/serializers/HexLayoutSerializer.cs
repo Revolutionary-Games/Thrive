@@ -1,11 +1,11 @@
 ﻿namespace Saving.Serializers;
 
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Reflection;
 using SharedBase.Archive;
 
-public static class OrganelleLayoutSerializer
+public static class HexLayoutSerializer
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
@@ -14,7 +14,7 @@ public static class OrganelleLayoutSerializer
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var data = reader.ReadObject<IList<IPositionedOrganelle>>();
+        var data = reader.ReadObject<IList>();
 
         var genericTypeArguments = typeFromArchive.GetGenericArguments();
         var layoutClass = typeof(OrganelleLayout<>).MakeGenericType(genericTypeArguments);

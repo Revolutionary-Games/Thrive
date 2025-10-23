@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Saving.Serializers;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Allows placing individual hexes with data in a layout
 /// </summary>
 /// <typeparam name="TData">The type of data to hold in hexes</typeparam>
 [UseThriveSerializer]
-public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>
+public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IArchivable
     where TData : IActionHex
 {
     public IndividualHexLayout(Action<HexWithData<TData>> onAdded, Action<HexWithData<TData>>? onRemoved = null) : base(
@@ -18,6 +20,30 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>
     [JsonConstructor]
     public IndividualHexLayout()
     {
+    }
+
+    [JsonIgnore]
+    public ushort CurrentArchiveVersion => HexLayoutSerializer.SERIALIZATION_VERSION;
+
+    [JsonIgnore]
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ExtendedIndividualHexLayout;
+
+    [JsonIgnore]
+    public bool CanBeReferencedInArchive => true;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.ExtendedIndividualHexLayout)
+            throw new NotSupportedException();
+
+        writer.WriteObject((IArchivable)obj);
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(existingHexes);
+        writer.WriteDelegateOrNull(onAdded);
+        writer.WriteDelegateOrNull(onRemoved);
     }
 
     protected override void GetHexComponentPositions(HexWithData<TData> hex, List<Hex> result)

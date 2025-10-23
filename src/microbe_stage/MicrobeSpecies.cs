@@ -141,9 +141,43 @@ public class MicrobeSpecies : Species, ICellDefinition
 
     public static bool StateHasStabilizedImpl(IWorldSimulation worldSimulation)
     {
-        // This is stabilized as long as the default no background operations check passes
-        // If this is changed CellType also needs changes
+        // This is stabilised as long as the default no background operations check passes.
+        // If this is changed, CellType also needs changes.
         return true;
+    }
+
+    public static MicrobeSpecies ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new MicrobeSpecies(reader.ReadUInt32(),
+            reader.ReadString() ?? throw new NullArchiveObjectException(),
+            reader.ReadString() ?? throw new NullArchiveObjectException());
+
+        reader.ReportObjectConstructorDone(instance);
+
+        instance.ReadNonConstructorBaseProperties(reader, 1);
+
+        instance.IsBacteria = reader.ReadBool();
+        instance.MembraneType = reader.ReadObject<MembraneType>();
+        instance.MembraneRigidity = reader.ReadFloat();
+        instance.Organelles = reader.ReadObject<OrganelleLayout<OrganelleTemplate>>();
+        instance.BaseRotationSpeed = reader.ReadFloat();
+
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        WriteBasePropertiesToArchive(writer);
+
+        writer.Write(IsBacteria);
+        writer.WriteObject(MembraneType);
+        writer.Write(MembraneRigidity);
+
+        writer.WriteObject(Organelles);
+        writer.Write(BaseRotationSpeed);
     }
 
     public void UpdateIsBacteria()
@@ -162,18 +196,6 @@ public class MicrobeSpecies : Species, ICellDefinition
                 break;
             }
         }
-    }
-
-    public override void WriteToArchive(ISArchiveWriter writer)
-    {
-        WriteBasePropertiesToArchive(writer);
-
-        writer.Write(IsBacteria);
-        writer.WriteObject(MembraneType);
-        writer.Write(MembraneRigidity);
-
-        writer.WriteObject(Organelles);
-        writer.Write(BaseRotationSpeed);
     }
 
     public override void OnEdited()

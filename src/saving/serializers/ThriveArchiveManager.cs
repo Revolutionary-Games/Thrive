@@ -97,14 +97,25 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
     private void RegisterBaseObjects()
     {
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Save, typeof(Save), Save.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SaveInformation, typeof(SaveInformation),
+            SaveInformation.ReadFromArchive);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.LocalizedString, typeof(LocalizedString),
             LocalizedString.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.LocalizedString, typeof(LocalizedString),
+            LocalizedString.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.LocalizedStringBuilder,
             typeof(LocalizedStringBuilder), LocalizedStringBuilder.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.LocalizedStringBuilder,
+            typeof(LocalizedStringBuilder), LocalizedStringBuilder.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BiomeConditions,
+            typeof(BiomeConditions), BiomeConditions.ReadFromArchive);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BiomeCompoundProperties,
             typeof(BiomeCompoundProperties), BiomeCompoundProperties.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BiomeCompoundProperties,
+            typeof(BiomeCompoundProperties), BiomeCompoundProperties.ReadFromArchiveBoxed);
     }
 
     private void RegisterRegistryTypes()
@@ -112,54 +123,133 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         // These work with their internal names rather than actual objects
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleDefinition, typeof(OrganelleDefinition),
             RegistryType.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleDefinition, typeof(OrganelleDefinition),
+            OrganelleDefinition.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Biome, typeof(Biome),
             RegistryType.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Biome, typeof(Biome),
+            Biome.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Enzyme, typeof(Enzyme),
             RegistryType.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Enzyme, typeof(Enzyme),
+            Enzyme.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BioProcess, typeof(BioProcess),
             RegistryType.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BioProcess, typeof(BioProcess),
+            BioProcess.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.DifficultyPreset, typeof(DifficultyPreset),
+            DifficultyPreset.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MembraneType, typeof(MembraneType),
+            MembraneType.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PredefinedAutoEvoConfiguration,
+            typeof(PredefinedAutoEvoConfiguration),
+            PredefinedAutoEvoConfiguration.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleTemplate,
+            typeof(OrganelleTemplate), RegistryType.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleTemplate,
+            typeof(OrganelleTemplate), OrganelleTemplate.ReadFromArchive);
     }
 
     private void RegisterOtherObjects()
     {
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GameProperties, typeof(GameProperties),
+            GameProperties.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GameWorld, typeof(GameWorld),
+            GameWorld.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.WorldGenerationSettings,
+            typeof(WorldGenerationSettings),
+            WorldGenerationSettings.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.DayNightCycle, typeof(DayNightCycle),
+            DayNightCycle.ReadFromArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ReproductionOrganelleData,
             typeof(ReproductionStatistic.ReproductionOrganelleData),
             ReproductionStatistic.ReproductionOrganelleData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ReproductionOrganelleData,
+            typeof(ReproductionStatistic.ReproductionOrganelleData),
+            ReproductionStatistic.ReproductionOrganelleData.ReadFromArchive);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GenerationRecord,
             typeof(GenerationRecord), GenerationRecord.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GenerationRecord,
+            typeof(GenerationRecord), GenerationRecord.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpeciesRecordLite,
             typeof(SpeciesRecordLite), SpeciesRecordLite.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpeciesRecordLite,
+            typeof(SpeciesRecordLite), SpeciesRecordLite.ReadFromArchive);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpeciesInfo,
             typeof(SpeciesInfo), SpeciesInfo.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpeciesInfo,
+            typeof(SpeciesInfo), SpeciesInfo.ReadFromArchive);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Species,
             typeof(Species), Species.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Species,
+            typeof(Species), Species.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MicrobeSpecies,
+            typeof(MicrobeSpecies), (IArchiveReadManager.RestoreObjectDelegate)MicrobeSpecies.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MulticellularSpecies,
+            typeof(MulticellularSpecies),
+            (IArchiveReadManager.RestoreObjectDelegate)MulticellularSpecies.ReadFromArchive);
 
-        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleTemplate,
-            typeof(OrganelleTemplate), OrganelleTemplate.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedOrganelleLayout,
+            typeof(OrganelleLayout<>), HexLayoutSerializer.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleLayout,
+            typeof(OrganelleLayout<>), HexLayoutSerializer.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedCellLayout,
+            typeof(CellLayout<>), HexLayoutSerializer.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellLayout,
+            typeof(CellLayout<>), HexLayoutSerializer.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedIndividualHexLayout,
+            typeof(IndividualHexLayout<>), HexLayoutSerializer.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.IndividualHexLayout,
+            typeof(IndividualHexLayout<>), HexLayoutSerializer.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BehaviourDictionary,
+            typeof(BehaviourDictionary), BehaviourDictionary.ReadFromArchive);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GameEventDescription,
             typeof(GameEventDescription), GameEventDescription.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GameEventDescription,
+            typeof(GameEventDescription), GameEventDescription.ReadFromArchive);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ChunkConfiguration,
             typeof(ChunkConfiguration), ChunkConfiguration.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ChunkConfiguration,
+            typeof(ChunkConfiguration), ChunkConfiguration.ReadFromArchiveBoxed);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ChunkScene,
             typeof(ChunkConfiguration.ChunkScene), ChunkConfiguration.ChunkScene.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ChunkScene,
+            typeof(ChunkConfiguration.ChunkScene), ChunkConfiguration.ChunkScene.ReadFromArchive);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ChunkCompound,
             typeof(ChunkConfiguration.ChunkCompound), ChunkConfiguration.ChunkCompound.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ChunkCompound,
+            typeof(ChunkConfiguration.ChunkCompound), ChunkConfiguration.ChunkCompound.ReadFromArchiveBoxed);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Patch,
             typeof(Patch), Patch.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Patch,
+            typeof(Patch), Patch.ReadFromArchive);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchRegion,
             typeof(PatchRegion), PatchRegion.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchRegion,
+            typeof(PatchRegion), PatchRegion.ReadFromArchive);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchSnapshot,
             typeof(PatchSnapshot), PatchSnapshot.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchSnapshot,
+            typeof(PatchSnapshot), PatchSnapshot.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchMap,
+            typeof(PatchMap), PatchMap.ReadFromArchive);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BaseWorldEffect,
             typeof(IWorldEffect), IWorldEffect.WriteToArchive);
