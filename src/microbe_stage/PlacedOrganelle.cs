@@ -63,7 +63,6 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
     /// <summary>
     ///   The graphics child node of this organelle
     /// </summary>
-
     public Node3D? OrganelleGraphics { get; private set; }
 
     /// <summary>
