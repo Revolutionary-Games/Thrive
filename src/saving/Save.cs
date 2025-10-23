@@ -403,12 +403,25 @@ public sealed class Save : IArchivable, IDisposable
 
             // Loading is not as time-sensitive as writing, so we just crudely make a new manager here
             var manager = new ThriveArchiveManager();
-            var reader = new SArchiveMemoryReader(new MemoryStream(saveArchive), manager, true);
+            var reader = new SArchiveMemoryReader(saveArchive, manager, true);
 
             manager.OnStartNewRead(reader);
 
+            reader.ReadArchiveHeader(out var version, out var program, out var programVersion);
+
+            if (version != ISArchiveWriter.ArchiveHeaderVersion)
+                throw new IOException($"Save file format is incompatible: {version}");
+
+            if (program != "thrive")
+                throw new IOException("Save archive is from a different program");
+
+            // The higher level code does version checks, so just print the full version
+            GD.Print("Save file program version: ", programVersion);
+
             // This deserializes a huge tree of objects!
             saveResult = reader.ReadObjectOrNull<Save>() ?? throw new NullArchiveObjectException("Save data is null");
+
+            reader.ReadArchiveFooter();
 
             manager.OnFinishRead(reader);
         }
@@ -427,11 +440,11 @@ public sealed class Save : IArchivable, IDisposable
             throw new JsonException("SaveInformation is null");
     }
 
-    private static (string? InfoStr, byte[]? SaveArchive, byte[]? Screenshot) LoadDataFromFile(string file, bool info,
-        bool save, bool screenshot)
+    private static (string? InfoStr, MemoryStream? SaveArchive, byte[]? Screenshot) LoadDataFromFile(string file,
+        bool info, bool save, bool screenshot)
     {
         string? infoStr = null;
-        byte[]? archiveData = null;
+        MemoryStream? archiveData = null;
         byte[]? screenshotData = null;
 
         // Used for early stop in reading
@@ -481,7 +494,12 @@ public sealed class Save : IArchivable, IDisposable
                     continue;
 
                 // TODO: theoretically the new archive format would allow us to create a stream for direct reading here
-                archiveData = TarHelper.ReadBytesEntry(tarEntry);
+                var raw = TarHelper.ReadBytesEntry(tarEntry);
+
+                // We need to expose the buffer for efficient copies, so we need to specify all the parameters like
+                // this. In case we implement operations that allow updating a save and then writing it, we set the
+                // writable flag here.
+                archiveData = new MemoryStream(raw, 0, raw.Length, true, true);
                 --itemsToRead;
             }
             else if (tarEntry.Name == SAVE_SCREENSHOT)
