@@ -19,10 +19,14 @@ public class HydrogenSulfideConsumptionEffect : IWorldEffect
     }
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
-    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.HydrogenSulfideConsumptionEffect;
+
+    public ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.HydrogenSulfideConsumptionEffect;
+
     public bool CanBeReferencedInArchive => false;
 
-    public static HydrogenSulfideConsumptionEffect ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    public static HydrogenSulfideConsumptionEffect ReadFromArchive(ISArchiveReader reader, ushort version,
+        int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

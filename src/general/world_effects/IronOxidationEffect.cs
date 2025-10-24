@@ -4,7 +4,8 @@ using Godot;
 using SharedBase.Archive;
 
 /// <summary>
-///   Reduces the amount of iron (down to a minimum) when oxygen goes up to simulate oxidation making iron less available
+///   Reduces the amount of iron (down to a minimum) when oxygen goes up to simulate oxidation making iron
+///   less available
 /// </summary>
 public class IronOxidationEffect : IWorldEffect
 {

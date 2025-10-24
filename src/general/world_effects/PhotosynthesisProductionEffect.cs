@@ -18,10 +18,14 @@ public class PhotosynthesisProductionEffect : IWorldEffect
     }
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
-    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.PhotosynthesisProductionEffect;
+
+    public ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.PhotosynthesisProductionEffect;
+
     public bool CanBeReferencedInArchive => false;
 
-    public static PhotosynthesisProductionEffect ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    public static PhotosynthesisProductionEffect ReadFromArchive(ISArchiveReader reader, ushort version,
+        int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

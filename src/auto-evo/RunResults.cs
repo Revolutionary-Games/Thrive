@@ -64,7 +64,8 @@ public class RunResults
     public Dictionary<uint, SpeciesRecordLite> GetSpeciesRecords()
     {
         return results.ToDictionary(r => r.Key.ID, r => new SpeciesRecordLite(r.Key.Population,
-            r.Value.MutatedProperties?.ID, r.Value.SplitFrom?.ID, HasSpeciesChanged(r.Value) ? (Species)r.Key.Clone() : null));
+            r.Value.MutatedProperties?.ID, r.Value.SplitFrom?.ID,
+            HasSpeciesChanged(r.Value) ? (Species)r.Key.Clone() : null));
     }
 
     public void AddNewMicheForPatch(Patch patch, Miche miche)

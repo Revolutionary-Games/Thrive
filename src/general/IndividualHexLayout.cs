@@ -26,7 +26,8 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IArchiv
     public ushort CurrentArchiveVersion => HexLayoutSerializer.SERIALIZATION_VERSION;
 
     [JsonIgnore]
-    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ExtendedIndividualHexLayout;
+    public ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.ExtendedIndividualHexLayout;
 
     [JsonIgnore]
     public bool CanBeReferencedInArchive => true;
