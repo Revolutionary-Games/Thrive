@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://r7own3ahx1kw"]
+
+[ext_resource type="PackedScene" uid="uid://dxiebppvirlor" path="res://assets/models/microbe_terrain/PolymetallicNoduleTerrainChunk3.glb" id="1_0ir84"]
+[ext_resource type="Material" uid="uid://bd216owgjcr1" path="res://assets/models/microbe_terrain/PolymetallicNoduleTerrainChunk.material" id="2_05tmp"]
+
+[node name="PolymetallicNoduleTerrainChunk3" instance=ExtResource("1_0ir84")]
+
+[node name="polymetallicnodule3" parent="." index="0"]
+transform = Transform3D(1.0000001, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+surface_material_override/0 = ExtResource("2_05tmp")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnpswy6kl711m"]
+
+[ext_resource type="PackedScene" uid="uid://dpj1ajkpru16k" path="res://assets/models/microbe_terrain/BasaltTerrainChunk2.glb" id="1_4t3e2"]
+[ext_resource type="Material" uid="uid://7xyqsw6ak2uc" path="res://assets/models/microbe_terrain/BasaltTerrainChunk.material" id="2_pvjxw"]
+
+[node name="BasaltTerrainChunk2" instance=ExtResource("1_4t3e2")]
+
+[node name="basalt2" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+surface_material_override/0 = ExtResource("2_pvjxw")
