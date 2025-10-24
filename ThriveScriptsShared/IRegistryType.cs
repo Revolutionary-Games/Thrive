@@ -52,6 +52,12 @@ public abstract class RegistryType : IRegistryType, IArchivable
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
+        if (string.IsNullOrEmpty(InternalName))
+        {
+            throw new InvalidOperationException(
+                $"This registry type cannot be saved as internal name is not initialized, type: {GetType()}");
+        }
+
         // Write as the internal name which will be looked up in fresh registry data on a load
         writer.Write(InternalName);
     }

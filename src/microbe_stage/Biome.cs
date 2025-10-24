@@ -124,7 +124,12 @@ public class Biome : RegistryType
                 "Environment colour alpha needs to be 1");
         }
 
-        Terrain?.Check(name);
+        if (Terrain != null)
+        {
+            // Terrain will share our name
+            Terrain.InternalName = name;
+            Terrain.Check(name);
+        }
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
     }

@@ -566,6 +566,11 @@ public partial class SimulationParameters : Node
         return stageResourcesByEnum[gameState];
     }
 
+    public TerrainConfiguration GetTerrainConfigurationForBiome(string internalName)
+    {
+        return biomes[internalName].Terrain ?? throw new Exception($"No terrain for biome type: {internalName}");
+    }
+
     /// <summary>
     ///   Applies translations to all registry-loaded types. Called whenever the locale is changed
     /// </summary>
