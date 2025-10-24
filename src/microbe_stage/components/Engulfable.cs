@@ -181,6 +181,7 @@ public struct Engulfable : IArchivableComponent
                 HasTargetEndosomeScaleToLerp = reader.ReadBool(),
                 HasInitialPositionToLerp = reader.ReadBool(),
                 HasInitialScaleToLerp = reader.ReadBool(),
+                HasInitialEndosomeScaleToLerp = reader.ReadBool(),
             };
         }
 
