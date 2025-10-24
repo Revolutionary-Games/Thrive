@@ -16,7 +16,7 @@ public static class ThirdPartyTypeHelpers
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.XoShiRo256StarStar)
             throw new NotSupportedException();
 
-        // This assignment should be thread safe even though we shouldn't be using these from multiple threads at once
+        // This assignment should be thread safe, even though we shouldn't be using these from multiple threads at once
         serializer1 ??= new XoshiroStarSerializer();
 
         serializer1.Write(writer, (XoShiRo256starstar)obj);

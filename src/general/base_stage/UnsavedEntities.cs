@@ -15,6 +15,8 @@ using SharedBase.Archive;
 /// </remarks>
 public sealed class UnsavedEntities : IArchiveUpdatable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private readonly List<Entity> entities = new();
 
     private IReadOnlyCollection<Entity>? additionalIgnoreSource;
@@ -31,7 +33,7 @@ public sealed class UnsavedEntities : IArchiveUpdatable
         additionalIgnoreSource = additionalIgnores;
     }
 
-    public ushort CurrentArchiveVersion => 1;
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.UnsavedEntities;
 
     public void Add(in Entity entity)
@@ -79,5 +81,7 @@ public sealed class UnsavedEntities : IArchiveUpdatable
 
     public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
     {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
     }
 }

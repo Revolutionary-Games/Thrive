@@ -3,7 +3,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Components;
 using global::Saving.Serializers;
+using Godot;
 using SharedBase.Archive;
 using Xunit;
 
@@ -202,5 +206,47 @@ public class ThriveArchiveTests
         Assert.Equal(original.Chunks["second"].Meshes.Count, read.Chunks["second"].Meshes.Count);
 
         // ReSharper restore UsageOfDefaultStructEquality
+    }
+
+    [Fact]
+    public void ThriveArchive_TestWorldSerialization()
+    {
+        var memoryStream = new MemoryStream();
+        var writer = new SArchiveMemoryWriter(memoryStream, manager);
+        var reader = new SArchiveMemoryReader(memoryStream, manager);
+
+        var originalWorld = World.Create();
+        var originalEntity1 = originalWorld.Create();
+
+        // It's apparently safe to refer to numeric types from Godot in the tests
+        originalEntity1.Add(new WorldPosition(Vector3.Left, Quaternion.Identity));
+        originalEntity1.Add(new PlayerMarker());
+
+        manager.OnStartNewWrite(writer);
+        writer.WriteAnyRegisteredValueAsObject(originalWorld);
+        manager.OnFinishWrite(writer);
+
+        manager.OnStartNewRead(reader);
+        memoryStream.Seek(0, SeekOrigin.Begin);
+
+        var read = reader.ReadObjectOrNull<World>();
+        manager.OnFinishRead(reader);
+
+        Assert.NotNull(read);
+        Assert.Equal(originalWorld.Size, read.Size);
+
+        Entity readEntity = Entity.Null;
+
+        read.Query(new QueryDescription().WithAll<PlayerMarker>(), entity =>
+        {
+            if (readEntity != Entity.Null)
+                Assert.Fail("Found duplicate entities");
+
+            readEntity = entity;
+        });
+
+        Assert.NotEqual(Entity.Null, readEntity);
+        Assert.Equal(originalEntity1.Get<WorldPosition>(), readEntity.Get<WorldPosition>());
+        Assert.Equal(originalEntity1.Get<PlayerMarker>(), readEntity.Get<PlayerMarker>());
     }
 }

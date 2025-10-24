@@ -14,6 +14,10 @@ public static class EntityWorldSerializers
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.Entity)
             throw new NotSupportedException();
 
+        // As this is a custom-writing callback, we need to put in a header here
+        writer.WriteObjectHeader((ArchiveObjectType)ThriveArchiveObjectType.Entity, false, false, false, false,
+            SERIALIZATION_VERSION);
+
         var entity = (Entity)obj;
 
         WriteEntityReferenceToArchive(writer, entity);
@@ -22,9 +26,6 @@ public static class EntityWorldSerializers
     public static void WriteEntityReferenceToArchive(ISArchiveWriter writer, Entity entity)
     {
         var manager = (ISaveContext)writer.WriteManager;
-
-        writer.WriteObjectHeader((ArchiveObjectType)ThriveArchiveObjectType.Entity, false, false, false, false,
-            SERIALIZATION_VERSION);
 
         // Don't write non-alive entities or entities that no longer want to be saved
         if (manager.SkipSavingEntity(entity) || entity == default(Entity) || !entity.IsAlive())
@@ -82,12 +83,19 @@ public static class EntityWorldSerializers
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.EntityWorld)
             throw new NotSupportedException();
 
+        // Must write the header first and handle referencing
+        writer.WriteObjectHeader((ArchiveObjectType)ThriveArchiveObjectType.EntityWorld, true, false,
+            writer.WriteManager.IsReferencedAlready(obj), false, SERIALIZATION_VERSION);
+
+        if (writer.WriteManager.MarkStartOfReferenceObject(writer, obj))
+        {
+            // Object was already written
+            return;
+        }
+
         var manager = (ISaveContext)writer.WriteManager;
 
         var world = (World)obj;
-
-        writer.WriteObjectHeader((ArchiveObjectType)ThriveArchiveObjectType.EntityWorld, true, false, false, false,
-            SERIALIZATION_VERSION);
 
         writer.Write(world.Id);
         writer.Write(world.Size);
@@ -104,16 +112,18 @@ public static class EntityWorldSerializers
                     if (manager.SkipSavingEntity(entity))
                         continue;
 
+                    // Writing more, so mark used
+                    writer.Write((byte)1);
+
                     // The API here is such that we need to allocate memory, but we can't really get around that
                     var components = entity.GetAllComponents();
 
-                    writer.Write((byte)1);
                     WriteEntityReferenceToArchive(writer, entity);
 
-                    if (components.Length > ushort.MaxValue)
+                    if (components.Length > byte.MaxValue)
                         throw new FormatException($"Too many components to save in entity {entity}");
 
-                    writer.Write((ushort)components.Length);
+                    writer.Write((byte)components.Length);
 
                     foreach (var component in components)
                     {
@@ -152,8 +162,7 @@ public static class EntityWorldSerializers
         var oldId = reader.ReadInt32();
 
         // TODO: use this for pre-allocation?
-        var oldCapacity = reader.ReadInt32();
-        _ = oldCapacity;
+        var oldSize = reader.ReadInt32();
 
         manager.ActiveProcessedWorldId = oldId;
 
@@ -182,7 +191,14 @@ public static class EntityWorldSerializers
             }
         }
 
+        if (manager.ProcessedEntityWorld != world)
+            throw new FormatException("Something has messed with our deserializing world");
+
         manager.ProcessedEntityWorld = null;
+
+        if (world.Size != oldSize)
+            throw new FormatException("World size changed during deserialization (unexpected entity count)");
+
         return world;
     }
 
