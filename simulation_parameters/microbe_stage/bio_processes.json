@@ -195,7 +195,7 @@
       "glucose": 0.09
     },
     "Outputs": {
-      "atp": 30,
+      "atp": 35,
       "carbondioxide": 1
     },
     "IsMetabolismProcess": true
@@ -244,19 +244,19 @@
   "thermosynthesis": {
     "Name": "THERMOSYNTHESIS",
     "Inputs": {
-      "temperature": 0.2
+      "temperature": 1.6
     },
     "Outputs": {
-      "atp": 11
+      "glucose": 0.03
     }
   },
   "bacterial_thermosynthesis": {
     "Name": "THERMOSYNTHESIS",
     "Inputs": {
-      "temperature": 0.2
+      "temperature": 1.6
     },
     "Outputs": {
-      "atp": 4
+      "glucose": 0.01
     }
   },
   "ferrosynthesis": {
