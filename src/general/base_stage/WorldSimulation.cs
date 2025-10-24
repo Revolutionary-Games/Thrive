@@ -547,6 +547,29 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
     public abstract void WriteToArchive(ISArchiveWriter writer);
 
+    public void ActivateWorldOnReadContext(ISArchiveReader reader)
+    {
+        var manager = (ISaveContext)reader.ReadManager;
+
+        if (manager.ProcessedEntityWorld != null)
+        {
+            throw new InvalidOperationException(
+                "Cannot activate this world on read context as something is already active");
+        }
+
+        manager.ProcessedEntityWorld = EntitySystem;
+    }
+
+    public void DeactivateWorldOnReadContext(ISArchiveReader reader)
+    {
+        var manager = (ISaveContext)reader.ReadManager;
+
+        if (manager.ProcessedEntityWorld != EntitySystem)
+            throw new InvalidOperationException("Someone deactivated this world read context already");
+
+        manager.ProcessedEntityWorld = null;
+    }
+
     /// <summary>
     ///   Note that often when this is disposed, the Nodes are already disposed, so this has to skip releasing them.
     ///   If that is not the case, it is required to call <see cref="FreeNodeResources"/> before calling Dispose.
@@ -575,6 +598,8 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     {
         if (version is > SERIALIZATION_VERSION_BASE or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_BASE);
+
+        ActivateWorldOnReadContext(reader);
 
         // The first two properties must be read already by the time this is called due to being used for construction
         minimumTimeBetweenLogicUpdates = reader.ReadFloat();

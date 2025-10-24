@@ -10,8 +10,6 @@ using ThriveScriptsShared;
 /// </summary>
 public class TerrainConfiguration : RegistryType
 {
-    public const ushort SERIALIZATION_VERSION = 1;
-
     public List<TerrainClusterConfiguration> PotentialClusters = new();
 
     public int MinClusters;
@@ -19,8 +17,14 @@ public class TerrainConfiguration : RegistryType
 
     private int totalChance;
 
+    [JsonIgnore]
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.TerrainConfiguration;
+
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        return SimulationParameters.Instance.GetTerrainConfigurationForBiome(ReadInternalName(reader, version));
+    }
 
     public override void Check(string name)
     {
@@ -62,6 +66,11 @@ public class TerrainConfiguration : RegistryType
 
     public override void ApplyTranslations()
     {
+    }
+
+    public override string ToString()
+    {
+        return $"{InternalName} Terrain";
     }
 
     public class TerrainChunkConfiguration

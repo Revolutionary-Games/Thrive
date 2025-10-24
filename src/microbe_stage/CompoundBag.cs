@@ -64,13 +64,13 @@ public class CompoundBag : ICompoundStorage, IArchivable
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CompoundBag;
     public bool CanBeReferencedInArchive => false;
 
-    public static CompoundBag ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static CompoundBag ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
         return new CompoundBag(reader.ReadObject<Dictionary<Compound, float>>(),
-            reader.ReadObject<Dictionary<Compound, float>>(), reader.ReadFloat());
+            reader.ReadObjectOrNull<Dictionary<Compound, float>>(), reader.ReadFloat());
     }
 
     public void WriteToArchive(ISArchiveWriter writer)

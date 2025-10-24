@@ -93,7 +93,7 @@ public static class HealthHelpers
 
         return new Health
         {
-            RecentDamageReceived = reader.ReadObject<List<DamageEventNotice>>(),
+            RecentDamageReceived = reader.ReadObjectOrNull<List<DamageEventNotice>>(),
             CurrentHealth = reader.ReadFloat(),
             MaxHealth = reader.ReadFloat(),
             HealthRegenCooldown = reader.ReadFloat(),
@@ -350,7 +350,7 @@ public class DamageEventNotice : IArchivable
         writer.WriteObject((DamageEventNotice)obj);
     }
 
-    public static DamageEventNotice ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static DamageEventNotice ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

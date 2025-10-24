@@ -140,11 +140,14 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         // The base version is different from ours
         instance.ReadBasePropertiesFromArchive(reader, 1);
 
+        instance.ResolveNodeReferences();
+
         reader.ReadObjectProperties(instance.entitySignalingSystem);
         instance.MicrobeTerrainSystem = reader.ReadObject<MicrobeTerrainSystem>();
         instance.SpawnSystem = reader.ReadObject<SpawnSystem>();
         reader.ReadObjectProperties(instance.FluidCurrentsSystem);
 
+        instance.DeactivateWorldOnReadContext(reader);
         return instance;
     }
 
@@ -152,10 +155,10 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     {
         WriteBasePropertiesToArchive(writer);
 
-        entitySignalingSystem.WritePropertiesToArchive(writer);
+        writer.WriteObjectProperties(entitySignalingSystem);
         writer.WriteObject(MicrobeTerrainSystem);
         writer.WriteObject(SpawnSystem);
-        FluidCurrentsSystem.WritePropertiesToArchive(writer);
+        writer.WriteObjectProperties(FluidCurrentsSystem);
     }
 
     /// <summary>
@@ -354,6 +357,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         // TODO: load time from save
         FluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, 0);
 
+        // These two get overwritten on a save load
         MicrobeTerrainSystem = new MicrobeTerrainSystem(this, EntitySystem);
         SpawnSystem = new SpawnSystem(this, EntitySystem, MicrobeTerrainSystem.IsPositionBlocked);
     }

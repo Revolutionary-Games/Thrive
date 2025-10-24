@@ -229,6 +229,9 @@ public static class ComponentDeserializers
             case ThriveArchiveObjectType.ComponentWorldPosition:
                 entity.Add(WorldPositionHelpers.ReadFromArchive(reader, version));
                 return true;
+            case ThriveArchiveObjectType.ComponentMicrobeEventCallbacks:
+                entity.Add(MicrobeEventCallbackHelpers.ReadFromArchive(reader, version));
+                return true;
         }
 
         return false;

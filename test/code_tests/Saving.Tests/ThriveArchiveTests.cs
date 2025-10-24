@@ -249,4 +249,50 @@ public class ThriveArchiveTests
         Assert.Equal(originalEntity1.Get<WorldPosition>(), readEntity.Get<WorldPosition>());
         Assert.Equal(originalEntity1.Get<PlayerMarker>(), readEntity.Get<PlayerMarker>());
     }
+
+    [Fact]
+    public void ThriveArchive_DictionaryWithVector2IKeys()
+    {
+        var memoryStream = new MemoryStream();
+        var writer = new SArchiveMemoryWriter(memoryStream, manager);
+        var reader = new SArchiveMemoryReader(memoryStream, manager);
+
+        var original = new Dictionary<Vector2I, List<string>>
+        {
+            {
+                new Vector2I(1, 2),
+                [
+                    "test",
+                    "test2",
+                ]
+            },
+            {
+                new Vector2I(-1, 50),
+                [
+                    "another thing",
+                ]
+            },
+            {
+                new Vector2I(0, 0),
+                new List<string>()
+            },
+        };
+
+        manager.OnStartNewWrite(writer);
+        writer.WriteObject(original);
+        manager.OnFinishWrite(writer);
+
+        manager.OnStartNewRead(reader);
+        memoryStream.Seek(0, SeekOrigin.Begin);
+
+        var read = reader.ReadObjectOrNull<Dictionary<Vector2I, List<string>>>();
+        manager.OnFinishRead(reader);
+
+        Assert.NotNull(read);
+        Assert.Equal(original.Count, read.Count);
+
+        Assert.True(original[new Vector2I(1, 2)].SequenceEqual(read[new Vector2I(1, 2)]));
+        Assert.True(original[new Vector2I(-1, 50)].SequenceEqual(read[new Vector2I(-1, 50)]));
+        Assert.True(original[new Vector2I(0, 0)].SequenceEqual(read[new Vector2I(0, 0)]));
+    }
 }

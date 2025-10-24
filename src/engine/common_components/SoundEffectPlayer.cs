@@ -39,7 +39,15 @@ public struct SoundEffectPlayer : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.WriteObjectOrNull(SoundEffectSlots);
+        if (SoundEffectSlots != null)
+        {
+            writer.WriteObject(SoundEffectSlots);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
+
         writer.Write(AbsoluteMaxDistanceSquared);
         writer.Write(SoundVolumeMultiplier);
         writer.Write(AutoDetectPlayer);
@@ -94,7 +102,7 @@ public struct SoundEffectSlot : IArchivable
         writer.WriteObject((SoundEffectSlot)obj);
     }
 
-    public static SoundEffectSlot ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static SoundEffectSlot ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
@@ -106,6 +114,11 @@ public struct SoundEffectSlot : IArchivable
             Play = reader.ReadBool(),
             Loop = reader.ReadBool(),
         };
+    }
+
+    public static object ReadFromArchiveBoxed(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        return ReadFromArchive(reader, version, referenceId);
     }
 
     public void WriteToArchive(ISArchiveWriter writer)

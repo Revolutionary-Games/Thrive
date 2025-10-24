@@ -4,6 +4,9 @@ using SharedBase.Archive;
 
 public static class ArchiveValueTypeHelpers
 {
+    // If any of the base writers change, then also all *dependent* objects need their versions updated
+    public const int SERIALIZATION_VERSION = 1;
+
     public static void Write(this ISArchiveWriter writer, Vector2 value)
     {
         writer.Write(value.X);
@@ -26,11 +29,20 @@ public static class ArchiveValueTypeHelpers
         return new Vector2I(reader.ReadInt32(), reader.ReadInt32());
     }
 
-    public static void WriteVector2I(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    public static object ReadVector2IBoxed(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return ReadVector2I(reader);
+    }
+
+    public static void WriteVector2IBoxed(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.Vector2I)
             throw new NotSupportedException();
 
+        writer.WriteObjectHeader(type, false, false, false, false, SERIALIZATION_VERSION);
         writer.Write((Vector2I)obj);
     }
 

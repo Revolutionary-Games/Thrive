@@ -91,7 +91,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
         writer.WriteObject((MicrobeTerrainSystem)obj);
     }
 
-    public static MicrobeTerrainSystem ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static MicrobeTerrainSystem ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
@@ -615,7 +615,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
         }
 
         // ReSharper disable once MemberHidesStaticFromOuterClass
-        public static SpawnedTerrainCluster ReadFromArchive(ISArchiveReader reader, ushort version)
+        public static SpawnedTerrainCluster ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
         {
             if (version is > SERIALIZATION_VERSION_CLUSTER or <= 0)
                 throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_CLUSTER);
@@ -631,6 +631,11 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
             instance.OverlapRadiusSquared = overlapRadius;
 
             return instance;
+        }
+
+        public static object ReadFromArchiveBoxed(ISArchiveReader reader, ushort version, int referenceId)
+        {
+            return ReadFromArchive(reader, version, referenceId);
         }
 
         public void WriteToArchive(ISArchiveWriter writer)
@@ -705,7 +710,7 @@ internal class SpawnedTerrainGroup(Vector3 position, float radius, uint groupId)
         writer.WriteObject((SpawnedTerrainGroup)obj);
     }
 
-    public static SpawnedTerrainGroup ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static SpawnedTerrainGroup ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

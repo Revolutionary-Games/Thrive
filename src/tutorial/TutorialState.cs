@@ -153,7 +153,7 @@ public class TutorialState : ITutorialInput, IArchivable
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.TutorialState;
     public bool CanBeReferencedInArchive => true;
 
-    public static TutorialState ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static TutorialState ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

@@ -71,6 +71,9 @@ public static class EntityWorldSerializers
         if (manager.OldToNewEntityMapping.TryGetValue(old, out var existing))
             return existing;
 
+        // This could do some verification of old mappings matching the ID
+        // if (worldId != manager.ActiveProcessedOldWorldId)
+
         // Otherwise create a new mapping and remember it
         var newValue = manager.ProcessedEntityWorld.Create(Signature.Null);
         manager.OldToNewEntityMapping[old] = newValue;
@@ -164,7 +167,7 @@ public static class EntityWorldSerializers
         // TODO: use this for pre-allocation?
         var oldSize = reader.ReadInt32();
 
-        manager.ActiveProcessedWorldId = oldId;
+        manager.ActiveProcessedOldWorldId = oldId;
 
         // Read entities while there are some
         while (reader.ReadInt8() == 1)

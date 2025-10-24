@@ -14,7 +14,7 @@ public interface ISaveContext
 
     public World? ProcessedEntityWorld { get; set; }
 
-    public int ActiveProcessedWorldId { get; set; }
+    public int ActiveProcessedOldWorldId { get; set; }
 
     public Dictionary<Entity, Entity> OldToNewEntityMapping { get; }
 

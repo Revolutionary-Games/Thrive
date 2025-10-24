@@ -58,7 +58,7 @@ public struct TweakedProcess : IEquatable<TweakedProcess>, IArchivable
         writer.WriteObject((TweakedProcess)obj);
     }
 
-    public static TweakedProcess ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static TweakedProcess ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
@@ -67,6 +67,11 @@ public struct TweakedProcess : IEquatable<TweakedProcess>, IArchivable
         {
             SpeedMultiplier = reader.ReadFloat(),
         };
+    }
+
+    public static object ReadFromArchiveBoxed(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        return ReadFromArchive(reader, version, referenceId);
     }
 
     public void WriteToArchive(ISArchiveWriter writer)

@@ -165,16 +165,35 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         writer.WriteObject((MicrobeStage)obj);
     }
 
-    public static MicrobeStage ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static MicrobeStage ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var scene = GD.Load<PackedScene>("res://src/microbe_stage/MicrobeStage.tsc");
+        var scene = GD.Load<PackedScene>("res://src/microbe_stage/MicrobeStage.tscn");
         var instance = scene.Instantiate<MicrobeStage>();
+
+        reader.ReportObjectConstructorDone(instance, referenceId);
+
+        instance.ResolveNodeReferences();
 
         // Base version is different from this version
         instance.ReadBasePropertiesFromArchive(reader, 1);
+
+        instance.wonOnce = reader.ReadBool();
+        instance.movementModeShowTimer = reader.ReadDouble();
+        instance.playerInColony = reader.ReadBool();
+        instance.tutorialCanceledOnce = reader.ReadBool();
+        instance.environmentPanelAutomaticallyOpened = reader.ReadBool();
+        instance.playerOffspringTotalCount = reader.ReadInt32();
+        instance.appliedPlayerGodMode = reader.ReadBool();
+        instance.loadSaveAdviseSuppressed = reader.ReadBool();
+
+        reader.ReadObjectProperties(instance.Clouds);
+        reader.ReadObjectProperties(instance.Camera);
+        reader.ReadObjectProperties(instance.HUD);
+        instance.SavedPatchManagerPatch = reader.ReadObjectOrNull<Patch>();
+        instance.SavedPatchManagerBrightness = reader.ReadFloat();
 
         return instance;
     }

@@ -75,7 +75,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var scene = GD.Load<PackedScene>("res://scenes/CompoundCloudPlane.tscn");
+        var scene = GD.Load<PackedScene>("res://src/microbe_stage/CompoundCloudPlane.tscn");
 
         var instance = scene.Instantiate<CompoundCloudPlane>();
 
