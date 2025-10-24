@@ -225,6 +225,9 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     {
         base._Ready();
 
+        // Set a null player until we are initialised
+        Player = Entity.Null;
+
         // Start a new game if started directly from MicrobeStage.tscn
         CurrentGame ??= GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
 
