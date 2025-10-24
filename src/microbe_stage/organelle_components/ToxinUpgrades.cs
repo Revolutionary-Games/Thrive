@@ -43,7 +43,7 @@ public class ToxinUpgrades : IComponentSpecificUpgrades
     [JsonIgnore]
     public bool CanBeReferencedInArchive => false;
 
-    public static ToxinUpgrades ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static ToxinUpgrades ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

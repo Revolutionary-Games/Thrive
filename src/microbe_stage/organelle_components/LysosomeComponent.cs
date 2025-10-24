@@ -83,7 +83,7 @@ public class LysosomeUpgrades : IComponentSpecificUpgrades
     [JsonIgnore]
     public bool CanBeReferencedInArchive => false;
 
-    public static LysosomeUpgrades ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static LysosomeUpgrades ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);

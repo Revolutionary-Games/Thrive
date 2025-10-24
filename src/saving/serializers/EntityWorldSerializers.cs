@@ -220,7 +220,7 @@ public static class EntityWorldSerializers
         if (ComponentDeserializers.ReadComponentToEntity(reader, entity, objectType, version))
             return;
 
-        throw new FormatException($"Unknown component type to read: {objectType}");
+        throw new FormatException($"Unknown component type to read: {objectType} (version: {version})");
     }
 
     private static uint PackLightComponentHeader(ThriveArchiveObjectType type, ushort version)

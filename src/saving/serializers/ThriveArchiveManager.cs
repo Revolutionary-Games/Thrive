@@ -220,6 +220,21 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleTemplate,
             typeof(OrganelleTemplate), OrganelleTemplate.ReadFromArchive);
 
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleUpgrades, typeof(OrganelleUpgrades),
+            OrganelleUpgrades.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.LysosomeUpgrades, typeof(LysosomeUpgrades),
+            LysosomeUpgrades.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.FlagellumUpgrades, typeof(FlagellumUpgrades),
+            FlagellumUpgrades.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.StorageComponentUpgrades,
+            typeof(StorageComponentUpgrades),
+            StorageComponentUpgrades.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ToxinUpgrades, typeof(ToxinUpgrades),
+            ToxinUpgrades.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ChemoreceptorUpgrades,
+            typeof(ChemoreceptorUpgrades),
+            ChemoreceptorUpgrades.ReadFromArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedOrganelleLayout,
             typeof(OrganelleLayout<>), HexLayoutSerializer.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleLayout,
