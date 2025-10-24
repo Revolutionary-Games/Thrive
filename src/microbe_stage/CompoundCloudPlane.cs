@@ -84,6 +84,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         instance.cachedWorldPosition = reader.ReadVector3();
         instance.Resolution = reader.ReadInt32();
         instance.Size = reader.ReadInt32();
+        instance.Position = reader.ReadVector3();
 
         // Then the density data
         var buffer = new byte[instance.Size * 4 * 4];
@@ -103,21 +104,21 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                 // Then reconstruct each data item
                 var vector4 = default(Vector4);
 
-                var data = BitConverter.ToUInt32(buffer.AsSpan(bufferReadOffset, 4));
+                var data = buffer[bufferReadOffset++] | (uint)buffer[bufferReadOffset++] << 8 |
+                    (uint)buffer[bufferReadOffset++] << 16 | (uint)buffer[bufferReadOffset++] << 24;
                 vector4.X = BitConverter.UInt32BitsToSingle(data);
-                bufferReadOffset += 4;
 
-                data = BitConverter.ToUInt32(buffer.AsSpan(bufferReadOffset, 4));
+                data = buffer[bufferReadOffset++] | (uint)buffer[bufferReadOffset++] << 8 |
+                    (uint)buffer[bufferReadOffset++] << 16 | (uint)buffer[bufferReadOffset++] << 24;
                 vector4.Y = BitConverter.UInt32BitsToSingle(data);
-                bufferReadOffset += 4;
 
-                data = BitConverter.ToUInt32(buffer.AsSpan(bufferReadOffset, 4));
+                data = buffer[bufferReadOffset++] | (uint)buffer[bufferReadOffset++] << 8 |
+                    (uint)buffer[bufferReadOffset++] << 16 | (uint)buffer[bufferReadOffset++] << 24;
                 vector4.Z = BitConverter.UInt32BitsToSingle(data);
-                bufferReadOffset += 4;
 
-                data = BitConverter.ToUInt32(buffer.AsSpan(bufferReadOffset, 4));
+                data = buffer[bufferReadOffset++] | (uint)buffer[bufferReadOffset++] << 8 |
+                    (uint)buffer[bufferReadOffset++] << 16 | (uint)buffer[bufferReadOffset++] << 24;
                 vector4.W = BitConverter.UInt32BitsToSingle(data);
-                bufferReadOffset += 4;
 
                 target[x, y] = vector4;
             }
@@ -140,6 +141,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         writer.Write(cachedWorldPosition);
         writer.Write(Resolution);
         writer.Write(Size);
+        writer.Write(Position);
 
         var localDensity = Density;
 

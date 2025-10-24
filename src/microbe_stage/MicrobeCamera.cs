@@ -313,6 +313,7 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
         writer.Write(lightLevel);
         writer.Write(CameraHeight);
         writer.Write(FramerateAdjustZoomSpeed);
+        writer.Write(Position);
     }
 
     public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -332,6 +333,9 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
         lightLevel = reader.ReadFloat();
         CameraHeight = reader.ReadFloat();
         FramerateAdjustZoomSpeed = reader.ReadBool();
+        Position = reader.ReadVector3();
+
+        IsLoadedFromSave = true;
     }
 
     private void UpdateCursorWorldPos()
