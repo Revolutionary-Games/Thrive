@@ -189,6 +189,8 @@ public abstract class Species : ICloneable, IArchivable
         throw new NotSupportedException($"Unknown species type for read forwarding: {knownType}");
     }
 
+    public abstract void WriteToArchive(ISArchiveWriter writer);
+
     /// <summary>
     ///   Triggered when this species is changed somehow. Should update any data that is cached in the species
     ///   regarding its properties, including <see cref="RepositionToOrigin"/>
@@ -348,8 +350,6 @@ public abstract class Species : ICloneable, IArchivable
     /// </summary>
     /// <returns>Size factor of this species</returns>
     public abstract float GetPredationTargetSizeFactor();
-
-    public abstract void WriteToArchive(ISArchiveWriter writer);
 
     /// <summary>
     ///   Creates a cloned version of the species. This should only

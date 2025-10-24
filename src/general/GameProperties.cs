@@ -267,6 +267,48 @@ public class GameProperties : IArchivable
         return game;
     }
 
+    public static GameProperties ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new GameProperties(reader.ReadObject<GameWorld>(),
+            reader.ReadObject<TutorialState>(),
+            reader.ReadObject<Dictionary<string, bool>>());
+
+        reader.ReportObjectConstructorDone(instance, referenceId);
+
+        instance.FreeBuild = reader.ReadBool();
+        instance.CheatsUsed = reader.ReadBool();
+        instance.Ascended = reader.ReadBool();
+        instance.AscensionCounter = reader.ReadInt32();
+        instance.InPrototypes = reader.ReadBool();
+        instance.PlaythroughID = Guid.Parse(reader.ReadString() ?? throw new NullArchiveObjectException());
+
+        // Not saved currently
+        // instance.TechWeb = reader.ReadObject<TechWeb>();
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(GameWorld);
+        writer.WriteObject(TutorialState);
+        writer.WriteObject(setBoolStatuses);
+
+        writer.Write(FreeBuild);
+        writer.Write(CheatsUsed);
+        writer.Write(Ascended);
+        writer.Write(AscensionCounter);
+        writer.Write(InPrototypes);
+        writer.Write(PlaythroughID.ToString());
+
+        // Not saved for now as this is only used in the prototypes
+
+        // writer.WriteObject(TechWeb);
+    }
+
     /// <summary>
     ///   Returns whether a key has a true bool set to it
     /// </summary>
@@ -333,48 +375,6 @@ public class GameProperties : IArchivable
 
         // Modify the game and world to make sure the descension perks are applied
         ApplyDescensionPerks();
-    }
-
-    public void WriteToArchive(ISArchiveWriter writer)
-    {
-        writer.WriteObject(GameWorld);
-        writer.WriteObject(TutorialState);
-        writer.WriteObject(setBoolStatuses);
-
-        writer.Write(FreeBuild);
-        writer.Write(CheatsUsed);
-        writer.Write(Ascended);
-        writer.Write(AscensionCounter);
-        writer.Write(InPrototypes);
-        writer.Write(PlaythroughID.ToString());
-
-        // Not saved for now as this is only used in the prototypes
-
-        // writer.WriteObject(TechWeb);
-    }
-
-    internal static GameProperties ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
-    {
-        if (version is > SERIALIZATION_VERSION or <= 0)
-            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
-
-        var instance = new GameProperties(reader.ReadObject<GameWorld>(),
-            reader.ReadObject<TutorialState>(),
-            reader.ReadObject<Dictionary<string, bool>>());
-
-        reader.ReportObjectConstructorDone(instance, referenceId);
-
-        instance.FreeBuild = reader.ReadBool();
-        instance.CheatsUsed = reader.ReadBool();
-        instance.Ascended = reader.ReadBool();
-        instance.AscensionCounter = reader.ReadInt32();
-        instance.InPrototypes = reader.ReadBool();
-        instance.PlaythroughID = Guid.Parse(reader.ReadString() ?? throw new NullArchiveObjectException());
-
-        // Not saved currently
-        // instance.TechWeb = reader.ReadObject<TechWeb>();
-
-        return instance;
     }
 
     private static MicrobeSpecies MakePlayerOrganellesMakeSenseForMulticellular(GameProperties game)

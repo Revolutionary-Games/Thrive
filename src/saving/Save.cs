@@ -210,6 +210,33 @@ public sealed class Save : IArchivable, IDisposable
     }
 
     /// <summary>
+    ///   This is the archive interface implementation; not really meant to be called directly.
+    ///   Use <see cref="SerializeData"/> and <see cref="SaveToFile"/> instead.
+    /// </summary>
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(Name);
+        writer.WriteObject(Info);
+        writer.Write((int)GameState);
+
+        writer.WriteObjectOrNull(SavedProperties);
+        writer.WriteObjectOrNull(MicrobeStage);
+
+        if (MicrobeEditor == null)
+        {
+            writer.WriteNullObject();
+        }
+        else
+        {
+            throw new NotImplementedException("Editor save not done yet");
+
+            // writer.WriteObject(MicrobeEditor);
+        }
+
+        // Other properties are not saved
+    }
+
+    /// <summary>
     ///   Serializes the main data into an archive, must be called before saving this to a file.
     /// </summary>
     /// <param name="archiveManager">Archive manager to perform the serialization with</param>
@@ -276,29 +303,6 @@ public sealed class Save : IArchivable, IDisposable
 
         MicrobeEditor?.QueueFree();
         MicrobeEditor = null;
-    }
-
-    public void WriteToArchive(ISArchiveWriter writer)
-    {
-        writer.Write(Name);
-        writer.WriteObject(Info);
-        writer.Write((int)GameState);
-
-        writer.WriteObjectOrNull(SavedProperties);
-        writer.WriteObjectOrNull(MicrobeStage);
-
-        if (MicrobeEditor == null)
-        {
-            writer.WriteNullObject();
-        }
-        else
-        {
-            throw new NotImplementedException("Editor save not done yet");
-
-            // writer.WriteObject(MicrobeEditor);
-        }
-
-        // Other properties are not saved
     }
 
     public void Dispose()
