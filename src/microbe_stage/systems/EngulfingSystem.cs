@@ -488,7 +488,12 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         // Phagosome is now created when needed to be updated by the transport method instead of here immediately
         var bulkTransport = GetNewTransportAnimation();
 
-        bulkTransport.TargetValuesToLerp = (ingestionPoint, originalScale / 2, boundingBoxSize);
+        bulkTransport.TargetPositionToLerp = ingestionPoint;
+        bulkTransport.HasTargetPositionToLerp = true;
+        bulkTransport.TargetScaleToLerp = originalScale / 2;
+        bulkTransport.HasTargetScaleToLerp = true;
+        bulkTransport.TargetEndosomeScaleToLerp = boundingBoxSize;
+        bulkTransport.HasTargetEndosomeScaleToLerp = true;
 
         engulfable.BulkTransport = bulkTransport;
     }
@@ -523,7 +528,8 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
     /// <summary>
     ///   Begins phagocytosis related lerp animation. Note that
-    ///   <see cref="Engulfable.BulkTransportAnimation.TargetValuesToLerp"/> must be set before calling this.
+    ///   <see cref="Engulfable.BulkTransportAnimation.HasTargetPositionToLerp"/> and related variables must be set
+    ///   before calling this.
     /// </summary>
     private static void StartBulkTransport(ref Engulfable engulfable,
         ref AttachedToEntity initialRelativePositionInfo, float duration, Vector3 currentEndosomeScale,
@@ -571,8 +577,13 @@ public partial class EngulfingSystem : BaseSystem<World, float>
             scale = engulfable.OriginalScale;
         }
 
-        transportData.InitialValuesToLerp =
-            (initialRelativePositionInfo.RelativePosition, scale, currentEndosomeScale);
+        transportData.InitialPositionToLerp = initialRelativePositionInfo.RelativePosition;
+        transportData.HasInitialPositionToLerp = true;
+        transportData.InitialScaleToLerp = scale;
+        transportData.HasInitialScaleToLerp = true;
+        transportData.InitialEndosomeScaleToLerp = currentEndosomeScale;
+        transportData.HasInitialEndosomeScaleToLerp = true;
+
         transportData.LerpDuration = duration;
         transportData.Interpolate = true;
     }
@@ -582,7 +593,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
     /// </summary>
     private static void StopBulkTransport(Engulfable.BulkTransportAnimation animation)
     {
-        // This tells the animation to not run anymore
+        // This tells the animation to not run any more
         animation.Interpolate = false;
 
         animation.AnimationTimeElapsed = 0;
@@ -722,9 +733,19 @@ public partial class EngulfingSystem : BaseSystem<World, float>
                 var targetScale = Vector3.One * 0.05f;
 
                 // Custom start animation to be able to set the original scale
-                transportData.TargetValuesToLerp = (null, targetScale, Vector3.One * MathUtils.EPSILON);
-                transportData.InitialValuesToLerp =
-                    (engulfedEntity.Get<AttachedToEntity>().RelativePosition, currentScale, currentEndosomeScale);
+                transportData.HasTargetPositionToLerp = false;
+                transportData.TargetScaleToLerp = targetScale;
+                transportData.HasTargetScaleToLerp = true;
+                transportData.TargetEndosomeScaleToLerp = Vector3.One * MathUtils.EPSILON;
+                transportData.HasTargetEndosomeScaleToLerp = true;
+
+                transportData.InitialPositionToLerp = engulfedEntity.Get<AttachedToEntity>().RelativePosition;
+                transportData.HasInitialPositionToLerp = true;
+                transportData.InitialScaleToLerp = currentScale;
+                transportData.HasInitialScaleToLerp = true;
+                transportData.InitialEndosomeScaleToLerp = currentEndosomeScale;
+                transportData.HasInitialEndosomeScaleToLerp = true;
+
                 transportData.AnimationTimeElapsed = 0;
                 transportData.LerpDuration = 1.5f;
                 transportData.Interpolate = true;
@@ -801,8 +822,9 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
                         // Preserve any previous animation properties that may have been set up by exocytosis
                         // request
-                        transportData.TargetValuesToLerp = (transportData.TargetValuesToLerp.Position,
-                            engulfable.OriginalScale, transportData.TargetValuesToLerp.EndosomeScale);
+                        transportData.TargetScaleToLerp = engulfable.OriginalScale;
+                        transportData.HasTargetScaleToLerp = true;
+
                         StartBulkTransport(ref engulfable,
                             ref engulfedEntity.Get<AttachedToEntity>(), 1.0f,
                             Vector3.One);
@@ -943,10 +965,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         if (!entityEngulfingEndosomeGraphics.TryGetValue(entity, out var dataContainer))
             return null;
 
-        if (dataContainer.TryGetValue(engulfedObject, out var endosome))
-            return endosome;
-
-        return null;
+        return dataContainer.GetValueOrDefault(engulfedObject);
     }
 
     private void RemoveEndosomeFromEntity(in Entity entity, Endosome endosome)
@@ -1486,7 +1505,12 @@ public partial class EngulfingSystem : BaseSystem<World, float>
             engulfable.BulkTransport = animation;
         }
 
-        animation.TargetValuesToLerp = (nearestPointOfMembraneToTarget, null, targetEndosomeScale);
+        animation.TargetPositionToLerp = nearestPointOfMembraneToTarget;
+        animation.HasTargetPositionToLerp = true;
+        animation.HasTargetScaleToLerp = false;
+        animation.TargetEndosomeScaleToLerp = targetEndosomeScale;
+        animation.HasTargetEndosomeScaleToLerp = true;
+
         StartBulkTransport(ref engulfable, ref attached, animationSpeed, currentEndosomeScale);
 
         // The rest of the operation is done in CompleteEjection
@@ -1764,26 +1788,51 @@ public partial class EngulfingSystem : BaseSystem<World, float>
             // Ease out
             fraction = MathF.Sin(fraction * MathF.PI * 0.5f);
 
-            if (animation.TargetValuesToLerp.Position.HasValue)
+            if (animation.HasTargetPositionToLerp)
             {
-                relativePosition.RelativePosition = animation.InitialValuesToLerp.Position.Lerp(
-                    animation.TargetValuesToLerp.Position.Value, fraction);
+                if (!animation.HasInitialPositionToLerp)
+                {
+                    animation.HasTargetPositionToLerp = false;
+                    GD.PrintErr("Engulf animation has target position but no start position");
+                }
+                else
+                {
+                    relativePosition.RelativePosition =
+                        animation.InitialPositionToLerp.Lerp(animation.TargetPositionToLerp, fraction);
+                }
             }
 
             // There's an extra safety check here about the scale animation to not accidentally override things
-            // if the object has already restored its real scale (this shouldn't be necessary, but I added this here
-            // anyway when trying to debug a visual scale flickering problem related to engulfing -hhyyrylainen)
-            if (animation.TargetValuesToLerp.Scale.HasValue && animation.Interpolate)
+            // if the object has already restored its real scale.
+            // This shouldn't be necessary, but I added this here anyway when trying to debug a visual scale
+            // flickering problem related to engulfing.
+            // -hhyyrylainen
+            if (animation.HasTargetScaleToLerp && animation.Interpolate)
             {
-                spatial.VisualScale = animation.InitialValuesToLerp.Scale.Lerp(
-                    animation.TargetValuesToLerp.Scale.Value, fraction);
-                spatial.ApplyVisualScale = true;
+                if (!animation.HasInitialScaleToLerp)
+                {
+                    animation.HasTargetScaleToLerp = false;
+                    GD.PrintErr("Engulf animation has target scale but no start scale");
+                }
+                else
+                {
+                    spatial.VisualScale = animation.InitialScaleToLerp.Lerp(animation.TargetScaleToLerp, fraction);
+                    spatial.ApplyVisualScale = true;
+                }
             }
 
-            if (animation.TargetValuesToLerp.EndosomeScale.HasValue)
+            if (animation.HasTargetEndosomeScaleToLerp)
             {
-                endosome.Scale = animation.InitialValuesToLerp.EndosomeScale.Lerp(
-                    animation.TargetValuesToLerp.EndosomeScale.Value, fraction);
+                if (!animation.HasInitialEndosomeScaleToLerp)
+                {
+                    animation.HasTargetEndosomeScaleToLerp = false;
+                    GD.PrintErr("Engulf animation has target endosome scale but no start endosome scale");
+                }
+                else
+                {
+                    endosome.Scale =
+                        animation.InitialEndosomeScaleToLerp.Lerp(animation.TargetEndosomeScaleToLerp, fraction);
+                }
             }
 
             // Endosome is parented to the visuals of the engulfed object, so its position shouldn't be updated
@@ -1793,18 +1842,18 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         }
 
         // Snap values
-        if (animation.TargetValuesToLerp.Position.HasValue)
-            relativePosition.RelativePosition = animation.TargetValuesToLerp.Position.Value;
+        if (animation.HasTargetPositionToLerp)
+            relativePosition.RelativePosition = animation.TargetPositionToLerp;
 
         // See the comment above where Interpolate is also referenced as to why it is here as well
-        if (animation.TargetValuesToLerp.Scale.HasValue && animation.Interpolate)
+        if (animation.HasTargetScaleToLerp && animation.Interpolate)
         {
-            spatial.VisualScale = animation.TargetValuesToLerp.Scale.Value;
+            spatial.VisualScale = animation.TargetScaleToLerp;
             spatial.ApplyVisualScale = true;
         }
 
-        if (animation.TargetValuesToLerp.EndosomeScale.HasValue)
-            endosome.Scale = animation.TargetValuesToLerp.EndosomeScale.Value;
+        if (animation.HasTargetEndosomeScaleToLerp)
+            endosome.Scale = animation.TargetEndosomeScaleToLerp;
 
         StopBulkTransport(animation);
 

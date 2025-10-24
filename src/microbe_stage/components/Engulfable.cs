@@ -137,18 +137,32 @@ public struct Engulfable : IArchivableComponent
         public float LerpDuration;
         public float AnimationTimeElapsed;
 
-        // TODO: refactor this to not use nullable values as that will save a bunch of boxing and memory allocation
-        public (Vector3? Position, Vector3? Scale, Vector3? EndosomeScale) TargetValuesToLerp;
-        public (Vector3 Position, Vector3 Scale, Vector3 EndosomeScale) InitialValuesToLerp;
+        // These used to be 2 tuples with nullable values, but that was a lot of boxing and saving was very hard to
+        // reimplement, so these are now plain values like this
+        public Vector3 TargetPositionToLerp;
+        public Vector3 TargetScaleToLerp;
+        public Vector3 TargetEndosomeScaleToLerp;
 
-        public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+        public Vector3 InitialPositionToLerp;
+        public Vector3 InitialScaleToLerp;
+        public Vector3 InitialEndosomeScaleToLerp;
+
+        public bool HasTargetPositionToLerp;
+        public bool HasTargetScaleToLerp;
+        public bool HasTargetEndosomeScaleToLerp;
+
+        public bool HasInitialPositionToLerp;
+        public bool HasInitialScaleToLerp;
+        public bool HasInitialEndosomeScaleToLerp;
+
+        public ushort CurrentArchiveVersion => SERIALIZATION_VERSION_TRANSPORT;
         public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.BulkTransportAnimation;
         public bool CanBeReferencedInArchive => false;
 
-        public static BulkTransportAnimation ReadFromArchive(ISArchiveReader reader, ushort version)
+        public static BulkTransportAnimation ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
         {
-            if (version is > SERIALIZATION_VERSION or <= 0)
-                throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+            if (version is > SERIALIZATION_VERSION_TRANSPORT or <= 0)
+                throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_TRANSPORT);
 
             return new BulkTransportAnimation
             {
@@ -156,8 +170,17 @@ public struct Engulfable : IArchivableComponent
                 DigestionEjectionStarted = reader.ReadBool(),
                 LerpDuration = reader.ReadFloat(),
                 AnimationTimeElapsed = reader.ReadFloat(),
-                TargetValuesToLerp = reader.ReadObject<(Vector3? Position, Vector3? Scale, Vector3? EndosomeScale)>(),
-                InitialValuesToLerp = reader.ReadObject<(Vector3 Position, Vector3 Scale, Vector3 EndosomeScale)>(),
+                TargetPositionToLerp = reader.ReadVector3(),
+                TargetScaleToLerp = reader.ReadVector3(),
+                TargetEndosomeScaleToLerp = reader.ReadVector3(),
+                InitialPositionToLerp = reader.ReadVector3(),
+                InitialScaleToLerp = reader.ReadVector3(),
+                InitialEndosomeScaleToLerp = reader.ReadVector3(),
+                HasTargetPositionToLerp = reader.ReadBool(),
+                HasTargetScaleToLerp = reader.ReadBool(),
+                HasTargetEndosomeScaleToLerp = reader.ReadBool(),
+                HasInitialPositionToLerp = reader.ReadBool(),
+                HasInitialScaleToLerp = reader.ReadBool(),
             };
         }
 
@@ -167,8 +190,19 @@ public struct Engulfable : IArchivableComponent
             writer.Write(DigestionEjectionStarted);
             writer.Write(LerpDuration);
             writer.Write(AnimationTimeElapsed);
-            writer.WriteObject(TargetValuesToLerp);
-            writer.WriteObject(InitialValuesToLerp);
+
+            writer.Write(TargetPositionToLerp);
+            writer.Write(TargetScaleToLerp);
+            writer.Write(TargetEndosomeScaleToLerp);
+            writer.Write(InitialPositionToLerp);
+            writer.Write(InitialScaleToLerp);
+            writer.Write(InitialEndosomeScaleToLerp);
+            writer.Write(HasTargetPositionToLerp);
+            writer.Write(HasTargetScaleToLerp);
+            writer.Write(HasTargetEndosomeScaleToLerp);
+            writer.Write(HasInitialPositionToLerp);
+            writer.Write(HasInitialScaleToLerp);
+            writer.Write(HasInitialEndosomeScaleToLerp);
         }
     }
 }

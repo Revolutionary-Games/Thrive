@@ -337,6 +337,9 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(CompoundCloudPlane), CompoundCloudPlane.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPlane,
             typeof(CompoundCloudPlane), CompoundCloudPlane.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BulkTransportAnimation,
+            typeof(Engulfable.BulkTransportAnimation), Engulfable.BulkTransportAnimation.ReadFromArchive);
     }
 
     private void RegisterWorldEffects()
