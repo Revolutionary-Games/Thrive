@@ -184,10 +184,6 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
 
     private bool strainIsRed;
 
-    protected CreatureStageHUDBase()
-    {
-    }
-
     [Signal]
     public delegate void OnOpenMenuEventHandler();
 
