@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://djgodehx4yuhh"]
+
+[ext_resource type="PackedScene" uid="uid://cgd0xfhek2op0" path="res://assets/models/microbe_terrain/GabbroTerrainChunk1.glb" id="1_w0ujy"]
+[ext_resource type="Material" uid="uid://boqu8cgiadi2m" path="res://assets/models/microbe_terrain/GabbroTerrainChunk.material" id="2_dq8an"]
+
+[node name="GabbroTerrainChunk1" instance=ExtResource("1_w0ujy")]
+
+[node name="gabbro1" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_dq8an")
