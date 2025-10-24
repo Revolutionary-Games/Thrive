@@ -9,14 +9,30 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
     private readonly FrozenSet<OrganelleDefinition> allOrganelles;
     private readonly IComponentSpecificUpgrades? customUpgrade;
     private readonly string? upgradeName;
+    private readonly bool shouldRepeat;
 
+    /// <summary>
+    ///   Updates an organelle type with the given upgrade custom data
+    /// </summary>
+    /// <param name="criteria">Organelle requirement to apply</param>
+    /// <param name="customUpgrade">The custom data to be applied as an upgrade to the organelle</param>
     public UpgradeOrganelle(Func<OrganelleDefinition, bool> criteria, IComponentSpecificUpgrades customUpgrade)
     {
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
+        shouldRepeat = false;
         this.customUpgrade = customUpgrade;
     }
 
-    public UpgradeOrganelle(Func<OrganelleDefinition, bool> criteria, string upgradeName)
+    /// <summary>
+    ///   Updates an organelle type with the given upgrade, creating a new species to test for every additional
+    ///   organelle upgraded.
+    /// </summary>
+    /// <param name="criteria">Organelle requirement to apply</param>
+    /// <param name="upgradeName">The name of the upgrade (from organelles.json) to apply</param>
+    /// <param name="shouldRepeat">
+    ///   Determines whether this mutation strategy can be used multiple times
+    /// should be false for any upgrade that does not cost MP</param>
+    public UpgradeOrganelle(Func<OrganelleDefinition, bool> criteria, string upgradeName, bool shouldRepeat)
     {
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
         foreach (var organelle in allOrganelles)
@@ -27,10 +43,11 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
             }
         }
 
+        this.shouldRepeat = shouldRepeat;
         this.upgradeName = upgradeName;
     }
 
-    public bool Repeatable => false;
+    public bool Repeatable => shouldRepeat;
 
     public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
@@ -39,6 +56,12 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
         {
             return null;
         }
+
+        // If a cheaper organelle upgrade gets added, this will need to be updated
+        if (mp < 10)
+            return null;
+
+        double mpcost = 0;
 
         bool validMutations = false;
 
@@ -60,31 +83,53 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
         {
             var mutated = new List<Tuple<MicrobeSpecies, double>>();
 
-            var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+            var eligibleOrganelles = new List<OrganelleTemplate>();
 
-            organelleList = newSpecies.Organelles.Organelles;
-            count = organelleList.Count;
-            for (var i = 0; i < count; ++i)
+            foreach (var organelle in baseSpecies.Organelles.Organelles)
             {
-                var organelle = organelleList[i];
-
                 if (allOrganelles.Contains(organelle.Definition))
-                {
-                    // TODO: Once this is used with an upgrade that costs MP this will need to factor that in
-                    organelle.Upgrades ??= new OrganelleUpgrades();
-                    if (customUpgrade != null)
-                    {
-                        organelle.Upgrades.CustomUpgradeData = customUpgrade;
-                    }
-
-                    if (upgradeName != null && !organelle.Upgrades.UnlockedFeatures.Contains(upgradeName))
-                    {
-                        organelle.Upgrades.UnlockedFeatures.Add(upgradeName);
-                    }
-                }
+                    eligibleOrganelles.Add(organelle);
             }
 
-            mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp));
+            var eligibleOrganelleSample = eligibleOrganelles
+                .OrderBy(_ => random.Next())
+                .Take(Constants.AUTO_EVO_ORGANELLE_UPGRADE_ATTEMPTS);
+
+            foreach (var baseSpeciesOrganelle in eligibleOrganelleSample)
+            {
+                var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+
+                var organelle = newSpecies.Organelles.Organelles
+                    .First(organelle => organelle.Position == baseSpeciesOrganelle.Position);
+
+                foreach (var availableUpgrade in organelle.Definition.AvailableUpgrades)
+                {
+                    var availableUpgradeName = availableUpgrade.Key;
+                    if (availableUpgradeName == upgradeName)
+                    {
+                        mpcost = availableUpgrade.Value.MPCost;
+                        break;
+                    }
+                }
+
+                if (mpcost > mp)
+                    break;
+
+                organelle.Upgrades ??= new OrganelleUpgrades();
+
+                if (customUpgrade != null)
+                {
+                    organelle.Upgrades.CustomUpgradeData = customUpgrade;
+                    mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp - mpcost));
+                }
+
+                if (upgradeName != null &&
+                    !organelle.Upgrades.UnlockedFeatures.Contains(upgradeName))
+                {
+                    organelle.Upgrades.UnlockedFeatures.Add(upgradeName);
+                    mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp - mpcost));
+                }
+            }
 
             return mutated;
         }
