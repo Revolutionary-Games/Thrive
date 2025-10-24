@@ -12,6 +12,7 @@ using SharedBase.Archive;
 /// <summary>
 ///   Main class for managing the microbe stage
 /// </summary>
+[SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>, IMicrobeSpawnEnvironment,
     IArchivable
 {
