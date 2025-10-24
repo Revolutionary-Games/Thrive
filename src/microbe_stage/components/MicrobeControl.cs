@@ -4,14 +4,16 @@ using System;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
 ///   Control variables for specifying how a microbe wants to move / behave
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct MicrobeControl
+public struct MicrobeControl : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   The point towards which the microbe will move to point to
     /// </summary>
@@ -66,7 +68,7 @@ public struct MicrobeControl
     /// <remarks>
     ///   <para>
     ///     This is a byte to increase the size of this struct less, and it is unlikely there needs to be more than
-    ///     256 types of toxins to be fired so overflows are not serious.
+    ///     256 types of toxins to be fired, so overflows are not serious.
     ///   </para>
     /// </remarks>
     public byte FiredToxinCount;
@@ -110,10 +112,56 @@ public struct MicrobeControl
         Sprinting = false;
         MucocystEffectsApplied = false;
     }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMicrobeControl;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        // Keep the order in sync with ReadFromArchive
+        writer.Write(LookAtPoint);
+        writer.Write(MovementDirection);
+        writer.Write((int)QueuedToxinToEmit);
+        writer.Write(QueuedSiderophoreToEmit);
+        writer.Write(SlimeSecretionCooldown);
+        writer.Write(QueuedSlimeSecretionTime);
+        writer.Write(AgentEmissionCooldown);
+        writer.Write(ForcedStateRemaining);
+        writer.Write((int)State);
+        writer.Write(FiredToxinCount);
+        writer.Write(SlowedBySlime);
+        writer.Write(OutOfSprint);
+        writer.Write(Sprinting);
+        writer.Write(MucocystEffectsApplied);
+    }
 }
 
 public static class MicrobeControlHelpers
 {
+    public static MicrobeControl ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > MicrobeControl.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, MicrobeControl.SERIALIZATION_VERSION);
+
+        return new MicrobeControl
+        {
+            LookAtPoint = reader.ReadVector3(),
+            MovementDirection = reader.ReadVector3(),
+            QueuedToxinToEmit = (Compound)reader.ReadInt32(),
+            QueuedSiderophoreToEmit = reader.ReadBool(),
+            SlimeSecretionCooldown = reader.ReadFloat(),
+            QueuedSlimeSecretionTime = reader.ReadFloat(),
+            AgentEmissionCooldown = reader.ReadFloat(),
+            ForcedStateRemaining = reader.ReadFloat(),
+            State = (MicrobeState)reader.ReadInt32(),
+            FiredToxinCount = reader.ReadInt8(),
+            SlowedBySlime = reader.ReadBool(),
+            OutOfSprint = reader.ReadBool(),
+            Sprinting = reader.ReadBool(),
+            MucocystEffectsApplied = reader.ReadBool(),
+        };
+    }
+
     /// <summary>
     ///   Sets microbe state in a way that also applies the state to a colony if the entity is a lead cell
     /// </summary>

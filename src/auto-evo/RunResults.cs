@@ -63,9 +63,9 @@ public class RunResults
     /// <returns>The per-species results with changed species cloned and unchanged species set to null</returns>
     public Dictionary<uint, SpeciesRecordLite> GetSpeciesRecords()
     {
-        return results.ToDictionary(r => r.Key.ID, r => new SpeciesRecordLite(
-            HasSpeciesChanged(r.Value) ? (Species)r.Key.Clone() : null, r.Key.Population,
-            r.Value.MutatedProperties?.ID, r.Value.SplitFrom?.ID));
+        return results.ToDictionary(r => r.Key.ID, r => new SpeciesRecordLite(r.Key.Population,
+            r.Value.MutatedProperties?.ID, r.Value.SplitFrom?.ID,
+            HasSpeciesChanged(r.Value) ? (Species)r.Key.Clone() : null));
     }
 
     public void AddNewMicheForPatch(Patch patch, Miche miche)

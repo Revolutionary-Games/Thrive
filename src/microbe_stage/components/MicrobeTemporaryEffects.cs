@@ -1,13 +1,14 @@
 ﻿namespace Components;
 
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Has some temporary effects that can affect microbes (like toxins)
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct MicrobeTemporaryEffects
+public struct MicrobeTemporaryEffects : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   How long this microbe will have a base movement speed penalty (if 0 or less not currently debuffed).
     ///   Must set <see cref="StateApplied"/> to false after modification.
@@ -30,6 +31,32 @@ public struct MicrobeTemporaryEffects
     ///     all microbes.
     ///   </para>
     /// </remarks>
-    [JsonIgnore]
     public bool StateApplied;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMicrobeTemporaryEffects;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(SpeedDebuffDuration);
+        writer.Write(ATPDebuffDuration);
+
+        // Skip writing flag so that everything is re-checked after a load as this is not performance intensive and
+        // that will be safe to try to re-apply anyway
+    }
+}
+
+public static class MicrobeTemporaryEffectsHelpers
+{
+    public static MicrobeTemporaryEffects ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > MicrobeTemporaryEffects.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, MicrobeTemporaryEffects.SERIALIZATION_VERSION);
+
+        return new MicrobeTemporaryEffects
+        {
+            SpeedDebuffDuration = reader.ReadFloat(),
+            ATPDebuffDuration = reader.ReadFloat(),
+        };
+    }
 }

@@ -7,7 +7,7 @@ using Arch.Core.Extensions;
 using Arch.System;
 using Components;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using World = Arch.Core.World;
 
 /// <summary>
@@ -16,12 +16,12 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(WorldPosition))]
 [RunsBefore(typeof(MicrobeAISystem))]
 [RuntimeCost(1)]
-[JsonObject(MemberSerialization.OptIn)]
-public partial class EntitySignalingSystem : BaseSystem<World, float>
+public partial class EntitySignalingSystem : BaseSystem<World, float>, IArchiveUpdatable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private readonly Dictionary<ulong, List<(Entity Entity, Vector3 Position)>> entitiesOnChannels = new();
 
-    [JsonProperty]
     private float elapsedSinceUpdate;
 
     private bool timeToUpdate;
@@ -30,12 +30,8 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>
     {
     }
 
-    [JsonConstructor]
-    public EntitySignalingSystem(float elapsedSinceUpdate) :
-        base(TemporarySystemHelper.GetDummyWorldForLoad())
-    {
-        this.elapsedSinceUpdate = elapsedSinceUpdate;
-    }
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.EntitySignalingSystem;
 
     public override void Update(in float delta)
     {
@@ -45,9 +41,9 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>
 
         // TODO: this could also be multithreaded as long as this finishes before the Update calls start running and
         // there's locking on the data lists
-        UpdateSignalSendQuery(World, delta);
+        UpdateSignalSendQuery(World);
 
-        UpdateSignalReceiveQuery(World, delta);
+        UpdateSignalReceiveQuery(World);
     }
 
     public override void BeforeUpdate(in float delta)
@@ -90,10 +86,22 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>
         }
     }
 
+    public void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(elapsedSinceUpdate);
+    }
+
+    public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        elapsedSinceUpdate = reader.ReadFloat();
+    }
+
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void UpdateSignalSend([Data] in float delta, ref CommandSignaler signaling, ref WorldPosition position,
-        in Entity entity)
+    private void UpdateSignalSend(ref CommandSignaler signaling, ref WorldPosition position, in Entity entity)
     {
         if (signaling.QueuedSignalingCommand != null)
         {
@@ -120,8 +128,7 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>
     // TODO: could parallelize
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void UpdateSignalReceive([Data] in float delta, ref CommandSignaler signaling, ref WorldPosition position,
-        in Entity entity)
+    private void UpdateSignalReceive(ref CommandSignaler signaling, ref WorldPosition position, in Entity entity)
     {
         // Find the closest signaller on the channel this entity is on
         bool foundSignal = false;

@@ -2,13 +2,13 @@
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Main class for managing the macroscopic stage
 /// </summary>
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/macroscopic_stage/MacroscopicStage.tscn")]
-[DeserializedCallbackTarget]
 [UseThriveSerializer]
 public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, DummyWorldSimulation>
 {
@@ -845,7 +845,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     {
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnPlayerDied(MacroscopicCreature player)
     {
         HandlePlayerDeath();
@@ -854,7 +854,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         Player = null;
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnPlayerReproductionStatusChanged(MacroscopicCreature player, bool ready)
     {
         OnCanEditStatusChanged(ready);
@@ -869,7 +869,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
             GD.Print("Player couldn't perform the selected action");
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnOpenCraftingInterfaceFor(MacroscopicCreature player, IInteractableEntity target)
     {
         if (!TogglePlayerInventory())

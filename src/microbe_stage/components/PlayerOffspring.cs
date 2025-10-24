@@ -2,21 +2,42 @@
 
 using System.Runtime.CompilerServices;
 using Arch.Core;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Marks entities as being player reproduced copies
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct PlayerOffspring
+public struct PlayerOffspring : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Which offspring this is in the number of the player's offspring. Used to detect which is the latest offspring
     /// </summary>
     public int OffspringOrderNumber;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentPlayerOffspring;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(OffspringOrderNumber);
+    }
 }
 
 public static class PlayerOffspringHelpers
 {
+    public static PlayerOffspring ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > PlayerOffspring.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, PlayerOffspring.SERIALIZATION_VERSION);
+
+        return new PlayerOffspring
+        {
+            OffspringOrderNumber = reader.ReadInt32(),
+        };
+    }
+
     /// <summary>
     ///   A somewhat slow method to find the latest spawned offspring (fine for occasional calls)
     /// </summary>

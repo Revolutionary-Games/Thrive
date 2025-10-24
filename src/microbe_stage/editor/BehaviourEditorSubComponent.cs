@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Editor for the behaviour of a (microbe) species
 /// </summary>
-[DeserializedCallbackTarget]
 [IgnoreNoMethodsTakingInput]
 [SceneLoadedClass("res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn", UsesEarlyResolve = false)]
 public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
@@ -168,7 +168,7 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
         SetBehaviouralValue(behaviouralValueType, value);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoBehaviourChangeAction(BehaviourActionData data)
     {
         if (Behaviour == null)
@@ -180,7 +180,7 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
         EmitSignal(SignalName.OnBehaviourChanged);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoBehaviourChangeAction(BehaviourActionData data)
     {
         if (Behaviour == null)

@@ -1,11 +1,12 @@
 ﻿using System;
 using Arch.Buffer;
 using Arch.Core;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Interface for <see cref="WorldSimulation"/> to give flexibility for swapping out things
 /// </summary>
-public interface IWorldSimulation : IEntityContainer, IDisposable
+public interface IWorldSimulation : IEntityContainer, IDisposable, IArchivable
 {
     /// <summary>
     ///   Access to the ECS system for adding and modifying components. Note that entity modification is not allowed

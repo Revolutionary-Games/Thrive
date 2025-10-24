@@ -11,7 +11,6 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/macroscopic_stage/MacroscopicCreature.tscn", UsesEarlyResolve = false)]
-[DeserializedCallbackTarget]
 public partial class MacroscopicCreature : RigidBody3D, ISaveLoadedTracked, ICharacterInventory, IEntity,
     IStructureSelectionReceiver<StructureDefinition>, IActionProgressSource
 {

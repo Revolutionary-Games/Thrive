@@ -17,9 +17,7 @@ using Saving.Serializers;
 /// </summary>
 public class ThriveJsonConverter : IDisposable
 {
-    private static readonly ThriveJsonConverter InstanceValue = new(new SaveContext(SimulationParameters.Instance));
-
-    private readonly SaveContext context;
+    private static readonly ThriveJsonConverter InstanceValue = new();
 
     private readonly JsonConverter[] thriveConverters;
     private readonly List<JsonConverter> thriveConvertersDynamicDeserialize;
@@ -29,46 +27,28 @@ public class ThriveJsonConverter : IDisposable
     private readonly ThreadLocal<JsonSerializerSettings> currentJsonSettings = new();
     private bool disposed;
 
-    private ThriveJsonConverter(SaveContext context)
+    private ThriveJsonConverter()
     {
-        this.context = context;
-
         // All the thrive serializers need to be registered here
         thriveConverters =
         [
-            new RegistryTypeConverter(context),
             new GodotColorConverter(),
             new GodotBasisConverter(),
             new GodotQuaternionConverter(),
             new PackedSceneConverter(),
             new SystemVector4ArrayConverter(),
-            new RandomConverter(),
             new ConvexPolygonShapeConverter(),
             new NodePathConverter(),
 
-            new CompoundCloudPlaneConverter(context),
             new CompoundConverter(),
-
-            new CallbackConverter(),
 
             new ConditionSetConverter(),
 
-            // Specific Godot Node converter types
-
-            // Fallback Godot Node converter, this is before default serializer to make Node types with scene loaded
-            // attribute work correctly. Unfortunately this means it is not possible to force a Node derived class
-            // to not use this
-            new BaseNodeConverter(context),
-
-            new EntityReferenceConverter(context),
-            new UnsavedEntitiesConverter(context),
-            new EntityWorldConverter(context),
-
             // Converter for all types with a specific few attributes for this to be enabled
-            new DefaultThriveJSONConverter(context),
+            new DefaultThriveJSONConverter(),
         ];
 
-        dynamicObjectDeserializeConverter = new DynamicDeserializeObjectConverter(context);
+        dynamicObjectDeserializeConverter = new DynamicDeserializeObjectConverter();
         thriveConvertersDynamicDeserialize = new List<JsonConverter> { dynamicObjectDeserializeConverter };
         thriveConvertersDynamicDeserialize.AddRange(thriveConverters);
     }
@@ -214,9 +194,6 @@ public class ThriveJsonConverter : IDisposable
         {
             settings = CreateSettings();
             currentJsonSettings.Value = settings;
-
-            // Reset context as a new JSON serialize operation has been started
-            context.Reset();
         }
 
         try
@@ -283,8 +260,6 @@ public abstract class BaseThriveConverter : JsonConverter
     public const string REF_PROPERTY = "$ref";
     public const string ID_PROPERTY = "$id";
 
-    protected readonly ISaveContext? Context;
-
     // type handling approach from: https://stackoverflow.com/a/29822170/4371508
     // and https://stackoverflow.com/a/29826959/4371508
     private const string TYPE_PROPERTY = "$type";
@@ -305,11 +280,6 @@ public abstract class BaseThriveConverter : JsonConverter
     private static readonly Type JsonIgnoreAttribute = typeof(JsonIgnoreAttribute);
     private static readonly Type ExportAttribute = typeof(ExportAttribute);
     private static readonly Type GodotNodeType = typeof(Node);
-
-    protected BaseThriveConverter(ISaveContext? context)
-    {
-        Context = context;
-    }
 
     /// <summary>
     ///   These need to always be able to read as we use json for saving so it makes no sense to
@@ -410,11 +380,6 @@ public abstract class BaseThriveConverter : JsonConverter
             return false;
 
         return customAttributeData.All(a => a.AttributeType != JsonPropertyAttribute);
-    }
-
-    public static bool IsIgnoredGodotMember(string name, Type type)
-    {
-        return GodotNodeType.IsAssignableFrom(type) && BaseNodeConverter.IsIgnoredGodotNodeMember(name);
     }
 
     /// <summary>
@@ -587,26 +552,22 @@ public abstract class BaseThriveConverter : JsonConverter
 
             if (field != null)
             {
-                if (UsesOnlyChildAssign(field.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
-                        out var data))
+                if (UsesOnlyChildAssign(field.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute))))
                 {
                     var target = field.GetValue(instance);
 
                     if (target == null)
                         throw new JsonException($"Cannot copy child properties to a null value of field: {field.Name}");
 
-                    ApplyOnlyChildProperties(value, target, serializer, data!);
+                    throw new NotImplementedException("TODO: ApplyOnlyChildProperties is no longer supported in JSON");
                 }
-                else
-                {
-                    field.SetValue(instance, value);
-                }
+
+                field.SetValue(instance, value);
             }
             else if (property != null)
             {
                 if (!UsesOnlyChildAssign(
-                        property.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
-                        out var data))
+                        property.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute))))
                 {
                     var set = property.GetSetMethodOnDeclaringType();
 
@@ -628,7 +589,7 @@ public abstract class BaseThriveConverter : JsonConverter
                             $"Cannot copy child properties to a null value of property: {property.Name}");
                     }
 
-                    ApplyOnlyChildProperties(value, target, serializer, data!);
+                    throw new NotImplementedException("TODO: ApplyOnlyChildProperties is no longer supported in JSON");
                 }
             }
         }
@@ -647,8 +608,6 @@ public abstract class BaseThriveConverter : JsonConverter
 
         // It is now assumed (because loading scenes and keeping references) that all loaded Nodes are deleted by
         // someone else (other than the ones that have just their properties grabbed in deserialize)
-
-        RunPostPropertyDeserializeActions(instanceAtEnd);
 
         return instanceAtEnd;
     }
@@ -757,10 +716,6 @@ public abstract class BaseThriveConverter : JsonConverter
 
             foreach (var property in PropertiesOf(value))
             {
-                // Reading some godot properties already triggers problems, so we ignore those here
-                if (SkipIfGodotNodeType(property.Name, type))
-                    continue;
-
                 object? memberValue;
                 try
                 {
@@ -867,34 +822,20 @@ public abstract class BaseThriveConverter : JsonConverter
 
     protected virtual bool SkipMember(string name)
     {
-        // By default, IsLoadedFromSave is ignored as properties by default don't inherit attributes so this makes
-        // things a bit easier when adding new types
-        if (SaveApplyHelper.IsNameLoadedFromSaveName(name))
-            return true;
-
-        return false;
-    }
-
-    protected virtual bool SkipIfGodotNodeType(string name, Type type)
-    {
-        if (IsIgnoredGodotMember(name, type))
-            return true;
-
         return false;
     }
 
     private static bool HasAlwaysJSONTypeWriteAttribute(Type type)
     {
-        // If the current uses scene creation, dynamic type needs to be also in that case output
+        // If the current uses scene creation, a dynamic type needs to be also in that case output
         return type.CustomAttributes.Any(a =>
             a.AttributeType == AlwaysDynamicAttribute ||
             a.AttributeType == SceneLoadedAttribute);
     }
 
-    private static bool UsesOnlyChildAssign(IEnumerable<Attribute> customAttributes,
-        out AssignOnlyChildItemsOnDeserializeAttribute? data)
+    private static bool UsesOnlyChildAssign(IEnumerable<Attribute> customAttributes)
     {
-        data = customAttributes.FirstOrDefault() as AssignOnlyChildItemsOnDeserializeAttribute;
+        var data = customAttributes.FirstOrDefault() as AssignOnlyChildItemsOnDeserializeAttribute;
 
         if (data == null)
         {
@@ -911,8 +852,7 @@ public abstract class BaseThriveConverter : JsonConverter
 
         foreach (var field in FieldsOf(instance))
         {
-            if (UsesOnlyChildAssign(field.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
-                    out _))
+            if (UsesOnlyChildAssign(field.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute))))
             {
                 var value = field.GetValue(instance);
 
@@ -926,8 +866,7 @@ public abstract class BaseThriveConverter : JsonConverter
 
         foreach (var property in PropertiesOf(instance))
         {
-            if (UsesOnlyChildAssign(property.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
-                    out _))
+            if (UsesOnlyChildAssign(property.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute))))
             {
                 var value = property.GetValue(instance);
 
@@ -938,102 +877,6 @@ public abstract class BaseThriveConverter : JsonConverter
                 }
             }
         }
-    }
-
-    private void RunPostPropertyDeserializeActions(object instance)
-    {
-        // TODO: these should be called after loading the whole object tree
-        if (instance is ISaveLoadable loadable)
-            loadable.FinishLoading(Context);
-    }
-
-    /// <summary>
-    ///   Applies child properties to an object that wasn't deserialized, from an object that was deserialized.
-    ///   Used in conjunction with scene loading objects
-    /// </summary>
-    /// <param name="newData">The new object to copy non-ignored fields and properties to target</param>
-    /// <param name="target">The object to apply properties to</param>
-    /// <param name="serializer">Serializer to use for reference handling</param>
-    /// <param name="data">Options for the child assign</param>
-    /// <param name="recursive">
-    ///   Set to true when called recursively. Disabled registering Node instance deletion
-    /// </param>
-    private void ApplyOnlyChildProperties(object? newData, object target, JsonSerializer serializer,
-        AssignOnlyChildItemsOnDeserializeAttribute data, bool recursive = false)
-    {
-        if (target == null)
-            throw new JsonSerializationException("Copy only child properties target is null");
-
-        // If no new data, don't apply anything
-        if (newData == null)
-        {
-            // But to support detecting if that is the case we have an interface to give the instance the info that
-            // it didn't get the properties
-            if (target is IChildPropertiesLoadCallback callbackReceiver)
-                callbackReceiver.OnNoPropertiesLoaded();
-
-            return;
-        }
-
-        // Need to register for deletion the orphaned Godot object
-        // We avoid registering things that are child properties of things that should already be freed
-        if (!recursive && newData is Node node)
-        {
-            TemporaryLoadedNodeDeleter.Instance.Register(node);
-        }
-
-        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(target, newData,
-            DefaultOnlyChildCopyIgnore);
-
-        // Make sure target gets a chance to run stuff like normally deserialized objects
-        InProgressObjectDeserialization.RunPrePropertyDeserializeActions(target);
-        RunPostPropertyDeserializeActions(target);
-
-        if (data.ReplaceReferences && serializer.ReferenceResolver != null)
-        {
-            UpdateObjectReference(serializer, newData, target);
-        }
-
-        // Recursively apply the reference update in case there are properties in the newData that also use the
-        // attribute and register them for deletion
-        foreach (var field in FieldsOf(newData))
-        {
-            if (UsesOnlyChildAssign(field.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
-                    out var recursiveChildData))
-            {
-                var recursiveTarget = field.GetValue(target);
-
-                if (recursiveTarget == null)
-                {
-                    throw new JsonException(
-                        $"Cannot recursively copy child properties to a null value of field: {field.Name}");
-                }
-
-                ApplyOnlyChildProperties(field.GetValue(newData), recursiveTarget, serializer,
-                    recursiveChildData!, true);
-            }
-        }
-
-        foreach (var property in PropertiesOf(newData))
-        {
-            if (UsesOnlyChildAssign(property.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
-                    out var recursiveChildData))
-            {
-                var recursiveTarget = property.GetValue(target);
-
-                if (recursiveTarget == null)
-                {
-                    throw new JsonException(
-                        $"Cannot recursively copy child properties to a null value of property: {property.Name}");
-                }
-
-                ApplyOnlyChildProperties(property.GetValue(newData), recursiveTarget, serializer,
-                    recursiveChildData!, true);
-            }
-        }
-
-        if (target is IChildPropertiesLoadCallback callbackReceiver2)
-            callbackReceiver2.OnPropertiesLoaded();
     }
 
     private void UpdateObjectReference(JsonSerializer serializer, object oldReference, object newReference)
@@ -1071,14 +914,6 @@ internal class DefaultThriveJSONConverter : BaseThriveConverter
 {
     private static readonly Type UseSerializerAttribute = typeof(UseThriveSerializerAttribute);
     private static readonly Type SceneLoadedAttribute = typeof(SceneLoadedClassAttribute);
-
-    public DefaultThriveJSONConverter(ISaveContext context) : base(context)
-    {
-    }
-
-    public DefaultThriveJSONConverter() : base(new SaveContext())
-    {
-    }
 
     public override bool CanConvert(Type objectType)
     {

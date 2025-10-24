@@ -1,30 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
-using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Player configurable options for creating the game world
 /// </summary>
-[JsonObject(IsReference = true)]
-public class WorldGenerationSettings
+public class WorldGenerationSettings : IArchivable
 {
-    [JsonConstructor]
-    public WorldGenerationSettings(IDifficulty difficulty)
-    {
-        if (difficulty is DifficultyPreset preset && preset.InternalName ==
-            SimulationParameters.Instance.GetDifficultyPreset("custom").InternalName)
-        {
-            GD.PrintErr($"Ignoring setting custom difficulty preset object to {nameof(WorldGenerationSettings)} " +
-                "(using normal instead). This should only happen when loading older saves");
-            Difficulty = SimulationParameters.Instance.GetDifficultyPreset("normal");
-        }
-        else
-        {
-            Difficulty = difficulty;
-        }
-    }
+    public const ushort SERIALIZATION_VERSION = 1;
 
     public WorldGenerationSettings()
     {
@@ -37,6 +21,12 @@ public class WorldGenerationSettings
         DaytimeFraction = defaultDayNight.DaytimeFraction;
     }
 
+    // Archive constructor
+    private WorldGenerationSettings(IDifficulty difficulty)
+    {
+        Difficulty = difficulty;
+    }
+
     /// <summary>
     ///   Represents possible origins of life.
     /// </summary>
@@ -44,6 +34,7 @@ public class WorldGenerationSettings
     ///   <para>
     ///     Do not reorder, remove, or change values without updating the OptionButton in corresponding scene files.
     ///     The GUI depends on these specific enum values and their order for correct mapping.
+    ///     Also, saving uses these exact values, so you should not change the underlying values.
     ///   </para>
     /// </remarks>
     public enum LifeOrigin
@@ -260,37 +251,16 @@ public class WorldGenerationSettings
     public CompoundLevel RadiationLevel { get; set; } = CompoundLevel.Average;
 
     // The following are helper proxies to the values from the difficulty
-    [JsonIgnore]
     public float MPMultiplier => Difficulty.MPMultiplier;
-
-    [JsonIgnore]
     public float AIMutationMultiplier => Difficulty.AIMutationMultiplier;
-
-    [JsonIgnore]
     public float CompoundDensity => Difficulty.CompoundDensity;
-
-    [JsonIgnore]
     public float PlayerDeathPopulationPenalty => Difficulty.PlayerDeathPopulationPenalty;
-
-    [JsonIgnore]
     public float GlucoseDecay => Difficulty.GlucoseDecay;
-
-    [JsonIgnore]
     public float OsmoregulationMultiplier => Difficulty.OsmoregulationMultiplier;
-
-    [JsonIgnore]
     public float PlayerAutoEvoStrength => Difficulty.PlayerAutoEvoStrength;
-
-    [JsonIgnore]
     public FogOfWarMode FogOfWarMode => Difficulty.FogOfWarMode;
-
-    [JsonIgnore]
     public bool FreeGlucoseCloud => Difficulty.FreeGlucoseCloud;
-
-    [JsonIgnore]
     public bool SwitchSpeciesOnExtinction => Difficulty.SwitchSpeciesOnExtinction;
-
-    [JsonIgnore]
     public bool LimitReproductionCompoundUseSpeed => Difficulty.LimitGrowthRate;
 
     /// <summary>
@@ -324,6 +294,74 @@ public class WorldGenerationSettings
     /// </summary>
     public IAutoEvoConfiguration AutoEvoConfiguration { get; set; } =
         SimulationParameters.Instance.AutoEvoConfiguration;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.WorldGenerationSettings;
+    public bool CanBeReferencedInArchive => true;
+
+    public static WorldGenerationSettings ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new WorldGenerationSettings(reader.ReadObject<IDifficulty>());
+
+        reader.ReportObjectConstructorDone(instance, referenceId);
+
+        instance.AutoEvoConfiguration = reader.ReadObject<IAutoEvoConfiguration>();
+
+        instance.LAWK = reader.ReadBool();
+        instance.ExperimentalFeatures = reader.ReadBool();
+        instance.Origin = (LifeOrigin)reader.ReadInt32();
+        instance.Seed = reader.ReadInt64();
+        instance.WorldSize = (WorldSizeEnum)reader.ReadInt32();
+        instance.WorldTemperature = (WorldTemperatureEnum)reader.ReadInt32();
+        instance.WorldOceanicCoverage = (WorldOceanicCoverageEnum)reader.ReadInt32();
+        instance.GeologicalActivity = (GeologicalActivityEnum)reader.ReadInt32();
+        instance.ClimateInstability = (ClimateInstabilityEnum)reader.ReadInt32();
+        instance.HydrogenSulfideLevel = (CompoundLevel)reader.ReadInt32();
+        instance.GlucoseLevel = (CompoundLevel)reader.ReadInt32();
+        instance.IronLevel = (CompoundLevel)reader.ReadInt32();
+        instance.AmmoniaLevel = (CompoundLevel)reader.ReadInt32();
+        instance.PhosphatesLevel = (CompoundLevel)reader.ReadInt32();
+        instance.RadiationLevel = (CompoundLevel)reader.ReadInt32();
+        instance.DayNightCycleEnabled = reader.ReadBool();
+        instance.DayLength = reader.ReadInt32();
+        instance.HoursPerDay = reader.ReadFloat();
+        instance.DaytimeFraction = reader.ReadFloat();
+        instance.IncludeMulticellular = reader.ReadBool();
+        instance.EasterEggs = reader.ReadBool();
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(Difficulty);
+        writer.WriteObject(AutoEvoConfiguration);
+
+        writer.Write(LAWK);
+        writer.Write(ExperimentalFeatures);
+        writer.Write((int)Origin);
+        writer.Write(Seed);
+        writer.Write((int)WorldSize);
+        writer.Write((int)WorldTemperature);
+        writer.Write((int)WorldOceanicCoverage);
+        writer.Write((int)GeologicalActivity);
+        writer.Write((int)ClimateInstability);
+        writer.Write((int)HydrogenSulfideLevel);
+        writer.Write((int)GlucoseLevel);
+        writer.Write((int)IronLevel);
+        writer.Write((int)AmmoniaLevel);
+        writer.Write((int)PhosphatesLevel);
+        writer.Write((int)RadiationLevel);
+        writer.Write(DayNightCycleEnabled);
+        writer.Write(DayLength);
+        writer.Write(HoursPerDay);
+        writer.Write(DaytimeFraction);
+        writer.Write(IncludeMulticellular);
+        writer.Write(EasterEggs);
+    }
 
     /// <summary>
     ///   Generates a formatted string containing translated difficulty details.

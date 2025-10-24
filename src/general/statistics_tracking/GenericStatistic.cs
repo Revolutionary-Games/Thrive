@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using SharedBase.Archive;
 
-public abstract class GenericStatistic<T> : IStatistic
+public abstract class GenericStatistic<T> : IStatistic, IArchiveUpdatable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public GenericStatistic(T value)
     {
         Value = value;
@@ -9,7 +11,23 @@ public abstract class GenericStatistic<T> : IStatistic
 
     public T Value { get; protected set; }
 
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public abstract ArchiveObjectType ArchiveObjectType { get; }
+
     public abstract void Increment(T value);
+
+    public void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteAnyRegisteredValueAsObject(Value);
+    }
+
+    public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        Value = reader.ReadObject<T>();
+    }
 }
 
 public class SimpleStatistic : GenericStatistic<int>
@@ -18,10 +36,11 @@ public class SimpleStatistic : GenericStatistic<int>
     {
     }
 
-    [JsonConstructor]
     public SimpleStatistic(int value) : base(value)
     {
     }
+
+    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.SimpleStatistic;
 
     public override void Increment(int value)
     {

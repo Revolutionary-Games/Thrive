@@ -1,6 +1,5 @@
 ﻿using System;
 using Godot;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   Common HUD things for every HUD in the game
@@ -24,7 +23,6 @@ public partial class HUDBase : Control, IStageHUD
     {
     }
 
-    [JsonIgnore]
     public HUDMessages HUDMessages => hudMessages;
 
     public virtual void OnEnterStageLoadingScreen(bool longerDuration, bool returningFromEditor)

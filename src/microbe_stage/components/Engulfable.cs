@@ -5,16 +5,17 @@ using System.Collections.Generic;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 using Xoshiro.PRNG32;
 
 /// <summary>
 ///   Something that can be engulfed by a microbe
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct Engulfable
+public struct Engulfable : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Stores the original scale when this becomes engulfed so that it can always be restored.
     ///   In some situations storing this in the transport animation will cause problems with not being able to reliably
@@ -88,11 +89,41 @@ public struct Engulfable
         HostileEngulfer = hostileEngulfer;
     }
 
-    [JsonIgnore]
     public float AdjustedEngulfSize => BaseEngulfSize * (1 - DigestedAmount);
 
-    public class BulkTransportAnimation
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentEngulfable;
+
+    public void WriteToArchive(ISArchiveWriter writer)
     {
+        writer.Write(OriginalScale);
+        writer.WriteAnyRegisteredValueAsObject(HostileEngulfer);
+
+        writer.WriteObjectOrNull(RequisiteEnzymeToDigest);
+
+        if (AdditionalEngulfableCompounds != null)
+        {
+            writer.WriteObject(AdditionalEngulfableCompounds);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
+
+        writer.WriteObjectOrNull(BulkTransport);
+
+        writer.Write(BaseEngulfSize);
+        writer.Write(DigestedAmount);
+        writer.Write(InitialTotalEngulfableCompounds);
+        writer.Write(OriginalRenderPriority);
+        writer.Write((int)PhagocytosisStep);
+        writer.Write(DestroyIfPartiallyDigested);
+    }
+
+    public class BulkTransportAnimation : IArchivable
+    {
+        public const ushort SERIALIZATION_VERSION_TRANSPORT = 1;
+
         /// <summary>
         ///   If false, the animation is complete and doesn't require actions
         /// </summary>
@@ -109,11 +140,62 @@ public struct Engulfable
         // TODO: refactor this to not use nullable values as that will save a bunch of boxing and memory allocation
         public (Vector3? Position, Vector3? Scale, Vector3? EndosomeScale) TargetValuesToLerp;
         public (Vector3 Position, Vector3 Scale, Vector3 EndosomeScale) InitialValuesToLerp;
+
+        public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+        public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.BulkTransportAnimation;
+        public bool CanBeReferencedInArchive => false;
+
+        public static BulkTransportAnimation ReadFromArchive(ISArchiveReader reader, ushort version)
+        {
+            if (version is > SERIALIZATION_VERSION or <= 0)
+                throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+            return new BulkTransportAnimation
+            {
+                Interpolate = reader.ReadBool(),
+                DigestionEjectionStarted = reader.ReadBool(),
+                LerpDuration = reader.ReadFloat(),
+                AnimationTimeElapsed = reader.ReadFloat(),
+                TargetValuesToLerp = reader.ReadObject<(Vector3? Position, Vector3? Scale, Vector3? EndosomeScale)>(),
+                InitialValuesToLerp = reader.ReadObject<(Vector3 Position, Vector3 Scale, Vector3 EndosomeScale)>(),
+            };
+        }
+
+        public void WriteToArchive(ISArchiveWriter writer)
+        {
+            writer.Write(Interpolate);
+            writer.Write(DigestionEjectionStarted);
+            writer.Write(LerpDuration);
+            writer.Write(AnimationTimeElapsed);
+            writer.WriteObject(TargetValuesToLerp);
+            writer.WriteObject(InitialValuesToLerp);
+        }
     }
 }
 
 public static class EngulfableHelpers
 {
+    public static Engulfable ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > Engulfable.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, Engulfable.SERIALIZATION_VERSION);
+
+        return new Engulfable
+        {
+            OriginalScale = reader.ReadVector3(),
+            HostileEngulfer = reader.ReadObject<Entity>(),
+            RequisiteEnzymeToDigest = reader.ReadObjectOrNull<Enzyme>(),
+            AdditionalEngulfableCompounds = reader.ReadObjectOrNull<Dictionary<Compound, float>>(),
+            BulkTransport = reader.ReadObjectOrNull<Engulfable.BulkTransportAnimation>(),
+            BaseEngulfSize = reader.ReadFloat(),
+            DigestedAmount = reader.ReadFloat(),
+            InitialTotalEngulfableCompounds = reader.ReadFloat(),
+            OriginalRenderPriority = reader.ReadInt32(),
+            PhagocytosisStep = (PhagocytosisPhase)reader.ReadInt32(),
+            DestroyIfPartiallyDigested = reader.ReadBool(),
+        };
+    }
+
     /// <summary>
     ///   Effective size of the engulfable for engulfability calculations
     /// </summary>

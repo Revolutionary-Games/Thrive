@@ -5,6 +5,7 @@ using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Saving.Serializers;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
@@ -17,6 +18,8 @@ using Systems;
 [UseThriveSerializer]
 public class MulticellularSpecies : Species, ISimulationPhotographable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public MulticellularSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
     }
@@ -49,6 +52,42 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
     [JsonIgnore]
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
+
+    [JsonIgnore]
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    [JsonIgnore]
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.MulticellularSpecies;
+
+    public static MulticellularSpecies ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new MulticellularSpecies(reader.ReadUInt32(),
+            reader.ReadString() ?? throw new NullArchiveObjectException(),
+            reader.ReadString() ?? throw new NullArchiveObjectException());
+
+        reader.ReportObjectConstructorDone(instance, referenceId);
+
+        instance.ReadNonConstructorBaseProperties(reader, 1);
+
+        instance.Cells = reader.ReadObject<CellLayout<CellTemplate>>();
+        instance.EditorCellLayout = reader.ReadObjectOrNull<IndividualHexLayout<CellTemplate>>();
+        instance.CellTypes = reader.ReadObject<List<CellType>>();
+
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        WriteBasePropertiesToArchive(writer);
+
+        writer.WriteObject(Cells);
+        writer.WriteObjectOrNull(EditorCellLayout);
+        writer.WriteObject(CellTypes);
+    }
 
     public override void OnEdited()
     {

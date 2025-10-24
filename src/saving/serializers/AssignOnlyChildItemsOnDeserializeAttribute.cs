@@ -1,9 +1,9 @@
 ﻿using System;
 
+// TODO: remove this entirely once no longer used as placeholder in prototypes
+
 /// <summary>
-///   When a field or property has this attribute, that field is not entirely assigned on deserialize from JSON,
-///   only the sub objects (the fields and properties) of the value is assigned. This is used to copy properties
-///   from Godot.Reference derived types to freshly created instances.
+///   Unused thing, kept as a marker for how to write the proper archiving support as planned for future stages.
 /// </summary>
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
 public class AssignOnlyChildItemsOnDeserializeAttribute : Attribute

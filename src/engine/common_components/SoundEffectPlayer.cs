@@ -2,15 +2,16 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Entity that can play sound effects (short sounds). Requires a <see cref="WorldPosition"/> to function.
 /// </summary>
 [ComponentIsReadByDefault]
-[JSONDynamicTypeAllowed]
-public struct SoundEffectPlayer
+public struct SoundEffectPlayer : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public SoundEffectSlot[]? SoundEffectSlots;
 
     /// <summary>
@@ -31,12 +32,36 @@ public struct SoundEffectPlayer
     /// </summary>
     public bool AutoDetectPlayer;
 
-    [JsonIgnore]
     public bool SoundsApplied;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentSoundEffectPlayer;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        if (SoundEffectSlots != null)
+        {
+            writer.WriteObject(SoundEffectSlots);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
+
+        writer.Write(AbsoluteMaxDistanceSquared);
+        writer.Write(SoundVolumeMultiplier);
+        writer.Write(AutoDetectPlayer);
+
+        // Actual sound players are not restored from a save.
+        // They are a game engine thing, so we don't save the applied state here to ensure that the sounds resume
+        // correctly on a load (it used to be a JSON ignore field).
+    }
 }
 
-public struct SoundEffectSlot
+public struct SoundEffectSlot : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   What this slot should be playing
     /// </summary>
@@ -54,22 +79,73 @@ public struct SoundEffectSlot
 
     /// <summary>
     ///   If true then this sound keeps playing (looping) and <see cref="Play"/> never automatically stops. Can
-    ///   be set to false in order to stop the audio playing after the current loop or manually immediately stopped.
+    ///   be set false to stop the audio playing after the current loop or manually immediately stopped.
     /// </summary>
     public bool Loop;
 
     /// <summary>
     ///   Internal flag, don't touch
     /// </summary>
-    [JsonIgnore]
     public ushort InternalPlayingState;
 
-    [JsonIgnore]
     public bool InternalAppliedState;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.SoundEffectSlot;
+    public bool CanBeReferencedInArchive => false;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.SoundEffectSlot)
+            throw new NotSupportedException();
+
+        writer.WriteObject((SoundEffectSlot)obj);
+    }
+
+    public static SoundEffectSlot ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new SoundEffectSlot
+        {
+            SoundFile = reader.ReadString(),
+            Volume = reader.ReadFloat(),
+            Play = reader.ReadBool(),
+            Loop = reader.ReadBool(),
+        };
+    }
+
+    public static object ReadFromArchiveBoxed(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        return ReadFromArchive(reader, version, referenceId);
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(SoundFile);
+        writer.Write(Volume);
+        writer.Write(Play);
+        writer.Write(Loop);
+    }
 }
 
 public static class SoundEffectPlayerHelpers
 {
+    public static SoundEffectPlayer ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SoundEffectPlayer.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SoundEffectPlayer.SERIALIZATION_VERSION);
+
+        return new SoundEffectPlayer
+        {
+            SoundEffectSlots = reader.ReadObjectOrNull<SoundEffectSlot[]>(),
+            AbsoluteMaxDistanceSquared = reader.ReadFloat(),
+            SoundVolumeMultiplier = reader.ReadFloat(),
+            AutoDetectPlayer = reader.ReadBool(),
+        };
+    }
+
     /// <summary>
     ///   Starts playing a new sound effect
     /// </summary>

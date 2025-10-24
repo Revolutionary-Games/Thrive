@@ -2,15 +2,36 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Handles running IWorldEffect types
 /// </summary>
-public class TimedWorldOperations
+public class TimedWorldOperations : IArchivable
 {
-    [JsonProperty]
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private List<IWorldEffect> effects = new();
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.TimedWorldOperations;
+    public bool CanBeReferencedInArchive => false;
+
+    public static TimedWorldOperations ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new TimedWorldOperations
+        {
+            effects = reader.ReadObject<List<IWorldEffect>>(),
+        };
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(effects);
+    }
 
     /// <summary>
     ///   Called when time passes (long timespans, like entering the editor)

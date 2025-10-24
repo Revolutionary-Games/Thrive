@@ -10,8 +10,8 @@ using Arch.Core.Extensions;
 using Arch.System;
 using Components;
 using Godot;
-using Newtonsoft.Json;
 using Nito.Collections;
+using SharedBase.Archive;
 using Xoshiro.PRNG64;
 
 /// <summary>
@@ -21,26 +21,24 @@ using Xoshiro.PRNG64;
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(SpatialAttachSystem))]
 [RunsAfter(typeof(CountLimitedDespawnSystem))]
-[JsonObject(MemberSerialization.OptIn, IsReference = true)]
-public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem
+public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private readonly QueryDescription spawnedQuery = new QueryDescription().WithAll<Spawned>();
 
     /// <summary>
     ///   Used to check if a spawn position is likely bad and should be retried
     /// </summary>
-    private readonly Func<Vector3, float, bool> badSpawnPositionCheck;
+    private readonly IsSpawnPositionBad badSpawnPositionCheck;
 
     /// <summary>
     ///   Sets how often the spawn system runs and checks things
     /// </summary>
-    [JsonProperty]
     private float interval = 1.0f;
 
-    [JsonProperty]
     private float elapsed;
 
-    [JsonProperty]
     private float despawnElapsed;
 
     private IWorldSimulation worldSimulation;
@@ -49,7 +47,6 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem
 
     private ShuffleBag<Spawner> spawnTypes;
 
-    [JsonProperty]
     private XoShiRo256starstar random;
 
     /// <summary>
@@ -76,7 +73,6 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem
     ///   Estimate count of existing spawn entities within the current spawn radius of the player;
     ///   Used to prevent a "spawn belt" of densely spawned entities when the player doesn't move.
     /// </summary>
-    [JsonProperty]
     private HashSet<Vector2I> coordinatesSpawned = new();
 
     private float entitiesDeleted;
@@ -86,8 +82,8 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem
     private float spawnRadiusSquaredCheck = 5 * 5;
     private int maxDifferentPositionsCheck = 10;
 
-    public SpawnSystem(IWorldSimulation worldSimulation, World world,
-        Func<Vector3, float, bool> badSpawnPositionCheck) : base(world)
+    public SpawnSystem(IWorldSimulation worldSimulation, World world, IsSpawnPositionBad badSpawnPositionCheck) :
+        base(world)
     {
         this.worldSimulation = worldSimulation;
         this.badSpawnPositionCheck = badSpawnPositionCheck;
@@ -97,7 +93,50 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem
         spawnTypes = new ShuffleBag<Spawner>(random);
     }
 
+    public delegate bool IsSpawnPositionBad(Vector3 position, float spawnRadiusSquared);
+
     public bool IsEnabled { get; set; } = true;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.SpawnSystem;
+    public bool CanBeReferencedInArchive => true;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.SpawnSystem)
+            throw new NotSupportedException();
+
+        writer.WriteObject((SpawnSystem)obj);
+    }
+
+    public static SpawnSystem ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new SpawnSystem(reader.ReadObject<IWorldSimulation>(), reader.ReadObject<World>(),
+            reader.ReadDelegate<IsSpawnPositionBad>() ?? throw new NullArchiveObjectException());
+
+        instance.interval = reader.ReadFloat();
+        instance.elapsed = reader.ReadFloat();
+        instance.despawnElapsed = reader.ReadFloat();
+        instance.random = reader.ReadObject<XoShiRo256starstar>();
+        instance.coordinatesSpawned = reader.ReadObject<HashSet<Vector2I>>();
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(worldSimulation);
+        writer.WriteAnyRegisteredValueAsObject(World);
+        writer.WriteDelegate(badSpawnPositionCheck);
+        writer.Write(interval);
+        writer.Write(elapsed);
+        writer.Write(despawnElapsed);
+        writer.WriteAnyRegisteredValueAsObject(random);
+        writer.WriteObject(coordinatesSpawned);
+    }
 
     public override void Update(in float delta)
     {

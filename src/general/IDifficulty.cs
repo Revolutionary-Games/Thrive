@@ -1,10 +1,10 @@
-﻿using ThriveScriptsShared;
+﻿using SharedBase.Archive;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Game difficulty data
 /// </summary>
-[SupportsCustomizedRegistryType(typeof(CustomDifficulty))]
-public interface IDifficulty : IRegistryAssignable
+public interface IDifficulty : IRegistryAssignable, IArchivable
 {
     /// <summary>
     ///   Multiplier for MP costs in the editor

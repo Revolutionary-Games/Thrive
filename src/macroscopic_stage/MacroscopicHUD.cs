@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Manages the multicellular HUD scene
 /// </summary>
-[JsonObject(MemberSerialization.OptIn)]
 public partial class MacroscopicHUD : CreatureStageHUDBase<MacroscopicStage>
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
 #pragma warning disable CA2213
     [Export]
     private CustomWindow moveToLandPopup = null!;
@@ -46,8 +47,10 @@ public partial class MacroscopicHUD : CreatureStageHUDBase<MacroscopicStage>
     [Signal]
     public delegate void OnOpenBuildPressedEventHandler();
 
-    [JsonIgnore]
     public bool IsInventoryOpen => inventoryScreen.IsOpen;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MacroscopicHUD;
 
     protected override string? UnPauseHelpText => null;
 
@@ -95,6 +98,20 @@ public partial class MacroscopicHUD : CreatureStageHUDBase<MacroscopicStage>
     public void SelectItemForCrafting(IInteractableEntity target)
     {
         inventoryScreen.AddItemToCrafting(target);
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        WriteBasePropertiesToArchive(writer);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        // The base version is different from ours
+        ReadBasePropertiesFromArchive(reader, 1);
     }
 
     protected override void UpdateFossilisationButtonStates()

@@ -1,12 +1,14 @@
 ﻿using System.ComponentModel;
+using System.Text.Json.Serialization;
 using Saving.Serializers;
+using SharedBase.Archive;
 using ThriveScriptsShared;
 
 /// <summary>
 ///   Define enzymes in the game. Enzyme is an "upgrade" that grants specific ability to microbes.
 /// </summary>
 [TypeConverter($"Saving.Serializers.{nameof(EnzymeStringConverter)}")]
-public class Enzyme : IRegistryType
+public class Enzyme : RegistryType
 {
     /// <summary>
     ///   User visible pretty name
@@ -33,14 +35,20 @@ public class Enzyme : IRegistryType
         Oxidizer,
     }
 
-    public string InternalName { get; set; } = null!;
+    [JsonIgnore]
+    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.Enzyme;
 
-    public void Check(string name)
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        return SimulationParameters.Instance.GetEnzyme(ReadInternalName(reader, version));
+    }
+
+    public override void Check(string name)
     {
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
     }
 
-    public void ApplyTranslations()
+    public override void ApplyTranslations()
     {
         TranslationHelper.ApplyTranslations(this);
     }

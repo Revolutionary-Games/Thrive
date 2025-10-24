@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 using ThriveScriptsShared;
 
 /// <summary>
@@ -10,7 +11,7 @@ using ThriveScriptsShared;
 ///     Values for each difficulty preset, as given in difficulty_presets.json
 ///   </para>
 /// </remarks>
-public class DifficultyPreset : IDifficulty, IRegistryType
+public class DifficultyPreset : RegistryType, IDifficulty
 {
     /// <summary>
     ///   User readable name
@@ -85,11 +86,16 @@ public class DifficultyPreset : IDifficulty, IRegistryType
     [JsonProperty]
     public bool OrganelleUnlocksEnabled { get; private set; }
 
-    public string InternalName { get; set; } = null!;
+    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.DifficultyPreset;
 
     [JsonIgnore]
     public string UntranslatedName =>
         untranslatedName ?? throw new InvalidOperationException("Translations not initialized");
+
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        return SimulationParameters.Instance.GetDifficultyPreset(ReadInternalName(reader, version));
+    }
 
     public void SetGrowthRateLimitCheatOverride(bool newLimitSetting)
     {
@@ -102,7 +108,7 @@ public class DifficultyPreset : IDifficulty, IRegistryType
         applyGrowthOverride = false;
     }
 
-    public void Check(string name)
+    public override void Check(string name)
     {
         if (string.IsNullOrEmpty(Name))
             throw new InvalidRegistryDataException(name, GetType().Name, "Name is not set");
@@ -166,7 +172,7 @@ public class DifficultyPreset : IDifficulty, IRegistryType
         }
     }
 
-    public void ApplyTranslations()
+    public override void ApplyTranslations()
     {
         TranslationHelper.ApplyTranslations(this);
     }

@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
-using Saving;
 using Path = System.IO.Path;
 
 /// <summary>
@@ -45,7 +44,7 @@ public class InProgressSave : IDisposable
     public InProgressSave(SaveInformation.SaveType type, Func<Node> currentGameRoot,
         Func<InProgressSave, Save> createSaveData, Action<InProgressSave, Save> performSave, string? saveName)
     {
-        // This was used for game pausing / unpausing. Now this is unneeded but let's keep this here for a while still
+        // This was used for game pausing / unpausing. Now this is unneeded, but let's keep this here for a while still
         // to see if there's some other use for this...
         _ = currentGameRoot;
 
@@ -184,7 +183,7 @@ public class InProgressSave : IDisposable
                     break;
                 }
 
-                // On this frame a pause menu might still be open, wait until next frame for it to close before
+                // On this frame a pause menu might still be open, wait until the next frame for it to close before
                 // taking a screenshot
                 wasColourblindScreenFilterVisible = ColourblindScreenFilter.Instance.Visible;
                 if (wasColourblindScreenFilterVisible)
@@ -207,7 +206,6 @@ public class InProgressSave : IDisposable
                     float.PositiveInfinity);
 
                 state = State.SaveData;
-                JSONDebug.FlushJSONTracesOut();
                 break;
             }
 
@@ -231,8 +229,6 @@ public class InProgressSave : IDisposable
             {
                 stopwatch.Stop();
                 GD.Print("save finished, success: ", success, " message: ", message, " elapsed: ", stopwatch.Elapsed);
-
-                JSONDebug.FlushJSONTracesOut();
 
                 PauseManager.Instance.Resume(nameof(InProgressSave));
 

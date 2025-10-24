@@ -1,27 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Xoshiro.PRNG64;
 
-[JSONDynamicTypeAllowed]
 public class MeteorImpactEvent : IWorldEffect
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private const string TemplateBiomeForChunks = "patchEventTemplateBiome";
 
     private readonly Dictionary<Compound, float> tempCompoundChanges = new();
     private readonly Dictionary<Compound, float> tempCloudSizes = new();
 
-    [JsonProperty]
     private readonly HashSet<int> modifiedPatchesIds = new();
 
-    [JsonProperty]
     private readonly XoShiRo256starstar random;
 
-    [JsonProperty]
-    private GameWorld targetWorld;
+    private readonly GameWorld targetWorld;
 
-    [JsonProperty]
     private Meteor? selectedMeteor;
 
     public MeteorImpactEvent(GameWorld targetWorld, long randomSeed)
@@ -30,11 +27,37 @@ public class MeteorImpactEvent : IWorldEffect
         random = new XoShiRo256starstar(randomSeed);
     }
 
-    [JsonConstructor]
-    public MeteorImpactEvent(GameWorld targetWorld, XoShiRo256starstar random)
+    private MeteorImpactEvent(GameWorld targetWorld, XoShiRo256starstar random, HashSet<int> modifiedPatchesIds)
     {
         this.targetWorld = targetWorld;
         this.random = random;
+        this.modifiedPatchesIds = modifiedPatchesIds;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MeteorImpactEvent;
+    public bool CanBeReferencedInArchive => false;
+
+    public static MeteorImpactEvent ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new MeteorImpactEvent(reader.ReadObject<GameWorld>(), reader.ReadObject<XoShiRo256starstar>(),
+            reader.ReadObject<HashSet<int>>())
+        {
+            selectedMeteor = reader.ReadObjectOrNull<Meteor>(),
+        };
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(targetWorld);
+        writer.WriteAnyRegisteredValueAsObject(random);
+        writer.WriteObject(modifiedPatchesIds);
+        writer.WriteObjectOrNull(selectedMeteor);
     }
 
     public void OnRegisterToWorld()

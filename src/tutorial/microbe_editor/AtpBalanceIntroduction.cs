@@ -2,7 +2,7 @@
 
 using System;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Tells the player about the ATP balance bar functionality (must trigger before the negative ATP balance
@@ -10,13 +10,18 @@ using Newtonsoft.Json;
 /// </summary>
 public class AtpBalanceIntroduction : CellEditorEntryCountingTutorial
 {
-    [JsonProperty]
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private bool shouldEnableNegativeATPTutorial;
 
     public override string ClosedByName => nameof(AtpBalanceIntroduction);
 
-    [JsonIgnore]
     public Control? ATPBalanceBarControl { get; set; }
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.TutorialAtpBalanceIntroduction;
 
     protected override int TriggersOnNthEditorSession => 2;
 
@@ -78,5 +83,23 @@ public class AtpBalanceIntroduction : CellEditorEntryCountingTutorial
         // This needs to be done so that this keeps getting the microbe enter events and can make the next
         // tutorial trigger
         HandlesEvents = true;
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        base.WritePropertiesToArchive(writer);
+
+        writer.Write(shouldEnableNegativeATPTutorial);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        // Base version is not our version, so we pass 1 here
+        base.ReadPropertiesFromArchive(reader, 1);
+
+        shouldEnableNegativeATPTutorial = reader.ReadBool();
     }
 }

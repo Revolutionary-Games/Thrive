@@ -1,10 +1,14 @@
 ﻿using System;
+using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Environmental tolerances of a species
 /// </summary>
-public class EnvironmentalTolerances
+public class EnvironmentalTolerances : IArchiveUpdatable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Temperature (in C) that this species likes to be in
     /// </summary>
@@ -41,6 +45,12 @@ public class EnvironmentalTolerances
         UVResistance = 4,
         OxygenResistance = 8,
     }
+
+    [JsonIgnore]
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    [JsonIgnore]
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.EnvironmentalTolerances;
 
     public static bool operator ==(EnvironmentalTolerances? left, EnvironmentalTolerances? right)
     {
@@ -102,6 +112,29 @@ public class EnvironmentalTolerances
             changes |= ToleranceChangedStats.OxygenResistance;
 
         return changes;
+    }
+
+    public void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(PreferredTemperature);
+        writer.Write(TemperatureTolerance);
+        writer.Write(PressureMinimum);
+        writer.Write(PressureMaximum);
+        writer.Write(UVResistance);
+        writer.Write(OxygenResistance);
+    }
+
+    public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        PreferredTemperature = reader.ReadFloat();
+        TemperatureTolerance = reader.ReadFloat();
+        PressureMinimum = reader.ReadFloat();
+        PressureMaximum = reader.ReadFloat();
+        UVResistance = reader.ReadFloat();
+        OxygenResistance = reader.ReadFloat();
     }
 
     public override bool Equals(object? obj)

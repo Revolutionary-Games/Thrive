@@ -1,0 +1,239 @@
+﻿using Arch.Core;
+using Arch.Core.Extensions;
+using Components;
+using SharedBase.Archive;
+
+/// <summary>
+///   Base interface for all ECS components that can be archived. Implementing this interface requires also registering
+///   the component in <see cref="ComponentDeserializers"/>
+/// </summary>
+public interface IArchivableComponent
+{
+    public ushort CurrentArchiveVersion { get; }
+    public ThriveArchiveObjectType ArchiveObjectType { get; }
+
+    public void WriteToArchive(ISArchiveWriter writer);
+}
+
+public static class ComponentDeserializers
+{
+    public static bool ReadComponentToEntity(ISArchiveReader reader, Entity entity, ThriveArchiveObjectType objectType,
+        ushort version)
+    {
+        switch (objectType)
+        {
+            case ThriveArchiveObjectType.ComponentBioProcesses:
+                entity.Add(BioProcessesHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentCellBurstEffect:
+                entity.Add(CellBurstEffectHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentCellProperties:
+                entity.Add(CellPropertiesHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentCommandSignaler:
+                entity.Add(CommandSignalerHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentCompoundAbsorber:
+                entity.Add(CompoundAbsorberHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentCompoundStorage:
+                entity.Add(CompoundStorageHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentCompoundVenter:
+                entity.Add(CompoundVenterHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentCurrentAffected:
+                entity.Add(CurrentAffectedHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentEngulfable:
+                entity.Add(EngulfableHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentEngulfer:
+                entity.Add(EngulferHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentMicrobeAI:
+                entity.Add(MicrobeAIHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentMicrobeColony:
+                entity.Add(MicrobeColonyHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentMicrobeColonyMember:
+                entity.Add(MicrobeColonyMemberHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentMicrobeControl:
+                entity.Add(MicrobeControlHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentMicrobeEnvironmentalEffects:
+                entity.Add(MicrobeEnvironmentalEffectsHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentMicrobePhysicsExtraData:
+                entity.Add(MicrobePhysicsExtraDataHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentMicrobeShaderParameters:
+                entity.Add(MicrobeShaderParametersHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentMicrobeSpeciesMember:
+                entity.Add(MicrobeSpeciesMemberHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentMicrobeStatus:
+                entity.Add(MicrobeStatusHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentMicrobeTemporaryEffects:
+                entity.Add(MicrobeTemporaryEffectsHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentMicrobeTerrainChunk:
+                entity.Add(MicrobeTerrainChunkHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentOrganelleContainer:
+                entity.Add(OrganelleContainerHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentPlayerOffspring:
+                entity.Add(PlayerOffspringHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentRadiationSource:
+                entity.Add(RadiationSourceHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentSiderophoreProjectile:
+                entity.Add(SiderophoreProjectileHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentSiderophoreTarget:
+                entity.Add(SiderophoreTargetHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentStrainAffected:
+                entity.Add(StrainAffectedHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentSurvivalStatistics:
+                entity.Add(SurvivalStatisticsHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentTemporaryEndosymbiontInfo:
+                entity.Add(TemporaryEndosymbiontInfoHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentToxinDamageSource:
+                entity.Add(ToxinDamageSourceHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentUnneededCompoundVenter:
+                entity.Add(UnneededCompoundVenterHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentDelayedMicrobeColony:
+                entity.Add(DelayedMicrobeColonyHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentIntercellularMatrix:
+                entity.Add(IntercellularMatrixHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentMulticellularGrowth:
+                entity.Add(MulticellularGrowthHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentMulticellularSpeciesMember:
+                entity.Add(MulticellularSpeciesMemberHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentAnimationControl:
+                entity.Add(AnimationControlHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentAttachedToEntity:
+                entity.Add(AttachedToEntityHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentCameraFollowTarget:
+                entity.Add(CameraFollowTargetHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentCollisionShapeLoader:
+                entity.Add(CollisionShapeLoaderHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentCollisionManagement:
+                entity.Add(CollisionManagementHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentColourAnimation:
+                entity.Add(ColourAnimationHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentCountLimited:
+                entity.Add(CountLimitedHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentDamageCooldown:
+                entity.Add(DamageCooldownHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentDamageOnTouch:
+                entity.Add(DamageOnTouchHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentEntityLight:
+                entity.Add(EntityLightHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentEntityMaterial:
+                entity.Add(EntityMaterialHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentEntityRadiusInfo:
+                entity.Add(EntityRadiusInfoHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentFadeOutActions:
+                entity.Add(FadeOutActionsHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentHealth:
+                entity.Add(HealthHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentManualPhysicsControl:
+                entity.Add(ManualPhysicsControlHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentPathLoadedSceneVisuals:
+                entity.Add(PathLoadedSceneVisualsHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentPhysics:
+                entity.Add(PhysicsHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentPhysicsSensor:
+                entity.Add(PhysicsSensorHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentPhysicsShapeHolder:
+                entity.Add(PhysicsShapeHolderHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentPlayerMarker:
+                entity.Add(PlayerMarkerHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentPredefinedVisuals:
+                entity.Add(PredefinedVisualsHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentReadableName:
+                entity.Add(ReadableNameHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentRenderPriorityOverride:
+                entity.Add(RenderPriorityOverrideHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentReproductionStatus:
+                entity.Add(ReproductionStatusHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentSelectable:
+                entity.Add(SelectableHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentSimpleShapeCreator:
+                entity.Add(SimpleShapeCreatorHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentSoundEffectPlayer:
+                entity.Add(SoundEffectPlayerHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentSoundListener:
+                entity.Add(SoundListenerHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentSpatialInstance:
+                entity.Add(SpatialInstanceHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentSpawned:
+                entity.Add(SpawnedHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentSpeciesMember:
+                entity.Add(SpeciesMemberHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentStaticBodyMarker:
+                entity.Add(StaticBodyMarkerHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentTimedLife:
+                entity.Add(TimedLifeHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentWorldPosition:
+                entity.Add(WorldPositionHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentMicrobeEventCallbacks:
+                entity.Add(MicrobeEventCallbackHelpers.ReadFromArchive(reader, version));
+                return true;
+        }
+
+        return false;
+    }
+}

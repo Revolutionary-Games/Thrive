@@ -36,8 +36,8 @@ public partial class TimedLifeSystem : BaseSystem<World, float>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref TimedLife timed, in Entity entity)
     {
-        // Fading timing is now also handled by this system
-        if (timed.FadeTimeRemaining != null)
+        // This system now also handles fading timing
+        if (timed.FadeTimeRemainingSet)
         {
             timed.FadeTimeRemaining -= delta;
 
@@ -60,7 +60,7 @@ public partial class TimedLifeSystem : BaseSystem<World, float>
             // If there is a custom callback, call it first as it can set the fade time
             bool wantsToLive = callback != null && !callback.Invoke(entity, ref timed);
 
-            if (timed.FadeTimeRemaining != null && timed.FadeTimeRemaining.Value > 0)
+            if (timed.FadeTimeRemainingSet && timed.FadeTimeRemaining > 0)
             {
                 // Entity doesn't want to die just yet
                 wantsToLive = true;

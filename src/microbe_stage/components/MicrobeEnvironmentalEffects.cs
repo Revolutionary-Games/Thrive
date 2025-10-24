@@ -1,12 +1,15 @@
 ﻿namespace Components;
 
+using SharedBase.Archive;
+
 /// <summary>
 ///   Has most of the variables controlling environmental effects on gameplay microbes
 /// </summary>
-[JSONDynamicTypeAllowed]
 [ComponentIsReadByDefault]
-public struct MicrobeEnvironmentalEffects
+public struct MicrobeEnvironmentalEffects : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public float OsmoregulationMultiplier;
 
     public float HealthMultiplier;
@@ -16,10 +19,33 @@ public struct MicrobeEnvironmentalEffects
     ///   easily
     /// </summary>
     public float ProcessSpeedModifier;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMicrobeEnvironmentalEffects;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(OsmoregulationMultiplier);
+        writer.Write(HealthMultiplier);
+        writer.Write(ProcessSpeedModifier);
+    }
 }
 
 public static class MicrobeEnvironmentalEffectsHelpers
 {
+    public static MicrobeEnvironmentalEffects ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > MicrobeEnvironmentalEffects.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, MicrobeEnvironmentalEffects.SERIALIZATION_VERSION);
+
+        return new MicrobeEnvironmentalEffects
+        {
+            OsmoregulationMultiplier = reader.ReadFloat(),
+            HealthMultiplier = reader.ReadFloat(),
+            ProcessSpeedModifier = reader.ReadFloat(),
+        };
+    }
+
     /// <summary>
     ///   Applies data from calculated tolerance data to components. Note that this doesn't refresh maximum health in
     ///   case that changes (if it has been initialised already)

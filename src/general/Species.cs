@@ -6,17 +6,23 @@ using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
 using Saving.Serializers;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Class that represents a species. This is an abstract base for
 ///   use by all stage-specific species classes.
 /// </summary>
+/// <remarks>
+///   <para>
+///     This must remain JSON serializable until fossil files are switched over to the archive system.
+///   </para>
+/// </remarks>
 [JsonObject(IsReference = true)]
 [TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
 [JSONAlwaysDynamicType]
 [UseThriveConverter]
 [UseThriveSerializer]
-public abstract class Species : ICloneable
+public abstract class Species : ICloneable, IArchivable
 {
     /// <summary>
     ///   This is not an auto property to make save compatibility easier
@@ -77,6 +83,7 @@ public abstract class Species : ICloneable
     ///   This value has additional constraints compared to plain Colour,
     ///   for example ensuring full opacity to avoid transparency, which can cause rendering bugs.
     /// </summary>
+    [JsonIgnore]
     public Color GUIColour
     {
         get
@@ -156,6 +163,34 @@ public abstract class Species : ICloneable
     [JsonIgnore]
     public bool IsExtinct => Population <= 0;
 
+    [JsonIgnore]
+    public abstract ushort CurrentArchiveVersion { get; }
+
+    [JsonIgnore]
+    public abstract ArchiveObjectType ArchiveObjectType { get; }
+
+    [JsonIgnore]
+    public bool CanBeReferencedInArchive => true;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        writer.WriteObject((Species)obj);
+    }
+
+    public static object ReadFromArchive(ISArchiveReader reader, Type knownType, ushort version, int referenceId)
+    {
+        // This forwards the reading to the correct version of the species
+        if (typeof(MicrobeSpecies) == knownType)
+            return MicrobeSpecies.ReadFromArchive(reader, version, referenceId);
+
+        if (typeof(MulticellularSpecies) == knownType)
+            return MulticellularSpecies.ReadFromArchive(reader, version, referenceId);
+
+        throw new NotSupportedException($"Unknown species type for read forwarding: {knownType}");
+    }
+
+    public abstract void WriteToArchive(ISArchiveWriter writer);
+
     /// <summary>
     ///   Triggered when this species is changed somehow. Should update any data that is cached in the species
     ///   regarding its properties, including <see cref="RepositionToOrigin"/>
@@ -167,7 +202,7 @@ public abstract class Species : ICloneable
     }
 
     /// <summary>
-    ///   Repositions the structure of the species according to stage specific rules
+    ///   Repositions the structure of the species according to stage-specific rules
     /// </summary>
     /// <returns>True when repositioning happened, false if this was already positioned correctly</returns>
     public abstract bool RepositionToOrigin();
@@ -319,7 +354,7 @@ public abstract class Species : ICloneable
     /// <summary>
     ///   Creates a cloned version of the species. This should only
     ///   really be used if you need to modify a species while
-    ///   referring to the old data. In for example the Mutations
+    ///   referring to the old data. In, for example, the Mutations
     ///   code.
     /// </summary>
     /// <returns>Deep-cloned instance of this object</returns>
@@ -395,6 +430,40 @@ public abstract class Species : ICloneable
         // There can only be one player species at a time, so to avoid adding a method to reset this flag when
         // mutating, this property is just not copied
         // species.PlayerSpecies = PlayerSpecies;
+    }
+
+    protected virtual void WriteBasePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(ID);
+        writer.Write(Genus);
+        writer.Write(Epithet);
+
+        writer.WriteObject(InitialCompounds);
+        writer.Write(Colour);
+        writer.Write(Obsolete);
+        writer.WriteObject((IArchivable)Behaviour);
+        writer.Write(Population);
+        writer.Write(Generation);
+        writer.Write(PlayerSpecies);
+
+        writer.WriteObjectProperties(Endosymbiosis);
+        writer.WriteObjectProperties(Tolerances);
+    }
+
+    protected virtual void ReadNonConstructorBaseProperties(ISArchiveReader reader, ushort version)
+    {
+        if (version != 1)
+            throw new InvalidArchiveVersionException(version, 1);
+
+        InitialCompounds = reader.ReadObject<Dictionary<Compound, float>>();
+        Colour = reader.ReadColor();
+        Obsolete = reader.ReadBool();
+        Behaviour = reader.ReadObject<BehaviourDictionary>();
+        Population = reader.ReadInt64();
+        Generation = reader.ReadInt32();
+        PlayerSpecies = reader.ReadBool();
+        reader.ReadObjectProperties(Endosymbiosis);
+        reader.ReadObjectProperties(Tolerances);
     }
 
     protected virtual Dictionary<Compound, float> CalculateBaseReproductionCost()

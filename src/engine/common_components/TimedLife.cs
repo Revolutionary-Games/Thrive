@@ -1,14 +1,15 @@
 ﻿namespace Components;
 
 using Arch.Core;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Entities that despawn after a certain amount of time
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct TimedLife
+public struct TimedLife : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Custom callback to be triggered when the timed life is over. If this returns false, then the entity won't
     ///   be automatically destroyed. If this callback sets <see cref="FadeTimeRemaining"/> then this also won't
@@ -20,21 +21,17 @@ public struct TimedLife
     ///     re-apply it after the save is loaded.
     ///   </para>
     /// </remarks>
-    [JsonIgnore]
     public OnTimeOver? CustomTimeOverCallback;
 
     public float TimeToLiveRemaining;
 
     /// <summary>
-    ///   If not null, then this entity is fading out and the timed despawn system will wait until this time is up
-    ///   as well
+    ///   When <see cref="FadeTimeRemainingSet"/> is true, this entity is fading out and the timed despawn system
+    ///   will wait until this time is up as well
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: switch to a separate bool and float to avoid having to box this variable in and produce garbage
-    ///   </para>
-    /// </remarks>
-    public float? FadeTimeRemaining;
+    public float FadeTimeRemaining;
+
+    public bool FadeTimeRemainingSet;
 
     public bool OnTimeOverTriggered;
 
@@ -43,9 +40,38 @@ public struct TimedLife
         CustomTimeOverCallback = null;
         TimeToLiveRemaining = timeToLiveRemaining;
 
-        FadeTimeRemaining = null;
+        FadeTimeRemainingSet = false;
+        FadeTimeRemaining = -1;
         OnTimeOverTriggered = false;
     }
 
     public delegate bool OnTimeOver(Entity entity, ref TimedLife timedLife);
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentTimedLife;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(TimeToLiveRemaining);
+        writer.Write(FadeTimeRemaining);
+        writer.Write(FadeTimeRemainingSet);
+        writer.Write(OnTimeOverTriggered);
+    }
+}
+
+public static class TimedLifeHelpers
+{
+    public static TimedLife ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > TimedLife.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, TimedLife.SERIALIZATION_VERSION);
+
+        return new TimedLife
+        {
+            TimeToLiveRemaining = reader.ReadFloat(),
+            FadeTimeRemaining = reader.ReadFloat(),
+            FadeTimeRemainingSet = reader.ReadBool(),
+            OnTimeOverTriggered = reader.ReadBool(),
+        };
+    }
 }

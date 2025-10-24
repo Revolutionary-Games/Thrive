@@ -12,7 +12,6 @@ public class SerializationBinder : DefaultSerializationBinder
     private static readonly Type DynamicTypeAllowedAttribute = typeof(JSONDynamicTypeAllowedAttribute);
     private static readonly Type AlwaysDynamicTypeAttribute = typeof(JSONAlwaysDynamicTypeAttribute);
     private static readonly Type SceneLoadedClassAttribute = typeof(SceneLoadedClassAttribute);
-    private static readonly Type CustomizedRegistryTypeAttribute = typeof(CustomizedRegistryTypeAttribute);
 
     public override Type BindToType(string? assemblyName, string typeName)
     {
@@ -26,8 +25,7 @@ public class SerializationBinder : DefaultSerializationBinder
             throw new JsonException($"Dynamically typed JSON object is of interface or abstract type {typeName}");
 
         if (type.CustomAttributes.Any(a => a.AttributeType == DynamicTypeAllowedAttribute ||
-                a.AttributeType == AlwaysDynamicTypeAttribute || a.AttributeType == SceneLoadedClassAttribute ||
-                a.AttributeType == CustomizedRegistryTypeAttribute))
+                a.AttributeType == AlwaysDynamicTypeAttribute || a.AttributeType == SceneLoadedClassAttribute))
         {
             // Allowed type
             return originalType;

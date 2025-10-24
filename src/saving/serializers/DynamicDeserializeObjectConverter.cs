@@ -9,10 +9,6 @@ public class DynamicDeserializeObjectConverter : BaseThriveConverter
 
     private bool canConvertObject = true;
 
-    public DynamicDeserializeObjectConverter(ISaveContext context) : base(context)
-    {
-    }
-
     public override bool CanConvert(Type objectType)
     {
         if (objectType != baseObjectType)
