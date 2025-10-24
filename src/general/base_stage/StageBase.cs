@@ -124,7 +124,7 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
             {
                 if (CurrentGame != null)
                 {
-                    if (CurrentGame.CheatsUsed != true)
+                    if (!CurrentGame.CheatsUsed)
                     {
                         GD.Print("Copying cheats used state to current game on scene enter tree");
                         CurrentGame.ReportCheatsUsed();

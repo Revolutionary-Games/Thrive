@@ -716,7 +716,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         }
         else
         {
-            if (EditorReady != true || CurrentGame == null)
+            if (!EditorReady || CurrentGame == null)
                 throw new InvalidOperationException("loaded editor isn't in the ready state, or missing current game");
 
             // Make absolutely sure the current game doesn't have an auto-evo run

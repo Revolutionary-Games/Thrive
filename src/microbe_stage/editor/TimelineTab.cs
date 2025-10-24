@@ -280,7 +280,7 @@ public partial class TimelineTab : PanelContainer
                 AddChild(itemContainer);
             }
 
-            if (data.Events.Any() == false)
+            if (!data.Events.Any())
             {
                 var noneLabelContainer = new HBoxContainer();
                 var noneLabelSpacer = new Control { CustomMinimumSize = new Vector2(25, 25) };

@@ -215,7 +215,7 @@ public class CombinedSpawnQueue : SpawnQueue
         get => usedSpawnIndex >= spawnQueues.Length;
         protected set
         {
-            if (value == false)
+            if (!value)
                 throw new NotSupportedException("Can't reset spawn index");
 
             usedSpawnIndex = int.MaxValue;

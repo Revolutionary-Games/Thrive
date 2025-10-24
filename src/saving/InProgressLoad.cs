@@ -162,7 +162,7 @@ public class InProgressLoad
                     save!.GameState,
                     Localization.Translate("PROCESSING_LOADED_OBJECTS"));
 
-                if (loadedState!.IsLoadedFromSave != true)
+                if (!loadedState!.IsLoadedFromSave)
                     throw new Exception("Game load logic not working correctly, IsLoadedFromSave was not set");
 
                 try

@@ -100,7 +100,7 @@ public partial class SocietyStage : StrategyStageBase, ISocietyStructureDataAcce
             if (buildingToPlaceGhost != null)
             {
                 // Don't update the placing when we have a popup open
-                if (industrialStageConfirmPopup.Visible != true)
+                if (!industrialStageConfirmPopup.Visible)
                 {
                     // TODO: collision check with other buildings
                     buildingToPlaceGhost.GlobalPosition = GetPlayerCursorPointedWorldPosition();

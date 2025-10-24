@@ -15,7 +15,7 @@ public partial class MetaballPopupMenu : HexPopupMenu
         get => true;
         set
         {
-            if (value != true)
+            if (!value)
                 throw new NotSupportedException();
         }
     }

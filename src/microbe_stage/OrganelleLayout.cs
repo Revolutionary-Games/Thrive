@@ -115,7 +115,7 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable
         for (int i = 0; i < hexCount; ++i)
         {
             var overlapping = GetElementAt(hexes[i] + position, temporaryStorage);
-            if (overlapping != null && (allowCytoplasmOverlap == false ||
+            if (overlapping != null && (!allowCytoplasmOverlap ||
                     overlapping.Definition.InternalName != "cytoplasm"))
             {
                 return false;

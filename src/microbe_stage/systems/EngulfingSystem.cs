@@ -730,7 +730,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
                 transportData.Interpolate = true;
 
 #if DEBUG
-                if (transportData.Interpolate != true)
+                if (!transportData.Interpolate)
                 {
                     GD.PrintErr("Didn't properly start eject digested entity");
                     Debugger.Break();
