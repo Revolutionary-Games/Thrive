@@ -230,6 +230,21 @@ public class EndosymbiosisData : IArchiveUpdatable
         return false;
     }
 
+    public void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(EngulfedSpecies);
+
+        writer.WriteObjectOrNull(StartedEndosymbiosis);
+        writer.WriteObjectOrNull(Endosymbionts);
+    }
+
+    public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        EngulfedSpecies = reader.ReadObject<Dictionary<Species, int>>();
+        StartedEndosymbiosis = reader.ReadObjectOrNull<InProgressEndosymbiosis>();
+        Endosymbionts = reader.ReadObjectOrNull<List<Endosymbiont>>();
+    }
+
     public EndosymbiosisData Clone()
     {
         var cloned = new EndosymbiosisData
@@ -253,21 +268,6 @@ public class EndosymbiosisData : IArchiveUpdatable
         }
 
         return cloned;
-    }
-
-    public void WritePropertiesToArchive(ISArchiveWriter writer)
-    {
-        writer.WriteObject(EngulfedSpecies);
-
-        writer.WriteObjectOrNull(StartedEndosymbiosis);
-        writer.WriteObjectOrNull(Endosymbionts);
-    }
-
-    public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
-    {
-        EngulfedSpecies = reader.ReadObject<Dictionary<Species, int>>();
-        StartedEndosymbiosis = reader.ReadObjectOrNull<InProgressEndosymbiosis>();
-        Endosymbionts = reader.ReadObjectOrNull<List<Endosymbiont>>();
     }
 
     public class InProgressEndosymbiosis(Species species, int requiredCount, OrganelleDefinition targetOrganelle)

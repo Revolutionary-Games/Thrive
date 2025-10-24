@@ -580,6 +580,12 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         GC.SuppressFinalize(this);
     }
 
+    /// <summary>
+    ///   Called just after resolving node references to allow the earliest systems to be created that for example need
+    ///   to have save properties applied to them.
+    /// </summary>
+    protected abstract void InitSystemsEarly();
+
     protected virtual void WriteBasePropertiesToArchive(ISArchiveWriter writer)
     {
         lock (entitiesToNotSave)
@@ -607,12 +613,6 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         PlayerPosition = reader.ReadVector3();
         WorldTimeScale = reader.ReadFloat();
     }
-
-    /// <summary>
-    ///   Called just after resolving node references to allow the earliest systems to be created that for example need
-    ///   to have save properties applied to them.
-    /// </summary>
-    protected abstract void InitSystemsEarly();
 
     protected virtual void OnProcessPhysics(float delta)
     {

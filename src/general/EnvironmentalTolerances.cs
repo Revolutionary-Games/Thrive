@@ -114,28 +114,6 @@ public class EnvironmentalTolerances : IArchiveUpdatable
         return changes;
     }
 
-    public override bool Equals(object? obj)
-    {
-        if (obj is null)
-            return false;
-        if (ReferenceEquals(this, obj))
-            return true;
-        if (obj.GetType() != GetType())
-            return false;
-
-        return Equals((EnvironmentalTolerances)obj);
-    }
-
-    public bool EqualsApprox(EnvironmentalTolerances other)
-    {
-        return Math.Abs(PreferredTemperature - other.PreferredTemperature) < MathUtils.EPSILON &&
-            Math.Abs(TemperatureTolerance - other.TemperatureTolerance) < MathUtils.EPSILON &&
-            Math.Abs(PressureMinimum - other.PressureMinimum) < MathUtils.EPSILON &&
-            Math.Abs(PressureMaximum - other.PressureMaximum) < MathUtils.EPSILON &&
-            Math.Abs(UVResistance - other.UVResistance) < MathUtils.EPSILON &&
-            Math.Abs(OxygenResistance - other.OxygenResistance) < MathUtils.EPSILON;
-    }
-
     public void WritePropertiesToArchive(ISArchiveWriter writer)
     {
         writer.Write(PreferredTemperature);
@@ -157,6 +135,28 @@ public class EnvironmentalTolerances : IArchiveUpdatable
         PressureMaximum = reader.ReadFloat();
         UVResistance = reader.ReadFloat();
         OxygenResistance = reader.ReadFloat();
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is null)
+            return false;
+        if (ReferenceEquals(this, obj))
+            return true;
+        if (obj.GetType() != GetType())
+            return false;
+
+        return Equals((EnvironmentalTolerances)obj);
+    }
+
+    public bool EqualsApprox(EnvironmentalTolerances other)
+    {
+        return Math.Abs(PreferredTemperature - other.PreferredTemperature) < MathUtils.EPSILON &&
+            Math.Abs(TemperatureTolerance - other.TemperatureTolerance) < MathUtils.EPSILON &&
+            Math.Abs(PressureMinimum - other.PressureMinimum) < MathUtils.EPSILON &&
+            Math.Abs(PressureMaximum - other.PressureMaximum) < MathUtils.EPSILON &&
+            Math.Abs(UVResistance - other.UVResistance) < MathUtils.EPSILON &&
+            Math.Abs(OxygenResistance - other.OxygenResistance) < MathUtils.EPSILON;
     }
 
     public EnvironmentalTolerances Clone()
