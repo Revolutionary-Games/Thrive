@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-09-15 11:08+0200\n"
-"PO-Revision-Date: 2023-09-15 06:55+0000\n"
+"PO-Revision-Date: 2025-10-20 15:25+0000\n"
 "Last-Translator: Kristijan Miracevski <mircevskihristijan30@gmail.com>\n"
 "Language-Team: Macedonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/mk/>\n"
 "Language: mk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
-"X-Generator: Weblate 5.0\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Thrive.Scripts 1.1.0.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -41,7 +41,7 @@ msgid "ABORTED_DOT"
 msgstr "Абортирано."
 
 msgid "ABSORBERS_COUNT"
-msgstr ""
+msgstr "Абсорбирачи"
 
 msgid "ABYSSOPELAGIC"
 msgstr "Абисопелагичен"
@@ -50,16 +50,16 @@ msgid "ACCEPT"
 msgstr "Прифати"
 
 msgid "ACHIEVEMENTS"
-msgstr ""
+msgstr "достигнувања"
 
 msgid "ACHIEVEMENTS_TOTAL"
-msgstr ""
+msgstr "достигнувања{0}/{1}"
 
 msgid "ACHIEVEMENT_ACHIEVED"
-msgstr ""
+msgstr "Завршено"
 
 msgid "ACHIEVEMENT_LOCKED"
-msgstr ""
+msgstr "Заклучено"
 
 msgid "ACTION_AWAKEN"
 msgstr "Будење ({0:F1} / {1:F1})"
@@ -128,9 +128,8 @@ msgstr "Агенти"
 msgid "AGENTS_COLON"
 msgstr "Агенти:"
 
-#, fuzzy
 msgid "AGENT_NAME"
-msgstr "Агент"
+msgstr "{0}Агент"
 
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
@@ -185,181 +184,198 @@ msgid "ALREADY_ASCENDED"
 msgstr "Веќе сте вознесени"
 
 msgid "ALT"
-msgstr ""
+msgstr "Alt"
 
 msgid "ALWAYS_VISIBLE"
-msgstr ""
+msgstr "Секогаш видливо"
 
 msgid "AMBIANCE_VOLUME"
-msgstr ""
+msgstr "Амбиентален волумен"
 
 msgid "AMMONIA"
-msgstr ""
+msgstr "Амониа"
 
 msgid "AMMONIA_COST"
-msgstr ""
+msgstr "Цена на амониа"
 
 msgid "AMMONIA_LEVELS"
-msgstr ""
+msgstr "Количина на амониа"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr ""
+msgstr "Количина на афтоматки зачувувања за чубања"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
+msgstr "Количина на брзи зачубања за чубање"
 
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr ""
+msgstr "Анаеробна фиксација на азот"
 
 msgid "AND_UNLOCK_CONDITION"
-msgstr ""
+msgstr "И"
 
 msgid "ANISOTROPIC_FILTERING"
-msgstr ""
+msgstr "Анизотропно филтрирање:"
 
 msgid "ANTIALIASING_MSAA_TAA"
-msgstr ""
+msgstr "MSAA + TAA"
 
 msgid "ANTI_ALIASING_FXAA"
-msgstr ""
+msgstr "FXAA"
 
 msgid "ANTI_ALIASING_MODE"
-msgstr ""
+msgstr "Режим на анти-алијасирање:"
 
 msgid "ANTI_ALIASING_MSAA"
-msgstr ""
+msgstr "MSAA"
 
 msgid "ANTI_ALIASING_TAA"
-msgstr ""
+msgstr "TAA"
 
 msgid "APPEARANCE"
-msgstr ""
+msgstr "Изглед"
 
 msgid "APPLY"
 msgstr ""
 
 msgid "APPLY_CHANGES"
-msgstr ""
+msgstr "Примени промени"
 
 msgid "APRIL"
-msgstr ""
+msgstr "Април"
 
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr ""
+msgstr "Дали сте сигурни дека сакате да ги ресетирате СИТЕ поставки на стандардните вредности?"
 
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr ""
+msgstr "Дали сте сигурни дека сакате да ги ресетирате влезните поставки на стандардните вредности?"
 
 msgid "ARTIST_COLON"
-msgstr ""
+msgstr "Артисти:"
 
 msgid "ARTWORK_TITLE"
-msgstr ""
+msgstr "\"{0}\" - {1}"
 
 msgid "ART_BY"
-msgstr ""
+msgstr "Уметност од {0}"
 
 msgid "ART_GALLERY"
-msgstr ""
+msgstr "Уметничка галерија"
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr ""
 
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
+"Се искачивте и ја завршивте играта. Честитки за достигнувањето на крајот од играта!\n"
+"\n"
+"Можете да продолжите да играте во Вселенската фаза со отклучени Божји алатки за да се забавувате во песочната кутија.\n"
+"\n"
+"Исто така е можно да се спуштите и да се вратите во Микробната фаза во ова зачувување и повторно да играте низ сите фази со дополнителни погодности.\n"
+"\n"
+"Вкупно време на искачување во ова зачувување: {0}"
 
-#, fuzzy
 msgid "ASCENSION_STAGE"
-msgstr "3Д Едитор"
+msgstr "Фаза на Вознесение"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr ""
+msgstr "Класата на склопување на модови е задолжителна кога е наведено склопувањето"
 
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr ""
+msgstr "Потребно е склопување на мод кога е овозможена автоматската хармонија"
 
 msgid "ASSUME_HYPERTHREADING"
-msgstr ""
+msgstr "Претпоставете дека процесорот има овозможено хипернижење"
 
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
+"Не може автоматски да се открие дали хипернишкањето е овозможено или не.\n"
+"Ова влијае на стандардниот број на нишки бидејќи нишките за хипернишкање не се толку брзи како вистинските јадра на процесорот."
 
 msgid "ATMOSPHERIC_GASSES"
-msgstr ""
+msgstr "Атмосферски гасови"
 
+#, fuzzy
 msgid "ATP"
-msgstr ""
+msgstr "ATP"
 
 msgid "ATP_BALANCE"
-msgstr ""
+msgstr "ATP Баланс"
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
-msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
+msgstr ""
+"Овој дел го прикажува вкупниот биланс на ATP (енергија) на моменталната клетка.\n"
+"За да преживее, билансот треба да биде позитивен. За сесилните клетки, тие може да го сметаат балансот за позитивен без движење.\n"
+"Паѓачкото мени подолу може да се користи за да се провери што би се случило ако клетката немала достапни ресурси за производство на ATP.\n"
+"На пример, некои клетки можат да одржат позитивен баланс на ATP само кога имаат повеќе типови соединенија за производство на ATP одеднаш.\n"
+"Овие типови клетки се потешки за користење бидејќи бараат складирање на повеќе типови соединенија одеднаш за да преживеат."
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
-msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
+msgstr ""
+"Овој дел прикажува опции за пресметување на ATP (енергетски) биланси за клетките.\n"
+"Пресметаните биланси се прикажани во менито за избор на тип на ќелија.\n"
+"Паѓачкото мени подолу може да се користи за да се провери што би се случило ако ќелијата нема некаков достапен ресурс од кој би се создал ATP."
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
-msgstr ""
+msgstr "Без надворешни ресурси"
 
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
-msgstr ""
+msgstr "Без гликоза"
 
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
-msgstr ""
+msgstr "Без водород сулфид"
 
 msgid "ATP_BALANCE_WITHOUT_IRON"
-msgstr ""
+msgstr "Без железо"
 
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
-msgstr ""
+msgstr "Со сите потребни супстанци"
 
 msgid "ATP_PRODUCTION"
-msgstr ""
+msgstr "ATP продукција"
 
 msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr ""
+msgstr "ПРОИЗВОДСТВОТО НА ATP Е ПРЕМНОГУ НИСКО!"
 
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr ""
+msgstr "Обидот за запишување на оваа датотека за зачувување не успеа. Името за зачувување можеби е предолго или можеби немате пристап за пишување во папката за зачувување."
 
 msgid "AT_CURSOR"
-msgstr ""
+msgstr "Кај глушецот:"
 
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Аудио излезен уред:"
 
 msgid "AUGUST"
-msgstr ""
+msgstr "Август"
 
 msgid "AUTO"
-msgstr ""
+msgstr "Абтоматски"
 
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr ""
+msgstr "Овој панел ги прикажува броевите од кои функционира предвидувањето за авто-ево. Вкупната енергија што еден вид може да ја собере и цената по единка од видот ја одредуваат конечната популација. Абтоматско-Ево користи поедноставен модел на реалност за да пресмета колку добро функционираат видовите врз основа на енергијата што можат да ја соберат. За секој извор на храна, прикажано е колку енергија добива видот од него. Дополнително, прикажана е вкупната енергија што е достапна од тој извор. Делот што видот го добива од вкупната енергија се базира на тоа колку е голема кондицијата во споредба со вкупната кондиција. Кондицијата е метрика за тоа колку добро видот може да го искористи тој извор на храна."
 
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr ""
+msgstr "Популациата на {0} се промени за {1} во {2} поради: {3}"
 
 msgid "AUTO-EVO_PREDICTION"
-msgstr ""
+msgstr "Абтоматско-Ево предвидубање"
 
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
+"Овој панел ја прикажува очекуваната вкупна собрана енергија и бројот на популации (во загради) од auto-evo за изменетиот вид.\n"
+"Auto-evo ја извршува симулацијата на популацијата, што е другиот дел (освен вашите сопствени перформанси) што влијае на вашата популација."
 
 msgid "AUTO-EVO_RESULTS_TITLE"
-msgstr ""
+msgstr "Ресултати на Абтоматско-Ево"
 
 msgid "AUTO-EVO_STEPS_DONE"
-msgstr ""
+msgstr "{0:F1}% завршено. {1:n0}/{2:n0} чекори."
 
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
-msgstr ""
+msgstr "Јачина на Автоматско-Ево на играчот"
 
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
-msgstr ""
+msgstr "(процентот на промена на популацијата во Автоматско-Ево важи за видот на играчот)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr ""
