@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
@@ -34,6 +35,7 @@ public static class EntityHelpers
         return entity.IsAlive() && entity.Has<T>();
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAllZero(this Entity entity)
     {
         return entity is { Version: 0, WorldId: 0, Id: 0 };
