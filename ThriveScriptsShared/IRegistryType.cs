@@ -43,6 +43,8 @@ public abstract class RegistryType : IRegistryType, IArchivable
 
     public bool CanBeReferencedInArchive => IRegistryType.REGISTRY_USE_REFERENCES;
 
+    public string InternalName { get; set; } = null!;
+
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
         // This must match what the WriteToArchive method does. And the simplest thing is to write just the internal
@@ -61,8 +63,6 @@ public abstract class RegistryType : IRegistryType, IArchivable
         // Write as the internal name which will be looked up in fresh registry data on a load
         writer.Write(InternalName);
     }
-
-    public string InternalName { get; set; } = null!;
 
     public abstract void Check(string name);
 
