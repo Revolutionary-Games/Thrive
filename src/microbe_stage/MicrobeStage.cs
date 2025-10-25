@@ -120,7 +120,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     public TutorialState TutorialState =>
         CurrentGame?.TutorialState ?? throw new InvalidOperationException("Game not started yet");
 
-    public override bool HasPlayer => Player.IsAlive();
+    public override bool HasPlayer => Player != Entity.Null && Player.IsAlive();
 
     public override bool HasAlivePlayer => HasPlayer && IsPlayerAlive();
 
