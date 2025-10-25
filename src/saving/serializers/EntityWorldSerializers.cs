@@ -3,6 +3,7 @@
 using System;
 using Arch.Core;
 using Arch.Core.Extensions;
+using Godot;
 using SharedBase.Archive;
 
 public static class EntityWorldSerializers
@@ -200,8 +201,12 @@ public static class EntityWorldSerializers
 
         manager.ProcessedEntityWorld = null;
 
+        // World size may change due to ignore saved entities, so we don't worry too much about it
         if (world.Size != oldSize)
-            throw new FormatException("World size changed during deserialization (unexpected entity count)");
+        {
+            GD.Print(
+                $"Loaded {world.Size} entities, but save had {oldSize} (likely due to soon dying ignored entities)");
+        }
 
         return world;
     }

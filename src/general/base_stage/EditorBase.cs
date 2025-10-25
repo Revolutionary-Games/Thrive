@@ -290,8 +290,9 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         // Auto save after the editor entry is complete
         if (TransitionFinished && wantsToSave)
         {
-            if (!CurrentGame.FreeBuild)
-                PerformAutoSave();
+            // TODO: remove once editor save is back
+            /*if (!CurrentGame.FreeBuild)
+                PerformAutoSave();*/
 
             wantsToSave = false;
         }
