@@ -18,7 +18,7 @@ public class Meteor : RegistryType
 
     public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.Meteor;
 
-    public static Meteor ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static Meteor ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > IRegistryType.SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, IRegistryType.SERIALIZATION_VERSION);

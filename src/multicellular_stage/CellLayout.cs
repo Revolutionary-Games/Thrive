@@ -29,7 +29,7 @@ public class CellLayout<T> : HexLayout<T>, IArchivable
     {
     }
 
-    public CellLayout(List<T> existingHexes, Action<T>? onAdded = null, Action<T>? onRemoved = null) : base(
+    protected CellLayout(List<T> existingHexes, Action<T>? onAdded = null, Action<T>? onRemoved = null) : base(
         existingHexes, onAdded, onRemoved)
     {
     }

@@ -168,6 +168,8 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             PredefinedAutoEvoConfiguration.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.TerrainConfiguration,
             typeof(TerrainConfiguration), TerrainConfiguration.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Meteor, typeof(Meteor),
+            Meteor.ReadFromArchive);
     }
 
     private void RegisterOtherObjects()
@@ -220,6 +222,15 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleTemplate,
             typeof(OrganelleTemplate), OrganelleTemplate.ReadFromArchive);
 
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellTemplate,
+            typeof(CellTemplate), CellTemplate.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellTemplate,
+            typeof(CellTemplate), CellTemplate.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellType,
+            typeof(CellType), CellType.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellType,
+            typeof(CellType), CellType.ReadFromArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleUpgrades, typeof(OrganelleUpgrades),
             OrganelleUpgrades.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.LysosomeUpgrades, typeof(LysosomeUpgrades),
@@ -244,9 +255,16 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellLayout,
             typeof(CellLayout<>), HexLayoutSerializer.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedIndividualHexLayout,
-            typeof(IndividualHexLayout<>), HexLayoutSerializer.ReadFromArchive);
+            typeof(IndividualHexLayout<>), HexLayoutSerializer.ReadIndividualHexLayoutFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.IndividualHexLayout,
-            typeof(IndividualHexLayout<>), HexLayoutSerializer.ReadFromArchive);
+            typeof(IndividualHexLayout<>), HexLayoutSerializer.ReadIndividualHexLayoutFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedHexWithData,
+            typeof(HexWithData<>), HexLayoutSerializer.WriteHexWithDataToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedHexWithData,
+            typeof(HexWithData<>), HexLayoutSerializer.ReadHexWithDataFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.HexWithData,
+            typeof(HexWithData<>), HexLayoutSerializer.ReadHexWithDataFromArchive);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BehaviourDictionary,
             typeof(BehaviourDictionary), BehaviourDictionary.ReadFromArchive);
