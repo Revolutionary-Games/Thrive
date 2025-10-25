@@ -3,6 +3,7 @@
 using System;
 using Arch.Core;
 using Arch.Core.Extensions;
+using Godot;
 using SharedBase.Archive;
 
 public static class EntityWorldSerializers
@@ -27,8 +28,9 @@ public static class EntityWorldSerializers
     {
         var manager = (ISaveContext)writer.WriteManager;
 
-        // Don't write non-alive entities or entities that no longer want to be saved
-        if (manager.SkipSavingEntity(entity) || entity == default(Entity) || !entity.IsAlive())
+        // Don't write non-alive entities or entities that no longer want to be saved.
+        // Also, we need to explicitly check for 0-initialised entities as they are not valid to check for alive.
+        if (manager.SkipSavingEntity(entity) || entity == Entity.Null || entity.IsAllZero() || !entity.IsAlive())
         {
             entity = Entity.Null;
         }
@@ -199,8 +201,12 @@ public static class EntityWorldSerializers
 
         manager.ProcessedEntityWorld = null;
 
+        // World size may change due to ignore saved entities, so we don't worry too much about it
         if (world.Size != oldSize)
-            throw new FormatException("World size changed during deserialization (unexpected entity count)");
+        {
+            GD.Print(
+                $"Loaded {world.Size} entities, but save had {oldSize} (likely due to soon dying ignored entities)");
+        }
 
         return world;
     }
@@ -219,7 +225,7 @@ public static class EntityWorldSerializers
         if (ComponentDeserializers.ReadComponentToEntity(reader, entity, objectType, version))
             return;
 
-        throw new FormatException($"Unknown component type to read: {objectType}");
+        throw new FormatException($"Unknown component type to read: {objectType} (version: {version})");
     }
 
     private static uint PackLightComponentHeader(ThriveArchiveObjectType type, ushort version)

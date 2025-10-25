@@ -10,7 +10,7 @@ using SharedBase.Archive;
 /// <typeparam name="TData">The type of data to hold in hexes</typeparam>
 [UseThriveSerializer]
 public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IArchivable
-    where TData : IActionHex
+    where TData : IActionHex, IArchivable
 {
     public IndividualHexLayout(Action<HexWithData<TData>> onAdded, Action<HexWithData<TData>>? onRemoved = null) : base(
         onAdded, onRemoved)
@@ -19,6 +19,11 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IArchiv
 
     [JsonConstructor]
     public IndividualHexLayout()
+    {
+    }
+
+    protected IndividualHexLayout(List<HexWithData<TData>> existingHexes, Action<HexWithData<TData>> onAdded,
+        Action<HexWithData<TData>>? onRemoved = null) : base(existingHexes, onAdded, onRemoved)
     {
     }
 

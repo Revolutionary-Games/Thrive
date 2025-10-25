@@ -240,10 +240,8 @@ public partial class CellBodyPlanEditorComponent :
 
                 // Can place stuff at all?
                 // TODO: should placementRotation be used here in some way?
-                isPlacementProbablyValid = IsValidPlacement(new HexWithData<CellTemplate>(new CellTemplate(cellType))
-                {
-                    Position = new Hex(q, r),
-                });
+                isPlacementProbablyValid =
+                    IsValidPlacement(new HexWithData<CellTemplate>(new CellTemplate(cellType), new Hex(q, r)));
             }
             else if (MovingPlacedHex != null)
             {
@@ -410,7 +408,7 @@ public partial class CellBodyPlanEditorComponent :
         if (!Visible)
             return false;
 
-        // Can't open popup menu while moving something
+        // Can't open a popup menu while moving something
         if (MovingPlacedHex != null)
         {
             Editor.OnActionBlockedWhileMoving();
@@ -486,8 +484,8 @@ public partial class CellBodyPlanEditorComponent :
         var positions = MouseHoverPositions.ToList();
 
         var cellTemplates = positions
-            .Select(h => new HexWithData<CellTemplate>(new CellTemplate(cellType, h.Hex, h.Orientation))
-                { Position = h.Hex }).ToList();
+            .Select(h => new HexWithData<CellTemplate>(new CellTemplate(cellType, h.Hex, h.Orientation), h.Hex))
+            .ToList();
 
         CombinedEditorAction moveOccupancies;
 
@@ -722,10 +720,7 @@ public partial class CellBodyPlanEditorComponent :
     /// </summary>
     private EditorAction? CreatePlaceActionIfPossible(CellType cellType, int q, int r, int rotation)
     {
-        var cell = new HexWithData<CellTemplate>(new CellTemplate(cellType, new Hex(q, r), rotation))
-        {
-            Position = new Hex(q, r),
-        };
+        var cell = new HexWithData<CellTemplate>(new CellTemplate(cellType, new Hex(q, r), rotation), new Hex(q, r));
 
         if (!IsValidPlacement(cell))
         {
@@ -1441,8 +1436,9 @@ public partial class CellBodyPlanEditorComponent :
     {
         foreach (var cell in multicellularSpecies.Cells)
         {
-            // This doesn't copy the position to the hex yet but TryAddHexToEditedLayout does it so we are good
-            var hex = new HexWithData<CellTemplate>((CellTemplate)cell.Clone());
+            // This doesn't copy the position to the hex yet, but TryAddHexToEditedLayout does it, so we are good to
+            // use the current position as a placeholder
+            var hex = new HexWithData<CellTemplate>((CellTemplate)cell.Clone(), cell.Position);
 
             var originalPos = cell.Position;
 

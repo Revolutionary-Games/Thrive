@@ -234,9 +234,12 @@ public enum ThriveArchiveObjectType : uint
     SpawnedTerrainGroup = 4317,
     CompoundCloudPlane = 4318,
     IndividualHexLayout = 4319,
+    CellTemplate = 4320,
+    HexWithData = 4321,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,
     ExtendedIndividualHexLayout = IndividualHexLayout | ArchiveObjectType.ExtendedTypeFlag,
     ExtendedCellLayout = CellLayout | ArchiveObjectType.ExtendedTypeFlag,
+    ExtendedHexWithData = HexWithData | ArchiveObjectType.ExtendedTypeFlag,
 }

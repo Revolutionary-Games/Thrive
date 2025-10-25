@@ -168,6 +168,8 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             PredefinedAutoEvoConfiguration.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.TerrainConfiguration,
             typeof(TerrainConfiguration), TerrainConfiguration.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Meteor, typeof(Meteor),
+            Meteor.ReadFromArchive);
     }
 
     private void RegisterOtherObjects()
@@ -220,6 +222,30 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleTemplate,
             typeof(OrganelleTemplate), OrganelleTemplate.ReadFromArchive);
 
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellTemplate,
+            typeof(CellTemplate), CellTemplate.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellTemplate,
+            typeof(CellTemplate), CellTemplate.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellType,
+            typeof(CellType), CellType.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellType,
+            typeof(CellType), CellType.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleUpgrades, typeof(OrganelleUpgrades),
+            OrganelleUpgrades.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.LysosomeUpgrades, typeof(LysosomeUpgrades),
+            LysosomeUpgrades.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.FlagellumUpgrades, typeof(FlagellumUpgrades),
+            FlagellumUpgrades.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.StorageComponentUpgrades,
+            typeof(StorageComponentUpgrades),
+            StorageComponentUpgrades.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ToxinUpgrades, typeof(ToxinUpgrades),
+            ToxinUpgrades.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ChemoreceptorUpgrades,
+            typeof(ChemoreceptorUpgrades),
+            ChemoreceptorUpgrades.ReadFromArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedOrganelleLayout,
             typeof(OrganelleLayout<>), HexLayoutSerializer.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleLayout,
@@ -229,9 +255,16 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellLayout,
             typeof(CellLayout<>), HexLayoutSerializer.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedIndividualHexLayout,
-            typeof(IndividualHexLayout<>), HexLayoutSerializer.ReadFromArchive);
+            typeof(IndividualHexLayout<>), HexLayoutSerializer.ReadIndividualHexLayoutFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.IndividualHexLayout,
-            typeof(IndividualHexLayout<>), HexLayoutSerializer.ReadFromArchive);
+            typeof(IndividualHexLayout<>), HexLayoutSerializer.ReadIndividualHexLayoutFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedHexWithData,
+            typeof(HexWithData<>), HexLayoutSerializer.WriteHexWithDataToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedHexWithData,
+            typeof(HexWithData<>), HexLayoutSerializer.ReadHexWithDataFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.HexWithData,
+            typeof(HexWithData<>), HexLayoutSerializer.ReadHexWithDataFromArchive);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BehaviourDictionary,
             typeof(BehaviourDictionary), BehaviourDictionary.ReadFromArchive);
@@ -337,6 +370,9 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(CompoundCloudPlane), CompoundCloudPlane.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPlane,
             typeof(CompoundCloudPlane), CompoundCloudPlane.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BulkTransportAnimation,
+            typeof(Engulfable.BulkTransportAnimation), Engulfable.BulkTransportAnimation.ReadFromArchive);
     }
 
     private void RegisterWorldEffects()

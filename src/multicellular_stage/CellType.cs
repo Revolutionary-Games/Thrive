@@ -74,7 +74,7 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
         writer.WriteObject((CellType)obj);
     }
 
-    public static CellType ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static CellType ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
