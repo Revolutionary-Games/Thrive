@@ -373,6 +373,11 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BulkTransportAnimation,
             typeof(Engulfable.BulkTransportAnimation), Engulfable.BulkTransportAnimation.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EntityLightConfig,
+            typeof(EntityLight.Light), EntityLight.Light.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EntityLightConfig,
+            typeof(EntityLight.Light), EntityLight.Light.ReadFromArchiveBoxed);
     }
 
     private void RegisterWorldEffects()
