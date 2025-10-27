@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/macroscopic_stage/MacroscopicCreature.tscn", UsesEarlyResolve = false)]
-public partial class MacroscopicCreature : RigidBody3D, ISaveLoadedTracked, ICharacterInventory, IEntity,
+public partial class MacroscopicCreature : RigidBody3D, ICharacterInventory, IEntity,
     IStructureSelectionReceiver<StructureDefinition>, IActionProgressSource
 {
     private static readonly Vector3 SwimUpForce = new(0, 10, 0);
@@ -140,9 +140,6 @@ public partial class MacroscopicCreature : RigidBody3D, ISaveLoadedTracked, ICha
 
     [JsonIgnore]
     public Node3D EntityNode => this;
-
-    [JsonIgnore]
-    public bool IsLoadedFromSave { get; set; }
 
     [JsonProperty]
     public bool ActionInProgress { get; private set; }

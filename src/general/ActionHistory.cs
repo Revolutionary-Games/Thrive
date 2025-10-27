@@ -1,23 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
+using Saving.Serializers;
+using SharedBase.Archive;
 
 /// <summary>
 ///   General implementation of an action history and undo / redo for use by editors
 /// </summary>
 /// <typeparam name="T">Type of actions to hold</typeparam>
-public class ActionHistory<T>
+public class ActionHistory<T> : IArchivable
     where T : ReversibleAction
 {
+    public ActionHistory()
+    {
+        Actions = new List<T>();
+    }
+
+    protected ActionHistory(List<T> actions, int actionIndex)
+    {
+        Actions = actions;
+        ActionIndex = actionIndex;
+    }
+
+    public virtual ushort CurrentArchiveVersion => ActionHistorySerializer.SERIALIZATION_VERSION;
+
+    public virtual ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.ExtendedActionHistory;
+
+    public bool CanBeReferencedInArchive => false;
+
     /// <summary>
     ///   marks the last action that has been done (not undone, but possibly redone), is 0 if there is none.
     /// </summary>
-    [JsonProperty]
     protected int ActionIndex { get; private set; }
 
-    [JsonProperty]
-    protected List<T> Actions { get; private set; } = new();
+    protected List<T> Actions { get; private set; }
+
+    public virtual void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(ActionIndex);
+        writer.WriteObject(Actions);
+    }
 
     public bool CanRedo()
     {

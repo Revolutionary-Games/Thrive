@@ -228,10 +228,7 @@ public sealed class Save : IArchivable, IDisposable
         }
         else
         {
-            // TODO: remove once editor save is back
-            throw new NotImplementedException("Editor saving is not reimplemented yet for this test build, sorry");
-
-            // writer.WriteObject(MicrobeEditor);
+            writer.WriteObject(MicrobeEditor);
         }
 
         // Other properties are not saved

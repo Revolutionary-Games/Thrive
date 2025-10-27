@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
 ///   Editor for the behaviour of a (microbe) species
 /// </summary>
 [IgnoreNoMethodsTakingInput]
-[SceneLoadedClass("res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn", UsesEarlyResolve = false)]
 public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
 #pragma warning disable CA2213
     [Export]
     private Slider aggressionSlider = null!;
@@ -30,21 +30,14 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
 
     private BehaviourDictionary? behaviour;
 
-    // TODO: as this is mostly just to guard against Behaviour being missing (when loading older saves), this field
-    // can probably be removed soon
-    [JsonProperty]
-    private Species? editedSpecies;
-
     [Signal]
     public delegate void OnBehaviourChangedEventHandler();
 
-    [JsonIgnore]
     public override bool IsSubComponent => true;
 
-    [JsonProperty]
     public BehaviourDictionary? Behaviour
     {
-        get => behaviour ??= editedSpecies?.Behaviour;
+        get => behaviour;
         private set => behaviour = value;
     }
 
@@ -59,9 +52,24 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
     {
         base.OnEditorSpeciesSetup(species);
 
-        editedSpecies = Editor.EditedBaseSpecies;
+        Behaviour = Editor.EditedBaseSpecies.Behaviour;
+    }
 
-        Behaviour = editedSpecies.Behaviour;
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        base.WritePropertiesToArchive(writer);
+
+        writer.WriteObject((IArchivable?)Behaviour ?? throw new Exception("Editor has not created behaviour object"));
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        base.ReadPropertiesFromArchive(reader, 1);
+
+        Behaviour = reader.ReadObject<BehaviourDictionary>();
     }
 
     public override void OnFinishEditing()

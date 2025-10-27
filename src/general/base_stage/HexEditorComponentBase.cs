@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Editor component that specializes in hex-based stuff editing
@@ -15,12 +15,14 @@ using Newtonsoft.Json;
 [GodotAbstract]
 public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, THexMove, TContext> :
     EditorComponentWithActionsBase<TEditor, TCombinedAction>,
-    ISaveLoadedTracked, IChildPropertiesLoadCallback
+    IChildPropertiesLoadCallback
     where TEditor : class, IHexEditor, IEditorWithActions
     where TCombinedAction : CombinedEditorAction
     where TAction : EditorAction
-    where THexMove : class, IActionHex
+    where THexMove : class, IActionHex, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION_HEX = 1;
+
     /// <summary>
     ///   The hexes that are positioned under the cursor to show where the player is about to place something.
     /// </summary>
@@ -42,7 +44,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     protected readonly Dictionary<MeshInstance3D, Material> hoverOverriddenMaterials = new();
 
     /// <summary>
-    ///   This is the placed down version of models, compare to <see cref="hoverModels"/>
+    ///   This is the placed-down version of models, compare to <see cref="hoverModels"/>
     /// </summary>
     protected readonly List<SceneDisplayer> placedModels = new();
 
@@ -60,7 +62,6 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     [Export]
     protected MicrobeCamera? camera;
 
-    [JsonIgnore]
     [Export]
     protected MeshInstance3D editorArrow = null!;
 
@@ -78,12 +79,11 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     protected AudioStream hexPlacementSound = null!;
 #pragma warning restore CA2213
 
-    [JsonProperty]
     protected string? activeActionName;
 
     /// <summary>
     ///   This is a global assessment if the currently being placed thing / action is valid (if not all hover hexes
-    ///   will be shown as invalid)
+    ///   are shown as invalid)
     /// </summary>
     protected bool isPlacementProbablyValid;
 
@@ -94,7 +94,6 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
     protected int usedHoverModel;
 
-    [JsonProperty]
     protected int placementRotation;
 
     private readonly NodePath positionZReference = new("position:z");
@@ -123,7 +122,6 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     /// <summary>
     ///   The symmetry setting of the editor.
     /// </summary>
-    [JsonProperty]
     public HexEditorSymmetry Symmetry
     {
         get => symmetry;
@@ -131,10 +129,9 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     }
 
     /// <summary>
-    ///   Hex that is in the process of being moved but a new location hasn't been selected yet.
+    ///   Hex that is in the process of being moved, but a new location hasn't been selected yet.
     ///   If null, nothing is in the process of moving.
     /// </summary>
-    [JsonProperty]
     public THexMove? MovingPlacedHex { get; protected set; }
 
     /// <summary>
@@ -147,7 +144,6 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     ///     This approach also allows different editor components to remember where they placed the camera.
     ///   </para>
     /// </remarks>
-    [JsonProperty]
     public Vector3 CameraPosition
     {
         get => cameraPosition;
@@ -158,10 +154,8 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         }
     }
 
-    [JsonProperty]
     public float CameraHeight { get; private set; } = Constants.EDITOR_DEFAULT_CAMERA_HEIGHT;
 
-    [JsonIgnore]
     public IEnumerable<(Hex Hex, int Orientation)>? MouseHoverPositions
     {
         get => mouseHoverPositions;
@@ -179,18 +173,13 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     }
 
     /// <summary>
-    ///   If true a hex move is in progress and can be canceled
+    ///   If true, a hex move is in progress and can be canceled
     /// </summary>
-    [JsonIgnore]
     public bool CanCancelMove => MovingPlacedHex != null;
 
-    [JsonIgnore]
     public override bool CanCancelAction => CanCancelMove;
 
-    [JsonIgnore]
     public virtual bool HasIslands => throw new GodotAbstractPropertyNotOverriddenException();
-
-    public bool IsLoadedFromSave { get; set; }
 
     protected virtual bool ForceHideHover => throw new GodotAbstractPropertyNotOverriddenException();
 
@@ -226,7 +215,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
         UpdateSymmetryIcon();
 
-        // For now we never reuse editors so it isn't worth the trouble to have code to properly clear these
+        // For now, we never reuse editors, so it isn't worth the trouble to have code to properly clear these
         if (hoverHexes.Count > 0 || hoverModels.Count > 0 || hoverOverriddenMaterials.Count > 0)
             throw new InvalidOperationException("This editor has already been initialized (hexes not empty)");
 
@@ -289,6 +278,33 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
 
         camera.UpdateCameraPosition(delta, cameraFollow.GlobalPosition);
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        base.WritePropertiesToArchive(writer);
+
+        writer.Write(activeActionName);
+        writer.Write(placementRotation);
+        writer.Write((int)Symmetry);
+        writer.WriteObjectOrNull(MovingPlacedHex);
+        writer.Write(CameraPosition);
+        writer.Write(CameraHeight);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_HEX or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_HEX);
+
+        base.ReadPropertiesFromArchive(reader, 1);
+
+        activeActionName = reader.ReadString();
+        placementRotation = reader.ReadInt32();
+        Symmetry = (HexEditorSymmetry)reader.ReadInt32();
+        MovingPlacedHex = reader.ReadObjectOrNull<THexMove>();
+        CameraPosition = reader.ReadVector3();
+        CameraHeight = reader.ReadFloat();
     }
 
     public void ResetSymmetryButton()

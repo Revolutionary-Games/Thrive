@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoEvo;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Editor patch map component
@@ -19,13 +19,13 @@ using Newtonsoft.Json;
 public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEditor>
     where TEditor : IEditorWithPatches
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Where the player wants to move after editing
     /// </summary>
-    [JsonProperty]
     protected Patch? targetPatch;
 
-    [JsonProperty]
     protected Patch playerPatchOnEntry = null!;
 
 #pragma warning disable CA2213
@@ -33,15 +33,12 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     protected PatchMapDrawer mapDrawer = null!;
 
     [Export]
-    [AssignOnlyChildItemsOnDeserialize]
-    [JsonProperty]
     protected PatchDetailsPanel detailsPanel = null!;
 
     [Export]
     private Label seedLabel = null!;
 #pragma warning restore CA2213
 
-    [JsonProperty]
     private FogOfWarMode fogOfWar;
 
     private bool enabledMigrationPatchFilter;
@@ -53,23 +50,22 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     /// <summary>
     ///   Returns the current patch the player is in
     /// </summary>
-    [JsonIgnore]
     public Patch CurrentPatch => targetPatch ?? playerPatchOnEntry;
 
     /// <summary>
     ///   Returns the patch where the player wants to move after editing
     /// </summary>
-    [JsonIgnore]
     public Patch? TargetPatch => targetPatch;
 
-    [JsonIgnore]
     public Patch? SelectedPatch => mapDrawer.SelectedPatch;
 
     /// <summary>
     ///   Called when the selected patch changes
     /// </summary>
-    [JsonIgnore]
     public Action<Patch>? OnSelectedPatchChanged { get; set; }
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.PatchMapEditor;
 
     public override void _Ready()
     {
@@ -126,6 +122,29 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         }
 
         UpdateSeedLabel();
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        base.WritePropertiesToArchive(writer);
+
+        writer.WriteObjectOrNull(targetPatch);
+        writer.WriteObject(playerPatchOnEntry);
+        writer.WriteObjectProperties(detailsPanel);
+        writer.Write((int)fogOfWar);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        base.ReadPropertiesFromArchive(reader, 1);
+
+        targetPatch = reader.ReadObjectOrNull<Patch>();
+        playerPatchOnEntry = reader.ReadObject<Patch>();
+        reader.ReadObjectProperties(detailsPanel);
+        fogOfWar = (FogOfWarMode)reader.ReadInt32();
     }
 
     public void SetMap(PatchMap map)

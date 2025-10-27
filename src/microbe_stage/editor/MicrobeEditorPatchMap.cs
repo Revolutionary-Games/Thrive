@@ -5,7 +5,6 @@ using Godot;
 ///   Microbe patch map GUI
 /// </summary>
 [IgnoreNoMethodsTakingInput]
-[SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn", UsesEarlyResolve = false)]
 public partial class MicrobeEditorPatchMap : PatchMapEditorComponent<IEditorWithPatches>
 {
     private readonly Action<Patch> micheSelectDelegate;

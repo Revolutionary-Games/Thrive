@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Editor component base class (each editor tab is roughly one component)
 /// </summary>
 /// <typeparam name="TEditor">The type of editor this component is contained in</typeparam>
-[JsonObject(MemberSerialization.OptIn)]
 [GodotAbstract]
-public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorComponent
+public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorComponent, IArchiveUpdatable,
+    ISaveLoadedTracked
     where TEditor : IEditor
 {
+    public const ushort SERIALIZATION_VERSION_BASE = 1;
+
 #pragma warning disable CA2213
     protected AudioStream unableToPerformActionSound = null!;
 
@@ -39,8 +41,12 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
     ///   Subeditor components don't require all functionality, so they override this to disable some initialization
     ///   logic
     /// </summary>
-    [JsonIgnore]
     public virtual bool IsSubComponent => false;
+
+    public bool IsLoadedFromSave { get; set; }
+
+    public virtual ushort CurrentArchiveVersion => throw new GodotAbstractPropertyNotOverriddenException();
+    public virtual ArchiveObjectType ArchiveObjectType => throw new GodotAbstractPropertyNotOverriddenException();
 
     protected TEditor Editor => editor ?? throw new InvalidOperationException("Editor component not initialized");
 
@@ -96,6 +102,18 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
         base._Process(delta);
 
         invalidSoundCooldown -= delta;
+    }
+
+    public virtual void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+    }
+
+    public virtual void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_BASE or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_BASE);
+
+        IsLoadedFromSave = true;
     }
 
     public virtual void OnEditorReady()

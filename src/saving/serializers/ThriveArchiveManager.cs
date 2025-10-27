@@ -32,6 +32,7 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterComponentParts();
         RegisterWorldEffects();
         RegisterTutorial();
+        RegisterAutoEvoStuff();
     }
 
     /// <summary>
@@ -332,6 +333,9 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CompoundBag,
             typeof(CompoundBag), CompoundBag.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CustomDifficulty,
+            typeof(CustomDifficulty), CustomDifficulty.ReadFromArchive);
     }
 
     private void RegisterComponentParts()
@@ -421,5 +425,25 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.TutorialMicrobeReproduction,
             typeof(MicrobeReproduction), MicrobeReproduction.ReadFromArchive);
+    }
+
+    private void RegisterAutoEvoStuff()
+    {
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.RunResults,
+            typeof(RunResults), RunResults.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.RunResults,
+            typeof(RunResults), RunResults.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpeciesPatchEnergyResults,
+            typeof(RunResults.SpeciesPatchEnergyResults), RunResults.SpeciesPatchEnergyResults.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpeciesPatchEnergyResults,
+            typeof(RunResults.SpeciesPatchEnergyResults), RunResults.SpeciesPatchEnergyResults.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.NicheInfo,
+            typeof(RunResults.SpeciesPatchEnergyResults.NicheInfo),
+            RunResults.SpeciesPatchEnergyResults.NicheInfo.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.NicheInfo,
+            typeof(RunResults.SpeciesPatchEnergyResults.NicheInfo),
+            RunResults.SpeciesPatchEnergyResults.NicheInfo.ReadFromArchive);
     }
 }

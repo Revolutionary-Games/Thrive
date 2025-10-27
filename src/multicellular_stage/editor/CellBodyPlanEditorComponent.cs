@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
 ///   Body plan editor component for making body plans from hexes (that represent cells)
 /// </summary>
-[SceneLoadedClass("res://src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn", UsesEarlyResolve = false)]
 public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
@@ -48,8 +49,6 @@ public partial class CellBodyPlanEditorComponent :
     [Export]
     private PanelContainer reproductionTab = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     [Export]
     private BehaviourEditorSubComponent behaviourEditor = null!;
 
@@ -92,18 +91,15 @@ public partial class CellBodyPlanEditorComponent :
     private CustomConfirmationDialog negativeAtpPopup = null!;
 #pragma warning restore CA2213
 
-    [JsonProperty]
     private string newName = "unset";
 
-    [JsonProperty]
     private IndividualHexLayout<CellTemplate> editedMicrobeCells = null!;
 
     /// <summary>
-    ///   True when visuals of already placed things need to be updated
+    ///   True, when visuals of already placed things need to be updated
     /// </summary>
     private bool cellDataDirty = true;
 
-    [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
     private bool forceUpdateCellGraphics;
@@ -122,7 +118,6 @@ public partial class CellBodyPlanEditorComponent :
         Behaviour,
     }
 
-    [JsonIgnore]
     public override bool HasIslands =>
         editedMicrobeCells.GetIslandHexes(islandResults, islandsWorkMemory1, islandsWorkMemory2,
             islandsWorkMemory3) > 0;
@@ -143,6 +138,11 @@ public partial class CellBodyPlanEditorComponent :
             return false;
         }
     }
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.CellBodyPlanEditorComponent;
 
     protected override bool ForceHideHover => false;
 
@@ -278,6 +278,29 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         forceUpdateCellGraphics = false;
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        base.WritePropertiesToArchive(writer);
+
+        writer.WriteObjectProperties(behaviourEditor);
+        writer.Write(newName);
+        writer.WriteObject(editedMicrobeCells);
+        writer.Write((int)selectedSelectionMenuTab);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_HEX or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_HEX);
+
+        base.ReadPropertiesFromArchive(reader, 1);
+
+        reader.ReadObjectProperties(behaviourEditor);
+        newName = reader.ReadString() ?? throw new NullArchiveObjectException();
+        editedMicrobeCells = reader.ReadObject<IndividualHexLayout<CellTemplate>>();
+        selectedSelectionMenuTab = (SelectionMenuTab)reader.ReadInt32();
     }
 
     public override void OnEditorSpeciesSetup(Species species)

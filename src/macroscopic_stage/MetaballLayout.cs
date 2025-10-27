@@ -5,13 +5,17 @@ using System.Linq;
 using Godot;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   A species shape specified by metaballs
 /// </summary>
-public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
+public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>, IArchivable
     where T : Metaball
 {
+    // TODO: make a serializer for this like for hex layout serializer
+    public const ushort SERIALIZATION_VERSION = 1;
+
     [JsonProperty]
     protected Action<T>? onAdded;
 
@@ -33,7 +37,16 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
     [JsonIgnore]
     public bool IsReadOnly => false;
 
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ExtendedMetaballLayout;
+    public bool CanBeReferencedInArchive => false;
+
     public T this[int index] => metaballs[index];
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        throw new NotImplementedException();
+    }
 
     [MustDisposeResource]
     public IEnumerator<T> GetEnumerator()

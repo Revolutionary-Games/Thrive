@@ -1,10 +1,11 @@
 ﻿using System;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
-[UseThriveConverter]
-public abstract class Metaball
+public abstract class Metaball : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION_BASE = 1;
+
     public Vector3 Position { get; set; }
 
     /// <summary>
@@ -15,14 +16,12 @@ public abstract class Metaball
     /// <summary>
     ///   The radius of the metaball
     /// </summary>
-    [JsonIgnore]
     public float Radius => Size * 0.5f;
 
     /// <summary>
     ///   Volume of the metaball sphere. Do not scale the result returned from this, use <see cref="GetVolume"/>
     ///   instead.
     /// </summary>
-    [JsonIgnore]
     public float Volume => GetVolume();
 
     /// <summary>
@@ -33,8 +32,30 @@ public abstract class Metaball
     /// <summary>
     ///   Basic rendering of the metaballs for now just uses a colour
     /// </summary>
-    [JsonIgnore]
     public abstract Color Colour { get; }
+
+    public abstract ushort CurrentArchiveVersion { get; }
+    public abstract ArchiveObjectType ArchiveObjectType { get; }
+    public virtual bool CanBeReferencedInArchive => false;
+
+    public abstract void WriteToArchive(ISArchiveWriter writer);
+
+    public virtual void WriteBasePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(Position);
+        writer.Write(Size);
+        writer.WriteObjectOrNull(Parent);
+    }
+
+    public virtual void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_BASE or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_BASE);
+
+        Position = reader.ReadVector3();
+        Size = reader.ReadFloat();
+        Parent = reader.ReadObjectOrNull<Metaball>();
+    }
 
     /// <summary>
     ///   Checks if the data of this ball matches another (parent shouldn't be checked). Used for action replacement

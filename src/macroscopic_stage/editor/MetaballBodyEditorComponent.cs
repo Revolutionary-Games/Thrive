@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Body plan editor component for making body plans from metaballs
@@ -177,6 +178,23 @@ public partial class MetaballBodyEditorComponent :
                 (finalPosition, finalParent) => RenderHighlightedMetaball(finalPosition, finalParent, cellType),
                 effectiveSymmetry);
         }
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        base.WritePropertiesToArchive(writer);
+
+        throw new NotImplementedException();
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        /*if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);*/
+
+        base.ReadPropertiesFromArchive(reader, 1);
+
+        throw new NotImplementedException();
     }
 
     public override void OnEditorSpeciesSetup(Species species)
