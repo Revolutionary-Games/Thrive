@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Saving.Serializers;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Holds the action history for the editor.
@@ -17,6 +19,11 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     where TAction : EditorAction
 {
     private List<EditorCombinableActionData>? cache;
+
+    public override ushort CurrentArchiveVersion => ActionHistorySerializer.SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.ExtendedEditorActionHistory;
 
     private List<EditorCombinableActionData> History => cache ??= GetActionHistorySinceLastHistoryResettingAction();
 
@@ -143,7 +150,8 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     }
 
     public bool HexPlacedThisSession<THex, TContext>(THex hex)
-        where THex : class, IActionHex
+        where THex : class, IActionHex, IArchivable
+        where TContext : IArchivable
     {
         return History.OfType<HexPlacementActionData<THex, TContext>>().Any(a => a.PlacedHex == hex);
     }
@@ -154,6 +162,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// <typeparam name="TContext">The type of context to be returned.</typeparam>
     /// <returns>The context the next action to redo should be performed in.</returns>
     public TContext? GetRedoContext<TContext>()
+        where TContext : IArchivable
     {
         return GetContext<TContext>(ActionToRedo());
     }
@@ -164,11 +173,13 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// <typeparam name="TContext">The type of context to be returned.</typeparam>
     /// <returns>The context the next action to undo should be performed in.</returns>
     public TContext? GetUndoContext<TContext>()
+        where TContext : IArchivable
     {
         return GetContext<TContext>(ActionToUndo());
     }
 
     private static TContext? GetContext<TContext>(TAction? action)
+        where TContext : IArchivable
     {
         // We don't allow combining actions from different contexts,
         // so we only need to check the first data for the context

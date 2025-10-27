@@ -448,7 +448,8 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     }
 
     public bool HexPlacedThisSession<THex, TContext>(THex hex)
-        where THex : class, IActionHex
+        where THex : class, IActionHex, IArchivable
+        where TContext : IArchivable
     {
         return history.HexPlacedThisSession<THex, TContext>(hex);
     }

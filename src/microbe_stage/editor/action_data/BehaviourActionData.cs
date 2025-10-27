@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using SharedBase.Archive;
 
-[JSONAlwaysDynamicType]
 public class BehaviourActionData : EditorCombinableActionData
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public float NewValue;
     public float OldValue;
     public BehaviouralValueType Type;
@@ -13,6 +15,42 @@ public class BehaviourActionData : EditorCombinableActionData
         OldValue = oldValue;
         NewValue = newValue;
         Type = type;
+    }
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.BehaviourActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.BehaviourActionData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((BehaviourActionData)obj);
+    }
+
+    public static BehaviourActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new BehaviourActionData(reader.ReadFloat(), reader.ReadFloat(),
+            (BehaviouralValueType)reader.ReadInt32());
+
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(NewValue);
+        writer.Write(OldValue);
+        writer.Write((int)Type);
+
+        writer.Write(SERIALIZATION_VERSION_EDITOR);
+        base.WriteToArchive(writer);
     }
 
     protected override double CalculateBaseCostInternal()

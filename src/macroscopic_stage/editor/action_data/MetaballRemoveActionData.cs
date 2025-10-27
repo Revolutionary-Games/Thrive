@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using Saving.Serializers;
+using SharedBase.Archive;
 
-public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
+public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData, IMetaballAction
     where TMetaball : Metaball
 {
     public TMetaball RemovedMetaball;
@@ -12,12 +13,11 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
     public Metaball? Parent;
 
     /// <summary>
-    ///   If any metaballs that were the children of <see cref="RemovedMetaball"/> exist, they need to be moved,
+    ///   If any metaballs that were the children of <see cref="RemovedMetaball"/> exist, they need to be moved;
     ///   that movement data is stored here
     /// </summary>
     public List<MetaballMoveActionData<TMetaball>>? ReParentedMetaballs;
 
-    [JsonConstructor]
     public MetaballRemoveActionData(TMetaball metaball, Vector3 position, Metaball? parent,
         List<MetaballMoveActionData<TMetaball>>? reParentedMetaballs)
     {
@@ -34,6 +34,11 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
         Parent = metaball.Parent;
         ReParentedMetaballs = reParentedMetaballs;
     }
+
+    public override ushort CurrentArchiveVersion => MetaballActionDataSerializer.SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.MetaballRemoveActionData;
 
     public static List<MetaballMoveActionData<TMetaball>>? CreateMovementActionForChildren(TMetaball removedMetaball,
         MetaballLayout<TMetaball> descendantData)
@@ -104,6 +109,24 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
         }
 
         return result;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(RemovedMetaball);
+        writer.Write(Position);
+        writer.WriteObjectOrNull(Parent);
+
+        writer.Write(SERIALIZATION_VERSION_EDITOR);
+        base.WriteToArchive(writer);
+    }
+
+    public void FinishBaseLoad(ISArchiveReader reader, ushort version)
+    {
+        if (version == 0 || version > CurrentArchiveVersion)
+            throw new InvalidArchiveVersionException(version, CurrentArchiveVersion);
+
+        ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
     }
 
     protected override double CalculateBaseCostInternal()

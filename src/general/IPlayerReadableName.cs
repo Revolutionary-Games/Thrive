@@ -1,5 +1,5 @@
 ﻿/// <summary>
-///   Something that has a player readable name
+///   Something that has a player-readable name
 /// </summary>
 public interface IPlayerReadableName
 {

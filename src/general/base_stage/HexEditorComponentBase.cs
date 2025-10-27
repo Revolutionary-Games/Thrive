@@ -20,6 +20,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     where TCombinedAction : CombinedEditorAction
     where TAction : EditorAction
     where THexMove : class, IActionHex, IArchivable
+    where TContext : IArchivable
 {
     public const ushort SERIALIZATION_VERSION_HEX = 1;
 

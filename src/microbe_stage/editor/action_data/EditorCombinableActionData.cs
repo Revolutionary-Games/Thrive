@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
+using SharedBase.Archive;
 
 public abstract class EditorCombinableActionData : CombinableActionData
 {
+    public const ushort SERIALIZATION_VERSION_EDITOR = 1;
+
     protected double lastCalculatedSelfCost = double.NaN;
 
     /// <summary>
@@ -13,6 +16,11 @@ public abstract class EditorCombinableActionData : CombinableActionData
     protected double lastCalculatedRefundCost = double.NaN;
 
     public float CostMultiplier { get; set; } = 1.0f;
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(CostMultiplier);
+    }
 
     public virtual double CalculateCost(IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
@@ -78,6 +86,17 @@ public abstract class EditorCombinableActionData : CombinableActionData
         return GetCalculatedSelfCost() - GetCalculatedRefundCost();
     }
 
+    protected virtual void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_EDITOR or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_EDITOR);
+
+        CostMultiplier = reader.ReadFloat();
+
+        lastCalculatedRefundCost = double.NaN;
+        lastCalculatedSelfCost = double.NaN;
+    }
+
     protected abstract (double Cost, double RefundCost) CalculateCostInternal(
         IReadOnlyList<EditorCombinableActionData> history, int insertPosition);
 
@@ -121,12 +140,23 @@ public abstract class EditorCombinableActionData : CombinableActionData
 }
 
 public abstract class EditorCombinableActionData<TContext> : EditorCombinableActionData
+    where TContext : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION_CONTEXT = 1;
+
     /// <summary>
     ///   The optional context this action was performed in. This is additional data in addition to the action target.
     ///   Not all editors use context info.
     /// </summary>
     public TContext? Context { get; set; }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(SERIALIZATION_VERSION_EDITOR);
+        base.WriteToArchive(writer);
+
+        writer.WriteObjectOrNull(Context);
+    }
 
     public override bool WantsToMergeWith(CombinableActionData other)
     {
@@ -163,5 +193,16 @@ public abstract class EditorCombinableActionData<TContext> : EditorCombinableAct
             return false;
 
         return originalContext.Equals(other.Context);
+    }
+
+    protected override void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_CONTEXT or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_CONTEXT);
+
+        // Base version is different (which we saved so we can read it here)
+        base.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        Context = reader.ReadObjectOrNull<TContext>();
     }
 }

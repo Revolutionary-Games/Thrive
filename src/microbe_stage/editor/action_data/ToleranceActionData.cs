@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using SharedBase.Archive;
 
-[JSONAlwaysDynamicType]
 public class ToleranceActionData : EditorCombinableActionData
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public EnvironmentalTolerances OldTolerances;
     public EnvironmentalTolerances NewTolerances;
 
@@ -11,6 +13,19 @@ public class ToleranceActionData : EditorCombinableActionData
     {
         OldTolerances = oldTolerances;
         NewTolerances = newTolerances;
+    }
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.ToleranceActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.ToleranceActionData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((ToleranceActionData)obj);
     }
 
     public static double CalculateToleranceCost(EnvironmentalTolerances oldTolerances,
@@ -44,6 +59,33 @@ public class ToleranceActionData : EditorCombinableActionData
             pressureToleranceChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE +
             oxygenChange * Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN +
             uvChange * Constants.TOLERANCE_CHANGE_MP_PER_UV;
+    }
+
+    public static ToleranceActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var tolerances1 = new EnvironmentalTolerances();
+        var tolerances2 = new EnvironmentalTolerances();
+
+        reader.ReadObjectProperties(tolerances1);
+        reader.ReadObjectProperties(tolerances2);
+
+        var instance = new ToleranceActionData(tolerances1, tolerances2);
+
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObjectProperties(OldTolerances);
+        writer.WriteObjectProperties(NewTolerances);
+
+        writer.Write(SERIALIZATION_VERSION_EDITOR);
+        base.WriteToArchive(writer);
     }
 
     protected override double CalculateBaseCostInternal()

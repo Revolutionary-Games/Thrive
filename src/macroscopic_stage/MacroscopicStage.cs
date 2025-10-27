@@ -89,7 +89,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     public override bool HasAlivePlayer => HasPlayer;
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
-    public ArchiveObjectType ArchiveObjectType => throw new NotImplementedException();
+    public ArchiveObjectType ArchiveObjectType => throw new NotSupportedException("unimplemented");
 
     [JsonIgnore]
     protected override ICreatureStageHUD BaseHUD => HUD;

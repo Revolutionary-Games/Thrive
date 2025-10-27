@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Allows picking the growth order of things in a GUI
 /// </summary>
-[JsonObject(MemberSerialization.OptIn)]
-public partial class GrowthOrderPicker : Control
+public partial class GrowthOrderPicker : Control, IArchiveUpdatable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private readonly List<DraggableItem> itemControls = new();
 
     /// <summary>
@@ -72,10 +73,9 @@ public partial class GrowthOrderPicker : Control
     }
 
     /// <summary>
-    ///   A special property to handle saving and loading of state. Can technically be used to read the data but this
+    ///   A special property to handle saving and loading of state. Can technically be used to read the data, but this
     ///   causes more memory allocations than necessary.
     /// </summary>
-    [JsonProperty]
     public List<IPlayerReadableName?> CurrentSavedOrder
     {
         get
@@ -91,6 +91,9 @@ public partial class GrowthOrderPicker : Control
         private set => currentSavedOrder = value;
     }
 
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.GrowthOrderPicker;
+
     public override void _Ready()
     {
         draggableItemScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/DraggableItem.tscn");
@@ -100,11 +103,21 @@ public partial class GrowthOrderPicker : Control
     {
     }
 
+    public void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(CurrentSavedOrder);
+    }
+
+    public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        CurrentSavedOrder = reader.ReadObject<List<IPlayerReadableName?>>();
+    }
+
     /// <summary>
     ///   Creates or updates the sequence of reorderable items. Note that item equality is checked with ReferenceEquals
     ///   and not value equality.
     /// </summary>
-    /// <param name="items">Sequence of items to ensure are shown in the given order</param>
+    /// <param name="items">Sequence of items to ensure things are shown in the given order</param>
     public void UpdateItems(IEnumerable<IPlayerReadableName> items)
     {
         // We are getting real items, so let go of any saved data

@@ -6,17 +6,18 @@ using Arch.Core;
 using Arch.Core.Extensions;
 using AutoEvo;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
 ///   The cell editor component combining the organelle and other editing logic with the GUI for it
 /// </summary>
-[SceneLoadedClass("res://src/microbe_stage/editor/CellEditorComponent.tscn", UsesEarlyResolve = false)]
 public partial class CellEditorComponent :
     HexEditorComponentBase<ICellEditorData, CombinedEditorAction, EditorAction, OrganelleTemplate, CellType>,
     ICellEditorComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     [Export]
     public bool IsMulticellularEditor;
 
@@ -68,8 +69,6 @@ public partial class CellEditorComponent :
     [Export]
     private PanelContainer appearanceTab = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     [Export]
     private BehaviourEditorSubComponent behaviourEditor = null!;
 
@@ -77,13 +76,9 @@ public partial class CellEditorComponent :
     private PanelContainer growthOrderTab = null!;
 
     [Export]
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     private GrowthOrderPicker growthOrderGUI = null!;
 
     [Export]
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     private TolerancesEditorSubComponent tolerancesEditor = null!;
 
     [Export]
@@ -212,7 +207,6 @@ public partial class CellEditorComponent :
 
     private Dictionary<MembraneType, MicrobePartSelection> membraneSelectionElements = new();
 
-    [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
     private bool? autoEvoPredictionRunSuccessful;
@@ -239,7 +233,6 @@ public partial class CellEditorComponent :
     ///     This is now nullable to make loading older saves with the new editor data structures easier
     ///   </para>
     /// </remarks>
-    [JsonProperty]
     private string newName = "unset";
 
     /// <summary>
@@ -251,15 +244,13 @@ public partial class CellEditorComponent :
     private MicrobeSpecies? previewMicrobeSpecies;
     private Entity previewMicrobe;
 
-    [JsonProperty]
     private Color colour;
 
-    [JsonProperty]
     private float rigidity;
 
     /// <summary>
-    ///   To not have to recreate this object for each place / remove this is a cached clone of editedSpecies to which
-    ///   current editor changes are applied for simulating what effect they would have on the population.
+    ///   To not have to recreate this object for each place / removal, this is a cached clone of editedSpecies to
+    ///   which current editor changes are applied for simulating what effect they would have on the population.
     /// </summary>
     private MicrobeSpecies? cachedAutoEvoPredictionSpecies;
 
@@ -268,7 +259,6 @@ public partial class CellEditorComponent :
     ///   it. This is populated when entering and used to update the
     ///   player's species template on exit.
     /// </summary>
-    [JsonProperty]
     private OrganelleLayout<OrganelleTemplate> editedMicrobeOrganelles = null!;
 
     /// <summary>
@@ -304,7 +294,6 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   The selected membrane rigidity
     /// </summary>
-    [JsonIgnore]
     public float Rigidity
     {
         get => rigidity;
@@ -325,13 +314,11 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Selected membrane type for the species
     /// </summary>
-    [JsonProperty]
     public MembraneType Membrane { get; private set; } = null!;
 
     /// <summary>
     ///   Current selected colour for the species.
     /// </summary>
-    [JsonIgnore]
     public Color Colour
     {
         get => colour;
@@ -352,7 +339,6 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   The name of the organelle type that is selected to be placed
     /// </summary>
-    [JsonIgnore]
     public string? ActiveActionName
     {
         get => activeActionName;
@@ -368,14 +354,12 @@ public partial class CellEditorComponent :
         }
     }
 
-    [JsonIgnore]
     public override bool CanCancelAction => base.CanCancelAction || PendingEndosymbiontPlace != null;
 
-    [JsonProperty]
     public EndosymbiontPlaceActionData? PendingEndosymbiontPlace { get; protected set; }
 
     /// <summary>
-    ///   If this is enabled the editor will show how the edited cell would look like in the environment with
+    ///   If this is enabled, the editor will show how the edited cell would look like in the environment with
     ///   parameters set in the editor. Editing hexes is disabled during this (except undo / redo).
     /// </summary>
     public bool MicrobePreviewMode
@@ -413,10 +397,8 @@ public partial class CellEditorComponent :
         }
     }
 
-    [JsonIgnore]
     public bool HasNucleus => PlacedUniqueOrganelles.Any(d => d == nucleus);
 
-    [JsonIgnore]
     public override bool HasIslands =>
         editedMicrobeOrganelles.GetIslandHexes(islandResults, islandsWorkMemory1, islandsWorkMemory2,
             islandsWorkMemory3) > 0;
@@ -424,13 +406,11 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Number of organelles in the microbe
     /// </summary>
-    [JsonIgnore]
     public int MicrobeSize => editedMicrobeOrganelles.Organelles.Count;
 
     /// <summary>
     ///   Number of hexes in the microbe
     /// </summary>
-    [JsonIgnore]
     public int MicrobeHexSize
     {
         get
@@ -446,7 +426,6 @@ public partial class CellEditorComponent :
         }
     }
 
-    [JsonIgnore]
     public TutorialState? TutorialState
     {
         get => tutorialState;
@@ -462,15 +441,12 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Needed for auto-evo prediction to be able to compare the new energy to the old energy
     /// </summary>
-    [JsonProperty]
     public float? PreviousPlayerGatheredEnergy { get; set; }
 
-    [JsonIgnore]
     public IEnumerable<OrganelleDefinition> PlacedUniqueOrganelles => editedMicrobeOrganelles
         .Where(p => p.Definition.Unique)
         .Select(p => p.Definition);
 
-    [JsonIgnore]
     public override bool ShowFinishButtonWarning
     {
         get
@@ -491,15 +467,18 @@ public partial class CellEditorComponent :
         }
     }
 
-    [JsonIgnore]
     public Func<string, bool>? ValidateNewCellTypeName { get; set; }
 
     /// <summary>
-    ///   True when there are pending endosymbiosis actions. Only works after editor is fully initialized.
+    ///   True when there are pending endosymbiosis actions. Only works after the editor is fully initialized.
     /// </summary>
-    [JsonIgnore]
     public bool HasFinishedPendingEndosymbiosis =>
         Editor.EditorReady && Editor.EditedBaseSpecies.Endosymbiosis.HasCompleteEndosymbiosis();
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.CellEditorComponent;
 
     protected override bool ForceHideHover => MicrobePreviewMode;
 
@@ -825,6 +804,56 @@ public partial class CellEditorComponent :
 
                 appearanceTabButton.Visible = true;
             }
+        }
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        base.WritePropertiesToArchive(writer);
+
+        writer.WriteObjectProperties(behaviourEditor);
+        writer.WriteObjectProperties(growthOrderGUI);
+        writer.WriteObjectProperties(tolerancesEditor);
+        writer.Write((int)selectedSelectionMenuTab);
+        writer.Write(newName);
+        writer.Write(colour);
+        writer.Write(rigidity);
+        writer.WriteObject(editedMicrobeOrganelles);
+        writer.WriteObject(Membrane);
+        writer.WriteObjectOrNull(PendingEndosymbiontPlace);
+
+        writer.Write(PreviousPlayerGatheredEnergy.HasValue);
+        if (PreviousPlayerGatheredEnergy.HasValue)
+            writer.Write(PreviousPlayerGatheredEnergy.Value);
+
+        // TODO: do the special flags like microbe preview mode and show growth order need saving?
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        base.ReadPropertiesFromArchive(reader, 1);
+
+        reader.ReadObjectProperties(behaviourEditor);
+        reader.ReadObjectProperties(growthOrderGUI);
+        reader.ReadObjectProperties(tolerancesEditor);
+        selectedSelectionMenuTab = (SelectionMenuTab)reader.ReadInt32();
+        newName = reader.ReadString() ?? throw new NullArchiveObjectException();
+        colour = reader.ReadColor();
+        rigidity = reader.ReadFloat();
+        editedMicrobeOrganelles = reader.ReadObject<OrganelleLayout<OrganelleTemplate>>();
+        Membrane = reader.ReadObject<MembraneType>();
+        PendingEndosymbiontPlace = reader.ReadObjectOrNull<EndosymbiontPlaceActionData>();
+
+        if (reader.ReadBool())
+        {
+            PreviousPlayerGatheredEnergy = reader.ReadFloat();
+        }
+        else
+        {
+            PreviousPlayerGatheredEnergy = null;
         }
     }
 
