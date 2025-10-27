@@ -73,7 +73,6 @@ public class RunResults : IArchivable
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
         var instance = new RunResults();
-        var results = new ConcurrentDictionary<Species, SpeciesResult>();
 
         // This requires this approach in any case due to being a concurrent dictionary, so this class doesn't have
         // a special constructor and instead handles the miches here as well manually
