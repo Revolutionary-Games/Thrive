@@ -55,7 +55,7 @@ public class CustomDifficulty : IDifficulty
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CustomDifficulty;
     public bool CanBeReferencedInArchive => false;
 
-    public static CustomDifficulty ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static CustomDifficulty ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
