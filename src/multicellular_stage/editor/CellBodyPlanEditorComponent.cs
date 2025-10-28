@@ -104,8 +104,6 @@ public partial class CellBodyPlanEditorComponent :
 
     private bool forceUpdateCellGraphics;
 
-    private EnergyBalanceInfoFull? energyBalanceInfo;
-
     private bool hasNegativeATPCells;
 
     [Signal]
@@ -1176,8 +1174,6 @@ public partial class CellBodyPlanEditorComponent :
                 organismStatisticsPanel.CompoundAmountType, null, energyBalance);
         }
 
-        energyBalanceInfo = energyBalance;
-
         // Passing those variables by refs to the following functions to reuse them
         float nominalStorage = 0;
         Dictionary<Compound, float>? specificStorages = null;
@@ -1199,7 +1195,9 @@ public partial class CellBodyPlanEditorComponent :
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
 
-        HandleProcessList(cells, energyBalance, conditionsData);
+        // TODO: find out why this method used to take the cells parameter but now causes a warning so it is removed
+        // HandleProcessList( cells, energyBalance, conditionsData);
+        HandleProcessList(energyBalance, conditionsData);
     }
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
