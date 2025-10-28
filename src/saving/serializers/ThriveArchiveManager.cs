@@ -340,6 +340,7 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PlayerReadableName,
             typeof(IPlayerReadableName), IPlayerReadableName.WriteToArchive);
+        RegisterBaseClass((ArchiveObjectType)ThriveArchiveObjectType.PlayerReadableName, typeof(IPlayerReadableName));
     }
 
     private void RegisterComponentParts()
@@ -464,6 +465,36 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(Miche), Miche.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Miche,
             typeof(Miche), Miche.ReadFromArchive);
+
+        // Pressures
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.AvoidPredationSelectionPressure,
+            typeof(AvoidPredationSelectionPressure), AvoidPredationSelectionPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ChunkCompoundPressure,
+            typeof(ChunkCompoundPressure), ChunkCompoundPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPressure,
+            typeof(CompoundCloudPressure), CompoundCloudPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CompoundConversionEfficiencyPressure,
+            typeof(CompoundConversionEfficiencyPressure), CompoundConversionEfficiencyPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EndosymbiosisPressure,
+            typeof(EndosymbiosisPressure), EndosymbiosisPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EnvironmentalCompoundPressure,
+            typeof(EnvironmentalCompoundPressure), EnvironmentalCompoundPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EnvironmentalTolerancePressure,
+            typeof(EnvironmentalTolerancePressure), EnvironmentalTolerancePressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MaintainCompoundPressure,
+            typeof(MaintainCompoundPressure), MaintainCompoundPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MetabolicStabilityPressure,
+            typeof(MetabolicStabilityPressure), MetabolicStabilityPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.NoOpPressure,
+            typeof(NoOpPressure), NoOpPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PredationEffectivenessPressure,
+            typeof(PredationEffectivenessPressure), PredationEffectivenessPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PredatorRoot,
+            typeof(PredatorRoot), PredatorRoot.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.RootPressure,
+            typeof(RootPressure), RootPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.TemperatureSessilityPressure,
+            typeof(TemperatureSessilityPressure), TemperatureSessilityPressure.ReadFromArchive);
     }
 
     private void RegisterEditor()
@@ -471,6 +502,7 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         // Need to be registered to work as a base class
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EditorAction,
             typeof(EditorAction), EditorAction.WriteToArchive);
+        RegisterBaseClass((ArchiveObjectType)ThriveArchiveObjectType.EditorAction, typeof(EditorAction));
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedActionHistory,
             typeof(ActionHistory<>), ActionHistorySerializer.WriteToArchive);
@@ -481,6 +513,8 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(EditorActionHistory<>), ActionHistorySerializer.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedEditorActionHistory,
             typeof(EditorActionHistory<>), ActionHistorySerializer.ReadFromArchive);
+        RegisterExtendedBase((ArchiveObjectType)ThriveArchiveObjectType.ExtendedEditorActionHistory,
+            (ArchiveObjectType)ThriveArchiveObjectType.EditorActionHistory, typeof(EditorActionHistory<>));
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BehaviourActionData,
             typeof(BehaviourActionData), BehaviourActionData.WriteToArchive);
@@ -549,5 +583,8 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
 
         RegisterLimitedObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellEditorComponent,
             typeof(CellEditorComponent));
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MicrobeEditor,
+            typeof(MicrobeEditor), MicrobeEditor.ReadFromArchive);
     }
 }

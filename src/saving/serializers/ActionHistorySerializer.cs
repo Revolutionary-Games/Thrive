@@ -19,8 +19,8 @@ public class ActionHistorySerializer
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var data = reader.ReadObject<IList>();
         int index = reader.ReadInt32();
+        var data = reader.ReadObject<IList>();
 
         var constructor = typeFromArchive.GetConstructor(
             BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public,

@@ -1673,8 +1673,8 @@ public class RunResults : IArchivable
                 MutatedProperties = reader.ReadObjectOrNull<Species>(),
                 NewlyCreated = reader.ReadBool() ? (NewSpeciesType)reader.ReadInt8() : null,
                 SplitOff = reader.ReadObjectOrNull<Species>(),
-                SplitOffPatches = reader.ReadObjectOrNull<List<Patch>>(),
                 SplitFrom = reader.ReadObjectOrNull<Species>(),
+                SplitOffPatches = reader.ReadObjectOrNull<List<Patch>>(),
             };
         }
 

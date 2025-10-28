@@ -20,6 +20,17 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
 {
     private List<EditorCombinableActionData>? cache;
 
+    public EditorActionHistory()
+    {
+    }
+
+    /// <summary>
+    ///   Used by the deserializer
+    /// </summary>
+    protected EditorActionHistory(List<TAction> actions, int actionIndex) : base(actions, actionIndex)
+    {
+    }
+
     public override ushort CurrentArchiveVersion => ActionHistorySerializer.SERIALIZATION_VERSION;
 
     public override ArchiveObjectType ArchiveObjectType =>
