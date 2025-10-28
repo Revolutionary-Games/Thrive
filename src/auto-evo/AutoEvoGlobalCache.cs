@@ -54,7 +54,8 @@ public class AutoEvoGlobalCache
             new CompoundConversionEfficiencyPressure(Compound.Glucose, Compound.ATP, true, 1.5f);
         GlucoseCloudPressure = new CompoundCloudPressure(Compound.Glucose, worldSettings.DayNightCycleEnabled, 1.0f);
 
-        IronConversionEfficiencyPressure = new CompoundConversionEfficiencyPressure(Compound.Iron, Compound.ATP, true, 1.5f);
+        IronConversionEfficiencyPressure =
+            new CompoundConversionEfficiencyPressure(Compound.Iron, Compound.ATP, true, 1.5f);
         SmallIronChunkPressure = new ChunkCompoundPressure("ironSmallChunk", new LocalizedString("SMALL_IRON_CHUNK"),
             Compound.Iron, Compound.ATP, 1.0f);
         BigIronChunkPressure = new ChunkCompoundPressure("ironBigChunk", new LocalizedString("BIG_IRON_CHUNK"),
