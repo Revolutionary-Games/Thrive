@@ -280,6 +280,7 @@ public partial class CellBodyPlanEditorComponent :
 
     public override void WritePropertiesToArchive(ISArchiveWriter writer)
     {
+        writer.Write(SERIALIZATION_VERSION_HEX);
         base.WritePropertiesToArchive(writer);
 
         writer.WriteObjectProperties(behaviourEditor);
@@ -290,10 +291,10 @@ public partial class CellBodyPlanEditorComponent :
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
     {
-        if (version is > SERIALIZATION_VERSION_HEX or <= 0)
-            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_HEX);
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        base.ReadPropertiesFromArchive(reader, 1);
+        base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
 
         reader.ReadObjectProperties(behaviourEditor);
         newName = reader.ReadString() ?? throw new NullArchiveObjectException();
