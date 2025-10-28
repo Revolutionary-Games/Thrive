@@ -8,8 +8,6 @@ using SharedBase.Archive;
 /// </summary>
 public class EnvironmentalTolerancePressure : SelectionPressure
 {
-    public const ushort SERIALIZATION_VERSION = 1;
-
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
     private static readonly LocalizedString NameString = new LocalizedString("MICHE_ENVIRONMENTAL_TOLERANCE");
@@ -22,7 +20,7 @@ public class EnvironmentalTolerancePressure : SelectionPressure
 
     public override LocalizedString Name => NameString;
 
-    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION_BASE;
 
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.EnvironmentalTolerancePressure;
@@ -30,18 +28,13 @@ public class EnvironmentalTolerancePressure : SelectionPressure
     public static EnvironmentalTolerancePressure ReadFromArchive(ISArchiveReader reader, ushort version,
         int referenceId)
     {
-        if (version is > SERIALIZATION_VERSION or <= 0)
-            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+        if (version is > SERIALIZATION_VERSION_BASE or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_BASE);
 
         var instance = new EnvironmentalTolerancePressure(reader.ReadFloat());
 
-        instance.ReadBasePropertiesFromArchive(reader, 1);
+        instance.ReadBasePropertiesFromArchive(reader, version);
         return instance;
-    }
-
-    public override void WriteToArchive(ISArchiveWriter writer)
-    {
-        base.WriteToArchive(writer);
     }
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
