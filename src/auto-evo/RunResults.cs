@@ -1647,17 +1647,17 @@ public class RunResults : IArchivable
         public ushort CurrentArchiveVersion => SERIALIZATION_VERSION_RESULT;
 
         public ArchiveObjectType ArchiveObjectType =>
-            (ArchiveObjectType)ThriveArchiveObjectType.SpeciesPatchEnergyResults;
+            (ArchiveObjectType)ThriveArchiveObjectType.SpeciesResult;
 
         public bool CanBeReferencedInArchive => false;
 
         // ReSharper disable once MemberHidesStaticFromOuterClass
         public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
         {
-            if (type != (ArchiveObjectType)ThriveArchiveObjectType.SpeciesPatchEnergyResults)
+            if (type != (ArchiveObjectType)ThriveArchiveObjectType.SpeciesResult)
                 throw new NotSupportedException();
 
-            writer.WriteObject((SpeciesPatchEnergyResults)obj);
+            writer.WriteObject((SpeciesResult)obj);
         }
 
         // ReSharper disable once MemberHidesStaticFromOuterClass

@@ -1,14 +1,13 @@
 ﻿namespace AutoEvo;
 
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
-[JSONDynamicTypeAllowed]
 public class EndosymbiosisPressure : SelectionPressure
 {
-    [JsonProperty]
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public readonly Species Endosymbiont;
 
-    [JsonProperty]
     public readonly Species Host;
 
     // Needed for translation extraction
@@ -25,8 +24,32 @@ public class EndosymbiosisPressure : SelectionPressure
         Host = host;
     }
 
-    [JsonIgnore]
     public override LocalizedString Name => NameString;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.EndosymbiosisPressure;
+
+    public static EndosymbiosisPressure ReadFromArchive(ISArchiveReader reader, ushort version,
+        int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new EndosymbiosisPressure(reader.ReadObject<Species>(), reader.ReadObject<Species>(),
+            reader.ReadFloat());
+
+        instance.ReadBasePropertiesFromArchive(reader, 1);
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(Endosymbiont);
+        writer.WriteObject(Host);
+        base.WriteToArchive(writer);
+    }
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
