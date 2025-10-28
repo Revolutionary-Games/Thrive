@@ -546,5 +546,8 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(PatchDetailsPanel.Migration), PatchDetailsPanel.Migration.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchDetailsMigration,
             typeof(PatchDetailsPanel.Migration), PatchDetailsPanel.Migration.ReadFromArchive);
+
+        RegisterLimitedObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellEditorComponent,
+            typeof(CellEditorComponent));
     }
 }

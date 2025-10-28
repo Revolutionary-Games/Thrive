@@ -14,7 +14,7 @@ using Systems;
 /// </summary>
 public partial class CellEditorComponent :
     HexEditorComponentBase<ICellEditorData, CombinedEditorAction, EditorAction, OrganelleTemplate, CellType>,
-    ICellEditorComponent
+    ICellEditorComponent, IArchiveUpdatable
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
@@ -479,6 +479,8 @@ public partial class CellEditorComponent :
 
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.CellEditorComponent;
+
+    public bool CanBeSpecialReference => true;
 
     protected override bool ForceHideHover => MicrobePreviewMode;
 
