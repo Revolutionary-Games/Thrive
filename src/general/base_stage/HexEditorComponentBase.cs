@@ -14,8 +14,7 @@ using SharedBase.Archive;
 /// <typeparam name="TContext">Extra action context data this manages on actions</typeparam>
 [GodotAbstract]
 public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, THexMove, TContext> :
-    EditorComponentWithActionsBase<TEditor, TCombinedAction>,
-    IChildPropertiesLoadCallback
+    EditorComponentWithActionsBase<TEditor, TCombinedAction>
     where TEditor : class, IHexEditor, IEditorWithActions
     where TCombinedAction : CombinedEditorAction
     where TAction : EditorAction
@@ -307,6 +306,9 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         MovingPlacedHex = reader.ReadObjectOrNull<THexMove>();
         CameraPosition = reader.ReadVector3();
         CameraHeight = reader.ReadFloat();
+
+        // A bit of a hack to make sure our camera doesn't lose its zoom level
+        camera!.IsLoadedFromSave = true;
     }
 
     public void ResetSymmetryButton()
@@ -651,18 +653,6 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     public void PlayHexPlacementSound()
     {
         GUICommon.Instance.PlayCustomSound(hexPlacementSound, 0.7f);
-    }
-
-    public void OnNoPropertiesLoaded()
-    {
-        // Something is wrong if a hex editor has this method called on it
-        throw new InvalidOperationException();
-    }
-
-    public virtual void OnPropertiesLoaded()
-    {
-        // A bit of a hack to make sure our camera doesn't lose its zoom level
-        camera!.IsLoadedFromSave = true;
     }
 
     /// <summary>
