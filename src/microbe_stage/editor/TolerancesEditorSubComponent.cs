@@ -190,6 +190,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     public override void WritePropertiesToArchive(ISArchiveWriter writer)
     {
+        writer.Write(SERIALIZATION_VERSION_BASE);
         base.WritePropertiesToArchive(writer);
 
         writer.WriteObjectProperties(CurrentTolerances);
@@ -200,7 +201,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        base.ReadPropertiesFromArchive(reader, 1);
+        base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
 
         reader.ReadObjectProperties(CurrentTolerances);
     }

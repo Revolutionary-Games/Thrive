@@ -126,6 +126,7 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
 
     public override void WritePropertiesToArchive(ISArchiveWriter writer)
     {
+        writer.Write(SERIALIZATION_VERSION_BASE);
         base.WritePropertiesToArchive(writer);
 
         writer.WriteObjectOrNull(targetPatch);
@@ -139,7 +140,7 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        base.ReadPropertiesFromArchive(reader, 1);
+        base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
 
         targetPatch = reader.ReadObjectOrNull<Patch>();
         playerPatchOnEntry = reader.ReadObject<Patch>();

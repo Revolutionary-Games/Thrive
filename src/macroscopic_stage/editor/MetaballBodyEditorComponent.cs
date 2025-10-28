@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
 ///   Body plan editor component for making body plans from metaballs
 /// </summary>
-[SceneLoadedClass("res://src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn", UsesEarlyResolve = false)]
 public partial class MetaballBodyEditorComponent :
     MetaballEditorComponentBase<MacroscopicEditor, CombinedEditorAction, EditorAction, MacroscopicMetaball>
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
 #pragma warning disable CA2213
@@ -38,8 +38,6 @@ public partial class MetaballBodyEditorComponent :
     [Export]
     private PanelContainer appearanceTab = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     [Export]
     private BehaviourEditorSubComponent behaviourEditor = null!;
 
@@ -79,15 +77,13 @@ public partial class MetaballBodyEditorComponent :
     private PackedScene structuralMetaballDisplayerScene = null!;
 #pragma warning restore CA2213
 
-    [JsonProperty]
     private string newName = "unset";
 
     /// <summary>
-    ///   True when visuals of already placed things need to be updated
+    ///   True, when visuals of already placed things need to be updated
     /// </summary>
     private bool metaballDisplayDataDirty = true;
 
-    [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
     [Signal]
@@ -101,7 +97,6 @@ public partial class MetaballBodyEditorComponent :
         Appearance,
     }
 
-    [JsonIgnore]
     public override bool HasIslands => editedMetaballs.GetMetaballsNotTouchingParents().Any();
 
     protected override bool ForceHideHover => false;
@@ -182,19 +177,26 @@ public partial class MetaballBodyEditorComponent :
 
     public override void WritePropertiesToArchive(ISArchiveWriter writer)
     {
+        writer.Write(SERIALIZATION_VERSION_META);
         base.WritePropertiesToArchive(writer);
 
-        throw new NotImplementedException();
+        // TODO: this is untested as this part of the game disallows saving currently
+
+        writer.WriteObjectProperties(behaviourEditor);
+        writer.Write(newName);
+        writer.Write((int)selectedSelectionMenuTab);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
     {
-        /*if (version is > SERIALIZATION_VERSION or <= 0)
-            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);*/
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        base.ReadPropertiesFromArchive(reader, 1);
+        base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
 
-        throw new NotImplementedException();
+        reader.ReadObjectProperties(behaviourEditor);
+        newName = reader.ReadString() ?? throw new NullArchiveObjectException();
+        selectedSelectionMenuTab = (SelectionMenuTab)reader.ReadInt32();
     }
 
     public override void OnEditorSpeciesSetup(Species species)

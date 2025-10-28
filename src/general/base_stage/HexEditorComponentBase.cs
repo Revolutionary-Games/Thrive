@@ -5,7 +5,7 @@ using Godot;
 using SharedBase.Archive;
 
 /// <summary>
-///   Editor component that specializes in hex-based stuff editing
+///   Editor component that specialises in hex-based stuff editing
 /// </summary>
 /// <typeparam name="TEditor">Type of editor this class can be put in</typeparam>
 /// <typeparam name="TCombinedAction">Type of editor action this class works with</typeparam>
@@ -232,7 +232,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
             hoverModels.Add(CreatePreviewModelHolder());
         }
 
-        // The world is reset each time so these are gone. We throw an exception if that's not the case as that
+        // The world is reset each time, so these are gone. We throw an exception if that's not the case as that
         // indicates a programming bug
         if (placedHexes.Count > 0 || placedModels.Count > 0)
             throw new InvalidOperationException("This editor has already been initialized (placed hexes not empty)");
@@ -283,6 +283,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
     public override void WritePropertiesToArchive(ISArchiveWriter writer)
     {
+        writer.Write(SERIALIZATION_VERSION_BASE);
         base.WritePropertiesToArchive(writer);
 
         writer.Write(activeActionName);
@@ -298,7 +299,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         if (version is > SERIALIZATION_VERSION_HEX or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_HEX);
 
-        base.ReadPropertiesFromArchive(reader, 1);
+        base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
 
         activeActionName = reader.ReadString();
         placementRotation = reader.ReadInt32();

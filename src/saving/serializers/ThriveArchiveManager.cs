@@ -337,6 +337,9 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CustomDifficulty,
             typeof(CustomDifficulty), CustomDifficulty.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PlayerReadableName,
+            typeof(IPlayerReadableName), IPlayerReadableName.WriteToArchive);
     }
 
     private void RegisterComponentParts()
@@ -446,10 +449,29 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.NicheInfo,
             typeof(RunResults.SpeciesPatchEnergyResults.NicheInfo),
             RunResults.SpeciesPatchEnergyResults.NicheInfo.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpeciesResult,
+            typeof(RunResults.SpeciesResult), RunResults.SpeciesResult.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpeciesResult,
+            typeof(RunResults.SpeciesResult), RunResults.SpeciesResult.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpeciesMigration,
+            typeof(SpeciesMigration), SpeciesMigration.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpeciesMigration,
+            typeof(SpeciesMigration), SpeciesMigration.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Miche,
+            typeof(Miche), Miche.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Miche,
+            typeof(Miche), Miche.ReadFromArchive);
     }
 
     private void RegisterEditor()
     {
+        // Need to be registered to work as a base class
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EditorAction,
+            typeof(EditorAction), EditorAction.WriteToArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedActionHistory,
             typeof(ActionHistory<>), ActionHistorySerializer.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedActionHistory,
@@ -519,5 +541,10 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(MetaballResizeActionData<>), MetaballActionDataSerializer.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MetaballResizeActionData,
             typeof(MetaballResizeActionData<>), MetaballActionDataSerializer.ReadResizeFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchDetailsMigration,
+            typeof(PatchDetailsPanel.Migration), PatchDetailsPanel.Migration.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchDetailsMigration,
+            typeof(PatchDetailsPanel.Migration), PatchDetailsPanel.Migration.ReadFromArchive);
     }
 }

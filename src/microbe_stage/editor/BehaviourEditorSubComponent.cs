@@ -41,6 +41,11 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
         private set => behaviour = value;
     }
 
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.BehaviourEditorSubComponent;
+
     public override void _Ready()
     {
         base._Ready();
@@ -57,6 +62,7 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
 
     public override void WritePropertiesToArchive(ISArchiveWriter writer)
     {
+        writer.Write(SERIALIZATION_VERSION_BASE);
         base.WritePropertiesToArchive(writer);
 
         writer.WriteObject((IArchivable?)Behaviour ?? throw new Exception("Editor has not created behaviour object"));
@@ -67,7 +73,7 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        base.ReadPropertiesFromArchive(reader, 1);
+        base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
 
         Behaviour = reader.ReadObject<BehaviourDictionary>();
     }

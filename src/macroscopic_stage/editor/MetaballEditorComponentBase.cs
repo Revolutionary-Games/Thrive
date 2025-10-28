@@ -282,6 +282,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
     public override void WritePropertiesToArchive(ISArchiveWriter writer)
     {
+        writer.Write(SERIALIZATION_VERSION_BASE);
         base.WritePropertiesToArchive(writer);
 
         writer.Write(metaballSize);
@@ -297,7 +298,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         if (version is > SERIALIZATION_VERSION_META or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_META);
 
-        base.ReadPropertiesFromArchive(reader, 1);
+        base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
 
         metaballSize = reader.ReadFloat();
         activeActionName = reader.ReadString();

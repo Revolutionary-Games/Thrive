@@ -148,6 +148,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     public override void WritePropertiesToArchive(ISArchiveWriter writer)
     {
+        writer.Write(SERIALIZATION_VERSION_BASE);
         base.WritePropertiesToArchive(writer);
 
         writer.Write((int)selectedReportSubtab);
@@ -158,7 +159,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        base.ReadPropertiesFromArchive(reader, 1);
+        base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
 
         selectedReportSubtab = (ReportSubtab)reader.ReadInt32();
     }

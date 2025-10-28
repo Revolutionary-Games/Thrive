@@ -809,6 +809,7 @@ public partial class CellEditorComponent :
 
     public override void WritePropertiesToArchive(ISArchiveWriter writer)
     {
+        writer.Write(SERIALIZATION_VERSION_HEX);
         base.WritePropertiesToArchive(writer);
 
         writer.WriteObjectProperties(behaviourEditor);
@@ -834,7 +835,7 @@ public partial class CellEditorComponent :
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        base.ReadPropertiesFromArchive(reader, 1);
+        base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
 
         reader.ReadObjectProperties(behaviourEditor);
         reader.ReadObjectProperties(growthOrderGUI);

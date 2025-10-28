@@ -914,11 +914,45 @@ public partial class PatchDetailsPanel : PanelContainer, IArchiveUpdatable
         }
     }
 
-    public class Migration
+    public class Migration : IArchivable
     {
+        public const ushort SERIALIZATION_VERSION_MIGRATION = 1;
+
         public Patch? SourcePatch;
         public Patch? DestinationPatch;
 
         public long Amount = 100;
+
+        public ushort CurrentArchiveVersion => SERIALIZATION_VERSION_MIGRATION;
+        public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.PatchDetailsMigration;
+        public bool CanBeReferencedInArchive => false;
+
+        public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+        {
+            if (type != (ArchiveObjectType)ThriveArchiveObjectType.PatchDetailsMigration)
+                throw new NotSupportedException();
+
+            writer.WriteObject((Migration)obj);
+        }
+
+        public static Migration ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+        {
+            if (version is > SERIALIZATION_VERSION_MIGRATION or <= 0)
+                throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_MIGRATION);
+
+            return new Migration
+            {
+                SourcePatch = reader.ReadObjectOrNull<Patch>(),
+                DestinationPatch = reader.ReadObjectOrNull<Patch>(),
+                Amount = reader.ReadInt64(),
+            };
+        }
+
+        public void WriteToArchive(ISArchiveWriter writer)
+        {
+            writer.WriteObjectOrNull(SourcePatch);
+            writer.WriteObjectOrNull(DestinationPatch);
+            writer.Write(Amount);
+        }
     }
 }
