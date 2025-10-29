@@ -7,7 +7,7 @@ using SharedBase.Archive;
 ///   Editor for the behaviour of a (microbe) species
 /// </summary>
 [IgnoreNoMethodsTakingInput]
-public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
+public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>, IArchiveUpdatable
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
@@ -45,6 +45,8 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
 
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.BehaviourEditorSubComponent;
+
+    public bool CanBeSpecialReference => true;
 
     public override void _Ready()
     {

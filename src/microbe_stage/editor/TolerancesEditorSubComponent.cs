@@ -8,7 +8,7 @@ using SharedBase.Archive;
 ///   Handles showing tolerance adaptation controls (sliders) and applying their changes
 /// </summary>
 [IgnoreNoMethodsTakingInput]
-public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEditorData>
+public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEditorData>, IArchiveUpdatable
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
@@ -169,6 +169,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.TolerancesEditorSubComponent;
+
+    public bool CanBeSpecialReference => true;
 
     public override void _Ready()
     {

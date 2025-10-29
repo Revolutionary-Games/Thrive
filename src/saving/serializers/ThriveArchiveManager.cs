@@ -593,6 +593,10 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
 
         RegisterLimitedObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellEditorComponent,
             typeof(CellEditorComponent));
+        RegisterLimitedObjectType((ArchiveObjectType)ThriveArchiveObjectType.TolerancesEditorSubComponent,
+            typeof(TolerancesEditorSubComponent));
+        RegisterLimitedObjectType((ArchiveObjectType)ThriveArchiveObjectType.BehaviourEditorSubComponent,
+            typeof(BehaviourEditorSubComponent));
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MicrobeEditor,
             typeof(MicrobeEditor), MicrobeEditor.ReadFromArchive);
