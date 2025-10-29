@@ -615,5 +615,14 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(SingleEditorAction<>), EditorActionSerializer.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SingleEditorAction,
             typeof(SingleEditorAction<>), EditorActionSerializer.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellPlacementActionData,
+            typeof(CellPlacementActionData), CellPlacementActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellPlacementActionData,
+            typeof(CellPlacementActionData), CellPlacementActionData.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellMoveActionData,
+            typeof(CellMoveActionData), CellMoveActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellMoveActionData,
+            typeof(CellMoveActionData), CellMoveActionData.ReadFromArchive);
     }
 }
