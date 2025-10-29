@@ -570,6 +570,16 @@ public static class SaveHelper
         lastSave = null;
     }
 
+    /// <summary>
+    ///   Checks if a game state (that is a prototype) allows saving or not
+    /// </summary>
+    /// <param name="gameState">Game state to check</param>
+    /// <returns>True if saving is allowed despite being a prototype</returns>
+    public static bool CanSaveInPrototype(MainGameState gameState)
+    {
+        return StagesAllowingPrototypeSaving.Contains(gameState);
+    }
+
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
         Action<Save> copyInfoToSave, Func<Node> stateRoot, string? saveName = null)
     {
