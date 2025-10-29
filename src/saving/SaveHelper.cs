@@ -35,6 +35,7 @@ public static class SaveHelper
     private static readonly IReadOnlyList<MainGameState> StagesAllowingPrototypeSaving =
     [
         MainGameState.MicrobeStage,
+        MainGameState.MulticellularEditor,
     ];
 
     private static DateTime? lastSave;
@@ -47,12 +48,12 @@ public static class SaveHelper
     public enum SaveOrder
     {
         /// <summary>
-        ///   The last modified (on disk) save is first
+        ///   The last modified (on disk) save is the first
         /// </summary>
         LastModifiedFirst,
 
         /// <summary>
-        ///   The first modified (on disk) save is first (oldest first)
+        ///   The first modified (on disk) save is the first (oldest first)
         /// </summary>
         FirstModifiedFirst,
 
@@ -95,7 +96,7 @@ public static class SaveHelper
     public static bool SavedRecently => lastSave != null ? DateTime.Now - lastSave < Constants.RecentSaveTime : false;
 
     /// <summary>
-    ///   Determines whether it's allowed to perform quick save and quick load, if set to false they will be disabled.
+    ///   Determines whether it's allowed to perform quick save and quick load, if set to false, they will be disabled.
     /// </summary>
     public static bool AllowQuickSavingAndLoading { get; set; } = true;
 
@@ -119,6 +120,15 @@ public static class SaveHelper
         {
             save.SavedProperties = state.CurrentGame;
             save.MicrobeEditor = state;
+        }, () => state, name);
+    }
+
+    public static void Save(string name, MulticellularEditor state)
+    {
+        InternalSaveHelper(SaveInformation.SaveType.Manual, MainGameState.MulticellularEditor, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MulticellularEditor = state;
         }, () => state, name);
     }
 
@@ -148,6 +158,15 @@ public static class SaveHelper
         }, () => state);
     }
 
+    public static void QuickSave(MulticellularEditor state)
+    {
+        InternalSaveHelper(SaveInformation.SaveType.QuickSave, MainGameState.MulticellularEditor, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MulticellularEditor = state;
+        }, () => state);
+    }
+
     /// <summary>
     ///   Auto save the game (if enabled in settings)
     /// </summary>
@@ -172,6 +191,18 @@ public static class SaveHelper
         {
             save.SavedProperties = state.CurrentGame;
             save.MicrobeEditor = state;
+        }, () => state);
+    }
+
+    public static void AutoSave(MulticellularEditor state)
+    {
+        if (!Settings.Instance.AutoSaveEnabled)
+            return;
+
+        InternalSaveHelper(SaveInformation.SaveType.AutoSave, MainGameState.MulticellularEditor, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MulticellularEditor = state;
         }, () => state);
     }
 

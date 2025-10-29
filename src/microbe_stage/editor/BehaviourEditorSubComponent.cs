@@ -67,7 +67,9 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
         writer.Write(SERIALIZATION_VERSION_BASE);
         base.WritePropertiesToArchive(writer);
 
-        writer.WriteObject((IArchivable?)Behaviour ?? throw new Exception("Editor has not created behaviour object"));
+        // For example, in multicellular, there are instances of this component that are unused, so can be not
+        // initialised
+        writer.WriteObjectOrNull(Behaviour);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -77,7 +79,7 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
 
         base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
 
-        Behaviour = reader.ReadObject<BehaviourDictionary>();
+        Behaviour = reader.ReadObjectOrNull<BehaviourDictionary>();
     }
 
     public override void OnFinishEditing()

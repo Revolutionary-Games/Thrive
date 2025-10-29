@@ -249,9 +249,6 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         }
 
         cellEditorTab.UpdateBackgroundImage(CurrentPatch);
-
-        // TODO: as we are a prototype we don't want to auto save
-        wantsToSave = false;
     }
 
     protected override void InitEditorGUI(bool fresh)
@@ -331,7 +328,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override void UpdatePatchDetails()
     {
-        // Patch events are able to change the stage's background so it needs to be updated here.
+        // Patch events are able to change the stage's background, so it needs to be updated here.
         cellEditorTab.UpdateBackgroundImage(CurrentPatch);
     }
 
@@ -342,17 +339,17 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override void PerformAutoSave()
     {
-        SaveHelper.ShowErrorAboutPrototypeSaving(this);
+        SaveHelper.AutoSave(this);
     }
 
     protected override void PerformQuickSave()
     {
-        SaveHelper.ShowErrorAboutPrototypeSaving(this);
+        SaveHelper.QuickSave(this);
     }
 
     protected override void SaveGame(string name)
     {
-        SaveHelper.ShowErrorAboutPrototypeSaving(this);
+        SaveHelper.Save(name, this);
     }
 
     protected override void ApplyEditorTab()

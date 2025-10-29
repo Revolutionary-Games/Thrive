@@ -814,6 +814,8 @@ public partial class CellEditorComponent :
         writer.Write(SERIALIZATION_VERSION_HEX);
         base.WritePropertiesToArchive(writer);
 
+        writer.Write(IsMulticellularEditor);
+
         writer.WriteObjectProperties(behaviourEditor);
         writer.WriteObjectProperties(growthOrderGUI);
         writer.WriteObjectProperties(tolerancesEditor);
@@ -822,8 +824,12 @@ public partial class CellEditorComponent :
         writer.Write(colour);
         writer.Write(rigidity);
         writer.WriteObject(editedMicrobeOrganelles);
-        writer.WriteObject(Membrane);
         writer.WriteObjectOrNull(PendingEndosymbiontPlace);
+
+        if (!IsMulticellularEditor)
+        {
+            writer.WriteObject(Membrane);
+        }
 
         writer.Write(PreviousPlayerGatheredEnergy.HasValue);
         if (PreviousPlayerGatheredEnergy.HasValue)
@@ -839,6 +845,11 @@ public partial class CellEditorComponent :
 
         base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
 
+        bool multicellular = reader.ReadBool();
+
+        if (multicellular != IsMulticellularEditor)
+            throw new FormatException("Read data doesn't match the editor type (multicellular mismatch)");
+
         reader.ReadObjectProperties(behaviourEditor);
         reader.ReadObjectProperties(growthOrderGUI);
         reader.ReadObjectProperties(tolerancesEditor);
@@ -847,8 +858,12 @@ public partial class CellEditorComponent :
         colour = reader.ReadColor();
         rigidity = reader.ReadFloat();
         editedMicrobeOrganelles = reader.ReadObject<OrganelleLayout<OrganelleTemplate>>();
-        Membrane = reader.ReadObject<MembraneType>();
         PendingEndosymbiontPlace = reader.ReadObjectOrNull<EndosymbiontPlaceActionData>();
+
+        if (!multicellular)
+        {
+            Membrane = reader.ReadObject<MembraneType>();
+        }
 
         if (reader.ReadBool())
         {

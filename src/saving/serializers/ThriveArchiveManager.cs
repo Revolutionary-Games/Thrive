@@ -501,7 +501,7 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
     {
         // Need to be registered to work as a base class
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EditorAction,
-            typeof(EditorAction), EditorAction.WriteToArchive);
+            typeof(EditorAction), ReversibleAction.WriteToArchive);
         RegisterBaseClass((ArchiveObjectType)ThriveArchiveObjectType.EditorAction, typeof(EditorAction));
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedActionHistory,
@@ -597,9 +597,14 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(TolerancesEditorSubComponent));
         RegisterLimitedObjectType((ArchiveObjectType)ThriveArchiveObjectType.BehaviourEditorSubComponent,
             typeof(BehaviourEditorSubComponent));
+        RegisterLimitedObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellBodyPlanEditorComponent,
+            typeof(CellBodyPlanEditorComponent));
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MicrobeEditor,
             typeof(MicrobeEditor), MicrobeEditor.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MulticellularEditor,
+            typeof(MulticellularEditor), MulticellularEditor.ReadFromArchive);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CombinedEditorAction,
             typeof(CombinedEditorAction), CombinedEditorAction.ReadFromArchive);

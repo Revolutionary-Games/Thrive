@@ -10,7 +10,7 @@ using Systems;
 /// </summary>
 public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
-        MulticellularSpecies>
+        MulticellularSpecies>, IArchiveUpdatable
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
@@ -142,6 +142,8 @@ public partial class CellBodyPlanEditorComponent :
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.CellBodyPlanEditorComponent;
 
+    public bool CanBeSpecialReference => true;
+
     protected override bool ForceHideHover => false;
 
     public override void _Ready()
@@ -185,15 +187,12 @@ public partial class CellBodyPlanEditorComponent :
 
             editedMicrobeCells = newLayout;
 
-            if (Editor.EditedCellProperties != null)
-            {
-                UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
-                UpdateArrow(false);
-            }
-            else
-            {
-                GD.Print("Loaded body plan editor with no cell to edit set");
-            }
+            UpdateGUIAfterLoadingSpecies(Editor.EditedSpecies);
+            UpdateArrow(false);
+
+            UpdateCellTypeSelections();
+
+            newName = Editor.EditedSpecies.FormattedName;
         }
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(

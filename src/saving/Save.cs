@@ -56,6 +56,11 @@ public sealed class Save : IArchivable, IDisposable
     public MicrobeEditor? MicrobeEditor { get; set; }
 
     /// <summary>
+    ///   Multicellular editor data for the save, if GameStateName == MulticellularEditor
+    /// </summary>
+    public MulticellularEditor? MulticellularEditor { get; set; }
+
+    /// <summary>
     ///   Screenshot for this save
     /// </summary>
     public Image? Screenshot { get; set; }
@@ -73,6 +78,8 @@ public sealed class Save : IArchivable, IDisposable
                     return MicrobeStage;
                 case MainGameState.MicrobeEditor:
                     return MicrobeEditor;
+                case MainGameState.MulticellularEditor:
+                    return MulticellularEditor;
                 default:
                     throw new InvalidOperationException("specified game state has no associated scene");
             }
@@ -221,15 +228,8 @@ public sealed class Save : IArchivable, IDisposable
 
         writer.WriteObjectOrNull(SavedProperties);
         writer.WriteObjectOrNull(MicrobeStage);
-
-        if (MicrobeEditor == null)
-        {
-            writer.WriteNullObject();
-        }
-        else
-        {
-            writer.WriteObject(MicrobeEditor);
-        }
+        writer.WriteObjectOrNull(MicrobeEditor);
+        writer.WriteObjectOrNull(MulticellularEditor);
 
         // Other properties are not saved
     }
@@ -301,6 +301,9 @@ public sealed class Save : IArchivable, IDisposable
 
         MicrobeEditor?.QueueFree();
         MicrobeEditor = null;
+
+        MulticellularEditor?.QueueFree();
+        MulticellularEditor = null;
     }
 
     public void Dispose()
@@ -323,6 +326,7 @@ public sealed class Save : IArchivable, IDisposable
 
         instance.MicrobeStage = reader.ReadObjectOrNull<MicrobeStage>();
         instance.MicrobeEditor = reader.ReadObjectOrNull<MicrobeEditor>();
+        instance.MulticellularEditor = reader.ReadObjectOrNull<MulticellularEditor>();
 
         return instance;
     }
