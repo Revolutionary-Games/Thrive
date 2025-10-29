@@ -406,6 +406,21 @@ public class GameProperties : IArchivable
         playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
             new Hex(0, 1), 0), workMemory1, workMemory2);
 
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
+            new Hex(2, -2), 0), workMemory1, workMemory2);
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
+            new Hex(1, -5), 0), workMemory1, workMemory2);
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
+            new Hex(0, -5), 0), workMemory1, workMemory2);
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
+            new Hex(-1, -4), 0), workMemory1, workMemory2);
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
+            new Hex(-2, 0), 0), workMemory1, workMemory2);
+
         var cytoplasm = simulationParameters.GetOrganelleType("cytoplasm");
 
         playerSpecies.Organelles.AddFast(new OrganelleTemplate(cytoplasm,
