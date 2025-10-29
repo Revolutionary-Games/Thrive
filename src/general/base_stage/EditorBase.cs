@@ -668,43 +668,6 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         return currentGame.GameWorld.CalculateNextTimeStep(EditorTimeStep);
     }
 
-    protected virtual void WriteBasePropertiesToArchive(ISArchiveWriter writer)
-    {
-        writer.WriteObjectOrNull(CurrentGame);
-        writer.WriteObject(history);
-        writer.WriteObjectOrNull(autoEvoResults);
-        writer.WriteObjectOrNull(autoEvoExternal);
-        writer.Write((int)selectedEditorTab);
-        writer.Write(dayLightFraction);
-        writer.Write(FreeBuilding);
-        writer.WriteObjectOrNull(ReturnToStage);
-        writer.Write(ShowHover);
-
-        // TODO: saving this seems pretty strange, but this is marked as a JsonProperty
-        writer.Write(EditorReady);
-    }
-
-    protected virtual void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)
-    {
-        if (version is > SERIALIZATION_VERSION_BASE or <= 0)
-            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_BASE);
-
-        IsLoadedFromSave = true;
-
-        CurrentGame = reader.ReadObject<GameProperties>();
-        history = reader.ReadObject<EditorActionHistory<TAction>>();
-        autoEvoResults = reader.ReadObject<RunResults>();
-        autoEvoExternal = reader.ReadObject<LocalizedStringBuilder>();
-        selectedEditorTab = (EditorTab)reader.ReadInt32();
-        dayLightFraction = reader.ReadFloat();
-        FreeBuilding = reader.ReadBool();
-        ReturnToStage = reader.ReadObjectOrNull<TStage>();
-        ShowHover = reader.ReadBool();
-
-        // This should always result in true, so not exactly sure what the benefit of saving this is
-        EditorReady = reader.ReadBool();
-    }
-
     protected virtual void ResolveDerivedTypeNodeReferences()
     {
         throw new GodotAbstractMethodNotOverriddenException();
@@ -791,6 +754,43 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         pauseMenu.SetNewSaveNameFromSpeciesName();
 
         ApplyComponentLightLevels();
+    }
+
+    protected virtual void WriteBasePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObjectOrNull(CurrentGame);
+        writer.WriteObject(history);
+        writer.WriteObjectOrNull(autoEvoResults);
+        writer.WriteObjectOrNull(autoEvoExternal);
+        writer.Write((int)selectedEditorTab);
+        writer.Write(dayLightFraction);
+        writer.Write(FreeBuilding);
+        writer.WriteObjectOrNull(ReturnToStage);
+        writer.Write(ShowHover);
+
+        // TODO: saving this seems pretty strange, but this is marked as a JsonProperty
+        writer.Write(EditorReady);
+    }
+
+    protected virtual void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_BASE or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_BASE);
+
+        IsLoadedFromSave = true;
+
+        CurrentGame = reader.ReadObject<GameProperties>();
+        history = reader.ReadObject<EditorActionHistory<TAction>>();
+        autoEvoResults = reader.ReadObject<RunResults>();
+        autoEvoExternal = reader.ReadObject<LocalizedStringBuilder>();
+        selectedEditorTab = (EditorTab)reader.ReadInt32();
+        dayLightFraction = reader.ReadFloat();
+        FreeBuilding = reader.ReadBool();
+        ReturnToStage = reader.ReadObjectOrNull<TStage>();
+        ShowHover = reader.ReadBool();
+
+        // This should always result in true, so not exactly sure what the benefit of saving this is
+        EditorReady = reader.ReadBool();
     }
 
     protected bool ForwardEditorComponentFinishRequest(List<EditorUserOverride>? userOverrides)
