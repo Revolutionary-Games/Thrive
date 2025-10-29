@@ -98,6 +98,9 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         instance.ResolveNodeReferences();
 
+        // This is needed first in case we are on the cell type editor tab
+        instance.selectedCellTypeToEdit = reader.ReadObjectOrNull<CellType>();
+
         reader.ReadObjectProperties(instance.reportTab);
         reader.ReadObjectProperties(instance.patchMapTab);
         reader.ReadObjectProperties(instance.bodyPlanEditorTab);
@@ -107,13 +110,14 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         instance.ReadBasePropertiesFromArchive(reader, 1);
 
         instance.editedSpecies = reader.ReadObjectOrNull<MulticellularSpecies>();
-        instance.selectedCellTypeToEdit = reader.ReadObjectOrNull<CellType>();
 
         return instance;
     }
 
     public override void WriteToArchive(ISArchiveWriter writer)
     {
+        writer.WriteObjectOrNull(selectedCellTypeToEdit);
+
         writer.WriteObjectProperties(reportTab);
         writer.WriteObjectProperties(patchMapTab);
         writer.WriteObjectProperties(bodyPlanEditorTab);
@@ -123,7 +127,6 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         WriteBasePropertiesToArchive(writer);
 
         writer.WriteObjectOrNull(editedSpecies);
-        writer.WriteObjectOrNull(selectedCellTypeToEdit);
     }
 
     public void SendAutoEvoResultsToReportComponent()

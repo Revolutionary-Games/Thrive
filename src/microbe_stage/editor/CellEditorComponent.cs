@@ -826,7 +826,12 @@ public partial class CellEditorComponent :
         writer.WriteObject(editedMicrobeOrganelles);
         writer.WriteObjectOrNull(PendingEndosymbiontPlace);
 
-        if (!IsMulticellularEditor)
+        if (IsMulticellularEditor)
+        {
+            // This may not be initialised
+            writer.WriteObjectOrNull(Membrane);
+        }
+        else
         {
             writer.WriteObject(Membrane);
         }
@@ -860,7 +865,12 @@ public partial class CellEditorComponent :
         editedMicrobeOrganelles = reader.ReadObject<OrganelleLayout<OrganelleTemplate>>();
         PendingEndosymbiontPlace = reader.ReadObjectOrNull<EndosymbiontPlaceActionData>();
 
-        if (!multicellular)
+        if (multicellular)
+        {
+            // This may not be initialised (if this is not used, but this will be set up before this is shown)
+            Membrane = reader.ReadObjectOrNull<MembraneType>()!;
+        }
+        else
         {
             Membrane = reader.ReadObject<MembraneType>();
         }
@@ -928,7 +938,7 @@ public partial class CellEditorComponent :
 
         if (IsMulticellularEditor)
         {
-            // Prepare for second use in multicellular editor
+            // Prepare for second use in the multicellular editor
             editedMicrobeOrganelles.Clear();
         }
         else if (editedMicrobeOrganelles.Count > 0)
