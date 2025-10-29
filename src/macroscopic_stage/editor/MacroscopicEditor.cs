@@ -597,7 +597,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
 
         cellEditorTab.OnFinishEditing();
 
-        // Revert to old name if the name is a duplicate
+        // Revert to the old name if the name is a duplicate
         if (EditedSpecies.CellTypes.Any(c =>
                 c != selectedCellTypeToEdit && c.TypeName == selectedCellTypeToEdit.TypeName))
         {

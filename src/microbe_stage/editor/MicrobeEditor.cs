@@ -80,12 +80,12 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         instance.ResolveNodeReferences();
 
-        // Base version is different
-        instance.ReadBasePropertiesFromArchive(reader, 1);
-
         reader.ReadObjectProperties(instance.reportTab);
         reader.ReadObjectProperties(instance.patchMapTab);
         reader.ReadObjectProperties(instance.cellEditorTab);
+
+        // Base version is different
+        instance.ReadBasePropertiesFromArchive(reader, 1);
 
         instance.editedSpecies = reader.ReadObjectOrNull<MicrobeSpecies>();
 
@@ -94,12 +94,14 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     public override void WriteToArchive(ISArchiveWriter writer)
     {
-        // Don't call base as it is the base abstract one
-        WriteBasePropertiesToArchive(writer);
-
+        // Due to callbacks in history, subcomponents need to be written first
         writer.WriteObjectProperties(reportTab);
         writer.WriteObjectProperties(patchMapTab);
         writer.WriteObjectProperties(cellEditorTab);
+
+        // Don't call base as it is the base abstract one
+        WriteBasePropertiesToArchive(writer);
+
         writer.WriteObjectOrNull(editedSpecies);
     }
 

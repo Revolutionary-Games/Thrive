@@ -294,6 +294,8 @@ public enum ThriveArchiveObjectType : uint
     MicrobeEditorPatchMap = 4377,
     PlayerReadableName = 4378,
     WorldResource = 4379,
+    CombinedEditorAction = 4380,
+    SingleEditorAction = 4381,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,
@@ -303,4 +305,5 @@ public enum ThriveArchiveObjectType : uint
     ExtendedActionHistory = ActionHistory | ArchiveObjectType.ExtendedTypeFlag,
     ExtendedMetaballLayout = MetaballLayout | ArchiveObjectType.ExtendedTypeFlag,
     ExtendedEditorActionHistory = EditorActionHistory | ArchiveObjectType.ExtendedTypeFlag,
+    ExtendedSingleEditorAction = SingleEditorAction | ArchiveObjectType.ExtendedTypeFlag,
 }

@@ -98,13 +98,13 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         instance.ResolveNodeReferences();
 
-        // Base version is different
-        instance.ReadBasePropertiesFromArchive(reader, 1);
-
         reader.ReadObjectProperties(instance.reportTab);
         reader.ReadObjectProperties(instance.patchMapTab);
         reader.ReadObjectProperties(instance.bodyPlanEditorTab);
         reader.ReadObjectProperties(instance.cellEditorTab);
+
+        // Base version is different
+        instance.ReadBasePropertiesFromArchive(reader, 1);
 
         instance.editedSpecies = reader.ReadObjectOrNull<MulticellularSpecies>();
         instance.selectedCellTypeToEdit = reader.ReadObjectOrNull<CellType>();
@@ -114,13 +114,14 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     public override void WriteToArchive(ISArchiveWriter writer)
     {
-        // Don't call base as it is the base abstract one
-        WriteBasePropertiesToArchive(writer);
-
         writer.WriteObjectProperties(reportTab);
         writer.WriteObjectProperties(patchMapTab);
         writer.WriteObjectProperties(bodyPlanEditorTab);
         writer.WriteObjectProperties(cellEditorTab);
+
+        // Don't call base as it is the base abstract one
+        WriteBasePropertiesToArchive(writer);
+
         writer.WriteObjectOrNull(editedSpecies);
         writer.WriteObjectOrNull(selectedCellTypeToEdit);
     }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using SharedBase.Archive;
 
 /// <summary>
 ///   Done editor actions are stored here to provide undo/redo functionality
@@ -8,11 +7,6 @@ using SharedBase.Archive;
 public abstract class EditorAction : ReversibleAction
 {
     public abstract IEnumerable<EditorCombinableActionData> Data { get; }
-
-    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
-    {
-        writer.WriteObject((IArchivable)obj);
-    }
 
     // Plan:
     // Then make it clear in renames that merging is purely to combine subsequent actions into a single undo/redo step

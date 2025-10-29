@@ -581,10 +581,30 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchDetailsMigration,
             typeof(PatchDetailsPanel.Migration), PatchDetailsPanel.Migration.ReadFromArchive);
 
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganellePlacementActionData,
+            typeof(OrganellePlacementActionData), OrganellePlacementActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganellePlacementActionData,
+            typeof(OrganellePlacementActionData), OrganellePlacementActionData.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleRemoveActionData,
+            typeof(OrganelleRemoveActionData), OrganelleRemoveActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleRemoveActionData,
+            typeof(OrganelleRemoveActionData), OrganelleRemoveActionData.ReadFromArchive);
+
         RegisterLimitedObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellEditorComponent,
             typeof(CellEditorComponent));
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MicrobeEditor,
             typeof(MicrobeEditor), MicrobeEditor.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CombinedEditorAction,
+            typeof(CombinedEditorAction), CombinedEditorAction.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedSingleEditorAction,
+            typeof(SingleEditorAction<>), EditorActionSerializer.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SingleEditorAction,
+            typeof(SingleEditorAction<>), EditorActionSerializer.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SingleEditorAction,
+            typeof(SingleEditorAction<>), EditorActionSerializer.WriteToArchive);
     }
 }
