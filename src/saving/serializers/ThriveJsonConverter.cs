@@ -100,14 +100,13 @@ public class ThriveJsonConverter : IDisposable
 
             ReferenceResolverProvider = () => referenceResolver,
 
-            // Even though we have our custom converters, the JSON library wants to mess with us so we need to force it
-            // to ignore these. This has the slight downside that if someone forgets to add
-            // UseThriveSerializerAttribute when reference loops exist, this probably causes a stack overflow
+            // Even though we have our custom converters, the JSON library wants to mess with us, so we need to force
+            // it to ignore these. Though we use simpler loads now, so this might be able to be removed.
             ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
 
             // Skip writing null properties. This saves a bit of data and as saves are not manually edited shouldn't
             // really miss out on anything by just having null values omitted. One potential pitfall is the requirement
-            // to not rely on a null value to be passed to a json constructor
+            // to not rely on a null value to be passed to a JSON constructor
             NullValueHandling = NullValueHandling.Ignore,
 
             TraceWriter = GetTraceWriter(Settings.Instance.JSONDebugMode, JSONDebug.ErrorHasOccurred),
