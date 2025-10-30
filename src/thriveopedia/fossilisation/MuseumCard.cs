@@ -145,9 +145,6 @@ public partial class MuseumCard : Button
         if (outdated)
             return;
 
-        // TODO: it's slightly non-optimal that this triggers first and then OnDeletePressed when pressing on the
-        // delete button. Could maybe queue invoke the species select and skip that if the delete got pressed?
-
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(SignalName.OnSpeciesSelected, this);
     }

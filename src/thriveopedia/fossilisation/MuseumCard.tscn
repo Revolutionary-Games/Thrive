@@ -68,7 +68,6 @@ theme_override_styles/panel = SubResource("1")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
-mouse_filter = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
@@ -77,7 +76,6 @@ theme_override_constants/margin_bottom = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
-mouse_filter = 1
 text = "INSERT_TITLE"
 label_settings = ExtResource("2_jn0qd")
 horizontal_alignment = 1
@@ -86,6 +84,7 @@ clip_text = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 alignment = 2
 
 [node name="Delete" type="TextureButton" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="8"]
 
 [node name="ThriveopediaMuseumPage" node_paths=PackedStringArray("cardContainer", "welcomeLabel", "speciesPreviewContainer", "speciesPreviewPanel", "leaveGameConfirmationDialog", "fossilDirectoryWarningBox", "deleteConfirmationDialog", "deletionFailedDialog", "fossilDataLoadFailedDialog") instance=ExtResource("1")]
+mouse_force_pass_scroll_events = false
 script = ExtResource("2")
 cardContainer = NodePath("HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HFlowContainer")
 welcomeLabel = NodePath("HBoxContainer/SpeciesDetailsPanel/MarginContainer/WelcomeLabelContainer")
