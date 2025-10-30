@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
-///   Like a StringBuilder but with on demand localization.
+///   Like a StringBuilder but with on-demand localization.
 ///   Calling ToString formats all the IFormattable's to the current culture and returns the formatted string.
 ///   This class is json serializable as long as all IFormattable's are serializable.
 /// </summary>
@@ -17,7 +16,6 @@ using SharedBase.Archive;
 ///     the object is cached in a list and a string format index ({0}) is added to the StringBuilder.
 ///   </para>
 /// </remarks>
-[JSONDynamicTypeAllowed]
 public class LocalizedStringBuilder : IFormattable, IArchivable
 {
     public const ushort SERIALIZATION_VERSION = 1;
@@ -31,7 +29,6 @@ public class LocalizedStringBuilder : IFormattable, IArchivable
     ///     TODO: the above constraint should no longer be true with the archive format
     ///   </para>
     /// </remarks>
-    [JsonProperty]
     private readonly List<object> items;
 
     private readonly StringBuilder stringBuilder;
@@ -57,16 +54,12 @@ public class LocalizedStringBuilder : IFormattable, IArchivable
         stringBuilder = new StringBuilder();
     }
 
-    [JsonIgnore]
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
-    [JsonIgnore]
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.LocalizedStringBuilder;
 
-    [JsonIgnore]
     public bool CanBeReferencedInArchive => false;
 
-    [JsonProperty]
     private string? FormatString
     {
         get

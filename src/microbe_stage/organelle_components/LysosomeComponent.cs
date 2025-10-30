@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Arch.Core;
 using Components;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
@@ -62,7 +61,6 @@ public class LysosomeComponentFactory : IOrganelleComponentFactory
     }
 }
 
-[JSONDynamicTypeAllowed]
 public class LysosomeUpgrades : IComponentSpecificUpgrades
 {
     public const ushort SERIALIZATION_VERSION = 1;
@@ -74,13 +72,10 @@ public class LysosomeUpgrades : IComponentSpecificUpgrades
 
     public Enzyme Enzyme { get; set; }
 
-    [JsonIgnore]
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
-    [JsonIgnore]
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.LysosomeUpgrades;
 
-    [JsonIgnore]
     public bool CanBeReferencedInArchive => false;
 
     public static LysosomeUpgrades ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)

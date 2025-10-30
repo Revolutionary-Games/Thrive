@@ -1,5 +1,4 @@
 ﻿using System;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
@@ -10,7 +9,6 @@ using SharedBase.Archive;
 ///     This is in a separate files as there isn't a toxin organelle component file to put this into
 ///   </para>
 /// </remarks>
-[JSONDynamicTypeAllowed]
 public class ToxinUpgrades : IComponentSpecificUpgrades
 {
     public const ushort SERIALIZATION_VERSION = 1;
@@ -34,13 +32,10 @@ public class ToxinUpgrades : IComponentSpecificUpgrades
     /// </summary>
     public float Toxicity { get; set; }
 
-    [JsonIgnore]
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
-    [JsonIgnore]
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ToxinUpgrades;
 
-    [JsonIgnore]
     public bool CanBeReferencedInArchive => false;
 
     public static ToxinUpgrades ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
