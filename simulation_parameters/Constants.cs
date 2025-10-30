@@ -1625,9 +1625,6 @@ public static class Constants
 
     public const string CITIZEN_GROUP = "citizen";
 
-    public const string DELETION_HOLD_LOAD = "load";
-    public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
-
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
     public const string WORKSHOP_DATA_FILE = "user://workshop_data.json";
 

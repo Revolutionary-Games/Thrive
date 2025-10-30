@@ -1,15 +1,12 @@
 ﻿using System;
-using System.ComponentModel;
 using Godot;
 using Newtonsoft.Json;
-using Saving.Serializers;
 using SharedBase.Archive;
 using ThriveScriptsShared;
 
 /// <summary>
 ///   A defined world resource
 /// </summary>
-[TypeConverter($"Saving.Serializers.{nameof(WorldResourceStringConverter)}")]
 public class WorldResource : RegistryType, IPlayerReadableName
 {
     private readonly Lazy<PackedScene> worldRepresentation;

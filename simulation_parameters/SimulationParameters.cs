@@ -853,20 +853,25 @@ public partial class SimulationParameters : Node
 
         foreach (var entry in structures)
         {
-            entry.Value.Resolve();
+            entry.Value.Resolve(this);
         }
 
         foreach (var entry in unitTypes)
         {
-            entry.Value.Resolve();
+            entry.Value.Resolve(this);
         }
 
         foreach (var entry in spaceStructures)
         {
-            entry.Value.Resolve();
+            entry.Value.Resolve(this);
         }
 
         foreach (var entry in technologies)
+        {
+            entry.Value.Resolve(this);
+        }
+
+        foreach (var entry in craftingRecipes)
         {
             entry.Value.Resolve(this);
         }

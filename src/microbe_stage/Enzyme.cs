@@ -1,13 +1,10 @@
-﻿using System.ComponentModel;
-using System.Text.Json.Serialization;
-using Saving.Serializers;
+﻿using System.Text.Json.Serialization;
 using SharedBase.Archive;
 using ThriveScriptsShared;
 
 /// <summary>
 ///   Define enzymes in the game. Enzyme is an "upgrade" that grants specific ability to microbes.
 /// </summary>
-[TypeConverter($"Saving.Serializers.{nameof(EnzymeStringConverter)}")]
 public class Enzyme : RegistryType
 {
     /// <summary>

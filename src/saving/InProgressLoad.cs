@@ -84,18 +84,12 @@ public class InProgressLoad
 
                 TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f, Step, false, false);
 
-                // Let all suppressed deletions happen
-                TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
-
                 // Continue after transition finishes
                 return;
             case State.ReadingData:
             {
                 // Make sure the mouse is not being captured if anything left the capture on
                 MouseCaptureManager.ForceDisableCapture();
-
-                // Start suppressing loaded node deletion
-                TemporaryLoadedNodeDeleter.Instance.AddDeletionHold(Constants.DELETION_HOLD_LOAD);
 
                 // TODO: do this in a background thread once possible
                 // https://github.com/Revolutionary-Games/Thrive/issues/1406
@@ -190,9 +184,6 @@ public class InProgressLoad
             {
                 stopwatch.Stop();
                 GD.Print("load finished, success: ", success, " message: ", message, " elapsed: ", stopwatch.Elapsed);
-
-                // Stop suppressing loaded node deletion
-                TemporaryLoadedNodeDeleter.Instance.RemoveDeletionHold(Constants.DELETION_HOLD_LOAD);
 
                 PauseManager.Instance.Resume(nameof(InProgressLoad));
 

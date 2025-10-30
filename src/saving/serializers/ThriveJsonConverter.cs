@@ -20,8 +20,6 @@ public class ThriveJsonConverter : IDisposable
     private static readonly ThriveJsonConverter InstanceValue = new();
 
     private readonly JsonConverter[] thriveConverters;
-    private readonly List<JsonConverter> thriveConvertersDynamicDeserialize;
-    private readonly DynamicDeserializeObjectConverter dynamicObjectDeserializeConverter;
 
     // TODO: (check if this can cause process lock ups) https://github.com/Revolutionary-Games/Thrive/issues/4989
     private readonly ThreadLocal<JsonSerializerSettings> currentJsonSettings = new();
@@ -35,19 +33,12 @@ public class ThriveJsonConverter : IDisposable
             new GodotColorConverter(),
             new GodotBasisConverter(),
             new GodotQuaternionConverter(),
-            new PackedSceneConverter(),
-            new SystemVector4ArrayConverter(),
-            new ConvexPolygonShapeConverter(),
             new NodePathConverter(),
 
             new CompoundConverter(),
 
             new ConditionSetConverter(),
         ];
-
-        dynamicObjectDeserializeConverter = new DynamicDeserializeObjectConverter();
-        thriveConvertersDynamicDeserialize = new List<JsonConverter> { dynamicObjectDeserializeConverter };
-        thriveConvertersDynamicDeserialize.AddRange(thriveConverters);
     }
 
     public static ThriveJsonConverter Instance => InstanceValue;
@@ -70,43 +61,6 @@ public class ThriveJsonConverter : IDisposable
     public T? DeserializeObject<T>(string json)
     {
         return PerformWithSettings(s => JsonConvert.DeserializeObject<T>(json, s));
-    }
-
-    /// <summary>
-    ///   Deserializes a fully dynamic object from JSON (the object type is defined only in the JSON).
-    ///   Note that this uses the deserializer type for <see cref="object"/> which means that no custom deserializer
-    ///   logic works! That means this is only usable for basic types. Other types must have an interface or other
-    ///   base type and be used through <see cref="DeserializeObject{T}"/>.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     Even though this uses only basic deserialization, this uses the <see cref="BaseThriveConverter"/> through
-    ///     <see cref="DynamicDeserializeObjectConverter"/> for the base object of the deserialized string. So some
-    ///     of our custom logic works, but for example <see cref="Node"/> deserialization won't use the specialized
-    ///     Node logic.
-    ///   </para>
-    /// </remarks>
-    /// <param name="json">JSON text to parse</param>
-    /// <returns>The created object</returns>
-    /// <exception cref="JsonException">If invalid json or the dynamic type is not allowed</exception>
-    public object? DeserializeObjectDynamic(string json)
-    {
-        return PerformWithSettings(settings =>
-        {
-            // enable hack conversion
-            settings.Converters = thriveConvertersDynamicDeserialize;
-            dynamicObjectDeserializeConverter.ResetConversionCounter();
-
-            try
-            {
-                return JsonConvert.DeserializeObject<object>(json, settings);
-            }
-            finally
-            {
-                // disable hack conversion
-                settings.Converters = thriveConverters;
-            }
-        });
     }
 
     public void Dispose()
@@ -401,14 +355,13 @@ public abstract class BaseThriveConverter : JsonConverter
         // Ensure that instance ended up being a good type
         if (!objectType.IsInstanceOfType(node))
         {
-            // Clean up godot resources
-            TemporaryLoadedNodeDeleter.Instance.Register(node);
-            throw new JsonException("Scene loaded JSON deserialized type can't be assigned to target type");
+            throw new JsonException("Loading Nodes through JSON is no longer allowed");
         }
 
         object instance = node;
 
-        // Let the object know first if it is loaded from a save to allow node resolve do special actions in this case
+        // Let the object know first if it is loaded from a save to allow node resolve to do special actions in this
+        // case
         objectLoad.ReceiveInstance(instance);
 
         // Perform early Node resolve to make loading child Node properties work
