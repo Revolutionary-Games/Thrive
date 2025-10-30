@@ -116,10 +116,12 @@ stretch_mode = 6
 
 [node name="OutdatedMarker" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/PreviewMargin"]
 visible = false
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-text = "OUTDATED"
+text = "OUTDATED_ITEM"
 label_settings = ExtResource("5_jf61b")
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExit"]
