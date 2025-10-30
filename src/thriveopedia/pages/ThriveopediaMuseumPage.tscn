@@ -6,8 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="4_8ikvd"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="8"]
 
-[node name="ThriveopediaMuseumPage" instance=ExtResource("1") node_paths=PackedStringArray("deletionFailedDialog", "deleteConfirmationDialog", "fossilDirectoryWarningBox", "leaveGameConfirmationDialog", "speciesPreviewPanel", "speciesPreviewContainer", "welcomeLabel", "cardContainer")]
-anchors_preset = 15
+[node name="ThriveopediaMuseumPage" node_paths=PackedStringArray("cardContainer", "welcomeLabel", "speciesPreviewContainer", "speciesPreviewPanel", "leaveGameConfirmationDialog", "fossilDirectoryWarningBox", "deleteConfirmationDialog", "deletionFailedDialog", "fossilDataLoadFailedDialog") instance=ExtResource("1")]
 script = ExtResource("2")
 cardContainer = NodePath("HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HFlowContainer")
 welcomeLabel = NodePath("HBoxContainer/SpeciesDetailsPanel/MarginContainer/WelcomeLabelContainer")
@@ -17,19 +16,8 @@ leaveGameConfirmationDialog = NodePath("UnsavedProgressWarning")
 fossilDirectoryWarningBox = NodePath("NoDirectoryDialog")
 deleteConfirmationDialog = NodePath("DeleteWarning")
 deletionFailedDialog = NodePath("FossilDeletionFailedDialog")
+fossilDataLoadFailedDialog = NodePath("DataLoadFailedDialog")
 DisplayBackground = false
-
-[node name="MarginContainer" parent="." index="0"]
-layout_mode = 2
-
-[node name="ScrollContainer" parent="MarginContainer" index="0"]
-layout_mode = 2
-
-[node name="MarginContainer" parent="MarginContainer/ScrollContainer" index="0"]
-layout_mode = 2
-
-[node name="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer" index="0"]
-layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." index="1"]
 layout_mode = 2
@@ -136,6 +124,13 @@ layout_mode = 2
 HideCancelButton = true
 DialogText = "FOSSIL_DELETION_FAILED_DESCRIPTION"
 WindowTitle = "FOSSIL_DELETION_FAILED"
+
+[node name="DataLoadFailedDialog" parent="." index="6" instance=ExtResource("8")]
+custom_minimum_size = Vector2(391, 0)
+layout_mode = 2
+HideCancelButton = true
+DialogText = "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+WindowTitle = "FOSSIL_DATA_LOAD_FAILED"
 
 [connection signal="pressed" from="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/CenterContainer/FossilFolder" to="." method="OnOpenFossilFolder"]
 [connection signal="pressed" from="HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer/OpenInFreebuildButton" to="." method="OnOpenInFreebuildPressed"]
