@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
 using Saving.Serializers;
 using SharedBase.Archive;
 
@@ -10,7 +9,6 @@ using SharedBase.Archive;
 ///   A list of positioned organelles. Verifies that they don't overlap
 /// </summary>
 /// <typeparam name="T">The type of organelle contained in this layout</typeparam>
-[UseThriveSerializer]
 public class OrganelleLayout<T> : HexLayout<T>, IArchivable
     where T : class, IPositionedOrganelle, ICloneable
 {
@@ -18,7 +16,6 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable
     {
     }
 
-    [JsonConstructor]
     public OrganelleLayout()
     {
     }
@@ -28,16 +25,13 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable
     {
     }
 
-    [JsonIgnore]
     public IReadOnlyList<T> Organelles => existingHexes;
 
-    [JsonIgnore]
     public int HexCount => existingHexes.Sum(h => h.Definition.HexCount);
 
     /// <summary>
     ///   The center of mass for the contained organelles.
     /// </summary>
-    [JsonIgnore]
     public Hex CenterOfMass
     {
         get
@@ -65,13 +59,10 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable
         }
     }
 
-    [JsonIgnore]
     public ushort CurrentArchiveVersion => HexLayoutSerializer.SERIALIZATION_VERSION;
 
-    [JsonIgnore]
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ExtendedOrganelleLayout;
 
-    [JsonIgnore]
     public bool CanBeReferencedInArchive => false;
 
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)

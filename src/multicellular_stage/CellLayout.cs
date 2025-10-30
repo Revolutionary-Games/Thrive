@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
 using Saving.Serializers;
 using SharedBase.Archive;
 
@@ -16,8 +15,6 @@ using SharedBase.Archive;
 ///   </para>
 /// </remarks>
 /// <typeparam name="T">The type of organelle contained in this layout</typeparam>
-[UseThriveSerializer]
-[JsonObject(IsReference = true)]
 public class CellLayout<T> : HexLayout<T>, IArchivable
     where T : class, IPositionedCell
 {
@@ -37,7 +34,6 @@ public class CellLayout<T> : HexLayout<T>, IArchivable
     /// <summary>
     ///   The center of mass of the contained organelles in all cells
     /// </summary>
-    [JsonIgnore]
     public Hex CenterOfMass
     {
         get
@@ -59,13 +55,10 @@ public class CellLayout<T> : HexLayout<T>, IArchivable
         }
     }
 
-    [JsonIgnore]
     public ushort CurrentArchiveVersion => HexLayoutSerializer.SERIALIZATION_VERSION;
 
-    [JsonIgnore]
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ExtendedCellLayout;
 
-    [JsonIgnore]
     public bool CanBeReferencedInArchive => true;
 
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)

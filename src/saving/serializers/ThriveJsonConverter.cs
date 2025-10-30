@@ -43,9 +43,6 @@ public class ThriveJsonConverter : IDisposable
             new CompoundConverter(),
 
             new ConditionSetConverter(),
-
-            // Converter for all types with a specific few attributes for this to be enabled
-            new DefaultThriveJSONConverter(),
         ];
 
         dynamicObjectDeserializeConverter = new DynamicDeserializeObjectConverter();
@@ -895,39 +892,5 @@ public abstract class BaseThriveConverter : JsonConverter
         {
             return x.Order.CompareTo(y.Order);
         }
-    }
-}
-
-/// <summary>
-///   When a class has this attribute <see cref="DefaultThriveJSONConverter"/> is used to serialize it
-/// </summary>
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface)]
-public class UseThriveSerializerAttribute : Attribute
-{
-}
-
-/// <summary>
-///   Custom serializer for all Thrive types that don't need any special handling. They need to have the attribute
-///   <see cref="UseThriveSerializerAttribute"/> to be detected
-/// </summary>
-internal class DefaultThriveJSONConverter : BaseThriveConverter
-{
-    private static readonly Type UseSerializerAttribute = typeof(UseThriveSerializerAttribute);
-    private static readonly Type SceneLoadedAttribute = typeof(SceneLoadedClassAttribute);
-
-    public override bool CanConvert(Type objectType)
-    {
-        // Types with our custom attribute are supported
-        if (objectType.CustomAttributes.Any(a =>
-                a.AttributeType == UseSerializerAttribute || a.AttributeType == SceneLoadedAttribute))
-        {
-            return true;
-        }
-
-        // Serializer attribute in parent type also applies it to child types
-        if (objectType.GetCustomAttribute(UseSerializerAttribute, true) != null)
-            return true;
-
-        return false;
     }
 }

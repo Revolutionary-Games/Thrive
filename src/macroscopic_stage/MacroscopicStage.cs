@@ -7,16 +7,13 @@ using SharedBase.Archive;
 /// <summary>
 ///   Main class for managing the macroscopic stage
 /// </summary>
-[JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/macroscopic_stage/MacroscopicStage.tscn")]
-[UseThriveSerializer]
 public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, DummyWorldSimulation>, IArchivable
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
     private const string STAGE_TRANSITION_MOUSE_LOCK = "toSocietyStage";
 
-    [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private ISpawnSystem dummySpawner = null!;
 
@@ -42,6 +39,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     private Camera3D? animationCamera;
 #pragma warning restore CA2213
 
+    // TODO: convert this over to the archve system
     /// <summary>
     ///   Used to detect when the player automatically advances stages in the editor (awakening is explicit with a
     ///   button as it should be only used after moving to land)
@@ -67,11 +65,9 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     [JsonProperty]
     private bool movingToSocietyStage;
 
-    [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public MacroscopicCamera PlayerCamera { get; private set; } = null!;
 
-    [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public MacroscopicHUD HUD { get; private set; } = null!;
 

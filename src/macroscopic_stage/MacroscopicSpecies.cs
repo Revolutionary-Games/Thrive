@@ -1,19 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using Newtonsoft.Json;
-using Saving.Serializers;
 using SharedBase.Archive;
 
 /// <summary>
 ///   Represents a macroscopic species that is 3D and composed of placed tissues
 /// </summary>
-[JsonObject(IsReference = true)]
-[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
-[JSONDynamicTypeAllowed]
-[UseThriveConverter]
-[UseThriveSerializer]
 public class MacroscopicSpecies : Species
 {
     public const ushort SERIALIZATION_VERSION = 1;
@@ -22,10 +14,8 @@ public class MacroscopicSpecies : Species
     {
     }
 
-    [JsonProperty]
     public MacroscopicMetaballLayout BodyLayout { get; private set; } = new();
 
-    [JsonProperty]
     public List<CellType> CellTypes { get; private set; } = new();
 
     /// <summary>
@@ -33,31 +23,23 @@ public class MacroscopicSpecies : Species
     /// </summary>
     public float Scale { get; set; } = 1.0f;
 
-    [JsonProperty]
     public float BrainPower { get; private set; }
 
-    [JsonProperty]
     public float MuscularPower { get; private set; }
 
     /// <summary>
     ///   Where this species reproduces, used to control also where individuals of this species spawn and where the
     ///   player spawns
     /// </summary>
-    [JsonProperty]
     public ReproductionLocation ReproductionLocation { get; set; }
 
-    [JsonProperty]
     public MacroscopicSpeciesType MacroscopicType { get; private set; }
 
     /// <summary>
     ///   All organelles in all the species' placed metaballs (there can be a lot of duplicates in this list)
     /// </summary>
-    [JsonIgnore]
     public IEnumerable<OrganelleTemplate> Organelles =>
         BodyLayout.Select(m => m.CellType).Distinct().SelectMany(c => c.Organelles);
-
-    [JsonIgnore]
-    public override string StringCode => ThriveJsonConverter.Instance.SerializeObject(this);
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 

@@ -1019,10 +1019,11 @@ public class RunResults : IArchivable
 
                 if (!playerReadable)
                 {
-                    builder.Append(", ");
+                    // TODO: reimplement a quick way to represent a species *if* necessary
+                    /*builder.Append(", ");
                     builder.Append(new LocalizedString("RUN_RESULT_GENE_CODE"));
                     builder.Append(' ');
-                    builder.Append(entry.MutatedProperties.StringCode);
+                    builder.Append(entry.MutatedProperties.StringCode);*/
                 }
 
                 builder.Append('\n');
@@ -1554,6 +1555,12 @@ public class RunResults : IArchivable
     private bool HasSpeciesChanged(SpeciesResult result)
     {
         return result.MutatedProperties != null || result.SplitFrom != null || result.Species.PlayerSpecies;
+    }
+
+    private void DummyTranslations()
+    {
+        // Just in case we want this in the future, this translation is kept
+        Localization.Translate("RUN_RESULT_GENE_CODE");
     }
 
     /// <summary>
