@@ -34,6 +34,7 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterTutorial();
         RegisterAutoEvoStuff();
         RegisterEditor();
+        RegisterFossils();
     }
 
     /// <summary>
@@ -624,5 +625,14 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(CellMoveActionData), CellMoveActionData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellMoveActionData,
             typeof(CellMoveActionData), CellMoveActionData.ReadFromArchive);
+    }
+
+    private void RegisterFossils()
+    {
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.FossilisedSpecies,
+            typeof(FossilisedSpecies), FossilisedSpecies.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.FossilisedSpeciesInformation,
+            typeof(FossilisedSpeciesInformation), FossilisedSpeciesInformation.ReadFromArchive);
     }
 }

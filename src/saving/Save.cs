@@ -409,7 +409,7 @@ public sealed class Save : IArchivable, IDisposable
 
             // Loading is not as time-sensitive as writing, so we just crudely make a new manager here
             var manager = new ThriveArchiveManager();
-            var reader = new SArchiveMemoryReader(saveArchive, manager, true);
+            using var reader = new SArchiveMemoryReader(saveArchive, manager, true);
 
             manager.OnStartNewRead(reader);
 
