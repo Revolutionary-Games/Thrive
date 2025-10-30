@@ -1861,7 +1861,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             foreach (var detectedCompound in activeCompoundDetections)
             {
                 UpdateOrCreateGuidanceLine(currentLineIndex++,
-                    default, detectedCompound.Colour, position, detectedCompound.Target, true);
+                    Entity.Null, detectedCompound.Colour, position, detectedCompound.Target, true);
             }
         }
 
