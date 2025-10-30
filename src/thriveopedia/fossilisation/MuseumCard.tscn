@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://w21wmrogs2g5" path="res://assets/misc/icon.png" id="2"]
 [ext_resource type="LabelSettings" uid="uid://dsxjdgavbi2j5" path="res://src/gui_common/fonts/Body-Regular-Small-Black.tres" id="2_jn0qd"]
-[ext_resource type="Texture2D" uid="uid://bkoy6kqmc5tld" path="res://assets/textures/gui/bevel/closeCross.svg" id="3_lhc46"]
+[ext_resource type="Texture2D" uid="uid://dyce855j08sc4" path="res://assets/textures/gui/bevel/closeCrossWhite.svg" id="3_jf61b"]
 [ext_resource type="Script" uid="uid://yqivwvuod7ru" path="res://src/thriveopedia/fossilisation/MuseumCard.cs" id="4"]
 [ext_resource type="LabelSettings" uid="uid://bl7dig4lq5ko" path="res://src/gui_common/fonts/Body-Regular-Small-Red.tres" id="5_jf61b"]
 
@@ -92,8 +92,7 @@ self_modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(14, 14)
 layout_mode = 2
 focus_mode = 0
-mouse_filter = 1
-texture_normal = ExtResource("3_lhc46")
+texture_normal = ExtResource("3_jf61b")
 ignore_texture_size = true
 stretch_mode = 5
 
