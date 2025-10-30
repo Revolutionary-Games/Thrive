@@ -115,6 +115,7 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
             return;
         }
 
+        // TODO: this kind of just flashes on screen as the load is so fast, so maybe this just looks bad?
         // Use this as a crude loading indicator
         speciesPreviewPanel.Modulate = Colors.Gray;
 
