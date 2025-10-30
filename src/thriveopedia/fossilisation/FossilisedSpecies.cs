@@ -190,6 +190,9 @@ public class FossilisedSpecies : IArchivable
         {
             var (fossilisedInfo, _, previewImage) = LoadFromFile(target, false);
 
+            // As JSON doesn't trigger this automatically, we call it
+            fossilisedInfo.ApplyOutdatedLogic();
+
             return (fossilisedInfo, previewImage);
         }
         catch (Exception e)
@@ -228,8 +231,7 @@ public class FossilisedSpecies : IArchivable
             FossilVersion = reader.ReadInt32(),
         };
 
-        if (instance.FossilVersion < FOSSIL_VERSION)
-            instance.IsInvalidOrOutdated = true;
+        instance.ApplyOutdatedLogic();
 
         return instance;
     }
@@ -255,6 +257,7 @@ public class FossilisedSpecies : IArchivable
 
         // Set the version just before writing
         FossilVersion = FOSSIL_VERSION;
+        Info.FossilVersion = FossilVersion;
 
         using var dataArchive = new MemoryStream();
 
@@ -277,6 +280,13 @@ public class FossilisedSpecies : IArchivable
         dataArchive.Position = 0;
 
         WriteRawFossilDataToFile(Info, dataArchive, Name + Constants.FOSSIL_EXTENSION_WITH_DOT, PreviewImage);
+    }
+
+    public void ApplyOutdatedLogic()
+    {
+        // The same logic is purely for info loads in the FossilisedSpeciesInformation class
+        if (FossilVersion < FOSSIL_VERSION)
+            IsInvalidOrOutdated = true;
     }
 
     private static void WriteRawFossilDataToFile(FossilisedSpeciesInformation speciesInfo, Stream fossilContent,

@@ -63,6 +63,8 @@ public class FossilisedSpeciesInformation : IArchivable
 
     public string FormattedName { get; set; } = string.Empty;
 
+    public int FossilVersion { get; set; }
+
     /// <summary>
     ///   Set when data about a file could be loaded, but the file is not good to try to actually load a species from.
     /// </summary>
@@ -92,7 +94,10 @@ public class FossilisedSpeciesInformation : IArchivable
                 CultureInfo.InvariantCulture),
             ID = Guid.Parse(reader.ReadString() ?? throw new NullArchiveObjectException()),
             FormattedName = reader.ReadString() ?? throw new NullArchiveObjectException(),
+            FossilVersion = reader.ReadInt32(),
         };
+
+        instance.ApplyOutdatedLogic();
 
         return instance;
     }
@@ -105,5 +110,14 @@ public class FossilisedSpeciesInformation : IArchivable
         writer.Write(CreatedAt.ToString("O", CultureInfo.InvariantCulture));
         writer.Write(ID.ToString());
         writer.Write(FormattedName);
+        writer.Write(FossilVersion);
+    }
+
+    public void ApplyOutdatedLogic()
+    {
+        // The same code as in FossilisedSpecies.ApplyOutdatedLogic because,
+        // when just loading info, this would be missing
+        if (FossilVersion < FossilisedSpecies.FOSSIL_VERSION)
+            IsInvalidOrOutdated = true;
     }
 }
