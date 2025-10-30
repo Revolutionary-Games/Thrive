@@ -136,7 +136,7 @@ public partial class MuseumCard : Button
         if (speciesPreview == null)
             return;
 
-        speciesPreview.Modulate = outdated ? Colors.DarkGray : Colors.White;
+        speciesPreview.Modulate = outdated ? Colors.DarkSlateGray : Colors.White;
         outdatedText.Visible = outdated;
     }
 
