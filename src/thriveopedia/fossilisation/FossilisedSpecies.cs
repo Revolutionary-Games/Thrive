@@ -40,6 +40,9 @@ public class FossilisedSpecies : IArchivable
         Info = info;
         Species = species;
         Name = name;
+
+        // Make sure the name is up to date in the data
+        Info.FormattedName = species.FormattedName;
     }
 
     /// <summary>
