@@ -32,6 +32,8 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterComponentParts();
         RegisterWorldEffects();
         RegisterTutorial();
+        RegisterAutoEvoStuff();
+        RegisterEditor();
     }
 
     /// <summary>
@@ -332,6 +334,13 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CompoundBag,
             typeof(CompoundBag), CompoundBag.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CustomDifficulty,
+            typeof(CustomDifficulty), CustomDifficulty.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PlayerReadableName,
+            typeof(IPlayerReadableName), IPlayerReadableName.WriteToArchive);
+        RegisterBaseClass((ArchiveObjectType)ThriveArchiveObjectType.PlayerReadableName, typeof(IPlayerReadableName));
     }
 
     private void RegisterComponentParts()
@@ -373,6 +382,11 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BulkTransportAnimation,
             typeof(Engulfable.BulkTransportAnimation), Engulfable.BulkTransportAnimation.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EntityLightConfig,
+            typeof(EntityLight.Light), EntityLight.Light.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EntityLightConfig,
+            typeof(EntityLight.Light), EntityLight.Light.ReadFromArchiveBoxed);
     }
 
     private void RegisterWorldEffects()
@@ -416,5 +430,199 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.TutorialMicrobeReproduction,
             typeof(MicrobeReproduction), MicrobeReproduction.ReadFromArchive);
+    }
+
+    private void RegisterAutoEvoStuff()
+    {
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.RunResults,
+            typeof(RunResults), RunResults.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.RunResults,
+            typeof(RunResults), RunResults.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpeciesPatchEnergyResults,
+            typeof(RunResults.SpeciesPatchEnergyResults), RunResults.SpeciesPatchEnergyResults.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpeciesPatchEnergyResults,
+            typeof(RunResults.SpeciesPatchEnergyResults), RunResults.SpeciesPatchEnergyResults.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.NicheInfo,
+            typeof(RunResults.SpeciesPatchEnergyResults.NicheInfo),
+            RunResults.SpeciesPatchEnergyResults.NicheInfo.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.NicheInfo,
+            typeof(RunResults.SpeciesPatchEnergyResults.NicheInfo),
+            RunResults.SpeciesPatchEnergyResults.NicheInfo.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpeciesResult,
+            typeof(RunResults.SpeciesResult), RunResults.SpeciesResult.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpeciesResult,
+            typeof(RunResults.SpeciesResult), RunResults.SpeciesResult.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpeciesMigration,
+            typeof(SpeciesMigration), SpeciesMigration.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SpeciesMigration,
+            typeof(SpeciesMigration), SpeciesMigration.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Miche,
+            typeof(Miche), Miche.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Miche,
+            typeof(Miche), Miche.ReadFromArchive);
+
+        // Pressures
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.AvoidPredationSelectionPressure,
+            typeof(AvoidPredationSelectionPressure), AvoidPredationSelectionPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ChunkCompoundPressure,
+            typeof(ChunkCompoundPressure), ChunkCompoundPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPressure,
+            typeof(CompoundCloudPressure), CompoundCloudPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CompoundConversionEfficiencyPressure,
+            typeof(CompoundConversionEfficiencyPressure), CompoundConversionEfficiencyPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EndosymbiosisPressure,
+            typeof(EndosymbiosisPressure), EndosymbiosisPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EnvironmentalCompoundPressure,
+            typeof(EnvironmentalCompoundPressure), EnvironmentalCompoundPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EnvironmentalTolerancePressure,
+            typeof(EnvironmentalTolerancePressure), EnvironmentalTolerancePressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MaintainCompoundPressure,
+            typeof(MaintainCompoundPressure), MaintainCompoundPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MetabolicStabilityPressure,
+            typeof(MetabolicStabilityPressure), MetabolicStabilityPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.NoOpPressure,
+            typeof(NoOpPressure), NoOpPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PredationEffectivenessPressure,
+            typeof(PredationEffectivenessPressure), PredationEffectivenessPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PredatorRoot,
+            typeof(PredatorRoot), PredatorRoot.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.RootPressure,
+            typeof(RootPressure), RootPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.TemperatureSessilityPressure,
+            typeof(TemperatureSessilityPressure), TemperatureSessilityPressure.ReadFromArchive);
+    }
+
+    private void RegisterEditor()
+    {
+        // Need to be registered to work as a base class
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EditorAction,
+            typeof(EditorAction), ReversibleAction.WriteToArchive);
+        RegisterBaseClass((ArchiveObjectType)ThriveArchiveObjectType.EditorAction, typeof(EditorAction));
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedActionHistory,
+            typeof(ActionHistory<>), ActionHistorySerializer.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedActionHistory,
+            typeof(ActionHistory<>), ActionHistorySerializer.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedEditorActionHistory,
+            typeof(EditorActionHistory<>), ActionHistorySerializer.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedEditorActionHistory,
+            typeof(EditorActionHistory<>), ActionHistorySerializer.ReadFromArchive);
+        RegisterExtendedBase((ArchiveObjectType)ThriveArchiveObjectType.ExtendedEditorActionHistory,
+            (ArchiveObjectType)ThriveArchiveObjectType.EditorActionHistory, typeof(EditorActionHistory<>));
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BehaviourActionData,
+            typeof(BehaviourActionData), BehaviourActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.BehaviourActionData,
+            typeof(BehaviourActionData), BehaviourActionData.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ColourActionData,
+            typeof(ColourActionData), ColourActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ColourActionData,
+            typeof(ColourActionData), ColourActionData.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MembraneActionData,
+            typeof(MembraneActionData), MembraneActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MembraneActionData,
+            typeof(MembraneActionData), MembraneActionData.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.NewMicrobeActionData,
+            typeof(NewMicrobeActionData), NewMicrobeActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.NewMicrobeActionData,
+            typeof(NewMicrobeActionData), NewMicrobeActionData.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleMoveActionData,
+            typeof(OrganelleMoveActionData), OrganelleMoveActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleMoveActionData,
+            typeof(OrganelleMoveActionData), OrganelleMoveActionData.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleUpgradeActionData,
+            typeof(OrganelleUpgradeActionData), OrganelleUpgradeActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleUpgradeActionData,
+            typeof(OrganelleUpgradeActionData), OrganelleUpgradeActionData.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.RigidityActionData,
+            typeof(RigidityActionData), RigidityActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.RigidityActionData,
+            typeof(RigidityActionData), RigidityActionData.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ToleranceActionData,
+            typeof(ToleranceActionData), ToleranceActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ToleranceActionData,
+            typeof(ToleranceActionData), ToleranceActionData.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MetaballMoveActionData,
+            typeof(MetaballMoveActionData<>), MetaballActionDataSerializer.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MetaballMoveActionData,
+            typeof(MetaballMoveActionData<>), MetaballActionDataSerializer.ReadMoveFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MetaballPlacementActionData,
+            typeof(MetaballPlacementActionData<>), MetaballActionDataSerializer.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MetaballPlacementActionData,
+            typeof(MetaballPlacementActionData<>), MetaballActionDataSerializer.ReadPlacementFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MetaballRemoveActionData,
+            typeof(MetaballRemoveActionData<>), MetaballActionDataSerializer.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MetaballRemoveActionData,
+            typeof(MetaballRemoveActionData<>), MetaballActionDataSerializer.ReadRemoveFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MetaballResizeActionData,
+            typeof(MetaballResizeActionData<>), MetaballActionDataSerializer.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MetaballResizeActionData,
+            typeof(MetaballResizeActionData<>), MetaballActionDataSerializer.ReadResizeFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchDetailsMigration,
+            typeof(PatchDetailsPanel.Migration), PatchDetailsPanel.Migration.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchDetailsMigration,
+            typeof(PatchDetailsPanel.Migration), PatchDetailsPanel.Migration.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganellePlacementActionData,
+            typeof(OrganellePlacementActionData), OrganellePlacementActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganellePlacementActionData,
+            typeof(OrganellePlacementActionData), OrganellePlacementActionData.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleRemoveActionData,
+            typeof(OrganelleRemoveActionData), OrganelleRemoveActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleRemoveActionData,
+            typeof(OrganelleRemoveActionData), OrganelleRemoveActionData.ReadFromArchive);
+
+        RegisterLimitedObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellEditorComponent,
+            typeof(CellEditorComponent));
+        RegisterLimitedObjectType((ArchiveObjectType)ThriveArchiveObjectType.TolerancesEditorSubComponent,
+            typeof(TolerancesEditorSubComponent));
+        RegisterLimitedObjectType((ArchiveObjectType)ThriveArchiveObjectType.BehaviourEditorSubComponent,
+            typeof(BehaviourEditorSubComponent));
+        RegisterLimitedObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellBodyPlanEditorComponent,
+            typeof(CellBodyPlanEditorComponent));
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MicrobeEditor,
+            typeof(MicrobeEditor), MicrobeEditor.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MulticellularEditor,
+            typeof(MulticellularEditor), MulticellularEditor.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CombinedEditorAction,
+            typeof(CombinedEditorAction), CombinedEditorAction.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ExtendedSingleEditorAction,
+            typeof(SingleEditorAction<>), EditorActionSerializer.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SingleEditorAction,
+            typeof(SingleEditorAction<>), EditorActionSerializer.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.SingleEditorAction,
+            typeof(SingleEditorAction<>), EditorActionSerializer.WriteToArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellPlacementActionData,
+            typeof(CellPlacementActionData), CellPlacementActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellPlacementActionData,
+            typeof(CellPlacementActionData), CellPlacementActionData.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellMoveActionData,
+            typeof(CellMoveActionData), CellMoveActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellMoveActionData,
+            typeof(CellMoveActionData), CellMoveActionData.ReadFromArchive);
     }
 }

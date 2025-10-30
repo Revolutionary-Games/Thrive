@@ -6,7 +6,7 @@
 public interface ISaveLoadedTracked
 {
     /// <summary>
-    ///   Set to true when loaded from a save
+    ///   Set to true when loaded from save
     /// </summary>
     [JsonIgnore]
     public bool IsLoadedFromSave { get; set; }

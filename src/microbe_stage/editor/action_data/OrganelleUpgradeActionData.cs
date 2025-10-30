@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
+using SharedBase.Archive;
 
-[JSONAlwaysDynamicType]
 public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public OrganelleUpgrades NewUpgrades;
     public OrganelleUpgrades OldUpgrades;
 
@@ -17,6 +20,19 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
         OldUpgrades = oldUpgrades;
         NewUpgrades = newUpgrades;
         UpgradedOrganelle = upgradedOrganelle;
+    }
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.OrganelleUpgradeActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.OrganelleUpgradeActionData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((OrganelleUpgradeActionData)obj);
     }
 
     public static double CalculateUpgradeCost(Dictionary<string, AvailableUpgrade> availableUpgrades,
@@ -74,6 +90,29 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
         }
 
         return cost;
+    }
+
+    public static OrganelleUpgradeActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new OrganelleUpgradeActionData(reader.ReadObject<OrganelleUpgrades>(),
+            reader.ReadObject<OrganelleUpgrades>(), reader.ReadObject<OrganelleTemplate>());
+
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(OldUpgrades);
+        writer.WriteObject(NewUpgrades);
+        writer.WriteObject(UpgradedOrganelle);
+
+        writer.Write(SERIALIZATION_VERSION_CONTEXT);
+        base.WriteToArchive(writer);
     }
 
     protected override double CalculateBaseCostInternal()

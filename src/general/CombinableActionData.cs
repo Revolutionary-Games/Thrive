@@ -1,4 +1,5 @@
 ﻿using System;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Combinable action data that can be combined with other actions.
@@ -6,12 +7,18 @@
 ///   This is implemented as aid for the player,
 ///   so that how many steps need to be undone when doing repetitive actions is reduced.
 /// </summary>
-public abstract class CombinableActionData
+public abstract class CombinableActionData : IArchivable
 {
     /// <summary>
     ///   Does this action reset every action that happened before it? Used for the "new cell" button in freebuild.
     /// </summary>
     public virtual bool ResetsHistory => false;
+
+    public abstract ushort CurrentArchiveVersion { get; }
+    public abstract ArchiveObjectType ArchiveObjectType { get; }
+    public virtual bool CanBeReferencedInArchive => true;
+
+    public abstract void WriteToArchive(ISArchiveWriter writer);
 
     /// <summary>
     ///   Should this action be merged with the previous one if possible?

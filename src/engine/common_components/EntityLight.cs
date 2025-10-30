@@ -1,5 +1,6 @@
 ﻿namespace Components;
 
+using System;
 using Godot;
 using SharedBase.Archive;
 using Systems;
@@ -20,7 +21,14 @@ public struct EntityLight : IArchivableComponent
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.WriteObjectOrNull(Lights);
+        if (Lights != null)
+        {
+            writer.WriteObject(Lights);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
     }
 
     public struct Light : IArchivable
@@ -44,6 +52,35 @@ public struct EntityLight : IArchivableComponent
         public ushort CurrentArchiveVersion => SERIALIZATION_VERSION_INNER;
         public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.EntityLightConfig;
         public bool CanBeReferencedInArchive => false;
+
+        public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+        {
+            if (type != (ArchiveObjectType)ThriveArchiveObjectType.EntityLightConfig)
+                throw new NotSupportedException();
+
+            writer.WriteObject((Light)obj);
+        }
+
+        public static Light ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+        {
+            if (version is > SERIALIZATION_VERSION or <= 0)
+                throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+            return new Light
+            {
+                Color = reader.ReadColor(),
+                Position = reader.ReadVector3(),
+                Intensity = reader.ReadFloat(),
+                Range = reader.ReadFloat(),
+                Attenuation = reader.ReadFloat(),
+                Enabled = reader.ReadBool(),
+            };
+        }
+
+        public static object ReadFromArchiveBoxed(ISArchiveReader reader, ushort version, int referenceId)
+        {
+            return ReadFromArchive(reader, version, referenceId);
+        }
 
         public void WriteToArchive(ISArchiveWriter writer)
         {

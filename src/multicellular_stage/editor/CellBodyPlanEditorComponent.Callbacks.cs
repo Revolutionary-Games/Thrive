@@ -39,7 +39,8 @@ public partial class CellBodyPlanEditorComponent
     [ArchiveAllowedMethod]
     private void UndoCellPlaceAction(CellPlacementActionData data)
     {
-        editedMicrobeCells.Remove(data.PlacedHex);
+        if (!editedMicrobeCells.Remove(data.PlacedHex))
+            GD.PrintErr("Failed to remove placed cell from layout");
     }
 
     [ArchiveAllowedMethod]

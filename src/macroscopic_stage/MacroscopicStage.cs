@@ -10,8 +10,10 @@ using SharedBase.Archive;
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/macroscopic_stage/MacroscopicStage.tscn")]
 [UseThriveSerializer]
-public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, DummyWorldSimulation>
+public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, DummyWorldSimulation>, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private const string STAGE_TRANSITION_MOUSE_LOCK = "toSocietyStage";
 
     [JsonProperty]
@@ -85,6 +87,9 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     // TODO: change when there is dying implemented
     [JsonIgnore]
     public override bool HasAlivePlayer => HasPlayer;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => throw new NotSupportedException("unimplemented");
 
     [JsonIgnore]
     protected override ICreatureStageHUD BaseHUD => HUD;
@@ -220,6 +225,11 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     public override void OnFinishLoading(Save save)
     {
         OnFinishLoading();
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        throw new NotImplementedException();
     }
 
     public override void StartNewGame()

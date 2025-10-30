@@ -1,11 +1,12 @@
 ﻿namespace AutoEvo;
 
 using System;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
-[JSONDynamicTypeAllowed]
 public class MaintainCompoundPressure : SelectionPressure
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
     private static readonly LocalizedString NameString = new LocalizedString("MICHE_MAINTAIN_COMPOUND_PRESSURE");
@@ -14,21 +15,38 @@ public class MaintainCompoundPressure : SelectionPressure
 
     private readonly CompoundDefinition compound;
 
-    // Needed for saving to work
-    [JsonProperty(nameof(compound))]
-    private readonly Compound compoundRaw;
-
     public MaintainCompoundPressure(Compound compound, float weight) : base(weight, [
         AddOrganelleAnywhere.ThatCreateCompound(compound),
         RemoveOrganelle.ThatUseCompound(compound),
     ])
     {
-        compoundRaw = compound;
         this.compound = SimulationParameters.GetCompound(compound);
     }
 
-    [JsonIgnore]
     public override LocalizedString Name => NameString;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.MaintainCompoundPressure;
+
+    public static MaintainCompoundPressure ReadFromArchive(ISArchiveReader reader, ushort version,
+        int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new MaintainCompoundPressure((Compound)reader.ReadInt32(), reader.ReadFloat());
+
+        instance.ReadBasePropertiesFromArchive(reader, 1);
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write((int)compound.ID);
+        base.WriteToArchive(writer);
+    }
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {

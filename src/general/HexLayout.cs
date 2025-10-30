@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Base class implementing the basic structure for holding layouts composed of hexes (for example microbe's
+///   Base class implementing the basic structure for holding layouts composed of hexes (for example, microbe's
 ///   organelles)
 /// </summary>
 /// <remarks>
@@ -91,7 +91,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
     }
 
     /// <summary>
-    ///   Generic interface implementation of add. Note that this allocates memory and should be avoided.
+    ///   Generic interface implementation of adding. Note that this allocates memory and should be avoided.
     /// </summary>
     public void Add(T hex)
     {

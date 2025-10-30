@@ -2,6 +2,9 @@
 using Godot;
 using Saving;
 
+// TODO: maybe it would be better to have a list of known fully supported old versions that the automnatic versioned
+// reads now handle?
+
 /// <summary>
 ///   Allows upgrading older saves to newer versions when there are save upgrade actions programmed
 /// </summary>

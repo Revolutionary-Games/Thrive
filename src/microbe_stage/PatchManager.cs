@@ -8,7 +8,7 @@ using Systems;
 /// <summary>
 ///   Manages applying patch data and setting up spawns in a <see cref="MicrobeWorldSimulation"/>
 /// </summary>
-public class PatchManager : IChildPropertiesLoadCallback
+public class PatchManager
 {
     // Currently active spawns
     private readonly List<CreatedSpawner> chunkSpawners = new();
@@ -26,16 +26,6 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private float compoundCloudBrightness = 1.0f;
 
-    /// <summary>
-    ///   Used to detect when an old save is loaded, and we can't rely on the new logic for despawning things
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: remove this as it should be safe as there's been save breakage points added since this was added
-    ///   </para>
-    /// </remarks>
-    private bool skipDespawn;
-
     public PatchManager(SpawnSystem spawnSystem, MicrobeTerrainSystem terrainSystem, ProcessSystem processSystem,
         CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight3D worldLight)
     {
@@ -48,15 +38,6 @@ public class PatchManager : IChildPropertiesLoadCallback
     }
 
     public GameProperties? CurrentGame { get; set; }
-
-    public void OnNoPropertiesLoaded()
-    {
-        skipDespawn = true;
-    }
-
-    public void OnPropertiesLoaded()
-    {
-    }
 
     /// <summary>
     ///   Applies all patch-related settings that are needed to be set. Like different spawners, despawning old
@@ -71,7 +52,7 @@ public class PatchManager : IChildPropertiesLoadCallback
     {
         var patchIsChanged = false;
 
-        if (previousPatch != currentPatch && !skipDespawn)
+        if (previousPatch != currentPatch)
         {
             if (previousPatch != null)
             {
@@ -98,7 +79,6 @@ public class PatchManager : IChildPropertiesLoadCallback
         }
 
         previousPatch = currentPatch;
-        skipDespawn = false;
 
         GD.Print($"Applying patch ({currentPatch.Name}) settings");
 

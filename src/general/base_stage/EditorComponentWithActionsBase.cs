@@ -1,5 +1,4 @@
 ﻿using Godot;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   Editor component that contains an MP bar, undo / redo buttons etc. related functions
@@ -32,14 +31,12 @@ public partial class EditorComponentWithActionsBase<TEditor, TAction> : EditorCo
     /// <summary>
     ///   If true an editor (component) action is active and can be cancelled. By default, just checks for moves
     /// </summary>
-    [JsonIgnore]
     public virtual bool CanCancelAction => throw new GodotAbstractPropertyNotOverriddenException();
 
     /// <summary>
     ///   If true, the finish button will have a warning badge shown on the top right to indicate that something
     ///   requires player attention before finishing.
     /// </summary>
-    [JsonIgnore]
     public virtual bool ShowFinishButtonWarning => CanCancelAction;
 
     public override void OnActionBlockedWhileAnotherIsInProgress()

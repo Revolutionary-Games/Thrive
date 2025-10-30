@@ -236,9 +236,15 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         // changed while in the editor, it doesn't update this stage's translation cache.
         TranslationServer.SetLocale(TranslationServer.GetLocale());
 
-        // Auto save is wanted once possible (unless we are in prototypes)
-        if (!CurrentGame.InPrototypes)
-            wantsToSave = true;
+        // Auto save is wanted once possible
+        wantsToSave = true;
+
+        // Unless we are in prototypes (except ones that allow saving)
+        if (CurrentGame.InPrototypes && !SaveHelper.CanSaveInPrototype(GameState))
+        {
+            GD.Print("Suppressing auto save in prototypes");
+            wantsToSave = false;
+        }
 
         pauseMenu.SetNewSaveNameFromSpeciesName();
     }

@@ -15,7 +15,11 @@ public class HexWithData<T> : IPositionedHex, IActionHex, IArchivable
 
     public ushort CurrentArchiveVersion => HexLayoutSerializer.SERIALIZATION_VERSION;
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ExtendedHexWithData;
-    public bool CanBeReferencedInArchive => false;
+
+    /// <summary>
+    ///   Has to be referenceable for editor action history to work
+    /// </summary>
+    public bool CanBeReferencedInArchive => true;
 
     public bool MatchesDefinition(IActionHex other)
     {
