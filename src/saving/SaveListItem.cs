@@ -3,17 +3,17 @@ using System.Globalization;
 using Godot;
 
 /// <summary>
-///   An item in the saves list. This is a class to handle loading its data from the file
+///   An item in the save list. This is a class to handle loading its data from the file
 /// </summary>
 public partial class SaveListItem : PanelContainer
 {
+    public static readonly object ResizeLock = new();
+
     [Export]
     public bool Selectable;
 
     [Export]
     public bool Loadable = true;
-
-    private static readonly object ResizeLock = new();
 
 #pragma warning disable CA2213
     [Export]
