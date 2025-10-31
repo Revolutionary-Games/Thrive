@@ -298,6 +298,7 @@ public enum ThriveArchiveObjectType : uint
     SingleEditorAction = 4381,
     FossilisedSpeciesInformation = 4382,
     FossilisedSpecies = 4383,
+    Endosymbiont = 4384,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,

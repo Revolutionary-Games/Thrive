@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
 ///   Basically just adding the positioning info on top of OrganelleDefinition.
 ///   When the layout is instantiated in a cell, the PlacedOrganelle class is used.
 /// </summary>
-[JsonObject(IsReference = true)]
-[JSONDynamicTypeAllowed]
-public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, IPlayerReadableName, IArchivable
+public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, IPlayerReadableName
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
-    [JsonProperty]
     public readonly OrganelleDefinition Definition;
 
     public OrganelleTemplate(OrganelleDefinition definition, Hex location, int rotation)
@@ -26,7 +22,6 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
 
     public Hex Position { get; set; }
 
-    [JsonIgnore]
     public Vector3 OrganelleModelPosition => Hex.AxialToCartesian(Position) + Definition.ModelOffset;
 
     /// <summary>
@@ -39,23 +34,17 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
     /// </summary>
     public OrganelleUpgrades? Upgrades { get; set; }
 
-    [JsonIgnore]
     public string ReadableName => Definition.Name;
 
-    [JsonIgnore]
     public string ReadableExactIdentifier => Localization.Translate("ITEM_AT_2D_COORDINATES")
         .FormatSafe(Definition.Name, Position.Q, Position.R);
 
-    [JsonIgnore]
     public IReadOnlyList<Hex> RotatedHexes => Definition.GetRotatedHexes(Orientation);
 
-    [JsonIgnore]
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
-    [JsonIgnore]
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.OrganelleTemplate;
 
-    [JsonIgnore]
     public bool CanBeReferencedInArchive => true;
 
 #pragma warning disable CA1033

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using Saving.Serializers;
 using SharedBase.Archive;
 
@@ -8,7 +7,6 @@ using SharedBase.Archive;
 ///   Allows placing individual hexes with data in a layout
 /// </summary>
 /// <typeparam name="TData">The type of data to hold in hexes</typeparam>
-[UseThriveSerializer]
 public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IArchivable
     where TData : IActionHex, IArchivable
 {
@@ -17,7 +15,6 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IArchiv
     {
     }
 
-    [JsonConstructor]
     public IndividualHexLayout()
     {
     }
@@ -27,14 +24,11 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IArchiv
     {
     }
 
-    [JsonIgnore]
     public ushort CurrentArchiveVersion => HexLayoutSerializer.SERIALIZATION_VERSION;
 
-    [JsonIgnore]
     public ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.ExtendedIndividualHexLayout;
 
-    [JsonIgnore]
     public bool CanBeReferencedInArchive => true;
 
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)

@@ -342,6 +342,11 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PlayerReadableName,
             typeof(IPlayerReadableName), IPlayerReadableName.WriteToArchive);
         RegisterBaseClass((ArchiveObjectType)ThriveArchiveObjectType.PlayerReadableName, typeof(IPlayerReadableName));
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Endosymbiont,
+            typeof(Endosymbiont), Endosymbiont.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Endosymbiont,
+            typeof(Endosymbiont), Endosymbiont.ReadFromArchive);
     }
 
     private void RegisterComponentParts()

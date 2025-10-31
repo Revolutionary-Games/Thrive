@@ -21,7 +21,7 @@ public class SaveFileInfo
     public string Path { get; }
 
     /// <summary>
-    ///   Name of the the save file
+    ///   Name of the save file
     /// </summary>
     public string Name { get; }
 

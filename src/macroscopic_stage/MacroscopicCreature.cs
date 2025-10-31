@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 ///   Main script on each macroscopic creature in the game
 /// </summary>
 [JsonObject(IsReference = true)]
-[JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/macroscopic_stage/MacroscopicCreature.tscn", UsesEarlyResolve = false)]
 public partial class MacroscopicCreature : RigidBody3D, ICharacterInventory, IEntity,
     IStructureSelectionReceiver<StructureDefinition>, IActionProgressSource

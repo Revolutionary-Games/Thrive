@@ -19,7 +19,7 @@ public class InProgressSave : IDisposable
     private readonly Stopwatch stopwatch;
 
     /// <summary>
-    ///   Raw save name, that is processed by saveNameTask
+    ///   Raw save name that is processed by saveNameTask
     /// </summary>
     private readonly string? saveName;
 
@@ -67,6 +67,7 @@ public class InProgressSave : IDisposable
     {
         Initial,
         Screenshot,
+        PostProcessScreenshot,
         SaveData,
         Finished,
     }
@@ -193,6 +194,7 @@ public class InProgressSave : IDisposable
 
                 state = State.Screenshot;
                 break;
+
             case State.Screenshot:
             {
                 save = createSaveData.Invoke(this);
@@ -205,6 +207,32 @@ public class InProgressSave : IDisposable
                 SaveStatusOverlay.Instance.ShowMessage(Localization.Translate("SAVING_DOT_DOT_DOT"),
                     float.PositiveInfinity);
 
+                state = State.PostProcessScreenshot;
+                break;
+            }
+
+            case State.PostProcessScreenshot:
+            {
+                // Resize the screenshot for smaller saves (if configured and the screenshot is too big)
+                if (save?.Screenshot != null && Settings.Instance.LimitSaveScreenshotSize)
+                {
+                    var screenshot = save.Screenshot;
+
+                    var maxSize = Constants.SAVE_LIST_SCREENSHOT_HEIGHT;
+
+                    if (screenshot.GetWidth() > maxSize || screenshot.GetHeight() > maxSize)
+                    {
+                        GD.Print("Resizing screenshot for smaller save file");
+
+                        float aspectRatio = screenshot.GetWidth() / (float)screenshot.GetHeight();
+
+                        lock (SaveListItem.ResizeLock)
+                        {
+                            screenshot.Resize((int)(maxSize * aspectRatio), maxSize, Image.Interpolation.Lanczos);
+                        }
+                    }
+                }
+
                 state = State.SaveData;
                 break;
             }
@@ -214,7 +242,7 @@ public class InProgressSave : IDisposable
                 if (saveNameTask == null)
                 {
                     throw new InvalidOperationException(
-                        "In progress ave is in invalid state for missing save name generation task");
+                        "In progress save is in invalid state for missing save name generation task");
                 }
 
                 save!.Name = saveNameTask.Result;

@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using SharedBase.Archive;
+﻿using SharedBase.Archive;
 using ThriveScriptsShared;
 
 /// <summary>
@@ -34,7 +33,6 @@ public class StorageComponentFactory : IOrganelleComponentFactory
     }
 }
 
-[JSONDynamicTypeAllowed]
 public class StorageComponentUpgrades : IComponentSpecificUpgrades
 {
     public const ushort SERIALIZATION_VERSION = 1;
@@ -46,13 +44,10 @@ public class StorageComponentUpgrades : IComponentSpecificUpgrades
 
     public Compound SpecializedFor { get; set; }
 
-    [JsonIgnore]
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
-    [JsonIgnore]
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.StorageComponentUpgrades;
 
-    [JsonIgnore]
     public bool CanBeReferencedInArchive => false;
 
     public static StorageComponentUpgrades ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)

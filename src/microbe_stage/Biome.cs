@@ -1,7 +1,5 @@
-﻿using System.ComponentModel;
-using Godot;
+﻿using Godot;
 using Newtonsoft.Json;
-using Saving.Serializers;
 using SharedBase.Archive;
 using ThriveScriptsShared;
 
@@ -9,7 +7,6 @@ using ThriveScriptsShared;
 ///   Base microbe biome with some parameters that are used for a Patch.
 ///   Modifiable versions of a Biome are stored in patches.
 /// </summary>
-[TypeConverter($"Saving.Serializers.{nameof(BiomeStringConverter)}")]
 public class Biome : RegistryType
 {
     /// <summary>

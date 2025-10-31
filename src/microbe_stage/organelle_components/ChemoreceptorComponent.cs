@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Arch.Core;
 using Components;
 using Godot;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
@@ -92,7 +91,6 @@ public class ChemoreceptorComponentFactory : IOrganelleComponentFactory
     }
 }
 
-[JSONDynamicTypeAllowed]
 public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
 {
     public const ushort SERIALIZATION_VERSION = 1;
@@ -113,13 +111,10 @@ public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
     public float SearchAmount { get; set; }
     public Color LineColour { get; set; }
 
-    [JsonIgnore]
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
-    [JsonIgnore]
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ChemoreceptorUpgrades;
 
-    [JsonIgnore]
     public bool CanBeReferencedInArchive => false;
 
     public static ChemoreceptorUpgrades ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)

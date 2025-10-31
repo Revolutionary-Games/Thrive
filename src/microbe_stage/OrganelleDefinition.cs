@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
-using Saving.Serializers;
 using SharedBase.Archive;
 using ThriveScriptsShared;
 using UnlockConstraints;
@@ -20,7 +18,6 @@ using UnlockConstraints;
 ///     organelles.json.
 ///   </para>
 /// </remarks>
-[TypeConverter($"Saving.Serializers.{nameof(OrganelleDefinitionStringConverter)}")]
 #pragma warning disable CA1001 // Owns Godot resource that is fine to stay for the program lifetime
 public class OrganelleDefinition : RegistryType
 #pragma warning restore CA1001
@@ -117,6 +114,7 @@ public class OrganelleDefinition : RegistryType
     /// <summary>
     ///   Enzymes contained in this organelle
     /// </summary>
+    [JsonIgnore]
     public Dictionary<Enzyme, int> Enzymes = new();
 
     /// <summary>

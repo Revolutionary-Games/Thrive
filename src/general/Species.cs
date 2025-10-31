@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Godot;
-using Newtonsoft.Json;
-using Saving.Serializers;
 using SharedBase.Archive;
 
 /// <summary>
@@ -17,20 +14,13 @@ using SharedBase.Archive;
 ///     This must remain JSON serializable until fossil files are switched over to the archive system.
 ///   </para>
 /// </remarks>
-[JsonObject(IsReference = true)]
-[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
-[JSONAlwaysDynamicType]
-[UseThriveConverter]
-[UseThriveSerializer]
 public abstract class Species : ICloneable, IArchivable
 {
     /// <summary>
     ///   This is not an auto property to make save compatibility easier
     /// </summary>
-    [JsonProperty]
     private Dictionary<Compound, float>? cachedBaseReproductionCost;
 
-    [JsonProperty]
     private Dictionary<Compound, float>? cachedTotalReproductionCost;
 
     protected Species(uint id, string genus, string epithet)
@@ -43,13 +33,11 @@ public abstract class Species : ICloneable, IArchivable
     /// <summary>
     ///   This is the amount of compounds cells of this type spawn with
     /// </summary>
-    [JsonProperty]
     public Dictionary<Compound, float> InitialCompounds { get; private set; } = new();
 
     /// <summary>
     ///   The base compounds needed to reproduce an individual of this species. Do not modify the returned value.
     /// </summary>
-    [JsonIgnore]
     public IReadOnlyDictionary<Compound, float> BaseReproductionCost =>
         cachedBaseReproductionCost ??= CalculateBaseReproductionCost();
 
@@ -57,7 +45,6 @@ public abstract class Species : ICloneable, IArchivable
     ///   The total compounds (including organelles, etc. when applicable) needed to reproduce an individual
     ///   of this species.
     /// </summary>
-    [JsonIgnore]
     public IReadOnlyDictionary<Compound, float> TotalReproductionCost =>
         cachedTotalReproductionCost ??= CalculateTotalReproductionCost();
 
@@ -70,7 +57,6 @@ public abstract class Species : ICloneable, IArchivable
     ///     followed by a sequential number, so now this is an actual number.
     ///   </para>
     /// </remarks>
-    [JsonProperty]
     public uint ID { get; private set; }
 
     public string Genus { get; set; }
@@ -81,9 +67,8 @@ public abstract class Species : ICloneable, IArchivable
     /// <summary>
     ///   The colour value for GUI Components that want to show this species' colour.
     ///   This value has additional constraints compared to plain Colour,
-    ///   for example ensuring full opacity to avoid transparency, which can cause rendering bugs.
+    ///   for example, ensuring full opacity to avoid transparency, which can cause rendering bugs.
     /// </summary>
-    [JsonIgnore]
     public Color GUIColour
     {
         get
@@ -103,7 +88,6 @@ public abstract class Species : ICloneable, IArchivable
     /// <summary>
     ///   This holds all behavioural values and defines how this species will behave in the environment.
     /// </summary>
-    [JsonProperty]
     public BehaviourDictionary Behaviour { get; set; } = new();
 
     /// <summary>
@@ -119,34 +103,23 @@ public abstract class Species : ICloneable, IArchivable
     public int Generation { get; set; } = 1;
 
     /// <summary>
-    ///   This is the genome of the species
-    /// </summary>
-    [JsonIgnore]
-    public abstract string StringCode { get; }
-
-    /// <summary>
     ///   When true, this is the player species
     /// </summary>
-    [JsonProperty]
     public bool PlayerSpecies { get; private set; }
 
-    [JsonProperty]
     public EndosymbiosisData Endosymbiosis { get; private set; } = new();
 
     /// <summary>
     ///   Environmental tolerances of this species (determines what it can take in terms of habitat)
     /// </summary>
-    [JsonProperty]
     public EnvironmentalTolerances Tolerances { get; private set; } = new();
 
-    [JsonIgnore]
     public string FormattedName => Genus + " " + Epithet;
 
     /// <summary>
     ///   Returns <see cref="FormattedName"/> but includes bbcode tags for styling and hover-over tooltips. Player's
     ///   species will be emphasized with bolding.
     /// </summary>
-    [JsonIgnore]
     public string FormattedNameBbCode => PlayerSpecies ?
         $"[b][i]{FormattedNameBbCodeUnstyled}[/i][/b]" :
         $"[i]{FormattedNameBbCodeUnstyled}[/i]";
@@ -154,22 +127,16 @@ public abstract class Species : ICloneable, IArchivable
     /// <summary>
     ///   Returns <see cref="FormattedName"/> but includes bbcode tags for hover-over tooltips.
     /// </summary>
-    [JsonIgnore]
     public string FormattedNameBbCodeUnstyled => $"[url=species:{ID}]{FormattedName}[/url]";
 
-    [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 
-    [JsonIgnore]
     public bool IsExtinct => Population <= 0;
 
-    [JsonIgnore]
     public abstract ushort CurrentArchiveVersion { get; }
 
-    [JsonIgnore]
     public abstract ArchiveObjectType ArchiveObjectType { get; }
 
-    [JsonIgnore]
     public bool CanBeReferencedInArchive => true;
 
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)

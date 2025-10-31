@@ -6,7 +6,6 @@ using UnlockConstraints;
 /// <summary>
 ///   Stores which organelles have been unlocked by the player.
 /// </summary>
-[UseThriveSerializer]
 public class UnlockProgress : IArchiveUpdatable
 {
     public const ushort SERIALIZATION_VERSION = 1;

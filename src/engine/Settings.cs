@@ -461,6 +461,12 @@ public class Settings
     public SettingValue<int> MaxQuickSaves { get; private set; } = new(5);
 
     /// <summary>
+    ///   Scale down screenshots in save files to save disk space
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> LimitSaveScreenshotSize { get; private set; } = new(true);
+
+    /// <summary>
     ///   Saves the current settings by writing them to the settings configuration file.
     ///   Show tutorial messages
     /// </summary>

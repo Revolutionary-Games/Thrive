@@ -1,18 +1,24 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
-using Saving.Serializers;
 using ThriveScriptsShared;
 
 /// <summary>
 ///   A recipe for crafting some things from raw resources
 /// </summary>
-[TypeConverter($"Saving.Serializers.{nameof(CraftingRecipeStringConverter)}")]
 public class CraftingRecipe : IRegistryType
 {
+    private readonly Dictionary<WorldResource, int> requiredResources = new();
+    private readonly Dictionary<EquipmentDefinition, int> producesEquipment = new();
+
 #pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
+
+    [JsonProperty(nameof(RequiredResources))]
+    private Dictionary<string, int>? requiredResourcesRaw;
+
+    [JsonProperty(nameof(ProducesEquipment))]
+    private Dictionary<string, int>? producesEquipmentRaw;
 #pragma warning restore 169,649
 
     [JsonConstructor]
@@ -25,11 +31,11 @@ public class CraftingRecipe : IRegistryType
     [TranslateFrom(nameof(untranslatedName))]
     public string Name { get; private set; }
 
-    [JsonProperty]
-    public Dictionary<WorldResource, int> RequiredResources { get; private set; } = new();
+    [JsonIgnore]
+    public Dictionary<WorldResource, int> RequiredResources => requiredResources;
 
-    [JsonProperty]
-    public Dictionary<EquipmentDefinition, int> ProducesEquipment { get; private set; } = new();
+    [JsonIgnore]
+    public Dictionary<EquipmentDefinition, int> ProducesEquipment => producesEquipment;
 
     [JsonIgnore]
     public string InternalName { get; set; } = null!;
@@ -50,10 +56,10 @@ public class CraftingRecipe : IRegistryType
     }
 
     /// <summary>
-    ///   Checks if can craft this recipe
+    ///   Checks if the player can craft this recipe
     /// </summary>
     /// <param name="availableMaterials">The materials that are available</param>
-    /// <returns>Null if can craft, otherwise the material type that is missing</returns>
+    /// <returns>Null if can be crafted, otherwise the material type that is missing</returns>
     public WorldResource? CanCraft(IReadOnlyDictionary<WorldResource, int> availableMaterials)
     {
         return ResourceAmountHelpers.CalculateMissingResource(availableMaterials, RequiredResources);
@@ -71,18 +77,32 @@ public class CraftingRecipe : IRegistryType
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
 
-        if (RequiredResources.Count < 1)
+        if (requiredResourcesRaw == null || requiredResourcesRaw.Count < 1)
             throw new InvalidRegistryDataException(name, GetType().Name, "Empty required resources");
 
-        if (RequiredResources.Any(t => t.Value < 1))
+        if (requiredResourcesRaw.Any(t => t.Value < 1))
             throw new InvalidRegistryDataException(name, GetType().Name, "Bad required resource amount");
 
         // TODO: allow producing something else than equipment
-        if (ProducesEquipment.Count < 1)
+        if (producesEquipmentRaw == null || producesEquipmentRaw.Count < 1)
             throw new InvalidRegistryDataException(name, GetType().Name, "Empty recipe outputs");
 
-        if (ProducesEquipment.Any(t => t.Value < 1))
+        if (producesEquipmentRaw.Any(t => t.Value < 1))
             throw new InvalidRegistryDataException(name, GetType().Name, "Bad produced equipment amount");
+    }
+
+    public void Resolve(SimulationParameters simulationParameters)
+    {
+        // Check already checked that these exist
+        foreach (var entry in requiredResourcesRaw!)
+        {
+            requiredResources.Add(simulationParameters.GetWorldResource(entry.Key), entry.Value);
+        }
+
+        foreach (var entry in producesEquipmentRaw!)
+        {
+            producesEquipment.Add(simulationParameters.GetBaseEquipmentDefinition(entry.Key), entry.Value);
+        }
     }
 
     public void ApplyTranslations()

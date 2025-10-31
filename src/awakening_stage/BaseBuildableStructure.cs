@@ -14,12 +14,21 @@ public class BaseBuildableStructure : IRegistryType
 
     // This has to be protected for the translation operations to find this field through reflection
     protected string? untranslatedName;
+
+    [JsonProperty(nameof(RequiredResources))]
+    protected Dictionary<string, int>? requiredResourcesRaw;
+
+    [JsonProperty(nameof(ScaffoldingCost))]
+    protected Dictionary<string, int>? scaffoldingCostRaw;
 #pragma warning restore 169,649
 
     private readonly Lazy<PackedScene> worldRepresentation;
     private readonly Lazy<PackedScene> ghostRepresentation;
     private readonly Lazy<PackedScene> scaffoldingScene;
     private readonly Lazy<Texture2D> icon;
+
+    private readonly Dictionary<WorldResource, int> requiredResources = new();
+    private readonly Dictionary<WorldResource, int> scaffoldingCost = new();
 
     [JsonConstructor]
     public BaseBuildableStructure(string name)
@@ -54,17 +63,15 @@ public class BaseBuildableStructure : IRegistryType
     /// <summary>
     ///   The cost to finish this structure once scaffolding is placed
     /// </summary>
-    [JsonProperty]
-    public IReadOnlyDictionary<WorldResource, int> RequiredResources { get; private set; } =
-        new Dictionary<WorldResource, int>();
+    [JsonIgnore]
+    public IReadOnlyDictionary<WorldResource, int> RequiredResources => requiredResources;
 
     /// <summary>
     ///   The cost of placing this structure after which <see cref="RequiredResources"/> need to be added to finish
     ///   the construction
     /// </summary>
-    [JsonProperty]
-    public IReadOnlyDictionary<WorldResource, int> ScaffoldingCost { get; private set; } =
-        new Dictionary<WorldResource, int>();
+    [JsonIgnore]
+    public IReadOnlyDictionary<WorldResource, int> ScaffoldingCost => scaffoldingCost;
 
     /// <summary>
     ///   The total resource cost of building this structure
@@ -144,24 +151,35 @@ public class BaseBuildableStructure : IRegistryType
         if (string.IsNullOrEmpty(BuildingIcon))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing icon");
 
-        if (RequiredResources.Count < 1)
+        if (requiredResourcesRaw == null || requiredResourcesRaw.Count < 1)
             throw new InvalidRegistryDataException(name, GetType().Name, "Empty required resources");
 
-        if (RequiredResources.Any(t => t.Value < 1))
+        if (requiredResourcesRaw.Any(t => t.Value < 1))
             throw new InvalidRegistryDataException(name, GetType().Name, "Bad required resource amount");
 
-        if (ScaffoldingCost.Count < 1)
+        if (scaffoldingCostRaw == null || scaffoldingCostRaw.Count < 1)
             throw new InvalidRegistryDataException(name, GetType().Name, "Empty scaffolding cost");
 
-        if (ScaffoldingCost.Any(t => t.Value < 1))
+        if (scaffoldingCostRaw.Any(t => t.Value < 1))
             throw new InvalidRegistryDataException(name, GetType().Name, "Bad required scaffolding resource amount");
 
         if (WorldSize.X <= 0 || WorldSize.Y <= 0 || WorldSize.Z <= 0)
             throw new InvalidRegistryDataException(name, GetType().Name, "Bad world size");
     }
 
-    public void Resolve()
+    public void Resolve(SimulationParameters simulationParameters)
     {
+        // Verified by Check to not be null
+        foreach (var entry in requiredResourcesRaw!)
+        {
+            requiredResources.Add(simulationParameters.GetWorldResource(entry.Key), entry.Value);
+        }
+
+        foreach (var entry in scaffoldingCostRaw!)
+        {
+            scaffoldingCost.Add(simulationParameters.GetWorldResource(entry.Key), entry.Value);
+        }
+
         TotalCost = ScaffoldingCost.AsMerged(RequiredResources);
     }
 

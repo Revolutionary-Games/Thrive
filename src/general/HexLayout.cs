@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   Base class implementing the basic structure for holding layouts composed of hexes (for example, microbe's
@@ -16,18 +15,14 @@ using Newtonsoft.Json;
 ///   </para>
 /// </remarks>
 /// <typeparam name="T">The concrete type of the hex to hold</typeparam>
-[UseThriveSerializer]
 public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
     where T : class, IPositionedHex
 {
-    [JsonProperty]
     protected readonly List<T> existingHexes = new();
 
     // This and the next property are protected to make JSON work
-    [JsonProperty]
     protected Action<T>? onAdded;
 
-    [JsonProperty]
     protected Action<T>? onRemoved;
 
     public HexLayout(Action<T>? onAdded, Action<T>? onRemoved = null)
@@ -36,7 +31,6 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
         this.onRemoved = onRemoved;
     }
 
-    [JsonConstructor]
     public HexLayout()
     {
     }
@@ -301,11 +295,6 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
     public IEnumerator<T> GetEnumerator()
     {
         return existingHexes.GetEnumerator();
-    }
-
-    public override string ToString()
-    {
-        return JsonConvert.SerializeObject(this);
     }
 
     [MustDisposeResource]

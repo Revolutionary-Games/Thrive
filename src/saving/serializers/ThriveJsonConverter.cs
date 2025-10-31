@@ -20,8 +20,6 @@ public class ThriveJsonConverter : IDisposable
     private static readonly ThriveJsonConverter InstanceValue = new();
 
     private readonly JsonConverter[] thriveConverters;
-    private readonly List<JsonConverter> thriveConvertersDynamicDeserialize;
-    private readonly DynamicDeserializeObjectConverter dynamicObjectDeserializeConverter;
 
     // TODO: (check if this can cause process lock ups) https://github.com/Revolutionary-Games/Thrive/issues/4989
     private readonly ThreadLocal<JsonSerializerSettings> currentJsonSettings = new();
@@ -35,22 +33,12 @@ public class ThriveJsonConverter : IDisposable
             new GodotColorConverter(),
             new GodotBasisConverter(),
             new GodotQuaternionConverter(),
-            new PackedSceneConverter(),
-            new SystemVector4ArrayConverter(),
-            new ConvexPolygonShapeConverter(),
             new NodePathConverter(),
 
             new CompoundConverter(),
 
             new ConditionSetConverter(),
-
-            // Converter for all types with a specific few attributes for this to be enabled
-            new DefaultThriveJSONConverter(),
         ];
-
-        dynamicObjectDeserializeConverter = new DynamicDeserializeObjectConverter();
-        thriveConvertersDynamicDeserialize = new List<JsonConverter> { dynamicObjectDeserializeConverter };
-        thriveConvertersDynamicDeserialize.AddRange(thriveConverters);
     }
 
     public static ThriveJsonConverter Instance => InstanceValue;
@@ -73,43 +61,6 @@ public class ThriveJsonConverter : IDisposable
     public T? DeserializeObject<T>(string json)
     {
         return PerformWithSettings(s => JsonConvert.DeserializeObject<T>(json, s));
-    }
-
-    /// <summary>
-    ///   Deserializes a fully dynamic object from JSON (the object type is defined only in the JSON).
-    ///   Note that this uses the deserializer type for <see cref="object"/> which means that no custom deserializer
-    ///   logic works! That means this is only usable for basic types. Other types must have an interface or other
-    ///   base type and be used through <see cref="DeserializeObject{T}"/>.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     Even though this uses only basic deserialization, this uses the <see cref="BaseThriveConverter"/> through
-    ///     <see cref="DynamicDeserializeObjectConverter"/> for the base object of the deserialized string. So some
-    ///     of our custom logic works, but for example <see cref="Node"/> deserialization won't use the specialized
-    ///     Node logic.
-    ///   </para>
-    /// </remarks>
-    /// <param name="json">JSON text to parse</param>
-    /// <returns>The created object</returns>
-    /// <exception cref="JsonException">If invalid json or the dynamic type is not allowed</exception>
-    public object? DeserializeObjectDynamic(string json)
-    {
-        return PerformWithSettings(settings =>
-        {
-            // enable hack conversion
-            settings.Converters = thriveConvertersDynamicDeserialize;
-            dynamicObjectDeserializeConverter.ResetConversionCounter();
-
-            try
-            {
-                return JsonConvert.DeserializeObject<object>(json, settings);
-            }
-            finally
-            {
-                // disable hack conversion
-                settings.Converters = thriveConverters;
-            }
-        });
     }
 
     public void Dispose()
@@ -142,21 +93,20 @@ public class ThriveJsonConverter : IDisposable
             // We need to be careful to not deserialize untrusted data with this serializer
             TypeNameHandling = TypeNameHandling.Auto,
 
-            // This blocks most types from using typename handling
-            SerializationBinder = new SerializationBinder(),
+            // This blocks dynamic type loading
+            SerializationBinder = null,
 
             Converters = thriveConverters,
 
             ReferenceResolverProvider = () => referenceResolver,
 
-            // Even though we have our custom converters the JSON library wants to mess with us so we need to force it
-            // to ignore these. This has the slight downside that if someone forgets to add
-            // UseThriveSerializerAttribute when reference loops exist, this probably causes a stack overflow
+            // Even though we have our custom converters, the JSON library wants to mess with us, so we need to force
+            // it to ignore these. Though we use simpler loads now, so this might be able to be removed.
             ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
 
             // Skip writing null properties. This saves a bit of data and as saves are not manually edited shouldn't
             // really miss out on anything by just having null values omitted. One potential pitfall is the requirement
-            // to not rely on a null value to be passed to a json constructor
+            // to not rely on a null value to be passed to a JSON constructor
             NullValueHandling = NullValueHandling.Ignore,
 
             TraceWriter = GetTraceWriter(Settings.Instance.JSONDebugMode, JSONDebug.ErrorHasOccurred),
@@ -251,11 +201,12 @@ public class ThriveJsonConverter : IDisposable
 }
 
 /// <summary>
-///   Base for all the thrive json converter types.
+///   Base for all the thrive JSON converter types.
 ///   this is used to allow access to the global information that shouldn't be saved.
 /// </summary>
 public abstract class BaseThriveConverter : JsonConverter
 {
+    // TODO: these complex handling things should now be unnecessary as saves no longer use JSON
     // ref handling approach from: https://stackoverflow.com/a/53716866/4371508
     public const string REF_PROPERTY = "$ref";
     public const string ID_PROPERTY = "$id";
@@ -264,8 +215,6 @@ public abstract class BaseThriveConverter : JsonConverter
     // and https://stackoverflow.com/a/29826959/4371508
     private const string TYPE_PROPERTY = "$type";
 
-    private static readonly List<string> DefaultOnlyChildCopyIgnore = new();
-
     private static readonly ConcurrentQueue<List<(int Order, string Name, object? Value, Type FieldType)>>
         DelayWriteProperties = new();
 
@@ -273,17 +222,13 @@ public abstract class BaseThriveConverter : JsonConverter
         new OrderComparer();
 
     private static readonly Type ObjectBaseType = typeof(object);
-    private static readonly Type AlwaysDynamicAttribute = typeof(JSONAlwaysDynamicTypeAttribute);
     private static readonly Type SceneLoadedAttribute = typeof(SceneLoadedClassAttribute);
-    private static readonly Type BaseDynamicTypeAllowedAttribute = typeof(JSONDynamicTypeAllowedAttribute);
     private static readonly Type JsonPropertyAttribute = typeof(JsonPropertyAttribute);
     private static readonly Type JsonIgnoreAttribute = typeof(JsonIgnoreAttribute);
     private static readonly Type ExportAttribute = typeof(ExportAttribute);
-    private static readonly Type GodotNodeType = typeof(Node);
 
     /// <summary>
-    ///   These need to always be able to read as we use json for saving so it makes no sense to
-    ///   have a one-way converter
+    ///   We always want to be able to read what we write into JSON
     /// </summary>
     public override bool CanRead => true;
 
@@ -409,14 +354,13 @@ public abstract class BaseThriveConverter : JsonConverter
         // Ensure that instance ended up being a good type
         if (!objectType.IsInstanceOfType(node))
         {
-            // Clean up godot resources
-            TemporaryLoadedNodeDeleter.Instance.Register(node);
-            throw new JsonException("Scene loaded JSON deserialized type can't be assigned to target type");
+            throw new JsonException("Loading Nodes through JSON is no longer allowed");
         }
 
         object instance = node;
 
-        // Let the object know first if it is loaded from a save to allow node resolve do special actions in this case
+        // Let the object know first if it is loaded from a save to allow node resolve to do special actions in this
+        // case
         objectLoad.ReceiveInstance(instance);
 
         // Perform early Node resolve to make loading child Node properties work
@@ -650,41 +594,9 @@ public abstract class BaseThriveConverter : JsonConverter
                 writer.WriteValue(serializer.ReferenceResolver.GetReference(serializer, value));
             }
 
-            // Dynamic typing
+            // We no longer handle dynamic typing
             if (serializer.TypeNameHandling != TypeNameHandling.None)
             {
-                // We don't know the type of field we are included in so we can't detect if the instance type
-                // doesn't match the field (at least I don't think we can,
-                // would be great though if we could - hhyyrylainen).
-                // Seems like a limitation in the JSON library:
-                // https://github.com/JamesNK/Newtonsoft.Json/issues/2126
-                // So we check if the attributes want us to write the type and go with that
-                bool writeType = false;
-
-                var baseType = type.BaseType;
-
-                while (baseType != null && baseType != ObjectBaseType)
-                {
-                    if (baseType.CustomAttributes.Any(a =>
-                            a.AttributeType == BaseDynamicTypeAllowedAttribute) ||
-                        HasAlwaysJSONTypeWriteAttribute(baseType))
-                    {
-                        writeType = true;
-                        break;
-                    }
-
-                    baseType = baseType.BaseType;
-                }
-
-                if (!writeType)
-                    writeType = HasAlwaysJSONTypeWriteAttribute(type);
-
-                if (writeType)
-                {
-                    writer.WritePropertyName(TYPE_PROPERTY);
-
-                    writer.WriteValue(type.AssemblyQualifiedNameWithoutVersion());
-                }
             }
 
             List<(int Order, string Name, object? Value, Type FieldType)>? delayWriteProperties = null;
@@ -825,14 +737,6 @@ public abstract class BaseThriveConverter : JsonConverter
         return false;
     }
 
-    private static bool HasAlwaysJSONTypeWriteAttribute(Type type)
-    {
-        // If the current uses scene creation, a dynamic type needs to be also in that case output
-        return type.CustomAttributes.Any(a =>
-            a.AttributeType == AlwaysDynamicAttribute ||
-            a.AttributeType == SceneLoadedAttribute);
-    }
-
     private static bool UsesOnlyChildAssign(IEnumerable<Attribute> customAttributes)
     {
         var data = customAttributes.FirstOrDefault() as AssignOnlyChildItemsOnDeserializeAttribute;
@@ -895,39 +799,5 @@ public abstract class BaseThriveConverter : JsonConverter
         {
             return x.Order.CompareTo(y.Order);
         }
-    }
-}
-
-/// <summary>
-///   When a class has this attribute <see cref="DefaultThriveJSONConverter"/> is used to serialize it
-/// </summary>
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface)]
-public class UseThriveSerializerAttribute : Attribute
-{
-}
-
-/// <summary>
-///   Custom serializer for all Thrive types that don't need any special handling. They need to have the attribute
-///   <see cref="UseThriveSerializerAttribute"/> to be detected
-/// </summary>
-internal class DefaultThriveJSONConverter : BaseThriveConverter
-{
-    private static readonly Type UseSerializerAttribute = typeof(UseThriveSerializerAttribute);
-    private static readonly Type SceneLoadedAttribute = typeof(SceneLoadedClassAttribute);
-
-    public override bool CanConvert(Type objectType)
-    {
-        // Types with our custom attribute are supported
-        if (objectType.CustomAttributes.Any(a =>
-                a.AttributeType == UseSerializerAttribute || a.AttributeType == SceneLoadedAttribute))
-        {
-            return true;
-        }
-
-        // Serializer attribute in parent type also applies it to child types
-        if (objectType.GetCustomAttribute(UseSerializerAttribute, true) != null)
-            return true;
-
-        return false;
     }
 }

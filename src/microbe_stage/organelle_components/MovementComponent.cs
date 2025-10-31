@@ -2,7 +2,6 @@
 using Arch.Core.Extensions;
 using Components;
 using Godot;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 using ThriveScriptsShared;
 
@@ -188,7 +187,6 @@ public class MovementComponentFactory : IOrganelleComponentFactory
     }
 }
 
-[JSONDynamicTypeAllowed]
 public class FlagellumUpgrades : IComponentSpecificUpgrades
 {
     public const ushort SERIALIZATION_VERSION = 1;
@@ -200,13 +198,10 @@ public class FlagellumUpgrades : IComponentSpecificUpgrades
         LengthFraction = lengthFraction;
     }
 
-    [JsonIgnore]
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
-    [JsonIgnore]
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.FlagellumUpgrades;
 
-    [JsonIgnore]
     public bool CanBeReferencedInArchive => false;
 
     public static FlagellumUpgrades ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)

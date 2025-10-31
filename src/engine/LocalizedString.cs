@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
-using Saving.Serializers;
 using SharedBase.Archive;
 
 /// <summary>
@@ -18,16 +15,12 @@ using SharedBase.Archive;
 ///     This class can be used on its own but was designed for the use within LocalizedStringBuilder.
 ///   </para>
 /// </remarks>
-[JSONDynamicTypeAllowed]
-[TypeConverter($"Saving.Serializers.{nameof(LocalizedStringTypeConverter)}")]
 public class LocalizedString : IFormattable, IEquatable<LocalizedString>, IArchivable
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
-    [JsonProperty]
     private readonly string translationKey;
 
-    [JsonProperty]
     private readonly object[]? formatStringArgs;
 
     public LocalizedString(string translationKey)
@@ -35,7 +28,6 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>, IArchi
     {
     }
 
-    [JsonConstructor]
     public LocalizedString(string translationKey, params object[]? formatStringArgs)
     {
         this.translationKey = translationKey;
@@ -47,16 +39,12 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>, IArchi
     /// <summary>
     ///   Access to the translation key to be able to inspect what this string is based on
     /// </summary>
-    [JsonIgnore]
     public string TranslationKey => translationKey;
 
-    [JsonIgnore]
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
-    [JsonIgnore]
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.LocalizedString;
 
-    [JsonIgnore]
     public bool CanBeReferencedInArchive => false;
 
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
