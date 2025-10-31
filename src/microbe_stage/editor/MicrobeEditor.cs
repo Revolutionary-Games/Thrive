@@ -85,7 +85,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         reader.ReadObjectProperties(instance.cellEditorTab);
 
         // Base version is different
-        instance.ReadBasePropertiesFromArchive(reader, 1);
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
 
         instance.editedSpecies = reader.ReadObjectOrNull<MicrobeSpecies>();
 
@@ -100,6 +100,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         writer.WriteObjectProperties(cellEditorTab);
 
         // Don't call base as it is the base abstract one
+        writer.Write(SERIALIZATION_VERSION_BASE);
         WriteBasePropertiesToArchive(writer);
 
         writer.WriteObjectOrNull(editedSpecies);
