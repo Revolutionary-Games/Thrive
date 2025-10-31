@@ -73,7 +73,7 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
         var currentlySelectedType = ToxinType.Cytotoxin;
 
-        toxicitySlider.Value = 0;
+        toxicitySlider.Value = Constants.DEFAULT_TOXICITY;
 
         if (organelle.Upgrades != null)
         {
