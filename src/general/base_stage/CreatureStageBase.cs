@@ -323,6 +323,7 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
 
     protected override void WriteBasePropertiesToArchive(ISArchiveWriter writer)
     {
+        writer.Write(SERIALIZATION_VERSION_STAGE_BASE);
         base.WriteBasePropertiesToArchive(writer);
 
         writer.Write(spawnedPlayer);
@@ -338,7 +339,7 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_CREATURE);
 
         // Base uses different versioning than us
-        base.ReadBasePropertiesFromArchive(reader, 1);
+        base.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
 
         spawnedPlayer = reader.ReadBool();
         playerRespawnTimer = reader.ReadDouble();

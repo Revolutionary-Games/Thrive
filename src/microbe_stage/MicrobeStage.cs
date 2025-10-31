@@ -179,7 +179,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         instance.ResolveNodeReferences();
 
         // Base version is different from this version
-        instance.ReadBasePropertiesFromArchive(reader, 1);
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
 
         instance.wonOnce = reader.ReadBool();
         instance.movementModeShowTimer = reader.ReadDouble();
@@ -201,6 +201,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
+        writer.Write(SERIALIZATION_VERSION_CREATURE);
         WriteBasePropertiesToArchive(writer);
 
         writer.Write(wonOnce);

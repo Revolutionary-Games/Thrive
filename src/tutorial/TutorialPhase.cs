@@ -7,6 +7,12 @@ using SharedBase.Archive;
 /// </summary>
 public abstract class TutorialPhase : IArchiveUpdatable
 {
+    /// <summary>
+    ///   Base version of the serialization. If this is changed, *all* subclasses need to be updated as they aren't
+    ///   set up to write base versions separately.
+    /// </summary>
+    public const ushort SERIALIZATION_VERSION_BASE = 1;
+
     public delegate void OnTutorialOpenDelegate();
 
     public delegate void OnTutorialCompleteDelegate();
@@ -166,8 +172,8 @@ public abstract class TutorialPhase : IArchiveUpdatable
 
     public virtual void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
     {
-        if (version != 1)
-            throw new InvalidArchiveVersionException(version, 1);
+        if (version != SERIALIZATION_VERSION_BASE)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_BASE);
 
         CanTrigger = reader.ReadBool();
         ShownCurrently = reader.ReadBool();

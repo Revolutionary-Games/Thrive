@@ -107,7 +107,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         reader.ReadObjectProperties(instance.cellEditorTab);
 
         // Base version is different
-        instance.ReadBasePropertiesFromArchive(reader, 1);
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
 
         instance.editedSpecies = reader.ReadObjectOrNull<MulticellularSpecies>();
 
@@ -124,6 +124,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         writer.WriteObjectProperties(cellEditorTab);
 
         // Don't call base as it is the base abstract one
+        writer.Write(SERIALIZATION_VERSION_BASE);
         WriteBasePropertiesToArchive(writer);
 
         writer.WriteObjectOrNull(editedSpecies);

@@ -102,6 +102,7 @@ public partial class MacroscopicHUD : CreatureStageHUDBase<MacroscopicStage>
 
     public override void WritePropertiesToArchive(ISArchiveWriter writer)
     {
+        writer.Write(SERIALIZATION_VERSION_CREATURE);
         WriteBasePropertiesToArchive(writer);
     }
 
@@ -111,7 +112,7 @@ public partial class MacroscopicHUD : CreatureStageHUDBase<MacroscopicStage>
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
         // The base version is different from ours
-        ReadBasePropertiesFromArchive(reader, 1);
+        ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
     }
 
     protected override void UpdateFossilisationButtonStates()
