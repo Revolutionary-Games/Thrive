@@ -8,7 +8,7 @@ using File = System.IO.File;
 using Path = System.IO.Path;
 
 /// <summary>
-///   Handles loading mods, and auto-loading mods, and also showing related errors etc. popups
+///   Handles loading mods and autoloading mods and also showing related errors etc. popups
 /// </summary>
 [GodotAutoload]
 public partial class ModLoader : Node
