@@ -347,6 +347,10 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(Endosymbiont), Endosymbiont.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Endosymbiont,
             typeof(Endosymbiont), Endosymbiont.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.InProgressEndosymbiosis,
+            typeof(EndosymbiosisData.InProgressEndosymbiosis),
+            EndosymbiosisData.InProgressEndosymbiosis.ReadFromArchive);
     }
 
     private void RegisterComponentParts()
