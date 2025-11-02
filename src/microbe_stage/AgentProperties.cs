@@ -71,7 +71,7 @@ public class AgentProperties : IArchivable
     {
         var damage = CalculateBaseDamage(toxinAmount);
 
-        health.DealMicrobeDamage(ref hitCellProperties, damage, DamageTypeName,
+        health.DealMicrobeDamage(ref hitCellProperties, entity, damage, DamageTypeName,
             HealthHelpers.GetInstantKillProtectionThreshold(entity));
     }
 
@@ -79,7 +79,7 @@ public class AgentProperties : IArchivable
     {
         var damage = CalculateBaseDamage(toxinAmount);
 
-        health.DealDamage(damage, DamageTypeName, HealthHelpers.GetInstantKillProtectionThreshold(entity));
+        health.DealDamage(entity, damage, DamageTypeName, HealthHelpers.GetInstantKillProtectionThreshold(entity));
     }
 
     /// <summary>
