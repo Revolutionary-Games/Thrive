@@ -128,8 +128,8 @@ public static class HealthHelpers
     /// <param name="damage">The amount of damage to apply</param>
     /// <param name="damageSource">The name of the damage source</param>
     /// <param name="instantKillProtectionThreshold">
-    ///     A threshold above which, if the current health is, the damage is not allowed to instantly kill the entity.
-    ///     Pass in a negative value to disable the protection.
+    ///   A threshold above which, if the current health is, the damage is not allowed to instantly kill the entity.
+    ///   Pass in a negative value to disable the protection.
     /// </param>
     public static void DealDamage(this ref Health health, in Entity entity, float damage, string damageSource,
         float instantKillProtectionThreshold)
