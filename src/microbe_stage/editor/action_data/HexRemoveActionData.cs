@@ -61,17 +61,41 @@ public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActi
                 placementActionData.PlacedHex.MatchesDefinition(RemovedHex) && MatchesContext(placementActionData))
             {
                 // If removed something that was placed
-                if (Location == placementActionData.Location || Location == HexMoveActionData<THex, TContext>
-                        .ResolveFinalLocation(placementActionData.PlacedHex,
-                            placementActionData.Location, placementActionData.Orientation, history, i + 1,
-                            insertPosition, Context).Location)
+                var placementFinalLocation = HexMoveActionData<THex, TContext>
+                    .ResolveFinalLocation(placementActionData.PlacedHex,
+                        placementActionData.Location, placementActionData.Orientation, history, i + 1,
+                        insertPosition, Context).Location;
+                if (Location == placementActionData.Location || Location == placementFinalLocation)
                 {
-                    cost = 0;
-
-                    if (!placementRefunded)
+                    // Check if there's a remove that has already taken advantage of this, and if that is the case,
+                    // don't refund
+                    bool conflict2 = false;
+                    for (int j = i + 1; j < insertPosition && j < count; ++j)
                     {
-                        refund += other.GetCalculatedSelfCost();
-                        placementRefunded = true;
+                        var other2 = history[j];
+
+                        if (other2 is HexRemoveActionData<THex, TContext> removeActionData &&
+                            removeActionData.RemovedHex.MatchesDefinition(RemovedHex) &&
+                            MatchesContext(removeActionData))
+                        {
+                            if (removeActionData.Location == Location ||
+                                removeActionData.Location == placementFinalLocation)
+                            {
+                                conflict2 = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!conflict2)
+                    {
+                        cost = 0;
+
+                        if (!placementRefunded)
+                        {
+                            refund += other.GetCalculatedSelfCost();
+                            placementRefunded = true;
+                        }
                     }
 
                     continue;
@@ -88,10 +112,6 @@ public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActi
                         placementActionData.PlacedHex.MatchesDefinition(RemovedHex) &&
                         MatchesContext(placementActionData))
                     {
-                        if (Location == placementActionData2.Location || Location == HexMoveActionData<THex, TContext>
-                                .ResolveFinalLocation(placementActionData2.PlacedHex,
-                                    placementActionData2.Location, placementActionData2.Orientation, history, j + 1,
-                                    insertPosition, Context).Location)
                         {
                             conflict = true;
                             break;

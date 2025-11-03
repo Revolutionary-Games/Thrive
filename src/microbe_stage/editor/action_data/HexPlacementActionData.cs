@@ -84,8 +84,27 @@ public abstract class HexPlacementActionData<THex, TContext> : EditorCombinableA
                 else
                 {
                     // Removing and placing a hex is a move operation
-                    cost = Constants.ORGANELLE_MOVE_COST;
-                    refund += other.GetCalculatedSelfCost();
+                    bool conflict = false;
+
+                    // Unless there's an earlier placement that has taken that opportunity
+                    for (int j = 0; j < i; ++j)
+                    {
+                        var other2 = history[j];
+
+                        if (other2 is HexPlacementActionData<THex, TContext> placementActionData2 &&
+                            placementActionData2.PlacedHex.MatchesDefinition(PlacedHex) &&
+                            MatchesContext(placementActionData2))
+                        {
+                            conflict = true;
+                            break;
+                        }
+                    }
+
+                    if (!conflict)
+                    {
+                        cost = Constants.ORGANELLE_MOVE_COST;
+                        refund += other.GetCalculatedSelfCost();
+                    }
                 }
             }
         }
