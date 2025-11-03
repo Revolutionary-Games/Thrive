@@ -82,6 +82,7 @@ public class MetaballPlacementActionData<TMetaball> : EditorCombinableActionData
                 }
 
                 // Removing and placing a metaball is a move operation
+                // TODO: this triggers when it shouldn't
                 cost = Constants.METABALL_MOVE_COST;
                 refund += other.GetAndConsumeAvailableRefund();
             }
