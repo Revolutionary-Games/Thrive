@@ -1,4 +1,4 @@
-﻿#define DEBUG_ACTION_COSTS
+﻿// #define DEBUG_ACTION_COSTS
 
 using System;
 using System.Collections.Generic;

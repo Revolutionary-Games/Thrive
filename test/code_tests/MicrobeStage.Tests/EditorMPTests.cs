@@ -1049,4 +1049,35 @@ public class EditorMPTests
         Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
             history.CalculateMutationPointsLeft());
     }
+
+    [Fact]
+    public void EditorMPTests_FullRefundIsNotGivenAfterPlacingMultipleOrganelles()
+    {
+        var history = new EditorActionHistory<EditorAction>();
+
+        var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+        var template2 = new OrganelleTemplate(cheapOrganelle, new Hex(1, 0), 0);
+
+        var placementData = new OrganellePlacementActionData(template2, new Hex(1, 0), 0);
+        history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, placementData));
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
+
+        var deleteData = new OrganelleRemoveActionData(template);
+        history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, deleteData));
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
+            history.CalculateMutationPointsLeft());
+
+        // Free MP exploit easily findable due to the above test case
+        var template3 = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+        var placement2 = new OrganellePlacementActionData(template3, new Hex(0, 0), 0);
+        history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, placement2));
+
+        // There is a situation here where an extra move is cost-applied, however, there's no easy way to counter that
+        // without more infinite MP exploits. So for now this results in a little less MP being refunded than it should
+        // optimally.
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost - Constants.ORGANELLE_MOVE_COST,
+            history.CalculateMutationPointsLeft());
+
+        // Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
+    }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SharedBase.Archive;
 
 public abstract class HexPlacementActionData<THex, TContext> : EditorCombinableActionData<TContext>
@@ -99,6 +100,15 @@ public abstract class HexPlacementActionData<THex, TContext> : EditorCombinableA
 
                         refund += other.GetCalculatedSelfCost();
                     }
+
+                    // Theoretically, we could calculate if we should refund an amount here, but this leads to more
+                    // exploits, so for now we just take some extra MP as "punishment" for not using the undo system
+                    /*
+                    else
+                    {
+                        // If the other is a move, can refund its cost in this case
+                         refund += other.GetCalculatedSelfCost();
+                    }*/
                 }
                 else
                 {
