@@ -55,19 +55,66 @@ public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActi
         {
             var other = history[i];
 
-            // If this hex got placed in this session
+            // If this hex got placed in this session (and was at the same place so that we don't mix unrelated
+            // organelles)
             if (other is HexPlacementActionData<THex, TContext> placementActionData &&
                 placementActionData.PlacedHex.MatchesDefinition(RemovedHex) && MatchesContext(placementActionData))
             {
-                cost = 0;
-
-                if (!placementRefunded)
+                // If removed something that was placed
+                if (Location == placementActionData.Location || Location == HexMoveActionData<THex, TContext>
+                        .ResolveFinalLocation(placementActionData.PlacedHex,
+                            placementActionData.Location, placementActionData.Orientation, history, i + 1,
+                            insertPosition, Context).Location)
                 {
-                    refund += other.GetCalculatedSelfCost();
-                    placementRefunded = true;
+                    cost = 0;
+
+                    if (!placementRefunded)
+                    {
+                        refund += other.GetCalculatedSelfCost();
+                        placementRefunded = true;
+                    }
+
+                    continue;
                 }
 
-                continue;
+                // Or if removed from another position, then this counts as a move, as long as there are no other
+                // conflicting actions in-between
+                bool conflict = false;
+                for (int j = i + 1; j < insertPosition && j < count; ++j)
+                {
+                    var other2 = history[i];
+
+                    if (other2 is HexPlacementActionData<THex, TContext> placementActionData2 &&
+                        placementActionData.PlacedHex.MatchesDefinition(RemovedHex) &&
+                        MatchesContext(placementActionData))
+                    {
+                        if (Location == placementActionData2.Location || Location == HexMoveActionData<THex, TContext>
+                                .ResolveFinalLocation(placementActionData2.PlacedHex,
+                                    placementActionData2.Location, placementActionData2.Orientation, history, j + 1,
+                                    insertPosition, Context).Location)
+                        {
+                            conflict = true;
+                            break;
+                        }
+                    }
+
+                    if (other2 is HexRemoveActionData<THex, TContext> removeActionData &&
+                        removeActionData.RemovedHex.MatchesDefinition(RemovedHex) && MatchesContext(removeActionData))
+                    {
+                        if (removeActionData.Location == Location)
+                        {
+                            conflict = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!conflict)
+                {
+                    refund += other.GetCalculatedSelfCost();
+                    cost = Constants.ORGANELLE_MOVE_COST;
+                    continue;
+                }
             }
 
             // If this hex got moved in this session, refund the move cost

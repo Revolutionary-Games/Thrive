@@ -989,4 +989,26 @@ public class EditorMPTests
         Assert.True(history.Undo());
         Assert.True(history.Undo());
     }
+
+    [Fact]
+    public void EditorMPTests_DeletingOtherOrganelleAfterPlaceCountsAsAMove()
+    {
+        var history = new EditorActionHistory<EditorAction>();
+
+        var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+
+        var actionData =
+            new OrganellePlacementActionData(new OrganelleTemplate(cheapOrganelle, new Hex(1, 0), 0), new Hex(1, 0), 0);
+
+        history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, actionData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
+
+        var deleteData = new OrganelleRemoveActionData(template);
+
+        history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, deleteData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
+            history.CalculateMutationPointsLeft());
+    }
 }
