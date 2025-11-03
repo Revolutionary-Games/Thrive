@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define DEBUG_ACTION_COSTS
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Saving.Serializers;
@@ -82,12 +84,27 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         double mpLeft = Constants.BASE_MUTATION_POINTS;
 
         var count = processedHistory.Count;
+
+#if DEBUG_ACTION_COSTS
+        Console.WriteLine($"Starting calculation of MP left with {count} actions");
+#endif
+
         for (int i = 0; i < count; ++i)
         {
             var action = processedHistory[i];
 
             mpLeft -= action.CalculateCost(History, i);
+
+#if DEBUG_ACTION_COSTS
+            Console.WriteLine($"At index {i}: MP left: {mpLeft} \twith action cost: " +
+                $"{action.GetCalculatedSelfCost()} \trefund: {action.GetCalculatedRefundCost()} \t" +
+                $"(total: {action.GetCalculatedEffectiveCost()})\t{action.GetType().Name}");
+#endif
         }
+
+#if DEBUG_ACTION_COSTS
+        Console.WriteLine($"MP left: {mpLeft}\n");
+#endif
 
         return mpLeft;
     }
