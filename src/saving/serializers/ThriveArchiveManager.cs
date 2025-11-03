@@ -596,6 +596,11 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganellePlacementActionData,
             typeof(OrganellePlacementActionData), OrganellePlacementActionData.ReadFromArchive);
 
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EndosymbiontPlaceActionData,
+            typeof(EndosymbiontPlaceActionData), EndosymbiontPlaceActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EndosymbiontPlaceActionData,
+            typeof(EndosymbiontPlaceActionData), EndosymbiontPlaceActionData.ReadFromArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleRemoveActionData,
             typeof(OrganelleRemoveActionData), OrganelleRemoveActionData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleRemoveActionData,
