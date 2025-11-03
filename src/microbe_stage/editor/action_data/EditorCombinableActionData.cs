@@ -47,8 +47,6 @@ public abstract class EditorCombinableActionData : CombinableActionData
     /// </returns>
     public virtual double GetCalculatedSelfCost()
     {
-        // TODO: resetting this to NaN for a whole action tree before calculating costs again would provide some extra
-        // safety against bugs
         if (double.IsNaN(lastCalculatedSelfCost))
         {
             GD.PrintErr("Trying to get the cost of an action before it has been calculated. " +
@@ -113,6 +111,29 @@ public abstract class EditorCombinableActionData : CombinableActionData
     public virtual double GetCalculatedEffectiveCost()
     {
         return GetCalculatedSelfCost() - GetCalculatedRefundCost();
+    }
+
+    public void RefreshAvailableRefund()
+    {
+        if (double.IsNaN(lastCalculatedSelfCost))
+        {
+            GD.PrintErr("Trying to refresh available refund before it has been calculated in the first place");
+
+            if (Debugger.IsAttached)
+                Debugger.Break();
+
+            calculatedAvailableRefund = double.NaN;
+            return;
+        }
+
+        calculatedAvailableRefund = lastCalculatedSelfCost;
+    }
+
+    public void PrepareForNewCostCalculation()
+    {
+        lastCalculatedSelfCost = double.NaN;
+        lastCalculatedRefundCost = double.NaN;
+        calculatedAvailableRefund = double.NaN;
     }
 
     protected virtual void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)

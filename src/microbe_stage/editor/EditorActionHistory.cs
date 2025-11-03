@@ -67,7 +67,29 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         if (CheatManager.InfiniteMP)
             return 0;
 
+        // TODO: this can refresh some things that were already used thus resulting in cheaper cost than the reality
+        PrepareForNewCostCalculation(true);
+
         return combinableAction.CalculateCost(History, History.Count);
+    }
+
+    public void PrepareForNewCostCalculation(bool refundOnly)
+    {
+        if (refundOnly)
+        {
+            // Refresh refunds to be available for a new calculation
+            foreach (var action in History)
+            {
+                action.RefreshAvailableRefund();
+            }
+        }
+        else
+        {
+            foreach (var action in History)
+            {
+                action.PrepareForNewCostCalculation();
+            }
+        }
     }
 
     /// <summary>
@@ -88,6 +110,8 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
 #if DEBUG_ACTION_COSTS
         Console.WriteLine($"Starting calculation of MP left with {count} actions");
 #endif
+
+        PrepareForNewCostCalculation(false);
 
         for (int i = 0; i < count; ++i)
         {
