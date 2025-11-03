@@ -1040,7 +1040,8 @@ public class EditorMPTests
         var template3 = new OrganelleTemplate(cheapOrganelle, new Hex(0, 1), 0);
         var placement2 = new OrganellePlacementActionData(template3, new Hex(0, 1), 0);
         history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, placement2));
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost - Constants.ORGANELLE_MOVE_COST, history.CalculateMutationPointsLeft());
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost - Constants.ORGANELLE_MOVE_COST,
+            history.CalculateMutationPointsLeft());
 
         // Major infinite MP exploit reported for 0.9.0
         var deleteData2 = new OrganelleRemoveActionData(template3);
