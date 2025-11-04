@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using Godot;
+using Saving;
 using Tutorial;
 
 /// <summary>
@@ -49,5 +50,7 @@ public partial class PostStartupActions : Node
 
         // Make sure achievement data is ready
         AchievementsManager.Instance.WaitForAchievementsData();
+
+        CompatibleSaveVersions.VerifyInfoForCurrentVersion();
     }
 }
