@@ -130,7 +130,7 @@ public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData, IMe
                     OldParent == moveActionData.NewParent && NewParent == moveActionData.OldParent)
                 {
                     cost = 0;
-                    refund += moveActionData.GetCalculatedSelfCost();
+                    refund += moveActionData.GetAndConsumeAvailableRefund();
                     continue;
                 }
 

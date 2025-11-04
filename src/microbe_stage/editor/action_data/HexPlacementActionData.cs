@@ -73,19 +73,51 @@ public abstract class HexPlacementActionData<THex, TContext> : EditorCombinableA
             if (other is HexRemoveActionData<THex, TContext> removeActionData &&
                 removeActionData.RemovedHex.MatchesDefinition(PlacedHex) && MatchesContext(removeActionData))
             {
+                bool conflict = false;
+
+                // Check if there's a potential operation that already took the chance to optimise
+                for (int j = 0; j < i; ++j)
+                {
+                    var other2 = history[j];
+
+                    if (other2 is HexPlacementActionData<THex, TContext> placementActionData2 &&
+                        placementActionData2.PlacedHex.MatchesDefinition(PlacedHex) &&
+                        MatchesContext(placementActionData2))
+                    {
+                        conflict = true;
+                        break;
+                    }
+                }
+
                 // If the placed hex has been placed in the same position where it got removed from before
                 if (removeActionData.Location == Location)
                 {
-                    if (!seenEarlierPlacement)
-                        cost = 0;
+                    if (!conflict)
+                    {
+                        if (!seenEarlierPlacement)
+                            cost = 0;
 
-                    refund += other.GetCalculatedSelfCost();
+                        refund += other.GetAndConsumeAvailableRefund();
+                    }
+
+                    // Theoretically, we could calculate if we should refund an amount here, but this leads to more
+                    // exploits, so for now we just take some extra MP as "punishment" for not using the undo system
+                    /*
+                    else
+                    {
+                        // If the other is a move, can refund its cost in this case
+                         refund += other.GetCalculatedSelfCost();
+                    }*/
                 }
                 else
                 {
                     // Removing and placing a hex is a move operation
-                    cost = Constants.ORGANELLE_MOVE_COST;
-                    refund += other.GetCalculatedSelfCost();
+
+                    if (!conflict)
+                    {
+                        cost = Constants.ORGANELLE_MOVE_COST;
+                        refund += other.GetAndConsumeAvailableRefund();
+                    }
                 }
             }
         }

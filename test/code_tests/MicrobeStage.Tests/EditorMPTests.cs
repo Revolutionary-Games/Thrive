@@ -654,7 +654,7 @@ public class EditorMPTests
         Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
             history.CalculateMutationPointsLeft());
 
-        var template2 = new OrganelleTemplate(cheapOrganelle, new Hex(1, 0), 0);
+        var template2 = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
 
         var actionData = new OrganellePlacementActionData(template2, new Hex(0, 0), 0);
 
@@ -858,13 +858,17 @@ public class EditorMPTests
 
         history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, actionData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+        // In an optimal world this would be fully refunded, however, to rather avoid infinite MP exploits, this doesn't
+        // do that
+        // Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
+            history.CalculateMutationPointsLeft());
 
         moveData = new OrganelleMoveActionData(template2, new Hex(0, 0), new Hex(1, 0), 0, 0);
 
         history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST * 2,
             history.CalculateMutationPointsLeft());
     }
 
@@ -914,7 +918,11 @@ public class EditorMPTests
 
         history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, removeData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+        // In an optimal case, this would be fully refunded, however, to rather avoid infinite MP exploits,
+        // this doesn't currently.
+
+        // Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
     }
 
     [Fact]
@@ -988,5 +996,96 @@ public class EditorMPTests
         // actually testing what it is supposed to)
         Assert.True(history.Undo());
         Assert.True(history.Undo());
+    }
+
+    [Fact]
+    public void EditorMPTests_DeletingOtherOrganelleAfterPlaceCountsAsAMove()
+    {
+        var history = new EditorActionHistory<EditorAction>();
+
+        var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+
+        var actionData =
+            new OrganellePlacementActionData(new OrganelleTemplate(cheapOrganelle, new Hex(1, 0), 0), new Hex(1, 0), 0);
+
+        history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, actionData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
+
+        var deleteData = new OrganelleRemoveActionData(template);
+
+        history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, deleteData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
+            history.CalculateMutationPointsLeft());
+
+        // Moving back to the original position then resets all costs
+        // TODO: this part is not actually implemented
+        /*var moveData = new OrganelleMoveActionData(template, new Hex(1, 0), new Hex(0, 0), 0, 0);
+
+        history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());*/
+    }
+
+    [Fact]
+    public void EditorMPTests_DeletingDoesNotRefundTooMuchAfterMoveOfReplacedOldOrganelle()
+    {
+        var history = new EditorActionHistory<EditorAction>();
+
+        var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+        var template2 = new OrganelleTemplate(cheapOrganelle, new Hex(1, 0), 0);
+
+        var placementData = new OrganellePlacementActionData(template2, new Hex(1, 0), 0);
+        history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, placementData));
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
+
+        var deleteData = new OrganelleRemoveActionData(template);
+        history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, deleteData));
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
+            history.CalculateMutationPointsLeft());
+
+        var template3 = new OrganelleTemplate(cheapOrganelle, new Hex(0, 1), 0);
+        var placement2 = new OrganellePlacementActionData(template3, new Hex(0, 1), 0);
+        history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, placement2));
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost - Constants.ORGANELLE_MOVE_COST,
+            history.CalculateMutationPointsLeft());
+
+        // Major infinite MP exploit reported for 0.9.0
+        var deleteData2 = new OrganelleRemoveActionData(template3);
+        history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, deleteData2));
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
+            history.CalculateMutationPointsLeft());
+    }
+
+    [Fact]
+    public void EditorMPTests_FullRefundIsNotGivenAfterPlacingMultipleOrganelles()
+    {
+        var history = new EditorActionHistory<EditorAction>();
+
+        var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+        var template2 = new OrganelleTemplate(cheapOrganelle, new Hex(1, 0), 0);
+
+        var placementData = new OrganellePlacementActionData(template2, new Hex(1, 0), 0);
+        history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, placementData));
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
+
+        var deleteData = new OrganelleRemoveActionData(template);
+        history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, deleteData));
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
+            history.CalculateMutationPointsLeft());
+
+        // Free MP exploit easily findable due to the above test case
+        var template3 = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+        var placement2 = new OrganellePlacementActionData(template3, new Hex(0, 0), 0);
+        history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, placement2));
+
+        // There is a situation here where an extra move is cost-applied, however, there's no easy way to counter that
+        // without more infinite MP exploits. So for now this results in a little less MP being refunded than it should
+        // optimally.
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost - Constants.ORGANELLE_MOVE_COST,
+            history.CalculateMutationPointsLeft());
+
+        // Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
     }
 }

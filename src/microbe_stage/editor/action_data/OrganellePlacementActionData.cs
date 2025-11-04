@@ -71,7 +71,7 @@ public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemp
                         moveActionData.OldLocation == Location) ||
                     ReplacedCytoplasm?.Contains(moveActionData.MovedHex) == true)
                 {
-                    refund += other.GetCalculatedSelfCost();
+                    refund += other.GetAndConsumeAvailableRefund();
                     continue;
                 }
             }
@@ -80,7 +80,7 @@ public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemp
                 ReplacedCytoplasm?.Contains(placementActionData.PlacedHex) == true &&
                 MatchesContext(placementActionData))
             {
-                refund += other.GetCalculatedSelfCost();
+                refund += other.GetAndConsumeAvailableRefund();
             }
         }
 

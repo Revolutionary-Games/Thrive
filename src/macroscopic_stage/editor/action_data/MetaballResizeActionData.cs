@@ -70,7 +70,7 @@ public class MetaballResizeActionData<TMetaball> : EditorCombinableActionData, I
                     MathF.Abs(NewSize - resizeActionData.OldSize) < MathUtils.EPSILON)
                 {
                     cost = 0;
-                    refund += other.GetCalculatedSelfCost();
+                    refund += other.GetAndConsumeAvailableRefund();
                     continue;
                 }
 

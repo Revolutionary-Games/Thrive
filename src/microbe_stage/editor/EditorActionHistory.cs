@@ -1,4 +1,6 @@
-﻿using System;
+﻿// #define DEBUG_ACTION_COSTS
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Saving.Serializers;
@@ -65,7 +67,29 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         if (CheatManager.InfiniteMP)
             return 0;
 
+        // TODO: this can refresh some things that were already used thus resulting in cheaper cost than the reality
+        PrepareForNewCostCalculation(true);
+
         return combinableAction.CalculateCost(History, History.Count);
+    }
+
+    public void PrepareForNewCostCalculation(bool refundOnly)
+    {
+        if (refundOnly)
+        {
+            // Refresh refunds to be available for a new calculation
+            foreach (var action in History)
+            {
+                action.RefreshAvailableRefund();
+            }
+        }
+        else
+        {
+            foreach (var action in History)
+            {
+                action.PrepareForNewCostCalculation();
+            }
+        }
     }
 
     /// <summary>
@@ -82,12 +106,29 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         double mpLeft = Constants.BASE_MUTATION_POINTS;
 
         var count = processedHistory.Count;
+
+#if DEBUG_ACTION_COSTS
+        Console.WriteLine($"Starting calculation of MP left with {count} actions");
+#endif
+
+        PrepareForNewCostCalculation(false);
+
         for (int i = 0; i < count; ++i)
         {
             var action = processedHistory[i];
 
             mpLeft -= action.CalculateCost(History, i);
+
+#if DEBUG_ACTION_COSTS
+            Console.WriteLine($"At index {i}: MP left: {mpLeft} \twith action cost: " +
+                $"{action.GetCalculatedSelfCost()} \trefund: {action.GetCalculatedRefundCost()} \t" +
+                $"(total: {action.GetCalculatedEffectiveCost()})\t{action.GetType().Name}");
+#endif
         }
+
+#if DEBUG_ACTION_COSTS
+        Console.WriteLine($"MP left: {mpLeft}\n");
+#endif
 
         return mpLeft;
     }
