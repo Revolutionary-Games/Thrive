@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://djcg7apclas2h"]
+
+[ext_resource type="PackedScene" uid="uid://c4swd7qo1ei08" path="res://assets/models/microbe_terrain/CalciteTerrainChunk2.glb" id="1_5h8vr"]
+[ext_resource type="Material" uid="uid://nsvqy3lhelel" path="res://assets/models/microbe_terrain/CalciteTerrainChunk.material" id="2_rj4sp"]
+
+[node name="CalciteTerrainChunk2" instance=ExtResource("1_5h8vr")]
+
+[node name="calcite2" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_rj4sp")

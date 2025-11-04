@@ -81,13 +81,7 @@ public partial class MainMenu : NodeWithInput
     private LicensesDisplay licensesDisplay = null!;
 
     [Export]
-    private AchievementsGallery achievementsGallery = null!;
-
-    [Export]
-    private Control achievementsContainer = null!;
-
-    [Export]
-    private CustomWindow achievementsPopup = null!;
+    private AchievementsView achievementsView = null!;
 
     [Export]
     private Button freebuildButton = null!;
@@ -213,9 +207,6 @@ public partial class MainMenu : NodeWithInput
         {
             OnIntroEnded();
         }
-
-        // Let all suppressed deletions happen (if we came back directly from the editor that was loaded from a save)
-        TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
 
         CheckModFailures();
 
@@ -797,25 +788,8 @@ public partial class MainMenu : NodeWithInput
         // Hide all the other menus
         SetCurrentMenu(uint.MaxValue, false);
 
-        achievementsContainer.Visible = true;
-
-        achievementsPopup.OpenCentered(false);
-
-        achievementsGallery.Refresh();
-
-        // For fun show how many achievements are unlocked
-        int total = 0;
-        int unlocked = 0;
-
-        foreach (var achievement in AchievementsManager.Instance.GetAchievements())
-        {
-            ++total;
-
-            if (achievement.Achieved)
-                ++unlocked;
-        }
-
-        achievementsPopup.WindowTitle = Localization.Translate("ACHIEVEMENTS_TOTAL").FormatSafe(unlocked, total);
+        achievementsView.Visible = true;
+        achievementsView.OpenPopup();
     }
 
     private void FreebuildEditorPressed()
@@ -964,8 +938,7 @@ public partial class MainMenu : NodeWithInput
 
     private void OnReturnFromAchievements()
     {
-        achievementsContainer.Visible = false;
-        achievementsPopup.Close();
+        achievementsView.Visible = false;
 
         SetCurrentMenu(0, false);
 

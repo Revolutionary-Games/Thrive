@@ -7,6 +7,7 @@ using Godot;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+// TODO: this needs to be redone for archive-based saves
 public interface ISaveUpgradeStep
 {
     /// <summary>

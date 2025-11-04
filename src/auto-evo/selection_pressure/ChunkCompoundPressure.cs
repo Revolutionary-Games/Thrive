@@ -1,11 +1,12 @@
 ﻿namespace AutoEvo;
 
 using System;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
-[JSONDynamicTypeAllowed]
 public class ChunkCompoundPressure : SelectionPressure
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
     private static readonly LocalizedString NameString = new LocalizedString("MICHE_CHUNK_PRESSURE");
@@ -13,23 +14,13 @@ public class ChunkCompoundPressure : SelectionPressure
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
     private readonly CompoundDefinition atp = SimulationParameters.GetCompound(Compound.ATP);
-    private readonly CompoundDefinition sulfur = SimulationParameters.GetCompound(Compound.Hydrogensulfide);
 
-    [JsonProperty]
     private readonly string chunkType;
 
-    [JsonProperty]
     private readonly LocalizedString readableName;
 
     private readonly CompoundDefinition compound;
     private readonly CompoundDefinition compoundOut;
-
-    // Needed for saving to work
-    [JsonProperty(nameof(compound))]
-    private readonly Compound compoundRaw;
-
-    [JsonProperty(nameof(compoundOut))]
-    private readonly Compound compoundOutRaw;
 
     public ChunkCompoundPressure(string chunkType, LocalizedString readableName, Compound compound,
         Compound compoundOut, float weight) : base(weight, [
@@ -39,16 +30,41 @@ public class ChunkCompoundPressure : SelectionPressure
                 Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, SimulationParameters.GetCompound(compound).Colour)),
     ])
     {
-        compoundRaw = compound;
-        compoundOutRaw = compoundOut;
         this.compound = SimulationParameters.GetCompound(compound);
         this.compoundOut = SimulationParameters.GetCompound(compoundOut);
         this.chunkType = chunkType;
         this.readableName = readableName;
     }
 
-    [JsonIgnore]
     public override LocalizedString Name => NameString;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.ChunkCompoundPressure;
+
+    public static ChunkCompoundPressure ReadFromArchive(ISArchiveReader reader, ushort version,
+        int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new ChunkCompoundPressure(reader.ReadString() ?? throw new NullArchiveObjectException(),
+            reader.ReadObject<LocalizedString>(), (Compound)reader.ReadInt32(), (Compound)reader.ReadInt32(),
+            reader.ReadFloat());
+
+        instance.ReadBasePropertiesFromArchive(reader, 1);
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(chunkType);
+        writer.WriteObject(readableName);
+        writer.Write((int)compound.ID);
+        writer.Write((int)compoundOut.ID);
+        base.WriteToArchive(writer);
+    }
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
@@ -60,8 +76,7 @@ public class ChunkCompoundPressure : SelectionPressure
 
         var score = 1.0f;
 
-        // Speed is not too important to chunk microbes
-        // But all else being the same faster is better than slower
+        // Speed is not too important to chunk microbes, but all else being the same faster is better than slower
         score += MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.4f);
 
         // Diminishing returns on storage

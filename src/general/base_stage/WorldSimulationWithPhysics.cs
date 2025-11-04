@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
 using World = Arch.Core.World;
 
 /// <summary>
@@ -26,8 +25,7 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
     {
     }
 
-    [JsonConstructor]
-    public WorldSimulationWithPhysics(World entities) : base(entities)
+    protected WorldSimulationWithPhysics(World entities) : base(entities)
     {
     }
 

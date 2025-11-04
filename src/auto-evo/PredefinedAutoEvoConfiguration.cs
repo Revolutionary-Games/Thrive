@@ -1,11 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
+using SharedBase.Archive;
 using ThriveScriptsShared;
 
 /// <summary>
 ///   Settings for auto-evo that are loaded from the configuration JSON
 /// </summary>
-[JSONAlwaysDynamicType]
-public class PredefinedAutoEvoConfiguration : IAutoEvoConfiguration, IRegistryType
+public class PredefinedAutoEvoConfiguration : RegistryType, IAutoEvoConfiguration
 {
     [JsonProperty]
     public int MutationsPerSpecies { get; private set; }
@@ -61,17 +62,25 @@ public class PredefinedAutoEvoConfiguration : IAutoEvoConfiguration, IRegistryTy
     [JsonProperty]
     public bool RefundMigrationsInExtinctions { get; private set; }
 
-    /// <summary>
-    ///   Set to <see cref="SimulationParameters.AUTO_EVO_CONFIGURATION_NAME"/> to make saving and loading work
-    /// </summary>
-    public string InternalName { get; set; } = null!;
+    [JsonIgnore]
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.PredefinedAutoEvoConfiguration;
 
-    public void ApplyTranslations()
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
+        var name = ReadInternalName(reader, version);
+        if (name != SimulationParameters.AUTO_EVO_CONFIGURATION_NAME)
+            throw new FormatException($"Auto-evo object had unexpected name: {name}");
+
+        return SimulationParameters.Instance.AutoEvoConfiguration;
     }
 
-    public void Check(string name)
+    public override void Check(string name)
     {
         this.Check();
+    }
+
+    public override void ApplyTranslations()
+    {
     }
 }

@@ -15,7 +15,7 @@ public partial class CellPopupMenu : HexPopupMenu
         get => true;
         set
         {
-            if (value != true)
+            if (!value)
                 throw new NotSupportedException();
         }
     }

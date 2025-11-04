@@ -2,11 +2,10 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using Arch.Core;
 using Arch.System;
 using Components;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using World = Arch.Core.World;
 
 /// <summary>
@@ -17,10 +16,11 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(Physics))]
 [ReadsComponent(typeof(WorldPosition))]
 [RuntimeCost(8)]
-[JsonObject(MemberSerialization.OptIn)]
 [RunsOnMainThread]
-public partial class FluidCurrentsSystem : BaseSystem<World, float>
+public partial class FluidCurrentsSystem : BaseSystem<World, float>, IArchiveUpdatable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public FluidCurrentDisplay? FluidCurrentDisplay;
 
     // The following constants should be the same as in CurrentsParticles.gdshader
@@ -43,7 +43,6 @@ public partial class FluidCurrentsSystem : BaseSystem<World, float>
     private float chaoticness;
     private float inverseScale;
 
-    [JsonProperty]
     private float currentsTimePassed;
 
     private int noiseWidth = -1;
@@ -59,6 +58,9 @@ public partial class FluidCurrentsSystem : BaseSystem<World, float>
 
         this.currentsTimePassed = currentsTimePassed;
     }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.FluidCurrentsSystem;
 
     public void SetWorld(GameWorld world)
     {
@@ -114,10 +116,20 @@ public partial class FluidCurrentsSystem : BaseSystem<World, float>
         inverseScale = biome.WaterCurrents.InverseScale;
     }
 
+    public void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(currentsTimePassed);
+    }
+
+    public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        currentsTimePassed = reader.ReadFloat();
+    }
+
     [Query(Parallel = true)]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref Physics physics, ref WorldPosition position,
-        ref ManualPhysicsControl physicsControl, ref CurrentAffected currentAffected, in Entity entity)
+        ref ManualPhysicsControl physicsControl, ref CurrentAffected currentAffected)
     {
         if (physics.Body == null)
             return;

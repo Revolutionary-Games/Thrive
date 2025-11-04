@@ -1,22 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
-using Saving.Serializers;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
 ///   Represents a multicellular species that is composed of multiple cells
 /// </summary>
-[JsonObject(IsReference = true)]
-[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
-[JSONDynamicTypeAllowed]
-[UseThriveConverter]
-[UseThriveSerializer]
 public class MulticellularSpecies : Species, ISimulationPhotographable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public MulticellularSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
     }
@@ -25,30 +20,56 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
     ///   The cells that make up this species' body plan. The first index is the cell of the bud type and the cells
     ///   grow in order.
     /// </summary>
-    [JsonProperty]
     public CellLayout<CellTemplate> Cells { get; private set; } = new();
 
     /// <summary>
     ///   The 'original' colony layout, from which the simulated one (<see cref="Cells"/>) is generated.
     /// </summary>
-    [JsonProperty]
     public IndividualHexLayout<CellTemplate>? EditorCellLayout { get; set; }
 
-    [JsonProperty]
     public List<CellType> CellTypes { get; private set; } = new();
 
     /// <summary>
     ///   All organelles in all the species' placed cells (there can be a lot of duplicates in this list)
     /// </summary>
-    [JsonIgnore]
     public IEnumerable<OrganelleTemplate> Organelles => Cells.SelectMany(c => c.Organelles);
 
-    [JsonIgnore]
-    public override string StringCode => ThriveJsonConverter.Instance.SerializeObject(this);
-
-    [JsonIgnore]
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.MulticellularSpecies;
+
+    public static MulticellularSpecies ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new MulticellularSpecies(reader.ReadUInt32(),
+            reader.ReadString() ?? throw new NullArchiveObjectException(),
+            reader.ReadString() ?? throw new NullArchiveObjectException());
+
+        reader.ReportObjectConstructorDone(instance, referenceId);
+
+        instance.ReadNonConstructorBaseProperties(reader, 1);
+
+        instance.Cells = reader.ReadObject<CellLayout<CellTemplate>>();
+        instance.EditorCellLayout = reader.ReadObjectOrNull<IndividualHexLayout<CellTemplate>>();
+        instance.CellTypes = reader.ReadObject<List<CellType>>();
+
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        WriteBasePropertiesToArchive(writer);
+
+        writer.WriteObject(Cells);
+        writer.WriteObjectOrNull(EditorCellLayout);
+        writer.WriteObject(CellTypes);
+    }
 
     public override void OnEdited()
     {

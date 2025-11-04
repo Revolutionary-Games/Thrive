@@ -131,7 +131,20 @@ public partial class BackgroundPlane : Node3D
             currentBackgroundMaterial.SetShaderParameter($"layer{i:n0}", GD.Load<Texture2D>(background.Textures[i]));
         }
 
-        backgroundParticles?.DetachAndQueueFree();
+        // Skip the particle recreation if they are already set correctly
+        if (backgroundParticles != null && background.ParticleEffect != null &&
+            backgroundParticles.SceneFilePath == background.ParticleEffect)
+        {
+            GD.Print("Particles are already correct, no need to recreate");
+            return;
+        }
+
+        if (background.ParticleEffectScene == null)
+        {
+            backgroundParticles?.DetachAndQueueFree();
+            backgroundParticles = null;
+            return;
+        }
 
         backgroundParticles = background.ParticleEffectScene.Instantiate<GpuParticles3D>();
         backgroundParticles.Rotation = Rotation;

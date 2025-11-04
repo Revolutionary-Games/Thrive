@@ -45,18 +45,20 @@ func _setup_buttons() -> void:
 func _setup_tree() -> void:
 	_hooks_tree.clear()
 	_root = _hooks_tree.create_item()
-	_hooks_tree.set_columns(1)
+	_hooks_tree.set_columns(2)
+	_hooks_tree.set_column_custom_minimum_width(1, 32)
+	_hooks_tree.set_column_expand(1, false)
 	_hooks_tree.set_hide_root(true)
 	_hooks_tree.set_hide_folding(true)
 	_hooks_tree.set_select_mode(Tree.SELECT_SINGLE)
 	_hooks_tree.item_selected.connect(_on_hook_selected)
+	_hooks_tree.item_edited.connect(_on_item_edited)
 
 
 func _load_registered_hooks() -> void:
 	var hook_service := GdUnitTestSessionHookService.instance()
 	for hook: GdUnitTestSessionHook in hook_service.enigne_hooks:
 		_create_hook_tree_item(hook)
-
 
 	# Select first item if any
 	if _root.get_child_count() > 0:
@@ -68,10 +70,18 @@ func _load_registered_hooks() -> void:
 func _create_hook_tree_item(hook: GdUnitTestSessionHook) -> TreeItem:
 	var item: TreeItem = _hooks_tree.create_item(_root)
 	item.set_custom_minimum_height(26)
-	item.set_editable(0, false)
+	# Column 0: Hook info with custom drawing
 	item.set_cell_mode(0, TreeItem.CELL_MODE_CUSTOM)
 	item.set_custom_draw_callback(0, _draw_hook_item)
+	item.set_editable(0, false)
 	item.set_metadata(0, hook)
+	# Column 1: Checkbox for enable/disable
+	item.set_cell_mode(1, TreeItem.CELL_MODE_CHECK)
+	item.set_checked(1, GdUnitTestSessionHookService.is_enabled(hook))
+	item.set_editable(1, true)
+	item.set_custom_bg_color(1, _hook_bg_color(hook))
+	item.set_tooltip_text(1, "Enable/Disable the Hook")
+	item.propagate_check(1)
 
 	if _is_system_hook(hook):
 		item.set_tooltip_text(0, "System hook - (Read-only)")
@@ -80,15 +90,19 @@ func _create_hook_tree_item(hook: GdUnitTestSessionHook) -> TreeItem:
 	return item
 
 
+func _hook_bg_color(hook: GdUnitTestSessionHook) -> Color:
+	if _is_system_hook(hook):
+		return Color(0.133, 0.118, 0.090, 1)  # Brownish background for system hooks
+	return Color(0.176, 0.196, 0.235, 1)  # Dark background #2d3142
+
+
 func _draw_hook_item(item: TreeItem, rect: Rect2) -> void:
 	var hook := _get_hook(item)
 	var is_system := _is_system_hook(hook)
 	var is_selected := item == _selected_hook_item
 
 	# Draw background
-	var bg_color := Color(0.176, 0.196, 0.235, 1)  # Dark background #2d3142
-	if is_system:
-		bg_color = Color(0.133, 0.118, 0.090, 1)  # Brownish background for system hooks
+	var bg_color := _hook_bg_color(hook) # Dark background #2d3142
 	if is_selected:
 		bg_color = bg_color.lerp(Color(0.2, 0.4, 0.6, 0.3), 0.5)  # Blue tint for selection
 	_hooks_tree.draw_rect(rect, bg_color)
@@ -178,6 +192,14 @@ func _on_hook_selected() -> void:
 	_selected_hook_item = _hooks_tree.get_selected()
 	_update_hook_buttons()
 	_update_hook_description()
+
+
+func _on_item_edited() -> void:
+	var selected_hook_item := _hooks_tree.get_selected()
+	if selected_hook_item != null:
+		var hook := _get_hook(selected_hook_item)
+		var is_enabled := selected_hook_item.is_checked(1)
+		GdUnitTestSessionHookService.instance().enable_hook(hook, is_enabled)
 
 
 func _on_btn_add_hook_pressed() -> void:

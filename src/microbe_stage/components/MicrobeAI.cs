@@ -5,16 +5,17 @@ using System.Collections.Generic;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
 ///   AI for a single Microbe (enables the <see cref="MicrobeAISystem"/>. to run on this). And also the memory for
 ///   the AI.
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct MicrobeAI
+public struct MicrobeAI : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public float TimeUntilNextThink;
 
     public float PreviousAngle;
@@ -45,15 +46,71 @@ public struct MicrobeAI
     /// </remarks>
     public Dictionary<Compound, float>? PreviouslyAbsorbedCompounds;
 
-    [JsonIgnore]
     public Dictionary<Compound, float>? CompoundsSearchWeights;
 
-    [JsonProperty]
     public bool HasBeenNearPlayer;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMicrobeAI;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(TimeUntilNextThink);
+        writer.Write(PreviousAngle);
+        writer.Write(TargetPosition);
+        writer.WriteAnyRegisteredValueAsObject(FocusedPrey);
+
+        writer.Write(PursuitThreshold);
+        writer.Write(ATPThreshold);
+        writer.Write(HasBeenNearPlayer);
+
+        writer.Write(LastSmelledCompoundPosition.HasValue);
+        if (LastSmelledCompoundPosition.HasValue)
+            writer.Write(LastSmelledCompoundPosition.Value);
+
+        if (PreviouslyAbsorbedCompounds == null)
+        {
+            writer.WriteNullObject();
+        }
+        else
+        {
+            writer.WriteObject(PreviouslyAbsorbedCompounds);
+        }
+    }
 }
 
 public static class MicrobeAIHelpers
 {
+    public static MicrobeAI ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > MicrobeAI.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, MicrobeAI.SERIALIZATION_VERSION);
+
+        var instance = new MicrobeAI
+        {
+            TimeUntilNextThink = reader.ReadFloat(),
+            PreviousAngle = reader.ReadFloat(),
+            TargetPosition = reader.ReadVector3(),
+            FocusedPrey = reader.ReadObject<Entity>(),
+            PursuitThreshold = reader.ReadFloat(),
+            ATPThreshold = reader.ReadFloat(),
+            HasBeenNearPlayer = reader.ReadBool(),
+        };
+
+        if (reader.ReadBool())
+        {
+            instance.LastSmelledCompoundPosition = reader.ReadVector3();
+        }
+        else
+        {
+            instance.LastSmelledCompoundPosition = null;
+        }
+
+        instance.PreviouslyAbsorbedCompounds = reader.ReadObjectOrNull<Dictionary<Compound, float>>();
+
+        return instance;
+    }
+
     /// <summary>
     ///   Resets AI status when this AI-controlled microbe is removed from a colony
     /// </summary>

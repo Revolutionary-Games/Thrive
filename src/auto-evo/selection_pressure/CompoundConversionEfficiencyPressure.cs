@@ -1,14 +1,13 @@
 ﻿namespace AutoEvo;
 
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
-[JSONDynamicTypeAllowed]
 public class CompoundConversionEfficiencyPressure : SelectionPressure
 {
-    [JsonIgnore]
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public readonly CompoundDefinition FromCompound;
 
-    [JsonIgnore]
     public readonly CompoundDefinition ToCompound;
 
     // Needed for translation extraction
@@ -17,33 +16,47 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    // These two are needed purely for saving to work
-    [JsonProperty]
-    private readonly Compound compound;
-
-    [JsonProperty]
-    private readonly Compound outCompound;
-
-    [JsonProperty]
     private readonly bool usedForSurvival;
 
-    public CompoundConversionEfficiencyPressure(Compound compound, Compound outCompound, float weight,
-        bool usedForSurvival) :
+    public CompoundConversionEfficiencyPressure(Compound compound, Compound outCompound,
+        bool usedForSurvival, float weight) :
         base(weight, [
             AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, outCompound),
             RemoveOrganelle.ThatCreateCompound(outCompound),
         ])
     {
-        this.compound = compound;
-        this.outCompound = outCompound;
-
         FromCompound = SimulationParameters.GetCompound(compound);
         ToCompound = SimulationParameters.GetCompound(outCompound);
         this.usedForSurvival = usedForSurvival;
     }
 
-    [JsonIgnore]
     public override LocalizedString Name => NameString;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.CompoundConversionEfficiencyPressure;
+
+    public static CompoundConversionEfficiencyPressure ReadFromArchive(ISArchiveReader reader, ushort version,
+        int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new CompoundConversionEfficiencyPressure((Compound)reader.ReadInt32(),
+            (Compound)reader.ReadInt32(), reader.ReadBool(), reader.ReadFloat());
+
+        instance.ReadBasePropertiesFromArchive(reader, 1);
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write((int)FromCompound.ID);
+        writer.Write((int)ToCompound.ID);
+        writer.Write(usedForSurvival);
+        base.WriteToArchive(writer);
+    }
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {

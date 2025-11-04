@@ -1,8 +1,12 @@
 ﻿using System.Collections.Generic;
+using SharedBase.Archive;
 
 public abstract class HexMoveActionData<THex, TContext> : EditorCombinableActionData<TContext>
-    where THex : class, IActionHex
+    where THex : class, IActionHex, IArchivable
+    where TContext : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION_HEX = 1;
+
     public THex MovedHex;
     public Hex OldLocation;
     public Hex NewLocation;
@@ -50,6 +54,29 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
         return (nextLocation, nextOrientation);
     }
 
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(MovedHex);
+        writer.Write(OldLocation);
+        writer.Write(NewLocation);
+        writer.Write(OldRotation);
+        writer.Write(NewRotation);
+
+        writer.Write(SERIALIZATION_VERSION_CONTEXT);
+        base.WriteToArchive(writer);
+    }
+
+    protected override void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_HEX or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_HEX);
+
+        // Base version is different
+        base.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        // Properties are read for the constructor already
+    }
+
     protected override double CalculateBaseCostInternal()
     {
         if (OldLocation == NewLocation && OldRotation == NewRotation)
@@ -93,6 +120,7 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
                 // If placed in the same session and not deleted before that, then all moves are free
                 if (!removed)
                 {
+                    // TODO: this might need to refund if going to a place that had a hex deleted from
                     return (0, 0);
                 }
 
@@ -108,7 +136,7 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
                     OldRotation == moveActionData.NewRotation && NewRotation == moveActionData.OldRotation)
                 {
                     cost = 0;
-                    refund += other.GetCalculatedSelfCost();
+                    refund += other.GetAndConsumeAvailableRefund();
                     continue;
                 }
 
@@ -116,7 +144,7 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
                 if ((moveActionData.NewLocation == OldLocation && moveActionData.NewRotation == OldRotation) ||
                     (NewLocation == moveActionData.OldLocation && NewRotation == moveActionData.OldRotation))
                 {
-                    refund += other.GetCalculatedSelfCost();
+                    refund += other.GetAndConsumeAvailableRefund();
                 }
             }
         }

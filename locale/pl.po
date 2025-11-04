@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 11:08+0200\n"
-"PO-Revision-Date: 2025-09-20 19:24+0000\n"
-"Last-Translator: Karolina Zyguła <puszkowa505@gmail.com>\n"
+"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"PO-Revision-Date: 2025-10-18 04:10+0000\n"
+"Last-Translator: Maksymilian Adamski <gyhat.yt@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -948,7 +948,7 @@ msgid "COMMON_ABILITIES"
 msgstr "Pospolite Umiejętności"
 
 msgid "COMMON_EDITING_AND_STRATEGY"
-msgstr ""
+msgstr "Wspólne dla faz edytora i strategii"
 
 msgid "COMMUNITY_FORUM"
 msgstr "Forum Społeczności"
@@ -1528,10 +1528,10 @@ msgstr ""
 "Obserwowanie koordynatów: {1}"
 
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
-msgstr ""
+msgstr "Wyświetlanie debugowania fizyki nie jest dostępne w tym trybie budowy"
 
 msgid "DEBUG_HEAT_AT_CURSOR"
-msgstr ""
+msgstr "Wartość temperatury: {0}"
 
 msgid "DEBUG_PANEL"
 msgstr "Panel Debugowania"
@@ -1762,10 +1762,10 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Wyświetlaj cząsteczki w tle"
 
 msgid "DISPLAY_DRIVER_OPENGL"
-msgstr ""
+msgstr "OpenGL"
 
 msgid "DISPLAY_DRIVER_VULKAN"
-msgstr ""
+msgstr "Vulkan"
 
 msgid "DISPLAY_MODE"
 msgstr "Tryb wyświetlania:"
@@ -1798,10 +1798,10 @@ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 msgstr "Przełącza między normalną i podwójną szybkością rozgrywki"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
-msgstr ""
+msgstr "Zmień kolejność przeciągając myszką"
 
 msgid "DUMP_SCENE_TREE"
-msgstr ""
+msgstr "Zrzuć SceneTree"
 
 msgid "DUPLICATE_TYPE"
 msgstr "Powiel Typ"
@@ -2035,7 +2035,7 @@ msgid "ENERGY_SUMMARY_LINE"
 msgstr "Całkowita zdobyta energia wynosi {0} z indywidualnym kosztem {1} tworzącym nieuregulowaną populację {2}"
 
 msgid "ENGULF_CELL_OR_CHUNK"
-msgstr ""
+msgstr "Wchloń kolejną komórkę lub odłamek"
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr "Uszkodzono przez wejście do trybu wchłaniania bez ATP"
@@ -2091,7 +2091,7 @@ msgid "ERROR_FETCHING_EXPLANATION"
 msgstr "Przechwycenie wiadomości się nie powiodło przez błąd: {0}"
 
 msgid "ERROR_FETCHING_NEWS"
-msgstr ""
+msgstr "Błąd Pobierania Wiadomości"
 
 msgid "ERROR_LOADING"
 msgstr "Błąd wczytywania"
@@ -2137,6 +2137,9 @@ msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta w
 
 msgid "EVENT_METEOR_RADIOACTIVE"
 msgstr ""
+"Uderzenie radioaktywnego meteorytu\n"
+"Zwiększenia stężenia dwutlenku węgla.\n"
+"Pojawienie się promieniotwórczych fragmentów."
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
@@ -2146,6 +2149,9 @@ msgstr "Drzewo Filogenetyczne"
 
 msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr ""
+"Nie udało się zbudować drzewa filogenetycznego.\n"
+"\n"
+"Powiadom deweloperów załączając logi z gry."
 
 msgid "EXACT_VERSION_COLON"
 msgstr "Dokładna Wersja Thrive:"
@@ -2260,7 +2266,7 @@ msgid "FEBRUARY"
 msgstr "Luty"
 
 msgid "FEED_ITEM_CONTENT_PARSING_FAILED"
-msgstr ""
+msgstr "Przetwarzanie zawartości tego pokarmu zakończyło się niepowodzeniem."
 
 msgid "FEED_ITEM_MISSING_CONTENT"
 msgstr "Temu przedmiotowi brakuje jego zawartości."
@@ -2269,7 +2275,7 @@ msgid "FEED_ITEM_PUBLISHED_AT"
 msgstr "Opublikowany o {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
-msgstr ""
+msgstr "Ten przedmiot był skrócony, bo był za długi, przeczytaj oryginał dla całego kontekstu. {0}"
 
 #, fuzzy
 msgid "FERROPLAST"
@@ -2352,7 +2358,7 @@ msgid "FOG_OF_WAR_DISABLED"
 msgstr "Wyłączony"
 
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
-msgstr ""
+msgstr "(wszystkie strefy będą widoczne)"
 
 msgid "FOG_OF_WAR_INTENSE"
 msgstr "Gęsta mgła wojny"
@@ -2392,7 +2398,7 @@ msgid "FOSSILISATION"
 msgstr "Fosylizacja"
 
 msgid "FOSSILISATION_EXPLANATION"
-msgstr ""
+msgstr "Zachowaj gatunek jako skamieniałość w muzeum. Możesz je znaleźć w Thriveopedii, lub wczytać w edytorze wolnej edycji."
 
 #, fuzzy
 msgid "FOSSILISATION_FAILED"
@@ -2409,6 +2415,14 @@ msgstr ""
 
 msgid "FOSSILISE"
 msgstr "Zachowaj jako skamieniałość"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Fosylizacja"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Aktualizacja wybranego zapisu zawiodła przez następujący błąd:"
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr ""
@@ -4757,6 +4771,10 @@ msgstr "Związki"
 
 msgid "OUR_WIKI"
 msgstr "Nasza strona Wiki"
+
+#, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Nie zaczęto."
 
 #, fuzzy
 msgid "OUTDATED_NOTICE"
@@ -9207,6 +9225,10 @@ msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Nie zaczęto."
 
 #, fuzzy
 #~ msgid "GENERATE_BUTTON"

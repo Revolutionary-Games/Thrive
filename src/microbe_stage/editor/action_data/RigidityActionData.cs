@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using SharedBase.Archive;
 
-[JSONAlwaysDynamicType]
 public class RigidityActionData : EditorCombinableActionData<CellType>
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public float NewRigidity;
     public float PreviousRigidity;
 
@@ -13,10 +15,44 @@ public class RigidityActionData : EditorCombinableActionData<CellType>
         PreviousRigidity = previousRigidity;
     }
 
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.RigidityActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.RigidityActionData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((RigidityActionData)obj);
+    }
+
     public static double CalculateRigidityCost(float newRigidity, float previousRigidity)
     {
         return Math.Abs(newRigidity - previousRigidity) * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO *
             Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
+    }
+
+    public static RigidityActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new RigidityActionData(reader.ReadFloat(), reader.ReadFloat());
+
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(NewRigidity);
+        writer.Write(PreviousRigidity);
+
+        writer.Write(SERIALIZATION_VERSION_CONTEXT);
+        base.WriteToArchive(writer);
     }
 
     protected override double CalculateBaseCostInternal()

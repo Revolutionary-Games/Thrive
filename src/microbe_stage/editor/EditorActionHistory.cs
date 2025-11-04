@@ -1,6 +1,10 @@
-﻿using System;
+﻿// #define DEBUG_ACTION_COSTS
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Saving.Serializers;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Holds the action history for the editor.
@@ -17,6 +21,22 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     where TAction : EditorAction
 {
     private List<EditorCombinableActionData>? cache;
+
+    public EditorActionHistory()
+    {
+    }
+
+    /// <summary>
+    ///   Used by the deserializer
+    /// </summary>
+    protected EditorActionHistory(List<TAction> actions, int actionIndex) : base(actions, actionIndex)
+    {
+    }
+
+    public override ushort CurrentArchiveVersion => ActionHistorySerializer.SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.ExtendedEditorActionHistory;
 
     private List<EditorCombinableActionData> History => cache ??= GetActionHistorySinceLastHistoryResettingAction();
 
@@ -47,7 +67,29 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         if (CheatManager.InfiniteMP)
             return 0;
 
+        // TODO: this can refresh some things that were already used thus resulting in cheaper cost than the reality
+        PrepareForNewCostCalculation(true);
+
         return combinableAction.CalculateCost(History, History.Count);
+    }
+
+    public void PrepareForNewCostCalculation(bool refundOnly)
+    {
+        if (refundOnly)
+        {
+            // Refresh refunds to be available for a new calculation
+            foreach (var action in History)
+            {
+                action.RefreshAvailableRefund();
+            }
+        }
+        else
+        {
+            foreach (var action in History)
+            {
+                action.PrepareForNewCostCalculation();
+            }
+        }
     }
 
     /// <summary>
@@ -64,12 +106,29 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         double mpLeft = Constants.BASE_MUTATION_POINTS;
 
         var count = processedHistory.Count;
+
+#if DEBUG_ACTION_COSTS
+        Console.WriteLine($"Starting calculation of MP left with {count} actions");
+#endif
+
+        PrepareForNewCostCalculation(false);
+
         for (int i = 0; i < count; ++i)
         {
             var action = processedHistory[i];
 
             mpLeft -= action.CalculateCost(History, i);
+
+#if DEBUG_ACTION_COSTS
+            Console.WriteLine($"At index {i}: MP left: {mpLeft} \twith action cost: " +
+                $"{action.GetCalculatedSelfCost()} \trefund: {action.GetCalculatedRefundCost()} \t" +
+                $"(total: {action.GetCalculatedEffectiveCost()})\t{action.GetType().Name}");
+#endif
         }
+
+#if DEBUG_ACTION_COSTS
+        Console.WriteLine($"MP left: {mpLeft}\n");
+#endif
 
         return mpLeft;
     }
@@ -143,7 +202,8 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     }
 
     public bool HexPlacedThisSession<THex, TContext>(THex hex)
-        where THex : class, IActionHex
+        where THex : class, IActionHex, IArchivable
+        where TContext : IArchivable
     {
         return History.OfType<HexPlacementActionData<THex, TContext>>().Any(a => a.PlacedHex == hex);
     }
@@ -154,6 +214,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// <typeparam name="TContext">The type of context to be returned.</typeparam>
     /// <returns>The context the next action to redo should be performed in.</returns>
     public TContext? GetRedoContext<TContext>()
+        where TContext : IArchivable
     {
         return GetContext<TContext>(ActionToRedo());
     }
@@ -164,11 +225,13 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// <typeparam name="TContext">The type of context to be returned.</typeparam>
     /// <returns>The context the next action to undo should be performed in.</returns>
     public TContext? GetUndoContext<TContext>()
+        where TContext : IArchivable
     {
         return GetContext<TContext>(ActionToUndo());
     }
 
     private static TContext? GetContext<TContext>(TAction? action)
+        where TContext : IArchivable
     {
         // We don't allow combining actions from different contexts,
         // so we only need to check the first data for the context

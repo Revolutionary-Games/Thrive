@@ -7,15 +7,16 @@ using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Microbe colony newMember. This component is added to the colony lead cell. This contains the overall info
 ///   about the cell colony or multicellular creature.
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct MicrobeColony
+public struct MicrobeColony : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   All colony members of this colony. The cell at index 0 has to be the <see cref="Leader"/>. Only modify
     ///   this data through the helper methods to ensure everything is consistent.
@@ -23,7 +24,7 @@ public struct MicrobeColony
     public Entity[] ColonyMembers;
 
     /// <summary>
-    ///   Lead cell of the colony. This is the newMember that exists separately in the world, all others are
+    ///   Lead cell of the colony. This is the newMember that exists separately in the world; all others are
     ///   attached to it with <see cref="AttachedToEntity"/> components. Note this is always assumed to be the
     ///   same as the entity that has this <see cref="MicrobeColony"/> component on it.
     /// </summary>
@@ -35,14 +36,12 @@ public struct MicrobeColony
     ///   detect which cells are also lost if one cell is lost. Key is the dependent cell and the value is its
     ///   parent.
     /// </summary>
-    [JsonConverter(typeof(DictionaryWithJSONKeysConverter<Entity, Entity>))]
     public Dictionary<Entity, Entity> ColonyStructure;
 
     /// <summary>
     ///   The colony compounds. Use the <see cref="MicrobeColonyHelpers.GetCompounds"/> for accessing this as it
     ///   automatically sets this up if missing.
     /// </summary>
-    [JsonIgnore]
     public ColonyCompoundBag? ColonyCompounds;
 
     public float ColonyRotationSpeed;
@@ -55,14 +54,14 @@ public struct MicrobeColony
 
     // Note that the following statistics should be accessed through the helpers to ensure that they have been
     // calculated. This is implemented like this to simplify spawning to not require full entities to exist at that
-    // point. Instead only when the properties are used they are calculated when the colony member entities are
+    // point. Instead, only when the properties are used they are calculated when the colony member entities are
     // certainly created.
 
     public int HexCount;
     public bool CanEngulf;
 
     /// <summary>
-    ///   Internal variable don't touch.
+    ///   Internal variable, don't touch.
     /// </summary>
     public bool DerivedStatisticsCalculated;
 
@@ -144,6 +143,22 @@ public struct MicrobeColony
         DerivedStatisticsCalculated = false;
         EntityWeightApplied = false;
     }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMicrobeColony;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(ColonyMembers);
+        writer.WriteAnyRegisteredValueAsObject(Leader);
+        writer.WriteObject(ColonyStructure);
+        writer.Write(ColonyRotationSpeed);
+        writer.Write((int)ColonyState);
+        writer.Write(HexCount);
+        writer.Write(CanEngulf);
+        writer.Write(DerivedStatisticsCalculated);
+        writer.Write(EntityWeightApplied);
+    }
 }
 
 public static class MicrobeColonyHelpers
@@ -153,6 +168,25 @@ public static class MicrobeColonyHelpers
     // public static readonly ArrayPool<Entity> MicrobeColonyMemberListPool = ArrayPool<Entity>.Create(100, 50);
 
     private static readonly List<Entity> DependentMembersToRemove = new();
+
+    public static MicrobeColony ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > MicrobeColony.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, MicrobeColony.SERIALIZATION_VERSION);
+
+        return new MicrobeColony
+        {
+            ColonyMembers = reader.ReadObject<Entity[]>(),
+            Leader = reader.ReadObject<Entity>(),
+            ColonyStructure = reader.ReadObject<Dictionary<Entity, Entity>>(),
+            ColonyRotationSpeed = reader.ReadFloat(),
+            ColonyState = (MicrobeState)reader.ReadInt32(),
+            HexCount = reader.ReadInt32(),
+            CanEngulf = reader.ReadBool(),
+            DerivedStatisticsCalculated = reader.ReadBool(),
+            EntityWeightApplied = reader.ReadBool(),
+        };
+    }
 
     public static ColonyCompoundBag GetCompounds(this ref MicrobeColony colony)
     {

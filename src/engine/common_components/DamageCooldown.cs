@@ -1,18 +1,39 @@
 ﻿namespace Components;
 
 using Godot;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Entity keeps track of damage cooldown
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct DamageCooldown
+public struct DamageCooldown : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public float CooldownRemaining;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentDamageCooldown;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(CooldownRemaining);
+    }
 }
 
 public static class DamageCooldownHelpers
 {
+    public static DamageCooldown ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > DamageCooldown.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, DamageCooldown.SERIALIZATION_VERSION);
+
+        return new DamageCooldown
+        {
+            CooldownRemaining = reader.ReadFloat(),
+        };
+    }
+
     public static bool IsInCooldown(this ref DamageCooldown damageCooldown)
     {
         return damageCooldown.CooldownRemaining > 0;

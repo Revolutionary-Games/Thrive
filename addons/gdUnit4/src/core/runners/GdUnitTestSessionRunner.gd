@@ -80,12 +80,13 @@ enum {
 }
 
 func _init() -> void:
-	# minimize scene window checked debug mode
 	if OS.get_cmdline_args().size() == 1:
 		DisplayServer.window_set_title("GdUnit4 Runner (Debug Mode)")
 	else:
 		DisplayServer.window_set_title("GdUnit4 Runner (Release Mode)")
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MINIMIZED)
+	if not Engine.is_embedded_in_editor():
+		# minimize scene window checked debug mode
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MINIMIZED)
 	# store current runner instance to engine meta data to can be access in as a singleton
 	Engine.set_meta(GDUNIT_RUNNER, self)
 

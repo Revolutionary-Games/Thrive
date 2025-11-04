@@ -1,30 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Godot;
-using Newtonsoft.Json;
-using Saving.Serializers;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Class that represents a species. This is an abstract base for
 ///   use by all stage-specific species classes.
 /// </summary>
-[JsonObject(IsReference = true)]
-[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
-[JSONAlwaysDynamicType]
-[UseThriveConverter]
-[UseThriveSerializer]
-public abstract class Species : ICloneable
+/// <remarks>
+///   <para>
+///     This must remain JSON serializable until fossil files are switched over to the archive system.
+///   </para>
+/// </remarks>
+public abstract class Species : ICloneable, IArchivable
 {
     /// <summary>
     ///   This is not an auto property to make save compatibility easier
     /// </summary>
-    [JsonProperty]
     private Dictionary<Compound, float>? cachedBaseReproductionCost;
 
-    [JsonProperty]
     private Dictionary<Compound, float>? cachedTotalReproductionCost;
 
     protected Species(uint id, string genus, string epithet)
@@ -37,13 +33,11 @@ public abstract class Species : ICloneable
     /// <summary>
     ///   This is the amount of compounds cells of this type spawn with
     /// </summary>
-    [JsonProperty]
     public Dictionary<Compound, float> InitialCompounds { get; private set; } = new();
 
     /// <summary>
     ///   The base compounds needed to reproduce an individual of this species. Do not modify the returned value.
     /// </summary>
-    [JsonIgnore]
     public IReadOnlyDictionary<Compound, float> BaseReproductionCost =>
         cachedBaseReproductionCost ??= CalculateBaseReproductionCost();
 
@@ -51,7 +45,6 @@ public abstract class Species : ICloneable
     ///   The total compounds (including organelles, etc. when applicable) needed to reproduce an individual
     ///   of this species.
     /// </summary>
-    [JsonIgnore]
     public IReadOnlyDictionary<Compound, float> TotalReproductionCost =>
         cachedTotalReproductionCost ??= CalculateTotalReproductionCost();
 
@@ -64,7 +57,6 @@ public abstract class Species : ICloneable
     ///     followed by a sequential number, so now this is an actual number.
     ///   </para>
     /// </remarks>
-    [JsonProperty]
     public uint ID { get; private set; }
 
     public string Genus { get; set; }
@@ -75,7 +67,7 @@ public abstract class Species : ICloneable
     /// <summary>
     ///   The colour value for GUI Components that want to show this species' colour.
     ///   This value has additional constraints compared to plain Colour,
-    ///   for example ensuring full opacity to avoid transparency, which can cause rendering bugs.
+    ///   for example, ensuring full opacity to avoid transparency, which can cause rendering bugs.
     /// </summary>
     public Color GUIColour
     {
@@ -96,7 +88,6 @@ public abstract class Species : ICloneable
     /// <summary>
     ///   This holds all behavioural values and defines how this species will behave in the environment.
     /// </summary>
-    [JsonProperty]
     public BehaviourDictionary Behaviour { get; set; } = new();
 
     /// <summary>
@@ -112,34 +103,23 @@ public abstract class Species : ICloneable
     public int Generation { get; set; } = 1;
 
     /// <summary>
-    ///   This is the genome of the species
-    /// </summary>
-    [JsonIgnore]
-    public abstract string StringCode { get; }
-
-    /// <summary>
     ///   When true, this is the player species
     /// </summary>
-    [JsonProperty]
     public bool PlayerSpecies { get; private set; }
 
-    [JsonProperty]
     public EndosymbiosisData Endosymbiosis { get; private set; } = new();
 
     /// <summary>
     ///   Environmental tolerances of this species (determines what it can take in terms of habitat)
     /// </summary>
-    [JsonProperty]
     public EnvironmentalTolerances Tolerances { get; private set; } = new();
 
-    [JsonIgnore]
     public string FormattedName => Genus + " " + Epithet;
 
     /// <summary>
     ///   Returns <see cref="FormattedName"/> but includes bbcode tags for styling and hover-over tooltips. Player's
     ///   species will be emphasized with bolding.
     /// </summary>
-    [JsonIgnore]
     public string FormattedNameBbCode => PlayerSpecies ?
         $"[b][i]{FormattedNameBbCodeUnstyled}[/i][/b]" :
         $"[i]{FormattedNameBbCodeUnstyled}[/i]";
@@ -147,14 +127,36 @@ public abstract class Species : ICloneable
     /// <summary>
     ///   Returns <see cref="FormattedName"/> but includes bbcode tags for hover-over tooltips.
     /// </summary>
-    [JsonIgnore]
     public string FormattedNameBbCodeUnstyled => $"[url=species:{ID}]{FormattedName}[/url]";
 
-    [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 
-    [JsonIgnore]
     public bool IsExtinct => Population <= 0;
+
+    public abstract ushort CurrentArchiveVersion { get; }
+
+    public abstract ArchiveObjectType ArchiveObjectType { get; }
+
+    public bool CanBeReferencedInArchive => true;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        writer.WriteObject((Species)obj);
+    }
+
+    public static object ReadFromArchive(ISArchiveReader reader, Type knownType, ushort version, int referenceId)
+    {
+        // This forwards the reading to the correct version of the species
+        if (typeof(MicrobeSpecies) == knownType)
+            return MicrobeSpecies.ReadFromArchive(reader, version, referenceId);
+
+        if (typeof(MulticellularSpecies) == knownType)
+            return MulticellularSpecies.ReadFromArchive(reader, version, referenceId);
+
+        throw new NotSupportedException($"Unknown species type for read forwarding: {knownType}");
+    }
+
+    public abstract void WriteToArchive(ISArchiveWriter writer);
 
     /// <summary>
     ///   Triggered when this species is changed somehow. Should update any data that is cached in the species
@@ -167,7 +169,7 @@ public abstract class Species : ICloneable
     }
 
     /// <summary>
-    ///   Repositions the structure of the species according to stage specific rules
+    ///   Repositions the structure of the species according to stage-specific rules
     /// </summary>
     /// <returns>True when repositioning happened, false if this was already positioned correctly</returns>
     public abstract bool RepositionToOrigin();
@@ -319,7 +321,7 @@ public abstract class Species : ICloneable
     /// <summary>
     ///   Creates a cloned version of the species. This should only
     ///   really be used if you need to modify a species while
-    ///   referring to the old data. In for example the Mutations
+    ///   referring to the old data. In, for example, the Mutations
     ///   code.
     /// </summary>
     /// <returns>Deep-cloned instance of this object</returns>
@@ -395,6 +397,40 @@ public abstract class Species : ICloneable
         // There can only be one player species at a time, so to avoid adding a method to reset this flag when
         // mutating, this property is just not copied
         // species.PlayerSpecies = PlayerSpecies;
+    }
+
+    protected virtual void WriteBasePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(ID);
+        writer.Write(Genus);
+        writer.Write(Epithet);
+
+        writer.WriteObject(InitialCompounds);
+        writer.Write(Colour);
+        writer.Write(Obsolete);
+        writer.WriteObject((IArchivable)Behaviour);
+        writer.Write(Population);
+        writer.Write(Generation);
+        writer.Write(PlayerSpecies);
+
+        writer.WriteObjectProperties(Endosymbiosis);
+        writer.WriteObjectProperties(Tolerances);
+    }
+
+    protected virtual void ReadNonConstructorBaseProperties(ISArchiveReader reader, ushort version)
+    {
+        if (version != 1)
+            throw new InvalidArchiveVersionException(version, 1);
+
+        InitialCompounds = reader.ReadObject<Dictionary<Compound, float>>();
+        Colour = reader.ReadColor();
+        Obsolete = reader.ReadBool();
+        Behaviour = reader.ReadObject<BehaviourDictionary>();
+        Population = reader.ReadInt64();
+        Generation = reader.ReadInt32();
+        PlayerSpecies = reader.ReadBool();
+        reader.ReadObjectProperties(Endosymbiosis);
+        reader.ReadObjectProperties(Tolerances);
     }
 
     protected virtual Dictionary<Compound, float> CalculateBaseReproductionCost()

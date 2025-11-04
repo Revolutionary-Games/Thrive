@@ -2,14 +2,16 @@
 
 using Arch.Core;
 using Godot;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Sends and receivers command signals (signaling agent). Requires a <see cref="WorldPosition"/> to function
 ///   as the origin of the signaling command.
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct CommandSignaler
+public struct CommandSignaler : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Stores the position the command signal was received from. Only valid if <see cref="ReceivedCommand"/> is
     ///   not <see cref="MicrobeSignalCommand.None"/>.
@@ -38,4 +40,47 @@ public struct CommandSignaler
     public MicrobeSignalCommand ReceivedCommand;
 
     // TODO: should this have a bool flag to disable this component when the microbe doesn't have a signaling agent?
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentCommandSignaler;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(ReceivedCommandSource);
+        writer.WriteAnyRegisteredValueAsObject(ReceivedCommandFromEntity);
+        writer.Write(SignalingChannel);
+
+        writer.Write(QueuedSignalingCommand.HasValue);
+        if (QueuedSignalingCommand.HasValue)
+            writer.Write((int)QueuedSignalingCommand.Value);
+
+        writer.Write((int)Command);
+        writer.Write((int)ReceivedCommand);
+    }
+}
+
+public static class CommandSignalerHelpers
+{
+    public static CommandSignaler ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > CommandSignaler.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, CommandSignaler.SERIALIZATION_VERSION);
+
+        var instance = new CommandSignaler
+        {
+            ReceivedCommandSource = reader.ReadVector3(),
+            ReceivedCommandFromEntity = reader.ReadObject<Entity>(),
+            SignalingChannel = reader.ReadUInt64(),
+        };
+
+        if (reader.ReadBool())
+        {
+            instance.QueuedSignalingCommand = (MicrobeSignalCommand)reader.ReadInt32();
+        }
+
+        instance.Command = (MicrobeSignalCommand)reader.ReadInt32();
+        instance.ReceivedCommand = (MicrobeSignalCommand)reader.ReadInt32();
+
+        return instance;
+    }
 }

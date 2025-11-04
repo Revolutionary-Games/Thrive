@@ -1,10 +1,13 @@
 ﻿using System;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 [JsonObject(IsReference = true)]
-public class CellTemplate : IPositionedCell, ICloneable, IActionHex
+public class CellTemplate : IPositionedCell, ICloneable, IActionHex, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private int orientation;
 
     [JsonConstructor]
@@ -60,6 +63,38 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex
     [JsonIgnore]
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
+
+    [JsonIgnore]
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    [JsonIgnore]
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CellTemplate;
+
+    [JsonIgnore]
+    public bool CanBeReferencedInArchive => true;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.CellTemplate)
+            throw new NotSupportedException();
+
+        writer.WriteObject((CellTemplate)obj);
+    }
+
+    public static CellTemplate ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new CellTemplate(reader.ReadObject<CellType>(), reader.ReadHex(), reader.ReadInt32());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(CellType);
+        writer.Write(Position);
+        writer.Write(Orientation);
+    }
 
     public bool RepositionToOrigin()
     {

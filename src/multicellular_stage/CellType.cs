@@ -1,29 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Type of cell in a multicellular species. There can be multiple instances of a cell type placed at once
 /// </summary>
-[JsonObject(IsReference = true)]
-public class CellType : ICellDefinition, ICloneable
+public class CellType : ICellDefinition, ICloneable, IArchivable
 {
-    [JsonConstructor]
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public CellType(OrganelleLayout<OrganelleTemplate> organelles, MembraneType membraneType)
     {
         Organelles = organelles;
         MembraneType = membraneType;
+        CanEngulf = membraneType.CanEngulf;
     }
 
     public CellType(MembraneType membraneType)
     {
         MembraneType = membraneType;
         Organelles = new OrganelleLayout<OrganelleTemplate>();
+        CanEngulf = membraneType.CanEngulf;
     }
 
     /// <summary>
-    ///   Creates a cell type from the cell type of a microbe species
+    ///   Creates a cell type from the cell type of microbe species
     /// </summary>
     /// <param name="microbeSpecies">The microbe species to take the cell type parameters from</param>
     /// <param name="workMemory1">Temporary memory needed to copy organelle data</param>
@@ -43,7 +45,6 @@ public class CellType : ICellDefinition, ICloneable
         TypeName = Localization.Translate("STEM_CELL_NAME");
     }
 
-    [JsonProperty]
     public OrganelleLayout<OrganelleTemplate> Organelles { get; private set; }
 
     public string TypeName { get; set; } = "error";
@@ -56,12 +57,51 @@ public class CellType : ICellDefinition, ICloneable
     public float BaseRotationSpeed { get; set; }
     public bool CanEngulf { get; }
 
-    [JsonIgnore]
     public string FormattedName => TypeName;
 
-    [JsonIgnore]
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CellType;
+    public bool CanBeReferencedInArchive => true;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.CellType)
+            throw new NotSupportedException();
+
+        writer.WriteObject((CellType)obj);
+    }
+
+    public static CellType ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new CellType(reader.ReadObject<OrganelleLayout<OrganelleTemplate>>(), reader.ReadObject<MembraneType>())
+        {
+            TypeName = reader.ReadString() ?? throw new NullArchiveObjectException(),
+            MPCost = reader.ReadInt32(),
+            MembraneRigidity = reader.ReadFloat(),
+            Colour = reader.ReadColor(),
+            IsBacteria = reader.ReadBool(),
+            BaseRotationSpeed = reader.ReadFloat(),
+        };
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(Organelles);
+        writer.WriteObject(MembraneType);
+
+        writer.Write(TypeName);
+        writer.Write(MPCost);
+        writer.Write(MembraneRigidity);
+        writer.Write(Colour);
+        writer.Write(IsBacteria);
+        writer.Write(BaseRotationSpeed);
+    }
 
     public bool RepositionToOrigin()
     {
@@ -79,7 +119,7 @@ public class CellType : ICellDefinition, ICloneable
     /// <summary>
     ///   Checks if this cell type is a brain tissue type
     /// </summary>
-    /// <returns>True when this is brain tissue</returns>
+    /// <returns>True when this is a brain tissue type</returns>
     /// <remarks>
     ///   <para>
     ///     TODO: make this check much more comprehensive to make brain tissue type more distinct
@@ -158,7 +198,7 @@ public class CellType : ICellDefinition, ICloneable
         hash ^= (IsBacteria ? 1UL : 0UL) * 5779UL;
         hash ^= (ulong)count * 131;
 
-        // Additionally apply colour hash; this line doesn't appear in MicrobeSpecies, because colour hash
+        // Additionally, apply colour hash; this line doesn't appear in MicrobeSpecies, because colour hash
         // is applied by MicrobeSpecies' base class.
         hash ^= Colour.GetVisualHashCode();
 
@@ -166,7 +206,7 @@ public class CellType : ICellDefinition, ICloneable
 
         for (int i = 0; i < count; ++i)
         {
-            // Organelles in different order don't matter (in terms of visuals) so we don't apply any loop specific
+            // Organelles in different order don't matter (in terms of visuals), so we don't apply any loop-specific
             // stuff here
             unchecked
             {

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 11:08+0200\n"
-"PO-Revision-Date: 2025-08-21 15:25+0300\n"
+"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"PO-Revision-Date: 2025-10-30 12:31+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -2388,6 +2388,12 @@ msgstr "Fossilise this species (already fossilised)"
 msgid "FOSSILISE"
 msgstr "Fossilise"
 
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Fossil Data Load Failed"
+
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "The fossil file could not be read because the data was either outdated or invalid"
+
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Fossil Deletion Failed"
 
@@ -4573,6 +4579,9 @@ msgstr "Other"
 
 msgid "OUR_WIKI"
 msgstr "our Wiki"
+
+msgid "OUTDATED_ITEM"
+msgstr "OUTDATED"
 
 msgid "OUTDATED_NOTICE"
 msgstr "This page or section contains outdated information. This often happens when plans are changed after something has been written."
@@ -8948,9 +8957,11 @@ msgstr ""
 
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr ""
-"[thrive:compound type=\"iron\"][/thrive:compound] is a valuable alternative resource to use instead of [thrive:compound type=\"glucose\"][/thrive:compound] since it doesn't decay in the environment until much later. Rust-eating cells are likely to enjoy plentiful nutrients in patches where [thrive:compound type=\"iron\"][/thrive:compound] is abundant.\n"
+"[thrive:compound type=\"iron\"][/thrive:compound] is a valuable alternative resource to use instead of [thrive:compound type=\"glucose\"][/thrive:compound] since it doesn't decay in the environment until much later. [thrive:compound type=\"iron\"][/thrive:compound] is also directly transferred into ATP, so it can be a relatively cheap way to create an energetic organism early on in the Microbe Stage. However, because [thrive:compound type=\"iron\"][/thrive:compound] is burnt through rather quickly, players must be mindful to constantly be near larger cloud-emitting chunks, and must budget this resource very carefully if they choose to play as a more motile organism.\n"
 "\n"
-"Ingesting [thrive:compound type=\"iron\"][/thrive:compound] chunks may be tempting, but often you'll get more [thrive:compound type=\"iron\"][/thrive:compound] by holding near a bigger chunk as it produces more of the compound in cloud form. However, an ingested [thrive:compound type=\"iron\"][/thrive:compound] chunk allows you to carry more [thrive:compound type=\"iron\"][/thrive:compound] with you for longer journeys."
+"Storage can be a very useful attribute for iron-oxidizing organisms to utilize, as it allows them to store more of the rapidly-depleting compound. Size is also useful, as large organisms are able to ingest smaller [thrive:compound type=\"iron\"][/thrive:compound] chunks floating around. This will give you more freedom in movement, as you'll be carrying a chunk of [thrive:compound type=\"iron\"][/thrive:compound] with you as you explore your environment. [b] Cytoplasm [/b] is a very beneficial part to consider for iron-oxidizing organisms, as it allows you to cheaply build up size and storage. [b] Vacuoles [/b] are also very useful once you become a eukaryote. \n"
+"\n"
+"[thrive:compound type=\"iron\"][/thrive:compound] depletes more quickly as your organism places more demanding parts. It will also start to disappear with the rise of [b]Oxygen[/b]. As such, players who utilize [thrive:compound type=\"iron\"][/thrive:compound] must be vigilant as oxygen begins to dominate their atmosphere, and should consider aerobic respiration if they wish to create highly-efficient eukaryotes."
 
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "No upgrades."
@@ -9479,6 +9490,9 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "OUTDATED"
+#~ msgstr "OUTDATED"
 
 #~ msgid "SULFIDE_LEVELS"
 #~ msgstr "Sulfide level"

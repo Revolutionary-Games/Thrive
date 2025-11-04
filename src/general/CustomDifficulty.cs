@@ -1,9 +1,12 @@
-﻿/// <summary>
+﻿using SharedBase.Archive;
+
+/// <summary>
 ///   Customised difficulty setting
 /// </summary>
-[CustomizedRegistryType]
 public class CustomDifficulty : IDifficulty
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private bool applyGrowthOverride;
     private bool growthLimitOverride;
 
@@ -47,6 +50,46 @@ public class CustomDifficulty : IDifficulty
 
     public FogOfWarMode FogOfWarMode { get; set; }
     public bool OrganelleUnlocksEnabled { get; set; }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CustomDifficulty;
+    public bool CanBeReferencedInArchive => false;
+
+    public static CustomDifficulty ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new CustomDifficulty
+        {
+            MPMultiplier = reader.ReadFloat(),
+            AIMutationMultiplier = reader.ReadFloat(),
+            CompoundDensity = reader.ReadFloat(),
+            PlayerDeathPopulationPenalty = reader.ReadFloat(),
+            GlucoseDecay = reader.ReadFloat(),
+            OsmoregulationMultiplier = reader.ReadFloat(),
+            PlayerAutoEvoStrength = reader.ReadFloat(),
+            PlayerSpeciesAIPopulationStrength = reader.ReadFloat(),
+            FreeGlucoseCloud = reader.ReadBool(),
+            ReproductionCompounds = (ReproductionCompoundHandling)reader.ReadInt32(),
+            SwitchSpeciesOnExtinction = reader.ReadBool(),
+        };
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(MPMultiplier);
+        writer.Write(AIMutationMultiplier);
+        writer.Write(CompoundDensity);
+        writer.Write(PlayerDeathPopulationPenalty);
+        writer.Write(GlucoseDecay);
+        writer.Write(OsmoregulationMultiplier);
+        writer.Write(PlayerAutoEvoStrength);
+        writer.Write(PlayerSpeciesAIPopulationStrength);
+        writer.Write(FreeGlucoseCloud);
+        writer.Write((int)ReproductionCompounds);
+        writer.Write(SwitchSpeciesOnExtinction);
+    }
 
     public void SetGrowthRateLimitCheatOverride(bool newLimitSetting)
     {

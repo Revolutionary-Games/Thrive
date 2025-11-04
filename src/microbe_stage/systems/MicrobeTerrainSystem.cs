@@ -8,7 +8,7 @@ using Arch.Core;
 using Arch.System;
 using Components;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Xoshiro.PRNG32;
 
 /// <summary>
@@ -17,13 +17,14 @@ using Xoshiro.PRNG32;
 [RunsBefore(typeof(SpawnSystem))]
 [ReadsComponent(typeof(MicrobeTerrainChunk))]
 [RuntimeCost(1)]
-public class MicrobeTerrainSystem : BaseSystem<World, float>
+public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
 {
-    private readonly WorldSimulation worldSimulation;
+    public const ushort SERIALIZATION_VERSION = 1;
+
+    private readonly IWorldSimulation worldSimulation;
 
     private readonly QueryDescription allTerrainQuery = new QueryDescription().WithAll<MicrobeTerrainChunk>();
 
-    [JsonProperty]
     private readonly Dictionary<Vector2I, List<SpawnedTerrainCluster>> terrainGridData = new();
 
     private readonly List<Vector2I> despawnQueue = new();
@@ -33,7 +34,6 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
 
     private readonly List<SpawnedTerrainCluster> blankClusterList = new();
 
-    [JsonProperty]
     private Vector3 playerPosition;
 
     private Vector3 nextPlayerPosition;
@@ -41,11 +41,10 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
     private float playerProtectionRadiusSquared = 20 * 20;
 
     private int maxSpawnAttempts = 10;
+    private int differentClusterTypeAttempts = 3;
 
-    [JsonProperty]
     private long baseSeed;
 
-    [JsonProperty]
     private TerrainConfiguration? terrainConfiguration;
 
     private bool hasRetrievedAllGroups;
@@ -60,18 +59,63 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
     ///   Used to mark entity groups for finding them. Wraparound shouldn't cause problems as the spawns should be
     ///   so far apart.
     /// </summary>
-    [JsonProperty]
     private uint nextGroupId = 1;
 
-    public MicrobeTerrainSystem(WorldSimulation worldSimulation, World world) : base(world)
+    public MicrobeTerrainSystem(IWorldSimulation worldSimulation, World world) : base(world)
     {
         this.worldSimulation = worldSimulation;
     }
+
+    private MicrobeTerrainSystem(IWorldSimulation worldSimulation, World world,
+        Dictionary<Vector2I, List<SpawnedTerrainCluster>> existingGrid) : base(world)
+    {
+        this.worldSimulation = worldSimulation;
+        terrainGridData = existingGrid;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeTerrainSystem;
+    public bool CanBeReferencedInArchive => true;
 
     public static Vector2I PositionToTerrainCell(Vector3 position)
     {
         return new Vector2I((int)(position.X * Constants.TERRAIN_GRID_SIZE_INV),
             (int)(position.Z * Constants.TERRAIN_GRID_SIZE_INV));
+    }
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.MicrobeTerrainSystem)
+            throw new NotSupportedException();
+
+        writer.WriteObject((MicrobeTerrainSystem)obj);
+    }
+
+    public static MicrobeTerrainSystem ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new MicrobeTerrainSystem(reader.ReadObject<IWorldSimulation>(), reader.ReadObject<World>(),
+            reader.ReadObject<Dictionary<Vector2I, List<SpawnedTerrainCluster>>>());
+
+        instance.playerPosition = reader.ReadVector3();
+        instance.terrainConfiguration = reader.ReadObjectOrNull<TerrainConfiguration>();
+        instance.nextGroupId = reader.ReadUInt32();
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(worldSimulation);
+        writer.WriteAnyRegisteredValueAsObject(World);
+        writer.WriteObject(terrainGridData);
+        writer.Write(playerPosition);
+        writer.WriteObjectOrNull(terrainConfiguration);
+        writer.Write(nextGroupId);
+
+        // It's probably fine to not save the spawn / despawn queues as they should be pretty short-lived
     }
 
     public void ReportPlayerPosition(Vector3 position)
@@ -97,6 +141,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
     ///   False if position is likely not blocked, true if there's a known terrain area that overlaps the radius
     ///   of the check area.
     /// </returns>
+    [ArchiveAllowedMethod]
     public bool IsPositionBlocked(Vector3 position, float checkRadiusSquared = 5)
     {
         position.Y = 0;
@@ -175,7 +220,9 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
         if (!playerHasMoved)
             return;
 
+#if DEBUG
         printedClustersTightWarning = false;
+#endif
 
         // Check if player moved terrain grids and if so perform an operation
         var playerGrid = PositionToTerrainCell(nextPlayerPosition);
@@ -364,13 +411,32 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
         {
             --clusters;
 
-            SpawnNewCluster(cell, result, recorder, random);
+            int retries = differentClusterTypeAttempts;
+            for (int i = 0; i < retries; ++i)
+            {
+                // Try a few random clusters in case one fits
+                if (SpawnNewCluster(cell, result, recorder, random))
+                    break;
+            }
+
+            // TODO: if we want to pack in terrain tighter, we might need an algorithm to try to slide the conflicting
+            // terrain clusters until they can be placed
+
+            // If ran out of attempts, we'll just ignore as the terrain is too crowded
+            if (!printedClustersTightWarning)
+            {
+                GD.Print("Terrain is so dense that can't find places to put more");
+                printedClustersTightWarning = true;
+            }
         }
 
+        // TODO: might want to remove this print entirely as it's only really useful when tweaking chunk spawn rates
+#if DEBUG
         if (result.Count < wantedClusters)
         {
             GD.Print($"Could only spawn {result.Count} terrain clusters out of wanted {wantedClusters}");
         }
+#endif
 
         SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
 
@@ -379,7 +445,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
         unsuccessfulFetches = 0;
     }
 
-    private void SpawnNewCluster(Vector2I baseCell, List<SpawnedTerrainCluster> spawned, CommandBuffer recorder,
+    private bool SpawnNewCluster(Vector2I baseCell, List<SpawnedTerrainCluster> spawned, CommandBuffer recorder,
         XoShiRo128starstar random)
     {
         var cluster = terrainConfiguration!.GetRandomCluster(random);
@@ -428,18 +494,12 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
             if (overlaps)
                 continue;
 
-            // No problems, can spawn the cluster
+            // No problems can spawn the cluster
             spawned.Add(SpawnCluster(cluster, position, recorder, random));
-            return;
+            return true;
         }
 
-        // If ran out of attempts, we'll just ignore as the terrain is too crowded
-
-        if (!printedClustersTightWarning)
-        {
-            GD.Print("Terrain is so dense that can't find places to put more");
-            printedClustersTightWarning = true;
-        }
+        return false;
     }
 
     private SpawnedTerrainCluster SpawnCluster(TerrainConfiguration.TerrainClusterConfiguration cluster,
@@ -528,15 +588,63 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
         }
     }
 
-    private struct SpawnedTerrainCluster(Vector3 centerPosition, float maxRadius, SpawnedTerrainGroup[] parts,
-        float overlapRadius)
+    // This is internal to make archive registration work
+    internal struct SpawnedTerrainCluster(Vector3 centerPosition, float maxRadius, SpawnedTerrainGroup[] parts,
+        float overlapRadius) : IArchivable
     {
+        public const ushort SERIALIZATION_VERSION_CLUSTER = 1;
+
         public Vector3 CenterPosition = centerPosition;
         public float MaxRadiusSquared = maxRadius * maxRadius;
 
         public SpawnedTerrainGroup[] Parts = parts;
 
         public float OverlapRadiusSquared = overlapRadius * overlapRadius;
+
+        public ushort CurrentArchiveVersion => SERIALIZATION_VERSION_CLUSTER;
+        public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.SpawnedTerrainCluster;
+        public bool CanBeReferencedInArchive => false;
+
+        // ReSharper disable once MemberHidesStaticFromOuterClass
+        public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+        {
+            if (type != (ArchiveObjectType)ThriveArchiveObjectType.SpawnedTerrainCluster)
+                throw new NotSupportedException();
+
+            writer.WriteObject((SpawnedTerrainCluster)obj);
+        }
+
+        // ReSharper disable once MemberHidesStaticFromOuterClass
+        public static SpawnedTerrainCluster ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+        {
+            if (version is > SERIALIZATION_VERSION_CLUSTER or <= 0)
+                throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_CLUSTER);
+
+            var center = reader.ReadVector3();
+            var maxRadius = reader.ReadFloat();
+            var parts = reader.ReadObject<SpawnedTerrainGroup[]>();
+            var overlapRadius = reader.ReadFloat();
+            var instance = new SpawnedTerrainCluster(center, maxRadius, parts, overlapRadius);
+
+            // Override the values that got incorrectly doubled
+            instance.MaxRadiusSquared = maxRadius;
+            instance.OverlapRadiusSquared = overlapRadius;
+
+            return instance;
+        }
+
+        public static object ReadFromArchiveBoxed(ISArchiveReader reader, ushort version, int referenceId)
+        {
+            return ReadFromArchive(reader, version, referenceId);
+        }
+
+        public void WriteToArchive(ISArchiveWriter writer)
+        {
+            writer.Write(CenterPosition);
+            writer.Write(MaxRadiusSquared);
+            writer.WriteObject(Parts);
+            writer.Write(OverlapRadiusSquared);
+        }
     }
 
     private struct TerrainChunkFetchQuery : IForEachWithEntity<MicrobeTerrainChunk>
@@ -562,7 +670,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
                 group.GroupMembers.Add(entity);
                 if (group.GroupMembers.Count >= group.ExpectedMemberCount)
                 {
-                    // Don't need to look in this any more if found all members
+                    // Don't need to look at this any more if found all members
                     group.MembersFetched = true;
                     thingsToLookFor.Remove(chunk.TerrainGroupId);
                 }
@@ -575,8 +683,10 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
 ///   Small local area of terrain parts that constitutes a single area preventing spawns. Needs to be a class as
 ///   references to this are processed.
 /// </summary>
-internal class SpawnedTerrainGroup(Vector3 position, float radius, uint groupId)
+internal class SpawnedTerrainGroup(Vector3 position, float radius, uint groupId) : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public Vector3 Position = position;
     public float SquaredRadius = radius * radius;
 
@@ -587,4 +697,47 @@ internal class SpawnedTerrainGroup(Vector3 position, float radius, uint groupId)
     public int ExpectedMemberCount;
 
     public List<Entity> GroupMembers = new();
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.SpawnedTerrainGroup;
+    public bool CanBeReferencedInArchive => false;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.SpawnedTerrainGroup)
+            throw new NotSupportedException();
+
+        writer.WriteObject((SpawnedTerrainGroup)obj);
+    }
+
+    public static SpawnedTerrainGroup ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var position = reader.ReadVector3();
+        var radius = reader.ReadFloat();
+
+        var instance = new SpawnedTerrainGroup(position, radius, reader.ReadUInt32())
+        {
+            MembersFetched = reader.ReadBool(),
+            ExpectedMemberCount = reader.ReadInt32(),
+            GroupMembers = reader.ReadObject<List<Entity>>(),
+        };
+
+        // Fix radius to be the squared value and not the fourth power
+        instance.SquaredRadius = radius;
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(Position);
+        writer.Write(SquaredRadius);
+        writer.Write(GroupId);
+        writer.Write(MembersFetched);
+        writer.Write(ExpectedMemberCount);
+        writer.WriteObject(GroupMembers);
+    }
 }

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfk6ydfj0hw8"]
+
+[ext_resource type="PackedScene" uid="uid://b6f3fhal68oub" path="res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk1.glb" id="1_g07j6"]
+[ext_resource type="Material" uid="uid://7u54xlrhfiyi" path="res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk.material" id="2_hooat"]
+
+[node name="ChalcopyriteTerrainChunk1" instance=ExtResource("1_g07j6")]
+
+[node name="chalcopyrite1" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_hooat")

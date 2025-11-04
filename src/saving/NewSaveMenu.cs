@@ -6,7 +6,7 @@ using FileAccess = Godot.FileAccess;
 using Path = System.IO.Path;
 
 /// <summary>
-///   Menu for managing making a new save
+///   Menu for managing to make a new save
 /// </summary>
 public partial class NewSaveMenu : Control
 {

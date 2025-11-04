@@ -126,7 +126,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         {
             if (cellProperties.IsBacteria)
             {
-                if (spatialInstance.ApplyVisualScale != true ||
+                if (!spatialInstance.ApplyVisualScale ||
                     spatialInstance.VisualScale != new Vector3(0.5f, 0.5f, 0.5f))
                 {
                     GD.PrintErr("Microbe spatial component doesn't have scale correctly set for bacteria");

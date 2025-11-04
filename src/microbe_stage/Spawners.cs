@@ -140,7 +140,7 @@ public static class SpawnHelpers
 
     private static readonly Signature TerrainSignature = new(typeof(WorldPosition), typeof(SpatialInstance),
         typeof(MicrobeTerrainChunk), typeof(PredefinedVisuals), typeof(Physics), typeof(PhysicsShapeHolder),
-        typeof(StaticBodyMarker));
+        typeof(CollisionShapeLoader), typeof(StaticBodyMarker));
 
     [Flags]
     private enum ChunkComponentFlag : short
@@ -1084,7 +1084,12 @@ public static class SpawnHelpers
         entityRecorder.Set(entity, new PhysicsShapeHolder
         {
             BodyIsStatic = true,
-            Shape = PhysicsShape.CreateShapeFromGodotResource(chunkConfiguration.CollisionShapePath, 1000),
+        });
+        entityRecorder.Set(entity, new CollisionShapeLoader
+        {
+            Density = 1000,
+            SkipForceRecreateBodyIfCreated = true,
+            CollisionResourcePath = chunkConfiguration.CollisionShapePath,
         });
 
         entityRecorder.Set(entity, new MicrobeTerrainChunk

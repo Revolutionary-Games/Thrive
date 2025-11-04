@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Until plants are procedurally generated species, this serves as a source of wood
@@ -39,6 +40,10 @@ public partial class PlaceholderTree : StaticBody3D, IInteractableEntity, IHarve
 
     public bool InteractionDisabled { get; set; }
     public bool CanBeCarried => false;
+
+    public ushort CurrentArchiveVersion => 1;
+    public ArchiveObjectType ArchiveObjectType => ArchiveObjectType.Invalid;
+    public bool CanBeReferencedInArchive => false;
 
     public override void _Process(double delta)
     {
@@ -117,5 +122,10 @@ public partial class PlaceholderTree : StaticBody3D, IInteractableEntity, IHarve
         }
 
         return result;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -476,7 +476,8 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
 
         var amount = compounds.GetCompoundAmount(Compound.Oxytoxy);
 
-        var props = new AgentProperties(species, Compound.Oxytoxy);
+        // TODO: get the actual toxin subtype here!
+        var props = new AgentProperties(species, Compound.Oxytoxy, ToxinType.Oxytoxy);
 
         while (amount > Constants.MAXIMUM_AGENT_EMISSION_AMOUNT)
         {

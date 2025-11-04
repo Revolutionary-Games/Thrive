@@ -1,20 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Components;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
-public class ReproductionStatistic : IStatistic
+public class ReproductionStatistic : IStatistic, IArchiveUpdatable
 {
-    [JsonProperty]
-    public int TimesReproduced { get; set; }
+    public const ushort SERIALIZATION_VERSION = 1;
 
-    [JsonProperty]
-    public Dictionary<Biome, int> ReproducedInBiomes { get; set; } = new();
+    public int TimesReproduced { get; private set; }
 
-    [JsonProperty]
-    public Dictionary<OrganelleDefinition, ReproductionOrganelleData> ReproducedWithOrganelle { get; set; } = new();
+    public Dictionary<Biome, int> ReproducedInBiomes { get; private set; } = new();
+
+    public Dictionary<OrganelleDefinition, ReproductionOrganelleData> ReproducedWithOrganelle { get; private set; } =
+        new();
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ReproductionStatistic;
 
     public void RecordPlayerReproduction(in Entity player, Biome biome)
     {
@@ -44,6 +48,23 @@ public class ReproductionStatistic : IStatistic
         }
     }
 
+    public void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(TimesReproduced);
+        writer.WriteObject(ReproducedInBiomes);
+        writer.WriteObject(ReproducedWithOrganelle);
+    }
+
+    public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        TimesReproduced = reader.ReadInt32();
+        ReproducedInBiomes = reader.ReadObject<Dictionary<Biome, int>>();
+        ReproducedWithOrganelle = reader.ReadObject<Dictionary<OrganelleDefinition, ReproductionOrganelleData>>();
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private int CountOrganellesOfType(OrganelleDefinition definition, OrganelleLayout<PlacedOrganelle> layout)
     {
@@ -66,18 +87,18 @@ public class ReproductionStatistic : IStatistic
     /// <summary>
     ///   Contains data about how many times the player has reproduced with an organelle
     /// </summary>
-    public class ReproductionOrganelleData
+    public class ReproductionOrganelleData : IArchivable
     {
+        public const ushort SERIALIZATION_VERSION_ORGANELLE = 1;
+
         /// <summary>
         ///   The total number of generations the player evolved with this organelle
         /// </summary>
-        [JsonProperty]
         public int TotalGenerations { get; private set; }
 
         /// <summary>
         ///   The number of generations that the player evolved this organelle in a row
         /// </summary>
-        [JsonProperty]
         public int GenerationsInARow { get; private set; }
 
         /// <summary>
@@ -89,8 +110,44 @@ public class ReproductionStatistic : IStatistic
         ///     here
         ///   </para>
         /// </remarks>
-        [JsonProperty]
         public List<int> CountInGenerations { get; private set; } = new();
+
+        public ushort CurrentArchiveVersion => SERIALIZATION_VERSION_ORGANELLE;
+
+        public ArchiveObjectType ArchiveObjectType =>
+            (ArchiveObjectType)ThriveArchiveObjectType.ReproductionOrganelleData;
+
+        public bool CanBeReferencedInArchive => false; // Not for ArchiveUpdatable
+
+        public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+        {
+            if (type != (ArchiveObjectType)ThriveArchiveObjectType.ReproductionOrganelleData)
+                throw new NotSupportedException();
+
+            writer.WriteObject((ReproductionOrganelleData)obj);
+        }
+
+        public static ReproductionOrganelleData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+        {
+            if (version is > SERIALIZATION_VERSION_ORGANELLE or <= 0)
+                throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_ORGANELLE);
+
+            var instance = new ReproductionOrganelleData
+            {
+                TotalGenerations = reader.ReadInt32(),
+                GenerationsInARow = reader.ReadInt32(),
+                CountInGenerations = reader.ReadObject<List<int>>(),
+            };
+
+            return instance;
+        }
+
+        public void WriteToArchive(ISArchiveWriter writer)
+        {
+            writer.Write(TotalGenerations);
+            writer.Write(GenerationsInARow);
+            writer.WriteObject(CountInGenerations);
+        }
 
         public void IncrementBy(int count)
         {

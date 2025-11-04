@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
+using SharedBase.Archive;
 
 public abstract class EditorCombinableActionData : CombinableActionData
 {
+    public const ushort SERIALIZATION_VERSION_EDITOR = 1;
+
     protected double lastCalculatedSelfCost = double.NaN;
 
     /// <summary>
@@ -12,11 +15,19 @@ public abstract class EditorCombinableActionData : CombinableActionData
     /// </summary>
     protected double lastCalculatedRefundCost = double.NaN;
 
+    protected double calculatedAvailableRefund = double.NaN;
+
     public float CostMultiplier { get; set; } = 1.0f;
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(CostMultiplier);
+    }
 
     public virtual double CalculateCost(IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
         (lastCalculatedSelfCost, lastCalculatedRefundCost) = CalculateCostInternal(history, insertPosition);
+        calculatedAvailableRefund = lastCalculatedSelfCost * CostMultiplier;
 
         return Math.Min((lastCalculatedSelfCost - lastCalculatedRefundCost) * CostMultiplier, 100);
     }
@@ -36,8 +47,6 @@ public abstract class EditorCombinableActionData : CombinableActionData
     /// </returns>
     public virtual double GetCalculatedSelfCost()
     {
-        // TODO: resetting this to NaN for a whole action tree before calculating costs again would provide some extra
-        // safety against bugs
         if (double.IsNaN(lastCalculatedSelfCost))
         {
             GD.PrintErr("Trying to get the cost of an action before it has been calculated. " +
@@ -50,6 +59,32 @@ public abstract class EditorCombinableActionData : CombinableActionData
         }
 
         return Math.Min(lastCalculatedSelfCost, 100);
+    }
+
+    /// <summary>
+    ///   New primary method for other actions to refund costs of other actions (for example, deleting something that
+    ///   was previously placed)
+    /// </summary>
+    /// <returns>
+    ///   The amount of available refund left (and then it is set to 0 for the next call).
+    ///   Returns 0 if cost hasn't been calculated yet (but prints an error).
+    /// </returns>
+    public virtual double GetAndConsumeAvailableRefund()
+    {
+        if (double.IsNaN(calculatedAvailableRefund))
+        {
+            GD.PrintErr("Trying to get and consume the refund cost of an action before it has been calculated. " +
+                "Things are being processed in the wrong order!");
+
+            if (Debugger.IsAttached)
+                Debugger.Break();
+
+            return 0;
+        }
+
+        var refund = calculatedAvailableRefund;
+        calculatedAvailableRefund = 0;
+        return Math.Min(refund, 100);
     }
 
     public virtual double GetCalculatedRefundCost()
@@ -76,6 +111,40 @@ public abstract class EditorCombinableActionData : CombinableActionData
     public virtual double GetCalculatedEffectiveCost()
     {
         return GetCalculatedSelfCost() - GetCalculatedRefundCost();
+    }
+
+    public void RefreshAvailableRefund()
+    {
+        if (double.IsNaN(lastCalculatedSelfCost))
+        {
+            GD.PrintErr("Trying to refresh available refund before it has been calculated in the first place");
+
+            if (Debugger.IsAttached)
+                Debugger.Break();
+
+            calculatedAvailableRefund = double.NaN;
+            return;
+        }
+
+        calculatedAvailableRefund = lastCalculatedSelfCost;
+    }
+
+    public void PrepareForNewCostCalculation()
+    {
+        lastCalculatedSelfCost = double.NaN;
+        lastCalculatedRefundCost = double.NaN;
+        calculatedAvailableRefund = double.NaN;
+    }
+
+    protected virtual void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_EDITOR or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_EDITOR);
+
+        CostMultiplier = reader.ReadFloat();
+
+        lastCalculatedRefundCost = double.NaN;
+        lastCalculatedSelfCost = double.NaN;
     }
 
     protected abstract (double Cost, double RefundCost) CalculateCostInternal(
@@ -121,12 +190,23 @@ public abstract class EditorCombinableActionData : CombinableActionData
 }
 
 public abstract class EditorCombinableActionData<TContext> : EditorCombinableActionData
+    where TContext : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION_CONTEXT = 1;
+
     /// <summary>
     ///   The optional context this action was performed in. This is additional data in addition to the action target.
     ///   Not all editors use context info.
     /// </summary>
     public TContext? Context { get; set; }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(SERIALIZATION_VERSION_EDITOR);
+        base.WriteToArchive(writer);
+
+        writer.WriteObjectOrNull(Context);
+    }
 
     public override bool WantsToMergeWith(CombinableActionData other)
     {
@@ -163,5 +243,16 @@ public abstract class EditorCombinableActionData<TContext> : EditorCombinableAct
             return false;
 
         return originalContext.Equals(other.Context);
+    }
+
+    protected override void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_CONTEXT or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_CONTEXT);
+
+        // Base version is different (which we saved so we can read it here)
+        base.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        Context = reader.ReadObjectOrNull<TContext>();
     }
 }

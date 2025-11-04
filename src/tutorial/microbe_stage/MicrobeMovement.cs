@@ -2,38 +2,35 @@
 
 using System;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Microbe movement tutorial with key prompts around the cell
 /// </summary>
 #pragma warning disable CA1001 // just has some StringNames that aren't critical to Dispose
-public class MicrobeMovement : TutorialPhase
+public class MicrobeMovement : TutorialPhase, IArchiveUpdatable
 #pragma warning restore CA1001
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private readonly StringName moveForward = new("g_move_forward");
     private readonly StringName moveLeft = new("g_move_left");
     private readonly StringName moveRight = new("g_move_right");
     private readonly StringName moveBackwards = new("g_move_backwards");
 
-    [JsonProperty]
     private float keyPromptRotation;
-
-    [JsonProperty]
     private float moveForwardTime;
-
-    [JsonProperty]
     private float moveLeftTime;
-
-    [JsonProperty]
     private float moveRightTime;
-
-    [JsonProperty]
     private float moveBackwardsTime;
-
     private bool showFixedOrientation;
 
     public override string ClosedByName => "MicrobeMovementExplain";
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.TutorialMicrobeMovement;
 
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {
@@ -121,6 +118,34 @@ public class MicrobeMovement : TutorialPhase
         }
 
         return false;
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        base.WritePropertiesToArchive(writer);
+
+        writer.Write(keyPromptRotation);
+        writer.Write(moveForwardTime);
+        writer.Write(moveLeftTime);
+        writer.Write(moveRightTime);
+        writer.Write(moveBackwardsTime);
+        writer.Write(showFixedOrientation);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        // Base version is not our version, so we pass 1 here
+        base.ReadPropertiesFromArchive(reader, 1);
+
+        keyPromptRotation = reader.ReadFloat();
+        moveForwardTime = reader.ReadFloat();
+        moveLeftTime = reader.ReadFloat();
+        moveRightTime = reader.ReadFloat();
+        moveBackwardsTime = reader.ReadFloat();
+        showFixedOrientation = reader.ReadBool();
     }
 
     protected override void OnProcess(TutorialState overallState, float delta)

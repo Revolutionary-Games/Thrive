@@ -92,6 +92,7 @@ static func copy_directory(from_dir :String, to_dir :String, recursive :bool = f
 static func delete_directory(path :String, only_content := false) -> void:
 	var dir := DirAccess.open(path)
 	if dir != null:
+		dir.include_hidden = true
 		@warning_ignore("return_value_discarded")
 		dir.list_dir_begin()
 		var file_name := "."
@@ -165,6 +166,7 @@ static func scan_dir(path :String) -> PackedStringArray:
 	if dir == null or not dir.dir_exists(path):
 		return PackedStringArray()
 	var content := PackedStringArray()
+	dir.include_hidden = true
 	@warning_ignore("return_value_discarded")
 	dir.list_dir_begin()
 	var next := "."

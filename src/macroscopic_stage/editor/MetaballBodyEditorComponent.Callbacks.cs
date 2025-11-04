@@ -1,25 +1,25 @@
 ﻿using System.Diagnostics;
 using Godot;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Callbacks for the metaball body editor
 /// </summary>
-[DeserializedCallbackTarget]
 public partial class MetaballBodyEditorComponent
 {
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnMetaballAdded(MacroscopicMetaball metaball)
     {
         metaballDisplayDataDirty = true;
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnMetaballRemoved(MacroscopicMetaball metaball)
     {
         metaballDisplayDataDirty = true;
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoMetaballRemoveAction(MetaballRemoveActionData<MacroscopicMetaball> data)
     {
         editedMetaballs.Remove(data.RemovedMetaball);
@@ -34,7 +34,7 @@ public partial class MetaballBodyEditorComponent
         }
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoMetaballRemoveAction(MetaballRemoveActionData<MacroscopicMetaball> data)
     {
         if (data.ReParentedMetaballs != null)
@@ -48,19 +48,19 @@ public partial class MetaballBodyEditorComponent
         editedMetaballs.Add(data.RemovedMetaball);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoMetaballPlaceAction(MetaballPlacementActionData<MacroscopicMetaball> data)
     {
         editedMetaballs.Add(data.PlacedMetaball);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoMetaballPlaceAction(MetaballPlacementActionData<MacroscopicMetaball> data)
     {
         editedMetaballs.Remove(data.PlacedMetaball);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoMetaballMoveAction(MetaballMoveActionData<MacroscopicMetaball> data)
     {
         data.MovedMetaball.Position = data.NewPosition;
@@ -98,7 +98,7 @@ public partial class MetaballBodyEditorComponent
         }
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoMetaballMoveAction(MetaballMoveActionData<MacroscopicMetaball> data)
     {
         data.MovedMetaball.Position = data.OldPosition;

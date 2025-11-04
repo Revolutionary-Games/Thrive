@@ -6,6 +6,7 @@ using System.Reflection;
 using AutoEvo;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Base, common class with shared editor functionality. Note that most editor functionality is done by
@@ -34,10 +35,12 @@ using Newtonsoft.Json;
 /// </remarks>
 [GodotAbstract]
 public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoadableGameState,
-    IGodotEarlyNodeResolve
+    IGodotEarlyNodeResolve, IArchivable
     where TAction : EditorAction
-    where TStage : Node, IReturnableGameState
+    where TStage : Node, IReturnableGameState, IArchivable
 {
+    protected const ushort SERIALIZATION_VERSION_BASE = 1;
+
 #pragma warning disable CA2213
     protected Node world = null!;
 
@@ -70,6 +73,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     /// </summary>
     protected bool wantsToSave;
 
+    // TODO: switch this to a get-only property
     /// <summary>
     ///   This is protected only so that this is loaded from a save. No derived class should modify this
     /// </summary>
@@ -191,6 +195,10 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     public virtual Species EditedBaseSpecies => throw new GodotAbstractPropertyNotOverriddenException();
 
+    public virtual ushort CurrentArchiveVersion => throw new GodotAbstractPropertyNotOverriddenException();
+    public virtual ArchiveObjectType ArchiveObjectType => throw new GodotAbstractPropertyNotOverriddenException();
+    public bool CanBeReferencedInArchive => true;
+
     protected virtual string MusicCategory => throw new GodotAbstractPropertyNotOverriddenException();
 
     protected virtual MainGameState ReturnToState => throw new GodotAbstractPropertyNotOverriddenException();
@@ -297,6 +305,11 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         }
 
         UpdateEditor(delta);
+    }
+
+    public virtual void WriteToArchive(ISArchiveWriter writer)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
     }
 
     public void OnFinishLoading(Save save)
@@ -434,7 +447,8 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     }
 
     public bool HexPlacedThisSession<THex, TContext>(THex hex)
-        where THex : class, IActionHex
+        where THex : class, IActionHex, IArchivable
+        where TContext : IArchivable
     {
         return history.HexPlacedThisSession<THex, TContext>(hex);
     }
@@ -716,7 +730,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         }
         else
         {
-            if (EditorReady != true || CurrentGame == null)
+            if (!EditorReady || CurrentGame == null)
                 throw new InvalidOperationException("loaded editor isn't in the ready state, or missing current game");
 
             // Make absolutely sure the current game doesn't have an auto-evo run
@@ -740,6 +754,43 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         pauseMenu.SetNewSaveNameFromSpeciesName();
 
         ApplyComponentLightLevels();
+    }
+
+    protected virtual void WriteBasePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObjectOrNull(CurrentGame);
+        writer.WriteObject(history);
+        writer.WriteObjectOrNull(autoEvoResults);
+        writer.WriteObjectOrNull(autoEvoExternal);
+        writer.Write((int)selectedEditorTab);
+        writer.Write(dayLightFraction);
+        writer.Write(FreeBuilding);
+        writer.WriteObjectOrNull(ReturnToStage);
+        writer.Write(ShowHover);
+
+        // TODO: saving this seems pretty strange, but this is marked as a JsonProperty
+        writer.Write(EditorReady);
+    }
+
+    protected virtual void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_BASE or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_BASE);
+
+        IsLoadedFromSave = true;
+
+        CurrentGame = reader.ReadObject<GameProperties>();
+        history = reader.ReadObject<EditorActionHistory<TAction>>();
+        autoEvoResults = reader.ReadObject<RunResults>();
+        autoEvoExternal = reader.ReadObject<LocalizedStringBuilder>();
+        selectedEditorTab = (EditorTab)reader.ReadInt32();
+        dayLightFraction = reader.ReadFloat();
+        FreeBuilding = reader.ReadBool();
+        ReturnToStage = reader.ReadObjectOrNull<TStage>();
+        ShowHover = reader.ReadBool();
+
+        // This should always result in true, so not exactly sure what the benefit of saving this is
+        EditorReady = reader.ReadBool();
     }
 
     protected bool ForwardEditorComponentFinishRequest(List<EditorUserOverride>? userOverrides)

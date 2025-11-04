@@ -1,25 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using Newtonsoft.Json;
-using Saving.Serializers;
+using SharedBase.Archive;
 using Systems;
 using Vector3 = Godot.Vector3;
 
 /// <summary>
 ///   Represents a microbial species with microbe stage specific species things.
 /// </summary>
-[JsonObject(IsReference = true)]
-[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
-[JSONDynamicTypeAllowed]
-[UseThriveConverter]
-[UseThriveSerializer]
 public class MicrobeSpecies : Species, ICellDefinition
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
         cachedFillTimes = new();
 
-    [JsonConstructor]
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
         Organelles = new OrganelleLayout<OrganelleTemplate>();
@@ -60,22 +54,17 @@ public class MicrobeSpecies : Species, ICellDefinition
     public float MembraneRigidity { get; set; }
 
     /// <summary>
-    ///   Organelles this species consist of. This is saved last to ensure organelle data that may refer back to this
-    ///   species can be loaded (for example cell-detecting chemoreceptors).
+    ///   Organelles of this species. This is saved (almost) last to ensure organelle data that may refer back to this
+    ///   species can be loaded (for example, cell-detecting chemoreceptors).
     /// </summary>
-    [JsonProperty(Order = 1)]
     public OrganelleLayout<OrganelleTemplate> Organelles { get; set; }
 
-    [JsonIgnore]
-    public override string StringCode => ThriveJsonConverter.Instance.SerializeObject(this);
-
-    // Even though these properties say "base" it includes the specialized organelle factors. Base refers here to
-    // the fact that these are the values when a cell is freshly spawned and has no reproduction progress.
-    [JsonIgnore]
+    // Even though these properties say "base", it includes the specialized organelle factors.
+    // Base refers here to the fact that these are the values when a cell is freshly spawned and has no
+    // reproduction progress.
     public float BaseSpeed =>
         MicrobeInternalCalculations.CalculateSpeed(Organelles.Organelles, MembraneType, MembraneRigidity, IsBacteria);
 
-    [JsonProperty]
     public float BaseRotationSpeed { get; set; }
 
     /// <summary>
@@ -84,7 +73,6 @@ public class MicrobeSpecies : Species, ICellDefinition
     ///   (as well as the size this takes up as an <see cref="Components.Engulfable"/>) and the math should always
     ///   match between these two.
     /// </summary>
-    [JsonIgnore]
     public float BaseHexSize
     {
         get
@@ -110,13 +98,11 @@ public class MicrobeSpecies : Species, ICellDefinition
     ///   TODO: this should be removed as this is not accurate (only accurate if specialized storage vacuoles aren't
     ///   used)
     /// </summary>
-    [JsonIgnore]
     public float StorageCapacity => MicrobeInternalCalculations.CalculateCapacity(Organelles);
 
     /// <summary>
     ///   Compound capacities members of this species can store in their default configurations
     /// </summary>
-    [JsonIgnore]
     public (float Nominal, Dictionary<Compound, float> Specific) StorageCapacities
     {
         get
@@ -126,18 +112,53 @@ public class MicrobeSpecies : Species, ICellDefinition
         }
     }
 
-    [JsonIgnore]
     public bool CanEngulf => !MembraneType.CellWall;
 
-    [JsonIgnore]
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeSpecies;
+
     public static bool StateHasStabilizedImpl(IWorldSimulation worldSimulation)
     {
-        // This is stabilized as long as the default no background operations check passes
-        // If this is changed CellType also needs changes
+        // This is stabilised as long as the default no background operations check passes.
+        // If this is changed, CellType also needs changes.
         return true;
+    }
+
+    public static MicrobeSpecies ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new MicrobeSpecies(reader.ReadUInt32(),
+            reader.ReadString() ?? throw new NullArchiveObjectException(),
+            reader.ReadString() ?? throw new NullArchiveObjectException());
+
+        reader.ReportObjectConstructorDone(instance, referenceId);
+
+        instance.ReadNonConstructorBaseProperties(reader, 1);
+
+        instance.IsBacteria = reader.ReadBool();
+        instance.MembraneType = reader.ReadObject<MembraneType>();
+        instance.MembraneRigidity = reader.ReadFloat();
+        instance.Organelles = reader.ReadObject<OrganelleLayout<OrganelleTemplate>>();
+        instance.BaseRotationSpeed = reader.ReadFloat();
+
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        WriteBasePropertiesToArchive(writer);
+
+        writer.Write(IsBacteria);
+        writer.WriteObject(MembraneType);
+        writer.Write(MembraneRigidity);
+
+        writer.WriteObject(Organelles);
+        writer.Write(BaseRotationSpeed);
     }
 
     public void UpdateIsBacteria()

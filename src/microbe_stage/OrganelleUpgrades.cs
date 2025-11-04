@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Upgrades for a placed or template organelle
 /// </summary>
-public class OrganelleUpgrades : ICloneable, IEquatable<OrganelleUpgrades>
+public class OrganelleUpgrades : ICloneable, IEquatable<OrganelleUpgrades>, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   A list of "feature" names that have been unlocked for this organelle. Depends on the organelle components
     ///   what names they look for.
@@ -17,6 +21,33 @@ public class OrganelleUpgrades : ICloneable, IEquatable<OrganelleUpgrades>
     ///   Organelle type specific upgrade data. Null if not configured
     /// </summary>
     public IComponentSpecificUpgrades? CustomUpgradeData { get; set; }
+
+    [JsonIgnore]
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    [JsonIgnore]
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.OrganelleUpgrades;
+
+    [JsonIgnore]
+    public bool CanBeReferencedInArchive => false;
+
+    public static OrganelleUpgrades ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new OrganelleUpgrades
+        {
+            UnlockedFeatures = reader.ReadObject<List<string>>(),
+            CustomUpgradeData = reader.ReadObjectOrNull<IComponentSpecificUpgrades>(),
+        };
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(UnlockedFeatures);
+        writer.WriteObjectOrNull(CustomUpgradeData);
+    }
 
     public bool Equals(OrganelleUpgrades? other)
     {

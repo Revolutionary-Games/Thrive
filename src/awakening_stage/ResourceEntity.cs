@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   A clump of some resource that can be found in the world
@@ -43,6 +44,10 @@ public partial class ResourceEntity : RigidBody3D, IInteractableEntity
     [JsonIgnore]
     public WeakReference<InventorySlot>? ShownAsGhostIn { get; set; }
 
+    public ushort CurrentArchiveVersion => 1;
+    public ArchiveObjectType ArchiveObjectType => ArchiveObjectType.Invalid;
+    public bool CanBeReferencedInArchive => false;
+
     public void OnDestroyed()
     {
         AliveMarker.Alive = false;
@@ -72,5 +77,10 @@ public partial class ResourceEntity : RigidBody3D, IInteractableEntity
     public bool PerformExtraAction(InteractionType interactionType)
     {
         return false;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        throw new NotImplementedException();
     }
 }

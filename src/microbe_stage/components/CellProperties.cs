@@ -7,16 +7,17 @@ using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
 ///   Base properties of a microbe (separate from the species info as multicellular species-object couldn't
 ///   work there)
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct CellProperties
+public struct CellProperties : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Base colour of the cell. This is used when initializing organelles as it would otherwise be difficult to
     ///   obtain the colour
@@ -46,7 +47,6 @@ public struct CellProperties
     ///   The membrane created for this cell. This is here so that some other systems apart from the visuals system
     ///   can have access to the membrane data.
     /// </summary>
-    [JsonIgnore]
     public Membrane? CreatedMembrane;
 
     public bool IsBacteria;
@@ -59,7 +59,6 @@ public struct CellProperties
     /// <summary>
     ///   Set to false when the shape needs to be recreated
     /// </summary>
-    [JsonIgnore]
     public bool ShapeCreated;
 
     public CellProperties(ICellDefinition initialDefinition)
@@ -78,8 +77,21 @@ public struct CellProperties
         ShapeCreated = false;
     }
 
-    [JsonIgnore]
     public float Radius => IsBacteria ? UnadjustedRadius * 0.5f : UnadjustedRadius;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentCellProperties;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(Colour);
+        writer.Write(UnadjustedRadius);
+        writer.WriteObject(MembraneType);
+        writer.Write(MembraneRigidity);
+        writer.Write(Temperature);
+        writer.Write(IsBacteria);
+        writer.Write(HeatInitialized);
+    }
 }
 
 public static class CellPropertiesHelpers
@@ -95,6 +107,23 @@ public static class CellPropertiesHelpers
     public static readonly Vector3 DefaultVisualPos = Vector3.Forward;
 
     public delegate void ModifyDividedCellCallback(ref Entity entity, CommandBuffer commandBuffer);
+
+    public static CellProperties ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > CellProperties.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, CellProperties.SERIALIZATION_VERSION);
+
+        return new CellProperties
+        {
+            Colour = reader.ReadColor(),
+            UnadjustedRadius = reader.ReadFloat(),
+            MembraneType = reader.ReadObject<MembraneType>(),
+            MembraneRigidity = reader.ReadFloat(),
+            Temperature = reader.ReadFloat(),
+            IsBacteria = reader.ReadBool(),
+            HeatInitialized = reader.ReadBool(),
+        };
+    }
 
     /// <summary>
     ///   Checks this cell and also the entire colony if something can enter engulf mode in it
