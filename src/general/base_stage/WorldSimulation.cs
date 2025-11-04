@@ -216,6 +216,10 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         // Make sure all commands are flushed if someone added some in the time between updates
         ApplyRecordedCommands();
 
+        // And that all deletes are processed as they can be related to the recorded commands
+        // Fixes a crashing bug when continuing a save made in the multicellular editor
+        ProcessDestroyQueue();
+
         // See the similar check in ProcessAll to see what this is about (this is about special component debug mode)
         bool useNormalPhysics = disableComponentChecking || !GenerateThreadedSystems.UseCheckedComponentAccess;
 

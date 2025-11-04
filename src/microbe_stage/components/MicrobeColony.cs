@@ -24,7 +24,7 @@ public struct MicrobeColony : IArchivableComponent
     public Entity[] ColonyMembers;
 
     /// <summary>
-    ///   Lead cell of the colony. This is the newMember that exists separately in the world, all others are
+    ///   Lead cell of the colony. This is the newMember that exists separately in the world; all others are
     ///   attached to it with <see cref="AttachedToEntity"/> components. Note this is always assumed to be the
     ///   same as the entity that has this <see cref="MicrobeColony"/> component on it.
     /// </summary>
@@ -54,14 +54,14 @@ public struct MicrobeColony : IArchivableComponent
 
     // Note that the following statistics should be accessed through the helpers to ensure that they have been
     // calculated. This is implemented like this to simplify spawning to not require full entities to exist at that
-    // point. Instead only when the properties are used they are calculated when the colony member entities are
+    // point. Instead, only when the properties are used they are calculated when the colony member entities are
     // certainly created.
 
     public int HexCount;
     public bool CanEngulf;
 
     /// <summary>
-    ///   Internal variable don't touch.
+    ///   Internal variable, don't touch.
     /// </summary>
     public bool DerivedStatisticsCalculated;
 

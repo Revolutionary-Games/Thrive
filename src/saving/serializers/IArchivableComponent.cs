@@ -1,6 +1,7 @@
 ﻿using Arch.Core;
 using Arch.Core.Extensions;
 using Components;
+using Godot;
 using SharedBase.Archive;
 
 /// <summary>
@@ -59,8 +60,22 @@ public static class ComponentDeserializers
                 entity.Add(MicrobeColonyHelpers.ReadFromArchive(reader, version));
                 return true;
             case ThriveArchiveObjectType.ComponentMicrobeColonyMember:
-                entity.Add(MicrobeColonyMemberHelpers.ReadFromArchive(reader, version));
+            {
+                var member = MicrobeColonyMemberHelpers.ReadFromArchive(reader, version);
+
+                // Skip invalid colony members (apparently this wasn't a reported bug, but probably good to have this
+                // anyway)
+                if (member.ColonyLeader == default || member.ColonyLeader == Entity.Null ||
+                    !member.ColonyLeader.IsAlive())
+                {
+                    GD.PrintErr("Ignoring colony member component that has invalid leader");
+                    return true;
+                }
+
+                entity.Add(member);
                 return true;
+            }
+
             case ThriveArchiveObjectType.ComponentMicrobeControl:
                 entity.Add(MicrobeControlHelpers.ReadFromArchive(reader, version));
                 return true;
