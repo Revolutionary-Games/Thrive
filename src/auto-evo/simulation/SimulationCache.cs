@@ -52,7 +52,7 @@ public class SimulationCache
     private readonly Dictionary<(TweakedProcess, float, IBiomeConditions), ProcessSpeedInformation>
         cachedProcessSpeeds = new();
 
-    private readonly Dictionary<MicrobeSpecies, (float, float, float, float, float, float, float, float, float, float)>
+    private readonly Dictionary<MicrobeSpecies, PredationToolsRawScores>
         cachedPredationToolsRawScores = new();
 
     private readonly Dictionary<(MicrobeSpecies, string), float> cachedEnzymeScores = new();
@@ -290,10 +290,22 @@ public class SimulationCache
         var preyEnergyBalance = GetEnergyBalanceForSpecies(prey, biomeConditions);
         var preyOsmoregulationCost = preyEnergyBalance.Osmoregulation;
         var enzymesScore = GetEnzymesScore(predator, prey.MembraneType.DissolverEnzyme);
-        var (pilusScore, injectisomeScore, toxicity, oxytoxyScore, cytotoxinScore, macrolideScore,
-                channelInhibitorScore, oxygenMetabolismInhibitorScore, predatorSlimeJetScore, _) =
-            GetPredationToolsRawScores(predator);
-        var (_, _, _, _, _, _, _, _, preySlimeJetScore, preyMucocystsScore) = GetPredationToolsRawScores(prey);
+
+        var predatorToolScores = GetPredationToolsRawScores(predator);
+        var preyToolScores = GetPredationToolsRawScores(prey);
+
+        var pilusScore = predatorToolScores.PilusScore;
+        var injectisomeScore = predatorToolScores.InjectisomeScore;
+        var toxicity = predatorToolScores.AverageToxicity;
+        var oxytoxyScore = predatorToolScores.OxytoxyScore;
+        var cytotoxinScore = predatorToolScores.CytotoxinScore;
+        var macrolideScore = predatorToolScores.MacrolideScore;
+        var channelInhibitorScore = predatorToolScores.ChannelInhibitorScore;
+        var oxygenMetabolismInhibitorScore = predatorToolScores.OxygenMetabolismInhibitorScore;
+        var predatorSlimeJetScore = predatorToolScores.SlimeJetScore;
+
+        var preySlimeJetScore = preyToolScores.SlimeJetScore;
+        var preyMucocystsScore = preyToolScores.MucocystsScore;
 
         var behaviourScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
@@ -609,10 +621,7 @@ public class SimulationCache
         cachedResolvedTolerances.Clear();
     }
 
-    public (float PilusScore, float InjectisomeScore, float AverageToxicity, float OxytoxyScore, float CytotoxinScore,
-        float MacrolideScore, float ChannelInhibitorScore, float OxygenMetabolismInhibitorScore, float SlimeJetScore,
-        float MucocystsScore)
-        GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
+    public PredationToolsRawScores GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
     {
         if (cachedPredationToolsRawScores.TryGetValue(microbeSpecies, out var cached))
             return cached;
@@ -784,7 +793,7 @@ public class SimulationCache
         channelInhibitorScore *= Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS;
         oxygenMetabolismInhibitorScore *= Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS;
 
-        var predationToolsRawScores = (pilusScore, injectisomeScore, averageToxicity,
+        var predationToolsRawScores = new PredationToolsRawScores(pilusScore, injectisomeScore, averageToxicity,
             oxytoxyScore, cytotoxinScore, macrolideScore, channelInhibitorScore, oxygenMetabolismInhibitorScore,
             slimeJetScore, mucocystsScore);
 
@@ -948,4 +957,17 @@ public class SimulationCache
         // If degrees is higher than 40 then return 0
         return angleCos >= 0.75 ? angleCos : 0;
     }
+
+    // helper for GetPredationToolsRawScores
+    public readonly record struct PredationToolsRawScores(
+        float PilusScore,
+        float InjectisomeScore,
+        float AverageToxicity,
+        float OxytoxyScore,
+        float CytotoxinScore,
+        float MacrolideScore,
+        float ChannelInhibitorScore,
+        float OxygenMetabolismInhibitorScore,
+        float SlimeJetScore,
+        float MucocystsScore);
 }
