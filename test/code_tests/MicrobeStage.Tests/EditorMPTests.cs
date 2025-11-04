@@ -858,13 +858,17 @@ public class EditorMPTests
 
         history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, actionData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+        // In an optimal world this would be fully refunded, however, to rather avoid infinite MP exploits, this doesn't
+        // do that
+        // Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
+            history.CalculateMutationPointsLeft());
 
         moveData = new OrganelleMoveActionData(template2, new Hex(0, 0), new Hex(1, 0), 0, 0);
 
         history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST * 2,
             history.CalculateMutationPointsLeft());
     }
 
@@ -914,7 +918,11 @@ public class EditorMPTests
 
         history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, removeData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+        // In an optimal case, this would be fully refunded, however, to rather avoid infinite MP exploits,
+        // this doesn't currently.
+
+        // Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
     }
 
     [Fact]

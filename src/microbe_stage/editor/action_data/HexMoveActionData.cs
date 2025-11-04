@@ -136,7 +136,7 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
                     OldRotation == moveActionData.NewRotation && NewRotation == moveActionData.OldRotation)
                 {
                     cost = 0;
-                    refund += other.GetCalculatedSelfCost();
+                    refund += other.GetAndConsumeAvailableRefund();
                     continue;
                 }
 
@@ -144,7 +144,7 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
                 if ((moveActionData.NewLocation == OldLocation && moveActionData.NewRotation == OldRotation) ||
                     (NewLocation == moveActionData.OldLocation && NewRotation == moveActionData.OldRotation))
                 {
-                    refund += other.GetCalculatedSelfCost();
+                    refund += other.GetAndConsumeAvailableRefund();
                 }
             }
         }

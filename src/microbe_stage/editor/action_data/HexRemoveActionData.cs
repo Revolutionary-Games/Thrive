@@ -93,7 +93,7 @@ public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActi
 
                         if (!placementRefunded)
                         {
-                            refund += other.GetCalculatedSelfCost();
+                            refund += other.GetAndConsumeAvailableRefund();
                             placementRefunded = true;
                         }
                     }
@@ -131,7 +131,7 @@ public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActi
 
                 if (!conflict)
                 {
-                    refund += other.GetCalculatedSelfCost();
+                    refund += other.GetAndConsumeAvailableRefund();
                     cost = Constants.ORGANELLE_MOVE_COST;
                     continue;
                 }
@@ -142,7 +142,7 @@ public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActi
                 moveActionData.MovedHex.MatchesDefinition(RemovedHex) &&
                 moveActionData.NewLocation == Location && MatchesContext(moveActionData))
             {
-                refund += other.GetCalculatedSelfCost() - other.GetCalculatedRefundCost();
+                refund += other.GetAndConsumeAvailableRefund() /*- other.GetCalculatedRefundCost()*/;
             }
         }
 

@@ -98,7 +98,7 @@ public abstract class HexPlacementActionData<THex, TContext> : EditorCombinableA
                         if (!seenEarlierPlacement)
                             cost = 0;
 
-                        refund += other.GetCalculatedSelfCost();
+                        refund += other.GetAndConsumeAvailableRefund();
                     }
 
                     // Theoretically, we could calculate if we should refund an amount here, but this leads to more
@@ -117,7 +117,7 @@ public abstract class HexPlacementActionData<THex, TContext> : EditorCombinableA
                     if (!conflict)
                     {
                         cost = Constants.ORGANELLE_MOVE_COST;
-                        refund += other.GetCalculatedSelfCost();
+                        refund += other.GetAndConsumeAvailableRefund();
                     }
                 }
             }

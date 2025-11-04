@@ -90,7 +90,7 @@ public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate, 
                 // This replaces (refunds) the MP for an upgrade done to this organelle
                 if (ReferenceEquals(upgradeActionData.UpgradedOrganelle, RemovedHex))
                 {
-                    refund += upgradeActionData.GetCalculatedSelfCost();
+                    refund += upgradeActionData.GetAndConsumeAvailableRefund();
                 }
             }
         }
