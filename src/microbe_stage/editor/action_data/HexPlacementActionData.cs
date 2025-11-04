@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using SharedBase.Archive;
 
 public abstract class HexPlacementActionData<THex, TContext> : EditorCombinableActionData<TContext>

@@ -109,8 +109,8 @@ public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActi
                     var other2 = history[i];
 
                     if (other2 is HexPlacementActionData<THex, TContext> placementActionData2 &&
-                        placementActionData.PlacedHex.MatchesDefinition(RemovedHex) &&
-                        MatchesContext(placementActionData))
+                        placementActionData2.PlacedHex.MatchesDefinition(RemovedHex) &&
+                        MatchesContext(placementActionData2))
                     {
                         {
                             conflict = true;
