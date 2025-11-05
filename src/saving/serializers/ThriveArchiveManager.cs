@@ -110,10 +110,7 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
     {
         RegisterEnumType((ArchiveObjectType)ThriveArchiveObjectType.CompoundEnum, ArchiveEnumType.UInt16,
             typeof(Compound));
-
-        RegisterEnumType((ArchiveObjectType)ThriveArchiveObjectType.WorldEffectTypes, ArchiveEnumType.Int32,
-            typeof(WorldEffectTypes));
-
+        
         RegisterEnumType((ArchiveObjectType)ThriveArchiveObjectType.ToxinType, ArchiveEnumType.Int32,
             typeof(ToxinType));
     }

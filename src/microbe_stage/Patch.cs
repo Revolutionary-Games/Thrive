@@ -59,14 +59,13 @@ public class Patch : IArchivable
     }
 
     private Patch(LocalizedString name, int id, Biome biomeTemplate, PatchSnapshot currentSnapshot,
-        Dictionary<Species, long> gameplayPopulations, List<WorldEffectTypes> activeWorldEffectVisuals)
+        Dictionary<Species, long> gameplayPopulations)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
         this.currentSnapshot = currentSnapshot;
         this.gameplayPopulations = gameplayPopulations;
-        this.activeWorldEffectVisuals = activeWorldEffectVisuals;
     }
 
     public int ID { get; }
@@ -201,8 +200,7 @@ public class Patch : IArchivable
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
         var instance = new Patch(reader.ReadObject<LocalizedString>(), reader.ReadInt32(), reader.ReadObject<Biome>(),
-            reader.ReadObject<PatchSnapshot>(), reader.ReadObject<Dictionary<Species, long>>(),
-            reader.ReadObject<List<WorldEffectTypes>>())
+            reader.ReadObject<PatchSnapshot>(), reader.ReadObject<Dictionary<Species, long>>())
         {
             BiomeType = (BiomeType)reader.ReadInt32(),
             Depth = reader.ReadObject<int[]>(),
@@ -231,7 +229,6 @@ public class Patch : IArchivable
         writer.WriteObject(BiomeTemplate);
         writer.WriteObject(currentSnapshot);
         writer.WriteObject(gameplayPopulations);
-        writer.WriteObject(activeWorldEffectVisuals);
         writer.Write((int)BiomeType);
         writer.WriteObject(Depth);
         writer.Write((int)Visibility);

@@ -72,10 +72,8 @@ public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
     /// </remarks>
     public float Pressure { get; set; } = 101325;
 
-    [JsonProperty]
     public float StartingSunlightValue { get; set; }
 
-    [JsonProperty]
     public float StartingTemperatureValue { get; set; }
 
     /// <summary>
@@ -163,6 +161,8 @@ public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
         {
             Chunks = reader.ReadObject<Dictionary<string, ChunkConfiguration>>(),
             Pressure = reader.ReadFloat(),
+            StartingSunlightValue = reader.ReadFloat(),
+            StartingTemperatureValue = reader.ReadFloat(),
         };
     }
 
@@ -176,6 +176,8 @@ public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
 
         writer.WriteObject(Chunks);
         writer.Write(Pressure);
+        writer.Write(StartingSunlightValue);
+        writer.Write(StartingTemperatureValue);
     }
 
     public BiomeCompoundProperties GetCompound(Compound compound, CompoundAmountType amountType)

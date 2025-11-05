@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 using Xoshiro.PRNG64;
 
-[JSONDynamicTypeAllowed]
 public class UpwellingEvent : IWorldEffect
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private const string TemplateBiomeForChunks = "patchEventTemplateBiome";
 
     private static readonly Dictionary<Compound, string[]> SmallChunks = new()
@@ -45,16 +47,12 @@ public class UpwellingEvent : IWorldEffect
     private readonly Dictionary<Compound, float> compoundChanges = new();
     private readonly Dictionary<Compound, float> cloudSizes = new();
 
-    [JsonProperty]
     private readonly XoShiRo256starstar random;
 
-    [JsonProperty]
     private readonly Dictionary<int, int> eventDurationsInPatches = new();
 
-    [JsonProperty]
     private readonly Dictionary<int, List<Compound>> affectedCompoundsInPatches = new();
 
-    [JsonProperty]
     private GameWorld targetWorld;
 
     public UpwellingEvent(GameWorld targetWorld, long randomSeed)
@@ -63,11 +61,37 @@ public class UpwellingEvent : IWorldEffect
         random = new XoShiRo256starstar(randomSeed);
     }
 
-    [JsonConstructor]
-    public UpwellingEvent(GameWorld targetWorld, XoShiRo256starstar random)
+    public UpwellingEvent(GameWorld targetWorld, XoShiRo256starstar random,
+        Dictionary<int, int> eventDurationsInPatches, Dictionary<int, List<Compound>> affectedCompoundsInPatches)
     {
         this.targetWorld = targetWorld;
         this.random = random;
+        this.eventDurationsInPatches = eventDurationsInPatches;
+        this.affectedCompoundsInPatches = affectedCompoundsInPatches;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.UpwellingEvent;
+    public bool CanBeReferencedInArchive => false;
+
+    public static UpwellingEvent ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new UpwellingEvent(reader.ReadObject<GameWorld>(),
+            reader.ReadObject<XoShiRo256starstar>(), reader.ReadObject<Dictionary<int, int>>(),
+            reader.ReadObject<Dictionary<int, List<Compound>>>());
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(targetWorld);
+        writer.WriteAnyRegisteredValueAsObject(random);
+        writer.WriteObject(eventDurationsInPatches);
+        writer.WriteObject(affectedCompoundsInPatches);
     }
 
     public void OnRegisterToWorld()

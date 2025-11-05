@@ -1,18 +1,19 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 using Xoshiro.PRNG64;
 
 /// <summary>
 /// Changes patches' temperature and sunlight based on active patch events as those values modifications
 /// can be more tricky than just a simple addition as it's the case of other compounds
 /// </summary>
-[JSONDynamicTypeAllowed]
 public class PatchEventsManager : IWorldEffect
 {
-    [JsonProperty]
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private readonly XoShiRo256starstar random;
 
-    [JsonProperty]
     private GameWorld targetWorld;
 
     public PatchEventsManager(GameWorld targetWorld, long randomSeed)
@@ -26,6 +27,27 @@ public class PatchEventsManager : IWorldEffect
     {
         this.targetWorld = targetWorld;
         this.random = random;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CurrentDilutionEvent;
+    public bool CanBeReferencedInArchive => false;
+
+    public static PatchEventsManager ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new PatchEventsManager(reader.ReadObject<GameWorld>(),
+            reader.ReadObject<XoShiRo256starstar>());
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(targetWorld);
+        writer.WriteAnyRegisteredValueAsObject(random);
     }
 
     public void OnRegisterToWorld()
