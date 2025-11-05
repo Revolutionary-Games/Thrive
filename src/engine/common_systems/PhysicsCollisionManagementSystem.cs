@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
@@ -85,7 +86,78 @@ public partial class PhysicsCollisionManagementSystem : BaseSystem<World, float>
         // Apply collision disabling against specific bodies
         try
         {
-            ref var ignoreCollisions = ref collisionManagement.IgnoredCollisionsWith;
+            // This one is used for all ignores later
+            List<Entity> ignoreCollisions = null!;
+
+            ref var componentIgnoreCollisions = ref collisionManagement.IgnoredCollisionsWith;
+
+            if (componentIgnoreCollisions != null)
+            {
+                ignoreCollisions = new();
+
+                foreach (var element in componentIgnoreCollisions)
+                    ignoreCollisions.Add(element);
+            }
+
+            ref var clipOutIgnoreCollisions = ref collisionManagement.ClipOutIgnoredCollisions;
+
+            // Check if clip-out ignores can be removed;
+            if (clipOutIgnoreCollisions != null)
+            {
+                if (clipOutIgnoreCollisions.Count > 0)
+                {
+                    // Collision management must keep detecting for clip-out ignore collisions.
+                    // Maybe throw this before StateApplied check?
+                    collisionManagement.StateApplied = false;
+
+                    for (int i = 0; i < clipOutIgnoreCollisions.Count; ++i)
+                    {
+                        var clipOutIgnore = clipOutIgnoreCollisions[i];
+                        if (clipOutIgnore.Has<WorldPosition>() && entity.Has<WorldPosition>())
+                        {
+                            // It is assumed not all collisions are cells, so default to 1
+                            var clipOutDistanceSquared = 1.0f;
+
+                            if (entity.Has<CellProperties>())
+                            {
+                                // 2.4 = 2 (radiuses) * 1.1
+                                clipOutDistanceSquared = entity.Get<CellProperties>().Radius * 2.2f;
+                            }
+
+                            // Square
+                            clipOutDistanceSquared *= clipOutDistanceSquared;
+
+                            if (clipOutIgnore.Get<WorldPosition>().Position.DistanceSquaredTo(entity.Get<WorldPosition>().Position) >= clipOutDistanceSquared)
+                            {
+                                clipOutIgnoreCollisions.Remove(clipOutIgnore);
+
+                                var ignoreWith = GetPhysicsForEntity(clipOutIgnore, ref collisionManagement);
+
+                                if (ignoreWith != null)
+                                    physicalWorld.BodyRemoveCollisionIgnoreWith(physicsBody, ignoreWith);
+
+                                // Loop again
+                                i = 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Join two lists
+            if (clipOutIgnoreCollisions != null)
+            {
+                if (ignoreCollisions == null)
+                    ignoreCollisions = new();
+
+                foreach (var element in clipOutIgnoreCollisions)
+                {
+                    if (!ignoreCollisions.Contains(element))
+                        ignoreCollisions.Add(element);
+                }
+            }
+
+            // Actual applying of collision ignores. Ignores are only set here, not removed.
             if (ignoreCollisions == null)
             {
                 if (collisionManagement.CollisionIgnoresUsed)

@@ -303,11 +303,6 @@ public static class CellPropertiesHelpers
             }
         }
 
-        float width = distanceLeft + distanceRight + Constants.DIVIDE_EXTRA_DAUGHTER_OFFSET;
-
-        if (cellProperties.IsBacteria)
-            width *= 0.5f;
-
         Dictionary<Compound, float> reproductionCompounds;
 
         // This method only supports microbe and multicellular species
@@ -320,11 +315,17 @@ public static class CellPropertiesHelpers
             reproductionCompounds = ((MulticellularSpecies)species).Cells[0].CalculateTotalComposition();
         }
 
-        var spawnPosition = currentPosition + direction * width;
+        var spawnPosition = currentPosition;
 
         // Create one daughter cell.
         var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species,
             spawnPosition, true, (null, 0), out var copyEntity, multicellularSpawnState);
+
+        recorder.Set(copyEntity, new CollisionManagement
+        {
+            RecordActiveCollisions = Constants.MAX_SIMULTANEOUS_COLLISIONS_SMALL,
+            ClipOutIgnoredCollisions = new() { entity },
+        });
 
         // Since the daughter spawns right next to the cell, it should face the same way to avoid colliding
         // This probably wastes a bit of memory but should be fine to overwrite the WorldPosition component like

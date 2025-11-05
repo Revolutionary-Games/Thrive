@@ -1140,8 +1140,6 @@ public static class Constants
     public const float METABALL_SIZE_STEP = 0.1f;
     public const float METABALL_MAX_SIZE = 5.0f;
 
-    public const float DIVIDE_EXTRA_DAUGHTER_OFFSET = 3.0f;
-
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 85.0f;
     public const int CORPSE_CHUNK_DIVISOR = 3;

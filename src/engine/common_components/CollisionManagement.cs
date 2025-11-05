@@ -32,6 +32,11 @@ public struct CollisionManagement : IArchivableComponent
     public List<Entity>? IgnoredCollisionsWith;
 
     /// <summary>
+    ///   This collision ignore lasts only until the bodies are not touching eachother
+    /// </summary>
+    public List<Entity>? ClipOutIgnoredCollisions;
+
+    /// <summary>
     ///   When specified this callback is called before any physics collisions are allowed to happen. Returning
     ///   false will prevent that collision. Note that no state should be modified (that is not completely
     ///   thread-safe and entity order safe) by this. Also this will increase the physics processing expensiveness
