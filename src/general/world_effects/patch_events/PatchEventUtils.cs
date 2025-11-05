@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Xoshiro.PRNG64;
 
@@ -15,8 +15,8 @@ public static class PatchEventUtils
 
     public static void ApplyChunksConfiguration(Patch patch, Biome templateBiome,
         Dictionary<Compound, string[]> chunkGroup, Dictionary<BiomeType, float>? densityMultipliers,
-        Compound compound, XoShiRo256starstar random, bool addChunks, float minMultiplier = 1f,
-        float maxMultiplier = 1f)
+        Compound compound, XoShiRo256starstar random, bool addChunks, float minMultiplier = 1.0f,
+        float maxMultiplier = 1.0f)
     {
         if (!chunkGroup.TryGetValue(compound, out var chunkConfigurations))
             return;

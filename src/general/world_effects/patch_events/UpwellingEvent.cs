@@ -132,6 +132,7 @@ public class UpwellingEvent : IWorldEffect
 
                 eventDurationsInPatches[patch.ID] = duration;
                 affectedCompoundsInPatches[patch.ID] = affectedCompounds;
+                LogEvent(patch);
             }
         }
     }
@@ -243,7 +244,7 @@ public class UpwellingEvent : IWorldEffect
 
     private void LogEvent(Patch patch)
     {
-        patch.LogEvent(new LocalizedString("GLOBAL_GLACIATION_EVENT"),
-            true, true, "GlobalGlaciationEvent.svg");
+        patch.LogEvent(new LocalizedString("UPWELLING_EVENT"),
+            true, true, "Upwelling.svg");
     }
 }

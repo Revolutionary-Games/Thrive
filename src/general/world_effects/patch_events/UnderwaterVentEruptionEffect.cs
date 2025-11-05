@@ -81,7 +81,8 @@ public class UnderwaterVentEruptionEffect : IWorldEffect
             if (!propertiesChanged)
                 continue;
 
-            patch.CurrentSnapshot.ActivePatchEvents.Add(PatchEventTypes.UnderwaterVentEruption, new PatchEventProperties());
+            patch.CurrentSnapshot.ActivePatchEvents.Add(PatchEventTypes.UnderwaterVentEruption,
+                new PatchEventProperties());
 
             LogPatchEvent(patch);
         }

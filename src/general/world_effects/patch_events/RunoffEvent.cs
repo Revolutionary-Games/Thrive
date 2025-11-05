@@ -120,6 +120,7 @@ public class RunoffEvent : IWorldEffect
 
             eventDurationsInPatches[patch.ID] = duration;
             affectedCompoundsInPatches[patch.ID] = affectedCompounds;
+            LogEvent(patch);
         }
     }
 
@@ -249,7 +250,7 @@ public class RunoffEvent : IWorldEffect
 
     private void LogEvent(Patch patch)
     {
-        patch.LogEvent(new LocalizedString("GLOBAL_GLACIATION_EVENT"),
-            true, true, "GlobalGlaciationEvent.svg");
+        patch.LogEvent(new LocalizedString("RUNOFF_EVENT"),
+            true, true, "Runoff.svg");
     }
 }

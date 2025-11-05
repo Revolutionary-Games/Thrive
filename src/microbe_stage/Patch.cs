@@ -130,7 +130,7 @@ public class Patch : IArchivable
     public IReadOnlyList<GameEventDescription> EventsLog => currentSnapshot.EventsLog;
 
     /// <summary>
-    ///  Current patch events affecting this patch with their properties.
+    ///   Current patch events affecting this patch with their properties.
     /// </summary>
     public IReadOnlyDictionary<PatchEventTypes, PatchEventProperties> ActivePatchEvents =>
         currentSnapshot.ActivePatchEvents;

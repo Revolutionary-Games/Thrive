@@ -5,8 +5,8 @@ using SharedBase.Archive;
 using Xoshiro.PRNG64;
 
 /// <summary>
-/// Changes patches' temperature and sunlight based on active patch events as those values modifications
-/// can be more tricky than just a simple addition as it's the case of other compounds
+///   Changes patches' temperature and sunlight based on active patch events as those values modifications
+///   can be more tricky than just a simple addition as it's the case of other compounds
 /// </summary>
 public class PatchEventsManager : IWorldEffect
 {
