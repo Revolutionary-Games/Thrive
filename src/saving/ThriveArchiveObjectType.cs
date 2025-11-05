@@ -127,6 +127,7 @@ public enum ThriveArchiveObjectType : uint
     ChunkScene = 4213,
     ChunkCompound = 4214,
     SpeciesInfo = 4215,
+    PatchEventTypes = 4216,
     XoShiRo256StarStar = 4217,
     ExternalEffect = 4218,
     CompoundCloudSystem = 4219,
@@ -301,6 +302,7 @@ public enum ThriveArchiveObjectType : uint
     UpwellingEvent = 4385,
     RunoffEvent = 4386,
     CurrentDilutionEvent = 4387,
+    PatchEventsManager = 4388,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,

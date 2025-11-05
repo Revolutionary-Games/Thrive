@@ -3,7 +3,7 @@ using System.Linq;
 using SharedBase.Archive;
 using Xoshiro.PRNG64;
 
-public class CurrentDilution : IWorldEffect
+public class CurrentDilutionEvent : IWorldEffect
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
@@ -54,13 +54,13 @@ public class CurrentDilution : IWorldEffect
 
     private GameWorld targetWorld;
 
-    public CurrentDilution(GameWorld targetWorld, long randomSeed)
+    public CurrentDilutionEvent(GameWorld targetWorld, long randomSeed)
     {
         this.targetWorld = targetWorld;
         random = new XoShiRo256starstar(randomSeed);
     }
 
-    public CurrentDilution(GameWorld targetWorld, XoShiRo256starstar random,
+    public CurrentDilutionEvent(GameWorld targetWorld, XoShiRo256starstar random,
         Dictionary<int, int> eventDurationsInPatches, Dictionary<int, List<Compound>> affectedCompoundsInPatches)
     {
         this.targetWorld = targetWorld;
@@ -73,12 +73,12 @@ public class CurrentDilution : IWorldEffect
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CurrentDilutionEvent;
     public bool CanBeReferencedInArchive => false;
 
-    public static CurrentDilution ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    public static CurrentDilutionEvent ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var instance = new CurrentDilution(reader.ReadObject<GameWorld>(),
+        var instance = new CurrentDilutionEvent(reader.ReadObject<GameWorld>(),
             reader.ReadObject<XoShiRo256starstar>(), reader.ReadObject<Dictionary<int, int>>(),
             reader.ReadObject<Dictionary<int, List<Compound>>>());
 

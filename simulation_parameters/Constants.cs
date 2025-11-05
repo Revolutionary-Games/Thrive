@@ -1457,7 +1457,6 @@ public static class Constants
     public const float CURRENT_DILUTION_MIN_CHUNK_DENSITY_MULTIPLIER = 8.0f;
     public const float CURRENT_DILUTION_MAX_CHUNK_DENSITY_MULTIPLIER = 30.0f;
 
-
     // These control how many game entities can exist at once
     public const int TINY_MAX_SPAWNED_ENTITIES = 80;
     public const int VERY_SMALL_MAX_SPAWNED_ENTITIES = 150;

@@ -30,7 +30,7 @@ public class Patch : IArchivable
     ///   <see cref="GetSpeciesGameplayPopulation"/>
     /// </summary>
     private readonly Dictionary<Species, long> gameplayPopulations = new();
-    
+
     private Deque<PatchSnapshot> history = new();
 
     public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchRegion region,

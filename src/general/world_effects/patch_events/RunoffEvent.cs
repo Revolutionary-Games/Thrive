@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 using Xoshiro.PRNG64;
 
@@ -188,40 +187,6 @@ public class RunoffEvent : IWorldEffect
             compoundChanges.Clear();
             cloudSizes.Clear();
         }
-    }
-
-    private void DisplayCompounds(Patch patch, List<Compound> compounds)
-    {
-        return;
-
-        foreach (var compound in compounds)
-        {
-            var compoundDefinition = SimulationParameters.Instance.GetCompoundDefinition(compound);
-            GD.Print(compoundDefinition.Name + ":");
-            if (patch.Biome.ChangeableCompounds.TryGetValue(compound, out var compoundLevel))
-            {
-                GD.Print(" - " + compoundLevel);
-            }
-            else
-            {
-                GD.Print(" - not present");
-            }
-
-            var chunks =
-                patch.Biome.Chunks.Where(configuration =>
-                    configuration.Value.Compounds != null && configuration.Value.Compounds.ContainsKey(compound));
-
-            GD.Print(" - chunks:");
-            foreach (var chunk in chunks)
-            {
-                GD.Print($"     - Chunk '{chunk.Key}' density: {chunk.Value.Density}");
-            }
-
-            GD.Print();
-        }
-
-        GD.Print("-------------------");
-        GD.Print();
     }
 
     /// <summary>
