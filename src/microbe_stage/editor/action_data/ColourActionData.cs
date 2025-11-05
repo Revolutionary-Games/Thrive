@@ -1,8 +1,12 @@
-﻿using Godot;
+﻿using System;
+using System.Collections.Generic;
+using Godot;
+using SharedBase.Archive;
 
-[JSONAlwaysDynamicType]
 public class ColourActionData : EditorCombinableActionData<CellType>
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public Color NewColour;
     public Color PreviousColour;
 
@@ -12,47 +16,56 @@ public class ColourActionData : EditorCombinableActionData<CellType>
         PreviousColour = previousColour;
     }
 
-    public override bool WantsMergeWith(CombinableActionData other)
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.ColourActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
-        return other is ColourActionData;
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.ColourActionData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((ColourActionData)obj);
     }
 
-    protected override double CalculateCostInternal()
+    public static ColourActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new ColourActionData(reader.ReadColor(), reader.ReadColor());
+
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(NewColour);
+        writer.Write(PreviousColour);
+
+        writer.Write(SERIALIZATION_VERSION_CONTEXT);
+        base.WriteToArchive(writer);
+    }
+
+    protected override double CalculateBaseCostInternal()
     {
         // Changing membrane colour has no cost
         return 0;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
-        if (other is ColourActionData colourChangeActionData)
-        {
-            // If the value has been changed back to a previous value
-            if (NewColour.IsEqualApprox(colourChangeActionData.PreviousColour) &&
-                colourChangeActionData.NewColour.IsEqualApprox(PreviousColour))
-            {
-                return ActionInterferenceMode.CancelsOut;
-            }
-
-            // If the value has been changed twice
-            if (NewColour.IsEqualApprox(colourChangeActionData.PreviousColour) ||
-                colourChangeActionData.NewColour.IsEqualApprox(PreviousColour))
-            {
-                return ActionInterferenceMode.Combinable;
-            }
-        }
-
-        return ActionInterferenceMode.NoInterference;
+        // No cost adjustment as this is free
+        return (CalculateBaseCostInternal(), 0);
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        var colourChangeActionData = (ColourActionData)other;
-
-        if (PreviousColour.IsEqualApprox(colourChangeActionData.NewColour))
-            return new ColourActionData(NewColour, colourChangeActionData.PreviousColour);
-
-        return new ColourActionData(colourChangeActionData.NewColour, PreviousColour);
+        return other is ColourActionData;
     }
 
     protected override void MergeGuaranteed(CombinableActionData other)

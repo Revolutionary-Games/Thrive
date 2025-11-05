@@ -1,15 +1,17 @@
 ﻿namespace AutoEvo;
 
+using System;
 using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Record of Auto-Evo results and species data for a given generation.
 /// </summary>
-public class GenerationRecord
+public class GenerationRecord : IArchivable
 {
-    [JsonConstructor]
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public GenerationRecord(double timeElapsed, Dictionary<uint, SpeciesRecordLite> allSpeciesData)
     {
         TimeElapsed = timeElapsed;
@@ -17,16 +19,18 @@ public class GenerationRecord
     }
 
     /// <summary>
-    ///   Total in-game time elapsed since the world's beginning.
+    ///   Total in-game time that has elapsed since the world's beginning.
     /// </summary>
-    [JsonProperty]
-    public double TimeElapsed { get; private set; }
+    public double TimeElapsed { get; }
 
     /// <summary>
-    ///   Data for all species this generation, along with population and mutation data.
+    ///   Data for all species of this generation, along with population and mutation data.
     /// </summary>
-    [JsonProperty]
-    public Dictionary<uint, SpeciesRecordLite> AllSpeciesData { get; private set; }
+    public Dictionary<uint, SpeciesRecordLite> AllSpeciesData { get; }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.GenerationRecord;
+    public bool CanBeReferencedInArchive => false;
 
     /// <summary>
     ///   Replaces a null species record with the latest non-null record from a previous generation. Used to fill
@@ -77,6 +81,28 @@ public class GenerationRecord
             speciesRecord.SplitFromID);
     }
 
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.GenerationRecord)
+            throw new NotSupportedException();
+
+        writer.WriteObject((GenerationRecord)obj);
+    }
+
+    public static GenerationRecord ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new GenerationRecord(reader.ReadDouble(), reader.ReadObject<Dictionary<uint, SpeciesRecordLite>>());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(TimeElapsed);
+        writer.WriteObject(AllSpeciesData);
+    }
+
     /// <summary>
     ///   Replaces species data for a given species in this generation. Primarily used for updating data for the
     ///   player species once the player has left the editor.
@@ -86,8 +112,8 @@ public class GenerationRecord
     {
         if (AllSpeciesData.TryGetValue(species.ID, out var existing))
         {
-            AllSpeciesData[species.ID] = new SpeciesRecordLite((Species)species.Clone(), existing.Population,
-                existing.MutatedPropertiesID, existing.SplitFromID);
+            AllSpeciesData[species.ID] = new SpeciesRecordLite(existing.Population,
+                existing.MutatedPropertiesID, existing.SplitFromID, (Species)species.Clone());
         }
         else
         {

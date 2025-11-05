@@ -1,42 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Xoshiro.PRNG64;
 
-[JSONDynamicTypeAllowed]
 public class GlobalGlaciationEvent : IWorldEffect
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private const string TemplateBiomeForIceChunks = "patchEventTemplateBiome";
     private const string Background = "iceshelf";
 
     private static readonly string[] IceChunksConfigurations =
         ["glaciationIceShard", "glaciationIceChunkSmall", "glaciationIceChunkBig", "glaciationIceSnowflake"];
 
-    [JsonProperty]
     private readonly XoShiRo256starstar random;
 
-    [JsonProperty]
     private readonly List<int> modifiedPatchesIds = new();
 
-    [JsonProperty]
+    private readonly GameWorld targetWorld;
+
     private bool hasEventAlreadyHappened;
 
     /// <summary>
     ///   Tells how many generations the event will last. "-1" means that it hasn't started at all.
     ///   "0" means it has finished, and it won't happen again
     /// </summary>
-    [JsonProperty]
     private int generationsLeft = -1;
 
-    [JsonProperty]
     private int generationsToTrigger = -1;
 
-    [JsonProperty]
     private int eventDuration;
-
-    [JsonProperty]
-    private GameWorld targetWorld;
 
     public GlobalGlaciationEvent(GameWorld targetWorld, long randomSeed)
     {
@@ -44,11 +38,44 @@ public class GlobalGlaciationEvent : IWorldEffect
         random = new XoShiRo256starstar(randomSeed);
     }
 
-    [JsonConstructor]
-    public GlobalGlaciationEvent(GameWorld targetWorld, XoShiRo256starstar random)
+    private GlobalGlaciationEvent(GameWorld targetWorld, XoShiRo256starstar random, List<int> modifiedPatchesIds)
     {
         this.targetWorld = targetWorld;
         this.random = random;
+        this.modifiedPatchesIds = modifiedPatchesIds;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.GlobalGlaciationEvent;
+    public bool CanBeReferencedInArchive => false;
+
+    public static GlobalGlaciationEvent ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new GlobalGlaciationEvent(reader.ReadObject<GameWorld>(),
+            reader.ReadObject<XoShiRo256starstar>(), reader.ReadObject<List<int>>())
+        {
+            hasEventAlreadyHappened = reader.ReadBool(),
+            generationsLeft = reader.ReadInt32(),
+            generationsToTrigger = reader.ReadInt32(),
+            eventDuration = reader.ReadInt32(),
+        };
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(targetWorld);
+        writer.WriteAnyRegisteredValueAsObject(random);
+        writer.WriteObject(modifiedPatchesIds);
+
+        writer.Write(hasEventAlreadyHappened);
+        writer.Write(generationsLeft);
+        writer.Write(generationsToTrigger);
+        writer.Write(eventDuration);
     }
 
     public void OnRegisterToWorld()

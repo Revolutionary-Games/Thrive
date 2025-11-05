@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 using Vector2 = Godot.Vector2;
 using Vector3 = Godot.Vector3;
@@ -13,23 +13,22 @@ using Vector4 = System.Numerics.Vector4;
 ///   A single compound cloud plane that handles fluid simulation for 4 compound types at a single grid square location
 ///   (can be repositioned as the player moves)
 /// </summary>
-[SceneLoadedClass("res://src/microbe_stage/CompoundCloudPlane.tscn", UsesEarlyResolve = false)]
-public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
+public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
-    ///   The current densities of compounds. This uses custom writing so this is ignored.
+    ///   The current densities of compounds. This uses custom writing, so this is ignored.
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Because this is such a high priority system this uses a bit more happily null suppressing than elsewhere
+    ///     Because this is such a high-priority system, this uses a bit more happily null suppressing than elsewhere
     ///   </para>
     /// </remarks>
     public Vector4[,] Density = null!;
 
-    [JsonIgnore]
     public Vector4[,] OldDensity = null!;
 
-    [JsonProperty]
     public Compound[] Compounds = null!;
 
     // TODO: give each cloud (compound type) a viscosity value in the JSON file and use it instead.
@@ -46,22 +45,169 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
 
     private Vector4 decayRates;
 
-    [JsonProperty]
     private Vector2I position = new(0, 0);
 
     /// <summary>
-    ///   To allow multithreaded operations a cached world position is needed
+    ///   To allow multithreaded operations, a cached world position is needed
     /// </summary>
-    [JsonProperty]
     private Vector3 cachedWorldPosition;
 
-    [JsonProperty]
     public int Resolution { get; private set; }
 
-    [JsonProperty]
     public int Size { get; private set; }
 
     public bool IsLoadedFromSave { get; set; }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPlane;
+    public bool CanBeReferencedInArchive => false;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPlane)
+            throw new NotSupportedException();
+
+        writer.WriteObject((CompoundCloudPlane)obj);
+    }
+
+    public static CompoundCloudPlane ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var scene = GD.Load<PackedScene>("res://src/microbe_stage/CompoundCloudPlane.tscn");
+
+        var instance = scene.Instantiate<CompoundCloudPlane>();
+
+        instance.Compounds = reader.ReadObject<Compound[]>();
+        instance.position = reader.ReadVector2I();
+        instance.cachedWorldPosition = reader.ReadVector3();
+        instance.Resolution = reader.ReadInt32();
+        instance.Size = reader.ReadInt32();
+        instance.Position = reader.ReadVector3();
+
+        // Then the density data
+        var buffer = new byte[instance.Size * 4 * 4];
+
+        int dimensions = instance.Size;
+
+        var target = new Vector4[dimensions, dimensions];
+
+        for (int x = 0; x < dimensions; ++x)
+        {
+            // Read this line's buffer
+            reader.ReadBytes(buffer.AsSpan());
+            int bufferReadOffset = 0;
+
+            for (int y = 0; y < dimensions; ++y)
+            {
+                // Then reconstruct each data item
+                var vector4 = default(Vector4);
+
+                var data = buffer[bufferReadOffset++] | (uint)buffer[bufferReadOffset++] << 8 |
+                    (uint)buffer[bufferReadOffset++] << 16 | (uint)buffer[bufferReadOffset++] << 24;
+                vector4.X = BitConverter.UInt32BitsToSingle(data);
+
+                data = buffer[bufferReadOffset++] | (uint)buffer[bufferReadOffset++] << 8 |
+                    (uint)buffer[bufferReadOffset++] << 16 | (uint)buffer[bufferReadOffset++] << 24;
+                vector4.Y = BitConverter.UInt32BitsToSingle(data);
+
+                data = buffer[bufferReadOffset++] | (uint)buffer[bufferReadOffset++] << 8 |
+                    (uint)buffer[bufferReadOffset++] << 16 | (uint)buffer[bufferReadOffset++] << 24;
+                vector4.Z = BitConverter.UInt32BitsToSingle(data);
+
+                data = buffer[bufferReadOffset++] | (uint)buffer[bufferReadOffset++] << 8 |
+                    (uint)buffer[bufferReadOffset++] << 16 | (uint)buffer[bufferReadOffset++] << 24;
+                vector4.W = BitConverter.UInt32BitsToSingle(data);
+
+                target[x, y] = vector4;
+            }
+
+            if (bufferReadOffset != buffer.Length)
+                throw new Exception("Buffer read offset did not reach the end of the buffer");
+        }
+
+        instance.Density = target;
+
+        instance.IsLoadedFromSave = true;
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(Compounds);
+        writer.Write(position);
+        writer.Write(cachedWorldPosition);
+        writer.Write(Resolution);
+        writer.Write(Size);
+        writer.Write(Position);
+
+        var localDensity = Density;
+
+        // If rank changes square root is not suitable
+        if (localDensity.Rank != 2)
+            throw new Exception("Cloud plane densities array rank is not 2");
+
+        int dimensions = (int)Math.Sqrt(localDensity.Length);
+
+        if (dimensions != Size)
+            throw new Exception("Cloud plane size invariants have changed");
+
+        // To avoid blowing the stack, we need to allocate temporary buffer memory here so that we can write all the
+        // density data in large chunks. We could maybe precompress the data here, but saves are stored in a compressed
+        // container anyway, so for now that is skipped.
+
+        // Each Vector4 is 4 floats, so 4 x 4 bytes
+        var buffer = new byte[dimensions * 4 * 4];
+
+        // TODO: it might be interesting to compare the performance if each individual float was written separately to
+        // the archive whether that is faster than bulk preparing everything.
+        for (int x = 0; x < dimensions; ++x)
+        {
+            int bufferOffset = 0;
+
+            // Convert data into the buffer
+            for (int y = 0; y < dimensions; ++y)
+            {
+                var vector4 = localDensity[x, y];
+
+                var data = BitConverter.SingleToUInt32Bits(vector4.X);
+
+                buffer[bufferOffset++] = (byte)data;
+                buffer[bufferOffset++] = (byte)(data >> 8);
+                buffer[bufferOffset++] = (byte)(data >> 16);
+                buffer[bufferOffset++] = (byte)(data >> 24);
+
+                data = BitConverter.SingleToUInt32Bits(vector4.Y);
+
+                buffer[bufferOffset++] = (byte)data;
+                buffer[bufferOffset++] = (byte)(data >> 8);
+                buffer[bufferOffset++] = (byte)(data >> 16);
+                buffer[bufferOffset++] = (byte)(data >> 24);
+
+                data = BitConverter.SingleToUInt32Bits(vector4.Z);
+
+                buffer[bufferOffset++] = (byte)data;
+                buffer[bufferOffset++] = (byte)(data >> 8);
+                buffer[bufferOffset++] = (byte)(data >> 16);
+                buffer[bufferOffset++] = (byte)(data >> 24);
+
+                data = BitConverter.SingleToUInt32Bits(vector4.W);
+
+                buffer[bufferOffset++] = (byte)data;
+                buffer[bufferOffset++] = (byte)(data >> 8);
+                buffer[bufferOffset++] = (byte)(data >> 16);
+                buffer[bufferOffset++] = (byte)(data >> 24);
+            }
+
+            if (bufferOffset != buffer.Length)
+                throw new Exception("Buffer offset did not reach the end of the buffer");
+
+            // Then write the entire buffer
+            writer.Write(buffer);
+        }
+    }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -734,8 +880,11 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
                 break;
 
             // Skip if compound is non-useful or disallowed to be absorbed
-            if (!compoundDefinitions[i]!.IsAbsorbable || !storage.IsUseful(compound))
+            if (!compoundDefinitions[i]!.IsAbsorbable
+                || (!storage.IsUseful(compound) && !compoundDefinitions[i]!.AlwaysAbsorbable))
+            {
                 continue;
+            }
 
             // Loop here to retry in case we read stale data
             while (true)

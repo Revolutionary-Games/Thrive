@@ -197,6 +197,9 @@
         "Capacity": 0.25
       }
     },
+    "FeatureTags": [
+      "HydrogenSulfideProtection"
+    ],
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn"
@@ -339,7 +342,7 @@
       "UV": 0.03,
       "Oxygen": 0.01
     },
-    "Density": 1200,
+    "Density": 1600,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Chromatophore.tscn"
     },
@@ -611,6 +614,9 @@
         "Capacity": 0.25
       }
     },
+    "FeatureTags": [
+      "HydrogenSulfideProtection"
+    ],
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Chemoplast.tscn"
@@ -937,7 +943,7 @@
       "UV": 0.08,
       "Oxygen": 0.02
     },
-    "Density": 1200,
+    "Density": 1800,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Chloroplast.tscn"
     },
@@ -979,7 +985,7 @@
         "Capacity": 0.5
       }
     },
-    "Density": 1000,
+    "Density": 800,
     "CorpseChunkGraphics": {
       "ScenePath": "res://assets/models/organelles/Cytoplasm.tscn"
     },
@@ -1050,7 +1056,7 @@
       "Nucleus"
     ],
     "ShouldScale": false,
-    "Density": 1200,
+    "Density": 500,
     "RelativeDensityVolume": 1,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Nucleus.tscn"
@@ -1343,9 +1349,7 @@
       "Lysosome": {}
     },
     "Enzymes": {
-      "lipase": 1,
-      "chitinase": 0,
-      "cellulase": 0
+      "lipase": 1
     },
     "Density": 1100,
     "Graphics": {

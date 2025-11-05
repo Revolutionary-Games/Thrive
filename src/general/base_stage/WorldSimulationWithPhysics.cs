@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   World simulation that uses the external physics engine in the native code module
@@ -26,8 +25,7 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
     {
     }
 
-    [JsonConstructor]
-    public WorldSimulationWithPhysics(World entities) : base(entities)
+    protected WorldSimulationWithPhysics(World entities) : base(entities)
     {
     }
 

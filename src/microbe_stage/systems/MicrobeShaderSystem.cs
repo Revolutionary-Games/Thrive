@@ -1,10 +1,12 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles things related to <see cref="MicrobeShaderParameters"/>. This should run each frame and pause when
@@ -15,20 +17,18 @@ using World = DefaultEcs.World;
 ///     This is marked as just reading the entity materials as this just does a single shader parameter write to it
 ///   </para>
 /// </remarks>
-[With(typeof(MicrobeShaderParameters))]
-[With(typeof(EntityMaterial))]
 [ReadsComponent(typeof(EntityMaterial))]
 [ReadsComponent(typeof(CellProperties))]
 [RuntimeCost(8)]
 [RunsOnFrame]
 [RunsOnMainThread]
-public sealed class MicrobeShaderSystem : AEntitySetSystem<float>
+public partial class MicrobeShaderSystem : BaseSystem<World, float>
 {
     // private readonly Lazy<Texture> noiseTexture = GD.Load<Texture>("res://assets/textures/dissolve_noise.tres");
 
     private readonly StringName dissolveValueName = new("dissolveValue");
 
-    public MicrobeShaderSystem(World world) : base(world, null)
+    public MicrobeShaderSystem(World world) : base(world)
     {
     }
 
@@ -38,10 +38,11 @@ public sealed class MicrobeShaderSystem : AEntitySetSystem<float>
         base.Dispose();
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref MicrobeShaderParameters shaderParameters,
+        ref EntityMaterial entityMaterial, in Entity entity)
     {
-        ref var shaderParameters = ref entity.Get<MicrobeShaderParameters>();
-
         if (shaderParameters.ParametersApplied && !shaderParameters.PlayAnimations)
             return;
 
@@ -62,7 +63,7 @@ public sealed class MicrobeShaderSystem : AEntitySetSystem<float>
                     {
                         ref var cellProperties = ref entity.Get<CellProperties>();
 
-                        // Makes the engulf animation fade out during dissolve
+                        // Makes the engulfing animation fade out during dissolve
                         cellProperties.CreatedMembrane?.HandleEngulfAnimation(false, delta);
                     }
 
@@ -85,8 +86,6 @@ public sealed class MicrobeShaderSystem : AEntitySetSystem<float>
             }
         }
 
-        ref var entityMaterial = ref entity.Get<EntityMaterial>();
-
         // Wait for the material to be defined
         if (entityMaterial.Materials == null)
             return;
@@ -95,8 +94,8 @@ public sealed class MicrobeShaderSystem : AEntitySetSystem<float>
         {
             material.SetShaderParameter(dissolveValueName, shaderParameters.DissolveValue);
 
-            // Dissolve texture must be set in the material set on the object otherwise the dissolve animation
-            // won't play correctly. It used to be the case that the old C# code set the noise texture here but
+            // Dissolve texture must be set in the material set on the object; otherwise the dissolve animation
+            // won't play correctly. It used to be the case that the old C# code set the noise texture here, but
             // now it is much simpler to just require it to be set in the scenes.
         }
 

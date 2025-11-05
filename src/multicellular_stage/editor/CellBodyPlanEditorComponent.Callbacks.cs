@@ -1,48 +1,49 @@
 ﻿using Godot;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Callbacks of the cell body plan editor
 /// </summary>
-[DeserializedCallbackTarget]
 public partial class CellBodyPlanEditorComponent
 {
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnCellAdded(HexWithData<CellTemplate> hexWithData)
     {
         cellDataDirty = true;
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnCellRemoved(HexWithData<CellTemplate> hexWithData)
     {
         cellDataDirty = true;
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoCellRemoveAction(CellRemoveActionData data)
     {
         editedMicrobeCells.Remove(data.RemovedHex);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoCellRemoveAction(CellRemoveActionData data)
     {
         editedMicrobeCells.AddFast(data.RemovedHex, hexTemporaryMemory, hexTemporaryMemory2);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoCellPlaceAction(CellPlacementActionData data)
     {
         editedMicrobeCells.AddFast(data.PlacedHex, hexTemporaryMemory, hexTemporaryMemory2);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoCellPlaceAction(CellPlacementActionData data)
     {
-        editedMicrobeCells.Remove(data.PlacedHex);
+        if (!editedMicrobeCells.Remove(data.PlacedHex))
+            GD.PrintErr("Failed to remove placed cell from layout");
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DuplicateCellType(DuplicateDeleteCellTypeData data)
     {
         var originalName = data.CellType.TypeName;
@@ -76,7 +77,7 @@ public partial class CellBodyPlanEditorComponent
         UpdateCellTypeSelections();
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoCellMoveAction(CellMoveActionData data)
     {
         data.MovedHex.Position = data.NewLocation;
@@ -94,7 +95,7 @@ public partial class CellBodyPlanEditorComponent
         }
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoCellMoveAction(CellMoveActionData data)
     {
         data.MovedHex.Position = data.OldLocation;

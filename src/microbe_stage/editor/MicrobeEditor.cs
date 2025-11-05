@@ -2,30 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Main class of the microbe editor
 /// </summary>
-[JsonObject(IsReference = true)]
-[SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditor.tscn", UsesEarlyResolve = false)]
 public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private const string ADVANCED_TABS_SHOWN_BEFORE = "editor_advanced_tabs";
 
+    private const double EMERGENCY_SHOW_TABS_AFTER_SECONDS = 4;
+
 #pragma warning disable CA2213
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     [Export]
     private MicrobeEditorReportComponent reportTab = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     [Export]
     private MicrobeEditorPatchMap patchMapTab = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     [Export]
     private CellEditorComponent cellEditorTab = null!;
 
@@ -35,36 +31,80 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     /// <summary>
     ///   The species that is being edited, changes are applied to it on exit
     /// </summary>
-    [JsonProperty]
     private MicrobeSpecies? editedSpecies;
+
+    private bool checkingTabVisibility;
+    private double tabCheckVisibilityTimer = 10;
 
     public override bool CanCancelAction => cellEditorTab.Visible && cellEditorTab.CanCancelAction;
 
-    [JsonIgnore]
     public override Species EditedBaseSpecies =>
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
 
-    [JsonIgnore]
     public ICellDefinition EditedCellProperties =>
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
 
-    [JsonIgnore]
     public IReadOnlyList<OrganelleTemplate> EditedCellOrganelles => cellEditorTab.GetLatestEditedOrganelles();
 
-    [JsonIgnore]
     public Patch CurrentPatch => patchMapTab.CurrentPatch;
 
-    [JsonIgnore]
     public Patch? TargetPatch => patchMapTab.TargetPatch;
 
-    [JsonIgnore]
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeEditor;
 
     protected override string MusicCategory => "MicrobeEditor";
 
     protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
     protected override string EditorLoadingMessage => Localization.Translate("LOADING_MICROBE_EDITOR");
     protected override bool HasInProgressAction => CanCancelAction;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.MicrobeEditor)
+            throw new NotSupportedException();
+
+        writer.WriteObject((MicrobeEditor)obj);
+    }
+
+    public static MicrobeEditor ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var scene = GD.Load<PackedScene>("res://src/microbe_stage/editor/MicrobeEditor.tscn");
+
+        var instance = scene.Instantiate<MicrobeEditor>();
+
+        instance.ResolveNodeReferences();
+
+        reader.ReadObjectProperties(instance.reportTab);
+        reader.ReadObjectProperties(instance.patchMapTab);
+        reader.ReadObjectProperties(instance.cellEditorTab);
+
+        // Base version is different
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        instance.editedSpecies = reader.ReadObjectOrNull<MicrobeSpecies>();
+
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        // Due to callbacks in history, subcomponents need to be written first
+        writer.WriteObjectProperties(reportTab);
+        writer.WriteObjectProperties(patchMapTab);
+        writer.WriteObjectProperties(cellEditorTab);
+
+        // Don't call base as it is the base abstract one
+        writer.Write(SERIALIZATION_VERSION_BASE);
+        WriteBasePropertiesToArchive(writer);
+
+        writer.WriteObjectOrNull(editedSpecies);
+    }
 
     public override void _Ready()
     {
@@ -99,6 +139,12 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
             TutorialState.AutoEvoPrediction.OnClosed -= ShowTabBarAfterTutorial;
             TutorialState.StaySmallTutorial.OnClosed -= ShowTabBarAfterTutorial;
         }
+    }
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+        CheckTabVisibilityAfterTutorial(delta);
     }
 
     public void SendAutoEvoResultsToReportComponent()
@@ -412,6 +458,8 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
                 cellEditorTab.Show();
                 SetEditorObjectVisibility(true);
                 cellEditorTab.UpdateCamera();
+
+                StartTimerForSafetyTabShow();
                 break;
             }
 
@@ -461,5 +509,44 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         CurrentGame.GameWorld.UnlockProgress.UnlockAll = true;
         cellEditorTab.UnlockAllOrganelles();
+    }
+
+    private void StartTimerForSafetyTabShow()
+    {
+        checkingTabVisibility = true;
+        tabCheckVisibilityTimer = EMERGENCY_SHOW_TABS_AFTER_SECONDS;
+    }
+
+    /// <summary>
+    ///   Makes sure that due to some tutorials not triggering when they have been done out of order in different
+    ///   saves, won't leave editor tabs permanently hidden during some tutorial cycles.
+    /// </summary>
+    private void CheckTabVisibilityAfterTutorial(double delta)
+    {
+        if (!checkingTabVisibility)
+            return;
+
+        tabCheckVisibilityTimer -= delta;
+
+        if (tabCheckVisibilityTimer > 0)
+            return;
+
+        checkingTabVisibility = false;
+
+        if (TutorialState.Enabled)
+        {
+            if (!TutorialState.TutorialActive())
+            {
+                // Tutorial is likely sequence broken, so it won't continue, show tabs to not get the player stuck
+                if (editorTabSelector == null || !editorTabSelector.Visible)
+                    GD.Print("Showing tabs as tutorial is not active while it probably should be");
+                ShowTabBar(true);
+            }
+        }
+        else
+        {
+            // Make sure tabs are shown if the tutorial is turned off
+            ShowTabBar(true);
+        }
     }
 }

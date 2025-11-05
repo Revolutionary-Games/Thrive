@@ -2,34 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   A container for patches that are joined together
 /// </summary>
-[UseThriveSerializer]
-public class PatchMap : ISaveLoadable
+public class PatchMap : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private Patch? currentPatch;
 
     /// <summary>
     ///   The list of patches. DO NOT MODIFY THE DICTIONARY FROM OUTSIDE THIS CLASS
     /// </summary>
-    [JsonProperty]
     public Dictionary<int, Patch> Patches { get; private set; } = new();
 
     /// <summary>
     ///   The regions in this map
     /// </summary>
-    [JsonProperty]
     public Dictionary<int, PatchRegion> Regions { get; private set; } = new();
 
-    [JsonIgnore]
     public Vector2 Center =>
         Regions.Values.Aggregate(Vector2.Zero, (current, region) => current + region.ScreenCoordinates)
         / Regions.Count;
 
-    [JsonProperty]
     public FogOfWarMode FogOfWar { get; set; }
 
     /// <summary>
@@ -55,11 +52,43 @@ public class PatchMap : ISaveLoadable
         }
     }
 
-    [JsonProperty]
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.PatchMap;
+    public bool CanBeReferencedInArchive => false;
+
     private List<(int Id1, int Id2)> PatchAdjacencies { get; set; } = new();
 
-    [JsonProperty]
     private List<(int Id1, int Id2)> RegionAdjacencies { get; set; } = new();
+
+    public static PatchMap ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new PatchMap
+        {
+            currentPatch = reader.ReadObjectOrNull<Patch>(),
+            Patches = reader.ReadObject<Dictionary<int, Patch>>(),
+            Regions = reader.ReadObject<Dictionary<int, PatchRegion>>(),
+            PatchAdjacencies = reader.ReadObject<List<(int Id1, int Id2)>>(),
+            RegionAdjacencies = reader.ReadObject<List<(int Id1, int Id2)>>(),
+            FogOfWar = (FogOfWarMode)reader.ReadInt32(),
+        };
+
+        instance.RecreateAdjacencies();
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObjectOrNull(currentPatch);
+        writer.WriteObject(Patches);
+        writer.WriteObject(Regions);
+        writer.WriteObject(PatchAdjacencies);
+        writer.WriteObject(RegionAdjacencies);
+        writer.Write((int)FogOfWar);
+    }
 
     /// <summary>
     ///   Adds a new patch to the map. Throws if can't add
@@ -503,11 +532,6 @@ public class PatchMap : ISaveLoadable
         {
             patch.Value.ApplyVisibility(MapElementVisibility.Shown);
         }
-    }
-
-    public void FinishLoading(ISaveContext? context)
-    {
-        RecreateAdjacencies();
     }
 
     private void RecreateAdjacencies()

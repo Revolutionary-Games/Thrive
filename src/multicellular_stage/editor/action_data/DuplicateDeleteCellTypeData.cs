@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Stores information for duplicating and deleting cell types.
 /// </summary>
-[JSONAlwaysDynamicType]
 public class DuplicateDeleteCellTypeData : EditorCombinableActionData<MulticellularSpecies>
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public readonly CellType CellType;
 
     public DuplicateDeleteCellTypeData(CellType cellType)
@@ -13,18 +16,52 @@ public class DuplicateDeleteCellTypeData : EditorCombinableActionData<Multicellu
         CellType = cellType;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.DuplicateDeleteCellTypeData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
-        return ActionInterferenceMode.NoInterference;
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.DuplicateDeleteCellTypeData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((DuplicateDeleteCellTypeData)obj);
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    public static DuplicateDeleteCellTypeData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
-        throw new NotSupportedException();
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new DuplicateDeleteCellTypeData(reader.ReadObject<CellType>());
+
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        return instance;
     }
 
-    protected override double CalculateCostInternal()
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(CellType);
+
+        writer.Write(SERIALIZATION_VERSION_CONTEXT);
+        base.WriteToArchive(writer);
+    }
+
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
+    {
+        return (0, 0);
+    }
+
+    protected override double CalculateBaseCostInternal()
     {
         return 0;
+    }
+
+    protected override bool CanMergeWithInternal(CombinableActionData other)
+    {
+        return false;
     }
 }

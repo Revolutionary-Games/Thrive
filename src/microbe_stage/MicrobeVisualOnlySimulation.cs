@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.Threading;
 using Godot;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
@@ -16,36 +18,25 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     private readonly List<Hex> hexWorkData1 = new();
     private readonly List<Hex> hexWorkData2 = new();
 
-    // Base systems
-    private AnimationControlSystem animationControlSystem = null!;
-    private AttachedEntityPositionSystem attachedEntityPositionSystem = null!;
-    private ColourAnimationSystem colourAnimationSystem = null!;
-    private EntityMaterialFetchSystem entityMaterialFetchSystem = null!;
-    private FadeOutActionSystem fadeOutActionSystem = null!;
-    private PathBasedSceneLoader pathBasedSceneLoader = null!;
-    private PredefinedVisualLoaderSystem predefinedVisualLoaderSystem = null!;
+    private Group<float> simulationSystems = new("Simulation Systems");
 
-    private SpatialAttachSystem spatialAttachSystem = null!;
-    private SpatialPositionSystem spatialPositionSystem = null!;
-
-    // Microbe systems
-    private CellBurstEffectSystem cellBurstEffectSystem = null!;
-
-    // private ColonyBindingSystem colonyBindingSystem = null!;
-    private MicrobeFlashingSystem microbeFlashingSystem = null!;
-    private MicrobeRenderPrioritySystem microbeRenderPrioritySystem = null!;
-    private MicrobeShaderSystem microbeShaderSystem = null!;
-    private MicrobeVisualsSystem microbeVisualsSystem = null!;
-    private TintColourApplyingSystem tintColourApplyingSystem = null!;
-
-    private IntercellularMatrixSystem intercellularMatrixSystem = null!;
+    private Group<float> frameSystems = new("Frame Systems");
 
 #pragma warning disable CA2213
+
+    // This is Disposed indirectly
+    private MicrobeVisualsSystem microbeVisualsSystem = null!;
+
     private Node visualsParent = null!;
 #pragma warning restore CA2213
 
+    public override ushort CurrentArchiveVersion => 1;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        throw new NotSupportedException("This class is not meant t obe saved");
+
     /// <summary>
-    ///   Initialized this visual simulation for use
+    ///   Initialises this visual simulation for use
     /// </summary>
     /// <param name="visualDisplayRoot">Root node to place all visuals under</param>
     public void Init(Node visualDisplayRoot)
@@ -56,42 +47,52 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         visualsParent = visualDisplayRoot;
 
-        // This is not used for intensive use, and even is used in the background of normal gameplay so this should use
-        // just a single thread
-        var runner = new DefaultParallelRunner(1);
-
-        animationControlSystem = new AnimationControlSystem(EntitySystem);
-        attachedEntityPositionSystem = new AttachedEntityPositionSystem(this, EntitySystem, runner);
-        colourAnimationSystem = new ColourAnimationSystem(EntitySystem, runner);
-
-        entityMaterialFetchSystem = new EntityMaterialFetchSystem(EntitySystem);
-        fadeOutActionSystem = new FadeOutActionSystem(this, null, EntitySystem, runner);
-        pathBasedSceneLoader = new PathBasedSceneLoader(EntitySystem, runner);
-
-        predefinedVisualLoaderSystem = new PredefinedVisualLoaderSystem(EntitySystem);
-
-        spatialAttachSystem = new SpatialAttachSystem(visualsParent, EntitySystem);
-        spatialPositionSystem = new SpatialPositionSystem(EntitySystem);
-        cellBurstEffectSystem = new CellBurstEffectSystem(EntitySystem);
-
-        // For previewing multicellular some colony operations will be needed
-        // colonyBindingSystem = new ColonyBindingSystem(this, EntitySystem, parallelRunner);
-
-        microbeFlashingSystem = new MicrobeFlashingSystem(EntitySystem, runner);
-        microbeRenderPrioritySystem = new MicrobeRenderPrioritySystem(EntitySystem);
-        microbeShaderSystem = new MicrobeShaderSystem(EntitySystem);
+        // This is not used for intensive use, and even is used in the background of normal gameplay
+        // TODO: but we cannot prevent this entity world from using multithreading
 
         microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem);
+#pragma warning disable SA1115
+        simulationSystems = new Group<float>(simulationSystems.Name,
+            microbeVisualsSystem,
 
-        // organelleComponentFetchSystem = new OrganelleComponentFetchSystem(EntitySystem, runner);
+            // Base systems
+            new PathBasedSceneLoader(EntitySystem),
+            new PredefinedVisualLoaderSystem(EntitySystem),
+            new EntityMaterialFetchSystem(EntitySystem),
+            new AnimationControlSystem(EntitySystem),
 
-        // TODO: is there a need for the movement system / OrganelleTickSystem to control animations on organelles
-        // if those are used then also OrganelleComponentFetchSystem would be needed
-        // organelleTickSystem = new OrganelleTickSystem(EntitySystem, runner);
+            // Attach
+            new AttachedEntityPositionSystem(this, EntitySystem),
 
-        tintColourApplyingSystem = new TintColourApplyingSystem(EntitySystem);
+            // Base spatial
+            new SpatialAttachSystem(visualsParent, EntitySystem),
+            new SpatialPositionSystem(EntitySystem),
 
-        intercellularMatrixSystem = new IntercellularMatrixSystem(EntitySystem);
+            // Microbe systems
+
+            // TODO: is there a need for the movement system / OrganelleTickSystem to control animations on organelles
+            // if those are used then also OrganelleComponentFetchSystem would be needed
+            // new OrganelleComponentFetchSystem(EntitySystem, runner),
+            // new OrganelleTickSystem(EntitySystem, runner),
+
+            // Visual effects
+            new FadeOutActionSystem(this, null, EntitySystem),
+            new MicrobeRenderPrioritySystem(EntitySystem),
+            new CellBurstEffectSystem(EntitySystem),
+            new MicrobeFlashingSystem(EntitySystem),
+
+            // Multicellular
+            new IntercellularMatrixSystem(EntitySystem));
+
+        frameSystems = new Group<float>(frameSystems.Name,
+            new ColourAnimationSystem(EntitySystem),
+            new MicrobeShaderSystem(EntitySystem),
+            new TintColourApplyingSystem(EntitySystem));
+
+#pragma warning restore SA1115
+
+        simulationSystems.Initialize();
+        frameSystems.Initialize();
 
         OnInitialized();
     }
@@ -106,7 +107,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         // TODO: should we have a separate spawn method to just spawn the visual aspects of a microbe?
         // The downside would be duplicated code, but it could skip the component types that don't impact the visuals
 
-        // We pass AI controlled true here to avoid creating player specific data but as we don't have the AI system
+        // We pass AI-controlled true here to avoid creating player-specific data, but as we don't have the AI system,
         // it is fine to create the AI properties as it won't actually do anything
         SpawnHelpers.SpawnMicrobe(this, dummyEnvironment, species, Vector3.Zero, true);
 
@@ -115,7 +116,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         // Grab the created entity
         var foundEntity = GetLastMicrobeEntity();
 
-        if (foundEntity == default)
+        if (foundEntity == Entity.Null)
             throw new Exception("Could not find microbe entity that should have been created");
 
         return foundEntity;
@@ -127,7 +128,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     /// <returns>The colony's root cell entity</returns>
     public Entity CreateVisualisationColony(MulticellularSpecies species)
     {
-        // We pass AI controlled true here to avoid creating player specific data but as we don't have the AI system
+        // We pass AI-controlled true here to avoid creating player-specific data, but as we don't have the AI system,
         // it is fine to create the AI properties as it won't actually do anything
         SpawnHelpers.SpawnMicrobe(this, dummyEnvironment, species, Vector3.Zero, true);
 
@@ -136,7 +137,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         // Grab the created entity
         var foundEntity = GetLastMicrobeEntity();
 
-        if (foundEntity == default)
+        if (foundEntity == Entity.Null)
             throw new Exception("Could not find microbe entity that should have been created");
 
         var recorder = StartRecordingEntityCommands();
@@ -152,7 +153,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
                 in foundEntity, i, cell, species, this, dummyEnvironment, recorder, dummySpawnSystem, false);
         }
 
-        recorder.Execute();
+        recorder.Playback(EntitySystem);
         FinishRecordingEntityCommands(recorder);
 
         return foundEntity;
@@ -160,15 +161,27 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
     public Entity GetLastMicrobeEntity()
     {
-        Entity foundEntity = default;
+        Entity foundEntity = Entity.Null;
 
-        foreach (var entity in EntitySystem)
+        foreach (var archetype in EntitySystem)
         {
-            if (!entity.Has<CellProperties>())
+            if (!archetype.Has<CellProperties>())
                 continue;
 
-            // In case there are already multiple microbes, grab the last one
-            foundEntity = entity;
+            foreach (var chunk in archetype.Chunks.AsSpan())
+            {
+                var count = chunk.Count;
+                var chunkEntities = chunk.Entities;
+
+                for (int i = 0; i < count; ++i)
+                {
+                    var entity = chunkEntities[i];
+
+                    // In case there are already multiple microbes, grab the last one
+                    // TODO: maybe this should use highest ID?
+                    foundEntity = entity;
+                }
+            }
         }
 
         return foundEntity;
@@ -176,7 +189,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
     public void ApplyNewVisualisationMicrobeSpecies(Entity microbe, MicrobeSpecies species)
     {
-        if (!microbe.Has<CellProperties>())
+        if (!microbe.IsAliveAndHas<CellProperties>())
         {
             GD.PrintErr("Can't apply new species to visualization entity as it is missing a component");
             return;
@@ -204,7 +217,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     /// <param name="colour">Colour to apply to it (overrides any previously applied species colour)</param>
     public void ApplyMicrobeColour(Entity microbe, Color colour)
     {
-        if (!microbe.Has<CellProperties>())
+        if (!microbe.IsAliveAndHas<CellProperties>())
         {
             GD.PrintErr("Can't apply new rigidity to visualization entity as it is missing a component");
             return;
@@ -212,7 +225,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         ref var cellProperties = ref microbe.Get<CellProperties>();
 
-        // Reset the initial used colour
+        // Reset the initially used colour
         cellProperties.Colour = colour;
 
         // Reset the colour used when updating (should be fine to cancel the animation here)
@@ -227,7 +240,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
     public void ApplyMicrobeRigidity(Entity microbe, float membraneRigidity)
     {
-        if (!microbe.Has<CellProperties>())
+        if (!microbe.IsAliveAndHas<CellProperties>())
         {
             GD.PrintErr("Can't apply new rigidity to visualization entity as it is missing a component");
             return;
@@ -244,7 +257,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
     public void ApplyMicrobeMembraneType(Entity microbe, MembraneType membraneType)
     {
-        if (!microbe.Has<CellProperties>())
+        if (!microbe.IsAliveAndHas<CellProperties>())
         {
             GD.PrintErr("Can't apply new membrane type to visualization entity as it is missing a component");
             return;
@@ -262,12 +275,12 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     {
         var microbe = GetLastMicrobeEntity();
 
-        if (microbe == default)
+        if (microbe == Entity.Null)
             throw new InvalidOperationException("No microbe exists to operate on");
 
         ref var cellProperties = ref microbe.Get<CellProperties>();
 
-        // This uses the membrane as radius is not set as the physics system doesn't run
+        // This uses the membrane as the radius is not set as the physics system doesn't run
         if (!cellProperties.IsMembraneReady())
             throw new InvalidOperationException("Microbe doesn't have a ready membrane");
 
@@ -366,26 +379,38 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         float maxCellDistanceSquared = 0.0f;
         float farthestCellRadius = 0.0f;
 
-        foreach (var entity in EntitySystem)
+        foreach (var archetype in EntitySystem)
         {
-            if (!entity.Has<CellProperties>())
+            if (!archetype.Has<CellProperties>())
                 continue;
 
-            var distanceSquared = entity.Get<WorldPosition>().Position.DistanceSquaredTo(center);
-
-            ref var cellProperties = ref entity.Get<CellProperties>();
-
-            // This uses the membrane as radius is not set as the physics system doesn't run
-            if (!cellProperties.IsMembraneReady())
-                throw new InvalidOperationException("Microbe doesn't have a ready membrane");
-
-            float radius = cellProperties.CreatedMembrane!.EncompassingCircleRadius;
-
-            if (distanceSquared + radius * radius > maxCellDistanceSquared + farthestCellRadius * farthestCellRadius)
+            foreach (var chunk in archetype.Chunks.AsSpan())
             {
-                maxCellDistanceSquared = distanceSquared;
+                var entityCount = chunk.Count;
+                var chunkEntities = chunk.Entities;
 
-                farthestCellRadius = radius;
+                for (int i = 0; i < entityCount; ++i)
+                {
+                    var entity = chunkEntities[i];
+
+                    var distanceSquared = entity.Get<WorldPosition>().Position.DistanceSquaredTo(center);
+
+                    ref var cellProperties = ref entity.Get<CellProperties>();
+
+                    // This uses the membrane as the radius is not set as the physics system doesn't run
+                    if (!cellProperties.IsMembraneReady())
+                        throw new InvalidOperationException("Microbe doesn't have a ready membrane");
+
+                    float radius = cellProperties.CreatedMembrane!.EncompassingCircleRadius;
+
+                    if (distanceSquared + radius * radius >
+                        maxCellDistanceSquared + farthestCellRadius * farthestCellRadius)
+                    {
+                        maxCellDistanceSquared = distanceSquared;
+
+                        farthestCellRadius = radius;
+                    }
+                }
             }
         }
 
@@ -397,6 +422,11 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     public override bool HasSystemsWithPendingOperations()
     {
         return microbeVisualsSystem.HasPendingOperations();
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        throw new NotSupportedException("This class is not meant to be saved");
     }
 
     protected override void InitSystemsEarly()
@@ -414,64 +444,24 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
     protected override void OnProcessFixedLogic(float delta)
     {
-        microbeVisualsSystem.Update(delta);
-        pathBasedSceneLoader.Update(delta);
-        predefinedVisualLoaderSystem.Update(delta);
-        entityMaterialFetchSystem.Update(delta);
-        animationControlSystem.Update(delta);
-
-        attachedEntityPositionSystem.Update(delta);
-
-        // colonyBindingSystem.Update(delta);
-
-        spatialAttachSystem.Update(delta);
-        spatialPositionSystem.Update(delta);
-
-        // organelleComponentFetchSystem.Update(delta);
-        // organelleTickSystem.Update(delta);
-
-        fadeOutActionSystem.Update(delta);
-
-        microbeRenderPrioritySystem.Update(delta);
-
-        cellBurstEffectSystem.Update(delta);
-
-        microbeFlashingSystem.Update(delta);
+        simulationSystems.BeforeUpdate(delta);
+        simulationSystems.Update(delta);
+        simulationSystems.AfterUpdate(delta);
     }
 
     protected override void OnProcessFrameLogic(float delta)
     {
-        colourAnimationSystem.Update(delta);
-        microbeShaderSystem.Update(delta);
-        tintColourApplyingSystem.Update(delta);
-        intercellularMatrixSystem.Update(delta);
-    }
-
-    protected override void ApplyECSThreadCount(int ecsThreadsToUse)
-    {
-        // This system doesn't use threading
+        frameSystems.BeforeUpdate(delta);
+        frameSystems.Update(delta);
+        frameSystems.AfterUpdate(delta);
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            animationControlSystem.Dispose();
-            attachedEntityPositionSystem.Dispose();
-            colourAnimationSystem.Dispose();
-            entityMaterialFetchSystem.Dispose();
-            fadeOutActionSystem.Dispose();
-            pathBasedSceneLoader.Dispose();
-            predefinedVisualLoaderSystem.Dispose();
-            spatialAttachSystem.Dispose();
-            spatialPositionSystem.Dispose();
-            cellBurstEffectSystem.Dispose();
-            microbeFlashingSystem.Dispose();
-            microbeRenderPrioritySystem.Dispose();
-            microbeShaderSystem.Dispose();
-            microbeVisualsSystem.Dispose();
-            tintColourApplyingSystem.Dispose();
-            intercellularMatrixSystem.Dispose();
+            simulationSystems.Dispose();
+            frameSystems.Dispose();
         }
 
         base.Dispose(disposing);

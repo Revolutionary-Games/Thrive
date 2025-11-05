@@ -1,15 +1,13 @@
-﻿using System.ComponentModel;
-using Godot;
+﻿using Godot;
 using Newtonsoft.Json;
-using Saving.Serializers;
+using SharedBase.Archive;
 using ThriveScriptsShared;
 
 /// <summary>
 ///   Base microbe biome with some parameters that are used for a Patch.
 ///   Modifiable versions of a Biome are stored in patches.
 /// </summary>
-[TypeConverter($"Saving.Serializers.{nameof(BiomeStringConverter)}")]
-public class Biome : IRegistryType
+public class Biome : RegistryType
 {
     /// <summary>
     ///   Name of the biome, for showing to the player in the GUI
@@ -37,6 +35,8 @@ public class Biome : IRegistryType
     /// </summary>
     public LightDetails Sunlight = new();
 
+    public Color EnvironmentColour = new(0, 0, 0, 1);
+
     /// <summary>
     ///   How much the temperature in this biome varies on a microscopic scale when moving around
     /// </summary>
@@ -45,6 +45,11 @@ public class Biome : IRegistryType
     public float CompoundCloudBrightness = 1.0f;
 
     public WaterCurrentsDetails WaterCurrents = new();
+
+    /// <summary>
+    ///   Optional static terrain that is spawned when playing in this patch
+    /// </summary>
+    public TerrainConfiguration? Terrain;
 
     /// <summary>
     ///   Total gas volume of this biome when it is a single patch.
@@ -62,9 +67,15 @@ public class Biome : IRegistryType
     private string? untranslatedName;
 #pragma warning restore 169,649
 
-    public string InternalName { get; set; } = null!;
+    [JsonIgnore]
+    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.Biome;
 
-    public void Check(string name)
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        return SimulationParameters.Instance.GetBiome(ReadInternalName(reader, version));
+    }
+
+    public override void Check(string name)
     {
         if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Background) || string.IsNullOrEmpty(Panorama))
         {
@@ -104,18 +115,28 @@ public class Biome : IRegistryType
                 "temperature variance scale needs to be over 0");
         }
 
+        if (EnvironmentColour.A < 1.0f)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "Environment colour alpha needs to be 1");
+        }
+
+        if (Terrain != null)
+        {
+            // Terrain will share our name
+            Terrain.InternalName = name;
+            Terrain.Check(name);
+        }
+
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
     }
 
-    /// <summary>
-    ///   Loads the needed scenes for the chunks
-    /// </summary>
     public void Resolve(SimulationParameters parameters)
     {
         LoadedIcon = GD.Load<Texture2D>(Icon);
     }
 
-    public void ApplyTranslations()
+    public override void ApplyTranslations()
     {
         TranslationHelper.ApplyTranslations(this);
     }

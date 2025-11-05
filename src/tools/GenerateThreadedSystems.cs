@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using DefaultEcs.System;
+using Arch.System;
 using Godot;
 using Tools;
 using Environment = System.Environment;
@@ -19,8 +19,8 @@ using File = System.IO.File;
 public partial class GenerateThreadedSystems : Node
 {
     /// <summary>
-    ///   How many threads to use when generating threaded system run. Needs to be at least 2. Too high number splits
-    ///   task so granularly that it just lowers performance
+    ///   How many threads to use when generating threaded system run. Needs to be at least 2. Too high a number of
+    ///   split tasks just lowers performance (when task switching happens too much)
     /// </summary>
     public static int TargetThreadCount = 2;
 
@@ -33,7 +33,7 @@ public partial class GenerateThreadedSystems : Node
     public static bool UseCheckedComponentAccess = false;
 
     /// <summary>
-    ///   When true inserts timing code around barriers to measure how long the wait times are
+    ///   When true, inserts timing code around barriers to measure how long the wait times are
     /// </summary>
     public static bool MeasureThreadWaits = false;
 
@@ -43,13 +43,13 @@ public partial class GenerateThreadedSystems : Node
     public static bool PrintThreadWaits = true;
 
     /// <summary>
-    ///   When true adds try-catch statements around system executions to ensure no exceptions are leaked to a higher
+    ///   When true, adds try-catch statements around system executions to ensure no exceptions are leaked to a higher
     ///   level
     /// </summary>
     public static bool AddSimulationExceptionCatches = true;
 
     /// <summary>
-    ///   When true inserts a lot of debug code to check that no conflicting systems are executed in the same timeslot
+    ///   When true, inserts a lot of debug code to check that no conflicting systems are executed in the same timeslot
     ///   during runtime. Used to verify that this tool works correctly.
     /// </summary>
     public static bool DebugGuardComponentWrites = false;
@@ -139,7 +139,7 @@ public partial class GenerateThreadedSystems : Node
         new List<(Type Class, string File, string EndOfProcess)>
         {
             (typeof(MicrobeWorldSimulation), "src/microbe_stage/MicrobeWorldSimulation.generated.cs",
-                "cellCountingEntitySet.Complete();\nreportedPlayerPosition = null;"),
+                "\nreportedPlayerPosition = null;"),
         };
 
     private readonly Type systemBaseType = typeof(ISystem<>);
@@ -319,7 +319,7 @@ public partial class GenerateThreadedSystems : Node
 
             Dictionary<string, VariableInfo> variables = new();
 
-            // This destroys the other systems data so a copy is made
+            // This destroys the other systems data, so a copy is made
             GenerateThreadedSystemsRun(mainSystems, otherSystems.ToList(), TargetThreadCount - 1,
                 processSystemTextLines, variables);
 
@@ -330,7 +330,7 @@ public partial class GenerateThreadedSystems : Node
             AddProcessEndIfConfigured(processEnd, nonThreadedLines, 0);
 
             WriteGeneratedSimulationFile(file, simulationClass.Name, processSystemTextLines, nonThreadedLines,
-                frameSystemTextLines, variables);
+                frameSystemTextLines, GenerateInitCode(processSystems, frameSystems), variables);
 
             GD.Print($"Successfully handled. {file} has been updated");
         }
@@ -339,7 +339,7 @@ public partial class GenerateThreadedSystems : Node
     private void GenerateThreadedSystemsRun(List<SystemToSchedule> mainSystems, List<SystemToSchedule> otherSystems,
         int backgroundThreads, List<string> processSystemTextLines, Dictionary<string, VariableInfo> variables)
     {
-        // Make sure main systems are sorted according to when they should run
+        // Make sure the main systems are sorted according to when they should run
         SortSingleGroupOfSystems(mainSystems);
         VerifyOrderOfSystems(mainSystems);
 
@@ -608,8 +608,8 @@ public partial class GenerateThreadedSystems : Node
     {
         var comparer = new SystemToSchedule.SystemRequirementsBasedComparer();
 
-        // This is really not efficient but for now the sorting needs to continue until all the constraints are taken
-        // into account and nothing is sorted anymore
+        // This is really not efficient, but for now the sorting needs to continue until all the constraints are taken
+        // into account and nothing is sorted any more
 
         int maxSorts = systems.Count;
         int sortAttempt = 0;
@@ -786,8 +786,32 @@ public partial class GenerateThreadedSystems : Node
         return (main, other);
     }
 
+    private List<string> GenerateInitCode(params List<SystemToSchedule>[] systems)
+    {
+        var result = new List<string>
+        {
+            "// Simple init of each system in sequence (most systems don't use this)",
+        };
+
+        foreach (var systemGroup in systems)
+        {
+            var cloned = systemGroup.ToList();
+
+            // It's probably not totally mandatory to sort here, but this at least makes a consistent order
+            SortSingleGroupOfSystems(cloned);
+
+            foreach (var system in cloned)
+            {
+                result.Add($"{system.FieldName}.Initialize();");
+            }
+        }
+
+        return result;
+    }
+
     private void WriteGeneratedSimulationFile(string file, string className, List<string> process,
-        List<string> processNonThreaded, List<string> processFrame, Dictionary<string, VariableInfo> variables)
+        List<string> processNonThreaded, List<string> processFrame, List<string> systemInitCode,
+        Dictionary<string, VariableInfo> variables)
     {
         GD.Print($"Updating simulation class partial in {file}");
 
@@ -874,6 +898,10 @@ public partial class GenerateThreadedSystems : Node
         writer.WriteLine(StringUtils.GetIndent(indent) + "private void OnProcessFrameLogicGenerated(float delta)");
         indent = WriteBlockContents(writer, processFrame, indent);
 
+        writer.WriteLine();
+        writer.WriteLine(StringUtils.GetIndent(indent) + "private void RunSystemInits()");
+        indent = WriteBlockContents(writer, systemInitCode, indent);
+
         if (DebugGuardComponentWrites)
         {
             indent = WriteWriteCheckHelperMethods(writer, indent);
@@ -905,7 +933,7 @@ public partial class GenerateThreadedSystems : Node
 
     private int WriteWriteCheckHelperMethods(StreamWriter writer, int indent)
     {
-        // Clear method after complete phase
+        // Clear method after a complete phase
         writer.WriteLine();
         writer.WriteLine(StringUtils.GetIndent(indent) +
             $"private void OnBarrierPhaseCompleted({BarrierType} barrier)");

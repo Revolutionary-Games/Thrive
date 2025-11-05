@@ -1,14 +1,16 @@
 ﻿namespace Components;
 
 using System;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Entity is a multicellular thing. Still exists in the microbial environment.
 /// </summary>
 [ComponentIsReadByDefault]
-[JSONDynamicTypeAllowed]
-public struct MulticellularSpeciesMember
+public struct MulticellularSpeciesMember : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public MulticellularSpecies Species;
 
     /// <summary>
@@ -38,5 +40,31 @@ public struct MulticellularSpeciesMember
         MulticellularCellType = cellType;
 
         MulticellularBodyPlanPartIndex = cellBodyPlanIndex;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMulticellularSpeciesMember;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(Species);
+        writer.WriteObject(MulticellularCellType);
+        writer.Write(MulticellularBodyPlanPartIndex);
+    }
+}
+
+public static class MulticellularSpeciesMemberHelpers
+{
+    public static MulticellularSpeciesMember ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > MulticellularSpeciesMember.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, MulticellularSpeciesMember.SERIALIZATION_VERSION);
+
+        return new MulticellularSpeciesMember
+        {
+            Species = reader.ReadObject<MulticellularSpecies>(),
+            MulticellularCellType = reader.ReadObject<CellType>(),
+            MulticellularBodyPlanPartIndex = reader.ReadInt32(),
+        };
     }
 }

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-20 23:04+0200\n"
-"PO-Revision-Date: 2025-08-26 17:38+0000\n"
+"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"PO-Revision-Date: 2025-10-31 01:28+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -189,9 +189,8 @@ msgstr "Amonyak"
 msgid "AMMONIA_COST"
 msgstr "Amonyak Maliyeti:"
 
-#, fuzzy
 msgid "AMMONIA_LEVELS"
-msgstr "Amonyak Maliyeti:"
+msgstr "Amonyak seviyesi"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Saklanacak otomatik kayıt miktarı:"
@@ -414,19 +413,19 @@ msgid "AVAILABLE_MODS"
 msgstr "Mevcut Modlar"
 
 msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
-msgstr ""
+msgstr "Yüzeydeki ortalama CO2 seviyesi"
 
 msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
-msgstr ""
+msgstr "Yüzeydeki ortalama ışık seviyesi"
 
 msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
-msgstr ""
+msgstr "Yüzeydeki ortalama azot seviyesi"
 
 msgid "AVERAGE_SURFACE_OTHER_LEVEL"
-msgstr ""
+msgstr "Yüzeydeki ortalama diğer gaz seviyeleri"
 
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
-msgstr ""
+msgstr "Yüzeydeki ortalama oksijen seviyesi"
 
 msgid "AWAKENING_STAGE"
 msgstr "Uyanış Evresi"
@@ -1028,24 +1027,20 @@ msgstr "Her Zaman Baştakinin Üzerine Ekle"
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Arazi Değişiminde Üzerine Ekle"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_AVERAGE"
 msgstr "Ortalama"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_HIGH"
-msgstr "Bileşik Tutarları"
+msgstr "Yüksek"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_LOW"
-msgstr "Bileşik bulutu"
+msgstr "Düşük"
 
 msgid "COMPOUND_LEVEL_VERY_HIGH"
-msgstr ""
+msgstr "Çok yüksek"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
-msgstr "Hepsini Tut"
+msgstr "Çok düşük"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "({0} s uzun bir gece vaktine dayanmak için yeterli değil)"
@@ -1433,12 +1428,6 @@ msgstr ""
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Mevcut Oyun Geliştiricileri"
-
-#, fuzzy
-msgid "CURRENT_DILUTION_TOOLTIP"
-msgstr ""
-"Yanardağ patlaması olayı\n"
-"Fazladan hidrojen sülfür ve karbondioksit oluşturur."
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "MEVCUT KONUM"
@@ -2136,18 +2125,6 @@ msgstr ""
 "Karbondioksit ve kükürt seviyelerini arttırır.\n"
 "Kükürt parçaları oluşturur."
 
-#, fuzzy
-msgid "EVENT_RUNOFF_TOOLTIP"
-msgstr ""
-"Yanardağ patlaması olayı\n"
-"Fazladan hidrojen sülfür ve karbondioksit oluşturur."
-
-#, fuzzy
-msgid "EVENT_UPWELLING_TOOLTIP"
-msgstr ""
-"Yanardağ patlaması olayı\n"
-"Fazladan hidrojen sülfür ve karbondioksit oluşturur."
-
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evrim Ağacı"
 
@@ -2410,6 +2387,12 @@ msgstr "Bu türü fosilleştir (zaten fosilleştirildi)"
 msgid "FOSSILISE"
 msgstr "Fosilleştir"
 
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Fosil Verisini Yükleme Başarısız"
+
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Veri ya eski ya da geçersiz olduğundan fosil dosyası okunamadı"
+
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Fosil Silme Başarısız"
 
@@ -2551,9 +2534,8 @@ msgstr "Glukoz"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glukoz konsantrasyonu sert bir şekilde düştü!"
 
-#, fuzzy
 msgid "GLUCOSE_LEVEL"
-msgstr "Deniz seviyesinin {0}-{1}m altı"
+msgstr "Glukoz seviyesi"
 
 msgid "GLYCOLYSIS"
 msgstr "Glikoliz"
@@ -2685,7 +2667,6 @@ msgstr "[thrive:compound type=\\\"atp\\\"]ATP'yi[/thrive:compound], [thrive:comp
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrojen Sülfür"
 
-#, fuzzy
 msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "Hidrojen Sülfür"
 
@@ -2907,7 +2888,7 @@ msgid "IRON"
 msgstr "Demir"
 
 msgid "IRON_LEVELS"
-msgstr ""
+msgstr "Demir seviyesi"
 
 msgid "IRON_OXIDATION"
 msgstr "Demir Oksidasyonu"
@@ -3609,6 +3590,9 @@ msgstr ""
 "  {1}\n"
 "[b]Yerleşimci Skorları[/b]\n"
 "  {2}"
+
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "Endosimbiyoz Seçilim Baskısı"
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr "Çevresel Bileşik Baskısı"
@@ -4328,6 +4312,9 @@ msgstr "ATP üretimi, toksin tarafından engellendi"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Temel hareket hızı toksin nedeniyle azaldı"
 
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Kemosentez Yapan Proteinler olmadığı için hidrojen sülfürden dolayı hasar alınıyor"
+
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "Mukosist kalkanını etkinleştirmek için yeterli müsilaj yok"
 
@@ -4592,6 +4579,9 @@ msgstr "Diğer"
 msgid "OUR_WIKI"
 msgstr "Vikimiz"
 
+msgid "OUTDATED_ITEM"
+msgstr "ESKİ"
+
 msgid "OUTDATED_NOTICE"
 msgstr "Bu sayfa ya da bölüm güncel olmayan bilgi içermektedir. Bu genellikle bir şey yazıldıktan sonra planlar değiştiğinde olur."
 
@@ -4666,9 +4656,8 @@ msgstr "Kamerayı yukarı çevir"
 msgid "PAST_DEVELOPERS"
 msgstr "Eski Oyun Geliştiricileri"
 
-#, fuzzy
 msgid "PATCHES_NUMBER"
-msgstr "{0} {1}"
+msgstr "Arazi sayısı:"
 
 msgid "PATCH_COLON"
 msgstr "Arazi:"
@@ -4765,9 +4754,8 @@ msgstr "Fosfat"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfat Maliyeti:"
 
-#, fuzzy
 msgid "PHOSPHATES_LEVELS"
-msgstr "Fosfat Maliyeti:"
+msgstr "Fosfat seviyesi"
 
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosentez"
@@ -4798,9 +4786,8 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr "Rastgele gezegen tohumu"
 
-#, fuzzy
 msgid "PLANET_STATISTICS"
-msgstr "İstatistikler"
+msgstr "Gezegen İstatistikleri"
 
 msgid "PLAYER"
 msgstr "Oyuncu"
@@ -4953,9 +4940,8 @@ msgstr ""
 msgid "RADIATION"
 msgstr "Radyasyon"
 
-#, fuzzy
 msgid "RADIATION_LEVELS"
-msgstr "Radyasyon"
+msgstr "Radyasyon seviyesi"
 
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Radyoaktif Taş Parçası"
@@ -5008,9 +4994,8 @@ msgstr "Yenile"
 msgid "REGENERATE_BUTTON"
 msgstr "Yeniden Dünya Oluştur"
 
-#, fuzzy
 msgid "REGIONS_NUMBER"
-msgstr "ID Numarası"
+msgstr "Bölge sayısı:"
 
 msgid "RENDER_SCALE"
 msgstr "Çözünürlük ölçeği"
@@ -5144,6 +5129,15 @@ msgstr ""
 
 msgid "REVEAL_ALL_PATCHES"
 msgstr "Bütün Arazileri Göster"
+
+msgid "REVERT_TO_EDITOR"
+msgstr "Editöre Geri Dön"
+
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "Eğer mevcut mikrobunuz bu ortamda hayatta kalmak için uygun değilse, editörde bulunduğunuz önceki zamana geri dönebilir ve başka bir şey deneyebilirsiniz."
+
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Editöre Geri Dönülsün Mü?"
 
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Revolutionary Games'in resmi sitelerini ziyaret edin"
@@ -5453,9 +5447,8 @@ msgstr "Yardım menüsünü göster"
 msgid "SHOW_ITEM_COORDINATES"
 msgstr "Koordinatları göster"
 
-#, fuzzy
 msgid "SHOW_MAP"
-msgstr "Yardım menüsünü göster"
+msgstr "Haritayı Göster"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Yeni yama notlarını otomatik olarak göster"
@@ -6185,6 +6178,18 @@ msgstr "UV koruması çok düşük, %{0} değerinden yüksek olmalı"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr "Mevcut çevresel koşullara uyum sağlayamaz. Ozmoregülasyon maliyeti: %{0}, biyoişlem hızı %{1}, sağlık %{2}"
+
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]Sıcaklık[/b]\n"
+"  Tercih Edilen: {0}°C\n"
+"  Aralık: ±{1}°C\n"
+"[b]Basınç[/b]\n"
+"  Aralık: {2}-{3} Pa\n"
+"[b]Oksijen Direnci[/b]\n"
+"  {4}%\n"
+"[b]UV Direnci[/b]\n"
+"  {5}%"
 
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr "Toleranslar, bazı organellerden hem olumlu hem de olumsuz yönde etkilenir. Organellerden gelen değişime temel değer eklendikten sonra, etkili değer burada gösterilir. Bazı organeller, belli oyun tarzları ile birlikte çalışırken diğerlerine zarar verebilir."
@@ -7153,7 +7158,7 @@ msgstr "Hücrelere eklenemez. Henüz eklenmedi."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr ""
-"Bazı bakteri ve tek hücreli canlılar dahil, birçok gerçek organizma biyolüminesandır. Bir organizmanın vücudunun içinde kimyasal olarak ışık üretme eyleminin; eşlerin dikkatini çekme, aynı türün üyeleri ile iletişim kurma ve diğer türlerin dikkatini çekme ya da onları geri püskürtme gibi birçok kullanımı vardır. Mikroskopik algdeki biyolüminesans, mavi-yeşil parıltı ile okyanusun büyük bir parçasını aydınlatan alg patlamalarını üretebilir.\n"
+"Bazı bakteri ve tek hücreli canlılar dahil, birçok gerçek organizma biyolüminesandır. Bir organizmanın vücudunun içinde kimyasal olarak ışık üretme eyleminin; eşlerin dikkatini çekme, aynı türün üyeleri ile iletişim kurma ve diğer türlerin dikkatini çekme ya da onları geri püskürtme gibi birçok kullanımı vardır. Mikroskopik algdeki biyolüminesans, mavi-yeşil parıltı ile okyanusun büyük bir bölümünü aydınlatan alg patlamalarını üretebilir.\n"
 "\n"
 "Şu anda, biyolüminesans için oyun içi bir işlev konusunda anlaşmaya varamadık. İyi bir kozmetik dokunuş olacağına ve oyuncuya karanlık ortamlarda yardımcı olacağına rağmen, biyolüminesansa dayalı faydalı bir oyun mekaniği belirlemek oldukça zor. Tür içi iletişim zaten [b][color=#3796e1][url=thriveopedia:signalingAgent]Sinyal Veren Ajan[/url][/color][/b] tarafından kullanılmakta ve kaçınılmaz bir [thrive:compound type=\"atp\"]ATP[/thrive:compound] maliyetine yol açacağı zaman başka kullanımlar da ayarlamak zor görünmektedir.\n"
 "\n"
@@ -8950,9 +8955,11 @@ msgstr ""
 
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr ""
-"[thrive:compound type=\"iron\"]Demir[/thrive:compound], ortamda çok geç bozunduğu için, [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] yerine kullanmak için değerli bir alternatif kaynaktır. Pas yiyen hücreler, [thrive:compound type=\"iron\"]demirin[/thrive:compound] bol olduğu arazilerde bol bol besinlerin keyfini çıkarabilirler.\n"
+"[thrive:compound type=\"iron\"]Demir[/thrive:compound], ortamda çok geç bozunduğu için, [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] yerine kullanmak için değerli bir alternatif kaynaktır. Ayrıca [thrive:compound type=\"iron\"]demir[/thrive:compound], doğrudan ATP şeklinde aktarılır. Bu yüzden, Mikrop Evre'sinin başlarında enerjik bir organizma oluşturmak için oldukça ucuz bir yol olabilir. Ancak, [thrive:compound type=\"iron\"]demir[/thrive:compound] hızla tüketildiğinden, oyuncuların sürekli olarak daha büyük bulut yayan parçaların yakınında olmaya dikkat etmeleri ve, daha hareketli bir organizma ile oynamayı seçerlerse, bu kaynağı çok dikkatli bir şekilde yönetmeleri gerekir.\n"
 "\n"
-"[thrive:compound type=\"iron\"]Demir[/thrive:compound] parçaları yutmak cezbedici olabilir. Ama bu bileşiğin çoğu, bulut halindeyken üretildiği için daha büyük bir parçanın yakınında durarak daha fazla [thrive:compound type=\"iron\"]demir[/thrive:compound] alabilirsiniz. Ancak, yutulan bir [thrive:compound type=\"iron\"]demir[/thrive:compound] parçası, daha uzun yolculuklarda, daha fazla [thrive:compound type=\"iron\"]demiri[/thrive:compound] yanınızda taşımanızı sağlar."
+"Depo, demir oksitleyen organizmalar tarafından kullanılabilecek çok faydalı bir özelliktir. Çünkü, hızla tükenen bu bileşenin daha fazlasını depolamalarına imkan sağlar. Büyüklük de faydalıdır, çünkü büyük organizmalar etrafta yüzen daha küçük [thrive:compound type=\"iron\"]demir[/thrive:compound] parçalarını yutabilir. Bu, hareket özgürlüğünüzü arttırır, çünkü çevrenizi keşfederken yanınızda bir parça [thrive:compound type=\"iron\"]demir[/thrive:compound] taşıyor olursunuz. [b]Sitoplazma[/b], demir oksitleyen organizmalar için dikkate alınması gereken çok yararlı bir parçadır. Çünkü, büyüklük ve depoyu ucuza arttırmanızı sağlar. [b]Kofullar[/b] ise, ökaryot olduğunuzda çok kullanışlıdır.\n"
+"\n"
+"[thrive:compound type=\"iron\"]Demir[/thrive:compound], organizmanız daha zahmetli parçalar yerleştirdikçe daha çabuk tükenir. Ayrıca [b]Oksijenin[/b] artışıyla, ortamdan kaybolmaya başlar. Bu nedenle, [thrive:compound type=\"iron\"]demirden[/thrive:compound] faydalanan oyuncular, atmosferlerinde oksijen hakim olmaya başladığında dikkatli olmalı ve yüksek verimli ökaryotlar oluşturmak istiyorlarsa oksijenli solunumu düşünmelidirler."
 
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "Geliştirme yok."
@@ -9481,6 +9488,10 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Bu sayfa ya da bölüm güncel olmayan bilgi içermektedir. Bu genellikle bir şey yazıldıktan sonra planlar değiştiğinde olur."
 
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "Dünya Oluştur"

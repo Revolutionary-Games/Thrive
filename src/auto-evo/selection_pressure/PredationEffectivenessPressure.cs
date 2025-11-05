@@ -1,11 +1,11 @@
 ﻿namespace AutoEvo;
 
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
-[JSONDynamicTypeAllowed]
 public class PredationEffectivenessPressure : SelectionPressure
 {
-    [JsonProperty]
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public readonly Species Prey;
 
     // Needed for translation extraction
@@ -24,6 +24,7 @@ public class PredationEffectivenessPressure : SelectionPressure
             new AddOrganelleAnywhere(organelle => organelle.HasSlimeJetComponent,
                 CommonMutationFunctions.Direction.Rear),
             new AddOrganelleAnywhere(organelle => organelle.HasLysosomeComponent),
+            new AddOrganelleAnywhere(organelle => organelle.HasChemoreceptorComponent),
             new MoveOrganelleBack(organelle => organelle.HasSlimeJetComponent),
             new MoveOrganelleBack(organelle => organelle.HasMovementComponent),
             new UpgradeOrganelle(organelle => organelle.HasMovementComponent, new FlagellumUpgrades(0.5f)),
@@ -31,6 +32,9 @@ public class PredationEffectivenessPressure : SelectionPressure
                 new LysosomeUpgrades(SimulationParameters.Instance.GetEnzyme(Constants.CHITINASE_ENZYME))),
             new UpgradeOrganelle(organelle => organelle.HasLysosomeComponent,
                 new LysosomeUpgrades(SimulationParameters.Instance.GetEnzyme(Constants.CELLULASE_ENZYME))),
+            new UpgradeOrganelle(organelle => organelle.HasChemoreceptorComponent,
+                new ChemoreceptorUpgrades(Compound.Invalid, prey, Constants.CHEMORECEPTOR_RANGE_DEFAULT,
+                    Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, prey.Colour)),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, 150.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, 150.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, -150.0f),
@@ -41,8 +45,30 @@ public class PredationEffectivenessPressure : SelectionPressure
         Prey = prey;
     }
 
-    [JsonIgnore]
     public override LocalizedString Name => NameString;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.PredationEffectivenessPressure;
+
+    public static PredationEffectivenessPressure ReadFromArchive(ISArchiveReader reader, ushort version,
+        int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new PredationEffectivenessPressure(reader.ReadObject<Species>(), reader.ReadFloat());
+
+        instance.ReadBasePropertiesFromArchive(reader, 1);
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(Prey);
+        base.WriteToArchive(writer);
+    }
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {

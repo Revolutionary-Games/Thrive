@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -32,6 +33,9 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
     [Export]
     private CustomConfirmationDialog deletionFailedDialog = null!;
 
+    [Export]
+    private CustomConfirmationDialog fossilDataLoadFailedDialog = null!;
+
     private PackedScene museumCardScene = null!;
 
     private MuseumCard? cardToBeDeleted;
@@ -51,23 +55,36 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
 
     public override void OnThriveopediaOpened()
     {
+        // TODO: caching or something here would make this a lot more efficient as for people with a ton of fossils
+        // the Thriveopedia likely will start to lag a lot
         cardContainer.QueueFreeChildren();
 
         foreach (var speciesName in FossilisedSpecies.CreateListOfFossils(true))
         {
-            var savedSpecies = FossilisedSpecies.LoadSpeciesFromFile(speciesName);
+            var (savedSpeciesInfo, image) = FossilisedSpecies.LoadSpeciesInfoFromFile(speciesName, out var plainName);
 
             // Don't add cards for corrupt fossils
-            if (savedSpecies == null)
+            if (savedSpeciesInfo == null)
                 continue;
 
             var card = museumCardScene.Instantiate<MuseumCard>();
-            card.FossilName = savedSpecies.Name;
-            card.SavedSpecies = savedSpecies.Species;
-            card.FossilPreviewImage = savedSpecies.PreviewImage;
+            card.FossilName = plainName;
+            card.SpeciesName = savedSpeciesInfo.FormattedName;
+            card.OriginalName = speciesName;
 
-            card.Connect(MuseumCard.SignalName.OnSpeciesSelected,
-                new Callable(this, nameof(UpdateSpeciesPreview)));
+            if (string.IsNullOrWhiteSpace(card.SpeciesName))
+                card.SpeciesName = "UNKNOWN";
+
+            card.FossilPreviewImage = image;
+            card.Outdated = savedSpeciesInfo.IsInvalidOrOutdated;
+
+            // Don't need to connect this if outdated as we cannot allow loading it
+            if (!savedSpeciesInfo.IsInvalidOrOutdated)
+            {
+                card.Connect(MuseumCard.SignalName.OnSpeciesSelected,
+                    new Callable(this, nameof(UpdateSpeciesPreview)));
+            }
+
             card.Connect(MuseumCard.SignalName.OnSpeciesDeleted, new Callable(this, nameof(DeleteSpecies)));
 
             cardContainer.AddChild(card);
@@ -82,24 +99,59 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
             speciesPreviewContainer.Visible = true;
         }
 
-        // Deselect all other cards to prevent highlights hanging around.
+        // Deselect all other cards to prevent highlights from hanging around.
         foreach (var otherCard in cardContainer.GetChildren().OfType<MuseumCard>())
         {
             if (otherCard != card)
                 otherCard.ButtonPressed = false;
         }
 
-        var species = card.SavedSpecies;
+        var fileName = card.OriginalName;
 
-        speciesPreviewPanel.PreviewSpecies = species;
+        if (string.IsNullOrEmpty(fileName))
+        {
+            fossilDataLoadFailedDialog.PopupCenteredShrink();
+            speciesPreviewPanel.PreviewSpecies = null;
+            return;
+        }
+
+        // TODO: this kind of just flashes on screen as the load is so fast, so maybe this just looks bad?
+        // Use this as a crude loading indicator
+        speciesPreviewPanel.Modulate = Colors.Gray;
+
+        // Load the data in a background thread and then display it
+        TaskExecutor.Instance.AddTask(new Task(() =>
+        {
+            try
+            {
+                var loaded = FossilisedSpecies.LoadSpeciesFromFile(fileName) ??
+                    throw new Exception("Could not load species data");
+
+                Invoke.Instance.QueueForObject(() =>
+                {
+                    speciesPreviewPanel.Modulate = Colors.White;
+                    speciesPreviewPanel.PreviewSpecies = loaded.Species;
+                }, this);
+            }
+            catch (Exception e)
+            {
+                Invoke.Instance.QueueForObject(() =>
+                {
+                    GD.PrintErr("Failed to load fossilised species:");
+                    GD.PrintErr(e);
+                    speciesPreviewPanel.PreviewSpecies = null;
+                    fossilDataLoadFailedDialog.PopupCenteredShrink();
+                }, this);
+            }
+        }), true);
     }
 
     private void OnOpenInFreebuildPressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
-
         if (speciesPreviewPanel.PreviewSpecies == null)
             return;
+
+        GUICommon.Instance.PlayButtonPressSound();
 
         // If we're opening from a game in progress, warn the player
         if (CurrentGame != null)
@@ -170,9 +222,9 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
             return;
         }
 
-        var fossilName = cardToBeDeleted.FossilName;
+        var fossilName = cardToBeDeleted.OriginalName;
 
-        if (fossilName == null)
+        if (string.IsNullOrWhiteSpace(fossilName))
         {
             GD.PrintErr("Attempted to delete a fossil with a null file name");
             return;
@@ -180,7 +232,7 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
 
         try
         {
-            FossilisedSpecies.DeleteFossilFile(fossilName + Constants.FOSSIL_EXTENSION_WITH_DOT);
+            FossilisedSpecies.DeleteFossilFile(fossilName);
         }
         catch (Exception e)
         {
@@ -191,9 +243,10 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
         }
 
         // If the species we just deleted was being displayed in the sidebar
-        if (speciesPreviewPanel.PreviewSpecies == cardToBeDeleted.SavedSpecies)
+        if (speciesPreviewPanel.PreviewSpecies != null &&
+            speciesPreviewPanel.PreviewSpecies.FormattedName == cardToBeDeleted.SpeciesName)
         {
-            // Revert back to the welcome message
+            // Revert to the welcome message
             welcomeLabel.Visible = true;
             speciesPreviewContainer.Visible = false;
         }

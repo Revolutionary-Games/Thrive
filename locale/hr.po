@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-20 23:04+0200\n"
-"PO-Revision-Date: 2025-03-20 20:10+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"PO-Revision-Date: 2025-09-24 02:53+0000\n"
+"Last-Translator: Emanuel Gossain <thisisfor33@gmail.com>\n"
 "Language-Team: Croatian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hr/>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.10.3\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -50,16 +50,16 @@ msgid "ACCEPT"
 msgstr "Prihvati"
 
 msgid "ACHIEVEMENTS"
-msgstr ""
+msgstr "Postignuća"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
 
 msgid "ACHIEVEMENT_ACHIEVED"
-msgstr ""
+msgstr "Dovršeno"
 
 msgid "ACHIEVEMENT_LOCKED"
-msgstr ""
+msgstr "Zaključano"
 
 msgid "ACTION_AWAKEN"
 msgstr "Probuditi ({0:F1} / {1:F1})"
@@ -1398,10 +1398,6 @@ msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
-#, fuzzy
-msgid "CURRENT_DILUTION_TOOLTIP"
-msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
-
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
 
@@ -2031,14 +2027,6 @@ msgstr ""
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
-#, fuzzy
-msgid "EVENT_RUNOFF_TOOLTIP"
-msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
-
-#, fuzzy
-msgid "EVENT_UPWELLING_TOOLTIP"
-msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
-
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2303,6 +2291,12 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr ""
 
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr ""
+
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr ""
+
 msgid "FOSSIL_DELETION_FAILED"
 msgstr ""
 
@@ -2557,7 +2551,7 @@ msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
 msgid "HYDROGENASE"
-msgstr ""
+msgstr "Hidrogenaza"
 
 msgid "HYDROGENASE_DESCRIPTION"
 msgstr ""
@@ -3500,6 +3494,14 @@ msgstr ""
 "[b]Osnova veličina, u ćelijama[/b]\n"
 "  {4}"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr ""
+"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+"i veća je šansa da će se braniti kada su napadnuti.\n"
+"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+"i manja je šansa da će koristiti toksine protiv predatora."
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -4246,6 +4248,9 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr ""
 
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr ""
+
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr ""
 
@@ -4511,6 +4516,9 @@ msgid "OTHER_COMPOUNDS"
 msgstr ""
 
 msgid "OUR_WIKI"
+msgstr ""
+
+msgid "OUTDATED_ITEM"
 msgstr ""
 
 msgid "OUTDATED_NOTICE"
@@ -4863,7 +4871,7 @@ msgid "QUIT_GAME_WARNING"
 msgstr ""
 
 msgid "RADIATION"
-msgstr ""
+msgstr "Radijacija"
 
 #, fuzzy
 msgid "RADIATION_LEVELS"
@@ -4872,9 +4880,8 @@ msgstr "Izbriši"
 msgid "RADIOACTIVE_CHUNK"
 msgstr ""
 
-#, fuzzy
 msgid "RADIOSYNTHESIS"
-msgstr "Sinteza OksiToksina"
+msgstr "Radiosinteza"
 
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr ""
@@ -5061,6 +5068,21 @@ msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 
 msgid "REVEAL_ALL_PATCHES"
+msgstr ""
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "3D uređivač"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr ""
+"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+"i veća je šansa da će se braniti kada su napadnuti.\n"
+"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+"i manja je šansa da će koristiti toksine protiv predatora."
+
+msgid "REVERT_TO_EDITOR_PROMPT"
 msgstr ""
 
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
@@ -6101,6 +6123,22 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]Stadij[/b]\n"
+"  Mikrob\n"
+"[b]Tip membrane[/b]\n"
+"  {0}\n"
+"[b]Krutost membrane[/b]\n"
+"  {1}\n"
+"[b]Osnovna brzina[/b]\n"
+"  {2}\n"
+"[b]Osnovna brzina rotacije[/b]\n"
+"  {3}\n"
+"[b]Osnova veličina, u ćelijama[/b]\n"
+"  {4}"
+
+#, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
 
@@ -6126,7 +6164,7 @@ msgid "TOTAL_SAVES"
 msgstr ""
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
-msgstr ""
+msgstr "Inhibitor Kanala"
 
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr ""

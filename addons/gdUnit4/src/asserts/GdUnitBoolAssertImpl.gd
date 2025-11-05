@@ -24,11 +24,13 @@ func current_value() -> Variant:
 
 
 func report_success() -> GdUnitBoolAssert:
+	@warning_ignore("return_value_discarded")
 	_base.report_success()
 	return self
 
 
 func report_error(error :String) -> GdUnitBoolAssert:
+	@warning_ignore("return_value_discarded")
 	_base.report_error(error)
 	return self
 
@@ -37,26 +39,24 @@ func failure_message() -> String:
 	return _base.failure_message()
 
 
-func override_failure_message(message :String) -> GdUnitBoolAssert:
+func override_failure_message(message: String) -> GdUnitBoolAssert:
 	@warning_ignore("return_value_discarded")
 	_base.override_failure_message(message)
 	return self
 
 
-func append_failure_message(message :String) -> GdUnitBoolAssert:
+func append_failure_message(message: String) -> GdUnitBoolAssert:
 	@warning_ignore("return_value_discarded")
 	_base.append_failure_message(message)
 	return self
 
 
-# Verifies that the current value is null.
 func is_null() -> GdUnitBoolAssert:
 	@warning_ignore("return_value_discarded")
 	_base.is_null()
 	return self
 
 
-# Verifies that the current value is not null.
 func is_not_null() -> GdUnitBoolAssert:
 	@warning_ignore("return_value_discarded")
 	_base.is_not_null()

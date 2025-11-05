@@ -3,11 +3,13 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using DefaultEcs;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
+using SharedBase.Archive;
 
 /// <summary>
-///   Things that have a health and can be damaged
+///   Things that have a health statistic and can be damaged
 /// </summary>
 /// <remarks>
 ///   <para>
@@ -16,9 +18,10 @@ using Godot;
 ///   </para>
 /// </remarks>
 [ComponentIsReadByDefault]
-[JSONDynamicTypeAllowed]
-public struct Health
+public struct Health : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public List<DamageEventNotice>? RecentDamageReceived;
 
     public float CurrentHealth;
@@ -35,14 +38,14 @@ public struct Health
     public bool Invulnerable;
 
     /// <summary>
-    ///   Simple flag to check if this entity has died. A stage specific death system will set this flag when
+    ///   Simple flag to check if this entity has died. A stage-specific death system will set this flag when
     ///   an entity runs out of health (or some other condition is fulfilled for death)
     /// </summary>
     public bool Dead;
 
     /// <summary>
     ///   This health class is stage agnostic, so each stage needs its own entity death system to handle dying.
-    ///   To at least make that easier this flag exists for such a system to store the info on if it has already
+    ///   To at least make that easier, this flag exists for such a system to store the info on if it has already
     ///   handled a dead entity or not.
     /// </summary>
     public bool DeathProcessed;
@@ -57,10 +60,49 @@ public struct Health
         DeathProcessed = false;
         RecentDamageReceived = null;
     }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentHealth;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        if (RecentDamageReceived == null)
+        {
+            writer.WriteNullObject();
+        }
+        else
+        {
+            writer.WriteObject(RecentDamageReceived);
+        }
+
+        writer.Write(CurrentHealth);
+        writer.Write(MaxHealth);
+        writer.Write(HealthRegenCooldown);
+        writer.Write(Invulnerable);
+        writer.Write(Dead);
+        writer.Write(DeathProcessed);
+    }
 }
 
 public static class HealthHelpers
 {
+    public static Health ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > Health.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, Health.SERIALIZATION_VERSION);
+
+        return new Health
+        {
+            RecentDamageReceived = reader.ReadObjectOrNull<List<DamageEventNotice>>(),
+            CurrentHealth = reader.ReadFloat(),
+            MaxHealth = reader.ReadFloat(),
+            HealthRegenCooldown = reader.ReadFloat(),
+            Invulnerable = reader.ReadBool(),
+            Dead = reader.ReadBool(),
+            DeathProcessed = reader.ReadBool(),
+        };
+    }
+
     public static float CalculateMicrobeHealth(MembraneType membraneType, float membraneRigidity,
         ref readonly MicrobeEnvironmentalEffects environmentalEffects)
     {
@@ -280,11 +322,13 @@ public static class HealthHelpers
 }
 
 /// <summary>
-///   Notice to an entity that it took damage. Used for example to play sounds or other feedback about taking
+///   Notice to an entity that it took damage. Used, for example, to play sounds or other feedback about taking
 ///   damage
 /// </summary>
-public class DamageEventNotice
+public class DamageEventNotice : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public string DamageSource;
     public float Amount;
 
@@ -292,5 +336,31 @@ public class DamageEventNotice
     {
         DamageSource = damageSource;
         Amount = amount;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.DamageEventNotice;
+    public bool CanBeReferencedInArchive => false;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.DamageEventNotice)
+            throw new NotSupportedException();
+
+        writer.WriteObject((DamageEventNotice)obj);
+    }
+
+    public static DamageEventNotice ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new DamageEventNotice(reader.ReadString() ?? throw new NullArchiveObjectException(), reader.ReadFloat());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(DamageSource);
+        writer.Write(Amount);
     }
 }

@@ -3,19 +3,21 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DefaultEcs;
-using DefaultEcs.Command;
+using Arch.Buffer;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
 ///   Base properties of a microbe (separate from the species info as multicellular species-object couldn't
 ///   work there)
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct CellProperties
+public struct CellProperties : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Base colour of the cell. This is used when initializing organelles as it would otherwise be difficult to
     ///   obtain the colour
@@ -45,7 +47,6 @@ public struct CellProperties
     ///   The membrane created for this cell. This is here so that some other systems apart from the visuals system
     ///   can have access to the membrane data.
     /// </summary>
-    [JsonIgnore]
     public Membrane? CreatedMembrane;
 
     public bool IsBacteria;
@@ -58,7 +59,6 @@ public struct CellProperties
     /// <summary>
     ///   Set to false when the shape needs to be recreated
     /// </summary>
-    [JsonIgnore]
     public bool ShapeCreated;
 
     public CellProperties(ICellDefinition initialDefinition)
@@ -77,8 +77,21 @@ public struct CellProperties
         ShapeCreated = false;
     }
 
-    [JsonIgnore]
     public float Radius => IsBacteria ? UnadjustedRadius * 0.5f : UnadjustedRadius;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentCellProperties;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(Colour);
+        writer.Write(UnadjustedRadius);
+        writer.WriteObject(MembraneType);
+        writer.Write(MembraneRigidity);
+        writer.Write(Temperature);
+        writer.Write(IsBacteria);
+        writer.Write(HeatInitialized);
+    }
 }
 
 public static class CellPropertiesHelpers
@@ -93,7 +106,24 @@ public static class CellPropertiesHelpers
     /// </summary>
     public static readonly Vector3 DefaultVisualPos = Vector3.Forward;
 
-    public delegate void ModifyDividedCellCallback(ref EntityRecord entity);
+    public delegate void ModifyDividedCellCallback(ref Entity entity, CommandBuffer commandBuffer);
+
+    public static CellProperties ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > CellProperties.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, CellProperties.SERIALIZATION_VERSION);
+
+        return new CellProperties
+        {
+            Colour = reader.ReadColor(),
+            UnadjustedRadius = reader.ReadFloat(),
+            MembraneType = reader.ReadObject<MembraneType>(),
+            MembraneRigidity = reader.ReadFloat(),
+            Temperature = reader.ReadFloat(),
+            IsBacteria = reader.ReadBool(),
+            HeatInitialized = reader.ReadBool(),
+        };
+    }
 
     /// <summary>
     ///   Checks this cell and also the entire colony if something can enter engulf mode in it
@@ -299,13 +329,13 @@ public static class CellPropertiesHelpers
         // Since the daughter spawns right next to the cell, it should face the same way to avoid colliding
         // This probably wastes a bit of memory but should be fine to overwrite the WorldPosition component like
         // this
-        copyEntity.Set(new WorldPosition(spawnPosition, position.Rotation));
+        recorder.Set(copyEntity, new WorldPosition(spawnPosition, position.Rotation));
 
         // TODO: should this also set an initial look direction that is the same?
 
         // Make it despawn like normal
-        spawnerToRegisterWith.NotifyExternalEntitySpawned(copyEntity, Constants.MICROBE_DESPAWN_RADIUS_SQUARED,
-            weight);
+        spawnerToRegisterWith.NotifyExternalEntitySpawned(copyEntity, recorder,
+            Constants.MICROBE_DESPAWN_RADIUS_SQUARED, weight);
 
         // Remove the compounds from the created cell
         var originalCompounds = entity.Get<CompoundStorage>().Compounds;
@@ -329,7 +359,7 @@ public static class CellPropertiesHelpers
             if (amount <= 0)
                 continue;
 
-            // If the compound is for reproduction we give player and NPC microbes different amounts.
+            // If the compound is for reproduction, we give player and NPC microbes different amounts.
             if (reproductionCompounds.TryGetValue(compound, out float divideAmount))
             {
                 // The amount taken away from the parent cell depends on if it is a player or NPC. Player
@@ -369,12 +399,12 @@ public static class CellPropertiesHelpers
             }
         }
 
-        copyEntity.Set(new CompoundStorage
+        recorder.Set(copyEntity, new CompoundStorage
         {
             Compounds = copyEntityCompounds,
         });
 
-        customizeCallback?.Invoke(ref copyEntity);
+        customizeCallback?.Invoke(ref copyEntity, recorder);
 
         SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
 

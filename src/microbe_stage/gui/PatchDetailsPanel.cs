@@ -4,15 +4,16 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Range = Godot.Range;
 
 /// <summary>
 ///   Shows details about a <see cref="Patch"/> in the GUI
 /// </summary>
-[JsonObject(MemberSerialization.OptIn)]
-public partial class PatchDetailsPanel : PanelContainer
+public partial class PatchDetailsPanel : PanelContainer, IArchiveUpdatable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
 #pragma warning disable CA2213
     [Export]
     private Control nothingSelected = null!;
@@ -136,13 +137,10 @@ public partial class PatchDetailsPanel : PanelContainer
         Completed,
     }
 
-    [JsonIgnore]
     public Action<Patch>? OnMoveToPatchClicked { get; set; }
 
-    [JsonIgnore]
     public Action<Migration>? OnMigrationAdded { get; set; }
 
-    [JsonIgnore]
     public Action<Patch>? OnMicheDetailsRequested
     {
         get => onMicheDetailsRequested;
@@ -153,10 +151,8 @@ public partial class PatchDetailsPanel : PanelContainer
         }
     }
 
-    [JsonIgnore]
     public Action<MigrationWizardStep>? OnMigrationWizardStepChanged { get; set; }
 
-    [JsonIgnore]
     public Patch? SelectedPatch
     {
         get => targetPatch;
@@ -170,7 +166,6 @@ public partial class PatchDetailsPanel : PanelContainer
         }
     }
 
-    [JsonIgnore]
     public Patch? CurrentPatch
     {
         get => currentPatch;
@@ -184,19 +179,15 @@ public partial class PatchDetailsPanel : PanelContainer
         }
     }
 
-    [JsonIgnore]
     public bool IsPatchMoveValid { get; set; }
 
     /// <summary>
     ///   Created pending migrations
     /// </summary>
-    [JsonProperty]
     public List<Migration> Migrations { get; private set; } = new();
 
-    [JsonIgnore]
     public Species? SpeciesToUseForMigrations { get; set; }
 
-    [JsonIgnore]
     public MigrationWizardStep MigrationStep
     {
         get => currentMigrationStep;
@@ -211,7 +202,6 @@ public partial class PatchDetailsPanel : PanelContainer
         }
     }
 
-    [JsonIgnore]
     public Patch? CurrentMigrationSourcePatch => currentlyEditedMigration?.SourcePatch;
 
     [Export]
@@ -235,6 +225,9 @@ public partial class PatchDetailsPanel : PanelContainer
             UpdateMigrationManagerVisibility();
         }
     }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.PatchDetailsPanel;
 
     public override void _Ready()
     {
@@ -318,6 +311,16 @@ public partial class PatchDetailsPanel : PanelContainer
         UpdateMigrationManagerVisibility();
         ApplyMigrationStepGUI();
         UpdateMicheViewState();
+    }
+
+    public void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(Migrations);
+    }
+
+    public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        Migrations = reader.ReadObject<List<Migration>>();
     }
 
     public void UpdateShownPatchDetails()
@@ -911,11 +914,45 @@ public partial class PatchDetailsPanel : PanelContainer
         }
     }
 
-    public class Migration
+    public class Migration : IArchivable
     {
+        public const ushort SERIALIZATION_VERSION_MIGRATION = 1;
+
         public Patch? SourcePatch;
         public Patch? DestinationPatch;
 
         public long Amount = 100;
+
+        public ushort CurrentArchiveVersion => SERIALIZATION_VERSION_MIGRATION;
+        public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.PatchDetailsMigration;
+        public bool CanBeReferencedInArchive => false;
+
+        public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+        {
+            if (type != (ArchiveObjectType)ThriveArchiveObjectType.PatchDetailsMigration)
+                throw new NotSupportedException();
+
+            writer.WriteObject((Migration)obj);
+        }
+
+        public static Migration ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+        {
+            if (version is > SERIALIZATION_VERSION_MIGRATION or <= 0)
+                throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_MIGRATION);
+
+            return new Migration
+            {
+                SourcePatch = reader.ReadObjectOrNull<Patch>(),
+                DestinationPatch = reader.ReadObjectOrNull<Patch>(),
+                Amount = reader.ReadInt64(),
+            };
+        }
+
+        public void WriteToArchive(ISArchiveWriter writer)
+        {
+            writer.WriteObjectOrNull(SourcePatch);
+            writer.WriteObjectOrNull(DestinationPatch);
+            writer.Write(Amount);
+        }
     }
 }

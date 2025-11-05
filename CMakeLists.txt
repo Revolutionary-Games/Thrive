@@ -80,6 +80,10 @@ endif()
 set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
 set(BUILD_SHARED_LIBS OFF)
 
+# This should fix builds for Mac with a linker bug, and not break any symbol exporting
+# See: https://github.com/jrouwe/JoltPhysics/issues/1617
+set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+
 # Set flags for Distribution configuration
 # These are based on relwithdebinfo as we want symbols for eventual crash reporting
 set(CMAKE_C_FLAGS_DISTRIBUTION "${CMAKE_C_FLAGS_RELWITHDEBINFO}" CACHE

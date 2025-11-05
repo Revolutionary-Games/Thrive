@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Underwater vents only event producing hydrogen sulfide and carbon dioxide
 /// </summary>
-[JSONDynamicTypeAllowed]
 public class UnderwaterVentEruptionEffect : IWorldEffect
 {
-    [JsonProperty]
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private readonly XoShiRo256starstar random;
 
-    [JsonProperty]
-    private GameWorld targetWorld;
+    private readonly GameWorld targetWorld;
 
     public UnderwaterVentEruptionEffect(GameWorld targetWorld, long randomSeed)
     {
@@ -21,11 +20,32 @@ public class UnderwaterVentEruptionEffect : IWorldEffect
         random = new XoShiRo256starstar(randomSeed);
     }
 
-    [JsonConstructor]
-    public UnderwaterVentEruptionEffect(GameWorld targetWorld, XoShiRo256starstar random)
+    private UnderwaterVentEruptionEffect(GameWorld targetWorld, XoShiRo256starstar random)
     {
         this.targetWorld = targetWorld;
         this.random = random;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.UnderwaterVentEruptionEffect;
+
+    public bool CanBeReferencedInArchive => false;
+
+    public static UnderwaterVentEruptionEffect ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new UnderwaterVentEruptionEffect(reader.ReadObject<GameWorld>(),
+            reader.ReadObject<XoShiRo256starstar>());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(targetWorld);
+        writer.WriteAnyRegisteredValueAsObject(random);
     }
 
     public void OnRegisterToWorld()

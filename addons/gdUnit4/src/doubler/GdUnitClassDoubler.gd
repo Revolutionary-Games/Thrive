@@ -2,7 +2,6 @@
 class_name GdUnitClassDoubler
 extends RefCounted
 
-
 const DOUBLER_INSTANCE_ID_PREFIX := "gdunit_doubler_instance_id_"
 const EXCLUDE_VIRTUAL_FUNCTIONS = [
 	# we have to exclude notifications because NOTIFICATION_PREDELETE is try
@@ -29,23 +28,23 @@ static func check_leaked_instances() -> void:
 	## we check that all registered spy/mock instances are removed from the engine meta data
 	for key in Engine.get_meta_list():
 		if key.begins_with(DOUBLER_INSTANCE_ID_PREFIX):
-			var instance :Variant = Engine.get_meta(key)
+			var instance: Variant = Engine.get_meta(key)
 			push_error("GdUnit internal error: an spy/mock instance '%s', class:'%s' is not removed from the engine and will lead in a leaked instance!" % [instance, instance.__SOURCE_CLASS])
+			await (Engine.get_main_loop() as SceneTree).process_frame
 
 
 # loads the doubler template
 # class_info = { "class_name": <>, "class_path" : <>}
-static func load_template(template: String, class_info: Dictionary, instance: Object) -> PackedStringArray:
-	# store instance id
+static func load_template(template: String, class_info: Dictionary) -> PackedStringArray:
 	var clazz_name: String = class_info.get("class_name")
 	var source_code := template\
-		.replace("${instance_id}", "%s%d" % [DOUBLER_INSTANCE_ID_PREFIX, abs(instance.get_instance_id())])\
 		.replace("${source_class}", clazz_name)\
 		# Replace template class_name DoubledClass<class> with source class name
 		.replace("SourceClassName", clazz_name.replace(".", "_"))
 	var lines := GdScriptParser.to_unix_format(source_code).split("\n")
 	@warning_ignore("return_value_discarded")
 	lines.insert(1, extends_clazz(class_info))
+	lines.insert(0, "@warning_ignore_start('unsafe_call_argument', 'shadowed_variable', 'untyped_declaration', 'native_method_override', 'int_as_enum_without_cast')")
 	return lines
 
 
@@ -80,7 +79,7 @@ static func double_functions(instance: Object, clazz_name: String, clazz_path: P
 				continue
 			if functions.has(func_descriptor.name()) or exclude_override_functions.has(func_descriptor.name()):
 				continue
-			doubled_source += func_doubler.double(func_descriptor, instance is CallableDoubler)
+			doubled_source += func_doubler.double(func_descriptor)
 			functions.append(func_descriptor.name())
 
 	# double regular class functions
@@ -101,7 +100,7 @@ static func double_functions(instance: Object, clazz_name: String, clazz_path: P
 			#prints("no virtual func implemented",clazz_name, func_descriptor.name() )
 			continue
 		functions.append(func_descriptor.name())
-		doubled_source.append_array(func_doubler.double(func_descriptor, instance is CallableDoubler))
+		doubled_source.append_array(func_doubler.double(func_descriptor))
 	return doubled_source
 
 

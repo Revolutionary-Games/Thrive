@@ -2,35 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   The multicellular stage editor main class
 /// </summary>
-[JsonObject(IsReference = true)]
-[SceneLoadedClass("res://src/multicellular_stage/editor/MulticellularEditor.tscn", UsesEarlyResolve = false)]
-[DeserializedCallbackTarget]
 public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData,
     ICellEditorData
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
 #pragma warning disable CA2213
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     [Export]
     private MicrobeEditorReportComponent reportTab = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     [Export]
     private MicrobeEditorPatchMap patchMapTab = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     [Export]
     private CellBodyPlanEditorComponent bodyPlanEditorTab = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     [Export]
     private CellEditorComponent cellEditorTab = null!;
 
@@ -38,10 +29,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     private Control noCellTypeSelected = null!;
 #pragma warning restore CA2213
 
-    [JsonProperty]
     private MulticellularSpecies? editedSpecies;
 
-    [JsonProperty]
     private CellType? selectedCellTypeToEdit;
 
     public override bool CanCancelAction
@@ -58,30 +47,28 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         }
     }
 
-    [JsonIgnore]
     public override Species EditedBaseSpecies =>
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
 
-    [JsonIgnore]
     public MulticellularSpecies EditedSpecies =>
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
 
-    [JsonIgnore]
     public Patch CurrentPatch => patchMapTab.CurrentPatch;
 
-    [JsonIgnore]
     public Patch? TargetPatch => patchMapTab.TargetPatch;
 
-    [JsonIgnore]
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
 
-    [JsonIgnore]
     public ICellDefinition? EditedCellProperties => selectedCellTypeToEdit;
 
     // TODO: could implement this if desired but for now this is always null (might be needed for multicellular
     // tolerances implementation)
-    [JsonIgnore]
     public IReadOnlyList<OrganelleTemplate>? EditedCellOrganelles => null;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.MulticellularEditor;
 
     protected override string MusicCategory => "MulticellularEditor";
 
@@ -91,6 +78,57 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         Localization.Translate("LOADING_MULTICELLULAR_EDITOR");
 
     protected override bool HasInProgressAction => CanCancelAction;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.MulticellularEditor)
+            throw new NotSupportedException();
+
+        writer.WriteObject((MulticellularEditor)obj);
+    }
+
+    public static MulticellularEditor ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var scene = GD.Load<PackedScene>("res://src/multicellular_stage/editor/MulticellularEditor.tscn");
+
+        var instance = scene.Instantiate<MulticellularEditor>();
+
+        instance.ResolveNodeReferences();
+
+        // This is needed first in case we are on the cell type editor tab
+        instance.selectedCellTypeToEdit = reader.ReadObjectOrNull<CellType>();
+
+        reader.ReadObjectProperties(instance.reportTab);
+        reader.ReadObjectProperties(instance.patchMapTab);
+        reader.ReadObjectProperties(instance.bodyPlanEditorTab);
+        reader.ReadObjectProperties(instance.cellEditorTab);
+
+        // Base version is different
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        instance.editedSpecies = reader.ReadObjectOrNull<MulticellularSpecies>();
+
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObjectOrNull(selectedCellTypeToEdit);
+
+        writer.WriteObjectProperties(reportTab);
+        writer.WriteObjectProperties(patchMapTab);
+        writer.WriteObjectProperties(bodyPlanEditorTab);
+        writer.WriteObjectProperties(cellEditorTab);
+
+        // Don't call base as it is the base abstract one
+        writer.Write(SERIALIZATION_VERSION_BASE);
+        WriteBasePropertiesToArchive(writer);
+
+        writer.WriteObjectOrNull(editedSpecies);
+    }
 
     public void SendAutoEvoResultsToReportComponent()
     {
@@ -215,9 +253,6 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         }
 
         cellEditorTab.UpdateBackgroundImage(CurrentPatch);
-
-        // TODO: as we are a prototype we don't want to auto save
-        wantsToSave = false;
     }
 
     protected override void InitEditorGUI(bool fresh)
@@ -297,7 +332,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override void UpdatePatchDetails()
     {
-        // Patch events are able to change the stage's background so it needs to be updated here.
+        // Patch events are able to change the stage's background, so it needs to be updated here.
         cellEditorTab.UpdateBackgroundImage(CurrentPatch);
     }
 
@@ -308,17 +343,17 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override void PerformAutoSave()
     {
-        SaveHelper.ShowErrorAboutPrototypeSaving(this);
+        SaveHelper.AutoSave(this);
     }
 
     protected override void PerformQuickSave()
     {
-        SaveHelper.ShowErrorAboutPrototypeSaving(this);
+        SaveHelper.QuickSave(this);
     }
 
     protected override void SaveGame(string name)
     {
-        SaveHelper.ShowErrorAboutPrototypeSaving(this);
+        SaveHelper.Save(name, this);
     }
 
     protected override void ApplyEditorTab()

@@ -4,7 +4,7 @@ extends Node
 
 func rpc_send(stream: StreamPeerTCP, data: RPC) -> void:
 	var package_buffer := StreamPeerBuffer.new()
-	var buffer := data.serialize().to_ascii_buffer()
+	var buffer := data.serialize().to_utf16_buffer()
 	package_buffer.put_u32(0xDEADBEEF)
 	package_buffer.put_u32(buffer.size())
 	var status_code := package_buffer.put_data(buffer)
@@ -59,7 +59,7 @@ func receive_packages(stream: StreamPeerTCP, rpc_cb: Callable = noop) -> Array[R
 		else:
 			data_package = buffer[1]
 
-		var json := data_package.get_string_from_ascii()
+		var json := data_package.get_string_from_utf16()
 		if json.is_empty():
 			push_warning("json is empty, can't process data")
 			continue

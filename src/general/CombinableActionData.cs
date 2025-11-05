@@ -1,55 +1,39 @@
 ﻿using System;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Combinable action data that can be combined with other actions.
 ///   For example, two separate movements of the same object can be combined into one larger movement action.
-///   This is implemented as aid for the player so that they do not have to think about optimizing their actions
-///   to cost the least amount of MP. And reduce how many steps need to be undone when doing repetitive actions.
+///   This is implemented as aid for the player,
+///   so that how many steps need to be undone when doing repetitive actions is reduced.
 /// </summary>
-public abstract class CombinableActionData
+public abstract class CombinableActionData : IArchivable
 {
     /// <summary>
-    ///   Does this action reset every action that happened before it?
+    ///   Does this action reset every action that happened before it? Used for the "new cell" button in freebuild.
     /// </summary>
     public virtual bool ResetsHistory => false;
 
+    public abstract ushort CurrentArchiveVersion { get; }
+    public abstract ArchiveObjectType ArchiveObjectType { get; }
+    public virtual bool CanBeReferencedInArchive => true;
+
+    public abstract void WriteToArchive(ISArchiveWriter writer);
+
     /// <summary>
-    ///   How does this action interfere with the <paramref name="other"/> action?
+    ///   Should this action be merged with the previous one if possible?
+    ///   Does this action want to be merged with the <paramref name="other"/> action?
     /// </summary>
     /// <returns>
-    ///   Returns the interference mode with <paramref name="other"/>
+    ///   Returns true if the two actions should be merged.
     /// </returns>
     /// <exception cref="ArgumentException">Thrown when called with itself</exception>
-    public virtual ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
+    public virtual bool WantsToMergeWith(CombinableActionData other)
     {
         if (ReferenceEquals(this, other))
             throw new ArgumentException("Do not call with itself", nameof(other));
 
-        return GetInterferenceModeWithGuaranteed(other);
-    }
-
-    /// <summary>
-    ///   Combines two actions into one if possible. Call <see cref="GetInterferenceModeWith"/> first and check if
-    ///   it returns <see cref="ActionInterferenceMode.Combinable"/>
-    /// </summary>
-    /// <param name="other">The action this should be combined with</param>
-    /// <returns>Returns the combined action</returns>
-    /// <exception cref="NotSupportedException">Thrown when the combination is not possible</exception>
-    public virtual CombinableActionData Combine(CombinableActionData other)
-    {
-        if (GetInterferenceModeWith(other) != ActionInterferenceMode.Combinable)
-            throw new NotSupportedException();
-
-        return CombineGuaranteed(other);
-    }
-
-    /// <summary>
-    ///   Should this action be merged with the previous one if possible?
-    /// </summary>
-    /// <returns>True if this action wants to be merged with <see cref="other"/></returns>
-    public virtual bool WantsMergeWith(CombinableActionData other)
-    {
-        return false;
+        return CanMergeWithInternal(other);
     }
 
     /// <summary>
@@ -60,34 +44,26 @@ public abstract class CombinableActionData
     /// <remarks>
     ///   <para>
     ///     The other action must *always* be newer than this. So the looping order must always go from an older action
-    ///     to a newer action when merging actions (the same as when using <see cref="Combine"/>)
+    ///     to a newer action when merging actions.
     ///   </para>
     /// </remarks>
     public virtual bool TryMerge(CombinableActionData other)
     {
-        var mode = GetInterferenceModeWith(other);
-        if (mode != ActionInterferenceMode.Combinable && mode != ActionInterferenceMode.CancelsOut)
+        if (!WantsToMergeWith(other))
             return false;
 
         MergeGuaranteed(other);
         return true;
     }
 
-    protected abstract ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other);
-
-    /// <summary>
-    ///   Combines two actions into one
-    /// </summary>
-    /// <param name="other">The action this should be combined with. Guaranteed to be combinable</param>
-    /// <returns>Returns the combined action</returns>
-    protected abstract CombinableActionData CombineGuaranteed(CombinableActionData other);
+    protected abstract bool CanMergeWithInternal(CombinableActionData other);
 
     /// <summary>
     ///   Merges the other data into this action
     /// </summary>
     /// <param name="other">
-    ///   The action to merge into this. Guaranteed to be mergeable by the called.
-    ///   <see cref="GetInterferenceModeWith"/> has been called to make sure this can be combined.
+    ///   The action to merge into this.
+    ///   Guaranteed to be mergeable when this is called as <see cref="WantsToMergeWith"/> has been called to make sure
     /// </param>
     protected virtual void MergeGuaranteed(CombinableActionData other)
     {

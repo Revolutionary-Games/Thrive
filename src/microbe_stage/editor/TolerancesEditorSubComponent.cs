@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Handles showing tolerance adaptation controls (sliders) and applying their changes
 /// </summary>
-[JsonObject(MemberSerialization.OptIn)]
-[DeserializedCallbackTarget]
 [IgnoreNoMethodsTakingInput]
-[SceneLoadedClass("res://src/microbe_stage/editor/TolerancesEditorSubComponent.tscn", UsesEarlyResolve = false)]
-public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEditorData>
+public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEditorData>, IArchiveUpdatable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     [Export]
     [ExportCategory("Config")]
     public bool ShowZeroModifiers;
@@ -160,13 +159,18 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     [Signal]
     public delegate void OnTolerancesChangedEventHandler();
 
-    [JsonProperty]
     public EnvironmentalTolerances CurrentTolerances { get; private set; } = new();
 
-    [JsonIgnore]
     public override bool IsSubComponent => true;
 
     public float MPDisplayCostMultiplier { get; set; } = 1;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.TolerancesEditorSubComponent;
+
+    public bool CanBeSpecialReference => true;
 
     public override void _Ready()
     {
@@ -184,6 +188,24 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         base.Init(owningEditor, fresh);
 
         wasFreshInit = fresh;
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(SERIALIZATION_VERSION_BASE);
+        base.WritePropertiesToArchive(writer);
+
+        writer.WriteObjectProperties(CurrentTolerances);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
+
+        reader.ReadObjectProperties(CurrentTolerances);
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -964,7 +986,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         uvToleranceMarker.OptimalValue = requiredUVResistance;
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoToleranceChangeAction(ToleranceActionData data)
     {
         CurrentTolerances.CopyFrom(data.NewTolerances);
@@ -980,7 +1002,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         OnChanged();
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoToleranceChangeAction(ToleranceActionData data)
     {
         CurrentTolerances.CopyFrom(data.OldTolerances);

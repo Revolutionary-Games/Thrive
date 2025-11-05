@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-20 23:04+0200\n"
-"PO-Revision-Date: 2025-07-28 15:04+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"PO-Revision-Date: 2025-10-16 19:56+0000\n"
+"Last-Translator: Jens Schwartz Linder <jesclinder@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -69,13 +69,14 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Nå uppvakningsteget. Tillgänglig när du har tillräckigt med hjärnkraft (axonvävnad)."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr "Aktion blockerad medan en annan pågår"
+msgstr "Åtgärd blockerad medan annan pågår"
 
+#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "Radera"
+msgstr "Ta bort"
 
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "Befolkningsdubblering"
+msgstr "Dubbla befolkning"
 
 msgid "ACTION_DUPLICATE_UNITS"
 msgstr "Duplicera Enheter"
@@ -1507,10 +1508,6 @@ msgstr "Slem sekretion"
 msgid "CURRENT_DEVELOPERS"
 msgstr "Nuvarande utvecklare"
 
-#, fuzzy
-msgid "CURRENT_DILUTION_TOOLTIP"
-msgstr "Självmord"
-
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "NUVARANDE PLATS"
 
@@ -2262,14 +2259,6 @@ msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
 #, fuzzy
-msgid "EVENT_RUNOFF_TOOLTIP"
-msgstr "Självmord"
-
-#, fuzzy
-msgid "EVENT_UPWELLING_TOOLTIP"
-msgstr "Självmord"
-
-#, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Av Revolutionary Games Studio"
 
@@ -2567,6 +2556,14 @@ msgstr ""
 #, fuzzy
 msgid "FOSSILISE"
 msgstr "Stillastående"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "befolkning:"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr ""
@@ -3871,6 +3868,10 @@ msgstr ""
 "[b]Beteende[/b]\n"
 "  {5}"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art på grund av olika urvalstryck"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -4655,6 +4656,10 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Grundrörelse"
 
+#, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Svavelväte"
+
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr ""
 
@@ -4952,6 +4957,10 @@ msgstr "Föreningar"
 
 msgid "OUR_WIKI"
 msgstr ""
+
+#, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Avbruten."
 
 #, fuzzy
 msgid "OUTDATED_NOTICE"
@@ -5552,6 +5561,18 @@ msgstr ""
 #, fuzzy
 msgid "REVEAL_ALL_PATCHES"
 msgstr "sprid till platser:"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Lämna cellredigeraren"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Spawna fosfat"
 
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
@@ -6696,6 +6717,20 @@ msgstr "{0}:+{1} ATP"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]Arter[/b]\n"
+"  {0}:{1}\n"
+"[b]Generation[/b]\n"
+"  {2}\n"
+"[b]Population[/b]\n"
+"  {3}\n"
+"[b]Färg[/b]\n"
+"  #{4}\n"
+"[b]Beteende[/b]\n"
+"  {5}"
 
 #, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
@@ -9383,6 +9418,10 @@ msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Avbruten."
 
 #, fuzzy
 #~ msgid "GENERATE_BUTTON"

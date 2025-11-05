@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.7\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -2403,6 +2403,12 @@ msgstr "Fossilise this species (already fossilised)"
 msgid "FOSSILISE"
 msgstr "Fossilise"
 
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Fossil Data Load Failed"
+
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "The fossil file could not be read because the data was either outdated or invalid"
+
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Fossil Deletion Failed"
 
@@ -3601,6 +3607,9 @@ msgstr ""
 "[b]Occupant Scores[/b]\n"
 "  {2}"
 
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "Endosymbiosis Selection Pressure"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr "Environmental Compound Pressure"
 
@@ -4319,6 +4328,9 @@ msgstr "ATP production inhibited by toxin"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Base movement speed decreased due to toxin"
 
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Damaged by hydrogen sulfide while having no Chemosynthesizing Proteins"
+
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "Not enough mucilage to activate mucocyst shield"
 
@@ -4582,6 +4594,9 @@ msgstr "Other"
 
 msgid "OUR_WIKI"
 msgstr "our Wiki"
+
+msgid "OUTDATED_ITEM"
+msgstr "OUTDATED"
 
 msgid "OUTDATED_NOTICE"
 msgstr "This page or section contains outdated information. This often happens when plans are changed after something has been written."
@@ -5130,6 +5145,15 @@ msgstr ""
 
 msgid "REVEAL_ALL_PATCHES"
 msgstr "Reveal All Patches"
+
+msgid "REVERT_TO_EDITOR"
+msgstr "Revert To Editor"
+
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "If your current microbe is not suitable to survive in this environment, you can revert back to the previous time you were in the editor and try something different."
+
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Revert To The Editor?"
 
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Visit official Revolutionary Games sites"
@@ -6170,6 +6194,18 @@ msgstr "UV protection too low, needs to be {0}% higher"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr "Not adapted to current environmental conditions. Osmoregulation cost {0}%, bioprocess speed {1}%, health {2}%"
+
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]Temperature[/b]\n"
+"  Preferred: {0}°C\n"
+"  Range: ±{1}°C\n"
+"[b]Pressure[/b]\n"
+"  Range: {2}-{3} Pa\n"
+"[b]Oxygen Resistance[/b]\n"
+"  {4}%\n"
+"[b]UV Resistance[/b]\n"
+"  {5}%"
 
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr "Tolerances are affected by some organelles, both positively and negatively. The effective value is shown here after the base value is added together with the change from organelles. Some organelles synergize with certain playstyles but harm others."
@@ -8936,9 +8972,11 @@ msgstr ""
 
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr ""
-"[thrive:compound type=\"iron\"][/thrive:compound] is a valuable alternative resource to use instead of [thrive:compound type=\"glucose\"][/thrive:compound] since it doesn't decay in the environment until much later. Rust-eating cells are likely to enjoy plentiful nutrients in patches where [thrive:compound type=\"iron\"][/thrive:compound] is abundant.\n"
+"[thrive:compound type=\"iron\"][/thrive:compound] is a valuable alternative resource to use instead of [thrive:compound type=\"glucose\"][/thrive:compound] since it doesn't decay in the environment until much later. [thrive:compound type=\"iron\"][/thrive:compound] is also directly transferred into ATP, so it can be a relatively cheap way to create an energetic organism early on in the Microbe Stage. However, because [thrive:compound type=\"iron\"][/thrive:compound] is burnt through rather quickly, players must be mindful to constantly be near larger cloud-emitting chunks, and must budget this resource very carefully if they choose to play as a more motile organism.\n"
 "\n"
-"Ingesting [thrive:compound type=\"iron\"][/thrive:compound] chunks may be tempting, but often you'll get more [thrive:compound type=\"iron\"][/thrive:compound] by holding near a bigger chunk as it produces more of the compound in cloud form. However, an ingested [thrive:compound type=\"iron\"][/thrive:compound] chunk allows you to carry more [thrive:compound type=\"iron\"][/thrive:compound] with you for longer journeys."
+"Storage can be a very useful attribute for iron-oxidizing organisms to utilize, as it allows them to store more of the rapidly-depleting compound. Size is also useful, as large organisms are able to ingest smaller [thrive:compound type=\"iron\"][/thrive:compound] chunks floating around. This will give you more freedom in movement, as you'll be carrying a chunk of [thrive:compound type=\"iron\"][/thrive:compound] with you as you explore your environment. [b] Cytoplasm [/b] is a very beneficial part to consider for iron-oxidizing organisms, as it allows you to cheaply build up size and storage. [b] Vacuoles [/b] are also very useful once you become a eukaryote. \n"
+"\n"
+"[thrive:compound type=\"iron\"][/thrive:compound] depletes more quickly as your organism places more demanding parts. It will also start to disappear with the rise of [b]Oxygen[/b]. As such, players who utilize [thrive:compound type=\"iron\"][/thrive:compound] must be vigilant as oxygen begins to dominate their atmosphere, and should consider aerobic respiration if they wish to create highly-efficient eukaryotes."
 
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "No upgrades."
@@ -9468,14 +9506,8 @@ msgstr "Zoom in"
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
 
-#~ msgid "CARBONDIOXIDE"
-#~ msgstr "Carbon Dioxide"
-
-#~ msgid "OXYTOXY"
-#~ msgstr "OxyToxy"
-
-#~ msgid "PHOSPHATES"
-#~ msgstr "Phosphates"
+#~ msgid "OUTDATED"
+#~ msgstr "OUTDATED"
 
 #~ msgid "SULFIDE_LEVELS"
 #~ msgstr "Sulfide level"

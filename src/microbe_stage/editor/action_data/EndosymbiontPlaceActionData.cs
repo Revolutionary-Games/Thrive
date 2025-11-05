@@ -1,9 +1,11 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Collections.Generic;
+using SharedBase.Archive;
 
-[JSONAlwaysDynamicType]
 public class EndosymbiontPlaceActionData : EditorCombinableActionData<CellType>
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public OrganelleTemplate PlacedOrganelle;
     public bool PerformedUnlock;
 
@@ -16,12 +18,11 @@ public class EndosymbiontPlaceActionData : EditorCombinableActionData<CellType>
     public EndosymbiosisData.InProgressEndosymbiosis RelatedEndosymbiosisAction;
 
     /// <summary>
-    ///   When not null, undoing this action required replacing endosymbiosis action, which is stored here for redo
+    ///   When not null, undoing this action required replacing the endosymbiosis action, which is stored here for redo
     ///   purposes
     /// </summary>
     public EndosymbiosisData.InProgressEndosymbiosis? OverriddenEndosymbiosisOnUndo;
 
-    [JsonConstructor]
     public EndosymbiontPlaceActionData(OrganelleTemplate placedOrganelle, Hex placementLocation, int placementRotation,
         EndosymbiosisData.InProgressEndosymbiosis relatedEndosymbiosisAction)
     {
@@ -37,41 +38,64 @@ public class EndosymbiontPlaceActionData : EditorCombinableActionData<CellType>
     {
     }
 
-    protected override double CalculateCostInternal()
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.EndosymbiontPlaceActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.EndosymbiontPlaceActionData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((EndosymbiontPlaceActionData)obj);
+    }
+
+    public static EndosymbiontPlaceActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new EndosymbiontPlaceActionData(reader.ReadObject<OrganelleTemplate>(), reader.ReadHex(),
+            reader.ReadInt32(), reader.ReadObject<EndosymbiosisData.InProgressEndosymbiosis>());
+
+        // Base version is different
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        instance.OverriddenEndosymbiosisOnUndo = reader.ReadObjectOrNull<EndosymbiosisData.InProgressEndosymbiosis>();
+        instance.PerformedUnlock = reader.ReadBool();
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(PlacedOrganelle);
+        writer.Write(PlacementLocation);
+        writer.Write(PlacementRotation);
+        writer.WriteObject(RelatedEndosymbiosisAction);
+
+        writer.Write(SERIALIZATION_VERSION_CONTEXT);
+        base.WriteToArchive(writer);
+
+        writer.WriteObjectOrNull(OverriddenEndosymbiosisOnUndo);
+        writer.Write(PerformedUnlock);
+    }
+
+    protected override double CalculateBaseCostInternal()
     {
         // Endosymbiosis placement never costs MP
         return 0;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
-        // Endosymbionts can be moved for free after placing
-        if (other is OrganelleMoveActionData moveActionData)
-        {
-            // If moved after placing
-            if (moveActionData.MovedHex == PlacedOrganelle &&
-                moveActionData.OldLocation == PlacementLocation &&
-                moveActionData.OldRotation == PlacementRotation)
-            {
-                return ActionInterferenceMode.Combinable;
-            }
-        }
-
-        return ActionInterferenceMode.NoInterference;
+        // No cost adjustment as this is free
+        return (CalculateBaseCostInternal(), 0);
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        if (other is OrganelleMoveActionData moveActionData)
-        {
-            return new EndosymbiontPlaceActionData(PlacedOrganelle, moveActionData.NewLocation,
-                moveActionData.NewRotation, RelatedEndosymbiosisAction)
-            {
-                PerformedUnlock = PerformedUnlock,
-                OverriddenEndosymbiosisOnUndo = OverriddenEndosymbiosisOnUndo,
-            };
-        }
-
-        throw new NotSupportedException();
+        return false;
     }
 }

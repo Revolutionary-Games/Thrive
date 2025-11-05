@@ -33,8 +33,8 @@ public partial class PostShutdownActions : Node
     }
 
     /// <summary>
-    ///   Called after game shutdown to allow some checks to run then. Note that the dispose calls order doesn't seem
-    ///   to follow the scene tree order so this is not exact
+    ///   Called after the game shutdown to allow some checks to run then.
+    ///   Note that the Dispose calls order doesn't seem to follow the scene tree order, so this is not exact
     /// </summary>
     private void OnAfterGameShutdown()
     {
@@ -46,6 +46,9 @@ public partial class PostShutdownActions : Node
         {
             GD.PrintErr("Some tooltips have not been unregistered on game shutdown");
         }
+
+        // Let ECS multithreading end
+        TaskExecutor.Instance.OnProgramExit();
 
         GD.Print("Shutting down native library");
 

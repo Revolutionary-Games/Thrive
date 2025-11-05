@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-20 23:04+0200\n"
-"PO-Revision-Date: 2025-08-19 06:12+0000\n"
-"Last-Translator: zynskeywolf <istvanszabo314@protonmail.com>\n"
+"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"PO-Revision-Date: 2025-09-26 12:14+0000\n"
+"Last-Translator: Tuscokchips <kortejanos180@gmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -160,19 +160,14 @@ msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Generációk:[/b]\n"
 "{0}\n"
-"\n"
 "[b]Összes faj:[/b]\n"
 "Átlag {1}; Szórás {2}\n"
-"\n"
 "[b]Még élő fajok száma:[/b]\n"
 "Átlag {3}; Szórás {4}\n"
-"\n"
 "[b]Foltok szerinti fajszám:[/b]\n"
 "Átlag {5}; Szórás {6}\n"
-"\n"
 "[b]Foltok szerinti össznépesség:[/b]\n"
 "Átlag {7}; Szórás {8}\n"
-"\n"
 "[b]Mikroba fajok átlagos hatszög mérete:[/b]\n"
 "Átlag {9}; Szórás {10}"
 
@@ -195,9 +190,8 @@ msgstr "Ammónia"
 msgid "AMMONIA_COST"
 msgstr "Ammónia ára:"
 
-#, fuzzy
 msgid "AMMONIA_LEVELS"
-msgstr "Ammónia ára:"
+msgstr "Ammónia szintje"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Megtartható automatikus mentések száma:"
@@ -709,9 +703,8 @@ msgstr "A celluláz lehetővé teszi a sejt számára a cellulóz membrán lebon
 msgid "CELLULOSE"
 msgstr "Cellulóz"
 
-#, fuzzy
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr "Ez a membrán egy fallal rendelkezik, ami jobb védelmet jelent a sérülések ellen, főleg a fizikai sérülések ellen. Kevesebb energia szükséges neki formája megtartásához, viszont nem képes bekebelezése és lassítja magát a sejtet isképes megemészteni ezt a falat, így a sejt sebezhetővé válik a ragadozók általi bekebelezésre."
+msgstr "Ez a membrán egy fallal rendelkezik, ami jobb védelmet jelent a sérülések ellen, főleg a fizikai sérülések ellen. Kevesebb energia szükséges neki formája megtartásához, viszont nem képes bekebelezése és lassítja magát a sejtet is. [b]Cellulóz képes megemészteni ezt a falat[/b] így a sejt sebezhetővé válik a ragadozók általi bekebelezésre."
 
 #, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
@@ -1304,7 +1297,6 @@ msgstr "R1"
 msgid "CONTROLLER_BUTTON_PS_R3"
 msgstr "R3"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SHARE"
 msgstr "Share"
 
@@ -1340,11 +1332,9 @@ msgstr "A"
 msgid "CONTROLLER_BUTTON_XBOX_B"
 msgstr "B"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_BACK"
 msgstr "Back"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
 msgstr "Guide"
 
@@ -1504,12 +1494,6 @@ msgstr "Játék folytatása"
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Jelenlegi fejlesztők"
-
-#, fuzzy
-msgid "CURRENT_DILUTION_TOOLTIP"
-msgstr ""
-"Kitörési patch esemény\n"
-"További hidrogén-szulfidot és szén-dioxidot hoz létre"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "JELENLEGI TARTÓZKODÁSI HELY"
@@ -2065,9 +2049,8 @@ msgstr "Sejtszervecske elhelyezése"
 msgid "ENDOSYMBIOSIS_BUTTON"
 msgstr "Endoszimbiózis"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
-msgstr "Összes szétválasztása"
+msgstr "A jelen endoszimbiózis folyamatának megszakítása. Ezzel elvész minden előrehaladás ezen az endoszimbiontán!"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
@@ -2253,18 +2236,6 @@ msgstr ""
 "Kénmeteor becsapódási esemény\n"
 "Növeli a szén-dioxid és a kén mennyiségét.\n"
 "Kéndarabkákat hagy hátra."
-
-#, fuzzy
-msgid "EVENT_RUNOFF_TOOLTIP"
-msgstr ""
-"Kitörési patch esemény\n"
-"További hidrogén-szulfidot és szén-dioxidot hoz létre"
-
-#, fuzzy
-msgid "EVENT_UPWELLING_TOOLTIP"
-msgstr ""
-"Kitörési patch esemény\n"
-"További hidrogén-szulfidot és szén-dioxidot hoz létre"
 
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
@@ -2586,6 +2557,16 @@ msgid "FOSSILISE"
 msgstr "Rögzült"
 
 #, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Mod létrehozása sikertelen"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr ""
+"Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
+"{0}"
+
+#, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Mod létrehozása sikertelen"
 
@@ -2648,9 +2629,8 @@ msgstr "Alap"
 msgid "GENERAL_LOADING_TIP_1"
 msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_2"
-msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+msgstr "Vigyázz a nagyobb organizmusokkal. Meg fognak enni, és nem túl kellemes lenyelve lenni!"
 
 #, fuzzy
 msgid "GENERAL_LOADING_TIP_3"
@@ -2943,13 +2923,11 @@ msgstr "Végtelen vegyületek"
 msgid "INFINITE_MP"
 msgstr "Végtelen MP"
 
-#, fuzzy
 msgid "INFO_BOX_COST"
-msgstr "TÚLÉLTÉL!"
+msgstr "Alapköltség (MP)"
 
-#, fuzzy
 msgid "INFO_BOX_EDITORS"
-msgstr "TÚLÉLTÉL!"
+msgstr "Szerkeztők"
 
 msgid "INFO_BOX_ENZYMES"
 msgstr "Enzimek"
@@ -2965,17 +2943,15 @@ msgstr "Mappa neve:"
 msgid "INFO_BOX_MASS"
 msgstr "Tömeg"
 
-#, fuzzy
 msgid "INFO_BOX_NEXT_STAGE"
-msgstr "TÚLÉLTÉL!"
+msgstr "Következő fázis"
 
 #, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Ozmoreguláció ára"
 
-#, fuzzy
 msgid "INFO_BOX_PREVIOUS_STAGE"
-msgstr "TÚLÉLTÉL!"
+msgstr "Előző fázis"
 
 msgid "INFO_BOX_PROCESSES"
 msgstr "Folyamatok"
@@ -2984,17 +2960,14 @@ msgstr "Folyamatok"
 msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr "Sejtmag"
 
-#, fuzzy
 msgid "INFO_BOX_SIZE"
-msgstr "TÚLÉLTÉL!"
+msgstr "Méret (Hexák)"
 
-#, fuzzy
 msgid "INFO_BOX_STORAGE"
-msgstr "TÚLÉLTÉL!"
+msgstr "Tárhely"
 
-#, fuzzy
 msgid "INFO_BOX_UNIQUE"
-msgstr "TÚLÉLTÉL!"
+msgstr "Különleges"
 
 msgid "INFO_BOX_UPGRADES"
 msgstr "Fejlesztések"
@@ -3719,9 +3692,8 @@ msgstr "Sejtfázis"
 msgid "MAKE_CELL_THAT_EATS_RADIATION"
 msgstr "(a szervek, membránok, és egyéb dolgok költsége a szerkesztőben)"
 
-#, fuzzy
 msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
-msgstr "Kemoszintézis"
+msgstr " Készíts egy sejtet, mely csak kemoszintézist használ energianyeréshez"
 
 #, fuzzy
 msgid "MAKE_NO_CHANGES_IN_EDITOR"
@@ -3822,7 +3794,7 @@ msgid "MESOPELAGIC"
 msgstr "Mezopelágikus"
 
 msgid "METABOLOSOMES"
-msgstr "Metaboloszómák"
+msgstr "Metaloboszómák"
 
 #, fuzzy
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -3907,6 +3879,10 @@ msgstr ""
 "  #{4}\n"
 "[b]Viselkedés[/b]\n"
 "  {5}"
+
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "kölönböző kiválasztódási nyomások miatt, [u]{0}[/u] egy új fajként vált le [u]{1}[/u]-tól/től"
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
@@ -4029,9 +4005,8 @@ msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy v
 msgid "MICROBE_LOADING_TIP_3"
 msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_4"
-msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+msgstr "Készülj fel, mielőtt a sejtedhez hozzáadsz egy sejtmagot. Ezek a dolgok drágák, mind kezdeti költségük, mind a fenntartásuk miatt!"
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_5"
@@ -4724,6 +4699,10 @@ msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Alap mozgás"
 
 #, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Hidrogén-szulfid"
+
+#, fuzzy
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "Nincs elég {0} a recept elkészítéséhez"
 
@@ -4757,9 +4736,8 @@ msgstr "Nincs feljegyzett esemény"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "A mentések mappa nem található"
 
-#, fuzzy
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
-msgstr "Eredmények visszaállításának megerősítése?"
+msgstr "A jelen játékban már nem érhetők el eredmények"
 
 #, fuzzy
 msgid "NO_MODS_ENABLED"
@@ -5019,6 +4997,10 @@ msgstr "Vegyületek"
 
 msgid "OUR_WIKI"
 msgstr "Wikipédiánk"
+
+#, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Megszakítva."
 
 #, fuzzy
 msgid "OUTDATED_NOTICE"
@@ -5606,6 +5588,17 @@ msgid "REVEAL_ALL_PATCHES"
 msgstr "Minden patch felfedése"
 
 #, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Menj a következő szerkesztő ablakba"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Visszamész a szerkesztőbe?"
+
+#, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "A Revolutionary Games Studio-tól"
 
@@ -6130,9 +6123,8 @@ msgstr "faj mutálódott"
 msgid "SPECIES_LIST"
 msgstr "Fajlista"
 
-#, fuzzy
 msgid "SPECIES_MEMBER_IMPACT_ON_POP"
-msgstr "Faj neve túl hosszú!"
+msgstr "A faj tagjainak halálának hatása"
 
 #, fuzzy
 msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
@@ -6199,9 +6191,8 @@ msgstr "Újraindítás szükséges"
 msgid "STATISTICS"
 msgstr "Statisztikák"
 
-#, fuzzy
 msgid "STAT_ATP_PRODUCTION_REDUCTION"
-msgstr "AZ ATP TERMELŐDÉSE TÚL ALACSONY!"
+msgstr "ATP-termelés csökkentése"
 
 #, fuzzy
 msgid "STAT_BASE_MOVEMENT_REDUCTION"
@@ -6621,9 +6612,8 @@ msgstr "[u]{0}[/u] kihalt!"
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] eltűnt ebből a patch-ből"
 
-#, fuzzy
 msgid "TIMELINE_SPECIES_FOLLOWED"
-msgstr "[u]{0}[/u] kihalt!"
+msgstr "[b][u]{0}[/u][/b] felült [b][u]{1}[/u][/b] hátára ebben a foltban"
 
 #, fuzzy
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
@@ -6726,6 +6716,20 @@ msgstr "{0}: +{1} ATP"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]Fajok[/b]\n"
+"  {0}:{1}\n"
+"[b]Generáció[/b]\n"
+"  {2}\n"
+"[b]Populáció[/b]\n"
+"  {3}\n"
+"[b]Szín[/b]\n"
+"  #{4}\n"
+"[b]Viselkedés[/b]\n"
+"  {5}"
 
 #, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
@@ -6927,16 +6931,15 @@ msgstr ""
 "\n"
 "A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
-"Ezek a fajok szerkesztésének alapjai. Befejezésként átnevezheted a fajodat, ha a bal alsó sarokban lévő névre kattintasz, és szerkeszted a szöveget.\n"
+"Az alkalmazkodás nehéz. Sokféle [thrive:compound type=\"atp\"][/thrive:compound] forrás létezik, de nem mind használható mindenhol. Használd az összes fül és panel adta lehetőséget, hogy a lehető legjobb döntést hozd, vagy egyszerűen próbálj ki valamit, és nézd meg, működik-e!\n"
 "\n"
-"Próbáld meg felfedezni a többi fület az MP sáv alatt, hogy megnézzd, hogyan tudod még testre szabni a celládat.\n"
+"Ne feledd: [u]ha nem termelsz elegendő [thrive:compound type=\"atp\"][/thrive:compound]-t, nem fogsz túlélni[/u].\n"
 "\n"
-"Ahhoz, hogy túlélj ebben a zord világban, megbízható energiaforrást kell találnod, mivel a természetes glükóz gyorsan csökken.\n"
+"Egyelőre működik, ha [thrive:compound type=\"glucose\"][/thrive:compound]-ot gyűjtesz és ATP-vé alakítod, de a természetes glükóz mennyisége generációnként csökkenni fog.\n"
 "\n"
-"Sok szerencsét!"
+"Végül átnevezheted a fajt: kattints a nevére a bal alsó sarokban, és szerkeszd a szöveget."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
@@ -6948,16 +6951,15 @@ msgstr ""
 "\n"
 "A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
 msgstr ""
-"Ezek a fajok szerkesztésének alapjai. Befejezésként átnevezheted a fajodat, ha a bal alsó sarokban lévő névre kattintasz, és szerkeszted a szöveget.\n"
+"Ez az élelmiszerlánc kijelzője.\n"
 "\n"
-"Próbáld meg felfedezni a többi fület az MP sáv alatt, hogy megnézzd, hogyan tudod még testre szabni a celládat.\n"
+"Megmutatja, hogy az adott területen mely fajok milyen táplálékforrásokat fogyasztanak.\n"
 "\n"
-"Ahhoz, hogy túlélj ebben a zord világban, megbízható energiaforrást kell találnod, mivel a természetes glükóz gyorsan csökken.\n"
+"Itt láthatóak a ragadozó–zsákmány kapcsolatok, valamint a környezeti táplálékforrások is.\n"
 "\n"
-"Sok szerencsét!"
+"Ezek az információk segíthetnek eldönteni, merre fejleszd a fajt, de új játékosként nem kell aggódnod, ha nem érted teljesen ezt a képernyőt."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
@@ -6988,16 +6990,13 @@ msgstr ""
 "\n"
 "A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
-"Ezek a fajok szerkesztésének alapjai. Befejezésként átnevezheted a fajodat, ha a bal alsó sarokban lévő névre kattintasz, és szerkeszted a szöveget.\n"
+"Még nem változtattál a fajtádon.\n"
 "\n"
-"Próbáld meg felfedezni a többi fület az MP sáv alatt, hogy megnézzd, hogyan tudod még testre szabni a celládat.\n"
+"Miután elhagyod a szerkesztőt, [u]nem tudod szerkeszteni a fajtád, amíg legközelebb nem szaporodsz[/u].\n"
 "\n"
-"Ahhoz, hogy túlélj ebben a zord világban, megbízható energiaforrást kell találnod, mivel a természetes glükóz gyorsan csökken.\n"
-"\n"
-"Sok szerencsét!"
+"A játékban előrejutáshoz fejlődnöd és alkalmazkodnod kell, ezért ajánlott a fajt [i]szinte minden[/i] szerkesztési ciklusban módosítani."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
@@ -7587,9 +7586,8 @@ msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségéve
 msgid "WIKI_ASCENSION_OVERVIEW"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_ASCENSION_TRANSITIONS"
-msgstr "Gratulálok!"
+msgstr "A felemelkedésbe akkor lépsz, amikor a fajtád áthalad egy Felemelkedés Kapun. Valószínűleg a játék végén, a felemelkedési szakaszba való belépés jelenete után szeretnénk megjeleníteni a stáblistát.A stáblista végeztével a játékos visszakerül a játékba a Felemelkedés szakaszban, egy gratuláló üzenettel.Ahhoz, hogy ez legyen a játék utolsó akadálya, a Felemelkedés Kapu sok kutatást igényel (beleértve a fent említett Isten Eszközöket), és rengeteg energiát – több napnyi energiát – a létrehozásához és működtetéséhez.Más, esetleg ellenséges fajok itt kapják meg az utolsó lehetőségüket, hogy megtámadják a játékost, mielőtt a játékos végtelen erőhöz jutna, és képes lenne egyszerűen eltörölni a versengő csillagrendszer-birodalmakat."
 
 #, fuzzy
 msgid "WIKI_ASCENSION_UI"
@@ -8911,7 +8909,6 @@ msgstr "Protoplazma"
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplazma"
 
-#, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Rusticyanin"
 
@@ -9530,6 +9527,10 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Megszakítva."
 
 #, fuzzy
 #~ msgid "GENERATE_BUTTON"

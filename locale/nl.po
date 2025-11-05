@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-20 23:04+0200\n"
+"POT-Creation-Date: 2025-10-30 12:31+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -1446,10 +1446,6 @@ msgstr "Slijm vrijlaten"
 msgid "CURRENT_DEVELOPERS"
 msgstr "Huidige Ontwikkelaars"
 
-#, fuzzy
-msgid "CURRENT_DILUTION_TOOLTIP"
-msgstr "Dit is de exacte code commit die gebruikt is bij het compileren van deze versie van Thrive"
-
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "HUIDIGE LOCATIE"
 
@@ -2151,14 +2147,6 @@ msgstr ""
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
-#, fuzzy
-msgid "EVENT_RUNOFF_TOOLTIP"
-msgstr "Dit is de exacte code commit die gebruikt is bij het compileren van deze versie van Thrive"
-
-#, fuzzy
-msgid "EVENT_UPWELLING_TOOLTIP"
-msgstr "Dit is de exacte code commit die gebruikt is bij het compileren van deze versie van Thrive"
-
 msgid "EVOLUTIONARY_TREE"
 msgstr "Stamboom"
 
@@ -2435,6 +2423,14 @@ msgstr "Fossilizeer deze zoort (al gefossilizeerd)"
 
 msgid "FOSSILISE"
 msgstr "Fosillizeren"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Verwijderen van Fossiel Mislukt"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Het fossielbestand kon niet worden verwijderd"
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Verwijderen van Fossiel Mislukt"
@@ -3709,6 +3705,10 @@ msgstr ""
 "[b]Bewonerscores[/b]\n"
 "  {2}"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "[b][u]{0}[/u][/b] is afgesplitst van [b][u]{1}[/u][/b] als een nieuwe soort door een verschil in selectiedruk"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -4501,6 +4501,10 @@ msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Basisbeweging"
 
 #, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Waterstofsulfide"
+
+#, fuzzy
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "Niet genoeg {0} om recept te vervaardigen"
 
@@ -4781,6 +4785,10 @@ msgstr "Verbindingen"
 
 msgid "OUR_WIKI"
 msgstr "onze Wiki"
+
+#, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Niet begonnen."
 
 #, fuzzy
 msgid "OUTDATED_NOTICE"
@@ -5358,6 +5366,18 @@ msgstr ""
 #, fuzzy
 msgid "REVEAL_ALL_PATCHES"
 msgstr "verspreid naar patches:"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Ga naar het volgende bewerkertabblad"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "(wanneer aangezet wordt de groeisnelheid gelimiteerd, anders heeft alleen de beschikbaarheid van stoffen effect op groeisnelheid)"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Toon Meer Info"
 
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Bezoek officiële Revolutionary Games sites"
@@ -6436,6 +6456,20 @@ msgstr "{0}: +{1} ATP"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]Soorten[/b]\n"
+"  {0}:{1}\n"
+"[b]Generatie[/b]\n"
+"  {2}\n"
+"[b]Bevolking[/b]\n"
+"  {3}\n"
+"[b]Kleur[/b]\n"
+"  #{4}\n"
+"[b]Gedrag[/b]\n"
+"  {5}"
 
 #, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
@@ -9242,6 +9276,10 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Niet begonnen."
 
 #, fuzzy
 #~ msgid "GENERATE_BUTTON"

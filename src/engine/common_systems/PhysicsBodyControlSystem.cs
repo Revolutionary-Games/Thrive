@@ -1,40 +1,34 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Applies external (impulse, direct velocity) control to physics bodies
 /// </summary>
-[With(typeof(Physics))]
-[With(typeof(ManualPhysicsControl))]
 [RunsAfter(typeof(PhysicsBodyCreationSystem))]
 [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
-[RuntimeCost(0.5f)]
-public sealed class PhysicsBodyControlSystem : AEntitySetSystem<float>
+[RuntimeCost(4)]
+public partial class PhysicsBodyControlSystem : BaseSystem<World, float>
 {
     private readonly PhysicalWorld physicalWorld;
 
-    public PhysicsBodyControlSystem(PhysicalWorld physicalWorld, World world, IParallelRunner runner) :
-        base(world, runner)
+    public PhysicsBodyControlSystem(PhysicalWorld physicalWorld, World world) : base(world)
     {
         this.physicalWorld = physicalWorld;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref Physics physics, ref ManualPhysicsControl control)
     {
-        ref var physics = ref entity.Get<Physics>();
-
         if (!physics.IsBodyEffectivelyEnabled())
             return;
 
         var body = physics.Body!;
-
-        ref var control = ref entity.Get<ManualPhysicsControl>();
 
         if (control.PhysicsApplied && physics.VelocitiesApplied)
             return;

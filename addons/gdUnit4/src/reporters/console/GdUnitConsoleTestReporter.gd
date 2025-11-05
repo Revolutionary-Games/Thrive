@@ -152,7 +152,7 @@ func _print_failure_report(reports: Array[GdUnitReport]) -> void:
 
 func _print_statistics(statistics: Dictionary) -> void:
 	print_message("Statistics:", Color.DODGER_BLUE)
-	print_message(" %d tests cases | %d errors | %d failures | %d flaky | %d skipped | %d orphans |" %\
+	print_message(" %d test cases | %d errors | %d failures | %d flaky | %d skipped | %d orphans |" %\
 		[statistics["total_count"],
 		statistics["error_count"],
 		statistics["failed_count"],
@@ -164,7 +164,7 @@ func _print_statistics(statistics: Dictionary) -> void:
 func _print_summary() -> void:
 	print_message("Overall Summary:", Color.DODGER_BLUE)
 	_writer\
-		.println_message(" %d tests cases | %d errors | %d failures | %d flaky | %d skipped | %d orphans |" % [
+		.println_message(" %d test cases | %d errors | %d failures | %d flaky | %d skipped | %d orphans |" % [
 			total_test_count(),
 			total_error_count(),
 			total_failure_count(),

@@ -341,7 +341,7 @@ public partial class TabButtons : HBoxContainer
 
                 // If the button doesn't move to pressed state, set it here. This makes some differently made tab
                 // controlled buttons work (auto-evo exploring tool, for example)
-                if (button.ButtonPressed != true)
+                if (!button.ButtonPressed)
                     button.ButtonPressed = true;
 
                 break;

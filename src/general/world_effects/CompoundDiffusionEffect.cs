@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   An effect diffusing specially marked compounds between patches (and also takes ocean depth into account). This
 ///   operates on specific compounds as it causes a bit of a mess and unintended effects if all compounds are always
 ///   allowed to move.
 /// </summary>
-[JSONDynamicTypeAllowed]
 public class CompoundDiffusionEffect : IWorldEffect
 {
-    [JsonProperty]
-    private GameWorld targetWorld;
+    public const ushort SERIALIZATION_VERSION = 1;
+
+    private readonly GameWorld targetWorld;
 
     public CompoundDiffusionEffect(GameWorld targetWorld)
     {
@@ -20,9 +20,30 @@ public class CompoundDiffusionEffect : IWorldEffect
     }
 
     /// <summary>
-    ///   If true this uses a more complex move modifier formula based on the square root distance between patches
+    ///   If true, this uses a more complex move modifier formula based on the square root distance between patches
     /// </summary>
     public bool UseDistanceMoveModifier { get; set; }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CompoundDiffusionEffect;
+    public bool CanBeReferencedInArchive => false;
+
+    public static CompoundDiffusionEffect ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new CompoundDiffusionEffect(reader.ReadObject<GameWorld>())
+        {
+            UseDistanceMoveModifier = reader.ReadBool(),
+        };
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(targetWorld);
+        writer.Write(UseDistanceMoveModifier);
+    }
 
     public void OnRegisterToWorld()
     {

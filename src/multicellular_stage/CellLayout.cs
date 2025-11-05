@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using Saving.Serializers;
+using SharedBase.Archive;
 
 /// <summary>
 ///   A list of positioned cells. Verifies that they don't overlap
@@ -14,9 +15,7 @@ using Newtonsoft.Json;
 ///   </para>
 /// </remarks>
 /// <typeparam name="T">The type of organelle contained in this layout</typeparam>
-[UseThriveSerializer]
-[JsonObject(IsReference = true)]
-public class CellLayout<T> : HexLayout<T>
+public class CellLayout<T> : HexLayout<T>, IArchivable
     where T : class, IPositionedCell
 {
     public CellLayout(Action<T> onAdded, Action<T>? onRemoved = null) : base(onAdded, onRemoved)
@@ -27,8 +26,7 @@ public class CellLayout<T> : HexLayout<T>
     {
     }
 
-    [JsonConstructor]
-    public CellLayout(List<T> existingHexes, Action<T>? onAdded = null, Action<T>? onRemoved = null) : base(
+    protected CellLayout(List<T> existingHexes, Action<T>? onAdded = null, Action<T>? onRemoved = null) : base(
         existingHexes, onAdded, onRemoved)
     {
     }
@@ -36,7 +34,6 @@ public class CellLayout<T> : HexLayout<T>
     /// <summary>
     ///   The center of mass of the contained organelles in all cells
     /// </summary>
-    [JsonIgnore]
     public Hex CenterOfMass
     {
         get
@@ -56,6 +53,27 @@ public class CellLayout<T> : HexLayout<T>
 
             return Hex.CartesianToAxial(weightedSum / count);
         }
+    }
+
+    public ushort CurrentArchiveVersion => HexLayoutSerializer.SERIALIZATION_VERSION;
+
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ExtendedCellLayout;
+
+    public bool CanBeReferencedInArchive => true;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.ExtendedCellLayout)
+            throw new NotSupportedException();
+
+        writer.WriteObject((IArchivable)obj);
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(existingHexes);
+        writer.WriteDelegateOrNull(onAdded);
+        writer.WriteDelegateOrNull(onRemoved);
     }
 
     protected override void GetHexComponentPositions(T hex, List<Hex> result)

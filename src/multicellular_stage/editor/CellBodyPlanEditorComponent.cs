@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
 ///   Body plan editor component for making body plans from hexes (that represent cells)
 /// </summary>
-[SceneLoadedClass("res://src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn", UsesEarlyResolve = false)]
 public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
-        MulticellularSpecies>
+        MulticellularSpecies>, IArchiveUpdatable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
@@ -48,8 +49,6 @@ public partial class CellBodyPlanEditorComponent :
     [Export]
     private PanelContainer reproductionTab = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     [Export]
     private BehaviourEditorSubComponent behaviourEditor = null!;
 
@@ -92,23 +91,18 @@ public partial class CellBodyPlanEditorComponent :
     private CustomConfirmationDialog negativeAtpPopup = null!;
 #pragma warning restore CA2213
 
-    [JsonProperty]
     private string newName = "unset";
 
-    [JsonProperty]
     private IndividualHexLayout<CellTemplate> editedMicrobeCells = null!;
 
     /// <summary>
-    ///   True when visuals of already placed things need to be updated
+    ///   True, when visuals of already placed things need to be updated
     /// </summary>
     private bool cellDataDirty = true;
 
-    [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
     private bool forceUpdateCellGraphics;
-
-    private EnergyBalanceInfoFull? energyBalanceInfo;
 
     private bool hasNegativeATPCells;
 
@@ -122,7 +116,6 @@ public partial class CellBodyPlanEditorComponent :
         Behaviour,
     }
 
-    [JsonIgnore]
     public override bool HasIslands =>
         editedMicrobeCells.GetIslandHexes(islandResults, islandsWorkMemory1, islandsWorkMemory2,
             islandsWorkMemory3) > 0;
@@ -143,6 +136,13 @@ public partial class CellBodyPlanEditorComponent :
             return false;
         }
     }
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.CellBodyPlanEditorComponent;
+
+    public bool CanBeSpecialReference => true;
 
     protected override bool ForceHideHover => false;
 
@@ -187,15 +187,12 @@ public partial class CellBodyPlanEditorComponent :
 
             editedMicrobeCells = newLayout;
 
-            if (Editor.EditedCellProperties != null)
-            {
-                UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
-                UpdateArrow(false);
-            }
-            else
-            {
-                GD.Print("Loaded body plan editor with no cell to edit set");
-            }
+            UpdateGUIAfterLoadingSpecies(Editor.EditedSpecies);
+            UpdateArrow(false);
+
+            UpdateCellTypeSelections();
+
+            newName = Editor.EditedSpecies.FormattedName;
         }
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
@@ -240,10 +237,8 @@ public partial class CellBodyPlanEditorComponent :
 
                 // Can place stuff at all?
                 // TODO: should placementRotation be used here in some way?
-                isPlacementProbablyValid = IsValidPlacement(new HexWithData<CellTemplate>(new CellTemplate(cellType))
-                {
-                    Position = new Hex(q, r),
-                });
+                isPlacementProbablyValid =
+                    IsValidPlacement(new HexWithData<CellTemplate>(new CellTemplate(cellType), new Hex(q, r)));
             }
             else if (MovingPlacedHex != null)
             {
@@ -280,6 +275,30 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         forceUpdateCellGraphics = false;
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(SERIALIZATION_VERSION_HEX);
+        base.WritePropertiesToArchive(writer);
+
+        writer.WriteObjectProperties(behaviourEditor);
+        writer.Write(newName);
+        writer.WriteObject(editedMicrobeCells);
+        writer.Write((int)selectedSelectionMenuTab);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
+
+        reader.ReadObjectProperties(behaviourEditor);
+        newName = reader.ReadString() ?? throw new NullArchiveObjectException();
+        editedMicrobeCells = reader.ReadObject<IndividualHexLayout<CellTemplate>>();
+        selectedSelectionMenuTab = (SelectionMenuTab)reader.ReadInt32();
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -410,7 +429,7 @@ public partial class CellBodyPlanEditorComponent :
         if (!Visible)
             return false;
 
-        // Can't open popup menu while moving something
+        // Can't open a popup menu while moving something
         if (MovingPlacedHex != null)
         {
             Editor.OnActionBlockedWhileMoving();
@@ -486,8 +505,8 @@ public partial class CellBodyPlanEditorComponent :
         var positions = MouseHoverPositions.ToList();
 
         var cellTemplates = positions
-            .Select(h => new HexWithData<CellTemplate>(new CellTemplate(cellType, h.Hex, h.Orientation))
-                { Position = h.Hex }).ToList();
+            .Select(h => new HexWithData<CellTemplate>(new CellTemplate(cellType, h.Hex, h.Orientation), h.Hex))
+            .ToList();
 
         CombinedEditorAction moveOccupancies;
 
@@ -722,10 +741,7 @@ public partial class CellBodyPlanEditorComponent :
     /// </summary>
     private EditorAction? CreatePlaceActionIfPossible(CellType cellType, int q, int r, int rotation)
     {
-        var cell = new HexWithData<CellTemplate>(new CellTemplate(cellType, new Hex(q, r), rotation))
-        {
-            Position = new Hex(q, r),
-        };
+        var cell = new HexWithData<CellTemplate>(new CellTemplate(cellType, new Hex(q, r), rotation), new Hex(q, r));
 
         if (!IsValidPlacement(cell))
         {
@@ -1158,8 +1174,6 @@ public partial class CellBodyPlanEditorComponent :
                 organismStatisticsPanel.CompoundAmountType, null, energyBalance);
         }
 
-        energyBalanceInfo = energyBalance;
-
         // Passing those variables by refs to the following functions to reuse them
         float nominalStorage = 0;
         Dictionary<Compound, float>? specificStorages = null;
@@ -1181,7 +1195,9 @@ public partial class CellBodyPlanEditorComponent :
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
 
-        HandleProcessList(cells, energyBalance, conditionsData);
+        // TODO: find out why this method used to take the cells parameter but now causes a warning so it is removed
+        // HandleProcessList( cells, energyBalance, conditionsData);
+        HandleProcessList(energyBalance, conditionsData);
     }
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
@@ -1441,8 +1457,9 @@ public partial class CellBodyPlanEditorComponent :
     {
         foreach (var cell in multicellularSpecies.Cells)
         {
-            // This doesn't copy the position to the hex yet but TryAddHexToEditedLayout does it so we are good
-            var hex = new HexWithData<CellTemplate>((CellTemplate)cell.Clone());
+            // This doesn't copy the position to the hex yet, but TryAddHexToEditedLayout does it, so we are good to
+            // use the current position as a placeholder
+            var hex = new HexWithData<CellTemplate>((CellTemplate)cell.Clone(), cell.Position);
 
             var originalPos = cell.Position;
 

@@ -1,5 +1,4 @@
 shader_type particles;
-render_mode disable_velocity;
 
 uniform vec3 emissionBoxExtents;
 uniform vec4 colorValue : source_color;
@@ -19,6 +18,8 @@ uniform float brightness;
 // The following constants should be the same as in FluidCurrentsSystem.cs
 const float currentsTimescale = 0.25f;
 const float positionScaling = 0.9f;
+
+uniform float particleDepthVariation = 1.0f;
 
 // Generates a random float and modifies the seed
 float RandFromSeed(inout uint seed) {
@@ -55,11 +56,19 @@ void start() {
     TRANSFORM[3].xyz = vec3(RandFromSeed(altSeed) * 2.0 - 1.0, RandFromSeed(altSeed) * 2.0 - 1.0,
         RandFromSeed(altSeed) * 2.0 - 1.0) * emissionBoxExtents;
     TRANSFORM = EMISSION_TRANSFORM * TRANSFORM;
-    float visibleScale = RandFromSeed(altSeed) * 0.75f + 0.625f;
+    
+    float backgroundFactor = RandFromSeed(altSeed) * particleDepthVariation;
+    float adjustedBackgroundFactor = pow(backgroundFactor, 3.0f);
+    TRANSFORM[3].y -= adjustedBackgroundFactor * 80.0f;
+    float visibleScale = RandFromSeed(altSeed) * 0.75f + 0.625f
+        + adjustedBackgroundFactor * 35.0f;
+    
     TRANSFORM[0].xyz *= visibleScale;
     TRANSFORM[1].xyz *= visibleScale;
     TRANSFORM[2].xyz *= visibleScale;
-    CUSTOM.w = RandFromSeed(altSeed) * 0.2f + 0.8f;
+    
+    CUSTOM.w = 1.0f - backgroundFactor * 0.9f;
+    CUSTOM.z = gameTime + LIFETIME * 0.5f;
 }
 
 void process() {
@@ -73,7 +82,10 @@ void process() {
     {
         // The following should strictly conform to the formula in FluidCurrentSystem.cs
         vec2 scaledPosition = TRANSFORM[3].xz * positionScaling * inverseScale;
-        float scaledTime = gameTime * currentsTimescale * chaoticness;
+        // CUSTOM.z is the point of time when the lead particle spawned, CUSTOM.y is this particle's lifetime.
+        // The sum is the time such that this particle follows the exact same path as the lead one.
+        // Or just the gameTime if this is the lead particle.
+        float scaledTime = (CUSTOM.z + CUSTOM.y) * currentsTimescale * chaoticness;
         
         vec2 current1 = texture(noiseCurrents1,
             vec2((scaledPosition.x + scaledTime) / 1024.0f,
@@ -88,12 +100,11 @@ void process() {
         current *= 10.0f * speed;
     }
     
-    VELOCITY = mix(vec3(current.x, 0.0f, current.y), VELOCITY, 1.0f - DELTA * 5.0f);
-
-    TRANSFORM[3].xyz += VELOCITY * DELTA;
+    VELOCITY = mix(VELOCITY, vec3(current.x, 0.0f, current.y), DELTA * 5.0f);
+    VELOCITY *= CUSTOM.w * 0.05f + 0.95f;
     
     vec4 finalColor = colorValue;
-    finalColor.rgb *= CUSTOM.w;
+    finalColor.rgba *= CUSTOM.w;
     finalColor.a *= texture(alphaCurve, vec2(lifetimePercent)).r;
     if (speed != 0.0)
     {

@@ -1,10 +1,8 @@
 ﻿using System;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
-[JSONAlwaysDynamicType]
 public class CellPlacementActionData : HexPlacementActionData<HexWithData<CellTemplate>, MulticellularSpecies>
 {
-    [JsonConstructor]
     public CellPlacementActionData(HexWithData<CellTemplate> hex, Hex location, int orientation) : base(hex, location,
         orientation)
     {
@@ -15,21 +13,34 @@ public class CellPlacementActionData : HexPlacementActionData<HexWithData<CellTe
     {
     }
 
-    protected override double CalculateCostInternal()
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION_HEX;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.CellPlacementActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.CellPlacementActionData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((CellPlacementActionData)obj);
+    }
+
+    public static CellPlacementActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION_HEX or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_HEX);
+
+        var instance = new CellPlacementActionData(reader.ReadObject<HexWithData<CellTemplate>>(), reader.ReadHex(),
+            reader.ReadInt32());
+
+        instance.ReadBasePropertiesFromArchive(reader, version);
+
+        return instance;
+    }
+
+    protected override double CalculateBaseCostInternal()
     {
         return PlacedHex.Data?.CellType.MPCost ?? throw new InvalidOperationException("Hex with no data");
-    }
-
-    protected override CombinableActionData CreateDerivedMoveAction(HexRemoveActionData<HexWithData<CellTemplate>,
-        MulticellularSpecies> data)
-    {
-        return new CellMoveActionData(data.RemovedHex, data.Location, Location,
-            data.Orientation, Orientation);
-    }
-
-    protected override CombinableActionData CreateDerivedPlacementAction(
-        HexMoveActionData<HexWithData<CellTemplate>, MulticellularSpecies> data)
-    {
-        return new CellPlacementActionData(PlacedHex, data.NewLocation, data.NewRotation);
     }
 }

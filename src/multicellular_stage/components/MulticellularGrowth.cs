@@ -3,18 +3,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DefaultEcs;
-using DefaultEcs.Command;
+using Arch.Buffer;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
 ///   Keeps track of multicellular growth data
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct MulticellularGrowth
+public struct MulticellularGrowth : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   List of cells that need to be regrown, after being lost, in
     ///   <see cref="MulticellularGrowthHelpers.AddMulticellularGrowthCell"/>
@@ -67,25 +69,87 @@ public struct MulticellularGrowth
         this.CalculateTotalBodyPlanCompounds(species);
     }
 
-    [JsonIgnore]
     public bool IsFullyGrownMulticellular => NextBodyPlanCellToGrowIndex >=
         (TargetCellLayout?.Count ?? throw new InvalidOperationException("Unknown full layout"));
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMulticellularGrowth;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObjectOrNull(LostPartsOfBodyPlan);
+        writer.WriteObjectOrNull(CompoundsNeededForNextCell);
+
+        if (CompoundsUsedForMulticellularGrowth != null)
+        {
+            writer.WriteObject(CompoundsUsedForMulticellularGrowth);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
+
+        if (TotalNeededForMulticellularGrowth != null)
+        {
+            writer.WriteObject(TotalNeededForMulticellularGrowth);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
+
+        writer.WriteObjectOrNull(TargetCellLayout);
+
+        writer.Write(ResumeBodyPlanAfterReplacingLost.HasValue);
+        if (ResumeBodyPlanAfterReplacingLost.HasValue)
+            writer.Write(ResumeBodyPlanAfterReplacingLost.Value);
+
+        writer.Write(NextBodyPlanCellToGrowIndex);
+        writer.Write(EnoughResourcesForBudding);
+    }
 }
 
 public static class MulticellularGrowthHelpers
 {
+    public static MulticellularGrowth ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > MulticellularGrowth.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, MulticellularGrowth.SERIALIZATION_VERSION);
+
+        var instance = new MulticellularGrowth
+        {
+            LostPartsOfBodyPlan = reader.ReadObjectOrNull<List<int>>(),
+            CompoundsNeededForNextCell = reader.ReadObjectOrNull<List<(Compound Compound, float AmountNeeded)>>(),
+            CompoundsUsedForMulticellularGrowth = reader.ReadObjectOrNull<Dictionary<Compound, float>>(),
+            TotalNeededForMulticellularGrowth = reader.ReadObjectOrNull<Dictionary<Compound, float>>(),
+            TargetCellLayout = reader.ReadObjectOrNull<CellLayout<CellTemplate>>(),
+        };
+
+        if (reader.ReadBool())
+        {
+            instance.ResumeBodyPlanAfterReplacingLost = reader.ReadInt32();
+        }
+        else
+        {
+            instance.ResumeBodyPlanAfterReplacingLost = null;
+        }
+
+        instance.NextBodyPlanCellToGrowIndex = reader.ReadInt32();
+        instance.EnoughResourcesForBudding = reader.ReadBool();
+
+        return instance;
+    }
+
     /// <summary>
     ///   Adds the next cell missing from this multicellular species' body plan to this microbe's colony
     /// </summary>
     public static void AddMulticellularGrowthCell(this ref MulticellularGrowth multicellularGrowth,
         in Entity entity, MulticellularSpecies species, IWorldSimulation worldSimulation,
-        IMicrobeSpawnEnvironment spawnEnvironment, EntityCommandRecorder recorder, ISpawnSystem notifySpawnTo)
+        IMicrobeSpawnEnvironment spawnEnvironment, CommandBuffer recorder, ISpawnSystem notifySpawnTo)
     {
         if (!entity.Has<MicrobeColony>())
         {
-            var entityRecord = recorder.Record(entity);
-
-            entityRecord.Set(new MicrobeColony(true, entity, entity.Get<MicrobeControl>().State));
+            recorder.Add(entity, new MicrobeColony(true, entity, entity.Get<MicrobeControl>().State));
         }
 
         ref var colonyPosition = ref entity.Get<WorldPosition>();
@@ -132,8 +196,7 @@ public static class MulticellularGrowthHelpers
                 worldSimulation.DestroyEntity(member);
             }
 
-            var entityRecord = recorder.Record(entity);
-            entityRecord.Remove<MicrobeColony>();
+            recorder.Remove<MicrobeColony>(entity);
             worldSimulation.FinishRecordingEntityCommands(recorder);
         }
     }

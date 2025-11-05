@@ -71,7 +71,7 @@ public class ImageTask : IImageTask
 }
 
 /// <summary>
-///   A variant of the image task that is handled by loading it from disk
+///   A variant of the image task that is handled by loading it from the disk
 /// </summary>
 public class CacheLoadedImage : IImageTask, ILoadableCacheItem
 {
@@ -91,7 +91,20 @@ public class CacheLoadedImage : IImageTask, ILoadableCacheItem
 
     public ImageTexture FinalImage
     {
-        get => finalImage ?? throw new InvalidOperationException("Not loaded yet");
+        get
+        {
+            if (finalImage != null)
+                return finalImage;
+
+            // If the image is not yet converted, convert it now
+            if (plainImage != null)
+            {
+                return finalImage = ImageTexture.CreateFromImage(plainImage) ??
+                    throw new InvalidOperationException("Failed to create texture from image");
+            }
+
+            throw new InvalidOperationException("Not loaded yet");
+        }
         private set => finalImage = value;
     }
 
@@ -122,11 +135,17 @@ public class CacheLoadedImage : IImageTask, ILoadableCacheItem
             throw new Exception("Load failed");
         }
 
+        finalImage = null;
+
         // TODO: does this need to run on the main thread?
+        // This can be removed from here if required as the getter is already setup to allow automatically creating
+        // this when required.
         FinalImage = ImageTexture.CreateFromImage(plainImage);
 
-        if (FinalImage != null)
-            Finished = true;
+        if (FinalImage == null)
+            GD.PrintErr("Converting image into a texture failed in disk loaded image");
+
+        Finished = true;
     }
 
     public void Unload()

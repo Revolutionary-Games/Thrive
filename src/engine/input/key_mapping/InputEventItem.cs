@@ -416,11 +416,26 @@ public partial class InputEventItem : MarginContainer
         OnKeybindingSuccessfullyChanged();
     }
 
+    public void MakeInputButtonGrabFocus()
+    {
+        button.GrabFocus();
+    }
+
     /// <summary>
     ///   Delete this event from the associated action and update the godot InputMap
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Also changes GUI focus to another close button so that the focus doesn't default elsewhere
+    ///   </para>
+    /// </remarks>
     public void Delete()
     {
+        var path = BestNodeToSwitchFocusTo();
+
+        if (!path.IsEmpty)
+            GetNode<Control>(path).GrabFocus();
+
         Action?.Inputs.Remove(this);
         GroupList?.ControlsChanged();
     }
@@ -459,6 +474,39 @@ public partial class InputEventItem : MarginContainer
         }
 
         base.Dispose(disposing);
+    }
+
+    /// <summary>
+    ///   Finds a good neighbooring node to switch focus to. Returns an empty path if no such node is found.
+    /// </summary>
+    private NodePath BestNodeToSwitchFocusTo()
+    {
+        NodePath root = ".";
+
+        if (!button.FocusNeighborLeft.IsEmpty && button.FocusNeighborLeft != root)
+        {
+            return button.FocusNeighborLeft;
+        }
+
+        if (!button.FocusNeighborRight.IsEmpty && button.FocusNeighborRight != root)
+        {
+            return button.FocusNeighborRight;
+        }
+
+        if (Action != null)
+        {
+            if (!Action.FocusNeighborTop.IsEmpty && Action.FocusNeighborTop != root)
+            {
+                return Action.FocusNeighborTop;
+            }
+
+            if (!Action.FocusNeighborBottom.IsEmpty && Action.FocusNeighborBottom != root)
+            {
+                return Action.FocusNeighborBottom;
+            }
+        }
+
+        return new NodePath();
     }
 
     private bool CheckNewKeyConflicts(InputEvent @event, InputGroupList groupList, SpecifiedInputKey? old)

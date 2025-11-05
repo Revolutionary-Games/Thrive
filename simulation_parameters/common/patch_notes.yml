@@ -998,3 +998,75 @@
     - Updated xunit version
     - Updated Thriveopedia content
     - Updated translations
+
+0.9.0:
+  IntroductionText: |
+    After some delays due to remaking the entire saving system from scratch, Thrive 0.9.0 is here. The biggest new feature is the microbe terrain system that adds inert bits of terrain to many of the microbe patch types. There's also more planet customization options and multiple new graphics effects. The game balancing has also received very significant changes.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.9.0
+  PatchNotes:
+    - Added microbe terrain. More complex terrain configurations are not yet all made and many patch-specific terrain types are still missing.
+    - Added more planet customization options to the new game settings and a preview of planet stats
+    - Reimplemented saving using a new custom binary format. This makes all previous saves incompatible.
+    - Saving is now possible in the multicellular editor
+    - Added a new currents trail effect in surface patches
+    - Tweaked and improved the water currents
+    - Enabled specular highlights effect for microbe membranes
+    - Added ambient light reflections to game objects
+    - Made balance changes to oxygen and co2 generation
+    - Debuffed iron and oxygen metabolism
+    - Switched to Arch ECS library, which did not improve maximum game performance like hoped, but did improve the game simulation efficiency.
+    - Updated to Godot 4.5
+    - Updated the Jolt Physics engine
+    - Hydrogen sulfide clouds now deal damage to microbes that cannot metabolise them
+    - Made hydrogen sulfide decay speed up with the presence of oxygen
+    - The button to eject engulfed objects now works in a cell colony and in multicellular stage
+    - Added an achievements view to the pause menu
+    - Switched the species fossilisation system over to the new binary save format. This also means that old fossil files are no longer loadable.
+    - Added a new tutorial that tells the player about adding the binding agents to guide them towards the next stage
+    - Adjusted engulfing tutorial to not be able to point to relatively very small targets
+    - Added a popup asking the player if they want to load a previous auto save if they die too many times in a row
+    - Made editor tabs show themselves as a safety fallback if tutorial is not active but the tabs are still hidden. This condition could be triggered when the tutorial was sequence broken.
+    - Changed the whole underlying remaining MP calculations system to make sure tolerance sliders no longer get stuck when at 0 MP
+    - Tolerance edits to separate sliders no longer combine into a single undo step
+    - The temperature miche in auto-evo now penalizes sessility
+    - Added a miche for endosymbiosis target to stay in. This makes endosymbiosis much easier as the target species stays alive.
+    - Auto-evo now has bonus calculations from the chemoreceptor
+    - Fixed auto-evo not using actual available enzymes in digestibility calculations and instead accidentally assuming lysosomes provided all possible enzymes
+    - Improved visual water currents syncing to the simulation
+    - Fast speed mode is now automatically disabled if the available CPU power is not enough to keep up with the fast speed
+    - Switched the game to default to only showing new tutorials rather than all. The option to replay all tutorials still exists but must be selected now when starting a new game.
+    - Changed quick save and auto save limits to 100 (up from 50)
+    - Slow currents pushing a cell now no longer trigger the movement ripple effect
+    - Added a workaround for player becoming extinct due to being removed from the current patch populations due to another bug (that has not not been discovered yet)
+    - Added tolerance values to the species fossilisation dialog
+    - Fixed bug with other behaviour sliders moving when moving multiple different sliders in a row
+    - Fixed the hydrogenosome not being available through endosymbiosis like it should have been configured to be available
+    - Fixed disk cache not using background threads to save like it was supposed to. This hopefully fixes the random lag spikes that persisted a while after they started.
+    - Fixed the checkbox to only show new tutorials not working correctly after a save was loaded (and all tutorials got enabled even when selected not to)
+    - Fixed GUI focus jumping a lot when resolving a key rebinding conflict
+    - Fixed the Yum achievement not triggering for chunks
+    - Fixed ice chunks not playing the dissolve animation
+    - Fixed GDExtension build flags and fixed Mac crashing
+    - Fixed the wrong patch being highlighted in the patch map that is shown on extinction when going extinct in multiple patches in a row
+    - Fixed microbe backgrounds being very dark in OpenGL mode when blur is enabled
+    - Fixed museum species card delete buttons not reacting to mouse hover and fixed duplicate click event when clicking it
+    - Fixed code workaround for shuffling 2 item bags, which shouldn't have a gameplay impact as there was a workaround previously
+    - Added a custom git mergedriver for .po files which should make working on Thrive a bit nicer to automate translation file update conflicts
+    - Updated our import files for Godot 4.5 with automatically added properties
+    - Updated some asset import settings Godot wanted to change automatically
+    - Updated code checking tools
+    - Updated xUnit library
+    - Updated to gdUnit4 6.0.0
+    - Updated BenchmarkDotNet from 0.15.3 to 0.15.5
+    - Updated translations
+
+0.9.0.1:
+  IntroductionText: |
+    Here is a small patch release to fix the most reported problems after the 0.9.0 release. This fixes multiple saving problems and multiple infinite MP exploits, but there are still some non-optimal MP refund behaviour in this release and probably some more complex edits can still lead to too large MP refunds. To fully fix the MP calculation system more time is needed than what was available for this quick patch.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.9.0.1
+  PatchNotes:
+    - Fixed loading a save where endosymbiosis was started or completed
+    - Fixed 3 reported ways to exploit the microbe editor to get infinite MP
+    - Fixed loading a save made in the multicellular editor where the player had a grown colony before entering the editor
+    - Added a new system where known compatible save versions can be marked and those can be loaded without any warning popup
+    - Updated translations

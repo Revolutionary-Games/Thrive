@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhn84lw6vt2pg"]
+
+[ext_resource type="PackedScene" uid="uid://ni22u0nn67qk" path="res://assets/models/microbe_terrain/PyriteTerrainChunk1.glb" id="1_s6ryl"]
+[ext_resource type="Material" uid="uid://3f2hrc8vaboo" path="res://assets/models/microbe_terrain/PyriteTerrainChunk.material" id="2_1loul"]
+
+[node name="PyriteTerrainChunk1" instance=ExtResource("1_s6ryl")]
+
+[node name="pyrite1" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_1loul")

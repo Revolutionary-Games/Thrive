@@ -20,11 +20,6 @@ public static class Constants
     public const float SIMULATION_MAX_DELTA_TIME = 0.2f;
 
     /// <summary>
-    ///   How often entity simulation optimizes the number of used threads (should be less than 1)
-    /// </summary>
-    public const float SIMULATION_OPTIMIZE_THREADS_INTERVAL = 0.3f;
-
-    /// <summary>
     ///   Controls the number of threads used by the entity systems. The number of cells is divided by this,
     ///   and that is the max number of threads.
     /// </summary>
@@ -192,6 +187,22 @@ public static class Constants
     public const float CLOUD_MAX_INTENSITY_SHOWN = 1000;
 
     public const float CLOUD_CHEAT_DENSITY = 16000.0f;
+
+    public const float TERRAIN_GRID_SIZE = 200;
+    public const float TERRAIN_GRID_SIZE_INV = 1 / TERRAIN_GRID_SIZE;
+    public const float TERRAIN_EDGE_PROTECTION_SIZE = 1;
+
+    /// <summary>
+    ///   Adds randomness to microbe terrain height so that there's no z-fighting if terrain ends up overlapping
+    /// </summary>
+    public const float TERRAIN_HEIGHT_RANDOMNESS = 0.001f;
+
+    /// <summary>
+    ///   In how big the radius (in terms of grid cells) around the player terrain is spawned in.
+    ///   If too low, then pop in is visible and the spawn system can spawn stuff in that then gets covered
+    ///   by the terrain.
+    /// </summary>
+    public const int TERRAIN_SPAWN_AREA_NUMBER = 4;
 
     public const int MEMBRANE_RESOLUTION = 10;
     public const int MEMBRANE_VERTICAL_RESOLUTION = 7;
@@ -755,6 +766,14 @@ public static class Constants
     /// </summary>
     public const float HEALTH_REGEN_STOP_DAMAGE_THRESHOLD = 0.15f;
 
+    public const float HYDROGEN_SULFIDE_DAMAGE_INTERVAL = 0.75f;
+
+    public const float HYDROGEN_SULFIDE_DAMAGE_THESHOLD = 0.05f;
+
+    public const float HYDROGEN_SULFIDE_DAMAGE = 2.0f;
+
+    public const float HYDROGEN_SULFIDE_DAMAGE_COMPOUND_DRAIN = 0.2f;
+
     public const float RADIATION_STRENGTH_MULTIPLIER = 0.02f;
 
     /// <summary>
@@ -1286,6 +1305,11 @@ public static class Constants
     public const float AUTO_EVO_SLIME_JET_SCORE = 6;
     public const float AUTO_EVO_MUCOCYST_SCORE = 40;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
+    public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER = 1.18f;
+    public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER = 0.7f;
+    public const float AUTO_EVO_CHEMORECEPTOR_BASE_SCORE = 0.4f;
+    public const float AUTO_EVO_CHEMORECEPTOR_VARIABLE_CLOUD_SCORE = 8;
+    public const float AUTO_EVO_CHEMORECEPTOR_VARIABLE_CHUNK_SCORE = 0.00007f;
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.2f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
@@ -1484,6 +1508,13 @@ public static class Constants
     /// </summary>
     public const float MOVEMENT_MODE_SELECTION_DELAY = 1.55f;
 
+    /// <summary>
+    ///   The size ratio an entity has to be in relation to the player for the engulfable tutorial to point to it.
+    ///   This is to increase the chances of catching the target entity during the tutorial to reduce player
+    ///   frustration. Increase the value to target bigger and slower entities, but less of them.
+    /// </summary>
+    public const float TUTORIAL_ENGULFABLE_SIZE_RATIO = 0.35f;
+
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 12.0f;
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY_CONTROLLER = 1.0f;
     public const float MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME = 2.2f;
@@ -1622,9 +1653,6 @@ public static class Constants
     public const string STRUCTURE_ENTITY_GROUP = "structure";
 
     public const string CITIZEN_GROUP = "citizen";
-
-    public const string DELETION_HOLD_LOAD = "load";
-    public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
 
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
     public const string WORKSHOP_DATA_FILE = "user://workshop_data.json";

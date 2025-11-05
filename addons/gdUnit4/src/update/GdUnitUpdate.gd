@@ -83,7 +83,7 @@ func run_update() -> void:
 	await update_progress("Uninstall GdUnit4.")
 	disable_gdUnit()
 	if not _debug_mode:
-		delete_directory("res://addons/gdUnit4/")
+		GdUnitFileAccess.delete_directory("res://addons/gdUnit4/")
 	# give editor time to react on deleted files
 	await get_tree().create_timer(1).timeout
 
@@ -102,7 +102,7 @@ func run_update() -> void:
 	await get_tree().create_timer(3).timeout
 	enable_gdUnit()
 	hide()
-	delete_directory("res://addons/.gdunit_update")
+	GdUnitFileAccess.delete_directory("res://addons/.gdunit_update")
 	restart_godot()
 
 
@@ -189,35 +189,11 @@ func temp_dir() -> String:
 
 func create_temp_dir(folder_name :String) -> String:
 	var new_folder := temp_dir() + "/" + folder_name
-	delete_directory(new_folder)
+	GdUnitFileAccess.delete_directory(new_folder)
 	if not DirAccess.dir_exists_absolute(new_folder):
 		@warning_ignore("return_value_discarded")
 		DirAccess.make_dir_recursive_absolute(new_folder)
 	return new_folder
-
-
-func delete_directory(path: String, only_content := false) -> void:
-	var dir := DirAccess.open(path)
-	if dir != null:
-		@warning_ignore("return_value_discarded")
-		dir.list_dir_begin()
-		var file_name := "."
-		while file_name != "":
-			file_name = dir.get_next()
-			if file_name.is_empty() or file_name == "." or file_name == "..":
-				continue
-			var next := path + "/" +file_name
-			if dir.current_is_dir():
-				delete_directory(next)
-			else:
-				# delete file
-				var err := dir.remove(next)
-				if err:
-					printerr("Delete %s failed: %s" % [next, error_string(err)])
-		if not only_content:
-			var err := dir.remove(path)
-			if err:
-				printerr("Delete %s failed: %s" % [path, error_string(err)])
 
 
 func copy_directory(from_dir: String, to_dir: String) -> bool:

@@ -1,6 +1,7 @@
 // ------------------------------------ //
 #include "DebugDrawer.hpp"
 
+BEGIN_GODOT_INCLUDES;
 #include <godot_cpp/classes/camera3d.hpp>
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/immediate_mesh.hpp>
@@ -8,6 +9,7 @@
 #include <godot_cpp/classes/resource_loader.hpp>
 #include <godot_cpp/classes/viewport.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
+END_GODOT_INCLUDES;
 
 #include "core/GodotJoltConversions.hpp"
 #include "core/ThriveConfig.hpp"

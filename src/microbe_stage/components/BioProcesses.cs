@@ -1,13 +1,15 @@
 ﻿namespace Components;
 
 using System.Collections.Generic;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Entity has bio processes to run by the <see cref="Systems.ProcessSystem"/>
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct BioProcesses
+public struct BioProcesses : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   The active processes that ProcessSystem handles
     /// </summary>
@@ -36,4 +38,33 @@ public struct BioProcesses
     ///   If not 0, then this sets an overall speed modifier on *all* processes
     /// </summary>
     public float OverallSpeedModifier;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentBioProcesses;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObjectOrNull(ActiveProcesses);
+        writer.Write(ProcessStatistics != null);
+        writer.Write(ATPProductionSpeedModifier);
+        writer.Write(OverallSpeedModifier);
+    }
+}
+
+public static class BioProcessesHelpers
+{
+    public static BioProcesses ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > BioProcesses.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, BioProcesses.SERIALIZATION_VERSION);
+
+        return new BioProcesses
+        {
+            ActiveProcesses = reader.ReadObjectOrNull<List<TweakedProcess>>(),
+            ProcessStatistics = reader.ReadBool() ? new ProcessStatistics() : null,
+            ATPProductionSpeedModifier = reader.ReadFloat(),
+            OverallSpeedModifier = reader.ReadFloat(),
+        };
+    }
 }

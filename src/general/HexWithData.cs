@@ -1,13 +1,25 @@
-﻿public class HexWithData<T> : IPositionedHex, IActionHex
-    where T : IActionHex
+﻿using Saving.Serializers;
+using SharedBase.Archive;
+
+public class HexWithData<T> : IPositionedHex, IActionHex, IArchivable
+    where T : IActionHex, IArchivable
 {
-    public HexWithData(T? data)
+    public HexWithData(T? data, Hex position)
     {
         Data = data;
+        Position = position;
     }
 
     public T? Data { get; set; }
     public Hex Position { get; set; }
+
+    public ushort CurrentArchiveVersion => HexLayoutSerializer.SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ExtendedHexWithData;
+
+    /// <summary>
+    ///   Has to be referenceable for editor action history to work
+    /// </summary>
+    public bool CanBeReferencedInArchive => true;
 
     public bool MatchesDefinition(IActionHex other)
     {
@@ -23,5 +35,12 @@
         }
 
         return false;
+    }
+
+    // Read method is in HexLayoutSerializer.cs
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObjectOrNull(Data);
+        writer.Write(Position);
     }
 }

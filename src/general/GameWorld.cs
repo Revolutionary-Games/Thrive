@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using AutoEvo;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Xoshiro.PRNG64;
 
 /// <summary>
@@ -16,10 +16,10 @@ using Xoshiro.PRNG64;
 ///     but now this is just a collection of data regarding the world.
 ///   </para>
 /// </remarks>
-[JsonObject(IsReference = true)]
-[UseThriveSerializer]
-public class GameWorld : ISaveLoadable
+public class GameWorld : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Stores some instances to be used between many different auto-evo runs
     /// </summary>
@@ -28,31 +28,23 @@ public class GameWorld : ISaveLoadable
     ///     This isn't saved and can be recreated at any time if necessary
     ///   </para>
     /// </remarks>
-    [JsonIgnore]
     public readonly AutoEvoGlobalCache AutoEvoGlobalCache;
 
-    [JsonProperty]
     public UnlockProgress UnlockProgress = new();
 
-    [JsonProperty]
     public WorldStatsTracker StatisticsTracker = new();
 
-    [JsonProperty]
     public WorldGenerationSettings WorldSettings;
 
     /// <summary>
     ///   History of the world. Generations need to be inserted in order for this to work.
     /// </summary>
-    [JsonProperty]
     public Dictionary<int, GenerationRecord> GenerationHistory = new();
 
-    [JsonProperty]
     private uint speciesIdCounter;
 
-    [JsonProperty]
     private Dictionary<uint, Species> worldSpecies = new();
 
-    [JsonProperty]
     private Dictionary<double, List<GameEventDescription>> eventsLog = new();
 
     /// <summary>
@@ -179,7 +171,7 @@ public class GameWorld : ISaveLoadable
         }
 
         // Create the initial generation by adding only the player species
-        var initialSpeciesRecord = new SpeciesRecordLite((Species)PlayerSpecies.Clone(), PlayerSpecies.Population);
+        var initialSpeciesRecord = new SpeciesRecordLite(PlayerSpecies.Population, (Species)PlayerSpecies.Clone());
         GenerationHistory.Add(0, new GenerationRecord(0,
             new Dictionary<uint, SpeciesRecordLite> { { PlayerSpecies.ID, initialSpeciesRecord } }));
 
@@ -194,8 +186,7 @@ public class GameWorld : ISaveLoadable
     /// <summary>
     ///   Blank world creation, only for loading saves
     /// </summary>
-    [JsonConstructor]
-    public GameWorld(WorldGenerationSettings worldSettings)
+    private GameWorld(WorldGenerationSettings worldSettings)
     {
         WorldSettings = worldSettings;
 
@@ -205,26 +196,20 @@ public class GameWorld : ISaveLoadable
         TimedEffects = null!;
     }
 
-    [JsonProperty]
     public Species PlayerSpecies { get; private set; } = null!;
 
-    [JsonIgnore]
     public IReadOnlyDictionary<uint, Species> Species => worldSpecies;
 
-    [JsonProperty]
     public PatchMap Map { get; private set; } = null!;
 
     /// <summary>
     ///   This probably needs to be changed to a huge precision number
     ///   depending on what timespans we'll end up using.
     /// </summary>
-    [JsonProperty]
     public double TotalPassedTime { get; private set; }
 
-    [JsonProperty]
     public TimedWorldOperations TimedEffects { get; private set; }
 
-    [JsonProperty]
     public DayNightCycle LightCycle { get; private set; } = new();
 
     /// <summary>
@@ -268,6 +253,10 @@ public class GameWorld : ISaveLoadable
     /// </summary>
     public IReadOnlyDictionary<double, List<GameEventDescription>> EventsLog => eventsLog;
 
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.GameWorld;
+    public bool CanBeReferencedInArchive => true;
+
     public static void SetInitialSpeciesProperties(MicrobeSpecies species, List<Hex> workMemory1, List<Hex> workMemory2)
     {
         species.IsBacteria = true;
@@ -278,6 +267,64 @@ public class GameWorld : ISaveLoadable
             new Hex(0, 0), 0), workMemory1, workMemory2);
 
         species.OnEdited();
+    }
+
+    public static GameWorld ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new GameWorld(reader.ReadObject<WorldGenerationSettings>());
+
+        reader.ReportObjectConstructorDone(instance, referenceId);
+
+        reader.ReadObjectProperties(instance.UnlockProgress);
+        reader.ReadObjectProperties(instance.StatisticsTracker);
+        instance.LightCycle = reader.ReadObject<DayNightCycle>();
+
+        instance.GenerationHistory = reader.ReadObject<Dictionary<int, GenerationRecord>>();
+        instance.speciesIdCounter = reader.ReadUInt32();
+
+        instance.worldSpecies = reader.ReadObject<Dictionary<uint, Species>>();
+        instance.eventsLog = reader.ReadObject<Dictionary<double, List<GameEventDescription>>>();
+
+        instance.PlayerSpecies = reader.ReadObject<Species>();
+        instance.Map = reader.ReadObject<PatchMap>();
+        instance.TimedEffects = reader.ReadObject<TimedWorldOperations>();
+
+        instance.TotalPassedTime = reader.ReadDouble();
+
+        instance.CurrentExternalEffects = reader.ReadObjectOrNull<List<ExternalEffect>>();
+
+        if (instance.Map == null || instance.PlayerSpecies == null)
+            throw new InvalidOperationException("Map or player species was not loaded correctly for a saved world");
+
+        instance.LightCycle.CalculateDependentLightData(instance.WorldSettings);
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(WorldSettings);
+
+        writer.WriteObjectProperties(UnlockProgress);
+        writer.WriteObjectProperties(StatisticsTracker);
+        writer.WriteObject(LightCycle);
+
+        writer.WriteObject(GenerationHistory);
+
+        writer.Write(speciesIdCounter);
+        writer.WriteObject(worldSpecies);
+        writer.WriteObject(eventsLog);
+
+        writer.WriteObject(PlayerSpecies);
+        writer.WriteObject(Map);
+        writer.WriteObject(TimedEffects);
+
+        writer.Write(TotalPassedTime);
+
+        writer.WriteObjectOrNull(CurrentExternalEffects);
     }
 
     /// <summary>
@@ -422,7 +469,7 @@ public class GameWorld : ISaveLoadable
                 worldSpecies[randomSpecies.ID] = randomSpecies;
 
                 GenerationHistory[0].AllSpeciesData
-                    .Add(randomSpecies.ID, new SpeciesRecordLite(randomSpecies, population));
+                    .Add(randomSpecies.ID, new SpeciesRecordLite(population, randomSpecies));
 
                 entry.Value.AddSpecies(randomSpecies, population);
             }
@@ -947,14 +994,6 @@ public class GameWorld : ISaveLoadable
         {
             patch.UpdateCurrentSunlight(LightCycle.DayLightFraction);
         }
-    }
-
-    public void FinishLoading(ISaveContext? context)
-    {
-        if (Map == null || PlayerSpecies == null)
-            throw new InvalidOperationException("Map or player species was not loaded correctly for a saved world");
-
-        LightCycle.CalculateDependentLightData(WorldSettings);
     }
 
     public void BuildEvolutionaryTree(EvolutionaryTree tree)

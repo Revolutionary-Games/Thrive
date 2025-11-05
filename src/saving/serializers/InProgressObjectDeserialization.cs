@@ -10,10 +10,16 @@ using Newtonsoft.Json;
 /// </summary>
 /// <remarks>
 ///   <para>
-///     Turns out this is actually complex as you don't want to deserialize the child tree too deep too soon so
+///     Turns out this is actually complex as you don't want to deserialize the child tree too deep too soon, so
 ///     this helper allows reading properties in a piecemeal fashion, which is needed for the way we set IDs.
 ///   </para>
 /// </remarks>>
+/// <remarks>
+///   <para>
+///     TODO: this should be pretty much unnecessary now that our saves use archive format, though this is still used
+///     for registry type loading
+///   </para>
+/// </remarks>
 public class InProgressObjectDeserialization
 {
     public Type? DynamicType;
@@ -300,6 +306,16 @@ public class InProgressObjectDeserialization
                 propertyInfo = null;
                 return field.Name;
             }
+
+            var custom = field.GetCustomAttribute<JsonPropertyAttribute>();
+            if (custom?.PropertyName != null &&
+                custom.PropertyName.Equals(candidateKey, StringComparison.OrdinalIgnoreCase))
+            {
+                type = field.FieldType;
+                fieldInfo = field;
+                propertyInfo = null;
+                return field.Name;
+            }
         }
 
         foreach (var property in instanceProperties!)
@@ -356,9 +372,6 @@ public class InProgressObjectDeserialization
     private void CreateInstance()
     {
         var type = DynamicType ?? staticType;
-
-        if (type == typeof(DynamicDeserializeObjectConverter))
-            throw new JsonException("Dynamic dummy deserialize used object didn't specify type");
 
         // Important to set this here so that we can skip not trying to create the instance recursively whenever we
         // try to read the constructor parameters

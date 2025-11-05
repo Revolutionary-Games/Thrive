@@ -1,9 +1,10 @@
 ﻿using Newtonsoft.Json;
 
+// TODO: upgrade this for archiving (or maybe remove if prototypes are updated for ECS)
+
 /// <summary>
 ///   Any kind of object that is tracked to be alive or dead, allows <see cref="EntityReference{T}"/> to work
 /// </summary>
-[JSONAlwaysDynamicType]
 public interface IAliveTracked
 {
     /// <summary>

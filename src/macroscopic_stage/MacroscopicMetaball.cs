@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
-[UseThriveConverter]
-public class MacroscopicMetaball : Metaball
+public class MacroscopicMetaball : Metaball, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public MacroscopicMetaball(CellType cellType)
     {
         CellType = cellType;
@@ -13,11 +15,38 @@ public class MacroscopicMetaball : Metaball
     /// <summary>
     ///   The cell type this metaball consists of
     /// </summary>
-    [JsonProperty]
-    public CellType CellType { get; private set; }
+    public CellType CellType { get; }
 
-    [JsonIgnore]
     public override Color Colour => CellType.Colour;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.MacroscopicMetaball;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.MacroscopicMetaball)
+            throw new NotSupportedException();
+
+        writer.WriteObject((MacroscopicMetaball)obj);
+    }
+
+    public static MacroscopicMetaball ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new MacroscopicMetaball(reader.ReadObject<CellType>());
+        instance.ReadBasePropertiesFromArchive(reader, version);
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(CellType);
+        WriteBasePropertiesToArchive(writer);
+    }
 
     public override bool MatchesDefinition(Metaball other)
     {

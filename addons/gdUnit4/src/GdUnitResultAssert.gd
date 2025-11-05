@@ -1,45 +1,51 @@
 ## An Assertion Tool to verify Results
-class_name GdUnitResultAssert
+@abstract class_name GdUnitResultAssert
 extends GdUnitAssert
 
 
 ## Verifies that the current value is null.
-func is_null() -> GdUnitResultAssert:
-	return self
+@abstract func is_null() -> GdUnitResultAssert
 
 
 ## Verifies that the current value is not null.
-func is_not_null() -> GdUnitResultAssert:
-	return self
+@abstract func is_not_null() -> GdUnitResultAssert
+
+
+## Verifies that the current value is equal to the given one.
+@abstract func is_equal(expected: Variant) -> GdUnitResultAssert
+
+
+## Verifies that the current value is not equal to expected one.
+@abstract func is_not_equal(expected: Variant) -> GdUnitResultAssert
+
+
+## Overrides the default failure message by given custom message.
+@abstract func override_failure_message(message: String) -> GdUnitResultAssert
+
+
+## Appends a custom message to the failure message.
+@abstract func append_failure_message(message: String) -> GdUnitResultAssert
 
 
 ## Verifies that the result is ends up with empty
-func is_empty() -> GdUnitResultAssert:
-	return self
+@abstract func is_empty() -> GdUnitResultAssert
 
 
 ## Verifies that the result is ends up with success
-func is_success() -> GdUnitResultAssert:
-	return self
+@abstract func is_success() -> GdUnitResultAssert
 
 
 ## Verifies that the result is ends up with warning
-func is_warning() -> GdUnitResultAssert:
-	return self
+@abstract func is_warning() -> GdUnitResultAssert
 
 
 ## Verifies that the result is ends up with error
-func is_error() -> GdUnitResultAssert:
-	return self
+@abstract func is_error() -> GdUnitResultAssert
 
 
 ## Verifies that the result contains the given message
-@warning_ignore("unused_parameter")
-func contains_message(expected :String) -> GdUnitResultAssert:
-	return self
+@abstract func contains_message(expected: String) -> GdUnitResultAssert
 
 
 ## Verifies that the result contains the given value
-@warning_ignore("unused_parameter")
-func is_value(expected :Variant) -> GdUnitResultAssert:
-	return self
+@abstract func is_value(expected: Variant) -> GdUnitResultAssert

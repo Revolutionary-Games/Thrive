@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
-using Saving;
 using Path = System.IO.Path;
 
 /// <summary>
@@ -20,7 +19,7 @@ public class InProgressSave : IDisposable
     private readonly Stopwatch stopwatch;
 
     /// <summary>
-    ///   Raw save name, that is processed by saveNameTask
+    ///   Raw save name that is processed by saveNameTask
     /// </summary>
     private readonly string? saveName;
 
@@ -45,7 +44,7 @@ public class InProgressSave : IDisposable
     public InProgressSave(SaveInformation.SaveType type, Func<Node> currentGameRoot,
         Func<InProgressSave, Save> createSaveData, Action<InProgressSave, Save> performSave, string? saveName)
     {
-        // This was used for game pausing / unpausing. Now this is unneeded but let's keep this here for a while still
+        // This was used for game pausing / unpausing. Now this is unneeded, but let's keep this here for a while still
         // to see if there's some other use for this...
         _ = currentGameRoot;
 
@@ -68,6 +67,7 @@ public class InProgressSave : IDisposable
     {
         Initial,
         Screenshot,
+        PostProcessScreenshot,
         SaveData,
         Finished,
     }
@@ -184,7 +184,7 @@ public class InProgressSave : IDisposable
                     break;
                 }
 
-                // On this frame a pause menu might still be open, wait until next frame for it to close before
+                // On this frame a pause menu might still be open, wait until the next frame for it to close before
                 // taking a screenshot
                 wasColourblindScreenFilterVisible = ColourblindScreenFilter.Instance.Visible;
                 if (wasColourblindScreenFilterVisible)
@@ -194,6 +194,7 @@ public class InProgressSave : IDisposable
 
                 state = State.Screenshot;
                 break;
+
             case State.Screenshot:
             {
                 save = createSaveData.Invoke(this);
@@ -206,8 +207,33 @@ public class InProgressSave : IDisposable
                 SaveStatusOverlay.Instance.ShowMessage(Localization.Translate("SAVING_DOT_DOT_DOT"),
                     float.PositiveInfinity);
 
+                state = State.PostProcessScreenshot;
+                break;
+            }
+
+            case State.PostProcessScreenshot:
+            {
+                // Resize the screenshot for smaller saves (if configured and the screenshot is too big)
+                if (save?.Screenshot != null && Settings.Instance.LimitSaveScreenshotSize)
+                {
+                    var screenshot = save.Screenshot;
+
+                    var maxSize = Constants.SAVE_LIST_SCREENSHOT_HEIGHT;
+
+                    if (screenshot.GetWidth() > maxSize || screenshot.GetHeight() > maxSize)
+                    {
+                        GD.Print("Resizing screenshot for smaller save file");
+
+                        float aspectRatio = screenshot.GetWidth() / (float)screenshot.GetHeight();
+
+                        lock (SaveListItem.ResizeLock)
+                        {
+                            screenshot.Resize((int)(maxSize * aspectRatio), maxSize, Image.Interpolation.Lanczos);
+                        }
+                    }
+                }
+
                 state = State.SaveData;
-                JSONDebug.FlushJSONTracesOut();
                 break;
             }
 
@@ -216,7 +242,7 @@ public class InProgressSave : IDisposable
                 if (saveNameTask == null)
                 {
                     throw new InvalidOperationException(
-                        "In progress ave is in invalid state for missing save name generation task");
+                        "In progress save is in invalid state for missing save name generation task");
                 }
 
                 save!.Name = saveNameTask.Result;
@@ -231,8 +257,6 @@ public class InProgressSave : IDisposable
             {
                 stopwatch.Stop();
                 GD.Print("save finished, success: ", success, " message: ", message, " elapsed: ", stopwatch.Elapsed);
-
-                JSONDebug.FlushJSONTracesOut();
 
                 PauseManager.Instance.Resume(nameof(InProgressSave));
 

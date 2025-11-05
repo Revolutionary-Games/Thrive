@@ -1,6 +1,6 @@
 ﻿using System;
+using Arch.Core;
 using Components;
-using DefaultEcs;
 
 /// <summary>
 ///   An organelle component that doesn't do anything. Used to allow organelle components that store data in their

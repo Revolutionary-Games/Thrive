@@ -1,15 +1,17 @@
 ﻿namespace Components;
 
-using DefaultEcs;
+using Arch.Core;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Holds operation info for delayed microbe colony operations
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct DelayedMicrobeColony
+public struct DelayedMicrobeColony : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
-    ///   If not default then this entity wants to attach to a colony after initialization. Note that this entity
+    ///   If not default, then this entity wants to attach to a colony after initialization. Note that this entity
     ///   must already have a <see cref="AttachedToEntity"/> component added.
     /// </summary>
     public Entity FinishAttachingToColony;
@@ -31,7 +33,7 @@ public struct DelayedMicrobeColony
     {
         GrowAdditionalMembers = growAdditionalMembers;
 
-        FinishAttachingToColony = default(Entity);
+        FinishAttachingToColony = Entity.Null;
         AttachIndex = 0;
     }
 
@@ -41,7 +43,7 @@ public struct DelayedMicrobeColony
     /// <param name="delayAttachToColony">Entity to attach to</param>
     /// <param name="targetIndex">
     ///   The index the new member should be placed at. This exists to allow ensuring colonies to have consistent
-    ///   order for their delay attached members if multiple are added at once;
+    ///   order for their delay-attached members if multiple is added at once;
     /// </param>
     public DelayedMicrobeColony(Entity delayAttachToColony, int targetIndex)
     {
@@ -49,5 +51,31 @@ public struct DelayedMicrobeColony
         AttachIndex = targetIndex;
 
         GrowAdditionalMembers = 0;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentDelayedMicrobeColony;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteAnyRegisteredValueAsObject(FinishAttachingToColony);
+        writer.Write(AttachIndex);
+        writer.Write(GrowAdditionalMembers);
+    }
+}
+
+public static class DelayedMicrobeColonyHelpers
+{
+    public static DelayedMicrobeColony ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > DelayedMicrobeColony.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, DelayedMicrobeColony.SERIALIZATION_VERSION);
+
+        return new DelayedMicrobeColony
+        {
+            FinishAttachingToColony = reader.ReadObject<Entity>(),
+            AttachIndex = reader.ReadInt32(),
+            GrowAdditionalMembers = reader.ReadInt32(),
+        };
     }
 }

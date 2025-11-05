@@ -1,8 +1,6 @@
 ﻿using System;
-using System.ComponentModel;
 using Godot;
 using Newtonsoft.Json;
-using Saving.Serializers;
 using ThriveScriptsShared;
 
 /// <summary>
@@ -10,7 +8,6 @@ using ThriveScriptsShared;
 ///   contains the actual properties and configuration related to the compound type.
 ///   For all other simulation parameters that refer to a compound, there must be an existing entry of this type.
 /// </summary>
-[TypeConverter($"Saving.Serializers.{nameof(CompoundDefinitionStringConverter)}")]
 public class CompoundDefinition : IRegistryType, IEquatable<CompoundDefinition>
 {
     /// <summary>
@@ -50,6 +47,11 @@ public class CompoundDefinition : IRegistryType, IEquatable<CompoundDefinition>
     ///   When this is true the compound is always considered to be useful and is not dumped.
     /// </summary>
     public bool IsAlwaysUseful;
+
+    /// <summary>
+    ///   If true, this compound will always be absorbed regardless of capacities. Useful for toxin clouds, etc.
+    /// </summary>
+    public bool AlwaysAbsorbable;
 
     /// <summary>
     ///   Allows absorbing this compound from environmental clouds (also needs <see cref="IsCloud"/> to be true).

@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using SharedBase.Archive;
 
-[JSONAlwaysDynamicType]
 public class BehaviourActionData : EditorCombinableActionData
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public float NewValue;
     public float OldValue;
     public BehaviouralValueType Type;
@@ -14,42 +17,100 @@ public class BehaviourActionData : EditorCombinableActionData
         Type = type;
     }
 
-    public override bool WantsMergeWith(CombinableActionData other)
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.BehaviourActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
-        return other is BehaviourActionData;
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.BehaviourActionData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((BehaviourActionData)obj);
     }
 
-    protected override double CalculateCostInternal()
+    public static BehaviourActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
-        // TODO: should this be free?
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new BehaviourActionData(reader.ReadFloat(), reader.ReadFloat(),
+            (BehaviouralValueType)reader.ReadInt32());
+
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(NewValue);
+        writer.Write(OldValue);
+        writer.Write((int)Type);
+
+        writer.Write(SERIALIZATION_VERSION_EDITOR);
+        base.WriteToArchive(writer);
+    }
+
+    protected override double CalculateBaseCostInternal()
+    {
+        // TODO: add a cost for this. CalculateCostInternal needs tweaking to handle this
         return 0;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
-        if (other is BehaviourActionData behaviourChangeActionData && behaviourChangeActionData.Type == Type)
-        {
-            // If the value has been changed back to a previous value
-            if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON &&
-                Math.Abs(behaviourChangeActionData.NewValue - OldValue) < MathUtils.EPSILON)
-                return ActionInterferenceMode.CancelsOut;
+        var cost = CalculateBaseCostInternal();
+        double refund = 0;
+        bool seenOther = false;
 
-            // If the value has been changed twice
-            if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON ||
-                Math.Abs(behaviourChangeActionData.NewValue - OldValue) < MathUtils.EPSILON)
-                return ActionInterferenceMode.Combinable;
+        var count = history.Count;
+        for (int i = 0; i < insertPosition && i < count; ++i)
+        {
+            var other = history[i];
+
+            if (other is BehaviourActionData behaviourChangeActionData && behaviourChangeActionData.Type == Type)
+            {
+                // If the value has been changed back to a previous value
+                if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON &&
+                    Math.Abs(behaviourChangeActionData.NewValue - OldValue) < MathUtils.EPSILON)
+                {
+                    cost = 0;
+                    refund += other.GetCalculatedSelfCost();
+                    continue;
+                }
+
+                // If the value has been changed twice
+                if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON ||
+                    Math.Abs(behaviourChangeActionData.NewValue - OldValue) < MathUtils.EPSILON)
+                {
+                    if (!seenOther)
+                    {
+                        seenOther = true;
+
+                        // TODO: need to calculate real total cost from the other old value to our new value once
+                        // there are costs and not just 0
+                        // cost = CalculateBehaviourCost(behaviourChangeActionData.OldValue, NewValue);
+                        cost = 0;
+                    }
+
+                    refund += other.GetCalculatedSelfCost();
+                }
+            }
         }
 
-        return ActionInterferenceMode.NoInterference;
+        return (cost, refund);
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        var behaviourChangeActionData = (BehaviourActionData)other;
-        if (Math.Abs(OldValue - behaviourChangeActionData.NewValue) < MathUtils.EPSILON)
-            return new BehaviourActionData(behaviourChangeActionData.OldValue, NewValue, Type);
+        if (other is not BehaviourActionData otherBehaviour)
+            return false;
 
-        return new BehaviourActionData(behaviourChangeActionData.NewValue, OldValue, Type);
+        // Only combine the same type. Otherwise, terrible bugs happen.
+        return otherBehaviour.Type == Type;
     }
 
     protected override void MergeGuaranteed(CombinableActionData other)

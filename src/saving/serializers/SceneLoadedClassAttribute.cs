@@ -1,8 +1,7 @@
 ﻿using System;
 
 /// <summary>
-///   When a class has this attribute it is loaded from a Godot scene on deserialization.
-///   Implies UseThriveSerializerAttribute to automatically also use the converter that can handle this
+///   When a class has this attribute, it can be loaded by the scene manager just by the class name
 /// </summary>
 [AttributeUsage(AttributeTargets.Class)]
 public class SceneLoadedClassAttribute : Attribute

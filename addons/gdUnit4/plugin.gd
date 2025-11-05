@@ -26,8 +26,8 @@ func _enter_tree() -> void:
 		GdUnitCSIMessageWriter.new().prints_warning("It was recognized that GdUnit4 is running in a test environment, therefore the GdUnit4 plugin will not be executed!")
 		return
 
-	if Engine.get_version_info().hex < 0x40300:
-		prints("The GdUnit4 plugin requires Godot version 4.3 or higher to run.")
+	if Engine.get_version_info().hex < 0x40500:
+		prints("This GdUnit4 plugin version '%s' requires Godot version '4.5' or higher to run." % GdUnit4Version.current())
 		return
 	GdUnitSettings.setup()
 	# Install the GdUnit Inspector
@@ -48,8 +48,6 @@ func _enter_tree() -> void:
 	@warning_ignore("return_value_discarded")
 	resource_saved.connect(_on_resource_saved)
 	prints("Loading GdUnit4 Plugin success")
-
-
 
 
 func _exit_tree() -> void:

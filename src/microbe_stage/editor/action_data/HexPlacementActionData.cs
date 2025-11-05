@@ -1,7 +1,12 @@
-﻿[JSONAlwaysDynamicType]
+﻿using System.Collections.Generic;
+using SharedBase.Archive;
+
 public abstract class HexPlacementActionData<THex, TContext> : EditorCombinableActionData<TContext>
-    where THex : class, IActionHex
+    where THex : class, IActionHex, IArchivable
+    where TContext : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION_HEX = 1;
+
     public THex PlacedHex;
     public Hex Location;
     public int Orientation;
@@ -13,40 +18,115 @@ public abstract class HexPlacementActionData<THex, TContext> : EditorCombinableA
         Orientation = orientation;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    public override void WriteToArchive(ISArchiveWriter writer)
     {
-        // If this hex got removed in this session
-        if (other is HexRemoveActionData<THex, TContext> removeActionData &&
-            removeActionData.RemovedHex.MatchesDefinition(PlacedHex))
-        {
-            // If the placed hex has been placed on the same position where it got removed before
-            if (removeActionData.Location == Location)
-                return ActionInterferenceMode.CancelsOut;
+        writer.WriteObject(PlacedHex);
+        writer.Write(Location);
+        writer.Write(Orientation);
 
-            // Removing and placing a hex is a move operation
-            return ActionInterferenceMode.Combinable;
-        }
-
-        if (other is HexMoveActionData<THex, TContext> moveActionData &&
-            moveActionData.MovedHex.MatchesDefinition(PlacedHex))
-        {
-            if (moveActionData.OldLocation == Location)
-                return ActionInterferenceMode.Combinable;
-        }
-
-        return ActionInterferenceMode.NoInterference;
+        writer.Write(SERIALIZATION_VERSION_CONTEXT);
+        base.WriteToArchive(writer);
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)
     {
-        if (other is HexRemoveActionData<THex, TContext> removeActionData)
-        {
-            return CreateDerivedMoveAction(removeActionData);
-        }
+        if (version is > SERIALIZATION_VERSION_HEX or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_HEX);
 
-        return CreateDerivedPlacementAction((HexMoveActionData<THex, TContext>)other);
+        // Base version is different
+        base.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        // Constructor already read all
     }
 
-    protected abstract CombinableActionData CreateDerivedMoveAction(HexRemoveActionData<THex, TContext> data);
-    protected abstract CombinableActionData CreateDerivedPlacementAction(HexMoveActionData<THex, TContext> data);
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
+    {
+        var cost = CalculateBaseCostInternal();
+        double refund = 0;
+
+        bool seenEarlierPlacement = false;
+
+        var count = history.Count;
+        for (int i = 0; i < insertPosition && i < count; ++i)
+        {
+            var other = history[i];
+
+            // If this has been placed before, the cost is not free to avoid exploits where the player places and
+            // deletes something they then want to place for free. This stops that exploit.
+            if (other is HexPlacementActionData<THex, TContext> placementActionData &&
+                placementActionData.PlacedHex.MatchesDefinition(PlacedHex) &&
+                MatchesContext(placementActionData) &&
+
+                // Matches the initial position or the final position of the earlier placement
+                ((placementActionData.Location == Location && placementActionData.Orientation == Orientation) ||
+                    (Location, Orientation) ==
+                    HexMoveActionData<THex, TContext>.ResolveFinalLocation(placementActionData.PlacedHex,
+                        placementActionData.Location, placementActionData.Orientation, history, i + 1,
+                        insertPosition - 1, Context)))
+            {
+                seenEarlierPlacement = true;
+                continue;
+            }
+
+            // If this hex got removed in this session before being placed again
+            if (other is HexRemoveActionData<THex, TContext> removeActionData &&
+                removeActionData.RemovedHex.MatchesDefinition(PlacedHex) && MatchesContext(removeActionData))
+            {
+                bool conflict = false;
+
+                // Check if there's a potential operation that already took the chance to optimise
+                for (int j = 0; j < i; ++j)
+                {
+                    var other2 = history[j];
+
+                    if (other2 is HexPlacementActionData<THex, TContext> placementActionData2 &&
+                        placementActionData2.PlacedHex.MatchesDefinition(PlacedHex) &&
+                        MatchesContext(placementActionData2))
+                    {
+                        conflict = true;
+                        break;
+                    }
+                }
+
+                // If the placed hex has been placed in the same position where it got removed from before
+                if (removeActionData.Location == Location)
+                {
+                    if (!conflict)
+                    {
+                        if (!seenEarlierPlacement)
+                            cost = 0;
+
+                        refund += other.GetAndConsumeAvailableRefund();
+                    }
+
+                    // Theoretically, we could calculate if we should refund an amount here, but this leads to more
+                    // exploits, so for now we just take some extra MP as "punishment" for not using the undo system
+                    /*
+                    else
+                    {
+                        // If the other is a move, can refund its cost in this case
+                         refund += other.GetCalculatedSelfCost();
+                    }*/
+                }
+                else
+                {
+                    // Removing and placing a hex is a move operation
+
+                    if (!conflict)
+                    {
+                        cost = Constants.ORGANELLE_MOVE_COST;
+                        refund += other.GetAndConsumeAvailableRefund();
+                    }
+                }
+            }
+        }
+
+        return (cost, refund);
+    }
+
+    protected override bool CanMergeWithInternal(CombinableActionData other)
+    {
+        return false;
+    }
 }

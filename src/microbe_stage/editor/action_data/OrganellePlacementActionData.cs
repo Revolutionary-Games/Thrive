@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using SharedBase.Archive;
 
-[JSONAlwaysDynamicType]
 public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemplate, CellType>
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public List<OrganelleTemplate>? ReplacedCytoplasm;
 
     public OrganellePlacementActionData(OrganelleTemplate organelle, Hex location, int orientation) : base(organelle,
@@ -10,40 +13,79 @@ public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemp
     {
     }
 
-    protected override double CalculateCostInternal()
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.OrganellePlacementActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.ReproductionOrganelleData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((OrganellePlacementActionData)obj);
+    }
+
+    public static OrganellePlacementActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var hexVersion = reader.ReadUInt16();
+        var instance = new OrganellePlacementActionData(reader.ReadObject<OrganelleTemplate>(), reader.ReadHex(),
+            reader.ReadInt32());
+
+        // Base version is different
+        instance.ReadBasePropertiesFromArchive(reader, hexVersion);
+
+        instance.ReplacedCytoplasm = reader.ReadObjectOrNull<List<OrganelleTemplate>>();
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(SERIALIZATION_VERSION_HEX);
+        base.WriteToArchive(writer);
+
+        writer.WriteObjectOrNull(ReplacedCytoplasm);
+    }
+
+    protected override double CalculateBaseCostInternal()
     {
         return PlacedHex.Definition.MPCost;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
-        if (other is OrganelleMoveActionData moveActionData &&
-            moveActionData.MovedHex.Definition == PlacedHex.Definition)
-        {
-            if (moveActionData.OldLocation == Location)
-                return ActionInterferenceMode.Combinable;
+        double refund = 0;
 
-            if (ReplacedCytoplasm?.Contains(moveActionData.MovedHex) == true)
-                return ActionInterferenceMode.ReplacesOther;
+        var count = history.Count;
+        for (int i = 0; i < insertPosition && i < count; ++i)
+        {
+            var other = history[i];
+
+            if (other is OrganelleMoveActionData moveActionData && MatchesContext(moveActionData))
+            {
+                if ((moveActionData.MovedHex.Definition == PlacedHex.Definition &&
+                        moveActionData.OldLocation == Location) ||
+                    ReplacedCytoplasm?.Contains(moveActionData.MovedHex) == true)
+                {
+                    refund += other.GetAndConsumeAvailableRefund();
+                    continue;
+                }
+            }
+
+            if (other is OrganellePlacementActionData placementActionData &&
+                ReplacedCytoplasm?.Contains(placementActionData.PlacedHex) == true &&
+                MatchesContext(placementActionData))
+            {
+                refund += other.GetAndConsumeAvailableRefund();
+            }
         }
 
-        if (other is OrganellePlacementActionData placementActionData &&
-            ReplacedCytoplasm?.Contains(placementActionData.PlacedHex) == true)
-            return ActionInterferenceMode.ReplacesOther;
+        var baseCost = base.CalculateCostInternal(history, insertPosition);
 
-        return base.GetInterferenceModeWithGuaranteed(other);
-    }
-
-    protected override CombinableActionData CreateDerivedMoveAction(
-        HexRemoveActionData<OrganelleTemplate, CellType> data)
-    {
-        return new OrganelleMoveActionData(data.RemovedHex, data.Location, Location,
-            data.Orientation, Orientation);
-    }
-
-    protected override CombinableActionData CreateDerivedPlacementAction(
-        HexMoveActionData<OrganelleTemplate, CellType> data)
-    {
-        return new OrganellePlacementActionData(PlacedHex, data.NewLocation, data.NewRotation);
+        return (baseCost.Cost, refund + baseCost.RefundCost);
     }
 }

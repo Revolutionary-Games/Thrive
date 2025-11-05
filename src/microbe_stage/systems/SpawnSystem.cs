@@ -3,13 +3,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Arch.Buffer;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.Command;
-using DefaultEcs.System;
 using Godot;
-using Newtonsoft.Json;
 using Nito.Collections;
+using SharedBase.Archive;
 using Xoshiro.PRNG64;
 
 /// <summary>
@@ -19,30 +21,32 @@ using Xoshiro.PRNG64;
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(SpatialAttachSystem))]
 [RunsAfter(typeof(CountLimitedDespawnSystem))]
-[JsonObject(MemberSerialization.OptIn, IsReference = true)]
-public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
+public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem, IArchivable
 {
-    private readonly EntitySet spawnedEntitiesSet;
+    public const ushort SERIALIZATION_VERSION = 1;
+
+    private readonly QueryDescription spawnedQuery = new QueryDescription().WithAll<Spawned>();
+
+    /// <summary>
+    ///   Used to check if a spawn position is likely bad and should be retried
+    /// </summary>
+    private readonly IsSpawnPositionBad badSpawnPositionCheck;
 
     /// <summary>
     ///   Sets how often the spawn system runs and checks things
     /// </summary>
-    [JsonProperty]
     private float interval = 1.0f;
 
-    [JsonProperty]
     private float elapsed;
 
-    [JsonProperty]
     private float despawnElapsed;
 
-    private IWorldSimulation world;
+    private IWorldSimulation worldSimulation;
 
     private Vector3 playerPosition;
 
     private ShuffleBag<Spawner> spawnTypes;
 
-    [JsonProperty]
     private XoShiRo256starstar random;
 
     /// <summary>
@@ -51,10 +55,11 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This isn't saved but the likelihood that losing out on spawning some things is not super critical.
-    ///     Also it is probably the case that this isn't even used on most frames so it is perhaps uncommon
-    ///     that there are queued things when saving. In addition it would be very hard to make sure all the
-    ///     possible queued spawn type data (as it is mostly based on temporary lambdas) is saved.
+    ///     This isn't saved, but the likelihood that losing out on spawning some things is not supercritical.
+    ///     Also, it is probably the case that this isn't even used on most frames, so it is perhaps uncommon
+    ///     that there are queued things when saving.
+    ///     In addition, it would be very hard to make sure all the possible queued spawn type data (as it is mostly
+    ///     based on temporary lambdas) is saved.
     ///   </para>
     /// </remarks>
     private Deque<SpawnQueue> queuedSpawns = new();
@@ -66,39 +71,74 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
 
     /// <summary>
     ///   Estimate count of existing spawn entities within the current spawn radius of the player;
-    ///   Used to prevent a "spawn belt" of densely spawned entities when player doesn't move.
+    ///   Used to prevent a "spawn belt" of densely spawned entities when the player doesn't move.
     /// </summary>
-    [JsonProperty]
     private HashSet<Vector2I> coordinatesSpawned = new();
 
-    public SpawnSystem(IWorldSimulation world)
+    private float entitiesDeleted;
+    private float spawnedEntityWeight;
+    private int despawnedCount;
+
+    private float spawnRadiusSquaredCheck = 5 * 5;
+    private int maxDifferentPositionsCheck = 10;
+
+    public SpawnSystem(IWorldSimulation worldSimulation, World world, IsSpawnPositionBad badSpawnPositionCheck) :
+        base(world)
     {
-        this.world = world;
-        spawnedEntitiesSet = world.EntitySystem.GetEntities().With<Spawned>().With<WorldPosition>().AsSet();
+        this.worldSimulation = worldSimulation;
+        this.badSpawnPositionCheck = badSpawnPositionCheck;
 
         random = new XoShiRo256starstar();
 
         spawnTypes = new ShuffleBag<Spawner>(random);
     }
 
-    /// <summary>
-    ///   Used to construct a temporary instance to copy data from to the real instance when loading from a save
-    /// </summary>
-    [JsonConstructor]
-    public SpawnSystem(XoShiRo256starstar random)
-    {
-        this.random = random;
-
-        // This is meant for just copying data to the real instance when loading a save, so we don't initialize
-        // these key things
-        spawnedEntitiesSet = null!;
-        world = null!;
-        spawnTypes = null!;
-    }
+    public delegate bool IsSpawnPositionBad(Vector3 position, float spawnRadiusSquared);
 
     public bool IsEnabled { get; set; } = true;
 
-    public void Update(float delta)
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.SpawnSystem;
+    public bool CanBeReferencedInArchive => true;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.SpawnSystem)
+            throw new NotSupportedException();
+
+        writer.WriteObject((SpawnSystem)obj);
+    }
+
+    public static SpawnSystem ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new SpawnSystem(reader.ReadObject<IWorldSimulation>(), reader.ReadObject<World>(),
+            reader.ReadDelegate<IsSpawnPositionBad>() ?? throw new NullArchiveObjectException());
+
+        instance.interval = reader.ReadFloat();
+        instance.elapsed = reader.ReadFloat();
+        instance.despawnElapsed = reader.ReadFloat();
+        instance.random = reader.ReadObject<XoShiRo256starstar>();
+        instance.coordinatesSpawned = reader.ReadObject<HashSet<Vector2I>>();
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(worldSimulation);
+        writer.WriteAnyRegisteredValueAsObject(World);
+        writer.WriteDelegate(badSpawnPositionCheck);
+        writer.Write(interval);
+        writer.Write(elapsed);
+        writer.Write(despawnElapsed);
+        writer.WriteAnyRegisteredValueAsObject(random);
+        writer.WriteObject(coordinatesSpawned);
+    }
+
+    public override void Update(in float delta)
     {
         if (!IsEnabled)
             return;
@@ -114,15 +154,14 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
         if (spawnsLeftThisFrame <= 0)
             return;
 
-        // This is now an if to make sure that the spawn system is
-        // only ran once per frame to avoid spawning a bunch of stuff
-        // all at once after a lag spike
-        // NOTE: that as QueueFree is used it's not safe to just switch this to a loop
+        // This is now an if to make sure that the spawn system is only run once per frame to avoid spawning a bunch
+        // of stuff all at once after a lag spike
+        // NOTE: that as QueueFree is used, it's not safe to just switch this to a loop
         if (elapsed >= interval)
         {
             elapsed -= interval;
 
-            estimateEntityCount = DespawnEntities();
+            estimateEntityCount = CallDespawnQuery();
 
             spawnTypes.RemoveAll(s => s.DestroyQueued);
 
@@ -132,10 +171,8 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
         {
             despawnElapsed = 0;
 
-            DespawnEntities();
+            CallDespawnQuery();
         }
-
-        spawnedEntitiesSet.Complete();
     }
 
     /// <summary>
@@ -156,7 +193,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     }
 
     /// <summary>
-    ///   Removes a spawn type immediately. Note that it's easier to just set DestroyQueued to true on an spawner.
+    ///   Removes a spawn type immediately. Note that it's easier to just set DestroyQueued to true on a spawner.
     /// </summary>
     public void RemoveSpawnType(Spawner spawner)
     {
@@ -169,19 +206,18 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
 
         float despawned = 0.0f;
 
-        foreach (ref readonly var entity in spawnedEntitiesSet.GetEntities())
+        // This allocates a lambda, but despawning everything should be rare enough that that is fine
+        World.Query(spawnedQuery, (Entity entity, ref Spawned spawned) =>
         {
-            ref var spawned = ref entity.Get<Spawned>();
-
             if (spawned.DisallowDespawning)
-                continue;
+                return;
 
-            if (world.IsEntityInWorld(entity))
+            if (worldSimulation.IsEntityInWorld(entity))
             {
                 despawned += spawned.EntityWeight;
-                world.DestroyEntity(entity);
+                worldSimulation.DestroyEntity(entity);
             }
-        }
+        });
 
         var debugOverlay = DebugOverlays.Instance;
         if (debugOverlay.PerformanceMetricsVisible)
@@ -214,16 +250,17 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     {
         playerPosition = position;
 
-        // Remove the y-position from player position
+        // Remove the y-position from the player position
         playerPosition.Y = 0;
     }
 
-    public void NotifyExternalEntitySpawned(in EntityRecord entity, float despawnRadiusSquared, float entityWeight)
+    public void NotifyExternalEntitySpawned(in Entity entity, CommandBuffer commandBuffer, float despawnRadiusSquared,
+        float entityWeight)
     {
         if (entityWeight <= 0)
             throw new ArgumentException("weight needs to be positive", nameof(entityWeight));
 
-        entity.Set(new Spawned
+        commandBuffer.Add(entity, new Spawned
         {
             DespawnRadiusSquared = despawnRadiusSquared,
             EntityWeight = entityWeight,
@@ -248,7 +285,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     {
         float extra = 0;
 
-        if (doNotDespawn != default && doNotDespawn.Has<Spawned>())
+        if (doNotDespawn.IsAliveAndHas<Spawned>())
         {
             // Take the just spawned thing we shouldn't despawn into account in the entity count as our estimate
             // won't likely include it yet
@@ -270,28 +307,25 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
 
         var playerReproducedEntities = new List<(Entity Entity, Vector3 Position, float Weight)>();
 
-        foreach (var entity in world.EntitySystem.GetEntities().With<PlayerOffspring>().With<Spawned>()
-                     .With<WorldPosition>().AsEnumerable())
-        {
-            if (world.IsQueuedForDeletion(entity))
-                continue;
-
-            ref var spawned = ref entity.Get<Spawned>();
-
-            if (spawned.DisallowDespawning)
-                continue;
-
-            playerReproductionWeight += spawned.EntityWeight;
-
-            if (doNotDespawn == default || entity != doNotDespawn)
+        // We use simple lambda allocations here as this is not called very often
+        World.Query(new QueryDescription().WithAll<PlayerOffspring, Spawned, WorldPosition>(),
+            (Entity entity, ref Spawned spawned, ref WorldPosition position) =>
             {
-                ref var position = ref entity.Get<WorldPosition>();
+                if (worldSimulation.IsQueuedForDeletion(entity))
+                    return;
 
-                playerReproducedEntities.Add((entity, position.Position, spawned.EntityWeight));
-            }
-        }
+                if (spawned.DisallowDespawning)
+                    return;
 
-        // Despawn one player reproduced copy first if the player reproduced copies are taking up a ton of space
+                playerReproductionWeight += spawned.EntityWeight;
+
+                if (doNotDespawn == Entity.Null || entity != doNotDespawn)
+                {
+                    playerReproducedEntities.Add((entity, position.Position, spawned.EntityWeight));
+                }
+            });
+
+        // Despawn one player reproduced copy first if the player-reproduced copies are taking up a ton of space
         if (playerReproductionWeight > entityLimit * Constants.PREFER_DESPAWN_PLAYER_REPRODUCED_COPY_AFTER &&
             playerReproducedEntities.Count > 0)
         {
@@ -301,61 +335,57 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
             estimateEntityCount -= despawn.Weight;
             limitExcess -= despawn.Weight;
 
-            world.DestroyEntity(despawn.Entity);
+            worldSimulation.DestroyEntity(despawn.Entity);
         }
 
         if (limitExcess <= 1)
             return;
 
+        var candidateDespawns = new List<(Entity Entity, float Weight, Vector3 Position)>();
+
         // We take weight as well as distance into account here to not just despawn a ton of really far away objects
         // with weight of 1
-        using var deSpawnableEntities = world.EntitySystem.GetEntities().With<Spawned>()
-            .With<WorldPosition>().AsEnumerable().Where(e => !e.Get<Spawned>().DisallowDespawning)
-            .Select(e =>
-            {
-                ref var spawned = ref e.Get<Spawned>();
-                ref var position = ref e.Get<WorldPosition>();
+        World.Query(new QueryDescription().WithAll<Spawned, WorldPosition>(), (Entity entity, ref Spawned spawned,
+            ref WorldPosition position) =>
+        {
+            if (worldSimulation.IsQueuedForDeletion(entity))
+                return;
 
-                return (e, spawned.EntityWeight, position.Position) as (Entity Entity, float EntityWeight, Vector3
-                    Position)?;
-            })
+            candidateDespawns.Add((entity, spawned.EntityWeight, position.Position));
+        });
+
+        using var deSpawnableEntities = candidateDespawns
             .OrderByDescending(t =>
-                Math.Log(t!.Value.Position.DistanceSquaredTo(keepEntitiesNear)) + Math.Log(t.Value.EntityWeight))
+                Math.Log(t.Position.DistanceSquaredTo(keepEntitiesNear)) + Math.Log(t.Weight))
             .GetEnumerator();
 
         // Then try to despawn enough stuff for us to get under the limit
         while (limitExcess >= 1)
         {
-            (Entity Entity, float EntityWeight, Vector3 Position)? bestCandidate = null;
+            (Entity Entity, float EntityWeight, Vector3 Position) bestCandidate;
 
-            if (deSpawnableEntities.MoveNext() && deSpawnableEntities.Current != null)
-                bestCandidate = deSpawnableEntities.Current;
-
-            if (doNotDespawn != default && bestCandidate?.Entity == doNotDespawn)
-                continue;
-
-            if (bestCandidate != null && world.IsQueuedForDeletion(bestCandidate.Value.Entity))
-                continue;
-
-            if (bestCandidate != null)
+            if (deSpawnableEntities.MoveNext())
             {
-                var weight = bestCandidate.Value.EntityWeight;
-                estimateEntityCount -= weight;
-                limitExcess -= weight;
-                world.DestroyEntity(bestCandidate.Value.Entity);
-
-                continue;
+                bestCandidate = deSpawnableEntities.Current;
+            }
+            else
+            {
+                // If we couldn't despawn anything sensible, give up
+                GD.PrintErr("Force despawning could not find enough things to despawn");
+                break;
             }
 
-            // If we couldn't despawn anything sensible, give up
-            GD.PrintErr("Force despawning could not find enough things to despawn");
-            break;
-        }
-    }
+            if (doNotDespawn != Entity.Null && bestCandidate.Entity == doNotDespawn)
+                continue;
 
-    public void Dispose()
-    {
-        spawnedEntitiesSet.Dispose();
+            if (worldSimulation.IsQueuedForDeletion(bestCandidate.Entity))
+                continue;
+
+            var weight = bestCandidate.EntityWeight;
+            estimateEntityCount -= weight;
+            limitExcess -= weight;
+            worldSimulation.DestroyEntity(bestCandidate.Entity);
+        }
     }
 
     private void HandleQueuedSpawns(ref float spawnsLeftThisFrame)
@@ -384,8 +414,8 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
                 // Next can be spawned
                 var (recorder, weight) = spawn.SpawnNext(out var current);
 
-                AddSpawnedComponent(current, weight, spawn.RelatedSpawnType);
-                SpawnHelpers.FinalizeEntitySpawn(recorder, world);
+                AddSpawnedComponent(current, recorder, weight, spawn.RelatedSpawnType);
+                SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
 
                 estimateEntityCount += weight;
                 spawnsLeftThisFrame -= weight;
@@ -394,7 +424,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
 
             if (finished)
             {
-                // Finished spawning everything from this enumerator, if we didn't finish we save this spawn for the
+                // Finished spawning everything from this enumerator, if we didn't finish, we save this spawn for the
                 // next queued spawns handling cycle
                 queuedSpawns.RemoveFromFront();
                 spawn.Dispose();
@@ -466,7 +496,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     /// <param name="sector">
     ///   X/Y coordinates of the sector to be spawned, in <see cref="Constants.SPAWN_SECTOR_SIZE" /> units
     /// </param>
-    /// <param name="spawnsLeftThisFrame">How many spawns are still allowed this frame</param>
+    /// <param name="spawnsLeftThisFrame">Determines how many spawns are still allowed in this frame</param>
     private void SpawnInSector(Vector2I sector, ref float spawnsLeftThisFrame)
     {
         float spawns = 0.0f;
@@ -479,12 +509,28 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
             var sectorCenter = new Vector3(sector.X * Constants.SPAWN_SECTOR_SIZE, 0,
                 sector.Y * Constants.SPAWN_SECTOR_SIZE);
 
-            // Distance from the sector center.
-            var displacement = new Vector3(random.NextSingle() * Constants.SPAWN_SECTOR_SIZE -
-                Constants.SPAWN_SECTOR_SIZE * 0.5f, 0,
-                random.NextSingle() * Constants.SPAWN_SECTOR_SIZE - Constants.SPAWN_SECTOR_SIZE * 0.5f);
+            bool spawned = false;
 
-            spawns += SpawnWithSpawner(spawnType, sectorCenter + displacement, ref spawnsLeftThisFrame);
+            for (int i = 0; i < maxDifferentPositionsCheck; ++i)
+            {
+                // Distance from the sector center.
+                var displacement = new Vector3(random.NextSingle() * Constants.SPAWN_SECTOR_SIZE -
+                    Constants.SPAWN_SECTOR_SIZE * 0.5f, 0,
+                    random.NextSingle() * Constants.SPAWN_SECTOR_SIZE - Constants.SPAWN_SECTOR_SIZE * 0.5f);
+
+                var finalPosition = sectorCenter + displacement;
+
+                // Skip spawning stuff into the terrain
+                if (badSpawnPositionCheck.Invoke(finalPosition, spawnRadiusSquaredCheck))
+                    continue;
+
+                spawned = true;
+                spawns += SpawnWithSpawner(spawnType, sectorCenter + displacement, ref spawnsLeftThisFrame);
+                break;
+            }
+
+            if (!spawned)
+                GD.Print($"Skipped a spawn due to not finding position outside the terrain for {spawnType.Name}");
         }
 
         var debugOverlay = DebugOverlays.Instance;
@@ -502,9 +548,17 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
         {
             if (!SpawnsBlocked(spawnType) && spawnType is MicrobeSpawner)
             {
-                spawns += SpawnWithSpawner(spawnType,
-                    playerLocation + new Vector3(MathF.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
-                        MathF.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2), ref spawnsLeftThisFrame);
+                for (int i = 0; i < maxDifferentPositionsCheck; ++i)
+                {
+                    var position = playerLocation + new Vector3(MathF.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
+                        MathF.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2);
+
+                    if (badSpawnPositionCheck.Invoke(position, spawnRadiusSquaredCheck))
+                        continue;
+
+                    spawns += SpawnWithSpawner(spawnType, position, ref spawnsLeftThisFrame);
+                    break;
+                }
             }
         }
 
@@ -523,7 +577,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     }
 
     /// <summary>
-    ///   Does a single spawn with a spawner. Does NOT check we're under the entity limit.
+    ///   Does a single spawn operation with a spawner. Does NOT check we're under the entity limit.
     /// </summary>
     private float SpawnWithSpawner(Spawner spawnType, Vector3 location, ref float spawnsLeftThisFrame)
     {
@@ -534,7 +588,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
             return spawns;
         }
 
-        var spawnQueue = spawnType.Spawn(world, location, this);
+        var spawnQueue = spawnType.Spawn(worldSimulation, location, this);
 
         // Non-entity type spawn
         if (spawnQueue == null)
@@ -554,8 +608,8 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
 
             var (recorder, weight) = spawnQueue.SpawnNext(out var current);
 
-            AddSpawnedComponent(current, weight, spawnType);
-            SpawnHelpers.FinalizeEntitySpawn(recorder, world);
+            AddSpawnedComponent(current, recorder, weight, spawnType);
+            SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
 
             spawns += weight;
             estimateEntityCount += weight;
@@ -575,47 +629,13 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
         return spawns;
     }
 
-    /// <summary>
-    ///   Despawns entities that are far away from the player
-    /// </summary>
-    /// <returns>The number of alive entities (combined weight), used to limit the total</returns>
-    private float DespawnEntities()
+    private float CallDespawnQuery()
     {
-        float entitiesDeleted = 0.0f;
-        float spawnedEntityWeight = 0.0f;
+        entitiesDeleted = 0.0f;
+        spawnedEntityWeight = 0.0f;
+        despawnedCount = 0;
 
-        int despawnedCount = 0;
-
-        foreach (ref readonly var entity in spawnedEntitiesSet.GetEntities())
-        {
-            ref var spawned = ref entity.Get<Spawned>();
-
-            if (spawned.DisallowDespawning)
-                continue;
-
-            var entityWeight = spawned.EntityWeight;
-            spawnedEntityWeight += entityWeight;
-
-            // Keep counting all entities to have an accurate count at the end of this loop, even if we are no
-            // longer allowed to despawn things
-            if (despawnedCount >= Constants.MAX_DESPAWNS_PER_FRAME)
-                continue;
-
-            // Global position must be used here as otherwise colony members are despawned
-            // This should now just process the colony lead cells as this now uses GetChildrenToProcess, but
-            // GlobalTransform is kept here just for good measure to make sure the distances are accurate.
-            ref var position = ref entity.Get<WorldPosition>();
-            var squaredDistance = (playerPosition - position.Position).LengthSquared();
-
-            // If the entity is too far away from the player, despawn it.
-            if (squaredDistance > spawned.DespawnRadiusSquared)
-            {
-                entitiesDeleted += entityWeight;
-                world.DestroyEntity(entity);
-
-                ++despawnedCount;
-            }
-        }
+        DespawnEntitiesQuery(World);
 
         var debugOverlay = DebugOverlays.Instance;
 
@@ -625,11 +645,47 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
         return spawnedEntityWeight - entitiesDeleted;
     }
 
-    private void AddSpawnedComponent(in EntityRecord entity, float weight, Spawner spawnType)
+    /// <summary>
+    ///   Despawns entities that are far away from the player
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Updates <see cref="estimateEntityCount"/>, which must be set to 0 before triggering the query
+    ///   </para>
+    /// </remarks>
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void DespawnEntities(ref Spawned spawned, ref WorldPosition position, Entity entity)
+    {
+        if (spawned.DisallowDespawning)
+            return;
+
+        var entityWeight = spawned.EntityWeight;
+        spawnedEntityWeight += entityWeight;
+
+        // Keep counting all entities to have an accurate count at the end of this loop, even if we are no
+        // longer allowed to despawn things
+        if (despawnedCount >= Constants.MAX_DESPAWNS_PER_FRAME)
+            return;
+
+        // TODO: need to check if this accidentally despawns partial colonies
+        var squaredDistance = (playerPosition - position.Position).LengthSquared();
+
+        // If the entity is too far away from the player, despawn it.
+        if (squaredDistance > spawned.DespawnRadiusSquared)
+        {
+            entitiesDeleted += entityWeight;
+            worldSimulation.DestroyEntity(entity);
+
+            ++despawnedCount;
+        }
+    }
+
+    private void AddSpawnedComponent(in Entity entity, CommandBuffer commandBuffer, float weight, Spawner spawnType)
     {
         float radius = spawnType.SpawnRadius + Constants.DESPAWN_RADIUS_OFFSET;
 
-        entity.Set(new Spawned
+        commandBuffer.Add(entity, new Spawned
         {
             DespawnRadiusSquared = radius * radius,
             EntityWeight = weight,

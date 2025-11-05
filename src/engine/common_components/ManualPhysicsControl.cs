@@ -1,13 +1,15 @@
 ﻿namespace Components;
 
 using Godot;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Allows manual physics control over physical entities
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct ManualPhysicsControl
+public struct ManualPhysicsControl : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     // Note: to allow multiple places in the code to use this, this should have values added with += instead of
     // assigning to not remove the previous value.
     public Vector3 ImpulseToGive;
@@ -26,10 +28,37 @@ public struct ManualPhysicsControl
     ///   </para>
     /// </remarks>
     public bool PhysicsApplied;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentManualPhysicsControl;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(ImpulseToGive);
+        writer.Write(AngularImpulseToGive);
+        writer.Write(RemoveVelocity);
+        writer.Write(RemoveAngularVelocity);
+        writer.Write(PhysicsApplied);
+    }
 }
 
 public static class ManualPhysicsControlHelpers
 {
+    public static ManualPhysicsControl ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > ManualPhysicsControl.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, ManualPhysicsControl.SERIALIZATION_VERSION);
+
+        return new ManualPhysicsControl
+        {
+            ImpulseToGive = reader.ReadVector3(),
+            AngularImpulseToGive = reader.ReadVector3(),
+            RemoveVelocity = reader.ReadBool(),
+            RemoveAngularVelocity = reader.ReadBool(),
+            PhysicsApplied = reader.ReadBool(),
+        };
+    }
+
     /// <summary>
     ///   Resets any accumulated impulse and rotation on this control. Used when enabling disabled bodies as the
     ///   bodies may have accumulated a ton of force from some system.

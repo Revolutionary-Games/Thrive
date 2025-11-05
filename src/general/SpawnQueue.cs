@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using DefaultEcs.Command;
+using Arch.Buffer;
+using Arch.Core;
 using Godot;
 
 /// <summary>
@@ -66,17 +67,17 @@ public abstract class SpawnQueue : IDisposable
         }
     }
 
-    public abstract (EntityCommandRecorder CommandRecorder, float SpawnedWeight) SpawnNext(out EntityRecord entity);
+    public abstract (CommandBuffer CommandRecorder, float SpawnedWeight) SpawnNext(out Entity entity);
 
     /// <summary>
     ///   Checks that this spawn queue is still good to spawn from
     /// </summary>
     /// <param name="playerPosition">
-    ///   The player position to check against. If spawning is too close to the player it should be skipped.
+    ///   The player position to check against. If spawning is too close to the player, it should be skipped.
     /// </param>
     /// <remarks>
     ///   <para>
-    ///     Derived classes should set <see cref="Ended"/> to true if they override this and determine a spawn
+    ///     Derived classes should set <see cref="Ended"/> to true if they override this and determine spawn
     ///     shouldn't happen
     ///   </para>
     /// </remarks>
@@ -118,13 +119,13 @@ public class SingleItemSpawnQueue : SpawnQueue
         this.cancelCheck = cancelCheck;
     }
 
-    public delegate (EntityCommandRecorder CommandRecorder, float SpawnedWeight) Factory(out EntityRecord entity);
+    public delegate (CommandBuffer CommandRecorder, float SpawnedWeight) Factory(out Entity entity);
 
     public delegate bool CheckTooCloseToPlayer(Vector3 spawnLocation, Vector3 playerPosition);
 
     public override bool Ended { get; protected set; }
 
-    public override (EntityCommandRecorder CommandRecorder, float SpawnedWeight) SpawnNext(out EntityRecord entity)
+    public override (CommandBuffer CommandRecorder, float SpawnedWeight) SpawnNext(out Entity entity)
     {
         Ended = true;
         return factory(out entity);
@@ -157,14 +158,14 @@ public class CallbackSpawnQueue<T> : SpawnQueue
         this.cancelCheck = cancelCheck;
     }
 
-    public delegate (EntityCommandRecorder Recorder, float SpawnedWeight, bool LastItem) Factory(T state,
-        out EntityRecord entity);
+    public delegate (CommandBuffer Recorder, float SpawnedWeight, bool LastItem) Factory(T state,
+        out Entity entity);
 
     public delegate bool CheckTooCloseToPlayer(T state, Vector3 playerPosition);
 
     public override bool Ended { get; protected set; }
 
-    public override (EntityCommandRecorder CommandRecorder, float SpawnedWeight) SpawnNext(out EntityRecord entity)
+    public override (CommandBuffer CommandRecorder, float SpawnedWeight) SpawnNext(out Entity entity)
     {
         var (recorder, weight, ended) = factory(stateData, out entity);
 
@@ -214,14 +215,14 @@ public class CombinedSpawnQueue : SpawnQueue
         get => usedSpawnIndex >= spawnQueues.Length;
         protected set
         {
-            if (value == false)
+            if (!value)
                 throw new NotSupportedException("Can't reset spawn index");
 
             usedSpawnIndex = int.MaxValue;
         }
     }
 
-    public override (EntityCommandRecorder CommandRecorder, float SpawnedWeight) SpawnNext(out EntityRecord entity)
+    public override (CommandBuffer CommandRecorder, float SpawnedWeight) SpawnNext(out Entity entity)
     {
         if (Ended)
             throw new InvalidOperationException("Spawn queue has ended");
@@ -242,7 +243,7 @@ public class CombinedSpawnQueue : SpawnQueue
 
         spawnQueues[usedSpawnIndex].CheckIsSpawningStillPossible(playerPosition);
 
-        // Automatically end the queue if CheckIsSpawningStillPossible set it to ended
+        // Automatically end the queue if CheckIsSpawningStillPossible set it to ended status
         if (spawnQueues[usedSpawnIndex].Ended)
             ++usedSpawnIndex;
     }

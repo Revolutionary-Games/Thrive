@@ -1,8 +1,9 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
 
 /// <summary>
@@ -15,18 +16,16 @@ using Godot;
 ///     materials, but otherwise doesn't do anything to them.
 ///   </para>
 /// </remarks>
-[With(typeof(ColourAnimation))]
-[With(typeof(EntityMaterial))]
 [ReadsComponent(typeof(EntityMaterial))]
 [RunsAfter(typeof(ColourAnimationSystem))]
 [RuntimeCost(8)]
 [RunsOnFrame]
 [RunsOnMainThread]
-public sealed class TintColourApplyingSystem : AEntitySetSystem<float>
+public partial class TintColourApplyingSystem : BaseSystem<World, float>
 {
     private readonly StringName tintParameterName = new("tint");
 
-    public TintColourApplyingSystem(World world) : base(world, null)
+    public TintColourApplyingSystem(World world) : base(world)
     {
     }
 
@@ -36,14 +35,12 @@ public sealed class TintColourApplyingSystem : AEntitySetSystem<float>
         base.Dispose();
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref ColourAnimation animation, ref EntityMaterial entityMaterial)
     {
-        ref var animation = ref entity.Get<ColourAnimation>();
-
         if (animation.ColourApplied)
             return;
-
-        ref var entityMaterial = ref entity.Get<EntityMaterial>();
 
         if (entityMaterial.Materials == null)
             return;
