@@ -786,6 +786,7 @@ public class PatchSnapshot : ICloneable, IArchivable
             SpeciesInPatch = reader.ReadObject<Dictionary<Species, long>>(),
             RecordedSpeciesInfo = reader.ReadObject<Dictionary<Species, SpeciesInfo>>(),
             EventsLog = reader.ReadObject<List<GameEventDescription>>(),
+            ActivePatchEvents = reader.ReadObject<Dictionary<PatchEventTypes, PatchEventProperties>>(),
         };
     }
 
@@ -797,6 +798,7 @@ public class PatchSnapshot : ICloneable, IArchivable
         writer.WriteObject(SpeciesInPatch);
         writer.WriteObject(RecordedSpeciesInfo);
         writer.WriteObject(EventsLog);
+        writer.WriteObject(ActivePatchEvents);
     }
 
     public void ReplaceSpecies(Species old, Species newSpecies)

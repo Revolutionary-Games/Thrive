@@ -1,7 +1,7 @@
 ﻿using Godot;
 
 /// <summary>
-///   CustomTooltip that shows a species preview image
+///   Tooltip that shows a species preview image
 /// </summary>
 public partial class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
 {

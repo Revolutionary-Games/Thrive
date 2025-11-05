@@ -123,7 +123,7 @@ public partial class OrganelleUpgradeGUI : Control
                 selectionButton.Connect(MicrobePartSelection.SignalName.OnPartSelected, new Callable(this,
                     nameof(OnGeneralUpgradeSelected)));
 
-                // CustomTooltip
+                // Tooltip
                 var tooltip = upgradeTooltipScene.Instantiate<SelectionMenuToolTip>();
                 tooltip.DisplayName = upgrade.Name;
                 tooltip.Description = upgrade.Description;
