@@ -217,6 +217,7 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
         {
             // Didn't find anything to do after all. This condition should be ensured to be rare as we wasted some
             // processing time here
+            GD.Print("Wasted processing time trying to calculate auto-evo tolerance change but didn't find it");
             return null;
         }
 
