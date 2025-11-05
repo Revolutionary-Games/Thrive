@@ -32,9 +32,10 @@ public struct CollisionManagement : IArchivableComponent
     public List<Entity>? IgnoredCollisionsWith;
 
     /// <summary>
-    ///   This collision ignore lasts only until the bodies are not touching eachother
+    ///   Due to how ignoring works, this list provides all to-be-removed ignores for management system. All elements
+    ///   are supposedly gone by the time system is done with this.
     /// </summary>
-    public List<Entity>? ClipOutIgnoredCollisions;
+    public List<Entity>? RemoveIgnoredCollisions;
 
     /// <summary>
     ///   When specified this callback is called before any physics collisions are allowed to happen. Returning

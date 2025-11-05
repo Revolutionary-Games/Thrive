@@ -324,7 +324,11 @@ public static class CellPropertiesHelpers
         recorder.Set(copyEntity, new CollisionManagement
         {
             RecordActiveCollisions = Constants.MAX_SIMULTANEOUS_COLLISIONS_SMALL,
-            ClipOutIgnoredCollisions = new() { entity },
+        });
+
+        recorder.Set(copyEntity, new CellDivisionCollisionDisablerComponent
+        {
+            IgnoredCollisionWith = entity,
         });
 
         // Since the daughter spawns right next to the cell, it should face the same way to avoid colliding

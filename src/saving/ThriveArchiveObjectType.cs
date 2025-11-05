@@ -218,6 +218,7 @@ public enum ThriveArchiveObjectType : uint
     ComponentStaticBodyMarker = 4302,
     ComponentTimedLife = 4303,
     ComponentWorldPosition = 4304,
+    ComponentCellDivisionCollisionDisabler = 4305,
 
     AgentProperties = 4305,
     CellType = 4306,
