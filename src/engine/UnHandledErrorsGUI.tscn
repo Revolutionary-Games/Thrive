@@ -15,14 +15,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ca0xl")
-errorCount = NodePath("MarginContainer/VBoxContainer/ErrorCountLabel")
+errorCount = NodePath("CanvasLayer/MarginContainer/VBoxContainer/ErrorCountLabel")
 errorPopup = NodePath("ErrorDialog")
 ignoreFurtherErrors = NodePath("ErrorDialog/VBoxContainer/IgnoreFurther")
 popupModsUsedWarning = NodePath("ErrorDialog/VBoxContainer/ExceptionBox/ModsEnabledWarning2")
-counterModsUsedWarning = NodePath("MarginContainer/VBoxContainer/ModsEnabledWarning")
+counterModsUsedWarning = NodePath("CanvasLayer/MarginContainer/VBoxContainer/ModsEnabledWarning")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 127
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -32,17 +34,17 @@ grow_horizontal = 0
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
 
-[node name="ErrorCountLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="ErrorCountLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 text = "UNHANDLED_ERROR_COUNT"
 label_settings = ExtResource("2_3lj2u")
 horizontal_alignment = 2
 
-[node name="ModsEnabledWarning" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="ModsEnabledWarning" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 text = "MODS_ARE_ENABLED"
