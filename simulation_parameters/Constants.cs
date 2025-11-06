@@ -1428,9 +1428,9 @@ public static class Constants
     public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.001f;
     public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
 
-    public const float GLOBAL_GLACIATION_OXYGEN_THRESHOLD = 0.07f;
-    public const float GLOBAL_GLACIATION_PATCHES_THRESHOLD = 0.7f;
-    public const float GLOBAL_GLACIATION_CHANCE = 0.5F;
+    public const float GLOBAL_GLACIATION_OXYGEN_THRESHOLD = 0.055f;
+    public const float GLOBAL_GLACIATION_PATCHES_THRESHOLD = 0.55f;
+    public const float GLOBAL_GLACIATION_CHANCE = 0.53f;
     public const int GLOBAL_GLACIATION_MIN_DURATION = 2;
     public const int GLOBAL_GLACIATION_MAX_DURATION = 6;
     public const int GLOBAL_GLACIATION_HEADS_UP_DURATION = 1;
