@@ -81,6 +81,7 @@ public partial class UnHandledErrorsGUI : Control
         errorCount.Text = Localization.Translate("UNHANDLED_ERROR_COUNT").FormatSafe(errorCountValue);
 
         var usesMods = ModLoader.Instance.HasEnabledMods();
+
         counterModsUsedWarning.Visible = usesMods;
 
         if (!suppressErrorPopups)
