@@ -13,7 +13,7 @@ public static class UnhandledExceptionLogger
 
     public static void OnUnhandledException(object sender, UnhandledExceptionEventArgs eventArgs)
     {
-        // Only report the first as now Godot doesn't shut down on unhandled exception so this could keep getting
+        // Only report the first as now Godot doesn't shut down on unhandled exception, so this could keep getting
         // printed a lot
         if (reportedIssue)
             return;
@@ -55,6 +55,12 @@ public static class UnhandledExceptionLogger
 
         // TODO: maybe this should signal the game to quit or trigger a popup or something to inform the user?
     }
+
+    // This isn't really an alternative as there are some exceptions which are safely caught
+    /*public static void OnFirstChanceException(object sender, FirstChanceExceptionEventArgs eventArgs)
+    {
+
+    }*/
 
     /// <summary>
     ///   Called by the mod loader to report when mods are loaded. This modifies the message printing to make it clear

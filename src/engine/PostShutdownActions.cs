@@ -15,6 +15,7 @@ public partial class PostShutdownActions : Node
     {
         base._ExitTree();
 
+        LogInterceptor.Remove();
         OnGameSceneTreeReleased();
     }
 

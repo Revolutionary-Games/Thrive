@@ -61,6 +61,8 @@ public partial class StartupActions : Node
                 "TODO: reimplement unhandled exception handler: https://github.com/godotengine/godot/issues/73515");
         }
 
+        LogInterceptor.Register();
+
         NativeInterop.SetDllImportResolver();
 
         GD.Print("Startup C# locale is: ", CultureInfo.CurrentCulture, " Godot locale is: ",
