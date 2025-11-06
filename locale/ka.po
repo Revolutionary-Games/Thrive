@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2025-11-06 15:24+0200\n"
 "PO-Revision-Date: 2025-09-24 02:53+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
@@ -2569,6 +2569,9 @@ msgstr "ID ნომერი"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(რენდერის რეჟიმზე და მასთაბზე დამოკიდებულებით ყველა მეთოდი ხელმისაწვდომი არაა)"
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 msgid "IMAGE_FILE_TYPES"
 msgstr "მხარდაჭერილი გამოსახულების ფაილები"
 
@@ -2778,18 +2781,6 @@ msgstr ":"
 
 msgid "JANUARY"
 msgstr "იანვარი"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON გამართვის რეჟიმი:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "ყოველთვის"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "ავტომატურად"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "არასოდეს"
 
 msgid "JULY"
 msgstr "ივლისი"
@@ -3729,6 +3720,10 @@ msgstr "ტიპი შეცვლა"
 
 msgid "MODS"
 msgstr "მოდები"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "ჩართული მოდების გარეშე"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -4998,12 +4993,6 @@ msgstr "გამოყენებული ჩიტები"
 msgid "SAVE_DELETE_WARNING"
 msgstr "შენახულის წაშლა შეუქცვადია. დარწმუნებული ბრძანდებით, რომ გნებავთ, სამუდამოდ წაშალოთ {0}?"
 
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr ""
-
 msgid "SAVE_FAILED"
 msgstr "შენახვა ჩავარდა"
 
@@ -6223,6 +6212,17 @@ msgstr "გაუქმება"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "ბოლო ქმედების გაუქმება"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "მოდების ჩასატვირთად ან გამოსატვირთად ჯერ თქვენი ცვლილებები უნდა გადაატაროთ."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "მადლობა"
 
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "აღჭურვა"
@@ -8092,6 +8092,18 @@ msgstr "გადიდება"
 
 msgid "ZOOM_OUT"
 msgstr "დაპატარავება"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON გამართვის რეჟიმი:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "ყოველთვის"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "ავტომატურად"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "არასოდეს"
 
 #, fuzzy
 #~ msgid "OUTDATED"

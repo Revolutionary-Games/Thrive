@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2025-11-06 15:24+0200\n"
 "PO-Revision-Date: 2025-08-13 14:57+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -2718,6 +2718,9 @@ msgstr "ID-Nummer"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(abhängig vom Rendering-Modus und Upscaling sind nicht alle Methoden verfügbar)"
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 msgid "IMAGE_FILE_TYPES"
 msgstr "Membrantypen"
 
@@ -2930,18 +2933,6 @@ msgstr "Beende eine Generation"
 
 msgid "JANUARY"
 msgstr "Januar"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON Debug-Modus:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Immer"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automatisch"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Niemals"
 
 msgid "JULY"
 msgstr "Juli"
@@ -3948,6 +3939,10 @@ msgstr "Typ modifizieren"
 
 msgid "MODS"
 msgstr "Modifikationen"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Keine Mods aktiv"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -5315,13 +5310,6 @@ msgstr "Genutzter Platz:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Das Löschen dieses Spielstandes kann nicht rückgängig gemacht werden, bist du sicher, dass du {0} dauerhaft löschen willst?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "Bei der Meldung eines Speicherfehlers bitte die Datei [color=#3796e1][url={0}]{1}[/url][/color] aus dem[color=#3796e1][url={2}]Log-Ordner[/url][/color] anfügen. Diese enthält wichtige Informationen für die Thrive-Entwickler zur Fehleranalyse. Ohne diese Datei ist es extrem schwierig den Fehler zu finden und zu beheben."
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "JSON Debug-Modus:"
 
 msgid "SAVE_FAILED"
 msgstr "Speichern fehlgeschlagen"
@@ -6809,6 +6797,17 @@ msgstr "Rückgängig"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Letzte Aktion rückgängig machen"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Axone sind die Nervenfasern, die Neuronen zur Vernetzung und Kommunikation untereinander verwenden. Wenn diese Organellen platziert werden, ändert sich der Zelltyp auf Hirngewebe."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Vielen Dank"
 
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Bauen"
@@ -9254,6 +9253,25 @@ msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON Debug-Modus:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Immer"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automatisch"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Niemals"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "Bei der Meldung eines Speicherfehlers bitte die Datei [color=#3796e1][url={0}]{1}[/url][/color] aus dem[color=#3796e1][url={2}]Log-Ordner[/url][/color] anfügen. Diese enthält wichtige Informationen für die Thrive-Entwickler zur Fehleranalyse. Ohne diese Datei ist es extrem schwierig den Fehler zu finden und zu beheben."
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "JSON Debug-Modus:"
 
 #, fuzzy
 #~ msgid "OUTDATED"

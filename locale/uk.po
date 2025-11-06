@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2025-11-06 15:24+0200\n"
 "PO-Revision-Date: 2025-08-25 16:38+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -2729,6 +2729,9 @@ msgstr "НомерID"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(залежно від режиму рендера та масштабування не всі методи можуть бути доступні)"
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Типи Мембрани"
@@ -2955,18 +2958,6 @@ msgstr "Взаємодіяти з об'єктом"
 
 msgid "JANUARY"
 msgstr "Січень"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "Режим зневадження JSON:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Завжди"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Автоматично"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Ніколи"
 
 msgid "JULY"
 msgstr "Липень"
@@ -4035,6 +4026,10 @@ msgstr "Змінити тип"
 
 msgid "MODS"
 msgstr "Моди"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Жоден мод не ввімкнений"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -5387,12 +5382,6 @@ msgstr "Використаний простір:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Видалення цього збереження неможливо буде скасувати. Чи впевнені Ви, що хочете назавжди видалити {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "Повідомляючи про помилку збереження, будь ласка, прикладіть [color=#3796e1][url={0}]{1}[/url][/color] з [color=#3796e1][url={2}]каталогу журналів[/url][/color], оскільки ця інформація є критичною для розуміння причини помилки. Без цього файлу розробникам Thrive буде дуже складно виявити та полагодити проблему."
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Перш ніж повідомляти про цю помилку збереження, будь ласка, переконайтеся, що режим зневадження JSON не вимкнено. Автоматичний режим зневадження JSON повинен був створити додатковий файл під назвою \"{0}\" у [color=#3796e1][url={1}]каталозі журналів[/url][/color]. Цей файл містить критичну інформацію для розробників Thrive, щоб вони могли зрозуміти природу помилки збереження."
 
 msgid "SAVE_FAILED"
 msgstr "Невдале збереження"
@@ -6856,6 +6845,17 @@ msgstr "Скасувати"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Скасувати попередню дію"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Аксони є нервовими тканинами, що використовуються нейронами для з'єднання й комунікації один з одним. Розміщення цієї органели на клітині перетворює її на мозкову тканину."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Дякуємо"
 
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Побудувати"
@@ -9162,6 +9162,24 @@ msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "Режим зневадження JSON:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Завжди"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Автоматично"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Ніколи"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "Повідомляючи про помилку збереження, будь ласка, прикладіть [color=#3796e1][url={0}]{1}[/url][/color] з [color=#3796e1][url={2}]каталогу журналів[/url][/color], оскільки ця інформація є критичною для розуміння причини помилки. Без цього файлу розробникам Thrive буде дуже складно виявити та полагодити проблему."
+
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Перш ніж повідомляти про цю помилку збереження, будь ласка, переконайтеся, що режим зневадження JSON не вимкнено. Автоматичний режим зневадження JSON повинен був створити додатковий файл під назвою \"{0}\" у [color=#3796e1][url={1}]каталозі журналів[/url][/color]. Цей файл містить критичну інформацію для розробників Thrive, щоб вони могли зрозуміти природу помилки збереження."
 
 #, fuzzy
 #~ msgid "OUTDATED"

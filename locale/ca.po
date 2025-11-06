@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2025-11-06 15:24+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -2854,6 +2854,9 @@ msgstr "Nombre d'ID"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Tipus de Membrana"
@@ -3100,18 +3103,6 @@ msgstr "Acaba una Generació"
 
 msgid "JANUARY"
 msgstr "Gener"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "Mode debug de JSON:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Sempre"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automàticament"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Mai"
 
 msgid "JULY"
 msgstr "Juliol"
@@ -4239,6 +4230,10 @@ msgstr "Modificar Tipus"
 
 msgid "MODS"
 msgstr "Mods"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Inhabilitat"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -5679,13 +5674,6 @@ msgstr "Espai emprat pels arxius:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "L'acció d'eliminar aquest arxiu de guardat és irreversible, esteu segur que voleu eliminar permanentment l'arxiu {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Mode debug de JSON:"
 
 msgid "SAVE_FAILED"
 msgstr "Acció de guardat fallida"
@@ -7212,6 +7200,17 @@ msgstr "Desfer l'acció"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Desfer la darrera acció"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Els Pili (singular: pilus) es troben a la superfície de molts micro-organismes i tenen forma de pèls. Hi poden haver desenes o centenars de pili a la superfície d'un micro-organisme, i es poden fer servir amb diferents finalitats, incloents la depredació. Els micro-organismes patogènics fan servir els pili per virulència, ja sigui per unir-se a teixits hoste, o per penetrar la membrana exterior i accedir al citoplasma. Molts Pili similars existeixen, però no estan evolutivament relacionats i són resultat d'evolució convergent. Un sol organisme ha de tenir l'habilitat de tenir diferents tipus de Pili, i aquells que són a la superfície són canviats i substituïts constantment."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "HAS ACONSEGUIT PROSPERAR!"
 
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
@@ -9517,6 +9516,22 @@ msgstr "Enfocar la visió de la càmera"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "Mode debug de JSON:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Sempre"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automàticament"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Mai"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Mode debug de JSON:"
 
 #, fuzzy
 #~ msgid "OUTDATED"

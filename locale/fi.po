@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2025-11-06 15:24+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -2956,6 +2956,9 @@ msgstr "ID-Numero"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Solukalvotyypit"
@@ -3199,18 +3202,6 @@ msgstr "konsentraatiosta riippuen"
 
 msgid "JANUARY"
 msgstr "Tammikuu"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON-virheenkäsittelymoodi:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Aina"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automaattisesti"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Ei koskaan"
 
 msgid "JULY"
 msgstr "Heinäkuu"
@@ -4369,6 +4360,10 @@ msgstr "Vaihda tyyppiä"
 
 msgid "MODS"
 msgstr "Modit"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Ei käytössä"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -5815,13 +5810,6 @@ msgstr "Tilaa käytössä:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti lopullisesti poistaa {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "JSON-virheenkäsittelymoodi:"
 
 msgid "SAVE_FAILED"
 msgstr "Tallennus epäonnistui"
@@ -7379,6 +7367,17 @@ msgstr "Kumoa"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Kumoa viimeisin toimenpide"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Pistä muita soluja tällä."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "OLET SELVIYTYNYT!"
 
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
@@ -9798,6 +9797,22 @@ msgstr "Zoomaa sisään"
 
 msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON-virheenkäsittelymoodi:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Aina"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automaattisesti"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Ei koskaan"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "JSON-virheenkäsittelymoodi:"
 
 #, fuzzy
 #~ msgid "OUTDATED"
