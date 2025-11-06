@@ -79,7 +79,7 @@ public partial class RadiationDamageSystem : BaseSystem<World, float>
         // Apply damage if there is some to apply
         if (rawDamage > 0 && !health.Dead)
         {
-            health.DealMicrobeDamage(ref entity.Get<CellProperties>(), rawDamage, "radiation",
+            health.DealMicrobeDamage(ref entity.Get<CellProperties>(), entity, rawDamage, "radiation",
                 HealthHelpers.GetInstantKillProtectionThreshold(entity));
 
             entity.SendNoticeIfPossible(() =>
