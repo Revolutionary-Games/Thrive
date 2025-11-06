@@ -15,20 +15,6 @@ enum ShortCut {
 	CREATE_TEST,
 }
 
-
-const CommandMapping = {
-	ShortCut.RUN_TESTS_OVERALL: GdUnitCommandHandler.CMD_RUN_OVERALL,
-	ShortCut.RUN_TESTCASE: GdUnitCommandHandler.CMD_RUN_TESTCASE,
-	ShortCut.RUN_TESTCASE_DEBUG: GdUnitCommandHandler.CMD_RUN_TESTCASE_DEBUG,
-	ShortCut.RUN_TESTSUITE: GdUnitCommandHandler.CMD_RUN_TESTSUITE,
-	ShortCut.RUN_TESTSUITE_DEBUG: GdUnitCommandHandler.CMD_RUN_TESTSUITE_DEBUG,
-	ShortCut.RERUN_TESTS: GdUnitCommandHandler.CMD_RERUN_TESTS,
-	ShortCut.RERUN_TESTS_DEBUG: GdUnitCommandHandler.CMD_RERUN_TESTS_DEBUG,
-	ShortCut.STOP_TEST_RUN: GdUnitCommandHandler.CMD_STOP_TEST_RUN,
-	ShortCut.CREATE_TEST: GdUnitCommandHandler.CMD_CREATE_TESTCASE,
-}
-
-
 const DEFAULTS_MACOS := {
 	ShortCut.NONE : [],
 	ShortCut.RUN_TESTCASE : [Key.KEY_META, Key.KEY_ALT, Key.KEY_F5],
