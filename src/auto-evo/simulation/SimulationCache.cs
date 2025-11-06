@@ -410,9 +410,14 @@ public class SimulationCache
         if (predatorSpeed ! > preySpeed)
         {
             if (predatorSpeed > slowedPreySpeed)
-                pilusScore *= slowedProportion + Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+            {
+                pilusScore *= slowedProportion
+                    + (1 - slowedProportion) * Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+            }
             else
+            {
                 pilusScore *= Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+            }
         }
 
         // Damaging toxin section
