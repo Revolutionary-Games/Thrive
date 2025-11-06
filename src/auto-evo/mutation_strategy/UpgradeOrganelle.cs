@@ -98,11 +98,18 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
             foreach (var baseSpeciesOrganelle in eligibleOrganelleSample)
             {
                 var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+                OrganelleTemplate? organelle = null;
 
-                var organelle = newSpecies.Organelles.Organelles
-                    .First(organelle => organelle.Position == baseSpeciesOrganelle.Position);
+                foreach (var candidateOrganelle in newSpecies.Organelles.Organelles)
+                {
+                    if (candidateOrganelle.Position == baseSpeciesOrganelle.Position)
+                    {
+                        organelle = candidateOrganelle;
+                        break;
+                    }
+                }
 
-                foreach (var availableUpgrade in organelle.Definition.AvailableUpgrades)
+                foreach (var availableUpgrade in organelle!.Definition.AvailableUpgrades)
                 {
                     var availableUpgradeName = availableUpgrade.Key;
                     if (availableUpgradeName == upgradeName)
