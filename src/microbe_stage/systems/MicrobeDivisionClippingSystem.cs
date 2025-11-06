@@ -1,11 +1,11 @@
 ﻿namespace Systems;
 
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
 using Components;
-using Godot;
 using World = Arch.Core.World;
 
 /// <summary>
@@ -28,7 +28,7 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update(ref CellDivisionCollisionDisabler collisionDisabler,
         ref CollisionManagement collisionManagement, ref CellProperties cellProperties,
-        ref WorldPosition worldPosition, in Entity entity)
+        ref WorldPosition worldPosition)
     {
         ref var otherEntity = ref collisionDisabler.IgnoredCollisionWith;
 
@@ -46,10 +46,9 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
             // Square
             clipOutDistanceSquared *= clipOutDistanceSquared;
             if (otherEntity.Get<WorldPosition>().Position.DistanceSquaredTo(
-                worldPosition.Position) >= clipOutDistanceSquared)
+                    worldPosition.Position) >= clipOutDistanceSquared)
             {
-                if (collisionManagement.RemoveIgnoredCollisions == null)
-                    collisionManagement.RemoveIgnoredCollisions = new();
+                collisionManagement.RemoveIgnoredCollisions ??= new List<Entity>();
 
                 if (!collisionManagement.RemoveIgnoredCollisions.Contains(otherEntity))
                 {
@@ -59,8 +58,7 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
             }
             else
             {
-                if (collisionManagement.IgnoredCollisionsWith == null)
-                    collisionManagement.IgnoredCollisionsWith = new();
+                collisionManagement.IgnoredCollisionsWith ??= new List<Entity>();
 
                 if (!collisionManagement.IgnoredCollisionsWith.Contains(otherEntity))
                 {
