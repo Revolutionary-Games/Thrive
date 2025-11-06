@@ -163,7 +163,8 @@ func _contains_exactly_in_any_order(expected: Array, compare_mode: GdObjects.COM
 		return report_error("ERROR: expected value: <%s>\n is not a Array Type!" % GdObjects.typeof_as_string(expected_value))
 
 	if current_value == null:
-		return report_error(GdAssertMessages.error_arr_contains_exactly_in_any_order(current_value, expected_value, [], expected_value, compare_mode))
+		return report_error(GdAssertMessages.error_arr_contains_exactly_in_any_order(current_value, expected_value, [],
+			expected_value, compare_mode))
 	# find the difference
 	@warning_ignore("unsafe_cast")
 	var diffs := _array_div(compare_mode, current_value as Array[Variant], expected_value as Array[Variant], false)
@@ -171,7 +172,8 @@ func _contains_exactly_in_any_order(expected: Array, compare_mode: GdObjects.COM
 	var not_found: Array[Variant] = diffs[1]
 	if not_expect.is_empty() and not_found.is_empty():
 		return report_success()
-	return report_error(GdAssertMessages.error_arr_contains_exactly_in_any_order(current_value, expected_value, not_expect, not_found, compare_mode))
+	return report_error(GdAssertMessages.error_arr_contains_exactly_in_any_order(current_value, expected_value, not_expect,
+		not_found, compare_mode))
 
 
 func _not_contains(expected: Array, compare_mode: GdObjects.COMPARE_MODE) -> GdUnitArrayAssert:
@@ -180,7 +182,8 @@ func _not_contains(expected: Array, compare_mode: GdObjects.COMPARE_MODE) -> GdU
 	if not _validate_value_type(expected_value):
 		return report_error("ERROR: expected value: <%s>\n is not a Array Type!" % GdObjects.typeof_as_string(expected_value))
 	if current_value == null:
-		return report_error(GdAssertMessages.error_arr_contains_exactly_in_any_order(current_value, expected_value, [], expected_value, compare_mode))
+		return report_error(GdAssertMessages.error_arr_contains_exactly_in_any_order(current_value, expected_value, [],
+			expected_value, compare_mode))
 	@warning_ignore("unsafe_cast")
 	var diffs := _array_div(compare_mode, current_value as Array[Variant], expected_value as Array[Variant])
 	var found: Array[Variant] = diffs[0]
