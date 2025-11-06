@@ -511,13 +511,6 @@ public class Settings
         new(new HashSet<DismissibleNotice>());
 
     /// <summary>
-    ///   The Db value to be added to the master audio bus
-    /// </summary>
-    [JsonProperty]
-    public SettingValue<JSONDebug.DebugMode> JSONDebugMode { get; private set; } =
-        new(JSONDebug.DebugMode.Automatic);
-
-    /// <summary>
     ///   The screen effect currently being used
     /// </summary>
     [JsonProperty]
