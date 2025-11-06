@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Text;
 using Godot;
 using Godot.Collections;
 
@@ -9,8 +10,15 @@ public partial class LogInterceptor : Logger
 {
     private static LogInterceptor? instance;
 
-    private readonly string[] previousMessageBuffer = new string[10];
-    private int nextMessageBufferIndex = 0;
+    private readonly StringBuilder errorBuilder = new();
+
+    private readonly string?[] previousMessageBuffer = new string[10];
+    private int previousMessageBufferIndex;
+
+    public LogInterceptor()
+    {
+        previousMessageBufferIndex = previousMessageBuffer.Length;
+    }
 
     public static void Register()
     {
@@ -36,19 +44,27 @@ public partial class LogInterceptor : Logger
         instance = null;
     }
 
+    // The log callbacks may be called from other threads
+
     public override void _LogMessage(string message, bool error)
     {
         base._LogMessage(message, error);
 
-        // Save messages in a circular buffer for later retrieval
-        previousMessageBuffer[nextMessageBufferIndex] = message;
-        ++nextMessageBufferIndex;
+        lock (previousMessageBuffer)
+        {
+            // Save messages in a circular buffer for later retrieval
+            ++previousMessageBufferIndex;
 
-        if (nextMessageBufferIndex >= previousMessageBuffer.Length)
-            nextMessageBufferIndex = 0;
+            if (previousMessageBufferIndex >= previousMessageBuffer.Length)
+                previousMessageBufferIndex = 0;
 
-        // TODO: do some errors just show up as a single error message?
-        // Some probably do but do we care about any of them? Should we do some handling for them?
+            previousMessageBuffer[previousMessageBufferIndex] = message;
+
+            // TODO: do some errors just show up as a single error message?
+            // Some probably do but do we care about any of them?
+            // Should we do some handling for them?
+            // These errors as they aren't very visible, would make sense to show despite a debugger being attached
+        }
     }
 
     public override void _LogError(string function, string file, int line, string code, string rationale,
@@ -58,9 +74,51 @@ public partial class LogInterceptor : Logger
 
         // TODO: ignore some errors we do not care about?
 
-        // But forward others to notify about the error
+        if (Engine.IsEditorHint())
+            return;
 
-        if (nextMessageBufferIndex > 0)
+        // Don't want to show extra errors when a debugger is attached
+        if (Debugger.IsAttached)
+        {
             Debugger.Break();
+            return;
+        }
+
+        // Forward other errors to notify the player about the error
+        lock (previousMessageBuffer)
+        {
+            // Read in reverse order to get a natural order
+            for (int i = previousMessageBuffer.Length - 1; i >= 0; --i)
+            {
+                var potentialLine =
+                    previousMessageBuffer[
+                        (previousMessageBufferIndex - i).PositiveModulo(previousMessageBuffer.Length)];
+
+                // The lines already have line endings in them
+                if (potentialLine != null)
+                    errorBuilder.Append(potentialLine);
+            }
+
+            var contextLines = errorBuilder.ToString();
+            errorBuilder.Clear();
+
+            // As we use only C# code, the only thing we need is the "code" which contains the C# backtrace
+
+            var finalError = code;
+
+            Invoke.Instance.Perform(() =>
+            {
+                var gui = UnHandledErrorsGUI.Instance;
+
+                if (gui == null)
+                {
+                    // We can print again as this is no longer in the error callback context
+                    GD.PrintErr("No unhandled error receiver");
+                    return;
+                }
+
+                gui.ReportError(finalError, contextLines);
+            });
+        }
     }
 }
