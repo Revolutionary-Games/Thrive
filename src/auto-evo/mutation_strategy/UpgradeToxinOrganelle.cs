@@ -4,6 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoEvo;
 
+// Direction for toxicity mutation
+public enum MutationDirection
+{
+    Increase,
+    Decrease,
+    Both,
+}
+
 /// <summary>
 ///   Specific mutationstrategy for toxin-launching organelles
 ///   applies a fixed toxin type based on given upgradename
@@ -13,7 +21,7 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
 {
     private readonly Func<OrganelleDefinition, bool> criteria;
     private readonly FrozenSet<OrganelleDefinition> allOrganelles;
-    private readonly string direction;
+    private readonly MutationDirection direction;
     private readonly string? upgradeName;
     private ToxinType toxinType;
 
@@ -24,12 +32,13 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
     /// <param name="criteria">Organelle requirement to apply</param>
     /// <param name="upgradeName">The name of the upgrade (from organelles.json) to apply</param>
     /// <param name="direction">"increase", "decrease", or "both" to decide what to do with toxicity</param>
-    public UpgradeToxinOrganelle(Func<OrganelleDefinition, bool> criteria, string upgradeName, string direction)
+    public UpgradeToxinOrganelle(Func<OrganelleDefinition, bool> criteria, string upgradeName,
+        MutationDirection direction)
     {
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
         this.criteria = criteria;
         this.upgradeName = upgradeName;
-        this.direction = direction.ToLowerInvariant();
+        this.direction = direction;
     }
 
     public bool Repeatable => true;
@@ -135,15 +144,15 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
 
             switch (direction)
             {
-                case "increase":
+                case MutationDirection.Increase:
                     toxinData.Toxicity = Math.Clamp(toxinData.Toxicity + change, -1.0f, 1.0f);
                     break;
 
-                case "decrease":
+                case MutationDirection.Decrease:
                     toxinData.Toxicity = Math.Clamp(toxinData.Toxicity - change, -1.0f, 1.0f);
                     break;
 
-                case "both":
+                case MutationDirection.Both:
                     change *= random.NextDouble() < 0.5 ? -1.0f : 1.0f;
                     toxinData.Toxicity = Math.Clamp(toxinData.Toxicity + change, -1.0f, 1.0f);
                     break;
