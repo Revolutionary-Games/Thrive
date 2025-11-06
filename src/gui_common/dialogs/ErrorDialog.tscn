@@ -32,6 +32,8 @@ offset_right = 49.0
 offset_bottom = 70.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
 theme_override_constants/separation = 5
 
 [node name="ExtraErrorDescription" type="Label" parent="VBoxContainer" index="0"]
