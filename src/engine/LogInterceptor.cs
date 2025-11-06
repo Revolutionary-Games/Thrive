@@ -72,8 +72,17 @@ public partial class LogInterceptor : Logger
     {
         base._LogError(function, file, line, code, rationale, editorNotify, errorType, scriptBacktraces);
 
+        // Only trigger on errors
+        if (errorType != (int)ErrorType.Error)
+            return;
+
         // Ignore some errors we do not care about
+        // This is technically a warning we could remove now with the type check
         if (code.Contains("with non-equal opposite anchors"))
+            return;
+
+        // Avoid recursion
+        if (code.Contains("Unhandled Exception Log"))
             return;
 
         if (Engine.IsEditorHint())

@@ -33,6 +33,8 @@ public partial class UnHandledErrorsGUI : Control
 
     private bool suppressErrorPopups;
 
+    private bool forwardedToExceptions;
+
     public static UnHandledErrorsGUI? Instance => instance;
 
     public override void _Ready()
@@ -99,6 +101,12 @@ public partial class UnHandledErrorsGUI : Control
 
                 errorPopup.PopupCenteredShrink();
             }
+        }
+
+        if (!forwardedToExceptions)
+        {
+            forwardedToExceptions = true;
+            UnhandledExceptionLogger.PrintUnhandledException(error);
         }
     }
 
