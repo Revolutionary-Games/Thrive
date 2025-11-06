@@ -75,6 +75,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private RadiationDamageSystem radiationDamageSystem = null!;
     private SlimeSlowdownSystem slimeSlowdownSystem = null!;
     private MucocystSystem mucocystSystem = null!;
+    private MicrobeDivisionClippingSystem microbeDivisionClippingSystem = null!;
 
     private MicrobePhysicsCreationAndSizeSystem microbePhysicsCreationAndSizeSystem = null!;
     private MicrobeRenderPrioritySystem microbeRenderPrioritySystem = null!;
@@ -253,6 +254,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         radiationDamageSystem = new RadiationDamageSystem(EntitySystem);
         slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem);
         mucocystSystem = new MucocystSystem(EntitySystem);
+        microbeDivisionClippingSystem = new MicrobeDivisionClippingSystem(EntitySystem);
         microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem);
         microbeRenderPrioritySystem = new MicrobeRenderPrioritySystem(EntitySystem);
         tintColourApplyingSystem = new TintColourApplyingSystem(EntitySystem);
@@ -493,6 +495,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 radiationDamageSystem.Dispose();
                 slimeSlowdownSystem.Dispose();
                 mucocystSystem.Dispose();
+                microbeDivisionClippingSystem.Dispose();
                 microbePhysicsCreationAndSizeSystem.Dispose();
                 microbeRenderPrioritySystem.Dispose();
                 microbeReproductionSystem.Dispose();

@@ -1,13 +1,6 @@
 ﻿namespace Systems;
 
-using System;
-using System.Buffers;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Threading.Tasks;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
@@ -16,50 +9,64 @@ using Godot;
 using World = Arch.Core.World;
 
 /// <summary>
-///   Generates the visuals needed for microbes. Handles the membrane and organelle graphics. Attaching to the
-///   Godot scene tree is handled by <see cref="SpatialAttachSystem"/>
+///   Handles turning off collisions between dividing cells, so they can smoothly overlap before eventually moving
+///   away from each other.
 /// </summary>
-[RunsBefore(typeof(SpatialAttachSystem))]
-[RunsBefore(typeof(EntityMaterialFetchSystem))]
-[RunsBefore(typeof(SpatialPositionSystem))]
-[RuntimeCost(5)]
-[RunsOnMainThread]
+[RuntimeCost(1)]
+[ReadsComponent(typeof(CellProperties))]
+[ReadsComponent(typeof(WorldPosition))]
+[ReadsComponent(typeof(CellDivisionCollisionDisabler))]
+[WritesToComponent(typeof(CollisionManagement))]
+[RunsBefore(typeof(PhysicsCollisionManagementSystem))]
 public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
 {
-    private readonly PhysicalWorld physicalWorld;
-
-    public MicrobeDivisionClippingSystem(PhysicalWorld physicalWorld, World world) : base(world)
+    public MicrobeDivisionClippingSystem(World world) : base(world)
     {
-        this.physicalWorld = physicalWorld;
     }
 
     [Query]
-    [All<CellProperties, SpatialInstance, EntityMaterial, RenderPriorityOverride>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update(ref CellDivisionCollisionDisablerComponent collisionDisabler, ref CollisionManagement collisionManagement, in Entity entity)
+    private void Update(ref CellDivisionCollisionDisabler collisionDisabler,
+        ref CollisionManagement collisionManagement, ref CellProperties cellProperties,
+        ref WorldPosition worldPosition, in Entity entity)
     {
-        if (collisionDisabler.IgnoredCollisionWith != null)
+        ref var otherEntity = ref collisionDisabler.IgnoredCollisionWith;
+
+        if (collisionManagement.IgnoredCollisionsWith != null)
         {
-            var otherEntity = collisionDisabler.IgnoredCollisionWith.Value;
+            if (!collisionManagement.IgnoredCollisionsWith.Contains(otherEntity))
+                return;
+        }
 
-            if (otherEntity.Has<WorldPosition>() && entity.Has<WorldPosition>())
+        if (otherEntity.Has<WorldPosition>())
+        {
+            // 2.4 = 2 (radiuses) * 1.1
+            var clipOutDistanceSquared = cellProperties.Radius * 2.2f;
+
+            // Square
+            clipOutDistanceSquared *= clipOutDistanceSquared;
+            if (otherEntity.Get<WorldPosition>().Position.DistanceSquaredTo(
+                worldPosition.Position) >= clipOutDistanceSquared)
             {
-                if (entity.Has<CellProperties>())
+                if (collisionManagement.RemoveIgnoredCollisions == null)
+                    collisionManagement.RemoveIgnoredCollisions = new();
+
+                if (!collisionManagement.RemoveIgnoredCollisions.Contains(otherEntity))
                 {
-                    // 2.4 = 2 (radiuses) * 1.1
-                    var clipOutDistanceSquared = entity.Get<CellProperties>().Radius * 2.2f;
+                    collisionManagement.RemoveIgnoredCollisions.Add(otherEntity);
+                    collisionManagement.StateApplied = false;
+                }
+            }
+            else
+            {
+                if (collisionManagement.IgnoredCollisionsWith == null)
+                    collisionManagement.IgnoredCollisionsWith = new();
 
-                    // Square
-                    clipOutDistanceSquared *= clipOutDistanceSquared;
+                if (!collisionManagement.IgnoredCollisionsWith.Contains(otherEntity))
+                {
+                    collisionManagement.IgnoredCollisionsWith.Add(otherEntity);
 
-                    if (otherEntity.Get<WorldPosition>().Position.DistanceSquaredTo(
-                        entity.Get<WorldPosition>().Position) >= clipOutDistanceSquared)
-                    {
-                        if (collisionManagement.RemoveIgnoredCollisions == null)
-                            collisionManagement.RemoveIgnoredCollisions = new();
-
-                        collisionManagement.RemoveIgnoredCollisions.Add(otherEntity);
-                    }
+                    collisionManagement.StateApplied = false;
                 }
             }
         }

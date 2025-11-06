@@ -321,12 +321,7 @@ public static class CellPropertiesHelpers
         var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species,
             spawnPosition, true, (null, 0), out var copyEntity, multicellularSpawnState);
 
-        recorder.Set(copyEntity, new CollisionManagement
-        {
-            RecordActiveCollisions = Constants.MAX_SIMULTANEOUS_COLLISIONS_SMALL,
-        });
-
-        recorder.Set(copyEntity, new CellDivisionCollisionDisablerComponent
+        recorder.Add(copyEntity, new CellDivisionCollisionDisabler
         {
             IgnoredCollisionWith = entity,
         });
