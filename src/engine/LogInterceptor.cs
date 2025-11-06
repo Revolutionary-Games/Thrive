@@ -72,7 +72,9 @@ public partial class LogInterceptor : Logger
     {
         base._LogError(function, file, line, code, rationale, editorNotify, errorType, scriptBacktraces);
 
-        // TODO: ignore some errors we do not care about?
+        // Ignore some errors we do not care about
+        if (code.Contains("with non-equal opposite anchors"))
+            return;
 
         if (Engine.IsEditorHint())
             return;
