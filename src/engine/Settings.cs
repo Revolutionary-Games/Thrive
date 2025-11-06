@@ -5,11 +5,10 @@ using System.Linq;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
-using Saving;
 using Environment = System.Environment;
 
 /// <summary>
-///   Class that handles storing and applying player changeable game settings.
+///   Class that handles storing and applying player-changeable game settings.
 /// </summary>
 public class Settings
 {
