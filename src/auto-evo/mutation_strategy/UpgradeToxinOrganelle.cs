@@ -85,10 +85,18 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
         foreach (var baseSpeciesOrganelle in eligibleOrganelleSample)
         {
             var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+            OrganelleTemplate? organelle = null;
 
-            var organelle = newSpecies.Organelles.Organelles
-                .First(organelle => organelle.Position == baseSpeciesOrganelle.Position);
-            if (!criteria(organelle.Definition))
+            foreach (var candidateOrganelle in newSpecies.Organelles.Organelles)
+            {
+                if (candidateOrganelle.Position == baseSpeciesOrganelle.Position)
+                {
+                    organelle = candidateOrganelle;
+                    break;
+                }
+            }
+
+            if (!criteria(organelle!.Definition))
                 continue;
 
             organelle.Upgrades ??= new OrganelleUpgrades();
