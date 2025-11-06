@@ -32,7 +32,6 @@ public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
         this.direction = direction.ToLowerInvariant();
     }
 
-    // We don't want this to repeat, since changing toxicity does not cost MP
     public bool Repeatable => true;
 
     public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
