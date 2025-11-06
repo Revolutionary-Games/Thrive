@@ -39,11 +39,13 @@ public class EnvironmentalTolerancePressure : SelectionPressure
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
+        // TODO: multicellular tolerance
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
 
         // Use scores to encourage species to be adapted to their environment
-        return MicrobeEnvironmentalToleranceCalculations.CalculateTotalToleranceScore(microbeSpecies, patch.Biome);
+        return (float)MicrobeEnvironmentalToleranceCalculations.CalculateTotalToleranceScore(microbeSpecies,
+            patch.Biome);
     }
 
     public override float GetEnergy(Patch patch)

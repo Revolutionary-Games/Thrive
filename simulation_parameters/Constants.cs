@@ -1339,7 +1339,17 @@ public static class Constants
     public const int AUTO_EVO_ORGANELLE_ADD_ATTEMPTS = 15;
     public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 15;
 
-    public const float AUTO_EVO_TOLERANCE_PERFECT_CHANCE = 0.02f;
+    /// <summary>
+    ///   If a species is adapted to its environment, this is the chance it will try to perfectly adapt anyway
+    /// </summary>
+    public const float AUTO_EVO_TOLERANCE_PERFECT_CHANCE_IF_ADAPTED = 0.001f;
+
+    /// <summary>
+    ///   When a species is getting tolerance changes, this is the chance it will also try to perfectly adapt another
+    ///   stat that was already good enough. Note that this being too high can interfere with a species adapting to new
+    ///   conditions normally.
+    /// </summary>
+    public const float AUTO_EVO_TOLERANCE_PERFECT_CHANCE_OTHER = 0.01f;
 
     public const float AUTO_EVO_PREDICTION_UPDATE_INTERVAL = 0.95f;
 
