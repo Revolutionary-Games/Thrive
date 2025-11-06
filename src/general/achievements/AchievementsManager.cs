@@ -149,7 +149,9 @@ public partial class AchievementsManager : Node
         OnPlayerHasCheatedEvent?.Invoke();
         UpdateAchievementsPrevention();
 
-        showCheatsUsedInfo = true;
+        // Don't show cheats used info if we're in freebuild
+        if (!playerInFreebuild)
+            showCheatsUsedInfo = true;
     }
 
     public override void _Ready()
