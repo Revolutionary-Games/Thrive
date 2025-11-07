@@ -107,7 +107,7 @@ public static class CollisionManagementHelpers
         {
             IgnoredCollisionsWith = reader.ReadObjectOrNull<List<Entity>>(),
             RecordActiveCollisions = reader.ReadInt32(),
-            RemoveIgnoredCollisions = reader.ReadObjectOrNull<List<Entity>>(),
+            RemoveIgnoredCollisions = CollisionManagement.SERIALIZATION_VERSION > 1 ? reader.ReadObjectOrNull<List<Entity>>() : null,
         };
     }
 

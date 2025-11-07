@@ -27,6 +27,7 @@ public struct CellDivisionCollisionDisabler : IArchivableComponent
         // Save only persistent state
 
         writer.WriteAnyRegisteredValueAsObject(IgnoredCollisionWith);
+        writer.Write(SeparationForce);
     }
 }
 
@@ -40,6 +41,7 @@ public static class CellDivisionCollisionDisablerHelpers
         return new CellDivisionCollisionDisabler
         {
             IgnoredCollisionWith = reader.ReadObject<Entity>(),
+            SeparationForce = reader.ReadFloat(),
         };
     }
 }

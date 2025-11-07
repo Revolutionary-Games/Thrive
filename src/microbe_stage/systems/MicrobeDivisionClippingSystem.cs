@@ -5,7 +5,6 @@ using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
 using Components;
-using Godot;
 using World = Arch.Core.World;
 
 /// <summary>
@@ -64,19 +63,19 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
             {
                 collisionManagement.RemoveTemporaryCollisionIgnoreWith(otherEntity);
 
-                entity.Remove<CellDivisionCollisionDisabler>();
+                World.Remove<CellDivisionCollisionDisabler>(entity);
             }
 
             if (physics.Body != null)
             {
-                physicalWorld.GiveImpulse(physics.Body, difference * 300f * collisionDisabler.SeparationForce, true);
+                physicalWorld.GiveImpulse(physics.Body, difference * 300.0f * collisionDisabler.SeparationForce, true);
             }
         }
         else
         {
             collisionManagement.RemoveTemporaryCollisionIgnoreWith(otherEntity);
 
-            entity.Remove<CellDivisionCollisionDisabler>();
+            World.Remove<CellDivisionCollisionDisabler>(entity);
         }
     }
 }
