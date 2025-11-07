@@ -407,7 +407,7 @@ public class SimulationCache
         pilusScore += injectisomeScore;
 
         // Pili are much more useful if the microbe can close to melee
-        if (predatorSpeed ! > preySpeed)
+        if (predatorSpeed <= preySpeed)
         {
             if (predatorSpeed > slowedPreySpeed)
             {
