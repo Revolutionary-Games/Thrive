@@ -31,7 +31,8 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
     /// <param name="upgradeName">The name of the upgrade (from organelles.json) to apply</param>
     /// <param name="shouldRepeat">
     ///   Determines whether this mutation strategy can be used multiple times
-    /// should be false for any upgrade that does not cost MP</param>
+    ///   should be false for any upgrade that does not cost MP
+    /// </param>
     public UpgradeOrganelle(Func<OrganelleDefinition, bool> criteria, string upgradeName, bool shouldRepeat)
     {
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
