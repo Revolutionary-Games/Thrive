@@ -147,8 +147,7 @@ public static class CollisionManagementHelpers
 
     public static void AddPermanentCollisionIgnoreWith(this ref CollisionManagement collisionManagement, Entity entity)
     {
-        if (collisionManagement.IgnoredCollisionsWith == null)
-            collisionManagement.IgnoredCollisionsWith = new List<Entity>();
+        collisionManagement.IgnoredCollisionsWith ??= new List<Entity>();
 
         if (collisionManagement.IgnoredCollisionsWith.Contains(entity))
             return;
@@ -160,16 +159,14 @@ public static class CollisionManagementHelpers
 
     public static void AddTemporaryCollisionIgnoreWith(this ref CollisionManagement collisionManagement, Entity entity)
     {
-        if (collisionManagement.IgnoredCollisionsWith == null)
-            collisionManagement.IgnoredCollisionsWith = new List<Entity>();
+        collisionManagement.IgnoredCollisionsWith ??= new List<Entity>();
 
         if (collisionManagement.IgnoredCollisionsWith.Contains(entity))
             return;
 
         collisionManagement.IgnoredCollisionsWith.Add(entity);
 
-        if (collisionManagement.RemoveIgnoredCollisions == null)
-            collisionManagement.RemoveIgnoredCollisions = new List<Entity>();
+        collisionManagement.RemoveIgnoredCollisions ??= new List<Entity>();
 
         if (!collisionManagement.RemoveIgnoredCollisions.Contains(entity))
             collisionManagement.RemoveIgnoredCollisions.Add(entity);
@@ -177,7 +174,8 @@ public static class CollisionManagementHelpers
         collisionManagement.StateApplied = false;
     }
 
-    public static void RemoveTemporaryCollisionIgnoreWith(this ref CollisionManagement collisionManagement, Entity entity)
+    public static void RemoveTemporaryCollisionIgnoreWith(this ref CollisionManagement collisionManagement,
+        Entity entity)
     {
         if (collisionManagement.IgnoredCollisionsWith == null)
             return;

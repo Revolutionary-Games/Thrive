@@ -98,7 +98,7 @@ public partial class PhysicsCollisionManagementSystem : BaseSystem<World, float>
                         var ignoreRemoveEntity = removeIgnoreCollisions[i];
 
                         // If the ignore list still has the entity, physics ignore will not be removed
-                        if (ignoreCollisions!.Contains(ignoreRemoveEntity))
+                        if (ignoreCollisions.Contains(ignoreRemoveEntity))
                             continue;
 
                         var ignoreWith = GetPhysicsForEntity(ignoreRemoveEntity, ref collisionManagement);
