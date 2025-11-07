@@ -78,7 +78,7 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
             {
                 foreach (var availableUpgrade in organelle.Definition.AvailableUpgrades)
                 {
-                    // Filter to just appliable upgrades
+                    // Filter to just applicable upgrades
                     if (availableUpgrade.Key == upgradeName && (organelle.Upgrades == null ||
                             !organelle.Upgrades.UnlockedFeatures.Contains(upgradeName)))
                     {
