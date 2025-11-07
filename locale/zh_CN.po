@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-10-30 12:31+0200\n"
-"PO-Revision-Date: 2025-11-03 07:35+0000\n"
+"PO-Revision-Date: 2025-11-06 03:32+0000\n"
 "Last-Translator: CL <c896521816@dingtalk.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -3674,9 +3674,8 @@ msgstr "要进行繁殖，你需要将每个细胞器分裂为两个。细胞器
 msgid "MICROBE_LOADING_TIP_18"
 msgstr "保持警惕，因为每当你进入编辑器时，你的竞争对手也你在同步进化。"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_19"
-msgstr "使用 Binding Agents 来与同类共同构建细胞聚落。这能使你进化为多细胞生物，所有细胞共享化合物，同步移动。"
+msgstr "使用连接器来与同类共同构建细胞聚落。这能使你进化为多细胞生物，所有细胞共享化合物，同步移动。"
 
 msgid "MICROBE_LOADING_TIP_2"
 msgstr "鞭毛越多（或越长），移动速度就越快——冲刺！不过这也会消耗更多 ATP。"
@@ -5965,24 +5964,20 @@ msgstr "理论家团队"
 msgid "THERMOPLAST"
 msgstr "热能体"
 
-#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr "它是一种双层膜结构，包含在膜囊中堆叠在一起的热敏色素。它是一种被其真核宿主同化的原核生物。热能体中的色素可以通过[b]热合成[/b]用温差把水和二氧化碳合成成葡萄糖。合成葡萄糖的速率跟二氧化碳的浓度与环境温度成正比。"
+msgstr "热能体是一种双层膜结构，其中含有堆叠在膜囊中的热敏色素。它是一种原核生物，已被其真核宿主同化利用。热能体中的色素能够利用其周围环境 [thrive:compound type=\"temperature\"] 温度 [/thrive:compound] 上升所带来的能量，在一个被称为[b]热合成作用[/b]的过程中，从水中产生[thrive:compound type=\"atp\"] ATP [/thrive:compound]。其 [thrive:compound type=\"atp\"] ATP [/thrive:compound] 的生产速率与 [thrive:compound type=\"temperature\"] 温度 [/thrive:compound] 的变化量成正比。"
 
-#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "产出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]的浓度与环境温度成正比。"
+msgstr "利用升高的温度产生 [thrive:compound type=\"atp\"][/thrive:compound]。生成速率随 [thrive:compound type=\"temperature\"][/thrive:compound] 的升高而增加。使用[b]热成像视图[/b]定位冷热区域。"
 
 msgid "THERMOSYNTHASE"
 msgstr "热合成酶"
 
-#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "热合酶是一种利用热对流改变自身形态的蛋白质，它可以在受热时折叠并结合ADP，然后在降温时展开并生成ATP。这一过程被称为[b]热合成[/b]。其ATP生成速率与温度有关。"
+msgstr "热合成酶是一种利用热对流改变自身形态的蛋白质，它可以在受热时折叠并结合 ADP，通过[b]热合成[/b]将其转化为 [thrive:compound type=\"atp\"][/thrive:compound]。然后在降温时展开，并在下次升温时重复这个过程。其 ATP 生成速率与温度变化量有关。"
 
-#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "利用温度梯度生产[thrive:compound type=\"atp\"][/thrive:compound]。速度与[thrive:compound type=\"temperature\"][/thrive:compound]有关。"
+msgstr "利用升高的温度产生 [thrive:compound type=\"atp\"][/thrive:compound]。生成速率随 [thrive:compound type=\"temperature\"][/thrive:compound] 的升高而增加。使用[b]热成像[/b]定位冷热区域。"
 
 msgid "THERMOSYNTHESIS"
 msgstr "热合成"
@@ -6044,7 +6039,6 @@ msgstr "地区图"
 msgid "THRIVE_LICENSES"
 msgstr "Thrive的许可证书"
 
-#, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
 msgstr "Thrivin'"
 
@@ -6194,14 +6188,8 @@ msgstr ""
 "[b]紫外线抗性[/b]\n"
 "  {5}%"
 
-#, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
-msgstr ""
-"这个区域显示了目前细胞ATP（能量）的总平衡情况\n"
-"如果想要生存，这个数值应该是正的。对于没有运动需求的细胞，可以不考虑移动所消耗的ATP。\n"
-"下面的下拉菜单可以用来检查各种资源短缺时会发生的情况。\n"
-"比如，有些细胞只有在同时拥有好几种类型的化合物时才可以使ATP收支平衡。\n"
-"这些细胞将更难存活，因为它们需要收集更多的化合物。"
+msgstr "某些细胞器能增加或减少适应性。这里显示的是由基础值和细胞器影响相加的有效值。某些细胞器能与某种玩法搭配，但也有可能破坏某种玩法。"
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "适应力："
@@ -6286,20 +6274,17 @@ msgstr "不同种类的毒素的效果不同，有些对特定种类的细胞会
 msgid "TOXIN_VACUOLE"
 msgstr "毒素液泡"
 
-#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "毒素液泡是一种专门用于产出，存储和分泌[thrive:compound type=\"oxytoxy\"][/thrive:compound]的液泡。更多毒素液泡可以加快释放毒素的速度。可以修改其产生的毒素种类以产生不同效果。"
+msgstr "毒素液泡是一种特化的，用于合成、存储和分泌 [thrive:compound type=\"oxytoxy\"][/thrive:compound] 的液泡。更多毒素液泡可以加快释放毒素的速度。可以修改其产生的毒素种类以产生不同效果，某些毒素可能需要 [thrive:compound type=\"oxygen\"][/thrive:compound]。"
 
-#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]的浓度成正比。按[thrive:input]g_fire_toxin[/thrive:input]以释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]储量不足时也能释放，但伤害会降低。"
+msgstr "将 [thrive:compound type=\"atp\"][/thrive:compound] 转换为 [thrive:compound type=\"oxytoxy\"][/thrive:compound]。按 [thrive:input]g_fire_toxin[/thrive:input] 以释放毒素。当 [thrive:compound type=\"oxytoxy\"][/thrive:compound] 储量较低时也能释放，但伤害会降低。"
 
 msgid "TOXISOME"
 msgstr "毒素体"
 
-#, fuzzy
 msgid "TOXISOME_DESCRIPTION"
-msgstr "溶酶体是一种具膜细胞器，含有水解酶，可以分解各种生物分子。溶酶体允许细胞消化通过内吞作用吸收的物质，并在一个称为[b]自噬[/b]的过程中清洁细胞的废物。"
+msgstr "一种特化的的代谢体，负责生产毒素 [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound] 的前体。可修改产生的毒素类型以实现其他效果，这些毒素可能需要 [thrive:compound type=\"oxygen\"][/thrive:compound]。"
 
 msgid "TRANSLATORS"
 msgstr "翻译者"
@@ -6322,15 +6307,14 @@ msgstr "试着截一些图吧！"
 msgid "TUTORIAL"
 msgstr "教程"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
-"右侧的ATP生产条显示你的细胞生产和消耗[thrive:compound type=\"atp\"][/thrive:compound]的比例。如果顶段条比底段条短，说明你没有产生足够的[thrive:compound type=\"atp\"][/thrive:compound]。\n"
+"右侧的 ATP 生成条显示你的细胞生成和消耗 [thrive:compound type=\"atp\"][/thrive:compound] 的量。如果顶段条比底段条短，说明你没有产生足够的 [thrive:compound type=\"atp\"][/thrive:compound]。\n"
 "\n"
-"低端条包含[b]渗透调节[/b][thrive:icon]OsmoIcon[/thrive:icon]消耗和[b]移动[/b][thrive:icon]MovementIcon[/thrive:icon]消耗。\n"
-"[b]渗透调节[/b][thrive:icon]OsmoIcon[/thrive:icon]是[u]维持生命的基本消耗[/u]。你添加的每一个部件都会增加这种消耗。\n"
+"底段条包含[b]渗透调节[/b] [thrive:icon]OsmoIcon[/thrive:icon] 消耗和[b]移动[/b] [thrive:icon]MovementIcon[/thrive:icon] 消耗两部分。\n"
+"[b]渗透调节[/b][thrive:icon]OsmoIcon[/thrive:icon]是[u]维持生命的基本消耗[/u]。每添加一个部件都会增加这种消耗。当你静止不动时不会消耗[b]移动消耗[/b] [thrive:icon]MovementIcon[/thrive:icon]。\n"
 "\n"
-"如果你的[thrive:compound type=\"atp\"][/thrive:compound]生产为负，务必增加[thrive:compound type=\"atp\"][/thrive:compound]生产或添加[b]储存[/b][thrive:icon]StorageIcon[/thrive:icon]来允许爆发式移动。"
+"如果你的 [thrive:compound type=\"atp\"][/thrive:compound] 净产出为负，务必增加 [thrive:compound type=\"atp\"][/thrive:compound] 生成或添加[b]储存[/b] [thrive:icon]StorageIcon[/thrive:icon] 来允许爆发式移动。"
 
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
