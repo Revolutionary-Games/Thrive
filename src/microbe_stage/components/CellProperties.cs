@@ -213,96 +213,6 @@ public static class CellPropertiesHelpers
 
         ref var position = ref entity.Get<WorldPosition>();
 
-        var currentPosition = position.Position;
-
-        // Find the direction to the right from where the cell is facing
-        var direction = position.Rotation * Vector3.Right;
-
-        // Start calculating separation distance
-        // TODO: fix for multihex organelles
-        var organellePositions = organelles.Organelles.Select(o => Hex.AxialToCartesian(o.Position)).ToList();
-
-        // TODO: switch this to using membrane radius as that'll hopefully fix the last few divide bugs
-        // TODO: there's a bug with small size and pili causing small cells to be stuck together
-        float distanceRight =
-            MathUtils.GetMaximumDistanceInDirection(Vector3.Right, Vector3.Zero, organellePositions);
-        float distanceLeft =
-            MathUtils.GetMaximumDistanceInDirection(Vector3.Left, Vector3.Zero, organellePositions);
-
-        if (entity.Has<MicrobeColony>())
-        {
-            // Bigger separation for cell colonies
-
-            // TODO: (check after resolving the above TODO) there is still a problem with colonies being able to
-            // spawn inside each other
-
-            ref var colony = ref entity.Get<MicrobeColony>();
-            var members = colony.ColonyMembers;
-
-            foreach (var member in members)
-            {
-                // Lead cell is already handled by the non-colony logic
-                if (member == colony.Leader)
-                    continue;
-
-                ref var memberOrganelles = ref member.Get<OrganelleContainer>();
-
-                if (memberOrganelles.Organelles == null)
-                {
-                    GD.PrintErr("Can't use microbe colony member organelle positions for divide separation " +
-                        "calculation as they aren't available");
-                    continue;
-                }
-
-                ref var memberPosition = ref member.Get<AttachedToEntity>();
-
-                // TODO: before switching to the membrane based, check is it fine to just check one direction here?
-                // For now this multiplies the distance by 1.5 to account it being halved below
-                // Using negative relative position is done here as the organelle calculations happen as if they
-                // are around 0,0 but that isn't the case in colony members as they are offset from the center.
-                var distance = MathUtils.GetMaximumDistanceInDirection(Vector3.Right,
-                    -memberPosition.RelativePosition,
-                    memberOrganelles.Organelles.Select(o => Hex.AxialToCartesian(o.Position))) * 1.5f;
-
-                if (distance > distanceRight)
-                {
-                    distanceRight = distance;
-                }
-            }
-
-            // var colonyMembers = Colony.ColonyMembers.Select(c => c.GlobalTransform.Origin);
-            //
-            // distanceRight += ;
-        }
-        else if (species is MulticellularSpecies multicellularSpecies &&
-                 multicellularSpawnState != MulticellularSpawnState.Bud)
-        {
-            // Add more extra offset between the parent and the divided cell colony if the parent wasn't a colony
-            bool first = true;
-
-            foreach (var eventualMember in multicellularSpecies.Cells)
-            {
-                // Skip lead cell
-                if (first)
-                {
-                    first = false;
-                    continue;
-                }
-
-                var memberPosition = Hex.AxialToCartesian(eventualMember.Position);
-
-                // TODO: should the 1.5f multiplier be kept here
-                var distance = MathUtils.GetMaximumDistanceInDirection(Vector3.Right,
-                    -memberPosition,
-                    eventualMember.Organelles.Select(o => Hex.AxialToCartesian(o.Position))) * 1.5f;
-
-                if (distance > distanceRight)
-                {
-                    distanceRight = distance;
-                }
-            }
-        }
-
         Dictionary<Compound, float> reproductionCompounds;
 
         // This method only supports microbe and multicellular species
@@ -315,7 +225,7 @@ public static class CellPropertiesHelpers
             reproductionCompounds = ((MulticellularSpecies)species).Cells[0].CalculateTotalComposition();
         }
 
-        var spawnPosition = currentPosition;
+        var spawnPosition = position.Position;
 
         // Create one daughter cell.
         var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species,

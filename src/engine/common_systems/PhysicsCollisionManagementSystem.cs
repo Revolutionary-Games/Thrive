@@ -89,32 +89,27 @@ public partial class PhysicsCollisionManagementSystem : BaseSystem<World, float>
             ref var removeIgnoreCollisions = ref collisionManagement.RemoveIgnoredCollisions;
 
             // Check if any ignores can be removed.
-            if (removeIgnoreCollisions != null)
+            if (removeIgnoreCollisions != null && ignoreCollisions != null)
             {
                 if (removeIgnoreCollisions.Count > 0)
                 {
-                    // Collision management must keep detecting for clip-out ignore collisions.
-                    // Maybe throw this before StateApplied check?
-                    collisionManagement.StateApplied = false;
-
                     for (int i = 0; i < removeIgnoreCollisions.Count; ++i)
                     {
-                        var clipOutIgnore = removeIgnoreCollisions[i];
-                        removeIgnoreCollisions.Remove(clipOutIgnore);
+                        var ignoreRemoveEntity = removeIgnoreCollisions[i];
 
-                        var ignoreWith = GetPhysicsForEntity(clipOutIgnore, ref collisionManagement);
+                        // If the ignore list still has the entity, physics ignore will not be removed
+                        if (ignoreCollisions!.Contains(ignoreRemoveEntity))
+                            continue;
+
+                        var ignoreWith = GetPhysicsForEntity(ignoreRemoveEntity, ref collisionManagement);
 
                         if (ignoreWith != null)
                             physicalWorld.BodyRemoveCollisionIgnoreWith(physicsBody, ignoreWith);
 
-                        if (ignoreCollisions != null)
-                        {
-                            if (ignoreCollisions.Contains(clipOutIgnore))
-                                ignoreCollisions.Remove(clipOutIgnore);
-                        }
+                        removeIgnoreCollisions.Remove(ignoreRemoveEntity);
 
-                        // Loop again
-                        i = 0;
+                        // One step back
+                        --i;
                     }
                 }
             }

@@ -1,6 +1,5 @@
 ﻿namespace Systems;
 
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
@@ -28,44 +27,37 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update(ref CellDivisionCollisionDisabler collisionDisabler,
         ref CollisionManagement collisionManagement, ref CellProperties cellProperties,
-        ref WorldPosition worldPosition)
+        ref WorldPosition worldPosition, in Entity entity)
     {
         ref var otherEntity = ref collisionDisabler.IgnoredCollisionWith;
 
         if (collisionManagement.IgnoredCollisionsWith != null)
         {
             if (!collisionManagement.IgnoredCollisionsWith.Contains(otherEntity))
-                return;
+                collisionManagement.AddTemporaryCollisionIgnoreWith(otherEntity);
+        }
+        else
+        {
+            collisionManagement.AddTemporaryCollisionIgnoreWith(otherEntity);
         }
 
-        if (otherEntity.Has<WorldPosition>())
+        if (otherEntity.IsAliveAndHas<WorldPosition>())
         {
-            // 2.4 = 2 (radiuses) * 1.1
+            if (cellProperties.Radius == 0)
+                return;
+
+            // 2.2 = 2 (radiuses) * 1.1
             var clipOutDistanceSquared = cellProperties.Radius * 2.2f;
 
             // Square
             clipOutDistanceSquared *= clipOutDistanceSquared;
+
             if (otherEntity.Get<WorldPosition>().Position.DistanceSquaredTo(
                     worldPosition.Position) >= clipOutDistanceSquared)
             {
-                collisionManagement.RemoveIgnoredCollisions ??= new List<Entity>();
+                collisionManagement.RemoveTemporaryCollisionIgnoreWith(otherEntity);
 
-                if (!collisionManagement.RemoveIgnoredCollisions.Contains(otherEntity))
-                {
-                    collisionManagement.RemoveIgnoredCollisions.Add(otherEntity);
-                    collisionManagement.StateApplied = false;
-                }
-            }
-            else
-            {
-                collisionManagement.IgnoredCollisionsWith ??= new List<Entity>();
-
-                if (!collisionManagement.IgnoredCollisionsWith.Contains(otherEntity))
-                {
-                    collisionManagement.IgnoredCollisionsWith.Add(otherEntity);
-
-                    collisionManagement.StateApplied = false;
-                }
+                entity.Remove<CellDivisionCollisionDisabler>();
             }
         }
     }

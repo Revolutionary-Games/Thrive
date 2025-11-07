@@ -14,7 +14,7 @@ using SharedBase.Archive;
 /// </summary>
 public struct CollisionManagement : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     /// <summary>
     ///   Collisions experienced by this entity note that <see cref="RecordActiveCollisions"/> needs to be 1 or
@@ -32,8 +32,8 @@ public struct CollisionManagement : IArchivableComponent
     public List<Entity>? IgnoredCollisionsWith;
 
     /// <summary>
-    ///   Due to how ignoring works, this list provides all to-be-removed ignores for management system. All elements
-    ///   are supposedly gone by the time system is done with this.
+    ///   If the same entity from <see cref="IgnoredCollisionsWith"/> is here, actual physics engine ignores will be
+    ///   removed when the entry no longer exists in that list.
     /// </summary>
     public List<Entity>? RemoveIgnoredCollisions;
 
@@ -92,6 +92,7 @@ public struct CollisionManagement : IArchivableComponent
         // Save only persistent state
         writer.WriteObjectOrNull(IgnoredCollisionsWith);
         writer.Write(RecordActiveCollisions);
+        writer.WriteObjectOrNull(RemoveIgnoredCollisions);
     }
 }
 
@@ -106,6 +107,7 @@ public static class CollisionManagementHelpers
         {
             IgnoredCollisionsWith = reader.ReadObjectOrNull<List<Entity>>(),
             RecordActiveCollisions = reader.ReadInt32(),
+            RemoveIgnoredCollisions = reader.ReadObjectOrNull<List<Entity>>(),
         };
     }
 
@@ -141,5 +143,50 @@ public static class CollisionManagementHelpers
 #endif
 
         return count;
+    }
+
+    public static void AddPermanentCollisionIgnoreWith(this ref CollisionManagement collisionManagement, Entity entity)
+    {
+        if (collisionManagement.IgnoredCollisionsWith == null)
+            collisionManagement.IgnoredCollisionsWith = new List<Entity>();
+
+        if (collisionManagement.IgnoredCollisionsWith.Contains(entity))
+            return;
+
+        collisionManagement.IgnoredCollisionsWith.Add(entity);
+
+        collisionManagement.StateApplied = false;
+    }
+
+    public static void AddTemporaryCollisionIgnoreWith(this ref CollisionManagement collisionManagement, Entity entity)
+    {
+        if (collisionManagement.IgnoredCollisionsWith == null)
+            collisionManagement.IgnoredCollisionsWith = new List<Entity>();
+
+        if (collisionManagement.IgnoredCollisionsWith.Contains(entity))
+            return;
+
+        collisionManagement.IgnoredCollisionsWith.Add(entity);
+
+        if (collisionManagement.RemoveIgnoredCollisions == null)
+            collisionManagement.RemoveIgnoredCollisions = new List<Entity>();
+
+        if (!collisionManagement.RemoveIgnoredCollisions.Contains(entity))
+            collisionManagement.RemoveIgnoredCollisions.Add(entity);
+
+        collisionManagement.StateApplied = false;
+    }
+
+    public static void RemoveTemporaryCollisionIgnoreWith(this ref CollisionManagement collisionManagement, Entity entity)
+    {
+        if (collisionManagement.IgnoredCollisionsWith == null)
+            return;
+
+        if (!collisionManagement.IgnoredCollisionsWith.Contains(entity))
+            return;
+
+        collisionManagement.IgnoredCollisionsWith.Remove(entity);
+
+        collisionManagement.StateApplied = false;
     }
 }

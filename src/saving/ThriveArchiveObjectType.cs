@@ -218,7 +218,6 @@ public enum ThriveArchiveObjectType : uint
     ComponentStaticBodyMarker = 4302,
     ComponentTimedLife = 4303,
     ComponentWorldPosition = 4304,
-    ComponentCellDivisionCollisionDisabler = 4305,
 
     AgentProperties = 4305,
     CellType = 4306,
@@ -300,6 +299,8 @@ public enum ThriveArchiveObjectType : uint
     FossilisedSpeciesInformation = 4382,
     FossilisedSpecies = 4383,
     Endosymbiont = 4384,
+
+    ComponentCellDivisionCollisionDisabler = 4385,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,
