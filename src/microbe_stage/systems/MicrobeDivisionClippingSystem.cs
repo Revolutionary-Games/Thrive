@@ -20,10 +20,12 @@ using World = Arch.Core.World;
 public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
 {
     private readonly PhysicalWorld physicalWorld;
+    private readonly IWorldSimulation worldSimulation;
 
-    public MicrobeDivisionClippingSystem(PhysicalWorld physicalWorld, World world) : base(world)
+    public MicrobeDivisionClippingSystem(PhysicalWorld physicalWorld, World world, IWorldSimulation worldSimulation) : base(world)
     {
         this.physicalWorld = physicalWorld;
+        this.worldSimulation = worldSimulation;
     }
 
     [Query]
@@ -63,7 +65,7 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
             {
                 collisionManagement.RemoveTemporaryCollisionIgnoreWith(otherEntity);
 
-                World.Remove<CellDivisionCollisionDisabler>(entity);
+                RemoveDivisionComponentFromEntity(entity);
             }
 
             if (physics.Body != null)
@@ -75,7 +77,14 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
         {
             collisionManagement.RemoveTemporaryCollisionIgnoreWith(otherEntity);
 
-            World.Remove<CellDivisionCollisionDisabler>(entity);
+            RemoveDivisionComponentFromEntity(entity);
         }
+    }
+
+    private void RemoveDivisionComponentFromEntity(Entity entity)
+    {
+        var recorder = worldSimulation.StartRecordingEntityCommands();
+        recorder.Remove<CellDivisionCollisionDisabler>(entity);
+        worldSimulation.FinishRecordingEntityCommands(recorder);
     }
 }
