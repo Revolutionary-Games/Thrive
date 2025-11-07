@@ -51,7 +51,7 @@ public class AgentProperties : IArchivable
         writer.WriteObject((AgentProperties)obj);
     }
 
-    public static AgentProperties ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static AgentProperties ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
