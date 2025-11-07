@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2025-11-06 15:24+0200\n"
 "PO-Revision-Date: 2025-10-31 01:28+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -2691,6 +2691,9 @@ msgstr "ID Numarası"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(görüntü modu ve yükseltme ayarlarına bağlı olarak, bütün yöntemler mevcut olmayabilir)"
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 msgid "IMAGE_FILE_TYPES"
 msgstr "Desteklenen Resim Dosyaları"
 
@@ -2904,18 +2907,6 @@ msgstr ":"
 
 msgid "JANUARY"
 msgstr "Ocak"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON hata ayıklama modu:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Her zaman"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Otomatik olarak"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Hiçbir zaman"
 
 msgid "JULY"
 msgstr "Temmuz"
@@ -3914,6 +3905,10 @@ msgstr "Türde Değişiklik Yap"
 
 msgid "MODS"
 msgstr "Modlar"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Hiçbir Mod Etkinleştirilmedi"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -5230,12 +5225,6 @@ msgstr "Hileler Kullanıldı"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Bu kaydı silme işlemi geri alınamaz, {0} kaydını kalıcı olarak silmek istediğinizden emin misiniz?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "Bir kayıt hatasını bildirirken lütfen [color=#3796e1][url={2}]log klasöründen[/url][/color] [color=#3796e1][url={0}]{1}[/url][/color] dosyasını dahil edin. Bu dosya, Thrive geliştiricilerinin kaydetme hatasının ne olduğunu anlaması için kritik bilgiler içerir. Bu dosya olmadan, mevcut problemi teşhis etmek ve düzeltmek fazlasıyla zor olacaktır."
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Lütfen bu kayıt hatasını bildirmeden önce JSON hata ayıklama modunun devre dışı bırakılmadığından emin olun. Otomatik JSON hata ayıklama modu, [color=#3796e1][url={1}]log klasöründe[/url][/color] {0} adı verilen ek bir dosya oluşturdu. Bu dosya, Thrive geliştiricilerinin kaydetme hatasının ne olduğunu anlaması için kritik bilgiler içerir."
 
 msgid "SAVE_FAILED"
 msgstr "Kaydetme başarısız"
@@ -6666,6 +6655,17 @@ msgstr "Geri al"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Son eylemi geri al"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Aksonlar, nöronların birbirlerine bağlanmak ve birbiriyle iletişim kurmak için kullandığı sinir lifleridir. Bu organeli yerleştirmek, bir hücre türünü beyin dokusuna dönüştürür."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Teşekkür Ederiz"
 
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "İnşa Et"
@@ -9488,6 +9488,24 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON hata ayıklama modu:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Her zaman"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Otomatik olarak"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Hiçbir zaman"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "Bir kayıt hatasını bildirirken lütfen [color=#3796e1][url={2}]log klasöründen[/url][/color] [color=#3796e1][url={0}]{1}[/url][/color] dosyasını dahil edin. Bu dosya, Thrive geliştiricilerinin kaydetme hatasının ne olduğunu anlaması için kritik bilgiler içerir. Bu dosya olmadan, mevcut problemi teşhis etmek ve düzeltmek fazlasıyla zor olacaktır."
+
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Lütfen bu kayıt hatasını bildirmeden önce JSON hata ayıklama modunun devre dışı bırakılmadığından emin olun. Otomatik JSON hata ayıklama modu, [color=#3796e1][url={1}]log klasöründe[/url][/color] {0} adı verilen ek bir dosya oluşturdu. Bu dosya, Thrive geliştiricilerinin kaydetme hatasının ne olduğunu anlaması için kritik bilgiler içerir."
 
 #, fuzzy
 #~ msgid "OUTDATED"

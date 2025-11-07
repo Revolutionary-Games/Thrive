@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2025-11-06 15:24+0200\n"
 "PO-Revision-Date: 2025-10-16 19:56+0000\n"
 "Last-Translator: Jens Schwartz Linder <jesclinder@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -2895,6 +2895,9 @@ msgstr ""
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Membrantyper"
@@ -3141,18 +3144,6 @@ msgstr "med concentration av"
 
 msgid "JANUARY"
 msgstr "Januari"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON debug läge:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Alltid"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automatiskt"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Aldrig"
 
 msgid "JULY"
 msgstr "Juli"
@@ -4238,6 +4229,10 @@ msgstr "Modifiera Typ"
 
 msgid "MODS"
 msgstr "Mod"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Avstängt"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -5668,13 +5663,6 @@ msgstr "Använt utrymme:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Att radera denna sparfil är permanent och kan inte ångras. Är du säker på att du vill radera {0} för gott?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "JSON debug läge:"
 
 msgid "SAVE_FAILED"
 msgstr "Sparande misslyckades"
@@ -7160,6 +7148,17 @@ msgstr "Ångra"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Ångra den senaste handlingen"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "DU HAR FRODATS!"
 
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
@@ -9418,6 +9417,22 @@ msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON debug läge:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Alltid"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automatiskt"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Aldrig"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "JSON debug läge:"
 
 #, fuzzy
 #~ msgid "OUTDATED"

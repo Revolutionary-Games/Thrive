@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2025-11-06 15:24+0200\n"
 "PO-Revision-Date: 2025-09-25 23:49+0000\n"
 "Last-Translator: JESUS5PACHECO <jesusxpacheco5@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -2729,6 +2729,9 @@ msgstr "Número ID"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(dependiendo del modo de renderizado y re-escalado, no todos los métodos están disponibles)"
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 msgid "IMAGE_FILE_TYPES"
 msgstr "Archivos de Imagen Soportados"
 
@@ -2942,18 +2945,6 @@ msgstr ":"
 
 msgid "JANUARY"
 msgstr "Enero"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "Modo de depuración JSON:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Siempre"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automáticamente"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Nunca"
 
 msgid "JULY"
 msgstr "Julio"
@@ -4045,6 +4036,10 @@ msgstr "Modificar Tipo"
 
 msgid "MODS"
 msgstr "Mods"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "No hay mods habilitados"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -5478,13 +5473,6 @@ msgstr "Espacio usado:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Eliminar esta partida es irreversible, ¿estás seguro de querer eliminar {0} permanentemente?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "Al reportar un error de guardado por favor incluir [color=#3796e1][url={0}]{1}[/url][/color] desde de [color=#3796e1][url={2}]logs folder[/url][/color] pues es información critica para los desarrolladores de Thrive para averiguar cual fue el error de guardado. Sin ese Archivo, será extremadamente difícil diagnosticar y arreglar este problema."
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Modo de depuración JSON:"
 
 msgid "SAVE_FAILED"
 msgstr "Guardado fallido"
@@ -7042,6 +7030,17 @@ msgstr "Deshacer"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Deshacer la última acción"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Ataca a otras células con esto."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "¡HAS PROSPERADO!"
 
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
@@ -9430,6 +9429,25 @@ msgstr "Hacer zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "Modo de depuración JSON:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Siempre"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automáticamente"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Nunca"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "Al reportar un error de guardado por favor incluir [color=#3796e1][url={0}]{1}[/url][/color] desde de [color=#3796e1][url={2}]logs folder[/url][/color] pues es información critica para los desarrolladores de Thrive para averiguar cual fue el error de guardado. Sin ese Archivo, será extremadamente difícil diagnosticar y arreglar este problema."
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Modo de depuración JSON:"
 
 #, fuzzy
 #~ msgid "OUTDATED"

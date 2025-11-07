@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2025-11-06 15:24+0200\n"
 "PO-Revision-Date: 2025-11-03 07:35+0000\n"
 "Last-Translator: CL <c896521816@dingtalk.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -2690,6 +2690,9 @@ msgstr "编号"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "（取决于渲染模式和缩放，并非所有方法都适用）"
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 msgid "IMAGE_FILE_TYPES"
 msgstr "支持的图片文件"
 
@@ -2903,18 +2906,6 @@ msgstr "："
 
 msgid "JANUARY"
 msgstr "一月"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON调试模式："
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "总是"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "自动"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "从不"
 
 msgid "JULY"
 msgstr "七月"
@@ -3914,6 +3905,10 @@ msgstr "修改类型"
 
 msgid "MODS"
 msgstr "Mods"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "模组已禁用"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -5228,12 +5223,6 @@ msgstr "已使用作弊"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "删去的存档无法复原，你确定要永久性删除{0}吗？"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "当上传保存错误信息时，请确保来自[color=#3796e1][url={2}]日志文件夹[/url][/color] 中的 [color=#3796e1][url={0}]{1}[/url][/color]文件被正确上传，因为这是 Thrive 开发人员找出保存错误原因的关键信息。 如果没有该文件，诊断和解决此问题将变得非常困难。"
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "在报告此保存错误之前，请确保JSON调试模式未被禁用。自动JSON调试模式应该在[color=#3796e1][url={1}]日志文件夹[/url][/color]中创建了一个名为{0}的额外文件。该文件包含Thrive开发人员了解保存错误的关键信息。"
 
 msgid "SAVE_FAILED"
 msgstr "保存失败"
@@ -6671,6 +6660,17 @@ msgstr "撤销"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "撤销上一个动作"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "轴突是神经细胞用于互相连接与交流的神经纤维。拥有该细胞器的细胞会被认定为脑组织。"
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "感谢"
 
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "建造"
@@ -9218,6 +9218,24 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON调试模式："
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "总是"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "自动"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "从不"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "当上传保存错误信息时，请确保来自[color=#3796e1][url={2}]日志文件夹[/url][/color] 中的 [color=#3796e1][url={0}]{1}[/url][/color]文件被正确上传，因为这是 Thrive 开发人员找出保存错误原因的关键信息。 如果没有该文件，诊断和解决此问题将变得非常困难。"
+
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "在报告此保存错误之前，请确保JSON调试模式未被禁用。自动JSON调试模式应该在[color=#3796e1][url={1}]日志文件夹[/url][/color]中创建了一个名为{0}的额外文件。该文件包含Thrive开发人员了解保存错误的关键信息。"
 
 #, fuzzy
 #~ msgid "OUTDATED"
