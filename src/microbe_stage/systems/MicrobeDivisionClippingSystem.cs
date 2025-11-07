@@ -22,7 +22,8 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
     private readonly PhysicalWorld physicalWorld;
     private readonly IWorldSimulation worldSimulation;
 
-    public MicrobeDivisionClippingSystem(PhysicalWorld physicalWorld, World world, IWorldSimulation worldSimulation) : base(world)
+    public MicrobeDivisionClippingSystem(PhysicalWorld physicalWorld, World world, IWorldSimulation worldSimulation) :
+        base(world)
     {
         this.physicalWorld = physicalWorld;
         this.worldSimulation = worldSimulation;
