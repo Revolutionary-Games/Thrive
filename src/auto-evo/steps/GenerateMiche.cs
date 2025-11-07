@@ -38,8 +38,8 @@ public class GenerateMiche : IRunStep
         metabolicRoot.AddChild(generatedMiche);
 
         // "Autotrophic" Miches
-        var phosphateMiche = new Miche(globalCache.PhosphateCloudPressure);
-        var ammoniaMiche = new Miche(globalCache.AmmoniaCloudPressure);
+        var phosphateMiche = new Miche(globalCache.PhosphatePressure);
+        var ammoniaMiche = new Miche(globalCache.AmmoniaPressure);
 
         generatedMiche.AddChild(phosphateMiche);
         phosphateMiche.AddChild(ammoniaMiche);
