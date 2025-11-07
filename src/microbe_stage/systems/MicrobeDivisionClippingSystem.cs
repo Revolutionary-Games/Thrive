@@ -5,6 +5,7 @@ using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
 using Components;
+using Godot;
 using World = Arch.Core.World;
 
 /// <summary>
@@ -19,17 +20,22 @@ using World = Arch.Core.World;
 [RunsBefore(typeof(PhysicsCollisionManagementSystem))]
 public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
 {
-    public MicrobeDivisionClippingSystem(World world) : base(world)
+    private readonly PhysicalWorld physicalWorld;
+
+    public MicrobeDivisionClippingSystem(PhysicalWorld physicalWorld, World world) : base(world)
     {
+        this.physicalWorld = physicalWorld;
     }
 
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update(ref CellDivisionCollisionDisabler collisionDisabler,
+    private void Update([Data] in float delta, ref CellDivisionCollisionDisabler collisionDisabler,
         ref CollisionManagement collisionManagement, ref CellProperties cellProperties,
-        ref WorldPosition worldPosition, in Entity entity)
+        ref WorldPosition worldPosition, ref Physics physics, in Entity entity)
     {
         ref var otherEntity = ref collisionDisabler.IgnoredCollisionWith;
+
+        collisionDisabler.SeparationForce += delta * 4;
 
         if (collisionManagement.IgnoredCollisionsWith != null)
         {
@@ -52,13 +58,25 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
             // Square
             clipOutDistanceSquared *= clipOutDistanceSquared;
 
-            if (otherEntity.Get<WorldPosition>().Position.DistanceSquaredTo(
-                    worldPosition.Position) >= clipOutDistanceSquared)
+            var difference = worldPosition.Position - otherEntity.Get<WorldPosition>().Position;
+
+            if (difference.LengthSquared() >= clipOutDistanceSquared)
             {
                 collisionManagement.RemoveTemporaryCollisionIgnoreWith(otherEntity);
 
                 entity.Remove<CellDivisionCollisionDisabler>();
             }
+
+            if (physics.Body != null)
+            {
+                physicalWorld.GiveImpulse(physics.Body, difference * 300f * collisionDisabler.SeparationForce, true);
+            }
+        }
+        else
+        {
+            collisionManagement.RemoveTemporaryCollisionIgnoreWith(otherEntity);
+
+            entity.Remove<CellDivisionCollisionDisabler>();
         }
     }
 }

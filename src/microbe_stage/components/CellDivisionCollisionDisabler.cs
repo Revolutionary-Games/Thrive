@@ -12,6 +12,8 @@ public struct CellDivisionCollisionDisabler : IArchivableComponent
 
     public Entity IgnoredCollisionWith;
 
+    public float SeparationForce = 1.0f;
+
     public CellDivisionCollisionDisabler(in Entity ignoredCollisionWith)
     {
         IgnoredCollisionWith = ignoredCollisionWith;
