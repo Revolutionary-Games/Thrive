@@ -698,31 +698,32 @@ public class SimulationCache
                 // Big branch to calculate scores for each toxin type
                 if (process.Process.Outputs.TryGetValue(oxytoxy, out var toxinAmount))
                 {
-                    if (organelle.GetActiveToxin() == ToxinType.Oxytoxy && !hasOxytoxy)
+                    var activeToxin = organelle.GetActiveToxin();
+                    if (activeToxin == ToxinType.Oxytoxy && !hasOxytoxy)
                     {
                         totalToxinTypesCount += 1;
                         hasOxytoxy = true;
                     }
 
-                    if (organelle.GetActiveToxin() == ToxinType.Cytotoxin && !hasCytoxin)
+                    if (activeToxin == ToxinType.Cytotoxin && !hasCytoxin)
                     {
                         totalToxinTypesCount += 1;
                         hasCytoxin = true;
                     }
 
-                    if (organelle.GetActiveToxin() == ToxinType.Macrolide && !hasMacrolide)
+                    if (activeToxin == ToxinType.Macrolide && !hasMacrolide)
                     {
                         totalToxinTypesCount += 1;
                         hasMacrolide = true;
                     }
 
-                    if (organelle.GetActiveToxin() == ToxinType.ChannelInhibitor && !hasChannelInhibitor)
+                    if (activeToxin == ToxinType.ChannelInhibitor && !hasChannelInhibitor)
                     {
                         totalToxinTypesCount += 1;
                         hasChannelInhibitor = true;
                     }
 
-                    if (organelle.GetActiveToxin() == ToxinType.OxygenMetabolismInhibitor &&
+                    if (activeToxin == ToxinType.OxygenMetabolismInhibitor &&
                         !hasOxygenMetabolismInhibitor)
                     {
                         totalToxinTypesCount += 1;
