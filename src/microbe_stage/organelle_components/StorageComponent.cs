@@ -63,6 +63,12 @@ public class StorageComponentUpgrades : IComponentSpecificUpgrades
         writer.Write((int)SpecializedFor);
     }
 
+    public double CalculateCost(IComponentSpecificUpgrades? previousUpgrades)
+    {
+        // TODO: calculate cost of this upgrade once custom upgrades can cost MP
+        return 0;
+    }
+
     public bool Equals(IComponentSpecificUpgrades? other)
     {
         if (other is not StorageComponentUpgrades otherVacuole)

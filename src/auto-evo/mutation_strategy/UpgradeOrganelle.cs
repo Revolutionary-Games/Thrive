@@ -58,90 +58,147 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
             return null;
         }
 
-        // If a cheaper organelle upgrade gets added, this will need to be updated
-        if (mp < 10)
-            return null;
-
-        double mpcost = 0;
-
-        bool validMutations = false;
+        // TODO: maybe there is a way to avoid this memory allocation?
+        List<int>? organelleIndexesToMutate = null;
 
         // Manual looping to avoid one enumerator allocation per call
         var organelleList = baseSpecies.Organelles.Organelles;
-        var count = organelleList.Count;
-        for (var i = 0; i < count; ++i)
+        var organelleCount = organelleList.Count;
+        for (var i = 0; i < organelleCount; ++i)
         {
             var organelle = organelleList[i];
+            if (!allOrganelles.Contains(organelle.Definition))
+                continue;
 
-            if (allOrganelles.Contains(organelle.Definition))
+            // Filter out upgrades early that cost too much
+            double mpCost = 0;
+            bool canUpgrade = false;
+
+            if (upgradeName != null)
             {
-                validMutations = true;
-                break;
+                foreach (var availableUpgrade in organelle.Definition.AvailableUpgrades)
+                {
+                    // Filter to just appliable upgrades
+                    if (availableUpgrade.Key == upgradeName && (organelle.Upgrades == null ||
+                            !organelle.Upgrades.UnlockedFeatures.Contains(upgradeName)))
+                    {
+                        mpCost += availableUpgrade.Value.MPCost;
+                        canUpgrade = true;
+                        break;
+                    }
+                }
             }
+
+            if (customUpgrade != null)
+            {
+                mpCost += customUpgrade.CalculateCost(organelle.Upgrades?.CustomUpgradeData);
+                canUpgrade = true;
+            }
+
+            // Don't add to the mutations-to-try-list if too expensive
+            if (mpCost > mp || (customUpgrade == null && !canUpgrade))
+                continue;
+
+            organelleIndexesToMutate ??= new List<int>();
+            organelleIndexesToMutate.Add(i);
         }
 
-        if (validMutations)
+        // Skip if nothing can be upgraded
+        if (organelleIndexesToMutate == null)
         {
-            var mutated = new List<Tuple<MicrobeSpecies, double>>();
-
-            var eligibleOrganelles = new List<OrganelleTemplate>();
-
-            foreach (var organelle in baseSpecies.Organelles.Organelles)
-            {
-                if (allOrganelles.Contains(organelle.Definition))
-                    eligibleOrganelles.Add(organelle);
-            }
-
-            var eligibleOrganelleSample = eligibleOrganelles
-                .OrderBy(_ => random.Next())
-                .Take(Constants.AUTO_EVO_ORGANELLE_UPGRADE_ATTEMPTS);
-
-            foreach (var baseSpeciesOrganelle in eligibleOrganelleSample)
-            {
-                var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
-                OrganelleTemplate? organelle = null;
-
-                foreach (var candidateOrganelle in newSpecies.Organelles.Organelles)
-                {
-                    if (candidateOrganelle.Position == baseSpeciesOrganelle.Position)
-                    {
-                        organelle = candidateOrganelle;
-                        break;
-                    }
-                }
-
-                foreach (var availableUpgrade in organelle!.Definition.AvailableUpgrades)
-                {
-                    var availableUpgradeName = availableUpgrade.Key;
-                    if (availableUpgradeName == upgradeName)
-                    {
-                        mpcost = availableUpgrade.Value.MPCost;
-                        break;
-                    }
-                }
-
-                if (mpcost > mp)
-                    break;
-
-                organelle.Upgrades ??= new OrganelleUpgrades();
-
-                if (customUpgrade != null)
-                {
-                    organelle.Upgrades.CustomUpgradeData = customUpgrade;
-                    mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp - mpcost));
-                }
-
-                if (upgradeName != null &&
-                    !organelle.Upgrades.UnlockedFeatures.Contains(upgradeName))
-                {
-                    organelle.Upgrades.UnlockedFeatures.Add(upgradeName);
-                    mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp - mpcost));
-                }
-            }
-
-            return mutated;
+            return null;
         }
 
-        return null;
+        var mutated = new List<Tuple<MicrobeSpecies, double>>();
+
+        // Pick a random organelle that can be mutated each time
+        organelleIndexesToMutate.Shuffle(random);
+
+        for (int i = 0; i < Constants.AUTO_EVO_ORGANELLE_UPGRADE_ATTEMPTS; ++i)
+        {
+            if (i >= organelleIndexesToMutate.Count)
+                break;
+
+            int organelleToMutate = organelleIndexesToMutate[i];
+
+            // We manually clone organelles to save on memory allocation
+            var newSpecies = baseSpecies.Clone(false);
+
+            bool mutatedOrganelle = false;
+            double mpCost = 0;
+
+            // TODO: this whole block would need to run twice if we wanted to try the feature flag and custom data
+            // separately like in one version of this code hack
+            for (var j = 0; j < organelleCount; ++j)
+            {
+                if (j == organelleToMutate)
+                {
+                    var originalOrganelle = organelleList[j];
+
+                    bool hasFeatureUpgrade = false;
+
+                    // We need to re-calculate the cost here as not all organelles will have a uniform cost based
+                    // on what upgrades they have already applied (and we need to know that for the final cost)
+                    if (upgradeName != null)
+                    {
+                        foreach (var availableUpgrade in originalOrganelle.Definition.AvailableUpgrades)
+                        {
+                            // Check if found an available upgrade that is not applied yet
+                            if (availableUpgrade.Key == upgradeName && (originalOrganelle.Upgrades == null ||
+                                    !originalOrganelle.Upgrades.UnlockedFeatures.Contains(upgradeName)))
+                            {
+                                mpCost += availableUpgrade.Value.MPCost;
+                                hasFeatureUpgrade = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (customUpgrade != null)
+                    {
+                        mpCost += customUpgrade.CalculateCost(originalOrganelle.Upgrades?.CustomUpgradeData);
+                    }
+
+                    if (mpCost > mp || (customUpgrade == null && !hasFeatureUpgrade))
+                    {
+                        // This is wasting an attempt as we do not have enough MPs to upgrade this organelle
+                        // As we try only one organelle upgrade per loop, we need to abandon this entire species clone
+                        // attempt
+                        break;
+                    }
+
+                    var upgradedOrganelle = organelleList[j].Clone(false);
+
+                    upgradedOrganelle.Upgrades = new OrganelleUpgrades();
+
+                    if (customUpgrade != null)
+                    {
+                        upgradedOrganelle.Upgrades.CustomUpgradeData = customUpgrade;
+                    }
+
+                    if (upgradeName != null && hasFeatureUpgrade &&
+                        !upgradedOrganelle.Upgrades.UnlockedFeatures.Contains(upgradeName))
+                    {
+                        upgradedOrganelle.Upgrades.UnlockedFeatures.Add(upgradeName);
+                    }
+
+                    // We did not change the position at all, so we can safely put down the organelle as upgrades
+                    // cannot affect the shape
+                    newSpecies.Organelles.AddAutoEvoAttemptOrganelle(upgradedOrganelle);
+                    mutatedOrganelle = true;
+                }
+                else
+                {
+                    newSpecies.Organelles.AddAutoEvoAttemptOrganelle(organelleList[j]);
+                }
+            }
+
+            if (mutatedOrganelle)
+            {
+                mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp - mpCost));
+            }
+        }
+
+        return mutated;
     }
 }

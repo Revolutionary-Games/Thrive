@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 
 /// <summary>
-///   Toxin types. See <see cref="ToxinUpgradeNames"/> for what names match each enum value in the upgrades list.
+///   Toxin types. See <see cref="ToxinUpgradeNames"/> for what names match each enum value in the upgrade list.
 /// </summary>
 /// <remarks>
 ///   <para>

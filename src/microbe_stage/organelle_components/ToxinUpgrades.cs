@@ -52,6 +52,12 @@ public class ToxinUpgrades : IComponentSpecificUpgrades
         writer.Write(Toxicity);
     }
 
+    public double CalculateCost(IComponentSpecificUpgrades? previousUpgrades)
+    {
+        // TODO: calculate cost of this upgrade once custom upgrades can cost MP
+        return 0;
+    }
+
     public bool Equals(IComponentSpecificUpgrades? other)
     {
         if (other is ToxinUpgrades toxinUpgrades)
