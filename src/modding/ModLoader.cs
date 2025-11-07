@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Loader;
 using Godot;
 using HarmonyLib;
 using File = System.IO.File;
 using Path = System.IO.Path;
 
 /// <summary>
-///   Handles loading mods, and auto-loading mods, and also showing related errors etc. popups
+///   Handles loading mods and autoloading mods and also showing related errors etc. popups
 /// </summary>
 [GodotAutoload]
 public partial class ModLoader : Node
@@ -17,6 +18,8 @@ public partial class ModLoader : Node
     private static ModInterface? modInterface;
 
     private readonly List<string> loadedMods = new();
+
+    private readonly Dictionary<string, Assembly> sharedAssembliesForMods = new(StringComparer.OrdinalIgnoreCase);
 
     private readonly Dictionary<string, IMod> loadedModAssemblies = new();
     private readonly Dictionary<string, Harmony> loadedAutoHarmonyMods = new();
@@ -561,6 +564,20 @@ public partial class ModLoader : Node
 
     private Assembly LoadCodeAssembly(string path)
     {
+        if (sharedAssembliesForMods.Count < 1)
+        {
+            // Initialise the assembly cache the first time it is required
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                var name = assembly.GetName().Name;
+                if (name is "GodotSharp" or "Thrive" or "Arch" or "Arch.System" or "0Harmony" or "Harmony"
+                    or "SharedBase" or "ThriveScriptsShared")
+                {
+                    sharedAssembliesForMods[name] = assembly;
+                }
+            }
+        }
+
         path = ProjectSettings.GlobalizePath(path);
 
         if (!File.Exists(path))
@@ -571,9 +588,15 @@ public partial class ModLoader : Node
 
         GD.Print("Loading mod C# assembly from: ", path);
 
-        // This version doesn't load the classes into the current assembly find path (or whatever it is properly called
-        // in C#)
-        var result = Assembly.LoadFrom(path);
+        var folder = Path.GetDirectoryName(path) ?? throw new InvalidOperationException("Mod assembly has no folder");
+
+        // Mods now need a custom load context that provides access to DLLs they might refer to; otherwise the load
+        // fails with errors like not being able to find Thrive dll
+        var loadContext = new ModLoadContext(folder, sharedAssembliesForMods);
+
+        var result = loadContext.LoadFromAssemblyPath(path);
+
+        // It's unknown if the above approach allows Godot node types to be loaded, probably not
 
         // This version should load like that, however this still results in classes not being found from Godot
         // so special workaround is needed
@@ -583,5 +606,47 @@ public partial class ModLoader : Node
         GD.Print("Assembly load succeeded");
 
         return result;
+    }
+
+    private sealed class ModLoadContext : AssemblyLoadContext
+    {
+        private readonly string modDir;
+        private readonly Dictionary<string, Assembly> shared;
+
+        // TODO: does this need unloading support with "isCollectible: true"?
+        public ModLoadContext(string modDir, Dictionary<string, Assembly> shared)
+        {
+            this.modDir = modDir;
+            this.shared = shared;
+
+            // TODO: should mods be able to link against each other?
+
+            Resolving += OnResolve;
+        }
+
+        private Assembly? OnResolve(AssemblyLoadContext context, AssemblyName name)
+        {
+            if (name.Name == null)
+            {
+                GD.PrintErr($"Mod depends on a non-named assembly, can't load it: {name}");
+                return null;
+            }
+
+            // Bind to already loaded assemblies
+            // TODO: should there be a version check?
+            // Things will probably fail with incompatible versions anyway.
+            if (shared.TryGetValue(name.Name, out var sharedAssembly))
+                return sharedAssembly;
+
+            // If mod included DLL files it wants to reference, load them
+            var candidate = Path.Combine(modDir, name.Name + ".dll");
+            if (File.Exists(candidate))
+            {
+                GD.Print($"Mod assembly requested an extra DLL file, loading: {candidate}");
+                return LoadFromAssemblyPath(candidate);
+            }
+
+            return null;
+        }
     }
 }

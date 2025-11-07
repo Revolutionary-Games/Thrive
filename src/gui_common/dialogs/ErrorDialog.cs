@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using Godot;
 
 /// <summary>
@@ -12,7 +13,8 @@ public partial class ErrorDialog : CustomWindow
     private string? exceptionInfo;
 
     /// <summary>
-    ///   If true closing the dialog returns to menu. If false the dialog is just closed (and game is unpaused).
+    ///   If true, closing the dialog returns to the menu.
+    ///   If false, the dialog is just closed (and the game is unpaused).
     /// </summary>
     private bool onDismissReturnToMenu;
 
@@ -63,6 +65,11 @@ public partial class ErrorDialog : CustomWindow
         }
     }
 
+    /// <summary>
+    ///   Extra context added to the exception info when copying
+    /// </summary>
+    public string? ExceptionExtraContext { get; set; }
+
     private string PauseLock => $"{nameof(ErrorDialog)}_{Name}";
 
     public override void _Ready()
@@ -78,7 +85,7 @@ public partial class ErrorDialog : CustomWindow
     }
 
     /// <summary>
-    ///   Helper for showing the error dialog with extra callback.
+    ///   Helper for showing the error dialog with an extra callback.
     /// </summary>
     public void ShowError(string title, string message, string exception, bool returnToMenu = false,
         Action? onClosed = null, bool allowExceptionCopy = true)
@@ -129,9 +136,24 @@ public partial class ErrorDialog : CustomWindow
 
     private void OnCopyToClipboardPressed()
     {
-        DisplayServer.ClipboardSet(Localization.Translate(WindowTitle) + " - " +
-            Localization.Translate(extraDescriptionLabel!.Text) + " exception: " +
-            exceptionLabel!.Text);
+        var builder = new StringBuilder();
+        builder.Append(Localization.Translate(WindowTitle));
+        builder.Append(" - ");
+        builder.Append(Localization.Translate(extraDescriptionLabel!.Text));
+        builder.Append('\n');
+
+        var extra = ExceptionExtraContext;
+
+        if (!string.IsNullOrWhiteSpace(extra))
+        {
+            builder.Append(extra);
+            builder.Append('\n');
+        }
+
+        builder.Append("exception: ");
+        builder.Append(exceptionLabel!.Text);
+
+        DisplayServer.ClipboardSet(builder.ToString());
     }
 
     private void OnClosePressed()

@@ -177,6 +177,17 @@ public static class MathUtils
         return distance <= Math.PI ? distance : (float)(2 * Math.PI) - distance;
     }
 
+    /// <summary>
+    ///   Squares a number, faster alterative to <c>Math.Pow(x, 2)</c>
+    /// </summary>
+    /// <param name="value">Value to square</param>
+    /// <returns>Squared result</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static float Square(float value)
+    {
+        return value * value;
+    }
+
     public static Vector3 CalculateCameraVisiblePosition(Node3D camera, float distance = 25)
     {
         var forward = camera.Transform.Basis.GetRotationQuaternion() * Vector3.Forward;

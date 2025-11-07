@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2025-11-06 15:24+0200\n"
 "PO-Revision-Date: 2025-09-26 12:14+0000\n"
 "Last-Translator: Tuscokchips <kortejanos180@gmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -2893,6 +2893,9 @@ msgstr "ID száma"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(a renderelési és felskálázási módtól és függően nem minden eljárás elérhető)"
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Membrán típusok"
@@ -3131,18 +3134,6 @@ msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lép�
 
 msgid "JANUARY"
 msgstr "Január"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON debug mód:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Mindig"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automatikusan"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Soha"
 
 msgid "JULY"
 msgstr "Július"
@@ -4263,6 +4254,10 @@ msgstr "Típus módosítása"
 
 msgid "MODS"
 msgstr "Modok"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Kikapcsolva"
 
 #, fuzzy
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
@@ -5692,13 +5687,6 @@ msgstr "Mérete:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Biztos véglegesen akarod törölni a következő mentést: {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "JSON debug mód:"
 
 msgid "SAVE_FAILED"
 msgstr "Mentés sikertelen"
@@ -7198,6 +7186,17 @@ msgstr "Visszavonás"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Utolsó akció visszavonása"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "A pilusok sok mikroorganizmus felületén megtalálhatóak, amik finom szőrszálakhoz hasonlítanak. Több tíz, akár több száz pilus is található egy mikroorganizmuson, feladatuk pedig egy, vagy több is lehet a ragadozást beleértve."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Köszönjük"
 
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
@@ -9527,6 +9526,22 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON debug mód:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Mindig"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automatikusan"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Soha"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "JSON debug mód:"
 
 #, fuzzy
 #~ msgid "OUTDATED"

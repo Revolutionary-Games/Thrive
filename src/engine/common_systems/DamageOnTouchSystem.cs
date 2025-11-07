@@ -135,17 +135,18 @@ public partial class DamageOnTouchSystem : BaseSystem<World, float>
                         subShape, out var hitEntity))
                 {
                     hitEntity.Get<Health>()
-                        .DealMicrobeDamage(ref hitEntity.Get<CellProperties>(), damageValue, damageType, protection);
+                        .DealMicrobeDamage(ref hitEntity.Get<CellProperties>(), hitEntity, damageValue, damageType,
+                            protection);
 
                     return true;
                 }
             }
 
-            health.DealMicrobeDamage(ref entity.Get<CellProperties>(), damageValue, damageType, protection);
+            health.DealMicrobeDamage(ref entity.Get<CellProperties>(), entity, damageValue, damageType, protection);
         }
         else
         {
-            health.DealDamage(damageValue, damageType, HealthHelpers.GetInstantKillProtectionThreshold(entity));
+            health.DealDamage(entity, damageValue, damageType, HealthHelpers.GetInstantKillProtectionThreshold(entity));
         }
 
         return true;

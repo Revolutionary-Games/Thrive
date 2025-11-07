@@ -4,7 +4,7 @@ extends RefCounted
 
 const GdUnitTools := preload("res://addons/gdUnit4/src/core/GdUnitTools.gd")
 const UNDEFINED: String = "<-NO_ARG->"
-const ARG_PARAMETERIZED_TEST := "test_parameters"
+const ARG_PARAMETERIZED_TEST := ["test_parameters", "_test_parameters"]
 
 static var _fuzzer_regex: RegEx
 static var _cleanup_leading_spaces: RegEx
@@ -22,7 +22,7 @@ func _init(p_name: String, p_type: int, value: Variant = UNDEFINED, p_type_hint:
 	_name = p_name
 	_type = p_type
 	_type_hint = p_type_hint
-	if value != null and p_name == ARG_PARAMETERIZED_TEST:
+	if value != null and p_name in ARG_PARAMETERIZED_TEST:
 		_parameter_sets = _parse_parameter_set(str(value))
 	_default_value = value
 	# is argument a fuzzer?
@@ -50,7 +50,7 @@ func set_value(value: String) -> void:
 	if _type == GdObjects.TYPE_FUZZER:
 		_default_value = value
 		return
-	if _name == ARG_PARAMETERIZED_TEST:
+	if _name in ARG_PARAMETERIZED_TEST:
 		_parameter_sets = _parse_parameter_set(value)
 		_default_value = value
 		return
@@ -111,7 +111,7 @@ func is_typed_array() -> bool:
 
 
 func is_parameter_set() -> bool:
-	return _name == ARG_PARAMETERIZED_TEST
+	return _name in ARG_PARAMETERIZED_TEST
 
 
 func parameter_sets() -> PackedStringArray:

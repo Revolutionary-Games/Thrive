@@ -101,8 +101,9 @@ func _on_gdunit_settings_changed(_property: GdUnitProperty) -> void:
 
 
 func _on_wiki_pressed() -> void:
-	@warning_ignore("return_value_discarded")
-	OS.shell_open("https://mikeschulze.github.io/gdUnit4/")
+	var status := OS.shell_open("https://mikeschulze.github.io/gdUnit4/%s" % GdUnit4Version.current().documentation_version())
+	if status != OK:
+		push_error("Can't open GdUnit4 documentaion page: %s" % error_string(status))
 
 
 func _on_btn_tool_pressed() -> void:
