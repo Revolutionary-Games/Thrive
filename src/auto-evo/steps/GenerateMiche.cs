@@ -37,7 +37,12 @@ public class GenerateMiche : IRunStep
         rootMiche.AddChild(metabolicRoot);
         metabolicRoot.AddChild(generatedMiche);
 
-        // Autotrophic Miches
+        // "Autotrophic" Miches
+        var phosphateMiche = new Miche(globalCache.PhosphateCloudPressure);
+        var ammoniaMiche = new Miche(globalCache.AmmoniaCloudPressure);
+
+        generatedMiche.AddChild(phosphateMiche);
+        phosphateMiche.AddChild(ammoniaMiche);
 
         // Glucose
         if (patch.Biome.TryGetCompound(Compound.Glucose, CompoundAmountType.Biome, out var glucoseAmount) &&
@@ -46,7 +51,7 @@ public class GenerateMiche : IRunStep
             var glucoseMiche = new Miche(globalCache.GlucoseConversionEfficiencyPressure);
             glucoseMiche.AddChild(new Miche(globalCache.GlucoseCloudPressure));
 
-            generatedMiche.AddChild(glucoseMiche);
+            ammoniaMiche.AddChild(glucoseMiche);
         }
 
         var hasSmallIronChunk =
@@ -68,7 +73,7 @@ public class GenerateMiche : IRunStep
             // TODO: maybe allowing direct iron in a patch should also be considered (though not currently used by
             // any biome in the game)?
 
-            generatedMiche.AddChild(ironMiche);
+            ammoniaMiche.AddChild(ironMiche);
         }
 
         var hasSmallSulfurChunk =
@@ -104,7 +109,7 @@ public class GenerateMiche : IRunStep
 
             generateATP.AddChild(maintainGlucose);
             hydrogenSulfideMiche.AddChild(generateATP);
-            generatedMiche.AddChild(hydrogenSulfideMiche);
+            ammoniaMiche.AddChild(hydrogenSulfideMiche);
         }
 
         var hasRadioactiveChunk =
@@ -117,7 +122,7 @@ public class GenerateMiche : IRunStep
             var radiationMiche = new Miche(globalCache.RadiationConversionEfficiencyPressure);
             radiationMiche.AddChild(new Miche(globalCache.RadioactiveChunkPressure));
 
-            generatedMiche.AddChild(radiationMiche);
+            ammoniaMiche.AddChild(radiationMiche);
         }
 
         // Sunlight
@@ -133,7 +138,7 @@ public class GenerateMiche : IRunStep
             maintainGlucose.AddChild(envPressure);
             generateATP.AddChild(maintainGlucose);
             sunlightMiche.AddChild(generateATP);
-            generatedMiche.AddChild(sunlightMiche);
+            ammoniaMiche.AddChild(sunlightMiche);
         }
 
         // Heat
@@ -149,7 +154,7 @@ public class GenerateMiche : IRunStep
 
             tempSessilityMiche.AddChild(tempCompPressure);
             tempMiche.AddChild(tempSessilityMiche);
-            generatedMiche.AddChild(tempMiche);
+            ammoniaMiche.AddChild(tempMiche);
         }
 
         var predationRoot = new Miche(globalCache.PredatorRoot);
