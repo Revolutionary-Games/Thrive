@@ -32,7 +32,7 @@ region_rect = Rect2(0, 0, 258, 1)
 
 [sub_resource type="StyleBoxEmpty" id="7"]
 
-[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("backButton", "resetButton", "saveButton", "tabButtons", "graphicsButton", "soundButton", "performanceButton", "inputsButton", "miscButton", "graphicsTab", "vsync", "resolution", "displayMode", "antiAliasingMode", "msaaSection", "msaaResolution", "renderScale", "renderScaleLabel", "upscalingMethod", "upscalingSharpening", "maxFramesPerSecond", "colourblindSetting", "chromaticAberrationToggle", "chromaticAberrationSlider", "controllerPromptType", "displayAbilitiesHotBarToggle", "anisotropicFilterLevel", "damageEffect", "strainVisibility", "displayBackgroundParticlesToggle", "guiLightEffectsToggle", "displayPartNamesToggle", "displayMenu3DBackgroundsToggle", "displayMicrobeBackgroundDistortionToggle", "lowQualityBackgroundBlurToggle", "bloomEffectToggle", "bloomSlider", "blurSlider", "gpuName", "usedRendererName", "videoMemory", "soundTab", "masterVolume", "masterMuted", "musicVolume", "musicMuted", "ambianceVolume", "ambianceMuted", "sfxVolume", "sfxMuted", "guiVolume", "guiMuted", "audioOutputDeviceSelection", "languageSelection", "resetLanguageButton", "languageProgressLabel", "performanceTab", "cloudInterval", "cloudResolutionTitle", "cloudResolution", "runAutoEvoDuringGameplay", "runGameSimulationMultithreaded", "detectedCPUCount", "activeThreadCount", "assumeHyperthreading", "useManualThreadCount", "threadCountSlider", "useManualNativeThreadCount", "nativeThreadCountSlider", "maxSpawnedEntities", "useDiskCaching", "maxCacheSizeSlider", "maxCacheSizeLabel", "currentCacheSize", "maxMemoryCacheTimeSlider", "maxMemoryCacheTimeLabel", "maxDiskCacheTimeSlider", "maxDiskCacheTimeLabel", "maxMemoryItemsSlider", "maxMemoryItemsLabel", "maxMemoryOnlyCacheTimeSlider", "maxMemoryOnlyCacheTimeLabel", "inputsTab", "mouseAxisSensitivitiesBound", "mouseHorizontalSensitivity", "mouseHorizontalInverted", "mouseVerticalSensitivity", "mouseVerticalInverted", "mouseWindowSizeScaling", "mouseWindowSizeScalingWithLogicalSize", "controllerAxisSensitivitiesBound", "controllerHorizontalSensitivity", "controllerHorizontalInverted", "controllerVerticalSensitivity", "controllerVerticalInverted", "twoDimensionalMovement", "threeDimensionalMovement", "mouseEdgePanEnabled", "mouseEdgePanSensitivity", "inputGroupList", "deadzoneConfigurationPopup", "miscTab", "playIntro", "playMicrobeIntro", "cheats", "tutorialsEnabledOnNewGame", "autoSave", "maxAutoSaves", "maxQuickSaves", "customUsernameEnabled", "customUsername", "webFeedsEnabled", "microbeRippleEffect", "microbeCameraTilt", "showNewPatchNotes", "dismissedNoticeCount", "jsonDebugMode", "screenEffectSelect", "commitLabel", "builtAtLabel", "tutorialsEnabled", "tutorialsEnabledContainer", "unsavedProgressWarningEnabled", "resetAchievementsButton", "screenshotDirectoryWarningBox", "backConfirmationBox", "defaultsConfirmationBox", "confirmAchievementsReset", "errorAcceptBox", "patchNotesBox", "patchNotesDisplayer")]
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("backButton", "resetButton", "saveButton", "tabButtons", "graphicsButton", "soundButton", "performanceButton", "inputsButton", "miscButton", "graphicsTab", "vsync", "resolution", "displayMode", "antiAliasingMode", "msaaSection", "msaaResolution", "renderScale", "renderScaleLabel", "upscalingMethod", "upscalingSharpening", "maxFramesPerSecond", "colourblindSetting", "chromaticAberrationToggle", "chromaticAberrationSlider", "controllerPromptType", "displayAbilitiesHotBarToggle", "anisotropicFilterLevel", "damageEffect", "strainVisibility", "displayBackgroundParticlesToggle", "guiLightEffectsToggle", "displayPartNamesToggle", "displayMenu3DBackgroundsToggle", "displayMicrobeBackgroundDistortionToggle", "lowQualityBackgroundBlurToggle", "bloomEffectToggle", "bloomSlider", "blurSlider", "gpuName", "usedRendererName", "videoMemory", "soundTab", "masterVolume", "masterMuted", "musicVolume", "musicMuted", "ambianceVolume", "ambianceMuted", "sfxVolume", "sfxMuted", "guiVolume", "guiMuted", "audioOutputDeviceSelection", "languageSelection", "resetLanguageButton", "languageProgressLabel", "performanceTab", "cloudInterval", "cloudResolutionTitle", "cloudResolution", "runAutoEvoDuringGameplay", "runGameSimulationMultithreaded", "detectedCPUCount", "activeThreadCount", "assumeHyperthreading", "useManualThreadCount", "threadCountSlider", "useManualNativeThreadCount", "nativeThreadCountSlider", "maxSpawnedEntities", "useDiskCaching", "maxCacheSizeSlider", "maxCacheSizeLabel", "currentCacheSize", "maxMemoryCacheTimeSlider", "maxMemoryCacheTimeLabel", "maxDiskCacheTimeSlider", "maxDiskCacheTimeLabel", "maxMemoryItemsSlider", "maxMemoryItemsLabel", "maxMemoryOnlyCacheTimeSlider", "maxMemoryOnlyCacheTimeLabel", "inputsTab", "mouseAxisSensitivitiesBound", "mouseHorizontalSensitivity", "mouseHorizontalInverted", "mouseVerticalSensitivity", "mouseVerticalInverted", "mouseWindowSizeScaling", "mouseWindowSizeScalingWithLogicalSize", "controllerAxisSensitivitiesBound", "controllerHorizontalSensitivity", "controllerHorizontalInverted", "controllerVerticalSensitivity", "controllerVerticalInverted", "twoDimensionalMovement", "threeDimensionalMovement", "mouseEdgePanEnabled", "mouseEdgePanSensitivity", "inputGroupList", "deadzoneConfigurationPopup", "miscTab", "playIntro", "playMicrobeIntro", "cheats", "tutorialsEnabledOnNewGame", "autoSave", "maxAutoSaves", "maxQuickSaves", "customUsernameEnabled", "customUsername", "webFeedsEnabled", "microbeRippleEffect", "microbeCameraTilt", "showNewPatchNotes", "dismissedNoticeCount", "screenEffectSelect", "commitLabel", "builtAtLabel", "tutorialsEnabled", "tutorialsEnabledContainer", "unsavedProgressWarningEnabled", "resetAchievementsButton", "screenshotDirectoryWarningBox", "backConfirmationBox", "defaultsConfirmationBox", "confirmAchievementsReset", "errorAcceptBox", "patchNotesBox", "patchNotesDisplayer")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -162,7 +162,6 @@ microbeRippleEffect = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBox
 microbeCameraTilt = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer/MicrobeCameraTilt")
 showNewPatchNotes = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15/HBoxContainer/ShowNewPatchNotes")
 dismissedNoticeCount = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer/HBoxContainer/DismissedCount")
-jsonDebugMode = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/VBoxContainer3/HBoxContainer/JSONDebug")
 screenEffectSelect = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10/VBoxContainer3/HBoxContainer/ScreenEffect")
 commitLabel = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer18/HBoxContainer/Commit")
 builtAtLabel = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer19/HBoxContainer/BuiltAt")
@@ -2978,42 +2977,6 @@ autowrap_mode = 2
 layout_mode = 2
 tooltip_text = "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 
-[node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/VBoxContainer3"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/VBoxContainer3/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-size_flags_stretch_ratio = 3.0
-text = "JSON_DEBUG_MODE"
-autowrap_mode = 2
-
-[node name="JSONDebug" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/VBoxContainer3/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-size_flags_stretch_ratio = 2.0
-autowrap_mode = 2
-selected = 0
-item_count = 3
-popup/item_0/text = "JSON_DEBUG_MODE_AUTO"
-popup/item_0/id = 0
-popup/item_1/text = "JSON_DEBUG_MODE_ALWAYS"
-popup/item_1/id = 1
-popup/item_2/text = "JSON_DEBUG_MODE_NEVER"
-popup/item_2/id = 2
-
 [node name="VBoxContainer16" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -3082,6 +3045,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 2.0
+focus_neighbor_left = NodePath("../../../VBoxContainer/ResetAchievements")
 action_mode = 0
 text = "RESET_DISMISSED_POPUPS"
 autowrap_mode = 2
@@ -3480,7 +3444,6 @@ grow_vertical = 1
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13/HBoxContainer/CustomUsername" to="." method="OnCustomUsernameTextChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14/HBoxContainer/WebFeeds" to="." method="OnWebFeedsEnabledToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15/HBoxContainer/ShowNewPatchNotes" to="." method="OnPatchNotesEnabledToggled"]
-[connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/VBoxContainer3/HBoxContainer/JSONDebug" to="." method="OnJSONDebugModeSelected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16/HBoxContainer/ViewPatchNotes" to="." method="OnOpenPatchNotesPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer/ResetDismissed" to="." method="OnResetDismissedPopups"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/ResetAchievements" to="." method="ResetAchievementsPressed"]

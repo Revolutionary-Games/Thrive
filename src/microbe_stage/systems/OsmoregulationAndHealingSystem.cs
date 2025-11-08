@@ -91,7 +91,7 @@ public partial class OsmoregulationAndHealingSystem : BaseSystem<World, float>
         {
             compounds.TakeCompound(Compound.Hydrogensulfide, Constants.HYDROGEN_SULFIDE_DAMAGE_COMPOUND_DRAIN);
 
-            health.DealMicrobeDamage(ref cellProperties, Constants.HYDROGEN_SULFIDE_DAMAGE, "hydrogenSulfide",
+            health.DealMicrobeDamage(ref cellProperties, entity, Constants.HYDROGEN_SULFIDE_DAMAGE, "hydrogenSulfide",
                 HealthHelpers.GetInstantKillProtectionThreshold(entity));
 
             entity.SendNoticeIfPossible(() =>
@@ -179,7 +179,7 @@ public partial class OsmoregulationAndHealingSystem : BaseSystem<World, float>
         if (compounds.GetCompoundAmount(Compound.ATP) > Constants.ATP_DAMAGE_THRESHOLD)
             return;
 
-        health.DealMicrobeDamage(ref cellProperties, health.MaxHealth * Constants.NO_ATP_DAMAGE_FRACTION,
+        health.DealMicrobeDamage(ref cellProperties, entity, health.MaxHealth * Constants.NO_ATP_DAMAGE_FRACTION,
             "atpDamage", HealthHelpers.GetInstantKillProtectionThreshold(entity));
     }
 

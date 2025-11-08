@@ -352,6 +352,9 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(EndosymbiosisData.InProgressEndosymbiosis),
             EndosymbiosisData.InProgressEndosymbiosis.ReadFromArchive);
 
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.AgentProperties,
+            typeof(AgentProperties), AgentProperties.ReadFromArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchEventProperties,
             typeof(PatchEventProperties), PatchEventProperties.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchEventProperties,

@@ -1,13 +1,11 @@
 ﻿using System;
 using Godot;
-using Saving;
 
 /// <summary>
 ///   Controls the little popup text saying "saving" and "save complete"
 /// </summary>
 public partial class SaveStatusOverlay : Control
 {
-    private const string DebugMeta = "DEBUG";
     private const string FolderMeta = "FOLDER";
 
     private static SaveStatusOverlay? instance;
@@ -21,19 +19,13 @@ public partial class SaveStatusOverlay : Control
 
     [Export]
     private ErrorDialog errorDialog = null!;
-
-    [Export]
-    private Control errorJsonDebugAdvice = null!;
-
-    [Export]
-    private CustomRichTextLabel errorJsonDebugLabel = null!;
 #pragma warning restore CA2213
 
     private double hideTimer;
     private bool hidden;
 
     /// <summary>
-    ///   If true the next delta update is ignored to make the time to display more consistent
+    ///   If true, the next delta update is ignored to make the time to display more consistent
     /// </summary>
     private bool skipNextDelta;
 
@@ -96,7 +88,8 @@ public partial class SaveStatusOverlay : Control
     ///   Set to true when the problem was during loading (the error is shown slightly differently)
     /// </param>
     /// <param name="returnToMenu">
-    ///   If true closing the dialog returns to menu. If false the dialog is just closed (and game is unpaused)
+    ///   If true, closing the dialog returns to the menu.
+    ///   If false, the dialog is just closed (and the game is unpaused)
     /// </param>
     /// <param name="onClosed">Callback for when the dialog is closed</param>
     /// <param name="allowExceptionCopy">
@@ -105,29 +98,6 @@ public partial class SaveStatusOverlay : Control
     public void ShowError(string title, string message, string exception, bool wasLoading, bool returnToMenu = false,
         Action? onClosed = null, bool allowExceptionCopy = true)
     {
-        // When explicitly failing with a message, don't want to show the advice as that text always does fully explain
-        // what is wrong
-        if (!wasLoading && !string.IsNullOrWhiteSpace(exception) && allowExceptionCopy)
-        {
-            errorJsonDebugAdvice.Visible = true;
-
-            if (JsonDebugFileExists() && Settings.Instance.JSONDebugMode != JSONDebug.DebugMode.AlwaysDisabled)
-            {
-                SetJsonDebugLabelText();
-            }
-            else
-            {
-                SetJsonDebugLabelMissingFileText();
-            }
-        }
-        else
-        {
-            errorJsonDebugAdvice.Visible = false;
-        }
-
-        // TODO: could the exception have the last few lines from the json debug log included?
-        // That way users would always have the critical context for a saving error
-
         errorDialog.ShowError(title, message, exception, returnToMenu, onClosed, allowExceptionCopy);
     }
 
@@ -138,44 +108,16 @@ public partial class SaveStatusOverlay : Control
         skipNextDelta = true;
     }
 
-    private void SetJsonDebugLabelText()
-    {
-        errorJsonDebugLabel.ExtendedBbcode =
-            Localization.Translate("SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE")
-                .FormatSafe(DebugMeta, Constants.JSON_DEBUG_OUTPUT_FILE_NAME, FolderMeta);
-    }
-
-    private void SetJsonDebugLabelMissingFileText()
-    {
-        errorJsonDebugLabel.ExtendedBbcode =
-            Localization.Translate("SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE")
-                .FormatSafe(Constants.JSON_DEBUG_OUTPUT_FILE_NAME, FolderMeta);
-    }
-
-    private bool JsonDebugFileExists()
-    {
-        return FileAccess.FileExists(Constants.JSON_DEBUG_OUTPUT_FILE);
-    }
-
-    private void OpenJsonDebugFile()
-    {
-        GD.Print("Clicked on json debug file, trying to open it");
-        FolderHelpers.OpenFile(Constants.JSON_DEBUG_OUTPUT_FILE);
-    }
-
     private void OpenLogsFolder()
     {
         GD.Print("Clicked on open logs folder, trying to open it");
         FolderHelpers.OpenFolder(Constants.LOGS_FOLDER);
     }
 
+    // TODO: this is probably unused now but might be good to add a new way to open the logs folder?
     private void DebugAdviceMetaClicked(string meta)
     {
-        if (meta == DebugMeta)
-        {
-            OpenJsonDebugFile();
-        }
-        else if (meta == FolderMeta)
+        if (meta == FolderMeta)
         {
             OpenLogsFolder();
         }
