@@ -51,19 +51,3 @@ public class PatchEventVisuals
         [PatchEventTypes.MeteorSulfurImpact] = new LocalizedString("EVENT_METEOR_SULFUR"),
     };
 }
-
-public class PatchEventProperties
-{
-    public string CustomTooltip = string.Empty;
-    public float SunlightAmbientMultiplier = 1.0f;
-    public float TemperatureAmbientChange = 0.0f;
-    public float? TemperatureAmbientFixedValue = null;
-
-    public override string ToString()
-    {
-        return
-            $"SunlightAmbientMultiplier: {SunlightAmbientMultiplier}, " +
-            $"TemperatureAmbientChange: {TemperatureAmbientChange}, " +
-            $"TemperatureAmbientFixedValue: {TemperatureAmbientFixedValue}";
-    }
-}

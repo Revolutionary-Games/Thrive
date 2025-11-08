@@ -303,6 +303,7 @@ public enum ThriveArchiveObjectType : uint
     RunoffEvent = 4386,
     CurrentDilutionEvent = 4387,
     PatchEventsManager = 4388,
+    PatchEventProperties = 4389,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,
