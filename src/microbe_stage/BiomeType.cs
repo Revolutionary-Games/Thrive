@@ -9,16 +9,16 @@
 /// </remarks>
 public enum BiomeType
 {
-    Coastal, // continental biome
-    Estuary, // continental biome
-    Tidepool, // continental biome
-    Epipelagic, // ocean biome
-    Mesopelagic, // ocean biome
-    Bathypelagic, // ocean biome
-    Abyssopelagic, // ocean biome
-    Seafloor, // ocean biome
+    Coastal,
+    Estuary,
+    Tidepool,
+    Epipelagic,
+    Mesopelagic,
+    Bathypelagic,
+    Abyssopelagic,
+    Seafloor,
     Cave,
-    IceShelf, // ocean biome
+    IceShelf,
     Vents,
-    Banana, // continental biome
+    Banana,
 }
