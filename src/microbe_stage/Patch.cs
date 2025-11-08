@@ -742,7 +742,7 @@ public class Patch : IArchivable
 /// </summary>
 public class PatchSnapshot : ICloneable, IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     public double TimePeriod;
 
@@ -785,7 +785,9 @@ public class PatchSnapshot : ICloneable, IArchivable
             SpeciesInPatch = reader.ReadObject<Dictionary<Species, long>>(),
             RecordedSpeciesInfo = reader.ReadObject<Dictionary<Species, SpeciesInfo>>(),
             EventsLog = reader.ReadObject<List<GameEventDescription>>(),
-            ActivePatchEvents = reader.ReadObject<Dictionary<PatchEventTypes, PatchEventProperties>>(),
+            ActivePatchEvents = version >= 2 ?
+                reader.ReadObject<Dictionary<PatchEventTypes, PatchEventProperties>>() :
+                new Dictionary<PatchEventTypes, PatchEventProperties>(),
         };
     }
 
