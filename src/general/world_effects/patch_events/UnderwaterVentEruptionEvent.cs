@@ -29,7 +29,7 @@ public class UnderwaterVentEruptionEvent : IWorldEffect
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
     public ArchiveObjectType ArchiveObjectType =>
-        (ArchiveObjectType)ThriveArchiveObjectType.UnderwaterVentEruptionEffect;
+        (ArchiveObjectType)ThriveArchiveObjectType.UnderwaterVentEruptionEvent;
 
     public bool CanBeReferencedInArchive => false;
 

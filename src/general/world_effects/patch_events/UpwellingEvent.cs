@@ -238,7 +238,7 @@ public class UpwellingEvent : IWorldEffect
         Compound compound)
     {
         PatchEventUtils.ApplyChunksConfiguration(patch, templateBiome, chunkGroup, chunkDensityMultipliers, compound,
-            random, addChunks: true);
+            random, true);
     }
 
     private void LogEvent(Patch patch)

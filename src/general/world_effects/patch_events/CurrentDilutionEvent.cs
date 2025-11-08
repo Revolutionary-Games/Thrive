@@ -78,11 +78,12 @@ public class CurrentDilutionEvent : IWorldEffect
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var instance = new CurrentDilutionEvent(reader.ReadObject<GameWorld>(),
-            reader.ReadObject<XoShiRo256starstar>(), reader.ReadObject<Dictionary<int, int>>(),
-            reader.ReadObject<Dictionary<int, List<Compound>>>());
+        var targetWorld = reader.ReadObject<GameWorld>();
+        var random = reader.ReadObject<XoShiRo256starstar>();
+        var eventDurations = reader.ReadObject<Dictionary<int, int>>();
+        var affectedCompounds = reader.ReadObject<Dictionary<int, List<Compound>>>();
 
-        return instance;
+        return new CurrentDilutionEvent(targetWorld, random, eventDurations, affectedCompounds);
     }
 
     public void WriteToArchive(ISArchiveWriter writer)
@@ -252,7 +253,7 @@ public class CurrentDilutionEvent : IWorldEffect
         Compound compound)
     {
         PatchEventUtils.ApplyChunksConfiguration(patch, templateBiome, chunkGroup, chunkDensityMultipliers, compound,
-            random, addChunks: false, Constants.CURRENT_DILUTION_MIN_CHUNK_DENSITY_MULTIPLIER,
+            random, false, Constants.CURRENT_DILUTION_MIN_CHUNK_DENSITY_MULTIPLIER,
             Constants.CURRENT_DILUTION_MAX_CHUNK_DENSITY_MULTIPLIER);
     }
 

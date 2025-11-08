@@ -418,7 +418,7 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(GlobalGlaciationEvent), GlobalGlaciationEvent.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MeteorImpactEvent,
             typeof(MeteorImpactEvent), MeteorImpactEvent.ReadFromArchive);
-        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.UnderwaterVentEruptionEffect,
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.UnderwaterVentEruptionEvent,
             typeof(UnderwaterVentEruptionEvent), UnderwaterVentEruptionEvent.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.RunoffEvent,
             typeof(RunoffEvent), RunoffEvent.ReadFromArchive);

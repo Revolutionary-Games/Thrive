@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using SharedBase.Archive;
 
 public class PatchEventProperties : IArchivable
@@ -18,7 +18,7 @@ public class PatchEventProperties : IArchivable
     {
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.PatchEventProperties)
             throw new NotSupportedException();
-    
+
         writer.WriteObject((PatchSnapshot)obj);
     }
 

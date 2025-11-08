@@ -203,7 +203,7 @@ public class RunoffEvent : IWorldEffect
         Compound compound)
     {
         PatchEventUtils.ApplyChunksConfiguration(patch, templateBiome, chunkGroup, null, compound, random,
-            addChunks: true, Constants.RUNOFF_MIN_CHUNK_DENSITY_MULTIPLIER,
+            true, Constants.RUNOFF_MIN_CHUNK_DENSITY_MULTIPLIER,
             Constants.RUNOFF_MAX_CHUNK_DENSITY_MULTIPLIER);
     }
 

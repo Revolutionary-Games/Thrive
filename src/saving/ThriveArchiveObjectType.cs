@@ -32,7 +32,7 @@ public enum ThriveArchiveObjectType : uint
     BaseWorldEffect = 4118,
     GlobalGlaciationEvent = 4119,
     MeteorImpactEvent = 4120,
-    UnderwaterVentEruptionEffect = 4121,
+    UnderwaterVentEruptionEvent = 4121,
     Meteor = 4122,
     GlucoseReductionEffect = 4123,
     CompoundDiffusionEffect = 4124,
