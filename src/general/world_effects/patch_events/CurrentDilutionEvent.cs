@@ -193,7 +193,7 @@ public class CurrentDilutionEvent : IWorldEffect
             }
 
             var affectedCompounds = affectedCompoundsInPatches[patchId];
-            var tooltip = PatchEventUtils.BuildCustomTooltip("CURRENT_DILUTION_TOOLTIP",
+            var tooltip = PatchEventUtils.BuildCustomTooltip(new LocalizedString("CURRENT_DILUTION_TOOLTIP"),
                 affectedCompounds);
 
             foreach (var compound in affectedCompounds)

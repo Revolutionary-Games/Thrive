@@ -81,11 +81,11 @@ public static class PatchEventUtils
     }
 
     // Builds a tooltip string for affected compounds
-    public static string BuildCustomTooltip(string baseTooltip, List<Compound> affectedCompounds)
+    public static string BuildCustomTooltip(LocalizedString baseTooltip, List<Compound> affectedCompounds)
     {
         var builder = new LocalizedStringBuilder(256);
 
-        builder.Append(new LocalizedString(baseTooltip));
+        builder.Append(baseTooltip);
         builder.Append(' ');
 
         for (var i = 0; i < affectedCompounds.Count; ++i)

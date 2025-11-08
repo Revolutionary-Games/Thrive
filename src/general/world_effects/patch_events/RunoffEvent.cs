@@ -145,7 +145,7 @@ public class RunoffEvent : IWorldEffect
             }
 
             var affectedCompounds = affectedCompoundsInPatches[patchId];
-            var tooltip = PatchEventUtils.BuildCustomTooltip("EVENT_RUNOFF_TOOLTIP",
+            var tooltip = PatchEventUtils.BuildCustomTooltip(new LocalizedString("EVENT_RUNOFF_TOOLTIP"),
                 affectedCompounds);
 
             foreach (var compound in affectedCompounds)

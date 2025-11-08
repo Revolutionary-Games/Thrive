@@ -181,7 +181,7 @@ public class UpwellingEvent : IWorldEffect
             }
 
             var affectedCompounds = affectedCompoundsInPatches[patchId];
-            var tooltip = PatchEventUtils.BuildCustomTooltip("EVENT_UPWELLING_TOOLTIP",
+            var tooltip = PatchEventUtils.BuildCustomTooltip(new LocalizedString("EVENT_UPWELLING_TOOLTIP"),
                 affectedCompounds);
 
             foreach (var compound in affectedCompounds)

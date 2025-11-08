@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-05 22:59+0100\n"
+"POT-Creation-Date: 2025-11-08 15:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1963,8 +1963,12 @@ msgstr ""
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/CurrentDilution.cs:272
+#: ../src/general/world_effects/patch_events/CurrentDilutionEvent.cs:272
 msgid "CURRENT_DILUTION"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/CurrentDilutionEvent.cs:196
+msgid "CURRENT_DILUTION_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:136
@@ -2786,6 +2790,14 @@ msgstr ""
 
 #: ../src/general/world_effects/PatchEventVisuals.cs:51
 msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/RunoffEvent.cs:148
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/UpwellingEvent.cs:184
+msgid "EVENT_UPWELLING_TOOLTIP"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:570
@@ -7325,7 +7337,7 @@ msgstr ""
 msgid "ROTATION_COLON"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/RunoffEvent.cs:253
+#: ../src/general/world_effects/patch_events/RunoffEvent.cs:217
 msgid "RUNOFF_EVENT"
 msgstr ""
 
@@ -9080,11 +9092,11 @@ msgstr ""
 msgid "UNDERWATERCAVE"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEffect.cs:128
+#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEvent.cs:128
 msgid "UNDERWATER_VENT_ERUPTION"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEffect.cs:134
+#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEvent.cs:134
 msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr ""
 
@@ -9093,7 +9105,7 @@ msgstr ""
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/Patch.cs:19
+#: ../src/microbe_stage/Patch.cs:18
 msgid "UNDISCOVERED_PATCH"
 msgstr ""
 
@@ -9139,7 +9151,7 @@ msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr ""
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:111
-#: ../src/microbe_stage/Patch.cs:18
+#: ../src/microbe_stage/Patch.cs:17
 msgid "UNKNOWN_PATCH"
 msgstr ""
 
@@ -9307,7 +9319,7 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/UpwellingEvent.cs:247
+#: ../src/general/world_effects/patch_events/UpwellingEvent.cs:246
 msgid "UPWELLING_EVENT"
 msgstr ""
 
