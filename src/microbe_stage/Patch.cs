@@ -214,9 +214,9 @@ public class Patch : IArchivable
             }
 
             var biomeReference = SimulationParameters.Instance.GetBiome(biomeTemplate.InternalName);
-            biomeTemplate.Conditions.StartingSunlightValue = biomeReference.Conditions.Compounds
+            currentSnapshot.Biome.StartingSunlightValue = biomeReference.Conditions.Compounds
                 .GetValueOrDefault(Compound.Sunlight, default(BiomeCompoundProperties)).Ambient;
-            biomeTemplate.Conditions.StartingTemperatureValue = biomeReference.Conditions.Compounds
+            currentSnapshot.Biome.StartingTemperatureValue = biomeReference.Conditions.Compounds
                 .GetValueOrDefault(Compound.Temperature, default(BiomeCompoundProperties)).Ambient;
         }
 

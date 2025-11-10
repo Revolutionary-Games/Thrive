@@ -161,10 +161,6 @@ public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
         var chunks = reader.ReadObject<Dictionary<string, ChunkConfiguration>>();
         var pressure = reader.ReadFloat();
 
-        // Values for version <= 1 are properly set in Patch after loading.
-        float startingSunlightValue = version <= 1 ? 0 : reader.ReadFloat();
-        float startingTemperatureValue = version <= 1 ? 0 : reader.ReadFloat();
-
         var biomeConditions = new BiomeConditions(compounds,
             currentCompoundAmounts,
             averageCompoundAmounts,
@@ -173,9 +169,17 @@ public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
         {
             Chunks = chunks,
             Pressure = pressure,
-            StartingSunlightValue = startingSunlightValue,
-            StartingTemperatureValue = startingTemperatureValue,
         };
+
+        // Values for version <= 1 are properly set in Patch after loading.
+        if (version >= 2)
+        {
+            float startingSunlightValue = reader.ReadFloat();
+            float startingTemperatureValue = reader.ReadFloat();
+
+            biomeConditions.StartingSunlightValue = startingSunlightValue;
+            biomeConditions.StartingTemperatureValue = startingTemperatureValue;
+        }
 
         return biomeConditions;
     }
