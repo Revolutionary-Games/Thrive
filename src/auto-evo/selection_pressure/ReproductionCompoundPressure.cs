@@ -9,7 +9,7 @@ public class ReproductionCompoundPressure : SelectionPressure
 
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    private static readonly LocalizedString NameString = new LocalizedString("MICHE_COMPOUND_CLOUD_PRESSURE");
+    private static readonly LocalizedString NameString = new LocalizedString("MICHE_REPRODUCTION_COMPOUND_USAGE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
@@ -22,6 +22,7 @@ public class ReproductionCompoundPressure : SelectionPressure
     public ReproductionCompoundPressure(Compound compound, bool isDayNightCycleEnabled, float weight) :
         base(weight, [
             new AddOrganelleAnywhere(organelle => organelle.HasChemoreceptorComponent),
+            AddOrganelleAnywhere.ThatCreateCompound(compound),
             new ChangeMembraneRigidity(true),
             new UpgradeOrganelle(organelle => organelle.HasChemoreceptorComponent,
                 new ChemoreceptorUpgrades(compound, null, Constants.CHEMORECEPTOR_RANGE_DEFAULT,
@@ -42,6 +43,7 @@ public class ReproductionCompoundPressure : SelectionPressure
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
+    // TODO: change this and add to ThriveArchiveObjectType (probably the new saving system?)
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPressure;
 
@@ -69,6 +71,13 @@ public class ReproductionCompoundPressure : SelectionPressure
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
 
+        var compoundAmount = 0.0f;
+
+        if (patch.Biome.AverageCompounds.TryGetValue(compound, out var compoundData))
+        {
+            compoundAmount += compoundData.Density * compoundData.Amount;
+        }
+
         var score = MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.6f);
 
         // Species that are less active during the night get a small penalty here based on their activity
@@ -88,6 +97,61 @@ public class ReproductionCompoundPressure : SelectionPressure
         var chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compoundDefinition, patch.Biome);
         score += chemoreceptorScore;
 
+        // Combine with compound from all chunks
+        foreach (var chunk in patch.Biome.Chunks)
+        {
+            if (chunk.Value.Compounds != null && chunk.Value.Compounds.ContainsKey(compound))
+            {
+                var chunkChemoreceptorScore = cache.GetChemoreceptorChunkScore(
+                    microbeSpecies, chunk.Value, compoundDefinition, patch.Biome);
+                var chunkScore = 1.0f;
+
+                // Speed is not too important to chunk microbes, but all else being the same faster is better than slower
+                chunkScore += MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.4f);
+
+                // Diminishing returns on storage
+                chunkScore += (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) / 0.8f;
+
+                // If the species can't engulf, then they are dependent on only eating the runoff compounds
+                if (!microbeSpecies.CanEngulf ||
+                    cache.GetBaseHexSizeForSpecies(microbeSpecies) < chunk.Value.Size * Constants.ENGULF_SIZE_RATIO_REQ)
+                {
+                    chunkScore *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
+                }
+
+                chunkScore += chunkChemoreceptorScore;
+                score += chunkScore;
+
+                if (chunk.Value.Compounds?.TryGetValue(compoundDefinition.ID, out var chunkCompoundAmount) != true)
+                    throw new ArgumentException("Chunk does not contain compound");
+
+                var ventedCompound = MathF.Pow(chunkCompoundAmount.Amount, Constants.AUTO_EVO_CHUNK_AMOUNT_NERF);
+
+                compoundAmount += ventedCompound;
+            }
+        }
+
+        // modify score by how much compound is available for collection
+        score *= compoundAmount;
+
+        // modify score by activity
+        var activityFraction = microbeSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+        score *= activityFraction;
+
+        foreach (var organelle in microbeSpecies.Organelles.Organelles)
+        {
+            foreach (var process in organelle.Definition.RunnableProcesses)
+            {
+                if (process.Process.Outputs.TryGetValue(compoundDefinition, out var producedCompoundAmount))
+                {
+                    score += 100.0f;
+                }
+            }
+        }
+
+        // Take into account how much compound the species needs to collect
+        score /= species.TotalReproductionCost[compound];
+
         return score;
     }
 
@@ -98,7 +162,7 @@ public class ReproductionCompoundPressure : SelectionPressure
 
     public override LocalizedString GetDescription()
     {
-        return new LocalizedString("COMPOUND_FOOD_SOURCE",
+        return new LocalizedString("REPRODUCTION_COMPOUND_USAGE",
             new LocalizedString(compoundDefinition.GetUntranslatedName()));
     }
 
