@@ -16,12 +16,12 @@ var TOKEN_SPACE := SkippableToken.new(" ")
 var TOKEN_TABULATOR := SkippableToken.new("\t")
 var TOKEN_NEW_LINE := SkippableToken.new("\n")
 var TOKEN_COMMENT := SkippableToken.new("#")
-var TOKEN_CLASS_NAME := Token.new("class_name")
-var TOKEN_INNER_CLASS := Token.new("class")
-var TOKEN_EXTENDS := Token.new("extends")
-var TOKEN_ENUM := Token.new("enum")
-var TOKEN_FUNCTION_STATIC_DECLARATION := Token.new("static func")
-var TOKEN_FUNCTION_DECLARATION := Token.new("func")
+var TOKEN_CLASS_NAME := RegExToken.new("class_name", GdUnitTools.to_regex("(class_name)\\s+([\\w\\p{L}\\p{N}_]+) (extends[a-zA-Z]+:)|(class_name)\\s+([\\w\\p{L}\\p{N}_]+)"), 5)
+var TOKEN_INNER_CLASS := TokenInnerClass.new("class", GdUnitTools.to_regex("(class)\\s+(\\w\\p{L}\\p{N}_]+) (extends[a-zA-Z]+:)|(class)\\s+([\\w\\p{L}\\p{N}_]+)"), 5)
+var TOKEN_EXTENDS := RegExToken.new("extends", GdUnitTools.to_regex("extends\\s+"))
+var TOKEN_ENUM := RegExToken.new("enum", GdUnitTools.to_regex("enum\\s+"))
+var TOKEN_FUNCTION_STATIC_DECLARATION := RegExToken.new("static func", GdUnitTools.to_regex("^static\\s+func\\s+([\\w\\p{L}\\p{N}_]+)"), 1)
+var TOKEN_FUNCTION_DECLARATION := RegExToken.new("func", GdUnitTools.to_regex("^func\\s+([\\w\\p{L}\\p{N}_]+)"), 1)
 var TOKEN_FUNCTION := Token.new(".")
 var TOKEN_FUNCTION_RETURN_TYPE := Token.new("->")
 var TOKEN_FUNCTION_END := Token.new("):")
@@ -37,7 +37,6 @@ var TOKEN_BRACKET_SQUARE_OPEN := Token.new("[")
 var TOKEN_BRACKET_SQUARE_CLOSE := Token.new("]")
 var TOKEN_BRACKET_CURLY_OPEN := Token.new("{")
 var TOKEN_BRACKET_CURLY_CLOSE := Token.new("}")
-
 
 
 var OPERATOR_ADD := Operator.new("+")
@@ -78,8 +77,6 @@ var TOKENS :Array[Token] = [
 	OPERATOR_REMAINDER,
 ]
 
-var _regex_clazz_name := GdUnitTools.to_regex("(class) ([a-zA-Z0-9_]+) (extends[a-zA-Z]+:)|(class) ([a-zA-Z0-9_]+)")
-var _regex_func_name := GdUnitTools.to_regex("^(?:static\\s+)?func\\s+([\\w\\p{L}\\p{N}_]+)\\s*\\(")
 var _regex_strip_comments := GdUnitTools.to_regex("^([^#\"']|'[^']*'|\"[^\"]*\")*\\K#.*")
 var _scanned_inner_classes := PackedStringArray()
 var _script_constants := {}
@@ -94,23 +91,17 @@ class Token extends RefCounted:
 	var _token: String
 	var _consumed: int
 	var _is_operator: bool
-	var _regex :RegEx
 
-
-	func _init(p_token: String, p_is_operator := false, p_regex :RegEx = null) -> void:
+	func _init(p_token: String, p_is_operator := false) -> void:
 		_token = p_token
 		_is_operator = p_is_operator
 		_consumed = p_token.length()
-		_regex = p_regex
 
 	func match(input: String, pos: int) -> bool:
-		if _regex:
-			var result := _regex.search(input, pos)
-			if result == null:
-				return false
-			_consumed = result.get_end() - result.get_start()
-			return pos == result.get_start()
 		return input.findn(_token, pos) == pos
+
+	func value() -> Variant:
+		return _token
 
 	func is_operator() -> bool:
 		return _is_operator
@@ -132,8 +123,8 @@ class Token extends RefCounted:
 
 
 class Operator extends Token:
-	func _init(value: String) -> void:
-		super(value, true)
+	func _init(p_value: String) -> void:
+		super(p_value, true)
 
 	func _to_string() -> String:
 		return "OperatorToken{%s}" % [_token]
@@ -147,38 +138,6 @@ class SkippableToken extends Token:
 
 	func is_skippable() -> bool:
 		return true
-
-
-# Token to parse Fuzzers
-class FuzzerToken extends Token:
-	var _name: String
-
-
-	func _init(regex: RegEx) -> void:
-		super("", false, regex)
-
-
-	func match(input: String, pos: int) -> bool:
-		if _regex:
-			var result := _regex.search(input, pos)
-			if result == null:
-				return false
-			_name = result.strings[1]
-			_consumed = result.get_end() - result.get_start()
-			return pos == result.get_start()
-		return input.findn(_token, pos) == pos
-
-
-	func name() -> String:
-		return _name
-
-
-	func type() -> int:
-		return GdObjects.TYPE_FUZZER
-
-
-	func _to_string() -> String:
-		return "FuzzerToken{%s: '%s'}" % [_name, _token]
 
 
 # Token to parse function arguments
@@ -241,12 +200,57 @@ class Variable extends Token:
 		return "Variable{%s: %s : '%s'}" % [_plain_value, GdObjects.type_as_string(_type), _token]
 
 
-class TokenInnerClass extends Token:
-	var _clazz_name :String
+class RegExToken extends Token:
+	var _regex: RegEx
+	var _extract_group_index: int
+	var _value := ""
+
+
+	func _init(token: String, regex: RegEx, extract_group_index: int = -1) -> void:
+		super(token, false)
+		_regex = regex
+		_extract_group_index = extract_group_index
+
+
+	func match(input: String, pos: int) -> bool:
+		var matching := _regex.search(input, pos)
+		if matching == null or pos != matching.get_start():
+			return false
+		if _extract_group_index != -1:
+			_value = matching.get_string(_extract_group_index)
+		_consumed = matching.get_end() - matching.get_start()
+		return true
+
+
+	func value() -> String:
+		return _value
+
+
+# Token to parse Fuzzers
+class FuzzerToken extends RegExToken:
+
+
+	func _init(regex: RegEx) -> void:
+		super("fuzzer", regex, 1)
+
+
+	func name() -> String:
+		return value()
+
+
+	func type() -> int:
+		return GdObjects.TYPE_FUZZER
+
+
+	func _to_string() -> String:
+		return "FuzzerToken{%s: '%s'}" % [value(), _token]
+
+
+class TokenInnerClass extends RegExToken:
 	var _content := PackedStringArray()
 
 
-	static func _strip_leading_spaces(input :String) -> String:
+	static func _strip_leading_spaces(input: String) -> String:
 		var characters := input.to_utf8_buffer()
 		while not characters.is_empty():
 			if characters[0] != 0x20:
@@ -255,26 +259,26 @@ class TokenInnerClass extends Token:
 		return characters.get_string_from_utf8()
 
 
-	static func _consumed_bytes(row :String) -> int:
+	static func _consumed_bytes(row: String) -> int:
 		return row.replace(" ", "").replace("	", "").length()
 
 
-	func _init(clazz_name :String) -> void:
-		super("class")
-		_clazz_name = clazz_name
+	func _init(token: String, p_regex: RegEx, extract_group_index: int = -1) -> void:
+		super(token, p_regex, extract_group_index)
 
 
-	func is_class_name(clazz_name :String) -> bool:
-		return _clazz_name == clazz_name
+	func is_class_name(clazz_name: String) -> bool:
+		return value() == clazz_name
 
 
 	func content() -> PackedStringArray:
 		return _content
 
 
-	func parse(source_rows :PackedStringArray, offset :int) -> void:
+	@warning_ignore_start("return_value_discarded")
+	func parse(source_rows: PackedStringArray, offset: int) -> void:
 		# add class signature
-		@warning_ignore("return_value_discarded")
+		_content.clear()
 		_content.append(source_rows[offset])
 		# parse class content
 		for row_index in range(offset+1, source_rows.size()):
@@ -287,22 +291,21 @@ class TokenInnerClass extends Token:
 					source_row = source_row.trim_prefix("\t")
 				# refomat invalid empty lines
 				if source_row.dedent().is_empty():
-					@warning_ignore("return_value_discarded")
 					_content.append("")
 				else:
-					@warning_ignore("return_value_discarded")
 					_content.append(source_row)
 				continue
 			break
 		_consumed += TokenInnerClass._consumed_bytes("".join(_content))
+	@warning_ignore_restore("return_value_discarded")
 
 
 	func _to_string() -> String:
-		return "TokenInnerClass{%s}" % [_clazz_name]
+		return "TokenInnerClass{%s}" % [value()]
 
 
 
-func get_token(input :String, current_index :int) -> Token:
+func get_token(input: String, current_index: int) -> Token:
 	for t in TOKENS:
 		if t.match(input, current_index):
 			return t
@@ -318,8 +321,6 @@ func next_token(input: String, current_index: int, ignore_tokens :Array[Token] =
 			break
 	if token == OPERATOR_SUB:
 		token = tokenize_value(input, current_index, token)
-	if token == TOKEN_INNER_CLASS:
-		token = tokenize_inner_class(input, current_index, token)
 	if token == TOKEN_NOT_MATCH:
 		return tokenize_value(input, current_index, token, ignore_tokens.has(TOKEN_FUNCTION))
 	return token
@@ -370,23 +371,6 @@ func is_allowed_character(input: String) -> bool:
 	if code_point == 34 or code_point == 39:
 		return true
 	return false
-
-
-func extract_clazz_name(value :String) -> String:
-	var result := _regex_clazz_name.search(value)
-	if result == null:
-		push_error("Can't extract class name from '%s'" % value)
-		return ""
-	if result.get_string(2).is_empty():
-		return result.get_string(5)
-	else:
-		return result.get_string(2)
-
-
-@warning_ignore("unused_parameter")
-func tokenize_inner_class(source_code: String, current: int, token: Token) -> Token:
-	var clazz_name := extract_clazz_name(source_code.substr(current, 64))
-	return TokenInnerClass.new(clazz_name)
 
 
 func parse_return_token(input: String) -> Variable:
@@ -461,8 +445,6 @@ func _parse_function_arguments(input: String) -> Array[Dictionary]:
 			return arguments
 		# is function
 		if token == TOKEN_FUNCTION_DECLARATION:
-			token = next_token(input, current_index)
-			current_index += token._consumed
 			continue
 
 		# is value argument
@@ -645,21 +627,18 @@ func get_class_name(script :GDScript) -> String:
 		var input := source_rows[index]
 		var token := next_token(input, 0)
 		if token == TOKEN_CLASS_NAME:
-			var current_index := token._consumed
-			token = next_token(input, current_index)
-			current_index += token._consumed
-			token = tokenize_value(input, current_index, token)
-			return (token as Variable).value()
+			return token.value()
 	# if no class_name found extract from file name
 	return GdObjects.to_pascal_case(script.resource_path.get_basename().get_file())
 
 
 func parse_func_name(input: String) -> String:
-	var result := _regex_func_name.search(input)
-	if result == null:
-		push_error("Can't extract function name from '%s'" % input)
-		return ""
-	return result.get_string(1)
+	if TOKEN_FUNCTION_DECLARATION.match(input, 0):
+		return TOKEN_FUNCTION_DECLARATION.value()
+	if TOKEN_FUNCTION_STATIC_DECLARATION.match(input, 0):
+		return TOKEN_FUNCTION_STATIC_DECLARATION.value()
+	push_error("Can't extract function name from '%s'" % input)
+	return ""
 
 
 ## Enriches the function descriptor by line number and argument default values
@@ -685,7 +664,7 @@ func _enrich_function_descriptor(script: GDScript, fds: Array[GdFunctionDescript
 			if token != TOKEN_FUNCTION_STATIC_DECLARATION and token != TOKEN_FUNCTION_DECLARATION:
 				continue
 
-			var function_name := parse_func_name(input)
+			var function_name: String = token.value()
 			# Skip if already enriched (from parent class scan)
 			if enriched_functions.has(function_name):
 				continue
@@ -719,8 +698,7 @@ func is_func_coroutine(rows :PackedStringArray, index :int) -> bool:
 	var is_coroutine := false
 	for rowIndex in range(index+1, rows.size()):
 		var input := rows[rowIndex].strip_edges()
-		# skip empty lines
-		if input.is_empty():
+		if input.begins_with("#") or input.is_empty():
 			continue
 		var token := next_token(input, 0)
 		# scan until next function
