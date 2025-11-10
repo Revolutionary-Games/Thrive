@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2025-11-06 15:24+0200\n"
 "PO-Revision-Date: 2025-10-25 19:53+0000\n"
 "Last-Translator: Igor Silva <igorkcs@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -2720,6 +2720,9 @@ msgstr "Número de ID"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(dependendo do modo de renderização e upscaling, nem todos os métodos estarão disponíveis)"
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 msgid "IMAGE_FILE_TYPES"
 msgstr "Arquivos de Imagem Compatíveis"
 
@@ -2933,18 +2936,6 @@ msgstr ":"
 
 msgid "JANUARY"
 msgstr "Janeiro"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "Modo de depuração JSON:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Sempre"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automaticamente"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Nunca"
 
 msgid "JULY"
 msgstr "Julho"
@@ -3954,6 +3945,10 @@ msgstr "Modificar tipo"
 
 msgid "MODS"
 msgstr "Mods"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Nenhum mod ativado"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -5282,12 +5277,6 @@ msgstr "Espaço usado:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Apagar o jogo salvo é irreversível, deseja apagar {0} permanentemente?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "Quando relatar um erro de salvamento, por favor inclua [color=#3796e1][url={0}]{1}[/url][/color] da [color=#3796e1][url={2}]pasta de logs[/url][/color] pois essa é uma informação crucial para os desenvolvedores do Thrive entenderem qual foi o erro de salvamento. Sem esse arquivo, será extremamente difícil diagnosticar e corrigir esse problema."
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Verifique se o modo de depuração JSON não está desativado antes de relatar esse erro de salvamento. O modo de depuração automática JSON deve ter criado um arquivo extra chamado {0} na [color=#3796e1][url={1}]pasta de logs[/url][/color]. Esse arquivo contém informações essenciais para que os desenvolvedores de Thrive descubram qual foi o erro de salvamento."
 
 msgid "SAVE_FAILED"
 msgstr "Falha ao Salvar"
@@ -6709,6 +6698,17 @@ msgstr "Desfazer"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Desfazer a ultima ação"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Axônios são fibras nervosas que os neurônios utilizam para conectar e comunicar com outros neurônios. Essa organela transforma o tipo da célula em um tecido cerebral."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Obrigado(a)"
 
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Construir"
@@ -8943,6 +8943,24 @@ msgstr "Aumentar o zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "Modo de depuração JSON:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Sempre"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automaticamente"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Nunca"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "Quando relatar um erro de salvamento, por favor inclua [color=#3796e1][url={0}]{1}[/url][/color] da [color=#3796e1][url={2}]pasta de logs[/url][/color] pois essa é uma informação crucial para os desenvolvedores do Thrive entenderem qual foi o erro de salvamento. Sem esse arquivo, será extremamente difícil diagnosticar e corrigir esse problema."
+
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Verifique se o modo de depuração JSON não está desativado antes de relatar esse erro de salvamento. O modo de depuração automática JSON deve ter criado um arquivo extra chamado {0} na [color=#3796e1][url={1}]pasta de logs[/url][/color]. Esse arquivo contém informações essenciais para que os desenvolvedores de Thrive descubram qual foi o erro de salvamento."
 
 #, fuzzy
 #~ msgid "OUTDATED"

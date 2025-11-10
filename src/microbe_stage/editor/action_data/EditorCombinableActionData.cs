@@ -15,6 +15,8 @@ public abstract class EditorCombinableActionData : CombinableActionData
     /// </summary>
     protected double lastCalculatedRefundCost = double.NaN;
 
+    protected double calculatedAvailableRefund = double.NaN;
+
     public float CostMultiplier { get; set; } = 1.0f;
 
     public override void WriteToArchive(ISArchiveWriter writer)
@@ -25,6 +27,7 @@ public abstract class EditorCombinableActionData : CombinableActionData
     public virtual double CalculateCost(IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
         (lastCalculatedSelfCost, lastCalculatedRefundCost) = CalculateCostInternal(history, insertPosition);
+        calculatedAvailableRefund = lastCalculatedSelfCost * CostMultiplier;
 
         return Math.Min((lastCalculatedSelfCost - lastCalculatedRefundCost) * CostMultiplier, 100);
     }
@@ -44,8 +47,6 @@ public abstract class EditorCombinableActionData : CombinableActionData
     /// </returns>
     public virtual double GetCalculatedSelfCost()
     {
-        // TODO: resetting this to NaN for a whole action tree before calculating costs again would provide some extra
-        // safety against bugs
         if (double.IsNaN(lastCalculatedSelfCost))
         {
             GD.PrintErr("Trying to get the cost of an action before it has been calculated. " +
@@ -58,6 +59,32 @@ public abstract class EditorCombinableActionData : CombinableActionData
         }
 
         return Math.Min(lastCalculatedSelfCost, 100);
+    }
+
+    /// <summary>
+    ///   New primary method for other actions to refund costs of other actions (for example, deleting something that
+    ///   was previously placed)
+    /// </summary>
+    /// <returns>
+    ///   The amount of available refund left (and then it is set to 0 for the next call).
+    ///   Returns 0 if cost hasn't been calculated yet (but prints an error).
+    /// </returns>
+    public virtual double GetAndConsumeAvailableRefund()
+    {
+        if (double.IsNaN(calculatedAvailableRefund))
+        {
+            GD.PrintErr("Trying to get and consume the refund cost of an action before it has been calculated. " +
+                "Things are being processed in the wrong order!");
+
+            if (Debugger.IsAttached)
+                Debugger.Break();
+
+            return 0;
+        }
+
+        var refund = calculatedAvailableRefund;
+        calculatedAvailableRefund = 0;
+        return Math.Min(refund, 100);
     }
 
     public virtual double GetCalculatedRefundCost()
@@ -84,6 +111,29 @@ public abstract class EditorCombinableActionData : CombinableActionData
     public virtual double GetCalculatedEffectiveCost()
     {
         return GetCalculatedSelfCost() - GetCalculatedRefundCost();
+    }
+
+    public void RefreshAvailableRefund()
+    {
+        if (double.IsNaN(lastCalculatedSelfCost))
+        {
+            GD.PrintErr("Trying to refresh available refund before it has been calculated in the first place");
+
+            if (Debugger.IsAttached)
+                Debugger.Break();
+
+            calculatedAvailableRefund = double.NaN;
+            return;
+        }
+
+        calculatedAvailableRefund = lastCalculatedSelfCost;
+    }
+
+    public void PrepareForNewCostCalculation()
+    {
+        lastCalculatedSelfCost = double.NaN;
+        lastCalculatedRefundCost = double.NaN;
+        calculatedAvailableRefund = double.NaN;
     }
 
     protected virtual void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)

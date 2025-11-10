@@ -55,19 +55,86 @@ public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActi
         {
             var other = history[i];
 
-            // If this hex got placed in this session
+            // If this hex got placed in this session (and was at the same place so that we don't mix unrelated
+            // organelles)
             if (other is HexPlacementActionData<THex, TContext> placementActionData &&
                 placementActionData.PlacedHex.MatchesDefinition(RemovedHex) && MatchesContext(placementActionData))
             {
-                cost = 0;
-
-                if (!placementRefunded)
+                // If removed something that was placed
+                var placementFinalLocation = HexMoveActionData<THex, TContext>
+                    .ResolveFinalLocation(placementActionData.PlacedHex,
+                        placementActionData.Location, placementActionData.Orientation, history, i + 1,
+                        insertPosition, Context).Location;
+                if (Location == placementActionData.Location || Location == placementFinalLocation)
                 {
-                    refund += other.GetCalculatedSelfCost();
-                    placementRefunded = true;
+                    // Check if there's a remove that has already taken advantage of this, and if that is the case,
+                    // don't refund
+                    bool conflict2 = false;
+                    for (int j = i + 1; j < insertPosition && j < count; ++j)
+                    {
+                        var other2 = history[j];
+
+                        if (other2 is HexRemoveActionData<THex, TContext> removeActionData &&
+                            removeActionData.RemovedHex.MatchesDefinition(RemovedHex) &&
+                            MatchesContext(removeActionData))
+                        {
+                            if (removeActionData.Location == Location ||
+                                removeActionData.Location == placementFinalLocation)
+                            {
+                                conflict2 = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!conflict2)
+                    {
+                        cost = 0;
+
+                        if (!placementRefunded)
+                        {
+                            refund += other.GetAndConsumeAvailableRefund();
+                            placementRefunded = true;
+                        }
+                    }
+
+                    continue;
                 }
 
-                continue;
+                // Or if removed from another position, then this counts as a move, as long as there are no other
+                // conflicting actions in-between
+                bool conflict = false;
+                for (int j = i + 1; j < insertPosition && j < count; ++j)
+                {
+                    var other2 = history[i];
+
+                    if (other2 is HexPlacementActionData<THex, TContext> placementActionData2 &&
+                        placementActionData2.PlacedHex.MatchesDefinition(RemovedHex) &&
+                        MatchesContext(placementActionData2))
+                    {
+                        {
+                            conflict = true;
+                            break;
+                        }
+                    }
+
+                    if (other2 is HexRemoveActionData<THex, TContext> removeActionData &&
+                        removeActionData.RemovedHex.MatchesDefinition(RemovedHex) && MatchesContext(removeActionData))
+                    {
+                        if (removeActionData.Location == Location)
+                        {
+                            conflict = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!conflict)
+                {
+                    refund += other.GetAndConsumeAvailableRefund();
+                    cost = Constants.ORGANELLE_MOVE_COST;
+                    continue;
+                }
             }
 
             // If this hex got moved in this session, refund the move cost
@@ -75,7 +142,7 @@ public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActi
                 moveActionData.MovedHex.MatchesDefinition(RemovedHex) &&
                 moveActionData.NewLocation == Location && MatchesContext(moveActionData))
             {
-                refund += other.GetCalculatedSelfCost() - other.GetCalculatedRefundCost();
+                refund += other.GetAndConsumeAvailableRefund() /*- other.GetCalculatedRefundCost()*/;
             }
         }
 

@@ -147,11 +147,13 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData, I
 
             // If this metaball got placed in this session (on the same position)
             if (other is MetaballPlacementActionData<TMetaball> placementActionData &&
-                placementActionData.PlacedMetaball.MatchesDefinition(RemovedMetaball))
+                placementActionData.PlacedMetaball.MatchesDefinition(RemovedMetaball) &&
+                (placementActionData.Position == Position ||
+                    ReferenceEquals(placementActionData.PlacedMetaball, RemovedMetaball)))
             {
                 // Deleting a placed metaball refunds it
                 cost = 0;
-                refund += other.GetCalculatedSelfCost();
+                refund += other.GetAndConsumeAvailableRefund();
                 continue;
             }
 
@@ -161,7 +163,7 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData, I
                 moveActionData.NewPosition.DistanceSquaredTo(Position) < MathUtils.EPSILON &&
                 moveActionData.NewParent == Parent)
             {
-                refund += moveActionData.GetCalculatedEffectiveCost();
+                refund += moveActionData.GetAndConsumeAvailableRefund();
                 continue;
             }
 
@@ -170,7 +172,7 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData, I
                 resizeActionData.ResizedMetaball.MatchesDefinition(RemovedMetaball) &&
                 Math.Abs(resizeActionData.NewSize - RemovedMetaball.Size) < MathUtils.EPSILON)
             {
-                refund += resizeActionData.GetCalculatedEffectiveCost();
+                refund += resizeActionData.GetAndConsumeAvailableRefund();
             }
         }
 

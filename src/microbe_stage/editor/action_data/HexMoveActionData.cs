@@ -120,6 +120,7 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
                 // If placed in the same session and not deleted before that, then all moves are free
                 if (!removed)
                 {
+                    // TODO: this might need to refund if going to a place that had a hex deleted from
                     return (0, 0);
                 }
 
@@ -135,7 +136,7 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
                     OldRotation == moveActionData.NewRotation && NewRotation == moveActionData.OldRotation)
                 {
                     cost = 0;
-                    refund += other.GetCalculatedSelfCost();
+                    refund += other.GetAndConsumeAvailableRefund();
                     continue;
                 }
 
@@ -143,7 +144,7 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
                 if ((moveActionData.NewLocation == OldLocation && moveActionData.NewRotation == OldRotation) ||
                     (NewLocation == moveActionData.OldLocation && NewRotation == moveActionData.OldRotation))
                 {
-                    refund += other.GetCalculatedSelfCost();
+                    refund += other.GetAndConsumeAvailableRefund();
                 }
             }
         }

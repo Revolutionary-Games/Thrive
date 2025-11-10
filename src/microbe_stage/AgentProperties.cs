@@ -51,7 +51,7 @@ public class AgentProperties : IArchivable
         writer.WriteObject((AgentProperties)obj);
     }
 
-    public static AgentProperties ReadFromArchive(ISArchiveReader reader, ushort version)
+    public static AgentProperties ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
@@ -71,7 +71,7 @@ public class AgentProperties : IArchivable
     {
         var damage = CalculateBaseDamage(toxinAmount);
 
-        health.DealMicrobeDamage(ref hitCellProperties, damage, DamageTypeName,
+        health.DealMicrobeDamage(ref hitCellProperties, entity, damage, DamageTypeName,
             HealthHelpers.GetInstantKillProtectionThreshold(entity));
     }
 
@@ -79,7 +79,7 @@ public class AgentProperties : IArchivable
     {
         var damage = CalculateBaseDamage(toxinAmount);
 
-        health.DealDamage(damage, DamageTypeName, HealthHelpers.GetInstantKillProtectionThreshold(entity));
+        health.DealDamage(entity, damage, DamageTypeName, HealthHelpers.GetInstantKillProtectionThreshold(entity));
     }
 
     /// <summary>

@@ -66,11 +66,18 @@ const TYPE_AS_STRING_MAPPINGS := {
 }
 
 
+class EditorNotifications:
+	# NOTE: Hardcoding to avoid runtime errors in exported projects when editor
+	#       classes are not available. These values are unlikely to change.
+	# See: EditorSettings.NOTIFICATION_EDITOR_SETTINGS_CHANGED
+	const NOTIFICATION_EDITOR_SETTINGS_CHANGED := 10000
+
+
 const NOTIFICATION_AS_STRING_MAPPINGS := {
 	TYPE_OBJECT: {
 		Object.NOTIFICATION_POSTINITIALIZE : "POSTINITIALIZE",
 		Object.NOTIFICATION_PREDELETE: "PREDELETE",
-		EditorSettings.NOTIFICATION_EDITOR_SETTINGS_CHANGED: "EDITOR_SETTINGS_CHANGED",
+		EditorNotifications.NOTIFICATION_EDITOR_SETTINGS_CHANGED: "EDITOR_SETTINGS_CHANGED",
 	},
 	TYPE_NODE: {
 		Node.NOTIFICATION_ENTER_TREE : "ENTER_TREE",

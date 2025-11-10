@@ -1059,3 +1059,14 @@
     - Updated to gdUnit4 6.0.0
     - Updated BenchmarkDotNet from 0.15.3 to 0.15.5
     - Updated translations
+
+0.9.0.1:
+  IntroductionText: |
+    Here is a small patch release to fix the most reported problems after the 0.9.0 release. This fixes multiple saving problems and multiple infinite MP exploits, but there are still some non-optimal MP refund behaviour in this release and probably some more complex edits can still lead to too large MP refunds. To fully fix the MP calculation system more time is needed than what was available for this quick patch.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.9.0.1
+  PatchNotes:
+    - Fixed loading a save where endosymbiosis was started or completed
+    - Fixed 3 reported ways to exploit the microbe editor to get infinite MP
+    - Fixed loading a save made in the multicellular editor where the player had a grown colony before entering the editor
+    - Added a new system where known compatible save versions can be marked and those can be loaded without any warning popup
+    - Updated translations

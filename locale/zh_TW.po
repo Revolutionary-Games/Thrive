@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
-"PO-Revision-Date: 2025-10-31 07:59+0000\n"
+"POT-Creation-Date: 2025-11-06 15:24+0200\n"
+"PO-Revision-Date: 2025-11-10 14:42+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -389,10 +389,10 @@ msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-Evo 結果："
 
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
-msgstr "全域結果"
+msgstr "全域變化"
 
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
-msgstr "選擇的區域結果"
+msgstr "選取區域變化"
 
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "運行狀態："
@@ -491,13 +491,13 @@ msgid "BEHAVIOUR"
 msgstr "行為"
 
 msgid "BEHAVIOUR_ACTIVITY"
-msgstr "活性"
+msgstr "活躍度"
 
 msgid "BEHAVIOUR_AGGRESSION"
 msgstr "攻擊性"
 
 msgid "BEHAVIOUR_FEAR"
-msgstr "恐懼"
+msgstr "恐懼性"
 
 msgid "BEHAVIOUR_FOCUS"
 msgstr "專注度"
@@ -524,7 +524,7 @@ msgid "BEST_PATCH_COLON"
 msgstr "最佳區域："
 
 msgid "BETTER_TOGETHER"
-msgstr ""
+msgstr "人多力量大"
 
 msgid "BEYOND_THE_CELL"
 msgstr "超越細胞"
@@ -536,7 +536,7 @@ msgid "BIG_PHOSPHATE_CHUNK"
 msgstr "大磷酸鹽塊"
 
 msgid "BILLION_ABBREVIATION"
-msgstr "{0}E+9"
+msgstr "{0} B"
 
 msgid "BINDING_AGENT"
 msgstr "連接器"
@@ -557,7 +557,7 @@ msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
 msgstr "一種液泡，其中包含反應位點，能消耗螢光素酶以釋放可見光。據推測，生物發光最初是作為一種對抗[thrive:compound type=\"oxygen\"][/thrive:compound] 的保護機製而演化出來的。當大氧化事件發生時，習慣無氧環境的微生物面臨許多新問題，因為氧氣的高度反應性會造成大量損傷。可以添加這些液泡來增加抗氧性並得到一些漂亮的光。在未來，生物發光可能會成為一種通訊方式。"
 
 msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "使用[thrive:compound type=\"atp\"][/thrive:compound] 將[thrive:compound type=\"oxygen\"][/thrive:compound] 轉換為光。除了增加氧抗性外，對遊戲玩法沒有其他影響。"
+msgstr "使用[thrive:compound type=\"atp\"][/thrive:compound] 將[thrive:compound type=\"oxygen\"][/thrive:compound] 轉換為光。除了增加氧化抗性外，對遊戲玩法沒有其他影響。"
 
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
@@ -638,7 +638,7 @@ msgid "CANNOT_ENGULF"
 msgstr "無法吞噬"
 
 msgid "CANNOT_IMPROVE_PERFECTION"
-msgstr ""
+msgstr "完美無暇"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "無法將元球移到其子代樹中"
@@ -1326,9 +1326,8 @@ msgstr "紅綠色盲"
 msgid "CORRECTION_TRITANOPE"
 msgstr "藍黃色盲"
 
-#, fuzzy
 msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
-msgstr "夜晚持續 {2} 秒，但沒有足夠的[thrive:compound type=\"{0}\"][/thrive:compound] 儲存空間，其僅能容納 {1} 秒的化合物。"
+msgstr "CPU 性能不足以模擬所選速度，速度已重設為預設值"
 
 msgid "CPU_THREADS"
 msgstr "執行緒"
@@ -1598,7 +1597,7 @@ msgid "DESPAWN_ENTITIES"
 msgstr "刪除所有實體"
 
 msgid "DETECTED_CPU_COUNT"
-msgstr "檢測到的 CPU 數量："
+msgstr "檢測到的 CPU 核心數："
 
 msgid "DEVBUILD_VERSION_INFO"
 msgstr ""
@@ -1676,7 +1675,7 @@ msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
 msgid "DISABLED"
-msgstr "已停用"
+msgstr "停用"
 
 msgid "DISABLE_ALL"
 msgstr "停用所有"
@@ -1891,16 +1890,15 @@ msgstr ""
 "\n"
 "當您準備好後，按右下角的「下一頁」按鈕繼續。"
 
-#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
 msgstr ""
-"為了繼續進步，您最終需要放置一個[b]細胞核[/b]。\n"
+"要成為多細胞生物，您最終需要放置[b]連接器[/b]。\n"
 "\n"
-"添加[b]細胞核[/b]將解鎖更高級的細胞器，例如[b]連接器[/b]，它將允許您與同一物種的其他細胞結合並成為[u]多細胞生物[/u]。\n"
+"[b]連接器[/b]是成為多細胞生物的關鍵，使您能夠與其他細胞結合並與它們形成群落。\n"
 "\n"
-"嘗試放置一個[b]細胞核[/b]來結束本教學。\n"
+"然而，[b]連接器[/b]是一種細胞器，必須透過保有過剩的[thrive:compound type=\"atp\"][/thrive:compound] 才能[u]解鎖[/u]。\n"
 "\n"
-"如果您的細胞尚未準備好演化細胞核，您可以使用[b]撤銷按鈕[/b]以[u]還原[/u]細胞核。"
+"檢查一下您是否已經解鎖了[b]連接器[/b]。如果已經解鎖，現在可以嘗試放置它們。"
 
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
@@ -2045,7 +2043,7 @@ msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "顯示／隱藏環境"
 
 msgid "ENVIRONMENT_TOLERANCE"
-msgstr "適應"
+msgstr "適應性"
 
 msgid "EPIPELAGIC"
 msgstr "表層帶"
@@ -2390,13 +2388,11 @@ msgstr "將該物種化石化（已化石化）"
 msgid "FOSSILISE"
 msgstr "化石化"
 
-#, fuzzy
 msgid "FOSSIL_DATA_LOAD_FAILED"
-msgstr "化石刪除失敗"
+msgstr "化石資料載入失敗"
 
-#, fuzzy
 msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
-msgstr "化石檔案無法刪除"
+msgstr "化石檔案無法讀取，因為資料已過時或無效"
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "化石刪除失敗"
@@ -2552,7 +2548,7 @@ msgid "GOD_TOOLS_TITLE"
 msgstr "上帝工具"
 
 msgid "GOING_NUCLEAR"
-msgstr ""
+msgstr "「核」動力"
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "彎曲眼球細胞"
@@ -2695,6 +2691,9 @@ msgstr "ID 號碼"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "（取決於渲染模式與解析度提升方式，並非所有方法都可用）"
+
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr "忽略其他錯誤"
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "支援的圖像檔案"
@@ -2880,7 +2879,7 @@ msgid "INVENTORY_TOGGLE_GROUND"
 msgstr "地面"
 
 msgid "INVERTED"
-msgstr "已反轉"
+msgstr "反轉"
 
 msgid "IN_PROTOTYPE"
 msgstr ""
@@ -2909,18 +2908,6 @@ msgstr ":"
 
 msgid "JANUARY"
 msgstr "一月"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON 除錯模式："
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "總是"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "自動"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "從不"
 
 msgid "JULY"
 msgstr "七月"
@@ -3042,7 +3029,7 @@ msgid "KILL_MICROBES_PROGRESS"
 msgstr "殺死 {0} / {1} 個微生物"
 
 msgid "KILO_ABBREVIATION"
-msgstr "{0}E+3"
+msgstr "{0} K"
 
 msgid "KP0"
 msgstr "Num 0"
@@ -3428,17 +3415,14 @@ msgstr "宏觀生物"
 msgid "MACROSCOPIC_STAGE"
 msgstr "宏觀生物階段"
 
-#, fuzzy
 msgid "MAKE_CELL_THAT_EATS_RADIATION"
-msgstr "輻射"
+msgstr "製造一個從放射性物質中獲取能量的細胞並獲得能量"
 
-#, fuzzy
 msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
-msgstr "化能合成"
+msgstr " 製造一個僅透過化能合成作用獲取能量的細胞"
 
-#, fuzzy
 msgid "MAKE_NO_CHANGES_IN_EDITOR"
-msgstr "變更："
+msgstr "在編輯器中不對您的微生物做任何修改"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "手動設定時間"
@@ -3599,9 +3583,8 @@ msgstr ""
 "[b]適應分數[/b]\n"
 "  {2}"
 
-#, fuzzy
 msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
-msgstr "避免捕食選擇壓力"
+msgstr "內共生選擇壓力"
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr "環境化合物壓力"
@@ -3627,9 +3610,8 @@ msgstr "掠食者根源壓力"
 msgid "MICHE_ROOT_PRESSURE"
 msgstr "根源壓力"
 
-#, fuzzy
 msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
-msgstr "代謝穩定壓力"
+msgstr "溫度變化壓力"
 
 msgid "MICHE_TREE"
 msgstr "演化食源樹狀圖"
@@ -3674,7 +3656,7 @@ msgid "MICROBE_LOADING_TIP_14"
 msgstr "編輯器中有許多細胞器可供您演化，從而允許您實現多種不同的遊戲風格。"
 
 msgid "MICROBE_LOADING_TIP_15"
-msgstr "每個物種可用的資源都是有限的，因此增加細胞的大小也會減少最大物種量。"
+msgstr "每種物種可用的資源都是有限的，因此增加細胞的大小也會減少最大物種量。"
 
 msgid "MICROBE_LOADING_TIP_16"
 msgstr "使用[thrive:input]g_move_forward[/thrive:input]、[thrive:input]g_move_left[/thrive:input]、[thrive:input]g_move_backwards[/thrive:input]與[thrive:input]g_move_right[/thrive:input]來移動，以及滑鼠來轉動。如果您有毒素液泡，使用[thrive:input]g_fire_toxin[/thrive:input]發射[thrive:compound type=\"oxytoxy\"][/thrive:compound]。使用[thrive:input]g_toggle_engulf[/thrive:input]切換吞噬模式。您可以使用滑鼠滾輪放大與縮小。"
@@ -3689,7 +3671,7 @@ msgid "MICROBE_LOADING_TIP_19"
 msgstr "連接器可讓您與同物種的其他細胞一起建立細胞群。所有細胞共享化合物，作為一個整體發揮作用，從而演化為多細胞生物。"
 
 msgid "MICROBE_LOADING_TIP_2"
-msgstr "鞭毛越多（或越長），速度就越快－嗡嗡嗡！儘管它需要更多的 ATP。"
+msgstr "鞭毛越多（或越長），速度就越快－嗡嗡！儘管它需要更多的 ATP。"
 
 msgid "MICROBE_LOADING_TIP_20"
 msgstr "具有纖維素或幾丁質細胞膜的細胞不能被原核生物消化。具有溶酶體的真核生物可以透過製造酶來分解細胞壁並以此為食。"
@@ -3698,7 +3680,7 @@ msgid "MICROBE_LOADING_TIP_21"
 msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 可以透過化能體與化能合成蛋白轉化為[thrive:compound type=\"glucose\"][/thrive:compound]。[thrive:compound type=\"iron\"][/thrive:compound] 可以透過鐵氧化藍蛋白或鐵能體轉化為[thrive:compound type=\"atp\"][/thrive:compound]。"
 
 msgid "MICROBE_LOADING_TIP_22"
-msgstr "每次訪問微生物階段的編輯器都代表著經過 [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] 百萬年的演化。"
+msgstr "每次訪問微生物階段的編輯器都代表著經過 [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant]M 年的演化。"
 
 msgid "MICROBE_LOADING_TIP_3"
 msgstr "您可以吞噬大塊的漂浮物，無論它們是死細胞還是礦物的一部分。"
@@ -3728,7 +3710,7 @@ msgid "MICROBE_MEMBRANE_STATISTICS"
 msgstr "[b]細胞膜資料：[/b]"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
-msgstr "  {0}：存在於 {1} 個物種中，平均每個物種為 {2} 個"
+msgstr "  {0}：存在於 {1} 的物種中，平均數量為 {2}"
 
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "[b]細胞器升級資料：[/b]"
@@ -3823,13 +3805,11 @@ msgstr ""
 "\n"
 "隨著時間的推移，細胞器將開始複製。收集化合物可以加速這一過程。一旦所有細胞器分裂完成，您的細胞就可以繁殖並進入編輯器。"
 
-#, fuzzy
 msgid "MICROBIAL_MASSACRE"
-msgstr "微生物階段"
+msgstr "微生物大屠殺"
 
-#, fuzzy
 msgid "MICRO_BORG"
-msgstr "微生物"
+msgstr "博格細胞"
 
 msgid "MIDDLE_MOUSE"
 msgstr "滑鼠中鍵"
@@ -3862,7 +3842,7 @@ msgid "MIGRATION_TOOLTIP"
 msgstr "在區域之間遷移您的物種，而不移動您所在的區域"
 
 msgid "MILLION_ABBREVIATION"
-msgstr "{0}E+6"
+msgstr "{0} M"
 
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr "最小檢測量："
@@ -3926,6 +3906,9 @@ msgstr "修改類型"
 
 msgid "MODS"
 msgstr "模組"
+
+msgid "MODS_ARE_ENABLED"
+msgstr "模組已啟用"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -4057,7 +4040,7 @@ msgid "MOVEMENT"
 msgstr "移動"
 
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr "每個物種的遷徙嘗試次數"
+msgstr "每種物種的遷徙嘗試次數"
 
 msgid "MOVE_BACKWARDS"
 msgstr "後退"
@@ -4186,7 +4169,7 @@ msgid "MUSIC_VOLUME"
 msgstr "音樂音量"
 
 msgid "MUTATIONS_PER_SPECIES"
-msgstr "每個物種的突變嘗試次數"
+msgstr "每種物種的突變嘗試次數"
 
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "突變成本倍率"
@@ -4324,9 +4307,8 @@ msgstr "ATP 生產受毒素抑制"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "基礎移動速度因毒素而降低"
 
-#, fuzzy
 msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
-msgstr "硫化氫"
+msgstr "因缺乏化能合成蛋白而受到硫化氫的傷害"
 
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "黏液不足以形成黏液囊護盾"
@@ -4358,9 +4340,8 @@ msgstr "無事件記錄"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "找不到化石目錄"
 
-#, fuzzy
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
-msgstr "確認刪除"
+msgstr "無法在當前遊戲中獲得成就"
 
 msgid "NO_MODS_ENABLED"
 msgstr "未啟用任何模組"
@@ -4593,9 +4574,8 @@ msgstr "其他"
 msgid "OUR_WIKI"
 msgstr "我們的 Wiki"
 
-#, fuzzy
 msgid "OUTDATED_ITEM"
-msgstr "此頁面或章節包含過時的資訊。當計劃在編寫完成後發生更改時通常會發生這種情況。"
+msgstr "已過時"
 
 msgid "OUTDATED_NOTICE"
 msgstr "此頁面或章節包含過時的資訊。當計劃在編寫完成後發生更改時通常會發生這種情況。"
@@ -4624,7 +4604,7 @@ msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "氧抑制劑合成"
 
 msgid "OXYGEN_RESISTANCE"
-msgstr "氧抗性"
+msgstr "氧化抗性"
 
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "在產生有害影響之前，您的物種可以減輕多少由氧造成的傷害。如果您所處區域的氧含量超過您的抵抗能力，您將會受到負面影響。"
@@ -4671,9 +4651,8 @@ msgstr "向上平移"
 msgid "PAST_DEVELOPERS"
 msgstr "過去的開發人員"
 
-#, fuzzy
 msgid "PATCHES_NUMBER"
-msgstr "{0} {1}"
+msgstr "區域數量："
 
 msgid "PATCH_COLON"
 msgstr "區域："
@@ -4934,7 +4913,7 @@ msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "PR／程式設計"
 
 msgid "QUADRILLION_ABBREVIATION"
-msgstr "{0}E+15"
+msgstr "{0} Q"
 
 msgid "QUICK_LOAD"
 msgstr "快速讀檔"
@@ -4956,9 +4935,8 @@ msgstr ""
 msgid "RADIATION"
 msgstr "輻射"
 
-#, fuzzy
 msgid "RADIATION_LEVELS"
-msgstr "輻射"
+msgstr "輻射量"
 
 msgid "RADIOACTIVE_CHUNK"
 msgstr "放射性岩塊"
@@ -4979,14 +4957,13 @@ msgid "RAW_VALUE_COLON"
 msgstr "原始值："
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES"
-msgstr ""
+msgstr "在普通難度以上使用單一物種演化到 15 代"
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
-msgstr ""
+msgstr "在普通難度以上使用單一物種演化到 {0}/{1} 代"
 
-#, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
-msgstr "多細胞階段"
+msgstr "進入多細胞階段"
 
 msgid "READING_SAVE_DATA"
 msgstr "讀取存檔資料中"
@@ -5012,15 +4989,14 @@ msgstr "重新整理"
 msgid "REGENERATE_BUTTON"
 msgstr "重新生成世界"
 
-#, fuzzy
 msgid "REGIONS_NUMBER"
-msgstr "ID 號碼"
+msgstr "地域數量："
 
 msgid "RENDER_SCALE"
 msgstr "解析度比例"
 
 msgid "REPORT"
-msgstr "回報"
+msgstr "報告"
 
 msgid "REPORT_BUG"
 msgstr "回報錯誤"
@@ -5063,9 +5039,8 @@ msgstr "研究"
 msgid "RESET"
 msgstr "重置"
 
-#, fuzzy
 msgid "RESET_ACHIEVEMENTS"
-msgstr "相對於螢幕"
+msgstr "重置成就"
 
 msgid "RESET_DEADZONES"
 msgstr "重置死區"
@@ -5150,17 +5125,14 @@ msgstr ""
 msgid "REVEAL_ALL_PATCHES"
 msgstr "揭曉所有區域"
 
-#, fuzzy
 msgid "REVERT_TO_EDITOR"
-msgstr "退出編輯器"
+msgstr "恢復至編輯器"
 
-#, fuzzy
 msgid "REVERT_TO_EDITOR_EXPLANATION"
-msgstr "此分頁允許設定細胞器生長的順序。這對於在生長過程中 ATP 生產不穩定的細胞非常重要。生長順序也會對生物代謝的運作順序造成影響。建議僅在完成結構編輯後進行修改，因為可以如同結構編輯一樣取消此處所做的變更。"
+msgstr "如果當前微生物無法適應此環境，您可以恢復到先前在編輯器中的狀態，嘗試其他方法。"
 
-#, fuzzy
 msgid "REVERT_TO_EDITOR_PROMPT"
-msgstr "按[thrive:input]help[/thrive:input]在 Thrive 百科中查看更多資訊。"
+msgstr "恢復至編輯器？"
 
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "造訪 Revolutionary Games 官方網站"
@@ -5248,18 +5220,11 @@ msgstr "保存並繼續"
 msgid "SAVE_AUTOSAVE"
 msgstr "自動存檔"
 
-#, fuzzy
 msgid "SAVE_CHEATS_USED"
-msgstr "已使用空間："
+msgstr "已使用作弊"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "刪除的存檔無法復原，您確定要永久刪除 {0} 嗎？"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "回報存檔錯誤時，請包含[color=#3796e1][url={2}]記錄檔資料夾[/url][/color]中的 [color=#3796e1][url={0}]{1}[/url][/color]，因為這是 Thrive 開發人員找出存檔錯誤的關鍵資訊。如果沒有該檔案，診斷與解決此問題將非常困難。"
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "在回報此存檔錯誤之前，請確保 JSON 偵錯模式未停用。自動 JSON 偵錯模式應在[color=#3796e1][url={1}]記錄檔資料夾[/url][/color]中建立一個名為 {0} 的額外檔案。該文件包含供 Thrive 開發人員確定存檔錯誤的關鍵資訊。"
 
 msgid "SAVE_FAILED"
 msgstr "存檔失敗"
@@ -5456,9 +5421,8 @@ msgstr "音效音量"
 msgid "SHIFT"
 msgstr "Shift"
 
-#, fuzzy
 msgid "SHOW_ALL_TUTORIALS"
-msgstr "顯示所有教學"
+msgstr "（再次）顯示所有教學"
 
 msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
 msgstr "選擇始終顯示所有教學或僅顯示遊戲中尚未完成的教學"
@@ -5472,9 +5436,8 @@ msgstr "顯示幫助"
 msgid "SHOW_ITEM_COORDINATES"
 msgstr "顯示座標"
 
-#, fuzzy
 msgid "SHOW_MAP"
-msgstr "顯示幫助"
+msgstr "顯示地圖"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "自動顯示新更新說明"
@@ -5792,7 +5755,7 @@ msgid "STORAGE_COLON"
 msgstr "儲存空間："
 
 msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
-msgstr "秒數"
+msgstr "秒"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "登入身分：{0}"
@@ -5848,7 +5811,7 @@ msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "蒸汽動力工廠"
 
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
-msgstr ""
+msgstr "成功完成內共生"
 
 msgid "SUCCESSFUL_KILL"
 msgstr "成功殺死"
@@ -5871,9 +5834,8 @@ msgstr "支持者"
 msgid "SURVIVAL_TITLE"
 msgstr "生存"
 
-#, fuzzy
 msgid "SURVIVE_WITH_A_NUCLEUS"
-msgstr "細胞核"
+msgstr "放置細胞核並存活一代"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "切換至前視圖"
@@ -5911,13 +5873,11 @@ msgstr "截圖"
 msgid "TARGET_TYPE_COLON"
 msgstr "目標類型："
 
-#, fuzzy
 msgid "TASTE_THE_SUN"
-msgstr "當前執行緒："
+msgstr "品嚐陽光"
 
-#, fuzzy
 msgid "TASTY_RADIATION"
-msgstr "輻射"
+msgstr "美味的輻射"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "飛昇"
@@ -6017,9 +5977,8 @@ msgstr "熱合成"
 msgid "THE_DISTURBANCE"
 msgstr "干擾"
 
-#, fuzzy
 msgid "THE_EDITOR"
-msgstr "退出編輯器"
+msgstr "編輯器"
 
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "區域地圖"
@@ -6034,7 +5993,7 @@ msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "此模組來自 Steam 工作坊"
 
 msgid "THREADS"
-msgstr "執行緒："
+msgstr "執行緒數："
 
 msgid "THRIVEOPEDIA"
 msgstr "Thrive 百科"
@@ -6072,9 +6031,8 @@ msgstr "區域地圖"
 msgid "THRIVE_LICENSES"
 msgstr "Thrive 授權條款"
 
-#, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
-msgstr "基礎移動"
+msgstr "蓬勃發展"
 
 msgid "THYLAKOIDS"
 msgstr "類囊體"
@@ -6095,7 +6053,7 @@ msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "顯示本地事件"
 
 msgid "TIMELINE_NICHE_FILL"
-msgstr "[b][u]{0}[/u][/b] 從 [b][u]{1}[/u][/b] 中分支出來，作為一個新物種來填補生態棲位"
+msgstr "[b][u]{0}[/u][/b] 從 [b][u]{1}[/u][/b] 中分支，作為一種新物種填補生態棲位"
 
 msgid "TIMELINE_PLAYER_MIGRATED"
 msgstr "[b][u]{0}[/u][/b] 已遷移至此區域"
@@ -6104,7 +6062,7 @@ msgid "TIMELINE_PLAYER_MIGRATED_TO"
 msgstr "[b][u]{0}[/u][/b] 已遷移至 {1}"
 
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "[b][u]{0}[/u][/b] 從 [b][u]{1}[/u][/b] 中分支出來，成為了一個新物種，原因是演化壓力"
+msgstr "[b][u]{0}[/u][/b] 從 [b][u]{1}[/u][/b] 中分支，成為一種新物種，原因是演化壓力"
 
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr "[b][u]{0}[/u][/b] 成為多細胞生物"
@@ -6210,19 +6168,17 @@ msgstr "紫外線（UV）保護過低，需要提高 {0}%"
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr "不適應當前的環境條件。滲透調節成本 {0}%、代謝速度 {1}%、生命值 {2}%"
 
-#, fuzzy
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
-"[b]物種[/b]\n"
-"  {0}：{1}\n"
-"[b]世代[/b]\n"
-"  {2}\n"
-"[b]物種量[/b]\n"
-"  {3}\n"
-"[b]顏色[/b]\n"
-"  #{4}\n"
-"[b]行為[/b]\n"
-"  {5}"
+"[b]溫度[/b]\n"
+"  偏好：{0}°C\n"
+"  最大：±{1}°C\n"
+"[b]壓力[/b]\n"
+"  最大：{2}-{3} Pa\n"
+"[b]氧化抗性[/b]\n"
+"  {4}%\n"
+"[b]紫外線抗性[/b]\n"
+"  {5}%"
 
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr "有些細胞器會對耐性產生正面與負面的影響。這裡顯示的是基礎值與細胞器的變化相加後的有效值。有些細胞器與某些遊戲玩法產生協同作用，但對其他遊戲玩法有害。"
@@ -6329,7 +6285,7 @@ msgid "TRANSPARENCY"
 msgstr "透明度"
 
 msgid "TRILLION_ABBREVIATION"
-msgstr "{0}E+12"
+msgstr "{0} T"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "嘗試將一些物種變成化石！"
@@ -6423,7 +6379,7 @@ msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
 msgstr ""
 "這是食物鏈顯示面板。\n"
 "\n"
-"它顯示了目前區域內每個物種的食物來源。\n"
+"它顯示了目前區域內每種物種的食物來源。\n"
 "\n"
 "在這裡可以看到捕食者與獵物之間的關係，以及環境中的食物來源。\n"
 "\n"
@@ -6649,9 +6605,8 @@ msgstr ""
 "\n"
 "如果您使用出芽生殖（預設繁殖方式），您首先會控制一個牙體，並生長細胞佈局的其餘部分。"
 
-#, fuzzy
 msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
-msgstr "僅顯示任何遊戲中尚未見過的教學。可以從選項選單中完全停用教學，但強烈建議保留此選項啟用新教學。"
+msgstr "所有教學將再次顯示。關閉此選項後，只會顯示尚未見過的教學。即使是第一次玩，關閉此選項也是安全的。"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "現在查看"
@@ -6687,7 +6642,7 @@ msgid "UNDERWATER_VENT_ERUPTION"
 msgstr "海底熱泉噴發"
 
 msgid "UNDERWATER_VENT_ERUPTION_IN"
-msgstr "噴發於 {0}"
+msgstr "{0}噴發"
 
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "未發現"
@@ -6700,6 +6655,17 @@ msgstr "撤銷"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "撤銷上一個操作"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr "未處理的錯誤：{0}"
+
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr ""
+"遊戲發生未處理的錯誤。雖然可以繼續運行，但問題可能會變得更糟。最適當的做法是完全重啟遊戲並載入最新存檔。現在可以嘗試先保存遊戲。\n"
+"如果您要回報此錯誤，請使用按鈕複製錯誤資訊並將其包含在您的報告中。"
+
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "發生未處理的錯誤"
 
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "建造"
@@ -6789,7 +6755,7 @@ msgid "UNLOCK_CONDITION_SPEED_BELOW"
 msgstr "速度低於 {0}"
 
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
-msgstr "[b]{0}[/b]解鎖時"
+msgstr "[b]{0}[/b]解鎖條件"
 
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
@@ -6881,7 +6847,7 @@ msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "使用虛擬視窗大小"
 
 msgid "UV_PROTECTION"
-msgstr "紫外線（UV）抗性"
+msgstr "紫外線抗性"
 
 msgid "UV_TOLERANCE_TOOLTIP"
 msgstr "您的物種在受到有害影響之前能抵抗多少紫外線輻射。如果您處在光照過強的地方，您就會受到負面影響，直到抗性增加。"
@@ -6907,9 +6873,8 @@ msgstr "液泡將儲存 {0} 單位的所選化合物"
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#, fuzzy
 msgid "VENTS_ARE_HOME"
-msgstr "無事件記錄"
+msgstr "家有熱泉"
 
 msgid "VERSION_COLON"
 msgstr "版本："
@@ -7137,7 +7102,7 @@ msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr ""
 "具有[b]連接器[/b]的細胞（或含有具有[b]連接器[/b]的細胞的群落）可以進入結合模式。在結合模式下，每個細胞消耗額外的 [b]+2[/b] [thrive:compound type=\"atp\"][/thrive:compound]。結合模式會在與同物種的細胞接觸，將細胞加入群落後停用。也可以手動停用結合模式。\n"
 "\n"
-"群落中的細胞共享資源，將資源平均分配給所有細胞。群落也受惠於滲透調節成本的降低—每個細胞的滲透調節成本降低的比率與群落成員總數成反比。"
+"群落中的細胞共享資源，將資源平均分配給所有細胞。群落也受惠於滲透調節成本的降低——每個細胞的滲透調節成本降低的比率與群落成員總數成反比。"
 
 msgid "WIKI_BINDING_AGENT_INTRO"
 msgstr ""
@@ -7365,7 +7330,7 @@ msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "色素細胞光合作用、糖解"
 
 msgid "WIKI_CILIA_EFFECTS"
-msgstr "每個六邊形網格的[b]纖毛[/b]都會增加細胞的旋轉速度，消耗[thrive:compound type=\"atp\"][/thrive:compound] 以換取額外的機動性。強度取決於細胞器的位置—那些距離細胞中心較遠的細胞器會產生更大的轉動慣量，因此轉速會有更大的增加。"
+msgstr "每個六邊形網格的[b]纖毛[/b]都會增加細胞的旋轉速度，消耗[thrive:compound type=\"atp\"][/thrive:compound] 以換取額外的機動性。強度取決於細胞器的位置——那些距離細胞中心較遠的細胞器會產生更大的轉動慣量，因此轉速會有更大的增加。"
 
 msgid "WIKI_CILIA_INTRO"
 msgstr "細胞外部的小毛髮，使用[thrive:compound type=\"atp\"][/thrive:compound] 來提高細胞旋轉速度。可以升級以產生吸引獵物細胞與其他物體的水流。"
@@ -7427,7 +7392,7 @@ msgstr ""
 "[indent]—   [thrive:compound type=\"nitrogen\"][/thrive:compound][/indent]\n"
 "[indent]—   [thrive:compound type=\"carbondioxide\"][/thrive:compound][/indent]\n"
 "\n"
-"[b][u]浮動塊化合物[/u][/b]\n"
+"[b][u]漂浮塊狀化合物[/u][/b]\n"
 "\n"
 "這些化合物存在於一些漂浮的礦物塊中。\n"
 "\n"
@@ -7611,7 +7576,7 @@ msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
 "從技術上講，[b]細胞質[/b]不是細胞器；它是除細胞核與細胞膜之外的細胞所有成分的組合。在 Thrive 中，我們將[b]細胞質[/b]製作成了細胞器充當空白空間，儘管如此，它仍有助於調整細胞的形狀與大小。在任何情況下，[b]細胞質[/b]都可以被認為是細胞膜的填充物，細胞的其餘成分漂浮在背景液體中。\n"
 "\n"
-"[b]細胞質[/b]的主要成分是細胞質液。細胞質含有將營養物質分散到整個細胞的液體—大致類似宏觀生物體中的血液—與維持細胞結構的細胞骨架。許多代謝過程發生在細胞質中，例如參與滲透調節與透過化學信號進行內部交流。\n"
+"[b]細胞質[/b]的主要成分是細胞質液。細胞質含有將營養物質分散到整個細胞的液體——大致類似宏觀生物體中的血液——與維持細胞結構的細胞骨架。許多代謝過程發生在細胞質中，例如參與滲透調節與透過化學信號進行內部交流。\n"
 "\n"
 "閱讀更多關於該細胞器的資訊 [color=#3796e1][url=https://en.wikipedia.org/wiki/Cytoplasm]Wikipedia 頁面[/url][/color]。"
 
@@ -7971,9 +7936,54 @@ msgstr ""
 "\n"
 "只要環境夠熱，[color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color]與[color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color]就能免費生產[thrive:compound type=\"atp\"][/thrive:compound]。"
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
-msgstr "微生物階段"
+msgstr ""
+"本章節包含載入畫面中顯示的所有微生物階段的提示。\n"
+"\n"
+"\n"
+"每個網格的細胞質每秒需要消耗 1 [thrive:compound type=\"atp\"][/thrive:compound] 來維持，但它能夠生產 3 [thrive:compound type=\"atp\"][/thrive:compound]。如果您有點缺乏[thrive:compound type=\"atp\"][/thrive:compound]，請嘗試加入幾個細胞質或移除一些細胞器。\n"
+"\n"
+"您的細胞使用[thrive:compound type=\"atp\"][/thrive:compound] 作為能量來源。如果用完了，您就會死。\n"
+"\n"
+"要解鎖編輯器並繁殖，您需要存活足夠長的時間。收集[thrive:compound type=\"ammonia\"][/thrive:compound]（橙色雲）與[thrive:compound type=\"phosphates\"][/thrive:compound]（紫色雲）可加速生長。\n"
+"\n"
+"您可以透過按下 [b]G[/b] 吞噬比您小的物體並以它們為食。這會花費額外的[thrive:compound type=\"atp\"][/thrive:compound] 並減慢您的速度。別忘了再次按下 [b]G[/b] 以停止吞噬。\n"
+"\n"
+"您的細胞越大，您維持生命所需的[thrive:compound type=\"atp\"][/thrive:compound] 生產部件就越多。代謝體、鐵氧化藍蛋白、氫化酶甚至細胞質都會生產[thrive:compound type=\"atp\"][/thrive:compound]。\n"
+"\n"
+"編輯器中有許多細胞器可供您演化，從而允許您實現多種不同的遊戲風格。\n"
+"\n"
+"每種物種可用的資源都是有限的，因此增加細胞的大小也會減少最大物種量。\n"
+"\n"
+"使用 [b]W[/b]、[b]A[/b]、[b]S[/b] 與 [b]D[/b] 來移動，以及滑鼠來轉動。如果您有毒素液泡，使用 [b]E[/b] 發射[b]毒素[/b]。使用 [b]G[/b] 切換吞噬模式。您可以使用滑鼠滾輪放大與縮小。\n"
+"\n"
+"為了繁殖，您需要將每個細胞器分成兩個。細胞器分裂需要時間，收集[thrive:compound type=\"ammonia\"][/thrive:compound] 與[thrive:compound type=\"phosphates\"][/thrive:compound] 將加速這個過程。\n"
+"\n"
+"保持警惕，因為您的競爭對手也在與您一起發展。每次進入編輯器時，它們也會隨之演化。\n"
+"\n"
+"連接器可讓您與同物種的其他細胞一起建立細胞群。所有細胞共享化合物，作為一個整體發揮作用，從而演化為多細胞生物。\n"
+"\n"
+"鞭毛越多（或越長），速度就越快－嗡嗡！儘管它需要更多的 ATP。\n"
+"\n"
+"具有纖維素或幾丁質細胞膜的細胞不能被原核生物消化。具有溶酶體的真核生物可以透過製造酶來分解細胞壁並以此為食。\n"
+"\n"
+"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 可以透過化能體與化能合成蛋白轉化為[thrive:compound type=\"glucose\"][/thrive:compound]。[thrive:compound type=\"iron\"][/thrive:compound] 可以透過鐵氧化藍蛋白或鐵能體轉化為[thrive:compound type=\"atp\"][/thrive:compound]。\n"
+"\n"
+"每次訪問微生物階段的編輯器都代表著經過 100M 年的演化。\n"
+"\n"
+"您可以吞噬大塊的漂浮物，無論它們是死細胞還是礦物的一部分。\n"
+"\n"
+"添加細胞核之前做好準備。這些東西很貴——前期成本與維護開銷！\n"
+"\n"
+"如果您動作夠快，毒素可以用來擊退您附近的其他毒素。\n"
+"\n"
+"如果一個細胞的大小小於您的細胞的一半，您就可以吞噬它們。\n"
+"\n"
+"生物群系不僅僅是不同的背景——不同生物群系中的化合物與漂浮塊以不同的速率產生。\n"
+"\n"
+"將鞭毛或黏液噴嘴對稱地放置在細胞的後部。否則，您將會浪費能量。\n"
+"\n"
+"部件的放置位置很重要。您的細胞形狀會影響您的移動與轉動速度。"
 
 msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
 msgstr ""
@@ -8083,7 +8093,7 @@ msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
 msgstr ""
 "當玩家的國家發現蒸汽動力技術（並製造出第一台工業機械）時，工業階段正式開始。隨後，裝配線大幅提升生產與製造的效率，鐵路促進了貿易與運輸的速度，農業工程改進了農作物的生長與產量。新的軍事技術引領了戰爭方式的變革。\n"
 "\n"
-"工業階段的特色正是這個過程—革命。它帶來了社會各個層面的變革，並且隨著時間的推移，可能會徹底改變新興國家之間的競爭態勢。\n"
+"工業階段的特色正是這個過程——革命。它帶來了社會各個層面的變革，並且隨著時間的推移，可能會徹底改變新興國家之間的競爭態勢。\n"
 "\n"
 "當玩家首次到達太空時，本階段結束。"
 
@@ -8095,7 +8105,7 @@ msgstr "注射性菌毛"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
-"為[b]溶酶體[/b]配備[b]幾丁質酶[/b]或[b]纖維素酶[/b]，使細胞能夠分別消化具有[b]幾丁質膜[/b]或[b]纖維素膜[/b]的其他細胞。無法消化的細胞—那些不具備所需酵素的細胞—會立即被排出。\n"
+"為[b]溶酶體[/b]配備[b]幾丁質酶[/b]或[b]纖維素酶[/b]，使細胞能夠分別消化具有[b]幾丁質膜[/b]或[b]纖維素膜[/b]的其他細胞。無法消化的細胞——那些不具備所需酵素的細胞——會立即被排出。\n"
 "\n"
 "除了基本屬性外，每個[b]溶酶體[/b]還貢獻：\n"
 "\n"
@@ -8242,7 +8252,7 @@ msgstr ""
 
 msgid "WIKI_METABOLOSOMES_STRATEGY"
 msgstr ""
-"在許多方面，[b]代謝體[/b]是[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]的延伸。適用於起始細胞（LUCA）的遊戲玩法很可能適用於由[b]代謝體[/b]構成的細胞—只需從環境中收集[thrive:compound type=\"glucose\"][/thrive:compound]。不同之處在於效率更高，可以支援更多具有更廣泛功能的細胞器，例如[b][color=#3796e1][url=thriveopedia:pilus]掠食性菌毛[/url][/color][/b]或[b][color=#3796e1][url=thriveopedia:flagellum]鞭毛[/url][/color][/b]。\n"
+"在許多方面，[b]代謝體[/b]是[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]的延伸。適用於起始細胞（LUCA）的遊戲玩法很可能適用於由[b]代謝體[/b]構成的細胞——只需從環境中收集[thrive:compound type=\"glucose\"][/thrive:compound]。不同之處在於效率更高，可以支援更多具有更廣泛功能的細胞器，例如[b][color=#3796e1][url=thriveopedia:pilus]掠食性菌毛[/url][/color][/b]或[b][color=#3796e1][url=thriveopedia:flagellum]鞭毛[/url][/color][/b]。\n"
 "\n"
 "然而，環境中的自然[thrive:compound type=\"glucose\"][/thrive:compound] 濃度會隨著遊戲的進行而降低，因此建議稍後切換到新的食物來源。\n"
 "\n"
@@ -9471,18 +9481,32 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "您可以在 Patreon 上支持 Thrive 的未來發展。"
 
-#, fuzzy
 msgid "YUM_EXCLAMATION"
-msgstr ""
-"專注型微生物會在更遠的距離追擊獵物或物質塊\n"
-"並且對物質塊更有渴求。\n"
-"應變型微生物將更快地轉向新目標。"
+msgstr "美味！"
 
 msgid "ZOOM_IN"
 msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON 除錯模式："
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "總是"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "自動"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "從不"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "回報存檔錯誤時，請包含[color=#3796e1][url={2}]記錄檔資料夾[/url][/color]中的 [color=#3796e1][url={0}]{1}[/url][/color]，因為這是 Thrive 開發人員找出存檔錯誤的關鍵資訊。如果沒有該檔案，診斷與解決此問題將非常困難。"
+
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "在回報此存檔錯誤之前，請確保 JSON 偵錯模式未停用。自動 JSON 偵錯模式應在[color=#3796e1][url={1}]記錄檔資料夾[/url][/color]中建立一個名為 {0} 的額外檔案。該文件包含供 Thrive 開發人員確定存檔錯誤的關鍵資訊。"
 
 #, fuzzy
 #~ msgid "OUTDATED"

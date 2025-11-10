@@ -57,9 +57,13 @@ public partial class StartupActions : Node
             AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionLogger.OnUnhandledException;
 
             // GD.Print("Unhandled exception logger attached");
-            GD.Print(
-                "TODO: reimplement unhandled exception handler: https://github.com/godotengine/godot/issues/73515");
+
+            // This is not as critical problem any more, so we don't print this
+            /*GD.Print("TODO: reimplement unhandled exception handler: " +
+                "https://github.com/godotengine/godot/issues/73515");*/
         }
+
+        LogInterceptor.Register();
 
         NativeInterop.SetDllImportResolver();
 

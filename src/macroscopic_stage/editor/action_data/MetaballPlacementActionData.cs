@@ -77,13 +77,14 @@ public class MetaballPlacementActionData<TMetaball> : EditorCombinableActionData
                     removeActionData.Parent == Parent)
                 {
                     cost = 0;
-                    refund += other.GetCalculatedSelfCost();
+                    refund += other.GetAndConsumeAvailableRefund();
                     continue;
                 }
 
                 // Removing and placing a metaball is a move operation
+                // TODO: this triggers when it shouldn't
                 cost = Constants.METABALL_MOVE_COST;
-                refund += other.GetCalculatedSelfCost();
+                refund += other.GetAndConsumeAvailableRefund();
             }
         }
 

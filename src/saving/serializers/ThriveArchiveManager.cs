@@ -347,6 +347,13 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(Endosymbiont), Endosymbiont.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Endosymbiont,
             typeof(Endosymbiont), Endosymbiont.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.InProgressEndosymbiosis,
+            typeof(EndosymbiosisData.InProgressEndosymbiosis),
+            EndosymbiosisData.InProgressEndosymbiosis.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.AgentProperties,
+            typeof(AgentProperties), AgentProperties.ReadFromArchive);
     }
 
     private void RegisterComponentParts()
@@ -591,6 +598,11 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(OrganellePlacementActionData), OrganellePlacementActionData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganellePlacementActionData,
             typeof(OrganellePlacementActionData), OrganellePlacementActionData.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EndosymbiontPlaceActionData,
+            typeof(EndosymbiontPlaceActionData), EndosymbiontPlaceActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EndosymbiontPlaceActionData,
+            typeof(EndosymbiontPlaceActionData), EndosymbiontPlaceActionData.ReadFromArchive);
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleRemoveActionData,
             typeof(OrganelleRemoveActionData), OrganelleRemoveActionData.WriteToArchive);

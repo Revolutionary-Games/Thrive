@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
+using Saving;
 using Saving.Serializers;
 using DirAccess = Godot.DirAccess;
 using FileAccess = Godot.FileAccess;
@@ -18,7 +19,8 @@ public static class SaveHelper
 {
     /// <summary>
     ///   This is a list of known versions where save compatibility is very broken and loading needs to be prevented
-    ///   (unless there exists a version converter)
+    ///   (unless there exists a version converter).
+    ///   See also the opposite list in <see cref="CompatibleSaveVersions"/>
     /// </summary>
     private static readonly List<string> KnownSaveIncompatibilityPoints =
     [
@@ -511,7 +513,7 @@ public static class SaveHelper
 
     /// <summary>
     ///   Returns true if the specified version is known to be incompatible
-    ///   from list in KnownSaveIncompatibilityPoints
+    ///   from a list in KnownSaveIncompatibilityPoints
     /// </summary>
     /// <param name="saveVersion">The save's version to check</param>
     /// <returns>True if certainly incompatible</returns>
