@@ -42,6 +42,9 @@ public class UpgradeOrganelle : ModifyOrganelleBase
         this.upgradeName = upgradeName;
     }
 
+    // For now, this matches the case pretty much where free upgrades are not made repeatable
+    public override bool ExpectedToCostMP => Repeatable;
+
     protected override bool CanModifyOrganelle(OrganelleTemplate organelle, double mpRemaining)
     {
         double mpCost = 0;
@@ -76,7 +79,7 @@ public class UpgradeOrganelle : ModifyOrganelleBase
     }
 
     protected override bool ApplyOrganelleUpgrade(double mpRemaining, OrganelleTemplate originalOrganelle,
-        ref double mpCost, [NotNullWhen(true)] out OrganelleTemplate? upgradedOrganelle)
+        ref double mpCost, [NotNullWhen(true)] out OrganelleTemplate? upgradedOrganelle, Random random)
     {
         bool hasFeatureUpgrade = false;
 

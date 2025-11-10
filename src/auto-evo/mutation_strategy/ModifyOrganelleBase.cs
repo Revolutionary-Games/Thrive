@@ -23,10 +23,17 @@ public abstract class ModifyOrganelleBase : IMutationStrategy<MicrobeSpecies>
 
     public bool Repeatable => shouldRepeat;
 
+    /// <summary>
+    ///   Used to filter out totally pointless mutations when this costs some MP but none is remaining
+    /// </summary>
+    public abstract bool ExpectedToCostMP { get; }
+
     public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
-        if (allOrganelles.Count == 0)
+        // While some upgrades are free, it still might be good to stop looking for mutations once something has
+        // consumed all the remaining MP
+        if (allOrganelles.Count == 0 || (mp <= 0 && ExpectedToCostMP))
         {
             return null;
         }
@@ -83,7 +90,7 @@ public abstract class ModifyOrganelleBase : IMutationStrategy<MicrobeSpecies>
                 {
                     var originalOrganelle = organelleList[j];
 
-                    if (!ApplyOrganelleUpgrade(mp, originalOrganelle, ref mpCost, out var upgradedOrganelle))
+                    if (!ApplyOrganelleUpgrade(mp, originalOrganelle, ref mpCost, out var upgradedOrganelle, random))
                         break;
 
                     // We did not change the position at all, so we can safely put down the organelle as upgrades
@@ -121,11 +128,12 @@ public abstract class ModifyOrganelleBase : IMutationStrategy<MicrobeSpecies>
     /// </summary>
     /// <param name="mpRemaining">Total MP remaining for this mutation strategy to use</param>
     /// <param name="originalOrganelle">
-    ///   The original organelle that should be attempted to be upgraded. do not modify this instance directly!
+    ///   The original organelle that should be attempted to be upgraded. Do not modify this instance directly!
     /// </param>
     /// <param name="mpCost">The total cost of all upgrades applied. This needs to be updated.</param>
     /// <param name="upgradedOrganelle">Out parameter for the cloned organelle that has upgrades applied</param>
+    /// <param name="random">Access to a random number generator</param>
     /// <returns>True if applied, false if failed, and the whole attempt should be abandoned</returns>
     protected abstract bool ApplyOrganelleUpgrade(double mpRemaining, OrganelleTemplate originalOrganelle,
-        ref double mpCost, [NotNullWhen(true)] out OrganelleTemplate? upgradedOrganelle);
+        ref double mpCost, [NotNullWhen(true)] out OrganelleTemplate? upgradedOrganelle, Random random);
 }

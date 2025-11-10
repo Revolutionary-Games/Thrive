@@ -1,166 +1,157 @@
 ﻿using System;
-using System.Collections.Frozen;
-using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using AutoEvo;
 
-// Direction for toxicity mutation
-public enum MutationDirection
-{
-    Increase,
-    Decrease,
-    Both,
-}
-
 /// <summary>
-///   Specific mutationstrategy for toxin-launching organelles
-///   applies a fixed toxin type based on given upgradename
+///   A specific mutation strategy for toxin-launching organelles
+///   applies a fixed toxin type based on a given upgradeName
 ///   and randomly adjusts toxicity upward, downward, or in both directions
 /// </summary>
-public class UpgradeToxinOrganelle : IMutationStrategy<MicrobeSpecies>
+public class UpgradeToxinOrganelle : ModifyOrganelleBase
 {
-    private readonly Func<OrganelleDefinition, bool> criteria;
-    private readonly FrozenSet<OrganelleDefinition> allOrganelles;
     private readonly MutationDirection direction;
-    private readonly string? upgradeName;
-    private ToxinType toxinType;
+    private readonly string upgradeName;
+    private readonly bool isDefault;
 
     /// <summary>
-    ///   Updates a toxin-launching organelle with a given toxin type, updating toxin type in custom data to match
+    ///   Updates a toxin-launching organelle with a given toxin type, updating the toxin type in custom data to match,
     ///   and randomly moves toxicity in a given direction.
     /// </summary>
     /// <param name="criteria">Organelle requirement to apply</param>
     /// <param name="upgradeName">The name of the upgrade (from organelles.json) to apply</param>
+    /// <param name="isDefault">Must be true when the upgrade name is the default upgrade</param>
     /// <param name="direction">"increase", "decrease", or "both" to decide what to do with toxicity</param>
-    public UpgradeToxinOrganelle(Func<OrganelleDefinition, bool> criteria, string upgradeName,
-        MutationDirection direction)
+    public UpgradeToxinOrganelle(Func<OrganelleDefinition, bool> criteria, string upgradeName, bool isDefault,
+        MutationDirection direction) : base(criteria, true)
     {
-        allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
-        this.criteria = criteria;
         this.upgradeName = upgradeName;
+        this.isDefault = isDefault;
         this.direction = direction;
     }
 
-    public bool Repeatable => true;
-
-    public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
-        Random random, BiomeConditions biomeToConsider)
+    /// <summary>
+    ///   Direction for toxicity mutation
+    /// </summary>
+    public enum MutationDirection
     {
-        if (allOrganelles.Count == 0)
+        Increase,
+        Decrease,
+        Both,
+    }
+
+    public override bool ExpectedToCostMP => true;
+
+    protected override bool CanModifyOrganelle(OrganelleTemplate organelle, double mpRemaining)
+    {
+        double mpCost = 0;
+        bool canUpgrade = false;
+
+        foreach (var availableUpgrade in organelle.Definition.AvailableUpgrades)
         {
-            return null;
-        }
-
-        // If a cheaper organelle upgrade gets added, this will need to be updated
-        if (mp < 10)
-            return null;
-
-        double mpcost = 0;
-
-        bool validMutations = false;
-
-        // Manual looping to avoid one enumerator allocation per call
-        var organelleList = baseSpecies.Organelles.Organelles;
-        var count = organelleList.Count;
-        for (var i = 0; i < count; ++i)
-        {
-            var organelle = organelleList[i];
-
-            if (allOrganelles.Contains(organelle.Definition))
+            // Filter to just applicable upgrades
+            if (availableUpgrade.Key == upgradeName && !IsUpgradeSelected(organelle))
             {
-                validMutations = true;
+                mpCost += availableUpgrade.Value.MPCost;
+                canUpgrade = true;
                 break;
             }
         }
 
-        if (!validMutations)
-            return null;
+        if (mpCost > mpRemaining || !canUpgrade)
+            return false;
 
-        var mutated = new List<Tuple<MicrobeSpecies, double>>();
+        return true;
+    }
 
-        var eligibleOrganelles = new List<OrganelleTemplate>();
+    protected override bool ApplyOrganelleUpgrade(double mpRemaining, OrganelleTemplate originalOrganelle,
+        ref double mpCost, [NotNullWhen(true)] out OrganelleTemplate? upgradedOrganelle, Random random)
+    {
+        ToxinType toxinType = ToxinType.Oxytoxy;
+        bool canUpgrade = false;
 
-        foreach (var organelle in baseSpecies.Organelles.Organelles)
+        foreach (var availableUpgrade in originalOrganelle.Definition.AvailableUpgrades)
         {
-            if (criteria(organelle.Definition))
-                eligibleOrganelles.Add(organelle);
+            if (availableUpgrade.Key == upgradeName && !IsUpgradeSelected(originalOrganelle))
+            {
+                toxinType = ToxinUpgradeNames.ToxinTypeFromName(availableUpgrade.Key);
+                mpCost += availableUpgrade.Value.MPCost;
+                canUpgrade = true;
+                break;
+            }
         }
 
-        var eligibleOrganelleSample = eligibleOrganelles
-            .OrderBy(_ => random.Next())
-            .Take(Constants.AUTO_EVO_ORGANELLE_UPGRADE_ATTEMPTS);
-
-        foreach (var baseSpeciesOrganelle in eligibleOrganelleSample)
+        if (mpCost > mpRemaining || !canUpgrade)
         {
-            var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
-            OrganelleTemplate? organelle = null;
+            upgradedOrganelle = null;
+            return false;
+        }
 
-            foreach (var candidateOrganelle in newSpecies.Organelles.Organelles)
+        // Start applying changes
+        upgradedOrganelle = originalOrganelle.Clone(false);
+
+        ToxinUpgrades toxinData;
+        if (originalOrganelle.Upgrades?.CustomUpgradeData is not ToxinUpgrades)
+        {
+            toxinData = new ToxinUpgrades(toxinType, 0.0f);
+            upgradedOrganelle.Upgrades = new OrganelleUpgrades
             {
-                if (candidateOrganelle.Position == baseSpeciesOrganelle.Position)
-                {
-                    organelle = candidateOrganelle;
-                    break;
-                }
-            }
+                CustomUpgradeData = toxinData,
+            };
+        }
+        else
+        {
+            upgradedOrganelle.Upgrades = (OrganelleUpgrades)originalOrganelle.Upgrades.Clone();
+            toxinData = (ToxinUpgrades?)upgradedOrganelle.Upgrades.CustomUpgradeData ??
+                throw new InvalidOperationException("Clone didn't close custom data");
+            toxinData.BaseType = toxinType;
+        }
 
-            if (!criteria(organelle!.Definition))
-                continue;
-
-            organelle.Upgrades ??= new OrganelleUpgrades();
-
-            if (organelle.Upgrades.UnlockedFeatures.Contains(upgradeName!))
-                continue;
-
-            foreach (var availableUpgrade in organelle.Definition.AvailableUpgrades)
+        if (canUpgrade)
+        {
+            // Don't stack all of the toxin types, only one can be active at a time
+            upgradedOrganelle.Upgrades.UnlockedFeatures.Clear();
+            if (!isDefault)
             {
-                var availableUpgradeName = availableUpgrade.Key;
-                if (availableUpgradeName == upgradeName)
-                {
-                    toxinType = ToxinUpgradeNames.ToxinTypeFromName(availableUpgrade.Key);
-                    mpcost = availableUpgrade.Value.MPCost;
-                    break;
-                }
+                upgradedOrganelle.Upgrades.UnlockedFeatures.Add(upgradeName);
             }
+        }
 
-            if (mpcost > mp)
+        // Adjust toxicity
+        var change = (float)(random.NextDouble() * Constants.AUTO_EVO_MUTATION_TOXICITY_STEP);
+
+        switch (direction)
+        {
+            case MutationDirection.Increase:
+                toxinData.Toxicity = Math.Clamp(toxinData.Toxicity + change, -1.0f, 1.0f);
                 break;
 
-            // Start applying changes
-            if (organelle.Upgrades.CustomUpgradeData is not ToxinUpgrades toxinData)
-            {
-                toxinData = new ToxinUpgrades(toxinType, 0.0f);
-                organelle.Upgrades.CustomUpgradeData = toxinData;
-            }
-            else
-            {
-                toxinData.BaseType = toxinType;
-            }
+            case MutationDirection.Decrease:
+                toxinData.Toxicity = Math.Clamp(toxinData.Toxicity - change, -1.0f, 1.0f);
+                break;
 
-            organelle.Upgrades.UnlockedFeatures.Add(upgradeName!);
-
-            // Adjust toxicity
-            var change = (float)(random.NextDouble() * Constants.AUTO_EVO_MUTATION_TOXICITY_STEP);
-
-            switch (direction)
-            {
-                case MutationDirection.Increase:
-                    toxinData.Toxicity = Math.Clamp(toxinData.Toxicity + change, -1.0f, 1.0f);
-                    break;
-
-                case MutationDirection.Decrease:
-                    toxinData.Toxicity = Math.Clamp(toxinData.Toxicity - change, -1.0f, 1.0f);
-                    break;
-
-                case MutationDirection.Both:
-                    change *= random.NextDouble() < 0.5 ? -1.0f : 1.0f;
-                    toxinData.Toxicity = Math.Clamp(toxinData.Toxicity + change, -1.0f, 1.0f);
-                    break;
-            }
-
-            mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp - mpcost));
+            case MutationDirection.Both:
+                change *= random.NextDouble() < 0.5 ? -1.0f : 1.0f;
+                toxinData.Toxicity = Math.Clamp(toxinData.Toxicity + change, -1.0f, 1.0f);
+                break;
         }
 
-        return mutated;
+        return true;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private bool IsUpgradeSelected(OrganelleTemplate organelle)
+    {
+        if (organelle.Upgrades == null)
+            return isDefault;
+
+        if (organelle.Upgrades.UnlockedFeatures.Contains(upgradeName))
+            return true;
+
+        // If missing from the list, is the default if the list is empty
+        if (organelle.Upgrades.UnlockedFeatures.Count < 1)
+            return isDefault;
+
+        return false;
     }
 }
