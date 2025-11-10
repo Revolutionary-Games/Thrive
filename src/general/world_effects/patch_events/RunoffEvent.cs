@@ -59,7 +59,7 @@ public class RunoffEvent : IWorldEffect
     }
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
-    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CurrentDilutionEvent;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.RunoffEvent;
     public bool CanBeReferencedInArchive => false;
 
     public static RunoffEvent ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)

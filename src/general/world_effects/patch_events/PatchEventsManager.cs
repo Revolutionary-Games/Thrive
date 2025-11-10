@@ -29,7 +29,7 @@ public class PatchEventsManager : IWorldEffect
     }
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
-    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CurrentDilutionEvent;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.PatchEventsManager;
     public bool CanBeReferencedInArchive => false;
 
     public static PatchEventsManager ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)

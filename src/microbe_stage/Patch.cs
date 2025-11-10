@@ -10,7 +10,7 @@ using SharedBase.Archive;
 /// </summary>
 public class Patch : IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
@@ -198,14 +198,41 @@ public class Patch : IArchivable
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var instance = new Patch(reader.ReadObject<LocalizedString>(), reader.ReadInt32(), reader.ReadObject<Biome>(),
-            reader.ReadObject<PatchSnapshot>(), reader.ReadObject<Dictionary<Species, long>>())
+        // Read all required fields from archive before Patch initialization
+        var name = reader.ReadObject<LocalizedString>();
+        var id = reader.ReadInt32();
+        var biomeTemplate = reader.ReadObject<Biome>();
+        var currentSnapshot = reader.ReadObject<PatchSnapshot>();
+        var gameplayPopulations = reader.ReadObject<Dictionary<Species, long>>();
+
+        if (version <= 1)
         {
-            BiomeType = (BiomeType)reader.ReadInt32(),
-            Depth = reader.ReadObject<int[]>(),
-            Visibility = (MapElementVisibility)reader.ReadInt32(),
-            ScreenCoordinates = reader.ReadVector2(),
-            DynamicDataSeed = reader.ReadInt64(),
+            var patchEventTypes = reader.ReadObject<List<PatchEventTypes>>();
+            foreach (var eventType in patchEventTypes)
+            {
+                currentSnapshot.ActivePatchEvents.Add(eventType, new PatchEventProperties());
+            }
+
+            var biomeReference = SimulationParameters.Instance.GetBiome(biomeTemplate.InternalName);
+            biomeTemplate.Conditions.StartingSunlightValue = biomeReference.Conditions.Compounds
+                .GetValueOrDefault(Compound.Sunlight, default(BiomeCompoundProperties)).Ambient;
+            biomeTemplate.Conditions.StartingTemperatureValue = biomeReference.Conditions.Compounds
+                .GetValueOrDefault(Compound.Temperature, default(BiomeCompoundProperties)).Ambient;
+        }
+
+        var biomeType = (BiomeType)reader.ReadInt32();
+        var depth = reader.ReadObject<int[]>();
+        var visibility = (MapElementVisibility)reader.ReadInt32();
+        var screenCoordinates = reader.ReadVector2();
+        var dynamicDataSeed = reader.ReadInt64();
+
+        var instance = new Patch(name, id, biomeTemplate, currentSnapshot, gameplayPopulations)
+        {
+            BiomeType = biomeType,
+            Depth = depth,
+            Visibility = visibility,
+            ScreenCoordinates = screenCoordinates,
+            DynamicDataSeed = dynamicDataSeed,
         };
 
         reader.ReportObjectConstructorDone(instance, referenceId);
@@ -785,9 +812,9 @@ public class PatchSnapshot : ICloneable, IArchivable
             SpeciesInPatch = reader.ReadObject<Dictionary<Species, long>>(),
             RecordedSpeciesInfo = reader.ReadObject<Dictionary<Species, SpeciesInfo>>(),
             EventsLog = reader.ReadObject<List<GameEventDescription>>(),
-            ActivePatchEvents = version >= 2 ?
-                reader.ReadObject<Dictionary<PatchEventTypes, PatchEventProperties>>() :
-                new Dictionary<PatchEventTypes, PatchEventProperties>(),
+            ActivePatchEvents = version <= 1 ?
+                new Dictionary<PatchEventTypes, PatchEventProperties>() :
+                reader.ReadObject<Dictionary<PatchEventTypes, PatchEventProperties>>(),
         };
     }
 

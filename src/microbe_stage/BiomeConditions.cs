@@ -9,7 +9,7 @@ using ThriveScriptsShared;
 /// </summary>
 public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     private Dictionary<Compound, BiomeCompoundProperties> compounds;
 
@@ -110,7 +110,7 @@ public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
 
     /// <summary>
     ///   Allows access to modification of the compound values in the biome permanently. Should only be used by
-    ///   auto-evo or map generator. After changing <see cref="AverageCompounds"/> must be updated.
+    ///   auto-evo, patch events or map generator. After changing <see cref="AverageCompounds"/> must be updated.
     ///   <see cref="ModifyLongTermCondition"/> is the preferred method to update this data which handles that
     ///   automatically. Or for more advanced handling (of gases especially):
     ///   <see cref="ApplyLongTermCompoundChanges"/>
@@ -153,17 +153,31 @@ public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        return new BiomeConditions(reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>(),
-            reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>(),
-            reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>(),
-            reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>(),
-            reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>())
+        var compounds = reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>();
+        var currentCompoundAmounts = reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>();
+        var averageCompoundAmounts = reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>();
+        var maximumCompoundAmounts = reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>();
+        var minimumCompoundAmounts = reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>();
+        var chunks = reader.ReadObject<Dictionary<string, ChunkConfiguration>>();
+        var pressure = reader.ReadFloat();
+
+        // Values for version <= 1 are properly set in Patch after loading.
+        float startingSunlightValue = version <= 1 ? 0 : reader.ReadFloat();
+        float startingTemperatureValue = version <= 1 ? 0 : reader.ReadFloat();
+
+        var biomeConditions = new BiomeConditions(compounds,
+            currentCompoundAmounts,
+            averageCompoundAmounts,
+            maximumCompoundAmounts,
+            minimumCompoundAmounts)
         {
-            Chunks = reader.ReadObject<Dictionary<string, ChunkConfiguration>>(),
-            Pressure = reader.ReadFloat(),
-            StartingSunlightValue = reader.ReadFloat(),
-            StartingTemperatureValue = reader.ReadFloat(),
+            Chunks = chunks,
+            Pressure = pressure,
+            StartingSunlightValue = startingSunlightValue,
+            StartingTemperatureValue = startingTemperatureValue,
         };
+
+        return biomeConditions;
     }
 
     public void WriteToArchive(ISArchiveWriter writer)

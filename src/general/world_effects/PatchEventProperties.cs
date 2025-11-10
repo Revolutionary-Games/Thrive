@@ -7,8 +7,8 @@ public class PatchEventProperties : IArchivable
 
     public string CustomTooltip = string.Empty;
     public float SunlightAmbientMultiplier = 1.0f;
-    public float TemperatureAmbientChange = 0.0f;
-    public float? TemperatureAmbientFixedValue = null;
+    public float TemperatureAmbientChange;
+    public float? TemperatureAmbientFixedValue;
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.PatchEventProperties;
