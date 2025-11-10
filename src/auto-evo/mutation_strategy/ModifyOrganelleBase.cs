@@ -93,6 +93,9 @@ public abstract class ModifyOrganelleBase : IMutationStrategy<MicrobeSpecies>
                     if (!ApplyOrganelleUpgrade(mp, originalOrganelle, ref mpCost, out var upgradedOrganelle, random))
                         break;
 
+                    if (ReferenceEquals(originalOrganelle, upgradedOrganelle))
+                        throw new Exception("The overridden method should create new organelle instances");
+
                     // We did not change the position at all, so we can safely put down the organelle as upgrades
                     // cannot affect the shape
                     newSpecies.Organelles.AddAutoEvoAttemptOrganelle(upgradedOrganelle);
@@ -100,7 +103,11 @@ public abstract class ModifyOrganelleBase : IMutationStrategy<MicrobeSpecies>
                 }
                 else
                 {
-                    newSpecies.Organelles.AddAutoEvoAttemptOrganelle(organelleList[j]);
+                    // TODO: switch away from cloning again once ensured that auto-evo does not modify original
+                    // organelles
+                    newSpecies.Organelles.AddAutoEvoAttemptOrganelle((OrganelleTemplate)organelleList[j].Clone());
+
+                    // newSpecies.Organelles.AddAutoEvoAttemptOrganelle(organelleList[j]);
                 }
             }
 
