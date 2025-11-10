@@ -825,7 +825,8 @@ public partial class AchievementsManager : Node
             {
                 if (SteamHandler.Instance.GetSteamClientForAchievements().SaveSteamStats())
                 {
-                    GD.Print("Saving achievements to Steam");
+                    // This would print a lot, so we don't print it. The error print should be enough.
+                    // GD.Print("Saving achievements to Steam");
                 }
                 else
                 {
