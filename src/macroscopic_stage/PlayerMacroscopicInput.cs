@@ -35,25 +35,6 @@ public partial class PlayerMacroscopicInput : NodeWithInput
 
         // Handle the GUI mouse capture
         MouseCaptureManager.SetGameStateWantedCaptureState(!mouseUnCapturePressed && !PauseManager.Instance.Paused);
-
-        if (stage.Player != null)
-        {
-            var angle = stage.Player.GlobalBasis.Z.SignedAngleTo(stage.PlayerCamera.CameraNode.GlobalBasis.Z *
-                new Vector3(1, 0, 1), Vector3.Up);
-
-            var damping = (float)MathF.Abs(stage.Player.AngularVelocity.Y - angle);
-
-            // If angle is small enough, eliminate Y angular rotation
-            if (MathF.Abs(angle) <= 0.1)
-            {
-                stage.Player.AngularVelocity *= new Vector3(1, 0, 1);
-            }
-            else
-            {
-                stage.Player.ApplyTorqueImpulse(new Vector3(0, stage.Player.Mass * angle * (float)delta * 0.3f *
-                    damping, 0));
-            }
-        }
     }
 
     [RunOnKeyDown("g_hold_forward")]
@@ -116,6 +97,10 @@ public partial class PlayerMacroscopicInput : NodeWithInput
             }
 
             stage.Player.MovementDirection = movement;
+
+            // Rotate only when moving
+            if (movement.LengthSquared() > epsilon)
+                stage.Player.LookVector = -stage.PlayerCamera.CameraNode.GlobalBasis.Z;
         }
     }
 

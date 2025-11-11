@@ -128,6 +128,11 @@ public partial class MacroscopicCreature : RigidBody3D, ICharacterInventory, IEn
     /// </summary>
     public Vector3 MovementDirection { get; set; } = Vector3.Zero;
 
+    /// <summary>
+    ///   The direction the creature will rotate to
+    /// </summary>
+    public Vector3 LookVector { get; set; } = Vector3.Forward;
+
     [JsonProperty]
     public MovementMode MovementMode { get; set; }
 
@@ -214,6 +219,22 @@ public partial class MacroscopicCreature : RigidBody3D, ICharacterInventory, IEn
                 ApplyCentralImpulse(Mass * MovementDirection * (float)delta * 15 *
                     (Math.Clamp(Species.MuscularPower, 0, 1 * Mass) + 1));
             }
+        }
+
+        // Handle rotation
+        var angle = (-GlobalBasis.Z).SignedAngleTo(LookVector * new Vector3(1, 0, 1), Vector3.Up);
+
+        // If angle is small enough, eliminate Y angular rotation
+        if (MathF.Abs(angle) <= 0.1)
+        {
+            AngularVelocity *= new Vector3(1, 0, 1);
+        }
+        else
+        {
+            var damping = MathF.Abs(AngularVelocity.Y - angle);
+
+            ApplyTorqueImpulse(new Vector3(0, Mass * angle * (float)delta * 0.3f *
+                damping, 0));
         }
 
         // This is in physics process as this follows the player physics entity
