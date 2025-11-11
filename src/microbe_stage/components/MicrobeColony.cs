@@ -15,7 +15,7 @@ using SharedBase.Archive;
 /// </summary>
 public struct MicrobeColony : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     /// <summary>
     ///   All colony members of this colony. The cell at index 0 has to be the <see cref="Leader"/>. Only modify
@@ -58,6 +58,13 @@ public struct MicrobeColony : IArchivableComponent
     // certainly created.
 
     public int HexCount;
+
+    /// <summary>
+    ///   Cached approximate radius of the colony. 0 or negative is a placeholder value. To access this use
+    ///   <see cref="MicrobeColonyHelpers.GetApproximateColonyRadius"/>
+    /// </summary>
+    public float CachedRadius;
+
     public bool CanEngulf;
 
     /// <summary>
@@ -74,7 +81,7 @@ public struct MicrobeColony : IArchivableComponent
     /// <remarks>
     ///   <para>
     ///     It is mandatory to call <see cref="MicrobeColonyHelpers.AddInitialColonyMember"/> on each of the
-    ///     members *after* the leader to setup the state for the entities correctly.
+    ///     members *after* the leader to set up the state for the entities correctly.
     ///   </para>
     /// </remarks>
     public MicrobeColony(in Entity leader, MicrobeState initialState, params Entity[] allMembers)
@@ -109,6 +116,7 @@ public struct MicrobeColony : IArchivableComponent
         HexCount = 0;
         CanEngulf = false;
         DerivedStatisticsCalculated = false;
+        CachedRadius = 0;
         EntityWeightApplied = false;
     }
 
@@ -141,6 +149,7 @@ public struct MicrobeColony : IArchivableComponent
         HexCount = 0;
         CanEngulf = false;
         DerivedStatisticsCalculated = false;
+        CachedRadius = 0;
         EntityWeightApplied = false;
     }
 
@@ -158,6 +167,7 @@ public struct MicrobeColony : IArchivableComponent
         writer.Write(CanEngulf);
         writer.Write(DerivedStatisticsCalculated);
         writer.Write(EntityWeightApplied);
+        writer.Write(CachedRadius);
     }
 }
 
@@ -185,6 +195,7 @@ public static class MicrobeColonyHelpers
             CanEngulf = reader.ReadBool(),
             DerivedStatisticsCalculated = reader.ReadBool(),
             EntityWeightApplied = reader.ReadBool(),
+            CachedRadius = version > 1 ? reader.ReadFloat() : 0,
         };
     }
 
@@ -354,6 +365,64 @@ public static class MicrobeColonyHelpers
         }
 
         return result;
+    }
+
+    /// <summary>
+    ///   Calculates a rough overall radius of the colony.
+    ///   Only possible once members are initialised with their membrane. The value is cached for future calls.
+    /// </summary>
+    /// <param name="colony">Colony to calculate a radius for</param>
+    /// <returns>The radius of the colony *or* 0 if data is not available yet</returns>
+    public static float GetApproximateColonyRadius(this ref MicrobeColony colony)
+    {
+        if (colony.CachedRadius > 0)
+            return colony.CachedRadius;
+
+        float maxRadiusSquared = 0;
+
+        foreach (var cell in colony.ColonyMembers)
+        {
+            // Make sure leader is not unnecessarily processed, but if there exists a single member colony for a while,
+            // it should be processed correctly
+            if (cell == colony.Leader && colony.ColonyMembers.Length > 1)
+                continue;
+
+            float attachDistance = 0;
+
+            if (cell.Has<AttachedToEntity>())
+            {
+                attachDistance = cell.Get<AttachedToEntity>().RelativePosition.LengthSquared();
+            }
+            else if (cell == colony.Leader)
+            {
+            }
+            else
+            {
+                GD.PrintErr("Colony member has no attached component in radius calculation");
+            }
+
+            if (!cell.Has<CellProperties>())
+            {
+                GD.PrintErr("Cell colony has something that isn't a cell (CellProperties missing)");
+                return 0;
+            }
+
+            // If data not ready yet, skip calculation
+            var membrane = cell.Get<CellProperties>().CreatedMembrane;
+            if (membrane == null)
+                return 0;
+
+            var radius = membrane.EncompassingCircleRadius;
+            var distanceSquared = attachDistance + radius * radius;
+
+            if (distanceSquared > maxRadiusSquared)
+                maxRadiusSquared = distanceSquared;
+        }
+
+        var maxRadius = MathF.Sqrt(maxRadiusSquared);
+
+        colony.CachedRadius = maxRadius;
+        return maxRadius;
     }
 
     /// <summary>
@@ -1296,6 +1365,7 @@ public static class MicrobeColonyHelpers
     private static void MarkMembersChanged(this ref MicrobeColony colony)
     {
         colony.DerivedStatisticsCalculated = false;
+        colony.CachedRadius = 0;
         colony.EntityWeightApplied = false;
 
         // TODO: maybe in some situations creating the compound bag could be entirely safely skipped here
