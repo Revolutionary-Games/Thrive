@@ -519,7 +519,7 @@ public static class Constants
 
     public const float OXYTOXY_DAMAGE = 25.0f;
 
-    public const float CYTOTOXIN_DAMAGE = 20.0f;
+    public const float CYTOTOXIN_DAMAGE = 18.0f;
 
     public const float OXYGEN_INHIBITOR_DAMAGE = 23.0f;
 
@@ -530,6 +530,7 @@ public static class Constants
     public const float MACROLIDE_DEBUFF_DURATION = 5;
 
     public const float TOXIN_TOXICITY_DAMAGE_MODIFIER_STRENGTH = 0.5f;
+    public const float DEFAULT_TOXICITY = 0.0f;
 
     /// <summary>
     ///   Each oxygen using organelle in a cell increases damage caused by oxygen-inhibiting toxin by this amount,
@@ -1297,9 +1298,13 @@ public static class Constants
     public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 300;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
+
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 35;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
+    public const float AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING = 0.06f;
+    public const float AUTO_EVO_SIZE_AFFECTED_PROJECTILE_MISS_FACTOR = 0.5f;
+    public const float AUTO_EVO_TOXICITY_HIT_MODIFIER = 4.0f;
     public const float AUTO_EVO_SLIME_JET_SCORE = 6;
     public const float AUTO_EVO_MUCOCYST_SCORE = 40;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
@@ -1313,6 +1318,9 @@ public static class Constants
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
+
+    public const float AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS_SMALL = 1.5f;
+    public const float AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS = 20.0f;
 
     public const int AI_FOLLOW_PLAYER_MIGRATION_TO_EMPTY_PATCH_THRESHOLD = 2;
 
@@ -1332,10 +1340,13 @@ public static class Constants
     public const double AUTO_EVO_COLOR_CHANGE_MAX_STEP = 0.5f;
 
     public const float AUTO_EVO_MUTATION_RIGIDITY_STEP = 0.35f;
+    public const float AUTO_EVO_MUTATION_TOXICITY_STEP = 0.2f;
+
     public const int AUTO_EVO_MAX_MUTATION_RECURSIONS = 3;
 
     public const int AUTO_EVO_ORGANELLE_ADD_ATTEMPTS = 15;
     public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 15;
+    public const int AUTO_EVO_ORGANELLE_UPGRADE_ATTEMPTS = 5;
 
     /// <summary>
     ///   If a species is adapted to its environment, this is the chance it will try to perfectly adapt anyway
