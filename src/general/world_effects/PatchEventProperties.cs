@@ -8,7 +8,7 @@ public class PatchEventProperties : IArchivable
     public string CustomTooltip = string.Empty;
     public float SunlightAmbientMultiplier = 1.0f;
     public float TemperatureAmbientChange;
-    public float? TemperatureAmbientFixedValue;
+    public float TemperatureAmbientFixedValue = float.NaN;
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.PatchEventProperties;
@@ -19,7 +19,7 @@ public class PatchEventProperties : IArchivable
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.PatchEventProperties)
             throw new NotSupportedException();
 
-        writer.WriteObject((PatchSnapshot)obj);
+        writer.WriteObject((PatchEventProperties)obj);
     }
 
     public static PatchEventProperties ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
@@ -29,7 +29,7 @@ public class PatchEventProperties : IArchivable
 
         return new PatchEventProperties
         {
-            CustomTooltip = reader.ReadString() ?? string.Empty,
+            CustomTooltip = reader.ReadString() ?? throw new NullArchiveObjectException(),
             SunlightAmbientMultiplier = reader.ReadFloat(),
             TemperatureAmbientChange = reader.ReadFloat(),
             TemperatureAmbientFixedValue = reader.ReadFloat(),
@@ -41,7 +41,7 @@ public class PatchEventProperties : IArchivable
         writer.Write(CustomTooltip);
         writer.Write(SunlightAmbientMultiplier);
         writer.Write(TemperatureAmbientChange);
-        writer.Write(TemperatureAmbientFixedValue ?? float.NaN);
+        writer.Write(TemperatureAmbientFixedValue);
     }
 
     public override string ToString()

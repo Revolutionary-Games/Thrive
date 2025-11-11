@@ -244,6 +244,6 @@ public class UpwellingEvent : IWorldEffect
     private void LogEvent(Patch patch)
     {
         patch.LogEvent(new LocalizedString("UPWELLING_EVENT"),
-            true, true, "Upwelling.svg");
+            true, true, "UpwellingEvent.svg");
     }
 }

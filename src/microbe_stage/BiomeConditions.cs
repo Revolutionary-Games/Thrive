@@ -72,6 +72,10 @@ public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
     /// </remarks>
     public float Pressure { get; set; } = 101325;
 
+    /// <summary>
+    ///   Starting sunlight and temperature values for this biome when a patch is created. They are used in
+    ///   <see cref="PatchEventsManager"/> to modify the patch's sunlight and temperature when patch events occur..
+    /// </summary>
     public float StartingSunlightValue { get; set; }
 
     public float StartingTemperatureValue { get; set; }

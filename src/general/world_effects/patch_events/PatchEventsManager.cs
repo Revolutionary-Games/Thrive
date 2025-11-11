@@ -21,7 +21,6 @@ public class PatchEventsManager : IWorldEffect
         random = new XoShiRo256starstar(randomSeed);
     }
 
-    [JsonConstructor]
     public PatchEventsManager(GameWorld targetWorld, XoShiRo256starstar random)
     {
         this.targetWorld = targetWorld;
@@ -64,7 +63,7 @@ public class PatchEventsManager : IWorldEffect
             {
                 totalTemperatureChange += eventProperties.TemperatureAmbientChange;
                 totalSunlightMultiplication *= eventProperties.SunlightAmbientMultiplier;
-                if (eventProperties.TemperatureAmbientFixedValue != null)
+                if (!float.IsNaN(eventProperties.TemperatureAmbientFixedValue))
                     fixedTemperatureValue = eventProperties.TemperatureAmbientFixedValue;
             }
 
@@ -75,13 +74,13 @@ public class PatchEventsManager : IWorldEffect
             if (!hasTemperature)
             {
                 GD.PrintErr("Patch event manager encountered patch with unexpectedly no temperature.");
-                return;
+                continue;
             }
 
             if (!hasSunlight)
             {
                 GD.PrintErr("Patch event manager encountered patch with unexpectedly no sunlight.");
-                return;
+                continue;
             }
 
             currentTemperature.Ambient =

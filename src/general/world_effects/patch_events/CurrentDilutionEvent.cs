@@ -271,6 +271,6 @@ public class CurrentDilutionEvent : IWorldEffect
     private void LogEvent(Patch patch)
     {
         patch.LogEvent(new LocalizedString("CURRENT_DILUTION"),
-            true, true, "CurrentDilution.svg");
+            true, true, "CurrentDilutionEvent.svg");
     }
 }

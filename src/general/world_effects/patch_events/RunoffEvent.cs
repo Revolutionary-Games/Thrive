@@ -215,6 +215,6 @@ public class RunoffEvent : IWorldEffect
     private void LogEvent(Patch patch)
     {
         patch.LogEvent(new LocalizedString("RUNOFF_EVENT"),
-            true, true, "Runoff.svg");
+            true, true, "RunoffEvent.svg");
     }
 }

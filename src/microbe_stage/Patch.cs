@@ -213,6 +213,8 @@ public class Patch : IArchivable
                 currentSnapshot.ActivePatchEvents.Add(eventType, new PatchEventProperties());
             }
 
+            // Starting sunlight and temperature are set here instead of in biome conditions because they
+            // are not present there
             var biomeReference = SimulationParameters.Instance.GetBiome(biomeTemplate.InternalName);
             currentSnapshot.Biome.StartingSunlightValue = biomeReference.Conditions.Compounds
                 .GetValueOrDefault(Compound.Sunlight, default(BiomeCompoundProperties)).Ambient;
