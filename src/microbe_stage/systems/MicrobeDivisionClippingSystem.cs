@@ -5,6 +5,7 @@ using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
 using Components;
+using Godot;
 using World = Arch.Core.World;
 
 /// <summary>
@@ -22,7 +23,7 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
     private readonly PhysicalWorld physicalWorld;
     private readonly IWorldSimulation worldSimulation;
 
-    public MicrobeDivisionClippingSystem(PhysicalWorld physicalWorld, World world, IWorldSimulation worldSimulation) :
+    public MicrobeDivisionClippingSystem(IWorldSimulation worldSimulation, PhysicalWorld physicalWorld, World world) :
         base(world)
     {
         this.physicalWorld = physicalWorld;
@@ -54,7 +55,7 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
             if (cellProperties.Radius == 0)
                 return;
 
-            // 2.2 = 2 (radiuses) * 1.1
+            // 2.2 = 2 (radii) * 1.1
             var clipOutDistanceSquared = cellProperties.Radius * 2.2f;
 
             // Square
@@ -71,6 +72,13 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
 
             if (physics.Body != null)
             {
+                // Ensure the difference is not 0, which would break the animation
+                if (difference.IsZeroApprox())
+                    difference += Vector3.Left * 0.01f;
+
+                // TODO: implement a component (or new property in Physics) that allows giving physical impulses
+                // to entities
+                // NOTE: the force gets bigger the bigger the distance is!
                 physicalWorld.GiveImpulse(physics.Body, difference * 300.0f * collisionDisabler.SeparationForce, true);
             }
         }

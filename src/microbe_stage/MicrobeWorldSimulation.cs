@@ -254,7 +254,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         radiationDamageSystem = new RadiationDamageSystem(EntitySystem);
         slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem);
         mucocystSystem = new MucocystSystem(EntitySystem);
-        microbeDivisionClippingSystem = new MicrobeDivisionClippingSystem(physics, EntitySystem, this);
+        microbeDivisionClippingSystem = new MicrobeDivisionClippingSystem(this, physics, EntitySystem);
         microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem);
         microbeRenderPrioritySystem = new MicrobeRenderPrioritySystem(EntitySystem);
         tintColourApplyingSystem = new TintColourApplyingSystem(EntitySystem);
