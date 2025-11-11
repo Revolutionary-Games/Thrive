@@ -993,7 +993,9 @@ public partial class MacroscopicCreature : RigidBody3D, ICharacterInventory, IEn
         var transform = GlobalTransform;
         var rotation = transform.Basis.GetRotationQuaternion();
 
-        var worldTransform = new Transform3D(new Basis(rotation).Rotated(Vector3.Up, MathF.PI), transform.Origin + rotation * relative);
+        var worldTransform = new Transform3D(new Basis(rotation).Rotated(Vector3.Up, MathF.PI), transform.Origin +
+            rotation * relative);
+
         return worldTransform;
     }
 }
