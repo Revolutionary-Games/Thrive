@@ -97,6 +97,10 @@ public partial class PlayerMacroscopicInput : NodeWithInput
             }
 
             stage.Player.MovementDirection = movement;
+
+            // Rotate only when moving
+            if (movement.LengthSquared() > epsilon)
+                stage.Player.LookVector = -stage.PlayerCamera.CameraNode.GlobalBasis.Z;
         }
     }
 
@@ -136,12 +140,6 @@ public partial class PlayerMacroscopicInput : NodeWithInput
     public void OnLook(float yawMovement, float pitchMovement)
     {
         stage.RotateCamera(yawMovement, pitchMovement);
-    }
-
-    [RunOnKey("g_rotate_character")]
-    public void RotateCharacter(double delta)
-    {
-        stage.Player.LookVector = -stage.PlayerCamera.CameraNode.GlobalBasis.Z;
     }
 
     [RunOnKeyDown("g_interact")]
