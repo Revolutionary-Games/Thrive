@@ -52,7 +52,7 @@ public class SimulationCache
     private readonly Dictionary<(TweakedProcess, float, IBiomeConditions), ProcessSpeedInformation>
         cachedProcessSpeeds = new();
 
-    private readonly Dictionary<MicrobeSpecies, (float, float, float, float)>
+    private readonly Dictionary<MicrobeSpecies, PredationToolsRawScores>
         cachedPredationToolsRawScores = new();
 
     private readonly Dictionary<(MicrobeSpecies, string), float> cachedEnzymeScores = new();
@@ -285,19 +285,69 @@ public class SimulationCache
         var predatorSpeed = GetSpeedForSpecies(predator);
         var preyHexSize = GetBaseHexSizeForSpecies(prey);
         var preySpeed = GetSpeedForSpecies(prey);
+        var slowedPreySpeed = preySpeed;
         var preyIndividualCost = MichePopulation.CalculateMicrobeIndividualCost(prey, biomeConditions, this);
+        var preyEnergyBalance = GetEnergyBalanceForSpecies(prey, biomeConditions);
+        var preyOsmoregulationCost = preyEnergyBalance.Osmoregulation;
         var enzymesScore = GetEnzymesScore(predator, prey.MembraneType.DissolverEnzyme);
-        var (pilusScore, oxytoxyScore, predatorSlimeJetScore, _) =
-            GetPredationToolsRawScores(predator);
-        var (_, _, preySlimeJetScore, preyMucocystsScore) = GetPredationToolsRawScores(prey);
+
+        var predatorToolScores = GetPredationToolsRawScores(predator);
+        var preyToolScores = GetPredationToolsRawScores(prey);
+
+        var pilusScore = predatorToolScores.PilusScore;
+        var injectisomeScore = predatorToolScores.InjectisomeScore;
+        var toxicity = predatorToolScores.AverageToxicity;
+        var oxytoxyScore = predatorToolScores.OxytoxyScore;
+        var cytotoxinScore = predatorToolScores.CytotoxinScore;
+        var macrolideScore = predatorToolScores.MacrolideScore;
+        var channelInhibitorScore = predatorToolScores.ChannelInhibitorScore;
+        var oxygenMetabolismInhibitorScore = predatorToolScores.OxygenMetabolismInhibitorScore;
+        var predatorSlimeJetScore = predatorToolScores.SlimeJetScore;
+
+        var preySlimeJetScore = preyToolScores.SlimeJetScore;
+        var preyMucocystsScore = preyToolScores.MucocystsScore;
 
         var behaviourScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+
         var hasChemoreceptor = false;
         foreach (var organelle in predator.Organelles.Organelles)
         {
             if (organelle.Definition.HasChemoreceptorComponent && organelle.GetActiveTargetSpecies() == prey)
                 hasChemoreceptor = true;
         }
+
+        var preyOxygenUsingOrganellesCount = 0;
+        foreach (var organelle in prey.Organelles.Organelles)
+        {
+            if (organelle.Definition.IsOxygenMetabolism)
+                preyOxygenUsingOrganellesCount += 1;
+        }
+
+        // Calculating "hit chance" modifier from prey size and predator toxicity
+        var sizeHitFactor = Constants.AUTO_EVO_SIZE_AFFECTED_PROJECTILE_MISS_FACTOR / float.Sqrt(preyHexSize);
+        var toxicityHitFactor = toxicity / Constants.AUTO_EVO_TOXICITY_HIT_MODIFIER;
+        var hitProportion = 1 - sizeHitFactor - toxicityHitFactor;
+
+        // Calculating prey energy production altered by channel inhbitor
+        var inhibitedPreyEnergyProduction = preyEnergyBalance.TotalProduction *
+            (1 - Constants.CHANNEL_INHIBITOR_ATP_DEBUFF *
+                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.ChannelInhibitor));
+
+        // If inhibited energy production would affect movement, add (part of) the inhibitor score to macrolide score
+        if (inhibitedPreyEnergyProduction < preyEnergyBalance.TotalConsumption)
+        {
+            var channelInhibitorSlowFactor = Math.Min(
+                Math.Max(inhibitedPreyEnergyProduction - preyOsmoregulationCost, 0) /
+                preyEnergyBalance.TotalMovement, 1);
+            macrolideScore += channelInhibitorScore * channelInhibitorSlowFactor;
+            slowedPreySpeed *= 1 - channelInhibitorSlowFactor;
+        }
+
+        // Calculating how much prey is slowed down by macrolide, and how frequently they are succesfully slowed down
+        slowedPreySpeed *= 1 - Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF *
+            MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.Macrolide);
+        var slowedProportion = 1.0f - MathF.Exp(-Constants.AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING *
+            macrolideScore * hitProportion);
 
         // Only assign engulf score if one can actually engulf (and digest)
         var engulfmentScore = 0.0f;
@@ -312,17 +362,24 @@ public class SimulationCache
             {
                 // You catch more preys if you are fast, and if they are slow.
                 // This incentivizes engulfment strategies in these cases.
-                catchScore += predatorSpeed / preySpeed;
+                catchScore += (predatorSpeed / preySpeed) * (1 - slowedProportion);
+            }
 
-                // If you have a chemoreceptor, active hunting types are more effective
-                if (hasChemoreceptor)
-                {
-                    catchScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
+            if (predatorSpeed > slowedPreySpeed)
+            {
+                // You catch more preys if you are fast, and if they are slow.
+                // This incentivizes engulfment strategies in these cases.
+                catchScore += (predatorSpeed / slowedPreySpeed) * slowedProportion;
+            }
 
-                    // Uses crude estimate of population density assuming same energy capture
-                    catchScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
-                        * float.Sqrt(preyIndividualCost);
-                }
+            // If you have a chemoreceptor, active hunting types are more effective
+            if (hasChemoreceptor)
+            {
+                catchScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
+
+                // Uses crude estimate of population density assuming same energy capture
+                catchScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
+                    * float.Sqrt(preyIndividualCost);
             }
 
             // ... but you may also catch them by luck (e.g. when they run into you),
@@ -340,13 +397,57 @@ public class SimulationCache
         if (predatorSpeed > preySpeed)
             predatorSlimeJetScore *= 0.5f;
 
+        // Prey that resist physical damage are of course less vulnerable to being hunted with it
+        pilusScore /= prey.MembraneType.PhysicalResistance;
+
+        // But prey that resist toxin damage are less vulnerable to the injectisome
+        injectisomeScore /= prey.MembraneType.ToxinResistance;
+
+        // Combine pili for further calculations
+        pilusScore += injectisomeScore;
+
         // Pili are much more useful if the microbe can close to melee
-        pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+        if (predatorSpeed <= preySpeed)
+        {
+            if (predatorSpeed > slowedPreySpeed)
+            {
+                pilusScore *= slowedProportion
+                    + (1 - slowedProportion) * Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+            }
+            else
+            {
+                pilusScore *= Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+            }
+        }
+
+        // Damaging toxin section
+
+        // Not an ideal solution, but accounts for the fact that the oxytoxy and cyanide processes require oxygen to run
+        biomeConditions.Compounds.TryGetValue(Compound.Oxygen, out BiomeCompoundProperties oxygen);
+        if (oxygen.Ambient == 0)
+        {
+            oxytoxyScore = 0;
+            oxygenMetabolismInhibitorScore = 0;
+        }
+
+        oxytoxyScore *= 1 - Math.Min(preyOxygenUsingOrganellesCount * Constants.OXYTOXY_DAMAGE_DEBUFF_PER_ORGANELLE,
+            Constants.OXYTOXY_DAMAGE_DEBUFF_MAX);
+        oxygenMetabolismInhibitorScore *= 1 + Math.Min(
+            preyOxygenUsingOrganellesCount * Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_PER_ORGANELLE,
+            Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_MAX);
+        var damagingToxinScore = oxytoxyScore + cytotoxinScore + oxygenMetabolismInhibitorScore;
+
+        // If toxin-inhibited energy production is lower than osmoregulation cost, channel inhibitor is a damaging toxin
+        if (inhibitedPreyEnergyProduction < preyOsmoregulationCost)
+            damagingToxinScore += channelInhibitorScore;
+
+        // Applying projectile hit chance to damaging toxins
+        damagingToxinScore *= hitProportion;
 
         // Predators are less likely to use toxin against larger prey, unless they are opportunistic
         if (preyHexSize > predatorHexSize)
         {
-            oxytoxyScore *= predator.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+            damagingToxinScore *= predator.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
         }
 
         // If you can store enough to kill the prey, producing more isn't as important
@@ -354,15 +455,15 @@ public class SimulationCache
             prey.MembraneType.Hitpoints * prey.MembraneType.ToxinResistance;
         if (storageToKillRatio > 1)
         {
-            oxytoxyScore = MathF.Pow(oxytoxyScore, 0.8f);
+            damagingToxinScore = MathF.Pow(damagingToxinScore, 0.8f);
         }
         else
         {
-            oxytoxyScore = MathF.Pow(oxytoxyScore, storageToKillRatio * 0.8f);
+            damagingToxinScore = MathF.Pow(damagingToxinScore, storageToKillRatio * 0.8f);
         }
 
-        // Prey that resist toxin are obviously weaker to it
-        oxytoxyScore /= prey.MembraneType.ToxinResistance;
+        // Prey that resist toxin are of course less vulnerable to being hunted with it
+        damagingToxinScore /= prey.MembraneType.ToxinResistance;
 
         // If you have a chemoreceptor, active hunting types are more effective
         if (hasChemoreceptor)
@@ -370,8 +471,8 @@ public class SimulationCache
             pilusScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
             pilusScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
                 * float.Sqrt(preyIndividualCost);
-            oxytoxyScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
-            oxytoxyScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
+            damagingToxinScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
+            damagingToxinScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
                 * float.Sqrt(preyIndividualCost);
         }
 
@@ -384,7 +485,7 @@ public class SimulationCache
         }
 
         cached = (scoreMultiplier * behaviourScore *
-                (pilusScore + engulfmentScore + oxytoxyScore + predatorSlimeJetScore) -
+                (pilusScore + engulfmentScore + damagingToxinScore + predatorSlimeJetScore) -
                 (preySlimeJetScore + preyMucocystsScore)) /
             GetEnergyBalanceForSpecies(predator, biomeConditions).TotalConsumption;
 
@@ -525,23 +626,40 @@ public class SimulationCache
         cachedResolvedTolerances.Clear();
     }
 
-    public (float PilusScore, float OxytoxyScore, float SlimeJetScore, float MucocystsScore)
-        GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
+    public PredationToolsRawScores GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
     {
         if (cachedPredationToolsRawScores.TryGetValue(microbeSpecies, out var cached))
             return cached;
 
+        var averageToxicity = 0.0f;
+        var totalToxicity = 0.0f;
+        var totalToxinScore = 0.0f;
+        var everyToxinScore = 0.0f;
         var oxytoxyScore = 0.0f;
+        var cytotoxinScore = 0.0f;
+        var macrolideScore = 0.0f;
+        var channelInhibitorScore = 0.0f;
+        var oxygenMetabolismInhibitorScore = 0.0f;
         var pilusScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
+        var injectisomeScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
         var slimeJetScore = Constants.AUTO_EVO_SLIME_JET_SCORE;
         var mucocystsScore = Constants.AUTO_EVO_MUCOCYST_SCORE;
 
         var organelles = microbeSpecies.Organelles.Organelles;
         var organelleCount = organelles.Count;
+        var totalToxinOrganellesCount = 0;
+        var totalToxinTypesCount = 0;
         var pilusCount = 0;
+        var injectisomeCount = 0;
         var slimeJetsCount = 0;
         var mucocystsCount = 0;
         var slimeJetsMultiplier = 1.0f;
+
+        var hasOxytoxy = false;
+        var hasCytoxin = false;
+        var hasMacrolide = false;
+        var hasChannelInhibitor = false;
+        var hasOxygenMetabolismInhibitor = false;
 
         for (int i = 0; i < organelleCount; ++i)
         {
@@ -549,6 +667,12 @@ public class SimulationCache
 
             if (organelle.Definition.HasPilusComponent)
             {
+                if (organelle.Upgrades.HasInjectisomeUpgrade())
+                {
+                    ++injectisomeCount;
+                    continue;
+                }
+
                 ++pilusCount;
                 continue;
             }
@@ -571,21 +695,113 @@ public class SimulationCache
 
             foreach (var process in organelle.Definition.RunnableProcesses)
             {
-                if (process.Process.Outputs.TryGetValue(oxytoxy, out var oxytoxyAmount))
+                // Big branch to calculate scores for each toxin type
+                if (process.Process.Outputs.TryGetValue(oxytoxy, out var toxinAmount))
                 {
-                    oxytoxyScore += oxytoxyAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
+                    var activeToxin = organelle.GetActiveToxin();
+                    if (activeToxin == ToxinType.Oxytoxy && !hasOxytoxy)
+                    {
+                        totalToxinTypesCount += 1;
+                        hasOxytoxy = true;
+                    }
+
+                    if (activeToxin == ToxinType.Cytotoxin && !hasCytoxin)
+                    {
+                        totalToxinTypesCount += 1;
+                        hasCytoxin = true;
+                    }
+
+                    if (activeToxin == ToxinType.Macrolide && !hasMacrolide)
+                    {
+                        totalToxinTypesCount += 1;
+                        hasMacrolide = true;
+                    }
+
+                    if (activeToxin == ToxinType.ChannelInhibitor && !hasChannelInhibitor)
+                    {
+                        totalToxinTypesCount += 1;
+                        hasChannelInhibitor = true;
+                    }
+
+                    if (activeToxin == ToxinType.OxygenMetabolismInhibitor &&
+                        !hasOxygenMetabolismInhibitor)
+                    {
+                        totalToxinTypesCount += 1;
+                        hasOxygenMetabolismInhibitor = true;
+                    }
+
+                    totalToxicity += organelle.GetActiveToxicity();
+                    totalToxinOrganellesCount += 1;
+                    totalToxinScore += toxinAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
                 }
             }
         }
 
+        // Matching current gameplay mechanics of the toxin organelles:
+
+        // Averaging out toxicity, as gameplay also does
+        if (totalToxinOrganellesCount != 0)
+            averageToxicity = totalToxicity / totalToxinOrganellesCount;
+
+        // Pooled production of toxin compound, equally distributed among all available toxin types (firing in sequence)
+        if (totalToxinTypesCount != 0)
+        {
+            everyToxinScore = totalToxinScore / totalToxinTypesCount;
+        }
+
+        if (hasOxytoxy)
+        {
+            oxytoxyScore = everyToxinScore * (Constants.OXYTOXY_DAMAGE / Constants.CYTOTOXIN_DAMAGE) *
+                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(averageToxicity, ToxinType.Oxytoxy);
+        }
+
+        if (hasCytoxin)
+        {
+            cytotoxinScore = everyToxinScore *
+                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(averageToxicity, ToxinType.Cytotoxin);
+        }
+
+        if (hasMacrolide)
+            macrolideScore = everyToxinScore;
+        if (hasChannelInhibitor)
+            channelInhibitorScore = everyToxinScore;
+        if (hasOxygenMetabolismInhibitor)
+        {
+            oxygenMetabolismInhibitorScore = everyToxinScore *
+                (Constants.OXYGEN_INHIBITOR_DAMAGE / Constants.CYTOTOXIN_DAMAGE) *
+                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(averageToxicity,
+                    ToxinType.OxygenMetabolismInhibitor);
+        }
+
         // Having lots of extra pili, slime jets and mucocysts doesn't really help much
-        pilusScore *= MathF.Sqrt(pilusCount);
         slimeJetScore *= MathF.Sqrt(slimeJetsCount);
         mucocystsScore *= MathF.Sqrt(mucocystsCount);
 
+        // Having lots of extra pili also does not help, even if they are two different types
+        if (pilusCount != 0 || injectisomeCount != 0)
+        {
+            var pilusScale = MathF.Sqrt(pilusCount + injectisomeCount) / (pilusCount + injectisomeCount);
+            pilusScore = pilusCount * pilusScale;
+            injectisomeScore = injectisomeCount * pilusScale;
+        }
+        else
+        {
+            pilusScore *= pilusCount;
+            injectisomeScore *= injectisomeCount;
+        }
+
         slimeJetScore *= slimeJetsMultiplier;
 
-        var predationToolsRawScores = (pilusScore, oxytoxyScore, slimeJetScore, mucocystsScore);
+        // bonus score for upgrades because auto-evo does not like adding them much
+        injectisomeScore *= Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS_SMALL;
+        oxytoxyScore *= Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS;
+        macrolideScore *= Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS;
+        channelInhibitorScore *= Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS;
+        oxygenMetabolismInhibitorScore *= Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS;
+
+        var predationToolsRawScores = new PredationToolsRawScores(pilusScore, injectisomeScore, averageToxicity,
+            oxytoxyScore, cytotoxinScore, macrolideScore, channelInhibitorScore, oxygenMetabolismInhibitorScore,
+            slimeJetScore, mucocystsScore);
 
         cachedPredationToolsRawScores.Add(microbeSpecies, predationToolsRawScores);
         return predationToolsRawScores;
@@ -747,4 +963,16 @@ public class SimulationCache
         // If degrees is higher than 40 then return 0
         return angleCos >= 0.75 ? angleCos : 0;
     }
+
+    // helper for GetPredationToolsRawScores
+    public readonly record struct PredationToolsRawScores(float PilusScore,
+        float InjectisomeScore,
+        float AverageToxicity,
+        float OxytoxyScore,
+        float CytotoxinScore,
+        float MacrolideScore,
+        float ChannelInhibitorScore,
+        float OxygenMetabolismInhibitorScore,
+        float SlimeJetScore,
+        float MucocystsScore);
 }

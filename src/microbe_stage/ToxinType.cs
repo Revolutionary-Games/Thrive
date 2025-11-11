@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 
 /// <summary>
-///   Toxin types. See <see cref="ToxinUpgradeNames"/> for what names match each enum value in the upgrades list.
+///   Toxin types. See <see cref="ToxinUpgradeNames"/> for what names match each enum value in the upgrade list.
 /// </summary>
 /// <remarks>
 ///   <para>
@@ -11,13 +11,13 @@
 public enum ToxinType
 {
     /// <summary>
-    ///   The default toxin type for now. Less effective against oxygen using species.
+    ///   Less effective against oxygen using species.
     /// </summary>
     [Description("TOXIN_OXYTOXY_DESCRIPTION")]
     Oxytoxy = 0,
 
     /// <summary>
-    ///   A basic toxin that targets membranes. This will be the default toxin at some point.
+    ///   The default toxin type. A basic toxin that targets membranes.
     /// </summary>
     [Description("TOXIN_CYTOTOXIN_DESCRIPTION")]
     Cytotoxin,

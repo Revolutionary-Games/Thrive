@@ -64,7 +64,10 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
     public void AddFast(T hex, List<Hex> temporaryStorage, List<Hex> temporaryStorage2)
     {
         if (!CanPlace(hex, temporaryStorage, temporaryStorage2))
-            throw new ArgumentException($"{typeof(T).Name} can't be placed at this location");
+        {
+            throw new ArgumentException($"{typeof(T).Name} can't be placed at this location " +
+                $"({hex} at {hex.Position})");
+        }
 
         existingHexes.Add(hex);
         onAdded?.Invoke(hex);
@@ -90,7 +93,10 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
     public void Add(T hex)
     {
         if (!CanPlaceAllocating(hex))
-            throw new ArgumentException($"{typeof(T).Name} can't be placed at this location");
+        {
+            throw new ArgumentException($"{typeof(T).Name} can't be placed at this location " +
+                $"({hex} at {hex.Position})");
+        }
 
         existingHexes.Add(hex);
         onAdded?.Invoke(hex);
