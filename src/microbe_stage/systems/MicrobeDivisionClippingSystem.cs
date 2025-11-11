@@ -16,6 +16,8 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(CellDivisionCollisionDisabler))]
+[ReadsComponent(typeof(MicrobeColony))]
+[ReadsComponent(typeof(AttachedToEntity))]
 [WritesToComponent(typeof(CollisionManagement))]
 [RunsBefore(typeof(PhysicsCollisionManagementSystem))]
 public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
@@ -57,6 +59,21 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
 
             // 2.2 = 2 (radii) * 1.1
             var clipOutDistanceSquared = cellProperties.Radius * 2.2f;
+
+            // A partial fix for multicellular division
+            if (otherEntity.Has<MicrobeColony>())
+            {
+                ref var colony = ref otherEntity.Get<MicrobeColony>();
+
+                clipOutDistanceSquared += colony.GetApproximateColonyRadius();
+            }
+
+            if (entity.Has<MicrobeColony>())
+            {
+                ref var colony = ref entity.Get<MicrobeColony>();
+
+                clipOutDistanceSquared += colony.GetApproximateColonyRadius();
+            }
 
             // Square
             clipOutDistanceSquared *= clipOutDistanceSquared;
