@@ -59,3 +59,7 @@ static func init_version_label(label :Control) -> void:
 
 func _to_string() -> String:
 	return "v%d.%d.%d" % [_major, _minor, _patch]
+
+
+func documentation_version() -> String:
+	return "v%d.%d.x" % [_major, _minor]

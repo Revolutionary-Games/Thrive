@@ -300,6 +300,8 @@ public enum ThriveArchiveObjectType : uint
     FossilisedSpecies = 4383,
     Endosymbiont = 4384,
 
+    ComponentCellDivisionCollisionDisabler = 4385,
+
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,
     ExtendedIndividualHexLayout = IndividualHexLayout | ArchiveObjectType.ExtendedTypeFlag,

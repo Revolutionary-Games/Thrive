@@ -68,6 +68,9 @@ func collect_full_logs() -> PackedStringArray:
 
 func _collect_log_entries(force_collect_reports: bool) -> Array[ErrorLogEntry]:
 	var file := FileAccess.open(_godot_log_file, FileAccess.READ)
+	if not file:
+		# Log file might not be available.
+		return []
 	file.seek(_eof)
 	var records := PackedStringArray()
 	while not file.eof_reached():

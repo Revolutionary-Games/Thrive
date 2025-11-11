@@ -92,6 +92,26 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
         return false;
     }
 
+    public float GetActiveToxicity()
+    {
+        if (Upgrades?.CustomUpgradeData is ToxinUpgrades toxinData)
+        {
+            return toxinData.Toxicity;
+        }
+
+        return Constants.DEFAULT_TOXICITY;
+    }
+
+    public ToxinType GetActiveToxin()
+    {
+        if (Upgrades?.CustomUpgradeData is ToxinUpgrades toxinData)
+        {
+            return toxinData.BaseType;
+        }
+
+        return ToxinType.Cytotoxin;
+    }
+
     public Species? GetActiveTargetSpecies()
     {
         if (Definition.HasChemoreceptorComponent &&
@@ -122,9 +142,14 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
 
     public object Clone()
     {
+        return Clone(true);
+    }
+
+    public OrganelleTemplate Clone(bool deepClone)
+    {
         return new OrganelleTemplate(Definition, Position, Orientation)
         {
-            Upgrades = (OrganelleUpgrades?)Upgrades?.Clone(),
+            Upgrades = deepClone ? (OrganelleUpgrades?)Upgrades?.Clone() : Upgrades,
         };
     }
 
@@ -138,5 +163,10 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
     {
         return (ulong)Position.GetHashCode() * 131 ^ (ulong)Orientation * 2909 ^ Definition.GetVisualHashCode() * 947 ^
             (Upgrades != null ? Upgrades.GetVisualHashCode() : 1) * 1063;
+    }
+
+    public override string ToString()
+    {
+        return ReadableExactIdentifier;
     }
 }

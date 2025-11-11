@@ -247,6 +247,9 @@ public static class ComponentDeserializers
             case ThriveArchiveObjectType.ComponentMicrobeEventCallbacks:
                 entity.Add(MicrobeEventCallbackHelpers.ReadFromArchive(reader, version));
                 return true;
+            case ThriveArchiveObjectType.ComponentCellDivisionCollisionDisabler:
+                entity.Add(CellDivisionCollisionDisablerHelpers.ReadFromArchive(reader, version));
+                return true;
         }
 
         return false;

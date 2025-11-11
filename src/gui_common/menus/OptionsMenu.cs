@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
-using Saving;
 using Tutorial;
 
 /// <summary>
-///   Handles the logic for the options menu GUI.
+///   Handles the logic for the options-menu GUI.
 /// </summary>
 /// <remarks>
 ///   <para>
@@ -390,9 +389,6 @@ public partial class OptionsMenu : ControlWithInput
     private Label dismissedNoticeCount = null!;
 
     [Export]
-    private OptionButton jsonDebugMode = null!;
-
-    [Export]
     private OptionButton screenEffectSelect = null!;
 
     [Export]
@@ -751,7 +747,6 @@ public partial class OptionsMenu : ControlWithInput
         customUsername.Editable = settings.CustomUsernameEnabled;
         webFeedsEnabled.ButtonPressed = settings.ThriveNewsFeedEnabled;
         showNewPatchNotes.ButtonPressed = settings.ShowNewPatchNotes;
-        jsonDebugMode.Selected = JSONDebugModeToIndex(settings.JSONDebugMode);
         screenEffectSelect.Selected = settings.CurrentScreenEffect.Value != null ?
             settings.CurrentScreenEffect.Value.Index :
             simulationParameters.GetScreenEffectByIndex(0).Index;
@@ -1335,38 +1330,6 @@ public partial class OptionsMenu : ControlWithInput
             default:
                 GD.PrintErr("invalid anti-aliasing index");
                 return Settings.AntiAliasingMode.MSAA;
-        }
-    }
-
-    private int JSONDebugModeToIndex(JSONDebug.DebugMode mode)
-    {
-        switch (mode)
-        {
-            case JSONDebug.DebugMode.AlwaysDisabled:
-                return 2;
-            case JSONDebug.DebugMode.Automatic:
-                return 0;
-            case JSONDebug.DebugMode.AlwaysEnabled:
-                return 1;
-        }
-
-        GD.PrintErr("invalid JSON debug mode value");
-        return 0;
-    }
-
-    private JSONDebug.DebugMode JSONDebugIndexToMode(int index)
-    {
-        switch (index)
-        {
-            case 0:
-                return JSONDebug.DebugMode.Automatic;
-            case 1:
-                return JSONDebug.DebugMode.AlwaysEnabled;
-            case 2:
-                return JSONDebug.DebugMode.AlwaysDisabled;
-            default:
-                GD.PrintErr("invalid JSON debug mode index");
-                return JSONDebug.DebugMode.Automatic;
         }
     }
 
@@ -2561,13 +2524,6 @@ public partial class OptionsMenu : ControlWithInput
         }
 
         gameProperties.TutorialState.Enabled = pressed;
-
-        UpdateResetSaveButtonState();
-    }
-
-    private void OnJSONDebugModeSelected(int index)
-    {
-        Settings.Instance.JSONDebugMode.Value = JSONDebugIndexToMode(index);
 
         UpdateResetSaveButtonState();
     }

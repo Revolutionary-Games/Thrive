@@ -38,7 +38,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
 
     private Vector3 nextPlayerPosition;
 
-    private float playerProtectionRadiusSquared = 20 * 20;
+    private float playerProtectionRadius = 20;
 
     private int maxSpawnAttempts = 10;
     private int differentClusterTypeAttempts = 3;
@@ -131,18 +131,18 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
     }
 
     /// <summary>
-    ///   Does an approximate check if a world position would be inside terrain or not
+    ///   Does an approximate check if a world position is inside terrain or not
     /// </summary>
     /// <param name="position">The position to check </param>
-    /// <param name="checkRadiusSquared">
+    /// <param name="checkRadius">
     ///   Can be increased to make separation with terrain a bigger requirement. Note that this has to be squared!
     /// </param>
     /// <returns>
-    ///   False if position is likely not blocked, true if there's a known terrain area that overlaps the radius
+    ///   False if the position is likely not blocked, true if there's a known terrain area that overlaps the radius
     ///   of the check area.
     /// </returns>
     [ArchiveAllowedMethod]
-    public bool IsPositionBlocked(Vector3 position, float checkRadiusSquared = 5)
+    public bool IsPositionBlocked(Vector3 position, float checkRadius = 5)
     {
         position.Y = 0;
         var cell = PositionToTerrainCell(position);
@@ -154,14 +154,14 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
         foreach (var cluster in clusters)
         {
             // Can filter by cluster distance first to cut down on overall checks
-            if (position.DistanceSquaredTo(cluster.CenterPosition) - cluster.MaxRadiusSquared > checkRadiusSquared)
+            if (position.DistanceSquaredTo(cluster.CenterPosition) > MathUtils.Square(checkRadius + cluster.MaxRadius))
                 continue;
 
             foreach (var terrainGroup in cluster.Parts)
             {
-                // And then check individual group in a cluster the spawn position is too close to
-                if (position.DistanceSquaredTo(terrainGroup.Position) - terrainGroup.SquaredRadius <=
-                    checkRadiusSquared)
+                // And then check individual groups in a cluster the spawn position is too close to
+                if (position.DistanceSquaredTo(terrainGroup.Position) <=
+                    MathUtils.Square(checkRadius + terrainGroup.Radius))
                 {
                     // Found a colliding part
                     return true;
@@ -224,11 +224,11 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
         printedClustersTightWarning = false;
 #endif
 
-        // Check if player moved terrain grids and if so perform an operation
+        // Check if the player moved terrain grids and if so, perform an operation
         var playerGrid = PositionToTerrainCell(nextPlayerPosition);
         if (PositionToTerrainCell(playerPosition) != playerGrid)
         {
-            // Update position here to have it ready in spawn calculations
+            // Update the position here to have it ready in spawn calculations
             playerPosition = nextPlayerPosition;
 
             // Queue despawning of terrain cells that are out of range
@@ -325,7 +325,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
 
     private void DespawnGridArea(List<SpawnedTerrainCluster> clusters)
     {
-        // Try to despawn normally first, and then re-fetch data if missing any members
+        // Try to despawn normally first and then re-fetch data if missing any members
         bool missing = false;
         foreach (var cluster in clusters)
         {
@@ -411,16 +411,21 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
         {
             --clusters;
 
+            bool succeeded = false;
+
             int retries = differentClusterTypeAttempts;
             for (int i = 0; i < retries; ++i)
             {
                 // Try a few random clusters in case one fits
                 if (SpawnNewCluster(cell, result, recorder, random))
+                {
+                    succeeded = true;
                     break;
+                }
             }
 
-            // TODO: if we want to pack in terrain tighter, we might need an algorithm to try to slide the conflicting
-            // terrain clusters until they can be placed
+            if (succeeded)
+                continue;
 
             // If ran out of attempts, we'll just ignore as the terrain is too crowded
             if (!printedClustersTightWarning)
@@ -463,32 +468,90 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
         var rangeX = maxX - minX;
         var rangeZ = maxZ - minZ;
 
-        var currentOverlapSquared = cluster.OverallOverlapRadius * cluster.OverallOverlapRadius;
+        var currentOverlap = cluster.OverallOverlapRadius;
+
+        var playerCheckSquared = MathUtils.Square(playerProtectionRadius + cluster.OverallRadius);
 
         // Find a good spot, avoiding overlap with already spawned, or the player position
         for (int i = 0; i < maxSpawnAttempts; ++i)
         {
             var position = new Vector3(minX + random.NextFloat() * rangeX, 0, minZ + random.NextFloat() * rangeZ);
 
-            if (position.DistanceSquaredTo(playerPosition) - playerProtectionRadiusSquared <
-                cluster.OverallRadius * cluster.OverallRadius)
+            // Keep randomness more consistent
+            float slideAngleIfNeeded = random.NextFloat() * MathF.PI * 2;
+
+            if (position.DistanceSquaredTo(playerPosition) < playerCheckSquared)
             {
                 // Too close to the player, don't spawn
-                continue;
+                // This returns true now so that the player position doesn't affect the final terrain configuration
+                // so that the seed leads to a reproducible terrain result
+                return true;
+
+                // continue;
             }
 
             bool overlaps = false;
+            bool adjusted = false;
 
-            // Then check against already spawned terrain
-            foreach (var alreadySpawned in spawned)
+            while (true)
             {
-                if (position.DistanceSquaredTo(alreadySpawned.CenterPosition) - alreadySpawned.OverlapRadiusSquared <
-                    currentOverlapSquared)
+                bool retry = false;
+
+                // Then check against already spawned terrain
+                foreach (var alreadySpawned in spawned)
                 {
+                    var distanceSquared = position.DistanceSquaredTo(alreadySpawned.CenterPosition);
+                    if (distanceSquared >= MathUtils.Square(alreadySpawned.OverlapRadius + currentOverlap))
+                        continue;
+
+                    // Try sliding to make both clusters fit
+                    if (cluster.SlideToFit && !adjusted)
+                    {
+                        // TODO: this could alternatively not take a random angle but instead just slide outwards
+                        // to the closest edge with a normalized vector from CenterPosition to position
+
+                        // var overlap = (alreadySpawned.OverlapRadius + currentOverlap) - MathF.Sqrt(distanceSquared);
+                        // var slideVector = new Vector3(MathF.Cos(slideAngleIfNeeded), 0,
+                        //                       MathF.Sin(slideAngleIfNeeded)) * overlap * 1.02f;
+                        // position += (alreadySpawned.CenterPosition - position).Normalized() * slideVector;
+
+                        var neededDistance = alreadySpawned.OverlapRadius + currentOverlap;
+                        var offset = new Vector3(MathF.Cos(slideAngleIfNeeded), 0,
+                            MathF.Sin(slideAngleIfNeeded)) * neededDistance * 1.02f;
+
+                        position = alreadySpawned.CenterPosition + offset;
+
+                        // Make sure the position is not outside the target grid
+                        if (position.X < minX || position.X > maxX || position.Z < minZ || position.Z > maxZ)
+                        {
+                            overlaps = true;
+                            break;
+                        }
+
+#if DEBUG
+                        var newDistance = position.DistanceSquaredTo(alreadySpawned.CenterPosition);
+                        if (newDistance < MathUtils.Square(alreadySpawned.OverlapRadius + currentOverlap))
+                        {
+                            GD.Print($"Still overlaps after sliding with the original, " +
+                                $"old dist: {MathF.Sqrt(distanceSquared)} new: {MathF.Sqrt(newDistance)}, " +
+                                $"needed distance: {alreadySpawned.OverlapRadius + currentOverlap}");
+                        }
+#endif
+
+                        retry = true;
+                        adjusted = true;
+                        break;
+                    }
+
                     // Will overlap existing
                     overlaps = true;
                     break;
                 }
+
+                if (retry)
+                    continue;
+
+                break;
             }
 
             if (overlaps)
@@ -592,14 +655,14 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
     internal struct SpawnedTerrainCluster(Vector3 centerPosition, float maxRadius, SpawnedTerrainGroup[] parts,
         float overlapRadius) : IArchivable
     {
-        public const ushort SERIALIZATION_VERSION_CLUSTER = 1;
+        public const ushort SERIALIZATION_VERSION_CLUSTER = 2;
 
         public Vector3 CenterPosition = centerPosition;
-        public float MaxRadiusSquared = maxRadius * maxRadius;
+        public float MaxRadius = maxRadius;
 
         public SpawnedTerrainGroup[] Parts = parts;
 
-        public float OverlapRadiusSquared = overlapRadius * overlapRadius;
+        public float OverlapRadius = overlapRadius;
 
         public ushort CurrentArchiveVersion => SERIALIZATION_VERSION_CLUSTER;
         public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.SpawnedTerrainCluster;
@@ -626,9 +689,12 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
             var overlapRadius = reader.ReadFloat();
             var instance = new SpawnedTerrainCluster(center, maxRadius, parts, overlapRadius);
 
-            // Override the values that got incorrectly doubled
-            instance.MaxRadiusSquared = maxRadius;
-            instance.OverlapRadiusSquared = overlapRadius;
+            // Override the values that got incorrectly doubled from old save load
+            if (version < 2)
+            {
+                instance.MaxRadius = MathF.Sqrt(maxRadius);
+                instance.OverlapRadius = MathF.Sqrt(overlapRadius);
+            }
 
             return instance;
         }
@@ -641,9 +707,9 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
         public void WriteToArchive(ISArchiveWriter writer)
         {
             writer.Write(CenterPosition);
-            writer.Write(MaxRadiusSquared);
+            writer.Write(MaxRadius);
             writer.WriteObject(Parts);
-            writer.Write(OverlapRadiusSquared);
+            writer.Write(OverlapRadius);
         }
     }
 
@@ -685,10 +751,10 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivable
 /// </summary>
 internal class SpawnedTerrainGroup(Vector3 position, float radius, uint groupId) : IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     public Vector3 Position = position;
-    public float SquaredRadius = radius * radius;
+    public float Radius = radius;
 
     public uint GroupId = groupId;
 
@@ -725,8 +791,11 @@ internal class SpawnedTerrainGroup(Vector3 position, float radius, uint groupId)
             GroupMembers = reader.ReadObject<List<Entity>>(),
         };
 
-        // Fix radius to be the squared value and not the fourth power
-        instance.SquaredRadius = radius;
+        // Override the values that got incorrectly doubled from loading an old save
+        if (version < 2)
+        {
+            instance.Radius = MathF.Sqrt(radius);
+        }
 
         return instance;
     }
@@ -734,7 +803,7 @@ internal class SpawnedTerrainGroup(Vector3 position, float radius, uint groupId)
     public void WriteToArchive(ISArchiveWriter writer)
     {
         writer.Write(Position);
-        writer.Write(SquaredRadius);
+        writer.Write(Radius);
         writer.Write(GroupId);
         writer.Write(MembersFetched);
         writer.Write(ExpectedMemberCount);
