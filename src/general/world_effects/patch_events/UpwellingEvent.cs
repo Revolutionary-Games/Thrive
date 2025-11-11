@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using SharedBase.Archive;
 using Xoshiro.PRNG64;
 
@@ -51,6 +50,8 @@ public class UpwellingEvent : IWorldEffect
     private readonly Dictionary<int, int> eventDurationsInPatches = new();
 
     private readonly Dictionary<int, List<Compound>> affectedCompoundsInPatches = new();
+
+    private readonly List<int> patchesToRemove = new();
 
     private GameWorld targetWorld;
 
@@ -167,14 +168,14 @@ public class UpwellingEvent : IWorldEffect
 
     private void ChangePatchProperties()
     {
-        foreach (int patchId in eventDurationsInPatches.Keys.ToList())
+        foreach (int patchId in eventDurationsInPatches.Keys)
         {
             var patch = targetWorld.Map.Patches[patchId];
             eventDurationsInPatches[patchId] -= 1;
 
             if (eventDurationsInPatches[patchId] <= 0)
             {
-                eventDurationsInPatches.Remove(patchId);
+                patchesToRemove.Add(patchId);
                 affectedCompoundsInPatches.Remove(patchId);
                 patch.CurrentSnapshot.ActivePatchEvents.Remove(PatchEventTypes.Upwelling);
                 continue;
@@ -223,6 +224,13 @@ public class UpwellingEvent : IWorldEffect
             compoundChanges.Clear();
             cloudSizes.Clear();
         }
+
+        foreach (var patchId in patchesToRemove)
+        {
+            eventDurationsInPatches.Remove(patchId);
+        }
+
+        patchesToRemove.Clear();
     }
 
     private void AddChunks(Patch patch, Compound compound)

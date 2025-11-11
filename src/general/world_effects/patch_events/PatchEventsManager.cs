@@ -57,7 +57,7 @@ public class PatchEventsManager : IWorldEffect
         {
             var totalTemperatureChange = 0.0f;
             var totalSunlightMultiplication = 1.0f;
-            float? fixedTemperatureValue = null;
+            float fixedTemperatureValue = float.NaN;
             foreach (var eventProperties in patch.ActivePatchEvents.Values)
             {
                 totalTemperatureChange += eventProperties.TemperatureAmbientChange;
@@ -83,8 +83,8 @@ public class PatchEventsManager : IWorldEffect
             }
 
             currentTemperature.Ambient =
-                fixedTemperatureValue != null ?
-                    fixedTemperatureValue.Value :
+                !float.IsNaN(fixedTemperatureValue) ?
+                    fixedTemperatureValue :
                     patch.Biome.StartingTemperatureValue + totalTemperatureChange;
             currentSunlight.Ambient = patch.Biome.StartingSunlightValue * totalSunlightMultiplication;
 

@@ -1441,7 +1441,7 @@ public static class Constants
 
     public const int RUNOFF_MIN_DURATION = 1;
     public const int RUNOFF_MAX_DURATION = 3;
-    public const float RUNOFF_INITIAL_CHANCE = 0.5F;
+    public const float RUNOFF_INITIAL_CHANCE = 0.35F;
     public const float RUNOFF_FINAL_CHANCE = 0.1F;
     public const int RUNOFF_CHANCE_DIMINISH_DURATION = 15;
     public const float RUNOFF_CHANCE_OF_AFFECTING_ANOTHER_COMPOUND = 0.77f;
@@ -1451,7 +1451,7 @@ public static class Constants
 
     public const int UPWELLING_MIN_DURATION = 1;
     public const int UPWELLING_MAX_DURATION = 3;
-    public const float UPWELLING_INITIAL_CHANCE = 0.6F;
+    public const float UPWELLING_INITIAL_CHANCE = 0.35F;
     public const float UPWELLING_FINAL_CHANCE = 0.1F;
     public const int UPWELLING_CHANCE_DIMINISH_DURATION = 15;
     public const float UPWELLING_CHANCE_OF_AFFECTING_ANOTHER_COMPOUND = 0.77f;
@@ -1459,7 +1459,7 @@ public static class Constants
 
     public const int CURRENT_DILUTION_MIN_DURATION = 1;
     public const int CURRENT_DILUTION_MAX_DURATION = 3;
-    public const float CURRENT_DILUTION_INITIAL_CHANCE = 0.52F;
+    public const float CURRENT_DILUTION_INITIAL_CHANCE = 0.38F;
     public const float CURRENT_DILUTION_FINAL_CHANCE = 0.12F;
     public const int CURRENT_DILUTION_CHANCE_DIMINISH_DURATION = 18;
     public const float CURRENT_DILUTION_CHANCE_OF_AFFECTING_ANOTHER_COMPOUND = 0.73f;
