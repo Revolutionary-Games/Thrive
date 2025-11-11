@@ -86,6 +86,35 @@ public partial class PhysicsCollisionManagementSystem : BaseSystem<World, float>
         try
         {
             ref var ignoreCollisions = ref collisionManagement.IgnoredCollisionsWith;
+            ref var removeIgnoreCollisions = ref collisionManagement.RemoveIgnoredCollisions;
+
+            // Check if any ignores can be removed.
+            if (removeIgnoreCollisions != null && ignoreCollisions != null)
+            {
+                if (removeIgnoreCollisions.Count > 0)
+                {
+                    for (int i = 0; i < removeIgnoreCollisions.Count; ++i)
+                    {
+                        var ignoreRemoveEntity = removeIgnoreCollisions[i];
+
+                        // If the ignore list still has the entity, physics ignore will not be removed
+                        if (ignoreCollisions.Contains(ignoreRemoveEntity))
+                            continue;
+
+                        var ignoreWith = GetPhysicsForEntity(ignoreRemoveEntity, ref collisionManagement);
+
+                        if (ignoreWith != null)
+                            physicalWorld.BodyRemoveCollisionIgnoreWith(physicsBody, ignoreWith);
+
+                        removeIgnoreCollisions.Remove(ignoreRemoveEntity);
+
+                        // One step back
+                        --i;
+                    }
+                }
+            }
+
+            // Actual applying of collision ignores. Ignores are only set here, not removed.
             if (ignoreCollisions == null)
             {
                 if (collisionManagement.CollisionIgnoresUsed)

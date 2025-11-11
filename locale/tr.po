@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-08 16:31+0100\n"
-"PO-Revision-Date: 2025-11-06 03:32+0000\n"
+"PO-Revision-Date: 2025-11-07 16:49+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -2712,7 +2712,7 @@ msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(görüntü modu ve yükseltme ayarlarına bağlı olarak, bütün yöntemler mevcut olmayabilir)"
 
 msgid "IGNORE_FURTHER_ERRORS"
-msgstr ""
+msgstr "Ek hataları yoksay"
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "Desteklenen Resim Dosyaları"
@@ -3926,9 +3926,8 @@ msgstr "Türde Değişiklik Yap"
 msgid "MODS"
 msgstr "Modlar"
 
-#, fuzzy
 msgid "MODS_ARE_ENABLED"
-msgstr "Hiçbir Mod Etkinleştirilmedi"
+msgstr "Modlar Etkinleştirildi"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -6680,15 +6679,15 @@ msgid "UNDO_THE_LAST_ACTION"
 msgstr "Son eylemi geri al"
 
 msgid "UNHANDLED_ERROR_COUNT"
-msgstr ""
+msgstr "Beklenmeyen Hatalar: {0}"
 
-#, fuzzy
 msgid "UNHANDLED_ERROR_DESCRIPTION"
-msgstr "Aksonlar, nöronların birbirlerine bağlanmak ve birbiriyle iletişim kurmak için kullandığı sinir lifleridir. Bu organeli yerleştirmek, bir hücre türünü beyin dokusuna dönüştürür."
+msgstr ""
+"Oyun beklenmeyen bir hatayla karşılaştı. Oyuna devam etmek mümkün, ancak hatalar daha da kötüleşebilir. En güvenli seçenek, oyunu tamamen yeniden başlatmak ve en son kaydı yüklemektir. Şu anda kaydetmek mümkün olabilir.\n"
+"Bu hatayı bildirirseniz, lütfen hatayı kopyalamak için bu butonu kullanın ve raporunuza ekleyin."
 
-#, fuzzy
 msgid "UNHANDLED_ERROR_TITLE"
-msgstr "Teşekkür Ederiz"
+msgstr "Beklenmeyen Bir Hata Meydana Geldi"
 
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "İnşa Et"
