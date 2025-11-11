@@ -985,7 +985,7 @@ public partial class MacroscopicCreature : RigidBody3D, ICharacterInventory, IEn
         if (buildingTypeToPlace == null)
             throw new InvalidOperationException("No structure type selected");
 
-        var relative = new Vector3(0, 0, 1) * buildingTypeToPlace.WorldSize.Z * 1.3f;
+        var relative = new Vector3(0, 0, -1) * buildingTypeToPlace.WorldSize.Z * 1.3f;
 
         // TODO: a raycast to get the structure on the ground
         // Also for player creature, taking the camera direction into account instead of the creature rotation would
@@ -993,7 +993,7 @@ public partial class MacroscopicCreature : RigidBody3D, ICharacterInventory, IEn
         var transform = GlobalTransform;
         var rotation = transform.Basis.GetRotationQuaternion();
 
-        var worldTransform = new Transform3D(new Basis(rotation), transform.Origin + rotation * relative);
+        var worldTransform = new Transform3D(new Basis(rotation).Rotated(Vector3.Up, MathF.PI), transform.Origin + rotation * relative);
         return worldTransform;
     }
 }
