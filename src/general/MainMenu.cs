@@ -48,7 +48,8 @@ public partial class MainMenu : NodeWithInput
     private NewGameSettings newGameSettings = null!;
     private AnimationPlayer guiAnimations = null!;
     private SaveManagerGUI saves = null!;
-    private Thriveopedia thriveopedia = null!;
+
+    private Thriveopedia? thriveopedia;
 
     [Export]
     private ModManager modManager = null!;
@@ -139,6 +140,9 @@ public partial class MainMenu : NodeWithInput
 
     [Export]
     private CenterContainer menus = null!;
+
+    [Export]
+    private PackedScene thriveopediaScene = null!;
 #pragma warning restore CA2213
 
     private Array<Node>? menuArray;
@@ -386,7 +390,7 @@ public partial class MainMenu : NodeWithInput
     }
 
     /// <summary>
-    ///   Setup the main menu.
+    ///   Set up the main menu.
     /// </summary>
     private void RunMenuSetup()
     {
@@ -406,7 +410,6 @@ public partial class MainMenu : NodeWithInput
         options = GetNode<OptionsMenu>("OptionsMenu");
         newGameSettings = GetNode<NewGameSettings>("NewGameSettings");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
-        thriveopedia = GetNode<Thriveopedia>("Thriveopedia");
 
         // Set initial menu
         SwitchMenu();
@@ -932,7 +935,9 @@ public partial class MainMenu : NodeWithInput
 
     private void OnReturnFromThriveopedia()
     {
-        thriveopedia.Visible = false;
+        if (thriveopedia != null)
+            thriveopedia.Visible = false;
+
         SetCurrentMenu(0, false);
     }
 
@@ -988,6 +993,21 @@ public partial class MainMenu : NodeWithInput
 
         // Hide all the other menus
         SetCurrentMenu(uint.MaxValue, false);
+
+        // Create the Thriveopedia if it doesn't exist yet
+        if (thriveopedia == null)
+        {
+            thriveopedia = thriveopediaScene.Instantiate<Thriveopedia>();
+
+            // Thriveopedia needs to start off hidden to work correctly
+            thriveopedia.Visible = false;
+
+            // Hook up the necessary signals
+            thriveopedia.Connect(Thriveopedia.SignalName.OnThriveopediaClosed,
+                new Callable(this, nameof(OnReturnFromThriveopedia)));
+
+            AddChild(thriveopedia);
+        }
 
         // Show the Thriveopedia
         thriveopedia.OpenFromMainMenu();
@@ -1116,7 +1136,14 @@ public partial class MainMenu : NodeWithInput
 
     private void OnThriveopediaOpened(string pageName)
     {
-        thriveopedia.OpenFromMainMenu();
+        // Make sure Thriveopedia is created if missing
+        if (thriveopedia == null)
+        {
+            GD.Print("Creating Thriveopedia due to page open request");
+            ThriveopediaPressed();
+        }
+
+        thriveopedia!.OpenFromMainMenu();
         thriveopedia.ChangePage(pageName);
     }
 
