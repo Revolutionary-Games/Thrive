@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-06 15:24+0200\n"
+"POT-Creation-Date: 2025-11-08 16:31+0100\n"
 "PO-Revision-Date: 2025-05-27 06:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -1487,6 +1487,14 @@ msgstr "ดำเนินการต่อ"
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
 
@@ -2173,6 +2181,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "ดำเนินการต่อ"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -5458,6 +5474,9 @@ msgstr "หมุนไปทางขวา"
 msgid "ROTATION_COLON"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "เรียกใช้ auto-evo ระหว่างการเล่นเกม"
 
@@ -7150,6 +7169,9 @@ msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
+msgid "UPWELLING_EVENT"
 msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
@@ -9620,10 +9642,6 @@ msgstr "ซูมออก"
 #~ msgstr "เปิดโฟลเดอร์บันทึก"
 
 #, fuzzy
-#~ msgid "CURRENT_GENERATION_COLON"
-#~ msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
-
-#, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "ชื่อผู้ใช้ที่กำหนดเอง:"
 
@@ -9702,3 +9720,7 @@ msgstr "ซูมออก"
 
 #~ msgid "E_DOT"
 #~ msgstr "E."
+
+#, fuzzy
+#~ msgid "CURRENT_GENERATION_COLON"
+#~ msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"

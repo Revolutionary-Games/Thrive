@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-06 15:24+0200\n"
+"POT-Creation-Date: 2025-11-08 16:31+0100\n"
 "PO-Revision-Date: 2025-11-10 14:42+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -638,7 +638,7 @@ msgid "CANNOT_ENGULF"
 msgstr "無法吞噬"
 
 msgid "CANNOT_IMPROVE_PERFECTION"
-msgstr "完美無暇"
+msgstr "完美無缺"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "無法將元球移到其子代樹中"
@@ -1430,6 +1430,14 @@ msgstr ""
 msgid "CURRENT_DEVELOPERS"
 msgstr "當前開發人員"
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "當前位置"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "當前位置"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "當前位置"
 
@@ -1675,7 +1683,7 @@ msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
 msgid "DISABLED"
-msgstr "停用"
+msgstr "已停用"
 
 msgid "DISABLE_ALL"
 msgstr "停用所有"
@@ -2043,7 +2051,7 @@ msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "顯示／隱藏環境"
 
 msgid "ENVIRONMENT_TOLERANCE"
-msgstr "適應性"
+msgstr "適應"
 
 msgid "EPIPELAGIC"
 msgstr "表層帶"
@@ -2125,6 +2133,18 @@ msgstr ""
 "區域事件：硫磺隕石撞擊\n"
 "提高二氧化碳與硫含量。\n"
 "生成硫磺塊。"
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr ""
+"區域事件：噴發\n"
+"產生額外的硫化氫與二氧化碳"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr ""
+"區域事件：噴發\n"
+"產生額外的硫化氫與二氧化碳"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "演化樹"
@@ -2236,7 +2256,7 @@ msgstr ""
 "而且更有可能反擊。"
 
 msgid "FEATURE_DISABLED"
-msgstr "已停用"
+msgstr "停用"
 
 msgid "FEATURE_ENABLED"
 msgstr "已啟用"
@@ -3656,7 +3676,7 @@ msgid "MICROBE_LOADING_TIP_14"
 msgstr "編輯器中有許多細胞器可供您演化，從而允許您實現多種不同的遊戲風格。"
 
 msgid "MICROBE_LOADING_TIP_15"
-msgstr "每種物種可用的資源都是有限的，因此增加細胞的大小也會減少最大物種量。"
+msgstr "每個物種可用的資源都是有限的，因此增加細胞的大小也會減少最大物種量。"
 
 msgid "MICROBE_LOADING_TIP_16"
 msgstr "使用[thrive:input]g_move_forward[/thrive:input]、[thrive:input]g_move_left[/thrive:input]、[thrive:input]g_move_backwards[/thrive:input]與[thrive:input]g_move_right[/thrive:input]來移動，以及滑鼠來轉動。如果您有毒素液泡，使用[thrive:input]g_fire_toxin[/thrive:input]發射[thrive:compound type=\"oxytoxy\"][/thrive:compound]。使用[thrive:input]g_toggle_engulf[/thrive:input]切換吞噬模式。您可以使用滑鼠滾輪放大與縮小。"
@@ -3710,7 +3730,7 @@ msgid "MICROBE_MEMBRANE_STATISTICS"
 msgstr "[b]細胞膜資料：[/b]"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
-msgstr "  {0}：存在於 {1} 的物種中，平均數量為 {2}"
+msgstr "  {0}：存在於 {1} 個物種中，平均每個物種為 {2} 個"
 
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "[b]細胞器升級資料：[/b]"
@@ -4040,7 +4060,7 @@ msgid "MOVEMENT"
 msgstr "移動"
 
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr "每種物種的遷徙嘗試次數"
+msgstr "每個物種的遷徙嘗試次數"
 
 msgid "MOVE_BACKWARDS"
 msgstr "後退"
@@ -4169,7 +4189,7 @@ msgid "MUSIC_VOLUME"
 msgstr "音樂音量"
 
 msgid "MUTATIONS_PER_SPECIES"
-msgstr "每種物種的突變嘗試次數"
+msgstr "每個物種的突變嘗試次數"
 
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "突變成本倍率"
@@ -5157,6 +5177,9 @@ msgstr "向右旋轉"
 
 msgid "ROTATION_COLON"
 msgstr "旋轉："
+
+msgid "RUNOFF_EVENT"
+msgstr ""
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "在遊戲過程中運行 Auto-Evo"
@@ -6379,7 +6402,7 @@ msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
 msgstr ""
 "這是食物鏈顯示面板。\n"
 "\n"
-"它顯示了目前區域內每種物種的食物來源。\n"
+"它顯示了目前區域內每個物種的食物來源。\n"
 "\n"
 "在這裡可以看到捕食者與獵物之間的關係，以及環境中的食物來源。\n"
 "\n"
@@ -6816,6 +6839,9 @@ msgstr "解析度提升方法："
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr "FSR 銳化"
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "授權條款與使用的程式庫"
 
@@ -6874,7 +6900,7 @@ msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
 msgid "VENTS_ARE_HOME"
-msgstr "家有熱泉"
+msgstr "家住熱泉"
 
 msgid "VERSION_COLON"
 msgstr "版本："
@@ -7953,7 +7979,7 @@ msgstr ""
 "\n"
 "編輯器中有許多細胞器可供您演化，從而允許您實現多種不同的遊戲風格。\n"
 "\n"
-"每種物種可用的資源都是有限的，因此增加細胞的大小也會減少最大物種量。\n"
+"每個物種可用的資源都是有限的，因此增加細胞的大小也會減少最大物種量。\n"
 "\n"
 "使用 [b]W[/b]、[b]A[/b]、[b]S[/b] 與 [b]D[/b] 來移動，以及滑鼠來轉動。如果您有毒素液泡，使用 [b]E[/b] 發射[b]毒素[/b]。使用 [b]G[/b] 切換吞噬模式。您可以使用滑鼠滾輪放大與縮小。\n"
 "\n"

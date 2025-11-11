@@ -18,7 +18,7 @@ using Xoshiro.PRNG64;
 /// </remarks>
 public class GameWorld : IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     /// <summary>
     ///   Stores some instances to be used between many different auto-evo runs
@@ -76,13 +76,21 @@ public class GameWorld : IArchivable
             TimedEffects.RegisterEffect("volcanism", new VolcanismEffect(this));
             TimedEffects.RegisterEffect("nitrogen_control", new NitrogenControlEffect(this));
 
-            // Patch events. Their sequence SHOULD NOT be changed!
+            // Patch events. PatchEventsManager HAS to be the last one
             TimedEffects.RegisterEffect("global_glaciation_event",
                 new GlobalGlaciationEvent(this, random.Next64()));
             TimedEffects.RegisterEffect("meteor_impact_event",
                 new MeteorImpactEvent(this, random.Next64()));
             TimedEffects.RegisterEffect("underwater_vent_eruption",
-                new UnderwaterVentEruptionEffect(this, random.Next64()));
+                new UnderwaterVentEruptionEvent(this, random.Next64()));
+            TimedEffects.RegisterEffect("runoff_event",
+                new RunoffEvent(this, random.Next64()));
+            TimedEffects.RegisterEffect("upwelling_event",
+                new UpwellingEvent(this, random.Next64()));
+            TimedEffects.RegisterEffect("current_dilution_event",
+                new CurrentDilutionEvent(this, random.Next64()));
+            TimedEffects.RegisterEffect("patch_events_manager",
+                new PatchEventsManager(this, random.Next64()));
 
             TimedEffects.RegisterEffect("sulfide_consumption", new HydrogenSulfideConsumptionEffect(this));
             TimedEffects.RegisterEffect("compound_diffusion", new CompoundDiffusionEffect(this));
@@ -166,6 +174,11 @@ public class GameWorld : IArchivable
         var initialSpeciesRecord = new SpeciesRecordLite(PlayerSpecies.Population, (Species)PlayerSpecies.Clone());
         GenerationHistory.Add(0, new GenerationRecord(0,
             new Dictionary<uint, SpeciesRecordLite> { { PlayerSpecies.ID, initialSpeciesRecord } }));
+
+        foreach (var entry in Map.Patches)
+        {
+            entry.Value.RecordSnapshot(false);
+        }
 
         UnlockProgress.UnlockAll = !settings.Difficulty.OrganelleUnlocksEnabled;
     }
@@ -259,7 +272,9 @@ public class GameWorld : IArchivable
     public static GameWorld ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
+        {
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+        }
 
         var instance = new GameWorld(reader.ReadObject<WorldGenerationSettings>());
 
@@ -287,6 +302,20 @@ public class GameWorld : IArchivable
             throw new InvalidOperationException("Map or player species was not loaded correctly for a saved world");
 
         instance.LightCycle.CalculateDependentLightData(instance.WorldSettings);
+
+        if (version < 2)
+        {
+            var random = new XoShiRo256starstar();
+
+            instance.TimedEffects.RegisterEffect("runoff_event",
+                new RunoffEvent(instance, random.Next64()));
+            instance.TimedEffects.RegisterEffect("upwelling_event",
+                new UpwellingEvent(instance, random.Next64()));
+            instance.TimedEffects.RegisterEffect("current_dilution_event",
+                new CurrentDilutionEvent(instance, random.Next64()));
+            instance.TimedEffects.RegisterEffect("patch_events_manager",
+                new PatchEventsManager(instance, random.Next64()));
+        }
 
         return instance;
     }
@@ -468,12 +497,6 @@ public class GameWorld : IArchivable
     /// </summary>
     public void OnTimePassed(double timePassed)
     {
-        // TODO: switch patches to keep an event history and remove this clear
-        foreach (var patch in Map.Patches)
-        {
-            patch.Value.ClearPatchNodeEventVisuals();
-        }
-
         TotalPassedTime = CalculateNextTimeStep(timePassed);
 
         TimedEffects.OnTimePassed(timePassed, TotalPassedTime);

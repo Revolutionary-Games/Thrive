@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-06 15:24+0200\n"
+"POT-Creation-Date: 2025-11-08 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -714,6 +714,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:4805
 #: ../simulation_parameters/microbe_stage/biomes.json:5028
 #: ../simulation_parameters/microbe_stage/biomes.json:5274
+#: ../simulation_parameters/microbe_stage/biomes.json:5480
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:61
 msgid "BIG_IRON_CHUNK"
 msgstr ""
@@ -727,6 +728,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:4350
 #: ../simulation_parameters/microbe_stage/biomes.json:4860
 #: ../simulation_parameters/microbe_stage/biomes.json:5398
+#: ../simulation_parameters/microbe_stage/biomes.json:5604
 msgid "BIG_PHOSPHATE_CHUNK"
 msgstr ""
 
@@ -1804,7 +1806,7 @@ msgstr ""
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr ""
 
-#: ../src/gui_common/dialogs/ErrorDialog.tscn:82
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:84
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr ""
 
@@ -1959,6 +1961,14 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:274
 msgid "CURRENT_DEVELOPERS"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/CurrentDilutionEvent.cs:273
+msgid "CURRENT_DILUTION"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/CurrentDilutionEvent.cs:197
+msgid "CURRENT_DILUTION_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:136
@@ -2746,7 +2756,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2056
+#: ../src/microbe_stage/MicrobeStage.cs:2054
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2754,32 +2764,40 @@ msgstr ""
 msgid "ESTUARY"
 msgstr ""
 
-#: ../src/general/world_effects/WorldEffectVisuals.cs:36
+#: ../src/general/world_effects/PatchEventVisuals.cs:44
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
 
-#: ../src/general/world_effects/WorldEffectVisuals.cs:42
+#: ../src/general/world_effects/PatchEventVisuals.cs:50
 msgid "EVENT_METEOR_GLUCOSE"
 msgstr ""
 
-#: ../src/general/world_effects/WorldEffectVisuals.cs:39
+#: ../src/general/world_effects/PatchEventVisuals.cs:47
 msgid "EVENT_METEOR_IRON"
 msgstr ""
 
-#: ../src/general/world_effects/WorldEffectVisuals.cs:40
+#: ../src/general/world_effects/PatchEventVisuals.cs:48
 msgid "EVENT_METEOR_PHOSPHATES"
 msgstr ""
 
-#: ../src/general/world_effects/WorldEffectVisuals.cs:38
+#: ../src/general/world_effects/PatchEventVisuals.cs:46
 msgid "EVENT_METEOR_PLAIN"
 msgstr ""
 
-#: ../src/general/world_effects/WorldEffectVisuals.cs:41
+#: ../src/general/world_effects/PatchEventVisuals.cs:49
 msgid "EVENT_METEOR_RADIOACTIVE"
 msgstr ""
 
-#: ../src/general/world_effects/WorldEffectVisuals.cs:43
+#: ../src/general/world_effects/PatchEventVisuals.cs:51
 msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/RunoffEvent.cs:148
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/UpwellingEvent.cs:184
+msgid "EVENT_UPWELLING_TOOLTIP"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:570
@@ -3326,27 +3344,27 @@ msgstr ""
 msgid "GLES3"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:300
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:262
 msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:278
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:242
 msgid "GLOBAL_GLACIATION_EVENT"
 msgstr ""
 
-#: ../src/general/world_effects/WorldEffectVisuals.cs:37
+#: ../src/general/world_effects/PatchEventVisuals.cs:45
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:288
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:250
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:287
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:249
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:294
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:256
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
 msgstr ""
 
@@ -4471,6 +4489,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:3096
 #: ../simulation_parameters/microbe_stage/biomes.json:4292
 #: ../simulation_parameters/microbe_stage/biomes.json:5352
+#: ../simulation_parameters/microbe_stage/biomes.json:5558
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:73
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
@@ -4785,7 +4804,7 @@ msgstr ""
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1291
+#: ../src/microbe_stage/MicrobeStage.cs:1289
 msgid "LOADING_MICROBE_STAGE"
 msgstr ""
 
@@ -4793,7 +4812,7 @@ msgstr ""
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1287
+#: ../src/microbe_stage/MicrobeStage.cs:1285
 msgid "LOADING_MULTICELLULAR_STAGE"
 msgstr ""
 
@@ -5007,6 +5026,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:3820
 #: ../simulation_parameters/microbe_stage/biomes.json:4269
 #: ../simulation_parameters/microbe_stage/biomes.json:5329
+#: ../simulation_parameters/microbe_stage/biomes.json:5535
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:71
 msgid "MEDIUM_SULFUR_CHUNK"
 msgstr ""
@@ -5065,15 +5085,15 @@ msgstr ""
 msgid "META_THREADS_TOOLTIP"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:262
+#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:264
 msgid "METEOR_IMPACT_EVENT"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:362
+#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:353
 msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:361
+#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:352
 msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
 msgstr ""
 
@@ -6259,7 +6279,7 @@ msgstr ""
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:16
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:80
-#: ../src/gui_common/dialogs/ErrorDialog.tscn:90
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:92
 #: ../src/modding/ModUploader.tscn:272
 msgid "OK"
 msgstr ""
@@ -6608,7 +6628,7 @@ msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:179
-#: ../src/microbe_stage/PatchMapGenerator.cs:1106
+#: ../src/microbe_stage/PatchMapGenerator.cs:1126
 msgid "PATCH_NAME"
 msgstr ""
 
@@ -7310,6 +7330,10 @@ msgstr ""
 msgid "ROTATION_COLON"
 msgstr ""
 
+#: ../src/general/world_effects/patch_events/RunoffEvent.cs:217
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 #: ../src/gui_common/menus/OptionsMenu.tscn:1589
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
@@ -7809,6 +7833,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:4773
 #: ../simulation_parameters/microbe_stage/biomes.json:4992
 #: ../simulation_parameters/microbe_stage/biomes.json:5238
+#: ../simulation_parameters/microbe_stage/biomes.json:5444
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:59
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
@@ -7822,6 +7847,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:4315
 #: ../simulation_parameters/microbe_stage/biomes.json:4829
 #: ../simulation_parameters/microbe_stage/biomes.json:5375
+#: ../simulation_parameters/microbe_stage/biomes.json:5581
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr ""
 
@@ -7830,6 +7856,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:3797
 #: ../simulation_parameters/microbe_stage/biomes.json:4238
 #: ../simulation_parameters/microbe_stage/biomes.json:5302
+#: ../simulation_parameters/microbe_stage/biomes.json:5508
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:69
 msgid "SMALL_SULFUR_CHUNK"
 msgstr ""
@@ -7893,7 +7920,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1651
+#: ../src/microbe_stage/MicrobeStage.cs:1649
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -8209,11 +8236,11 @@ msgstr ""
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2054
+#: ../src/microbe_stage/MicrobeStage.cs:2052
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2055
+#: ../src/microbe_stage/MicrobeStage.cs:2053
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -8536,8 +8563,8 @@ msgstr ""
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:713
-#: ../src/microbe_stage/MicrobeStage.cs:717
+#: ../src/microbe_stage/MicrobeStage.cs:711
+#: ../src/microbe_stage/MicrobeStage.cs:715
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
@@ -9049,11 +9076,11 @@ msgstr ""
 msgid "UNDERWATERCAVE"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEffect.cs:94
+#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEvent.cs:128
 msgid "UNDERWATER_VENT_ERUPTION"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEffect.cs:100
+#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEvent.cs:134
 msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr ""
 
@@ -9074,7 +9101,7 @@ msgstr ""
 msgid "UNDO_THE_LAST_ACTION"
 msgstr ""
 
-#: ../src/engine/UnHandledErrorsGUI.cs:81
+#: ../src/engine/UnHandledErrorsGUI.cs:83
 #: ../src/engine/UnHandledErrorsGUI.tscn:43
 msgid "UNHANDLED_ERROR_COUNT"
 msgstr ""
@@ -9287,6 +9314,10 @@ msgstr ""
 
 #: ../src/gui_common/menus/OptionsMenu.tscn:588
 msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/UpwellingEvent.cs:246
+msgid "UPWELLING_EVENT"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:384

@@ -111,8 +111,8 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterEnumType((ArchiveObjectType)ThriveArchiveObjectType.CompoundEnum, ArchiveEnumType.UInt16,
             typeof(Compound));
 
-        RegisterEnumType((ArchiveObjectType)ThriveArchiveObjectType.WorldEffectTypes, ArchiveEnumType.Int32,
-            typeof(WorldEffectTypes));
+        RegisterEnumType((ArchiveObjectType)ThriveArchiveObjectType.PatchEventTypes, ArchiveEnumType.Int32,
+            typeof(PatchEventTypes));
 
         RegisterEnumType((ArchiveObjectType)ThriveArchiveObjectType.ToxinType, ArchiveEnumType.Int32,
             typeof(ToxinType));
@@ -354,6 +354,11 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
 
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.AgentProperties,
             typeof(AgentProperties), AgentProperties.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchEventProperties,
+            typeof(PatchEventProperties), PatchEventProperties.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchEventProperties,
+            typeof(PatchEventProperties), PatchEventProperties.ReadFromArchive);
     }
 
     private void RegisterComponentParts()
@@ -416,8 +421,17 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(GlobalGlaciationEvent), GlobalGlaciationEvent.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MeteorImpactEvent,
             typeof(MeteorImpactEvent), MeteorImpactEvent.ReadFromArchive);
-        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.UnderwaterVentEruptionEffect,
-            typeof(UnderwaterVentEruptionEffect), UnderwaterVentEruptionEffect.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.UnderwaterVentEruptionEvent,
+            typeof(UnderwaterVentEruptionEvent), UnderwaterVentEruptionEvent.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.RunoffEvent,
+            typeof(RunoffEvent), RunoffEvent.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.UpwellingEvent,
+            typeof(UpwellingEvent), UpwellingEvent.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CurrentDilutionEvent,
+            typeof(CurrentDilutionEvent), CurrentDilutionEvent.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchEventsManager,
+            typeof(PatchEventsManager), PatchEventsManager.ReadFromArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GlucoseReductionEffect,
             typeof(GlucoseReductionEffect), GlucoseReductionEffect.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CompoundDiffusionEffect,

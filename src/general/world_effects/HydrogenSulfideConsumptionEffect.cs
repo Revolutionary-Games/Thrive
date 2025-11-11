@@ -4,7 +4,7 @@ using Systems;
 
 /// <summary>
 ///   Reduces hydrogen sulfide based on how many cells are eating it. This is needed to balance out
-///   <see cref="UnderwaterVentEruptionEffect"/> otherwise adding infinite hydrogen sulfide. This has a minimum floor
+///   <see cref="UnderwaterVentEruptionEvent"/> otherwise adding infinite hydrogen sulfide. This has a minimum floor
 ///   to ensure that if eruptions don't happen enough that hydrogen sulfide eaters aren't completely nonviable.
 /// </summary>
 public class HydrogenSulfideConsumptionEffect : IWorldEffect
