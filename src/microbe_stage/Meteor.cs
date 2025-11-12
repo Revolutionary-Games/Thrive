@@ -8,7 +8,7 @@ using ThriveScriptsShared;
 /// </summary>
 public class Meteor : RegistryType
 {
-    public WorldEffectTypes VisualEffect;
+    public PatchEventTypes VisualEffect;
 
     public List<string> Chunks = new();
 

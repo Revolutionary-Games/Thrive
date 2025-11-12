@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2025-11-08 16:31+0100\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -1506,6 +1506,14 @@ msgstr "Hervat het spel"
 msgid "CURRENT_DEVELOPERS"
 msgstr "Huidige Ontwikkelaars"
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "HUIDIGE LOCATIE"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "HUIDIGE LOCATIE"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "HUIDIGE LOCATIE"
 
@@ -2253,6 +2261,14 @@ msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
 #, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Zelfmoord"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Zelfmoord"
+
+#, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Door Revolutionary Games Studio"
 
@@ -2901,6 +2917,9 @@ msgstr "ID nummer"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Membraantypes"
@@ -3143,18 +3162,6 @@ msgstr "met concentratie van"
 
 msgid "JANUARY"
 msgstr "Januari"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON debug modus:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Altijd"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automatisch"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Nooit"
 
 msgid "JULY"
 msgstr "Juli"
@@ -4264,6 +4271,10 @@ msgstr "Pas Type aan"
 
 msgid "MODS"
 msgstr "Mods"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Mods Uitgeschakeld"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -5637,6 +5648,9 @@ msgstr "Draaien naar rechts"
 msgid "ROTATION_COLON"
 msgstr "Totale populatie:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Gebruik auto-evo tijdens gameplay"
 
@@ -5706,13 +5720,6 @@ msgstr "Gebruikte ruimte:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. Weet je zeker dat je {0} definitief wilt verwijderen?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "JSON debug modus:"
 
 msgid "SAVE_FAILED"
 msgstr "Opslaan mislukt"
@@ -7242,6 +7249,17 @@ msgstr "Ongedaan maken"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Maak de laatste handeling ongedaan"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Steek hiermee andere cellen."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Dank U Wel"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Mutatiepunten"
@@ -7409,6 +7427,9 @@ msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
+msgid "UPWELLING_EVENT"
 msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
@@ -9567,6 +9588,22 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON debug modus:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Altijd"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automatisch"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Nooit"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "JSON debug modus:"
 
 #, fuzzy
 #~ msgid "OUTDATED"

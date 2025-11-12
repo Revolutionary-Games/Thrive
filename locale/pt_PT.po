@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2025-11-08 16:31+0100\n"
 "PO-Revision-Date: 2025-08-08 14:30+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -1494,6 +1494,14 @@ msgstr "Retomar o jogo"
 msgid "CURRENT_DEVELOPERS"
 msgstr "Desenvolvedores Actuais"
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "LOCALIZAÇÃO ATUAL"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "LOCALIZAÇÃO ATUAL"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "LOCALIZAÇÃO ATUAL"
 
@@ -2184,6 +2192,14 @@ msgstr ""
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Este é o codigo exato do commit que esta versão do Thrive foi compilada de"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Este é o codigo exato do commit que esta versão do Thrive foi compilada de"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Árvore evolutiva"
 
@@ -2780,6 +2796,9 @@ msgstr "Número de ID"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Tipos de Membrana"
@@ -3005,18 +3024,6 @@ msgstr "Interagir com objetos"
 
 msgid "JANUARY"
 msgstr "Janeiro"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "Modo de debug para JSON:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Sempre"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automaticamente"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Nunca"
 
 msgid "JULY"
 msgstr "Julho"
@@ -4113,6 +4120,10 @@ msgstr "Modificar Tipo"
 
 msgid "MODS"
 msgstr "Mods"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Sem Mods ativos"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -5430,6 +5441,9 @@ msgstr "Rodar para a direita"
 msgid "ROTATION_COLON"
 msgstr "Rotação:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Utilizar auto-evo durante o jogo"
 
@@ -5498,13 +5512,6 @@ msgstr "Espaço utilizado:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Apagar este jogo guardado não pode ser revertido, tens a certeza que desejas apagar permanentemente {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Modo de debug para JSON:"
 
 msgid "SAVE_FAILED"
 msgstr "Falha ao guardar"
@@ -7007,6 +7014,17 @@ msgstr "Reverter"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Reverter a última ação"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Os axónios são as fibras nervosas que os neurónios utilizam para se ligarem uns aos outros e comunicarem. Colocar este organelo transforma o tipo de célula para tecido cerebral."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Obrigado"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Pontos de Mutação"
@@ -7163,6 +7181,9 @@ msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
+msgid "UPWELLING_EVENT"
 msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
@@ -9266,6 +9287,22 @@ msgstr "Ampliar"
 
 msgid "ZOOM_OUT"
 msgstr "Reduzir"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "Modo de debug para JSON:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Sempre"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automaticamente"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Nunca"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Modo de debug para JSON:"
 
 #, fuzzy
 #~ msgid "OUTDATED"

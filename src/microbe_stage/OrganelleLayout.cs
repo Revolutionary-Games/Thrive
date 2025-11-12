@@ -251,6 +251,16 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable
         return result;
     }
 
+    /// <summary>
+    ///   A very unsafe way to add organelles, only should be used when absolutely certain that the organelle cannot
+    ///   be overlapping. Used from auto-evo for the most efficient ways to duplicate layouts with shared readonly
+    ///   data.
+    /// </summary>
+    internal void AddAutoEvoAttemptOrganelle(T organelle)
+    {
+        existingHexes.Add(organelle);
+    }
+
     protected override void GetHexComponentPositions(T hex, List<Hex> result)
     {
         result.Clear();

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2025-11-08 16:31+0100\n"
 "PO-Revision-Date: 2025-04-26 10:58+0000\n"
 "Last-Translator: Samuel Haššo <snurka1999@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -1457,6 +1457,14 @@ msgstr "Pozastaviť hru"
 msgid "CURRENT_DEVELOPERS"
 msgstr "Súčasní vývojári"
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "SÚČASNÁ POLOHA"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "SÚČASNÁ POLOHA"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "SÚČASNÁ POLOHA"
 
@@ -2121,6 +2129,14 @@ msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
 #, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Vrátiť sa k základnému zobrazeniu nastavení"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Vrátiť sa k základnému zobrazeniu nastavení"
+
+#, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Od Revolutionary Games Studio"
 
@@ -2753,6 +2769,9 @@ msgstr "Identifikačné číslo"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Typy membrán"
@@ -2991,18 +3010,6 @@ msgstr "@"
 
 msgid "JANUARY"
 msgstr "Január"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "Debugovací režim JSON:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Vždy"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automaticky"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Nikdy"
 
 msgid "JULY"
 msgstr "Júl"
@@ -4035,6 +4042,10 @@ msgstr "Upraviť typ"
 
 msgid "MODS"
 msgstr "Módy"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Vypnuté"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -5356,6 +5367,9 @@ msgstr "Otočiť doprava"
 msgid "ROTATION_COLON"
 msgstr "Rotácia:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Spustiť automatickú evolúciu počas hry"
 
@@ -5422,13 +5436,6 @@ msgstr "Využitý priestor:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Debugovací režim JSON:"
 
 msgid "SAVE_FAILED"
 msgstr "Uloženie zlyhalo"
@@ -6734,6 +6741,17 @@ msgstr "Zrušiť"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Zrušiť poslednú zmenu"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Môže sa použiť na bodnutie iných buniek alebo na obranu proti ich toxínom."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Odstrániť lokálne údaje"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Miera mutácie AI"
@@ -6900,6 +6918,9 @@ msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
+msgid "UPWELLING_EVENT"
 msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
@@ -8949,6 +8970,22 @@ msgstr "Priblížiť"
 
 msgid "ZOOM_OUT"
 msgstr "Oddialiť"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "Debugovací režim JSON:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Vždy"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automaticky"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Nikdy"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Debugovací režim JSON:"
 
 #, fuzzy
 #~ msgid "OUTDATED"

@@ -178,6 +178,13 @@ public class TerrainConfiguration : RegistryType
         [JsonProperty]
         public readonly bool RandomizeRotation;
 
+        /// <summary>
+        ///   When true, the terrain will slide around other terrain to fit and spawn.
+        ///   If false, only exact positions are tested, and even if it doesn't fit, no adjustment will be done.
+        /// </summary>
+        [JsonProperty]
+        public readonly bool SlideToFit = true;
+
         public float OverallRadius;
         public float OverallOverlapRadius;
 

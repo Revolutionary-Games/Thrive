@@ -124,13 +124,14 @@ public static class HealthHelpers
     ///   A general damage dealing method that doesn't apply any damage reductions or anything like that
     /// </summary>
     /// <param name="health">The health structure to cause damage to</param>
+    /// <param name="entity">Entity that is being damaged (needed only when mod callbacks are registered)</param>
     /// <param name="damage">The amount of damage to apply</param>
     /// <param name="damageSource">The name of the damage source</param>
     /// <param name="instantKillProtectionThreshold">
     ///   A threshold above which, if the current health is, the damage is not allowed to instantly kill the entity.
     ///   Pass in a negative value to disable the protection.
     /// </param>
-    public static void DealDamage(this ref Health health, float damage, string damageSource,
+    public static void DealDamage(this ref Health health, in Entity entity, float damage, string damageSource,
         float instantKillProtectionThreshold)
     {
         if (health.Invulnerable)
@@ -203,9 +204,8 @@ public static class HealthHelpers
             }
         }
 
-        // TODO: probably need a separate system to trigger this (or well we can trigger this but warn mod authors
-        // that this is a multithreaded operation)
-        // ModLoader.ModInterface.TriggerOnDamageReceived(this, amount, IsPlayerMicrobe);
+        // Note can be triggered by multiple threads!
+        ModLoader.ModInterface.TriggerOnDamageReceived(entity, damage, damageSource);
     }
 
     /// <summary>
@@ -218,8 +218,8 @@ public static class HealthHelpers
     ///     so that no more entity type specific methods like this would be needed?
     ///   </para>
     /// </remarks>
-    public static void DealMicrobeDamage(this ref Health health, ref CellProperties cellProperties, float damage,
-        string damageSource, float instantKillProtectionThreshold)
+    public static void DealMicrobeDamage(this ref Health health, ref CellProperties cellProperties, in Entity entity,
+        float damage, string damageSource, float instantKillProtectionThreshold)
     {
         // TODO: reimplement this (probably better to use the invulnerable health property and also make engulf
         // check that to prevent engulfing of the player)
@@ -249,7 +249,7 @@ public static class HealthHelpers
             damage /= 2;
         }
 
-        health.DealDamage(damage, damageSource, instantKillProtectionThreshold);
+        health.DealDamage(entity, damage, damageSource, instantKillProtectionThreshold);
     }
 
     /// <summary>

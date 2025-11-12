@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2025-11-08 16:31+0100\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (Latin script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
@@ -1515,6 +1515,14 @@ msgstr "Nastaviti"
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "Generacija:"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "Generacija:"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
 
@@ -2197,6 +2205,14 @@ msgstr ""
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2815,6 +2831,9 @@ msgstr ""
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Vrste Membrana"
@@ -3053,18 +3072,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr "sa koncentracijom"
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -4102,6 +4109,10 @@ msgstr ""
 
 msgid "MODS"
 msgstr ""
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Uključi tasteri za varanja"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -5448,6 +5459,9 @@ msgstr "Rotirajte desno"
 msgid "ROTATION_COLON"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Pokrenite automatsku-evoluciju tokom igranja"
 
@@ -5514,12 +5528,6 @@ msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr ""
 
 msgid "SAVE_FAILED"
@@ -6878,6 +6886,17 @@ msgstr "Poništi"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Opozovi poslednju akciju"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Izbodite druge ćelije sa ovo."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Dodajte novo vezivanje tastera"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Mutacije Poeni"
@@ -7047,6 +7066,9 @@ msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
+msgid "UPWELLING_EVENT"
 msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
@@ -9515,10 +9537,6 @@ msgstr "Odzumirati"
 #~ msgstr "Vrste:"
 
 #, fuzzy
-#~ msgid "CURRENT_GENERATION_COLON"
-#~ msgstr "Generacija:"
-
-#, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Dodajte novo vezivanje tastera"
 
@@ -9728,3 +9746,7 @@ msgstr "Odzumirati"
 #, fuzzy
 #~ msgid "BACKTAB"
 #~ msgstr "Nazad"
+
+#, fuzzy
+#~ msgid "CURRENT_GENERATION_COLON"
+#~ msgstr "Generacija:"

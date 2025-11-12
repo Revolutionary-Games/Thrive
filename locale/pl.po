@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
-"PO-Revision-Date: 2025-10-18 04:10+0000\n"
-"Last-Translator: Maksymilian Adamski <gyhat.yt@gmail.com>\n"
+"POT-Creation-Date: 2025-11-08 16:31+0100\n"
+"PO-Revision-Date: 2025-11-10 22:19+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -1439,6 +1439,14 @@ msgstr "Zajęta pamięć podręczna. Może być bezpiecznie wyczyszczona, lecz k
 msgid "CURRENT_DEVELOPERS"
 msgstr "Obecni Developerzy"
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "AKTUALNA LOKALIZACJA"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "AKTUALNA LOKALIZACJA"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "AKTUALNA LOKALIZACJA"
 
@@ -2144,6 +2152,14 @@ msgstr ""
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta wersja Thrive"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta wersja Thrive"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Drzewo Filogenetyczne"
 
@@ -2731,6 +2747,9 @@ msgstr "Numer ID"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Rodzaje błony lub ściany komórkowej"
@@ -2959,18 +2978,6 @@ msgstr "Interakcja z obiektem"
 
 msgid "JANUARY"
 msgstr "Styczeń"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "Tryb Debugu JSON:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Zawsze"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automatycznie"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Nigdy"
 
 msgid "JULY"
 msgstr "Lipiec"
@@ -4081,6 +4088,10 @@ msgstr "Modyfikuj Typ"
 
 msgid "MODS"
 msgstr "Modyfikacje"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Brak Włączonych Modów"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -5394,6 +5405,9 @@ msgstr "Obróć w prawo"
 msgid "ROTATION_COLON"
 msgstr "Populacja:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Wykonuj auto-ewo w trakcie rozgrywki"
 
@@ -5455,12 +5469,6 @@ msgstr "Użyte miejsce:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Usunięcie tego zapisu nie może zostać odwrócone, czy jesteś pewien że chcesz permamentnie usunąć {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr ""
 
 msgid "SAVE_FAILED"
 msgstr "Zapisywanie się nie udało"
@@ -6231,6 +6239,7 @@ msgstr "Teoretycy"
 msgid "THERMOPLAST"
 msgstr "Termoplast"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Termoplast to struktura otoczona podwójną błoną, zawierająca wrażliwe na temperaturę barwniki ułożone w błoniastych woreczkach. Jest to prokariont zasymilowany przez swojego eukariotycznego gospodarza. Barwniki w termoplaście potrafią wykorzystywać energię rosnącej [thrive:compound type=\"temperature\"]temperatury[/thrive:compound] otoczenia do wytwarzania [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/thrive:compound] rośnie wraz z różnicą [thrive:compound type=\"temperature\"]temperatur[/thrive:compound]."
 
@@ -6945,6 +6954,17 @@ msgstr "Cofnij"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Cofnij ostatnią czynność"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Dźgaj tym inne komórki."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Dziękujemy"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Zakończ Budowę"
@@ -7102,6 +7122,9 @@ msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
+msgid "UPWELLING_EVENT"
 msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
@@ -9225,6 +9248,18 @@ msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "Tryb Debugu JSON:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Zawsze"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automatycznie"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Nigdy"
 
 #, fuzzy
 #~ msgid "OUTDATED"

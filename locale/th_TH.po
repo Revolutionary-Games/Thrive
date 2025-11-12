@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2025-11-08 16:31+0100\n"
 "PO-Revision-Date: 2025-05-27 06:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -1487,6 +1487,14 @@ msgstr "ดำเนินการต่อ"
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
 
@@ -2174,6 +2182,14 @@ msgstr ""
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "ดำเนินการต่อ"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2797,6 +2813,9 @@ msgstr ""
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 msgid "IMAGE_FILE_TYPES"
 msgstr ""
 
@@ -3033,18 +3052,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr "ด้วยความเข้มข้นของ"
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -4129,6 +4136,10 @@ msgstr ""
 
 msgid "MODS"
 msgstr ""
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "เปิดใช้งานโกงคีย์"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -5463,6 +5474,9 @@ msgstr "หมุนไปทางขวา"
 msgid "ROTATION_COLON"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "เรียกใช้ auto-evo ระหว่างการเล่นเกม"
 
@@ -5529,12 +5543,6 @@ msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr ""
 
 msgid "SAVE_FAILED"
@@ -6982,6 +6990,17 @@ msgstr "เลิกทำ"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "เลิกทำการกระทำล่าสุด"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "แทงเซลล์อื่นด้วยสิ่งนี้"
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "\"{0}\" - {1}"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "ความเข้มข้นของ"
@@ -7150,6 +7169,9 @@ msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
+msgid "UPWELLING_EVENT"
 msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
@@ -9620,10 +9642,6 @@ msgstr "ซูมออก"
 #~ msgstr "เปิดโฟลเดอร์บันทึก"
 
 #, fuzzy
-#~ msgid "CURRENT_GENERATION_COLON"
-#~ msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
-
-#, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "ชื่อผู้ใช้ที่กำหนดเอง:"
 
@@ -9702,3 +9720,7 @@ msgstr "ซูมออก"
 
 #~ msgid "E_DOT"
 #~ msgstr "E."
+
+#, fuzzy
+#~ msgid "CURRENT_GENERATION_COLON"
+#~ msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"

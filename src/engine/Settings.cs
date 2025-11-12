@@ -5,11 +5,10 @@ using System.Linq;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
-using Saving;
 using Environment = System.Environment;
 
 /// <summary>
-///   Class that handles storing and applying player changeable game settings.
+///   Class that handles storing and applying player-changeable game settings.
 /// </summary>
 public class Settings
 {
@@ -509,13 +508,6 @@ public class Settings
     [JsonProperty]
     public SettingValue<IReadOnlyCollection<DismissibleNotice>> PermanentlyDismissedNotices { get; private set; } =
         new(new HashSet<DismissibleNotice>());
-
-    /// <summary>
-    ///   The Db value to be added to the master audio bus
-    /// </summary>
-    [JsonProperty]
-    public SettingValue<JSONDebug.DebugMode> JSONDebugMode { get; private set; } =
-        new(JSONDebug.DebugMode.Automatic);
 
     /// <summary>
     ///   The screen effect currently being used

@@ -519,7 +519,7 @@ public static class Constants
 
     public const float OXYTOXY_DAMAGE = 25.0f;
 
-    public const float CYTOTOXIN_DAMAGE = 20.0f;
+    public const float CYTOTOXIN_DAMAGE = 18.0f;
 
     public const float OXYGEN_INHIBITOR_DAMAGE = 23.0f;
 
@@ -530,6 +530,7 @@ public static class Constants
     public const float MACROLIDE_DEBUFF_DURATION = 5;
 
     public const float TOXIN_TOXICITY_DAMAGE_MODIFIER_STRENGTH = 0.5f;
+    public const float DEFAULT_TOXICITY = 0.0f;
 
     /// <summary>
     ///   Each oxygen using organelle in a cell increases damage caused by oxygen-inhibiting toxin by this amount,
@@ -1140,8 +1141,6 @@ public static class Constants
     public const float METABALL_SIZE_STEP = 0.1f;
     public const float METABALL_MAX_SIZE = 5.0f;
 
-    public const float DIVIDE_EXTRA_DAUGHTER_OFFSET = 3.0f;
-
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 85.0f;
     public const int CORPSE_CHUNK_DIVISOR = 3;
@@ -1299,9 +1298,13 @@ public static class Constants
     public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 300;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
+
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 35;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
+    public const float AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING = 0.06f;
+    public const float AUTO_EVO_SIZE_AFFECTED_PROJECTILE_MISS_FACTOR = 0.5f;
+    public const float AUTO_EVO_TOXICITY_HIT_MODIFIER = 4.0f;
     public const float AUTO_EVO_SLIME_JET_SCORE = 6;
     public const float AUTO_EVO_MUCOCYST_SCORE = 40;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
@@ -1317,6 +1320,9 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
     public const float AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION = 0.1f;
     public const float AUTO_EVO_REPRODUCTION_COMPOUND_PRODUCTION_SCORE = 1600.0f;
+
+    public const float AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS_SMALL = 1.5f;
+    public const float AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS = 20.0f;
 
     public const int AI_FOLLOW_PLAYER_MIGRATION_TO_EMPTY_PATCH_THRESHOLD = 2;
 
@@ -1336,12 +1342,25 @@ public static class Constants
     public const double AUTO_EVO_COLOR_CHANGE_MAX_STEP = 0.5f;
 
     public const float AUTO_EVO_MUTATION_RIGIDITY_STEP = 0.35f;
+    public const float AUTO_EVO_MUTATION_TOXICITY_STEP = 0.2f;
+
     public const int AUTO_EVO_MAX_MUTATION_RECURSIONS = 3;
 
     public const int AUTO_EVO_ORGANELLE_ADD_ATTEMPTS = 15;
     public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 15;
+    public const int AUTO_EVO_ORGANELLE_UPGRADE_ATTEMPTS = 5;
 
-    public const float AUTO_EVO_TOLERANCE_PERFECT_CHANCE = 0.02f;
+    /// <summary>
+    ///   If a species is adapted to its environment, this is the chance it will try to perfectly adapt anyway
+    /// </summary>
+    public const float AUTO_EVO_TOLERANCE_PERFECT_CHANCE_IF_ADAPTED = 0.001f;
+
+    /// <summary>
+    ///   When a species is getting tolerance changes, this is the chance it will also try to perfectly adapt another
+    ///   stat that was already good enough. Note that this being too high can interfere with a species adapting to new
+    ///   conditions normally.
+    /// </summary>
+    public const float AUTO_EVO_TOLERANCE_PERFECT_CHANCE_OTHER = 0.01f;
 
     public const float AUTO_EVO_PREDICTION_UPDATE_INTERVAL = 0.95f;
 
@@ -1420,9 +1439,9 @@ public static class Constants
     public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.001f;
     public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
 
-    public const float GLOBAL_GLACIATION_OXYGEN_THRESHOLD = 0.07f;
-    public const float GLOBAL_GLACIATION_PATCHES_THRESHOLD = 0.7f;
-    public const float GLOBAL_GLACIATION_CHANCE = 0.5F;
+    public const float GLOBAL_GLACIATION_OXYGEN_THRESHOLD = 0.055f;
+    public const float GLOBAL_GLACIATION_PATCHES_THRESHOLD = 0.55f;
+    public const float GLOBAL_GLACIATION_CHANCE = 0.53f;
     public const int GLOBAL_GLACIATION_MIN_DURATION = 2;
     public const int GLOBAL_GLACIATION_MAX_DURATION = 6;
     public const int GLOBAL_GLACIATION_HEADS_UP_DURATION = 1;
@@ -1430,6 +1449,34 @@ public static class Constants
 
     public const float METEOR_IMPACT_CHANCE = 0.23f;
     public const float METEOR_IMPACT_SUNLIGHT_MULTIPLICATION = 0.75f;
+
+    public const int RUNOFF_MIN_DURATION = 1;
+    public const int RUNOFF_MAX_DURATION = 3;
+    public const float RUNOFF_INITIAL_CHANCE = 0.35f;
+    public const float RUNOFF_FINAL_CHANCE = 0.1f;
+    public const int RUNOFF_CHANCE_DIMINISH_DURATION = 15;
+    public const float RUNOFF_CHANCE_OF_AFFECTING_ANOTHER_COMPOUND = 0.77f;
+    public const float RUNOFF_COMPOUND_CHANGE = 0.000025f;
+    public const float RUNOFF_MIN_CHUNK_DENSITY_MULTIPLIER = 8.0f;
+    public const float RUNOFF_MAX_CHUNK_DENSITY_MULTIPLIER = 30.0f;
+
+    public const int UPWELLING_MIN_DURATION = 1;
+    public const int UPWELLING_MAX_DURATION = 3;
+    public const float UPWELLING_INITIAL_CHANCE = 0.35f;
+    public const float UPWELLING_FINAL_CHANCE = 0.1f;
+    public const int UPWELLING_CHANCE_DIMINISH_DURATION = 15;
+    public const float UPWELLING_CHANCE_OF_AFFECTING_ANOTHER_COMPOUND = 0.77f;
+    public const float UPWELLING_DILUTION_COMPOUND_CHANGE = 0.000025f;
+
+    public const int CURRENT_DILUTION_MIN_DURATION = 1;
+    public const int CURRENT_DILUTION_MAX_DURATION = 3;
+    public const float CURRENT_DILUTION_INITIAL_CHANCE = 0.38f;
+    public const float CURRENT_DILUTION_FINAL_CHANCE = 0.12f;
+    public const int CURRENT_DILUTION_CHANCE_DIMINISH_DURATION = 18;
+    public const float CURRENT_DILUTION_CHANCE_OF_AFFECTING_ANOTHER_COMPOUND = 0.73f;
+    public const float CURRENT_DILUTION_COMPOUND_CHANGE = -0.000025f;
+    public const float CURRENT_DILUTION_MIN_CHUNK_DENSITY_MULTIPLIER = 8.0f;
+    public const float CURRENT_DILUTION_MAX_CHUNK_DENSITY_MULTIPLIER = 30.0f;
 
     // These control how many game entities can exist at once
     public const int TINY_MAX_SPAWNED_ENTITIES = 80;

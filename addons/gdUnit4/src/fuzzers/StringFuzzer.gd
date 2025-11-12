@@ -2,28 +2,28 @@ class_name StringFuzzer
 extends Fuzzer
 
 
-const DEFAULT_CHARSET = "a-zA-Z0-9+-_"
+const DEFAULT_CHARSET = "\\w\\p{L}\\p{N}+-_'"
 
-var _min_length :int
-var _max_length :int
-var _charset :PackedByteArray
+var _min_length: int
+var _max_length: int
+var _charset: PackedInt32Array
 
 
-func _init(min_length :int, max_length :int, pattern :String = DEFAULT_CHARSET) -> void:
-	assert(min_length>0 and min_length < max_length)
-	assert(not null or not pattern.is_empty())
+func _init(min_length: int, max_length: int, pattern: String = DEFAULT_CHARSET) -> void:
 	_min_length = min_length
-	_max_length = max_length
+	_max_length = max_length + 1 # +1 for inclusive
+	assert(not null or not pattern.is_empty())
+	assert(_min_length > 0 and _min_length < _max_length)
 	_charset = StringFuzzer.extract_charset(pattern)
 
 
-static func extract_charset(pattern :String) -> PackedByteArray:
+static func extract_charset(pattern: String) -> PackedInt32Array:
 	var reg := RegEx.new()
 	if reg.compile(pattern) != OK:
-		push_error("Invalid pattern to generate Strings! Use e.g  'a-zA-Z0-9+-_'")
-		return PackedByteArray()
+		push_error("Invalid pattern to generate Strings! Use e.g  '\\w\\p{L}\\p{N}+-_'")
+		return PackedInt32Array()
 
-	var charset := Array()
+	var charset := PackedInt32Array()
 	var char_before := -1
 	var index := 0
 	while index < pattern.length():
@@ -45,21 +45,21 @@ static func extract_charset(pattern :String) -> PackedByteArray:
 			continue
 		char_before = char_current
 		charset.append(char_current)
-	return PackedByteArray(charset)
+	return charset
 
 
-static func build_chars(from :int, to :int) -> Array[int]:
-	var characters :Array[int] = []
+static func build_chars(from: int, to: int) -> PackedInt32Array:
+	var characters := PackedInt32Array()
 	for character in range(from+1, to+1):
 		characters.append(character)
 	return characters
 
 
 func next_value() -> String:
-	var value := PackedByteArray()
+	var value := PackedInt32Array()
 	var max_char := len(_charset)
-	var length :int = max(_min_length, randi() % _max_length)
+	var length: int = max(_min_length, randi() % _max_length)
 	for i in length:
 		@warning_ignore("return_value_discarded")
 		value.append(_charset[randi() % max_char])
-	return value.get_string_from_utf8()
+	return value.to_byte_array().get_string_from_utf32()

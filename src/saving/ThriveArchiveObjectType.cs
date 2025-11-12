@@ -32,7 +32,7 @@ public enum ThriveArchiveObjectType : uint
     BaseWorldEffect = 4118,
     GlobalGlaciationEvent = 4119,
     MeteorImpactEvent = 4120,
-    UnderwaterVentEruptionEffect = 4121,
+    UnderwaterVentEruptionEvent = 4121,
     Meteor = 4122,
     GlucoseReductionEffect = 4123,
     CompoundDiffusionEffect = 4124,
@@ -127,7 +127,7 @@ public enum ThriveArchiveObjectType : uint
     ChunkScene = 4213,
     ChunkCompound = 4214,
     SpeciesInfo = 4215,
-    WorldEffectTypes = 4216,
+    PatchEventTypes = 4216,
     XoShiRo256StarStar = 4217,
     ExternalEffect = 4218,
     CompoundCloudSystem = 4219,
@@ -299,6 +299,13 @@ public enum ThriveArchiveObjectType : uint
     FossilisedSpeciesInformation = 4382,
     FossilisedSpecies = 4383,
     Endosymbiont = 4384,
+    UpwellingEvent = 4385,
+    RunoffEvent = 4386,
+    CurrentDilutionEvent = 4387,
+    PatchEventsManager = 4388,
+    PatchEventProperties = 4389,
+
+    ComponentCellDivisionCollisionDisabler = 4385,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,

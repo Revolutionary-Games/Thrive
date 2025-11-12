@@ -97,6 +97,10 @@ public partial class PlayerMacroscopicInput : NodeWithInput
             }
 
             stage.Player.MovementDirection = movement;
+
+            // Rotate only when moving
+            if (movement.LengthSquared() > epsilon)
+                stage.Player.LookVector = -stage.PlayerCamera.CameraNode.GlobalBasis.Z;
         }
     }
 

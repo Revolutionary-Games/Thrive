@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
-"PO-Revision-Date: 2025-10-25 19:53+0000\n"
-"Last-Translator: Igor Silva <igorkcs@gmail.com>\n"
+"POT-Creation-Date: 2025-11-08 16:31+0100\n"
+"PO-Revision-Date: 2025-11-10 22:19+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -1451,6 +1451,14 @@ msgstr "Expele mucilagem para aumentar a velocidade e desacelerar células presa
 msgid "CURRENT_DEVELOPERS"
 msgstr "Desenvolvedores Atuais"
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "LOCALIZAÇÃO ATUAL"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "LOCALIZAÇÃO ATUAL"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "LOCALIZAÇÃO ATUAL"
 
@@ -2150,6 +2158,18 @@ msgstr ""
 "Aumenta os níveis de dióxido de carbono e enxofre.\n"
 "Gera pedaços de enxofre."
 
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr ""
+"Evento de erupção\n"
+"Cria mais sulfeto de hidrogênio e dióxido de carbono"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr ""
+"Evento de erupção\n"
+"Cria mais sulfeto de hidrogênio e dióxido de carbono"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Árvore Evolucionária"
 
@@ -2720,6 +2740,9 @@ msgstr "Número de ID"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(dependendo do modo de renderização e upscaling, nem todos os métodos estarão disponíveis)"
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 msgid "IMAGE_FILE_TYPES"
 msgstr "Arquivos de Imagem Compatíveis"
 
@@ -2933,18 +2956,6 @@ msgstr ":"
 
 msgid "JANUARY"
 msgstr "Janeiro"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "Modo de depuração JSON:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Sempre"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automaticamente"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Nunca"
 
 msgid "JULY"
 msgstr "Julho"
@@ -3954,6 +3965,10 @@ msgstr "Modificar tipo"
 
 msgid "MODS"
 msgstr "Mods"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Nenhum mod ativado"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -5214,6 +5229,9 @@ msgstr "Girar à direita"
 msgid "ROTATION_COLON"
 msgstr "Rotação:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Usar a auto-evo durante o jogo"
 
@@ -5282,12 +5300,6 @@ msgstr "Espaço usado:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Apagar o jogo salvo é irreversível, deseja apagar {0} permanentemente?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "Quando relatar um erro de salvamento, por favor inclua [color=#3796e1][url={0}]{1}[/url][/color] da [color=#3796e1][url={2}]pasta de logs[/url][/color] pois essa é uma informação crucial para os desenvolvedores do Thrive entenderem qual foi o erro de salvamento. Sem esse arquivo, será extremamente difícil diagnosticar e corrigir esse problema."
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Verifique se o modo de depuração JSON não está desativado antes de relatar esse erro de salvamento. O modo de depuração automática JSON deve ter criado um arquivo extra chamado {0} na [color=#3796e1][url={1}]pasta de logs[/url][/color]. Esse arquivo contém informações essenciais para que os desenvolvedores de Thrive descubram qual foi o erro de salvamento."
 
 msgid "SAVE_FAILED"
 msgstr "Falha ao Salvar"
@@ -6018,18 +6030,22 @@ msgstr "Equipe de Teoria"
 msgid "THERMOPLAST"
 msgstr "Termoplasto"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "O termoplasto é uma estrutura de membrana dupla que contém pigmentos termossensíveis agrupados em sacos membranosos. É um procarionte que foi assimilado para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem usar a energia da [thrive:compound type=\"temperature\"][/thrive:compound] crescente no ambiente para produzir [thrive:compound type=\"atp\"][/thrive:compound] a partir de água em um processo chamado [b]termossíntese[/b]. A taxa da produção de [thrive:compound type=\"atp\"][/thrive:compound] aumenta proporcionalmente à [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Usa temperaturas crescentesa para produzir [thrive:compound type=\"atp\"][/thrive:compound]. Taxa aumenta proporcionalmente à [thrive:compound type=\"temperature\"][/thrive:compound]. Use a [b]visão térmica[/b] para encontrar áreas quentes e frias."
 
 msgid "THERMOSYNTHASE"
 msgstr "Termossintase"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "A termossintase é uma proteína que muda de forma usando a convecção térmica. Quando exposta ao calor, ela se dobra ligando-se ao ADP e a converte em [thrive:compound type=\"atp\"][/thrive:compound] em um processo chamado [b]termossíntese[/b]. Então, ela se desdobra quando se resfria, permitindo que repita o ciclo quando a [thrive:compound type=\"temperature\"][/thrive:compound] aumenta novamente. A taxa de produção de [thrive:compound type=\"atp\"][/thrive:compound] aumenta proporcionalmente à [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Usa temperaturas crescentes para produzir [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta proporcionalmente à [thrive:compound type=\"temperature\"][/thrive:compound]. Use [b]visão térmica[/b] para encontrar áreas quentes e frias."
 
@@ -6710,6 +6726,17 @@ msgstr "Desfazer"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Desfazer a ultima ação"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Axônios são fibras nervosas que os neurônios utilizam para conectar e comunicar com outros neurônios. Essa organela transforma o tipo da célula em um tecido cerebral."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Obrigado(a)"
+
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Construir"
 
@@ -6857,6 +6884,9 @@ msgid "UPSCALE_METHOD"
 msgstr "Método de upscaling:"
 
 msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
+msgid "UPWELLING_EVENT"
 msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
@@ -8943,6 +8973,24 @@ msgstr "Aumentar o zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "Modo de depuração JSON:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Sempre"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automaticamente"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Nunca"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "Quando relatar um erro de salvamento, por favor inclua [color=#3796e1][url={0}]{1}[/url][/color] da [color=#3796e1][url={2}]pasta de logs[/url][/color] pois essa é uma informação crucial para os desenvolvedores do Thrive entenderem qual foi o erro de salvamento. Sem esse arquivo, será extremamente difícil diagnosticar e corrigir esse problema."
+
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Verifique se o modo de depuração JSON não está desativado antes de relatar esse erro de salvamento. O modo de depuração automática JSON deve ter criado um arquivo extra chamado {0} na [color=#3796e1][url={1}]pasta de logs[/url][/color]. Esse arquivo contém informações essenciais para que os desenvolvedores de Thrive descubram qual foi o erro de salvamento."
 
 #, fuzzy
 #~ msgid "OUTDATED"

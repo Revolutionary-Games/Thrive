@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
-"PO-Revision-Date: 2025-11-04 09:42+0000\n"
-"Last-Translator: xzihnago <xzihnago@gmail.com>\n"
+"POT-Creation-Date: 2025-11-08 16:31+0100\n"
+"PO-Revision-Date: 2025-11-10 22:19+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -1430,6 +1430,14 @@ msgstr ""
 msgid "CURRENT_DEVELOPERS"
 msgstr "當前開發人員"
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "當前位置"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "當前位置"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "當前位置"
 
@@ -2126,6 +2134,18 @@ msgstr ""
 "提高二氧化碳與硫含量。\n"
 "生成硫磺塊。"
 
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr ""
+"區域事件：噴發\n"
+"產生額外的硫化氫與二氧化碳"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr ""
+"區域事件：噴發\n"
+"產生額外的硫化氫與二氧化碳"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "演化樹"
 
@@ -2692,6 +2712,9 @@ msgstr "ID 號碼"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "（取決於渲染模式與解析度提升方式，並非所有方法都可用）"
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr "忽略其他錯誤"
+
 msgid "IMAGE_FILE_TYPES"
 msgstr "支援的圖像檔案"
 
@@ -2905,18 +2928,6 @@ msgstr ":"
 
 msgid "JANUARY"
 msgstr "一月"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON 除錯模式："
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "總是"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "自動"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "從不"
 
 msgid "JULY"
 msgstr "七月"
@@ -3915,6 +3926,9 @@ msgstr "修改類型"
 
 msgid "MODS"
 msgstr "模組"
+
+msgid "MODS_ARE_ENABLED"
+msgstr "模組已啟用"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -5164,6 +5178,9 @@ msgstr "向右旋轉"
 msgid "ROTATION_COLON"
 msgstr "旋轉："
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "在遊戲過程中運行 Auto-Evo"
 
@@ -5231,12 +5248,6 @@ msgstr "已使用作弊"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "刪除的存檔無法復原，您確定要永久刪除 {0} 嗎？"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "回報存檔錯誤時，請包含[color=#3796e1][url={2}]記錄檔資料夾[/url][/color]中的 [color=#3796e1][url={0}]{1}[/url][/color]，因為這是 Thrive 開發人員找出存檔錯誤的關鍵資訊。如果沒有該檔案，診斷與解決此問題將非常困難。"
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "在回報此存檔錯誤之前，請確保 JSON 偵錯模式未停用。自動 JSON 偵錯模式應在[color=#3796e1][url={1}]記錄檔資料夾[/url][/color]中建立一個名為 {0} 的額外檔案。該文件包含供 Thrive 開發人員確定存檔錯誤的關鍵資訊。"
 
 msgid "SAVE_FAILED"
 msgstr "存檔失敗"
@@ -5968,18 +5979,22 @@ msgstr "理論團隊"
 msgid "THERMOPLAST"
 msgstr "熱能體"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "熱能體是一種雙層膜結構，包含在膜囊中堆疊在一起的熱敏色素。它是一種已被其真核宿主同化的原核生物。熱能體中的色素能夠利用周圍環境的[thrive:compound type=\"temperature\"][/thrive:compound] 上升梯度生產能量，從水中生產[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[b]熱合成[/b]。其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率與[thrive:compound type=\"temperature\"][/thrive:compound] 的變化量成正比。"
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "利用溫度梯度生產[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"temperature\"][/thrive:compound] 的上升梯度成正比。使用[b]熱視覺[/b]來找出熱區域與冷區域。"
 
 msgid "THERMOSYNTHASE"
 msgstr "熱合成酶"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "熱合成酶是一種利用熱對流改變其形式的蛋白質，使其在受熱時折疊並與 ADP 結合，將其轉換為[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[b]熱合成[/b]。然後在冷卻時展開，當[thrive:compound type=\"temperature\"][/thrive:compound] 再次上升時，它會重複此循環。其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率與[thrive:compound type=\"temperature\"][/thrive:compound] 的變化量成正比。"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "利用溫度梯度生產[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"temperature\"][/thrive:compound] 的上升梯度成正比。使用[b]熱視覺[/b]來找出熱區域與冷區域。"
 
@@ -6668,6 +6683,17 @@ msgstr "撤銷"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "撤銷上一個操作"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr "未處理的錯誤：{0}"
+
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr ""
+"遊戲發生未處理的錯誤。雖然可以繼續運行，但問題可能會變得更糟。最適當的做法是完全重啟遊戲並載入最新存檔。現在可以嘗試先保存遊戲。\n"
+"如果您要回報此錯誤，請使用按鈕複製錯誤資訊並將其包含在您的報告中。"
+
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "發生未處理的錯誤"
+
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "建造"
 
@@ -6816,6 +6842,9 @@ msgstr "解析度提升方法："
 
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr "FSR 銳化"
+
+msgid "UPWELLING_EVENT"
+msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "授權條款與使用的程式庫"
@@ -9490,6 +9519,24 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON 除錯模式："
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "總是"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "自動"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "從不"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "回報存檔錯誤時，請包含[color=#3796e1][url={2}]記錄檔資料夾[/url][/color]中的 [color=#3796e1][url={0}]{1}[/url][/color]，因為這是 Thrive 開發人員找出存檔錯誤的關鍵資訊。如果沒有該檔案，診斷與解決此問題將非常困難。"
+
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "在回報此存檔錯誤之前，請確保 JSON 偵錯模式未停用。自動 JSON 偵錯模式應在[color=#3796e1][url={1}]記錄檔資料夾[/url][/color]中建立一個名為 {0} 的額外檔案。該文件包含供 Thrive 開發人員確定存檔錯誤的關鍵資訊。"
 
 #, fuzzy
 #~ msgid "OUTDATED"

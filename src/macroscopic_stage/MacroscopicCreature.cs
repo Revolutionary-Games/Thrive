@@ -128,6 +128,11 @@ public partial class MacroscopicCreature : RigidBody3D, ICharacterInventory, IEn
     /// </summary>
     public Vector3 MovementDirection { get; set; } = Vector3.Zero;
 
+    /// <summary>
+    ///   The direction the creature will rotate to
+    /// </summary>
+    public Vector3 LookVector { get; set; } = Vector3.Forward;
+
     [JsonProperty]
     public MovementMode MovementMode { get; set; }
 
@@ -214,6 +219,22 @@ public partial class MacroscopicCreature : RigidBody3D, ICharacterInventory, IEn
                 ApplyCentralImpulse(Mass * MovementDirection * (float)delta * 15 *
                     (Math.Clamp(Species.MuscularPower, 0, 1 * Mass) + 1));
             }
+        }
+
+        // Handle rotation
+        var angle = (-GlobalBasis.Z).SignedAngleTo(LookVector * new Vector3(1, 0, 1), Vector3.Up);
+
+        // If angle is small enough, eliminate Y angular rotation
+        if (MathF.Abs(angle) <= 0.1)
+        {
+            AngularVelocity *= new Vector3(1, 0, 1);
+        }
+        else
+        {
+            var damping = MathF.Abs(AngularVelocity.Y - angle);
+
+            ApplyTorqueImpulse(new Vector3(0, Mass * angle * (float)delta * 0.3f *
+                damping, 0));
         }
 
         // This is in physics process as this follows the player physics entity
@@ -964,7 +985,7 @@ public partial class MacroscopicCreature : RigidBody3D, ICharacterInventory, IEn
         if (buildingTypeToPlace == null)
             throw new InvalidOperationException("No structure type selected");
 
-        var relative = new Vector3(0, 0, 1) * buildingTypeToPlace.WorldSize.Z * 1.3f;
+        var relative = new Vector3(0, 0, -1) * buildingTypeToPlace.WorldSize.Z * 1.3f;
 
         // TODO: a raycast to get the structure on the ground
         // Also for player creature, taking the camera direction into account instead of the creature rotation would
@@ -972,7 +993,9 @@ public partial class MacroscopicCreature : RigidBody3D, ICharacterInventory, IEn
         var transform = GlobalTransform;
         var rotation = transform.Basis.GetRotationQuaternion();
 
-        var worldTransform = new Transform3D(new Basis(rotation), transform.Origin + rotation * relative);
+        var worldTransform = new Transform3D(new Basis(rotation).Rotated(Vector3.Up, MathF.PI), transform.Origin +
+            rotation * relative);
+
         return worldTransform;
     }
 }

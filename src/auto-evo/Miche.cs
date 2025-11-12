@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Godot;
 using SharedBase.Archive;
 
 /// <summary>
@@ -248,12 +249,23 @@ public class Miche : IArchivable
 
         // We check here to see if scores more than 0, because
         // scores is relative to the inserted species
-        if (IsLeafNode() && newScores[Occupant!] > 0)
+        if (IsLeafNode())
         {
-            if (!dry)
-                Occupant = species;
+            if (newScores.TryGetValue(Occupant!, out var value))
+            {
+                if (value > 0)
+                {
+                    if (!dry)
+                        Occupant = species;
 
-            return true;
+                    return true;
+                }
+            }
+            else
+            {
+                // TODO: a proper fix for this problem. And should this return something?
+                GD.PrintErr($"Score missing in miche for occupant: {Occupant!.FormattedIdentifier}");
+            }
         }
 
         var inserted = false;

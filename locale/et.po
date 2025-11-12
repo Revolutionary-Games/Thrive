@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2025-11-08 16:31+0100\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -1537,6 +1537,14 @@ msgstr "Jätkake mängu"
 msgid "CURRENT_DEVELOPERS"
 msgstr "Praegused arendajad"
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "PRAEGUNE ASUKOHT"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "PRAEGUNE ASUKOHT"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "PRAEGUNE ASUKOHT"
 
@@ -2296,6 +2304,14 @@ msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
 #, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "vabasurm"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "vabasurm"
+
+#, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Autor Revolutionary Games Studio"
 
@@ -2958,6 +2974,9 @@ msgstr "Isikukood"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Membraani liigid"
@@ -3206,18 +3225,6 @@ msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse 
 
 msgid "JANUARY"
 msgstr "jaanuaril"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON-i silumisrežiim:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Alati"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automaatselt"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Mitte kunagi"
 
 msgid "JULY"
 msgstr "juuli"
@@ -4385,6 +4392,10 @@ msgstr "Muuda tüüp"
 
 msgid "MODS"
 msgstr "Modifikatsioonid"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "töövõimetu"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -5780,6 +5791,9 @@ msgstr "Pöörake paremale"
 msgid "ROTATION_COLON"
 msgstr "elanikkond:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Käivitage mängu ajal auto-evo"
 
@@ -5849,13 +5863,6 @@ msgstr "Kasutatud ruum:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite faili {0} jäädavalt kustutada?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "JSON-i silumisrežiim:"
 
 msgid "SAVE_FAILED"
 msgstr "Salvestamine ebaõnnestus"
@@ -7411,6 +7418,17 @@ msgstr "Võta tagasi"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Võta viimane toiming tagasi"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Pili (ainsuses: pilus) leidub paljude mikroorganismide pinnal ja meenutab õhukesi karvu. Mikroorganismi pinnal võib esineda kümneid kuni sadu pilisid ja neil on üks mitmest eesmärgist, sealhulgas röövloomade rollist. Patogeensed mikroorganismid kasutavad pilisid virulentsuse tagamiseks kas peremeeskudede kinnitumiseks ja nendega seondumiseks või välismembraanist mööda tungimiseks, et pääseda tsütoplasmasse. Paljud sarnased pilid on olemas, kuid ei ole evolutsiooniliselt seotud ja on tekkinud konvergentse evolutsiooni tulemusena. Ühel organismil võib olla võime ekspresseerida mitut tüüpi pilisid ja neid, mis on pinnal, muudetakse ja asendatakse pidevalt."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "SA OLED ÕIDULIKUD!"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Mutatsioonipunktid"
@@ -7579,6 +7597,9 @@ msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
+msgid "UPWELLING_EVENT"
 msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
@@ -9838,6 +9859,22 @@ msgstr "Suurenda"
 
 msgid "ZOOM_OUT"
 msgstr "Suumi välja"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON-i silumisrežiim:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Alati"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automaatselt"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Mitte kunagi"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "JSON-i silumisrežiim:"
 
 #, fuzzy
 #~ msgid "OUTDATED"

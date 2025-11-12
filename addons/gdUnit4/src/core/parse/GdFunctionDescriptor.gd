@@ -87,7 +87,7 @@ func is_coroutine() -> bool:
 func is_parameterized() -> bool:
 	for current in _args:
 		var arg :GdFunctionArgument = current
-		if arg.name() == GdFunctionArgument.ARG_PARAMETERIZED_TEST:
+		if arg.name() in GdFunctionArgument.ARG_PARAMETERIZED_TEST:
 			return true
 	return false
 

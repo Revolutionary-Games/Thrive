@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
-"PO-Revision-Date: 2025-11-03 21:57+0000\n"
+"POT-Creation-Date: 2025-11-08 16:31+0100\n"
+"PO-Revision-Date: 2025-11-11 14:42+0000\n"
 "Last-Translator: Alexandra Vasilevskaya <sitta.europaea666@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -1222,11 +1222,9 @@ msgstr "Кнопка «лепесток» 3"
 msgid "CONTROLLER_BUTTON_PADDLE4"
 msgstr "Кнопка «лепесток» 4"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS3_SELECT"
 msgstr "Выбрать"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS3_START"
 msgstr "Начать"
 
@@ -1431,6 +1429,14 @@ msgstr ""
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Текущие Разработчики"
+
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "ТЕКУЩАЯ ЛОКАЦИЯ"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "ТЕКУЩАЯ ЛОКАЦИЯ"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ТЕКУЩАЯ ЛОКАЦИЯ"
@@ -1664,7 +1670,6 @@ msgstr "Нормально"
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Эффективность усвоения"
 
-#, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Эффективность усвоения:"
 
@@ -1703,7 +1708,6 @@ msgstr ""
 msgid "DISCONNECTED_METABALLS"
 msgstr "Отсоединенные метасферы"
 
-#, fuzzy
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 "Среди размещённых клеток имеются метасферы, которые не объединены с остальными.\n"
@@ -1811,29 +1815,24 @@ msgstr "Те синие клетки однако."
 msgid "EASTEREGG_MESSAGE_13"
 msgstr "Если ваша клетка имеет размер 150 гексов, вы можете поглощать даже большие куски железа!"
 
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_14"
 msgstr "Забавный факт: на Земле известно более 8 тысяч видов инфузорий."
 
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "Забавный факт: инфузория-трубач Stentor может растягиваться и ловить добычу с помощью создающих водные потоки ресничек, которые расположены по краю похожего на раструб рта."
+msgstr "Забавный факт: инфузория Stentor может растягиваться и ловить добычу с помощью создающих водные потоки ресничек, которые расположены по краю похожего на раструб рта."
 
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_16"
 msgstr "Забавный факт: Didinium - это инфузория, которая охотится на других инфузорий, таких как Paramecia."
 
 msgid "EASTEREGG_MESSAGE_17"
 msgstr "Забавный факт: Амеба охотится и ловит добычу с помощью \"ножек\" из цитоплазмы, называемых псевдоподиями."
 
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "Бактерии сильнее, чем кажутся: может, они и выглядят крошечными, но некоторые из них могут проникнуть внутрь вас и убить!"
 
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Вот совет: токсины можно выпустить, чтобы оттолкнуть от себя другие токсины, если вы достаточно быстры!"
 
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Все существа в игре эволюционировали из одной предковой формы. Попробуйте разобраться, кто из них - ближайшие родственники!"
 
@@ -1846,7 +1845,6 @@ msgstr "Забавный факт: метаболосома — многогра
 msgid "EASTEREGG_MESSAGE_6"
 msgstr "Вот совет: иногда лучше просто убежать от других клеток."
 
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_7"
 msgstr "Thrive - симулятор эволюции на иной планете, так что не рассчитывайте найти здешних существ на Земле!"
 
@@ -1920,7 +1918,6 @@ msgstr ""
 "\n"
 "Если ваша клетка ещё не готова к содержанию Ядра, то вы можете нажать на [b]кнопку отмены[/b]; это [u]удалит Ядро[/u], вернув всё на круги своя."
 
-#, fuzzy
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "Впервые отредактируйте своего микроба"
 
@@ -2136,6 +2133,18 @@ msgstr ""
 "Падение сернистого метеорита\n"
 "Повышение уровня углекислого газа и серы.\n"
 "создаёт серные кусочки."
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr ""
+"Извержение\n"
+"Создаёт дополнительный Сероводород и Углекислый газ"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr ""
+"Извержение\n"
+"Создаёт дополнительный Сероводород и Углекислый газ"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Эволюционное древо"
@@ -2703,6 +2712,9 @@ msgstr "Номер ID"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(в зависимости от движка отрисовки и масштабирования, могут быть доступны не все методы)"
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr "Игнорируйте дальнейшие ошибки"
+
 msgid "IMAGE_FILE_TYPES"
 msgstr "Поддерживаемые файлы изображений"
 
@@ -2916,18 +2928,6 @@ msgstr ":"
 
 msgid "JANUARY"
 msgstr "Январь"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "Режим отладки JSON:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Всегда"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Автоматически"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Никогда"
 
 msgid "JULY"
 msgstr "Июль"
@@ -3926,6 +3926,9 @@ msgstr "Изменить Вид"
 
 msgid "MODS"
 msgstr "Моды"
+
+msgid "MODS_ARE_ENABLED"
+msgstr "Моды Включены"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -5175,6 +5178,9 @@ msgstr "Повернуть вправо"
 msgid "ROTATION_COLON"
 msgstr "Поворот:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Запускать Авто-Эво во время игры"
 
@@ -5242,12 +5248,6 @@ msgstr "Используемые читы"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Удаление текущего сохранения невозможно отменить, вы действительно желаете перманентно удалить {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "Когда вы отправляете сохранение для репорта, то пожалуйста, отправьте еще и [color=#3796e1][url={0}]{1}[/url][/color] from the [color=#3796e1][url={2}]logs folder[/url][/color] , поскольку внутри лог файла содержится то, что могло вызывать ошибку. Без этого файла будет довольно таки проблематично выявить ошибку, и, соответственно,следовательно, разумеется, к несчастью, будет сложней исправить данную проблему в дальнейшем."
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Пожалуйста, удостоверьтесь в том, что режим отладки JSON не отключен перед отправкой данной ошибки сохранения. Автоматический режим отладки JSON должен был создать дополнительный файл под названием {0} в [color=#3796e1][url={1}]logs folder[/url][/color]. Этот файл содержит критически важную информацию для разработчиков Thrive, позволяя им выяснить в чем, всё же, ошибка файла сохранения."
 
 msgid "SAVE_FAILED"
 msgstr "Сохранение не удалось"
@@ -5980,19 +5980,19 @@ msgid "THERMOPLAST"
 msgstr "Термопласт"
 
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr "Термопласт — двумембранная структура, содержащая термочувствительные пигменты, сложенные вместе в мембранные мешочки. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Пигменты в термопласте способны использовать энергию повышения [thrive:compound type=\"temperature\"][/thrive:compound] в окружающей среде для получения [thrive:compound type=\"atp\"][/thrive:compound] из воды и газообразного углекислого газа в процессе, называемом [b]термосинтез[/b]. Скорость выработки [thrive:compound type=\"atp\"][/thrive:compound] зависит от изменения[thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Термопласт — двумембранная структура, содержащая термочувствительные пигменты, сложенные вместе в мембранные мешочки. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Пигменты в термопласте способны использовать энергию повышения [thrive:compound type=\"temperature\"][/thrive:compound] в окружающей среде для получения [thrive:compound type=\"glucose\"][/thrive:compound] в процессе, называемом [b]термосинтез[/b]. Скорость выработки [thrive:compound type=\"glucose\"][/thrive:compound] зависит от изменения[thrive:compound type=\"temperature\"][/thrive:compound]."
 
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Использует повышающиеся температуры для производства [thrive:compound type=\"atp\"][/thrive:compound]. Скорость увеличивается с увеличением [thrive:compound type=\"temperature\"][/thrive:compound]. Используйте [b]тепловое зрение[/b], чтобы найти горячие и холодные области."
+msgstr "Использует повышающиеся температуры для производства [thrive:compound type=\"glucose\"][/thrive:compound]. Скорость увеличивается с увеличением [thrive:compound type=\"temperature\"][/thrive:compound]. Используйте [b]тепловое зрение[/b], чтобы найти горячие и холодные области."
 
 msgid "THERMOSYNTHASE"
 msgstr "Термосинтез"
 
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "Термосинтаза — это белок, использующий конвекцию для изменения своей формы, что позволяет ему складываться и захватывать АДФ при нагревании, преобразовывая в [thrive:compound type=\"atp\"][/thrive:compound] в процессе, называемом [b]\"термосинтез\"[/b]. Скорость производства [thrive:compound type=\"atp\"][/thrive:compound] изменяется с [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Термосинтаза — это белок, использующий конвекцию для изменения своей формы, преобразовывая в [thrive:compound type=\"glucose\"][/thrive:compound] в процессе, называемом [b]\"термосинтез\"[/b]. Скорость производства [thrive:compound type=\"glucose\"][/thrive:compound] изменяется с [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Производит [thrive:compound type=\"atp\"][/thrive:compound] используя повышенную температуру. Скорость увеличивается от [thrive:compound type=\"temperature\"]. Используйте [b]thermal vision[/b], чтобы найти горячие и холодные области."
+msgstr "Производит [thrive:compound type=\"glucose\"][/thrive:compound] используя повышенную температуру. Скорость увеличивается от [thrive:compound type=\"temperature\"]. Используйте [b]thermal vision[/b], чтобы найти горячие и холодные области."
 
 msgid "THERMOSYNTHESIS"
 msgstr "Термосинтез"
@@ -6679,6 +6679,17 @@ msgstr "Отменить"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Отменить последнее действие"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr "Необработанные ошибки: {0}"
+
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr ""
+"В игре произошла необработанная ошибка. Возможно, вы сможете продолжить, но ошибки могут усугубиться. Самый безопасный вариант — полностью перезапустить игру и загрузить последнее сохранение. Возможно, сейчас ещё можно спастись.\n"
+"Если вы сообщаете об этой ошибке, пожалуйста, воспользуйтесь кнопкой, чтобы скопировать сообщение об ошибке и включить его в свой отчёт."
+
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Произошла необработанная ошибка"
+
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Соорудить"
 
@@ -6827,6 +6838,9 @@ msgstr "Технология Апскейлинга:"
 
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr "FSR резкость"
+
+msgid "UPWELLING_EVENT"
+msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Лицензии и использованные библиотеки"
@@ -9534,6 +9548,24 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "Режим отладки JSON:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Всегда"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Автоматически"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Никогда"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "Когда вы отправляете сохранение для репорта, то пожалуйста, отправьте еще и [color=#3796e1][url={0}]{1}[/url][/color] from the [color=#3796e1][url={2}]logs folder[/url][/color] , поскольку внутри лог файла содержится то, что могло вызывать ошибку. Без этого файла будет довольно таки проблематично выявить ошибку, и, соответственно,следовательно, разумеется, к несчастью, будет сложней исправить данную проблему в дальнейшем."
+
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Пожалуйста, удостоверьтесь в том, что режим отладки JSON не отключен перед отправкой данной ошибки сохранения. Автоматический режим отладки JSON должен был создать дополнительный файл под названием {0} в [color=#3796e1][url={1}]logs folder[/url][/color]. Этот файл содержит критически важную информацию для разработчиков Thrive, позволяя им выяснить в чем, всё же, ошибка файла сохранения."
 
 #, fuzzy
 #~ msgid "OUTDATED"

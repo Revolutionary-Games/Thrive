@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2025-11-08 16:31+0100\n"
 "PO-Revision-Date: 2025-10-08 23:19+0000\n"
 "Last-Translator: Gonzalo Kongo <counsou@gmail.com>\n"
 "Language-Team: Japanese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ja/>\n"
@@ -1417,6 +1417,14 @@ msgstr ""
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "現在の行動をキャンセル"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "現在の行動をキャンセル"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
 
@@ -2011,6 +2019,12 @@ msgstr ""
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr ""
+
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2558,6 +2572,9 @@ msgstr ""
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 msgid "IMAGE_FILE_TYPES"
 msgstr ""
 
@@ -2766,18 +2783,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr ""
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3690,6 +3695,9 @@ msgid "MODIFY_TYPE"
 msgstr ""
 
 msgid "MODS"
+msgstr ""
+
+msgid "MODS_ARE_ENABLED"
 msgstr ""
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
@@ -4878,6 +4886,9 @@ msgstr ""
 msgid "ROTATION_COLON"
 msgstr ""
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
 
@@ -4936,12 +4947,6 @@ msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr ""
 
 msgid "SAVE_FAILED"
@@ -6113,6 +6118,16 @@ msgstr ""
 msgid "UNDO_THE_LAST_ACTION"
 msgstr ""
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "細胞は化学受容によって「見る」ことができます。これにより、細胞は周囲の情報を取得します。この小器官を追加することは、より精密な化学受容への進化を意味します。プレイヤーは細胞ステージでも視界を持つため、画面外に向かって線が表示され、まだ見えていない近くの化合物や種を示す形で表現されます。"
+
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr ""
+
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr ""
 
@@ -6258,6 +6273,9 @@ msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
+msgid "UPWELLING_EVENT"
 msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"

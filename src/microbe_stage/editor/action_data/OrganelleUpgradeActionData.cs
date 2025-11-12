@@ -41,6 +41,8 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
         int cost = 0;
 
         // TODO: allow custom upgrades to have a cost (should also add a test in EditorMPTests)
+        // TODO: also each upgrade will need to have handling code added, see all implementations of
+        // IComponentSpecificUpgrades.CalculateCost
 
         // Calculate the costs of the selected new general upgrades
 
