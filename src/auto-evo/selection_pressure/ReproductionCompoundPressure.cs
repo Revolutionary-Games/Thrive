@@ -53,7 +53,8 @@ public class ReproductionCompoundPressure : SelectionPressure
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var instance = new ReproductionCompoundPressure((Compound)reader.ReadInt32(), reader.ReadBool(), reader.ReadFloat());
+        var instance = new ReproductionCompoundPressure(
+            (Compound)reader.ReadInt32(), reader.ReadBool(), reader.ReadFloat());
 
         instance.ReadBasePropertiesFromArchive(reader, 1);
         return instance;
@@ -106,7 +107,8 @@ public class ReproductionCompoundPressure : SelectionPressure
                     microbeSpecies, chunk.Value, compoundDefinition, patch.Biome);
                 var chunkScore = 1.0f;
 
-                // Speed is not too important to chunk microbes, but all else being the same faster is better than slower
+                // Speed is not too important to chunk microbes,
+                // but all else being the same faster is better than slower
                 chunkScore += MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.4f);
 
                 // Diminishing returns on storage
@@ -153,8 +155,6 @@ public class ReproductionCompoundPressure : SelectionPressure
             cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumption;
         finalScore += score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION /
             cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumptionStationary;
-
-
 
         // Take into account how much compound the species needs to collect
         finalScore /= species.TotalReproductionCost[compound];

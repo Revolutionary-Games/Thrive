@@ -49,7 +49,8 @@ public class AutoEvoGlobalCache
         MetabolicStabilityPressure = new MetabolicStabilityPressure(10.0f);
         EnvironmentalTolerancesPressure = new EnvironmentalTolerancePressure(4);
 
-        PhosphatePressure = new ReproductionCompoundPressure(Compound.Phosphates, worldSettings.DayNightCycleEnabled, 1.0f);
+        PhosphatePressure = new ReproductionCompoundPressure(
+            Compound.Phosphates, worldSettings.DayNightCycleEnabled, 1.0f);
         AmmoniaPressure = new ReproductionCompoundPressure(Compound.Ammonia, worldSettings.DayNightCycleEnabled, 1.0f);
 
         MinorGlucoseConversionEfficiencyPressure =
