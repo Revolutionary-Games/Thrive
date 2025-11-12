@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 using AutoEvo;
 using Godot;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
@@ -45,27 +44,20 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     protected Node world = null!;
 
     [Export]
-    protected PauseMenu pauseMenu = null!;
-
-    [Export]
     protected MicrobeEditorTabButtons? editorTabSelector;
 #pragma warning restore CA2213
 
     /// <summary>
     ///   Where all user actions will  be registered
     /// </summary>
-    [JsonProperty]
     protected EditorActionHistory<TAction> history = null!;
 
     protected bool ready;
 
-    [JsonProperty]
     protected RunResults? autoEvoResults;
 
-    [JsonProperty]
     protected LocalizedStringBuilder? autoEvoExternal;
 
-    [JsonProperty]
     protected EditorTab selectedEditorTab = EditorTab.Report;
 
     /// <summary>
@@ -77,7 +69,6 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     /// <summary>
     ///   This is protected only so that this is loaded from a save. No derived class should modify this
     /// </summary>
-    [JsonProperty]
     protected GameProperties? currentGame;
 
 #pragma warning disable CA2213
@@ -90,7 +81,6 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     /// <summary>
     ///   The fraction of daylight the editor is previewing things at
     /// </summary>
-    [JsonProperty]
     private float dayLightFraction = 1.0f;
 
     protected EditorBase()
@@ -104,10 +94,10 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     /// </summary>
     public Node3D RootOfDynamicallySpawned { get; private set; } = null!;
 
-    [JsonIgnore]
+    public virtual MainGameState GameState => throw new GodotAbstractPropertyNotOverriddenException();
+
     public bool TransitionFinished { get; protected set; }
 
-    [JsonIgnore]
     public double MutationPoints
     {
         get => mutationPointsCache ?? CalculateMutationPointsLeft();
@@ -118,13 +108,10 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         }
     }
 
-    [JsonProperty]
     public bool FreeBuilding { get; protected set; }
 
-    [JsonIgnore]
     public RunResults? PreviousAutoEvoResults => autoEvoResults;
 
-    [JsonIgnore]
     public GameProperties CurrentGame
     {
         get => currentGame ?? throw new InvalidOperationException("Editor not initialized with current game yet");
@@ -134,7 +121,6 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     /// <summary>
     ///   Accesses the current tutorial data
     /// </summary>
-    [JsonIgnore]
     public TutorialState TutorialState => CurrentGame.TutorialState ??
         throw new InvalidOperationException("Editor doesn't have current game set yet");
 
@@ -142,7 +128,6 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     ///   If set the editor returns to this stage. The CurrentGame
     ///   should be shared with this stage. If not set returns to a newly created instance of the stage
     /// </summary>
-    [JsonProperty]
     public TStage? ReturnToStage { get; set; }
 
     /// <summary>
@@ -154,17 +139,14 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     ///     player was in the cell editor tab and saved.
     ///   </para>
     /// </remarks>
-    [JsonProperty]
     public bool ShowHover { get; set; }
 
-    [JsonIgnore]
     public Node GameStateRoot => this;
 
     public bool IsLoadedFromSave { get; set; }
 
     public bool NodeReferencesResolved { get; private set; }
 
-    [JsonIgnore]
     public float DayLightFraction
     {
         get => dayLightFraction;
@@ -179,18 +161,15 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         }
     }
 
-    [JsonProperty]
     public bool EditorReady
     {
         get => ready;
         set
         {
             ready = value;
-            pauseMenu.GameLoading = !value;
         }
     }
 
-    [JsonIgnore]
     public virtual bool CanCancelAction => throw new GodotAbstractPropertyNotOverriddenException();
 
     public virtual Species EditedBaseSpecies => throw new GodotAbstractPropertyNotOverriddenException();
@@ -323,7 +302,10 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         GD.Print("Hiding loading screen for editor as we were loaded from a save");
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f, () => LoadingScreen.Instance.Hide(),
             false, false);
-        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f, null, false, false);
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f, () =>
+        {
+            PauseMenu.Instance.ReportEnterGameState(GameState, CurrentGame);
+        }, false, false);
     }
 
     /// <summary>
@@ -357,6 +339,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         if (EditedBaseSpecies == null)
             throw new InvalidOperationException("Editor not initialized, missing edited species");
 
+        PauseMenu.Instance.ReportStageTransition();
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, OnEditorExitTransitionFinished,
             false);
 
@@ -657,7 +640,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     public void OpenSpeciesInfoFor(Species species)
     {
-        pauseMenu.OpenToSpeciesPage(species);
+        PauseMenu.Instance.OpenToSpeciesPage(species);
     }
 
     public double CalculateNextGenerationTimePoint()
@@ -680,8 +663,6 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     protected virtual void InitEditor(bool fresh)
     {
-        pauseMenu.GameProperties = CurrentGame;
-
         if (fresh)
         {
             // Auto save is wanted once possible
@@ -751,7 +732,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         if (EditedBaseSpecies == null)
             throw new Exception($"Editor setup which was just ran didn't setup {nameof(EditedBaseSpecies)}");
 
-        pauseMenu.SetNewSaveNameFromSpeciesName();
+        PauseMenu.Instance.SetNewSaveNameFromSpeciesName();
 
         ApplyComponentLightLevels();
     }
@@ -853,6 +834,8 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     {
         EditorReady = true;
         LoadingScreen.Instance.Hide();
+
+        PauseMenu.Instance.ReportEnterGameState(GameState, CurrentGame);
 
         GD.Print("Elapsing time on editor entry");
         ElapseEditorEntryTime();
@@ -1083,6 +1066,16 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         }
 
         ApplyCheatsUsedFlag();
+    }
+
+    protected void OnOpenPauseMenu()
+    {
+        PauseMenu.Instance.Open();
+    }
+
+    protected void OnOpenPauseMenuToHelp()
+    {
+        PauseMenu.Instance.OpenToHelp();
     }
 
     private void MakeSureEditorReturnIsGood()

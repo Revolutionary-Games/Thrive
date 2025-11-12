@@ -8,7 +8,6 @@ using Environment = Godot.Environment;
 /// <summary>
 ///   Macroscopic main editor class
 /// </summary>
-[JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/macroscopic_stage/editor/MacroscopicEditor.tscn", UsesEarlyResolve = false)]
 public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicStage>, IEditorReportData,
     ICellEditorData
@@ -96,8 +95,9 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
     public ICellDefinition? EditedCellProperties => selectedCellTypeToEdit;
 
     // TODO: same as multicellular editor, might be needed in the future to support tolerances editing
-    [JsonIgnore]
     public IReadOnlyList<OrganelleTemplate>? EditedCellOrganelles => null;
+
+    public override MainGameState GameState => MainGameState.MacroscopicEditor;
 
     protected override string MusicCategory => "MacroscopicEditor";
 

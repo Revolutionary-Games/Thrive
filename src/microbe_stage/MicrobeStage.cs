@@ -681,6 +681,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         RecordPlayerReproduction();
 
+        PauseMenu.Instance.ReportStageTransition();
+
         // We don't free this here as the editor will return to this scene
         if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
         {

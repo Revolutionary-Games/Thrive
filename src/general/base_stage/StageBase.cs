@@ -16,9 +16,6 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     protected Node rootOfDynamicallySpawned = null!;
 
     [Export]
-    protected PauseMenu pauseMenu = null!;
-
-    [Export]
     protected Control hudRoot = null!;
 
     protected Node3D? graphicsPreloadNode;
@@ -92,7 +89,6 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
         set
         {
             transitionFinished = value;
-            pauseMenu.GameLoading = !transitionFinished;
         }
     }
 
@@ -244,6 +240,8 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     public virtual void OnFinishTransitioning()
     {
         TransitionFinished = true;
+        PauseMenu.Instance.ReportEnterGameState(GameState, CurrentGame ?? throw new Exception("Current game not set"));
+        PauseMenu.Instance.SetNewSaveNameFromSpeciesName();
     }
 
     public virtual void OnFinishLoading(Save save)
@@ -314,10 +312,6 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
         }
 
         GD.Print(CurrentGame!.GameWorld.WorldSettings);
-
-        pauseMenu.GameProperties = CurrentGame ?? throw new InvalidOperationException("current game is not set");
-
-        pauseMenu.SetNewSaveNameFromSpeciesName();
 
         StartMusic();
 
