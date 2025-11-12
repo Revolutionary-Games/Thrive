@@ -97,9 +97,6 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 
 #pragma warning restore CA2213
 
-    [Signal]
-    public delegate void OnHelpMenuOpenRequestedEventHandler();
-
     public ITutorialInput? EventReceiver { get; set; }
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeStage;
@@ -581,9 +578,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     {
         TutorialHelper.HandleCloseSpecificForGUI(this, CheckTheHelpMenu.TUTORIAL_NAME);
 
-        // Note that this opening while the tutorial box is still visible is a bit problematic due to:
-        // https://github.com/Revolutionary-Games/Thrive/issues/2326
-        EmitSignal(SignalName.OnHelpMenuOpenRequested);
+        PauseMenu.Instance.OpenToHelp();
     }
 
     private void DummyKeepInitialTextTranslations()
