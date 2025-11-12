@@ -83,6 +83,11 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     private bool hasGeneratedWiki;
 
     /// <summary>
+    ///   As Thriveopedias are now persistent, we need to know once game property setup is done
+    /// </summary>
+    private bool currentGamePagesAdded;
+
+    /// <summary>
     ///   The currently selected stage to view
     /// </summary>
     private Stage currentSelectedStage;
@@ -129,9 +134,15 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
             // Add all pages associated with a game in progress
             if (currentGame != null)
             {
-                AddPage("CurrentWorld");
-                AddPage("PatchMap");
-                AddPage("EvolutionaryTree");
+                if (!currentGamePagesAdded)
+                {
+                    AddPage("CurrentWorld");
+                    AddPage("PatchMap");
+                    AddPage("EvolutionaryTree");
+                    currentGamePagesAdded = true;
+                }
+
+                // Looks like refresh is automatic, so we don't need an else clause here
             }
 
             // Notify all pages of the new game properties
