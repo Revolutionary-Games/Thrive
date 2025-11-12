@@ -81,6 +81,9 @@ public partial class LogInterceptor : Logger
         if (code.Contains("with non-equal opposite anchors"))
             return;
 
+        // We might want to ignore this somewhat intermittent error: Parent node is busy adding
+        // that sometimes happens on scene switch but doesn't seem to cause any problems
+
         // Avoid recursion
         if (code.Contains("Unhandled Exception Log"))
             return;

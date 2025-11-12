@@ -65,6 +65,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     // tolerances implementation)
     public IReadOnlyList<OrganelleTemplate>? EditedCellOrganelles => null;
 
+    public override MainGameState GameState => MainGameState.MulticellularEditor;
+
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
     public override ArchiveObjectType ArchiveObjectType =>

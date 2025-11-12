@@ -164,10 +164,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     public bool EditorReady
     {
         get => ready;
-        set
-        {
-            ready = value;
-        }
+        set => ready = value;
     }
 
     public virtual bool CanCancelAction => throw new GodotAbstractPropertyNotOverriddenException();
@@ -227,6 +224,8 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         base._EnterTree();
 
         AchievementsManager.OnPlayerHasCheatedEvent += OnCheatsUsed;
+
+        PauseMenu.Instance.Connect(PauseMenu.SignalName.MakeSave, new Callable(this, nameof(SaveGame)));
     }
 
     public override void _ExitTree()
@@ -256,6 +255,8 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         {
             GD.Print("Editor's return to stage is already disposed");
         }
+
+        PauseMenu.Instance.Disconnect(PauseMenu.SignalName.MakeSave, new Callable(this, nameof(SaveGame)));
     }
 
     public override void _Process(double delta)
@@ -302,10 +303,8 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         GD.Print("Hiding loading screen for editor as we were loaded from a save");
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f, () => LoadingScreen.Instance.Hide(),
             false, false);
-        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f, () =>
-        {
-            PauseMenu.Instance.ReportEnterGameState(GameState, CurrentGame);
-        }, false, false);
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f,
+            () => { PauseMenu.Instance.ReportEnterGameState(GameState, CurrentGame); }, false, false);
     }
 
     /// <summary>

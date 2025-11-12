@@ -86,10 +86,7 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     public bool TransitionFinished
     {
         get => transitionFinished;
-        set
-        {
-            transitionFinished = value;
-        }
+        set => transitionFinished = value;
     }
 
     public bool CanBeReferencedInArchive => true;
@@ -134,6 +131,8 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
         }
 
         AchievementsManager.OnPlayerHasCheatedEvent += OnCheatsUsed;
+
+        PauseMenu.Instance.Connect(PauseMenu.SignalName.MakeSave, new Callable(this, nameof(SaveGame)));
     }
 
     public override void _ExitTree()
@@ -141,6 +140,8 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
         base._ExitTree();
 
         AchievementsManager.OnPlayerHasCheatedEvent -= OnCheatsUsed;
+
+        PauseMenu.Instance.Disconnect(PauseMenu.SignalName.MakeSave, new Callable(this, nameof(SaveGame)));
     }
 
     public override void _Process(double delta)
@@ -512,6 +513,11 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     protected virtual void PerformQuickSave()
     {
         throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual void SaveGame(string name)
+    {
+        SaveHelper.ShowErrorAboutPrototypeSaving(this);
     }
 
     protected virtual void OnLightLevelUpdate()

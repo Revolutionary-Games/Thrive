@@ -830,6 +830,13 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         SaveHelper.ShowErrorAboutPrototypeSaving(this);
     }
 
+    protected override void SaveGame(string name)
+    {
+        // TODO: saving for this stage
+        _ = name;
+        SaveHelper.ShowErrorAboutPrototypeSaving(this);
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -841,13 +848,6 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         }
 
         base.Dispose(disposing);
-    }
-
-    private void SaveGame(string name)
-    {
-        // TODO: saving for this stage
-        _ = name;
-        SaveHelper.ShowErrorAboutPrototypeSaving(this);
     }
 
     private void OnFinishLoading()
