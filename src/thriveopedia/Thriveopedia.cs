@@ -236,10 +236,11 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     ///   Opens an existing Thriveopedia page and adds it to the page history.
     /// </summary>
     /// <param name="pageName">The name of the page</param>
-    public void ChangePage(string pageName)
+    /// <param name="playSound">Plays a button press sound if true</param>
+    public void ChangePage(string pageName, bool playSound = true)
     {
         // By default, assume we're navigating to this page normally
-        ChangePage(pageName, true, true);
+        ChangePage(pageName, true, true, playSound);
     }
 
     public Species? GetActiveSpeciesData(uint speciesId)
@@ -500,9 +501,11 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     /// <param name="pageName">The name of the page</param>
     /// <param name="addToHistory">Whether this page should be added to the history</param>
     /// <param name="clearFuture">Whether this operation should clear the page future</param>
-    private void ChangePage(string pageName, bool addToHistory, bool clearFuture)
+    /// <param name="playSound">If true, plays a sound for switching pages</param>
+    private void ChangePage(string pageName, bool addToHistory, bool clearFuture, bool playSound = true)
     {
-        GUICommon.Instance.PlayButtonPressSound();
+        if (playSound)
+            GUICommon.Instance.PlayButtonPressSound();
 
         if (pageName == SelectedPage.PageName)
             return;
