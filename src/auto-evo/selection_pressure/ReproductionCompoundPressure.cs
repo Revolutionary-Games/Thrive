@@ -119,7 +119,7 @@ public class ReproductionCompoundPressure : SelectionPressure
                     chunkScore *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
                 }
 
-                chunkScore += chunkChemoreceptorScore;
+                chemoreceptorScore += chunkChemoreceptorScore;
                 score += chunkScore;
 
                 if (chunk.Value.Compounds?.TryGetValue(compoundDefinition.ID, out var chunkCompoundAmount) != true)
@@ -133,26 +133,33 @@ public class ReproductionCompoundPressure : SelectionPressure
 
         // modify score by how much compound is available for collection
         score *= compoundAmount;
+        chemoreceptorScore *= compoundAmount;
 
-        // modify score by activity
-        var activityFraction = microbeSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
-        score *= activityFraction;
-
+        // Organelles that produce this compound
         foreach (var organelle in microbeSpecies.Organelles.Organelles)
         {
             foreach (var process in organelle.Definition.RunnableProcesses)
             {
                 if (process.Process.Outputs.TryGetValue(compoundDefinition, out var producedCompoundAmount))
                 {
-                    score += 100.0f;
+                    score += producedCompoundAmount * Constants.AUTO_EVO_REPRODUCTION_COMPOUND_PRODUCTION_SCORE;
                 }
             }
         }
 
-        // Take into account how much compound the species needs to collect
-        score /= species.TotalReproductionCost[compound];
+        // modify score by energy cost and activity
+        var activityFraction = microbeSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+        var finalScore = (score + chemoreceptorScore) * activityFraction /
+            cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumption;
+        finalScore += score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION /
+            cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumptionStationary;
 
-        return score;
+
+
+        // Take into account how much compound the species needs to collect
+        finalScore /= species.TotalReproductionCost[compound];
+
+        return finalScore;
     }
 
     public override float GetEnergy(Patch patch)
