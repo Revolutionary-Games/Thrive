@@ -65,6 +65,8 @@ public class InProgressLoad
         IsLoading = true;
         SceneManager.Instance.DetachCurrentScene();
         PauseManager.Instance.AddPause(nameof(InProgressLoad));
+        PauseMenu.Instance.Close(false);
+        PauseMenu.Instance.ForgetCurrentlyOpenPage();
 
         Invoke.Instance.Perform(Step);
     }

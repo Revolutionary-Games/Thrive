@@ -193,6 +193,8 @@ public partial class MainMenu : NodeWithInput
         // Unpause the game as the MainMenu should never be paused.
         PauseManager.Instance.ForceClear();
         MouseCaptureManager.ForceDisableCapture();
+        PauseMenu.Instance.ReportStageTransition();
+        PauseMenu.Instance.ForgetCurrentlyOpenPage();
 
         RunMenuSetup();
 
@@ -1144,7 +1146,9 @@ public partial class MainMenu : NodeWithInput
         }
 
         thriveopedia!.OpenFromMainMenu();
-        thriveopedia.ChangePage(pageName);
+
+        // TODO: does something already play a sound or not in this case?
+        thriveopedia.ChangePage(pageName, false);
     }
 
     private void ResetPerformanceTracking()
