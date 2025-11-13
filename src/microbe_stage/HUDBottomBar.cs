@@ -54,9 +54,6 @@ public partial class HUDBottomBar : HBoxContainer
     private bool speedModeAvailable = true;
 
     [Signal]
-    public delegate void OnMenuPressedEventHandler();
-
-    [Signal]
     public delegate void OnPausePressedEventHandler(bool paused);
 
     [Signal]
@@ -70,12 +67,6 @@ public partial class HUDBottomBar : HBoxContainer
 
     [Signal]
     public delegate void OnSuicidePressedEventHandler();
-
-    [Signal]
-    public delegate void OnHelpPressedEventHandler();
-
-    [Signal]
-    public delegate void OnStatisticsPressedEventHandler();
 
     [Signal]
     public delegate void OnHeatToggledEventHandler(bool expanded);
@@ -182,7 +173,7 @@ public partial class HUDBottomBar : HBoxContainer
     private void MenuPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(SignalName.OnMenuPressed);
+        PauseMenu.Instance.Open();
     }
 
     private void TogglePause()
@@ -221,13 +212,13 @@ public partial class HUDBottomBar : HBoxContainer
     private void HelpButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(SignalName.OnHelpPressed);
+        PauseMenu.Instance.OpenToHelp();
     }
 
     private void StatisticsButtonPressed()
     {
-        // No need to play a sound as changing Thriveopedia page does it anyway
-        EmitSignal(SignalName.OnStatisticsPressed);
+        GUICommon.Instance.PlayButtonPressSound();
+        ThriveopediaManager.OpenPage("CurrentWorld");
     }
 
     private void PausePressed(bool paused)

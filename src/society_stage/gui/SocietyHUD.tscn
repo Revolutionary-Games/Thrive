@@ -17,18 +17,6 @@
 [ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="12_3r5as"]
 [ext_resource type="PackedScene" uid="uid://bdwkyuskd3u3r" path="res://src/microbe_stage/HUDBottomBar.tscn" id="16"]
 
-[sub_resource type="StyleBoxFlat" id="2"]
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 1, 1, 0.784314)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
-
 [sub_resource type="StyleBoxFlat" id="3"]
 bg_color = Color(0.168627, 0.0470588, 0.552941, 1)
 draw_center = false
@@ -37,6 +25,18 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.701961, 0.701961, 0.701961, 0.588235)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="2"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.784314)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
@@ -140,9 +140,9 @@ ActionName = "g_science"
 layout_mode = 2
 tooltip_text = "Possess a member of your species for direct control
 (as this is a very complex feature this will be the last thing to be added once the strategy stages are complete)"
-theme_override_styles/hover = SubResource("2")
-theme_override_styles/pressed = SubResource("2")
 theme_override_styles/normal = SubResource("3")
+theme_override_styles/pressed = SubResource("2")
+theme_override_styles/hover = SubResource("2")
 disabled = true
 ActionIcon = ExtResource("3")
 ActionName = "g_toggle_engulf"
@@ -219,11 +219,8 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(8, 5)
 layout_mode = 2
 
-[connection signal="OnHelpPressed" from="HUDBottomBar" to="." method="OpenHelp"]
-[connection signal="OnMenuPressed" from="HUDBottomBar" to="." method="OpenMenu"]
 [connection signal="OnPausePressed" from="HUDBottomBar" to="." method="PauseButtonPressed"]
 [connection signal="OnProcessesPressed" from="HUDBottomBar" to="." method="OpenResearchScreen"]
-[connection signal="OnStatisticsPressed" from="HUDBottomBar" to="." method="StatisticsButtonPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Build" to="." method="ForwardBuildingPlacingRequest"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Research" to="." method="OpenResearchScreen"]
 [connection signal="Closed" from="ResearchScreen" to="." method="ResearchScreenClosed"]

@@ -245,8 +245,6 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             GD.Print("Suppressing auto save in prototypes");
             wantsToSave = false;
         }
-
-        pauseMenu.SetNewSaveNameFromSpeciesName();
     }
 
     public virtual void MoveToEditor()

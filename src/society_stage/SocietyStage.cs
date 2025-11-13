@@ -119,6 +119,7 @@ public partial class SocietyStage : StrategyStageBase, ISocietyStructureDataAcce
                     HUD.EnsureGameIsUnpausedForEditor();
 
                     GD.Print("Starting fade out to industrial stage");
+                    PauseMenu.Instance.ReportStageTransition();
 
                     // The fade is pretty long here to give some time after the camera stops moving before the fade out
                     // is complete

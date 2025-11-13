@@ -8,9 +8,6 @@ using Godot;
 public partial class HUDBase : Control, IStageHUD
 {
 #pragma warning disable CA2213
-    [Export]
-    protected PauseMenu menu = null!;
-
     private readonly TimeSpan minStageLoadingScreenDuration = TimeSpan.FromSeconds(1.0);
 
     [Export]

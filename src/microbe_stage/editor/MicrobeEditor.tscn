@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5rgjinnhip87"]
+[gd_scene load_steps=11 format=3 uid="uid://c5rgjinnhip87"]
 
 [ext_resource type="PackedScene" uid="uid://hxrn73ihp8r4" path="res://src/microbe_stage/editor/MicrobeEditorWorld.tscn" id="1"]
 [ext_resource type="Script" uid="uid://bk820nus624i3" path="res://src/microbe_stage/editor/MicrobeEditor.cs" id="2"]
@@ -8,17 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://qdqcbnri7vsw" path="res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://r0oqu6luui0h" path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://cbthqg63bqkhx" path="res://src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn" id="39"]
-[ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="52"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="53"]
 [ext_resource type="PackedScene" uid="uid://cahegn58i768h" path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn" id="85"]
 
-[node name="MicrobeEditor" type="Node" node_paths=PackedStringArray("reportTab", "patchMapTab", "cellEditorTab", "pauseMenu", "editorTabSelector", "editorGUIBaseNode")]
+[node name="MicrobeEditor" type="Node" node_paths=PackedStringArray("reportTab", "patchMapTab", "cellEditorTab", "editorTabSelector", "editorGUIBaseNode")]
 process_priority = -1
 script = ExtResource("2")
 reportTab = NodePath("MicrobeEditorGUI/Report")
 patchMapTab = NodePath("MicrobeEditorGUI/PatchMap")
 cellEditorTab = NodePath("MicrobeEditorGUI/CellEditor")
-pauseMenu = NodePath("PauseMenu")
 editorTabSelector = NodePath("MicrobeEditorGUI/MicrobeEditorTabButtons")
 editorGUIBaseNode = NodePath("MicrobeEditorGUI")
 
@@ -67,17 +65,13 @@ offset_right = 154.0
 grow_vertical = 0
 
 [node name="MicrobeEditorCheatMenu" parent="MicrobeEditorGUI" instance=ExtResource("39")]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 30.0
 
 [node name="TutorialGUI" parent="." instance=ExtResource("85")]
 visible = false
 
-[node name="PauseMenu" parent="." instance=ExtResource("52")]
-
 [connection signal="OnTabSelected" from="MicrobeEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]
-[connection signal="OnOpenHelp" from="MicrobeEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToHelp"]
-[connection signal="OnOpenMenu" from="MicrobeEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="Open"]
-[connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 
 [editable path="EditorWorld"]

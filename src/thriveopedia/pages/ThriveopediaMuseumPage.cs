@@ -41,6 +41,8 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
     private MuseumCard? cardToBeDeleted;
 #pragma warning restore CA2213
 
+    private bool dirty = true;
+
     public string PageName => "Museum";
     public string TranslatedPageName => Localization.Translate("THRIVEOPEDIA_MUSEUM_PAGE_TITLE");
 
@@ -51,12 +53,38 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
         base._Ready();
 
         museumCardScene = GD.Load<PackedScene>("res://src/thriveopedia/fossilisation/MuseumCard.tscn");
+        dirty = true;
+    }
+
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+
+        if (what == NotificationVisibilityChanged && Visible)
+        {
+            RefreshIfDirty();
+        }
     }
 
     public override void OnThriveopediaOpened()
     {
+        dirty = true;
+
+        // Make sure this can't end up not being loaded if directly opening to this page in the Thriveopedia
+        Invoke.Instance.QueueForObject(() =>
+        {
+            if (IsVisibleInTree() && dirty)
+            {
+                RefreshIfDirty();
+            }
+        }, this);
+    }
+
+    private void RefreshIfDirty()
+    {
         // TODO: caching or something here would make this a lot more efficient as for people with a ton of fossils
         // the Thriveopedia likely will start to lag a lot
+        GD.Print("Refreshing the Thriveopedia museum page");
         cardContainer.QueueFreeChildren();
 
         foreach (var speciesName in FossilisedSpecies.CreateListOfFossils(true))
