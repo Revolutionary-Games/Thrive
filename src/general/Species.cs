@@ -62,7 +62,7 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
     public string Genus { get; set; }
     public string Epithet { get; set; }
 
-    public Color Colour { get; set; } = new(1, 1, 1);
+    public Color SpeciesColour { get; set; } = new(1, 1, 1);
 
     /// <summary>
     ///   The colour value for GUI Components that want to show this species' colour.
@@ -73,7 +73,7 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
     {
         get
         {
-            var colour = Colour;
+            var colour = SpeciesColour;
             return new Color(colour.R, colour.G, colour.B, 1);
         }
     }
@@ -233,7 +233,7 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
         foreach (var entry in mutation.Behaviour)
             ModifiableBehaviour[entry.Key] = entry.Value;
 
-        Colour = mutation.Colour;
+        SpeciesColour = mutation.SpeciesColour;
 
         cachedBaseReproductionCost = null;
 
@@ -339,7 +339,7 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
     public virtual ulong GetVisualHashCode()
     {
         // Name does not impact the visuals at all so do not use it here
-        return Colour.GetVisualHashCode() * 67;
+        return SpeciesColour.GetVisualHashCode() * 67;
     }
 
     public virtual string GetDetailString()
@@ -349,7 +349,7 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
             ID,
             Generation,
             Population,
-            Colour.ToHtml(),
+            SpeciesColour.ToHtml(),
             string.Join("\n  ",
                 Behaviour.Select(b => BehaviourDictionary.GetBehaviourLocalizedString(b.Key) + ": " + b.Value)));
     }
@@ -368,7 +368,7 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
             species.ModifiableBehaviour[entry.Key] = entry.Value;
 
         // Genus and epithet aren't copied as they are required constructor parameters
-        species.Colour = Colour;
+        species.SpeciesColour = SpeciesColour;
         species.Population = Population;
         species.Generation = Generation;
         species.PlayerSpecies = PlayerSpecies;
@@ -393,7 +393,7 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
         species.ModifiableTolerances = ModifiableTolerances.Clone();
 
         // Genus and epithet aren't copied as they are required constructor parameters
-        species.Colour = Colour;
+        species.SpeciesColour = SpeciesColour;
         species.Population = Population;
         species.Generation = Generation;
         species.ID = ID;
@@ -410,7 +410,7 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
         writer.Write(Epithet);
 
         writer.WriteObject(InitialCompounds);
-        writer.Write(Colour);
+        writer.Write(SpeciesColour);
         writer.Write(Obsolete);
         writer.WriteObject((IArchivable)ModifiableBehaviour);
         writer.Write(Population);
@@ -427,7 +427,7 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
             throw new InvalidArchiveVersionException(version, 1);
 
         InitialCompounds = reader.ReadObject<Dictionary<Compound, float>>();
-        Colour = reader.ReadColor();
+        SpeciesColour = reader.ReadColor();
         Obsolete = reader.ReadBool();
         ModifiableBehaviour = reader.ReadObject<BehaviourDictionary>();
         Population = reader.ReadInt64();

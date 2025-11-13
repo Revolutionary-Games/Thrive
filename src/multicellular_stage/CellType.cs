@@ -39,7 +39,7 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
         }
 
         MembraneRigidity = microbeSpecies.MembraneRigidity;
-        Colour = microbeSpecies.Colour;
+        Colour = microbeSpecies.SpeciesColour;
         IsBacteria = microbeSpecies.IsBacteria;
         CanEngulf = microbeSpecies.CanEngulf;
         TypeName = Localization.Translate("STEM_CELL_NAME");

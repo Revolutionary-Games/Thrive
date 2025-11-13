@@ -23,7 +23,7 @@ public class MicrobeSpeciesTests
             IsBacteria = true,
             MembraneType = SimulationParameters.Instance.GetMembrane("double"),
             MembraneRigidity = 0.125f,
-            Colour = new Color(1, 1, 0, 1),
+            SpeciesColour = new Color(1, 1, 0, 1),
             Population = 120,
             Generation = 2,
         };
@@ -53,7 +53,7 @@ public class MicrobeSpeciesTests
             IsBacteria = true,
             MembraneType = SimulationParameters.Instance.GetMembrane("single"),
             MembraneRigidity = 0,
-            Colour = new Color(0, 1, 0, 1),
+            SpeciesColour = new Color(0, 1, 0, 1),
             Population = 1044,
         };
 

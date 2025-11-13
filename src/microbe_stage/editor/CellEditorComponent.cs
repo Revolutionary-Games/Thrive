@@ -329,10 +329,10 @@ public partial class CellEditorComponent :
             if (previewMicrobeSpecies == null)
                 return;
 
-            previewMicrobeSpecies.Colour = value;
+            previewMicrobeSpecies.SpeciesColour = value;
 
             if (previewMicrobe.IsAlive())
-                previewSimulation!.ApplyMicrobeColour(previewMicrobe, previewMicrobeSpecies.Colour);
+                previewSimulation!.ApplyMicrobeColour(previewMicrobe, previewMicrobeSpecies.SpeciesColour);
         }
     }
 
@@ -2804,7 +2804,7 @@ public partial class CellEditorComponent :
     /// </remarks>
     private void CopyEditedPropertiesToSpecies(MicrobeSpecies target)
     {
-        target.Colour = Colour;
+        target.SpeciesColour = Colour;
         target.MembraneType = Membrane;
         target.MembraneRigidity = Rigidity;
         target.IsBacteria = true;
@@ -3421,7 +3421,7 @@ public partial class CellEditorComponent :
         private void CopyPristineToCalculation()
         {
             // TODO: there is duplication between this and CopyEditedPropertiesToSpecies
-            calculationSpecies.Colour = pristineSpeciesCopy.Colour;
+            calculationSpecies.SpeciesColour = pristineSpeciesCopy.SpeciesColour;
             calculationSpecies.MembraneType = pristineSpeciesCopy.MembraneType;
             calculationSpecies.MembraneRigidity = pristineSpeciesCopy.MembraneRigidity;
             calculationSpecies.IsBacteria = pristineSpeciesCopy.IsBacteria;

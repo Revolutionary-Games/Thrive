@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Godot;
 using SharedBase.Archive;
 using Systems;
 using Vector3 = Godot.Vector3;
@@ -40,7 +41,7 @@ public class MicrobeSpecies : Species, ICellDefinition
 
         MembraneType = withCellDefinition.MembraneType;
         MembraneRigidity = withCellDefinition.MembraneRigidity;
-        Colour = withCellDefinition.Colour;
+        SpeciesColour = withCellDefinition.Colour;
         IsBacteria = withCellDefinition.IsBacteria;
     }
 
@@ -58,6 +59,12 @@ public class MicrobeSpecies : Species, ICellDefinition
     ///   species can be loaded (for example, cell-detecting chemoreceptors).
     /// </summary>
     public OrganelleLayout<OrganelleTemplate> Organelles { get; set; }
+
+    public Color Colour
+    {
+        get => SpeciesColour;
+        set => SpeciesColour = value;
+    }
 
     // Even though these properties say "base", it includes the specialized organelle factors.
     // Base refers here to the fact that these are the values when a cell is freshly spawned and has no
