@@ -642,6 +642,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         micheDetailsPanel.WorldSettings = world.WorldSettings;
 
+        patchMapDrawer.ClearMap();
         patchMapDrawer.Map = world.GameProperties.GameWorld.Map;
         patchMapDrawer.SelectedPatch = patchMapDrawer.PlayerPatch;
         patchDetailsPanel.SelectedPatch = patchMapDrawer.PlayerPatch;
