@@ -99,7 +99,7 @@ public static class CommonMutationFunctions
                 Math.Clamp((float)(oldColour.B + blueShift), 0, 1));
         }
 
-        mutated.Tolerances.CopyFrom(forPatch.GenerateTolerancesForMicrobe(mutated.Organelles));
+        mutated.ModifiableTolerances.CopyFrom(forPatch.GenerateTolerancesForMicrobe(mutated.Organelles));
 
         // Override the default species starting name to have more variability in the names
         var nameGenerator = SimulationParameters.Instance.NameGenerator;

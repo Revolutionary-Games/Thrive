@@ -41,7 +41,7 @@ public class MicrobeSpeciesTests
         testSpecies1.Organelles.Add(
             new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("cytoplasm"), new Hex(2, 1), 3)
             {
-                Upgrades = new OrganelleUpgrades
+                ModifiableUpgrades = new OrganelleUpgrades
                 {
                     CustomUpgradeData = new FlagellumUpgrades(0.5f),
                 },

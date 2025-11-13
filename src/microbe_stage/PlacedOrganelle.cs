@@ -33,7 +33,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
         Orientation = orientation;
 
         // Upgrades must be applied before initializing the components
-        Upgrades = upgrades;
+        ModifiableUpgrades = upgrades;
 
         InitializeComponents();
 
@@ -48,7 +48,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
         Position = position;
         Orientation = orientation;
         this.compoundsLeft = compoundsLeft;
-        Upgrades = upgrades;
+        ModifiableUpgrades = upgrades;
 
         // TODO: figure out if re-creating components on loading a save is the right approach
         InitializeComponents();
@@ -114,7 +114,9 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
     /// </summary>
     public List<IOrganelleComponent> Components { get; } = new();
 
-    public OrganelleUpgrades? Upgrades { get; private set; }
+    public OrganelleUpgrades? ModifiableUpgrades { get; private set; }
+
+    public IReadOnlyOrganelleUpgrades? Upgrades => ModifiableUpgrades;
 
     /// <summary>
     ///   Can be set by organelle components to override the enzymes returned by <see cref="GetEnzymes"/>. This is
@@ -175,7 +177,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
         writer.Write(Position);
         writer.Write(Orientation);
         writer.WriteObject(compoundsLeft);
-        writer.WriteObjectOrNull(Upgrades);
+        writer.WriteObjectOrNull(ModifiableUpgrades);
 
         writer.Write(WasSplit);
         writer.Write(IsDuplicate);
@@ -421,7 +423,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
     public object Clone()
     {
         return new PlacedOrganelle(Definition, Position, Orientation, compoundsLeft.CloneShallow(),
-            (OrganelleUpgrades?)Upgrades?.Clone())
+            (OrganelleUpgrades?)ModifiableUpgrades?.Clone())
         {
             WasSplit = WasSplit,
             IsDuplicate = IsDuplicate,

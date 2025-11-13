@@ -2174,7 +2174,7 @@ public partial class CellEditorComponent :
     ///   If not hovering over an organelle, render the to-be-placed organelle
     /// </summary>
     private void RenderHighlightedOrganelle(int q, int r, int rotation, OrganelleDefinition shownOrganelleDefinition,
-        OrganelleUpgrades? upgrades)
+        IReadOnlyOrganelleUpgrades? upgrades)
     {
         RenderHoveredHex(q, r, shownOrganelleDefinition.GetRotatedHexes(rotation), isPlacementProbablyValid,
             out bool hadDuplicate);
@@ -2825,11 +2825,11 @@ public partial class CellEditorComponent :
         if (overwriteBehaviourForCalculations != null)
         {
             // Make a clone to make sure data cannot change while running
-            target.Behaviour = overwriteBehaviourForCalculations.CloneObject();
+            target.ModifiableBehaviour = ((IReadOnlyBehaviourDictionary)overwriteBehaviourForCalculations).Clone();
         }
 
         // Copy tolerances
-        target.Tolerances.CopyFrom(tolerancesEditor.CurrentTolerances);
+        target.ModifiableTolerances.CopyFrom(tolerancesEditor.CurrentTolerances);
     }
 
     private void SetLightLevelOption(int option)
@@ -3437,8 +3437,10 @@ public partial class CellEditorComponent :
                 calculationSpecies.Organelles.AddFast(entry, workMemory1, workMemory2);
             }
 
-            calculationSpecies.Behaviour = pristineSpeciesCopy.Behaviour;
-            calculationSpecies.Tolerances.CopyFrom(pristineSpeciesCopy.Tolerances);
+            // The pristine copy is not modified, so it is safe to not clone here
+            calculationSpecies.ModifiableBehaviour = pristineSpeciesCopy.ModifiableBehaviour;
+
+            calculationSpecies.ModifiableTolerances.CopyFrom(pristineSpeciesCopy.Tolerances);
         }
 
         private bool StartNextRun()

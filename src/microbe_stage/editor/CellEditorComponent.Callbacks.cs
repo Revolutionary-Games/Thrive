@@ -308,7 +308,7 @@ public partial class CellEditorComponent
     [ArchiveAllowedMethod]
     private void DoOrganelleUpgradeAction(OrganelleUpgradeActionData data)
     {
-        data.UpgradedOrganelle.Upgrades = data.NewUpgrades;
+        data.UpgradedOrganelle.ModifiableUpgrades = data.NewUpgrades;
 
         microbeVisualizationOrganellePositionsAreDirty = true;
 
@@ -318,7 +318,7 @@ public partial class CellEditorComponent
     [ArchiveAllowedMethod]
     private void UndoOrganelleUpgradeAction(OrganelleUpgradeActionData data)
     {
-        data.UpgradedOrganelle.Upgrades = data.OldUpgrades;
+        data.UpgradedOrganelle.ModifiableUpgrades = data.OldUpgrades;
 
         microbeVisualizationOrganellePositionsAreDirty = true;
 

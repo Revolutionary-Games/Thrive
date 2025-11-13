@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
 ///   Defines a species' personality by holding behaviour properties
 /// </summary>
-[JsonObject(MemberSerialization.OptIn)]
-public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, float>, ICloneable, IArchivable
+public class BehaviourDictionary : IArchivable, IReadOnlyBehaviourDictionary
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
@@ -21,7 +19,6 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
         BehaviouralValueType.Focus,
     ];
 
-    [JsonConstructor]
     public BehaviourDictionary()
     {
     }
@@ -34,33 +31,24 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
         }
     }
 
-    [JsonProperty]
     public float Aggression { get; set; } = Constants.DEFAULT_BEHAVIOUR_VALUE;
 
-    [JsonProperty]
     public float Opportunism { get; set; } = Constants.DEFAULT_BEHAVIOUR_VALUE;
 
-    [JsonProperty]
     public float Fear { get; set; } = Constants.DEFAULT_BEHAVIOUR_VALUE;
 
-    [JsonProperty]
     public float Activity { get; set; } = Constants.DEFAULT_BEHAVIOUR_VALUE;
 
-    [JsonProperty]
     public float Focus { get; set; } = Constants.DEFAULT_BEHAVIOUR_VALUE;
 
-    [JsonIgnore]
     public int Count => 5;
 
     public IEnumerable<BehaviouralValueType> Keys => keys;
 
-    [JsonIgnore]
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
-    [JsonIgnore]
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.BehaviourDictionary;
 
-    [JsonIgnore]
     public bool CanBeReferencedInArchive => false;
 
     public IEnumerable<float> Values =>
@@ -202,19 +190,5 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
         }
 
         return true;
-    }
-
-    public object Clone()
-    {
-        return CloneObject();
-    }
-
-    public BehaviourDictionary CloneObject()
-    {
-        var obj = new BehaviourDictionary();
-        foreach (var pair in this)
-            obj[pair.Key] = pair.Value;
-
-        return obj;
     }
 }

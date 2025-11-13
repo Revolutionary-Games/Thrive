@@ -32,7 +32,9 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
     /// <summary>
     ///   The upgrades this organelle will have when instantiated in a microbe
     /// </summary>
-    public OrganelleUpgrades? Upgrades { get; set; }
+    public OrganelleUpgrades? ModifiableUpgrades { get; set; }
+
+    public IReadOnlyOrganelleUpgrades? Upgrades => ModifiableUpgrades;
 
     public string ReadableName => Definition.Name;
 
@@ -48,7 +50,7 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
     public bool CanBeReferencedInArchive => true;
 
 #pragma warning disable CA1033
-    OrganelleDefinition IPositionedOrganelle.Definition => Definition;
+    OrganelleDefinition IReadOnlyPositionedOrganelle.Definition => Definition;
 #pragma warning restore CA1033
 
     public static OrganelleTemplate ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
@@ -58,7 +60,7 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
 
         return new OrganelleTemplate(reader.ReadObject<OrganelleDefinition>(), reader.ReadHex(), reader.ReadInt32())
         {
-            Upgrades = reader.ReadObjectOrNull<OrganelleUpgrades>(),
+            ModifiableUpgrades = reader.ReadObjectOrNull<OrganelleUpgrades>(),
         };
     }
 
@@ -67,7 +69,7 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
         writer.WriteObject(Definition);
         writer.Write(Position);
         writer.Write(Orientation);
-        writer.WriteObjectOrNull(Upgrades);
+        writer.WriteObjectOrNull(ModifiableUpgrades);
     }
 
     public bool MatchesDefinition(IActionHex other)
@@ -149,7 +151,7 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
     {
         return new OrganelleTemplate(Definition, Position, Orientation)
         {
-            Upgrades = deepClone ? (OrganelleUpgrades?)Upgrades?.Clone() : Upgrades,
+            ModifiableUpgrades = deepClone ? (OrganelleUpgrades?)ModifiableUpgrades?.Clone() : ModifiableUpgrades,
         };
     }
 
@@ -162,7 +164,7 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
     public ulong GetVisualHashCode()
     {
         return (ulong)Position.GetHashCode() * 131 ^ (ulong)Orientation * 2909 ^ Definition.GetVisualHashCode() * 947 ^
-            (Upgrades != null ? Upgrades.GetVisualHashCode() : 1) * 1063;
+            (ModifiableUpgrades?.GetVisualHashCode() ?? 1) * 1063;
     }
 
     public override string ToString()

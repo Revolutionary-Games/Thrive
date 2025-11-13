@@ -232,7 +232,7 @@ public class EditorMPTests
 
         var upgradeData = new OrganelleUpgradeActionData(new OrganelleUpgrades(), new OrganelleUpgrades
         {
-            UnlockedFeatures = ["test"],
+            ModifiableUnlockedFeatures = ["test"],
         }, template);
 
         history.AddAction(new SingleEditorAction<OrganelleUpgradeActionData>(_ => { }, _ => { }, upgradeData));
@@ -330,7 +330,7 @@ public class EditorMPTests
 
         var upgrades1 = new OrganelleUpgrades
         {
-            UnlockedFeatures = ["test"],
+            ModifiableUnlockedFeatures = ["test"],
         };
 
         var upgradeData = new OrganelleUpgradeActionData(new OrganelleUpgrades(), upgrades1, template);
@@ -342,7 +342,7 @@ public class EditorMPTests
 
         var upgrades2 = new OrganelleUpgrades
         {
-            UnlockedFeatures = ["test", "test2"],
+            ModifiableUnlockedFeatures = ["test", "test2"],
         };
 
         var upgradeData2 = new OrganelleUpgradeActionData(new OrganelleUpgrades(), upgrades2, template);
@@ -362,7 +362,7 @@ public class EditorMPTests
 
         var upgrades1 = new OrganelleUpgrades
         {
-            UnlockedFeatures = ["test"],
+            ModifiableUnlockedFeatures = ["test"],
         };
 
         var upgradeData = new OrganelleUpgradeActionData(new OrganelleUpgrades(), upgrades1, template);
@@ -374,7 +374,7 @@ public class EditorMPTests
 
         var upgrades2 = new OrganelleUpgrades
         {
-            UnlockedFeatures = ["test2"],
+            ModifiableUnlockedFeatures = ["test2"],
         };
 
         var upgradeData2 = new OrganelleUpgradeActionData(new OrganelleUpgrades(), upgrades2, template);
@@ -394,7 +394,7 @@ public class EditorMPTests
 
         var upgrades1 = new OrganelleUpgrades
         {
-            UnlockedFeatures = ["test"],
+            ModifiableUnlockedFeatures = ["test"],
         };
 
         var noUpgrades = new OrganelleUpgrades();
@@ -414,7 +414,7 @@ public class EditorMPTests
 
         var upgrades2 = new OrganelleUpgrades
         {
-            UnlockedFeatures = ["test2"],
+            ModifiableUnlockedFeatures = ["test2"],
         };
 
         var upgradeData3 = new OrganelleUpgradeActionData(noUpgrades, upgrades2, template);
@@ -514,7 +514,7 @@ public class EditorMPTests
 
         var upgrades1 = new OrganelleUpgrades
         {
-            UnlockedFeatures = ["test"],
+            ModifiableUnlockedFeatures = ["test"],
         };
 
         var upgradeData = new OrganelleUpgradeActionData(new OrganelleUpgrades(), upgrades1, template);
@@ -541,7 +541,7 @@ public class EditorMPTests
 
         var upgrades2 = new OrganelleUpgrades
         {
-            UnlockedFeatures = ["test2"],
+            ModifiableUnlockedFeatures = ["test2"],
         };
 
         var upgradeData2 = new OrganelleUpgradeActionData(new OrganelleUpgrades(), upgrades2, template);

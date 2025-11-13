@@ -329,7 +329,7 @@ public static class OrganelleContainerHelpers
         {
             container.Organelles.AddFast(new PlacedOrganelle(organelleTemplate.Definition,
                 organelleTemplate.Position,
-                organelleTemplate.Orientation, organelleTemplate.Upgrades), workMemory1, workMemory2);
+                organelleTemplate.Orientation, organelleTemplate.ModifiableUpgrades), workMemory1, workMemory2);
         }
 
         container.CalculateOrganelleLayoutStatistics();

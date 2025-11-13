@@ -109,7 +109,8 @@ public static class MicrobeInternalCalculations
         }
     }
 
-    public static float GetNominalCapacityForOrganelle(OrganelleDefinition definition, OrganelleUpgrades? upgrades)
+    public static float GetNominalCapacityForOrganelle(OrganelleDefinition definition,
+        IReadOnlyOrganelleUpgrades? upgrades)
     {
         if (upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
             storage.SpecializedFor != Compound.Invalid)
@@ -124,7 +125,7 @@ public static class MicrobeInternalCalculations
     }
 
     public static (Compound Compound, float Capacity)
-        GetAdditionalCapacityForOrganelle(OrganelleDefinition definition, OrganelleUpgrades? upgrades)
+        GetAdditionalCapacityForOrganelle(OrganelleDefinition definition, IReadOnlyOrganelleUpgrades? upgrades)
     {
         if (definition.Components.Storage == null)
             return (Compound.Invalid, 0);

@@ -1,24 +1,32 @@
 ﻿using System;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
 ///   Environmental tolerances of a species
 /// </summary>
-public class EnvironmentalTolerances : IArchiveUpdatable
+public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmentalTolerances
 {
     public const ushort SERIALIZATION_VERSION = 1;
+
+    [Flags]
+    public enum ToleranceChangedStats
+    {
+        Temperature = 1,
+        Pressure = 2,
+        UVResistance = 4,
+        OxygenResistance = 8,
+    }
 
     /// <summary>
     ///   Temperature (in C) that this species likes to be in
     /// </summary>
-    public float PreferredTemperature = 15;
+    public float PreferredTemperature { get; set; } = 15;
 
     /// <summary>
     ///   How wide a temperature range this species can stay in effectively. The range of temperatures is
     ///   <c>PreferredTemperature - TemperatureTolerance</c> to <c>PreferredTemperature + TemperatureTolerance</c>
     /// </summary>
-    public float TemperatureTolerance = 21;
+    public float TemperatureTolerance { get; set; } = 21;
 
     /// <summary>
     ///   Minimum pressure this species likes. The value is in Pa (pascals). This is not just a single range as
@@ -30,26 +38,15 @@ public class EnvironmentalTolerances : IArchiveUpdatable
     ///     GUI will break when this data is fed in.
     ///   </para>
     /// </remarks>
-    public float PressureMinimum = 71325;
+    public float PressureMinimum { get; set; } = 71325;
 
-    public float PressureMaximum = 301325;
+    public float PressureMaximum { get; set; } = 301325;
 
-    public float UVResistance;
-    public float OxygenResistance;
+    public float UVResistance { get; set; }
+    public float OxygenResistance { get; set; }
 
-    [Flags]
-    public enum ToleranceChangedStats
-    {
-        Temperature = 1,
-        Pressure = 2,
-        UVResistance = 4,
-        OxygenResistance = 8,
-    }
-
-    [JsonIgnore]
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
-    [JsonIgnore]
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.EnvironmentalTolerances;
 
     public static bool operator ==(EnvironmentalTolerances? left, EnvironmentalTolerances? right)
@@ -62,7 +59,7 @@ public class EnvironmentalTolerances : IArchiveUpdatable
         return !Equals(left, right);
     }
 
-    public void CopyFrom(EnvironmentalTolerances tolerancesToCopy)
+    public void CopyFrom(IReadOnlyEnvironmentalTolerances tolerancesToCopy)
     {
         PreferredTemperature = tolerancesToCopy.PreferredTemperature;
         TemperatureTolerance = tolerancesToCopy.TemperatureTolerance;

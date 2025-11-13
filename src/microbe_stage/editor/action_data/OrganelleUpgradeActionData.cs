@@ -36,7 +36,7 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
     }
 
     public static double CalculateUpgradeCost(Dictionary<string, AvailableUpgrade> availableUpgrades,
-        List<string> newUpgrades, List<string> oldUpgrades, bool refund = false)
+        IReadOnlyList<string> newUpgrades, IReadOnlyList<string> oldUpgrades, bool refund = false)
     {
         int cost = 0;
 
@@ -46,8 +46,11 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
 
         // Calculate the costs of the selected new general upgrades
 
-        foreach (var newUpgrade in newUpgrades)
+        int count = newUpgrades.Count;
+        for (int i = 0; i < count; ++i)
         {
+            var newUpgrade = newUpgrades[i];
+
             if (oldUpgrades.Contains(newUpgrade))
                 continue;
 
@@ -66,8 +69,11 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
         if (refund)
         {
             // Refund removed upgrades
-            foreach (var oldUpgrade in oldUpgrades)
+            count = oldUpgrades.Count;
+            for (int i = 0; i < count; ++i)
             {
+                var oldUpgrade = oldUpgrades[i];
+
                 if (newUpgrades.Contains(oldUpgrade))
                     continue;
 

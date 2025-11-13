@@ -15,7 +15,7 @@ using JetBrains.Annotations;
 ///   </para>
 /// </remarks>
 /// <typeparam name="T">The concrete type of the hex to hold</typeparam>
-public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
+public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnlyHexLayout<T>
     where T : class, IPositionedHex
 {
     protected readonly List<T> existingHexes = new();
