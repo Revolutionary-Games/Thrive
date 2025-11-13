@@ -1,0 +1,174 @@
+﻿using System.Collections.Generic;
+using SharedBase.Archive;
+using Systems;
+
+/// <summary>
+///   Creates ammonia based on species with nitrogen fixing organelles. And consumes ammonia based on the ammonia
+///   reproduction cost of species.
+/// </summary>
+public class AmmoniaProductionEffect : IWorldEffect
+{
+    public const ushort SERIALIZATION_VERSION = 1;
+
+    private readonly GameWorld targetWorld;
+
+    public AmmoniaProductionEffect(GameWorld targetWorld)
+    {
+        this.targetWorld = targetWorld;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.PhotosynthesisProductionEffect;
+
+    public bool CanBeReferencedInArchive => false;
+
+    public static AmmoniaProductionEffect ReadFromArchive(ISArchiveReader reader, ushort version,
+        int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new AmmoniaProductionEffect(reader.ReadObject<GameWorld>());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(targetWorld);
+    }
+
+    public void OnRegisterToWorld()
+    {
+    }
+
+    public void OnTimePassed(double elapsed, double totalTimePassed)
+    {
+        ApplyCompoundsAddition();
+    }
+
+    private void ApplyCompoundsAddition()
+    {
+        // These affect the final balance
+        var outputModifier = 1.2f;
+        var inputModifier = 0.8f;
+
+        // This affects how fast the conditions change, but also the final balance somewhat
+        var modifier = 0.000012f;
+
+        List<TweakedProcess> microbeProcesses = [];
+
+        // Dummy cloud sizes as this effect doesn't add any clouds
+        // ReSharper disable once CollectionNeverUpdated.Local
+        var cloudSizes = new Dictionary<Compound, float>();
+
+        var changesToApply = new Dictionary<Compound, float>();
+
+        foreach (var patchKeyValue in targetWorld.Map.Patches)
+        {
+            var patch = patchKeyValue.Value;
+
+            // Skip empty patches as they don't need handling
+            if (patch.SpeciesInPatch.Count < 1)
+                continue;
+
+            float ammoniaBalance = 0;
+            float co2Balance = 0;
+
+            foreach (var species in patch.SpeciesInPatch)
+            {
+                var resolvedTolerances = new ResolvedMicrobeTolerances
+                {
+                    ProcessSpeedModifier = 1,
+                    OsmoregulationModifier = 1,
+                    HealthModifier = 1,
+                };
+
+                // TODO: multicellular environmental tolerances
+                if (species.Key is MicrobeSpecies microbeSpecies)
+                {
+                    resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+                        MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(microbeSpecies, patch.Biome));
+                }
+
+                var balanceModifier = ProcessSystem.CalculateSpeciesActiveProcessListForEffect(species.Key,
+                    microbeProcesses, patch.Biome, resolvedTolerances, targetWorld.WorldSettings);
+
+                foreach (var process in microbeProcesses)
+                {
+                    // Only handle relevant processes
+                    if (!IsProcessRelevant(process.Process))
+                        continue;
+
+                    var effectiveSpeed =
+                        ProcessSystem.CalculateEffectiveProcessSpeedForEffect(process, balanceModifier, patch.Biome,
+                            resolvedTolerances.ProcessSpeedModifier);
+
+                    if (effectiveSpeed <= 0)
+                        continue;
+
+                    // TODO: maybe photosynthesis should also only try to reach glucose balance of +0?
+
+                    // Inputs take away compounds scaled by the speed and population of the species
+                    foreach (var input in process.Process.Inputs)
+                    {
+                        if (input.Key.ID is Compound.Ammonia)
+                        {
+                            ammoniaBalance -= input.Value * inputModifier * effectiveSpeed * species.Value;
+                        }
+                        else if (input.Key.ID is Compound.Carbondioxide)
+                        {
+                            co2Balance -= input.Value * inputModifier * effectiveSpeed * species.Value;
+                        }
+                    }
+
+                    // Outputs generate the given compounds
+                    foreach (var output in process.Process.Outputs)
+                    {
+                        if (output.Key.ID is Compound.Ammonia)
+                        {
+                            ammoniaBalance += output.Value * outputModifier * effectiveSpeed * species.Value;
+                        }
+                        else if (output.Key.ID is Compound.Carbondioxide)
+                        {
+                            co2Balance += output.Value * outputModifier * effectiveSpeed * species.Value;
+                        }
+                    }
+                }
+            }
+
+            // Scale the balances to make the changes less drastic
+            ammoniaBalance *= modifier;
+            co2Balance *= modifier;
+
+            changesToApply.Clear();
+
+            if (ammoniaBalance != 0)
+                changesToApply[Compound.Ammonia] = ammoniaBalance;
+
+            if (co2Balance != 0)
+                changesToApply[Compound.Carbondioxide] = co2Balance;
+
+            if (changesToApply.Count > 0)
+                patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changesToApply, cloudSizes);
+        }
+    }
+
+    private bool IsProcessRelevant(BioProcess process)
+    {
+        // For now only oxygen and co2 processes are handled by this simplified production effect
+        foreach (var input in process.Inputs)
+        {
+            if (input.Key.ID is Compound.Ammonia or Compound.Carbondioxide)
+                return true;
+        }
+
+        foreach (var output in process.Outputs)
+        {
+            if (output.Key.ID is Compound.Ammonia or Compound.Carbondioxide)
+                return true;
+        }
+
+        return false;
+    }
+}
