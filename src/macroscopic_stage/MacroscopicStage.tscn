@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dbhby0wiqd6cd"]
+[gd_scene load_steps=15 format=3 uid="uid://dbhby0wiqd6cd"]
 
 [ext_resource type="Script" uid="uid://c13jrgpo1cyvx" path="res://src/macroscopic_stage/MacroscopicStage.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://d2mf4tuokivmm" path="res://src/macroscopic_stage/MacroscopicCamera.tscn" id="2"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://s7qy23vie22s" path="res://src/awakening_stage/InteractableSystem.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://bo86k7ooatxyu" path="res://src/awakening_stage/gui/InteractablePopup.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://borrsf8mdual2" path="res://src/awakening_stage/gui/SelectBuildingPopup.tscn" id="10"]
-[ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://b174h1qc4muj8" path="res://src/macroscopic_stage/ProgressBarSystem.tscn" id="12"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_b7e0u"]
@@ -27,7 +26,7 @@ background_mode = 2
 sky = SubResource("1")
 ambient_light_color = Color(0.0313726, 0.443137, 0.482353, 1)
 
-[node name="MacroscopicStage" type="Node" node_paths=PackedStringArray("interactableSystem", "interactionPopup", "progressBarSystem", "selectBuildingPopup", "worldEnvironmentNode", "worldLightNode", "pauseMenu", "hudRoot")]
+[node name="MacroscopicStage" type="Node" node_paths=PackedStringArray("interactableSystem", "interactionPopup", "progressBarSystem", "selectBuildingPopup", "worldEnvironmentNode", "worldLightNode", "hudRoot")]
 process_priority = -1
 script = ExtResource("1")
 interactableSystem = NodePath("InteractableSystem")
@@ -36,7 +35,6 @@ progressBarSystem = NodePath("ProgressBarSystem")
 selectBuildingPopup = NodePath("SelectBuildingPopup")
 worldEnvironmentNode = NodePath("World/WorldEnvironment")
 worldLightNode = NodePath("World/WorldLight")
-pauseMenu = NodePath("PauseMenu")
 hudRoot = NodePath("MacroscopicHUD")
 
 [node name="World" type="Node" parent="."]
@@ -68,10 +66,9 @@ grow_vertical = 2
 
 [node name="ProgressBarSystem" parent="." instance=ExtResource("12")]
 
-[node name="MacroscopicHUD" parent="." node_paths=PackedStringArray("fossilisationButtonLayer", "fossilisationDialog", "menu") instance=ExtResource("3")]
+[node name="MacroscopicHUD" parent="." node_paths=PackedStringArray("fossilisationButtonLayer", "fossilisationDialog") instance=ExtResource("3")]
 fossilisationButtonLayer = NodePath("FossilisationButtonLayer")
 fossilisationDialog = NodePath("FossilisationDialog")
-menu = NodePath("../PauseMenu")
 
 [node name="FossilisationButtonLayer" type="Control" parent="MacroscopicHUD"]
 anchors_preset = 0
@@ -82,6 +79,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="FossilisationDialog" parent="MacroscopicHUD" instance=ExtResource("5")]
+layout_mode = 0
 offset_left = 458.0
 offset_top = 120.0
 offset_right = 822.0
@@ -103,19 +101,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 6
 mouse_filter = 2
 
-[node name="PauseMenu" parent="." instance=ExtResource("11")]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [connection signal="OnInteractButtonPressed" from="MacroscopicHUD" to="PlayerMulticellularInput" method="InteractWithEnvironment"]
 [connection signal="OnOpenBuildPressed" from="MacroscopicHUD" to="PlayerMulticellularInput" method="OpenBuildMenu"]
 [connection signal="OnOpenInventoryPressed" from="MacroscopicHUD" to="PlayerMulticellularInput" method="OpenInventory"]
-[connection signal="OnOpenMenu" from="MacroscopicHUD" to="PauseMenu" method="Open"]
-[connection signal="OnOpenMenuToHelp" from="MacroscopicHUD" to="PauseMenu" method="OpenToHelp"]
 [connection signal="OnSpeciesFossilised" from="MacroscopicHUD/FossilisationDialog" to="MacroscopicHUD" method="UpdateFossilisationButtonStates"]
-[connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]

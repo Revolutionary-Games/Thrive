@@ -184,12 +184,6 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
 
     private bool strainIsRed;
 
-    [Signal]
-    public delegate void OnOpenMenuEventHandler();
-
-    [Signal]
-    public delegate void OnOpenMenuToHelpEventHandler();
-
     /// <summary>
     ///   Gets and sets the text that appears at the upper HUD.
     /// </summary>
@@ -601,7 +595,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
 
         bottomLeftBar.Paused = Paused;
 
-        if (menu.Visible)
+        if (PauseMenu.Instance.Visible)
             return;
 
         if (Paused)
@@ -1160,16 +1154,6 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         return stage.GameWorld.GetClosestRelatedSpecies(currentPlayer, true, mustBeSameStage);
     }
 
-    protected void OpenMenu()
-    {
-        EmitSignal(SignalName.OnOpenMenu);
-    }
-
-    protected void OpenHelp()
-    {
-        EmitSignal(SignalName.OnOpenMenuToHelp);
-    }
-
     protected void FlashHealthBar(Color colour, float delta)
     {
         healthBarFlashDuration -= delta;
@@ -1247,17 +1231,6 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
     private void EnvironmentButtonPressed(bool pressed)
     {
         environmentPanel.ShowPanel = pressed;
-    }
-
-    private void HelpButtonPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        menu.OpenToHelp();
-    }
-
-    private void StatisticsButtonPressed()
-    {
-        ThriveopediaManager.OpenPage("CurrentWorld");
     }
 
     private void SpeedModeButtonPressed(bool pressed)

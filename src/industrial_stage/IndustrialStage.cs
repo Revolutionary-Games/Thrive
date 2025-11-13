@@ -281,6 +281,7 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
         toSpaceAnimatedUnit.GlobalPosition = spaceCraftData.Value.City.GlobalPosition;
 
         HUD.CloseAllOpenWindows();
+        PauseMenu.Instance.ReportStageTransition();
 
         // Start the first phase of the stage move with a camera animation
         movingToSpaceStagePhase = StageMovePhase.ZoomingCamera;

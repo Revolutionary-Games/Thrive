@@ -52,6 +52,8 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
 
+    public override MainGameState GameState => MainGameState.MicrobeEditor;
+
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeEditor;
 
@@ -253,7 +255,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         // Make tutorials run
         cellEditorTab.TutorialState = TutorialState;
         tutorialGUI.EventReceiver = TutorialState;
-        pauseMenu.GameProperties = CurrentGame;
 
         // Send highlighted controls to the tutorial system
         cellEditorTab.SendObjectsToTutorials(TutorialState, tutorialGUI);

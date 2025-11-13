@@ -1,7 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://d0tsec3q07lee"]
+[gd_scene load_steps=15 format=3 uid="uid://d0tsec3q07lee"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
-[ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://d0qfhc2op1auc" path="res://src/microbe_stage/editor/MicrobeEditorTabButtons.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://dqiv4qrlqv425" path="res://assets/textures/background/panoramas/HydrothermalVents.png" id="3_6y4d0"]
 [ext_resource type="PackedScene" uid="uid://de2sohb3fjvc1" path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn" id="4"]
@@ -27,7 +26,7 @@ background_mode = 2
 sky = SubResource("Sky_3aerp")
 ambient_light_color = Color(1, 1, 1, 1)
 
-[node name="MacroscopicEditor" type="Node" node_paths=PackedStringArray("reportTab", "patchMapTab", "bodyPlanEditorTab", "cellEditorTab", "cellEditorCamera", "cellEditorLight", "body3DEditorCamera", "bodyEditorLight", "worldEnvironmentNode", "noCellTypeSelected", "pauseMenu", "editorTabSelector", "editorGUIBaseNode")]
+[node name="MacroscopicEditor" type="Node" node_paths=PackedStringArray("reportTab", "patchMapTab", "bodyPlanEditorTab", "cellEditorTab", "cellEditorCamera", "cellEditorLight", "body3DEditorCamera", "bodyEditorLight", "worldEnvironmentNode", "noCellTypeSelected", "editorTabSelector", "editorGUIBaseNode")]
 script = ExtResource("5")
 reportTab = NodePath("MacroscopicEditorGUI/Report")
 patchMapTab = NodePath("MacroscopicEditorGUI/PatchMap")
@@ -39,7 +38,6 @@ body3DEditorCamera = NodePath("EditorWorld/PrimaryCamera")
 bodyEditorLight = NodePath("EditorWorld/EditorLight")
 worldEnvironmentNode = NodePath("EditorWorld/WorldEnvironment")
 noCellTypeSelected = NodePath("MacroscopicEditorGUI/NoCellSelected")
-pauseMenu = NodePath("PauseMenu")
 editorTabSelector = NodePath("MacroscopicEditorGUI/MicrobeEditorTabButtons")
 editorGUIBaseNode = NodePath("MacroscopicEditorGUI")
 
@@ -114,13 +112,8 @@ layout_mode = 2
 text = "SELECT_TISSUE_TYPE_FROM_EDITOR"
 horizontal_alignment = 1
 
-[node name="PauseMenu" parent="." instance=ExtResource("2")]
-
 [connection signal="OnCellTypeToEditSelected" from="MacroscopicEditorGUI/MetaballBodyEditorComponent" to="." method="OnStartEditingCellType"]
 [connection signal="OnTabSelected" from="MacroscopicEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]
-[connection signal="OnOpenHelp" from="MacroscopicEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToHelp"]
-[connection signal="OnOpenMenu" from="MacroscopicEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="Open"]
-[connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 
 [editable path="EditorWorld"]
 [editable path="MicrobeEditorWorld"]

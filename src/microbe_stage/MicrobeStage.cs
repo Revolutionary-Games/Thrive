@@ -681,6 +681,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         RecordPlayerReproduction();
 
+        PauseMenu.Instance.ReportStageTransition();
+
         // We don't free this here as the editor will return to this scene
         if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
         {
@@ -1514,6 +1516,11 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         }
     }
 
+    protected override void SaveGame(string name)
+    {
+        SaveHelper.Save(name, this);
+    }
+
     private void UpdateZoomLevels(bool isMulticellular)
     {
         if (isMulticellular)
@@ -1564,11 +1571,6 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             .Ambient;
         templateMaxLightLevel = GameWorld.Map.CurrentPatch.BiomeTemplate.Conditions
             .GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient;
-    }
-
-    private void SaveGame(string name)
-    {
-        SaveHelper.Save(name, this);
     }
 
     private void OnFinishLoading()
