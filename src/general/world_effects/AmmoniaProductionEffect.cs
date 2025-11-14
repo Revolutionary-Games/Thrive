@@ -49,20 +49,7 @@ public class AmmoniaProductionEffect : IWorldEffect
 
     private void ApplyCompoundsAddition()
     {
-        // These affect the final balance
-        var outputModifier = 1.2f;
-        var inputModifier = 0.8f;
-
-        // This affects how fast the conditions change, but also the final balance somewhat
-        var modifier = 0.000012f;
-
         List<TweakedProcess> microbeProcesses = [];
-
-        // Dummy cloud sizes as this effect doesn't add any clouds
-        // ReSharper disable once CollectionNeverUpdated.Local
-        var cloudSizes = new Dictionary<Compound, float>();
-
-        var changesToApply = new Dictionary<Compound, float>();
 
         foreach (var patchKeyValue in targetWorld.Map.Patches)
         {
@@ -72,8 +59,14 @@ public class AmmoniaProductionEffect : IWorldEffect
             if (patch.SpeciesInPatch.Count < 1)
                 continue;
 
+            // Skip patches that don't need handling
+            if (!patch.Biome.ChangeableCompounds.TryGetValue(Compound.Ammonia,
+                    out BiomeCompoundProperties ammonia))
+            {
+                continue;
+            }
+
             float ammoniaBalance = 0;
-            float co2Balance = 0;
 
             foreach (var species in patch.SpeciesInPatch)
             {
@@ -94,6 +87,11 @@ public class AmmoniaProductionEffect : IWorldEffect
                 var balanceModifier = ProcessSystem.CalculateSpeciesActiveProcessListForEffect(species.Key,
                     microbeProcesses, patch.Biome, resolvedTolerances, targetWorld.WorldSettings);
 
+                // Ammonia consumption of this speciesbased on reproduction cost of all individuals
+                ammoniaBalance -= (float)(Constants.AMMONIA_ENVIRONMENT_CONSUMPTION_MULTIPLIER * species.Value *
+                    species.Key.TotalReproductionCost[Compound.Ammonia]);
+
+                // Process-related production of Ammonia
                 foreach (var process in microbeProcesses)
                 {
                     // Only handle relevant processes
@@ -107,65 +105,40 @@ public class AmmoniaProductionEffect : IWorldEffect
                     if (effectiveSpeed <= 0)
                         continue;
 
-                    // TODO: maybe photosynthesis should also only try to reach glucose balance of +0?
-
-                    // Inputs take away compounds scaled by the speed and population of the species
-                    foreach (var input in process.Process.Inputs)
-                    {
-                        if (input.Key.ID is Compound.Ammonia)
-                        {
-                            ammoniaBalance -= input.Value * inputModifier * effectiveSpeed * species.Value;
-                        }
-                        else if (input.Key.ID is Compound.Carbondioxide)
-                        {
-                            co2Balance -= input.Value * inputModifier * effectiveSpeed * species.Value;
-                        }
-                    }
+                    // Currently no processes have Ammonia as input
 
                     // Outputs generate the given compounds
                     foreach (var output in process.Process.Outputs)
                     {
                         if (output.Key.ID is Compound.Ammonia)
                         {
-                            ammoniaBalance += output.Value * outputModifier * effectiveSpeed * species.Value;
-                        }
-                        else if (output.Key.ID is Compound.Carbondioxide)
-                        {
-                            co2Balance += output.Value * outputModifier * effectiveSpeed * species.Value;
+                            // Calculated as a double as the multipliers are really low to get this into a reasonable
+                            // range
+                            ammoniaBalance += (float)(output.Value *
+                                Constants.AMMONIA_ENVIRONMENT_PRODUCTION_MULTIPLIER * effectiveSpeed *
+                                species.Value);
                         }
                     }
                 }
             }
 
             // Scale the balances to make the changes less drastic
-            ammoniaBalance *= modifier;
-            co2Balance *= modifier;
+            if (ammoniaBalance == 0)
+                continue;
 
-            changesToApply.Clear();
+            ammoniaBalance *= Constants.AMMONIA_ENVIRONMENT_SPEED_MULTIPLIER;
 
-            if (ammoniaBalance != 0)
-                changesToApply[Compound.Ammonia] = ammoniaBalance;
+            ammonia.Density += ammoniaBalance;
 
-            if (co2Balance != 0)
-                changesToApply[Compound.Carbondioxide] = co2Balance;
-
-            if (changesToApply.Count > 0)
-                patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changesToApply, cloudSizes);
+            patch.Biome.ModifyLongTermCondition(Compound.Ammonia, ammonia);
         }
     }
 
     private bool IsProcessRelevant(BioProcess process)
     {
-        // For now only oxygen and co2 processes are handled by this simplified production effect
-        foreach (var input in process.Inputs)
-        {
-            if (input.Key.ID is Compound.Ammonia or Compound.Carbondioxide)
-                return true;
-        }
-
         foreach (var output in process.Outputs)
         {
-            if (output.Key.ID is Compound.Ammonia or Compound.Carbondioxide)
+            if (output.Key.ID is Compound.Ammonia)
                 return true;
         }
 

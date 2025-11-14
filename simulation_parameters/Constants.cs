@@ -1416,6 +1416,10 @@ public static class Constants
     public const float HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR_OXYGEN = 0.1f;
     public const float HYDROGEN_SULFIDE_OXYGEN_TOTAL_CUTOFF = 0.01f;
 
+    public const double AMMONIA_ENVIRONMENT_CONSUMPTION_MULTIPLIER = 0.00000000001;
+    public const double AMMONIA_ENVIRONMENT_PRODUCTION_MULTIPLIER = 0.0000001;
+    public const float AMMONIA_ENVIRONMENT_SPEED_MULTIPLIER = 0.9f;
+
     /// <summary>
     ///   Below this value oxygen doesn't cause iron chunks to become less common
     /// </summary>
