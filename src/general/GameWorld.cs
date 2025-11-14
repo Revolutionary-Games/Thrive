@@ -74,6 +74,7 @@ public class GameWorld : IArchivable
             // the full effect to get balanced well enough
             TimedEffects.RegisterEffect("photosynthesis_production", new PhotosynthesisProductionEffect(this));
             TimedEffects.RegisterEffect("volcanism", new VolcanismEffect(this));
+            TimedEffects.RegisterEffect("ammonia_production", new AmmoniaProductionEffect(this));
             TimedEffects.RegisterEffect("nitrogen_control", new NitrogenControlEffect(this));
 
             // Patch events. PatchEventsManager HAS to be the last one
