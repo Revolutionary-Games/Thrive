@@ -20,7 +20,7 @@ public class AmmoniaProductionEffect : IWorldEffect
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
     public ArchiveObjectType ArchiveObjectType =>
-        (ArchiveObjectType)ThriveArchiveObjectType.PhotosynthesisProductionEffect;
+        (ArchiveObjectType)ThriveArchiveObjectType.AmmoniaProductionEffect;
 
     public bool CanBeReferencedInArchive => false;
 

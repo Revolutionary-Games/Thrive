@@ -45,7 +45,7 @@ public class ReproductionCompoundPressure : SelectionPressure
 
     // TODO: change this and add to ThriveArchiveObjectType (probably the new saving system?)
     public override ArchiveObjectType ArchiveObjectType =>
-        (ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPressure;
+        (ArchiveObjectType)ThriveArchiveObjectType.ReproductionCompoundPressure;
 
     public static ReproductionCompoundPressure ReadFromArchive(ISArchiveReader reader, ushort version,
         int referenceId)

@@ -304,6 +304,8 @@ public enum ThriveArchiveObjectType : uint
     CurrentDilutionEvent = 4387,
     PatchEventsManager = 4388,
     PatchEventProperties = 4389,
+    ReproductionCompoundPressure = 4390,
+    AmmoniaProductionEffect = 4391,
 
     ComponentCellDivisionCollisionDisabler = 4385,
 
