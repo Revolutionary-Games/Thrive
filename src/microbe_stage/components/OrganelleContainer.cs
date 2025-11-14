@@ -325,7 +325,7 @@ public static class OrganelleContainerHelpers
 
         container.Organelles ??= new OrganelleLayout<PlacedOrganelle>();
 
-        foreach (var organelleTemplate in cellDefinition.Organelles)
+        foreach (var organelleTemplate in cellDefinition.ModifiableOrganelles)
         {
             container.Organelles.AddFast(new PlacedOrganelle(organelleTemplate.Definition,
                 organelleTemplate.Position,

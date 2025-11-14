@@ -185,10 +185,19 @@ public class BehaviourDictionary : IArchivable, IReadOnlyBehaviourDictionary
                 value = Focus;
                 break;
             default:
-                value = default;
+                value = 0;
                 return false;
         }
 
         return true;
+    }
+
+    public void CopyFrom(IReadOnlyBehaviourDictionary other)
+    {
+        Aggression = other.Aggression;
+        Opportunism = other.Opportunism;
+        Fear = other.Fear;
+        Activity = other.Activity;
+        Focus = other.Focus;
     }
 }

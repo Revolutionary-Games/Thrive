@@ -423,7 +423,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
     public object Clone()
     {
         return new PlacedOrganelle(Definition, Position, Orientation, compoundsLeft.CloneShallow(),
-            (OrganelleUpgrades?)ModifiableUpgrades?.Clone())
+            ModifiableUpgrades?.Clone())
         {
             WasSplit = WasSplit,
             IsDuplicate = IsDuplicate,

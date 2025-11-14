@@ -1001,14 +1001,15 @@ public partial class CellBodyPlanEditorComponent :
         bool moving = organismStatisticsPanel.CalculateBalancesWhenMoving;
 
         var maximumMovementDirection =
-            MicrobeInternalCalculations.MaximumSpeedDirection(cellType.Organelles);
+            MicrobeInternalCalculations.MaximumSpeedDirection(cellType.ModifiableOrganelles);
 
-        ProcessSystem.ComputeEnergyBalanceFull(cellType.Organelles, Editor.CurrentPatch.Biome, environmentalTolerances,
+        ProcessSystem.ComputeEnergyBalanceFull(cellType.ModifiableOrganelles, Editor.CurrentPatch.Biome,
+            environmentalTolerances,
             cellType.MembraneType,
             maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
             organismStatisticsPanel.CompoundAmountType, null, energyBalance);
 
-        AddCellTypeCompoundBalance(balances, cellType.Organelles, organismStatisticsPanel.BalanceDisplayType,
+        AddCellTypeCompoundBalance(balances, cellType.ModifiableOrganelles, organismStatisticsPanel.BalanceDisplayType,
             organismStatisticsPanel.CompoundAmountType, Editor.CurrentPatch.Biome, energyBalance,
             environmentalTolerances);
 
@@ -1020,16 +1021,18 @@ public partial class CellBodyPlanEditorComponent :
         tooltip.UpdateHealthIndicator(MicrobeInternalCalculations.CalculateHealth(environmentalTolerances,
             cellType.MembraneType, cellType.MembraneRigidity));
 
-        tooltip.UpdateStorageIndicator(MicrobeInternalCalculations.GetTotalNominalCapacity(cellType.Organelles));
+        tooltip.UpdateStorageIndicator(
+            MicrobeInternalCalculations.GetTotalNominalCapacity(cellType.ModifiableOrganelles));
 
-        tooltip.UpdateSpeedIndicator(MicrobeInternalCalculations.CalculateSpeed(cellType.Organelles,
+        tooltip.UpdateSpeedIndicator(MicrobeInternalCalculations.CalculateSpeed(cellType.ModifiableOrganelles,
             cellType.MembraneType, cellType.MembraneRigidity, cellType.IsBacteria, false));
 
-        tooltip.UpdateRotationSpeedIndicator(MicrobeInternalCalculations.CalculateRotationSpeed(cellType.Organelles));
+        tooltip.UpdateRotationSpeedIndicator(
+            MicrobeInternalCalculations.CalculateRotationSpeed(cellType.ModifiableOrganelles));
 
         tooltip.UpdateSizeIndicator(cellType.Organelles.Sum(o => o.Definition.HexCount));
         tooltip.UpdateDigestionSpeedIndicator(
-            MicrobeInternalCalculations.CalculateTotalDigestionSpeed(cellType.Organelles));
+            MicrobeInternalCalculations.CalculateTotalDigestionSpeed(cellType.ModifiableOrganelles));
 
         button.ShowInsufficientATPWarning = energyBalance.TotalProduction < energyBalance.TotalConsumption;
 
@@ -1155,7 +1158,7 @@ public partial class CellBodyPlanEditorComponent :
 
         // Cells can't individually move in the body plan, so this probably makes sense
         var maximumMovementDirection =
-            MicrobeInternalCalculations.MaximumSpeedDirection(cells[0].Data!.CellType.Organelles);
+            MicrobeInternalCalculations.MaximumSpeedDirection(cells[0].Data!.CellType.ModifiableOrganelles);
 
         // TODO: environmental tolerances for multicellular
         var environmentalTolerances = new ResolvedMicrobeTolerances
@@ -1168,8 +1171,8 @@ public partial class CellBodyPlanEditorComponent :
         // TODO: improve performance by calculating the balance per cell type
         foreach (var hex in cells)
         {
-            ProcessSystem.ComputeEnergyBalanceFull(hex.Data!.Organelles, conditionsData, environmentalTolerances,
-                hex.Data.MembraneType,
+            ProcessSystem.ComputeEnergyBalanceFull(hex.Data!.ModifiableOrganelles, conditionsData,
+                environmentalTolerances, hex.Data.MembraneType,
                 maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
                 organismStatisticsPanel.CompoundAmountType, null, energyBalance);
         }
@@ -1216,8 +1219,8 @@ public partial class CellBodyPlanEditorComponent :
         Dictionary<Compound, CompoundBalance> compoundBalanceData = new();
         foreach (var cell in cells)
         {
-            AddCellTypeCompoundBalance(compoundBalanceData, cell.Data!.Organelles, calculationType, amountType, biome,
-                energyBalance, environmentalTolerances);
+            AddCellTypeCompoundBalance(compoundBalanceData, cell.Data!.ModifiableOrganelles, calculationType,
+                amountType, biome, energyBalance, environmentalTolerances);
         }
 
         specificStorages ??= CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells.Select(o => o.Data!),

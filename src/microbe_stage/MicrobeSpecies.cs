@@ -8,12 +8,14 @@ using Vector3 = Godot.Vector3;
 /// <summary>
 ///   Represents a microbial species with microbe stage specific species things.
 /// </summary>
-public class MicrobeSpecies : Species, ICellDefinition
+public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
     private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
         cachedFillTimes = new();
+
+    private IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate>? readonlyLayout;
 
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
@@ -28,13 +30,13 @@ public class MicrobeSpecies : Species, ICellDefinition
     ///   Properties from here are copied to this (except organelle objects are shared)
     /// </param>
     /// <param name="workMemory1">Temporary memory needed to copy the organelles</param>
-    /// <param name="workMemory2">More needed temporary memory</param>
+    /// <param name="workMemory2">More necessary temporary memory</param>
     public MicrobeSpecies(Species cloneOf, ICellDefinition withCellDefinition, List<Hex> workMemory1,
         List<Hex> workMemory2) : this(cloneOf.ID, cloneOf.Genus, cloneOf.Epithet)
     {
         cloneOf.ClonePropertiesTo(this);
 
-        foreach (var organelle in withCellDefinition.Organelles)
+        foreach (var organelle in withCellDefinition.ModifiableOrganelles)
         {
             Organelles.AddFast(organelle, workMemory1, workMemory2);
         }
@@ -54,11 +56,19 @@ public class MicrobeSpecies : Species, ICellDefinition
 
     public float MembraneRigidity { get; set; }
 
+    // TODO: switch this primary to be the readonly organelles interface
     /// <summary>
     ///   Organelles of this species. This is saved (almost) last to ensure organelle data that may refer back to this
     ///   species can be loaded (for example, cell-detecting chemoreceptors).
     /// </summary>
-    public OrganelleLayout<OrganelleTemplate> Organelles { get; set; }
+    /// <remarks>
+    ///   <para>
+    ///     Do not change this once the object is in use as the readonly adapter will not have been updated.
+    ///   </para>
+    /// </remarks>
+    public OrganelleLayout<OrganelleTemplate> Organelles { get; private set; }
+
+    public OrganelleLayout<OrganelleTemplate> ModifiableOrganelles => Organelles;
 
     public Color Colour
     {
@@ -126,6 +136,12 @@ public class MicrobeSpecies : Species, ICellDefinition
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeSpecies;
+
+    // TODO: sadly I found no way to finagle the interfaces to line up fully, so a very light adapter class is needed
+    // here
+    IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> IReadOnlyCellDefinition.Organelles =>
+        readonlyLayout ??=
+            new ReadonlyOrganelleLayoutAdapter<IReadOnlyOrganelleTemplate, OrganelleTemplate>(Organelles);
 
     public static bool StateHasStabilizedImpl(IWorldSimulation worldSimulation)
     {
@@ -309,7 +325,7 @@ public class MicrobeSpecies : Species, ICellDefinition
 
         foreach (var organelle in casted.Organelles)
         {
-            Organelles.AddFast((OrganelleTemplate)organelle.Clone(), workMemory1, workMemory2);
+            Organelles.AddFast(organelle.Clone(), workMemory1, workMemory2);
         }
 
         IsBacteria = casted.IsBacteria;

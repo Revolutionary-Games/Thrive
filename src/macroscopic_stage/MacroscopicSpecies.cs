@@ -39,7 +39,7 @@ public class MacroscopicSpecies : Species
     ///   All organelles in all the species' placed metaballs (there can be a lot of duplicates in this list)
     /// </summary>
     public IEnumerable<OrganelleTemplate> Organelles =>
-        BodyLayout.Select(m => m.CellType).Distinct().SelectMany(c => c.Organelles);
+        BodyLayout.Select(m => m.CellType).Distinct().SelectMany(c => c.ModifiableOrganelles);
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 

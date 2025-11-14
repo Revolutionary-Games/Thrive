@@ -80,7 +80,7 @@ public class CellLayout<T> : HexLayout<T>, IArchivable
     {
         result.Clear();
 
-        var organellesInternal = hex.Organelles.Organelles;
+        var organellesInternal = hex.ModifiableOrganelles.Organelles;
         int organelleCount = organellesInternal.Count;
 
         for (int i = 0; i < organelleCount; ++i)

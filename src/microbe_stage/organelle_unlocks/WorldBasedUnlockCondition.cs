@@ -105,12 +105,10 @@ public class SpeedBelow : WorldBasedUnlockCondition
 
     private float GetPlayerSpeed(ICellDefinition playerData)
     {
-        var rawSpeed = MicrobeInternalCalculations.CalculateSpeed(playerData.Organelles.Organelles,
-            playerData.MembraneType,
-            playerData.MembraneRigidity,
-            playerData.IsBacteria);
+        var rawSpeed = MicrobeInternalCalculations.CalculateSpeed(playerData.ModifiableOrganelles.Organelles,
+            playerData.MembraneType, playerData.MembraneRigidity, playerData.IsBacteria);
 
-        // This needs to be user readable as it is shown by the tooltip
+        // This needs to be user-readable as it is shown by the tooltip
         return (float)Math.Round(MicrobeInternalCalculations.SpeedToUserReadableNumber(rawSpeed), 1);
     }
 }

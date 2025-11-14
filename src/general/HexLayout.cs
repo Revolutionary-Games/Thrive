@@ -244,6 +244,29 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
     }
 
     /// <summary>
+    ///   Search variant that searches for just root positions, not general overlap. Don't use this variant unless you
+    ///   know exactly what that means and why this might miss something that overlaps the new position.
+    /// </summary>
+    /// <param name="location">Where to check for root items exactly</param>
+    /// <returns>Hex at exact position and not just overlapping the location</returns>
+    public T? GetByExactElementRootPosition(Hex location)
+    {
+        int count = existingHexes.Count;
+
+        // This uses a manual loop as this method is called a lot, so this needs to ensure that this doesn't do any
+        // unnecessary computations
+        for (int i = 0; i < count; ++i)
+        {
+            var existingHex = existingHexes[i];
+
+            if (existingHex.Position == location)
+                return existingHex;
+        }
+
+        return null;
+    }
+
+    /// <summary>
     ///   Removes hex that contains a hex position
     /// </summary>
     /// <returns>True when removed, false if there was nothing at this position</returns>

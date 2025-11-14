@@ -10,9 +10,11 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
+    private IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate>? readonlyLayout;
+
     public CellType(OrganelleLayout<OrganelleTemplate> organelles, MembraneType membraneType)
     {
-        Organelles = organelles;
+        ModifiableOrganelles = organelles;
         MembraneType = membraneType;
         CanEngulf = membraneType.CanEngulf;
     }
@@ -20,7 +22,7 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
     public CellType(MembraneType membraneType)
     {
         MembraneType = membraneType;
-        Organelles = new OrganelleLayout<OrganelleTemplate>();
+        ModifiableOrganelles = new OrganelleLayout<OrganelleTemplate>();
         CanEngulf = membraneType.CanEngulf;
     }
 
@@ -35,7 +37,7 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
     {
         foreach (var organelle in microbeSpecies.Organelles)
         {
-            Organelles.AddFast((OrganelleTemplate)organelle.Clone(), workMemory1, workMemory2);
+            ModifiableOrganelles.AddFast(organelle.Clone(), workMemory1, workMemory2);
         }
 
         MembraneRigidity = microbeSpecies.MembraneRigidity;
@@ -45,7 +47,11 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
         TypeName = Localization.Translate("STEM_CELL_NAME");
     }
 
-    public OrganelleLayout<OrganelleTemplate> Organelles { get; private set; }
+    // TODO: avoid this adapter object allocation
+    public IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> Organelles => readonlyLayout ??=
+        new ReadonlyOrganelleLayoutAdapter<IReadOnlyOrganelleTemplate, OrganelleTemplate>(ModifiableOrganelles);
+
+    public OrganelleLayout<OrganelleTemplate> ModifiableOrganelles { get; }
 
     public string TypeName { get; set; } = "error";
     public int MPCost { get; set; } = 15;
@@ -92,7 +98,7 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.WriteObject(Organelles);
+        writer.WriteObject(ModifiableOrganelles);
         writer.WriteObject(MembraneType);
 
         writer.Write(TypeName);
@@ -105,7 +111,7 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
 
     public bool RepositionToOrigin()
     {
-        var changes = Organelles.RepositionToOrigin();
+        var changes = ModifiableOrganelles.RepositionToOrigin();
         CalculateRotationSpeed();
         return changes;
     }
@@ -182,7 +188,7 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
 
         foreach (var organelle in Organelles)
         {
-            result.Organelles.AddFast((OrganelleTemplate)organelle.Clone(), workMemory1, workMemory2);
+            result.ModifiableOrganelles.AddFast(organelle.Clone(), workMemory1, workMemory2);
         }
 
         return result;
@@ -202,7 +208,7 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
         // is applied by MicrobeSpecies' base class.
         hash ^= Colour.GetVisualHashCode();
 
-        var list = Organelles.Organelles;
+        var list = ModifiableOrganelles.Organelles;
 
         for (int i = 0; i < count; ++i)
         {
@@ -224,7 +230,7 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
         int hash = TypeName.GetHashCode() ^ MembraneType.InternalName.GetHashCode() * 5743 ^
             MembraneRigidity.GetHashCode() * 5749 ^ (IsBacteria ? 1 : 0) * 5779 ^ count * 131;
 
-        var list = Organelles.Organelles;
+        var list = ModifiableOrganelles.Organelles;
 
         for (int i = 0; i < count; ++i)
         {
@@ -236,6 +242,7 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
 
     private void CalculateRotationSpeed()
     {
-        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles);
+        // TODO: switch this to use a read only interface
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(ModifiableOrganelles.Organelles);
     }
 }

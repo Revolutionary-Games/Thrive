@@ -212,7 +212,7 @@ public partial class OrganelleUpgradeGUI : Control
 
         // Use the existing data as the old data or create new data if the organelle didn't have upgrades data yet
         var oldUpgrades = openedForOrganelle.ModifiableUpgrades ?? new OrganelleUpgrades();
-        var newUpgrades = (OrganelleUpgrades)oldUpgrades.Clone();
+        var newUpgrades = oldUpgrades.Clone();
 
         if (currentlySelectedGeneralUpgrades != null)
         {

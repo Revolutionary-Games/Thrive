@@ -7,7 +7,8 @@ using SharedBase.Archive;
 ///   Basically just adding the positioning info on top of OrganelleDefinition.
 ///   When the layout is instantiated in a cell, the PlacedOrganelle class is used.
 /// </summary>
-public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, IPlayerReadableName
+public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganelle, IActionHex, IPlayerReadableName,
+    ICloneable
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
@@ -32,9 +33,9 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
     /// <summary>
     ///   The upgrades this organelle will have when instantiated in a microbe
     /// </summary>
-    public OrganelleUpgrades? ModifiableUpgrades { get; set; }
+    public virtual OrganelleUpgrades? ModifiableUpgrades { get; set; }
 
-    public IReadOnlyOrganelleUpgrades? Upgrades => ModifiableUpgrades;
+    public virtual IReadOnlyOrganelleUpgrades? Upgrades => ModifiableUpgrades;
 
     public string ReadableName => Definition.Name;
 
@@ -142,7 +143,7 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
         return Compound.Invalid;
     }
 
-    public object Clone()
+    public OrganelleTemplate Clone()
     {
         return Clone(true);
     }
@@ -151,7 +152,7 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
     {
         return new OrganelleTemplate(Definition, Position, Orientation)
         {
-            ModifiableUpgrades = deepClone ? (OrganelleUpgrades?)ModifiableUpgrades?.Clone() : ModifiableUpgrades,
+            ModifiableUpgrades = deepClone ? ModifiableUpgrades?.Clone() : ModifiableUpgrades,
         };
     }
 
@@ -170,5 +171,10 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
     public override string ToString()
     {
         return ReadableExactIdentifier;
+    }
+
+    object ICloneable.Clone()
+    {
+        return Clone();
     }
 }

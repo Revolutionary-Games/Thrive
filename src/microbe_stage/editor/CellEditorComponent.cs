@@ -959,17 +959,16 @@ public partial class CellEditorComponent :
         }
 
         // Get the species organelles to be edited. This also updates the placeholder hexes
-        foreach (var organelle in properties.Organelles.Organelles)
+        foreach (var organelle in properties.ModifiableOrganelles.Organelles)
         {
-            editedMicrobeOrganelles.AddFast((OrganelleTemplate)organelle.Clone(), hexTemporaryMemory,
-                hexTemporaryMemory2);
+            editedMicrobeOrganelles.AddFast(organelle.Clone(), hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         newName = properties.FormattedName;
 
         // This needs to be calculated here, otherwise ATP-related unlock conditions would
         // get null as the ATP balance
-        CalculateEnergyAndCompoundBalance(properties.Organelles.Organelles, properties.MembraneType,
+        CalculateEnergyAndCompoundBalance(properties.ModifiableOrganelles.Organelles, properties.MembraneType,
             Editor.CurrentPatch.Biome);
 
         UpdateOrganelleUnlockTooltips(true);
@@ -1006,13 +1005,13 @@ public partial class CellEditorComponent :
 
         // Apply changes to the species organelles
         // It is easiest to just replace all
-        editedProperties.Organelles.Clear();
+        editedProperties.ModifiableOrganelles.Clear();
 
         // Even in a multicellular context, it should always be safe to apply the organelle growth order
         foreach (var organelle in growthOrderGUI.ApplyOrderingToItems(editedMicrobeOrganelles.Organelles))
         {
-            var organelleToAdd = (OrganelleTemplate)organelle.Clone();
-            editedProperties.Organelles.AddFast(organelleToAdd, hexTemporaryMemory, hexTemporaryMemory2);
+            var organelleToAdd = organelle.Clone();
+            editedProperties.ModifiableOrganelles.AddFast(organelleToAdd, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         if (shouldUpdatePosition)
