@@ -71,6 +71,8 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     /// </summary>
     protected GameProperties? currentGame;
 
+    private readonly List<EditorCombinableActionData> actionCache = new();
+
 #pragma warning disable CA2213
     [Export]
     private Control editorGUIBaseNode = null!;
@@ -89,7 +91,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     /// <summary>
     ///   Base Node where all dynamically created world Nodes in the editor should go. Optionally grouped under
-    ///   a one more level of parent nodes so that different editor components can have their things visible at
+    ///   a one higher level of parent nodes so that different editor components can have their things visible at
     ///   different times
     /// </summary>
     public Node3D RootOfDynamicallySpawned { get; private set; } = null!;
@@ -1029,6 +1031,11 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         }
     }
 
+    protected virtual double CalculateUsedMutationPoints(List<EditorCombinableActionData> performedActionData)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
     /// <summary>
     ///   Applies the changes done and exits the editor back to <see cref="ReturnToStage"/>
     /// </summary>
@@ -1115,7 +1122,9 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         if (FreeBuilding || CheatManager.InfiniteMP)
             return Constants.BASE_MUTATION_POINTS;
 
-        mutationPointsCache = history.CalculateMutationPointsLeft();
+        history.GetPerformedActionData(actionCache);
+        mutationPointsCache = Constants.BASE_MUTATION_POINTS - CalculateUsedMutationPoints(actionCache);
+        actionCache.Clear();
 
         if (mutationPointsCache.Value is < Constants.ALLOWED_MP_OVERSHOOT or > Constants.BASE_MUTATION_POINTS)
         {

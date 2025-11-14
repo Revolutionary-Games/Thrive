@@ -15,6 +15,8 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     private const double EMERGENCY_SHOW_TABS_AFTER_SECONDS = 4;
 
+    private readonly MicrobeSpeciesComparer speciesComparer = new();
+
 #pragma warning disable CA2213
     [Export]
     private MicrobeEditorReportComponent reportTab = null!;
@@ -32,6 +34,11 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     ///   The species that is being edited, changes are applied to it on exit
     /// </summary>
     private MicrobeSpecies? editedSpecies;
+
+    /// <summary>
+    ///   Used to cache full edited status for <see cref="speciesComparer"/> usage
+    /// </summary>
+    private MicrobeEditsFacade? editsFacade;
 
     private bool checkingTabVisibility;
     private double tabCheckVisibilityTimer = 10;
@@ -401,6 +408,17 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     {
         // Patch events are able to change the stage's background, so it needs to be updated here.
         cellEditorTab.UpdateBackgroundImage(CurrentPatch);
+    }
+
+    protected override double CalculateUsedMutationPoints(List<EditorCombinableActionData> performedActionData)
+    {
+        editsFacade ??=
+            new MicrobeEditsFacade(
+                editedSpecies ?? throw new Exception("Species not initialized before calculating MP"));
+
+        editsFacade.SetActiveActions(performedActionData);
+
+        return speciesComparer.Compare(editedSpecies!, editsFacade);
     }
 
     protected override GameProperties StartNewGameForEditor()

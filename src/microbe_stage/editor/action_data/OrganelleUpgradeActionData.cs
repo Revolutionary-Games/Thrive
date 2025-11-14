@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Godot;
 using SharedBase.Archive;
 
 public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
@@ -35,71 +34,6 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
         writer.WriteObject((OrganelleUpgradeActionData)obj);
     }
 
-    public static double CalculateUpgradeCost(Dictionary<string, AvailableUpgrade> availableUpgrades,
-        IReadOnlyList<string> newUpgrades, IReadOnlyList<string> oldUpgrades, bool refund = false)
-    {
-        int cost = 0;
-
-        // TODO: allow custom upgrades to have a cost (should also add a test in EditorMPTests)
-        // TODO: also each upgrade will need to have handling code added, see all implementations of
-        // IComponentSpecificUpgrades.CalculateCost
-
-        // Calculate the costs of the selected new general upgrades
-
-        int count = newUpgrades.Count;
-        for (int i = 0; i < count; ++i)
-        {
-            var newUpgrade = newUpgrades[i];
-
-            if (oldUpgrades.Contains(newUpgrade))
-                continue;
-
-            if (!availableUpgrades.TryGetValue(newUpgrade, out var upgrade))
-            {
-                // TODO: this probably should be suppressed in cases where we have dynamically called upgrade names,
-                // which we might do in the future
-                GD.PrintErr("Cannot calculate cost for an unknown upgrade: ", newUpgrade);
-            }
-            else
-            {
-                cost += upgrade.MPCost;
-            }
-        }
-
-        if (refund)
-        {
-            // Refund removed upgrades
-            count = oldUpgrades.Count;
-            for (int i = 0; i < count; ++i)
-            {
-                var oldUpgrade = oldUpgrades[i];
-
-                if (newUpgrades.Contains(oldUpgrade))
-                    continue;
-
-                if (!availableUpgrades.TryGetValue(oldUpgrade, out var upgrade))
-                {
-                    // See the TODO above
-                    GD.PrintErr("Cannot calculate cost for an unknown upgrade: ", oldUpgrade);
-                }
-                else
-                {
-                    cost -= upgrade.MPCost;
-                }
-            }
-        }
-
-        // else
-        {
-            // TODO: Removals should cost MP: https://github.com/Revolutionary-Games/Thrive/issues/4095
-            // var removedUpgrades = OldUpgrades.UnlockedFeatures.Except(NewUpgrades.UnlockedFeatures)
-            //     .Where(u => availableUpgrades.ContainsKey(u)).Select(u => availableUpgrades[u]);
-            // ? removedUpgrades.Sum(u => u.MPCost);
-        }
-
-        return cost;
-    }
-
     public static OrganelleUpgradeActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
@@ -125,7 +59,8 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
 
     protected override double CalculateBaseCostInternal()
     {
-        return CalculateUpgradeCost(UpgradedOrganelle.Definition.AvailableUpgrades, NewUpgrades.UnlockedFeatures,
+        return MicrobeSpeciesComparer.CalculateUpgradeCost(UpgradedOrganelle.Definition.AvailableUpgrades,
+            NewUpgrades.UnlockedFeatures,
             OldUpgrades.UnlockedFeatures);
     }
 
@@ -148,7 +83,7 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
                 {
                     // When there's a previous upgrade, calculate this cost in relation to that to process refunds as
                     // well correctly
-                    cost = CalculateUpgradeCost(UpgradedOrganelle.Definition.AvailableUpgrades,
+                    cost = MicrobeSpeciesComparer.CalculateUpgradeCost(UpgradedOrganelle.Definition.AvailableUpgrades,
                         NewUpgrades.UnlockedFeatures,
                         upgradeActionData.NewUpgrades.UnlockedFeatures, true);
                 }
