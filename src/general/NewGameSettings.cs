@@ -561,7 +561,6 @@ public partial class NewGameSettings : ControlWithInput
                     TransitionManager.Instance.CreateCutscene("res://assets/videos/microbe_intro2.ogv", 0.65f), OnStartGame,
                     true, false);
             }
-
         }
         else
         {
