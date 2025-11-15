@@ -552,14 +552,14 @@ public partial class NewGameSettings : ControlWithInput
             if (settings.Origin == WorldGenerationSettings.LifeOrigin.Panspermia)
             {
                 TransitionManager.Instance.AddSequence(
-                    TransitionManager.Instance.CreateCutscene("res://assets/videos/panspermia_intro.ogv", 0.65f), OnStartGame,
-                    true, false);
+                    TransitionManager.Instance.CreateCutscene("res://assets/videos/panspermia_intro.ogv", 0.65f),
+                    OnStartGame, true, false);
             }
             else
             {
                 TransitionManager.Instance.AddSequence(
-                    TransitionManager.Instance.CreateCutscene("res://assets/videos/microbe_intro2.ogv", 0.65f), OnStartGame,
-                    true, false);
+                    TransitionManager.Instance.CreateCutscene("res://assets/videos/microbe_intro2.ogv", 0.65f),
+                    OnStartGame, true, false);
             }
         }
         else
