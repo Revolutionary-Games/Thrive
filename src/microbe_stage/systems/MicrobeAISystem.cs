@@ -330,11 +330,9 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 ai.MoveWithRandomTurn(1.5f, 4.5f, position.Position, ref control, speciesActivity, random);
                 return;
             }
-            else
-            {
-                control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
-                return;
-            }
+
+            control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+            return;
         }
 
         float atpLevel = compounds.GetCompoundAmount(Compound.ATP);
