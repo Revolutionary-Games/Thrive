@@ -74,6 +74,8 @@ public interface IDifficulty : IRegistryAssignable, IArchivable
     /// </summary>
     public FogOfWarMode FogOfWarMode { get; }
 
+    public bool InstantKillProtection { get; }
+
     /// <summary>
     ///   Whether organelle unlocks are enabled or not. If false, all organelles are unlocked by default.
     /// </summary>
@@ -104,6 +106,7 @@ public static class DifficultyHelpers
             SwitchSpeciesOnExtinction = difficulty.SwitchSpeciesOnExtinction,
             LimitGrowthRate = difficulty.LimitGrowthRate,
             FogOfWarMode = difficulty.FogOfWarMode,
+            InstantKillProtection = difficulty.InstantKillProtection,
             OrganelleUnlocksEnabled = difficulty.OrganelleUnlocksEnabled,
         };
     }

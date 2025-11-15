@@ -1,11 +1,12 @@
-﻿using SharedBase.Archive;
+﻿using JetBrains.Annotations;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Customised difficulty setting
 /// </summary>
 public class CustomDifficulty : IDifficulty
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     private bool applyGrowthOverride;
     private bool growthLimitOverride;
@@ -49,6 +50,9 @@ public class CustomDifficulty : IDifficulty
     }
 
     public FogOfWarMode FogOfWarMode { get; set; }
+
+    public bool InstantKillProtection { get; set; }
+
     public bool OrganelleUnlocksEnabled { get; set; }
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
@@ -82,6 +86,11 @@ public class CustomDifficulty : IDifficulty
             instance.limitGrowthRate = reader.ReadBool();
         }
 
+        if (version > 2)
+        {
+            instance.InstantKillProtection = reader.ReadBool();
+        }
+
         return instance;
     }
 
@@ -103,6 +112,9 @@ public class CustomDifficulty : IDifficulty
         writer.Write((int)FogOfWarMode);
         writer.Write(OrganelleUnlocksEnabled);
         writer.Write(limitGrowthRate);
+
+        // Version 3 fields that were added after
+        writer.Write(InstantKillProtection);
     }
 
     public void SetGrowthRateLimitCheatOverride(bool newLimitSetting)

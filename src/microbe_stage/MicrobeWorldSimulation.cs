@@ -1,4 +1,5 @@
 ﻿using Arch.Core;
+using Components;
 using Godot;
 using SharedBase.Archive;
 using Systems;
@@ -302,6 +303,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     public void InitForCurrentGame(GameProperties currentGame)
     {
         osmoregulationAndHealingSystem.SetWorld(currentGame.GameWorld);
+        HealthHelpers.SetWorld(currentGame.GameWorld);
         microbeReproductionSystem.SetWorld(currentGame.GameWorld);
         microbeDeathSystem.SetWorld(currentGame.GameWorld);
         microbeHeatAccumulationSystem.SetWorld(currentGame.GameWorld);
