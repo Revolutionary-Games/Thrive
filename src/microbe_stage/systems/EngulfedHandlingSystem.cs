@@ -91,7 +91,13 @@ public partial class EngulfedHandlingSystem : BaseSystem<World, float>
             // Species handling for the player microbe in case the process into partial digestion took too long
             // so here we want to limit how long the player should wait until they respawn
             if (engulfable.PhagocytosisStep == PhagocytosisPhase.Ingested && entity.Has<PlayerMarker>())
-                playerEngulfedDeathTimer += delta;
+            {
+                // If the player still has toxin, there's a chance the player cell can escape
+                if (entity.Get<CompoundStorage>().Compounds.GetCompoundAmount(Compound.Oxytoxy) == 0)
+                {
+                    playerEngulfedDeathTimer += delta;
+                }
+            }
 
             // TODO: the old system probably used to have:
             // engulfable.DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD here which is now gone to stop
