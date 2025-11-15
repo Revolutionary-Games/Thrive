@@ -324,7 +324,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         if (!organelles.HydrogenSulfideProtection
             && compounds.GetCompoundAmount(Compound.Hydrogensulfide) > MathUtils.EPSILON)
         {
-
             // If you aren't moving, turn and start. If you are moving, keep going in that direction
             if (control.MovementDirection == Vector3.Zero)
             {
