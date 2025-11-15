@@ -1117,7 +1117,9 @@ public partial class PatchMapDrawer : Control
         {
             var playerPopulation = patch.GetSpeciesSimulationPopulation(playerSpecies);
 
-            for (var i = 0; i < MathF.Sqrt(playerPopulation) * Constants.INDICATORS_NUMBER_PER_POPULATION_SQUARED; ++i)
+            var numberOfIndicators = MathF.Sqrt(playerPopulation) *
+                Constants.INDICATORS_NUMBER_PER_POPULATION_SQUARED;
+            for (var i = 0; i < numberOfIndicators; ++i)
             {
                 var lifeIndicator = new TextureRect
                 {
