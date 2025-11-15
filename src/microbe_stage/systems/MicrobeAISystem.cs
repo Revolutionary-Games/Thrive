@@ -322,11 +322,20 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
         // If motionless inside a hydrogen sulfide cloud, move away
         if (!organelles.HydrogenSulfideProtection
-            && compounds.GetCompoundAmount(Compound.Hydrogensulfide) > MathUtils.EPSILON
-            && control.MovementDirection == Vector3.Zero)
+            && compounds.GetCompoundAmount(Compound.Hydrogensulfide) > MathUtils.EPSILON)
         {
-            ai.MoveWithRandomTurn(1.5f, 4.5f, position.Position, ref control, speciesActivity, random);
-            return;
+
+            // If you aren't moving, turn and start. If you are moving, keep going in that direction
+            if (control.MovementDirection == Vector3.Zero)
+            {
+                ai.MoveWithRandomTurn(1.5f, 4.5f, position.Position, ref control, speciesActivity, random);
+                return;
+            }
+            else
+            {
+                control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+                return;
+            }
         }
 
         float atpLevel = compounds.GetCompoundAmount(Compound.ATP);
