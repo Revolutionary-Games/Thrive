@@ -273,7 +273,8 @@ public static class HealthHelpers
     public static float GetInstantKillProtectionThreshold(bool isPlayer)
     {
         return difficulty!.InstantKillProtection && isPlayer ?
-            Constants.PLAYER_INSTANT_KILL_PROTECTION_HEALTH_THRESHOLD : -1;
+            Constants.PLAYER_INSTANT_KILL_PROTECTION_HEALTH_THRESHOLD :
+            -1;
     }
 
     /// <summary>
