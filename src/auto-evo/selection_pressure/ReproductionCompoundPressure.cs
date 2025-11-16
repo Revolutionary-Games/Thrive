@@ -151,6 +151,7 @@ public class ReproductionCompoundPressure : SelectionPressure
         }
 
         var finalScore = 0.1f;
+
         // modify score by energy cost and activity
         var activityFraction = microbeSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
         finalScore += (score + chemoreceptorScore) * activityFraction /
