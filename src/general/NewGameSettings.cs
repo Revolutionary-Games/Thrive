@@ -848,6 +848,12 @@ public partial class NewGameSettings : ControlWithInput
         UpdateSelectedDifficultyPresetControl();
     }
 
+    private void OnInstantKillProtectionToggled(bool pressed)
+    {
+        _ = pressed;
+        UpdateSelectedDifficultyPresetControl();
+    }
+
     private void OnOrganelleUnlocksToggled(bool pressed)
     {
         _ = pressed;
