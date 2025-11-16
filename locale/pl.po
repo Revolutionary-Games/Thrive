@@ -44,7 +44,7 @@ msgid "ABSORBERS_COUNT"
 msgstr "Pochłaniacze:"
 
 msgid "ABYSSOPELAGIC"
-msgstr "Abisal"
+msgstr "Abisal pelagiczny"
 
 msgid "ACCEPT"
 msgstr "Akceptuj"
@@ -89,7 +89,7 @@ msgid "ACTIVE"
 msgstr "aktywny"
 
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Obecne wątki:"
+msgstr "Aktualne wątki:"
 
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
@@ -158,20 +158,21 @@ msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Pokolenia:[/b]\n"
 "  {0}\n"
-"[b]Ogólna Liczba Gatunków:[/b]\n"
-"  Średnio {1}; Standardowe Odchylenie {2}\n"
-"[b]Gatunki Wciąż Żyjące:[/b]\n"
-"  Średnio {3}; Standardowe Odchylenie {4}\n"
-"[b]Liczba Gatunków na Strefę:[/b]\n"
-"  Średnio {5}; Standardowe Odchylenie {6}\n"
-"[b]Ogólna Populacja na Strefę:[/b]\n"
-"  Średnio {7}; Standardowe Odchylenie {8}\n"
-"[b]Średnia Wielkość Gatunków Mikrobów w Polach:[/b]\n"
-"  Średnio {9}; Standardowe Odchylenie {10}\n"
-"[b]Ogólne Dane Organelli:[/b]"
+"[b]Ogólna liczba gatunków:[/b]\n"
+"  Średnio {1}; Standardowe odchylenie {2}\n"
+"[b]Gatunki wciąż żyjące:[/b]\n"
+"  Średnio {3}; Standardowe odchylenie {4}\n"
+"[b]Liczba gatunków na obszar:[/b]\n"
+"  Średnio {5}; Standardowe odchylenie {6}\n"
+"[b]Ogólna populacja na obszar:[/b]\n"
+"  Średnio {7}; Standardowe odchylenie {8}\n"
+"[b]Średnia wielkość gatunków mikrobów w strefie:[/b]\n"
+"  Średnio {9}; Standardowe odchylenie {10}\n"
+"\n"
+"[b]Ogólne dane organelli:[/b]"
 
 msgid "ALREADY_ASCENDED"
-msgstr "Już dokonałeś wniebowstąpienia"
+msgstr "Już jesteś uniesiony"
 
 msgid "ALT"
 msgstr "Alt"
@@ -271,10 +272,10 @@ msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Klasa Mod assembly jest wymagana, jeśli klasa assembly jest określona"
 
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr "Assembly modu jest wymagane kiedy auto harmony jest włączone"
+msgstr "Plik Assembly moda jest wymagany kiedy automatyczna harmonia jest włączone"
 
 msgid "ASSUME_HYPERTHREADING"
-msgstr "Załóż, że procesor pozwala na hyperthreading"
+msgstr "Założenie włączonej wielowątkowości CPU"
 
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
@@ -305,7 +306,7 @@ msgstr ""
 "Menu poniżej pokazuje, co się może stać, jeśli komórka nie będzie miała któregoś z surowców niezbędnych do wytworzenia ATP."
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
-msgstr "Bez źródeł zewnętrznych"
+msgstr "Bez zasobów zewnętrznych"
 
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
 msgstr "Bez glukozy"
@@ -326,7 +327,7 @@ msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "PRODUKCJA ATP JEST ZA NISKA!"
 
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr "Próba zapisu się nie powiodła. Nazwa może być za długa lub nie masz praw zapisu w folderze."
+msgstr "Próba zapisu pliku zakończona niepowodzeniem. Nazwa może być zbyt długa lub może brakować uprawnień do zapisu w folderze z zapisami."
 
 msgid "AT_CURSOR"
 msgstr "Pod kursorem:"
@@ -356,7 +357,7 @@ msgstr ""
 "Auto-ewolucja przeprowadza symulację populacji, czyli drugą rzecz wpływającą (poza twoim wkładem własnym) na liczebność gatunku."
 
 msgid "AUTO-EVO_RESULTS_TITLE"
-msgstr "Rezultat autoewolucji"
+msgstr "Rezultat Auto-Ewolucji"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% zrobione. {1:n0}/{2:n0} kroków."
@@ -482,10 +483,10 @@ msgid "BECOME_MACROSCOPIC"
 msgstr "Zostań organizmem makroskopijnym! ({0}/{1})"
 
 msgid "BECOME_MULTICELLULAR"
-msgstr "Zostań organizmem wielokomórkowym! ({0}/{1})"
+msgstr "Zostań organizmem wielokomórkowym ({0}/{1})"
 
 msgid "BEGIN_THRIVING"
-msgstr "Zacznij żyć"
+msgstr "Zacznij Prosperować"
 
 msgid "BEHAVIOUR"
 msgstr "Zachowania"
@@ -584,7 +585,7 @@ msgid "BUILD_CITY"
 msgstr "Zbuduj Miasto"
 
 msgid "BUILD_QUEUE"
-msgstr "Kolejka Budowy"
+msgstr "Kolejka"
 
 msgid "BUILD_STRUCTURE"
 msgstr "Zbuduj Strukturę"
@@ -593,7 +594,7 @@ msgid "BY"
 msgstr "Przez:"
 
 msgid "BY_REVOLUTIONARY_GAMES"
-msgstr "Wykonane Przez Revolutionary Games Studio"
+msgstr "Od Revolutionary Games Studio"
 
 msgid "CACHE_DISK_MAX_TIME"
 msgstr "Maksymalny czas przechowywania wpisów na dysku przed usunięciem"
@@ -629,19 +630,19 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Anuluj aktualną czynność"
 
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr "Rodzaj komórki, który jest obecnie używany w twoim organizmie, nie może zostać usunięty"
+msgstr "Typ komórki który jest używany w twoim ciele nie może zostać usunięty"
 
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Nie Można Usunąć Użytego Typu Komórki"
 
 msgid "CANNOT_ENGULF"
-msgstr "Nie może pochłaniać"
+msgstr "Nie może wchłonąć"
 
 msgid "CANNOT_IMPROVE_PERFECTION"
 msgstr "Nie można ulepszyć doskonałości"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr "Niemożna przenieść metakuli to jej drzewa potomstwa"
+msgstr "Nie można przenieść metakuli do jej drzewa potomstwa"
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
 msgstr "Ilość siły umysłu nie jest wystarczająca, aby zostać w obecnej fazie. Cofanie się do poprzedniej fazy nie jest obecnie dozwolone, zwiększ siłę umysłu, aby kontynuować."
@@ -715,7 +716,8 @@ msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
 "Pojemność komórki - im większa, tym więcej związków może w danej chwili przechowywać.\n"
 "Komórki o odpowiednio dużej pojemności mogą przeplatać okresy ruchu z postojami na odbudowę zapasów ATP.\n"
-"Z kolei zbyt mała pojemność może grozić brakiem ATP, nawet przy dodatnim bilansie - a chwilowe przycięcia czy ogólna słaba wydajność gry mogą dodatkowo pogłębiać problem - zaleca się wtedy zwiększenie pojemności."
+"Z kolei zbyt mała pojemność może grozić brakiem ATP, nawet przy dodatnim bilansie - a chwilowe przycięcia czy ogólna słaba wydajność gry mogą dodatkowo pogłębiać problem,\n"
+"zaleca się wtedy zwiększenie pojemności."
 
 msgid "CELL_TYPE_NAME"
 msgstr "Nazwa Rodzaju Komórki"
@@ -726,16 +728,14 @@ msgstr "Opis zmian jest zbyt długi"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Zmień symetrię"
 
-#, fuzzy
 msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
-msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
+msgstr "Synteza blokady kanałowej"
 
 msgid "CHEATS"
 msgstr "Oszustwa"
 
-#, fuzzy
 msgid "CHEATS_USED_NOTICE"
-msgstr "Nie zaczęto."
+msgstr "W tej rozgrywce korzystano z ułatwień."
 
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Klawisze oszustw włączone"
@@ -843,7 +843,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Usuń stare zapisy"
 
 msgid "CLEAR_CACHE"
-msgstr "Wyczyść pamięć podręczną"
+msgstr "Wyczyść pamięć cache"
 
 msgid "CLICK_TO_SELECT"
 msgstr "Wybierz"
@@ -851,11 +851,8 @@ msgstr "Wybierz"
 msgid "CLIMATE_INSTABILITY"
 msgstr "Niestabilność klimatu"
 
-#, fuzzy
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Aktywne mikroby będą wędrować kiedy nic się nie dzieje.\n"
-"Osiadłe mikroby będą czekać w miejscu i oczekiwać zmian w otoczeniu zanim zaczną coś robić."
+msgstr "(wpływa na częstość i intensywność lokalnych zdarzeń, takich jak globalne zlodowacenie)"
 
 msgid "CLIMATE_STABILITY_AVERAGE"
 msgstr "Średnia"
@@ -873,10 +870,10 @@ msgid "CLOSE_OPTIONS"
 msgstr "Zamknąć opcje?"
 
 msgid "CLOSTRIDIAL_FERMENTATION"
-msgstr "Fermentacja masłowa"
+msgstr "Fermentacja klostridialna"
 
 msgid "CLOUD_BENCHMARK"
-msgstr "Test wydajności chmur"
+msgstr "Punkt odniesienia z chmury"
 
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Dzielnik rozdzielczości chmur:"
@@ -885,7 +882,7 @@ msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Minimalny interwał symulacji chmur:"
 
 msgid "CLOUD_SIMULATION_MULTIPLIER"
-msgstr "Mnożnik symulacji chmur"
+msgstr "Mnożnik symulacji chmur:"
 
 msgid "COASTAL"
 msgstr "Przybrzeże"
@@ -1031,7 +1028,7 @@ msgid "COMPOUND_HANDLE_TOP_UP"
 msgstr "Zawsze uzupełniaj do wartości startowej"
 
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
-msgstr "Uzupełnij przy zmianie strefy"
+msgstr "Uzupełnij przy zmianie obszaru"
 
 msgid "COMPOUND_LEVEL_AVERAGE"
 msgstr "Średni"
@@ -1086,7 +1083,7 @@ msgid "CONFIRM_EXIT"
 msgstr "Potwierdź Wyjście"
 
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
-msgstr "Potwierdź Nadpisanie"
+msgstr "Potwierdź nadpisanie"
 
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
 msgstr "Przejść do Etapu Boskości?"
@@ -1434,18 +1431,20 @@ msgid "CURRENT_CACHE_SIZE"
 msgstr "Obecny rozmiar pamięci podręcznej:"
 
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
-msgstr "Zajęta pamięć podręczna. Może być bezpiecznie wyczyszczona, lecz kiedy zachowany obiekt będzie ponownie potrzebny, jego generacja zajmie dłużej"
+msgstr ""
+"Rozmiar pamięci podręcznej na dysku. Może być bezpiecznie wyczyszczona,\n"
+"lecz kiedy zachowany obiekt będzie ponownie potrzebny, jego generacja zajmie dłużej."
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Obecni Developerzy"
 
-#, fuzzy
 msgid "CURRENT_DILUTION"
-msgstr "AKTUALNA LOKALIZACJA"
+msgstr "Bieżące zdarzenie rozcieńczania"
 
-#, fuzzy
 msgid "CURRENT_DILUTION_TOOLTIP"
-msgstr "AKTUALNA LOKALIZACJA"
+msgstr ""
+"Związki zostały rozcieńczone.\n"
+"Zmniejszenie stężenia:"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "AKTUALNA LOKALIZACJA"
@@ -1827,10 +1826,10 @@ msgid "EASTEREGG_MESSAGE_12"
 msgstr "Ale te niebieskie komórki."
 
 msgid "EASTEREGG_MESSAGE_13"
-msgstr "Porada, Biomy to coś więcej niż tylko inne tła, związki chemiczne w różnych biomach pojawiają się w różnych ilościach."
+msgstr "Jeśli Twoja komórka ma 150 elementów, możesz wchłonąć nawet duże fragmenty żelaza!"
 
 msgid "EASTEREGG_MESSAGE_14"
-msgstr "Mała rada: im więcej wici posiadasz, tym szybciej się poruszasz, brum brum, ale zużywasz wtedy więcej ATP"
+msgstr "Ciekawostka: Na ziemi jest ponad 8000 gatunków orzęsek."
 
 msgid "EASTEREGG_MESSAGE_15"
 msgstr "Mała rada, możesz pochłaniać pożywienie, żelazo lub inne takie."
@@ -1839,16 +1838,16 @@ msgid "EASTEREGG_MESSAGE_16"
 msgstr "Porada, przygotuj się zanim dodasz jądro komórkowe. To coś jest drogie! W utrzymaniu i koszcie z góry."
 
 msgid "EASTEREGG_MESSAGE_17"
-msgstr "Zabawny Fakt, Czy wiedziałeś że na Ziemi jest ponad 8000 gatunków orzęsek?"
+msgstr "Ciekawostka: Ameba poluje i chwyta zdobycz za pomocą 'nóg' z cytoplazmy zwanych pseudopodiami. Chcemy, aby kiedyś znalazły się one w Thrive."
 
 msgid "EASTEREGG_MESSAGE_18"
-msgstr "Zabawny Fakt, Stentor to orzęsek który potrafi się rozciągnąć i łapać ofiary w usta przypominające trąbkę która wciąga ofiary generując prąd wodny rzęskami."
+msgstr "Bakterie mogą być silniejsze, niż się wydają; może i wyglądają na małe, ale niektóre z nich potrafią wejść w Ciebie i zabić!"
 
 msgid "EASTEREGG_MESSAGE_2"
-msgstr "Porada, toksyny mogą być użyte do odbijania innych toksyn od ciebie, jeśli jesteś wystarczająco szybki."
+msgstr "Jeden z pierwszych prototypów gry był zbudowany przez naszego programistę Untrustedlife!"
 
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "Porada, Osmoregulacja kosztuje 1 ATP na sekundę na każdy heks twojej komórki, każdy pusty heks cytozolu generuje też 5 ATP na sekundę, co znaczy, że jeżeli tracisz ATP przez osmoregulację po prostu dodaj kilka pustych heksów cytozolu albo usuń niektóre organella."
+msgstr "Wszystkie stworzenia w grze wyewoluują od wspólnego przodka. Sprawdź, czy uda ci się określić, które z nich są ze sobą najbliżej spokrewnione!"
 
 msgid "EASTEREGG_MESSAGE_4"
 msgstr "Zabawny Fakt, W prawdziwym życiu prokarioty mają coś zwanego Kompartmentami które działają jak organelle, i są nazywane Wielościennymi organellami."
@@ -1860,7 +1859,7 @@ msgid "EASTEREGG_MESSAGE_6"
 msgstr "Porada, czasem najlepiej jest po prostu uciec przed innymi komórkami."
 
 msgid "EASTEREGG_MESSAGE_7"
-msgstr "Taka porada, jeżeli komórka jest od ciebie dwa razy mniejsza możesz ją pochłonąć na drodze fagocytozy."
+msgstr "Thrive ma być symulacją obcej planety, więc nie spodziewaj się, że znajdziesz tam te same stworzenia, co na Ziemi!"
 
 msgid "EASTEREGG_MESSAGE_8"
 msgstr "Porada, bakterie mogą być silniejsze niż się wydają - mogą wyglądać na małe, ale niektóre z nich potrafią wejść do twojego organizmu i zabić cię w ten sposób!"
@@ -1942,13 +1941,11 @@ msgstr "{0}%"
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#, fuzzy
 msgid "EJECT_ENGULFED"
-msgstr "Nie może pochłaniać"
+msgstr "Wypluj wchłonięte obiekty"
 
-#, fuzzy
 msgid "EJECT_ENGULFED_TOOLTIP"
-msgstr "Nie może pochłaniać"
+msgstr "Zwraca wszystkie obce ciała, które masz w środku"
 
 #, fuzzy
 msgid "EMITTERS_COUNT"
@@ -1990,10 +1987,10 @@ msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
 msgstr "Wartość używana do generacji świata (musi być dodatnią liczbą całkowitą)"
 
 msgid "ENDOSYMBIOSIS_EXPLANATION"
-msgstr "Endosymbioza to process który zamienia gatunek w endosymbiont (gatunek który żyje wewnątrz innego gatunku w relacji symbiotycznej). To odblokowuje nowego organella i daje ci jedną darmową kopie tego organella. Kandydaci na zamianę w organelle są pokazane poniżej kiedy były one raz pochłonięte. Jak długo zajmie by zamienić kandydata na organella zależy od tego jak bardzo dostosowany jest kandydat do endosymbiozy (to jest pokazane poniżej każdego kandydata)."
+msgstr "Endosymbioza to proces, który zamienia gatunek w endosymbiont (gatunek który żyje wewnątrz innego gatunku w relacji symbiotycznej). To odblokowuje nowego organella i daje ci jedną darmową kopie tego organella. Kandydaci na zamianę w organelle są pokazane poniżej kiedy były one raz pochłonięte. Jak długo zajmie by zamienić kandydata na organella zależy od tego jak bardzo dostosowany jest kandydat do endosymbiozy (to jest pokazane poniżej każdego kandydata)."
 
 msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
-msgstr "Żaden gatunek odpowiedni do przemiany w endosymbionta nie został jeszcze pochłonięty"
+msgstr "Żaden gatunek odpowiedni do przemiany w endosymbionta nie został jeszcze wchłonięty"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
@@ -2043,7 +2040,7 @@ msgid "ENERGY_SUMMARY_LINE"
 msgstr "Całkowita zdobyta energia wynosi {0} z indywidualnym kosztem {1} tworzącym nieuregulowaną populację {2}"
 
 msgid "ENGULF_CELL_OR_CHUNK"
-msgstr "Wchloń kolejną komórkę lub odłamek"
+msgstr "Wchłoń kolejną komórkę lub odłamek"
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr "Uszkodzono przez wejście do trybu wchłaniania bez ATP"
@@ -2115,7 +2112,7 @@ msgid "ESCAPE"
 msgstr "Esc"
 
 msgid "ESCAPE_ENGULFING"
-msgstr "Uniknij fagocytozy"
+msgstr "Uniknij wchłonięcia"
 
 msgid "ESTUARY"
 msgstr "Eustarium"
@@ -2151,14 +2148,19 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+"Upadek siarkowego meteorytu\n"
+"Podnosi poziom siarki i dwutlenku węgla.\n"
+"Rozbija się na odłamki siarki."
 
-#, fuzzy
 msgid "EVENT_RUNOFF_TOOLTIP"
-msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta wersja Thrive"
+msgstr ""
+"Wymyło sedymenty do wód przybrzeżnych, wzbogacając je.\n"
+"Zwiększenie koncentracji:"
 
-#, fuzzy
 msgid "EVENT_UPWELLING_TOOLTIP"
-msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta wersja Thrive"
+msgstr ""
+"Związki chemiczne zostały wyniesione z dna oceanu, wzbogacając wody powyżej.\n"
+"Zwiększenie stężenia:"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Drzewo Filogenetyczne"
@@ -2327,7 +2329,7 @@ msgid "FIRE_TOXIN"
 msgstr "Strzel toksyną"
 
 msgid "FIRE_TOXIN_TOOLTIP"
-msgstr "Wystrzel toksyczny pocisk uszkadzający trafione komórki."
+msgstr "Wystrzel toksyczny pocisk aby uszkodzić trafione komórki"
 
 msgid "FLAGELLUM"
 msgstr "Wić"
@@ -2392,7 +2394,7 @@ msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
 msgstr "(odkryte zostaną strefy odwiedzone i graniczące z nimi obszary)"
 
 msgid "FOOD_CHAIN"
-msgstr "Łańcuch Pokarmowy"
+msgstr "Łańcuch pokarmowy"
 
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energia: {1} (sprawność: {2}) całkowita dostępna energia: {3} (całkowita sprawność: {4})"
@@ -2416,35 +2418,32 @@ msgstr "Fosylizacja"
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "Zachowaj gatunek jako skamieniałość w muzeum. Możesz je znaleźć w Thriveopedii, lub wczytać w edytorze wolnej edycji."
 
-#, fuzzy
 msgid "FOSSILISATION_FAILED"
-msgstr "Fosylizacja"
+msgstr "Nieudana Fosylizacja"
 
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
-msgstr ""
+msgstr "Plik skamieniałości nie mógł być zapisany"
 
 msgid "FOSSILISATION_HINT"
-msgstr "Fosylizuj ten gatunek"
+msgstr "Zachowaj gatunek jako skamieniałość"
 
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
-msgstr ""
+msgstr "Fosylizuj ten gatunek (już skamieniały)"
 
 msgid "FOSSILISE"
 msgstr "Zachowaj jako skamieniałość"
 
-#, fuzzy
 msgid "FOSSIL_DATA_LOAD_FAILED"
-msgstr "Fosylizacja"
+msgstr "Nieudane ładowanie danych skamieniałości"
 
-#, fuzzy
 msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
-msgstr "Aktualizacja wybranego zapisu zawiodła przez następujący błąd:"
+msgstr "Nie można odczytać pliku skamieniałości, ponieważ dane były przestarzałe lub nieprawidłowe"
 
 msgid "FOSSIL_DELETION_FAILED"
-msgstr ""
+msgstr "Nieudane kasowanie skamieniałości"
 
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
-msgstr ""
+msgstr "Plik skamieniałości nie mógł być usunięty"
 
 msgid "FOUR_TIMES"
 msgstr "4x"
@@ -2495,9 +2494,8 @@ msgstr "Generalny"
 msgid "GENERAL_LOADING_TIP_1"
 msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_2"
-msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+msgstr "Uważaj na większe organizmy. Mogą Cię zjeść, a bycie strawionym to nic przyjemnego!"
 
 #, fuzzy
 msgid "GENERAL_LOADING_TIP_3"
@@ -2550,7 +2548,7 @@ msgid "GLES3"
 msgstr "GLES3"
 
 msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
-msgstr ""
+msgstr "Na wszystkich strefach powierzchni skończyła się epoka lodowcowa"
 
 #, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT"
@@ -2561,13 +2559,13 @@ msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "Przejdź do Fazy Przebudzenia. Dostępne w momencie osiągniecia wystarczającej siły umysłu (typ komórki z aksonem)."
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
-msgstr ""
+msgstr "Globalna epoka lodowcowa rozpocznie się za {0} pokoleń"
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
-msgstr ""
+msgstr "Globalna epoka lodowcowa rozpocznie się za {0} pokolenie"
 
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
-msgstr ""
+msgstr "Rozpoczęła się globalna epoka lodowcowa na wszystkich strefach powierzchniowych"
 
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
@@ -2641,11 +2639,13 @@ msgid "HEALTH"
 msgstr "Zdrowie"
 
 msgid "HEALTH_MODIFIER"
-msgstr ""
+msgstr "Zmiana zdrowia"
 
-#, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
-msgstr "Odwiedź naszego Patreona"
+msgstr ""
+"Ten pasek pokazuje aktualną temperaturę twojej komórki. Żółte wskaźniki pokazują efektywny zakres generowania energii.\n"
+"Biały, pionowy pasek pokazuje temperaturę środowiska, do której ten pasek będzie dążył.\n"
+"Wskaźnik poniżej paska zmienia kolor, gdy generowana jest energia."
 
 msgid "HELP"
 msgstr "Pomoc"
@@ -2730,13 +2730,13 @@ msgid "ICESHARD"
 msgstr "Mały odłamek lodu"
 
 msgid "ICESHELF"
-msgstr "Lodowiec Szelfowy"
+msgstr "Lodowiec szelfowy"
 
 msgid "ICE_CHUNK_BIG"
-msgstr ""
+msgstr "Duży fragment lodu"
 
 msgid "ICE_CHUNK_SMALL"
-msgstr ""
+msgstr "Mały fragment lodu"
 
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID nie jest prawidłowym numerem"
@@ -2748,7 +2748,7 @@ msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
 msgid "IGNORE_FURTHER_ERRORS"
-msgstr ""
+msgstr "Pomiń pozostałe błędy"
 
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
@@ -2773,7 +2773,7 @@ msgid "INDICATOR_SPECIES_MUTATED"
 msgstr "Pozwól gatunkowi nie mutować (jeśli nie została znaleziona dobra mutacja)"
 
 msgid "INDUSTRIAL_STAGE"
-msgstr ""
+msgstr "Epoka Przemysłowa"
 
 msgid "INFINITE_COMPOUNDS"
 msgstr "Nieskończone Związki"
@@ -2898,22 +2898,22 @@ msgid "INTERACTION_HARVEST"
 msgstr "Zbierz"
 
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
-msgstr ""
+msgstr "Zbiory (BRAKUJE: {0})"
 
 msgid "INTERACTION_PICK_UP"
 msgstr "Podnieś"
 
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
-msgstr ""
+msgstr "Podnieś (PEŁNY)"
 
 msgid "INTERNALS"
 msgstr "Wnętrzności"
 
 msgid "INTERNAL_NAME_IN_USE"
-msgstr ""
+msgstr "Istnieje już mod z tą nazwą wewnętrzną"
 
 msgid "INTERNAL_NAME_REQUIRED"
-msgstr ""
+msgstr "Nazwa wewnętrzna jest wymagana"
 
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "Nazwa wewnętrzna powinna zaczynać się wielką literą"
@@ -2940,7 +2940,7 @@ msgid "INVALID_URL_SCHEME"
 msgstr "Niepoprawny schemat URL"
 
 msgid "INVENTORY_ITEMS_ON_GROUND"
-msgstr ""
+msgstr "Przedmioty na ziemi"
 
 msgid "INVENTORY_TITLE"
 msgstr "Ekwipunek"
@@ -2949,7 +2949,7 @@ msgid "INVENTORY_TOGGLE_CRAFTING"
 msgstr "Tworzenie"
 
 msgid "INVENTORY_TOGGLE_GROUND"
-msgstr ""
+msgstr "Ziemia"
 
 msgid "INVERTED"
 msgstr "Odwrócony"
@@ -2965,7 +2965,7 @@ msgid "IRON"
 msgstr "Żelazo (Fe²⁺)"
 
 msgid "IRON_LEVELS"
-msgstr ""
+msgstr "Poziom żelaza"
 
 #, fuzzy
 msgid "IRON_OXIDATION"
@@ -3494,7 +3494,7 @@ msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr "Rozmycie tła:"
 
 msgid "LUCIFERASE"
-msgstr ""
+msgstr "Lucyferaza"
 
 #, fuzzy
 msgid "LUCIFERASE_SYNTHESIS"
@@ -3525,16 +3525,15 @@ msgstr "Etap Mikroba"
 msgid "MAKE_CELL_THAT_EATS_RADIATION"
 msgstr "(koszt organelli, błon i innych przedmiotów w edytorze)"
 
-#, fuzzy
 msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
-msgstr "Chemosynteza siarkowa"
+msgstr " Stwórz komórkę, która wykorzystuje tylko chemosyntezę do produkcji energii"
 
 #, fuzzy
 msgid "MAKE_NO_CHANGES_IN_EDITOR"
 msgstr "Zmiany:"
 
 msgid "MANUALLY_SET_TIME"
-msgstr ""
+msgstr "Ręcznie ustaw porę dnia"
 
 msgid "MAP"
 msgstr "Mapa"
@@ -3594,24 +3593,21 @@ msgstr "Nagraj Media"
 msgid "MEDIASTOP"
 msgstr "Zatrzymanie mediów"
 
-#, fuzzy
 msgid "MEDIUM_SULFUR_CHUNK"
-msgstr "Mały Kawałek Żelaza"
+msgstr "Średni fragment siarki"
 
 msgid "MEGA_YEARS"
 msgstr "Milionów Lat"
 
-#, fuzzy
 msgid "MELANOSOME"
-msgstr "Metabolosomy"
+msgstr "Melanosom"
 
 #, fuzzy
 msgid "MELANOSOME_DESCRIPTION"
 msgstr "Lizosom jest organellą przymocowaną do błony komórkowej która zawiera hydrolityczne enzymy które mogą rozbijać wiele biomolekuł. Lizosomy umożliwiają komórce trawienie materiałów przyjmowanych poprzez endocytozę oraz oczyszczanie odpadów komórki w procesie zwanym [b]autofagią[/b]."
 
-#, fuzzy
 msgid "MELANOSOME_PROCESSES_DESCRIPTION"
-msgstr "Zawiera enzymy trawienne. Może być modyfikowany by zmienić typ enzymu, jaki zawiera. Na ten czas, tylko jeden enzym może być wykorzystany."
+msgstr "Przekształca [thrive:compound type=\"radiation\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] w pobliżu wysoce radioaktywnych skał, jednocześnie zapewniając odporność na promieniowanie"
 
 msgid "MEMBRANE"
 msgstr "Membrana"
@@ -3629,7 +3625,7 @@ msgid "MESOPELAGIC"
 msgstr "Mezopelagial"
 
 msgid "METABOLOSOMES"
-msgstr "Metabolosomy"
+msgstr "Metabolomy"
 
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "Metabolosomy to zbitki białek zamknięte w białkowych powłokach. Przekształcają [thrive:compound type=\"glucose\"]Glukozę[/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak, żeby funkcjonować, potrzebują [thrive:compound type=\"oxygen\"]Tlenu[/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"]Tlenu[/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający je płyn przeprowadza [b]glikolizę[/b]."
@@ -3678,7 +3674,7 @@ msgid "MIB_VALUE"
 msgstr "{0} MiB"
 
 msgid "MICHE"
-msgstr ""
+msgstr "Misze"
 
 #, fuzzy
 msgid "MICHES_FOR_PATCH"
@@ -3689,14 +3685,14 @@ msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "[b][u]{0}[/u][/b] oddzielił się od [b][u]{1}[/u][/b] jako nowy gatunek ze względu na zróżnicowane naciski selekcyjne"
 
 msgid "MICHE_CHUNK_PRESSURE"
-msgstr ""
+msgstr "Ciśnienie fragmentów"
 
 #, fuzzy
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
 msgstr "Chmury związków"
 
 msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
-msgstr ""
+msgstr "Wydajność ciśnienia konwersji związków"
 
 #, fuzzy
 msgid "MICHE_DETAIL_TEXT"
@@ -3712,42 +3708,41 @@ msgstr ""
 "[b]Zachowanie[/b]\n"
 "  {5}"
 
-#, fuzzy
 msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
-msgstr "[b][u]{0}[/u][/b] oddzielił się od [b][u]{1}[/u][/b] jako nowy gatunek ze względu na zróżnicowane naciski selekcyjne"
+msgstr "Presja doboru naturalnego endosymbiozy"
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr ""
+msgstr "Zewnętrzne ciśnienie związków"
 
 #, fuzzy
 msgid "MICHE_ENVIRONMENTAL_TOLERANCE"
 msgstr "Środowisko"
 
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
-msgstr ""
+msgstr "Utrzymaj ciśnienie związków"
 
 msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
-msgstr ""
+msgstr "Ciśnienie stabilności metabolicznej"
 
 msgid "MICHE_NO_OP_PRESSURE"
 msgstr ""
 
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr ""
+msgstr "Presja efektów drapieżnictwa"
 
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Drapieżnictwo {0}"
 
 msgid "MICHE_ROOT_PRESSURE"
-msgstr ""
+msgstr "Ciśnienie bazowe"
 
 #, fuzzy
 msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
 msgstr "Drapieżnictwo {0}"
 
 msgid "MICHE_TREE"
-msgstr ""
+msgstr "Drzewo miszy"
 
 #, fuzzy
 msgid "MICROBE"
@@ -3760,16 +3755,14 @@ msgstr "Ilość mikrobów:"
 msgid "MICROBE_BENCHMARK"
 msgstr "Edytor Mikroba"
 
-#, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
-msgstr "  {0}: Znaleziono w {1} gatunkach, średnio {2} na każdy"
+msgstr "Kąt kamery mikrobów"
 
 msgid "MICROBE_EDITOR"
 msgstr "Edytor Mikroba"
 
-#, fuzzy
 msgid "MICROBE_ENZYME_STATISTICS"
-msgstr "  {0}: Znaleziono w {1} gatunkach, średnio {2} na każdy"
+msgstr "[b]Informacje o enzymach:[/b]"
 
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Kreatywny Edytor Mikroba"
@@ -3786,9 +3779,8 @@ msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
 msgid "MICROBE_LOADING_TIP_11"
 msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_12"
-msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+msgstr "Możesz wchłaniać obiekty mniejsze od siebie, aby się nimi pożywić, naciskając klawisz [thrive:input]g_toggle_engulf[/thrive:input]. Będzie to kosztować dodatkowe [thrive:compound type=\"atp\"][/thrive:compound] i spowolni cię. Nie zapomnij ponownie nacisnąć klawisza [thrive:input]g_toggle_engulf[/thrive:input], aby przestać wchłaniać."
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_13"
@@ -3802,9 +3794,8 @@ msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
 msgid "MICROBE_LOADING_TIP_15"
 msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_16"
-msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+msgstr "Używaj klawiszy [thrive:input]g_move_forward[/thrive:input], [thrive:input]g_move_left[/thrive:input], [thrive:input]g_move_backwards[/thrive:input] oraz [thrive:input]g_move_right[/thrive:input] do poruszania się, a myszy do obracania. Użyj klawisza [thrive:input]g_fire_toxin[/thrive:input], aby wystrzelić [thrive:compound type=\"oxytoxy\"][/thrive:compound], jeśli posiadasz wakuolę toksyny. Naciśnij klawisz [thrive:input]g_toggle_engulf[/thrive:input], aby przełączyć tryb wchłaniania. Możesz przybliżać i oddalać widok za pomocą kółka myszy."
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_17"
@@ -3834,21 +3825,18 @@ msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
 msgid "MICROBE_LOADING_TIP_22"
 msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_3"
-msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+msgstr "Możesz pochłaniać pływające kawałki martwych komórek czy minerałów."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_4"
-msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+msgstr "Przygotuj się przed dodaniem jądra komórkowego. Nie jest tanie - ani pod względem dodania go do komórki, ani utrzymania!"
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_5"
 msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_6"
-msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+msgstr "Możesz pochłaniać komórki, które są mniejsze, niż połowa Twojej wielkości."
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_7"
@@ -3862,24 +3850,20 @@ msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
 
-#, fuzzy
 msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
-msgstr "  {0}: Znaleziono w {1} gatunkach, średnio {2} na każdy"
+msgstr "{0}: Znaleziono w {1} gatunkach"
 
-#, fuzzy
 msgid "MICROBE_MEMBRANE_STATISTICS"
-msgstr "  {0}: Znaleziono w {1} gatunkach, średnio {2} na każdy"
+msgstr "[b]Informacje o membranach:[/b]"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Znaleziono w {1} gatunkach, średnio {2} na każdy"
 
-#, fuzzy
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
-msgstr "  {0}: Znaleziono w {1} gatunkach, średnio {2} na każdy"
+msgstr "[b]Informacje o ulepszeniach organelli:[/b]"
 
-#, fuzzy
 msgid "MICROBE_RIPPLE_EFFECT"
-msgstr "  {0}: Znaleziono w {1} gatunkach, średnio {2} na każdy"
+msgstr "Efekt fal za mikrobami"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -3901,6 +3885,9 @@ msgstr "Etap Mikroba"
 
 msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 msgstr ""
+"Odblokowałeś możliwość przejścia do [b]wielokomórkowości[/b]. Następnego kroku w twojej wędrówce.\n"
+"\n"
+"Aby kontynuować, naciśnij przycisk [b]\"Zostań organizmem wielokomórkowym\"[/b]."
 
 #, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
@@ -3992,16 +3979,11 @@ msgstr "Środkowy przycisk myszy"
 msgid "MIGRATION_FAILED_TO_ADD"
 msgstr "Tworzenie Moda Nie Powiodło Się"
 
-#, fuzzy
 msgid "MIGRATION_MANAGER"
-msgstr ""
-"Pilnuj swojego paska zdrowia obok paska ATP (prawy dolny róg)?\n"
-"Twoja komórka umiera jeśli utraci całe swoje zdrowie.\n"
-"Możesz się zregenerować, jeśli masz wystarczająco dużo ATP.\n"
-"Upewnij się, że masz wystarczająco dużo glukozy (lub żelaza) aby syntezować ATP."
+msgstr "Menedżer migracji"
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
-msgstr ""
+msgstr "Migrujesz populację z {0} do..."
 
 #, fuzzy
 msgid "MIGRATION_STATUS_TEXT"
@@ -4097,9 +4079,8 @@ msgstr "Modyfikuj Typ"
 msgid "MODS"
 msgstr "Modyfikacje"
 
-#, fuzzy
 msgid "MODS_ARE_ENABLED"
-msgstr "Brak Włączonych Modów"
+msgstr "Brak włączonych modów"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -4108,10 +4089,10 @@ msgstr ""
 "Mody muszą zostać włączone po instalacji. Odwiedź zarządzanie modami pod przyciskiem mods w menu dodatków."
 
 msgid "MOD_ASSEMBLY"
-msgstr ""
+msgstr "Plik assembly moda:"
 
 msgid "MOD_ASSEMBLY_CLASS"
-msgstr ""
+msgstr "Główna klasa assembly moda:"
 
 msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
 msgstr ""
@@ -4348,7 +4329,7 @@ msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Wygładzanie krawędzi:"
 
 msgid "MULTITHREADED_SIMULATION_ENABLED"
-msgstr ""
+msgstr "Odpal symulację gry w trybie wielowątkowości"
 
 #, fuzzy
 msgid "MULTITHREADED_SIMULATION_EXPLANATION"
@@ -4356,9 +4337,9 @@ msgstr "(lokalizacja początkowa)"
 
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
-"Witaj w muzeum! Tutaj możesz podziwiać wiele swoich gatunków, które skamieniałeś przez wszystkie twoje gry. Możesz nawet grać jako jeden z gatunków otwierając go w edytorze\n"
+"Witaj w muzeum! Tutaj możesz podziwiać gatunki, które zamieniłeś w skamieliny przez wszystkie Twoje gry. Możesz teraz grać jako jeden z gatunków, otwierając go w edytorze.\n"
 "\n"
-"żeby skamienić gatunek w grze, wciśnij guzik pauzy, Potem kliknij ikonę mikroba na ekranie, żeby skamienić jego gatunek."
+"Aby fosylizować gatunek w grze, wciśnij guzik pauzy, potem kliknij ikonę mikroba na ekranie, żeby fosylizować jego gatunek."
 
 msgid "MUSIC"
 msgstr "Muzyka"
@@ -4391,7 +4372,7 @@ msgid "NAME_LABEL_FLEET"
 msgstr ""
 
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
-msgstr ""
+msgstr "{0} (N)"
 
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr ""
@@ -4480,47 +4461,45 @@ msgid "NOTICE_BINDING_OUT_OF_ATP"
 msgstr "Przełącz tryb łączenia. Dotykaj innych komórek by stworzyć kolonię."
 
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
-msgstr ""
+msgstr "Uszkodzenie przez brak ATP"
 
 msgid "NOTICE_ENGULFING_OUT_OF_ATP"
-msgstr ""
+msgstr "Kończy wchłanianie przez brak ATP"
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
-msgstr ""
+msgstr "Uszkodzenia wywołane toksynami we wchłoniętej materii"
 
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
-msgstr ""
+msgstr "Brakuje {0} aby wchłonąć cel"
 
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
-msgstr ""
+msgstr "Rozmiar komórki jest za mały, aby wchłonąć cel"
 
 msgid "NOTICE_ENGULF_STORAGE_FULL"
-msgstr ""
+msgstr "Brakuje przestrzeni magazynowej, aby wchłonąć cel"
 
 msgid "NOTICE_HIT_BY_ATP_TOXIN"
-msgstr ""
+msgstr "Produkcja ATP jest zablokowana przez toksyny"
 
 #, fuzzy
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Bazowa prędkość"
 
-#, fuzzy
 msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
-msgstr "Siarkowodór (H₂S)"
+msgstr "Uszkodzony siarkowodorem nie mając odpowiednich białek chemosyntetyzujących"
 
 #, fuzzy
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "Nie dość {0} by scraftować przedmiot"
 
 msgid "NOTICE_RADIATION_DAMAGE"
-msgstr ""
+msgstr "Obrażenia spowodowane promieniowaniem"
 
 msgid "NOTICE_READY_TO_EDIT"
-msgstr ""
+msgstr "Można rozpocząć edycję"
 
-#, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
-msgstr "Znajdź Aktualny Obszar"
+msgstr "Brak adaptacji do bieżącego obszaru. Zmień preferowane warunki lub tolerancję aby pozbyć się negatywnych efektów."
 
 msgid "NOT_STARTED_DOT"
 msgstr "Nie zaczęto."
@@ -4537,9 +4516,8 @@ msgstr "Brak danych do pokazania"
 msgid "NO_EVENTS_RECORDED"
 msgstr "Nie zanotowano wydarzeń"
 
-#, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
-msgstr "Nie znaleziono katalogu zapisów"
+msgstr "Nie znaleziono folderu z plikami skamieniałości"
 
 #, fuzzy
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
@@ -4601,10 +4579,10 @@ msgid "OCTOBER"
 msgstr "Październik"
 
 msgid "OFF"
-msgstr ""
+msgstr "Wyłączony"
 
 msgid "OFFICIAL_WEBSITE"
-msgstr ""
+msgstr "Oficjalna strona www"
 
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
@@ -4631,12 +4609,13 @@ msgstr "Uruchomiłeś Thrive w GLES2. Jest to poważnie nietestowane i prawdopod
 msgid "OPEN_FOLDER"
 msgstr "Otwórz Folder"
 
-#, fuzzy
 msgid "OPEN_FOSSIL_FOLDER"
-msgstr "Otwórz Folder z Logami"
+msgstr "Otwórz folder z plikami skamieniałości"
 
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
+"Czy chcesz zacząć grę z wybranym gatunkiem?\n"
+"Stracisz dotychczasowy niezapisany postęp."
 
 #, fuzzy
 msgid "OPEN_GOD_TOOLS"
@@ -4688,7 +4667,7 @@ msgstr "Spauzowano."
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 "Oportunistyczne mikroby będą rywalizować o pożywienie\n"
-"i będą polować toksynami na zdobycz, jeżeli jest za duża aby pochłonąć ją na drodze fagocytozy.\n"
+"i będą polować toksynami na zdobycz, jeżeli jest za duża aby wchłonąć ją na drodze fagocytozy.\n"
 "Uważne mikroby będą unikać niebezpiecznej rywalizacji o pożywienie."
 
 msgid "OPPORTUNISTIC"
@@ -4737,10 +4716,10 @@ msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
 msgstr "Umożliwiają tworzenie komórek mięśniowych. W tym prototypie nie robi nic."
 
 msgid "ORGANELLE_PILUS"
-msgstr "Drapieżny Pilus"
+msgstr "Pilus perforacyjny"
 
 msgid "ORGANELLE_PILUS_DESCRIPTION"
-msgstr "Dźgaj tym inne komórki."
+msgstr "Pile (liczba pojedyncza: pilus) występują na powierzchni wielu mikroorganizmów i przypominają cienkie włoski. Na powierzchni mikroorganizmu może być obecnych od dziesiątek do setek pili, które pełnią jedną z kilku funkcji, w tym rolę w drapieżnictwie. Mikroorganizmy patogenne wykorzystują pile jako czynnik zjadliwości, aby przytwierdzić się i związać z tkankami gospodarza lub aby przedrzeć się przez zewnętrzną błonę i uzyskać dostęp do cytoplazmy. Istnieje wiele podobnych pili, które nie są ze sobą spokrewnione ewolucyjnie i są wynikiem ewolucji zbieżnej. Pojedynczy organizm może mieć zdolność do ekspresji kilku typów pili, a te obecne na jego powierzchni są nieustannie wymieniane i zastępowane."
 
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Może zostać użyte do dźgania innych komórek lub obrony przed ich toksynami."
@@ -4760,7 +4739,7 @@ msgid "ORGANELLE_SUGGESTION_TOOLTIP"
 msgstr "Załaduj poprzednio zapisane gry"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
-msgstr ""
+msgstr "Włączono odblokowywanie organelli"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
@@ -4770,7 +4749,7 @@ msgid "ORGANISM_STATISTICS"
 msgstr "Statystyki Organizmu"
 
 msgid "OR_UNLOCK_CONDITION"
-msgstr ""
+msgstr "lub"
 
 msgid "OSMOREGULATION"
 msgstr "Osmoregulacja"
@@ -4791,9 +4770,8 @@ msgstr "Związki"
 msgid "OUR_WIKI"
 msgstr "Nasza strona Wiki"
 
-#, fuzzy
 msgid "OUTDATED_ITEM"
-msgstr "Nie zaczęto."
+msgstr "NIEAKTUALNY"
 
 #, fuzzy
 msgid "OUTDATED_NOTICE"
@@ -4813,6 +4791,8 @@ msgstr "Nadpisać istniejący zapis?"
 
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
+"Skamielina z tą nazwą już istnieje.\n"
+"Chcesz ją nadpisać?"
 
 msgid "OXYGEN"
 msgstr "Tlen (O₂)"
@@ -4906,9 +4886,8 @@ msgstr ""
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#, fuzzy
 msgid "PATCH_NOTES_TITLE"
-msgstr "Thrive Uruchomiło Się W Trybie Bezpiecznym"
+msgstr "Zmiany w aktualizacji"
 
 msgid "PATCH_NOTE_BULLET_POINT"
 msgstr "— {0}"
@@ -4950,7 +4929,7 @@ msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr ""
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
-msgstr ""
+msgstr "Oczekiwanie na zakończenie endosymbiozy"
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -5100,9 +5079,8 @@ msgstr "Ciśnienie"
 msgid "PRESSURE_SHORT"
 msgstr "Ciśn."
 
-#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
-msgstr "Wróć do menu główego"
+msgstr "Preferencję ciśnienia dla Twojego gatunku. Ustawiane oddzielnie jako minimalne i maksymalne. Kiedy warunki wykraczają poza ten przedział, dotkną Cię negatywne efekty. Zmień zakres przez odznaczenie checkboxów poniższej sliderów."
 
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Naciśnij klawisz..."
@@ -5169,9 +5147,8 @@ msgstr ""
 "Czy na pewno chcesz wyjść z gry?\n"
 "Utracisz cały niezapisany postęp."
 
-#, fuzzy
 msgid "RADIATION"
-msgstr "Oddychanie Tlenowe"
+msgstr "Promieniowanie"
 
 #, fuzzy
 msgid "RADIATION_LEVELS"
@@ -5200,7 +5177,7 @@ msgid "REACH_GENERATION_15_WITH_A_SPECIES"
 msgstr ""
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
-msgstr ""
+msgstr "Osiągnij pokolenie {0}/{1} jednym gatunkiem na przynajmniej normalnym poziomie trudności"
 
 #, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
@@ -5295,9 +5272,8 @@ msgstr "Zresetuj Odrzucone Popupy"
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Zresetować wejścia do domyślnych?"
 
-#, fuzzy
 msgid "RESET_ITEM_ORDER_TO_DEFAULT"
-msgstr "Zresetować wejścia do domyślnych?"
+msgstr "Zresetuj kolejność do domyślnych"
 
 msgid "RESET_KEYBINDINGS"
 msgstr "Zresetuj Skróty Klawiszowe"
@@ -5327,35 +5303,31 @@ msgid "RESOLUTION"
 msgstr "Rozdzielczość:"
 
 msgid "RESOURCE_ABSORBTION_SPEED"
-msgstr "Szybkość Absorbcji Zasobów"
+msgstr "Szybkość wchłaniania zasobów"
 
 msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "{0}: {1}"
 
-#, fuzzy
 msgid "RESOURCE_ENERGY"
-msgstr "Zobacz Kod Źródłowy"
+msgstr "Energia"
 
-#, fuzzy
 msgid "RESOURCE_FOOD"
-msgstr "Zobacz Kod Źródłowy"
+msgstr "Pożywienie"
 
-#, fuzzy
 msgid "RESOURCE_ROCK"
-msgstr "Zobacz Kod Źródłowy"
+msgstr "Skała"
 
-#, fuzzy
 msgid "RESOURCE_WOOD"
-msgstr "Zobacz Kod Źródłowy"
+msgstr "Drewno"
 
 msgid "RESPIRATION"
-msgstr "Oddychanie Tlenowe"
+msgstr "Oddychanie tlenowe"
 
 msgid "RESPONSIVE"
 msgstr "Responsywność"
 
 msgid "RESTART_REQUIRED"
-msgstr "Wymagany Restart"
+msgstr "Wymagany restart"
 
 msgid "RESUME"
 msgstr "Wznów"
@@ -5375,19 +5347,16 @@ msgstr ""
 "Utracisz cały niezapisany postęp."
 
 msgid "REVEAL_ALL_PATCHES"
-msgstr ""
+msgstr "Odkryj wszystkie obszary"
 
-#, fuzzy
 msgid "REVERT_TO_EDITOR"
-msgstr "Przejdź do następnej zakładki edytora"
+msgstr "Powróć do edytora"
 
-#, fuzzy
 msgid "REVERT_TO_EDITOR_EXPLANATION"
-msgstr "(gdy włączone, limituje prędkość wzrostu, jeśli wyłączone, jedynie dostępne związki wpływają na wzrost)"
+msgstr "Jeśli twój mikrob nie potrafi przetrwać w tym środowisku, możesz wrócić do swojej ostatnie edycji w edytorze, i spróbować czegoś innego."
 
-#, fuzzy
 msgid "REVERT_TO_EDITOR_PROMPT"
-msgstr "Naciśnij [thrive:input]help[/thrive:input] aby zobaczyć więcej informacji w Thriveopedii."
+msgstr "Powróć do edytora?"
 
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Odwiedź oficjalne strony Revolutionary Games"
@@ -5414,7 +5383,7 @@ msgid "ROTATION_COLON"
 msgstr "Populacja:"
 
 msgid "RUNOFF_EVENT"
-msgstr ""
+msgstr "Spłukiwanie osadów"
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Wykonuj auto-ewo w trakcie rozgrywki"
@@ -5554,16 +5523,16 @@ msgid "SCALING_ON_INVERSE"
 msgstr "Skalowany odwrotnie"
 
 msgid "SCREEN_EFFECT"
-msgstr ""
+msgstr "Efekty wyświetlania"
 
 msgid "SCREEN_EFFECT_GAMEBOY"
 msgstr "Paleta GB"
 
 msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
-msgstr ""
+msgstr "Barwy Gameboy Color"
 
 msgid "SCREEN_EFFECT_GREYSCALE"
-msgstr ""
+msgstr "Skala szarości"
 
 #, fuzzy
 msgid "SCREEN_EFFECT_NONE"
@@ -5584,7 +5553,7 @@ msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Wyszukiwanie..."
 
 msgid "SEARCH_PLACEHOLDER"
-msgstr ""
+msgstr "Szukaj..."
 
 msgid "SEARCH_RADIUS"
 msgstr "Zasięg Wyszukiwania:"
@@ -5704,7 +5673,7 @@ msgid "SHOW_MAP"
 msgstr "Pokaż pomoc"
 
 msgid "SHOW_NEW_PATCH_NOTES"
-msgstr ""
+msgstr "Automatycznie pokazuj nowości z aktualizacji"
 
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
@@ -5802,7 +5771,7 @@ msgid "SMALL_SULFUR_CHUNK"
 msgstr "Mały Kawałek Żelaza"
 
 msgid "SNOWFLAKE"
-msgstr ""
+msgstr "Płatek śniegu"
 
 #, fuzzy
 msgid "SOCIETY_STAGE"
@@ -5884,9 +5853,8 @@ msgstr "zmutował"
 msgid "SPECIES_LIST"
 msgstr "Lista gatunków"
 
-#, fuzzy
 msgid "SPECIES_MEMBER_IMPACT_ON_POP"
-msgstr "Nazwa gatunku jest za długa!"
+msgstr "Wpływ śmierci członków gatunku"
 
 #, fuzzy
 msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
@@ -5952,22 +5920,21 @@ msgstr "Wymagany Restart"
 msgid "STATISTICS"
 msgstr "Statystyki"
 
-#, fuzzy
 msgid "STAT_ATP_PRODUCTION_REDUCTION"
-msgstr "PRODUKCJA ATP JEST ZA NISKA!"
+msgstr "Obniżenie produkcji ATP"
 
 #, fuzzy
 msgid "STAT_BASE_MOVEMENT_REDUCTION"
 msgstr "Bazowa prędkość"
 
 msgid "STAT_DAMAGE"
-msgstr ""
+msgstr "Uszkodzenia"
 
 msgid "STAT_DAMAGE_PER_OXYGEN"
-msgstr ""
+msgstr "Uszkodzenia skalują się według organelli wykorzystujących tlen"
 
 msgid "STEAM_CLIENT_INIT_FAILED"
-msgstr ""
+msgstr "Błąd inicjalizacji bibliotek Steama"
 
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr "Twoje konto steam nie posiada gry Thrive"
@@ -5994,7 +5961,7 @@ msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr "Twoje konto Steam obecnie nie może udostępniać plików. Prosimy skontaktować się z działem pomocy Steam."
 
 msgid "STEAM_ERROR_INVALID_PARAMETER"
-msgstr ""
+msgstr "Przesłano nieprawidłowy parametr do Steama"
 
 msgid "STEAM_ERROR_LOCKING_FAILED"
 msgstr ""
@@ -6036,7 +6003,7 @@ msgid "STORAGE_COLON"
 msgstr "Magazyn:"
 
 msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
-msgstr ""
+msgstr "sekund"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Zalogowano jako: {0}"
@@ -6075,13 +6042,13 @@ msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
 msgstr ""
 
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
-msgstr ""
+msgstr "Budowa: {0}"
 
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr ""
 
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
-msgstr ""
+msgstr "{0} (koszt początkowy: {1}, razem: {2})"
 
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr ""
@@ -6093,7 +6060,7 @@ msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
-msgstr ""
+msgstr "Przeprowadź endosymbiozę"
 
 msgid "SUCCESSFUL_KILL"
 msgstr "udane zabicie"
@@ -6114,7 +6081,7 @@ msgid "SUPPORTER_PATRONS"
 msgstr "Wspierający"
 
 msgid "SURVIVAL_TITLE"
-msgstr ""
+msgstr "Przetrwanie"
 
 #, fuzzy
 msgid "SURVIVE_WITH_A_NUCLEUS"
@@ -6178,25 +6145,25 @@ msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
 msgstr ""
 
 msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
-msgstr ""
+msgstr "Przemysłowa"
 
 msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
 msgstr ""
 
 msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
-msgstr ""
+msgstr "Prymitywna"
 
 msgid "TECHNOLOGY_LEVEL_SCIFI"
-msgstr ""
+msgstr "Sci-fi"
 
 msgid "TECHNOLOGY_LEVEL_SPACE_AGE"
-msgstr ""
+msgstr "Epoka Kosmiczna"
 
 msgid "TECHNOLOGY_REQUIRED_LEVEL"
-msgstr ""
+msgstr "Wymagany poziom technologii: {0}"
 
 msgid "TECHNOLOGY_ROCKETRY"
-msgstr ""
+msgstr "Technika rakietowa"
 
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
 msgstr ""
@@ -6216,9 +6183,8 @@ msgstr "Temperatura"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
-#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
-msgstr "Odwiedź naszego Patreona"
+msgstr ""
 
 msgid "TESTING_TEAM"
 msgstr "Testerzy"
@@ -6365,9 +6331,8 @@ msgstr "[b][u]{0}[/u][/b] wymarł!"
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "Gatunek [b][u]{0}[/u][/b] wyginął z tego obszaru"
 
-#, fuzzy
 msgid "TIMELINE_SPECIES_FOLLOWED"
-msgstr "[b][u]{0}[/u][/b] wymarł!"
+msgstr "[b][u]{0}[/u][/b] dołączył do [b][u]{1}[/u][/b] przechodząc do nowej strefy"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Część populacji [b][u]{0}[/u][/b] przeniosła się do tego obszaru z {1}"
@@ -6385,7 +6350,7 @@ msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "Upłynęło {0:#,#} lat"
 
 msgid "TIME_OF_DAY"
-msgstr ""
+msgstr "Czas"
 
 msgid "TITLE_COLON"
 msgstr "Tytuł:"
@@ -6404,6 +6369,8 @@ msgstr "Przełączenie fagocytozy"
 
 msgid "TOGGLE_ENGULF_TOOLTIP"
 msgstr ""
+"Włącz fagocytozę aby wchłonąć fragmenty\n"
+"lub małe organizmy w zamian za większą konsumpcję ATP"
 
 #, fuzzy
 msgid "TOGGLE_FAST_MODE"
@@ -6443,20 +6410,19 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Przełączenie odwiązywania"
 
 msgid "TOLERANCES_TOO_HIGH_PRESSURE"
-msgstr ""
+msgstr "Preferowane ciśnienie jest zbyt wysokie o {0}"
 
 msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
-msgstr ""
+msgstr "Preferowana temperatura jest zbyt wysoka o {0}"
 
 msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
 msgstr ""
 
-#, fuzzy
 msgid "TOLERANCES_TOO_LOW_PRESSURE"
-msgstr "Chmury związków"
+msgstr "Preferowane ciśnienie jest zbyt niskie o {0}"
 
 msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
-msgstr ""
+msgstr "Preferowana temperatura jest zbyt niska o {0}"
 
 #, fuzzy
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
@@ -6511,7 +6477,7 @@ msgid "TOTAL_SAVES"
 msgstr "Łączna liczba zapisów:"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
-msgstr ""
+msgstr "Inhibitor kanału"
 
 #, fuzzy
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
@@ -6589,9 +6555,8 @@ msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, ma
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"]Oksytoksynę[/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]. Może wypuszczać toksyny po naciśnięciu [thrive:input]g_fire_toxin[/thrive:input]. Gdy ilość [thrive:compound type=\"oxytoxy\"]Oksytoksyny[/thrive:compound] jest niska, strzelanie jest dalej możliwe, ale będzie zadawać mniejsze obrażenia."
 
-#, fuzzy
 msgid "TOXISOME"
-msgstr "Oxytoksysoma"
+msgstr "Toksysom"
 
 #, fuzzy
 msgid "TOXISOME_DESCRIPTION"
@@ -6607,9 +6572,8 @@ msgstr "Przejrzystość"
 msgid "TRILLION_ABBREVIATION"
 msgstr "{0} MD"
 
-#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
-msgstr "Spróbuj zrobić kilka zrzutów ekranu!"
+msgstr "Spróbuj zapisać gatunki jako skamieniałości!"
 
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Spróbuj zapisać!"
@@ -6663,27 +6627,25 @@ msgstr ""
 "\n"
 "Jeśli twoja produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest negatywna, postaraj się ją zwiększyć albo dodać [b]przechowywanie[/b] [thrive:icon]StorageIcon[/thrive:icon] by móc się poruszać w małych impulsach."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
 msgstr ""
-"To są podstawy edycji twojego gatunku. Na koniec, możesz zmienić nazwę swojego gatunku poprzez kliknięcie nazwy w lewym, dolnym rogu i edycję tekstu.\n"
+"Statystyki prędkości i wydajności trawienia można zobaczyć u dołu panelu Statystyki Organizmu.\n"
 "\n"
-"Możesz wypróbować inne zakładki pod paskiem [b]PM [thrive:icon]MP[/thrive:icon][/b] aby sprawdzić inne sposoby w jakie możesz zmienić swoją komórkę.\n"
+"Zwiększenie tych statystyk sprawia, że [u]drapieżnictwo staje się bardziej efektywne[/u]. Lizosomy mogą być również modyfikowane, aby dostarczać różne [b]enzymy[/b].\n"
 "\n"
-"Żeby przetrwać w tym nieprzyjaznym świecie, będziesz musiał znaleźć niezawodne źródło [thrive:compound type=\"atp\"][/thrive:compound] jako iż poziom naturalnej [thrive:compound type=\"glucose\"][/thrive:compound] [b]gwałtownie spadnie[/b].\n"
+"Nowe typy enzymów umożliwiają spożywanie różnych rodzajów zdobyczy, które mogą być odporne na podstawowe trawienie. Każdy typ enzymu ma oddzielną statystykę wydajności.\n"
 "\n"
-"Powodzenia!"
+"Poszczególne wartości wydajności można zobaczyć, najechawszy kursorem na statystykę wydajności. Specjalizacja w jednym typie pozwala na większą efektywność, ale ogranicza różnorodność dostępnej zdobyczy."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
-"To są podstawy edycji twojego gatunku. Na koniec, możesz zmienić nazwę swojego gatunku poprzez kliknięcie nazwy w lewym, dolnym rogu i edycję tekstu.\n"
+"Adaptacja jest trudna. Istnieje wiele źródeł [thrive:compound type=\"atp\"][/thrive:compound], ale nie wszystkie da się wykorzystać wszędzie. Możesz użyć wszystkich zakładek i paneli tutaj, aby podjąć najlepszą możliwą decyzję, albo po prostu spróbować czegoś i zobaczyć, jak to zadziała!\n"
 "\n"
-"Możesz wypróbować inne zakładki pod paskiem [b]PM [thrive:icon]MP[/thrive:icon][/b] aby sprawdzić inne sposoby w jakie możesz zmienić swoją komórkę.\n"
+"Pamiętaj tylko: [u]jeśli nie wytworzysz wystarczająco dużo [thrive:compound type=\"atp\"][/thrive:compound], nie przetrwasz[/u].\n"
 "\n"
-"Żeby przetrwać w tym nieprzyjaznym świecie, będziesz musiał znaleźć niezawodne źródło [thrive:compound type=\"atp\"][/thrive:compound] jako iż poziom naturalnej [thrive:compound type=\"glucose\"][/thrive:compound] [b]gwałtownie spadnie[/b].\n"
+"Styl życia polegający na znajdowaniu [thrive:compound type=\"glucose\"][/thrive:compound] i przekształcaniu go w [thrive:compound type=\"atp\"][/thrive:compound] na razie się sprawdzi, ale naturalnie występująca glukoza będzie zanikać z każdym pokoleniem.\n"
 "\n"
-"Powodzenia!"
+"Na koniec możesz zmienić nazwę swojego gatunku, klikając na nazwę w lewym dolnym rogu i edytując tekst."
 
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
@@ -6696,16 +6658,15 @@ msgstr ""
 "Kiedy wyjdziesz z edytora[u]nie będziesz mógł edytować swojego gatunku dopóki znów się nie rozmnożysz[/u].\n"
 "Aby czynić postępy w grze musisz ewoluować, więc edycja gatunku jest zalecana przy większości wizyt w edytorze."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
-"To są podstawy edycji twojego gatunku. Na koniec, możesz zmienić nazwę swojego gatunku poprzez kliknięcie nazwy w lewym, dolnym rogu i edycję tekstu.\n"
+"Oprócz możliwości poruszania się po mapie, możesz także kontrolować migrację populacji swojego gatunku bez przemieszczania się osobiście.\n"
 "\n"
-"Możesz wypróbować inne zakładki pod paskiem [b]PM [thrive:icon]MP[/thrive:icon][/b] aby sprawdzić inne sposoby w jakie możesz zmienić swoją komórkę.\n"
+"Pozwala to na szybsze rozprzestrzenianie gatunku na nowe obszary. Gdy jesteś szerzej rozprzestrzeniony, masz większą całkowitą populację i możesz się łatwiej przemieszczać.\n"
 "\n"
-"Żeby przetrwać w tym nieprzyjaznym świecie, będziesz musiał znaleźć niezawodne źródło [thrive:compound type=\"atp\"][/thrive:compound] jako iż poziom naturalnej [thrive:compound type=\"glucose\"][/thrive:compound] [b]gwałtownie spadnie[/b].\n"
+"Uważaj jednak, aby nie wysyłać populacji na obszary, do których twój gatunek nie jest przystosowany.\n"
 "\n"
-"Powodzenia!"
+"Wypróbuj narzędzie migracji. Kliknij przycisk \"menedżer migracji\", a następnie wybierz obszar źródłowy i docelowy, aby przemieszczać między nimi populację."
 
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
@@ -6808,25 +6769,23 @@ msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "Twoja komórka ma limitowaną pojemność dla obiektów które mogą być wchłonięte jednocześnie. Ten limit jest bazowany na wielkości; mniejsze komórki mają mniej pojemności.\n"
 "\n"
-"Gdy pełna, komórka nie może pochłaniać więcej rzeczy. By kontynuować wchłanianie, poczekaj aż jeden lub więcej wchłoniętych obiektów zostało w pełni strawionych."
+"Gdy pełna, komórka nie może wchłaniać więcej rzeczy. By kontynuować fagocytozę, poczekaj aż jeden lub więcej wchłoniętych obiektów zostanie w pełni strawione."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Wchałniaj obiekty poprzez poruszanie się nad nimi w trybie pochłaniania. Włącz ten tryb naciskając [thrive:input]g_toggle_engulf[/thrive:input].\n"
 "\n"
 "Przestań wchłaniać kiedy obiekt zaczyna być wciągany.\n"
 "\n"
-"Podążaj za linią z twojej komórki do pobliskiego wchłanialnego obiektu."
+"Linia wskazuje coś, co jesteś [i]wystarczająco duży[/i], aby wchłonąć, ale możesz nie być w stanie tego [i]złapać[/i]."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
 msgstr ""
-"Wchałniaj obiekty poprzez poruszanie się nad nimi w trybie pochłaniania. Włącz ten tryb naciskając [thrive:input]g_toggle_engulf[/thrive:input].\n"
+"Warunki lokalne są wyświetlane w [b]panelu środowiska[/b] po lewej stronie ekranu.\n"
 "\n"
-"Przestań wchłaniać kiedy obiekt zaczyna być wciągany.\n"
+"Oczy jeszcze nie wyewoluowały, ale gatunki mogą już polegać na świetle słonecznym (lub temperaturze) do wytwarzania pożywienia. Jeśli tak jest w twoim przypadku, zwracaj na to uwagę!\n"
 "\n"
-"Podążaj za linią z twojej komórki do pobliskiego wchłanialnego obiektu."
+"Fotosynteza jest nieskuteczna w porze nocnej. Dlatego wszystkie komórki, które polegają na [b]fotosyntezie[/b], muszą mieć wystarczającą przestrzeń magazynową dla związków [thrive:icon]StorageIcon[/thrive:icon], aby przetrwać noc."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
@@ -6842,14 +6801,11 @@ msgstr ""
 "Musisz opuścić kolonię by dostać się do edytora o ile nie planujesz przejścia do wielokomórkowości.\n"
 "Opuść kolonię by kontynuować swój wzrost poprzez naciśnięcie [thrive:input]g_unbind_all[/thrive:input]."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
 msgstr ""
-"Wchałniaj obiekty poprzez poruszanie się nad nimi w trybie pochłaniania. Włącz ten tryb naciskając [thrive:input]g_toggle_engulf[/thrive:input].\n"
+"Członek twojego gatunku właśnie niestety zginął! Wpłynie to na twoją populację jako efekt zewnętrzny, gdy dotrzesz do edytora.\n"
 "\n"
-"Przestań wchłaniać kiedy obiekt zaczyna być wciągany.\n"
-"\n"
-"Podążaj za linią z twojej komórki do pobliskiego wchłanialnego obiektu."
+"Możesz edytować zachowanie swojego gatunku w edytorze, aby dostosować zachowanie SI. Lub wprowadzić pomocne zmiany, takie jak dodanie chemoreceptora, które ułatwią rozgrywkę."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
@@ -6858,12 +6814,11 @@ msgstr ""
 "\n"
 "Paski w prawym dolnym rogu pokazują twój postęp. Staną się białe gdy będziesz gotowy do reprodukcji."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
 msgstr ""
-"Wszedłeś w tryb odwiązywania. W tym trybie możesz klikać na członków kolonii aby ich odseparować.\n"
+"Możesz wstrzymać grę w dowolnym momencie, na przykład aby skupić się na dłuższym samouczku. W trakcie pauzy możesz także zachować interesujące gatunki, które widzisz, za pomocą funkcji fosylizacji.\n"
 "\n"
-"Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć klawisz [thrive:input]g_unbind_all[/thrive:input]."
+"Naciśnij symbol pauzy w lewym dolnym rogu (drugi przycisk od lewej), aby zobaczyć, jak działa wstrzymywanie gry. Następnie wznowij grę, aby kontynuować."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
@@ -6965,27 +6920,25 @@ msgstr "Cofnij ostatnią czynność"
 msgid "UNHANDLED_ERROR_COUNT"
 msgstr ""
 
-#, fuzzy
 msgid "UNHANDLED_ERROR_DESCRIPTION"
-msgstr "Dźgaj tym inne komórki."
+msgstr ""
+"W grze wystąpił nieobsłużony wyjątek. Możliwe, że będzie dało się kontynuować, ale błędy mogą się nasilać. Najbezpieczniejszą opcją jest całkowite ponowne uruchomienie gry i wczytanie ostatniego zapisu. Prawdopodobnie nadal możesz zapisać obecny stan gry.\n"
+"Jeśli zgłosisz ten błąd, użyj przycisku, aby skopiować błąd i dołącz go do swojego zgłoszenia."
 
-#, fuzzy
 msgid "UNHANDLED_ERROR_TITLE"
-msgstr "Dziękujemy"
+msgstr "Wystąpił nieobsługiwany wyjątek"
 
-#, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
-msgstr "Zakończ Budowę"
+msgstr "Buduj"
 
-#, fuzzy
 msgid "UNIT_ACTION_MOVE"
-msgstr "Zbierz"
+msgstr "Przemieść"
 
 msgid "UNIT_ADVANCED_SPACESHIP"
-msgstr ""
+msgstr "Zaawansowany statek kosmiczny"
 
 msgid "UNIT_SIMPLE_ROCKET"
-msgstr ""
+msgstr "Podstawowa rakieta"
 
 msgid "UNKNOWN"
 msgstr "Nieznany"
@@ -6994,13 +6947,13 @@ msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Nieznany"
 
 msgid "UNKNOWN_MOUSE"
-msgstr "Nieznany myszy"
+msgstr "Nieznana mysz"
 
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr "?"
 
 msgid "UNKNOWN_PATCH"
-msgstr "Nieznana Strefa"
+msgstr "Nieznany patch"
 
 msgid "UNKNOWN_SHORT"
 msgstr "?"
@@ -7009,66 +6962,62 @@ msgid "UNKNOWN_VERSION"
 msgstr "Nieznana wersja"
 
 msgid "UNKNOWN_WORKSHOP_ID"
-msgstr "Nieznane ID Sklepu Dla Tego Moda"
+msgstr "Nieznane ID warsztatu dla tego Moda"
 
-#, fuzzy
 msgid "UNLIMIT_GROWTH_SPEED"
-msgstr "Limituj użycie związków wzrostu"
+msgstr "Nielimitowana szybkość wzrostu"
 
 #, fuzzy
 msgid "UNLOCKED_NEW_ORGANELLE"
 msgstr "Dodaj organellę"
 
-#, fuzzy
 msgid "UNLOCK_ALL_ORGANELLES"
-msgstr "Wiele Organelli"
+msgstr "Odblokuj wszystkie organelle"
 
 msgid "UNLOCK_CONDITION_ATP_PRODUCTION_ABOVE"
 msgstr "Produkcja [thrive:compound type=\"atp\"][/thrive:compound] dotrze do {0}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_ABOVE"
-msgstr ""
+msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] w strefie jest większy niż {1}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_BELOW"
-msgstr ""
+msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] w strefie jest mniejszy niż {1}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_BETWEEN"
-msgstr ""
+msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] w strefie jest pomiędzy {1}, a {2}"
 
 msgid "UNLOCK_CONDITION_DIGESTED_MICROBES_ABOVE"
-msgstr ""
+msgstr "{0} mikroby są trawione  (aktualnie {1})"
 
 msgid "UNLOCK_CONDITION_ENGULFED_MICROBES_ABOVE"
-msgstr ""
+msgstr "{0} mikroby są wchłonięte (aktualnie {1})"
 
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
-msgstr ""
+msgstr "nadmiar [thrive:compound type=\"atp\"][/thrive:compound] osiągnął {0}"
 
-#, fuzzy
 msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
-msgstr "szybkość spadnie poniżej {0}"
+msgstr "obrażenia osiągnęły {0} (aktualnie {1})"
 
-#, fuzzy
 msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
-msgstr "szybkość spadnie poniżej {0}"
+msgstr "obrażenia od {1} osiągnęły {0} (aktualnie {2})"
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
-msgstr ""
+msgstr "ilość zgonów osiągnęła {0} (aktualnie {1})"
 
 msgid "UNLOCK_CONDITION_REPRODUCED_WITH"
-msgstr ""
+msgstr "organizm zawiera przynajmniej {1} {0} w {2} pokoleniach (aktualnie {3})"
 
 msgid "UNLOCK_CONDITION_REPRODUCED_WITH_IN_A_ROW"
-msgstr ""
+msgstr "organizm zawiera przynajmniej {1} {0} w {2} pokoleniach z rzędu (aktualnie {3})"
 
 msgid "UNLOCK_CONDITION_REPRODUCE_IN_BIOME"
-msgstr ""
+msgstr "rozmnażanie w biomie {0}"
 
 msgid "UNLOCK_CONDITION_SPEED_BELOW"
 msgstr "szybkość spadnie poniżej {0}"
 
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
-msgstr ""
+msgstr "[b]{0}[/b] odblokuje się kiedy"
 
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
@@ -7076,13 +7025,13 @@ msgstr ""
 "Czy chcesz kontynuować?"
 
 msgid "UNTITLED"
-msgstr "Niezatytułowany"
+msgstr "Bez tytułu"
 
 msgid "UPGRADE_CILIA_PULL"
-msgstr ""
+msgstr "Rzęski ciągnące"
 
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
-msgstr "Kiedy w trybie połykania ([thrive:input]g_toggle_engulf[/thrive:input]) ten typ rzęs wywołuje wiry w wodzie które wsysają pobliskie obiekty. Przydatne przy łapaniu ofiar."
+msgstr "Kiedy w trybie wchłaniania ([thrive:input]g_toggle_engulf[/thrive:input]) ten typ rzęsek wywołuje wiry w wodzie które wsysają pobliskie obiekty. Przydatne przy łapaniu ofiar."
 
 #, fuzzy
 msgid "UPGRADE_COST"
@@ -7092,10 +7041,10 @@ msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "Domyślny nie-ulepszony stan"
 
 msgid "UPGRADE_NAME_NONE"
-msgstr ""
+msgstr "Brak uleprzeń"
 
 msgid "UPGRADE_PILUS_INJECTISOME"
-msgstr ""
+msgstr "Pilus iniekcyjny"
 
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr ""
@@ -7118,25 +7067,25 @@ msgid "UPLOAD_SUCCEEDED"
 msgstr "Ładowanie Powiodło Się"
 
 msgid "UPSCALE_BILINEAR"
-msgstr ""
+msgstr "Skalowanie Dwuliniowe"
 
 msgid "UPSCALE_FSR_1"
-msgstr ""
+msgstr "Skalowanie FSR 1"
 
 msgid "UPSCALE_FSR_22"
-msgstr ""
+msgstr "Skalowanie FSR 2.2"
 
 msgid "UPSCALE_METHOD"
-msgstr ""
+msgstr "Metoda skalowania:"
 
 msgid "UPSCALE_SHARPENING_FSR"
-msgstr ""
+msgstr "Wyostrzanie FSR"
 
 msgid "UPWELLING_EVENT"
-msgstr ""
+msgstr "Wypływ wód głębinowych"
 
 msgid "USED_LIBRARIES_LICENSES"
-msgstr "Licencje I Użyte Biblioteki Zasobów"
+msgstr "Licencje i biblioteki"
 
 msgid "USED_RENDERER_NAME"
 msgstr "Wykorzystany renderer:"
@@ -7154,7 +7103,7 @@ msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Użyj własnej nazwy użytkownika"
 
 msgid "USE_DISK_CACHE"
-msgstr ""
+msgstr "Wykorzystany cache dysku"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Ustaw ręcznie liczbę wątków w tle"
@@ -7186,7 +7135,7 @@ msgid "VACUOLE_DESCRIPTION"
 msgstr "Wakuola to wewnętrzna organella membranowa używana w komórce jako magazyn. Zbudowane są z kilku pęcherzyków, małych membranowych struktur szeroko używanych w komórkach do magazynowania, które są ze sobą połączone. Wypełniona jest wodą która przechowuje molokuły, enzymy, ciała stałe i inne substancje. Ich kształt jest płynny i może się różnić między komórkami."
 
 msgid "VACUOLE_IS_SPECIALIZED"
-msgstr ""
+msgstr "Specjalistyczne Wakuole"
 
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
 msgstr "Wakuola przechowuje {0} jednostek wszystkich zasobów"
@@ -7242,16 +7191,16 @@ msgid "VIEW_PATCH_NOTES"
 msgstr "Przeczytaj Notki Aktualizacji"
 
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
-msgstr ""
+msgstr "Pokaż ostatnie lub wszystkie aktualizacje Thrive"
 
 msgid "VIEW_PENDING_ACTIONS"
-msgstr ""
+msgstr "Pokaż teraz"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Zobacz Kod Źródłowy"
 
 msgid "VIEW_TEXT_REPORT"
-msgstr ""
+msgstr "Pokaż raport"
 
 msgid "VIP_PATRONS"
 msgstr "VIP Wspierający"
@@ -7260,10 +7209,10 @@ msgid "VISIBLE"
 msgstr "Widoczne"
 
 msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
-msgstr ""
+msgstr "Widoczne, kiedy prawie pełne"
 
 msgid "VISIBLE_WHEN_OVER_ZERO"
-msgstr ""
+msgstr "Widoczne powyżej zera"
 
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Zasugeruj Funkcję"
@@ -7310,27 +7259,23 @@ msgstr "Koło w górę"
 msgid "WIKI"
 msgstr "Wiki"
 
-#, fuzzy
 msgid "WIKI_2D"
-msgstr "Wiki"
+msgstr "2D"
 
-#, fuzzy
 msgid "WIKI_3D"
-msgstr "Wiki"
+msgstr "3D"
 
 msgid "WIKI_3D_COMMA_SANDBOX"
-msgstr ""
+msgstr "3D, Sandbox"
 
-#, fuzzy
 msgid "WIKI_3D_COMMA_STRATEGY"
-msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
+msgstr "3D, Strategia"
 
 msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
-msgstr ""
+msgstr "3D, Strategia, Kosmos"
 
-#, fuzzy
 msgid "WIKI_8_BRACKET_16"
-msgstr "Obróć w lewo"
+msgstr "8 (16)"
 
 msgid "WIKI_ASCENSION"
 msgstr "Wniebowstąpienie"
@@ -7339,7 +7284,7 @@ msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
 msgstr "Praca nad Wniebowstąpieniem jeszcze się nie rozpoczęła."
 
 msgid "WIKI_ASCENSION_FEATURES"
-msgstr "Jeszcze niedostępne."
+msgstr "Wkrótce."
 
 msgid "WIKI_ASCENSION_INTRO"
 msgstr "W skrócie: Jest to końcowa rozgrywka, gdzie możesz do woli przemieszczać się po galaktyce jako metafizyczny byt, obserwując i przekształcając co zechcesz. To była długa podróż, więc na to zasługujesz."
@@ -7354,14 +7299,13 @@ msgid "WIKI_ASCENSION_TRANSITIONS"
 msgstr "Dokonasz wniebowstąpienia, gdy twój gatunek przejdzie przez Bramę Wniebowstąpienną. Prawdopodobnie będziemy chcieli pokazać napisy końcowe gry po cutscence wchodzenia w etap boskości. Po zakończeniu napisów gracz jest ponownie wrzucany do rozgrywki, w Etapie Boskości, z gratulującą wiadomością. By uczynić to ostatnią przeszkodą w grze, do stworzenia i operowania Brama Wniebowstąpienna będzie wymagać mnóstwa badań (w tym wspomnianych powyżej Narzędzi Boga) oraz ogromnej ilości energii, wielokrotnie większej od energii słońca. Inne potencjalnie wrogie gatunki będą miały swoją ostatnią szansę, by zaatakować gracza, zanim uzyska on nieskończoną moc i będzie mógł po prostu usunąć konkurujące międzygwiezdne imperia."
 
 msgid "WIKI_ASCENSION_UI"
-msgstr "Jeszcze niedostępne."
+msgstr "Wkrótce."
 
 msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Prace nad Etapem Boskości jeszcze nie zostały rozpoczęte."
 
-#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_FEATURES"
-msgstr "Faza przebudzenia"
+msgstr "Wkrótce."
 
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_INTRO"
@@ -7371,24 +7315,29 @@ msgstr "Faza przebudzenia"
 msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
 msgstr "Faza przebudzenia"
 
-#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
-msgstr "Faza przebudzenia"
+msgstr ""
+"Etap Przebudzenia rozpoczyna się, gdy gatunek gracza osiąga sapiencję (rozumność). Jednak na tym etapie niewiele się zmienia poza skutecznym zakończeniem ewolucji biologicznej gatunku gracza. Ponieważ skale czasowe ogromnie się skurczyły, od teraz mogą zachodzić tylko niewielkie zmiany ewolucyjne. Tryb Strategii jest nadal zablokowany, Edytor Narodów jest zablokowany, a Centra Społeczne nie istnieją. Początkowe przejście ma charakter głównie symboliczny (poza znacznie ograniczoną możliwością edycji gatunku), a sedno zmiany jest stopniowe.\n"
+"\n"
+"To, co zostaje udostępnione, choć nie jest od razu widoczne, to Sieć Badań. Sieci Badań nie można przeglądać, dopóki nie odkryje się Prowadzenia Dokumentacji. Interakcja jest również odkrywana automatycznie. Technologii możliwych do zbadania nie można w tym momencie bezpośrednio badać. Zamiast tego, działania podejmowane przez gracza, takie jak komunikacja lub interakcja ze środowiskiem, zapewniają teraz postęp w odkrywaniu nowych technologii lub Wynalazków, skutecznie rozwijając twoją technologię. Jest to efekt odkrycia Interakcji. Na przykład, używanie obiektów w środowisku jako narzędzi (po złożeniu surowców znalezionych w świecie) daje szansę na odkrycie wynalazku Narzędzi (postęp powinien być gwarantowany, aby nie narażać graczy na całkowicie losowe doświadczenie). Edytor Technologii zostanie teraz odblokowany, gdy stanie się dostępne Rzemiosło. Wynalazek Narzędzi pozwala członkom gatunku gracza wyposażać się w Obiekty Technologiczne stworzone przez gracza w Edytorze Technologii, które są oznaczone jako \"Narzędzia\".\n"
+"\n"
+"Wynalazek Języka pozwala graczowi zlecać innym członkom swojego gatunku bardziej specyficzne zadania. Funkcja ta buduje na podstawie komend stada z wcześniejszych etapów (są to sygnalizatory w etapie mikroba). Za każdym razem, gdy zadanie zostanie przydzielone (lub wykonane), postęp w odkrywaniu Współpracy rośnie (ponieważ postęp nie powinien zależeć od przypadku, ale może istnieć szansa na wczesne, szczęśliwe odblokowanie). Współpraca rozwija koncepcję Języka, pozwalając innym członkom gatunku, na tym etapie na tyle zaawansowanym, by nazywać ich członkami plemienia, odkrywać technologie w wyniku własnych działań. Pamiętaj, że przed tym tylko organizm gracza mógł odkrywać nowe technologie. Uwalnia to gracza, pozwalając mu przyjąć bardziej zarządczą rolę w swoim powstającym plemieniu.\n"
+"\n"
+"W tym momencie Tryb Strategii jest nadal zablokowany, ale gracz może używać komend stada, aby przydzielać członków swojego gatunku do różnych zadań (najważniejsze to zbieranie zasobów i pożywienia), co umożliwia odkrycie wynalazku Współpracy. Gdy gracz przydzieli kilku zbieraczy zasobów i zbuduje struktury, odkrywane jest Zbiorowe Zamieszkanie, pozwalające na budowę budynku Centrum Społecznego, który utworzy osadę.\n"
+"\n"
+"Etap kończy się, gdy gracz zbuduje swoje pierwsze Centrum Społeczne. W tym momencie widok gracza przejdzie w Tryb Strategii, co naprawdę uwydatni zmianę między etapami i przejście do strategicznych etapów gry."
 
-#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_UI"
-msgstr "Faza przebudzenia"
+msgstr "Wkrótce."
 
 msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_AWARE_STAGE_FEATURES"
-msgstr "Faza Świadomości"
+msgstr "Wkrótce."
 
-#, fuzzy
 msgid "WIKI_AWARE_STAGE_INTRO"
-msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_OVERVIEW"
@@ -7398,9 +7347,8 @@ msgstr "Faza Świadomości"
 msgid "WIKI_AWARE_STAGE_TRANSITIONS"
 msgstr "Azotaza"
 
-#, fuzzy
 msgid "WIKI_AWARE_STAGE_UI"
-msgstr "Faza Świadomości"
+msgstr "Wkrótce."
 
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
@@ -7409,22 +7357,22 @@ msgid "WIKI_AXON_INTRO"
 msgstr ""
 
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr ""
+msgstr "Brak modyfikacji."
 
 msgid "WIKI_AXON_PROCESSES"
 msgstr "Brak procesów."
 
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr ""
+msgstr "Dostępne wyłącznie od fazy wielokomórkowej."
 
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Wkrótce"
 
 msgid "WIKI_AXON_STRATEGY"
 msgstr ""
 
 msgid "WIKI_AXON_UPGRADES"
-msgstr ""
+msgstr "Brak ulepszeń."
 
 #, fuzzy
 msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
@@ -7468,19 +7416,19 @@ msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "Brak ulepszeń."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
-msgstr "Brak efektów. Jeszcze nie zaimplementowane."
+msgstr "Brak efektów. Będą dostępne wkrótce."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
-msgstr ""
+msgstr "Świeci. Jeszcze nie jest zaimplementowana w Thrive."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
-msgstr ""
+msgstr "Brak modyfikacji. Będą dostępne wkrótce."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
-msgstr ""
+msgstr "Brak procesów. Będą dostępne wkrótce."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_REQUIREMENTS"
-msgstr ""
+msgstr "Nie można dodać do komórki. Modyfikacja będzie dostępna wkrótce."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7493,13 +7441,13 @@ msgstr ""
 "Jeśli bardzo Ci zależy na umieszczeniu [b]Świecących Wakuoli[/b] w grze, albo masz pomysł na jakąś ich wartościową funkcjonalność, prosimy udać się do naszej [color=#3796e1][url=https://suggestions.revolutionarygamesstudio.com/]tablicy sugestii[/url][/color]."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
-msgstr ""
+msgstr "Niedostępne w grze. Ale będzie dostępne wkrótce."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
-msgstr ""
+msgstr "Brak ulepszeń. Będą dostępne wkrótce."
 
 msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
-msgstr ""
+msgstr "Edytor Układu Ciała, Edytor Komórki"
 
 msgid "WIKI_CHEMOPLAST_EFFECTS"
 msgstr "Brak efektów."
@@ -7519,9 +7467,8 @@ msgstr ""
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "Brak Danych"
+msgstr "Chociaż w prawdziwym świecie nie ma mikrobów z organellami zwanymi \"chemoplastami\", [color=#3796e1][url=https://pl.wikipedia.org/wiki/Chemosynteza]chemosynteza[/url][/color] jest procesem metabolicznym występującym w wielu taksonach drobnoustrojów. Biorąc pod uwagę istnienie mitochondriów i chloroplastów, które są organellami otoczonymi błoną i powstały na drodze endosymbiozy, wydaje się całkiem prawdopodobne, że organellum podobne do chemoplastu mogłoby w podobny sposób wyewoluować z chemosyntetyzującego drobnoustroju, który został wchłonięty przez większą komórkę."
 
 msgid "WIKI_CHEMOPLAST_STRATEGY"
 msgstr ""
@@ -7570,7 +7517,7 @@ msgid "WIKI_CHEMORECEPTOR_UPGRADES"
 msgstr "Brak ulepszeń."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_EFFECTS"
-msgstr "Brak specjalnych efektów."
+msgstr "Brak dodatkowych efektów."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_INTRO"
 msgstr "Małe zbitki białka w [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytozolu[/url][/color][/b], które przekształcają [thrive:compound type=\"hydrogensulfide\"]Siarkowodór[/thrive:compound], gazowy [thrive:compound type=\"carbondioxide\"]Dwutlenek Węgla[/thrive:compound] i wodę w [thrive:compound type=\"glucose\"]Glukozę[/thrive:compound] w procesie zwanym [b]Chemosyntezą Bakteryjną[/b]. Tempo produkcji [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound] skaluje się wraz ze stężeniem [thrive:compound type=\"carbondioxide\"]Dwutlenku Węgla[/thrive:compound]."
@@ -7592,9 +7539,15 @@ msgstr ""
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
 msgstr "Brak wymagań."
 
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
-msgstr "Brak Danych"
+msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Chemosynthesis]Chemosynteza[/url][/color] to proces metaboliczny występujący u wielu drobnoustrojów w prawdziwym świecie, gdzie zasadniczo służy jako alternatywa dla fotosyntezy. Podczas gdy fotosynteza wykorzystuje fotony ze światła słonecznego do dostarczania energii reakcjom chemicznym, chemosynteza zamiast tego wykorzystuje utlenianie związków nieorganicznych, takich jak żelazo lub siarkowodór, aby dostarczyć energię.\n"
+"\n"
+"Jako przykład, chemosyntezę siarkowodoru można podsumować następującym równaniem chemicznym:\n"
+"\n"
+"18H<sub>2</sub>S + 6CO<sub>2</sub> + 3O<sub>2</sub> → C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> (węglowodan) + 12H<sub>2</sub>O + 18S\n"
+"\n"
+"W powyższej reakcji siarkowodór służy jako źródło elektronów, gdy reaguje z dwutlenkiem węgla i tlenem, co skutkuje powstaniem cząsteczki węglowodanu wraz z wodą i wolnymi atomami siarki. Tak więc, podczas gdy fotosynteza prowadzi do uwalniania gazowego tlenu, chemosynteza siarkowodoru produkuje siarkę, która zazwyczaj gromadzi się w postaci stałych kuleczek."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_STRATEGY"
 msgstr ""
@@ -7617,16 +7570,17 @@ msgstr ""
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "Brak Danych"
+msgstr ""
+"[color=#3796e1][url=https://pl.wikipedia.org/wiki/Chloroplast]Chloroplasty[/url][/color] to organella otoczone podwójną błoną, występujące w prawdziwych komórkach roślinnych i glonów. Pochodzą od starożytnego zdarzenia endosymbiozy, w którym cyjanobakteria została wchłonięta przez wczesną komórkę eukariotyczną; w wyniku tej historii zawierają one własny genom, odrębny od genomu komórki gospodarza, podobnie jak [b]Mitochondria[/b].\n"
+"\n"
+"Oprócz [b][color=#3796e1][url=thriveopedia:chromatophore]Tylakoidów[/url][/color][/b] chloroplasty zawierają enzym rybulozo-1,5-bisfosforan karboksylaza/oksygenaza (powszechnie skracany jako RuBisCO), który odgrywa centralną rolę w fotosyntezie, przekształcając atmosferyczny dwutlenek węgla w [b]Glukozę[/b] i inne bogate w energię cząsteczki. RuBisCO jest bardzo starożytnym enzymem, uważanym za wyewoluowany około czterech miliardów lat temu, i obecnie uważa się go za najobficiej występujący enzym na Ziemi; mimo to jednak jest to enzym niezwykle nieefektywny, będąc zarówno stosunkowo wolnym w wiązaniu dwutlenku węgla, jak i podatnym na reakcję z tlenem zamiast tego, proces znany jako fotooddychanie, który faktycznie zmniejsza wydajność fotosyntezy, marnując energię i wyczerpując już związany węgiel. RuBisCO najwyraźniej nie był w stanie wyewoluować poza tę przeszkodę pomimo ogromnej presji selekcyjnej, aby to zrobić, a biolodzy molekularni napotkali wielkie trudności w inżynierii RuBisCO, aby uczynić go bardziej wydajnym, co sugeruje, że to ograniczenie może być fundamentalnym aspektem struktury i aktywności RuBisCO."
 
 msgid "WIKI_CHLOROPLAST_STRATEGY"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_UPGRADES"
-msgstr "Chloroplast jest strukturą z podwójną membraną zawierającą fotosensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w chloroplaście mogą używać energii światła do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i wody w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty dają mu też wyróżniający się kolor. Tempo produkci [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i intensywnością [thrive:compound type=\"sunlight\"][/thrive:compound]."
+msgstr "Brak ulepszeń."
 
 #, fuzzy
 msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
@@ -7639,14 +7593,13 @@ msgid "WIKI_CILIA_INTRO"
 msgstr ""
 
 msgid "WIKI_CILIA_MODIFICATIONS"
-msgstr ""
+msgstr "Brak modyfikacji."
 
-#, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
-msgstr "Zwiększa prędkość obrotu większych komórek."
+msgstr "Brak procesów."
 
 msgid "WIKI_CILIA_REQUIREMENTS"
-msgstr ""
+msgstr "Komórka musi mieć [b][color=#3796e1][url=thriveopedia:nucleus]jądro[/url][/color][/b] aby wyewoluować [b]rzęski[/b]."
 
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7656,17 +7609,15 @@ msgstr ""
 
 msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
-
-#, fuzzy
-msgid "WIKI_COMPOUNDS_BUTTON"
-msgstr ""
-"Żelowe wnętrze komórki. [b]Cytoplazma[/b] to podstawowa mieszanina jonów, białek, i innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze komórki.\n"
+"[b]Rzęski ciągnące[/b]\n"
 "\n"
-"Jedną z czynności, której dokonuje, jest [b]Glikoliza Cytoplazmowa[/b], przemiana [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound. Komórki nieposiadające organelli do bardziej zaawansowanych procesów metabolicznych polegają na tym procesie. Wykorzystywany jest również jako magazyn substancji oraz do zwiększenia rozmiarów komórki."
+"Za [b]25[/b] punktów mutacji zmodyfikuj umieszczone [b]Rzęski[/b], aby przekształcić je w [b]Rzęski ciągnące[/b]. Oprócz regularnych efektów organellum, [b]Rzęski ciągnące[/b] generują wiry, przyciągające małe komórki i rożne kawałki, takie jak unoszące się organella."
 
-#, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr "Związki"
+
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
-msgstr "Związki:"
+msgstr "Aby zobaczyć informacje zza kulis oraz teorie naukowe, zobacz [color=#3796e1][url=thriveopedia:CompoundSystemDevelopment]Dewelopment systemu związków chemicznych[/url][/color]."
 
 #, fuzzy
 msgid "WIKI_COMPOUNDS_INTRO"
@@ -7690,9 +7641,8 @@ msgstr ""
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
-msgstr "Edytor Mikroba"
+msgstr "Edytor Stworzeń, Edytor Technologii"
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Inna organella może zastąpić [b]Cytoplazmę[/b] bez dodatkowych kosztów (oprócz kosztu postawienia organelli)."
@@ -7703,43 +7653,44 @@ msgstr ""
 "\n"
 "Jedną z czynności, której dokonuje, jest [b]Glikoliza Cytoplazmowa[/b], przemiana [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound. Komórki nieposiadające organelli do bardziej zaawansowanych procesów metabolicznych polegają na tym procesie. Wykorzystywany jest również jako magazyn substancji oraz do zwiększenia rozmiarów komórki."
 
-#, fuzzy
 msgid "WIKI_CYTOPLASM_MODIFICATIONS"
-msgstr "Zol wypełniający wnętrze komórki. Cytozol to podstawowa mieszanina jonów, białek, i innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze komórki. Jedną z czynności, której dokonuje, jest [b]glikoliza[/b] - przemiana [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound. Komórki nieposiadające organelli do bardziej zaawansowanych procesów metabolicznych polegają na tym procesie. Wykorzystywany jest również jako magazyn substancji oraz do zwiększenia rozmiarów komórki."
+msgstr "Brak modyfikacji."
 
 msgid "WIKI_CYTOPLASM_PROCESSES"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Brak wymagań."
 
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_STRATEGY"
 msgstr ""
+"Jeśli będziesz w stanie zbierać [thrive:compound type=\"glucose\"][/thrive:compound] z chmur w środowisku, każdy heks [b]Cytoplazmy[/b] wytwarza dodatni bilans energetyczny (w postaci [thrive:compound type=\"atp\"][/thrive:compound]). To organellum jest zatem niezawodnym wyborem dla łatwego generowania energii w większości środowisk. Rzeczywiście, startowa komórka (LUCA) to pojedynczy heks [b]Cytoplazmy[/b].\n"
+"\n"
+"Dostępne są jednak potężniejsze metody generowania [thrive:compound type=\"atp\"][/thrive:compound]. W miarę postępu w grze zalecamy inwestowanie w bardziej wyspecjalizowane organella, w zależności od warunków środowiskowych, zwłaszcza że stężenie [thrive:compound type=\"glucose\"][/thrive:compound] maleje z czasem. Na przykład, [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolosomy[/url][/color][/b] są skuteczne, jeśli obecny obszar ma dużo [thrive:compound type=\"oxygen\"][/thrive:compound], a [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosyntaza[/url][/color][/b] jest potężna na obszarach o wysokiej [thrive:compound type=\"temperature\"][/thrive:compound].\n"
+"\n"
+"Dodawanie heksów [b]Cytoplazmy[/b] to także jeden z najskuteczniejszych sposobów na zwiększenie rozmiaru komórki. Zwiększony rozmiar daje ci więcej zdrowia i powstrzymuje mniejsze komórki przed wchłonięciem Twojej, kosztem prędkości i zwrotności."
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Brak ulepszeń."
 
 #, fuzzy
 msgid "WIKI_DEVELOPMENT"
 msgstr "Wiki Deweloperskie"
 
-#, fuzzy
 msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
-msgstr "Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, śluz jest jednym z takich polisacharydów. Podczas gdy mnóstwo gatunków wykorzystuje szlam do celów lokomocji, niektóre typy bakterii strzelają tymi substancjami za sobą pod wysokim ciśnieniem. Te śluzowe wyrzutnie działają jak silniki rakietowe, pchając komórki do przodu z niesamowitą prędkością. Szlam jest również używany przeciw nadciągającym drapieżnikom, więżąc je w substancji którą jedynie posiadające jety organizmy mogą nawigować."
+msgstr "Szczegóły rozwoju"
 
-#, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
-msgstr "Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, śluz jest jednym z takich polisacharydów. Podczas gdy mnóstwo gatunków wykorzystuje szlam do celów lokomocji, niektóre typy bakterii strzelają tymi substancjami za sobą pod wysokim ciśnieniem. Te śluzowe wyrzutnie działają jak silniki rakietowe, pchając komórki do przodu z niesamowitą prędkością. Szlam jest również używany przeciw nadciągającym drapieżnikom, więżąc je w substancji którą jedynie posiadające jety organizmy mogą nawigować."
+msgstr ""
 
 msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
-msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+msgstr "Główna pętla rozgrywki w Thrive obraca się wokół [color=#3796e1][url=thriveopedia:Reproduction]rozmnażania[/url][/color] i edycji twojego gatunku. Za każdym razem, gdy się rozmnażasz, uzyskujesz dostęp do różnych [b]edytorów[/b] w zależności od swojego etapu. Będziesz mógł wprowadzać zmiany, czyli [b]mutacje[/b], do swojego gatunku."
 
 msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
 msgstr ""
@@ -7747,20 +7698,17 @@ msgstr ""
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
-msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+msgstr ""
 
-#, fuzzy
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
-msgstr "(proporcja glukozy zachowana w środowisku w każdym pokoleniu)"
+msgstr ""
 
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_EFFECTS"
-msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Brak efektów."
 
 #, fuzzy
 msgid "WIKI_FERROPLAST_INTRO"
@@ -7769,41 +7717,28 @@ msgstr ""
 "\n"
 "Organella spekulacyjna nie wykryta w prawdziwym życiu. Niedostępne w grach z włączonym trybem ŻTJZ (Życie Takie Jakie Znamy)."
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_MODIFICATIONS"
-msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Brak modyfikacji."
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_PROCESSES"
 msgstr ""
-"[b]Termosynteza[/b]: [thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Generuje energie z [thrive:compound type=\"temperature\"][/thrive:compound] w środowisku. Bardziej wydajna wersja [b]Termoyntezy Bakteryjnej[/b] która występuje w [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosyntazie[/url][/color][/b]."
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_REQUIREMENTS"
 msgstr ""
-"Komórka musi mieć [b][color=#3796e1][url=thriveopedia:nucleus]Jądro Komórkowe[/url][/color][/b] by wyewoluować [b]Czynniki Wiążące[/b].\n"
+"Komórka musi posiadać [b][color=#3796e1][url=thriveopedia:nucleus]Jądro komórkowe[/url][/color][/b], aby wyewoluować [b]Ferroplasty[/b].\n"
 "\n"
-"Jeżeli warunki odblokowania organelli są włączone w ustawieniach, [i]wszystkie[/i] poniższe warunki muszą być spełnione [i] dla komórki gracza[/i]:\n"
+"Jeśli ulepszenia organelli są włączone w ustawieniach gry, następujący warunek musi być spełniony [i]dla komórki gracza[/i]:\n"
 "\n"
-"[indent]—   Zawiera [b][color=#3796e1][url=thriveopedia:nucleus]Jądro Komórkowe[/url][/color][/b] przez [b]5[/b] generacji.[/indent]\n"
-"[indent]—   Ma bilans [thrive:compound type=\"atp\"][/thrive:compound] równy [b]+15[/b] lub większy.[/indent]"
+"[indent]—   Zawiera [b][color=#3796e1][url=thriveopedia:rusticyanin]Rustycjaninę[/url][/color][/b] przez co najmniej [b]6[/b] pokoleń z rzędu.[/indent]"
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "[b]Ferroplasty[/b] nie zostały odkryte w prawdziwych organizmach, ale teoretyzuje się, że są całkowicie możliwe, bazując na ewolucji endosymbiontów (takich jak [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitochondrium[/url][/color][/b]) oraz istnieniu utleniających żelazo drobnoustrojów, takich jak bakteria [i]<a rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Acidithiobacillus_ferrooxidans\">Acidithiobacillus ferrooxidans</a>[/i] i archeony z rodzaju [i]<a rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Ferroplasma\">Ferroplasma</a>[/i]. Te drobnoustroje posiadają białka znane jako [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyaniny[/url][/color][/b], które utleniają żelazo Fe<sup>2+</sup> do żelaza Fe<sup>3+</sup> w celu wytworzenia protonów jako części [color=#3796e1][url=https://en.wikipedia.org/wiki/Electron_transport_chain]łańcucha transportu elektronów[/url][/color]."
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_STRATEGY"
 msgstr ""
-"Ponieważ [b]Termosynteza[/b] nie wymaga innych zasobów prócz [thrive:compound type=\"temperature\"][/thrive:compound], w praktyce jest darmową energią. Dodatkowo [b]Termoplast[/b] jest bardziej wydajny od [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosyntazy[/url][/color][/b], co sprawia, że jest on najłatwiejszą metodą generacji energii w grze, pod warunkiem, że będziesz chciał zostać w gorącej strefie jak kominy hydrotermalne.\n"
-"\n"
-"Jeśli warunki odblokowania organelli są włączone, warunek rozmnożenia się wiele razy z [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosyntazą[/url][/color][/b] oznacza, że gracz który wyewoluował [b]Termoplasty[/b] pewnie już jest bardzo wyspecjalizowany w [b]Termosyntezie[/b] kiedy zdobędzie [b]termoplasty[/b]."
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_UPGRADES"
-msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Brak ulepszeń."
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
@@ -7813,13 +7748,11 @@ msgstr "Wić to biczo-podobny zbiór białek wysunięty z błony komórkowej, kt
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "[b]Wić[/b] to biczo-podobny zbiór białek wysunięty z błony komórkowej, który zużywa [thrive:compound type=\"atp\"][/thrive:compoundATP] do obracania się i poruszania komórki w danym kierunku. Pozycja wici determinuje kierunek w którym napędza komórkę. Kierunek siły napędowej jest przeciwny do strony po której [b]Wić[/b] jest umiejscowiona, na przykład [b]Wić[/b] umieszczona po lewej napędza komórkę w prawo."
 
-#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
-msgstr "Wić to biczo-podobny zbiór białek wysunięty z błony komórkowej, który zużywa ATP do obracania się i poruszania komórki w danym kierunku. Pozycja wici determinuje kierunek w którym napędza komórkę. Kierunek siły napędowej jest przeciwny do strony po której wić jest umiejscowiona, na przykład wić umieszczona po lewej napędza komórkę w prawo."
+msgstr "Brak modyfikacji."
 
-#, fuzzy
 msgid "WIKI_FLAGELLUM_PROCESSES"
-msgstr "Używa [thrive:compound type=\"atp\"][/thrive:compound] do zwiększenia prędkości poruszania się komórki."
+msgstr "Brak procesów."
 
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
 msgstr ""
@@ -7831,30 +7764,27 @@ msgid "WIKI_FLAGELLUM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_FLAGELLUM_UPGRADES"
-msgstr ""
+msgstr "Brak ulepszeń."
 
 #, fuzzy
 msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Beztlenowe Wiązanie Azotu"
 
-#, fuzzy
 msgid "WIKI_HEADING_APPENDICES"
-msgstr "Brak ulepszeń."
+msgstr "Dodatki"
 
-#, fuzzy
 msgid "WIKI_HEADING_BASIC_GAME_MECHANICS"
-msgstr "Brak ulepszeń."
+msgstr "Podstawowe elementy rozgrywki"
 
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
-msgstr ""
+msgstr "Lista związków"
 
 #, fuzzy
 msgid "WIKI_HEADING_COMPOUND_CLOUDS"
 msgstr "Nieskończone Związki"
 
-#, fuzzy
 msgid "WIKI_HEADING_CONCEPT_ART"
-msgstr "Chemoreceptor"
+msgstr "Grafiki koncepcyjne"
 
 #, fuzzy
 msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
@@ -7864,23 +7794,21 @@ msgstr "Obecni Developerzy"
 msgid "WIKI_HEADING_DEVELOPMENT"
 msgstr "Główni Deweloperzy"
 
-#, fuzzy
 msgid "WIKI_HEADING_EDITOR"
-msgstr "Pozwala na wysyłanie prostych poleceń do innych przedstawicieli gatunku komórki dzięki sygnałom chemicznym."
+msgstr "Edytor"
 
 msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
+msgstr "Efekty"
 
-#, fuzzy
 msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
-msgstr "Azotaza"
+msgstr "Gazy atmosferyczne"
 
 #, fuzzy
 msgid "WIKI_HEADING_FEATURES"
 msgstr "Brak ulepszeń."
 
 msgid "WIKI_HEADING_FOG_OF_WAR"
-msgstr ""
+msgstr "Mgła wojny"
 
 #, fuzzy
 msgid "WIKI_HEADING_GAMEPLAY"
@@ -7890,16 +7818,14 @@ msgstr "Wykonuj auto-ewo w trakcie rozgrywki"
 msgid "WIKI_HEADING_GDD"
 msgstr "Czynnik Wiążący"
 
-#, fuzzy
 msgid "WIKI_HEADING_GENERAL_TIPS"
-msgstr "Brak ulepszeń."
+msgstr "Podpowiedzi"
 
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
-msgstr ""
+msgstr "Pokolenia i edytor sesji"
 
-#, fuzzy
 msgid "WIKI_HEADING_MICROBE_PARTS"
-msgstr "Etap Mikroba"
+msgstr "Elementy mikroba"
 
 #, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE"
@@ -7910,47 +7836,44 @@ msgid "WIKI_HEADING_MICROBE_STAGE_TIPS"
 msgstr "Etap Mikroba"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
-msgstr ""
+msgstr "Modyfikacje"
 
-#, fuzzy
 msgid "WIKI_HEADING_MORE_GAME_INFO"
-msgstr "Etap Mikroba"
+msgstr "Więcej informacji o grze"
 
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
-msgstr ""
+msgstr "Mutacje i Punkty Mutacji"
 
 msgid "WIKI_HEADING_OVERVIEW"
-msgstr ""
+msgstr "Podsumowanie"
 
-#, fuzzy
 msgid "WIKI_HEADING_PATCHES"
-msgstr "Brak procesów."
+msgstr "Obszary"
 
-#, fuzzy
 msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
-msgstr "Warunki Fizyczne"
+msgstr "Warunki fizyczne"
 
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "Procesy"
 
 msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
-msgstr ""
+msgstr "Rozmnażanie się w fazie mikrobu"
 
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
+msgstr "Wymagania"
 
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Podstawa naukowa"
 
 msgid "WIKI_HEADING_STRATEGY"
-msgstr ""
+msgstr "Strategia"
 
 #, fuzzy
 msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
 msgstr "Włącz cykl dnia i nocy"
 
 msgid "WIKI_HEADING_THE_PATCH_MAP"
-msgstr ""
+msgstr "Mapa obszarów"
 
 #, fuzzy
 msgid "WIKI_HEADING_TRANSITIONS"
@@ -7961,10 +7884,10 @@ msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
 msgstr "Nieskończone Związki"
 
 msgid "WIKI_HEADING_UI"
-msgstr ""
+msgstr "Interfejs"
 
 msgid "WIKI_HEADING_UPGRADES"
-msgstr ""
+msgstr "Ulepszenia"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
@@ -7999,9 +7922,8 @@ msgstr "Etap Mikroba"
 msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
-msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+msgstr "Brak efektów."
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_INTRO"
@@ -8010,39 +7932,35 @@ msgstr ""
 "\n"
 "[b]Lizosom[/b] jest organellą otoczoną błoną która zawiera enzymy hydrolityczne które potrafią rozkładać wiele związków biologicznych. [b]Lizosom[/b] daje komórce umiejętność trawienia materiałów pochłoniętych w procesie endocytozy, a także oczyszczają odpady komórki w procesie zwanym autofagią."
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_MODIFICATIONS"
-msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+msgstr "Brak modyfikacji."
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_PROCESSES"
 msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów temperatury. Tempo skaluje się ze stężeniem [thrive:compound type=\"temperature\"][/thrive:compound]."
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_REQUIREMENTS"
-msgstr ""
-"Komórka musi mieć [b][color=#3796e1][url=thriveopedia:nucleus]Jądro Komórkowe[/url][/color][/b] by wyewoluować [b]Czynniki Wiążące[/b].\n"
-"\n"
-"Jeżeli warunki odblokowania organelli są włączone w ustawieniach, [i]wszystkie[/i] poniższe warunki muszą być spełnione [i] dla komórki gracza[/i]:\n"
-"\n"
-"[indent]—   Zawiera [b][color=#3796e1][url=thriveopedia:nucleus]Jądro Komórkowe[/url][/color][/b] przez [b]5[/b] generacji.[/indent]\n"
-"[indent]—   Ma bilans [thrive:compound type=\"atp\"][/thrive:compound] równy [b]+15[/b] lub większy.[/indent]"
+msgstr "Cząstka początkowa bez wymagań."
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
-msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Hydrogenase]Hydrogenazy[/url][/color] to klasa enzymów, która katalizuje odwracalne utlenianie molekularnego wodoru (H<sub>2</sub>). Proces ten jest zaangażowany w fermentację pirogronianową, beztlenowy proces, który wytwarza ATP (w przeciwieństwie do oddychania komórkowego, które wymaga tlenu i jest zatem [i]aerobowe[/i]).\n"
+"\n"
+"Fermentacja klostrydialna występuje u Clostridia, zróżnicowanej i luźno zdefiniowanej grupy prokariontów zdefiniowanej przez proces metaboliczny. Jest często stosowana w produkcji biochemicznej, spożywczej i biopaliwowej oraz wykorzystywana w oczyszczaniu ścieków i rekultywacji gleby. Chociaż fermentacja klostrydialna wygląda inaczej w różnych grupach bakterii, jej ogólny wzór przedstawia się następująco: \n"
+"\n"
+"C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> → 2C<sub>2</sub>H<sub>5</sub>OH + 2CO<sub>2</sub> + 2H<sub>2</sub>\n"
+"\n"
+"Czyli glukoza jest przekształcana w dwa etanole, dwa dwutlenki węgla i dwa wodory. Glukoza jest rozkładana poprzez fosforylację na poziomie substratu i, podobnie jak inne metody fermentacji, ważne aspekty glikolizy mogą być utrzymane nawet w warunkach beztlenowych. Fermentacja jest prawdopodobnie bardzo starożytną strategią metaboliczną na Ziemi. Chociaż hydrogenaza odgrywa rolę w fermentacji klostrydialnej, odpowiadając za gospodarkę odpadami i produkcję wodoru, technicznie nie jest fundamentalnym enzymem dla tego procesu. Inne enzymy, takie jak oksydoreduktaza pirogronian:ferredoksyna (POR), odgrywają bardziej unikalną i centralną rolę w fermentacji beztlenowej; jednak ze względu na względną trudność w przedstawieniu ich w grze, wybrano bardziej znany enzym o bardziej przystępnej nazwie."
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_STRATEGY"
 msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieniać swój kształt, pozwalając mu się zwinąć i związać z ADP pod wpływem ciepła, następnie rozwinąć i przetworzyć ADP na [thrive:compound type=\"atp\"][/thrive:compound] w kontakcie z niższą temperaturą w procesie zwanym [b]thermosynthesis[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/thrive:compound] wzrasta z [thrive:compound type=\"temperature\"][/thrive:compound]."
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_UPGRADES"
-msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+msgstr "Brak ulepszeń."
 
-#, fuzzy
 msgid "WIKI_HYDROGENOSOME_EFFECTS"
-msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+msgstr "Brak efektów."
 
 #, fuzzy
 msgid "WIKI_HYDROGENOSOME_INTRO"
@@ -8051,9 +7969,8 @@ msgstr ""
 "\n"
 "[b]Lizosom[/b] jest organellą otoczoną błoną która zawiera enzymy hydrolityczne które potrafią rozkładać wiele związków biologicznych. [b]Lizosom[/b] daje komórce umiejętność trawienia materiałów pochłoniętych w procesie endocytozy, a także oczyszczają odpady komórki w procesie zwanym autofagią."
 
-#, fuzzy
 msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
-msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+msgstr "Brak modyfikacji."
 
 #, fuzzy
 msgid "WIKI_HYDROGENOSOME_PROCESSES"
@@ -8077,16 +7994,14 @@ msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"n
 msgid "WIKI_HYDROGENOSOME_STRATEGY"
 msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieniać swój kształt, pozwalając mu się zwinąć i związać z ADP pod wpływem ciepła, następnie rozwinąć i przetworzyć ADP na [thrive:compound type=\"atp\"][/thrive:compound] w kontakcie z niższą temperaturą w procesie zwanym [b]thermosynthesis[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/thrive:compound] wzrasta z [thrive:compound type=\"temperature\"][/thrive:compound]."
 
-#, fuzzy
 msgid "WIKI_HYDROGENOSOME_UPGRADES"
-msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+msgstr "Brak ulepszeń."
 
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Prace nad tym etapem jeszcze się nie zaczęły. Design rozgrywki i teorii dla tego etapu zacznie mnie większe znaczenie kiedy rozpoczną się prace nad [color=#3796e1][url=thriveopedia:society_stage]Etapem Społeczeństwa[/url][/color]."
 
-#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
-msgstr "Brak ulepszeń."
+msgstr "Wkrótce."
 
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
@@ -8099,15 +8014,20 @@ msgstr ""
 msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
 msgstr "Etap Przemysłowy oficjalnie rozpoczyna się kiedy państwo gracza odkrywa technologię Mocy Pary (i buduje pierwszą maszynę przemysłową)."
 
-#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_UI"
-msgstr "Przejść do Fazy Cywilizacji?"
+msgstr "Wkróce."
 
 msgid "WIKI_INJECTISOME_PILUS"
-msgstr ""
+msgstr "Pilus iniekcyjny"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
+"Wyposażenie [b]Lizosomu[/b] w [b]Chitynazę[/b] lub [b]Celulazę[/b] pozwala komórce trawić inne komórki odpowiednio z [b]Membranami Chitynowymi[/b] lub [b]Membranami Celulozowymi[/b]. Komórki niestrawne – te, dla których komórka nie posiada wymaganego enzymu – są natychmiast usuwane.\n"
+"\n"
+"Oprócz ogólnych statystyk, każdy [b]Lizosom[/b] zapewnia:\n"
+"\n"
+"[indent]—   [b]+0.05[/b] prędkości trawienia. Wchłonięta materia będzie trawiona szybciej.[/indent]\n"
+"[indent]—   [b]+4.5%[/b] wydajności trawienia dla wybranego enzymu. Wchłonięte komórki z docelową membraną dla enzymu będą dostarczać więcej związków po strawieniu.[/indent]"
 
 msgid "WIKI_LYSOSOME_INTRO"
 msgstr ""
@@ -8118,21 +8038,29 @@ msgstr ""
 msgid "WIKI_LYSOSOME_MODIFICATIONS"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_LYSOSOME_PROCESSES"
-msgstr "Zawiera enzymy trawienne. Może być modyfikowany by zmienić typ enzymu, jaki zawiera. Na ten czas, tylko jeden enzym może być wykorzystany."
+msgstr "Brak procesów."
 
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
 msgstr ""
+"Komórka musi posiadać [b][color=#3796e1][url=thriveopedia:nucleus]Jądro komórkowe[/url][/color][/b], aby wyewoluować [b]Lizosomy[/b].\n"
+"\n"
+"Jeśli ulepszenia organelli są włączone w ustawieniach gry, [i]przynajmniej jeden[/i] z następujących warunków musi być również spełniony [i]dla komórki gracza[/i]:\n"
+"\n"
+"[indent]—   Wchłonęła przynajmniej [b]20[/b] komórek w dotychczasowej rozgrywce.[/indent]\n"
+"[indent]—   Strawiła przynajmniej [b]10[/b] komórek w dotychczasowej rozgrywce.[/indent]"
 
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
 msgid "WIKI_LYSOSOME_STRATEGY"
 msgstr ""
+"Dla komórek, które wchłaniają zdobycz, ogólnie zaleca się wyewoluowanie przynajmniej dwóch [b]Lizosomów[/b], ustawiając jeden do używania [b]Chitynazy[/b], a drugi do używania [b]Celulazy[/b]. W ten sposób twoja komórka może trawić znacznie więcej typów zdobyczy, które w przeciwnym razie pozostałyby niewrażliwe na wchłonięcie.\n"
+"\n"
+"Dodanie jeszcze większej liczby [b]Lizosomów[/b] z różnym wyborem enzymów również jest dobrym pomysłem. Zwiększona prędkość trawienia może zapobiec problemom z niewystarczającą pojemnością dla wszystkich spożytych materii, a zwiększona wydajność trawienia sprawia, że drapieżnictwo staje się znacznie bardziej opłacalną strategią."
 
 msgid "WIKI_LYSOSOME_UPGRADES"
-msgstr ""
+msgstr "Brak ulepszeń."
 
 #, fuzzy
 msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
@@ -8142,9 +8070,8 @@ msgstr "Etap Wielokomórkowca"
 msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Prace nad Etapem Boskości jeszcze nie zostały rozpoczęte."
 
-#, fuzzy
 msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
-msgstr "Gruczoł Śluzowy"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
@@ -8177,20 +8104,14 @@ msgstr "Organelle"
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, śluz jest jednym z takich polisacharydów. Podczas gdy mnóstwo gatunków wykorzystuje szlam do celów lokomocji, niektóre typy bakterii strzelają tymi substancjami za sobą pod wysokim ciśnieniem. Te śluzowe wyrzutnie działają jak silniki rakietowe, pchając komórki do przodu z niesamowitą prędkością. Szlam jest również używany przeciw nadciągającym drapieżnikom, więżąc je w substancji którą jedynie posiadające jety organizmy mogą nawigować."
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_EFFECTS"
-msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+msgstr "Brak efektów."
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_INTRO"
-msgstr ""
-"Zawiera enzymy trawienne. Może być zmodyfikowany by zmienić typ enzymu który zawiera. Każdy [b]Lizosom[/b] może korzystać z tylko jednego typu enzym. Enzymy przyspieszają trawienie i polepszają efektywność trawienia.\n"
-"\n"
-"[b]Lizosom[/b] jest organellą otoczoną błoną która zawiera enzymy hydrolityczne które potrafią rozkładać wiele związków biologicznych. [b]Lizosom[/b] daje komórce umiejętność trawienia materiałów pochłoniętych w procesie endocytozy, a także oczyszczają odpady komórki w procesie zwanym autofagią."
+msgstr "[b]Melanosomy[/b] to [color=#3796e1][url=thriveopedia:OrganellesRoot]organella[/url][/color], które przeprowadzają [b]radiosyntezę[/b], proces przechwytywania energii z promieniowania poprzez absorbowanie go za pomocą melaniny."
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_MODIFICATIONS"
-msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+msgstr "Brak modyfikacji."
 
 #, fuzzy
 msgid "WIKI_MELANOSOME_PROCESSES"
@@ -8200,28 +8121,26 @@ msgstr "Zawiera enzymy trawienne. Może być modyfikowany by zmienić typ enzymu
 msgid "WIKI_MELANOSOME_REQUIREMENTS"
 msgstr "Brak wymagań"
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
-msgstr "Brak Danych"
+msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Melanosome]Melanosomy[/url][/color] to organelle występujące w niektórych komórkach zwierzęcych w prawdziwym świecie, gdzie ich główną funkcją jest absorbowanie światła przy użyciu pigmentu zwanego melaniną.\n"
+"\n"
+"Melaninę znaleziono również u wyraźnie radiotroficznych grzybów odkrytych w wycofanej z eksploatacji elektrowni jądrowej w Czarnobylu, a także u grzybów żyjących na dużych wysokościach, gdzie są narażone na zwiększone promieniowanie ultrafioletowe. Ostatnie badania sugerują, że melanina może umożliwiać tym organizmom przeprowadzanie radiosyntezy poprzez wychwytywanie energii promieniowania jonizującego."
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_STRATEGY"
-msgstr "Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy toksycznego czynnika OxyToksy NT."
+msgstr "Radioaktywne skały są rzadkie, ale obfitują w energię. Zalecanym stylem gry z radiosyntezą jest posiadanie dużej przestrzeni magazynowanej lub innych sposobów na przetrwanie podczas poszukiwań kolejnych radioaktywnych skał. Po znalezieniu przez pewien czas będą obfitowały w energię niezbędną do rozmnażania itp."
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_UPGRADES"
-msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+msgstr "Brak ulepszeń."
 
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
-msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+msgstr "Brak efektów."
 
 msgid "WIKI_METABOLOSOMES_INTRO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_MODIFICATIONS"
-msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+msgstr "Brak modyfikacji."
 
 msgid "WIKI_METABOLOSOMES_PROCESSES"
 msgstr ""
@@ -8235,9 +8154,8 @@ msgstr ""
 msgid "WIKI_METABOLOSOMES_STRATEGY"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_UPGRADES"
-msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+msgstr "Brak ulepszeń."
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
@@ -8261,20 +8179,62 @@ msgstr ""
 "\n"
 "Żeby przetrwać w tym niesprzyjającym świecie, musisz zbierać różne związki chemiczne i ewoluować aby wygrać rywalizację z innymi gatunkami."
 
-#, fuzzy
 msgid "WIKI_MICROBE_STAGE_EDITOR"
-msgstr "Edytor Mikroba"
+msgstr ""
+"Edytor jest strategiczną stroną etapu mikrobowego i jest dostępny za każdym razem, gdy gracz się rozmnaża. To w tym edytorze gracz może ewoluować swój gatunek, umieszczając części z listy dostępnych białek lub organelli na swojej komórce. W każdym pokoleniu gracz otrzymuje 100 Punktów Mutacji (PM), które są używane jako waluta do zakupu tych części. Edytor jest obecnie podzielony na trzy różne okna: stronę raportu, mapę obszarów i właściwy edytor.\n"
+"\n"
+"[b][u]Raport[/u][/b]\n"
+"\n"
+"Menu raportu to pierwsza strona, którą gracz zobaczy po wejściu do edytora. Ta strona opisuje wszystkie zmiany środowiskowe, które zaszły przed wejściem do edytora, takie jak zmiany populacji gatunków, stężenie związków itp. Informacje podane w raporcie mogą być pomocne, ale nie są niezbędne do dobrej gry, więc gracze nie muszą się martwić o analizowanie ich treści.\n"
+"\n"
+"[b][u]Mapa obszarów[/u][/b]\n"
+"\n"
+"Drugą stroną, którą odwiedzi gracz, jest mapa obszarów. To menu wyświetla w zasadzie mapę świata, gdzie obszary reprezentują biomy, które gracz może odwiedzić, połączone liniami reprezentującymi przemierzalne ścieżki. Gracz może wybrać każdy widoczny obszar, aby wyświetlić statystyki środowiskowe tego biomu, takie jak stężenie związków, obecne gatunki i tak dalej. Jeśli wybrany obszar jest połączony z obszarem zajmowanym przez gracza za pomocą ścieżki, gracz będzie mógł wybrać grę na wybranym obszarze po opuszczeniu edytora. Gracze, którzy zamierzają przenieść się do nowych środowisk, powinni zachować ostrożność i sprawdzić obszar przed przeniesieniem się, aby upewnić się, że są przygotowani na to, co nadejdzie.\n"
+"\n"
+"Poniżej znajduje się pełna lista różnych rodzajów obszarów obecnych w grze.\n"
+"\n"
+"[indent]—   Abisal pelagiczny (Otchłań)[/indent]\n"
+"[indent]—   Batypelagial (Głębiny)[/indent]\n"
+"[indent]—   Mesopelagial (Średnie głębiny)[/indent]\n"
+"[indent]—   Epipelagial (Ton wodna)[/indent]\n"
+"[indent]—   Dno morskie[/indent]\n"
+"[indent]—   Basen pływowy[/indent]\n"
+"[indent]—   Estuarium[/indent]\n"
+"[indent]—   Kominy Hydrotermalne[/indent]\n"
+"[indent]—   Wybrzeże[/indent]\n"
+"[indent]—   Lodowiec Szelfowy[/indent]\n"
+"[indent]—   Jaskinie[/indent]\n"
+"\n"
+"[b][u]Biomy[/u][/b]\n"
+"\n"
+"[i]Artykuł główny: <a href=\"/wiki/Microbe_Biomes\" title=\"Microbe Biomes\">Biomy Mikrobow</a>[/i]\n"
+"\n"
+"Każdy obszar reprezentuje określony biom. Biom definiuje właściwości fizyczne tego obszaru, takie jak temperatura, ciśnienie i poziom światła.\n"
+"\n"
+"[b][u]Edytor komórki[/u][/b]\n"
+"\n"
+"Strona edytora to miejsce, gdzie gracz może dostosować swoją komórkę część po części. Większość edytora zajmuje pole heksagonalne, na którym umieszczane są części komórki, przy czym środek zajmuje obecna komórka gracza. Na lewo od tej dużej przestrzeni znajduje się lista części, gdzie gracz wybiera części do umieszczenia na swojej komórce lub zmienia jej właściwości, takie jak kolor lub typ membrany. Prawy górny obszar zajmują statystyki organizmu opisujące, do czego zdolna jest komórka, a także pasek bilansu [thrive:compound type=\"atp\"][/thrive:compound], który informuje gracza o ilości wytwarzanego [thrive:compound type=\"atp\"][/thrive:compound] w porównaniu z ilością zużywaną. Gracz powinien zawsze upewnić się, że czerwony pasek jest krótszy niż zielony, inaczej spotka go przedwczesna śmierć z jego własnego powodu. W prawym dolnym rogu gracze znajdą ekran przewidywań autoewolucji, który szczegółowo opisuje, jak dobrze ich gatunek ma sobie radzić z wprowadzonymi zmianami według algorytmu autoewolucji. Wreszcie, w lewym górnym rogu edytora znajdują się karty używane do nawigacji między poprzednimi stronami, a także pasek PM, który wyświetla obecny stan PM gracza.\n"
+"\n"
+"Gracz może umieszczać nowe części lub heksy przylegające do dowolnego istniejącego zajętego heksa lub na heksie cytoplazmy, aby zastąpić ją nową częścią. Jeśli gracz sobie tego życzy, może usuwać części swojej komórki, klikając prawym przyciskiem myszy umieszczone części, kosztem 10 PM za każde usunięcie. Alternatywnie, gracz może użyć przycisków strzałek znajdujących się na dole ekranu edytora, aby cofnąć lub ponowić poprzednie działania, jednak ta funkcjonalność będzie działać tylko na zmiany made w bieżącej sekcji edytora. Przycisk pośrodku przycisków strzałek to klawisz symetrii, po kliknięciu którego zmienia się obecny tryb symetrii gracza. Wszystkie części można usuwać z wyjątkiem trzech: jądra, czynników wiążących i ostatniego heksa komórki. Części te można jednak nadal przesuwać, więc nie stresuj się, jeśli nie podoba ci się ich obecna pozycja!\n"
+"\n"
+"Edytor komórki zawiera trzy różne karty, każda o unikalnej funkcji.\n"
+"\n"
+"Karta struktury zawiera wszystkie części, które gracz może wybrać, takie jak białka, organella i struktury zewnątrzkomórkowe, jak pilusy. Gracz musi kliknąć na ikonę żądanej części, aby ją wybrać, a następnie kliknąć, gdzie chce ją umieścić w polu heksagonalnym, aby dodać część do swojego organizmu. Karta struktury jest podzielona na trzy kategorie: [b]struktury prokariotyczne[/b], [b]organella zewnętrzne[/b] i [b]organella wewnętrzne[/b]. Wewnętrznych organelli gracz w szczególności nie może używać, dopóki nie wyewoluuje jądra. Gracz może również swobodnie modyfikować, usuwać lub przenosić umieszczone części podczas korzystania z karty struktury.\n"
+"\n"
+"Karta membrany zawiera opcje dostosowywania membrany komórkowej. Tutaj graczowi przedstawiona jest lista przycisków reprezentujących różne odmiany membran i ścian komórkowych, każda z unikalnymi statystykami i zdolnościami. Aby wybrać typ membrany, gracz musi tylko upewnić się, że ma wystarczająco dużo PM i kliknąć żądany typ. Gracz otrzymuje również suwak, który reguluje płynność i sztywność kosztem 2 PM za zmianę. Im bardziej płynna jest komórka, tym jest szybsza i kruchsza, podczas gdy sztywne komórki są trwałe, ale wolne. Na dole karty membrany znajduje się koło kolorów, które pozwala graczowi wybrać kolor swojej komórki. Ta funkcja jest całkowicie kosmetyczna i nie kosztuje PM do zmiany.\n"
+"\n"
+"Karta zachowania przedstawia graczowi listę skal behawioralnych i suwaków do ich regulacji. Regulacja tych suwaków pozwala graczowi kontrolować, jak sztuczna inteligencja jego gatunku reaguje na świat around, ale obecnie nie wpływa na samego gracza. Każdy suwak reprezentuje dwie skrajności skali osobowości, których pozycja określa, jak bardzo gatunek skłania się w danym nastawieniu.\n"
+"\n"
+"Aktualne skale osobowości to:\n"
+"\n"
+"[indent]—   Pokojowy/Agresywny: Określa, jak wrogi lub obojętny jest gatunek wobec innych gatunków.[/indent]\n"
+"[indent]—   Ostrożny/Oportunistyczny: Określa, jak bardzo gatunek jest skłonny narazić się dla potencjalnego zysku.[/indent]\n"
+"[indent]—   Odważny/Lękliwy: Określa, jak bardzo gatunek jest skłonny uciekać przed postrzeganymi zagrożeniami i jak groźne one muszą być.[/indent]\n"
+"[indent]—   Osiadły/Aktywny: Określa, jak bardzo gatunek jest skłonny się poruszać, jeśli w ogóle, bez bodźca.[/indent]\n"
+"[indent]—   Reaktywny/Skoncentrowany: Określa, jak szybko gatunek rezygnuje z realizacji celu, jeśli w ogóle.[/indent]"
 
-#, fuzzy
 msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
 msgstr ""
-"Na odległej obcej planecie, eony aktywności wulkanicznej i upadków meteorytów doprowadziły do powstania prawdziwego fenomenu we wszechświecie.\n"
-"\n"
-"Życia.\n"
-"\n"
-"Proste mikroby powstały w głębinach oceanu. Jesteś przodkiem wszelkiego życia na tej planecie.\n"
-"\n"
-"Żeby przetrwać w tym niesprzyjającym świecie, musisz zbierać różne związki chemiczne i ewoluować aby wygrać rywalizację z innymi gatunkami."
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_GDD"
@@ -8291,16 +8251,14 @@ msgstr ""
 "\n"
 "Żeby przetrwać w tym niesprzyjającym świecie, musisz zbierać różne związki chemiczne i ewoluować aby wygrać rywalizację z innymi gatunkami."
 
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
-msgstr "Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to stuktura z podwójną membraną wypełniona proteinami i enzymami. Jest prokariotem ,który został przyswojony do użytku przez eukariotycznego hosta. Potrafi przekształcać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] znacznie efektywniej niż cytoplazma w procesie zwanym [b]oddychaniem komórkowym[/b]. Wymaga do funkcjonowania [thrive:compound type=\"oxygen\"][/thrive:compound], i niższe poziomy [thrive:compound type=\"oxygen\"][/thrive:compound] w otoczeniu spowalniają tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Brak efektów."
 
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
-msgstr "Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to stuktura z podwójną membraną wypełniona proteinami i enzymami. Jest prokariotem ,który został przyswojony do użytku przez eukariotycznego hosta. Potrafi przekształcać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] znacznie efektywniej niż cytoplazma w procesie zwanym [b]oddychaniem komórkowym[/b]. Wymaga do funkcjonowania [thrive:compound type=\"oxygen\"][/thrive:compound], i niższe poziomy [thrive:compound type=\"oxygen\"][/thrive:compound] w otoczeniu spowalniają tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Brak modyfikacji."
 
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr ""
@@ -8315,9 +8273,8 @@ msgstr "Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to st
 msgid "WIKI_MITOCHONDRION_STRATEGY"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
-msgstr "Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to stuktura z podwójną membraną wypełniona proteinami i enzymami. Jest prokariotem ,który został przyswojony do użytku przez eukariotycznego hosta. Potrafi przekształcać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] znacznie efektywniej niż cytoplazma w procesie zwanym [b]oddychaniem komórkowym[/b]. Wymaga do funkcjonowania [thrive:compound type=\"oxygen\"][/thrive:compound], i niższe poziomy [thrive:compound type=\"oxygen\"][/thrive:compound] w otoczeniu spowalniają tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Brak ulepszeń."
 
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
@@ -8336,9 +8293,8 @@ msgstr ""
 "\n"
 "Jeśli rozmnażasz się przez pączkowanie (sposób podstawowy), zaczynasz poprzez kontrolowanie małego pączka i musisz rozwinąć resztę swojego układu komórek."
 
-#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
-msgstr "Etap Wielokomórkowca"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
@@ -8363,37 +8319,35 @@ msgid "WIKI_MYOFIBRIL_INTRO"
 msgstr ""
 
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
-msgstr ""
+msgstr "Brak modyfikacji."
 
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "Brak procesów."
 
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
-msgstr ""
+msgstr "Dostępne tylko od Fazy Wielokomórkowej."
 
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Wkrótce"
 
 msgid "WIKI_MYOFIBRIL_STRATEGY"
 msgstr ""
 
 msgid "WIKI_MYOFIBRIL_UPGRADES"
-msgstr ""
+msgstr "Brak ulepszeń"
 
 #, fuzzy
 msgid "WIKI_NATION_EDITOR"
 msgstr "Włącz edytor"
 
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
-msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+msgstr "Brak efektów."
 
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_NITROGENASE_MODIFICATIONS"
-msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+msgstr "Brak modyfikacji."
 
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr ""
@@ -8401,33 +8355,30 @@ msgstr ""
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
-msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+msgstr "[color=#3796e1][url=https://pl.wikipedia.org/wiki/Nitrogenaza]Nitrogenazy[/url][/color] to enzymy występujące u niektórych bakterii wiążących gazowy azot (N<sub>2</sub>) w amoniak (NH<sub>3</sub>). Te drobnoustroje odgrywają kluczową rolę w podtrzymywaniu wszelkiego innego życia na ziemi, ponieważ azot jest niezbędnym składnikiem DNA i białek, ale większość organizmów nie może go łatwo wykorzystać w formie gazowej."
 
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
-msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+msgstr "Brak ulepszeń."
 
 msgid "WIKI_NITROPLAST_EFFECTS"
 msgstr "Brak efektów."
 
 msgid "WIKI_NITROPLAST_INTRO"
-msgstr ""
+msgstr "Nitroplast to organellum otoczone błoną, służące do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], będącego jednym ze składników niezbędnych do wzrostu i rozmnażania komórki. Przeprowadza [b]beztlenowe wiązanie azotu[/b], przekształcając gazowy [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"ammonia\"][/thrive:compound]. Jest wydajniejsze od prokariotycznej [b][color=#3796e1][url=thriveopedia:nitrogenase]nitrogenazy[/url][/color][/b]."
 
-#, fuzzy
 msgid "WIKI_NITROPLAST_MODIFICATIONS"
-msgstr "Nitroplast to plastyd używający gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] oraz energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], składnika kluczowego dla wzrostu komórek. Ten proces jest znany jako [b]tlenowe wiązanie azotu[/b]."
+msgstr "Brak modyfikacji."
 
 #, fuzzy
 msgid "WIKI_NITROPLAST_PROCESSES"
 msgstr "Przekształca wolny [thrive:compound type=\"nitrogen\"][/thrive:compound] w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywając energię. Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]. Bardziej efektywne niż podobny proces w [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b]."
 
 msgid "WIKI_NITROPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Komórka musi mieć [b][color=#3796e1][url=thriveopedia:nucleus]jądro komórkowe[/url][/color][/b] aby wytworzyć [b]Nitroplast[/b]."
 
 #, fuzzy
 msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
@@ -8444,7 +8395,7 @@ msgid "WIKI_NO"
 msgstr "Wiki"
 
 msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
-msgstr ""
+msgstr "Brak, to jest ostatni etap"
 
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
@@ -8452,15 +8403,14 @@ msgstr ""
 msgid "WIKI_NUCLEUS_INTRO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
-msgstr "Cecha definiująca komórki eukariotyczne. Jądro zawiera w pakiecie siatkę endoplazmatyczną i aparat Golgiego. Wykształcenie systemu wewnętrznych membran jest ewolucją prokariotycznych komórek, dokonaną przez wchłonięcie innego prokariota. To pozwala im na oddzielanie, lub zatrzymywanie, różnych procesów dziejących się w środku komórki i zapobiec przed ich nakładaniem się na siebie. To pozwala ich nowym organellom membranowym na większą złożoność, efektywność i wyspecjalizowanie niż gdyby pływały bezpośrednio w cytozolu. Jednakże ma to swoją cenę - bardzo powiększa komórkę i wymaga dużo energii do utrzymania."
+msgstr "Brak modyfikacji."
 
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "Brak procesów."
 
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
-msgstr ""
+msgstr "Brak wymagań, pomijając wystarczającą ilość miejsca."
 
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -8469,7 +8419,7 @@ msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
 
 msgid "WIKI_NUCLEUS_UPGRADES"
-msgstr ""
+msgstr "Brak ulepszeń."
 
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
 msgstr ""
@@ -8480,9 +8430,8 @@ msgstr ""
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
-msgstr "Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy toksycznego czynnika OxyToksy NT."
+msgstr "Brak modyfikacji."
 
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_PROCESSES"
@@ -8490,17 +8439,18 @@ msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive
 
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr ""
+"Jeśli ulepszenia organelli są włączone w ustawieniach gry, następujący warunek musi być spełniony [i]dla komórki gracza[/i]:\n"
+"\n"
+"[indent]—   Wchłonęła przynajmniej [b]5[/b] komórek w dotychczasowej rozgrywce.[/indent]"
 
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
+msgstr "Wkrótce"
+
+msgid "WIKI_OXYTOXISOME_STRATEGY"
 msgstr ""
 
-#, fuzzy
-msgid "WIKI_OXYTOXISOME_STRATEGY"
-msgstr "Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy toksycznego czynnika OxyToksy NT."
-
-#, fuzzy
 msgid "WIKI_OXYTOXISOME_UPGRADES"
-msgstr "Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy toksycznego czynnika OxyToksy NT."
+msgstr "Brak ulepszeń."
 
 #, fuzzy
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
@@ -8518,7 +8468,7 @@ msgid "WIKI_PAGE_AWARE_STAGE"
 msgstr "Faza Świadomości"
 
 msgid "WIKI_PAGE_AXON"
-msgstr ""
+msgstr "Akson"
 
 msgid "WIKI_PAGE_BINDING_AGENT"
 msgstr "Czynnik Wiążący"
@@ -8539,14 +8489,14 @@ msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Chloroplast"
 
 msgid "WIKI_PAGE_CILIA"
-msgstr ""
+msgstr "Rzęski"
 
 #, fuzzy
 msgid "WIKI_PAGE_COMPOUNDS"
 msgstr "Cytoplazma"
 
 msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
-msgstr ""
+msgstr "Dewelopment systemu związków chemicznych"
 
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Cytoplazma"
@@ -8636,7 +8586,7 @@ msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Oxytoksysoma"
 
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
-msgstr ""
+msgstr "Pilus perforacyjny"
 
 msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Protoplazma"
@@ -8702,22 +8652,32 @@ msgid "WIKI_PERFORATOR_PILUS_INTRO"
 msgstr ""
 
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
-msgstr ""
+msgstr "Brak modyfikacji."
 
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
-msgstr ""
+msgstr "Brak procesów."
 
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
 msgstr ""
+"Jeśli ulepszenia organelli są włączone w ustawieniach gry, [i]przynajmniej jeden[/i] z następujących warunków musi być spełniony [i]dla komórki gracza[/i]:\n"
+"\n"
+"[indent]—   Wchłonęła przynajmniej [b]5[/b] komórek we wszystkich pokoleniach.[/indent]\n"
+"[indent]—   Zginęła przynajmniej [b]5[/b] razy we wszystkich pokoleniach.[/indent]"
 
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
 msgstr ""
+"Komórki wyposażone w [b]Pile perforacyjne[/b] stają się skutecznymi drapieżnikami i mogą uszkadzać dowolne komórki, nawet te z odpornością na toksyny lub membraną odporną na wchłonięcie. Muszą one jednak być umieszczane z rozwagą i wymagają umiejętności do walki.\n"
+"\n"
+"[b]Pile perforacyjne[/b] mogą również działać jako potężny środek odstraszający dla zdobyczy. Kule z kolcami raczej nie są postrzegane jako łatwy posiłek."
 
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr ""
+"[b]Pilus Iniekcyjny[/b]\n"
+"\n"
+"Za [b]25[/b] punktów mutacji zmodyfikuj umieszczone [b]pilusy perforacyjne[/b], aby przekształcić je w [b]pilusy iniekcyjne[/b]. Kiedy trafią one komórki wroga, zadają dodatkowe obrażenia od toksyn. Typy membran, które redukują obrażenia od toksyn, redukują również obrażenia [b]pili iniekcyjnych[/b]."
 
 #, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
@@ -8728,28 +8688,34 @@ msgstr "Brak efektów."
 
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr ""
+"Znacznie ulepszona wersja [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplazmy[/url][/color][/b], mająca na celu zwiększenie przestrzeni magazynowanej dla gatunków niezależnych od gracza. Nie można jej dodać do komórek którymi grasz, ale może występować w komórkach, które fosylizowałeś ze środowiska.\n"
+"\n"
+"Wygląda jak [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplazma[/url][/color][/b] i dziedziczy wiele jej cech."
 
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
+msgstr "Brak modyfikacji."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "Redukuje beztlenowo [thrive:compound]glukoza[/thrive:compound] wytwarzając [thrive:compound]atp[/thrive:compound]."
 
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Gracz nie możne wyewoluować [b]protoplazmy[/b]. Z kolei gatunki niezależne mogą je wytworzyć bez ograniczeń."
 
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
 msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
+"Nie ma możliwości użycia [b]Protoplazmy[/b] w standardowych rozgrywkach. Gracz może jej używać tylko w trybie swobodnej budowy, korzystając z gatunku niezależnego od gracza, który został przez niego skamieniały w poprzedniej grze i który przypadkowo wyewoluował to organellum.\n"
+"\n"
+"Gdy już się pojawi, [b]Protoplazma[/b] jest strategicznym odpowiednikiem [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplazmy[/url][/color][/b], ale ma wyraźnie zwiększoną pojemność i wolniejszą produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Komórki z [b]Protoplazmą[/b] mogą przetrwać znacznie dłużej bez znajdowania chmur związków chemicznych, czy konsumowania ofiar."
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Brak ulepszeń."
 
 msgid "WIKI_PULLING_CILIA"
-msgstr ""
+msgstr "Rzęski ciągnące"
 
 #, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
@@ -8766,7 +8732,7 @@ msgid "WIKI_ROOT_BODY"
 msgstr ""
 
 msgid "WIKI_ROOT_HEADING"
-msgstr ""
+msgstr "Encyklopedia Thrive w grze"
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_EFFECTS"
@@ -8776,16 +8742,15 @@ msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\
 msgid "WIKI_RUSTICYANIN_INTRO"
 msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
 
-#, fuzzy
 msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
-msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+msgstr "Brak modyfikacji."
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "Utlenia [thrive:compound type=\"iron\"][/thrive:compound] wydzielając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
-msgstr ""
+msgstr "Brak wymagań."
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
@@ -8795,9 +8760,8 @@ msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
 
-#, fuzzy
 msgid "WIKI_RUSTICYANIN_UPGRADES"
-msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+msgstr "Brak ulepszeń."
 
 msgid "WIKI_SIGNALING_AGENT_EFFECTS"
 msgstr ""
@@ -8805,13 +8769,11 @@ msgstr ""
 msgid "WIKI_SIGNALING_AGENT_INTRO"
 msgstr "Pozwala na wysyłanie prostych poleceń do innych przedstawicieli gatunku komórki dzięki sygnałom chemicznym."
 
-#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_MODIFICATIONS"
-msgstr "Czynnik komunikacyjny pozwala komórkom na wydzielanie związków chemicznych odpowiedzialnych za komunikację między nimi. Substancje sygnalizacyjne pozwalają na zwabianie innych komórek (swojego gatunku) lub na ostrzeganie ich przed niebezpieczeństwem i zachęcanie ich do ucieczki."
+msgstr "Brak procesów."
 
-#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_PROCESSES"
-msgstr "Przytrzymaj [thrive:input]g_pack_commands[/thrive:input] żeby otworzyć menu komunikacji z innymi przedstawicielami swojego gatunku."
+msgstr "Brak procesów."
 
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
@@ -8835,9 +8797,8 @@ msgstr "Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, ś
 msgid "WIKI_SLIME_JET_INTRO"
 msgstr "Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, śluz jest jednym z takich polisacharydów. Podczas gdy mnóstwo gatunków wykorzystuje szlam do celów lokomocji, niektóre typy bakterii strzelają tymi substancjami za sobą pod wysokim ciśnieniem. Te śluzowe wyrzutnie działają jak silniki rakietowe, pchając komórki do przodu z niesamowitą prędkością. Szlam jest również używany przeciw nadciągającym drapieżnikom, więżąc je w substancji którą jedynie posiadające jety organizmy mogą nawigować."
 
-#, fuzzy
 msgid "WIKI_SLIME_JET_MODIFICATIONS"
-msgstr "Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, śluz jest jednym z takich polisacharydów. Podczas gdy mnóstwo gatunków wykorzystuje szlam do celów lokomocji, niektóre typy bakterii strzelają tymi substancjami za sobą pod wysokim ciśnieniem. Te śluzowe wyrzutnie działają jak silniki rakietowe, pchając komórki do przodu z niesamowitą prędkością. Szlam jest również używany przeciw nadciągającym drapieżnikom, więżąc je w substancji którą jedynie posiadające jety organizmy mogą nawigować."
+msgstr "Brak modyfikacji."
 
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr ""
@@ -8846,7 +8807,7 @@ msgstr ""
 "Wytwarza [thrive:compound type=\"mucilage\"][/thrive:compound] do wydalenia."
 
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
-msgstr ""
+msgstr "Brak wymagań."
 
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -8855,14 +8816,13 @@ msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
 
 msgid "WIKI_SLIME_JET_UPGRADES"
-msgstr ""
+msgstr "Brak ulepszeń."
 
 msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
-msgstr "Etap Mikroba"
+msgstr "Wkrótce."
 
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_INTRO"
@@ -8876,16 +8836,14 @@ msgstr "Etap Mikroba"
 msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
 msgstr "Etap Mikroba"
 
-#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_UI"
-msgstr "Etap Mikroba"
+msgstr "Wkrótce."
 
 msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_SPACE_STAGE_FEATURES"
-msgstr "Gruczoł Śluzowy"
+msgstr "Wkrótce."
 
 msgid "WIKI_SPACE_STAGE_INTRO"
 msgstr ""
@@ -8896,16 +8854,14 @@ msgstr ""
 msgid "WIKI_SPACE_STAGE_TRANSITIONS"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_SPACE_STAGE_UI"
-msgstr "Etap Mikroba"
+msgstr "Wkrótce."
 
 msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_TBA"
-msgstr "Wiki"
+msgstr "Wkrótce"
 
 msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
 msgstr ""
@@ -8921,9 +8877,8 @@ msgstr ""
 "\n"
 "Organella spekulacyjna nie wykryta w prawdziwym życiu. Niedostępne w grach z włączonym trybem ŻTJZ (Życie Takie Jakie Znamy)."
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
-msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Brak modyfikacji."
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_PROCESSES"
@@ -8946,9 +8901,8 @@ msgstr ""
 "\n"
 "Jeśli warunki odblokowania organelli są włączone, warunek rozmnożenia się wiele razy z [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosyntazą[/url][/color][/b] oznacza, że gracz który wyewoluował [b]Termoplasty[/b] pewnie już jest bardzo wyspecjalizowany w [b]Termosyntezie[/b] kiedy zdobędzie [b]termoplasty[/b]."
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_UPGRADES"
-msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Brak ulepszeń."
 
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
@@ -8957,9 +8911,8 @@ msgstr "Brak efektów."
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
-msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieniać swój kształt, pozwalając mu się zwinąć i związać z ADP pod wpływem ciepła, następnie rozwinąć i przetworzyć ADP na [thrive:compound type=\"atp\"][/thrive:compound] w kontakcie z niższą temperaturą w procesie zwanym [b]thermosynthesis[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/thrive:compound] wzrasta z [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Brak modyfikacji."
 
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
@@ -8976,9 +8929,8 @@ msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieni
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieniać swój kształt, pozwalając mu się zwinąć i związać z ADP pod wpływem ciepła, następnie rozwinąć i przetworzyć ADP na [thrive:compound type=\"atp\"][/thrive:compound] w kontakcie z niższą temperaturą w procesie zwanym [b]thermosynthesis[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/thrive:compound] wzrasta z [thrive:compound type=\"temperature\"][/thrive:compound]."
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
-msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieniać swój kształt, pozwalając mu się zwinąć i związać z ADP pod wpływem ciepła, następnie rozwinąć i przetworzyć ADP na [thrive:compound type=\"atp\"][/thrive:compound] w kontakcie z niższą temperaturą w procesie zwanym [b]thermosynthesis[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/thrive:compound] wzrasta z [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Brak ulepszeń."
 
 msgid "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
 msgstr ""
@@ -8997,9 +8949,8 @@ msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo se
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
-msgstr "Tylakoidy to struktury złożone z białek i światłoczułych pigmentów. Te pigmenty są w stanie wykorzystywać energię [thrive:compound type=\"sunlight\"][/thrive:compound] do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z wody i gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty nadają im również wyróżniający się kolor. Szybkość produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound], oraz natężeniem [thrive:compound type=\"sunlight\"][/thrive:compound]. Ponieważ tylakoidy zawieszone są bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+msgstr "Brak dodatkowych efektów."
 
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_INTRO"
@@ -9022,9 +8973,8 @@ msgstr "Tylakoidy to struktury złożone z białek i światłoczułych pigmentó
 msgid "WIKI_THYLAKOIDS_STRATEGY"
 msgstr "Tylakoidy to struktury złożone z białek i światłoczułych pigmentów. Te pigmenty są w stanie wykorzystywać energię [thrive:compound type=\"sunlight\"][/thrive:compound] do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z wody i gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty nadają im również wyróżniający się kolor. Szybkość produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound], oraz natężeniem [thrive:compound type=\"sunlight\"][/thrive:compound]. Ponieważ tylakoidy zawieszone są bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
 
-#, fuzzy
 msgid "WIKI_THYLAKOIDS_UPGRADES"
-msgstr "Tylakoidy to struktury złożone z białek i światłoczułych pigmentów. Te pigmenty są w stanie wykorzystywać energię [thrive:compound type=\"sunlight\"][/thrive:compound] do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z wody i gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty nadają im również wyróżniający się kolor. Szybkość produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound], oraz natężeniem [thrive:compound type=\"sunlight\"][/thrive:compound]. Ponieważ tylakoidy zawieszone są bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+msgstr "Brak ulepszeń."
 
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
@@ -9033,9 +8983,8 @@ msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, ma
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
-msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
+msgstr "Brak modyfikacji."
 
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
@@ -9043,21 +8992,25 @@ msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive
 
 msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
 msgstr ""
+"Komórka musi posiadać [b][color=#3796e1][url=thriveopedia:nucleus]Jądro komórkowe[/url][/color][/b], aby wyewoluować [b]wakuole toksyn[/b].\n"
+"\n"
+"Jeśli ulepszenia organelli są włączone w ustawieniach gry, [i]oba[/i] z następujących warunków muszą być spełnione [i]dla komórki gracza[/i]:\n"
+"\n"
+"[indent]—   Wchłonęła przynajmniej [b]10[/b] komórek w dotychczasowej rozgrywce.[/indent]\n"
+"[indent]—   Zawiera przynajmniej [b]1[/b] [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]Ciałko oksytoksyczne[/url][/color][/b] przez co najmniej [b]5[/b] pokoleń z rzędu.[/indent]"
 
-#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
+msgstr "Wkrótce"
 
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_STRATEGY"
 msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
 
-#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
-msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
+msgstr "Brak ulepszeń."
 
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr ""
+msgstr "Brak efektów."
 
 #, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
@@ -9074,13 +9027,13 @@ msgid "WIKI_VACUOLE_REQUIREMENTS"
 msgstr ""
 
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Wkrótce"
 
 msgid "WIKI_VACUOLE_STRATEGY"
 msgstr ""
 
 msgid "WIKI_VACUOLE_UPGRADES"
-msgstr ""
+msgstr "Brak ulepszeń."
 
 #, fuzzy
 msgid "WIKI_YES"
@@ -9090,7 +9043,7 @@ msgid "WILL_YOU_THRIVE"
 msgstr "Czy przetrwasz?"
 
 msgid "WINDOWED"
-msgstr ""
+msgstr "Okno"
 
 msgid "WIN_BOX_TITLE"
 msgstr "PRZETRWAŁEŚ!"
@@ -9153,39 +9106,31 @@ msgstr ""
 "Responsywne mikroby będą chętniej zmieniać źródła pożywienia."
 
 msgid "WORLD_OCEANIC_COVERAGE_LARGE"
-msgstr ""
+msgstr "Duży"
 
-#, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
-msgstr "żeby zwiększyć ruch"
+msgstr "Średni"
 
 msgid "WORLD_OCEANIC_COVERAGE_SMALL"
-msgstr ""
+msgstr "Mały"
 
-#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
-msgstr "żeby zwiększyć ruch"
+msgstr "Relatywny do świata"
 
-#, fuzzy
 msgid "WORLD_SIZE"
-msgstr "Świat"
+msgstr "Rozmiar świata"
 
-#, fuzzy
 msgid "WORLD_SIZE_EXPLANATION"
-msgstr ""
-"Skupione mikroby będą wyszukiwać pożywienia lub ofiar przez długie odległości\n"
-"oraz mogą być bardzo zachłanne względem nowych źródeł pożywienia.\n"
-"Responsywne mikroby będą chętniej zmieniać źródła pożywienia."
+msgstr "(zmienia liczbę obszarów na świecie)"
 
 msgid "WORLD_SIZE_LARGE"
-msgstr ""
+msgstr "Duży"
 
-#, fuzzy
 msgid "WORLD_SIZE_MEDIUM"
-msgstr "żeby zwiększyć ruch"
+msgstr "Średni"
 
 msgid "WORLD_SIZE_SMALL"
-msgstr ""
+msgstr "Mały"
 
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
@@ -9195,9 +9140,8 @@ msgstr "Wartość używana do generacji świata (musi być dodatnią liczbą ca�
 msgid "WORLD_TEMPERATURE"
 msgstr "Temperatura"
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_COLD"
-msgstr "Temp."
+msgstr "Zimny"
 
 #, fuzzy
 msgid "WORLD_TEMPERATURE_EXPLANATION"
@@ -9206,13 +9150,11 @@ msgstr ""
 "oraz mogą być bardzo zachłanne względem nowych źródeł pożywienia.\n"
 "Responsywne mikroby będą chętniej zmieniać źródła pożywienia."
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Temp."
+msgstr "Umiarkowany"
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_WARM"
-msgstr "Temp."
+msgstr "Ciepło"
 
 msgid "WORST_PATCH_COLON"
 msgstr "Najgorzej radzi sobie w:"
@@ -9226,12 +9168,11 @@ msgstr "Xbox One"
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
 
-#, fuzzy
 msgid "X_TWITTER_TOOLTIP"
-msgstr "Odwiedź naszą stronę Itch.io"
+msgstr "Odwiedź nasz profil na X"
 
 msgid "YEARS"
-msgstr "lata"
+msgstr "lat"
 
 #, fuzzy
 msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
@@ -9246,7 +9187,7 @@ msgstr ""
 "Możesz utworzyć pull request bez ubiegania się o miejsce w załodze."
 
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr "Możesz wspomóc przyszły rozwój Thrive na naszym Patreonie"
+msgstr "Możesz wspomóc przyszły rozwój Thrive na naszym Patreonie."
 
 msgid "YUM_EXCLAMATION"
 msgstr "Mniam!"
