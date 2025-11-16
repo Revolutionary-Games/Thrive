@@ -75,6 +75,8 @@ public class ReproductionCompoundPressure : SelectionPressure
         // Let the miche function even at a compound level of 0
         var compoundAmount = 1.0f;
 
+        var mildingModifier = Constants.AUTO_EVO_REPRODUCTION_COMPOUND_COST_WEAKENING_MODIFIER;
+
         if (patch.Biome.AverageCompounds.TryGetValue(compound, out var compoundData))
         {
             compoundAmount += compoundData.Density * compoundData.Amount;
@@ -155,13 +157,12 @@ public class ReproductionCompoundPressure : SelectionPressure
         // modify score by energy cost and activity
         var activityFraction = microbeSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
         finalScore += (score + chemoreceptorScore) * activityFraction /
-            cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumption;
+            (cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumption * mildingModifier);
         finalScore += score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION /
-            cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumptionStationary;
+            (cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumptionStationary * mildingModifier);
 
         // Take into account how much compound the species needs to collect
-        finalScore /= species.TotalReproductionCost[compound] *
-            Constants.AUTO_EVO_REPRODUCTION_COMPOUND_COST_WEAKENING_MODIFIER;
+        finalScore /= species.TotalReproductionCost[compound] * mildingModifier;
 
         return finalScore;
     }
