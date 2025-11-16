@@ -483,7 +483,7 @@ public partial class NewGameSettings : ControlWithInput
                 FreeGlucoseCloud = freeGlucoseCloudButton.ButtonPressed,
                 SwitchSpeciesOnExtinction = switchSpeciesOnExtinctionButton.ButtonPressed,
                 LimitGrowthRate = limitGrowthRateButton.ButtonPressed,
-                InstantKillProtection = organelleUnlocksEnabled.ButtonPressed,
+                InstantKillProtection = instantKillProtection.ButtonPressed,
                 OrganelleUnlocksEnabled = organelleUnlocksEnabled.ButtonPressed,
             };
 
