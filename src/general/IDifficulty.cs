@@ -128,6 +128,7 @@ public static class DifficultyHelpers
             $", Switch on Extinction: {difficulty.SwitchSpeciesOnExtinction}" +
             $", Limit Growth Rate: {difficulty.LimitGrowthRate}" +
             $", Fog Of War Mode: {difficulty.FogOfWarMode}" +
+            $", Instant Kill Protection: {difficulty.InstantKillProtection}" +
             $", Organelle Unlocks Enabled: {difficulty.OrganelleUnlocksEnabled}";
     }
 }

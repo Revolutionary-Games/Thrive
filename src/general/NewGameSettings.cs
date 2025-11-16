@@ -133,6 +133,9 @@ public partial class NewGameSettings : ControlWithInput
     private CheckButton limitGrowthRateButton = null!;
 
     [Export]
+    private CheckButton instantKillProtection = null!;
+
+    [Export]
     private CheckButton organelleUnlocksEnabled = null!;
 
     // Planet controls
@@ -334,6 +337,7 @@ public partial class NewGameSettings : ControlWithInput
         freeGlucoseCloudButton.ButtonPressed = difficulty.FreeGlucoseCloud;
         switchSpeciesOnExtinctionButton.ButtonPressed = difficulty.SwitchSpeciesOnExtinction;
         limitGrowthRateButton.ButtonPressed = difficulty.LimitGrowthRate;
+        instantKillProtection.ButtonPressed = difficulty.InstantKillProtection;
         organelleUnlocksEnabled.ButtonPressed = difficulty.OrganelleUnlocksEnabled;
 
         UpdateFogOfWarModeDescription(difficulty.FogOfWarMode);
@@ -479,6 +483,7 @@ public partial class NewGameSettings : ControlWithInput
                 FreeGlucoseCloud = freeGlucoseCloudButton.ButtonPressed,
                 SwitchSpeciesOnExtinction = switchSpeciesOnExtinctionButton.ButtonPressed,
                 LimitGrowthRate = limitGrowthRateButton.ButtonPressed,
+                InstantKillProtection = organelleUnlocksEnabled.ButtonPressed,
                 OrganelleUnlocksEnabled = organelleUnlocksEnabled.ButtonPressed,
             };
 
@@ -638,6 +643,7 @@ public partial class NewGameSettings : ControlWithInput
         freeGlucoseCloudButton.ButtonPressed = preset.FreeGlucoseCloud;
         switchSpeciesOnExtinctionButton.ButtonPressed = preset.SwitchSpeciesOnExtinction;
         limitGrowthRateButton.ButtonPressed = preset.LimitGrowthRate;
+        instantKillProtection.ButtonPressed = preset.InstantKillProtection;
         organelleUnlocksEnabled.ButtonPressed = preset.OrganelleUnlocksEnabled;
 
         UpdateFogOfWarModeDescription(preset.FogOfWarMode);
@@ -696,6 +702,9 @@ public partial class NewGameSettings : ControlWithInput
                 continue;
 
             if (limitGrowthRateButton.ButtonPressed != preset.LimitGrowthRate)
+                continue;
+
+            if (instantKillProtection.ButtonPressed != preset.InstantKillProtection)
                 continue;
 
             if (organelleUnlocksEnabled.ButtonPressed != preset.OrganelleUnlocksEnabled)
