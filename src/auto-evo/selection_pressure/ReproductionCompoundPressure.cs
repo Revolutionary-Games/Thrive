@@ -72,7 +72,8 @@ public class ReproductionCompoundPressure : SelectionPressure
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
 
-        var compoundAmount = 0.0f;
+        // Let the miche function even at a compound level of 0
+        var compoundAmount = 1.0f;
 
         if (patch.Biome.AverageCompounds.TryGetValue(compound, out var compoundData))
         {
@@ -149,15 +150,17 @@ public class ReproductionCompoundPressure : SelectionPressure
             }
         }
 
+        var finalScore = 0.1f;
         // modify score by energy cost and activity
         var activityFraction = microbeSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
-        var finalScore = (score + chemoreceptorScore) * activityFraction /
+        finalScore += (score + chemoreceptorScore) * activityFraction /
             cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumption;
         finalScore += score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION /
             cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumptionStationary;
 
         // Take into account how much compound the species needs to collect
-        finalScore /= species.TotalReproductionCost[compound];
+        finalScore /= species.TotalReproductionCost[compound] *
+            Constants.AUTO_EVO_REPRODUCTION_COMPOUND_COST_WEAKENING_MODIFIER;
 
         return finalScore;
     }
