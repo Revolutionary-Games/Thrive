@@ -1920,6 +1920,9 @@ public static class Constants
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const float PATCH_REGION_MARGIN = 5.0f;
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
+    public const float PATCH_LIFE_INDICATOR_RADIUS_BASE = 40.0f;
+    public const float PATCH_LIFE_INDICATOR_RADIUS_SCALE = 30.0f;
+    public const float INDICATORS_NUMBER_PER_POPULATION_SQUARED = 0.2f;
 
     public const float PATCH_GENERATION_CHANCE_BANANA_BIOME = 0.03f;
 
