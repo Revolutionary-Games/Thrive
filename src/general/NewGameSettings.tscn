@@ -20,7 +20,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="6"]
 
-[node name="NewGameSettings" type="Control" node_paths=PackedStringArray("basicOptions", "advancedOptionsContainer", "tabButtons", "difficultyTab", "planetTab", "miscTab", "difficultyTabButton", "planetTabButton", "miscTabButton", "basicButton", "advancedButton", "backButton", "startButton", "difficultyPresetButton", "difficultyPresetAdvancedButton", "mpMultiplier", "mpMultiplierReadout", "aiMutationRate", "aiMutationRateReadout", "compoundDensity", "compoundDensityReadout", "playerDeathPopulationPenalty", "playerDeathPopulationPenaltyReadout", "playerSpeciesAIPopulationStrength", "playerSpeciesAIPopulationStrengthReadout", "glucoseDecayRate", "glucoseDecayRateReadout", "osmoregulationMultiplier", "osmoregulationMultiplierReadout", "autoEvoStrengthMultiplier", "autoEvoStrengthReadout", "fogOfWarModeDropdown", "fogOfWarModeDescription", "reproductionCompoundsDropdown", "freeGlucoseCloudButton", "switchSpeciesOnExtinctionButton", "limitGrowthRateButton", "organelleUnlocksEnabled", "lifeOriginButton", "lawkButton", "gameSeed", "planetSettings", "planetStatisticsSpacer", "planetStatisticsContainer", "planetStatistics", "includeMulticellularButton", "easterEggsButton", "checkOptionsMenuAdviceContainer", "experimentalFeatures", "experimentalExplanation", "experimentalWarning")]
+[node name="NewGameSettings" type="Control" node_paths=PackedStringArray("basicOptions", "advancedOptionsContainer", "tabButtons", "difficultyTab", "planetTab", "miscTab", "difficultyTabButton", "planetTabButton", "miscTabButton", "basicButton", "advancedButton", "backButton", "startButton", "difficultyPresetButton", "difficultyPresetAdvancedButton", "mpMultiplier", "mpMultiplierReadout", "aiMutationRate", "aiMutationRateReadout", "compoundDensity", "compoundDensityReadout", "playerDeathPopulationPenalty", "playerDeathPopulationPenaltyReadout", "playerSpeciesAIPopulationStrength", "playerSpeciesAIPopulationStrengthReadout", "glucoseDecayRate", "glucoseDecayRateReadout", "osmoregulationMultiplier", "osmoregulationMultiplierReadout", "autoEvoStrengthMultiplier", "autoEvoStrengthReadout", "fogOfWarModeDropdown", "fogOfWarModeDescription", "reproductionCompoundsDropdown", "freeGlucoseCloudButton", "switchSpeciesOnExtinctionButton", "limitGrowthRateButton", "instantKillProtection", "organelleUnlocksEnabled", "lifeOriginButton", "lawkButton", "gameSeed", "planetSettings", "planetStatisticsSpacer", "planetStatisticsContainer", "planetStatistics", "includeMulticellularButton", "easterEggsButton", "checkOptionsMenuAdviceContainer", "experimentalFeatures", "experimentalExplanation", "experimentalWarning")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,7 +66,8 @@ reproductionCompoundsDropdown = NodePath("CenterContainer/VBoxContainer/Advanced
 freeGlucoseCloudButton = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer17/HBoxContainer/FreeGlucoseCloud")
 switchSpeciesOnExtinctionButton = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer18/HBoxContainer/AllowSpeciesSwitch")
 limitGrowthRateButton = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer19/HBoxContainer/LimitGrowth")
-organelleUnlocksEnabled = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer20/HBoxContainer/OrganellesUnlocks")
+instantKillProtection = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer20/HBoxContainer/InstantKillProtection")
+organelleUnlocksEnabled = NodePath("CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer21/HBoxContainer/OrganellesUnlocks")
 lifeOriginButton = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer5/HBoxContainer/LifeOrigin")
 lawkButton = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer4/HBoxContainer/LAWKButton")
 gameSeed = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed")
@@ -912,13 +913,38 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
-text = "ORGANELLE_UNLOCKS_ENABLED"
+text = "INSTANT_KILL_PROTECTION"
 
-[node name="OrganellesUnlocks" type="CheckButton" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer20/HBoxContainer"]
+[node name="InstantKillProtection" type="CheckButton" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer20/HBoxContainer"]
 layout_mode = 2
 button_pressed = true
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer20"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "INSTANT_KILL_PROTECTION_EXPLANATION"
+label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
+
+[node name="VBoxContainer21" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer21"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer21/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+text = "ORGANELLE_UNLOCKS_ENABLED"
+
+[node name="OrganellesUnlocks" type="CheckButton" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer21/HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer21"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1129,7 +1155,8 @@ text = "START_GAME"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer17/HBoxContainer/FreeGlucoseCloud" to="." method="OnFreeGlucoseCloudToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer18/HBoxContainer/AllowSpeciesSwitch" to="." method="OnSwapOnExtinctionToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer19/HBoxContainer/LimitGrowth" to="." method="OnGrowthRateToggled"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer20/HBoxContainer/OrganellesUnlocks" to="." method="OnOrganelleUnlocksToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer20/HBoxContainer/InstantKillProtection" to="." method="OnInstantKillProtectionToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer21/HBoxContainer/OrganellesUnlocks" to="." method="OnOrganelleUnlocksToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer5/HBoxContainer/IncludeMulticellular" to="." method="OnIncludeMulticellularToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer6/HBoxContainer/EasterEggs" to="." method="OnEasterEggsToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer7/HBoxContainer/ExperimentalFeatures" to="." method="OnExperimentalFeaturesChanged"]
