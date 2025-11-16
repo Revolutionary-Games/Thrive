@@ -93,7 +93,7 @@ public partial class EngulfedHandlingSystem : BaseSystem<World, float>
             if (engulfable.PhagocytosisStep == PhagocytosisPhase.Ingested && entity.Has<PlayerMarker>())
             {
                 // If the player still has toxin, there's a chance the player cell can escape
-                if (entity.Get<CompoundStorage>().Compounds.GetCompoundAmount(Compound.Oxytoxy) == 0)
+                if (entity.Get<CompoundStorage>().Compounds.GetCompoundAmount(Compound.Oxytoxy) < 0.1)
                 {
                     playerEngulfedDeathTimer += delta;
                 }
