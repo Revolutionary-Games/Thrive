@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using SharedBase.Archive;
+﻿using SharedBase.Archive;
 
 /// <summary>
 ///   Customised difficulty setting
