@@ -94,26 +94,26 @@ public class UpgradeToxinOrganelle : ModifyOrganelleBase
         if (originalOrganelle.Upgrades?.CustomUpgradeData is not ToxinUpgrades)
         {
             toxinData = new ToxinUpgrades(toxinType, 0.0f);
-            upgradedOrganelle.Upgrades = new OrganelleUpgrades
+            upgradedOrganelle.ModifiableUpgrades = new OrganelleUpgrades
             {
                 CustomUpgradeData = toxinData,
             };
         }
         else
         {
-            upgradedOrganelle.Upgrades = (OrganelleUpgrades)originalOrganelle.Upgrades.Clone();
-            toxinData = (ToxinUpgrades?)upgradedOrganelle.Upgrades.CustomUpgradeData ??
-                throw new InvalidOperationException("Clone didn't close custom data");
+            upgradedOrganelle.ModifiableUpgrades = originalOrganelle.Upgrades.Clone();
+            toxinData = (ToxinUpgrades?)upgradedOrganelle.ModifiableUpgrades?.CustomUpgradeData ??
+                throw new InvalidOperationException("Clone didn't clone custom data");
             toxinData.BaseType = toxinType;
         }
 
         if (canUpgrade)
         {
             // Don't stack all of the toxin types, only one can be active at a time
-            upgradedOrganelle.Upgrades.UnlockedFeatures.Clear();
+            upgradedOrganelle.ModifiableUpgrades.ModifiableUnlockedFeatures.Clear();
             if (!isDefault)
             {
-                upgradedOrganelle.Upgrades.UnlockedFeatures.Add(upgradeName);
+                upgradedOrganelle.ModifiableUpgrades.ModifiableUnlockedFeatures.Add(upgradeName);
             }
         }
 

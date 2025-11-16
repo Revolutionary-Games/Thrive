@@ -205,7 +205,7 @@ public partial class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         if (targetTypeSelector.Selected == (int)TargetType.Species && shownSpeciesChoices != null
             && speciesSelector.Selected >= 0)
         {
-            colourSelector.Color = shownSpeciesChoices[speciesSelector.Selected].Colour;
+            colourSelector.Color = shownSpeciesChoices[speciesSelector.Selected].SpeciesColour;
         }
     }
 }

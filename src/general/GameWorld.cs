@@ -151,12 +151,13 @@ public class GameWorld : IArchivable
             {
                 if (PlayerSpecies is MicrobeSpecies microbeSpecies)
                 {
-                    PlayerSpecies.Tolerances.CopyFrom(patch.GenerateTolerancesForMicrobe(microbeSpecies.Organelles));
+                    PlayerSpecies.ModifiableTolerances.CopyFrom(
+                        patch.GenerateTolerancesForMicrobe(microbeSpecies.Organelles));
                 }
                 else if (PlayerSpecies is MulticellularSpecies multicellularSpecies)
                 {
-                    PlayerSpecies.Tolerances.CopyFrom(
-                        patch.GenerateTolerancesForMicrobe(multicellularSpecies.Cells[0].Organelles));
+                    PlayerSpecies.ModifiableTolerances.CopyFrom(
+                        patch.GenerateTolerancesForMicrobe(multicellularSpecies.Cells[0].ModifiableOrganelles));
                 }
                 else
                 {

@@ -173,10 +173,10 @@ public class GameProperties : IArchivable
             var template = new OrganelleTemplate(axon, new Hex(0, r), 0);
 
             // Add no longer allows replacing cytoplasm by default
-            if (!brainType.Organelles.CanPlaceAndIsTouching(template, false, workMemory1, workMemory2, false))
+            if (!brainType.ModifiableOrganelles.CanPlaceAndIsTouching(template, false, workMemory1, workMemory2, false))
                 continue;
 
-            brainType.Organelles.AddFast(template, workMemory1, workMemory2);
+            brainType.ModifiableOrganelles.AddFast(template, workMemory1, workMemory2);
             brainType.RepositionToOrigin();
             break;
         }

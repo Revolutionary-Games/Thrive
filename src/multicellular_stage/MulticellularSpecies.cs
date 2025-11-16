@@ -32,7 +32,7 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
     /// <summary>
     ///   All organelles in all the species' placed cells (there can be a lot of duplicates in this list)
     /// </summary>
-    public IEnumerable<OrganelleTemplate> Organelles => Cells.SelectMany(c => c.Organelles);
+    public IEnumerable<OrganelleTemplate> Organelles => Cells.SelectMany(c => c.ModifiableOrganelles);
 
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
@@ -129,9 +129,9 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
             ProcessSpeedModifier = 1,
         };
 
-        ProcessSystem.ComputeCompoundBalance(Cells[0].Organelles,
+        ProcessSystem.ComputeCompoundBalance(Cells[0].ModifiableOrganelles,
             biomeConditions, environmentalTolerances, CompoundAmountType.Biome, false, compoundBalances);
-        var storageCapacity = MicrobeInternalCalculations.CalculateCapacity(Cells[0].Organelles);
+        var storageCapacity = MicrobeInternalCalculations.CalculateCapacity(Cells[0].ModifiableOrganelles);
 
         InitialCompounds.Clear();
 
@@ -174,8 +174,9 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
 
         // TODO: CACHING IS MISSING from here (but microbe has it)
         // TODO: should moving be false in some cases?
-        var compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(cellType.Organelles,
-            cellType.MembraneType, true, PlayerSpecies, microbeSpawnEnvironment.CurrentBiome, environmentalTolerances,
+        var compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(
+            cellType.ModifiableOrganelles, cellType.MembraneType, true, PlayerSpecies,
+            microbeSpawnEnvironment.CurrentBiome, environmentalTolerances,
             microbeSpawnEnvironment.WorldSettings);
 
         MicrobeInternalCalculations.GiveNearNightInitialCompoundBuff(targetStorage, compoundTimes,

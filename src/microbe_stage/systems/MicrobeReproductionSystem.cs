@@ -532,7 +532,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
     {
         // The position used here will be overridden with the right value when we manage to find a place
         // for this organelle
-        var newOrganelle = new PlacedOrganelle(organelle.Definition, new Hex(0, 0), 0, organelle.Upgrades);
+        var newOrganelle = new PlacedOrganelle(organelle.Definition, new Hex(0, 0), 0, organelle.ModifiableUpgrades);
 
         var startPosition = organelle.Position;
 

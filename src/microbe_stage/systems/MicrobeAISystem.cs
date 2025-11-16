@@ -1419,8 +1419,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 // TODO: should this use the actual cell from the species that is running the AI? This isn't fully
                 // accurate.
                 // TODO: thread local storage for this cache
-                result = MicrobeInternalCalculations.UsesDayVaryingCompounds(multicellularSpecies.Cells[0].Organelles,
-                    patch.Biome, varyingCompoundsTemporary);
+                result = MicrobeInternalCalculations.UsesDayVaryingCompounds(
+                    multicellularSpecies.Cells[0].ModifiableOrganelles, patch.Biome, varyingCompoundsTemporary);
             }
             else
             {

@@ -176,4 +176,21 @@ public static class ListUtils
 
         return closest;
     }
+
+    public static bool Contains<T>(this IReadOnlyList<T> items, T item)
+    {
+        if (items.Count < 1)
+            return false;
+
+        var comparer = EqualityComparer<T>.Default;
+
+        int count = items.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            if (comparer.Equals(items[i], item))
+                return true;
+        }
+
+        return false;
+    }
 }

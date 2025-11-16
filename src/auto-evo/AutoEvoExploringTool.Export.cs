@@ -84,7 +84,7 @@ public partial class AutoEvoExploringTool
                     evolutionaryTree.CurrentWorldSpecies[speciesId], generation.ToString(),
                     splitFrom,
                     species.Population.ToString(),
-                    "#" + species.Colour.ToHtml(),
+                    "#" + species.SpeciesColour.ToHtml(),
                 };
 
                 data.AddRange(species.Behaviour.OrderBy(p => p.Key)

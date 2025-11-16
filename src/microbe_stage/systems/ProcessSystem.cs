@@ -84,7 +84,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             MergeProcessLists(result, processes);
         }
 
-        // Remove unmarked processes, so that old processes aren't kept around
+        // Remove unmarked processes so that old processes aren't kept around
         // Also unmarks marked processes
         int writeIndex = 0;
 

@@ -116,17 +116,17 @@ public class UpgradeOrganelle : ModifyOrganelleBase
 
         upgradedOrganelle = originalOrganelle.Clone(false);
 
-        upgradedOrganelle.Upgrades = new OrganelleUpgrades();
+        upgradedOrganelle.ModifiableUpgrades = new OrganelleUpgrades();
 
         if (customUpgrade != null)
         {
-            upgradedOrganelle.Upgrades.CustomUpgradeData = customUpgrade;
+            upgradedOrganelle.ModifiableUpgrades.CustomUpgradeData = customUpgrade;
         }
 
         if (upgradeName != null && hasFeatureUpgrade &&
-            !upgradedOrganelle.Upgrades.UnlockedFeatures.Contains(upgradeName))
+            !upgradedOrganelle.ModifiableUpgrades.UnlockedFeatures.Contains(upgradeName))
         {
-            upgradedOrganelle.Upgrades.UnlockedFeatures.Add(upgradeName);
+            upgradedOrganelle.ModifiableUpgrades.ModifiableUnlockedFeatures.Add(upgradeName);
         }
 
         return true;

@@ -224,10 +224,10 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
         // TODO: could do a shallower clone here as organelles won't be modified, so this doesn't need to clone
         // anything except the tolerances
         var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
-        newSpecies.Tolerances.CopyFrom(newTolerances);
+        newSpecies.ModifiableTolerances.CopyFrom(newTolerances);
 
 #if DEBUG
-        newSpecies.Tolerances.SanityCheck();
+        newSpecies.ModifiableTolerances.SanityCheck();
 
         var newScore = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(newSpecies, biomeToConsider);
 

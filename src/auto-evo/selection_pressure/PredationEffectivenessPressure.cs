@@ -45,7 +45,7 @@ public class PredationEffectivenessPressure : SelectionPressure
                 new LysosomeUpgrades(SimulationParameters.Instance.GetEnzyme(Constants.CELLULASE_ENZYME))),
             new UpgradeOrganelle(organelle => organelle.HasChemoreceptorComponent,
                 new ChemoreceptorUpgrades(Compound.Invalid, prey, Constants.CHEMORECEPTOR_RANGE_DEFAULT,
-                    Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, prey.Colour)),
+                    Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, prey.SpeciesColour)),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, 150.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, 150.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, -150.0f),

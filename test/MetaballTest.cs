@@ -113,7 +113,7 @@ public partial class MetaballTest : Node
         return new CellType(simulationParameters.GetMembrane("single"))
         {
             Colour = colour,
-            Organelles =
+            ModifiableOrganelles =
                 { new OrganelleTemplate(simulationParameters.GetOrganelleType("cytoplasm"), new Hex(0, 0), 0) },
         };
     }

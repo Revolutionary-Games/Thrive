@@ -9,7 +9,7 @@ using SharedBase.Archive;
 ///   A list of positioned organelles. Verifies that they don't overlap
 /// </summary>
 /// <typeparam name="T">The type of organelle contained in this layout</typeparam>
-public class OrganelleLayout<T> : HexLayout<T>, IArchivable
+public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleLayout<T>
     where T : class, IPositionedOrganelle, ICloneable
 {
     public OrganelleLayout(Action<T> onAdded, Action<T>? onRemoved = null) : base(onAdded, onRemoved)

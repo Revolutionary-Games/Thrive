@@ -84,7 +84,7 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
                     continue;
 
                 // Copy the organelle
-                var newOrganelle = (OrganelleTemplate)parentOrganelle.Clone();
+                var newOrganelle = parentOrganelle.Clone();
                 newSpecies.Organelles.AddIfPossible(newOrganelle, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
             }
 

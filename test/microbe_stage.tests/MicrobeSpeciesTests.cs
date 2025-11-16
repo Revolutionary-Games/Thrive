@@ -23,7 +23,7 @@ public class MicrobeSpeciesTests
             IsBacteria = true,
             MembraneType = SimulationParameters.Instance.GetMembrane("double"),
             MembraneRigidity = 0.125f,
-            Colour = new Color(1, 1, 0, 1),
+            SpeciesColour = new Color(1, 1, 0, 1),
             Population = 120,
             Generation = 2,
         };
@@ -41,7 +41,7 @@ public class MicrobeSpeciesTests
         testSpecies1.Organelles.Add(
             new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("cytoplasm"), new Hex(2, 1), 3)
             {
-                Upgrades = new OrganelleUpgrades
+                ModifiableUpgrades = new OrganelleUpgrades
                 {
                     CustomUpgradeData = new FlagellumUpgrades(0.5f),
                 },
@@ -53,7 +53,7 @@ public class MicrobeSpeciesTests
             IsBacteria = true,
             MembraneType = SimulationParameters.Instance.GetMembrane("single"),
             MembraneRigidity = 0,
-            Colour = new Color(0, 1, 0, 1),
+            SpeciesColour = new Color(0, 1, 0, 1),
             Population = 1044,
         };
 

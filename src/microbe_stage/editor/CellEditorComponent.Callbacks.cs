@@ -171,6 +171,7 @@ public partial class CellEditorComponent
         // against weird situations where it might be possible if the undo / redo system is changed to restore
         // the wrong organelles
 
+        // If these are changed, then the behaviour in MicrobeEditsFacade needs updating
         Editor.MutationPoints = Constants.BASE_MUTATION_POINTS;
         Membrane = SimulationParameters.Instance.GetMembrane("single");
         editedMicrobeOrganelles.Clear();
@@ -308,7 +309,7 @@ public partial class CellEditorComponent
     [ArchiveAllowedMethod]
     private void DoOrganelleUpgradeAction(OrganelleUpgradeActionData data)
     {
-        data.UpgradedOrganelle.Upgrades = data.NewUpgrades;
+        data.UpgradedOrganelle.ModifiableUpgrades = data.NewUpgrades;
 
         microbeVisualizationOrganellePositionsAreDirty = true;
 
@@ -318,7 +319,7 @@ public partial class CellEditorComponent
     [ArchiveAllowedMethod]
     private void UndoOrganelleUpgradeAction(OrganelleUpgradeActionData data)
     {
-        data.UpgradedOrganelle.Upgrades = data.OldUpgrades;
+        data.UpgradedOrganelle.ModifiableUpgrades = data.OldUpgrades;
 
         microbeVisualizationOrganellePositionsAreDirty = true;
 

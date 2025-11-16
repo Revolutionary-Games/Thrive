@@ -42,6 +42,7 @@ public abstract class EditorAction : ReversibleAction
 
     /// <summary>
     ///   Copies the <see cref="Data"/> to the target collection in the most efficient way possible.
+    ///   Doesn't clear the target.
     /// </summary>
     /// <param name="target">Where to copy the data from this</param>
     public abstract void CopyData(ICollection<EditorCombinableActionData> target);
