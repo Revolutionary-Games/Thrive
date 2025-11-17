@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using SharedBase.Archive;
 using Systems;
 
@@ -131,6 +132,7 @@ public class AmmoniaProductionEffect : IWorldEffect
         }
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private bool IsProcessRelevant(BioProcess process)
     {
         foreach (var output in process.Outputs)
