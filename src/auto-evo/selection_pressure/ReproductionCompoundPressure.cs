@@ -100,7 +100,7 @@ public class ReproductionCompoundPressure : SelectionPressure
         var chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compoundDefinition, patch.Biome);
         score += chemoreceptorScore;
 
-        // Combine with compound from all chunks
+        // Combine with compound amounts and scores from all chunks
         foreach (var chunk in patch.Biome.Chunks)
         {
             if (chunk.Value.Compounds != null && chunk.Value.Compounds.ContainsKey(compound))
