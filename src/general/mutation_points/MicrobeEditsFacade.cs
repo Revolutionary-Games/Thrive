@@ -14,7 +14,13 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
     private readonly OrganelleDefinition nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
     private readonly List<IReadOnlyOrganelleTemplate> removedOrganelles = new();
-    private readonly List<IReadOnlyOrganelleTemplate> addedOrganelles = new();
+    private readonly List<OrganelleWithOriginalReference> addedOrganelles = new();
+
+    /// <summary>
+    ///   Because we need to track initial data of organelles, we need to always use proxy objects with extra data, so
+    ///   we cache them for efficiency.
+    /// </summary>
+    private readonly Stack<OrganelleWithOriginalReference> unusedOrganelles = new();
 
     private MembraneType? newMembrane;
     private bool overrideMembrane;
@@ -131,6 +137,12 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
         overrideMembrane = false;
         overrideMembraneRigidity = false;
 
+        // Capture back all organelle instances
+        foreach (var addedOrganelle in addedOrganelles)
+        {
+            unusedOrganelles.Push(addedOrganelle);
+        }
+
         addedOrganelles.Clear();
         removedOrganelles.Clear();
     }
@@ -139,22 +151,27 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
     {
         if (actionData is OrganellePlacementActionData organellePlacementActionData)
         {
-            // This is probably right to consider these deleted
-            var cytoplasm = organellePlacementActionData.ReplacedCytoplasm;
-            if (cytoplasm is { Count: > 0 })
-                removedOrganelles.AddRange(cytoplasm);
+            // This is just runtime data, replaced cytoplasm actions are in a separate remove organelle action
+            // organellePlacementActionData.ReplacedCytoplasm;
 
-            addedOrganelles.Add(organellePlacementActionData.PlacedHex);
+            var newOrganelle = GetModifiable(organellePlacementActionData.PlacedHex);
 
-            // In case resurrecting organelles is possible, clear it from the removed list
-            removedOrganelles.Remove(organellePlacementActionData.PlacedHex);
+            // Preserve the original position in history
+            newOrganelle.Position = organellePlacementActionData.Location;
+            newOrganelle.Orientation = organellePlacementActionData.Orientation;
+
+            addedOrganelles.Add(newOrganelle);
 
             return true;
         }
 
         if (actionData is EndosymbiontPlaceActionData endosymbiontPlaceActionData)
         {
-            addedOrganelles.Add(endosymbiontPlaceActionData.PlacedOrganelle);
+            var newOrganelle = GetModifiable(endosymbiontPlaceActionData.PlacedOrganelle);
+            newOrganelle.Position = endosymbiontPlaceActionData.PlacementLocation;
+            newOrganelle.Orientation = endosymbiontPlaceActionData.PlacementRotation;
+
+            addedOrganelles.Add(newOrganelle);
             return true;
         }
 
@@ -195,10 +212,8 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
             else
             {
                 // Make sure the original instance is removed
-                if (removedOrganelles.Contains(original))
-                    GD.PrintErr("Original should not be in removed yet");
-
-                removedOrganelles.Add(original);
+                if (!removedOrganelles.Contains(original))
+                    removedOrganelles.Add(original);
             }
 
             if (original == null)
@@ -243,30 +258,53 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
                 throw new InvalidOperationException("Could not find the organelle a remove operation is related to");
 
             // And then we can remove the organelle
-            if (!addedOrganelles.Remove(original))
+            bool removed = false;
+
+            foreach (var addedOrganelle in addedOrganelles)
             {
-                if (!removedOrganelles.Contains(original))
+                if (addedOrganelle.OriginalFrom == original)
                 {
-                    removedOrganelles.Add(original);
+                    removedOrganelles.Add(addedOrganelle);
+                    addedOrganelles.Remove(addedOrganelle);
+                    removed = true;
+                    break;
+                }
+            }
+
+            if (!removed)
+            {
+                // Make sure it is not in added organelles
+                if (addedOrganelles.Contains(original) &&
+                    original is OrganelleWithOriginalReference withOriginalReference)
+                {
+                    if (!addedOrganelles.Remove(withOriginalReference))
+                        throw new Exception("Expected remove didn't work");
                 }
                 else
                 {
-                    // Match by position in added. This can trigger if a remove incidentally matches an original
-                    // position
-                    bool removed = false;
-                    foreach (var addedOrganelle in addedOrganelles)
+                    if (!removedOrganelles.Contains(original))
                     {
-                        if (addedOrganelle.Position == original.Position &&
-                            addedOrganelle.Orientation == original.Orientation &&
-                            addedOrganelle.Definition == original.Definition)
-                        {
-                            removed = addedOrganelles.Remove(addedOrganelle);
-                            break;
-                        }
+                        removedOrganelles.Add(original);
                     }
+                    else
+                    {
+                        // Match by position in added. This can trigger if a remove incidentally matches an original
+                        // position
+                        removed = false;
+                        foreach (var addedOrganelle in addedOrganelles)
+                        {
+                            if (addedOrganelle.Position == original.Position &&
+                                addedOrganelle.Orientation == original.Orientation &&
+                                addedOrganelle.Definition == original.Definition)
+                            {
+                                removed = addedOrganelles.Remove(addedOrganelle);
+                                break;
+                            }
+                        }
 
-                    if (!removed)
-                        throw new InvalidOperationException("Could not find delete target for a remove operation");
+                        if (!removed)
+                            throw new InvalidOperationException("Could not find delete target for a remove operation");
+                    }
                 }
             }
 
@@ -293,17 +331,14 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
                 else
                 {
                     // Tricky part of finding an intermediate result and needing to update it
-                    foreach (var addedOrganelle in addedOrganelles)
+                    foreach (var organelleWithReference in addedOrganelles)
                     {
-                        if (addedOrganelle is OrganelleWithOriginalReference organelleWithReference)
+                        if (organelleWithReference.OriginalFrom == organelleUpgradeActionData.UpgradedOrganelle)
                         {
-                            if (organelleWithReference.OriginalFrom == organelleUpgradeActionData.UpgradedOrganelle)
-                            {
-                                // TODO: should this try to match anything else? The reference is a pretty strong check
-                                // already.
-                                original = addedOrganelle;
-                                break;
-                            }
+                            // TODO: should this try to match anything else? The reference is a pretty strong check
+                            // already.
+                            original = organelleWithReference;
+                            break;
                         }
                     }
                 }
@@ -316,7 +351,21 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
             if (!removedOrganelles.Contains(original))
                 removedOrganelles.Add(original);
 
-            addedOrganelles.Remove(original);
+            for (int i = 0; i < addedOrganelles.Count; ++i)
+            {
+                if (addedOrganelles[i].OriginalFrom == original)
+                {
+                    removedOrganelles.Add(addedOrganelles[i]);
+                    addedOrganelles.RemoveAt(i);
+                    --i;
+
+                    // This could probably break safely here, but it is not clear if the performance is worth the
+                    // potential bug somewhere
+                }
+            }
+
+            if (original is OrganelleWithOriginalReference originalWithReference)
+                addedOrganelles.Remove(originalWithReference);
 
             // And then we can add a new organelle with the upgrade applied
             var modifiable = GetModifiable(original);
@@ -358,8 +407,10 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
             overrideMembrane = true;
             newMembrane = SimulationParameters.Instance.GetMembrane("single");
 
-            addedOrganelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("cytoplasm"),
-                new Hex(0, 0), 0));
+            // Use a temporary new organelle reference as this is created from thin air in the editor as well
+            var newCytoplasm = new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("cytoplasm"),
+                new Hex(0, 0), 0);
+            addedOrganelles.Add(new OrganelleWithOriginalReference(newCytoplasm));
 
             overrideMembraneRigidity = true;
             newMembraneRigidity = 0;
@@ -374,7 +425,13 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
 
     private OrganelleWithOriginalReference GetModifiable(IReadOnlyOrganelleTemplate organelleTemplate)
     {
-        // TODO: should we have a local cache of objects that can be reused?
+        if (unusedOrganelles.TryPop(out var existing))
+        {
+            existing.ReuseFor(organelleTemplate);
+            return existing;
+        }
+
+        // Ran out of cached things, make more
         return new OrganelleWithOriginalReference(organelleTemplate);
     }
 
@@ -389,6 +446,9 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
             if (original is OrganelleWithOriginalReference withAncestorReference)
             {
                 OriginalFrom = withAncestorReference.OriginalFrom;
+
+                // Keep upgrade override the same
+                upgradeOverride = withAncestorReference.upgradeOverride;
             }
             else
             {
@@ -396,7 +456,7 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
             }
         }
 
-        public IReadOnlyOrganelleTemplate OriginalFrom { get; }
+        public IReadOnlyOrganelleTemplate OriginalFrom { get; private set; }
 
         public override OrganelleUpgrades? ModifiableUpgrades
         {
@@ -405,6 +465,26 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
         }
 
         public override IReadOnlyOrganelleUpgrades? Upgrades => upgradeOverride ?? OriginalFrom.Upgrades;
+
+        internal void ReuseFor(IReadOnlyOrganelleTemplate original)
+        {
+            if (original is OrganelleWithOriginalReference withAncestorReference)
+            {
+                OriginalFrom = withAncestorReference.OriginalFrom;
+
+                // Keep upgrade override the same
+                upgradeOverride = withAncestorReference.upgradeOverride;
+            }
+            else
+            {
+                OriginalFrom = original;
+                upgradeOverride = null;
+            }
+
+            Definition = original.Definition;
+            Position = original.Position;
+            Orientation = original.Orientation;
+        }
     }
 
     private class OrganelleEnumerator : IEnumerator<IReadOnlyOrganelleTemplate>
