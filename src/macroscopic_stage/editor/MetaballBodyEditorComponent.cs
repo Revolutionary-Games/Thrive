@@ -207,7 +207,7 @@ public partial class MetaballBodyEditorComponent :
 
         var metaballMapping = new Dictionary<Metaball, MacroscopicMetaball>();
 
-        foreach (var metaball in Editor.EditedSpecies.BodyLayout)
+        foreach (var metaball in Editor.EditedSpecies.ModifiableBodyLayout)
         {
             editedMetaballs.Add(metaball.Clone(metaballMapping));
         }
@@ -223,7 +223,7 @@ public partial class MetaballBodyEditorComponent :
     {
         var editedSpecies = Editor.EditedSpecies;
 
-        editedSpecies.BodyLayout.Clear();
+        editedSpecies.ModifiableBodyLayout.Clear();
 
         var metaballMapping = new Dictionary<Metaball, MacroscopicMetaball>();
 
@@ -232,7 +232,7 @@ public partial class MetaballBodyEditorComponent :
         // objects
         foreach (var metaball in editedMetaballs.OrderBy(m => m.CalculateTreeDepth()))
         {
-            editedSpecies.BodyLayout.Add(metaball.Clone(metaballMapping));
+            editedSpecies.ModifiableBodyLayout.Add(metaball.Clone(metaballMapping));
         }
 
         var previousStage = editedSpecies.MacroscopicType;
@@ -331,7 +331,7 @@ public partial class MetaballBodyEditorComponent :
 
     protected CellType CellTypeFromName(string name)
     {
-        return Editor.EditedSpecies.CellTypes.First(c => c.TypeName == name);
+        return Editor.EditedSpecies.ModifiableCellTypes.First(c => c.TypeName == name);
     }
 
     protected override void OnTranslationsChanged()
@@ -785,7 +785,7 @@ public partial class MetaballBodyEditorComponent :
     private void UpdateCellTypeSelections()
     {
         // Re-use / create more buttons to hold all the cell types
-        foreach (var cellType in Editor.EditedSpecies.CellTypes.OrderBy(t => t.TypeName, StringComparer.Ordinal))
+        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes.OrderBy(t => t.TypeName, StringComparer.Ordinal))
         {
             if (!cellTypeSelectionButtons.TryGetValue(cellType.TypeName, out var control))
             {
@@ -817,7 +817,7 @@ public partial class MetaballBodyEditorComponent :
         // Delete no longer needed buttons
         foreach (var key in cellTypeSelectionButtons.Keys.ToList())
         {
-            if (Editor.EditedSpecies.CellTypes.All(t => t.TypeName != key))
+            if (Editor.EditedSpecies.ModifiableCellTypes.All(t => t.TypeName != key))
             {
                 var control = cellTypeSelectionButtons[key];
                 cellTypeSelectionButtons.Remove(key);
@@ -935,7 +935,7 @@ public partial class MetaballBodyEditorComponent :
     {
         // Name is invalid if it is empty or a duplicate
         // TODO: should this ensure the name doesn't have trailing whitespace?
-        return !string.IsNullOrWhiteSpace(text) && !Editor.EditedSpecies.CellTypes.Any(c =>
+        return !string.IsNullOrWhiteSpace(text) && !Editor.EditedSpecies.ModifiableCellTypes.Any(c =>
             c.TypeName.Equals(text, StringComparison.InvariantCultureIgnoreCase));
     }
 
@@ -965,7 +965,7 @@ public partial class MetaballBodyEditorComponent :
         var newType = (CellType)type.Clone();
         newType.TypeName = newTypeName;
 
-        Editor.EditedSpecies.CellTypes.Add(newType);
+        Editor.EditedSpecies.ModifiableCellTypes.Add(newType);
         GD.Print("New cell type created: ", newType.TypeName);
 
         UpdateCellTypeSelections();
@@ -991,7 +991,7 @@ public partial class MetaballBodyEditorComponent :
         }
 
         // TODO: make a reversible action
-        if (!Editor.EditedSpecies.CellTypes.Remove(type))
+        if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(type))
         {
             GD.PrintErr("Failed to delete cell type from species");
         }

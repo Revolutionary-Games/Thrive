@@ -1420,7 +1420,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 // accurate.
                 // TODO: thread local storage for this cache
                 result = MicrobeInternalCalculations.UsesDayVaryingCompounds(
-                    multicellularSpecies.Cells[0].ModifiableOrganelles, patch.Biome, varyingCompoundsTemporary);
+                    multicellularSpecies.ModifiableCells[0].ModifiableOrganelles, patch.Biome, varyingCompoundsTemporary);
             }
             else
             {

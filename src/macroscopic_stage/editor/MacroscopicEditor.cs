@@ -12,6 +12,8 @@ using Environment = Godot.Environment;
 public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicStage>, IEditorReportData,
     ICellEditorData
 {
+    private readonly MacroscopicSpeciesComparer speciesComparer = new();
+
 #pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -53,6 +55,11 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
     [Export]
     private Control noCellTypeSelected = null!;
 #pragma warning restore CA2213
+
+    /// <summary>
+    ///   Used to cache full edited status for <see cref="speciesComparer"/> usage
+    /// </summary>
+    private MacroscopicEditsFacade? editsFacade;
 
     [JsonProperty]
     private MacroscopicSpecies? editedSpecies;
@@ -194,7 +201,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         // Name is invalid if it is empty or a duplicate
         // TODO: should this ensure the name doesn't have trailing whitespace?
         // If so, CellTemplate.UpdateNameIfValid should be updated as well
-        return !string.IsNullOrWhiteSpace(newName) && !EditedSpecies.CellTypes.Any(c =>
+        return !string.IsNullOrWhiteSpace(newName) && !EditedSpecies.ModifiableCellTypes.Any(c =>
             c.TypeName.Equals(newName, StringComparison.InvariantCultureIgnoreCase));
     }
 
@@ -300,8 +307,19 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
 
     protected override void UpdatePatchDetails()
     {
-        // Patch events are able to change the stage's background so it needs to be updated here.
+        // Patch events are able to change the stage's background, so it needs to be updated here.
         cellEditorTab.UpdateBackgroundImage(CurrentPatch);
+    }
+
+    protected override double CalculateUsedMutationPoints(List<EditorCombinableActionData> performedActionData)
+    {
+        editsFacade ??=
+            new MacroscopicEditsFacade(
+                editedSpecies ?? throw new Exception("Species not initialized before calculating MP"));
+
+        editsFacade.SetActiveActions(performedActionData);
+
+        return speciesComparer.Compare(editedSpecies!, editsFacade);
     }
 
     protected override GameProperties StartNewGameForEditor()
@@ -502,7 +520,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
             return;
         }
 
-        var newTypeToEdit = EditedSpecies.CellTypes.First(c => c.TypeName == name);
+        var newTypeToEdit = EditedSpecies.ModifiableCellTypes.First(c => c.TypeName == name);
 
         // Only reinitialize the editor when required
         if (selectedCellTypeToEdit == null || selectedCellTypeToEdit != newTypeToEdit)
@@ -595,7 +613,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         cellEditorTab.OnFinishEditing();
 
         // Revert to the old name if the name is a duplicate
-        if (EditedSpecies.CellTypes.Any(c =>
+        if (EditedSpecies.ModifiableCellTypes.Any(c =>
                 c != selectedCellTypeToEdit && c.TypeName == selectedCellTypeToEdit.TypeName))
         {
             GD.Print("Cell editor renamed a cell type to a duplicate name, reverting");

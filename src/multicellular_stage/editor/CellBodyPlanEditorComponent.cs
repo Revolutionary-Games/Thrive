@@ -336,7 +336,7 @@ public partial class CellBodyPlanEditorComponent :
         // Note that for the below calculations to work all cell types need to be positioned correctly. So we need
         // to force that to happen here first. This also ensures that the skipped positioning to origin of the cell
         // editor component (that is used as a special mode in multicellular) is performed.
-        foreach (var cellType in editedSpecies.CellTypes)
+        foreach (var cellType in editedSpecies.ModifiableCellTypes)
         {
             cellType.RepositionToOrigin();
         }
@@ -345,7 +345,7 @@ public partial class CellBodyPlanEditorComponent :
         // TODO: maybe in the future we want to switch to editing the full hex layout with the entire cells in this
         // editor so this step can be skipped. Or another approach that keeps the shape the player worked on better
         // than this approach that can move around the cells a lot.
-        editedSpecies.Cells.Clear();
+        editedSpecies.ModifiableCells.Clear();
 
         foreach (var hexWithData in editedMicrobeCells)
         {
@@ -368,9 +368,9 @@ public partial class CellBodyPlanEditorComponent :
                 var positionVector = direction * distance;
                 hexWithData.Data!.Position = new Hex((int)positionVector.X, (int)positionVector.Y);
 
-                if (editedSpecies.Cells.CanPlace(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2))
+                if (editedSpecies.ModifiableCells.CanPlace(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2))
                 {
-                    editedSpecies.Cells.AddFast(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2);
+                    editedSpecies.ModifiableCells.AddFast(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2);
                     break;
                 }
 
@@ -489,7 +489,7 @@ public partial class CellBodyPlanEditorComponent :
 
     protected CellType CellTypeFromName(string name)
     {
-        return Editor.EditedSpecies.CellTypes.First(c => c.TypeName == name);
+        return Editor.EditedSpecies.ModifiableCellTypes.First(c => c.TypeName == name);
     }
 
     protected override double CalculateCurrentActionCost()
@@ -893,7 +893,7 @@ public partial class CellBodyPlanEditorComponent :
     private void UpdateCellTypeSelections()
     {
         // Re-use / create more buttons to hold all the cell types
-        foreach (var cellType in Editor.EditedSpecies.CellTypes.OrderBy(t => t.TypeName, StringComparer.Ordinal))
+        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes.OrderBy(t => t.TypeName, StringComparer.Ordinal))
         {
             if (!cellTypeSelectionButtons.TryGetValue(cellType.TypeName, out var control))
             {
@@ -934,7 +934,7 @@ public partial class CellBodyPlanEditorComponent :
         // Delete no longer needed buttons
         foreach (var key in cellTypeSelectionButtons.Keys.ToList())
         {
-            if (Editor.EditedSpecies.CellTypes.All(t => t.TypeName != key))
+            if (Editor.EditedSpecies.ModifiableCellTypes.All(t => t.TypeName != key))
             {
                 var control = cellTypeSelectionButtons[key];
                 cellTypeSelectionButtons.Remove(key);
@@ -1453,12 +1453,12 @@ public partial class CellBodyPlanEditorComponent :
     }
 
     /// <summary>
-    ///   Generates a cell layout from <see cref="MulticellularSpecies.Cells"/>. To be used if the species doesn't have
+    ///   Generates a cell layout from <see cref="MulticellularSpecies.ModifiableCells"/>. To be used if the species doesn't have
     ///   an editor layout remembered.
     /// </summary>
     private void GenerateCellLayoutFromSpeciesCells(MulticellularSpecies multicellularSpecies)
     {
-        foreach (var cell in multicellularSpecies.Cells)
+        foreach (var cell in multicellularSpecies.ModifiableCells)
         {
             // This doesn't copy the position to the hex yet, but TryAddHexToEditedLayout does it, so we are good to
             // use the current position as a placeholder

@@ -1,1 +1,1 @@
-﻿public interface IPositionedCell : IPositionedHex, ICellDefinition;
+﻿public interface IPositionedCell : IPositionedHex, ICellDefinition, IReadOnlyCellTemplate;

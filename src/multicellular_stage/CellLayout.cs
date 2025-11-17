@@ -15,7 +15,7 @@ using SharedBase.Archive;
 ///   </para>
 /// </remarks>
 /// <typeparam name="T">The type of organelle contained in this layout</typeparam>
-public class CellLayout<T> : HexLayout<T>, IArchivable
+public class CellLayout<T> : HexLayout<T>, IReadOnlyCellLayout<T>, IArchivable
     where T : class, IPositionedCell
 {
     public CellLayout(Action<T> onAdded, Action<T>? onRemoved = null) : base(onAdded, onRemoved)

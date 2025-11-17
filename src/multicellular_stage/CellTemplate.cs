@@ -2,7 +2,7 @@
 using Godot;
 using SharedBase.Archive;
 
-public class CellTemplate : IPositionedCell, ICloneable, IActionHex, IArchivable
+public class CellTemplate : IPositionedCell, IReadOnlyCellTemplate, ICloneable, IActionHex, IArchivable
 {
     public const ushort SERIALIZATION_VERSION = 1;
 

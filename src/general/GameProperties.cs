@@ -159,7 +159,7 @@ public class GameProperties : IArchivable
         var playerSpecies = (MacroscopicSpecies)game.GameWorld.PlayerSpecies;
 
         // Create the brain tissue type
-        var brainType = (CellType)playerSpecies.CellTypes.First().Clone();
+        var brainType = (CellType)playerSpecies.ModifiableCellTypes.First().Clone();
         brainType.TypeName = Localization.Translate("BRAIN_CELL_NAME_DEFAULT");
         brainType.Colour = new Color(0.807f, 0.498f, 0.498f);
 
@@ -184,10 +184,10 @@ public class GameProperties : IArchivable
         if (!brainType.IsBrainTissueType())
             throw new Exception("Converting to brain tissue type failed");
 
-        playerSpecies.CellTypes.Add(brainType);
+        playerSpecies.ModifiableCellTypes.Add(brainType);
 
         // Place enough of that for becoming aware
-        while (MacroscopicSpecies.CalculateMacroscopicTypeFromLayout(playerSpecies.BodyLayout,
+        while (MacroscopicSpecies.CalculateMacroscopicTypeFromLayout(playerSpecies.ModifiableBodyLayout,
                    playerSpecies.Scale) == MacroscopicSpeciesType.Macroscopic)
         {
             AddBrainTissue(playerSpecies);
@@ -208,7 +208,7 @@ public class GameProperties : IArchivable
         // Further modify the player species to qualify for awakening stage
         var playerSpecies = (MacroscopicSpecies)game.GameWorld.PlayerSpecies;
 
-        while (MacroscopicSpecies.CalculateMacroscopicTypeFromLayout(playerSpecies.BodyLayout,
+        while (MacroscopicSpecies.CalculateMacroscopicTypeFromLayout(playerSpecies.ModifiableBodyLayout,
                    playerSpecies.Scale) != MacroscopicSpeciesType.Awakened)
         {
             AddBrainTissue(playerSpecies);
@@ -427,9 +427,9 @@ public class GameProperties : IArchivable
     private static void MakeCellPlacementMakeSenseForMacroscopic(MulticellularSpecies species)
     {
         // We want at least COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC cells in a kind of long pattern
-        species.Cells.Clear();
+        species.ModifiableCells.Clear();
 
-        var type = species.CellTypes.First();
+        var type = species.ModifiableCellTypes.First();
 
         int columns = 3;
 
@@ -455,9 +455,9 @@ public class GameProperties : IArchivable
                 while (!placed)
                 {
                     var template = new CellTemplate(type, columnStart, 0);
-                    if (species.Cells.CanPlace(template, workMemory1, workMemory2))
+                    if (species.ModifiableCells.CanPlace(template, workMemory1, workMemory2))
                     {
-                        species.Cells.AddFast(template, workMemory1, workMemory2);
+                        species.ModifiableCells.AddFast(template, workMemory1, workMemory2);
                         placed = true;
                         break;
                     }
@@ -481,9 +481,9 @@ public class GameProperties : IArchivable
             for (int distance = 0; distance < 10000; ++distance)
             {
                 var template = new CellTemplate(type, columnStart + columnCellOffset * distance, 0);
-                if (species.Cells.CanPlace(template, workMemory1, workMemory2))
+                if (species.ModifiableCells.CanPlace(template, workMemory1, workMemory2))
                 {
-                    species.Cells.AddFast(template, workMemory1, workMemory2);
+                    species.ModifiableCells.AddFast(template, workMemory1, workMemory2);
                     --columnCellsLeft;
 
                     if (columnCellsLeft < 1)
@@ -493,7 +493,7 @@ public class GameProperties : IArchivable
         }
 
         // Make sure we hit the required cell count
-        while (species.Cells.Count < Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC)
+        while (species.ModifiableCells.Count < Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC)
         {
             var direction = new Vector2(0, -1);
 
@@ -503,9 +503,9 @@ public class GameProperties : IArchivable
                 var template = new CellTemplate(type,
                     new Hex(MathUtils.RoundToInt(finalPos.X), MathUtils.RoundToInt(finalPos.Y)), 0);
 
-                if (species.Cells.CanPlace(template, workMemory1, workMemory2))
+                if (species.ModifiableCells.CanPlace(template, workMemory1, workMemory2))
                 {
-                    species.Cells.AddFast(template, workMemory1, workMemory2);
+                    species.ModifiableCells.AddFast(template, workMemory1, workMemory2);
                     break;
                 }
             }
@@ -516,7 +516,7 @@ public class GameProperties : IArchivable
 
     private static void AddBrainTissue(MacroscopicSpecies species, float brainTissueSize = 1)
     {
-        var axonType = species.CellTypes.First(c => c.IsBrainTissueType());
+        var axonType = species.ModifiableCellTypes.First(c => c.IsBrainTissueType());
 
         // TODO: a more intelligent algorithm
         // For now just find free positions above the origin and link it to the closest metaball
@@ -548,7 +548,7 @@ public class GameProperties : IArchivable
 
                     metaball.Position = position;
 
-                    var (overlap, parent) = species.BodyLayout.CheckOverlapAndFindClosest(metaball);
+                    var (overlap, parent) = species.ModifiableBodyLayout.CheckOverlapAndFindClosest(metaball);
 
                     if (overlap)
                         continue;
@@ -560,13 +560,13 @@ public class GameProperties : IArchivable
                     // Skip if now the metaball would end up being inside something else
                     // TODO: a better approach would be to slide the metaball around its parent until it is no longer
                     // touching
-                    if (species.BodyLayout.CheckOverlapAndFindClosest(metaball).Overlap)
+                    if (species.ModifiableBodyLayout.CheckOverlapAndFindClosest(metaball).Overlap)
                     {
                         metaball.Parent = null;
                         continue;
                     }
 
-                    species.BodyLayout.Add(metaball);
+                    species.ModifiableBodyLayout.Add(metaball);
                     return;
                 }
             }

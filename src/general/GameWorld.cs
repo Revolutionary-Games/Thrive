@@ -157,7 +157,7 @@ public class GameWorld : IArchivable
                 else if (PlayerSpecies is MulticellularSpecies multicellularSpecies)
                 {
                     PlayerSpecies.ModifiableTolerances.CopyFrom(
-                        patch.GenerateTolerancesForMicrobe(multicellularSpecies.Cells[0].ModifiableOrganelles));
+                        patch.GenerateTolerancesForMicrobe(multicellularSpecies.ModifiableCells[0].ModifiableOrganelles));
                 }
                 else
                 {
@@ -825,8 +825,8 @@ public class GameWorld : IArchivable
 
         var stemCellType = new CellType(microbeSpecies, workMemory1, workMemory2);
 
-        multicellularVersion.Cells.AddFast(new CellTemplate(stemCellType), workMemory1, workMemory2);
-        multicellularVersion.CellTypes.Add(stemCellType);
+        multicellularVersion.ModifiableCells.AddFast(new CellTemplate(stemCellType), workMemory1, workMemory2);
+        multicellularVersion.ModifiableCellTypes.Add(stemCellType);
 
         multicellularVersion.OnEdited();
         SwitchSpecies(species, multicellularVersion);
@@ -852,7 +852,7 @@ public class GameWorld : IArchivable
 
         // Copy all the cell types, even ones that are unused so the player doesn't lose any when moving stages
         // in case they want to place them later
-        lateVersion.CellTypes.AddRange(earlySpecies.CellTypes);
+        lateVersion.ModifiableCellTypes.AddRange(earlySpecies.ModifiableCellTypes);
 
         // Create initial metaball layout from the cell layout
         // TODO: improve this algorithm
@@ -860,7 +860,7 @@ public class GameWorld : IArchivable
         // Create metaballs for everything first
         var metaballs = new List<MacroscopicMetaball>();
 
-        foreach (var cellTemplate in earlySpecies.Cells)
+        foreach (var cellTemplate in earlySpecies.ModifiableCells)
         {
             var metaball = new MacroscopicMetaball(cellTemplate.CellType)
             {
@@ -945,9 +945,9 @@ public class GameWorld : IArchivable
         // Finish off by adding the metaballs to the layout in an order where all parents are added before the other
         // ones
         foreach (var metaball in metaballsToPosition)
-            lateVersion.BodyLayout.Add(metaball);
+            lateVersion.ModifiableBodyLayout.Add(metaball);
 
-        lateVersion.BodyLayout.VerifyMetaballsAreTouching();
+        lateVersion.ModifiableBodyLayout.VerifyMetaballsAreTouching();
 
         lateVersion.OnEdited();
         SwitchSpecies(species, lateVersion);
