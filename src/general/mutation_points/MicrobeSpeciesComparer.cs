@@ -204,6 +204,7 @@ public class MicrobeSpeciesComparer
                 // Found a move that leads to a cheaper upgrade (than placing from scratch)
                 usedNewOrganelles.Add(cheapestUpgrade);
                 unusedOldOrganelles.Remove(cheapestUpgrade);
+                unresolvedMoves.RemoveAt(i);
 
                 cost += currentCheapestPrice;
                 cost += Constants.ORGANELLE_MOVE_COST;
