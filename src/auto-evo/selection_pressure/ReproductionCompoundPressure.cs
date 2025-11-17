@@ -175,7 +175,7 @@ public class ReproductionCompoundPressure : SelectionPressure
 
     public override LocalizedString GetDescription()
     {
-        return new LocalizedString("COMPOUND_FOOD_SOURCE",
+        return new LocalizedString("COMPOUND_REPRODUCTION_SOURCE",
             new LocalizedString(compoundDefinition.GetUntranslatedName()));
     }
 
