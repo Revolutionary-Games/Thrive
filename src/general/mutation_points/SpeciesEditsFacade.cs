@@ -226,4 +226,10 @@ public abstract class SpeciesEditsFacade : IReadOnlySpecies
         overrideColour = true;
         newColour = color;
     }
+
+    protected void CopyBaseEdits(Species target)
+    {
+        target.ModifiableBehaviour = Behaviour.Clone();
+        target.ModifiableTolerances.CopyFrom(Tolerances);
+    }
 }

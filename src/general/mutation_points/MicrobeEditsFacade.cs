@@ -11,7 +11,7 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
 {
     private readonly IReadOnlyMicrobeSpecies microbeSpecies;
 
-    private readonly OrganelleDefinition nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+    private readonly OrganelleDefinition nucleus;
 
     private readonly List<IReadOnlyOrganelleTemplate> removedOrganelles = new();
     private readonly List<OrganelleWithOriginalReference> addedOrganelles = new();
@@ -28,9 +28,11 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
     private float newMembraneRigidity;
     private bool overrideMembraneRigidity;
 
-    public MicrobeEditsFacade(IReadOnlyMicrobeSpecies microbeSpecies) : base(microbeSpecies)
+    public MicrobeEditsFacade(IReadOnlyMicrobeSpecies microbeSpecies, OrganelleDefinition? nucleusDefinition = null) :
+        base(microbeSpecies)
     {
         this.microbeSpecies = microbeSpecies;
+        nucleus = nucleusDefinition ?? SimulationParameters.Instance.GetOrganelleType("nucleus");
     }
 
     public IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> Organelles => this;
@@ -123,6 +125,24 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
         }
 
         return null;
+    }
+
+    public MicrobeSpecies Clone(bool cloneOrganelles)
+    {
+        ResolveDataIfDirty();
+
+        // Do a base copy
+        var result = microbeSpecies.Clone(false);
+
+        // And then override properties
+        result.IsBacteria = IsBacteria;
+        result.MembraneType = MembraneType;
+        result.MembraneRigidity = MembraneRigidity;
+        result.Colour = SpeciesColour;
+
+        CopyBaseEdits(result);
+
+        return result;
     }
 
     IEnumerator IEnumerable.GetEnumerator()

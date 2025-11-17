@@ -9,7 +9,7 @@ using Godot;
 /// </summary>
 public class MicrobeSpeciesComparer
 {
-    private readonly OrganelleDefinition cytoplasm = SimulationParameters.Instance.GetOrganelleType("cytoplasm");
+    private readonly OrganelleDefinition cytoplasm;
 
     private readonly IReadOnlyList<string> emptyList = new List<string>();
 
@@ -18,6 +18,11 @@ public class MicrobeSpeciesComparer
     private readonly List<IReadOnlyOrganelleTemplate> usedNewOrganelles = new();
     private readonly List<IReadOnlyOrganelleTemplate> unresolvedMoves = new();
     private readonly List<IReadOnlyOrganelleTemplate> unusedOldOrganelles = new();
+
+    public MicrobeSpeciesComparer(OrganelleDefinition? cytoplasm = null)
+    {
+        this.cytoplasm = cytoplasm ?? SimulationParameters.Instance.GetOrganelleType("cytoplasm");
+    }
 
     public static double CalculateRigidityCost(float newRigidity, float previousRigidity)
     {
