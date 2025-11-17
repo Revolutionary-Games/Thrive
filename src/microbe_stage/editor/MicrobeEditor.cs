@@ -212,7 +212,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         return result;
     }
 
-    public override void AddContextToActions(IEnumerable<CombinableActionData> editorActions)
+    public override void AddContextToAction(CombinableActionData editorActions)
     {
         // Microbe editor doesn't require any context data in actions
     }

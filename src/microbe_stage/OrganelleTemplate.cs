@@ -12,14 +12,18 @@ public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganell
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
-    public readonly OrganelleDefinition Definition;
-
     public OrganelleTemplate(OrganelleDefinition definition, Hex location, int rotation)
     {
         Definition = definition;
         Position = location;
         Orientation = rotation;
     }
+
+    /// <summary>
+    ///   The type of the organelle. This is a protected settable for very specific uses of cached objects, but in
+    ///   general the type should never change.
+    /// </summary>
+    public OrganelleDefinition Definition { get; protected set; }
 
     public Hex Position { get; set; }
 

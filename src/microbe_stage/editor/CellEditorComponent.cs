@@ -1395,7 +1395,7 @@ public partial class CellEditorComponent :
         if (MicrobePreviewMode || !Visible)
             return false;
 
-        // Can't open organelle popup menu while moving something
+        // Can't open the organelle popup menu while moving something
         if (CanCancelAction)
         {
             Editor.OnActionBlockedWhileMoving();
@@ -1812,7 +1812,7 @@ public partial class CellEditorComponent :
             organelleMenu.DeleteOptionTooltip = string.Empty;
         }
 
-        // Move enabled only when microbe has more than one organelle
+        // Move enabled only when the microbe has more than one organelle
         organelleMenu.EnableMoveOption = MicrobeSize > 1;
 
         // Modify / upgrade possible when defined on the primary organelle definition

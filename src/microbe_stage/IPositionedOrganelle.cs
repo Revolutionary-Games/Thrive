@@ -13,11 +13,6 @@ public interface IReadOnlyPositionedOrganelle : IReadOnlyPositionedHex
     public OrganelleDefinition Definition { get; }
 
     /// <summary>
-    ///   This is now the number of times to rotate. This used to be the angle in degrees
-    /// </summary>
-    public int Orientation { get; }
-
-    /// <summary>
     ///   The upgrades that this organelle has which affect how the components function
     /// </summary>
     public IReadOnlyOrganelleUpgrades? Upgrades { get; }
