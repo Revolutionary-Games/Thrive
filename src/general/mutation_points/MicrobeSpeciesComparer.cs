@@ -4,11 +4,13 @@ using System.Runtime.CompilerServices;
 using Godot;
 
 /// <summary>
-///   Compares microbe species to each other to determine total necessary mutation points.
+///   Compares microbe species to each other to determine total necessary mutation points. This is not static as this
+///   needs so much temporary memory.
 /// </summary>
 public class MicrobeSpeciesComparer
 {
-    // TODO: make this static if we can do without temporary memory allocations
+    private readonly OrganelleDefinition cytoplasm = SimulationParameters.Instance.GetOrganelleType("cytoplasm");
+
     private readonly IReadOnlyList<string> emptyList = new List<string>();
 
     private readonly List<Hex> workMemory = new();
@@ -168,16 +170,19 @@ public class MicrobeSpeciesComparer
         }
 
         // Once everything is processed, try to match organelles of the same type into move operations
-        foreach (var originalOrganelle in unresolvedMoves)
+        // This goes in reverse order for more efficient removes
+        for (var i = unresolvedMoves.Count - 1; i >= 0; --i)
         {
+            var originalOrganelle = unresolvedMoves[i];
+
             // Match to the cheapest upgrade
             IReadOnlyOrganelleTemplate? cheapestUpgrade = null;
             double currentCheapestPrice = double.MaxValue;
 
             int count = unusedOldOrganelles.Count;
-            for (int i = 0; i < count; ++i)
+            for (int j = 0; j < count; ++j)
             {
-                var newOrganelle = unusedOldOrganelles[i];
+                var newOrganelle = unusedOldOrganelles[j];
 
                 if (originalOrganelle.Definition == newOrganelle.Definition)
                 {
@@ -206,10 +211,15 @@ public class MicrobeSpeciesComparer
             }
 
             // Couldn't make it into a move after all, so add the remove cost
-            cost += Constants.ORGANELLE_REMOVE_COST;
+
+            // Except it is free to replace a cytoplasm by placing something on top, so those need to be resolved later
+            if (originalOrganelle.Definition != cytoplasm)
+            {
+                cost += Constants.ORGANELLE_REMOVE_COST;
+                unresolvedMoves.RemoveAt(i);
+            }
         }
 
-        unresolvedMoves.Clear();
         unusedOldOrganelles.Clear();
 
         // Find added organelles that weren't used already
@@ -227,8 +237,44 @@ public class MicrobeSpeciesComparer
             cost += CalculateUpgradeCost(newOrganelle.Definition.AvailableUpgrades,
                 newOrganelle.Upgrades?.UnlockedFeatures ?? emptyList,
                 emptyList);
+
+            if (newOrganelle.Definition != cytoplasm && unresolvedMoves.Count > 0)
+            {
+                // Remove freely removed cytoplasm to not count their costs in the later loop
+                var hexes = newOrganelle.Definition.GetRotatedHexes(newOrganelle.Orientation);
+                int hexesCount = hexes.Count;
+
+                for (int i = unresolvedMoves.Count - 1; i >= 0; --i)
+                {
+                    var unresolvedMove = unresolvedMoves[i];
+
+                    for (int j = 0; j < hexesCount; ++j)
+                    {
+                        // Don't need to check rotation as cytoplasm is just a single hex
+                        if (unresolvedMove.Position == hexes[j] + newOrganelle.Position)
+                        {
+                            unresolvedMoves.RemoveAt(i);
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
+        // Add purely removed cytoplasm cost
+        foreach (var originalOrganelle in unresolvedMoves)
+        {
+            if (originalOrganelle.Definition == cytoplasm)
+            {
+                cost += Constants.ORGANELLE_REMOVE_COST;
+            }
+            else
+            {
+                throw new Exception("There shouldn't be non-cytoplasm organelles left in unresolved moves");
+            }
+        }
+
+        unresolvedMoves.Clear();
         usedNewOrganelles.Clear();
         return cost;
     }
