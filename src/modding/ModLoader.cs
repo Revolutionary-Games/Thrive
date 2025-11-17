@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
 using Godot;
-using HarmonyLib;
 using File = System.IO.File;
 using Path = System.IO.Path;
 
@@ -22,7 +21,8 @@ public partial class ModLoader : Node
     private readonly Dictionary<string, Assembly> sharedAssembliesForMods = new(StringComparer.OrdinalIgnoreCase);
 
     private readonly Dictionary<string, IMod> loadedModAssemblies = new();
-    private readonly Dictionary<string, Harmony> loadedAutoHarmonyMods = new();
+
+    private readonly List<string> modDirectoriesForAssemblyLoad = new();
 
     private readonly List<string> modErrors = new();
 
@@ -33,24 +33,14 @@ public partial class ModLoader : Node
     private bool initialLoad = true;
     private bool firstExecute = true;
 
+    private bool primaryAssemblyResolveRegistered;
+
     private ModLoader()
     {
         if (Engine.IsEditorHint())
             return;
 
         instance = this;
-
-        // Make sure we reference something from Harmony so that our builds are forced to always include it
-        try
-        {
-            var harmony = new Harmony("com.revolutionarygamesstudio.thrive.dummyHarmony");
-            harmony.GetPatchedMethods();
-        }
-        catch (Exception e)
-        {
-            GD.PrintErr("Harmony doesn't seem to be working. Don't expect any Harmony using mods to work. Exception: ",
-                e);
-        }
 
         // The reason why mods aren't loaded here already is that this object can't be attached to the scene here
         // yet, so we delay mod loading until this has been attached to the main scene tree
@@ -379,6 +369,11 @@ public partial class ModLoader : Node
                     modErrors.Add(Localization.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED").FormatSafe(name));
                 }
             }
+            catch (HarmonyLoadException e)
+            {
+                GD.PrintErr("Mod's (", name, ") harmony unload failed with an exception: ", e);
+                modErrors.Add(Localization.Translate("MOD_HARMONY_UNLOAD_FAILED_EXCEPTION").FormatSafe(name, e));
+            }
             catch (Exception e)
             {
                 GD.PrintErr("Mod's (", name, ") assembly unload method call failed with an exception: ", e);
@@ -387,11 +382,12 @@ public partial class ModLoader : Node
             }
 
             loadedModAssemblies.Remove(name);
-        }
 
-        if (info.Info.UseAutoHarmony == true)
-        {
-            UnloadAutoHarmonyMod(name);
+            // Unset load directory
+            var path = ProjectSettings.GlobalizePath(info.Folder);
+            var removed = modDirectoriesForAssemblyLoad.RemoveAll(d => d.Contains(path));
+
+            GD.Print($"Removed {removed} mod Assembly load paths");
         }
 
         CheckAndMarkIfModRequiresRestart(info);
@@ -399,7 +395,7 @@ public partial class ModLoader : Node
 
     private void CheckAndMarkIfModRequiresRestart(FullModDetails mod)
     {
-        // Ignore restart state on initial load to not print the messages about it unnecessarily
+        // Ignore restart state on an initial load to not print the messages about it unnecessarily
         if (initialLoad)
             return;
 
@@ -449,16 +445,32 @@ public partial class ModLoader : Node
     {
         var className = info.Info.AssemblyModClass;
 
-        if (info.Info.UseAutoHarmony == true)
-        {
-            LoadAutoHarmonyMod(name, assembly);
+        if (string.IsNullOrEmpty(className))
+            throw new ArgumentException("Class name is empty");
 
-            // Allow normal loading if the mod class is also specified
-            if (string.IsNullOrEmpty(className))
-                return true;
+        string? namespaceName = null;
+
+        // split out namespace
+        if (className.Contains("."))
+        {
+            var parts = className.Split('.');
+            namespaceName = string.Join(".", parts.Take(parts.Length - 1));
+            className = parts.Last();
         }
 
-        var type = assembly.GetTypes().FirstOrDefault(t => t.Name == className);
+        Type? type = null;
+
+        foreach (var potentialType in assembly.GetTypes())
+        {
+            if (potentialType.Name != className)
+                continue;
+
+            if (string.IsNullOrEmpty(namespaceName) || potentialType.Namespace == namespaceName)
+            {
+                type = potentialType;
+                break;
+            }
+        }
 
         if (type == null)
         {
@@ -469,7 +481,8 @@ public partial class ModLoader : Node
 
         try
         {
-            var mod = (IMod?)Activator.CreateInstance(type);
+            var rawMod = Activator.CreateInstance(type);
+            var mod = (IMod?)rawMod;
 
             if (mod == null)
             {
@@ -492,6 +505,11 @@ public partial class ModLoader : Node
                 RunCodeModFirstRunCallbacks(mod);
             }
         }
+        catch (HarmonyLoadException e)
+        {
+            GD.PrintErr("Mod's (", name, ") harmony loading failed with an exception: ", e);
+            modErrors.Add(Localization.Translate("MOD_HARMONY_LOAD_FAILED_EXCEPTION").FormatSafe(name, e));
+        }
         catch (Exception e)
         {
             GD.PrintErr("Mod's (", name, ") initialization failed with an exception: ", e);
@@ -499,48 +517,6 @@ public partial class ModLoader : Node
         }
 
         return true;
-    }
-
-    private void LoadAutoHarmonyMod(string name, Assembly assembly)
-    {
-        if (!loadedAutoHarmonyMods.TryGetValue(name, out var harmony))
-        {
-            harmony = new Harmony($"thrive.auto.mod.{name}");
-            loadedAutoHarmonyMods[name] = harmony;
-        }
-
-        GD.Print("Performing auto Harmony load for: ", name);
-
-        try
-        {
-            harmony.PatchAll(assembly);
-        }
-        catch (Exception e)
-        {
-            GD.PrintErr("Mod's (", name, ") harmony loading failed with an exception: ", e);
-            modErrors.Add(Localization.Translate("MOD_HARMONY_LOAD_FAILED_EXCEPTION").FormatSafe(name, e));
-        }
-    }
-
-    private void UnloadAutoHarmonyMod(string name)
-    {
-        if (!loadedAutoHarmonyMods.TryGetValue(name, out var harmony))
-        {
-            GD.Print("Can't unload Harmony using mod that is not loaded: ", name);
-            return;
-        }
-
-        GD.Print("Performing auto Harmony unload for: ", name);
-
-        try
-        {
-            harmony.UnpatchAll(harmony.Id);
-        }
-        catch (Exception e)
-        {
-            GD.PrintErr("Mod's (", name, ") harmony unload failed with an exception: ", e);
-            modErrors.Add(Localization.Translate("MOD_HARMONY_UNLOAD_FAILED_EXCEPTION").FormatSafe(name, e));
-        }
     }
 
     private void LoadPckFile(string path)
@@ -564,20 +540,6 @@ public partial class ModLoader : Node
 
     private Assembly LoadCodeAssembly(string path)
     {
-        if (sharedAssembliesForMods.Count < 1)
-        {
-            // Initialise the assembly cache the first time it is required
-            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-            {
-                var name = assembly.GetName().Name;
-                if (name is "GodotSharp" or "Thrive" or "Arch" or "Arch.System" or "0Harmony" or "Harmony"
-                    or "SharedBase" or "ThriveScriptsShared")
-                {
-                    sharedAssembliesForMods[name] = assembly;
-                }
-            }
-        }
-
         path = ProjectSettings.GlobalizePath(path);
 
         if (!File.Exists(path))
@@ -589,6 +551,50 @@ public partial class ModLoader : Node
         GD.Print("Loading mod C# assembly from: ", path);
 
         var folder = Path.GetDirectoryName(path) ?? throw new InvalidOperationException("Mod assembly has no folder");
+
+        // Put the mod into our load context so it uses the same interfaces and types as us
+        var context = AssemblyLoadContext.GetLoadContext(GetType().Assembly);
+
+        Func<AssemblyLoadContext, AssemblyName, Assembly?> callback = OnResolve;
+
+        if (context != null)
+        {
+            GD.Print("Loading mod into our primary assembly context");
+
+            if (!primaryAssemblyResolveRegistered)
+            {
+                context.Resolving += callback;
+                primaryAssemblyResolveRegistered = true;
+            }
+        }
+        else
+        {
+            // This only really works in debug mode, but for now this is here as a fallback
+            GD.PrintErr("Using a different load context for a mod, this is likely a sign of a problem");
+
+            if (sharedAssembliesForMods.Count < 1)
+            {
+                // Initialise the assembly cache the first time it is required
+                foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+                {
+                    var name = assembly.GetName().Name;
+                    if (name is "GodotSharp" or "Thrive" or "Arch" or "Arch.System" or "0Harmony" or "Harmony"
+                        or "SharedBase" or "ThriveScriptsShared")
+                    {
+                        GD.Print($"Providing shared assembly for mods ({name}): {assembly}");
+                        sharedAssembliesForMods[name] = assembly;
+                    }
+                }
+            }
+
+            context = new AssemblyLoadContext(null);
+            context.Resolving += callback;
+        }
+
+        if (!modDirectoriesForAssemblyLoad.Contains(folder))
+            modDirectoriesForAssemblyLoad.Add(folder);
+
+        var result = context.LoadFromAssemblyPath(path);
 
         // Mods now need a custom load context that provides access to DLLs they might refer to; otherwise the load
         // fails with errors like not being able to find Thrive dll
@@ -603,50 +609,37 @@ public partial class ModLoader : Node
         // TODO: now that upper call is changed to LoadFrom this might not work as a replacement anymore
         // var result = AppDomain.CurrentDomain.Load(File.ReadAllBytes(path));
 
+        // We cannot unset the load as the mod can require new assemblies at any time due to triggering new code
         GD.Print("Assembly load succeeded");
 
         return result;
     }
 
-    private sealed class ModLoadContext : AssemblyLoadContext
+    private Assembly? OnResolve(AssemblyLoadContext context, AssemblyName name)
     {
-        private readonly string modDir;
-        private readonly Dictionary<string, Assembly> shared;
-
-        // TODO: does this need unloading support with "isCollectible: true"?
-        public ModLoadContext(string modDir, Dictionary<string, Assembly> shared)
+        if (name.Name == null)
         {
-            this.modDir = modDir;
-            this.shared = shared;
-
-            // TODO: should mods be able to link against each other?
-
-            Resolving += OnResolve;
+            GD.PrintErr($"Mod depends on a non-named assembly, can't load it: {name}");
+            return null;
         }
 
-        private Assembly? OnResolve(AssemblyLoadContext context, AssemblyName name)
+        // Bind to already loaded assemblies
+        // TODO: should there be a version check?
+        // Things will probably fail with incompatible versions anyway.
+        if (sharedAssembliesForMods.TryGetValue(name.Name, out var sharedAssembly))
+            return sharedAssembly;
+
+        // If mod included DLL files it wants to reference in its folder, load them
+        foreach (var modDirectory in modDirectoriesForAssemblyLoad)
         {
-            if (name.Name == null)
-            {
-                GD.PrintErr($"Mod depends on a non-named assembly, can't load it: {name}");
-                return null;
-            }
-
-            // Bind to already loaded assemblies
-            // TODO: should there be a version check?
-            // Things will probably fail with incompatible versions anyway.
-            if (shared.TryGetValue(name.Name, out var sharedAssembly))
-                return sharedAssembly;
-
-            // If mod included DLL files it wants to reference, load them
-            var candidate = Path.Combine(modDir, name.Name + ".dll");
+            var candidate = Path.Combine(modDirectory, name.Name + ".dll");
             if (File.Exists(candidate))
             {
                 GD.Print($"Mod assembly requested an extra DLL file, loading: {candidate}");
-                return LoadFromAssemblyPath(candidate);
+                return context.LoadFromAssemblyPath(candidate);
             }
-
-            return null;
         }
+
+        return null;
     }
 }
