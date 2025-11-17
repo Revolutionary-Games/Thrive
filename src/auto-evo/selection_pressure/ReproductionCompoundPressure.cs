@@ -43,7 +43,6 @@ public class ReproductionCompoundPressure : SelectionPressure
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
-    // TODO: change this and add to ThriveArchiveObjectType (probably the new saving system?)
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.ReproductionCompoundPressure;
 
