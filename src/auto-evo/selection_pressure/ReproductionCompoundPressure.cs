@@ -126,7 +126,7 @@ public class ReproductionCompoundPressure : SelectionPressure
                 chemoreceptorScore += chunkChemoreceptorScore;
                 score += chunkScore;
 
-                if (chunk.Value.Compounds.TryGetValue(compoundDefinition.ID, out var chunkCompoundAmount) != true)
+                if (!chunk.Value.Compounds.TryGetValue(compoundDefinition.ID, out var chunkCompoundAmount))
                     throw new ArgumentException("Chunk does not contain compound");
 
                 var ventedCompound = MathF.Pow(chunkCompoundAmount.Amount, Constants.AUTO_EVO_CHUNK_AMOUNT_NERF);
