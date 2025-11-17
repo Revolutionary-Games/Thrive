@@ -304,8 +304,7 @@ public enum ThriveArchiveObjectType : uint
     CurrentDilutionEvent = 4387,
     PatchEventsManager = 4388,
     PatchEventProperties = 4389,
-
-    ComponentCellDivisionCollisionDisabler = 4385,
+    ComponentCellDivisionCollisionDisabler = 4390,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,
