@@ -10,6 +10,8 @@ public class AmmoniaProductionEffect : IWorldEffect
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
+    private readonly List<TweakedProcess> microbeProcesses = new();
+
     private readonly GameWorld targetWorld;
 
     public AmmoniaProductionEffect(GameWorld targetWorld)
@@ -49,7 +51,7 @@ public class AmmoniaProductionEffect : IWorldEffect
 
     private void ApplyCompoundsAddition()
     {
-        List<TweakedProcess> microbeProcesses = [];
+        microbeProcesses.Clear();
 
         foreach (var patchKeyValue in targetWorld.Map.Patches)
         {

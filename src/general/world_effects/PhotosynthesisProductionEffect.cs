@@ -10,6 +10,8 @@ public class PhotosynthesisProductionEffect : IWorldEffect
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
+    private readonly List<TweakedProcess> microbeProcesses = new();
+
     private readonly GameWorld targetWorld;
 
     public PhotosynthesisProductionEffect(GameWorld targetWorld)
@@ -56,7 +58,7 @@ public class PhotosynthesisProductionEffect : IWorldEffect
         // This affects how fast the conditions change, but also the final balance somewhat
         var modifier = 0.000012f;
 
-        List<TweakedProcess> microbeProcesses = [];
+        microbeProcesses.Clear();
 
         // Dummy cloud sizes as this effect doesn't add any clouds
         // ReSharper disable once CollectionNeverUpdated.Local
