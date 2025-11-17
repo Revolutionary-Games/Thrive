@@ -33,7 +33,7 @@ public class ReproductionCompoundPressure : SelectionPressure
         compoundDefinition = SimulationParameters.GetCompound(compound);
 
         if (!compoundDefinition.IsCloud)
-            throw new ArgumentException("Given compound to cloud pressure is not of cloud type");
+            throw new ArgumentException("Given compound to reproduction compound pressure is not of cloud type");
 
         this.compound = compound;
         this.isDayNightCycleEnabled = isDayNightCycleEnabled;
