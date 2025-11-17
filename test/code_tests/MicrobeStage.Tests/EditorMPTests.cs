@@ -30,6 +30,7 @@ public class EditorMPTests
                 "test2", new TestOrganelleUpgrade("Test2", TEST_UPGRADE_COST_2)
             },
         },
+        Hexes = [new Hex(0, 0)],
     };
 
     private readonly OrganelleDefinition dummyCytoplasm = new()
@@ -37,6 +38,15 @@ public class EditorMPTests
         MPCost = 18,
         Name = "Cytoplasm",
         InternalName = "cytoplasm",
+        Hexes = [new Hex(0, 0)],
+    };
+
+    private readonly OrganelleDefinition dummyNucleus = new()
+    {
+        MPCost = 70,
+        Name = "Nucleus",
+        InternalName = "nucleus",
+        Hexes = [new Hex(0, 0), new Hex(1, 0), new Hex(0, 1)],
     };
 
     private readonly MembraneType originalMembrane = new()
@@ -63,17 +73,42 @@ public class EditorMPTests
         Name = "Test3",
     };
 
+    private readonly IReadOnlyMicrobeSpecies speciesTemplate1;
+    private readonly IReadOnlyMicrobeSpecies speciesTemplate2;
+
+    private readonly MicrobeSpeciesComparer speciesComparer;
+
+    public EditorMPTests()
+    {
+        speciesComparer = new MicrobeSpeciesComparer(dummyCytoplasm);
+
+        speciesTemplate1 = new MicrobeSpecies(1, "test1", "test1")
+        {
+            ModifiableOrganelles = { new OrganelleTemplate(dummyCytoplasm, new Hex(2, 1), 0) },
+        };
+
+        speciesTemplate2 = new MicrobeSpecies(1, "test1", "test1")
+        {
+            ModifiableOrganelles = { new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0) },
+        };
+    }
+
     [Fact]
     public void EditorMPTests_EmptyIsFullMP()
     {
+        var originalSpecies = speciesTemplate1;
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(0, speciesComparer.Compare(originalSpecies, editsFacade));
     }
 
     [Fact]
     public void EditorMPTests_SimpleAdd()
     {
+        var originalSpecies = speciesTemplate1;
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
         var actionData =
@@ -88,12 +123,19 @@ public class EditorMPTests
         Assert.True(redo);
         Assert.False(undo);
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(cheapOrganelle.MPCost, speciesComparer.Compare(originalSpecies, editsFacade));
     }
 
     [Fact]
     public void EditorMPTests_SimpleRemove()
     {
+        var originalSpecies = speciesTemplate1.Clone(true);
+        originalSpecies.ModifiableOrganelles.Add(new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0));
+
+        Assert.Equal(2, originalSpecies.ModifiableOrganelles.Count);
+
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
         var actionData =
@@ -109,13 +151,16 @@ public class EditorMPTests
         Assert.False(undo);
 
         Assert.NotEqual(Constants.ORGANELLE_REMOVE_COST, cheapOrganelle.MPCost);
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_REMOVE_COST,
-            history.CalculateMutationPointsLeft());
+
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(Constants.ORGANELLE_REMOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
     }
 
     [Fact]
     public void EditorMPTests_SimpleMove()
     {
+        var originalSpecies = speciesTemplate2;
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
         var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
@@ -131,8 +176,8 @@ public class EditorMPTests
         Assert.True(redo);
         Assert.False(undo);
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(Constants.ORGANELLE_MOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
     }
 
     [Fact]
@@ -1087,5 +1132,12 @@ public class EditorMPTests
             history.CalculateMutationPointsLeft());
 
         // Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
+    }
+
+    private void ApplyFacadeEdits(MicrobeEditsFacade facade, EditorActionHistory<EditorAction> history)
+    {
+        var actions = new List<EditorCombinableActionData>();
+        history.GetPerformedActionData(actions);
+        facade.SetActiveActions(actions);
     }
 }
