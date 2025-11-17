@@ -183,6 +183,8 @@ public class EditorMPTests
     [Fact]
     public void EditorMPTests_MoveIsFreeAfterAdd()
     {
+        var originalSpecies = speciesTemplate1;
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
         var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
@@ -199,14 +201,16 @@ public class EditorMPTests
         Assert.True(redo);
         Assert.False(undo);
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(cheapOrganelle.MPCost, speciesComparer.Compare(originalSpecies, editsFacade));
 
         var moveData = new OrganelleMoveActionData(template, new Hex(0, 0), new Hex(1, 0), 0, 0);
 
         history.AddAction(
             new SingleEditorAction<OrganelleMoveActionData>(_ => redo = true, _ => undo = true, moveData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(cheapOrganelle.MPCost, speciesComparer.Compare(originalSpecies, editsFacade));
     }
 
     [Fact]
