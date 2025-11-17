@@ -59,12 +59,7 @@ public class AmmoniaProductionEffect : IWorldEffect
             if (patch.SpeciesInPatch.Count < 1)
                 continue;
 
-            // Skip patches that don't need handling
-            if (!patch.Biome.ChangeableCompounds.TryGetValue(Compound.Ammonia,
-                    out BiomeCompoundProperties ammonia))
-            {
-                continue;
-            }
+            var ammonia = patch.Biome.ChangeableCompounds[Compound.Ammonia];
 
             float ammoniaBalance = 0;
 
