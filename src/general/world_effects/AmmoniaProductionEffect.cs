@@ -87,7 +87,7 @@ public class AmmoniaProductionEffect : IWorldEffect
                 var balanceModifier = ProcessSystem.CalculateSpeciesActiveProcessListForEffect(species.Key,
                     microbeProcesses, patch.Biome, resolvedTolerances, targetWorld.WorldSettings);
 
-                // Ammonia consumption of this speciesbased on reproduction cost of all individuals
+                // Ammonia consumption of this species based on reproduction cost of all individuals
                 ammoniaBalance -= (float)(Constants.AMMONIA_ENVIRONMENT_CONSUMPTION_MULTIPLIER * species.Value *
                     species.Key.TotalReproductionCost[Compound.Ammonia]);
 
