@@ -77,10 +77,17 @@ public class TimedWorldOperations : IArchivable
     /// <summary>
     ///   Registers an effect to run when time passes
     /// </summary>
-    public void RegisterEffect(string name, IWorldEffect effect)
+    public void RegisterEffect(string name, IWorldEffect effect, bool last = true)
     {
         _ = name;
         effect.OnRegisterToWorld();
-        effects.Add(effect);
+
+        if (last)
+        {
+            effects.Add(effect);
+            return;
+        }
+
+        effects.Insert(effects.Count - 2, effect);
     }
 }

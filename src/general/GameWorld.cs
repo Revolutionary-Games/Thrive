@@ -320,7 +320,8 @@ public class GameWorld : IArchivable
 
         if (version < 3)
         {
-            instance.TimedEffects.RegisterEffect("ammonia_production", new AmmoniaProductionEffect(instance));
+            instance.TimedEffects.RegisterEffect("ammonia_production", new AmmoniaProductionEffect(instance),
+                false);
         }
 
         return instance;
