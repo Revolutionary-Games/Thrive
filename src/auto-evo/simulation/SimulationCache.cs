@@ -627,10 +627,7 @@ public class SimulationCache
             return cached;
         }
 
-        var microbeProcesses = new List<TweakedProcess>();
-        ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref microbeProcesses);
-
-        cached = new List<TweakedProcess>(microbeProcesses);
+        ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref cached);
         cachedProcessLists.Add(microbeSpecies, cached);
 
         return cached;
