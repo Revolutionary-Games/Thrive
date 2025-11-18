@@ -896,7 +896,8 @@ public class OrganelleDefinition : RegistryType
             ToleranceModifierTemperatureRange != 0 || ToleranceModifierPressureRange != 0;
     }
 
-    private bool TryGetGraphicsForUpgrade(IReadOnlyOrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo upgradeScene)
+    private bool TryGetGraphicsForUpgrade(IReadOnlyOrganelleUpgrades? upgrades,
+        out LoadedSceneWithModelInfo upgradeScene)
     {
         if (upgrades == null)
         {

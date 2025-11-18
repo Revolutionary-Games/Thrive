@@ -893,7 +893,8 @@ public partial class CellBodyPlanEditorComponent :
     private void UpdateCellTypeSelections()
     {
         // Re-use / create more buttons to hold all the cell types
-        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes.OrderBy(t => t.TypeName, StringComparer.Ordinal))
+        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes.OrderBy(t => t.TypeName,
+                     StringComparer.Ordinal))
         {
             if (!cellTypeSelectionButtons.TryGetValue(cellType.TypeName, out var control))
             {

@@ -746,7 +746,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             // Direct component setting is safe as we verified above we aren't running during a simulation update
             microbe.Remove<MicrobeSpeciesMember>();
             microbe.Set(new SpeciesMember(multicellularSpecies));
-            microbe.Add(new MulticellularSpeciesMember(multicellularSpecies, multicellularSpecies.ModifiableCellTypes[0], 0));
+            microbe.Add(new MulticellularSpeciesMember(multicellularSpecies,
+                multicellularSpecies.ModifiableCellTypes[0], 0));
 
             microbe.Add(new MulticellularGrowth(multicellularSpecies));
 

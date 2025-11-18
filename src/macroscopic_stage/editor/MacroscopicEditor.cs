@@ -314,8 +314,8 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
     protected override double CalculateUsedMutationPoints(List<EditorCombinableActionData> performedActionData)
     {
         editsFacade ??=
-            new MacroscopicEditsFacade(
-                editedSpecies ?? throw new Exception("Species not initialized before calculating MP"));
+            new MacroscopicEditsFacade(editedSpecies ??
+                throw new Exception("Species not initialized before calculating MP"));
 
         editsFacade.SetActiveActions(performedActionData);
 
