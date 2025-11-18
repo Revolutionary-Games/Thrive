@@ -80,8 +80,11 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
         CalculateBrainPower();
         CalculateMuscularPower();
 
-        // Note that a few stage transitions are explicit for the player so the editor will override this
+        // Note that a few stage transitions are explicit for the player, so the editor will override this
         SetTypeFromBrainPower();
+
+        // Probably don't need to reset endosymbiont status here any more as it is likely not possible to perform it
+        // at this stage
     }
 
     public override bool RepositionToOrigin()

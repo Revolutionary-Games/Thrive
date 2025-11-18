@@ -11,7 +11,7 @@ using Systems;
 /// </summary>
 public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     private readonly List<Compound> tempCompoundsToProcess = new();
 
@@ -118,6 +118,8 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
 
     public IReadOnlyOrganelleUpgrades? Upgrades => ModifiableUpgrades;
 
+    public bool IsEndosymbiont { get; set; }
+
     /// <summary>
     ///   Can be set by organelle components to override the enzymes returned by <see cref="GetEnzymes"/>. This is
     ///   not saved right now as this is only used by <see cref="LysosomeComponent"/> which will re-add when the
@@ -168,6 +170,9 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
 
         instance.SisterOrganelle = reader.ReadObjectOrNull<PlacedOrganelle>();
 
+        if (version > 1)
+            instance.IsEndosymbiont = reader.ReadBool();
+
         return instance;
     }
 
@@ -182,6 +187,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
         writer.Write(WasSplit);
         writer.Write(IsDuplicate);
         writer.WriteObjectOrNull(SisterOrganelle);
+        writer.Write(IsEndosymbiont);
     }
 
     /// <summary>
@@ -428,6 +434,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
             WasSplit = WasSplit,
             IsDuplicate = IsDuplicate,
             SisterOrganelle = SisterOrganelle,
+            IsEndosymbiont = IsEndosymbiont,
         };
     }
 

@@ -10,13 +10,16 @@ using SharedBase.Archive;
 public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganelle, IActionHex, IPlayerReadableName,
     ICloneable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
-    public OrganelleTemplate(OrganelleDefinition definition, Hex location, int rotation)
+    private bool isEndosymbiont;
+
+    public OrganelleTemplate(OrganelleDefinition definition, Hex location, int rotation, bool isEndosymbiont = false)
     {
         Definition = definition;
         Position = location;
         Orientation = rotation;
+        this.isEndosymbiont = isEndosymbiont;
     }
 
     /// <summary>
@@ -40,6 +43,8 @@ public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganell
     public virtual OrganelleUpgrades? ModifiableUpgrades { get; set; }
 
     public virtual IReadOnlyOrganelleUpgrades? Upgrades => ModifiableUpgrades;
+
+    public virtual bool IsEndosymbiont { get => isEndosymbiont; set => isEndosymbiont = value; }
 
     public string ReadableName => Definition.Name;
 
@@ -66,6 +71,7 @@ public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganell
         return new OrganelleTemplate(reader.ReadObject<OrganelleDefinition>(), reader.ReadHex(), reader.ReadInt32())
         {
             ModifiableUpgrades = reader.ReadObjectOrNull<OrganelleUpgrades>(),
+            IsEndosymbiont = version > 1 && reader.ReadBool(),
         };
     }
 
@@ -75,6 +81,7 @@ public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganell
         writer.Write(Position);
         writer.Write(Orientation);
         writer.WriteObjectOrNull(ModifiableUpgrades);
+        writer.Write(IsEndosymbiont);
     }
 
     public bool MatchesDefinition(IActionHex other)
@@ -157,6 +164,7 @@ public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganell
         return new OrganelleTemplate(Definition, Position, Orientation)
         {
             ModifiableUpgrades = deepClone ? ModifiableUpgrades?.Clone() : ModifiableUpgrades,
+            IsEndosymbiont = IsEndosymbiont,
         };
     }
 
@@ -174,7 +182,8 @@ public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganell
 
     public override string ToString()
     {
-        return ReadableExactIdentifier;
+        // return ReadableExactIdentifier;
+        return $"{Definition.Name} at {Position}";
     }
 
     object ICloneable.Clone()

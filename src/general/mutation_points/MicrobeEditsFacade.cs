@@ -191,6 +191,9 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
             newOrganelle.Position = endosymbiontPlaceActionData.PlacementLocation;
             newOrganelle.Orientation = endosymbiontPlaceActionData.PlacementRotation;
 
+            // Make certain this is marked as an endosymbiont
+            newOrganelle.IsEndosymbiont = true;
+
             addedOrganelles.Add(newOrganelle);
             return true;
         }
@@ -459,6 +462,9 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
     {
         private OrganelleUpgrades? upgradeOverride;
 
+        private bool newIsEndosymbiont;
+        private bool overrideEndosymbiont;
+
         public OrganelleWithOriginalReference(IReadOnlyOrganelleTemplate original) : base(original.Definition,
             original.Position, original.Orientation)
         {
@@ -469,6 +475,8 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
 
                 // Keep upgrade override the same
                 upgradeOverride = withAncestorReference.upgradeOverride;
+                newIsEndosymbiont = withAncestorReference.newIsEndosymbiont;
+                overrideEndosymbiont = withAncestorReference.overrideEndosymbiont;
             }
             else
             {
@@ -484,6 +492,16 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
             set => upgradeOverride = value;
         }
 
+        public override bool IsEndosymbiont
+        {
+            get => overrideEndosymbiont ? newIsEndosymbiont : OriginalFrom.IsEndosymbiont;
+            set
+            {
+                overrideEndosymbiont = true;
+                newIsEndosymbiont = value;
+            }
+        }
+
         public override IReadOnlyOrganelleUpgrades? Upgrades => upgradeOverride ?? OriginalFrom.Upgrades;
 
         internal void ReuseFor(IReadOnlyOrganelleTemplate original)
@@ -494,11 +512,15 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
 
                 // Keep upgrade override the same
                 upgradeOverride = withAncestorReference.upgradeOverride;
+
+                overrideEndosymbiont = withAncestorReference.overrideEndosymbiont;
+                newIsEndosymbiont = withAncestorReference.newIsEndosymbiont;
             }
             else
             {
                 OriginalFrom = original;
                 upgradeOverride = null;
+                overrideEndosymbiont = false;
             }
 
             Definition = original.Definition;

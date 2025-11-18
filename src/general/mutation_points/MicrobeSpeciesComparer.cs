@@ -212,7 +212,11 @@ public class MicrobeSpeciesComparer
                 unresolvedMoves.RemoveAt(i);
 
                 cost += currentCheapestPrice;
-                cost += Constants.ORGANELLE_MOVE_COST;
+
+                // Endosymbionts are free to move or delete
+                if (!originalOrganelle.IsEndosymbiont && !cheapestUpgrade.IsEndosymbiont)
+                    cost += Constants.ORGANELLE_MOVE_COST;
+
                 continue;
             }
 
@@ -221,7 +225,10 @@ public class MicrobeSpeciesComparer
             // Except it is free to replace a cytoplasm by placing something on top, so those need to be resolved later
             if (originalOrganelle.Definition != cytoplasm)
             {
-                cost += Constants.ORGANELLE_REMOVE_COST;
+                // Endosymbionts are free to remove
+                if (!originalOrganelle.IsEndosymbiont)
+                    cost += Constants.ORGANELLE_REMOVE_COST;
+
                 unresolvedMoves.RemoveAt(i);
             }
         }
@@ -236,8 +243,9 @@ public class MicrobeSpeciesComparer
             if (usedNewOrganelles.Contains(newOrganelle))
                 continue;
 
-            // This is a new organelle so add the cost
-            cost += newOrganelle.Definition.MPCost;
+            // This is a new organelle so add the cost (except endosymbionts are free)
+            if (!newOrganelle.IsEndosymbiont)
+                cost += newOrganelle.Definition.MPCost;
 
             // If placed and upgraded at once, add that cost as well
             cost += CalculateUpgradeCost(newOrganelle.Definition.AvailableUpgrades,

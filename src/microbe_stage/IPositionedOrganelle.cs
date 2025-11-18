@@ -6,6 +6,8 @@ public interface IPositionedOrganelle : IPositionedHex, IReadOnlyPositionedOrgan
     public new int Orientation { get; set; }
 
     public OrganelleUpgrades? ModifiableUpgrades { get; }
+
+    public new bool IsEndosymbiont { get; set; }
 }
 
 public interface IReadOnlyPositionedOrganelle : IReadOnlyPositionedHex
@@ -16,4 +18,9 @@ public interface IReadOnlyPositionedOrganelle : IReadOnlyPositionedHex
     ///   The upgrades that this organelle has which affect how the components function
     /// </summary>
     public IReadOnlyOrganelleUpgrades? Upgrades { get; }
+
+    /// <summary>
+    ///   True if this organelle is an endosymbiont, which makes most operations free.
+    /// </summary>
+    public bool IsEndosymbiont { get; }
 }

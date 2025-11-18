@@ -329,7 +329,11 @@ public static class OrganelleContainerHelpers
         {
             container.Organelles.AddFast(new PlacedOrganelle(organelleTemplate.Definition,
                 organelleTemplate.Position,
-                organelleTemplate.Orientation, organelleTemplate.ModifiableUpgrades), workMemory1, workMemory2);
+                organelleTemplate.Orientation, organelleTemplate.ModifiableUpgrades)
+            {
+                // This status is reset after exiting the editor, but for completeness copy it
+                IsEndosymbiont = organelleTemplate.IsEndosymbiont,
+            }, workMemory1, workMemory2);
         }
 
         container.CalculateOrganelleLayoutStatistics();

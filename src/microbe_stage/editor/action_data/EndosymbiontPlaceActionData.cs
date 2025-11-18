@@ -33,7 +33,7 @@ public class EndosymbiontPlaceActionData : EditorCombinableActionData<CellType>
     }
 
     public EndosymbiontPlaceActionData(EndosymbiosisData.InProgressEndosymbiosis fromEndosymbiosisData) : this(
-        new OrganelleTemplate(fromEndosymbiosisData.TargetOrganelle, new Hex(0, 0), 0),
+        new OrganelleTemplate(fromEndosymbiosisData.TargetOrganelle, new Hex(0, 0), 0, true),
         new Hex(0, 0), 0, fromEndosymbiosisData)
     {
     }

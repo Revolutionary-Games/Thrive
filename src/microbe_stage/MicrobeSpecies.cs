@@ -210,6 +210,13 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         UpdateInitialCompounds();
         UpdateIsBacteria();
 
+        // Reset endosymbiont status so that they aren't free to move / delete in the next editor cycle
+        var count = Organelles.Organelles.Count;
+        for (var i = 0; i < count; i++)
+        {
+            ModifiableOrganelles.Organelles[i].IsEndosymbiont = false;
+        }
+
         cachedFillTimes.Clear();
     }
 
