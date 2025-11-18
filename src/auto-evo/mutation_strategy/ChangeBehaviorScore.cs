@@ -48,8 +48,8 @@ public class ChangeBehaviorScore : IMutationStrategy<MicrobeSpecies>
                     Constants.MAX_SPECIES_AGGRESSION), 0);
                 break;
             case BehaviorAttribute.Opportunism:
-                newSpecies.ModifiableBehaviour.Opportunism = Math.Max(Math.Min(
-                    newSpecies.Behaviour.Opportunism + change, Constants.MAX_SPECIES_OPPORTUNISM), 0);
+                newSpecies.ModifiableBehaviour.Opportunism = Math.Max(
+                    Math.Min(newSpecies.Behaviour.Opportunism + change, Constants.MAX_SPECIES_OPPORTUNISM), 0);
                 break;
             case BehaviorAttribute.Fear:
                 newSpecies.ModifiableBehaviour.Fear = Math.Max(Math.Min(newSpecies.Behaviour.Fear + change,
