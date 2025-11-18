@@ -182,8 +182,7 @@ public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganell
 
     public override string ToString()
     {
-        // return ReadableExactIdentifier;
-        return $"{Definition.Name} at {Position}";
+        return ReadableExactIdentifier;
     }
 
     object ICloneable.Clone()

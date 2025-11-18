@@ -1,5 +1,4 @@
-﻿
-using Godot;
+﻿using Godot;
 
 public class MulticellularSpeciesComparer
 {
