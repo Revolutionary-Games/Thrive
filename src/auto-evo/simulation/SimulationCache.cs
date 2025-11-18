@@ -68,7 +68,6 @@ public class SimulationCache
 
     private readonly Dictionary<Enzyme, int> tempEnzymes = new();
 
-    private List<TweakedProcess> microbeProcesses = new();
 
     public SimulationCache(WorldGenerationSettings worldSettings)
     {
@@ -638,7 +637,7 @@ public class SimulationCache
             return cached;
         }
 
-        microbeProcesses.Clear();
+        var microbeProcesses = new List<TweakedProcess>();
         ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref microbeProcesses);
 
         cached = new List<TweakedProcess>(microbeProcesses);
