@@ -147,7 +147,6 @@ public class SimulationCache
         MicrobeSpecies species, BiomeConditions biomeConditions)
     {
         var key = (species, biomeConditions, fromCompound, toCompound);
-        var activeProcessList = GetActiveProcessList(species);
 
         if (cachedCompoundScores.TryGetValue(key, out var cached))
         {
@@ -156,6 +155,7 @@ public class SimulationCache
 
         var compoundIn = 0.0f;
         var compoundOut = 0.0f;
+        var activeProcessList = GetActiveProcessList(species);
 
         // For maximum efficiency as this is called an absolute ton the following approach is used
         foreach (var process in activeProcessList)
