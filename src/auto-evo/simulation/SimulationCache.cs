@@ -705,7 +705,7 @@ public class SimulationCache
             foreach (var process in organelle.Definition.RunnableProcesses)
             {
                 // Big branch to calculate scores for each toxin type
-                if (process.Process.Outputs.ContainsKey(oxytoxy))
+                if (process.Process.Outputs.TryGetValue(oxytoxy, out var toxinAmount))
                 {
                     var activeToxin = organelle.GetActiveToxin();
                     if (activeToxin == ToxinType.Oxytoxy && !hasOxytoxy)
@@ -741,15 +741,8 @@ public class SimulationCache
 
                     totalToxicity += organelle.GetActiveToxicity();
                     totalToxinOrganellesCount += 1;
+                    totalToxinScore += toxinAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
                 }
-            }
-        }
-
-        foreach (var process in activeProcessList)
-        {
-            if (process.Process.Outputs.TryGetValue(oxytoxy, out var toxinAmount))
-            {
-                totalToxinScore += toxinAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
             }
         }
 
