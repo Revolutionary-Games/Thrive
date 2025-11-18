@@ -71,6 +71,8 @@ public class ReproductionCompoundPressure : SelectionPressure
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
 
+        var activeProcessList = cache.GetActiveProcessList(microbeSpecies);
+
         // Let the miche function even at a compound level of 0
         var compoundAmount = 1.0f;
 
@@ -139,15 +141,12 @@ public class ReproductionCompoundPressure : SelectionPressure
         score *= compoundAmount;
         chemoreceptorScore *= compoundAmount;
 
-        // Organelles that produce this compound
-        foreach (var organelle in microbeSpecies.Organelles.Organelles)
+        // Score from organelles that produce this compound
+        foreach (var process in activeProcessList)
         {
-            foreach (var process in organelle.Definition.RunnableProcesses)
+            if (process.Process.Outputs.TryGetValue(compoundDefinition, out var producedCompoundAmount))
             {
-                if (process.Process.Outputs.TryGetValue(compoundDefinition, out var producedCompoundAmount))
-                {
-                    score += producedCompoundAmount * Constants.AUTO_EVO_REPRODUCTION_COMPOUND_PRODUCTION_SCORE;
-                }
+                score += producedCompoundAmount * Constants.AUTO_EVO_REPRODUCTION_COMPOUND_PRODUCTION_SCORE;
             }
         }
 

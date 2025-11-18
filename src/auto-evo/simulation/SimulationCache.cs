@@ -55,6 +55,8 @@ public class SimulationCache
     private readonly Dictionary<MicrobeSpecies, PredationToolsRawScores>
         cachedPredationToolsRawScores = new();
 
+    private readonly Dictionary<MicrobeSpecies, List<TweakedProcess>> cachedProcessLists = new();
+
     private readonly Dictionary<(MicrobeSpecies, string), float> cachedEnzymeScores = new();
 
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), bool> cachedUsesVaryingCompounds = new();
@@ -65,6 +67,8 @@ public class SimulationCache
         new();
 
     private readonly Dictionary<Enzyme, int> tempEnzymes = new();
+
+    private List<TweakedProcess> microbeProcesses = new();
 
     public SimulationCache(WorldGenerationSettings worldSettings)
     {
@@ -624,6 +628,23 @@ public class SimulationCache
         cachedUsesVaryingCompounds.Clear();
         cachedStorageScores.Clear();
         cachedResolvedTolerances.Clear();
+        cachedProcessLists.Clear();
+    }
+
+    public List<TweakedProcess> GetActiveProcessList(MicrobeSpecies microbeSpecies)
+    {
+        if (cachedProcessLists.TryGetValue(microbeSpecies, out var cached))
+        {
+            return cached;
+        }
+
+        microbeProcesses.Clear();
+        ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref microbeProcesses);
+
+        cached = new List<TweakedProcess>(microbeProcesses);
+        cachedProcessLists.Add(microbeSpecies, cached);
+
+        return cached;
     }
 
     public PredationToolsRawScores GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
