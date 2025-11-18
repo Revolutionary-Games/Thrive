@@ -68,7 +68,6 @@ public class SimulationCache
 
     private readonly Dictionary<Enzyme, int> tempEnzymes = new();
 
-
     public SimulationCache(WorldGenerationSettings worldSettings)
     {
         this.worldSettings = worldSettings;
