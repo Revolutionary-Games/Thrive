@@ -201,43 +201,37 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
 
         if (actionData is OrganelleMoveActionData organelleMoveActionData)
         {
-            // Match the previous instance first which needs to be removed
-            IReadOnlyOrganelleTemplate? original =
-                microbeSpecies.Organelles.GetByExactElementRootPosition(organelleMoveActionData.OldLocation);
+            IReadOnlyOrganelleTemplate? original = null;
 
-            if (original == null || original.Orientation != organelleMoveActionData.OldRotation ||
-                original.Definition != organelleMoveActionData.MovedHex.Definition)
+            // Find a match first if we have done something on this hex before
+            foreach (var addedOrganelle in addedOrganelles)
             {
-                // Tricky part of finding an intermediate result and needing to update it
-                original = null;
-
-                foreach (var addedOrganelle in addedOrganelles)
+                if (addedOrganelle.Position == organelleMoveActionData.OldLocation &&
+                    addedOrganelle.Orientation == organelleMoveActionData.OldRotation)
                 {
-                    if (addedOrganelle.Position == organelleMoveActionData.OldLocation &&
-                        addedOrganelle.Orientation == organelleMoveActionData.OldRotation)
-                    {
-                        if (addedOrganelle.Definition != organelleMoveActionData.MovedHex.Definition)
-                            GD.PrintErr("Found unrelated organelle at exact position of moved organelle");
+                    original = addedOrganelle;
 
-                        original = addedOrganelle;
+                    if (original.Definition != organelleMoveActionData.MovedHex.Definition)
+                        throw new InvalidOperationException("Found an unrelated organelle at move old location");
 
-                        // Remove from added as we are replacing this
-                        addedOrganelles.Remove(addedOrganelle);
-                        break;
-                    }
-                }
-
-                // Make really sure the old hex doesn't show up
-                if (!removedOrganelles.Contains(organelleMoveActionData.MovedHex))
-                {
-                    removedOrganelles.Add(organelleMoveActionData.MovedHex);
+                    addedOrganelles.Remove(addedOrganelle);
+                    break;
                 }
             }
-            else
+
+            if (original == null)
             {
-                // Make sure the original instance is removed
-                if (!removedOrganelles.Contains(original))
+                // Then match to the original microbe organelles
+                original = microbeSpecies.Organelles.GetByExactElementRootPosition(organelleMoveActionData.OldLocation);
+
+                if (original != null)
+                {
+                    if (original.Definition != organelleMoveActionData.MovedHex.Definition)
+                        GD.PrintErr("Found unrelated organelle at exact position of moved organelle");
+
+                    // Don't want the old instance to show up any more
                     removedOrganelles.Add(original);
+                }
             }
 
             if (original == null)
@@ -254,144 +248,95 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
 
         if (actionData is OrganelleRemoveActionData organelleRemoveActionData)
         {
-            // Match the previous instance first which needs to be removed
-            IReadOnlyOrganelleTemplate? original =
-                microbeSpecies.Organelles.GetByExactElementRootPosition(organelleRemoveActionData.Location);
+            IReadOnlyOrganelleTemplate? original = null;
 
-            if (original == null || original.Orientation != organelleRemoveActionData.Orientation ||
-                original.Definition != organelleRemoveActionData.RemovedHex.Definition)
+            // Find a match first if we have done something on this hex before
+            foreach (var addedOrganelle in addedOrganelles)
             {
-                // Tricky part of finding an intermediate result and needing to update it
-                original = null;
-
-                foreach (var addedOrganelle in addedOrganelles)
+                if (addedOrganelle.Position == organelleRemoveActionData.Location &&
+                    addedOrganelle.Orientation == organelleRemoveActionData.Orientation)
                 {
-                    if (addedOrganelle.Position == organelleRemoveActionData.Location &&
-                        addedOrganelle.Orientation == organelleRemoveActionData.Orientation)
-                    {
-                        if (addedOrganelle.Definition != organelleRemoveActionData.RemovedHex.Definition)
-                            GD.PrintErr("Found unrelated organelle at exact position of removed organelle");
+                    original = addedOrganelle;
 
-                        original = addedOrganelle;
-                        break;
-                    }
+                    if (original.Definition != organelleRemoveActionData.RemovedHex.Definition)
+                        throw new InvalidOperationException("Found an unrelated organelle at delete location");
+
+                    addedOrganelles.Remove(addedOrganelle);
+                    break;
+                }
+            }
+
+            if (original == null)
+            {
+                // Then match to the original microbe organelles
+                original = microbeSpecies.Organelles.GetByExactElementRootPosition(organelleRemoveActionData.Location);
+
+                if (original != null)
+                {
+                    if (original.Definition != organelleRemoveActionData.RemovedHex.Definition)
+                        GD.PrintErr("Found unrelated organelle at exact position of removed organelle");
+
+                    // Don't want the old instance to show up any more
+                    removedOrganelles.Add(original);
                 }
             }
 
             if (original == null)
                 throw new InvalidOperationException("Could not find the organelle a remove operation is related to");
 
-            // And then we can remove the organelle
-            bool removed = false;
-
-            foreach (var addedOrganelle in addedOrganelles)
-            {
-                if (addedOrganelle.OriginalFrom == original)
-                {
-                    removedOrganelles.Add(addedOrganelle);
-                    addedOrganelles.Remove(addedOrganelle);
-                    removed = true;
-                    break;
-                }
-            }
-
-            if (!removed)
-            {
-                // Make sure it is not in added organelles
-                if (addedOrganelles.Contains(original) &&
-                    original is OrganelleWithOriginalReference withOriginalReference)
-                {
-                    if (!addedOrganelles.Remove(withOriginalReference))
-                        throw new Exception("Expected remove didn't work");
-                }
-                else
-                {
-                    if (!removedOrganelles.Contains(original))
-                    {
-                        removedOrganelles.Add(original);
-                    }
-                    else
-                    {
-                        // Match by position in added. This can trigger if a remove incidentally matches an original
-                        // position
-                        removed = false;
-                        foreach (var addedOrganelle in addedOrganelles)
-                        {
-                            if (addedOrganelle.Position == original.Position &&
-                                addedOrganelle.Orientation == original.Orientation &&
-                                addedOrganelle.Definition == original.Definition)
-                            {
-                                removed = addedOrganelles.Remove(addedOrganelle);
-                                break;
-                            }
-                        }
-
-                        if (!removed)
-                            throw new InvalidOperationException("Could not find delete target for a remove operation");
-                    }
-                }
-            }
+            // We already removed the original, so there's nothing more to do
 
             return true;
         }
 
         if (actionData is OrganelleUpgradeActionData organelleUpgradeActionData)
         {
-            // Match the previous instance first which needs to be removed
-            IReadOnlyOrganelleTemplate? original =
-                microbeSpecies.Organelles.GetByExactElementRootPosition(organelleUpgradeActionData.UpgradedOrganelle
-                    .Position);
+            IReadOnlyOrganelleTemplate? original = null;
 
-            if (original == null || original.Orientation != organelleUpgradeActionData.UpgradedOrganelle.Orientation ||
-                original.Definition != organelleUpgradeActionData.UpgradedOrganelle.Definition)
+            // Find a match first if we have done something on this hex before
+            foreach (var addedOrganelle in addedOrganelles)
             {
-                original = null;
+                // Match based on what the organelle was before the upgrade, not the upgraded organelle itself
+                if (addedOrganelle.OriginalFrom == organelleUpgradeActionData.UpgradedOrganelle)
+                {
+                    original = addedOrganelle;
 
-                if (addedOrganelles.Contains(organelleUpgradeActionData.UpgradedOrganelle))
-                {
-                    // Directly added organelle, can use it directly
-                    original = organelleUpgradeActionData.UpgradedOrganelle;
+                    addedOrganelles.Remove(addedOrganelle);
+                    break;
                 }
-                else
+            }
+
+            if (original == null)
+            {
+                // Then match to the original microbe organelles
+                original = microbeSpecies.Organelles.GetByExactElementRootPosition(organelleUpgradeActionData.Position);
+
+                // TODO: it should not be necessary now to fallback to using
+                // organelleUpgradeActionData.UpgradedOrganelle.Position as that can lead to finding the wrong
+                // organelle if the player did a very complex shuffling and upgrading of multiple organelles of the
+                // same type.
+
+                if (original != null)
                 {
-                    // Tricky part of finding an intermediate result and needing to update it
-                    foreach (var organelleWithReference in addedOrganelles)
+                    // Don't want the old instance to show up any more
+                    if (original.Definition != organelleUpgradeActionData.UpgradedOrganelle.Definition)
+                        GD.PrintErr("Found unrelated organelle at old position of upgraded organelle");
+
+                    // The reference should equal here
+                    if (!ReferenceEquals(original, organelleUpgradeActionData.UpgradedOrganelle))
                     {
-                        if (organelleWithReference.OriginalFrom == organelleUpgradeActionData.UpgradedOrganelle)
-                        {
-                            // TODO: should this try to match anything else? The reference is a pretty strong check
-                            // already.
-                            original = organelleWithReference;
-                            break;
-                        }
+                        GD.PrintErr(
+                            "Organelle reference doesn't equal at original position when applying upgrade in facade");
                     }
+
+                    removedOrganelles.Add(original);
                 }
             }
 
             if (original == null)
                 throw new InvalidOperationException("Could not find the organelle an upgrade operation is related to");
 
-            // Remove existing results
-            if (!removedOrganelles.Contains(original))
-                removedOrganelles.Add(original);
-
-            for (int i = 0; i < addedOrganelles.Count; ++i)
-            {
-                if (addedOrganelles[i].OriginalFrom == original)
-                {
-                    removedOrganelles.Add(addedOrganelles[i]);
-                    addedOrganelles.RemoveAt(i);
-                    --i;
-
-                    // This could probably break safely here, but it is not clear if the performance is worth the
-                    // potential bug somewhere
-                }
-            }
-
-            if (original is OrganelleWithOriginalReference originalWithReference)
-                addedOrganelles.Remove(originalWithReference);
-
-            // And then we can add a new organelle with the upgrade applied
+            // And then we can add a new organelle with the upgrade applied (as we removed the previous already)
             var modifiable = GetModifiable(original);
 
             modifiable.ModifiableUpgrades = organelleUpgradeActionData.NewUpgrades;
