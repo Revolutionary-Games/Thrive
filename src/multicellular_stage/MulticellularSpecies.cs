@@ -98,7 +98,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
             // Reset endosymbiont status so that they aren't free to move / delete in the next editor cycle
             var count = cellType.ModifiableOrganelles.Count;
-            for (var i = 0; i < count; i++)
+            for (var i = 0; i < count; ++i)
             {
                 cellType.ModifiableOrganelles.Organelles[i].IsEndosymbiont = false;
             }

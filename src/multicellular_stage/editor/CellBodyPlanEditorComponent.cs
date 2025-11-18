@@ -1454,8 +1454,8 @@ public partial class CellBodyPlanEditorComponent :
     }
 
     /// <summary>
-    ///   Generates a cell layout from <see cref="MulticellularSpecies.ModifiableCells"/>. To be used if the species doesn't have
-    ///   an editor layout remembered.
+    ///   Generates a cell layout from <see cref="MulticellularSpecies.ModifiableCells"/>. To be used if the species
+    ///   doesn't have an editor layout remembered.
     /// </summary>
     private void GenerateCellLayoutFromSpeciesCells(MulticellularSpecies multicellularSpecies)
     {
