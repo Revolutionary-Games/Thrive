@@ -1,10 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class MacroscopicEditsFacade : SpeciesEditsFacade, IReadOnlyMacroscopicSpecies
 {
-    public MacroscopicEditsFacade(MacroscopicSpecies macroscopicSpecies) : base(macroscopicSpecies)
+    // private readonly IReadOnlyMacroscopicSpecies macroscopicSpecies;
+
+    public MacroscopicEditsFacade(MacroscopicSpecies species) : base(species)
     {
+        // TODO: implement
+        // macroscopicSpecies = species;
     }
 
-    public IReadOnlyList<IReadOnlyCellDefinition> CellTypes { get; set; }
+    public IReadOnlyList<IReadOnlyCellDefinition> CellTypes => throw new NotSupportedException("not implemented yet");
 }
