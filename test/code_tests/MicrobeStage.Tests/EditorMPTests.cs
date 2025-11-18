@@ -1,5 +1,6 @@
 ﻿namespace ThriveTest.MicrobeStage;
 
+using System;
 using System.Collections.Generic;
 using Utils;
 using Xunit;
@@ -85,11 +86,13 @@ public class EditorMPTests
         speciesTemplate1 = new MicrobeSpecies(1, "test1", "test1")
         {
             ModifiableOrganelles = { new OrganelleTemplate(dummyCytoplasm, new Hex(2, 1), 0) },
+            MembraneType = originalMembrane,
         };
 
         speciesTemplate2 = new MicrobeSpecies(1, "test1", "test1")
         {
             ModifiableOrganelles = { new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0) },
+            MembraneType = originalMembrane,
         };
     }
 
@@ -306,7 +309,7 @@ public class EditorMPTests
     [Fact]
     public void EditorMPTests_RemoveCancelsMoveCost()
     {
-        var originalSpecies = speciesTemplate2; // has organelle at (0,0)
+        var originalSpecies = speciesTemplate2;
         var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
@@ -385,185 +388,180 @@ public class EditorMPTests
     [Fact]
     public void EditorMPTests_MultipleIndependentUpgrades()
     {
+        var originalSpecies = speciesTemplate2.Clone(true);
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
-        var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+        var template = originalSpecies.Organelles.GetElementAt(new Hex(0, 0), new List<Hex>()) ??
+            throw new Exception("Couldn't find organelle");
 
         var upgrades1 = new OrganelleUpgrades
         {
             ModifiableUnlockedFeatures = ["test"],
         };
-
         var upgradeData = new OrganelleUpgradeActionData(new OrganelleUpgrades(), upgrades1, template);
-
         history.AddAction(new SingleEditorAction<OrganelleUpgradeActionData>(_ => { }, _ => { }, upgradeData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_UPGRADE_COST,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(TEST_UPGRADE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
 
         var upgrades2 = new OrganelleUpgrades
         {
             ModifiableUnlockedFeatures = ["test", "test2"],
         };
-
         var upgradeData2 = new OrganelleUpgradeActionData(new OrganelleUpgrades(), upgrades2, template);
-
         history.AddAction(new SingleEditorAction<OrganelleUpgradeActionData>(_ => { }, _ => { }, upgradeData2));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_UPGRADE_COST - TEST_UPGRADE_COST_2,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(TEST_UPGRADE_COST + TEST_UPGRADE_COST_2, speciesComparer.Compare(originalSpecies, editsFacade));
     }
 
     [Fact]
     public void EditorMPTests_MultipleUpgradesCombine()
     {
+        var originalSpecies = speciesTemplate2.Clone(true);
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
-        var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+        var template = originalSpecies.Organelles.GetElementAt(new Hex(0, 0), new List<Hex>()) ??
+            throw new Exception("Couldn't find organelle");
 
         var upgrades1 = new OrganelleUpgrades
         {
             ModifiableUnlockedFeatures = ["test"],
         };
-
         var upgradeData = new OrganelleUpgradeActionData(new OrganelleUpgrades(), upgrades1, template);
-
         history.AddAction(new SingleEditorAction<OrganelleUpgradeActionData>(_ => { }, _ => { }, upgradeData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_UPGRADE_COST,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(TEST_UPGRADE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
 
         var upgrades2 = new OrganelleUpgrades
         {
             ModifiableUnlockedFeatures = ["test2"],
         };
-
         var upgradeData2 = new OrganelleUpgradeActionData(new OrganelleUpgrades(), upgrades2, template);
-
         history.AddAction(new SingleEditorAction<OrganelleUpgradeActionData>(_ => { }, _ => { }, upgradeData2));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_UPGRADE_COST_2,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(TEST_UPGRADE_COST_2, speciesComparer.Compare(originalSpecies, editsFacade));
     }
 
     [Fact]
     public void EditorMPTests_MultipleUpgradesCombine3Step()
     {
+        var originalSpecies = speciesTemplate2.Clone(true);
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
-        var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+        var template = originalSpecies.Organelles.GetElementAt(new Hex(0, 0), new List<Hex>()) ??
+            throw new Exception("Couldn't find organelle");
 
         var upgrades1 = new OrganelleUpgrades
         {
             ModifiableUnlockedFeatures = ["test"],
         };
-
         var noUpgrades = new OrganelleUpgrades();
 
         var upgradeData = new OrganelleUpgradeActionData(noUpgrades, upgrades1, template);
-
         history.AddAction(new SingleEditorAction<OrganelleUpgradeActionData>(_ => { }, _ => { }, upgradeData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_UPGRADE_COST,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(TEST_UPGRADE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
 
         var upgradeData2 = new OrganelleUpgradeActionData(upgrades1, noUpgrades, template);
-
         history.AddAction(new SingleEditorAction<OrganelleUpgradeActionData>(_ => { }, _ => { }, upgradeData2));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(0, speciesComparer.Compare(originalSpecies, editsFacade));
 
         var upgrades2 = new OrganelleUpgrades
         {
             ModifiableUnlockedFeatures = ["test2"],
         };
-
         var upgradeData3 = new OrganelleUpgradeActionData(noUpgrades, upgrades2, template);
-
         history.AddAction(new SingleEditorAction<OrganelleUpgradeActionData>(_ => { }, _ => { }, upgradeData3));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_UPGRADE_COST_2, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(TEST_UPGRADE_COST_2, speciesComparer.Compare(originalSpecies, editsFacade));
     }
 
     [Fact]
     public void EditorMPTests_AddAfterRemoveIsFree()
     {
+        var originalSpecies = speciesTemplate2;
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
         var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
 
-        var removeData =
-            new OrganelleRemoveActionData(template, new Hex(0, 0), 0);
-
+        var removeData = new OrganelleRemoveActionData(template, new Hex(0, 0), 0);
         history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, removeData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_REMOVE_COST,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(Constants.ORGANELLE_REMOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
 
-        var actionData =
-            new OrganellePlacementActionData(template, new Hex(0, 0), 0);
-
+        var actionData = new OrganellePlacementActionData(template, new Hex(0, 0), 0);
         history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, actionData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(0, speciesComparer.Compare(originalSpecies, editsFacade));
     }
 
     [Fact]
     public void EditorMPTests_MoveAfterRemoveIsNotFree()
     {
+        var originalSpecies = speciesTemplate2;
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
         var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
 
-        var removeData =
-            new OrganelleRemoveActionData(template, new Hex(0, 0), 0);
-
+        var removeData = new OrganelleRemoveActionData(template, new Hex(0, 0), 0);
         history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, removeData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_REMOVE_COST,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(Constants.ORGANELLE_REMOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
 
-        var actionData =
-            new OrganellePlacementActionData(template, new Hex(0, 0), 0);
-
+        var actionData = new OrganellePlacementActionData(template, new Hex(0, 0), 0);
         history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, actionData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(0, speciesComparer.Compare(originalSpecies, editsFacade));
 
         var moveData = new OrganelleMoveActionData(template, new Hex(0, 0), new Hex(1, 0), 0, 0);
-
         history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(Constants.ORGANELLE_MOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
     }
 
     [Fact]
     public void EditorMPTests_PlacingTwiceWithRemoveIsNotFree()
     {
+        var originalSpecies = speciesTemplate1;
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
         var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
 
         var placementData = new OrganellePlacementActionData(template, new Hex(0, 0), 0);
-
         history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, placementData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(cheapOrganelle.MPCost, speciesComparer.Compare(originalSpecies, editsFacade));
 
-        var removeData =
-            new OrganelleRemoveActionData(template, new Hex(0, 0), 0);
-
+        var removeData = new OrganelleRemoveActionData(template, new Hex(0, 0), 0);
         history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, removeData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(0, speciesComparer.Compare(originalSpecies, editsFacade));
 
-        var placementData2 =
-            new OrganellePlacementActionData(template, new Hex(0, 0), 0);
-
+        var placementData2 = new OrganellePlacementActionData(template, new Hex(0, 0), 0);
         history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, placementData2));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(cheapOrganelle.MPCost, speciesComparer.Compare(originalSpecies, editsFacade));
     }
 
     [Fact]
@@ -704,159 +702,160 @@ public class EditorMPTests
     [Fact]
     public void EditorMPTests_MoveCanBeRefundedByPlacingNewOrganelle()
     {
+        var originalSpecies = speciesTemplate2;
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
         var template1 = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
 
         var moveData = new OrganelleMoveActionData(template1, new Hex(0, 0), new Hex(1, 0), 0, 0);
-
         history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(Constants.ORGANELLE_MOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
 
         var template2 = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
-
         var actionData = new OrganellePlacementActionData(template2, new Hex(0, 0), 0);
-
         history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, actionData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(cheapOrganelle.MPCost, speciesComparer.Compare(originalSpecies, editsFacade));
     }
 
     [Fact]
     public void EditorMPTests_MovingBackRefundsTheCost()
     {
+        var originalSpecies = speciesTemplate2;
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
         var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
-
         var moveData = new OrganelleMoveActionData(template, new Hex(0, 0), new Hex(1, 0), 0, 0);
-
         history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(Constants.ORGANELLE_MOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
 
         var moveData2 = new OrganelleMoveActionData(template, new Hex(1, 0), new Hex(0, 0), 0, 0);
-
         history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData2));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(0, speciesComparer.Compare(originalSpecies, editsFacade));
     }
 
     [Fact]
     public void EditorMPTests_MoveBackDoesNotMakeFutureMovesFree()
     {
+        var originalSpecies = speciesTemplate2;
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
         var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
-
         var moveData = new OrganelleMoveActionData(template, new Hex(0, 0), new Hex(1, 0), 0, 0);
-
         history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(Constants.ORGANELLE_MOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
 
         var moveData2 = new OrganelleMoveActionData(template, new Hex(1, 0), new Hex(0, 0), 0, 0);
-
         history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData2));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(0, speciesComparer.Compare(originalSpecies, editsFacade));
 
         var moveData3 = new OrganelleMoveActionData(template, new Hex(0, 0), new Hex(2, 0), 0, 0);
-
         history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData3));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(Constants.ORGANELLE_MOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
     }
 
     [Fact]
     public void EditorMPTests_RigidityChangesCombine()
     {
+        var originalSpecies = speciesTemplate1;
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
         var rigidityAction1 = new RigidityActionData(0.2f, 0.0f);
-
         history.AddAction(new SingleEditorAction<RigidityActionData>(_ => { }, _ => { }, rigidityAction1));
 
         var changeCost1 = RigidityActionData.CalculateRigidityCost(0.2f, 0);
         Assert.True(changeCost1 > 0.01f);
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - changeCost1, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(changeCost1, speciesComparer.Compare(originalSpecies, editsFacade));
 
         var rigidityAction2 = new RigidityActionData(0.3f, 0.2f);
-
         history.AddAction(new SingleEditorAction<RigidityActionData>(_ => { }, _ => { }, rigidityAction2));
 
         var totalCost = RigidityActionData.CalculateRigidityCost(0.3f, 0);
-
         Assert.True(totalCost > changeCost1);
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - totalCost, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(totalCost, speciesComparer.Compare(originalSpecies, editsFacade));
 
-        // Then back to 0 to have full MP remaining
         var rigidityAction3 = new RigidityActionData(0.0f, 0.3f);
-
         history.AddAction(new SingleEditorAction<RigidityActionData>(_ => { }, _ => { }, rigidityAction3));
-        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(0, speciesComparer.Compare(originalSpecies, editsFacade));
     }
 
     [Fact]
     public void EditorMPTests_RigidityChangesCombineWithMoveInBetween()
     {
+        var originalSpecies = speciesTemplate2;
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
         var rigidityAction1 = new RigidityActionData(0.2f, 0.0f);
-
         history.AddAction(new SingleEditorAction<RigidityActionData>(_ => { }, _ => { }, rigidityAction1));
 
         var changeCost1 = RigidityActionData.CalculateRigidityCost(0.2f, 0);
         Assert.True(changeCost1 > 0.01f);
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - changeCost1, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(changeCost1, speciesComparer.Compare(originalSpecies, editsFacade));
 
         var rigidityAction2 = new RigidityActionData(0.3f, 0.2f);
-
         history.AddAction(new SingleEditorAction<RigidityActionData>(_ => { }, _ => { }, rigidityAction2));
 
         var totalCost = RigidityActionData.CalculateRigidityCost(0.3f, 0);
-
         Assert.True(totalCost > changeCost1);
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - totalCost, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(totalCost, speciesComparer.Compare(originalSpecies, editsFacade));
 
         var moveAction = new OrganelleMoveActionData(new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0),
             new Hex(0, 0), new Hex(1, 0), 0, 0);
-
         history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveAction));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - totalCost - Constants.ORGANELLE_MOVE_COST,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(totalCost + Constants.ORGANELLE_MOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
 
         // Then back to 0 to have full MP remaining
         var rigidityAction3 = new RigidityActionData(0.0f, 0.3f);
-
         history.AddAction(new SingleEditorAction<RigidityActionData>(_ => { }, _ => { }, rigidityAction3));
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
-            history.CalculateMutationPointsLeft());
+
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(Constants.ORGANELLE_MOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
 
         // Undo the move
         var moveAction2 = new OrganelleMoveActionData(new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0),
             new Hex(1, 0), new Hex(0, 0), 0, 0);
-
         history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveAction2));
-        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(0, speciesComparer.Compare(originalSpecies, editsFacade));
 
         // And once more up to check a more complex combine
         var rigidityAction4 = new RigidityActionData(0.2f, 0.0f);
-
         history.AddAction(new SingleEditorAction<RigidityActionData>(_ => { }, _ => { }, rigidityAction4));
 
         var changeCost4 = RigidityActionData.CalculateRigidityCost(0.2f, 0);
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - changeCost4, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(changeCost4, speciesComparer.Compare(originalSpecies, editsFacade));
     }
 
     // TODO: implement a test for custom upgrade data changing and having an MP cost once that is supported
@@ -864,25 +863,31 @@ public class EditorMPTests
     [Fact]
     public void EditorMPTests_MultipleMembraneChanges()
     {
+        var originalSpecies = speciesTemplate1;
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
         var membraneAction1 = new MembraneActionData(originalMembrane, testMembrane1);
         history.AddAction(new SingleEditorAction<MembraneActionData>(_ => { }, _ => { }, membraneAction1));
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_MEMBRANE_COST_1, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(TEST_MEMBRANE_COST_1, speciesComparer.Compare(originalSpecies, editsFacade));
 
         var membraneAction2 = new MembraneActionData(testMembrane1, testMembrane2);
         history.AddAction(new SingleEditorAction<MembraneActionData>(_ => { }, _ => { }, membraneAction2));
+        ApplyFacadeEdits(editsFacade, history);
         Assert.True(TEST_MEMBRANE_COST_1 != TEST_MEMBRANE_COST_2);
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_MEMBRANE_COST_2, history.CalculateMutationPointsLeft());
+        Assert.Equal(TEST_MEMBRANE_COST_2, speciesComparer.Compare(originalSpecies, editsFacade));
 
         var membraneAction3 = new MembraneActionData(testMembrane2, testMembrane3);
         history.AddAction(new SingleEditorAction<MembraneActionData>(_ => { }, _ => { }, membraneAction3));
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_MEMBRANE_COST_3, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(TEST_MEMBRANE_COST_3, speciesComparer.Compare(originalSpecies, editsFacade));
 
         // And back to the original
         var membraneAction4 = new MembraneActionData(testMembrane3, originalMembrane);
         history.AddAction(new SingleEditorAction<MembraneActionData>(_ => { }, _ => { }, membraneAction4));
-        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(0, speciesComparer.Compare(originalSpecies, editsFacade));
 
         // Make sure they didn't all combine and cause that way the test to pass
         Assert.True(history.Undo());
@@ -893,30 +898,26 @@ public class EditorMPTests
     [Fact]
     public void EditorMPTests_MoveDeleteAndAddingBackIsFree()
     {
+        var originalSpecies = speciesTemplate2;
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
         var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
 
         var moveData = new OrganelleMoveActionData(template, new Hex(0, 0), new Hex(1, 0), 0, 0);
-
         history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(Constants.ORGANELLE_MOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
 
-        var removeData =
-            new OrganelleRemoveActionData(template, new Hex(1, 0), 0);
-
+        var removeData = new OrganelleRemoveActionData(template, new Hex(1, 0), 0);
         history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, removeData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_REMOVE_COST,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(Constants.ORGANELLE_REMOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
 
         var template2 = new OrganelleTemplate(cheapOrganelle, new Hex(1, 0), 0);
-
-        var actionData =
-            new OrganellePlacementActionData(template2, new Hex(0, 0), 0);
-
+        var actionData = new OrganellePlacementActionData(template2, new Hex(0, 0), 0);
         history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, actionData));
 
         // In an optimal world this would be fully refunded, however, to rather avoid infinite MP exploits, this doesn't
@@ -926,7 +927,6 @@ public class EditorMPTests
             history.CalculateMutationPointsLeft());
 
         moveData = new OrganelleMoveActionData(template2, new Hex(0, 0), new Hex(1, 0), 0, 0);
-
         history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData));
 
         Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST * 2,
@@ -989,21 +989,26 @@ public class EditorMPTests
     [Fact]
     public void EditorMPTests_ToleranceChangeAllowsRevertingAt0()
     {
-        // Do some tolerance edits to get down to 0 MP left
+        var originalSpecies = speciesTemplate1;
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
         var initialTolerances = new EnvironmentalTolerances();
 
+        Assert.Equal(originalSpecies.Tolerances, initialTolerances);
+
+        Assert.Equal(0, speciesComparer.Compare(originalSpecies, editsFacade));
+
+        // Do some tolerance edits to get down to 0 MP left
         var changedTolerances1 = initialTolerances.Clone();
         changedTolerances1.TemperatureTolerance += 8;
         changedTolerances1.UVResistance = 0.01f;
 
         var toleranceData1 = new ToleranceActionData(initialTolerances, changedTolerances1);
         history.AddAction(new SingleEditorAction<ToleranceActionData>(_ => { }, _ => { }, toleranceData1));
-        Assert.Equal(Constants.BASE_MUTATION_POINTS -
-            ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances1),
-            history.CalculateMutationPointsLeft());
-
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances1),
+            speciesComparer.Compare(originalSpecies, editsFacade));
         Assert.True(ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances1) > 5);
 
         var changedTolerances2 = changedTolerances1.Clone();
@@ -1016,10 +1021,10 @@ public class EditorMPTests
 
         var toleranceData2 = new ToleranceActionData(changedTolerances1, changedTolerances2);
         history.AddAction(new SingleEditorAction<ToleranceActionData>(_ => { }, _ => { }, toleranceData2));
-        Assert.Equal(Constants.BASE_MUTATION_POINTS -
-            ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances1) -
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances1) +
             ToleranceActionData.CalculateToleranceCost(changedTolerances1, changedTolerances2),
-            history.CalculateMutationPointsLeft());
+            speciesComparer.Compare(originalSpecies, editsFacade));
 
         var changedTolerances3 = changedTolerances2.Clone();
         changedTolerances3.TemperatureTolerance += 5;
@@ -1042,16 +1047,21 @@ public class EditorMPTests
             changedTolerances3.TemperatureTolerance += 1;
         }
 
+        // Ensure all mutation points taken
         var toleranceData3 = new ToleranceActionData(changedTolerances2, changedTolerances3);
         history.AddAction(new SingleEditorAction<ToleranceActionData>(_ => { }, _ => { }, toleranceData3));
-        Assert.Equal(0, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances3),
+            speciesComparer.Compare(originalSpecies, editsFacade));
+        Assert.Equal(Constants.BASE_MUTATION_POINTS, speciesComparer.Compare(originalSpecies, editsFacade));
 
         // And then it should be possible to go in the opposite direction to restore MP
         var changedTolerances4 = changedTolerances3.Clone();
         changedTolerances4.TemperatureTolerance -= 30;
         var toleranceData4 = new ToleranceActionData(changedTolerances3, changedTolerances4);
         history.AddAction(new SingleEditorAction<ToleranceActionData>(_ => { }, _ => { }, toleranceData4));
-        Assert.True(history.CalculateMutationPointsLeft() > 10);
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.True(Constants.BASE_MUTATION_POINTS - speciesComparer.Compare(originalSpecies, editsFacade) > 10);
 
         // As we used different stats, they should not all combine into a single action (this verifies the test is
         // actually testing what it is supposed to)
@@ -1062,23 +1072,24 @@ public class EditorMPTests
     [Fact]
     public void EditorMPTests_DeletingOtherOrganelleAfterPlaceCountsAsAMove()
     {
+        var originalSpecies = speciesTemplate2;
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
         var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
 
         var actionData =
             new OrganellePlacementActionData(new OrganelleTemplate(cheapOrganelle, new Hex(1, 0), 0), new Hex(1, 0), 0);
-
         history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, actionData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(cheapOrganelle.MPCost, speciesComparer.Compare(originalSpecies, editsFacade));
 
         var deleteData = new OrganelleRemoveActionData(template);
-
         history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, deleteData));
 
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(Constants.ORGANELLE_MOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
 
         // Moving back to the original position then resets all costs
         // TODO: this part is not actually implemented
@@ -1092,6 +1103,8 @@ public class EditorMPTests
     [Fact]
     public void EditorMPTests_DeletingDoesNotRefundTooMuchAfterMoveOfReplacedOldOrganelle()
     {
+        var originalSpecies = speciesTemplate2;
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
         var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
@@ -1099,24 +1112,26 @@ public class EditorMPTests
 
         var placementData = new OrganellePlacementActionData(template2, new Hex(1, 0), 0);
         history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, placementData));
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(cheapOrganelle.MPCost, speciesComparer.Compare(originalSpecies, editsFacade));
 
         var deleteData = new OrganelleRemoveActionData(template);
         history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, deleteData));
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(Constants.ORGANELLE_MOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
 
         var template3 = new OrganelleTemplate(cheapOrganelle, new Hex(0, 1), 0);
         var placement2 = new OrganellePlacementActionData(template3, new Hex(0, 1), 0);
         history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, placement2));
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost - Constants.ORGANELLE_MOVE_COST,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(cheapOrganelle.MPCost + Constants.ORGANELLE_MOVE_COST,
+            speciesComparer.Compare(originalSpecies, editsFacade));
 
         // Major infinite MP exploit reported for 0.9.0
         var deleteData2 = new OrganelleRemoveActionData(template3);
         history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, deleteData2));
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
-            history.CalculateMutationPointsLeft());
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(Constants.ORGANELLE_MOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
     }
 
     [Fact]
