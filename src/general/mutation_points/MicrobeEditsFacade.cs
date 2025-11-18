@@ -81,6 +81,7 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
 
     public IEnumerator<IReadOnlyOrganelleTemplate> GetEnumerator()
     {
+        ResolveDataIfDirty();
         return new OrganelleEnumerator(this);
     }
 
