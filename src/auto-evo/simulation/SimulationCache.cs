@@ -148,6 +148,7 @@ public class SimulationCache
         MicrobeSpecies species, BiomeConditions biomeConditions)
     {
         var key = (species, biomeConditions, fromCompound, toCompound);
+        var activeProcessList = GetActiveProcessList(species);
 
         if (cachedCompoundScores.TryGetValue(key, out var cached))
         {
@@ -158,21 +159,15 @@ public class SimulationCache
         var compoundOut = 0.0f;
 
         // For maximum efficiency as this is called an absolute ton the following approach is used
-        var organelles = species.Organelles.Organelles;
-        var count = organelles.Count;
-
-        for (var i = 0; i < count; ++i)
+        foreach (var process in activeProcessList)
         {
-            foreach (var process in organelles[i].Definition.RunnableProcesses)
+            if (process.Process.Inputs.TryGetValue(fromCompound, out var inputAmount))
             {
-                if (process.Process.Inputs.TryGetValue(fromCompound, out var inputAmount))
+                if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
                 {
-                    if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
-                    {
-                        // We don't multiply by speed here as it is about pure efficiency
-                        compoundIn += inputAmount;
-                        compoundOut += outputAmount;
-                    }
+                    // We don't multiply by speed here as it is about pure efficiency
+                    compoundIn += inputAmount;
+                    compoundOut += outputAmount;
                 }
             }
         }
@@ -202,25 +197,21 @@ public class SimulationCache
 
         cached = 0.0f;
 
-        var organelles = species.Organelles.Organelles;
-        var organelleCount = organelles.Count;
+        var activeProcessList = GetActiveProcessList(species);
 
         var tolerances = GetEnvironmentalTolerances(species, biomeConditions);
 
-        for (int i = 0; i < organelleCount; ++i)
+        foreach (var process in activeProcessList)
         {
-            foreach (var process in organelles[i].Definition.RunnableProcesses)
+            if (process.Process.Inputs.ContainsKey(fromCompound))
             {
-                if (process.Process.Inputs.ContainsKey(fromCompound))
+                if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
                 {
-                    if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
-                    {
-                        var processSpeed =
-                            GetProcessMaximumSpeed(process, tolerances.ProcessSpeedModifier, biomeConditions)
-                                .CurrentSpeed;
+                    var processSpeed =
+                        GetProcessMaximumSpeed(process, tolerances.ProcessSpeedModifier, biomeConditions)
+                            .CurrentSpeed;
 
-                        cached += outputAmount * processSpeed;
-                    }
+                    cached += outputAmount * processSpeed;
                 }
             }
         }
@@ -681,6 +672,8 @@ public class SimulationCache
         var hasChannelInhibitor = false;
         var hasOxygenMetabolismInhibitor = false;
 
+        var activeProcessList = GetActiveProcessList(microbeSpecies);
+
         for (int i = 0; i < organelleCount; ++i)
         {
             var organelle = organelles[i];
@@ -716,7 +709,7 @@ public class SimulationCache
             foreach (var process in organelle.Definition.RunnableProcesses)
             {
                 // Big branch to calculate scores for each toxin type
-                if (process.Process.Outputs.TryGetValue(oxytoxy, out var toxinAmount))
+                if (process.Process.Outputs.ContainsKey(oxytoxy))
                 {
                     var activeToxin = organelle.GetActiveToxin();
                     if (activeToxin == ToxinType.Oxytoxy && !hasOxytoxy)
@@ -752,8 +745,15 @@ public class SimulationCache
 
                     totalToxicity += organelle.GetActiveToxicity();
                     totalToxinOrganellesCount += 1;
-                    totalToxinScore += toxinAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
                 }
+            }
+        }
+
+        foreach (var process in activeProcessList)
+        {
+            if (process.Process.Outputs.TryGetValue(oxytoxy, out var toxinAmount))
+            {
+                totalToxinScore += toxinAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
             }
         }
 
