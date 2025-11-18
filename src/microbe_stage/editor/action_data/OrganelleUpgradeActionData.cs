@@ -4,10 +4,16 @@ using SharedBase.Archive;
 
 public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     public OrganelleUpgrades NewUpgrades;
     public OrganelleUpgrades OldUpgrades;
+
+    /// <summary>
+    ///   Position of the organelle when upgraded. Needed for facades to in all cases be able to identify the right
+    ///   organelle to upgrade.
+    /// </summary>
+    public Hex Position;
 
     // TODO: make the upgrade not cost MP if a new organelle of the same type is placed at the same location and then
     // upgraded in the same way
@@ -19,6 +25,9 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
         OldUpgrades = oldUpgrades;
         NewUpgrades = newUpgrades;
         UpgradedOrganelle = upgradedOrganelle;
+
+        // Store position in case the upgraded organelle is moved
+        Position = upgradedOrganelle.Position;
     }
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
@@ -42,6 +51,11 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
         var instance = new OrganelleUpgradeActionData(reader.ReadObject<OrganelleUpgrades>(),
             reader.ReadObject<OrganelleUpgrades>(), reader.ReadObject<OrganelleTemplate>());
 
+        if (version > 1)
+        {
+            instance.Position = reader.ReadHex();
+        }
+
         instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
 
         return instance;
@@ -52,6 +66,7 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
         writer.WriteObject(OldUpgrades);
         writer.WriteObject(NewUpgrades);
         writer.WriteObject(UpgradedOrganelle);
+        writer.Write(Position);
 
         writer.Write(SERIALIZATION_VERSION_CONTEXT);
         base.WriteToArchive(writer);

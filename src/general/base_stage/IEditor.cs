@@ -89,7 +89,7 @@ public interface IEditor : ISaveLoadedTracked
     ///   <see cref="WhatWouldActionsCost"/> perform this automatically. Only adds the context if not missing to give
     ///   flexibility for editor components to add their custom action context that is not overridden.
     /// </summary>
-    /// <param name="action"></param>
+    /// <param name="action">Action to add context for</param>
     public void AddContextToAction(CombinableActionData action);
 
     public void NotifyUndoRedoStateChanged();
