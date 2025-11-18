@@ -668,8 +668,6 @@ public class SimulationCache
         var hasChannelInhibitor = false;
         var hasOxygenMetabolismInhibitor = false;
 
-        var activeProcessList = GetActiveProcessList(microbeSpecies);
-
         for (int i = 0; i < organelleCount; ++i)
         {
             var organelle = organelles[i];
