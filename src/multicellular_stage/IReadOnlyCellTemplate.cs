@@ -1,1 +1,4 @@
-﻿public interface IReadOnlyCellTemplate : IReadOnlyPositionedHex, IReadOnlyCellDefinition;
+﻿public interface IReadOnlyCellTemplate : IReadOnlyPositionedHex, IReadOnlyCellDefinition
+{
+    IReadOnlyCellDefinition CellType { get; }
+}

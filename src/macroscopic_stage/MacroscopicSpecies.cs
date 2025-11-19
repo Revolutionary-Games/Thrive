@@ -16,6 +16,8 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
 
     public MacroscopicMetaballLayout ModifiableBodyLayout { get; private set; } = new();
 
+    public IReadOnlyMacroscopicMetaballLayout BodyLayout => ModifiableBodyLayout;
+
     public List<CellType> ModifiableCellTypes { get; private set; } = new();
 
     public IReadOnlyList<IReadOnlyCellDefinition> CellTypes => ModifiableCellTypes;
@@ -41,7 +43,8 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
     ///   All organelles in all the species' placed metaballs (there can be a lot of duplicates in this list)
     /// </summary>
     public IEnumerable<OrganelleTemplate> Organelles =>
-        ModifiableBodyLayout.Select(m => m.CellType).Distinct().SelectMany(c => c.ModifiableOrganelles);
+        ((MetaballLayout<MacroscopicMetaball>)ModifiableBodyLayout).Select(m => m.ModifiableCellType).Distinct()
+        .SelectMany(c => c.ModifiableOrganelles);
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
@@ -142,7 +145,8 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
         // Make sure we process things with parents first
         // TODO: if the tree depth calculation is too expensive here, we'll need to cache the values in the metaball
         // objects
-        foreach (var metaball in casted.ModifiableBodyLayout.OrderBy(m => m.CalculateTreeDepth()))
+        foreach (var metaball in ((MetaballLayout<MacroscopicMetaball>)casted.ModifiableBodyLayout).OrderBy(m =>
+                     m.CalculateTreeDepth()))
         {
             ModifiableBodyLayout.Add(metaball.Clone(metaballMapping));
         }
@@ -181,7 +185,7 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
 
         var metaballMapping = new Dictionary<Metaball, MacroscopicMetaball>();
 
-        foreach (var metaball in ModifiableBodyLayout)
+        foreach (var metaball in (MetaballLayout<MacroscopicMetaball>)ModifiableBodyLayout)
         {
             result.ModifiableBodyLayout.Add(metaball.Clone(metaballMapping));
         }
@@ -195,7 +199,7 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
 
         foreach (var metaball in layout)
         {
-            if (metaball.CellType.IsBrainTissueType())
+            if (metaball.ModifiableCellType.IsBrainTissueType())
             {
                 // TODO: check that volume scaling in physically sensible way (using GetVolume) is what we want here
                 // Maybe we would actually just want to multiply by the scale number to buff small species' brain?
@@ -212,7 +216,7 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
 
         foreach (var metaball in layout)
         {
-            if (metaball.CellType.IsMuscularTissueType())
+            if (metaball.ModifiableCellType.IsMuscularTissueType())
             {
                 // TODO: check that volume scaling in physically sensible way (using GetVolume) is what we want here
                 result += metaball.GetVolume(scale);

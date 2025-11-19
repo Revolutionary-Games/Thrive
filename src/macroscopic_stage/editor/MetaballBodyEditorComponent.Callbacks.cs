@@ -64,7 +64,7 @@ public partial class MetaballBodyEditorComponent
     private void DoMetaballMoveAction(MetaballMoveActionData<MacroscopicMetaball> data)
     {
         data.MovedMetaball.Position = data.NewPosition;
-        data.MovedMetaball.Parent = data.NewParent;
+        data.MovedMetaball.ModifiableParent = data.NewParent;
 
         if (editedMetaballs.Contains(data.MovedMetaball))
         {
@@ -102,7 +102,7 @@ public partial class MetaballBodyEditorComponent
     private void UndoMetaballMoveAction(MetaballMoveActionData<MacroscopicMetaball> data)
     {
         data.MovedMetaball.Position = data.OldPosition;
-        data.MovedMetaball.Parent = data.OldParent;
+        data.MovedMetaball.ModifiableParent = data.OldParent;
 
         metaballDisplayDataDirty = true;
 

@@ -207,7 +207,7 @@ public partial class MetaballBodyEditorComponent :
 
         var metaballMapping = new Dictionary<Metaball, MacroscopicMetaball>();
 
-        foreach (var metaball in Editor.EditedSpecies.ModifiableBodyLayout)
+        foreach (var metaball in (MetaballLayout<MacroscopicMetaball>)Editor.EditedSpecies.ModifiableBodyLayout)
         {
             editedMetaballs.Add(metaball.Clone(metaballMapping));
         }
@@ -353,7 +353,7 @@ public partial class MetaballBodyEditorComponent :
         var cellTemplates = positions.Select(p => new MacroscopicMetaball(cellType)
         {
             Position = p.Position,
-            Parent = p.Parent,
+            ModifiableParent = p.Parent,
         }).ToList();
 
         // TODO: it's extremely unlikely that metaballs would overlap exactly so we can probably remove the occupancy
@@ -517,7 +517,7 @@ public partial class MetaballBodyEditorComponent :
 
         var metaball = new MacroscopicMetaball(cellToPlace)
         {
-            Parent = parent,
+            ModifiableParent = parent,
             Position = parent != null ? FinalMetaballPosition(position, parent) : position,
             Size = metaballSize,
         };
@@ -567,7 +567,7 @@ public partial class MetaballBodyEditorComponent :
                     return;
                 }
 
-                var placed = CreatePlaceActionIfPossible(metaball.CellType, symmetryPosition, metaball.Size,
+                var placed = CreatePlaceActionIfPossible(metaball.ModifiableCellType, symmetryPosition, metaball.Size,
                     symmetryParent);
 
                 if (placed != null)
@@ -595,7 +595,7 @@ public partial class MetaballBodyEditorComponent :
         var metaball = new MacroscopicMetaball(cellType)
         {
             Position = FinalMetaballPosition(position, parent, size),
-            Parent = parent,
+            ModifiableParent = parent,
             Size = size,
         };
 
@@ -611,7 +611,7 @@ public partial class MetaballBodyEditorComponent :
 
     private bool IsValidPlacement(MacroscopicMetaball metaball)
     {
-        return IsValidPlacement(metaball.Position, metaball.Parent);
+        return IsValidPlacement(metaball.Position, metaball.ModifiableParent);
     }
 
     private bool IsValidPlacement(Vector3 position, Metaball? parent)
@@ -690,7 +690,7 @@ public partial class MetaballBodyEditorComponent :
                         metaball.Position, position, editedMetaballs);
 
                 var data = new MetaballMoveActionData<MacroscopicMetaball>(metaball, metaball.Position, position,
-                    metaball.Parent, parent, childMoves);
+                    metaball.ModifiableParent, parent, childMoves);
                 action = new SingleEditorAction<MetaballMoveActionData<MacroscopicMetaball>>(DoMetaballMoveAction,
                     UndoMetaballMoveAction, data);
             }
@@ -776,7 +776,7 @@ public partial class MetaballBodyEditorComponent :
     {
         // Should be safe for us to try to signal to edit any kind of cell so this doesn't check if the cell is removed
         EmitSignal(SignalName.OnCellTypeToEditSelected,
-            metaballPopupMenu.SelectedMetaballs.First().CellType.TypeName);
+            metaballPopupMenu.SelectedMetaballs.First().ModifiableCellType.TypeName);
     }
 
     /// <summary>
@@ -984,7 +984,7 @@ public partial class MetaballBodyEditorComponent :
         var type = CellTypeFromName(activeActionName!);
 
         // Disallow deleting a type that is in use currently
-        if (editedMetaballs.Any(c => c.CellType == type))
+        if (editedMetaballs.Any(c => c.ModifiableCellType == type))
         {
             GD.Print("Can't delete in use cell type");
             cannotDeleteInUseTypeDialog.PopupCenteredShrink();

@@ -869,7 +869,7 @@ public class GameWorld : IArchivable
 
         foreach (var cellTemplate in earlySpecies.ModifiableCells)
         {
-            var metaball = new MacroscopicMetaball(cellTemplate.CellType)
+            var metaball = new MacroscopicMetaball(cellTemplate.ModifiableCellType)
             {
                 Position = Hex.AxialToCartesian(cellTemplate.Position),
                 Size = 1,
@@ -887,13 +887,13 @@ public class GameWorld : IArchivable
             if (ReferenceEquals(metaball, rootMetaball))
                 continue;
 
-            if (metaball.Parent != null)
+            if (metaball.ModifiableParent != null)
                 throw new Exception("Logic error in metaball initial parent calculation");
 
             // For now just pick the closest (and in case of ties, the closer to origin) metaball as the parent
             // Also avoid accidentally making short parent loops
             var potentialParents = metaballs
-                .Where(m => !ReferenceEquals(m, metaball) && !ReferenceEquals(m.Parent, metaball))
+                .Where(m => !ReferenceEquals(m, metaball) && !ReferenceEquals(m.ModifiableParent, metaball))
                 .OrderBy(m => m.Position.DistanceSquaredTo(metaball.Position)).ThenBy(m => m.Position.LengthSquared());
 
             bool foundSuitableParent = false;
@@ -904,7 +904,7 @@ public class GameWorld : IArchivable
                 if (parentCandidate.HasAncestor(metaball))
                     continue;
 
-                metaball.Parent = parentCandidate;
+                metaball.ModifiableParent = parentCandidate;
                 foundSuitableParent = true;
                 break;
             }
@@ -943,7 +943,7 @@ public class GameWorld : IArchivable
             var metaball = metaballsToPosition[i];
 
             // Don't position the root metaball here
-            if (metaball.Parent == null)
+            if (metaball.ModifiableParent == null)
                 continue;
 
             metaball.AdjustPositionToTouchParent(metaballParentVectors[i]);
@@ -1112,11 +1112,11 @@ public class GameWorld : IArchivable
         if (list.Contains(metaball))
             return;
 
-        if (metaball.Parent != null)
+        if (metaball.ModifiableParent != null)
         {
             // Need to recursively add parents first to the list, this is absolutely required for the step where
             // these are added to the layout ultimately
-            RecursivelyAddBallsToList(list, (MacroscopicMetaball)metaball.Parent);
+            RecursivelyAddBallsToList(list, (MacroscopicMetaball)metaball.ModifiableParent);
         }
 
         list.Add(metaball);

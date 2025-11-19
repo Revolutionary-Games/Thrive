@@ -10,7 +10,7 @@ using SharedBase.Archive;
 /// <summary>
 ///   A species shape specified by metaballs
 /// </summary>
-public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>, IArchivable
+public class MetaballLayout<T> : ICollection<T>, IReadOnlyMetaballLayout<T>, IArchivable
     where T : Metaball
 {
     // TODO: make a serializer for this like for hex layout serializer
@@ -23,7 +23,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>, IArchiv
     protected Action<T>? onRemoved;
 
     [JsonProperty]
-    private List<T> metaballs = new();
+    protected List<T> metaballs = new();
 
     public MetaballLayout(Action<T>? onAdded = null, Action<T>? onRemoved = null)
     {
@@ -65,18 +65,18 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>, IArchiv
 
     public bool CanAdd(T metaball)
     {
-        if (metaball.Parent == metaball)
+        if (metaball.ModifiableParent == metaball)
             throw new ArgumentException("Metaball can't be its own parent");
 
         // First metaball (or adding the root back) can be placed anywhere
-        if (metaball.Parent == null && (Count < 1 || metaballs.All(m => m.Parent != null)))
+        if (metaball.ModifiableParent == null && (Count < 1 || metaballs.All(m => m.ModifiableParent != null)))
             return true;
 
-        if (metaball.Parent == null)
+        if (metaball.ModifiableParent == null)
             return false;
 
         // Fail if parent missing
-        var parent = metaball.Parent;
+        var parent = metaball.ModifiableParent;
         if (metaballs.All(m => m != parent))
             return false;
 
@@ -158,12 +158,12 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>, IArchiv
     {
         foreach (var metaball in metaballs)
         {
-            if (metaball.Parent == null)
+            if (metaball.ModifiableParent == null)
                 return;
 
-            var distance = (metaball.Parent.Position - metaball.Position).Length();
+            var distance = (metaball.ModifiableParent.Position - metaball.Position).Length();
 
-            if (distance - metaball.Radius - metaball.Parent.Radius > MathUtils.EPSILON)
+            if (distance - metaball.Radius - metaball.ModifiableParent.Radius > MathUtils.EPSILON)
                 throw new Exception("Metaball is not touching its parent");
         }
     }
@@ -172,7 +172,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>, IArchiv
     {
         foreach (var layoutMetaball in this)
         {
-            if (layoutMetaball.Parent == metaball)
+            if (layoutMetaball.ModifiableParent == metaball)
                 yield return layoutMetaball;
         }
     }
@@ -192,13 +192,13 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>, IArchiv
 
     public bool IsDescendantsOf(Metaball descendant, Metaball parent)
     {
-        if (descendant.Parent == null)
+        if (descendant.ModifiableParent == null)
             return false;
 
-        if (descendant.Parent == parent)
+        if (descendant.ModifiableParent == parent)
             return true;
 
-        return IsDescendantsOf(descendant.Parent, parent);
+        return IsDescendantsOf(descendant.ModifiableParent, parent);
     }
 
     [MustDisposeResource]
@@ -212,11 +212,11 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>, IArchiv
         foreach (var metaball in metaballs)
         {
             // Root is a special case as it doesn't have a parent, it is allowed to be anywhere
-            if (metaball.Parent == null)
+            if (metaball.ModifiableParent == null)
                 continue;
 
-            var maxDistance = toleranceMultiplier * (metaball.Radius + metaball.Parent.Radius);
-            var distance = metaball.Position.DistanceTo(metaball.Parent.Position);
+            var maxDistance = toleranceMultiplier * (metaball.Radius + metaball.ModifiableParent.Radius);
+            var distance = metaball.Position.DistanceTo(metaball.ModifiableParent.Position);
 
             if (distance > maxDistance + contactThreshold)
             {

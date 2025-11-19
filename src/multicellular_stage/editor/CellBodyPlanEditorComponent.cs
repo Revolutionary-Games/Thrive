@@ -246,7 +246,7 @@ public partial class CellBodyPlanEditorComponent :
 
                 if (MovingPlacedHex.Data != null)
                 {
-                    cellType = MovingPlacedHex.Data.CellType;
+                    cellType = MovingPlacedHex.Data.ModifiableCellType;
                 }
                 else
                 {
@@ -883,7 +883,7 @@ public partial class CellBodyPlanEditorComponent :
         // This should be fine to trigger even when the cell is no longer in the layout as the other code should
         // prevent editing invalid cell types
         EmitSignal(SignalName.OnCellTypeToEditSelected,
-            cellPopupMenu.SelectedCells.First().Data!.CellType.TypeName,
+            cellPopupMenu.SelectedCells.First().Data!.ModifiableCellType.TypeName,
             true);
     }
 
@@ -1159,7 +1159,7 @@ public partial class CellBodyPlanEditorComponent :
 
         // Cells can't individually move in the body plan, so this probably makes sense
         var maximumMovementDirection =
-            MicrobeInternalCalculations.MaximumSpeedDirection(cells[0].Data!.CellType.ModifiableOrganelles);
+            MicrobeInternalCalculations.MaximumSpeedDirection(cells[0].Data!.ModifiableCellType.ModifiableOrganelles);
 
         // TODO: environmental tolerances for multicellular
         var environmentalTolerances = new ResolvedMicrobeTolerances
@@ -1256,7 +1256,7 @@ public partial class CellBodyPlanEditorComponent :
 
         foreach (var cell in editedMicrobeCells)
         {
-            var type = cell.Data!.CellType;
+            var type = cell.Data!.ModifiableCellType;
 
             cellTypesCount.TryGetValue(type, out var count);
             cellTypesCount[type] = count + 1;
@@ -1289,7 +1289,7 @@ public partial class CellBodyPlanEditorComponent :
 
             var modelHolder = placedModels[nextFreeCell++];
 
-            ShowCellTypeInModelHolder(modelHolder, hexWithData.Data!.CellType, pos, hexWithData.Data!.Orientation);
+            ShowCellTypeInModelHolder(modelHolder, hexWithData.Data!.ModifiableCellType, pos, hexWithData.Data!.Orientation);
 
             modelHolder.Visible = true;
         }
@@ -1420,7 +1420,7 @@ public partial class CellBodyPlanEditorComponent :
         var type = CellTypeFromName(activeActionName!);
 
         // Disallow deleting a type that is in use currently
-        if (editedMicrobeCells.Any(c => c.Data!.CellType == type))
+        if (editedMicrobeCells.Any(c => c.Data!.ModifiableCellType == type))
         {
             GD.Print("Can't delete in use cell type");
             cannotDeleteInUseTypeDialog.PopupCenteredShrink();

@@ -177,7 +177,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             throw new ArgumentException("Multicellular species must have microbe spawn environment info");
 
         // TODO: this would be excellent to match the actual cell type being used for spawning
-        var cellType = ModifiableCells[0].CellType;
+        var cellType = ModifiableCells[0].ModifiableCellType;
 
         // TODO: environmental tolerances for multicellular
         var environmentalTolerances = new ResolvedMicrobeTolerances
