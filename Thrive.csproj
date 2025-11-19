@@ -40,7 +40,7 @@
   </ItemGroup>
   <!-- Test resources -->
   <ItemGroup Condition="'$(Configuration)' != 'ExportRelease'">
-    <PackageReference Include="gdUnit4.api" Version="5.1.0-rc1" />
+    <PackageReference Include="gdUnit4.api" Version="5.1.0-rc3" />
     <PackageReference Include="gdUnit4.test.adapter" Version="3.0.0" />
     <!-- Re-enable this this once newer compiler versions are deployed everywhere
     <PackageReference Include="gdUnit4.analyzers" Version="1.0.0">
