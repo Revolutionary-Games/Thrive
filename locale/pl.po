@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-15 21:55-0500\n"
-"PO-Revision-Date: 2025-11-10 22:19+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-11-16 23:12+0100\n"
+"PO-Revision-Date: 2025-11-16 01:01+0000\n"
+"Last-Translator: Nie <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -86,7 +86,7 @@ msgid "ACTION_TELEPORT"
 msgstr "Teleportuj"
 
 msgid "ACTIVE"
-msgstr "aktywny"
+msgstr "Aktywny"
 
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Aktualne wątki:"
@@ -109,7 +109,7 @@ msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Otwórz widok konfiguracji zaawansowanej"
 
 msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Aerobowe Wiązanie Azotu Cząsteczkowego"
+msgstr "Tlenowe Wiązanie Azotu"
 
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Tlenowe Wiązanie Azotu"
@@ -172,7 +172,7 @@ msgstr ""
 "[b]Ogólne dane organelli:[/b]"
 
 msgid "ALREADY_ASCENDED"
-msgstr "Już jesteś uniesiony"
+msgstr "Już dokonałeś ascendencji"
 
 msgid "ALT"
 msgstr "Alt"
@@ -229,16 +229,16 @@ msgid "APPLY"
 msgstr "Zastosuj"
 
 msgid "APPLY_CHANGES"
-msgstr "Zastosuj zmiany"
+msgstr "Zastosuj Zmiany"
 
 msgid "APRIL"
 msgstr "Kwiecień"
 
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr "Czy jesteś pewien że chcesz przywrócić WSZYSTKIE ustawienia do wartości domyślnych?"
+msgstr "Czy na pewno chcesz przywrócić WSZYSTKIE ustawienia do wartości domyślnych?"
 
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr "Czy jesteś pewien że chcesz zresetować ustawienia klawiszy do wartości domyślnych?"
+msgstr "Czy na pewno chcesz zresetować ustawienia klawiszy do wartości domyślnych?"
 
 msgid "ARTIST_COLON"
 msgstr "Artysta:"
@@ -257,16 +257,16 @@ msgstr "Gratulacje!"
 
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
-"Dokonałeś wniebowstąpienia i ukończyłeś grę. Gratulujemy Ci dotarcia do końca!\n"
+"Dokonałeś ascendencji i ukończyłeś grę. Gratulujemy Ci dotarcia do końca!\n"
 "\n"
 "Możesz kontynuować rozgrywkę w Etapie Kosmosu z odblokowanymi Narzędziami Boga do zabawy w sandboksie.\n"
 "\n"
-"Istnieje również możliwość opuszczenia boskości i powrotu to Etapu Mikroba w tym zapisie, co pozwala ponownie przejść przez wszystkie etapy z dodatkowymi bonusami.\n"
+"Istnieje również możliwość descendencji i powrotu to Etapu Mikroba w tym zapisie, co pozwala ponownie przejść przez wszystkie etapy z dodatkowymi bonusami.\n"
 "\n"
-"Całkowita liczba wniebowstąpień w tym zapisie: {0}"
+"Całkowita liczba ascendencji w tym zapisie: {0}"
 
 msgid "ASCENSION_STAGE"
-msgstr "Etap ewolucji"
+msgstr "Etap Ascendentalny"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Klasa Mod assembly jest wymagana, jeśli klasa assembly jest określona"
@@ -1086,15 +1086,15 @@ msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Potwierdź nadpisanie"
 
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
-msgstr "Przejść do Etapu Boskości?"
+msgstr "Przejść do Etapu Acendentalnego?"
 
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr ""
-"Możesz teraz dokonać wniebowstąpienia i osiągnąć Etap Boskości poprzez uruchomienie Bramy Wniebowstąpiennej.\n"
+"Możesz teraz dokonać ascendencji i osiągnąć Etap Ascendentalny poprzez uruchomienie Bramy Ascendentalnej.\n"
 "\n"
 "To odblokuje nieograniczoną moc w postaci nowych Narzędzi Boga, które będziesz mógł wykorzystywać w tym zapisie.\n"
 "\n"
-"Wniebowstąpienie oznacza również wygranie gry, jednak będziesz mógł kontynuować swoją rozgrywkę. Dokonać wniebowstąpienia?"
+"Ascendencja oznacza również wygranie gry, ale będziesz mógł kontynuować swoją rozgrywkę. Ascendentować?"
 
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
 msgstr "Przejść do Fazy Przemysłowej?"
@@ -1596,11 +1596,11 @@ msgstr "Usunięcia zapisu nie można cofnąć, jesteś pewien że chcesz to zrob
 
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
-"Opuszczenie boskości usunie twój status boskości i przywróci cię do Etapu Mikroba. Stąd możesz dokonać ponownej rozgrywki w obecnym zapisie.\n"
+"Descendencja usunie twój status ascendenta i przywróci cię do Etapu Mikroba. Stąd możesz dokonać ponownej rozgrywki w obecnym zapisie.\n"
 "\n"
-"Dla tej nowej rozgrywki otrzymasz bonus opuszczenia boskości. W przyszłej wersji będzie mieć możliwość wybrania bonusu samodzielnie, ale na razie zawsze nim będzie 20% obniżenie kosztów osmoregulacji.\n"
+"Dla tej nowej rozgrywki otrzymasz descendentalny bonus. W przyszłej wersji będziesz mieć możliwość wybrania bonusu samodzielnie, ale na razie zawsze nim będzie 20% obniżenie kosztów osmoregulacji.\n"
 "\n"
-"Potwierdziwszy opuszczenie boskości możesz edytować ustawienia gry, by np. wybrać nowe ziarno (by grać na innej mapie) albo wyłączyć ŻJZ."
+"Potwierdziwszy descendencję możesz edytować ustawienia gry, by np. wybrać nowe ziarno (aby grać na innej mapie) albo wyłączyć ŻJZ."
 
 msgid "DESCRIPTION"
 msgstr "Opis:"
@@ -2868,10 +2868,10 @@ msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
 msgstr "(proporcja glukozy zachowana w środowisku w każdym pokoleniu)"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
-msgstr "Uruchom Bramę Wniebowstąpienną"
+msgstr "Uruchom Bramę Ascendentalną"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
-msgstr "Uruchom Bramę Wniebowstąpienną (BRAKUJE ENERGII)"
+msgstr "Uruchom Bramę Ascendentalną (BRAKUJE ENERGII)"
 
 msgid "INTERACTION_CONSTRUCT"
 msgstr "Zakończ Budowę"
@@ -5792,9 +5792,8 @@ msgstr "Przewodniczący Dźwiękowców"
 msgid "SPACE"
 msgstr "Spacja"
 
-#, fuzzy
 msgid "SPACE_STAGE"
-msgstr "Etap Mikroba"
+msgstr "Etap Kosmiczny"
 
 #, fuzzy
 msgid "SPACE_STRUCTURE_HAS_RESOURCES"
@@ -5849,6 +5848,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "zmutował"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Znajdź Aktualny Obszar"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Maksymalna liczba gatunków w obszarze"
 
 msgid "SPECIES_LIST"
 msgstr "Lista gatunków"
@@ -6029,7 +6036,7 @@ msgid "STRUCTURE"
 msgstr "Struktura"
 
 msgid "STRUCTURE_ASCENSION_GATE"
-msgstr "Brama Wniebowstąpienna"
+msgstr "Brama Ascendentalna"
 
 #, fuzzy
 msgid "STRUCTURE_DYSON_SWARM"
@@ -6136,7 +6143,7 @@ msgid "TASTY_RADIATION"
 msgstr "Oddychanie Tlenowe"
 
 msgid "TECHNOLOGY_ASCENSION"
-msgstr "Wniebowstąpienie"
+msgstr "Ascendencja"
 
 msgid "TECHNOLOGY_HUNTER_GATHERING"
 msgstr ""
@@ -7278,28 +7285,28 @@ msgid "WIKI_8_BRACKET_16"
 msgstr "8 (16)"
 
 msgid "WIKI_ASCENSION"
-msgstr "Wniebowstąpienie"
+msgstr "Ascendencja"
 
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
-msgstr "Praca nad Wniebowstąpieniem jeszcze się nie rozpoczęła."
+msgstr "Praca nad Ascendencją jeszcze się nie zaczęła."
 
 msgid "WIKI_ASCENSION_FEATURES"
-msgstr "Wkrótce."
+msgstr "Wkrótce dostępne."
 
 msgid "WIKI_ASCENSION_INTRO"
-msgstr "W skrócie: Jest to końcowa rozgrywka, gdzie możesz do woli przemieszczać się po galaktyce jako metafizyczny byt, obserwując i przekształcając co zechcesz. To była długa podróż, więc na to zasługujesz."
+msgstr "W skrócie: Jest to końcowa faza rozgrywki, gdzie możesz do woli przemieszczać się po galaktyce jako metafizyczny byt, obserwując i przekształcając co zechcesz. To była długa podróż, więc na to zasługujesz."
 
 msgid "WIKI_ASCENSION_OVERVIEW"
 msgstr ""
-"Wniebowstąpienie jest kluczowym konceptem w Thrive, porównywalnym do \"wygrania gry\" w innych grach wideo. Świadomy organizm, który go dokona, jest przekształcany do postaci energetycznej przez Bramę Wniebowstąpienną, w wyniku czego uzyskuje boskie moce, wykorzystując energię wszechświata (w zasadzie czyniąc cudy za darmo).\n"
+"Ascendencja jest kluczowym konceptem w Thrive, porównywalnym do \"wygrania gry\" w innych grach wideo. Jest ona stanem, w którym świadomy organizm zostaje przekształcony do postaci energetycznej za pośrednictwem Bramy Ascendentalnej. W efekcie uzyskuje on boskie moce, wykorzystując energię samego wszechświata (w zasadzie czyniąc cudy za darmo).\n"
 "\n"
 "Jeśli zbadałeś technologię Narzędzi Boga, w dowolnym momencie rozgrywki będziesz mieć dostęp do nowego panelu \"Narzędzia Boga\", z którego pomocą będziesz mógł zmienić cokolwiek zechcesz. Od tworzenia całych systemów gwiezdnych do najmniejszych bakterii, od niszczenia całych cywilizacji do opętywania pojedynczego jej członka, wszystko możliwe."
 
 msgid "WIKI_ASCENSION_TRANSITIONS"
-msgstr "Dokonasz wniebowstąpienia, gdy twój gatunek przejdzie przez Bramę Wniebowstąpienną. Prawdopodobnie będziemy chcieli pokazać napisy końcowe gry po cutscence wchodzenia w etap boskości. Po zakończeniu napisów gracz jest ponownie wrzucany do rozgrywki, w Etapie Boskości, z gratulującą wiadomością. By uczynić to ostatnią przeszkodą w grze, do stworzenia i operowania Brama Wniebowstąpienna będzie wymagać mnóstwa badań (w tym wspomnianych powyżej Narzędzi Boga) oraz ogromnej ilości energii, wielokrotnie większej od energii słońca. Inne potencjalnie wrogie gatunki będą miały swoją ostatnią szansę, by zaatakować gracza, zanim uzyska on nieskończoną moc i będzie mógł po prostu usunąć konkurujące międzygwiezdne imperia."
+msgstr "Dokonasz Ascendencji, gdy twój gatunek przejdzie przez Bramę Ascendentalną. Prawdopodobnie będziemy chcieli pokazać napisy końcowe gry po cutscence wchodzenia w etap ascendentalny. Po zakończeniu napisów gracz jest ponownie wrzucany do rozgrywki, w Etapie Ascendentalnym, z gratulacyjną wiadomością. By uczynić to ostatnią przeszkodą w grze, do stworzenia i operowania Brama Ascendentalna będzie wymagać mnóstwa badań (w tym wspomnianych wyżej Narzędzi Boga) oraz ogromnej ilości energii, wielokrotnie większej od energii słońca. Inne potencjalnie wrogie gatunki będą miały swoją ostatnią szansę, by zaatakować gracza, zanim uzyska on nieskończoną moc i będzie mógł po prostu usunąć konkurujące imperia międzygwiezdne."
 
 msgid "WIKI_ASCENSION_UI"
-msgstr "Wkrótce."
+msgstr "Wkrótce dostępne."
 
 msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Prace nad Etapem Boskości jeszcze nie zostały rozpoczęte."
@@ -8457,7 +8464,7 @@ msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Synteza OxyToxy"
 
 msgid "WIKI_PAGE_ASCENSION"
-msgstr "Wniebowstąpienie"
+msgstr "Ascendencja"
 
 #, fuzzy
 msgid "WIKI_PAGE_AWAKENING_STAGE"
@@ -8609,9 +8616,8 @@ msgstr "Gruczoł Śluzowy"
 msgid "WIKI_PAGE_SOCIETY_STAGE"
 msgstr "Etap Mikroba"
 
-#, fuzzy
 msgid "WIKI_PAGE_SPACE_STAGE"
-msgstr "Gruczoł Śluzowy"
+msgstr "Etap Kosmiczny"
 
 #, fuzzy
 msgid "WIKI_PAGE_STAGES_ROOT"
@@ -9560,9 +9566,6 @@ msgstr "Oddal"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Bież pod uwagę obszary z do tak wielu gatunków mających niską bioróżnorodność"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Maksymalna liczba gatunków w obszarze"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Wstępna populacja dla gatunku zwiększającego bioróżnorodność"

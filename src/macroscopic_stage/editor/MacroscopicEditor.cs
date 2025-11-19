@@ -207,7 +207,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
 
     protected override void InitEditor(bool fresh)
     {
-        patchMapTab.SetMap(CurrentGame.GameWorld.Map);
+        patchMapTab.SetMap(CurrentGame.GameWorld.Map, CurrentGame.GameWorld.PlayerSpecies.ID);
 
         base.InitEditor(fresh);
 
@@ -285,6 +285,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
 
         patchMapTab.UpdatePatchEvents();
+        patchMapTab.MarkDrawerDirty();
     }
 
     protected override void OnUndoPerformed()

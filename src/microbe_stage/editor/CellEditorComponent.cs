@@ -1210,6 +1210,7 @@ public partial class CellEditorComponent :
 
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
+        UpdateEndosymbiosisSpeciesData();
 
         if (!IsMulticellularEditor)
         {
