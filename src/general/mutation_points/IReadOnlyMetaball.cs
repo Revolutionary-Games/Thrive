@@ -9,6 +9,8 @@ public interface IReadOnlyMetaball
     /// </summary>
     public float Size { get; }
 
+    public float Radius => Size * 0.5f;
+
     public IReadOnlyMetaball? Parent { get; }
 
     /// <summary>
