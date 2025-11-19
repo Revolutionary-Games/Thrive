@@ -305,6 +305,8 @@ public enum ThriveArchiveObjectType : uint
     PatchEventsManager = 4388,
     PatchEventProperties = 4389,
     ComponentCellDivisionCollisionDisabler = 4390,
+    ReproductionCompoundPressure = 4391,
+    AmmoniaProductionEffect = 4392,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,

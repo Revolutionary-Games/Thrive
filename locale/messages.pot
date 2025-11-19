@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-16 23:12+0100\n"
+"POT-Creation-Date: 2025-11-17 12:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,7 +87,7 @@ msgstr ""
 #: ../src/general/base_stage/EditorBase.cs:910
 #: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:495
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:62
-#: ../src/multicellular_stage/editor/MulticellularEditor.cs:469
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:468
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
@@ -715,7 +715,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:5028
 #: ../simulation_parameters/microbe_stage/biomes.json:5274
 #: ../simulation_parameters/microbe_stage/biomes.json:5480
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:61
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:68
 msgid "BIG_IRON_CHUNK"
 msgstr ""
 
@@ -1468,6 +1468,10 @@ msgstr ""
 #: ../src/gui_common/menus/PlanetSettings.tscn:579
 #: ../src/gui_common/menus/PlanetSettings.tscn:612
 msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr ""
+
+#: ../src/auto-evo/selection_pressure/ReproductionCompoundPressure.cs:178
+msgid "COMPOUND_REPRODUCTION_SOURCE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CompoundStorageStatistics.cs:176
@@ -4498,7 +4502,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:4292
 #: ../simulation_parameters/microbe_stage/biomes.json:5352
 #: ../simulation_parameters/microbe_stage/biomes.json:5558
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:73
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:80
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
 
@@ -5035,7 +5039,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:4269
 #: ../simulation_parameters/microbe_stage/biomes.json:5329
 #: ../simulation_parameters/microbe_stage/biomes.json:5535
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:71
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:78
 msgid "MEDIUM_SULFUR_CHUNK"
 msgstr ""
 
@@ -5180,6 +5184,10 @@ msgstr ""
 
 #: ../src/auto-evo/selection_pressure/PredatorRoot.cs:11
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr ""
+
+#: ../src/auto-evo/selection_pressure/ReproductionCompoundPressure.cs:12
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
 msgstr ""
 
 #: ../src/auto-evo/selection_pressure/RootPressure.cs:11
@@ -7029,7 +7037,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:451
 #: ../simulation_parameters/microbe_stage/biomes.json:3173
 #: ../simulation_parameters/microbe_stage/biomes.json:5421
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:82
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:89
 msgid "RADIOACTIVE_CHUNK"
 msgstr ""
 
@@ -7842,7 +7850,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:4992
 #: ../simulation_parameters/microbe_stage/biomes.json:5238
 #: ../simulation_parameters/microbe_stage/biomes.json:5444
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:59
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:66
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
 
@@ -7865,7 +7873,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:4238
 #: ../simulation_parameters/microbe_stage/biomes.json:5302
 #: ../simulation_parameters/microbe_stage/biomes.json:5508
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:69
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:76
 msgid "SMALL_SULFUR_CHUNK"
 msgstr ""
 

@@ -18,7 +18,7 @@ using Xoshiro.PRNG64;
 /// </remarks>
 public class GameWorld : IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     /// <summary>
     ///   Stores some instances to be used between many different auto-evo runs
@@ -74,6 +74,7 @@ public class GameWorld : IArchivable
             // the full effect to get balanced well enough
             TimedEffects.RegisterEffect("photosynthesis_production", new PhotosynthesisProductionEffect(this));
             TimedEffects.RegisterEffect("volcanism", new VolcanismEffect(this));
+            TimedEffects.RegisterEffect("ammonia_production", new AmmoniaProductionEffect(this));
             TimedEffects.RegisterEffect("nitrogen_control", new NitrogenControlEffect(this));
 
             // Patch events. PatchEventsManager HAS to be the last one
@@ -316,6 +317,12 @@ public class GameWorld : IArchivable
                 new CurrentDilutionEvent(instance, random.Next64()));
             instance.TimedEffects.RegisterEffect("patch_events_manager",
                 new PatchEventsManager(instance, random.Next64()));
+        }
+
+        if (version < 3)
+        {
+            instance.TimedEffects.RegisterEffect("ammonia_production", new AmmoniaProductionEffect(instance),
+                false);
         }
 
         return instance;

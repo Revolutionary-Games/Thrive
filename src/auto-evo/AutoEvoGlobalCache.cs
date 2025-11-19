@@ -9,6 +9,9 @@ public class AutoEvoGlobalCache
     public readonly MetabolicStabilityPressure MetabolicStabilityPressure;
     public readonly EnvironmentalTolerancePressure EnvironmentalTolerancesPressure;
 
+    public readonly ReproductionCompoundPressure PhosphatePressure;
+    public readonly ReproductionCompoundPressure AmmoniaPressure;
+
     public readonly CompoundConversionEfficiencyPressure MinorGlucoseConversionEfficiencyPressure;
     public readonly MaintainCompoundPressure MaintainGlucose;
 
@@ -45,6 +48,10 @@ public class AutoEvoGlobalCache
         RootPressure = new RootPressure();
         MetabolicStabilityPressure = new MetabolicStabilityPressure(10.0f);
         EnvironmentalTolerancesPressure = new EnvironmentalTolerancePressure(4);
+
+        PhosphatePressure = new ReproductionCompoundPressure(
+            Compound.Phosphates, worldSettings.DayNightCycleEnabled, 0.3f);
+        AmmoniaPressure = new ReproductionCompoundPressure(Compound.Ammonia, worldSettings.DayNightCycleEnabled, 0.3f);
 
         MinorGlucoseConversionEfficiencyPressure =
             new CompoundConversionEfficiencyPressure(Compound.Glucose, Compound.ATP, true, 0.45f);

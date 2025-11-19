@@ -55,6 +55,8 @@ public class SimulationCache
     private readonly Dictionary<MicrobeSpecies, PredationToolsRawScores>
         cachedPredationToolsRawScores = new();
 
+    private readonly Dictionary<MicrobeSpecies, List<TweakedProcess>> cachedProcessLists = new();
+
     private readonly Dictionary<(MicrobeSpecies, string), float> cachedEnzymeScores = new();
 
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), bool> cachedUsesVaryingCompounds = new();
@@ -153,23 +155,18 @@ public class SimulationCache
 
         var compoundIn = 0.0f;
         var compoundOut = 0.0f;
+        var activeProcessList = GetActiveProcessList(species);
 
         // For maximum efficiency as this is called an absolute ton the following approach is used
-        var organelles = species.Organelles.Organelles;
-        var count = organelles.Count;
-
-        for (var i = 0; i < count; ++i)
+        foreach (var process in activeProcessList)
         {
-            foreach (var process in organelles[i].Definition.RunnableProcesses)
+            if (process.Process.Inputs.TryGetValue(fromCompound, out var inputAmount))
             {
-                if (process.Process.Inputs.TryGetValue(fromCompound, out var inputAmount))
+                if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
                 {
-                    if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
-                    {
-                        // We don't multiply by speed here as it is about pure efficiency
-                        compoundIn += inputAmount;
-                        compoundOut += outputAmount;
-                    }
+                    // We don't multiply by speed here as it is about pure efficiency
+                    compoundIn += inputAmount;
+                    compoundOut += outputAmount;
                 }
             }
         }
@@ -199,25 +196,21 @@ public class SimulationCache
 
         cached = 0.0f;
 
-        var organelles = species.Organelles.Organelles;
-        var organelleCount = organelles.Count;
+        var activeProcessList = GetActiveProcessList(species);
 
         var tolerances = GetEnvironmentalTolerances(species, biomeConditions);
 
-        for (int i = 0; i < organelleCount; ++i)
+        foreach (var process in activeProcessList)
         {
-            foreach (var process in organelles[i].Definition.RunnableProcesses)
+            if (process.Process.Inputs.ContainsKey(fromCompound))
             {
-                if (process.Process.Inputs.ContainsKey(fromCompound))
+                if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
                 {
-                    if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
-                    {
-                        var processSpeed =
-                            GetProcessMaximumSpeed(process, tolerances.ProcessSpeedModifier, biomeConditions)
-                                .CurrentSpeed;
+                    var processSpeed =
+                        GetProcessMaximumSpeed(process, tolerances.ProcessSpeedModifier, biomeConditions)
+                            .CurrentSpeed;
 
-                        cached += outputAmount * processSpeed;
-                    }
+                    cached += outputAmount * processSpeed;
                 }
             }
         }
@@ -624,6 +617,20 @@ public class SimulationCache
         cachedUsesVaryingCompounds.Clear();
         cachedStorageScores.Clear();
         cachedResolvedTolerances.Clear();
+        cachedProcessLists.Clear();
+    }
+
+    public List<TweakedProcess> GetActiveProcessList(MicrobeSpecies microbeSpecies)
+    {
+        if (cachedProcessLists.TryGetValue(microbeSpecies, out var cached))
+        {
+            return cached;
+        }
+
+        ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref cached);
+        cachedProcessLists.Add(microbeSpecies, cached);
+
+        return cached;
     }
 
     public PredationToolsRawScores GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
