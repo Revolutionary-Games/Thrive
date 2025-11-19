@@ -30,7 +30,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         return CalculateTolerances(species.Tolerances, species.Organelles, environment);
     }
 
-    public static ToleranceResult CalculateTolerances(EnvironmentalTolerances speciesTolerances,
+    public static ToleranceResult CalculateTolerances(IReadOnlyEnvironmentalTolerances speciesTolerances,
         IReadOnlyList<OrganelleTemplate> organelles, BiomeConditions environment)
     {
         var result = new ToleranceResult();

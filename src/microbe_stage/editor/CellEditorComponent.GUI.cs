@@ -651,13 +651,19 @@ public partial class CellEditorComponent
 
         endosymbiosisPopup.Lawk = Editor.CurrentGame.GameWorld.WorldSettings.LAWK;
 
+        UpdateEndosymbiosisSpeciesData();
+
+        endosymbiosisPopup.OpenCentered(false);
+    }
+
+    private void UpdateEndosymbiosisSpeciesData()
+    {
         // Note that the IsBacteria flag we read here is one editor cycle old (so placing a nucleus doesn't immediately
         // make this check work differently)
         endosymbiosisPopup.UpdateData(Editor.EditedBaseSpecies.Endosymbiosis,
             Editor.EditedCellProperties?.IsBacteria ??
-            throw new Exception("Cell properties needs to be known already"));
-
-        endosymbiosisPopup.OpenCentered(false);
+            throw new Exception("Cell properties needs to be known already"),
+            Editor.CurrentPatch.SpeciesInPatch.Keys);
     }
 
     private void OnEndosymbiosisSelected(int targetSpecies, string targetOrganelle, int cost)

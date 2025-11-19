@@ -6,7 +6,7 @@ using SharedBase.Archive;
 /// <summary>
 ///   Represents a macroscopic species that is 3D and composed of placed tissues
 /// </summary>
-public class MacroscopicSpecies : Species
+public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
@@ -14,9 +14,11 @@ public class MacroscopicSpecies : Species
     {
     }
 
-    public MacroscopicMetaballLayout BodyLayout { get; private set; } = new();
+    public MacroscopicMetaballLayout ModifiableBodyLayout { get; private set; } = new();
 
-    public List<CellType> CellTypes { get; private set; } = new();
+    public List<CellType> ModifiableCellTypes { get; private set; } = new();
+
+    public IReadOnlyList<IReadOnlyCellDefinition> CellTypes => ModifiableCellTypes;
 
     /// <summary>
     ///   The scale in meters of the species
@@ -39,7 +41,7 @@ public class MacroscopicSpecies : Species
     ///   All organelles in all the species' placed metaballs (there can be a lot of duplicates in this list)
     /// </summary>
     public IEnumerable<OrganelleTemplate> Organelles =>
-        BodyLayout.Select(m => m.CellType).Distinct().SelectMany(c => c.Organelles);
+        ModifiableBodyLayout.Select(m => m.CellType).Distinct().SelectMany(c => c.ModifiableOrganelles);
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
@@ -78,13 +80,16 @@ public class MacroscopicSpecies : Species
         CalculateBrainPower();
         CalculateMuscularPower();
 
-        // Note that a few stage transitions are explicit for the player so the editor will override this
+        // Note that a few stage transitions are explicit for the player, so the editor will override this
         SetTypeFromBrainPower();
+
+        // Probably don't need to reset endosymbiont status here any more as it is likely not possible to perform it
+        // at this stage
     }
 
     public override bool RepositionToOrigin()
     {
-        return BodyLayout.RepositionToGround();
+        return ModifiableBodyLayout.RepositionToGround();
     }
 
     public override void UpdateInitialCompounds()
@@ -123,23 +128,23 @@ public class MacroscopicSpecies : Species
 
         var casted = (MacroscopicSpecies)mutation;
 
-        CellTypes.Clear();
+        ModifiableCellTypes.Clear();
 
-        foreach (var cellType in casted.CellTypes)
+        foreach (var cellType in casted.ModifiableCellTypes)
         {
-            CellTypes.Add((CellType)cellType.Clone());
+            ModifiableCellTypes.Add((CellType)cellType.Clone());
         }
 
-        BodyLayout.Clear();
+        ModifiableBodyLayout.Clear();
 
         var metaballMapping = new Dictionary<Metaball, MacroscopicMetaball>();
 
         // Make sure we process things with parents first
         // TODO: if the tree depth calculation is too expensive here, we'll need to cache the values in the metaball
         // objects
-        foreach (var metaball in casted.BodyLayout.OrderBy(m => m.CalculateTreeDepth()))
+        foreach (var metaball in casted.ModifiableBodyLayout.OrderBy(m => m.CalculateTreeDepth()))
         {
-            BodyLayout.Add(metaball.Clone(metaballMapping));
+            ModifiableBodyLayout.Add(metaball.Clone(metaballMapping));
         }
     }
 
@@ -169,16 +174,16 @@ public class MacroscopicSpecies : Species
 
         ClonePropertiesTo(result);
 
-        foreach (var cellType in CellTypes)
+        foreach (var cellType in ModifiableCellTypes)
         {
-            result.CellTypes.Add((CellType)cellType.Clone());
+            result.ModifiableCellTypes.Add((CellType)cellType.Clone());
         }
 
         var metaballMapping = new Dictionary<Metaball, MacroscopicMetaball>();
 
-        foreach (var metaball in BodyLayout)
+        foreach (var metaball in ModifiableBodyLayout)
         {
-            result.BodyLayout.Add(metaball.Clone(metaballMapping));
+            result.ModifiableBodyLayout.Add(metaball.Clone(metaballMapping));
         }
 
         return result;
@@ -219,7 +224,7 @@ public class MacroscopicSpecies : Species
 
     private void SetTypeFromBrainPower()
     {
-        MacroscopicType = CalculateMacroscopicTypeFromLayout(BodyLayout, Scale);
+        MacroscopicType = CalculateMacroscopicTypeFromLayout(ModifiableBodyLayout, Scale);
     }
 
     private void SetInitialCompoundsForDefault()
@@ -245,11 +250,11 @@ public class MacroscopicSpecies : Species
 
     private void CalculateBrainPower()
     {
-        BrainPower = CalculateBrainPowerFromLayout(BodyLayout, Scale);
+        BrainPower = CalculateBrainPowerFromLayout(ModifiableBodyLayout, Scale);
     }
 
     private void CalculateMuscularPower()
     {
-        MuscularPower = CalculateMuscularPowerFromLayout(BodyLayout, Scale);
+        MuscularPower = CalculateMuscularPowerFromLayout(ModifiableBodyLayout, Scale);
     }
 }

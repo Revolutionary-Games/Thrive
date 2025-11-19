@@ -12,6 +12,7 @@ public class HexWithData<T> : IPositionedHex, IActionHex, IArchivable
 
     public T? Data { get; set; }
     public Hex Position { get; set; }
+    public int Orientation { get; set; }
 
     public ushort CurrentArchiveVersion => HexLayoutSerializer.SERIALIZATION_VERSION;
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ExtendedHexWithData;

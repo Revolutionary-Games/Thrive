@@ -85,7 +85,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
 #: ../src/general/base_stage/EditorBase.cs:910
-#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:494
+#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:495
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:62
 #: ../src/multicellular_stage/editor/MulticellularEditor.cs:468
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -131,11 +131,11 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/NewGameSettings.tscn:1118
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1087
+#: ../src/general/NewGameSettings.tscn:1113
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -171,11 +171,11 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:426
+#: ../src/general/NewGameSettings.tscn:427
 msgid "AI_MUTATION_RATE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:457
+#: ../src/general/NewGameSettings.tscn:458
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr ""
 
@@ -184,11 +184,11 @@ msgstr ""
 msgid "ALL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:865
+#: ../src/general/NewGameSettings.tscn:866
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:875
+#: ../src/general/NewGameSettings.tscn:876
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
 msgstr ""
 
@@ -445,11 +445,11 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:660
+#: ../src/general/NewGameSettings.tscn:661
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:690
+#: ../src/general/NewGameSettings.tscn:691
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
 msgstr ""
 
@@ -614,11 +614,11 @@ msgstr ""
 msgid "BASE_MOVEMENT"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1082
+#: ../src/general/NewGameSettings.tscn:1108
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1077
+#: ../src/general/NewGameSettings.tscn:1103
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -853,7 +853,7 @@ msgstr ""
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:17
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:70
 #: ../src/gui_common/menus/OptionsMenu.tscn:3271
-#: ../src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn:67
+#: ../src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn:71
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:636
 #: ../src/modding/NewModGUI.tscn:333
 #: ../src/space_stage/gui/SpaceConstructionPopup.tscn:46
@@ -1196,7 +1196,7 @@ msgstr ""
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:91
 #: ../src/gui_common/menus/OptionsMenu.tscn:3333
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1381
-#: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:82
+#: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:605
 #: ../src/microbe_stage/ProcessPanel.tscn:61 ../src/modding/ModManager.tscn:710
 #: ../src/thriveopedia/Thriveopedia.tscn:297
@@ -1328,7 +1328,7 @@ msgstr ""
 msgid "COMPILED_AT_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn:74
+#: ../src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn:78
 msgid "COMPLETE_ACTION"
 msgstr ""
 
@@ -1387,11 +1387,11 @@ msgstr ""
 msgid "COMPOUND_CLOUD_BENCHMARK"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:473
+#: ../src/general/NewGameSettings.tscn:474
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:504
+#: ../src/general/NewGameSettings.tscn:505
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
 
@@ -1404,19 +1404,19 @@ msgstr ""
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:774
+#: ../src/general/NewGameSettings.tscn:775
 msgid "COMPOUND_HANDLE_KEEP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:772
+#: ../src/general/NewGameSettings.tscn:773
 msgid "COMPOUND_HANDLE_SPLIT_SISTER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:776
+#: ../src/general/NewGameSettings.tscn:777
 msgid "COMPOUND_HANDLE_TOP_UP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:778
+#: ../src/general/NewGameSettings.tscn:779
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr ""
 
@@ -1549,12 +1549,12 @@ msgstr ""
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:387
-#: ../src/general/NewGameSettings.tscn:1100
+#: ../src/general/NewGameSettings.cs:391
+#: ../src/general/NewGameSettings.tscn:1126
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:393
+#: ../src/general/NewGameSettings.cs:397
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr ""
 
@@ -2204,7 +2204,7 @@ msgstr ""
 msgid "DEV_BUILD_PATRONS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:271
+#: ../src/general/NewGameSettings.tscn:272
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:39
 msgid "DIFFICULTY"
 msgstr ""
@@ -2214,12 +2214,12 @@ msgstr ""
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:123
-#: ../src/general/NewGameSettings.tscn:352
+#: ../src/general/NewGameSettings.tscn:124
+#: ../src/general/NewGameSettings.tscn:353
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
-#: ../simulation_parameters/common/difficulty_presets.json:60
+#: ../simulation_parameters/common/difficulty_presets.json:63
 #: ../src/general/WorldGenerationSettings.cs:373
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
@@ -2228,11 +2228,11 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_EASY"
 msgstr ""
 
-#: ../simulation_parameters/common/difficulty_presets.json:41
+#: ../simulation_parameters/common/difficulty_presets.json:43
 msgid "DIFFICULTY_PRESET_HARD"
 msgstr ""
 
-#: ../simulation_parameters/common/difficulty_presets.json:22
+#: ../simulation_parameters/common/difficulty_presets.json:23
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
@@ -2484,11 +2484,11 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:989
+#: ../src/general/NewGameSettings.tscn:1015
 msgid "EASTER_EGGS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:999
+#: ../src/general/NewGameSettings.tscn:1025
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
 
@@ -2587,7 +2587,7 @@ msgstr ""
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/EndosymbiosisCandidateOption.tscn:51
+#: ../src/microbe_stage/editor/EndosymbiosisCandidateOption.tscn:55
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
 msgstr ""
 
@@ -2595,19 +2595,19 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_BUTTON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn:66
+#: ../src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn:70
 msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn:72
+#: ../src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn:76
 msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:47
+#: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:52
 msgid "ENDOSYMBIOSIS_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/EndosymbiosisPopup.cs:168
+#: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:76
 msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
 msgstr ""
 
@@ -2615,23 +2615,23 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:55
+#: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:60
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:63
+#: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:68
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn:59
+#: ../src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn:63
 msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/EndosymbiosisCandidateOption.tscn:68
+#: ../src/microbe_stage/editor/EndosymbiosisCandidateOption.tscn:75
 msgid "ENDOSYMBIOSIS_START_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:20
+#: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:24
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
@@ -2651,19 +2651,19 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3128
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3129
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2963
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2964
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3139
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3140
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3132
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3133
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2695,11 +2695,11 @@ msgstr ""
 msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:567
+#: ../src/general/NewGameSettings.tscn:568
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:597
+#: ../src/general/NewGameSettings.tscn:598
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr ""
 
@@ -2850,15 +2850,15 @@ msgstr ""
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1014
+#: ../src/general/NewGameSettings.tscn:1040
 msgid "EXPERIMENTAL_FEATURES"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1031
+#: ../src/general/NewGameSettings.tscn:1057
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1023
+#: ../src/general/NewGameSettings.tscn:1049
 msgid "EXPERIMENTAL_FEATURES_WARNING"
 msgstr ""
 
@@ -3083,7 +3083,7 @@ msgstr ""
 msgid "FOG_OF_WAR_DISABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:805
+#: ../src/general/NewGameSettings.cs:814
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
 msgstr ""
 
@@ -3091,11 +3091,11 @@ msgstr ""
 msgid "FOG_OF_WAR_INTENSE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:811
+#: ../src/general/NewGameSettings.cs:820
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:803
+#: ../src/general/NewGameSettings.tscn:804
 msgid "FOG_OF_WAR_MODE"
 msgstr ""
 
@@ -3103,7 +3103,7 @@ msgstr ""
 msgid "FOG_OF_WAR_REGULAR"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:808
+#: ../src/general/NewGameSettings.cs:817
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
 msgstr ""
 
@@ -3111,7 +3111,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3145
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3146
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3201,11 +3201,11 @@ msgstr ""
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:840
+#: ../src/general/NewGameSettings.tscn:841
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:850
+#: ../src/general/NewGameSettings.tscn:851
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
 
@@ -3233,7 +3233,7 @@ msgstr ""
 msgid "GAME_SYSTEMS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3063
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3064
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1078
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
@@ -3636,11 +3636,11 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:964
+#: ../src/general/NewGameSettings.tscn:990
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:974
+#: ../src/general/NewGameSettings.tscn:1000
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
@@ -4092,6 +4092,14 @@ msgstr ""
 msgid "INSTAGRAM_TOOLTIP"
 msgstr ""
 
+#: ../src/general/NewGameSettings.tscn:916
+msgid "INSTANT_KILL_PROTECTION"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:926
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr ""
+
 #: ../src/awakening_stage/InteractionType.cs:32
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr ""
@@ -4498,7 +4506,7 @@ msgstr ""
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1799
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1800
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4574,12 +4582,12 @@ msgstr ""
 msgid "LAUNCHMEDIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:150
+#: ../src/general/NewGameSettings.tscn:151
 #: ../src/gui_common/menus/PlanetSettings.tscn:60
 msgid "LAWK_ONLY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:160
+#: ../src/general/NewGameSettings.tscn:161
 #: ../src/gui_common/menus/PlanetSettings.tscn:70
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -4660,34 +4668,34 @@ msgstr ""
 msgid "LICENSES_COVERING_THRIVE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:176
+#: ../src/general/NewGameSettings.tscn:177
 #: ../src/gui_common/menus/PlanetSettings.tscn:86
 msgid "LIFE_ORIGIN"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:198
+#: ../src/general/NewGameSettings.tscn:199
 #: ../src/gui_common/menus/PlanetSettings.tscn:109
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:191
+#: ../src/general/NewGameSettings.tscn:192
 #: ../src/general/WorldGenerationSettings.cs:48
 #: ../src/gui_common/menus/PlanetSettings.tscn:101
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:189
+#: ../src/general/NewGameSettings.tscn:190
 #: ../src/general/WorldGenerationSettings.cs:45
 #: ../src/gui_common/menus/PlanetSettings.tscn:99
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:184
+#: ../src/general/NewGameSettings.tscn:185
 #: ../src/gui_common/menus/PlanetSettings.tscn:94
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:187
+#: ../src/general/NewGameSettings.tscn:188
 #: ../src/general/WorldGenerationSettings.cs:42
 #: ../src/gui_common/menus/PlanetSettings.tscn:97
 msgid "LIFE_ORIGIN_VENTS"
@@ -4725,11 +4733,11 @@ msgstr ""
 msgid "LIMIT_EXTREME"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:890
+#: ../src/general/NewGameSettings.tscn:891
 msgid "LIMIT_GROWTH_RATE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:900
+#: ../src/general/NewGameSettings.tscn:901
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr ""
 
@@ -5466,7 +5474,7 @@ msgstr ""
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:279
+#: ../src/general/NewGameSettings.tscn:280
 #: ../src/gui_common/menus/OptionsMenu.tscn:238
 msgid "MISC"
 msgstr ""
@@ -5885,11 +5893,11 @@ msgstr ""
 msgid "MUTATIONS_PER_SPECIES"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:379
+#: ../src/general/NewGameSettings.tscn:380
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:410
+#: ../src/general/NewGameSettings.tscn:411
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
@@ -5957,7 +5965,7 @@ msgstr ""
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:250
+#: ../src/general/NewGameSettings.tscn:251
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
 
@@ -6179,7 +6187,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:665
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3160
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3161
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -6227,7 +6235,7 @@ msgstr ""
 msgid "NUCLEUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1798
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1799
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -6251,8 +6259,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:25
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:35
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:45
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2974
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2986
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2975
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2987
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
 #: ../src/microbe_stage/MicrobeHUD.cs:644
 msgid "N_A"
@@ -6461,11 +6469,11 @@ msgstr ""
 msgid "ORGANELLE_SUGGESTION_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:915
+#: ../src/general/NewGameSettings.tscn:941
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:925
+#: ../src/general/NewGameSettings.tscn:951
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
 msgstr ""
 
@@ -6486,11 +6494,11 @@ msgstr ""
 msgid "OSMOREGULATION_COST"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:613
+#: ../src/general/NewGameSettings.tscn:614
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:644
+#: ../src/general/NewGameSettings.tscn:645
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
@@ -6710,8 +6718,8 @@ msgstr ""
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:757 ../src/general/NewGameSettings.cs:764
-#: ../src/general/NewGameSettings.cs:780
+#: ../src/general/NewGameSettings.cs:766 ../src/general/NewGameSettings.cs:773
+#: ../src/general/NewGameSettings.cs:789
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:99
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:125
 #: ../src/general/WorldGenerationSettings.cs:380
@@ -6799,7 +6807,7 @@ msgstr ""
 msgid "PLACE_ORGANELLE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:263
+#: ../src/general/NewGameSettings.tscn:264
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:58
 msgid "PLANET"
 msgstr ""
@@ -6813,7 +6821,7 @@ msgstr ""
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:209
+#: ../src/general/NewGameSettings.tscn:210
 #: ../src/gui_common/menus/PlanetSettings.tscn:387
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
@@ -6826,11 +6834,11 @@ msgstr ""
 msgid "PLAYER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:520
+#: ../src/general/NewGameSettings.tscn:521
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:551
+#: ../src/general/NewGameSettings.tscn:552
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr ""
 
@@ -6902,7 +6910,7 @@ msgstr ""
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2993
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2994
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -7042,7 +7050,7 @@ msgstr ""
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:222
+#: ../src/general/NewGameSettings.tscn:223
 #: ../src/gui_common/menus/PlanetSettings.tscn:401
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr ""
@@ -7137,18 +7145,18 @@ msgstr ""
 msgid "REPRODUCTION_BUDDING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:756
+#: ../src/general/NewGameSettings.tscn:757
 msgid "REPRODUCTION_COMPOUNDS_MODE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:787
+#: ../src/general/NewGameSettings.tscn:788
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:754
-#: ../src/general/NewGameSettings.tscn:769
-#: ../src/general/NewGameSettings.tscn:785
-#: ../src/general/NewGameSettings.tscn:820
+#: ../src/general/NewGameSettings.tscn:755
+#: ../src/general/NewGameSettings.tscn:770
+#: ../src/general/NewGameSettings.tscn:786
+#: ../src/general/NewGameSettings.tscn:821
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr ""
 
@@ -7579,7 +7587,7 @@ msgid "SECRETE_SLIME_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:139
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:389
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:390
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:123
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:82
 msgid "SEED_LABEL"
@@ -7965,15 +7973,23 @@ msgstr ""
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr ""
 
+#: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:90
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr ""
+
+#: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:107
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr ""
+
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:596
 msgid "SPECIES_LIST"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:706
+#: ../src/general/NewGameSettings.tscn:707
 msgid "SPECIES_MEMBER_IMPACT_ON_POP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:735
+#: ../src/general/NewGameSettings.tscn:736
 msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
 msgstr ""
 
@@ -8029,7 +8045,7 @@ msgstr ""
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/EndosymbiosisCandidateOption.tscn:70
+#: ../src/microbe_stage/editor/EndosymbiosisCandidateOption.tscn:77
 msgid "START"
 msgstr ""
 
@@ -8041,7 +8057,7 @@ msgstr ""
 msgid "START_CALIBRATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1103
+#: ../src/general/NewGameSettings.tscn:1129
 msgid "START_GAME"
 msgstr ""
 
@@ -8559,11 +8575,11 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:176
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:177
 msgid "TIMELINE_PLAYER_MIGRATED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:172
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:173
 msgid "TIMELINE_PLAYER_MIGRATED_TO"
 msgstr ""
 
@@ -8584,7 +8600,7 @@ msgstr ""
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:480
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:481
 msgid "TIMELINE_SPECIES_FOLLOWED"
 msgstr ""
 

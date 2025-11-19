@@ -57,7 +57,7 @@ public partial class CellBodyPlanEditorComponent
             data.CellType.TypeName = $"{originalName} {count++}";
         }
 
-        Editor.EditedSpecies.CellTypes.Add(data.CellType);
+        Editor.EditedSpecies.ModifiableCellTypes.Add(data.CellType);
         GD.Print("New cell type created: ", data.CellType.TypeName);
 
         EmitSignal(SignalName.OnCellTypeToEditSelected, data.CellType.TypeName, false);
@@ -71,7 +71,7 @@ public partial class CellBodyPlanEditorComponent
 
     private void DeleteCellType(DuplicateDeleteCellTypeData data)
     {
-        if (!Editor.EditedSpecies.CellTypes.Remove(data.CellType))
+        if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(data.CellType))
             GD.PrintErr("Failed to delete cell type from species");
 
         UpdateCellTypeSelections();
