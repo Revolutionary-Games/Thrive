@@ -5,6 +5,7 @@ using Godot;
 /// <summary>
 ///   This is a singleton pause menu shared by all the stages in the game.
 /// </summary>
+[GodotAutoload]
 public partial class PauseMenu : CanvasLayer
 {
 #pragma warning disable CA2213

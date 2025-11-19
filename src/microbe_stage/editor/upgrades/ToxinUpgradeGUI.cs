@@ -124,7 +124,7 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
         foreach (var feature in featuresToClear)
         {
-            organelleUpgrades.UnlockedFeatures.Remove(feature);
+            organelleUpgrades.ModifiableUnlockedFeatures.Remove(feature);
         }
 
         // Apply new data
@@ -134,7 +134,7 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
         // Default upgrade name is skipped
         if (upgradeName != Constants.ORGANELLE_UPGRADE_SPECIAL_NONE)
-            organelleUpgrades.UnlockedFeatures.Add(upgradeName);
+            organelleUpgrades.ModifiableUnlockedFeatures.Add(upgradeName);
 
         organelleUpgrades.CustomUpgradeData = new ToxinUpgrades(selectedType, (float)toxicitySlider.Value);
 

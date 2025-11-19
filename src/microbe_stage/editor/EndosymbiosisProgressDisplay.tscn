@@ -21,6 +21,10 @@ speciesPreview = NodePath("HBoxContainer/SpeciesImage")
 progressBar = NodePath("HBoxContainer/VBoxContainer/ProgressBar")
 finishButton = NodePath("HBoxContainer/VBoxContainer/HBoxContainer/Finish")
 
+[node name="HSeparator" type="HSeparator" parent="."]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
 [node name="Name" type="Label" parent="."]
 editor_description = "PLACEHOLDER"
 layout_mode = 2

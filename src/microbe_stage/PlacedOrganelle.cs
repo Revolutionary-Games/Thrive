@@ -11,7 +11,7 @@ using Systems;
 /// </summary>
 public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     private readonly List<Compound> tempCompoundsToProcess = new();
 
@@ -33,7 +33,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
         Orientation = orientation;
 
         // Upgrades must be applied before initializing the components
-        Upgrades = upgrades;
+        ModifiableUpgrades = upgrades;
 
         InitializeComponents();
 
@@ -48,7 +48,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
         Position = position;
         Orientation = orientation;
         this.compoundsLeft = compoundsLeft;
-        Upgrades = upgrades;
+        ModifiableUpgrades = upgrades;
 
         // TODO: figure out if re-creating components on loading a save is the right approach
         InitializeComponents();
@@ -114,7 +114,11 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
     /// </summary>
     public List<IOrganelleComponent> Components { get; } = new();
 
-    public OrganelleUpgrades? Upgrades { get; private set; }
+    public OrganelleUpgrades? ModifiableUpgrades { get; private set; }
+
+    public IReadOnlyOrganelleUpgrades? Upgrades => ModifiableUpgrades;
+
+    public bool IsEndosymbiont { get; set; }
 
     /// <summary>
     ///   Can be set by organelle components to override the enzymes returned by <see cref="GetEnzymes"/>. This is
@@ -166,6 +170,9 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
 
         instance.SisterOrganelle = reader.ReadObjectOrNull<PlacedOrganelle>();
 
+        if (version > 1)
+            instance.IsEndosymbiont = reader.ReadBool();
+
         return instance;
     }
 
@@ -175,11 +182,12 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
         writer.Write(Position);
         writer.Write(Orientation);
         writer.WriteObject(compoundsLeft);
-        writer.WriteObjectOrNull(Upgrades);
+        writer.WriteObjectOrNull(ModifiableUpgrades);
 
         writer.Write(WasSplit);
         writer.Write(IsDuplicate);
         writer.WriteObjectOrNull(SisterOrganelle);
+        writer.Write(IsEndosymbiont);
     }
 
     /// <summary>
@@ -421,11 +429,12 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable, IArchivable
     public object Clone()
     {
         return new PlacedOrganelle(Definition, Position, Orientation, compoundsLeft.CloneShallow(),
-            (OrganelleUpgrades?)Upgrades?.Clone())
+            ModifiableUpgrades?.Clone())
         {
             WasSplit = WasSplit,
             IsDuplicate = IsDuplicate,
             SisterOrganelle = SisterOrganelle,
+            IsEndosymbiont = IsEndosymbiont,
         };
     }
 

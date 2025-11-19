@@ -942,7 +942,7 @@ public static class Constants
     ///   The measure of which beyond this threshold an engulfable is considered partially digested.
     ///   Used to determine whether a cell should be able to heal after being expelled from engulfment.
     /// </summary>
-    public const float PARTIALLY_DIGESTED_THRESHOLD = 0.5f;
+    public const float PARTIALLY_DIGESTED_THRESHOLD = 0.8f;
 
     /// <summary>
     ///   The maximum digestion progress in which an engulfable is considered fully digested. Do not change this.

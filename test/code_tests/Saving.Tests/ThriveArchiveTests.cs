@@ -1,5 +1,6 @@
 ﻿namespace ThriveTest.Saving.Tests;
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,6 +15,30 @@ using Xunit;
 public class ThriveArchiveTests
 {
     private readonly ThriveArchiveManager manager = new();
+
+    // Very important to ensure type mapping is unique. If this fails, then the newly added bad types need numbers
+    // incremented
+    [Fact]
+    public void ThriveArchive_TestObjectTypesAreUnique()
+    {
+        var seenTypes = new HashSet<int>();
+
+        // Put base types in first
+        foreach (var value in Enum.GetValues<ArchiveObjectType>())
+        {
+            Assert.True(seenTypes.Add((int)value));
+        }
+
+        // And then ensure all Thrive types are unique
+        foreach (var value in Enum.GetValues<ThriveArchiveObjectType>())
+        {
+            if (value == ThriveArchiveObjectType.InvalidThrive)
+                continue;
+
+            if (!seenTypes.Add((int)value))
+                Assert.Fail($"Duplicate archive object type for {value} = {(int)value}");
+        }
+    }
 
     [Fact]
     public void ThriveArchive_TestChunkSceneConfiguration()

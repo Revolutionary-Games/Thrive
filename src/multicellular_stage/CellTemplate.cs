@@ -1,16 +1,13 @@
 ﻿using System;
 using Godot;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
-[JsonObject(IsReference = true)]
-public class CellTemplate : IPositionedCell, ICloneable, IActionHex, IArchivable
+public class CellTemplate : IPositionedCell, IReadOnlyCellTemplate, ICloneable, IActionHex, IArchivable
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
     private int orientation;
 
-    [JsonConstructor]
     public CellTemplate(CellType cellType, Hex position, int orientation)
     {
         CellType = cellType;
@@ -33,44 +30,32 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex, IArchivable
         set => orientation = value % 6;
     }
 
-    [JsonProperty]
     public CellType CellType { get; private set; }
 
-    [JsonIgnore]
     public MembraneType MembraneType { get => CellType.MembraneType; set => CellType.MembraneType = value; }
 
-    [JsonIgnore]
     public float MembraneRigidity { get => CellType.MembraneRigidity; set => CellType.MembraneRigidity = value; }
 
-    [JsonIgnore]
     public Color Colour { get => CellType.Colour; set => CellType.Colour = value; }
 
-    [JsonIgnore]
     public bool IsBacteria { get => CellType.IsBacteria; set => CellType.IsBacteria = value; }
 
-    [JsonIgnore]
     public float BaseRotationSpeed { get => CellType.BaseRotationSpeed; set => CellType.BaseRotationSpeed = value; }
 
-    [JsonIgnore]
     public bool CanEngulf => CellType.CanEngulf;
 
-    [JsonIgnore]
     public string FormattedName => CellType.TypeName;
 
-    [JsonIgnore]
-    public OrganelleLayout<OrganelleTemplate> Organelles => CellType.Organelles;
+    public IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> Organelles => CellType.Organelles;
+    public OrganelleLayout<OrganelleTemplate> ModifiableOrganelles => CellType.ModifiableOrganelles;
 
-    [JsonIgnore]
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
-    [JsonIgnore]
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
-    [JsonIgnore]
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CellTemplate;
 
-    [JsonIgnore]
     public bool CanBeReferencedInArchive => true;
 
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)

@@ -746,7 +746,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             // Direct component setting is safe as we verified above we aren't running during a simulation update
             microbe.Remove<MicrobeSpeciesMember>();
             microbe.Set(new SpeciesMember(multicellularSpecies));
-            microbe.Add(new MulticellularSpeciesMember(multicellularSpecies, multicellularSpecies.CellTypes[0], 0));
+            microbe.Add(new MulticellularSpeciesMember(multicellularSpecies,
+                multicellularSpecies.ModifiableCellTypes[0], 0));
 
             microbe.Add(new MulticellularGrowth(multicellularSpecies));
 
@@ -893,7 +894,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             // TODO: multicellular tolerances
 
             // Allow updating the first cell type to reproduce (reproduction order changed)
-            earlySpeciesType.MulticellularCellType = earlySpeciesType.Species.Cells[0].CellType;
+            earlySpeciesType.MulticellularCellType = earlySpeciesType.Species.ModifiableCells[0].CellType;
 
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
                 earlySpeciesType.MulticellularCellType, earlySpeciesType.Species, WorldSimulation, workData1,
@@ -1529,7 +1530,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
             float maxDistance = 0.0f;
 
-            foreach (var cell in species.Cells)
+            foreach (var cell in species.ModifiableCells)
             {
                 float distance = Hex.AxialToCartesian(cell.Position).LengthSquared();
 

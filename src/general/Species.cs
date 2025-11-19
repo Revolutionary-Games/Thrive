@@ -14,7 +14,7 @@ using SharedBase.Archive;
 ///     This must remain JSON serializable until fossil files are switched over to the archive system.
 ///   </para>
 /// </remarks>
-public abstract class Species : ICloneable, IArchivable
+public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
 {
     /// <summary>
     ///   This is not an auto property to make save compatibility easier
@@ -62,7 +62,7 @@ public abstract class Species : ICloneable, IArchivable
     public string Genus { get; set; }
     public string Epithet { get; set; }
 
-    public Color Colour { get; set; } = new(1, 1, 1);
+    public Color SpeciesColour { get; set; } = new(1, 1, 1);
 
     /// <summary>
     ///   The colour value for GUI Components that want to show this species' colour.
@@ -73,7 +73,7 @@ public abstract class Species : ICloneable, IArchivable
     {
         get
         {
-            var colour = Colour;
+            var colour = SpeciesColour;
             return new Color(colour.R, colour.G, colour.B, 1);
         }
     }
@@ -88,7 +88,9 @@ public abstract class Species : ICloneable, IArchivable
     /// <summary>
     ///   This holds all behavioural values and defines how this species will behave in the environment.
     /// </summary>
-    public BehaviourDictionary Behaviour { get; set; } = new();
+    public IReadOnlyBehaviourDictionary Behaviour => ModifiableBehaviour;
+
+    public BehaviourDictionary ModifiableBehaviour { get; set; } = new();
 
     /// <summary>
     ///   This is the global population (the sum of population in all patches)
@@ -112,7 +114,9 @@ public abstract class Species : ICloneable, IArchivable
     /// <summary>
     ///   Environmental tolerances of this species (determines what it can take in terms of habitat)
     /// </summary>
-    public EnvironmentalTolerances Tolerances { get; private set; } = new();
+    public IReadOnlyEnvironmentalTolerances Tolerances => ModifiableTolerances;
+
+    public EnvironmentalTolerances ModifiableTolerances { get; private set; } = new();
 
     public string FormattedName => Genus + " " + Epithet;
 
@@ -227,9 +231,9 @@ public abstract class Species : ICloneable, IArchivable
             InitialCompounds.Add(entry.Key, entry.Value);
 
         foreach (var entry in mutation.Behaviour)
-            Behaviour[entry.Key] = entry.Value;
+            ModifiableBehaviour[entry.Key] = entry.Value;
 
-        Colour = mutation.Colour;
+        SpeciesColour = mutation.SpeciesColour;
 
         cachedBaseReproductionCost = null;
 
@@ -335,7 +339,7 @@ public abstract class Species : ICloneable, IArchivable
     public virtual ulong GetVisualHashCode()
     {
         // Name does not impact the visuals at all so do not use it here
-        return Colour.GetVisualHashCode() * 67;
+        return SpeciesColour.GetVisualHashCode() * 67;
     }
 
     public virtual string GetDetailString()
@@ -345,7 +349,7 @@ public abstract class Species : ICloneable, IArchivable
             ID,
             Generation,
             Population,
-            Colour.ToHtml(),
+            SpeciesColour.ToHtml(),
             string.Join("\n  ",
                 Behaviour.Select(b => BehaviourDictionary.GetBehaviourLocalizedString(b.Key) + ": " + b.Value)));
     }
@@ -361,10 +365,10 @@ public abstract class Species : ICloneable, IArchivable
             throw new ArgumentException("ID must be same in the target species (it needs to be a duplicated species)");
 
         foreach (var entry in Behaviour)
-            species.Behaviour[entry.Key] = entry.Value;
+            species.ModifiableBehaviour[entry.Key] = entry.Value;
 
         // Genus and epithet aren't copied as they are required constructor parameters
-        species.Colour = Colour;
+        species.SpeciesColour = SpeciesColour;
         species.Population = Population;
         species.Generation = Generation;
         species.PlayerSpecies = PlayerSpecies;
@@ -383,13 +387,13 @@ public abstract class Species : ICloneable, IArchivable
             species.InitialCompounds[entry.Key] = entry.Value;
 
         foreach (var entry in Behaviour)
-            species.Behaviour[entry.Key] = entry.Value;
+            species.ModifiableBehaviour[entry.Key] = entry.Value;
 
         species.Endosymbiosis = Endosymbiosis.Clone();
-        species.Tolerances = Tolerances.Clone();
+        species.ModifiableTolerances = ModifiableTolerances.Clone();
 
         // Genus and epithet aren't copied as they are required constructor parameters
-        species.Colour = Colour;
+        species.SpeciesColour = SpeciesColour;
         species.Population = Population;
         species.Generation = Generation;
         species.ID = ID;
@@ -406,15 +410,15 @@ public abstract class Species : ICloneable, IArchivable
         writer.Write(Epithet);
 
         writer.WriteObject(InitialCompounds);
-        writer.Write(Colour);
+        writer.Write(SpeciesColour);
         writer.Write(Obsolete);
-        writer.WriteObject((IArchivable)Behaviour);
+        writer.WriteObject((IArchivable)ModifiableBehaviour);
         writer.Write(Population);
         writer.Write(Generation);
         writer.Write(PlayerSpecies);
 
         writer.WriteObjectProperties(Endosymbiosis);
-        writer.WriteObjectProperties(Tolerances);
+        writer.WriteObjectProperties(ModifiableTolerances);
     }
 
     protected virtual void ReadNonConstructorBaseProperties(ISArchiveReader reader, ushort version)
@@ -423,14 +427,14 @@ public abstract class Species : ICloneable, IArchivable
             throw new InvalidArchiveVersionException(version, 1);
 
         InitialCompounds = reader.ReadObject<Dictionary<Compound, float>>();
-        Colour = reader.ReadColor();
+        SpeciesColour = reader.ReadColor();
         Obsolete = reader.ReadBool();
-        Behaviour = reader.ReadObject<BehaviourDictionary>();
+        ModifiableBehaviour = reader.ReadObject<BehaviourDictionary>();
         Population = reader.ReadInt64();
         Generation = reader.ReadInt32();
         PlayerSpecies = reader.ReadBool();
         reader.ReadObjectProperties(Endosymbiosis);
-        reader.ReadObjectProperties(Tolerances);
+        reader.ReadObjectProperties(ModifiableTolerances);
     }
 
     protected virtual Dictionary<Compound, float> CalculateBaseReproductionCost()

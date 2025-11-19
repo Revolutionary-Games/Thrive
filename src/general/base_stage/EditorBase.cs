@@ -71,6 +71,8 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     /// </summary>
     protected GameProperties? currentGame;
 
+    private readonly List<EditorCombinableActionData> actionCache = new();
+
 #pragma warning disable CA2213
     [Export]
     private Control editorGUIBaseNode = null!;
@@ -89,7 +91,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     /// <summary>
     ///   Base Node where all dynamically created world Nodes in the editor should go. Optionally grouped under
-    ///   a one more level of parent nodes so that different editor components can have their things visible at
+    ///   a one higher level of parent nodes so that different editor components can have their things visible at
     ///   different times
     /// </summary>
     public Node3D RootOfDynamicallySpawned { get; private set; } = null!;
@@ -509,15 +511,26 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     public virtual double WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
-        // TODO: determine if it is better to use extra memory here or if enumerating multiple times is better (or
-        // there's a way to redo this method interface to not need either workaround). Right now this is set to use
-        // extra memory as some quite complex filtering situations trigger this code so just to not have any unexpected
-        // performance impact of complicated data filtering pipelines this uses a temporary list
-        var tempActions = actions.ToList();
+        // We need to know the current amount of MP to compare the difference
+        if (mutationPointsCache == null)
+            CalculateMutationPointsLeft();
 
-        AddContextToActions(tempActions);
+        history.GetPerformedActionData(actionCache);
 
-        return history.WhatWouldActionsCost(tempActions);
+        foreach (var action in actions)
+        {
+            AddContextToAction(action);
+            actionCache.Add(action);
+        }
+
+        var result = CalculateUsedMutationPoints(actionCache);
+        actionCache.Clear();
+
+        // Need to compare with already used count, so we need to do this calculation to get that
+        var alreadyUsed = Constants.BASE_MUTATION_POINTS - mutationPointsCache!.Value;
+
+        // Need to adjust the result from absolute cost to relative cost
+        return result - alreadyUsed;
     }
 
     public virtual bool EnqueueAction(TAction action)
@@ -548,7 +561,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         return EnqueueAction((TAction)action);
     }
 
-    public virtual void AddContextToActions(IEnumerable<CombinableActionData> editorActions)
+    public virtual void AddContextToAction(CombinableActionData editorActions)
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }
@@ -1029,6 +1042,11 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         }
     }
 
+    protected virtual double CalculateUsedMutationPoints(List<EditorCombinableActionData> performedActionData)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
     /// <summary>
     ///   Applies the changes done and exits the editor back to <see cref="ReturnToStage"/>
     /// </summary>
@@ -1115,7 +1133,9 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         if (FreeBuilding || CheatManager.InfiniteMP)
             return Constants.BASE_MUTATION_POINTS;
 
-        mutationPointsCache = history.CalculateMutationPointsLeft();
+        history.GetPerformedActionData(actionCache);
+        mutationPointsCache = Constants.BASE_MUTATION_POINTS - CalculateUsedMutationPoints(actionCache);
+        actionCache.Clear();
 
         if (mutationPointsCache.Value is < Constants.ALLOWED_MP_OVERSHOOT or > Constants.BASE_MUTATION_POINTS)
         {

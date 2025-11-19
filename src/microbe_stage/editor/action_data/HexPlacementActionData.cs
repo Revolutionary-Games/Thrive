@@ -7,7 +7,12 @@ public abstract class HexPlacementActionData<THex, TContext> : EditorCombinableA
 {
     public const ushort SERIALIZATION_VERSION_HEX = 1;
 
+    /// <summary>
+    ///   Hex placed by this action. Note that the hex is allowed to be modified afterwards, so its position may not
+    ///   match!
+    /// </summary>
     public THex PlacedHex;
+
     public Hex Location;
     public int Orientation;
 

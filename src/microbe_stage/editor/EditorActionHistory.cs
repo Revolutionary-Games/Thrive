@@ -230,6 +230,14 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         return GetContext<TContext>(ActionToUndo());
     }
 
+    public void GetPerformedActionData(List<EditorCombinableActionData> result)
+    {
+        for (int i = 0; i < ActionIndex; ++i)
+        {
+            Actions[i].CopyData(result);
+        }
+    }
+
     private static TContext? GetContext<TContext>(TAction? action)
         where TContext : IArchivable
     {

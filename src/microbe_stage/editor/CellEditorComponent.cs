@@ -329,10 +329,10 @@ public partial class CellEditorComponent :
             if (previewMicrobeSpecies == null)
                 return;
 
-            previewMicrobeSpecies.Colour = value;
+            previewMicrobeSpecies.SpeciesColour = value;
 
             if (previewMicrobe.IsAlive())
-                previewSimulation!.ApplyMicrobeColour(previewMicrobe, previewMicrobeSpecies.Colour);
+                previewSimulation!.ApplyMicrobeColour(previewMicrobe, previewMicrobeSpecies.SpeciesColour);
         }
     }
 
@@ -959,17 +959,16 @@ public partial class CellEditorComponent :
         }
 
         // Get the species organelles to be edited. This also updates the placeholder hexes
-        foreach (var organelle in properties.Organelles.Organelles)
+        foreach (var organelle in properties.ModifiableOrganelles.Organelles)
         {
-            editedMicrobeOrganelles.AddFast((OrganelleTemplate)organelle.Clone(), hexTemporaryMemory,
-                hexTemporaryMemory2);
+            editedMicrobeOrganelles.AddFast(organelle.Clone(), hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         newName = properties.FormattedName;
 
         // This needs to be calculated here, otherwise ATP-related unlock conditions would
         // get null as the ATP balance
-        CalculateEnergyAndCompoundBalance(properties.Organelles.Organelles, properties.MembraneType,
+        CalculateEnergyAndCompoundBalance(properties.ModifiableOrganelles.Organelles, properties.MembraneType,
             Editor.CurrentPatch.Biome);
 
         UpdateOrganelleUnlockTooltips(true);
@@ -1006,13 +1005,13 @@ public partial class CellEditorComponent :
 
         // Apply changes to the species organelles
         // It is easiest to just replace all
-        editedProperties.Organelles.Clear();
+        editedProperties.ModifiableOrganelles.Clear();
 
         // Even in a multicellular context, it should always be safe to apply the organelle growth order
         foreach (var organelle in growthOrderGUI.ApplyOrderingToItems(editedMicrobeOrganelles.Organelles))
         {
-            var organelleToAdd = (OrganelleTemplate)organelle.Clone();
-            editedProperties.Organelles.AddFast(organelleToAdd, hexTemporaryMemory, hexTemporaryMemory2);
+            var organelleToAdd = organelle.Clone();
+            editedProperties.ModifiableOrganelles.AddFast(organelleToAdd, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         if (shouldUpdatePosition)
@@ -1210,6 +1209,7 @@ public partial class CellEditorComponent :
 
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
+        UpdateEndosymbiosisSpeciesData();
 
         if (!IsMulticellularEditor)
         {
@@ -1396,7 +1396,7 @@ public partial class CellEditorComponent :
         if (MicrobePreviewMode || !Visible)
             return false;
 
-        // Can't open organelle popup menu while moving something
+        // Can't open the organelle popup menu while moving something
         if (CanCancelAction)
         {
             Editor.OnActionBlockedWhileMoving();
@@ -1813,7 +1813,7 @@ public partial class CellEditorComponent :
             organelleMenu.DeleteOptionTooltip = string.Empty;
         }
 
-        // Move enabled only when microbe has more than one organelle
+        // Move enabled only when the microbe has more than one organelle
         organelleMenu.EnableMoveOption = MicrobeSize > 1;
 
         // Modify / upgrade possible when defined on the primary organelle definition
@@ -2174,7 +2174,7 @@ public partial class CellEditorComponent :
     ///   If not hovering over an organelle, render the to-be-placed organelle
     /// </summary>
     private void RenderHighlightedOrganelle(int q, int r, int rotation, OrganelleDefinition shownOrganelleDefinition,
-        OrganelleUpgrades? upgrades)
+        IReadOnlyOrganelleUpgrades? upgrades)
     {
         RenderHoveredHex(q, r, shownOrganelleDefinition.GetRotatedHexes(rotation), isPlacementProbablyValid,
             out bool hadDuplicate);
@@ -2804,7 +2804,7 @@ public partial class CellEditorComponent :
     /// </remarks>
     private void CopyEditedPropertiesToSpecies(MicrobeSpecies target)
     {
-        target.Colour = Colour;
+        target.SpeciesColour = Colour;
         target.MembraneType = Membrane;
         target.MembraneRigidity = Rigidity;
         target.IsBacteria = true;
@@ -2825,11 +2825,11 @@ public partial class CellEditorComponent :
         if (overwriteBehaviourForCalculations != null)
         {
             // Make a clone to make sure data cannot change while running
-            target.Behaviour = overwriteBehaviourForCalculations.CloneObject();
+            target.ModifiableBehaviour = ((IReadOnlyBehaviourDictionary)overwriteBehaviourForCalculations).Clone();
         }
 
         // Copy tolerances
-        target.Tolerances.CopyFrom(tolerancesEditor.CurrentTolerances);
+        target.ModifiableTolerances.CopyFrom(tolerancesEditor.CurrentTolerances);
     }
 
     private void SetLightLevelOption(int option)
@@ -3421,7 +3421,7 @@ public partial class CellEditorComponent :
         private void CopyPristineToCalculation()
         {
             // TODO: there is duplication between this and CopyEditedPropertiesToSpecies
-            calculationSpecies.Colour = pristineSpeciesCopy.Colour;
+            calculationSpecies.SpeciesColour = pristineSpeciesCopy.SpeciesColour;
             calculationSpecies.MembraneType = pristineSpeciesCopy.MembraneType;
             calculationSpecies.MembraneRigidity = pristineSpeciesCopy.MembraneRigidity;
             calculationSpecies.IsBacteria = pristineSpeciesCopy.IsBacteria;
@@ -3437,8 +3437,10 @@ public partial class CellEditorComponent :
                 calculationSpecies.Organelles.AddFast(entry, workMemory1, workMemory2);
             }
 
-            calculationSpecies.Behaviour = pristineSpeciesCopy.Behaviour;
-            calculationSpecies.Tolerances.CopyFrom(pristineSpeciesCopy.Tolerances);
+            // The pristine copy is not modified, so it is safe to not clone here
+            calculationSpecies.ModifiableBehaviour = pristineSpeciesCopy.ModifiableBehaviour;
+
+            calculationSpecies.ModifiableTolerances.CopyFrom(pristineSpeciesCopy.Tolerances);
         }
 
         private bool StartNextRun()

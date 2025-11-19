@@ -590,25 +590,25 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
 
         if (current.OxygenScore < 1)
         {
-            species.Tolerances.OxygenResistance = optimal.OxygenResistance;
+            species.ModifiableTolerances.OxygenResistance = optimal.OxygenResistance;
         }
 
         if (current.UVScore < 1)
         {
-            species.Tolerances.UVResistance = optimal.UVResistance;
+            species.ModifiableTolerances.UVResistance = optimal.UVResistance;
         }
 
         if (current.TemperatureScore < 1)
         {
-            species.Tolerances.PreferredTemperature = optimal.PreferredTemperature;
+            species.ModifiableTolerances.PreferredTemperature = optimal.PreferredTemperature;
 
             // TODO: should this reset tolerance range if it is calculated to be perfect?
         }
 
         if (current.PressureScore < 1)
         {
-            species.Tolerances.PressureMinimum = optimal.PressureMinimum;
-            species.Tolerances.PressureMaximum = optimal.PressureMaximum;
+            species.ModifiableTolerances.PressureMinimum = optimal.PressureMinimum;
+            species.ModifiableTolerances.PressureMaximum = optimal.PressureMaximum;
         }
     }
 }
