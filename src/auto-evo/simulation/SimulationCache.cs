@@ -34,6 +34,7 @@ public class SimulationCache
 
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseSpeeds = new();
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseHexSizes = new();
+    private readonly Dictionary<MicrobeSpecies, float> cachedBaseRotationSpeeds = new();
 
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions, CompoundDefinition, CompoundDefinition), float>
         cachedCompoundScores = new();
@@ -140,6 +141,19 @@ public class SimulationCache
         cached = species.BaseHexSize;
 
         cachedBaseHexSizes.Add(species, cached);
+        return cached;
+    }
+
+    public float GetRotationSpeedForSpecies(MicrobeSpecies species)
+    {
+        if (cachedBaseRotationSpeeds.TryGetValue(species, out var cached))
+        {
+            return cached;
+        }
+
+        cached = MicrobeInternalCalculations.CalculateRotationSpeed(species.Organelles.Organelles);
+
+        cachedBaseRotationSpeeds.Add(species, cached);
         return cached;
     }
 
@@ -276,8 +290,10 @@ public class SimulationCache
         // one dictionary lookup
         var predatorHexSize = GetBaseHexSizeForSpecies(predator);
         var predatorSpeed = GetSpeedForSpecies(predator);
+        var predatorRotationSpeed = GetRotationSpeedForSpecies(predator);
         var preyHexSize = GetBaseHexSizeForSpecies(prey);
         var preySpeed = GetSpeedForSpecies(prey);
+        var preyRotationSpeed = GetRotationSpeedForSpecies(prey);
         var slowedPreySpeed = preySpeed;
         var preyIndividualCost = MichePopulation.CalculateMicrobeIndividualCost(prey, biomeConditions, this);
         var preyEnergyBalance = GetEnergyBalanceForSpecies(prey, biomeConditions);
@@ -358,12 +374,14 @@ public class SimulationCache
                 catchScore += (predatorSpeed / preySpeed) * (1 - slowedProportion);
             }
 
+            // If you can slow the target, some proportion of prey are easier to catch
             if (predatorSpeed > slowedPreySpeed)
             {
-                // You catch more preys if you are fast, and if they are slow.
-                // This incentivizes engulfment strategies in these cases.
                 catchScore += (predatorSpeed / slowedPreySpeed) * slowedProportion;
             }
+
+            // But prey may escape if they move away before you can turn to chase them
+            catchScore *= 1.0f - predatorRotationSpeed / 2;
 
             // If you have a chemoreceptor, active hunting types are more effective
             if (hasChemoreceptor)
@@ -378,7 +396,9 @@ public class SimulationCache
             // ... but you may also catch them by luck (e.g. when they run into you),
             // and this is especially easy if you're huge.
             // This is also used to incentivize size in microbe species.
-            catchScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * predatorHexSize;
+            // Prey that can't turn away fast enough are more likely to get caught.
+            catchScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * predatorHexSize *
+                (1.0f + preyRotationSpeed);
 
             // Allow for some degree of lucky engulfment
             engulfmentScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
@@ -409,9 +429,12 @@ public class SimulationCache
             }
             else
             {
-                pilusScore *= Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+                pilusScore *= Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * (1.0f + preyRotationSpeed);
             }
         }
+
+        // Pili are also more useful if you can turn them towards the target in time
+        pilusScore *= 1.0f - predatorRotationSpeed / 2;
 
         // Damaging toxin section
 
@@ -457,6 +480,9 @@ public class SimulationCache
 
         // Prey that resist toxin are of course less vulnerable to being hunted with it
         damagingToxinScore /= prey.MembraneType.ToxinResistance;
+
+        // Toxins also require facing and tracking the target
+        damagingToxinScore *= 1.0f - predatorRotationSpeed / 2;
 
         // If you have a chemoreceptor, active hunting types are more effective
         if (hasChemoreceptor)
@@ -606,6 +632,7 @@ public class SimulationCache
         cachedSimpleEnergyBalances.Clear();
         cachedBaseSpeeds.Clear();
         cachedBaseHexSizes.Clear();
+        cachedBaseRotationSpeeds.Clear();
         cachedCompoundScores.Clear();
         cachedGeneratedCompound.Clear();
         predationScores.Clear();
