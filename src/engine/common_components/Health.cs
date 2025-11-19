@@ -86,11 +86,11 @@ public struct Health : IArchivableComponent
 
 public static class HealthHelpers
 {
-    private static IDifficulty? difficulty;
+    private static bool InstantKillProtection = true;
 
     public static void SetWorld(GameWorld world)
     {
-        difficulty = world.WorldSettings.Difficulty;
+        InstantKillProtection = world.WorldSettings.Difficulty.InstantKillProtection;
     }
 
     public static Health ReadFromArchive(ISArchiveReader reader, ushort version)
@@ -272,7 +272,7 @@ public static class HealthHelpers
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static float GetInstantKillProtectionThreshold(bool isPlayer)
     {
-        return difficulty!.InstantKillProtection && isPlayer ?
+        return InstantKillProtection && isPlayer ?
             Constants.PLAYER_INSTANT_KILL_PROTECTION_HEALTH_THRESHOLD :
             -1;
     }
