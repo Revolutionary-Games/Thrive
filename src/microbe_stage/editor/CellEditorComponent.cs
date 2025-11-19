@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using Arch.Core;
@@ -242,7 +243,7 @@ public partial class CellEditorComponent :
     private MicrobeVisualOnlySimulation? previewSimulation;
 
     private MicrobeSpecies? previewMicrobeSpecies;
-    private Entity previewMicrobe;
+    private Entity previewMicrobe = Entity.Null;
 
     private Color colour;
 
@@ -1718,6 +1719,14 @@ public partial class CellEditorComponent :
     {
         if (previewSimulation == null)
             throw new InvalidOperationException("Component needs to be initialized first");
+
+#if DEBUG
+        if (previewMicrobe == default)
+        {
+            GD.PrintErr("Preview microbe should not be default initialized");
+            Debugger.Break();
+        }
+#endif
 
         if (previewMicrobe.IsAlive() && previewMicrobeSpecies != null)
             return false;
