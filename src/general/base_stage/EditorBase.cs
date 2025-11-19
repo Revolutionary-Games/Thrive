@@ -527,7 +527,16 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         actionCache.Clear();
 
         // Need to compare with already used count, so we need to do this calculation to get that
-        var alreadyUsed = Constants.BASE_MUTATION_POINTS - mutationPointsCache!.Value;
+        // Freebuild doesn't calculate MP, so it is always 0 here.
+        double alreadyUsed;
+        if (mutationPointsCache == null)
+        {
+            alreadyUsed = 0;
+        }
+        else
+        {
+            alreadyUsed = Constants.BASE_MUTATION_POINTS - mutationPointsCache!.Value;
+        }
 
         // Need to adjust the result from absolute cost to relative cost
         return result - alreadyUsed;
