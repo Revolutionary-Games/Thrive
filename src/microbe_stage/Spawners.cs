@@ -735,7 +735,7 @@ public static class SpawnHelpers
                     throw new ArgumentException("First Multicellular cell must have body plan index of 0");
                 }
 
-                resolvedCellType = multicellularSpecies.Cells[0].CellType;
+                resolvedCellType = multicellularSpecies.ModifiableCells[0].CellType;
 
                 usedCellDefinition = resolvedCellType;
                 var properties = new CellProperties(usedCellDefinition);
@@ -749,7 +749,7 @@ public static class SpawnHelpers
             }
 
 #if DEBUG
-            if (multicellularData.CellBodyPlanIndex >= multicellularSpecies.Cells.Count)
+            if (multicellularData.CellBodyPlanIndex >= multicellularSpecies.ModifiableCells.Count)
                 throw new InvalidOperationException("Bad body plan index was generated for a cell");
 #endif
 
@@ -954,7 +954,7 @@ public static class SpawnHelpers
                     {
                         // -1 here as the bud is always spawned, so the number of cells to add on top of that is the max
                         // count
-                        var maxCount = multicellular.Cells.Count - 1;
+                        var maxCount = multicellular.ModifiableCells.Count - 1;
                         int cellsToAdd = 0;
 
                         while (cellsToAdd < maxCount)

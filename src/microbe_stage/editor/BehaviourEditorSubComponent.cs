@@ -59,7 +59,7 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
     {
         base.OnEditorSpeciesSetup(species);
 
-        Behaviour = Editor.EditedBaseSpecies.Behaviour;
+        Behaviour = Editor.EditedBaseSpecies.Behaviour.Clone();
     }
 
     public override void WritePropertiesToArchive(ISArchiveWriter writer)
@@ -84,7 +84,7 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
 
     public override void OnFinishEditing()
     {
-        Editor.EditedBaseSpecies.Behaviour =
+        Editor.EditedBaseSpecies.ModifiableBehaviour =
             Behaviour ?? throw new Exception("Editor has not created behaviour object");
     }
 
@@ -133,9 +133,9 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
         Editor.EnqueueAction(action);
     }
 
-    public void UpdateAllBehaviouralSliders(BehaviourDictionary behaviour)
+    public void UpdateAllBehaviouralSliders(BehaviourDictionary newBehaviour)
     {
-        foreach (var pair in behaviour)
+        foreach (var pair in newBehaviour)
             UpdateBehaviourSlider(pair.Key, pair.Value);
     }
 

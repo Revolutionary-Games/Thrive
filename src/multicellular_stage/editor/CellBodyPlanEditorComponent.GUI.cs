@@ -48,7 +48,7 @@ public partial class CellBodyPlanEditorComponent
         {
             newProcesses.Clear();
 
-            ProcessSystem.ComputeActiveProcessList(cellType.Key.Organelles, ref newProcesses);
+            ProcessSystem.ComputeActiveProcessList(cellType.Key.ModifiableOrganelles, ref newProcesses);
 
             for (int i = 0; i < newProcesses.Count; ++i)
             {

@@ -15,7 +15,7 @@ using SharedBase.Archive;
 ///   </para>
 /// </remarks>
 /// <typeparam name="T">The type of organelle contained in this layout</typeparam>
-public class CellLayout<T> : HexLayout<T>, IArchivable
+public class CellLayout<T> : HexLayout<T>, IReadOnlyCellLayout<T>, IArchivable
     where T : class, IPositionedCell
 {
     public CellLayout(Action<T> onAdded, Action<T>? onRemoved = null) : base(onAdded, onRemoved)
@@ -80,7 +80,7 @@ public class CellLayout<T> : HexLayout<T>, IArchivable
     {
         result.Clear();
 
-        var organellesInternal = hex.Organelles.Organelles;
+        var organellesInternal = hex.ModifiableOrganelles.Organelles;
         int organelleCount = organellesInternal.Count;
 
         for (int i = 0; i < organelleCount; ++i)

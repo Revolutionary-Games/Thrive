@@ -78,8 +78,14 @@ public partial class LogInterceptor : Logger
 
         // Ignore some errors we do not care about
         // This is technically a warning we could remove now with the type check
-        if (code.Contains("with non-equal opposite anchors"))
+        if (rationale.Contains("with non-equal opposite anchors"))
             return;
+
+        if (rationale.Contains("Parent node is busy setting up children") ||
+            rationale.Contains("Parent node is busy adding"))
+        {
+            return;
+        }
 
         // We might want to ignore this somewhat intermittent error: Parent node is busy adding
         // that sometimes happens on scene switch but doesn't seem to cause any problems
