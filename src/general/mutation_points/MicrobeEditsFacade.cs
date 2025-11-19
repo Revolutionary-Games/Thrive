@@ -87,6 +87,7 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
 
     public IReadOnlyOrganelleTemplate? GetElementAt(Hex location, List<Hex> temporaryHexesStorage)
     {
+        ResolveDataIfDirty();
         var originalItem = microbeSpecies.Organelles.GetElementAt(location, temporaryHexesStorage);
 
         if (originalItem != null && !removedOrganelles.Contains(originalItem))
@@ -113,6 +114,7 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
 
     public IReadOnlyOrganelleTemplate? GetByExactElementRootPosition(Hex location)
     {
+        ResolveDataIfDirty();
         var originalItem = microbeSpecies.Organelles.GetByExactElementRootPosition(location);
 
         if (originalItem != null && !removedOrganelles.Contains(originalItem))
