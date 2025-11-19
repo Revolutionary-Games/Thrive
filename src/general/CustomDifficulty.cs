@@ -1,4 +1,5 @@
-﻿using SharedBase.Archive;
+﻿using JetBrains.Annotations;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Customised difficulty setting
@@ -88,6 +89,10 @@ public class CustomDifficulty : IDifficulty
         if (version > 2)
         {
             instance.InstantKillProtection = reader.ReadBool();
+        }
+        else
+        {
+            instance.InstantKillProtection = true;
         }
 
         return instance;
