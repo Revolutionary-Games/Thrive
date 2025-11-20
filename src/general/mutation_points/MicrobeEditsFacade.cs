@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Godot;
 
@@ -11,123 +10,49 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
 {
     private readonly IReadOnlyMicrobeSpecies microbeSpecies;
 
-    private readonly OrganelleDefinition nucleus;
-
-    private readonly List<IReadOnlyOrganelleTemplate> removedOrganelles = new();
-    private readonly List<OrganelleWithOriginalReference> addedOrganelles = new();
-
-    /// <summary>
-    ///   Because we need to track initial data of organelles, we need to always use proxy objects with extra data, so
-    ///   we cache them for efficiency.
-    /// </summary>
-    private readonly Stack<OrganelleWithOriginalReference> unusedOrganelles = new();
-
-    private MembraneType? newMembrane;
-    private bool overrideMembrane;
-
-    private float newMembraneRigidity;
-    private bool overrideMembraneRigidity;
+    private readonly CellTypeEditsFacade organelleEditsFacade;
 
     public MicrobeEditsFacade(IReadOnlyMicrobeSpecies microbeSpecies, OrganelleDefinition? nucleusDefinition = null) :
         base(microbeSpecies)
     {
+        organelleEditsFacade = new CellTypeEditsFacade(microbeSpecies, nucleusDefinition);
         this.microbeSpecies = microbeSpecies;
-        nucleus = nucleusDefinition ?? SimulationParameters.Instance.GetOrganelleType("nucleus");
     }
 
-    public IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> Organelles => this;
-
-    public MembraneType MembraneType
-    {
-        get
-        {
-            ResolveDataIfDirty();
-            return overrideMembrane && newMembrane != null ? newMembrane : microbeSpecies.MembraneType;
-        }
-    }
-
-    public float MembraneRigidity
-    {
-        get
-        {
-            ResolveDataIfDirty();
-            return overrideMembraneRigidity ? newMembraneRigidity : microbeSpecies.MembraneRigidity;
-        }
-    }
+    public IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> Organelles => organelleEditsFacade.Organelles;
+    public MembraneType MembraneType => organelleEditsFacade.MembraneType;
+    public float MembraneRigidity => organelleEditsFacade.MembraneRigidity;
 
     public Color Colour => SpeciesColour;
 
     /// <summary>
-    ///   Checks if this has a nucleus. Note that this is pretty inefficient as this needs to loop all the
-    ///   organelles. And allocates an enumerator.
+    ///   Note that this is a very inefficient check
     /// </summary>
-    public bool IsBacteria
-    {
-        get
-        {
-            foreach (var organelle in Organelles)
-            {
-                if (organelle.Definition == nucleus)
-                    return false;
-            }
+    public bool IsBacteria => organelleEditsFacade.IsBacteria;
 
-            return true;
-        }
-    }
+    public int MPCost => microbeSpecies.MPCost;
+    public string CellTypeName => microbeSpecies.CellTypeName;
 
-    // TODO: check that this is right (there might sometimes be too many items in removedOrganelles)
-    // Though this seems to not be relied on currently
-    public int Count => microbeSpecies.Organelles.Count + addedOrganelles.Count - removedOrganelles.Count;
-
-    public IEnumerator<IReadOnlyOrganelleTemplate> GetEnumerator()
-    {
-        ResolveDataIfDirty();
-        return new OrganelleEnumerator(this);
-    }
+    public int Count => organelleEditsFacade.Count;
 
     public IReadOnlyOrganelleTemplate? GetElementAt(Hex location, List<Hex> temporaryHexesStorage)
     {
-        ResolveDataIfDirty();
-        var originalItem = microbeSpecies.Organelles.GetElementAt(location, temporaryHexesStorage);
-
-        if (originalItem != null && !removedOrganelles.Contains(originalItem))
-            return originalItem;
-
-        // We need to resolve all hex positions of our added organelles, so this is a bit trickier
-        foreach (var addedOrganelle in addedOrganelles)
-        {
-            var basePosition = addedOrganelle.Position;
-
-            var rotated = addedOrganelle.Definition.GetRotatedHexes(addedOrganelle.Orientation);
-            var count = rotated.Count;
-            for (int i = 0; i < count; ++i)
-            {
-                if (rotated[i] + basePosition == location)
-                {
-                    return addedOrganelle;
-                }
-            }
-        }
-
-        return null;
+        return organelleEditsFacade.GetElementAt(location, temporaryHexesStorage);
     }
 
     public IReadOnlyOrganelleTemplate? GetByExactElementRootPosition(Hex location)
     {
-        ResolveDataIfDirty();
-        var originalItem = microbeSpecies.Organelles.GetByExactElementRootPosition(location);
+        return organelleEditsFacade.GetByExactElementRootPosition(location);
+    }
 
-        if (originalItem != null && !removedOrganelles.Contains(originalItem))
-            return originalItem;
+    public IEnumerator<IReadOnlyOrganelleTemplate> GetEnumerator()
+    {
+        return organelleEditsFacade.GetEnumerator();
+    }
 
-        // Check if we added such a thing
-        foreach (var addedOrganelle in addedOrganelles)
-        {
-            if (addedOrganelle.Position == location)
-                return addedOrganelle;
-        }
-
-        return null;
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 
     public MicrobeSpecies Clone(bool cloneOrganelles)
@@ -148,403 +73,30 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
         return result;
     }
 
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
-
-    protected override void OnStartApplyChanges()
+    internal override void OnStartApplyChanges()
     {
         base.OnStartApplyChanges();
-
-        overrideMembrane = false;
-        overrideMembraneRigidity = false;
-
-        // Capture back all organelle instances
-        foreach (var addedOrganelle in addedOrganelles)
-        {
-            unusedOrganelles.Push(addedOrganelle);
-        }
-
-        addedOrganelles.Clear();
-        removedOrganelles.Clear();
+        organelleEditsFacade.OnStartApplyChanges();
     }
 
-    protected override bool ApplyAction(EditorCombinableActionData actionData)
+    internal override bool ApplyAction(EditorCombinableActionData actionData)
     {
-        if (actionData is OrganellePlacementActionData organellePlacementActionData)
+        if (actionData is NewMicrobeActionData)
         {
-            // This is just runtime data, replaced cytoplasm actions are in a separate remove organelle action
-            // organellePlacementActionData.ReplacedCytoplasm;
-
-            var newOrganelle = GetModifiable(organellePlacementActionData.PlacedHex);
-
-            // Preserve the original position in history
-            newOrganelle.Position = organellePlacementActionData.Location;
-            newOrganelle.Orientation = organellePlacementActionData.Orientation;
-
-            addedOrganelles.Add(newOrganelle);
-
-            return true;
-        }
-
-        if (actionData is EndosymbiontPlaceActionData endosymbiontPlaceActionData)
-        {
-            var newOrganelle = GetModifiable(endosymbiontPlaceActionData.PlacedOrganelle);
-            newOrganelle.Position = endosymbiontPlaceActionData.PlacementLocation;
-            newOrganelle.Orientation = endosymbiontPlaceActionData.PlacementRotation;
-
-            // Make certain this is marked as an endosymbiont
-            newOrganelle.IsEndosymbiont = true;
-
-            addedOrganelles.Add(newOrganelle);
-            return true;
-        }
-
-        if (actionData is OrganelleMoveActionData organelleMoveActionData)
-        {
-            IReadOnlyOrganelleTemplate? original = null;
-
-            // Find a match first if we have done something on this hex before
-            foreach (var addedOrganelle in addedOrganelles)
-            {
-                if (addedOrganelle.Position == organelleMoveActionData.OldLocation &&
-                    addedOrganelle.Orientation == organelleMoveActionData.OldRotation)
-                {
-                    original = addedOrganelle;
-
-                    if (original.Definition != organelleMoveActionData.MovedHex.Definition)
-                        throw new InvalidOperationException("Found an unrelated organelle at move old location");
-
-                    addedOrganelles.Remove(addedOrganelle);
-                    break;
-                }
-            }
-
-            if (original == null)
-            {
-                // Then match to the original microbe organelles
-                original = microbeSpecies.Organelles.GetByExactElementRootPosition(organelleMoveActionData.OldLocation);
-
-                if (original != null)
-                {
-                    if (original.Definition != organelleMoveActionData.MovedHex.Definition)
-                        GD.PrintErr("Found unrelated organelle at exact position of moved organelle");
-
-                    // Don't want the old instance to show up any more
-                    removedOrganelles.Add(original);
-                }
-            }
-
-            if (original == null)
-                throw new InvalidOperationException("Could not find the organelle a move operation is related to");
-
-            // And then we can add a new organelle
-            var modifiable = GetModifiable(original);
-            modifiable.Position = organelleMoveActionData.NewLocation;
-            modifiable.Orientation = organelleMoveActionData.NewRotation;
-
-            addedOrganelles.Add(modifiable);
-            return true;
-        }
-
-        if (actionData is OrganelleRemoveActionData organelleRemoveActionData)
-        {
-            IReadOnlyOrganelleTemplate? original = null;
-
-            // Find a match first if we have done something on this hex before
-            foreach (var addedOrganelle in addedOrganelles)
-            {
-                if (addedOrganelle.Position == organelleRemoveActionData.Location &&
-                    addedOrganelle.Orientation == organelleRemoveActionData.Orientation)
-                {
-                    original = addedOrganelle;
-
-                    if (original.Definition != organelleRemoveActionData.RemovedHex.Definition)
-                        throw new InvalidOperationException("Found an unrelated organelle at delete location");
-
-                    addedOrganelles.Remove(addedOrganelle);
-                    break;
-                }
-            }
-
-            if (original == null)
-            {
-                // Then match to the original microbe organelles
-                original = microbeSpecies.Organelles.GetByExactElementRootPosition(organelleRemoveActionData.Location);
-
-                if (original != null)
-                {
-                    if (original.Definition != organelleRemoveActionData.RemovedHex.Definition)
-                        GD.PrintErr("Found unrelated organelle at exact position of removed organelle");
-
-                    // Don't want the old instance to show up any more
-                    removedOrganelles.Add(original);
-                }
-            }
-
-            if (original == null)
-                throw new InvalidOperationException("Could not find the organelle a remove operation is related to");
-
-            // We already removed the original, so there's nothing more to do
-
-            return true;
-        }
-
-        if (actionData is OrganelleUpgradeActionData organelleUpgradeActionData)
-        {
-            IReadOnlyOrganelleTemplate? original = null;
-
-            // Find a match first if we have done something on this hex before
-            foreach (var addedOrganelle in addedOrganelles)
-            {
-                // Match based on what the organelle was before the upgrade, not the upgraded organelle itself
-                if (addedOrganelle.OriginalFrom == organelleUpgradeActionData.UpgradedOrganelle)
-                {
-                    original = addedOrganelle;
-
-                    addedOrganelles.Remove(addedOrganelle);
-                    break;
-                }
-            }
-
-            if (original == null)
-            {
-                // Then match to the original microbe organelles
-                original = microbeSpecies.Organelles.GetByExactElementRootPosition(organelleUpgradeActionData.Position);
-
-                // TODO: it should not be necessary now to fallback to using
-                // organelleUpgradeActionData.UpgradedOrganelle.Position as that can lead to finding the wrong
-                // organelle if the player did a very complex shuffling and upgrading of multiple organelles of the
-                // same type.
-
-                if (original != null)
-                {
-                    // Don't want the old instance to show up any more
-                    if (original.Definition != organelleUpgradeActionData.UpgradedOrganelle.Definition)
-                        GD.PrintErr("Found unrelated organelle at old position of upgraded organelle");
-
-                    // The reference should equal here
-                    if (!ReferenceEquals(original, organelleUpgradeActionData.UpgradedOrganelle))
-                    {
-                        GD.PrintErr(
-                            "Organelle reference doesn't equal at original position when applying upgrade in facade");
-                    }
-
-                    removedOrganelles.Add(original);
-                }
-            }
-
-            if (original == null)
-                throw new InvalidOperationException("Could not find the organelle an upgrade operation is related to");
-
-            // And then we can add a new organelle with the upgrade applied (as we removed the previous already)
-            var modifiable = GetModifiable(original);
-
-            modifiable.ModifiableUpgrades = organelleUpgradeActionData.NewUpgrades;
-
-            addedOrganelles.Add(modifiable);
-            return true;
-        }
-
-        if (actionData is RigidityActionData rigidityActionData)
-        {
-            overrideMembraneRigidity = true;
-            newMembraneRigidity = rigidityActionData.NewRigidity;
-            return true;
-        }
-
-        if (actionData is MembraneActionData membraneActionData)
-        {
-            overrideMembrane = true;
-            newMembrane = membraneActionData.NewMembrane;
-            return true;
-        }
-
-        if (actionData is NewMicrobeActionData newMicrobeActionData)
-        {
-            // TODO: make sure this works correctly
-
-            // Clear already applied things
-            foreach (var organelle in newMicrobeActionData.OldEditedMicrobeOrganelles)
-            {
-                if (!removedOrganelles.Contains(organelle))
-                    removedOrganelles.Add(organelle);
-            }
-
-            addedOrganelles.Clear();
-
-            // Logic loaned from DoNewMicrobeAction
-            overrideMembrane = true;
-            newMembrane = SimulationParameters.Instance.GetMembrane("single");
-
-            // Use a temporary new organelle reference as this is created from thin air in the editor as well
-            var newCytoplasm = new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("cytoplasm"),
-                new Hex(0, 0), 0);
-            addedOrganelles.Add(new OrganelleWithOriginalReference(newCytoplasm));
-
-            overrideMembraneRigidity = true;
-            newMembraneRigidity = 0;
-
+            // We separately apply just the colour change portion, the internal facade does everything else
             SetNewColour(Colors.White);
-
-            return true;
         }
 
-        return base.ApplyAction(actionData);
-    }
-
-    private OrganelleWithOriginalReference GetModifiable(IReadOnlyOrganelleTemplate organelleTemplate)
-    {
-        if (unusedOrganelles.TryPop(out var existing))
+        // Forward some actions to the base
+        if (actionData is BehaviourActionData or ToleranceActionData)
         {
-            existing.ReuseFor(organelleTemplate);
-            return existing;
+            return base.ApplyAction(actionData);
         }
 
-        // Ran out of cached things, make more
-        return new OrganelleWithOriginalReference(organelleTemplate);
-    }
+        if (actionData is ColourActionData)
+            base.ApplyAction(actionData);
 
-    private sealed class OrganelleWithOriginalReference : OrganelleTemplate
-    {
-        private OrganelleUpgrades? upgradeOverride;
-
-        private bool newIsEndosymbiont;
-        private bool overrideEndosymbiont;
-
-        public OrganelleWithOriginalReference(IReadOnlyOrganelleTemplate original) : base(original.Definition,
-            original.Position, original.Orientation)
-        {
-            // Make sure creating further reference objects keeps the original reference
-            if (original is OrganelleWithOriginalReference withAncestorReference)
-            {
-                OriginalFrom = withAncestorReference.OriginalFrom;
-
-                // Keep upgrade override the same
-                upgradeOverride = withAncestorReference.upgradeOverride;
-                newIsEndosymbiont = withAncestorReference.newIsEndosymbiont;
-                overrideEndosymbiont = withAncestorReference.overrideEndosymbiont;
-            }
-            else
-            {
-                OriginalFrom = original;
-            }
-        }
-
-        public IReadOnlyOrganelleTemplate OriginalFrom { get; private set; }
-
-        public override OrganelleUpgrades? ModifiableUpgrades
-        {
-            get => upgradeOverride ?? throw new Exception("Not overridden");
-            set => upgradeOverride = value;
-        }
-
-        public override bool IsEndosymbiont
-        {
-            get => overrideEndosymbiont ? newIsEndosymbiont : OriginalFrom.IsEndosymbiont;
-            set
-            {
-                overrideEndosymbiont = true;
-                newIsEndosymbiont = value;
-            }
-        }
-
-        public override IReadOnlyOrganelleUpgrades? Upgrades => upgradeOverride ?? OriginalFrom.Upgrades;
-
-        internal void ReuseFor(IReadOnlyOrganelleTemplate original)
-        {
-            if (original is OrganelleWithOriginalReference withAncestorReference)
-            {
-                OriginalFrom = withAncestorReference.OriginalFrom;
-
-                // Keep upgrade override the same
-                upgradeOverride = withAncestorReference.upgradeOverride;
-
-                overrideEndosymbiont = withAncestorReference.overrideEndosymbiont;
-                newIsEndosymbiont = withAncestorReference.newIsEndosymbiont;
-            }
-            else
-            {
-                OriginalFrom = original;
-                upgradeOverride = null;
-                overrideEndosymbiont = false;
-            }
-
-            Definition = original.Definition;
-            Position = original.Position;
-            Orientation = original.Orientation;
-        }
-    }
-
-    private class OrganelleEnumerator : IEnumerator<IReadOnlyOrganelleTemplate>
-    {
-        private readonly MicrobeEditsFacade dataSource;
-
-        private readonly IEnumerator<IReadOnlyOrganelleTemplate> originalReader;
-
-        private int readIndex = -1;
-
-        private IReadOnlyOrganelleTemplate? current;
-
-        public OrganelleEnumerator(MicrobeEditsFacade dataSource)
-        {
-            this.dataSource = dataSource;
-            originalReader = dataSource.microbeSpecies.Organelles.GetEnumerator();
-        }
-
-        IReadOnlyOrganelleTemplate IEnumerator<IReadOnlyOrganelleTemplate>.Current =>
-            current ?? throw new InvalidOperationException("No element");
-
-        object? IEnumerator.Current => current;
-
-        public bool MoveNext()
-        {
-            if (readIndex == -1)
-            {
-                // Reading original items
-                while (true)
-                {
-                    if (originalReader.MoveNext())
-                    {
-                        current = originalReader.Current;
-
-                        // Need to read the next item if we are ignoring this item
-                        if (dataSource.removedOrganelles.Contains(current))
-                            continue;
-
-                        // Otherwise we found a good item
-                        return true;
-                    }
-
-                    // Original items ended
-                    break;
-                }
-            }
-
-            // Reading extra items now
-            ++readIndex;
-
-            if (readIndex >= dataSource.addedOrganelles.Count)
-            {
-                current = null;
-                return false;
-            }
-
-            current = dataSource.addedOrganelles[readIndex];
-            return true;
-        }
-
-        public void Reset()
-        {
-            current = null;
-            readIndex = -1;
-            originalReader.Reset();
-        }
-
-        public void Dispose()
-        {
-            originalReader.Dispose();
-        }
+        // And everything else should be handled by the organelle facade
+        return organelleEditsFacade.ApplyAction(actionData);
     }
 }
