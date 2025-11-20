@@ -145,7 +145,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
     {
         // If a cell type is being edited, add its type to each action data
         // so we can use it for undoing and redoing later
-        if (selectedEditorTab == EditorTab.CellTypeEditor && selectedCellTypeToEdit != null)
+        if (selectedCellTypeToEdit != null)
         {
             if (action is EditorCombinableActionData<CellType> cellTypeData && cellTypeData.Context == null)
                 cellTypeData.Context = selectedCellTypeToEdit;

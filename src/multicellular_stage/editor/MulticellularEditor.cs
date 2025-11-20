@@ -170,8 +170,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     public override void AddContextToAction(CombinableActionData action)
     {
         // If a cell type is being edited, add its type to each action data so that we can use it for undoing and
-        // redoing later
-        if (selectedEditorTab == EditorTab.CellTypeEditor && selectedCellTypeToEdit != null)
+        // redoing later. And this makes the MP system work.
+        if (selectedCellTypeToEdit != null)
         {
             if (action is EditorCombinableActionData<CellType> cellTypeData && cellTypeData.Context == null)
                 cellTypeData.Context = selectedCellTypeToEdit;
