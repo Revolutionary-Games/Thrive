@@ -1289,7 +1289,8 @@ public partial class CellBodyPlanEditorComponent :
 
             var modelHolder = placedModels[nextFreeCell++];
 
-            ShowCellTypeInModelHolder(modelHolder, hexWithData.Data!.ModifiableCellType, pos, hexWithData.Data!.Orientation);
+            ShowCellTypeInModelHolder(modelHolder, hexWithData.Data!.ModifiableCellType, pos,
+                hexWithData.Data!.Orientation);
 
             modelHolder.Visible = true;
         }
