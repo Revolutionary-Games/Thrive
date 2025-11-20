@@ -9,8 +9,8 @@ public abstract class EditsFacadeBase
     protected readonly List<EditorCombinableActionData> activeActions = new();
 
     /// <summary>
-    ///   If <see cref="SpeciesEditsFacade.activeActions"/> contains a history reset action, this is the index of that action.
-    ///   When applying changes, this is used to quickly skip over useless things.
+    ///   If <see cref="SpeciesEditsFacade.activeActions"/> contains a history reset action, this is the index of
+    ///   that action. When applying changes, this is used to quickly skip over useless things.
     /// </summary>
     protected int lastHistoryReset = -1;
 
@@ -29,6 +29,13 @@ public abstract class EditsFacadeBase
 
         MarkDirty();
         return activeActions.Count;
+    }
+
+    public void ClearActiveActions()
+    {
+        activeActions.Clear();
+        lastHistoryReset = -1;
+        MarkDirty();
     }
 
     public int AppendActions(IEnumerable<EditorCombinableActionData> data)

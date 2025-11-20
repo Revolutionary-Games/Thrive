@@ -6,8 +6,6 @@ using Godot;
 public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
     IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate>
 {
-    private readonly IReadOnlyCellTypeDefinition originalCell;
-
     private readonly OrganelleDefinition nucleus;
 
     private readonly List<IReadOnlyOrganelleTemplate> removedOrganelles = new();
@@ -18,6 +16,11 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
     ///   we cache them for efficiency.
     /// </summary>
     private readonly Stack<OrganelleWithOriginalReference> unusedOrganelles = new();
+
+    /// <summary>
+    ///   This is not readonly to allow reusing object instances of this
+    /// </summary>
+    private IReadOnlyCellTypeDefinition originalCell;
 
     private MembraneType? newMembrane;
     private bool overrideMembrane;
@@ -139,6 +142,17 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
         }
 
         return null;
+    }
+
+    /// <summary>
+    ///   Used when caching these objects to refresh this for a new use.
+    /// </summary>
+    /// <param name="typeDefinition">New type to base changes on</param>
+    public void SwitchBase(IReadOnlyCellTypeDefinition typeDefinition)
+    {
+        ClearActiveActions();
+        MarkDirty();
+        originalCell = typeDefinition;
     }
 
     IEnumerator IEnumerable.GetEnumerator()

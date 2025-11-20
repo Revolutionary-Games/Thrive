@@ -17,6 +17,7 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
     private readonly Stack<CellWithOriginalReference> unusedCells = new();
 
+    private readonly Dictionary<IReadOnlyCellTypeDefinition, CellTypeEditsFacade> activeCellTypes = new();
     private readonly Stack<CellTypeEditsFacade> unusedCellTypes = new();
 
     public MulticellularEditsFacade(IReadOnlyMulticellularSpecies species) : base(species)
@@ -111,10 +112,12 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         removedCells.Clear();
         addedCells.Clear();
 
-        foreach (var addedCellType in addedCellTypes)
+        foreach (var addedCellType in activeCellTypes)
         {
-            unusedCellTypes.Push(addedCellType);
+            unusedCellTypes.Push(addedCellType.Value);
         }
+
+        activeCellTypes.Clear();
 
         removedCellTypes.Clear();
         addedCellTypes.Clear();
@@ -131,6 +134,14 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
             newCell.Orientation = cellPlacementActionData.Orientation;
 
             addedCells.Add(newCell);
+
+#if DEBUG
+            if (ResolveCellDefinition(newCell.CellType) !=
+                ResolveCellDefinition(cellPlacementActionData.PlacedHex.Data?.CellType))
+            {
+                throw new Exception("Failed to setup cell type correctly");
+            }
+#endif
             return true;
         }
 
@@ -146,8 +157,11 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
                 {
                     original = addedOrganelle;
 
-                    if (original.CellType != cellMoveActionData.MovedHex.Data?.CellType)
+                    if (ResolveCellDefinition(original.CellType) !=
+                        ResolveCellDefinition(cellMoveActionData.MovedHex.Data?.CellType))
+                    {
                         throw new InvalidOperationException("Found an unrelated cell at move old location");
+                    }
 
                     addedCells.Remove(addedOrganelle);
                     break;
@@ -161,8 +175,11 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
                 if (original != null)
                 {
-                    if (original.CellType != cellMoveActionData.MovedHex.Data?.CellType)
+                    if (ResolveCellDefinition(original.CellType) !=
+                        ResolveCellDefinition(cellMoveActionData.MovedHex.Data?.CellType))
+                    {
                         GD.PrintErr("Found unrelated cell at exact position of moved cell");
+                    }
 
                     // Don't want the old instance to show up any more
                     removedCells.Add(original);
@@ -192,8 +209,11 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
                 {
                     original = addedOrganelle;
 
-                    if (original.CellType != cellRemoveActionData.RemovedHex.Data?.CellType)
+                    if (ResolveCellDefinition(original.CellType) !=
+                        ResolveCellDefinition(cellRemoveActionData.RemovedHex.Data?.CellType))
+                    {
                         throw new InvalidOperationException("Found an unrelated cell at delete location");
+                    }
 
                     addedCells.Remove(addedOrganelle);
                     break;
@@ -207,8 +227,11 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
                 if (original != null)
                 {
-                    if (original.CellType != cellRemoveActionData.RemovedHex.Data?.CellType)
+                    if (ResolveCellDefinition(original.CellType) !=
+                        ResolveCellDefinition(cellRemoveActionData.RemovedHex.Data?.CellType))
+                    {
                         GD.PrintErr("Found unrelated cell at exact position of removed cell");
+                    }
 
                     // Don't want the old instance to show up any more
                     removedCells.Add(original);
@@ -225,14 +248,23 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
         if (actionData is DuplicateDeleteCellTypeData cellTypeActionData)
         {
+            // Make sure the original is suppressed
+            if (!removedCellTypes.Contains(cellTypeActionData.CellType))
+                removedCellTypes.Add(cellTypeActionData.CellType);
+
             if (cellTypeActionData.Delete)
             {
-                if (!addedCellTypes.Remove(cellTypeActionData.CellType))
-                    throw new InvalidOperationException("Cell type not found for delete");
+                // We don't need to remove from the added cell types if the cell type has never been seen before, so
+                // this is purely a deletion of an original type
+                if (activeCellTypes.ContainsKey(cellTypeActionData.CellType))
+                {
+                    if (!addedCellTypes.Remove(GetOrCreateCellType(cellTypeActionData.CellType)))
+                        throw new InvalidOperationException("Cell type not found for delete");
+                }
             }
             else
             {
-                addedCellTypes.Add(cellTypeActionData.CellType);
+                addedCellTypes.Add(GetOrCreateCellType(cellTypeActionData.CellType));
             }
 
             return true;
@@ -241,17 +273,20 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         // Need to handle edits to the cell types
         if (actionData is EditorCombinableActionData<CellType> cellTypeEdit && cellTypeEdit.Context != null)
         {
+            // Get the cell type edit that matches the context
+            var targetType = GetOrCreateCellType(cellTypeEdit.Context);
 
-            foreach (var addedCellType in addedCellTypes)
-            {
-                if (addedCellType.OriginalCellType == cellTypeEdit.Context)
-                {
-                    return true;
-                }
-            }
+            // Make sure the original is suppressed
+            if (!removedCellTypes.Contains(cellTypeEdit.Context))
+                removedCellTypes.Add(cellTypeEdit.Context);
 
-            // Need to create cell type edit from this
+            // And that the new one is added
+            if (!addedCellTypes.Contains(targetType))
+                addedCellTypes.Add(targetType);
 
+            // And then apply the change. The overall start applying changes has been called already
+            if (!targetType.ApplyAction(cellTypeEdit))
+                throw new Exception("Failed to apply cell type edit");
 
             return true;
         }
@@ -259,60 +294,83 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         return base.ApplyAction(actionData);
     }
 
-    private void OnNewCellTypeEditStarted(IReadOnlyCellTypeDefinition original, IReadOnlyCellTypeDefinition newType)
-    {
-        // Update all history to make sure they refer to the new type
-        foreach (var addedCell in addedCells)
-        {
-            if (addedCell.OriginalFrom.CellType == original)
-                addedCell.TransformType(newType);
-        }
-
-        // Then override original cells
-        foreach (var originalCell in multicellularSpecies.Cells)
-        {
-            if (originalCell.CellType == original)
-            {
-                // Need to only process non-overridden cells
-                if (removedCells.Contains(originalCell))
-                    continue;
-
-                var newInstance = GetModifiable(originalCell);
-                newInstance.TransformType(newType);
-                addedCells.Add(newInstance);
-            }
-        }
-    }
-
     private CellWithOriginalReference GetModifiable(IReadOnlyCellTemplate cellTemplate)
     {
         if (unusedCells.TryPop(out var existing))
         {
-            existing.ReuseFor(cellTemplate);
+            existing.ReuseFor(cellTemplate, GetOrCreateCellType(cellTemplate.CellType));
             return existing;
         }
 
-        return new CellWithOriginalReference(cellTemplate);
+        return new CellWithOriginalReference(cellTemplate, GetOrCreateCellType(cellTemplate.CellType));
     }
 
-    private CellTypeEditsFacade GetModifiableCellType(IReadOnlyCellTemplate cellTemplate)
+    /// <summary>
+    ///   Only resolves a type if we have overwritten it. So a light version of <see cref="GetOrCreateCellType"/>
+    /// </summary>
+    /// <param name="cellDefinition">Raw type definition</param>
+    /// <returns>Either a wrapped value or the plain value if it is not overwritten</returns>
+    private IReadOnlyCellDefinition? ResolveCellDefinition(IReadOnlyCellTypeDefinition? cellDefinition)
     {
-        return new CellTypeEditsFacade(cellTemplate.CellType);
+        if (cellDefinition == null)
+            return cellDefinition;
+
+        // If it is a facade type, it is already the result
+        if (cellDefinition is CellTypeEditsFacade facade)
+        {
+            return facade;
+
+            // return reverseActiveCellTypes[facade];
+        }
+
+        if (activeCellTypes.TryGetValue(cellDefinition, out var existing))
+            return existing;
+
+        return cellDefinition;
+    }
+
+    private CellTypeEditsFacade GetOrCreateCellType(IReadOnlyCellTypeDefinition typeDefinition)
+    {
+        // If the type is already a facade, we can just return it directly
+        if (typeDefinition is CellTypeEditsFacade facade)
+            return facade;
+
+        if (activeCellTypes.TryGetValue(typeDefinition, out var existing))
+            return existing;
+
+        if (unusedCellTypes.TryPop(out var existingType))
+        {
+            existingType.SwitchBase(typeDefinition);
+        }
+        else
+        {
+            existingType = new CellTypeEditsFacade(typeDefinition);
+        }
+
+        // Let go of internal data here / prepare for applying the changes one by one we encounter for this
+        existingType.OnStartApplyChanges();
+
+        activeCellTypes.Add(typeDefinition, existingType);
+        return existingType;
     }
 
     private sealed class CellWithOriginalReference : CellTemplate
     {
-        private IReadOnlyCellTypeDefinition? usingCustomType;
+        private IReadOnlyCellTypeDefinition usingCustomType;
 
         // The underlying cell type is always the same, so we just cast without caring here (also in ReuseFor)
-        public CellWithOriginalReference(IReadOnlyCellTemplate original) : base((CellType)original.CellType,
-            original.Position, original.Orientation)
+        public CellWithOriginalReference(IReadOnlyCellTemplate original, CellTypeEditsFacade typeWrapper) :
+            base(original is CellWithOriginalReference alreadyWrapped ?
+                    (CellType)alreadyWrapped.OriginalFrom.CellType :
+                    (CellType)original.CellType,
+                original.Position, original.Orientation)
         {
+            usingCustomType = typeWrapper;
+
             // Make sure creating further reference objects keeps the original reference
             if (original is CellWithOriginalReference withAncestorReference)
             {
                 OriginalFrom = withAncestorReference.OriginalFrom;
-                usingCustomType = withAncestorReference.usingCustomType;
             }
             else
             {
@@ -326,39 +384,30 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         {
             get
             {
-                if (usingCustomType == null)
-                    return base.ModifiableCellType;
-
                 // Cast likely fails, but we would Throw an exception anyway here
                 return (CellType)usingCustomType;
             }
             protected set => throw new NotImplementedException("This doesn't support setting modifiable type");
         }
 
-        public override IReadOnlyCellTypeDefinition CellType => usingCustomType ?? base.CellType;
+        public override IReadOnlyCellTypeDefinition CellType => usingCustomType;
 
-        internal void ReuseFor(IReadOnlyCellTemplate original)
+        internal void ReuseFor(IReadOnlyCellTemplate original, CellTypeEditsFacade typeWrapper)
         {
             if (original is CellWithOriginalReference withAncestorReference)
             {
                 OriginalFrom = withAncestorReference.OriginalFrom;
-                usingCustomType = withAncestorReference.usingCustomType;
             }
             else
             {
                 OriginalFrom = original;
-                usingCustomType = null;
             }
 
+            usingCustomType = typeWrapper;
+
             // Same cast reasoning as in the constructor
-            ModifiableCellType = (CellType)original.CellType;
             Position = original.Position;
             Orientation = original.Orientation;
-        }
-
-        internal void TransformType(IReadOnlyCellTypeDefinition newType)
-        {
-            usingCustomType = newType;
         }
     }
 
