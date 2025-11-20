@@ -347,6 +347,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
             existingType = new CellTypeEditsFacade(typeDefinition);
         }
 
+        existingType.BecomeUsedByTopLevelFacade();
+
         // Let go of internal data here / prepare for applying the changes one by one we encounter for this
         existingType.OnStartApplyChanges();
 

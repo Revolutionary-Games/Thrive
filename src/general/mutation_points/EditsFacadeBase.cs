@@ -119,6 +119,14 @@ public abstract class EditsFacadeBase
 
     internal abstract bool ApplyAction(EditorCombinableActionData actionData);
 
+    /// <summary>
+    ///   Allows direct calling of <see cref="ApplyAction"/>
+    /// </summary>
+    internal void BecomeUsedByTopLevelFacade()
+    {
+        dirty = false;
+    }
+
     protected void MarkDirty()
     {
         dirty = true;

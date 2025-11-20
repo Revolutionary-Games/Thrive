@@ -79,7 +79,8 @@ public class MulticellularSpeciesComparer
         newCellTypes.AddRange(speciesB.CellTypes);
 
         // Cost from each cell type change
-        cost += CompareCellTypes(originalCellTypes, newCellTypes, cellTypeComparer);
+        cost += CompareCellTypes(originalCellTypes, newCellTypes, cellTypeComparer) *
+            Constants.MULTICELLULAR_EDITOR_COST_FACTOR;
         originalCellTypes.Clear();
         newCellTypes.Clear();
 
