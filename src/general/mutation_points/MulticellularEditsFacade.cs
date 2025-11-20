@@ -13,9 +13,11 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
     private readonly List<CellWithOriginalReference> addedCells = new();
 
     private readonly List<IReadOnlyCellTypeDefinition> removedCellTypes = new();
-    private readonly List<IReadOnlyCellTypeDefinition> addedCellTypes = new();
+    private readonly List<CellTypeEditsFacade> addedCellTypes = new();
 
     private readonly Stack<CellWithOriginalReference> unusedCells = new();
+
+    private readonly Stack<CellTypeEditsFacade> unusedCellTypes = new();
 
     public MulticellularEditsFacade(IReadOnlyMulticellularSpecies species) : base(species)
     {
@@ -96,7 +98,7 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         return null;
     }
 
-    protected override void OnStartApplyChanges()
+    internal override void OnStartApplyChanges()
     {
         base.OnStartApplyChanges();
 
@@ -109,11 +111,16 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         removedCells.Clear();
         addedCells.Clear();
 
+        foreach (var addedCellType in addedCellTypes)
+        {
+            unusedCellTypes.Push(addedCellType);
+        }
+
         removedCellTypes.Clear();
         addedCellTypes.Clear();
     }
 
-    protected override bool ApplyAction(EditorCombinableActionData actionData)
+    internal override bool ApplyAction(EditorCombinableActionData actionData)
     {
         if (actionData is CellPlacementActionData cellPlacementActionData)
         {
@@ -231,7 +238,50 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
             return true;
         }
 
+        // Need to handle edits to the cell types
+        if (actionData is EditorCombinableActionData<CellType> cellTypeEdit && cellTypeEdit.Context != null)
+        {
+
+            foreach (var addedCellType in addedCellTypes)
+            {
+                if (addedCellType.OriginalCellType == cellTypeEdit.Context)
+                {
+                    return true;
+                }
+            }
+
+            // Need to create cell type edit from this
+
+
+            return true;
+        }
+
         return base.ApplyAction(actionData);
+    }
+
+    private void OnNewCellTypeEditStarted(IReadOnlyCellTypeDefinition original, IReadOnlyCellTypeDefinition newType)
+    {
+        // Update all history to make sure they refer to the new type
+        foreach (var addedCell in addedCells)
+        {
+            if (addedCell.OriginalFrom.CellType == original)
+                addedCell.TransformType(newType);
+        }
+
+        // Then override original cells
+        foreach (var originalCell in multicellularSpecies.Cells)
+        {
+            if (originalCell.CellType == original)
+            {
+                // Need to only process non-overridden cells
+                if (removedCells.Contains(originalCell))
+                    continue;
+
+                var newInstance = GetModifiable(originalCell);
+                newInstance.TransformType(newType);
+                addedCells.Add(newInstance);
+            }
+        }
     }
 
     private CellWithOriginalReference GetModifiable(IReadOnlyCellTemplate cellTemplate)
@@ -245,8 +295,15 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         return new CellWithOriginalReference(cellTemplate);
     }
 
+    private CellTypeEditsFacade GetModifiableCellType(IReadOnlyCellTemplate cellTemplate)
+    {
+        return new CellTypeEditsFacade(cellTemplate.CellType);
+    }
+
     private sealed class CellWithOriginalReference : CellTemplate
     {
+        private IReadOnlyCellTypeDefinition? usingCustomType;
+
         // The underlying cell type is always the same, so we just cast without caring here (also in ReuseFor)
         public CellWithOriginalReference(IReadOnlyCellTemplate original) : base((CellType)original.CellType,
             original.Position, original.Orientation)
@@ -255,6 +312,7 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
             if (original is CellWithOriginalReference withAncestorReference)
             {
                 OriginalFrom = withAncestorReference.OriginalFrom;
+                usingCustomType = withAncestorReference.usingCustomType;
             }
             else
             {
@@ -264,21 +322,43 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
         public IReadOnlyCellTemplate OriginalFrom { get; private set; }
 
+        public override CellType ModifiableCellType
+        {
+            get
+            {
+                if (usingCustomType == null)
+                    return base.ModifiableCellType;
+
+                // Cast likely fails, but we would Throw an exception anyway here
+                return (CellType)usingCustomType;
+            }
+            protected set => throw new NotImplementedException("This doesn't support setting modifiable type");
+        }
+
+        public override IReadOnlyCellTypeDefinition CellType => usingCustomType ?? base.CellType;
+
         internal void ReuseFor(IReadOnlyCellTemplate original)
         {
             if (original is CellWithOriginalReference withAncestorReference)
             {
                 OriginalFrom = withAncestorReference.OriginalFrom;
+                usingCustomType = withAncestorReference.usingCustomType;
             }
             else
             {
                 OriginalFrom = original;
+                usingCustomType = null;
             }
 
             // Same cast reasoning as in the constructor
             ModifiableCellType = (CellType)original.CellType;
             Position = original.Position;
             Orientation = original.Orientation;
+        }
+
+        internal void TransformType(IReadOnlyCellTypeDefinition newType)
+        {
+            usingCustomType = newType;
         }
     }
 
