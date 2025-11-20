@@ -46,6 +46,18 @@ public interface IReadOnlyCellDefinition
     public bool IsBacteria { get; }
 }
 
+public interface ICellTypeDefinition : ICellDefinition, IReadOnlyCellTypeDefinition
+{
+    public new int MPCost { get; set; }
+}
+
+public interface IReadOnlyCellTypeDefinition : IReadOnlyCellDefinition
+{
+    public int MPCost { get; }
+
+    public string CellTypeName { get; }
+}
+
 /// <summary>
 ///   General helpers for working with a general <see cref="ICellDefinition"/> type.
 ///   <see cref="Components.CellPropertiesHelpers"/> are related to ECS component operations.

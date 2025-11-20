@@ -160,7 +160,7 @@ public class GameProperties : IArchivable
 
         // Create the brain tissue type
         var brainType = (CellType)playerSpecies.ModifiableCellTypes.First().Clone();
-        brainType.TypeName = Localization.Translate("BRAIN_CELL_NAME_DEFAULT");
+        brainType.CellTypeName = Localization.Translate("BRAIN_CELL_NAME_DEFAULT");
         brainType.Colour = new Color(0.807f, 0.498f, 0.498f);
 
         var axon = SimulationParameters.Instance.GetOrganelleType("axon");

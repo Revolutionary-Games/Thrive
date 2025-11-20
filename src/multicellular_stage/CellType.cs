@@ -6,7 +6,7 @@ using SharedBase.Archive;
 /// <summary>
 ///   Type of cell in a multicellular species. There can be multiple instances of a cell type placed at once
 /// </summary>
-public class CellType : ICellDefinition, ICloneable, IArchivable
+public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable, IArchivable
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
@@ -44,7 +44,7 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
         Colour = microbeSpecies.SpeciesColour;
         IsBacteria = microbeSpecies.IsBacteria;
         CanEngulf = microbeSpecies.CanEngulf;
-        TypeName = Localization.Translate("STEM_CELL_NAME");
+        CellTypeName = Localization.Translate("STEM_CELL_NAME");
     }
 
     // TODO: avoid this adapter object allocation
@@ -53,7 +53,7 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
 
     public OrganelleLayout<OrganelleTemplate> ModifiableOrganelles { get; }
 
-    public string TypeName { get; set; } = "error";
+    public string CellTypeName { get; set; } = "error";
     public int MPCost { get; set; } = 15;
 
     public MembraneType MembraneType { get; set; }
@@ -63,7 +63,7 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
     public float BaseRotationSpeed { get; set; }
     public bool CanEngulf { get; }
 
-    public string FormattedName => TypeName;
+    public string FormattedName => CellTypeName;
 
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
@@ -87,7 +87,7 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
 
         return new CellType(reader.ReadObject<OrganelleLayout<OrganelleTemplate>>(), reader.ReadObject<MembraneType>())
         {
-            TypeName = reader.ReadString() ?? throw new NullArchiveObjectException(),
+            CellTypeName = reader.ReadString() ?? throw new NullArchiveObjectException(),
             MPCost = reader.ReadInt32(),
             MembraneRigidity = reader.ReadFloat(),
             Colour = reader.ReadColor(),
@@ -101,7 +101,7 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
         writer.WriteObject(ModifiableOrganelles);
         writer.WriteObject(MembraneType);
 
-        writer.Write(TypeName);
+        writer.Write(CellTypeName);
         writer.Write(MPCost);
         writer.Write(MembraneRigidity);
         writer.Write(Colour);
@@ -119,7 +119,7 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
     public void UpdateNameIfValid(string newName)
     {
         if (!string.IsNullOrWhiteSpace(newName))
-            TypeName = newName;
+            CellTypeName = newName;
     }
 
     /// <summary>
@@ -176,7 +176,7 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
     {
         var result = new CellType(MembraneType)
         {
-            TypeName = TypeName,
+            CellTypeName = CellTypeName,
             MPCost = MPCost,
             MembraneRigidity = MembraneRigidity,
             Colour = Colour,
@@ -227,7 +227,7 @@ public class CellType : ICellDefinition, ICloneable, IArchivable
     {
         var count = Organelles.Count;
 
-        int hash = TypeName.GetHashCode() ^ MembraneType.InternalName.GetHashCode() * 5743 ^
+        int hash = CellTypeName.GetHashCode() ^ MembraneType.InternalName.GetHashCode() * 5743 ^
             MembraneRigidity.GetHashCode() * 5749 ^ (IsBacteria ? 1 : 0) * 5779 ^ count * 131;
 
         var list = ModifiableOrganelles.Organelles;

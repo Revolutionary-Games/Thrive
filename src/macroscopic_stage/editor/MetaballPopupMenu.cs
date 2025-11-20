@@ -55,7 +55,7 @@ public partial class MetaballPopupMenu : HexPopupMenu
         if (titleLabel == null)
             return;
 
-        var names = SelectedMetaballs.Select(m => m.ModifiableCellType.TypeName).Distinct()
+        var names = SelectedMetaballs.Select(m => m.ModifiableCellType.CellTypeName).Distinct()
             .ToList();
 
         if (names.Count == 1)

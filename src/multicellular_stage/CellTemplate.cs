@@ -2,7 +2,7 @@
 using Godot;
 using SharedBase.Archive;
 
-public class CellTemplate : IPositionedCell, IReadOnlyCellTemplate, ICloneable, IActionHex, IArchivable
+public class CellTemplate : IPositionedCell, ICloneable, IActionHex, IArchivable
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
@@ -37,7 +37,7 @@ public class CellTemplate : IPositionedCell, IReadOnlyCellTemplate, ICloneable, 
         protected set => modifiableCellType = value;
     }
 
-    public virtual IReadOnlyCellDefinition CellType => ModifiableCellType;
+    public virtual IReadOnlyCellTypeDefinition CellType => ModifiableCellType;
 
     public MembraneType MembraneType
     {
@@ -63,7 +63,7 @@ public class CellTemplate : IPositionedCell, IReadOnlyCellTemplate, ICloneable, 
 
     public bool CanEngulf => ModifiableCellType.CanEngulf;
 
-    public string FormattedName => ModifiableCellType.TypeName;
+    public string FormattedName => ModifiableCellType.CellTypeName;
 
     public IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> Organelles => ModifiableCellType.Organelles;
     public OrganelleLayout<OrganelleTemplate> ModifiableOrganelles => ModifiableCellType.ModifiableOrganelles;

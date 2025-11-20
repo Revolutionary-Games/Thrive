@@ -35,7 +35,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
     public List<CellType> ModifiableCellTypes { get; private set; } = new();
 
-    public IReadOnlyList<IReadOnlyCellDefinition> CellTypes => ModifiableCellTypes;
+    public IReadOnlyList<IReadOnlyCellTypeDefinition> CellTypes => ModifiableCellTypes;
 
     /// <summary>
     ///   All organelles in all the species' placed cells (there can be a lot of duplicates in this list)

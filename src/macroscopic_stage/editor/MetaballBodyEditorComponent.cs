@@ -331,7 +331,7 @@ public partial class MetaballBodyEditorComponent :
 
     protected CellType CellTypeFromName(string name)
     {
-        return Editor.EditedSpecies.ModifiableCellTypes.First(c => c.TypeName == name);
+        return Editor.EditedSpecies.ModifiableCellTypes.First(c => c.CellTypeName == name);
     }
 
     protected override void OnTranslationsChanged()
@@ -776,7 +776,7 @@ public partial class MetaballBodyEditorComponent :
     {
         // Should be safe for us to try to signal to edit any kind of cell so this doesn't check if the cell is removed
         EmitSignal(SignalName.OnCellTypeToEditSelected,
-            metaballPopupMenu.SelectedMetaballs.First().ModifiableCellType.TypeName);
+            metaballPopupMenu.SelectedMetaballs.First().ModifiableCellType.CellTypeName);
     }
 
     /// <summary>
@@ -785,21 +785,21 @@ public partial class MetaballBodyEditorComponent :
     private void UpdateCellTypeSelections()
     {
         // Re-use / create more buttons to hold all the cell types
-        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes.OrderBy(t => t.TypeName,
+        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes.OrderBy(t => t.CellTypeName,
                      StringComparer.Ordinal))
         {
-            if (!cellTypeSelectionButtons.TryGetValue(cellType.TypeName, out var control))
+            if (!cellTypeSelectionButtons.TryGetValue(cellType.CellTypeName, out var control))
             {
                 // Need new button
                 control = cellTypeSelectionButtonScene.Instantiate<CellTypeSelection>();
                 control.SelectionGroup = cellTypeButtonGroup;
 
-                control.PartName = cellType.TypeName;
+                control.PartName = cellType.CellTypeName;
                 control.CellType = cellType;
-                control.Name = cellType.TypeName;
+                control.Name = cellType.CellTypeName;
 
                 cellTypeSelectionList.AddItem(control);
-                cellTypeSelectionButtons.Add(cellType.TypeName, control);
+                cellTypeSelectionButtons.Add(cellType.CellTypeName, control);
 
                 control.Connect(MicrobePartSelection.SignalName.OnPartSelected,
                     new Callable(this, nameof(OnCellToPlaceSelected)));
@@ -818,7 +818,7 @@ public partial class MetaballBodyEditorComponent :
         // Delete no longer needed buttons
         foreach (var key in cellTypeSelectionButtons.Keys.ToList())
         {
-            if (Editor.EditedSpecies.ModifiableCellTypes.All(t => t.TypeName != key))
+            if (Editor.EditedSpecies.ModifiableCellTypes.All(t => t.CellTypeName != key))
             {
                 var control = cellTypeSelectionButtons[key];
                 cellTypeSelectionButtons.Remove(key);
@@ -908,16 +908,16 @@ public partial class MetaballBodyEditorComponent :
 
         var type = CellTypeFromName(activeActionName!);
 
-        duplicateCellTypeName.Text = type.TypeName;
+        duplicateCellTypeName.Text = type.CellTypeName;
 
         // Make sure it's shown in red initially as it is a duplicate name
-        OnNewCellTypeNameChanged(type.TypeName);
+        OnNewCellTypeNameChanged(type.CellTypeName);
 
         duplicateCellTypeDialog.PopupCenteredShrink();
 
         duplicateCellTypeName.GrabFocusInOpeningPopup();
         duplicateCellTypeName.SelectAll();
-        duplicateCellTypeName.CaretColumn = type.TypeName.Length;
+        duplicateCellTypeName.CaretColumn = type.CellTypeName.Length;
     }
 
     private void OnNewCellTypeNameChanged(string newText)
@@ -937,7 +937,7 @@ public partial class MetaballBodyEditorComponent :
         // Name is invalid if it is empty or a duplicate
         // TODO: should this ensure the name doesn't have trailing whitespace?
         return !string.IsNullOrWhiteSpace(text) && !Editor.EditedSpecies.ModifiableCellTypes.Any(c =>
-            c.TypeName.Equals(text, StringComparison.InvariantCultureIgnoreCase));
+            c.CellTypeName.Equals(text, StringComparison.InvariantCultureIgnoreCase));
     }
 
     private void OnNewCellTextAccepted(string text)
@@ -964,10 +964,10 @@ public partial class MetaballBodyEditorComponent :
 
         // TODO: make this a reversible action
         var newType = (CellType)type.Clone();
-        newType.TypeName = newTypeName;
+        newType.CellTypeName = newTypeName;
 
         Editor.EditedSpecies.ModifiableCellTypes.Add(newType);
-        GD.Print("New cell type created: ", newType.TypeName);
+        GD.Print("New cell type created: ", newType.CellTypeName);
 
         UpdateCellTypeSelections();
 

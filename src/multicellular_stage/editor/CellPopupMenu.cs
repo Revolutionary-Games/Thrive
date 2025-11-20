@@ -55,7 +55,7 @@ public partial class CellPopupMenu : HexPopupMenu
         if (titleLabel == null)
             return;
 
-        var names = SelectedCells.Select(c => c.Data!.ModifiableCellType.TypeName).Distinct()
+        var names = SelectedCells.Select(c => c.Data!.ModifiableCellType.CellTypeName).Distinct()
             .ToList();
 
         if (names.Count == 1)

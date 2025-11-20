@@ -7,13 +7,15 @@ using SharedBase.Archive;
 /// </summary>
 public class DuplicateDeleteCellTypeData : EditorCombinableActionData<MulticellularSpecies>
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     public readonly CellType CellType;
+    public readonly bool Delete;
 
-    public DuplicateDeleteCellTypeData(CellType cellType)
+    public DuplicateDeleteCellTypeData(CellType cellType, bool delete)
     {
         CellType = cellType;
+        Delete = delete;
     }
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
@@ -34,7 +36,15 @@ public class DuplicateDeleteCellTypeData : EditorCombinableActionData<Multicellu
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var instance = new DuplicateDeleteCellTypeData(reader.ReadObject<CellType>());
+        DuplicateDeleteCellTypeData instance;
+        if (version < 2)
+        {
+            instance = new DuplicateDeleteCellTypeData(reader.ReadObject<CellType>(), false);
+        }
+        else
+        {
+            instance = new DuplicateDeleteCellTypeData(reader.ReadObject<CellType>(), reader.ReadBool());
+        }
 
         instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
 
@@ -44,6 +54,7 @@ public class DuplicateDeleteCellTypeData : EditorCombinableActionData<Multicellu
     public override void WriteToArchive(ISArchiveWriter writer)
     {
         writer.WriteObject(CellType);
+        writer.Write(Delete);
 
         writer.Write(SERIALIZATION_VERSION_CONTEXT);
         base.WriteToArchive(writer);
