@@ -312,6 +312,8 @@ public class SimulationCache
         var channelInhibitorScore = predatorToolScores.ChannelInhibitorScore;
         var oxygenMetabolismInhibitorScore = predatorToolScores.OxygenMetabolismInhibitorScore;
         var predatorSlimeJetScore = predatorToolScores.SlimeJetScore;
+        var pullingCiliaModifier = predatorToolScores.PullingCiliaModifier;
+        var strongPullingCiliaModifier = float.Pow(pullingCiliaModifier, 2);
 
         var preySlimeJetScore = preyToolScores.SlimeJetScore;
         var preyMucocystsScore = preyToolScores.MucocystsScore;
@@ -383,6 +385,9 @@ public class SimulationCache
             // But prey may escape if they move away before you can turn to chase them
             catchScore *= 1.0f - predatorRotationSpeed / 2;
 
+            // Pulling Cilia help with catching
+            catchScore *= pullingCiliaModifier;
+
             // If you have a chemoreceptor, active hunting types are more effective
             if (hasChemoreceptor)
             {
@@ -398,7 +403,7 @@ public class SimulationCache
             // This is also used to incentivize size in microbe species.
             // Prey that can't turn away fast enough are more likely to get caught.
             catchScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * predatorHexSize *
-                (1.0f + preyRotationSpeed);
+                strongPullingCiliaModifier * (1.0f + preyRotationSpeed);
 
             // Allow for some degree of lucky engulfment
             engulfmentScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
@@ -424,13 +429,18 @@ public class SimulationCache
         {
             if (predatorSpeed > slowedPreySpeed)
             {
-                pilusScore *= slowedProportion
+                pilusScore *= slowedProportion * pullingCiliaModifier
                     + (1 - slowedProportion) * Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
             }
             else
             {
-                pilusScore *= Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * (1.0f + preyRotationSpeed);
+                pilusScore *= Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * (1.0f + preyRotationSpeed) *
+                    strongPullingCiliaModifier;
             }
+        }
+        else
+        {
+            pilusScore *= pullingCiliaModifier;
         }
 
         // Pili are also more useful if you can turn them towards the target in time
@@ -678,6 +688,7 @@ public class SimulationCache
         var injectisomeScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
         var slimeJetScore = Constants.AUTO_EVO_SLIME_JET_SCORE;
         var mucocystsScore = Constants.AUTO_EVO_MUCOCYST_SCORE;
+        var pullingCiliaModifier = 1.0f;
 
         var organelles = microbeSpecies.Organelles.Organelles;
         var organelleCount = organelles.Count;
@@ -687,6 +698,7 @@ public class SimulationCache
         var injectisomeCount = 0;
         var slimeJetsCount = 0;
         var mucocystsCount = 0;
+        var pullingCiliasCount = 0;
         var slimeJetsMultiplier = 1.0f;
 
         var hasOxytoxy = false;
@@ -725,6 +737,16 @@ public class SimulationCache
                 // push the cell backwards (into the predator or away from the prey) or to the side
                 slimeJetsMultiplier *= CalculateAngleMultiplier(organelle.Position);
                 continue;
+            }
+
+            if (organelle.Definition.HasCiliaComponent)
+            {
+                if (organelle.Upgrades != null &&
+                    organelle.Upgrades.UnlockedFeatures.Contains(CiliaComponent.CILIA_PULL_UPGRADE_NAME))
+                {
+                    ++pullingCiliasCount;
+                    continue;
+                }
             }
 
             foreach (var process in organelle.Definition.RunnableProcesses)
@@ -807,9 +829,10 @@ public class SimulationCache
                     ToxinType.OxygenMetabolismInhibitor);
         }
 
-        // Having lots of extra pili, slime jets and mucocysts doesn't really help much
+        // Having lots of slime jets, mucocysts and pulling cilias doesn't really help much
         slimeJetScore *= MathF.Sqrt(slimeJetsCount);
         mucocystsScore *= MathF.Sqrt(mucocystsCount);
+        pullingCiliaModifier *= 1 + MathF.Sqrt(pullingCiliasCount) * Constants.AUTO_EVO_PULL_CILIA_MODIFIER;
 
         // Having lots of extra pili also does not help, even if they are two different types
         if (pilusCount != 0 || injectisomeCount != 0)
@@ -835,7 +858,7 @@ public class SimulationCache
 
         var predationToolsRawScores = new PredationToolsRawScores(pilusScore, injectisomeScore, averageToxicity,
             oxytoxyScore, cytotoxinScore, macrolideScore, channelInhibitorScore, oxygenMetabolismInhibitorScore,
-            slimeJetScore, mucocystsScore);
+            slimeJetScore, mucocystsScore, pullingCiliaModifier);
 
         cachedPredationToolsRawScores.Add(microbeSpecies, predationToolsRawScores);
         return predationToolsRawScores;
@@ -1008,5 +1031,6 @@ public class SimulationCache
         float ChannelInhibitorScore,
         float OxygenMetabolismInhibitorScore,
         float SlimeJetScore,
-        float MucocystsScore);
+        float MucocystsScore,
+        float PullingCiliaModifier);
 }
