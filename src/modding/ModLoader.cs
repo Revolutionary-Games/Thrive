@@ -574,7 +574,7 @@ public partial class ModLoader : Node
 
             if (sharedAssembliesForMods.Count < 1)
             {
-                // Initialise the assembly cache the first time it is required
+                // Initialize the assembly cache the first time it is required
                 foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
                 {
                     var name = assembly.GetName().Name;
@@ -595,12 +595,6 @@ public partial class ModLoader : Node
             modDirectoriesForAssemblyLoad.Add(folder);
 
         var result = context.LoadFromAssemblyPath(path);
-
-        // Mods now need a custom load context that provides access to DLLs they might refer to; otherwise the load
-        // fails with errors like not being able to find Thrive dll
-        var loadContext = new ModLoadContext(folder, sharedAssembliesForMods);
-
-        var result = loadContext.LoadFromAssemblyPath(path);
 
         // It's unknown if the above approach allows Godot node types to be loaded, probably not
 
