@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Text;
 using Godot;
 using Godot.Collections;
@@ -42,6 +43,22 @@ public partial class LogInterceptor : Logger
 
         OS.RemoveLogger(instance);
         instance = null;
+    }
+
+    /// <summary>
+    ///   Forwards errors from elsewhere in the codebase to popup the GUI for unhandled errors
+    /// </summary>
+    /// <param name="error">The error that happened and the user should know</param>
+    /// <param name="extraInfo">Extra info to append to the error popup</param>
+    public static void ForwardCaughtError(Exception error, string? extraInfo = null)
+    {
+        if (instance == null)
+        {
+            GD.PrintErr("No GUI error receiver");
+            return;
+        }
+
+        instance.PerformForward(error, extraInfo);
     }
 
     // The log callbacks may be called from other threads
@@ -105,6 +122,13 @@ public partial class LogInterceptor : Logger
         }
 
         // Forward other errors to notify the player about the error
+        // As we use only C# code, the only thing we need is the "code" which contains the C# backtrace
+        // Though we let some engine errors through which do have quite critical info in rationale, so append it
+        ForwardToGUI(code, rationale);
+    }
+
+    private void ForwardToGUI(string finalError, string? rationale)
+    {
         lock (previousMessageBuffer)
         {
             // Read in reverse order to get a natural order
@@ -122,9 +146,10 @@ public partial class LogInterceptor : Logger
             var contextLines = errorBuilder.ToString();
             errorBuilder.Clear();
 
-            // As we use only C# code, the only thing we need is the "code" which contains the C# backtrace
-
-            var finalError = code;
+            if (!string.IsNullOrEmpty(rationale))
+            {
+                finalError += "\n" + rationale;
+            }
 
             Invoke.Instance.Perform(() =>
             {
@@ -140,5 +165,15 @@ public partial class LogInterceptor : Logger
                 gui.ReportError(finalError, contextLines);
             });
         }
+    }
+
+    private void PerformForward(Exception error, string? extraInfo = null)
+    {
+#if DEBUG
+        if (Debugger.IsAttached)
+            Debugger.Break();
+#endif
+
+        ForwardToGUI(error.ToString(), extraInfo);
     }
 }

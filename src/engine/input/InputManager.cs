@@ -424,6 +424,7 @@ public partial class InputManager : Node
                     else
                     {
                         GD.PrintErr("Failed to perform input method invoke: ", e);
+                        LogInterceptor.ForwardCaughtError(e);
                     }
 
                     destroyed.Add(instance);
@@ -433,6 +434,7 @@ public partial class InputManager : Node
                 {
                     GD.PrintErr("Failed to perform input method invoke due to parameter conversion: ", e);
                     GD.PrintErr($"Target method failed to invoke is: {method.DeclaringType?.FullName}.{method.Name}");
+                    LogInterceptor.ForwardCaughtError(e);
 
                     // Is probably good to put this here to ensure the error doesn't get printed infinitely
                     destroyed.Add(instance);
