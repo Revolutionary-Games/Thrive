@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-17 12:31+0100\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-11-20 11:35+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
@@ -271,7 +271,8 @@ msgstr "აყვავების ფაზა"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "მოდის assembly-ის კლასი აუცილებელია, როცა assembly მითითებულია"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "მოდის assembly აუცილებელია, როცა ავტომატური harmony ჩართულია"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -3785,9 +3786,6 @@ msgstr "{0} მოდის assembly-ის გამოტვირთვის
 msgid "MOD_AUTHOR"
 msgstr "მოდის ავტორი:"
 
-msgid "MOD_AUTO_HARMONY"
-msgstr "იყენებს ავტომატურ ჰარმონიას:"
-
 msgid "MOD_CREATION_FAILED"
 msgstr "მოდის შექმნა ჩავარდა"
 
@@ -6420,12 +6418,6 @@ msgstr "გამოყენებული რენდერერი:"
 msgid "USES_FEATURE"
 msgstr "დიახ"
 
-msgid "USE_AUTO_HARMONY"
-msgstr "Harmony-ის ავტოჩატვირთვის გამოყენება"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Harmony-ის პაჩების ავტომატური ჩატვირთვა Assembly-დან (არ სჭირდება მოდის კლასის მითითება)"
-
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "მორგებული მომხმარებლის სახელის გამოყენება"
 
@@ -8130,6 +8122,15 @@ msgstr "გადიდება"
 
 msgid "ZOOM_OUT"
 msgstr "დაპატარავება"
+
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "იყენებს ავტომატურ ჰარმონიას:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Harmony-ის ავტოჩატვირთვის გამოყენება"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Harmony-ის პაჩების ავტომატური ჩატვირთვა Assembly-დან (არ სჭირდება მოდის კლასის მითითება)"
 
 #, fuzzy
 #~ msgid "REPRODUCTION_COMPOUND_USAGE"

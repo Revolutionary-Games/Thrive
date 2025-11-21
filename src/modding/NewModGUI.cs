@@ -59,9 +59,6 @@ public partial class NewModGUI : Control
     private LineEdit assemblyModClass = null!;
 
     [Export]
-    private CheckBox assemblyModAutoHarmony = null!;
-
-    [Export]
     private Label errorDisplay = null!;
 #pragma warning restore CA2213
 
@@ -162,7 +159,6 @@ public partial class NewModGUI : Control
         pckName.Text = editedInfo.PckToLoad;
         modAssembly.Text = editedInfo.ModAssembly;
         assemblyModClass.Text = editedInfo.AssemblyModClass;
-        assemblyModAutoHarmony.ButtonPressed = editedInfo.UseAutoHarmony ?? false;
     }
 
     private bool ReadControlsToEditedInfo()
@@ -181,7 +177,6 @@ public partial class NewModGUI : Control
         editedInfo.PckToLoad = pckName.Text;
         editedInfo.ModAssembly = modAssembly.Text;
         editedInfo.AssemblyModClass = assemblyModClass.Text;
-        editedInfo.UseAutoHarmony = assemblyModAutoHarmony.ButtonPressed;
 
         if (string.IsNullOrWhiteSpace(infoUrl.Text))
         {

@@ -5,7 +5,7 @@
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="3_paixo"]
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="4_bos37"]
 
-[node name="NewModGUI" type="Control" node_paths=PackedStringArray("dialog", "internalName", "name", "author", "version", "description", "longDescription", "iconFile", "infoUrl", "license", "recommendedThrive", "minimumThrive", "maximumThrive", "pckName", "modAssembly", "assemblyModClass", "assemblyModAutoHarmony", "errorDisplay")]
+[node name="NewModGUI" type="Control" node_paths=PackedStringArray("dialog", "internalName", "name", "author", "version", "description", "longDescription", "iconFile", "infoUrl", "license", "recommendedThrive", "minimumThrive", "maximumThrive", "pckName", "modAssembly", "assemblyModClass", "errorDisplay")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,11 +30,11 @@ maximumThrive = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxConta
 pckName = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/PckName")
 modAssembly = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/ModAssembly")
 assemblyModClass = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/AssemblyModClass")
-assemblyModAutoHarmony = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/AutoHarmony")
 errorDisplay = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Error")
 
 [node name="CustomWindow" parent="." instance=ExtResource("1")]
 visible = true
+layout_mode = 0
 WindowTitle = "CREATE_NEW_MOD"
 Resizable = true
 ExclusiveAllowCloseOnEscape = false
@@ -301,16 +301,6 @@ editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "ModClass"
 max_length = 200
-
-[node name="Spacer15" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-
-[node name="AutoHarmony" type="CheckBox" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-layout_mode = 2
-size_flags_horizontal = 3
-tooltip_text = "USE_AUTO_HARMONY_TOOLTIP"
-text = "USE_AUTO_HARMONY"
 
 [node name="Error" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
