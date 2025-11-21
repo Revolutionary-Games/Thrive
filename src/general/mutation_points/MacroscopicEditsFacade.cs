@@ -174,6 +174,24 @@ public sealed class MacroscopicEditsFacade : SpeciesEditsFacade, IReadOnlyMacros
         {
             var movedMetaball = FindMatching(metaballMoveActionData.MovedMetaball, true);
 
+            if (movedMetaball == null)
+            {
+                // Use the actual old position to find the metaball
+                foreach (var alreadyAdded in newMetaballStructure)
+                {
+                    // TODO: do we need inaccuracy check?
+                    if (metaballMoveActionData.OldPosition == alreadyAdded.Position)
+                    {
+                        if ((metaballMoveActionData.OldParent == null) == (alreadyAdded.Parent == null))
+                        {
+                            // TODO: type check? / size check? (though those might change). Or parent's parent check?
+                            movedMetaball = alreadyAdded;
+                            break;
+                        }
+                    }
+                }
+            }
+
             if (movedMetaball != null)
             {
                 // Update the positioning
