@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-08 16:31+0100\n"
-"PO-Revision-Date: 2025-11-11 14:42+0000\n"
-"Last-Translator: Alexandra Vasilevskaya <sitta.europaea666@gmail.com>\n"
+"POT-Creation-Date: 2025-11-17 12:31+0100\n"
+"PO-Revision-Date: 2025-11-17 20:38+0000\n"
+"Last-Translator: ILIA RIABOV <ilyarya131@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -1043,6 +1043,10 @@ msgstr "Очень высокий"
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Очень низкий"
 
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} потребления"
+
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(недостаточно для того, чтобы прожить ночь, что длится {0} секунд)"
 
@@ -1430,13 +1434,13 @@ msgstr ""
 msgid "CURRENT_DEVELOPERS"
 msgstr "Текущие Разработчики"
 
-#, fuzzy
 msgid "CURRENT_DILUTION"
-msgstr "ТЕКУЩАЯ ЛОКАЦИЯ"
+msgstr "Текущее событие разбавления"
 
-#, fuzzy
 msgid "CURRENT_DILUTION_TOOLTIP"
-msgstr "ТЕКУЩАЯ ЛОКАЦИЯ"
+msgstr ""
+"Соединения были разбавлены.\n"
+"Снижение концентрации:"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ТЕКУЩАЯ ЛОКАЦИЯ"
@@ -2134,17 +2138,15 @@ msgstr ""
 "Повышение уровня углекислого газа и серы.\n"
 "создаёт серные кусочки."
 
-#, fuzzy
 msgid "EVENT_RUNOFF_TOOLTIP"
 msgstr ""
-"Извержение\n"
-"Создаёт дополнительный Сероводород и Углекислый газ"
+"Осадки смываются с суши в прибрежные воды, обогащая их.\n"
+"Повышение концентрации:"
 
-#, fuzzy
 msgid "EVENT_UPWELLING_TOOLTIP"
 msgstr ""
-"Извержение\n"
-"Создаёт дополнительный Сероводород и Углекислый газ"
+"Соединения поднимаются со дна океана, обогащая верхние слои воды.\n"
+"Повышение концентрации:"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Эволюционное древо"
@@ -2813,6 +2815,14 @@ msgstr "Инспектор"
 
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Посетите нашу страницу в Instagram"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "Защита от УФ слишком низкая, требуется на {0}% выше"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(доля глюкозы, остающейся в окружающей среде после каждого поколения)"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Активировать Врата Вознесения"
@@ -3626,6 +3636,10 @@ msgstr "Давление Эффективности Хищничества"
 
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Корневое Давление Хищника"
+
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Соединения на выходе из редактора:"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr "Изначальное давление"
@@ -5179,7 +5193,7 @@ msgid "ROTATION_COLON"
 msgstr "Поворот:"
 
 msgid "RUNOFF_EVENT"
-msgstr ""
+msgstr "Событие стока"
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Запускать Авто-Эво во время игры"
@@ -5633,6 +5647,12 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "мутировал"
+
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Виды в текущем биоме"
+
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Виды, обитающие в других биомах"
 
 msgid "SPECIES_LIST"
 msgstr "Список Видов"
@@ -6840,7 +6860,7 @@ msgid "UPSCALE_SHARPENING_FSR"
 msgstr "FSR резкость"
 
 msgid "UPWELLING_EVENT"
-msgstr ""
+msgstr "Событие восходящего потока"
 
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Лицензии и использованные библиотеки"
@@ -9549,6 +9569,10 @@ msgstr "Увеличить масштаб"
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
 
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Соединения на выходе из редактора:"
+
 #~ msgid "JSON_DEBUG_MODE"
 #~ msgstr "Режим отладки JSON:"
 
@@ -9902,9 +9926,6 @@ msgstr "Уменьшить масштаб"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Считать биомы с таким или меньшим количеством видов биомами с низким биоразнообразием"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Максимум видов в биоме перед искусственным вымиранием"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Начальная популяция увеличивающих биоразнообразие видов"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-08 16:31+0100\n"
+"POT-Creation-Date: 2025-11-17 12:31+0100\n"
 "PO-Revision-Date: 2025-11-10 22:19+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -1054,6 +1054,10 @@ msgstr "Muito alto"
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Manter Todos"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "consumo de {0}"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(não é o suficiente para suportar a noite, que dura {0} segundos)"
@@ -2842,6 +2846,14 @@ msgstr "Inspecionar"
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Visite a nossa página no Instagram"
 
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "Proteção UV baixa demais, precisa ser {0}% mais alta"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(proporção da glicose conservada no ambiente a cada geração)"
+
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Ativar Portal da Ascensão"
 
@@ -3660,6 +3672,10 @@ msgstr "Pressão para Efetividade de Predação"
 
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Pressão Raiz para Predador"
+
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Compostos na saída do editor:"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr "Pressão Raiz"
@@ -5684,6 +5700,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "teve uma mutação"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Ir para a região atual"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Máximo de espécies na região"
 
 msgid "SPECIES_LIST"
 msgstr "Lista de espécies"
@@ -8974,6 +8998,10 @@ msgstr "Aumentar o zoom"
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
 
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Compostos na saída do editor:"
+
 #~ msgid "JSON_DEBUG_MODE"
 #~ msgstr "Modo de depuração JSON:"
 
@@ -9338,9 +9366,6 @@ msgstr "Diminuir o zoom"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Regiões com a seguinte quantidade de espécies serão consideradas como tendo baixa biodiversidade"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Máximo de espécies na região"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "População inicial para espécies que aumentam a biodiversidade"

@@ -8,9 +8,11 @@ using Systems;
 /// <summary>
 ///   Represents a multicellular species that is composed of multiple cells
 /// </summary>
-public class MulticellularSpecies : Species, ISimulationPhotographable
+public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISimulationPhotographable
 {
     public const ushort SERIALIZATION_VERSION = 1;
+
+    private ReadonlyCellLayoutAdapter<IReadOnlyCellTemplate, CellTemplate>? readonlyCellLayoutAdapter;
 
     public MulticellularSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
@@ -20,19 +22,25 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
     ///   The cells that make up this species' body plan. The first index is the cell of the bud type and the cells
     ///   grow in order.
     /// </summary>
-    public CellLayout<CellTemplate> Cells { get; private set; } = new();
+    public CellLayout<CellTemplate> ModifiableCells { get; private set; } = new();
+
+    // TODO: find a way around this adapter class
+    public IReadOnlyCellLayout<IReadOnlyCellTemplate> Cells => readonlyCellLayoutAdapter ??=
+        new ReadonlyCellLayoutAdapter<IReadOnlyCellTemplate, CellTemplate>(ModifiableCells);
 
     /// <summary>
-    ///   The 'original' colony layout, from which the simulated one (<see cref="Cells"/>) is generated.
+    ///   The 'original' colony layout, from which the simulated one (<see cref="ModifiableCells"/>) is generated.
     /// </summary>
     public IndividualHexLayout<CellTemplate>? EditorCellLayout { get; set; }
 
-    public List<CellType> CellTypes { get; private set; } = new();
+    public List<CellType> ModifiableCellTypes { get; private set; } = new();
+
+    public IReadOnlyList<IReadOnlyCellTypeDefinition> CellTypes => ModifiableCellTypes;
 
     /// <summary>
     ///   All organelles in all the species' placed cells (there can be a lot of duplicates in this list)
     /// </summary>
-    public IEnumerable<OrganelleTemplate> Organelles => Cells.SelectMany(c => c.Organelles);
+    public IEnumerable<OrganelleTemplate> Organelles => ModifiableCells.SelectMany(c => c.ModifiableOrganelles);
 
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
@@ -55,9 +63,9 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
 
         instance.ReadNonConstructorBaseProperties(reader, 1);
 
-        instance.Cells = reader.ReadObject<CellLayout<CellTemplate>>();
+        instance.ModifiableCells = reader.ReadObject<CellLayout<CellTemplate>>();
         instance.EditorCellLayout = reader.ReadObjectOrNull<IndividualHexLayout<CellTemplate>>();
-        instance.CellTypes = reader.ReadObject<List<CellType>>();
+        instance.ModifiableCellTypes = reader.ReadObject<List<CellType>>();
 
         return instance;
     }
@@ -66,9 +74,9 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
     {
         WriteBasePropertiesToArchive(writer);
 
-        writer.WriteObject(Cells);
+        writer.WriteObject(ModifiableCells);
         writer.WriteObjectOrNull(EditorCellLayout);
-        writer.WriteObject(CellTypes);
+        writer.WriteObject(ModifiableCellTypes);
     }
 
     public override void OnEdited()
@@ -79,13 +87,20 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
         UpdateInitialCompounds();
 
         // Make certain these are all up to date
-        foreach (var cellType in CellTypes)
+        foreach (var cellType in ModifiableCellTypes)
         {
             // See the comment in CellBodyPlanEditorComponent.OnFinishEditing
             if (cellType.RepositionToOrigin())
             {
                 GD.Print("Repositioned a multicellular species' cell type. This might break / crash the " +
                     "body plan layout.");
+            }
+
+            // Reset endosymbiont status so that they aren't free to move / delete in the next editor cycle
+            var count = cellType.ModifiableOrganelles.Count;
+            for (var i = 0; i < count; ++i)
+            {
+                cellType.ModifiableOrganelles.Organelles[i].IsEndosymbiont = false;
             }
         }
     }
@@ -94,14 +109,14 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
     {
         // TODO: should this actually reposition things as the cell at index 0 is always the colony leader so if it
         // isn't centered, that'll cause issues?
-        // var centerOfMass = Cells.CenterOfMass;
+        // var centerOfMass = ModifiableCells.CenterOfMass;
 
-        var centerOfMass = Cells[0].Position;
+        var centerOfMass = ModifiableCells[0].Position;
 
         if (centerOfMass.Q == 0 && centerOfMass.R == 0)
             return false;
 
-        foreach (var cell in Cells)
+        foreach (var cell in ModifiableCells)
         {
             // This calculation aligns the center of mass with the origin by moving every organelle of the microbe.
             cell.Position -= centerOfMass;
@@ -129,9 +144,9 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
             ProcessSpeedModifier = 1,
         };
 
-        ProcessSystem.ComputeCompoundBalance(Cells[0].Organelles,
+        ProcessSystem.ComputeCompoundBalance(ModifiableCells[0].ModifiableOrganelles,
             biomeConditions, environmentalTolerances, CompoundAmountType.Biome, false, compoundBalances);
-        var storageCapacity = MicrobeInternalCalculations.CalculateCapacity(Cells[0].Organelles);
+        var storageCapacity = MicrobeInternalCalculations.CalculateCapacity(ModifiableCells[0].ModifiableOrganelles);
 
         InitialCompounds.Clear();
 
@@ -162,7 +177,7 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
             throw new ArgumentException("Multicellular species must have microbe spawn environment info");
 
         // TODO: this would be excellent to match the actual cell type being used for spawning
-        var cellType = Cells[0].CellType;
+        var cellType = ModifiableCells[0].ModifiableCellType;
 
         // TODO: environmental tolerances for multicellular
         var environmentalTolerances = new ResolvedMicrobeTolerances
@@ -174,8 +189,9 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
 
         // TODO: CACHING IS MISSING from here (but microbe has it)
         // TODO: should moving be false in some cases?
-        var compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(cellType.Organelles,
-            cellType.MembraneType, true, PlayerSpecies, microbeSpawnEnvironment.CurrentBiome, environmentalTolerances,
+        var compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(
+            cellType.ModifiableOrganelles, cellType.MembraneType, true, PlayerSpecies,
+            microbeSpawnEnvironment.CurrentBiome, environmentalTolerances,
             microbeSpawnEnvironment.WorldSettings);
 
         MicrobeInternalCalculations.GiveNearNightInitialCompoundBuff(targetStorage, compoundTimes,
@@ -188,21 +204,21 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
 
         var casted = (MulticellularSpecies)mutation;
 
-        Cells.Clear();
+        ModifiableCells.Clear();
 
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
 
-        foreach (var cellTemplate in casted.Cells)
+        foreach (var cellTemplate in casted.ModifiableCells)
         {
-            Cells.AddFast((CellTemplate)cellTemplate.Clone(), workMemory1, workMemory2);
+            ModifiableCells.AddFast((CellTemplate)cellTemplate.Clone(), workMemory1, workMemory2);
         }
 
-        CellTypes.Clear();
+        ModifiableCellTypes.Clear();
 
-        foreach (var cellType in casted.CellTypes)
+        foreach (var cellType in casted.ModifiableCellTypes)
         {
-            CellTypes.Add((CellType)cellType.Clone());
+            ModifiableCellTypes.Add((CellType)cellType.Clone());
         }
     }
 
@@ -210,10 +226,10 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
     {
         var totalOrganelles = 0;
 
-        int count = Cells.Count;
+        int count = ModifiableCells.Count;
         for (int i = 0; i < count; ++i)
         {
-            totalOrganelles += Cells[i].Organelles.Count;
+            totalOrganelles += ModifiableCells[i].Organelles.Count;
         }
 
         return totalOrganelles;
@@ -243,14 +259,14 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
 
-        foreach (var cellTemplate in Cells)
+        foreach (var cellTemplate in ModifiableCells)
         {
-            result.Cells.AddFast((CellTemplate)cellTemplate.Clone(), workMemory1, workMemory2);
+            result.ModifiableCells.AddFast((CellTemplate)cellTemplate.Clone(), workMemory1, workMemory2);
         }
 
-        foreach (var cellType in CellTypes)
+        foreach (var cellType in ModifiableCellTypes)
         {
-            result.CellTypes.Add((CellType)cellType.Clone());
+            result.ModifiableCellTypes.Add((CellType)cellType.Clone());
         }
 
         return result;
@@ -260,7 +276,7 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
     {
         ulong hash = 1099511628211;
 
-        foreach (var cell in Cells)
+        foreach (var cell in ModifiableCells)
         {
             hash += cell.GetVisualHashCode() ^ (ulong)cell.Position.GetHashCode();
         }
@@ -287,10 +303,10 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
     {
         var result = base.CalculateTotalReproductionCost();
 
-        int count = Cells.Count;
+        int count = ModifiableCells.Count;
         for (int i = 0; i < count; ++i)
         {
-            result.Merge(Cells[i].CalculateTotalComposition());
+            result.Merge(ModifiableCells[i].CalculateTotalComposition());
         }
 
         return result;

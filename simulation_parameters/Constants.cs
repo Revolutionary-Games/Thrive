@@ -942,7 +942,7 @@ public static class Constants
     ///   The measure of which beyond this threshold an engulfable is considered partially digested.
     ///   Used to determine whether a cell should be able to heal after being expelled from engulfment.
     /// </summary>
-    public const float PARTIALLY_DIGESTED_THRESHOLD = 0.5f;
+    public const float PARTIALLY_DIGESTED_THRESHOLD = 0.8f;
 
     /// <summary>
     ///   The maximum digestion progress in which an engulfable is considered fully digested. Do not change this.
@@ -1318,6 +1318,9 @@ public static class Constants
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
+    public const float AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION = 0.1f;
+    public const float AUTO_EVO_REPRODUCTION_COMPOUND_PRODUCTION_SCORE = 3000.0f;
+    public const float AUTO_EVO_REPRODUCTION_COMPOUND_COST_WEAKENING_MODIFIER = 0.5f;
 
     public const float AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS_SMALL = 1.5f;
     public const float AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS = 20.0f;
@@ -1413,6 +1416,10 @@ public static class Constants
     public const float HYDROGEN_SULFIDE_NATURAL_DECAY_INCREASE_PER_OXYGEN = 0.021f;
     public const float HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR_OXYGEN = 0.1f;
     public const float HYDROGEN_SULFIDE_OXYGEN_TOTAL_CUTOFF = 0.01f;
+
+    public const double AMMONIA_ENVIRONMENT_CONSUMPTION_MULTIPLIER = 0.00000000001;
+    public const double AMMONIA_ENVIRONMENT_PRODUCTION_MULTIPLIER = 0.0000001;
+    public const float AMMONIA_ENVIRONMENT_SPEED_MULTIPLIER = 0.9f;
 
     /// <summary>
     ///   Below this value oxygen doesn't cause iron chunks to become less common
@@ -1920,6 +1927,9 @@ public static class Constants
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const float PATCH_REGION_MARGIN = 5.0f;
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
+    public const float PATCH_LIFE_INDICATOR_RADIUS_BASE = 40.0f;
+    public const float PATCH_LIFE_INDICATOR_RADIUS_SCALE = 30.0f;
+    public const float INDICATORS_NUMBER_PER_POPULATION_SQUARED = 0.2f;
 
     public const float PATCH_GENERATION_CHANCE_BANANA_BIOME = 0.03f;
 

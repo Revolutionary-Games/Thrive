@@ -60,7 +60,7 @@ public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData, IMe
                 continue;
 
             result.Add(new MetaballMoveActionData<TMetaball>(descendant, descendant.Position,
-                descendantPosition, descendant.Parent, descendant.Parent, null));
+                descendantPosition, descendant.ModifiableParent, descendant.ModifiableParent, null));
         }
 
         return result;

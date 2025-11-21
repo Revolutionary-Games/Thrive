@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-08 16:31+0100\n"
-"PO-Revision-Date: 2025-11-10 22:19+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-11-17 12:31+0100\n"
+"PO-Revision-Date: 2025-11-14 11:00+0000\n"
+"Last-Translator: Sur3 <sur3@gmx.de>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -49,9 +49,8 @@ msgstr "Abyssopelagial"
 msgid "ACCEPT"
 msgstr "Akzeptieren"
 
-#, fuzzy
 msgid "ACHIEVEMENTS"
-msgstr "Basisbewegung"
+msgstr "Errungenschaften"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Errungenschaften {0} / {1}"
@@ -527,10 +526,10 @@ msgid "BEST_PATCH_COLON"
 msgstr "Bestes Gebiet:"
 
 msgid "BETTER_TOGETHER"
-msgstr ""
+msgstr "Gemeinsam sind wir stark"
 
 msgid "BEYOND_THE_CELL"
-msgstr ""
+msgstr "Mehr als nur Zelle"
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Großer Eisenbrocken"
@@ -641,7 +640,7 @@ msgid "CANNOT_ENGULF"
 msgstr "Kann nicht verschlingen"
 
 msgid "CANNOT_IMPROVE_PERFECTION"
-msgstr ""
+msgstr "Unverbesserliche Perfektion"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Metaball kann nicht in den Baum der Nachkommen verschoben werden"
@@ -1047,6 +1046,10 @@ msgstr "reichlich"
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "rar"
 
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0}-Verbrauch"
+
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(nicht ausreichend, um die Nachtdauer von {0} s zu überstehen)"
 
@@ -1121,9 +1124,8 @@ msgstr "Mit diesen Einstellungen spielen"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Einige Einstellungen sind ungültig"
 
-#, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS"
-msgstr "Löschen bestätigen"
+msgstr "Errungenschaften zurücksetzen?"
 
 #, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
@@ -2273,6 +2275,7 @@ msgstr "Aktiviert"
 msgid "FEBRUARY"
 msgstr "Februar"
 
+#, fuzzy
 msgid "FEED_ITEM_CONTENT_PARSING_FAILED"
 msgstr "Initialisierung der Steam-Client-Bibliothek fehlgeschlagen"
 
@@ -2376,7 +2379,7 @@ msgid "FOG_OF_WAR_REGULAR"
 msgstr "Normaler Nebel des Krieges"
 
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
-msgstr "Pili (Singular: Pilus) befinden sich auf der Oberfläche vieler Mikroorganismen und ähneln feinen Haaren. Auf der Oberfläche eines Mikroorganismus können Hunderte von Pili vorhanden sein, die mehreren Zwecken dienen können, wie zum Beispiel der Jagt. Pathogene Mikroorganismen nutzen Pili für ihre Virulenz um sich an Wirtsgewebe anzuheften und zu binden oder um die äußere Membran zu überwinden und Zugang zum Zytoplasma zu erhalten. Es gibt viele ähnliche Pili-Varianten, die jedoch evolutionär nicht miteinander verwandt sind und aus einer konvergenten Evolution hervorgegangen sind. Ein einziger Organismus kann mehrere Arten von Pili ausbilden und diese ständig verändern und ersetzen."
+msgstr "(Gebiete wo der Spieler bereits war und angrenzende Gebiete werden aufgedeckt)"
 
 msgid "FOOD_CHAIN"
 msgstr "Nahrungskette"
@@ -2501,7 +2504,7 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "Wenn deine Population auf Null fällt, stirbst du aus."
 
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
-msgstr ""
+msgstr "Produziere durch Photosynthese einen Glukose-Überschuß"
 
 msgid "GENERATIONS"
 msgstr "Generationen"
@@ -2510,16 +2513,16 @@ msgid "GENERATION_COLON"
 msgstr "Generation:"
 
 msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
+msgstr "Geologische Aktivität"
 
 msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
+msgstr "turbulent"
 
 msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
+msgstr "moderat"
 
 msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
+msgstr "ruhig"
 
 #, fuzzy
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
@@ -2583,7 +2586,7 @@ msgid "GOD_TOOLS_TITLE"
 msgstr "Gottmodus"
 
 msgid "GOING_NUCLEAR"
-msgstr ""
+msgstr "Kern-Kraft"
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "Kulleraugenzelle"
@@ -2628,6 +2631,7 @@ msgstr "Gesundheit"
 msgid "HEALTH_MODIFIER"
 msgstr "Gesundheits-Modifikator"
 
+#, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr "Harmony Updates automatisch vom Assembler laden (Mod class muss nicht spezifiziert werden)"
 
@@ -2680,26 +2684,24 @@ msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
 
 msgid "HYDROGENASE"
-msgstr "Schwefelwasserstoff"
+msgstr "Hydrogenase"
 
 #, fuzzy
 msgid "HYDROGENASE_DESCRIPTION"
 msgstr "Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstoff und zelluläre Energie in Form von ATP zu nutzen, um Ammoniak, einen wichtigen Wachstumsnährstoff für Zellen, zu produzieren. Dies ist ein Prozess, der als anaerobe Stickstofffixierung bezeichnet wird. Da die Nitrogenase direkt im Zytoplasma untergebracht ist, führt die umgebende Flüssigkeit glykolyse durch."
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
-msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um. Rate skaliert mit der Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um."
 
-#, fuzzy
 msgid "HYDROGENOSOME"
-msgstr "Schwefelwasserstoff"
+msgstr "Hydrogenosom"
 
 #, fuzzy
 msgid "HYDROGENOSOME_DESCRIPTION"
 msgstr "Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstoff und zelluläre Energie in Form von ATP zu nutzen, um Ammoniak, einen wichtigen Wachstumsnährstoff für Zellen, zu produzieren. Dies ist ein Prozess, der als anaerobe Stickstofffixierung bezeichnet wird. Da die Nitrogenase direkt im Zytoplasma untergebracht ist, führt die umgebende Flüssigkeit glykolyse durch."
 
-#, fuzzy
 msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
-msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um. Rate skaliert mit der Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um."
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Schwefelwasserstoff"
@@ -2730,7 +2732,7 @@ msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(abhängig vom Rendering-Modus und Upscaling sind nicht alle Methoden verfügbar)"
 
 msgid "IGNORE_FURTHER_ERRORS"
-msgstr ""
+msgstr "Weitere Fehler ignorieren"
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "Membrantypen"
@@ -2760,8 +2762,9 @@ msgid "INFINITE_MP"
 msgstr "Unendliche MP"
 
 msgid "INFO_BOX_COST"
-msgstr "DU HAST DICH ENTWICKELT!"
+msgstr "Grundkosten (MP)"
 
+#, fuzzy
 msgid "INFO_BOX_EDITORS"
 msgstr "DU HAST DICH ENTWICKELT!"
 
@@ -2777,6 +2780,7 @@ msgstr "Interner (Ordner-)Name:"
 msgid "INFO_BOX_MASS"
 msgstr "Masse"
 
+#, fuzzy
 msgid "INFO_BOX_NEXT_STAGE"
 msgstr "DU HAST DICH ENTWICKELT!"
 
@@ -2792,12 +2796,15 @@ msgstr "Keine Prozesse"
 msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr "Benötigt Nukleus"
 
+#, fuzzy
 msgid "INFO_BOX_SIZE"
 msgstr "DU HAST DICH ENTWICKELT!"
 
+#, fuzzy
 msgid "INFO_BOX_STORAGE"
 msgstr "DU HAST DICH ENTWICKELT!"
 
+#, fuzzy
 msgid "INFO_BOX_UNIQUE"
 msgstr "DU HAST DICH ENTWICKELT!"
 
@@ -2831,6 +2838,14 @@ msgstr "Untersuchen"
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Unsere Steam Seite besuchen"
 
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(Anteil an Glukose in der Umwelt, welcher jede Generation erhalten bleibt)"
+
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "KI Mutationsrate"
 
@@ -2843,6 +2858,7 @@ msgstr "KI Mutationsrate"
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
 msgstr "Konstruktion fertigstellen (benötigte Materialien fehlen)"
 
+#, fuzzy
 msgid "INTERACTION_CRAFT"
 msgstr "KI Mutationsrate"
 
@@ -2922,13 +2938,13 @@ msgid "IN_PROTOTYPE"
 msgstr ""
 "Du spielst die späteren Prototypen, die dem Spiel beigefügt sind. \n"
 "Diese sind möglicherweise sehr unvollständig, verwenden Platzhaltergrafiken und sind im Allgemeinen sehr grob. \n"
-"Das Speichern ist daher derzeit nicht möglich."
+"Das Speichern ist daher derzeit nur eingeschränkt oder garnicht möglich."
 
 msgid "IRON"
 msgstr "Eisen"
 
 msgid "IRON_LEVELS"
-msgstr ""
+msgstr "Eisenvorkommen"
 
 msgid "IRON_OXIDATION"
 msgstr "Eisenoxidation"
@@ -2940,7 +2956,7 @@ msgid "ITEM_AT_2D_COORDINATES"
 msgstr "{0} bei ({1}, {2})"
 
 msgid "ITEM_NAME_SEPARATOR"
-msgstr "Beende eine Generation"
+msgstr ":"
 
 msgid "JANUARY"
 msgstr "Januar"
@@ -3417,6 +3433,7 @@ msgstr "(niedrigere Werte ergeben ein schärferes Bild)"
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Leistung"
 
+#, fuzzy
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr "Enthält Verdauungsenzyme, welche die Geschwidigkeit und die Effizienz der Verdauung verbessern. Die Art des enthaltenen Enzyms kann verändert werden. Es kann nur ein Enzym pro Lysosom benutzt werden."
 
@@ -3532,7 +3549,7 @@ msgid "MELANOSOME_DESCRIPTION"
 msgstr "Das Melanosom ist ein membranumhülltes Organell, das Melaninpigmente enthält, welche hochenergetische elektromagnetische Wellen, die von radioaktiven Materialien emittiert werden, absorbieren und in nutzbare Energie umwandeln können – ein Prozess, der als [b]Radiosynthese[/b] bezeichnet wird. Die strahlungsabsorbierenden Pigmente tragen zudem dazu bei, empfindlichere Zellbestandteile zu schützen, was die allgemeine Widerstandsfähigkeit gegenüber Strahlung erhöht."
 
 msgid "MELANOSOME_PROCESSES_DESCRIPTION"
-msgstr "Wandelt [thrive:compound type=\"strahlung\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um, wenn es sich in der Nähe hochradioaktiver Gesteine befindet, und bietet gleichzeitig Strahlungsresistenz"
+msgstr "Wandelt [thrive:compound type=\"radiation\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um, wenn es sich in der Nähe hochradioaktiver Gesteine befindet, und bietet gleichzeitig Strahlungsresistenz."
 
 msgid "MEMBRANE"
 msgstr "Membran"
@@ -3646,6 +3663,10 @@ msgstr "Druck durch Jagd-Effektivität"
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Grunddruck durch Beutegreifer"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reproduktion:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -3715,7 +3736,7 @@ msgid "MICROBE_LOADING_TIP_2"
 msgstr "Je mehr oder längere Geißeln du hast, desto schneller kannst du dich bewegen! Der ATP-Verbrauch steigt dadurch natürlich an."
 
 msgid "MICROBE_LOADING_TIP_20"
-msgstr "Zellen mit einer Membran aus Zellulose oder Chitin können von Prokaryoten nicht verdaut werden. Eukaryoten mit Lysosomen können solche Zellen aber verdauen, da sie Enzyme produzieren, die die Zellmembrane aufbrechen können."
+msgstr "Zellen mit einer Membran aus Zellulose oder Chitin können von Prokaryoten nicht verdaut werden. Eukaryoten mit Lysosomen können solche Zellen aber verdauen, da sie Enzyme produzieren, die die Zellmembranen aufbrechen können."
 
 msgid "MICROBE_LOADING_TIP_21"
 msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kann durch Chemoplasten und Chemosynthetisierende Proteine in [thrive:compound type=\"glucose\"][/thrive:compound] umgewandelt werden. [thrive:compound type=\"iron\"][/thrive:compound] kann durch Rusticyanin oder Ferroplasten in [thrive:compound type=\"atp\"][/thrive:compound] umgewandelt werden."
@@ -4241,7 +4262,7 @@ msgid "NAME_LABEL_FLEET"
 msgstr "{0} (PWR: {1})"
 
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
-msgstr ""
+msgstr "{0} (U)"
 
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr ""
@@ -5007,9 +5028,8 @@ msgstr ""
 msgid "RADIATION"
 msgstr "Strahlung"
 
-#, fuzzy
 msgid "RADIATION_LEVELS"
-msgstr "Strahlung"
+msgstr "Strahlungsquellen"
 
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Radioaktiver Gesteinsbrocken"
@@ -5030,10 +5050,10 @@ msgid "RAW_VALUE_COLON"
 msgstr "Rohwert:"
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES"
-msgstr ""
+msgstr "Erreiche die 15. Generation einer Spezies wenigstens mit normalem Schwierigkeitsgrad"
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
-msgstr ""
+msgstr "Erreiche Generation {0}/{1} einer Spezies wenigstens mit normalem Schwierigkeitsgrad"
 
 #, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
@@ -5721,6 +5741,14 @@ msgstr ""
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "ist mutiert"
 
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Zum aktuellen Gebiet"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Maximale Anzahl an Arten in einem Bereich vor dem erzwungenen Aussterben"
+
 msgid "SPECIES_LIST"
 msgstr "Spezienliste"
 
@@ -5927,7 +5955,7 @@ msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Dampfbetriebene Fabrik"
 
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
-msgstr ""
+msgstr "Vollführe eine erfolgreiche Endosymbiose"
 
 msgid "SUCCESSFUL_KILL"
 msgstr "erfolgreiche Tötung"
@@ -6014,7 +6042,7 @@ msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
 msgstr "Idustriell"
 
 msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
-msgstr ""
+msgstr "Vorgesellschaft"
 
 msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
 msgstr "Primitiv"
@@ -6035,7 +6063,7 @@ msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
 msgstr "Einfache Steinwerkzeuge"
 
 msgid "TECHNOLOGY_SOCIETY_CENTER"
-msgstr ""
+msgstr "Baue Gemeinschaftszentrum"
 
 msgid "TECHNOLOGY_STEAM_POWER"
 msgstr "Dampfmaschine"
@@ -6104,9 +6132,8 @@ msgstr "Thermosynthese"
 msgid "THE_DISTURBANCE"
 msgstr "Die Verstörung (Thrive Maskottchen)"
 
-#, fuzzy
 msgid "THE_EDITOR"
-msgstr "Editor verlassen"
+msgstr "Der Editor"
 
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Die Gebietskarte"
@@ -9243,18 +9270,18 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Du kannst die zukünftige Entwicklung von Thrive auf Patreon unterstützen."
 
-#, fuzzy
 msgid "YUM_EXCLAMATION"
-msgstr ""
-"Fokussierte Mikroben werden über größere Entfernungen nach Brocken oder Beute suchen\n"
-"und sind möglicherweise sehr viel ehrgeiziger, wenn es um Brocken geht.\n"
-"Responsive Mikroben wechseln schneller zu neuen Zielen."
+msgstr "Lecker!"
 
 msgid "ZOOM_IN"
 msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Reproduktion:"
 
 #~ msgid "JSON_DEBUG_MODE"
 #~ msgstr "JSON Debug-Modus:"
@@ -9610,9 +9637,6 @@ msgstr "Herauszoomen"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Bereiche mit bis zu dieser Anzahl an Spezies haben niedrige Biodiversität"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Maximale Anzahl an Arten in einem Bereich vor dem erzwungenen Aussterben"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Startpopulation einer Biodiversität erhöhenden Spezies"

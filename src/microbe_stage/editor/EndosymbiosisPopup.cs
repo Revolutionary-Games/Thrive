@@ -11,6 +11,8 @@ public partial class EndosymbiosisPopup : CustomWindow
     [Export]
     public bool Lawk;
 
+    private readonly List<uint> currentPatchSpeciesIds = new();
+
 #pragma warning disable CA2213
     [Export]
     private Label generalExplanationLabel = null!;
@@ -22,7 +24,19 @@ public partial class EndosymbiosisPopup : CustomWindow
     private Label prokaryoteFullLabel = null!;
 
     [Export]
-    private Container choicesContainer = null!;
+    private Label noSpeciesAvailableLabel = null!;
+
+    [Export]
+    private VBoxContainer currentPatchSpeciesContainer = null!;
+
+    [Export]
+    private Container currentPatchSpecies = null!;
+
+    [Export]
+    private VBoxContainer otherPatchesSpeciesContainer = null!;
+
+    [Export]
+    private Container otherPatchesSpecies = null!;
 
     [Export]
     private Container progressContainer = null!;
@@ -54,9 +68,16 @@ public partial class EndosymbiosisPopup : CustomWindow
         progressDisplayScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn");
     }
 
-    public void UpdateData(EndosymbiosisData endosymbiosis, bool isSpeciesProkaryote)
+    public void UpdateData(EndosymbiosisData endosymbiosis, bool isSpeciesProkaryote,
+        IEnumerable<Species> currentPatchSpeciesList)
     {
         endosymbiosisData = endosymbiosis;
+        currentPatchSpeciesIds.Clear();
+
+        foreach (var species in currentPatchSpeciesList)
+        {
+            currentPatchSpeciesIds.Add(species.ID);
+        }
 
         var existingCount = endosymbiosis.Endosymbionts?.Count ?? 0;
 
@@ -76,9 +97,13 @@ public partial class EndosymbiosisPopup : CustomWindow
         generalExplanationLabel.Visible = false;
         inProgressAdviceLabel.Visible = false;
         prokaryoteFullLabel.Visible = false;
+        noSpeciesAvailableLabel.Visible = true;
 
-        choicesContainer.Visible = false;
-        choicesContainer.QueueFreeChildren();
+        currentPatchSpeciesContainer.Visible = false;
+        currentPatchSpecies.QueueFreeChildren();
+
+        otherPatchesSpeciesContainer.Visible = false;
+        otherPatchesSpecies.QueueFreeChildren();
 
         progressContainer.Visible = false;
         progressContainer.QueueFreeChildren();
@@ -117,12 +142,11 @@ public partial class EndosymbiosisPopup : CustomWindow
         progressContainer.AddChild(display);
 
         progressContainer.Visible = true;
+        noSpeciesAvailableLabel.Visible = false;
     }
 
     private void ShowDataToStartNew(IEnumerable<KeyValuePair<Species, int>> candidates)
     {
-        bool any = false;
-
         var tempSymbionts = new List<(OrganelleDefinition Organelle, int Cost)>();
 
         // Order the most engulfed things first
@@ -156,23 +180,19 @@ public partial class EndosymbiosisPopup : CustomWindow
             choice.Connect(EndosymbiosisCandidateOption.SignalName.OnOrganelleTypeSelected,
                 Callable.From((string name, int cost) => OnEndosymbiosisStarted(microbeSpecies, name, cost)));
 
-            choicesContainer.AddChild(choice);
-
-            any = true;
-        }
-
-        if (!any)
-        {
-            choicesContainer.AddChild(new Label
+            if (currentPatchSpeciesIds.Contains(microbeSpecies.ID))
             {
-                Text = Localization.Translate("ENDOSYMBIOSIS_NOTHING_ENGULFED"),
-                HorizontalAlignment = HorizontalAlignment.Center,
-                AutowrapMode = TextServer.AutowrapMode.WordSmart,
-                CustomMinimumSize = new Vector2(100, 0),
-            });
-        }
+                currentPatchSpecies.AddChild(choice);
+                currentPatchSpeciesContainer.Visible = true;
+            }
+            else
+            {
+                otherPatchesSpecies.AddChild(choice);
+                otherPatchesSpeciesContainer.Visible = true;
+            }
 
-        choicesContainer.Visible = true;
+            noSpeciesAvailableLabel.Visible = false;
+        }
     }
 
     private void OnEndosymbiosisStarted(Species species, string organelleName, int cost)

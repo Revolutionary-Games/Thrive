@@ -448,6 +448,8 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(PhotosynthesisProductionEffect), PhotosynthesisProductionEffect.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.VolcanismEffect,
             typeof(VolcanismEffect), VolcanismEffect.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.AmmoniaProductionEffect,
+            typeof(AmmoniaProductionEffect), AmmoniaProductionEffect.ReadFromArchive);
     }
 
     private void RegisterTutorial()
@@ -522,6 +524,8 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(RootPressure), RootPressure.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.TemperatureSessilityPressure,
             typeof(TemperatureSessilityPressure), TemperatureSessilityPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ReproductionCompoundPressure,
+            typeof(ReproductionCompoundPressure), ReproductionCompoundPressure.ReadFromArchive);
     }
 
     private void RegisterEditor()

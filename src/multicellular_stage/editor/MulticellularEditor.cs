@@ -12,6 +12,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
+    private readonly MulticellularSpeciesComparer speciesComparer = new();
+
 #pragma warning disable CA2213
     [Export]
     private MicrobeEditorReportComponent reportTab = null!;
@@ -28,6 +30,11 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     [Export]
     private Control noCellTypeSelected = null!;
 #pragma warning restore CA2213
+
+    /// <summary>
+    ///   Used to cache full edited status for <see cref="speciesComparer"/> usage
+    /// </summary>
+    private MulticellularEditsFacade? editsFacade;
 
     private MulticellularSpecies? editedSpecies;
 
@@ -160,17 +167,14 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         cellEditorTab.UpdateBackgroundImage(patch);
     }
 
-    public override void AddContextToActions(IEnumerable<CombinableActionData> actions)
+    public override void AddContextToAction(CombinableActionData action)
     {
-        // If a cell type is being edited, add its type to each action data, so that we can use it for undoing and
-        // redoing later
-        if (selectedEditorTab == EditorTab.CellTypeEditor && selectedCellTypeToEdit != null)
+        // If a cell type is being edited, add its type to each action data so that we can use it for undoing and
+        // redoing later. And this makes the MP system work.
+        if (selectedCellTypeToEdit != null)
         {
-            foreach (var actionData in actions)
-            {
-                if (actionData is EditorCombinableActionData<CellType> cellTypeData && cellTypeData.Context == null)
-                    cellTypeData.Context = selectedCellTypeToEdit;
-            }
+            if (action is EditorCombinableActionData<CellType> cellTypeData && cellTypeData.Context == null)
+                cellTypeData.Context = selectedCellTypeToEdit;
         }
     }
 
@@ -209,8 +213,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         // Name is invalid if it is empty or a duplicate
         // TODO: should this ensure the name doesn't have trailing whitespace?
         // If so, CellTemplate.UpdateNameIfValid should be updated as well
-        return !string.IsNullOrWhiteSpace(newName) && !EditedSpecies.CellTypes.Any(c =>
-            c.TypeName.Equals(newName, StringComparison.InvariantCultureIgnoreCase));
+        return !string.IsNullOrWhiteSpace(newName) && !EditedSpecies.ModifiableCellTypes.Any(c =>
+            c.CellTypeName.Equals(newName, StringComparison.InvariantCultureIgnoreCase));
     }
 
     public override void Undo()
@@ -233,7 +237,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override void InitEditor(bool fresh)
     {
-        patchMapTab.SetMap(CurrentGame.GameWorld.Map);
+        patchMapTab.SetMap(CurrentGame.GameWorld.Map, CurrentGame.GameWorld.PlayerSpecies.ID);
 
         base.InitEditor(fresh);
 
@@ -316,6 +320,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
 
         patchMapTab.UpdatePatchEvents();
+        patchMapTab.MarkDrawerDirty();
     }
 
     protected override void OnUndoPerformed()
@@ -336,6 +341,17 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     {
         // Patch events are able to change the stage's background, so it needs to be updated here.
         cellEditorTab.UpdateBackgroundImage(CurrentPatch);
+    }
+
+    protected override double CalculateUsedMutationPoints(List<EditorCombinableActionData> performedActionData)
+    {
+        editsFacade ??=
+            new MulticellularEditsFacade(editedSpecies ??
+                throw new Exception("Species not initialized before calculating MP"));
+
+        editsFacade.SetActiveActions(performedActionData);
+
+        return speciesComparer.Compare(editedSpecies!, editsFacade);
     }
 
     protected override GameProperties StartNewGameForEditor()
@@ -479,14 +495,14 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             return;
         }
 
-        var newTypeToEdit = EditedSpecies.CellTypes.First(c => c.TypeName == name);
+        var newTypeToEdit = EditedSpecies.ModifiableCellTypes.First(c => c.CellTypeName == name);
 
         // Only reinitialize the editor when required
         if (selectedCellTypeToEdit == null || selectedCellTypeToEdit != newTypeToEdit)
         {
             selectedCellTypeToEdit = newTypeToEdit;
 
-            GD.Print("Start editing cell type: ", selectedCellTypeToEdit.TypeName);
+            GD.Print("Start editing cell type: ", selectedCellTypeToEdit.CellTypeName);
 
             // Reinitialize the cell editor to be able to edit the new cell type
             cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
@@ -502,7 +518,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             return;
 
         // TODO: only apply if there were changes
-        GD.Print("Applying changes made to cell type: ", selectedCellTypeToEdit.TypeName);
+        GD.Print("Applying changes made to cell type: ", selectedCellTypeToEdit.CellTypeName);
 
         // Apply any changes made to the selected cell
         FinishEditingSelectedCell();
@@ -564,16 +580,16 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         if (selectedCellTypeToEdit == null)
             return;
 
-        var oldName = selectedCellTypeToEdit.TypeName;
+        var oldName = selectedCellTypeToEdit.CellTypeName;
 
         cellEditorTab.OnFinishEditing(false);
 
         // Revert to old name if the name is a duplicate
-        if (EditedSpecies.CellTypes.Any(c =>
-                c != selectedCellTypeToEdit && c.TypeName == selectedCellTypeToEdit.TypeName))
+        if (EditedSpecies.ModifiableCellTypes.Any(c =>
+                c != selectedCellTypeToEdit && c.CellTypeName == selectedCellTypeToEdit.CellTypeName))
         {
             GD.Print("Cell editor renamed a cell type to a duplicate name, reverting");
-            selectedCellTypeToEdit.TypeName = oldName;
+            selectedCellTypeToEdit.CellTypeName = oldName;
         }
 
         bodyPlanEditorTab.OnCellTypeEdited(selectedCellTypeToEdit);

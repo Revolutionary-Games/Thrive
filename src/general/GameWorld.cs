@@ -18,7 +18,7 @@ using Xoshiro.PRNG64;
 /// </remarks>
 public class GameWorld : IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     /// <summary>
     ///   Stores some instances to be used between many different auto-evo runs
@@ -74,6 +74,7 @@ public class GameWorld : IArchivable
             // the full effect to get balanced well enough
             TimedEffects.RegisterEffect("photosynthesis_production", new PhotosynthesisProductionEffect(this));
             TimedEffects.RegisterEffect("volcanism", new VolcanismEffect(this));
+            TimedEffects.RegisterEffect("ammonia_production", new AmmoniaProductionEffect(this));
             TimedEffects.RegisterEffect("nitrogen_control", new NitrogenControlEffect(this));
 
             // Patch events. PatchEventsManager HAS to be the last one
@@ -151,12 +152,13 @@ public class GameWorld : IArchivable
             {
                 if (PlayerSpecies is MicrobeSpecies microbeSpecies)
                 {
-                    PlayerSpecies.Tolerances.CopyFrom(patch.GenerateTolerancesForMicrobe(microbeSpecies.Organelles));
+                    PlayerSpecies.ModifiableTolerances.CopyFrom(
+                        patch.GenerateTolerancesForMicrobe(microbeSpecies.Organelles));
                 }
                 else if (PlayerSpecies is MulticellularSpecies multicellularSpecies)
                 {
-                    PlayerSpecies.Tolerances.CopyFrom(
-                        patch.GenerateTolerancesForMicrobe(multicellularSpecies.Cells[0].Organelles));
+                    PlayerSpecies.ModifiableTolerances.CopyFrom(patch.GenerateTolerancesForMicrobe(multicellularSpecies
+                        .ModifiableCells[0].ModifiableOrganelles));
                 }
                 else
                 {
@@ -315,6 +317,12 @@ public class GameWorld : IArchivable
                 new CurrentDilutionEvent(instance, random.Next64()));
             instance.TimedEffects.RegisterEffect("patch_events_manager",
                 new PatchEventsManager(instance, random.Next64()));
+        }
+
+        if (version < 3)
+        {
+            instance.TimedEffects.RegisterEffect("ammonia_production", new AmmoniaProductionEffect(instance),
+                false);
         }
 
         return instance;
@@ -824,8 +832,8 @@ public class GameWorld : IArchivable
 
         var stemCellType = new CellType(microbeSpecies, workMemory1, workMemory2);
 
-        multicellularVersion.Cells.AddFast(new CellTemplate(stemCellType), workMemory1, workMemory2);
-        multicellularVersion.CellTypes.Add(stemCellType);
+        multicellularVersion.ModifiableCells.AddFast(new CellTemplate(stemCellType), workMemory1, workMemory2);
+        multicellularVersion.ModifiableCellTypes.Add(stemCellType);
 
         multicellularVersion.OnEdited();
         SwitchSpecies(species, multicellularVersion);
@@ -851,7 +859,7 @@ public class GameWorld : IArchivable
 
         // Copy all the cell types, even ones that are unused so the player doesn't lose any when moving stages
         // in case they want to place them later
-        lateVersion.CellTypes.AddRange(earlySpecies.CellTypes);
+        lateVersion.ModifiableCellTypes.AddRange(earlySpecies.ModifiableCellTypes);
 
         // Create initial metaball layout from the cell layout
         // TODO: improve this algorithm
@@ -859,9 +867,9 @@ public class GameWorld : IArchivable
         // Create metaballs for everything first
         var metaballs = new List<MacroscopicMetaball>();
 
-        foreach (var cellTemplate in earlySpecies.Cells)
+        foreach (var cellTemplate in earlySpecies.ModifiableCells)
         {
-            var metaball = new MacroscopicMetaball(cellTemplate.CellType)
+            var metaball = new MacroscopicMetaball(cellTemplate.ModifiableCellType)
             {
                 Position = Hex.AxialToCartesian(cellTemplate.Position),
                 Size = 1,
@@ -879,13 +887,13 @@ public class GameWorld : IArchivable
             if (ReferenceEquals(metaball, rootMetaball))
                 continue;
 
-            if (metaball.Parent != null)
+            if (metaball.ModifiableParent != null)
                 throw new Exception("Logic error in metaball initial parent calculation");
 
             // For now just pick the closest (and in case of ties, the closer to origin) metaball as the parent
             // Also avoid accidentally making short parent loops
             var potentialParents = metaballs
-                .Where(m => !ReferenceEquals(m, metaball) && !ReferenceEquals(m.Parent, metaball))
+                .Where(m => !ReferenceEquals(m, metaball) && !ReferenceEquals(m.ModifiableParent, metaball))
                 .OrderBy(m => m.Position.DistanceSquaredTo(metaball.Position)).ThenBy(m => m.Position.LengthSquared());
 
             bool foundSuitableParent = false;
@@ -896,7 +904,7 @@ public class GameWorld : IArchivable
                 if (parentCandidate.HasAncestor(metaball))
                     continue;
 
-                metaball.Parent = parentCandidate;
+                metaball.ModifiableParent = parentCandidate;
                 foundSuitableParent = true;
                 break;
             }
@@ -935,7 +943,7 @@ public class GameWorld : IArchivable
             var metaball = metaballsToPosition[i];
 
             // Don't position the root metaball here
-            if (metaball.Parent == null)
+            if (metaball.ModifiableParent == null)
                 continue;
 
             metaball.AdjustPositionToTouchParent(metaballParentVectors[i]);
@@ -944,9 +952,9 @@ public class GameWorld : IArchivable
         // Finish off by adding the metaballs to the layout in an order where all parents are added before the other
         // ones
         foreach (var metaball in metaballsToPosition)
-            lateVersion.BodyLayout.Add(metaball);
+            lateVersion.ModifiableBodyLayout.Add(metaball);
 
-        lateVersion.BodyLayout.VerifyMetaballsAreTouching();
+        lateVersion.ModifiableBodyLayout.VerifyMetaballsAreTouching();
 
         lateVersion.OnEdited();
         SwitchSpecies(species, lateVersion);
@@ -1104,11 +1112,11 @@ public class GameWorld : IArchivable
         if (list.Contains(metaball))
             return;
 
-        if (metaball.Parent != null)
+        if (metaball.ModifiableParent != null)
         {
             // Need to recursively add parents first to the list, this is absolutely required for the step where
             // these are added to the layout ultimately
-            RecursivelyAddBallsToList(list, (MacroscopicMetaball)metaball.Parent);
+            RecursivelyAddBallsToList(list, (MacroscopicMetaball)metaball.ModifiableParent);
         }
 
         list.Add(metaball);

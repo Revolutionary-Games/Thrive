@@ -246,7 +246,7 @@ public partial class CellBodyPlanEditorComponent :
 
                 if (MovingPlacedHex.Data != null)
                 {
-                    cellType = MovingPlacedHex.Data.CellType;
+                    cellType = MovingPlacedHex.Data.ModifiableCellType;
                 }
                 else
                 {
@@ -336,7 +336,7 @@ public partial class CellBodyPlanEditorComponent :
         // Note that for the below calculations to work all cell types need to be positioned correctly. So we need
         // to force that to happen here first. This also ensures that the skipped positioning to origin of the cell
         // editor component (that is used as a special mode in multicellular) is performed.
-        foreach (var cellType in editedSpecies.CellTypes)
+        foreach (var cellType in editedSpecies.ModifiableCellTypes)
         {
             cellType.RepositionToOrigin();
         }
@@ -345,7 +345,7 @@ public partial class CellBodyPlanEditorComponent :
         // TODO: maybe in the future we want to switch to editing the full hex layout with the entire cells in this
         // editor so this step can be skipped. Or another approach that keeps the shape the player worked on better
         // than this approach that can move around the cells a lot.
-        editedSpecies.Cells.Clear();
+        editedSpecies.ModifiableCells.Clear();
 
         foreach (var hexWithData in editedMicrobeCells)
         {
@@ -368,9 +368,9 @@ public partial class CellBodyPlanEditorComponent :
                 var positionVector = direction * distance;
                 hexWithData.Data!.Position = new Hex((int)positionVector.X, (int)positionVector.Y);
 
-                if (editedSpecies.Cells.CanPlace(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2))
+                if (editedSpecies.ModifiableCells.CanPlace(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2))
                 {
-                    editedSpecies.Cells.AddFast(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2);
+                    editedSpecies.ModifiableCells.AddFast(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2);
                     break;
                 }
 
@@ -489,7 +489,7 @@ public partial class CellBodyPlanEditorComponent :
 
     protected CellType CellTypeFromName(string name)
     {
-        return Editor.EditedSpecies.CellTypes.First(c => c.TypeName == name);
+        return Editor.EditedSpecies.ModifiableCellTypes.First(c => c.CellTypeName == name);
     }
 
     protected override double CalculateCurrentActionCost()
@@ -883,7 +883,7 @@ public partial class CellBodyPlanEditorComponent :
         // This should be fine to trigger even when the cell is no longer in the layout as the other code should
         // prevent editing invalid cell types
         EmitSignal(SignalName.OnCellTypeToEditSelected,
-            cellPopupMenu.SelectedCells.First().Data!.CellType.TypeName,
+            cellPopupMenu.SelectedCells.First().Data!.ModifiableCellType.CellTypeName,
             true);
     }
 
@@ -893,26 +893,27 @@ public partial class CellBodyPlanEditorComponent :
     private void UpdateCellTypeSelections()
     {
         // Re-use / create more buttons to hold all the cell types
-        foreach (var cellType in Editor.EditedSpecies.CellTypes.OrderBy(t => t.TypeName, StringComparer.Ordinal))
+        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes.OrderBy(t => t.CellTypeName,
+                     StringComparer.Ordinal))
         {
-            if (!cellTypeSelectionButtons.TryGetValue(cellType.TypeName, out var control))
+            if (!cellTypeSelectionButtons.TryGetValue(cellType.CellTypeName, out var control))
             {
                 // Need a new button
                 control = (CellTypeSelection)cellTypeSelectionButtonScene.Instantiate();
                 control.SelectionGroup = cellTypeButtonGroup;
 
-                control.PartName = cellType.TypeName;
+                control.PartName = cellType.CellTypeName;
                 control.CellType = cellType;
-                control.Name = cellType.TypeName;
+                control.Name = cellType.CellTypeName;
 
                 cellTypeSelectionList.AddItem(control);
-                cellTypeSelectionButtons.Add(cellType.TypeName, control);
+                cellTypeSelectionButtons.Add(cellType.CellTypeName, control);
 
                 control.Connect(MicrobePartSelection.SignalName.OnPartSelected,
                     new Callable(this, nameof(OnCellToPlaceSelected)));
 
                 // Reuse an existing tooltip when possible
-                var tooltip = ToolTipManager.Instance.GetToolTipIfExists<CellTypeTooltip>(cellType.TypeName,
+                var tooltip = ToolTipManager.Instance.GetToolTipIfExists<CellTypeTooltip>(cellType.CellTypeName,
                     "cellTypes");
 
                 if (tooltip == null)
@@ -921,7 +922,7 @@ public partial class CellBodyPlanEditorComponent :
                     ToolTipManager.Instance.AddToolTip(tooltip, "cellTypes");
                 }
 
-                tooltip.Name = cellType.TypeName;
+                tooltip.Name = cellType.CellTypeName;
 
                 control.RegisterToolTipForControl(tooltip, true);
             }
@@ -934,7 +935,7 @@ public partial class CellBodyPlanEditorComponent :
         // Delete no longer needed buttons
         foreach (var key in cellTypeSelectionButtons.Keys.ToList())
         {
-            if (Editor.EditedSpecies.CellTypes.All(t => t.TypeName != key))
+            if (Editor.EditedSpecies.ModifiableCellTypes.All(t => t.CellTypeName != key))
             {
                 var control = cellTypeSelectionButtons[key];
                 cellTypeSelectionButtons.Remove(key);
@@ -964,11 +965,11 @@ public partial class CellBodyPlanEditorComponent :
         {
             var cellType = button.CellType;
 
-            var tooltip = ToolTipManager.Instance.GetToolTip<CellTypeTooltip>(cellType.TypeName, "cellTypes");
+            var tooltip = ToolTipManager.Instance.GetToolTip<CellTypeTooltip>(cellType.CellTypeName, "cellTypes");
 
             if (tooltip == null)
             {
-                GD.PrintErr($"Tooltip not found for species' cell type: {cellType.TypeName}");
+                GD.PrintErr($"Tooltip not found for species' cell type: {cellType.CellTypeName}");
                 continue;
             }
 
@@ -1001,18 +1002,19 @@ public partial class CellBodyPlanEditorComponent :
         bool moving = organismStatisticsPanel.CalculateBalancesWhenMoving;
 
         var maximumMovementDirection =
-            MicrobeInternalCalculations.MaximumSpeedDirection(cellType.Organelles);
+            MicrobeInternalCalculations.MaximumSpeedDirection(cellType.ModifiableOrganelles);
 
-        ProcessSystem.ComputeEnergyBalanceFull(cellType.Organelles, Editor.CurrentPatch.Biome, environmentalTolerances,
+        ProcessSystem.ComputeEnergyBalanceFull(cellType.ModifiableOrganelles, Editor.CurrentPatch.Biome,
+            environmentalTolerances,
             cellType.MembraneType,
             maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
             organismStatisticsPanel.CompoundAmountType, null, energyBalance);
 
-        AddCellTypeCompoundBalance(balances, cellType.Organelles, organismStatisticsPanel.BalanceDisplayType,
+        AddCellTypeCompoundBalance(balances, cellType.ModifiableOrganelles, organismStatisticsPanel.BalanceDisplayType,
             organismStatisticsPanel.CompoundAmountType, Editor.CurrentPatch.Biome, energyBalance,
             environmentalTolerances);
 
-        tooltip.DisplayName = cellType.TypeName;
+        tooltip.DisplayName = cellType.CellTypeName;
         tooltip.MutationPointCost = cellType.MPCost;
         tooltip.DisplayCellTypeBalances(balances);
         tooltip.UpdateATPBalance(energyBalance.TotalProduction, energyBalance.TotalConsumption);
@@ -1020,16 +1022,18 @@ public partial class CellBodyPlanEditorComponent :
         tooltip.UpdateHealthIndicator(MicrobeInternalCalculations.CalculateHealth(environmentalTolerances,
             cellType.MembraneType, cellType.MembraneRigidity));
 
-        tooltip.UpdateStorageIndicator(MicrobeInternalCalculations.GetTotalNominalCapacity(cellType.Organelles));
+        tooltip.UpdateStorageIndicator(
+            MicrobeInternalCalculations.GetTotalNominalCapacity(cellType.ModifiableOrganelles));
 
-        tooltip.UpdateSpeedIndicator(MicrobeInternalCalculations.CalculateSpeed(cellType.Organelles,
+        tooltip.UpdateSpeedIndicator(MicrobeInternalCalculations.CalculateSpeed(cellType.ModifiableOrganelles,
             cellType.MembraneType, cellType.MembraneRigidity, cellType.IsBacteria, false));
 
-        tooltip.UpdateRotationSpeedIndicator(MicrobeInternalCalculations.CalculateRotationSpeed(cellType.Organelles));
+        tooltip.UpdateRotationSpeedIndicator(
+            MicrobeInternalCalculations.CalculateRotationSpeed(cellType.ModifiableOrganelles));
 
         tooltip.UpdateSizeIndicator(cellType.Organelles.Sum(o => o.Definition.HexCount));
         tooltip.UpdateDigestionSpeedIndicator(
-            MicrobeInternalCalculations.CalculateTotalDigestionSpeed(cellType.Organelles));
+            MicrobeInternalCalculations.CalculateTotalDigestionSpeed(cellType.ModifiableOrganelles));
 
         button.ShowInsufficientATPWarning = energyBalance.TotalProduction < energyBalance.TotalConsumption;
 
@@ -1155,7 +1159,7 @@ public partial class CellBodyPlanEditorComponent :
 
         // Cells can't individually move in the body plan, so this probably makes sense
         var maximumMovementDirection =
-            MicrobeInternalCalculations.MaximumSpeedDirection(cells[0].Data!.CellType.Organelles);
+            MicrobeInternalCalculations.MaximumSpeedDirection(cells[0].Data!.ModifiableCellType.ModifiableOrganelles);
 
         // TODO: environmental tolerances for multicellular
         var environmentalTolerances = new ResolvedMicrobeTolerances
@@ -1168,8 +1172,8 @@ public partial class CellBodyPlanEditorComponent :
         // TODO: improve performance by calculating the balance per cell type
         foreach (var hex in cells)
         {
-            ProcessSystem.ComputeEnergyBalanceFull(hex.Data!.Organelles, conditionsData, environmentalTolerances,
-                hex.Data.MembraneType,
+            ProcessSystem.ComputeEnergyBalanceFull(hex.Data!.ModifiableOrganelles, conditionsData,
+                environmentalTolerances, hex.Data.MembraneType,
                 maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
                 organismStatisticsPanel.CompoundAmountType, null, energyBalance);
         }
@@ -1216,8 +1220,8 @@ public partial class CellBodyPlanEditorComponent :
         Dictionary<Compound, CompoundBalance> compoundBalanceData = new();
         foreach (var cell in cells)
         {
-            AddCellTypeCompoundBalance(compoundBalanceData, cell.Data!.Organelles, calculationType, amountType, biome,
-                energyBalance, environmentalTolerances);
+            AddCellTypeCompoundBalance(compoundBalanceData, cell.Data!.ModifiableOrganelles, calculationType,
+                amountType, biome, energyBalance, environmentalTolerances);
         }
 
         specificStorages ??= CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells.Select(o => o.Data!),
@@ -1252,7 +1256,7 @@ public partial class CellBodyPlanEditorComponent :
 
         foreach (var cell in editedMicrobeCells)
         {
-            var type = cell.Data!.CellType;
+            var type = cell.Data!.ModifiableCellType;
 
             cellTypesCount.TryGetValue(type, out var count);
             cellTypesCount[type] = count + 1;
@@ -1285,7 +1289,8 @@ public partial class CellBodyPlanEditorComponent :
 
             var modelHolder = placedModels[nextFreeCell++];
 
-            ShowCellTypeInModelHolder(modelHolder, hexWithData.Data!.CellType, pos, hexWithData.Data!.Orientation);
+            ShowCellTypeInModelHolder(modelHolder, hexWithData.Data!.ModifiableCellType, pos,
+                hexWithData.Data!.Orientation);
 
             modelHolder.Visible = true;
         }
@@ -1347,10 +1352,10 @@ public partial class CellBodyPlanEditorComponent :
 
         var type = CellTypeFromName(activeActionName!);
 
-        duplicateCellTypeName.Text = type.TypeName;
+        duplicateCellTypeName.Text = type.CellTypeName;
 
         // Make sure it's shown in red initially as it is a duplicate name
-        OnNewCellTypeNameChanged(type.TypeName);
+        OnNewCellTypeNameChanged(type.CellTypeName);
 
         duplicateCellTypeDialog.PopupCenteredShrink();
 
@@ -1358,7 +1363,7 @@ public partial class CellBodyPlanEditorComponent :
         // the entire time and doesn't change due to the focus grabber a tiny bit later
         duplicateCellTypeName.GrabFocusInOpeningPopup();
         duplicateCellTypeName.SelectAll();
-        duplicateCellTypeName.CaretColumn = type.TypeName.Length;
+        duplicateCellTypeName.CaretColumn = type.CellTypeName.Length;
     }
 
     private void OnNewCellTypeNameChanged(string newText)
@@ -1397,9 +1402,9 @@ public partial class CellBodyPlanEditorComponent :
 
         // TODO: make this a reversible action
         var newType = (CellType)type.Clone();
-        newType.TypeName = newTypeName;
+        newType.CellTypeName = newTypeName;
 
-        var data = new DuplicateDeleteCellTypeData(newType);
+        var data = new DuplicateDeleteCellTypeData(newType, false);
         var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(DuplicateCellType, DeleteCellType, data);
         EnqueueAction(new CombinedEditorAction(action));
 
@@ -1416,14 +1421,14 @@ public partial class CellBodyPlanEditorComponent :
         var type = CellTypeFromName(activeActionName!);
 
         // Disallow deleting a type that is in use currently
-        if (editedMicrobeCells.Any(c => c.Data!.CellType == type))
+        if (editedMicrobeCells.Any(c => c.Data!.ModifiableCellType == type))
         {
             GD.Print("Can't delete in use cell type");
             cannotDeleteInUseTypeDialog.PopupCenteredShrink();
             return;
         }
 
-        var data = new DuplicateDeleteCellTypeData(type);
+        var data = new DuplicateDeleteCellTypeData(type, true);
         var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(DeleteCellType, DuplicateCellType, data);
         EnqueueAction(new CombinedEditorAction(action));
     }
@@ -1450,12 +1455,12 @@ public partial class CellBodyPlanEditorComponent :
     }
 
     /// <summary>
-    ///   Generates a cell layout from <see cref="MulticellularSpecies.Cells"/>. To be used if the species doesn't have
-    ///   an editor layout remembered.
+    ///   Generates a cell layout from <see cref="MulticellularSpecies.ModifiableCells"/>. To be used if the species
+    ///   doesn't have an editor layout remembered.
     /// </summary>
     private void GenerateCellLayoutFromSpeciesCells(MulticellularSpecies multicellularSpecies)
     {
-        foreach (var cell in multicellularSpecies.Cells)
+        foreach (var cell in multicellularSpecies.ModifiableCells)
         {
             // This doesn't copy the position to the hex yet, but TryAddHexToEditedLayout does it, so we are good to
             // use the current position as a placeholder

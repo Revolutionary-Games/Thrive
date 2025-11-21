@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-08 16:31+0100\n"
+"POT-Creation-Date: 2025-11-17 12:31+0100\n"
 "PO-Revision-Date: 2025-08-08 14:30+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -1079,6 +1079,10 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Equilíbrio de Compostos"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} consumo"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -2910,6 +2914,14 @@ msgid "INSTAGRAM_TOOLTIP"
 msgstr "Visite a nossa página Steam"
 
 #, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(proporção de glicose retida no ambiente a cada geração)"
+
+#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Pontos de Mutação"
 
@@ -3760,6 +3772,10 @@ msgstr ""
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Predação de {0}"
+
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reprodução:"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
@@ -5916,6 +5932,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "tem uma mutação"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Encontrar Região Atual"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Máximo de espécies numa região antes de extinções forçadas"
 
 msgid "SPECIES_LIST"
 msgstr "Lista de Espécies"
@@ -9288,6 +9312,10 @@ msgstr "Ampliar"
 msgid "ZOOM_OUT"
 msgstr "Reduzir"
 
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Reprodução:"
+
 #~ msgid "JSON_DEBUG_MODE"
 #~ msgstr "Modo de debug para JSON:"
 
@@ -9625,9 +9653,6 @@ msgstr "Reduzir"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Considerar que regiões com até este número de espécies têm baixa biodiversidade"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Máximo de espécies numa região antes de extinções forçadas"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Erro: bloco não encontrado"

@@ -41,6 +41,6 @@ public class CellPlacementActionData : HexPlacementActionData<HexWithData<CellTe
 
     protected override double CalculateBaseCostInternal()
     {
-        return PlacedHex.Data?.CellType.MPCost ?? throw new InvalidOperationException("Hex with no data");
+        return PlacedHex.Data?.ModifiableCellType.MPCost ?? throw new InvalidOperationException("Hex with no data");
     }
 }

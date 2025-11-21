@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-08 16:31+0100\n"
+"POT-Creation-Date: 2025-11-17 12:31+0100\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -1063,6 +1063,10 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Tieni tutto"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "Consumo di {0}"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(non è abbastanza per sopravvivere ad una notte di {0}s)"
@@ -2964,6 +2968,14 @@ msgid "INSTAGRAM_TOOLTIP"
 msgstr "Metti in pausa il gioco"
 
 #, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(proporzione di glucosio conservata nell'ambiente all'inizio di ciascuna generazione)"
+
+#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Tasso mutazione IA"
 
@@ -3839,6 +3851,10 @@ msgstr ""
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Predazione di {0}"
+
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Riproduzione:"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
@@ -6059,6 +6075,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "ha subito una mutazione"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Trova la zona corrente"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Numero massimo di specie per zona prima che vengano effettuate estinzioni forzate"
 
 msgid "SPECIES_LIST"
 msgstr "Lista delle specie"
@@ -9484,6 +9508,10 @@ msgstr "Zoom avanti"
 msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
 
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Riproduzione:"
+
 #~ msgid "JSON_DEBUG_MODE"
 #~ msgstr "Modalità di debug JSON:"
 
@@ -9831,9 +9859,6 @@ msgstr "Zoom indietro"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Numero di specie per zona sopra il quale la zona stessa non è considerata a bassa biodiversità"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Numero massimo di specie per zona prima che vengano effettuate estinzioni forzate"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Popolazione iniziale delle specie aumenta-biodiversità"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-08 16:31+0100\n"
+"POT-Creation-Date: 2025-11-17 12:31+0100\n"
 "PO-Revision-Date: 2025-08-08 14:30+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -1105,6 +1105,10 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Баланс на химичните съединения"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0}"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -3016,6 +3020,14 @@ msgid "INSTAGRAM_TOOLTIP"
 msgstr "Отваряне на страницата ни в „Steam“"
 
 #, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} АТФ"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(определя концентрацията на глюкоза в околната среда след всяко отваряне на редактора)"
+
+#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Мутационна скорост"
 
@@ -3889,6 +3901,10 @@ msgstr ""
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "{0}"
+
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Видове:"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
@@ -6061,6 +6077,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "претърпяха мутация"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Текущо местообитание"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Максимален брой на създанията преди измиране в зоната"
 
 msgid "SPECIES_LIST"
 msgstr "Списък на създанията"
@@ -9533,6 +9557,10 @@ msgstr "Приближаване"
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
 
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Видове:"
+
 #~ msgid "JSON_DEBUG_MODE"
 #~ msgstr "Режим за отстраняване на грешки:"
 
@@ -9891,9 +9919,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Брой на създанията за създаване на зона с ниско биоразнообразие"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Максимален брой на създанията преди измиране в зоната"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Начална популация на създанията, увеличаващи биоразнообразието"

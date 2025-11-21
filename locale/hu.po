@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-08 16:31+0100\n"
+"POT-Creation-Date: 2025-11-17 12:31+0100\n"
 "PO-Revision-Date: 2025-09-26 12:14+0000\n"
 "Last-Translator: Tuscokchips <kortejanos180@gmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -728,9 +728,8 @@ msgstr "A leírás túl hosszú"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Szimmetria változtatása"
 
-#, fuzzy
 msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
-msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
+msgstr "Ioncsatorna-gátló toxin szintézise"
 
 msgid "CHEATS"
 msgstr "Csalások"
@@ -763,9 +762,11 @@ msgstr "Kemoreceptor"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Minden sejt csak kemoreceptorok segítségével képes \"látni\", így tudnak információt gyűjteni a környezetükről. Ezen sejtszervecske hozzáadásával sokkal finomhangoltabb lesz a sejted kemorecepciója. Egy vonal fog megjelenni játékon belül, mely jelképezi a sejt \"látását\", és a sejt közelében található vegyületekre mutat."
 
-#, fuzzy
 msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
-msgstr "Minimális detektálandó mennyiség:"
+msgstr ""
+"Beállítja a vegyület-észlelési küszöböt. Az alacsony értékek nagyon halvány nyomokat is jelezhetnek, amelyekben azonban lehet, hogy nincs hasznos mennyiség az adott vegyületből.\n"
+"Egy lehetséges stratégia a keresési sugár és a minimális mennyiség növelése, hogy a legközelebbi, valóban sűrűbb felhőt érzékelje.\n"
+"A kémiai receptor a vegyületfelhő egyes pontjait „szagolja”, nem pedig a teljes felhő összmennyiségét."
 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "A kemoreceptor segítségével messzebbi vegyületeket detektálhatsz. Az elhelyezése után módosítsd a kemoreceptort a vegyület kiválasztásával, és a segédvonal színének beállításával."
@@ -856,11 +857,8 @@ msgstr "Mentés/-ek törlése"
 msgid "CLIMATE_INSTABILITY"
 msgstr "Instabil éghajlat"
 
-#, fuzzy
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Az aktív sejtek össze-vissza bolyonganak a vizekben, ha semmi érdekes nem történik.\n"
-"A rögzült sejtek inkább egy helyben maradva várnak a környezet változásaira, mielőtt cselekednek."
+msgstr "(befolyásolja a környezeti események – például a globális eljegesedés – gyakoriságát és súlyosságát)"
 
 msgid "CLIMATE_STABILITY_AVERAGE"
 msgstr "Átlagos"
@@ -1003,9 +1001,10 @@ msgstr "(megtölti a tárhelyet {0} mp alatt)"
 msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
 msgstr "(megtölti a tárhelyet {0} mp alatt, ami több, mint a {1} mp-nyi használható napfény)"
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
-msgstr "Az összetevők mutatása / elrejtése"
+msgstr ""
+"A vegyület-egyensúly számításának módja.\n"
+"A „maximális sebesség” például úgy számol, mintha minden folyamat maximális sebességgel futna,míg az „egyensúly” úgy számol, hogy a folyamatok csak olyan gyorsan futnak, amíg az ATP-egyensúly nem válik negatívvá."
 
 #, fuzzy
 msgid "COMPOUND_BALANCE_TITLE"
@@ -1069,6 +1068,10 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Összes megtartása"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} fogyasztás"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -3030,6 +3033,14 @@ msgid "INSTAGRAM_TOOLTIP"
 msgstr "Játék szüneteltetése"
 
 #, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "A {0} populációjának egyedszáma megváltozott {1}-értékkel, emiatt az ok miatt: {2}"
+
+#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "MI mutációs mértéke"
 
@@ -3917,6 +3928,10 @@ msgstr ""
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "{0} ragadozása"
+
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reprodukció:"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
@@ -6130,6 +6145,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "faj mutálódott"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Jelenlegi patch-re ugrás"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "kihalt a bolygón"
 
 msgid "SPECIES_LIST"
 msgstr "Fajlista"
@@ -9553,6 +9576,10 @@ msgstr "Közelítés"
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
 
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Reprodukció:"
+
 #~ msgid "JSON_DEBUG_MODE"
 #~ msgstr "JSON debug mód:"
 
@@ -9879,10 +9906,6 @@ msgstr "Távolodás"
 
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Fajok migrációkihagyásának engedélyezése (ha a rendszer nem talált jó vándorlási utat)"
-
-#, fuzzy
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "kihalt a bolygón"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Hiba: darabka nem található"

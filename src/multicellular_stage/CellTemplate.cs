@@ -1,26 +1,24 @@
 ﻿using System;
 using Godot;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
-[JsonObject(IsReference = true)]
 public class CellTemplate : IPositionedCell, ICloneable, IActionHex, IArchivable
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
     private int orientation;
+    private CellType modifiableCellType;
 
-    [JsonConstructor]
     public CellTemplate(CellType cellType, Hex position, int orientation)
     {
-        CellType = cellType;
+        modifiableCellType = cellType;
         Position = position;
         Orientation = orientation;
     }
 
     public CellTemplate(CellType cellType)
     {
-        CellType = cellType;
+        modifiableCellType = cellType;
     }
 
     public Hex Position { get; set; }
@@ -33,44 +31,50 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex, IArchivable
         set => orientation = value % 6;
     }
 
-    [JsonProperty]
-    public CellType CellType { get; private set; }
+    public virtual CellType ModifiableCellType
+    {
+        get => modifiableCellType;
+        protected set => modifiableCellType = value;
+    }
 
-    [JsonIgnore]
-    public MembraneType MembraneType { get => CellType.MembraneType; set => CellType.MembraneType = value; }
+    public virtual IReadOnlyCellTypeDefinition CellType => ModifiableCellType;
 
-    [JsonIgnore]
-    public float MembraneRigidity { get => CellType.MembraneRigidity; set => CellType.MembraneRigidity = value; }
+    public MembraneType MembraneType
+    {
+        get => ModifiableCellType.MembraneType;
+        set => ModifiableCellType.MembraneType = value;
+    }
 
-    [JsonIgnore]
-    public Color Colour { get => CellType.Colour; set => CellType.Colour = value; }
+    public float MembraneRigidity
+    {
+        get => ModifiableCellType.MembraneRigidity;
+        set => ModifiableCellType.MembraneRigidity = value;
+    }
 
-    [JsonIgnore]
-    public bool IsBacteria { get => CellType.IsBacteria; set => CellType.IsBacteria = value; }
+    public Color Colour { get => ModifiableCellType.Colour; set => ModifiableCellType.Colour = value; }
 
-    [JsonIgnore]
-    public float BaseRotationSpeed { get => CellType.BaseRotationSpeed; set => CellType.BaseRotationSpeed = value; }
+    public bool IsBacteria { get => ModifiableCellType.IsBacteria; set => ModifiableCellType.IsBacteria = value; }
 
-    [JsonIgnore]
-    public bool CanEngulf => CellType.CanEngulf;
+    public float BaseRotationSpeed
+    {
+        get => ModifiableCellType.BaseRotationSpeed;
+        set => ModifiableCellType.BaseRotationSpeed = value;
+    }
 
-    [JsonIgnore]
-    public string FormattedName => CellType.TypeName;
+    public bool CanEngulf => ModifiableCellType.CanEngulf;
 
-    [JsonIgnore]
-    public OrganelleLayout<OrganelleTemplate> Organelles => CellType.Organelles;
+    public string FormattedName => ModifiableCellType.CellTypeName;
 
-    [JsonIgnore]
+    public IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> Organelles => ModifiableCellType.Organelles;
+    public OrganelleLayout<OrganelleTemplate> ModifiableOrganelles => ModifiableCellType.ModifiableOrganelles;
+
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
-    [JsonIgnore]
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
-    [JsonIgnore]
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CellTemplate;
 
-    [JsonIgnore]
     public bool CanBeReferencedInArchive => true;
 
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
@@ -91,24 +95,24 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex, IArchivable
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.WriteObject(CellType);
+        writer.WriteObject(ModifiableCellType);
         writer.Write(Position);
         writer.Write(Orientation);
     }
 
     public bool RepositionToOrigin()
     {
-        return CellType.RepositionToOrigin();
+        return ModifiableCellType.RepositionToOrigin();
     }
 
     public void UpdateNameIfValid(string newName)
     {
-        CellType.UpdateNameIfValid(newName);
+        ModifiableCellType.UpdateNameIfValid(newName);
     }
 
     public bool MatchesDefinition(IActionHex other)
     {
-        return CellType == ((CellTemplate)other).CellType;
+        return ModifiableCellType == ((CellTemplate)other).ModifiableCellType;
     }
 
     public void SetupWorldEntities(IWorldSimulation worldSimulation)
@@ -128,7 +132,7 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex, IArchivable
 
     public object Clone()
     {
-        return new CellTemplate(CellType)
+        return new CellTemplate(ModifiableCellType)
         {
             Position = Position,
             Orientation = Orientation,
@@ -137,6 +141,6 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex, IArchivable
 
     public ulong GetVisualHashCode()
     {
-        return CellType.GetVisualHashCode() ^ (ulong)Orientation * 347 ^ (ulong)Position.GetHashCode() * 317;
+        return ModifiableCellType.GetVisualHashCode() ^ (ulong)Orientation * 347 ^ (ulong)Position.GetHashCode() * 317;
     }
 }

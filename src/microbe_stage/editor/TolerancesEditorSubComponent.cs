@@ -233,7 +233,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     public override void OnFinishEditing()
     {
         // Apply the tolerances
-        Editor.EditedBaseSpecies.Tolerances.CopyFrom(CurrentTolerances);
+        Editor.EditedBaseSpecies.ModifiableTolerances.CopyFrom(CurrentTolerances);
     }
 
     public void OnDataTolerancesDependOnChanged()
@@ -248,7 +248,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         ResetToTolerances(Editor.EditedBaseSpecies.Tolerances);
     }
 
-    public void ResetToTolerances(EnvironmentalTolerances tolerances)
+    public void ResetToTolerances(IReadOnlyEnvironmentalTolerances tolerances)
     {
         CurrentTolerances.CopyFrom(tolerances);
 

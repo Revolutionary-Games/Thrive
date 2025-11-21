@@ -63,7 +63,7 @@ public struct MulticellularGrowth : IArchivableComponent
         ResumeBodyPlanAfterReplacingLost = null;
         EnoughResourcesForBudding = false;
 
-        TargetCellLayout = species.Cells;
+        TargetCellLayout = species.ModifiableCells;
 
         // This is updated by ReApplyCellTypeProperties when needed
         this.CalculateTotalBodyPlanCompounds(species);
@@ -154,7 +154,7 @@ public static class MulticellularGrowthHelpers
 
         ref var colonyPosition = ref entity.Get<WorldPosition>();
 
-        var cellTemplate = species.Cells[multicellularGrowth.NextBodyPlanCellToGrowIndex];
+        var cellTemplate = species.ModifiableCells[multicellularGrowth.NextBodyPlanCellToGrowIndex];
 
         // Remove the starting compounds as this is a growth cell which shouldn't give free resources to the
         // colony it joins
@@ -216,7 +216,7 @@ public static class MulticellularGrowthHelpers
         if (lostPartIndex == 0)
             return;
 
-        if (lostPartIndex >= species.Cells.Count)
+        if (lostPartIndex >= species.ModifiableCells.Count)
         {
             GD.PrintErr("Multicellular colony lost a cell at index that is no longer valid for the species, " +
                 "ignoring this for regrowing");
@@ -283,8 +283,8 @@ public static class MulticellularGrowthHelpers
         // towards the lost cell, this should ensure the total progress bar should be correct
         if (multicellularGrowth.CompoundsUsedForMulticellularGrowth != null)
         {
-            var totalNeededForLostCell = species.Cells[lostPartIndex]
-                .CellType.CalculateTotalComposition();
+            var totalNeededForLostCell = species.ModifiableCells[lostPartIndex]
+                .ModifiableCellType.CalculateTotalComposition();
 
             foreach (var compound in multicellularGrowth.CompoundsUsedForMulticellularGrowth.Keys.ToArray())
             {
@@ -314,9 +314,9 @@ public static class MulticellularGrowthHelpers
         this ref MulticellularGrowth multicellularGrowth, MulticellularSpecies species)
     {
         return species
-            .Cells[
+            .ModifiableCells[
                 multicellularGrowth.IsFullyGrownMulticellular ? 0 : multicellularGrowth.NextBodyPlanCellToGrowIndex]
-            .CellType.CalculateTotalCompositionList();
+            .ModifiableCellType.CalculateTotalCompositionList();
     }
 
     public static void CalculateTotalBodyPlanCompounds(this ref MulticellularGrowth multicellularGrowth,
@@ -328,7 +328,8 @@ public static class MulticellularGrowthHelpers
         foreach (var cell in multicellularGrowth.TargetCellLayout ??
                  throw new InvalidOperationException("Unknown target layout"))
         {
-            multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(cell.CellType.CalculateTotalComposition());
+            multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(cell.ModifiableCellType
+                .CalculateTotalComposition());
         }
 
         multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(species.BaseReproductionCost);
