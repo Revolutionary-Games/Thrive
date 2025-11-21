@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-17 12:31+0100\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-08-08 14:30+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -284,7 +284,8 @@ msgstr "Версия:"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Изисква се основното „Assembly“"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Изисква се „Assembly“, когато използвате „Harmony“"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -4307,9 +4308,6 @@ msgstr "„{0}“: изключването на „Assembly“ е неуспе�
 msgid "MOD_AUTHOR"
 msgstr "Автор:"
 
-msgid "MOD_AUTO_HARMONY"
-msgstr "Използва „Harmony“:"
-
 msgid "MOD_CREATION_FAILED"
 msgstr "Създаването на модификацията е неуспешно"
 
@@ -7392,12 +7390,6 @@ msgstr "Визуализатор:"
 msgid "USES_FEATURE"
 msgstr "Да"
 
-msgid "USE_AUTO_HARMONY"
-msgstr "Използване на „Harmony“"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Автоматично зареждане на „Harmony“ от „Assembly“"
-
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Персонализирано потребителско име"
 
@@ -9556,6 +9548,15 @@ msgstr "Приближаване"
 
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
+
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Използва „Harmony“:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Използване на „Harmony“"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Автоматично зареждане на „Harmony“ от „Assembly“"
 
 #, fuzzy
 #~ msgid "REPRODUCTION_COMPOUND_USAGE"

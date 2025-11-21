@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-17 12:31+0100\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-11-14 11:00+0000\n"
 "Last-Translator: Sur3 <sur3@gmx.de>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -271,7 +271,8 @@ msgstr "Aufstiegsphase"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Klasse der Programmbibliothek ist erforderlich, wenn angegeben"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Mod Assembler ist erforderlich wenn Auto Harmony aktiviert ist"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -4013,9 +4014,6 @@ msgstr "{0}: Aufruf der \"unload\"-Methode schlug mit folgendem Fehler fehl: {1}
 msgid "MOD_AUTHOR"
 msgstr "Modauthor:"
 
-msgid "MOD_AUTO_HARMONY"
-msgstr "Benutzt Auto Harmony:"
-
 msgid "MOD_CREATION_FAILED"
 msgstr "Moderstellung fehlgeschlagen"
 
@@ -7009,12 +7007,6 @@ msgstr "Verwendeter Renderer:"
 msgid "USES_FEATURE"
 msgstr "Ja"
 
-msgid "USE_AUTO_HARMONY"
-msgstr "Nutze Auto Harmony Laden"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Harmony Updates automatisch vom Assembler laden (Mod class muss nicht spezifiziert werden)"
-
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Eigenen Nutzernamen verwenden"
 
@@ -9278,6 +9270,15 @@ msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
+
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Benutzt Auto Harmony:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Nutze Auto Harmony Laden"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Harmony Updates automatisch vom Assembler laden (Mod class muss nicht spezifiziert werden)"
 
 #, fuzzy
 #~ msgid "REPRODUCTION_COMPOUND_USAGE"

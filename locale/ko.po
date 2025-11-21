@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-17 12:31+0100\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -295,7 +295,8 @@ msgstr "버전:"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "어셈블리가 특정 될 경우엔 모드 어셈블리 클래스가 필요합니다"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "자동 하모니가 활성화 되었을 때엔 모드 어셈블리가 필요합니다"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -4339,9 +4340,6 @@ msgstr ""
 msgid "MOD_AUTHOR"
 msgstr ""
 
-msgid "MOD_AUTO_HARMONY"
-msgstr ""
-
 #, fuzzy
 msgid "MOD_CREATION_FAILED"
 msgstr "자동 진화 실행 실패"
@@ -7479,13 +7477,6 @@ msgstr ""
 msgid "USES_FEATURE"
 msgstr "온도"
 
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#, fuzzy
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "새로운 키 배치 추가"
-
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "임의 사용자 이름 사용"
 
@@ -9604,6 +9595,10 @@ msgstr "확대"
 
 msgid "ZOOM_OUT"
 msgstr "축소"
+
+#, fuzzy
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "새로운 키 배치 추가"
 
 #, fuzzy
 #~ msgid "REPRODUCTION_COMPOUND_USAGE"
