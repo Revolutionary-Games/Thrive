@@ -294,11 +294,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
         public override CellType ModifiableCellType
         {
-            get
-            {
-                // Cast likely fails, but we would Throw an exception anyway here
-                return (CellType)usingCustomType;
-            }
+            // Cast likely fails, but we would Throw an exception anyway here
+            get => (CellType)usingCustomType;
             protected set => throw new NotImplementedException("This doesn't support setting modifiable type");
         }
 
