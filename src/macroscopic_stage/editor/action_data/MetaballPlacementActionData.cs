@@ -24,7 +24,7 @@ public class MetaballPlacementActionData<TMetaball> : EditorCombinableActionData
         PlacedMetaball = metaball;
         Position = metaball.Position;
         Size = metaball.Size;
-        Parent = metaball.Parent;
+        Parent = metaball.ModifiableParent;
     }
 
     public override ushort CurrentArchiveVersion => MetaballActionDataSerializer.SERIALIZATION_VERSION;

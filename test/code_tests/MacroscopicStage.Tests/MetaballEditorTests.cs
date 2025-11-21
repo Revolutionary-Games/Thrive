@@ -19,7 +19,7 @@ public class MetaballEditorTests
 
         var metaball = new MacroscopicMetaball(simpleType)
         {
-            Parent = rootMetaball,
+            ModifiableParent = rootMetaball,
             Position = new Vector3(1, 0, 0),
             Size = 1,
         };
@@ -54,7 +54,7 @@ public class MetaballEditorTests
 
         var metaball = new MacroscopicMetaball(simpleType)
         {
-            Parent = rootMetaball,
+            ModifiableParent = rootMetaball,
             Position = new Vector3(1, 0, 0),
             Size = 1,
         };
@@ -90,7 +90,7 @@ public class MetaballEditorTests
 
         var metaball = new MacroscopicMetaball(simpleType)
         {
-            Parent = rootMetaball,
+            ModifiableParent = rootMetaball,
             Position = new Vector3(1, 0, 0),
             Size = 1,
         };

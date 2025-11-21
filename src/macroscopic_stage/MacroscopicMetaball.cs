@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using Godot;
 using SharedBase.Archive;
 
-public class MacroscopicMetaball : Metaball, IArchivable
+public class MacroscopicMetaball : Metaball, IReadonlyMacroscopicMetaball, IArchivable
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
     public MacroscopicMetaball(CellType cellType)
     {
-        CellType = cellType;
+        ModifiableCellType = cellType;
     }
 
     /// <summary>
-    ///   The cell type this metaball consists of
+    ///   The cell type this metaball consists of. Should not change after creation. This is protected to allow a
+    ///   caching type to work.
     /// </summary>
-    public CellType CellType { get; }
+    public CellType ModifiableCellType { get; protected set; }
 
-    public override Color Colour => CellType.Colour;
+    public IReadOnlyCellDefinition CellType => ModifiableCellType;
+
+    public override Color Colour => ModifiableCellType.Colour;
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
@@ -44,7 +47,7 @@ public class MacroscopicMetaball : Metaball, IArchivable
 
     public override void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.WriteObject(CellType);
+        writer.WriteObject(ModifiableCellType);
         WriteBasePropertiesToArchive(writer);
     }
 
@@ -52,7 +55,7 @@ public class MacroscopicMetaball : Metaball, IArchivable
     {
         if (other is MacroscopicMetaball asMulticellular)
         {
-            return CellType == asMulticellular.CellType;
+            return ModifiableCellType == asMulticellular.ModifiableCellType;
         }
 
         return false;
@@ -74,23 +77,23 @@ public class MacroscopicMetaball : Metaball, IArchivable
     ///   Clones this metaball while keeping the parent references intact.
     /// </summary>
     /// <param name="oldToNewMapping">
-    ///   Where to find new reference to parent nodes. This will also add the newly cloned object here.
+    ///   Where to find new references to parent nodes. This will also add the newly cloned object here.
     /// </param>
     /// <returns>The clone of this</returns>
     public MacroscopicMetaball Clone(Dictionary<Metaball, MacroscopicMetaball> oldToNewMapping)
     {
-        var clone = new MacroscopicMetaball(CellType)
+        var clone = new MacroscopicMetaball(ModifiableCellType)
         {
             Position = Position,
-            Parent = Parent,
+            ModifiableParent = ModifiableParent,
             Size = Size,
         };
 
-        if (Parent != null)
+        if (ModifiableParent != null)
         {
-            if (oldToNewMapping.TryGetValue(Parent, out var newParent))
+            if (oldToNewMapping.TryGetValue(ModifiableParent, out var newParent))
             {
-                clone.Parent = newParent;
+                clone.ModifiableParent = newParent;
             }
         }
 
@@ -101,7 +104,7 @@ public class MacroscopicMetaball : Metaball, IArchivable
 
     public override int GetHashCode()
     {
-        return CellType.GetHashCode() * 29 ^ base.GetHashCode();
+        return ModifiableCellType.GetHashCode() * 29 ^ base.GetHashCode();
     }
 
     protected bool Equals(MacroscopicMetaball other)
@@ -123,6 +126,6 @@ public class MacroscopicMetaball : Metaball, IArchivable
         if (!ReferenceEquals(Parent, other.Parent))
             return false;
 
-        return CellType.Equals(other.CellType) && Position == other.Position;
+        return ModifiableCellType.Equals(other.ModifiableCellType) && Position == other.Position;
     }
 }

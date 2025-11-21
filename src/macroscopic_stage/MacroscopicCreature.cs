@@ -262,8 +262,8 @@ public partial class MacroscopicCreature : RigidBody3D, ICharacterInventory, IEn
 
         // TODO: better mass calculation
         // TotalMass is no longer available due to microbe stage physics refactor
-        // Mass = lateSpecies.ModifiableBodyLayout.Sum(m => m.Size * m.CellType.TotalMass);
-        Mass = lateSpecies.ModifiableBodyLayout.Sum(m => m.Size * 30);
+        // Mass = lateSpecies.ModifiableBodyLayout.Sum(m => m.Size * m.ModifiableCellType.TotalMass);
+        Mass = ((MetaballLayout<MacroscopicMetaball>)lateSpecies.ModifiableBodyLayout).Sum(m => m.Size * 30);
 
         // Setup graphics
         // TODO: handle lateSpecies.Scale

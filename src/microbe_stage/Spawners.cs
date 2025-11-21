@@ -735,7 +735,7 @@ public static class SpawnHelpers
                     throw new ArgumentException("First Multicellular cell must have body plan index of 0");
                 }
 
-                resolvedCellType = multicellularSpecies.ModifiableCells[0].CellType;
+                resolvedCellType = multicellularSpecies.ModifiableCells[0].ModifiableCellType;
 
                 usedCellDefinition = resolvedCellType;
                 var properties = new CellProperties(usedCellDefinition);
