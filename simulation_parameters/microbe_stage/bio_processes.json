@@ -54,7 +54,7 @@
   "bacterial_cytotoxinSynthesis": {
     "Name": "CYTOTOXIN_SYNTHESIS",
     "Inputs": {
-      "atp": 5
+      "atp": 3
     },
     "Outputs": {
       "oxytoxy": 0.14
@@ -74,10 +74,10 @@
     "Name": "OXYTOXY_SYNTHESIS",
     "Inputs": {
       "oxygen": 0.21,
-      "atp": 5
+      "atp": 3
     },
     "Outputs": {
-      "oxytoxy": 0.15
+      "oxytoxy": 0.21
     }
   },
   "macrolideSynthesis": {
@@ -92,7 +92,7 @@
   "bacterial_macrolideSynthesis": {
     "Name": "MACROLIDE_SYNTHESIS",
     "Inputs": {
-      "atp": 5
+      "atp": 3
     },
     "Outputs": {
       "oxytoxy": 0.16
@@ -110,7 +110,7 @@
   "bacterial_channelInhibitorSynthesis": {
     "Name": "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS",
     "Inputs": {
-      "atp": 5
+      "atp": 3
     },
     "Outputs": {
       "oxytoxy": 0.14
@@ -130,10 +130,10 @@
     "Name": "OXYGEN_INHIBITOR_SYNTHESIS",
     "Inputs": {
       "oxygen": 0.21,
-      "atp": 5
+      "atp": 3
     },
     "Outputs": {
-      "oxytoxy": 0.15
+      "oxytoxy": 0.22
     }
   },
   "mucilage_synthesis": {
