@@ -104,6 +104,10 @@ public partial class LogInterceptor : Logger
             return;
         }
 
+        // Release-mode-only bug: https://github.com/Revolutionary-Games/Thrive/issues/5082
+        if (rationale.Contains("tempt to disconnect a nonexistent connection from 'root:<Window"))
+            return;
+
         // We might want to ignore this somewhat intermittent error: Parent node is busy adding
         // that sometimes happens on scene switch but doesn't seem to cause any problems
 
