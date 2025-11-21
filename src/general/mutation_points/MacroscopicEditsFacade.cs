@@ -8,8 +8,8 @@ public sealed class MacroscopicEditsFacade : SpeciesEditsFacade, IReadOnlyMacros
 {
     private readonly IReadOnlyMacroscopicSpecies macroscopicSpecies;
 
-    private readonly List<IReadonlyMacroscopicMetaball> removedMetaballs = new();
-    private readonly List<MetaballWithOriginalReference> addedMetaballs = new();
+    // Due to the complexity of the parenting, we basically always build a full shadow tree
+    private readonly List<MetaballWithOriginalReference> newMetaballStructure = new();
 
     private readonly Stack<MetaballWithOriginalReference> unusedMetaballs = new();
 
@@ -27,8 +27,7 @@ public sealed class MacroscopicEditsFacade : SpeciesEditsFacade, IReadOnlyMacros
     int IReadOnlyCollection<IReadOnlyCellTypeDefinition>.Count =>
         macroscopicSpecies.CellTypes.Count + cellTypes.ApproximateCount;
 
-    int IReadOnlyCollection<IReadonlyMacroscopicMetaball>.Count =>
-        macroscopicSpecies.BodyLayout.Count + addedMetaballs.Count - removedMetaballs.Count;
+    int IReadOnlyCollection<IReadonlyMacroscopicMetaball>.Count => newMetaballStructure.Count;
 
     public IReadOnlyCellTypeDefinition this[int index]
     {
@@ -44,7 +43,7 @@ public sealed class MacroscopicEditsFacade : SpeciesEditsFacade, IReadOnlyMacros
     IEnumerator<IReadonlyMacroscopicMetaball> IEnumerable<IReadonlyMacroscopicMetaball>.GetEnumerator()
     {
         ResolveDataIfDirty();
-        return new MetaballEnumerator(this);
+        return newMetaballStructure.GetEnumerator();
     }
 
     IEnumerator<IReadOnlyCellTypeDefinition> IEnumerable<IReadOnlyCellTypeDefinition>.GetEnumerator()
@@ -63,15 +62,51 @@ public sealed class MacroscopicEditsFacade : SpeciesEditsFacade, IReadOnlyMacros
         base.OnStartApplyChanges();
 
         // Capture temporaries back
-        foreach (var addedCell in addedMetaballs)
+        foreach (var addedCell in newMetaballStructure)
         {
             unusedMetaballs.Push(addedCell);
         }
 
-        removedMetaballs.Clear();
-        addedMetaballs.Clear();
+        newMetaballStructure.Clear();
 
         cellTypes.ClearUsed();
+
+        // Populate the full metaball structure starting from the root
+        foreach (var metaball in macroscopicSpecies.BodyLayout)
+        {
+            PopulateMetaballStructure(metaball);
+        }
+
+        // Ensure the structure got built correctly
+#if DEBUG
+        int roots = 0;
+
+        foreach (var metaball in newMetaballStructure)
+        {
+            if (metaball.Parent == null)
+            {
+                ++roots;
+                continue;
+            }
+
+            // Ensure all parent references exists
+            bool found = false;
+            foreach (var newMetaball2 in newMetaballStructure)
+            {
+                if (ReferenceEquals(newMetaball2, metaball.Parent))
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+                throw new Exception("Failed to build new metaball structure correctly");
+        }
+
+        if (roots != 1)
+            throw new Exception("There should be exactly one root metaball");
+#endif
     }
 
     internal override bool ApplyAction(EditorCombinableActionData actionData)
@@ -79,96 +114,95 @@ public sealed class MacroscopicEditsFacade : SpeciesEditsFacade, IReadOnlyMacros
         if (actionData is MetaballPlacementActionData<MacroscopicMetaball> metaballPlacementActionData)
         {
             var newMetaball = GetModifiable(metaballPlacementActionData.PlacedMetaball,
-                metaballPlacementActionData.Parent);
+                metaballPlacementActionData.Parent, true);
 
             newMetaball.Position = metaballPlacementActionData.Position;
             newMetaball.Size = metaballPlacementActionData.Size;
 
-            addedMetaballs.Add(newMetaball);
+#if DEBUG
+            if (newMetaballStructure.Contains(newMetaball))
+                throw new Exception("Somehow new metaball is already added to structure");
+#endif
+
+            newMetaballStructure.Add(newMetaball);
 
             return true;
         }
 
         if (actionData is MetaballResizeActionData<MacroscopicMetaball> metaballResizeActionData)
         {
-            // Find a match first if we have done something on this before
-            foreach (var addedMetaball in addedMetaballs)
+            // Due to the full tree build, there should always be a metaball to edit
+            var addedMetaball = FindMatching(metaballResizeActionData.ResizedMetaball, true);
+
+            if (addedMetaball != null)
             {
-                if (ReferenceEquals(addedMetaball.OriginalFrom, metaballResizeActionData.ResizedMetaball))
-                {
-                    // This is a different approach from earlier species type facades as this edits the already
-                    // modified things. Which is the approach here as we already probably create a wrapper for each
-                    // original body plan metaball due to the parent etc. references. So we save on that step by
-                    // modifying this, which should be safe as long as all edits are in order.
-                    addedMetaball.Size = metaballResizeActionData.NewSize;
-                    return true;
-                }
+                // This is a different approach from earlier species type facades as this edits the already
+                // modified things. Which is the approach here as we already create a wrapper for each
+                // original body plan metaball due to the parent etc. references.
+                addedMetaball.Size = metaballResizeActionData.NewSize;
+                return true;
             }
 
-            // Then need to create a new metaball as this hasn't been edited yet
-            // TODO: the parent is the *final* parent here and not the exact parent at this edit's point in time
-            var newMetaball = GetModifiable(metaballResizeActionData.ResizedMetaball,
-                metaballResizeActionData.ResizedMetaball.ModifiableParent);
-
-            newMetaball.Size = metaballResizeActionData.NewSize;
-            addedMetaballs.Add(newMetaball);
-
-            return true;
+            throw new Exception("Failed to find metaball to resize");
         }
 
         if (actionData is MetaballRemoveActionData<MacroscopicMetaball> metaballRemoveActionData)
         {
-            if (!removedMetaballs.Contains(metaballRemoveActionData.RemovedMetaball))
-                removedMetaballs.Add(metaballRemoveActionData.RemovedMetaball);
+            var removedMetaball = FindMatching(metaballRemoveActionData.RemovedMetaball, true);
 
-            foreach (var addedMetaball in addedMetaballs)
+            if (removedMetaball != null)
             {
-                if (ReferenceEquals(addedMetaball.OriginalFrom, metaballRemoveActionData.RemovedMetaball))
+                if (!newMetaballStructure.Remove(removedMetaball))
+                    throw new Exception("Failed to remove metaball from structure");
+
+                if (metaballRemoveActionData.ReParentedMetaballs != null)
                 {
-                    addedMetaballs.Remove(addedMetaball);
-                    break;
+                    foreach (var childAction in metaballRemoveActionData.ReParentedMetaballs)
+                    {
+                        if (!ApplyAction(childAction))
+                            throw new Exception("Failed to apply child metaball move action for a delete");
+                    }
                 }
+
+                return true;
             }
 
-            if (metaballRemoveActionData.ReParentedMetaballs != null)
-            {
-                // TODO: does this need to handle ReParentedMetaballs?
-            }
-
-            return true;
+            throw new Exception("Failed to find metaball to remove");
         }
 
         if (actionData is MetaballMoveActionData<MacroscopicMetaball> metaballMoveActionData)
         {
-            // Remove if already created a metaball
-            foreach (var addedMetaball in addedMetaballs)
+            var movedMetaball = FindMatching(metaballMoveActionData.MovedMetaball, true);
+
+            if (movedMetaball != null)
             {
-                if (ReferenceEquals(addedMetaball.OriginalFrom, metaballMoveActionData.MovedMetaball))
+                // Update the positioning
+                movedMetaball.Position = metaballMoveActionData.NewPosition;
+
+                if (metaballMoveActionData.NewParent == null)
                 {
-                    addedMetaballs.Remove(addedMetaball);
-                    break;
+                    movedMetaball.UpdateParent(null);
                 }
-            }
-
-            // Then create a new target with the updated parent and position
-            var newMetaball = GetModifiable(metaballMoveActionData.MovedMetaball, metaballMoveActionData.NewParent);
-            newMetaball.Position = metaballMoveActionData.NewPosition;
-
-            addedMetaballs.Add(newMetaball);
-
-            // Child positions need to be applied as well
-            if (metaballMoveActionData.MovedChildMetaballs != null)
-            {
-                foreach (var childAction in metaballMoveActionData.MovedChildMetaballs)
+                else
                 {
-                    if (!ApplyAction(childAction))
+                    movedMetaball.UpdateParent(
+                        ResolveParentReference((IReadonlyMacroscopicMetaball)metaballMoveActionData.NewParent, true));
+                }
+
+                // Child positions need to be applied as well
+                if (metaballMoveActionData.MovedChildMetaballs != null)
+                {
+                    foreach (var childAction in metaballMoveActionData.MovedChildMetaballs)
                     {
-                        throw new Exception("Failed to apply child metaball move action");
+                        if (!ApplyAction(childAction))
+                            throw new Exception("Failed to apply child metaball move action");
                     }
                 }
+
+                return true;
             }
 
-            return true;
+            throw new Exception("Failed to find metaball to move");
         }
 
         if (cellTypes.HandleAction(actionData))
@@ -192,82 +226,138 @@ public sealed class MacroscopicEditsFacade : SpeciesEditsFacade, IReadOnlyMacros
         return base.ApplyAction(actionData);
     }
 
-    private MetaballWithOriginalReference GetModifiable(IReadonlyMacroscopicMetaball metaball, Metaball? parent)
+    private MetaballWithOriginalReference GetModifiable(IReadonlyMacroscopicMetaball metaball, Metaball? parent,
+        bool positionMatchParent)
     {
-        // If this metaball is the parent of something, that needs to be handled so that it also gets the parent
-        // reference correct
-        UpdateParentReferencesFor(metaball);
-
         // Resolve the parent before creating the metaball
-        var resolvedParent = parent == null ? null : ResolveParentReference(parent);
+        var resolvedParent = parent == null ?
+            null :
+            ResolveParentReference((IReadonlyMacroscopicMetaball)parent, positionMatchParent);
 
         if (unusedMetaballs.TryPop(out var existing))
         {
             existing.ReuseFor(metaball, resolvedParent);
+
+            // As this can be called for creating a parent metaball, we need to make sure we copy the initial
+            // properties always
+            CopyMetaballProperties(existing, metaball);
             return existing;
         }
 
-        return new MetaballWithOriginalReference(metaball, resolvedParent);
+        var result = new MetaballWithOriginalReference(metaball, resolvedParent);
+
+        CopyMetaballProperties(result, metaball);
+        return result;
     }
 
-    private MetaballWithOriginalReference ResolveParentReference(Metaball parent)
+    /// <summary>
+    ///   Due to the way the actions are structure the new metaball layout in the editor is not necessarily fully
+    ///   related in terms of objects to the original, so we need to do some pretty complex matching to find the
+    ///   related object in our new metaball structure.
+    /// </summary>
+    /// <returns>Found metaball or null</returns>
+    private MetaballWithOriginalReference? FindMatching(IReadonlyMacroscopicMetaball original, bool positionMatch)
     {
-        // Find a parent metaball from already added
-        foreach (var alreadyAdded in addedMetaballs)
+        foreach (var alreadyAdded in newMetaballStructure)
         {
-            if (ReferenceEquals(alreadyAdded.OriginalFrom, parent))
+            if (ReferenceEquals(alreadyAdded.OriginalFrom, original))
                 return alreadyAdded;
         }
 
-        // Or create a new one
-        // We assume all metaballs we receive are at least macroscopic so that we can cast like this here
-        var macroscopicParent = (MacroscopicMetaball)parent;
-        var newParent = GetModifiable(macroscopicParent, parent.ModifiableParent);
+        if (positionMatch)
+        {
+            foreach (var alreadyAdded in newMetaballStructure)
+            {
+                // TODO: do we need inaccuracy check?
+                if (original.Position == alreadyAdded.Position)
+                {
+                    if ((original.Parent == null) == (alreadyAdded.Parent == null))
+                    {
+                        // TODO: type check? / size check? (though those might change). Or parent's parent check?
+                        return alreadyAdded;
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private MetaballWithOriginalReference ResolveParentReference(IReadonlyMacroscopicMetaball parent, bool fuzzyMatch)
+    {
+        // Find a parent metaball from already added
+        var existing = FindMatching(parent, fuzzyMatch);
+
+        if (existing != null)
+            return existing;
 
 #if DEBUG
-        if (addedMetaballs.Contains(newParent))
-            throw new Exception("Somehow parent is already added to new");
-
-        if (removedMetaballs.Contains(macroscopicParent))
-            throw new Exception("Somehow parent is already removed");
+        foreach (var alreadyAdded in newMetaballStructure)
+        {
+            if (alreadyAdded.Position == parent.Position)
+            {
+                throw new Exception("Metaball position is already used, but reference did not match for some reason");
+            }
+        }
 #endif
 
-        // Need to add it to the already added and suppress from original
-        addedMetaballs.Add(newParent);
-        removedMetaballs.Add(macroscopicParent);
+        // Or create a new one
+        // Kind of dirty to cast away the readonly here, but we don't need to modify the original anyway
+        var macroscopicParent = (MacroscopicMetaball)parent;
+        var newParent = GetModifiable(macroscopicParent, macroscopicParent.ModifiableParent, fuzzyMatch);
+
+#if DEBUG
+        if (newMetaballStructure.Contains(newParent))
+            throw new Exception("Somehow parent is already added to new");
+
+        if (!ReferenceEquals(GetModifiable(macroscopicParent, macroscopicParent.ModifiableParent, fuzzyMatch),
+                newParent))
+        {
+            throw new Exception("Failed to create new parent metaball correctly");
+        }
+#endif
+
+        // Need to add it to the already added
+        newMetaballStructure.Add(newParent);
+
+#if DEBUG
+        if (!ReferenceEquals(ResolveParentReference(parent, fuzzyMatch), newParent))
+        {
+            throw new Exception("Failed to resolve parent reference correctly");
+        }
+#endif
 
         return newParent;
     }
 
-    private void UpdateParentReferencesFor(IReadonlyMacroscopicMetaball metaball)
+    private void PopulateMetaballStructure(IReadonlyMacroscopicMetaball start)
     {
-        // TODO: should this enumerator here be avoided somehow?
-        foreach (var oldMetaball in macroscopicSpecies.BodyLayout)
+        // Skip already seen ones
+        foreach (var alreadyCreated in newMetaballStructure)
         {
-            if (oldMetaball.Parent == null)
-                continue;
-
-            if (ReferenceEquals(oldMetaball.Parent, metaball))
-            {
-                if (removedMetaballs.Contains(oldMetaball))
-                    continue;
-
-                // Need to update this metaball as well
-                // As we require a macroscopic species as input, this check should be fine
-                var newData = GetModifiable(oldMetaball, (Metaball)oldMetaball.Parent);
-
-#if DEBUG
-                if (removedMetaballs.Contains(oldMetaball))
-                    throw new Exception("Something unexpectedly added a processing metaball to removed");
-
-                if (addedMetaballs.Contains(newData))
-                    throw new Exception("New data somehow was already added");
-#endif
-
-                removedMetaballs.Add(oldMetaball);
-                addedMetaballs.Add(newData);
-            }
+            if (ReferenceEquals(alreadyCreated.OriginalFrom, start))
+                return;
         }
+
+        // We only work with macroscopic species
+        var newMetaball = GetModifiable(start, (MacroscopicMetaball?)start.Parent, false);
+
+        CopyMetaballProperties(newMetaball, start);
+
+        newMetaballStructure.Add(newMetaball);
+    }
+
+    /// <summary>
+    ///   Copies properties from the source metaball to the target metaball except the parent
+    /// </summary>
+    private void CopyMetaballProperties(MetaballWithOriginalReference target, IReadonlyMacroscopicMetaball source)
+    {
+        target.Size = source.Size;
+        target.Position = source.Position;
+
+        // TODO: once type comparisons are done, we need to copy the type here as well
+        // Might need to do something like cellTypes.GetOrCreateCellType(source.CellType)
+        // target.ModifiableCellType = source.CellType;
     }
 
     private sealed class MetaballWithOriginalReference : MacroscopicMetaball
@@ -278,16 +368,12 @@ public sealed class MacroscopicEditsFacade : SpeciesEditsFacade, IReadOnlyMacros
         public MetaballWithOriginalReference(IReadonlyMacroscopicMetaball original,
             MetaballWithOriginalReference? parent) : base((CellType)original.CellType)
         {
-            // Make sure creating further reference objects keeps the original reference
-            if (original is MetaballWithOriginalReference withAncestorReference)
+            if (original is MetaballWithOriginalReference)
             {
-                OriginalFrom = withAncestorReference.OriginalFrom;
-            }
-            else
-            {
-                OriginalFrom = original;
+                throw new ArgumentException("This shouldn't be made recursively");
             }
 
+            OriginalFrom = original;
             this.parent = parent;
         }
 
@@ -307,93 +393,27 @@ public sealed class MacroscopicEditsFacade : SpeciesEditsFacade, IReadOnlyMacros
 
         public override IReadOnlyMetaball? Parent => parent;
 
+        public void UpdateParent(MetaballWithOriginalReference? newParent)
+        {
+            parent = newParent;
+        }
+
         internal void ReuseFor(IReadonlyMacroscopicMetaball original, MetaballWithOriginalReference? newParent)
         {
-            if (original is MetaballWithOriginalReference withAncestorReference)
+            if (original is MetaballWithOriginalReference)
             {
-                OriginalFrom = withAncestorReference.OriginalFrom;
+                throw new ArgumentException("This shouldn't be made recursively");
             }
-            else
-            {
-                OriginalFrom = original;
-            }
+
+            OriginalFrom = original;
 
             // Same cast reasoning as in the constructor
             ModifiableCellType = (CellType)original.CellType;
             Position = original.Position;
             Size = original.Size;
             parent = newParent;
-        }
-    }
 
-    private class MetaballEnumerator : IEnumerator<IReadonlyMacroscopicMetaball>
-    {
-        private readonly MacroscopicEditsFacade dataSource;
-
-        private readonly IEnumerator<IReadonlyMacroscopicMetaball> originalReader;
-
-        private int readIndex = -1;
-
-        private IReadonlyMacroscopicMetaball? current;
-
-        public MetaballEnumerator(MacroscopicEditsFacade dataSource)
-        {
-            this.dataSource = dataSource;
-            originalReader = dataSource.macroscopicSpecies.BodyLayout.GetEnumerator();
-        }
-
-        IReadonlyMacroscopicMetaball IEnumerator<IReadonlyMacroscopicMetaball>.Current =>
-            current ?? throw new InvalidOperationException("No element");
-
-        object? IEnumerator.Current => current;
-
-        public bool MoveNext()
-        {
-            if (readIndex == -1)
-            {
-                // Reading original items
-                while (true)
-                {
-                    if (originalReader.MoveNext())
-                    {
-                        current = originalReader.Current;
-
-                        // Need to read the next item if we are ignoring this item
-                        if (dataSource.removedMetaballs.Contains(current))
-                            continue;
-
-                        // Otherwise we found a good item
-                        return true;
-                    }
-
-                    // Original items ended
-                    break;
-                }
-            }
-
-            // Reading extra items now
-            ++readIndex;
-
-            if (readIndex >= dataSource.addedMetaballs.Count)
-            {
-                current = null;
-                return false;
-            }
-
-            current = dataSource.addedMetaballs[readIndex];
-            return true;
-        }
-
-        public void Reset()
-        {
-            current = null;
-            readIndex = -1;
-            originalReader.Reset();
-        }
-
-        public void Dispose()
-        {
-            originalReader.Dispose();
+            // TODO: type once that is tracked
         }
     }
 }
