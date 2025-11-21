@@ -313,12 +313,18 @@ public class SimulationCache
         var oxygenMetabolismInhibitorScore = predatorToolScores.OxygenMetabolismInhibitorScore;
         var predatorSlimeJetScore = predatorToolScores.SlimeJetScore;
         var pullingCiliaModifier = predatorToolScores.PullingCiliaModifier;
-        var strongPullingCiliaModifier = float.Pow(pullingCiliaModifier, 2);
+        var strongPullingCiliaModifier = pullingCiliaModifier * pullingCiliaModifier;
 
         var preySlimeJetScore = preyToolScores.SlimeJetScore;
         var preyMucocystsScore = preyToolScores.MucocystsScore;
 
         var behaviourScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+
+        // This makes rotation "speed" not matter until the editor shows ~300,
+        // which is where it also becomes noticeable in-game.
+        // Microbe rotation speed is reverse to intuitive: higher value means slower turning
+        var predatorRotationModifier = float.Min(1.0f, 1.5f - predatorRotationSpeed * 1.45f);
+        var preyRotationModifier = float.Min(1.0f, 1.5f - preyRotationSpeed * 1.45f);
 
         var hasChemoreceptor = false;
         foreach (var organelle in predator.Organelles.Organelles)
@@ -383,7 +389,7 @@ public class SimulationCache
             }
 
             // But prey may escape if they move away before you can turn to chase them
-            catchScore *= 1.0f - predatorRotationSpeed / 2;
+            catchScore *= predatorRotationModifier;
 
             // Pulling Cilia help with catching
             catchScore *= pullingCiliaModifier;
@@ -403,7 +409,7 @@ public class SimulationCache
             // This is also used to incentivize size in microbe species.
             // Prey that can't turn away fast enough are more likely to get caught.
             catchScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * predatorHexSize *
-                strongPullingCiliaModifier * (1.0f + preyRotationSpeed);
+                strongPullingCiliaModifier * preyRotationModifier;
 
             // Allow for some degree of lucky engulfment
             engulfmentScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
@@ -430,11 +436,11 @@ public class SimulationCache
             if (predatorSpeed > slowedPreySpeed)
             {
                 pilusScore *= slowedProportion * pullingCiliaModifier
-                    + (1 - slowedProportion) * Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+                    + (1 - slowedProportion) * Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * preyRotationModifier;
             }
             else
             {
-                pilusScore *= Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * (1.0f + preyRotationSpeed) *
+                pilusScore *= Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * preyRotationModifier *
                     strongPullingCiliaModifier;
             }
         }
@@ -444,7 +450,7 @@ public class SimulationCache
         }
 
         // Pili are also more useful if you can turn them towards the target in time
-        pilusScore *= 1.0f - predatorRotationSpeed / 2;
+        pilusScore *= predatorRotationModifier;
 
         // Damaging toxin section
 
@@ -492,7 +498,7 @@ public class SimulationCache
         damagingToxinScore /= prey.MembraneType.ToxinResistance;
 
         // Toxins also require facing and tracking the target
-        damagingToxinScore *= 1.0f - predatorRotationSpeed / 2;
+        damagingToxinScore *= predatorRotationModifier;
 
         // If you have a chemoreceptor, active hunting types are more effective
         if (hasChemoreceptor)
