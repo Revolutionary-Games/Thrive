@@ -58,7 +58,9 @@ public partial class CompoundStorageStatistics : VBoxContainer
             if (compoundDefinition.IsGas)
                 continue;
 
-            var storage = specialCapacities.GetValueOrDefault(entry.Key, nominalStorage);
+            var storage = nominalStorage;
+
+            storage += specialCapacities.GetValueOrDefault(entry.Key, 0);
 
             if (nightBalance.TryGetValue(entry.Key, out var nightEntry) && nightEntry.Balance < 0)
             {
@@ -114,7 +116,7 @@ public partial class CompoundStorageStatistics : VBoxContainer
             {
                 // Compound that doesn't change during the night (or not negative during the night), show still a
                 // depletion time if valid (balance is negative)
-                // It should be the case that not many compounds would ever fall into this category but for
+                // It should be the case that not many compounds would ever fall into this category, but for
                 // completeness this is handled as well
 
                 if (entry.Value.Balance < 0)
