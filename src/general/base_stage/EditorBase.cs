@@ -531,7 +531,9 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         double alreadyUsed;
         if (mutationPointsCache == null)
         {
-            alreadyUsed = 0;
+            // If set to 0, this would show a huge number as the total cost of everything, so instead we set it
+            // to itself to get a 0-cost result
+            alreadyUsed = result;
         }
         else
         {
