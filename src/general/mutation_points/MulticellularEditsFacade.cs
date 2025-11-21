@@ -319,8 +319,6 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         if (cellDefinition is CellTypeEditsFacade facade)
         {
             return facade;
-
-            // return reverseActiveCellTypes[facade];
         }
 
         if (activeCellTypes.TryGetValue(cellDefinition, out var existing))
