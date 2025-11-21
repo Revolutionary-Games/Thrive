@@ -138,11 +138,12 @@ public class MulticellularSpeciesComparer
         }
 
         // Finally, calculate removal costs (as we removed stuff already, everything left was removed)
-        foreach (var old in oldCells)
+        /*foreach (var old in oldCells)
         {
-            _ = old;
             cost += Constants.ORGANELLE_REMOVE_COST;
-        }
+        }*/
+
+        cost += oldCells.Count * Constants.METABALL_REMOVE_COST;
 
         oldCells.Clear();
         newCells.Clear();
