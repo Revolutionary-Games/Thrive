@@ -27,9 +27,9 @@ public abstract class Metaball : IReadOnlyMetaball, IArchivable
     /// <summary>
     ///   For animation and convolution surfaces we need to know the structure of metaballs
     /// </summary>
-    public Metaball? ModifiableParent { get; set; }
+    public virtual Metaball? ModifiableParent { get; set; }
 
-    public IReadOnlyMetaball? Parent => ModifiableParent;
+    public virtual IReadOnlyMetaball? Parent => ModifiableParent;
 
     /// <summary>
     ///   Basic rendering of the metaballs for now just uses a colour

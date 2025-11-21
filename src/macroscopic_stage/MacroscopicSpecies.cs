@@ -20,7 +20,7 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
 
     public List<CellType> ModifiableCellTypes { get; private set; } = new();
 
-    public IReadOnlyList<IReadOnlyCellDefinition> CellTypes => ModifiableCellTypes;
+    public IReadOnlyList<IReadOnlyCellTypeDefinition> CellTypes => ModifiableCellTypes;
 
     /// <summary>
     ///   The scale in meters of the species

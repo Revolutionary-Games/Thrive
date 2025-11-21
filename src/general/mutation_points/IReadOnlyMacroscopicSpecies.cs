@@ -2,7 +2,7 @@
 
 public interface IReadOnlyMacroscopicSpecies : IReadOnlySpecies
 {
-    public IReadOnlyList<IReadOnlyCellDefinition> CellTypes { get; }
+    public IReadOnlyList<IReadOnlyCellTypeDefinition> CellTypes { get; }
 
     public IReadOnlyMacroscopicMetaballLayout BodyLayout { get; }
 }
