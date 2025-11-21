@@ -48,12 +48,9 @@ public class MulticellularSpeciesComparer
                 }
             }
 
-            if (original == null)
-            {
-                // If still null, grab the first old type as the player is likely to duplicate from the stem type
-                // If we need more control cell types would need to store the name of the type they are duplicated from
-                original = originalCellTypes.FirstOrDefault();
-            }
+            // If still null, grab the first old type as the player is likely to duplicate from the stem type
+            // If we need more control cell types would need to store the name of the type they are duplicated from
+            original ??= originalCellTypes.FirstOrDefault();
 
             if (original == null)
             {

@@ -237,7 +237,7 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         if (cellTypes.HandleAction(actionData))
             return true;
 
-        // Need to handle edits to the cell types
+        // Need to handle edits to the cell types (by forwarding to the right facade)
         if (actionData is EditorCombinableActionData<CellType> cellTypeEdit && cellTypeEdit.Context != null)
         {
             // Get the cell type edit that matches the context
