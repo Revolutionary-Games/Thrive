@@ -459,7 +459,7 @@ public static class Constants
     public const float MICROBE_MOVEMENT_SOUND_MAX_VOLUME = 0.4f;
 
     // TODO: should this volume be actually 0?
-    public const float MICROBE_MOVEMENT_SOUND_START_VOLUME = 1;
+    public const float MICROBE_MOVEMENT_SOUND_START_VOLUME = 0.01f;
 
     /// <summary>
     ///   Max number of concurrent audio players that may be used per entity.
