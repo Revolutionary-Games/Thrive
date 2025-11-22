@@ -34,8 +34,8 @@ public partial class MicrobeMovementSoundSystem : BaseSystem<World, float>
             var acceleration = physics.Velocity - status.LastLinearVelocity;
             var deltaAcceleration = (acceleration - status.LastLinearAcceleration).LengthSquared();
 
-            // Normalize speed with maximum speed. TBD what that value is, couldn't find it in Constants.
-            var normalizedSpeed = physics.Velocity.Length() / 30.0f;
+            var volumeScaler = Math.Clamp(physics.Velocity.Length() / Constants.MICROBE_MOVEMENT_SOUND_SPEED_SCALER,
+                1, Constants.MICROBE_MOVEMENT_SOUND_MAX_VOLUME_SCALER);
 
             if (status.MovementSoundCooldownTimer > 0)
                 status.MovementSoundCooldownTimer -= delta;
@@ -52,7 +52,7 @@ public partial class MicrobeMovementSoundSystem : BaseSystem<World, float>
             }
 
             soundEffectPlayer.PlayGraduallyTurningUpLoopingSound(Constants.MICROBE_MOVEMENT_SOUND,
-                Constants.MICROBE_MOVEMENT_SOUND_MAX_VOLUME * MathF.Sqrt(normalizedSpeed),
+                Constants.MICROBE_MOVEMENT_SOUND_MAX_BASE_VOLUME * MathF.Sqrt(volumeScaler),
                 Constants.MICROBE_MOVEMENT_SOUND_START_VOLUME, delta);
 
             status.LastLinearVelocity = physics.Velocity;
