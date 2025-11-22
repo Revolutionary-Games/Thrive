@@ -148,18 +148,18 @@
   "chemoSynthesis": {
     "Name": "CHEMO_SYNTHESIS",
     "Inputs": {
-      "hydrogensulfide": 0.12,
+      "hydrogensulfide": 0.08,
       "carbondioxide": 0.09
     },
     "Outputs": {
-      "glucose": 0.1
+      "glucose": 0.075
     },
     "IsMetabolismProcess": true
   },
   "bacterial_ChemoSynthesis": {
     "Name": "CHEMO_SYNTHESIS",
     "Inputs": {
-      "hydrogensulfide": 0.06,
+      "hydrogensulfide": 0.04,
       "carbondioxide": 0.09
     },
     "Outputs": {
@@ -234,7 +234,7 @@
   "iron_chemolithoautotrophy": {
     "Name": "IRON_OXIDATION",
     "Inputs": {
-      "iron": 0.06
+      "iron": 0.055
     },
     "Outputs": {
       "atp": 5.5
@@ -262,7 +262,7 @@
   "ferrosynthesis": {
     "Name": "IRON_OXIDATION",
     "Inputs": {
-      "iron": 0.04
+      "iron": 0.048
     },
     "Outputs": {
       "atp": 14
