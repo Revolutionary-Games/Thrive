@@ -1307,6 +1307,7 @@ public static class Constants
     public const float AUTO_EVO_TOXICITY_HIT_MODIFIER = 4.0f;
     public const float AUTO_EVO_SLIME_JET_SCORE = 6;
     public const float AUTO_EVO_MUCOCYST_SCORE = 40;
+    public const float AUTO_EVO_PULL_CILIA_MODIFIER = 0.8f;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
     public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER = 1.18f;
     public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER = 0.7f;

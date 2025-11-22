@@ -34,6 +34,7 @@ public class SimulationCache
 
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseSpeeds = new();
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseHexSizes = new();
+    private readonly Dictionary<MicrobeSpecies, float> cachedBaseRotationSpeeds = new();
 
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions, CompoundDefinition, CompoundDefinition), float>
         cachedCompoundScores = new();
@@ -140,6 +141,19 @@ public class SimulationCache
         cached = species.BaseHexSize;
 
         cachedBaseHexSizes.Add(species, cached);
+        return cached;
+    }
+
+    public float GetRotationSpeedForSpecies(MicrobeSpecies species)
+    {
+        if (cachedBaseRotationSpeeds.TryGetValue(species, out var cached))
+        {
+            return cached;
+        }
+
+        cached = MicrobeInternalCalculations.CalculateRotationSpeed(species.Organelles.Organelles);
+
+        cachedBaseRotationSpeeds.Add(species, cached);
         return cached;
     }
 
@@ -276,8 +290,10 @@ public class SimulationCache
         // one dictionary lookup
         var predatorHexSize = GetBaseHexSizeForSpecies(predator);
         var predatorSpeed = GetSpeedForSpecies(predator);
+        var predatorRotationSpeed = GetRotationSpeedForSpecies(predator);
         var preyHexSize = GetBaseHexSizeForSpecies(prey);
         var preySpeed = GetSpeedForSpecies(prey);
+        var preyRotationSpeed = GetRotationSpeedForSpecies(prey);
         var slowedPreySpeed = preySpeed;
         var preyIndividualCost = MichePopulation.CalculateMicrobeIndividualCost(prey, biomeConditions, this);
         var preyEnergyBalance = GetEnergyBalanceForSpecies(prey, biomeConditions);
@@ -296,11 +312,19 @@ public class SimulationCache
         var channelInhibitorScore = predatorToolScores.ChannelInhibitorScore;
         var oxygenMetabolismInhibitorScore = predatorToolScores.OxygenMetabolismInhibitorScore;
         var predatorSlimeJetScore = predatorToolScores.SlimeJetScore;
+        var pullingCiliaModifier = predatorToolScores.PullingCiliaModifier;
+        var strongPullingCiliaModifier = pullingCiliaModifier * pullingCiliaModifier;
 
         var preySlimeJetScore = preyToolScores.SlimeJetScore;
         var preyMucocystsScore = preyToolScores.MucocystsScore;
 
         var behaviourScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+
+        // This makes rotation "speed" not matter until the editor shows ~300,
+        // which is where it also becomes noticeable in-game.
+        // Microbe rotation speed is reverse to intuitive: higher value means slower turning
+        var predatorRotationModifier = float.Min(1.0f, 1.5f - predatorRotationSpeed * 1.45f);
+        var preyRotationModifier = float.Min(1.0f, 1.5f - preyRotationSpeed * 1.45f);
 
         var hasChemoreceptor = false;
         foreach (var organelle in predator.Organelles.Organelles)
@@ -358,12 +382,17 @@ public class SimulationCache
                 catchScore += (predatorSpeed / preySpeed) * (1 - slowedProportion);
             }
 
+            // If you can slow the target, some proportion of prey are easier to catch
             if (predatorSpeed > slowedPreySpeed)
             {
-                // You catch more preys if you are fast, and if they are slow.
-                // This incentivizes engulfment strategies in these cases.
                 catchScore += (predatorSpeed / slowedPreySpeed) * slowedProportion;
             }
+
+            // But prey may escape if they move away before you can turn to chase them
+            catchScore *= predatorRotationModifier;
+
+            // Pulling Cilia help with catching
+            catchScore *= pullingCiliaModifier;
 
             // If you have a chemoreceptor, active hunting types are more effective
             if (hasChemoreceptor)
@@ -378,7 +407,9 @@ public class SimulationCache
             // ... but you may also catch them by luck (e.g. when they run into you),
             // and this is especially easy if you're huge.
             // This is also used to incentivize size in microbe species.
-            catchScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * predatorHexSize;
+            // Prey that can't turn away fast enough are more likely to get caught.
+            catchScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * predatorHexSize *
+                strongPullingCiliaModifier * preyRotationModifier;
 
             // Allow for some degree of lucky engulfment
             engulfmentScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
@@ -404,14 +435,22 @@ public class SimulationCache
         {
             if (predatorSpeed > slowedPreySpeed)
             {
-                pilusScore *= slowedProportion
-                    + (1 - slowedProportion) * Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+                pilusScore *= slowedProportion * pullingCiliaModifier
+                    + (1 - slowedProportion) * Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * preyRotationModifier;
             }
             else
             {
-                pilusScore *= Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+                pilusScore *= Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * preyRotationModifier *
+                    strongPullingCiliaModifier;
             }
         }
+        else
+        {
+            pilusScore *= pullingCiliaModifier;
+        }
+
+        // Pili are also more useful if you can turn them towards the target in time
+        pilusScore *= predatorRotationModifier;
 
         // Damaging toxin section
 
@@ -457,6 +496,9 @@ public class SimulationCache
 
         // Prey that resist toxin are of course less vulnerable to being hunted with it
         damagingToxinScore /= prey.MembraneType.ToxinResistance;
+
+        // Toxins also require facing and tracking the target
+        damagingToxinScore *= predatorRotationModifier;
 
         // If you have a chemoreceptor, active hunting types are more effective
         if (hasChemoreceptor)
@@ -606,6 +648,7 @@ public class SimulationCache
         cachedSimpleEnergyBalances.Clear();
         cachedBaseSpeeds.Clear();
         cachedBaseHexSizes.Clear();
+        cachedBaseRotationSpeeds.Clear();
         cachedCompoundScores.Clear();
         cachedGeneratedCompound.Clear();
         predationScores.Clear();
@@ -651,6 +694,7 @@ public class SimulationCache
         var injectisomeScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
         var slimeJetScore = Constants.AUTO_EVO_SLIME_JET_SCORE;
         var mucocystsScore = Constants.AUTO_EVO_MUCOCYST_SCORE;
+        var pullingCiliaModifier = 1.0f;
 
         var organelles = microbeSpecies.Organelles.Organelles;
         var organelleCount = organelles.Count;
@@ -660,6 +704,7 @@ public class SimulationCache
         var injectisomeCount = 0;
         var slimeJetsCount = 0;
         var mucocystsCount = 0;
+        var pullingCiliasCount = 0;
         var slimeJetsMultiplier = 1.0f;
 
         var hasOxytoxy = false;
@@ -698,6 +743,16 @@ public class SimulationCache
                 // push the cell backwards (into the predator or away from the prey) or to the side
                 slimeJetsMultiplier *= CalculateAngleMultiplier(organelle.Position);
                 continue;
+            }
+
+            if (organelle.Definition.HasCiliaComponent)
+            {
+                if (organelle.Upgrades != null &&
+                    organelle.Upgrades.UnlockedFeatures.Contains(CiliaComponent.CILIA_PULL_UPGRADE_NAME))
+                {
+                    ++pullingCiliasCount;
+                    continue;
+                }
             }
 
             foreach (var process in organelle.Definition.RunnableProcesses)
@@ -780,9 +835,10 @@ public class SimulationCache
                     ToxinType.OxygenMetabolismInhibitor);
         }
 
-        // Having lots of extra pili, slime jets and mucocysts doesn't really help much
+        // Having lots of slime jets, mucocysts and pulling cilias doesn't really help much
         slimeJetScore *= MathF.Sqrt(slimeJetsCount);
         mucocystsScore *= MathF.Sqrt(mucocystsCount);
+        pullingCiliaModifier *= 1 + MathF.Sqrt(pullingCiliasCount) * Constants.AUTO_EVO_PULL_CILIA_MODIFIER;
 
         // Having lots of extra pili also does not help, even if they are two different types
         if (pilusCount != 0 || injectisomeCount != 0)
@@ -808,7 +864,7 @@ public class SimulationCache
 
         var predationToolsRawScores = new PredationToolsRawScores(pilusScore, injectisomeScore, averageToxicity,
             oxytoxyScore, cytotoxinScore, macrolideScore, channelInhibitorScore, oxygenMetabolismInhibitorScore,
-            slimeJetScore, mucocystsScore);
+            slimeJetScore, mucocystsScore, pullingCiliaModifier);
 
         cachedPredationToolsRawScores.Add(microbeSpecies, predationToolsRawScores);
         return predationToolsRawScores;
@@ -981,5 +1037,6 @@ public class SimulationCache
         float ChannelInhibitorScore,
         float OxygenMetabolismInhibitorScore,
         float SlimeJetScore,
-        float MucocystsScore);
+        float MucocystsScore,
+        float PullingCiliaModifier);
 }
