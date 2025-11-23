@@ -784,6 +784,8 @@ public partial class MetaballBodyEditorComponent :
     /// </summary>
     private void UpdateCellTypeSelections()
     {
+        var costMultiplier = Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+
         // Re-use / create more buttons to hold all the cell types
         foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes.OrderBy(t => t.CellTypeName,
                      StringComparer.Ordinal))
@@ -805,12 +807,12 @@ public partial class MetaballBodyEditorComponent :
                     new Callable(this, nameof(OnCellToPlaceSelected)));
             }
 
-            control.MPCost = Constants.METABALL_ADD_COST;
+            control.MPCost = Constants.METABALL_ADD_COST * costMultiplier;
 
             // TODO: remove this line after ATP balance calculations are implemented for this editor
             control.ShowInsufficientATPWarning = false;
 
-            // TODO: tooltips for these
+            // TODO: tooltips for these (and remember to take MP multiplier into account)
         }
 
         bool clearSelection = false;
