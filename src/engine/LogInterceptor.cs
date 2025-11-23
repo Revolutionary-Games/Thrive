@@ -108,6 +108,10 @@ public partial class LogInterceptor : Logger
         if (rationale.Contains("tempt to disconnect a nonexistent connection from 'root:<Window"))
             return;
 
+        // Again, an engine bug that is caused by reopening a dropdown menu that always triggers this error
+        if (rationale.Contains("is already connected to given callable"))
+            return;
+
         // We might want to ignore this somewhat intermittent error: Parent node is busy adding
         // that sometimes happens on scene switch but doesn't seem to cause any problems
 
