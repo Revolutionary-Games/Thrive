@@ -456,10 +456,13 @@ public static class Constants
     public const string MICROBE_BINDING_MODE_SOUND = "res://assets/sounds/soundeffects/binding.ogg";
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
-    public const float MICROBE_MOVEMENT_SOUND_MAX_VOLUME = 0.4f;
+    public const float MICROBE_MOVEMENT_SOUND_MAX_BASE_VOLUME = 0.4f;
+
+    public const float MICROBE_MOVEMENT_SOUND_SPEED_SCALER = 30.0f;
+    public const float MICROBE_MOVEMENT_SOUND_MAX_VOLUME_SCALER = 4.0f;
 
     // TODO: should this volume be actually 0?
-    public const float MICROBE_MOVEMENT_SOUND_START_VOLUME = 1;
+    public const float MICROBE_MOVEMENT_SOUND_START_VOLUME = 0.01f;
 
     /// <summary>
     ///   Max number of concurrent audio players that may be used per entity.
