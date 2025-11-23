@@ -13,7 +13,7 @@ public static class CompatibleSaveVersions
     private static readonly Dictionary<string, List<(string CompatibleVersion, bool AllowPrototypes)>>
         KnownVersionCompatibilityMapping = new()
         {
-            { "0.9.0.1", [("0.9.0.0", true)] },
+            { "0.9.1.0", [("0.9.0.0", false), ("0.9.0.1", false)] },
         };
 
     public static void VerifyInfoForCurrentVersion()
