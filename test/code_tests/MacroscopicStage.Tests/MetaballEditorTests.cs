@@ -3,7 +3,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using ThriveTest.Utils;
 using Xunit;
 
 public class MetaballEditorTests
