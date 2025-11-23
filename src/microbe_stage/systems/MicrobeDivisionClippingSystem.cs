@@ -87,8 +87,16 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
                 RemoveDivisionComponentFromEntity(entity);
             }
 
-            if (physics.Body != null)
+            // Very important to not apply force if the body is detached
+            if (physics.Body != null && !physics.BodyDisabled)
             {
+                if (physics.Body.IsDetached)
+                {
+                    GD.PrintErr("Somehow a physics body is detached in division clipping system " +
+                        "even though we checked the body state");
+                    return;
+                }
+
                 // Ensure the difference is not 0, which would break the animation
                 if (difference.IsZeroApprox())
                     difference += Vector3.Left * 0.01f;
