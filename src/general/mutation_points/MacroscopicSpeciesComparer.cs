@@ -3,13 +3,18 @@ using System.Collections.Generic;
 
 public class MacroscopicSpeciesComparer
 {
-    private readonly MicrobeSpeciesComparer cellTypeComparer = new();
+    private readonly MicrobeSpeciesComparer cellTypeComparer;
 
     private readonly List<IReadOnlyCellTypeDefinition> originalCellTypes = new();
     private readonly List<IReadOnlyCellTypeDefinition> newCellTypes = new();
 
     private readonly List<IReadonlyMacroscopicMetaball> unusedOldMetaballs = new();
     private readonly List<IReadonlyMacroscopicMetaball> unusedNewMetaballs = new();
+
+    public MacroscopicSpeciesComparer(OrganelleDefinition? cytoplasm = null)
+    {
+        cellTypeComparer = new MicrobeSpeciesComparer(cytoplasm);
+    }
 
     public double Compare(IReadOnlyMacroscopicSpecies speciesA, IReadOnlyMacroscopicSpecies speciesB)
     {
