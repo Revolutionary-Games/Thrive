@@ -1347,7 +1347,8 @@ public partial class CellEditorComponent :
 
         var costPerStep = Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
 
-        var data = new RigidityActionData(desiredRigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO, Rigidity);
+        var data = new RigidityActionData(desiredRigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO,
+            Rigidity);
 
         // In some cases "theoreticalCost" might get rounded improperly
         var theoreticalCost = Editor.WhatWouldActionsCost(new[] { data });
