@@ -524,8 +524,17 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (!TriggerChangeIfPossible())
         {
-            // Rollback value if not enough MP
-            temperatureSlider.Value = CurrentTolerances.PreferredTemperature;
+            var extremeTemp = CalculateSliderExtremeValue(Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE,
+                value, CurrentTolerances.PreferredTemperature);
+
+            reusableTolerances.PreferredTemperature = extremeTemp;
+            temperatureSlider.Value = extremeTemp;
+
+            // Attempt the previous rollback if failed again.
+            if (!TriggerChangeIfPossible())
+            {
+                temperatureSlider.Value = CurrentTolerances.PreferredTemperature;
+            }
         }
 
         automaticallyChanging = false;
@@ -544,7 +553,18 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (!TriggerChangeIfPossible())
         {
-            temperatureToleranceRangeSlider.Value = CurrentTolerances.TemperatureTolerance;
+            var extremeTempTolerance = CalculateSliderExtremeValue(
+                Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE,
+                value, CurrentTolerances.TemperatureTolerance);
+
+            reusableTolerances.TemperatureTolerance = extremeTempTolerance;
+            temperatureToleranceRangeSlider.Value = extremeTempTolerance;
+
+            // Attempt the previous rollback if failed again.
+            if (!TriggerChangeIfPossible())
+            {
+                temperatureToleranceRangeSlider.Value = CurrentTolerances.TemperatureTolerance;
+            }
         }
 
         automaticallyChanging = false;
@@ -672,8 +692,28 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (!TriggerChangeIfPossible())
         {
-            pressureMinSlider.Value = CurrentTolerances.PressureMinimum;
-            pressureMaxSlider.Value = CurrentTolerances.PressureMaximum;
+            if (keepSamePressureFlexibility)
+            {
+                var pressureRange = max - min;
+
+                var extremeMin = CalculateSliderExtremeValue(Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE,
+                    min, CurrentTolerances.PressureMinimum);
+
+                var extremeMax = extremeMin + pressureRange;
+
+                reusableTolerances.PressureMinimum = extremeMin;
+                reusableTolerances.PressureMaximum = extremeMax;
+
+                pressureMinSlider.Value = extremeMin;
+                pressureMaxSlider.Value = extremeMax;
+            }
+
+            // Attempt the previous rollback if failed again.
+            if (!TriggerChangeIfPossible())
+            {
+                pressureMinSlider.Value = CurrentTolerances.PressureMinimum;
+                pressureMaxSlider.Value = CurrentTolerances.PressureMaximum;
+            }
         }
     }
 
@@ -690,7 +730,17 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (!TriggerChangeIfPossible())
         {
-            oxygenResistanceSlider.Value = CurrentTolerances.OxygenResistance;
+            var extremeResistance = CalculateSliderExtremeValue(Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN,
+                value, CurrentTolerances.OxygenResistance, true);
+
+            reusableTolerances.OxygenResistance = extremeResistance;
+            oxygenResistanceSlider.Value = extremeResistance;
+
+            // Attempt the previous rollback if failed again.
+            if (!TriggerChangeIfPossible())
+            {
+                oxygenResistanceSlider.Value = CurrentTolerances.OxygenResistance;
+            }
         }
 
         automaticallyChanging = false;
@@ -709,10 +759,49 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (!TriggerChangeIfPossible())
         {
-            uvResistanceSlider.Value = CurrentTolerances.UVResistance;
+            var extremeResistance = CalculateSliderExtremeValue(Constants.TOLERANCE_CHANGE_MP_PER_UV,
+                value, CurrentTolerances.UVResistance, true);
+
+            reusableTolerances.UVResistance = extremeResistance;
+            uvResistanceSlider.Value = extremeResistance;
+
+            // Attempt the previous rollback if failed again.
+            if (!TriggerChangeIfPossible())
+            {
+                uvResistanceSlider.Value = CurrentTolerances.UVResistance;
+            }
         }
 
         automaticallyChanging = false;
+    }
+
+    /// <summary>
+    ///   Calculates the extremeties of a slider movement when cost is the limiting factor.
+    /// </summary>
+    /// <param name="cpa">Cost per action. How much MP does changing this value cost?</param>
+    /// <param name="sliderValue">What the slider value currently is at</param>
+    /// <param name="originalValue">What the slider value was originally at</param>
+    /// <param name="isPercentage">
+    ///   If the value being calculated is a percentage. This is used
+    ///   for determining the rounding for the amount we can change by.
+    /// </param>
+    /// <returns>The value the slider and parameter should now be at.</returns>
+    private float CalculateSliderExtremeValue(double cpa, float sliderValue, float originalValue,
+        bool isPercentage = false)
+    {
+        var pointsLeft = Editor.MutationPoints;
+
+        // If a percentage, round to the nearest 0.05
+        var numActions = isPercentage ? Math.Floor(pointsLeft * 20 / cpa) / 20 : Math.Floor(pointsLeft / cpa);
+
+        // Dragging to the left
+        if (sliderValue < originalValue)
+        {
+            return originalValue - (float)numActions;
+        }
+
+        // Dragging to the right
+        return originalValue + (float)numActions;
     }
 
     private bool TriggerChangeIfPossible()
