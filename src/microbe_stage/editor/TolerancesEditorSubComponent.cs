@@ -726,7 +726,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
                         min, CurrentTolerances.PressureMinimum / Constants.TOLERANCE_PRESSURE_SCALE,
                         pressureMinSlider.Step);
 
-                    extremeMin = Math.Clamp(extremeMin, max - 2000, max);
+                    extremeMin = Math.Clamp(extremeMin, max - Constants.TOLERANCE_PRESSURE_RANGE_MAX, max);
 
                     pressureMinSlider.Value = extremeMin;
                     pressureMaxSlider.Value = max;
@@ -741,7 +741,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
                         max, CurrentTolerances.PressureMaximum / Constants.TOLERANCE_PRESSURE_SCALE,
                         pressureMaxSlider.Step);
 
-                    extremeMax = Math.Clamp(extremeMax, min, min + 2000);
+                    extremeMax = Math.Clamp(extremeMax, min, min + Constants.TOLERANCE_PRESSURE_RANGE_MAX);
 
                     pressureMinSlider.Value = min;
                     pressureMaxSlider.Value = extremeMax;
