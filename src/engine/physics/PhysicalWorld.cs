@@ -235,11 +235,17 @@ public class PhysicalWorld : IDisposable
 
     public void GiveImpulse(NativePhysicsBody body, Vector3 impulse, bool autoActivate)
     {
+        if (body.IsDetached)
+            throw new ArgumentException("Cannot give impulse to a detached body");
+
         NativeMethods.GiveImpulse(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(impulse), autoActivate);
     }
 
     public void GiveAngularImpulse(NativePhysicsBody body, Vector3 angularImpulse, bool autoActivate)
     {
+        if (body.IsDetached)
+            throw new ArgumentException("Cannot give angular impulse to a detached body");
+
         NativeMethods.GiveAngularImpulse(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(angularImpulse),
             autoActivate);
     }
