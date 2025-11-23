@@ -1210,13 +1210,13 @@ public partial class CellEditorComponent :
 
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
-        UpdateEndosymbiosisSpeciesData();
 
         if (!IsMulticellularEditor)
         {
             // Refresh tolerances data for the new patch
             tolerancesEditor.OnDataTolerancesDependOnChanged();
             OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+            UpdateEndosymbiosisSpeciesData();
         }
 
         // Redo suggestion calculations as they could depend on the patch data (though at the time of writing this is
