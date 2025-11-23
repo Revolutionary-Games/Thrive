@@ -320,7 +320,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
 
         editsFacade.SetActiveActions(performedActionData);
 
-        return speciesComparer.Compare(editedSpecies!, editsFacade);
+        return speciesComparer.Compare(editedSpecies!, editsFacade) * CurrentGame.GameWorld.WorldSettings.MPMultiplier;
     }
 
     protected override GameProperties StartNewGameForEditor()
