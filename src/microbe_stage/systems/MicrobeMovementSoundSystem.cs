@@ -34,8 +34,8 @@ public partial class MicrobeMovementSoundSystem : BaseSystem<World, float>
             var acceleration = physics.Velocity - status.LastLinearVelocity;
             var deltaAcceleration = (acceleration - status.LastLinearAcceleration).LengthSquared();
 
-            var volumeScaler = Math.Clamp(physics.Velocity.Length() / Constants.MICROBE_MOVEMENT_SOUND_SPEED_SCALER,
-                0, Constants.MICROBE_MOVEMENT_SOUND_MAX_VOLUME_SCALER);
+            var volumeScaler = Math.Min(physics.Velocity.Length() / Constants.MICROBE_MOVEMENT_SOUND_SPEED_SCALER,
+                Constants.MICROBE_MOVEMENT_SOUND_MAX_VOLUME_SCALER);
 
             if (status.MovementSoundCooldownTimer > 0)
                 status.MovementSoundCooldownTimer -= delta;
