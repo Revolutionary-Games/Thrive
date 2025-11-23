@@ -40,7 +40,7 @@ public partial class MicrobeDivisionClippingSystem : BaseSystem<World, float>
     {
         ref var otherEntity = ref collisionDisabler.IgnoredCollisionWith;
 
-        collisionDisabler.SeparationForce += delta * 2;
+        collisionDisabler.SeparationForce += delta * 2.5f;
 
         if (collisionManagement.IgnoredCollisionsWith != null)
         {
