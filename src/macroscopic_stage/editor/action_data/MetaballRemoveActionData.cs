@@ -129,56 +129,6 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData, I
         ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
     }
 
-    protected override double CalculateBaseCostInternal()
-    {
-        return Constants.METABALL_REMOVE_COST;
-    }
-
-    protected override (double Cost, double RefundCost) CalculateCostInternal(
-        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
-    {
-        var cost = CalculateBaseCostInternal();
-        double refund = 0;
-
-        var count = history.Count;
-        for (int i = 0; i < insertPosition && i < count; ++i)
-        {
-            var other = history[i];
-
-            // If this metaball got placed in this session (on the same position)
-            if (other is MetaballPlacementActionData<TMetaball> placementActionData &&
-                placementActionData.PlacedMetaball.MatchesDefinition(RemovedMetaball) &&
-                (placementActionData.Position == Position ||
-                    ReferenceEquals(placementActionData.PlacedMetaball, RemovedMetaball)))
-            {
-                // Deleting a placed metaball refunds it
-                cost = 0;
-                refund += other.GetAndConsumeAvailableRefund();
-                continue;
-            }
-
-            // If this metaball got moved in this session, refund that
-            if (other is MetaballMoveActionData<TMetaball> moveActionData &&
-                moveActionData.MovedMetaball.MatchesDefinition(RemovedMetaball) &&
-                moveActionData.NewPosition.DistanceSquaredTo(Position) < MathUtils.EPSILON &&
-                moveActionData.NewParent == Parent)
-            {
-                refund += moveActionData.GetAndConsumeAvailableRefund();
-                continue;
-            }
-
-            // If this metaball got resized in this session, refund that
-            if (other is MetaballResizeActionData<TMetaball> resizeActionData &&
-                resizeActionData.ResizedMetaball.MatchesDefinition(RemovedMetaball) &&
-                Math.Abs(resizeActionData.NewSize - RemovedMetaball.Size) < MathUtils.EPSILON)
-            {
-                refund += resizeActionData.GetAndConsumeAvailableRefund();
-            }
-        }
-
-        return (cost, refund);
-    }
-
     protected override bool CanMergeWithInternal(CombinableActionData other)
     {
         return false;

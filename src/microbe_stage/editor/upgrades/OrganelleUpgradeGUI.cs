@@ -107,10 +107,7 @@ public partial class OrganelleUpgradeGUI : Control
                 var newUpgrade = new OrganelleUpgrades();
                 newUpgrade.ModifiableUnlockedFeatures.Add(availableUpgrade.Key);
 
-                var data = new OrganelleUpgradeActionData(oldUpgrade, newUpgrade, organelle)
-                {
-                    CostMultiplier = costMultiplier,
-                };
+                var data = new OrganelleUpgradeActionData(oldUpgrade, newUpgrade, organelle);
 
                 var cost = editorData.WhatWouldActionsCost(new[] { data });
 

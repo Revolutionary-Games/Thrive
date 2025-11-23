@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using SharedBase.Archive;
 
 /// <summary>
@@ -58,17 +57,6 @@ public class DuplicateDeleteCellTypeData : EditorCombinableActionData<Multicellu
 
         writer.Write(SERIALIZATION_VERSION_CONTEXT);
         base.WriteToArchive(writer);
-    }
-
-    protected override (double Cost, double RefundCost) CalculateCostInternal(
-        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
-    {
-        return (0, 0);
-    }
-
-    protected override double CalculateBaseCostInternal()
-    {
-        return 0;
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)
