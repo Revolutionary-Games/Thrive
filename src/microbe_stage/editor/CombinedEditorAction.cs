@@ -82,27 +82,6 @@ public class CombinedEditorAction : EditorAction
             action.UndoAction();
     }
 
-    public override double GetBaseCost()
-    {
-        return Actions.Sum(a => a.GetBaseCost());
-    }
-
-    public override double CalculateCost(IReadOnlyList<EditorAction> history, int insertPosition)
-    {
-        // TODO: hopefully the different actions don't interfere with each other in terms of MP usage, because then
-        // this is not an accurate calculation
-
-        double sum = 0;
-
-        var count = Actions.Count;
-        for (var i = 0; i < count; ++i)
-        {
-            sum += Actions[i].CalculateCost(history, insertPosition);
-        }
-
-        return sum;
-    }
-
     public override void ApplyMergedData(IEnumerable<EditorCombinableActionData> newData)
     {
         var newDataList = newData.ToList();

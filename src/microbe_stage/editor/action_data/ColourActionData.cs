@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Godot;
 using SharedBase.Archive;
 
@@ -48,19 +47,6 @@ public class ColourActionData : EditorCombinableActionData<CellType>
 
         writer.Write(SERIALIZATION_VERSION_CONTEXT);
         base.WriteToArchive(writer);
-    }
-
-    protected override double CalculateBaseCostInternal()
-    {
-        // Changing membrane colour has no cost
-        return 0;
-    }
-
-    protected override (double Cost, double RefundCost) CalculateCostInternal(
-        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
-    {
-        // No cost adjustment as this is free
-        return (CalculateBaseCostInternal(), 0);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)

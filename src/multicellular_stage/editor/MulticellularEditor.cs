@@ -351,7 +351,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         editsFacade.SetActiveActions(performedActionData);
 
-        return speciesComparer.Compare(editedSpecies!, editsFacade);
+        return speciesComparer.Compare(editedSpecies!, editsFacade) * CurrentGame.GameWorld.WorldSettings.MPMultiplier;
     }
 
     protected override GameProperties StartNewGameForEditor()

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using SharedBase.Archive;
 
 public class OrganelleMoveActionData : HexMoveActionData<OrganelleTemplate, CellType>
@@ -33,30 +32,5 @@ public class OrganelleMoveActionData : HexMoveActionData<OrganelleTemplate, Cell
         instance.ReadBasePropertiesFromArchive(reader, version);
 
         return instance;
-    }
-
-    protected override (double Cost, double RefundCost) CalculateCostInternal(
-        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
-    {
-        var count = history.Count;
-        for (int i = 0; i < insertPosition && i < count; ++i)
-        {
-            var other = history[i];
-
-            // Endosymbionts can be moved for free after placing
-            if (other is EndosymbiontPlaceActionData endosymbiontPlaceActionData &&
-                MatchesContext(endosymbiontPlaceActionData))
-            {
-                // If moved after placing
-                if (MovedHex == endosymbiontPlaceActionData.PlacedOrganelle &&
-                    OldLocation == endosymbiontPlaceActionData.PlacementLocation &&
-                    OldRotation == endosymbiontPlaceActionData.PlacementRotation)
-                {
-                    return (0, 0);
-                }
-            }
-        }
-
-        return base.CalculateCostInternal(history, insertPosition);
     }
 }

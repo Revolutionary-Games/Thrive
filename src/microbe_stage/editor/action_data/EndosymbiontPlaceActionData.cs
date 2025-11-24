@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using SharedBase.Archive;
 
 public class EndosymbiontPlaceActionData : EditorCombinableActionData<CellType>
@@ -79,19 +78,6 @@ public class EndosymbiontPlaceActionData : EditorCombinableActionData<CellType>
 
         writer.WriteObjectOrNull(OverriddenEndosymbiosisOnUndo);
         writer.Write(PerformedUnlock);
-    }
-
-    protected override double CalculateBaseCostInternal()
-    {
-        // Endosymbiosis placement never costs MP
-        return 0;
-    }
-
-    protected override (double Cost, double RefundCost) CalculateCostInternal(
-        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
-    {
-        // No cost adjustment as this is free
-        return (CalculateBaseCostInternal(), 0);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using SharedBase.Archive;
 
 public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate, CellType>
@@ -7,7 +6,8 @@ public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate, 
     public const ushort SERIALIZATION_VERSION = 1;
 
     /// <summary>
-    ///   Used for replacing Cytoplasm. If true, this action is free.
+    ///   Used for replacing Cytoplasm. This used to make the action free, but now the species comparison needs special
+    ///   logic to detect this.
     /// </summary>
     public bool GotReplaced;
 
@@ -56,45 +56,5 @@ public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate, 
         base.WriteToArchive(writer);
 
         writer.Write(GotReplaced);
-    }
-
-    protected override double CalculateBaseCostInternal()
-    {
-        return GotReplaced ? 0 : base.CalculateBaseCostInternal();
-    }
-
-    protected override (double Cost, double RefundCost) CalculateCostInternal(
-        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
-    {
-        var cost = base.CalculateCostInternal(history, insertPosition);
-        double refund = 0;
-
-        var count = history.Count;
-        for (int i = 0; i < insertPosition && i < count; ++i)
-        {
-            var other = history[i];
-
-            // Endosymbionts can be deleted for free after placing (not that it is very useful, but it should be free)
-            if (other is EndosymbiontPlaceActionData endosymbiontPlaceActionData &&
-                MatchesContext(endosymbiontPlaceActionData))
-            {
-                if (RemovedHex == endosymbiontPlaceActionData.PlacedOrganelle)
-                {
-                    return (0, cost.RefundCost);
-                }
-            }
-
-            if (other is OrganelleUpgradeActionData upgradeActionData &&
-                upgradeActionData.UpgradedOrganelle == RemovedHex && MatchesContext(upgradeActionData))
-            {
-                // This replaces (refunds) the MP for an upgrade done to this organelle
-                if (ReferenceEquals(upgradeActionData.UpgradedOrganelle, RemovedHex))
-                {
-                    refund += upgradeActionData.GetAndConsumeAvailableRefund();
-                }
-            }
-        }
-
-        return (cost.Cost, cost.RefundCost + refund);
     }
 }
