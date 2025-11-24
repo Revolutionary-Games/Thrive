@@ -111,9 +111,8 @@ public partial class PilusDamageSystem : BaseSystem<World, float>
 
         float damage = Constants.PILUS_BASE_DAMAGE * collision.PenetrationAmount;
 
-        // Skip too small damage
-        if (damage < 0.01f)
-            return;
+        if (damage < Constants.PILUS_MIN_DAMAGE)
+            damage = Constants.PILUS_MIN_DAMAGE;
 
         if (damage > Constants.PILUS_MAX_DAMAGE)
             damage = Constants.PILUS_MAX_DAMAGE;
