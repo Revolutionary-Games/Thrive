@@ -370,8 +370,6 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
 
         if (actionData is NewMicrobeActionData newMicrobeActionData)
         {
-            // TODO: make sure this works correctly
-
             // Clear already applied things
             foreach (var organelle in newMicrobeActionData.OldEditedMicrobeOrganelles)
             {
