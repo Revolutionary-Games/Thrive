@@ -1053,7 +1053,7 @@ public static class Constants
     /// <summary>
     ///   Maximum damage a single pilus hit does, even if the penetration depth is very high
     /// </summary>
-    public const float PILUS_MAX_DAMAGE = 45;
+    public const float PILUS_MAX_DAMAGE = 35;
     public const float PILUS_MIN_DAMAGE = 1;
 
     public const float PILUS_PHYSICS_SIZE = 4.6f;
@@ -1063,7 +1063,7 @@ public static class Constants
     /// <summary>
     ///   Damage a single injectisome stab does
     /// </summary>
-    public const float INJECTISOME_BASE_DAMAGE = 20.0f;
+    public const float INJECTISOME_BASE_DAMAGE = 15.0f;
 
     public const string PILUS_INJECTISOME_UPGRADE_NAME = "injectisome";
 
@@ -1077,7 +1077,7 @@ public static class Constants
     ///   How long the shortest pilus cooldown is after dealing damage. This is applied if the damage just barely
     ///   crosses <see cref="PILUS_MIN_DAMAGE_TRIGGER_COOLDOWN"/>
     /// </summary>
-    public const float PILUS_MIN_COOLDOWN = 0.05f;
+    public const float PILUS_MIN_COOLDOWN = 0.1f;
 
     public const float PILUS_MAX_COOLDOWN = 0.45f;
 
