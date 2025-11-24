@@ -317,6 +317,23 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
 
             if (original == null)
             {
+                foreach (var addedOrganelle in addedOrganelles)
+                {
+                    // Make sure organelles where the original instance is different (due to the base species and
+                    // upgrade action data not matching due to editor using temporary organelles) can still match
+                    if (addedOrganelle.OriginalFrom.Definition ==
+                        organelleUpgradeActionData.UpgradedOrganelle.Definition &&
+                        addedOrganelle.Position == organelleUpgradeActionData.Position)
+                    {
+                        original = addedOrganelle;
+                        addedOrganelles.Remove(addedOrganelle);
+                        break;
+                    }
+                }
+            }
+
+            if (original == null)
+            {
                 // Then match to the original microbe organelles
                 original = originalCell.Organelles.GetByExactElementRootPosition(organelleUpgradeActionData.Position);
 
