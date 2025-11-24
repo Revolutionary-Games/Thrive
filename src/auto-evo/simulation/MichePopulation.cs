@@ -273,10 +273,20 @@ public static class MichePopulation
                         break;
                     }
 
+                    var occupantScore =
+                        cache.GetPressureScore(currentMiche.Pressure, patch, (MicrobeSpecies)node.Occupant!);
+
+                    // If the occupant is somehow terrible, avoid division by zero
+                    if (occupantScore <= 0)
+                    {
+                        // And give a relative score above 1 so that this is considered better than the
+                        // current occupant
+                        traversalScore += 2 * currentMiche.Pressure.Weight;
+                        continue;
+                    }
+
                     // Weighted score is intentionally not used here as negatives break everything
-                    var score = rawScore /
-                        cache.GetPressureScore(currentMiche.Pressure, patch, (MicrobeSpecies)node.Occupant!) *
-                        currentMiche.Pressure.Weight;
+                    var score = rawScore / occupantScore * currentMiche.Pressure.Weight;
 
                     if (simulationConfiguration.WorldSettings.AutoEvoConfiguration.StrictNicheCompetition)
                         score *= score;
