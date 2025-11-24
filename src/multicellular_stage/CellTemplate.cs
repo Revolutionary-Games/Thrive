@@ -143,4 +143,9 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex, IArchivable
     {
         return ModifiableCellType.GetVisualHashCode() ^ (ulong)Orientation * 347 ^ (ulong)Position.GetHashCode() * 317;
     }
+
+    public override string ToString()
+    {
+        return $"Cell ({CellType.CellTypeName}) at {Position}";
+    }
 }
