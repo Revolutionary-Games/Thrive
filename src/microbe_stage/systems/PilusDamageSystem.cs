@@ -41,10 +41,6 @@ public partial class PilusDamageSystem : BaseSystem<World, float>
         {
             ref var collision = ref collisions![i];
 
-            // Only process just started collisions for pilus damage
-            if (collision.JustStarted != 1)
-                continue;
-
             if (collision.SecondEntity == Entity.Null)
                 continue;
 
