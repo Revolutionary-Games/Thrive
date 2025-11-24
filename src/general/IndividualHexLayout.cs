@@ -7,8 +7,8 @@ using SharedBase.Archive;
 ///   Allows placing individual hexes with data in a layout
 /// </summary>
 /// <typeparam name="TData">The type of data to hold in hexes</typeparam>
-public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IArchivable
-    where TData : IActionHex, IArchivable
+public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IReadOnlyIndividualLayout<TData>, IArchivable
+    where TData : class, IActionHex, IArchivable, IReadOnlyPositionedHex, ICloneable
 {
     public IndividualHexLayout(Action<HexWithData<TData>> onAdded, Action<HexWithData<TData>>? onRemoved = null) : base(
         onAdded, onRemoved)
@@ -44,6 +44,21 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IArchiv
         writer.WriteObject(existingHexes);
         writer.WriteDelegateOrNull(onAdded);
         writer.WriteDelegateOrNull(onRemoved);
+    }
+
+    public new IEnumerator<IReadOnlyHexWithData<TData>> GetEnumerator()
+    {
+        return ((HexLayout<HexWithData<TData>>)this).GetEnumerator();
+    }
+
+    public new IReadOnlyHexWithData<TData>? GetElementAt(Hex location, List<Hex> temporaryHexesStorage)
+    {
+        return ((HexLayout<HexWithData<TData>>)this).GetElementAt(location, temporaryHexesStorage);
+    }
+
+    public new IReadOnlyHexWithData<TData>? GetByExactElementRootPosition(Hex location)
+    {
+        return ((HexLayout<HexWithData<TData>>)this).GetByExactElementRootPosition(location);
     }
 
     protected override void GetHexComponentPositions(HexWithData<TData> hex, List<Hex> result)
