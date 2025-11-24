@@ -5,7 +5,7 @@ using SharedBase.Archive;
 ///   Combinable action data that can be combined with other actions.
 ///   For example, two separate movements of the same object can be combined into one larger movement action.
 ///   This is implemented as aid for the player,
-///   so that how many steps need to be undone when doing repetitive actions is reduced.
+///   so that how many steps need to be undone when doing repetitive actions are reduced.
 /// </summary>
 public abstract class CombinableActionData : IArchivable
 {

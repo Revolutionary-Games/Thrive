@@ -1323,10 +1323,7 @@ public partial class CellEditorComponent :
             return;
 
         var action = new SingleEditorAction<MembraneActionData>(DoMembraneChangeAction, UndoMembraneChangeAction,
-            new MembraneActionData(Membrane, membrane)
-            {
-                CostMultiplier = CostMultiplier,
-            });
+            new MembraneActionData(Membrane, membrane));
 
         Editor.EnqueueAction(action);
 
@@ -1350,10 +1347,8 @@ public partial class CellEditorComponent :
 
         var costPerStep = Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
 
-        var data = new RigidityActionData(desiredRigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO, Rigidity)
-        {
-            CostMultiplier = CostMultiplier,
-        };
+        var data = new RigidityActionData(desiredRigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO,
+            Rigidity);
 
         // In some cases "theoreticalCost" might get rounded improperly
         var theoreticalCost = Editor.WhatWouldActionsCost(new[] { data });
@@ -1491,8 +1486,6 @@ public partial class CellEditorComponent :
 
     public bool ApplyOrganelleUpgrade(OrganelleUpgradeActionData actionData)
     {
-        actionData.CostMultiplier = CostMultiplier;
-
         return EnqueueAction(new CombinedEditorAction(new SingleEditorAction<OrganelleUpgradeActionData>(
             DoOrganelleUpgradeAction, UndoOrganelleUpgradeAction,
             actionData)));
@@ -1623,10 +1616,7 @@ public partial class CellEditorComponent :
 
         ++alreadyDeleted;
         return new SingleEditorAction<OrganelleRemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction,
-            new OrganelleRemoveActionData(organelleHere)
-            {
-                CostMultiplier = CostMultiplier,
-            });
+            new OrganelleRemoveActionData(organelleHere));
     }
 
     protected void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
@@ -1791,7 +1781,6 @@ public partial class CellEditorComponent :
     {
         var organelles = selectedOrganelles.ToList();
         organelleMenu.SelectedOrganelles = organelles;
-        organelleMenu.CostMultiplier = CostMultiplier;
         organelleMenu.GetActionPrice = Editor.WhatWouldActionsCost;
         organelleMenu.ShowPopup = true;
 
@@ -1896,7 +1885,6 @@ public partial class CellEditorComponent :
                 var data = new OrganelleRemoveActionData(organelle)
                 {
                     GotReplaced = organelle.Definition.InternalName == cytoplasm.InternalName,
-                    CostMultiplier = CostMultiplier,
                 };
                 action = new SingleEditorAction<OrganelleRemoveActionData>(DoOrganelleRemoveAction,
                     UndoOrganelleRemoveAction, data);
@@ -1906,19 +1894,13 @@ public partial class CellEditorComponent :
                 if (moving)
                 {
                     var data = new OrganelleMoveActionData(organelle, organelle.Position, hex, organelle.Orientation,
-                        orientation)
-                    {
-                        CostMultiplier = CostMultiplier,
-                    };
+                        orientation);
                     action = new SingleEditorAction<OrganelleMoveActionData>(DoOrganelleMoveAction,
                         UndoOrganelleMoveAction, data);
                 }
                 else
                 {
-                    var data = new OrganellePlacementActionData(organelle, hex, orientation)
-                    {
-                        CostMultiplier = CostMultiplier,
-                    };
+                    var data = new OrganellePlacementActionData(organelle, hex, orientation);
 
                     var replacedHexes = organelle.RotatedHexes
                         .Select(h => editedMicrobeOrganelles.GetElementAt(hex + h, hexTemporaryMemory)).WhereNotNull()
@@ -1960,7 +1942,6 @@ public partial class CellEditorComponent :
             .Select(o => new OrganelleRemoveActionData(o)
             {
                 GotReplaced = true,
-                CostMultiplier = CostMultiplier,
             });
     }
 
@@ -2311,10 +2292,7 @@ public partial class CellEditorComponent :
 
         var action = new SingleEditorAction<OrganellePlacementActionData>(DoOrganellePlaceAction,
             UndoOrganellePlaceAction,
-            new OrganellePlacementActionData(organelle, organelle.Position, organelle.Orientation)
-            {
-                CostMultiplier = CostMultiplier,
-            });
+            new OrganellePlacementActionData(organelle, organelle.Position, organelle.Orientation));
 
         replacedCytoplasmActions.Add(action);
         return new CombinedEditorAction(replacedCytoplasmActions);
@@ -2757,10 +2735,7 @@ public partial class CellEditorComponent :
             return;
 
         var action = new SingleEditorAction<ColourActionData>(DoColourChangeAction, UndoColourChangeAction,
-            new ColourActionData(color, Colour)
-            {
-                CostMultiplier = CostMultiplier,
-            });
+            new ColourActionData(color, Colour));
 
         Editor.EnqueueAction(action);
     }

@@ -15,7 +15,7 @@ public sealed class MacroscopicEditsFacade : SpeciesEditsFacade, IReadOnlyMacros
 
     private readonly CellTypeFacadeHelper cellTypes = new();
 
-    public MacroscopicEditsFacade(MacroscopicSpecies species) : base(species)
+    public MacroscopicEditsFacade(IReadOnlyMacroscopicSpecies species) : base(species)
     {
         macroscopicSpecies = species;
     }

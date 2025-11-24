@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using SharedBase.Archive;
 
 public class RigidityActionData : EditorCombinableActionData<CellType>
@@ -28,12 +27,6 @@ public class RigidityActionData : EditorCombinableActionData<CellType>
         writer.WriteObject((RigidityActionData)obj);
     }
 
-    public static double CalculateRigidityCost(float newRigidity, float previousRigidity)
-    {
-        return Math.Abs(newRigidity - previousRigidity) * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO *
-            Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
-    }
-
     public static RigidityActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
@@ -53,39 +46,6 @@ public class RigidityActionData : EditorCombinableActionData<CellType>
 
         writer.Write(SERIALIZATION_VERSION_CONTEXT);
         base.WriteToArchive(writer);
-    }
-
-    protected override double CalculateBaseCostInternal()
-    {
-        return CalculateRigidityCost(NewRigidity, PreviousRigidity);
-    }
-
-    protected override (double Cost, double RefundCost) CalculateCostInternal(
-        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
-    {
-        bool foundOther = false;
-        var cost = CalculateBaseCostInternal();
-        double refund = 0;
-
-        var count = history.Count;
-        for (int i = 0; i < insertPosition && i < count; ++i)
-        {
-            var other = history[i];
-
-            if (other is RigidityActionData rigidityChangeActionData && MatchesContext(rigidityChangeActionData))
-            {
-                // Calculate the cost as the total change and offset the previous action's cost by the change
-                if (!foundOther)
-                {
-                    cost = CalculateRigidityCost(NewRigidity, rigidityChangeActionData.PreviousRigidity);
-                    foundOther = true;
-                }
-
-                refund += other.GetCalculatedSelfCost() - other.GetCalculatedRefundCost();
-            }
-        }
-
-        return (cost, refund);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)

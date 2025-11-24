@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Godot;
 using SharedBase.Archive;
 
@@ -91,17 +90,6 @@ public class NewMicrobeActionData : EditorCombinableActionData<CellType>
 
         writer.Write(SERIALIZATION_VERSION_CONTEXT);
         base.WriteToArchive(writer);
-    }
-
-    protected override double CalculateBaseCostInternal()
-    {
-        return 0;
-    }
-
-    protected override (double Cost, double RefundCost) CalculateCostInternal(
-        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
-    {
-        return (CalculateBaseCostInternal(), Constants.BASE_MUTATION_POINTS);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)
