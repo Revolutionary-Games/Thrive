@@ -1,5 +1,6 @@
 ﻿namespace Systems;
 
+using System;
 using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
@@ -107,11 +108,7 @@ public partial class PilusDamageSystem : BaseSystem<World, float>
 
         float damage = Constants.PILUS_BASE_DAMAGE * collision.PenetrationAmount;
 
-        if (damage < Constants.PILUS_MIN_DAMAGE)
-            damage = Constants.PILUS_MIN_DAMAGE;
-
-        if (damage > Constants.PILUS_MAX_DAMAGE)
-            damage = Constants.PILUS_MAX_DAMAGE;
+        damage = Math.Clamp(damage, Constants.PILUS_MIN_DAMAGE, Constants.PILUS_MAX_DAMAGE);
 
         var previousHealth = targetHealth.CurrentHealth;
 
