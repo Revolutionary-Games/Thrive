@@ -331,14 +331,19 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
                     if (original.Definition != organelleUpgradeActionData.UpgradedOrganelle.Definition)
                         GD.PrintErr("Found unrelated organelle at old position of upgraded organelle");
 
-                    // The reference should equal here
-                    if (!ReferenceEquals(original, organelleUpgradeActionData.UpgradedOrganelle))
-                    {
-                        GD.PrintErr(
-                            "Organelle reference doesn't equal at original position when applying upgrade in facade");
-                    }
+                    // The reference doesn't really match here, but as we checked the new organelle list before,
+                    // this should be safe. The reference doesn't equal because the editor has a temporary list of
+                    // organelles that are modified that is separate from the underlying species.
 
-                    removedOrganelles.Add(original);
+                    // But we can check this for similar safety
+                    if (removedOrganelles.Contains(original))
+                    {
+                        GD.PrintErr("Original organelle is in removed list when applying upgrade in facade");
+                    }
+                    else
+                    {
+                        removedOrganelles.Add(original);
+                    }
                 }
             }
 
