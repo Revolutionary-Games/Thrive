@@ -1946,7 +1946,6 @@ public static class Constants
     public const float TOLERANCE_INITIAL_PRESSURE_MIN_FRACTION = 0.8f;
     public const float TOLERANCE_INITIAL_PRESSURE_MAX_FRACTION = 1.2f;
 
-    public const float TOLERANCE_PRESSURE_SCALE = 1000;
     public const float TOLERANCE_PRESSURE_RANGE_MAX = 2000000;
     public const float TOLERANCE_PERFECT_PRESSURE_SCORE = 0.1f;
 
@@ -1959,16 +1958,34 @@ public static class Constants
 
     // How much it costs to edit various tolerances in the editor
     public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE = 1.0f;
+    public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE_INVERTED = 1.0f / TOLERANCE_CHANGE_MP_PER_TEMPERATURE;
     public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE = 4.0f;
+
+    public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE_INVERTED = 1.0f
+        / TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE;
+
     public const float TOLERANCE_CHANGE_MP_PER_OXYGEN = 150.0f;
+    public const float TOLERANCE_CHANGE_MP_PER_OXYGEN_INVERTED = 1.0f / TOLERANCE_CHANGE_MP_PER_OXYGEN;
+
     public const float TOLERANCE_CHANGE_MP_PER_UV = 100.0f;
+
+    public const float TOLERANCE_CHANGE_MP_PER_UV_INVERTED = 1.0f
+        / TOLERANCE_CHANGE_MP_PER_UV;
 
     /// <summary>
     ///   As pressure values are massive, this is a double to get reasonable MP costs
     /// </summary>
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE = 0.000002;
 
+    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_INVERTED = 1.0f / TOLERANCE_CHANGE_MP_PER_PRESSURE;
+
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00005;
+
+    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE =
+        TOLERANCE_CHANGE_MP_PER_PRESSURE + TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE;
+
+    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE_INVERTED =
+        1.0f / TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE;
 
     // Environmental tolerance debuff / buff tweak variables
     public const float TOLERANCE_TEMPERATURE_SPEED_MODIFIER_MIN = 0.8f;

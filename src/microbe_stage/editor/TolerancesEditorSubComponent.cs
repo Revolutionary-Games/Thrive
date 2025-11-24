@@ -270,7 +270,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         if (pressureToolTip != null)
         {
             var pressureCost = pressureMinSlider.Step * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE *
-                Constants.TOLERANCE_PRESSURE_SCALE * MPDisplayCostMultiplier;
+                MPDisplayCostMultiplier;
 
             pressureToolTip.MPCost = (float)pressureCost;
         }
@@ -498,8 +498,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         temperatureSlider.Value = CurrentTolerances.PreferredTemperature;
         temperatureToleranceRangeSlider.Value = CurrentTolerances.TemperatureTolerance;
-        pressureMinSlider.Value = CurrentTolerances.PressureMinimum / Constants.TOLERANCE_PRESSURE_SCALE;
-        pressureMaxSlider.Value = CurrentTolerances.PressureMaximum / Constants.TOLERANCE_PRESSURE_SCALE;
+        pressureMinSlider.Value = CurrentTolerances.PressureMinimum;
+        pressureMaxSlider.Value = CurrentTolerances.PressureMaximum;
         oxygenResistanceSlider.Value = CurrentTolerances.OxygenResistance;
         uvResistanceSlider.Value = CurrentTolerances.UVResistance;
 
@@ -524,7 +524,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (!TriggerChangeIfPossible())
         {
-            var extremeTemp = CalculateSliderExtremeValue(Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE,
+            var extremeTemp = CalculateSliderExtremeValue(Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_INVERTED,
                 value, CurrentTolerances.PreferredTemperature, temperatureSlider.Step);
 
             reusableTolerances.PreferredTemperature = extremeTemp;
@@ -554,7 +554,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         if (!TriggerChangeIfPossible())
         {
             var extremeTempTolerance = CalculateSliderExtremeValue(
-                Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE,
+                Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE_INVERTED,
                 value, CurrentTolerances.TemperatureTolerance, temperatureToleranceRangeSlider.Step);
 
             reusableTolerances.TemperatureTolerance = extremeTempTolerance;
@@ -579,8 +579,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (keepSamePressureFlexibility)
         {
-            var previousRange = Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum)
-                / Constants.TOLERANCE_PRESSURE_SCALE;
+            var previousRange = Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum);
 
             // Update the other slider to keep the current flexibility range
             var maxShouldBe = value + previousRange;
@@ -612,10 +611,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             var newRange = Math.Abs(pressureMaxSlider.Value - value);
 
             // Ensure flexibility doesn't go above the configured limit
-            if (newRange > Constants.TOLERANCE_PRESSURE_RANGE_MAX / Constants.TOLERANCE_PRESSURE_SCALE)
+            if (newRange > Constants.TOLERANCE_PRESSURE_RANGE_MAX)
             {
-                value = (CurrentTolerances.PressureMaximum - Constants.TOLERANCE_PRESSURE_RANGE_MAX)
-                    / Constants.TOLERANCE_PRESSURE_SCALE;
+                value = CurrentTolerances.PressureMaximum - Constants.TOLERANCE_PRESSURE_RANGE_MAX;
 
                 TryApplyPressureChange(value, (float)pressureMaxSlider.Value, true, true);
 
@@ -638,8 +636,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (keepSamePressureFlexibility)
         {
-            var previousRange = Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum)
-                / Constants.TOLERANCE_PRESSURE_SCALE;
+            var previousRange = Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum);
 
             // Update the other slider to keep the current flexibility range
             var minShouldBe = value - previousRange;
@@ -667,10 +664,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             }
 
             var newRange = Math.Abs(value - pressureMinSlider.Value);
-            if (newRange > Constants.TOLERANCE_PRESSURE_RANGE_MAX / Constants.TOLERANCE_PRESSURE_SCALE)
+            if (newRange > Constants.TOLERANCE_PRESSURE_RANGE_MAX)
             {
-                value = (CurrentTolerances.PressureMinimum +
-                    Constants.TOLERANCE_PRESSURE_RANGE_MAX) / Constants.TOLERANCE_PRESSURE_SCALE;
+                value = CurrentTolerances.PressureMinimum + Constants.TOLERANCE_PRESSURE_RANGE_MAX;
 
                 TryApplyPressureChange((float)pressureMinSlider.Value, value, false, true);
 
@@ -693,8 +689,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     {
         reusableTolerances ??= new EnvironmentalTolerances();
         reusableTolerances.CopyFrom(CurrentTolerances);
-        reusableTolerances.PressureMinimum = min * Constants.TOLERANCE_PRESSURE_SCALE;
-        reusableTolerances.PressureMaximum = max * Constants.TOLERANCE_PRESSURE_SCALE;
+        reusableTolerances.PressureMinimum = min;
+        reusableTolerances.PressureMaximum = max;
 
         if (force || !TriggerChangeIfPossible())
         {
@@ -702,16 +698,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
             if (keepSamePressureFlexibility)
             {
-                var extremeMin = CalculateSliderExtremeValue(
-                    Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE * Constants.TOLERANCE_PRESSURE_SCALE,
+                var extremeMin = CalculateSliderExtremeValue(Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_INVERTED,
                     min,
-                    CurrentTolerances.PressureMinimum / Constants.TOLERANCE_PRESSURE_SCALE,
+                    CurrentTolerances.PressureMinimum,
                     pressureMinSlider.Step);
 
                 var extremeMax = extremeMin + pressureRange;
 
-                reusableTolerances.PressureMinimum = extremeMin * Constants.TOLERANCE_PRESSURE_SCALE;
-                reusableTolerances.PressureMaximum = extremeMax * Constants.TOLERANCE_PRESSURE_SCALE;
+                reusableTolerances.PressureMinimum = extremeMin;
+                reusableTolerances.PressureMaximum = extremeMax;
 
                 pressureMinSlider.Value = extremeMin;
                 pressureMaxSlider.Value = extremeMax;
@@ -721,24 +716,22 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
                 if (minimumChanging)
                 {
                     var extremeMin = CalculateSliderExtremeValue(
-                        Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE * Constants.TOLERANCE_PRESSURE_SCALE +
-                        Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE * Constants.TOLERANCE_PRESSURE_SCALE,
-                        min, CurrentTolerances.PressureMinimum / Constants.TOLERANCE_PRESSURE_SCALE,
+                        Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE_INVERTED,
+                        min, CurrentTolerances.PressureMinimum,
                         pressureMinSlider.Step);
 
                     extremeMin = Math.Clamp(extremeMin, max - Constants.TOLERANCE_PRESSURE_RANGE_MAX, max);
 
                     pressureMinSlider.Value = extremeMin;
                     pressureMaxSlider.Value = max;
-                    reusableTolerances.PressureMinimum = extremeMin * Constants.TOLERANCE_PRESSURE_SCALE;
-                    reusableTolerances.PressureMaximum = max * Constants.TOLERANCE_PRESSURE_SCALE;
+                    reusableTolerances.PressureMinimum = extremeMin;
+                    reusableTolerances.PressureMaximum = max;
                 }
                 else
                 {
                     var extremeMax = CalculateSliderExtremeValue(
-                        Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE * Constants.TOLERANCE_PRESSURE_SCALE +
-                        Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE * Constants.TOLERANCE_PRESSURE_SCALE,
-                        max, CurrentTolerances.PressureMaximum / Constants.TOLERANCE_PRESSURE_SCALE,
+                        Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE_INVERTED,
+                        max, CurrentTolerances.PressureMaximum,
                         pressureMaxSlider.Step);
 
                     extremeMax = Math.Clamp(extremeMax, min, min + Constants.TOLERANCE_PRESSURE_RANGE_MAX);
@@ -746,16 +739,16 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
                     pressureMinSlider.Value = min;
                     pressureMaxSlider.Value = extremeMax;
 
-                    reusableTolerances.PressureMinimum = min * Constants.TOLERANCE_PRESSURE_SCALE;
-                    reusableTolerances.PressureMaximum = extremeMax * Constants.TOLERANCE_PRESSURE_SCALE;
+                    reusableTolerances.PressureMinimum = min;
+                    reusableTolerances.PressureMaximum = extremeMax;
                 }
             }
 
             // Attempt the previous rollback if failed again.
             if (!TriggerChangeIfPossible())
             {
-                pressureMinSlider.Value = CurrentTolerances.PressureMinimum / Constants.TOLERANCE_PRESSURE_SCALE;
-                pressureMaxSlider.Value = CurrentTolerances.PressureMaximum / Constants.TOLERANCE_PRESSURE_SCALE;
+                pressureMinSlider.Value = CurrentTolerances.PressureMinimum;
+                pressureMaxSlider.Value = CurrentTolerances.PressureMaximum;
             }
         }
     }
@@ -773,7 +766,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (!TriggerChangeIfPossible())
         {
-            var extremeResistance = CalculateSliderExtremeValue(Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN,
+            var extremeResistance = CalculateSliderExtremeValue(Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN_INVERTED,
                 value, CurrentTolerances.OxygenResistance, oxygenResistanceSlider.Step);
 
             reusableTolerances.OxygenResistance = extremeResistance;
@@ -802,7 +795,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (!TriggerChangeIfPossible())
         {
-            var extremeResistance = CalculateSliderExtremeValue(Constants.TOLERANCE_CHANGE_MP_PER_UV,
+            var extremeResistance = CalculateSliderExtremeValue(Constants.TOLERANCE_CHANGE_MP_PER_UV_INVERTED,
                 value, CurrentTolerances.UVResistance, uvResistanceSlider.Step);
 
             reusableTolerances.UVResistance = extremeResistance;
@@ -821,7 +814,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     /// <summary>
     ///   Calculates the extremeties of a slider movement when cost is the limiting factor.
     /// </summary>
-    /// <param name="costPerAction">How much MP does changing this value cost?</param>
+    /// <param name="costPerAction">How much MP does changing this value cost? Inverted</param>
     /// <param name="sliderValue">What the slider value currently is at</param>
     /// <param name="originalValue">What the slider value was originally at</param>
     /// <param name="step">The size of each jump on the slider</param>
@@ -830,7 +823,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         double step)
     {
         var pointsLeft = Editor.MutationPoints;
-        var numActions = Math.Abs(Math.Floor((pointsLeft / step) / costPerAction) * step);
+        var numActions = Math.Abs(Math.Floor((pointsLeft / step) * costPerAction) * step);
 
         if (sliderValue == originalValue)
             return originalValue;
@@ -1097,7 +1090,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             / (float)(temperatureSlider.MaxValue - temperatureSlider.MinValue);
 
         float pressureRangeFraction =
-            ((patchPressure / Constants.TOLERANCE_PRESSURE_SCALE) - (float)pressureMaxSlider.MinValue)
+            (patchPressure - (float)pressureMaxSlider.MinValue)
             / (float)(pressureMaxSlider.MaxValue - pressureMaxSlider.MinValue);
 
         minPressureToleranceMarker.OptimalValue = pressureRangeFraction;
