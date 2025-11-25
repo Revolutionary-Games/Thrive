@@ -160,6 +160,7 @@ public class ReproductionCompoundPressure : SelectionPressure
             if (organelle.Definition.HasBindingFeature)
             {
                 bindingModifier *= 1 - Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS;
+                break;
             }
         }
 
