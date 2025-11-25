@@ -283,6 +283,9 @@ public partial class CellEditorComponent :
 
     private TutorialState? tutorialState;
 
+    private bool lightLevelChangeQueued;
+    private float queuedLightFraction;
+
     public enum SelectionMenuTab
     {
         Structure,
@@ -670,6 +673,11 @@ public partial class CellEditorComponent :
             Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
 
         ApplySymmetryForCurrentOrganelle();
+
+        if (lightLevelChangeQueued)
+        {
+            OnLightLevelChanged(queuedLightFraction);
+        }
     }
 
     public override void _Process(double delta)
@@ -1253,7 +1261,7 @@ public partial class CellEditorComponent :
     public void UpdatePatchDependentBalanceData()
     {
         // Skip if opened in the multicellular editor
-        if (IsMulticellularEditor && editedMicrobeOrganelles.Organelles.Count < 1)
+        if (IsUninitializedMulticellular())
             return;
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
@@ -1478,10 +1486,20 @@ public partial class CellEditorComponent :
 
     public override void OnLightLevelChanged(float dayLightFraction)
     {
+        // If not initialized must skip
+        if (!IsComponentInitialized)
+        {
+            // This may be called when not on the right tab, so this needs to queue a light level change
+            lightLevelChangeQueued = true;
+            queuedLightFraction = dayLightFraction;
+            return;
+        }
+
         UpdateVisualLightLevel(dayLightFraction, Editor.CurrentPatch);
 
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
+        lightLevelChangeQueued = false;
     }
 
     public bool ApplyOrganelleUpgrade(OrganelleUpgradeActionData actionData)
@@ -3171,6 +3189,14 @@ public partial class CellEditorComponent :
         micheViewer.ShowMiches(Editor.CurrentPatch, predictionMiches, Editor.CurrentGame.GameWorld.WorldSettings);
 
         autoEvoPredictionExplanationPopup.Hide();
+    }
+
+    private bool IsUninitializedMulticellular()
+    {
+        if ((IsMulticellularEditor || IsMacroscopicEditor) && editedMicrobeOrganelles.Organelles.Count < 1)
+            return true;
+
+        return false;
     }
 
     private void SendChemosynthesisInfoToAchievements()
