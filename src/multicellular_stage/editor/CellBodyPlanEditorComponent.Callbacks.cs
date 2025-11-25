@@ -81,7 +81,9 @@ public partial class CellBodyPlanEditorComponent
     private void DoCellMoveAction(CellMoveActionData data)
     {
         data.MovedHex.Position = data.NewLocation;
+        data.MovedHex.Orientation = data.NewRotation;
         data.MovedHex.Data!.Orientation = data.NewRotation;
+        data.MovedHex.Data.Position = data.NewLocation;
 
         if (editedMicrobeCells.Contains(data.MovedHex))
         {
@@ -99,7 +101,9 @@ public partial class CellBodyPlanEditorComponent
     private void UndoCellMoveAction(CellMoveActionData data)
     {
         data.MovedHex.Position = data.OldLocation;
+        data.MovedHex.Orientation = data.OldRotation;
         data.MovedHex.Data!.Orientation = data.OldRotation;
+        data.MovedHex.Data.Position = data.OldLocation;
 
         UpdateAlreadyPlacedVisuals();
     }
