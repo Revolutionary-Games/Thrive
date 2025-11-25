@@ -1572,6 +1572,12 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             .Ambient;
         templateMaxLightLevel = GameWorld.Map.CurrentPatch.BiomeTemplate.Conditions
             .GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient;
+
+        GameWorld.Map.CurrentPatch.Biome.TryGetCompound(Compound.Oxygen, CompoundAmountType.Current, out var oxygen);
+        var ironAmount = GameWorld.Map.CurrentPatch.GetCompoundAmountInSnapshotForDisplay(
+            GameWorld.Map.CurrentPatch.CurrentSnapshot, Compound.Iron);
+
+        Camera.SetWaterColorFromCompounds(oxygen.Ambient, ironAmount);
     }
 
     private void OnFinishLoading()

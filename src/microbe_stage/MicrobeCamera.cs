@@ -299,6 +299,11 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
         backgroundPlane.SetBackground(background);
     }
 
+    public void SetWaterColorFromCompounds(float oxygen, float iron)
+    {
+        backgroundPlane.SetLightingColor(oxygen, iron);
+    }
+
     public void WritePropertiesToArchive(ISArchiveWriter writer)
     {
         writer.Write(ZoomSpeed);

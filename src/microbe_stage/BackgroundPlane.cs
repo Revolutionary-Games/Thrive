@@ -9,8 +9,10 @@ public partial class BackgroundPlane : Node3D
     private readonly StringName blurAmountParameter = new("blurAmount");
     private readonly StringName textureAlbedoParameter = new("textureAlbedo");
     private readonly StringName worldPositionParameter = new("worldPos");
-    private readonly StringName lightLevelParameter = new("lightLevel");
+    private readonly StringName sunlightColorParameter = new("sunlightColor");
+    private readonly StringName lightIntensityParamter = new("lightIntensity");
     private readonly StringName distortionStrengthParameter = new("distortionFactor");
+    private readonly StringName lightingColorParameter = new("lightColor");
 
 #pragma warning disable CA2213
 
@@ -46,6 +48,8 @@ public partial class BackgroundPlane : Node3D
     private double elapsed;
 
     private Vector2 previousWindowSize = new(1280, 720);
+
+    private float lastSetLightLevel;
 
     public float PlaneOffset
     {
@@ -165,7 +169,40 @@ public partial class BackgroundPlane : Node3D
 
     public void UpdateLightLevel(float lightLevel)
     {
-        currentBackgroundMaterial.SetShaderParameter(lightLevelParameter, lightLevel);
+        // Don't do the calculation and sending to gpu again if not needed.
+        if (lastSetLightLevel == lightLevel)
+            return;
+
+        lastSetLightLevel = lightLevel;
+        currentBackgroundMaterial.SetShaderParameter(lightIntensityParamter, lightLevel);
+        currentBackgroundMaterial.SetShaderParameter(sunlightColorParameter, CalculateSunlightColor(lightLevel));
+    }
+
+    public void SetLightingColor(float oxygen, float iron)
+    {
+        // Iron and oxygen is red
+        if (iron > 2.5f && oxygen > 0.1f)
+        {
+            GD.Print("Red");
+            currentBackgroundMaterial.SetShaderParameter(lightingColorParameter,
+                new Vector3(1.0f, 0.2f, 0.2f));
+        }
+
+        // Lots of iron is greener
+        else if (iron > 2.5f)
+        {
+            GD.Print("Green");
+            currentBackgroundMaterial.SetShaderParameter(lightingColorParameter,
+                new Vector3(0.2f, 1.0f, 0.2f));
+        }
+
+        // Regular color
+        else
+        {
+            GD.Print("None");
+            currentBackgroundMaterial.SetShaderParameter(lightingColorParameter,
+                new Vector3(1.0f, 1.0f, 1.0f));
+        }
     }
 
     protected override void Dispose(bool disposing)
@@ -174,12 +211,31 @@ public partial class BackgroundPlane : Node3D
         {
             textureAlbedoParameter.Dispose();
             blurAmountParameter.Dispose();
-            lightLevelParameter.Dispose();
+            sunlightColorParameter.Dispose();
             distortionStrengthParameter.Dispose();
             worldPositionParameter.Dispose();
+            lightIntensityParamter.Dispose();
+            lightingColorParameter.Dispose();
         }
 
         base.Dispose(disposing);
+    }
+
+    private Vector3 CalculateSunlightColor(float lightLevel)
+    {
+        // I'm not sure how any of these values were picked. I've just copied from the shader file
+
+        // Day
+        if (lightLevel > 0.5f)
+            return new Vector3(0.75f, 0.5f, 0.5f).Lerp(Vector3.One, 2.0f * lightLevel - 1.0f);
+
+        // Dawn and Dusk
+        if (lightLevel > 0.25f)
+            return new Vector3(0.25f, 0.25f, 0.25f).Lerp(new Vector3(0.75f, 0.5f, 0.5f), 4.0f * lightLevel - 1.0f);
+
+        // Night
+        return new Vector3(0.052f, 0.05f, 0.17f)
+            .Lerp(new Vector3(0.25f, 0.25f, 0.25f), 4.0f * lightLevel);
     }
 
     private void UpdateSubViewportResolution()
