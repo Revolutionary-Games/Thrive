@@ -1325,6 +1325,9 @@ public static class Constants
     public const float AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS_SMALL = 1.5f;
     public const float AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS = 20.0f;
 
+    // Auto-evo energy cost benefit to match the current (possibly temporary) gameplay effect of the binding agent
+    public const float AUTO_EVO_COLONY_OSMOREGULATION_BONUS = 0.05f;
+
     public const int AI_FOLLOW_PLAYER_MIGRATION_TO_EMPTY_PATCH_THRESHOLD = 2;
 
     public const int AI_FOLLOW_FREE_POPULATION_GIVEN = 100;
