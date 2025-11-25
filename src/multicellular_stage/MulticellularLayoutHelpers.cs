@@ -1,0 +1,93 @@
+﻿using System.Collections.Generic;
+using Godot;
+
+/// <summary>
+///   Conversion helpers between the full (gameplay) and editor layouts of a multicellular species
+/// </summary>
+public static class MulticellularLayoutHelpers
+{
+    public static void UpdateGameplayLayout(CellLayout<CellTemplate> target,
+        IndividualHexLayout<CellTemplate> copySourceTo, IndividualHexLayout<CellTemplate> source,
+        List<Hex> hexTemporaryMemory, List<Hex> hexTemporaryMemory2)
+    {
+        copySourceTo.Clear();
+        target.Clear();
+
+        foreach (var hexWithData in source.AsModifiable())
+        {
+            // Add the hex to the remembered editor layout before changing anything
+            // This needs to clone to avoid modifying the original hex
+            copySourceTo.AddFast(hexWithData.Clone(), hexTemporaryMemory,
+                hexTemporaryMemory2);
+
+            var direction = new Vector2(0, -1);
+
+            if (hexWithData.Position != new Hex(0, 0))
+            {
+                direction = new Vector2(hexWithData.Position.Q, hexWithData.Position.R).Normalized();
+            }
+
+            hexWithData.Data!.Position = new Hex(0, 0);
+
+            int distance = 0;
+
+            while (true)
+            {
+                var positionVector = direction * distance;
+                hexWithData.Data!.Position = new Hex((int)positionVector.X, (int)positionVector.Y);
+
+                if (target.CanPlace(hexWithData.Data, hexTemporaryMemory,
+                        hexTemporaryMemory2))
+                {
+                    target.AddFast(hexWithData.Data, hexTemporaryMemory,
+                        hexTemporaryMemory2);
+                    break;
+                }
+
+                ++distance;
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Generates a cell layout from the gameplay layout. To be used if there's no editor layout yet for a species.
+    /// </summary>
+    public static void GenerateEditorLayoutFromGameplayLayout(IndividualHexLayout<CellTemplate> target,
+        CellLayout<CellTemplate> source, List<Hex> hexTemporaryMemory, List<Hex> hexTemporaryMemory2)
+    {
+        foreach (var cell in source)
+        {
+            // We set the position below just before the can place check
+            var hex = new HexWithData<CellTemplate>((CellTemplate)cell.Clone(), cell.Position, cell.Orientation);
+
+            var originalPos = cell.Position;
+
+            var direction = new Vector2(0, -1);
+
+            if (originalPos != new Hex(0, 0))
+            {
+                direction = new Vector2(originalPos.Q, originalPos.R).Normalized();
+            }
+
+            float distance = 0;
+
+            // Start at 0,0 and move towards the real position until an empty spot is found
+            // TODO: need to make sure that this can't cause holes that the player would need to fix
+            // distance is a float here to try to make the above TODO problem less likely
+            while (true)
+            {
+                var positionVector = direction * distance;
+
+                hex.Position = new Hex((int)positionVector.X, (int)positionVector.Y);
+
+                if (target.CanPlace(hex, hexTemporaryMemory, hexTemporaryMemory2))
+                {
+                    target.AddFast(hex, hexTemporaryMemory, hexTemporaryMemory2);
+                    break;
+                }
+
+                distance += 0.8f;
+            }
+        }
+    }
+}
