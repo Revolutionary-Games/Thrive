@@ -894,7 +894,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             // TODO: multicellular tolerances
 
             // Allow updating the first cell type to reproduce (reproduction order changed)
-            earlySpeciesType.MulticellularCellType = earlySpeciesType.Species.ModifiableGameplayCells[0].ModifiableCellType;
+            earlySpeciesType.MulticellularCellType =
+                earlySpeciesType.Species.ModifiableGameplayCells[0].ModifiableCellType;
 
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
                 earlySpeciesType.MulticellularCellType, earlySpeciesType.Species, WorldSimulation, workData1,
