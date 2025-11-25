@@ -779,7 +779,7 @@ public partial class CellBodyPlanEditorComponent :
             {
                 if (moving)
                 {
-                    var data = new CellMoveActionData(cell, cell.Position, hex, cell.Data!.Orientation,
+                    var data = new CellMoveActionData(cell, cell.Position, hex, cell.Orientation,
                         orientation);
                     action = new SingleEditorAction<CellMoveActionData>(DoCellMoveAction,
                         UndoCellMoveAction, data);
