@@ -12,7 +12,7 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
@@ -299,6 +299,31 @@ public partial class CellBodyPlanEditorComponent :
         newName = reader.ReadString() ?? throw new NullArchiveObjectException();
         editedMicrobeCells = reader.ReadObject<IndividualHexLayout<CellTemplate>>();
         selectedSelectionMenuTab = (SelectionMenuTab)reader.ReadInt32();
+
+        if (version < 2)
+        {
+            // Need to fix duplicated data references in older saves
+            var newLayout = new IndividualHexLayout<CellTemplate>();
+
+            foreach (var cell in editedMicrobeCells.AsModifiable())
+            {
+                // Fix cell references being shared in older saves
+                newLayout.AddFast(cell.Clone(), hexTemporaryMemory, hexTemporaryMemory2);
+
+                if (cell.Data != null)
+                {
+                    if (cell.Data.Position != cell.Position || cell.Data.Orientation != cell.Orientation)
+                    {
+                        GD.PrintErr("Expected edited cells in editor (even in old save) to have updated positions");
+                    }
+                }
+            }
+
+            if (editedMicrobeCells.Count != newLayout.Count)
+                throw new Exception("Couldn't copy data correctly from old save");
+
+            editedMicrobeCells = newLayout;
+        }
     }
 
     public override void OnEditorSpeciesSetup(Species species)

@@ -10,7 +10,7 @@ using Systems;
 /// </summary>
 public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISimulationPhotographable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     private ReadonlyCellLayoutAdapter<IReadOnlyCellTemplate, CellTemplate>? readonlyCellLayoutAdapter;
     private ReadonlyIndividualLayoutAdapter<CellTemplate, IReadOnlyCellTemplate>? readonlyIndividualLayoutAdapter;
@@ -98,6 +98,26 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         instance.ModifiableGameplayCells = reader.ReadObject<CellLayout<CellTemplate>>();
         instance.modifiableEditorCells = reader.ReadObjectOrNull<IndividualHexLayout<CellTemplate>>();
         instance.ModifiableCellTypes = reader.ReadObject<List<CellType>>();
+
+        if (version < 2)
+        {
+            // Need to fix editor layout data inconsistency
+            if (instance.modifiableEditorCells != null)
+            {
+                foreach (var hexWithData in instance.modifiableEditorCells.AsModifiable())
+                {
+                    if (hexWithData.Data == null)
+                    {
+                        GD.PrintErr("Unexpectedly multicellular species editor cell has no data");
+                    }
+                    else
+                    {
+                        hexWithData.Data.Position = hexWithData.Position;
+                        hexWithData.Data.Orientation = hexWithData.Orientation;
+                    }
+                }
+            }
+        }
 
         return instance;
     }
