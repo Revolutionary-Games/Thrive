@@ -155,12 +155,37 @@ public class ReproductionCompoundPressure : SelectionPressure
         // modifier to fit current mechanics of the Binding Agent. This should probably be removed or adjusted if
         // being in a colony no longer reduces osmoregulation cost.
         var bindingModifier = 1.0f;
+
+        var hasBindingAgent = false;
         foreach (var organelle in microbeSpecies.Organelles.Organelles)
         {
             if (organelle.Definition.HasBindingFeature)
             {
-                bindingModifier *= 1 - Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS;
+                hasBindingAgent = true;
                 break;
+            }
+        }
+
+        var hasSignallingAgent = false;
+        foreach (var organelle in microbeSpecies.Organelles.Organelles)
+        {
+            if (organelle.Definition.HasSignalingFeature)
+            {
+                hasSignallingAgent = true;
+                break;
+            }
+        }
+
+        if (hasBindingAgent)
+        {
+            if (hasSignallingAgent)
+            {
+                bindingModifier *= 1 -
+                    Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS * Constants.AUTO_EVO_SIGNALLING_BONUS;
+            }
+            else
+            {
+                bindingModifier *= 1 - Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS;
             }
         }
 

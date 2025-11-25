@@ -1328,6 +1328,9 @@ public static class Constants
     // Auto-evo energy cost benefit to match the current (possibly temporary) gameplay effect of the binding agent
     public const float AUTO_EVO_COLONY_OSMOREGULATION_BONUS = 0.05f;
 
+    // Auto-evo effect bonus from using the signalling agent to bring help
+    public const float AUTO_EVO_SIGNALLING_BONUS = 1.3f;
+
     public const int AI_FOLLOW_PLAYER_MIGRATION_TO_EMPTY_PATCH_THRESHOLD = 2;
 
     public const int AI_FOLLOW_FREE_POPULATION_GIVEN = 100;

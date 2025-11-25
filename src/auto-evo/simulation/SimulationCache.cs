@@ -309,6 +309,16 @@ public class SimulationCache
                 hasChemoreceptor = true;
         }
 
+        var hasSignallingAgent = false;
+        foreach (var organelle in predator.Organelles.Organelles)
+        {
+            if (organelle.Definition.HasSignalingFeature)
+            {
+                hasSignallingAgent = true;
+                break;
+            }
+        }
+
         var preyOxygenUsingOrganellesCount = 0;
         foreach (var organelle in prey.Organelles.Organelles)
         {
@@ -469,6 +479,13 @@ public class SimulationCache
                 * float.Sqrt(preyIndividualCost);
         }
 
+        // Calling for allies helps with combative hunting.
+        if (hasSignallingAgent)
+        {
+            pilusScore *= Constants.AUTO_EVO_SIGNALLING_BONUS;
+            damagingToxinScore *= Constants.AUTO_EVO_SIGNALLING_BONUS;
+        }
+
         var scoreMultiplier = 1.0f;
 
         if (!predator.CanEngulf)
@@ -480,12 +497,27 @@ public class SimulationCache
         // modifier to fit current mechanics of the Binding Agent. This should probably be removed or adjusted if
         // being in a colony no longer reduces osmoregulation cost.
         var bindingModifier = 1.0f;
+
+        var hasBindingAgent = false;
         foreach (var organelle in predator.Organelles.Organelles)
         {
             if (organelle.Definition.HasBindingFeature)
             {
-                bindingModifier *= 1 - Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS;
+                hasBindingAgent = true;
                 break;
+            }
+        }
+
+        if (hasBindingAgent)
+        {
+            if (hasSignallingAgent)
+            {
+                bindingModifier *= 1 -
+                    Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS * Constants.AUTO_EVO_SIGNALLING_BONUS;
+            }
+            else
+            {
+                bindingModifier *= 1 - Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS;
             }
         }
 
