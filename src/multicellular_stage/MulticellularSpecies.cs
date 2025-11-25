@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Godot;
 using SharedBase.Archive;
 using Systems;
@@ -30,12 +31,44 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     public IReadOnlyCellLayout<IReadOnlyCellTemplate> GameplayCells => readonlyCellLayoutAdapter ??=
         new ReadonlyCellLayoutAdapter<IReadOnlyCellTemplate, CellTemplate>(ModifiableGameplayCells);
 
-    // TODO: in multicell the MP system is mixing up the full layout with the lite layout causing lookup fails!
-
     /// <summary>
     ///   The 'original' colony layout, from which the simulated one (<see cref="GameplayCells"/>) is generated.
     /// </summary>
-    public IndividualHexLayout<CellTemplate>? EditorCellLayout { get; set; }
+    public IndividualHexLayout<CellTemplate> ModifiableEditorCells
+    {
+        get
+        {
+            if (modifiableEditorCells != null)
+            {
+#if DEBUG
+                if (modifiableEditorCells.Count < 1)
+                {
+                    Debugger.Break();
+                    GD.PrintErr("Editor cells are missing from species!");
+                }
+#endif
+                return modifiableEditorCells;
+            }
+
+            // Recalculate from the gameplay cells if the editor layout is missing
+            GD.Print($"Creating missing editor layout from gameplay cells for species: {FormattedIdentifier}");
+
+            var result = new IndividualHexLayout<CellTemplate>();
+
+            // A bit inefficient to need to allocate temporary memory here, but this is anyway pretty expensive to need
+            // to calculate this for a species
+            MulticellularLayoutHelpers.GenerateEditorLayoutFromGameplayLayout(result, ModifiableGameplayCells,
+                new List<Hex>(), new List<Hex>());
+
+            modifiableEditorCells = result;
+            return result;
+        }
+        set => modifiableEditorCells = value;
+    }
+
+    // TODO: find a away around this adapter class
+    public IReadOnlyIndividualLayout<IReadOnlyCellTemplate> EditorCells => readonlyIndividualLayoutAdapter ??=
+        new ReadonlyIndividualLayoutAdapter<CellTemplate, IReadOnlyCellTemplate>(ModifiableEditorCells);
 
     public List<CellType> ModifiableCellTypes { get; private set; } = new();
 
@@ -101,6 +134,28 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             {
                 cellType.ModifiableOrganelles.Organelles[i].IsEndosymbiont = false;
             }
+        }
+
+        if (modifiableEditorCells != null)
+        {
+            // TODO: should this just automatically remove it?
+            if (modifiableEditorCells.Count != ModifiableGameplayCells.Count)
+                throw new Exception("Editor cells have not been updated after species edit");
+
+#if DEBUG
+            foreach (var hexWithData in modifiableEditorCells.AsModifiable())
+            {
+                if (hexWithData.Data == null)
+                    throw new Exception("Editor cells have no data");
+
+                if (hexWithData.Data.Position != hexWithData.Position ||
+                    hexWithData.Data.Orientation != hexWithData.Orientation)
+                {
+                    throw new Exception(
+                        "Editor cells have not been updated after species edit to match their position");
+                }
+            }
+#endif
         }
     }
 
@@ -265,7 +320,13 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         }
 
         if (result.modifiableEditorCells == null)
+        {
             result.modifiableEditorCells = new IndividualHexLayout<CellTemplate>();
+        }
+        else
+        {
+            result.modifiableEditorCells.Clear();
+        }
 
         foreach (var cellTemplate in (HexLayout<HexWithData<CellTemplate>>)ModifiableEditorCells)
         {

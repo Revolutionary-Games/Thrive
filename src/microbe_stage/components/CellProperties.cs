@@ -221,7 +221,8 @@ public static class CellPropertiesHelpers
         }
         else
         {
-            reproductionCompounds = ((MulticellularSpecies)species).ModifiableCells[0].CalculateTotalComposition();
+            reproductionCompounds =
+                ((MulticellularSpecies)species).ModifiableGameplayCells[0].CalculateTotalComposition();
         }
 
         var spawnPosition = position.Position;

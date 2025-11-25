@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Saving.Serializers;
 using SharedBase.Archive;
 
@@ -44,6 +45,12 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IReadOn
         writer.WriteObject(existingHexes);
         writer.WriteDelegateOrNull(onAdded);
         writer.WriteDelegateOrNull(onRemoved);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public HexLayout<HexWithData<TData>> AsModifiable()
+    {
+        return this;
     }
 
     public new IEnumerator<IReadOnlyHexWithData<TData>> GetEnumerator()

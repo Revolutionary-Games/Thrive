@@ -180,7 +180,7 @@ public partial class CellBodyPlanEditorComponent :
             var workMemory1 = new List<Hex>();
             var workMemory2 = new List<Hex>();
 
-            foreach (var editedMicrobeOrganelle in editedMicrobeCells)
+            foreach (var editedMicrobeOrganelle in editedMicrobeCells.AsModifiable())
             {
                 newLayout.AddFast(editedMicrobeOrganelle, workMemory1, workMemory2);
             }
@@ -238,7 +238,7 @@ public partial class CellBodyPlanEditorComponent :
                 // Can place stuff at all?
                 // TODO: should placementRotation be used here in some way?
                 isPlacementProbablyValid =
-                    IsValidPlacement(new HexWithData<CellTemplate>(new CellTemplate(cellType), new Hex(q, r)));
+                    IsValidPlacement(new HexWithData<CellTemplate>(new CellTemplate(cellType), new Hex(q, r), 0));
             }
             else if (MovingPlacedHex != null)
             {
@@ -307,16 +307,11 @@ public partial class CellBodyPlanEditorComponent :
 
         behaviourEditor.OnEditorSpeciesSetup(species);
 
-        if (Editor.EditedSpecies.EditorCellLayout == null)
+        foreach (var cell in Editor.EditedSpecies.ModifiableEditorCells.AsModifiable())
         {
-            GenerateCellLayoutFromSpeciesCells(Editor.EditedSpecies);
-        }
-        else
-        {
-            foreach (var cell in Editor.EditedSpecies.EditorCellLayout)
-            {
-                editedMicrobeCells.AddFast(cell, hexTemporaryMemory, hexTemporaryMemory2);
-            }
+            // Clone here so that we don't directly modify the original data which will cause errors with MP
+            // comparisons
+            editedMicrobeCells.AddFast(cell.Clone(), hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         newName = species.FormattedName;
@@ -330,9 +325,6 @@ public partial class CellBodyPlanEditorComponent :
     {
         var editedSpecies = Editor.EditedSpecies;
 
-        editedSpecies.EditorCellLayout?.Clear();
-        editedSpecies.EditorCellLayout ??= new IndividualHexLayout<CellTemplate>();
-
         // Note that for the below calculations to work all cell types need to be positioned correctly. So we need
         // to force that to happen here first. This also ensures that the skipped positioning to origin of the cell
         // editor component (that is used as a special mode in multicellular) is performed.
@@ -345,38 +337,8 @@ public partial class CellBodyPlanEditorComponent :
         // TODO: maybe in the future we want to switch to editing the full hex layout with the entire cells in this
         // editor so this step can be skipped. Or another approach that keeps the shape the player worked on better
         // than this approach that can move around the cells a lot.
-        editedSpecies.ModifiableCells.Clear();
-
-        foreach (var hexWithData in editedMicrobeCells)
-        {
-            // Add the hex to the remembered editor layout before changing anything
-            editedSpecies.EditorCellLayout.AddFast(hexWithData, hexTemporaryMemory, hexTemporaryMemory2);
-
-            var direction = new Vector2(0, -1);
-
-            if (hexWithData.Position != new Hex(0, 0))
-            {
-                direction = new Vector2(hexWithData.Position.Q, hexWithData.Position.R).Normalized();
-            }
-
-            hexWithData.Data!.Position = new Hex(0, 0);
-
-            int distance = 0;
-
-            while (true)
-            {
-                var positionVector = direction * distance;
-                hexWithData.Data!.Position = new Hex((int)positionVector.X, (int)positionVector.Y);
-
-                if (editedSpecies.ModifiableCells.CanPlace(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2))
-                {
-                    editedSpecies.ModifiableCells.AddFast(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2);
-                    break;
-                }
-
-                ++distance;
-            }
-        }
+        MulticellularLayoutHelpers.UpdateGameplayLayout(editedSpecies.ModifiableGameplayCells,
+            editedSpecies.ModifiableEditorCells, editedMicrobeCells, hexTemporaryMemory, hexTemporaryMemory2);
 
         editedSpecies.OnEdited();
 
@@ -442,7 +404,8 @@ public partial class CellBodyPlanEditorComponent :
 
         RunWithSymmetry(q, r, (symmetryQ, symmetryR, _) =>
         {
-            var cell = editedMicrobeCells.GetElementAt(new Hex(symmetryQ, symmetryR), hexTemporaryMemory);
+            var cell = editedMicrobeCells.AsModifiable()
+                .GetElementAt(new Hex(symmetryQ, symmetryR), hexTemporaryMemory);
 
             if (cell != null)
                 cells.Add(cell);
@@ -457,7 +420,8 @@ public partial class CellBodyPlanEditorComponent :
 
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
     {
-        return CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(editedMicrobeCells.Select(o => o.Data!),
+        return CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(
+            editedMicrobeCells.AsModifiable().Select(o => o.Data!),
             out nominalCapacity);
     }
 
@@ -505,7 +469,8 @@ public partial class CellBodyPlanEditorComponent :
         var positions = MouseHoverPositions.ToList();
 
         var cellTemplates = positions
-            .Select(h => new HexWithData<CellTemplate>(new CellTemplate(cellType, h.Hex, h.Orientation), h.Hex))
+            .Select(h =>
+                new HexWithData<CellTemplate>(new CellTemplate(cellType, h.Hex, h.Orientation), h.Hex, h.Orientation))
             .ToList();
 
         CombinedEditorAction moveOccupancies;
@@ -560,12 +525,12 @@ public partial class CellBodyPlanEditorComponent :
 
     protected override HexWithData<CellTemplate>? GetHexAt(Hex position)
     {
-        return editedMicrobeCells.GetElementAt(position, hexTemporaryMemory);
+        return editedMicrobeCells.AsModifiable().GetElementAt(position, hexTemporaryMemory);
     }
 
     protected override EditorAction? TryCreateRemoveHexAtAction(Hex location, ref int alreadyDeleted)
     {
-        var hexHere = editedMicrobeCells.GetElementAt(location, hexTemporaryMemory);
+        var hexHere = editedMicrobeCells.AsModifiable().GetElementAt(location, hexTemporaryMemory);
         if (hexHere == null)
             return null;
 
@@ -644,18 +609,6 @@ public partial class CellBodyPlanEditorComponent :
 
         // TODO: put this call in some better place (also in CellEditorComponent)
         behaviourEditor.UpdateAllBehaviouralSliders(behaviour);
-    }
-
-    private bool TryAddHexToEditedLayout(HexWithData<CellTemplate> hex, int q, int r)
-    {
-        hex.Position = new Hex(q, r);
-        if (editedMicrobeCells.CanPlace(hex, hexTemporaryMemory, hexTemporaryMemory2))
-        {
-            editedMicrobeCells.AddFast(hex, hexTemporaryMemory, hexTemporaryMemory2);
-            return true;
-        }
-
-        return false;
     }
 
     private void ShowCellMenu(IEnumerable<HexWithData<CellTemplate>> selectedCells)
@@ -741,7 +694,8 @@ public partial class CellBodyPlanEditorComponent :
     /// </summary>
     private EditorAction? CreatePlaceActionIfPossible(CellType cellType, int q, int r, int rotation)
     {
-        var cell = new HexWithData<CellTemplate>(new CellTemplate(cellType, new Hex(q, r), rotation), new Hex(q, r));
+        var cell = new HexWithData<CellTemplate>(new CellTemplate(cellType, new Hex(q, r), rotation), new Hex(q, r),
+            rotation);
 
         if (!IsValidPlacement(cell))
         {
@@ -1276,7 +1230,7 @@ public partial class CellBodyPlanEditorComponent :
 
         // Build the entities to show the current microbe
         IReadOnlyList<Hex> positionZeroList = [new(0, 0)];
-        UpdateAlreadyPlacedHexes(editedMicrobeCells.Select(o => (o.Position, positionZeroList,
+        UpdateAlreadyPlacedHexes(editedMicrobeCells.AsModifiable().Select(o => (o.Position, positionZeroList,
             Editor.HexPlacedThisSession<HexWithData<CellTemplate>, MulticellularSpecies>(o))), islandResults);
 
         int nextFreeCell = 0;
@@ -1424,7 +1378,7 @@ public partial class CellBodyPlanEditorComponent :
         var type = CellTypeFromName(activeActionName!);
 
         // Disallow deleting a type that is in use currently
-        if (editedMicrobeCells.Any(c => c.Data!.ModifiableCellType == type))
+        if (editedMicrobeCells.AsModifiable().Any(c => c.Data!.ModifiableCellType == type))
         {
             GD.Print("Can't delete in use cell type");
             cannotDeleteInUseTypeDialog.PopupCenteredShrink();
@@ -1453,44 +1407,6 @@ public partial class CellBodyPlanEditorComponent :
             if (entry.Value.CellType == type)
             {
                 entry.Value.ReportTypeChanged();
-            }
-        }
-    }
-
-    /// <summary>
-    ///   Generates a cell layout from <see cref="MulticellularSpecies.ModifiableCells"/>. To be used if the species
-    ///   doesn't have an editor layout remembered.
-    /// </summary>
-    private void GenerateCellLayoutFromSpeciesCells(MulticellularSpecies multicellularSpecies)
-    {
-        foreach (var cell in multicellularSpecies.ModifiableCells)
-        {
-            // This doesn't copy the position to the hex yet, but TryAddHexToEditedLayout does it, so we are good to
-            // use the current position as a placeholder
-            var hex = new HexWithData<CellTemplate>((CellTemplate)cell.Clone(), cell.Position);
-
-            var originalPos = cell.Position;
-
-            var direction = new Vector2(0, -1);
-
-            if (originalPos != new Hex(0, 0))
-            {
-                direction = new Vector2(originalPos.Q, originalPos.R).Normalized();
-            }
-
-            float distance = 0;
-
-            // Start at 0,0 and move towards the real position until an empty spot is found
-            // TODO: need to make sure that this can't cause holes that the player would need to fix
-            // distance is a float here to try to make the above TODO problem less likely
-            while (true)
-            {
-                var positionVector = direction * distance;
-
-                if (TryAddHexToEditedLayout(hex, (int)positionVector.X, (int)positionVector.Y))
-                    break;
-
-                distance += 0.8f;
             }
         }
     }

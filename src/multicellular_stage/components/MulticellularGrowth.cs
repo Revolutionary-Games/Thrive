@@ -63,7 +63,7 @@ public struct MulticellularGrowth : IArchivableComponent
         ResumeBodyPlanAfterReplacingLost = null;
         EnoughResourcesForBudding = false;
 
-        TargetCellLayout = species.ModifiableCells;
+        TargetCellLayout = species.ModifiableGameplayCells;
 
         // This is updated by ReApplyCellTypeProperties when needed
         this.CalculateTotalBodyPlanCompounds(species);
@@ -154,7 +154,7 @@ public static class MulticellularGrowthHelpers
 
         ref var colonyPosition = ref entity.Get<WorldPosition>();
 
-        var cellTemplate = species.ModifiableCells[multicellularGrowth.NextBodyPlanCellToGrowIndex];
+        var cellTemplate = species.ModifiableGameplayCells[multicellularGrowth.NextBodyPlanCellToGrowIndex];
 
         // Remove the starting compounds as this is a growth cell which shouldn't give free resources to the
         // colony it joins
@@ -216,7 +216,7 @@ public static class MulticellularGrowthHelpers
         if (lostPartIndex == 0)
             return;
 
-        if (lostPartIndex >= species.ModifiableCells.Count)
+        if (lostPartIndex >= species.ModifiableGameplayCells.Count)
         {
             GD.PrintErr("Multicellular colony lost a cell at index that is no longer valid for the species, " +
                 "ignoring this for regrowing");
@@ -280,10 +280,10 @@ public static class MulticellularGrowthHelpers
         }
 
         // Adjust the already used compound amount to lose the progress we made for the current cell and also
-        // towards the lost cell, this should ensure the total progress bar should be correct
+        // towards the lost cell; this should ensure the total progress bar should be correct
         if (multicellularGrowth.CompoundsUsedForMulticellularGrowth != null)
         {
-            var totalNeededForLostCell = species.ModifiableCells[lostPartIndex]
+            var totalNeededForLostCell = species.ModifiableGameplayCells[lostPartIndex]
                 .ModifiableCellType.CalculateTotalComposition();
 
             foreach (var compound in multicellularGrowth.CompoundsUsedForMulticellularGrowth.Keys.ToArray())
@@ -314,7 +314,7 @@ public static class MulticellularGrowthHelpers
         this ref MulticellularGrowth multicellularGrowth, MulticellularSpecies species)
     {
         return species
-            .ModifiableCells[
+            .ModifiableGameplayCells[
                 multicellularGrowth.IsFullyGrownMulticellular ? 0 : multicellularGrowth.NextBodyPlanCellToGrowIndex]
             .ModifiableCellType.CalculateTotalCompositionList();
     }

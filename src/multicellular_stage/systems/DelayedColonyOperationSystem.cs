@@ -49,11 +49,11 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
         int bodyPlanIndex = colonyTargetIndex;
 
-        if (bodyPlanIndex < 0 || bodyPlanIndex >= species.ModifiableCells.Count)
+        if (bodyPlanIndex < 0 || bodyPlanIndex >= species.ModifiableGameplayCells.Count)
         {
             GD.PrintErr($"Correcting incorrect body plan index for delay attached cell from {bodyPlanIndex} to " +
                 "a valid value");
-            bodyPlanIndex = Math.Clamp(bodyPlanIndex, 0, species.ModifiableCells.Count - 1);
+            bodyPlanIndex = Math.Clamp(bodyPlanIndex, 0, species.ModifiableGameplayCells.Count - 1);
         }
 
         var attachPosition = new AttachedToEntity
@@ -183,7 +183,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         ref var species = ref entity.Get<MulticellularSpeciesMember>();
 
         bool added = false;
-        var cellsToGrow = species.Species.ModifiableCells.Skip(bodyPlanIndex).Take(members);
+        var cellsToGrow = species.Species.ModifiableGameplayCells.Skip(bodyPlanIndex).Take(members);
 
         ref var parentPosition = ref entity.Get<WorldPosition>();
 
