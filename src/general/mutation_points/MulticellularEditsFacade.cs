@@ -152,12 +152,12 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
             IReadOnlyHexWithData<IReadOnlyCellTemplate>? original = null;
 
             // Find a match first if we have done something on this before
-            foreach (var addedOrganelle in addedCells)
+            foreach (var addedCell in addedCells)
             {
-                if (addedOrganelle.Position == cellMoveActionData.OldLocation &&
-                    addedOrganelle.Orientation == cellMoveActionData.OldRotation)
+                if (addedCell.Position == cellMoveActionData.OldLocation &&
+                    addedCell.Orientation == cellMoveActionData.OldRotation)
                 {
-                    original = addedOrganelle;
+                    original = addedCell;
 
                     if (cellTypes.ResolveCellDefinition(original.Data!.CellType) !=
                         cellTypes.ResolveCellDefinition(cellMoveActionData.MovedHex.Data?.CellType))
@@ -165,7 +165,7 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
                         throw new InvalidOperationException("Found an unrelated cell at move old location");
                     }
 
-                    addedCells.Remove(addedOrganelle);
+                    addedCells.Remove(addedCell);
                     break;
                 }
             }
@@ -205,12 +205,12 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
             IReadOnlyHexWithData<IReadOnlyCellTemplate>? original = null;
 
             // Find a match first if we have done something to this before
-            foreach (var addedOrganelle in addedCells)
+            foreach (var addedCell in addedCells)
             {
-                if (addedOrganelle.Position == cellRemoveActionData.Location &&
-                    addedOrganelle.Orientation == cellRemoveActionData.Orientation)
+                if (addedCell.Position == cellRemoveActionData.Location &&
+                    addedCell.Orientation == cellRemoveActionData.Orientation)
                 {
-                    original = addedOrganelle;
+                    original = addedCell;
 
                     if (cellTypes.ResolveCellDefinition(original.Data!.CellType) !=
                         cellTypes.ResolveCellDefinition(cellRemoveActionData.RemovedHex.Data?.CellType))
@@ -218,7 +218,7 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
                         throw new InvalidOperationException("Found an unrelated cell at delete location");
                     }
 
-                    addedCells.Remove(addedOrganelle);
+                    addedCells.Remove(addedCell);
                     break;
                 }
             }
