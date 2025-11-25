@@ -16,8 +16,6 @@ public class SingleEditorAction<T> : EditorAction, IEnumerable<EditorCombinableA
 
     private readonly Action<T> undo;
 
-    private List<EditorCombinableActionData>? temporaryMergedData;
-
     public SingleEditorAction(Action<T> redo, Action<T> undo, T data)
     {
         this.redo = redo;
@@ -58,27 +56,6 @@ public class SingleEditorAction<T> : EditorAction, IEnumerable<EditorCombinableA
     public override void UndoAction()
     {
         undo(SingleData);
-    }
-
-    public override double GetBaseCost()
-    {
-        return SingleData.GetBaseCost();
-    }
-
-    public override double CalculateCost(IReadOnlyList<EditorAction> history, int insertPosition)
-    {
-        // Note due to this object reuse this method is not re-entrant, but this approach is used to avoid short-lived
-        // allocations
-        temporaryMergedData ??= new List<EditorCombinableActionData>(history.Count);
-        temporaryMergedData.Clear();
-
-        var count = history.Count;
-        for (int i = 0; i < insertPosition && i < count; ++i)
-        {
-            history[i].CopyData(temporaryMergedData);
-        }
-
-        return SingleData.CalculateCost(temporaryMergedData, insertPosition);
     }
 
     public override void ApplyMergedData(IEnumerable<EditorCombinableActionData> newData)

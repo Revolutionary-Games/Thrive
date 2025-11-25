@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-17 12:31+0100\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-11-10 22:19+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -272,7 +272,8 @@ msgstr "Стадія Вознесіння"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Потрібен клас збірки моду, коли її вказано"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Збірка модів обов'язкова, коли автоматична гармонія увімкнена"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -4099,9 +4100,6 @@ msgstr "{0}: не вдалося викликати метод відванта�
 msgid "MOD_AUTHOR"
 msgstr "Автор моду:"
 
-msgid "MOD_AUTO_HARMONY"
-msgstr "Використання авто-Гармонії:"
-
 msgid "MOD_CREATION_FAILED"
 msgstr "Невдалось створити мод"
 
@@ -7068,12 +7066,6 @@ msgstr "Використовуваний рендер:"
 msgid "USES_FEATURE"
 msgstr "Так"
 
-msgid "USE_AUTO_HARMONY"
-msgstr "Використати завантаження авто-Гармонії"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Автоматичне завантаження патчів Гармонії зі збірки (не вимагає вказувати клас моду)"
-
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Використовувати звичайне ім'я користувача"
 
@@ -9211,6 +9203,15 @@ msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Використання авто-Гармонії:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Використати завантаження авто-Гармонії"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Автоматичне завантаження патчів Гармонії зі збірки (не вимагає вказувати клас моду)"
 
 #, fuzzy
 #~ msgid "REPRODUCTION_COMPOUND_USAGE"

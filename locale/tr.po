@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-17 12:31+0100\n"
-"PO-Revision-Date: 2025-11-17 20:38+0000\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
+"PO-Revision-Date: 2025-11-19 21:01+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -271,7 +271,8 @@ msgstr "Tırmanış Evresi"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Assembly belirtildiğinde, assembly modunun sınıfı gereklidir"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Oto Harmony etkinleştirildiğinde, Assembly modu gereklidir"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -1042,7 +1043,6 @@ msgstr "Çok yüksek"
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Çok düşük"
 
-#, fuzzy
 msgid "COMPOUND_REPRODUCTION_SOURCE"
 msgstr "{0} tüketimi"
 
@@ -2815,13 +2815,11 @@ msgstr "Denetleyici"
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Instagram profilimizi ziyaret edin"
 
-#, fuzzy
 msgid "INSTANT_KILL_PROTECTION"
-msgstr "UV koruması çok düşük, %{0} değerinden yüksek olmalı"
+msgstr "Anında ölüm koruması"
 
-#, fuzzy
 msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
-msgstr "(her kuşakta boyunca ortamda tutulan glukoz oranı)"
+msgstr "(bu ayar, yüksek cana sahip bir oyuncuyu öldürecek bir hasar﻿ olsa bile, size az bir can bırakır)"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Tırmanış Kapısını Etkinleştir"
@@ -3636,9 +3634,8 @@ msgstr "Yırtıcı Etkinlik Baskısı"
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Yırtıcı Kök Baskısı"
 
-#, fuzzy
 msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
-msgstr "Editörden çıkışta bileşikler:"
+msgstr "Üremede Kullanılan Bileşik Baskısı:"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr "Kök Baskı"
@@ -3978,9 +3975,6 @@ msgstr "{0}: Assembly modu kaldırma yöntem çağrısı başarısız, olağand�
 
 msgid "MOD_AUTHOR"
 msgstr "Mod Sahibi:"
-
-msgid "MOD_AUTO_HARMONY"
-msgstr "Oto Harmony Kullanır:"
 
 msgid "MOD_CREATION_FAILED"
 msgstr "Mod Oluşturma Başarısız"
@@ -6870,12 +6864,6 @@ msgstr "Kullanılan işleyici:"
 msgid "USES_FEATURE"
 msgstr "Evet"
 
-msgid "USE_AUTO_HARMONY"
-msgstr "Oto Harmony Yüklemesini Kullan"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Assembly'den Harmony yamalarını otomatik olarak yükle (mod sınıfı belirlemeyi gerektirmez)"
-
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Özel bir kullanıcı adı kullan"
 
@@ -9533,6 +9521,15 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Oto Harmony Kullanır:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Oto Harmony Yüklemesini Kullan"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Assembly'den Harmony yamalarını otomatik olarak yükle (mod sınıfı belirlemeyi gerektirmez)"
 
 #, fuzzy
 #~ msgid "REPRODUCTION_COMPOUND_USAGE"

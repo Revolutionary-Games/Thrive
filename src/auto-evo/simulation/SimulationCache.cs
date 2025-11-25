@@ -567,7 +567,8 @@ public class SimulationCache
 
         if (hasChemoreceptor)
         {
-            if (biomeConditions.AverageCompounds.TryGetValue(compound.ID, out var compoundData))
+            if (biomeConditions.AverageCompounds.TryGetValue(compound.ID, out var compoundData) &&
+                compoundData.Density > 0)
             {
                 cached = Constants.AUTO_EVO_CHEMORECEPTOR_BASE_SCORE
                     + Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CLOUD_SCORE

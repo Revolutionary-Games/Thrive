@@ -60,7 +60,7 @@ public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData, IMe
                 continue;
 
             result.Add(new MetaballMoveActionData<TMetaball>(descendant, descendant.Position,
-                descendantPosition, descendant.Parent, descendant.Parent, null));
+                descendantPosition, descendant.ModifiableParent, descendant.ModifiableParent, null));
         }
 
         return result;
@@ -99,65 +99,6 @@ public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData, IMe
             throw new InvalidArchiveVersionException(version, CurrentArchiveVersion);
 
         ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
-    }
-
-    protected override double CalculateBaseCostInternal()
-    {
-        if (OldPosition.DistanceSquaredTo(NewPosition) < MathUtils.EPSILON && OldParent == NewParent)
-            return 0;
-
-        return Constants.METABALL_MOVE_COST;
-    }
-
-    protected override (double Cost, double RefundCost) CalculateCostInternal(
-        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
-    {
-        var cost = CalculateBaseCostInternal();
-        double refund = 0;
-
-        var count = history.Count;
-        for (int i = 0; i < insertPosition && i < count; ++i)
-        {
-            var other = history[i];
-
-            // If this metaball got moved in the same session again
-            if (other is MetaballMoveActionData<TMetaball> moveActionData &&
-                moveActionData.MovedMetaball.MatchesDefinition(MovedMetaball))
-            {
-                // If this metaball got moved back and forth
-                if (OldPosition.DistanceSquaredTo(moveActionData.NewPosition) < MathUtils.EPSILON &&
-                    NewPosition.DistanceSquaredTo(moveActionData.OldPosition) < MathUtils.EPSILON &&
-                    OldParent == moveActionData.NewParent && NewParent == moveActionData.OldParent)
-                {
-                    cost = 0;
-                    refund += moveActionData.GetAndConsumeAvailableRefund();
-                    continue;
-                }
-
-                // If this metaball got moved twice
-                if ((moveActionData.NewPosition.DistanceSquaredTo(OldPosition) < MathUtils.EPSILON &&
-                        moveActionData.NewParent == OldParent) ||
-                    (NewPosition.DistanceSquaredTo(moveActionData.OldPosition) < MathUtils.EPSILON &&
-                        NewParent == moveActionData.OldParent))
-                {
-                    cost = 0;
-                    continue;
-                }
-            }
-
-            // If this metaball got placed in this session
-            if (other is MetaballPlacementActionData<TMetaball> placementActionData &&
-                placementActionData.PlacedMetaball.MatchesDefinition(MovedMetaball) &&
-                placementActionData.Position == OldPosition &&
-                placementActionData.Parent == OldParent)
-            {
-                cost = 0;
-            }
-
-            // Moves shouldn't happen after a remove, so we don't check that here
-        }
-
-        return (cost, refund);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)

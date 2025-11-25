@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-17 12:31+0100\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-11-10 22:19+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -277,7 +277,7 @@ msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Classe do assembly do mod é requerida quando o assembly é especificado"
 
 #, fuzzy
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "A montagem do mod é necessária quando o auto harmony está ativado"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -4023,9 +4023,6 @@ msgstr "{0}: chamada do método unload do assembly do mod falhou com uma exceç�
 msgid "MOD_AUTHOR"
 msgstr "Autor:"
 
-msgid "MOD_AUTO_HARMONY"
-msgstr "Usa Auto Harmony:"
-
 msgid "MOD_CREATION_FAILED"
 msgstr "A Criação do Mod Falhou"
 
@@ -6922,12 +6919,6 @@ msgstr "Renderizador usado:"
 msgid "USES_FEATURE"
 msgstr "Sim"
 
-msgid "USE_AUTO_HARMONY"
-msgstr "Usar carregamento Auto Harmony"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Carregar patches Harmony do Assembly automaticamente (não é preciso especificar a classe do mod)"
-
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Usar um nome personalizado"
 
@@ -8997,6 +8988,15 @@ msgstr "Aumentar o zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
+
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Usa Auto Harmony:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Usar carregamento Auto Harmony"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Carregar patches Harmony do Assembly automaticamente (não é preciso especificar a classe do mod)"
 
 #, fuzzy
 #~ msgid "REPRODUCTION_COMPOUND_USAGE"

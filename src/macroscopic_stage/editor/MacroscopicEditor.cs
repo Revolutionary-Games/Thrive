@@ -145,7 +145,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
     {
         // If a cell type is being edited, add its type to each action data
         // so we can use it for undoing and redoing later
-        if (selectedEditorTab == EditorTab.CellTypeEditor && selectedCellTypeToEdit != null)
+        if (selectedCellTypeToEdit != null)
         {
             if (action is EditorCombinableActionData<CellType> cellTypeData && cellTypeData.Context == null)
                 cellTypeData.Context = selectedCellTypeToEdit;
@@ -202,7 +202,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         // TODO: should this ensure the name doesn't have trailing whitespace?
         // If so, CellTemplate.UpdateNameIfValid should be updated as well
         return !string.IsNullOrWhiteSpace(newName) && !EditedSpecies.ModifiableCellTypes.Any(c =>
-            c.TypeName.Equals(newName, StringComparison.InvariantCultureIgnoreCase));
+            c.CellTypeName.Equals(newName, StringComparison.InvariantCultureIgnoreCase));
     }
 
     protected override void ResolveDerivedTypeNodeReferences()
@@ -320,7 +320,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
 
         editsFacade.SetActiveActions(performedActionData);
 
-        return speciesComparer.Compare(editedSpecies!, editsFacade);
+        return speciesComparer.Compare(editedSpecies!, editsFacade) * CurrentGame.GameWorld.WorldSettings.MPMultiplier;
     }
 
     protected override GameProperties StartNewGameForEditor()
@@ -521,14 +521,14 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
             return;
         }
 
-        var newTypeToEdit = EditedSpecies.ModifiableCellTypes.First(c => c.TypeName == name);
+        var newTypeToEdit = EditedSpecies.ModifiableCellTypes.First(c => c.CellTypeName == name);
 
         // Only reinitialize the editor when required
         if (selectedCellTypeToEdit == null || selectedCellTypeToEdit != newTypeToEdit)
         {
             selectedCellTypeToEdit = newTypeToEdit;
 
-            GD.Print("Start editing tissue type (cell type): ", selectedCellTypeToEdit.TypeName);
+            GD.Print("Start editing tissue type (cell type): ", selectedCellTypeToEdit.CellTypeName);
 
             // Reinitialize the cell editor to be able to edit the new cell type
             cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
@@ -543,7 +543,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
             return;
 
         // TODO: only apply if there were changes
-        GD.Print("Applying changes made to cell type: ", selectedCellTypeToEdit.TypeName);
+        GD.Print("Applying changes made to cell type: ", selectedCellTypeToEdit.CellTypeName);
 
         // Apply any changes made to the selected cell
         FinishEditingSelectedCell();
@@ -609,16 +609,16 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         // so it can't check if the name is unique or not
         // TODO: would be nice to re-architecture this so that the cell editor could show if the new name is valid
         // or not
-        var oldName = selectedCellTypeToEdit.TypeName;
+        var oldName = selectedCellTypeToEdit.CellTypeName;
 
         cellEditorTab.OnFinishEditing();
 
         // Revert to the old name if the name is a duplicate
         if (EditedSpecies.ModifiableCellTypes.Any(c =>
-                c != selectedCellTypeToEdit && c.TypeName == selectedCellTypeToEdit.TypeName))
+                c != selectedCellTypeToEdit && c.CellTypeName == selectedCellTypeToEdit.CellTypeName))
         {
             GD.Print("Cell editor renamed a cell type to a duplicate name, reverting");
-            selectedCellTypeToEdit.TypeName = oldName;
+            selectedCellTypeToEdit.CellTypeName = oldName;
         }
 
         bodyPlanEditorTab.OnTissueTypeEdited(selectedCellTypeToEdit);

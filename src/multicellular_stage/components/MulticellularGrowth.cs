@@ -284,7 +284,7 @@ public static class MulticellularGrowthHelpers
         if (multicellularGrowth.CompoundsUsedForMulticellularGrowth != null)
         {
             var totalNeededForLostCell = species.ModifiableCells[lostPartIndex]
-                .CellType.CalculateTotalComposition();
+                .ModifiableCellType.CalculateTotalComposition();
 
             foreach (var compound in multicellularGrowth.CompoundsUsedForMulticellularGrowth.Keys.ToArray())
             {
@@ -316,7 +316,7 @@ public static class MulticellularGrowthHelpers
         return species
             .ModifiableCells[
                 multicellularGrowth.IsFullyGrownMulticellular ? 0 : multicellularGrowth.NextBodyPlanCellToGrowIndex]
-            .CellType.CalculateTotalCompositionList();
+            .ModifiableCellType.CalculateTotalCompositionList();
     }
 
     public static void CalculateTotalBodyPlanCompounds(this ref MulticellularGrowth multicellularGrowth,
@@ -328,7 +328,8 @@ public static class MulticellularGrowthHelpers
         foreach (var cell in multicellularGrowth.TargetCellLayout ??
                  throw new InvalidOperationException("Unknown target layout"))
         {
-            multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(cell.CellType.CalculateTotalComposition());
+            multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(cell.ModifiableCellType
+                .CalculateTotalComposition());
         }
 
         multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(species.BaseReproductionCost);

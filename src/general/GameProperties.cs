@@ -160,7 +160,7 @@ public class GameProperties : IArchivable
 
         // Create the brain tissue type
         var brainType = (CellType)playerSpecies.ModifiableCellTypes.First().Clone();
-        brainType.TypeName = Localization.Translate("BRAIN_CELL_NAME_DEFAULT");
+        brainType.CellTypeName = Localization.Translate("BRAIN_CELL_NAME_DEFAULT");
         brainType.Colour = new Color(0.807f, 0.498f, 0.498f);
 
         var axon = SimulationParameters.Instance.GetOrganelleType("axon");
@@ -554,7 +554,7 @@ public class GameProperties : IArchivable
                         continue;
 
                     // Found a suitable place, adjust the position to be touching the parent
-                    metaball.Parent = parent;
+                    metaball.ModifiableParent = parent;
                     metaball.AdjustPositionToTouchParent();
 
                     // Skip if now the metaball would end up being inside something else
@@ -562,7 +562,7 @@ public class GameProperties : IArchivable
                     // touching
                     if (species.ModifiableBodyLayout.CheckOverlapAndFindClosest(metaball).Overlap)
                     {
-                        metaball.Parent = null;
+                        metaball.ModifiableParent = null;
                         continue;
                     }
 
