@@ -2,10 +2,6 @@ shader_type spatial;
 render_mode unshaded;
 
 // this is 1 by default to keep the dark BGs looking nice
-uniform vec3 sunlightColor = vec3(1.0f, 1.0f, 1.0f);
-
-uniform float lightIntensity = 1.0f;
-
 uniform vec3 lightColor = vec3(1.0f, 1.0f, 1.0f);
 
 uniform vec2 repeats = vec2(1.0f, 1.0f);
@@ -80,8 +76,8 @@ void fragment(){
     vec3 mixture1 = mix(colour2.rgb, colour3.rgb * colour3.a, 1.0f);
     vec3 mixture2 = mix(mixture0.rgb, mixture1.rgb, 0.5f);
     vec3 composition = mix(colour0.rgb, mixture2.rgb, 0.5f);
-
-    ALBEDO.rgb = composition.rgb * (sunlightColor + (lightColor * lightIntensity));
+	
+	ALBEDO.rgb = composition.rgb * lightColor;
 
     ALPHA = 1.0f;
 }

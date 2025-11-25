@@ -72,11 +72,6 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
     private BackgroundPlane backgroundPlane = null!;
 #pragma warning restore CA2213
 
-    /// <summary>
-    ///   Used to manually tween the light level to the target value
-    /// </summary>
-    private float lastSetLightLevel = 1;
-
     private Vector3 cursorWorldPos = new(0, 0, 0);
     private bool cursorDirty = true;
 
@@ -178,13 +173,6 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
     public override void _Process(double delta)
     {
         base._Process(delta);
-
-        // Once target is reached the value is set exactly the same
-        // ReSharper disable once CompareOfFloatsByEqualityOperator
-        if (lastSetLightLevel != lightLevel)
-        {
-            UpdateLightLevel((float)delta);
-        }
 
         if (AutoProcessWhilePaused && PauseManager.Instance.Paused)
         {
@@ -299,9 +287,9 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
         backgroundPlane.SetBackground(background);
     }
 
-    public void SetWaterColorFromCompounds(float oxygen, float iron)
+    public void SetWaterColorFromCompounds(Color color)
     {
-        backgroundPlane.SetLightingColor(oxygen, iron);
+        backgroundPlane.SetCompoundColoring(color);
     }
 
     public void WritePropertiesToArchive(ISArchiveWriter writer)
@@ -409,29 +397,5 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
     private void UpdateBackgroundVisibility()
     {
         backgroundPlane.SetVisibility(Current);
-    }
-
-    private void UpdateLightLevel(float delta)
-    {
-        if (lastSetLightLevel < lightLevel)
-        {
-            lastSetLightLevel += LightLevelInterpolateSpeed * delta;
-
-            if (lastSetLightLevel > lightLevel)
-                lastSetLightLevel = lightLevel;
-        }
-        else if (lastSetLightLevel > lightLevel)
-        {
-            lastSetLightLevel -= LightLevelInterpolateSpeed * delta;
-
-            if (lastSetLightLevel < lightLevel)
-                lastSetLightLevel = lightLevel;
-        }
-        else
-        {
-            lastSetLightLevel = lightLevel;
-        }
-
-        backgroundPlane.UpdateLightLevel(lastSetLightLevel);
     }
 }

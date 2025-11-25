@@ -90,6 +90,12 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
     private float templateMaxLightLevel;
 
+    private Color environmentColor;
+
+    private Color compoundColor;
+
+    private float previousLightLevel;
+
     private bool appliedPlayerGodMode;
 
     private bool appliedUnlimitGrowthSpeed;
@@ -1460,6 +1466,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         HUD.UpdateEnvironmentalBars(currentPatch.Biome);
 
+        CalculateEnvironmentalLight();
+
         UpdateBackground();
 
         UpdatePatchLightLevelSettings();
@@ -1500,20 +1508,29 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             var lightLevel =
                 currentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient;
 
+            // Don't update the entire lighting pipeline if no need
+            if (lightLevel == previousLightLevel)
+                return;
+
+            previousLightLevel = lightLevel;
+
             float lightModifier = lightLevel / maxLightLevel;
 
             // Normalise by maximum light level in the patch
             Camera.LightLevel = lightModifier;
 
-            microbeWorldEnvironment.UpdateAmbientReflection(
-                currentPatch.BiomeTemplate.EnvironmentColour * lightModifier);
+            var environmentLightColor = environmentColor * lightModifier;
+            environmentLightColor = environmentLightColor.Lerp(new Color(0.65f, 0.65f, 0.65f), 0.3f);
+
+            microbeWorldEnvironment.UpdateAmbientReflection(environmentLightColor);
+            Camera.SetWaterColorFromCompounds(compoundColor);
         }
         else
         {
             // Don't change lighting for patches without day/night effects
             Camera.LightLevel = 1.0f;
-
-            microbeWorldEnvironment.UpdateAmbientReflection(currentPatch.BiomeTemplate.EnvironmentColour);
+            microbeWorldEnvironment.UpdateAmbientReflection(environmentColor);
+            Camera.SetWaterColorFromCompounds(compoundColor);
         }
     }
 
@@ -1573,11 +1590,50 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         templateMaxLightLevel = GameWorld.Map.CurrentPatch.BiomeTemplate.Conditions
             .GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient;
 
-        GameWorld.Map.CurrentPatch.Biome.TryGetCompound(Compound.Oxygen, CompoundAmountType.Current, out var oxygen);
+        Camera.SetWaterColorFromCompounds(compoundColor);
+    }
+
+    private Color UpdateEnvironmentalCompoundAwareness()
+    {
+        GameWorld.Map.CurrentPatch!.Biome.TryGetCompound(Compound.Oxygen, CompoundAmountType.Current, out var oxygen);
         var ironAmount = GameWorld.Map.CurrentPatch.GetCompoundAmountInSnapshotForDisplay(
             GameWorld.Map.CurrentPatch.CurrentSnapshot, Compound.Iron);
 
-        Camera.SetWaterColorFromCompounds(oxygen.Ambient, ironAmount);
+        // A lot of magic numbers here, just parameters to tune this.
+        // When settled on good values I'll formalise it.
+        var ironNormalized = ironAmount / 4.0f;
+        var oxygenPercent = oxygen.Ambient;
+        var oxygenNormalize = MathF.Min(oxygenPercent / 0.4f, 1.0f);
+        float greenIron = ironNormalized * (1.0f - 0.8f * oxygenNormalize);
+        float redRust = 0.9f * ironNormalized * oxygenNormalize;
+
+        var baseGreen = 0.15f;
+        var baseRed = 0.1f;
+        var baseBlue = 0.2f;
+
+        var g = Math.Clamp(baseGreen + 0.6f * greenIron, 0.0f, 1.0f);
+        var r = Math.Clamp(baseRed + 0.8f * redRust, 0.0f, 1.0f);
+        var b = Math.Clamp(baseBlue - 0.25f * ironNormalized, 0.0f, 1.0f);
+
+        return new Color(r, g, b);
+    }
+
+    private void CalculateEnvironmentalLight()
+    {
+        compoundColor = UpdateEnvironmentalCompoundAwareness();
+        var envColor = GameWorld.Map.CurrentPatch!.BiomeTemplate.EnvironmentColour;
+
+        var tintStrength = 0.35f;
+        var envColorTinted = envColor * (1.0f - tintStrength) + compoundColor * tintStrength;
+        environmentColor = DesaturateColor(envColorTinted, 0.15f);
+    }
+
+    private Color DesaturateColor(Color c, float amount)
+    {
+        float grayValue = 0.2126f * c.R + 0.7152f * c.G + 0.0722f * c.B;
+        var gray = new Color(grayValue, grayValue, grayValue);
+
+        return c.Lerp(gray, amount);
     }
 
     private void OnFinishLoading()

@@ -27,7 +27,8 @@ const float CLOUD_MAX_INTENSITY_SHOWN = 1000.f;
 
 float getIntensity(float value)
 {
-    return min(DENSITY_MULTIPLIER * atan(0.006f * CLOUD_MAX_INTENSITY_SHOWN * value), 1.0f) * BrightnessMultiplier;
+    float baseIntensity = DENSITY_MULTIPLIER * atan(0.006f * CLOUD_MAX_INTENSITY_SHOWN * value);
+    return min(baseIntensity * BrightnessMultiplier, 1.0f);
 }
 
 void fragment() {
@@ -60,7 +61,7 @@ void fragment() {
                   colour4 * cloud4;
 
     float adjustedAlpha = min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) *
-        clamp(min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) * 0.5, 0.5, 0.9);
+       clamp(min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) * 0.5, 0.5, 0.9);
 
     ALPHA = adjustedAlpha;
     ALBEDO = colour.rgb;
