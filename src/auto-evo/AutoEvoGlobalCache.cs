@@ -89,8 +89,9 @@ public class AutoEvoGlobalCache
             new LocalizedString("RADIOACTIVE_CHUNK"), Compound.Radiation, Compound.ATP, 1.0f);
 
         TemperatureConversionEfficiencyPressure =
-            new CompoundConversionEfficiencyPressure(Compound.Temperature, Compound.ATP, true, 1.0f);
-        TemperatureCompoundPressure = new EnvironmentalCompoundPressure(Compound.Temperature, Compound.ATP, 100, 1.0f);
+            new CompoundConversionEfficiencyPressure(Compound.Temperature, Compound.Glucose, true, 1.0f);
+        TemperatureCompoundPressure = new EnvironmentalCompoundPressure(Compound.Temperature, Compound.Glucose,
+            100, 1.0f);
         HasTemperature = !worldSettings.LAWK;
 
         PredatorRoot = new PredatorRoot(1.0f);
