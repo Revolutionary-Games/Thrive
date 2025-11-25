@@ -77,7 +77,17 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyMetaballLayout<T>, IAr
 
         // Fail if parent missing
         var parent = metaball.ModifiableParent;
-        if (metaballs.All(m => m != parent))
+        bool found = true;
+        foreach (var existing in metaballs)
+        {
+            if (existing == parent)
+            {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found)
             return false;
 
         // TODO: distance check to parent? (need to fix MetaballTest if this is changed)

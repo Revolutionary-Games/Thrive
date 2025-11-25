@@ -892,6 +892,8 @@ public partial class CellBodyPlanEditorComponent :
     /// </summary>
     private void UpdateCellTypeSelections()
     {
+        var costMultiplier = Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+
         // Re-use / create more buttons to hold all the cell types
         foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes.OrderBy(t => t.CellTypeName,
                      StringComparer.Ordinal))
@@ -923,11 +925,12 @@ public partial class CellBodyPlanEditorComponent :
                 }
 
                 tooltip.Name = cellType.CellTypeName;
+                tooltip.MutationPointCost = cellType.MPCost * costMultiplier;
 
                 control.RegisterToolTipForControl(tooltip, true);
             }
 
-            control.MPCost = cellType.MPCost;
+            control.MPCost = cellType.MPCost * costMultiplier;
         }
 
         bool clearSelection = false;
@@ -1015,7 +1018,7 @@ public partial class CellBodyPlanEditorComponent :
             environmentalTolerances);
 
         tooltip.DisplayName = cellType.CellTypeName;
-        tooltip.MutationPointCost = cellType.MPCost;
+        tooltip.MutationPointCost = cellType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
         tooltip.DisplayCellTypeBalances(balances);
         tooltip.UpdateATPBalance(energyBalance.TotalProduction, energyBalance.TotalConsumption);
 

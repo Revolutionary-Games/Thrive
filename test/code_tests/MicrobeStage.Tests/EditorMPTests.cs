@@ -792,7 +792,7 @@ public class EditorMPTests
         var rigidityAction1 = new RigidityActionData(0.2f, 0.0f);
         history.AddAction(new SingleEditorAction<RigidityActionData>(_ => { }, _ => { }, rigidityAction1));
 
-        var changeCost1 = RigidityActionData.CalculateRigidityCost(0.2f, 0);
+        var changeCost1 = MicrobeSpeciesComparer.CalculateRigidityCost(0.2f, 0);
         Assert.True(changeCost1 > 0.01f);
 
         ApplyFacadeEdits(editsFacade, history);
@@ -801,7 +801,7 @@ public class EditorMPTests
         var rigidityAction2 = new RigidityActionData(0.3f, 0.2f);
         history.AddAction(new SingleEditorAction<RigidityActionData>(_ => { }, _ => { }, rigidityAction2));
 
-        var totalCost = RigidityActionData.CalculateRigidityCost(0.3f, 0);
+        var totalCost = MicrobeSpeciesComparer.CalculateRigidityCost(0.3f, 0);
         Assert.True(totalCost > changeCost1);
 
         ApplyFacadeEdits(editsFacade, history);
@@ -824,7 +824,7 @@ public class EditorMPTests
         var rigidityAction1 = new RigidityActionData(0.2f, 0.0f);
         history.AddAction(new SingleEditorAction<RigidityActionData>(_ => { }, _ => { }, rigidityAction1));
 
-        var changeCost1 = RigidityActionData.CalculateRigidityCost(0.2f, 0);
+        var changeCost1 = MicrobeSpeciesComparer.CalculateRigidityCost(0.2f, 0);
         Assert.True(changeCost1 > 0.01f);
 
         ApplyFacadeEdits(editsFacade, history);
@@ -833,7 +833,7 @@ public class EditorMPTests
         var rigidityAction2 = new RigidityActionData(0.3f, 0.2f);
         history.AddAction(new SingleEditorAction<RigidityActionData>(_ => { }, _ => { }, rigidityAction2));
 
-        var totalCost = RigidityActionData.CalculateRigidityCost(0.3f, 0);
+        var totalCost = MicrobeSpeciesComparer.CalculateRigidityCost(0.3f, 0);
         Assert.True(totalCost > changeCost1);
 
         ApplyFacadeEdits(editsFacade, history);
@@ -865,7 +865,7 @@ public class EditorMPTests
         var rigidityAction4 = new RigidityActionData(0.2f, 0.0f);
         history.AddAction(new SingleEditorAction<RigidityActionData>(_ => { }, _ => { }, rigidityAction4));
 
-        var changeCost4 = RigidityActionData.CalculateRigidityCost(0.2f, 0);
+        var changeCost4 = MicrobeSpeciesComparer.CalculateRigidityCost(0.2f, 0);
         ApplyFacadeEdits(editsFacade, history);
         Assert.Equal(changeCost4, speciesComparer.Compare(originalSpecies, editsFacade));
     }
@@ -1010,23 +1010,23 @@ public class EditorMPTests
         var toleranceData1 = new ToleranceActionData(initialTolerances, changedTolerances1);
         history.AddAction(new SingleEditorAction<ToleranceActionData>(_ => { }, _ => { }, toleranceData1));
         ApplyFacadeEdits(editsFacade, history);
-        Assert.Equal(ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances1),
+        Assert.Equal(SpeciesComparer.CalculateToleranceCost(initialTolerances, changedTolerances1),
             speciesComparer.Compare(originalSpecies, editsFacade));
-        Assert.True(ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances1) > 5);
+        Assert.True(SpeciesComparer.CalculateToleranceCost(initialTolerances, changedTolerances1) > 5);
 
         var changedTolerances2 = changedTolerances1.Clone();
         changedTolerances2.TemperatureTolerance += 5;
         changedTolerances2.OxygenResistance = 0.1f;
 
-        Assert.Equal(ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances2),
-            ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances1) +
-            ToleranceActionData.CalculateToleranceCost(changedTolerances1, changedTolerances2));
+        Assert.Equal(SpeciesComparer.CalculateToleranceCost(initialTolerances, changedTolerances2),
+            SpeciesComparer.CalculateToleranceCost(initialTolerances, changedTolerances1) +
+            SpeciesComparer.CalculateToleranceCost(changedTolerances1, changedTolerances2));
 
         var toleranceData2 = new ToleranceActionData(changedTolerances1, changedTolerances2);
         history.AddAction(new SingleEditorAction<ToleranceActionData>(_ => { }, _ => { }, toleranceData2));
         ApplyFacadeEdits(editsFacade, history);
-        Assert.Equal(ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances1) +
-            ToleranceActionData.CalculateToleranceCost(changedTolerances1, changedTolerances2),
+        Assert.Equal(SpeciesComparer.CalculateToleranceCost(initialTolerances, changedTolerances1) +
+            SpeciesComparer.CalculateToleranceCost(changedTolerances1, changedTolerances2),
             speciesComparer.Compare(originalSpecies, editsFacade));
 
         var changedTolerances3 = changedTolerances2.Clone();
@@ -1034,11 +1034,11 @@ public class EditorMPTests
 
         for (int i = 0; i < 1000; ++i)
         {
-            if (ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances3) >=
+            if (SpeciesComparer.CalculateToleranceCost(initialTolerances, changedTolerances3) >=
                 Constants.BASE_MUTATION_POINTS)
             {
                 // If overshot
-                if (ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances3) >
+                if (SpeciesComparer.CalculateToleranceCost(initialTolerances, changedTolerances3) >
                     Constants.BASE_MUTATION_POINTS + 0.01)
                 {
                     Assert.Fail("Logic overshoot in MP consuming action creation");
@@ -1054,7 +1054,7 @@ public class EditorMPTests
         var toleranceData3 = new ToleranceActionData(changedTolerances2, changedTolerances3);
         history.AddAction(new SingleEditorAction<ToleranceActionData>(_ => { }, _ => { }, toleranceData3));
         ApplyFacadeEdits(editsFacade, history);
-        Assert.Equal(ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances3),
+        Assert.Equal(SpeciesComparer.CalculateToleranceCost(initialTolerances, changedTolerances3),
             speciesComparer.Compare(originalSpecies, editsFacade));
         Assert.Equal(Constants.BASE_MUTATION_POINTS, speciesComparer.Compare(originalSpecies, editsFacade));
 
