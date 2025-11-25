@@ -477,10 +477,22 @@ public class SimulationCache
             scoreMultiplier *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
+        // modifier to fit current mechanics of the Binding Agent. This should probably be removed or adjusted if
+        // being in a colony no longer reduces osmoregulation cost.
+        var bindingModifier = 1.0f;
+        foreach (var organelle in predator.Organelles.Organelles)
+        {
+            if (organelle.Definition.HasBindingFeature)
+            {
+                bindingModifier *= 1 - Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS;
+                break;
+            }
+        }
+
         cached = (scoreMultiplier * behaviourScore *
                 (pilusScore + engulfmentScore + damagingToxinScore + predatorSlimeJetScore) -
                 (preySlimeJetScore + preyMucocystsScore)) /
-            GetEnergyBalanceForSpecies(predator, biomeConditions).TotalConsumption;
+            (GetEnergyBalanceForSpecies(predator, biomeConditions).TotalConsumption * bindingModifier);
 
         predationScores.Add(key, cached);
         return cached;
