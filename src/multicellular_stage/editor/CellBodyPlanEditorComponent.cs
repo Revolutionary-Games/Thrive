@@ -137,6 +137,12 @@ public partial class CellBodyPlanEditorComponent :
         }
     }
 
+    /// <summary>
+    ///   When not null, this is used to retrieve updated visuals during editing a species rather than reading the
+    ///   outdated data from the species object.
+    /// </summary>
+    public CellTypeEditsHolder? CellTypeVisualsOverride { get; set; }
+
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
     public override ArchiveObjectType ArchiveObjectType =>
@@ -350,7 +356,19 @@ public partial class CellBodyPlanEditorComponent :
     {
         var editedSpecies = Editor.EditedSpecies;
 
-        // Note that for the below calculations to work all cell types need to be positioned correctly. So we need
+        if (CellTypeVisualsOverride == null)
+        {
+            GD.PrintErr("Cell body plan doesn't have visuals holder, so something went wrong and final position " +
+                "apply will fail");
+        }
+        else
+        {
+            // Apply all queued cell type edits so that we can work with fully final data here
+            GD.Print("Applying cell type edits to real species data");
+            CellTypeVisualsOverride.ApplyChanges();
+        }
+
+        // Note that for the below calculations to work, all cell types need to be positioned correctly. So we need
         // to force that to happen here first. This also ensures that the skipped positioning to origin of the cell
         // editor component (that is used as a special mode in multicellular) is performed.
         foreach (var cellType in editedSpecies.ModifiableCellTypes)
@@ -489,7 +507,7 @@ public partial class CellBodyPlanEditorComponent :
         var cellType = CellTypeFromName(activeActionName);
 
         if (MouseHoverPositions == null)
-            return cellType.MPCost * Symmetry.PositionCount();
+            return GetEditedCellDataIfEdited(cellType).MPCost * Symmetry.PositionCount();
 
         var positions = MouseHoverPositions.ToList();
 
@@ -665,11 +683,27 @@ public partial class CellBodyPlanEditorComponent :
 
             var modelHolder = hoverModels[usedHoverModel++];
 
-            ShowCellTypeInModelHolder(modelHolder, cellToPlace, cartesianPosition, rotation);
+            ShowCellTypeInModelHolder(modelHolder, GetEditedCellDataIfEdited(cellToPlace), cartesianPosition, rotation);
 
             if (showModel)
                 modelHolder.Visible = true;
         }
+    }
+
+    /// <summary>
+    ///   Gets the freshest, edited data of a cell type.
+    /// </summary>
+    /// <param name="cellType">Cell type to check</param>
+    /// <returns>Either an edited copy or the original if no edits are done on the type yet</returns>
+    private CellType GetEditedCellDataIfEdited(CellType cellType)
+    {
+        if (CellTypeVisualsOverride == null)
+        {
+            GD.PrintErr("No cell type visual override set");
+            return cellType;
+        }
+
+        return CellTypeVisualsOverride.GetCellType(cellType);
     }
 
     /// <summary>
@@ -884,7 +918,7 @@ public partial class CellBodyPlanEditorComponent :
                 control.SelectionGroup = cellTypeButtonGroup;
 
                 control.PartName = cellType.CellTypeName;
-                control.CellType = cellType;
+                control.CellType = GetEditedCellDataIfEdited(cellType);
                 control.Name = cellType.CellTypeName;
 
                 cellTypeSelectionList.AddItem(control);
@@ -904,17 +938,27 @@ public partial class CellBodyPlanEditorComponent :
                 }
 
                 tooltip.Name = cellType.CellTypeName;
-                tooltip.MutationPointCost = cellType.MPCost * costMultiplier;
+                tooltip.MutationPointCost = GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier;
 
                 control.RegisterToolTipForControl(tooltip, true);
             }
+            else
+            {
+                var tooltip = ToolTipManager.Instance.GetToolTipIfExists<CellTypeTooltip>(cellType.CellTypeName,
+                    "cellTypes");
 
-            control.MPCost = cellType.MPCost * costMultiplier;
+                if (tooltip != null)
+                {
+                    tooltip.MutationPointCost = GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier;
+                }
+            }
+
+            control.MPCost = GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier;
         }
 
         bool clearSelection = false;
 
-        // Delete no longer needed buttons
+        // Delete no longer necessary buttons
         foreach (var key in cellTypeSelectionButtons.Keys.ToList())
         {
             if (Editor.EditedSpecies.ModifiableCellTypes.All(t => t.CellTypeName != key))
@@ -965,7 +1009,8 @@ public partial class CellBodyPlanEditorComponent :
 
             cellTypesCount.TryGetValue(cellType, out var count);
 
-            UpdateCellTypeTooltipAndWarning(tooltip, button, cellType, environmentalTolerances, count);
+            UpdateCellTypeTooltipAndWarning(tooltip, button, GetEditedCellDataIfEdited(cellType),
+                environmentalTolerances, count);
         }
     }
 
@@ -1141,7 +1186,8 @@ public partial class CellBodyPlanEditorComponent :
 
         // Cells can't individually move in the body plan, so this probably makes sense
         var maximumMovementDirection =
-            MicrobeInternalCalculations.MaximumSpeedDirection(cells[0].Data!.ModifiableCellType.ModifiableOrganelles);
+            MicrobeInternalCalculations.MaximumSpeedDirection(
+                GetEditedCellDataIfEdited(cells[0].Data!.ModifiableCellType).ModifiableOrganelles);
 
         // TODO: environmental tolerances for multicellular
         var environmentalTolerances = new ResolvedMicrobeTolerances
@@ -1202,7 +1248,8 @@ public partial class CellBodyPlanEditorComponent :
         Dictionary<Compound, CompoundBalance> compoundBalanceData = new();
         foreach (var cell in cells)
         {
-            AddCellTypeCompoundBalance(compoundBalanceData, cell.Data!.ModifiableOrganelles, calculationType,
+            AddCellTypeCompoundBalance(compoundBalanceData,
+                GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType).ModifiableOrganelles, calculationType,
                 amountType, biome, energyBalance, environmentalTolerances);
         }
 
@@ -1238,7 +1285,7 @@ public partial class CellBodyPlanEditorComponent :
 
         foreach (var cell in editedMicrobeCells)
         {
-            var type = cell.Data!.ModifiableCellType;
+            var type = GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType);
 
             cellTypesCount.TryGetValue(type, out var count);
             cellTypesCount[type] = count + 1;
@@ -1271,7 +1318,7 @@ public partial class CellBodyPlanEditorComponent :
 
             var modelHolder = placedModels[nextFreeCell++];
 
-            ShowCellTypeInModelHolder(modelHolder, hexWithData.Data!.ModifiableCellType, pos,
+            ShowCellTypeInModelHolder(modelHolder, GetEditedCellDataIfEdited(hexWithData.Data!.ModifiableCellType), pos,
                 hexWithData.Data!.Orientation);
 
             modelHolder.Visible = true;
@@ -1382,8 +1429,9 @@ public partial class CellBodyPlanEditorComponent :
 
         var type = CellTypeFromName(activeActionName!);
 
-        // TODO: make this a reversible action
-        var newType = (CellType)type.Clone();
+        // The player probably wants their latest edits to be in the duplicated cell type
+        // TODO: store name of the original cell type this is cloned from to make MP comparisons easier?
+        var newType = (CellType)GetEditedCellDataIfEdited(type).Clone();
         newType.CellTypeName = newTypeName;
 
         var data = new DuplicateDeleteCellTypeData(newType, false);
@@ -1427,11 +1475,36 @@ public partial class CellBodyPlanEditorComponent :
 
     private void RegenerateCellTypeIcon(CellType type)
     {
+        var newType = GetEditedCellDataIfEdited(type);
+
         foreach (var entry in cellTypeSelectionButtons)
         {
-            if (entry.Value.CellType == type)
+            if (entry.Value.CellType == newType || (entry.Value.CellType == type && newType == type))
             {
+                // Updating existing
                 entry.Value.ReportTypeChanged();
+            }
+            else if (entry.Value.CellType == type)
+            {
+                // Button is seeing its first edit (and needs to transform to be for the edit type)
+                GD.Print($"First edit of cell type {type.CellTypeName}");
+                var control = entry.Value;
+                control.CellType = newType;
+                control.MPCost = newType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+
+                // Name shouldn't be able to change here
+
+                // Also fix the tooltip
+                var tooltip = ToolTipManager.Instance.GetToolTipIfExists<CellTypeTooltip>(newType.CellTypeName,
+                    "cellTypes");
+
+                if (tooltip != null)
+                {
+                    tooltip.MutationPointCost =
+                        newType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+                }
+
+                control.ReportTypeChanged();
             }
         }
     }

@@ -79,10 +79,14 @@ public class MacroscopicMetaball : Metaball, IReadonlyMacroscopicMetaball, IArch
     /// <param name="oldToNewMapping">
     ///   Where to find new references to parent nodes. This will also add the newly cloned object here.
     /// </param>
+    /// <param name="overrideType">
+    ///   If not null, replaces the current cell type. Used for edit data holders in the macroscopic editor.
+    /// </param>
     /// <returns>The clone of this</returns>
-    public MacroscopicMetaball Clone(Dictionary<Metaball, MacroscopicMetaball> oldToNewMapping)
+    public MacroscopicMetaball Clone(Dictionary<Metaball, MacroscopicMetaball> oldToNewMapping,
+        CellType? overrideType = null)
     {
-        var clone = new MacroscopicMetaball(ModifiableCellType)
+        var clone = new MacroscopicMetaball(overrideType ?? ModifiableCellType)
         {
             Position = Position,
             ModifiableParent = ModifiableParent,
