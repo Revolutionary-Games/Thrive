@@ -6,18 +6,18 @@ using Godot;
 /// </summary>
 public static class MulticellularLayoutHelpers
 {
-    public static void UpdateGameplayLayout(CellLayout<CellTemplate> target,
-        IndividualHexLayout<CellTemplate> copySourceTo, IndividualHexLayout<CellTemplate> source,
+    public static void UpdateGameplayLayout(CellLayout<CellTemplate> targetGameplayLayout,
+        IndividualHexLayout<CellTemplate> targetEditorLayout, IndividualHexLayout<CellTemplate> source,
         List<Hex> hexTemporaryMemory, List<Hex> hexTemporaryMemory2)
     {
-        copySourceTo.Clear();
-        target.Clear();
+        targetEditorLayout.Clear();
+        targetGameplayLayout.Clear();
 
         foreach (var hexWithData in source.AsModifiable())
         {
             // Add the hex to the remembered editor layout before changing anything
             // This needs to clone to avoid modifying the original hex
-            copySourceTo.AddFast(hexWithData.Clone(), hexTemporaryMemory,
+            targetEditorLayout.AddFast(hexWithData.Clone(), hexTemporaryMemory,
                 hexTemporaryMemory2);
 
             var direction = new Vector2(0, -1);
@@ -36,10 +36,10 @@ public static class MulticellularLayoutHelpers
                 var positionVector = direction * distance;
                 hexWithData.Data!.Position = new Hex((int)positionVector.X, (int)positionVector.Y);
 
-                if (target.CanPlace(hexWithData.Data, hexTemporaryMemory,
+                if (targetGameplayLayout.CanPlace(hexWithData.Data, hexTemporaryMemory,
                         hexTemporaryMemory2))
                 {
-                    target.AddFast(hexWithData.Data, hexTemporaryMemory,
+                    targetGameplayLayout.AddFast(hexWithData.Data, hexTemporaryMemory,
                         hexTemporaryMemory2);
                     break;
                 }
