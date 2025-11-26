@@ -216,7 +216,11 @@ public partial class MetaballBodyEditorComponent :
 
         foreach (var metaball in (MetaballLayout<MacroscopicMetaball>)Editor.EditedSpecies.ModifiableBodyLayout)
         {
-            editedMetaballs.Add(metaball.Clone(metaballMapping));
+            // Immediately start edits so that metaball colour changes can apply immediately
+            // TODO: determine if it is a better idea to dynamically detect edits and then swap out all the old
+            // references
+            editedMetaballs.Add(metaball.Clone(metaballMapping,
+                GetEditedCellDataIfEdited(metaball.ModifiableCellType, true)));
         }
 
         newName = species.FormattedName;
