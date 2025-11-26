@@ -1261,7 +1261,7 @@ public partial class CellEditorComponent :
     public void UpdatePatchDependentBalanceData()
     {
         // Skip if opened in the multicellular editor
-        if (IsUninitializedMulticellular())
+        if (IsUninitializedAndIsMulticellular())
             return;
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
@@ -3191,7 +3191,7 @@ public partial class CellEditorComponent :
         autoEvoPredictionExplanationPopup.Hide();
     }
 
-    private bool IsUninitializedMulticellular()
+    private bool IsUninitializedAndIsMulticellular()
     {
         if ((IsMulticellularEditor || IsMacroscopicEditor) && editedMicrobeOrganelles.Organelles.Count < 1)
             return true;
