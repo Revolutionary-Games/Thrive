@@ -83,7 +83,8 @@ public class MacroscopicMetaball : Metaball, IReadonlyMacroscopicMetaball, IArch
     ///   If not null, replaces the current cell type. Used for edit data holders in the macroscopic editor.
     /// </param>
     /// <returns>The clone of this</returns>
-    public MacroscopicMetaball Clone(Dictionary<Metaball, MacroscopicMetaball> oldToNewMapping, CellType? overrideType = null)
+    public MacroscopicMetaball Clone(Dictionary<Metaball, MacroscopicMetaball> oldToNewMapping,
+        CellType? overrideType = null)
     {
         var clone = new MacroscopicMetaball(overrideType ?? ModifiableCellType)
         {
