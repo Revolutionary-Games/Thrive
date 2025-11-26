@@ -99,6 +99,13 @@ public partial class MetaballBodyEditorComponent :
 
     public override bool HasIslands => editedMetaballs.GetMetaballsNotTouchingParents().Any();
 
+    /// <summary>
+    ///   When not null, this is used to retrieve updated visuals during editing a species rather than reading the
+    ///   outdated data from the species object. This is the same approach as for
+    ///   <see cref="CellBodyPlanEditorComponent"/>.
+    /// </summary>
+    public CellTypeEditsHolder? CellTypeVisualsOverride { get; set; }
+
     protected override bool ForceHideHover => false;
 
     public override void _Ready()
@@ -223,6 +230,19 @@ public partial class MetaballBodyEditorComponent :
     {
         var editedSpecies = Editor.EditedSpecies;
 
+        // Similarly to cell body plan editor, we are the primary component responsible for applying cell edits
+        if (CellTypeVisualsOverride == null)
+        {
+            GD.PrintErr("Metaball body plan doesn't have visuals holder, so something went wrong and tissue type " +
+                "edits won't be applied");
+        }
+        else
+        {
+            // Apply all queued cell type edits
+            GD.Print("Applying tissue type edits to real cell data");
+            CellTypeVisualsOverride.ApplyChanges();
+        }
+
         editedSpecies.ModifiableBodyLayout.Clear();
 
         var metaballMapping = new Dictionary<Metaball, MacroscopicMetaball>();
@@ -263,7 +283,7 @@ public partial class MetaballBodyEditorComponent :
         var newTypeWouldBe =
             MacroscopicSpecies.CalculateMacroscopicTypeFromLayout(editedMetaballs, creatureScale);
 
-        // Disallow going back stages
+        // Disallow going backwards in stages
         if (newTypeWouldBe < Editor.EditedSpecies.MacroscopicType)
         {
             GD.Print("Reducing brain power would go back a stage, not allowing");
@@ -299,7 +319,7 @@ public partial class MetaballBodyEditorComponent :
         if (PreviewMode)
             return false;
 
-        // Can't open popup menu while moving something
+        // Can't open the popup menu while moving something
         if (MovingPlacedMetaball != null)
         {
             Editor.OnActionBlockedWhileMoving();
@@ -350,7 +370,8 @@ public partial class MetaballBodyEditorComponent :
 
         var positions = MouseHoverPositions.ToList();
 
-        var cellTemplates = positions.Select(p => new MacroscopicMetaball(cellType)
+        // To match what the placed metaballs do, this also gets the edited type
+        var cellTemplates = positions.Select(p => new MacroscopicMetaball(GetEditedCellDataIfEdited(cellType))
         {
             Position = p.Position,
             ModifiableParent = p.Parent,
@@ -502,6 +523,29 @@ public partial class MetaballBodyEditorComponent :
         metaballPopupMenu.EnableMoveOption = editedMetaballs.Count > 1;
     }
 
+    /// <summary>
+    ///   Gets the freshest, edited data of a cell type.
+    /// </summary>
+    /// <param name="cellType">Cell type to check</param>
+    /// <param name="alwaysStart">
+    ///   If true, then ensures an edit is started for the type so that the return value won't change if in the future
+    ///   an edit starts
+    /// </param>
+    /// <returns>Either an edited copy or the original if no edits are done on the type yet</returns>
+    private CellType GetEditedCellDataIfEdited(CellType cellType, bool alwaysStart = false)
+    {
+        if (CellTypeVisualsOverride == null)
+        {
+            GD.PrintErr("No cell type visual override set");
+            return cellType;
+        }
+
+        if (alwaysStart)
+            return CellTypeVisualsOverride.BeginOrContinueEdit(cellType);
+
+        return CellTypeVisualsOverride.GetCellType(cellType);
+    }
+
     private Vector3 FinalMetaballPosition(Vector3 position, MacroscopicMetaball parent, float? size = null)
     {
         size ??= metaballSize;
@@ -515,7 +559,7 @@ public partial class MetaballBodyEditorComponent :
         if (MovingPlacedMetaball == null && activeActionName == null)
             return;
 
-        var metaball = new MacroscopicMetaball(cellToPlace)
+        var metaball = new MacroscopicMetaball(GetEditedCellDataIfEdited(cellToPlace))
         {
             ModifiableParent = parent,
             Position = parent != null ? FinalMetaballPosition(position, parent) : position,
@@ -567,8 +611,8 @@ public partial class MetaballBodyEditorComponent :
                     return;
                 }
 
-                var placed = CreatePlaceActionIfPossible(metaball.ModifiableCellType, symmetryPosition, metaball.Size,
-                    symmetryParent);
+                var placed = CreatePlaceActionIfPossible(metaball.ModifiableCellType,
+                    symmetryPosition, metaball.Size, symmetryParent);
 
                 if (placed != null)
                 {
@@ -592,7 +636,9 @@ public partial class MetaballBodyEditorComponent :
     private EditorAction? CreatePlaceActionIfPossible(CellType cellType, Vector3 position, float size,
         MacroscopicMetaball parent)
     {
-        var metaball = new MacroscopicMetaball(cellType)
+        // TODO: should this always get the edited data? That ensures further colour updates work but is a bit
+        // inefficient (maybe)
+        var metaball = new MacroscopicMetaball(GetEditedCellDataIfEdited(cellType, true))
         {
             Position = FinalMetaballPosition(position, parent, size),
             ModifiableParent = parent,
@@ -792,12 +838,12 @@ public partial class MetaballBodyEditorComponent :
         {
             if (!cellTypeSelectionButtons.TryGetValue(cellType.CellTypeName, out var control))
             {
-                // Need new button
+                // Need a new button
                 control = cellTypeSelectionButtonScene.Instantiate<CellTypeSelection>();
                 control.SelectionGroup = cellTypeButtonGroup;
 
                 control.PartName = cellType.CellTypeName;
-                control.CellType = cellType;
+                control.CellType = GetEditedCellDataIfEdited(cellType);
                 control.Name = cellType.CellTypeName;
 
                 cellTypeSelectionList.AddItem(control);
@@ -817,7 +863,7 @@ public partial class MetaballBodyEditorComponent :
 
         bool clearSelection = false;
 
-        // Delete no longer needed buttons
+        // Delete no longer necessary buttons
         foreach (var key in cellTypeSelectionButtons.Keys.ToList())
         {
             if (Editor.EditedSpecies.ModifiableCellTypes.All(t => t.CellTypeName != key))
@@ -964,10 +1010,12 @@ public partial class MetaballBodyEditorComponent :
 
         var type = CellTypeFromName(activeActionName!);
 
-        // TODO: make this a reversible action
-        var newType = (CellType)type.Clone();
+        // The player probably wants their latest edits to be in the duplicated cell type
+        // TODO: store name of the original cell type this is cloned from to make MP comparisons easier?
+        var newType = (CellType)GetEditedCellDataIfEdited(type).Clone();
         newType.CellTypeName = newTypeName;
 
+        // TODO: make this into a reversible action (multicellular already has that)
         Editor.EditedSpecies.ModifiableCellTypes.Add(newType);
         GD.Print("New cell type created: ", newType.CellTypeName);
 
@@ -1014,11 +1062,25 @@ public partial class MetaballBodyEditorComponent :
 
     private void RegenerateCellTypeIcon(CellType type)
     {
+        var newType = GetEditedCellDataIfEdited(type);
+
         foreach (var entry in cellTypeSelectionButtons)
         {
-            if (entry.Value.CellType == type)
+            if (entry.Value.CellType == newType || (entry.Value.CellType == type && newType == type))
             {
+                // Updating existing
                 entry.Value.ReportTypeChanged();
+            }
+            else if (entry.Value.CellType == type)
+            {
+                // Button is seeing its first edit (and needs to transform to be for the edit type)
+                GD.Print($"First edit of cell type {type.CellTypeName}");
+                var control = entry.Value;
+                control.CellType = newType;
+
+                // Need to update the tooltip if it has a type-specific cost in the future
+
+                control.ReportTypeChanged();
             }
         }
     }
