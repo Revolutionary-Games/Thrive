@@ -17,7 +17,7 @@ using SharedBase.Archive;
 /// <typeparam name="TEditor">Type of editor this component is for</typeparam>
 [GodotAbstract]
 public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEditor>
-    where TEditor : IEditorWithPatches
+    where TEditor : class, IEditorWithPatches
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
