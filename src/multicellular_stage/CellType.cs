@@ -202,7 +202,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
 
         // Update membrane
         MembraneType = otherType.MembraneType;
-        Colour = Colour;
+        Colour = otherType.Colour;
         MembraneRigidity = otherType.MembraneRigidity;
     }
 
