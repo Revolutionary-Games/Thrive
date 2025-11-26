@@ -958,7 +958,7 @@ public partial class CellBodyPlanEditorComponent :
 
         bool clearSelection = false;
 
-        // Delete no longer needed buttons
+        // Delete no longer necessary buttons
         foreach (var key in cellTypeSelectionButtons.Keys.ToList())
         {
             if (Editor.EditedSpecies.ModifiableCellTypes.All(t => t.CellTypeName != key))
