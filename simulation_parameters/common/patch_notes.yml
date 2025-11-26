@@ -1120,3 +1120,25 @@
     - Updated System.IO.Hashing from 9.0.9 to 9.0.10
     - Updated many other C# dependencies and checking tools
     - Updated translations
+
+0.9.1.1:
+  IntroductionText: |
+    This is a small bugfix release to address the most pressing problems after the 0.9.1 release, which has been our most unstable version in a long while. This release should hopefully fix the prevalent crashing problem in 0.9.1 that was caused by the new division animation. And this also addresses many MP calculation related problems that should now make the microbe stage fully playable and the prototypes mostly working (we haven't had enough testing time to fully verify). There's also some balance changes included that we felt were small and important enough to put out now to get more feedback on them.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.9.1.1
+  PatchNotes:
+    - Fixed microbe division animation trying to apply for detached physics bodies. This is likely the cause of the flood of crash reports we received.
+    - Fixed various cases of the new MP system not working correctly
+    - Fixed the new MP system to work correctly for multiple cell type edits in multicellular and macroscopic
+    - Buffed prokaryotic toxin generation amount
+    - Buffed iron and chemosynthesis
+    - All multicellular species' hex layouts can now be previewed in the tooltips instead of just species that have been edited in the editor
+    - Fixed error on switching patch in the multicellular editor
+    - Fixed auto-evo calculating NaN energy gains for species (when a patch was empty of ammonia)
+    - Fixed cells spinning around when they thought they were taking hydrogen sulfide damage but actually weren't
+    - Fixed cell editor light level trying to apply too soon leading to major editor errors
+    - Fixed MP multiplier difficulty setting not working with the new MP system
+    - Fixed saving in wide locales with certain length strings
+    - Fixed saving not working when there is a cell remove action in the edit history of multicellular
+    - Suppressed already connected signal error popup (this is a years old engine bug)
+    - Updated some code dependencies and added some testing helper code
+    - Updated translations
