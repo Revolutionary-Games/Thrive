@@ -240,12 +240,6 @@ public partial class MetaballBodyEditorComponent :
             GD.PrintErr("Metaball body plan doesn't have visuals holder, so something went wrong and tissue type " +
                 "edits won't be applied");
         }
-        else
-        {
-            // Apply all queued cell type edits
-            GD.Print("Applying tissue type edits to real cell data");
-            CellTypeVisualsOverride.ApplyChanges();
-        }
 
         editedSpecies.ModifiableBodyLayout.Clear();
 
@@ -256,7 +250,17 @@ public partial class MetaballBodyEditorComponent :
         // objects
         foreach (var metaball in editedMetaballs.OrderBy(m => m.CalculateTreeDepth()))
         {
-            editedSpecies.ModifiableBodyLayout.Add(metaball.Clone(metaballMapping));
+            editedSpecies.ModifiableBodyLayout.Add(metaball.Clone(metaballMapping,
+                CellTypeVisualsOverride?.GetOriginalType(metaball.ModifiableCellType)));
+        }
+
+        // Apply type edits *after* the metaball layout so that the old mapping was still valid and reversed, the apply
+        // call clears the mapping
+        if (CellTypeVisualsOverride != null)
+        {
+            // Apply all queued cell type edits
+            GD.Print("Applying tissue type edits to real cell data");
+            CellTypeVisualsOverride.ApplyChanges();
         }
 
         var previousStage = editedSpecies.MacroscopicType;
