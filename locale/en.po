@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 11:08+0200\n"
-"PO-Revision-Date: 2025-08-21 15:25+0300\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
+"PO-Revision-Date: 2025-11-26 06:48+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -271,8 +271,8 @@ msgstr "Ascension Stage"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Mod assembly class is required when assembly is specified"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr "Mod assembly is required when auto harmony is enabled"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
+msgstr "Assembly is required when a mod class is specified"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Assume CPU has hyperthreading enabled"
@@ -1043,6 +1043,9 @@ msgstr "Very high"
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Very low"
 
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} consumption"
+
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(not enough to last the night which is {0} s long)"
 
@@ -1429,6 +1432,14 @@ msgstr ""
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Current Developers"
+
+msgid "CURRENT_DILUTION"
+msgstr "Current dilution event"
+
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr ""
+"Compounds have been diluted.\n"
+"Decreases concentration of:"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "CURRENT LOCATION"
@@ -2126,6 +2137,16 @@ msgstr ""
 "Raises carbon dioxide and sulfur levels.\n"
 "Spawns sulfur chunks."
 
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr ""
+"Sediments have been washed from land into coastal waters, enriching them.\n"
+"Increases concentration of:"
+
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr ""
+"Compounds have been carried up from the ocean floor, enriching the waters above.\n"
+"Increases concentration of:"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evolutionary Tree"
 
@@ -2387,6 +2408,12 @@ msgstr "Fossilise this species (already fossilised)"
 
 msgid "FOSSILISE"
 msgstr "Fossilise"
+
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Fossil Data Load Failed"
+
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "The fossil file could not be read because the data was either outdated or invalid"
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Fossil Deletion Failed"
@@ -2686,6 +2713,9 @@ msgstr "ID Number"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(depending on rendering mode and upscaling not all methods are available)"
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr "Ignore further errors"
+
 msgid "IMAGE_FILE_TYPES"
 msgstr "Supported Image Files"
 
@@ -2784,6 +2814,12 @@ msgstr "Inspector"
 
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Visit our Instagram page"
+
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "Instant kill protection"
+
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(damage that would kill a player with high health leaves you with a small amount of health instead)"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Activate Ascension Gate"
@@ -2899,18 +2935,6 @@ msgstr ":"
 
 msgid "JANUARY"
 msgstr "January"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON debug mode:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Always"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automatically"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Never"
 
 msgid "JULY"
 msgstr "July"
@@ -3610,6 +3634,9 @@ msgstr "Predation Effectiveness Pressure"
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Predator Root Pressure"
 
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reproduction Compound Usage Pressure:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr "Root Pressure"
 
@@ -3910,6 +3937,9 @@ msgstr "Modify Type"
 msgid "MODS"
 msgstr "Mods"
 
+msgid "MODS_ARE_ENABLED"
+msgstr "Mods Are Enabled"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Installed mods have been detected, but there are no enabled mods.\n"
@@ -3945,9 +3975,6 @@ msgstr "{0}: mod's assembly unload method call failed with an exception: {1}"
 
 msgid "MOD_AUTHOR"
 msgstr "Mod Author:"
-
-msgid "MOD_AUTO_HARMONY"
-msgstr "Uses Auto Harmony:"
 
 msgid "MOD_CREATION_FAILED"
 msgstr "Mod Creation Failed"
@@ -4574,6 +4601,9 @@ msgstr "Other"
 msgid "OUR_WIKI"
 msgstr "our Wiki"
 
+msgid "OUTDATED_ITEM"
+msgstr "OUTDATED"
+
 msgid "OUTDATED_NOTICE"
 msgstr "This page or section contains outdated information. This often happens when plans are changed after something has been written."
 
@@ -5155,6 +5185,9 @@ msgstr "Rotate right"
 msgid "ROTATION_COLON"
 msgstr "Rotation:"
 
+msgid "RUNOFF_EVENT"
+msgstr "Runoff event"
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Run auto-evo during gameplay"
 
@@ -5222,12 +5255,6 @@ msgstr "Cheats Used"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Deleting this save cannot be undone, are you sure you want to permanently delete {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "When reporting a save error please include [color=#3796e1][url={0}]{1}[/url][/color] from the [color=#3796e1][url={2}]logs folder[/url][/color] as that is critical information for Thrive developers to figure out what the saving error was. Without that file it will be extremely difficult to diagnose and fix this problem."
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Please make sure JSON debug mode is not disabled before reporting this save error. Automatic JSON debug mode should have created an extra file called {0} in the [color=#3796e1][url={1}]logs folder[/url][/color]. That file contains critical information for Thrive developers to figure out what the saving error was."
 
 msgid "SAVE_FAILED"
 msgstr "Save failed"
@@ -5614,6 +5641,12 @@ msgstr ""
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "has mutated"
 
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Species in current patch"
+
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Species in other patches"
+
 msgid "SPECIES_LIST"
 msgstr "Species List"
 
@@ -5960,19 +5993,19 @@ msgid "THERMOPLAST"
 msgstr "Thermoplast"
 
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr "The thermoplast is a double membrane structure containing thermosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the thermoplast are able to use the energy of rising [thrive:compound type=\"temperature\"][/thrive:compound] in their surroundings to produce [thrive:compound type=\"atp\"][/thrive:compound] from water in a process called [b]thermosynthesis[/b]. The rate of its [thrive:compound type=\"atp\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound] delta."
+msgstr "The thermoplast is a double membrane structure containing thermosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the thermoplast are able to use the energy of rising [thrive:compound type=\"temperature\"][/thrive:compound] in their surroundings to produce [thrive:compound type=\"glucose\"][/thrive:compound] in a process called [b]thermosynthesis[/b]. The rate of its [thrive:compound type=\"glucose\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound] delta."
 
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Uses rising temperatures to produce [thrive:compound type=\"atp\"][/thrive:compound]. Rate scales with increase in [thrive:compound type=\"temperature\"][/thrive:compound]. Use [b]thermal vision[/b] to find hot and cold areas."
+msgstr "Uses rising temperatures to produce [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with increase in [thrive:compound type=\"temperature\"][/thrive:compound]. Use [b]thermal vision[/b] to find hot and cold areas."
 
 msgid "THERMOSYNTHASE"
 msgstr "Thermosynthase"
 
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "Thermosynthase is a protein that uses thermal convection to change its form, allowing it to fold and bind to ADP when heating up, converting this to [thrive:compound type=\"atp\"][/thrive:compound] in a process called [b]thermosynthesis[/b]. The protein then unfolds as it cools, allowing it to repeat the cycle when the [thrive:compound type=\"temperature\"][/thrive:compound] increases again. The rate of its [thrive:compound type=\"atp\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound] delta."
+msgstr "Thermosynthase is a protein that uses thermal convection to change its form, converting this to [thrive:compound type=\"glucose\"][/thrive:compound] in a process called [b]thermosynthesis[/b]. The protein then unfolds as it cools, allowing it to repeat the cycle when the [thrive:compound type=\"temperature\"][/thrive:compound] increases again. The rate of its [thrive:compound type=\"glucose\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound] delta."
 
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Uses rising temperatures to produce [thrive:compound type=\"atp\"][/thrive:compound]. Rate scales with increase in [thrive:compound type=\"temperature\"][/thrive:compound]. Use [b]thermal vision[/b] to find hot and cold areas."
+msgstr "Uses rising temperatures to produce [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with increase in [thrive:compound type=\"temperature\"][/thrive:compound]. Use [b]thermal vision[/b] to find hot and cold areas."
 
 msgid "THERMOSYNTHESIS"
 msgstr "Thermosynthesis"
@@ -6659,6 +6692,17 @@ msgstr "Undo"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Undo the last action"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr "Unhandled Errors: {0}"
+
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr ""
+"The game has run into an unhandled error. It may be possible to continue, but the errors may get worse. The safest option is to fully restart the game and load the latest save. It may be possible to make a save now.\n"
+"If you report this error, please use the button to copy the error and include that in your report."
+
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "An Unhandled Error Happened"
+
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Construct"
 
@@ -6808,6 +6852,9 @@ msgstr "Upscaling method:"
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr "FSR sharpening"
 
+msgid "UPWELLING_EVENT"
+msgstr "Upwelling event"
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licenses And Used Libraries"
 
@@ -6816,12 +6863,6 @@ msgstr "Used renderer:"
 
 msgid "USES_FEATURE"
 msgstr "Yes"
-
-msgid "USE_AUTO_HARMONY"
-msgstr "Use Auto Harmony Loading"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Automatically load Harmony patches from Assembly (doesn't require specifying mod class)"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Use a custom username"
@@ -8948,9 +8989,11 @@ msgstr ""
 
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr ""
-"[thrive:compound type=\"iron\"][/thrive:compound] is a valuable alternative resource to use instead of [thrive:compound type=\"glucose\"][/thrive:compound] since it doesn't decay in the environment until much later. Rust-eating cells are likely to enjoy plentiful nutrients in patches where [thrive:compound type=\"iron\"][/thrive:compound] is abundant.\n"
+"[thrive:compound type=\"iron\"][/thrive:compound] is a valuable alternative resource to use instead of [thrive:compound type=\"glucose\"][/thrive:compound] since it doesn't decay in the environment until much later. [thrive:compound type=\"iron\"][/thrive:compound] is also directly transferred into ATP, so it can be a relatively cheap way to create an energetic organism early on in the Microbe Stage. However, because [thrive:compound type=\"iron\"][/thrive:compound] is burnt through rather quickly, players must be mindful to constantly be near larger cloud-emitting chunks, and must budget this resource very carefully if they choose to play as a more motile organism.\n"
 "\n"
-"Ingesting [thrive:compound type=\"iron\"][/thrive:compound] chunks may be tempting, but often you'll get more [thrive:compound type=\"iron\"][/thrive:compound] by holding near a bigger chunk as it produces more of the compound in cloud form. However, an ingested [thrive:compound type=\"iron\"][/thrive:compound] chunk allows you to carry more [thrive:compound type=\"iron\"][/thrive:compound] with you for longer journeys."
+"Storage can be a very useful attribute for iron-oxidizing organisms to utilize, as it allows them to store more of the rapidly-depleting compound. Size is also useful, as large organisms are able to ingest smaller [thrive:compound type=\"iron\"][/thrive:compound] chunks floating around. This will give you more freedom in movement, as you'll be carrying a chunk of [thrive:compound type=\"iron\"][/thrive:compound] with you as you explore your environment. [b] Cytoplasm [/b] is a very beneficial part to consider for iron-oxidizing organisms, as it allows you to cheaply build up size and storage. [b] Vacuoles [/b] are also very useful once you become a eukaryote. \n"
+"\n"
+"[thrive:compound type=\"iron\"][/thrive:compound] depletes more quickly as your organism places more demanding parts. It will also start to disappear with the rise of [b]Oxygen[/b]. As such, players who utilize [thrive:compound type=\"iron\"][/thrive:compound] must be vigilant as oxygen begins to dominate their atmosphere, and should consider aerobic respiration if they wish to create highly-efficient eukaryotes."
 
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "No upgrades."
@@ -9480,6 +9523,36 @@ msgstr "Zoom in"
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
 
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Uses Auto Harmony:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Use Auto Harmony Loading"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Automatically load Harmony patches from Assembly (doesn't require specifying mod class)"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON debug mode:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Always"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automatically"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Never"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "When reporting a save error please include [color=#3796e1][url={0}]{1}[/url][/color] from the [color=#3796e1][url={2}]logs folder[/url][/color] as that is critical information for Thrive developers to figure out what the saving error was. Without that file it will be extremely difficult to diagnose and fix this problem."
+
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Please make sure JSON debug mode is not disabled before reporting this save error. Automatic JSON debug mode should have created an extra file called {0} in the [color=#3796e1][url={1}]logs folder[/url][/color]. That file contains critical information for Thrive developers to figure out what the saving error was."
+
+#~ msgid "OUTDATED"
+#~ msgstr "OUTDATED"
+
 #~ msgid "SULFIDE_LEVELS"
 #~ msgstr "Sulfide level"
 
@@ -9583,9 +9656,6 @@ msgstr "Zoom out"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Consider patches with up to this many species having low biodiversity"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Maximum species in a patch before forced extinctions"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Initial population for biodiversity-increasing species"
@@ -9853,9 +9923,6 @@ msgstr "Zoom out"
 
 #~ msgid "INTO"
 #~ msgstr "into"
-
-#~ msgid "OXYTOXY"
-#~ msgstr "OxyToxy"
 
 #~ msgid "DOT_CAN_RELEASE"
 #~ msgstr ". Can release"
@@ -10257,3 +10324,6 @@ msgstr "Zoom out"
 
 #~ msgid "TO_INCREASE_THE_MOVEMENT"
 #~ msgstr "to increase the movement"
+
+#~ msgid "OXYTOXY"
+#~ msgstr "OxyToxy"

@@ -105,6 +105,7 @@ public partial class FadeOutActionSystem : BaseSystem<World, float>
             // accessing random components from a random system that happens to run the custom callback
 
             timedLife.FadeTimeRemaining = actions.FadeTime;
+            timedLife.FadeTimeRemainingSet = true;
 
             if (actions.DisableCollisions)
                 PerformPhysicsOperations(entity, actions.DisableCollisions);

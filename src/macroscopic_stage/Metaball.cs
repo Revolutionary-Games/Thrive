@@ -1,10 +1,11 @@
 ﻿using System;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
-[UseThriveConverter]
-public abstract class Metaball
+public abstract class Metaball : IReadOnlyMetaball, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION_BASE = 1;
+
     public Vector3 Position { get; set; }
 
     /// <summary>
@@ -15,26 +16,48 @@ public abstract class Metaball
     /// <summary>
     ///   The radius of the metaball
     /// </summary>
-    [JsonIgnore]
     public float Radius => Size * 0.5f;
 
     /// <summary>
     ///   Volume of the metaball sphere. Do not scale the result returned from this, use <see cref="GetVolume"/>
     ///   instead.
     /// </summary>
-    [JsonIgnore]
     public float Volume => GetVolume();
 
     /// <summary>
     ///   For animation and convolution surfaces we need to know the structure of metaballs
     /// </summary>
-    public Metaball? Parent { get; set; }
+    public virtual Metaball? ModifiableParent { get; set; }
+
+    public virtual IReadOnlyMetaball? Parent => ModifiableParent;
 
     /// <summary>
     ///   Basic rendering of the metaballs for now just uses a colour
     /// </summary>
-    [JsonIgnore]
     public abstract Color Colour { get; }
+
+    public abstract ushort CurrentArchiveVersion { get; }
+    public abstract ArchiveObjectType ArchiveObjectType { get; }
+    public virtual bool CanBeReferencedInArchive => false;
+
+    public abstract void WriteToArchive(ISArchiveWriter writer);
+
+    public virtual void WriteBasePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(Position);
+        writer.Write(Size);
+        writer.WriteObjectOrNull(ModifiableParent);
+    }
+
+    public virtual void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_BASE or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_BASE);
+
+        Position = reader.ReadVector3();
+        Size = reader.ReadFloat();
+        ModifiableParent = reader.ReadObjectOrNull<Metaball>();
+    }
 
     /// <summary>
     ///   Checks if the data of this ball matches another (parent shouldn't be checked). Used for action replacement
@@ -55,10 +78,10 @@ public abstract class Metaball
     /// <returns>The number of hops to the root metaball</returns>
     public int CalculateTreeDepth()
     {
-        if (Parent == null)
+        if (ModifiableParent == null)
             return 0;
 
-        return 1 + Parent.CalculateTreeDepth();
+        return 1 + ModifiableParent.CalculateTreeDepth();
     }
 
     /// <summary>
@@ -68,21 +91,21 @@ public abstract class Metaball
     /// <returns>True if the given metaball is this metaball's ancestor</returns>
     public bool HasAncestor(Metaball potentialAncestor)
     {
-        if (Parent == null)
+        if (ModifiableParent == null)
             return false;
 
-        if (Parent == potentialAncestor)
+        if (ModifiableParent == potentialAncestor)
             return true;
 
-        return Parent.HasAncestor(potentialAncestor);
+        return ModifiableParent.HasAncestor(potentialAncestor);
     }
 
     public Vector3? DirectionToParent()
     {
-        if (Parent == null)
+        if (ModifiableParent == null)
             return null;
 
-        var vectorToParent = Position - Parent.Position;
+        var vectorToParent = Position - ModifiableParent.Position;
         return vectorToParent.Normalized();
     }
 
@@ -93,27 +116,28 @@ public abstract class Metaball
 
     public Vector3 CalculatePositionTouchingParent(Vector3? precomputedDirection = null)
     {
-        if (Parent == null)
+        if (ModifiableParent == null)
             throw new InvalidOperationException("Metaball must have a parent to position next to it");
 
         precomputedDirection ??=
             DirectionToParent() ?? throw new Exception("direction to parent should have returned a value");
 
-        float wantedDistance = Parent.Radius + Radius;
+        float wantedDistance = ModifiableParent.Radius + Radius;
 
         var offset = precomputedDirection.Value * wantedDistance;
 
-        return Parent.Position + offset;
+        return ModifiableParent.Position + offset;
     }
 
     public override int GetHashCode()
     {
-        return Position.GetHashCode() ^ Size.GetHashCode() * 19 ^ (Parent?.Position.GetHashCode() ?? 6469) * 23;
+        return Position.GetHashCode() ^ Size.GetHashCode() * 19 ^
+            (ModifiableParent?.Position.GetHashCode() ?? 6469) * 23;
     }
 
     public override string ToString()
     {
-        if (Parent == null)
+        if (ModifiableParent == null)
             return $"Root Metaball at {Position}";
 
         return $"Metaball at {Position}";

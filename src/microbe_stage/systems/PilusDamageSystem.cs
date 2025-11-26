@@ -48,7 +48,7 @@ public partial class PilusDamageSystem : BaseSystem<World, float>
             if (collision.SecondEntity == Entity.Null)
                 continue;
 
-            if (!collision.SecondEntity.Has<MicrobePhysicsExtraData>())
+            if (!collision.SecondEntity.IsAliveAndHas<MicrobePhysicsExtraData>())
                 continue;
 
             ref var otherExtraData = ref collision.SecondEntity.Get<MicrobePhysicsExtraData>();
@@ -101,7 +101,7 @@ public partial class PilusDamageSystem : BaseSystem<World, float>
         if (ourExtraData.IsSubShapeInjectisomeIfIsPilus(collision.FirstSubShapeData))
         {
             // Injectisome attack
-            targetHealth.DealMicrobeDamage(ref collision.SecondEntity.Get<CellProperties>(),
+            targetHealth.DealMicrobeDamage(ref collision.SecondEntity.Get<CellProperties>(), collision.SecondEntity,
                 Constants.INJECTISOME_BASE_DAMAGE, "injectisome",
                 HealthHelpers.GetInstantKillProtectionThreshold(targetEntity));
 
@@ -120,8 +120,8 @@ public partial class PilusDamageSystem : BaseSystem<World, float>
 
         var previousHealth = targetHealth.CurrentHealth;
 
-        targetHealth.DealMicrobeDamage(ref collision.SecondEntity.Get<CellProperties>(), damage, "pilus",
-            HealthHelpers.GetInstantKillProtectionThreshold(targetEntity));
+        targetHealth.DealMicrobeDamage(ref collision.SecondEntity.Get<CellProperties>(), collision.SecondEntity, damage,
+            "pilus", HealthHelpers.GetInstantKillProtectionThreshold(targetEntity));
 
         if (playerDealsDamage && previousHealth > 0 && targetHealth.CurrentHealth <= 0 && !targetHealth.Invulnerable)
         {

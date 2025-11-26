@@ -3,15 +3,16 @@
 using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Allows control over the few (animation) shader parameters available in the microbe stage for some entities.
 ///   Requires <see cref="EntityMaterial"/> to apply.
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct MicrobeShaderParameters
+public struct MicrobeShaderParameters : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Dissolve effect value, range [0, 1]. 0 is default not dissolved state
     /// </summary>
@@ -32,12 +33,34 @@ public struct MicrobeShaderParameters
     /// <summary>
     ///   Always reset this to false after changing something to have the changes apply
     /// </summary>
-    [JsonIgnore]
     public bool ParametersApplied;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMicrobeShaderParameters;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(DissolveValue);
+        writer.Write(DissolveAnimationSpeed);
+        writer.Write(PlayAnimations);
+    }
 }
 
 public static class MicrobeShaderParametersHelpers
 {
+    public static MicrobeShaderParameters ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > MicrobeShaderParameters.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, MicrobeShaderParameters.SERIALIZATION_VERSION);
+
+        return new MicrobeShaderParameters
+        {
+            DissolveValue = reader.ReadFloat(),
+            DissolveAnimationSpeed = reader.ReadFloat(),
+            PlayAnimations = reader.ReadBool(),
+        };
+    }
+
     /// <summary>
     ///   Starts a dissolve animation on an entity. If <see cref="addTimedLifeIfMissing"/> this also adds a timed
     ///   life component (when missing on the entity) to delete the entity once the animation is complete

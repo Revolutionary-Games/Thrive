@@ -5,6 +5,7 @@ using Arch.Core.Extensions;
 using Arch.System;
 using Components;
 using Godot;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
@@ -28,6 +29,11 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
     private Node visualsParent = null!;
 #pragma warning restore CA2213
+
+    public override ushort CurrentArchiveVersion => 1;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        throw new NotSupportedException("This class is not meant t obe saved");
 
     /// <summary>
     ///   Initialises this visual simulation for use
@@ -138,10 +144,10 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         var dummySpawnSystem = new DummySpawnSystem();
 
-        int count = species.Cells.Count;
+        int count = species.ModifiableGameplayCells.Count;
         for (int i = 1; i < count; ++i)
         {
-            var cell = species.Cells[i];
+            var cell = species.ModifiableGameplayCells[i];
 
             DelayedColonyOperationSystem.CreateDelayAttachedMicrobe(ref foundEntity.Get<WorldPosition>(),
                 in foundEntity, i, cell, species, this, dummyEnvironment, recorder, dummySpawnSystem, false);
@@ -362,10 +368,10 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         Vector3 center = Vector3.Zero;
 
-        int count = species.Cells.Count;
+        int count = species.ModifiableGameplayCells.Count;
         for (int i = 0; i < count; ++i)
         {
-            center += Hex.AxialToCartesian(species.Cells[i].Position);
+            center += Hex.AxialToCartesian(species.ModifiableGameplayCells[i].Position);
         }
 
         center /= count;
@@ -416,6 +422,11 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     public override bool HasSystemsWithPendingOperations()
     {
         return microbeVisualsSystem.HasPendingOperations();
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        throw new NotSupportedException("This class is not meant to be saved");
     }
 
     protected override void InitSystemsEarly()

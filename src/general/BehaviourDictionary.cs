@@ -1,24 +1,24 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Defines a species' personality by holding behaviour properties
 /// </summary>
-[JsonObject(MemberSerialization.OptIn)]
-public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, float>, ICloneable
+public class BehaviourDictionary : IArchivable, IReadOnlyBehaviourDictionary
 {
-    private static IEnumerable<BehaviouralValueType> keys = new[]
-    {
+    public const ushort SERIALIZATION_VERSION = 1;
+
+    private static IEnumerable<BehaviouralValueType> keys =
+    [
         BehaviouralValueType.Aggression,
         BehaviouralValueType.Opportunism,
         BehaviouralValueType.Fear,
         BehaviouralValueType.Activity,
         BehaviouralValueType.Focus,
-    };
+    ];
 
-    [JsonConstructor]
     public BehaviourDictionary()
     {
     }
@@ -31,34 +31,34 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
         }
     }
 
-    [JsonProperty]
     public float Aggression { get; set; } = Constants.DEFAULT_BEHAVIOUR_VALUE;
 
-    [JsonProperty]
     public float Opportunism { get; set; } = Constants.DEFAULT_BEHAVIOUR_VALUE;
 
-    [JsonProperty]
     public float Fear { get; set; } = Constants.DEFAULT_BEHAVIOUR_VALUE;
 
-    [JsonProperty]
     public float Activity { get; set; } = Constants.DEFAULT_BEHAVIOUR_VALUE;
 
-    [JsonProperty]
     public float Focus { get; set; } = Constants.DEFAULT_BEHAVIOUR_VALUE;
 
-    [JsonIgnore]
     public int Count => 5;
 
     public IEnumerable<BehaviouralValueType> Keys => keys;
 
-    public IEnumerable<float> Values => new[]
-    {
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.BehaviourDictionary;
+
+    public bool CanBeReferencedInArchive => false;
+
+    public IEnumerable<float> Values =>
+    [
         Aggression,
         Opportunism,
         Fear,
         Activity,
         Focus,
-    };
+    ];
 
     public float this[BehaviouralValueType key]
     {
@@ -105,6 +105,30 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
             BehaviouralValueType.Focus => Localization.Translate("BEHAVIOUR_FOCUS"),
             _ => type.ToString(),
         };
+    }
+
+    public static BehaviourDictionary ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new BehaviourDictionary
+        {
+            Aggression = reader.ReadFloat(),
+            Opportunism = reader.ReadFloat(),
+            Fear = reader.ReadFloat(),
+            Activity = reader.ReadFloat(),
+            Focus = reader.ReadFloat(),
+        };
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(Aggression);
+        writer.Write(Opportunism);
+        writer.Write(Fear);
+        writer.Write(Activity);
+        writer.Write(Focus);
     }
 
     public IEnumerator<KeyValuePair<BehaviouralValueType, float>> GetEnumerator()
@@ -161,24 +185,19 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
                 value = Focus;
                 break;
             default:
-                value = default;
+                value = 0;
                 return false;
         }
 
         return true;
     }
 
-    public object Clone()
+    public void CopyFrom(IReadOnlyBehaviourDictionary other)
     {
-        return CloneObject();
-    }
-
-    public BehaviourDictionary CloneObject()
-    {
-        var obj = new BehaviourDictionary();
-        foreach (var pair in this)
-            obj[pair.Key] = pair.Value;
-
-        return obj;
+        Aggression = other.Aggression;
+        Opportunism = other.Opportunism;
+        Fear = other.Fear;
+        Activity = other.Activity;
+        Focus = other.Focus;
     }
 }

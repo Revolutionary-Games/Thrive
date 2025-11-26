@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using Saving.Serializers;
+using SharedBase.Archive;
 
-public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData
+public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData, IMetaballAction
     where TMetaball : Metaball
 {
     public TMetaball MovedMetaball;
@@ -17,7 +18,6 @@ public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData
     /// </summary>
     public List<MetaballMoveActionData<TMetaball>>? MovedChildMetaballs;
 
-    [JsonConstructor]
     public MetaballMoveActionData(TMetaball metaball, Vector3 oldPosition, Vector3 newPosition, Metaball? oldParent,
         Metaball? newParent, List<MetaballMoveActionData<TMetaball>>? movedChildMetaballs)
     {
@@ -28,6 +28,11 @@ public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData
         NewParent = newParent;
         MovedChildMetaballs = movedChildMetaballs;
     }
+
+    public override ushort CurrentArchiveVersion => MetaballActionDataSerializer.SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.MetaballMoveActionData;
 
     public static List<MetaballMoveActionData<TMetaball>>? CreateMovementActionForChildren(TMetaball movedMetaball,
         Vector3 oldPosition, Vector3 newPosition, MetaballLayout<TMetaball> descendantData)
@@ -55,7 +60,7 @@ public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData
                 continue;
 
             result.Add(new MetaballMoveActionData<TMetaball>(descendant, descendant.Position,
-                descendantPosition, descendant.Parent, descendant.Parent, null));
+                descendantPosition, descendant.ModifiableParent, descendant.ModifiableParent, null));
         }
 
         return result;
@@ -75,63 +80,25 @@ public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData
             m.NewPosition + offset, m.OldParent, m.NewParent, null)).ToList();
     }
 
-    protected override double CalculateBaseCostInternal()
+    public override void WriteToArchive(ISArchiveWriter writer)
     {
-        if (OldPosition.DistanceSquaredTo(NewPosition) < MathUtils.EPSILON && OldParent == NewParent)
-            return 0;
+        writer.WriteObject(MovedMetaball);
+        writer.Write(OldPosition);
+        writer.Write(NewPosition);
+        writer.WriteObjectOrNull(OldParent);
+        writer.WriteObjectOrNull(NewParent);
+        writer.WriteObjectOrNull(MovedChildMetaballs);
 
-        return Constants.METABALL_MOVE_COST;
+        writer.Write(SERIALIZATION_VERSION_EDITOR);
+        base.WriteToArchive(writer);
     }
 
-    protected override (double Cost, double RefundCost) CalculateCostInternal(
-        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
+    public void FinishBaseLoad(ISArchiveReader reader, ushort version)
     {
-        var cost = CalculateBaseCostInternal();
-        double refund = 0;
+        if (version == 0 || version > CurrentArchiveVersion)
+            throw new InvalidArchiveVersionException(version, CurrentArchiveVersion);
 
-        var count = history.Count;
-        for (int i = 0; i < insertPosition && i < count; ++i)
-        {
-            var other = history[i];
-
-            // If this metaball got moved in the same session again
-            if (other is MetaballMoveActionData<TMetaball> moveActionData &&
-                moveActionData.MovedMetaball.MatchesDefinition(MovedMetaball))
-            {
-                // If this metaball got moved back and forth
-                if (OldPosition.DistanceSquaredTo(moveActionData.NewPosition) < MathUtils.EPSILON &&
-                    NewPosition.DistanceSquaredTo(moveActionData.OldPosition) < MathUtils.EPSILON &&
-                    OldParent == moveActionData.NewParent && NewParent == moveActionData.OldParent)
-                {
-                    cost = 0;
-                    refund += moveActionData.GetCalculatedSelfCost();
-                    continue;
-                }
-
-                // If this metaball got moved twice
-                if ((moveActionData.NewPosition.DistanceSquaredTo(OldPosition) < MathUtils.EPSILON &&
-                        moveActionData.NewParent == OldParent) ||
-                    (NewPosition.DistanceSquaredTo(moveActionData.OldPosition) < MathUtils.EPSILON &&
-                        NewParent == moveActionData.OldParent))
-                {
-                    cost = 0;
-                    continue;
-                }
-            }
-
-            // If this metaball got placed in this session
-            if (other is MetaballPlacementActionData<TMetaball> placementActionData &&
-                placementActionData.PlacedMetaball.MatchesDefinition(MovedMetaball) &&
-                placementActionData.Position == OldPosition &&
-                placementActionData.Parent == OldParent)
-            {
-                cost = 0;
-            }
-
-            // Moves shouldn't happen after a remove, so we don't check that here
-        }
-
-        return (cost, refund);
+        ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)

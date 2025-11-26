@@ -105,7 +105,7 @@ public partial class SpaceStructureInfoPopup : CustomWindow
 
             if (disabled != null)
             {
-                if (button.Disabled != true)
+                if (!button.Disabled)
                 {
                     button.Disabled = true;
                     button.Text = disabled;

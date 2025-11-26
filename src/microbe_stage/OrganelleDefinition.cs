@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
-using Saving.Serializers;
+using SharedBase.Archive;
 using ThriveScriptsShared;
 using UnlockConstraints;
 
@@ -13,15 +12,14 @@ using UnlockConstraints;
 /// </summary>
 /// <remarks>
 ///   <para>
-///     Actual concrete placed organelles are PlacedOrganelle
+///     Actual, concrete placed organelles are PlacedOrganelle
 ///     objects. There should be only a single OrganelleTemplate
 ///     instance in existence for each organelle defined in
 ///     organelles.json.
 ///   </para>
 /// </remarks>
-[TypeConverter($"Saving.Serializers.{nameof(OrganelleDefinitionStringConverter)}")]
 #pragma warning disable CA1001 // Owns Godot resource that is fine to stay for the program lifetime
-public class OrganelleDefinition : IRegistryType
+public class OrganelleDefinition : RegistryType
 #pragma warning restore CA1001
 {
     /// <summary>
@@ -116,6 +114,7 @@ public class OrganelleDefinition : IRegistryType
     /// <summary>
     ///   Enzymes contained in this organelle
     /// </summary>
+    [JsonIgnore]
     public Dictionary<Enzyme, int> Enzymes = new();
 
     /// <summary>
@@ -278,8 +277,6 @@ public class OrganelleDefinition : IRegistryType
     [JsonIgnore]
     public Vector3 ModelOffset => modelOffset;
 
-    public string InternalName { get; set; } = null!;
-
     // Faster checks for specific components
     public bool HasPilusComponent { get; private set; }
     public bool HasMovementComponent { get; private set; }
@@ -329,6 +326,15 @@ public class OrganelleDefinition : IRegistryType
     public string UntranslatedName =>
         untranslatedName ?? throw new InvalidOperationException("Translations not initialized");
 
+    [JsonIgnore]
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.OrganelleDefinition;
+
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        return SimulationParameters.Instance.GetOrganelleType(ReadInternalName(reader, version));
+    }
+
     /// <summary>
     ///   Gets the visual scene that should be used to represent this organelle (if there is one)
     /// </summary>
@@ -341,7 +347,7 @@ public class OrganelleDefinition : IRegistryType
     ///   boxing)
     /// </param>
     /// <returns>True when this has a scene</returns>
-    public bool TryGetGraphicsScene(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo modelInfo)
+    public bool TryGetGraphicsScene(IReadOnlyOrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo modelInfo)
     {
         if (TryGetGraphicsForUpgrade(upgrades, out modelInfo))
         {
@@ -357,7 +363,7 @@ public class OrganelleDefinition : IRegistryType
         return true;
     }
 
-    public bool TryGetCorpseChunkGraphics(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo modelInfo)
+    public bool TryGetCorpseChunkGraphics(IReadOnlyOrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo modelInfo)
     {
         if (TryGetGraphicsForUpgrade(upgrades, out modelInfo))
         {
@@ -394,7 +400,7 @@ public class OrganelleDefinition : IRegistryType
         return false;
     }
 
-    public Vector3 GetUpgradesSizeModification(OrganelleUpgrades? upgrades)
+    public Vector3 GetUpgradesSizeModification(IReadOnlyOrganelleUpgrades? upgrades)
     {
         var scale = Constants.DEFAULT_HEX_SIZE;
         var scaleZ = scale;
@@ -492,7 +498,7 @@ public class OrganelleDefinition : IRegistryType
     ///   upgrade affects the processes
     /// </summary>
     /// <returns>Upgraded processes</returns>
-    public List<TweakedProcess>? GetUpgradeProcesses(OrganelleUpgrades upgrades)
+    public List<TweakedProcess>? GetUpgradeProcesses(IReadOnlyOrganelleUpgrades upgrades)
     {
         // Early return for types that don't support such upgrades for efficiency
         if (!hasProcessAffectingUpgrades)
@@ -513,7 +519,7 @@ public class OrganelleDefinition : IRegistryType
         return null;
     }
 
-    public void Check(string name)
+    public override void Check(string name)
     {
         if (string.IsNullOrEmpty(Name))
         {
@@ -795,7 +801,7 @@ public class OrganelleDefinition : IRegistryType
         }
     }
 
-    public void ApplyTranslations()
+    public override void ApplyTranslations()
     {
         TranslationHelper.ApplyTranslations(this);
 
@@ -890,7 +896,8 @@ public class OrganelleDefinition : IRegistryType
             ToleranceModifierTemperatureRange != 0 || ToleranceModifierPressureRange != 0;
     }
 
-    private bool TryGetGraphicsForUpgrade(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo upgradeScene)
+    private bool TryGetGraphicsForUpgrade(IReadOnlyOrganelleUpgrades? upgrades,
+        out LoadedSceneWithModelInfo upgradeScene)
     {
         if (upgrades == null)
         {

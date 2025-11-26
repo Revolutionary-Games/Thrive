@@ -18,7 +18,7 @@ public static class ToxinUpgradeNames
 
     public const string OXYTOXY_UPGRADE_NAME = "oxytoxy";
 
-    public static ToxinType GetToxinTypeFromUpgrades(this OrganelleUpgrades? upgrades)
+    public static ToxinType GetToxinTypeFromUpgrades(this IReadOnlyOrganelleUpgrades? upgrades)
     {
         if (upgrades == null || upgrades.UnlockedFeatures.Count < 1)
             return ToxinType.Cytotoxin;

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 11:08+0200\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -277,7 +277,8 @@ msgstr "Fase di Ascensione"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "La classe dell'assembly è richiesta quando l'assembly è specificato"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "La classe dell'assembly è richiesta quando la modalità Auto Harmony è selezionata"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -1064,6 +1065,10 @@ msgstr ""
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Tieni tutto"
 
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "Consumo di {0}"
+
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(non è abbastanza per sopravvivere ad una notte di {0}s)"
 
@@ -1451,6 +1456,14 @@ msgstr "Dimensioni di tutti gli elementi della cache attualmente archiviati sul 
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Sviluppatori attuali"
+
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "ZONA ATTUALE"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "ZONA ATTUALE"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ZONA ATTUALE"
@@ -2173,6 +2186,14 @@ msgstr ""
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Carica automaticamente patch Harmony dall'Assembly (non richiede di specificare la classe della mod)"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Carica automaticamente patch Harmony dall'Assembly (non richiede di specificare la classe della mod)"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Albero evolutivo"
 
@@ -2489,6 +2510,14 @@ msgstr "Fossilizza questa specie (già fossilizzata)"
 #, fuzzy
 msgid "FOSSILISE"
 msgstr "Sessile"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Creazione della mod fallita"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "L'aggiornamento del salvataggio specificato non è riuscito a causa del seguente errore:"
 
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
@@ -2815,6 +2844,9 @@ msgstr "Numero ID"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Tipi di membrana"
@@ -2935,6 +2967,14 @@ msgstr "Ispeziona"
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Metti in pausa il gioco"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(proporzione di glucosio conservata nell'ambiente all'inizio di ciascuna generazione)"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3062,18 +3102,6 @@ msgstr "Completa una generazione"
 
 msgid "JANUARY"
 msgstr "Gennaio"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "Modalità di debug JSON:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Sempre"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automaticamente"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Mai"
 
 msgid "JULY"
 msgstr "Luglio"
@@ -3825,6 +3853,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Predazione di {0}"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Riproduzione:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -4185,6 +4217,10 @@ msgstr "Modifica tipo"
 msgid "MODS"
 msgstr "Mod"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Disattivato"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Sono state rilevate delle mod installate, ma non sono state abilitate.\n"
@@ -4221,9 +4257,6 @@ msgstr "{0}: chiamata di unload metodo dell'assembly fallita con un'eccezione: {
 
 msgid "MOD_AUTHOR"
 msgstr "Autore:"
-
-msgid "MOD_AUTO_HARMONY"
-msgstr "Usa Auto Harmony:"
 
 msgid "MOD_CREATION_FAILED"
 msgstr "Creazione della mod fallita"
@@ -4919,6 +4952,10 @@ msgid "OUR_WIKI"
 msgstr "nostra Wiki"
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Processo non iniziato."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "Processo non iniziato."
 
@@ -5553,6 +5590,9 @@ msgstr "Ruota a destra"
 msgid "ROTATION_COLON"
 msgstr "Rotazione:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Esegui Auto-Evo in gioco"
 
@@ -5622,13 +5662,6 @@ msgstr "Spazio occupato:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Cancellare questo salvataggio è un'azione irreversibile. Sei sicuro di voler eliminare definitivamente {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Modalità di debug JSON:"
 
 msgid "SAVE_FAILED"
 msgstr "Salvataggio non riuscito"
@@ -6040,6 +6073,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "ha subito una mutazione"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Trova la zona corrente"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Numero massimo di specie per zona prima che vengano effettuate estinzioni forzate"
 
 msgid "SPECIES_LIST"
 msgstr "Lista delle specie"
@@ -7155,6 +7196,17 @@ msgstr "Annulla l'ultima azione"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Annulla l'ultima azione"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "I pili sono strutture comuni a molti tipi di microrganismi. Assomigliano a sottilissimi capelli, e possono essere presenti sulla superficie di ciascuno di essi a decine o anche centinaia di migliaia. Possono avere vari scopi, inclusa la predazione; alternativamente, sono usati dai microrganismi patogeni per attaccarsi ai tessuti delle vittime, o anche per trapassare la membrana cellulare e raggiungere così il citoplasma. Esistono diversi tipi di pili simili fra loro, ma molti di essi non hanno legami evoluzionistici: sono invece il risultato di convergenze evolutive. Ciascun organismo può mostrare diversi tipi di pili, e quelli presenti sulla superficie sono costantemente sostituiti."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "HAI PROSPERATO!"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Tasso mutazione IA"
@@ -7323,6 +7375,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licenze e librerie usate"
 
@@ -7331,12 +7386,6 @@ msgstr "Renderer utilizzato:"
 
 msgid "USES_FEATURE"
 msgstr "Sì"
-
-msgid "USE_AUTO_HARMONY"
-msgstr "Usa modalità Auto Harmony"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Carica automaticamente patch Harmony dall'Assembly (non richiede di specificare la classe della mod)"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Utilizza un nome utente personalizzato"
@@ -9451,6 +9500,39 @@ msgstr "Zoom avanti"
 msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
 
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Usa Auto Harmony:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Usa modalità Auto Harmony"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Carica automaticamente patch Harmony dall'Assembly (non richiede di specificare la classe della mod)"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Riproduzione:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "Modalità di debug JSON:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Sempre"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automaticamente"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Mai"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Modalità di debug JSON:"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Processo non iniziato."
+
 #, fuzzy
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "Generazioni"
@@ -9778,9 +9860,6 @@ msgstr "Zoom indietro"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Numero di specie per zona sopra il quale la zona stessa non è considerata a bassa biodiversità"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Numero massimo di specie per zona prima che vengano effettuate estinzioni forzate"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Popolazione iniziale delle specie aumenta-biodiversità"

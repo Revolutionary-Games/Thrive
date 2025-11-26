@@ -5,17 +5,18 @@ using System.Linq;
 using Arch.Core.Extensions;
 using Components;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Base HUD class for stages where the player moves a creature around
 /// </summary>
 /// <typeparam name="TStage">The type of the stage this HUD is for</typeparam>
-[JsonObject(MemberSerialization.OptIn)]
 [GodotAbstract]
-public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureStageHUD
+public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureStageHUD, IArchiveUpdatable
     where TStage : GodotObject, ICreatureStage
 {
+    public const ushort SERIALIZATION_VERSION_CREATURE = 1;
+
 #pragma warning disable CA2213
     [Export]
     public PackedScene FossilisationButtonScene = null!;
@@ -174,26 +175,14 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     /// </summary>
     private double hoverInfoTimeElapsed;
 
-    [JsonProperty]
     private float healthBarFlashDuration;
 
-    [JsonProperty]
     private Color healthBarFlashColour = new(0, 0, 0, 0);
 
     private float lastHealth;
     private float damageEffectCurrentValue;
 
     private bool strainIsRed;
-
-    protected CreatureStageHUDBase()
-    {
-    }
-
-    [Signal]
-    public delegate void OnOpenMenuEventHandler();
-
-    [Signal]
-    public delegate void OnOpenMenuToHelpEventHandler();
 
     /// <summary>
     ///   Gets and sets the text that appears at the upper HUD.
@@ -204,7 +193,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         set => hintText.Text = value;
     }
 
-    [JsonProperty]
     public bool EnvironmentPanelCompressed
     {
         get
@@ -228,7 +216,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         }
     }
 
-    [JsonProperty]
     public bool CompoundsPanelCompressed
     {
         get
@@ -250,6 +237,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             compoundsPanel.PanelCompressed = value;
         }
     }
+
+    public abstract ushort CurrentArchiveVersion { get; }
+    public abstract ArchiveObjectType ArchiveObjectType { get; }
 
     public override void _Ready()
     {
@@ -605,7 +595,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         bottomLeftBar.Paused = Paused;
 
-        if (menu.Visible)
+        if (PauseMenu.Instance.Visible)
             return;
 
         if (Paused)
@@ -690,6 +680,28 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
         environmentPanel.ShowPanel = true;
         bottomLeftBar.EnvironmentPressed = true;
+    }
+
+    public abstract void WritePropertiesToArchive(ISArchiveWriter writer);
+    public abstract void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version);
+
+    protected virtual void WriteBasePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(healthBarFlashDuration);
+        writer.Write(healthBarFlashColour);
+        writer.Write(EnvironmentPanelCompressed);
+        writer.Write(CompoundsPanelCompressed);
+    }
+
+    protected virtual void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_CREATURE or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_CREATURE);
+
+        healthBarFlashDuration = reader.ReadFloat();
+        healthBarFlashColour = reader.ReadColor();
+        EnvironmentPanelCompressed = reader.ReadBool();
+        CompoundsPanelCompressed = reader.ReadBool();
     }
 
     /// <summary>
@@ -1142,16 +1154,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         return stage.GameWorld.GetClosestRelatedSpecies(currentPlayer, true, mustBeSameStage);
     }
 
-    protected void OpenMenu()
-    {
-        EmitSignal(SignalName.OnOpenMenu);
-    }
-
-    protected void OpenHelp()
-    {
-        EmitSignal(SignalName.OnOpenMenuToHelp);
-    }
-
     protected void FlashHealthBar(Color colour, float delta)
     {
         healthBarFlashDuration -= delta;
@@ -1229,17 +1231,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private void EnvironmentButtonPressed(bool pressed)
     {
         environmentPanel.ShowPanel = pressed;
-    }
-
-    private void HelpButtonPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        menu.OpenToHelp();
-    }
-
-    private void StatisticsButtonPressed()
-    {
-        ThriveopediaManager.OpenPage("CurrentWorld");
     }
 
     private void SpeedModeButtonPressed(bool pressed)

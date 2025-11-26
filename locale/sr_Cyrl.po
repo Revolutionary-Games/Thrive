@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 11:08+0200\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (Cyrillic script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -288,7 +288,7 @@ msgstr "Верзија:"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr ""
 
 msgid "ASSUME_HYPERTHREADING"
@@ -1146,6 +1146,10 @@ msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Додајте ново везивање тастера"
 
 #, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "Облак једињења"
+
+#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "Облак једињења"
 
@@ -1541,6 +1545,14 @@ msgstr "Наставити"
 
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
+
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "ТРЕНУТНА ЛОКАЦИЈА"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "ТРЕНУТНА ЛОКАЦИЈА"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ТРЕНУТНА ЛОКАЦИЈА"
@@ -2272,6 +2284,14 @@ msgstr ""
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2567,6 +2587,14 @@ msgstr ""
 
 msgid "FOSSILISE"
 msgstr ""
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Аутоматска-еволуција није успела"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Вакуола је унутрашња мембранска органела која се користи за складиштење у ћелији. Састоје се од неколико везикула, мањих опнастих структура које се широко користе у ћелијама за складиштење, а које су се стопиле. Испуњен је водом која се користи да садржи молекуле, ензиме, чврсте материје и друге супстанце. Њихов облик је течан и може се разликовати између ћелија."
 
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
@@ -2892,6 +2920,9 @@ msgstr ""
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Врсте Мембрана"
@@ -3013,6 +3044,14 @@ msgstr ""
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Наставити"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "ATP ПРОИЗВОДЊА ПРЕНИЗАК!"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "Број популације од {0} променио се за {1} због: {2}"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3139,18 +3178,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr "са концентрацијом"
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3916,6 +3943,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr ""
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Производи"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -4310,6 +4341,10 @@ msgstr ""
 msgid "MODS"
 msgstr ""
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Укључи тастери за варања"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4342,9 +4377,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 #, fuzzy
@@ -5034,6 +5066,10 @@ msgid "OUR_WIKI"
 msgstr ""
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Прекинуто."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "Прекинуто."
 
@@ -5679,6 +5715,9 @@ msgstr "Ротирајте десно"
 msgid "ROTATION_COLON"
 msgstr "популација:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Покрените аутоматску-еволуцију током играња"
 
@@ -5745,12 +5784,6 @@ msgstr "Коришћен простор:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Брисање овог чувања не може се опозвати. Да ли сте сигурни да желите трајно избрисати {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr ""
 
 msgid "SAVE_FAILED"
 msgstr "Сачување није успело"
@@ -6201,6 +6234,14 @@ msgstr "Врсте Присутне"
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "је мутирао"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Откажи претходну акцију"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Изаберите зону да бисте овде приказали детаље"
 
 #, fuzzy
 msgid "SPECIES_LIST"
@@ -7307,6 +7348,17 @@ msgstr "Поништи"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Опозови последњу акцију"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Избодите друге ћелије са ово."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Мутације Поени"
@@ -7480,6 +7532,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -7489,13 +7544,6 @@ msgstr ""
 #, fuzzy
 msgid "USES_FEATURE"
 msgstr "Температура"
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#, fuzzy
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Додајте ново везивање тастера"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Користите прилагођено корисничко име"
@@ -9759,6 +9807,18 @@ msgid "ZOOM_OUT"
 msgstr "Одзумирати"
 
 #, fuzzy
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Додајте ново везивање тастера"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Производи"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Прекинуто."
+
+#, fuzzy
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "Генерација:"
 
@@ -10102,10 +10162,6 @@ msgstr "Одзумирати"
 #, fuzzy
 #~ msgid "EDITING"
 #~ msgstr "Хитин"
-
-#, fuzzy
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Изаберите зону да бисте овде приказали детаље"
 
 #, fuzzy
 #~ msgid "NOT_FOUND_CHUNK"

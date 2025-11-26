@@ -1987,7 +1987,7 @@ public class NativeLibs
                 ColourConsole.WriteNormalLine("Will try to download a debug version of the library");
             }
 
-            if (await DownloadRemoteLibrary(library, platform, version, tag, file, cancellationToken) == false)
+            if (!await DownloadRemoteLibrary(library, platform, version, tag, file, cancellationToken))
                 return false;
         }
 

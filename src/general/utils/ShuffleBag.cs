@@ -128,19 +128,11 @@ public class ShuffleBag<T> : IEnumerable<T?>
     /// </summary>
     private void Shuffle()
     {
-        // TODO: why is there a -2 here? This makes it so that just 2 items in the bag can never be shuffled.
-        for (int i = 0; i < currentContent.Count - 2; ++i)
+        for (int i = 0; i < currentContent.Count - 1; ++i)
         {
             int j = random.Next(i, currentContent.Count);
 
             (currentContent[i], currentContent[j]) = (currentContent[j], currentContent[i]);
-        }
-
-        // Backup shuffle for 2 item bags
-        if (currentContent.Count == 2)
-        {
-            if (random.NextDouble() < 0.5)
-                (currentContent[0], currentContent[1]) = (currentContent[1], currentContent[0]);
         }
     }
 

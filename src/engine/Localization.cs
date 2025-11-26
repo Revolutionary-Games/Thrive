@@ -1,4 +1,6 @@
-﻿using System;
+﻿// #define DISABLE_GODOT_FOR_TESTS
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
@@ -57,6 +59,10 @@ public partial class Localization : Node
 
         if (message == string.Empty)
             return string.Empty;
+
+#if DISABLE_GODOT_FOR_TESTS
+        return message;
+#endif
 
         var local = instance;
 

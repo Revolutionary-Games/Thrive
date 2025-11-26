@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using Godot;
-using Saving;
 
 /// <summary>
 ///   Holds data needed for an in-progress load action.
@@ -66,6 +65,8 @@ public class InProgressLoad
         IsLoading = true;
         SceneManager.Instance.DetachCurrentScene();
         PauseManager.Instance.AddPause(nameof(InProgressLoad));
+        PauseMenu.Instance.Close(false);
+        PauseMenu.Instance.ForgetCurrentlyOpenPage();
 
         Invoke.Instance.Perform(Step);
     }
@@ -85,19 +86,12 @@ public class InProgressLoad
 
                 TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f, Step, false, false);
 
-                // Let all suppressed deletions happen
-                TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
-                JSONDebug.FlushJSONTracesOut();
-
                 // Continue after transition finishes
                 return;
             case State.ReadingData:
             {
                 // Make sure the mouse is not being captured if anything left the capture on
                 MouseCaptureManager.ForceDisableCapture();
-
-                // Start suppressing loaded node deletion
-                TemporaryLoadedNodeDeleter.Instance.AddDeletionHold(Constants.DELETION_HOLD_LOAD);
 
                 // TODO: do this in a background thread once possible
                 // https://github.com/Revolutionary-Games/Thrive/issues/1406
@@ -164,7 +158,7 @@ public class InProgressLoad
                     save!.GameState,
                     Localization.Translate("PROCESSING_LOADED_OBJECTS"));
 
-                if (loadedState!.IsLoadedFromSave != true)
+                if (!loadedState!.IsLoadedFromSave)
                     throw new Exception("Game load logic not working correctly, IsLoadedFromSave was not set");
 
                 try
@@ -192,11 +186,6 @@ public class InProgressLoad
             {
                 stopwatch.Stop();
                 GD.Print("load finished, success: ", success, " message: ", message, " elapsed: ", stopwatch.Elapsed);
-
-                // Stop suppressing loaded node deletion
-                TemporaryLoadedNodeDeleter.Instance.RemoveDeletionHold(Constants.DELETION_HOLD_LOAD);
-
-                JSONDebug.FlushJSONTracesOut();
 
                 PauseManager.Instance.Resume(nameof(InProgressLoad));
 
@@ -251,6 +240,15 @@ public class InProgressLoad
         catch (Exception e2)
         {
             return Localization.Translate("SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE").FormatSafe(e2);
+        }
+
+        try
+        {
+            save.Dispose();
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Failed to dispose save: ", e);
         }
 
         return string.Empty;

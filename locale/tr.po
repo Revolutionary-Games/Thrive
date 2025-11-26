@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 11:08+0200\n"
-"PO-Revision-Date: 2025-09-16 12:11+0000\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
+"PO-Revision-Date: 2025-11-23 12:19+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -158,7 +158,7 @@ msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Kuşaklar:[/b]\n"
 "   {0}\n"
-"[b]Toplam Tür:[/b]\n"
+"[b]Toplam Tür Sayısı:[/b]\n"
 "   Ortalama {1}; Standart sapma {2}\n"
 "[b]Hayatta Olan Türler:[/b]\n"
 "   Ortalama {3}; Standart sapma {4}\n"
@@ -271,8 +271,8 @@ msgstr "Tırmanış Evresi"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Assembly belirtildiğinde, assembly modunun sınıfı gereklidir"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr "Oto Harmony etkinleştirildiğinde, Assembly modu gereklidir"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
+msgstr "Bir mod sınıfı belirlendiğinde, assembly gereklidir"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "İşlemcide hiper iş parçacığını etkin varsay"
@@ -1042,6 +1042,9 @@ msgstr "Çok yüksek"
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Çok düşük"
 
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} tüketimi"
+
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "({0} s uzun bir gece vaktine dayanmak için yeterli değil)"
 
@@ -1428,6 +1431,14 @@ msgstr ""
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Mevcut Oyun Geliştiricileri"
+
+msgid "CURRENT_DILUTION"
+msgstr "Akıntı seyrelmesi olayı"
+
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr ""
+"Bileşikler seyreltildi.\n"
+"Konsantrasyonu azalan bileşikler:"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "MEVCUT KONUM"
@@ -2125,6 +2136,16 @@ msgstr ""
 "Karbondioksit ve kükürt seviyelerini arttırır.\n"
 "Kükürt parçaları oluşturur."
 
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr ""
+"Çökeltiler, karadan kıyı sulara taşınarak bu suları zenginleştirdi.\n"
+"Konsantrasyonu artan bileşikler:"
+
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr ""
+"Bileşikler, okyanus tabanından yukarı taşınarak yukarıdaki suları zenginleştirdi.\n"
+"Konsantrasyonu artan bileşikler:"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evrim Ağacı"
 
@@ -2386,6 +2407,12 @@ msgstr "Bu türü fosilleştir (zaten fosilleştirildi)"
 
 msgid "FOSSILISE"
 msgstr "Fosilleştir"
+
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Fosil Verisini Yükleme Başarısız"
+
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Veriler eski ya da geçersiz olduğundan fosil dosyası okunamadı"
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Fosil Silme Başarısız"
@@ -2685,6 +2712,9 @@ msgstr "ID Numarası"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(görüntü modu ve yükseltme ayarlarına bağlı olarak, bütün yöntemler mevcut olmayabilir)"
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr "Ek hataları yoksay"
+
 msgid "IMAGE_FILE_TYPES"
 msgstr "Desteklenen Resim Dosyaları"
 
@@ -2783,6 +2813,12 @@ msgstr "Denetleyici"
 
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Instagram profilimizi ziyaret edin"
+
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "Anında ölüm koruması"
+
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(bu ayar, yüksek cana sahip bir oyuncuyu öldürecek bir hasar﻿ olsa bile, size az bir can bırakır)"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Tırmanış Kapısını Etkinleştir"
@@ -2898,18 +2934,6 @@ msgstr ":"
 
 msgid "JANUARY"
 msgstr "Ocak"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON hata ayıklama modu:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Her zaman"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Otomatik olarak"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Hiçbir zaman"
 
 msgid "JULY"
 msgstr "Temmuz"
@@ -3609,6 +3633,9 @@ msgstr "Yırtıcı Etkinlik Baskısı"
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Yırtıcı Kök Baskısı"
 
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Üremede Kullanılan Bileşik Baskısı:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr "Kök Baskı"
 
@@ -3700,7 +3727,7 @@ msgid "MICROBE_LOADING_TIP_7"
 msgstr "Biyomlar farklı arkaplanlardan çok daha fazlasıdır. Farklı biyomlardaki bileşikler ve yüzen parçalar, farklı oranlarda oluşur."
 
 msgid "MICROBE_LOADING_TIP_8"
-msgstr "Hücrenizin arkasına, simetrik olacak şekilde, kamçı veya balçık fışkırtıcı yerleştirin. Aksi takdirde, enerjiyi boşa harcarsınız."
+msgstr "Hücrenizin arkasına, simetrik olacak şekilde, kamçı veya balçık fışkırtıcı yerleştirin. Aksi takdirde, enerjiyi boşa harcamış olursunuz."
 
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "Parçaları nereye yerleştirdiğiniz önemlidir. Hücrenizin şekli, hareket ve dönme hızınızı etkiler."
@@ -3909,6 +3936,9 @@ msgstr "Türde Değişiklik Yap"
 msgid "MODS"
 msgstr "Modlar"
 
+msgid "MODS_ARE_ENABLED"
+msgstr "Modlar Etkinleştirildi"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Yüklü modlar algılandı ancak bu modların hiçbiri etkinleştirilmemiş.\n"
@@ -3944,9 +3974,6 @@ msgstr "{0}: Assembly modu kaldırma yöntem çağrısı başarısız, olağand�
 
 msgid "MOD_AUTHOR"
 msgstr "Mod Sahibi:"
-
-msgid "MOD_AUTO_HARMONY"
-msgstr "Oto Harmony Kullanır:"
 
 msgid "MOD_CREATION_FAILED"
 msgstr "Mod Oluşturma Başarısız"
@@ -4319,7 +4346,7 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr "Editör, şimdi girilmek için hazır"
 
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
-msgstr "Mevcut çevresel koşullara uyum sağlayamaz. Dezavantajları kaldırmak için tercih edilen koşulları ya da tolerans aralığını değiştirin."
+msgstr "Bu tür, mevcut çevresel koşullara uyum sağlayamaz. Dezavantajları kaldırmak için tercih edilen koşulları ya da tolerans aralığını değiştirin."
 
 msgid "NOT_STARTED_DOT"
 msgstr "Başlatılmadı."
@@ -4572,6 +4599,9 @@ msgstr "Diğer"
 
 msgid "OUR_WIKI"
 msgstr "Vikimiz"
+
+msgid "OUTDATED_ITEM"
+msgstr "ESKİ"
 
 msgid "OUTDATED_NOTICE"
 msgstr "Bu sayfa ya da bölüm güncel olmayan bilgi içermektedir. Bu genellikle bir şey yazıldıktan sonra planlar değiştiğinde olur."
@@ -5154,6 +5184,9 @@ msgstr "Sağa döndür"
 msgid "ROTATION_COLON"
 msgstr "Dönme:"
 
+msgid "RUNOFF_EVENT"
+msgstr "Yüzey akışı olayı"
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Oyun esnasında oto-evrimi çalıştır"
 
@@ -5221,12 +5254,6 @@ msgstr "Hileler Kullanıldı"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Bu kaydı silme işlemi geri alınamaz, {0} kaydını kalıcı olarak silmek istediğinizden emin misiniz?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "Bir kayıt hatasını bildirirken lütfen [color=#3796e1][url={2}]log klasöründen[/url][/color] [color=#3796e1][url={0}]{1}[/url][/color] dosyasını dahil edin. Bu dosya, Thrive geliştiricilerinin kaydetme hatasının ne olduğunu anlaması için kritik bilgiler içerir. Bu dosya olmadan, mevcut problemi teşhis etmek ve düzeltmek fazlasıyla zor olacaktır."
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Lütfen bu kayıt hatasını bildirmeden önce JSON hata ayıklama modunun devre dışı bırakılmadığından emin olun. Otomatik JSON hata ayıklama modu, [color=#3796e1][url={1}]log klasöründe[/url][/color] {0} adı verilen ek bir dosya oluşturdu. Bu dosya, Thrive geliştiricilerinin kaydetme hatasının ne olduğunu anlaması için kritik bilgiler içerir."
 
 msgid "SAVE_FAILED"
 msgstr "Kaydetme başarısız"
@@ -5613,6 +5640,12 @@ msgstr ""
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "mutasyona uğradı"
 
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Mevcut arazideki türler"
+
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Diğer arazilerdeki türler"
+
 msgid "SPECIES_LIST"
 msgstr "Tür Listesi"
 
@@ -5959,19 +5992,19 @@ msgid "THERMOPLAST"
 msgstr "Termoplast"
 
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki pigmentler, [b]termosentez[/b] adı verilen bir işlemde, sudan [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek için çevrelerindeki artan [thrive:compound type=\"temperature\"]sıcaklığı[/thrive:compound] enerji olarak kullanır. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] farkı ile doğru orantılıdır."
+msgstr "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki pigmentler, [b]termosentez[/b] adı verilen bir işlemde, [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için çevrelerindeki artan [thrive:compound type=\"temperature\"]sıcaklığı[/thrive:compound] enerji olarak kullanır. [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] farkı ile doğru orantılıdır."
 
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Artan sıcaklığı kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Bu oran, [thrive:compound type=\"temperature\"]sıcaklıktaki[/thrive:compound] artış ile doğru orantılıdır. Sıcak ve soğuk alanları bulmak için [b]termal görüşü[/b] kullanın."
+msgstr "Artan sıcaklığı kullanarak [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretir. Bu oran, [thrive:compound type=\"temperature\"]sıcaklıktaki[/thrive:compound] artış ile doğru orantılıdır. Sıcak ve soğuk alanları bulmak için [b]termal görüşü[/b] kullanın."
 
 msgid "THERMOSYNTHASE"
 msgstr "Termosentaz"
 
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "Termosentaz, ısı aktarımını kullanarak şekil değiştiren bir proteindir. Bu onun, [b]termosentez[/b] adı verilen bir işlemde, hava ısınırken katlanmasını ve ADP'ye bağlanmasını ve de ADP'nin [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşmesini sağlar. Ardından, hava soğurken protein açılır ve [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] yine artacağı zaman döngünün tekrarlanmasını sağlar. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] farkı ile doğru orantılıdır."
+msgstr "Termosentaz, ısı aktarımını kullanarak şekil değiştiren bir proteindir. Bu onun, [b]termosentez[/b] adı verilen bir işlemde, [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüşmesini sağlar. Ardından, hava soğurken protein açılır ve [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] yine artacağı zaman döngünün tekrarlanmasını sağlar. [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] farkı ile doğru orantılıdır."
 
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Artan sıcaklığı kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Bu oran, [thrive:compound type=\"temperature\"]sıcaklıktaki[/thrive:compound] artış ile doğru orantılıdır. Sıcak ve soğuk alanları bulmak için [b]termal görüşü[/b] kullanın."
+msgstr "Artan sıcaklığı kullanarak [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretir. Bu oran, [thrive:compound type=\"temperature\"]sıcaklıktaki[/thrive:compound] artış ile doğru orantılıdır. Sıcak ve soğuk alanları bulmak için [b]termal görüşü[/b] kullanın."
 
 msgid "THERMOSYNTHESIS"
 msgstr "Termosentez"
@@ -6150,25 +6183,25 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Bağ koparma moduna geç"
 
 msgid "TOLERANCES_TOO_HIGH_PRESSURE"
-msgstr "{0} tarafından tercih edilen baskı çok yüksek"
+msgstr "{0} değeri, tercih edilen baskı değerinden çok yüksek"
 
 msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
-msgstr "{0} tarafından tercih edilen sıcaklık çok yüksek"
+msgstr "{0} değeri, tercih edilen sıcaklık değerinden çok yüksek"
 
 msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
 msgstr "Oksijen koruması çok düşük, %{0} değerinden yüksek olmalı"
 
 msgid "TOLERANCES_TOO_LOW_PRESSURE"
-msgstr "{0} tarafından tercih edilen baskı çok düşük"
+msgstr "{0} değeri, tercih edilen baskı değerinden çok düşük"
 
 msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
-msgstr "{0} tarafından tercih edilen sıcaklık çok düşük"
+msgstr "{0} değeri, tercih edilen sıcaklık değerinden çok düşük"
 
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr "UV koruması çok düşük, %{0} değerinden yüksek olmalı"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-msgstr "Mevcut çevresel koşullara uyum sağlayamaz. Ozmoregülasyon maliyeti: %{0}, biyoişlem hızı %{1}, sağlık %{2}"
+msgstr "Bu tür, mevcut çevresel koşullara uyum sağlayamaz. Ozmoregülasyon maliyeti: %{0}, biyoişlem hızı %{1}, sağlık %{2}"
 
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
@@ -6183,7 +6216,7 @@ msgstr ""
 "  {5}%"
 
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
-msgstr "Toleranslar, bazı organellerden hem olumlu hem de olumsuz yönde etkilenir. Organellerden gelen değişime temel değer eklendikten sonra, etkili değer burada gösterilir. Bazı organeller, belli oyun tarzları ile birlikte çalışırken diğerlerine zarar verebilir."
+msgstr "Toleranslar, bazı organellerden hem olumlu hem de olumsuz yönde etkilenir. Organellerden gelen değişime temel değer eklendikten sonra, etkili değer burada gösterilir. Bazı organeller, belli oyun tarzları ile birlikte çalışırken diğerlerinde zarar verebilir."
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "Hassasiyet:"
@@ -6658,6 +6691,17 @@ msgstr "Geri al"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Son eylemi geri al"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr "Beklenmeyen Hatalar: {0}"
+
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr ""
+"Oyun beklenmeyen bir hatayla karşılaştı. Oyuna devam etmek mümkün, ancak hatalar daha da kötüleşebilir. En güvenli seçenek, oyunu tamamen yeniden başlatmak ve en son kaydı yüklemektir. Şu anda kaydetmek mümkün olabilir.\n"
+"Bu hatayı bildirirseniz, lütfen hatayı kopyalamak için bu butonu kullanın ve raporunuza ekleyin."
+
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Beklenmeyen Bir Hata Meydana Geldi"
+
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "İnşa Et"
 
@@ -6807,6 +6851,9 @@ msgstr "Yükseltme yöntemi:"
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr "FSR keskinleştirme"
 
+msgid "UPWELLING_EVENT"
+msgstr "Ani deniz soğuması olayı"
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Lisanslar ve Kullanılan Kitaplıklar"
 
@@ -6815,12 +6862,6 @@ msgstr "Kullanılan işleyici:"
 
 msgid "USES_FEATURE"
 msgstr "Evet"
-
-msgid "USE_AUTO_HARMONY"
-msgstr "Oto Harmony Yüklemesini Kullan"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Assembly'den Harmony yamalarını otomatik olarak yükle (mod sınıfı belirlemeyi gerektirmez)"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Özel bir kullanıcı adı kullan"
@@ -7971,7 +8012,7 @@ msgstr ""
 "\n"
 "Biyomlar farklı arkaplanlardan çok daha fazlasıdır. Farklı biyomlardaki bileşikler ve yüzen parçalar, farklı oranlarda oluşur.\n"
 "\n"
-"Hücrenizin arkasına, simetrik olacak şekilde, kamçı veya balçık fışkırtıcı yerleştirin. Aksi takdirde, enerjiyi boşa harcarsınız.\n"
+"Hücrenizin arkasına, simetrik olacak şekilde, kamçı veya balçık fışkırtıcı yerleştirin. Aksi takdirde, enerjiyi boşa harcamış olursunuz.\n"
 "\n"
 "Parçaları nereye yerleştirdiğiniz önemlidir. Hücrenizin şekli, hareket ve dönme hızınızı etkiler."
 
@@ -8946,9 +8987,11 @@ msgstr ""
 
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr ""
-"[thrive:compound type=\"iron\"]Demir[/thrive:compound], ortamda çok geç bozunduğu için, [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] yerine kullanmak için değerli bir alternatif kaynaktır. Pas yiyen hücreler, [thrive:compound type=\"iron\"]demirin[/thrive:compound] bol olduğu arazilerde bol bol besinlerin keyfini çıkarabilirler.\n"
+"[thrive:compound type=\"iron\"]Demir[/thrive:compound], ortamda çok geç bozunduğu için, [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] yerine kullanılabilecek değerli bir alternatif kaynaktır. Ayrıca [thrive:compound type=\"iron\"]demir[/thrive:compound], doğrudan ATP şeklinde aktarılır. Bu yüzden, Mikrop Evre'sinin başlarında enerjik bir organizma oluşturmak için oldukça ucuz bir yol olabilir. Ancak, [thrive:compound type=\"iron\"]demir[/thrive:compound] hızla tüketildiğinden, oyuncuların sürekli olarak daha büyük bulut yayan parçaların yakınında olmaya dikkat etmeleri ve, daha hareketli bir organizma ile oynamayı seçerlerse, bu kaynağı çok dikkatli bir şekilde yönetmeleri gerekir.\n"
 "\n"
-"[thrive:compound type=\"iron\"]Demir[/thrive:compound] parçaları yutmak cezbedici olabilir. Ama bu bileşiğin çoğu, bulut halindeyken üretildiği için daha büyük bir parçanın yakınında durarak daha fazla [thrive:compound type=\"iron\"]demir[/thrive:compound] alabilirsiniz. Ancak, yutulan bir [thrive:compound type=\"iron\"]demir[/thrive:compound] parçası, daha uzun yolculuklarda, daha fazla [thrive:compound type=\"iron\"]demiri[/thrive:compound] yanınızda taşımanızı sağlar."
+"Depo, demir oksitleyen organizmalar tarafından kullanılabilecek çok faydalı bir özelliktir. Çünkü, hızla tükenen bu bileşenin daha fazlasını depolamalarına imkan sağlar. Büyüklük de faydalıdır, çünkü büyük organizmalar etrafta yüzen daha küçük [thrive:compound type=\"iron\"]demir[/thrive:compound] parçalarını yutabilir. Bu, hareket özgürlüğünüzü arttırır, çünkü çevrenizi keşfederken yanınızda bir parça [thrive:compound type=\"iron\"]demir[/thrive:compound] taşıyor olursunuz. [b]Sitoplazma[/b], demir oksitleyen organizmalar için dikkate alınması gereken çok yararlı bir parçadır. Çünkü, büyüklük ve depoyu ucuza arttırmanızı sağlar. [b]Kofullar[/b] ise, ökaryot olduğunuzda çok kullanışlıdır.\n"
+"\n"
+"[thrive:compound type=\"iron\"]Demir[/thrive:compound], organizmanız daha zahmetli parçalar yerleştirdikçe daha çabuk tükenir. Ayrıca [b]Oksijenin[/b] artışıyla, ortamdan kaybolmaya başlar. Bu nedenle, [thrive:compound type=\"iron\"]demirden[/thrive:compound] faydalanan oyuncular, atmosferlerinde oksijen hakim olmaya başladığında dikkatli olmalı ve yüksek verimli ökaryotlar oluşturmak istiyorlarsa oksijenli solunumu düşünmelidirler."
 
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "Geliştirme yok."
@@ -9478,6 +9521,41 @@ msgstr "Yakınlaştır"
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
 
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Oto Harmony Kullanır:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Oto Harmony Yüklemesini Kullan"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Assembly'den Harmony yamalarını otomatik olarak yükle (mod sınıfı belirlemeyi gerektirmez)"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Editörden çıkışta bileşikler:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON hata ayıklama modu:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Her zaman"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Otomatik olarak"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Hiçbir zaman"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "Bir kayıt hatasını bildirirken lütfen [color=#3796e1][url={2}]log klasöründen[/url][/color] [color=#3796e1][url={0}]{1}[/url][/color] dosyasını dahil edin. Bu dosya, Thrive geliştiricilerinin kaydetme hatasının ne olduğunu anlaması için kritik bilgiler içerir. Bu dosya olmadan, mevcut problemi teşhis etmek ve düzeltmek fazlasıyla zor olacaktır."
+
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Lütfen bu kayıt hatasını bildirmeden önce JSON hata ayıklama modunun devre dışı bırakılmadığından emin olun. Otomatik JSON hata ayıklama modu, [color=#3796e1][url={1}]log klasöründe[/url][/color] {0} adı verilen ek bir dosya oluşturdu. Bu dosya, Thrive geliştiricilerinin kaydetme hatasının ne olduğunu anlaması için kritik bilgiler içerir."
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Bu sayfa ya da bölüm güncel olmayan bilgi içermektedir. Bu genellikle bir şey yazıldıktan sonra planlar değiştiğinde olur."
+
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "Dünya Oluştur"
 
@@ -9890,9 +9968,6 @@ msgstr "Uzaklaştır"
 
 #~ msgid "LOOKING_AT"
 #~ msgstr "Bakılan:"
-
-#~ msgid "SPECIES_N_TIMES"
-#~ msgstr "{0} (x{1})"
 
 #~ msgid "PLAYER_CELL"
 #~ msgstr "Oyuncu Hücresi"

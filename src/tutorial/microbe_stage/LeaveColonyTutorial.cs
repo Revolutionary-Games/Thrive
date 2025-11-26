@@ -1,18 +1,26 @@
 ﻿namespace Tutorial;
 
 using System;
+using SharedBase.Archive;
 
 /// <summary>
-///   When full on reproduction compounds the player needs to realize to leave a non-multicellular colony to
+///   When full on reproduction compounds, the player needs to realize to leave a non-multicellular colony to
 ///   progress
 /// </summary>
 public class LeaveColonyTutorial : TutorialPhase
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private bool hasColony;
     private bool fullAmmonia;
     private bool fullPhosphates;
 
     public override string ClosedByName => "LeaveColonyTutorial";
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.TutorialLeaveColonyTutorial;
 
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {
@@ -70,5 +78,14 @@ public class LeaveColonyTutorial : TutorialPhase
         }
 
         return false;
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        // Base version is not our version, so we pass 1 here
+        base.ReadPropertiesFromArchive(reader, 1);
     }
 }

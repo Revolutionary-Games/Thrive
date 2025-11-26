@@ -2,7 +2,7 @@
 
 using System;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Prompts the player to place binding agents if they have a nucleus but not binding agents.
@@ -16,18 +16,17 @@ using Newtonsoft.Json;
 /// </remarks>
 public class BindingAgentsTutorial : EditorEntryCountingTutorial
 {
-    private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
+    public const ushort SERIALIZATION_VERSION = 1;
+
+    private readonly string cellEditorTab = nameof(EditorTab.CellEditor);
 
     private readonly OrganelleDefinition nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
     private readonly OrganelleDefinition bindingAgents = SimulationParameters.Instance.GetOrganelleType("bindingAgent");
 
-    [JsonProperty]
     private bool hasNucleus;
 
-    [JsonProperty]
     private bool hasBindingAgents;
 
-    [JsonProperty]
     private int sessionNucleusPlaced;
 
     public BindingAgentsTutorial()
@@ -36,6 +35,11 @@ public class BindingAgentsTutorial : EditorEntryCountingTutorial
     }
 
     public override string ClosedByName => "BindingAgentsTutorial";
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.TutorialBindingAgentsTutorial;
 
     /// <summary>
     ///   This is purposefully set to 0, as this tutorial does not rely on session count to trigger.
@@ -143,5 +147,27 @@ public class BindingAgentsTutorial : EditorEntryCountingTutorial
         }
 
         return false;
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        base.WritePropertiesToArchive(writer);
+
+        writer.Write(hasNucleus);
+        writer.Write(hasBindingAgents);
+        writer.Write(sessionNucleusPlaced);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        // Base version is not our version, so we pass 1 here
+        base.ReadPropertiesFromArchive(reader, 1);
+
+        hasNucleus = reader.ReadBool();
+        hasBindingAgents = reader.ReadBool();
+        sessionNucleusPlaced = reader.ReadInt32();
     }
 }

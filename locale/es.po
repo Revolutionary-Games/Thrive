@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 11:08+0200\n"
-"PO-Revision-Date: 2025-09-25 23:49+0000\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
+"PO-Revision-Date: 2025-11-14 11:00+0000\n"
 "Last-Translator: JESUS5PACHECO <jesusxpacheco5@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
@@ -274,7 +274,8 @@ msgstr "Estadio de ascenso"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Se requiere la clase del ensamblaje del mod cuando se especifica el ensamblaje"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Se requiere la clase del ensamblaje del mod cuando se especifica el ensamblaje"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -1064,6 +1065,10 @@ msgstr "muy alto"
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "muy bajo"
 
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "Consumo de: {0}"
+
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(no es suficiente para soportar la noche, que dura {0}s)"
 
@@ -1384,7 +1389,7 @@ msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr "Hacha de mano de Piedra"
 
 msgid "CRAFTING_RESULTS"
-msgstr "Results"
+msgstr "Resultados"
 
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr "Selecciona una receta de elaboración o añade objetos para filtrar"
@@ -1450,6 +1455,14 @@ msgstr ""
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Desarrolladores actuales"
+
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "POSICIÓN ACTUAL"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "POSICIÓN ACTUAL"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "POSICIÓN ACTUAL"
@@ -2149,6 +2162,18 @@ msgstr ""
 "Incrementa los niveles de Dióxido de Carbono y Sulfuro\n"
 "Produce fragmentos de Sulfuro."
 
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr ""
+"Evento de erupción\n"
+"Se crea más sulfuro de hidrógeno y dióxido de carbono"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr ""
+"Evento de erupción\n"
+"Se crea más sulfuro de hidrógeno y dióxido de carbono"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Arbol Evolutivo"
 
@@ -2414,6 +2439,14 @@ msgstr "Fosilizar especie (ya fosilizada)"
 
 msgid "FOSSILISE"
 msgstr "Fosilizar"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Eliminación de fósil fallida"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "El fósil no pudo ser eliminado"
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Eliminación de fósil fallida"
@@ -2721,6 +2754,9 @@ msgstr "Número ID"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(dependiendo del modo de renderizado y re-escalado, no todos los métodos están disponibles)"
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 msgid "IMAGE_FILE_TYPES"
 msgstr "Archivos de Imagen Soportados"
 
@@ -2819,6 +2855,14 @@ msgstr "Inspector"
 
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Visita nuestra página de Instagram"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(proporción de glucosa retenida en el ambiente en cada generación)"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Activar Puerta de Ascensión"
@@ -2934,18 +2978,6 @@ msgstr ":"
 
 msgid "JANUARY"
 msgstr "Enero"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "Modo de depuración JSON:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Siempre"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automáticamente"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Nunca"
 
 msgid "JULY"
 msgstr "Julio"
@@ -3681,6 +3713,10 @@ msgstr "Presión de efectividad de la depredación"
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Depredación de {0}"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reproducción:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr "Presión radicular"
 
@@ -4038,6 +4074,10 @@ msgstr "Modificar Tipo"
 msgid "MODS"
 msgstr "Mods"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "No hay mods habilitados"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Se ha detectado la instalación de mods, pero no hay mods habilitados.\n"
@@ -4074,9 +4114,6 @@ msgstr "{0}: el método de descarga del ensamblaje del mod con excepción de: {1
 
 msgid "MOD_AUTHOR"
 msgstr "Autor del Mod:"
-
-msgid "MOD_AUTO_HARMONY"
-msgstr "Usa Auto Harmony:"
 
 msgid "MOD_CREATION_FAILED"
 msgstr "Creación de Mod Fallida"
@@ -4758,6 +4795,10 @@ msgid "OUR_WIKI"
 msgstr "nuestro Wiki"
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Sin iniciar."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "Sin iniciar."
 
@@ -5394,6 +5435,9 @@ msgstr "Girar a la derecha"
 msgid "ROTATION_COLON"
 msgstr "Rotación:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Ejecutar auto-evo durante el juego"
 
@@ -5466,13 +5510,6 @@ msgstr "Espacio usado:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Eliminar esta partida es irreversible, ¿estás seguro de querer eliminar {0} permanentemente?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "Al reportar un error de guardado por favor incluir [color=#3796e1][url={0}]{1}[/url][/color] desde de [color=#3796e1][url={2}]logs folder[/url][/color] pues es información critica para los desarrolladores de Thrive para averiguar cual fue el error de guardado. Sin ese Archivo, será extremadamente difícil diagnosticar y arreglar este problema."
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Modo de depuración JSON:"
 
 msgid "SAVE_FAILED"
 msgstr "Guardado fallido"
@@ -5886,6 +5923,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "ha mutado"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Ir a Zona Actual"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Forzar extinction en zonas con igual o major cantidad de especies"
 
 msgid "SPECIES_LIST"
 msgstr "Especies presentes"
@@ -7031,6 +7076,17 @@ msgstr "Deshacer"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Deshacer la última acción"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Ataca a otras células con esto."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "¡HAS PROSPERADO!"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Velocidad de mutación de la AI"
@@ -7202,6 +7258,9 @@ msgstr "Técnica de re-escalado:"
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licencias y Bibliotecas Usadas"
 
@@ -7210,12 +7269,6 @@ msgstr "Renderizardor en uso:"
 
 msgid "USES_FEATURE"
 msgstr "Si"
-
-msgid "USE_AUTO_HARMONY"
-msgstr "Usar carga Automática de Harmony"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Automáticamente carga parches de Harmony desde Assembly (no requiere especificar la clase del mod)"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Usar un nombre personalizado"
@@ -9406,18 +9459,50 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Puedes apoyar el desarrollo de Thrive en Patreon."
 
-#, fuzzy
 msgid "YUM_EXCLAMATION"
-msgstr ""
-"Los microbios centrados buscarán recursos o presas más lejanas\n"
-"y es posible codicien más los fragmentos de recursos.\n"
-"Los microbios reactivos cambiarán de objetivo después de un tiempo."
+msgstr "¡Delicioso!"
 
 msgid "ZOOM_IN"
 msgstr "Hacer zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
+
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Usa Auto Harmony:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Usar carga Automática de Harmony"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Automáticamente carga parches de Harmony desde Assembly (no requiere especificar la clase del mod)"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Reproducción:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "Modo de depuración JSON:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Siempre"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automáticamente"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Nunca"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "Al reportar un error de guardado por favor incluir [color=#3796e1][url={0}]{1}[/url][/color] desde de [color=#3796e1][url={2}]logs folder[/url][/color] pues es información critica para los desarrolladores de Thrive para averiguar cual fue el error de guardado. Sin ese Archivo, será extremadamente difícil diagnosticar y arreglar este problema."
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Modo de depuración JSON:"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Sin iniciar."
 
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "Generar mundo"
@@ -9747,9 +9832,6 @@ msgstr "Alejar el zoom"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Considerar zonas con igual o menor cantidad de especies como zonas de baja biodiversidad"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Forzar extinction en zonas con igual o major cantidad de especies"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Población inicial para especies creadas para aumentar biodiversidad"

@@ -176,7 +176,7 @@ public static class ControlHelpers
     /// <param name="preferNonDisabledNodes">
     ///   When true, disabled nodes are skipped unless there's nothing else that can be focused
     /// </param>
-    /// <returns>The found focusable control or null if nothing is focusable</returns>
+    /// <returns>The found, focusable control or null if nothing is focusable</returns>
     public static Control? FirstFocusableControl(this Control control, bool preferNonDisabledNodes = true)
     {
         if (preferNonDisabledNodes)
@@ -190,8 +190,12 @@ public static class ControlHelpers
             return result;
         }
 
-        if (control.FocusMode != Control.FocusModeEnum.None)
+        // TODO: if someone has a screen reader enabled should we allow that to grab focus differently?
+        if (control.FocusMode != Control.FocusModeEnum.None &&
+            control.FocusMode != Control.FocusModeEnum.Accessibility)
+        {
             return control;
+        }
 
         int count = control.GetChildCount();
         for (int i = 0; i < count; ++i)
@@ -212,7 +216,7 @@ public static class ControlHelpers
 
     /// <summary>
     ///   Maps each given control to its first child (depth first) that is focusable. If something has no focusable
-    ///   children it is not output at all.
+    ///   children, it is not output at all.
     /// </summary>
     /// <param name="controlsToMap">The list of controls to find the first focusable child of</param>
     /// <param name="preferNonDisabledNodes">Prefers not picking disabled nodes to give focus to</param>
@@ -297,7 +301,9 @@ public static class ControlHelpers
 
     private static Control? FirstFocusableWithFallback(Control control, ref Control? fallback)
     {
-        if (control.FocusMode != Control.FocusModeEnum.None)
+        // TODO: if someone has a screen reader enabled should we allow that to grab focus differently?
+        if (control.FocusMode != Control.FocusModeEnum.None &&
+            control.FocusMode != Control.FocusModeEnum.Accessibility)
         {
             if (control is Button { Disabled: true } or LineEdit { Editable: false })
             {

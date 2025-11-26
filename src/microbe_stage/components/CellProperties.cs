@@ -2,21 +2,21 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
 ///   Base properties of a microbe (separate from the species info as multicellular species-object couldn't
 ///   work there)
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct CellProperties
+public struct CellProperties : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Base colour of the cell. This is used when initializing organelles as it would otherwise be difficult to
     ///   obtain the colour
@@ -46,7 +46,6 @@ public struct CellProperties
     ///   The membrane created for this cell. This is here so that some other systems apart from the visuals system
     ///   can have access to the membrane data.
     /// </summary>
-    [JsonIgnore]
     public Membrane? CreatedMembrane;
 
     public bool IsBacteria;
@@ -59,7 +58,6 @@ public struct CellProperties
     /// <summary>
     ///   Set to false when the shape needs to be recreated
     /// </summary>
-    [JsonIgnore]
     public bool ShapeCreated;
 
     public CellProperties(ICellDefinition initialDefinition)
@@ -78,8 +76,21 @@ public struct CellProperties
         ShapeCreated = false;
     }
 
-    [JsonIgnore]
     public float Radius => IsBacteria ? UnadjustedRadius * 0.5f : UnadjustedRadius;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentCellProperties;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(Colour);
+        writer.Write(UnadjustedRadius);
+        writer.WriteObject(MembraneType);
+        writer.Write(MembraneRigidity);
+        writer.Write(Temperature);
+        writer.Write(IsBacteria);
+        writer.Write(HeatInitialized);
+    }
 }
 
 public static class CellPropertiesHelpers
@@ -95,6 +106,23 @@ public static class CellPropertiesHelpers
     public static readonly Vector3 DefaultVisualPos = Vector3.Forward;
 
     public delegate void ModifyDividedCellCallback(ref Entity entity, CommandBuffer commandBuffer);
+
+    public static CellProperties ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > CellProperties.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, CellProperties.SERIALIZATION_VERSION);
+
+        return new CellProperties
+        {
+            Colour = reader.ReadColor(),
+            UnadjustedRadius = reader.ReadFloat(),
+            MembraneType = reader.ReadObject<MembraneType>(),
+            MembraneRigidity = reader.ReadFloat(),
+            Temperature = reader.ReadFloat(),
+            IsBacteria = reader.ReadBool(),
+            HeatInitialized = reader.ReadBool(),
+        };
+    }
 
     /// <summary>
     ///   Checks this cell and also the entire colony if something can enter engulf mode in it
@@ -184,101 +212,6 @@ public static class CellPropertiesHelpers
 
         ref var position = ref entity.Get<WorldPosition>();
 
-        var currentPosition = position.Position;
-
-        // Find the direction to the right from where the cell is facing
-        var direction = position.Rotation * Vector3.Right;
-
-        // Start calculating separation distance
-        // TODO: fix for multihex organelles
-        var organellePositions = organelles.Organelles.Select(o => Hex.AxialToCartesian(o.Position)).ToList();
-
-        // TODO: switch this to using membrane radius as that'll hopefully fix the last few divide bugs
-        // TODO: there's a bug with small size and pili causing small cells to be stuck together
-        float distanceRight =
-            MathUtils.GetMaximumDistanceInDirection(Vector3.Right, Vector3.Zero, organellePositions);
-        float distanceLeft =
-            MathUtils.GetMaximumDistanceInDirection(Vector3.Left, Vector3.Zero, organellePositions);
-
-        if (entity.Has<MicrobeColony>())
-        {
-            // Bigger separation for cell colonies
-
-            // TODO: (check after resolving the above TODO) there is still a problem with colonies being able to
-            // spawn inside each other
-
-            ref var colony = ref entity.Get<MicrobeColony>();
-            var members = colony.ColonyMembers;
-
-            foreach (var member in members)
-            {
-                // Lead cell is already handled by the non-colony logic
-                if (member == colony.Leader)
-                    continue;
-
-                ref var memberOrganelles = ref member.Get<OrganelleContainer>();
-
-                if (memberOrganelles.Organelles == null)
-                {
-                    GD.PrintErr("Can't use microbe colony member organelle positions for divide separation " +
-                        "calculation as they aren't available");
-                    continue;
-                }
-
-                ref var memberPosition = ref member.Get<AttachedToEntity>();
-
-                // TODO: before switching to the membrane based, check is it fine to just check one direction here?
-                // For now this multiplies the distance by 1.5 to account it being halved below
-                // Using negative relative position is done here as the organelle calculations happen as if they
-                // are around 0,0 but that isn't the case in colony members as they are offset from the center.
-                var distance = MathUtils.GetMaximumDistanceInDirection(Vector3.Right,
-                    -memberPosition.RelativePosition,
-                    memberOrganelles.Organelles.Select(o => Hex.AxialToCartesian(o.Position))) * 1.5f;
-
-                if (distance > distanceRight)
-                {
-                    distanceRight = distance;
-                }
-            }
-
-            // var colonyMembers = Colony.ColonyMembers.Select(c => c.GlobalTransform.Origin);
-            //
-            // distanceRight += ;
-        }
-        else if (species is MulticellularSpecies multicellularSpecies &&
-                 multicellularSpawnState != MulticellularSpawnState.Bud)
-        {
-            // Add more extra offset between the parent and the divided cell colony if the parent wasn't a colony
-            bool first = true;
-
-            foreach (var eventualMember in multicellularSpecies.Cells)
-            {
-                // Skip lead cell
-                if (first)
-                {
-                    first = false;
-                    continue;
-                }
-
-                var memberPosition = Hex.AxialToCartesian(eventualMember.Position);
-
-                // TODO: should the 1.5f multiplier be kept here
-                var distance = MathUtils.GetMaximumDistanceInDirection(Vector3.Right,
-                    -memberPosition,
-                    eventualMember.Organelles.Select(o => Hex.AxialToCartesian(o.Position))) * 1.5f;
-
-                if (distance > distanceRight)
-                {
-                    distanceRight = distance;
-                }
-            }
-        }
-
-        float width = distanceLeft + distanceRight + Constants.DIVIDE_EXTRA_DAUGHTER_OFFSET;
-
-        if (cellProperties.IsBacteria)
-            width *= 0.5f;
-
         Dictionary<Compound, float> reproductionCompounds;
 
         // This method only supports microbe and multicellular species
@@ -288,14 +221,20 @@ public static class CellPropertiesHelpers
         }
         else
         {
-            reproductionCompounds = ((MulticellularSpecies)species).Cells[0].CalculateTotalComposition();
+            reproductionCompounds =
+                ((MulticellularSpecies)species).ModifiableGameplayCells[0].CalculateTotalComposition();
         }
 
-        var spawnPosition = currentPosition + direction * width;
+        var spawnPosition = position.Position;
 
         // Create one daughter cell.
         var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species,
             spawnPosition, true, (null, 0), out var copyEntity, multicellularSpawnState);
+
+        recorder.Add(copyEntity, new CellDivisionCollisionDisabler
+        {
+            IgnoredCollisionWith = entity,
+        });
 
         // Since the daughter spawns right next to the cell, it should face the same way to avoid colliding
         // This probably wastes a bit of memory but should be fine to overwrite the WorldPosition component like

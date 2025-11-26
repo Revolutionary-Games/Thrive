@@ -2,6 +2,7 @@
 using Arch.Core.Extensions;
 using Components;
 using Godot;
+using SharedBase.Archive;
 using ThriveScriptsShared;
 
 /// <summary>
@@ -186,14 +187,40 @@ public class MovementComponentFactory : IOrganelleComponentFactory
     }
 }
 
-[JSONDynamicTypeAllowed]
 public class FlagellumUpgrades : IComponentSpecificUpgrades
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public float LengthFraction;
 
     public FlagellumUpgrades(float lengthFraction)
     {
         LengthFraction = lengthFraction;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.FlagellumUpgrades;
+
+    public bool CanBeReferencedInArchive => false;
+
+    public static FlagellumUpgrades ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new FlagellumUpgrades(reader.ReadFloat());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(LengthFraction);
+    }
+
+    public double CalculateCost(IComponentSpecificUpgrades? previousUpgrades)
+    {
+        // TODO: calculate cost of this upgrade once custom upgrades can cost MP
+        return 0;
     }
 
     public bool Equals(IComponentSpecificUpgrades? other)

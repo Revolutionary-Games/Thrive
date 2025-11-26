@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 11:08+0200\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-08-08 14:30+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -284,7 +284,8 @@ msgstr "Версия:"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Изисква се основното „Assembly“"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Изисква се „Assembly“, когато използвате „Harmony“"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -1107,6 +1108,10 @@ msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Баланс на химичните съединения"
 
 #, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0}"
+
+#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "Баланс на химичните съединения"
 
@@ -1541,6 +1546,14 @@ msgstr "Освобождаване на слуз"
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Текущи разработчици"
+
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "ТЕКУЩО МЕСТООБИТАНИЕ"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "ТЕКУЩО МЕСТООБИТАНИЕ"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ТЕКУЩО МЕСТООБИТАНИЕ"
@@ -2263,6 +2276,14 @@ msgstr ""
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Това е кодовото наименование на текущата версия на „Thrive“"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Това е кодовото наименование на текущата версия на „Thrive“"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Еволюционно дърво"
 
@@ -2548,6 +2569,14 @@ msgstr "Вкаменяване на тези създания (вече са в�
 
 msgid "FOSSILISE"
 msgstr "Вкаменяване"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Създаването на модификацията е неуспешно"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Надграждането на записа е неуспешно поради следната грешка:"
 
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
@@ -2870,6 +2899,9 @@ msgstr "Идентификационен №"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Видове"
@@ -2987,6 +3019,14 @@ msgstr "Инспектиране"
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Отваряне на страницата ни в „Steam“"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} АТФ"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(определя концентрацията на глюкоза в околната среда след всяко отваряне на редактора)"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3111,18 +3151,6 @@ msgstr "Следващо поколение"
 
 msgid "JANUARY"
 msgstr "Януари"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "Режим за отстраняване на грешки:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Включен"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Автоматичен"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Изключен"
 
 msgid "JULY"
 msgstr "Юли"
@@ -3875,6 +3903,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "{0}"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Видове:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -4235,6 +4267,10 @@ msgstr "Свойства"
 msgid "MODS"
 msgstr "Модификации"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Няма включени модификации"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Налични са инсталирани модификации, които не са включени.\n"
@@ -4271,9 +4307,6 @@ msgstr "„{0}“: изключването на „Assembly“ е неуспе�
 
 msgid "MOD_AUTHOR"
 msgstr "Автор:"
-
-msgid "MOD_AUTO_HARMONY"
-msgstr "Използва „Harmony“:"
 
 msgid "MOD_CREATION_FAILED"
 msgstr "Създаването на модификацията е неуспешно"
@@ -4938,6 +4971,10 @@ msgid "OUR_WIKI"
 msgstr "нашата Уикипедия"
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Не е започната."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "Не е започната."
 
@@ -5560,6 +5597,9 @@ msgstr "Завъртане надясно"
 msgid "ROTATION_COLON"
 msgstr "Завъртане:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Автоматична еволюция по време на игра"
 
@@ -5630,13 +5670,6 @@ msgstr "Използвано място:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Изтриването на записа не може да бъде отменено, сигурни ли сте, че искате да изтриете „{0}“?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Режим за отстраняване на грешки:"
 
 msgid "SAVE_FAILED"
 msgstr "Запазването е неуспешно"
@@ -6042,6 +6075,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "претърпяха мутация"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Текущо местообитание"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Максимален брой на създанията преди измиране в зоната"
 
 msgid "SPECIES_LIST"
 msgstr "Списък на създанията"
@@ -7159,6 +7200,17 @@ msgstr "Отмяна"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Отмяна на последното действие"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Това са фини косъмчета върху клетъчната мембрана. Една клетка може да притежава от десетки до стотици пили, които имат различно предназначение, включително роля в хищничеството. Патогенните микроорганизми използват своите пили за вирулентност или за прикрепване и свързване към тъканите на гостоприемника си, или за нахлуване през клетъчната мембрана, за да достигнат до цитоплазмата. Съществуват различни видове пили, които не са еволюционно свързани помежду си и са резултат от конвергентна еволюция. Един организъм може да притежава няколка вида пили и постоянно да ги променя или заменя."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Благодарим Ви"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Мутационна скорост"
@@ -7326,6 +7378,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Лицензи и използвани материали"
 
@@ -7334,12 +7389,6 @@ msgstr "Визуализатор:"
 
 msgid "USES_FEATURE"
 msgstr "Да"
-
-msgid "USE_AUTO_HARMONY"
-msgstr "Използване на „Harmony“"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Автоматично зареждане на „Harmony“ от „Assembly“"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Персонализирано потребителско име"
@@ -9500,6 +9549,39 @@ msgstr "Приближаване"
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
 
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Използва „Harmony“:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Използване на „Harmony“"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Автоматично зареждане на „Harmony“ от „Assembly“"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Видове:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "Режим за отстраняване на грешки:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Включен"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Автоматичен"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Изключен"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Режим за отстраняване на грешки:"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Не е започната."
+
 #, fuzzy
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "Поколение"
@@ -9838,9 +9920,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Брой на създанията за създаване на зона с ниско биоразнообразие"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Максимален брой на създанията преди измиране в зоната"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Начална популация на създанията, увеличаващи биоразнообразието"

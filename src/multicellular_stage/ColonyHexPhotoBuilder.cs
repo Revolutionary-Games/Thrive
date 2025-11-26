@@ -70,13 +70,7 @@ public partial class ColonyHexPhotoBuilder : Node3D, IScenePhotographable
         if (Species == null)
             throw new InvalidOperationException("Species is not initialized");
 
-        if (Species.EditorCellLayout == null)
-        {
-            GD.PrintErr("No cell layout is remembered, the hex preview can't be generated");
-            return;
-        }
-
-        foreach (var cell in Species.EditorCellLayout)
+        foreach (var cell in Species.EditorCells)
         {
             var pos = Hex.AxialToCartesian(cell.Position);
 
@@ -97,13 +91,7 @@ public partial class ColonyHexPhotoBuilder : Node3D, IScenePhotographable
 
         float maxDistanceSquared = 0.0f;
 
-        if (species.EditorCellLayout == null)
-        {
-            GD.PrintErr("No cell layout is remembered, the radius can't be calculated for the hex preview");
-            return;
-        }
-
-        foreach (var cell in species.EditorCellLayout)
+        foreach (var cell in species.EditorCells)
         {
             maxDistanceSquared = MathF.Max(maxDistanceSquared, Hex.AxialToCartesian(cell.Position)
                 .DistanceSquaredTo(Vector3.Zero));

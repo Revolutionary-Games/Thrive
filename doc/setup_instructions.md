@@ -24,7 +24,7 @@ Prerequisites
 Godot .NET version
 ------------------
 
-The currently used Godot version is __4.4.1 .NET__. The regular version
+The currently used Godot version is __4.5 .NET__. The regular version
 will not work. You can download Godot here: https://godotengine.org/download/
 if it is still the latest stable version. If a new version of Godot has
 been released but Thrive has not been updated yet, you need to look
@@ -578,6 +578,21 @@ is available through Homebrew.
 
 `msgmerge` is part of the gettext tools. So any errors with that
 missing are about these gettext tools.
+
+### Custom merge driver
+
+To quickly resolve merge conflicts in `.po` files you have to setup custom merge driver. You need to
+add these lines to your local `.git/config` file and you're ready to go:
+```
+[merge "po-smart"]
+    name = Merge PO preferring newer dates in header
+    driver = merge_drivers/merge-po-smart.sh %O %A %B
+```
+
+Unfortunately custom merge drivers are not supported by most IDE's GUI-version git, 
+so you need to do the merge from the command line. If for some reason the merge driver
+doesn't work, make sure the `merge_drivers/merge-po-smart.sh` file is executable
+(`chmod +x merge_drivers/merge-po-smart.sh`).
 
 ## Running the Format Checks
 

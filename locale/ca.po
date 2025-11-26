@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 11:08+0200\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -281,7 +281,8 @@ msgstr "Versió:"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Es requereix la classe de l'ensamblatge del mod quan s'especifica l'ensamblatge"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Es requereix l'ensamblatge de mod quan auto harmony està activat"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -1097,6 +1098,10 @@ msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Equilibri de Compostos"
 
 #, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} consum"
+
+#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "Equilibri de Compostos"
 
@@ -1490,6 +1495,14 @@ msgstr "Secretar mucílag"
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Desenvolupadors Actuals"
+
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "INDRET ACTUAL"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "INDRET ACTUAL"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "INDRET ACTUAL"
@@ -2202,6 +2215,14 @@ msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
 #, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
+
+#, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Per Revolutionary Games Studio"
 
@@ -2518,6 +2539,14 @@ msgstr ""
 #, fuzzy
 msgid "FOSSILISE"
 msgstr "Sèssil"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Creació de Mod Fallida"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Actualitzar l'arxiu de guardat especificat degut al següent error:"
 
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
@@ -2846,6 +2875,9 @@ msgstr "Nombre d'ID"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Tipus de Membrana"
@@ -2965,6 +2997,14 @@ msgstr "Inspeccionar"
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Pausar el joc"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "Proporció de glucosa retinguda al medi ambient cada generació"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3092,18 +3132,6 @@ msgstr "Acaba una Generació"
 
 msgid "JANUARY"
 msgstr "Gener"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "Mode debug de JSON:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Sempre"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automàticament"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Mai"
 
 msgid "JULY"
 msgstr "Juliol"
@@ -3861,6 +3889,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Predació de {0}"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reproducció:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -4232,6 +4264,10 @@ msgstr "Modificar Tipus"
 msgid "MODS"
 msgstr "Mods"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Inhabilitat"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4265,9 +4301,6 @@ msgstr "{0}: el mètode de descàrrega d'ensamblatge del mod ha fallat amb una e
 
 msgid "MOD_AUTHOR"
 msgstr "Autor del Mod:"
-
-msgid "MOD_AUTO_HARMONY"
-msgstr "Fa servir Auto Harmony:"
 
 msgid "MOD_CREATION_FAILED"
 msgstr "Creació de Mod Fallida"
@@ -4965,6 +4998,10 @@ msgid "OUR_WIKI"
 msgstr "la nostra Wiki"
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Avortat."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "Avortat."
 
@@ -5598,6 +5635,9 @@ msgstr "Rotar cap a la dreta"
 msgid "ROTATION_COLON"
 msgstr "Rotació:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Activa la simulació auto-evo durant el joc"
 
@@ -5667,13 +5707,6 @@ msgstr "Espai emprat pels arxius:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "L'acció d'eliminar aquest arxiu de guardat és irreversible, esteu segur que voleu eliminar permanentment l'arxiu {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Mode debug de JSON:"
 
 msgid "SAVE_FAILED"
 msgstr "Acció de guardat fallida"
@@ -6089,6 +6122,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "ha mutat"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Trobar l'Ecosistema Actual"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "s'ha extingit de l'ecosistema"
 
 msgid "SPECIES_LIST"
 msgstr "Espècies presents"
@@ -7201,6 +7242,17 @@ msgstr "Desfer l'acció"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Desfer la darrera acció"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Els Pili (singular: pilus) es troben a la superfície de molts micro-organismes i tenen forma de pèls. Hi poden haver desenes o centenars de pili a la superfície d'un micro-organisme, i es poden fer servir amb diferents finalitats, incloents la depredació. Els micro-organismes patogènics fan servir els pili per virulència, ja sigui per unir-se a teixits hoste, o per penetrar la membrana exterior i accedir al citoplasma. Molts Pili similars existeixen, però no estan evolutivament relacionats i són resultat d'evolució convergent. Un sol organisme ha de tenir l'habilitat de tenir diferents tipus de Pili, i aquells que són a la superfície són canviats i substituïts constantment."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "HAS ACONSEGUIT PROSPERAR!"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Taxa de mutació de la IA"
@@ -7370,6 +7422,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Llicències i llibreries utilitzades"
 
@@ -7378,12 +7433,6 @@ msgstr ""
 
 msgid "USES_FEATURE"
 msgstr "Si"
-
-msgid "USE_AUTO_HARMONY"
-msgstr "Utilitzar Càrrega Auto Harmony"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Fer servir un nom d'usuari propi"
@@ -9506,6 +9555,39 @@ msgstr "Enfocar la visió de la càmera"
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
 
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Fa servir Auto Harmony:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Utilitzar Càrrega Auto Harmony"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Reproducció:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "Mode debug de JSON:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Sempre"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automàticament"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Mai"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Mode debug de JSON:"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Avortat."
+
 #, fuzzy
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "Generació:"
@@ -9830,10 +9912,6 @@ msgstr "Zoom enfora"
 #, fuzzy
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Part de [b][u]{0}[/u][/b] població ha migrat a {1}"
-
-#, fuzzy
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "s'ha extingit de l'ecosistema"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Error: tros no trobat"

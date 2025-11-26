@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 11:08+0200\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -283,7 +283,7 @@ msgstr "Versio:"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr ""
 
 msgid "ASSUME_HYPERTHREADING"
@@ -1141,6 +1141,10 @@ msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Kunmetaĵaj Ekvilibro"
 
 #, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "Kunmetitaj nuboj"
+
+#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "Kunmetaĵaj Ekvilibro"
 
@@ -1537,6 +1541,14 @@ msgstr "Rekomenci"
 
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
+
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "NUNA LOKO"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "NUNA LOKO"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "NUNA LOKO"
@@ -2271,6 +2283,14 @@ msgstr ""
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Aldonunovan funkcion por klavo"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Aldonunovan funkcion por klavo"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2565,6 +2585,14 @@ msgstr ""
 
 msgid "FOSSILISE"
 msgstr ""
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Aŭtomata evolucio malsukcesis"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
@@ -2891,6 +2919,9 @@ msgstr ""
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Membranaj Tipoj"
@@ -3012,6 +3043,14 @@ msgstr ""
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Rekomenci"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3138,18 +3177,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr "kun koncentriĝo de"
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3914,6 +3941,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr ""
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "reproduktis"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -4309,6 +4340,10 @@ msgstr "Modifi"
 msgid "MODS"
 msgstr ""
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Trompaĵoj estas ebligitaj"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4341,9 +4376,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 #, fuzzy
@@ -5035,6 +5067,10 @@ msgid "OUR_WIKI"
 msgstr ""
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Nuligita."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "Nuligita."
 
@@ -5682,6 +5718,9 @@ msgstr "Rotaciu dekstren"
 msgid "ROTATION_COLON"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "aŭtomatan evolucion dum ludado"
 
@@ -5750,12 +5789,6 @@ msgstr "Spaco uzata:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi volas por ĉiam forigi {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr ""
 
 msgid "SAVE_FAILED"
 msgstr "Konservado malsukcesis"
@@ -6207,6 +6240,14 @@ msgstr "Listo de Specioj"
 #, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "havas mutacion"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "formortis de la planedo"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "formortis de la planedo"
 
 msgid "SPECIES_LIST"
 msgstr "Listo de Specioj"
@@ -7320,6 +7361,17 @@ msgstr "Malfaru"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Malfaru la lastan agon"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Piku aliajn ĉelojn per ĉi tio."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "VI PROSPERIS!"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Mutaciaj Poentoj"
@@ -7494,6 +7546,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -7503,13 +7558,6 @@ msgstr ""
 #, fuzzy
 msgid "USES_FEATURE"
 msgstr "Temperaturo"
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#, fuzzy
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Aldonunovan funkcion por klavo"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Uzu propran salutnomon"
@@ -9776,6 +9824,18 @@ msgid "ZOOM_OUT"
 msgstr "Malzomu"
 
 #, fuzzy
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Aldonunovan funkcion por klavo"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "reproduktis"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Nuligita."
+
+#, fuzzy
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "Generacio:"
 
@@ -10119,10 +10179,6 @@ msgstr "Malzomu"
 #, fuzzy
 #~ msgid "EDITING"
 #~ msgstr "itino"
-
-#, fuzzy
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "formortis de la planedo"
 
 #, fuzzy
 #~ msgid "NOT_FOUND_CHUNK"

@@ -6,14 +6,15 @@ using Arch.Core;
 using Arch.Core.Extensions;
 using Components;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Manages the microbe HUD
 /// </summary>
-[JsonObject(MemberSerialization.OptIn)]
 public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     [Export(PropertyHint.ColorNoAlpha)]
     public Color IngestedMatterBarFillColour = new(0.88f, 0.49f, 0.49f);
 
@@ -113,6 +114,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     [Signal]
     public delegate void OnDismissRevertToEditorEventHandler();
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeHUD;
 
     protected override string UnPauseHelpText => Localization.Translate("PAUSE_PROMPT");
 
@@ -303,6 +307,21 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             timeShowingRevertPopup = 0;
             previousSaveLoadAdvicePopup.Show();
         }
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(SERIALIZATION_VERSION_CREATURE);
+        WriteBasePropertiesToArchive(writer);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        // The base version is different from ours
+        ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
     }
 
     protected override void UpdateFossilisationButtonStates()

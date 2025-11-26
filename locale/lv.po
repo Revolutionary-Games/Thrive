@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 11:08+0200\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -284,7 +284,7 @@ msgstr "Versija:"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr ""
 
 msgid "ASSUME_HYPERTHREADING"
@@ -1106,6 +1106,10 @@ msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 #, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} Patēriņš"
+
+#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "{0} Patēriņš"
 
@@ -1501,6 +1505,14 @@ msgstr "Atsākt spēli"
 
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
+
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "Ģenerācija:"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "Ģenerācija:"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
@@ -2227,6 +2239,14 @@ msgstr ""
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2526,6 +2546,14 @@ msgstr ""
 
 msgid "FOSSILISE"
 msgstr ""
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "populācija:"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Apraksts:"
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr ""
@@ -2854,6 +2882,9 @@ msgstr ""
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Membrānas veidi"
@@ -2970,6 +3001,16 @@ msgstr ""
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Atsākt spēli"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3091,18 +3132,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr "Ļauj saistīties ar citām šūnām. Šis ir pirmais solis uz daudzšūnu veidošanos. Kad tava šūna ir daļā no kolonijas, savienojumi tiek dalīti starp šūnām. Jūs nevarat ieiet redaktorā, kāmēram esat daļa no kolonijas, jums nepieciešams atdalīties, kad savākts nepieciešamais savienojumu daudzums, lai sadalītu jūsu šūnu."
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3852,6 +3881,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "{0} Plēsonība"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "ATP RAŽOŠANA IR PĀRĀK ZEMA!"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -4210,6 +4243,10 @@ msgstr "Modificēt"
 msgid "MODS"
 msgstr ""
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Ieslēgt redaktoru"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4242,9 +4279,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 msgid "MOD_CREATION_FAILED"
@@ -4920,6 +4954,10 @@ msgid "OUR_WIKI"
 msgstr ""
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Atcelts."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "Atcelts."
 
@@ -5552,6 +5590,9 @@ msgstr "Pagriezt pa labi"
 msgid "ROTATION_COLON"
 msgstr "Kopējā Populācija:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
 
@@ -5619,12 +5660,6 @@ msgstr "Automātiska saglabāšana"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Šī faila dzēšanu nevar atcelt. Vai tiešām vēlies neatgriezeniski dzēst {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr ""
 
 msgid "SAVE_FAILED"
 msgstr "Saglabāšana neizdevās"
@@ -6036,6 +6071,14 @@ msgstr "{0} (x{1})"
 #, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "Satur mutāciju"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Atcelt pašreizējo darbību"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Izmira no plankuma"
 
 msgid "SPECIES_LIST"
 msgstr "Sugu saraksts"
@@ -7127,6 +7170,17 @@ msgstr "Atsaukt"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Atsaukt pēdējo darbību"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Šūnas procesi"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Mutācijas punkti"
@@ -7291,6 +7345,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -7300,12 +7357,6 @@ msgstr ""
 #, fuzzy
 msgid "USES_FEATURE"
 msgstr "Temperatūra"
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Izmantot pielāgotu lietotājvārdu"
@@ -9371,6 +9422,14 @@ msgid "ZOOM_OUT"
 msgstr "Attālināt"
 
 #, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "ATP RAŽOŠANA IR PĀRĀK ZEMA!"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Atcelts."
+
+#, fuzzy
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "Ģenerācija:"
 
@@ -9682,10 +9741,6 @@ msgstr "Attālināt"
 #~ msgstr "Ļaut sugai nemigrēt (ja labas migrācija nav atrasta)"
 
 #, fuzzy
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Izmira no plankuma"
-
-#, fuzzy
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Liels dzelzs gabals"
 
@@ -9735,10 +9790,6 @@ msgstr "Attālināt"
 #, fuzzy
 #~ msgid "SPECIES_DETAILS"
 #~ msgstr "Sugu saraksts"
-
-#, fuzzy
-#~ msgid "CURRENT_GENERATION_COLON"
-#~ msgstr "Ģenerācija:"
 
 #, fuzzy
 #~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
@@ -9890,3 +9941,7 @@ msgstr "Attālināt"
 #, fuzzy
 #~ msgid "BACKTAB"
 #~ msgstr "Atpakaļ"
+
+#, fuzzy
+#~ msgid "CURRENT_GENERATION_COLON"
+#~ msgstr "Ģenerācija:"

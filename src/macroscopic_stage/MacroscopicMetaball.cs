@@ -1,29 +1,61 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
-[UseThriveConverter]
-public class MacroscopicMetaball : Metaball
+public class MacroscopicMetaball : Metaball, IReadonlyMacroscopicMetaball, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public MacroscopicMetaball(CellType cellType)
     {
-        CellType = cellType;
+        ModifiableCellType = cellType;
     }
 
     /// <summary>
-    ///   The cell type this metaball consists of
+    ///   The cell type this metaball consists of. Should not change after creation. This is protected to allow a
+    ///   caching type to work.
     /// </summary>
-    [JsonProperty]
-    public CellType CellType { get; private set; }
+    public CellType ModifiableCellType { get; protected set; }
 
-    [JsonIgnore]
-    public override Color Colour => CellType.Colour;
+    public IReadOnlyCellDefinition CellType => ModifiableCellType;
+
+    public override Color Colour => ModifiableCellType.Colour;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.MacroscopicMetaball;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.MacroscopicMetaball)
+            throw new NotSupportedException();
+
+        writer.WriteObject((MacroscopicMetaball)obj);
+    }
+
+    public static MacroscopicMetaball ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new MacroscopicMetaball(reader.ReadObject<CellType>());
+        instance.ReadBasePropertiesFromArchive(reader, version);
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(ModifiableCellType);
+        WriteBasePropertiesToArchive(writer);
+    }
 
     public override bool MatchesDefinition(Metaball other)
     {
         if (other is MacroscopicMetaball asMulticellular)
         {
-            return CellType == asMulticellular.CellType;
+            return ModifiableCellType == asMulticellular.ModifiableCellType;
         }
 
         return false;
@@ -45,23 +77,27 @@ public class MacroscopicMetaball : Metaball
     ///   Clones this metaball while keeping the parent references intact.
     /// </summary>
     /// <param name="oldToNewMapping">
-    ///   Where to find new reference to parent nodes. This will also add the newly cloned object here.
+    ///   Where to find new references to parent nodes. This will also add the newly cloned object here.
+    /// </param>
+    /// <param name="overrideType">
+    ///   If not null, replaces the current cell type. Used for edit data holders in the macroscopic editor.
     /// </param>
     /// <returns>The clone of this</returns>
-    public MacroscopicMetaball Clone(Dictionary<Metaball, MacroscopicMetaball> oldToNewMapping)
+    public MacroscopicMetaball Clone(Dictionary<Metaball, MacroscopicMetaball> oldToNewMapping,
+        CellType? overrideType = null)
     {
-        var clone = new MacroscopicMetaball(CellType)
+        var clone = new MacroscopicMetaball(overrideType ?? ModifiableCellType)
         {
             Position = Position,
-            Parent = Parent,
+            ModifiableParent = ModifiableParent,
             Size = Size,
         };
 
-        if (Parent != null)
+        if (ModifiableParent != null)
         {
-            if (oldToNewMapping.TryGetValue(Parent, out var newParent))
+            if (oldToNewMapping.TryGetValue(ModifiableParent, out var newParent))
             {
-                clone.Parent = newParent;
+                clone.ModifiableParent = newParent;
             }
         }
 
@@ -72,7 +108,7 @@ public class MacroscopicMetaball : Metaball
 
     public override int GetHashCode()
     {
-        return CellType.GetHashCode() * 29 ^ base.GetHashCode();
+        return ModifiableCellType.GetHashCode() * 29 ^ base.GetHashCode();
     }
 
     protected bool Equals(MacroscopicMetaball other)
@@ -94,6 +130,6 @@ public class MacroscopicMetaball : Metaball
         if (!ReferenceEquals(Parent, other.Parent))
             return false;
 
-        return CellType.Equals(other.CellType) && Position == other.Position;
+        return ModifiableCellType.Equals(other.ModifiableCellType) && Position == other.Position;
     }
 }

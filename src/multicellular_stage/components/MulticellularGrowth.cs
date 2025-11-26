@@ -7,15 +7,16 @@ using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
 ///   Keeps track of multicellular growth data
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct MulticellularGrowth
+public struct MulticellularGrowth : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   List of cells that need to be regrown, after being lost, in
     ///   <see cref="MulticellularGrowthHelpers.AddMulticellularGrowthCell"/>
@@ -62,19 +63,83 @@ public struct MulticellularGrowth
         ResumeBodyPlanAfterReplacingLost = null;
         EnoughResourcesForBudding = false;
 
-        TargetCellLayout = species.Cells;
+        TargetCellLayout = species.ModifiableGameplayCells;
 
         // This is updated by ReApplyCellTypeProperties when needed
         this.CalculateTotalBodyPlanCompounds(species);
     }
 
-    [JsonIgnore]
     public bool IsFullyGrownMulticellular => NextBodyPlanCellToGrowIndex >=
         (TargetCellLayout?.Count ?? throw new InvalidOperationException("Unknown full layout"));
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMulticellularGrowth;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObjectOrNull(LostPartsOfBodyPlan);
+        writer.WriteObjectOrNull(CompoundsNeededForNextCell);
+
+        if (CompoundsUsedForMulticellularGrowth != null)
+        {
+            writer.WriteObject(CompoundsUsedForMulticellularGrowth);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
+
+        if (TotalNeededForMulticellularGrowth != null)
+        {
+            writer.WriteObject(TotalNeededForMulticellularGrowth);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
+
+        writer.WriteObjectOrNull(TargetCellLayout);
+
+        writer.Write(ResumeBodyPlanAfterReplacingLost.HasValue);
+        if (ResumeBodyPlanAfterReplacingLost.HasValue)
+            writer.Write(ResumeBodyPlanAfterReplacingLost.Value);
+
+        writer.Write(NextBodyPlanCellToGrowIndex);
+        writer.Write(EnoughResourcesForBudding);
+    }
 }
 
 public static class MulticellularGrowthHelpers
 {
+    public static MulticellularGrowth ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > MulticellularGrowth.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, MulticellularGrowth.SERIALIZATION_VERSION);
+
+        var instance = new MulticellularGrowth
+        {
+            LostPartsOfBodyPlan = reader.ReadObjectOrNull<List<int>>(),
+            CompoundsNeededForNextCell = reader.ReadObjectOrNull<List<(Compound Compound, float AmountNeeded)>>(),
+            CompoundsUsedForMulticellularGrowth = reader.ReadObjectOrNull<Dictionary<Compound, float>>(),
+            TotalNeededForMulticellularGrowth = reader.ReadObjectOrNull<Dictionary<Compound, float>>(),
+            TargetCellLayout = reader.ReadObjectOrNull<CellLayout<CellTemplate>>(),
+        };
+
+        if (reader.ReadBool())
+        {
+            instance.ResumeBodyPlanAfterReplacingLost = reader.ReadInt32();
+        }
+        else
+        {
+            instance.ResumeBodyPlanAfterReplacingLost = null;
+        }
+
+        instance.NextBodyPlanCellToGrowIndex = reader.ReadInt32();
+        instance.EnoughResourcesForBudding = reader.ReadBool();
+
+        return instance;
+    }
+
     /// <summary>
     ///   Adds the next cell missing from this multicellular species' body plan to this microbe's colony
     /// </summary>
@@ -89,7 +154,7 @@ public static class MulticellularGrowthHelpers
 
         ref var colonyPosition = ref entity.Get<WorldPosition>();
 
-        var cellTemplate = species.Cells[multicellularGrowth.NextBodyPlanCellToGrowIndex];
+        var cellTemplate = species.ModifiableGameplayCells[multicellularGrowth.NextBodyPlanCellToGrowIndex];
 
         // Remove the starting compounds as this is a growth cell which shouldn't give free resources to the
         // colony it joins
@@ -151,7 +216,7 @@ public static class MulticellularGrowthHelpers
         if (lostPartIndex == 0)
             return;
 
-        if (lostPartIndex >= species.Cells.Count)
+        if (lostPartIndex >= species.ModifiableGameplayCells.Count)
         {
             GD.PrintErr("Multicellular colony lost a cell at index that is no longer valid for the species, " +
                 "ignoring this for regrowing");
@@ -215,11 +280,11 @@ public static class MulticellularGrowthHelpers
         }
 
         // Adjust the already used compound amount to lose the progress we made for the current cell and also
-        // towards the lost cell, this should ensure the total progress bar should be correct
+        // towards the lost cell; this should ensure the total progress bar should be correct
         if (multicellularGrowth.CompoundsUsedForMulticellularGrowth != null)
         {
-            var totalNeededForLostCell = species.Cells[lostPartIndex]
-                .CellType.CalculateTotalComposition();
+            var totalNeededForLostCell = species.ModifiableGameplayCells[lostPartIndex]
+                .ModifiableCellType.CalculateTotalComposition();
 
             foreach (var compound in multicellularGrowth.CompoundsUsedForMulticellularGrowth.Keys.ToArray())
             {
@@ -249,9 +314,9 @@ public static class MulticellularGrowthHelpers
         this ref MulticellularGrowth multicellularGrowth, MulticellularSpecies species)
     {
         return species
-            .Cells[
+            .ModifiableGameplayCells[
                 multicellularGrowth.IsFullyGrownMulticellular ? 0 : multicellularGrowth.NextBodyPlanCellToGrowIndex]
-            .CellType.CalculateTotalCompositionList();
+            .ModifiableCellType.CalculateTotalCompositionList();
     }
 
     public static void CalculateTotalBodyPlanCompounds(this ref MulticellularGrowth multicellularGrowth,
@@ -263,7 +328,8 @@ public static class MulticellularGrowthHelpers
         foreach (var cell in multicellularGrowth.TargetCellLayout ??
                  throw new InvalidOperationException("Unknown target layout"))
         {
-            multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(cell.CellType.CalculateTotalComposition());
+            multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(cell.ModifiableCellType
+                .CalculateTotalComposition());
         }
 
         multicellularGrowth.TotalNeededForMulticellularGrowth.Merge(species.BaseReproductionCost);

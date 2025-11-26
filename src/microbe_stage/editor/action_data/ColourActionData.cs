@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using Godot;
+using SharedBase.Archive;
 
-[JSONAlwaysDynamicType]
 public class ColourActionData : EditorCombinableActionData<CellType>
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public Color NewColour;
     public Color PreviousColour;
 
@@ -13,17 +15,38 @@ public class ColourActionData : EditorCombinableActionData<CellType>
         PreviousColour = previousColour;
     }
 
-    protected override double CalculateBaseCostInternal()
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.ColourActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
-        // Changing membrane colour has no cost
-        return 0;
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.ColourActionData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((ColourActionData)obj);
     }
 
-    protected override (double Cost, double RefundCost) CalculateCostInternal(
-        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
+    public static ColourActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
-        // No cost adjustment as this is free
-        return (CalculateBaseCostInternal(), 0);
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new ColourActionData(reader.ReadColor(), reader.ReadColor());
+
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(NewColour);
+        writer.Write(PreviousColour);
+
+        writer.Write(SERIALIZATION_VERSION_CONTEXT);
+        base.WriteToArchive(writer);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)

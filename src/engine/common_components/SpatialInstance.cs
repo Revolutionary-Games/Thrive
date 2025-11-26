@@ -1,15 +1,15 @@
 ﻿namespace Components;
 
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Displays a single <see cref="Node3D"/> as this entity's graphics in Godot
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct SpatialInstance
+public struct SpatialInstance : IArchivableComponent
 {
-    [JsonIgnore]
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public Node3D? GraphicalInstance;
 
     /// <summary>
@@ -19,7 +19,31 @@ public struct SpatialInstance
     public Vector3 VisualScale;
 
     /// <summary>
-    ///   If true applies visual scale to <see cref="GraphicalInstance"/>
+    ///   If true, applies visual scale to <see cref="GraphicalInstance"/>
     /// </summary>
     public bool ApplyVisualScale;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentSpatialInstance;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(VisualScale);
+        writer.Write(ApplyVisualScale);
+    }
+}
+
+public static class SpatialInstanceHelpers
+{
+    public static SpatialInstance ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SpatialInstance.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SpatialInstance.SERIALIZATION_VERSION);
+
+        return new SpatialInstance
+        {
+            VisualScale = reader.ReadVector3(),
+            ApplyVisualScale = reader.ReadBool(),
+        };
+    }
 }

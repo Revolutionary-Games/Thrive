@@ -15,7 +15,7 @@ public partial class MetaballPopupMenu : HexPopupMenu
         get => true;
         set
         {
-            if (value != true)
+            if (!value)
                 throw new NotSupportedException();
         }
     }
@@ -55,7 +55,7 @@ public partial class MetaballPopupMenu : HexPopupMenu
         if (titleLabel == null)
             return;
 
-        var names = SelectedMetaballs.Select(m => m.CellType.TypeName).Distinct()
+        var names = SelectedMetaballs.Select(m => m.ModifiableCellType.CellTypeName).Distinct()
             .ToList();
 
         if (names.Count == 1)
@@ -94,8 +94,8 @@ public partial class MetaballPopupMenu : HexPopupMenu
 
         var mpCost = GetActionPrice?.Invoke(SelectedMetaballs.Select(o =>
             (EditorCombinableActionData)new MetaballMoveActionData<MacroscopicMetaball>(o, o.Position,
-                o.Position + Vector3.One, o.Parent,
-                o.Parent, null))) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
+                o.Position + Vector3.One, o.ModifiableParent,
+                o.ModifiableParent, null))) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         mpCost = Math.Round(mpCost, Constants.MUTATION_POINTS_DECIMALS);
 

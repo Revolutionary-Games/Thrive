@@ -48,7 +48,8 @@ public partial class MainMenu : NodeWithInput
     private NewGameSettings newGameSettings = null!;
     private AnimationPlayer guiAnimations = null!;
     private SaveManagerGUI saves = null!;
-    private Thriveopedia thriveopedia = null!;
+
+    private Thriveopedia? thriveopedia;
 
     [Export]
     private ModManager modManager = null!;
@@ -81,13 +82,7 @@ public partial class MainMenu : NodeWithInput
     private LicensesDisplay licensesDisplay = null!;
 
     [Export]
-    private AchievementsGallery achievementsGallery = null!;
-
-    [Export]
-    private Control achievementsContainer = null!;
-
-    [Export]
-    private CustomWindow achievementsPopup = null!;
+    private AchievementsView achievementsView = null!;
 
     [Export]
     private Button freebuildButton = null!;
@@ -145,6 +140,9 @@ public partial class MainMenu : NodeWithInput
 
     [Export]
     private CenterContainer menus = null!;
+
+    [Export]
+    private PackedScene thriveopediaScene = null!;
 #pragma warning restore CA2213
 
     private Array<Node>? menuArray;
@@ -195,6 +193,8 @@ public partial class MainMenu : NodeWithInput
         // Unpause the game as the MainMenu should never be paused.
         PauseManager.Instance.ForceClear();
         MouseCaptureManager.ForceDisableCapture();
+        PauseMenu.Instance.ReportStageTransition();
+        PauseMenu.Instance.ForgetCurrentlyOpenPage();
 
         RunMenuSetup();
 
@@ -213,9 +213,6 @@ public partial class MainMenu : NodeWithInput
         {
             OnIntroEnded();
         }
-
-        // Let all suppressed deletions happen (if we came back directly from the editor that was loaded from a save)
-        TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
 
         CheckModFailures();
 
@@ -395,7 +392,7 @@ public partial class MainMenu : NodeWithInput
     }
 
     /// <summary>
-    ///   Setup the main menu.
+    ///   Set up the main menu.
     /// </summary>
     private void RunMenuSetup()
     {
@@ -415,7 +412,6 @@ public partial class MainMenu : NodeWithInput
         options = GetNode<OptionsMenu>("OptionsMenu");
         newGameSettings = GetNode<NewGameSettings>("NewGameSettings");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
-        thriveopedia = GetNode<Thriveopedia>("Thriveopedia");
 
         // Set initial menu
         SwitchMenu();
@@ -797,25 +793,8 @@ public partial class MainMenu : NodeWithInput
         // Hide all the other menus
         SetCurrentMenu(uint.MaxValue, false);
 
-        achievementsContainer.Visible = true;
-
-        achievementsPopup.OpenCentered(false);
-
-        achievementsGallery.Refresh();
-
-        // For fun show how many achievements are unlocked
-        int total = 0;
-        int unlocked = 0;
-
-        foreach (var achievement in AchievementsManager.Instance.GetAchievements())
-        {
-            ++total;
-
-            if (achievement.Achieved)
-                ++unlocked;
-        }
-
-        achievementsPopup.WindowTitle = Localization.Translate("ACHIEVEMENTS_TOTAL").FormatSafe(unlocked, total);
+        achievementsView.Visible = true;
+        achievementsView.OpenPopup();
     }
 
     private void FreebuildEditorPressed()
@@ -958,14 +937,15 @@ public partial class MainMenu : NodeWithInput
 
     private void OnReturnFromThriveopedia()
     {
-        thriveopedia.Visible = false;
+        if (thriveopedia != null)
+            thriveopedia.Visible = false;
+
         SetCurrentMenu(0, false);
     }
 
     private void OnReturnFromAchievements()
     {
-        achievementsContainer.Visible = false;
-        achievementsPopup.Close();
+        achievementsView.Visible = false;
 
         SetCurrentMenu(0, false);
 
@@ -1015,6 +995,21 @@ public partial class MainMenu : NodeWithInput
 
         // Hide all the other menus
         SetCurrentMenu(uint.MaxValue, false);
+
+        // Create the Thriveopedia if it doesn't exist yet
+        if (thriveopedia == null)
+        {
+            thriveopedia = thriveopediaScene.Instantiate<Thriveopedia>();
+
+            // Thriveopedia needs to start off hidden to work correctly
+            thriveopedia.Visible = false;
+
+            // Hook up the necessary signals
+            thriveopedia.Connect(Thriveopedia.SignalName.OnThriveopediaClosed,
+                new Callable(this, nameof(OnReturnFromThriveopedia)));
+
+            AddChild(thriveopedia);
+        }
 
         // Show the Thriveopedia
         thriveopedia.OpenFromMainMenu();
@@ -1143,8 +1138,17 @@ public partial class MainMenu : NodeWithInput
 
     private void OnThriveopediaOpened(string pageName)
     {
-        thriveopedia.OpenFromMainMenu();
-        thriveopedia.ChangePage(pageName);
+        // Make sure Thriveopedia is created if missing
+        if (thriveopedia == null)
+        {
+            GD.Print("Creating Thriveopedia due to page open request");
+            ThriveopediaPressed();
+        }
+
+        thriveopedia!.OpenFromMainMenu();
+
+        // TODO: does something already play a sound or not in this case?
+        thriveopedia.ChangePage(pageName, false);
     }
 
     private void ResetPerformanceTracking()

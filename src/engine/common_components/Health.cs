@@ -6,9 +6,10 @@ using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
+using SharedBase.Archive;
 
 /// <summary>
-///   Things that have a health and can be damaged
+///   Things that have a health statistic and can be damaged
 /// </summary>
 /// <remarks>
 ///   <para>
@@ -17,9 +18,10 @@ using Godot;
 ///   </para>
 /// </remarks>
 [ComponentIsReadByDefault]
-[JSONDynamicTypeAllowed]
-public struct Health
+public struct Health : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public List<DamageEventNotice>? RecentDamageReceived;
 
     public float CurrentHealth;
@@ -36,14 +38,14 @@ public struct Health
     public bool Invulnerable;
 
     /// <summary>
-    ///   Simple flag to check if this entity has died. A stage specific death system will set this flag when
+    ///   Simple flag to check if this entity has died. A stage-specific death system will set this flag when
     ///   an entity runs out of health (or some other condition is fulfilled for death)
     /// </summary>
     public bool Dead;
 
     /// <summary>
     ///   This health class is stage agnostic, so each stage needs its own entity death system to handle dying.
-    ///   To at least make that easier this flag exists for such a system to store the info on if it has already
+    ///   To at least make that easier, this flag exists for such a system to store the info on if it has already
     ///   handled a dead entity or not.
     /// </summary>
     public bool DeathProcessed;
@@ -58,10 +60,56 @@ public struct Health
         DeathProcessed = false;
         RecentDamageReceived = null;
     }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentHealth;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        if (RecentDamageReceived == null)
+        {
+            writer.WriteNullObject();
+        }
+        else
+        {
+            writer.WriteObject(RecentDamageReceived);
+        }
+
+        writer.Write(CurrentHealth);
+        writer.Write(MaxHealth);
+        writer.Write(HealthRegenCooldown);
+        writer.Write(Invulnerable);
+        writer.Write(Dead);
+        writer.Write(DeathProcessed);
+    }
 }
 
 public static class HealthHelpers
 {
+    private static bool instantKillProtection = true;
+
+    public static void SetWorld(GameWorld world)
+    {
+        instantKillProtection = world.WorldSettings.Difficulty.InstantKillProtection;
+    }
+
+    public static Health ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > Health.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, Health.SERIALIZATION_VERSION);
+
+        return new Health
+        {
+            RecentDamageReceived = reader.ReadObjectOrNull<List<DamageEventNotice>>(),
+            CurrentHealth = reader.ReadFloat(),
+            MaxHealth = reader.ReadFloat(),
+            HealthRegenCooldown = reader.ReadFloat(),
+            Invulnerable = reader.ReadBool(),
+            Dead = reader.ReadBool(),
+            DeathProcessed = reader.ReadBool(),
+        };
+    }
+
     public static float CalculateMicrobeHealth(MembraneType membraneType, float membraneRigidity,
         ref readonly MicrobeEnvironmentalEffects environmentalEffects)
     {
@@ -83,13 +131,14 @@ public static class HealthHelpers
     ///   A general damage dealing method that doesn't apply any damage reductions or anything like that
     /// </summary>
     /// <param name="health">The health structure to cause damage to</param>
+    /// <param name="entity">Entity that is being damaged (needed only when mod callbacks are registered)</param>
     /// <param name="damage">The amount of damage to apply</param>
     /// <param name="damageSource">The name of the damage source</param>
     /// <param name="instantKillProtectionThreshold">
     ///   A threshold above which, if the current health is, the damage is not allowed to instantly kill the entity.
     ///   Pass in a negative value to disable the protection.
     /// </param>
-    public static void DealDamage(this ref Health health, float damage, string damageSource,
+    public static void DealDamage(this ref Health health, in Entity entity, float damage, string damageSource,
         float instantKillProtectionThreshold)
     {
         if (health.Invulnerable)
@@ -162,9 +211,8 @@ public static class HealthHelpers
             }
         }
 
-        // TODO: probably need a separate system to trigger this (or well we can trigger this but warn mod authors
-        // that this is a multithreaded operation)
-        // ModLoader.ModInterface.TriggerOnDamageReceived(this, amount, IsPlayerMicrobe);
+        // Note can be triggered by multiple threads!
+        ModLoader.ModInterface.TriggerOnDamageReceived(entity, damage, damageSource);
     }
 
     /// <summary>
@@ -177,8 +225,8 @@ public static class HealthHelpers
     ///     so that no more entity type specific methods like this would be needed?
     ///   </para>
     /// </remarks>
-    public static void DealMicrobeDamage(this ref Health health, ref CellProperties cellProperties, float damage,
-        string damageSource, float instantKillProtectionThreshold)
+    public static void DealMicrobeDamage(this ref Health health, ref CellProperties cellProperties, in Entity entity,
+        float damage, string damageSource, float instantKillProtectionThreshold)
     {
         // TODO: reimplement this (probably better to use the invulnerable health property and also make engulf
         // check that to prevent engulfing of the player)
@@ -208,7 +256,7 @@ public static class HealthHelpers
             damage /= 2;
         }
 
-        health.DealDamage(damage, damageSource, instantKillProtectionThreshold);
+        health.DealDamage(entity, damage, damageSource, instantKillProtectionThreshold);
     }
 
     /// <summary>
@@ -224,7 +272,9 @@ public static class HealthHelpers
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static float GetInstantKillProtectionThreshold(bool isPlayer)
     {
-        return isPlayer ? Constants.PLAYER_INSTANT_KILL_PROTECTION_HEALTH_THRESHOLD : -1;
+        return instantKillProtection && isPlayer ?
+            Constants.PLAYER_INSTANT_KILL_PROTECTION_HEALTH_THRESHOLD :
+            -1;
     }
 
     /// <summary>
@@ -281,11 +331,13 @@ public static class HealthHelpers
 }
 
 /// <summary>
-///   Notice to an entity that it took damage. Used for example to play sounds or other feedback about taking
+///   Notice to an entity that it took damage. Used, for example, to play sounds or other feedback about taking
 ///   damage
 /// </summary>
-public class DamageEventNotice
+public class DamageEventNotice : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public string DamageSource;
     public float Amount;
 
@@ -293,5 +345,31 @@ public class DamageEventNotice
     {
         DamageSource = damageSource;
         Amount = amount;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.DamageEventNotice;
+    public bool CanBeReferencedInArchive => false;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.DamageEventNotice)
+            throw new NotSupportedException();
+
+        writer.WriteObject((DamageEventNotice)obj);
+    }
+
+    public static DamageEventNotice ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new DamageEventNotice(reader.ReadString() ?? throw new NullArchiveObjectException(), reader.ReadFloat());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(DamageSource);
+        writer.Write(Amount);
     }
 }

@@ -3,98 +3,207 @@ Saving System
 
 This document describes the main points of how saves work in Thrive.
 
-JSON Serialization
-------------------
+Object Serialization
+--------------------
 
-The saving and loading is based on JSON serializing and deserializing
-the data.
+The saving and loading is based on a custom binary format serializing
+and deserializing the object data.
 
-### Used Serializer for Type
+This is implemented in the RevolutionaryGamesCommon library.
 
-Serializing uses the runtime types of objects to pick the serializer
-to use to write them out as JSON. This ensures that the derived class
-type having any attributes for how it is deserialized work entirely
-correctly. This should be easy to understand but the tricky part is
-that deserialization uses the **static** type of the object to be
-deserialized.
+### Serialization
 
-So either the field type (fields can be assigned an object of derived
-type, which is why this matters), or the type passed to the
-deserialize call as the root object type is used instead of the
-dynamic runtime type, which means that the static base class type used
-for deserialization must be configured with a compatible deserializer
-when compared to the actual derived type. Using plain `object` won't
-even use the Thrive customized serializer so that's suitable for only
-really simple data deserialization.
+To implement serialization a pair of methods is needed:
+`WriteToArchive` and `ReadFromArchive`. This is a more explicit
+implementation than a JSON-based approach, but with much less magic:
+all properties are written and loaded exactly as instructed by each
+class itself.
 
-For use of `UseThriveSerializerAttribute` ask "does this have objects
-that refer up to this object?" (i.e. circular references or descendant
-objects referring back to their ancestors). If not then
-`UseThriveSerializerAttribute` is unnecessary. Also some dynamic type
-situations need that attribute, but you should only add
-`UseThriveSerializerAttribute` *after* finding the need for it. See
-the dedicated section on references for details about objects
-referring to each other.
+Class types should implement either the `IArchivable` or
+`IArchiveUpdatable` interface (the second is for classes that are
+created separately and only fill their properties from archives, for
+example, Godot Nodes do this to avoid temporary Node allocations).
 
-When a type has `JSONAlwaysDynamicTypeAttribute` the type should most
-of the time also have `UseThriveSerializerAttribute` as otherwise the
-always dynamic type doesn't work.
+Primitive objects go through the `Write` method of the writer and the
+specific variant of the reader. For example, `Write(2)` and then
+`ReadInt32()`.
+
+When writing references to objects use either `writer.WriteObject` or
+`writer.WriteObjectOrNull` depending on if the object can be null or
+not. Note that the or null interface does not support all collection
+types! So some special types need first checking against null and an
+explicit `writer.WriteNullObject()`. For example:
+
+```c#
+if (field != null)
+{
+    writer.WriteObject(specialCollectionField);
+}
+else
+{
+    writer.WriteNullObject();
+}
+```
+
+You'll know this issue triggered if there's a cast error from `List`
+to a more specific container type.
+
+There's also a more advanced reader variant with extended type
+information which can be used for templated classes. Look at
+`HexLayoutSerializer` for an example.
 
 ### Object References
 
-When using `[JsonObject(IsReference = true)]` that means "write an ID
-for this object in JSON", the ID can be referred to later. So this
-means that *only* use that attribute for object types that can be
-referred to multiple times in the JSON, otherwise we are just wasting
-space writing object IDs in the resulting JSON that won't be
-used. Also having a ton of reference IDs will actually slow down
-deserialization a lot, so overusing this feature when not required
-will slow down loading a lot.
+If an object is referred to multiple times in an archive it must set
+this property to true:
 
-When objects refer to each other in a loop (see the properties section
-on how to break these loops to make them load) or with references back
-up to their ancestor objects, `UseThriveSerializerAttribute` is
-required to use the Thrive serializer which supports these use cases.
+```c#
+public bool CanBeReferencedInArchive => true;
+```
+
+If a descendant can refer back up to its ancestor, then the
+deserialization method needs to be written like this:
+
+```c#
+public static MyClass ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+{
+    if (version is > SERIALIZATION_VERSION or <= 0)
+        throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+    var instance = new MyClass();
+    
+    // Register the object reference so that things can point to it already
+    reader.ReportObjectConstructorDone(instance);
+        
+    // And now read the properties
+    instance.field2 = reader.ReadObjectOrNull<SomeObject>();
+
+    return instance;
+}
+```
 
 ### Properties
 
-Public fields and properties with a get operation are saved by
-default. Private fields and properties with private setters need
-`JsonPropertyAttribute` on them to load them from a save. Note that a
-property with a public get will be written to the save **but will not
-be loaded** unless it has a public set or that JSON attribute.
+With the archiving system nothing is explicitly saved, so all
+properties that need to be saved or loaded must be done manually.
 
-Properties and fields are serialized and deserialized in the order
-they are defined in the C# source code file. The only exception is
-that when the Thrive serializer is used, then constructor parameters
-are deserialized always before running the constructor. This has the
-slight complication that to break object loops the constructor
-parameters should be placed first in a class. This way an object loop
-can be loaded correctly by just deserializing the fields needed to
-call the constructor first, and only after that the properties that
-require the object loop to be rebuilt are defined.
+Here's a full example class:
 
-For the above case the default JSON serializer would always fail but
-the Thrive serializer will work when constructor parameters and
-property order is picked carefully (or a separate constructor is added
-that needs less properties and marked with
-`JsonConstructorAttribute`).
+```c#
+public class MyClass : IArchivable
+{
+    public const ushort SERIALIZATION_VERSION = 1;
 
-If you add a new constructor parameter all properties that are defined
-before that parameter now get loaded before the constructor is
-executed. This is because the json loader needs to keep reading and
-loading the properties until it has found all the constructor
-parameters. For this reason all the constructor properties should be
-put first in a class in the order they are used by the
-constructor. This reduces the need to allocate temporary memory and
-reduces the chance that accidental object loops that cannot be handled
-are created.
+    private readonly string field1;
+
+    private SomeObject? field2;
+
+    public MyClass(string arg)
+    {
+        field1 = arg;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MyClass;
+    public bool CanBeReferencedInArchive => false;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.MyClass)
+            throw new NotSupportedException();
+
+        writer.WriteObject((MyClass)obj);
+    }
+
+    public static MyClass ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new MyClass(reader.ReadString() ?? throw new NullArchiveObjectException())
+        {
+            field2 = reader.ReadObjectOrNull<SomeObject>(),
+        };
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(field1);
+        writer.WriteObjectOrNull(field2);
+    }
+}
+```
+
+Note that not all classes require a write and read callbacks, but
+you'll notice easily enough with errors about unknown type for
+serialization / deserialization. When they are added they need to be
+registered in the `ThriveArchiveManager` like this:
+
+```c#
+RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MyClass, typeof(MyClass),
+    MyClass.WriteToArchive);
+RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MyClass, typeof(MyClass),
+    MyClass.ReadFromArchive);
+```
+
+If you don't register the callbacks, then also don't write them into
+the file (as it is confusing if archiving methods exist that are not
+actually used and can make troubleshooting a problem take extra time
+to notice that something isn't registered).
+
+### Components
+
+Components have their own approach based on the `IArchivableComponent`
+interface and implementation in their respective helper class. See
+`WorldPosition` for an example and the `ComponentDeserializers` class.
+
+### Versioning
+
+This archiving system has a built-in way to do versioning. Each object
+must report its current version. And on load it receives the version
+information.
+
+Here's an example how to correctly increase version from 1 to 2 and
+write a new property:
+
+```c#
+public static MyClass ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+{
+    if (version is > SERIALIZATION_VERSION or <= 0)
+        throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+    var instance = new MyClass();
+
+    reader.ReportObjectConstructorDone(reader.ReadString() ?? throw new NullArchiveObjectException());
+
+    instance.field2 = reader.ReadObjectOrNull<SomeObject>();
+
+    if (version > 1)
+        instance.field3 = (CastedType)reader.ReadObjectOrNull(out var archiveType);
+
+    return instance;
+}
+
+public void WriteToArchive(ISArchiveWriter writer)
+{
+    writer.Write(field1);
+    writer.WriteObjectOrNull(field2);
+    writer.WriteObjectOrNull(field3);
+}
+```
+
+This example leaves `field3` to the default value but else could be
+used to use some different value when loading older versions.
+
+This system ensures that old saves are easy to keep compatible as long
+as care is taken each time new properties are added.
+
 
 Save File Format
 ----------------
 
 Thrive saves are actually just `.tar.gz` files with the extension
 changed. The files contain three separate files: JSON of the save
-general info, the full save JSON, and a screenshot. The screenshot and
-info exist separately so that the load game menu can easily show
-previews.
+general info, the full save archive binary, and a screenshot. The
+screenshot and info exist separately so that the load game menu can
+easily show previews.

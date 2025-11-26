@@ -1,28 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using ThriveScriptsShared;
 
 /// <summary>
 ///   The conditions of a biome that can change. This is a separate class to make serialization work regarding the biome
 /// </summary>
-[UseThriveSerializer]
-public class BiomeConditions : IBiomeConditions, ICloneable
+public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
 {
-    [JsonProperty]
+    public const ushort SERIALIZATION_VERSION = 2;
+
     private Dictionary<Compound, BiomeCompoundProperties> compounds;
 
-    [JsonProperty]
     private Dictionary<Compound, BiomeCompoundProperties> currentCompoundAmounts;
 
-    [JsonProperty]
     private Dictionary<Compound, BiomeCompoundProperties> averageCompoundAmounts;
 
-    [JsonProperty]
     private Dictionary<Compound, BiomeCompoundProperties> maximumCompoundAmounts;
 
-    [JsonProperty]
     private Dictionary<Compound, BiomeCompoundProperties> minimumCompoundAmounts;
 
     /// <summary>
@@ -30,13 +26,12 @@ public class BiomeConditions : IBiomeConditions, ICloneable
     ///   <see cref="SimulationParameters"/> to load this class.
     /// </summary>
     /// <param name="compounds">
-    ///   The fallback compound amounts if specific compound amount category doesn't have a value
+    ///   The fallback compound amounts if a specific compound amount category doesn't have a value
     /// </param>
     /// <param name="currentCompoundAmounts">Value for <see cref="CurrentCompoundAmounts"/></param>
     /// <param name="averageCompoundAmounts">Value for <see cref="AverageCompounds"/></param>
     /// <param name="maximumCompoundAmounts">Value for <see cref="MaximumCompounds"/></param>
     /// <param name="minimumCompoundAmounts">Value for <see cref="MinimumCompounds"/></param>
-    [JsonConstructor]
     public BiomeConditions(Dictionary<Compound, BiomeCompoundProperties> compounds,
         Dictionary<Compound, BiomeCompoundProperties>? currentCompoundAmounts,
         Dictionary<Compound, BiomeCompoundProperties>? averageCompoundAmounts,
@@ -75,32 +70,35 @@ public class BiomeConditions : IBiomeConditions, ICloneable
     ///     won't totally blow up older saves.
     ///   </para>
     /// </remarks>
-    [JsonProperty]
     public float Pressure { get; set; } = 101325;
+
+    /// <summary>
+    ///   Starting sunlight and temperature values for this biome when a patch is created. They are used in
+    ///   <see cref="PatchEventsManager"/> to modify the patch's sunlight and temperature when patch events occur.
+    /// </summary>
+    public float StartingSunlightValue { get; set; }
+
+    public float StartingTemperatureValue { get; set; }
 
     /// <summary>
     ///   The compound amounts that change in realtime during gameplay
     /// </summary>
-    [JsonIgnore]
     public IDictionary<Compound, BiomeCompoundProperties> CurrentCompoundAmounts { get; }
 
     /// <summary>
     ///   Average compounds over an in-game day
     /// </summary>
-    [JsonIgnore]
     public IDictionary<Compound, BiomeCompoundProperties> AverageCompounds { get; }
 
     /// <summary>
     ///   Maximum compounds this patch can reach. Not related to maximum during an in-game day, for that use
     ///   <see cref="Compounds"/>!
     /// </summary>
-    [JsonIgnore]
     public IDictionary<Compound, BiomeCompoundProperties> MaximumCompounds { get; }
 
     /// <summary>
     ///   Minimum compounds during an in-game day
     /// </summary>
-    [JsonIgnore]
     public IDictionary<Compound, BiomeCompoundProperties> MinimumCompounds { get; }
 
     /// <summary>
@@ -112,24 +110,21 @@ public class BiomeConditions : IBiomeConditions, ICloneable
     ///     I couldn't come up with a better name so this is named unimaginatively like this - hhyyrylainen
     ///   </para>
     /// </remarks>
-    [JsonIgnore]
     public IReadOnlyDictionary<Compound, BiomeCompoundProperties> Compounds => compounds;
 
     /// <summary>
     ///   Allows access to modification of the compound values in the biome permanently. Should only be used by
-    ///   auto-evo or map generator. After changing <see cref="AverageCompounds"/> must be updated.
+    ///   auto-evo, patch events or map generator. After changing <see cref="AverageCompounds"/> must be updated.
     ///   <see cref="ModifyLongTermCondition"/> is the preferred method to update this data which handles that
     ///   automatically. Or for more advanced handling (of gases especially):
     ///   <see cref="ApplyLongTermCompoundChanges"/>
     /// </summary>
-    [JsonIgnore]
     public IDictionary<Compound, BiomeCompoundProperties> ChangeableCompounds => compounds;
 
     /// <summary>
     ///   Returns a new dictionary where <see cref="Compounds"/> is combined with compounds contained in
     ///   <see cref="Chunks"/>.
     /// </summary>
-    [JsonIgnore]
     public IReadOnlyDictionary<Compound, BiomeCompoundProperties> CombinedCompounds
     {
         get
@@ -151,6 +146,60 @@ public class BiomeConditions : IBiomeConditions, ICloneable
 
             return result;
         }
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.BiomeConditions;
+    public bool CanBeReferencedInArchive => false;
+
+    public static BiomeConditions ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var compounds = reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>();
+        var currentCompoundAmounts = reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>();
+        var averageCompoundAmounts = reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>();
+        var maximumCompoundAmounts = reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>();
+        var minimumCompoundAmounts = reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>();
+        var chunks = reader.ReadObject<Dictionary<string, ChunkConfiguration>>();
+        var pressure = reader.ReadFloat();
+
+        var biomeConditions = new BiomeConditions(compounds,
+            currentCompoundAmounts,
+            averageCompoundAmounts,
+            maximumCompoundAmounts,
+            minimumCompoundAmounts)
+        {
+            Chunks = chunks,
+            Pressure = pressure,
+        };
+
+        // Values for version <= 1 are properly set in Patch after loading.
+        if (version >= 2)
+        {
+            float startingSunlightValue = reader.ReadFloat();
+            float startingTemperatureValue = reader.ReadFloat();
+
+            biomeConditions.StartingSunlightValue = startingSunlightValue;
+            biomeConditions.StartingTemperatureValue = startingTemperatureValue;
+        }
+
+        return biomeConditions;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(compounds);
+        writer.WriteObject(currentCompoundAmounts);
+        writer.WriteObject(averageCompoundAmounts);
+        writer.WriteObject(maximumCompoundAmounts);
+        writer.WriteObject(minimumCompoundAmounts);
+
+        writer.WriteObject(Chunks);
+        writer.Write(Pressure);
+        writer.Write(StartingSunlightValue);
+        writer.Write(StartingTemperatureValue);
     }
 
     public BiomeCompoundProperties GetCompound(Compound compound, CompoundAmountType amountType)
@@ -490,6 +539,11 @@ public class BiomeConditions : IBiomeConditions, ICloneable
             if (string.IsNullOrEmpty(chunk.Value.Name))
             {
                 throw new InvalidRegistryDataException(name, GetType().Name, "Missing name for chunk type");
+            }
+
+            if (string.IsNullOrEmpty(chunk.Value.DamageType) && chunk.Value.Damages > 0)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name, "Missing damage type for chunk");
             }
 
             if (chunk.Value.PhysicsDensity <= 0)

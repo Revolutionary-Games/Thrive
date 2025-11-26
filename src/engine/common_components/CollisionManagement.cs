@@ -7,30 +7,35 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using Arch.Core;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Allows modifying <see cref="Physics"/> collisions of this entity
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct CollisionManagement
+public struct CollisionManagement : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 2;
+
     /// <summary>
     ///   Collisions experienced by this entity note that <see cref="RecordActiveCollisions"/> needs to be 1 or
     ///   more for this list to the populated. Don't reassign this list as otherwise it will stop being updated
     ///   by the underlying physics body.
     /// </summary>
-    [JsonIgnore]
     public PhysicsCollision[]? ActiveCollisions;
 
     /// <summary>
     ///   Pointer to the field that stores the size of valid collisions inside <see cref="ActiveCollisions"/>.
     ///   Use
     /// </summary>
-    [JsonIgnore]
     public IntPtr ActiveCollisionCountPtr;
 
     public List<Entity>? IgnoredCollisionsWith;
+
+    /// <summary>
+    ///   If the same entity from <see cref="IgnoredCollisionsWith"/> is here, actual physics engine ignores will be
+    ///   removed when the entry no longer exists in that list.
+    /// </summary>
+    public List<Entity>? RemoveIgnoredCollisions;
 
     /// <summary>
     ///   When specified this callback is called before any physics collisions are allowed to happen. Returning
@@ -53,7 +58,6 @@ public struct CollisionManagement
     ///     for example the toxin collision system) or if all systems will need to reapply their filters after load
     ///   </para>
     /// </remarks>
-    [JsonIgnore]
     public PhysicalWorld.OnCollisionFilterCallback? CollisionFilter;
 
     /// <summary>
@@ -70,22 +74,43 @@ public struct CollisionManagement
     /// <summary>
     ///   Must be set to false after changing any properties to have them apply (after the initial creation)
     /// </summary>
-    [JsonIgnore]
     public bool StateApplied;
 
     // The following variables are internal for the collision management system and should not be modified
-    [JsonIgnore]
     public bool CollisionFilterCallbackRegistered;
 
     /// <summary>
     ///   Internal flag, don't touch. Used as an optimization to not always have to call the native side library.
     /// </summary>
-    [JsonIgnore]
     public bool CollisionIgnoresUsed;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentCollisionManagement;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        // Save only persistent state
+        writer.WriteObjectOrNull(IgnoredCollisionsWith);
+        writer.Write(RecordActiveCollisions);
+        writer.WriteObjectOrNull(RemoveIgnoredCollisions);
+    }
 }
 
 public static class CollisionManagementHelpers
 {
+    public static CollisionManagement ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > CollisionManagement.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, CollisionManagement.SERIALIZATION_VERSION);
+
+        return new CollisionManagement
+        {
+            IgnoredCollisionsWith = reader.ReadObjectOrNull<List<Entity>>(),
+            RecordActiveCollisions = reader.ReadInt32(),
+            RemoveIgnoredCollisions = version > 1 ? reader.ReadObjectOrNull<List<Entity>>() : null,
+        };
+    }
+
     public static void StartCollisionRecording(this ref CollisionManagement collisionManagement, int maxCollisions)
     {
         if (collisionManagement.RecordActiveCollisions >= maxCollisions)
@@ -118,5 +143,48 @@ public static class CollisionManagementHelpers
 #endif
 
         return count;
+    }
+
+    public static void AddPermanentCollisionIgnoreWith(this ref CollisionManagement collisionManagement, Entity entity)
+    {
+        collisionManagement.IgnoredCollisionsWith ??= new List<Entity>();
+
+        if (collisionManagement.IgnoredCollisionsWith.Contains(entity))
+            return;
+
+        collisionManagement.IgnoredCollisionsWith.Add(entity);
+
+        collisionManagement.StateApplied = false;
+    }
+
+    public static void AddTemporaryCollisionIgnoreWith(this ref CollisionManagement collisionManagement, Entity entity)
+    {
+        collisionManagement.IgnoredCollisionsWith ??= new List<Entity>();
+
+        if (collisionManagement.IgnoredCollisionsWith.Contains(entity))
+            return;
+
+        collisionManagement.IgnoredCollisionsWith.Add(entity);
+
+        collisionManagement.RemoveIgnoredCollisions ??= new List<Entity>();
+
+        if (!collisionManagement.RemoveIgnoredCollisions.Contains(entity))
+            collisionManagement.RemoveIgnoredCollisions.Add(entity);
+
+        collisionManagement.StateApplied = false;
+    }
+
+    public static void RemoveTemporaryCollisionIgnoreWith(this ref CollisionManagement collisionManagement,
+        Entity entity)
+    {
+        if (collisionManagement.IgnoredCollisionsWith == null)
+            return;
+
+        if (!collisionManagement.IgnoredCollisionsWith.Contains(entity))
+            return;
+
+        collisionManagement.IgnoredCollisionsWith.Remove(entity);
+
+        collisionManagement.StateApplied = false;
     }
 }

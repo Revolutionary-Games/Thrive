@@ -1,11 +1,16 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
+using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Details for a fossilised species saved on disk.
 /// </summary>
-public class FossilisedSpeciesInformation
+public class FossilisedSpeciesInformation : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Details for a fossilised species saved on disk.
     /// </summary>
@@ -17,7 +22,7 @@ public class FossilisedSpeciesInformation
 
     /// <summary>
     ///   Type of this species. This enum should not be reordered as that will break existing fossilized files which
-    ///   can never be done (as there's no process for version upgrading them).
+    ///   can never be done (as there's no process for version-upgrading them).
     /// </summary>
     public enum SpeciesType
     {
@@ -55,4 +60,64 @@ public class FossilisedSpeciesInformation
     ///   The type of this species, e.g. microbe.
     /// </summary>
     public SpeciesType Type { get; set; }
+
+    public string FormattedName { get; set; } = string.Empty;
+
+    public int FossilVersion { get; set; }
+
+    /// <summary>
+    ///   Set when data about a file could be loaded, but the file is not good to try to actually load a species from.
+    /// </summary>
+    [JsonIgnore]
+    public bool IsInvalidOrOutdated { get; set; }
+
+    [JsonIgnore]
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    [JsonIgnore]
+    public ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.FossilisedSpeciesInformation;
+
+    [JsonIgnore]
+    public bool CanBeReferencedInArchive => false;
+
+    public static FossilisedSpeciesInformation ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new FossilisedSpeciesInformation((SpeciesType)reader.ReadInt32())
+        {
+            ThriveVersion = reader.ReadString() ?? throw new NullArchiveObjectException(),
+            Creator = reader.ReadString() ?? throw new NullArchiveObjectException(),
+            CreatedAt = DateTime.Parse(reader.ReadString() ?? throw new NullArchiveObjectException(),
+                CultureInfo.InvariantCulture),
+            ID = Guid.Parse(reader.ReadString() ?? throw new NullArchiveObjectException()),
+            FormattedName = reader.ReadString() ?? throw new NullArchiveObjectException(),
+            FossilVersion = reader.ReadInt32(),
+        };
+
+        instance.ApplyOutdatedLogic();
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write((int)Type);
+        writer.Write(ThriveVersion);
+        writer.Write(Creator);
+        writer.Write(CreatedAt.ToString("O", CultureInfo.InvariantCulture));
+        writer.Write(ID.ToString());
+        writer.Write(FormattedName);
+        writer.Write(FossilVersion);
+    }
+
+    public void ApplyOutdatedLogic()
+    {
+        // The same code as in FossilisedSpecies.ApplyOutdatedLogic because,
+        // when just loading info, this would be missing
+        if (FossilVersion < FossilisedSpecies.FOSSIL_VERSION)
+            IsInvalidOrOutdated = true;
+    }
 }

@@ -1,176 +1,89 @@
-﻿using GdUnit4;
+﻿using System.IO;
+using GdUnit4;
+using Godot;
+using Saving.Serializers;
+using SharedBase.Archive;
 using static GdUnit4.Assertions;
 
 [TestSuite]
 [RequireGodotRuntime]
 public class MicrobeSpeciesTests
 {
-    private const string TestSpecies1 = @"
-        {
-            ""$id"": ""1"",
-            ""$type"": ""MicrobeSpecies, Thrive"",
-            ""IsBacteria"": true,
-            ""MembraneType"": ""single"",
-            ""MembraneRigidity"": 0,
-            ""BaseRotationSpeed"": 0.18256894,
-            ""InitialCompounds"": {
-                ""Glucose"": 1.4399999,
-                ""Iron"": 2
-            },
-            ""ID"": 69,
-            ""Genus"": ""Cyiyes"",
-            ""Epithet"": ""stex"",
-            ""Colour"": {
-                ""r"": 1,
-                ""g"": 0.7509851,
-                ""b"": 1,
-                ""a"": 1
-            },
-            ""Obsolete"": false,
-            ""Behaviour"": {
-                ""Aggression"": 100,
-                ""Opportunism"": 100,
-                ""Fear"": 100,
-                ""Activity"": 100,
-                ""Focus"": 100
-            },
-            ""Population"": 438,
-            ""Generation"": 1,
-            ""PlayerSpecies"": false,
-            ""Endosymbiosis"": {
-                ""EngulfedSpecies"": {}
-            },
-            ""Organelles"": {
-                ""existingHexes"": [
-                    {
-                        ""$id"": ""2"",
-                        ""Definition"": ""cytoplasm"",
-                        ""Position"": {
-                            ""Q"": 0,
-                            ""R"": -3
-                        },
-                        ""Orientation"": 0
-                    },
-                    {
-                        ""$id"": ""3"",
-                        ""Definition"": ""flagellum"",
-                        ""Position"": {
-                            ""Q"": 0,
-                            ""R"": -2
-                        },
-                        ""Orientation"": 3,
-                        ""Upgrades"": {
-                            ""UnlockedFeatures"": [],
-                            ""CustomUpgradeData"": {
-                                ""$type"": ""FlagellumUpgrades, Thrive"",
-                                ""LengthFraction"": -1
-                            }
-                        }
-                    },
-                    {
-                        ""$id"": ""4"",
-                        ""Definition"": ""nitrogenase"",
-                        ""Position"": {
-                            ""Q"": 0,
-                            ""R"": -1
-                        },
-                        ""Orientation"": 0
-                    },
-                    {
-                        ""$id"": ""5"",
-                        ""Definition"": ""nitrogenase"",
-                        ""Position"": {
-                            ""Q"": 0,
-                            ""R"": 0
-                        },
-                        ""Orientation"": 0
-                    },
-                    {
-                        ""$id"": ""6"",
-                        ""Definition"": ""cytoplasm"",
-                        ""Position"": {
-                            ""Q"": 0,
-                            ""R"": 1
-                        },
-                        ""Orientation"": 0
-                    },
-                    {
-                        ""$id"": ""7"",
-                        ""Definition"": ""chromatophore"",
-                        ""Position"": {
-                            ""Q"": 0,
-                            ""R"": 2
-                        },
-                        ""Orientation"": 0
-                    },
-                    {
-                        ""$id"": ""8"",
-                        ""Definition"": ""rusticyanin"",
-                        ""Position"": {
-                            ""Q"": 0,
-                            ""R"": 3
-                        },
-                        ""Orientation"": 0
-                    }
-                ]
-            }
-        }";
+    private readonly MicrobeSpecies testSpecies1;
+    private readonly MicrobeSpecies testSpecies2;
 
-    private const string TestSpecies2 = @"
+    private readonly ThriveArchiveManager archiveManager;
+
+    public MicrobeSpeciesTests()
+    {
+        archiveManager = new ThriveArchiveManager();
+
+        testSpecies1 = new MicrobeSpecies(1, "Cyiyes", "Thrive")
         {
-            ""$id"": ""1"",
-            ""$type"": ""MicrobeSpecies, Thrive"",
-            ""IsBacteria"": true,
-            ""MembraneType"": ""single"",
-            ""MembraneRigidity"": 0,
-            ""BaseRotationSpeed"": 0.10000003,
-            ""InitialCompounds"": {
-                ""Glucose"": 0.5
-            },
-            ""ID"": 1,
-            ""Genus"": ""Primum"",
-            ""Epithet"": ""thrivium"",
-            ""Colour"": {
-                ""r"": 1,
-                ""g"": 1,
-                ""b"": 1,
-                ""a"": 1
-            },
-            ""Obsolete"": false,
-            ""Behaviour"": {
-                ""Aggression"": 100,
-                ""Opportunism"": 100,
-                ""Fear"": 100,
-                ""Activity"": 100,
-                ""Focus"": 100
-            },
-            ""Population"": 1044,
-            ""Generation"": 3,
-            ""PlayerSpecies"": true,
-            ""Endosymbiosis"": {
-                ""EngulfedSpecies"": {}
-            },
-            ""Organelles"": {
-                ""existingHexes"": [
-                    {
-                        ""$id"": ""2"",
-                        ""Definition"": ""cytoplasm"",
-                        ""Position"": {
-                            ""Q"": 0,
-                            ""R"": 0
-                        },
-                        ""Orientation"": 0
-                    }
-                ]
-            }
-        }";
+            IsBacteria = true,
+            MembraneType = SimulationParameters.Instance.GetMembrane("double"),
+            MembraneRigidity = 0.125f,
+            SpeciesColour = new Color(1, 1, 0, 1),
+            Population = 120,
+            Generation = 2,
+        };
+
+        testSpecies1.BecomePlayerSpecies();
+        testSpecies1.Organelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("cytoplasm"),
+            new Hex(0, 0), 0));
+        testSpecies1.Organelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("rusticyanin"),
+            new Hex(1, 0), 0));
+        testSpecies1.Organelles.Add(new OrganelleTemplate(
+            SimulationParameters.Instance.GetOrganelleType("chromatophore"),
+            new Hex(1, 1), 0));
+        testSpecies1.Organelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("nitrogenase"),
+            new Hex(0, 1), 0));
+        testSpecies1.Organelles.Add(
+            new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("cytoplasm"), new Hex(2, 1), 3)
+            {
+                ModifiableUpgrades = new OrganelleUpgrades
+                {
+                    CustomUpgradeData = new FlagellumUpgrades(0.5f),
+                },
+            });
+        testSpecies1.OnEdited();
+
+        testSpecies2 = new MicrobeSpecies(2, "Test", "Thrive")
+        {
+            IsBacteria = true,
+            MembraneType = SimulationParameters.Instance.GetMembrane("single"),
+            MembraneRigidity = 0,
+            SpeciesColour = new Color(0, 1, 0, 1),
+            Population = 1044,
+        };
+
+        testSpecies2.BecomePlayerSpecies();
+        testSpecies2.Organelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("cytoplasm"),
+            new Hex(0, 0), 0));
+        testSpecies2.OnEdited();
+    }
 
     [TestCase]
     public void DeserializedHashIsConsistent()
     {
-        const ulong desiredHash = 680356391097977883;
+        const ulong desiredHash = 15688549965584827573;
+        const ulong wantedHexesHash = 10218345136693314111;
 
-        var species = ThriveJsonConverter.Instance.DeserializeObject<MicrobeSpecies>(TestSpecies1);
+        AssertThat(desiredHash).IsNotEqual(wantedHexesHash);
+
+        var memoryStream = new MemoryStream();
+        var writer = new SArchiveMemoryWriter(memoryStream, archiveManager);
+        var reader = new SArchiveMemoryReader(memoryStream, archiveManager);
+
+        archiveManager.OnStartNewWrite(writer);
+        writer.WriteObject(testSpecies1);
+        archiveManager.OnFinishWrite(writer);
+
+        archiveManager.OnStartNewRead(reader);
+        memoryStream.Seek(0, SeekOrigin.Begin);
+
+        var species = reader.ReadObjectOrNull<MicrobeSpecies>();
+        archiveManager.OnFinishRead(reader);
 
         AssertThat(species).IsNotNull();
 
@@ -179,7 +92,7 @@ public class MicrobeSpeciesTests
         var hexesHash = CellHexesPhotoBuilder.GetVisualHash(species);
 
         AssertThat(hexesHash).IsNotEqual(desiredHash).IsNotEqual(species.GetVisualHashCode())
-            .IsEqual(6703374232947739281);
+            .IsEqual(wantedHexesHash);
 
         // Check that the result has not changed
         AssertThat(species.GetVisualHashCode()).IsEqual(desiredHash);
@@ -188,9 +101,30 @@ public class MicrobeSpeciesTests
     [TestCase]
     public void SpecificSpeciesHashIsConsistent()
     {
-        var species = ThriveJsonConverter.Instance.DeserializeObject<MicrobeSpecies>(TestSpecies2);
-        AssertThat(species).IsNotNull();
+        const ulong desiredHash1 = 15688549965584827573;
+        const ulong desiredHash2 = 3786447046140225937;
 
-        AssertThat(species!.GetVisualHashCode()).IsEqual(3818464758798215569);
+        var memoryStream = new MemoryStream();
+        var writer = new SArchiveMemoryWriter(memoryStream, archiveManager);
+        var reader = new SArchiveMemoryReader(memoryStream, archiveManager);
+
+        archiveManager.OnStartNewWrite(writer);
+        writer.WriteObject(testSpecies1);
+        writer.WriteObject(testSpecies2);
+        archiveManager.OnFinishWrite(writer);
+
+        archiveManager.OnStartNewRead(reader);
+        memoryStream.Seek(0, SeekOrigin.Begin);
+
+        var species1 = reader.ReadObjectOrNull<MicrobeSpecies>();
+        var species2 = reader.ReadObjectOrNull<MicrobeSpecies>();
+        archiveManager.OnFinishRead(reader);
+
+        AssertThat(species1).IsNotNull();
+        AssertThat(species2).IsNotNull();
+
+        // Check that the result has not changed
+        AssertThat(species1!.GetVisualHashCode()).IsEqual(desiredHash1);
+        AssertThat(species2!.GetVisualHashCode()).IsEqual(desiredHash2);
     }
 }

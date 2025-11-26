@@ -61,6 +61,8 @@ offset_left = 11.0
 offset_top = 11.0
 offset_right = 353.0
 offset_bottom = 409.0
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
 
 [node name="Spacer2" type="Control" parent="VBoxContainer2" index="0"]
 custom_minimum_size = Vector2(342, 16)
@@ -143,6 +145,7 @@ size_flags_horizontal = 3
 
 [node name="OverwriteNameConfirmation" parent="." index="2" instance=ExtResource("4")]
 custom_minimum_size = Vector2(440, 0)
+layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 935.0
@@ -151,6 +154,7 @@ WindowTitle = "CONFIRM_FOSSILISATION_OVERWRITE"
 
 [node name="FossilisationFailedDialog" parent="." index="3" instance=ExtResource("4")]
 custom_minimum_size = Vector2(440, 0)
+layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 935.0

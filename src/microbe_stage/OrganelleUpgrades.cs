@@ -1,22 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Upgrades for a placed or template organelle
 /// </summary>
-public class OrganelleUpgrades : ICloneable, IEquatable<OrganelleUpgrades>
+public class OrganelleUpgrades : IEquatable<OrganelleUpgrades>, IArchivable, IReadOnlyOrganelleUpgrades
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   A list of "feature" names that have been unlocked for this organelle. Depends on the organelle components
     ///   what names they look for.
     /// </summary>
-    public List<string> UnlockedFeatures { get; set; } = new();
+    public List<string> ModifiableUnlockedFeatures { get; set; } = new();
+
+    public IReadOnlyList<string> UnlockedFeatures => ModifiableUnlockedFeatures;
 
     /// <summary>
     ///   Organelle type specific upgrade data. Null if not configured
     /// </summary>
     public IComponentSpecificUpgrades? CustomUpgradeData { get; set; }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.OrganelleUpgrades;
+
+    public bool CanBeReferencedInArchive => false;
+
+    public static OrganelleUpgrades ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new OrganelleUpgrades
+        {
+            ModifiableUnlockedFeatures = reader.ReadObject<List<string>>(),
+            CustomUpgradeData = reader.ReadObjectOrNull<IComponentSpecificUpgrades>(),
+        };
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(ModifiableUnlockedFeatures);
+        writer.WriteObjectOrNull(CustomUpgradeData);
+    }
 
     public bool Equals(OrganelleUpgrades? other)
     {
@@ -36,11 +65,11 @@ public class OrganelleUpgrades : ICloneable, IEquatable<OrganelleUpgrades>
         return CustomUpgradeData.Equals(other.CustomUpgradeData);
     }
 
-    public object Clone()
+    public OrganelleUpgrades Clone()
     {
         return new OrganelleUpgrades
         {
-            UnlockedFeatures = new List<string>(UnlockedFeatures),
+            ModifiableUnlockedFeatures = new List<string>(UnlockedFeatures),
             CustomUpgradeData = (IComponentSpecificUpgrades?)CustomUpgradeData?.Clone(),
         };
     }

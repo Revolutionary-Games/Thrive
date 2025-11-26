@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 11:08+0200\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-08-08 14:30+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -284,7 +284,7 @@ msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "A classe de assembly do mod é necessária quando o assembly é especificado"
 
 #, fuzzy
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "A classe de assembly do mod é necessária quando o assembly é especificado"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -1081,6 +1081,10 @@ msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Equilíbrio de Compostos"
 
 #, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} consumo"
+
+#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "Equilíbrio de Compostos"
 
@@ -1493,6 +1497,14 @@ msgstr "Retomar o jogo"
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Desenvolvedores Actuais"
+
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "LOCALIZAÇÃO ATUAL"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "LOCALIZAÇÃO ATUAL"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "LOCALIZAÇÃO ATUAL"
@@ -2184,6 +2196,14 @@ msgstr ""
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Este é o codigo exato do commit que esta versão do Thrive foi compilada de"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Este é o codigo exato do commit que esta versão do Thrive foi compilada de"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Árvore evolutiva"
 
@@ -2454,6 +2474,14 @@ msgstr "Fossilizar esta espécie (já fossilizada)"
 
 msgid "FOSSILISE"
 msgstr "Fossilizar"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "A eliminação de fósseis falhou"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "O ficheiro do fóssil não pôde ser eliminado"
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "A eliminação de fósseis falhou"
@@ -2772,6 +2800,9 @@ msgstr "Número de ID"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Tipos de Membrana"
@@ -2881,6 +2912,14 @@ msgstr "Inspetor"
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Visite a nossa página Steam"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(proporção de glicose retida no ambiente a cada geração)"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -2997,18 +3036,6 @@ msgstr "Interagir com objetos"
 
 msgid "JANUARY"
 msgstr "Janeiro"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "Modo de debug para JSON:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Sempre"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automaticamente"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Nunca"
 
 msgid "JULY"
 msgstr "Julho"
@@ -3746,6 +3773,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Predação de {0}"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reprodução:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -4106,6 +4137,10 @@ msgstr "Modificar Tipo"
 msgid "MODS"
 msgstr "Mods"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Sem Mods ativos"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4138,10 +4173,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: a chamada do método de descarregamento do assembly do mod falhou com uma exceção: {1}"
 
 msgid "MOD_AUTHOR"
-msgstr "Autor:"
-
-#, fuzzy
-msgid "MOD_AUTO_HARMONY"
 msgstr "Autor:"
 
 msgid "MOD_CREATION_FAILED"
@@ -4800,6 +4831,10 @@ msgid "OUR_WIKI"
 msgstr "A nossa Wiki"
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Não iniciada."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "Não iniciada."
 
@@ -5418,6 +5453,9 @@ msgstr "Rodar para a direita"
 msgid "ROTATION_COLON"
 msgstr "Rotação:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Utilizar auto-evo durante o jogo"
 
@@ -5486,13 +5524,6 @@ msgstr "Espaço utilizado:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Apagar este jogo guardado não pode ser revertido, tens a certeza que desejas apagar permanentemente {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Modo de debug para JSON:"
 
 msgid "SAVE_FAILED"
 msgstr "Falha ao guardar"
@@ -5897,6 +5928,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "tem uma mutação"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Encontrar Região Atual"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Máximo de espécies numa região antes de extinções forçadas"
 
 msgid "SPECIES_LIST"
 msgstr "Lista de Espécies"
@@ -6995,6 +7034,17 @@ msgstr "Reverter"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Reverter a última ação"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Os axónios são as fibras nervosas que os neurónios utilizam para se ligarem uns aos outros e comunicarem. Colocar este organelo transforma o tipo de célula para tecido cerebral."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Obrigado"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Pontos de Mutação"
@@ -7153,6 +7203,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licenças e Bibliotecas Utilizadas"
 
@@ -7161,13 +7214,6 @@ msgstr "Renderizador utilizado:"
 
 msgid "USES_FEATURE"
 msgstr "Sim"
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#, fuzzy
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Suicídio"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Use um username personalizado"
@@ -9256,6 +9302,38 @@ msgid "ZOOM_OUT"
 msgstr "Reduzir"
 
 #, fuzzy
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Autor:"
+
+#, fuzzy
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Suicídio"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Reprodução:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "Modo de debug para JSON:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Sempre"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automaticamente"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Nunca"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Modo de debug para JSON:"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Não iniciada."
+
+#, fuzzy
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "Gerações"
 
@@ -9572,9 +9650,6 @@ msgstr "Reduzir"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Considerar que regiões com até este número de espécies têm baixa biodiversidade"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Máximo de espécies numa região antes de extinções forçadas"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Erro: bloco não encontrado"

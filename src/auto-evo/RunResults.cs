@@ -5,7 +5,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Container for results before they are applied.
@@ -15,23 +15,24 @@ using Newtonsoft.Json;
 ///     This is needed as earlier parts of an auto-evo run may not affect the latter parts
 ///   </para>
 /// </remarks>
-public class RunResults
+public class RunResults : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   The per-species results
     /// </summary>
     /// <remarks>
     ///   <para>
     ///     This is a concurrent collection as multiple threads can read this at the same time. But when modifying
-    ///     there's always an explicit lock so there doesn't seem to be a problem if this isn't a concurrent
+    ///     there's always an explicit lock, so there doesn't seem to be a problem if this isn't a concurrent
     ///     collection, but just for piece of mind (and it doesn't seem to impact the performance much)
     ///     this is one.
     ///   </para>
     /// </remarks>
-    [JsonProperty]
     private readonly ConcurrentDictionary<Species, SpeciesResult> results = new();
 
-    // The following variables are not shared as they are just temporary data during running, and not required
+    // The following variables are not shared as they are just temporary data during running and not required
     // afterwards when loading from a save
     private readonly List<PossibleSpecies> modifiedSpecies = new();
 
@@ -39,14 +40,12 @@ public class RunResults
     ///   Miche tree generated for this auto-evo run. This is partially saved (some subobjects are excluded) so that
     ///   food chain tab information can be displayed after loading a save.
     /// </summary>
-    [JsonProperty]
-    [JsonConverter(typeof(DictionaryWithJSONKeysConverter<Patch, Miche>))]
     private readonly Dictionary<Patch, Miche> micheByPatch = new();
 
     public enum NewSpeciesType
     {
         /// <summary>
-        ///   New species was created as there was lack of species / empty niche so to speak for it to fill
+        ///   New species was created as there was a lack of species / empty niche, so to speak, for it to fill
         /// </summary>
         FillNiche,
 
@@ -56,6 +55,49 @@ public class RunResults
         SplitDueToMutation,
     }
 
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.RunResults;
+    public bool CanBeReferencedInArchive => false;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.RunResults)
+            throw new NotSupportedException();
+
+        writer.WriteObject((RunResults)obj);
+    }
+
+    public static RunResults ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new RunResults();
+
+        // This requires this approach in any case due to being a concurrent dictionary, so this class doesn't have
+        // a special constructor and instead handles the miches here as well manually
+        foreach (var entry in reader.ReadObject<Dictionary<Species, SpeciesResult>>())
+        {
+            instance.results[entry.Key] = entry.Value;
+        }
+
+        foreach (var entry in reader.ReadObject<Dictionary<Patch, Miche>>())
+        {
+            instance.micheByPatch[entry.Key] = entry.Value;
+        }
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        lock (micheByPatch)
+        {
+            writer.WriteObject(results);
+            writer.WriteObject(micheByPatch);
+        }
+    }
+
     /// <summary>
     ///   Per-species results. Species are cloned if they've changed to retain contemporary data and set to null if
     ///   they haven't to reduce save file size.
@@ -63,9 +105,9 @@ public class RunResults
     /// <returns>The per-species results with changed species cloned and unchanged species set to null</returns>
     public Dictionary<uint, SpeciesRecordLite> GetSpeciesRecords()
     {
-        return results.ToDictionary(r => r.Key.ID, r => new SpeciesRecordLite(
-            HasSpeciesChanged(r.Value) ? (Species)r.Key.Clone() : null, r.Key.Population,
-            r.Value.MutatedProperties?.ID, r.Value.SplitFrom?.ID));
+        return results.ToDictionary(r => r.Key.ID, r => new SpeciesRecordLite(r.Key.Population,
+            r.Value.MutatedProperties?.ID, r.Value.SplitFrom?.ID,
+            HasSpeciesChanged(r.Value) ? (Species)r.Key.Clone() : null));
     }
 
     public void AddNewMicheForPatch(Patch patch, Miche miche)
@@ -977,10 +1019,11 @@ public class RunResults
 
                 if (!playerReadable)
                 {
-                    builder.Append(", ");
+                    // TODO: reimplement a quick way to represent a species *if* necessary
+                    /*builder.Append(", ");
                     builder.Append(new LocalizedString("RUN_RESULT_GENE_CODE"));
                     builder.Append(' ');
-                    builder.Append(entry.MutatedProperties.StringCode);
+                    builder.Append(entry.MutatedProperties.StringCode);*/
                 }
 
                 builder.Append('\n');
@@ -1514,6 +1557,12 @@ public class RunResults
         return result.MutatedProperties != null || result.SplitFrom != null || result.Species.PlayerSpecies;
     }
 
+    private void DummyTranslations()
+    {
+        // Just in case we want this in the future, this translation is kept
+        Localization.Translate("RUN_RESULT_GENE_CODE");
+    }
+
     /// <summary>
     ///   A species that may come into existence due to auto-evo simulation, but it isn't guaranteed yet. These are
     ///   resolved by <see cref="RegisterNewSpecies"/>
@@ -1521,8 +1570,10 @@ public class RunResults
     public record struct PossibleSpecies(Species Species, KeyValuePair<Patch, long>
         InitialPopulationInPatches, NewSpeciesType AddType, Species ParentSpecies);
 
-    public class SpeciesResult
+    public class SpeciesResult : IArchivable
     {
+        public const ushort SERIALIZATION_VERSION_RESULT = 1;
+
         public Species Species;
 
         /// <summary>
@@ -1534,12 +1585,12 @@ public class RunResults
         ///     Does not consider migrations nor split-offs.
         ///   </para>
         /// </remarks>
-        public Dictionary<Patch, long> NewPopulationInPatches = new();
+        public Dictionary<Patch, long> NewPopulationInPatches;
 
         /// <summary>
         ///   Previous population numbers that are stored for more advanced result views
         /// </summary>
-        public Dictionary<Patch, long> OldPopulationInPatches = new();
+        public Dictionary<Patch, long> OldPopulationInPatches;
 
         /// <summary>
         ///   null means no changes
@@ -1549,7 +1600,7 @@ public class RunResults
         /// <summary>
         ///   List of patches this species has spread to
         /// </summary>
-        public List<SpeciesMigration> SpreadToPatches = new();
+        public List<SpeciesMigration> SpreadToPatches;
 
         /// <summary>
         ///   If not null, this is a new species that was created
@@ -1577,11 +1628,80 @@ public class RunResults
         ///   If <see cref="SimulationConfiguration.CollectEnergyInformation"/> is set this collects energy
         ///   source and consumption info for this species per-patch where this was simulated
         /// </summary>
-        public Dictionary<Patch, SpeciesPatchEnergyResults> EnergyResults = new();
+        public Dictionary<Patch, SpeciesPatchEnergyResults> EnergyResults;
 
         public SpeciesResult(Species species)
         {
             Species = species ?? throw new ArgumentException("species is null");
+
+            NewPopulationInPatches = new Dictionary<Patch, long>();
+            OldPopulationInPatches = new Dictionary<Patch, long>();
+            SpreadToPatches = new List<SpeciesMigration>();
+            EnergyResults = new Dictionary<Patch, SpeciesPatchEnergyResults>();
+        }
+
+        private SpeciesResult(Species species, Dictionary<Patch, long> newPopulations,
+            Dictionary<Patch, long> oldPopulations, List<SpeciesMigration> migrations,
+            Dictionary<Patch, SpeciesPatchEnergyResults> energyResults)
+        {
+            Species = species;
+            NewPopulationInPatches = newPopulations;
+            OldPopulationInPatches = oldPopulations;
+            SpreadToPatches = migrations;
+            EnergyResults = energyResults;
+        }
+
+        public ushort CurrentArchiveVersion => SERIALIZATION_VERSION_RESULT;
+
+        public ArchiveObjectType ArchiveObjectType =>
+            (ArchiveObjectType)ThriveArchiveObjectType.SpeciesResult;
+
+        public bool CanBeReferencedInArchive => false;
+
+        // ReSharper disable once MemberHidesStaticFromOuterClass
+        public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+        {
+            if (type != (ArchiveObjectType)ThriveArchiveObjectType.SpeciesResult)
+                throw new NotSupportedException();
+
+            writer.WriteObject((SpeciesResult)obj);
+        }
+
+        // ReSharper disable once MemberHidesStaticFromOuterClass
+        public static SpeciesResult ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+        {
+            if (version is > SERIALIZATION_VERSION_RESULT or <= 0)
+                throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_RESULT);
+
+            return new SpeciesResult(reader.ReadObject<Species>(), reader.ReadObject<Dictionary<Patch, long>>(),
+                reader.ReadObject<Dictionary<Patch, long>>(), reader.ReadObject<List<SpeciesMigration>>(),
+                reader.ReadObject<Dictionary<Patch, SpeciesPatchEnergyResults>>())
+            {
+                MutatedProperties = reader.ReadObjectOrNull<Species>(),
+                NewlyCreated = reader.ReadBool() ? (NewSpeciesType)reader.ReadInt8() : null,
+                SplitOff = reader.ReadObjectOrNull<Species>(),
+                SplitFrom = reader.ReadObjectOrNull<Species>(),
+                SplitOffPatches = reader.ReadObjectOrNull<List<Patch>>(),
+            };
+        }
+
+        public void WriteToArchive(ISArchiveWriter writer)
+        {
+            writer.WriteObject(Species);
+            writer.WriteObject(NewPopulationInPatches);
+            writer.WriteObject(OldPopulationInPatches);
+            writer.WriteObject(SpreadToPatches);
+            writer.WriteObject(EnergyResults);
+            writer.WriteObjectOrNull(MutatedProperties);
+            writer.Write(NewlyCreated.HasValue);
+            if (NewlyCreated.HasValue)
+            {
+                writer.Write((byte)NewlyCreated.Value);
+            }
+
+            writer.WriteObjectOrNull(SplitOff);
+            writer.WriteObjectOrNull(SplitFrom);
+            writer.WriteObjectOrNull(SplitOffPatches);
         }
 
         public SpeciesPatchEnergyResults GetEnergyResults(Patch patch)
@@ -1604,24 +1724,72 @@ public class RunResults
     /// <summary>
     ///   Energy source and consumption information for a species in a patch
     /// </summary>
-    public class SpeciesPatchEnergyResults
+    public class SpeciesPatchEnergyResults : IArchivable
     {
-        [JsonConverter(typeof(DictionaryWithJSONKeysConverter<LocalizedString, NicheInfo>))]
-        public readonly Dictionary<LocalizedString, NicheInfo> PerNicheEnergy = new();
+        public const ushort SERIALIZATION_VERSION_ENERGY = 1;
+
+        public readonly Dictionary<LocalizedString, NicheInfo> PerNicheEnergy;
 
         public float TotalEnergyGathered;
 
         public float IndividualCost;
 
+        public SpeciesPatchEnergyResults()
+        {
+            PerNicheEnergy = new Dictionary<LocalizedString, NicheInfo>();
+        }
+
+        private SpeciesPatchEnergyResults(Dictionary<LocalizedString, NicheInfo> nicheEnergies)
+        {
+            PerNicheEnergy = nicheEnergies;
+        }
+
         /// <summary>
         ///   Unadjusted population based the energy sources. Doesn't take
         ///   <see cref="Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION"/> into account.
         /// </summary>
-        [JsonIgnore]
         public long UnadjustedPopulation => (long)MathF.Floor(TotalEnergyGathered / IndividualCost);
 
-        public class NicheInfo
+        public ushort CurrentArchiveVersion => SERIALIZATION_VERSION_ENERGY;
+
+        public ArchiveObjectType ArchiveObjectType =>
+            (ArchiveObjectType)ThriveArchiveObjectType.SpeciesPatchEnergyResults;
+
+        public bool CanBeReferencedInArchive => false;
+
+        // ReSharper disable once MemberHidesStaticFromOuterClass
+        public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
         {
+            if (type != (ArchiveObjectType)ThriveArchiveObjectType.SpeciesPatchEnergyResults)
+                throw new NotSupportedException();
+
+            writer.WriteObject((SpeciesPatchEnergyResults)obj);
+        }
+
+        // ReSharper disable once MemberHidesStaticFromOuterClass
+        public static SpeciesPatchEnergyResults ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+        {
+            if (version is > SERIALIZATION_VERSION_ENERGY or <= 0)
+                throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_ENERGY);
+
+            return new SpeciesPatchEnergyResults(reader.ReadObject<Dictionary<LocalizedString, NicheInfo>>())
+            {
+                TotalEnergyGathered = reader.ReadFloat(),
+                IndividualCost = reader.ReadFloat(),
+            };
+        }
+
+        public void WriteToArchive(ISArchiveWriter writer)
+        {
+            writer.WriteObject(PerNicheEnergy);
+            writer.Write(TotalEnergyGathered);
+            writer.Write(IndividualCost);
+        }
+
+        public class NicheInfo : IArchivable
+        {
+            public const ushort SERIALIZATION_VERSION_NICHE = 1;
+
             public float CurrentSpeciesFitness;
 
             public float CurrentSpeciesEnergy;
@@ -1629,6 +1797,42 @@ public class RunResults
             public float TotalFitness;
 
             public float TotalAvailableEnergy;
+
+            public ushort CurrentArchiveVersion => SERIALIZATION_VERSION_NICHE;
+            public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.NicheInfo;
+            public bool CanBeReferencedInArchive => false;
+
+            // ReSharper disable once MemberHidesStaticFromOuterClass
+            public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+            {
+                if (type != (ArchiveObjectType)ThriveArchiveObjectType.NicheInfo)
+                    throw new NotSupportedException();
+
+                writer.WriteObject((NicheInfo)obj);
+            }
+
+            // ReSharper disable once MemberHidesStaticFromOuterClass
+            public static NicheInfo ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+            {
+                if (version is > SERIALIZATION_VERSION_NICHE or <= 0)
+                    throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_NICHE);
+
+                return new NicheInfo
+                {
+                    CurrentSpeciesFitness = reader.ReadFloat(),
+                    CurrentSpeciesEnergy = reader.ReadFloat(),
+                    TotalFitness = reader.ReadFloat(),
+                    TotalAvailableEnergy = reader.ReadFloat(),
+                };
+            }
+
+            public void WriteToArchive(ISArchiveWriter writer)
+            {
+                writer.Write(CurrentSpeciesFitness);
+                writer.Write(CurrentSpeciesEnergy);
+                writer.Write(TotalFitness);
+                writer.Write(TotalAvailableEnergy);
+            }
         }
     }
 }

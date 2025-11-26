@@ -140,7 +140,7 @@ public static class SpawnHelpers
 
     private static readonly Signature TerrainSignature = new(typeof(WorldPosition), typeof(SpatialInstance),
         typeof(MicrobeTerrainChunk), typeof(PredefinedVisuals), typeof(Physics), typeof(PhysicsShapeHolder),
-        typeof(StaticBodyMarker));
+        typeof(CollisionShapeLoader), typeof(StaticBodyMarker));
 
     [Flags]
     private enum ChunkComponentFlag : short
@@ -735,7 +735,7 @@ public static class SpawnHelpers
                     throw new ArgumentException("First Multicellular cell must have body plan index of 0");
                 }
 
-                resolvedCellType = multicellularSpecies.Cells[0].CellType;
+                resolvedCellType = multicellularSpecies.ModifiableGameplayCells[0].ModifiableCellType;
 
                 usedCellDefinition = resolvedCellType;
                 var properties = new CellProperties(usedCellDefinition);
@@ -749,7 +749,7 @@ public static class SpawnHelpers
             }
 
 #if DEBUG
-            if (multicellularData.CellBodyPlanIndex >= multicellularSpecies.Cells.Count)
+            if (multicellularData.CellBodyPlanIndex >= multicellularSpecies.ModifiableGameplayCells.Count)
                 throw new InvalidOperationException("Bad body plan index was generated for a cell");
 #endif
 
@@ -954,7 +954,7 @@ public static class SpawnHelpers
                     {
                         // -1 here as the bud is always spawned, so the number of cells to add on top of that is the max
                         // count
-                        var maxCount = multicellular.Cells.Count - 1;
+                        var maxCount = multicellular.ModifiableGameplayCells.Count - 1;
                         int cellsToAdd = 0;
 
                         while (cellsToAdd < maxCount)
@@ -1084,7 +1084,12 @@ public static class SpawnHelpers
         entityRecorder.Set(entity, new PhysicsShapeHolder
         {
             BodyIsStatic = true,
-            Shape = PhysicsShape.CreateShapeFromGodotResource(chunkConfiguration.CollisionShapePath, 1000),
+        });
+        entityRecorder.Set(entity, new CollisionShapeLoader
+        {
+            Density = 1000,
+            SkipForceRecreateBodyIfCreated = true,
+            CollisionResourcePath = chunkConfiguration.CollisionShapePath,
         });
 
         entityRecorder.Set(entity, new MicrobeTerrainChunk

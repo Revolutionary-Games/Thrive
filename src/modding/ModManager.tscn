@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ehx86lo13kcg" path="res://src/modding/ModUploader.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="13"]
 
-[node name="ModManager" type="Control" node_paths=PackedStringArray("leftArrow", "rightArrow", "availableModsContainer", "enabledModsContainer", "openModInfoButton", "openModUrlButton", "disableAllModsButton", "selectedModName", "selectedModIcon", "selectedModAuthor", "selectedModVersion", "selectedModRecommendedThriveVersion", "selectedModMinimumThriveVersion", "selectedModDescription", "applyChangesButton", "unAppliedChangesWarning", "modFullInfoPopup", "fullInfoName", "fullInfoInternalName", "fullInfoAuthor", "fullInfoVersion", "fullInfoDescription", "fullInfoLongDescription", "fullInfoFromWorkshop", "fullInfoIconFile", "fullInfoInfoUrl", "fullInfoLicense", "fullInfoRecommendedThrive", "fullInfoMinimumThrive", "fullInfoMaximumThrive", "fullInfoPckName", "fullInfoModAssembly", "fullInfoAssemblyModClass", "fullInfoAutoHarmony", "openWorkshopButton", "modUploaderButton", "newModGUI", "modCreateErrorDialog", "modUploader", "modErrorDialog", "restartRequired")]
+[node name="ModManager" type="Control" node_paths=PackedStringArray("leftArrow", "rightArrow", "availableModsContainer", "enabledModsContainer", "openModInfoButton", "openModUrlButton", "disableAllModsButton", "selectedModName", "selectedModIcon", "selectedModAuthor", "selectedModVersion", "selectedModRecommendedThriveVersion", "selectedModMinimumThriveVersion", "selectedModDescription", "applyChangesButton", "unAppliedChangesWarning", "modFullInfoPopup", "fullInfoName", "fullInfoInternalName", "fullInfoAuthor", "fullInfoVersion", "fullInfoDescription", "fullInfoLongDescription", "fullInfoFromWorkshop", "fullInfoIconFile", "fullInfoInfoUrl", "fullInfoLicense", "fullInfoRecommendedThrive", "fullInfoMinimumThrive", "fullInfoMaximumThrive", "fullInfoPckName", "fullInfoModAssembly", "fullInfoAssemblyModClass", "openWorkshopButton", "modUploaderButton", "newModGUI", "modCreateErrorDialog", "modUploader", "modErrorDialog", "restartRequired")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,7 +56,6 @@ fullInfoMaximumThrive = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/Marg
 fullInfoPckName = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12/PckName")
 fullInfoModAssembly = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13/ModAssembly")
 fullInfoAssemblyModClass = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14/AssemblyModClass")
-fullInfoAutoHarmony = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/UseHarmony")
 openWorkshopButton = NodePath("CenterContainer/VBoxContainer/HBoxContainer2/Workshop")
 modUploaderButton = NodePath("CenterContainer/VBoxContainer/HBoxContainer2/Upload")
 newModGUI = NodePath("NewModGUI")
@@ -420,6 +419,7 @@ text = "APPLY_CHANGES"
 
 [node name="NewModGUI" parent="." instance=ExtResource("6")]
 visible = false
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -428,6 +428,7 @@ grow_vertical = 1
 
 [node name="UnAppliedChangesWarning" parent="." instance=ExtResource("3")]
 custom_minimum_size = Vector2(500, 0)
+layout_mode = 0
 offset_left = -500.0
 offset_top = -143.0
 offset_right = 0.0
@@ -437,6 +438,7 @@ ConfirmText = "DISCARD_CHANGES"
 WindowTitle = "UNAPPLIED_MOD_CHANGES"
 
 [node name="ModFullInfo" parent="." instance=ExtResource("4")]
+layout_mode = 0
 offset_left = -580.0
 offset_top = -416.0
 offset_right = 0.0
@@ -688,20 +690,6 @@ layout_mode = 2
 text = "ModClass"
 label_settings = ExtResource("11_kax5m")
 
-[node name="VBoxContainer17" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label15" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17"]
-layout_mode = 2
-text = "MOD_AUTO_HARMONY"
-label_settings = ExtResource("10_m12ca")
-
-[node name="UseHarmony" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17"]
-editor_description = "PLACEHOLDER"
-layout_mode = 2
-text = "Harmony"
-label_settings = ExtResource("11_kax5m")
-
 [node name="Button" type="Button" parent="ModFullInfo/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -710,6 +698,7 @@ theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 
 [node name="CreateModError" parent="." instance=ExtResource("7")]
+layout_mode = 0
 offset_left = -67.0
 offset_top = -87.0
 offset_right = 0.0
@@ -720,6 +709,7 @@ Resizable = false
 
 [node name="ModUploader" parent="." instance=ExtResource("12")]
 visible = false
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -728,11 +718,13 @@ grow_vertical = 1
 
 [node name="LoadUnloadErrors" parent="." instance=ExtResource("7")]
 custom_minimum_size = Vector2(400, 350)
+layout_mode = 0
 ErrorMessage = "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 ExceptionInfo = ""
 
 [node name="RestartRequired" parent="." instance=ExtResource("3")]
 custom_minimum_size = Vector2(400, 0)
+layout_mode = 0
 HideCancelButton = true
 DialogText = "MOD_LOAD_UNLOAD_RESTART"
 WindowTitle = "RESTART_REQUIRED"

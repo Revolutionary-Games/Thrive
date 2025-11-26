@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 11:08+0200\n"
-"PO-Revision-Date: 2025-05-25 15:00+0000\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
+"PO-Revision-Date: 2025-11-10 22:19+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
@@ -277,7 +277,8 @@ msgstr "Verheven Fase"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Mod assembly klasse is vereist wanneer een assembly is gespecificeerd"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Mod assemble is vereist wanneer auto harmony is aangezet"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -1060,6 +1061,10 @@ msgstr ""
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Alles Behouden"
 
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "Verbruik van {0}"
+
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(niet genoeg om de nachtduur van {0} s te overleven)"
 
@@ -1445,6 +1450,14 @@ msgstr "Slijm vrijlaten"
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Huidige Ontwikkelaars"
+
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "HUIDIGE LOCATIE"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "HUIDIGE LOCATIE"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "HUIDIGE LOCATIE"
@@ -2147,6 +2160,14 @@ msgstr ""
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Dit is de exacte code commit die gebruikt is bij het compileren van deze versie van Thrive"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Dit is de exacte code commit die gebruikt is bij het compileren van deze versie van Thrive"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Stamboom"
 
@@ -2423,6 +2444,14 @@ msgstr "Fossilizeer deze zoort (al gefossilizeerd)"
 
 msgid "FOSSILISE"
 msgstr "Fosillizeren"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Verwijderen van Fossiel Mislukt"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Het fossielbestand kon niet worden verwijderd"
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Verwijderen van Fossiel Mislukt"
@@ -2739,6 +2768,9 @@ msgstr "ID Nummer"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Membraantypes"
@@ -2846,6 +2878,14 @@ msgstr "Inspecteerder"
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Bezoek onze Steampagina"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(proportie van de glucose die overblijft in de omgeving elke generatie)"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Verheffingspoort Activeren"
@@ -2966,18 +3006,6 @@ msgstr "Reageer op object"
 
 msgid "JANUARY"
 msgstr "Januari"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON debug modus:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Altijd"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automatisch"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Nooit"
 
 msgid "JULY"
 msgstr "Juli"
@@ -3724,6 +3752,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Predatie van {0}"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reproductiemethode:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -4081,6 +4113,10 @@ msgstr "Pas het type aan"
 msgid "MODS"
 msgstr "Mods"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Geen Mods Aangezet"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Geinstalleerde mods zijn gevonden, maar er zijn geen mods aangezet.\n"
@@ -4117,9 +4153,6 @@ msgstr "{0}: het aanroepen van de ontlaadfunctie van de assembly van de mod is m
 
 msgid "MOD_AUTHOR"
 msgstr "Auteur van de Mod:"
-
-msgid "MOD_AUTO_HARMONY"
-msgstr "Gebruikt Auto Harmony:"
 
 msgid "MOD_CREATION_FAILED"
 msgstr "Aanmaken Mod Mislukt"
@@ -4779,6 +4812,10 @@ msgid "OUR_WIKI"
 msgstr "onze Wiki"
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Niet begonnen."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "Niet begonnen."
 
@@ -5391,6 +5428,9 @@ msgstr "Draai naar rechts"
 msgid "ROTATION_COLON"
 msgstr "Rotatie:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Voer auto-evo uit tijdens het spelen"
 
@@ -5460,12 +5500,6 @@ msgstr "Ruimte gebruikt:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. Weet je zeker dat je {0} definitief wilt verwijderen?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "Wanneer je een fout met het opslaan rapporteert, voeg dan [color=#3796e1][url={0}]{1}[/url][/color] van de [color=#3796e1][url={2}]logbestandenmap[/url][/color] toe. Deze bevat kritieke informatie voor Thrive ontwikkelaars op te kunnen onderzoeken wat het probleem met het opslaan was. Zonder dit bestand is het extreem moeilijk om het probleem te diagnostiseren en op te lossen."
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Zorg er voor dat JSON debug modus niet uit staat voordat je deze fout met opslaan rapporteert. De automatische JSON debug modus zou een extra bestand genaamd {0} in de [color=#3796e1][url={1}]logbestandenmap[/url][/color] hebben moeten maken. Dit bestand bevat kritieke informatie die de Thrive ontwikkelaars nodig hebben om de fout met het opslaan te onderzoeken."
 
 msgid "SAVE_FAILED"
 msgstr "Opslaan mislukt"
@@ -5863,6 +5897,14 @@ msgstr ""
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "is gemuteerd"
 
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Vind Huidig Gebied"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Maximum hoeveelheid soorten in een gebied voordat uitsterven wordt afgedwongen"
+
 msgid "SPECIES_LIST"
 msgstr "Soortenlijst"
 
@@ -6220,6 +6262,7 @@ msgstr "Theorieteam"
 msgid "THERMOPLAST"
 msgstr "Thermoplast"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Het thermoplast is een structuur met een dubbele membraan waar hittegevoelige pigmenten samengepakt zitten in membraanachtige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het thermoplast kunnen de energie van toenemende [thrive:compound type=\"temperature\"][/thrive:compound] in de omgeving gebruiken om [thrive:compound type=\"atp\"][/thrive:compound] van water te maken in een proces genaamd [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met [thrive:compound type=\"temperature\"][/thrive:compound] delta."
 
@@ -6230,9 +6273,11 @@ msgstr "Gebruikt toenemende temperaturen om [thrive:compound type=\"atp\"][/thri
 msgid "THERMOSYNTHASE"
 msgstr "Thermosynthase"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "Thermosynthase is een eiwit dat thermische convectie gebruikt om zijn vorm aan te passen. Wanneer het opwarmt, vouwt het zichzelf op en bindt het aan ADP, waarbij het dit omzet in [thrive:compound type=\"atp\"][/thrive:compound]. Dit proces heet [b]thermosynthese[/b]. Het eiwit ontvouwt weer als het afkoelt, waardoor het de cyclus kan herhalen als de [thrive:compound type=\"temperature\"][/thrive:compound] weer toeneemt. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met [thrive:compound type=\"temperature\"][/thrive:compound] delta."
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Gebruikt toenemende temperaturen om [thrive:compound type=\"atp\"][/thrive:compound] te produceren. Snelheid schaalt met toename van [thrive:compound type=\"temperature\"][/thrive:compound]. Gebruik [b]warmtevisie[/b] om hete en koude gebieden te vinden."
 
@@ -6976,6 +7021,17 @@ msgstr "Ongedaan Maken"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Laatste actie ongedaan maken"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Axonen zijn zenuwvezel die neuronen gebruiken om met elkaar te verbinden en communiceren. Het plaatsen van dit organel verandert het celtype naar breinweefsel."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Bedankt"
+
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Bouw"
 
@@ -7137,6 +7193,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licenties En Gebruikte Bibliotheken"
 
@@ -7145,12 +7204,6 @@ msgstr "Gebruikte Renderer:"
 
 msgid "USES_FEATURE"
 msgstr "Ja"
-
-msgid "USE_AUTO_HARMONY"
-msgstr "Gebruik Auto Harmony Laadmethode"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Laad Harmony patches automatisch uit Assembly (mod klasse hoeft niet gespecificeerd te worden)"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gebruik een eigen naam"
@@ -9265,6 +9318,41 @@ msgstr "Inzoomen"
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
 
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Gebruikt Auto Harmony:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Gebruik Auto Harmony Laadmethode"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Laad Harmony patches automatisch uit Assembly (mod klasse hoeft niet gespecificeerd te worden)"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Reproductiemethode:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON debug modus:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Altijd"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automatisch"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Nooit"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "Wanneer je een fout met het opslaan rapporteert, voeg dan [color=#3796e1][url={0}]{1}[/url][/color] van de [color=#3796e1][url={2}]logbestandenmap[/url][/color] toe. Deze bevat kritieke informatie voor Thrive ontwikkelaars op te kunnen onderzoeken wat het probleem met het opslaan was. Zonder dit bestand is het extreem moeilijk om het probleem te diagnostiseren en op te lossen."
+
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Zorg er voor dat JSON debug modus niet uit staat voordat je deze fout met opslaan rapporteert. De automatische JSON debug modus zou een extra bestand genaamd {0} in de [color=#3796e1][url={1}]logbestandenmap[/url][/color] hebben moeten maken. Dit bestand bevat kritieke informatie die de Thrive ontwikkelaars nodig hebben om de fout met het opslaan te onderzoeken."
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Niet begonnen."
+
 #, fuzzy
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "Generatie"
@@ -9598,9 +9686,6 @@ msgstr "Uitzoomen"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Overweeg dat gebieden met tot deze hoeveelheid soorten een lage biodiversiteit hebben"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Maximum hoeveelheid soorten in een gebied voordat uitsterven wordt afgedwongen"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Start populatie voor biodiversiteit vergrotende soorten"

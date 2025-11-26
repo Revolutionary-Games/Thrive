@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 11:08+0200\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -295,7 +295,8 @@ msgstr "버전:"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "어셈블리가 특정 될 경우엔 모드 어셈블리 클래스가 필요합니다"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "자동 하모니가 활성화 되었을 때엔 모드 어셈블리가 필요합니다"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -1144,6 +1145,10 @@ msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "성분 비율"
 
 #, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "화합물 구름"
+
+#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "성분 비율"
 
@@ -1547,6 +1552,14 @@ msgstr "점액 분비"
 
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
+
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "현재 위치"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "현재 위치"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "현재 위치"
@@ -2268,6 +2281,14 @@ msgstr ""
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "새로운 키 배치 추가"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "새로운 키 배치 추가"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "진화 계보"
 
@@ -2557,6 +2578,14 @@ msgstr ""
 
 msgid "FOSSILISE"
 msgstr ""
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "자동 진화 실행 실패"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
 
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
@@ -2884,6 +2913,9 @@ msgstr ""
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "세포막 유형"
@@ -3005,6 +3037,14 @@ msgstr ""
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "재개"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "ATP 생산이 너무 적음!"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(매 세대마다 환경에 남는 포도당의 비율)"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3131,18 +3171,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr "한 세대 끝내기"
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3893,6 +3921,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr ""
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "생산"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -4270,6 +4302,10 @@ msgstr ""
 msgid "MODS"
 msgstr ""
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "치트 키 활성화"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4302,9 +4338,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 #, fuzzy
@@ -4987,6 +5020,10 @@ msgid "OUR_WIKI"
 msgstr ""
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "시작되지 않음."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "시작되지 않음."
 
@@ -5632,6 +5669,9 @@ msgstr "오른쪽으로 회전"
 msgid "ROTATION_COLON"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "게임 플레이 중 Auto-Evo 자동 진화 실행"
 
@@ -5703,12 +5743,6 @@ msgstr "사용된 용량:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 {0} 을 삭제하시겠습니까?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr ""
 
 msgid "SAVE_FAILED"
 msgstr "저장 실패"
@@ -6141,6 +6175,14 @@ msgstr "존재하는 종"
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "변이함"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "강제 멸종이 일어나기 전에 지역에 존재할 수 있는 최대 종 수"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "강제 멸종이 일어나기 전에 지역에 존재할 수 있는 최대 종 수"
 
 #, fuzzy
 msgid "SPECIES_LIST"
@@ -7238,6 +7280,17 @@ msgstr "실행 취소"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "마지막 활동 취소"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "이것으로 다른 세포를 찌르세요."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "번영했습니다!"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "변이 점수"
@@ -7411,6 +7464,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -7420,13 +7476,6 @@ msgstr ""
 #, fuzzy
 msgid "USES_FEATURE"
 msgstr "온도"
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#, fuzzy
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "새로운 키 배치 추가"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "임의 사용자 이름 사용"
@@ -9548,6 +9597,18 @@ msgid "ZOOM_OUT"
 msgstr "축소"
 
 #, fuzzy
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "새로운 키 배치 추가"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "생산"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "시작되지 않음."
+
+#, fuzzy
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "세대"
 
@@ -9866,9 +9927,6 @@ msgstr "축소"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "지역의 생물 다양성이 낮은 것으로 간주되게 하는 최대 생물종 수"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "강제 멸종이 일어나기 전에 지역에 존재할 수 있는 최대 종 수"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "생물 다양성을 증진하는 종의 최초 개체수"

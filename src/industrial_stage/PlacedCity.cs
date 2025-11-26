@@ -6,7 +6,6 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A city that has been placed in the world
 /// </summary>
-[DeserializedCallbackTarget]
 public partial class PlacedCity : Node3D, IEntityWithNameLabel
 {
     private static readonly Lazy<PackedScene> LabelScene =
@@ -326,7 +325,6 @@ public partial class PlacedCity : Node3D, IEntityWithNameLabel
         }
     }
 
-    [DeserializedCallbackAllowed]
     private void OnUnitFinished(UnitType type)
     {
         // TODO: proper unit type instances, for now just directly the object is put in the garrison

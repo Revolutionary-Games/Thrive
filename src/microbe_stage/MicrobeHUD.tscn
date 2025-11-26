@@ -233,13 +233,13 @@ border_color = Color(0.533333, 0.745098, 0.815686, 0.392157)
 texture = ExtResource("44")
 region_rect = Rect2(0, 0, 86, 52)
 
-[sub_resource type="StyleBoxFlat" id="43"]
+[sub_resource type="StyleBoxFlat" id="46"]
 draw_center = false
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.709804, 0.188235, 0.188235, 1)
+border_color = Color(0.701961, 0.701961, 0.701961, 0.588235)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
@@ -257,13 +257,13 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[sub_resource type="StyleBoxFlat" id="46"]
+[sub_resource type="StyleBoxFlat" id="43"]
 draw_center = false
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.701961, 0.701961, 0.701961, 0.588235)
+border_color = Color(0.709804, 0.188235, 0.188235, 1)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
@@ -579,12 +579,14 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ProcessPanel" parent="." instance=ExtResource("61")]
+layout_mode = 0
 offset_left = 2.0
 offset_top = 71.0
 offset_right = 402.0
 offset_bottom = 671.0
 
 [node name="MicrobeCheatMenu" parent="." instance=ExtResource("55")]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 30.0
 offset_right = 207.0
@@ -671,10 +673,10 @@ alignment = 1
 visible = false
 layout_mode = 2
 tooltip_text = "TOGGLE_ENGULF_TOOLTIP"
-theme_override_styles/disabled = SubResource("43")
-theme_override_styles/hover = SubResource("1")
-theme_override_styles/pressed = SubResource("1")
 theme_override_styles/normal = SubResource("46")
+theme_override_styles/pressed = SubResource("1")
+theme_override_styles/hover = SubResource("1")
+theme_override_styles/disabled = SubResource("43")
 toggle_mode = true
 ActionIcon = ExtResource("9")
 ActionName = "g_toggle_engulf"
@@ -683,9 +685,9 @@ ActionName = "g_toggle_engulf"
 visible = false
 layout_mode = 2
 tooltip_text = "EJECT_ENGULFED_TOOLTIP"
-theme_override_styles/hover = SubResource("1")
-theme_override_styles/pressed = SubResource("1")
 theme_override_styles/normal = SubResource("46")
+theme_override_styles/pressed = SubResource("1")
+theme_override_styles/hover = SubResource("1")
 ActionIcon = ExtResource("7")
 ActionName = "g_eject_engulfed"
 
@@ -693,9 +695,9 @@ ActionName = "g_eject_engulfed"
 visible = false
 layout_mode = 2
 tooltip_text = "FIRE_TOXIN_TOOLTIP"
-theme_override_styles/hover = SubResource("1")
-theme_override_styles/pressed = SubResource("1")
 theme_override_styles/normal = SubResource("46")
+theme_override_styles/pressed = SubResource("1")
+theme_override_styles/hover = SubResource("1")
 ActionIcon = ExtResource("10")
 ActionName = "g_fire_toxin"
 
@@ -703,9 +705,9 @@ ActionName = "g_fire_toxin"
 visible = false
 layout_mode = 2
 tooltip_text = "TOGGLE_BINDING_TOOLTIP"
-theme_override_styles/hover = SubResource("1")
-theme_override_styles/pressed = SubResource("1")
 theme_override_styles/normal = SubResource("46")
+theme_override_styles/pressed = SubResource("1")
+theme_override_styles/hover = SubResource("1")
 toggle_mode = true
 ActionIcon = ExtResource("72")
 ActionName = "g_toggle_binding"
@@ -714,9 +716,9 @@ ActionName = "g_toggle_binding"
 visible = false
 layout_mode = 2
 tooltip_text = "UNBIND_ALL_TOOLTIP"
-theme_override_styles/hover = SubResource("1")
-theme_override_styles/pressed = SubResource("1")
 theme_override_styles/normal = SubResource("46")
+theme_override_styles/pressed = SubResource("1")
+theme_override_styles/hover = SubResource("1")
 ActionIcon = ExtResource("70")
 ActionName = "g_unbind_all"
 
@@ -724,9 +726,9 @@ ActionName = "g_unbind_all"
 visible = false
 layout_mode = 2
 tooltip_text = "SIGNALING_AGENTS_ACTION_TOOLTIP"
-theme_override_styles/hover = SubResource("1")
-theme_override_styles/pressed = SubResource("1")
 theme_override_styles/normal = SubResource("46")
+theme_override_styles/pressed = SubResource("1")
+theme_override_styles/hover = SubResource("1")
 toggle_mode = true
 ActionIcon = ExtResource("68")
 ActionName = "g_pack_commands"
@@ -735,9 +737,9 @@ ActionName = "g_pack_commands"
 visible = false
 layout_mode = 2
 tooltip_text = "SECRETE_SLIME_TOOLTIP"
-theme_override_styles/hover = SubResource("1")
-theme_override_styles/pressed = SubResource("1")
 theme_override_styles/normal = SubResource("46")
+theme_override_styles/pressed = SubResource("1")
+theme_override_styles/hover = SubResource("1")
 ActionIcon = ExtResource("21")
 ActionName = "g_secrete_slime"
 
@@ -745,9 +747,9 @@ ActionName = "g_secrete_slime"
 visible = false
 layout_mode = 2
 tooltip_text = "SPRINT_ACTION_TOOLTIP"
-theme_override_styles/hover = SubResource("1")
-theme_override_styles/pressed = SubResource("1")
 theme_override_styles/normal = SubResource("46")
+theme_override_styles/pressed = SubResource("1")
+theme_override_styles/hover = SubResource("1")
 toggle_mode = true
 ActionIcon = ExtResource("32_qhyce")
 ActionName = "g_sprint"
@@ -756,9 +758,9 @@ ActionName = "g_sprint"
 visible = false
 layout_mode = 2
 tooltip_text = "MUCOCYST_ACTION_TOOLTIP"
-theme_override_styles/hover = SubResource("1")
-theme_override_styles/pressed = SubResource("1")
 theme_override_styles/normal = SubResource("46")
+theme_override_styles/pressed = SubResource("1")
+theme_override_styles/hover = SubResource("1")
 toggle_mode = true
 ActionIcon = ExtResource("33_qrk4q")
 ActionName = "g_toggle_mucocyst"
@@ -767,9 +769,9 @@ ActionName = "g_toggle_mucocyst"
 visible = false
 layout_mode = 2
 tooltip_text = "SIDEROPHORE_ACTION_TOOLTIP"
-theme_override_styles/hover = SubResource("1")
-theme_override_styles/pressed = SubResource("1")
 theme_override_styles/normal = SubResource("46")
+theme_override_styles/pressed = SubResource("1")
+theme_override_styles/hover = SubResource("1")
 ActionIcon = ExtResource("34_bs2fk")
 ActionName = "g_fire_siderophore"
 
@@ -785,9 +787,11 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="RadialPopup" parent="." instance=ExtResource("1")]
+layout_mode = 0
 
 [node name="StagePrototypeConfirm" parent="." instance=ExtResource("64")]
 custom_minimum_size = Vector2(450, 0)
+layout_mode = 0
 offset_right = 300.0
 offset_bottom = 97.0
 
@@ -831,12 +835,9 @@ show_percentage = false
 [connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
 [connection signal="OnEnvironmentToggled" from="BottomLeft/HUDBottomBar" to="." method="EnvironmentButtonPressed"]
 [connection signal="OnHeatToggled" from="BottomLeft/HUDBottomBar" to="." method="HeatViewButtonPressed"]
-[connection signal="OnHelpPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenHelp"]
-[connection signal="OnMenuPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenMenu"]
 [connection signal="OnPausePressed" from="BottomLeft/HUDBottomBar" to="." method="PauseButtonPressed"]
 [connection signal="OnProcessesPressed" from="BottomLeft/HUDBottomBar" to="." method="ProcessPanelButtonPressed"]
 [connection signal="OnSpeedModeToggled" from="BottomLeft/HUDBottomBar" to="." method="SpeedModeButtonPressed"]
-[connection signal="OnStatisticsPressed" from="BottomLeft/HUDBottomBar" to="." method="StatisticsButtonPressed"]
 [connection signal="OnSuicidePressed" from="BottomLeft/HUDBottomBar" to="." method="OnSuicide"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Multicellular" to="." method="OnBecomeMulticellularPressed"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Macroscopic" to="." method="OnBecomeMacroscopicPressed"]

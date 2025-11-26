@@ -56,6 +56,7 @@ PressEditorButtonHighlight = NodePath("EditorButtonHighlight")
 ProcessPanelButtonHighlight = NodePath("ProcessButtonHighlight")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource("14")]
+layout_mode = 0
 
 [node name="MicrobeWelcome" parent="." node_paths=PackedStringArray("label") instance=ExtResource("13")]
 custom_minimum_size = Vector2(450, 460)
@@ -310,6 +311,7 @@ Description = "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 
 [node name="EditorButtonHighlight" parent="." instance=ExtResource("11")]
 visible = false
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0

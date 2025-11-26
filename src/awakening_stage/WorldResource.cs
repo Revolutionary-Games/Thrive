@@ -1,15 +1,13 @@
 ﻿using System;
-using System.ComponentModel;
 using Godot;
 using Newtonsoft.Json;
-using Saving.Serializers;
+using SharedBase.Archive;
 using ThriveScriptsShared;
 
 /// <summary>
 ///   A defined world resource
 /// </summary>
-[TypeConverter($"Saving.Serializers.{nameof(WorldResourceStringConverter)}")]
-public class WorldResource : IRegistryType, IPlayerReadableName
+public class WorldResource : RegistryType, IPlayerReadableName
 {
     private readonly Lazy<PackedScene> worldRepresentation;
     private readonly Lazy<Texture2D> icon;
@@ -46,10 +44,9 @@ public class WorldResource : IRegistryType, IPlayerReadableName
     [JsonIgnore]
     public string ReadableName => Name;
 
-    [JsonIgnore]
-    public string InternalName { get; set; } = null!;
+    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.WorldResource;
 
-    public void Check(string name)
+    public override void Check(string name)
     {
         if (string.IsNullOrEmpty(Name))
             throw new InvalidRegistryDataException(name, GetType().Name, "Name is not set");
@@ -63,7 +60,7 @@ public class WorldResource : IRegistryType, IPlayerReadableName
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing inventory icon");
     }
 
-    public void ApplyTranslations()
+    public override void ApplyTranslations()
     {
         TranslationHelper.ApplyTranslations(this);
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Arch.Buffer;
 using Arch.Core;
+using SharedBase.Archive;
 
 /// <summary>
 ///   For use in the prototypes not yet converted to using world simulations
@@ -10,6 +11,10 @@ public class DummyWorldSimulation : IWorldSimulation
     public World EntitySystem { get; } = World.Create();
     public bool Processing { get; set; }
     public float WorldTimeScale { get; set; } = 1;
+
+    public ushort CurrentArchiveVersion => 1;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.DummyWorldSimulation;
+    public bool CanBeReferencedInArchive => false;
 
     public void ResolveNodeReferences()
     {
@@ -80,6 +85,11 @@ public class DummyWorldSimulation : IWorldSimulation
     public float GetAndResetTrackedSimulationSpeedRatio()
     {
         return 1;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        // Nothing to write
     }
 
     public void Dispose()

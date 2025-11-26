@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 11:08+0200\n"
-"PO-Revision-Date: 2025-07-28 15:04+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
+"PO-Revision-Date: 2025-10-16 19:56+0000\n"
+"Last-Translator: Jens Schwartz Linder <jesclinder@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -69,13 +69,14 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Nå uppvakningsteget. Tillgänglig när du har tillräckigt med hjärnkraft (axonvävnad)."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr "Aktion blockerad medan en annan pågår"
+msgstr "Åtgärd blockerad medan annan pågår"
 
+#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "Radera"
+msgstr "Ta bort"
 
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "Befolkningsdubblering"
+msgstr "Dubbla befolkning"
 
 msgid "ACTION_DUPLICATE_UNITS"
 msgstr "Duplicera Enheter"
@@ -277,7 +278,8 @@ msgstr "Ascentionsstadiet"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Modmonteringsklass krävs när montering specificeras"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Modmontering krävs när autoharmony är aktiverat"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -1110,6 +1112,10 @@ msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Hjälp"
 
 #, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} konsumtion"
+
+#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "{0} konsumtion"
 
@@ -1506,6 +1512,14 @@ msgstr "Slem sekretion"
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Nuvarande utvecklare"
+
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "NUVARANDE PLATS"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "NUVARANDE PLATS"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "NUVARANDE PLATS"
@@ -2258,6 +2272,14 @@ msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
 #, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Självmord"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Självmord"
+
+#, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Av Revolutionary Games Studio"
 
@@ -2555,6 +2577,14 @@ msgstr ""
 #, fuzzy
 msgid "FOSSILISE"
 msgstr "Stillastående"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "befolkning:"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr ""
@@ -2886,6 +2916,9 @@ msgstr ""
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Membrantyper"
@@ -3006,6 +3039,14 @@ msgstr "Inspektera"
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Fortsätt"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}:+{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3132,18 +3173,6 @@ msgstr "med concentration av"
 
 msgid "JANUARY"
 msgstr "Januari"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON debug läge:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Alltid"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automatiskt"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Aldrig"
 
 msgid "JULY"
 msgstr "Juli"
@@ -3886,6 +3915,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Plundring av {0}"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reproduktion:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -4230,6 +4263,10 @@ msgstr "Modifiera Typ"
 msgid "MODS"
 msgstr "Mod"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Avstängt"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4262,9 +4299,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 msgid "MOD_CREATION_FAILED"
@@ -4950,6 +4984,10 @@ msgid "OUR_WIKI"
 msgstr ""
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Avbruten."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "Avbruten."
 
@@ -5587,6 +5625,9 @@ msgstr "Snurra höger"
 msgid "ROTATION_COLON"
 msgstr "befolkning:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Kör auto-evo under spelgång"
 
@@ -5655,13 +5696,6 @@ msgstr "Använt utrymme:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Att radera denna sparfil är permanent och kan inte ångras. Är du säker på att du vill radera {0} för gott?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "JSON debug läge:"
 
 msgid "SAVE_FAILED"
 msgstr "Sparande misslyckades"
@@ -6093,6 +6127,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "har muterat"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Avbryt denna handling"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Maximalt antal arter i ett område innan tvingade utdöenden"
 
 msgid "SPECIES_LIST"
 msgstr "Artlista"
@@ -7148,6 +7190,17 @@ msgstr "Ångra"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Ångra den senaste handlingen"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "DU HAR FRODATS!"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Mutationspoäng"
@@ -7319,6 +7372,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licenser Och Använda Bibliotek"
 
@@ -7328,13 +7384,6 @@ msgstr ""
 #, fuzzy
 msgid "USES_FEATURE"
 msgstr "Temperatur"
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#, fuzzy
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Självmord"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Använd ett anpassat användarnamn"
@@ -9407,6 +9456,34 @@ msgid "ZOOM_OUT"
 msgstr "Zooma ut"
 
 #, fuzzy
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Självmord"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Reproduktion:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON debug läge:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Alltid"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automatiskt"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Aldrig"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "JSON debug läge:"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Avbruten."
+
+#, fuzzy
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "generation:"
 
@@ -9735,9 +9812,6 @@ msgstr "Zooma ut"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Betrakta områden med upp till såhär många arter som att de har låg biodiversitet"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Maximalt antal arter i ett område innan tvingade utdöenden"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Ursprunglig population för biodiversitetsökande art"

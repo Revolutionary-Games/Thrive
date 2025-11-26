@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 11:08+0200\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -297,8 +297,9 @@ msgstr "Versi:"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Susunan kelas mod dibutuhkan jika sebuah susunan ditentukan"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr ""
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
+msgstr "Susunan kelas mod dibutuhkan jika sebuah susunan ditentukan"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Asumsikan hyperthreading diaktifkan pada CPU"
@@ -1129,6 +1130,10 @@ msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Keseimbangan Senyawa"
 
 #, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "konsumsi {0}"
+
+#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "Keseimbangan Senyawa"
 
@@ -1523,6 +1528,14 @@ msgstr "Lanjutkan"
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Pengembang Masa Ini"
+
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "LOKASI SEKARANG"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "LOKASI SEKARANG"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "LOKASI SEKARANG"
@@ -2245,6 +2258,14 @@ msgstr ""
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Tambah keybind baru"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Tambah keybind baru"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Pohon Evolusi"
 
@@ -2562,6 +2583,16 @@ msgstr ""
 
 msgid "FOSSILISE"
 msgstr ""
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Auto-evo gagal bekerja"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr ""
+"Gagal memperbarui save karena error berikut:\n"
+"{0}"
 
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
@@ -2893,6 +2924,9 @@ msgstr ""
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Jenis Membran"
@@ -3013,6 +3047,14 @@ msgstr ""
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Lanjutkan"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3139,18 +3181,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr "Selesaikan Satu Generasi"
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3921,6 +3951,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Predasi {0}"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reproduksi:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -4283,6 +4317,10 @@ msgstr "Ubah Tipe"
 msgid "MODS"
 msgstr "Mod"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Aktifkan tombol cheat"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4315,9 +4353,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 #, fuzzy
@@ -4997,6 +5032,10 @@ msgid "OUR_WIKI"
 msgstr ""
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Tidak dimulai."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "Tidak dimulai."
 
@@ -5640,6 +5679,9 @@ msgstr "Putar kanan"
 msgid "ROTATION_COLON"
 msgstr "{0} populasi berubah {1} karena: {2}"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Jalankan auto-evo selama berlangsungnya permainan"
 
@@ -5704,12 +5746,6 @@ msgstr "Ruang terpakai:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Save yang terhapus tidak akan bisa dikembalikan, apakah kamu yakin ingin menghapus {0} secara permanen?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr ""
 
 msgid "SAVE_FAILED"
 msgstr "Gagal menyimpan"
@@ -6150,6 +6186,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "mengalami mutasi"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Batal tindakan ini"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Ambang batas jumlah spesies di suatu daerah untuk terjadinya kepunahan paksa"
 
 msgid "SPECIES_LIST"
 msgstr "Daftar Spesies"
@@ -7266,6 +7310,17 @@ msgstr "Batal"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Batalkan tindakan terakhir"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Tusuk sel lain dengan ini."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "KAMU TELAH BERKEMBANG!"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Poin Mutasi"
@@ -7438,6 +7493,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Lisensi dan Libraries yang Digunakan"
 
@@ -7447,13 +7505,6 @@ msgstr ""
 #, fuzzy
 msgid "USES_FEATURE"
 msgstr "Suhu"
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#, fuzzy
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Tambah keybind baru"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gunakan nama pengguna kustom"
@@ -9550,6 +9601,18 @@ msgid "ZOOM_OUT"
 msgstr "Perkecil"
 
 #, fuzzy
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Tambah keybind baru"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Reproduksi:"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Tidak dimulai."
+
+#, fuzzy
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "Generasi"
 
@@ -9864,9 +9927,6 @@ msgstr "Perkecil"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Anggap daerah-daerah dengan jumlah spesies sebanyak ini memiliki biodiversitas yang rendah"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Ambang batas jumlah spesies di suatu daerah untuk terjadinya kepunahan paksa"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Populasi awal untuk spesies peningkat biodiversitas"

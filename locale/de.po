@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 11:08+0200\n"
-"PO-Revision-Date: 2025-08-13 14:57+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
+"PO-Revision-Date: 2025-11-14 11:00+0000\n"
+"Last-Translator: Sur3 <sur3@gmx.de>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -49,18 +49,17 @@ msgstr "Abyssopelagial"
 msgid "ACCEPT"
 msgstr "Akzeptieren"
 
-#, fuzzy
 msgid "ACHIEVEMENTS"
-msgstr "Basisbewegung"
+msgstr "Errungenschaften"
 
 msgid "ACHIEVEMENTS_TOTAL"
-msgstr ""
+msgstr "Errungenschaften {0} / {1}"
 
 msgid "ACHIEVEMENT_ACHIEVED"
-msgstr ""
+msgstr "Abgeschlossen"
 
 msgid "ACHIEVEMENT_LOCKED"
-msgstr ""
+msgstr "Ausstehend"
 
 msgid "ACTION_AWAKEN"
 msgstr "Erwachen ({0:F1}/{1:F1})"
@@ -163,9 +162,9 @@ msgstr ""
 "  Durchschnitt {1}; Standardabweichung {2}\n"
 "[b]Lebende Arten:[/b]\n"
 "  Durchschnitt {3}; Standardabweichung {4}\n"
-"[b]Artenzahl pro Bereich:[/b]\n"
+"[b]Artenzahl pro Gebiet:[/b]\n"
 "  Durchschnitt {5}; Standardabweichung {6}\n"
-"[b]Gesamtpopulation pro Bereich:[/b]\n"
+"[b]Gesamtpopulation pro Gebiet:[/b]\n"
 "  Durchschnitt {7}; Standardabweichung {8}\n"
 "[b]Durchschnittliche Größe der Mikrobenart (in hexagonalen Feldern):[/b]\n"
 "  Durchschnitt {9}; Standardabweichung {10}\n"
@@ -190,9 +189,8 @@ msgstr "Ammoniak"
 msgid "AMMONIA_COST"
 msgstr "Ammoniak-Kosten:"
 
-#, fuzzy
 msgid "AMMONIA_LEVELS"
-msgstr "Ammoniak-Kosten:"
+msgstr "Ammoniakvorkommen"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Anzahl der Autospeicherungen:"
@@ -273,7 +271,8 @@ msgstr "Aufstiegsphase"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Klasse der Programmbibliothek ist erforderlich, wenn angegeben"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Mod Assembler ist erforderlich wenn Auto Harmony aktiviert ist"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -396,7 +395,7 @@ msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
 msgstr "Globale Ergebnisse"
 
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
-msgstr "Ergebnisse für den ausgewählten Bereich"
+msgstr "Ergebnisse für das ausgewählte Gebiet"
 
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Laufstatus:"
@@ -417,19 +416,19 @@ msgid "AVAILABLE_MODS"
 msgstr "Verfügbare Mods"
 
 msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
-msgstr ""
+msgstr "Durchschnittliche CO2 Menge an der Oberfläche"
 
 msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
-msgstr ""
+msgstr "Durchschnittliche Lichtmenge an der Oberfläche"
 
 msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
-msgstr ""
+msgstr "Durchschnittliche N2 Menge an der Oberfläche"
 
 msgid "AVERAGE_SURFACE_OTHER_LEVEL"
-msgstr ""
+msgstr "Durchschnittliches Vorkommen anderer Gase an der Oberfläche"
 
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
-msgstr ""
+msgstr "Durchschnittliche O2 Menge an der Oberfläche"
 
 msgid "AWAKENING_STAGE"
 msgstr "Phase des Erwachens"
@@ -450,7 +449,7 @@ msgid "BACKSPACE"
 msgstr "Rücktaste"
 
 msgid "BACK_TO_SETTINGS"
-msgstr ""
+msgstr "Zurück zu den Einstellungen"
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Bakterielle Thermosynthese"
@@ -528,10 +527,10 @@ msgid "BEST_PATCH_COLON"
 msgstr "Bestes Gebiet:"
 
 msgid "BETTER_TOGETHER"
-msgstr ""
+msgstr "Gemeinsam sind wir stark"
 
 msgid "BEYOND_THE_CELL"
-msgstr ""
+msgstr "Mehr als nur Zelle"
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Großer Eisenbrocken"
@@ -642,7 +641,7 @@ msgid "CANNOT_ENGULF"
 msgstr "Kann nicht verschlingen"
 
 msgid "CANNOT_IMPROVE_PERFECTION"
-msgstr ""
+msgstr "Unverbesserliche Perfektion"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Metaball kann nicht in den Baum der Nachkommen verschoben werden"
@@ -853,22 +852,19 @@ msgid "CLICK_TO_SELECT"
 msgstr "Auswählen"
 
 msgid "CLIMATE_INSTABILITY"
-msgstr ""
+msgstr "Klimawandel"
 
-#, fuzzy
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Aktive Mikroben taumeln umher, wenn nichts Interessantes passiert.\n"
-"Sessile Mikroben sind stationär und warten darauf, dass sich die Umgebung verändert, bevor sie handeln."
+msgstr "(beeinflußt die Häufigkeit und Stärke von Gebietsereignissen wie z.B. einer globalen Eiszeit)"
 
 msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
+msgstr "normal"
 
 msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
+msgstr "stabil"
 
 msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
+msgstr "instabil"
 
 msgid "CLOSE"
 msgstr "Schließen"
@@ -1034,26 +1030,26 @@ msgid "COMPOUND_HANDLE_TOP_UP"
 msgstr "Immer auf Ausgangsbestand auffüllen"
 
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
-msgstr "Bei Bereichswechsel auffüllen"
+msgstr "Bei Gebietswechsel auffüllen"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_AVERAGE"
-msgstr "Durchschnitt"
+msgstr "gewöhnlich"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_HIGH"
-msgstr "Substanzhaushalt"
+msgstr "häufig"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_LOW"
-msgstr "Substanzwolken"
+msgstr "selten"
 
 msgid "COMPOUND_LEVEL_VERY_HIGH"
-msgstr ""
+msgstr "reichlich"
+
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "rar"
 
 #, fuzzy
-msgid "COMPOUND_LEVEL_VERY_LOW"
-msgstr "Alle behalten"
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0}-Verbrauch"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(nicht ausreichend, um die Nachtdauer von {0} s zu überstehen)"
@@ -1129,9 +1125,8 @@ msgstr "Mit diesen Einstellungen spielen"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Einige Einstellungen sind ungültig"
 
-#, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS"
-msgstr "Löschen bestätigen"
+msgstr "Errungenschaften zurücksetzen?"
 
 #, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
@@ -1445,6 +1440,14 @@ msgstr ""
 msgid "CURRENT_DEVELOPERS"
 msgstr "Aktuelle Entwickler(innen)"
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "AKTUELLE POSITION"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "AKTUELLE POSITION"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "AKTUELLE POSITION"
 
@@ -1461,7 +1464,7 @@ msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 "[b]Generationen:[/b]\n"
 "  {0}\n"
-"[b]Gesamtzahl Bereiche:[/b]\n"
+"[b]Gesamtzahl der Gebiete:[/b]\n"
 "  {1}\n"
 "[b]Gesamtzahl Auto-Evo-Zeit:[/b]\n"
 "  {2}\n"
@@ -1469,7 +1472,7 @@ msgstr ""
 "  {3}\n"
 "[b]Spezies noch am Leben:[/b]\n"
 "  {4}\n"
-"[b]Spezies Anzahl pro Bereich:[/b]\n"
+"[b]Spezies Anzahl pro Gebiet:[/b]\n"
 "  Durchschnitt {5}; Standardabweichung {6}\n"
 "[b]Gesamtpopulation:[/b]\n"
 "  {7}\n"
@@ -1889,17 +1892,17 @@ msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 "Willkommen im Editor. Du landest immer hier, wenn du dich erfolgreich reproduzierst.\n"
 "\n"
-"Das [b]Ziel des frühen Spielstadiums[/b] ist, einen guten [u]Bereich[/u] mit einer zuverlässigen Nahrungsquelle zu finden.\n"
+"Das [b]Ziel des frühen Spielstadiums[/b] ist es, ein gutes [u]Gebiet[/u] mit einer zuverlässigen Nahrungsquelle zu finden.\n"
 "\n"
 "Später im Spiel kann man darüber nachdenke, einen [b]Zellkern[/b] zu entwickeln, wodurch man im Spiel voranschreitet. Dies sollte aber nicht zu früh geschehen, da der Zellkern eine sehr kostspielige Organelle ist.\n"
 "\n"
-"Drücke auf Weiter um zur [b]Bereichskarte[/b] fortzufahren."
+"Drücke auf \"Weiter\" um zur [b]Gebietskarte[/b] fortzufahren."
 
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Willkommen in dem Mikrobeneditor. Du kehrst bei jeder Reproduktion hierher zurück.\n"
 "\n"
-"In dieser Registerkarte findest du eine Übersicht der Änderungen in deinem Bereich. Probiere die verschiedenen Werkzeuge aus, um mehr über die Ereignisse in der gegenwärtigen Welt zu lernen.\n"
+"In dieser Registerkarte findest du eine Übersicht der Änderungen in deinem aktuellen Gebiet. Probiere die verschiedenen Werkzeuge aus, um mehr über die Ereignisse in der gegenwärtigen Welt zu lernen.\n"
 "\n"
 "Nachdem du den Verlauf der Ereignisse begutachtet hast, kannst du [b]Änderungen vornehmen[/b], um deine Spezies anzupassen.\n"
 "\n"
@@ -2143,6 +2146,18 @@ msgstr ""
 "Erhöht die Kohlendioxid- und Schwefelkonzentration.\n"
 "Erzeugt Schwefelbrocken."
 
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr ""
+"Eruptions-Ereignis\n"
+"Zusätzliche Substanzen erscheinen: Schwefelwasserstoff und Kohlendioxid"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr ""
+"Eruptions-Ereignis\n"
+"Zusätzliche Substanzen erscheinen: Schwefelwasserstoff und Kohlendioxid"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evolutionsbaum"
 
@@ -2261,6 +2276,7 @@ msgstr "Aktiviert"
 msgid "FEBRUARY"
 msgstr "Februar"
 
+#, fuzzy
 msgid "FEED_ITEM_CONTENT_PARSING_FAILED"
 msgstr "Initialisierung der Steam-Client-Bibliothek fehlgeschlagen"
 
@@ -2349,13 +2365,13 @@ msgid "FOG_OF_WAR_DISABLED"
 msgstr "Nebel des Krieges deaktiviert"
 
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
-msgstr "(alle Bereiche werden aufgedeckt)"
+msgstr "(alle Gebiete werden aufgedeckt)"
 
 msgid "FOG_OF_WAR_INTENSE"
 msgstr "Dichter Nebel des Krieges"
 
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
-msgstr "(nur dem Spieler bekannte Bereiche werden aufgedeckt)"
+msgstr "(nur dem Spieler bekannte Gebiete werden aufgedeckt)"
 
 msgid "FOG_OF_WAR_MODE"
 msgstr "Nebel-des-Krieges-Modus"
@@ -2364,7 +2380,7 @@ msgid "FOG_OF_WAR_REGULAR"
 msgstr "Normaler Nebel des Krieges"
 
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
-msgstr "Pili (Singular: Pilus) befinden sich auf der Oberfläche vieler Mikroorganismen und ähneln feinen Haaren. Auf der Oberfläche eines Mikroorganismus können Hunderte von Pili vorhanden sein, die mehreren Zwecken dienen können, wie zum Beispiel der Jagt. Pathogene Mikroorganismen nutzen Pili für ihre Virulenz um sich an Wirtsgewebe anzuheften und zu binden oder um die äußere Membran zu überwinden und Zugang zum Zytoplasma zu erhalten. Es gibt viele ähnliche Pili-Varianten, die jedoch evolutionär nicht miteinander verwandt sind und aus einer konvergenten Evolution hervorgegangen sind. Ein einziger Organismus kann mehrere Arten von Pili ausbilden und diese ständig verändern und ersetzen."
+msgstr "(Gebiete wo der Spieler bereits war und angrenzende Gebiete werden aufgedeckt)"
 
 msgid "FOOD_CHAIN"
 msgstr "Nahrungskette"
@@ -2405,6 +2421,14 @@ msgstr "Diese Art fossilisieren (ist bereits fossilisiert)"
 
 msgid "FOSSILISE"
 msgstr "Versteinern"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Löschung des Fossils fehlgeschlagen"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Fossil-Datei konnte nicht gelöscht werden"
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Löschung des Fossils fehlgeschlagen"
@@ -2453,7 +2477,7 @@ msgstr "Spielsysteme"
 
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
-"Zeigt die gesamte von deiner Spezies gesammelte Energie in allen Bereichen und die daraus resultierende Population (in Klammern).\n"
+"Zeigt die gesamte von deiner Spezies gesammelte Energie in allen Gebieten und die daraus resultierende Population (in Klammern).\n"
 "Energie zuvor: {0}"
 
 msgid "GENERAL"
@@ -2481,7 +2505,7 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "Wenn deine Population auf Null fällt, stirbst du aus."
 
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
-msgstr ""
+msgstr "Produziere durch Photosynthese einen Glukose-Überschuß"
 
 msgid "GENERATIONS"
 msgstr "Generationen"
@@ -2490,16 +2514,16 @@ msgid "GENERATION_COLON"
 msgstr "Generation:"
 
 msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
+msgstr "Geologische Aktivität"
 
 msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
+msgstr "turbulent"
 
 msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
+msgstr "moderat"
 
 msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
+msgstr "ruhig"
 
 #, fuzzy
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
@@ -2514,7 +2538,7 @@ msgid "GLES3"
 msgstr "GLES3"
 
 msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
-msgstr "Die globale Eiszeit ist in allen Oberflächenbereichen vorbei"
+msgstr "Die globale Eiszeit ist in allen Oberflächengebieten vorbei"
 
 msgid "GLOBAL_GLACIATION_EVENT"
 msgstr "Globale Eiszeit"
@@ -2524,7 +2548,7 @@ msgstr ""
 "Globale Eiszeit\n"
 "Das Ereignis wurde durch eine steigende Sauerstoffkonzentration in der Atmosphäre hervorgerufen\n"
 "Der Zustand mit reduziertem Sonnenlicht und niedrigerer Temperatur wird einige Generationen lang anhalten.\n"
-"Es werden außerdem Eisbrocken in den betroffenen Bereichen auftauchen."
+"Es werden außerdem Eisbrocken in den betroffenen Gebieten auftauchen."
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
 msgstr "Globale Eiszeit wird in {0} Generationen eintreten"
@@ -2533,7 +2557,7 @@ msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
 msgstr "Globale Eiszeit wird in {0} Generation eintreten"
 
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
-msgstr "Globale Eiszeit hat in allen Oberflächenbereichen begonnen"
+msgstr "Globale Eiszeit hat in allen Oberflächengebieten begonnen"
 
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
@@ -2550,9 +2574,8 @@ msgstr "Glukose"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Die Glukosekonzentration ist drastisch gesunken!"
 
-#, fuzzy
 msgid "GLUCOSE_LEVEL"
-msgstr "{0}-{1}m unter dem Meeresspiegel"
+msgstr "Glukosevorkommen"
 
 msgid "GLYCOLYSIS"
 msgstr "Glykolyse"
@@ -2564,7 +2587,7 @@ msgid "GOD_TOOLS_TITLE"
 msgstr "Gottmodus"
 
 msgid "GOING_NUCLEAR"
-msgstr ""
+msgstr "Kern-Kraft"
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "Kulleraugenzelle"
@@ -2609,6 +2632,7 @@ msgstr "Gesundheit"
 msgid "HEALTH_MODIFIER"
 msgstr "Gesundheits-Modifikator"
 
+#, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr "Harmony Updates automatisch vom Assembler laden (Mod class muss nicht spezifiziert werden)"
 
@@ -2661,26 +2685,24 @@ msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
 
 msgid "HYDROGENASE"
-msgstr "Schwefelwasserstoff"
+msgstr "Hydrogenase"
 
 #, fuzzy
 msgid "HYDROGENASE_DESCRIPTION"
 msgstr "Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstoff und zelluläre Energie in Form von ATP zu nutzen, um Ammoniak, einen wichtigen Wachstumsnährstoff für Zellen, zu produzieren. Dies ist ein Prozess, der als anaerobe Stickstofffixierung bezeichnet wird. Da die Nitrogenase direkt im Zytoplasma untergebracht ist, führt die umgebende Flüssigkeit glykolyse durch."
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
-msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um. Rate skaliert mit der Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um."
 
-#, fuzzy
 msgid "HYDROGENOSOME"
-msgstr "Schwefelwasserstoff"
+msgstr "Hydrogenosom"
 
 #, fuzzy
 msgid "HYDROGENOSOME_DESCRIPTION"
 msgstr "Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstoff und zelluläre Energie in Form von ATP zu nutzen, um Ammoniak, einen wichtigen Wachstumsnährstoff für Zellen, zu produzieren. Dies ist ein Prozess, der als anaerobe Stickstofffixierung bezeichnet wird. Da die Nitrogenase direkt im Zytoplasma untergebracht ist, führt die umgebende Flüssigkeit glykolyse durch."
 
-#, fuzzy
 msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
-msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um. Rate skaliert mit der Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um."
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Schwefelwasserstoff"
@@ -2710,6 +2732,9 @@ msgstr "ID-Nummer"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(abhängig vom Rendering-Modus und Upscaling sind nicht alle Methoden verfügbar)"
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr "Weitere Fehler ignorieren"
+
 msgid "IMAGE_FILE_TYPES"
 msgstr "Membrantypen"
 
@@ -2738,8 +2763,9 @@ msgid "INFINITE_MP"
 msgstr "Unendliche MP"
 
 msgid "INFO_BOX_COST"
-msgstr "DU HAST DICH ENTWICKELT!"
+msgstr "Grundkosten (MP)"
 
+#, fuzzy
 msgid "INFO_BOX_EDITORS"
 msgstr "DU HAST DICH ENTWICKELT!"
 
@@ -2755,6 +2781,7 @@ msgstr "Interner (Ordner-)Name:"
 msgid "INFO_BOX_MASS"
 msgstr "Masse"
 
+#, fuzzy
 msgid "INFO_BOX_NEXT_STAGE"
 msgstr "DU HAST DICH ENTWICKELT!"
 
@@ -2770,12 +2797,15 @@ msgstr "Keine Prozesse"
 msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr "Benötigt Nukleus"
 
+#, fuzzy
 msgid "INFO_BOX_SIZE"
 msgstr "DU HAST DICH ENTWICKELT!"
 
+#, fuzzy
 msgid "INFO_BOX_STORAGE"
 msgstr "DU HAST DICH ENTWICKELT!"
 
+#, fuzzy
 msgid "INFO_BOX_UNIQUE"
 msgstr "DU HAST DICH ENTWICKELT!"
 
@@ -2809,6 +2839,14 @@ msgstr "Untersuchen"
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Unsere Steam Seite besuchen"
 
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(Anteil an Glukose in der Umwelt, welcher jede Generation erhalten bleibt)"
+
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "KI Mutationsrate"
 
@@ -2821,6 +2859,7 @@ msgstr "KI Mutationsrate"
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
 msgstr "Konstruktion fertigstellen (benötigte Materialien fehlen)"
 
+#, fuzzy
 msgid "INTERACTION_CRAFT"
 msgstr "KI Mutationsrate"
 
@@ -2846,7 +2885,7 @@ msgid "INTERACTION_PICK_UP"
 msgstr "Aufheben"
 
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
-msgstr ""
+msgstr "Aufheben (INVENTAR VOLL)"
 
 msgid "INTERNALS"
 msgstr "Innereien"
@@ -2900,13 +2939,13 @@ msgid "IN_PROTOTYPE"
 msgstr ""
 "Du spielst die späteren Prototypen, die dem Spiel beigefügt sind. \n"
 "Diese sind möglicherweise sehr unvollständig, verwenden Platzhaltergrafiken und sind im Allgemeinen sehr grob. \n"
-"Das Speichern ist daher derzeit nicht möglich."
+"Das Speichern ist daher derzeit nur eingeschränkt oder garnicht möglich."
 
 msgid "IRON"
 msgstr "Eisen"
 
 msgid "IRON_LEVELS"
-msgstr ""
+msgstr "Eisenvorkommen"
 
 msgid "IRON_OXIDATION"
 msgstr "Eisenoxidation"
@@ -2918,22 +2957,10 @@ msgid "ITEM_AT_2D_COORDINATES"
 msgstr "{0} bei ({1}, {2})"
 
 msgid "ITEM_NAME_SEPARATOR"
-msgstr "Beende eine Generation"
+msgstr ":"
 
 msgid "JANUARY"
 msgstr "Januar"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON Debug-Modus:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Immer"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automatisch"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Niemals"
 
 msgid "JULY"
 msgstr "Juli"
@@ -3407,6 +3434,7 @@ msgstr "(niedrigere Werte ergeben ein schärferes Bild)"
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Leistung"
 
+#, fuzzy
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr "Enthält Verdauungsenzyme, welche die Geschwidigkeit und die Effizienz der Verdauung verbessern. Die Art des enthaltenen Enzyms kann verändert werden. Es kann nur ein Enzym pro Lysosom benutzt werden."
 
@@ -3522,7 +3550,7 @@ msgid "MELANOSOME_DESCRIPTION"
 msgstr "Das Melanosom ist ein membranumhülltes Organell, das Melaninpigmente enthält, welche hochenergetische elektromagnetische Wellen, die von radioaktiven Materialien emittiert werden, absorbieren und in nutzbare Energie umwandeln können – ein Prozess, der als [b]Radiosynthese[/b] bezeichnet wird. Die strahlungsabsorbierenden Pigmente tragen zudem dazu bei, empfindlichere Zellbestandteile zu schützen, was die allgemeine Widerstandsfähigkeit gegenüber Strahlung erhöht."
 
 msgid "MELANOSOME_PROCESSES_DESCRIPTION"
-msgstr "Wandelt [thrive:compound type=\"strahlung\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um, wenn es sich in der Nähe hochradioaktiver Gesteine befindet, und bietet gleichzeitig Strahlungsresistenz"
+msgstr "Wandelt [thrive:compound type=\"radiation\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um, wenn es sich in der Nähe hochradioaktiver Gesteine befindet, und bietet gleichzeitig Strahlungsresistenz."
 
 msgid "MEMBRANE"
 msgstr "Membran"
@@ -3555,10 +3583,10 @@ msgid "METEOR_IMPACT_EVENT"
 msgstr "Meteoriteneinschlag"
 
 msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr "Meteoriteneinschlag hat Auswirkungen auf {0} Bereiche"
+msgstr "Meteoriteneinschlag hat Auswirkungen auf {0} Gebiete"
 
 msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr "Meteoriteneinschlag hat Auswirkungen auf {0} Bereich"
+msgstr "Meteoriteneinschlag hat Auswirkungen auf {0} Gebiet"
 
 msgid "METRICS"
 msgstr "Leistungs Daten"
@@ -3588,7 +3616,7 @@ msgid "MICHE"
 msgstr "Miche"
 
 msgid "MICHES_FOR_PATCH"
-msgstr "Miches für Bereich{0}"
+msgstr "Miches für Gebiet{0}"
 
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "Vermeide den Selektionsdruck durch Fressfeinde"
@@ -3635,6 +3663,10 @@ msgstr "Druck durch Jagd-Effektivität"
 
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Grunddruck durch Beutegreifer"
+
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reproduktion:"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
@@ -3705,7 +3737,7 @@ msgid "MICROBE_LOADING_TIP_2"
 msgstr "Je mehr oder längere Geißeln du hast, desto schneller kannst du dich bewegen! Der ATP-Verbrauch steigt dadurch natürlich an."
 
 msgid "MICROBE_LOADING_TIP_20"
-msgstr "Zellen mit einer Membran aus Zellulose oder Chitin können von Prokaryoten nicht verdaut werden. Eukaryoten mit Lysosomen können solche Zellen aber verdauen, da sie Enzyme produzieren, die die Zellmembrane aufbrechen können."
+msgstr "Zellen mit einer Membran aus Zellulose oder Chitin können von Prokaryoten nicht verdaut werden. Eukaryoten mit Lysosomen können solche Zellen aber verdauen, da sie Enzyme produzieren, die die Zellmembranen aufbrechen können."
 
 msgid "MICROBE_LOADING_TIP_21"
 msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kann durch Chemoplasten und Chemosynthetisierende Proteine in [thrive:compound type=\"glucose\"][/thrive:compound] umgewandelt werden. [thrive:compound type=\"iron\"][/thrive:compound] kann durch Rusticyanin oder Ferroplasten in [thrive:compound type=\"atp\"][/thrive:compound] umgewandelt werden."
@@ -3861,19 +3893,19 @@ msgid "MIGRATION_STATUS_TEXT"
 msgstr "Es werden {2} Einheiten der Population von {0} nach {1} migriert"
 
 msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
-msgstr "Wähle einen Zielbereich für die Migration, der mit dem Quellbereich verbunden ist"
+msgstr "Wähle ein Zielgebiet für die Migration, das mit dem Quellgebiet verbunden ist"
 
 msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
 msgstr "Es kann nur eine Migration pro Editor-Sitzung ausgeführt werden. Geplante Migrationen in der Warteschlange können beibehalten oder gelöscht und neu erstellt werden"
 
 msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
-msgstr "Wähle aus, wie viele Einheiten der Population vom Quellbereich zum Zielbereich migriert werden sollen"
+msgstr "Wähle aus, wie viele Einheiten der Population vom Quellgebiet zum Zielgebiet migriert werden sollen"
 
 msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
-msgstr "Wähle einen Bereich, in dem deine Spezies derzeit lebt, als Quelle der Migration"
+msgstr "Wähle ein Gebiet, in dem deine Spezies derzeit lebt, als Quelle der Migration"
 
 msgid "MIGRATION_TOOLTIP"
-msgstr "Migriere deine Spezies zwischen Bereichen ohne selbst den Bereich zu wechseln"
+msgstr "Migriere deine Spezies zwischen Gebieten ohne selbst das Gebiet zu wechseln"
 
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} Mio"
@@ -3941,6 +3973,10 @@ msgstr "Typ modifizieren"
 msgid "MODS"
 msgstr "Modifikationen"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Keine Mods aktiv"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Installierte Mods wurden erkannt, aber es sind keine Mods aktiviert.\n"
@@ -3977,9 +4013,6 @@ msgstr "{0}: Aufruf der \"unload\"-Methode schlug mit folgendem Fehler fehl: {1}
 
 msgid "MOD_AUTHOR"
 msgstr "Modauthor:"
-
-msgid "MOD_AUTO_HARMONY"
-msgstr "Benutzt Auto Harmony:"
 
 msgid "MOD_CREATION_FAILED"
 msgstr "Moderstellung fehlgeschlagen"
@@ -4227,7 +4260,7 @@ msgid "NAME_LABEL_FLEET"
 msgstr "{0} (PWR: {1})"
 
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
-msgstr ""
+msgstr "{0} (U)"
 
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr ""
@@ -4341,9 +4374,8 @@ msgstr "ATP-Produktion von Toxin blockiert"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Basisgeschwindigkeit durch Gift herabgesetzt"
 
-#, fuzzy
 msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
-msgstr "Schwefelwasserstoff"
+msgstr "Schäden durch Kontakt mit Schwefelwasserstoff ohne Chemosynthetisierende Proteine"
 
 #, fuzzy
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
@@ -4356,7 +4388,7 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr "Der Editor steht jetzt zur Verfügung"
 
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
-msgstr "Nicht an die Umweltbedingungen im aktuellen Bereich angepasst. Ändere die bevorzugten Bedingungen oder Toleranzgrenzen um die negativen Auswirkungen zu vermeiden."
+msgstr "Nicht an die Umweltbedingungen im aktuellen Gebiet angepasst. Ändere die bevorzugten Bedingungen oder Toleranzgrenzen um die negativen Auswirkungen zu vermeiden."
 
 msgid "NOT_STARTED_DOT"
 msgstr "Nicht begonnen."
@@ -4621,6 +4653,10 @@ msgid "OUR_WIKI"
 msgstr "unser Wiki"
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Nicht begonnen."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "Nicht begonnen."
 
@@ -4705,7 +4741,7 @@ msgid "PATCHES_NUMBER"
 msgstr "{0} {1}"
 
 msgid "PATCH_COLON"
-msgstr "Bereich:"
+msgstr "Gebiet:"
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -4713,7 +4749,7 @@ msgstr ""
 "Aber keine sorge, es ist noch nicht alles verloren, du kannst einen andere Art auswählen mit der du spielen möchtest und ihr beim gedeihen zu helfen (oder auch nicht)!"
 
 msgid "PATCH_EXTINCTION_CAPITAL"
-msgstr "AUSSTERBEN IM BEREICH"
+msgstr "AUSSTERBEN IM GEBIET"
 
 msgid "PATCH_MAP"
 msgstr "Gebietskarte"
@@ -4805,9 +4841,8 @@ msgstr "Phosphat"
 msgid "PHOSPHATES_COST"
 msgstr "Phosphat-Kosten:"
 
-#, fuzzy
 msgid "PHOSPHATES_LEVELS"
-msgstr "Phosphat-Kosten:"
+msgstr "Phosphatvorkommen"
 
 msgid "PHOTOSYNTHESIS"
 msgstr "Photosynthese"
@@ -4991,9 +5026,8 @@ msgstr ""
 msgid "RADIATION"
 msgstr "Strahlung"
 
-#, fuzzy
 msgid "RADIATION_LEVELS"
-msgstr "Strahlung"
+msgstr "Strahlungsquellen"
 
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Radioaktiver Gesteinsbrocken"
@@ -5014,10 +5048,10 @@ msgid "RAW_VALUE_COLON"
 msgstr "Rohwert:"
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES"
-msgstr ""
+msgstr "Erreiche die 15. Generation einer Spezies wenigstens mit normalem Schwierigkeitsgrad"
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
-msgstr ""
+msgstr "Erreiche Generation {0}/{1} einer Spezies wenigstens mit normalem Schwierigkeitsgrad"
 
 #, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
@@ -5232,6 +5266,9 @@ msgstr "Nach links rotieren"
 msgid "ROTATION_COLON"
 msgstr "Drehung:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Auto-Evo während des Spielens ausführen"
 
@@ -5303,13 +5340,6 @@ msgstr "Genutzter Platz:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Das Löschen dieses Spielstandes kann nicht rückgängig gemacht werden, bist du sicher, dass du {0} dauerhaft löschen willst?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "Bei der Meldung eines Speicherfehlers bitte die Datei [color=#3796e1][url={0}]{1}[/url][/color] aus dem[color=#3796e1][url={2}]Log-Ordner[/url][/color] anfügen. Diese enthält wichtige Informationen für die Thrive-Entwickler zur Fehleranalyse. Ohne diese Datei ist es extrem schwierig den Fehler zu finden und zu beheben."
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "JSON Debug-Modus:"
 
 msgid "SAVE_FAILED"
 msgstr "Speichern fehlgeschlagen"
@@ -5516,9 +5546,8 @@ msgstr "Effektlautstärke"
 msgid "SHIFT"
 msgstr "Shift"
 
-#, fuzzy
 msgid "SHOW_ALL_TUTORIALS"
-msgstr "Einführung anzeigen"
+msgstr "Alle Einführungen (erneut) anzeigen"
 
 #, fuzzy
 msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
@@ -5710,6 +5739,14 @@ msgstr ""
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "ist mutiert"
 
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Zum aktuellen Gebiet"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Maximale Anzahl an Arten in einem Bereich vor dem erzwungenen Aussterben"
+
 msgid "SPECIES_LIST"
 msgstr "Spezienliste"
 
@@ -5717,9 +5754,8 @@ msgstr "Spezienliste"
 msgid "SPECIES_MEMBER_IMPACT_ON_POP"
 msgstr "Artenname ist zu lang!"
 
-#, fuzzy
 msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
-msgstr "Wähle aus, wie viele Einheiten der Population vom Quellbereich zum Zielbereich migriert werden sollen"
+msgstr "(wie stark die KI die Population der Spielerspezies beeinflußt)"
 
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Speziesname..."
@@ -5917,7 +5953,7 @@ msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Dampfbetriebene Fabrik"
 
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
-msgstr ""
+msgstr "Vollführe eine erfolgreiche Endosymbiose"
 
 msgid "SUCCESSFUL_KILL"
 msgstr "erfolgreiche Tötung"
@@ -5929,7 +5965,7 @@ msgid "SUCCESS_BUT_MISSING_ID"
 msgstr "Das Ergebnis deutete auf Erfolg hin, aber es wurde keine ID zurückgegeben"
 
 msgid "SUICIDE_BUTTON_TOOLTIP"
-msgstr "Suizid"
+msgstr "Apoptose"
 
 msgid "SUNLIGHT"
 msgstr "Sonnenlicht"
@@ -6004,7 +6040,7 @@ msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
 msgstr "Idustriell"
 
 msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
-msgstr ""
+msgstr "Vorgesellschaft"
 
 msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
 msgstr "Primitiv"
@@ -6025,7 +6061,7 @@ msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
 msgstr "Einfache Steinwerkzeuge"
 
 msgid "TECHNOLOGY_SOCIETY_CENTER"
-msgstr ""
+msgstr "Baue Gemeinschaftszentrum"
 
 msgid "TECHNOLOGY_STEAM_POWER"
 msgstr "Dampfmaschine"
@@ -6040,7 +6076,7 @@ msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
-msgstr "Die bevorzugte Umgebungstemperatur deiner Spezies. In Umweltbereichen, die außerhalb des Toleranzbereichs um die ideale Temperatur liegen, gibt es negative Effekte, die das Überleben erschweren. Mit den Schiebereglern lässt sich der Temperaturbereich für die Bereiche anpassen, in denen deine Spezies leben soll."
+msgstr "Die bevorzugte Umgebungstemperatur deiner Spezies. In Umweltbereichen, die außerhalb des Toleranzbereichs um die ideale Temperatur liegen, gibt es negative Effekte, die das Überleben erschweren. Mit den Schiebereglern lässt sich der Temperaturbereich für die Gebiete anpassen, in denen deine Spezies leben soll."
 
 msgid "TESTING_TEAM"
 msgstr "Test Team"
@@ -6069,18 +6105,22 @@ msgstr "Theoretiker Team"
 msgid "THERMOPLAST"
 msgstr "Thermoplast"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Der Thermoplast ist eine Struktur mit zwei Membranen, die wärmeempfindliche Pigmente enthält, die in membranösen Säcken gestapelt sind. Es handelt sich um ein Prokaryot, das von seinem eukaryotischen Wirt aufgenommen wurde. Die Pigmente im Thermoplast können die Energie der steigenden [thrive:compound type=\"temperature\"][/thrive:compound] in ihrer Umgebung nutzen, um [thrive:compound type=\"atp\"][/thrive:compound] aus Wasser zu produzieren. Dieser Prozess wird [b]Thermosynthese[/b] genannt. Die Menge an [thrive:compound type=\"atp\"][/thrive:compound], die produziert wird, hängt vom Temperaturunterschied ab."
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Nutzt steigende Temperaturen, um [thrive:compound type=\"atp\"][/thrive:compound] zu produzieren. Die Rate steigt mit der Erhöhung der [thrive:compound type=\"temperature\"][/thrive:compound]. Verwende [b]thermisches Sehen[/b], um heiße und kalte Bereiche zu finden."
 
 msgid "THERMOSYNTHASE"
 msgstr "Thermosynthese"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "Thermosynthase ist ein Protein, welches Temperaturveränderungen benutzt um seine Form zu ändern. Bei Erwärmung faltet sich das Protein zusammen und bindet sich an ADP. Dieses wird in einem Prozess namens [b]Thermosynthese[/b] zu [thrive:compound type=\"atp\"][/thrive:compound] umgewandelt, wenn das Protein sich unter Einwirkung von Kälte wieder entfaltet. Die Rate der [thrive:compound type=\"atp\"][/thrive:compound]-Produktion skaliert mit der [thrive:compound type=\"temperature\"][/thrive:compound]-Differenz."
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Nutzen steigende Temperaturen, um [thrive:compound type=\"atp\"][/thrive:compound] zu produzieren. Die Produktionsrate steigt mit der Erhöhung der [thrive:compound type=\"temperature\"][/thrive:compound]. Verwende [b]thermisches Sehen[/b], um heiße und kalte Bereiche zu finden."
 
@@ -6090,12 +6130,11 @@ msgstr "Thermosynthese"
 msgid "THE_DISTURBANCE"
 msgstr "Die Verstörung (Thrive Maskottchen)"
 
-#, fuzzy
 msgid "THE_EDITOR"
-msgstr "Editor verlassen"
+msgstr "Der Editor"
 
 msgid "THE_PATCH_MAP_BUTTON"
-msgstr "Die Bereichskarte"
+msgstr "Die Gebietskarte"
 
 msgid "THE_WORLD_TITLE"
 msgstr "Die Welt"
@@ -6306,9 +6345,8 @@ msgstr ""
 "[b]Verhalten[/b]\n"
 "  {5}"
 
-#, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
-msgstr "Die Menge an ultravioletter Strahlung, die deine Spezies aushält, bevor negative Effekte eintreten. Wenn du in einem Bereich mit zu viel Licht lebst, hat das negative Auswirkungen, bis der Widerstand erhöht wird."
+msgstr "Toleranzen werden von manchen Organellen positiv oder negativ beeinflußt. Der effektive Wert, bestehend aus Basiswert und Organelleneinfluß, wird hier angezeigt. Manche Organellen sind für gewisse Spielstile vorteilhafter als für andere Spielstile."
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "Flexibilität:"
@@ -6323,7 +6361,7 @@ msgid "TOO_LARGE_PRESSURE_RANGE"
 msgstr "Druck-Schwankungsbreite zu groß"
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr ""
+msgstr "Es werden nicht alle aktuellen Versionen angezeigt, da es zu viele gibt"
 
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
@@ -6456,9 +6494,9 @@ msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Dieses Panel zeigt eine Vorhersage deiner zukünftigen Gesamtenergie (und der Bevölkerung in Klammern). Diese Zahlen stammen aus der Simulation von [b]Auto-Evo[/b].\n"
 "\n"
-"Sie berücksichtigen nicht deine individuelle Leistung. Daher werden die endgültigen Zahlen in deinem aktuellen Bereich anders ausfallen, als sie nur durch Auto-Evo berechnet würden. Die Bevölkerung deiner Spezies sinkt jedes Mal, wenn deine Zelle stirbt, und sie steigt jedes Mal, wenn du den Editor betrittst.\n"
+"Sie berücksichtigen nicht deine individuelle Leistung. Daher werden die endgültigen Zahlen in deinem aktuellen Gebiet anders ausfallen, als sie nur durch Auto-Evo berechnet würden. Die Bevölkerung deiner Spezies sinkt jedes Mal, wenn deine Zelle stirbt, und sie steigt jedes Mal, wenn du den Editor betrittst.\n"
 "\n"
-"Aber du solltest versuchen, diese Zahlen auch in Bereichen zu halten, in denen du nicht direkt beteiligt bist.\n"
+"Aber du solltest versuchen, diese Zahlen auch in Gebieten hoch zu halten, in denen du nicht direkt beteiligt bist.\n"
 "\n"
 "Du kannst detailliertere Informationen hinter der Vorhersage einsehen, indem du [b]auf die Fragezeichen-Schaltfläche im Panel drückst. Drücke sie, um fortzufahren.[/b]"
 
@@ -6568,9 +6606,9 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
 msgstr ""
-"Di kannst dein Zelle an verschiedene [b]Umweltbedingungen[/b] anpassen.\n"
+"Du kannst deine Zelle an verschiedene [b]Umweltbedingungen[/b] anpassen.\n"
 "\n"
-"Umweltbedingungen können negative [b]und[/b] positive Effekte haben. Vor der Migration in andere Bereiche sollten daher entsprechende Toleranzen entwickelt werden.\n"
+"Umweltbedingungen können negative [b]und[/b] positive Effekte haben. Vor der Migration in andere Gebiete sollten daher entsprechende Toleranzen entwickelt werden.\n"
 "\n"
 "Wähle den Toleranzen-Tab im linken Anzeigefenster um fortzufahren."
 
@@ -6616,13 +6654,13 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
 msgstr ""
-"Im Toleranzen-Editor können die [b]Umweltbedingungen, an die deine Spezies angepasst ist[/b] geändert werden. Dies betrifft [thrive:compound type=\"temperature\"][/thrive:compound] und [b]Druck[/b] [thrive:icon]Pressure[/thrive:icon] des Bereichs in dem deine Spezies lebt.\n"
+"Im Toleranzen-Editor können die [b]Umweltbedingungen, an die deine Spezies angepasst ist[/b] geändert werden. Dies betrifft [thrive:compound type=\"temperature\"][/thrive:compound] und [b]Druck[/b] [thrive:icon]Pressure[/thrive:icon] des Gebiets in dem deine Spezies lebt.\n"
 "\n"
-"Wenn du in einen Bereich migrierst, an dessen Umweltbedingungen du nicht angepasst bist, hat das [b]mehrere negative Effekte[/b]. Mit den Schiebereglern lassen sich die bevorzugten Bedingungen oder die Flexibilität bzw. der Toleranzbereich anpassen. So lassen sich negative Effekte vermeiden. Nicht passende Bedingungen werden rot angezeigt.\n"
+"Wenn du in ein Gebiet migrierst, an dessen Umweltbedingungen du nicht angepasst bist, hat das [b]mehrere negative Effekte[/b]. Mit den Schiebereglern lassen sich die bevorzugten Bedingungen oder die Flexibilität bzw. der Toleranzbereich anpassen. So lassen sich negative Effekte vermeiden. Nicht passende Bedingungen werden rot angezeigt.\n"
 "\n"
-"Um [b]perfekt angepasst[/b] zu sein und damit sogar Bonusse anstatt o.g. negativer Effekte zu erhalten, müssen die Toleranzbereiche auf minimale Werte eingestellt werden, aber trotzdem den Bedingungen im Bereich entsprechen. Die Zahlen werden dann grün angezeigt und du deine Spezies erhält Bonusse.\n"
+"Um [b]perfekt angepasst[/b] zu sein und damit sogar Bonusse anstatt o.g. negativer Effekte zu erhalten, müssen die Toleranzbereiche auf minimale Werte eingestellt werden, aber trotzdem den Bedingungen im Gebiet entsprechen. Die Zahlen werden dann grün angezeigt und du deine Spezies erhält Bonusse.\n"
 "\n"
-"Perfekte Anpassung bedeutet im Gegenzug, dass deine Spezies nicht in einer größeren Zahl von Bereichen überleben kann.Eine gute Strategie kann es sein, [b]übrig gebliebene Mutationspunkte[/b] [thrive:icon]MP[/thrive:icon] in eine Erhöhung des Toleranzbereichs bzw. eine größere Flexibilität zu investieren..\n"
+"Perfekte Anpassung bedeutet im Gegenzug, dass deine Spezies nicht in einer größeren Zahl von Gebieten überleben kann. Eine gute Strategie kann es sein, [b]übrig gebliebene Mutationspunkte[/b] [thrive:icon]MP[/thrive:icon] in eine Erhöhung des Toleranzbereichs bzw. eine größere Flexibilität zu investieren..\n"
 "\n"
 "Ändere eine der Umwelttoleranzen um dieses Tutorial zu beenden."
 
@@ -6744,9 +6782,8 @@ msgstr ""
 "\n"
 "Wenn du Knospung als Fortpflanzung benutzt (was Standard ist), beginnst du in Kontrolle einer kleinen Knospe und musst den Rest deines zellulären Layouts wachsen lassen."
 
-#, fuzzy
 msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
-msgstr "(WARNUNG: Photosynthese wird wesentlich weniger effizient)"
+msgstr "Alle Einführungen werden angezeigt. Wenn kein Haken gesetzt ist werden nur Einführungen angezeigt die nicht bereits zuvor gezeigt wurden."
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial ansehen"
@@ -6790,13 +6827,24 @@ msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Unentdeckt"
 
 msgid "UNDISCOVERED_PATCH"
-msgstr "Unentdeckter Bereich"
+msgstr "Unentdecktes Gebiet"
 
 msgid "UNDO"
 msgstr "Rückgängig"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Letzte Aktion rückgängig machen"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Axone sind die Nervenfasern, die Neuronen zur Vernetzung und Kommunikation untereinander verwenden. Wenn diese Organellen platziert werden, ändert sich der Zelltyp auf Hirngewebe."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Vielen Dank"
 
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Bauen"
@@ -6823,7 +6871,7 @@ msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr "?"
 
 msgid "UNKNOWN_PATCH"
-msgstr "Unbekannter Bereich"
+msgstr "Unbekanntes Gebiet"
 
 msgid "UNKNOWN_SHORT"
 msgstr "?"
@@ -6847,13 +6895,13 @@ msgid "UNLOCK_CONDITION_ATP_PRODUCTION_ABOVE"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-Produktion erreicht {0}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_ABOVE"
-msgstr "[thrive:compound type=\"{0}\"][/thrive:compound]-Menge im Bereich übersteigt {1}"
+msgstr "[thrive:compound type=\"{0}\"][/thrive:compound]-Menge im Gebiet übersteigt {1}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_BELOW"
-msgstr "[thrive:compound type=\"{0}\"][/thrive:compound]-Menge im Bereich unterschreitet {1}"
+msgstr "[thrive:compound type=\"{0}\"][/thrive:compound]-Menge im Gebiet unterschreitet {1}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_BETWEEN"
-msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] im Bereich liegt zwischen {1} und {2}"
+msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] im Gebiet liegt zwischen {1} und {2}"
 
 msgid "UNLOCK_CONDITION_DIGESTED_MICROBES_ABOVE"
 msgstr "{0} Mikroben werden verdaut  (derzeit bei {1})"
@@ -6880,13 +6928,13 @@ msgid "UNLOCK_CONDITION_REPRODUCED_WITH_IN_A_ROW"
 msgstr "Organismus enthält zumindest {1} {0} seit {2} Generationen hintereinander (derzeit {3})"
 
 msgid "UNLOCK_CONDITION_REPRODUCE_IN_BIOME"
-msgstr ""
+msgstr "Reproduktion im {0} Biom"
 
 msgid "UNLOCK_CONDITION_SPEED_BELOW"
 msgstr "Geschwindigkeit fällt unter {0}"
 
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
-msgstr "[b]{0}[/b] freigeschalten wenn"
+msgstr "[b]{0}[/b] wird freigeschaltet wenn"
 
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
@@ -6933,7 +6981,7 @@ msgid "UPLOAD_SUCCEEDED"
 msgstr "Hochladen erfolgreich"
 
 msgid "UPSCALE_BILINEAR"
-msgstr ""
+msgstr "Bilineares Upscaling"
 
 msgid "UPSCALE_FSR_1"
 msgstr ""
@@ -6947,6 +6995,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Lizenzen und verwendete Bibliotheken"
 
@@ -6955,12 +7006,6 @@ msgstr "Verwendeter Renderer:"
 
 msgid "USES_FEATURE"
 msgstr "Ja"
-
-msgid "USE_AUTO_HARMONY"
-msgstr "Nutze Auto Harmony Laden"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Harmony Updates automatisch vom Assembler laden (Mod class muss nicht spezifiziert werden)"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Eigenen Nutzernamen verwenden"
@@ -6983,7 +7028,7 @@ msgid "UV_PROTECTION"
 msgstr "UV-Widerstand"
 
 msgid "UV_TOLERANCE_TOOLTIP"
-msgstr "Die Menge an ultravioletter Strahlung, die deine Spezies aushält, bevor negative Effekte eintreten. Wenn du in einem Bereich mit zu viel Licht lebst, hat das negative Auswirkungen, bis der Widerstand erhöht wird."
+msgstr "Die Menge an ultravioletter Strahlung, die deine Spezies aushält, bevor negative Effekte eintreten. Wenn du in einem Gebiet mit zu viel Licht lebst, hat das negative Auswirkungen, bis der Widerstand erhöht wird."
 
 msgid "VACUOLE"
 msgstr "Vakuole"
@@ -7792,7 +7837,7 @@ msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
 msgstr "Der Tag-/Nachtzyklus"
 
 msgid "WIKI_HEADING_THE_PATCH_MAP"
-msgstr "Die Bereichskarte"
+msgstr "Die Gebietskarte"
 
 msgid "WIKI_HEADING_TRANSITIONS"
 msgstr "Übergänge"
@@ -7810,24 +7855,24 @@ msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
 msgstr ""
 "Der Spieler kontrolliert Mitglieder einer Spezies, die sich in der Welt ausbreiten und zu komplexeren Lebensformen entwickeln muss. Du steuerst eine einzelne Zelle deiner Spezies: Wenn sie stirbt, übernimmst du eine andere. Du konkurrierst mit Zellen anderer Spezies und musst das Überleben deiner eigenen Spezies sicherstellen.\n"
 "\n"
-"Die Welt ist in [b]Bereiche[/b] unterteilt. Das Gebiet, in dem sich die Zelle des Spielers befindet, ist dein [b]aktueller Bereich[/b].\n"
+"Die Welt ist in [b]Gebiete[/b] unterteilt. Das Gebiet, in dem sich die Zelle des Spielers befindet, ist dein [b]aktuelles Gebiet[/b].\n"
 "\n"
-"In deinem aktuellen Bereich musst du [b]Substanzen[/b] sammeln, um am Leben zu bleiben, und genug wachsen, um dich zu [b]vermehren[/b]. Sobald deine Zelle sich vermehrt hat, bewegst du dich Millionen Jahre in die Zukunft und wechselst zum [b]Editor[/b].\n"
+"In deinem aktuellen Gebiet musst du [b]Substanzen[/b] sammeln, um am Leben zu bleiben, und genug wachsen, um dich zu [b]vermehren[/b]. Sobald deine Zelle sich vermehrt hat, bewegst du dich Millionen Jahre in die Zukunft und wechselst zum [b]Editor[/b].\n"
 "\n"
-"Im [b]Editor[/b] kannst du sehen, was mit allen existierenden Spezies in den Millionen Jahren aufgrund ihrer Biologie und deiner Leistung im aktuellen Bereich passiert ist. Du kannst sehen, welche neuen Spezies [b]sich entwickelt haben[/b], welche [b]ausgestorben sind[/b] und wie sich ihre gesamte [b]Population[/b] verändert hat.\n"
+"Im [b]Editor[/b] kannst du sehen, was mit allen existierenden Spezies in den Millionen Jahren aufgrund ihrer Biologie und deiner Leistung im aktuellen Gebiet passiert ist. Du kannst sehen, welche neuen Spezies [b]sich entwickelt haben[/b], welche [b]ausgestorben sind[/b] und wie sich ihre gesamte [b]Population[/b] verändert hat.\n"
 "\n"
-"Du kannst deinen aktuellen Bereich wechseln und andere Mitglieder deiner Spezies in einen anderen Bereich verschieben, indem du die [b]Bereichskarten[/b]-Übersicht des [b]Editors[/b] nutzt. Du kannst auch bestimmen, wie sich deine Spezies entwickelt, indem du sie [b]bearbeitest[/b].\n"
+"Du kannst dein aktuelles Gebiet wechseln und andere Mitglieder deiner Spezies in ein anderes Gebiet verlegen, indem du die [b]Gebietskarten[/b]-Übersicht des [b]Editors[/b] nutzt. Du kannst auch bestimmen, wie sich deine Spezies entwickelt, indem du sie [b]bearbeitest[/b].\n"
 "\n"
 "Du [b]bearbeitest[/b] deine Spezies, indem du Teile deiner Zelle hinzufügst, änderst oder entfernst. Außerdem kannst du das Verhalten deiner Spezies verändern\n"
 "\n"
-"Wenn du den [b]Editor[/b] verlässt, wechselst du wieder in deinen aktuellen Bereich, und der Zyklus beginnt von vorn. Die kleinen Änderungen, die jede Runde gemacht werden, führen zu großen Veränderungen im Laufe des Lebens des Planeten."
+"Wenn du den [b]Editor[/b] verlässt, wechselst du wieder in dein aktuelles Gebiet, und der Zyklus beginnt von vorn. Die kleinen Änderungen, die jede Runde gemacht werden, führen zu großen Veränderungen im Laufe des Lebens des Planeten."
 
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
 msgstr "Hilfe und Tipps"
 
 msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
 msgstr ""
-"Das sind die nützlichen Chemikalien, die in einem Bereich als Substanzwolken auftauchen können.\n"
+"Dies sind die nützlichen Chemikalien, die in einem Gebiet als Substanzwolken auftauchen können:\n"
 "\n"
 "Weiß – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
@@ -8971,7 +9016,7 @@ msgid "WIKI_THE_PATCH_MAP_PATCHES"
 msgstr "Der Thermoplast ist eine Doppelmembranstruktur, in der wärmeempfindliche Pigmente in Membransäcken gestapelt sind. Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen eukaryotischen Wirt assimiliert wurde. Die Pigmente im Thermoplast sind in der Lage, die Energie der Wärmeunterschiede in der Umgebung zu nutzen, um in einem Prozess namens Thermosynthese aus Wasser und gasförmigem Kohlendioxid Glukose zu produzieren. Die Geschwindigkeit seiner Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der Temperatur ab."
 
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
-msgstr "Die [b]Bereichskarte[/b] repräsentiert deinen Planeten. Sie besteht aus [b]Bereichen[/b] und[b]Regionen[/b] (Erklärung unten). Jede Region enthält mehrere verbundene (oder angrenzende) Bereiche und ist mit anderen Regionen verbunden."
+msgstr "Die [b]Gebietskarte[/b] repräsentiert deinen Planeten. Sie besteht aus [b]Gebieten[/b] und[b]Regionen[/b] (Erklärung unten). Jede Region enthält mehrere verbundene (oder angrenzende) Gebiete und ist mit anderen Regionen verbunden."
 
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
@@ -9149,26 +9194,20 @@ msgstr "Klein"
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "um die Mobilität zu erhöhen"
 
-#, fuzzy
 msgid "WORLD_SIZE"
-msgstr "Welt"
+msgstr "Planetengröße"
 
-#, fuzzy
 msgid "WORLD_SIZE_EXPLANATION"
-msgstr ""
-"Fokussierte Mikroben werden über größere Entfernungen nach Brocken oder Beute suchen\n"
-"und sind möglicherweise sehr viel ehrgeiziger, wenn es um Brocken geht.\n"
-"Responsive Mikroben wechseln schneller zu neuen Zielen."
+msgstr "(ändert die Anzahl der Gebiete)"
 
 msgid "WORLD_SIZE_LARGE"
-msgstr "Groß"
+msgstr "groß"
 
-#, fuzzy
 msgid "WORLD_SIZE_MEDIUM"
-msgstr "um die Mobilität zu erhöhen"
+msgstr "mittel"
 
 msgid "WORLD_SIZE_SMALL"
-msgstr "Klein"
+msgstr "klein"
 
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
@@ -9178,24 +9217,17 @@ msgstr "Tritt unserem Discord Server bei"
 msgid "WORLD_TEMPERATURE"
 msgstr "Temperatur"
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_COLD"
-msgstr "Temp."
+msgstr "kalt"
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"Fokussierte Mikroben werden über größere Entfernungen nach Brocken oder Beute suchen\n"
-"und sind möglicherweise sehr viel ehrgeiziger, wenn es um Brocken geht.\n"
-"Responsive Mikroben wechseln schneller zu neuen Zielen."
+msgstr "(beeinflußt die Anzahl der gefrorenen Gebiete)"
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Temp."
+msgstr "mild"
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_WARM"
-msgstr "Temp."
+msgstr "heiß"
 
 msgid "WORST_PATCH_COLON"
 msgstr "Schlechtestes Gebiet:"
@@ -9230,18 +9262,50 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Du kannst die zukünftige Entwicklung von Thrive auf Patreon unterstützen."
 
-#, fuzzy
 msgid "YUM_EXCLAMATION"
-msgstr ""
-"Fokussierte Mikroben werden über größere Entfernungen nach Brocken oder Beute suchen\n"
-"und sind möglicherweise sehr viel ehrgeiziger, wenn es um Brocken geht.\n"
-"Responsive Mikroben wechseln schneller zu neuen Zielen."
+msgstr "Lecker!"
 
 msgid "ZOOM_IN"
 msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
+
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Benutzt Auto Harmony:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Nutze Auto Harmony Laden"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Harmony Updates automatisch vom Assembler laden (Mod class muss nicht spezifiziert werden)"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Reproduktion:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON Debug-Modus:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Immer"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automatisch"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Niemals"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "Bei der Meldung eines Speicherfehlers bitte die Datei [color=#3796e1][url={0}]{1}[/url][/color] aus dem[color=#3796e1][url={2}]Log-Ordner[/url][/color] anfügen. Diese enthält wichtige Informationen für die Thrive-Entwickler zur Fehleranalyse. Ohne diese Datei ist es extrem schwierig den Fehler zu finden und zu beheben."
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "JSON Debug-Modus:"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Nicht begonnen."
 
 #, fuzzy
 #~ msgid "GENERATE_BUTTON"
@@ -9574,9 +9638,6 @@ msgstr "Herauszoomen"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Bereiche mit bis zu dieser Anzahl an Spezies haben niedrige Biodiversität"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Maximale Anzahl an Arten in einem Bereich vor dem erzwungenen Aussterben"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Startpopulation einer Biodiversität erhöhenden Spezies"

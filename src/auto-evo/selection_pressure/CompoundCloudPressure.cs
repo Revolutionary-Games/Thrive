@@ -1,23 +1,22 @@
 ﻿namespace AutoEvo;
 
 using System;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
-[JSONDynamicTypeAllowed]
 public class CompoundCloudPressure : SelectionPressure
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
     private static readonly LocalizedString NameString = new LocalizedString("MICHE_COMPOUND_CLOUD_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    [JsonProperty]
     private readonly Compound compound;
 
     private readonly CompoundDefinition compoundDefinition;
 
-    [JsonProperty]
     private readonly bool isDayNightCycleEnabled;
 
     public CompoundCloudPressure(Compound compound, bool isDayNightCycleEnabled, float weight) :
@@ -39,8 +38,31 @@ public class CompoundCloudPressure : SelectionPressure
         this.isDayNightCycleEnabled = isDayNightCycleEnabled;
     }
 
-    [JsonIgnore]
     public override LocalizedString Name => NameString;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPressure;
+
+    public static CompoundCloudPressure ReadFromArchive(ISArchiveReader reader, ushort version,
+        int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new CompoundCloudPressure((Compound)reader.ReadInt32(), reader.ReadBool(), reader.ReadFloat());
+
+        instance.ReadBasePropertiesFromArchive(reader, 1);
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write((int)compound);
+        writer.Write(isDayNightCycleEnabled);
+        base.WriteToArchive(writer);
+    }
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {

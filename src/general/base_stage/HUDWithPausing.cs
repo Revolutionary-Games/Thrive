@@ -1,5 +1,4 @@
 ﻿using Godot;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   Separate HUD base that adds pausing, this is separate as both strategy and creature HUDs want pausing but maybe
@@ -23,11 +22,10 @@ public partial class HUDWithPausing : HUDBase
     /// <summary>
     ///   For toggling paused with the pause button.
     /// </summary>
-    [JsonIgnore]
     public bool Paused { get; private set; }
 
     /// <summary>
-    ///   If this returns non-null value the help text / prompt for unpausing is shown when paused
+    ///   If this returns a non-null value, the help text / prompt for unpausing is shown when paused
     /// </summary>
     protected virtual string? UnPauseHelpText => throw new GodotAbstractPropertyNotOverriddenException();
 
@@ -40,7 +38,7 @@ public partial class HUDWithPausing : HUDBase
 
     public virtual void PauseButtonPressed(bool buttonState)
     {
-        if (menu.Visible)
+        if (PauseMenu.Instance.Visible)
         {
             return;
         }

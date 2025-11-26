@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 11:08+0200\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
@@ -286,7 +286,8 @@ msgstr "Chemoplastas"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Modifikacijos surinkimo klasė reikalinga, kai nurodytas surinkimas"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Mod assembly yra reikalinga, kai įjungta Auto Harmony"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -1078,6 +1079,10 @@ msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Junginių Balansai"
 
 #, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} suvartojimas"
+
+#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "Junginių Balansai"
 
@@ -1516,6 +1521,14 @@ msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sve
 
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
+
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "Atšaukti dabartinį veiksmą"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "Atšaukti dabartinį veiksmą"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
@@ -2159,6 +2172,14 @@ msgstr ""
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Baigti žaidimą"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Baigti žaidimą"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2437,6 +2458,14 @@ msgstr ""
 
 msgid "FOSSILISE"
 msgstr ""
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "(pradžios vieta)"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Elemento aprašymas:"
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr ""
@@ -2745,6 +2774,9 @@ msgstr "ID kodas"
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
+
 msgid "IMAGE_FILE_TYPES"
 msgstr ""
 
@@ -2854,6 +2886,14 @@ msgstr "Peržiūrėti"
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "ATP GAMYBA PER MAŽA!"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -2974,18 +3014,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr ""
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3692,6 +3720,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr ""
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "ATP GAMYBA PER MAŽA!"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -3990,6 +4022,10 @@ msgstr ""
 msgid "MODS"
 msgstr "Modifikacijos"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Įjungtas"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4022,9 +4058,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 msgid "MOD_CREATION_FAILED"
@@ -4648,6 +4681,9 @@ msgstr "Junginiai"
 msgid "OUR_WIKI"
 msgstr ""
 
+msgid "OUTDATED_ITEM"
+msgstr ""
+
 msgid "OUTDATED_NOTICE"
 msgstr ""
 
@@ -5245,6 +5281,9 @@ msgstr ""
 msgid "ROTATION_COLON"
 msgstr ""
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
 
@@ -5305,12 +5344,6 @@ msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr ""
 
 msgid "SAVE_FAILED"
@@ -5688,6 +5721,12 @@ msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
+msgstr ""
+
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr ""
+
+msgid "SPECIES_IN_OTHER_PATCHES"
 msgstr ""
 
 msgid "SPECIES_LIST"
@@ -6560,6 +6599,17 @@ msgstr ""
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Atšaukti paskutinį veiksmą"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Elemento aprašymas:"
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "\"{0}\" - {1}"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "DI mutacijos greitis"
@@ -6715,6 +6765,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -6722,12 +6775,6 @@ msgid "USED_RENDERER_NAME"
 msgstr ""
 
 msgid "USES_FEATURE"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
@@ -8873,6 +8920,10 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "ATP GAMYBA PER MAŽA!"
 
 #, fuzzy
 #~ msgid "GENERATE_BUTTON"
