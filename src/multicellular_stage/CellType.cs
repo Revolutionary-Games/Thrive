@@ -172,6 +172,40 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         return MicrobeSpecies.StateHasStabilizedImpl(worldSimulation);
     }
 
+    /// <summary>
+    ///   Replaces this type's data with the data from another type.
+    /// </summary>
+    /// <param name="otherType">Where to copy data from. Note that this does not deep copy the data!</param>
+    /// <param name="hexTemporaryMemory">Work memory</param>
+    /// <param name="hexTemporaryMemory2">Work memory 2</param>
+    /// <param name="shouldUpdatePosition">If true, repositions the organelles after copying to origin</param>
+    public void CopyFrom(CellType otherType, List<Hex> hexTemporaryMemory, List<Hex> hexTemporaryMemory2,
+        bool shouldUpdatePosition = false)
+    {
+        // Code very similar to what CellEditorComponent does on applying changes
+        ModifiableOrganelles.Clear();
+
+        // Even in a multicellular context, it should always be safe to apply the organelle growth order
+        foreach (var organelle in otherType.ModifiableOrganelles)
+        {
+            var organelleToAdd = organelle.Clone();
+            ModifiableOrganelles.AddFast(organelleToAdd, hexTemporaryMemory, hexTemporaryMemory2);
+        }
+
+        if (shouldUpdatePosition)
+            RepositionToOrigin();
+
+        // Update bacteria status
+        IsBacteria = otherType.IsBacteria;
+
+        UpdateNameIfValid(otherType.CellTypeName);
+
+        // Update membrane
+        MembraneType = otherType.MembraneType;
+        Colour = Colour;
+        MembraneRigidity = otherType.MembraneRigidity;
+    }
+
     public object Clone()
     {
         var result = new CellType(MembraneType)
@@ -238,6 +272,11 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         }
 
         return hash;
+    }
+
+    public override string ToString()
+    {
+        return $"CellType \"{CellTypeName}\" with {Organelles.Count} organelles";
     }
 
     private void CalculateRotationSpeed()

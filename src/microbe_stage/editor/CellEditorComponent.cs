@@ -1014,6 +1014,7 @@ public partial class CellEditorComponent :
 
         // Apply changes to the species organelles
         // It is easiest to just replace all
+        // Note that if this code is changed, then also CellType.CopyFrom needs changes
         editedProperties.ModifiableOrganelles.Clear();
 
         // Even in a multicellular context, it should always be safe to apply the organelle growth order
