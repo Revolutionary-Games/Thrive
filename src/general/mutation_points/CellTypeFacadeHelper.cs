@@ -22,6 +22,8 @@ public class CellTypeFacadeHelper
     {
         foreach (var addedCellType in activeCellTypes)
         {
+            // Reset previous changes so this is ready for new changes
+            addedCellType.Value.OnStartApplyChanges();
             unusedCellTypes.Push(addedCellType.Value);
         }
 

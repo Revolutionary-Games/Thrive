@@ -317,6 +317,23 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
 
             if (original == null)
             {
+                foreach (var addedOrganelle in addedOrganelles)
+                {
+                    // Make sure organelles where the original instance is different (due to the base species and
+                    // upgrade action data not matching due to editor using temporary organelles) can still match
+                    if (addedOrganelle.OriginalFrom.Definition ==
+                        organelleUpgradeActionData.UpgradedOrganelle.Definition &&
+                        addedOrganelle.Position == organelleUpgradeActionData.Position)
+                    {
+                        original = addedOrganelle;
+                        addedOrganelles.Remove(addedOrganelle);
+                        break;
+                    }
+                }
+            }
+
+            if (original == null)
+            {
                 // Then match to the original microbe organelles
                 original = originalCell.Organelles.GetByExactElementRootPosition(organelleUpgradeActionData.Position);
 
@@ -331,14 +348,19 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
                     if (original.Definition != organelleUpgradeActionData.UpgradedOrganelle.Definition)
                         GD.PrintErr("Found unrelated organelle at old position of upgraded organelle");
 
-                    // The reference should equal here
-                    if (!ReferenceEquals(original, organelleUpgradeActionData.UpgradedOrganelle))
-                    {
-                        GD.PrintErr(
-                            "Organelle reference doesn't equal at original position when applying upgrade in facade");
-                    }
+                    // The reference doesn't really match here, but as we checked the new organelle list before,
+                    // this should be safe. The reference doesn't equal because the editor has a temporary list of
+                    // organelles that are modified that is separate from the underlying species.
 
-                    removedOrganelles.Add(original);
+                    // But we can check this for similar safety
+                    if (removedOrganelles.Contains(original))
+                    {
+                        GD.PrintErr("Original organelle is in removed list when applying upgrade in facade");
+                    }
+                    else
+                    {
+                        removedOrganelles.Add(original);
+                    }
                 }
             }
 
@@ -370,8 +392,6 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
 
         if (actionData is NewMicrobeActionData newMicrobeActionData)
         {
-            // TODO: make sure this works correctly
-
             // Clear already applied things
             foreach (var organelle in newMicrobeActionData.OldEditedMicrobeOrganelles)
             {
