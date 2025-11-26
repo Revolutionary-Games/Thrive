@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-21 18:08+0200\n"
-"PO-Revision-Date: 2025-11-17 20:38+0000\n"
+"PO-Revision-Date: 2025-11-25 07:16+0000\n"
 "Last-Translator: ILIA RIABOV <ilyarya131@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -271,9 +271,8 @@ msgstr "Стадия Возвышения"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Класс сборки необходим для мода, если указана сборка"
 
-#, fuzzy
 msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
-msgstr "Сборка мода требуется c Harmony"
+msgstr "Сборка требуется, если указан класс модуля"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Предположить, что в процессоре включена гиперпоточность"
@@ -1044,9 +1043,8 @@ msgstr "Очень высокий"
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Очень низкий"
 
-#, fuzzy
 msgid "COMPOUND_REPRODUCTION_SOURCE"
-msgstr "{0} потребления"
+msgstr "потребление: {0}"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(недостаточно для того, чтобы прожить ночь, что длится {0} секунд)"
@@ -2817,13 +2815,11 @@ msgstr "Инспектор"
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Посетите нашу страницу в Instagram"
 
-#, fuzzy
 msgid "INSTANT_KILL_PROTECTION"
-msgstr "Защита от УФ слишком низкая, требуется на {0}% выше"
+msgstr "Мгновенная защита от уничтожения"
 
-#, fuzzy
 msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
-msgstr "(доля глюкозы, остающейся в окружающей среде после каждого поколения)"
+msgstr "(урон, который убил бы игрока с высоким уровнем здоровья, вместо этого оставляет вам небольшое количество здоровья)"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Активировать Врата Вознесения"
@@ -3638,9 +3634,8 @@ msgstr "Давление Эффективности Хищничества"
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Корневое Давление Хищника"
 
-#, fuzzy
 msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
-msgstr "Соединения на выходе из редактора:"
+msgstr "Рабочее давление воспроизводства соединений:"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr "Изначальное давление"
