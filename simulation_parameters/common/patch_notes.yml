@@ -1139,6 +1139,7 @@
     - Fixed MP multiplier difficulty setting not working with the new MP system
     - Fixed saving in wide locales with certain length strings
     - Fixed saving not working when there is a cell remove action in the edit history of multicellular
+    - Fixed a case where the pilus collision system may have tried to access a dead entity
     - Suppressed already connected signal error popup (this is a years old engine bug)
     - Updated some code dependencies and added some testing helper code
     - Updated translations
