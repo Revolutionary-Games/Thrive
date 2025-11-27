@@ -52,8 +52,11 @@ public partial class DamageOnTouchSystem : BaseSystem<World, float>
         {
             ref var collision = ref collisions![i];
 
+            if (collision.SecondEntity == default(Entity))
+                continue;
+
             // Skip collisions with things that can't be damaged
-            if (collision.SecondEntity == default(Entity) || !collision.SecondEntity.IsAliveAndHas<Health>())
+            if (!collision.SecondEntity.IsAliveAndHas<Health>())
                 continue;
 
             // If this doesn't cause any damage, we can consider this hit here immediately a success
