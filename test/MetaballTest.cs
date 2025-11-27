@@ -44,7 +44,7 @@ public partial class MetaballTest : Node
                     var cellType = CreateDummyCellType(Colors.Azure);
                     var root = new MacroscopicMetaball(cellType)
                     {
-                        Parent = null,
+                        ModifiableParent = null,
                         Position = new Vector3(0, 0, 0),
                         Size = 1,
                     };
@@ -52,7 +52,7 @@ public partial class MetaballTest : Node
                     layout.Add(root);
                     layout.Add(new MacroscopicMetaball(cellType)
                     {
-                        Parent = root,
+                        ModifiableParent = root,
                         Position = new Vector3(1, 0, 0),
                         Size = 0.5f,
                     });
@@ -67,7 +67,7 @@ public partial class MetaballTest : Node
 
                     var root = new MacroscopicMetaball(cellType1)
                     {
-                        Parent = null,
+                        ModifiableParent = null,
                         Position = new Vector3(0, 0, 0),
                         Size = 1,
                     };
@@ -85,7 +85,7 @@ public partial class MetaballTest : Node
                             layout.Add(new MacroscopicMetaball(type1 ? cellType1 : cellType2)
                             {
                                 // Could set the parents more intelligently here...
-                                Parent = root,
+                                ModifiableParent = root,
                                 Position = new Vector3(x, 0, z),
                                 Size = 1.0f,
                             });

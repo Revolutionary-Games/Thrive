@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-17 12:31+0100\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -297,8 +297,9 @@ msgstr "Versi:"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Susunan kelas mod dibutuhkan jika sebuah susunan ditentukan"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr ""
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
+msgstr "Susunan kelas mod dibutuhkan jika sebuah susunan ditentukan"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Asumsikan hyperthreading diaktifkan pada CPU"
@@ -4354,9 +4355,6 @@ msgstr ""
 msgid "MOD_AUTHOR"
 msgstr ""
 
-msgid "MOD_AUTO_HARMONY"
-msgstr ""
-
 #, fuzzy
 msgid "MOD_CREATION_FAILED"
 msgstr "Auto-evo gagal bekerja"
@@ -7508,13 +7506,6 @@ msgstr ""
 msgid "USES_FEATURE"
 msgstr "Suhu"
 
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#, fuzzy
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Tambah keybind baru"
-
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gunakan nama pengguna kustom"
 
@@ -9608,6 +9599,10 @@ msgstr "Perbesar"
 
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
+
+#, fuzzy
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Tambah keybind baru"
 
 #, fuzzy
 #~ msgid "REPRODUCTION_COMPOUND_USAGE"

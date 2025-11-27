@@ -207,7 +207,7 @@ public partial class MetaballBodyEditorComponent :
 
         var metaballMapping = new Dictionary<Metaball, MacroscopicMetaball>();
 
-        foreach (var metaball in Editor.EditedSpecies.ModifiableBodyLayout)
+        foreach (var metaball in (MetaballLayout<MacroscopicMetaball>)Editor.EditedSpecies.ModifiableBodyLayout)
         {
             editedMetaballs.Add(metaball.Clone(metaballMapping));
         }
@@ -331,7 +331,7 @@ public partial class MetaballBodyEditorComponent :
 
     protected CellType CellTypeFromName(string name)
     {
-        return Editor.EditedSpecies.ModifiableCellTypes.First(c => c.TypeName == name);
+        return Editor.EditedSpecies.ModifiableCellTypes.First(c => c.CellTypeName == name);
     }
 
     protected override void OnTranslationsChanged()
@@ -353,7 +353,7 @@ public partial class MetaballBodyEditorComponent :
         var cellTemplates = positions.Select(p => new MacroscopicMetaball(cellType)
         {
             Position = p.Position,
-            Parent = p.Parent,
+            ModifiableParent = p.Parent,
         }).ToList();
 
         // TODO: it's extremely unlikely that metaballs would overlap exactly so we can probably remove the occupancy
@@ -517,7 +517,7 @@ public partial class MetaballBodyEditorComponent :
 
         var metaball = new MacroscopicMetaball(cellToPlace)
         {
-            Parent = parent,
+            ModifiableParent = parent,
             Position = parent != null ? FinalMetaballPosition(position, parent) : position,
             Size = metaballSize,
         };
@@ -567,7 +567,7 @@ public partial class MetaballBodyEditorComponent :
                     return;
                 }
 
-                var placed = CreatePlaceActionIfPossible(metaball.CellType, symmetryPosition, metaball.Size,
+                var placed = CreatePlaceActionIfPossible(metaball.ModifiableCellType, symmetryPosition, metaball.Size,
                     symmetryParent);
 
                 if (placed != null)
@@ -595,7 +595,7 @@ public partial class MetaballBodyEditorComponent :
         var metaball = new MacroscopicMetaball(cellType)
         {
             Position = FinalMetaballPosition(position, parent, size),
-            Parent = parent,
+            ModifiableParent = parent,
             Size = size,
         };
 
@@ -611,7 +611,7 @@ public partial class MetaballBodyEditorComponent :
 
     private bool IsValidPlacement(MacroscopicMetaball metaball)
     {
-        return IsValidPlacement(metaball.Position, metaball.Parent);
+        return IsValidPlacement(metaball.Position, metaball.ModifiableParent);
     }
 
     private bool IsValidPlacement(Vector3 position, Metaball? parent)
@@ -690,7 +690,7 @@ public partial class MetaballBodyEditorComponent :
                         metaball.Position, position, editedMetaballs);
 
                 var data = new MetaballMoveActionData<MacroscopicMetaball>(metaball, metaball.Position, position,
-                    metaball.Parent, parent, childMoves);
+                    metaball.ModifiableParent, parent, childMoves);
                 action = new SingleEditorAction<MetaballMoveActionData<MacroscopicMetaball>>(DoMetaballMoveAction,
                     UndoMetaballMoveAction, data);
             }
@@ -776,7 +776,7 @@ public partial class MetaballBodyEditorComponent :
     {
         // Should be safe for us to try to signal to edit any kind of cell so this doesn't check if the cell is removed
         EmitSignal(SignalName.OnCellTypeToEditSelected,
-            metaballPopupMenu.SelectedMetaballs.First().CellType.TypeName);
+            metaballPopupMenu.SelectedMetaballs.First().ModifiableCellType.CellTypeName);
     }
 
     /// <summary>
@@ -784,33 +784,35 @@ public partial class MetaballBodyEditorComponent :
     /// </summary>
     private void UpdateCellTypeSelections()
     {
+        var costMultiplier = Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+
         // Re-use / create more buttons to hold all the cell types
-        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes.OrderBy(t => t.TypeName,
+        foreach (var cellType in Editor.EditedSpecies.ModifiableCellTypes.OrderBy(t => t.CellTypeName,
                      StringComparer.Ordinal))
         {
-            if (!cellTypeSelectionButtons.TryGetValue(cellType.TypeName, out var control))
+            if (!cellTypeSelectionButtons.TryGetValue(cellType.CellTypeName, out var control))
             {
                 // Need new button
                 control = cellTypeSelectionButtonScene.Instantiate<CellTypeSelection>();
                 control.SelectionGroup = cellTypeButtonGroup;
 
-                control.PartName = cellType.TypeName;
+                control.PartName = cellType.CellTypeName;
                 control.CellType = cellType;
-                control.Name = cellType.TypeName;
+                control.Name = cellType.CellTypeName;
 
                 cellTypeSelectionList.AddItem(control);
-                cellTypeSelectionButtons.Add(cellType.TypeName, control);
+                cellTypeSelectionButtons.Add(cellType.CellTypeName, control);
 
                 control.Connect(MicrobePartSelection.SignalName.OnPartSelected,
                     new Callable(this, nameof(OnCellToPlaceSelected)));
             }
 
-            control.MPCost = Constants.METABALL_ADD_COST;
+            control.MPCost = Constants.METABALL_ADD_COST * costMultiplier;
 
             // TODO: remove this line after ATP balance calculations are implemented for this editor
             control.ShowInsufficientATPWarning = false;
 
-            // TODO: tooltips for these
+            // TODO: tooltips for these (and remember to take MP multiplier into account)
         }
 
         bool clearSelection = false;
@@ -818,7 +820,7 @@ public partial class MetaballBodyEditorComponent :
         // Delete no longer needed buttons
         foreach (var key in cellTypeSelectionButtons.Keys.ToList())
         {
-            if (Editor.EditedSpecies.ModifiableCellTypes.All(t => t.TypeName != key))
+            if (Editor.EditedSpecies.ModifiableCellTypes.All(t => t.CellTypeName != key))
             {
                 var control = cellTypeSelectionButtons[key];
                 cellTypeSelectionButtons.Remove(key);
@@ -908,16 +910,16 @@ public partial class MetaballBodyEditorComponent :
 
         var type = CellTypeFromName(activeActionName!);
 
-        duplicateCellTypeName.Text = type.TypeName;
+        duplicateCellTypeName.Text = type.CellTypeName;
 
         // Make sure it's shown in red initially as it is a duplicate name
-        OnNewCellTypeNameChanged(type.TypeName);
+        OnNewCellTypeNameChanged(type.CellTypeName);
 
         duplicateCellTypeDialog.PopupCenteredShrink();
 
         duplicateCellTypeName.GrabFocusInOpeningPopup();
         duplicateCellTypeName.SelectAll();
-        duplicateCellTypeName.CaretColumn = type.TypeName.Length;
+        duplicateCellTypeName.CaretColumn = type.CellTypeName.Length;
     }
 
     private void OnNewCellTypeNameChanged(string newText)
@@ -937,7 +939,7 @@ public partial class MetaballBodyEditorComponent :
         // Name is invalid if it is empty or a duplicate
         // TODO: should this ensure the name doesn't have trailing whitespace?
         return !string.IsNullOrWhiteSpace(text) && !Editor.EditedSpecies.ModifiableCellTypes.Any(c =>
-            c.TypeName.Equals(text, StringComparison.InvariantCultureIgnoreCase));
+            c.CellTypeName.Equals(text, StringComparison.InvariantCultureIgnoreCase));
     }
 
     private void OnNewCellTextAccepted(string text)
@@ -964,10 +966,10 @@ public partial class MetaballBodyEditorComponent :
 
         // TODO: make this a reversible action
         var newType = (CellType)type.Clone();
-        newType.TypeName = newTypeName;
+        newType.CellTypeName = newTypeName;
 
         Editor.EditedSpecies.ModifiableCellTypes.Add(newType);
-        GD.Print("New cell type created: ", newType.TypeName);
+        GD.Print("New cell type created: ", newType.CellTypeName);
 
         UpdateCellTypeSelections();
 
@@ -984,7 +986,7 @@ public partial class MetaballBodyEditorComponent :
         var type = CellTypeFromName(activeActionName!);
 
         // Disallow deleting a type that is in use currently
-        if (editedMetaballs.Any(c => c.CellType == type))
+        if (editedMetaballs.Any(c => c.ModifiableCellType == type))
         {
             GD.Print("Can't delete in use cell type");
             cannotDeleteInUseTypeDialog.PopupCenteredShrink();

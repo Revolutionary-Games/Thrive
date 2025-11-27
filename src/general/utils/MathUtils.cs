@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Godot;
 
@@ -209,5 +210,39 @@ public static class MathUtils
         float angle = fieldOfView * 0.5f;
 
         return MathF.Tan(MathF.PI * 0.5f - DEGREES_TO_RADIANS * angle) * radius;
+    }
+
+    public static float BreakOnNaN(this float value)
+    {
+        if (float.IsNaN(value))
+        {
+            if (Debugger.IsAttached)
+            {
+                Debugger.Break();
+            }
+            else
+            {
+                throw new Exception("NaN detected");
+            }
+        }
+
+        return value;
+    }
+
+    public static double BreakOnNaN(this double value)
+    {
+        if (double.IsNaN(value))
+        {
+            if (Debugger.IsAttached)
+            {
+                Debugger.Break();
+            }
+            else
+            {
+                throw new Exception("NaN detected");
+            }
+        }
+
+        return value;
     }
 }

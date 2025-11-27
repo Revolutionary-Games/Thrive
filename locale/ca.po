@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-17 12:31+0100\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -281,7 +281,8 @@ msgstr "Versió:"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Es requereix la classe de l'ensamblatge del mod quan s'especifica l'ensamblatge"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Es requereix l'ensamblatge de mod quan auto harmony està activat"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -4301,9 +4302,6 @@ msgstr "{0}: el mètode de descàrrega d'ensamblatge del mod ha fallat amb una e
 msgid "MOD_AUTHOR"
 msgstr "Autor del Mod:"
 
-msgid "MOD_AUTO_HARMONY"
-msgstr "Fa servir Auto Harmony:"
-
 msgid "MOD_CREATION_FAILED"
 msgstr "Creació de Mod Fallida"
 
@@ -7436,12 +7434,6 @@ msgstr ""
 msgid "USES_FEATURE"
 msgstr "Si"
 
-msgid "USE_AUTO_HARMONY"
-msgstr "Utilitzar Càrrega Auto Harmony"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
-
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Fer servir un nom d'usuari propi"
 
@@ -9562,6 +9554,15 @@ msgstr "Enfocar la visió de la càmera"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Fa servir Auto Harmony:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Utilitzar Càrrega Auto Harmony"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
 
 #, fuzzy
 #~ msgid "REPRODUCTION_COMPOUND_USAGE"

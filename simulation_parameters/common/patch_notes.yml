@@ -1070,3 +1070,53 @@
     - Fixed loading a save made in the multicellular editor where the player had a grown colony before entering the editor
     - Added a new system where known compatible save versions can be marked and those can be loaded without any warning popup
     - Updated translations
+
+0.9.1:
+  IntroductionText: |
+    To prepare for the 1.0.0 (microbe stage completion) release, we are making a few smaller releases to get more player feedback on the changes we are making. The biggest changes in this release are that all the reported save loading issues should be fixed now. And the remaining MP calculation system is totally redone, again, which should now result in there not being any MP refund exploits. However, due to the tight release schedule there has not been much testing at all so please continue reporting any MP related problems. There's also of course new gameplay features like new patch events and map visuals as well as multiple auto-evo and balance improvements.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.9.1
+  PatchNotes:
+    - Reimplemented the MP calculation system (again)
+    - Added player population visualization dots on the map
+    - Added a few new patch event types that affect compound amounts
+    - Amount of ammonia in patches now dynamically changes based on consumption and production
+    - Switched Thermosynthesis to produce glucose rather than ATP directly
+    - There's a different intro cutscene now when starting with the panspermia starting location
+    - Added a new GUI error popup that opens when the game runs into an unhandled error to make sure players can more accurately report these and not continue playing for a while without realizing which can lead to very strange bug symptoms
+    - Auto-evo can now evolve toxin upgrades and they have an impact on the calculation now
+    - Auto-evo now takes reproduction cost into account
+    - Implemented a simple cell division animation based on physics pushing the new cell out
+    - Buffed hydregonosome by 20% to make it a good upgrade again
+    - Increased auto-evo strength on the player species in all difficulties
+    - Instant kill protection against damage is now a disableable difficulty option
+    - Stopped the player death timer when engulfed if the player has stored toxin as the player might be able to escape thanks to it
+    - Endosymbiosis GUI is now grouped based on whether the species are present in the current patch or not
+    - Added a sound effect for binding mode so that it finally has a unique sound rather than sharing the engulf mode sound
+    - Tweaked the engulfing sound to make it loop better
+    - The pause menu is now a singleton and the Thriveopedia as well to reduce allocations on scene change which might help with the random scene load bug
+    - Made global glaciation trigger slightly earlier
+    - Improved the microbe AI handling of escaping damaging hydrogen sulfide
+    - Partial mod support should be now usable, which had been broken since the Godot 4 upgrade. Harmony using mods don't work on Linux but they should work on Windows now.
+    - Removed inbuilt Harmony mod support as it was not working
+    - Fixed code mod loading not working ever since we switched to Godot 4
+    - Fixed loading saves where there are fired toxins
+    - Fixed fog of war and a few other settings resetting in custom difficulty on loading a save
+    - Fixed a case where sunlight was not properly restored after an event ended
+    - Fixed compound storage durations display not correctly taking special storage space into account
+    - Fixed major bug with auto-evo tolerance changes not actually working at all
+    - Fixed distance checks being mathematically wrong in the terrain system and added sliding terrain around when it doesn't fit to result in much tighter packing being possible
+    - Fixed the no longer eligible for achievements text appearing in freebuild as those games are not eligible anyway
+    - Fixed changing worlds in the auto-evo exploring tool not working correctly for the displayed map
+    - Reduced logging for Steam achievements sync
+    - Fixed some dependency updates in Arch that broke some build tools
+    - Fixed our setup instructions referring to the wrong Godot version
+    - Updated AngleSharp to 1.3.1
+    - Updated gdUnit4 C# package to 5.1.0-rc3
+    - Updated code checking tools version
+    - Updated BenchmarkDotNet from 0.15.5 to 0.15.6
+    - Updated gdUnit4 to 6.0.1 and fixed our microbe hash tests
+    - Updated test SDK version
+    - Updated System.Text.Json from 9.0.9 to 9.0.10
+    - Updated System.IO.Hashing from 9.0.9 to 9.0.10
+    - Updated many other C# dependencies and checking tools
+    - Updated translations

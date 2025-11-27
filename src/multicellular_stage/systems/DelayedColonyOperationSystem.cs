@@ -67,7 +67,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
         var weight = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species,
             colonyPosition.Position + colonyPosition.Rotation * attachPosition.RelativePosition, true,
-            (cellTemplate.CellType, bodyPlanIndex), recorder, out var member, MulticellularSpawnState.Bud,
+            (cellTemplate.ModifiableCellType, bodyPlanIndex), recorder, out var member, MulticellularSpawnState.Bud,
             giveStartingCompounds);
 
         // Register with the spawn system to allow this entity to despawn if it gets cut off from the colony later

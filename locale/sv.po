@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-17 12:31+0100\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-10-16 19:56+0000\n"
 "Last-Translator: Jens Schwartz Linder <jesclinder@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -278,7 +278,8 @@ msgstr "Ascentionsstadiet"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Modmonteringsklass krävs när montering specificeras"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Modmontering krävs när autoharmony är aktiverat"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -4300,9 +4301,6 @@ msgstr ""
 msgid "MOD_AUTHOR"
 msgstr ""
 
-msgid "MOD_AUTO_HARMONY"
-msgstr ""
-
 msgid "MOD_CREATION_FAILED"
 msgstr ""
 
@@ -7387,13 +7385,6 @@ msgstr ""
 msgid "USES_FEATURE"
 msgstr "Temperatur"
 
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#, fuzzy
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Självmord"
-
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Använd ett anpassat användarnamn"
 
@@ -9463,6 +9454,10 @@ msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
+
+#, fuzzy
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Självmord"
 
 #, fuzzy
 #~ msgid "REPRODUCTION_COMPOUND_USAGE"

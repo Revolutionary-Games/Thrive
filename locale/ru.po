@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-17 12:31+0100\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-11-17 20:38+0000\n"
 "Last-Translator: ILIA RIABOV <ilyarya131@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -271,7 +271,8 @@ msgstr "Стадия Возвышения"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Класс сборки необходим для мода, если указана сборка"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Сборка мода требуется c Harmony"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -3980,9 +3981,6 @@ msgstr "{0}: не удалось выполнить вызов метода вы
 msgid "MOD_AUTHOR"
 msgstr "Автор мода:"
 
-msgid "MOD_AUTO_HARMONY"
-msgstr "Использует Harmony автоматически:"
-
 msgid "MOD_CREATION_FAILED"
 msgstr "Не удалось создать мод"
 
@@ -6871,12 +6869,6 @@ msgstr "Движок отрисовки:"
 msgid "USES_FEATURE"
 msgstr "Да"
 
-msgid "USE_AUTO_HARMONY"
-msgstr "Использовать автозагрузку Harmony"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Автоматически загружать патчи для сборки модов от Harmony(Специальный мод не требуется)"
-
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Использовать кастомное имя пользователя"
 
@@ -9568,6 +9560,15 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Использует Harmony автоматически:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Использовать автозагрузку Harmony"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Автоматически загружать патчи для сборки модов от Harmony(Специальный мод не требуется)"
 
 #, fuzzy
 #~ msgid "REPRODUCTION_COMPOUND_USAGE"

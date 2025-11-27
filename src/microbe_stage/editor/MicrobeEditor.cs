@@ -419,7 +419,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         editsFacade.SetActiveActions(performedActionData);
 
-        return speciesComparer.Compare(editedSpecies!, editsFacade);
+        return speciesComparer.Compare(editedSpecies!, editsFacade) * CurrentGame.GameWorld.WorldSettings.MPMultiplier;
     }
 
     protected override GameProperties StartNewGameForEditor()

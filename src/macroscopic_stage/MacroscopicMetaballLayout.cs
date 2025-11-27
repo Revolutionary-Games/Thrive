@@ -1,6 +1,7 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
 
-public class MacroscopicMetaballLayout : MetaballLayout<MacroscopicMetaball>
+public class MacroscopicMetaballLayout : MetaballLayout<MacroscopicMetaball>, IReadOnlyMacroscopicMetaballLayout
 {
     /// <summary>
     ///   Repositions the bottom-most metaballs to touch the ground, and the center of all metaballs to be aligned
@@ -11,7 +12,7 @@ public class MacroscopicMetaballLayout : MetaballLayout<MacroscopicMetaball>
         float lowestCoordinate = 0;
         var center = Vector3.Zero;
 
-        foreach (var metaball in this)
+        foreach (var metaball in metaballs)
         {
             center += metaball.Position;
 
@@ -29,11 +30,16 @@ public class MacroscopicMetaballLayout : MetaballLayout<MacroscopicMetaball>
         if (adjustment.X == 0 && adjustment.Y == 0 && adjustment.Z == 0)
             return false;
 
-        foreach (var metaball in this)
+        foreach (var metaball in metaballs)
         {
             metaball.Position -= adjustment;
         }
 
         return true;
+    }
+
+    public new IEnumerator<IReadonlyMacroscopicMetaball> GetEnumerator()
+    {
+        return metaballs.GetEnumerator();
     }
 }

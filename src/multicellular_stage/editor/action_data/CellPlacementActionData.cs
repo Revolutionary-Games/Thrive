@@ -38,9 +38,4 @@ public class CellPlacementActionData : HexPlacementActionData<HexWithData<CellTe
 
         return instance;
     }
-
-    protected override double CalculateBaseCostInternal()
-    {
-        return PlacedHex.Data?.CellType.MPCost ?? throw new InvalidOperationException("Hex with no data");
-    }
 }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-17 12:31+0100\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,10 +84,10 @@ msgstr ""
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
-#: ../src/general/base_stage/EditorBase.cs:910
-#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:495
+#: ../src/general/base_stage/EditorBase.cs:934
+#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:510
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:62
-#: ../src/multicellular_stage/editor/MulticellularEditor.cs:468
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:484
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
@@ -123,7 +123,7 @@ msgstr ""
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:250
+#: ../src/modding/NewModGUI.cs:245
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr ""
 
@@ -280,7 +280,7 @@ msgstr ""
 msgid "APPLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:419
+#: ../src/modding/ModManager.tscn:418
 msgid "APPLY_CHANGES"
 msgstr ""
 
@@ -325,12 +325,12 @@ msgstr ""
 msgid "ASCENSION_STAGE"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:276
+#: ../src/modding/ModManager.cs:273
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:287
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#: ../src/modding/ModManager.cs:284
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr ""
 
 #: ../src/gui_common/menus/OptionsMenu.tscn:1741
@@ -512,7 +512,7 @@ msgstr ""
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:114
+#: ../src/modding/ModManager.tscn:113
 msgid "AVAILABLE_MODS"
 msgstr ""
 
@@ -554,12 +554,12 @@ msgstr ""
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:686
 #: ../src/general/MainMenu.tscn:432 ../src/general/MainMenu.tscn:498
 #: ../src/general/MainMenu.tscn:546 ../src/general/MainMenu.tscn:890
-#: ../src/general/NewGameSettings.tscn:1067 ../src/general/PauseMenu.tscn:289
+#: ../src/general/NewGameSettings.tscn:1093 ../src/general/PauseMenu.tscn:289
 #: ../src/gui_common/menus/AchievementsView.tscn:53
 #: ../src/gui_common/menus/OptionsMenu.tscn:3169
 #: ../src/gui_common/menus/PlanetCustomizerTool.tscn:160
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:122
+#: ../src/modding/ModManager.tscn:82 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:88
 msgid "BACK"
 msgstr ""
@@ -646,23 +646,23 @@ msgstr ""
 msgid "BEHAVIOUR"
 msgstr ""
 
-#: ../src/general/BehaviourDictionary.cs:116
+#: ../src/general/BehaviourDictionary.cs:104
 msgid "BEHAVIOUR_ACTIVITY"
 msgstr ""
 
-#: ../src/general/BehaviourDictionary.cs:113
+#: ../src/general/BehaviourDictionary.cs:101
 msgid "BEHAVIOUR_AGGRESSION"
 msgstr ""
 
-#: ../src/general/BehaviourDictionary.cs:115
+#: ../src/general/BehaviourDictionary.cs:103
 msgid "BEHAVIOUR_FEAR"
 msgstr ""
 
-#: ../src/general/BehaviourDictionary.cs:117
+#: ../src/general/BehaviourDictionary.cs:105
 msgid "BEHAVIOUR_FOCUS"
 msgstr ""
 
-#: ../src/general/BehaviourDictionary.cs:114
+#: ../src/general/BehaviourDictionary.cs:102
 msgid "BEHAVIOUR_OPPORTUNISM"
 msgstr ""
 
@@ -789,7 +789,7 @@ msgstr ""
 msgid "BROWSE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:374
+#: ../src/modding/ModManager.tscn:373
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
@@ -855,7 +855,7 @@ msgstr ""
 #: ../src/gui_common/menus/OptionsMenu.tscn:3271
 #: ../src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn:71
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:636
-#: ../src/modding/NewModGUI.tscn:333
+#: ../src/modding/NewModGUI.tscn:323
 #: ../src/space_stage/gui/SpaceConstructionPopup.tscn:46
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:129
 msgid "CANCEL"
@@ -909,7 +909,7 @@ msgstr ""
 msgid "CANNOT_WRITE_SAVE"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:318 ../src/modding/ModLoader.cs:366
+#: ../src/modding/ModLoader.cs:308 ../src/modding/ModLoader.cs:356
 msgid "CANT_LOAD_MOD_INFO"
 msgstr ""
 
@@ -991,7 +991,7 @@ msgstr ""
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:644
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:645
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -1198,7 +1198,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1381
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:605
-#: ../src/microbe_stage/ProcessPanel.tscn:61 ../src/modding/ModManager.tscn:710
+#: ../src/microbe_stage/ProcessPanel.tscn:61 ../src/modding/ModManager.tscn:698
 #: ../src/thriveopedia/Thriveopedia.tscn:297
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:220
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:315
@@ -1470,7 +1470,7 @@ msgstr ""
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/ReproductionCompoundPressure.cs:178
+#: ../src/auto-evo/selection_pressure/ReproductionCompoundPressure.cs:176
 msgid "COMPOUND_REPRODUCTION_SOURCE"
 msgstr ""
 
@@ -1893,7 +1893,7 @@ msgstr ""
 msgid "CRAFTING_TITLE"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:328
+#: ../src/modding/NewModGUI.tscn:318
 msgid "CREATE"
 msgstr ""
 
@@ -2264,7 +2264,7 @@ msgstr ""
 msgid "DISABLED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:181
+#: ../src/modding/ModManager.tscn:180
 msgid "DISABLE_ALL"
 msgstr ""
 
@@ -2272,7 +2272,7 @@ msgstr ""
 msgid "DISCARD_AND_CONTINUE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:436
+#: ../src/modding/ModManager.tscn:437
 msgid "DISCARD_CHANGES"
 msgstr ""
 
@@ -2368,7 +2368,7 @@ msgstr ""
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:816
+#: ../src/modding/ModManager.cs:919
 msgid "DOES_NOT_USE_FEATURE"
 msgstr ""
 
@@ -2559,11 +2559,11 @@ msgstr ""
 msgid "EMITTERS_COUNT"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:168
+#: ../src/modding/ModManager.tscn:167
 msgid "ENABLED_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:413
+#: ../src/modding/ModManager.tscn:412
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr ""
 
@@ -2651,19 +2651,19 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3129
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3137
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2964
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2972
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3140
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3148
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3133
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3141
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2724,11 +2724,11 @@ msgstr ""
 msgid "ERROR"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:861
+#: ../src/modding/ModManager.cs:855
 msgid "ERROR_CREATING_FOLDER"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:871
+#: ../src/modding/ModManager.cs:865
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
@@ -2760,7 +2760,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2056
+#: ../src/microbe_stage/MicrobeStage.cs:2057
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -3083,7 +3083,7 @@ msgstr ""
 msgid "FOG_OF_WAR_DISABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:814
+#: ../src/general/NewGameSettings.cs:823
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
 msgstr ""
 
@@ -3091,7 +3091,7 @@ msgstr ""
 msgid "FOG_OF_WAR_INTENSE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:820
+#: ../src/general/NewGameSettings.cs:829
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr ""
 
@@ -3103,7 +3103,7 @@ msgstr ""
 msgid "FOG_OF_WAR_REGULAR"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:817
+#: ../src/general/NewGameSettings.cs:826
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
 msgstr ""
 
@@ -3111,7 +3111,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3146
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3154
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3127,7 +3127,7 @@ msgstr ""
 msgid "FORM_CELL_COLONY"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:616 ../src/modding/NewModGUI.cs:264
+#: ../src/modding/ModUploader.cs:616 ../src/modding/NewModGUI.cs:259
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
@@ -3213,7 +3213,7 @@ msgstr ""
 msgid "FULLSCREEN"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:444
+#: ../src/modding/ModManager.tscn:446
 msgid "FULL_MOD_INFO"
 msgstr ""
 
@@ -3233,7 +3233,7 @@ msgstr ""
 msgid "GAME_SYSTEMS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3064
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3072
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1078
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
@@ -4156,15 +4156,15 @@ msgstr ""
 msgid "INTERNALS"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:225
+#: ../src/modding/NewModGUI.cs:220
 msgid "INTERNAL_NAME_IN_USE"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:213
+#: ../src/modding/NewModGUI.cs:208
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:219
+#: ../src/modding/NewModGUI.cs:214
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr ""
 
@@ -4172,7 +4172,7 @@ msgstr ""
 msgid "INVALID_DATA_TO_PLOT"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:250
+#: ../src/modding/ModManager.cs:247
 msgid "INVALID_ICON_PATH"
 msgstr ""
 
@@ -4189,11 +4189,11 @@ msgstr ""
 msgid "INVALID_TAG"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:198
+#: ../src/modding/NewModGUI.cs:193
 msgid "INVALID_URL_FORMAT"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:264
+#: ../src/modding/ModManager.cs:261
 msgid "INVALID_URL_SCHEME"
 msgstr ""
 
@@ -4245,7 +4245,7 @@ msgstr ""
 msgid "ITCH_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/OrganelleTemplate.cs:39
+#: ../src/microbe_stage/OrganelleTemplate.cs:51
 msgid "ITEM_AT_2D_COORDINATES"
 msgstr ""
 
@@ -4506,7 +4506,7 @@ msgstr ""
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1800
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1808
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4652,7 +4652,7 @@ msgstr ""
 msgid "LEAD_THEORISTS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:159
+#: ../src/modding/ModManager.tscn:158
 msgid "LEFT_ARROW"
 msgstr ""
 
@@ -4808,23 +4808,23 @@ msgstr ""
 msgid "LOADING_GRAPHICS_SHADERS"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:105
+#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:112
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:63
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:70
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1291
+#: ../src/microbe_stage/MicrobeStage.cs:1292
 msgid "LOADING_MICROBE_STAGE"
 msgstr ""
 
-#: ../src/multicellular_stage/editor/MulticellularEditor.cs:80
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:87
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1287
+#: ../src/microbe_stage/MicrobeStage.cs:1288
 msgid "LOADING_MULTICELLULAR_STAGE"
 msgstr ""
 
@@ -5360,7 +5360,7 @@ msgstr ""
 msgid "MICROBE_RIPPLE_EFFECT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:388
+#: ../src/microbe_stage/MicrobeSpecies.cs:425
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -5465,7 +5465,7 @@ msgstr ""
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:312
+#: ../src/modding/ModManager.tscn:311
 msgid "MINIMUM_VERSION"
 msgstr ""
 
@@ -5496,7 +5496,7 @@ msgstr ""
 msgid "MISSING_DESCRIPTION"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:240
+#: ../src/modding/NewModGUI.cs:235
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr ""
 
@@ -5558,89 +5558,85 @@ msgstr ""
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:668 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:670 ../src/modding/NewModGUI.tscn:281
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:682 ../src/modding/NewModGUI.tscn:296
+#: ../src/modding/ModManager.tscn:684 ../src/modding/NewModGUI.tscn:296
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:477
+#: ../src/modding/ModLoader.cs:490
 msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:466
+#: ../src/modding/ModLoader.cs:478
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:484
+#: ../src/modding/ModLoader.cs:497
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:498
+#: ../src/modding/ModLoader.cs:516
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:340
+#: ../src/modding/ModLoader.cs:330
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:379
+#: ../src/modding/ModLoader.cs:369
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:385
+#: ../src/modding/ModLoader.cs:380
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:227 ../src/modding/ModManager.tscn:505
+#: ../src/modding/ModManager.tscn:226 ../src/modding/ModManager.tscn:507
 #: ../src/modding/NewModGUI.tscn:115
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:696
-msgid "MOD_AUTO_HARMONY"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:718
+#: ../src/modding/ModManager.tscn:707
 msgid "MOD_CREATION_FAILED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:330 ../src/modding/ModManager.tscn:533
+#: ../src/modding/ModManager.tscn:329 ../src/modding/ModManager.tscn:535
 #: ../src/modding/NewModGUI.tscn:145
 msgid "MOD_DESCRIPTION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:547 ../src/modding/NewModGUI.tscn:160
+#: ../src/modding/ModManager.tscn:549 ../src/modding/NewModGUI.tscn:160
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:521
+#: ../src/modding/ModLoader.cs:511
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:542
+#: ../src/modding/ModLoader.cs:375
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:355
+#: ../src/modding/ModLoader.cs:345
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:570 ../src/modding/NewModGUI.tscn:176
+#: ../src/modding/ModManager.tscn:572 ../src/modding/NewModGUI.tscn:176
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:584 ../src/modding/NewModGUI.tscn:191
+#: ../src/modding/ModManager.tscn:586 ../src/modding/NewModGUI.tscn:191
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:491 ../src/modding/NewModGUI.tscn:85
+#: ../src/modding/ModManager.tscn:493 ../src/modding/NewModGUI.tscn:85
 msgid "MOD_INTERNAL_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:598 ../src/modding/NewModGUI.tscn:206
+#: ../src/modding/ModManager.tscn:600 ../src/modding/NewModGUI.tscn:206
 msgid "MOD_LICENSE"
 msgstr ""
 
@@ -5652,35 +5648,35 @@ msgstr ""
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:731
+#: ../src/modding/ModManager.tscn:722
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:396
+#: ../src/modding/ModManager.tscn:395
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:737
+#: ../src/modding/ModManager.tscn:729
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:640 ../src/modding/NewModGUI.tscn:251
+#: ../src/modding/ModManager.tscn:642 ../src/modding/NewModGUI.tscn:251
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:626 ../src/modding/NewModGUI.tscn:236
+#: ../src/modding/ModManager.tscn:628 ../src/modding/NewModGUI.tscn:236
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:477 ../src/modding/NewModGUI.tscn:100
+#: ../src/modding/ModManager.tscn:479 ../src/modding/NewModGUI.tscn:100
 msgid "MOD_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:654 ../src/modding/NewModGUI.tscn:266
+#: ../src/modding/ModManager.tscn:656 ../src/modding/NewModGUI.tscn:266
 msgid "MOD_PCK_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:612 ../src/modding/NewModGUI.tscn:221
+#: ../src/modding/ModManager.tscn:614 ../src/modding/NewModGUI.tscn:221
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
@@ -5692,12 +5688,12 @@ msgstr ""
 msgid "MOD_UPLOADER"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:247 ../src/modding/ModManager.tscn:519
+#: ../src/modding/ModManager.tscn:246 ../src/modding/ModManager.tscn:521
 #: ../src/modding/NewModGUI.tscn:130
 msgid "MOD_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:354
+#: ../src/modding/ModManager.tscn:353
 msgid "MORE_INFO"
 msgstr ""
 
@@ -5945,7 +5941,7 @@ msgstr ""
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:387
+#: ../src/modding/ModManager.tscn:386
 msgid "NEW"
 msgstr ""
 
@@ -5969,7 +5965,7 @@ msgstr ""
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:139
+#: ../src/modding/NewModGUI.cs:136
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr ""
 
@@ -6187,7 +6183,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:665
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3161
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3169
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -6223,7 +6219,7 @@ msgstr ""
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:556
+#: ../src/modding/ModManager.cs:553
 msgid "NO_SELECTED_MOD"
 msgstr ""
 
@@ -6235,7 +6231,7 @@ msgstr ""
 msgid "NUCLEUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1799
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1807
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -6259,8 +6255,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:25
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:35
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:45
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2975
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2987
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2983
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2995
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
 #: ../src/microbe_stage/MicrobeHUD.cs:644
 msgid "N_A"
@@ -6312,7 +6308,7 @@ msgstr ""
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:137
+#: ../src/modding/ModManager.tscn:136
 msgid "OPEN_FOLDER"
 msgstr ""
 
@@ -6341,7 +6337,7 @@ msgstr ""
 msgid "OPEN_LOGS_FOLDER"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:360
+#: ../src/modding/ModManager.tscn:359
 msgid "OPEN_MOD_URL"
 msgstr ""
 
@@ -6698,11 +6694,11 @@ msgstr ""
 msgid "PAUSE_TOOLTIP"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:561
+#: ../src/modding/ModLoader.cs:537
 msgid "PCK_LOAD_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:553
+#: ../src/modding/ModLoader.cs:529
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr ""
 
@@ -6718,8 +6714,8 @@ msgstr ""
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:766 ../src/general/NewGameSettings.cs:773
-#: ../src/general/NewGameSettings.cs:789
+#: ../src/general/NewGameSettings.cs:775 ../src/general/NewGameSettings.cs:782
+#: ../src/general/NewGameSettings.cs:798
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:99
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:125
 #: ../src/general/WorldGenerationSettings.cs:380
@@ -6736,10 +6732,10 @@ msgstr ""
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:588
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:377
 #: ../src/microbe_stage/MicrobeHUD.cs:413
-#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:158
-#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:161
-#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:173
-#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:174
+#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:156
+#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:159
+#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:171
+#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:172
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:443
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:469
 #: ../src/society_stage/gui/ResearchScreen.cs:34
@@ -6910,7 +6906,7 @@ msgstr ""
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2994
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3002
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -7020,7 +7016,7 @@ msgstr ""
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/PauseMenu.cs:493
+#: ../src/general/PauseMenu.cs:494
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 
@@ -7085,7 +7081,7 @@ msgstr ""
 msgid "READY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:283
+#: ../src/modding/ModManager.tscn:282
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
@@ -7101,7 +7097,7 @@ msgstr ""
 msgid "REDO_THE_LAST_ACTION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:131 ../src/saving/SaveManagerGUI.tscn:56
+#: ../src/modding/ModManager.tscn:130 ../src/saving/SaveManagerGUI.tscn:56
 msgid "REFRESH"
 msgstr ""
 
@@ -7271,7 +7267,7 @@ msgstr ""
 msgid "RESPONSIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:738
+#: ../src/modding/ModManager.tscn:730
 msgid "RESTART_REQUIRED"
 msgstr ""
 
@@ -7292,7 +7288,7 @@ msgstr ""
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:694 ../src/general/PauseMenu.cs:474
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:694 ../src/general/PauseMenu.cs:475
 #: ../src/gui_common/menus/PlanetCustomizerTool.tscn:194
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -7317,7 +7313,7 @@ msgstr ""
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:150
+#: ../src/modding/ModManager.tscn:149
 msgid "RIGHT_ARROW"
 msgstr ""
 
@@ -7602,7 +7598,7 @@ msgstr ""
 msgid "SELECTED_COLON"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:205
+#: ../src/modding/ModManager.tscn:204
 msgid "SELECTED_MOD"
 msgstr ""
 
@@ -7936,7 +7932,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1651
+#: ../src/microbe_stage/MicrobeStage.cs:1652
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -7965,7 +7961,7 @@ msgstr ""
 msgid "SPECIES_COLON"
 msgstr ""
 
-#: ../src/general/Species.cs:344
+#: ../src/general/Species.cs:348
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -8160,7 +8156,7 @@ msgstr ""
 msgid "STEAM_TOOLTIP"
 msgstr ""
 
-#: ../src/multicellular_stage/CellType.cs:45
+#: ../src/multicellular_stage/CellType.cs:47
 msgid "STEM_CELL_NAME"
 msgstr ""
 
@@ -8260,11 +8256,11 @@ msgstr ""
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2054
+#: ../src/microbe_stage/MicrobeStage.cs:2055
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:2055
+#: ../src/microbe_stage/MicrobeStage.cs:2056
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -8494,11 +8490,11 @@ msgstr ""
 msgid "THE_WORLD_TITLE"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:804
+#: ../src/modding/ModManager.cs:801
 msgid "THIS_IS_LOCAL_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:803
+#: ../src/modding/ModManager.cs:800
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr ""
 
@@ -8726,7 +8722,7 @@ msgstr ""
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:393
+#: ../src/microbe_stage/MicrobeSpecies.cs:430
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
 
@@ -9072,11 +9068,11 @@ msgstr ""
 msgid "TYPE_COLON"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:437
+#: ../src/modding/ModManager.tscn:438
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:435
+#: ../src/modding/ModManager.tscn:436
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr ""
 
@@ -9204,15 +9200,15 @@ msgstr ""
 msgid "UNLOCK_CONDITION_ATP_PRODUCTION_ABOVE"
 msgstr ""
 
-#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:191
+#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:189
 msgid "UNLOCK_CONDITION_COMPOUND_IS_ABOVE"
 msgstr ""
 
-#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:195
+#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:193
 msgid "UNLOCK_CONDITION_COMPOUND_IS_BELOW"
 msgstr ""
 
-#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:186
+#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:184
 msgid "UNLOCK_CONDITION_COMPOUND_IS_BETWEEN"
 msgstr ""
 
@@ -9308,7 +9304,7 @@ msgstr ""
 msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:380 ../src/modding/ModUploader.tscn:46
+#: ../src/modding/ModManager.tscn:379 ../src/modding/ModUploader.tscn:46
 msgid "UPLOAD"
 msgstr ""
 
@@ -9352,16 +9348,8 @@ msgstr ""
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:815
+#: ../src/modding/ModManager.cs:918
 msgid "USES_FEATURE"
-msgstr ""
-
-#: ../src/modding/NewModGUI.tscn:313
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#: ../src/modding/NewModGUI.tscn:312
-msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
 #: ../src/gui_common/menus/OptionsMenu.tscn:2914
@@ -9424,10 +9412,10 @@ msgstr ""
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:516
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:592
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:378
-#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:158
-#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:161
-#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:167
-#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:168
+#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:156
+#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:159
+#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:165
+#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:166
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
@@ -9542,7 +9530,7 @@ msgstr ""
 msgid "VSYNC"
 msgstr ""
 
-#: ../src/general/base_stage/EditorBase.cs:269
+#: ../src/general/base_stage/EditorBase.cs:271
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
