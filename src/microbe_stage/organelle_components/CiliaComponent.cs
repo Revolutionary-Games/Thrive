@@ -7,7 +7,7 @@ using Godot;
 
 public class CiliaComponent : IOrganelleComponent
 {
-    private const string CILIA_PULL_UPGRADE_NAME = "pull";
+    public const string CILIA_PULL_UPGRADE_NAME = "pull";
 
     private PlacedOrganelle parentOrganelle = null!;
 
