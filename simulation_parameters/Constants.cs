@@ -1056,7 +1056,7 @@ public static class Constants
     /// <summary>
     ///   Maximum damage a single pilus hit does, even if the penetration depth is very high
     /// </summary>
-    public const float PILUS_MAX_DAMAGE = 35;
+    public const float PILUS_MAX_DAMAGE = 45;
 
     public const float PILUS_MIN_DAMAGE = 1;
 
