@@ -335,9 +335,9 @@ mouse_filter = 1
 [node name="PressureSliderMin" type="HSlider" parent="Pressure"]
 layout_mode = 2
 mouse_filter = 1
-max_value = 7e+07
+max_value = 70000000.0
 step = 50000.0
-value = 100000.0
+value = 50000.0
 rounded = true
 scrollable = false
 tick_count = 8
@@ -351,9 +351,9 @@ rotation = 0.00114285
 [node name="PressureSliderMax" type="HSlider" parent="Pressure"]
 layout_mode = 2
 mouse_filter = 1
-max_value = 7e+07
+max_value = 70000000.0
 step = 50000.0
-value = 100000.0
+value = 50000.0
 rounded = true
 scrollable = false
 tick_count = 8
