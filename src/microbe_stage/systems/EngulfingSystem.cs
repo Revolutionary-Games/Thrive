@@ -1032,10 +1032,13 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         {
             ref var collision = ref collisions![i];
 
-            if (collision.SecondEntity == Entity.Null)
+            if (collision.SecondEntity == default(Entity))
+            {
+                GD.PrintErr("Collision second entity is zero initialized (invalid data)");
                 continue;
+            }
 
-            if (!collision.SecondEntity.Has<Engulfable>())
+            if (!collision.SecondEntity.IsAliveAndHas<Engulfable>())
                 continue;
 
             // Can't engulf through our pilus

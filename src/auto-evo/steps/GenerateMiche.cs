@@ -152,10 +152,14 @@ public class GenerateMiche : IRunStep
         {
             var tempMiche = new Miche(globalCache.TemperatureConversionEfficiencyPressure);
             var tempSessilityMiche = new Miche(globalCache.TemperatureSessilityPressure);
+            var generateATP = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
+            var maintainGlucose = new Miche(globalCache.MaintainGlucose);
             var tempCompPressure = new Miche(globalCache.TemperatureCompoundPressure);
 
             tempSessilityMiche.AddChild(tempCompPressure);
-            tempMiche.AddChild(tempSessilityMiche);
+            maintainGlucose.AddChild(tempSessilityMiche);
+            generateATP.AddChild(maintainGlucose);
+            tempMiche.AddChild(generateATP);
             lastGeneralMiche.AddChild(tempMiche);
         }
 

@@ -7,7 +7,7 @@ using SharedBase.Archive;
 
 public static class HexLayoutSerializer
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     public static object ReadFromArchive(ISArchiveReader reader, Type typeFromArchive, ushort version, int referenceId)
     {
@@ -88,11 +88,20 @@ public static class HexLayoutSerializer
 
         var constructor = typeFromArchive.GetConstructor(
             BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public,
-            [data.GetType(), typeof(Hex)]);
+            [data.GetType(), typeof(Hex), typeof(int)]);
         if (constructor == null)
             throw new InvalidOperationException($"No constructor found for {layoutClass.Name}");
 
-        var instance = constructor.Invoke([data, reader.ReadHex()]);
+        object instance;
+        if (version < 2)
+        {
+            instance = constructor.Invoke([data, reader.ReadHex(), 0]);
+        }
+        else
+        {
+            instance = constructor.Invoke([data, reader.ReadHex(), reader.ReadInt32()]);
+        }
+
         return instance;
     }
 }

@@ -660,6 +660,10 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(CellMoveActionData), CellMoveActionData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellMoveActionData,
             typeof(CellMoveActionData), CellMoveActionData.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellRemoveActionData,
+            typeof(CellRemoveActionData), CellRemoveActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellRemoveActionData,
+            typeof(CellRemoveActionData), CellRemoveActionData.ReadFromArchive);
     }
 
     private void RegisterFossils()

@@ -894,7 +894,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             // TODO: multicellular tolerances
 
             // Allow updating the first cell type to reproduce (reproduction order changed)
-            earlySpeciesType.MulticellularCellType = earlySpeciesType.Species.ModifiableCells[0].ModifiableCellType;
+            earlySpeciesType.MulticellularCellType =
+                earlySpeciesType.Species.ModifiableGameplayCells[0].ModifiableCellType;
 
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
                 earlySpeciesType.MulticellularCellType, earlySpeciesType.Species, WorldSimulation, workData1,
@@ -1530,7 +1531,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
             float maxDistance = 0.0f;
 
-            foreach (var cell in species.ModifiableCells)
+            foreach (var cell in species.ModifiableGameplayCells)
             {
                 float distance = Hex.AxialToCartesian(cell.Position).LengthSquared();
 

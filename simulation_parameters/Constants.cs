@@ -456,10 +456,13 @@ public static class Constants
     public const string MICROBE_BINDING_MODE_SOUND = "res://assets/sounds/soundeffects/binding.ogg";
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
-    public const float MICROBE_MOVEMENT_SOUND_MAX_VOLUME = 0.4f;
+    public const float MICROBE_MOVEMENT_SOUND_MAX_BASE_VOLUME = 0.4f;
+
+    public const float MICROBE_MOVEMENT_SOUND_SPEED_SCALER = 30.0f;
+    public const float MICROBE_MOVEMENT_SOUND_MAX_VOLUME_SCALER = 4.0f;
 
     // TODO: should this volume be actually 0?
-    public const float MICROBE_MOVEMENT_SOUND_START_VOLUME = 1;
+    public const float MICROBE_MOVEMENT_SOUND_START_VOLUME = 0.01f;
 
     /// <summary>
     ///   Max number of concurrent audio players that may be used per entity.
@@ -1309,6 +1312,7 @@ public static class Constants
     public const float AUTO_EVO_TOXICITY_HIT_MODIFIER = 4.0f;
     public const float AUTO_EVO_SLIME_JET_SCORE = 6;
     public const float AUTO_EVO_MUCOCYST_SCORE = 40;
+    public const float AUTO_EVO_PULL_CILIA_MODIFIER = 0.8f;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
     public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER = 1.18f;
     public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER = 0.7f;
@@ -1960,16 +1964,34 @@ public static class Constants
 
     // How much it costs to edit various tolerances in the editor
     public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE = 1.0f;
+    public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE_INVERTED = 1.0f / TOLERANCE_CHANGE_MP_PER_TEMPERATURE;
     public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE = 4.0f;
+
+    public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE_INVERTED = 1.0f
+        / TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE;
+
     public const float TOLERANCE_CHANGE_MP_PER_OXYGEN = 150.0f;
+    public const float TOLERANCE_CHANGE_MP_PER_OXYGEN_INVERTED = 1.0f / TOLERANCE_CHANGE_MP_PER_OXYGEN;
+
     public const float TOLERANCE_CHANGE_MP_PER_UV = 100.0f;
+
+    public const float TOLERANCE_CHANGE_MP_PER_UV_INVERTED = 1.0f
+        / TOLERANCE_CHANGE_MP_PER_UV;
 
     /// <summary>
     ///   As pressure values are massive, this is a double to get reasonable MP costs
     /// </summary>
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE = 0.000002;
 
+    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_INVERTED = 1.0f / TOLERANCE_CHANGE_MP_PER_PRESSURE;
+
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00005;
+
+    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE =
+        TOLERANCE_CHANGE_MP_PER_PRESSURE + TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE;
+
+    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE_INVERTED =
+        1.0f / TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE;
 
     // Environmental tolerance debuff / buff tweak variables
     public const float TOLERANCE_TEMPERATURE_SPEED_MODIFIER_MIN = 0.8f;

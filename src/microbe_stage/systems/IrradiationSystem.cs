@@ -58,11 +58,11 @@ public partial class IrradiationSystem : BaseSystem<World, float>
 
             foreach (var radiatedEntity in source.RadiatedEntities)
             {
-                if (radiatedEntity == Entity.Null)
+                if (radiatedEntity == default(Entity))
                     continue;
 
                 // Anything with a compound storage can receive radiation
-                if (!radiatedEntity.Has<CompoundStorage>())
+                if (!radiatedEntity.IsAliveAndHas<CompoundStorage>())
                     continue;
 
                 var compounds = radiatedEntity.Get<CompoundStorage>().Compounds;

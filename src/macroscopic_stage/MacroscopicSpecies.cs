@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using Godot;
 using SharedBase.Archive;
 
 /// <summary>
@@ -88,6 +90,17 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
 
         // Probably don't need to reset endosymbiont status here any more as it is likely not possible to perform it
         // at this stage
+
+#if DEBUG
+        foreach (var metaball in ModifiableBodyLayout.AsModifiable())
+        {
+            if (!ModifiableCellTypes.Contains(metaball.ModifiableCellType))
+            {
+                GD.PrintErr("Metaball has a cell type that doesn't exist");
+                Debugger.Break();
+            }
+        }
+#endif
     }
 
     public override bool RepositionToOrigin()
