@@ -122,7 +122,7 @@ public partial class ColonyBindingSystem : BaseSystem<World, float>
         {
             ref var collision = ref collisions![i];
 
-            if (collision.SecondEntity == Entity.Null)
+            if (collision.SecondEntity == Entity.Null || collision.SecondEntity == default(Entity))
                 continue;
 
             if (!organelles.CanBindWith(ourSpecies.Species, collision.SecondEntity))

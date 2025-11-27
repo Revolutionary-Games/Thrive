@@ -246,11 +246,11 @@ public class CiliaComponent : IOrganelleComponent
             if (pulledEntity == microbeEntity)
                 continue;
 
-            if (pulledEntity == Entity.Null)
+            if (pulledEntity == default(Entity))
                 continue;
 
             // Skip if something that can't be pulled
-            if (!pulledEntity.Has<ManualPhysicsControl>())
+            if (!pulledEntity.IsAliveAndHas<ManualPhysicsControl>())
                 continue;
 
             // Skip attached things
