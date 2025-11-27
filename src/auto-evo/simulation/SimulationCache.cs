@@ -322,7 +322,8 @@ public class SimulationCache
 
         // This makes rotation "speed" not matter until the editor shows ~300,
         // which is where it also becomes noticeable in-game.
-        // Microbe rotation speed is reverse to intuitive: higher value means slower turning
+        // The mechanical microbe rotation speed value is reverse to intuitive: higher value means slower turning.
+        // (The editor reverses this to make it intuitive to the player)
         var predatorRotationModifier = float.Min(1.0f, 1.5f - predatorRotationSpeed * 1.45f);
         var preyRotationModifier = float.Min(1.0f, 1.5f - preyRotationSpeed * 1.45f);
 
