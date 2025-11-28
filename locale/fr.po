@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-28 14:55+0200\n"
-"PO-Revision-Date: 2025-11-28 09:28+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"PO-Revision-Date: 2025-11-28 13:01+0000\n"
+"Last-Translator: Shigasaa <altitudes.etrangeres@ikmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgid "ACCEPT"
 msgstr "Accepter"
 
 msgid "ACHIEVEMENTS"
-msgstr ""
+msgstr "Succès"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr "Succès {0} / {1}"
@@ -173,7 +173,7 @@ msgstr ""
 "[b]Données génériques des organites :[/b]"
 
 msgid "ALREADY_ASCENDED"
-msgstr "Vous avez déjà eu votre ascension"
+msgstr "Vous êtes déja évolué"
 
 msgid "ALT"
 msgstr "Alt"
@@ -633,7 +633,7 @@ msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ANNULER L'ACTION"
 
 msgid "CANCEL_CURRENT_ACTION"
-msgstr "Arrêter l'action courante"
+msgstr "Arrêter l'action en cours"
 
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Un type de cellule qui est actuellement utilisé dans votre le plan de votre corps ne peut pas être supprimé"
@@ -2344,7 +2344,7 @@ msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filtrer les objets par catégories :"
 
 msgid "FIND_CURRENT_PATCH"
-msgstr "Trouver le secteur courant"
+msgstr "Trouver le secteur actuel"
 
 msgid "FINISHED_DOT"
 msgstr "Terminé."
@@ -2536,7 +2536,7 @@ msgid "GENERAL_LOADING_TIP_1"
 msgstr "Appuyez sur le bouton Annuler la dernière action dans l'éditeur pour corriger une erreur"
 
 msgid "GENERAL_LOADING_TIP_2"
-msgstr ""
+msgstr "Faites attention aux organismes plus grands. Ils vous mangeront, et ce n'est pas amusant de se faire digérer !"
 
 #, fuzzy
 msgid "GENERAL_LOADING_TIP_3"
@@ -2695,6 +2695,9 @@ msgstr "Modificateur de santé"
 
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr ""
+"Cette barre montre la température actuelle de votre cellule. l'indicateur jaune montre la plage de génération d'énergie effective.\n"
+"La barre verticale blanche montre la température ambiante vers laquelle la barre tend à aller.\n"
+"L'indicateur en-dessous de la barre change de couleur quand de l'énergie est produite."
 
 msgid "HELP"
 msgstr "Aide"
@@ -3549,9 +3552,8 @@ msgstr "Phase macroscopique"
 msgid "MAKE_CELL_THAT_EATS_RADIATION"
 msgstr "Créez une cellule qui produit de l'énergie par exposition à des radiations"
 
-#, fuzzy
 msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
-msgstr " Créez une cellule qui n'utilise que la chimiosynthèse comme source d'énergie"
+msgstr "Créez une cellule qui n'utilise que la chimiosynthèse comme source d'énergie"
 
 msgid "MAKE_NO_CHANGES_IN_EDITOR"
 msgstr "Ne faites pas de modifications à votre microbe dans l'éditeur"
@@ -3627,7 +3629,7 @@ msgid "MELANOSOME_DESCRIPTION"
 msgstr "Le lysosome est un organite lié à la membrane qui contient des enzymes hydrolytiques capables de décomposer diverses biomolécules. Les lysosomes permettent à la cellule de digérer les matières ingérées par endocytose et de nettoyer les déchets de la cellule dans un processus appelé [b]autophagie[/b]."
 
 msgid "MELANOSOME_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Transforme les [thrive:compound type=\"radiation\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] quand vous êtes proche de roches radioactives, tout en fournissant une résistance à la radiation"
 
 msgid "MEMBRANE"
 msgstr "Membrane"
@@ -3692,24 +3694,23 @@ msgstr ""
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
 
-#, fuzzy
 msgid "MICHE"
 msgstr "Miche"
 
-#, fuzzy
 msgid "MICHES_FOR_PATCH"
-msgstr "Disparu du secteur"
+msgstr "Miches pour le secteur {0}"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
-msgstr "[b][u]{0}[/u][/b] s'est séparé de [b][u]{1}[/u][/b] en tant que nouvelle espèce en raison de différentes pressions sélectives"
+msgstr "Pression de sélection sur l'évitement de la prédation"
 
+#, fuzzy
 msgid "MICHE_CHUNK_PRESSURE"
-msgstr ""
+msgstr "Pression sur les fragments"
 
 #, fuzzy
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
-msgstr "Nuages de composés"
+msgstr "Pression sur les nuages de composés"
 
 msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
 msgstr "Pression sur l'efficacité de conversion des composés"
@@ -3717,30 +3718,27 @@ msgstr "Pression sur l'efficacité de conversion des composés"
 #, fuzzy
 msgid "MICHE_DETAIL_TEXT"
 msgstr ""
-"[b]Espèce[/b] \n"
-"   {0}:{1}  \n"
-"[b]Génération[/b] \n"
-"   {2}  \n"
-"[b]Population[/b] \n"
-"   {3}  \n"
-"[b]Couleur[/b] \n"
-"   #{4}  \n"
-"[b]Comportement[/b] \n"
-"   {5}"
+"[b]Pression de sélection[/b]\n"
+"  {0}\n"
+"[b]Énergie[/b] \n"
+"  {1}\n"
+"[b]Scores de l'occupant[/b]\n"
+"  {2}"
 
 #, fuzzy
 msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
-msgstr "[b][u]{0}[/u][/b] s'est séparé de [b][u]{1}[/u][/b] en tant que nouvelle espèce en raison de différentes pressions sélectives"
+msgstr "Pression de sélection sur l'endosymbiose"
 
+#, fuzzy
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr "Pression environementale sur les composés"
+msgstr "Pression sur les composés ambiants"
 
 #, fuzzy
 msgid "MICHE_ENVIRONMENTAL_TOLERANCE"
-msgstr "Environnement"
+msgstr "Pression sur les conditions environnementales"
 
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
-msgstr "Pression de maintient des composés"
+msgstr "Pression sur le maintient des composés"
 
 msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
 msgstr "Pression sur la stabilité métabolique"
@@ -3749,26 +3747,24 @@ msgid "MICHE_NO_OP_PRESSURE"
 msgstr "Pas de pression opérationnelle"
 
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr "Efficacité de la pression de prédation"
+msgstr "Pression sur l'efficacité de la prédation"
 
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
-msgstr "Prédation de {0}"
+msgstr "Pression sur les prédateurs"
 
-#, fuzzy
 msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
-msgstr "Reproduction :"
+msgstr "Pression sur l'utilisations des composés pour la reproduction :"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr "Pression racine"
 
 #, fuzzy
 msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
-msgstr "Pression sur la stabilité métabolique"
+msgstr "Pression sur les mouvements de température"
 
-#, fuzzy
 msgid "MICHE_TREE"
-msgstr "Vider l'arbre des scènes"
+msgstr "Arborescence des miches"
 
 msgid "MICROBE"
 msgstr "Microbe"
@@ -3874,7 +3870,7 @@ msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0} : Trouvé dans {1} espèce, en moyenne {2} chacun"
 
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
-msgstr ""
+msgstr "[b]Données sur les améliorations des organites :[/b]"
 
 #, fuzzy
 msgid "MICROBE_RIPPLE_EFFECT"
@@ -4539,9 +4535,8 @@ msgstr "Vous pouvez maintenant accéder à l'éditeur"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Vous pouvez maintenant accéder à l'éditeur"
 
-#, fuzzy
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
-msgstr "Trouver le secteur courant"
+msgstr "Inadapté aux conditions du secteur actuel. Changez les conditions optimales ou les plages de tolérances pour retirer les débuffs."
 
 msgid "NOT_STARTED_DOT"
 msgstr "Non commencé."
@@ -5889,9 +5884,8 @@ msgstr ""
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "a muté"
 
-#, fuzzy
 msgid "SPECIES_IN_CURRENT_PATCH"
-msgstr "Trouver le secteur courant"
+msgstr "Espèces dans le secteur actuel"
 
 #, fuzzy
 msgid "SPECIES_IN_OTHER_PATCHES"
@@ -6312,7 +6306,7 @@ msgid "THRIVEOPEDIA"
 msgstr "Thriveopédia"
 
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
-msgstr "Monde courant"
+msgstr "Monde actuel"
 
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Arbre d'évolution"
@@ -6687,6 +6681,13 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
 msgstr ""
+"Les statistiques de vitesse et d'efficacité de la digestion peuvent être trouvées en bas de l'encadré Statistiques de l'organisme.\n"
+"\n"
+"Augmenter ces statistiques rend la [u]prédation plus efficace[/u]. les lysosomes peuvent être modifiés pour fournir différentes [b]enzymes[/b].\n"
+"\n"
+"De nouveaux types d'enzymes premettent la digestion de proies qui pourraient être indigérables autrement. Chaque enzyme a une statistique d'efficacité séparée.\n"
+"\n"
+"Vous pouvez voir les statistiques d'efficacités individuelles en les survolant. Se spécialiser dans un type seulement permet une efficacité plus grande au détriment du choix."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
@@ -7072,11 +7073,13 @@ msgstr "{0} microbes ont été ingérés (actuellement à {1})"
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr "la production [thrive:compound type=\"atp\"][/thrive:compound] en excès a atteint {0}"
 
+#, fuzzy
 msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
-msgstr ""
+msgstr "dégâts reçus atteignent {0} (actuellement à {1})"
 
+#, fuzzy
 msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
-msgstr ""
+msgstr "dégâts reçus de {1} atteignent {0} (actuellement à {2})"
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr "le nombre de mort doit atteindre {0} (actuellement de {1})"
@@ -7091,7 +7094,7 @@ msgid "UNLOCK_CONDITION_REPRODUCE_IN_BIOME"
 msgstr "reproduction dans le biome {0}"
 
 msgid "UNLOCK_CONDITION_SPEED_BELOW"
-msgstr ""
+msgstr "vitesse descend sous {0}"
 
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
 msgstr "[b]{0}[/b] débloqué quand"
@@ -7254,9 +7257,8 @@ msgstr "Pas de processus."
 msgid "VIEW_ONLINE"
 msgstr "Voir en ligne"
 
-#, fuzzy
 msgid "VIEW_PATCH_MICHES"
-msgstr "Voir les notes de correctif"
+msgstr "Voir les miches"
 
 msgid "VIEW_PATCH_NOTES"
 msgstr "Voir les notes de correctif"
@@ -7685,9 +7687,8 @@ msgstr "Synthèse d'OxyToxy"
 msgid "WIKI_CILIA_EFFECTS"
 msgstr "Chaque hexagone de [b]cils[/b] augmente la vitesse de rotation d'une cellule, et consomme de l'[/thrive:compound type=\"atp\"][/thrive:compound] en échange d'une mobilité accrue. Cette amélioration dépend de l'emplacement de l'organite - plus il est éloigné du centre de la cellule, plus son moment d'inertie est élevé, et plus sa vitesse de rotation est grande."
 
-#, fuzzy
 msgid "WIKI_CILIA_INTRO"
-msgstr "De petits poils à l'extérieur d'une cellule qui utilisent [thrive:compound type=\"atp\"][/thrive:compound] pour augmenter la vitesse de rotation de la cellule. Ils peuvent être améliorés pour générer des courants qui attirent des cellules proies ou d'autres objets."
+msgstr "De petits poils à l'extérieur d'une cellule qui utilisent de l'[thrive:compound type=\"atp\"][/thrive:compound] pour augmenter la vitesse de rotation de la cellule. Ils peuvent être améliorés pour générer des courants qui attirent des cellules proies ou d'autres objets."
 
 msgid "WIKI_CILIA_MODIFICATIONS"
 msgstr "Pas de modifications."
