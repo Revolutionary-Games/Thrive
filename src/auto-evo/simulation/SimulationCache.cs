@@ -591,6 +591,7 @@ public class SimulationCache
             return cached;
         }
 
+        // Need to have chemoreceptor to be able to "smell" chunks
         cached = 0.0f;
         var hasChemoreceptor = false;
         foreach (var organelle in species.Organelles.Organelles)
@@ -603,7 +604,8 @@ public class SimulationCache
                 hasChemoreceptor = true;
         }
 
-        if (hasChemoreceptor)
+        // If the chunk doesn't spawn, it doesn't give any of its compound
+        if (hasChemoreceptor && chunk.Density > 0)
         {
             // We use null suppression here
             // as this method is only meant to be called on chunks that are known to contain the given compound
