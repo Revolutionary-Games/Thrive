@@ -24,7 +24,7 @@ public class Settings
     /// </summary>
     private static readonly Settings SingletonInstance = InitializeGlobalSettings();
 
-    private static int oldDisplaySelectionIndex = -1;
+    private static int oldDisplaySelectionIndex = -2;
 
     static Settings()
     {
@@ -32,7 +32,8 @@ public class Settings
 
     private Settings()
     {
-        // This is mainly just to make sure the property is read here before anyone can change TranslationServer locale
+        // This is mainly just to make sure the property is read here before anyone can change the
+        // TranslationServer locale
         if (DefaultLanguage.Length < 1)
             GD.PrintErr("Default locale is empty");
     }
@@ -124,10 +125,16 @@ public class Settings
     public SettingValue<float> RenderScale { get; private set; } = new(1.0f);
 
     /// <summary>
-    /// Selected window index for the game window.
+    ///   Selected window index for the game window. -1 means automatic, and we don't control it.
     /// </summary>
     [JsonProperty]
-    public SettingValue<int> SelectedDisplayIndex { get; set; } = new(DisplayServer.WindowGetCurrentScreen());
+    public SettingValue<int> SelectedDisplayIndex { get; set; } = new(-1);
+
+    /// <summary>
+    ///   When we are changing monitors, centers our window afterwards.
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> CenterWindowOnMonitorOrModeChange { get; set; } = new(true);
 
     /// <summary>
     ///   Upscaling method to use when the render scale is less than 1
@@ -1032,32 +1039,6 @@ public class Settings
     /// </summary>
     public void ApplyWindowSettings()
     {
-        var screenId = -1;
-        bool isOldSelectionDifferent = false;
-        if (OperatingSystem.IsWindows())
-        {
-            var currentScreenId = DisplayServer.WindowGetCurrentScreen();
-            if (oldDisplaySelectionIndex == -1)
-            {
-                // If the old selection index is -1, then we have never set it before, so we set it to the current screen
-                oldDisplaySelectionIndex = currentScreenId;
-            }
-
-            screenId = SelectedDisplayIndex.Value;
-            isOldSelectionDifferent = screenId != currentScreenId && screenId != oldDisplaySelectionIndex;
-            if (isOldSelectionDifferent)
-            {
-                DisplayServer.WindowSetCurrentScreen(screenId);
-            }
-            else
-            {
-                // Game might have opened in another screen and moved to the current screen,
-                // so we need to update the old selection index to the current screen id
-                oldDisplaySelectionIndex = currentScreenId;
-                isOldSelectionDifferent = screenId == oldDisplaySelectionIndex;
-            }
-        }
-
         var mode = DisplayServer.WindowGetMode();
 
         // Treat maximized and windowed as the same thing to not reset maximized status after the user has set it
@@ -1068,8 +1049,6 @@ public class Settings
 
         // Default to wanting the current mode. This is after the maximized mode handling so that the game won't
         // switch away from maximized mode to windowed mode.
-        // DisplayServer.WindowMode.ExclusiveFullscreen
-        // TODO: set the default clear color to black to make the 1px border disappear on windows
         var wantedMode = mode;
 
         switch (DisplayMode.Value)
@@ -1092,6 +1071,30 @@ public class Settings
         }
 
         var windowModeChanged = mode != wantedMode;
+
+        bool monitorChanged = false;
+
+        // Only control monitor if we are controlling that
+        if (SelectedDisplayIndex.Value >= 0)
+        {
+            // Monitor moving on desktop platforms
+            if (!FeatureInformation.IsMobile)
+            {
+                var targetScreen = SelectedDisplayIndex.Value;
+
+                // Move if not set to the right monitor (or if window mode is changing)
+                if (oldDisplaySelectionIndex != targetScreen || windowModeChanged)
+                {
+                    GD.Print($"Moving our window to screen {targetScreen}");
+                    monitorChanged = true;
+
+                    DisplayServer.WindowSetCurrentScreen(targetScreen, 0);
+
+                    oldDisplaySelectionIndex = targetScreen;
+                }
+            }
+        }
+
         if (windowModeChanged)
         {
             GD.Print($"Switching window mode from {mode} to {wantedMode}");
@@ -1099,14 +1102,25 @@ public class Settings
         }
 
         // Center the window if it is in Windowed mode and the screen or window mode has changed
-        if (screenId > -1 && (isOldSelectionDifferent || windowModeChanged) && wantedMode == DisplayServer.WindowMode.Windowed)
+        if ((windowModeChanged || monitorChanged) && wantedMode == DisplayServer.WindowMode.Windowed)
         {
-            var size = DisplayServer.ScreenGetSize(screenId);
-            var position = DisplayServer.ScreenGetPosition(screenId);
+            var screen = DisplayServer.WindowGetCurrentScreen(0);
+            var size = DisplayServer.ScreenGetSize(screen);
             var windowSize = DisplayServer.WindowGetSize();
-            var centeredPos = position + (size - windowSize) / 2;
-            DisplayServer.WindowSetPosition(centeredPos, 0);
-            oldDisplaySelectionIndex = screenId;
+
+            // Make sure we only apply this if we got valid data
+            if (size.X > 0 && size.Y > 0 && windowSize.X > 0 && windowSize.Y > 0)
+            {
+                GD.Print("Centering window");
+                var position = DisplayServer.ScreenGetPosition(screen);
+
+                var centeredPos = position + (size - windowSize) / 2;
+                DisplayServer.WindowSetPosition(centeredPos, 0);
+            }
+            else
+            {
+                GD.Print("Centering window failed as we didn't get screen data");
+            }
         }
 
         // TODO: switch the setting to allow specifying all of the 4 possible values

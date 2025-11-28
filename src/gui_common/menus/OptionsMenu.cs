@@ -32,16 +32,7 @@ public partial class OptionsMenu : ControlWithInput
         .GetOutputDeviceList().Where(d => d != Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME)
         .Prepend(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME).ToList();
 
-    private static readonly Lazy<List<DisplayInfo>> DisplaysCache = new(() =>
-    {
-        if (OperatingSystem.IsWindows())
-        {
-            return Enumerable.Range(0, DisplayServer.GetScreenCount())
-                .Select(i => new DisplayInfo(i, $"Monitor {i + 1}")).ToList();
-        }
-
-        return [];
-    });
+    private readonly List<DisplayInfo> displaysCache = new();
 
 #pragma warning disable CA2213
     [Export]
@@ -492,7 +483,6 @@ public partial class OptionsMenu : ControlWithInput
 
     private static List<string> Languages => LanguagesCache.Value;
     private static List<string> AudioOutputDevices => AudioOutputDevicesCache;
-    private static List<DisplayInfo> Displays => DisplaysCache.Value;
 
     public override void _Ready()
     {
@@ -537,7 +527,7 @@ public partial class OptionsMenu : ControlWithInput
         guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options", false);
         assumeHyperthreading.RegisterToolTipForControl("assumeHyperthreading", "options", false);
         unsavedProgressWarningEnabled.RegisterToolTipForControl("unsavedProgressWarning", "options", false);
-        displayOptionContainer.Visible = OperatingSystem.IsWindows();
+        displayOptionContainer.Visible = !FeatureInformation.IsMobile;
 
         Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
     }
@@ -821,6 +811,7 @@ public partial class OptionsMenu : ControlWithInput
 
         elementItemSelectionsInitialized = true;
 
+        RefreshDisplayCache();
         DisplayDisplayList();
         LoadLanguages();
         LoadAudioOutputDevices();
@@ -860,15 +851,38 @@ public partial class OptionsMenu : ControlWithInput
     }
 
     /// <summary>
+    ///   Refreshes the list of available displays. Needs to be called before the list is displayed.
+    /// </summary>
+    private void RefreshDisplayCache()
+    {
+        displaysCache.Clear();
+
+        var count = DisplayServer.GetScreenCount();
+
+        displaysCache.Add(new DisplayInfo(-1, new LocalizedString("MONITOR_AUTO")));
+
+        for (int i = 0; i < count; ++i)
+        {
+            displaysCache.Add(new DisplayInfo(i, new LocalizedString("MONITOR_IDENTIFIER", i + 1)));
+        }
+    }
+
+    /// <summary>
     ///   Displays the list of monitors available on the system.
     /// </summary>
     private void DisplayDisplayList()
     {
+        if (displaysCache.Count < 1)
+            GD.PrintErr("Displays list is not initialized");
+
         display.Clear();
-        foreach (var displayInfo in Displays)
+        foreach (var displayInfo in displaysCache)
         {
-            display.AddItem(displayInfo.Name, displayInfo.Id);
+            display.AddItem(displayInfo.Name.ToString(), displayInfo.Id);
         }
+
+        // Make sure the selection index is remembered
+        UpdateDisplay();
     }
 
     /// <summary>
@@ -927,6 +941,7 @@ public partial class OptionsMenu : ControlWithInput
         UpdateDefaultAudioOutputDeviceText();
         DisplayResolution();
         DisplayGpuInfo();
+        DisplayDisplayList();
     }
 
     /// <summary>
@@ -1786,12 +1801,21 @@ public partial class OptionsMenu : ControlWithInput
 
     private void UpdateDisplay()
     {
-        if (!OperatingSystem.IsWindows())
-            return;
+        var currentDisplay = Settings.Instance.SelectedDisplayIndex.Value;
 
-        var currentDisplay = DisplayServer.WindowGetCurrentScreen();
-        display.Selected = currentDisplay;
-        Settings.Instance.SelectedDisplayIndex.Value = currentDisplay;
+        var index = -1;
+
+        for (var i = 0; i < displaysCache.Count; --i)
+        {
+            var displayInfo = displaysCache[i];
+            if (displayInfo.Id == currentDisplay)
+            {
+                index = i;
+                break;
+            }
+        }
+
+        display.Selected = index;
     }
 
     private void OnMSAAResolutionSelected(int index)
@@ -1836,16 +1860,18 @@ public partial class OptionsMenu : ControlWithInput
 
     private void OnMonitorSelected(int index)
     {
-        if (index < 0 || index >= Displays.Count)
+        if (index < 0 || index >= displaysCache.Count)
         {
             GD.PrintErr("Invalid monitor index selected");
             return;
         }
 
-        if (Settings.Instance.SelectedDisplayIndex.Value == Displays[index].Id)
+        var newId = displaysCache[index].Id;
+
+        if (Settings.Instance.SelectedDisplayIndex.Value == newId)
             return;
 
-        Settings.Instance.SelectedDisplayIndex.Value = Displays[index].Id;
+        Settings.Instance.SelectedDisplayIndex.Value = newId;
         Settings.Instance.ApplyWindowSettings();
         UpdateResetSaveButtonState();
     }
@@ -2752,5 +2778,5 @@ public partial class OptionsMenu : ControlWithInput
         AchievementsManager.Instance.Reset();
     }
 
-    private record DisplayInfo(int Id, string Name);
+    private record DisplayInfo(int Id, LocalizedString Name);
 }
