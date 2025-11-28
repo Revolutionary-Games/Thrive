@@ -1805,7 +1805,7 @@ public partial class OptionsMenu : ControlWithInput
 
         var index = -1;
 
-        for (var i = 0; i < displaysCache.Count; --i)
+        for (var i = 0; i < displaysCache.Count; ++i)
         {
             var displayInfo = displaysCache[i];
             if (displayInfo.Id == currentDisplay)
