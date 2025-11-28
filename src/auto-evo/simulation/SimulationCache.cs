@@ -327,6 +327,13 @@ public class SimulationCache
         var predatorRotationModifier = float.Min(1.0f, 1.5f - predatorRotationSpeed * 1.45f);
         var preyRotationModifier = float.Min(1.0f, 1.5f - preyRotationSpeed * 1.45f);
 
+        // Simple estimation of slime jet propulsion.
+        var predatorSlimePropulsion = predatorSlimeJetScore / predatorHexSize;
+        var preySlimePropulsion = preySlimeJetScore / preyHexSize;
+
+        if (predator.PlayerSpecies)
+            GD.Print(predatorSpeed, " ", predatorSlimePropulsion);
+
         var hasChemoreceptor = false;
         foreach (var organelle in predator.Organelles.Organelles)
         {
@@ -417,10 +424,6 @@ public class SimulationCache
 
             engulfmentScore *= enzymesScore;
         }
-
-        // If the predator is faster than the prey they don't need slime jets that much
-        if (predatorSpeed > preySpeed)
-            predatorSlimeJetScore *= 0.5f;
 
         // Prey that resist physical damage are of course less vulnerable to being hunted with it
         pilusScore /= prey.MembraneType.PhysicalResistance;
@@ -520,9 +523,12 @@ public class SimulationCache
             scoreMultiplier *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
+        // predators that have slime jets themselves ignore the immobilising effect of prey slimejets
+        if (predatorSlimeJetScore > 0)
+            preySlimeJetScore = 0;
+
         cached = (scoreMultiplier * behaviourScore *
-                (pilusScore + engulfmentScore + damagingToxinScore + predatorSlimeJetScore) -
-                (preySlimeJetScore + preyMucocystsScore)) /
+                (pilusScore + engulfmentScore + damagingToxinScore) - (preySlimeJetScore + preyMucocystsScore)) /
             GetEnergyBalanceForSpecies(predator, biomeConditions).TotalConsumption;
 
         predationScores.Add(key, cached);
