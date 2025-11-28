@@ -3143,9 +3143,7 @@ layout_mode = 2
 [node name="CommitInfo" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer18/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 5
-size_flags_stretch_ratio = 3.0
 tooltip_text = "EXACT_VERSION_TOOLTIP"
 mouse_filter = 1
 text = "EXACT_VERSION_COLON"
@@ -3153,11 +3151,16 @@ autowrap_mode = 2
 
 [node name="Commit" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer18/HBoxContainer"]
 editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 tooltip_text = "EXACT_VERSION_TOOLTIP"
 mouse_filter = 1
 text = "f71f72462dcc5cdeec1f0cbf5b96969ac475e2c5"
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="VBoxContainer19" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
