@@ -380,29 +380,14 @@ public class SimulationCache
             {
                 // You catch more preys if you are fast, and if they are slow.
                 // This incentivizes engulfment strategies in these cases.
-                // Avoid NaN values
-                if (preySpeed > 0)
-                {
-                    catchScore += (predatorSpeed / preySpeed) * (1 - slowedProportion);
-                }
-                else
-                {
-                    catchScore += predatorSpeed * (1 - slowedProportion);
-                }
+                // Sinusoid calculation to avoid divisions by zero
+                catchScore += (predatorSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
             }
 
             // If you can slow the target, some proportion of prey are easier to catch
             if (predatorSpeed > slowedPreySpeed)
             {
-                // Avoid NaN values
-                if (slowedPreySpeed > 0)
-                {
-                    catchScore += (predatorSpeed / slowedPreySpeed) * slowedProportion;
-                }
-                else
-                {
-                    catchScore += predatorSpeed * slowedProportion;
-                }
+                catchScore += (predatorSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
             }
 
             // But prey may escape if they move away before you can turn to chase them
