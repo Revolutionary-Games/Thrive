@@ -1,8 +1,17 @@
-﻿[JSONAlwaysDynamicType]
+﻿using SharedBase.Archive;
+
 public abstract class HexPlacementActionData<THex, TContext> : EditorCombinableActionData<TContext>
-    where THex : class, IActionHex
+    where THex : class, IActionHex, IArchivable
+    where TContext : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION_HEX = 1;
+
+    /// <summary>
+    ///   Hex placed by this action. Note that the hex is allowed to be modified afterwards, so its position may not
+    ///   match!
+    /// </summary>
     public THex PlacedHex;
+
     public Hex Location;
     public int Orientation;
 
@@ -13,40 +22,29 @@ public abstract class HexPlacementActionData<THex, TContext> : EditorCombinableA
         Orientation = orientation;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    public override void WriteToArchive(ISArchiveWriter writer)
     {
-        // If this hex got removed in this session
-        if (other is HexRemoveActionData<THex, TContext> removeActionData &&
-            removeActionData.RemovedHex.MatchesDefinition(PlacedHex))
-        {
-            // If the placed hex has been placed on the same position where it got removed before
-            if (removeActionData.Location == Location)
-                return ActionInterferenceMode.CancelsOut;
+        writer.WriteObject(PlacedHex);
+        writer.Write(Location);
+        writer.Write(Orientation);
 
-            // Removing and placing a hex is a move operation
-            return ActionInterferenceMode.Combinable;
-        }
-
-        if (other is HexMoveActionData<THex, TContext> moveActionData &&
-            moveActionData.MovedHex.MatchesDefinition(PlacedHex))
-        {
-            if (moveActionData.OldLocation == Location)
-                return ActionInterferenceMode.Combinable;
-        }
-
-        return ActionInterferenceMode.NoInterference;
+        writer.Write(SERIALIZATION_VERSION_CONTEXT);
+        base.WriteToArchive(writer);
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)
     {
-        if (other is HexRemoveActionData<THex, TContext> removeActionData)
-        {
-            return CreateDerivedMoveAction(removeActionData);
-        }
+        if (version is > SERIALIZATION_VERSION_HEX or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_HEX);
 
-        return CreateDerivedPlacementAction((HexMoveActionData<THex, TContext>)other);
+        // Base version is different
+        base.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        // Constructor already read all
     }
 
-    protected abstract CombinableActionData CreateDerivedMoveAction(HexRemoveActionData<THex, TContext> data);
-    protected abstract CombinableActionData CreateDerivedPlacementAction(HexMoveActionData<THex, TContext> data);
+    protected override bool CanMergeWithInternal(CombinableActionData other)
+    {
+        return false;
+    }
 }

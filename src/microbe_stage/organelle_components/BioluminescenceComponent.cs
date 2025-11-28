@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Components;
-using DefaultEcs;
 using Godot;
 using Newtonsoft.Json;
 using ThriveScriptsShared;

@@ -1,56 +1,36 @@
-﻿public class OrganelleMoveActionData : HexMoveActionData<OrganelleTemplate, CellType>
+﻿using System;
+using SharedBase.Archive;
+
+public class OrganelleMoveActionData : HexMoveActionData<OrganelleTemplate, CellType>
 {
     public OrganelleMoveActionData(OrganelleTemplate organelle, Hex oldLocation, Hex newLocation, int oldRotation,
         int newRotation) : base(organelle, oldLocation, newLocation, oldRotation, newRotation)
     {
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
-    {
-        // Endosymbionts can be moved for free after placing
-        if (other is EndosymbiontPlaceActionData endosymbiontPlaceActionData)
-        {
-            // If moved after placing
-            if (MovedHex == endosymbiontPlaceActionData.PlacedOrganelle &&
-                OldLocation == endosymbiontPlaceActionData.PlacementLocation &&
-                OldRotation == endosymbiontPlaceActionData.PlacementRotation)
-            {
-                return ActionInterferenceMode.Combinable;
-            }
-        }
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION_HEX;
 
-        return base.GetInterferenceModeWithGuaranteed(other);
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.OrganelleMoveActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.OrganelleMoveActionData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((OrganelleMoveActionData)obj);
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    public static OrganelleMoveActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
-        if (other is EndosymbiontPlaceActionData endosymbiontPlaceActionData)
-        {
-            return new EndosymbiontPlaceActionData(endosymbiontPlaceActionData.PlacedOrganelle, NewLocation,
-                NewRotation, endosymbiontPlaceActionData.RelatedEndosymbiosisAction)
-            {
-                PerformedUnlock = endosymbiontPlaceActionData.PerformedUnlock,
-                OverriddenEndosymbiosisOnUndo = endosymbiontPlaceActionData.OverriddenEndosymbiosisOnUndo,
-            };
-        }
+        if (version is > SERIALIZATION_VERSION_HEX or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_HEX);
 
-        return base.CombineGuaranteed(other);
-    }
+        var instance = new OrganelleMoveActionData(reader.ReadObject<OrganelleTemplate>(), reader.ReadHex(),
+            reader.ReadHex(), reader.ReadInt32(), reader.ReadInt32());
 
-    protected override CombinableActionData CreateDerivedMoveAction(OrganelleTemplate hex, Hex oldLocation,
-        Hex newLocation, int oldRotation, int newRotation)
-    {
-        return new OrganelleMoveActionData(hex, oldLocation, newLocation, oldRotation, newRotation);
-    }
+        instance.ReadBasePropertiesFromArchive(reader, version);
 
-    protected override CombinableActionData CreateDerivedPlacementAction(HexPlacementActionData<OrganelleTemplate,
-        CellType> data)
-    {
-        var placementActionData = (OrganellePlacementActionData)data;
-
-        return new OrganellePlacementActionData(placementActionData.PlacedHex, NewLocation, NewRotation)
-        {
-            ReplacedCytoplasm = placementActionData.ReplacedCytoplasm,
-        };
+        return instance;
     }
 }

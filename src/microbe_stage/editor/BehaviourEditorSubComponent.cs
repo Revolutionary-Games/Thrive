@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Editor for the behaviour of a (microbe) species
 /// </summary>
-[DeserializedCallbackTarget]
 [IgnoreNoMethodsTakingInput]
-[SceneLoadedClass("res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn", UsesEarlyResolve = false)]
-public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
+public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>, IArchiveUpdatable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
 #pragma warning disable CA2213
     [Export]
     private Slider aggressionSlider = null!;
@@ -30,23 +30,23 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
 
     private BehaviourDictionary? behaviour;
 
-    // TODO: as this is mostly just to guard against Behaviour being missing (when loading older saves), this field
-    // can probably be removed soon
-    [JsonProperty]
-    private Species? editedSpecies;
-
     [Signal]
     public delegate void OnBehaviourChangedEventHandler();
 
-    [JsonIgnore]
     public override bool IsSubComponent => true;
 
-    [JsonProperty]
     public BehaviourDictionary? Behaviour
     {
-        get => behaviour ??= editedSpecies?.Behaviour;
+        get => behaviour;
         private set => behaviour = value;
     }
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.BehaviourEditorSubComponent;
+
+    public bool CanBeSpecialReference => true;
 
     public override void _Ready()
     {
@@ -59,14 +59,32 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
     {
         base.OnEditorSpeciesSetup(species);
 
-        editedSpecies = Editor.EditedBaseSpecies;
+        Behaviour = Editor.EditedBaseSpecies.Behaviour.Clone();
+    }
 
-        Behaviour = editedSpecies.Behaviour;
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(SERIALIZATION_VERSION_BASE);
+        base.WritePropertiesToArchive(writer);
+
+        // For example, in multicellular, there are instances of this component that are unused, so can be not
+        // initialised
+        writer.WriteObjectOrNull(Behaviour);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
+
+        Behaviour = reader.ReadObjectOrNull<BehaviourDictionary>();
     }
 
     public override void OnFinishEditing()
     {
-        Editor.EditedBaseSpecies.Behaviour =
+        Editor.EditedBaseSpecies.ModifiableBehaviour =
             Behaviour ?? throw new Exception("Editor has not created behaviour object");
     }
 
@@ -115,9 +133,9 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
         Editor.EnqueueAction(action);
     }
 
-    public void UpdateAllBehaviouralSliders(BehaviourDictionary behaviour)
+    public void UpdateAllBehaviouralSliders(BehaviourDictionary newBehaviour)
     {
-        foreach (var pair in behaviour)
+        foreach (var pair in newBehaviour)
             UpdateBehaviourSlider(pair.Key, pair.Value);
     }
 
@@ -168,7 +186,7 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
         SetBehaviouralValue(behaviouralValueType, value);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoBehaviourChangeAction(BehaviourActionData data)
     {
         if (Behaviour == null)
@@ -180,7 +198,7 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
         EmitSignal(SignalName.OnBehaviourChanged);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoBehaviourChangeAction(BehaviourActionData data)
     {
         if (Behaviour == null)

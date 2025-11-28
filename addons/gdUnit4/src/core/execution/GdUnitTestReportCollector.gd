@@ -22,20 +22,20 @@ static func __filter_is_skipped(report :GdUnitReport) -> bool:
 	return report.is_skipped()
 
 
-func count_failures() -> int:
-	return _reports.filter(__filter_is_failure).size()
+static func count_failures(reports_: Array[GdUnitReport]) -> int:
+	return reports_.filter(__filter_is_failure).size()
 
 
-func count_errors() -> int:
-	return _reports.filter(__filter_is_error).size()
+static func count_errors(reports_: Array[GdUnitReport]) -> int:
+	return reports_.filter(__filter_is_error).size()
 
 
-func count_warnings() -> int:
-	return _reports.filter(__filter_is_warning).size()
+static func count_warnings(reports_: Array[GdUnitReport]) -> int:
+	return reports_.filter(__filter_is_warning).size()
 
 
-func count_skipped() -> int:
-	return _reports.filter(__filter_is_skipped).size()
+static func count_skipped(reports_: Array[GdUnitReport]) -> int:
+	return reports_.filter(__filter_is_skipped).size()
 
 
 func has_failures() -> bool:

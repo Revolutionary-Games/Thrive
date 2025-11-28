@@ -2,16 +2,19 @@
 
 using System;
 using System.Collections.Generic;
-using DefaultEcs;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
+using SharedBase.Archive;
 
 /// <summary>
-///   Entity that triggers various microbe event callbacks when things happens to it. This is mostly used for
+///   Entity that triggers various microbe event callbacks when things happen to it. This is mostly used for
 ///   connecting the player cell to the GUI and game stage.
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct MicrobeEventCallbacks
+public struct MicrobeEventCallbacks : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Triggers whenever the player enters unbind mode
     ///   <remarks>
@@ -54,14 +57,57 @@ public struct MicrobeEventCallbacks
     public Action<Entity, PlacedOrganelle>? OnOrganelleDuplicated;
 
     /// <summary>
-    ///   Temporary callbacks can be deleted in certain situations (for example used when creating microbe colony
+    ///   Temporary callbacks can be deleted in certain situations (for example, used when creating microbe colony
     ///   event forwarders which are destroyed when the colony is disbanded)
     /// </summary>
     public bool IsTemporary;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMicrobeEventCallbacks;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(IsTemporary);
+        writer.WriteDelegateOrNull(OnUnbindEnabled);
+        writer.WriteDelegateOrNull(OnUnbound);
+        writer.WriteDelegateOrNull(OnIngestedByHostile);
+        writer.WriteDelegateOrNull(OnEjectedFromHostileEngulfer);
+        writer.WriteDelegateOrNull(OnSuccessfulEngulfment);
+        writer.WriteDelegateOrNull(OnEngulfmentStorageFull);
+        writer.WriteDelegateOrNull(OnEngulfmentStorageNearlyEmpty);
+        writer.WriteDelegateOrNull(OnNoticeMessage);
+        writer.WriteDelegateOrNull(OnReproductionStatus);
+        writer.WriteDelegateOrNull(OnChemoreceptionInfo);
+        writer.WriteDelegateOrNull(OnOrganelleDuplicated);
+    }
 }
 
 public static class MicrobeEventCallbackHelpers
 {
+    public static MicrobeEventCallbacks ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > MicrobeEventCallbacks.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, MicrobeEventCallbacks.SERIALIZATION_VERSION);
+
+        return new MicrobeEventCallbacks
+        {
+            IsTemporary = reader.ReadBool(),
+            OnUnbindEnabled = reader.ReadDelegate<Action<Entity>>(),
+            OnUnbound = reader.ReadDelegate<Action<Entity>>(),
+            OnIngestedByHostile = reader.ReadDelegate<Action<Entity, Entity>>(),
+            OnEjectedFromHostileEngulfer = reader.ReadDelegate<Action<Entity>>(),
+            OnSuccessfulEngulfment = reader.ReadDelegate<Action<Entity, Entity>>(),
+            OnEngulfmentStorageFull = reader.ReadDelegate<Action<Entity>>(),
+            OnEngulfmentStorageNearlyEmpty = reader.ReadDelegate<Action<Entity>>(),
+            OnNoticeMessage = reader.ReadDelegate<Action<Entity, IHUDMessage>>(),
+            OnReproductionStatus = reader.ReadDelegate<Action<Entity, bool>>(),
+            OnChemoreceptionInfo = reader
+                .ReadDelegate<Action<Entity, List<(Compound Compound, Color Colour, Vector3 Target)>?,
+                    List<(Species Species, Entity Entity, Color Colour, Vector3 Target)>?>>(),
+            OnOrganelleDuplicated = reader.ReadDelegate<Action<Entity, PlacedOrganelle>>(),
+        };
+    }
+
     /// <summary>
     ///   Send a microbe notice message to the entity if possible
     /// </summary>
@@ -70,7 +116,7 @@ public static class MicrobeEventCallbackHelpers
     /// <returns>True if sent, false if missing the component or callback</returns>
     public static bool SendNoticeIfPossible(this in Entity entity, LocalizedString message)
     {
-        if (!entity.Has<MicrobeEventCallbacks>())
+        if (!entity.IsAliveAndHas<MicrobeEventCallbacks>())
             return false;
 
         ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
@@ -87,7 +133,7 @@ public static class MicrobeEventCallbackHelpers
     /// </summary>
     public static bool SendNoticeIfPossible(this in Entity entity, Func<SimpleHUDMessage> messageFactory)
     {
-        if (!entity.Has<MicrobeEventCallbacks>())
+        if (!entity.IsAliveAndHas<MicrobeEventCallbacks>())
             return false;
 
         ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
@@ -104,7 +150,7 @@ public static class MicrobeEventCallbackHelpers
     /// </summary>
     public static bool SendNoticeIfPossible(this in Entity entity, SimpleHUDMessage message)
     {
-        if (!entity.Has<MicrobeEventCallbacks>())
+        if (!entity.IsAliveAndHas<MicrobeEventCallbacks>())
             return false;
 
         ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();

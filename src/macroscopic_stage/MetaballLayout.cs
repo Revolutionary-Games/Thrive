@@ -5,13 +5,17 @@ using System.Linq;
 using Godot;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   A species shape specified by metaballs
 /// </summary>
-public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
+public class MetaballLayout<T> : ICollection<T>, IReadOnlyMetaballLayout<T>, IArchivable
     where T : Metaball
 {
+    // TODO: make a serializer for this like for hex layout serializer
+    public const ushort SERIALIZATION_VERSION = 1;
+
     [JsonProperty]
     protected Action<T>? onAdded;
 
@@ -19,7 +23,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
     protected Action<T>? onRemoved;
 
     [JsonProperty]
-    private List<T> metaballs = new();
+    protected List<T> metaballs = new();
 
     public MetaballLayout(Action<T>? onAdded = null, Action<T>? onRemoved = null)
     {
@@ -33,7 +37,16 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
     [JsonIgnore]
     public bool IsReadOnly => false;
 
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ExtendedMetaballLayout;
+    public bool CanBeReferencedInArchive => false;
+
     public T this[int index] => metaballs[index];
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        throw new NotImplementedException();
+    }
 
     [MustDisposeResource]
     public IEnumerator<T> GetEnumerator()
@@ -52,19 +65,29 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
 
     public bool CanAdd(T metaball)
     {
-        if (metaball.Parent == metaball)
+        if (metaball.ModifiableParent == metaball)
             throw new ArgumentException("Metaball can't be its own parent");
 
         // First metaball (or adding the root back) can be placed anywhere
-        if (metaball.Parent == null && (Count < 1 || metaballs.All(m => m.Parent != null)))
+        if (metaball.ModifiableParent == null && (Count < 1 || metaballs.All(m => m.ModifiableParent != null)))
             return true;
 
-        if (metaball.Parent == null)
+        if (metaball.ModifiableParent == null)
             return false;
 
         // Fail if parent missing
-        var parent = metaball.Parent;
-        if (metaballs.All(m => m != parent))
+        var parent = metaball.ModifiableParent;
+        bool found = true;
+        foreach (var existing in metaballs)
+        {
+            if (existing == parent)
+            {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found)
             return false;
 
         // TODO: distance check to parent? (need to fix MetaballTest if this is changed)
@@ -145,12 +168,12 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
     {
         foreach (var metaball in metaballs)
         {
-            if (metaball.Parent == null)
+            if (metaball.ModifiableParent == null)
                 return;
 
-            var distance = (metaball.Parent.Position - metaball.Position).Length();
+            var distance = (metaball.ModifiableParent.Position - metaball.Position).Length();
 
-            if (distance - metaball.Radius - metaball.Parent.Radius > MathUtils.EPSILON)
+            if (distance - metaball.Radius - metaball.ModifiableParent.Radius > MathUtils.EPSILON)
                 throw new Exception("Metaball is not touching its parent");
         }
     }
@@ -159,7 +182,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
     {
         foreach (var layoutMetaball in this)
         {
-            if (layoutMetaball.Parent == metaball)
+            if (layoutMetaball.ModifiableParent == metaball)
                 yield return layoutMetaball;
         }
     }
@@ -179,13 +202,13 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
 
     public bool IsDescendantsOf(Metaball descendant, Metaball parent)
     {
-        if (descendant.Parent == null)
+        if (descendant.ModifiableParent == null)
             return false;
 
-        if (descendant.Parent == parent)
+        if (descendant.ModifiableParent == parent)
             return true;
 
-        return IsDescendantsOf(descendant.Parent, parent);
+        return IsDescendantsOf(descendant.ModifiableParent, parent);
     }
 
     [MustDisposeResource]
@@ -199,11 +222,11 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
         foreach (var metaball in metaballs)
         {
             // Root is a special case as it doesn't have a parent, it is allowed to be anywhere
-            if (metaball.Parent == null)
+            if (metaball.ModifiableParent == null)
                 continue;
 
-            var maxDistance = toleranceMultiplier * (metaball.Radius + metaball.Parent.Radius);
-            var distance = metaball.Position.DistanceTo(metaball.Parent.Position);
+            var maxDistance = toleranceMultiplier * (metaball.Radius + metaball.ModifiableParent.Radius);
+            var distance = metaball.Position.DistanceTo(metaball.ModifiableParent.Position);
 
             if (distance > maxDistance + contactThreshold)
             {

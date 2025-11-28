@@ -95,7 +95,7 @@ public partial class OrganelleUpgradeGUI : Control
         {
             var tooltipGroup = GetTooltipGroup();
 
-            var oldUpgrade = organelle.Upgrades ?? new OrganelleUpgrades();
+            var oldUpgrade = organelle.ModifiableUpgrades ?? new OrganelleUpgrades();
 
             // Set up the buttons for each of the available upgrades
             foreach (var availableUpgrade in availableGeneralUpgrades)
@@ -105,12 +105,9 @@ public partial class OrganelleUpgradeGUI : Control
                 var selectionButton = upgradeSelectionButtonScene.Instantiate<MicrobePartSelection>();
 
                 var newUpgrade = new OrganelleUpgrades();
-                newUpgrade.UnlockedFeatures.Add(availableUpgrade.Key);
+                newUpgrade.ModifiableUnlockedFeatures.Add(availableUpgrade.Key);
 
-                var data = new OrganelleUpgradeActionData(oldUpgrade, newUpgrade, organelle)
-                {
-                    CostMultiplier = costMultiplier,
-                };
+                var data = new OrganelleUpgradeActionData(oldUpgrade, newUpgrade, organelle);
 
                 var cost = editorData.WhatWouldActionsCost(new[] { data });
 
@@ -142,7 +139,15 @@ public partial class OrganelleUpgradeGUI : Control
                 generalUpgradeSelectorButtons[availableUpgrade.Key] = selectionButton;
             }
 
-            currentlySelectedGeneralUpgrades = organelle.Upgrades?.UnlockedFeatures ?? new List<string>();
+            if (organelle.Upgrades != null)
+            {
+                currentlySelectedGeneralUpgrades = new List<string>(organelle.Upgrades.UnlockedFeatures);
+            }
+            else
+            {
+                currentlySelectedGeneralUpgrades = new List<string>();
+            }
+
             UpdateSelectedUpgradeButton();
 
             generalUpgradesContainer.Visible = true;
@@ -203,13 +208,13 @@ public partial class OrganelleUpgradeGUI : Control
         GUICommon.Instance.PlayButtonPressSound();
 
         // Use the existing data as the old data or create new data if the organelle didn't have upgrades data yet
-        var oldUpgrades = openedForOrganelle.Upgrades ?? new OrganelleUpgrades();
-        var newUpgrades = (OrganelleUpgrades)oldUpgrades.Clone();
+        var oldUpgrades = openedForOrganelle.ModifiableUpgrades ?? new OrganelleUpgrades();
+        var newUpgrades = oldUpgrades.Clone();
 
         if (currentlySelectedGeneralUpgrades != null)
         {
             // Apply the general upgrades
-            newUpgrades.UnlockedFeatures = currentlySelectedGeneralUpgrades;
+            newUpgrades.ModifiableUnlockedFeatures = currentlySelectedGeneralUpgrades;
         }
 
         if (upgrader != null)

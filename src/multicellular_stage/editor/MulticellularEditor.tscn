@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://80exn4x2sdv7"]
+[gd_scene load_steps=10 format=3 uid="uid://80exn4x2sdv7"]
 
 [ext_resource type="Script" uid="uid://03l7xhf0xnm4" path="res://src/multicellular_stage/editor/MulticellularEditor.cs" id="1_kpf0e"]
 [ext_resource type="PackedScene" uid="uid://hxrn73ihp8r4" path="res://src/microbe_stage/editor/MicrobeEditorWorld.tscn" id="2_aqkc2"]
@@ -9,16 +9,14 @@
 [ext_resource type="PackedScene" uid="uid://r0oqu6luui0h" path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn" id="7_7emny"]
 [ext_resource type="PackedScene" uid="uid://d0qfhc2op1auc" path="res://src/microbe_stage/editor/MicrobeEditorTabButtons.tscn" id="8_ed1b2"]
 [ext_resource type="PackedScene" uid="uid://de2sohb3fjvc1" path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn" id="9_v3ojp"]
-[ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="10_vh50g"]
 
-[node name="MulticellularEditor" type="Node" node_paths=PackedStringArray("reportTab", "patchMapTab", "bodyPlanEditorTab", "cellEditorTab", "noCellTypeSelected", "pauseMenu", "editorTabSelector", "editorGUIBaseNode")]
+[node name="MulticellularEditor" type="Node" node_paths=PackedStringArray("reportTab", "patchMapTab", "bodyPlanEditorTab", "cellEditorTab", "noCellTypeSelected", "editorTabSelector", "editorGUIBaseNode")]
 script = ExtResource("1_kpf0e")
 reportTab = NodePath("EarlyMulticellularEditorGUI/Report")
 patchMapTab = NodePath("EarlyMulticellularEditorGUI/PatchMap")
 bodyPlanEditorTab = NodePath("EarlyMulticellularEditorGUI/CellBodyPlanEditorComponent")
 cellEditorTab = NodePath("EarlyMulticellularEditorGUI/CellEditor")
 noCellTypeSelected = NodePath("EarlyMulticellularEditorGUI/NoCellSelected")
-pauseMenu = NodePath("PauseMenu")
 editorTabSelector = NodePath("EarlyMulticellularEditorGUI/MicrobeEditorTabButtons")
 editorGUIBaseNode = NodePath("EarlyMulticellularEditorGUI")
 
@@ -82,12 +80,7 @@ layout_mode = 2
 text = "SELECT_CELL_TYPE_FROM_EDITOR"
 horizontal_alignment = 1
 
-[node name="PauseMenu" parent="." instance=ExtResource("10_vh50g")]
-
 [connection signal="OnCellTypeToEditSelected" from="EarlyMulticellularEditorGUI/CellBodyPlanEditorComponent" to="." method="OnStartEditingCellType"]
 [connection signal="OnTabSelected" from="EarlyMulticellularEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]
-[connection signal="OnOpenHelp" from="EarlyMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToHelp"]
-[connection signal="OnOpenMenu" from="EarlyMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="Open"]
-[connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 
 [editable path="EditorWorld"]

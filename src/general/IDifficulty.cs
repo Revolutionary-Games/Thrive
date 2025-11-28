@@ -1,10 +1,10 @@
-﻿using ThriveScriptsShared;
+﻿using SharedBase.Archive;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Game difficulty data
 /// </summary>
-[SupportsCustomizedRegistryType(typeof(CustomDifficulty))]
-public interface IDifficulty : IRegistryAssignable
+public interface IDifficulty : IRegistryAssignable, IArchivable
 {
     /// <summary>
     ///   Multiplier for MP costs in the editor
@@ -74,6 +74,8 @@ public interface IDifficulty : IRegistryAssignable
     /// </summary>
     public FogOfWarMode FogOfWarMode { get; }
 
+    public bool InstantKillProtection { get; }
+
     /// <summary>
     ///   Whether organelle unlocks are enabled or not. If false, all organelles are unlocked by default.
     /// </summary>
@@ -104,6 +106,7 @@ public static class DifficultyHelpers
             SwitchSpeciesOnExtinction = difficulty.SwitchSpeciesOnExtinction,
             LimitGrowthRate = difficulty.LimitGrowthRate,
             FogOfWarMode = difficulty.FogOfWarMode,
+            InstantKillProtection = difficulty.InstantKillProtection,
             OrganelleUnlocksEnabled = difficulty.OrganelleUnlocksEnabled,
         };
     }
@@ -125,6 +128,7 @@ public static class DifficultyHelpers
             $", Switch on Extinction: {difficulty.SwitchSpeciesOnExtinction}" +
             $", Limit Growth Rate: {difficulty.LimitGrowthRate}" +
             $", Fog Of War Mode: {difficulty.FogOfWarMode}" +
+            $", Instant Kill Protection: {difficulty.InstantKillProtection}" +
             $", Organelle Unlocks Enabled: {difficulty.OrganelleUnlocksEnabled}";
     }
 }

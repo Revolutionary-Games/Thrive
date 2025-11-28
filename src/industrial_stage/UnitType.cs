@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
-using Saving.Serializers;
 using ThriveScriptsShared;
 
 /// <summary>
@@ -16,7 +14,6 @@ using ThriveScriptsShared;
 ///     For now this implements the <see cref="ICityConstructionProject"/> interface for simplicity for the prototypes
 ///   </para>
 /// </remarks>
-[TypeConverter($"Saving.Serializers.{nameof(UnitTypeStringConverter)}")]
 public class UnitType : IRegistryType, ICityConstructionProject
 {
     private readonly Lazy<PackedScene> visualScene;
@@ -28,6 +25,9 @@ public class UnitType : IRegistryType, ICityConstructionProject
 
     [JsonProperty]
     private List<string>? engineParticlesPathSpace;
+
+    [JsonProperty(nameof(BuildCost))]
+    private Dictionary<string, int>? buildCostRaw;
 #pragma warning restore 169,649
 
     [JsonConstructor]
@@ -62,8 +62,8 @@ public class UnitType : IRegistryType, ICityConstructionProject
     [JsonProperty]
     public bool HasSpaceMovement { get; private set; }
 
-    [JsonProperty]
-    public Dictionary<WorldResource, int> BuildCost { get; private set; } = new();
+    [JsonIgnore]
+    public Dictionary<WorldResource, int> BuildCost { get; } = new();
 
     [JsonIgnore]
     public PackedScene WorldRepresentation => visualScene.Value;
@@ -110,10 +110,10 @@ public class UnitType : IRegistryType, ICityConstructionProject
         if (string.IsNullOrEmpty(UnitIcon))
             throw new InvalidRegistryDataException(name, GetType().Name, "Missing icon");
 
-        if (BuildCost.Count < 1)
+        if (buildCostRaw == null || buildCostRaw.Count < 1)
             throw new InvalidRegistryDataException(name, GetType().Name, "Empty required resources");
 
-        if (BuildCost.Any(t => t.Value < 1))
+        if (buildCostRaw.Any(t => t.Value < 1))
             throw new InvalidRegistryDataException(name, GetType().Name, "Bad required resource amount");
 
         if (BuildTime <= 0)
@@ -125,8 +125,12 @@ public class UnitType : IRegistryType, ICityConstructionProject
         }
     }
 
-    public void Resolve()
+    public void Resolve(SimulationParameters simulationParameters)
     {
+        foreach (var entry in buildCostRaw!)
+        {
+            BuildCost.Add(simulationParameters.GetWorldResource(entry.Key), entry.Value);
+        }
     }
 
     public void ApplyTranslations()

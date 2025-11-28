@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
-///   Manages spawning and processing compound clouds
+///   Manages the spawning of and processing compound clouds
 /// </summary>
 [RuntimeCost(35)]
-public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTracked
+public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTracked, IArchiveUpdatable
 {
-    [JsonProperty]
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private int neededCloudsAtOnePosition;
 
-    [JsonProperty]
     private List<CompoundCloudPlane> clouds = new();
 
 #pragma warning disable CA2213
@@ -27,22 +27,21 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
     ///   used for calculating which clouds to move when the player
     ///   moves.
     /// </summary>
-    [JsonProperty]
     private Vector3 cloudGridCenter;
 
-    [JsonProperty]
     private double elapsed;
 
-    [JsonIgnore]
     private float currentBrightness = 1.0f;
 
     /// <summary>
     ///   The cloud resolution of the first cloud
     /// </summary>
-    [JsonIgnore]
     public int Resolution => clouds[0].Resolution;
 
     public bool IsLoadedFromSave { get; set; }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudSystem;
 
     public override void _Ready()
     {
@@ -413,6 +412,27 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         {
             cloud.SetBrightness(currentBrightness);
         }
+    }
+
+    public void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(neededCloudsAtOnePosition);
+        writer.Write(cloudGridCenter);
+        writer.Write(elapsed);
+        writer.WriteObject(clouds);
+    }
+
+    public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        IsLoadedFromSave = true;
+
+        neededCloudsAtOnePosition = reader.ReadInt32();
+        cloudGridCenter = reader.ReadVector3();
+        elapsed = reader.ReadDouble();
+        clouds = reader.ReadObject<List<CompoundCloudPlane>>();
     }
 
     [SuppressMessage("ReSharper", "PossibleLossOfFraction",

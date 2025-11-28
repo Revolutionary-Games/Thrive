@@ -1,12 +1,13 @@
 ﻿namespace Systems;
 
 using System;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles fading out animations on entities
@@ -33,8 +34,6 @@ using World = DefaultEcs.World;
 ///     as not needing to run on the main thread.
 ///   </para>
 /// </remarks>
-[With(typeof(FadeOutActions))]
-[With(typeof(TimedLife))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(SpatialInstance))]
 [WritesToComponent(typeof(CompoundStorage))]
@@ -42,37 +41,40 @@ using World = DefaultEcs.World;
 [WritesToComponent(typeof(ManualPhysicsControl))]
 [RuntimeCost(0.25f)]
 [RunsOnMainThread]
-public sealed class FadeOutActionSystem : AEntitySetSystem<float>
+public partial class FadeOutActionSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
     private readonly CompoundCloudSystem? compoundCloudSystem;
 
+    private readonly TimedLife.OnTimeOver cachedDelegate;
+
+    // TODO: Constants.SYSTEM_EXTREME_ENTITIES_PER_THREAD
     public FadeOutActionSystem(IWorldSimulation worldSimulation, CompoundCloudSystem? compoundCloudSystem,
-        World world, IParallelRunner runner) : base(world, runner, Constants.SYSTEM_EXTREME_ENTITIES_PER_THREAD)
+        World world) : base(world)
     {
         this.worldSimulation = worldSimulation;
         this.compoundCloudSystem = compoundCloudSystem;
+
+        cachedDelegate = PerformTimeOverActions;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref FadeOutActions actions, ref TimedLife timed)
     {
-        ref var actions = ref entity.Get<FadeOutActions>();
-
         if (actions.CallbackRegistered)
             return;
 
         actions.CallbackRegistered = true;
 
-        ref var timed = ref entity.Get<TimedLife>();
-
         // Register the callback which we use to trigger the actions for
-        timed.CustomTimeOverCallback = PerformTimeOverActions;
+        timed.CustomTimeOverCallback = cachedDelegate;
     }
 
     private bool PerformTimeOverActions(Entity entity, ref TimedLife timedLife)
     {
-        // This callback is triggered after this system has run already so when debugging component access, this
-        // needs slight modification
+        // This callback is triggered after this system has run already, so when debugging component access, this
+        // needs a slight modification
         if (GenerateThreadedSystems.UseCheckedComponentAccess)
         {
             // To actually make this work for safety checking the following list *must* match the attributes on
@@ -93,7 +95,7 @@ public sealed class FadeOutActionSystem : AEntitySetSystem<float>
 
             if (actions.FadeTime <= 0)
             {
-                // For now this indicates bad data but in the future we might get some more custom "time over"
+                // For now this indicates bad data, but in the future we might get some more custom "time over"
                 // actions
                 GD.PrintErr("Custom fade out actions fade time is zero");
                 return true;
@@ -103,6 +105,7 @@ public sealed class FadeOutActionSystem : AEntitySetSystem<float>
             // accessing random components from a random system that happens to run the custom callback
 
             timedLife.FadeTimeRemaining = actions.FadeTime;
+            timedLife.FadeTimeRemainingSet = true;
 
             if (actions.DisableCollisions)
                 PerformPhysicsOperations(entity, actions.DisableCollisions);

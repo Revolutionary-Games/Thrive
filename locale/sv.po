@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-01 16:03+0300\n"
-"PO-Revision-Date: 2025-07-28 15:04+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
+"PO-Revision-Date: 2025-10-16 19:56+0000\n"
+"Last-Translator: Jens Schwartz Linder <jesclinder@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -69,13 +69,14 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Nå uppvakningsteget. Tillgänglig när du har tillräckigt med hjärnkraft (axonvävnad)."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr "Aktion blockerad medan en annan pågår"
+msgstr "Åtgärd blockerad medan annan pågår"
 
+#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "Radera"
+msgstr "Ta bort"
 
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "Befolkningsdubblering"
+msgstr "Dubbla befolkning"
 
 msgid "ACTION_DUPLICATE_UNITS"
 msgstr "Duplicera Enheter"
@@ -190,6 +191,10 @@ msgstr "Ammoniak"
 msgid "AMMONIA_COST"
 msgstr "Ammoniak kostnad:"
 
+#, fuzzy
+msgid "AMMONIA_LEVELS"
+msgstr "Ammoniak kostnad:"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Antal autosparningar att behålla:"
 
@@ -273,7 +278,8 @@ msgstr "Ascentionsstadiet"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Modmonteringsklass krävs när montering specificeras"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Modmontering krävs när autoharmony är aktiverat"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -420,6 +426,21 @@ msgstr "Tillgängliga Konstruktionsprojekt"
 msgid "AVAILABLE_MODS"
 msgstr "Tillgängliga Mod"
 
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr "Uppvaknandestadiet"
 
@@ -525,6 +546,12 @@ msgstr "Resultat:"
 
 msgid "BEST_PATCH_COLON"
 msgstr "Bästa Biom:"
+
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr ""
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Stor järnbit"
@@ -643,6 +670,9 @@ msgstr "Kan inte radera använd celltyp"
 
 msgid "CANNOT_ENGULF"
 msgstr "Kan inte uppsluka"
+
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Kan inte flytta en metaboll in i dess ättlingsträd"
@@ -1063,6 +1093,29 @@ msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Molekylmoln"
 
 #, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Hjälp"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Föreningsbalans"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Molekylmoln"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Hjälp"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} konsumtion"
+
+#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "{0} konsumtion"
 
@@ -1345,6 +1398,10 @@ msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanope (Blå-Gul)"
 
 #, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "{0} konsumtion"
+
+#, fuzzy
 msgid "CPU_THREADS"
 msgstr "Trådar:"
 
@@ -1455,6 +1512,14 @@ msgstr "Slem sekretion"
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Nuvarande utvecklare"
+
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "NUVARANDE PLATS"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "NUVARANDE PLATS"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "NUVARANDE PLATS"
@@ -1936,6 +2001,23 @@ msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"Prokaryota strukturer\n"
+"\n"
+"Metabolosomer: Producerar ATP från glukos\n"
+"\n"
+"Kemosyntiserande proteiner: Producerar hälften av glukosen ur svavelväte som en kemoplast, men utför också glykolys, tar upp 1 hex\n"
+"\n"
+"Thylakoider: Producerar 1/3 av mängden glukos som en normal kloroplast, men utför också glykolys och tar upp 1 Hex\n"
+"\n"
+"Rusticyanin: Omvandlar järn till ATP\n"
+"\n"
+"Nitrogenas: Konverterar atmosfäriskt kväve och ATP till ammoniak anaerobt\n"
+"\n"
+"Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 "Prokaryota strukturer\n"
@@ -1951,6 +2033,10 @@ msgstr ""
 "Nitrogenas: Konverterar atmosfäriskt kväve och ATP till ammoniak anaerobt\n"
 "\n"
 "Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
+
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "Mikrob Stadiet"
 
 #, fuzzy
 msgid "EFFECTIVE_VALUE"
@@ -2072,6 +2158,9 @@ msgstr ""
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
+msgid "ENGULF_CELL_OR_CHUNK"
+msgstr ""
+
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr ""
 
@@ -2181,6 +2270,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Självmord"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Självmord"
 
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
@@ -2444,6 +2541,10 @@ msgstr ""
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "Fortsätt"
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "Förråd"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
@@ -2476,6 +2577,14 @@ msgstr ""
 #, fuzzy
 msgid "FOSSILISE"
 msgstr "Stillastående"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "befolkning:"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr ""
@@ -2568,9 +2677,8 @@ msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "generation:"
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
 
 #, fuzzy
 msgid "GENERATIONS"
@@ -2641,6 +2749,10 @@ msgstr "Glukos"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glukoskoncentrationerna har sjunkit drastiskt!"
 
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}m under havsnivån"
+
 msgid "GLYCOLYSIS"
 msgstr "Glykolys"
 
@@ -2650,6 +2762,9 @@ msgstr "Gudläge"
 #, fuzzy
 msgid "GOD_TOOLS_TITLE"
 msgstr "Hjälp"
+
+msgid "GOING_NUCLEAR"
+msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "\"Googly eye\" cell"
@@ -2776,6 +2891,10 @@ msgid "HYDROGEN_SULFIDE"
 msgstr "Svavelväte"
 
 #, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
+msgstr "Svavelväte"
+
+#, fuzzy
 msgid "ICESHARD"
 msgstr "Isskärva"
 
@@ -2795,6 +2914,9 @@ msgid "ID_NUMBER"
 msgstr ""
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 #, fuzzy
@@ -2919,6 +3041,14 @@ msgid "INSTAGRAM_TOOLTIP"
 msgstr "Fortsätt"
 
 #, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}:+{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Mutationspoäng"
 
@@ -3023,6 +3153,9 @@ msgstr "Protanope (Röd-Grön)"
 msgid "IRON"
 msgstr "Järn"
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 #, fuzzy
 msgid "IRON_OXIDATION"
 msgstr "Donationer"
@@ -3040,18 +3173,6 @@ msgstr "med concentration av"
 
 msgid "JANUARY"
 msgstr "Januari"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON debug läge:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Alltid"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automatiskt"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Aldrig"
 
 msgid "JULY"
 msgstr "Juli"
@@ -3587,6 +3708,18 @@ msgstr "Bli Makroskopisk ({0}/{1})"
 msgid "MACROSCOPIC_STAGE"
 msgstr "Mikrob Stadiet"
 
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "(farten som AI arter muterar)"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Kemosyntes"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "Aktivera Cellredigeraren"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3755,6 +3888,10 @@ msgstr ""
 "[b]Beteende[/b]\n"
 "  {5}"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art på grund av olika urvalstryck"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3778,8 +3915,16 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Plundring av {0}"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reproduktion:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
+msgstr "Plundring av {0}"
 
 msgid "MICHE_TREE"
 msgstr ""
@@ -4002,6 +4147,10 @@ msgstr "Organismstatistik"
 msgid "MICROBIAL_MASSACRE"
 msgstr "Mikrob Stadiet"
 
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "Mikrob Stadiet"
+
 msgid "MIDDLE_MOUSE"
 msgstr "Skroll klick"
 
@@ -4114,6 +4263,10 @@ msgstr "Modifiera Typ"
 msgid "MODS"
 msgstr "Mod"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Avstängt"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4146,9 +4299,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 msgid "MOD_CREATION_FAILED"
@@ -4531,6 +4681,10 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Grundrörelse"
 
+#, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Svavelväte"
+
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr ""
 
@@ -4563,6 +4717,10 @@ msgstr ""
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Hittade ingen screenshots mapp"
+
+#, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "Bekräfta Stängning"
 
 #, fuzzy
 msgid "NO_MODS_ENABLED"
@@ -4826,6 +4984,10 @@ msgid "OUR_WIKI"
 msgstr ""
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Avbruten."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "Avbruten."
 
@@ -4905,6 +5067,10 @@ msgstr "Panorera uppåt"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Tidigare utvecklare"
+
+#, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "Grotta"
 
 #, fuzzy
 msgid "PATCH_COLON"
@@ -5015,6 +5181,10 @@ msgstr "Fosfat"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfat kostnad:"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Fosfat kostnad:"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosyntes"
 
@@ -5040,6 +5210,10 @@ msgstr "Öppna Logmapp"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Statistik"
 
 #, fuzzy
 msgid "PLAYER"
@@ -5197,6 +5371,10 @@ msgid "RADIATION"
 msgstr "Anding"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Anding"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Stor järnbit"
 
@@ -5217,6 +5395,16 @@ msgstr "Rå"
 #, fuzzy
 msgid "RAW_VALUE_COLON"
 msgstr "Hastighet:"
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Flercelligt Stadie"
 
 msgid "READING_SAVE_DATA"
 msgstr "Läser sparad data"
@@ -5244,6 +5432,9 @@ msgstr "Ladda om"
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Organeller"
+
+msgid "REGIONS_NUMBER"
+msgstr ""
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5397,6 +5588,18 @@ msgid "REVEAL_ALL_PATCHES"
 msgstr "sprid till platser:"
 
 #, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Lämna cellredigeraren"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Spawna fosfat"
+
+#, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Av Revolutionary Games Studio"
 
@@ -5421,6 +5624,9 @@ msgstr "Snurra höger"
 #, fuzzy
 msgid "ROTATION_COLON"
 msgstr "befolkning:"
+
+msgid "RUNOFF_EVENT"
+msgstr ""
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Kör auto-evo under spelgång"
@@ -5490,13 +5696,6 @@ msgstr "Använt utrymme:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Att radera denna sparfil är permanent och kan inte ångras. Är du säker på att du vill radera {0} för gott?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "JSON debug läge:"
 
 msgid "SAVE_FAILED"
 msgstr "Sparande misslyckades"
@@ -5730,6 +5929,10 @@ msgid "SHOW_ITEM_COORDINATES"
 msgstr "Visa handledningar"
 
 #, fuzzy
+msgid "SHOW_MAP"
+msgstr "Visa hjälp"
+
+#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Grotta"
 
@@ -5924,6 +6127,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "har muterat"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Avbryt denna handling"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Maximalt antal arter i ett område innan tvingade utdöenden"
 
 msgid "SPECIES_LIST"
 msgstr "Artlista"
@@ -6139,6 +6350,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
@@ -6159,6 +6373,10 @@ msgstr "Supportrar"
 
 msgid "SURVIVAL_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "Kärna"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Växla till frontkamera"
@@ -6199,6 +6417,14 @@ msgstr "Ta ett screenshot"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "Typ:"
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Nuvarande trådar:"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "Anding"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -6304,6 +6530,10 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
+msgid "THE_EDITOR"
+msgstr "Lämna cellredigeraren"
+
+#, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Grotta"
 
@@ -6346,6 +6576,10 @@ msgstr ""
 
 msgid "THRIVE_LICENSES"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Grundrörelse"
 
 msgid "THYLAKOIDS"
 msgstr "Thylakoider"
@@ -6514,6 +6748,20 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]Arter[/b]\n"
+"  {0}:{1}\n"
+"[b]Generation[/b]\n"
+"  {2}\n"
+"[b]Population[/b]\n"
+"  {3}\n"
+"[b]Färg[/b]\n"
+"  #{4}\n"
+"[b]Beteende[/b]\n"
+"  {5}"
+
+#, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr ""
 "Den här sektionen visar ATP-saldot (energi) för den aktuella cellen.\n"
@@ -6661,14 +6909,6 @@ msgstr "Testa att ta några screenshots!"
 
 msgid "TUTORIAL"
 msgstr "Handledning"
-
-#, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr ""
-"Aggressiva mikrober jagar byte över större avstånd\n"
-"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
-"Fredliga mikrober attackerar inte andra över större avstånd\n"
-"och har lägre sannolikhet att använda gifter mot rovdjur."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6888,6 +7128,14 @@ msgstr "Mikrob Fri Byggredigerare"
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Laddar mikrobredigerare"
 
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
@@ -6941,6 +7189,17 @@ msgstr "Ångra"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Ångra den senaste handlingen"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "DU HAR FRODATS!"
 
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
@@ -7113,6 +7372,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licenser Och Använda Bibliotek"
 
@@ -7122,13 +7384,6 @@ msgstr ""
 #, fuzzy
 msgid "USES_FEATURE"
 msgstr "Temperatur"
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#, fuzzy
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Självmord"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Använd ett anpassat användarnamn"
@@ -7181,6 +7436,9 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VENTS_ARE_HOME"
 msgstr ""
 
 msgid "VERSION_COLON"
@@ -9187,11 +9445,47 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Du kan stödja den fortsatta utvecklingen av Thrive på Patreon."
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr "Scrolla ner"
+
 msgid "ZOOM_IN"
 msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
+
+#, fuzzy
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Självmord"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Reproduktion:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON debug läge:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Alltid"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automatiskt"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Aldrig"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "JSON debug läge:"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Avbruten."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "generation:"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
@@ -9438,10 +9732,6 @@ msgstr "Zooma ut"
 #~ msgstr "Mikrob Stadiet"
 
 #, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Kemosyntes"
-
-#, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"
 #~ msgstr "Glykolys"
 
@@ -9522,9 +9812,6 @@ msgstr "Zooma ut"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Betrakta områden med upp till såhär många arter som att de har låg biodiversitet"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Maximalt antal arter i ett område innan tvingade utdöenden"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Ursprunglig population för biodiversitetsökande art"
@@ -9785,10 +10072,6 @@ msgstr "Zooma ut"
 #, fuzzy
 #~ msgid "BRACERIGHT"
 #~ msgstr "Snurra höger"
-
-#, fuzzy
-#~ msgid "EXCLAMDOWN"
-#~ msgstr "Scrolla ner"
 
 #, fuzzy
 #~ msgid "YEN"

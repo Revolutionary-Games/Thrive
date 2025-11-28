@@ -2,19 +2,18 @@
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Main class for managing the macroscopic stage
 /// </summary>
-[JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/macroscopic_stage/MacroscopicStage.tscn")]
-[DeserializedCallbackTarget]
-[UseThriveSerializer]
-public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, DummyWorldSimulation>
+public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, DummyWorldSimulation>, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private const string STAGE_TRANSITION_MOUSE_LOCK = "toSocietyStage";
 
-    [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private ISpawnSystem dummySpawner = null!;
 
@@ -40,6 +39,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     private Camera3D? animationCamera;
 #pragma warning restore CA2213
 
+    // TODO: convert this over to the archve system
     /// <summary>
     ///   Used to detect when the player automatically advances stages in the editor (awakening is explicit with a
     ///   button as it should be only used after moving to land)
@@ -65,11 +65,9 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     [JsonProperty]
     private bool movingToSocietyStage;
 
-    [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public MacroscopicCamera PlayerCamera { get; private set; } = null!;
 
-    [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public MacroscopicHUD HUD { get; private set; } = null!;
 
@@ -85,6 +83,9 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     // TODO: change when there is dying implemented
     [JsonIgnore]
     public override bool HasAlivePlayer => HasPlayer;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => throw new NotSupportedException("unimplemented");
 
     [JsonIgnore]
     protected override ICreatureStageHUD BaseHUD => HUD;
@@ -183,6 +184,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
 
                 // The fade is pretty long here to give some time after the camera stops moving before the fade out
                 // is complete
+                PauseMenu.Instance.ReportStageTransition();
                 TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 3.5f, SwitchToSocietyScene, false);
                 MovingToEditor = true;
                 movingToSocietyStage = false;
@@ -220,6 +222,11 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     public override void OnFinishLoading(Save save)
     {
         OnFinishLoading();
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        throw new NotImplementedException();
     }
 
     public override void StartNewGame()
@@ -262,6 +269,8 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         editor.ReturnToStage = this;
 
         GiveReproductionPopulationBonus();
+
+        PauseMenu.Instance.ReportStageTransition();
 
         // We don't free this here as the editor will return to this scene
         if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
@@ -528,7 +537,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
             return;
         }
 
-        if (pauseMenu.Visible)
+        if (PauseMenu.Instance.Visible)
             return;
 
         selectBuildingPopup.OpenWithStructures(CurrentGame!.TechWeb.GetAvailableStructures(), Player, Player);
@@ -559,7 +568,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
             return true;
         }
 
-        if (pauseMenu.Visible)
+        if (PauseMenu.Instance.Visible)
             return false;
 
         try
@@ -821,6 +830,13 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         SaveHelper.ShowErrorAboutPrototypeSaving(this);
     }
 
+    protected override void SaveGame(string name)
+    {
+        // TODO: saving for this stage
+        _ = name;
+        SaveHelper.ShowErrorAboutPrototypeSaving(this);
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -834,18 +850,11 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         base.Dispose(disposing);
     }
 
-    private void SaveGame(string name)
-    {
-        // TODO: saving for this stage
-        _ = name;
-        SaveHelper.ShowErrorAboutPrototypeSaving(this);
-    }
-
     private void OnFinishLoading()
     {
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnPlayerDied(MacroscopicCreature player)
     {
         HandlePlayerDeath();
@@ -854,7 +863,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         Player = null;
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnPlayerReproductionStatusChanged(MacroscopicCreature player, bool ready)
     {
         OnCanEditStatusChanged(ready);
@@ -869,7 +878,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
             GD.Print("Player couldn't perform the selected action");
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnOpenCraftingInterfaceFor(MacroscopicCreature player, IInteractableEntity target)
     {
         if (!TogglePlayerInventory())

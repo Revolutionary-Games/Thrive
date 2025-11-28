@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-01 16:03+0300\n"
-"PO-Revision-Date: 2025-04-04 10:42+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
+"PO-Revision-Date: 2025-11-23 10:05+0000\n"
+"Last-Translator: Ariadna Gorosterrazu Ghezzi <ariadnagorosterrazu@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -55,13 +55,13 @@ msgid "ACHIEVEMENTS"
 msgstr "Movimiento basal"
 
 msgid "ACHIEVEMENTS_TOTAL"
-msgstr ""
+msgstr "Logros {0} / {1}"
 
 msgid "ACHIEVEMENT_ACHIEVED"
-msgstr ""
+msgstr "Completado"
 
 msgid "ACHIEVEMENT_LOCKED"
-msgstr ""
+msgstr "Bloqueado"
 
 msgid "ACTION_AWAKEN"
 msgstr "Despertar ({0:F1} / {1:F1})"
@@ -193,6 +193,10 @@ msgstr "Amoníaco"
 msgid "AMMONIA_COST"
 msgstr "Amoníaco"
 
+#, fuzzy
+msgid "AMMONIA_LEVELS"
+msgstr "Amoníaco"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Cantidad de autoguardados a almacenar:"
 
@@ -278,7 +282,7 @@ msgstr "Etapa de Ascensión"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr ""
 
 msgid "ASSUME_HYPERTHREADING"
@@ -425,6 +429,21 @@ msgstr "Los proyectos de construcción que podes hacer"
 msgid "AVAILABLE_MODS"
 msgstr "Mods disponibles"
 
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr "Etapa de despertar"
 
@@ -520,6 +539,12 @@ msgstr "Resultados:"
 
 msgid "BEST_PATCH_COLON"
 msgstr "Mejor Patch:"
+
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr ""
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Pedazo grande de hierro"
@@ -645,6 +670,9 @@ msgstr ""
 msgid "CANNOT_ENGULF"
 msgstr ""
 
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
+
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
@@ -757,7 +785,7 @@ msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "CHEMORECEPTOR"
-msgstr ""
+msgstr "Quimiorreceptor"
 
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr ""
@@ -1025,6 +1053,29 @@ msgstr "Anda a la etapa del despertar. Solo cuando dejes de ser un boludo ( El t
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Densidad de nubes de compuestos"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Anda a la etapa del despertar. Solo cuando dejes de ser un boludo ( El tipo de tejido son axones)."
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Anda a la etapa del despertar. Solo cuando dejes de ser un boludo ( El tipo de tejido son axones)."
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Nubes de componentes"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Anda a la etapa del despertar. Solo cuando dejes de ser un boludo ( El tipo de tejido son axones)."
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} consume"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1299,6 +1350,10 @@ msgstr "Protanopia (Rojo-verde)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (Azul-Amarillo)"
 
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "{0} consume"
+
 msgid "CPU_THREADS"
 msgstr ""
 
@@ -1402,6 +1457,14 @@ msgstr "Disparar toxina"
 
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
+
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "población:"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "población:"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
@@ -1848,6 +1911,21 @@ msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"Estructuras Procarioticas\n"
+"\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"\n"
+"Rusticianina: Convierte el hierro en ATP.\n"
+"\n"
+"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 "Estructuras Procarioticas\n"
@@ -1861,6 +1939,10 @@ msgstr ""
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
 "Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "Recién levantado"
 
 msgid "EFFECTIVE_VALUE"
 msgstr ""
@@ -1969,6 +2051,9 @@ msgstr ""
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
+msgid "ENGULF_CELL_OR_CHUNK"
+msgstr ""
+
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr ""
 
@@ -2068,6 +2153,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Disparar toxina"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Disparar toxina"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -2318,6 +2411,10 @@ msgstr ""
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "población:"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
@@ -2344,6 +2441,14 @@ msgstr ""
 
 msgid "FOSSILISE"
 msgstr ""
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Normal"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "población:"
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr ""
@@ -2430,9 +2535,8 @@ msgstr "Presiona el botón de deshacer en el editor para corregir el error"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Presiona el botón de deshacer en el editor para corregir el error"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Pili de depredador"
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
 
 msgid "GENERATIONS"
 msgstr ""
@@ -2501,6 +2605,10 @@ msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
 #, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}Bajo el nivel del mar"
+
+#, fuzzy
 msgid "GLYCOLYSIS"
 msgstr "Nivel de Glucósis"
 
@@ -2508,6 +2616,9 @@ msgid "GODMODE"
 msgstr ""
 
 msgid "GOD_TOOLS_TITLE"
+msgstr ""
+
+msgid "GOING_NUCLEAR"
 msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
@@ -2634,6 +2745,10 @@ msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfuro de hidrógeno"
 
 #, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
+msgstr "Sulfuro de hidrógeno"
+
+#, fuzzy
 msgid "ICESHARD"
 msgstr "Estalactita"
 
@@ -2654,6 +2769,9 @@ msgid "ID_NUMBER"
 msgstr ""
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
@@ -2763,6 +2881,14 @@ msgid "INSTAGRAM_TOOLTIP"
 msgstr "Disparar toxina"
 
 #, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "Predicción del Auto-evo"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(Velocidad en la que las especies guiadas por IA mutan)"
+
+#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Depredación de {0}"
 
@@ -2861,6 +2987,9 @@ msgstr "Protanopia (Rojo-verde)"
 msgid "IRON"
 msgstr "Hierro"
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 #, fuzzy
 msgid "IRON_OXIDATION"
 msgstr "Resolución:"
@@ -2875,18 +3004,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr ""
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3423,6 +3540,18 @@ msgstr "Volverte re chiquito ({0}/{1})"
 msgid "MACROSCOPIC_STAGE"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "(Velocidad en la que las especies guiadas por IA mutan)"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Fotosíntesis"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "Habilitar el editor"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3595,6 +3724,10 @@ msgstr ""
 "\n"
 "Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "emergieron debido a la selección natural"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3618,8 +3751,16 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Depredación de {0}"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Resolución:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
+msgstr "Depredación de {0}"
 
 msgid "MICHE_TREE"
 msgstr ""
@@ -3846,6 +3987,10 @@ msgstr "Mover organela"
 msgid "MICROBIAL_MASSACRE"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
 msgid "MIDDLE_MOUSE"
 msgstr ""
 
@@ -3951,6 +4096,10 @@ msgstr ""
 msgid "MODS"
 msgstr "Mods"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Desactivado"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3983,9 +4132,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 msgid "MOD_CREATION_FAILED"
@@ -4352,6 +4498,10 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Que tanto corres"
 
+#, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Sulfuro de hidrógeno"
+
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr ""
 
@@ -4383,6 +4533,10 @@ msgstr ""
 
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
+
+#, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "Confirmar Borrar"
 
 #, fuzzy
 msgid "NO_MODS_ENABLED"
@@ -4628,6 +4782,10 @@ msgid "OUR_WIKI"
 msgstr ""
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Abortado."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "Abortado."
 
@@ -4704,6 +4862,9 @@ msgid "PAN_CAMERA_UP"
 msgstr ""
 
 msgid "PAST_DEVELOPERS"
+msgstr ""
+
+msgid "PATCHES_NUMBER"
 msgstr ""
 
 #, fuzzy
@@ -4805,6 +4966,10 @@ msgstr "Fosfato"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfato"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Fosfato"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosíntesis"
 
@@ -4829,6 +4994,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Mover organela"
 
 msgid "PLAYER"
 msgstr ""
@@ -4991,6 +5160,10 @@ msgid "RADIATION"
 msgstr "Resolución:"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Resolución:"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Pedazo grande de fosfato"
 
@@ -5010,6 +5183,16 @@ msgstr ""
 #, fuzzy
 msgid "RAW_VALUE_COLON"
 msgstr "Nuevo Juego"
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Poner organela"
 
 msgid "READING_SAVE_DATA"
 msgstr ""
@@ -5035,6 +5218,9 @@ msgstr ""
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Pili de depredador"
+
+msgid "REGIONS_NUMBER"
+msgstr ""
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5172,6 +5358,18 @@ msgstr ""
 msgid "REVEAL_ALL_PATCHES"
 msgstr "propagación debido a \"parches\""
 
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Habilitar el editor"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "Normal"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Spawnear fosfato"
+
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr ""
 
@@ -5196,6 +5394,9 @@ msgstr ""
 #, fuzzy
 msgid "ROTATION_COLON"
 msgstr "población:"
+
+msgid "RUNOFF_EVENT"
+msgstr ""
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
@@ -5259,12 +5460,6 @@ msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr ""
 
 msgid "SAVE_FAILED"
@@ -5484,6 +5679,10 @@ msgstr "Mostrar mini-tutorial"
 msgid "SHOW_ITEM_COORDINATES"
 msgstr ""
 
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "Mostrar mini-tutorial"
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
@@ -5667,6 +5866,14 @@ msgstr ""
 #, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "posee una mutación"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Cancelar acción actual"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "populación en parches:"
 
 msgid "SPECIES_LIST"
 msgstr ""
@@ -5876,6 +6083,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
@@ -5896,6 +6106,10 @@ msgstr ""
 
 msgid "SURVIVAL_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "Núcleo"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
@@ -5934,6 +6148,14 @@ msgstr "Hacer una screenshot (captura de pantalla)"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "anterior:"
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Hilos actuales:"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "Resolución:"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -6034,6 +6256,10 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
+msgid "THE_EDITOR"
+msgstr "Habilitar el editor"
+
+#, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Quimioplastia"
 
@@ -6076,6 +6302,10 @@ msgstr ""
 
 msgid "THRIVE_LICENSES"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Movimiento basal"
 
 msgid "THYLAKOIDS"
 msgstr "Tilacoides"
@@ -6236,6 +6466,21 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"Estructuras Procarioticas\n"
+"\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"\n"
+"Rusticianina: Convierte el hierro en ATP.\n"
+"\n"
+"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+#, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr ""
 "Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
@@ -6373,10 +6618,6 @@ msgstr ""
 
 msgid "TUTORIAL"
 msgstr ""
-
-#, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "población:"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6575,6 +6816,10 @@ msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si 
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Poner organela"
 
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "población:"
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
@@ -6627,6 +6872,17 @@ msgstr "Deshacer"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr ""
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "población:"
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "\" {0} \" - {1}"
 
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
@@ -6790,6 +7046,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -6797,12 +7056,6 @@ msgid "USED_RENDERER_NAME"
 msgstr ""
 
 msgid "USES_FEATURE"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
@@ -6854,6 +7107,9 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "población:"
 
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VENTS_ARE_HOME"
 msgstr ""
 
 msgid "VERSION_COLON"
@@ -9094,11 +9350,29 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr ""
+"Los microbios activos van deambular cuando no pase nada interesante.\n"
+"Los microbios tranquilos van a estar quietos y esperando a que algo cambie antes de actuar."
+
 msgid "ZOOM_IN"
 msgstr "Acercar la pantalla"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar la pantalla"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Resolución:"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Abortado."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Pili de depredador"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
@@ -9328,10 +9602,6 @@ msgstr "Alejar la pantalla"
 #~ msgstr "población:"
 
 #, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Fotosíntesis"
-
-#, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
 #~ msgstr "Citoplasma"
 
@@ -9397,10 +9667,6 @@ msgstr "Alejar la pantalla"
 #~ msgstr "Permitir que no migren (Solo si quieren migrar a otra parte de latam)"
 
 #, fuzzy
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "populación en parches:"
-
-#, fuzzy
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Pedazote de hierro"
 
@@ -9452,9 +9718,9 @@ msgstr "Alejar la pantalla"
 #~ msgstr "Presiona el botón de deshacer en el editor para corregir el error"
 
 #, fuzzy
-#~ msgid "CURRENT_GENERATION_COLON"
-#~ msgstr "población:"
-
-#, fuzzy
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "Sin correr."
+
+#, fuzzy
+#~ msgid "CURRENT_GENERATION_COLON"
+#~ msgstr "población:"

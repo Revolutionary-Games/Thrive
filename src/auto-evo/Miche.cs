@@ -4,14 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Newtonsoft.Json;
+using Godot;
+using SharedBase.Archive;
 
 /// <summary>
 ///   A node for the Miche Tree
 /// </summary>
 /// <remarks>
 ///   <para>
-///     The Miche class forms a tree by storing a list of child instances of Miche Nodes. If a Miche has no children
+///     The Miche class forms a tree by storing a list of child instances of Miche Nodes. If a Miche has no children,
 ///     it is considered a leaf node and can have a species Occupant instead (otherwise Occupant should be null).
 ///     This class handles insertion into the tree through scores from the selection pressure it contains.
 ///     For a fuller explanation see docs/auto_evo.md
@@ -24,17 +25,14 @@ using Newtonsoft.Json;
 ///     can already refer back to this object.
 ///   </para>
 /// </remarks>
-[JsonObject(IsReference = true)]
-[UseThriveSerializer]
-public class Miche
+public class Miche : IArchivable
 {
-    [JsonProperty]
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public readonly SelectionPressure Pressure;
 
-    [JsonProperty]
     public readonly List<Miche> Children = new();
 
-    [JsonProperty]
     public Miche? Parent;
 
     /// <summary>
@@ -45,7 +43,6 @@ public class Miche
     ///     Occupant should always be null if this Miche is not a leaf node (children is not empty).
     ///   </para>
     /// </remarks>
-    [JsonProperty]
     public Species? Occupant;
 
     private bool locked;
@@ -53,6 +50,43 @@ public class Miche
     public Miche(SelectionPressure pressure)
     {
         Pressure = pressure;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.Miche;
+    public bool CanBeReferencedInArchive => true;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.Miche)
+            throw new NotSupportedException();
+
+        writer.WriteObject((Miche)obj);
+    }
+
+    public static Miche ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new Miche(reader.ReadObject<SelectionPressure>());
+
+        reader.ReportObjectConstructorDone(instance, referenceId);
+
+        instance.Children.AddRange(reader.ReadObject<List<Miche>>());
+
+        instance.Parent = reader.ReadObjectOrNull<Miche>();
+        instance.Occupant = reader.ReadObjectOrNull<Species>();
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(Pressure);
+        writer.WriteObject(Children);
+        writer.WriteObjectOrNull(Parent);
+        writer.WriteObjectOrNull(Occupant);
     }
 
     public bool IsLeafNode()
@@ -215,12 +249,23 @@ public class Miche
 
         // We check here to see if scores more than 0, because
         // scores is relative to the inserted species
-        if (IsLeafNode() && newScores[Occupant!] > 0)
+        if (IsLeafNode())
         {
-            if (!dry)
-                Occupant = species;
+            if (newScores.TryGetValue(Occupant!, out var value))
+            {
+                if (value > 0)
+                {
+                    if (!dry)
+                        Occupant = species;
 
-            return true;
+                    return true;
+                }
+            }
+            else
+            {
+                // TODO: a proper fix for this problem. And should this return something?
+                GD.PrintErr($"Score missing in miche for occupant: {Occupant!.FormattedIdentifier}");
+            }
         }
 
         var inserted = false;

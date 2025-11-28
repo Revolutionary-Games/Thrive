@@ -1,15 +1,15 @@
 ﻿namespace Components;
 
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Access to a material defined on an entity
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct EntityMaterial
+public struct EntityMaterial : IArchivableComponent
 {
-    [JsonIgnore]
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public ShaderMaterial[]? Materials;
 
     /// <summary>
@@ -34,6 +34,31 @@ public struct EntityMaterial
     /// <summary>
     ///   Internal flag, don't modify
     /// </summary>
-    [JsonIgnore]
     public bool MaterialFetchPerformed;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentEntityMaterial;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(AutoRetrieveModelPath);
+        writer.Write(AutoRetrieveFromSpatial);
+        writer.Write(AutoRetrieveAssumesNodeIsDirectlyAttached);
+    }
+}
+
+public static class EntityMaterialHelpers
+{
+    public static EntityMaterial ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > EntityMaterial.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, EntityMaterial.SERIALIZATION_VERSION);
+
+        return new EntityMaterial
+        {
+            AutoRetrieveModelPath = reader.ReadString(),
+            AutoRetrieveFromSpatial = reader.ReadBool(),
+            AutoRetrieveAssumesNodeIsDirectlyAttached = reader.ReadBool(),
+        };
+    }
 }

@@ -161,7 +161,7 @@ func resource_as_var(resource_path :String) -> Variant:
 	return str_to_var(__gdunit_file_access().resource_as_string(resource_path) as String)
 
 
-## Waits for given signal is emited by the <source> until a specified timeout to fail[br]
+## Waits for given signal to be emitted by <source> until a specified timeout to fail[br]
 ## source: the object from which the signal is emitted[br]
 ## signal_name: signal name[br]
 ## args: the expected signal arguments as an array[br]
@@ -177,7 +177,7 @@ func await_idle_frame() -> void:
 	await __awaiter.await_idle_frame()
 
 
-## Waits for for a given amount of milliseconds[br]
+## Waits for a given amount of milliseconds[br]
 ## example:[br]
 ## [codeblock]
 ##    # waits for 100ms
@@ -307,7 +307,7 @@ func any_float() -> GdUnitArgumentMatcher:
 	return __gdunit_argument_matchers().by_type(TYPE_FLOAT)
 
 
-## Argument matcher to match any string value
+## Argument matcher to match any String value
 func any_string() -> GdUnitArgumentMatcher:
 	@warning_ignore("unsafe_method_access")
 	return __gdunit_argument_matchers().by_type(TYPE_STRING)
@@ -362,7 +362,7 @@ func any_vector4() -> GdUnitArgumentMatcher:
 	return __gdunit_argument_matchers().by_type(TYPE_VECTOR4)
 
 
-## Argument matcher to match any Vector3i value
+## Argument matcher to match any Vector4i value
 func any_vector4i() -> GdUnitArgumentMatcher:
 	@warning_ignore("unsafe_method_access")
 	return __gdunit_argument_matchers().by_type(TYPE_VECTOR4I)
@@ -607,7 +607,7 @@ func assert_func(instance :Object, func_name :String, args := Array()) -> GdUnit
 	return __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitFuncAssertImpl.gd").new(instance, func_name, args)
 
 
-## An Assertion Tool to verify for emitted signals until a certain time.
+## An assertion tool to verify for emitted signals until a certain time.
 func assert_signal(instance :Object) -> GdUnitSignalAssert:
 	return __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitSignalAssertImpl.gd").new(instance)
 
@@ -636,15 +636,15 @@ func assert_failure_await(assertion :Callable) -> GdUnitFailureAssert:
 	return await __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitFailureAssertImpl.gd").new().execute_and_await(assertion)
 
 
-## An assertion tool to verify for Godot errors.[br]
-## You can use to verify for certain Godot erros like failing assertions, push_error, push_warn.[br]
+## An assertion tool to verify Godot errors.[br]
+## You can use to verify certain Godot errors like failing assertions, push_error, push_warn.[br]
 ## Usage:
 ##     [codeblock]
-##		# tests no error was occured during execution the code
+##		# tests no error occurred during execution of the code
 ##		await assert_error(func (): return 0 )\
 ##		    .is_success()
 ##
-##		# tests an push_error('test error') was occured during execution the code
+##		# tests a push_error('test error') occured during execution of the code
 ##		await assert_error(func (): push_error('test error') )\
 ##		    .is_push_error('test error')
 ##     [/codeblock]
@@ -652,12 +652,36 @@ func assert_error(current :Callable) -> GdUnitGodotErrorAssert:
 	return __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitGodotErrorAssertImpl.gd").new(current)
 
 
+## Explicitly fails the current test indicating that the feature is not yet implemented.[br]
+## This function is useful during development when you want to write test cases before implementing the actual functionality.[br]
+## It provides a clear indication that the test failure is expected because the feature is still under development.[br]
+## Usage:
+##     [codeblock]
+##		# Test for a feature that will be implemented later
+##		func test_advanced_ai_behavior():
+##		    assert_not_yet_implemented()
+##
+##     [/codeblock]
 func assert_not_yet_implemented() -> void:
 	@warning_ignore("unsafe_method_access")
 	__gdunit_assert().new(null).do_fail()
 
 
-func fail(message :String) -> void:
+## Explicitly fails the current test with a custom error message.[br]
+## This function reports an error but does not terminate test execution automatically.[br]
+## You must use 'return' after calling fail() to stop the test since GDScript has no exception support.[br]
+## Useful for complex conditional testing scenarios where standard assertions are insufficient.[br]
+## Usage:
+##     [codeblock]
+##		# Fail test when conditions are not met
+##		if !custom_check(player):
+##		    fail("Player should be alive but has %d health" % player.health)
+##		    return
+##
+##		# Continue with test if conditions pass
+##		assert_that(player.health).is_greater(0)
+##     [/codeblock]
+func fail(message: String) -> void:
 	@warning_ignore("unsafe_method_access")
 	__gdunit_assert().new(null).report_error(message)
 

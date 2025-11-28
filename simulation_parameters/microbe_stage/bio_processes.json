@@ -6,7 +6,7 @@
       "glucose": 0.10
     },
     "Outputs": {
-      "atp": 110,
+      "atp": 70,
       "carbondioxide": 1
     },
     "IsMetabolismProcess": true
@@ -27,7 +27,7 @@
       "glucose": 0.009
     },
     "Outputs": {
-      "atp": 3
+      "atp": 2.5
     },
     "IsMetabolismProcess": true
   },
@@ -54,10 +54,10 @@
   "bacterial_cytotoxinSynthesis": {
     "Name": "CYTOTOXIN_SYNTHESIS",
     "Inputs": {
-      "atp": 5
+      "atp": 3
     },
     "Outputs": {
-      "oxytoxy": 0.14
+      "oxytoxy": 0.22
     }
   },
   "oxytoxySynthesis": {
@@ -74,10 +74,10 @@
     "Name": "OXYTOXY_SYNTHESIS",
     "Inputs": {
       "oxygen": 0.21,
-      "atp": 5
+      "atp": 3
     },
     "Outputs": {
-      "oxytoxy": 0.15
+      "oxytoxy": 0.21
     }
   },
   "macrolideSynthesis": {
@@ -92,7 +92,7 @@
   "bacterial_macrolideSynthesis": {
     "Name": "MACROLIDE_SYNTHESIS",
     "Inputs": {
-      "atp": 5
+      "atp": 3
     },
     "Outputs": {
       "oxytoxy": 0.16
@@ -110,7 +110,7 @@
   "bacterial_channelInhibitorSynthesis": {
     "Name": "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS",
     "Inputs": {
-      "atp": 5
+      "atp": 3
     },
     "Outputs": {
       "oxytoxy": 0.14
@@ -130,7 +130,7 @@
     "Name": "OXYGEN_INHIBITOR_SYNTHESIS",
     "Inputs": {
       "oxygen": 0.21,
-      "atp": 5
+      "atp": 3
     },
     "Outputs": {
       "oxytoxy": 0.15
@@ -148,18 +148,18 @@
   "chemoSynthesis": {
     "Name": "CHEMO_SYNTHESIS",
     "Inputs": {
-      "hydrogensulfide": 0.12,
+      "hydrogensulfide": 0.08,
       "carbondioxide": 0.09
     },
     "Outputs": {
-      "glucose": 0.1
+      "glucose": 0.075
     },
     "IsMetabolismProcess": true
   },
   "bacterial_ChemoSynthesis": {
     "Name": "CHEMO_SYNTHESIS",
     "Inputs": {
-      "hydrogensulfide": 0.06,
+      "hydrogensulfide": 0.04,
       "carbondioxide": 0.09
     },
     "Outputs": {
@@ -195,7 +195,7 @@
       "glucose": 0.09
     },
     "Outputs": {
-      "atp": 45,
+      "atp": 30,
       "carbondioxide": 1
     },
     "IsMetabolismProcess": true
@@ -206,7 +206,7 @@
       "glucose": 0.013
     },
     "Outputs": {
-      "atp": 5
+      "atp": 4
     },
     "IsMetabolismProcess": true
   },
@@ -216,7 +216,7 @@
       "glucose": 0.02
     },
     "Outputs": {
-      "atp": 13
+      "atp": 8.5
     },
     "IsMetabolismProcess": true
   },
@@ -234,7 +234,7 @@
   "iron_chemolithoautotrophy": {
     "Name": "IRON_OXIDATION",
     "Inputs": {
-      "iron": 0.02
+      "iron": 0.055
     },
     "Outputs": {
       "atp": 5.5
@@ -244,25 +244,25 @@
   "thermosynthesis": {
     "Name": "THERMOSYNTHESIS",
     "Inputs": {
-      "temperature": 0.25
+      "temperature": 4
     },
     "Outputs": {
-      "atp": 11
+      "glucose": 0.045
     }
   },
   "bacterial_thermosynthesis": {
     "Name": "THERMOSYNTHESIS",
     "Inputs": {
-      "temperature": 0.25
+      "temperature": 4
     },
     "Outputs": {
-      "atp": 4
+      "glucose": 0.02
     }
   },
   "ferrosynthesis": {
     "Name": "IRON_OXIDATION",
     "Inputs": {
-      "iron": 0.033
+      "iron": 0.048
     },
     "Outputs": {
       "atp": 14
@@ -272,7 +272,7 @@
   "radiosynthesis": {
     "name": "RADIOSYNTHESIS",
     "inputs": {
-      "radiation": 0.5
+      "radiation": 0.2
     },
     "outputs": {
       "atp": 35

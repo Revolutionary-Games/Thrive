@@ -1,6 +1,5 @@
 ﻿using System;
 using Godot;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   Common HUD things for every HUD in the game
@@ -9,9 +8,6 @@ using Newtonsoft.Json;
 public partial class HUDBase : Control, IStageHUD
 {
 #pragma warning disable CA2213
-    [Export]
-    protected PauseMenu menu = null!;
-
     private readonly TimeSpan minStageLoadingScreenDuration = TimeSpan.FromSeconds(1.0);
 
     [Export]
@@ -24,7 +20,6 @@ public partial class HUDBase : Control, IStageHUD
     {
     }
 
-    [JsonIgnore]
     public HUDMessages HUDMessages => hudMessages;
 
     public virtual void OnEnterStageLoadingScreen(bool longerDuration, bool returningFromEditor)

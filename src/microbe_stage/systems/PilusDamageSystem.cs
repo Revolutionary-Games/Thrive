@@ -1,16 +1,14 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Handles applying pilus damage to microbes
 /// </summary>
-[With(typeof(CollisionManagement))]
-[With(typeof(MicrobePhysicsExtraData))]
-[With(typeof(SpeciesMember))]
 [ReadsComponent(typeof(CollisionManagement))]
 [ReadsComponent(typeof(MicrobePhysicsExtraData))]
 [ReadsComponent(typeof(CellProperties))]
@@ -19,16 +17,17 @@ using DefaultEcs.Threading;
 [WritesToComponent(typeof(DamageCooldown))]
 [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
 [RuntimeCost(1)]
-public sealed class PilusDamageSystem : AEntitySetSystem<float>
+public partial class PilusDamageSystem : BaseSystem<World, float>
 {
-    public PilusDamageSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner)
+    public PilusDamageSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [All<MicrobePhysicsExtraData, SpeciesMember>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref CollisionManagement collisionManagement, in Entity entity)
     {
-        ref var collisionManagement = ref entity.Get<CollisionManagement>();
-
         var count = collisionManagement.GetActiveCollisions(out var collisions);
         if (count < 1)
             return;
@@ -46,7 +45,10 @@ public sealed class PilusDamageSystem : AEntitySetSystem<float>
             if (collision.JustStarted != 1)
                 continue;
 
-            if (!collision.SecondEntity.Has<MicrobePhysicsExtraData>())
+            if (collision.SecondEntity == Entity.Null)
+                continue;
+
+            if (!collision.SecondEntity.IsAliveAndHas<MicrobePhysicsExtraData>())
                 continue;
 
             ref var otherExtraData = ref collision.SecondEntity.Get<MicrobePhysicsExtraData>();
@@ -99,7 +101,7 @@ public sealed class PilusDamageSystem : AEntitySetSystem<float>
         if (ourExtraData.IsSubShapeInjectisomeIfIsPilus(collision.FirstSubShapeData))
         {
             // Injectisome attack
-            targetHealth.DealMicrobeDamage(ref collision.SecondEntity.Get<CellProperties>(),
+            targetHealth.DealMicrobeDamage(ref collision.SecondEntity.Get<CellProperties>(), collision.SecondEntity,
                 Constants.INJECTISOME_BASE_DAMAGE, "injectisome",
                 HealthHelpers.GetInstantKillProtectionThreshold(targetEntity));
 
@@ -118,8 +120,8 @@ public sealed class PilusDamageSystem : AEntitySetSystem<float>
 
         var previousHealth = targetHealth.CurrentHealth;
 
-        targetHealth.DealMicrobeDamage(ref collision.SecondEntity.Get<CellProperties>(), damage, "pilus",
-            HealthHelpers.GetInstantKillProtectionThreshold(targetEntity));
+        targetHealth.DealMicrobeDamage(ref collision.SecondEntity.Get<CellProperties>(), collision.SecondEntity, damage,
+            "pilus", HealthHelpers.GetInstantKillProtectionThreshold(targetEntity));
 
         if (playerDealsDamage && previousHealth > 0 && targetHealth.CurrentHealth <= 0 && !targetHealth.Invulnerable)
         {

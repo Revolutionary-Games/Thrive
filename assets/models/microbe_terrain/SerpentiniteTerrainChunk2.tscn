@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://blpdbnmvytljt"]
+
+[ext_resource type="PackedScene" uid="uid://dx5vnwls2e65u" path="res://assets/models/microbe_terrain/SerpentiniteTerrainChunk2.glb" id="1_q2b3m"]
+[ext_resource type="Material" uid="uid://0f71cwy6kdde" path="res://assets/models/microbe_terrain/SerpentiniteTerrainChunk.material" id="2_tjire"]
+
+[node name="SerpentiniteTerrainChunk2" instance=ExtResource("1_q2b3m")]
+
+[node name="serpentinite2" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_tjire")

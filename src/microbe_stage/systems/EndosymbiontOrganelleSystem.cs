@@ -2,29 +2,23 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
 
 /// <summary>
 ///   Handles creating temporary organelles for endosymbiosis
 /// </summary>
-[With(typeof(TemporaryEndosymbiontInfo))]
-[With(typeof(OrganelleContainer))]
-[With(typeof(SpeciesMember))]
-[With(typeof(CompoundStorage))]
-[With(typeof(BioProcesses))]
-[With(typeof(Engulfer))]
-[With(typeof(Engulfable))]
-[With(typeof(CellProperties))]
 [ReadsComponent(typeof(SpeciesMember))]
 [ReadsComponent(typeof(CellProperties))]
 [RunsBefore(typeof(MicrobeReproductionSystem))]
 [RunsBefore(typeof(MicrobePhysicsCreationAndSizeSystem))]
 [RunsBefore(typeof(MicrobeVisualsSystem))]
-public class EndosymbiontOrganelleSystem : AEntitySetSystem<float>
+[RuntimeCost(0.25f)]
+public partial class EndosymbiontOrganelleSystem : BaseSystem<World, float>
 {
     // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
     // private readonly ThreadLocal<List<Hex>> hexWorkData = new(() => new List<Hex>());
@@ -34,29 +28,28 @@ public class EndosymbiontOrganelleSystem : AEntitySetSystem<float>
     private readonly List<Hex> hexWorkData2 = new();
     private readonly HashSet<Hex> hexWorkData3 = new();
 
-    public EndosymbiontOrganelleSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner,
-        Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
+    public EndosymbiontOrganelleSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float state, in Entity entity)
+    [Query]
+    [All<SpeciesMember, CompoundStorage, BioProcesses, Engulfer, Engulfable, CellProperties>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref TemporaryEndosymbiontInfo endosymbiontInfo, ref OrganelleContainer organelleContainer,
+        in Entity entity)
     {
-        ref var endosymbiontInfo = ref entity.Get<TemporaryEndosymbiontInfo>();
-
         if (endosymbiontInfo.Applied)
             return;
-
-        ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 
         // Skip if organelles are not initialized
         if (organelleContainer.Organelles is not { Count: > 0 })
             return;
 
-        var species = entity.Get<SpeciesMember>().Species;
-
         if (endosymbiontInfo.EndosymbiontSpeciesPresent != null)
         {
             endosymbiontInfo.CreatedOrganelleInstancesFor ??= new List<Species>();
+
+            var species = entity.Get<SpeciesMember>().Species;
 
             foreach (var symbiontSpecies in endosymbiontInfo.EndosymbiontSpeciesPresent)
             {
@@ -64,7 +57,7 @@ public class EndosymbiontOrganelleSystem : AEntitySetSystem<float>
                 if (endosymbiontInfo.CreatedOrganelleInstancesFor.Contains(symbiontSpecies))
                     continue;
 
-                // When originally creating the symbiont info it is not yet resolved which organelle type they
+                // When originally creating the symbiont info, it is not yet resolved which organelle type they
                 // represent, so we need to find that now
                 try
                 {
@@ -72,7 +65,7 @@ public class EndosymbiontOrganelleSystem : AEntitySetSystem<float>
                     CreateNewOrganelle(organelleContainer.Organelles!, type);
 
                     // These are fetched inside the loop with the assumption that most of the time the loop runs 0
-                    // times and when not empty mostly just once
+                    // times and when not empty, mostly just once
                     organelleContainer.OnOrganellesChanged(ref entity.Get<CompoundStorage>(),
                         ref entity.Get<BioProcesses>(), ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
                         ref entity.Get<CellProperties>());
@@ -91,7 +84,10 @@ public class EndosymbiontOrganelleSystem : AEntitySetSystem<float>
 
     private void CreateNewOrganelle(OrganelleLayout<PlacedOrganelle> organelles, OrganelleDefinition definition)
     {
-        var newOrganelle = new PlacedOrganelle(definition, new Hex(0, 0), 0, null);
+        var newOrganelle = new PlacedOrganelle(definition, new Hex(0, 0), 0, null)
+        {
+            IsEndosymbiont = true,
+        };
 
         // Find the last placed organelle to efficiently find an empty position
         var searchStart = organelles.Organelles[^1].Position;

@@ -1,60 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
-using Newtonsoft.Json;
-using Saving.Serializers;
+using Godot;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Represents a macroscopic species that is 3D and composed of placed tissues
 /// </summary>
-[JsonObject(IsReference = true)]
-[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
-[JSONDynamicTypeAllowed]
-[UseThriveConverter]
-[UseThriveSerializer]
-public class MacroscopicSpecies : Species
+public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public MacroscopicSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
     }
 
-    [JsonProperty]
-    public MacroscopicMetaballLayout BodyLayout { get; private set; } = new();
+    public MacroscopicMetaballLayout ModifiableBodyLayout { get; private set; } = new();
 
-    [JsonProperty]
-    public List<CellType> CellTypes { get; private set; } = new();
+    public IReadOnlyMacroscopicMetaballLayout BodyLayout => ModifiableBodyLayout;
+
+    public List<CellType> ModifiableCellTypes { get; private set; } = new();
+
+    public IReadOnlyList<IReadOnlyCellTypeDefinition> CellTypes => ModifiableCellTypes;
 
     /// <summary>
     ///   The scale in meters of the species
     /// </summary>
     public float Scale { get; set; } = 1.0f;
 
-    [JsonProperty]
     public float BrainPower { get; private set; }
 
-    [JsonProperty]
     public float MuscularPower { get; private set; }
 
     /// <summary>
     ///   Where this species reproduces, used to control also where individuals of this species spawn and where the
     ///   player spawns
     /// </summary>
-    [JsonProperty]
     public ReproductionLocation ReproductionLocation { get; set; }
 
-    [JsonProperty]
     public MacroscopicSpeciesType MacroscopicType { get; private set; }
 
     /// <summary>
     ///   All organelles in all the species' placed metaballs (there can be a lot of duplicates in this list)
     /// </summary>
-    [JsonIgnore]
     public IEnumerable<OrganelleTemplate> Organelles =>
-        BodyLayout.Select(m => m.CellType).Distinct().SelectMany(c => c.Organelles);
+        ((MetaballLayout<MacroscopicMetaball>)ModifiableBodyLayout).Select(m => m.ModifiableCellType).Distinct()
+        .SelectMany(c => c.ModifiableOrganelles);
 
-    [JsonIgnore]
-    public override string StringCode => ThriveJsonConverter.Instance.SerializeObject(this);
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.MacroscopicSpecies;
 
     public static MacroscopicSpeciesType CalculateMacroscopicTypeFromLayout(MetaballLayout<MacroscopicMetaball> layout,
         float scale)
@@ -74,6 +71,11 @@ public class MacroscopicSpecies : Species
         return MacroscopicSpeciesType.Macroscopic;
     }
 
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        throw new NotImplementedException();
+    }
+
     public override void OnEdited()
     {
         base.OnEdited();
@@ -83,13 +85,27 @@ public class MacroscopicSpecies : Species
         CalculateBrainPower();
         CalculateMuscularPower();
 
-        // Note that a few stage transitions are explicit for the player so the editor will override this
+        // Note that a few stage transitions are explicit for the player, so the editor will override this
         SetTypeFromBrainPower();
+
+        // Probably don't need to reset endosymbiont status here any more as it is likely not possible to perform it
+        // at this stage
+
+#if DEBUG
+        foreach (var metaball in ModifiableBodyLayout.AsModifiable())
+        {
+            if (!ModifiableCellTypes.Contains(metaball.ModifiableCellType))
+            {
+                GD.PrintErr("Metaball has a cell type that doesn't exist");
+                Debugger.Break();
+            }
+        }
+#endif
     }
 
     public override bool RepositionToOrigin()
     {
-        return BodyLayout.RepositionToGround();
+        return ModifiableBodyLayout.RepositionToGround();
     }
 
     public override void UpdateInitialCompounds()
@@ -128,23 +144,24 @@ public class MacroscopicSpecies : Species
 
         var casted = (MacroscopicSpecies)mutation;
 
-        CellTypes.Clear();
+        ModifiableCellTypes.Clear();
 
-        foreach (var cellType in casted.CellTypes)
+        foreach (var cellType in casted.ModifiableCellTypes)
         {
-            CellTypes.Add((CellType)cellType.Clone());
+            ModifiableCellTypes.Add((CellType)cellType.Clone());
         }
 
-        BodyLayout.Clear();
+        ModifiableBodyLayout.Clear();
 
         var metaballMapping = new Dictionary<Metaball, MacroscopicMetaball>();
 
         // Make sure we process things with parents first
         // TODO: if the tree depth calculation is too expensive here, we'll need to cache the values in the metaball
         // objects
-        foreach (var metaball in casted.BodyLayout.OrderBy(m => m.CalculateTreeDepth()))
+        foreach (var metaball in ((MetaballLayout<MacroscopicMetaball>)casted.ModifiableBodyLayout).OrderBy(m =>
+                     m.CalculateTreeDepth()))
         {
-            BodyLayout.Add(metaball.Clone(metaballMapping));
+            ModifiableBodyLayout.Add(metaball.Clone(metaballMapping));
         }
     }
 
@@ -174,16 +191,16 @@ public class MacroscopicSpecies : Species
 
         ClonePropertiesTo(result);
 
-        foreach (var cellType in CellTypes)
+        foreach (var cellType in ModifiableCellTypes)
         {
-            result.CellTypes.Add((CellType)cellType.Clone());
+            result.ModifiableCellTypes.Add((CellType)cellType.Clone());
         }
 
         var metaballMapping = new Dictionary<Metaball, MacroscopicMetaball>();
 
-        foreach (var metaball in BodyLayout)
+        foreach (var metaball in (MetaballLayout<MacroscopicMetaball>)ModifiableBodyLayout)
         {
-            result.BodyLayout.Add(metaball.Clone(metaballMapping));
+            result.ModifiableBodyLayout.Add(metaball.Clone(metaballMapping));
         }
 
         return result;
@@ -195,7 +212,7 @@ public class MacroscopicSpecies : Species
 
         foreach (var metaball in layout)
         {
-            if (metaball.CellType.IsBrainTissueType())
+            if (metaball.ModifiableCellType.IsBrainTissueType())
             {
                 // TODO: check that volume scaling in physically sensible way (using GetVolume) is what we want here
                 // Maybe we would actually just want to multiply by the scale number to buff small species' brain?
@@ -212,7 +229,7 @@ public class MacroscopicSpecies : Species
 
         foreach (var metaball in layout)
         {
-            if (metaball.CellType.IsMuscularTissueType())
+            if (metaball.ModifiableCellType.IsMuscularTissueType())
             {
                 // TODO: check that volume scaling in physically sensible way (using GetVolume) is what we want here
                 result += metaball.GetVolume(scale);
@@ -224,7 +241,7 @@ public class MacroscopicSpecies : Species
 
     private void SetTypeFromBrainPower()
     {
-        MacroscopicType = CalculateMacroscopicTypeFromLayout(BodyLayout, Scale);
+        MacroscopicType = CalculateMacroscopicTypeFromLayout(ModifiableBodyLayout, Scale);
     }
 
     private void SetInitialCompoundsForDefault()
@@ -250,11 +267,11 @@ public class MacroscopicSpecies : Species
 
     private void CalculateBrainPower()
     {
-        BrainPower = CalculateBrainPowerFromLayout(BodyLayout, Scale);
+        BrainPower = CalculateBrainPowerFromLayout(ModifiableBodyLayout, Scale);
     }
 
     private void CalculateMuscularPower()
     {
-        MuscularPower = CalculateMuscularPowerFromLayout(BodyLayout, Scale);
+        MuscularPower = CalculateMuscularPowerFromLayout(ModifiableBodyLayout, Scale);
     }
 }

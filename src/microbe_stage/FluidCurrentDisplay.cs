@@ -10,10 +10,18 @@ public partial class FluidCurrentDisplay : GpuParticles3D
     private readonly StringName gameTimeParameterName = new("gameTime");
     private readonly StringName speedParameterName = new("speed");
     private readonly StringName chaoticnessParameterName = new("chaoticness");
-    private readonly StringName scaleParameterName = new("scale");
+    private readonly StringName inverseScaleParameterName = new("inverseScale");
     private readonly StringName brightnessParameterName = new("brightness");
+    private readonly StringName colorParameterName = new("colorValue");
+    private readonly StringName particleDepthVariationParameterName = new("particleDepthVariation");
 
 #pragma warning disable CA2213
+    [Export]
+    private Mesh normalParticleMesh = null!;
+
+    [Export]
+    private Mesh trailedParticleMesh = null!;
+
     private ShaderMaterial material = null!;
 
     private Node3D parent = null!;
@@ -57,29 +65,45 @@ public partial class FluidCurrentDisplay : GpuParticles3D
             GlobalPosition = new Vector3(previousParentPosition.X, 1.0f, previousParentPosition.Z);
         }
 
-        if (!PauseManager.Instance.Paused)
-        {
-            SpeedScale = timeScaling.WorldTimeScale;
-
-            time += (float)(delta * SpeedScale);
-
-            material.SetShaderParameter(gameTimeParameterName, time);
-        }
-        else
-        {
-            SpeedScale = 0.0f;
-        }
+        SpeedScale = timeScaling.WorldTimeScale;
     }
 
     public void ApplyBiome(Biome biome)
     {
-        material.SetShaderParameter(speedParameterName, biome.WaterCurrentSpeed);
-        material.SetShaderParameter(chaoticnessParameterName, biome.WaterCurrentChaoticness);
-        material.SetShaderParameter(scaleParameterName, biome.WaterCurrentScale);
+        material.SetShaderParameter(speedParameterName, biome.WaterCurrents.Speed);
+        material.SetShaderParameter(chaoticnessParameterName, biome.WaterCurrents.Chaoticness);
+        material.SetShaderParameter(inverseScaleParameterName, biome.WaterCurrents.InverseScale);
 
-        material.SetShaderParameter(brightnessParameterName, biome.CompoundCloudBrightness);
+        material.SetShaderParameter(colorParameterName, biome.WaterCurrents.Colour);
 
-        Amount = biome.WaterCurrentParticleCount;
+        TrailEnabled = biome.WaterCurrents.UseTrails;
+        if (biome.WaterCurrents.UseTrails)
+        {
+            DrawPass1 = trailedParticleMesh;
+            material.SetShaderParameter(particleDepthVariationParameterName, 0.0f);
+        }
+        else
+        {
+            DrawPass1 = normalParticleMesh;
+            material.SetShaderParameter(particleDepthVariationParameterName, 1.0f);
+        }
+
+        Amount = biome.WaterCurrents.ParticleCount;
+    }
+
+    public void UpdateLightLevel(Patch patch)
+    {
+        float lightLevel = patch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient;
+
+        material.SetShaderParameter(brightnessParameterName,
+            (patch.BiomeTemplate.CompoundCloudBrightness - 1.0f) * lightLevel + 1.0f);
+    }
+
+    public void UpdateTime(float newTime)
+    {
+        time = newTime;
+
+        material.SetShaderParameter(gameTimeParameterName, time);
     }
 
     protected override void Dispose(bool disposing)
@@ -89,8 +113,10 @@ public partial class FluidCurrentDisplay : GpuParticles3D
             gameTimeParameterName.Dispose();
             speedParameterName.Dispose();
             chaoticnessParameterName.Dispose();
-            scaleParameterName.Dispose();
+            inverseScaleParameterName.Dispose();
             brightnessParameterName.Dispose();
+            colorParameterName.Dispose();
+            particleDepthVariationParameterName.Dispose();
         }
 
         base.Dispose(disposing);

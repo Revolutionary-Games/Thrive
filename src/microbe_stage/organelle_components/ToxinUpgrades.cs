@@ -1,4 +1,5 @@
 ﻿using System;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Upgrades for toxin firing organelles
@@ -8,9 +9,10 @@
 ///     This is in a separate files as there isn't a toxin organelle component file to put this into
 ///   </para>
 /// </remarks>
-[JSONDynamicTypeAllowed]
 public class ToxinUpgrades : IComponentSpecificUpgrades
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public ToxinUpgrades(ToxinType baseType, float toxicity)
     {
         BaseType = baseType;
@@ -25,10 +27,36 @@ public class ToxinUpgrades : IComponentSpecificUpgrades
     public ToxinType BaseType { get; set; }
 
     /// <summary>
-    ///   Toxicity / speed of firing of the toxin. Range is -1 to 1, with 0 being the default. 1 is maximum potency
-    ///   and -1 is maximum firerate with minimum potency.
+    ///   Toxicity / speed of firing of the toxin. Range is -1 to 1, with 0 being the default. 1 is the maximum potency
+    ///   and -1 is the maximum firerate with minimum potency.
     /// </summary>
     public float Toxicity { get; set; }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ToxinUpgrades;
+
+    public bool CanBeReferencedInArchive => false;
+
+    public static ToxinUpgrades ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new ToxinUpgrades((ToxinType)reader.ReadInt32(), reader.ReadFloat());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write((int)BaseType);
+        writer.Write(Toxicity);
+    }
+
+    public double CalculateCost(IComponentSpecificUpgrades? previousUpgrades)
+    {
+        // TODO: calculate cost of this upgrade once custom upgrades can cost MP
+        return 0;
+    }
 
     public bool Equals(IComponentSpecificUpgrades? other)
     {

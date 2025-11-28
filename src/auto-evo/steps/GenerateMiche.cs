@@ -37,7 +37,14 @@ public class GenerateMiche : IRunStep
         rootMiche.AddChild(metabolicRoot);
         metabolicRoot.AddChild(generatedMiche);
 
-        // Autotrophic Miches
+        // "Autotrophic" Miches
+        var phosphateMiche = new Miche(globalCache.PhosphatePressure);
+        var ammoniaMiche = new Miche(globalCache.AmmoniaPressure);
+
+        generatedMiche.AddChild(phosphateMiche);
+        phosphateMiche.AddChild(ammoniaMiche);
+
+        var lastGeneralMiche = ammoniaMiche;
 
         // Glucose
         if (patch.Biome.TryGetCompound(Compound.Glucose, CompoundAmountType.Biome, out var glucoseAmount) &&
@@ -46,7 +53,7 @@ public class GenerateMiche : IRunStep
             var glucoseMiche = new Miche(globalCache.GlucoseConversionEfficiencyPressure);
             glucoseMiche.AddChild(new Miche(globalCache.GlucoseCloudPressure));
 
-            generatedMiche.AddChild(glucoseMiche);
+            lastGeneralMiche.AddChild(glucoseMiche);
         }
 
         var hasSmallIronChunk =
@@ -68,7 +75,7 @@ public class GenerateMiche : IRunStep
             // TODO: maybe allowing direct iron in a patch should also be considered (though not currently used by
             // any biome in the game)?
 
-            generatedMiche.AddChild(ironMiche);
+            lastGeneralMiche.AddChild(ironMiche);
         }
 
         var hasSmallSulfurChunk =
@@ -104,7 +111,7 @@ public class GenerateMiche : IRunStep
 
             generateATP.AddChild(maintainGlucose);
             hydrogenSulfideMiche.AddChild(generateATP);
-            generatedMiche.AddChild(hydrogenSulfideMiche);
+            lastGeneralMiche.AddChild(hydrogenSulfideMiche);
         }
 
         var hasRadioactiveChunk =
@@ -117,7 +124,7 @@ public class GenerateMiche : IRunStep
             var radiationMiche = new Miche(globalCache.RadiationConversionEfficiencyPressure);
             radiationMiche.AddChild(new Miche(globalCache.RadioactiveChunkPressure));
 
-            generatedMiche.AddChild(radiationMiche);
+            lastGeneralMiche.AddChild(radiationMiche);
         }
 
         // Sunlight
@@ -133,28 +140,45 @@ public class GenerateMiche : IRunStep
             maintainGlucose.AddChild(envPressure);
             generateATP.AddChild(maintainGlucose);
             sunlightMiche.AddChild(generateATP);
-            generatedMiche.AddChild(sunlightMiche);
+            lastGeneralMiche.AddChild(sunlightMiche);
         }
 
         // Heat
         // TODO: the 60 here should be a constant or explained some other way what the threshold is
         // As only non-LAWK organelles can use heat, we don't add the temperature miches when LAWK is on
-        if (patch.Biome.TryGetCompound(Compound.Temperature, CompoundAmountType.Biome, out var temperatureAmount) &&
+        if (patch.Biome.TryGetCompound(Compound.Temperature, CompoundAmountType.Biome,
+                out BiomeCompoundProperties temperatureAmount) &&
             temperatureAmount.Ambient > 60 && globalCache.HasTemperature)
         {
             var tempMiche = new Miche(globalCache.TemperatureConversionEfficiencyPressure);
-            tempMiche.AddChild(new Miche(globalCache.TemperatureCompoundPressure));
+            var tempSessilityMiche = new Miche(globalCache.TemperatureSessilityPressure);
+            var generateATP = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
+            var maintainGlucose = new Miche(globalCache.MaintainGlucose);
+            var tempCompPressure = new Miche(globalCache.TemperatureCompoundPressure);
 
-            generatedMiche.AddChild(tempMiche);
+            tempSessilityMiche.AddChild(tempCompPressure);
+            maintainGlucose.AddChild(tempSessilityMiche);
+            generateATP.AddChild(maintainGlucose);
+            tempMiche.AddChild(generateATP);
+            lastGeneralMiche.AddChild(tempMiche);
         }
 
         var predationRoot = new Miche(globalCache.PredatorRoot);
         var predationGlucose = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
 
-        // Heterotrophic Miches
-        foreach (var possiblePrey in patch.SpeciesInPatch)
+        // Per Target-Species Miches
+        foreach (var targetSpecies in patch.SpeciesInPatch)
         {
-            predationGlucose.AddChild(new Miche(new PredationEffectivenessPressure(possiblePrey.Key, 1.0f)));
+            // Predation Miches
+            predationGlucose.AddChild(new Miche(new PredationEffectivenessPressure(targetSpecies.Key, 1.0f)));
+
+            // Endosymbiosis Miches
+            if (targetSpecies.Key.PlayerSpecies && targetSpecies.Key.Endosymbiosis.StartedEndosymbiosis != null)
+            {
+                var endosymbiont = targetSpecies.Key.Endosymbiosis.StartedEndosymbiosis.Species;
+                var endosymbiosisPressure = new Miche(new EndosymbiosisPressure(endosymbiont, targetSpecies.Key, 1.0f));
+                generatedMiche.AddChild(endosymbiosisPressure);
+            }
         }
 
         if (patch.SpeciesInPatch.Count > 1)

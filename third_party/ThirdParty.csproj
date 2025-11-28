@@ -7,6 +7,13 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
 
+  <!-- Ignore projects using their own build files -->
+  <PropertyGroup>
+    <DefaultItemExcludes>
+      $(DefaultItemExcludes);Arch\**\*;Arch.Extended\**\*
+    </DefaultItemExcludes>
+  </PropertyGroup>
+
   <PropertyGroup>
     <Optimize>true</Optimize>
     <WarningLevel>1</WarningLevel>
@@ -47,7 +54,7 @@
 
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.100" PrivateAssets="all" />
   </ItemGroup>
 
 </Project>

@@ -3,18 +3,19 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
-[With(typeof(Physics))]
-[With(typeof(CollisionManagement))]
+/// <summary>
+///   Applies <see cref="CollisionManagement"/> to physics bodies
+/// </summary>
 [RunsAfter(typeof(PhysicsBodyCreationSystem))]
 [RuntimeCost(1)]
-public sealed class PhysicsCollisionManagementSystem : AEntitySetSystem<float>
+public partial class PhysicsCollisionManagementSystem : BaseSystem<World, float>
 {
     private readonly PhysicalWorld physicalWorld;
 
@@ -28,8 +29,7 @@ public sealed class PhysicsCollisionManagementSystem : AEntitySetSystem<float>
     /// </summary>
     private readonly List<NativePhysicsBody> resolvedBodyReferences = new();
 
-    public PhysicsCollisionManagementSystem(PhysicalWorld physicalWorld, World world, IParallelRunner runner) :
-        base(world, runner)
+    public PhysicsCollisionManagementSystem(PhysicalWorld physicalWorld, World world) : base(world)
     {
         this.physicalWorld = physicalWorld;
     }
@@ -63,11 +63,10 @@ public sealed class PhysicsCollisionManagementSystem : AEntitySetSystem<float>
         }
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref Physics physics, ref CollisionManagement collisionManagement, in Entity entity)
     {
-        ref var physics = ref entity.Get<Physics>();
-        ref var collisionManagement = ref entity.Get<CollisionManagement>();
-
         if (collisionManagement.StateApplied)
             return;
 
@@ -81,12 +80,41 @@ public sealed class PhysicsCollisionManagementSystem : AEntitySetSystem<float>
 
         collisionManagement.StateApplied = true;
 
-        // All collision disable is now in Physics directly and applied by PhysicsUpdateAndPositionSystem
+        // All-collision-disable-flag is now in Physics directly and applied by PhysicsUpdateAndPositionSystem
 
-        // Collision disable against specific bodies
+        // Apply collision disabling against specific bodies
         try
         {
             ref var ignoreCollisions = ref collisionManagement.IgnoredCollisionsWith;
+            ref var removeIgnoreCollisions = ref collisionManagement.RemoveIgnoredCollisions;
+
+            // Check if any ignores can be removed.
+            if (removeIgnoreCollisions != null && ignoreCollisions != null)
+            {
+                if (removeIgnoreCollisions.Count > 0)
+                {
+                    for (int i = 0; i < removeIgnoreCollisions.Count; ++i)
+                    {
+                        var ignoreRemoveEntity = removeIgnoreCollisions[i];
+
+                        // If the ignore list still has the entity, physics ignore will not be removed
+                        if (ignoreCollisions.Contains(ignoreRemoveEntity))
+                            continue;
+
+                        var ignoreWith = GetPhysicsForEntity(ignoreRemoveEntity, ref collisionManagement);
+
+                        if (ignoreWith != null)
+                            physicalWorld.BodyRemoveCollisionIgnoreWith(physicsBody, ignoreWith);
+
+                        removeIgnoreCollisions.Remove(ignoreRemoveEntity);
+
+                        // One step back
+                        --i;
+                    }
+                }
+            }
+
+            // Actual applying of collision ignores. Ignores are only set here, not removed.
             if (ignoreCollisions == null)
             {
                 if (collisionManagement.CollisionIgnoresUsed)
@@ -101,7 +129,7 @@ public sealed class PhysicsCollisionManagementSystem : AEntitySetSystem<float>
 
                 if (ignoreCollisions.Count < 2)
                 {
-                    // When ignoring just one collision use the single body API as that doesn't need to allocate
+                    // When ignoring just one collision, use the single body API as that doesn't need to allocate
                     // any lists
                     var ignoreWith = GetPhysicsForEntity(ignoreCollisions[0], ref collisionManagement);
                     if (ignoreWith != null)
@@ -182,6 +210,12 @@ public sealed class PhysicsCollisionManagementSystem : AEntitySetSystem<float>
 
         try
         {
+            if (entity == Entity.Null || !entity.IsAlive())
+                throw new Exception("Entity is dead");
+
+            if (!entity.Has<Physics>())
+                throw new Exception($"Entity {entity} has no Physics component");
+
             ref var physics = ref entity.Get<Physics>();
             body = physics.Body;
         }

@@ -2,6 +2,14 @@
 ## It contains all the necessary information about the executed stage, such as memory observers, reports, orphan monitor
 class_name GdUnitExecutionContext
 
+enum GC_ORPHANS_CHECK {
+	NONE,
+	SUITE_HOOK_AFTER,
+	TEST_HOOK_AFTER,
+	TEST_CASE
+}
+
+
 var _parent_context: GdUnitExecutionContext
 var _sub_context: Array[GdUnitExecutionContext] = []
 var _orphan_monitor: GdUnitOrphanNodesMonitor
@@ -14,20 +22,7 @@ var _name: String
 var _test_execution_iteration: int = 0
 var _flaky_test_check := GdUnitSettings.is_test_flaky_check_enabled()
 var _flaky_test_retries := GdUnitSettings.get_flaky_max_retries()
-
-
-# execution states
-var _is_calculated := false
-var _is_success: bool
-var _is_flaky: bool
-var _is_skipped: bool
-var _has_warnings: bool
-var _has_failures: bool
-var _has_errors: bool
-var _failure_count := 0
-var _orphan_count := 0
-var _error_count := 0
-var _skipped_count := 0
+var _orphans := -1
 
 
 var error_monitor: GodotGdErrorMonitor = null:
@@ -143,8 +138,9 @@ func orphan_monitor_stop() -> void:
 	_orphan_monitor.stop()
 
 
-func add_report(report: GdUnitReport) -> void:
+func add_report(report: GdUnitReport) -> GdUnitReport:
 	_report_collector.push_back(report)
+	return report
 
 
 func reports() -> Array[GdUnitReport]:
@@ -154,144 +150,61 @@ func reports() -> Array[GdUnitReport]:
 func collect_reports(recursive: bool) -> Array[GdUnitReport]:
 	if not recursive:
 		return reports()
-	var current_reports := reports()
+
 	# we combine the reports of test_before(), test_after() and test() to be reported by `fire_test_ended`
+	# we strictly need to copy the reports before adding sub context reports to avoid manipulation of the current context
+	var current_reports := reports().duplicate()
 	for sub_context in _sub_context:
-		current_reports.append_array(sub_context.reports())
-		# needs finally to clean the test reports to avoid counting twice
-		sub_context.reports().clear()
+		current_reports.append_array(sub_context.collect_reports(true))
+
 	return current_reports
 
 
-func collect_orphans(p_reports: Array[GdUnitReport]) -> int:
-	var orphans := 0
-	if not _sub_context.is_empty():
-		orphans += collect_testcase_orphan_reports(_sub_context[0], p_reports)
-	orphans += collect_teststage_orphan_reports(p_reports)
-	return orphans
+func calculate_statistics(reports_: Array[GdUnitReport]) -> Dictionary:
+	var failed_count := GdUnitTestReportCollector.count_failures(reports_)
+	var error_count := GdUnitTestReportCollector.count_errors(reports_)
+	var warn_count := GdUnitTestReportCollector.count_warnings(reports_)
+	var skip_count := GdUnitTestReportCollector.count_skipped(reports_)
+	var is_failed := !is_success()
+	var orphan_count := _count_orphans()
+	var elapsed_time := _timer.elapsed_since_ms()
+	var retries :=  1 if _parent_context == null else _sub_context.size()
+	# Mark as flaky if it is successful, but errors were counted
+	var is_flaky := retries > 1  and not is_failed
+	# In the case of a flakiness test, we do not report an error counter, as an unreliable test is considered successful
+	# after a certain number of repetitions.
+	if is_flaky:
+		failed_count = 0
 
-
-func collect_testcase_orphan_reports(context: GdUnitExecutionContext, p_reports: Array[GdUnitReport]) -> int:
-	var orphans := context.count_orphans()
-	if orphans > 0:
-		p_reports.push_front(GdUnitReport.new()\
-			.create(GdUnitReport.WARN, context.test_case.line_number(), GdAssertMessages.orphan_detected_on_test(orphans)))
-	return orphans
-
-
-func collect_teststage_orphan_reports(p_reports: Array[GdUnitReport]) -> int:
-	var orphans := count_orphans()
-	if orphans > 0:
-		p_reports.push_front(GdUnitReport.new()\
-			.create(GdUnitReport.WARN, test_case.line_number(), GdAssertMessages.orphan_detected_on_test_setup(orphans)))
-	return orphans
-
-
-func build_reports(recursive:= true) -> Array[GdUnitReport]:
-	var collected_reports: Array[GdUnitReport] = collect_reports(recursive)
-	if recursive:
-		_orphan_count = collect_orphans(collected_reports)
-	else:
-		_orphan_count = count_orphans()
-		if _orphan_count > 0:
-			collected_reports.push_front(GdUnitReport.new() \
-				.create(GdUnitReport.WARN, 1, GdAssertMessages.orphan_detected_on_suite_setup(_orphan_count)))
-	_is_skipped = is_skipped()
-	_skipped_count = count_skipped(recursive)
-	_is_success = is_success()
-	_is_flaky = is_flaky()
-	_has_warnings = has_warnings()
-	_has_errors = has_errors()
-	_error_count = count_errors(recursive)
-	if !_is_success:
-		_has_failures = has_failures()
-		_failure_count = count_failures(recursive)
-	_is_calculated = true
-	return collected_reports
-
-
-# Evaluates the actual test case status by validate latest execution state (cold be more based on flaky max retry count)
-func evaluate_test_retry_status() -> bool:
-	# get latest test execution status
-	var last_test_status :GdUnitExecutionContext = _sub_context.back()
-	_is_skipped = last_test_status.is_skipped()
-	_skipped_count = last_test_status.count_skipped(false)
-	_is_success = last_test_status.is_success()
-	# if success but it have more than one sub contexts the test was rerurn becouse of failures and will be marked as flaky
-	_is_flaky = _is_success and _sub_context.size() > 1
-	_has_warnings = last_test_status.has_warnings()
-	_has_errors = last_test_status.has_errors()
-	_error_count = last_test_status.count_errors(false)
-	_has_failures = last_test_status.has_failures()
-	_failure_count = last_test_status.count_failures(false)
-	_orphan_count = last_test_status.collect_orphans(collect_reports(false))
-	_is_calculated = true
-	# finally cleanup the retry execution contexts
-	dispose_sub_contexts()
-	return _is_success
-
-
-func get_execution_statistics() -> Dictionary:
 	return {
-		GdUnitEvent.RETRY_COUNT: _test_execution_iteration,
-		GdUnitEvent.ORPHAN_NODES: _orphan_count,
-		GdUnitEvent.ELAPSED_TIME: _timer.elapsed_since_ms(),
-		GdUnitEvent.FAILED: !_is_success,
-		GdUnitEvent.ERRORS: _has_errors,
-		GdUnitEvent.WARNINGS: _has_warnings,
-		GdUnitEvent.FLAKY: _is_flaky,
-		GdUnitEvent.SKIPPED: _is_skipped,
-		GdUnitEvent.FAILED_COUNT: _failure_count,
-		GdUnitEvent.ERROR_COUNT: _error_count,
-		GdUnitEvent.SKIPPED_COUNT: _skipped_count
+		GdUnitEvent.RETRY_COUNT: retries,
+		GdUnitEvent.ELAPSED_TIME: elapsed_time,
+		GdUnitEvent.FAILED: is_failed,
+		GdUnitEvent.ERRORS: error_count > 0,
+		GdUnitEvent.WARNINGS: warn_count > 0,
+		GdUnitEvent.FLAKY: is_flaky,
+		GdUnitEvent.SKIPPED: skip_count > 0,
+		GdUnitEvent.FAILED_COUNT: failed_count,
+		GdUnitEvent.ERROR_COUNT: error_count,
+		GdUnitEvent.SKIPPED_COUNT: skip_count,
+		GdUnitEvent.ORPHAN_NODES: orphan_count,
 	}
-
-
-func has_failures() -> bool:
-	return (
-		_sub_context.any(func(c :GdUnitExecutionContext) -> bool:
-			return c._has_failures if c._is_calculated else c.has_failures())
-		or _report_collector.has_failures()
-	)
-
-
-func has_errors() -> bool:
-	return (
-		_sub_context.any(func(c :GdUnitExecutionContext) -> bool:
-			return c._has_errors if c._is_calculated else c.has_errors())
-		or _report_collector.has_errors()
-	)
-
-
-func has_warnings() -> bool:
-	return (
-		_sub_context.any(func(c :GdUnitExecutionContext) -> bool:
-			return c._has_warnings if c._is_calculated else c.has_warnings())
-		or _report_collector.has_warnings()
-	)
-
-
-func is_flaky() -> bool:
-	return (
-		_sub_context.any(func(c :GdUnitExecutionContext) -> bool:
-			return c._is_flaky if c._is_calculated else c.is_flaky())
-		or _test_execution_iteration > 1
-	)
 
 
 func is_success() -> bool:
 	if _sub_context.is_empty():
-		return not has_failures()
+		return not _report_collector.has_failures()
+	# we on test suite level?
+	if _parent_context == null:
+		return not _report_collector.has_failures()
 
-	var failed_context := _sub_context.filter(func(c :GdUnitExecutionContext) -> bool:
-			return !(c._is_success if c._is_calculated else c.is_success()))
-	return failed_context.is_empty() and not has_failures()
+	return _sub_context[-1].is_success() and not _report_collector.has_failures()
 
 
 func is_skipped() -> bool:
 	return (
 		_sub_context.any(func(c :GdUnitExecutionContext) -> bool:
-			return c._is_skipped if c._is_calculated else c.is_skipped())
+			return c.is_skipped())
 		or test_case.is_skipped() if test_case != null else false
 	)
 
@@ -300,35 +213,20 @@ func is_interupted() -> bool:
 	return false if test_case == null else test_case.is_interupted()
 
 
-func count_failures(recursive: bool) -> int:
-	if not recursive:
-		return _report_collector.count_failures()
-	return _sub_context\
-		.map(func(c :GdUnitExecutionContext) -> int:
-				return c.count_failures(recursive)).reduce(sum, _report_collector.count_failures())
+func _count_orphans() -> int:
+	if _orphans != -1:
+		return _orphans
 
-
-func count_errors(recursive: bool) -> int:
-	if not recursive:
-		return _report_collector.count_errors()
-	return _sub_context\
-		.map(func(c :GdUnitExecutionContext) -> int:
-				return c.count_errors(recursive)).reduce(sum, _report_collector.count_errors())
-
-
-func count_skipped(recursive: bool) -> int:
-	if not recursive:
-		return _report_collector.count_skipped()
-	return _sub_context\
-		.map(func(c :GdUnitExecutionContext) -> int:
-				return c.count_skipped(recursive)).reduce(sum, _report_collector.count_skipped())
-
-
-func count_orphans() -> int:
 	var orphans := 0
 	for c in _sub_context:
-		orphans += c._orphan_monitor.orphan_nodes()
-	return _orphan_monitor.orphan_nodes() - orphans
+		if _orphan_monitor.orphan_nodes() != c._orphan_monitor.orphan_nodes():
+			orphans += c._count_orphans()
+
+	_orphans = _orphan_monitor.orphan_nodes()
+	if _orphan_monitor.orphan_nodes() != orphans:
+		_orphans -= orphans
+
+	return _orphans
 
 
 func sum(accum: int, number: int) -> int:
@@ -336,7 +234,7 @@ func sum(accum: int, number: int) -> int:
 
 
 func retry_execution() -> bool:
-	var retry :=  _test_execution_iteration < 1 if not _flaky_test_check else _test_execution_iteration < _flaky_test_retries
+	var retry := _test_execution_iteration < 1 if not _flaky_test_check else _test_execution_iteration < _flaky_test_retries
 	if retry:
 		_test_execution_iteration += 1
 	return retry
@@ -346,9 +244,26 @@ func register_auto_free(obj: Variant) -> Variant:
 	return _memory_observer.register_auto_free(obj)
 
 
-## Runs the gdunit garbage collector to free registered object
-func gc() -> void:
+## Runs the gdunit garbage collector to free registered object and handle orphan node reporting
+func gc(gc_orphan_check: GC_ORPHANS_CHECK = GC_ORPHANS_CHECK.NONE) -> void:
 	# unreference last used assert form the test to prevent memory leaks
 	GdUnitThreadManager.get_current_context().clear_assert()
 	await _memory_observer.gc()
 	orphan_monitor_stop()
+
+	var orphans := _count_orphans()
+	match(gc_orphan_check):
+		GC_ORPHANS_CHECK.SUITE_HOOK_AFTER:
+			if orphans > 0:
+				reports().push_front(GdUnitReport.new() \
+					.create(GdUnitReport.WARN, 1, GdAssertMessages.orphan_detected_on_suite_setup(orphans)))
+
+		GC_ORPHANS_CHECK.TEST_HOOK_AFTER:
+			if orphans > 0:
+				reports().push_front(GdUnitReport.new()\
+					.create(GdUnitReport.WARN, 1, GdAssertMessages.orphan_detected_on_test_setup(orphans)))
+
+		GC_ORPHANS_CHECK.TEST_CASE:
+			if orphans > 0:
+				reports().push_front(GdUnitReport.new()\
+					 .create(GdUnitReport.WARN, test_case.line_number(), GdAssertMessages.orphan_detected_on_test(orphans)))

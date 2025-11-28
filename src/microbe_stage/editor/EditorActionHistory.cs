@@ -1,6 +1,10 @@
-﻿using System;
+﻿// #define DEBUG_ACTION_COSTS
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Saving.Serializers;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Holds the action history for the editor.
@@ -18,100 +22,23 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
 {
     private List<EditorCombinableActionData>? cache;
 
+    public EditorActionHistory()
+    {
+    }
+
+    /// <summary>
+    ///   Used by the deserializer
+    /// </summary>
+    protected EditorActionHistory(List<TAction> actions, int actionIndex) : base(actions, actionIndex)
+    {
+    }
+
+    public override ushort CurrentArchiveVersion => ActionHistorySerializer.SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.ExtendedEditorActionHistory;
+
     private List<EditorCombinableActionData> History => cache ??= GetActionHistorySinceLastHistoryResettingAction();
-
-    /// <summary>
-    ///   Calculates how much MP these actions would cost if performed on top of the current history.
-    /// </summary>
-    public double WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
-    {
-        double sum = 0;
-
-        // TODO: somehow avoid the enumerator allocation here
-        foreach (var action in actions)
-            sum += WhatWouldActionCost(action);
-
-        return sum;
-    }
-
-    /// <summary>
-    ///   Calculates how much MP this action would cost if performed on top of the current history.
-    /// </summary>
-    public double WhatWouldActionCost(EditorCombinableActionData combinableAction)
-    {
-        if (CheatManager.InfiniteMP)
-            return 0;
-
-        return combinableAction.CalculateCost() + FindCheapestActionToCombineWith(combinableAction, History).CostDelta;
-    }
-
-    /// <summary>
-    ///   Calculates the remaining MP from the action history.
-    /// </summary>
-    public double CalculateMutationPointsLeft()
-    {
-        if (CheatManager.InfiniteMP)
-            return Constants.BASE_MUTATION_POINTS;
-
-        // As History is a reference, changing this affects the history cache
-        var processedHistory = History;
-        var copyLength = processedHistory.Count;
-
-        for (int compareIndex = 1; compareIndex < copyLength; ++compareIndex)
-        {
-            while (true)
-            {
-                // Get the minimum cost action
-                var (_, minimumCostCombinableAction, mode) =
-                    FindCheapestActionToCombineWith(processedHistory[compareIndex],
-                        processedHistory.Take(compareIndex));
-
-                // If no more can be merged together, try next one.
-                if (mode == ActionInterferenceMode.NoInterference || minimumCostCombinableAction == null)
-                    break;
-
-                var minimumCostCombinableActionIndex = processedHistory.IndexOf(minimumCostCombinableAction);
-
-                switch (mode)
-                {
-                    case ActionInterferenceMode.Combinable:
-                    {
-                        var combinedValue = (EditorCombinableActionData)processedHistory[compareIndex]
-                            .Combine(minimumCostCombinableAction);
-                        processedHistory.RemoveAt(compareIndex);
-                        processedHistory.RemoveAt(minimumCostCombinableActionIndex);
-                        processedHistory.Insert(minimumCostCombinableActionIndex, combinedValue);
-                        --copyLength;
-                        --compareIndex;
-                        break;
-                    }
-
-                    case ActionInterferenceMode.ReplacesOther:
-                    {
-                        processedHistory.RemoveAt(minimumCostCombinableActionIndex);
-                        --copyLength;
-                        --compareIndex;
-                        break;
-                    }
-
-                    case ActionInterferenceMode.CancelsOut:
-                    {
-                        processedHistory.RemoveAt(compareIndex);
-                        processedHistory.RemoveAt(minimumCostCombinableActionIndex);
-                        copyLength -= 2;
-                        compareIndex -= 2;
-                        break;
-                    }
-                }
-
-                // If the mode is the following, no more checks are needed.
-                if (mode == ActionInterferenceMode.CancelsOut)
-                    break;
-            }
-        }
-
-        return Constants.BASE_MUTATION_POINTS - processedHistory.Sum(p => p.CalculateCost());
-    }
 
     public override bool Redo()
     {
@@ -169,9 +96,9 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
 
         var action = Actions[ActionIndex - 1];
 
-        // We undo the action here as when it is added back it will be performed again
-        // And we need this to adjust the ActionIndex to be right after we remove the element
-        // Note that this will clear the history cache
+        // We undo the action here as when it is added back, it will be performed again.
+        // And we need this to adjust the ActionIndex to be right after we remove the element.
+        // Note that this will clear the history cache.
         if (!Undo())
             throw new Exception("Failed to undo the action we want to pop");
 
@@ -182,7 +109,8 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     }
 
     public bool HexPlacedThisSession<THex, TContext>(THex hex)
-        where THex : class, IActionHex
+        where THex : class, IActionHex, IArchivable
+        where TContext : IArchivable
     {
         return History.OfType<HexPlacementActionData<THex, TContext>>().Any(a => a.PlacedHex == hex);
     }
@@ -193,6 +121,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// <typeparam name="TContext">The type of context to be returned.</typeparam>
     /// <returns>The context the next action to redo should be performed in.</returns>
     public TContext? GetRedoContext<TContext>()
+        where TContext : IArchivable
     {
         return GetContext<TContext>(ActionToRedo());
     }
@@ -203,11 +132,21 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// <typeparam name="TContext">The type of context to be returned.</typeparam>
     /// <returns>The context the next action to undo should be performed in.</returns>
     public TContext? GetUndoContext<TContext>()
+        where TContext : IArchivable
     {
         return GetContext<TContext>(ActionToUndo());
     }
 
+    public void GetPerformedActionData(List<EditorCombinableActionData> result)
+    {
+        for (int i = 0; i < ActionIndex; ++i)
+        {
+            Actions[i].CopyData(result);
+        }
+    }
+
     private static TContext? GetContext<TContext>(TAction? action)
+        where TContext : IArchivable
     {
         // We don't allow combining actions from different contexts,
         // so we only need to check the first data for the context
@@ -217,71 +156,6 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
             return specificData.Context;
 
         return default;
-    }
-
-    /// <summary>
-    ///   Finds the way to combine an action with previous actions so that the maximum amount of MP is saved.
-    /// </summary>
-    /// <param name="currentData">The data you want to combine</param>
-    /// <param name="previousData">A list of data <see cref="currentData"/> may combine with</param>
-    /// <returns>
-    ///   Three-element tuple:
-    ///   CostDelta is non-positive, indicating the amount of MP you will regain;
-    ///   MinimumCostActionData is the action data to combine with (not yet combined);
-    ///   Mode is the interference mode currentData has with MinimumCostActionData.
-    /// </returns>
-    private static (double CostDelta, EditorCombinableActionData? MinimumCostActionData, ActionInterferenceMode Mode)
-        FindCheapestActionToCombineWith(EditorCombinableActionData currentData,
-            IEnumerable<EditorCombinableActionData> previousData)
-    {
-        // Get an ordered-enumerable sorted by priority and then by cost delta
-        var combinationDataEnumerable = previousData.Select(data =>
-        {
-            var interferenceMode = currentData.GetInterferenceModeWith(data);
-
-            return (interferenceMode switch
-            {
-                // A combination action refunds the delta cost
-                ActionInterferenceMode.Combinable => (Cost: ((EditorCombinableActionData)currentData.Combine(data))
-                    .CalculateCost() - data.CalculateCost() - currentData.CalculateCost(), Priority: 0),
-
-                // A cancels out action refunds the initial action cost and the current action cost
-                ActionInterferenceMode.CancelsOut => (Cost: -data.CalculateCost() - currentData.CalculateCost(),
-                    Priority: 0),
-
-                // A replacement action doesn't modify the current action, thus is "free", having the highest priority
-                ActionInterferenceMode.ReplacesOther => (Cost: -data.CalculateCost(), Priority: 1),
-
-                // No action doesn't refund anything
-                ActionInterferenceMode.NoInterference => (Cost: 0, Priority: 0),
-
-                _ => throw new ArgumentOutOfRangeException(nameof(interferenceMode)),
-            }, data, interferenceMode);
-        }).OrderByDescending(p => p.Item1.Priority).ThenBy(p => p.Item1.Cost);
-
-        // Calculate actual cost delta by adding up all replacement refunds, and if any, the first non-replacement one
-        double costDelta = 0;
-
-        // Get the first combination data and its type
-        EditorCombinableActionData? firstData = null;
-        ActionInterferenceMode firstDataInterferenceMode = default;
-
-        foreach (var combinationData in combinationDataEnumerable)
-        {
-            costDelta += combinationData.Item1.Cost;
-
-            if (firstData == null)
-            {
-                firstData = combinationData.data;
-                firstDataInterferenceMode = combinationData.interferenceMode;
-            }
-
-            // Break after the first action whose interferenceMode is not ActionInterferenceMode.ReplacesOther
-            if (combinationData.interferenceMode != ActionInterferenceMode.ReplacesOther)
-                break;
-        }
-
-        return (costDelta, firstData, firstDataInterferenceMode);
     }
 
     private TAction? MergeNewActionIntoPreviousIfPossible(TAction action, TAction previousAction)
@@ -304,9 +178,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
                 // TODO: technically we should store a list of canceled out actions that further currentData items
                 // are not allowed match against, but for now that doesn't seem necessary. This will become necessary
                 // with more complex combined actions, which is something we might have in the future.
-                if (previousData.WantsMergeWith(currentData) &&
-                    previousData.GetInterferenceModeWith(currentData) is ActionInterferenceMode.CancelsOut
-                        or ActionInterferenceMode.Combinable)
+                if (previousData.WantsToMergeWith(currentData))
                 {
                     currentMatched = true;
                     break;
@@ -323,7 +195,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         var newDataList = new List<EditorCombinableActionData>();
         newDataList.AddRange(previousActionData);
 
-        // We are going to replace the new action with what we had before so we always want to pop the action from
+        // We are going to replace the new action with what we had before, so we always want to pop the action from
         // history here as it will be added back when this method returns
         PopAndConfirmMatches(previousAction);
 
@@ -336,15 +208,13 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
             {
                 // In the cancels-out case we still want to merge the data so that the action can stay as a placeholder
                 // in the history keeping the original state
-                if (newData.WantsMergeWith(currentData) &&
-                    newData.GetInterferenceModeWith(currentData) is ActionInterferenceMode.CancelsOut or
-                        ActionInterferenceMode.Combinable)
+                if (newData.WantsToMergeWith(currentData))
                 {
                     merged = true;
 
-                    // TryMerge assumes that the data to given as the parameter to the method is always newer
-                    // so it must absolutely guaranteed that the order we loop here is correct, ie. always going
-                    // from the oldest data towards the newer data
+                    // TryMerge assumes that the data given as the parameter to the method is always newer,
+                    // so it must be absolutely guaranteed that the order we loop here is correct,
+                    // i.e. always going from the oldest data towards the newer data
                     if (!newData.TryMerge(currentData))
                     {
                         throw new InvalidOperationException("Action data that should have accepted a merge, didn't");

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-01 16:03+0300\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ro/>\n"
@@ -196,6 +196,10 @@ msgstr "Amoniac"
 msgid "AMMONIA_COST"
 msgstr "Amoniac"
 
+#, fuzzy
+msgid "AMMONIA_LEVELS"
+msgstr "Amoniac"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Cantitatea de salvări automate de păstrat:"
 
@@ -277,7 +281,8 @@ msgstr "Felicitări!"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Clasa de asamblare mod este necesară atunci când este specificată asamblarea"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Asamblarea modului este necesară atunci când armonia automată este activată"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -422,6 +427,21 @@ msgstr "Proiecte de construcții disponibile"
 msgid "AVAILABLE_MODS"
 msgstr "Moduri disponibile"
 
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr "Stagiul de trezire"
 
@@ -523,6 +543,12 @@ msgstr "Rezultate:"
 
 msgid "BEST_PATCH_COLON"
 msgstr "Cel mai bun patch:"
+
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr ""
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Bucată mare de fier"
@@ -635,6 +661,9 @@ msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
 
 msgid "CANNOT_ENGULF"
+msgstr ""
+
+msgid "CANNOT_IMPROVE_PERFECTION"
 msgstr ""
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
@@ -1015,6 +1044,28 @@ msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul sufic
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Editorul De Microbi"
 
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
+
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr ""
+
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr ""
 
@@ -1275,6 +1326,9 @@ msgstr ""
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr ""
+
 msgid "CPU_THREADS"
 msgstr ""
 
@@ -1374,6 +1428,13 @@ msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul sufic
 
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
+
+msgid "CURRENT_DILUTION"
+msgstr ""
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
@@ -1775,6 +1836,27 @@ msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"Structuri Procariote\n"
+"\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 "Structuri Procariote\n"
@@ -1794,6 +1876,10 @@ msgstr ""
 "Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
 "\n"
 "Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
+
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "Etapa Microbilor"
 
 msgid "EFFECTIVE_VALUE"
 msgstr ""
@@ -1903,6 +1989,9 @@ msgstr ""
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
+msgid "ENGULF_CELL_OR_CHUNK"
+msgstr ""
+
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr ""
 
@@ -1997,6 +2086,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -2228,6 +2325,10 @@ msgstr ""
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "Agenți:"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
@@ -2252,6 +2353,14 @@ msgstr ""
 
 msgid "FOSSILISE"
 msgstr ""
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Validările adiționale au detectat o problemă: {0}"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Permite unirea cu alte celule. Acesta este primul pas către multicelularitate. Când celula face parte dintr-o colonie, compușii sunt împărțiți între celule. Nu puteți intra în editor în timp ce faceți parte dintr-o colonie, deci trebuie să vă despărțiți odată ce colectați suficienți compuși pentru a vă împărți celula."
 
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
@@ -2326,9 +2435,8 @@ msgstr ""
 msgid "GENERAL_LOADING_TIP_7"
 msgstr ""
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Etapa Multicelulară"
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
 
 msgid "GENERATIONS"
 msgstr ""
@@ -2396,6 +2504,10 @@ msgstr ""
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}m sub nivelul mării"
+
 msgid "GLYCOLYSIS"
 msgstr ""
 
@@ -2403,6 +2515,9 @@ msgid "GODMODE"
 msgstr ""
 
 msgid "GOD_TOOLS_TITLE"
+msgstr ""
+
+msgid "GOING_NUCLEAR"
 msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
@@ -2521,6 +2636,9 @@ msgstr "Apăsați [thrive:input]g_toggle_binding[/thrive:input] pentru a activa/
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
+msgid "HYDROGEN_SULFIDE_LEVELS"
+msgstr ""
+
 msgid "ICESHARD"
 msgstr ""
 
@@ -2540,6 +2658,9 @@ msgid "ID_NUMBER"
 msgstr ""
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
@@ -2645,6 +2766,14 @@ msgstr ""
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
 
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "PRODUCȚIA DE ATP ESTE PREA MICĂ!"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(viteza cu care speciile IA suferă mutații)"
+
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr ""
 
@@ -2738,6 +2867,9 @@ msgstr ""
 msgid "IRON"
 msgstr ""
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 msgid "IRON_OXIDATION"
 msgstr ""
 
@@ -2751,18 +2883,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr ""
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3267,6 +3387,18 @@ msgstr "Devino macroscopic ({0}/{1})"
 msgid "MACROSCOPIC_STAGE"
 msgstr "Etapa Microbilor"
 
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "(viteza cu care speciile IA suferă mutații)"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Etapa Microbilor"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "Editor 3D"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3413,6 +3545,14 @@ msgstr ""
 msgid "MICHE_DETAIL_TEXT"
 msgstr ""
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr ""
+"Microbii agresivi vor urmări prada pe distanțe mai mari\n"
+"și sunt mai predispuși să lupte împotriva prădătorilor atunci când sunt atacați.\n"
+"Microbii pașnici nu vor urmări pe alții pe distanțe mai mari\n"
+"și sunt mai puțin susceptibile de a folosi toxine împotriva prădătorilor."
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3435,7 +3575,14 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr ""
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "PRODUCȚIA DE ATP ESTE PREA MICĂ!"
+
 msgid "MICHE_ROOT_PRESSURE"
+msgstr ""
+
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
 msgstr ""
 
 msgid "MICHE_TREE"
@@ -3615,6 +3762,10 @@ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/t
 msgid "MICROBIAL_MASSACRE"
 msgstr "Etapa Microbilor"
 
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "Etapa Microbilor"
+
 msgid "MIDDLE_MOUSE"
 msgstr ""
 
@@ -3717,6 +3868,9 @@ msgstr ""
 msgid "MODS"
 msgstr ""
 
+msgid "MODS_ARE_ENABLED"
+msgstr ""
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3749,9 +3903,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 msgid "MOD_CREATION_FAILED"
@@ -4095,6 +4246,9 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Mișcare de bază"
 
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr ""
+
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr ""
 
@@ -4123,6 +4277,9 @@ msgid "NO_EVENTS_RECORDED"
 msgstr ""
 
 msgid "NO_FOSSIL_DIRECTORY"
+msgstr ""
+
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr ""
 
 msgid "NO_MODS_ENABLED"
@@ -4355,6 +4512,9 @@ msgstr ""
 msgid "OUR_WIKI"
 msgstr ""
 
+msgid "OUTDATED_ITEM"
+msgstr ""
+
 msgid "OUTDATED_NOTICE"
 msgstr ""
 
@@ -4426,6 +4586,9 @@ msgid "PAN_CAMERA_UP"
 msgstr ""
 
 msgid "PAST_DEVELOPERS"
+msgstr ""
+
+msgid "PATCHES_NUMBER"
 msgstr ""
 
 #, fuzzy
@@ -4532,6 +4695,10 @@ msgstr ""
 msgid "PHOSPHATES_COST"
 msgstr "Bucată mare de fier"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Bucată mare de fier"
+
 msgid "PHOTOSYNTHESIS"
 msgstr ""
 
@@ -4556,6 +4723,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] şi mouse-ul să vă deplasați. [thrive:input]g_fire_toxin[/thrive:input] pentru a trage [thrive:compound type=\"oxytoxy\"][/thrive:compound] dacă aveți o vacuolă de toxine. [thrive:input]g_toggle_engulf[/thrive:input] pentru a activa modul de înghițit. Puteți să zoomați mai aproape și mai departe cu rotița mouse-ului."
 
 msgid "PLAYER"
 msgstr ""
@@ -4703,6 +4874,10 @@ msgid "RADIATION"
 msgstr ""
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Șterge"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Bucată mare de fier"
 
@@ -4721,6 +4896,16 @@ msgstr ""
 
 msgid "RAW_VALUE_COLON"
 msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Etapa Multicelulară"
 
 msgid "READING_SAVE_DATA"
 msgstr ""
@@ -4746,6 +4931,9 @@ msgstr ""
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Etapa Multicelulară"
+
+msgid "REGIONS_NUMBER"
+msgstr ""
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -4879,6 +5067,17 @@ msgstr ""
 msgid "REVEAL_ALL_PATCHES"
 msgstr ""
 
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Editor 3D"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "(viteza cu care speciile IA suferă mutații)"
+
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr ""
+
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr ""
 
@@ -4901,6 +5100,9 @@ msgid "ROTATE_RIGHT"
 msgstr ""
 
 msgid "ROTATION_COLON"
+msgstr ""
+
+msgid "RUNOFF_EVENT"
 msgstr ""
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
@@ -4961,12 +5163,6 @@ msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr ""
 
 msgid "SAVE_FAILED"
@@ -5174,6 +5370,9 @@ msgstr ""
 msgid "SHOW_ITEM_COORDINATES"
 msgstr ""
 
+msgid "SHOW_MAP"
+msgstr ""
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
@@ -5337,6 +5536,12 @@ msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
+msgstr ""
+
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr ""
+
+msgid "SPECIES_IN_OTHER_PATCHES"
 msgstr ""
 
 msgid "SPECIES_LIST"
@@ -5540,6 +5745,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
@@ -5560,6 +5768,10 @@ msgstr ""
 
 msgid "SURVIVAL_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "Etapa Microbilor"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
@@ -5597,6 +5809,14 @@ msgstr ""
 
 msgid "TARGET_TYPE_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Thread-uri curente:"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "(viteza cu care speciile IA suferă mutații)"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -5689,6 +5909,10 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
+#, fuzzy
+msgid "THE_EDITOR"
+msgstr "Editor 3D"
+
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr ""
 
@@ -5731,6 +5955,10 @@ msgstr ""
 
 msgid "THRIVE_LICENSES"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Mișcare de bază"
 
 msgid "THYLAKOIDS"
 msgstr ""
@@ -5868,6 +6096,10 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
+
+#, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
 
@@ -5993,10 +6225,6 @@ msgstr ""
 
 msgid "TUTORIAL"
 msgstr ""
-
-#, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "(viteza cu care speciile IA suferă mutații)"
 
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
@@ -6371,6 +6599,10 @@ msgstr ""
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Etapa Multicelulară"
 
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "(viteza cu care speciile IA suferă mutații)"
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
@@ -6418,6 +6650,17 @@ msgstr ""
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr ""
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Permite unirea cu alte celule. Acesta este primul pas către multicelularitate. Când celula face parte dintr-o colonie, compușii sunt împărțiți între celule. Nu puteți intra în editor în timp ce faceți parte dintr-o colonie, deci trebuie să vă despărțiți odată ce colectați suficienți compuși pentru a vă împărți celula."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "\"{0}\" - {1}"
 
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr ""
@@ -6566,6 +6809,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -6573,12 +6819,6 @@ msgid "USED_RENDERER_NAME"
 msgstr ""
 
 msgid "USES_FEATURE"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
@@ -6623,6 +6863,9 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr ""
 
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VENTS_ARE_HOME"
 msgstr ""
 
 msgid "VERSION_COLON"
@@ -8546,11 +8789,25 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr ""
+"Microbii activi se vor mișca cand nu se întămplă nimic interesant.\n"
+"Microbii sesili vor fi staționari și vor aștepta ca mediul să se schimbe înainte de a acționa."
+
 msgid "ZOOM_IN"
 msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "PRODUCȚIA DE ATP ESTE PREA MICĂ!"
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Etapa Multicelulară"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"

@@ -1,10 +1,10 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   System that handles <see cref="AnimationControl"/>
@@ -12,30 +12,26 @@ using World = DefaultEcs.World;
 /// <remarks>
 ///   <para>
 ///     This does kind of modify the spatial, but only in very specific circumstances (if cast to animation player
-///     succeeds) and even then this just calls a Godot method on it to stop animation playing.
+///     succeeds), and even then this just calls a Godot method on it to stop animation playing.
 ///   </para>
 /// </remarks>
-[With(typeof(AnimationControl))]
-[With(typeof(SpatialInstance))]
 [ReadsComponent(typeof(SpatialInstance))]
-[RuntimeCost(0.5f, false)]
+[RuntimeCost(0.25f)]
 [RunsOnMainThread]
-public sealed class AnimationControlSystem : AEntitySetSystem<float>
+public partial class AnimationControlSystem : BaseSystem<World, float>
 {
-    public AnimationControlSystem(World world) : base(world, null)
+    public AnimationControlSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float state, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref AnimationControl animation, ref SpatialInstance spatial)
     {
-        ref var animation = ref entity.Get<AnimationControl>();
-
         if (animation.AnimationApplied)
             return;
 
-        ref var spatial = ref entity.Get<SpatialInstance>();
-
-        // Wait until graphics instance is initialized
+        // Wait until the graphics instance is initialized
         if (spatial.GraphicalInstance == null)
             return;
 

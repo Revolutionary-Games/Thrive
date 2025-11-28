@@ -32,9 +32,11 @@ public partial class CellBodyPlanEditorComponent
     ///   selectable.
     ///   https://github.com/Revolutionary-Games/Thrive/issues/5863
     /// </summary>
-    private void HandleProcessList(IReadOnlyList<HexWithData<CellTemplate>> cells, EnergyBalanceInfoFull energyBalance,
-        IBiomeConditions biome)
+    private void HandleProcessList(EnergyBalanceInfoFull energyBalance, IBiomeConditions biome)
     {
+        // TODO: this used to have an unused "cells" parameter so figure out why it was added and if it should have
+        // done something
+
         // Empty list to later fill
         var processStatistics = new List<ProcessSpeedInformation>();
 
@@ -46,7 +48,7 @@ public partial class CellBodyPlanEditorComponent
         {
             newProcesses.Clear();
 
-            ProcessSystem.ComputeActiveProcessList(cellType.Key.Organelles, ref newProcesses);
+            ProcessSystem.ComputeActiveProcessList(cellType.Key.ModifiableOrganelles, ref newProcesses);
 
             for (int i = 0; i < newProcesses.Count; ++i)
             {

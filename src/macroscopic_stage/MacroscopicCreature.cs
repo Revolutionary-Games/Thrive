@@ -9,10 +9,8 @@ using Newtonsoft.Json;
 ///   Main script on each macroscopic creature in the game
 /// </summary>
 [JsonObject(IsReference = true)]
-[JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/macroscopic_stage/MacroscopicCreature.tscn", UsesEarlyResolve = false)]
-[DeserializedCallbackTarget]
-public partial class MacroscopicCreature : RigidBody3D, ISaveLoadedTracked, ICharacterInventory, IEntity,
+public partial class MacroscopicCreature : RigidBody3D, ICharacterInventory, IEntity,
     IStructureSelectionReceiver<StructureDefinition>, IActionProgressSource
 {
     private static readonly Vector3 SwimUpForce = new(0, 10, 0);
@@ -130,6 +128,11 @@ public partial class MacroscopicCreature : RigidBody3D, ISaveLoadedTracked, ICha
     /// </summary>
     public Vector3 MovementDirection { get; set; } = Vector3.Zero;
 
+    /// <summary>
+    ///   The direction the creature will rotate to
+    /// </summary>
+    public Vector3 LookVector { get; set; } = Vector3.Forward;
+
     [JsonProperty]
     public MovementMode MovementMode { get; set; }
 
@@ -141,9 +144,6 @@ public partial class MacroscopicCreature : RigidBody3D, ISaveLoadedTracked, ICha
 
     [JsonIgnore]
     public Node3D EntityNode => this;
-
-    [JsonIgnore]
-    public bool IsLoadedFromSave { get; set; }
 
     [JsonProperty]
     public bool ActionInProgress { get; private set; }
@@ -221,6 +221,22 @@ public partial class MacroscopicCreature : RigidBody3D, ISaveLoadedTracked, ICha
             }
         }
 
+        // Handle rotation
+        var angle = (-GlobalBasis.Z).SignedAngleTo(LookVector * new Vector3(1, 0, 1), Vector3.Up);
+
+        // If angle is small enough, eliminate Y angular rotation
+        if (MathF.Abs(angle) <= 0.1)
+        {
+            AngularVelocity *= new Vector3(1, 0, 1);
+        }
+        else
+        {
+            var damping = MathF.Abs(AngularVelocity.Y - angle);
+
+            ApplyTorqueImpulse(new Vector3(0, Mass * angle * (float)delta * 0.3f *
+                damping, 0));
+        }
+
         // This is in physics process as this follows the player physics entity
         if (IsPlacingStructure && buildingToPlaceGhost != null)
         {
@@ -246,12 +262,12 @@ public partial class MacroscopicCreature : RigidBody3D, ISaveLoadedTracked, ICha
 
         // TODO: better mass calculation
         // TotalMass is no longer available due to microbe stage physics refactor
-        // Mass = lateSpecies.BodyLayout.Sum(m => m.Size * m.CellType.TotalMass);
-        Mass = lateSpecies.BodyLayout.Sum(m => m.Size * 30);
+        // Mass = lateSpecies.ModifiableBodyLayout.Sum(m => m.Size * m.ModifiableCellType.TotalMass);
+        Mass = ((MetaballLayout<MacroscopicMetaball>)lateSpecies.ModifiableBodyLayout).Sum(m => m.Size * 30);
 
         // Setup graphics
         // TODO: handle lateSpecies.Scale
-        metaballDisplayer.DisplayFromLayout(lateSpecies.BodyLayout);
+        metaballDisplayer.DisplayFromLayout(lateSpecies.ModifiableBodyLayout);
     }
 
     /// <summary>
@@ -969,7 +985,7 @@ public partial class MacroscopicCreature : RigidBody3D, ISaveLoadedTracked, ICha
         if (buildingTypeToPlace == null)
             throw new InvalidOperationException("No structure type selected");
 
-        var relative = new Vector3(0, 0, 1) * buildingTypeToPlace.WorldSize.Z * 1.3f;
+        var relative = new Vector3(0, 0, -1) * buildingTypeToPlace.WorldSize.Z * 1.3f;
 
         // TODO: a raycast to get the structure on the ground
         // Also for player creature, taking the camera direction into account instead of the creature rotation would
@@ -977,7 +993,9 @@ public partial class MacroscopicCreature : RigidBody3D, ISaveLoadedTracked, ICha
         var transform = GlobalTransform;
         var rotation = transform.Basis.GetRotationQuaternion();
 
-        var worldTransform = new Transform3D(new Basis(rotation), transform.Origin + rotation * relative);
+        var worldTransform = new Transform3D(new Basis(rotation).Rotated(Vector3.Up, MathF.PI), transform.Origin +
+            rotation * relative);
+
         return worldTransform;
     }
 }

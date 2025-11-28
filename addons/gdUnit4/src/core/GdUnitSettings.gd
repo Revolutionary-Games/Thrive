@@ -11,6 +11,9 @@ const GROUP_COMMON = COMMON_SETTINGS + "/common"
 const UPDATE_NOTIFICATION_ENABLED = GROUP_COMMON + "/update_notification_enabled"
 const SERVER_TIMEOUT = GROUP_COMMON + "/server_connection_timeout_minutes"
 
+const GROUP_HOOKS = MAIN_CATEGORY + "/hooks"
+const SESSION_HOOKS = GROUP_HOOKS + "/session_hooks"
+
 const GROUP_TEST = COMMON_SETTINGS + "/test"
 const TEST_TIMEOUT = GROUP_TEST + "/test_timeout_seconds"
 const TEST_LOOKUP_FOLDER = GROUP_TEST + "/test_lookup_folder"
@@ -74,6 +77,10 @@ const SHORTCUT_FILESYSTEM_RUN_TEST_DEBUG = GROUP_SHORTCUT_FILESYSTEM + "/run_tes
 const GROUP_UI_TOOLBAR = UI_SETTINGS + "/toolbar"
 const INSPECTOR_TOOLBAR_BUTTON_RUN_OVERALL = GROUP_UI_TOOLBAR + "/run_overall"
 
+# Feature flags
+const GROUP_FEATURE = MAIN_CATEGORY + "/feature"
+
+
 # defaults
 # server connection timeout in minutes
 const DEFAULT_SERVER_TIMEOUT :int = 30
@@ -123,6 +130,7 @@ static func setup() -> void:
 		"Show 'Run overall Tests' button in the inspector toolbar")
 	create_property_if_need(TEMPLATE_TS_GD, GdUnitTestSuiteTemplate.default_GD_template(), "Test suite template to use")
 	create_shortcut_properties_if_need()
+	create_property_if_need(SESSION_HOOKS, {} as Dictionary[String,bool])
 	migrate_properties()
 
 
@@ -197,6 +205,20 @@ static func set_log_path(path :String) -> void:
 	ProjectSettings.set_setting(STDOUT_WITE_TO_FILE, path)
 	@warning_ignore("return_value_discarded")
 	ProjectSettings.save()
+
+
+static func get_session_hooks() -> Dictionary[String, bool]:
+	var property := get_property(SESSION_HOOKS)
+	if property == null:
+		return {}
+	var hooks: Dictionary[String, bool] = property.value()
+	return hooks
+
+
+static func set_session_hooks(hooks: Dictionary[String, bool]) -> void:
+	var property := get_property(SESSION_HOOKS)
+	property.set_value(hooks)
+	update_property(property)
 
 
 static func set_inspector_tree_sort_mode(sort_mode: GdUnitInspectorTreeConstants.SORT_MODE) -> void:
@@ -274,6 +296,10 @@ static func is_test_discover_enabled() -> bool:
 
 static func is_test_flaky_check_enabled() -> bool:
 	return get_setting(TEST_FLAKY_CHECK, false)
+
+
+static func is_feature_enabled(feature: String) -> bool:
+	return get_setting(feature, false)
 
 
 static func get_flaky_max_retries() -> int:

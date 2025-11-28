@@ -2,43 +2,45 @@
 
 using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Handles absorbing compounds from <see cref="CompoundCloudSystem"/> into <see cref="CompoundStorage"/>
 /// </summary>
-[With(typeof(CompoundAbsorber))]
-[With(typeof(CompoundStorage))]
-[With(typeof(WorldPosition))]
+/// <remarks>
+///   <para>
+///     Marked as being on the main thread as that's a limitation of Arch ECS parallel processing.
+///   </para>
+/// </remarks>
 [ReadsComponent(typeof(WorldPosition))]
-[RuntimeCost(50)]
-public sealed class CompoundAbsorptionSystem : AEntitySetSystem<float>
+[RunsOnMainThread]
+[RuntimeCost(38)]
+public partial class CompoundAbsorptionSystem : BaseSystem<World, float>
 {
     private readonly CompoundCloudSystem compoundCloudSystem;
 
-    public CompoundAbsorptionSystem(CompoundCloudSystem compoundCloudSystem, World world, IParallelRunner runner) :
-        base(world, runner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
+    public CompoundAbsorptionSystem(CompoundCloudSystem compoundCloudSystem, World world) : base(world)
     {
         this.compoundCloudSystem = compoundCloudSystem;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query(Parallel = true)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref CompoundAbsorber absorber, ref CompoundStorage storage,
+        ref WorldPosition position, in Entity entity)
     {
-        ref var absorber = ref entity.Get<CompoundAbsorber>();
-
         if (absorber.AbsorbRadius <= 0 || absorber.AbsorbSpeed < 0)
             return;
 
         if (absorber.AbsorbSpeed != 0)
         {
-            // Rate limited absorbing is not implemented
+            // Rate-limited absorbing is not implemented
             throw new NotImplementedException();
         }
-
-        ref var storage = ref entity.Get<CompoundStorage>();
 
         if (absorber.OnlyAbsorbUseful && !storage.Compounds.HasAnyBeenSetUseful())
         {
@@ -51,17 +53,15 @@ public sealed class CompoundAbsorptionSystem : AEntitySetSystem<float>
         if (!absorber.OnlyAbsorbUseful)
         {
             // The clouds by default check that the bag has a compound set useful before absorbing it, so if this
-            // flag is set to false we would need to communicate that to the clouds someway
+            // flag is set to false, we would need to communicate that to the clouds someway
             throw new NotImplementedException();
         }
-
-        ref var position = ref entity.Get<WorldPosition>();
 
         compoundCloudSystem.AbsorbCompounds(position.Position, absorber.AbsorbRadius, storage.Compounds,
             absorber.TotalAbsorbedCompounds, delta, absorber.AbsorptionRatio);
 
-        // Player infinite compounds cheat, doesn't *really* belong here but this is probably the best place to put
-        // this instead of creating a dedicated cheats handling system
+        // Player infinite compounds cheat, doesn't *really* belong here, but this is probably the best place to put
+        // this instead of creating a dedicated cheat handling system
         if (CheatManager.InfiniteCompounds && entity.Has<PlayerMarker>())
         {
             var usefulCompounds =

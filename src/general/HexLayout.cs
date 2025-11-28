@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
-using Newtonsoft.Json;
 
 /// <summary>
-///   Base class implementing the basic structure for holding layouts composed of hexes (for example microbe's
+///   Base class implementing the basic structure for holding layouts composed of hexes (for example, microbe's
 ///   organelles)
 /// </summary>
 /// <remarks>
@@ -16,18 +15,14 @@ using Newtonsoft.Json;
 ///   </para>
 /// </remarks>
 /// <typeparam name="T">The concrete type of the hex to hold</typeparam>
-[UseThriveSerializer]
-public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
+public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnlyHexLayout<T>
     where T : class, IPositionedHex
 {
-    [JsonProperty]
     protected readonly List<T> existingHexes = new();
 
     // This and the next property are protected to make JSON work
-    [JsonProperty]
     protected Action<T>? onAdded;
 
-    [JsonProperty]
     protected Action<T>? onRemoved;
 
     public HexLayout(Action<T>? onAdded, Action<T>? onRemoved = null)
@@ -36,7 +31,6 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
         this.onRemoved = onRemoved;
     }
 
-    [JsonConstructor]
     public HexLayout()
     {
     }
@@ -70,7 +64,10 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
     public void AddFast(T hex, List<Hex> temporaryStorage, List<Hex> temporaryStorage2)
     {
         if (!CanPlace(hex, temporaryStorage, temporaryStorage2))
-            throw new ArgumentException($"{typeof(T).Name} can't be placed at this location");
+        {
+            throw new ArgumentException($"{typeof(T).Name} can't be placed at this location " +
+                $"({hex} at {hex.Position})");
+        }
 
         existingHexes.Add(hex);
         onAdded?.Invoke(hex);
@@ -91,12 +88,15 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
     }
 
     /// <summary>
-    ///   Generic interface implementation of add. Note that this allocates memory and should be avoided.
+    ///   Generic interface implementation of adding. Note that this allocates memory and should be avoided.
     /// </summary>
     public void Add(T hex)
     {
         if (!CanPlaceAllocating(hex))
-            throw new ArgumentException($"{typeof(T).Name} can't be placed at this location");
+        {
+            throw new ArgumentException($"{typeof(T).Name} can't be placed at this location " +
+                $"({hex} at {hex.Position})");
+        }
 
         existingHexes.Add(hex);
         onAdded?.Invoke(hex);
@@ -244,6 +244,29 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
     }
 
     /// <summary>
+    ///   Search variant that searches for just root positions, not general overlap. Don't use this variant unless you
+    ///   know exactly what that means and why this might miss something that overlaps the new position.
+    /// </summary>
+    /// <param name="location">Where to check for root items exactly</param>
+    /// <returns>Hex at exact position and not just overlapping the location</returns>
+    public T? GetByExactElementRootPosition(Hex location)
+    {
+        int count = existingHexes.Count;
+
+        // This uses a manual loop as this method is called a lot, so this needs to ensure that this doesn't do any
+        // unnecessary computations
+        for (int i = 0; i < count; ++i)
+        {
+            var existingHex = existingHexes[i];
+
+            if (existingHex.Position == location)
+                return existingHex;
+        }
+
+        return null;
+    }
+
+    /// <summary>
     ///   Removes hex that contains a hex position
     /// </summary>
     /// <returns>True when removed, false if there was nothing at this position</returns>
@@ -301,11 +324,6 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
     public IEnumerator<T> GetEnumerator()
     {
         return existingHexes.GetEnumerator();
-    }
-
-    public override string ToString()
-    {
-        return JsonConvert.SerializeObject(this);
     }
 
     [MustDisposeResource]

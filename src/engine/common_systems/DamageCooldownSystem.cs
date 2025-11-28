@@ -1,28 +1,27 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Processes cooldowns for <see cref="DamageCooldown"/>
 /// </summary>
-[With(typeof(DamageCooldown))]
 [RunsBefore(typeof(ToxinCollisionSystem))]
 [RunsBefore(typeof(PilusDamageSystem))]
 [RunsBefore(typeof(DamageOnTouchSystem))]
-[RuntimeCost(0.25f)]
-public sealed class DamageCooldownSystem : AEntitySetSystem<float>
+[RuntimeCost(0.5f)]
+public partial class DamageCooldownSystem : BaseSystem<World, float>
 {
-    public DamageCooldownSystem(World world, IParallelRunner runner) : base(world, runner)
+    public DamageCooldownSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref DamageCooldown cooldown)
     {
-        ref var cooldown = ref entity.Get<DamageCooldown>();
-
         if (cooldown.CooldownRemaining <= 0)
             return;
 

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-01 16:03+0300\n"
-"PO-Revision-Date: 2025-07-18 08:28+0000\n"
-"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
+"PO-Revision-Date: 2025-11-10 22:19+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -49,18 +49,17 @@ msgstr "морська безодня"
 msgid "ACCEPT"
 msgstr "Прийняти"
 
-#, fuzzy
 msgid "ACHIEVEMENTS"
-msgstr "Базова швидкість"
+msgstr "Досягнення"
 
 msgid "ACHIEVEMENTS_TOTAL"
-msgstr ""
+msgstr "Досягнення {0} / {1}"
 
 msgid "ACHIEVEMENT_ACHIEVED"
-msgstr ""
+msgstr "Отримано"
 
 msgid "ACHIEVEMENT_LOCKED"
-msgstr ""
+msgstr "Зачинено"
 
 msgid "ACTION_AWAKEN"
 msgstr "Пробудити ({0:F1} / {1:F1})"
@@ -190,6 +189,10 @@ msgstr "Аміак"
 msgid "AMMONIA_COST"
 msgstr "Вартість амоніаку:"
 
+#, fuzzy
+msgid "AMMONIA_LEVELS"
+msgstr "Вартість амоніаку:"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Кількість можливих автозбереженнь:"
 
@@ -269,7 +272,8 @@ msgstr "Стадія Вознесіння"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Потрібен клас збірки моду, коли її вказано"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Збірка модів обов'язкова, коли автоматична гармонія увімкнена"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -411,6 +415,21 @@ msgstr "Доступні проєкти споруд"
 msgid "AVAILABLE_MODS"
 msgstr "Доступні моди"
 
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr "Стадія пробудження"
 
@@ -430,7 +449,7 @@ msgid "BACKSPACE"
 msgstr "Backspace"
 
 msgid "BACK_TO_SETTINGS"
-msgstr ""
+msgstr "До налаштувань"
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Бактеріальний термосинтез"
@@ -506,6 +525,12 @@ msgstr "Результати:"
 
 msgid "BEST_PATCH_COLON"
 msgstr "Найкраща ділянка:"
+
+msgid "BETTER_TOGETHER"
+msgstr "Разом краще"
+
+msgid "BEYOND_THE_CELL"
+msgstr "Більше ніж клітина"
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Великий шматок заліза"
@@ -614,6 +639,9 @@ msgstr "Не можна видалити використовуваний тип
 
 msgid "CANNOT_ENGULF"
 msgstr "Не може поглинати"
+
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr "Неможливо досягти досконалості"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Неможна перемістити метасферу в цьому дереві нащадків"
@@ -816,7 +844,7 @@ msgid "CLICK_TO_SELECT"
 msgstr "Видалити обране"
 
 msgid "CLIMATE_INSTABILITY"
-msgstr ""
+msgstr "Нестабільність клімату"
 
 #, fuzzy
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
@@ -825,13 +853,13 @@ msgstr ""
 "Пасивні будуть залишатися нерухомими до змін в оточені, й лиш тоді діють."
 
 msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
+msgstr "Середня"
 
 msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
+msgstr "Стабільна"
 
 msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
+msgstr "Нестабільна"
 
 msgid "CLOSE"
 msgstr "Закрити"
@@ -999,6 +1027,29 @@ msgstr "Завжди заповняти до початкових"
 
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Заповняти при зміні ділянки"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Середній"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Баланс сполук"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Хмари сполук"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Лишати як є"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} поглинуто"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1289,6 +1340,10 @@ msgstr "Протаноп (червоно-зелений)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Тританоп (блакитно-жовтий)"
 
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "{0} поглинуто"
+
 msgid "CPU_THREADS"
 msgstr "Потоки"
 
@@ -1389,6 +1444,14 @@ msgstr "Виділення слизу для власного прискорен
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Поточні розробники"
+
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "Поточна локація"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "Поточна локація"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "Поточна локація"
@@ -1859,6 +1922,17 @@ msgstr ""
 "\n"
 "Коли будете готові, натисніть кнопку \"Далі\" справа знизу, щоб перейти до наступної вкладки редактора."
 
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"Для подальшого прогресування вам знадобиться [b]ядро[/b].\n"
+"\n"
+"Додавання [b]ядра[/b] відімкне більш просунені органели, такі як [b]зв'язувальний агент[/b], що дозволить вам зв'язатися з іншими клітинами вашого виду та стати [u]багатоклітинним[/u].\n"
+"\n"
+"Спробуйте розмістити [b]ядро[/b], щоб закрити цей туторіал.\n"
+"\n"
+"Якщо ваша клітина ще не готова до ядра, скористайтеся [b]кнопкою скасування[/b], щоби [u]прибрати[/u] ядро."
+
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 "Для подальшого прогресування вам знадобиться [b]ядро[/b].\n"
@@ -1868,6 +1942,10 @@ msgstr ""
 "Спробуйте розмістити [b]ядро[/b], щоб закрити цей туторіал.\n"
 "\n"
 "Якщо ваша клітина ще не готова до ядра, скористайтеся [b]кнопкою скасування[/b], щоби [u]прибрати[/u] ядро."
+
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "Завантажується Мікробна Стадія"
 
 #, fuzzy
 msgid "EFFECTIVE_VALUE"
@@ -1970,6 +2048,9 @@ msgstr "Джерела енергії:"
 
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Загальна зібрана енергія становить {0} з індивідуальною вартістю {1}, результатом чого є нескоригована популяція кількістю в {2}"
+
+msgid "ENGULF_CELL_OR_CHUNK"
+msgstr "Поглиньте іншу клітину або фрагмент"
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr "Пошкоджено входом у режим поглинання при відсутності АТФ"
@@ -2077,6 +2158,14 @@ msgstr ""
 "Подія: падіння сіркового метеорита\n"
 "Підвищує рівні вуглекислого газу та сірки.\n"
 "Розповсюджує сіркові фрагменти."
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Це точний підтверджувальний код компіляції цієї версії Thrive"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Це точний підтверджувальний код компіляції цієї версії Thrive"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Еволюційне дерево"
@@ -2317,6 +2406,10 @@ msgstr "Вилучіть локальні дані"
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "Вилучити локальні дані стосовно елемента. Корисно, якщо ви ввели ID або хочету відвантажити нову версію до іншого елемента."
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "Збереження:"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Помилка: {0}"
 
@@ -2340,6 +2433,14 @@ msgstr "Скам'янити цей вид (вже скам'янено)"
 
 msgid "FOSSILISE"
 msgstr "Скам'яніти"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Видалення скам'янілості не вдалося"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Файл скам'янілості немодливо видалити"
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Видалення скам'янілості не вдалося"
@@ -2417,9 +2518,8 @@ msgstr "Не забувайте, що панель зверху справа п�
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Якщо ваша популяція впаде до нуля, ваш вид вимре."
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Генерації"
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr "Згенерувати фотосинтезом більше глюкози ніж вам потрібно"
 
 msgid "GENERATIONS"
 msgstr "Генерації"
@@ -2428,16 +2528,16 @@ msgid "GENERATION_COLON"
 msgstr "Генерація:"
 
 msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
+msgstr "Геологічна активність"
 
 msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
+msgstr "Активна"
 
 msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
+msgstr "Середня"
 
 msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
+msgstr "Спляча"
 
 #, fuzzy
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
@@ -2487,6 +2587,10 @@ msgstr "Глюкоза"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Концентрація глюкози раптово впала!"
 
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}м. нижче рівня моря"
+
 msgid "GLYCOLYSIS"
 msgstr "Гліколіз"
 
@@ -2495,6 +2599,9 @@ msgstr "Режим Бога"
 
 msgid "GOD_TOOLS_TITLE"
 msgstr "Інструменти Бога"
+
+msgid "GOING_NUCLEAR"
+msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "Бігаючі оченята клітин"
@@ -2595,6 +2702,7 @@ msgstr "{0} (x{1})"
 msgid "HYDROGENASE"
 msgstr "Гідрогеназа"
 
+#, fuzzy
 msgid "HYDROGENASE_DESCRIPTION"
 msgstr "Використовує водень для здобування енергії з [thrive:compound type=\\\"glucose\\\"][/thrive:compound]. Є ефективнішою за метаболосоми при низьких рівнях [thrive:compound type=\\\"oxygen\\\"][/thrive:compound]. Багато організмів у безкисневих оточеннях використовують її як основне джерело енергії."
 
@@ -2614,6 +2722,10 @@ msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
+msgstr "Сірководень"
+
+#, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "Сірководень"
 
 #, fuzzy
@@ -2637,6 +2749,9 @@ msgstr "НомерID"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(залежно від режиму рендера та масштабування не всі методи можуть бути доступні)"
+
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
 
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
@@ -2746,6 +2861,14 @@ msgstr "Інспектор"
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Відвідайте нашу сторінку у Steam"
 
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} АТФ"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(частка глюкози, що залишається в навколишньому серидовищі кожну генерацію)"
+
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Активувати Ворота Піднесення"
 
@@ -2843,6 +2966,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Залізо"
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 msgid "IRON_OXIDATION"
 msgstr "Залізна оксидація"
 
@@ -2861,18 +2987,6 @@ msgstr "Взаємодіяти з об'єктом"
 
 msgid "JANUARY"
 msgstr "Січень"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "Режим зневадження JSON:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Завжди"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Автоматично"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Ніколи"
 
 msgid "JULY"
 msgstr "Липень"
@@ -3394,6 +3508,18 @@ msgstr "Стати макроскопічним ({0}/{1})"
 msgid "MACROSCOPIC_STAGE"
 msgstr "Мікробна стадія"
 
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "радіація"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Хемосинтез"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "Зміни:"
+
 msgid "MANUALLY_SET_TIME"
 msgstr "Установити час доби вручну"
 
@@ -3570,6 +3696,10 @@ msgstr ""
 "[b]Поведінка[/b]\n"
 "  {5}"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "[b][u]{0}[/u][/b] відокремились від [b][u]{1}[/u][/b] як новий вид через різні утиски відбору"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr "Тиск навколишнього середовища"
 
@@ -3593,8 +3723,16 @@ msgstr "Вплив ефективності хижацтва"
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Винищення {0}"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Сполуки при виході з редактора:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr "Початковий тиск"
+
+#, fuzzy
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
+msgstr "Вплив матаболічної стабільності"
 
 #, fuzzy
 msgid "MICHE_TREE"
@@ -3820,6 +3958,10 @@ msgstr ""
 msgid "MICROBIAL_MASSACRE"
 msgstr "Мікробна стадія"
 
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "Мікроб"
+
 msgid "MIDDLE_MOUSE"
 msgstr "Колесик миші (середина миші)"
 
@@ -3918,6 +4060,10 @@ msgstr "Змінити тип"
 msgid "MODS"
 msgstr "Моди"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Жоден мод не ввімкнений"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Встановлений мод виявлено, але увімкнених модів нема.\n"
@@ -3953,9 +4099,6 @@ msgstr "{0}: не вдалося викликати метод відванта�
 
 msgid "MOD_AUTHOR"
 msgstr "Автор моду:"
-
-msgid "MOD_AUTO_HARMONY"
-msgstr "Використання авто-Гармонії:"
 
 msgid "MOD_CREATION_FAILED"
 msgstr "Невдалось створити мод"
@@ -4322,6 +4465,10 @@ msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Базова швидкість"
 
 #, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Сірководень"
+
+#, fuzzy
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "Недостатньо {0} для створення"
 
@@ -4352,6 +4499,10 @@ msgstr "Нема зафіксованих сполук"
 
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Каталог викопувань не знайдено"
+
+#, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "Підтвердити видалення"
 
 msgid "NO_MODS_ENABLED"
 msgstr "Жоден мод не ввімкнений"
@@ -4586,6 +4737,10 @@ msgid "OUR_WIKI"
 msgstr "Наша Wiki"
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Не починати."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "Не починати."
 
@@ -4659,6 +4814,10 @@ msgstr "Повернути панораму вгору"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Колишні розробники"
+
+#, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "{0} {1}"
 
 #, fuzzy
 msgid "PATCH_COLON"
@@ -4757,6 +4916,10 @@ msgstr "Фосфат"
 msgid "PHOSPHATES_COST"
 msgstr "Вартість фосфату:"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Вартість фосфату:"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Фотосинтез"
 
@@ -4786,6 +4949,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Рандомний сід планети"
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Статистика"
 
 msgid "PLAYER"
 msgstr "Гравець"
@@ -4940,6 +5107,10 @@ msgid "RADIATION"
 msgstr "Радіація"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Радіація"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Великий шматок фосфату"
 
@@ -4958,6 +5129,16 @@ msgstr "Необроблений"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Вологість:"
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Багатоклітинна стадія"
 
 msgid "READING_SAVE_DATA"
 msgstr "Читання даних збереження"
@@ -4983,6 +5164,10 @@ msgstr "Оновити"
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Аксон"
+
+#, fuzzy
+msgid "REGIONS_NUMBER"
+msgstr "НомерID"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5123,6 +5308,18 @@ msgstr ""
 msgid "REVEAL_ALL_PATCHES"
 msgstr "Відкрити всі ділянки"
 
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Перейти до наступної вкладки редактору"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "Ця вкладка дозволяє встановити порядок, у якому зростатимуть органели. Це може бути важливим для клітин із нестабільним продукуванням АТФ під час росту. Порядок органел також значно впливає на порядок пробігу біопроцесів. Бажано редагувати це тільки після редагування структури, бо інакше зміни можуть бути скасовані."
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Натисніть [thrive:input]help[/thrive:input], щоб переглянути більше інформації у Thriveopedia."
+
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Відвідайте офіційний сайт Revolutionary Games"
 
@@ -5146,6 +5343,9 @@ msgstr "Поверніть праворуч"
 
 msgid "ROTATION_COLON"
 msgstr "Обертання:"
+
+msgid "RUNOFF_EVENT"
+msgstr ""
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Запускати Авто-ево під час гри"
@@ -5215,12 +5415,6 @@ msgstr "Використаний простір:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Видалення цього збереження неможливо буде скасувати. Чи впевнені Ви, що хочете назавжди видалити {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "Повідомляючи про помилку збереження, будь ласка, прикладіть [color=#3796e1][url={0}]{1}[/url][/color] з [color=#3796e1][url={2}]каталогу журналів[/url][/color], оскільки ця інформація є критичною для розуміння причини помилки. Без цього файлу розробникам Thrive буде дуже складно виявити та полагодити проблему."
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Перш ніж повідомляти про цю помилку збереження, будь ласка, переконайтеся, що режим зневадження JSON не вимкнено. Автоматичний режим зневадження JSON повинен був створити додатковий файл під назвою \"{0}\" у [color=#3796e1][url={1}]каталозі журналів[/url][/color]. Цей файл містить критичну інформацію для розробників Thrive, щоб вони могли зрозуміти природу помилки збереження."
 
 msgid "SAVE_FAILED"
 msgstr "Невдале збереження"
@@ -5435,6 +5629,10 @@ msgstr "Надати допомогу"
 msgid "SHOW_ITEM_COORDINATES"
 msgstr "Показати координати"
 
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "Надати допомогу"
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Показувати нову інформацію про патчі автоматично"
 
@@ -5608,6 +5806,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "мутував"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Знайти поточну ділянку"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Максимум видів в ділянці"
 
 msgid "SPECIES_LIST"
 msgstr "Список видів"
@@ -5813,6 +6019,9 @@ msgstr "Центр суспільства"
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Фабрика на паровій тязі"
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr "вдале очищення"
 
@@ -5833,6 +6042,10 @@ msgstr "Ті, що підтримали"
 
 msgid "SURVIVAL_TITLE"
 msgstr "Виживання"
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "Необхідне ядро"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Перемкнути на вигляд передньої камери"
@@ -5870,6 +6083,14 @@ msgstr "Зробити знімок екрана"
 
 msgid "TARGET_TYPE_COLON"
 msgstr "Тип цілі:"
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Поточні потоки:"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "Радіація"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "Піднесення"
@@ -5953,15 +6174,18 @@ msgstr "Термопласт"
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Термопласти– це двохмембранні структури, що містить термочутливі пігменти зібрані разом у мішечки. Це прокаріот, захоплений для використання еукаріотичним господарем. Пігменти в термопласті здатні використовувати перепад температур в оточені, щоб продукувати [thrive:compound type=\"atp\"][/thrive:compound] з води та газуватого вуглекислого газу в процесі, що зветься [b]Термосинтез[/b]. Кількість продукованого [thrive:compound type=\"atp\"][/thrive:compound] залежить від [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Продукує [thrive:compound type=\"atp\"][/thrive:compound], використовуючи температури, що підвищуються. Кількість залежить від підвищення [thrive:compound type=\"temperature\"][/thrive:compound]. Користуйтеся [b]термальним зором[/b] для знаходження гарячих та холодних зон."
 
 msgid "THERMOSYNTHASE"
 msgstr "Термосинтаза"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "Термосинтаза – білок, що використовує теплову конвекцію для зміни своєї форми, даючи змогу згортатися та зв'язуватися з АДФ під дією тепла, а потім розгортатися, перероблюючи [thrive:compound type=\"atp\"][/thrive:compound] у процесі, що зветься [b]термосинтезом[/b]. При охолодженні білок розгортається, дозволяючи повторення циклу при наступному підвищенні [thrive:compound type=\"temperature\"][/thrive:compound]. Швидкість виробництва [thrive:compound type=\"atp\"][/thrive:compound] змінюється залежно від дельти [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Продукує [thrive:compound type=\"atp\"][/thrive:compound], використовуючи температури, що підвищуються. Кількість залежить від підвищення [thrive:compound type=\"temperature\"][/thrive:compound]. Користуйтеся [b]термальним зором[/b] для знаходження гарячих та холодних зон."
 
@@ -5970,6 +6194,10 @@ msgstr "Термосинтез"
 
 msgid "THE_DISTURBANCE"
 msgstr "Порушення"
+
+#, fuzzy
+msgid "THE_EDITOR"
+msgstr "Перейти до наступної вкладки редактору"
 
 #, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
@@ -6023,6 +6251,10 @@ msgstr "Мапа ділянок"
 
 msgid "THRIVE_LICENSES"
 msgstr "Ліцензії Thrive"
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Базова швидкість"
 
 msgid "THYLAKOIDS"
 msgstr "Тилакоїди"
@@ -6164,6 +6396,20 @@ msgstr "{0}: +{1} АТФ"
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr "Ви не адаптовані до поточних умов оточення. Вартість осморегуляції {0}%, швидкість біопроцесів {1}%, здоров'я {2}%"
 
+#, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]Види[/b]\n"
+"  {0}:{1}\n"
+"[b]Генерація[/b]\n"
+"  {2}\n"
+"[b]Популяція[/b]\n"
+"  {3}\n"
+"[b]Колір[/b]\n"
+"  #{4}\n"
+"[b]Поведінка[/b]\n"
+"  {5}"
+
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr "Деякі органели впливають на толерантності, як позитивно, так і негативно. Показане тут точне значення отримується від додавання базового значення до змін від органел. Деякі органели мають синергію з деякими ігровими стилями, але шкодять іншим."
 
@@ -6280,10 +6526,6 @@ msgstr "Спробуйте зробити декілька скріншотів!
 
 msgid "TUTORIAL"
 msgstr "Туторіал"
-
-#, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "(деякі органели матимуть умови відкриття, необхідні для їх розміщення)"
 
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
@@ -6596,6 +6838,10 @@ msgstr ""
 "\n"
 "Якщо ви використовуєте розмноження брунькуванням (метод за замовчуванням), ви почнете керувати малою брунькою та згодом наростите решту розміченої клітинної колонії."
 
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "(деякі органели матимуть умови відкриття, необхідні для їх розміщення)"
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Переглянути зараз"
 
@@ -6643,6 +6889,17 @@ msgstr "Скасувати"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Скасувати попередню дію"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Аксони є нервовими тканинами, що використовуються нейронами для з'єднання й комунікації один з одним. Розміщення цієї органели на клітині перетворює її на мозкову тканину."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Дякуємо"
 
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Побудувати"
@@ -6797,6 +7054,9 @@ msgstr "Метод масштабування:"
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr "FSR-чіткість"
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Ліцензії та використана література"
 
@@ -6805,12 +7065,6 @@ msgstr "Використовуваний рендер:"
 
 msgid "USES_FEATURE"
 msgstr "Так"
-
-msgid "USE_AUTO_HARMONY"
-msgstr "Використати завантаження авто-Гармонії"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Автоматичне завантаження патчів Гармонії зі збірки (не вимагає вказувати клас моду)"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Використовувати звичайне ім'я користувача"
@@ -6853,6 +7107,10 @@ msgstr "Ця вакуоля зберігатиме {0} одиниць обран
 
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VENTS_ARE_HOME"
+msgstr "Нема зафіксованих сполук"
 
 msgid "VERSION_COLON"
 msgstr "Версія:"
@@ -7117,6 +7375,7 @@ msgstr ""
 "[indent]—   Містить [b][color=#3796e1][url=thriveopedia:nucleus]Ядро[/url][/color][/b] протягом щонайменш [b]5[/b] поколінь.[/indent]\n"
 "[indent]—   Має баланс [thrive:compound type=\"atp\"][/thrive:compound] щонайменш [b]+15[/b].[/indent]"
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
@@ -7823,21 +8082,25 @@ msgstr "Аксон"
 msgid "WIKI_MELANOSOME_EFFECTS"
 msgstr "Ефектів немає."
 
+#, fuzzy
 msgid "WIKI_MELANOSOME_INTRO"
 msgstr "[b]Меланосоми[/b] здійснюють [b]радіосинтез[/b], який збирає енергію з радіації через накопичення її в меланіні."
 
 msgid "WIKI_MELANOSOME_MODIFICATIONS"
 msgstr "Немає модифікацій."
 
+#, fuzzy
 msgid "WIKI_MELANOSOME_PROCESSES"
 msgstr ""
 "[b]Радіосинтез[/b]: [b]Радіація[/b] File:RadiationIcon.png → [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
 "Метод продукування енергії через використання радіоактивних матеріалів."
 
+#, fuzzy
 msgid "WIKI_MELANOSOME_REQUIREMENTS"
 msgstr "Необхідно отримувати пошкодження від радіації, знаходячись поблизу від радіоактивного фрагмента"
 
+#, fuzzy
 msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
@@ -8928,11 +9191,57 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Ви можете підтримати майбутню розробку на Patreon цієї гри (Thrive)."
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr ""
+"Зосереджені мікроби шукатимуть брили або здобич на більшій відстані\n"
+"та можуть завзятіше змагатися за брили.\n"
+"Чуйні мікроби швидше відвертатимуться на нові цілі."
+
 msgid "ZOOM_IN"
 msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Використання авто-Гармонії:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Використати завантаження авто-Гармонії"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Автоматичне завантаження патчів Гармонії зі збірки (не вимагає вказувати клас моду)"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Сполуки при виході з редактора:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "Режим зневадження JSON:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Завжди"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Автоматично"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Ніколи"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "Повідомляючи про помилку збереження, будь ласка, прикладіть [color=#3796e1][url={0}]{1}[/url][/color] з [color=#3796e1][url={2}]каталогу журналів[/url][/color], оскільки ця інформація є критичною для розуміння причини помилки. Без цього файлу розробникам Thrive буде дуже складно виявити та полагодити проблему."
+
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Перш ніж повідомляти про цю помилку збереження, будь ласка, переконайтеся, що режим зневадження JSON не вимкнено. Автоматичний режим зневадження JSON повинен був створити додатковий файл під назвою \"{0}\" у [color=#3796e1][url={1}]каталозі журналів[/url][/color]. Цей файл містить критичну інформацію для розробників Thrive, щоб вони могли зрозуміти природу помилки збереження."
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Не починати."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Генерації"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
@@ -9201,10 +9510,6 @@ msgstr "Віддалитись"
 #~ msgstr "Стадія свідомості"
 
 #, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Хемосинтез"
-
-#, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"
 #~ msgstr "Гліколіз"
 
@@ -9285,9 +9590,6 @@ msgstr "Віддалитись"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Низький ліміт біорізноманіття"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Максимум видів в ділянці"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Нове біорізноманіття збільшує видові популяції"

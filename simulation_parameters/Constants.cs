@@ -20,18 +20,15 @@ public static class Constants
     public const float SIMULATION_MAX_DELTA_TIME = 0.2f;
 
     /// <summary>
-    ///   How often entity simulation optimizes the number of used threads (should be less than 1)
-    /// </summary>
-    public const float SIMULATION_OPTIMIZE_THREADS_INTERVAL = 0.3f;
-
-    /// <summary>
-    ///   Controls the number of threads used by the entity systems. The number of cells is divided by this and that is
-    ///   the max number of threads.
+    ///   Controls the number of threads used by the entity systems. The number of cells is divided by this,
+    ///   and that is the max number of threads.
     /// </summary>
     public const int SIMULATION_CELLS_PER_THREAD_ESTIMATE = 25;
 
+    public const float SIMULATION_REQUIRED_FAST_MODE_SUCCESS_RATE = 0.45f;
+
     // The following variables define the number of entities each thread running a system of that category needs to be
-    // able to process for threading to be used at all. For example if there are 40 entities and 4 threads to be used
+    // able to process for threading to be used at all. For example, if there are 40 entities and 4 threads to be used
     // and a system specifies 10 entities per thread, that system will run multithreaded (4 * 10 {40} <= 40).
     // But if there was a system that wanted at least 15 entities per thread, that would run purely *single threaded*
     // (4 * 15 {60} <= 40)
@@ -190,6 +187,22 @@ public static class Constants
     public const float CLOUD_MAX_INTENSITY_SHOWN = 1000;
 
     public const float CLOUD_CHEAT_DENSITY = 16000.0f;
+
+    public const float TERRAIN_GRID_SIZE = 200;
+    public const float TERRAIN_GRID_SIZE_INV = 1 / TERRAIN_GRID_SIZE;
+    public const float TERRAIN_EDGE_PROTECTION_SIZE = 1;
+
+    /// <summary>
+    ///   Adds randomness to microbe terrain height so that there's no z-fighting if terrain ends up overlapping
+    /// </summary>
+    public const float TERRAIN_HEIGHT_RANDOMNESS = 0.001f;
+
+    /// <summary>
+    ///   In how big the radius (in terms of grid cells) around the player terrain is spawned in.
+    ///   If too low, then pop in is visible and the spawn system can spawn stuff in that then gets covered
+    ///   by the terrain.
+    /// </summary>
+    public const int TERRAIN_SPAWN_AREA_NUMBER = 4;
 
     public const int MEMBRANE_RESOLUTION = 10;
     public const int MEMBRANE_VERTICAL_RESOLUTION = 7;
@@ -389,6 +402,8 @@ public static class Constants
     /// </summary>
     public const float CURRENT_FORCE_CELL_MULTIPLIER = 15;
 
+    public const float CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD = 0.15f;
+
     public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
     public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
 
@@ -441,10 +456,13 @@ public static class Constants
     public const string MICROBE_BINDING_MODE_SOUND = "res://assets/sounds/soundeffects/binding.ogg";
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
-    public const float MICROBE_MOVEMENT_SOUND_MAX_VOLUME = 0.4f;
+    public const float MICROBE_MOVEMENT_SOUND_MAX_BASE_VOLUME = 0.4f;
+
+    public const float MICROBE_MOVEMENT_SOUND_SPEED_SCALER = 30.0f;
+    public const float MICROBE_MOVEMENT_SOUND_MAX_VOLUME_SCALER = 4.0f;
 
     // TODO: should this volume be actually 0?
-    public const float MICROBE_MOVEMENT_SOUND_START_VOLUME = 1;
+    public const float MICROBE_MOVEMENT_SOUND_START_VOLUME = 0.01f;
 
     /// <summary>
     ///   Max number of concurrent audio players that may be used per entity.
@@ -504,9 +522,9 @@ public static class Constants
 
     public const float OXYTOXY_DAMAGE = 25.0f;
 
-    public const float CYTOTOXIN_DAMAGE = 20.0f;
+    public const float CYTOTOXIN_DAMAGE = 18.0f;
 
-    public const float OXYGEN_INHIBITOR_DAMAGE = 14.0f;
+    public const float OXYGEN_INHIBITOR_DAMAGE = 23.0f;
 
     public const float CHANNEL_INHIBITOR_ATP_DEBUFF = 0.5f;
     public const float CHANNEL_INHIBITOR_DEBUFF_DURATION = 15;
@@ -515,6 +533,7 @@ public static class Constants
     public const float MACROLIDE_DEBUFF_DURATION = 5;
 
     public const float TOXIN_TOXICITY_DAMAGE_MODIFIER_STRENGTH = 0.5f;
+    public const float DEFAULT_TOXICITY = 0.0f;
 
     /// <summary>
     ///   Each oxygen using organelle in a cell increases damage caused by oxygen-inhibiting toxin by this amount,
@@ -751,6 +770,14 @@ public static class Constants
     /// </summary>
     public const float HEALTH_REGEN_STOP_DAMAGE_THRESHOLD = 0.15f;
 
+    public const float HYDROGEN_SULFIDE_DAMAGE_INTERVAL = 0.75f;
+
+    public const float HYDROGEN_SULFIDE_DAMAGE_THESHOLD = 0.05f;
+
+    public const float HYDROGEN_SULFIDE_DAMAGE = 2.0f;
+
+    public const float HYDROGEN_SULFIDE_DAMAGE_COMPOUND_DRAIN = 0.2f;
+
     public const float RADIATION_STRENGTH_MULTIPLIER = 0.02f;
 
     /// <summary>
@@ -918,7 +945,7 @@ public static class Constants
     ///   The measure of which beyond this threshold an engulfable is considered partially digested.
     ///   Used to determine whether a cell should be able to heal after being expelled from engulfment.
     /// </summary>
-    public const float PARTIALLY_DIGESTED_THRESHOLD = 0.5f;
+    public const float PARTIALLY_DIGESTED_THRESHOLD = 0.8f;
 
     /// <summary>
     ///   The maximum digestion progress in which an engulfable is considered fully digested. Do not change this.
@@ -1117,8 +1144,6 @@ public static class Constants
     public const float METABALL_SIZE_STEP = 0.1f;
     public const float METABALL_MAX_SIZE = 5.0f;
 
-    public const float DIVIDE_EXTRA_DAUGHTER_OFFSET = 3.0f;
-
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 85.0f;
     public const int CORPSE_CHUNK_DIVISOR = 3;
@@ -1276,17 +1301,33 @@ public static class Constants
     public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 300;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
+
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 35;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
+    public const float AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING = 0.06f;
+    public const float AUTO_EVO_SIZE_AFFECTED_PROJECTILE_MISS_FACTOR = 0.5f;
+    public const float AUTO_EVO_TOXICITY_HIT_MODIFIER = 4.0f;
     public const float AUTO_EVO_SLIME_JET_SCORE = 6;
     public const float AUTO_EVO_MUCOCYST_SCORE = 40;
+    public const float AUTO_EVO_PULL_CILIA_MODIFIER = 0.8f;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
+    public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER = 1.18f;
+    public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER = 0.7f;
+    public const float AUTO_EVO_CHEMORECEPTOR_BASE_SCORE = 0.4f;
+    public const float AUTO_EVO_CHEMORECEPTOR_VARIABLE_CLOUD_SCORE = 8;
+    public const float AUTO_EVO_CHEMORECEPTOR_VARIABLE_CHUNK_SCORE = 0.00007f;
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.2f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
+    public const float AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION = 0.1f;
+    public const float AUTO_EVO_REPRODUCTION_COMPOUND_PRODUCTION_SCORE = 3000.0f;
+    public const float AUTO_EVO_REPRODUCTION_COMPOUND_COST_WEAKENING_MODIFIER = 0.5f;
+
+    public const float AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS_SMALL = 1.5f;
+    public const float AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS = 20.0f;
 
     public const int AI_FOLLOW_PLAYER_MIGRATION_TO_EMPTY_PATCH_THRESHOLD = 2;
 
@@ -1306,12 +1347,25 @@ public static class Constants
     public const double AUTO_EVO_COLOR_CHANGE_MAX_STEP = 0.5f;
 
     public const float AUTO_EVO_MUTATION_RIGIDITY_STEP = 0.35f;
+    public const float AUTO_EVO_MUTATION_TOXICITY_STEP = 0.2f;
+
     public const int AUTO_EVO_MAX_MUTATION_RECURSIONS = 3;
 
     public const int AUTO_EVO_ORGANELLE_ADD_ATTEMPTS = 15;
     public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 15;
+    public const int AUTO_EVO_ORGANELLE_UPGRADE_ATTEMPTS = 5;
 
-    public const float AUTO_EVO_TOLERANCE_PERFECT_CHANCE = 0.02f;
+    /// <summary>
+    ///   If a species is adapted to its environment, this is the chance it will try to perfectly adapt anyway
+    /// </summary>
+    public const float AUTO_EVO_TOLERANCE_PERFECT_CHANCE_IF_ADAPTED = 0.001f;
+
+    /// <summary>
+    ///   When a species is getting tolerance changes, this is the chance it will also try to perfectly adapt another
+    ///   stat that was already good enough. Note that this being too high can interfere with a species adapting to new
+    ///   conditions normally.
+    /// </summary>
+    public const float AUTO_EVO_TOLERANCE_PERFECT_CHANCE_OTHER = 0.01f;
 
     public const float AUTO_EVO_PREDICTION_UPDATE_INTERVAL = 0.95f;
 
@@ -1363,6 +1417,14 @@ public static class Constants
     public const double HYDROGEN_SULFIDE_ENVIRONMENT_EATING_MULTIPLIER = 0.00000001;
     public const float HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR = 0.3f;
 
+    public const float HYDROGEN_SULFIDE_NATURAL_DECAY_INCREASE_PER_OXYGEN = 0.021f;
+    public const float HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR_OXYGEN = 0.1f;
+    public const float HYDROGEN_SULFIDE_OXYGEN_TOTAL_CUTOFF = 0.01f;
+
+    public const double AMMONIA_ENVIRONMENT_CONSUMPTION_MULTIPLIER = 0.00000000001;
+    public const double AMMONIA_ENVIRONMENT_PRODUCTION_MULTIPLIER = 0.0000001;
+    public const float AMMONIA_ENVIRONMENT_SPEED_MULTIPLIER = 0.9f;
+
     /// <summary>
     ///   Below this value oxygen doesn't cause iron chunks to become less common
     /// </summary>
@@ -1386,9 +1448,9 @@ public static class Constants
     public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.001f;
     public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
 
-    public const float GLOBAL_GLACIATION_OXYGEN_THRESHOLD = 0.07f;
-    public const float GLOBAL_GLACIATION_PATCHES_THRESHOLD = 0.7f;
-    public const float GLOBAL_GLACIATION_CHANCE = 0.5F;
+    public const float GLOBAL_GLACIATION_OXYGEN_THRESHOLD = 0.055f;
+    public const float GLOBAL_GLACIATION_PATCHES_THRESHOLD = 0.55f;
+    public const float GLOBAL_GLACIATION_CHANCE = 0.53f;
     public const int GLOBAL_GLACIATION_MIN_DURATION = 2;
     public const int GLOBAL_GLACIATION_MAX_DURATION = 6;
     public const int GLOBAL_GLACIATION_HEADS_UP_DURATION = 1;
@@ -1396,6 +1458,34 @@ public static class Constants
 
     public const float METEOR_IMPACT_CHANCE = 0.23f;
     public const float METEOR_IMPACT_SUNLIGHT_MULTIPLICATION = 0.75f;
+
+    public const int RUNOFF_MIN_DURATION = 1;
+    public const int RUNOFF_MAX_DURATION = 3;
+    public const float RUNOFF_INITIAL_CHANCE = 0.35f;
+    public const float RUNOFF_FINAL_CHANCE = 0.1f;
+    public const int RUNOFF_CHANCE_DIMINISH_DURATION = 15;
+    public const float RUNOFF_CHANCE_OF_AFFECTING_ANOTHER_COMPOUND = 0.77f;
+    public const float RUNOFF_COMPOUND_CHANGE = 0.000025f;
+    public const float RUNOFF_MIN_CHUNK_DENSITY_MULTIPLIER = 8.0f;
+    public const float RUNOFF_MAX_CHUNK_DENSITY_MULTIPLIER = 30.0f;
+
+    public const int UPWELLING_MIN_DURATION = 1;
+    public const int UPWELLING_MAX_DURATION = 3;
+    public const float UPWELLING_INITIAL_CHANCE = 0.35f;
+    public const float UPWELLING_FINAL_CHANCE = 0.1f;
+    public const int UPWELLING_CHANCE_DIMINISH_DURATION = 15;
+    public const float UPWELLING_CHANCE_OF_AFFECTING_ANOTHER_COMPOUND = 0.77f;
+    public const float UPWELLING_DILUTION_COMPOUND_CHANGE = 0.000025f;
+
+    public const int CURRENT_DILUTION_MIN_DURATION = 1;
+    public const int CURRENT_DILUTION_MAX_DURATION = 3;
+    public const float CURRENT_DILUTION_INITIAL_CHANCE = 0.38f;
+    public const float CURRENT_DILUTION_FINAL_CHANCE = 0.12f;
+    public const int CURRENT_DILUTION_CHANCE_DIMINISH_DURATION = 18;
+    public const float CURRENT_DILUTION_CHANCE_OF_AFFECTING_ANOTHER_COMPOUND = 0.73f;
+    public const float CURRENT_DILUTION_COMPOUND_CHANGE = -0.000025f;
+    public const float CURRENT_DILUTION_MIN_CHUNK_DENSITY_MULTIPLIER = 8.0f;
+    public const float CURRENT_DILUTION_MAX_CHUNK_DENSITY_MULTIPLIER = 30.0f;
 
     // These control how many game entities can exist at once
     public const int TINY_MAX_SPAWNED_ENTITIES = 80;
@@ -1447,6 +1537,13 @@ public static class Constants
     /// </summary>
     public const float MOVEMENT_MODE_SELECTION_DELAY = 1.55f;
 
+    /// <summary>
+    ///   The size ratio an entity has to be in relation to the player for the engulfable tutorial to point to it.
+    ///   This is to increase the chances of catching the target entity during the tutorial to reduce player
+    ///   frustration. Increase the value to target bigger and slower entities, but less of them.
+    /// </summary>
+    public const float TUTORIAL_ENGULFABLE_SIZE_RATIO = 0.35f;
+
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 12.0f;
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY_CONTROLLER = 1.0f;
     public const float MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME = 2.2f;
@@ -1465,6 +1562,8 @@ public static class Constants
     public const float HIDE_MICROBE_SPECIES_MEMBER_DIED_AFTER = 60;
 
     public const float DAY_NIGHT_TUTORIAL_LIGHT_MIN = 0.01f;
+
+    public const int TRIGGER_BINDING_AGENTS_TUTORIAL_AFTER_SESSIONS_WITH_NUCLEUS = 7;
 
     /// <summary>
     ///   Used to limit how often the hover indicator panels are updated. The default value is every 0.1 seconds.
@@ -1583,9 +1682,6 @@ public static class Constants
     public const string STRUCTURE_ENTITY_GROUP = "structure";
 
     public const string CITIZEN_GROUP = "citizen";
-
-    public const string DELETION_HOLD_LOAD = "load";
-    public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
 
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
     public const string WORKSHOP_DATA_FILE = "user://workshop_data.json";
@@ -1729,7 +1825,8 @@ public static class Constants
     public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 3000.0f;
 
     public const int ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS = 2;
-    public const int PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS = 3;
+    public const int PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS = 2;
+    public const int DETAILED_PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS = 3;
 
     public const float COMPOUND_BAR_VALUE_ANIMATION_TIME = 0.10f;
 
@@ -1806,6 +1903,25 @@ public static class Constants
     public const float MIN_AUTO_EVO_STRENGTH_MULTIPLIER = 0.01f;
     public const float MAX_AUTO_EVO_STRENGTH_MULTIPLIER = 1.0f;
 
+    // Min/max values for each customizable planet generation option
+    public const int TEMPERATURE_COLD_MIN = -4;
+    public const int TEMPERATURE_COLD_MAX = 1;
+    public const int TEMPERATURE_TEMPERATE_MIN = -2;
+    public const int TEMPERATURE_TEMPERATE_MAX = 2;
+    public const int TEMPERATURE_WARM_MIN = 0;
+    public const int TEMPERATURE_WARM_MAX = 6;
+
+    public const float COMPOUND_LEVEL_VERY_LOW_MIN = 0.3f;
+    public const float COMPOUND_LEVEL_VERY_LOW_MAX = 0.5f;
+    public const float COMPOUND_LEVEL_LOW_MIN = 0.7f;
+    public const float COMPOUND_LEVEL_LOW_MAX = 0.8f;
+    public const float COMPOUND_LEVEL_AVERAGE_MIN = 0.9f;
+    public const float COMPOUND_LEVEL_AVERAGE_MAX = 1.1f;
+    public const float COMPOUND_LEVEL_HIGH_MIN = 1.1f;
+    public const float COMPOUND_LEVEL_HIGH_MAX = 1.2f;
+    public const float COMPOUND_LEVEL_VERY_HIGH_MIN = 1.3f;
+    public const float COMPOUND_LEVEL_VERY_HIGH_MAX = 1.5f;
+
     public const float CURRENT_MAP_PATCH_INDICATOR_HALF_BLINK_INTERVAL = 0.5f;
 
     // Constants for the procedural patch map
@@ -1815,6 +1931,9 @@ public static class Constants
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const float PATCH_REGION_MARGIN = 5.0f;
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
+    public const float PATCH_LIFE_INDICATOR_RADIUS_BASE = 40.0f;
+    public const float PATCH_LIFE_INDICATOR_RADIUS_SCALE = 30.0f;
+    public const float INDICATORS_NUMBER_PER_POPULATION_SQUARED = 0.2f;
 
     public const float PATCH_GENERATION_CHANCE_BANANA_BIOME = 0.03f;
 
@@ -1843,16 +1962,34 @@ public static class Constants
 
     // How much it costs to edit various tolerances in the editor
     public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE = 1.0f;
+    public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE_INVERTED = 1.0f / TOLERANCE_CHANGE_MP_PER_TEMPERATURE;
     public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE = 4.0f;
+
+    public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE_INVERTED = 1.0f
+        / TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE;
+
     public const float TOLERANCE_CHANGE_MP_PER_OXYGEN = 150.0f;
+    public const float TOLERANCE_CHANGE_MP_PER_OXYGEN_INVERTED = 1.0f / TOLERANCE_CHANGE_MP_PER_OXYGEN;
+
     public const float TOLERANCE_CHANGE_MP_PER_UV = 100.0f;
+
+    public const float TOLERANCE_CHANGE_MP_PER_UV_INVERTED = 1.0f
+        / TOLERANCE_CHANGE_MP_PER_UV;
 
     /// <summary>
     ///   As pressure values are massive, this is a double to get reasonable MP costs
     /// </summary>
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE = 0.000002;
 
+    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_INVERTED = 1.0f / TOLERANCE_CHANGE_MP_PER_PRESSURE;
+
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00005;
+
+    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE =
+        TOLERANCE_CHANGE_MP_PER_PRESSURE + TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE;
+
+    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE_INVERTED =
+        1.0f / TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE;
 
     // Environmental tolerance debuff / buff tweak variables
     public const float TOLERANCE_TEMPERATURE_SPEED_MODIFIER_MIN = 0.8f;

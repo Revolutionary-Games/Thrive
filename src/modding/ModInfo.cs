@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 public class ModInfo
 {
     /// <summary>
-    ///   Name of the mod. Needs to be user readable. Should be unique.
+    ///   Name of the mod. Needs to be user-readable. Should be unique.
     /// </summary>
     [JsonRequired]
     public string Name { get; set; } = null!;
@@ -48,18 +48,18 @@ public class ModInfo
     public string? Icon { get; set; }
 
     /// <summary>
-    ///   Optional URL to specify a site where info regarding this mod can be found. For example Github link to the
+    ///   Optional URL to specify a site where info regarding this mod can be found. For example, GitHub link to the
     ///   mod's source code.
     /// </summary>
     public Uri? InfoUrl { get; set; }
 
     /// <summary>
-    ///   The license the mod is licensed under. Recommended licenses are: MIT, LGPL, proprietary
+    ///   The licence the mod is licensed under. Recommended licenses are: MIT, LGPL, proprietary
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Note that any mods licensed under GPL or another similar infective license are incompatible to be loaded
-    ///     into versions of Thrive that are not GPL licensed (for example the Steam release)
+    ///     Note that any mods licensed under GPL or another similar infective licence are incompatible to be loaded
+    ///     into versions of Thrive that are not GPL licensed (for example, the Steam release)
     ///   </para>
     /// </remarks>
     public string? License { get; set; }
@@ -71,13 +71,13 @@ public class ModInfo
     public string RecommendedThriveVersion { get; set; } = null!;
 
     /// <summary>
-    ///   The mod will refuse to be loaded if current game version is lower than this version
+    ///   The mod will refuse to be loaded if the current game version is lower than this version
     /// </summary>
     [JsonRequired]
     public string MinimumThriveVersion { get; set; } = null!;
 
     /// <summary>
-    ///   The mod will refuse to be loaded if current game version is higher than this version
+    ///   The mod will refuse to be loaded if the current game version is higher than this version
     /// </summary>
     public string? MaximumThriveVersion { get; set; }
 
@@ -89,26 +89,19 @@ public class ModInfo
     public string? PckToLoad { get; set; }
 
     /// <summary>
-    ///   If set needs to point to a C# compiled DLL file that can be loaded. Needs to be outside any .pck files
+    ///   If set, needs to point to a C# compiled DLL file that can be loaded. Needs to be outside any .pck files
     /// </summary>
     public string? ModAssembly { get; set; }
 
     /// <summary>
-    ///   If ModAssembly is set this needs to be a unique class name contained in ModAssembly (meaning that it must
+    ///   If ModAssembly is set, this needs to be a unique class name contained in ModAssembly (meaning that it must
     ///   be named differently than inbuilt Thrive classes and other mods) that inherits IMod interface. This will be
     ///   the entrypoint to executing code in the mod's assembly.
     /// </summary>
     public string? AssemblyModClass { get; set; }
 
     /// <summary>
-    ///   Alternative to specifying <see cref="AssemblyModClass"/>. If this is true, then the assembly is assumed to
-    ///   contain only Harmony patches which will be automatically loaded and unloaded when the mod is initialized
-    ///   and shutdown.
-    /// </summary>
-    public bool? UseAutoHarmony { get; set; }
-
-    /// <summary>
-    ///   If true the mod specifies that the game needs to be restarted for the mod to properly load / unload
+    ///   If true, the mod specifies that the game needs to be restarted for the mod to properly load / unload
     /// </summary>
     public bool RequiresRestart { get; set; }
 }

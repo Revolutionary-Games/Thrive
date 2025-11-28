@@ -1,23 +1,22 @@
 ﻿namespace Systems;
 
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 
 /// <summary>
 ///   Vents all compounds until empty from a <see cref="CompoundStorage"/> that has a <see cref="CompoundVenter"/>.
 ///   Requires a <see cref="WorldPosition"/>
 /// </summary>
-[With(typeof(CompoundVenter))]
-[With(typeof(CompoundStorage))]
-[With(typeof(WorldPosition))]
 [WritesToComponent(typeof(Physics))]
 [WritesToComponent(typeof(MicrobeShaderParameters))]
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
-[RuntimeCost(9)]
-public sealed class AllCompoundsVentingSystem : AEntitySetSystem<float>
+[RuntimeCost(4)]
+public partial class AllCompoundsVentingSystem : BaseSystem<World, float>
 {
     private readonly CompoundCloudSystem compoundCloudSystem;
     private readonly WorldSimulation worldSimulation;
@@ -26,40 +25,39 @@ public sealed class AllCompoundsVentingSystem : AEntitySetSystem<float>
     private readonly List<Compound> processedCompoundKeys = new();
 
     public AllCompoundsVentingSystem(CompoundCloudSystem compoundClouds, WorldSimulation worldSimulation,
-        World world) : base(world, null)
+        World world) : base(world)
     {
         compoundCloudSystem = compoundClouds;
         this.worldSimulation = worldSimulation;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref CompoundVenter venter, ref CompoundStorage compoundStorage,
+        ref WorldPosition position, in Entity entity)
     {
         // TODO: rate limit updates if needed for performance?
-
-        ref var venter = ref entity.Get<CompoundVenter>();
 
         if (venter.VentingPrevented)
             return;
 
-        ref var compounds = ref entity.Get<CompoundStorage>();
+        var compounds = compoundStorage.Compounds;
 
-        if (compounds.Compounds.Compounds.Count < 1)
+        if (compounds.Compounds.Count < 1)
         {
             // Empty, perform defined actions for when this venter runs out
             OnOutOfCompounds(in entity, ref venter);
             return;
         }
 
-        ref var position = ref entity.Get<WorldPosition>();
-
         processedCompoundKeys.Clear();
-        processedCompoundKeys.AddRange(compounds.Compounds.Compounds.Keys);
+        processedCompoundKeys.AddRange(compounds.Compounds.Keys);
 
         // Loop through all the compounds in the storage bag and eject them
         bool vented = false;
         foreach (var compound in processedCompoundKeys)
         {
-            if (compounds.VentChunkCompound(compound, delta * venter.VentEachCompoundPerSecond, position.Position,
+            if (compoundStorage.VentChunkCompound(compound, delta * venter.VentEachCompoundPerSecond, position.Position,
                     compoundCloudSystem))
             {
                 vented = true;

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-01 16:03+0300\n"
-"PO-Revision-Date: 2025-05-25 15:00+0000\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
+"PO-Revision-Date: 2025-11-10 22:19+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
@@ -190,6 +190,10 @@ msgstr "Ammoniak"
 msgid "AMMONIA_COST"
 msgstr "Ammoniakkosten:"
 
+#, fuzzy
+msgid "AMMONIA_LEVELS"
+msgstr "Ammoniakkosten:"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Aantal automatische savegames om te bewaren:"
 
@@ -273,7 +277,8 @@ msgstr "Verheven Fase"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Mod assembly klasse is vereist wanneer een assembly is gespecificeerd"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Mod assemble is vereist wanneer auto harmony is aangezet"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -417,6 +422,21 @@ msgstr "Beschikbare Bouwprojecten"
 msgid "AVAILABLE_MODS"
 msgstr "Beschikbare Mods"
 
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr "Ontwaakfase"
 
@@ -512,6 +532,12 @@ msgstr "Resultaten:"
 
 msgid "BEST_PATCH_COLON"
 msgstr "Beste Plek:"
+
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr ""
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Groot stuk ijzer"
@@ -625,6 +651,9 @@ msgstr "Kan Gebruikte Celtype Niet Verwijderen"
 
 msgid "CANNOT_ENGULF"
 msgstr "Kan niet verzwelgen"
+
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Kan metabal niet naar de afstammelingenboom verplaatsen"
@@ -1013,6 +1042,29 @@ msgstr "Toon / verberg stoffen"
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Dichtheid van stofwolken"
 
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Gemiddeld"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Stofbalanzen"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Samenstellings-wolken"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Alles Behouden"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "Verbruik van {0}"
+
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(niet genoeg om de nachtduur van {0} s te overleven)"
 
@@ -1295,6 +1347,10 @@ msgstr "Protanopie (Rood-Groen)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopie (Blauw-Geel)"
 
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "Er is niet genoeg opslagruimte voor [thrive:compound type=\"{0}\"][/thrive:compound] aangezien de nacht {2} s duurt, terwijl de opslag maar {1} s aan stoffen kan bevatten."
+
 msgid "CPU_THREADS"
 msgstr "Threads"
 
@@ -1394,6 +1450,14 @@ msgstr "Slijm vrijlaten"
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Huidige Ontwikkelaars"
+
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "HUIDIGE LOCATIE"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "HUIDIGE LOCATIE"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "HUIDIGE LOCATIE"
@@ -1858,6 +1922,15 @@ msgstr ""
 "Als je klaar bent, klik dan op de knop \"volgende\" rechtsonder om door te gaan naar de Gebiedenkaart."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"Dit is de celbewerker waar je je soort kunt evolueren door mutatiepunten (MP) uit te geven. Iedere generatie heb je altijd precies 100 MP, dus doe geen moeite om ze op te sparen.\n"
+"\n"
+"De hex in het centrum van je scherm is je cel, die nu bestaat uit een enkel cytoplasmadeel.\n"
+"\n"
+"Selecteer een onderdeel uit het linkerpaneel om verder te gaan. Plaats het onderdeel door naast het hex met de linkermuisknop te klikken. Je kunt delen roteren met [thrive:input]e_rotate_left[/thrive:input] en [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 "Dit is de celbewerker waar je je soort kunt evolueren door mutatiepunten (MP) uit te geven. Iedere generatie heb je altijd precies 100 MP, dus doe geen moeite om ze op te sparen.\n"
@@ -1865,6 +1938,10 @@ msgstr ""
 "De hex in het centrum van je scherm is je cel, die nu bestaat uit een enkel cytoplasmadeel.\n"
 "\n"
 "Selecteer een onderdeel uit het linkerpaneel om verder te gaan. Plaats het onderdeel door naast het hex met de linkermuisknop te klikken. Je kunt delen roteren met [thrive:input]e_rotate_left[/thrive:input] en [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "Gedeelde Bewerken en Strategiefasen"
 
 msgid "EFFECTIVE_VALUE"
 msgstr "Effectieve Waarde"
@@ -1980,6 +2057,9 @@ msgstr "Energy Bronnen:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Totale opgehaalde energie is {0} met een individuele kostenpost van {1}. Het resultaat is een niet bijgestelde bevolking van {2}"
 
+msgid "ENGULF_CELL_OR_CHUNK"
+msgstr ""
+
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr "Schade opgelopen door verzwelg mode in te gaan zonder ATP"
 
@@ -2079,6 +2159,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Dit is de exacte code commit die gebruikt is bij het compileren van deze versie van Thrive"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Dit is de exacte code commit die gebruikt is bij het compileren van deze versie van Thrive"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Stamboom"
@@ -2329,6 +2417,10 @@ msgstr "Verwijder Lokale Data"
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "Verwijder lokale data met betrekking tot dit item. Dit kan nuttig zijn als je een verkeerd ID hebt ingevuld of een nieuwe versie naar een ander item wil uploaden."
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "Opslag:"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Fout: {0}"
 
@@ -2352,6 +2444,14 @@ msgstr "Fossilizeer deze zoort (al gefossilizeerd)"
 
 msgid "FOSSILISE"
 msgstr "Fosillizeren"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Verwijderen van Fossiel Mislukt"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Het fossielbestand kon niet worden verwijderd"
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Verwijderen van Fossiel Mislukt"
@@ -2435,9 +2535,8 @@ msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Generatie"
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
 
 msgid "GENERATIONS"
 msgstr "Generatie"
@@ -2505,6 +2604,10 @@ msgstr "Glucose"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glucoseconcentratie is drastisch gedaald!"
 
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}m onder zeeniveau"
+
 msgid "GLYCOLYSIS"
 msgstr "Glycolyse"
 
@@ -2513,6 +2616,9 @@ msgstr "Godmodus"
 
 msgid "GOD_TOOLS_TITLE"
 msgstr "Goddelijke Hulpmiddelen"
+
+msgid "GOING_NUCLEAR"
+msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "Googly oog cel"
@@ -2637,6 +2743,10 @@ msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compo
 msgid "HYDROGEN_SULFIDE"
 msgstr "Waterstofsulfide"
 
+#, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
+msgstr "Waterstofsulfide"
+
 msgid "ICESHARD"
 msgstr "Kleine IJsscherf"
 
@@ -2656,6 +2766,9 @@ msgid "ID_NUMBER"
 msgstr "ID Nummer"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 #, fuzzy
@@ -2766,6 +2879,14 @@ msgstr "Inspecteerder"
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Bezoek onze Steampagina"
 
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(proportie van de glucose die overblijft in de omgeving elke generatie)"
+
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Verheffingspoort Activeren"
 
@@ -2863,6 +2984,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Ijzer"
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 #, fuzzy
 msgid "IRON_OXIDATION"
 msgstr "Donaties"
@@ -2882,18 +3006,6 @@ msgstr "Reageer op object"
 
 msgid "JANUARY"
 msgstr "Januari"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON debug modus:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Altijd"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automatisch"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Nooit"
 
 msgid "JULY"
 msgstr "Juli"
@@ -3428,6 +3540,18 @@ msgstr "Wordt Macrosopisch ({0}/{1})"
 msgid "MACROSCOPIC_STAGE"
 msgstr "Microbieel Stage"
 
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "straling"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Chemosynthese"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "Veranderingen:"
+
 msgid "MANUALLY_SET_TIME"
 msgstr "Stel Handmatig Tijd In"
 
@@ -3601,6 +3725,10 @@ msgstr ""
 "[b]Bewonerscores[/b]\n"
 "  {2}"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "[b][u]{0}[/u][/b] is afgesplitst van [b][u]{1}[/u][/b] als een nieuwe soort door een verschil in selectiedruk"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3624,8 +3752,16 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Predatie van {0}"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reproductiemethode:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
+msgstr "Predatie van {0}"
 
 #, fuzzy
 msgid "MICHE_TREE"
@@ -3856,6 +3992,10 @@ msgstr "  {0}: Gevonden in {1} soorten, gemiddeld {2} per soort"
 msgid "MICROBIAL_MASSACRE"
 msgstr "Microbieel Stage"
 
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "Microbe"
+
 msgid "MIDDLE_MOUSE"
 msgstr "Middelste muisknop"
 
@@ -3973,6 +4113,10 @@ msgstr "Pas het type aan"
 msgid "MODS"
 msgstr "Mods"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Geen Mods Aangezet"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Geinstalleerde mods zijn gevonden, maar er zijn geen mods aangezet.\n"
@@ -4009,9 +4153,6 @@ msgstr "{0}: het aanroepen van de ontlaadfunctie van de assembly van de mod is m
 
 msgid "MOD_AUTHOR"
 msgstr "Auteur van de Mod:"
-
-msgid "MOD_AUTO_HARMONY"
-msgstr "Gebruikt Auto Harmony:"
 
 msgid "MOD_CREATION_FAILED"
 msgstr "Aanmaken Mod Mislukt"
@@ -4385,6 +4526,10 @@ msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Basisbeweging"
 
 #, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Waterstofsulfide"
+
+#, fuzzy
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "Niet genoeg {0} om recept te vervaardigen"
 
@@ -4416,6 +4561,10 @@ msgstr "Geen gebeurtenissen opgenomen"
 
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Geen fossielenmap gevonden"
+
+#, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "Bevestig Verwijderen"
 
 msgid "NO_MODS_ENABLED"
 msgstr "Geen Mods Aangezet"
@@ -4663,6 +4812,10 @@ msgid "OUR_WIKI"
 msgstr "onze Wiki"
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Niet begonnen."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "Niet begonnen."
 
@@ -4740,6 +4893,10 @@ msgstr "Beweeg omhoog"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Eerdere Ontwikkelaars"
+
+#, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "{0} {1}"
 
 #, fuzzy
 msgid "PATCH_COLON"
@@ -4845,6 +5002,10 @@ msgstr "Fosfaat"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfaat"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Fosfaat"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosynthese"
 
@@ -4874,6 +5035,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Willekeurige kiem voor de planeet"
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Statistieken"
 
 msgid "PLAYER"
 msgstr "Speler"
@@ -5027,6 +5192,10 @@ msgid "RADIATION"
 msgstr "Straling"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Straling"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Groot Brokstuk Fosfaat"
 
@@ -5045,6 +5214,16 @@ msgstr "Rauw"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Rauw:"
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Meercellige Stage"
 
 msgid "READING_SAVE_DATA"
 msgstr "Opslagdata wordt gelezen"
@@ -5070,6 +5249,10 @@ msgstr "Ververs"
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Axon"
+
+#, fuzzy
+msgid "REGIONS_NUMBER"
+msgstr "ID Nummer"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5209,6 +5392,18 @@ msgstr ""
 msgid "REVEAL_ALL_PATCHES"
 msgstr "verspreid naar patches:"
 
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Ga naar het volgende bewerkertabblad"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "(wanneer aangezet wordt de groeisnelheid gelimiteerd, anders heeft alleen de beschikbaarheid van stoffen effect op groeisnelheid)"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Toon Meer Info"
+
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Bezoek officiële Revolutionary Games sites"
 
@@ -5232,6 +5427,9 @@ msgstr "Draai naar rechts"
 
 msgid "ROTATION_COLON"
 msgstr "Rotatie:"
+
+msgid "RUNOFF_EVENT"
+msgstr ""
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Voer auto-evo uit tijdens het spelen"
@@ -5302,12 +5500,6 @@ msgstr "Ruimte gebruikt:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. Weet je zeker dat je {0} definitief wilt verwijderen?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "Wanneer je een fout met het opslaan rapporteert, voeg dan [color=#3796e1][url={0}]{1}[/url][/color] van de [color=#3796e1][url={2}]logbestandenmap[/url][/color] toe. Deze bevat kritieke informatie voor Thrive ontwikkelaars op te kunnen onderzoeken wat het probleem met het opslaan was. Zonder dit bestand is het extreem moeilijk om het probleem te diagnostiseren en op te lossen."
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Zorg er voor dat JSON debug modus niet uit staat voordat je deze fout met opslaan rapporteert. De automatische JSON debug modus zou een extra bestand genaamd {0} in de [color=#3796e1][url={1}]logbestandenmap[/url][/color] hebben moeten maken. Dit bestand bevat kritieke informatie die de Thrive ontwikkelaars nodig hebben om de fout met het opslaan te onderzoeken."
 
 msgid "SAVE_FAILED"
 msgstr "Opslaan mislukt"
@@ -5526,6 +5718,10 @@ msgstr ""
 "Coordinaten positie: {0}\n"
 "Kijkend naar coordinaten: {1}"
 
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "Open hulp"
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Toon nieuwe patchnotities automatisch"
 
@@ -5700,6 +5896,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "is gemuteerd"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Vind Huidig Gebied"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Maximum hoeveelheid soorten in een gebied voordat uitsterven wordt afgedwongen"
 
 msgid "SPECIES_LIST"
 msgstr "Soortenlijst"
@@ -5906,6 +6110,9 @@ msgstr "Gemeenschapscentrum"
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Stoomkrachtfabriek"
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr "succesvolle moord"
 
@@ -5926,6 +6133,10 @@ msgstr "Ondersteuners"
 
 msgid "SURVIVAL_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "Vereist nucleus"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Overschakelen naar frontale camera"
@@ -5963,6 +6174,14 @@ msgstr "Maak een screenshot"
 
 msgid "TARGET_TYPE_COLON"
 msgstr "Doelwittype:"
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Huidige threads:"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "Straling"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "Verheffing"
@@ -6043,6 +6262,7 @@ msgstr "Theorieteam"
 msgid "THERMOPLAST"
 msgstr "Thermoplast"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Het thermoplast is een structuur met een dubbele membraan waar hittegevoelige pigmenten samengepakt zitten in membraanachtige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het thermoplast kunnen de energie van toenemende [thrive:compound type=\"temperature\"][/thrive:compound] in de omgeving gebruiken om [thrive:compound type=\"atp\"][/thrive:compound] van water te maken in een proces genaamd [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met [thrive:compound type=\"temperature\"][/thrive:compound] delta."
 
@@ -6053,9 +6273,11 @@ msgstr "Gebruikt toenemende temperaturen om [thrive:compound type=\"atp\"][/thri
 msgid "THERMOSYNTHASE"
 msgstr "Thermosynthase"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "Thermosynthase is een eiwit dat thermische convectie gebruikt om zijn vorm aan te passen. Wanneer het opwarmt, vouwt het zichzelf op en bindt het aan ADP, waarbij het dit omzet in [thrive:compound type=\"atp\"][/thrive:compound]. Dit proces heet [b]thermosynthese[/b]. Het eiwit ontvouwt weer als het afkoelt, waardoor het de cyclus kan herhalen als de [thrive:compound type=\"temperature\"][/thrive:compound] weer toeneemt. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met [thrive:compound type=\"temperature\"][/thrive:compound] delta."
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Gebruikt toenemende temperaturen om [thrive:compound type=\"atp\"][/thrive:compound] te produceren. Snelheid schaalt met toename van [thrive:compound type=\"temperature\"][/thrive:compound]. Gebruik [b]warmtevisie[/b] om hete en koude gebieden te vinden."
 
@@ -6064,6 +6286,10 @@ msgstr "Thermosynthese"
 
 msgid "THE_DISTURBANCE"
 msgstr "De Verstoring"
+
+#, fuzzy
+msgid "THE_EDITOR"
+msgstr "Ga naar het volgende bewerkertabblad"
 
 #, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
@@ -6117,6 +6343,10 @@ msgstr "Gebiedenkaart"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive Licenties"
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Basisbeweging"
 
 msgid "THYLAKOIDS"
 msgstr "thylakoïden"
@@ -6259,6 +6489,20 @@ msgstr "{0}: +{1} ATP"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]Soorten[/b]\n"
+"  {0}:{1}\n"
+"[b]Generatie[/b]\n"
+"  {2}\n"
+"[b]Bevolking[/b]\n"
+"  {3}\n"
+"[b]Kleur[/b]\n"
+"  #{4}\n"
+"[b]Gedrag[/b]\n"
+"  {5}"
 
 #, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
@@ -6409,10 +6653,6 @@ msgstr "Maak een screenshot!"
 
 msgid "TUTORIAL"
 msgstr "Instructie"
-
-#, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "(WAARSCHUWING: fotosynthese wordt veel minder levensvatbaar)"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6724,6 +6964,10 @@ msgstr ""
 "\n"
 "Als je als reproductie de knopvorming gebruikt (dit is de standaardmethode), dan start je met een kleine cel en moet je de rest van je vormgegeven celkolonie uitgroeien."
 
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "(WAARSCHUWING: fotosynthese wordt veel minder levensvatbaar)"
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Bekijk Nu"
 
@@ -6776,6 +7020,17 @@ msgstr "Ongedaan Maken"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Laatste actie ongedaan maken"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Axonen zijn zenuwvezel die neuronen gebruiken om met elkaar te verbinden en communiceren. Het plaatsen van dit organel verandert het celtype naar breinweefsel."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Bedankt"
 
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Bouw"
@@ -6938,6 +7193,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licenties En Gebruikte Bibliotheken"
 
@@ -6946,12 +7204,6 @@ msgstr "Gebruikte Renderer:"
 
 msgid "USES_FEATURE"
 msgstr "Ja"
-
-msgid "USE_AUTO_HARMONY"
-msgstr "Gebruik Auto Harmony Laadmethode"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Laad Harmony patches automatisch uit Assembly (mod klasse hoeft niet gespecificeerd te worden)"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gebruik een eigen naam"
@@ -7002,6 +7254,10 @@ msgstr "Het vacuole zal {0} eenheden van de geselecteerde stof opslaan"
 
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VENTS_ARE_HOME"
+msgstr "Geen gebeurtenissen opgenomen"
 
 msgid "VERSION_COLON"
 msgstr "Versie:"
@@ -9049,11 +9305,57 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Je kunt de toekomstige ontwikkeling van Thrive op Patreon ondersteunen."
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr ""
+"Gefocuste microben zullen over grotere afstanden brokstukken en prooi zoeken\n"
+"en zijn mogelijk veel ambitieuzer over brokstukken.\n"
+"Reagerende microben zullen sneller van doelwit wisselen."
+
 msgid "ZOOM_IN"
 msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Gebruikt Auto Harmony:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Gebruik Auto Harmony Laadmethode"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Laad Harmony patches automatisch uit Assembly (mod klasse hoeft niet gespecificeerd te worden)"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Reproductiemethode:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON debug modus:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Altijd"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automatisch"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Nooit"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "Wanneer je een fout met het opslaan rapporteert, voeg dan [color=#3796e1][url={0}]{1}[/url][/color] van de [color=#3796e1][url={2}]logbestandenmap[/url][/color] toe. Deze bevat kritieke informatie voor Thrive ontwikkelaars op te kunnen onderzoeken wat het probleem met het opslaan was. Zonder dit bestand is het extreem moeilijk om het probleem te diagnostiseren en op te lossen."
+
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Zorg er voor dat JSON debug modus niet uit staat voordat je deze fout met opslaan rapporteert. De automatische JSON debug modus zou een extra bestand genaamd {0} in de [color=#3796e1][url={1}]logbestandenmap[/url][/color] hebben moeten maken. Dit bestand bevat kritieke informatie die de Thrive ontwikkelaars nodig hebben om de fout met het opslaan te onderzoeken."
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Niet begonnen."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Generatie"
 
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 #~ msgstr "De ATP-consumptie van dit celtype is {0}."
@@ -9304,10 +9606,6 @@ msgstr "Uitzoomen"
 #~ msgstr "Bewustzijnsfase"
 
 #, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Chemosynthese"
-
-#, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"
 #~ msgstr "Glycolyse"
 
@@ -9388,9 +9686,6 @@ msgstr "Uitzoomen"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Overweeg dat gebieden met tot deze hoeveelheid soorten een lage biodiversiteit hebben"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Maximum hoeveelheid soorten in een gebied voordat uitsterven wordt afgedwongen"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Start populatie voor biodiversiteit vergrotende soorten"

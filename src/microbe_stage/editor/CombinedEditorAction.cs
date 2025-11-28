@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
-///   Combines multiple <see cref="EditorAction"/>s into one singular action to act as a single unit in the undo system
+///   Combines multiple <see cref="EditorAction"/>s into one singular action to act as a single unit in the undo
+///   system.
+///   Note that this may not be used to combine actions that would interfere with each other in terms of MP usage as
+///   that is not currently handled.
 /// </summary>
-[JSONAlwaysDynamicType]
 public class CombinedEditorAction : EditorAction
 {
-    [JsonProperty]
-    private List<EditorAction> actions;
+    public const ushort SERIALIZATION_VERSION = 1;
+
+    private readonly List<EditorAction> actions;
 
     public CombinedEditorAction(params EditorAction[] actions)
     {
@@ -20,7 +23,6 @@ public class CombinedEditorAction : EditorAction
         this.actions = actions.ToList();
     }
 
-    [JsonConstructor]
     public CombinedEditorAction(IEnumerable<EditorAction> actions)
     {
         this.actions = actions.ToList();
@@ -40,11 +42,33 @@ public class CombinedEditorAction : EditorAction
             throw new ArgumentException("Actions can't be empty");
     }
 
-    [JsonIgnore]
     public IReadOnlyList<EditorAction> Actions => actions;
 
-    [JsonIgnore]
+    // TODO: this probably allocates memory, so optimize this somehow further
     public override IEnumerable<EditorCombinableActionData> Data => Actions.SelectMany(a => a.Data);
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.CombinedEditorAction;
+
+    public static CombinedEditorAction ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new CombinedEditorAction(reader.ReadObject<List<EditorAction>>());
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(actions);
+
+        writer.Write(SERIALIZATION_VERSION_REVERSIBLE);
+        base.WriteToArchive(writer);
+    }
 
     public override void DoAction()
     {
@@ -56,11 +80,6 @@ public class CombinedEditorAction : EditorAction
     {
         foreach (var action in Actions.Reverse())
             action.UndoAction();
-    }
-
-    public override double CalculateCost()
-    {
-        return Actions.Sum(a => a.CalculateCost());
     }
 
     public override void ApplyMergedData(IEnumerable<EditorCombinableActionData> newData)
@@ -99,5 +118,13 @@ public class CombinedEditorAction : EditorAction
             throw new InvalidOperationException("Merging data into a combined action caused it to become empty");
 
         return index;
+    }
+
+    public override void CopyData(ICollection<EditorCombinableActionData> target)
+    {
+        foreach (var action in actions)
+        {
+            action.CopyData(target);
+        }
     }
 }

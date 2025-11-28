@@ -1,86 +1,89 @@
 ﻿using Godot;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Callbacks of the cell body plan editor
 /// </summary>
-[DeserializedCallbackTarget]
 public partial class CellBodyPlanEditorComponent
 {
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnCellAdded(HexWithData<CellTemplate> hexWithData)
     {
         cellDataDirty = true;
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnCellRemoved(HexWithData<CellTemplate> hexWithData)
     {
         cellDataDirty = true;
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoCellRemoveAction(CellRemoveActionData data)
     {
         editedMicrobeCells.Remove(data.RemovedHex);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoCellRemoveAction(CellRemoveActionData data)
     {
         editedMicrobeCells.AddFast(data.RemovedHex, hexTemporaryMemory, hexTemporaryMemory2);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoCellPlaceAction(CellPlacementActionData data)
     {
         editedMicrobeCells.AddFast(data.PlacedHex, hexTemporaryMemory, hexTemporaryMemory2);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoCellPlaceAction(CellPlacementActionData data)
     {
-        editedMicrobeCells.Remove(data.PlacedHex);
+        if (!editedMicrobeCells.Remove(data.PlacedHex))
+            GD.PrintErr("Failed to remove placed cell from layout");
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DuplicateCellType(DuplicateDeleteCellTypeData data)
     {
-        var originalName = data.CellType.TypeName;
+        var originalName = data.CellType.CellTypeName;
         var count = 1;
 
         // Renaming a cell doesn't create an editor action, so it's possible for someone to duplicate a cell type, undo
         // the duplication, change another cell type's name to the old duplicate's name, then redo the duplication,
         // which would lead to duplicate names, so this loop ensures the duplicated cell's name will be unique
-        while (!Editor.IsNewCellTypeNameValid(data.CellType.TypeName))
+        while (!Editor.IsNewCellTypeNameValid(data.CellType.CellTypeName))
         {
-            data.CellType.TypeName = $"{originalName} {count++}";
+            data.CellType.CellTypeName = $"{originalName} {count++}";
         }
 
-        Editor.EditedSpecies.CellTypes.Add(data.CellType);
-        GD.Print("New cell type created: ", data.CellType.TypeName);
+        Editor.EditedSpecies.ModifiableCellTypes.Add(data.CellType);
+        GD.Print("New cell type created: ", data.CellType.CellTypeName);
 
-        EmitSignal(SignalName.OnCellTypeToEditSelected, data.CellType.TypeName, false);
+        EmitSignal(SignalName.OnCellTypeToEditSelected, data.CellType.CellTypeName, false);
 
         UpdateCellTypeSelections();
 
         UpdateCellTypesSecondaryInfo();
 
-        OnCellToPlaceSelected(data.CellType.TypeName);
+        OnCellToPlaceSelected(data.CellType.CellTypeName);
     }
 
     private void DeleteCellType(DuplicateDeleteCellTypeData data)
     {
-        if (!Editor.EditedSpecies.CellTypes.Remove(data.CellType))
+        if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(data.CellType))
             GD.PrintErr("Failed to delete cell type from species");
 
         UpdateCellTypeSelections();
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoCellMoveAction(CellMoveActionData data)
     {
         data.MovedHex.Position = data.NewLocation;
+        data.MovedHex.Orientation = data.NewRotation;
         data.MovedHex.Data!.Orientation = data.NewRotation;
+        data.MovedHex.Data.Position = data.NewLocation;
 
         if (editedMicrobeCells.Contains(data.MovedHex))
         {
@@ -94,11 +97,13 @@ public partial class CellBodyPlanEditorComponent
         }
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoCellMoveAction(CellMoveActionData data)
     {
         data.MovedHex.Position = data.OldLocation;
+        data.MovedHex.Orientation = data.OldRotation;
         data.MovedHex.Data!.Orientation = data.OldRotation;
+        data.MovedHex.Data.Position = data.OldLocation;
 
         UpdateAlreadyPlacedVisuals();
     }

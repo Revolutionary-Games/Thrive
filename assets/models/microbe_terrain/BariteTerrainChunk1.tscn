@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://nj65hcfbnuu5"]
+
+[ext_resource type="PackedScene" uid="uid://biobalqnstclh" path="res://assets/models/microbe_terrain/BariteTerrainChunk1.glb" id="1_mcvkv"]
+[ext_resource type="Material" uid="uid://qsr6bmmxigxq" path="res://assets/models/microbe_terrain/BariteTerrainChunk.material" id="2_owtow"]
+
+[node name="BariteTerrainChunk1" instance=ExtResource("1_mcvkv")]
+
+[node name="barite1" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_owtow")

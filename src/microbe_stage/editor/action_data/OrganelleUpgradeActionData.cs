@@ -1,11 +1,18 @@
 ﻿using System;
-using System.Linq;
+using SharedBase.Archive;
 
-[JSONAlwaysDynamicType]
 public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
 {
+    public const ushort SERIALIZATION_VERSION = 2;
+
     public OrganelleUpgrades NewUpgrades;
     public OrganelleUpgrades OldUpgrades;
+
+    /// <summary>
+    ///   Position of the organelle when upgraded. Needed for facades to in all cases be able to identify the right
+    ///   organelle to upgrade.
+    /// </summary>
+    public Hex Position;
 
     // TODO: make the upgrade not cost MP if a new organelle of the same type is placed at the same location and then
     // upgraded in the same way
@@ -17,58 +24,57 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
         OldUpgrades = oldUpgrades;
         NewUpgrades = newUpgrades;
         UpgradedOrganelle = upgradedOrganelle;
+
+        // Store position in case the upgraded organelle is moved
+        Position = upgradedOrganelle.Position;
     }
 
-    protected override double CalculateCostInternal()
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.OrganelleUpgradeActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
-        int cost = 0;
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.OrganelleUpgradeActionData)
+            throw new NotSupportedException();
 
-        // TODO: allow custom upgrades to have a cost
-
-        // Calculate the costs of the selected new general upgrades
-        var availableUpgrades = UpgradedOrganelle.Definition.AvailableUpgrades;
-
-        var newUpgrades = NewUpgrades.UnlockedFeatures.Except(OldUpgrades.UnlockedFeatures)
-            .Where(u => availableUpgrades.ContainsKey(u)).Select(u => availableUpgrades[u]);
-
-        // TODO: Removals should cost MP: https://github.com/Revolutionary-Games/Thrive/issues/4095
-        // var removedUpgrades = OldUpgrades.UnlockedFeatures.Except(NewUpgrades.UnlockedFeatures)
-        //     .Where(u => availableUpgrades.ContainsKey(u)).Select(u => availableUpgrades[u]);
-        // ? removedUpgrades.Sum(u => u.MPCost);
-
-        cost += newUpgrades.Sum(u => u.MPCost);
-
-        return cost;
+        writer.WriteObject((OrganelleUpgradeActionData)obj);
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    public static OrganelleUpgradeActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
-        if (other is OrganelleUpgradeActionData upgradeActionData)
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new OrganelleUpgradeActionData(reader.ReadObject<OrganelleUpgrades>(),
+            reader.ReadObject<OrganelleUpgrades>(), reader.ReadObject<OrganelleTemplate>());
+
+        if (version > 1)
         {
-            if (ReferenceEquals(UpgradedOrganelle, upgradeActionData.UpgradedOrganelle))
-                return ActionInterferenceMode.Combinable;
+            instance.Position = reader.ReadHex();
         }
 
-        // The replacing action is in the remove organelle action
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
 
-        return ActionInterferenceMode.NoInterference;
+        return instance;
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    public override void WriteToArchive(ISArchiveWriter writer)
     {
-        if (other is OrganelleUpgradeActionData upgradeActionData)
-        {
-            return new OrganelleUpgradeActionData(upgradeActionData.OldUpgrades, NewUpgrades,
-                UpgradedOrganelle);
-        }
+        writer.WriteObject(OldUpgrades);
+        writer.WriteObject(NewUpgrades);
+        writer.WriteObject(UpgradedOrganelle);
+        writer.Write(Position);
 
-        throw new NotSupportedException();
+        writer.Write(SERIALIZATION_VERSION_CONTEXT);
+        base.WriteToArchive(writer);
     }
 
-    protected override void MergeGuaranteed(CombinableActionData other)
+    protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        var upgradeActionData = (OrganelleUpgradeActionData)other;
-
-        OldUpgrades = upgradeActionData.OldUpgrades;
+        // Doesn't need to merge as organelle upgrades are applied when hitting "ok" in the GUI and not for each slider
+        // step
+        return false;
     }
 }

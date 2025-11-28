@@ -1,8 +1,10 @@
 ﻿using System;
+using SharedBase.Archive;
 
-[JSONAlwaysDynamicType]
 public class ToleranceActionData : EditorCombinableActionData
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public EnvironmentalTolerances OldTolerances;
     public EnvironmentalTolerances NewTolerances;
 
@@ -12,80 +14,63 @@ public class ToleranceActionData : EditorCombinableActionData
         NewTolerances = newTolerances;
     }
 
-    public override bool WantsMergeWith(CombinableActionData other)
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.ToleranceActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.ToleranceActionData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((ToleranceActionData)obj);
+    }
+
+    public static ToleranceActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var tolerances1 = new EnvironmentalTolerances();
+        var tolerances2 = new EnvironmentalTolerances();
+
+        reader.ReadObjectProperties(tolerances1);
+        reader.ReadObjectProperties(tolerances2);
+
+        var instance = new ToleranceActionData(tolerances1, tolerances2);
+
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObjectProperties(OldTolerances);
+        writer.WriteObjectProperties(NewTolerances);
+
+        writer.Write(SERIALIZATION_VERSION_EDITOR);
+        base.WriteToArchive(writer);
+    }
+
+    protected override bool CanMergeWithInternal(CombinableActionData other)
     {
         // These must always merge with other tolerance actions, because otherwise the undo history step count is going
         // to explore
-        return other is ToleranceActionData;
-    }
-
-    protected override double CalculateCostInternal()
-    {
-        // Calculate all changes
-        var temperatureChange = Math.Abs(OldTolerances.PreferredTemperature - NewTolerances.PreferredTemperature);
-        var temperatureToleranceChange =
-            Math.Abs(OldTolerances.TemperatureTolerance - NewTolerances.TemperatureTolerance);
-        var oxygenChange = Math.Abs(OldTolerances.OxygenResistance - NewTolerances.OxygenResistance);
-        var uvChange = Math.Abs(OldTolerances.UVResistance - NewTolerances.UVResistance);
-
-        // Pressure change is slightly tricky to calculate as from a pair of numbers we need to create 2 linked but
-        // separate costs
-        var minimumPressureChange = Math.Abs(OldTolerances.PressureMinimum - NewTolerances.PressureMinimum);
-        var maximumPressureChange = Math.Abs(OldTolerances.PressureMaximum - NewTolerances.PressureMaximum);
-
-        // As moving one slider can end up changing the other value as well, we take the average of the change to take
-        // that implicit doubled cost into account
-        var totalPressureChangeAverage = (maximumPressureChange + minimumPressureChange) * 0.5;
-
-        // Calculate pressure tolerance range change
-        var oldRange = Math.Abs(OldTolerances.PressureMaximum - OldTolerances.PressureMinimum);
-        var newRange = Math.Abs(NewTolerances.PressureMaximum - NewTolerances.PressureMinimum);
-        var pressureToleranceChange = Math.Abs(oldRange - newRange);
-
-        // Then add up the costs based on the changes
-        return temperatureChange * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE +
-            temperatureToleranceChange * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE +
-            totalPressureChangeAverage * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE +
-            pressureToleranceChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE +
-            oxygenChange * Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN +
-            uvChange * Constants.TOLERANCE_CHANGE_MP_PER_UV;
-    }
-
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
-    {
-        if (other is not ToleranceActionData otherTolerance)
-            return ActionInterferenceMode.NoInterference;
-
-        // If the value has been changed back to a previous value
-        if (NewTolerances.EqualsApprox(otherTolerance.OldTolerances) &&
-            otherTolerance.NewTolerances.EqualsApprox(OldTolerances))
+        if (other is ToleranceActionData toleranceActionData)
         {
-            return ActionInterferenceMode.CancelsOut;
+            var ourChanges = NewTolerances.GetChangedStats(OldTolerances);
+
+            if (ourChanges == 0)
+                return true;
+
+            // Only allow combining if both actions changed the same stats only
+            if (toleranceActionData.NewTolerances.GetChangedStats(toleranceActionData.OldTolerances) == ourChanges)
+                return true;
         }
 
-        // Check if the value has been changed twice
-        // Unlike many other actions, this may combine in one specific direction;
-        // otherwise infinite change potential bug happens
-
-        // TODO: not having combining the other way around makes tolerance edits with other edits in between not always
-        // refund the MP, which is not optimal: https://github.com/Revolutionary-Games/Thrive/issues/5932
-        if (NewTolerances.EqualsApprox(otherTolerance.OldTolerances) /*||
-            otherTolerance.NewTolerances.EqualsApprox(OldTolerances)*/)
-        {
-            return ActionInterferenceMode.Combinable;
-        }
-
-        return ActionInterferenceMode.NoInterference;
-    }
-
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
-    {
-        var otherTolerance = (ToleranceActionData)other;
-
-        if (OldTolerances.EqualsApprox(otherTolerance.NewTolerances))
-            return new ToleranceActionData(NewTolerances, otherTolerance.OldTolerances);
-
-        return new ToleranceActionData(otherTolerance.NewTolerances, OldTolerances);
+        return false;
     }
 
     protected override void MergeGuaranteed(CombinableActionData other)

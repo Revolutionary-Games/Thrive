@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-01 16:03+0300\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2025-07-20 19:51+0000\n"
 "Last-Translator: Fredrik Sjøli Trevland <frozenheimdsbusiness@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nb_NO/>\n"
@@ -196,6 +196,10 @@ msgstr "Ammoniakk"
 msgid "AMMONIA_COST"
 msgstr "Ammoniakk"
 
+#, fuzzy
+msgid "AMMONIA_LEVELS"
+msgstr "Ammoniakk"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Antall autolagringer å beholde:"
 
@@ -277,7 +281,8 @@ msgstr "AI mutasjonshastighet"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Mod monteringsklasse kreves når montering er spesifisert"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Modmontering er nødvendig når autoharmoni er aktivert"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -429,6 +434,21 @@ msgstr "Tilgjenglige Konstruksjonsprosjekter"
 msgid "AVAILABLE_MODS"
 msgstr "Tilgjenglige Mods"
 
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr "Oppvåkningsstadiet"
 
@@ -528,6 +548,12 @@ msgstr "Resultater:"
 
 msgid "BEST_PATCH_COLON"
 msgstr "Beste Område:"
+
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr ""
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Stor Jernklump"
@@ -639,6 +665,9 @@ msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
 
 msgid "CANNOT_ENGULF"
+msgstr ""
+
+msgid "CANNOT_IMPROVE_PERFECTION"
 msgstr ""
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
@@ -1032,6 +1061,28 @@ msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (ve
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Mikrobe Redigerer"
 
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
+
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr ""
+
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr ""
 
@@ -1297,6 +1348,9 @@ msgstr ""
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr ""
+
 msgid "CPU_THREADS"
 msgstr ""
 
@@ -1396,6 +1450,13 @@ msgstr "Legg til en ny nøkkelbinding"
 
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
+
+msgid "CURRENT_DILUTION"
+msgstr ""
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "Legg til en ny nøkkelbinding"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
@@ -1799,7 +1860,15 @@ msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "Mikrobestadiet"
 
 msgid "EFFECTIVE_VALUE"
@@ -1911,6 +1980,9 @@ msgstr ""
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
+msgid "ENGULF_CELL_OR_CHUNK"
+msgstr ""
+
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr ""
 
@@ -2006,6 +2078,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Legg til en ny nøkkelbinding"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Legg til en ny nøkkelbinding"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -2237,6 +2317,10 @@ msgstr ""
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "Agenter:"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
@@ -2260,6 +2344,13 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
 msgid "FOSSILISE"
+msgstr ""
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Ytterligere valideringer oppdaget et problem: {0}"
+
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
 msgstr ""
 
 #, fuzzy
@@ -2336,9 +2427,8 @@ msgstr ""
 msgid "GENERAL_LOADING_TIP_7"
 msgstr ""
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Generelt"
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
 
 #, fuzzy
 msgid "GENERATIONS"
@@ -2407,6 +2497,10 @@ msgstr ""
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}m under havnivå"
+
 msgid "GLYCOLYSIS"
 msgstr ""
 
@@ -2414,6 +2508,9 @@ msgid "GODMODE"
 msgstr ""
 
 msgid "GOD_TOOLS_TITLE"
+msgstr ""
+
+msgid "GOING_NUCLEAR"
 msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
@@ -2531,6 +2628,9 @@ msgstr "Anaerob Nitrogenfiksering"
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
+msgid "HYDROGEN_SULFIDE_LEVELS"
+msgstr ""
+
 msgid "ICESHARD"
 msgstr ""
 
@@ -2550,6 +2650,9 @@ msgid "ID_NUMBER"
 msgstr ""
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
@@ -2656,6 +2759,14 @@ msgid "INSTAGRAM_TOOLTIP"
 msgstr "Legg til en ny nøkkelbinding"
 
 #, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "ATP PRODUKSJON FOR LAV!"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(hastighet som AI muterer med)"
+
+#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "AI mutasjonshastighet"
 
@@ -2757,6 +2868,9 @@ msgstr ""
 msgid "IRON"
 msgstr ""
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 #, fuzzy
 msgid "IRON_OXIDATION"
 msgstr "Generelt"
@@ -2771,18 +2885,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr ""
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3288,6 +3390,18 @@ msgstr ""
 msgid "MACROSCOPIC_STAGE"
 msgstr "Mikrobestadiet"
 
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "(hastighet som AI muterer med)"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Bakteriell Termosyntese"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "3D Redigerer"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3435,6 +3549,14 @@ msgstr ""
 msgid "MICHE_DETAIL_TEXT"
 msgstr "Mikrobestadiet"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr ""
+"Aggressive mikrober vil jage ned bytte over større avstander\n"
+"og er mer sannsynlig å kjempe mot angripere når de blir angrepet.\n"
+"Fredelige mikrober vil ikke engasjere andre over større avstander\n"
+"og har mindre sannsynlighet for å bruke giftstoffer mot angripere."
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3457,7 +3579,14 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr ""
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "ATP PRODUKSJON FOR LAV!"
+
 msgid "MICHE_ROOT_PRESSURE"
+msgstr ""
+
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
 msgstr ""
 
 msgid "MICHE_TREE"
@@ -3638,6 +3767,10 @@ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/t
 msgid "MICROBIAL_MASSACRE"
 msgstr "Mikrobestadiet"
 
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "Mikrobestadiet"
+
 msgid "MIDDLE_MOUSE"
 msgstr ""
 
@@ -3741,6 +3874,9 @@ msgstr ""
 msgid "MODS"
 msgstr ""
 
+msgid "MODS_ARE_ENABLED"
+msgstr ""
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3773,9 +3909,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 msgid "MOD_CREATION_FAILED"
@@ -4121,6 +4254,10 @@ msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr ""
 
 #, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Skadet på grunn av for mye radioaktivitet"
+
+#, fuzzy
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "Ikke nok slim for å aktivere mucocyst skjold"
 
@@ -4151,6 +4288,9 @@ msgid "NO_EVENTS_RECORDED"
 msgstr ""
 
 msgid "NO_FOSSIL_DIRECTORY"
+msgstr ""
+
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr ""
 
 msgid "NO_MODS_ENABLED"
@@ -4379,6 +4519,9 @@ msgstr ""
 msgid "OUR_WIKI"
 msgstr ""
 
+msgid "OUTDATED_ITEM"
+msgstr ""
+
 msgid "OUTDATED_NOTICE"
 msgstr ""
 
@@ -4450,6 +4593,9 @@ msgid "PAN_CAMERA_UP"
 msgstr ""
 
 msgid "PAST_DEVELOPERS"
+msgstr ""
+
+msgid "PATCHES_NUMBER"
 msgstr ""
 
 #, fuzzy
@@ -4548,6 +4694,9 @@ msgstr ""
 msgid "PHOSPHATES_COST"
 msgstr ""
 
+msgid "PHOSPHATES_LEVELS"
+msgstr ""
+
 msgid "PHOTOSYNTHESIS"
 msgstr ""
 
@@ -4572,6 +4721,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] og mus for bevegelse. [thrive:input]g_fire_toxin[/thrive:input] for skyting [thrive:compound type=\"oxytoxy\"][/thrive:compound] hvis du har toxin vacuole. [thrive:input]g_toggle_engulf[/thrive:input] for veksling av oppsluknings modus. Du kan zoome in og ut med mus hjulet."
 
 msgid "PLAYER"
 msgstr ""
@@ -4718,6 +4871,10 @@ msgstr ""
 msgid "RADIATION"
 msgstr "Generelt"
 
+#, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Generelt"
+
 msgid "RADIOACTIVE_CHUNK"
 msgstr ""
 
@@ -4736,6 +4893,16 @@ msgstr ""
 
 msgid "RAW_VALUE_COLON"
 msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Flercellestadiet"
 
 msgid "READING_SAVE_DATA"
 msgstr ""
@@ -4761,6 +4928,9 @@ msgstr ""
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Flercellestadiet"
+
+msgid "REGIONS_NUMBER"
+msgstr ""
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -4895,6 +5065,17 @@ msgstr ""
 msgid "REVEAL_ALL_PATCHES"
 msgstr ""
 
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "3D Redigerer"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "(hastighet som AI muterer med)"
+
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr ""
+
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr ""
 
@@ -4917,6 +5098,9 @@ msgid "ROTATE_RIGHT"
 msgstr ""
 
 msgid "ROTATION_COLON"
+msgstr ""
+
+msgid "RUNOFF_EVENT"
 msgstr ""
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
@@ -4977,12 +5161,6 @@ msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr ""
 
 msgid "SAVE_FAILED"
@@ -5190,6 +5368,9 @@ msgstr ""
 msgid "SHOW_ITEM_COORDINATES"
 msgstr ""
 
+msgid "SHOW_MAP"
+msgstr ""
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
@@ -5353,6 +5534,12 @@ msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
+msgstr ""
+
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr ""
+
+msgid "SPECIES_IN_OTHER_PATCHES"
 msgstr ""
 
 msgid "SPECIES_LIST"
@@ -5555,6 +5742,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
@@ -5575,6 +5765,10 @@ msgstr ""
 
 msgid "SURVIVAL_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "AI mutasjonshastighet"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
@@ -5613,6 +5807,14 @@ msgstr ""
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "Agenter:"
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Nåværende tråder:"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "Generelt"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -5705,6 +5907,10 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
+#, fuzzy
+msgid "THE_EDITOR"
+msgstr "3D Redigerer"
+
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr ""
 
@@ -5747,6 +5953,10 @@ msgstr ""
 
 msgid "THRIVE_LICENSES"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Grunnleggende Bevegelse"
 
 msgid "THYLAKOIDS"
 msgstr ""
@@ -5885,6 +6095,10 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
 
@@ -6005,10 +6219,6 @@ msgstr ""
 msgid "TUTORIAL"
 msgstr ""
 
-#, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "(hastighet som AI muterer med)"
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 
@@ -6123,6 +6333,10 @@ msgstr ""
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Flercellestadiet"
 
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "(hastighet som AI muterer med)"
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
@@ -6171,6 +6385,17 @@ msgstr ""
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr ""
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Anaerob Nitrogenfiksering"
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "\"{0}\" - {1}"
 
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
@@ -6321,6 +6546,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -6328,12 +6556,6 @@ msgid "USED_RENDERER_NAME"
 msgstr ""
 
 msgid "USES_FEATURE"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
@@ -6378,6 +6600,9 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr ""
 
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VENTS_ARE_HOME"
 msgstr ""
 
 msgid "VERSION_COLON"
@@ -8321,11 +8546,25 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr ""
+"Aktive mikrober vil løpe og snu når ingenting interessant skjer.\n"
+"Sessile mikrober vil være stasjonære og vente på at miljøet endrer seg før de handler."
+
 msgid "ZOOM_IN"
 msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "ATP PRODUKSJON FOR LAV!"
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Generelt"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"

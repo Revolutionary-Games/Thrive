@@ -1,8 +1,9 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 
 /// <summary>
 ///   Applies <see cref="RenderPriorityOverride"/>
@@ -13,25 +14,21 @@ using DefaultEcs.System;
 ///     materials, so this doesn't really conflict with any other potential "writes" to the same component.
 ///   </para>
 /// </remarks>
-[With(typeof(RenderPriorityOverride))]
-[With(typeof(EntityMaterial))]
 [ReadsComponent(typeof(EntityMaterial))]
 [RuntimeCost(0.5f)]
 [RunsOnMainThread]
-public sealed class RenderPrioritySystem : AEntitySetSystem<float>
+public partial class RenderPrioritySystem : BaseSystem<World, float>
 {
-    public RenderPrioritySystem(World world) : base(world, null)
+    public RenderPrioritySystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref RenderPriorityOverride renderOrder, ref EntityMaterial material)
     {
-        ref var renderOrder = ref entity.Get<RenderPriorityOverride>();
-
         if (renderOrder.RenderPriorityApplied)
             return;
-
-        ref var material = ref entity.Get<EntityMaterial>();
 
         // Wait until material becomes available
         if (material.Materials == null)

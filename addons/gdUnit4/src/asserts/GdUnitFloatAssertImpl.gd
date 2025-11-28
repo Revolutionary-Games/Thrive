@@ -24,11 +24,13 @@ func current_value() -> Variant:
 
 
 func report_success() -> GdUnitFloatAssert:
+	@warning_ignore("return_value_discarded")
 	_base.report_success()
 	return self
 
 
 func report_error(error :String) -> GdUnitFloatAssert:
+	@warning_ignore("return_value_discarded")
 	_base.report_error(error)
 	return self
 
@@ -37,13 +39,13 @@ func failure_message() -> String:
 	return _base.failure_message()
 
 
-func override_failure_message(message :String) -> GdUnitFloatAssert:
+func override_failure_message(message: String) -> GdUnitFloatAssert:
 	@warning_ignore("return_value_discarded")
 	_base.override_failure_message(message)
 	return self
 
 
-func append_failure_message(message :String) -> GdUnitFloatAssert:
+func append_failure_message(message: String) -> GdUnitFloatAssert:
 	@warning_ignore("return_value_discarded")
 	_base.append_failure_message(message)
 	return self
@@ -61,13 +63,13 @@ func is_not_null() -> GdUnitFloatAssert:
 	return self
 
 
-func is_equal(expected :Variant) -> GdUnitFloatAssert:
+func is_equal(expected: Variant) -> GdUnitFloatAssert:
 	@warning_ignore("return_value_discarded")
 	_base.is_equal(expected)
 	return self
 
 
-func is_not_equal(expected :Variant) -> GdUnitFloatAssert:
+func is_not_equal(expected: Variant) -> GdUnitFloatAssert:
 	@warning_ignore("return_value_discarded")
 	_base.is_not_equal(expected)
 	return self

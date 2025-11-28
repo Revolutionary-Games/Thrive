@@ -1,5 +1,5 @@
-﻿using Components;
-using DefaultEcs;
+﻿using Arch.Core;
+using Components;
 
 /// <summary>
 ///   Base interface that all organelle components need to implement

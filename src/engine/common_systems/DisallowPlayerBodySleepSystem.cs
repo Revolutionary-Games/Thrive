@@ -1,9 +1,10 @@
 ﻿namespace Systems;
 
 using System;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 
 /// <summary>
 ///   Makes sure the player's physics body is never allowed to sleep. This makes sure the microbe stage doesn't get
@@ -15,27 +16,26 @@ using DefaultEcs.System;
 ///     Marked as just reading the physics as the body property modify locks the body on the native code side.
 ///   </para>
 /// </remarks>
-[With(typeof(PlayerMarker))]
-[With(typeof(Physics))]
 [ReadsComponent(typeof(PlayerMarker))]
 [ReadsComponent(typeof(Physics))]
 [RunsAfter(typeof(PhysicsBodyCreationSystem))]
 [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
 [RuntimeCost(0.25f)]
-public sealed class DisallowPlayerBodySleepSystem : AEntitySetSystem<float>
+public partial class DisallowPlayerBodySleepSystem : BaseSystem<World, float>
 {
     private readonly PhysicalWorld physicalWorld;
     private WeakReference<NativePhysicsBody>? appliedSleepDisableTo;
 
-    public DisallowPlayerBodySleepSystem(PhysicalWorld physicalWorld, World world) : base(world, null)
+    public DisallowPlayerBodySleepSystem(PhysicalWorld physicalWorld, World world) : base(world)
     {
         this.physicalWorld = physicalWorld;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [All<PlayerMarker>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref Physics physics)
     {
-        ref var physics = ref entity.Get<Physics>();
-
         if (!physics.IsBodyEffectivelyEnabled())
             return;
 

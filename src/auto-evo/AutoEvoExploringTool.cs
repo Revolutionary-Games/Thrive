@@ -642,6 +642,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         micheDetailsPanel.WorldSettings = world.WorldSettings;
 
+        patchMapDrawer.ClearMap();
         patchMapDrawer.Map = world.GameProperties.GameWorld.Map;
         patchMapDrawer.SelectedPatch = patchMapDrawer.PlayerPatch;
         patchDetailsPanel.SelectedPatch = patchMapDrawer.PlayerPatch;
@@ -668,7 +669,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         UpdateSpeciesList();
         SpeciesListMenuIndexChanged(0);
         UpdateCurrentWorldStatistics();
-        patchMapDrawer.UpdatePatchEvents();
+        patchMapDrawer.UpdatePatchEvents(world.PatchHistoryList[generationDisplayed]);
 
         if (patchMapDrawer.PlayerPatch != null)
             PatchListMenuUpdate(patchMapDrawer.PlayerPatch);
@@ -693,7 +694,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         UpdateAutoEvoReport();
         UpdateSpeciesList();
         UpdatePatchDetailPanel(patchMapDrawer);
-        patchMapDrawer.UpdatePatchEvents();
+        patchMapDrawer.UpdatePatchEvents(world.PatchHistoryList[generationDisplayed]);
     }
 
     private void UpdateAutoEvoReport()
@@ -762,7 +763,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         // Get current snapshot
         var patch = new Patch(selectedPatch.Name, 0, selectedPatch.BiomeTemplate, selectedPatch.BiomeType,
-            world.PatchHistoryList[generationDisplayed][selectedPatch.ID])
+            world.PatchHistoryList[generationDisplayed][selectedPatch.ID], selectedPatch.DynamicDataSeed)
         {
             TimePeriod = selectedPatch.TimePeriod,
             Depth = { [0] = selectedPatch.Depth[0], [1] = selectedPatch.Depth[1] },
@@ -848,7 +849,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         // Get current snapshot
         var patch = new Patch(selectedPatch.Name, 0, selectedPatch.BiomeTemplate, selectedPatch.BiomeType,
-            world.PatchHistoryList[generationDisplayed][selectedPatch.ID])
+            world.PatchHistoryList[generationDisplayed][selectedPatch.ID], selectedPatch.DynamicDataSeed)
         {
             TimePeriod = selectedPatch.TimePeriod,
             Depth = { [0] = selectedPatch.Depth[0], [1] = selectedPatch.Depth[1] },

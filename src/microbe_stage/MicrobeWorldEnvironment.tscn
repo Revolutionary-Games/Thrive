@@ -1,8 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqpjtfkjeuwmq"]
+[gd_scene load_steps=6 format=3 uid="uid://dqpjtfkjeuwmq"]
 
+[ext_resource type="Shader" uid="uid://cvvlsk7or1qyk" path="res://shaders/SimpleSky.gdshader" id="1_852k6"]
 [ext_resource type="Script" uid="uid://djjshn5bho65x" path="res://src/microbe_stage/MicrobeWorldEnvironment.cs" id="1_gansp"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vkgr4"]
+shader = ExtResource("1_852k6")
+shader_parameter/colour = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_b4xyi"]
+sky_material = SubResource("ShaderMaterial_vkgr4")
+
 [sub_resource type="Environment" id="Environment_31nh3"]
+background_color = Color(1.63645e-06, 0.558327, 0.809688, 1)
+sky = SubResource("Sky_b4xyi")
+reflected_light_source = 2
 glow_normalized = true
 glow_strength = 1.8
 glow_bloom = 1.0

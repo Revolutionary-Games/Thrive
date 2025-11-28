@@ -58,17 +58,17 @@ static func input_event_as_text(event :InputEvent) -> String:
 	return text
 
 
-static func _colored_string_div(characters :String) -> String:
-	return colored_array_div(characters.to_utf8_buffer())
+static func _colored_string_div(characters: String) -> String:
+	return colored_array_div(characters.to_utf32_buffer().to_int32_array())
 
 
-static func colored_array_div(characters :PackedByteArray) -> String:
+static func colored_array_div(characters: PackedInt32Array) -> String:
 	if characters.is_empty():
 		return "<empty>"
-	var result := PackedByteArray()
+	var result := PackedInt32Array()
 	var index := 0
-	var missing_chars := PackedByteArray()
-	var additional_chars := PackedByteArray()
+	var missing_chars := PackedInt32Array()
+	var additional_chars := PackedInt32Array()
 
 	while index < characters.size():
 		var character := characters[index]
@@ -84,17 +84,17 @@ static func colored_array_div(characters :PackedByteArray) -> String:
 			_:
 				if not missing_chars.is_empty():
 					result.append_array(format_chars(missing_chars, SUB_COLOR))
-					missing_chars = PackedByteArray()
+					missing_chars = PackedInt32Array()
 				if not additional_chars.is_empty():
 					result.append_array(format_chars(additional_chars, ADD_COLOR))
-					additional_chars = PackedByteArray()
+					additional_chars = PackedInt32Array()
 				@warning_ignore("return_value_discarded")
 				result.append(character)
 		index += 1
 
 	result.append_array(format_chars(missing_chars, SUB_COLOR))
 	result.append_array(format_chars(additional_chars, ADD_COLOR))
-	return result.get_string_from_utf8()
+	return result.to_byte_array().get_string_from_utf32()
 
 
 static func _typed_value(value :Variant) -> String:
@@ -637,12 +637,12 @@ static func error_contains_exactly(current: Array, expected: Array) -> String:
 	return "%s\n %s\n but was\n %s" % [_error("Expecting exactly equal:"), _colored_value(expected), _colored_value(current)]
 
 
-static func format_chars(characters :PackedByteArray, type :Color) -> PackedByteArray:
+static func format_chars(characters: PackedInt32Array, type: Color) -> PackedInt32Array:
 	if characters.size() == 0:# or characters[0] == 10:
 		return characters
 
 	# Replace each control character with its readable form
-	var formatted_text := characters.get_string_from_utf8()
+	var formatted_text := characters.to_byte_array().get_string_from_utf32()
 	for control_char: String in CONTROL_CHARS:
 		var replace_text: String = CONTROL_CHARS[control_char]
 		formatted_text = formatted_text.replace(control_char, replace_text)
@@ -664,8 +664,8 @@ static func format_chars(characters :PackedByteArray, type :Color) -> PackedByte
 		ascii_text
 	]
 
-	var result := PackedByteArray()
-	result.append_array(message.to_utf8_buffer())
+	var result := PackedInt32Array()
+	result.append_array(message.to_utf32_buffer().to_int32_array())
 	return result
 
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-01 16:03+0300\n"
+"POT-Creation-Date: 2025-11-21 18:08+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -200,6 +200,10 @@ msgstr "Amonjaks"
 msgid "AMMONIA_COST"
 msgstr "Amonjaks"
 
+#, fuzzy
+msgid "AMMONIA_LEVELS"
+msgstr "Amonjaks"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Automātisko saglabāšanas failu daudzums:"
 
@@ -280,7 +284,7 @@ msgstr "Versija:"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr ""
 
 msgid "ASSUME_HYPERTHREADING"
@@ -423,6 +427,21 @@ msgstr ""
 msgid "AVAILABLE_MODS"
 msgstr ""
 
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr ""
 
@@ -528,6 +547,12 @@ msgstr ""
 
 msgid "BEST_PATCH_COLON"
 msgstr "Labākais Plankums:"
+
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr ""
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Liels dzelzs gabals"
@@ -649,6 +674,9 @@ msgstr ""
 
 msgid "CANNOT_ENGULF"
 msgstr "Nevar absorbēt"
+
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
@@ -1059,6 +1087,29 @@ msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Savienojumu mākonis"
 
 #, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Savienojumu mākonis"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Savienojumu mākonis"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} Patēriņš"
+
+#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "{0} Patēriņš"
 
@@ -1342,6 +1393,10 @@ msgstr ""
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "{0} Patēriņš"
+
 msgid "CPU_THREADS"
 msgstr ""
 
@@ -1450,6 +1505,14 @@ msgstr "Atsākt spēli"
 
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
+
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "Ģenerācija:"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "Ģenerācija:"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
@@ -1909,6 +1972,23 @@ msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 "Prokariotu struktūras\n"
@@ -1924,6 +2004,10 @@ msgstr ""
 "Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
 "\n"
 "Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
+
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
 
 msgid "EFFECTIVE_VALUE"
 msgstr ""
@@ -2041,6 +2125,9 @@ msgstr ""
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
+msgid "ENGULF_CELL_OR_CHUNK"
+msgstr ""
+
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr ""
 
@@ -2151,6 +2238,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -2416,6 +2511,10 @@ msgstr ""
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "Noņemiet datus saistībā ar šo lietu. Noderīgi, ja jūs ievadījāt nepareizo ID vai arī vēlaties augšuplādēt jaunu versiju citai lietai."
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "Uzglabāšana"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
@@ -2447,6 +2546,14 @@ msgstr ""
 
 msgid "FOSSILISE"
 msgstr ""
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "populācija:"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Apraksts:"
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr ""
@@ -2538,9 +2645,8 @@ msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Ģenerācija:"
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
 
 #, fuzzy
 msgid "GENERATIONS"
@@ -2610,6 +2716,10 @@ msgstr "Glikoze"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "Glikoze"
+
 msgid "GLYCOLYSIS"
 msgstr "Glikolīze"
 
@@ -2619,6 +2729,9 @@ msgstr ""
 #, fuzzy
 msgid "GOD_TOOLS_TITLE"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+msgid "GOING_NUCLEAR"
+msgstr ""
 
 #, fuzzy
 msgid "GOOGLY_EYE_CELL"
@@ -2744,6 +2857,10 @@ msgid "HYDROGEN_SULFIDE"
 msgstr "Sērūdeņradis"
 
 #, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
+msgstr "Sērūdeņradis"
+
+#, fuzzy
 msgid "ICESHARD"
 msgstr "Ledus lauska"
 
@@ -2763,6 +2880,9 @@ msgid "ID_NUMBER"
 msgstr ""
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 #, fuzzy
@@ -2883,6 +3003,16 @@ msgid "INSTAGRAM_TOOLTIP"
 msgstr "Atsākt spēli"
 
 #, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
+
+#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Mutācijas punkti"
 
@@ -2983,6 +3113,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Dzelzs"
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 #, fuzzy
 msgid "IRON_OXIDATION"
 msgstr "Ziedojumi"
@@ -2999,18 +3132,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr "Ļauj saistīties ar citām šūnām. Šis ir pirmais solis uz daudzšūnu veidošanos. Kad tava šūna ir daļā no kolonijas, savienojumi tiek dalīti starp šūnām. Jūs nevarat ieiet redaktorā, kāmēram esat daļa no kolonijas, jums nepieciešams atdalīties, kad savākts nepieciešamais savienojumu daudzums, lai sadalītu jūsu šūnu."
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3565,6 +3686,20 @@ msgstr ""
 msgid "MACROSCOPIC_STAGE"
 msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
 
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Hemosintēze"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "Ieslēgt redaktoru"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3719,6 +3854,10 @@ msgstr ""
 msgid "MICHE_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "Radās dažādās atlases spiediena dēļ"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3742,8 +3881,16 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "{0} Plēsonība"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "ATP RAŽOŠANA IR PĀRĀK ZEMA!"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
+msgstr "{0} Plēsonība"
 
 msgid "MICHE_TREE"
 msgstr ""
@@ -3978,6 +4125,10 @@ msgstr "Organisma statistika"
 msgid "MICROBIAL_MASSACRE"
 msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
 
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
+
 msgid "MIDDLE_MOUSE"
 msgstr "Peles vidējā poga"
 
@@ -4092,6 +4243,10 @@ msgstr "Modificēt"
 msgid "MODS"
 msgstr ""
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Ieslēgt redaktoru"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4124,9 +4279,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 msgid "MOD_CREATION_FAILED"
@@ -4495,6 +4647,10 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Sērūdeņradis"
+
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr ""
 
@@ -4527,6 +4683,10 @@ msgstr ""
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Nav atrasta saglabāšanas faila direktorija"
+
+#, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "Apstiprināt Izeju"
 
 msgid "NO_MODS_ENABLED"
 msgstr ""
@@ -4794,6 +4954,10 @@ msgid "OUR_WIKI"
 msgstr ""
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Atcelts."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "Atcelts."
 
@@ -4874,6 +5038,10 @@ msgstr "Panoramējiet uz augšu"
 
 msgid "PAST_DEVELOPERS"
 msgstr ""
+
+#, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "Ala"
 
 #, fuzzy
 msgid "PATCH_COLON"
@@ -4984,6 +5152,10 @@ msgstr "Fosfāti"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfāti"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Fosfāti"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosintēze"
 
@@ -5008,6 +5180,10 @@ msgstr "Atvērt logu mapi"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Statistika"
 
 #, fuzzy
 msgid "PLAYER"
@@ -5163,6 +5339,10 @@ msgid "RADIATION"
 msgstr "Aerobiskā elpošana"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Aerobiskā elpošana"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Liels dzelzs gabals"
 
@@ -5183,6 +5363,16 @@ msgstr "Jēls"
 #, fuzzy
 msgid "RAW_VALUE_COLON"
 msgstr "Ātrums:"
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Novietot organoīdu"
 
 msgid "READING_SAVE_DATA"
 msgstr "Notiek datu lasīšana no saglabāšanas faila"
@@ -5209,6 +5399,9 @@ msgstr "Atsvaidzināt"
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Organoīdi"
+
+msgid "REGIONS_NUMBER"
+msgstr ""
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5358,6 +5551,20 @@ msgstr ""
 msgid "REVEAL_ALL_PATCHES"
 msgstr "Izplatījās uz plankumiem:"
 
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Ieslēgt redaktoru"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Izdzēst vecos saglabāšanas failus?"
+
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr ""
 
@@ -5382,6 +5589,9 @@ msgstr "Pagriezt pa labi"
 #, fuzzy
 msgid "ROTATION_COLON"
 msgstr "Kopējā Populācija:"
+
+msgid "RUNOFF_EVENT"
+msgstr ""
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
@@ -5450,12 +5660,6 @@ msgstr "Automātiska saglabāšana"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Šī faila dzēšanu nevar atcelt. Vai tiešām vēlies neatgriezeniski dzēst {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr ""
 
 msgid "SAVE_FAILED"
 msgstr "Saglabāšana neizdevās"
@@ -5681,6 +5885,10 @@ msgid "SHOW_ITEM_COORDINATES"
 msgstr "Rādīt tutoriālus"
 
 #, fuzzy
+msgid "SHOW_MAP"
+msgstr "Rādīt palīdzību"
+
+#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Ala"
 
@@ -5863,6 +6071,14 @@ msgstr "{0} (x{1})"
 #, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "Satur mutāciju"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Atcelt pašreizējo darbību"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Izmira no plankuma"
 
 msgid "SPECIES_LIST"
 msgstr "Sugu saraksts"
@@ -6081,6 +6297,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
@@ -6101,6 +6320,10 @@ msgstr ""
 
 msgid "SURVIVAL_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "Kodols"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
@@ -6140,6 +6363,14 @@ msgstr "Uzņemt ekrānuzņēmumu"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "Ātrums:"
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Esošie pavedieni:"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "Aerobiskā elpošana"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -6238,6 +6469,10 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
+msgid "THE_EDITOR"
+msgstr "Ieslēgt redaktoru"
+
+#, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Ala"
 
@@ -6280,6 +6515,10 @@ msgstr ""
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive Licences"
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Kustība"
 
 msgid "THYLAKOIDS"
 msgstr "Tilakoīdi"
@@ -6444,6 +6683,10 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr "{0} (x{1})"
+
+#, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
@@ -6586,13 +6829,6 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutoriāls"
-
-#, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr ""
-"Koncentrēti mikrobi meklēs gabalus vai upurus tālas distances\n"
-"un visticamāk būs ambiciozāki par gabaliem.\n"
-"Atsaucīgi mikrobi ātrāk pāries uz jauniem mērķiem."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6873,6 +7109,13 @@ msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Novietot organoīdu"
 
 #, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr ""
+"Koncentrēti mikrobi meklēs gabalus vai upurus tālas distances\n"
+"un visticamāk būs ambiciozāki par gabaliem.\n"
+"Atsaucīgi mikrobi ātrāk pāries uz jauniem mērķiem."
+
+#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutoriāls"
 
@@ -6926,6 +7169,17 @@ msgstr "Atsaukt"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Atsaukt pēdējo darbību"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Šūnas procesi"
 
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
@@ -7091,6 +7345,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -7100,12 +7357,6 @@ msgstr ""
 #, fuzzy
 msgid "USES_FEATURE"
 msgstr "Temperatūra"
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Izmantot pielāgotu lietotājvārdu"
@@ -7151,6 +7402,9 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Apraksts:"
 
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VENTS_ARE_HOME"
 msgstr ""
 
 #, fuzzy
@@ -9154,11 +9408,30 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr ""
+"Koncentrēti mikrobi meklēs gabalus vai upurus tālas distances\n"
+"un visticamāk būs ambiciozāki par gabaliem.\n"
+"Atsaucīgi mikrobi ātrāk pāries uz jauniem mērķiem."
+
 msgid "ZOOM_IN"
 msgstr "Pietuvināt"
 
 msgid "ZOOM_OUT"
 msgstr "Attālināt"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "ATP RAŽOŠANA IR PĀRĀK ZEMA!"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Atcelts."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Ģenerācija:"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
@@ -9401,10 +9674,6 @@ msgstr "Attālināt"
 #~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
 
 #, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Hemosintēze"
-
-#, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"
 #~ msgstr "Glikolīze"
 
@@ -9472,10 +9741,6 @@ msgstr "Attālināt"
 #~ msgstr "Ļaut sugai nemigrēt (ja labas migrācija nav atrasta)"
 
 #, fuzzy
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Izmira no plankuma"
-
-#, fuzzy
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Liels dzelzs gabals"
 
@@ -9525,10 +9790,6 @@ msgstr "Attālināt"
 #, fuzzy
 #~ msgid "SPECIES_DETAILS"
 #~ msgstr "Sugu saraksts"
-
-#, fuzzy
-#~ msgid "CURRENT_GENERATION_COLON"
-#~ msgstr "Ģenerācija:"
 
 #, fuzzy
 #~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
@@ -9680,3 +9941,7 @@ msgstr "Attālināt"
 #, fuzzy
 #~ msgid "BACKTAB"
 #~ msgstr "Atpakaļ"
+
+#, fuzzy
+#~ msgid "CURRENT_GENERATION_COLON"
+#~ msgstr "Ģenerācija:"

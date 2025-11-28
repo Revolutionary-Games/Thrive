@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnjcexj3ob27"]
+
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_cnemp"]
+[ext_resource type="Script" uid="uid://cogkvgwbsbki8" path="res://src/gui_common/menus/AchievementsView.cs" id="2_kipvk"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2_pkbja"]
+[ext_resource type="PackedScene" uid="uid://bk3leiofn128o" path="res://src/general/achievements/AchievementsGallery.tscn" id="3_kipvk"]
+
+[node name="AchievementsView" type="Control" node_paths=PackedStringArray("achievementsPopup", "achievementsGallery")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme = ExtResource("1_cnemp")
+script = ExtResource("2_kipvk")
+achievementsPopup = NodePath("AchievementsPopup")
+achievementsGallery = NodePath("AchievementsPopup/AchievementsGallery")
+
+[node name="AchievementsPopup" parent="." instance=ExtResource("2_pkbja")]
+visible = true
+custom_minimum_size = Vector2(850, 600)
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 400.0
+WindowTitle = "ACHIEVEMENTS"
+Resizable = true
+
+[node name="AchievementsGallery" parent="AchievementsPopup" instance=ExtResource("3_kipvk")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Back" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 0
+anchor_top = 0.931
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 4.67993
+offset_right = -1125.0
+offset_bottom = -5.00006
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_filter = 1
+text = "BACK"
+
+[connection signal="Canceled" from="AchievementsPopup" to="." method="PopupClosed"]
+[connection signal="Closed" from="AchievementsPopup" to="." method="PopupClosed"]
+[connection signal="pressed" from="Back" to="." method="BackPressed"]

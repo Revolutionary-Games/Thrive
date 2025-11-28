@@ -30,6 +30,18 @@ const SETTINGS_SHORTCUT_MAPPING := {
 	GdUnitSettings.SHORTCUT_FILESYSTEM_RUN_TEST_DEBUG : GdUnitShortcut.ShortCut.RUN_TESTSUITE_DEBUG
 }
 
+const CommandMapping := {
+	GdUnitShortcut.ShortCut.RUN_TESTS_OVERALL: GdUnitCommandHandler.CMD_RUN_OVERALL,
+	GdUnitShortcut.ShortCut.RUN_TESTCASE: GdUnitCommandHandler.CMD_RUN_TESTCASE,
+	GdUnitShortcut.ShortCut.RUN_TESTCASE_DEBUG: GdUnitCommandHandler.CMD_RUN_TESTCASE_DEBUG,
+	GdUnitShortcut.ShortCut.RUN_TESTSUITE: GdUnitCommandHandler.CMD_RUN_TESTSUITE,
+	GdUnitShortcut.ShortCut.RUN_TESTSUITE_DEBUG: GdUnitCommandHandler.CMD_RUN_TESTSUITE_DEBUG,
+	GdUnitShortcut.ShortCut.RERUN_TESTS: GdUnitCommandHandler.CMD_RERUN_TESTS,
+	GdUnitShortcut.ShortCut.RERUN_TESTS_DEBUG: GdUnitCommandHandler.CMD_RERUN_TESTS_DEBUG,
+	GdUnitShortcut.ShortCut.STOP_TEST_RUN: GdUnitCommandHandler.CMD_STOP_TEST_RUN,
+	GdUnitShortcut.ShortCut.CREATE_TEST: GdUnitCommandHandler.CMD_CREATE_TESTCASE,
+}
+
 # the current test runner config
 var _runner_config := GdUnitRunnerConfig.new()
 
@@ -156,7 +168,7 @@ func get_shortcut_action(shortcut_type: GdUnitShortcut.ShortCut) -> GdUnitShortc
 
 
 func get_shortcut_command(p_shortcut: GdUnitShortcut.ShortCut) -> String:
-	return GdUnitShortcut.CommandMapping.get(p_shortcut, "unknown command")
+	return CommandMapping.get(p_shortcut, "unknown command")
 
 
 func register_command(p_command: GdUnitCommand) -> void:
@@ -245,7 +257,6 @@ func cmd_run(debug: bool) -> void:
 	if _is_running:
 		return
 
-	GdUnitSignals.instance().gdunit_event.emit(GdUnitInit.new())
 	# save current selected excution config
 	var server_port: int = Engine.get_meta("gdunit_server_port")
 	var result := _runner_config.set_server_port(server_port).save_config()
@@ -316,39 +327,6 @@ func cmd_discover_tests() -> void:
 	await GdUnitTestDiscoverer.run()
 
 
-static func scan_all_test_directories(root: String) -> PackedStringArray:
-	var base_directory := "res://"
-	# If the test root folder is configured as blank, "/", or "res://", use the root folder as described in the settings panel
-	if root.is_empty() or root == "/" or root == base_directory:
-		return [base_directory]
-	return scan_test_directories(base_directory, root, [])
-
-
-static func scan_test_directories(base_directory: String, test_directory: String, test_suite_paths: PackedStringArray) -> PackedStringArray:
-	print_verbose("Scannning for test directory '%s' at %s" % [test_directory, base_directory])
-	for directory in DirAccess.get_directories_at(base_directory):
-		if directory.begins_with("."):
-			continue
-		var current_directory := normalize_path(base_directory + "/" + directory)
-		if GdUnitTestSuiteScanner.exclude_scan_directories.has(current_directory):
-			continue
-		if match_test_directory(directory, test_directory):
-			@warning_ignore("return_value_discarded")
-			test_suite_paths.append(current_directory)
-		else:
-			@warning_ignore("return_value_discarded")
-			scan_test_directories(current_directory, test_directory, test_suite_paths)
-	return test_suite_paths
-
-
-static func normalize_path(path: String) -> String:
-	return path.replace("///", "//")
-
-
-static func match_test_directory(directory: String, test_directory: String) -> bool:
-	return directory == test_directory or test_directory.is_empty() or test_directory == "/" or test_directory == "res://"
-
-
 func run_debug_mode() -> void:
 	EditorInterface.play_custom_scene("res://addons/gdUnit4/src/core/runners/GdUnitTestRunner.tscn")
 	_is_running = true
@@ -383,7 +361,7 @@ func active_script() -> Script:
 # signals handles
 ################################################################################
 func _on_event(event: GdUnitEvent) -> void:
-	if event.type() == GdUnitEvent.STOP:
+	if event.type() == GdUnitEvent.SESSION_CLOSE:
 		cmd_stop(_client_id)
 
 

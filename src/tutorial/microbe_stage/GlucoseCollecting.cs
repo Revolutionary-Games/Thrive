@@ -3,19 +3,26 @@
 using System;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Tutorial pointing glucose collecting out to the player
 /// </summary>
 public class GlucoseCollecting : TutorialPhase
 {
-    [JsonProperty]
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private Vector3? glucosePosition;
 
     /// <summary>
     ///   Holds the next tutorial we should notify we are done.
     /// </summary>
-    [JsonProperty]
+    /// <remarks>
+    ///   <para>
+    ///     TODO: this one property makes saving that one tutorial a bit awkward so refactoring this usage would be
+    ///     pretty nice
+    ///   </para>
+    /// </remarks>
     private MicrobeReproduction? nextTutorial;
 
     public GlucoseCollecting()
@@ -31,6 +38,11 @@ public class GlucoseCollecting : TutorialPhase
     public CompoundPanels? CompoundPanels { get; set; }
 
     public override string ClosedByName => "GlucoseCollecting";
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.TutorialGlucoseCollecting;
 
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {
@@ -126,5 +138,31 @@ public class GlucoseCollecting : TutorialPhase
     public override Vector3? GetPositionGuidance()
     {
         return glucosePosition;
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        base.WritePropertiesToArchive(writer);
+
+        writer.Write(glucosePosition != null);
+        if (glucosePosition != null)
+        {
+            writer.Write(glucosePosition.Value);
+        }
+
+        writer.WriteObjectOrNull(nextTutorial);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        // Base version is not our version, so we pass 1 here
+        base.ReadPropertiesFromArchive(reader, 1);
+
+        var hasPosition = reader.ReadBool();
+        glucosePosition = hasPosition ? reader.ReadVector3() : null;
+        nextTutorial = reader.ReadObjectOrNull<MicrobeReproduction>();
     }
 }

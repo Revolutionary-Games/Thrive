@@ -1,8 +1,10 @@
 ﻿using System;
+using SharedBase.Archive;
 
-[JSONAlwaysDynamicType]
 public class BehaviourActionData : EditorCombinableActionData
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public float NewValue;
     public float OldValue;
     public BehaviouralValueType Type;
@@ -14,42 +16,49 @@ public class BehaviourActionData : EditorCombinableActionData
         Type = type;
     }
 
-    public override bool WantsMergeWith(CombinableActionData other)
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.BehaviourActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
-        return other is BehaviourActionData;
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.BehaviourActionData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((BehaviourActionData)obj);
     }
 
-    protected override double CalculateCostInternal()
+    public static BehaviourActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
-        // TODO: should this be free?
-        return 0;
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new BehaviourActionData(reader.ReadFloat(), reader.ReadFloat(),
+            (BehaviouralValueType)reader.ReadInt32());
+
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        return instance;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    public override void WriteToArchive(ISArchiveWriter writer)
     {
-        if (other is BehaviourActionData behaviourChangeActionData && behaviourChangeActionData.Type == Type)
-        {
-            // If the value has been changed back to a previous value
-            if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON &&
-                Math.Abs(behaviourChangeActionData.NewValue - OldValue) < MathUtils.EPSILON)
-                return ActionInterferenceMode.CancelsOut;
+        writer.Write(NewValue);
+        writer.Write(OldValue);
+        writer.Write((int)Type);
 
-            // If the value has been changed twice
-            if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON ||
-                Math.Abs(behaviourChangeActionData.NewValue - OldValue) < MathUtils.EPSILON)
-                return ActionInterferenceMode.Combinable;
-        }
-
-        return ActionInterferenceMode.NoInterference;
+        writer.Write(SERIALIZATION_VERSION_EDITOR);
+        base.WriteToArchive(writer);
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        var behaviourChangeActionData = (BehaviourActionData)other;
-        if (Math.Abs(OldValue - behaviourChangeActionData.NewValue) < MathUtils.EPSILON)
-            return new BehaviourActionData(behaviourChangeActionData.OldValue, NewValue, Type);
+        if (other is not BehaviourActionData otherBehaviour)
+            return false;
 
-        return new BehaviourActionData(behaviourChangeActionData.NewValue, OldValue, Type);
+        // Only combine the same type. Otherwise, terrible bugs happen.
+        return otherBehaviour.Type == Type;
     }
 
     protected override void MergeGuaranteed(CombinableActionData other)

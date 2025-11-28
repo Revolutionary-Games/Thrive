@@ -928,3 +928,218 @@
     - Some native library build tweaks
     - Updated unit testing packages
     - Updated translations
+
+0.8.3:
+  IntroductionText: |
+    This release brings achievements and starting planet customization to the microbe stage. Also a new visual ripple effect has been added along with many more smaller bug fixes and new features for the microbe stage. The multicellular prototype has also received quite many improvements, the most major will probably be the fix to the cell layouts not being exactly remembered between editor sessions.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.8.3
+  PatchNotes:
+    - Implemented a set of 12 microbe achievements
+    - Added simple planet customization options to the new game screen
+    - Added new hydrogenosome organelle
+    - Added a microbe movement ripple effect
+    - Improved auto-evo generation diversity
+    - Made hydrogen sulfide diffuse between patches and buffed events that generate it
+    - Increased max zoom out distance when playing as a large cell colony
+    - Intercellular matrix is now represented in the multicellular stage with visual links
+    - Implemented preview images of multicellular species
+    - The multicellular editor now remembers the exact hex layout between sessions and no longer does a conversion process that sometimes shifted cells around
+    - Implemented tooltips for multicellular cell selection buttons
+    - Added a graphical setting that slightly tilts the camera towards the cursor, which can be enabled in the game settings
+    - Made water currents affect bigger cells more strongly to be able to push them around
+    - Updated the icon for hydrogenase
+    - Tweaked balancing of the easy difficulty preset
+    - Tweaked balancing of toxins
+    - Mucocyst activation now requires 50% stored mucocyst to activate it
+    - Buffed thermosynthesis and radiosynthesis by 20%
+    - Microbe colonies now have passive reproduction enabled for them in the form of gaining free compounds needed for reproduction while part of a colony
+    - Added an in-game list of achievements
+    - There is now a new look to our options menu with checkboxes replaced by toggle buttons and various other tweaks were also made like moving options around
+    - Metabolic stability pressure in auto-evo no longer penalizes sessile species as harshly
+    - Fixed digestion being stuck at 0 / 0 when engulfed cell produces resources
+    - Fixed tolerance tooltips sometimes always showing debuffs when the theoretically perfect tolerances calculation failed due to not taking organelle effects into account
+    - Fixed the glaciation event ending leaving light levels in some cases to be incorrect
+    - Fixed the move to patch button staying active when the patch extinction popup was triggered multiple times in a row
+    - Fixed engulfing in cell colonies using capacity information from the wrong cell
+    - Fixed key rebinding when there were conflicts not working
+    - Fixed queued chunk spawns being able to spawn too close to the player's position
+    - Fixed errors when glaciation ended related to re-applying original patch conditions
+    - Fixed the 2x game speed mode not speeding up the day/night cycle
+    - Fixed a problem with cell type colours not updating by making the colour part of the visual hash for them
+    - Fixed ATP warning staying active in the multicellular editor
+    - Fixed iron meteor event not being able to add iron to a patch that didn't have any iron
+    - Fixed the hydrogenase tooltip claiming that the organelle used hydrogen as an input when in reality the fermentation process results in hydrogen being released
+    - Fixed species preview images not updating when the species mutated
+    - Fixed freebuild species missing tooltips showing what they look like. Note that species that go immediately extinct still don't have tooltips.
+    - Fixed the process panel list being empty if opened initially when the game is paused
+    - Fixed auto-evo being able to place macroscopic organelles in the microbe species
+    - Fixed the timeline tab showing nonsensical glucose reductions if playing a single Thrive playthrough for a very large number of generations
+    - Compound bars in compact mode now use a font with shadow for better visibility of numbers against the bar backgrounds
+    - Improved the handling of scrollbars in the timeline tab with too tall scrollbars being now less likely to appear, but they still do sometimes
+    - Fixed jittery creature movement in the ascension ceremony screen
+    - Fixed editor cancel button focused mode visuals
+    - Fixed organelle names in tooltips not updating when changing the game language
+    - Fixed chemical equation titles not updating on language change
+    - Made signalling agents from colony members available for use even if the primary cell doesn't have them
+    - Save list now has a tag for saves that cheats have been used in
+    - Added a popup message the first time cheats are used in a game
+    - Removed accidentally leftover text in the new game setup screen about passive reproduction
+    - Cell type editor now validates the new type name immediately on entering the name
+    - Made sure species bacteria status is always up to date in the species class
+    - Made the editor tabs disallow swapping between them if there is an in-progress action that needs to be completed first
+    - Improved the direct stage start cell for multicellular
+    - Converted all NodePaths in our code to direct node references that were added with Godot 4. Hopefully this makes long Thrive play sessions a bit more stable.
+    - "Steam: added achievements"
+    - Updated an outdated command in our setup documentation
+    - Made our game export script to delete the test runner before starting as that caused failures
+    - Tweaked our code checking tools to not report false positives on some Godot scene files
+    - Tweaked our code checking tool ignore list
+    - Updated unit testing framework, including updating gdUnit4
+    - Updated xunit version
+    - Updated Thriveopedia content
+    - Updated translations
+
+0.9.0:
+  IntroductionText: |
+    After some delays due to remaking the entire saving system from scratch, Thrive 0.9.0 is here. The biggest new feature is the microbe terrain system that adds inert bits of terrain to many of the microbe patch types. There's also more planet customization options and multiple new graphics effects. The game balancing has also received very significant changes.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.9.0
+  PatchNotes:
+    - Added microbe terrain. More complex terrain configurations are not yet all made and many patch-specific terrain types are still missing.
+    - Added more planet customization options to the new game settings and a preview of planet stats
+    - Reimplemented saving using a new custom binary format. This makes all previous saves incompatible.
+    - Saving is now possible in the multicellular editor
+    - Added a new currents trail effect in surface patches
+    - Tweaked and improved the water currents
+    - Enabled specular highlights effect for microbe membranes
+    - Added ambient light reflections to game objects
+    - Made balance changes to oxygen and co2 generation
+    - Debuffed iron and oxygen metabolism
+    - Switched to Arch ECS library, which did not improve maximum game performance like hoped, but did improve the game simulation efficiency.
+    - Updated to Godot 4.5
+    - Updated the Jolt Physics engine
+    - Hydrogen sulfide clouds now deal damage to microbes that cannot metabolise them
+    - Made hydrogen sulfide decay speed up with the presence of oxygen
+    - The button to eject engulfed objects now works in a cell colony and in multicellular stage
+    - Added an achievements view to the pause menu
+    - Switched the species fossilisation system over to the new binary save format. This also means that old fossil files are no longer loadable.
+    - Added a new tutorial that tells the player about adding the binding agents to guide them towards the next stage
+    - Adjusted engulfing tutorial to not be able to point to relatively very small targets
+    - Added a popup asking the player if they want to load a previous auto save if they die too many times in a row
+    - Made editor tabs show themselves as a safety fallback if tutorial is not active but the tabs are still hidden. This condition could be triggered when the tutorial was sequence broken.
+    - Changed the whole underlying remaining MP calculations system to make sure tolerance sliders no longer get stuck when at 0 MP
+    - Tolerance edits to separate sliders no longer combine into a single undo step
+    - The temperature miche in auto-evo now penalizes sessility
+    - Added a miche for endosymbiosis target to stay in. This makes endosymbiosis much easier as the target species stays alive.
+    - Auto-evo now has bonus calculations from the chemoreceptor
+    - Fixed auto-evo not using actual available enzymes in digestibility calculations and instead accidentally assuming lysosomes provided all possible enzymes
+    - Improved visual water currents syncing to the simulation
+    - Fast speed mode is now automatically disabled if the available CPU power is not enough to keep up with the fast speed
+    - Switched the game to default to only showing new tutorials rather than all. The option to replay all tutorials still exists but must be selected now when starting a new game.
+    - Changed quick save and auto save limits to 100 (up from 50)
+    - Slow currents pushing a cell now no longer trigger the movement ripple effect
+    - Added a workaround for player becoming extinct due to being removed from the current patch populations due to another bug (that has not not been discovered yet)
+    - Added tolerance values to the species fossilisation dialog
+    - Fixed bug with other behaviour sliders moving when moving multiple different sliders in a row
+    - Fixed the hydrogenosome not being available through endosymbiosis like it should have been configured to be available
+    - Fixed disk cache not using background threads to save like it was supposed to. This hopefully fixes the random lag spikes that persisted a while after they started.
+    - Fixed the checkbox to only show new tutorials not working correctly after a save was loaded (and all tutorials got enabled even when selected not to)
+    - Fixed GUI focus jumping a lot when resolving a key rebinding conflict
+    - Fixed the Yum achievement not triggering for chunks
+    - Fixed ice chunks not playing the dissolve animation
+    - Fixed GDExtension build flags and fixed Mac crashing
+    - Fixed the wrong patch being highlighted in the patch map that is shown on extinction when going extinct in multiple patches in a row
+    - Fixed microbe backgrounds being very dark in OpenGL mode when blur is enabled
+    - Fixed museum species card delete buttons not reacting to mouse hover and fixed duplicate click event when clicking it
+    - Fixed code workaround for shuffling 2 item bags, which shouldn't have a gameplay impact as there was a workaround previously
+    - Added a custom git mergedriver for .po files which should make working on Thrive a bit nicer to automate translation file update conflicts
+    - Updated our import files for Godot 4.5 with automatically added properties
+    - Updated some asset import settings Godot wanted to change automatically
+    - Updated code checking tools
+    - Updated xUnit library
+    - Updated to gdUnit4 6.0.0
+    - Updated BenchmarkDotNet from 0.15.3 to 0.15.5
+    - Updated translations
+
+0.9.0.1:
+  IntroductionText: |
+    Here is a small patch release to fix the most reported problems after the 0.9.0 release. This fixes multiple saving problems and multiple infinite MP exploits, but there are still some non-optimal MP refund behaviour in this release and probably some more complex edits can still lead to too large MP refunds. To fully fix the MP calculation system more time is needed than what was available for this quick patch.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.9.0.1
+  PatchNotes:
+    - Fixed loading a save where endosymbiosis was started or completed
+    - Fixed 3 reported ways to exploit the microbe editor to get infinite MP
+    - Fixed loading a save made in the multicellular editor where the player had a grown colony before entering the editor
+    - Added a new system where known compatible save versions can be marked and those can be loaded without any warning popup
+    - Updated translations
+
+0.9.1:
+  IntroductionText: |
+    To prepare for the 1.0.0 (microbe stage completion) release, we are making a few smaller releases to get more player feedback on the changes we are making. The biggest changes in this release are that all the reported save loading issues should be fixed now. And the remaining MP calculation system is totally redone, again, which should now result in there not being any MP refund exploits. However, due to the tight release schedule there has not been much testing at all so please continue reporting any MP related problems. There's also of course new gameplay features like new patch events and map visuals as well as multiple auto-evo and balance improvements.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.9.1
+  PatchNotes:
+    - Reimplemented the MP calculation system (again)
+    - Added player population visualization dots on the map
+    - Added a few new patch event types that affect compound amounts
+    - Amount of ammonia in patches now dynamically changes based on consumption and production
+    - Switched Thermosynthesis to produce glucose rather than ATP directly
+    - There's a different intro cutscene now when starting with the panspermia starting location
+    - Added a new GUI error popup that opens when the game runs into an unhandled error to make sure players can more accurately report these and not continue playing for a while without realizing which can lead to very strange bug symptoms
+    - Auto-evo can now evolve toxin upgrades and they have an impact on the calculation now
+    - Auto-evo now takes reproduction cost into account
+    - Implemented a simple cell division animation based on physics pushing the new cell out
+    - Buffed hydregonosome by 20% to make it a good upgrade again
+    - Increased auto-evo strength on the player species in all difficulties
+    - Instant kill protection against damage is now a disableable difficulty option
+    - Stopped the player death timer when engulfed if the player has stored toxin as the player might be able to escape thanks to it
+    - Endosymbiosis GUI is now grouped based on whether the species are present in the current patch or not
+    - Added a sound effect for binding mode so that it finally has a unique sound rather than sharing the engulf mode sound
+    - Tweaked the engulfing sound to make it loop better
+    - The pause menu is now a singleton and the Thriveopedia as well to reduce allocations on scene change which might help with the random scene load bug
+    - Made global glaciation trigger slightly earlier
+    - Improved the microbe AI handling of escaping damaging hydrogen sulfide
+    - Partial mod support should be now usable, which had been broken since the Godot 4 upgrade. Harmony using mods don't work on Linux but they should work on Windows now.
+    - Removed inbuilt Harmony mod support as it was not working
+    - Fixed code mod loading not working ever since we switched to Godot 4
+    - Fixed loading saves where there are fired toxins
+    - Fixed fog of war and a few other settings resetting in custom difficulty on loading a save
+    - Fixed a case where sunlight was not properly restored after an event ended
+    - Fixed compound storage durations display not correctly taking special storage space into account
+    - Fixed major bug with auto-evo tolerance changes not actually working at all
+    - Fixed distance checks being mathematically wrong in the terrain system and added sliding terrain around when it doesn't fit to result in much tighter packing being possible
+    - Fixed the no longer eligible for achievements text appearing in freebuild as those games are not eligible anyway
+    - Fixed changing worlds in the auto-evo exploring tool not working correctly for the displayed map
+    - Reduced logging for Steam achievements sync
+    - Fixed some dependency updates in Arch that broke some build tools
+    - Fixed our setup instructions referring to the wrong Godot version
+    - Updated AngleSharp to 1.3.1
+    - Updated gdUnit4 C# package to 5.1.0-rc3
+    - Updated code checking tools version
+    - Updated BenchmarkDotNet from 0.15.5 to 0.15.6
+    - Updated gdUnit4 to 6.0.1 and fixed our microbe hash tests
+    - Updated test SDK version
+    - Updated System.Text.Json from 9.0.9 to 9.0.10
+    - Updated System.IO.Hashing from 9.0.9 to 9.0.10
+    - Updated many other C# dependencies and checking tools
+    - Updated translations
+
+0.9.1.1:
+  IntroductionText: |
+    This is a small bugfix release to address the most pressing problems after the 0.9.1 release, which has been our most unstable version in a long while. This release should hopefully fix the prevalent crashing problem in 0.9.1 that was caused by the new division animation. And this also addresses many MP calculation related problems that should now make the microbe stage fully playable and the prototypes mostly working (we haven't had enough testing time to fully verify). There's also some balance changes included that we felt were small and important enough to put out now to get more feedback on them.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.9.1.1
+  PatchNotes:
+    - Fixed microbe division animation trying to apply for detached physics bodies. This is likely the cause of the flood of crash reports we received.
+    - Fixed various cases of the new MP system not working correctly
+    - Fixed the new MP system to work correctly for multiple cell type edits in multicellular and macroscopic
+    - Buffed prokaryotic toxin generation amount
+    - Buffed iron and chemosynthesis
+    - All multicellular species' hex layouts can now be previewed in the tooltips instead of just species that have been edited in the editor
+    - Fixed error on switching patch in the multicellular editor
+    - Fixed auto-evo calculating NaN energy gains for species (when a patch was empty of ammonia)
+    - Fixed cells spinning around when they thought they were taking hydrogen sulfide damage but actually weren't
+    - Fixed cell editor light level trying to apply too soon leading to major editor errors
+    - Fixed MP multiplier difficulty setting not working with the new MP system
+    - Fixed saving in wide locales with certain length strings
+    - Fixed saving not working when there is a cell remove action in the edit history of multicellular
+    - Fixed a case where the pilus collision system may have tried to access a dead entity
+    - Suppressed already connected signal error popup (this is a years old engine bug)
+    - Updated some code dependencies and added some testing helper code
+    - Updated translations

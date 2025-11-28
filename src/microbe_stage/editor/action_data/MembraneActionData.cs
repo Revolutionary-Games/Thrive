@@ -1,6 +1,10 @@
-﻿[JSONAlwaysDynamicType]
+﻿using System;
+using SharedBase.Archive;
+
 public class MembraneActionData : EditorCombinableActionData<CellType>
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public MembraneType OldMembrane;
     public MembraneType NewMembrane;
 
@@ -10,33 +14,42 @@ public class MembraneActionData : EditorCombinableActionData<CellType>
         NewMembrane = newMembrane;
     }
 
-    protected override double CalculateCostInternal()
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.MembraneActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
-        return NewMembrane.EditorCost;
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.MembraneActionData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((MembraneActionData)obj);
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    public static MembraneActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
-        if (other is MembraneActionData membraneActionData)
-        {
-            // If changed back to the old membrane
-            if (membraneActionData.NewMembrane == OldMembrane && NewMembrane == membraneActionData.OldMembrane)
-                return ActionInterferenceMode.CancelsOut;
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-            // If changed membrane twice
-            if (membraneActionData.NewMembrane == OldMembrane || NewMembrane == membraneActionData.OldMembrane)
-                return ActionInterferenceMode.Combinable;
-        }
+        var instance = new MembraneActionData(reader.ReadObject<MembraneType>(), reader.ReadObject<MembraneType>());
 
-        return ActionInterferenceMode.NoInterference;
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        return instance;
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    public override void WriteToArchive(ISArchiveWriter writer)
     {
-        var membraneActionData = (MembraneActionData)other;
-        if (OldMembrane == membraneActionData.NewMembrane)
-            return new MembraneActionData(membraneActionData.OldMembrane, NewMembrane);
+        writer.WriteObject(OldMembrane);
+        writer.WriteObject(NewMembrane);
 
-        return new MembraneActionData(membraneActionData.NewMembrane, OldMembrane);
+        writer.Write(SERIALIZATION_VERSION_CONTEXT);
+        base.WriteToArchive(writer);
+    }
+
+    protected override bool CanMergeWithInternal(CombinableActionData other)
+    {
+        return false;
     }
 }
