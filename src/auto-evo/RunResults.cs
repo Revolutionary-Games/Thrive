@@ -308,7 +308,14 @@ public class RunResults : IArchivable
 
         var dataReceiver = results[species].GetEnergyResults(patch);
 
+        // We break here on a single point to make debug auto-evo not that much slower but easily be able to detect
+        // when auto-evo regressions are added
+#if DEBUG
+        dataReceiver.TotalEnergyGathered = totalEnergy.BreakOnNaN();
+#else
         dataReceiver.TotalEnergyGathered = totalEnergy;
+#endif
+
         dataReceiver.IndividualCost = individualCost;
     }
 
