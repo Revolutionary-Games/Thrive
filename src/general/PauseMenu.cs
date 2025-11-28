@@ -234,6 +234,20 @@ public partial class PauseMenu : CanvasLayer
 
     public override void _Ready()
     {
+        // Pause menu starts off hidden
+        Visible = false;
+
+        animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+
+        unsavedProgressWarning.Connect(CustomWindow.SignalName.Canceled, new Callable(this, nameof(CancelExit)));
+
+        if (GameProperties != null)
+            thriveopedia.CurrentGame = GameProperties;
+    }
+
+    public override void _EnterTree()
+    {
+        // Register instance early so that directly started game scenes work correctly and can register things
         if (instance != null)
         {
             GD.PrintErr("Multiple PauseMenu singletons exist!");
@@ -245,21 +259,8 @@ public partial class PauseMenu : CanvasLayer
             return;
         }
 
-        // Pause menu starts off hidden
-        Visible = false;
-
-        animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-
-        unsavedProgressWarning.Connect(CustomWindow.SignalName.Canceled, new Callable(this, nameof(CancelExit)));
-
-        if (GameProperties != null)
-            thriveopedia.CurrentGame = GameProperties;
-
         instance = this;
-    }
 
-    public override void _EnterTree()
-    {
         InputManager.RegisterReceiver(this);
 
         ThriveopediaManager.Instance.OnPageOpenedHandler += OnThriveopediaOpened;
@@ -277,6 +278,9 @@ public partial class PauseMenu : CanvasLayer
         GetTree().AutoAcceptQuit = true;
 
         ThriveopediaManager.Instance.OnPageOpenedHandler -= OnThriveopediaOpened;
+
+        if (instance == this)
+            instance = null;
     }
 
     public override void _Notification(int notification)
