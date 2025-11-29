@@ -328,8 +328,10 @@ public class SimulationCache
         var preyRotationModifier = float.Min(1.0f, 1.5f - preyRotationSpeed * 1.45f);
 
         // Simple estimation of slime jet propulsion.
-        var predatorSlimePropulsion = predatorSlimeJetScore / predatorHexSize;
-        var preySlimePropulsion = preySlimeJetScore / preyHexSize;
+        var predatorSlimePropulsion = predatorSlimeJetScore / (predatorHexSize * 11);
+        var preySlimePropulsion = preySlimeJetScore / (preyHexSize * 11);
+        var predatorSlimeStorage = predator.StorageCapacities.Specific[Compound.Mucilage];
+        var preySlimeStorage = prey.StorageCapacities.Specific[Compound.Mucilage];
 
         if (predator.PlayerSpecies)
             GD.Print(predatorSpeed, " ", predatorSlimePropulsion);
@@ -524,6 +526,7 @@ public class SimulationCache
         }
 
         // predators that have slime jets themselves ignore the immobilising effect of prey slimejets
+        preySlimeJetScore = MathF.Sqrt(preySlimeJetScore);
         if (predatorSlimeJetScore > 0)
             preySlimeJetScore = 0;
 
@@ -843,8 +846,7 @@ public class SimulationCache
                     ToxinType.OxygenMetabolismInhibitor);
         }
 
-        // Having lots of slime jets, mucocysts and pulling cilias doesn't really help much
-        slimeJetScore *= MathF.Sqrt(slimeJetsCount);
+        // Having lots of mucocysts and pulling cilias doesn't really help much
         mucocystsScore *= MathF.Sqrt(mucocystsCount);
         pullingCiliaModifier *= 1 + MathF.Sqrt(pullingCiliasCount) * Constants.AUTO_EVO_PULL_CILIA_MODIFIER;
 
@@ -861,7 +863,7 @@ public class SimulationCache
             injectisomeScore *= injectisomeCount;
         }
 
-        slimeJetScore *= slimeJetsMultiplier;
+        slimeJetScore *= slimeJetsCount;
 
         // bonus score for upgrades because auto-evo does not like adding them much
         injectisomeScore *= Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS_SMALL;
