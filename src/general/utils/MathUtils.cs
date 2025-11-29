@@ -245,4 +245,38 @@ public static class MathUtils
 
         return value;
     }
+
+    public static float BreakOnInfinity(this float value)
+    {
+        if (float.IsInfinity(value) || float.IsNaN(value))
+        {
+            if (Debugger.IsAttached)
+            {
+                Debugger.Break();
+            }
+            else
+            {
+                throw new Exception("Infinity detected (or NaN)");
+            }
+        }
+
+        return value;
+    }
+
+    public static double BreakOnInfinity(this double value)
+    {
+        if (double.IsInfinity(value) || double.IsNaN(value))
+        {
+            if (Debugger.IsAttached)
+            {
+                Debugger.Break();
+            }
+            else
+            {
+                throw new Exception("Infinity detected (or NaN)");
+            }
+        }
+
+        return value;
+    }
 }

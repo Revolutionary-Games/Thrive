@@ -29,6 +29,8 @@ public static class FeatureInformation
         "iOS",
     };
 
+    public static bool IsMobile => OperatingSystem.IsIOS() || OperatingSystem.IsAndroid();
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string GetOS()
     {

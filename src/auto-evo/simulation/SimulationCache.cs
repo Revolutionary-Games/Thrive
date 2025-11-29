@@ -389,13 +389,14 @@ public class SimulationCache
             {
                 // You catch more preys if you are fast, and if they are slow.
                 // This incentivizes engulfment strategies in these cases.
-                catchScore += (predatorSpeed / preySpeed) * (1 - slowedProportion);
+                // Sinusoid calculation to avoid divisions by zero
+                catchScore += (predatorSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
             }
 
             // If you can slow the target, some proportion of prey are easier to catch
             if (predatorSpeed > slowedPreySpeed)
             {
-                catchScore += (predatorSpeed / slowedPreySpeed) * slowedProportion;
+                catchScore += (predatorSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
             }
 
             // But prey may escape if they move away before you can turn to chase them
@@ -600,6 +601,7 @@ public class SimulationCache
             return cached;
         }
 
+        // Need to have chemoreceptor to be able to "smell" chunks
         cached = 0.0f;
         var hasChemoreceptor = false;
         foreach (var organelle in species.Organelles.Organelles)
@@ -612,7 +614,8 @@ public class SimulationCache
                 hasChemoreceptor = true;
         }
 
-        if (hasChemoreceptor)
+        // If the chunk doesn't spawn, it doesn't give any of its compound
+        if (hasChemoreceptor && chunk.Density > 0)
         {
             // We use null suppression here
             // as this method is only meant to be called on chunks that are known to contain the given compound
