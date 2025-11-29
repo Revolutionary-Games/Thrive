@@ -1934,7 +1934,7 @@ public static class Constants
     public const float PATCH_LIFE_INDICATOR_RADIUS_BASE = 40.0f;
     public const float PATCH_LIFE_INDICATOR_RADIUS_SCALE = 30.0f;
     public const float INDICATORS_NUMBER_PER_POPULATION_SQUARED = 0.2f;
-    public const float MULTICELLULAR_LIFE_INDICATOR_MODIFIER = 5f;
+    public const float MULTICELLULAR_LIFE_INDICATOR_MODIFIER = 5.0f;
 
     public const float PATCH_GENERATION_CHANCE_BANANA_BIOME = 0.03f;
 
