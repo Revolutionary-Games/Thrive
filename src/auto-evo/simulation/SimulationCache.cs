@@ -882,6 +882,7 @@ public class SimulationCache
         }
 
         slimeJetScore *= slimeJetsCount;
+        slimeJetScore *= slimeJetsMultiplier;
 
         // bonus score for upgrades because auto-evo does not like adding them much
         injectisomeScore *= Constants.AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS_SMALL;
