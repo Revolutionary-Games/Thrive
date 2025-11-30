@@ -328,13 +328,8 @@ public class SimulationCache
         var preyRotationModifier = float.Min(1.0f, 1.5f - preyRotationSpeed * 1.45f);
 
         // Simple estimation of slime jet propulsion.
-        var predatorSlimePropulsion = predatorSlimeJetScore / (predatorHexSize * 11);
-        var preySlimePropulsion = preySlimeJetScore / (preyHexSize * 11);
-        var predatorSlimeStorage = predator.StorageCapacities.Specific[Compound.Mucilage];
-        var preySlimeStorage = prey.StorageCapacities.Specific[Compound.Mucilage];
-
-        if (predator.PlayerSpecies)
-            GD.Print(predatorSpeed, " ", predatorSlimePropulsion);
+        var predatorSlimeSpeed = predatorSpeed + predatorSlimeJetScore / (predatorHexSize * 11);
+        var preySlimeSpeed = preySpeed + preySlimeJetScore / (preyHexSize * 11);
 
         var hasChemoreceptor = false;
         foreach (var organelle in predator.Organelles.Organelles)
@@ -398,6 +393,26 @@ public class SimulationCache
             {
                 catchScore += (predatorSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion;
             }
+
+            // If you have Slime Jets, this can help you catch targets.
+            if (predatorSlimeSpeed > preySpeed)
+            {
+                catchScore += (predatorSlimeSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
+            }
+
+            if (predatorSlimeSpeed > slowedPreySpeed)
+            {
+                catchScore += (predatorSlimeSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion;
+            }
+
+            // Having Slime Jets can also help prey escape.
+            if (preySlimeSpeed > predatorSpeed)
+            {
+                catchScore += (preySlimeSpeed + 0.001f) / (predatorSpeed + 0.0001f) * (1 - slowedProportion);
+            }
+
+            // prevent potential negative catchScore.
+            catchScore = MathF.Max(catchScore, 0);
 
             // But prey may escape if they move away before you can turn to chase them
             catchScore *= predatorRotationModifier;
