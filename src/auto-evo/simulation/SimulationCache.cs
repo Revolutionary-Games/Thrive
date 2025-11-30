@@ -396,7 +396,7 @@ public class SimulationCache
             // If you can slow the target, some proportion of prey are easier to catch
             if (predatorSpeed > slowedPreySpeed)
             {
-                catchScore += (predatorSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
+                catchScore += (predatorSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion;
             }
 
             // But prey may escape if they move away before you can turn to chase them
