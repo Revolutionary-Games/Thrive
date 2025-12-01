@@ -1121,7 +1121,7 @@ public partial class PatchMapDrawer : Control
 
             if (playerSpecies is MicrobeSpecies microbeSpecies)
             {
-                speciesSizeModifier = Math.Sqrt(microbeSpecies.BaseHexSize);
+                speciesSizeModifier = Math.Sqrt(microbeSpecies.Organelles.Organelles.Count);
             }
             else if (playerSpecies is MulticellularSpecies)
             {
@@ -1151,7 +1151,7 @@ public partial class PatchMapDrawer : Control
     private Vector2 GetIndicatorPosition(PatchMapNode node, int dotIndex, Texture2D texture)
     {
         var indexModifier = MathF.Sin(dotIndex) * 0.5f + 0.5f;
-        var nodeModifier = node.Patch.ID;
+        var nodeModifier = node.Position.LengthSquared();
         var nodeCenter = node.Position + new Vector2(Constants.PATCH_NODE_RECT_LENGTH / 2,
             Constants.PATCH_NODE_RECT_LENGTH / 2) - new Vector2(texture.GetWidth() / 2.0f, texture.GetHeight() / 2.0f);
 
