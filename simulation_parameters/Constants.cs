@@ -1058,6 +1058,8 @@ public static class Constants
     /// </summary>
     public const float PILUS_MAX_DAMAGE = 45;
 
+    public const float PILUS_MIN_DAMAGE = 1;
+
     public const float PILUS_PHYSICS_SIZE = 4.6f;
 
     public const float BACTERIA_PILUS_ATTACH_ADJUSTMENT_MULTIPLIER = 0.575f;
@@ -1065,7 +1067,7 @@ public static class Constants
     /// <summary>
     ///   Damage a single injectisome stab does
     /// </summary>
-    public const float INJECTISOME_BASE_DAMAGE = 20.0f;
+    public const float INJECTISOME_BASE_DAMAGE = 15.0f;
 
     public const string PILUS_INJECTISOME_UPGRADE_NAME = "injectisome";
 
@@ -1079,11 +1081,11 @@ public static class Constants
     ///   How long the shortest pilus cooldown is after dealing damage. This is applied if the damage just barely
     ///   crosses <see cref="PILUS_MIN_DAMAGE_TRIGGER_COOLDOWN"/>
     /// </summary>
-    public const float PILUS_MIN_COOLDOWN = 0.2f;
+    public const float PILUS_MIN_COOLDOWN = 0.1f;
 
     public const float PILUS_MAX_COOLDOWN = 0.45f;
 
-    public const float PILUS_MIN_DAMAGE_TRIGGER_COOLDOWN = PILUS_MAX_DAMAGE * 0.6f;
+    public const float PILUS_MIN_DAMAGE_TRIGGER_COOLDOWN = PILUS_MIN_DAMAGE;
 
     /// <summary>
     ///   Osmoregulation ATP cost per second per hex
