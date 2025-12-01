@@ -914,8 +914,8 @@ public class SimulationCache
         if (pilusCount != 0 || injectisomeCount != 0)
         {
             var pilusScale = MathF.Sqrt(pilusCount + injectisomeCount) / (pilusCount + injectisomeCount);
-            pilusScore = pilusCount * pilusScale;
-            injectisomeScore = injectisomeCount * pilusScale;
+            pilusScore *= pilusCount * pilusScale;
+            injectisomeScore *= injectisomeCount * pilusScale;
         }
         else
         {
