@@ -1085,7 +1085,7 @@ public static class Constants
 
     public const float PILUS_MAX_COOLDOWN = 0.45f;
 
-    public const float PILUS_MIN_DAMAGE_TRIGGER_COOLDOWN = 1.0f;
+    public const float PILUS_MIN_DAMAGE_TRIGGER_COOLDOWN = PILUS_MIN_DAMAGE;
 
     /// <summary>
     ///   Osmoregulation ATP cost per second per hex
