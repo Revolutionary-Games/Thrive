@@ -102,25 +102,30 @@ public class ReproductionCompoundPressure : SelectionPressure
         var chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compoundDefinition, patch.Biome);
         score += chemoreceptorScore;
 
+        // Precompute some scores to only resolve once.
+        var capacitiesScore = (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) * 1.25f;
+        var speedScore = MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.4f);
+        var baseMicrobeHexSize = cache.GetBaseHexSizeForSpecies(microbeSpecies);
+
         // Combine with compound amounts and scores from all chunks
-        foreach (var chunk in patch.Biome.Chunks)
+        foreach (var chunk in patch.Biome.Chunks.Values)
         {
-            if (chunk.Value.Compounds != null && chunk.Value.Compounds.ContainsKey(compound))
+            if (chunk.Compounds != null && chunk.Compounds.ContainsKey(compound))
             {
                 var chunkChemoreceptorScore = cache.GetChemoreceptorChunkScore(
-                    microbeSpecies, chunk.Value, compoundDefinition, patch.Biome);
+                    microbeSpecies, chunk, compoundDefinition, patch.Biome);
                 var chunkScore = 1.0f;
 
                 // Speed is not too important to chunk microbes,
                 // but all else being the same faster is better than slower
-                chunkScore += MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.4f);
+                chunkScore += speedScore;
 
                 // Diminishing returns on storage
-                chunkScore += (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) / 0.8f;
+                chunkScore += capacitiesScore;
 
                 // If the species can't engulf, then they are dependent on only eating the runoff compounds
                 if (!microbeSpecies.CanEngulf ||
-                    cache.GetBaseHexSizeForSpecies(microbeSpecies) < chunk.Value.Size * Constants.ENGULF_SIZE_RATIO_REQ)
+                    baseMicrobeHexSize < chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ)
                 {
                     chunkScore *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
                 }
@@ -128,7 +133,7 @@ public class ReproductionCompoundPressure : SelectionPressure
                 chemoreceptorScore += chunkChemoreceptorScore;
                 score += chunkScore;
 
-                if (!chunk.Value.Compounds.TryGetValue(compoundDefinition.ID, out var chunkCompoundAmount))
+                if (!chunk.Compounds.TryGetValue(compoundDefinition.ID, out var chunkCompoundAmount))
                     throw new ArgumentException("Chunk does not contain compound");
 
                 var ventedCompound = MathF.Pow(chunkCompoundAmount.Amount, Constants.AUTO_EVO_CHUNK_AMOUNT_NERF);

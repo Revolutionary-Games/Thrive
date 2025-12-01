@@ -100,6 +100,8 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         var workMemory2 = new List<Hex>();
         var workMemory3 = new HashSet<Hex>();
 
+        var existingDefs = baseSpecies.Organelles.Select(x => x.Definition);
+
         foreach (var organelle in organelles)
         {
             if (organelle.MPCost > mp)
@@ -112,7 +114,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
             if (organelle.RequiresNucleus && baseSpecies.IsBacteria)
                 continue;
 
-            if (organelle.Unique && baseSpecies.Organelles.Select(x => x.Definition).Contains(organelle))
+            if (organelle.Unique && existingDefs.Contains(organelle))
                 continue;
 
             var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
