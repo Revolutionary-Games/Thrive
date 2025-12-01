@@ -1,9 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://djgodehx4yuhh"]
+[gd_scene load_steps=6 format=3 uid="uid://djgodehx4yuhh"]
 
 [ext_resource type="PackedScene" uid="uid://cgd0xfhek2op0" path="res://assets/models/microbe_terrain/GabbroTerrainChunk1.glb" id="1_w0ujy"]
-[ext_resource type="Material" uid="uid://boqu8cgiadi2m" path="res://assets/models/microbe_terrain/GabbroTerrainChunk.material" id="2_dq8an"]
+[ext_resource type="Texture2D" uid="uid://u8oo5d2r4bai" path="res://assets/textures/environment/Gabbro.png" id="2_vmqod"]
+[ext_resource type="Texture2D" uid="uid://rye4f6sl8sv4" path="res://assets/textures/environment/Gabbro1AO.png" id="3_vb36g"]
+[ext_resource type="Texture2D" uid="uid://bqu8xkamqexjt" path="res://assets/textures/environment/Gabbro_normal.png" id="4_j4q14"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmqod"]
+albedo_texture = ExtResource("2_vmqod")
+normal_enabled = true
+normal_texture = ExtResource("4_j4q14")
+ao_enabled = true
+ao_light_affect = 0.35
+ao_texture = ExtResource("3_vb36g")
 
 [node name="GabbroTerrainChunk1" instance=ExtResource("1_w0ujy")]
 
 [node name="gabbro1" parent="." index="0"]
-surface_material_override/0 = ExtResource("2_dq8an")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmqod")

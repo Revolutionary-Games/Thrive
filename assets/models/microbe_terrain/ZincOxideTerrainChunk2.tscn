@@ -1,9 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0id3obk7pjl2"]
+[gd_scene load_steps=6 format=3 uid="uid://c0id3obk7pjl2"]
 
 [ext_resource type="PackedScene" uid="uid://dflmgjxokx7om" path="res://assets/models/microbe_terrain/ZincOxideTerrainChunk2.glb" id="1_lstv0"]
-[ext_resource type="Material" uid="uid://dthaeaxshfmrv" path="res://assets/models/microbe_terrain/ZincOxideTerrainChunk.material" id="2_f0qkp"]
+[ext_resource type="Texture2D" uid="uid://denw7toahorcf" path="res://assets/textures/environment/Zincoxide.png" id="2_1jyt2"]
+[ext_resource type="Texture2D" uid="uid://b7emmg4owx0q8" path="res://assets/textures/environment/ZincOxide2AO.png" id="3_1jyt2"]
+[ext_resource type="Texture2D" uid="uid://cwttvglinngo" path="res://assets/textures/environment/Zincoxide_normal.png" id="4_1gki0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ii2im"]
+albedo_texture = ExtResource("2_1jyt2")
+normal_enabled = true
+normal_texture = ExtResource("4_1gki0")
+ao_enabled = true
+ao_light_affect = 0.35
+ao_texture = ExtResource("3_1jyt2")
 
 [node name="ZincoxideTerrainChunk2" instance=ExtResource("1_lstv0")]
 
 [node name="zincoxide2" parent="." index="0"]
-surface_material_override/0 = ExtResource("2_f0qkp")
+surface_material_override/0 = SubResource("StandardMaterial3D_ii2im")
