@@ -1308,7 +1308,7 @@ public static class Constants
     public const float AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING = 0.06f;
     public const float AUTO_EVO_SIZE_AFFECTED_PROJECTILE_MISS_FACTOR = 0.5f;
     public const float AUTO_EVO_TOXICITY_HIT_MODIFIER = 4.0f;
-    public const float AUTO_EVO_SLIME_JET_SCORE = 6;
+    public const float AUTO_EVO_SLIME_JET_SCORE = 30;
     public const float AUTO_EVO_MUCOCYST_SCORE = 40;
     public const float AUTO_EVO_PULL_CILIA_MODIFIER = 0.8f;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
