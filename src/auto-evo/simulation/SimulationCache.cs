@@ -329,7 +329,7 @@ public class SimulationCache
         // Sprinting calculations
         var predatorSprintSpeed = predatorSpeed * sprintMultiplier;
         var predatorSprintConsumption = sprintingStrain + predatorHexSize * strainPerHex;
-        var predatorSprintTime = MathF.Max( predatorEnergyBalance.FinalBalance / predatorSprintConsumption, 0.0f);
+        var predatorSprintTime = MathF.Max(predatorEnergyBalance.FinalBalance / predatorSprintConsumption, 0.0f);
 
         var preySprintSpeed = preySpeed * sprintMultiplier;
         var preySprintConsumption = sprintingStrain + preyHexSize * strainPerHex;
@@ -477,7 +477,8 @@ public class SimulationCache
             // Final engulfment score calculation
             // Engulfing prey by luck is especially easy if you are huge.
             // This is also used to incentivize size in microbe species.
-            engulfmentScore = (catchScore + accidentalCatchScore * predatorHexSize) * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
+            engulfmentScore = (catchScore + accidentalCatchScore * predatorHexSize) *
+                Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
 
             engulfmentScore *= enzymesScore;
         }
