@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Formats.Tar;
 using System.IO;
 using System.IO.Compression;
@@ -430,6 +431,18 @@ public sealed class Save : IArchivable, IDisposable
             reader.ReadArchiveFooter();
 
             manager.OnFinishRead(reader);
+
+            if (reader.AllowDuplicateCollectionItems)
+            {
+                GD.PrintErr("Setting to allow duplicate collection items was left on, the code turning it on should " +
+                    "have disabled it also");
+
+                // If this breakpoint hits, someone forgot to clear the duplicate allow flag after turning it on
+#if DEBUG
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+#endif
+            }
         }
 
         return (infoResult, saveResult, imageResult);

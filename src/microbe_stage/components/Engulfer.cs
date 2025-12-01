@@ -82,14 +82,25 @@ public static class EngulferHelpers
         if (version is > Engulfer.SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, Engulfer.SERIALIZATION_VERSION);
 
-        return new Engulfer
+        // This code can trigger load failures due to coalescing dead entities to null, so we need to allow those while
+        // loading this
+        reader.AllowDuplicateCollectionItems = true;
+
+        try
         {
-            EngulfedObjects = reader.ReadObjectOrNull<List<Entity>>(),
-            ExpelledObjects = reader.ReadObjectOrNull<Dictionary<Entity, float>>(),
-            EngulfingSize = reader.ReadFloat(),
-            UsedEngulfingCapacity = reader.ReadFloat(),
-            EngulfStorageSize = reader.ReadFloat(),
-        };
+            return new Engulfer
+            {
+                EngulfedObjects = reader.ReadObjectOrNull<List<Entity>>(),
+                ExpelledObjects = reader.ReadObjectOrNull<Dictionary<Entity, float>>(),
+                EngulfingSize = reader.ReadFloat(),
+                UsedEngulfingCapacity = reader.ReadFloat(),
+                EngulfStorageSize = reader.ReadFloat(),
+            };
+        }
+        finally
+        {
+            reader.AllowDuplicateCollectionItems = false;
+        }
     }
 
     /// <summary>
