@@ -330,7 +330,7 @@ public class SimulationCache
         var predatorSprintSpeed = predatorSpeed * sprintMultiplier;
         var predatorExcessATP = predatorEnergyBalance.TotalProduction - predatorEnergyBalance.TotalConsumption;
         var predatorSprintConsumption = sprintingStrain + predatorHexSize * strainPerHex;
-        var predatorSprintTime = Mathf.Max(predatorExcessATP / predatorSprintConsumption, 0.0f);
+        var predatorSprintTime = MathF.Max(predatorExcessATP / predatorSprintConsumption, 0.0f);
 
         var preySprintSpeed = preySpeed * sprintMultiplier;
         var preyExcessATP = preyEnergyBalance.TotalProduction - preyEnergyBalance.TotalConsumption;
