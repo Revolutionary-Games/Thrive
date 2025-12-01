@@ -286,11 +286,17 @@ public class SimulationCache
             return cached;
         }
 
+        var sprintMultiplier = Constants.SPRINTING_FORCE_MULTIPLIER;
+        var sprintingStrain = Constants.SPRINTING_STRAIN_INCREASE_PER_SECOND / 5;
+        var strainPerHex = Constants.SPRINTING_STRAIN_INCREASE_PER_HEX / 5;
+
         // TODO: If these two methods were combined it might result in better performance with needing just
         // one dictionary lookup
         var predatorHexSize = GetBaseHexSizeForSpecies(predator);
         var predatorSpeed = GetSpeedForSpecies(predator);
         var predatorRotationSpeed = GetRotationSpeedForSpecies(predator);
+        var predatorEnergyBalance = GetEnergyBalanceForSpecies(predator, biomeConditions);
+
         var preyHexSize = GetBaseHexSizeForSpecies(prey);
         var preySpeed = GetSpeedForSpecies(prey);
         var preyRotationSpeed = GetRotationSpeedForSpecies(prey);
@@ -319,6 +325,17 @@ public class SimulationCache
         var preyMucocystsScore = preyToolScores.MucocystsScore;
 
         var behaviourScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+
+        // Sprinting calculations
+        var predatorSprintSpeed = predatorSpeed * sprintMultiplier;
+        var predatorExcessATP = predatorEnergyBalance.TotalProduction - predatorEnergyBalance.TotalConsumption;
+        var predatorSprintConsumption = sprintingStrain + predatorHexSize * strainPerHex;
+        var predatorSprintTime = Mathf.Max(predatorExcessATP / predatorSprintConsumption, 0.0f);
+
+        var preySprintSpeed = preySpeed * sprintMultiplier;
+        var preyExcessATP = preyEnergyBalance.TotalProduction - preyEnergyBalance.TotalConsumption;
+        var preySprintConsumption = sprintingStrain + preyHexSize * strainPerHex;
+        var preySprintTime = MathF.Max(preyExcessATP / preySprintConsumption, 0.0f);
 
         // This makes rotation "speed" not matter until the editor shows ~300,
         // which is where it also becomes noticeable in-game.
@@ -394,6 +411,31 @@ public class SimulationCache
                 catchScore += (predatorSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion;
             }
 
+            if (predator.PlayerSpecies)
+                GD.Print("Catch score before sprint: ", catchScore);
+
+            // Sprinting can help catch prey.
+            if (predatorSprintSpeed > preySpeed)
+            {
+                catchScore += (predatorSprintSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion) *
+                    predatorSprintTime;
+            }
+
+            if (predatorSprintSpeed > slowedPreySpeed)
+            {
+                catchScore += (predatorSprintSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion *
+                    predatorSprintTime;
+            }
+
+            if (predator.PlayerSpecies)
+                GD.Print("Catch score after sprint: ", catchScore);
+
+            // Sprinting can also help prey escape.
+            if (preySprintSpeed > predatorSpeed)
+            {
+                catchScore -= (preySprintSpeed + 0.001f) / (predatorSpeed + 0.0001f) * preySprintTime;
+            }
+
             // If you have Slime Jets, this can help you catch targets.
             if (predatorSlimeSpeed > preySpeed)
             {
@@ -408,7 +450,7 @@ public class SimulationCache
             // Having Slime Jets can also help prey escape.
             if (preySlimeSpeed > predatorSpeed)
             {
-                catchScore += (preySlimeSpeed + 0.001f) / (predatorSpeed + 0.0001f) * (1 - slowedProportion);
+                catchScore += (preySlimeSpeed + 0.001f) / (predatorSpeed + 0.0001f);
             }
 
             // prevent potential negative catchScore.
