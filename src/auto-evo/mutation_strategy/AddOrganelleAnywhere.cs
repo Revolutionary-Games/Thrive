@@ -100,7 +100,8 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         var workMemory2 = new List<Hex>();
         var workMemory3 = new HashSet<Hex>();
 
-        var existingDefs = baseSpecies.Organelles.Select(x => x.Definition);
+        // Depending on size upper bound, this could just be an array
+        var existingDefs = new HashSet<OrganelleDefinition>(baseSpecies.Organelles.Select(x => x.Definition));
 
         foreach (var organelle in organelles)
         {
