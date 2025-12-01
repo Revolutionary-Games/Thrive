@@ -1117,8 +1117,20 @@ public partial class PatchMapDrawer : Control
         {
             var playerPopulation = patch.GetSpeciesSimulationPopulation(playerSpecies);
 
+            var speciesSizeModifier = 1.0;
+
+            if (playerSpecies is MicrobeSpecies microbeSpecies)
+            {
+                speciesSizeModifier = Math.Sqrt(microbeSpecies.Organelles.Organelles.Count);
+            }
+            else if (playerSpecies is MulticellularSpecies)
+            {
+                // for now we use this constant until multicellular gets its own auto-evo
+                speciesSizeModifier = Constants.MULTICELLULAR_LIFE_INDICATOR_MODIFIER;
+            }
+
             var numberOfIndicators = MathF.Sqrt(playerPopulation) *
-                Constants.INDICATORS_NUMBER_PER_POPULATION_SQUARED;
+                Constants.INDICATORS_NUMBER_PER_POPULATION_SQUARED * speciesSizeModifier;
             for (var i = 0; i < numberOfIndicators; ++i)
             {
                 var lifeIndicator = new TextureRect
@@ -1136,16 +1148,16 @@ public partial class PatchMapDrawer : Control
         nodes.Add(node.Patch, node);
     }
 
-    private Vector2 GetIndicatorPosition(Control parent, int dotIndex, Texture2D texture)
+    private Vector2 GetIndicatorPosition(PatchMapNode node, int dotIndex, Texture2D texture)
     {
         var indexModifier = MathF.Sin(dotIndex) * 0.5f + 0.5f;
-        var nodeModifier = parent.Position.LengthSquared();
-        var nodeCenter = parent.Position + new Vector2(Constants.PATCH_NODE_RECT_LENGTH / 2,
+        var nodeModifier = node.Position.LengthSquared();
+        var nodeCenter = node.Position + new Vector2(Constants.PATCH_NODE_RECT_LENGTH / 2,
             Constants.PATCH_NODE_RECT_LENGTH / 2) - new Vector2(texture.GetWidth() / 2.0f, texture.GetHeight() / 2.0f);
 
         var offset = new Vector2(0,
             indexModifier * Constants.PATCH_LIFE_INDICATOR_RADIUS_SCALE + Constants.PATCH_LIFE_INDICATOR_RADIUS_BASE);
-        var angle = dotIndex * indexModifier * 1.618f + nodeModifier;
+        var angle = (dotIndex * indexModifier + nodeModifier) * 1.618f;
         offset = offset.Rotated(angle);
 
         return nodeCenter + offset;
