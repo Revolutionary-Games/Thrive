@@ -328,14 +328,12 @@ public class SimulationCache
 
         // Sprinting calculations
         var predatorSprintSpeed = predatorSpeed * sprintMultiplier;
-        var predatorExcessATP = predatorEnergyBalance.TotalProduction - predatorEnergyBalance.TotalConsumption;
         var predatorSprintConsumption = sprintingStrain + predatorHexSize * strainPerHex;
-        var predatorSprintTime = MathF.Max(predatorExcessATP / predatorSprintConsumption, 0.0f);
+        var predatorSprintTime = MathF.Max( predatorEnergyBalance.FinalBalance / predatorSprintConsumption, 0.0f);
 
         var preySprintSpeed = preySpeed * sprintMultiplier;
-        var preyExcessATP = preyEnergyBalance.TotalProduction - preyEnergyBalance.TotalConsumption;
         var preySprintConsumption = sprintingStrain + preyHexSize * strainPerHex;
-        var preySprintTime = MathF.Max(preyExcessATP / preySprintConsumption, 0.0f);
+        var preySprintTime = MathF.Max(preyEnergyBalance.FinalBalance / preySprintConsumption, 0.0f);
 
         // This makes rotation "speed" not matter until the editor shows ~300,
         // which is where it also becomes noticeable in-game.
@@ -388,14 +386,16 @@ public class SimulationCache
         var slowedProportion = 1.0f - MathF.Exp(-Constants.AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING *
             macrolideScore * hitProportion);
 
-        // Only assign engulf score if one can actually engulf (and digest)
-        var engulfmentScore = 0.0f;
-        if (predatorHexSize / preyHexSize >
-            Constants.ENGULF_SIZE_RATIO_REQ && predator.CanEngulf && enzymesScore > 0.0f)
-        {
-            // Catch scores grossly accounts for how many preys you catch in a run;
-            var catchScore = 0.0f;
+        // Catch scores grossly accounts for how many preys you catch in melee in a run;
+        var catchScore = 0.0f;
+        var accidentalCatchScore = 0.0f;
 
+        // Only calculate catch score if one can actually engulf (and digest) or use pili
+        var engulfmentScore = 0.0f;
+        var canEngulf = predatorHexSize / preyHexSize > Constants.ENGULF_SIZE_RATIO_REQ && predator.CanEngulf &&
+            enzymesScore > 0.0f;
+        if (canEngulf || pilusScore > 0.0f || injectisomeScore > 0.0f)
+        {
             // First, you may hunt individual preys, but only if you are fast enough...
             if (predatorSpeed > preySpeed)
             {
@@ -411,9 +411,6 @@ public class SimulationCache
                 catchScore += (predatorSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion;
             }
 
-            if (predator.PlayerSpecies)
-                GD.Print("Catch score before sprint: ", catchScore);
-
             // Sprinting can help catch prey.
             if (predatorSprintSpeed > preySpeed)
             {
@@ -426,9 +423,6 @@ public class SimulationCache
                 catchScore += (predatorSprintSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion *
                     predatorSprintTime;
             }
-
-            if (predator.PlayerSpecies)
-                GD.Print("Catch score after sprint: ", catchScore);
 
             // Sprinting can also help prey escape.
             if (preySprintSpeed > predatorSpeed)
@@ -473,14 +467,17 @@ public class SimulationCache
             }
 
             // ... but you may also catch them by luck (e.g. when they run into you),
-            // and this is especially easy if you're huge.
-            // This is also used to incentivize size in microbe species.
             // Prey that can't turn away fast enough are more likely to get caught.
-            catchScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * predatorHexSize *
+            accidentalCatchScore = Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * predatorHexSize *
                 strongPullingCiliaModifier * preyRotationModifier;
+        }
 
-            // Allow for some degree of lucky engulfment
-            engulfmentScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
+        if (canEngulf)
+        {
+            // Final engulfment score calculation
+            // Engulfing prey by luck is especially easy if you are huge.
+            // This is also used to incentivize size in microbe species.
+            engulfmentScore = (catchScore + accidentalCatchScore * predatorHexSize) * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
 
             engulfmentScore *= enzymesScore;
         }
@@ -494,27 +491,8 @@ public class SimulationCache
         // Combine pili for further calculations
         pilusScore += injectisomeScore;
 
-        // Pili are much more useful if the microbe can close to melee
-        if (predatorSpeed <= preySpeed)
-        {
-            if (predatorSpeed > slowedPreySpeed)
-            {
-                pilusScore *= slowedProportion * pullingCiliaModifier
-                    + (1 - slowedProportion) * Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * preyRotationModifier;
-            }
-            else
-            {
-                pilusScore *= Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * preyRotationModifier *
-                    strongPullingCiliaModifier;
-            }
-        }
-        else
-        {
-            pilusScore *= pullingCiliaModifier;
-        }
-
-        // Pili are also more useful if you can turn them towards the target in time
-        pilusScore *= predatorRotationModifier;
+        // Use catch score for Pili
+        pilusScore *= catchScore + accidentalCatchScore;
 
         // Damaging toxin section
 
@@ -567,9 +545,6 @@ public class SimulationCache
         // If you have a chemoreceptor, active hunting types are more effective
         if (hasChemoreceptor)
         {
-            pilusScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
-            pilusScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
-                * float.Sqrt(preyIndividualCost);
             damagingToxinScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
             damagingToxinScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
                 * float.Sqrt(preyIndividualCost);
