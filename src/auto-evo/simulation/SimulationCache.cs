@@ -401,7 +401,7 @@ public class SimulationCache
             {
                 // You catch more preys if you are fast, and if they are slow.
                 // This incentivizes engulfment strategies in these cases.
-                // Sinusoid calculation to avoid divisions by zero
+                // Sigmoidal calculation to avoid divisions by zero
                 catchScore += (predatorSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
             }
 
