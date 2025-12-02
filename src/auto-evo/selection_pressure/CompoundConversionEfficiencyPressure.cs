@@ -22,6 +22,8 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
         bool usedForSurvival, float weight) :
         base(weight, [
             AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, outCompound),
+            new AddOrganelleAnywhere(organelle => organelle.HasBindingFeature),
+            new AddOrganelleAnywhere(organelle => organelle.HasSignalingFeature),
             RemoveOrganelle.ThatCreateCompound(outCompound),
         ])
     {
