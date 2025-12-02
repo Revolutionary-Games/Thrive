@@ -603,10 +603,6 @@ public class SimulationCache
             }
         }
 
-        cached = (scoreMultiplier * behaviourScore *
-                (pilusScore + engulfmentScore + damagingToxinScore + predatorSlimeJetScore) -
-                (preySlimeJetScore + preyMucocystsScore)) /
-            (GetEnergyBalanceForSpecies(predator, biomeConditions).TotalConsumption * bindingModifier);
         // predators that have slime jets themselves ignore the immobilising effect of prey slimejets
         preySlimeJetScore = MathF.Sqrt(preySlimeJetScore);
         if (predatorSlimeJetScore > 0)
@@ -614,7 +610,7 @@ public class SimulationCache
 
         cached = (scoreMultiplier * behaviourScore *
                 (pilusScore + engulfmentScore + damagingToxinScore) - (preySlimeJetScore + preyMucocystsScore)) /
-            GetEnergyBalanceForSpecies(predator, biomeConditions).TotalConsumption;
+            (GetEnergyBalanceForSpecies(predator, biomeConditions).TotalConsumption * bindingModifier);
 
         predationScores.Add(key, cached);
         return cached;
