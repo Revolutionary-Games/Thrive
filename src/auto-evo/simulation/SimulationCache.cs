@@ -306,7 +306,7 @@ public class SimulationCache
         var preyOsmoregulationCost = preyEnergyBalance.Osmoregulation;
         var enzymesScore = GetEnzymesScore(predator, prey.MembraneType.DissolverEnzyme);
 
-        // TODO: don't forget to replace this, Accidental Explorer
+        // uses an HP estimate without taking into account environmental tolerance effect
         var preyHP = prey.MembraneType.Hitpoints + prey.MembraneRigidity *
             Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
 
