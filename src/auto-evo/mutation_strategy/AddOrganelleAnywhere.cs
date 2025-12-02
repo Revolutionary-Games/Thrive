@@ -100,9 +100,6 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         var workMemory2 = new List<Hex>();
         var workMemory3 = new HashSet<Hex>();
 
-        // Depending on size upper bound, this could just be an array
-        HashSet<OrganelleDefinition>? existingDefs = null;
-
         foreach (var organelle in organelles)
         {
             if (organelle.MPCost > mp)
@@ -116,16 +113,8 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
                 continue;
 
             // Don't add duplicate unique organelles
-            if (organelle.Unique)
-            {
-                // TODO: determine if there are actually any cases where multiple unique organelles might be added at
-                // once, because right now this temporary memory allocation might not help. Because in most cases where
-                // the nucleus, for example, is tested that is the only thing in the organelles list so this temporary
-                // allocation is not reused so just wastes memory and doesn't save on computation.
-                existingDefs ??= baseSpecies.Organelles.Select(x => x.Definition).ToHashSet();
-                if (existingDefs.Contains(organelle))
-                    continue;
-            }
+            if (organelle.Unique && baseSpecies.Organelles.Any(x => x.Definition == organelle))
+                continue;
 
             var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
