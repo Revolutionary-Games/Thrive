@@ -347,22 +347,25 @@ public class SimulationCache
         var preySlimeSpeed = preySpeed + preySlimeJetScore / (preyHexSize * 11);
 
         var hasChemoreceptor = false;
-        foreach (var organelle in predator.Organelles.Organelles)
+        var hasSignallingAgent = false;
+        var hasBindingAgent = false;
+
+        var organelles = predator.Organelles.Organelles;
+        int count = organelles.Count;
+        for (int i = 0; i < count; ++i)
         {
+            var organelle = organelles[i];
             if (organelle.Definition.HasChemoreceptorComponent && organelle.GetActiveTargetSpecies() == prey)
                 hasChemoreceptor = true;
-        }
 
-        var hasSignallingAgent = false;
-        foreach (var organelle in predator.Organelles.Organelles)
-        {
             if (organelle.Definition.HasSignalingFeature)
-            {
                 hasSignallingAgent = true;
-                break;
-            }
+
+            if (organelle.Definition.HasBindingFeature)
+                hasBindingAgent = true;
         }
 
+        // TODO: switch to a manual loop to avoid an allocation
         var preyOxygenUsingOrganellesCount = 0;
         foreach (var organelle in prey.Organelles.Organelles)
         {
@@ -576,19 +579,9 @@ public class SimulationCache
             scoreMultiplier *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
-        // modifier to fit current mechanics of the Binding Agent. This should probably be removed or adjusted if
+        // Modifier to fit the current mechanics of the Binding Agent. This should probably be removed or adjusted if
         // being in a colony no longer reduces osmoregulation cost.
         var bindingModifier = 1.0f;
-
-        var hasBindingAgent = false;
-        foreach (var organelle in predator.Organelles.Organelles)
-        {
-            if (organelle.Definition.HasBindingFeature)
-            {
-                hasBindingAgent = true;
-                break;
-            }
-        }
 
         if (hasBindingAgent)
         {

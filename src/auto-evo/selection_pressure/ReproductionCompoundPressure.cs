@@ -157,29 +157,12 @@ public class ReproductionCompoundPressure : SelectionPressure
 
         var finalScore = 0.1f;
 
-        // modifier to fit current mechanics of the Binding Agent. This should probably be removed or adjusted if
+        // Modifier to fit the current mechanics of the Binding Agent. This should probably be removed or adjusted if
         // being in a colony no longer reduces osmoregulation cost.
         var bindingModifier = 1.0f;
 
-        var hasBindingAgent = false;
-        foreach (var organelle in microbeSpecies.Organelles.Organelles)
-        {
-            if (organelle.Definition.HasBindingFeature)
-            {
-                hasBindingAgent = true;
-                break;
-            }
-        }
-
-        var hasSignallingAgent = false;
-        foreach (var organelle in microbeSpecies.Organelles.Organelles)
-        {
-            if (organelle.Definition.HasSignalingFeature)
-            {
-                hasSignallingAgent = true;
-                break;
-            }
-        }
+        MicrobeInternalCalculations.GetBindingAndSignalling(microbeSpecies.Organelles.Organelles,
+            out var hasBindingAgent, out var hasSignallingAgent);
 
         if (hasBindingAgent)
         {
