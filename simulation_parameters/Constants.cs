@@ -1305,9 +1305,9 @@ public static class Constants
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
 
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
-    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 35;
-    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
-    public const float AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING = 0.06f;
+    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 3500;
+    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 10000;
+    public const float AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING = 0.0006f;
     public const float AUTO_EVO_SIZE_AFFECTED_PROJECTILE_MISS_FACTOR = 0.5f;
     public const float AUTO_EVO_TOXICITY_HIT_MODIFIER = 4.0f;
     public const float AUTO_EVO_SLIME_JET_SCORE = 30;
