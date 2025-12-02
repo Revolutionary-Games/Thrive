@@ -286,11 +286,17 @@ public class SimulationCache
             return cached;
         }
 
+        var sprintMultiplier = Constants.SPRINTING_FORCE_MULTIPLIER;
+        var sprintingStrain = Constants.SPRINTING_STRAIN_INCREASE_PER_SECOND / 5;
+        var strainPerHex = Constants.SPRINTING_STRAIN_INCREASE_PER_HEX / 5;
+
         // TODO: If these two methods were combined it might result in better performance with needing just
         // one dictionary lookup
         var predatorHexSize = GetBaseHexSizeForSpecies(predator);
         var predatorSpeed = GetSpeedForSpecies(predator);
         var predatorRotationSpeed = GetRotationSpeedForSpecies(predator);
+        var predatorEnergyBalance = GetEnergyBalanceForSpecies(predator, biomeConditions);
+
         var preyHexSize = GetBaseHexSizeForSpecies(prey);
         var preySpeed = GetSpeedForSpecies(prey);
         var preyRotationSpeed = GetRotationSpeedForSpecies(prey);
@@ -320,12 +326,25 @@ public class SimulationCache
 
         var behaviourScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
+        // Sprinting calculations
+        var predatorSprintSpeed = predatorSpeed * sprintMultiplier;
+        var predatorSprintConsumption = sprintingStrain + predatorHexSize * strainPerHex;
+        var predatorSprintTime = MathF.Max(predatorEnergyBalance.FinalBalance / predatorSprintConsumption, 0.0f);
+
+        var preySprintSpeed = preySpeed * sprintMultiplier;
+        var preySprintConsumption = sprintingStrain + preyHexSize * strainPerHex;
+        var preySprintTime = MathF.Max(preyEnergyBalance.FinalBalance / preySprintConsumption, 0.0f);
+
         // This makes rotation "speed" not matter until the editor shows ~300,
         // which is where it also becomes noticeable in-game.
         // The mechanical microbe rotation speed value is reverse to intuitive: higher value means slower turning.
         // (The editor reverses this to make it intuitive to the player)
         var predatorRotationModifier = float.Min(1.0f, 1.5f - predatorRotationSpeed * 1.45f);
         var preyRotationModifier = float.Min(1.0f, 1.5f - preyRotationSpeed * 1.45f);
+
+        // Simple estimation of slime jet propulsion.
+        var predatorSlimeSpeed = predatorSpeed + predatorSlimeJetScore / (predatorHexSize * 11);
+        var preySlimeSpeed = preySpeed + preySlimeJetScore / (preyHexSize * 11);
 
         var hasChemoreceptor = false;
         foreach (var organelle in predator.Organelles.Organelles)
@@ -367,28 +386,69 @@ public class SimulationCache
         var slowedProportion = 1.0f - MathF.Exp(-Constants.AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING *
             macrolideScore * hitProportion);
 
-        // Only assign engulf score if one can actually engulf (and digest)
-        var engulfmentScore = 0.0f;
-        if (predatorHexSize / preyHexSize >
-            Constants.ENGULF_SIZE_RATIO_REQ && predator.CanEngulf && enzymesScore > 0.0f)
-        {
-            // Catch scores grossly accounts for how many preys you catch in a run;
-            var catchScore = 0.0f;
+        // Catch scores grossly accounts for how many preys you catch in melee in a run;
+        var catchScore = 0.0f;
+        var accidentalCatchScore = 0.0f;
 
+        // Only calculate catch score if one can actually engulf (and digest) or use pili
+        var engulfmentScore = 0.0f;
+        var canEngulf = predatorHexSize / preyHexSize > Constants.ENGULF_SIZE_RATIO_REQ && predator.CanEngulf &&
+            enzymesScore > 0.0f;
+        if (canEngulf || pilusScore > 0.0f || injectisomeScore > 0.0f)
+        {
             // First, you may hunt individual preys, but only if you are fast enough...
             if (predatorSpeed > preySpeed)
             {
                 // You catch more preys if you are fast, and if they are slow.
                 // This incentivizes engulfment strategies in these cases.
-                // Sinusoid calculation to avoid divisions by zero
+                // Sigmoidal calculation to avoid divisions by zero
                 catchScore += (predatorSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
             }
 
             // If you can slow the target, some proportion of prey are easier to catch
             if (predatorSpeed > slowedPreySpeed)
             {
-                catchScore += (predatorSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
+                catchScore += (predatorSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion;
             }
+
+            // Sprinting can help catch prey.
+            if (predatorSprintSpeed > preySpeed)
+            {
+                catchScore += (predatorSprintSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion) *
+                    predatorSprintTime;
+            }
+
+            if (predatorSprintSpeed > slowedPreySpeed)
+            {
+                catchScore += (predatorSprintSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion *
+                    predatorSprintTime;
+            }
+
+            // Sprinting can also help prey escape.
+            if (preySprintSpeed > predatorSpeed)
+            {
+                catchScore -= (preySprintSpeed + 0.001f) / (predatorSpeed + 0.0001f) * preySprintTime;
+            }
+
+            // If you have Slime Jets, this can help you catch targets.
+            if (predatorSlimeSpeed > preySpeed)
+            {
+                catchScore += (predatorSlimeSpeed + 0.001f) / (preySpeed + 0.0001f) * (1 - slowedProportion);
+            }
+
+            if (predatorSlimeSpeed > slowedPreySpeed)
+            {
+                catchScore += (predatorSlimeSpeed + 0.001f) / (slowedPreySpeed + 0.0001f) * slowedProportion;
+            }
+
+            // Having Slime Jets can also help prey escape.
+            if (preySlimeSpeed > predatorSpeed)
+            {
+                catchScore += (preySlimeSpeed + 0.001f) / (predatorSpeed + 0.0001f);
+            }
+
+            // prevent potential negative catchScore.
+            catchScore = MathF.Max(catchScore, 0);
 
             // But prey may escape if they move away before you can turn to chase them
             catchScore *= predatorRotationModifier;
@@ -407,21 +467,21 @@ public class SimulationCache
             }
 
             // ... but you may also catch them by luck (e.g. when they run into you),
-            // and this is especially easy if you're huge.
-            // This is also used to incentivize size in microbe species.
             // Prey that can't turn away fast enough are more likely to get caught.
-            catchScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * predatorHexSize *
+            accidentalCatchScore = Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * predatorHexSize *
                 strongPullingCiliaModifier * preyRotationModifier;
+        }
 
-            // Allow for some degree of lucky engulfment
-            engulfmentScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
+        if (canEngulf)
+        {
+            // Final engulfment score calculation
+            // Engulfing prey by luck is especially easy if you are huge.
+            // This is also used to incentivize size in microbe species.
+            engulfmentScore = (catchScore + accidentalCatchScore * predatorHexSize) *
+                Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
 
             engulfmentScore *= enzymesScore;
         }
-
-        // If the predator is faster than the prey they don't need slime jets that much
-        if (predatorSpeed > preySpeed)
-            predatorSlimeJetScore *= 0.5f;
 
         // Prey that resist physical damage are of course less vulnerable to being hunted with it
         pilusScore /= prey.MembraneType.PhysicalResistance;
@@ -432,27 +492,8 @@ public class SimulationCache
         // Combine pili for further calculations
         pilusScore += injectisomeScore;
 
-        // Pili are much more useful if the microbe can close to melee
-        if (predatorSpeed <= preySpeed)
-        {
-            if (predatorSpeed > slowedPreySpeed)
-            {
-                pilusScore *= slowedProportion * pullingCiliaModifier
-                    + (1 - slowedProportion) * Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * preyRotationModifier;
-            }
-            else
-            {
-                pilusScore *= Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * preyRotationModifier *
-                    strongPullingCiliaModifier;
-            }
-        }
-        else
-        {
-            pilusScore *= pullingCiliaModifier;
-        }
-
-        // Pili are also more useful if you can turn them towards the target in time
-        pilusScore *= predatorRotationModifier;
+        // Use catch score for Pili
+        pilusScore *= catchScore + accidentalCatchScore;
 
         // Damaging toxin section
 
@@ -505,9 +546,6 @@ public class SimulationCache
         // If you have a chemoreceptor, active hunting types are more effective
         if (hasChemoreceptor)
         {
-            pilusScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
-            pilusScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
-                * float.Sqrt(preyIndividualCost);
             damagingToxinScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
             damagingToxinScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
                 * float.Sqrt(preyIndividualCost);
@@ -521,9 +559,13 @@ public class SimulationCache
             scoreMultiplier *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
+        // predators that have slime jets themselves ignore the immobilising effect of prey slimejets
+        preySlimeJetScore = MathF.Sqrt(preySlimeJetScore);
+        if (predatorSlimeJetScore > 0)
+            preySlimeJetScore = 0;
+
         cached = (scoreMultiplier * behaviourScore *
-                (pilusScore + engulfmentScore + damagingToxinScore + predatorSlimeJetScore) -
-                (preySlimeJetScore + preyMucocystsScore)) /
+                (pilusScore + engulfmentScore + damagingToxinScore) - (preySlimeJetScore + preyMucocystsScore)) /
             GetEnergyBalanceForSpecies(predator, biomeConditions).TotalConsumption;
 
         predationScores.Add(key, cached);
@@ -840,8 +882,7 @@ public class SimulationCache
                     ToxinType.OxygenMetabolismInhibitor);
         }
 
-        // Having lots of slime jets, mucocysts and pulling cilias doesn't really help much
-        slimeJetScore *= MathF.Sqrt(slimeJetsCount);
+        // Having lots of mucocysts and pulling cilias doesn't really help much
         mucocystsScore *= MathF.Sqrt(mucocystsCount);
         pullingCiliaModifier *= 1 + MathF.Sqrt(pullingCiliasCount) * Constants.AUTO_EVO_PULL_CILIA_MODIFIER;
 
@@ -849,8 +890,8 @@ public class SimulationCache
         if (pilusCount != 0 || injectisomeCount != 0)
         {
             var pilusScale = MathF.Sqrt(pilusCount + injectisomeCount) / (pilusCount + injectisomeCount);
-            pilusScore = pilusCount * pilusScale;
-            injectisomeScore = injectisomeCount * pilusScale;
+            pilusScore *= pilusCount * pilusScale;
+            injectisomeScore *= injectisomeCount * pilusScale;
         }
         else
         {
@@ -858,6 +899,7 @@ public class SimulationCache
             injectisomeScore *= injectisomeCount;
         }
 
+        slimeJetScore *= slimeJetsCount;
         slimeJetScore *= slimeJetsMultiplier;
 
         // bonus score for upgrades because auto-evo does not like adding them much
