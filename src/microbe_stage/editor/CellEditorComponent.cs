@@ -1991,11 +1991,6 @@ public partial class CellEditorComponent :
             new SingleEditorAction<OrganelleRemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction, o));
     }
 
-    private void OnWantToUpdateAutoEvoPrediction()
-    {
-        autoEvoPredictionDirty = true;
-    }
-
     /// <summary>
     ///   Immediately start a new auto-evo prediction run. For actions that can trigger quickly in a sequence prefer
     ///   setting <see cref="autoEvoPredictionDirty"/> to false to prevent rapid restarts of the prediction.
