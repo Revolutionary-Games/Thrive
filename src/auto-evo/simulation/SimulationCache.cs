@@ -347,12 +347,25 @@ public class SimulationCache
         var preySlimeSpeed = preySpeed + preySlimeJetScore / (preyHexSize * 11);
 
         var hasChemoreceptor = false;
-        foreach (var organelle in predator.Organelles.Organelles)
+        var hasSignallingAgent = false;
+        var hasBindingAgent = false;
+
+        var organelles = predator.Organelles.Organelles;
+        int count = organelles.Count;
+        for (int i = 0; i < count; ++i)
         {
+            var organelle = organelles[i];
             if (organelle.Definition.HasChemoreceptorComponent && organelle.GetActiveTargetSpecies() == prey)
                 hasChemoreceptor = true;
+
+            if (organelle.Definition.HasSignalingFeature)
+                hasSignallingAgent = true;
+
+            if (organelle.Definition.HasBindingFeature)
+                hasBindingAgent = true;
         }
 
+        // TODO: switch to a manual loop to avoid an allocation
         var preyOxygenUsingOrganellesCount = 0;
         foreach (var organelle in prey.Organelles.Organelles)
         {
@@ -551,12 +564,36 @@ public class SimulationCache
                 * float.Sqrt(preyIndividualCost);
         }
 
+        // Calling for allies helps with combative hunting.
+        if (hasSignallingAgent)
+        {
+            pilusScore *= Constants.AUTO_EVO_SIGNALLING_BONUS;
+            damagingToxinScore *= Constants.AUTO_EVO_SIGNALLING_BONUS;
+        }
+
         var scoreMultiplier = 1.0f;
 
         if (!predator.CanEngulf)
         {
             // If you can't engulf, you just get energy from the chunks leaking.
             scoreMultiplier *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
+        }
+
+        // Modifier to fit the current mechanics of the Binding Agent. This should probably be removed or adjusted if
+        // being in a colony no longer reduces osmoregulation cost.
+        var bindingModifier = 1.0f;
+
+        if (hasBindingAgent)
+        {
+            if (hasSignallingAgent)
+            {
+                bindingModifier *= 1 -
+                    Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS * Constants.AUTO_EVO_SIGNALLING_BONUS;
+            }
+            else
+            {
+                bindingModifier *= 1 - Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS;
+            }
         }
 
         // predators that have slime jets themselves ignore the immobilising effect of prey slimejets
@@ -566,7 +603,7 @@ public class SimulationCache
 
         cached = (scoreMultiplier * behaviourScore *
                 (pilusScore + engulfmentScore + damagingToxinScore) - (preySlimeJetScore + preyMucocystsScore)) /
-            GetEnergyBalanceForSpecies(predator, biomeConditions).TotalConsumption;
+            (GetEnergyBalanceForSpecies(predator, biomeConditions).TotalConsumption * bindingModifier);
 
         predationScores.Add(key, cached);
         return cached;

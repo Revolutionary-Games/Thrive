@@ -793,6 +793,35 @@ public static class MicrobeInternalCalculations
         return Constants.AI_ACTIVITY_NIGHT_MULTIPLIER;
     }
 
+    public static void GetBindingAndSignalling(IReadOnlyList<OrganelleTemplate> organelles, out bool hasBindingAgent,
+        out bool hasSignallingAgent)
+    {
+        int count = organelles.Count;
+        hasBindingAgent = false;
+        hasSignallingAgent = false;
+
+        for (int i = 0; i < count; ++i)
+        {
+            var organelleDefinition = organelles[i].Definition;
+
+            if (organelleDefinition.HasBindingFeature)
+            {
+                hasBindingAgent = true;
+
+                if (hasSignallingAgent)
+                    break;
+            }
+
+            if (organelleDefinition.HasSignalingFeature)
+            {
+                hasSignallingAgent = true;
+
+                if (hasBindingAgent)
+                    break;
+            }
+        }
+    }
+
     private static float MovementForce(float movementForce, float directionFactor)
     {
         if (directionFactor < 0)
