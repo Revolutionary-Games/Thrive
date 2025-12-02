@@ -200,15 +200,9 @@ public class ReproductionCompoundPressure : SelectionPressure
 
         // modify score by energy cost and activity
         finalScore += (score + chemoreceptorScore) * activityFraction /
-            (cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumption * mildingModifier *
-                bindingModifier);
+            (energyBalanceForSpecies.TotalConsumption * mildingModifier * bindingModifier);
         finalScore += score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION /
-            (cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumptionStationary *
-                mildingModifier * bindingModifier);
-            (energyBalanceForSpecies.TotalConsumption * mildingModifier);
-        finalScore += score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION /
-            (energyBalanceForSpecies.TotalConsumptionStationary *
-                mildingModifier);
+            (energyBalanceForSpecies.TotalConsumptionStationary * mildingModifier * bindingModifier);
 
         // Take into account how much compound the species needs to collect
         finalScore /= species.TotalReproductionCost[compound] * mildingModifier;
