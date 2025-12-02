@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-21 18:08+0200\n"
-"PO-Revision-Date: 2025-11-17 20:38+0000\n"
-"Last-Translator: ILIA RIABOV <ilyarya131@gmail.com>\n"
+"POT-Creation-Date: 2025-11-28 14:55+0200\n"
+"PO-Revision-Date: 2025-11-28 13:27+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -91,9 +91,10 @@ msgstr "Активный"
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Число потоков:"
 
+#, fuzzy
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
-"Активные микробы будут в движении, пока поблизости ничего не происходит.\n"
+"Активные микробы будут в движении, даже если поблизости ничего не происходит.\n"
 "Оседлые микробы будут стоять и ждать изменения окружения, прежде чем действовать."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
@@ -105,8 +106,9 @@ msgstr "Добавить новое назначение клавиши"
 msgid "ADVANCED_VIEW"
 msgstr "Продвинутый вид"
 
+#, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
-msgstr "Открыть продвинутый вид настроек"
+msgstr "Открыть дополнительные настройки"
 
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Аэробная Азотфиксация"
@@ -271,9 +273,8 @@ msgstr "Стадия Возвышения"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Класс сборки необходим для мода, если указана сборка"
 
-#, fuzzy
 msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
-msgstr "Сборка мода требуется c Harmony"
+msgstr "Сборка требуется, если указан класс модуля"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Предположить, что в процессоре включена гиперпоточность"
@@ -1044,9 +1045,8 @@ msgstr "Очень высокий"
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Очень низкий"
 
-#, fuzzy
 msgid "COMPOUND_REPRODUCTION_SOURCE"
-msgstr "{0} потребления"
+msgstr "потребление: {0}"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(недостаточно для того, чтобы прожить ночь, что длится {0} секунд)"
@@ -1771,6 +1771,10 @@ msgstr "Режим отображения:"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Показать названия кнопок при выборе частей"
+
+#, fuzzy
+msgid "DISPLAY_SELECTION"
+msgstr "Липаза позволяет клетке разрушать большинство типов мембран. Ваша клетка уже производит некоторые ферменты без лизосомы, но выбрав этот тип вы повысите эффективность."
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Равномерно распределенный экологический источник {0}"
@@ -2817,13 +2821,11 @@ msgstr "Инспектор"
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Посетите нашу страницу в Instagram"
 
-#, fuzzy
 msgid "INSTANT_KILL_PROTECTION"
-msgstr "Защита от УФ слишком низкая, требуется на {0}% выше"
+msgstr "Мгновенная защита от уничтожения"
 
-#, fuzzy
 msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
-msgstr "(доля глюкозы, остающейся в окружающей среде после каждого поколения)"
+msgstr "(урон, который убил бы игрока с высоким уровнем здоровья, вместо этого оставляет вам небольшое количество здоровья)"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Активировать Врата Вознесения"
@@ -2946,6 +2948,7 @@ msgstr "Июль"
 msgid "JUNE"
 msgstr "Июнь"
 
+#, fuzzy
 msgid "KEEP_CURRENT_SHORT"
 msgstr "Текущий мир"
 
@@ -3449,6 +3452,7 @@ msgstr "Стадия Макроскопического Организма"
 msgid "MAKE_CELL_THAT_EATS_RADIATION"
 msgstr "Создайте клетку, которая будет получать энергию от радиоактивности"
 
+#, fuzzy
 msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
 msgstr " Создайте клетку, которая использует только хемосинтез для получения энергии"
 
@@ -3638,9 +3642,8 @@ msgstr "Давление Эффективности Хищничества"
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Корневое Давление Хищника"
 
-#, fuzzy
 msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
-msgstr "Соединения на выходе из редактора:"
+msgstr "Рабочее давление воспроизводства соединений:"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr "Изначальное давление"
@@ -4050,6 +4053,13 @@ msgstr "Загрузчик модов"
 msgid "MOD_VERSION"
 msgstr "Версия мода:"
 
+#, fuzzy
+msgid "MONITOR_AUTO"
+msgstr "Автор мода:"
+
+msgid "MONITOR_IDENTIFIER"
+msgstr ""
+
 msgid "MORE_INFO"
 msgstr "Показать больше информации"
 
@@ -4246,7 +4256,7 @@ msgstr "Новый"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
-"Это сохранение из новых версий Thrive и скорее всего несовместимо.\n"
+"Это сохранение из новых версий Thrive и, скорее всего, несовместимое.\n"
 "Всё равно попробовать загрузить сохранение?"
 
 msgid "NEWS"
@@ -8637,35 +8647,7 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
-"Хорошо подумайте перед тем, как добавлять [b]ядро[/b] к своей клетке. Оно дорого в содержании и значительно замедляет клетку, поэтому убедитесь, что у вас значительный положительный [thrive:compound type=\"atp\"][/thrive:compound] баланс и можете позволить спокойный стиль жизни одно-два поколения. Мы рекомендуем добавлять [b][color=#3796e1][url=thriveopedia:cilia]Cilia[/url][/color][/b] и [b][color=#3796e1][url=thriveopedia:flagellum]Flagella[/url][/color][/b] в более поздних поколениях для восстановления части ловкости.\n"
-"\n"
-"Однако преимущества очевидны. [i]Эукариоты[/i] (клетки с [b]Ядрами[/b]) получают доступ к более разнообразным будущим улучшениям, чем прокариоты (безъядерные клетки).\n"
-"\n"
-"[b]Органеллы[/b], разблокированные [b]Ядром[/b], предлагают мощные новые способности, как например [b][color=#3796e1][url=thriveopedia:signalingAgent]Сигнальный Агент[/url][/color][/b] и [b][color=#3796e1][url=thriveopedia:bindingAgent]Связывающий агент[/url][/color][/b], или значительные улучшения существующих способностей, как например [b][color=#3796e1][url=thriveopedia:mitochondrion]Митохондрия[/url][/color][/b] и[b][color=#3796e1][url=thriveopedia:thermoplast]Термопласты[/url][/color][/b]. Мы рекомендуем заменять [i]прокариотические[/i] [b]органеллы[b] с более эффективными [i]эукариотическими[/i] аналогами после добавления [b]Ядра[/b], для улучшения производства [thrive:compound type=\"atp\"][/thrive:compound] и поддержания вашей клетки.\n"
-"\n"
-"Однако преимущества очевидны. [i]Эукариоты[/i] (клетки с [b]Ядрами[/b]) получают доступ к более разнообразным будущим улучшениям, чем прокариоты (безъядерные клетки).\n"
-"\n"
-"[b]Органеллы[/b], разблокированные [b]Ядром[/b], предлагают мощные новые способности, как например [b][color=#3796e1][url=thriveopedia:signalingAgent]Сигнальный Агент[/url][/color][/b] и [b][color=#3796e1][url=thriveopedia:bindingAgent]Связующее Вещество[/url][/color][/b], или значительные улучшения существующих способностей, как например [b][color=#3796e1][url=thriveopedia:mitochondrion]Митохондрия[/url][/color][/b] и[b][color=#3796e1][url=thriveopedia:thermoplast]Термопласты[/url][/color][/b]. Мы рекомендуем заменять [i]прокариотические[/i] [b]органеллы[b] с более эффективными [i]эукариотическими[/i] аналогами после добавления [b]Ядра[/b], для улучшения производства [thrive:compound type=\"atp\"][/thrive:compound] и поддержания вашей клетки.\n"
-"\n"
-"Однако преимущества очевидны. [i]Эукариоты[/i] (клетки с [b]Ядрами[/b]) получают доступ к более разнообразным будущим улучшениям, чем прокариоты (безъядерные клетки).\n"
-"\n"
-"[b]Органеллы[/b], разблокированные [b]Ядром[/b], предлагают мощные новые способности, как например [b][color=#3796e1][url=thriveopedia:signalingAgent]Сигнальный Агент[/url][/color][/b] и [b][color=#3796e1][url=thriveopedia:bindingAgent]Связывающий агент[/url][/color][/b], или значительные улучшения существующих способностей, как например [b][color=#3796e1][url=thriveopedia:mitochondrion]Митохондрия[/url][/color][/b] и[b][color=#3796e1][url=thriveopedia:thermoplast]Термопласты[/url][/color][/b]. Мы рекомендуем заменять [i]прокариотические[/i] [b]органеллы[b] с более эффективными [i]эукариотическими[/i] аналогами после добавления [b]Ядра[/b], для улучшения производства [thrive:compound type=\"atp\"][/thrive:compound] и поддержания вашей клетки.\n"
-"\n"
-"Однако преимущества очевидны. [i]Эукариоты[/i] (клетки с [b]Ядрами[/b]) получают доступ к более разнообразным будущим улучшениям, чем прокариоты (безъядерные клетки).\n"
-"\n"
-"[b]Органеллы[/b], разблокированные [b]Ядром[/b], предлагают мощные новые способности, как например [b][color=#3796e1][url=thriveopedia:signalingAgent]Сигнальный Агент[/url][/color][/b] и [b][color=#3796e1][url=thriveopedia:bindingAgent]Связующее Вещество[/url][/color][/b], или значительные улучшения существующих способностей, как например [b][color=#3796e1][url=thriveopedia:mitochondrion]Митохондрия[/url][/color][/b] и[b][color=#3796e1][url=thriveopedia:thermoplast]Термопласты[/url][/color][/b]. Мы рекомендуем заменять [i]прокариотические[/i] [b]органеллы[b] с более эффективными [i]эукариотическими[/i] аналогами после добавления [b]Ядра[/b], для улучшения производства [thrive:compound type=\"atp\"][/thrive:compound] и поддержания вашей клетки.\n"
-"\n"
-"Однако преимущества очевидны. [i]Эукариоты[/i] (клетки с [b]Ядрами[/b]) получают доступ к более разнообразным будущим улучшениям, чем прокариоты (безъядерные клетки).\n"
-"\n"
-"[b]Органеллы[/b], разблокированные [b]Ядром[/b], предлагают мощные новые способности, как например [b][color=#3796e1][url=thriveopedia:signalingAgent]Сигнальный Агент[/url][/color][/b] и [b][color=#3796e1][url=thriveopedia:bindingAgent]Связывающий агент[/url][/color][/b], или значительные улучшения существующих способностей, как например [b][color=#3796e1][url=thriveopedia:mitochondrion]Митохондрия[/url][/color][/b] и[b][color=#3796e1][url=thriveopedia:thermoplast]Термопласты[/url][/color][/b]. Мы рекомендуем заменять [i]прокариотические[/i] [b]органеллы[b] с более эффективными [i]эукариотическими[/i] аналогами после добавления [b]Ядра[/b], для улучшения производства [thrive:compound type=\"atp\"][/thrive:compound] и поддержания вашей клетки.\n"
-"\n"
-"Однако преимущества очевидны. [i]Эукариоты[/i] (клетки с [b]Ядрами[/b]) получают доступ к более разнообразным будущим улучшениям, чем прокариоты (безъядерные клетки).\n"
-"\n"
-"[b]Органеллы[/b], разблокированные [b]Ядром[/b], предлагают мощные новые способности, как например [b][color=#3796e1][url=thriveopedia:signalingAgent]Сигнальный Агент[/url][/color][/b] и [b][color=#3796e1][url=thriveopedia:bindingAgent]Связывающий агент[/url][/color][/b], или значительные улучшения существующих способностей, как например [b][color=#3796e1][url=thriveopedia:mitochondrion]Митохондрия[/url][/color][/b] и[b][color=#3796e1][url=thriveopedia:thermoplast]Термопласты[/url][/color][/b]. Мы рекомендуем заменять [i]прокариотические[/i] [b]органеллы[b] с более эффективными [i]эукариотическими[/i] аналогами после добавления [b]Ядра[/b], для улучшения производства [thrive:compound type=\"atp\"][/thrive:compound] и поддержания вашей клетки.\n"
-"\n"
-"Однако преимущества очевидны. [i]Эукариоты[/i] (клетки с [b]Ядрами[/b]) получают доступ к более разнообразным будущим улучшениям, чем прокариоты (безъядерные клетки).\n"
-"\n"
-"[b]Органеллы[/b], разблокированные [b]Ядром[/b], предлагают мощные новые способности, как например [b][color=#3796e1][url=thriveopedia:signalingAgent]Сигнальный Агент[/url][/color][/b] и [b][color=#3796e1][url=thriveopedia:bindingAgent]Связующее Вещество[/url][/color][/b], или значительные улучшения существующих способностей, как например [b][color=#3796e1][url=thriveopedia:mitochondrion]Митохондрия[/url][/color][/b] и[b][color=#3796e1][url=thriveopedia:thermoplast]Термопласты[/url][/color][/b]. Мы рекомендуем заменять [i]прокариотические[/i] [b]органеллы[b] с более эффективными [i]эукариотическими[/i] аналогами после добавления [b]Ядра[/b], для улучшения производства [thrive:compound type=\"atp\"][/thrive:compound] и поддержания вашей клетки.\n"
+"[/i]Хорошо подумайте перед тем, как добавлять [b]ядро[/b] к своей клетке. Оно дорого в содержании и значительно замедляет клетку, поэтому убедитесь, что у вас значительный запас [thrive:compound type=\"atp\"][/thrive:compound]  и  вы можете позволить содержание на одно-два поколения. Мы рекомендуем добавлять [b][color=#3796e1][url=thriveopedia:cilia]Cilia[/url][/color][/b] и [b][color=#3796e1][url=thriveopedia:flagellum]Flagella[/url][/color][/b] в более поздних поколениях для восстановления части ловкости.\n"
 "\n"
 "Однако преимущества очевидны. [i]Эукариоты[/i] (клетки с [b]Ядрами[/b]) получают доступ к более разнообразным будущим улучшениям, чем прокариоты (безъядерные клетки).\n"
 "\n"

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Godot;
 
 public class MacroscopicMetaballLayout : MetaballLayout<MacroscopicMetaball>, IReadOnlyMacroscopicMetaballLayout
@@ -41,5 +42,11 @@ public class MacroscopicMetaballLayout : MetaballLayout<MacroscopicMetaball>, IR
     public new IEnumerator<IReadonlyMacroscopicMetaball> GetEnumerator()
     {
         return metaballs.GetEnumerator();
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public MetaballLayout<MacroscopicMetaball> AsModifiable()
+    {
+        return this;
     }
 }

@@ -23,6 +23,7 @@ public class AvoidPredationSelectionPressure : SelectionPressure
             CommonMutationFunctions.Direction.Rear),
         new AddOrganelleAnywhere(organelle => organelle.HasSlimeJetComponent,
             CommonMutationFunctions.Direction.Rear),
+        new AddOrganelleAnywhere(organelle => organelle.HasCiliaComponent),
         new MoveOrganelleBack(organelle => organelle.HasSlimeJetComponent),
         new MoveOrganelleBack(organelle => organelle.HasMovementComponent),
         new UpgradeOrganelle(organelle => organelle.HasSlimeJetComponent, SlimeJetComponent.MUCOCYST_UPGRADE_NAME,

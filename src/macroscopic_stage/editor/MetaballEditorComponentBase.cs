@@ -315,7 +315,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     }
 
     /// <summary>
-    ///   Set tab specific editor world object visibility
+    ///   Set tab-specific editor world object visibility
     /// </summary>
     /// <param name="shown">True if they should be visible</param>
     public virtual void SetEditorWorldTabSpecificObjectVisibility(bool shown)
@@ -896,7 +896,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         if (visualMetaballDisplayer == null || structuralMetaballDisplayer == null)
             throw new InvalidOperationException("Editor component not initialized");
 
-        // If not currently visible at all, don't update visibility, it'll be updated once this tab becomes active
+        // If not currently visible at all, don't update visibility; it'll be updated once this tab becomes active
         // again
         if (visualMetaballDisplayer.Visible || structuralMetaballDisplayer.Visible)
         {

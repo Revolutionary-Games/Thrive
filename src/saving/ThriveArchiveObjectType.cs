@@ -307,6 +307,7 @@ public enum ThriveArchiveObjectType : uint
     ComponentCellDivisionCollisionDisabler = 4390,
     ReproductionCompoundPressure = 4391,
     AmmoniaProductionEffect = 4392,
+    CellTypeEditsHolder = 4393,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,

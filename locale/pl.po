@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-21 18:08+0200\n"
-"PO-Revision-Date: 2025-11-16 01:01+0000\n"
-"Last-Translator: Nie <tym@wrozynski.com>\n"
+"POT-Creation-Date: 2025-11-28 14:55+0200\n"
+"PO-Revision-Date: 2025-11-28 09:29+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -940,7 +940,7 @@ msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "Wartość nasycenia, ilość szarości w konkretnym kolorze"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr "Wartość (jasność) wartość, jasność lub intensywność koloru"
+msgstr "Jasność lub intensywność koloru"
 
 msgid "COMMON_ABILITIES"
 msgstr "Pospolite Umiejętności"
@@ -1021,9 +1021,8 @@ msgstr "Konsumpcja {0}"
 msgid "COMPOUND_HANDLE_KEEP"
 msgstr "Zachowaj wszystkie"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_SPLIT_SISTER"
-msgstr "Bilanse Związków"
+msgstr "Podziel się z siostrzaną komórką"
 
 msgid "COMPOUND_HANDLE_TOP_UP"
 msgstr "Zawsze uzupełniaj do wartości startowej"
@@ -1141,7 +1140,7 @@ msgid "CONTINUE"
 msgstr "Kontynuuj"
 
 msgid "CONTINUE_AS_SPECIES"
-msgstr "[center]To jeszcze nie koniec. Możesz [b]kontynuować[/b] grę gatunkiem {0} o populacji {1}.[/center]"
+msgstr "[center]Gra jeszcze się nie skończyła. Możesz [b]kontynuować[/b] poprzez wzięcie kontroli nad gatunkiem {0} z populacją {1}.[/center]"
 
 msgid "CONTINUE_THRIVING"
 msgstr "Kontynuuj Rozkwitanie"
@@ -1150,11 +1149,14 @@ msgstr "Kontynuuj Rozkwitanie"
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 "Dotarłeś do końca \"ukończonej\" części Thrive.\n"
-"Jeśli chcesz, możesz przejść dalej do prototypów następnych faz, które znajdują się w grze. Mogą one być bardzo niedokończone, używać tymczasowych grafik oraz być ogólnie bardzo szorstkie. Są dołączone jako część gry żeby pokazać możliwy przyszły kierunek rozwoju i naszą wizję tego, jak fazy są ze sobą połączone.\n"
 "\n"
-"Nie będziesz mógł zapisywać, w większości prototypów, jeśli kontynuujesz lub powrócić gdy kontynuujesz. Jeśli chcesz wrócić do tego etapu, prosimy zapisać grę przed przejściem dalej.\n"
+"Jeśli chcesz, możesz przejść do [b]prototypów późniejszych etapów[/b], które znajdują się w grze.\n"
 "\n"
-"Jeśli decydujesz się kontynuować, prosimy zrozumieć, że następne etapy to tylko prototypy i prosimy nie narzekać na to, jak bardzo są niedokończone."
+"Mogą one być bardzo niedokończone, używać tymczasowych grafik oraz ogólnie wyglądać na niedopracowane. Zostały dołączone, by pokazać potencjalny kierunek rozwoju gry oraz naszą ogólną wizję połączenia poszczególnych etapów.\n"
+"\n"
+"Jeśli zdecydujesz się kontynuować, to w większości prototypów [b]nie będziesz mógł zapisać gry[/b] ani wrócić do poprzedniego etapu. Jeśli chcesz wrócić do [i]tego[/i] etapu, prosimy [b]zapisać grę teraz[/b], zanim przejdziesz dalej.\n"
+"\n"
+"Obsługa kontrolerów także jest niepełna w prototypach. Jeśli zdecydujesz się kontynuować, pamiętaj, że późniejsze etapy to tylko prototypy - i prosimy, nie narzekaj na to, jak bardzo są niedokończone."
 
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Chcesz przejść do prototypów faz?"
@@ -1163,10 +1165,10 @@ msgid "CONTROLLER_ANY_DEVICE"
 msgstr "Dowolne urządzenie"
 
 msgid "CONTROLLER_AXIS_L2"
-msgstr "L2"
+msgstr "Lewy zderzak"
 
 msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
-msgstr "Lewy spust"
+msgstr "Lewy drążek"
 
 msgid "CONTROLLER_AXIS_LEFT_X"
 msgstr "Lewy grzybek poziomo"
@@ -1181,10 +1183,10 @@ msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
 msgstr "Kierunek dodatni"
 
 msgid "CONTROLLER_AXIS_R2"
-msgstr "Prawy spust"
+msgstr "Prawy zderzak"
 
 msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
-msgstr "Prawy spust"
+msgstr "Prawy drążek"
 
 msgid "CONTROLLER_AXIS_RIGHT_X"
 msgstr "Prawy grzybek poziomo"
@@ -1193,7 +1195,7 @@ msgid "CONTROLLER_AXIS_RIGHT_Y"
 msgstr "Prawy grzybek pionowo"
 
 msgid "CONTROLLER_AXIS_VISUALIZERS"
-msgstr "Wizualizatory Osi Kontrolera:"
+msgstr "Wizualizacja Osi Kontrolera:"
 
 msgid "CONTROLLER_BUTTON_DPAD_DOWN"
 msgstr "Dół krzyżaka"
@@ -1237,7 +1239,7 @@ msgid "CONTROLLER_BUTTON_PS3_SELECT"
 msgstr "Wybierz"
 
 msgid "CONTROLLER_BUTTON_PS3_START"
-msgstr "Start"
+msgstr "Przycisk Start"
 
 msgid "CONTROLLER_BUTTON_PS_CIRCLE"
 msgstr "Kółko"
@@ -1253,7 +1255,7 @@ msgid "CONTROLLER_BUTTON_PS_L3"
 msgstr "Strefy Martwe Kontrolera"
 
 msgid "CONTROLLER_BUTTON_PS_OPTIONS"
-msgstr "Opcje"
+msgstr "Przycisk Opcji"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_PS_R1"
@@ -1263,10 +1265,10 @@ msgid "CONTROLLER_BUTTON_PS_R3"
 msgstr "R3"
 
 msgid "CONTROLLER_BUTTON_PS_SHARE"
-msgstr "Udostępnij"
+msgstr "Przycisk Udostępnij"
 
 msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
-msgstr "Przycisk logo"
+msgstr "Przycisk Logo"
 
 msgid "CONTROLLER_BUTTON_PS_SQUARE"
 msgstr "Kwadrat"
@@ -1331,7 +1333,7 @@ msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Skopiuj Błąd Do Schowka"
 
 msgid "COPY_RESULTS"
-msgstr "Kopiuj Wyniki"
+msgstr "Skopiuj Wyniki"
 
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanopia (Czerwony-Zielony)"
@@ -1349,7 +1351,7 @@ msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "Wyczyść wybrane klawisze"
 
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
-msgstr "Błąd: błąd wewnętrzny przy zużywaniu przedmiotu podczas wytwarzania"
+msgstr "Błąd: błąd przy konsumpcji przedmiotu"
 
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr "Nie znaleziono składników"
@@ -1358,16 +1360,16 @@ msgid "CRAFTING_FILTER_INPUTS"
 msgstr "Wejścia"
 
 msgid "CRAFTING_KNOWN_ITEMS"
-msgstr "Znane Receptury"
+msgstr "Znane przepisy"
 
 msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
-msgstr "Nie dość {0} by scraftować przedmiot"
+msgstr "Nie masz wystarczająco {0} by stworzyć przepis"
 
 msgid "CRAFTING_NO_RECIPE_SELECTED"
-msgstr "Prosimy najpierw wybrać recepturę by scraftować przedmiot"
+msgstr "Najpierw wybierz przepis"
 
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
-msgstr "Brak miejsca na wszystkie wyniki craftowania"
+msgstr "Za mało miejsca na wszystkie produkty"
 
 msgid "CRAFTING_RECIPE_DISPLAY"
 msgstr "{0} ({1})"
@@ -1385,7 +1387,7 @@ msgid "CRAFTING_TAKE_ALL"
 msgstr "Weź Wszystko"
 
 msgid "CRAFTING_TITLE"
-msgstr "Craftowanie"
+msgstr "Tworzenie"
 
 msgid "CREATE"
 msgstr "Stwórz"
@@ -1433,7 +1435,7 @@ msgid "CTRL"
 msgstr "CTRL"
 
 msgid "CURRENT_CACHE_SIZE"
-msgstr "Obecny rozmiar pamięci podręcznej:"
+msgstr "Aktualna wielkość:"
 
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
 msgstr ""
@@ -1463,34 +1465,34 @@ msgstr "Aktualnie badane: {0} ({1})"
 msgid "CURRENT_WORLD"
 msgstr "Obecny Świat"
 
-#, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 "[b]Pokolenia:[/b]\n"
-"    {0}\n"
-"[b]Wszystkie Obszary:[/b]\n"
-"    {1}\n"
-"[b]Całkowity Czas Auto-Ewo:[/b]\n"
-"    {2}\n"
-"[b]Wszystkie Gatunki:[/b]\n"
-"    {3}\n"
-"[b]Nadal Żyjące Gatunki:[/b]\n"
-"    {4}\n"
-"[b]Liczba Gatunków na Obszar:[/b]\n"
-"    Średnio {5}; Standardowe odchylenie {6}\n"
+"  {0}\n"
+"[b]Liczba Stref:[/b]\n"
+"  {1}\n"
+"[b]Czas Auto-Ewolucji:[/b]\n"
+"  {2}\n"
+"[b]Liczba Gatunków:[/b]\n"
+"  {3}\n"
+"[b]Liczba Żywych Gatunków:[/b]\n"
+"  {4}\n"
+"[b]Liczba Gatunków na Strefę:[/b]\n"
+"  Średnio {5}; Standardowe odchylenie {6}\n"
 "[b]Całkowita Populacja:[/b]\n"
-"    {7}\n"
-"[b]Najliczniejszy Gatunek:[/b]\n"
-"    {8}\n"
+"  {7}\n"
+"[b]Gatunek z Największą Populacją:[/b]\n"
+"  {8}\n"
 "[b]Podstawowe Dane Gatunków Mikrobów:[/b]\n"
-"    Średnia wielkość w heksach: {9}\n"
+"  Średni Rozmiar w Polach: {9}\n"
+"\n"
 "[b]Ogólne Dane Organelli:[/b]"
 
 msgid "CUSTOM_USERNAME"
 msgstr "Własna nazwa użytkownika:"
 
 msgid "CYTOPLASM"
-msgstr "Cytozol"
+msgstr "Cytoplazma"
 
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "Zol wypełniający wnętrze komórki. Cytozol to podstawowa mieszanina jonów, białek, i innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze komórki. Jedną z czynności, której dokonuje, jest [b]glikoliza[/b] - przemiana [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound. Komórki nieposiadające organelli do bardziej zaawansowanych procesów metabolicznych polegają na tym procesie. Wykorzystywany jest również jako magazyn substancji oraz do zwiększenia rozmiarów komórki."
@@ -1514,7 +1516,7 @@ msgid "DAY_LENGTH_EXPLANATION"
 msgstr "(długość doby gry w sekundach)"
 
 msgid "DAY_NIGHT_CYCLE_ENABLED"
-msgstr "Włącz cykl dnia i nocy"
+msgstr "Włącz cykl dobowy"
 
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr "(fotosynteza staje się nieskuteczna w nocy - wymaga to lepszego planowania)"
@@ -1567,9 +1569,8 @@ msgstr ""
 " - {1} Szybki(ch) zapis(ów)\n"
 " - {2} Zapasowy(ch) zapis(ów)"
 
-#, fuzzy
 msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr "Usunięcia zapisu nie można cofnąć, jesteś pewien że chcesz to zrobić?"
+msgstr "Usunięcia skamieniałości nie można cofnąć, na pewno chcesz to zrobić?"
 
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Usunąć stare zapisy?"
@@ -1593,11 +1594,10 @@ msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Usunąć ten zapis?"
 
 msgid "DESCEND_BUTTON"
-msgstr "Zniżenie"
+msgstr "Zejście"
 
-#, fuzzy
 msgid "DESCEND_CONFIRMATION"
-msgstr "Usunięcia zapisu nie można cofnąć, jesteś pewien że chcesz to zrobić?"
+msgstr "Czy na pewno chcesz zejść niżnej?"
 
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
@@ -1766,9 +1766,8 @@ msgstr "Wyświetlaj tła 3D w menu"
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Pokaż pasek umiejętności"
 
-#, fuzzy
 msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
-msgstr "Wyświetlaj cząsteczki w tle"
+msgstr "Zastosuj zniekształcenie dla teł mikrobów"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Wyświetlaj cząsteczki w tle"
@@ -1784,6 +1783,10 @@ msgstr "Tryb wyświetlania:"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Pokaż nazwy przycisków wyboru części"
+
+#, fuzzy
+msgid "DISPLAY_SELECTION"
+msgstr "Lipaza umożliwia komórce trawienie większości typów błon. Twoja komórka już produkuje trochę tego enzymu bez lizosomu, lecz poprzez wybranie tego typu zwiększysz wydajność."
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Jednolicie rozprowadź środowiskowe źródło {0}"
@@ -1810,16 +1813,16 @@ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 msgstr "Przełącza między normalną i podwójną szybkością rozgrywki"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
-msgstr "Zmień kolejność przeciągając myszką"
+msgstr "Przeciągnij to za pomocą myszy, aby zmienić kolejność elementów"
 
 msgid "DUMP_SCENE_TREE"
-msgstr "Zrzuć SceneTree"
+msgstr "Zrzut SceneTree"
 
 msgid "DUPLICATE_TYPE"
 msgstr "Powiel Typ"
 
 msgid "EASTEREGG_MESSAGE_1"
-msgstr "Ciekawostka: Didinium i Pantofelek są podręcznikowym przykładem relacji drapieżnika i ofiary, ta relacja była studiowana przez dekady. A ty, jesteś Didinium czy Pantofelkiem? Drapieżnikiem, czy ofiarą?"
+msgstr "Ciekawostka: Didinium i Pantofelek są podręcznikowym przykładem relacji drapieżnika i ofiary, którą studiowano przez dziesięciolecia. A ty, jesteś Didinium czy Pantofelkiem? Drapieżnikiem, czy ofiarą?"
 
 msgid "EASTEREGG_MESSAGE_10"
 msgstr "KRĘCIOŁKI!!"
@@ -1867,7 +1870,7 @@ msgid "EASTEREGG_MESSAGE_7"
 msgstr "Thrive ma być symulacją obcej planety, więc nie spodziewaj się, że znajdziesz tam te same stworzenia, co na Ziemi!"
 
 msgid "EASTEREGG_MESSAGE_8"
-msgstr "Porada, bakterie mogą być silniejsze niż się wydają - mogą wyglądać na małe, ale niektóre z nich potrafią wejść do twojego organizmu i zabić cię w ten sposób!"
+msgstr "Ekipa Thrive czasami nagrywa podcasty - wpadnij posłuchać!"
 
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "A tak swoją drogą, jeśli będziesz nieostrożny, możesz doprowadzić inne gatunki do wymarcia. Inne gatunki również mogą to robić."
@@ -1890,9 +1893,8 @@ msgstr "Edytowanie"
 msgid "EDITOR"
 msgstr "Edytor"
 
-#, fuzzy
 msgid "EDITORS_AND_MUTATIONS_BUTTON"
-msgstr "zmutował"
+msgstr "Edytor i Mutacje"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Wejdź do edytora i modyfikuj swój gatunek"
@@ -1947,7 +1949,7 @@ msgid "EIGHT_TIMES"
 msgstr "8x"
 
 msgid "EJECT_ENGULFED"
-msgstr "Wypluj wchłonięte obiekty"
+msgstr "Wyrzuć wchłonięte obiekty"
 
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr "Zwraca wszystkie obce ciała, które masz w środku"
@@ -2601,7 +2603,7 @@ msgid "GOD_TOOLS_TITLE"
 msgstr "Narzędzia boga"
 
 msgid "GOING_NUCLEAR"
-msgstr ""
+msgstr "Opcja nuklearna"
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "Komórka oczka"
@@ -2888,16 +2890,16 @@ msgid "INTERACTION_CRAFT"
 msgstr "Stwórz..."
 
 msgid "INTERACTION_DEPOSIT_RESOURCES"
-msgstr ""
+msgstr "Przechowaj surowce"
 
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
-msgstr ""
+msgstr "Przechowaj surowce (nie masz pasujących przedmiotów)"
 
 msgid "INTERACTION_DESTROY"
 msgstr "Zniszcz"
 
 msgid "INTERACTION_FOUND_SETTLEMENT"
-msgstr ""
+msgstr "Załóż osadę"
 
 msgid "INTERACTION_HARVEST"
 msgstr "Zbierz"
@@ -3023,7 +3025,7 @@ msgstr ""
 "Czy chcesz usunąć wejście z {1}?"
 
 msgid "KEY_BRING_UP_KEYBOARD"
-msgstr ""
+msgstr "Pokaż klawiaturę"
 
 msgid "KEY_CLEAR"
 msgstr "Wyczyść"
@@ -3530,6 +3532,7 @@ msgstr "Etap Mikroba"
 msgid "MAKE_CELL_THAT_EATS_RADIATION"
 msgstr "(koszt organelli, błon i innych przedmiotów w edytorze)"
 
+#, fuzzy
 msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
 msgstr " Stwórz komórkę, która wykorzystuje tylko chemosyntezę do produkcji energii"
 
@@ -3645,13 +3648,13 @@ msgstr ""
 "Dotyczy to domyślnej liczby wątków, ponieważ wątki hyperthreadingu nie są tak szybkie jak prawdziwe rdzenie procesora."
 
 msgid "METEOR_IMPACT_EVENT"
-msgstr ""
+msgstr "Uderzenie meteorytu"
 
 msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
+msgstr "Stref dotkniętych upadkiem meteorytu: {0}"
 
 msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
+msgstr "Upadek meteorytu wpłynął na {0} strefę"
 
 msgid "METRICS"
 msgstr "Wskaźniki Wydajności"
@@ -4050,7 +4053,7 @@ msgid "MISSING_DESCRIPTION"
 msgstr "Brak opisu"
 
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
-msgstr ""
+msgstr "Brakujący lub nieprawidłowy format wymaganego pola: {0}"
 
 msgid "MISSING_TITLE"
 msgstr "Brak tytułu"
@@ -4104,25 +4107,25 @@ msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Główna klasa assembly moda:"
 
 msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
-msgstr ""
+msgstr "{0}: tworzenie instancji klasy moda z pliku Assembly zakończyło się niepowodzeniem"
 
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
-msgstr ""
+msgstr "{0}: klasa mody \"{1}\" nie została odnaleziona w jego pliku Assembly"
 
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
-msgstr ""
+msgstr "{0}: wywołanie inicjalizacji pliku Assembly moda zakończyło się niepowodzeniem"
 
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
-msgstr ""
+msgstr "{0}: wywołanie inizjalizacji pliku Assembly moda zakończyło się krytycznym wyjątkiem: {1}"
 
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
-msgstr "{0}: wczytywanie tworu zawiodło z powodu wyjątku: {1}"
+msgstr "{0}: wczytywanie pliku Assembly zawiodło z powodu wyjątku: {1}"
 
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
-msgstr ""
+msgstr "{0}: metoda opróżnienia pamieci po plikach Assembly moda zwróciła błąd"
 
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
-msgstr ""
+msgstr "{0}: metoda opróżnienia pamieci po plikach Assembly moda zwróciła krytyczny błąd: {1}"
 
 msgid "MOD_AUTHOR"
 msgstr "Autor Moda:"
@@ -4137,10 +4140,10 @@ msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Długi opis Moda:"
 
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
-msgstr ""
+msgstr "{0}: wczytywanie moda przez Harmony zakończyło się błędem krytycznym: {1}"
 
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
-msgstr "{0}: wyładowywanie Harmonii moda zawiodło z powodu wyjątku: {1}"
+msgstr "{0}: wyładowywanie moda przez Harmony zakończyło się błędem krytycznym: {1}"
 
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}: nie posiada wczytywalnych zasobów"
@@ -4195,6 +4198,13 @@ msgstr "Przekazywacz Modów"
 
 msgid "MOD_VERSION"
 msgstr "Wersja:"
+
+#, fuzzy
+msgid "MONITOR_AUTO"
+msgstr "Autor Moda:"
+
+msgid "MONITOR_IDENTIFIER"
+msgstr ""
 
 msgid "MORE_INFO"
 msgstr "Pokaż Więcej Informacji"

@@ -7,7 +7,7 @@
 /// <typeparam name="TAction">Editor action type the editor this will be used with will use</typeparam>
 [GodotAbstract]
 public partial class EditorComponentWithActionsBase<TEditor, TAction> : EditorComponentBase<TEditor>
-    where TEditor : IEditorWithActions
+    where TEditor : class, IEditorWithActions
     where TAction : EditorAction
 {
 #pragma warning disable CA2213

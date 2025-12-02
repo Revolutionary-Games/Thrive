@@ -10,9 +10,11 @@ using SharedBase.Archive;
 public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData,
     ICellEditorData
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     private readonly MulticellularSpeciesComparer speciesComparer = new();
+
+    private readonly CellTypeEditsHolder cellTypeEditsHolder = new();
 
 #pragma warning disable CA2213
     [Export]
@@ -38,6 +40,12 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     private MulticellularSpecies? editedSpecies;
 
+    /// <summary>
+    ///   If not null, this is the cell type that is being edited. Note that this is always a temporary holder from
+    ///   <see cref="cellTypeEditsHolder"/>, so it can be modified without affecting the original cell type until
+    ///   editor exit. This complicates things when all users need to know if they want the latest edits or original
+    ///   data when reading this.
+    /// </summary>
     private CellType? selectedCellTypeToEdit;
 
     public override bool CanCancelAction
@@ -110,6 +118,14 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         // This is needed first in case we are on the cell type editor tab
         instance.selectedCellTypeToEdit = reader.ReadObjectOrNull<CellType>();
 
+        if (version > 1)
+        {
+            reader.ReadObjectProperties(instance.cellTypeEditsHolder);
+        }
+
+        // Set this first so that this is available immediately
+        instance.bodyPlanEditorTab.CellTypeVisualsOverride = instance.cellTypeEditsHolder;
+
         reader.ReadObjectProperties(instance.reportTab);
         reader.ReadObjectProperties(instance.patchMapTab);
         reader.ReadObjectProperties(instance.bodyPlanEditorTab);
@@ -126,6 +142,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     public override void WriteToArchive(ISArchiveWriter writer)
     {
         writer.WriteObjectOrNull(selectedCellTypeToEdit);
+
+        writer.WriteObjectProperties(cellTypeEditsHolder);
 
         writer.WriteObjectProperties(reportTab);
         writer.WriteObjectProperties(patchMapTab);
@@ -174,7 +192,11 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         if (selectedCellTypeToEdit != null)
         {
             if (action is EditorCombinableActionData<CellType> cellTypeData && cellTypeData.Context == null)
-                cellTypeData.Context = selectedCellTypeToEdit;
+            {
+                // For MP comparisons of new cell types, we want a consistent reference to the original cell type,
+                // so we reverse map this back to the original
+                cellTypeData.Context = cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit);
+            }
         }
     }
 
@@ -200,7 +222,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         // If the action we're redoing should be done on another cell type,
         // save our changes to the current cell type, then switch to the other one
-        SwapEditingCellIfNeeded(cellType);
+        SwapEditingCellIfNeeded(cellType != null ? cellTypeEditsHolder.GetCellType(cellType) : null);
 
         // If the action we're redoing should be done on another editor tab, switch to that tab
         SwapEditorTabIfNeeded(history.ActionToRedo());
@@ -223,7 +245,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         // If the action we're undoing should be done on another cell type,
         // save our changes to the current cell type, then switch to the other one
-        SwapEditingCellIfNeeded(cellType);
+        SwapEditingCellIfNeeded(cellType != null ? cellTypeEditsHolder.GetCellType(cellType) : null);
 
         // If the action we're undoing should be done on another editor tab, switch to that tab
         SwapEditorTabIfNeeded(history.ActionToUndo());
@@ -238,6 +260,9 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     protected override void InitEditor(bool fresh)
     {
         patchMapTab.SetMap(CurrentGame.GameWorld.Map, CurrentGame.GameWorld.PlayerSpecies.ID);
+
+        // Set first so that data can be immediately used in the cell editor tab
+        bodyPlanEditorTab.CellTypeVisualsOverride = cellTypeEditsHolder;
 
         base.InitEditor(fresh);
 
@@ -455,6 +480,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     {
         var species = (MulticellularSpecies?)CurrentGame.GameWorld.PlayerSpecies;
         editedSpecies = species ?? throw new NullReferenceException("didn't find edited species");
+        cellTypeEditsHolder.Reset();
 
         base.SetupEditedSpecies();
     }
@@ -498,9 +524,10 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         var newTypeToEdit = EditedSpecies.ModifiableCellTypes.First(c => c.CellTypeName == name);
 
         // Only reinitialize the editor when required
-        if (selectedCellTypeToEdit == null || selectedCellTypeToEdit != newTypeToEdit)
+        if (selectedCellTypeToEdit == null ||
+            cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit) != newTypeToEdit)
         {
-            selectedCellTypeToEdit = newTypeToEdit;
+            selectedCellTypeToEdit = cellTypeEditsHolder.BeginOrContinueEdit(newTypeToEdit);
 
             GD.Print("Start editing cell type: ", selectedCellTypeToEdit.CellTypeName);
 
@@ -517,10 +544,9 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         if (selectedCellTypeToEdit == null)
             return;
 
-        // TODO: only apply if there were changes
-        GD.Print("Applying changes made to cell type: ", selectedCellTypeToEdit.CellTypeName);
+        GD.Print("Saving temporary changes made to cell type: ", selectedCellTypeToEdit.CellTypeName);
 
-        // Apply any changes made to the selected cell
+        // Apply any changes made to the selected cell (but only to the edit holder to not break MP)
         FinishEditingSelectedCell();
     }
 
@@ -571,7 +597,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             cellEditorTab.OnFinishEditing(false);
 
             // cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
-            bodyPlanEditorTab.OnCellTypeEdited(selectedCellTypeToEdit);
+            bodyPlanEditorTab.OnCellTypeEdited(cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit));
         }
     }
 
@@ -584,15 +610,23 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         cellEditorTab.OnFinishEditing(false);
 
-        // Revert to old name if the name is a duplicate
+        // Revert to the old name if the name is a duplicate
         if (EditedSpecies.ModifiableCellTypes.Any(c =>
                 c != selectedCellTypeToEdit && c.CellTypeName == selectedCellTypeToEdit.CellTypeName))
         {
+            // TODO: don't trigger this if the name was left as it was
             GD.Print("Cell editor renamed a cell type to a duplicate name, reverting");
             selectedCellTypeToEdit.CellTypeName = oldName;
         }
+        else
+        {
+            // Apply the name immediately to the original species so that MP comparison works better
+            GD.Print("Applying rename to original cell type immediately");
+            cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit).CellTypeName =
+                selectedCellTypeToEdit.CellTypeName;
+        }
 
-        bodyPlanEditorTab.OnCellTypeEdited(selectedCellTypeToEdit);
+        bodyPlanEditorTab.OnCellTypeEdited(cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit));
     }
 
     private void SwapEditingCellIfNeeded(CellType? newCell)
@@ -603,6 +637,10 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         // If we're switching to a new cell type, apply any changes made to the old one
         if (selectedEditorTab == EditorTab.CellTypeEditor && selectedCellTypeToEdit != null)
             FinishEditingSelectedCell();
+
+        // The edit should be to an already started cell type edit
+        if (ReferenceEquals(cellTypeEditsHolder.GetOriginalType(newCell), newCell))
+            GD.PrintErr("Trying to edit a cell type that hasn't been started yet, this will corrupt MP state");
 
         // This fixes complex cases where multiple types are undoing and redoing actions
         selectedCellTypeToEdit = newCell;

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-21 18:08+0200\n"
-"PO-Revision-Date: 2025-11-20 11:35+0000\n"
-"Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
+"POT-Creation-Date: 2025-11-28 14:55+0200\n"
+"PO-Revision-Date: 2025-11-28 09:29+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
@@ -271,9 +271,8 @@ msgstr "აყვავების ფაზა"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "მოდის assembly-ის კლასი აუცილებელია, როცა assembly მითითებულია"
 
-#, fuzzy
 msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
-msgstr "მოდის assembly აუცილებელია, როცა ავტომატური harmony ჩართულია"
+msgstr "მოდის assembly აუცილებელია, როცა მოდის კლასი მითითებულია"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "ჩათვლა, რომ CPU-ზე მრავალნაკადიანობა ჩართულია"
@@ -1680,6 +1679,10 @@ msgstr "ჩვენების რეჟიმი:"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "ნაწილის არჩევნის ღილაკის სახელების ჩვენება"
+
+#, fuzzy
+msgid "DISPLAY_SELECTION"
+msgstr "ჩვენების რეჟიმი:"
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "{0}-ის საჭმლის წყაროს ერთგვაროვანი განაწილება გარემოში"
@@ -3305,6 +3308,7 @@ msgstr "მაკროსკოპული ფაზა"
 msgid "MAKE_CELL_THAT_EATS_RADIATION"
 msgstr "შექმენით ურედი, რომელიც ენერგია რადიოაქტიურობისგან იღებს"
 
+#, fuzzy
 msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
 msgstr " შექმენით უჯრედი, რომელიც, მხოლოდ, ენერგიისთვის ქემოსინთეზს იყენებს"
 
@@ -3854,6 +3858,13 @@ msgstr "მოდის ამტვირთავი"
 
 msgid "MOD_VERSION"
 msgstr "მოდის ვერსია:"
+
+#, fuzzy
+msgid "MONITOR_AUTO"
+msgstr "მოდის ავტორი:"
+
+msgid "MONITOR_IDENTIFIER"
+msgstr ""
 
 msgid "MORE_INFO"
 msgstr "მეტი ინფორმაციის ჩვენება"
@@ -4958,7 +4969,7 @@ msgid "ROTATION_COLON"
 msgstr "ბრუნვა:"
 
 msgid "RUNOFF_EVENT"
-msgstr ""
+msgstr "გალღობის მოვლენა"
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "ავტოევოს გაშვება თამაშისას"

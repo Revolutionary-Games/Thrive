@@ -1,5 +1,6 @@
 ﻿namespace Systems;
 
+using System;
 using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
@@ -41,14 +42,10 @@ public partial class PilusDamageSystem : BaseSystem<World, float>
         {
             ref var collision = ref collisions![i];
 
-            // Only process just started collisions for pilus damage
-            if (collision.JustStarted != 1)
-                continue;
-
             if (collision.SecondEntity == Entity.Null)
                 continue;
 
-            if (!collision.SecondEntity.Has<MicrobePhysicsExtraData>())
+            if (!collision.SecondEntity.IsAliveAndHas<MicrobePhysicsExtraData>())
                 continue;
 
             ref var otherExtraData = ref collision.SecondEntity.Get<MicrobePhysicsExtraData>();
@@ -111,12 +108,7 @@ public partial class PilusDamageSystem : BaseSystem<World, float>
 
         float damage = Constants.PILUS_BASE_DAMAGE * collision.PenetrationAmount;
 
-        // Skip too small damage
-        if (damage < 0.01f)
-            return;
-
-        if (damage > Constants.PILUS_MAX_DAMAGE)
-            damage = Constants.PILUS_MAX_DAMAGE;
+        damage = Math.Clamp(damage, Constants.PILUS_MIN_DAMAGE, Constants.PILUS_MAX_DAMAGE);
 
         var previousHealth = targetHealth.CurrentHealth;
 

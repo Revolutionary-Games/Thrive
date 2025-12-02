@@ -10,7 +10,7 @@ public abstract class EditsFacadeBase
 
     /// <summary>
     ///   If <see cref="SpeciesEditsFacade.activeActions"/> contains a history reset action, this is the index of
-    ///   that action. When applying changes, this is used to quickly skip over useless things.
+    ///   that action. When applying changes, this is used to quickly skip over useless things from before.
     /// </summary>
     protected int lastHistoryReset = -1;
 
@@ -99,9 +99,14 @@ public abstract class EditsFacadeBase
 
         OnStartApplyChanges();
 
-        // We need to only process after the latest history reset action as nothing from-before-that can affect things
+        // Make sure if no history reset actions were present, we start from the beginning
+        var start = Math.Max(0, lastHistoryReset);
+
+        // We need to only process from the latest history reset action as nothing from-before-that can affect things
+        // Note that many reset history actions need to set up state correctly in the processing, so we must process
+        // it itself
         int count = activeActions.Count;
-        for (int i = lastHistoryReset + 1; i < count; ++i)
+        for (int i = start; i < count; ++i)
         {
             if (!ApplyAction(activeActions[i]))
             {

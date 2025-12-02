@@ -39,11 +39,49 @@ public class MacroscopicSpeciesComparer
 
         cost += RecursiveCompareChanges(rootA, rootB);
 
-        // All still left metaballs that are unused were removed
-        cost += unusedOldMetaballs.Count * Constants.METABALL_REMOVE_COST;
+        // Consider moves which are cheaper than an addition and a deletion
+        foreach (var unusedOldMetaball in unusedOldMetaballs)
+        {
+            double minCost = double.MaxValue;
+            IReadonlyMacroscopicMetaball? bestMatch = null;
+
+            foreach (var unusedNewMetaball in unusedNewMetaballs)
+            {
+                var tempCost = Constants.METABALL_MOVE_COST;
+
+                if (Math.Abs(unusedNewMetaball.Size - unusedOldMetaball.Size) > 0.001f)
+                {
+                    tempCost += Constants.METABALL_RESIZE_COST;
+                }
+
+                // TODO: should there be a cost for metaballs to change type?
+
+                if (tempCost < minCost)
+                {
+                    minCost = tempCost;
+                    bestMatch = unusedNewMetaball;
+                }
+            }
+
+            if (bestMatch != null && minCost < double.MaxValue &&
+                minCost < Constants.METABALL_REMOVE_COST + Constants.METABALL_ADD_COST)
+            {
+                // Saved some cost by turning this into a move
+                cost += minCost;
+
+                if (!unusedNewMetaballs.Remove(bestMatch))
+                    throw new Exception("Remove that should succeed failed from unused new list");
+
+                continue;
+            }
+
+            // Can't match this up with anything
+            cost += Constants.METABALL_REMOVE_COST;
+        }
+
         unusedOldMetaballs.Clear();
 
-        // And added unused are new metaballs
+        // All still left unused are new metaballs
         cost += unusedNewMetaballs.Count * Constants.METABALL_ADD_COST;
         unusedNewMetaballs.Clear();
 

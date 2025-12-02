@@ -9,7 +9,7 @@
     <LangVersion>13.0</LangVersion>
     <Nullable>enable</Nullable>
     <Company>Revolutionary Games Studio</Company>
-    <Version>0.9.1.0</Version>
+    <Version>0.9.1.1</Version>
     <!--<InformationalVersion>-beta</InformationalVersion>-->
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
@@ -52,7 +52,7 @@
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="1.4.0" />
     <PackageReference Include="GraphShape" Version="1.2.1" />
-    <PackageReference Include="JetBrains.Annotations" Version="2025.2.2" />
+    <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="System.IO.Hashing" Version="10.0.0" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />

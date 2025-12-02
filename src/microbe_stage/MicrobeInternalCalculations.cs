@@ -547,7 +547,7 @@ public static class MicrobeInternalCalculations
     {
         if (usedProcessesCache == null)
         {
-            usedProcessesCache = new HashSet<BioProcess>();
+            usedProcessesCache = new HashSet<BioProcess>(organelles.Count + 1);
         }
         else
         {

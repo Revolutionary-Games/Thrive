@@ -78,6 +78,14 @@ public class InputDataList : ICloneable
             }
         }
 
-        InputsRemapped?.Invoke(this, EventArgs.Empty);
+        try
+        {
+            InputsRemapped?.Invoke(this, EventArgs.Empty);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Failed to run inputs remap notification: ", e);
+            LogInterceptor.ForwardCaughtError(e, "Input remapping notification failed");
+        }
     }
 }
