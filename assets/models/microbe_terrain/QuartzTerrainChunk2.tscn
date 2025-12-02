@@ -1,9 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfsevjxju432n"]
+[gd_scene load_steps=6 format=3 uid="uid://cfsevjxju432n"]
 
 [ext_resource type="PackedScene" uid="uid://b32o5hhhhlntx" path="res://assets/models/microbe_terrain/QuartzTerrainChunk2.glb" id="1_7yglg"]
-[ext_resource type="Material" uid="uid://dah57m0syfrwc" path="res://assets/models/microbe_terrain/QuartzTerrainChunk.material" id="2_74dok"]
+[ext_resource type="Texture2D" uid="uid://sdaqq7afc36o" path="res://assets/textures/environment/Quartz.png" id="2_hih2l"]
+[ext_resource type="Texture2D" uid="uid://7beeo162yvxe" path="res://assets/textures/environment/Quartz2AO.png" id="3_4d7jt"]
+[ext_resource type="Texture2D" uid="uid://ddlggf6thv1cb" path="res://assets/textures/environment/Quartz_normal.png" id="4_e3llo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dl4l4"]
+resource_name = "quartz"
+cull_mode = 2
+albedo_color = Color(0.8862146, 0.81350374, 0.68647724, 1)
+albedo_texture = ExtResource("2_hih2l")
+roughness = 0.75454545
+normal_enabled = true
+normal_scale = 0.70000005
+normal_texture = ExtResource("4_e3llo")
+ao_enabled = true
+ao_light_affect = 0.3
+ao_texture = ExtResource("3_4d7jt")
 
 [node name="QuartzTerrainChunk2" instance=ExtResource("1_7yglg")]
 
 [node name="quartz2" parent="." index="0"]
-surface_material_override/0 = ExtResource("2_74dok")
+surface_material_override/0 = SubResource("StandardMaterial3D_dl4l4")

@@ -1,9 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0rfa4d2jb0qg"]
+[gd_scene load_steps=7 format=3 uid="uid://b0rfa4d2jb0qg"]
 
 [ext_resource type="PackedScene" uid="uid://cdehjfwsihrou" path="res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk2.glb" id="1_8j7k4"]
-[ext_resource type="Material" uid="uid://7u54xlrhfiyi" path="res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk.material" id="2_iumhy"]
+[ext_resource type="Texture2D" uid="uid://v2g5wc2sk61u" path="res://assets/textures/environment/chalcopyrite.png" id="2_hv8ra"]
+[ext_resource type="Texture2D" uid="uid://cgcbqdjlmxhy" path="res://assets/textures/environment/TerrainChunkShiny_mra.png" id="3_cv01a"]
+[ext_resource type="Texture2D" uid="uid://bwjxc8k26qv67" path="res://assets/textures/environment/ChalcoPyrite2AO.png" id="3_mkoc7"]
+[ext_resource type="Texture2D" uid="uid://cyb03wlsgvd0i" path="res://assets/textures/environment/chalcopyrite_normal.png" id="4_mkoc7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_es5aw"]
+albedo_texture = ExtResource("2_hv8ra")
+metallic = 0.7
+metallic_texture = ExtResource("3_cv01a")
+normal_enabled = true
+normal_texture = ExtResource("4_mkoc7")
+ao_enabled = true
+ao_light_affect = 0.35
+ao_texture = ExtResource("3_mkoc7")
 
 [node name="ChalcopyriteTerrainChunk2" instance=ExtResource("1_8j7k4")]
 
 [node name="chalcopyrite2" parent="." index="0"]
-surface_material_override/0 = ExtResource("2_iumhy")
+surface_material_override/0 = SubResource("StandardMaterial3D_es5aw")
