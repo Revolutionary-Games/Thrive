@@ -101,7 +101,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         var workMemory3 = new HashSet<Hex>();
 
         // Depending on size upper bound, this could just be an array
-        var existingDefs = baseSpecies.Organelles.Select(x => x.Definition).ToHashSet();
+        HashSet<OrganelleDefinition>? existingDefs = null;
 
         foreach (var organelle in organelles)
         {
@@ -115,8 +115,13 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
             if (organelle.RequiresNucleus && baseSpecies.IsBacteria)
                 continue;
 
-            if (organelle.Unique && existingDefs.Contains(organelle))
-                continue;
+            // Don't add duplicate unique organelles
+            if (organelle.Unique)
+            {
+                existingDefs ??= baseSpecies.Organelles.Select(x => x.Definition).ToHashSet();
+                if (existingDefs.Contains(organelle))
+                    continue;
+            }
 
             var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
