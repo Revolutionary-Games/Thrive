@@ -221,7 +221,8 @@ public static class GraphicsPresets
             if (settings.MicrobeDistortionStrength.Value < MicrobeDistortionStrength - 0.01f)
                 return false;
 
-            if (settings.MicrobeBackgroundBlurStrength.Value < MicrobeBackgroundBlurStrength - 0.01f)
+            // This value being above 0 enables it, so it is in the same performance class if both sides match
+            if ((settings.MicrobeBackgroundBlurStrength.Value > 0) != (MicrobeBackgroundBlurStrength > 0))
                 return false;
 
             return true;
