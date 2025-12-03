@@ -1320,13 +1320,13 @@ public class Settings
 
                 // Additionally, if integrated graphics and system memory is not very high set to very low
 
-                if (!hasDedicatedGpu && availableRam < (long)GlobalConstants.GIBIBYTE * 10)
+                if (!hasDedicatedGpu && availableRam < (long)GlobalConstants.GIBIBYTE * 11)
                 {
                     GD.Print("Detected integrated graphics and low system memory");
                     preset = GraphicsPresets.Preset.VeryLow;
                 }
             }
-            else if (Environment.ProcessorCount <= 4 || availableRam < (long)GlobalConstants.GIBIBYTE * 5)
+            else if (Environment.ProcessorCount <= 4 || availableRam < (long)GlobalConstants.GIBIBYTE * 6)
             {
                 // Assume 2 CPU cores have hyperthreading so this is probably a laptop system, so pick medium
                 preset = GraphicsPresets.Preset.Medium;
