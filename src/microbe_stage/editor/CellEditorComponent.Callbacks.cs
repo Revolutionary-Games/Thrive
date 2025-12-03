@@ -124,7 +124,7 @@ public partial class CellEditorComponent
             UpdateAlreadyPlacedVisuals();
 
             // Organelle placement *might* affect auto-evo in the future, so this is here for that reason
-            StartAutoEvoPrediction();
+            autoEvoPredictionDirty = true;
 
             // Suggestion is not restarted as the overall shape / movement speed is likely not significant enough to
             // invalidate the suggestion
@@ -157,8 +157,11 @@ public partial class CellEditorComponent
         data.MovedHex.Orientation = data.OldRotation;
 
         UpdateAlreadyPlacedVisuals();
-        StartAutoEvoPrediction();
         UpdateStats();
+
+        autoEvoPredictionDirty = true;
+
+        // As this is a move, this kind of doesn't need to trigger suggestions again, so this apparently doesn't
 
         // TODO: dynamic MP PR had this line:
         // OnMembraneChanged();
@@ -238,7 +241,7 @@ public partial class CellEditorComponent
         CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
         SetMembraneTooltips(Membrane);
 
-        StartAutoEvoPrediction();
+        autoEvoPredictionDirty = true;
         suggestionDirty = true;
 
         if (previewMicrobeSpecies != null)
@@ -262,7 +265,7 @@ public partial class CellEditorComponent
         organismStatisticsPanel.UpdateSpeed(CalculateSpeed());
         organismStatisticsPanel.UpdateHitpoints(CalculateHitpoints());
 
-        StartAutoEvoPrediction();
+        autoEvoPredictionDirty = true;
         suggestionDirty = true;
 
         if (previewMicrobeSpecies != null)
