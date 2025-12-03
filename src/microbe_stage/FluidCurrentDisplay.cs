@@ -35,7 +35,10 @@ public partial class FluidCurrentDisplay : GpuParticles3D
 
     private Vector3 previousParentPosition;
 
-    private Biome? unappliedBiome;
+    /// <summary>
+    ///   Remembered previous biome for re-enabling the effect
+    /// </summary>
+    private Biome? previousBiome;
 
     public override void _Ready()
     {
@@ -98,12 +101,12 @@ public partial class FluidCurrentDisplay : GpuParticles3D
 
     public void ApplyBiome(Biome biome)
     {
+        // Remember the settings we should have if we are enabled later
+        previousBiome = biome;
+
         if (initializedMode == Settings.MicrobeCurrentParticlesMode.None)
         {
             Visible = false;
-
-            // Remember if this we are later re-enabled
-            unappliedBiome = biome;
             return;
         }
 
@@ -171,6 +174,8 @@ public partial class FluidCurrentDisplay : GpuParticles3D
         if (initializedMode == value)
             return;
 
+        var old = initializedMode;
+
         // Need to react to option change while the game is running
         initializedMode = value;
 
@@ -180,9 +185,47 @@ public partial class FluidCurrentDisplay : GpuParticles3D
             return;
         }
 
-        if (unappliedBiome != null)
+        // Switching between the enabled modes
+        if (old == Settings.MicrobeCurrentParticlesMode.All &&
+            initializedMode == Settings.MicrobeCurrentParticlesMode.OnlyCircles)
         {
-            ApplyBiome(unappliedBiome);
+            if (TrailEnabled)
+            {
+                TrailEnabled = false;
+                DrawPass1 = normalParticleMesh;
+                material.SetShaderParameter(particleDepthVariationParameterName, 1.0f);
+            }
+
+            return;
+        }
+
+        if (old == Settings.MicrobeCurrentParticlesMode.OnlyCircles &&
+            initializedMode == Settings.MicrobeCurrentParticlesMode.All)
+        {
+            // Only switch to trails if the biome had trails before
+            if (!TrailEnabled)
+            {
+                if (previousBiome == null)
+                {
+                    GD.PrintErr("Cannot enable trails without knowing a biome to apply");
+                    return;
+                }
+
+                if (previousBiome.WaterCurrents.UseTrails)
+                {
+                    TrailEnabled = true;
+                    DrawPass1 = trailedParticleMesh;
+                    material.SetShaderParameter(particleDepthVariationParameterName, 0.0f);
+                }
+            }
+
+            return;
+        }
+
+        // Disabled to activated state change
+        if (previousBiome != null)
+        {
+            ApplyBiome(previousBiome);
             material.SetShaderParameter(gameTimeParameterName, time);
             Visible = true;
         }

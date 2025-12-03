@@ -243,7 +243,7 @@ public class Settings
     public SettingValue<bool> BloomEnabled { get; private set; } = new(true);
 
     /// <summary>
-    ///   Bloom effect strength (if 0 bloom option should be set disabled)
+    ///   Bloom effect strength (if 0, the bloom option should be set disabled)
     /// </summary>
     [JsonProperty]
     public SettingValue<float> BloomStrength { get; private set; } = new(0.65f);
