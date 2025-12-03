@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Utilities;
 using Environment = System.Environment;
 
 /// <summary>
@@ -1295,6 +1296,47 @@ public class Settings
             var settings = new Settings();
             settings.Save();
 
+            long availableRam = 0;
+            try
+            {
+                availableRam = OS.GetMemoryInfo()["physical"].AsInt64();
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Failed to get physical memory info: ", e);
+            }
+
+            GD.Print("Detected system RAM (MiB) as: ", availableRam / GlobalConstants.MEBIBYTE);
+
+            var preset = GraphicsPresets.Preset.High;
+
+            // Automatic preset adjustment based on some conditions
+            if (FeatureInformation.GetVideoDriver() == OS.RenderingDriver.Opengl3 ||
+                availableRam < (long)GlobalConstants.GIBIBYTE * 3)
+            {
+                preset = GraphicsPresets.Preset.Low;
+
+                bool hasDedicatedGpu = RenderingServer.GetVideoAdapterType() == RenderingDevice.DeviceType.DiscreteGpu;
+
+                // Additionally, if integrated graphics and system memory is not very high set to very low
+
+                if (!hasDedicatedGpu && availableRam < (long)GlobalConstants.GIBIBYTE * 10)
+                {
+                    GD.Print("Detected integrated graphics and low system memory");
+                    preset = GraphicsPresets.Preset.VeryLow;
+                }
+            }
+            else if (Environment.ProcessorCount <= 4 || availableRam < (long)GlobalConstants.GIBIBYTE * 5)
+            {
+                // Assume 2 CPU cores have hyperthreading so this is probably a laptop system, so pick medium
+                preset = GraphicsPresets.Preset.Medium;
+            }
+
+            GD.Print("Picked graphics preset: ", preset);
+
+            // Apply graphics preset to the initial settings
+            GraphicsPresets.ApplyPreset(preset, settings);
+
             return settings;
         }
 
@@ -1336,7 +1378,7 @@ public class Settings
     /// <summary>
     ///   Tries to return the best supported Godot locale match.
     ///   Godot locale is different from C# culture.
-    ///   Compare for example fi_FI (Godot) to fi-FI (C#).
+    ///   Compare, for example, fi_FI (Godot) to fi-FI (C#).
     /// </summary>
     /// <param name="locale">locale to check</param>
     /// <returns>supported locale</returns>
