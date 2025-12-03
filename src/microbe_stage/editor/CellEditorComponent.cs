@@ -210,6 +210,8 @@ public partial class CellEditorComponent :
 
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
+    private bool autoEvoPredictionDirty = true;
+    private double autoEvoPredictionStartTimer = 5;
     private bool? autoEvoPredictionRunSuccessful;
     private PendingAutoEvoPrediction? waitingForPrediction;
     private LocalizedStringBuilder? predictionDetailsText;
@@ -220,9 +222,6 @@ public partial class CellEditorComponent :
     private OrganelleSuggestionCalculation? inProgressSuggestion;
     private bool suggestionDirty;
     private double suggestionStartTimer;
-
-    private bool autoEvoPredictionDirty;
-    private double autoEvoPredictionStartTimer;
 
     private bool refreshTolerancesWarnings = true;
 
@@ -687,6 +686,28 @@ public partial class CellEditorComponent :
 
         base._Process(delta);
 
+        // To have a value available earlier, this can run even before the right tab is set
+        autoEvoPredictionStartTimer += delta;
+
+        // But don't start before the editor is ready
+        if (autoEvoPredictionDirty && Editor.EditorReady)
+        {
+            // Don't constantly trigger prediction runs
+            if (autoEvoPredictionStartTimer >= Constants.AUTO_EVO_PREDICTION_UPDATE_INTERVAL)
+            {
+                if (CancelPreviousAutoEvoPrediction())
+                {
+                    // Start a new run once safe to do so
+                    autoEvoPredictionStartTimer = 0;
+                    StartAutoEvoPrediction();
+                }
+            }
+        }
+        else
+        {
+            CheckRunningAutoEvoPrediction();
+        }
+
         if (!Visible)
             return;
 
@@ -698,9 +719,7 @@ public partial class CellEditorComponent :
             debugOverlay.ReportEntities(roughCount);
         }
 
-        CheckRunningAutoEvoPrediction();
         CheckRunningSuggestion(delta);
-        TriggerDelayedPredictionUpdateIfNeeded(delta);
 
         if (organelleDataDirty)
         {
@@ -1980,9 +1999,13 @@ public partial class CellEditorComponent :
     {
         // For now disabled in the multicellular editor as the microbe logic being used there doesn't make sense
         if (IsMulticellularEditor)
+        {
+            // Don't be dirty to not constantly try to retry the run
+            autoEvoPredictionDirty = false;
             return;
+        }
 
-        // The first prediction can be made only after population numbers from previous run are applied
+        // The first prediction can be made only after population numbers from the previous run are applied,
         // so this is just here to guard against that potential programming mistake that may happen when code is
         // changed
         if (!Editor.EditorReady)
@@ -1990,10 +2013,6 @@ public partial class CellEditorComponent :
             GD.PrintErr("Can't start auto-evo prediction before editor is ready");
             return;
         }
-
-        // Note that in rare cases the auto-evo run doesn't manage to stop before we edit the cached species object,
-        // which may cause occasional background task errors
-        CancelPreviousAutoEvoPrediction();
 
         cachedAutoEvoPredictionSpecies ??= new MicrobeSpecies(Editor.EditedBaseSpecies,
             Editor.EditedCellProperties ??
@@ -2365,7 +2384,7 @@ public partial class CellEditorComponent :
         OnRigidityChanged();
         OnColourChanged();
 
-        StartAutoEvoPrediction();
+        autoEvoPredictionDirty = true;
         suggestionDirty = true;
     }
 
@@ -2468,7 +2487,7 @@ public partial class CellEditorComponent :
 
         UpdateCellVisualization();
 
-        StartAutoEvoPrediction();
+        autoEvoPredictionDirty = true;
         suggestionDirty = true;
 
         UpdateFinishButtonWarningVisibility();
