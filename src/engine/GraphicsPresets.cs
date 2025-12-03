@@ -26,6 +26,7 @@ public static class GraphicsPresets
             MicrobeDistortionStrength = 0,
             MicrobeBackgroundBlurLowQuality = true,
             MicrobeBackgroundBlurStrength = 0,
+            MicrobeCurrentParticles = Settings.MicrobeCurrentParticlesMode.None,
             MicrobeRippleEffect = false,
             GUILightEffectsEnabled = false,
             BloomEnabled = false,
@@ -47,6 +48,7 @@ public static class GraphicsPresets
             MicrobeDistortionStrength = 0,
             MicrobeBackgroundBlurLowQuality = true,
             MicrobeBackgroundBlurStrength = 0,
+            MicrobeCurrentParticles = Settings.MicrobeCurrentParticlesMode.OnlyCircles,
             MicrobeRippleEffect = false,
             GUILightEffectsEnabled = true,
             BloomEnabled = false,
@@ -65,6 +67,7 @@ public static class GraphicsPresets
             MicrobeDistortionStrength = 0.6f,
             MicrobeBackgroundBlurLowQuality = true,
             MicrobeBackgroundBlurStrength = 2,
+            MicrobeCurrentParticles = Settings.MicrobeCurrentParticlesMode.All,
             MicrobeRippleEffect = false,
             GUILightEffectsEnabled = true,
             BloomEnabled = true,
@@ -84,6 +87,7 @@ public static class GraphicsPresets
             MicrobeDistortionStrength = 0.6f,
             MicrobeBackgroundBlurLowQuality = false,
             MicrobeBackgroundBlurStrength = 2,
+            MicrobeCurrentParticles = Settings.MicrobeCurrentParticlesMode.All,
             MicrobeRippleEffect = true,
             GUILightEffectsEnabled = true,
             BloomEnabled = true,
@@ -103,6 +107,7 @@ public static class GraphicsPresets
             MicrobeDistortionStrength = 0.6f,
             MicrobeBackgroundBlurLowQuality = false,
             MicrobeBackgroundBlurStrength = 2,
+            MicrobeCurrentParticles = Settings.MicrobeCurrentParticlesMode.All,
             MicrobeRippleEffect = true,
             GUILightEffectsEnabled = true,
             BloomEnabled = true,
@@ -179,6 +184,7 @@ public static class GraphicsPresets
         public float MicrobeDistortionStrength { get; init; }
         public bool MicrobeBackgroundBlurLowQuality { get; init; }
         public int MicrobeBackgroundBlurStrength { get; init; }
+        public Settings.MicrobeCurrentParticlesMode MicrobeCurrentParticles { get; init; }
         public bool MicrobeRippleEffect { get; init; }
         public bool GUILightEffectsEnabled { get; init; }
         public bool BloomEnabled { get; init; }
@@ -197,6 +203,8 @@ public static class GraphicsPresets
             if (settings.DisplayBackgroundParticles.Value != DisplayBackgroundParticles)
                 return false;
             if (settings.MicrobeBackgroundBlurLowQuality.Value != MicrobeBackgroundBlurLowQuality)
+                return false;
+            if (settings.MicrobeCurrentParticles.Value != MicrobeCurrentParticles)
                 return false;
             if (settings.MicrobeRippleEffect.Value != MicrobeRippleEffect)
                 return false;
@@ -243,6 +251,7 @@ public static class GraphicsPresets
             settings.MicrobeDistortionStrength.Value = MicrobeDistortionStrength;
             settings.MicrobeBackgroundBlurLowQuality.Value = MicrobeBackgroundBlurLowQuality;
             settings.MicrobeBackgroundBlurStrength.Value = MicrobeBackgroundBlurStrength;
+            settings.MicrobeCurrentParticles.Value = MicrobeCurrentParticles;
             settings.MicrobeRippleEffect.Value = MicrobeRippleEffect;
             settings.GUILightEffectsEnabled.Value = GUILightEffectsEnabled;
             settings.BloomEnabled.Value = BloomEnabled;

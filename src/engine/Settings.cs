@@ -75,6 +75,13 @@ public class Settings
         Disabled,
     }
 
+    public enum MicrobeCurrentParticlesMode
+    {
+        All,
+        OnlyCircles,
+        None,
+    }
+
     public static Settings Instance => SingletonInstance;
 
     public static string DefaultLanguage => DefaultLanguageValue;
@@ -194,13 +201,20 @@ public class Settings
     public SettingValue<bool> MicrobeBackgroundBlurLowQuality { get; private set; } = new(false);
 
     /// <summary>
+    ///   Sets the type of displayed microbe current particles
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<MicrobeCurrentParticlesMode> MicrobeCurrentParticles { get; private set; } =
+        new(MicrobeCurrentParticlesMode.All);
+
+    /// <summary>
     ///   Sets whether microbes make ripples as they move
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> MicrobeRippleEffect { get; private set; } = new(true);
 
     /// <summary>
-    ///   Sets whether the camera will slightly tilt toward cursor
+    ///   Sets whether the camera will slightly tilt toward the cursor
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> MicrobeCameraTilt { get; private set; } = new(false);
@@ -212,13 +226,13 @@ public class Settings
     public SettingValue<ControllerType> ControllerPromptType { get; private set; } = new(ControllerType.Automatic);
 
     /// <summary>
-    ///   Red screen effect for when player is harmed
+    ///   Red screen effect for when the player is harmed
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> ScreenDamageEffect { get; private set; } = new(true);
 
     /// <summary>
-    ///   When should the strain bar be visible
+    ///   Sets when the strain bar should be visible
     /// </summary>
     public SettingValue<StrainBarVisibility> StrainBarVisibilityMode { get; private set; } =
         new(StrainBarVisibility.VisibleWhenOverZero);

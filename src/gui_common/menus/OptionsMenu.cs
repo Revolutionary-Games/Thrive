@@ -152,6 +152,9 @@ public partial class OptionsMenu : ControlWithInput
     private CheckButton lowQualityBackgroundBlurToggle = null!;
 
     [Export]
+    private OptionButton microbeCurrentParticles = null!;
+
+    [Export]
     private CheckButton bloomEffectToggle = null!;
 
     [Export]
@@ -779,6 +782,7 @@ public partial class OptionsMenu : ControlWithInput
         displayBackgroundParticlesToggle.ButtonPressed = settings.DisplayBackgroundParticles;
         displayMicrobeBackgroundDistortionToggle.ButtonPressed = settings.MicrobeDistortionStrength.Value > 0;
         lowQualityBackgroundBlurToggle.ButtonPressed = settings.MicrobeBackgroundBlurLowQuality;
+        microbeCurrentParticles.Selected = CurrentParticlesModeToIndex(settings.MicrobeCurrentParticles);
         microbeRippleEffect.ButtonPressed = settings.MicrobeRippleEffect;
         guiLightEffectsToggle.ButtonPressed = settings.GUILightEffectsEnabled;
         displayMenu3DBackgroundsToggle.ButtonPressed = settings.Menu3DBackgroundEnabled;
@@ -1392,6 +1396,38 @@ public partial class OptionsMenu : ControlWithInput
             default:
                 GD.PrintErr("invalid anti-aliasing index");
                 return Settings.AntiAliasingMode.MSAA;
+        }
+    }
+
+    private int CurrentParticlesModeToIndex(Settings.MicrobeCurrentParticlesMode mode)
+    {
+        switch (mode)
+        {
+            case Settings.MicrobeCurrentParticlesMode.All:
+                return 0;
+            case Settings.MicrobeCurrentParticlesMode.OnlyCircles:
+                return 1;
+            case Settings.MicrobeCurrentParticlesMode.None:
+                return 2;
+            default:
+                GD.PrintErr("invalid current particles mode value");
+                return 0;
+        }
+    }
+
+    private Settings.MicrobeCurrentParticlesMode CurrentParticlesIndexToMode(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return Settings.MicrobeCurrentParticlesMode.All;
+            case 1:
+                return Settings.MicrobeCurrentParticlesMode.OnlyCircles;
+            case 2:
+                return Settings.MicrobeCurrentParticlesMode.None;
+            default:
+                GD.PrintErr("invalid current particles mode index");
+                return Settings.MicrobeCurrentParticlesMode.All;
         }
     }
 
@@ -2098,6 +2134,14 @@ public partial class OptionsMenu : ControlWithInput
     private void OnLowQualityBackgroundBlurToggled(bool toggle)
     {
         Settings.Instance.MicrobeBackgroundBlurLowQuality.Value = toggle;
+
+        UpdateSelectedGraphicsPresetIfNeeded();
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnCurrentParticlesOptionSelected(int index)
+    {
+        Settings.Instance.MicrobeCurrentParticles.Value = CurrentParticlesIndexToMode(index);
 
         UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
