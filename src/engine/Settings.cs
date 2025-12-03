@@ -1316,13 +1316,17 @@ public class Settings
             {
                 preset = GraphicsPresets.Preset.Low;
 
-                bool hasDedicatedGpu = RenderingServer.GetVideoAdapterType() == RenderingDevice.DeviceType.DiscreteGpu;
+                // Apparently on Linux with a dedicated GPU this detection is not correct, so we have some safety
+                // handling here
+                bool hasDedicatedGpu = RenderingServer.GetVideoAdapterType() is RenderingDevice.DeviceType.DiscreteGpu
+                    or RenderingDevice.DeviceType.Other;
 
                 // Additionally, if integrated graphics and system memory is not very high set to very low
 
-                if (!hasDedicatedGpu && availableRam < (long)GlobalConstants.GIBIBYTE * 11)
+                if ((!hasDedicatedGpu && availableRam < (long)GlobalConstants.GIBIBYTE * 11) ||
+                    (availableRam < (long)GlobalConstants.GIBIBYTE * 3))
                 {
-                    GD.Print("Detected integrated graphics and low system memory");
+                    GD.Print("Detected integrated graphics and low system memory (or very low memory)");
                     preset = GraphicsPresets.Preset.VeryLow;
                 }
             }
