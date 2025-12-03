@@ -382,15 +382,19 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 autowrap_mode = 2
 selected = 0
-item_count = 4
+item_count = 6
 popup/item_0/text = "PRESET_CUSTOM"
 popup/item_0/id = 0
-popup/item_1/text = "PRESET_LOW"
+popup/item_1/text = "PRESET_VERY_LOW"
 popup/item_1/id = 1
-popup/item_2/text = "PRESET_MEDIUM"
+popup/item_2/text = "PRESET_LOW"
 popup/item_2/id = 2
-popup/item_3/text = "PRESET_HIGH"
+popup/item_3/text = "PRESET_MEDIUM"
 popup/item_3/id = 3
+popup/item_4/text = "PRESET_HIGH"
+popup/item_4/id = 4
+popup/item_5/text = "PRESET_VERY_HIGH"
+popup/item_5/id = 5
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
