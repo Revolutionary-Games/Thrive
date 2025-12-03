@@ -178,6 +178,23 @@ public partial class ResourceManager : Node
         // Done loading
         totalStageResourcesLoaded = totalStageResourcesToLoad;
         gameStateLoaded = true;
+
+#if DEBUG
+        var resources = SimulationParameters.Instance.GetStageResources(gameStateThatIsLoading);
+
+        foreach (var resource in resources.RequiredScenes)
+        {
+            if (!resource.Loaded || resource.LoadedScene == null)
+            {
+                GD.PrintErr(
+                    $"Somehow preloaded scene is not loaded for stage ({gameStateThatIsLoading}): {resource.Path}");
+
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+            }
+        }
+#endif
+
         return true;
     }
 
