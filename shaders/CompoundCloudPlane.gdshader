@@ -61,7 +61,7 @@ void fragment() {
                   colour4 * cloud4;
 
     float adjustedAlpha = min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) *
-       clamp(min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) * 0.5, 0.5, 0.9);
+        clamp(min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) * 0.5, 0.5, 0.9);
 
     ALPHA = adjustedAlpha;
     ALBEDO = colour.rgb;

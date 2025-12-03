@@ -688,6 +688,12 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         var templateMaxLightLevel =
             currentPatch.GetCompoundAmountForDisplay(Compound.Sunlight, CompoundAmountType.Template);
 
+        currentPatch.Biome.TryGetCompound(Compound.Oxygen, CompoundAmountType.Current, out var oxygen);
+        var ironAmount =
+            currentPatch.GetCompoundAmountInSnapshotForDisplay(currentPatch.CurrentSnapshot, Compound.Iron);
+
+        camera!.SetWaterColorFromCompounds(oxygen.Ambient, ironAmount);
+
         // Currently, patches whose templates have zero sunlight can be given non-zero sunlight as an instance. But
         // nighttime shaders haven't been created for these patches (specifically the sea floor) so for now we can't
         // reduce light level in such patches without things looking bad. So we have to check the template light level

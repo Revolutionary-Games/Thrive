@@ -67,9 +67,15 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
     [Export]
     public float LightLevelInterpolateSpeed = 4;
 
+    public Color CompoundColor = new(1, 1, 1, 1);
+    public Color SkyColor = new(1, 1, 1, 1);
+
 #pragma warning disable CA2213
     [Export]
     private BackgroundPlane backgroundPlane = null!;
+
+    [Export]
+    private MicrobeWorldEnvironment microbeWorldEnvironment = null!;
 #pragma warning restore CA2213
 
     private Vector3 cursorWorldPos = new(0, 0, 0);
@@ -81,6 +87,8 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
     private Vector3 lastCursorTilt = new(0, 0, 0);
 
     private float lightLevel = 1.0f;
+
+    private float lastSetLightLevel = 0.9f;
 
     [Signal]
     public delegate void OnZoomChangedEventHandler(float zoom);
@@ -173,6 +181,11 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
     public override void _Process(double delta)
     {
         base._Process(delta);
+
+        if (lastSetLightLevel != lightLevel)
+        {
+            UpdateLightLevel((float)delta);
+        }
 
         if (AutoProcessWhilePaused && PauseManager.Instance.Paused)
         {
@@ -287,9 +300,33 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
         backgroundPlane.SetBackground(background);
     }
 
-    public void SetWaterColorFromCompounds(Color color)
+    public void SetWaterColorFromCompounds(float oxygen, float iron)
     {
-        backgroundPlane.SetCompoundColoring(color);
+        // A lot of magic numbers here, just parameters to tune this.
+        // When settled on good values I'll formalise it.
+        var ironNormalized = iron / 10.0f;
+        var oxygenNormalize = MathF.Min(oxygen / 0.4f, 1.0f);
+        float greenIron = ironNormalized * (1.0f - 0.8f * oxygenNormalize);
+        float redRust = 0.9f * ironNormalized * oxygenNormalize;
+
+        var baseGreen = 0.15f;
+        var baseRed = 0.2f;
+        var baseBlue = 0.4f;
+
+        var g = Math.Clamp(baseGreen + 0.6f * greenIron, 0.0f, 1.0f);
+        var r = Math.Clamp(baseRed + 0.85f * redRust, 0.0f, 1.0f);
+        var b = Math.Clamp(baseBlue - 0.25f * ironNormalized, 0.0f, 1.0f);
+
+        CompoundColor = new Color(r, g, b);
+
+        backgroundPlane.SetCompoundColoring(CompoundColor);
+    }
+
+    public void SetSkyColor(Color envColor)
+    {
+        var tintStrength = 0.35f;
+        var envColorTinted = envColor * (1.0f - tintStrength) + CompoundColor * tintStrength;
+        SkyColor = DesaturateColor(envColorTinted, 0.15f);
     }
 
     public void WritePropertiesToArchive(ISArchiveWriter writer)
@@ -329,6 +366,14 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
         Position = reader.ReadVector3();
 
         IsLoadedFromSave = true;
+    }
+
+    private Color DesaturateColor(Color c, float amount)
+    {
+        float grayValue = 0.2126f * c.R + 0.7152f * c.G + 0.0722f * c.B;
+        var gray = new Color(grayValue, grayValue, grayValue);
+
+        return c.Lerp(gray, amount);
     }
 
     private void UpdateCursorWorldPos()
@@ -397,5 +442,33 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
     private void UpdateBackgroundVisibility()
     {
         backgroundPlane.SetVisibility(Current);
+    }
+
+    private void UpdateLightLevel(float delta)
+    {
+        if (lastSetLightLevel < lightLevel)
+        {
+            lastSetLightLevel += LightLevelInterpolateSpeed * delta;
+
+            if (lastSetLightLevel > lightLevel)
+                lastSetLightLevel = lightLevel;
+        }
+        else if (lastSetLightLevel > lightLevel)
+        {
+            lastSetLightLevel -= LightLevelInterpolateSpeed * delta;
+
+            if (lastSetLightLevel < lightLevel)
+                lastSetLightLevel = lightLevel;
+        }
+        else
+        {
+            lastSetLightLevel = lightLevel;
+        }
+
+        var waterColor = CompoundColor * (1.0f - lastSetLightLevel) + SkyColor * lastSetLightLevel;
+        waterColor.A = 1.0f;
+
+        backgroundPlane.SetCompoundColoring(waterColor);
+        microbeWorldEnvironment.UpdateAmbientReflection(SkyColor * lastSetLightLevel);
     }
 }
