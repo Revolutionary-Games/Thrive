@@ -1058,7 +1058,7 @@ public static class Constants
     /// </summary>
     public const float PILUS_MAX_DAMAGE = 45;
 
-    public const float PILUS_MIN_DAMAGE = 1;
+    public const float PILUS_MIN_DAMAGE = 2;
 
     public const float PILUS_PHYSICS_SIZE = 4.6f;
 
@@ -1081,7 +1081,7 @@ public static class Constants
     ///   How long the shortest pilus cooldown is after dealing damage. This is applied if the damage just barely
     ///   crosses <see cref="PILUS_MIN_DAMAGE_TRIGGER_COOLDOWN"/>
     /// </summary>
-    public const float PILUS_MIN_COOLDOWN = 0.1f;
+    public const float PILUS_MIN_COOLDOWN = 0.2f;
 
     public const float PILUS_MAX_COOLDOWN = 0.45f;
 
