@@ -2269,7 +2269,7 @@ size_flags_horizontal = 3
 [node name="FocusGrabber" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("13")]
 layout_mode = 2
 Priority = 3
-NodeToGiveFocusTo = NodePath("../HBoxContainer5/Horizontal")
+NodeToGiveFocusTo = NodePath("../HBoxContainer5/HorizontalInverted")
 GrabFocusWhenBecomingVisible = true
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
