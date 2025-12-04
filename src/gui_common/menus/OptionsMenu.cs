@@ -461,8 +461,6 @@ public partial class OptionsMenu : ControlWithInput
 
     private GameProperties? gameProperties;
 
-    private bool nodeReferencesResolved;
-
     private bool elementItemSelectionsInitialized;
 
     private double displayedCacheSize = -1;
