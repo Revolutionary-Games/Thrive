@@ -1915,6 +1915,7 @@ public partial class OptionsMenu : ControlWithInput
         Settings.Instance.AntiAliasing.Value = AntiAliasingIndexToValue(index);
         Settings.Instance.ApplyGraphicsSettings();
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
         UpdateMSAAVisibility();
     }
