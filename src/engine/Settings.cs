@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Utilities;
 using Environment = System.Environment;
 
 /// <summary>
@@ -72,6 +73,13 @@ public class Settings
         MSAAAndTemporal,
         ScreenSpaceFx,
         Disabled,
+    }
+
+    public enum MicrobeCurrentParticlesMode
+    {
+        All,
+        OnlyCircles,
+        None,
     }
 
     public static Settings Instance => SingletonInstance;
@@ -193,13 +201,20 @@ public class Settings
     public SettingValue<bool> MicrobeBackgroundBlurLowQuality { get; private set; } = new(false);
 
     /// <summary>
+    ///   Sets the type of displayed microbe current particles
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<MicrobeCurrentParticlesMode> MicrobeCurrentParticles { get; private set; } =
+        new(MicrobeCurrentParticlesMode.All);
+
+    /// <summary>
     ///   Sets whether microbes make ripples as they move
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> MicrobeRippleEffect { get; private set; } = new(true);
 
     /// <summary>
-    ///   Sets whether the camera will slightly tilt toward cursor
+    ///   Sets whether the camera will slightly tilt toward the cursor
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> MicrobeCameraTilt { get; private set; } = new(false);
@@ -211,13 +226,13 @@ public class Settings
     public SettingValue<ControllerType> ControllerPromptType { get; private set; } = new(ControllerType.Automatic);
 
     /// <summary>
-    ///   Red screen effect for when player is harmed
+    ///   Red screen effect for when the player is harmed
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> ScreenDamageEffect { get; private set; } = new(true);
 
     /// <summary>
-    ///   When should the strain bar be visible
+    ///   Sets when the strain bar should be visible
     /// </summary>
     public SettingValue<StrainBarVisibility> StrainBarVisibilityMode { get; private set; } =
         new(StrainBarVisibility.VisibleWhenOverZero);
@@ -228,7 +243,7 @@ public class Settings
     public SettingValue<bool> BloomEnabled { get; private set; } = new(true);
 
     /// <summary>
-    ///   Bloom effect strength (if 0 bloom option should be set disabled)
+    ///   Bloom effect strength (if 0, the bloom option should be set disabled)
     /// </summary>
     [JsonProperty]
     public SettingValue<float> BloomStrength { get; private set; } = new(0.65f);
@@ -1295,6 +1310,51 @@ public class Settings
             var settings = new Settings();
             settings.Save();
 
+            long availableRam = 0;
+            try
+            {
+                availableRam = OS.GetMemoryInfo()["physical"].AsInt64();
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Failed to get physical memory info: ", e);
+            }
+
+            GD.Print("Detected system RAM (MiB) as: ", availableRam / GlobalConstants.MEBIBYTE);
+
+            var preset = GraphicsPresets.Preset.High;
+
+            // Automatic preset adjustment based on some conditions
+            if (FeatureInformation.GetVideoDriver() == OS.RenderingDriver.Opengl3 ||
+                availableRam < (long)GlobalConstants.GIBIBYTE * 3)
+            {
+                preset = GraphicsPresets.Preset.Low;
+
+                // Apparently on Linux with a dedicated GPU this detection is not correct, so we have some safety
+                // handling here
+                bool hasDedicatedGpu = RenderingServer.GetVideoAdapterType() is RenderingDevice.DeviceType.DiscreteGpu
+                    or RenderingDevice.DeviceType.Other;
+
+                // Additionally, if integrated graphics and system memory is not very high set to very low
+
+                if ((!hasDedicatedGpu && availableRam < (long)GlobalConstants.GIBIBYTE * 11) ||
+                    (availableRam < (long)GlobalConstants.GIBIBYTE * 3))
+                {
+                    GD.Print("Detected integrated graphics and low system memory (or very low memory)");
+                    preset = GraphicsPresets.Preset.VeryLow;
+                }
+            }
+            else if (Environment.ProcessorCount <= 4 || availableRam < (long)GlobalConstants.GIBIBYTE * 6)
+            {
+                // Assume 2 CPU cores have hyperthreading so this is probably a laptop system, so pick medium
+                preset = GraphicsPresets.Preset.Medium;
+            }
+
+            GD.Print("Picked graphics preset: ", preset);
+
+            // Apply graphics preset to the initial settings
+            GraphicsPresets.ApplyPreset(preset, settings);
+
             return settings;
         }
 
@@ -1336,7 +1396,7 @@ public class Settings
     /// <summary>
     ///   Tries to return the best supported Godot locale match.
     ///   Godot locale is different from C# culture.
-    ///   Compare for example fi_FI (Godot) to fi-FI (C#).
+    ///   Compare, for example, fi_FI (Godot) to fi-FI (C#).
     /// </summary>
     /// <param name="locale">locale to check</param>
     /// <returns>supported locale</returns>

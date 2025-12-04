@@ -71,6 +71,9 @@ public partial class OptionsMenu : ControlWithInput
     private CheckButton vsync = null!;
 
     [Export]
+    private OptionButton graphicsPreset = null!;
+
+    [Export]
     private VBoxContainer displayOptionContainer = null!;
 
     [Export]
@@ -147,6 +150,9 @@ public partial class OptionsMenu : ControlWithInput
 
     [Export]
     private CheckButton lowQualityBackgroundBlurToggle = null!;
+
+    [Export]
+    private OptionButton microbeCurrentParticles = null!;
 
     [Export]
     private CheckButton bloomEffectToggle = null!;
@@ -624,39 +630,24 @@ public partial class OptionsMenu : ControlWithInput
 
         // Graphics
         vsync.ButtonPressed = settings.VSync;
+        graphicsPreset.Selected = CalculateGraphicsPreset(settings);
+        ApplyGraphicsPresetOptionsToControls(settings);
         displayMode.Selected = DisplayModeToIndex(settings.DisplayMode);
-        antiAliasingMode.Selected = AntiAliasingModeToIndex(settings.AntiAliasing);
-        msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
-        anisotropicFilterLevel.Selected = AnisotropicFilterLevelToIndex(settings.AnisotropicFilterLevel);
         maxFramesPerSecond.Selected = MaxFPSValueToIndex(settings.MaxFramesPerSecond);
-        renderScale.Value = settings.RenderScale;
-        upscalingMethod.Selected = UpscalingMethodValueToIndex(settings.UpscalingMethod);
         upscalingSharpening.Value = settings.UpscalingSharpening;
-        upscalingSharpening.Editable = settings.UpscalingMethod.Value != Settings.UpscalingMode.Bilinear;
         colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
-        chromaticAberrationToggle.ButtonPressed = settings.ChromaticEnabled;
         chromaticAberrationSlider.Editable = settings.ChromaticEnabled || !DisableInactiveSliders;
         controllerPromptType.Selected = ControllerPromptTypeToIndex(settings.ControllerPromptType);
         displayAbilitiesHotBarToggle.ButtonPressed = settings.DisplayAbilitiesHotBar;
         damageEffect.ButtonPressed = settings.ScreenDamageEffect;
         strainVisibility.Selected = (int)settings.StrainBarVisibilityMode.Value;
-        displayBackgroundParticlesToggle.ButtonPressed = settings.DisplayBackgroundParticles;
-        displayMicrobeBackgroundDistortionToggle.ButtonPressed = settings.MicrobeDistortionStrength.Value > 0;
-        lowQualityBackgroundBlurToggle.ButtonPressed = settings.MicrobeBackgroundBlurLowQuality;
-        microbeRippleEffect.ButtonPressed = settings.MicrobeRippleEffect;
         microbeCameraTilt.ButtonPressed = settings.MicrobeCameraTilt;
-        guiLightEffectsToggle.ButtonPressed = settings.GUILightEffectsEnabled;
         displayPartNamesToggle.ButtonPressed = settings.DisplayPartNames;
-        displayMenu3DBackgroundsToggle.ButtonPressed = settings.Menu3DBackgroundEnabled;
-        bloomEffectToggle.ButtonPressed = settings.BloomEnabled;
         bloomSlider.Value = settings.BloomStrength;
         bloomSlider.Editable = settings.BloomEnabled || !DisableInactiveSliders;
-        blurSlider.Value = settings.MicrobeBackgroundBlurStrength;
         DisplayResolution();
         DisplayGpuInfo();
-        UpdateRenderScale();
-        UpdateMSAAVisibility();
         UpdateDisplay();
 
         // Sound
@@ -775,6 +766,33 @@ public partial class OptionsMenu : ControlWithInput
         {
             upscalingMethod.Disabled = false;
         }
+    }
+
+    public void ApplyGraphicsPresetOptionsToControls(Settings settings)
+    {
+        // This list of stuff to update must match the GraphicsPresets class
+        antiAliasingMode.Selected = AntiAliasingModeToIndex(settings.AntiAliasing);
+        msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
+        anisotropicFilterLevel.Selected = AnisotropicFilterLevelToIndex(settings.AnisotropicFilterLevel);
+        renderScale.Value = settings.RenderScale;
+        upscalingMethod.Selected = UpscalingMethodValueToIndex(settings.UpscalingMethod);
+        upscalingSharpening.Editable = settings.UpscalingMethod.Value != Settings.UpscalingMode.Bilinear;
+        chromaticAberrationToggle.ButtonPressed = settings.ChromaticEnabled;
+        chromaticAberrationSlider.Editable = settings.ChromaticEnabled || !DisableInactiveSliders;
+        displayBackgroundParticlesToggle.ButtonPressed = settings.DisplayBackgroundParticles;
+        displayMicrobeBackgroundDistortionToggle.ButtonPressed = settings.MicrobeDistortionStrength.Value > 0;
+        lowQualityBackgroundBlurToggle.ButtonPressed = settings.MicrobeBackgroundBlurLowQuality;
+        microbeCurrentParticles.Selected = CurrentParticlesModeToIndex(settings.MicrobeCurrentParticles);
+        microbeRippleEffect.ButtonPressed = settings.MicrobeRippleEffect;
+        guiLightEffectsToggle.ButtonPressed = settings.GUILightEffectsEnabled;
+        displayMenu3DBackgroundsToggle.ButtonPressed = settings.Menu3DBackgroundEnabled;
+        bloomEffectToggle.ButtonPressed = settings.BloomEnabled;
+        bloomSlider.Editable = settings.BloomEnabled || !DisableInactiveSliders;
+        blurSlider.Value = settings.MicrobeBackgroundBlurStrength;
+
+        DisplayResolution();
+        UpdateRenderScale();
+        UpdateMSAAVisibility();
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
@@ -1381,6 +1399,38 @@ public partial class OptionsMenu : ControlWithInput
         }
     }
 
+    private int CurrentParticlesModeToIndex(Settings.MicrobeCurrentParticlesMode mode)
+    {
+        switch (mode)
+        {
+            case Settings.MicrobeCurrentParticlesMode.All:
+                return 0;
+            case Settings.MicrobeCurrentParticlesMode.OnlyCircles:
+                return 1;
+            case Settings.MicrobeCurrentParticlesMode.None:
+                return 2;
+            default:
+                GD.PrintErr("invalid current particles mode value");
+                return 0;
+        }
+    }
+
+    private Settings.MicrobeCurrentParticlesMode CurrentParticlesIndexToMode(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return Settings.MicrobeCurrentParticlesMode.All;
+            case 1:
+                return Settings.MicrobeCurrentParticlesMode.OnlyCircles;
+            case 2:
+                return Settings.MicrobeCurrentParticlesMode.None;
+            default:
+                GD.PrintErr("invalid current particles mode index");
+                return Settings.MicrobeCurrentParticlesMode.All;
+        }
+    }
+
     /// <summary>
     ///   The sensitivity bars go from 0 to 100, but those aren't suitable scales for the input values so this converts
     ///   between them
@@ -1783,11 +1833,89 @@ public partial class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
+    private void UpdateSelectedGraphicsPresetIfNeeded()
+    {
+        var wanted = CalculateGraphicsPreset(Settings.Instance);
+
+        if (graphicsPreset.Selected != wanted)
+            graphicsPreset.Selected = wanted;
+    }
+
+    private int CalculateGraphicsPreset(Settings settings)
+    {
+        switch (GraphicsPresets.GetPreset(settings))
+        {
+            case GraphicsPresets.Preset.Custom:
+                return 0;
+            case GraphicsPresets.Preset.VeryLow:
+                return 1;
+            case GraphicsPresets.Preset.Low:
+                return 2;
+            case GraphicsPresets.Preset.Medium:
+                return 3;
+            case GraphicsPresets.Preset.High:
+                return 4;
+            case GraphicsPresets.Preset.VeryHigh:
+                return 5;
+            default:
+                // This shouldn't happen, so making an extra call to GetPreset shouldn't matter here
+                GD.PrintErr("Unknown graphics preset: " + GraphicsPresets.GetPreset(settings));
+                return 0;
+        }
+    }
+
+    private void OnGraphicsPresetSelected(int index)
+    {
+        var preset = GraphicsPresets.Preset.Custom;
+
+        switch (index)
+        {
+            case 0:
+                preset = GraphicsPresets.Preset.Custom;
+                break;
+            case 1:
+                preset = GraphicsPresets.Preset.VeryLow;
+                break;
+            case 2:
+                preset = GraphicsPresets.Preset.Low;
+                break;
+            case 3:
+                preset = GraphicsPresets.Preset.Medium;
+                break;
+            case 4:
+                preset = GraphicsPresets.Preset.High;
+                break;
+            case 5:
+                preset = GraphicsPresets.Preset.VeryHigh;
+                break;
+            default:
+                GD.PrintErr("Invalid graphics preset index: ", index);
+                break;
+        }
+
+        if (preset == GraphicsPresets.Preset.Custom)
+        {
+            // Custom requires no handling
+            return;
+        }
+
+        // Otherwise we want to apply the preset
+        GD.Print("Applying graphics preset: " + preset);
+        GraphicsPresets.ApplyPreset(preset, Settings.Instance);
+
+        // And we need to re-apply the GUI control state for the graphics presets
+        ApplyGraphicsPresetOptionsToControls(Settings.Instance);
+
+        Settings.Instance.ApplyGraphicsSettings();
+        UpdateResetSaveButtonState();
+    }
+
     private void OnAntiAliasingModeSelected(int index)
     {
         Settings.Instance.AntiAliasing.Value = AntiAliasingIndexToValue(index);
         Settings.Instance.ApplyGraphicsSettings();
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
         UpdateMSAAVisibility();
     }
@@ -1823,6 +1951,7 @@ public partial class OptionsMenu : ControlWithInput
         Settings.Instance.MSAAResolution.Value = MSAAIndexToResolution(index);
         Settings.Instance.ApplyGraphicsSettings();
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -1831,6 +1960,7 @@ public partial class OptionsMenu : ControlWithInput
         Settings.Instance.AnisotropicFilterLevel.Value = AnisotropicFilteringIndexToLevel(index);
         Settings.Instance.ApplyGraphicsSettings();
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -1847,6 +1977,7 @@ public partial class OptionsMenu : ControlWithInput
         Settings.Instance.RenderScale.Value = value;
         Settings.Instance.ApplyGraphicsSettings();
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
         DisplayResolution();
         UpdateRenderScale();
@@ -1881,6 +2012,7 @@ public partial class OptionsMenu : ControlWithInput
         Settings.Instance.UpscalingMethod.Value = UpscalingMethodIndexToValue(index);
         Settings.Instance.ApplyGraphicsSettings();
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
 
         upscalingSharpening.Editable = Settings.Instance.UpscalingMethod.Value != Settings.UpscalingMode.Bilinear;
@@ -1907,6 +2039,7 @@ public partial class OptionsMenu : ControlWithInput
         Settings.Instance.ChromaticEnabled.Value = toggle;
         chromaticAberrationSlider.Editable = toggle || !DisableInactiveSliders;
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -1941,7 +2074,7 @@ public partial class OptionsMenu : ControlWithInput
     private int ControllerPromptTypeToIndex(ControllerType controllerType)
     {
         // This is done like this to ensure that invalid values don't get converted to out of range values (for
-        // example when settings might be loaded that were saved by a newer Thrive version)
+        // example, when settings might be loaded that were saved by a newer Thrive version)
         switch (controllerType)
         {
             case ControllerType.Automatic:
@@ -1980,6 +2113,7 @@ public partial class OptionsMenu : ControlWithInput
     {
         Settings.Instance.DisplayBackgroundParticles.Value = toggle;
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -1994,6 +2128,7 @@ public partial class OptionsMenu : ControlWithInput
             Settings.Instance.MicrobeDistortionStrength.Value = 0;
         }
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -2001,6 +2136,15 @@ public partial class OptionsMenu : ControlWithInput
     {
         Settings.Instance.MicrobeBackgroundBlurLowQuality.Value = toggle;
 
+        UpdateSelectedGraphicsPresetIfNeeded();
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnCurrentParticlesOptionSelected(int index)
+    {
+        Settings.Instance.MicrobeCurrentParticles.Value = CurrentParticlesIndexToMode(index);
+
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -2008,6 +2152,7 @@ public partial class OptionsMenu : ControlWithInput
     {
         Settings.Instance.MicrobeRippleEffect.Value = toggle;
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -2022,6 +2167,7 @@ public partial class OptionsMenu : ControlWithInput
     {
         Settings.Instance.GUILightEffectsEnabled.Value = toggle;
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -2036,6 +2182,7 @@ public partial class OptionsMenu : ControlWithInput
     {
         Settings.Instance.Menu3DBackgroundEnabled.Value = toggle;
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -2044,6 +2191,7 @@ public partial class OptionsMenu : ControlWithInput
         Settings.Instance.BloomEnabled.Value = toggle;
         bloomSlider.Editable = toggle || !DisableInactiveSliders;
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -2058,6 +2206,7 @@ public partial class OptionsMenu : ControlWithInput
     {
         Settings.Instance.MicrobeBackgroundBlurStrength.Value = value;
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
