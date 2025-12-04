@@ -306,6 +306,10 @@ public class SimulationCache
         var preyOsmoregulationCost = preyEnergyBalance.Osmoregulation;
         var enzymesScore = GetEnzymesScore(predator, prey.MembraneType.DissolverEnzyme);
 
+        // uses an HP estimate without taking into account environmental tolerance effect
+        var preyHP = prey.MembraneType.Hitpoints + prey.MembraneRigidity *
+            Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
+
         var predatorToolScores = GetPredationToolsRawScores(predator);
         var preyToolScores = GetPredationToolsRawScores(prey);
 
@@ -334,6 +338,10 @@ public class SimulationCache
         var preySprintSpeed = preySpeed * sprintMultiplier;
         var preySprintConsumption = sprintingStrain + preyHexSize * strainPerHex;
         var preySprintTime = MathF.Max(preyEnergyBalance.FinalBalance / preySprintConsumption, 0.0f);
+
+        // Give damage resistance if you have a nucleus (50 % general damage resistance)
+        if (!prey.IsBacteria)
+            preyHP *= 2;
 
         // This makes rotation "speed" not matter until the editor shows ~300,
         // which is where it also becomes noticeable in-game.
@@ -497,10 +505,10 @@ public class SimulationCache
         }
 
         // Prey that resist physical damage are of course less vulnerable to being hunted with it
-        pilusScore /= prey.MembraneType.PhysicalResistance;
+        pilusScore /= preyHP * prey.MembraneType.PhysicalResistance;
 
         // But prey that resist toxin damage are less vulnerable to the injectisome
-        injectisomeScore /= prey.MembraneType.ToxinResistance;
+        injectisomeScore /= preyHP * prey.MembraneType.ToxinResistance;
 
         // Combine pili for further calculations
         pilusScore += injectisomeScore;
@@ -540,7 +548,7 @@ public class SimulationCache
 
         // If you can store enough to kill the prey, producing more isn't as important
         var storageToKillRatio = predator.StorageCapacities.Nominal * Constants.OXYTOXY_DAMAGE /
-            prey.MembraneType.Hitpoints * prey.MembraneType.ToxinResistance;
+            (preyHP * prey.MembraneType.ToxinResistance);
         if (storageToKillRatio > 1)
         {
             damagingToxinScore = MathF.Pow(damagingToxinScore, 0.8f);
@@ -551,7 +559,7 @@ public class SimulationCache
         }
 
         // Prey that resist toxin are of course less vulnerable to being hunted with it
-        damagingToxinScore /= prey.MembraneType.ToxinResistance;
+        damagingToxinScore /= preyHP * prey.MembraneType.ToxinResistance;
 
         // Toxins also require facing and tracking the target
         damagingToxinScore *= predatorRotationModifier;
