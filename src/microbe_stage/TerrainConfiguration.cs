@@ -5,6 +5,13 @@ using Newtonsoft.Json;
 using SharedBase.Archive;
 using ThriveScriptsShared;
 
+public enum TerrainSpawnStrategy
+{
+    Single,
+    Row,
+    Vent,
+}
+
 /// <summary>
 ///   Configures how microbe terrain is spawned for a patch
 /// </summary>
@@ -184,6 +191,15 @@ public class TerrainConfiguration : RegistryType
         /// </summary>
         [JsonProperty]
         public readonly bool SlideToFit = true;
+
+        [JsonProperty]
+        public readonly TerrainSpawnStrategy SpawnStrategy = TerrainSpawnStrategy.Single;
+
+        [JsonProperty]
+        public readonly int MinChunks = 5;
+
+        [JsonProperty]
+        public readonly int MaxChunks = 10;
 
         public float OverallRadius;
         public float OverallOverlapRadius;

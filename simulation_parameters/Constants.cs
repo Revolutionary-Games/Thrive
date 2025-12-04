@@ -188,7 +188,7 @@ public static class Constants
 
     public const float CLOUD_CHEAT_DENSITY = 16000.0f;
 
-    public const float TERRAIN_GRID_SIZE = 200;
+    public const float TERRAIN_GRID_SIZE = 300;
     public const float TERRAIN_GRID_SIZE_INV = 1 / TERRAIN_GRID_SIZE;
     public const float TERRAIN_EDGE_PROTECTION_SIZE = 1;
 
@@ -202,7 +202,7 @@ public static class Constants
     ///   If too low, then pop in is visible and the spawn system can spawn stuff in that then gets covered
     ///   by the terrain.
     /// </summary>
-    public const int TERRAIN_SPAWN_AREA_NUMBER = 4;
+    public const int TERRAIN_SPAWN_AREA_NUMBER = 1;
 
     public const int MEMBRANE_RESOLUTION = 10;
     public const int MEMBRANE_VERTICAL_RESOLUTION = 7;
