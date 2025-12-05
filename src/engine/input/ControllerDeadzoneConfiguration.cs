@@ -41,8 +41,6 @@ public partial class ControllerDeadzoneConfiguration : CustomWindow
 
     public override void _Ready()
     {
-        explanationLabel.RegisterCustomFocusDrawer();
-
         // TODO: add separate sliders in this GUI to manually tweak all deadzones
     }
 

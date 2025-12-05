@@ -461,8 +461,6 @@ public partial class OptionsMenu : ControlWithInput
 
     private GameProperties? gameProperties;
 
-    private bool nodeReferencesResolved;
-
     private bool elementItemSelectionsInitialized;
 
     private double displayedCacheSize = -1;
@@ -492,8 +490,6 @@ public partial class OptionsMenu : ControlWithInput
 
     public override void _Ready()
     {
-        ResolveNodeReferences(true);
-
         if (IsVisibleInTree())
         {
             GD.Print("Immediately loading options menu items as it is visible in _Ready");
@@ -514,20 +510,9 @@ public partial class OptionsMenu : ControlWithInput
 #endif
     }
 
-    public void ResolveNodeReferences(bool calledFromReady)
-    {
-        if (nodeReferencesResolved)
-            return;
-
-        builtAtLabel.RegisterCustomFocusDrawer();
-        nodeReferencesResolved = true;
-    }
-
     public override void _EnterTree()
     {
         base._EnterTree();
-
-        ResolveNodeReferences(false);
 
         cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options", false);
         guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options", false);
