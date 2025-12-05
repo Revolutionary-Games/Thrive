@@ -35,6 +35,8 @@ public partial class ScreenFilter : ColorRect
             return;
         }
 
+        GD.Print("Applying shader filter effect: ", currentEffect.ShaderPath);
+
         var effectShader = GD.Load<Shader>(currentEffect.ShaderPath);
 
         material!.Shader = effectShader;
