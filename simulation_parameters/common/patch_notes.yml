@@ -1151,7 +1151,9 @@
   PatchNotes:
     - Added ambient occlusion textures for terrain chunks to improve their visuals
     - Added suppression for the error popup opening in some non-serious cases
+    - Added graphics preset options
     - Rebalanced pilus damage and made it deal continuous damage on collision persisting
+    - Pilus damage sound now scales with the amount of damage dealt
     - Added more collision safety checks everywhere collisions are recorded as 0.9.1.1 only added that safety for pilus collisions
     - Fixed scene preload errors when moving between the later game prototypes
     - Fixed GUI jiggle in the evolutionary tree by turning off GUI element snapping. Please report if you notice any text blurriness or  other problems after this change.
@@ -1161,6 +1163,7 @@
     - Improved efficiency of auto-evo to offset the cost from new features added to it
     - Auto-evo now has much better slime jet and sprinting related calculations
     - Auto-evo now takes binding and signalling agents into account
+    - Auto-evo calculations now take cell max health into account
     - Fixed a save load error when multiple recently expelled entities were dead already
     - Fixed environment tolerance sliders just not moving if not enough MP for the desired change. Now the sliders jump as far towards the desired change as there is MP left.
     - Fixed too long text in the build commit hash being able to break the options menu
