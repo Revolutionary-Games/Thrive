@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-12-03 15:56+0200\n"
-"PO-Revision-Date: 2025-12-03 07:11+0000\n"
-"Last-Translator: Shigasaa <altitudes.etrangeres@ikmail.com>\n"
+"PO-Revision-Date: 2025-12-05 09:22+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -272,7 +272,6 @@ msgstr "Phase évoluée"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "La classe de l'assemblage des Mods est requise lorsque l'assemblage est précisé"
 
-#, fuzzy
 msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Assembleur nécessaire quand une classe de mods est spécifiée"
 
@@ -363,7 +362,6 @@ msgstr "Résultats de l'Auto-Évo"
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% terminé. {1:n0}/{2:n0} étapes."
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
 msgstr "Évoluer automatiquement la force du joueur"
 
@@ -2672,9 +2670,8 @@ msgstr "Processeur graphique :"
 msgid "GRAPHICS"
 msgstr "Graphismes"
 
-#, fuzzy
 msgid "GRAPHICS_PRESET"
-msgstr "Équipe de graphisme"
+msgstr "Préréglage des graphismes :"
 
 msgid "GRAPHICS_TEAM"
 msgstr "Équipe de graphisme"
@@ -3039,7 +3036,6 @@ msgstr "Visitez notre page Itch.io"
 msgid "ITEM_AT_2D_COORDINATES"
 msgstr "{0} à ({1}, {2})"
 
-#, fuzzy
 msgid "ITEM_NAME_SEPARATOR"
 msgstr ":"
 
@@ -3793,7 +3789,7 @@ msgstr "Suivi du curseur par la caméra"
 
 #, fuzzy
 msgid "MICROBE_CURRENT_PARTICLES"
-msgstr "Trouver le secteur actuel"
+msgstr "Particules de microbes actuelles :"
 
 msgid "MICROBE_EDITOR"
 msgstr "Éditeur de microbe"
@@ -4015,11 +4011,7 @@ msgstr "La population va migrer de {0} à ..."
 
 #, fuzzy
 msgid "MIGRATION_STATUS_TEXT"
-msgstr ""
-"Gardez un œil sur votre barre de santé près de votre barre d'[thrive:compound type=\"atp\"][/thrive:compound] (en bas à droite).\n"
-"Votre cellule meurt si elle est à court de vie.\n"
-"Vous régénérez votre santé tant que vous avez de l'[thrive:compound type=\"atp\"][/thrive:compound].\n"
-"Faites en sorte de collecter assez de [thrive:compound type=\"glucose\"][/thrive:compound] pour produire de l'[thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Va migrer {2} unités de population de {0} vers {1}"
 
 #, fuzzy
 msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
@@ -5733,11 +5725,8 @@ msgstr "Chaque [b]flagelle[/b] exerce une poussée en sens inverse de son orient
 msgid "SHOW_HELP"
 msgstr "Montrer l'aide"
 
-#, fuzzy
 msgid "SHOW_ITEM_COORDINATES"
-msgstr ""
-"Position : {0}\n"
-"Pointeur à : {1}"
+msgstr "Afficher les coordonnées"
 
 #, fuzzy
 msgid "SHOW_MAP"
@@ -6267,9 +6256,9 @@ msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "Merci de soutenir le développement de Thrive en achetant cette copie de Thrive !\n"
 "\n"
-"Si vous n'avez pas acheté cette copie, s'il vous plaît achetez-la [color=#3796e1][url={0}]ici[/url][/color] ou aller voir sur notre [color=#3796e1][url=https://revolutionarygamesstudio.com/releases/]site web[/url][/color].\n"
+"La vitesse de développement de Thrive dépends de la quantité de soutient que nous recevons. Vous pouvez trouver plus d'informations sur [color=#3796e1][url={2}]notre site[/url][/color] ou sur nos médias sociaux affichés en bas à gauche de l'écran.\n"
 "\n"
-"Si vous souhaitez voir le lanceur Thrive avant le démarrage de Thrive, vous pouvez utiliser le bouton du menu principal pour sortir du lanceur, puis désactiver le mode transparent dans le menu des options du lanceur."
+"Si vous préféreriez voir le lanceur Thrive avant que Thrive se lance, vous pouve utiliser le bouton dans le menu principal pour quiter vers le lanceur et alors désactiver le mode seamless dans les paramètres du lanceur."
 
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
@@ -6743,13 +6732,13 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
 msgstr ""
-"Voila les bases de l'édition de votre espèce. Vous pouvez consulter les autres onglets de l'éditeur de cellule pour plus d'options.\n"
+"Voici la chaine alimentaire.\n"
 "\n"
-"Vous pouvez renommer votre espèce en cliquant sur son nom et en changeant le texte.\n"
+"Les sources de nourriture pour chaque espèce du secteur actuel sont visibles.\n"
 "\n"
-"Au début, vous devriez garder votre cellule petite et migrer vers les parcelles en surface.\n"
+"Les relations proie-prédateur et les sources de nourriture environnelentales sont toutes les deux affichées.\n"
 "\n"
-"Bonne chance !"
+"Ces informations peuvent vous donner des idées sur la façon de faire évoluer votre espèce. Toutefois, les nouveaux joueurs ne devraient pas s'inquiéter de ne pas comprendre cet onglet."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
@@ -6780,16 +6769,13 @@ msgstr ""
 "\n"
 "Enfin, vous pouvez également supprimer les organites inutiles ou redondants. Ou si vous venez juste de faire une modification, vous pouvez l'annuler."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
-"Voila les bases de l'édition de votre espèce. Vous pouvez consulter les autres onglets de l'éditeur de cellule pour plus d'options.\n"
+"Vous n'avez fait aucun changement à votre espèce.\n"
 "\n"
-"Vous pouvez renommer votre espèce en cliquant sur son nom et en changeant le texte.\n"
+"Si vous quittez l'éditeur, [u]vous ne pourrez pas faire de changement jusqu'à votre prochaine reproduction[/u].\n"
 "\n"
-"Au début, vous devriez garder votre cellule petite et migrer vers les parcelles en surface.\n"
-"\n"
-"Bonne chance !"
+"Pour progresser dans le jeu, vous devez évoluer et vous adapter, changer votre espèce [i]la plupart[/i] des reproductions est donc recommandé."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
