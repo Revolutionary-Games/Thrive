@@ -131,7 +131,7 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
             cardContainer.AddChild(card);
         }
 
-        // After the previous step, the only names left in cardNameSpace are those of deleted cards
+        // After the previous step, the only names left in fossilNameSpace are those of deleted cards
         // which need to be removed
         count = cardContainer.GetChildCount();
         for (int i = 0; i < count; ++i)
