@@ -5,12 +5,6 @@
 /// </summary>
 public partial class MuseumCard : Button
 {
-    /// <summary>
-    ///   Indicates if this process is marked for a specific operation.
-    ///   Should be reset to false by any method using it.
-    /// </summary>
-    internal bool Marked;
-
     private readonly NodePath modulateReference = new("modulate");
 
 #pragma warning disable CA2213
@@ -91,6 +85,12 @@ public partial class MuseumCard : Button
     ///   Original file name this data is loaded from
     /// </summary>
     public string OriginalName { get; set; } = string.Empty;
+
+    /// <summary>
+    ///   Indicates if this process is marked for a specific operation.
+    ///   Should be reset to false by any method using it.
+    /// </summary>
+    public bool Marked { get; set; }
 
     public override void _Ready()
     {
