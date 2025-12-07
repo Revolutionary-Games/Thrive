@@ -99,9 +99,7 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
         {
             var (savedSpeciesInfo, image) = FossilisedSpecies.LoadSpeciesInfoFromFile(speciesName, out var plainName);
 
-            MuseumCard? card;
-
-            if (fossilMemory.TryGetValue(speciesName, out card))
+            if (fossilMemory.TryGetValue(speciesName, out var card))
             {
                 fossilMemory.Remove(speciesName);
             }
