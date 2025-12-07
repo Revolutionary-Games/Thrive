@@ -9,7 +9,7 @@ using Godot;
 /// </summary>
 public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPage
 {
-    private readonly HashSet<string> fossilNameSpace = new();
+    private readonly Dictionary<string, MuseumCard> fossilNameSpace = new();
 
 #pragma warning disable CA2213
     [Export]
@@ -91,24 +91,41 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
         var count = cardContainer.GetChildCount();
         for (int i = 0; i < count; ++i)
         {
-            fossilNameSpace.Add(cardContainer.GetChild<MuseumCard>(i).OriginalName);
+            var card = cardContainer.GetChild<MuseumCard>(i);
+            fossilNameSpace.Add(card.OriginalName, card);
         }
 
         foreach (var speciesName in FossilisedSpecies.CreateListOfFossils(true))
         {
-            if (fossilNameSpace.Contains(speciesName))
+            var (savedSpeciesInfo, image) = FossilisedSpecies.LoadSpeciesInfoFromFile(speciesName, out var plainName);
+
+            MuseumCard? card;
+
+            if (fossilNameSpace.TryGetValue(speciesName, out card))
             {
                 fossilNameSpace.Remove(speciesName);
-                continue;
             }
-
-            var (savedSpeciesInfo, image) = FossilisedSpecies.LoadSpeciesInfoFromFile(speciesName, out var plainName);
 
             // Don't add cards for corrupt fossils
             if (savedSpeciesInfo == null)
                 continue;
 
-            var card = museumCardScene.Instantiate<MuseumCard>();
+            if (card == null)
+            {
+                card = museumCardScene.Instantiate<MuseumCard>();
+
+                // Don't need to connect this if outdated as we cannot allow loading it
+                if (!savedSpeciesInfo.IsInvalidOrOutdated)
+                {
+                    card.Connect(MuseumCard.SignalName.OnSpeciesSelected,
+                        new Callable(this, nameof(UpdateSpeciesPreview)));
+                }
+
+                card.Connect(MuseumCard.SignalName.OnSpeciesDeleted, new Callable(this, nameof(DeleteSpecies)));
+
+                cardContainer.AddChild(card);
+            }
+
             card.FossilName = plainName;
             card.SpeciesName = savedSpeciesInfo.FormattedName;
             card.OriginalName = speciesName;
@@ -118,17 +135,6 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
 
             card.FossilPreviewImage = image;
             card.Outdated = savedSpeciesInfo.IsInvalidOrOutdated;
-
-            // Don't need to connect this if outdated as we cannot allow loading it
-            if (!savedSpeciesInfo.IsInvalidOrOutdated)
-            {
-                card.Connect(MuseumCard.SignalName.OnSpeciesSelected,
-                    new Callable(this, nameof(UpdateSpeciesPreview)));
-            }
-
-            card.Connect(MuseumCard.SignalName.OnSpeciesDeleted, new Callable(this, nameof(DeleteSpecies)));
-
-            cardContainer.AddChild(card);
         }
 
         // After the previous step, the only names left in fossilNameSpace are those of deleted cards
@@ -136,9 +142,9 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
         count = cardContainer.GetChildCount();
         for (int i = 0; i < count; ++i)
         {
-            var card = (MuseumCard)cardContainer.GetChild(i);
+            var card = cardContainer.GetChild<MuseumCard>(i);
 
-            if (fossilNameSpace.Contains(card.OriginalName))
+            if (fossilNameSpace.ContainsKey(card.OriginalName))
             {
                 card.QueueFree();
             }
