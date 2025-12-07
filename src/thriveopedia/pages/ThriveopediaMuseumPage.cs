@@ -9,7 +9,11 @@ using Godot;
 /// </summary>
 public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPage
 {
-    private readonly Dictionary<string, MuseumCard> fossilMemory = new();
+    /// <summary>
+    ///   Stores created fossil cards. The marked state is used for removing obsolete entries and should be reset to
+    ///   false by any method using it.
+    /// </summary>
+    private readonly Dictionary<string, (MuseumCard Card, bool Marked)> fossilCards = new();
 
 #pragma warning disable CA2213
     [Export]
@@ -87,26 +91,21 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
     {
         GD.Print("Refreshing the Thriveopedia museum page");
 
-        // Add already present fossil names and cards to fossilMemory
-        var count = cardContainer.GetChildCount();
-        for (int i = 0; i < count; ++i)
-        {
-            var card = cardContainer.GetChild<MuseumCard>(i);
-            fossilMemory.Add(card.OriginalName, card);
-        }
-
         foreach (var speciesName in FossilisedSpecies.CreateListOfFossils(true))
         {
             var (savedSpeciesInfo, image) = FossilisedSpecies.LoadSpeciesInfoFromFile(speciesName, out var plainName);
 
-            if (fossilMemory.TryGetValue(speciesName, out var card))
-            {
-                fossilMemory.Remove(speciesName);
-            }
-
             // Don't add cards for corrupt fossils
             if (savedSpeciesInfo == null)
                 continue;
+
+            MuseumCard? card = null;
+
+            if (fossilCards.TryGetValue(speciesName, out var entry))
+            {
+                card = entry.Card;
+                fossilCards[speciesName] = (card, true);
+            }
 
             if (card == null)
             {
@@ -122,6 +121,8 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
                 card.Connect(MuseumCard.SignalName.OnSpeciesDeleted, new Callable(this, nameof(DeleteSpecies)));
 
                 cardContainer.AddChild(card);
+
+                fossilCards.Add(speciesName, (card, true));
             }
 
             card.FossilName = plainName;
@@ -135,10 +136,17 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
             card.Outdated = savedSpeciesInfo.IsInvalidOrOutdated;
         }
 
-        // After the previous step, the only cards left in fossilMemory are those of deleted fossils
-        foreach (var card in fossilMemory.Values)
+        foreach ((var name, var entry) in fossilCards.ToArray())
         {
-            card.QueueFree();
+            if (!entry.Marked)
+            {
+                fossilCards.Remove(name);
+                entry.Card.DetachAndQueueFree();
+            }
+            else
+            {
+                fossilCards[name] = (entry.Card, false);
+            }
         }
     }
 
@@ -301,6 +309,8 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
             welcomeLabel.Visible = true;
             speciesPreviewContainer.Visible = false;
         }
+
+        fossilCards.Remove(fossilName);
 
         cardToBeDeleted.QueueFree();
         cardToBeDeleted = null;
