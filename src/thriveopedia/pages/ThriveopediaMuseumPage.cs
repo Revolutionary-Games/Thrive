@@ -82,13 +82,26 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
 
     private void RefreshIfDirty()
     {
-        // TODO: caching or something here would make this a lot more efficient as for people with a ton of fossils
-        // the Thriveopedia likely will start to lag a lot
         GD.Print("Refreshing the Thriveopedia museum page");
-        cardContainer.QueueFreeChildren();
+
+        var cards = cardContainer.GetChildren();
 
         foreach (var speciesName in FossilisedSpecies.CreateListOfFossils(true))
         {
+            bool found = false;
+            foreach (var existingCard in cards)
+            {
+                var museumCard = (MuseumCard)existingCard;
+                if (museumCard.OriginalName == speciesName)
+                {
+                    found = true;
+                    museumCard.Marked = true;
+                }
+            }
+
+            if (found)
+                continue;
+
             var (savedSpeciesInfo, image) = FossilisedSpecies.LoadSpeciesInfoFromFile(speciesName, out var plainName);
 
             // Don't add cards for corrupt fossils
@@ -116,6 +129,21 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
             card.Connect(MuseumCard.SignalName.OnSpeciesDeleted, new Callable(this, nameof(DeleteSpecies)));
 
             cardContainer.AddChild(card);
+            card.Marked = true;
+        }
+
+        var count = cardContainer.GetChildCount();
+        for (int i = 0; i < count; i++)
+        {
+            var card = (MuseumCard)cardContainer.GetChild(i);
+            if (!card.Marked)
+            {
+                card.QueueFree();
+            }
+            else
+            {
+                card.Marked = false;
+            }
         }
     }
 
