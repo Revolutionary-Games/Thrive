@@ -136,7 +136,7 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
             card.Outdated = savedSpeciesInfo.IsInvalidOrOutdated;
         }
 
-        foreach ((var name, var entry) in fossilCards.ToArray())
+        foreach (var (name, entry) in fossilCards.ToArray())
         {
             if (!entry.Marked)
             {
