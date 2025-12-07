@@ -5,6 +5,12 @@
 /// </summary>
 public partial class MuseumCard : Button
 {
+    /// <summary>
+    ///   Indicates if this process is marked for a specific operation.
+    ///   Should be reset to false by any method using it.
+    /// </summary>
+    internal bool Marked;
+
     private readonly NodePath modulateReference = new("modulate");
 
 #pragma warning disable CA2213

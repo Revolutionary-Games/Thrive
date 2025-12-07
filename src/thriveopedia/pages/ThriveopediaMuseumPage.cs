@@ -9,11 +9,7 @@ using Godot;
 /// </summary>
 public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPage
 {
-    /// <summary>
-    ///   Stores created fossil cards. The marked state is used for removing obsolete entries and should be reset to
-    ///   false by any method using it.
-    /// </summary>
-    private readonly Dictionary<string, (MuseumCard Card, bool Marked)> fossilCards = new();
+    private readonly Dictionary<string, MuseumCard> fossilCards = new();
 
 #pragma warning disable CA2213
     [Export]
@@ -99,12 +95,9 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
             if (savedSpeciesInfo == null)
                 continue;
 
-            MuseumCard? card = null;
-
-            if (fossilCards.TryGetValue(speciesName, out var entry))
+            if (fossilCards.TryGetValue(speciesName, out var card))
             {
-                card = entry.Card;
-                fossilCards[speciesName] = (card, true);
+                card.Marked = true;
             }
 
             if (card == null)
@@ -122,7 +115,8 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
 
                 cardContainer.AddChild(card);
 
-                fossilCards.Add(speciesName, (card, true));
+                card.Marked = true;
+                fossilCards.Add(speciesName, card);
             }
 
             card.FossilName = plainName;
@@ -136,16 +130,16 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
             card.Outdated = savedSpeciesInfo.IsInvalidOrOutdated;
         }
 
-        foreach (var (name, entry) in fossilCards.ToArray())
+        foreach (var (name, card) in fossilCards.ToArray())
         {
-            if (!entry.Marked)
+            if (!card.Marked)
             {
                 fossilCards.Remove(name);
-                entry.Card.DetachAndQueueFree();
+                card.DetachAndQueueFree();
             }
             else
             {
-                fossilCards[name] = (entry.Card, false);
+                card.Marked = false;
             }
         }
     }
