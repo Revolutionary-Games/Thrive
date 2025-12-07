@@ -5,11 +5,6 @@
 /// </summary>
 public partial class MuseumCard : Button
 {
-    /// <summary>
-    ///   Marks the card for some specific operation. Should be reset to false after use by any method.
-    /// </summary>
-    public bool Marked;
-
     private readonly NodePath modulateReference = new("modulate");
 
 #pragma warning disable CA2213

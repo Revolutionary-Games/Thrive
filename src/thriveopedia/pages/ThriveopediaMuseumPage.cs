@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
@@ -8,6 +9,8 @@ using Godot;
 /// </summary>
 public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPage
 {
+    private readonly HashSet<string> fossilNameSpace = new();
+
 #pragma warning disable CA2213
     [Export]
     private HFlowContainer cardContainer = null!;
@@ -84,23 +87,20 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
     {
         GD.Print("Refreshing the Thriveopedia museum page");
 
-        var cards = cardContainer.GetChildren();
+        // Add names of already present fossils to cardNameSpace
+        var count = cardContainer.GetChildCount();
+        for (int i = 0; i < count; ++i)
+        {
+            fossilNameSpace.Add(cardContainer.GetChild<MuseumCard>(i).OriginalName);
+        }
 
         foreach (var speciesName in FossilisedSpecies.CreateListOfFossils(true))
         {
-            bool found = false;
-            foreach (var existingCard in cards)
+            if (fossilNameSpace.Contains(speciesName))
             {
-                var museumCard = (MuseumCard)existingCard;
-                if (museumCard.OriginalName == speciesName)
-                {
-                    found = true;
-                    museumCard.Marked = true;
-                }
-            }
-
-            if (found)
+                fossilNameSpace.Remove(speciesName);
                 continue;
+            }
 
             var (savedSpeciesInfo, image) = FossilisedSpecies.LoadSpeciesInfoFromFile(speciesName, out var plainName);
 
@@ -129,20 +129,18 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
             card.Connect(MuseumCard.SignalName.OnSpeciesDeleted, new Callable(this, nameof(DeleteSpecies)));
 
             cardContainer.AddChild(card);
-            card.Marked = true;
         }
 
-        var count = cardContainer.GetChildCount();
-        for (int i = 0; i < count; i++)
+        // After the previous step, the only names left in cardNameSpace are those of deleted cards
+        // which need to be removed
+        count = cardContainer.GetChildCount();
+        for (int i = 0; i < count; ++i)
         {
             var card = (MuseumCard)cardContainer.GetChild(i);
-            if (!card.Marked)
+
+            if (fossilNameSpace.Contains(card.OriginalName))
             {
                 card.QueueFree();
-            }
-            else
-            {
-                card.Marked = false;
             }
         }
     }
