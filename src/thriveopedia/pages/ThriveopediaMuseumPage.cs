@@ -10,6 +10,7 @@ using Godot;
 public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPage
 {
     private readonly Dictionary<string, MuseumCard> fossilCards = new();
+    private readonly List<string> cardsToRemove = new();
 
 #pragma warning disable CA2213
     [Export]
@@ -130,17 +131,27 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
             card.Outdated = savedSpeciesInfo.IsInvalidOrOutdated;
         }
 
-        foreach (var (name, card) in fossilCards.ToArray())
+        foreach (var fossilCard in fossilCards)
         {
-            if (!card.Marked)
+            if (!fossilCard.Value.Marked)
             {
-                fossilCards.Remove(name);
-                card.DetachAndQueueFree();
+                cardsToRemove.Add(fossilCard.Key);
+                fossilCard.Value.DetachAndQueueFree();
             }
             else
             {
-                card.Marked = false;
+                fossilCard.Value.Marked = false;
             }
+        }
+
+        if (cardsToRemove.Count > 0)
+        {
+            foreach (var fossilName in cardsToRemove)
+            {
+                fossilCards.Remove(fossilName);
+            }
+
+            cardsToRemove.Clear();
         }
     }
 
