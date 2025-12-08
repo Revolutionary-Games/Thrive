@@ -1314,8 +1314,8 @@ public static class Constants
     public const float AUTO_EVO_MUCOCYST_SCORE = 40;
     public const float AUTO_EVO_PULL_CILIA_MODIFIER = 0.8f;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
-    public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER = 1.18f;
-    public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER = 0.7f;
+    public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER = 1.2f;
+    public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER = 0.8f;
     public const float AUTO_EVO_CHEMORECEPTOR_BASE_SCORE = 0.4f;
     public const float AUTO_EVO_CHEMORECEPTOR_VARIABLE_CLOUD_SCORE = 8;
     public const float AUTO_EVO_CHEMORECEPTOR_VARIABLE_CHUNK_SCORE = 0.00007f;
