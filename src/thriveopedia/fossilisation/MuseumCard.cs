@@ -87,7 +87,7 @@ public partial class MuseumCard : Button
     public string OriginalName { get; set; } = string.Empty;
 
     /// <summary>
-    ///   Indicates if this process is marked for a specific operation.
+    ///   Indicates if this card is marked for a specific operation.
     ///   Should be reset to false by any method using it.
     /// </summary>
     public bool Marked { get; set; }
