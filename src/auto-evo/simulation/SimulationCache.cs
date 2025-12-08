@@ -328,7 +328,8 @@ public class SimulationCache
         var preySlimeJetScore = preyToolScores.SlimeJetScore;
         var preyMucocystsScore = preyToolScores.MucocystsScore;
 
-        var behaviourScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+        var agressionScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+        var activityScore = predator.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
 
         // Sprinting calculations
         var predatorSprintSpeed = predatorSpeed * sprintMultiplier;
@@ -487,6 +488,9 @@ public class SimulationCache
                     * float.Sqrt(preyIndividualCost);
             }
 
+            // Active hunting is more effective for active species
+            catchScore *= activityScore;
+
             // ... but you may also catch them by luck (e.g. when they run into you),
             // Prey that can't turn away fast enough are more likely to get caught.
             accidentalCatchScore = Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * predatorHexSize *
@@ -572,6 +576,9 @@ public class SimulationCache
                 * float.Sqrt(preyIndividualCost);
         }
 
+        // Active hunting is more effective for active species
+        damagingToxinScore *= activityScore;
+
         // Calling for allies helps with combative hunting.
         if (hasSignallingAgent)
         {
@@ -609,7 +616,7 @@ public class SimulationCache
         if (predatorSlimeJetScore > 0)
             preySlimeJetScore = 0;
 
-        cached = (scoreMultiplier * behaviourScore *
+        cached = (scoreMultiplier * agressionScore *
                 (pilusScore + engulfmentScore + damagingToxinScore) - (preySlimeJetScore + preyMucocystsScore)) /
             (GetEnergyBalanceForSpecies(predator, biomeConditions).TotalConsumption * bindingModifier);
 
