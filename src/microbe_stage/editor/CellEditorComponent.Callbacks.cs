@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Arch.Core.Extensions;
 using Godot;
 using SharedBase.Archive;
 
@@ -248,7 +247,7 @@ public partial class CellEditorComponent
         {
             previewMicrobeSpecies.MembraneType = membrane;
 
-            if (previewMicrobe.IsAlive())
+            if (previewMicrobe.IsAliveAndNotNull())
                 previewSimulation!.ApplyMicrobeMembraneType(previewMicrobe, membrane);
         }
     }
@@ -272,7 +271,7 @@ public partial class CellEditorComponent
         {
             previewMicrobeSpecies.MembraneType = Membrane;
 
-            if (previewMicrobe.IsAlive())
+            if (previewMicrobe.IsAliveAndNotNull())
                 previewSimulation!.ApplyMicrobeMembraneType(previewMicrobe, Membrane);
         }
     }

@@ -772,7 +772,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         ref Engulfer engulfer, CompoundBag ourCompounds, float speciesFocus, float speciesAggression,
         float speciesOpportunism, Random random)
     {
-        if (ai.FocusedPrey != Entity.Null && ai.FocusedPrey.IsAlive())
+        if (ai.FocusedPrey.IsAliveAndNotNull())
         {
             var focused = ai.FocusedPrey;
             try

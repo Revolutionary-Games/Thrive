@@ -620,7 +620,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
     /// <param name="button">The button attached to the organism to fossilise</param>
     public void ShowFossilisationDialog(FossilisationButton button)
     {
-        if (!button.AttachedEntity.IsAlive())
+        if (!button.AttachedEntity.IsAliveAndNotNull())
         {
             GD.PrintErr("Tried to show fossilization dialog for a dead entity");
             return;

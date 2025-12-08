@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using Arch.Core;
-using Arch.Core.Extensions;
 using AutoEvo;
 using Godot;
 using SharedBase.Archive;
@@ -309,7 +308,7 @@ public partial class CellEditorComponent :
 
             previewMicrobeSpecies.MembraneRigidity = value;
 
-            if (previewMicrobe.IsAlive())
+            if (previewMicrobe.IsAliveAndNotNull())
                 previewSimulation!.ApplyMicrobeRigidity(previewMicrobe, previewMicrobeSpecies.MembraneRigidity);
         }
     }
@@ -334,7 +333,7 @@ public partial class CellEditorComponent :
 
             previewMicrobeSpecies.SpeciesColour = value;
 
-            if (previewMicrobe.IsAlive())
+            if (previewMicrobe.IsAliveAndNotNull())
                 previewSimulation!.ApplyMicrobeColour(previewMicrobe, previewMicrobeSpecies.SpeciesColour);
         }
     }
@@ -586,6 +585,9 @@ public partial class CellEditorComponent :
 
         // Visual simulation is needed very early when loading a save
         previewSimulation = new MicrobeVisualOnlySimulation();
+
+        // Just to make *absolutely* sure this value cannot point to an old world
+        previewMicrobe = Entity.Null;
 
         cellPreviewVisualsRoot = new Node3D
         {
@@ -1695,6 +1697,7 @@ public partial class CellEditorComponent :
         if (disposing)
         {
             previewSimulation?.Dispose();
+            previewMicrobe = Entity.Null;
         }
 
         base.Dispose(disposing);
@@ -1748,6 +1751,9 @@ public partial class CellEditorComponent :
         if (previewSimulation == null)
             throw new InvalidOperationException("Component needs to be initialized first");
 
+        if (previewSimulation.Disposed)
+            throw new InvalidOperationException("Preview world simulation has been disposed already");
+
 #if DEBUG
         if (previewMicrobe == default)
         {
@@ -1756,7 +1762,7 @@ public partial class CellEditorComponent :
         }
 #endif
 
-        if (previewMicrobe.IsAlive() && previewMicrobeSpecies != null)
+        if (previewMicrobe.IsAliveAndNotNull() && previewMicrobeSpecies != null)
             return false;
 
         if (cellPreviewVisualsRoot == null)
@@ -1769,11 +1775,13 @@ public partial class CellEditorComponent :
             throw new InvalidOperationException("can't setup preview before cell properties are known"),
             hexTemporaryMemory, hexTemporaryMemory2)
         {
-            // Force large normal size (instead of showing bacteria as smaller scale than the editor hexes)
+            // Force large normal size (instead of showing bacteria as a smaller scale than the editor hexes)
             IsBacteria = false,
         };
 
         previewMicrobe = previewSimulation.CreateVisualisationMicrobe(previewMicrobeSpecies);
+        if (!previewMicrobe.IsAliveAndNotNull())
+            throw new InvalidOperationException("Failed to create preview microbe");
 
         // Set its initial visibility
         cellPreviewVisualsRoot.Visible = MicrobePreviewMode;
