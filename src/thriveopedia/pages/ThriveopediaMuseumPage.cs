@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
@@ -8,6 +9,9 @@ using Godot;
 /// </summary>
 public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPage
 {
+    private readonly Dictionary<string, MuseumCard> fossilCards = new();
+    private readonly List<string> cardsToRemove = new();
+
 #pragma warning disable CA2213
     [Export]
     private HFlowContainer cardContainer = null!;
@@ -82,10 +86,7 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
 
     private void RefreshIfDirty()
     {
-        // TODO: caching or something here would make this a lot more efficient as for people with a ton of fossils
-        // the Thriveopedia likely will start to lag a lot
         GD.Print("Refreshing the Thriveopedia museum page");
-        cardContainer.QueueFreeChildren();
 
         foreach (var speciesName in FossilisedSpecies.CreateListOfFossils(true))
         {
@@ -95,7 +96,30 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
             if (savedSpeciesInfo == null)
                 continue;
 
-            var card = museumCardScene.Instantiate<MuseumCard>();
+            if (fossilCards.TryGetValue(speciesName, out var card))
+            {
+                card.Marked = true;
+            }
+
+            if (card == null)
+            {
+                card = museumCardScene.Instantiate<MuseumCard>();
+
+                // Don't need to connect this if outdated as we cannot allow loading it
+                if (!savedSpeciesInfo.IsInvalidOrOutdated)
+                {
+                    card.Connect(MuseumCard.SignalName.OnSpeciesSelected,
+                        new Callable(this, nameof(UpdateSpeciesPreview)));
+                }
+
+                card.Connect(MuseumCard.SignalName.OnSpeciesDeleted, new Callable(this, nameof(DeleteSpecies)));
+
+                cardContainer.AddChild(card);
+
+                card.Marked = true;
+                fossilCards.Add(speciesName, card);
+            }
+
             card.FossilName = plainName;
             card.SpeciesName = savedSpeciesInfo.FormattedName;
             card.OriginalName = speciesName;
@@ -105,17 +129,29 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
 
             card.FossilPreviewImage = image;
             card.Outdated = savedSpeciesInfo.IsInvalidOrOutdated;
+        }
 
-            // Don't need to connect this if outdated as we cannot allow loading it
-            if (!savedSpeciesInfo.IsInvalidOrOutdated)
+        foreach (var fossilCard in fossilCards)
+        {
+            if (!fossilCard.Value.Marked)
             {
-                card.Connect(MuseumCard.SignalName.OnSpeciesSelected,
-                    new Callable(this, nameof(UpdateSpeciesPreview)));
+                cardsToRemove.Add(fossilCard.Key);
+                fossilCard.Value.DetachAndQueueFree();
+            }
+            else
+            {
+                fossilCard.Value.Marked = false;
+            }
+        }
+
+        if (cardsToRemove.Count > 0)
+        {
+            foreach (var fossilName in cardsToRemove)
+            {
+                fossilCards.Remove(fossilName);
             }
 
-            card.Connect(MuseumCard.SignalName.OnSpeciesDeleted, new Callable(this, nameof(DeleteSpecies)));
-
-            cardContainer.AddChild(card);
+            cardsToRemove.Clear();
         }
     }
 
@@ -278,6 +314,8 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
             welcomeLabel.Visible = true;
             speciesPreviewContainer.Visible = false;
         }
+
+        fossilCards.Remove(fossilName);
 
         cardToBeDeleted.QueueFree();
         cardToBeDeleted = null;
