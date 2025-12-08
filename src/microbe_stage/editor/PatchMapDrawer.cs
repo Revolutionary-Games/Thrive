@@ -1138,6 +1138,8 @@ public partial class PatchMapDrawer : Control
                     Texture = IndicatorTexture,
                     Position = GetIndicatorPosition(node, i, IndicatorTexture),
                     MouseFilter = MouseFilterEnum.Ignore,
+                    ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+                    CustomMinimumSize = new Vector2(12.0f, 12.0f),
                 };
 
                 populationIndicatorContainer.AddChild(lifeIndicator);
