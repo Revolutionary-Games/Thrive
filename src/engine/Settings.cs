@@ -89,7 +89,7 @@ public class Settings
     public static CultureInfo DefaultCulture => DefaultCultureValue;
 
     /// <summary>
-    ///   If environment is steam returns SteamHandler.DisplayName, else Environment.UserName
+    ///   If the environment is Steam, returns SteamHandler.DisplayName, else Environment.UserName
     /// </summary>
     public static string EnvironmentUserName => SteamHandler.Instance.IsLoaded ?
         SteamHandler.Instance.DisplayName :
@@ -851,6 +851,9 @@ public class Settings
     public void LoadDefaults()
     {
         Settings settings = new Settings();
+
+        settings.ApplyPostInit();
+
         CopySettings(settings);
     }
 
@@ -1308,52 +1311,10 @@ public class Settings
                 + "Using default settings instead.");
 
             var settings = new Settings();
+
+            settings.ApplyPostInit();
+
             settings.Save();
-
-            long availableRam = 0;
-            try
-            {
-                availableRam = OS.GetMemoryInfo()["physical"].AsInt64();
-            }
-            catch (Exception e)
-            {
-                GD.PrintErr("Failed to get physical memory info: ", e);
-            }
-
-            GD.Print("Detected system RAM (MiB) as: ", availableRam / GlobalConstants.MEBIBYTE);
-
-            var preset = GraphicsPresets.Preset.High;
-
-            // Automatic preset adjustment based on some conditions
-            if (FeatureInformation.GetVideoDriver() == OS.RenderingDriver.Opengl3 ||
-                availableRam < (long)GlobalConstants.GIBIBYTE * 3)
-            {
-                preset = GraphicsPresets.Preset.Low;
-
-                // Apparently on Linux with a dedicated GPU this detection is not correct, so we have some safety
-                // handling here
-                bool hasDedicatedGpu = RenderingServer.GetVideoAdapterType() is RenderingDevice.DeviceType.DiscreteGpu
-                    or RenderingDevice.DeviceType.Other;
-
-                // Additionally, if integrated graphics and system memory is not very high set to very low
-
-                if ((!hasDedicatedGpu && availableRam < (long)GlobalConstants.GIBIBYTE * 11) ||
-                    (availableRam < (long)GlobalConstants.GIBIBYTE * 3))
-                {
-                    GD.Print("Detected integrated graphics and low system memory (or very low memory)");
-                    preset = GraphicsPresets.Preset.VeryLow;
-                }
-            }
-            else if (Environment.ProcessorCount <= 4 || availableRam < (long)GlobalConstants.GIBIBYTE * 6)
-            {
-                // Assume 2 CPU cores have hyperthreading so this is probably a laptop system, so pick medium
-                preset = GraphicsPresets.Preset.Medium;
-            }
-
-            GD.Print("Picked graphics preset: ", preset);
-
-            // Apply graphics preset to the initial settings
-            GraphicsPresets.ApplyPreset(preset, settings);
 
             return settings;
         }
@@ -1467,5 +1428,56 @@ public class Settings
 
             setting.AssignFrom(source);
         }
+    }
+
+    /// <summary>
+    ///   Customizes settings after creating them based on the current environment
+    /// </summary>
+    private void ApplyPostInit()
+    {
+        long availableRam = 0;
+        try
+        {
+            availableRam = OS.GetMemoryInfo()["physical"].AsInt64();
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Failed to get physical memory info: ", e);
+        }
+
+        GD.Print("Detected system RAM (MiB) as: ", availableRam / GlobalConstants.MEBIBYTE);
+
+        var preset = GraphicsPresets.Preset.High;
+
+        // Automatic preset adjustment based on some conditions
+        if (FeatureInformation.GetVideoDriver() == OS.RenderingDriver.Opengl3 ||
+            availableRam < (long)GlobalConstants.GIBIBYTE * 3)
+        {
+            preset = GraphicsPresets.Preset.Low;
+
+            // Apparently on Linux with a dedicated GPU this detection is not correct, so we have some safety
+            // handling here
+            bool hasDedicatedGpu = RenderingServer.GetVideoAdapterType() is RenderingDevice.DeviceType.DiscreteGpu
+                or RenderingDevice.DeviceType.Other;
+
+            // Additionally, if integrated graphics and system memory is not very high set to very low
+
+            if ((!hasDedicatedGpu && availableRam < (long)GlobalConstants.GIBIBYTE * 11) ||
+                (availableRam < (long)GlobalConstants.GIBIBYTE * 3))
+            {
+                GD.Print("Detected integrated graphics and low system memory (or very low memory)");
+                preset = GraphicsPresets.Preset.VeryLow;
+            }
+        }
+        else if (Environment.ProcessorCount <= 4 || availableRam < (long)GlobalConstants.GIBIBYTE * 6)
+        {
+            // Assume 2 CPU cores have hyperthreading so this is probably a laptop system, so pick medium
+            preset = GraphicsPresets.Preset.Medium;
+        }
+
+        GD.Print("Picked graphics preset: ", preset);
+
+        // Apply graphics preset to the initial settings
+        GraphicsPresets.ApplyPreset(preset, this);
     }
 }
