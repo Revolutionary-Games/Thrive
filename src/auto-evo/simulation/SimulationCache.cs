@@ -357,7 +357,6 @@ public class SimulationCache
 
         var hasChemoreceptor = false;
         var hasSignallingAgent = false;
-        var hasBindingAgent = false;
 
         var organelles = predator.Organelles.Organelles;
         int count = organelles.Count;
@@ -369,9 +368,6 @@ public class SimulationCache
 
             if (organelle.Definition.HasSignalingFeature)
                 hasSignallingAgent = true;
-
-            if (organelle.Definition.HasBindingFeature)
-                hasBindingAgent = true;
         }
 
         // TODO: switch to a manual loop to avoid an allocation
@@ -594,31 +590,13 @@ public class SimulationCache
             scoreMultiplier *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
-        // Modifier to fit the current mechanics of the Binding Agent. This should probably be removed or adjusted if
-        // being in a colony no longer reduces osmoregulation cost.
-        var bindingModifier = 1.0f;
-
-        if (hasBindingAgent)
-        {
-            if (hasSignallingAgent)
-            {
-                bindingModifier *= 1 -
-                    Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS * Constants.AUTO_EVO_SIGNALLING_BONUS;
-            }
-            else
-            {
-                bindingModifier *= 1 - Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS;
-            }
-        }
-
         // predators that have slime jets themselves ignore the immobilising effect of prey slimejets
         preySlimeJetScore = MathF.Sqrt(preySlimeJetScore);
         if (predatorSlimeJetScore > 0)
             preySlimeJetScore = 0;
 
-        cached = (scoreMultiplier * agressionScore *
-                (pilusScore + engulfmentScore + damagingToxinScore) - (preySlimeJetScore + preyMucocystsScore)) /
-            (GetEnergyBalanceForSpecies(predator, biomeConditions).TotalConsumption * bindingModifier);
+        cached = scoreMultiplier * agressionScore *
+            (pilusScore + engulfmentScore + damagingToxinScore) - (preySlimeJetScore + preyMucocystsScore);
 
         predationScores.Add(key, cached);
         return cached;
