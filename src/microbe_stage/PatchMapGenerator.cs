@@ -187,11 +187,13 @@ public static class PatchMapGenerator
         if (tidepool == null)
             throw new InvalidOperationException($"No tidepool patch created for seed {settings.Seed}");
 
-        // This uses random so this affects the edge subtraction, but this doesn't depend on the selected start type
+        // This uses random so this affects the edge subtraction, but this doesn't depend on the selected start type,
         // so this makes the same map be generated anyway
         ConfigureStartingPatch(map, settings, defaultSpecies, vents, tidepool, random);
 
-        var edgeCount = random.Next(vertexCount, 2 * vertexCount - 4);
+        // For small maps 2 * vertexCount - 4 might be less than vertex count. That's why we increase the minimum
+        // amount here with the Max call.
+        var edgeCount = random.Next(vertexCount, Math.Max(vertexCount + 1, 2 * vertexCount - 4));
 
         // We make the graph by subtracting edges from its Delaunay Triangulation
         // as long as the graph stays connected.
@@ -538,6 +540,7 @@ public static class PatchMapGenerator
                 if (cave != null)
                 {
                     // Cave shouldn't be linked to seafloor, vent or itself
+                    // TODO: does this need to handle the case where waterPatchCount is 0?
                     caveLinkedTo = random.Next(0, waterPatchCount - 1);
                     LinkPatches(cave, region.Patches[caveLinkedTo]);
                 }
@@ -551,7 +554,9 @@ public static class PatchMapGenerator
                 var deepestSeaPatch = region.Patches[waterPatchCount - 2];
                 var seafloor = region.Patches[waterPatchCount - 1];
                 var depth = deepestSeaPatch.Depth;
-                deepestSeaPatch.Depth[1] = random.Next(depth[0] + 1, depth[1] - 10);
+
+                // The max call here ensures that the second value can never be too small and cause an error
+                deepestSeaPatch.Depth[1] = random.Next(depth[0] + 1, Math.Max(depth[0] + 1, depth[1] - 10));
 
                 seafloor.Depth[0] = deepestSeaPatch.Depth[1];
                 seafloor.Depth[1] = deepestSeaPatch.Depth[1] + 10;
@@ -988,7 +993,7 @@ public static class PatchMapGenerator
     /// </summary>
     /// <param name="map">The patch map to apply variations to</param>
     /// <param name="settings">The world generation settings to use for variations</param>
-    /// <param name="random">Random instance with certain seed</param>
+    /// <param name="random">Random instance with a certain seed</param>
     private static void ApplyPatchEnvironmentVariation(PatchMap map, WorldGenerationSettings settings, Random random)
     {
         foreach (var patch in map.Patches.Values)
