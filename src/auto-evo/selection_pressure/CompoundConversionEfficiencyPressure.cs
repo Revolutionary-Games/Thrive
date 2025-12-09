@@ -25,6 +25,11 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
             new AddOrganelleAnywhere(organelle => organelle.HasBindingFeature),
             new AddOrganelleAnywhere(organelle => organelle.HasSignalingFeature),
             RemoveOrganelle.ThatCreateCompound(outCompound),
+            new ChangeMembraneType("double"),
+            new ChangeMembraneType("cellulose"),
+            new ChangeMembraneType("chitin"),
+            new ChangeMembraneType("calciumCarbonate"),
+            new ChangeMembraneType("silica"),
         ])
     {
         FromCompound = SimulationParameters.GetCompound(compound);
