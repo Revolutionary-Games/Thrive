@@ -777,8 +777,8 @@ public class SimulationCache
         var organelleCount = organelles.Count;
         var totalToxinOrganellesCount = 0;
         var totalToxinTypesCount = 0;
-        var pilusCount = 0;
-        var injectisomeCount = 0;
+        var pilusCount = 0.0f;
+        var injectisomeCount = 0.0f;
         var slimeJetsCount = 0;
         var mucocystsCount = 0;
         var pullingCiliasCount = 0;
@@ -796,13 +796,15 @@ public class SimulationCache
 
             if (organelle.Definition.HasPilusComponent)
             {
+                // Make sure that pili are positioned at the front of the cell for offensive action
+                var piliValue = CalculateAngleMultiplier(organelle.Position, true);
                 if (organelle.Upgrades.HasInjectisomeUpgrade())
                 {
-                    ++injectisomeCount;
+                    injectisomeCount += piliValue;
                     continue;
                 }
 
-                ++pilusCount;
+                pilusCount += piliValue;
                 continue;
             }
 
@@ -818,7 +820,7 @@ public class SimulationCache
 
                 // Make sure that slime jets are positioned at the back of the cell, because otherwise they will
                 // push the cell backwards (into the predator or away from the prey) or to the side
-                slimeJetsMultiplier *= CalculateAngleMultiplier(organelle.Position);
+                slimeJetsMultiplier *= CalculateAngleMultiplier(organelle.Position, false);
                 continue;
             }
 
@@ -1090,14 +1092,14 @@ public class SimulationCache
     /// <summary>
     ///   Calculates cos of angle between the organelle and vertical axis
     /// </summary>
-    private float CalculateAngleMultiplier(Hex pos)
+    private float CalculateAngleMultiplier(Hex pos, bool front)
     {
         // Slime jets are biased to go backwards at position (0,0)
         if (pos.R == 0 && pos.Q == 0)
             return 1;
 
         Vector3 organellePosition = Hex.AxialToCartesian(pos);
-        Vector3 downVector = new Vector3(0, 0, 1);
+        Vector3 downVector = front ? new Vector3(0, 0, -1) : new Vector3(0, 0, 1);
         float angleCos = organellePosition.Normalized().Dot(downVector);
 
         // If degrees is higher than 40 then return 0
