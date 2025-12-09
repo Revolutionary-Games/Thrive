@@ -1,4 +1,5 @@
-﻿using Arch.Core;
+﻿using System.Linq;
+using Arch.Core;
 using Arch.Core.Extensions;
 using Components;
 using Godot;
@@ -57,8 +58,40 @@ public static class ComponentDeserializers
                 entity.Add(MicrobeAIHelpers.ReadFromArchive(reader, version));
                 return true;
             case ThriveArchiveObjectType.ComponentMicrobeColony:
-                entity.Add(MicrobeColonyHelpers.ReadFromArchive(reader, version));
+            {
+                var colony = MicrobeColonyHelpers.ReadFromArchive(reader, version);
+
+                // Filter out invalid data
+                if (colony.ColonyMembers == null! || colony.ColonyMembers.Length < 1)
+                {
+                    GD.PrintErr("Ignoring colony component with no members");
+                    return true;
+                }
+
+                while (true)
+                {
+                    var didSomething = false;
+                    int count = colony.ColonyMembers.Length;
+                    for (int i = 0; i < count; ++i)
+                    {
+                        if (colony.ColonyMembers[i] == Entity.Null || colony.ColonyMembers[i].IsAllZero())
+                        {
+                            // This wastes a bunch of memory but is done only for bad saves
+                            GD.PrintErr("Removing colony member from colony with invalid entity id");
+                            colony.ColonyMembers = colony.ColonyMembers.Except([colony.ColonyMembers[i]]).ToArray();
+                            didSomething = true;
+                            break;
+                        }
+                    }
+
+                    if (!didSomething)
+                        break;
+                }
+
+                entity.Add(colony);
                 return true;
+            }
+
             case ThriveArchiveObjectType.ComponentMicrobeColonyMember:
             {
                 var member = MicrobeColonyMemberHelpers.ReadFromArchive(reader, version);
