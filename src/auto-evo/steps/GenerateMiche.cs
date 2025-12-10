@@ -170,7 +170,7 @@ public class GenerateMiche : IRunStep
         foreach (var targetSpecies in patch.SpeciesInPatch)
         {
             // Predation Miches
-            predationGlucose.AddChild(new Miche(new PredationEffectivenessPressure(targetSpecies.Key, 1.0f)));
+            predationGlucose.AddChild(new Miche(new PredationEffectivenessPressure(targetSpecies.Key, 4.0f)));
 
             // Endosymbiosis Miches
             if (targetSpecies.Key.PlayerSpecies && targetSpecies.Key.Endosymbiosis.StartedEndosymbiosis != null)
