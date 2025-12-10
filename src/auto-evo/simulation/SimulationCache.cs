@@ -307,6 +307,8 @@ public class SimulationCache
         var enzymesScore = GetEnzymesScore(predator, prey.MembraneType.DissolverEnzyme);
 
         // uses an HP estimate without taking into account environmental tolerance effect
+        var predatorHP = predator.MembraneType.Hitpoints + predator.MembraneRigidity *
+            Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
         var preyHP = prey.MembraneType.Hitpoints + prey.MembraneRigidity *
             Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
 
@@ -327,9 +329,18 @@ public class SimulationCache
 
         var preySlimeJetScore = preyToolScores.SlimeJetScore;
         var preyMucocystsScore = preyToolScores.MucocystsScore;
+        var defensivePilusScore = preyToolScores.PilusScore;
+        var defensiveInjectisomeScore = preyToolScores.InjectisomeScore;
 
         var agressionScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
         var activityScore = predator.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+        var preyFearScore = prey.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
+
+        // prey effectiveness at running away depends on how quickly they choose to run away
+        // and fully sessile prey can't run at all
+        preySpeed *= preyFearScore;
+        if (prey.Behaviour.Activity == 0.0)
+            preySpeed = 0;
 
         // Sprinting calculations
         var predatorSprintSpeed = predatorSpeed * sprintMultiplier;
@@ -493,28 +504,43 @@ public class SimulationCache
                 strongPullingCiliaModifier * preyRotationModifier;
         }
 
+        // targets that resist physical damage are of course less vulnerable to it
+        pilusScore /= preyHP * prey.MembraneType.PhysicalResistance;
+        defensivePilusScore /= predatorHP * predator.MembraneType.PhysicalResistance;
+
+        // But targets that resist toxin damage are less vulnerable to the injectisome
+        injectisomeScore /= preyHP * prey.MembraneType.ToxinResistance;
+        defensiveInjectisomeScore /= predatorHP * predator.MembraneType.ToxinResistance;
+
+        // Combine pili for further calculations
+        pilusScore += injectisomeScore;
+        defensivePilusScore += defensiveInjectisomeScore;
+
+        // defensive pili need to be turned directly away from the predator
+        defensivePilusScore *= preyRotationModifier * preyFearScore;
+
+        // Calling for allies helps with combat.
+        if (hasSignallingAgent)
+            pilusScore *= Constants.AUTO_EVO_SIGNALLING_BONUS;
+
+        // Use catch score for Pili
+        pilusScore -= defensivePilusScore;
+        if (pilusScore < 0)
+            pilusScore = 0;
+        pilusScore *= catchScore + accidentalCatchScore;
+
         if (canEngulf)
         {
             // Final engulfment score calculation
             // Engulfing prey by luck is especially easy if you are huge.
             // This is also used to incentivize size in microbe species.
             engulfmentScore = (catchScore + accidentalCatchScore * predatorHexSize) *
-                Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
+                (Constants.AUTO_EVO_ENGULF_PREDATION_SCORE - defensivePilusScore);
+            if (engulfmentScore < 0)
+                engulfmentScore = 0;
 
             engulfmentScore *= enzymesScore;
         }
-
-        // Prey that resist physical damage are of course less vulnerable to being hunted with it
-        pilusScore /= preyHP * prey.MembraneType.PhysicalResistance;
-
-        // But prey that resist toxin damage are less vulnerable to the injectisome
-        injectisomeScore /= preyHP * prey.MembraneType.ToxinResistance;
-
-        // Combine pili for further calculations
-        pilusScore += injectisomeScore;
-
-        // Use catch score for Pili
-        pilusScore *= catchScore + accidentalCatchScore;
 
         // Damaging toxin section
 
@@ -564,6 +590,10 @@ public class SimulationCache
         // Toxins also require facing and tracking the target
         damagingToxinScore *= predatorRotationModifier;
 
+        // Calling for allies helps with combat.
+        if (hasSignallingAgent)
+            damagingToxinScore *= Constants.AUTO_EVO_SIGNALLING_BONUS;
+
         // If you have a chemoreceptor, active hunting types are more effective
         if (hasChemoreceptor)
         {
@@ -574,13 +604,6 @@ public class SimulationCache
 
         // Active hunting is more effective for active species
         damagingToxinScore *= activityScore;
-
-        // Calling for allies helps with combative hunting.
-        if (hasSignallingAgent)
-        {
-            pilusScore *= Constants.AUTO_EVO_SIGNALLING_BONUS;
-            damagingToxinScore *= Constants.AUTO_EVO_SIGNALLING_BONUS;
-        }
 
         var scoreMultiplier = 1.0f;
 
@@ -769,8 +792,8 @@ public class SimulationCache
         var oxygenMetabolismInhibitorScore = 0.0f;
         var pilusScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
         var injectisomeScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
-        var defensivePilusScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
-        var defensiveInjectisomeScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
+        var defensivePilusScore = Constants.AUTO_EVO_PILUS_DEFENSE_SCORE;
+        var defensiveInjectisomeScore = Constants.AUTO_EVO_PILUS_DEFENSE_SCORE;
         var slimeJetScore = Constants.AUTO_EVO_SLIME_JET_SCORE;
         var mucocystsScore = Constants.AUTO_EVO_MUCOCYST_SCORE;
         var pullingCiliaModifier = 1.0f;
