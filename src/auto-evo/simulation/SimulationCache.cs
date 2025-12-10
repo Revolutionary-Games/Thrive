@@ -329,8 +329,8 @@ public class SimulationCache
 
         var preySlimeJetScore = preyToolScores.SlimeJetScore;
         var preyMucocystsScore = preyToolScores.MucocystsScore;
-        var defensivePilusScore = preyToolScores.PilusScore;
-        var defensiveInjectisomeScore = preyToolScores.InjectisomeScore;
+        var defensivePilusScore = preyToolScores.DefensivePilusScore;
+        var defensiveInjectisomeScore = preyToolScores.DefensiveInjectisomeScore;
 
         var agressionScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
         var activityScore = predator.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
