@@ -34,7 +34,9 @@ public static class MulticellularLayoutHelpers
             while (true)
             {
                 var positionVector = direction * distance;
-                hexWithData.Data!.Position = new Hex((int)positionVector.X, (int)positionVector.Y);
+                var checkPosition = new Hex((int)positionVector.X, (int)positionVector.Y);
+                hexWithData.Data!.Position = checkPosition;
+                hexWithData.Position = checkPosition;
 
                 if (targetGameplayLayout.CanPlace(hexWithData.Data, hexTemporaryMemory,
                         hexTemporaryMemory2))
@@ -82,7 +84,12 @@ public static class MulticellularLayoutHelpers
             {
                 var positionVector = direction * distance;
 
-                hex.Position = new Hex((int)positionVector.X, (int)positionVector.Y);
+                var checkPosition = new Hex((int)positionVector.X, (int)positionVector.Y);
+                hex.Position = checkPosition;
+
+                // This should never be null, but for extra safety this is done
+                if (hex.Data != null)
+                    hex.Data.Position = checkPosition;
 
                 if (target.CanPlace(hex, hexTemporaryMemory, hexTemporaryMemory2))
                 {
