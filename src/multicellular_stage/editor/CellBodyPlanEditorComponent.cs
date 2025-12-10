@@ -369,11 +369,26 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         // Note that for the below calculations to work, all cell types need to be positioned correctly. So we need
-        // to force that to happen here first. This also ensures that the skipped positioning to origin of the cell
+        // to force that to happen here first. This also ensures that the skipped positioning to the origin of the cell
         // editor component (that is used as a special mode in multicellular) is performed.
         foreach (var cellType in editedSpecies.ModifiableCellTypes)
         {
             cellType.RepositionToOrigin();
+        }
+
+        // Safety check against cell layouts that forever want to shift
+        foreach (var cellType in editedSpecies.ModifiableCellTypes)
+        {
+            if (cellType.RepositionToOrigin())
+            {
+                GD.PrintErr("Cell type shouldn't get a second move to origin");
+                LogInterceptor.ForwardCaughtError(
+                    new Exception(
+                        "Detected a cell layout that infinitely shifts around the origin, this will break " +
+                        "multicellular cell positioning!"),
+                    "Please include a save or screenshot of your species' cell types with the report");
+                break;
+            }
         }
 
         // Compute final cell layout positions and update the species

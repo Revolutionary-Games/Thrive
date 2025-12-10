@@ -47,6 +47,10 @@ public static class MulticellularLayoutHelpers
                 ++distance;
             }
         }
+
+#if DEBUG
+        targetGameplayLayout.ThrowIfCellsOverlap();
+#endif
     }
 
     /// <summary>
