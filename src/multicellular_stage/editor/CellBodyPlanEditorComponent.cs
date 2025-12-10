@@ -382,8 +382,7 @@ public partial class CellBodyPlanEditorComponent :
             if (cellType.RepositionToOrigin())
             {
                 GD.PrintErr("Cell type shouldn't get a second move to origin");
-                LogInterceptor.ForwardCaughtError(
-                    new Exception(
+                LogInterceptor.ForwardCaughtError(new Exception(
                         "Detected a cell layout that infinitely shifts around the origin, this will break " +
                         "multicellular cell positioning!"),
                     "Please include a save or screenshot of your species' cell types with the report");
