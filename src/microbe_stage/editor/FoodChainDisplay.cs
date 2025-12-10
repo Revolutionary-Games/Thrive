@@ -272,7 +272,7 @@ public partial class FoodChainDisplay : Control
         }
 
         // Make sure this control is big enough to contain all the child nodes and to make the scroll container work
-        CustomMinimumSize = new Vector2((int)Math.Ceiling(width), (int)Math.Ceiling(height));
+        CustomMinimumSize = new Vector2((int)Math.Ceiling(width), (int)Math.Ceiling(height)) + Margin;
     }
 
     private void CreateLines()
