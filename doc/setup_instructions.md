@@ -189,9 +189,7 @@ External Editor to Visual Studio Code. Click on Builds and set Build Tool to
 dotnet CLI.
 
 If you want to setup live debugging with Godot follow the instructions here:
-https://docs.godotengine.org/en/3.3/getting_started/scripting/c_sharp/c_sharp_basics.html#visual-studio-code
-
-
+https://docs.godotengine.org/en/4.5/tutorials/scripting/c_sharp/c_sharp_basics.html#visual-studio-code
 Building Thrive
 ===============
 
