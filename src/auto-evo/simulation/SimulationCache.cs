@@ -342,6 +342,7 @@ public class SimulationCache
         var oxygenInhibitorBuffPerOrganelle = Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_PER_ORGANELLE;
         var oxygenInhibitorBuffMax = Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_MAX;
         var oxytoxyDamage = Constants.OXYTOXY_DAMAGE;
+        var channelInhibitorATPDebuff = Constants.CHANNEL_INHIBITOR_ATP_DEBUFF;
 
         var signallingBonus = Constants.AUTO_EVO_SIGNALLING_BONUS;
 
@@ -485,38 +486,41 @@ public class SimulationCache
         var toxicityHitFactor = toxicity / toxicityHitModifier;
         var hitProportion = 1 - sizeHitFactor - toxicityHitFactor;
 
-        // Calculating "hit chance" modifier from prey size and predator toxicity
-        var predatorSizeHitFactor = sizeAffectedProjectileMissFactor / float.Sqrt(predatorHexSize);
-        var preyToxicityHitFactor = preyToxicity / toxicityHitModifier;
-        var preyHitProportion = 1 - predatorSizeHitFactor - preyToxicityHitFactor;
-
         // Calculating prey energy production altered by channel inhbitor
-        var channelInhibitorATPDebuff = Constants.CHANNEL_INHIBITOR_ATP_DEBUFF;
+        var preyInhibitedPreyEnergyProduction = preyEnergyBalance.TotalProduction;
+        if (channelInhibitorScore > 0)
+        {
+            preyInhibitedPreyEnergyProduction *= 1 - channelInhibitorATPDebuff *
+                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.ChannelInhibitor);
 
-        var preyInhibitedPreyEnergyProduction = preyEnergyBalance.TotalProduction *
-            (1 - channelInhibitorATPDebuff *
-                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.ChannelInhibitor));
+            // If inhibited energy production would affect movement, add (part of) the inhibitor score to macrolide score
+            if (preyInhibitedPreyEnergyProduction < preyEnergyBalance.TotalConsumption)
+            {
+                var channelInhibitorSlowFactor = Math.Min(
+                    Math.Max(preyInhibitedPreyEnergyProduction - preyOsmoregulationCost, 0) /
+                    preyEnergyBalance.TotalMovement, 1);
+                macrolideScore += channelInhibitorScore * channelInhibitorSlowFactor;
+                slowedPreySpeed *= 1 - channelInhibitorSlowFactor;
+            }
+        }
 
         // Calculating predator energy production altered by channel inhbitor
-        var predatorInhibitedPreyEnergyProduction = predatorEnergyBalance.TotalProduction *
-            (1 - channelInhibitorATPDebuff *
-                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(preyToxicity, ToxinType.ChannelInhibitor));
-
-        // If inhibited energy production would affect movement, add (part of) the inhibitor score to macrolide score
-        if (preyInhibitedPreyEnergyProduction < preyEnergyBalance.TotalConsumption)
+        var predatorInhibitedPreyEnergyProduction = predatorEnergyBalance.TotalProduction;
+        if (preyChannelInhibitorScore > 0)
         {
-            var channelInhibitorSlowFactor = Math.Min(
-                Math.Max(preyInhibitedPreyEnergyProduction - preyOsmoregulationCost, 0) /
-                preyEnergyBalance.TotalMovement, 1);
-            macrolideScore += channelInhibitorScore * channelInhibitorSlowFactor;
-            slowedPreySpeed *= 1 - channelInhibitorSlowFactor;
+            predatorInhibitedPreyEnergyProduction *= 1 - channelInhibitorATPDebuff *
+                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(preyToxicity, ToxinType.ChannelInhibitor);
         }
 
         // Calculating how much prey is slowed down by macrolide, and how frequently they are succesfully slowed down
-        slowedPreySpeed *= 1 - Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF *
-            MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.Macrolide);
-        var slowedProportion = 1.0f - MathF.Exp(-Constants.AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING *
-            macrolideScore * hitProportion);
+        var slowedProportion = 0.0f;
+        if (macrolideScore > 0)
+        {
+            slowedPreySpeed *= 1 - Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF *
+                MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.Macrolide);
+            slowedProportion = 1.0f - MathF.Exp(-Constants.AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING *
+                macrolideScore * hitProportion);
+        }
 
         // Catch scores grossly accounts for how many preys you catch in melee in a run;
         var catchScore = 0.0f;
@@ -735,6 +739,11 @@ public class SimulationCache
 
         if (preyDamagingToxinScore > 0)
         {
+            // Calculating "hit chance" modifier from predator size and prey toxicity
+            var predatorSizeHitFactor = sizeAffectedProjectileMissFactor / float.Sqrt(predatorHexSize);
+            var preyToxicityHitFactor = preyToxicity / toxicityHitModifier;
+            var preyHitProportion = 1 - predatorSizeHitFactor - preyToxicityHitFactor;
+
             // Applying projectile hit chance to damaging toxins
             preyDamagingToxinScore *= preyHitProportion;
 
