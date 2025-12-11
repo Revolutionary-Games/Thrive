@@ -19,6 +19,7 @@ sky_material = SubResource("PanoramaSkyMaterial_nliqr")
 resource_local_to_scene = true
 background_mode = 2
 sky = SubResource("5")
+ambient_light_source = 1
 ambient_light_color = Color(1, 1, 1, 1)
 
 [node name="3DEditorWorld" type="Node"]

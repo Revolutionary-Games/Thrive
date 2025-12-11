@@ -717,9 +717,9 @@ public static class MicrobeColonyHelpers
             // This is this way around to support recursive calls also adding things here
             DependentMembersToRemove.RemoveAt(DependentMembersToRemove.Count - 1);
 
-            if (!next.IsAlive())
+            if (!next.IsAliveAndNotNull())
             {
-                // This entity is already dead, this should hopefully never trigger. If this does then this would
+                // This entity is already dead, this should hopefully never trigger. If this does, then this would
                 // give some more info on a colony despawn crash problem.
                 GD.PrintErr("Dependent colony member to remove is already dead, doing only " +
                     "light fallback cleanup");
@@ -1106,7 +1106,10 @@ public static class MicrobeColonyHelpers
     {
         foreach (var colonyMember in colony.ColonyMembers)
         {
-            if (!colonyMember.IsAlive())
+            if (colonyMember.IsAllZero())
+                throw new Exception("Colony has a default initialized entity reference in it");
+
+            if (!colonyMember.IsAliveAndNotNull())
                 throw new Exception("Colony has a non-alive member");
         }
     }

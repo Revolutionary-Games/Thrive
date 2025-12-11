@@ -105,7 +105,7 @@ public partial class DebugOverlays
 
     private bool UpdateLabelColour(Entity entity, Label label)
     {
-        if (!entity.IsAlive())
+        if (!entity.IsAliveAndNotNull())
         {
             label.LabelSettings = entityDeadFont;
             return false;

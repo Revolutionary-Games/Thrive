@@ -242,7 +242,7 @@ public partial class ToxinCollisionSystem : BaseSystem<World, float>
         {
             foreach (var firingEntity in entities)
             {
-                if (firingEntity == Entity.Null || !firingEntity.IsAlive())
+                if (!firingEntity.IsAliveAndNotNull())
                     continue;
 
                 if (firingEntity.Has<PlayerMarker>())

@@ -114,7 +114,7 @@ public partial class EngulfedHandlingSystem : BaseSystem<World, float>
             // If the engulfing entity is dead, then this should have been ejected. The simulation world also has
             // an on entity destroy callback that should do this, so things are going pretty wrong if this is
             // triggered
-            if (!engulfable.HostileEngulfer.IsAlive())
+            if (!engulfable.HostileEngulfer.IsAliveAndNotNull())
             {
                 GD.PrintErr("Entity is stuck inside a dead engulfer, force clearing state to rescue it");
 

@@ -1143,3 +1143,35 @@
     - Suppressed already connected signal error popup (this is a years old engine bug)
     - Updated some code dependencies and added some testing helper code
     - Updated translations
+
+0.9.2:
+  IntroductionText: |
+    To prepare for the 1.0.0 (microbe stage completion) release, this is the second of the smaller releases leading up to it. Hopefully this will be a lot more stable than 0.9.1 was, but please keep testing and reporting any issues with this release so that we can fix the remaining problems in time for 1.0. This release is mostly continuing with the fixes that didn't make it into the previous patch. In terms of new features we mostly have just upgrades to auto-evo, which now finally takes multiple new factors into account. Besides that we got a pilus rebalance and improvements to the terrain visuals. 
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.9.2
+  PatchNotes:
+    - Added ambient occlusion textures for terrain chunks to improve their visuals
+    - Added suppression for the error popup opening in some non-serious cases
+    - Added graphics preset options
+    - Rebalanced pilus damage and made it deal continuous damage on collision persisting
+    - Pilus damage sound now scales with the amount of damage dealt
+    - Added more collision safety checks everywhere collisions are recorded as 0.9.1.1 only added that safety for pilus collisions
+    - Fixed scene preload errors when moving between the later game prototypes
+    - Fixed GUI jiggle in the evolutionary tree by turning off GUI element snapping. Please report if you notice any text blurriness or  other problems after this change.
+    - Fixed multiple NaN auto-evo result problems
+    - Fixed the industrial stage not working due to accidentally left in duplicate pause menu instance
+    - Added turning speed to auto-evo calculations and it can now place cilia
+    - Improved efficiency of auto-evo to offset the cost from new features added to it
+    - Auto-evo now has much better slime jet and sprinting related calculations
+    - Auto-evo now takes binding and signalling agents into account
+    - Auto-evo calculations now take cell max health into account
+    - Fixed a save load error when multiple recently expelled entities were dead already
+    - Fixed environment tolerance sliders just not moving if not enough MP for the desired change. Now the sliders jump as far towards the desired change as there is MP left.
+    - Fixed too long text in the build commit hash being able to break the options menu
+    - Auto-evo prediction in the editor now always waits for the previous run to complete to solve errors on slower computers where a further edit may have been done before the previous calculation finished which lead to an unhandled error
+    - Microbe movement speed now impacts how loud the movement sound is for the cell
+    - Added an option to select on which monitor Thrive is on with it defaulting to auto to keep the old behaviour
+    - Adjustment the map life indicator amount based on species size
+    - Fixed duplicate focus borders around the build date of the game in the settings menu
+    - Updated code checking tools
+    - Updated BenchmarkDotNet from 0.15.6 to 0.15.8
+    - Updated translations

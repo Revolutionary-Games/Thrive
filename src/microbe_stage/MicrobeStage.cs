@@ -120,7 +120,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     public TutorialState TutorialState =>
         CurrentGame?.TutorialState ?? throw new InvalidOperationException("Game not started yet");
 
-    public override bool HasPlayer => Player != Entity.Null && Player.IsAlive();
+    public override bool HasPlayer => Player.IsAliveAndNotNull();
 
     public override bool HasAlivePlayer => HasPlayer && IsPlayerAlive();
 
@@ -985,7 +985,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             var doNotDespawn = PlayerOffspringHelpers.FindLatestSpawnedOffspring(WorldSimulation.EntitySystem);
 
 #if DEBUG
-            if (doNotDespawn.IsAlive() && !doNotDespawn.Has<Spawned>())
+            if (doNotDespawn.IsAliveAndNotNull() && !doNotDespawn.Has<Spawned>())
             {
                 throw new Exception(
                     "Spawned player offspring has no spawned component, microbe reproduction method is" +
@@ -1772,7 +1772,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         {
             try
             {
-                if (!player.IsAlive())
+                if (!player.IsAliveAndNotNull())
                 {
                     GD.PrintErr("Got player engulfed callback but player entity is dead");
                     OnCanEditStatusChanged(false);

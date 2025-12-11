@@ -109,7 +109,7 @@ public static class EngulferHelpers
     public static EngulfCheckResult CanEngulfObject(this ref readonly Engulfer engulfer, uint engulferSpeciesID,
         in Entity target)
     {
-        if (target == Entity.Null || !target.IsAlive())
+        if (!target.IsAliveAndNotNull())
             return EngulfCheckResult.TargetDead;
 
         bool invulnerable = false;
@@ -280,8 +280,8 @@ public static class EngulferHelpers
 
             foreach (var ourEngulfedEntity in engulfer.EngulfedObjects.ToList())
             {
-                if (!engulfer.EngulfedObjects.Remove(ourEngulfedEntity) || !ourEngulfedEntity.IsAlive() ||
-                    !ourEngulfedEntity.Has<Engulfable>())
+                if (!engulfer.EngulfedObjects.Remove(ourEngulfedEntity) ||
+                    !ourEngulfedEntity.IsAliveAndHas<Engulfable>())
                 {
                     continue;
                 }

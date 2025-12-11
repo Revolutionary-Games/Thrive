@@ -86,6 +86,12 @@ public partial class MuseumCard : Button
     /// </summary>
     public string OriginalName { get; set; } = string.Empty;
 
+    /// <summary>
+    ///   Indicates if this card is marked for a specific operation.
+    ///   Should be reset to false by any method using it.
+    /// </summary>
+    public bool Marked { get; set; }
+
     public override void _Ready()
     {
         base._Ready();
