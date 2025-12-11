@@ -378,6 +378,8 @@ public class SimulationCache
         var predatorSlimeJetScore = predatorToolScores.SlimeJetScore;
         var pullingCiliaModifier = predatorToolScores.PullingCiliaModifier;
         var strongPullingCiliaModifier = pullingCiliaModifier * pullingCiliaModifier;
+        var predatorToxinResistance = predator.MembraneType.ToxinResistance;
+        var predatorPhysicalResistance = predator.MembraneType.PhysicalResistance;
 
         var preySlimeJetScore = preyToolScores.SlimeJetScore;
         var preyMucocystsScore = preyToolScores.MucocystsScore;
@@ -391,6 +393,7 @@ public class SimulationCache
         var preyOxygenMetabolismInhibitorScore = preyToolScores.OxygenMetabolismInhibitorScore;
         var defensivePilusScore = preyToolScores.DefensivePilusScore;
         var defensiveInjectisomeScore = preyToolScores.DefensiveInjectisomeScore;
+        var preyToxinResistance = prey.MembraneType.ToxinResistance;
 
         // Not an ideal solution, but accounts for the fact that the oxytoxy and cyanide processes require oxygen to run
         biomeConditions.Compounds.TryGetValue(Compound.Oxygen, out BiomeCompoundProperties oxygen);
@@ -611,13 +614,13 @@ public class SimulationCache
 
         // targets that resist physical damage are of course less vulnerable to it
         pilusScore /= preyHP * prey.MembraneType.PhysicalResistance;
-        preyPilusScore /= predatorHP * predator.MembraneType.PhysicalResistance;
-        defensivePilusScore /= predatorHP * predator.MembraneType.PhysicalResistance;
+        preyPilusScore /= predatorHP * predatorPhysicalResistance;
+        defensivePilusScore /= predatorHP * predatorPhysicalResistance;
 
         // But targets that resist toxin damage are less vulnerable to the injectisome
-        injectisomeScore /= preyHP * prey.MembraneType.ToxinResistance;
-        preyInjectisomeScore /= predatorHP * predator.MembraneType.ToxinResistance;
-        defensiveInjectisomeScore /= predatorHP * predator.MembraneType.ToxinResistance;
+        injectisomeScore /= preyHP * preyToxinResistance;
+        preyInjectisomeScore /= predatorHP * predatorToxinResistance;
+        defensiveInjectisomeScore /= predatorHP * predatorToxinResistance;
 
         // Combine pili for further calculations
         pilusScore += injectisomeScore;
@@ -705,7 +708,7 @@ public class SimulationCache
 
             // If you can store enough to kill the prey, producing more isn't as important
             var storageToKillRatio = predator.StorageCapacities.Nominal * oxytoxyDamage /
-                (preyHP * prey.MembraneType.ToxinResistance);
+                (preyHP * preyToxinResistance);
             if (storageToKillRatio > 1)
             {
                 damagingToxinScore = MathF.Pow(damagingToxinScore, 0.8f);
@@ -716,7 +719,7 @@ public class SimulationCache
             }
 
             // Targets that resist toxin are of course less vulnerable to being damaged with it
-            damagingToxinScore /= preyHP * prey.MembraneType.ToxinResistance;
+            damagingToxinScore /= preyHP * preyToxinResistance;
 
             // Toxins also require facing and tracking the target
             damagingToxinScore *= predatorRotationModifier;
@@ -755,7 +758,7 @@ public class SimulationCache
 
             // If you can store enough to kill the predator, producing more isn't as important
             var preyStorageToKillRatio = prey.StorageCapacities.Nominal * oxytoxyDamage /
-                (predatorHP * predator.MembraneType.ToxinResistance);
+                (predatorHP * predatorToxinResistance);
             if (preyStorageToKillRatio > 1)
             {
                 preyDamagingToxinScore = MathF.Pow(preyDamagingToxinScore, 0.8f);
@@ -766,7 +769,7 @@ public class SimulationCache
             }
 
             // Targets that resist toxin are of course less vulnerable to being damaged with it
-            preyDamagingToxinScore /= predatorHP * predator.MembraneType.ToxinResistance;
+            preyDamagingToxinScore /= predatorHP * predatorToxinResistance;
 
             // Toxins also require facing and tracking the target
             preyDamagingToxinScore *= preyRotationModifier;
