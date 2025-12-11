@@ -221,7 +221,9 @@ public class PatchManager
         foreach (var entry in patch.SpeciesInPatch.OrderByDescending(s => s.Value))
         {
             var species = entry.Key;
-            var population = entry.Value;
+
+            // To allow player deaths to immediately impact populations, get the gameplay-adjusted population here
+            var population = patch.GetSpeciesGameplayPopulation(species);
 
             if (population <= 0)
             {
