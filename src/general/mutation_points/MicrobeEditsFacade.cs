@@ -19,34 +19,96 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
         this.microbeSpecies = microbeSpecies;
     }
 
-    public IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> Organelles => organelleEditsFacade.Organelles;
-    public MembraneType MembraneType => organelleEditsFacade.MembraneType;
-    public float MembraneRigidity => organelleEditsFacade.MembraneRigidity;
+    public IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> Organelles
+    {
+        get
+        {
+            ResolveDataIfDirty();
+            return organelleEditsFacade.Organelles;
+        }
+    }
 
-    public Color Colour => SpeciesColour;
+    public MembraneType MembraneType
+    {
+        get
+        {
+            ResolveDataIfDirty();
+            return organelleEditsFacade.MembraneType;
+        }
+    }
+
+    public float MembraneRigidity
+    {
+        get
+        {
+            ResolveDataIfDirty();
+            return organelleEditsFacade.MembraneRigidity;
+        }
+    }
+
+    public Color Colour
+    {
+        get
+        {
+            ResolveDataIfDirty();
+            return SpeciesColour;
+        }
+    }
 
     /// <summary>
     ///   Note that this is a very inefficient check
     /// </summary>
-    public bool IsBacteria => organelleEditsFacade.IsBacteria;
+    public bool IsBacteria
+    {
+        get
+        {
+            ResolveDataIfDirty();
+            return organelleEditsFacade.IsBacteria;
+        }
+    }
 
-    public int MPCost => microbeSpecies.MPCost;
-    public string CellTypeName => microbeSpecies.CellTypeName;
+    public int MPCost
+    {
+        get
+        {
+            ResolveDataIfDirty();
+            return microbeSpecies.MPCost;
+        }
+    }
 
-    public int Count => organelleEditsFacade.Count;
+    public string CellTypeName
+    {
+        get
+        {
+            ResolveDataIfDirty();
+            return microbeSpecies.CellTypeName;
+        }
+    }
+
+    public int Count
+    {
+        get
+        {
+            ResolveDataIfDirty();
+            return organelleEditsFacade.Count;
+        }
+    }
 
     public IReadOnlyOrganelleTemplate? GetElementAt(Hex location, List<Hex> temporaryHexesStorage)
     {
+        ResolveDataIfDirty();
         return organelleEditsFacade.GetElementAt(location, temporaryHexesStorage);
     }
 
     public IReadOnlyOrganelleTemplate? GetByExactElementRootPosition(Hex location)
     {
+        ResolveDataIfDirty();
         return organelleEditsFacade.GetByExactElementRootPosition(location);
     }
 
     public IEnumerator<IReadOnlyOrganelleTemplate> GetEnumerator()
     {
+        ResolveDataIfDirty();
         return organelleEditsFacade.GetEnumerator();
     }
 
