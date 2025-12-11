@@ -318,11 +318,21 @@ public class MicrobeSpeciesComparer
 
         // And then check that new hexes match exactly
         rotated = newOrganelle.Definition.GetRotatedHexes(newOrganelle.Orientation);
+
+        pos = newOrganelle.Position;
+
+        // This should not happen, but for safety we check this
+        if (rotated.Count != workMemory1.Count)
+            return false;
+
         count = rotated.Count;
         for (int i = 0; i < count; ++i)
         {
             var hex = rotated[i] + pos;
 
+            // TODO: should we check somehow that we get as many unique values as the previous loop generated?
+            // Because in theory due to a bug or something this could create duplicate positions which might be found
+            // in the list but not actually mean everything matches
             if (!workMemory1.Contains(hex))
                 return false;
         }
