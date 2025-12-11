@@ -582,6 +582,7 @@ public class SimulationCache
             }
 
             totalPreyToxinContent *= Constants.AUTO_EVO_TOXIN_ENGULFMENT_DEFENSE_MODIFIER;
+            totalPreyToxinContent /= predatorHP;
 
             // Final engulfment score calculation
             // Engulfing prey by luck is especially easy if you are huge.
