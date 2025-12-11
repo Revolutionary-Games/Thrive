@@ -286,6 +286,51 @@ public class SimulationCache
             return cached;
         }
 
+        // First values necessary to check whether predation is possible at all
+        var predatorToolScores = GetPredationToolsRawScores(predator);
+
+        var pilusScore = predatorToolScores.PilusScore;
+        var injectisomeScore = predatorToolScores.InjectisomeScore;
+        var oxytoxyScore = predatorToolScores.OxytoxyScore;
+        var cytotoxinScore = predatorToolScores.CytotoxinScore;
+        var channelInhibitorScore = predatorToolScores.ChannelInhibitorScore;
+        var canEngulf = predator.CanEngulf;
+
+        // Don't bother with the rest if predator cannot predate
+        var engulfOnly = false;
+
+        if (pilusScore == 0 &&
+            injectisomeScore == 0 &&
+            oxytoxyScore == 0 &&
+            cytotoxinScore == 0 &&
+            channelInhibitorScore == 0)
+        {
+            if (canEngulf)
+            {
+                engulfOnly = true;
+            }
+            else
+            {
+                cached = 0;
+                predationScores.Add(key, cached);
+                return cached;
+            }
+        }
+
+        var predatorHexSize = GetBaseHexSizeForSpecies(predator);
+        var preyHexSize = GetBaseHexSizeForSpecies(prey);
+        var enzymesScore = GetEnzymesScore(predator, prey.MembraneType.DissolverEnzyme);
+        var canDigestPrey = predatorHexSize / preyHexSize > Constants.ENGULF_SIZE_RATIO_REQ && canEngulf &&
+            enzymesScore > 0.0f;
+
+        if (engulfOnly && !canDigestPrey)
+        {
+            cached = 0;
+            predationScores.Add(key, cached);
+            return cached;
+        }
+
+        // Constants
         var sprintMultiplier = Constants.SPRINTING_FORCE_MULTIPLIER;
         var sprintingStrain = Constants.SPRINTING_STRAIN_INCREASE_PER_SECOND / 5;
         var strainPerHex = Constants.SPRINTING_STRAIN_INCREASE_PER_HEX / 5;
@@ -305,20 +350,17 @@ public class SimulationCache
 
         // TODO: If these two methods were combined it might result in better performance with needing just
         // one dictionary lookup
-        var predatorHexSize = GetBaseHexSizeForSpecies(predator);
         var predatorSpeed = GetSpeedForSpecies(predator);
         var predatorRotationSpeed = GetRotationSpeedForSpecies(predator);
         var predatorEnergyBalance = GetEnergyBalanceForSpecies(predator, biomeConditions);
         var predatorOsmoregulationCost = predatorEnergyBalance.Osmoregulation;
 
-        var preyHexSize = GetBaseHexSizeForSpecies(prey);
         var preySpeed = GetSpeedForSpecies(prey);
         var preyRotationSpeed = GetRotationSpeedForSpecies(prey);
         var slowedPreySpeed = preySpeed;
         var preyIndividualCost = MichePopulation.CalculateMicrobeIndividualCost(prey, biomeConditions, this);
         var preyEnergyBalance = GetEnergyBalanceForSpecies(prey, biomeConditions);
         var preyOsmoregulationCost = preyEnergyBalance.Osmoregulation;
-        var enzymesScore = GetEnzymesScore(predator, prey.MembraneType.DissolverEnzyme);
 
         // uses an HP estimate without taking into account environmental tolerance effect
         var predatorHP = predator.MembraneType.Hitpoints + predator.MembraneRigidity *
@@ -326,16 +368,10 @@ public class SimulationCache
         var preyHP = prey.MembraneType.Hitpoints + prey.MembraneRigidity *
             Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
 
-        var predatorToolScores = GetPredationToolsRawScores(predator);
         var preyToolScores = GetPredationToolsRawScores(prey);
 
-        var pilusScore = predatorToolScores.PilusScore;
-        var injectisomeScore = predatorToolScores.InjectisomeScore;
         var toxicity = predatorToolScores.AverageToxicity;
-        var oxytoxyScore = predatorToolScores.OxytoxyScore;
-        var cytotoxinScore = predatorToolScores.CytotoxinScore;
         var macrolideScore = predatorToolScores.MacrolideScore;
-        var channelInhibitorScore = predatorToolScores.ChannelInhibitorScore;
         var oxygenMetabolismInhibitorScore = predatorToolScores.OxygenMetabolismInhibitorScore;
         var predatorSlimeJetScore = predatorToolScores.SlimeJetScore;
         var pullingCiliaModifier = predatorToolScores.PullingCiliaModifier;
@@ -487,9 +523,7 @@ public class SimulationCache
 
         // Only calculate catch score if one can actually engulf (and digest) or use pili
         var engulfmentScore = 0.0f;
-        var canEngulf = predatorHexSize / preyHexSize > Constants.ENGULF_SIZE_RATIO_REQ && predator.CanEngulf &&
-            enzymesScore > 0.0f;
-        if (canEngulf || pilusScore > 0.0f || injectisomeScore > 0.0f)
+        if (canDigestPrey || pilusScore > 0.0f || injectisomeScore > 0.0f)
         {
             // First, you may hunt individual preys, but only if you are fast enough...
             if (predatorSpeed > preySpeed)
@@ -604,7 +638,7 @@ public class SimulationCache
         preyPilusScore *= (catchScore + accidentalCatchScore) * preyRotationModifier * defenseScoreModifier *
             preyAggressionScore * (1 - preyFearScore);
 
-        if (canEngulf)
+        if (canDigestPrey)
         {
             // total prey toxin amount for anti-engulfment purposes
             // Toxin content is higher if the toxin are not being shot for offense
@@ -723,7 +757,7 @@ public class SimulationCache
 
         var scoreMultiplier = 1.0f;
 
-        if (!predator.CanEngulf)
+        if (!canEngulf)
         {
             // If you can't engulf, you just get energy from the chunks leaking.
             scoreMultiplier *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
