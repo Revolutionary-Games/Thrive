@@ -147,6 +147,25 @@ public partial class FoodChainDisplay : Control
         CreateLines();
     }
 
+    public Vector2 CalculateAverageNodePosition()
+    {
+        if (graphNodes.Count == 0)
+            return Vector2.Zero;
+
+        var position = Vector2.Zero;
+
+        foreach (var node in graphNodes)
+        {
+            if (node.CreatedControl != null)
+            {
+                position += node.CreatedControl.Position;
+                GD.Print(node.CreatedControl.Position);
+            }
+        }
+
+        return position / graphNodes.Count;
+    }
+
     private static void HandleAddingPlayer(RunResults autoEvoResults, Patch forPatch, Species playerSpecies,
         HashSet<Species> seenSpecies)
     {
