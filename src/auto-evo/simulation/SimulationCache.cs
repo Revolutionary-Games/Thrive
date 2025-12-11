@@ -737,6 +737,8 @@ public class SimulationCache
         cached = scoreMultiplier * aggressionScore *
             (pilusScore + engulfmentScore + damagingToxinScore) - (preySlimeJetScore + preyMucocystsScore +
                 preyPilusScore + preyDamagingToxinScore);
+        if (cached < 0)
+            cached = 0;
 
         predationScores.Add(key, cached);
         return cached;
