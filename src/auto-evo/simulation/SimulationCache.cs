@@ -349,6 +349,8 @@ public class SimulationCache
         var preySprintTime = MathF.Max(preyEnergyBalance.FinalBalance / preySprintConsumption, 0.0f);
 
         // Give damage resistance if you have a nucleus (50 % general damage resistance)
+        if (!predator.IsBacteria)
+            predatorHP *= 2;
         if (!prey.IsBacteria)
             preyHP *= 2;
 
