@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -467,25 +466,19 @@ public class TaskExecutor
                 // This shouldn't hit in normal circumstances, but people have been submitting crash reports where
                 // an exception likely directly is caused by the run synchronous call
 
-#if DEBUG
-                if (Debugger.IsAttached)
-                    Debugger.Break();
-#endif
+                LogInterceptor.ForwardCaughtError(e);
 
                 GD.PrintErr("Trying to run background task failed with exception: ", e);
                 return true;
             }
 
             // Make sure task exceptions aren't ignored.
-            // TODO: it used to be that not all places properly waited for tasks, that's why this code is here
-            // but now some places actually want to handle the task exceptions themselves, so this should
-            // be removed after making sure no places ignore the exceptions
+            // TODO: if some places want to catch the exception themselves we should make sure that this still allows
+            // those places to do that
             if (command.Task.Exception != null)
             {
-#if DEBUG
-                if (Debugger.IsAttached)
-                    Debugger.Break();
-#endif
+                // Forward to the GUI so that the player sees it
+                LogInterceptor.ForwardCaughtError(command.Task.Exception);
 
                 GD.PrintErr("Background task caused an exception: ", command.Task.Exception);
             }
@@ -498,17 +491,11 @@ public class TaskExecutor
 
                 // command.ParallelRunnable!.Run(command.ParallelIndex, command.MaxIndex);
             }
-            catch (Exception exception)
+            catch (Exception e)
             {
-#if DEBUG
-                if (Debugger.IsAttached)
-                    Debugger.Break();
-#endif
+                LogInterceptor.ForwardCaughtError(e);
 
-                // TODO: should this quit the game immediately due to the exception (or pass it to the main thread
-                // for example with a field that Run would check after running the tasks)?
-
-                GD.PrintErr("Background ParallelRunnable failed due to: ", exception);
+                GD.PrintErr("Background ParallelRunnable failed due to: ", e);
                 return true;
             }
             finally
