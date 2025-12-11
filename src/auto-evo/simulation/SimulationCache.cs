@@ -527,7 +527,7 @@ public class SimulationCache
 
             // ... but you may also catch them by luck (e.g. when they run into you),
             // Prey that can't turn away fast enough are more likely to get caught.
-            accidentalCatchScore = Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * predatorHexSize *
+            accidentalCatchScore = Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY *
                 strongPullingCiliaModifier * preyRotationModifier;
         }
 
