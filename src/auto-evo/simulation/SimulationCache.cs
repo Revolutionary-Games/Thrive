@@ -555,7 +555,7 @@ public class SimulationCache
             }
             else
             {
-                totalPreyToxinContent *= (1 - preyAggressionScore) * (1 - preyFearScore);
+                totalPreyToxinContent *= 1 - preyAggressionScore * (1 - preyFearScore);
             }
 
             totalPreyToxinContent *= Constants.AUTO_EVO_TOXIN_ENGULFMENT_DEFENSE_MODIFIER;
