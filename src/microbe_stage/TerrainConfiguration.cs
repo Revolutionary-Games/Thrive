@@ -139,7 +139,7 @@ public class TerrainConfiguration : RegistryType
         [JsonProperty]
         public readonly bool RandomizeRotation;
 
-        public float Radius;
+        public float MaxPossibleChunkRadius;
 
         public float OtherTerrainPreventionRadius;
 
@@ -150,7 +150,7 @@ public class TerrainConfiguration : RegistryType
                 throw new InvalidRegistryDataException(name, GetType().Name, "Terrain chunks are empty");
             }
 
-            Radius = 0;
+            MaxPossibleChunkRadius = 0;
 
             foreach (var chunk in Chunks)
             {
@@ -158,11 +158,11 @@ public class TerrainConfiguration : RegistryType
 
                 // Calculate overall radius
                 var currentRadius = chunk.Radius + chunk.RelativePosition.Length();
-                if (currentRadius > Radius)
-                    Radius = currentRadius;
+                if (currentRadius > MaxPossibleChunkRadius)
+                    MaxPossibleChunkRadius = currentRadius;
             }
 
-            if (Radius < 1)
+            if (MaxPossibleChunkRadius < 1)
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     "Terrain calculated radius is less than 1");
@@ -170,7 +170,7 @@ public class TerrainConfiguration : RegistryType
 
             // If the other terrain prevention radius is not set, set it automatically
             if (OtherTerrainPreventionRadius < 1)
-                OtherTerrainPreventionRadius = Radius;
+                OtherTerrainPreventionRadius = MaxPossibleChunkRadius;
         }
     }
 
@@ -201,8 +201,8 @@ public class TerrainConfiguration : RegistryType
         [JsonProperty]
         public readonly int MaxChunks = 10;
 
-        public float OverallRadius;
-        public float OverallOverlapRadius;
+        public float MaxPossibleChunkRadius;
+        public float OverlapRadius;
 
         public void Check(string name)
         {
@@ -214,22 +214,22 @@ public class TerrainConfiguration : RegistryType
             if (RelativeChance < 1)
                 throw new InvalidRegistryDataException(name, GetType().Name, "RelativeChance must be above 0");
 
-            OverallRadius = 0;
-            OverallOverlapRadius = 0;
+            MaxPossibleChunkRadius = 0;
+            OverlapRadius = 0;
 
             foreach (var group in TerrainGroups)
             {
                 group.Check(name);
 
                 var groupPositionFactor = group.RelativePosition.Length();
-                var currentRadius = groupPositionFactor + group.Radius;
+                var currentRadius = groupPositionFactor + group.MaxPossibleChunkRadius;
 
-                if (currentRadius > OverallRadius)
-                    OverallRadius = currentRadius;
+                if (currentRadius > MaxPossibleChunkRadius)
+                    MaxPossibleChunkRadius = currentRadius;
 
                 var overlapRadius = groupPositionFactor + group.OtherTerrainPreventionRadius;
-                if (overlapRadius > OverallOverlapRadius)
-                    OverallOverlapRadius = overlapRadius;
+                if (overlapRadius > OverlapRadius)
+                    OverlapRadius = overlapRadius;
             }
         }
     }
