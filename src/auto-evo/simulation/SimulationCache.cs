@@ -444,6 +444,8 @@ public class SimulationCache
         var hasChemoreceptor = false;
         var hasSignallingAgent = false;
         var preyHasSignallingAgent = false;
+        var predatorOxygenUsingOrganellesCount = 0;
+        var preyOxygenUsingOrganellesCount = 0;
 
         var organelles = predator.Organelles.Organelles;
         int count = organelles.Count;
@@ -452,36 +454,21 @@ public class SimulationCache
             var organelle = organelles[i];
             if (organelle.Definition.HasChemoreceptorComponent && organelle.GetActiveTargetSpecies() == prey)
                 hasChemoreceptor = true;
-
             if (organelle.Definition.HasSignalingFeature)
                 hasSignallingAgent = true;
+            if (organelles[i].Definition.IsOxygenMetabolism)
+                predatorOxygenUsingOrganellesCount++;
         }
 
-        var preyOrganelles = predator.Organelles.Organelles;
+        var preyOrganelles = prey.Organelles.Organelles;
         int preyOrganellesCount = preyOrganelles.Count;
         for (int i = 0; i < preyOrganellesCount; ++i)
         {
             var organelle = preyOrganelles[i];
             if (organelle.Definition.HasSignalingFeature)
-            {
                 preyHasSignallingAgent = true;
-                break;
-            }
-        }
-
-        // TODO: switch to a manual loop to avoid an allocation
-        var preyOxygenUsingOrganellesCount = 0;
-        foreach (var organelle in prey.Organelles.Organelles)
-        {
-            if (organelle.Definition.IsOxygenMetabolism)
-                preyOxygenUsingOrganellesCount += 1;
-        }
-
-        var predatorOxygenUsingOrganellesCount = 0;
-        foreach (var organelle in predator.Organelles.Organelles)
-        {
-            if (organelle.Definition.IsOxygenMetabolism)
-                predatorOxygenUsingOrganellesCount += 1;
+            if (preyOrganelles[i].Definition.IsOxygenMetabolism)
+                preyOxygenUsingOrganellesCount++;
         }
 
         // Calculating "hit chance" modifier from prey size and predator toxicity
