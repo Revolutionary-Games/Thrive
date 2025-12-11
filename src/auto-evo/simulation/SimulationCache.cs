@@ -454,13 +454,15 @@ public class SimulationCache
         var preyHitProportion = 1 - predatorSizeHitFactor - preyToxicityHitFactor;
 
         // Calculating prey energy production altered by channel inhbitor
+        var channelInhibitorATPDebuff = Constants.CHANNEL_INHIBITOR_ATP_DEBUFF;
+
         var preyInhibitedPreyEnergyProduction = preyEnergyBalance.TotalProduction *
-            (1 - Constants.CHANNEL_INHIBITOR_ATP_DEBUFF *
+            (1 - channelInhibitorATPDebuff *
                 MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.ChannelInhibitor));
 
         // Calculating predator energy production altered by channel inhbitor
         var predatorInhibitedPreyEnergyProduction = predatorEnergyBalance.TotalProduction *
-            (1 - Constants.CHANNEL_INHIBITOR_ATP_DEBUFF *
+            (1 - channelInhibitorATPDebuff *
                 MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(preyToxicity, ToxinType.ChannelInhibitor));
 
         // If inhibited energy production would affect movement, add (part of) the inhibitor score to macrolide score
