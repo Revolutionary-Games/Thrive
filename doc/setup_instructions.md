@@ -184,7 +184,8 @@ Open Visual Studio Code and go to the Extensions tab. Get the extensions
 _C#_, _Mono Debug_, and _C# Tools for Godot_.
 
 Open up a Project in Godot. On the top toolbar, go to Editor -> Editor Settings.
-->there is slide button of advanced options:enable it
+Note that there is a button to enable advanced options, which you may need to enable 
+to see the relevant options.
 Scroll down on the left window until you find Dotnet. Click on Editor and set
 External Editor to Visual Studio Code. Click on Builds and set Build Tool to
 dotnet CLI.
