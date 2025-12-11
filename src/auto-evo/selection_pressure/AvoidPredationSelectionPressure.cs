@@ -28,6 +28,8 @@ public class AvoidPredationSelectionPressure : SelectionPressure
         new MoveOrganelleBack(organelle => organelle.HasMovementComponent),
         new UpgradeOrganelle(organelle => organelle.HasSlimeJetComponent, SlimeJetComponent.MUCOCYST_UPGRADE_NAME,
             true),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, -150.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, 150.0f),
         new ChangeMembraneType("double"),
         new ChangeMembraneType("cellulose"),
         new ChangeMembraneType("chitin"),
