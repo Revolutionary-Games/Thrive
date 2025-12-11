@@ -1330,6 +1330,8 @@ public static class Constants
     public const float AUTO_EVO_REPRODUCTION_COMPOUND_PRODUCTION_SCORE = 3000.0f;
     public const float AUTO_EVO_REPRODUCTION_COMPOUND_COST_WEAKENING_MODIFIER = 0.5f;
 
+    public const float AUTO_EVO_PREDATION_DEFENSE_SCORE_MODIFIER = 0.25f;
+
     public const float AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS_SMALL = 1.5f;
     public const float AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS = 20.0f;
 

@@ -292,6 +292,7 @@ public class SimulationCache
 
         // We want prey defensive measures to only reduce predation score, not eliminate it.
         // (Predation Score is reduced to 0 anyway if the "prey" has higher predation score to the predator)
+        var defenseScoreModifier = Constants.AUTO_EVO_PREDATION_DEFENSE_SCORE_MODIFIER;
 
         // TODO: If these two methods were combined it might result in better performance with needing just
         // one dictionary lookup
@@ -381,6 +382,7 @@ public class SimulationCache
 
         var hasChemoreceptor = false;
         var hasSignallingAgent = false;
+        var preyHasSignallingAgent = false;
 
         var organelles = predator.Organelles.Organelles;
         int count = organelles.Count;
@@ -392,6 +394,18 @@ public class SimulationCache
 
             if (organelle.Definition.HasSignalingFeature)
                 hasSignallingAgent = true;
+        }
+
+        var preyOrganelles = predator.Organelles.Organelles;
+        int preyOrganellesCount = preyOrganelles.Count;
+        for (int i = 0; i < preyOrganellesCount; ++i)
+        {
+            var organelle = preyOrganelles[i];
+            if (organelle.Definition.HasSignalingFeature)
+            {
+                preyHasSignallingAgent = true;
+                break;
+            }
         }
 
         // TODO: switch to a manual loop to avoid an allocation
@@ -519,28 +533,37 @@ public class SimulationCache
 
         // targets that resist physical damage are of course less vulnerable to it
         pilusScore /= preyHP * prey.MembraneType.PhysicalResistance;
+        preyPilusScore /= predatorHP * predator.MembraneType.PhysicalResistance;
         defensivePilusScore /= predatorHP * predator.MembraneType.PhysicalResistance;
 
         // But targets that resist toxin damage are less vulnerable to the injectisome
         injectisomeScore /= preyHP * prey.MembraneType.ToxinResistance;
+        preyInjectisomeScore /= predatorHP * predator.MembraneType.ToxinResistance;
         defensiveInjectisomeScore /= predatorHP * predator.MembraneType.ToxinResistance;
 
         // Combine pili for further calculations
         pilusScore += injectisomeScore;
+        preyPilusScore += preyInjectisomeScore;
         defensivePilusScore += defensiveInjectisomeScore;
 
-        // defensive pili need to be turned directly away from the predator
+        // defensive pili need to be turned directly away from the predator to work
         defensivePilusScore *= preyRotationModifier * preyFearScore;
 
         // Calling for allies helps with combat.
         if (hasSignallingAgent)
             pilusScore *= Constants.AUTO_EVO_SIGNALLING_BONUS;
+        if (preyHasSignallingAgent)
+            preyPilusScore *= Constants.AUTO_EVO_SIGNALLING_BONUS;
 
         // Use catch score for Pili
         pilusScore -= defensivePilusScore;
         if (pilusScore < 0)
             pilusScore = 0;
         pilusScore *= catchScore + accidentalCatchScore;
+
+        // Prey can use offensive pili for defense in these encounters, but only if they have the right behaviour
+        preyPilusScore *= (catchScore + accidentalCatchScore) * preyRotationModifier * defenseScoreModifier *
+            preyAggressionScore * (1 - preyFearScore);
 
         if (canEngulf)
         {
@@ -648,7 +671,8 @@ public class SimulationCache
             preySlimeJetScore = 0;
 
         cached = scoreMultiplier * aggressionScore *
-            (pilusScore + engulfmentScore + damagingToxinScore) - (preySlimeJetScore + preyMucocystsScore);
+            (pilusScore + engulfmentScore + damagingToxinScore) - (preySlimeJetScore + preyMucocystsScore +
+                preyPilusScore);
 
         predationScores.Add(key, cached);
         return cached;
