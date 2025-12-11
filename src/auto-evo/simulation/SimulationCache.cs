@@ -496,7 +496,8 @@ public class SimulationCache
             preyInhibitedPreyEnergyProduction *= 1 - channelInhibitorATPDebuff *
                 MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.ChannelInhibitor);
 
-            // If inhibited energy production would affect movement, add (part of) the inhibitor score to macrolide score
+            // If inhibited energy production would affect movement,
+            // add (part of) the inhibitor score to macrolide score
             if (preyInhibitedPreyEnergyProduction < preyEnergyBalance.TotalConsumption)
             {
                 var channelInhibitorSlowFactor = Math.Min(
