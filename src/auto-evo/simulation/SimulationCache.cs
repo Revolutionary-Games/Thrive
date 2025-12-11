@@ -332,7 +332,7 @@ public class SimulationCache
         var defensivePilusScore = preyToolScores.DefensivePilusScore;
         var defensiveInjectisomeScore = preyToolScores.DefensiveInjectisomeScore;
 
-        var agressionScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+        var aggressionScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
         var activityScore = predator.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
         var preyFearScore = prey.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
 
@@ -615,7 +615,7 @@ public class SimulationCache
         if (predatorSlimeJetScore > 0)
             preySlimeJetScore = 0;
 
-        cached = scoreMultiplier * agressionScore *
+        cached = scoreMultiplier * aggressionScore *
             (pilusScore + engulfmentScore + damagingToxinScore) - (preySlimeJetScore + preyMucocystsScore);
 
         predationScores.Add(key, cached);
