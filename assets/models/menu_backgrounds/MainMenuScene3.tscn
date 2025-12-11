@@ -95,6 +95,7 @@ sky_material = SubResource("PanoramaSkyMaterial_0tuoa")
 background_mode = 2
 sky = SubResource("17")
 sky_custom_fov = 82.4
+ambient_light_source = 2
 ambient_light_color = Color(0.572549, 0.294118, 0.223529, 1)
 ambient_light_sky_contribution = 0.0
 ambient_light_energy = 1.34
@@ -208,7 +209,7 @@ normal_scale = 1.77
 [node name="MainMenuScene3" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.0867384, -0.0716095, 0.993654, 0, 0.997413, 0.0718804, -0.996231, 0.0062348, -0.0865141, 9.478, 8.269, -0.06)
+transform = Transform3D(-0.086738445, -0.071609505, 0.9936541, 0, 0.997413, 0.07188043, -0.996231, 0.0062347963, -0.08651408, 9.478, 8.269, -0.06)
 fov = 79.3
 far = 8192.0
 
