@@ -671,8 +671,8 @@ public class SimulationCache
         // Damaging toxin section
 
         oxytoxyScore *= 1 - Math.Min(preyOxygenUsingOrganellesCount * oxytoxyDebuffPerOrganelle, oxytoxyDebuffMax);
-        oxygenMetabolismInhibitorScore *= 1 + Math.Min(
-            preyOxygenUsingOrganellesCount * oxygenInhibitorBuffPerOrganelle, oxygenInhibitorBuffMax);
+        oxygenMetabolismInhibitorScore *= 1 + Math.Min(preyOxygenUsingOrganellesCount * oxygenInhibitorBuffPerOrganelle,
+            oxygenInhibitorBuffMax);
         var damagingToxinScore = oxytoxyScore + cytotoxinScore + oxygenMetabolismInhibitorScore;
 
         preyOxytoxyScore *= 1 - Math.Min(predatorOxygenUsingOrganellesCount * oxytoxyDebuffPerOrganelle,
