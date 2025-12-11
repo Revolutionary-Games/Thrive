@@ -337,10 +337,7 @@ public class SimulationCache
         var preyFearScore = prey.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
 
         // prey effectiveness at running away depends on how quickly they choose to run away
-        // and fully sessile prey can't run at all
         preySpeed *= preyFearScore;
-        if (prey.Behaviour.Activity == 0.0)
-            preySpeed = 0;
 
         // Sprinting calculations
         var predatorSprintSpeed = predatorSpeed * sprintMultiplier;
