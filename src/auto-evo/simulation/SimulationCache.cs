@@ -290,6 +290,9 @@ public class SimulationCache
         var sprintingStrain = Constants.SPRINTING_STRAIN_INCREASE_PER_SECOND / 5;
         var strainPerHex = Constants.SPRINTING_STRAIN_INCREASE_PER_HEX / 5;
 
+        // We want prey defensive measures to only reduce predation score, not eliminate it.
+        // (Predation Score is reduced to 0 anyway if the "prey" has higher predation score to the predator)
+
         // TODO: If these two methods were combined it might result in better performance with needing just
         // one dictionary lookup
         var predatorHexSize = GetBaseHexSizeForSpecies(predator);
@@ -329,12 +332,23 @@ public class SimulationCache
 
         var preySlimeJetScore = preyToolScores.SlimeJetScore;
         var preyMucocystsScore = preyToolScores.MucocystsScore;
+        var preyPilusScore = preyToolScores.PilusScore;
+        var preyInjectisomeScore = preyToolScores.InjectisomeScore;
+        var preyToxicity = preyToolScores.AverageToxicity;
+        var preyOxytoxyScore = preyToolScores.OxytoxyScore;
+        var preyCytotoxinScore = preyToolScores.CytotoxinScore;
+        var preyMacrolideScore = preyToolScores.MacrolideScore;
+        var preyChannelInhibitorScore = preyToolScores.ChannelInhibitorScore;
+        var preyOxygenMetabolismInhibitorScore = preyToolScores.OxygenMetabolismInhibitorScore;
         var defensivePilusScore = preyToolScores.DefensivePilusScore;
         var defensiveInjectisomeScore = preyToolScores.DefensiveInjectisomeScore;
 
         var aggressionScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
         var activityScore = predator.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+
         var preyFearScore = prey.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
+        var preyAggressionScore = prey.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+        var preyOpportunismScore = prey.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
 
         // prey effectiveness at running away depends on how quickly they choose to run away
         preySpeed *= preyFearScore;
@@ -530,11 +544,27 @@ public class SimulationCache
 
         if (canEngulf)
         {
+            // total prey toxin amount for anti-engulfment purposes
+            // Toxin content is higher if the toxin are not being shot for offense
+            var totalPreyToxinContent = preyOxytoxyScore + preyCytotoxinScore + preyMacrolideScore +
+                preyChannelInhibitorScore + preyOxygenMetabolismInhibitorScore;
+            totalPreyToxinContent *= (1 - preyAggressionScore) + preyAggressionScore;
+            if (predatorHexSize > preyHexSize)
+            {
+                totalPreyToxinContent *= 1 - preyOpportunismScore * preyAggressionScore * (1 - preyFearScore);
+            }
+            else
+            {
+                totalPreyToxinContent *= (1 - preyAggressionScore) * (1 - preyFearScore);
+            }
+
+            totalPreyToxinContent *= Constants.AUTO_EVO_TOXIN_ENGULFMENT_DEFENSE_MODIFIER;
+
             // Final engulfment score calculation
             // Engulfing prey by luck is especially easy if you are huge.
             // This is also used to incentivize size in microbe species.
             engulfmentScore = (catchScore + accidentalCatchScore * predatorHexSize) *
-                (Constants.AUTO_EVO_ENGULF_PREDATION_SCORE - defensivePilusScore);
+                (Constants.AUTO_EVO_ENGULF_PREDATION_SCORE - defensivePilusScore - totalPreyToxinContent);
             if (engulfmentScore < 0)
                 engulfmentScore = 0;
 
