@@ -457,7 +457,7 @@ public class SimulationCache
             if (organelle.Definition.HasSignalingFeature)
                 hasSignallingAgent = true;
             if (organelles[i].Definition.IsOxygenMetabolism)
-                predatorOxygenUsingOrganellesCount++;
+                ++predatorOxygenUsingOrganellesCount;
         }
 
         var preyOrganelles = prey.Organelles.Organelles;
@@ -468,7 +468,7 @@ public class SimulationCache
             if (organelle.Definition.HasSignalingFeature)
                 preyHasSignallingAgent = true;
             if (preyOrganelles[i].Definition.IsOxygenMetabolism)
-                preyOxygenUsingOrganellesCount++;
+                ++preyOxygenUsingOrganellesCount;
         }
 
         // Calculating "hit chance" modifier from prey size and predator toxicity
