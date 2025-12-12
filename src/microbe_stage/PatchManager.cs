@@ -170,6 +170,10 @@ public class PatchManager
 
         GD.Print("Number of chunks in this patch = ", biome.Chunks.Count);
 
+        // Note that if the mesh list changes for a chunk between patches, that is not supported and will just update
+        // the density here. So be careful to name different chunk types with different names in different patches
+        // if they are actually different.
+
         foreach (var entry in biome.Chunks)
         {
             // Don't spawn Easter eggs if the player has chosen not to
