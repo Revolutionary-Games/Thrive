@@ -109,8 +109,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     private RunResults? autoEvoResults;
     private Func<LocalizedStringBuilder>? textReportGenerator;
 
-    private bool centerFoodChainScrollNextFrame;
-
     public enum ReportSubtab
     {
         AutoEvo,
@@ -149,15 +147,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
         ApplyReportSubtab();
         RegisterTooltips();
-    }
-
-    public override void _Process(double delta)
-    {
-        if (centerFoodChainScrollNextFrame)
-        {
-            CenterFoodChainScroll();
-            centerFoodChainScrollNextFrame = false;
-        }
     }
 
     public override void WritePropertiesToArchive(ISArchiveWriter writer)
@@ -403,7 +392,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
         foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor, PlayerSpecies);
 
-        centerFoodChainScrollNextFrame = true;
+        Invoke.Instance.Queue(CenterFoodChainScroll);
     }
 
     private void CenterFoodChainScroll()

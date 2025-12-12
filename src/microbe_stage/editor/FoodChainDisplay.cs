@@ -159,7 +159,6 @@ public partial class FoodChainDisplay : Control
             if (node.CreatedControl != null)
             {
                 position += node.CreatedControl.Position;
-                GD.Print(node.CreatedControl.Position);
             }
         }
 
