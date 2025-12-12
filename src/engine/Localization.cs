@@ -17,7 +17,7 @@ public partial class Localization : Node
     private static bool printedError;
 
     /// <summary>
-    ///   Cache of looked up translations for the current language. Will be cleared on language change
+    ///   Cache of looked-up translations for the current language. Will be cleared on language change
     /// </summary>
     private readonly Dictionary<string, string> lookedUpTranslations = new();
 
