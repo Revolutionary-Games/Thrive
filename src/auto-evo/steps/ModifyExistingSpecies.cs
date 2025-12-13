@@ -301,7 +301,7 @@ public class ModifyExistingSpecies : IRunStep
                 temporaryPressures.Add(traversalMiche.Pressure);
             }
 
-            SpeciesDependentPressures(temporaryPressures, miche!, microbeSpecies);
+            // SpeciesDependentPressures(temporaryPressures, miche!, microbeSpecies);
 
             var variants = GenerateMutations(microbeSpecies,
                 worldSettings.AutoEvoConfiguration.MutationsPerSpecies, temporaryPressures);
@@ -327,7 +327,7 @@ public class ModifyExistingSpecies : IRunStep
                 temporaryPressures.Add(traversalMiche.Pressure);
             }
 
-            SpeciesDependentPressures(temporaryPressures, miche!, microbeSpecies);
+            // SpeciesDependentPressures(temporaryPressures, miche!, microbeSpecies);
 
             var variants = GenerateMutations(microbeSpecies,
                 worldSettings.AutoEvoConfiguration.MutationsPerSpecies, temporaryPressures);
@@ -347,8 +347,8 @@ public class ModifyExistingSpecies : IRunStep
 
         foreach (var predator in predatorPressuresTemporary)
         {
-            // TODO: Make that weight a constant
-            dataReceiver.Add(new AvoidPredationSelectionPressure(predator, 5.0f));
+            dataReceiver.Add(new AvoidPredationSelectionPressure(predator,
+                Constants.AUTO_EVO_AVOID_PREDATION_PRESSURE_WEIGHT));
         }
     }
 

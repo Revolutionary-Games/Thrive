@@ -157,35 +157,11 @@ public class ReproductionCompoundPressure : SelectionPressure
 
         var finalScore = 0.1f;
 
-        // Modifier to fit the current mechanics of the Binding Agent. This should probably be removed or adjusted if
-        // being in a colony no longer reduces osmoregulation cost.
-        var bindingModifier = 1.0f;
-
-        MicrobeInternalCalculations.GetBindingAndSignalling(microbeSpecies.Organelles.Organelles,
-            out var hasBindingAgent, out var hasSignallingAgent);
-
-        if (hasBindingAgent)
-        {
-            if (hasSignallingAgent)
-            {
-                bindingModifier *= 1 -
-                    Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS * Constants.AUTO_EVO_SIGNALLING_BONUS;
-            }
-            else
-            {
-                bindingModifier *= 1 - Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS;
-            }
-        }
-
-        // modify score by energy cost and activity
+        // modify score by activity
         var activityFraction = microbeSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
-        var energyBalanceForSpecies = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
 
-        // modify score by energy cost and activity
-        finalScore += (score + chemoreceptorScore) * activityFraction /
-            (energyBalanceForSpecies.TotalConsumption * mildingModifier * bindingModifier);
-        finalScore += score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION /
-            (energyBalanceForSpecies.TotalConsumptionStationary * mildingModifier * bindingModifier);
+        finalScore += (score + chemoreceptorScore) * activityFraction;
+        finalScore += score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
 
         // Take into account how much compound the species needs to collect
         finalScore /= species.TotalReproductionCost[compound] * mildingModifier;
