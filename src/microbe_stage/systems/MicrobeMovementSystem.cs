@@ -225,6 +225,11 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         // movement cost
         var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta * strainMultiplier;
 
+        if (!cellProperties.IsBacteria)
+        {
+            cost *= Constants.NUCLEUS_MOVEMENT_COST_MODIFIER;
+        }
+
         var got = compounds.TakeCompound(Compound.ATP, cost);
 
         // Halve base movement speed if out of ATP
