@@ -3,8 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using AngleSharp.Common;
-using Arch.Buffer;
 using Arch.Core;
 using Arch.System;
 using Components;
@@ -37,14 +35,17 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
 
     private readonly List<SpawnedTerrainCluster> blankClusterList = new();
 
+    private readonly float playerProtectionRadius = 50;
+
+    private readonly int maxSpawnAttempts = 10;
+    private readonly int differentClusterTypeAttempts = 3;
+
+    private readonly int spawnsPerUpdate = 2;
+    private readonly int despawnsPerUpdate = 5;
+
     private Vector3 playerPosition;
 
     private Vector3 nextPlayerPosition;
-
-    private float playerProtectionRadius = 20;
-
-    private int maxSpawnAttempts = 10;
-    private int differentClusterTypeAttempts = 3;
 
     private long baseSeed;
 
@@ -55,9 +56,6 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
 
     private bool printedClustersTightWarning;
 
-    private int spawnsPerUpdate = 2;
-    private int despawnsPerUpdate = 5;
-
     /// <summary>
     ///   Used to mark entity groups for finding them. Wraparound shouldn't cause problems as the spawns should be
     ///   so far apart.
@@ -67,8 +65,6 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
     public MicrobeTerrainSystem(IWorldSimulation worldSimulation, World world) : base(world)
     {
         this.worldSimulation = worldSimulation;
-        // spawnHelper = new MicrobeTerrainSystemSpawn(worldSimulation, terrainConfiguration!, playerProtectionRadius,
-            // playerPosition, maxSpawnAttempts);
     }
 
     private MicrobeTerrainSystem(IWorldSimulation worldSimulation, World world,
@@ -76,8 +72,6 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
     {
         this.worldSimulation = worldSimulation;
         terrainGridData = existingGrid;
-        // spawnHelper = new MicrobeTerrainSystemSpawn(worldSimulation, terrainConfiguration!, playerProtectionRadius,
-            // playerPosition, maxSpawnAttempts);
     }
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
@@ -160,13 +154,9 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
         // Find if too close to any terrain group
         foreach (var cluster in clusters)
         {
-            // Can filter by cluster distance first to cut down on overall checks
-            if (position.DistanceSquaredTo(cluster.CenterPosition) > MathUtils.Square(checkRadius + cluster.MaxRadius))
-                continue;
-
             foreach (var terrainGroup in cluster.TerrainGroups)
             {
-                // And then check individual groups in a cluster the spawn position is too close to
+                // Check individual groups in a cluster the spawn position is too close to
                 if (position.DistanceSquaredTo(terrainGroup.Position) <=
                     MathUtils.Square(checkRadius + terrainGroup.Radius))
                 {
@@ -422,9 +412,12 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
                 // Try a few random clusters in case one fits
                 if (SpawnNewCluster(cell, result, recorder, random))
                 {
+                    // GD.Print("Success");
                     succeeded = true;
                     break;
                 }
+
+                // GD.Print("Failed to spawn cluster, retrying with different type");
             }
 
             if (succeeded)
@@ -498,18 +491,13 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
     }
 
     // This is internal to make archive registration work
-    internal struct SpawnedTerrainCluster(Vector3 centerPosition, float maxRadius, SpawnedTerrainGroup[] terrainGroups,
-        float overlapRadius) : IArchivable
+    internal struct SpawnedTerrainCluster(Vector3 centerPosition, SpawnedTerrainGroup[] terrainGroups) : IArchivable
     {
-        public const ushort SERIALIZATION_VERSION_CLUSTER = 2;
+        public const ushort SERIALIZATION_VERSION_CLUSTER = 3;
 
         public Vector3 CenterPosition = centerPosition;
 
         public SpawnedTerrainGroup[] TerrainGroups = terrainGroups;
-
-        public float MaxRadius = maxRadius;
-
-        public float OverlapRadius = overlapRadius;
 
         public ushort CurrentArchiveVersion => SERIALIZATION_VERSION_CLUSTER;
         public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.SpawnedTerrainCluster;
@@ -531,17 +519,12 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
                 throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_CLUSTER);
 
             var center = reader.ReadVector3();
-            var maxRadius = reader.ReadFloat();
+            if (version < 3)
+                _ = reader.ReadFloat();
             var parts = reader.ReadObject<SpawnedTerrainGroup[]>();
-            var overlapRadius = reader.ReadFloat();
-            var instance = new SpawnedTerrainCluster(center, maxRadius, parts, overlapRadius);
-
-            // Override the values that got incorrectly doubled from old save load
-            if (version < 2)
-            {
-                instance.MaxRadius = MathF.Sqrt(maxRadius);
-                instance.OverlapRadius = MathF.Sqrt(overlapRadius);
-            }
+            if (version < 3)
+                _ = reader.ReadFloat();
+            var instance = new SpawnedTerrainCluster(center, parts);
 
             return instance;
         }
@@ -554,9 +537,7 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
         public void WriteToArchive(ISArchiveWriter writer)
         {
             writer.Write(CenterPosition);
-            writer.Write(MaxRadius);
             writer.WriteObject(TerrainGroups);
-            writer.Write(OverlapRadius);
         }
     }
 

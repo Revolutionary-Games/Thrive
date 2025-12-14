@@ -95,9 +95,6 @@ public class TerrainConfiguration : RegistryType
         public readonly float Radius;
 
         [JsonProperty]
-        public readonly Vector3 RelativePosition;
-
-        [JsonProperty]
         public readonly Quaternion DefaultRotation = Quaternion.Identity;
 
         [JsonProperty]
@@ -134,14 +131,9 @@ public class TerrainConfiguration : RegistryType
         public readonly List<TerrainChunkConfiguration> Chunks = new();
 
         [JsonProperty]
-        public readonly Vector3 RelativePosition;
-
-        [JsonProperty]
         public readonly bool RandomizeRotation;
 
         public float MaxPossibleChunkRadius;
-
-        public float OtherTerrainPreventionRadius;
 
         public void Check(string name)
         {
@@ -150,27 +142,15 @@ public class TerrainConfiguration : RegistryType
                 throw new InvalidRegistryDataException(name, GetType().Name, "Terrain chunks are empty");
             }
 
-            MaxPossibleChunkRadius = 0;
-
             foreach (var chunk in Chunks)
             {
                 chunk.Check(name);
 
-                // Calculate overall radius
-                var currentRadius = chunk.Radius + chunk.RelativePosition.Length();
-                if (currentRadius > MaxPossibleChunkRadius)
-                    MaxPossibleChunkRadius = currentRadius;
+                if (chunk.Radius > MaxPossibleChunkRadius)
+                {
+                    MaxPossibleChunkRadius = chunk.Radius;
+                }
             }
-
-            if (MaxPossibleChunkRadius < 1)
-            {
-                throw new InvalidRegistryDataException(name, GetType().Name,
-                    "Terrain calculated radius is less than 1");
-            }
-
-            // If the other terrain prevention radius is not set, set it automatically
-            if (OtherTerrainPreventionRadius < 1)
-                OtherTerrainPreventionRadius = MaxPossibleChunkRadius;
         }
     }
 
@@ -201,9 +181,6 @@ public class TerrainConfiguration : RegistryType
         [JsonProperty]
         public readonly int MaxChunks = 10;
 
-        public float MaxPossibleChunkRadius;
-        public float OverlapRadius;
-
         public void Check(string name)
         {
             if (TerrainGroups.Count < 1)
@@ -214,22 +191,9 @@ public class TerrainConfiguration : RegistryType
             if (RelativeChance < 1)
                 throw new InvalidRegistryDataException(name, GetType().Name, "RelativeChance must be above 0");
 
-            MaxPossibleChunkRadius = 0;
-            OverlapRadius = 0;
-
             foreach (var group in TerrainGroups)
             {
                 group.Check(name);
-
-                var groupPositionFactor = group.RelativePosition.Length();
-                var currentRadius = groupPositionFactor + group.MaxPossibleChunkRadius;
-
-                if (currentRadius > MaxPossibleChunkRadius)
-                    MaxPossibleChunkRadius = currentRadius;
-
-                var overlapRadius = groupPositionFactor + group.OtherTerrainPreventionRadius;
-                if (overlapRadius > OverlapRadius)
-                    OverlapRadius = overlapRadius;
             }
         }
     }
