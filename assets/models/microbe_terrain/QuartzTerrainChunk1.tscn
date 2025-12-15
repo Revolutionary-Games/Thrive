@@ -12,16 +12,18 @@ cull_mode = 2
 albedo_color = Color(0.92907894, 0.8961511, 0.83499074, 1)
 albedo_texture = ExtResource("2_7ygq6")
 metallic = 0.4
-metallic_specular = 0.25
+metallic_specular = 0.3
 metallic_texture = ExtResource("4_h1b0i")
 metallic_texture_channel = 4
-roughness = 0.5
+roughness = 0.4
 roughness_texture_channel = 4
 normal_enabled = true
 normal_scale = 0.70000005
 normal_texture = ExtResource("5_8yuml")
+bent_normal_enabled = true
+bent_normal_texture = ExtResource("5_8yuml")
 ao_enabled = true
-ao_light_affect = 0.4
+ao_light_affect = 0.6
 ao_texture = ExtResource("3_oyhx3")
 
 [node name="QuartzTerrainChunk1" instance=ExtResource("1_f8aly")]

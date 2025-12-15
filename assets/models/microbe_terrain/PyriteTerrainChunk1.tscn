@@ -17,9 +17,10 @@ roughness = 0.35
 roughness_texture_channel = 1
 normal_enabled = true
 normal_texture = ExtResource("4_e8nwt")
+bent_normal_enabled = true
 bent_normal_texture = ExtResource("4_e8nwt")
 ao_enabled = true
-ao_light_affect = 0.6
+ao_light_affect = 0.8
 ao_texture = ExtResource("3_b7raa")
 
 [node name="PyriteTerrainChunk1" instance=ExtResource("1_s6ryl")]
