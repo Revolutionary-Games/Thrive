@@ -301,8 +301,6 @@ public class ModifyExistingSpecies : IRunStep
                 temporaryPressures.Add(traversalMiche.Pressure);
             }
 
-            // SpeciesDependentPressures(temporaryPressures, miche!, microbeSpecies);
-
             var variants = GenerateMutations(microbeSpecies,
                 worldSettings.AutoEvoConfiguration.MutationsPerSpecies, temporaryPressures);
 
@@ -326,8 +324,6 @@ public class ModifyExistingSpecies : IRunStep
             {
                 temporaryPressures.Add(traversalMiche.Pressure);
             }
-
-            // SpeciesDependentPressures(temporaryPressures, miche!, microbeSpecies);
 
             var variants = GenerateMutations(microbeSpecies,
                 worldSettings.AutoEvoConfiguration.MutationsPerSpecies, temporaryPressures);
