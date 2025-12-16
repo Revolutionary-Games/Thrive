@@ -1175,3 +1175,37 @@
     - Updated code checking tools
     - Updated BenchmarkDotNet from 0.15.6 to 0.15.8
     - Updated translations
+
+1.0.0:
+  IntroductionText: |
+    This is it, the big 1.0 release! Which means that the microbe stage is now complete. The last bit of the microbe stage development has focused almost entirely on fixing everything we can before the release to ensure that this is a polished release. The microbe stage should now be a complete gameplay experience from start to finish. Starting from the next release our official development focus moves to the multicellular stage, however there's still likely to be some changes to the microbe stage every now and then.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v1.0.0
+  PatchNotes:
+    - Fixed a massive error with the game being much darker than intended. This went unnoticed for a long time as the game looked normal when debugging, but much darker only in a release version.
+    - Made some terrain chunks shiny
+    - Fixed fun screen filter effects not working at all
+    - Fixed microbe background particles never being freed thus they kept stacking infinitely
+    - Fixed major problem with dying on easy mode giving population rather than taking it away
+    - Player species spawn rate now immediately updates instead of only updating after the next editor cycle
+    - The food chain tab is now centered on opening and can be dragged around better
+    - Fixed preview microbe data checks being incorrect, which caused errors in the multicellular editor
+    - Fixed a rare error when trying to generate small worlds that prevented specific seeds from working
+    - Fixed a bug in the logic for making rotating an organelle free, now it should correctly detect organelles rotated in-place and make that free
+    - Fixed population indicator circles using a low resolution texture
+    - Fixed the banana chunks not appearing in the banana biome
+    - Added extra error checking to the feature for continuing as another species on extinction so that it cannot suggest picking the current species again to play as
+    - Fixed error in multicellular on editor exit when cell layout repositioning caused new cell overlaps. This slightly alters all organelle repositioning logic, even for the microbe stage.
+    - Fixed errors triggered in multicellular editor in certain cases when the cell editor was not initialized
+    - Fixed the button in the options menu for showing tutorials in the current playthrough not always updating correctly
+    - Fixed warnings about the extinction box GUI anchors
+    - Background task errors are now forwarded to the GUI unhandled errors popup
+    - Optimized the museum species list refresh to only update deleted or added items instead of all
+    - Tweaked the prototype stage world environments to make sure that they aren't just a single change away from a release mode brightness bug
+    - Made MP amount update after duplicating a cell type in case there was some inconsistency
+    - Adjusted a few comments and tweaked the now unused save upgrader to do some issue clean up
+    - Updated some of our setup instructions related to Visual Studio Code
+    - Updated gdUnit4 to 6.0.3
+    - Updated System.Text.Json from 10.0.0 to 10.0.1
+    - Updated System.IO.Hashing from 10.0.0 to 10.0.1
+    - Updated our code checking tools
+    - Updated translations
