@@ -614,9 +614,15 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         if (EditedSpecies.ModifiableCellTypes.Any(c =>
                 c != selectedCellTypeToEdit && c.CellTypeName == selectedCellTypeToEdit.CellTypeName))
         {
-            // TODO: don't trigger this if the name was left as it was
-            GD.Print("Cell editor renamed a cell type to a duplicate name, reverting");
-            selectedCellTypeToEdit.CellTypeName = oldName;
+            if (oldName != selectedCellTypeToEdit.CellTypeName)
+            {
+                GD.Print("Cell editor renamed a cell type to a duplicate name, reverting");
+                selectedCellTypeToEdit.CellTypeName = oldName;
+            }
+            else
+            {
+                GD.Print("Cell type name was not edited");
+            }
         }
         else
         {

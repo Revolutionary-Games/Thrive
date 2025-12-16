@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-05 11:59+0200\n"
-"PO-Revision-Date: 2025-12-05 09:23+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2025-12-12 16:11+0200\n"
+"PO-Revision-Date: 2025-12-14 16:20+0000\n"
+"Last-Translator: ILIA RIABOV <ilyarya131@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,6 @@ msgstr "Активный"
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Число потоков:"
 
-#, fuzzy
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "Активные микробы будут в движении, даже если поблизости ничего не происходит.\n"
@@ -106,7 +105,6 @@ msgstr "Добавить новое назначение клавиши"
 msgid "ADVANCED_VIEW"
 msgstr "Продвинутый вид"
 
-#, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Открыть дополнительные настройки"
 
@@ -534,8 +532,14 @@ msgstr "За Пределами Клетки"
 msgid "BIG_IRON_CHUNK"
 msgstr "Большой кусок железа"
 
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Большой Кусок Железного Банана"
+
 msgid "BIG_PHOSPHATE_CHUNK"
 msgstr "Большой Фрагмент Фосфата"
+
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
+msgstr "Большой Кусок Фосфатного Банана"
 
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} Млрд"
@@ -1446,17 +1450,14 @@ msgstr ""
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ТЕКУЩАЯ ЛОКАЦИЯ"
 
-#, fuzzy
 msgid "CURRENT_PARTICLES_ALL"
-msgstr "ТЕКУЩАЯ ЛОКАЦИЯ"
+msgstr "Все"
 
-#, fuzzy
 msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
-msgstr "Ничего не исследуется"
+msgstr "Только Круги"
 
-#, fuzzy
 msgid "CURRENT_PARTICLES_NONE"
-msgstr "Ничего не исследуется"
+msgstr "Ничто"
 
 msgid "CURRENT_RESEARCH_NONE"
 msgstr "Ничего не исследуется"
@@ -1784,9 +1785,8 @@ msgstr "Режим отображения:"
 msgid "DISPLAY_PART_NAMES"
 msgstr "Показать названия кнопок при выборе частей"
 
-#, fuzzy
 msgid "DISPLAY_SELECTION"
-msgstr "Липаза позволяет клетке разрушать большинство типов мембран. Ваша клетка уже производит некоторые ферменты без лизосомы, но выбрав этот тип вы повысите эффективность."
+msgstr "Монитор:"
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Равномерно распределенный экологический источник {0}"
@@ -2604,9 +2604,8 @@ msgstr "Видеокарта:"
 msgid "GRAPHICS"
 msgstr "Графика"
 
-#, fuzzy
 msgid "GRAPHICS_PRESET"
-msgstr "Графическая Команда"
+msgstr "Предустановки графики:"
 
 msgid "GRAPHICS_TEAM"
 msgstr "Графическая Команда"
@@ -2964,9 +2963,8 @@ msgstr "Июль"
 msgid "JUNE"
 msgstr "Июнь"
 
-#, fuzzy
 msgid "KEEP_CURRENT_SHORT"
-msgstr "Текущий мир"
+msgstr "Использовать Текущий"
 
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
 msgstr "Поддерживает текущую толерантность к давлению при изменении Максимальных и Минимальных Слайдеров"
@@ -3468,9 +3466,8 @@ msgstr "Стадия Макроскопического Организма"
 msgid "MAKE_CELL_THAT_EATS_RADIATION"
 msgstr "Создайте клетку, которая будет получать энергию от радиоактивности"
 
-#, fuzzy
 msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
-msgstr " Создайте клетку, которая использует только хемосинтез для получения энергии"
+msgstr "Создайте клетку, которая использует только хемосинтез для получения энергии"
 
 msgid "MAKE_NO_CHANGES_IN_EDITOR"
 msgstr "Не вносите никаких изменений в свой микроб в редакторе"
@@ -3682,9 +3679,8 @@ msgstr "Тест производительности на Микробах"
 msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr "Наклон Камеры Микробной Стадии"
 
-#, fuzzy
 msgid "MICROBE_CURRENT_PARTICLES"
-msgstr "Найти текущий биом"
+msgstr "Текущие части микроба:"
 
 msgid "MICROBE_EDITOR"
 msgstr "Одноклеточный редактор"
@@ -4073,12 +4069,11 @@ msgstr "Загрузчик модов"
 msgid "MOD_VERSION"
 msgstr "Версия мода:"
 
-#, fuzzy
 msgid "MONITOR_AUTO"
-msgstr "Автор мода:"
+msgstr "Авто"
 
 msgid "MONITOR_IDENTIFIER"
-msgstr ""
+msgstr "Монитор {0}"
 
 msgid "MORE_INFO"
 msgstr "Показать больше информации"
@@ -4920,29 +4915,23 @@ msgstr "Истребление {0}"
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Просмотр подробной информации, лежащей в основе прогноза"
 
-#, fuzzy
 msgid "PRESET_CUSTOM"
 msgstr "Пользовательский"
 
-#, fuzzy
 msgid "PRESET_HIGH"
-msgstr "Сбросить"
+msgstr "Высокие"
 
-#, fuzzy
 msgid "PRESET_LOW"
-msgstr "Сбросить"
+msgstr "Низкие"
 
-#, fuzzy
 msgid "PRESET_MEDIUM"
-msgstr "Средний"
+msgstr "Средние"
 
-#, fuzzy
 msgid "PRESET_VERY_HIGH"
-msgstr "Очень высокий"
+msgstr "Очень высокие"
 
-#, fuzzy
 msgid "PRESET_VERY_LOW"
-msgstr "Очень низкий"
+msgstr "Очень низкие"
 
 msgid "PRESSURE"
 msgstr "Давление"
@@ -5618,8 +5607,14 @@ msgstr "Превращает [thrive:compound type=\"glucose\"][/thrive:compound
 msgid "SMALL_IRON_CHUNK"
 msgstr "Маленький кусок железа"
 
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "Маленький Кусок Железного Банана"
+
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Маленький Фрагмент Фосфата"
+
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
+msgstr "Маленький Кусок Фосфатного Банана"
 
 msgid "SMALL_SULFUR_CHUNK"
 msgstr "Маленький фрагмент железа"
@@ -6470,7 +6465,6 @@ msgstr ""
 "\n"
 "Так же, помимо жгутиков, есть еще один способ для поднятия [b]скорости передвижения[/b] [thrive:icon]MovementIcon[/thrive:icon]. Достаточно сделать вашу мембрану более жидкой во[u] вкладке мембраны[/u]."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
 msgstr ""
 "Перед вами экран Пищевой Цепи\n"
@@ -6479,7 +6473,7 @@ msgstr ""
 "\n"
 "Помимо природных источников пищи, здесь показываются ещё и отношения \"Хищник-Жертва\".\n"
 "\n"
-"Эта информация может дать вам идеи насчёт того, в каком русле можно развить вид."
+"Эта информация может дать вам идеи насчёт того, в каком русле можно развить вид, но вам, как новичку, не стоит беспокоиться, если вы не понимаете, что написано на этом экране."
 
 msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
@@ -7235,19 +7229,19 @@ msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "Нет улучшений."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
-msgstr "Нет эффектов. Будет реализовано."
+msgstr "Клетки с [b]Биолюменесцентными Вакуолями[/b] повышают их Устойчивость к Кислороду."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
-msgstr "Создает свет. Еще не осуществлен в Thrive."
+msgstr "Создает[thrive:compound type=\"sunlight\"][/thrive:compound] и увеличивает Устойчивость к Кислороду имеющейся клетки."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
-msgstr "Нет модификаций. Будет реализовано."
+msgstr "Нет модификаций."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
-msgstr "Нет процессов. Будет реализовано."
+msgstr "[b]Синтез Люциферазы[/b]: [thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"sunlight\"][/thrive:compound]"
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_REQUIREMENTS"
-msgstr "Невозможно добавить клетки. Будет реализовано."
+msgstr "Клетка должна иметь [b][color=#3796e1][url=thriveopedia:nucleus]Ядро[/url][/color][/b] для развития [b]Биолюминесцентной Вакуоли[/b]."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7260,10 +7254,10 @@ msgstr ""
 "Если вы хотите включения в игру [b]Биолюминесцентной вакуоли[/b] , или у вас есть идеи для достойных игровых функций, зайдите на нашу [color=#3796e1][url=https://suggestions.revolutionarygamesstudio.com/]Доску Идей[/url][/color]."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
-msgstr "Недоступно в игре. Будет реализовано."
+msgstr "Добавьте [b]Биолюминесцентные Вакуоли[/b] в вашу клетку, если она анаэробная и вам нужно повысить её Устойчивость к Кислороду."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
-msgstr "Нет улучшений. Будет реализовано."
+msgstr "Нет улучшений."
 
 msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
 msgstr "Редактор Строения Тела, Клеточный Редактор"
@@ -8033,6 +8027,7 @@ msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
 msgstr ""
 "В этом разделе собраны все советы для этапа «Микробы», которые отображаются на экранах загрузки.\n"
 "\n"
+"\n"
 "Каждый гекс цитоплазмы стоит 1 [thrive:compound type=\"atp\"][/thrive:compound] в секунду для поддержания, но это генерирует 3 [thrive:compound type=\"atp\"][/thrive:compound]. Если вам немного не хватает [thrive:compound type=\"atp\"][/thrive:compound], попробуйте добавить пару гексов или убрать некоторые органеллы.\n"
 "\n"
 "Ваш клетка использует [thrive:compound type=\"atp\"][/thrive:compound] в качестве источника энергии. Если он закончится, вы умрёте.\n"
@@ -8692,9 +8687,9 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
-"[/i]Хорошо подумайте перед тем, как добавлять [b]ядро[/b] к своей клетке. Оно дорого в содержании и значительно замедляет клетку, поэтому убедитесь, что у вас значительный запас [thrive:compound type=\"atp\"][/thrive:compound]  и  вы можете позволить содержание на одно-два поколения. Мы рекомендуем добавлять [b][color=#3796e1][url=thriveopedia:cilia]Cilia[/url][/color][/b] и [b][color=#3796e1][url=thriveopedia:flagellum]Flagella[/url][/color][/b] в более поздних поколениях для восстановления части ловкости.\n"
+"Хорошо подумайте перед тем, как добавлять [b]Ядро[/b] к своей клетке. Оно дорого в содержании и значительно замедляет клетку, поэтому убедитесь, что у вас значительный запас [thrive:compound type=\"atp\"][/thrive:compound] и вы можете позволить содержание на одно-два поколения. Мы рекомендуем добавлять [b][color=#3796e1][url=thriveopedia:cilia]Реснички[/url][/color][/b] и [b][color=#3796e1][url=thriveopedia:flagellum]Жгутики[/url][/color][/b] в более поздних поколениях для восстановления части ловкости.\n"
 "\n"
-"Однако преимущества очевидны. [i]Эукариоты[/i] (клетки с [b]Ядрами[/b]) получают доступ к более разнообразным будущим улучшениям, чем прокариоты (безъядерные клетки).\n"
+"Однако преимущества очевидны. [i]Эукариоты[/i] (клетки с [b]Ядром[/b]) получают доступ к более разнообразным будущим улучшениям, чем прокариоты (безъядерные клетки).\n"
 "\n"
 "[b]Органеллы[/b], разблокированные [b]Ядром[/b], предлагают мощные новые способности, как например [b][color=#3796e1][url=thriveopedia:signalingAgent]Сигнальный Агент[/url][/color][/b] и [b][color=#3796e1][url=thriveopedia:bindingAgent]Связывающий агент[/url][/color][/b], или значительные улучшения существующих способностей, как например [b][color=#3796e1][url=thriveopedia:mitochondrion]Митохондрия[/url][/color][/b] и[b][color=#3796e1][url=thriveopedia:thermoplast]Термопласты[/url][/color][/b]. Мы рекомендуем заменять [i]прокариотические[/i] [b]органеллы[b] с более эффективными [i]эукариотическими[/i] аналогами после добавления [b]Ядра[/b], для улучшения производства [thrive:compound type=\"atp\"][/thrive:compound] и поддержания вашей клетки."
 
@@ -9052,11 +9047,7 @@ msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr ""
 "[thrive:compound type=\"iron\"][/thrive:compound] — это ценный альтернативный ресурс, который можно использовать вместо [thrive:compound type=\"glucose\"][/thrive:compound] поскольку он разлагается в окружающей среде гораздо позже. [thrive:compound type=\"iron\"][/thrive:compound]также напрямую преобразуется в АТФ, Таким образом, это может быть относительно дешёвым способом создания энергетического организма на ранней стадии развития микроба. Однако, поскольку [thrive:compound type=\"iron\"][/thrive:compound] довольно быстро сгорает, поэтому игроки должны следить за тем, чтобы постоянно находиться рядом с крупными облаками, и должны очень тщательно распределять этот ресурс, если решат играть за более подвижный организм.\n"
 "\n"
-"\n"
-"\n"
 "Способность к накоплению может быть очень полезной для организмов, окисляющих железо, поскольку позволяет им накапливать больше быстро истощающегося соединения. Размер тоже имеет значение, поскольку крупные организмы способны поглощать более мелкие [thrive:compound type=\"iron\"][/thrive:compound] куски, плавающие вокруг. Так у вас будет больше свободы движений, поскольку вы будете нести часть [thrive:compound type=\"iron\"][/thrive:compound] с собой, когда вы исследуете свое окружение. [b] Цитоплазма[/b] - это очень полезная часть для организмов, окисляющих железо, поскольку это позволяет недорого увеличить объем памяти и хранилища. [b] Вакуоли[/b] также очень полезны, когда вы становитесь эукариотом. \n"
-"\n"
-"\n"
 "\n"
 "[thrive:compound type=\"iron\"][/thrive:compound] расходуется быстрее, так как ваш организм предъявляет более высокие требования. Он также начнёт исчезать с ростом [b]Кислорода[/b]. Таким образом, игроки, которые используют [thrive:compound type=\"iron\"][/thrive:compound] нужно быть начеку, ведь в их атмосфере начинает преобладать кислород, и им следует обратить внимание на аэробное дыхание, если они хотят создать высокоэффективных эукариот."
 
@@ -9224,20 +9215,20 @@ msgstr "Добавляет [i]тепловое зрение[/i], Эту функ
 
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr ""
-"Вырабатывает энергию в виде [thrive:compound type=\"atp\"][/thrive:compound], используя изменение [thrive:compound type=\"temperature\"][/thrive:compound] в окружающей среде. Эукариотическая форма менее эффективной [b][color=#3796e1][url=thriveopedia:thermosynthase]Термосинтазы[/url][/color][/b].\n"
+"Вырабатывает [thrive:compound type=\"glucose\"][/thrive:compound], используя изменение [thrive:compound type=\"temperature\"][/thrive:compound] в окружающей среде. Эукариотическая форма менее эффективной [b][color=#3796e1][url=thriveopedia:thermosynthase]Термосинтазы[/url][/color][/b].\n"
 "\n"
 "Умозрительная органелла, не встречающаяся в реальной жизни. Недоступна в играх с [i]ЖКМЗ[/i] (Жизнь, Какой Мы её Знаем).\n"
 "\n"
-"Это окружённая мембраной органелла, содержащая термочувствительные ферменты внутри мембранных отсеков. Это прокариот, который был ассимилирован эукариотическим хозяином для использования в своих целях. Ферменты способны использовать энергию повышения [thrive:compound type=\"temperature\"][/thrive:compound] в их окружении, чтобы производить [thrive:compound type=\"atp\"][/thrive:compound] в процессе, называемом [i]термосинтезом[/i]."
+"Это окружённая мембраной органелла, содержащая термочувствительные ферменты внутри мембранных отсеков. Это прокариот, который был ассимилирован эукариотическим хозяином для использования в своих целях. Ферменты способны использовать энергию повышения [thrive:compound type=\"temperature\"][/thrive:compound] в их окружении, чтобы производить [thrive:compound type=\"glucose\"][/thrive:compound] в процессе, называемом [i]термосинтезом[/i]."
 
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "Нет модификаций."
 
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr ""
-"[b]Термосинтез[/b]: [thrive:compound type=\"temperature\"][/thrive:compound] [i]увеличивает[/i] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]Термосинтез[/b]: [thrive:compound type=\"temperature\"][/thrive:compound] [i]увеличивает[/i] → [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Генерирует энергию при повышении [thrive:compound type=\"temperature\"][/thrive:compound]. Термочувствительные ферменты меняют форму при повышении [thrive:compound type=\"temperature\"][/thrive:compound], позволяя переработать [i]АДФ[/i] в [thrive:compound type=\"atp\"][/thrive:compound]. Когда клетка охлаждается, ферменты возвращаются в исходную форму, позволяя повторить процесс. Более эффективная форма [i]Бактериального Термосинтеза[/i] представлена в [b][color=#3796e1][url=thriveopedia:thermosynthase]Thermosynthase[/url][/color][/b]. Скорость производства [thrive:compound type=\"atp\"][/thrive:compound] масштабируется с [i]изменением[/i] [thrive:compound type=\"temperature\"][/thrive:compound]."
+"Генерирует энергию при повышении [thrive:compound type=\"temperature\"][/thrive:compound]. Термочувствительные ферменты меняют форму при повышении [thrive:compound type=\"temperature\"][/thrive:compound], позволяя преобразовывать различные вещества в [thrive:compound type=\"glucose\"][/thrive:compound]. Когда клетка охлаждается, ферменты возвращаются в исходную форму, позволяя повторить процесс. Более эффективная форма [i]Бактериального Термосинтеза[/i] представлена в [b][color=#3796e1][url=thriveopedia:thermosynthase]Thermosynthase[/url][/color][/b]. Скорость производства [thrive:compound type=\"glucose\"][/thrive:compound] масштабируется с [i]изменением[/i] [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
@@ -9253,13 +9244,13 @@ msgstr ""
 "\n"
 "Мюллер также предположил, что термосинтез может быть предшественником раннего (основанного на сере) фотосинтеза (Photosystem 0, A Proposed Ancestral Photosystem Without Reducing Power That Synthesized ATP During Light-Dark cycling). \n"
 "\n"
+"В более ранних версиях Thrive эта органелла напрямую производила АТФ, однако из соображений игрового баланса теперь она производит глюкозу, но нет объяснения, откуда берётся углерод для этого процесса. Так что это ещё один грех Thrive перед реализмом. Возможно, в далёком будущем это исправят, если кто-то возьмётся реализовать органеллу, которая будет превращать АТФ в глюкозу для долгосрочного хранения\n"
+"\n"
 "[color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]Thermosynthesis on Wikipedia[/url][/color]"
 
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr ""
-"Вероятно, это самая подвижная форма автотрофов, [b]Термосинтез[/b] требует почти постоянного движения. Вам нужно перемещаться из более холодных областей в более тёплые и обратно. После того как температура клетки перестанет повышаться, производство [thrive:compound type=\"atp\"][/thrive:compound] падает до нуля. Лучше всего активировать [i]тепловое зрение[/i], чтобы увидеть горячие и холодные точки вокруг вашей клетки и наиболее эффективно перемещаться между ними. Термопласты гораздо эффективнее работают в местах с более высокой температурой, поэтому их лучше всего использовать в жерлах вулканов. \n"
-"\n"
-"Так как производство [b]Термопластом[/b] [thrive:compound type=\"atp\"][/thrive:compound] будет часто останавливаться, важно иметь второй источник энергии, иначе вы будете постоянно получать урон из-за его отсутствия [thrive:compound type=\"atp\"][/thrive:compound]. \n"
+"Вероятно, это самая подвижная форма автотрофов, [b]Термосинтез[/b] требует почти постоянного движения. Вам нужно перемещаться из более холодных областей в более тёплые и обратно. После того как температура клетки перестанет повышаться, производство [thrive:compound type=\"glucose\"][/thrive:compound] падает до нуля. Лучше всего активировать [i]тепловое зрение[/i], чтобы увидеть горячие и холодные точки вокруг вашей клетки и наиболее эффективно перемещаться между ними. Термопласты гораздо эффективнее работают в местах с более высокой температурой, поэтому их лучше всего использовать в жерлах вулканов. \n"
 "\n"
 "Если функция разблокировки органелл включена, то требование воспроизводства несколько раз с [b][color=#3796e1][url=thriveopedia:thermosynthase]Термосинтазой[/url][/color][/b] в вашей клетке означает, что игрок, который развивает [b]Термопласты[/b], скорее всего, уже достаточно глубоко в этом специализировался в [b]Термосинтезе[/b] к тому времени, когда они получат [b]Термопласты[/b]."
 
@@ -9271,20 +9262,24 @@ msgstr "Добавляет [i]тепловое зрение[/i], который 
 
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
-"Вырабатывает энергию в виде [thrive:compound type=\"atp\"][/thrive:compound], используя перепад[thrive:compound type=\"temperature\"][/thrive:compound] в окружающей среде. Прокариотическая форма более эффективного [b][color=#3796e1][url=thriveopedia:thermoplast]Термопласта[/url][/color][/b].\n"
+"Вырабатывает [thrive:compound type=\"glucose\"][/thrive:compound], используя перепад[thrive:compound type=\"temperature\"][/thrive:compound] в окружающей среде. Прокариотическая форма более эффективного [b][color=#3796e1][url=thriveopedia:thermoplast]Термопласта[/url][/color][/b].\n"
 "\n"
 "Спекулятивная органелла, не встречающаяся в реальной жизни. Недоступна в играх с включенной [i]ЖКМЗ[/i] (Жизнь, какой мы её знаем).\n"
 "\n"
-"Это группа мембранных отсеков, содержащих термочувствительные ферменты. Ферменты способны использовать энергию повышения[thrive:compound type=\"temperature\"][/thrive:compound] в их окружении, чтобы производить [thrive:compound type=\"atp\"][/thrive:compound] в процессе, называемом [i]термосинтез[/i]."
+"Это группа мембранных отсеков, содержащих термочувствительные ферменты. Ферменты способны использовать энергию повышения[thrive:compound type=\"temperature\"][/thrive:compound] в их окружении, чтобы производить [thrive:compound type=\"glucose\"][/thrive:compound] в процессе, называемом [i]термосинтез[/i]."
 
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "Нет модификаций."
 
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr ""
-"[b]Бактериальный термосинтез[/b]: [thrive:compound type=\"temperature\"][/thrive:compound] [i]увеличивает[/i] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]Бактериальный термосинтез[/b]: [thrive:compound type=\"temperature\"][/thrive:compound] [i]увеличивает[/i] → [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Генерирует энергию за счет увеличения [thrive:compound type=\"temperature\"][/thrive:compound]. Термочувствительные ферменты меняют форму при повышении [thrive:compound type=\"temperature\"][/thrive:compound], позволяя переработать [i]АДФ[/i] в [thrive:compound type=\"atp\"][/thrive:compound]. Когда клетка остывает, ферменты возвращаются в свою первоначальную форму, позволяя процессу повторяться. Менее эффективная форма [i]Термосинтеза[/i] представлена в [b][color=#3796e1][url=thriveopedia:thermoplast]Термопластах[/url][/color][/b].Скорость производства [thrive:compound type=\"atp\"][/thrive:compound] масштабируется с [i]изменением[/i] [thrive:compound type=\"temperature\"][/thrive:compound]."
+"Генерирует энергию за счет увеличения [thrive:compound type=\"temperature\"][/thrive:compound]. Термочувствительные ферменты меняют форму при повышении [thrive:compound type=\"temperature\"][/thrive:compound], позволяя преобразовывать различные вещества в [thrive:compound type=\"glucose\"][/thrive:compound]. Когда клетка остывает, ферменты возвращаются в свою первоначальную форму, позволяя процессу повторяться. Менее эффективная форма [i]Термосинтеза[/i] представлена в [b][color=#3796e1][url=thriveopedia:thermoplast]Термопластах[/url][/color][/b].Скорость производства [thrive:compound type=\"glucose\"][/thrive:compound] масштабируется с [i]изменением[/i] [thrive:compound type=\"temperature\"][/thrive:compound].\n"
+"\n"
+"[b]Гликолиз:[/b] [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Так как [b]Термосинтазные[/b] белки находятся во взвешенной [b][color=#3796e1][url=thriveopedia:cytoplasm]Цитоплазме[/url][/color][/b], окружающая жидкость выполняет [b]Гликолиз[/b]."
 
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr ""
@@ -9296,13 +9291,13 @@ msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr ""
 "[b]Термосинтаза[/b] — это вымышленный белок, но процесс [color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]термосинтеза[/url][/color], теоретически, обычно считается биологически правдоподобным.\n"
 "\n"
-"Термосинтез был впервые предложен Энтони Мюллером в 1983 году в работе \"Thermoelectric energy conversion could be an energy source of living organisms\" (Physics Letters A, vol. 96, Issue 6, p. 319-321). Мюллер даже предположил, что термосинтез мог быть предшественником самого раннего (основанного на сере) фотосинтеза (смотрите ссылку: A Search For Thermosynthesis: Starvation Survival In Thermally Cycled Bacteria)."
+"Термосинтез был впервые предложен Энтони Мюллером в 1983 году в работе \"Thermoelectric energy conversion could be an energy source of living organisms\" (Physics Letters A, vol. 96, Issue 6, p. 319-321). Мюллер даже предположил, что термосинтез мог быть предшественником самого раннего (основанного на сере) фотосинтеза (смотрите ссылку: A Search For Thermosynthesis: Starvation Survival In Thermally Cycled Bacteria).\n"
+"\n"
+"В более ранних версиях Thrive эта органелла напрямую вырабатывала АТФ, однако из соображений игрового баланса теперь она вырабатывает глюкозу, но нет объяснения, откуда берётся углерод для этого процесса. Так что это ещё один грех Thrive перед реализмом. Возможно, в далёком будущем это исправят, если кто-нибудь возьмётся реализовать органеллу, которая будет превращать АТФ в глюкозу для долгосрочного хранения."
 
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr ""
-"Вероятно, это самая подвижная форма автотрофии, [i]термосинтез[/i] требует почти постоянного движения. Вам нужно перемещаться из более холодных регионов в более жаркие и обратно. После того как температура в камере перестанет повышаться, производство [thrive:compound type=\"atp\"][/thrive:compound] падает до нуля. Лучше всего активировать [i]тепловое зрение[/i], чтобы увидеть горячие и холодные точки вокруг вашей клетки, и как наиболее эффективно их преодолевать. Термосинтез гораздо эффективнее работает в более жарких регионах, поэтому его лучше использовать в вулканических жерлах. \n"
-"\n"
-"Вследствие того, что [b]Термосинтезное[/b] производство [thrive:compound type=\"atp\"][/thrive:compound] будет часто останавливаться, важно иметь второй источник энергии, иначе вы будете постоянно страдать от недостатка [thrive:compound type=\"atp\"][/thrive:compound].  \n"
+"Вероятно, это самая подвижная форма автотрофии, [i]термосинтез[/i] требует почти постоянного движения. Вам нужно перемещаться из более холодных регионов в более жаркие и обратно. После того как температура в камере перестанет повышаться, производство [thrive:compound type=\"glucose\"][/thrive:compound] падает до нуля. Лучше всего активировать [i]тепловое зрение[/i], чтобы увидеть горячие и холодные точки вокруг вашей клетки, и как наиболее эффективно их преодолевать. Термосинтез гораздо эффективнее работает в более жарких регионах, поэтому его лучше использовать в вулканических жерлах. \n"
 "\n"
 "Еще более эффективным является [b][color=#3796e1][url=thriveopedia:thermoplast]Термопласт[/url][/color][/b], становится доступным, когда клетка развивает [b][color=#3796e1][url=thriveopedia:nucleus]Ядро[/url][/color][/b]. Как и все прокариотические органеллы с эукариотическими аналогами, мы рекомендуем заменить [b]Термосинтазу[/b] с[b][color=#3796e1][url=thriveopedia:thermoplast]Термопластом[/url][/color][/b] по возможности."
 

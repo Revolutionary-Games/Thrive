@@ -521,7 +521,20 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
             continueAs = GetPotentialSpeciesToContinueAs();
 
             if (continueAs == null)
+            {
                 GD.Print("No species to continue as found");
+            }
+            else
+            {
+                // Make sure we don't offer an invalid option to continue as that would result in an error after
+                // pressing the continuation button
+                if (continueAs.PlayerSpecies || continueAs == stage.GameWorld.PlayerSpecies)
+                {
+                    GD.PrintErr("Tried to continue as player species (or the same species), this should not happen: ",
+                        continueAs.FormattedIdentifier);
+                    continueAs = null;
+                }
+            }
         }
 
         box.ShowContinueAs = continueAs;

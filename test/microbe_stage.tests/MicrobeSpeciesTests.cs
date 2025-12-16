@@ -66,8 +66,8 @@ public class MicrobeSpeciesTests
     [TestCase]
     public void DeserializedHashIsConsistent()
     {
-        const ulong desiredHash = 15688549965584827573;
-        const ulong wantedHexesHash = 10218345136693314111;
+        const ulong desiredHash = 1311834546291663092;
+        const ulong wantedHexesHash = 5062790629652194942;
 
         AssertThat(desiredHash).IsNotEqual(wantedHexesHash);
 
@@ -101,7 +101,7 @@ public class MicrobeSpeciesTests
     [TestCase]
     public void SpecificSpeciesHashIsConsistent()
     {
-        const ulong desiredHash1 = 15688549965584827573;
+        const ulong desiredHash1 = 1311834546291663092;
         const ulong desiredHash2 = 3786447046140225937;
 
         var memoryStream = new MemoryStream();
