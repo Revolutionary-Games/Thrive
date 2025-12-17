@@ -1,22 +1,29 @@
 [gd_scene load_steps=7 format=3 uid="uid://bhn84lw6vt2pg"]
 
 [ext_resource type="PackedScene" uid="uid://ni22u0nn67qk" path="res://assets/models/microbe_terrain/PyriteTerrainChunk1.glb" id="1_s6ryl"]
-[ext_resource type="Texture2D" uid="uid://du3gfqrbeic03" path="res://assets/textures/environment/Pyrite.png" id="2_0anvu"]
-[ext_resource type="Texture2D" uid="uid://cgcbqdjlmxhy" path="res://assets/textures/environment/TerrainChunkShiny_mra.png" id="3_68k1v"]
+[ext_resource type="Texture2D" uid="uid://du3gfqrbeic03" path="res://assets/textures/environment/Pyrite.png" id="2_68k1v"]
 [ext_resource type="Texture2D" uid="uid://fcvho2qa7pyg" path="res://assets/textures/environment/Pyrite1AO.png" id="3_b7raa"]
-[ext_resource type="Texture2D" uid="uid://gfawgyee7t7u" path="res://assets/textures/environment/Pyrite_normal.png" id="4_b7raa"]
+[ext_resource type="Texture2D" uid="uid://gfawgyee7t7u" path="res://assets/textures/environment/Pyrite_normal.png" id="4_e8nwt"]
+[ext_resource type="Texture2D" uid="uid://cgcbqdjlmxhy" path="res://assets/textures/environment/TerrainChunkShiny_mra.png" id="5_5vn53"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e8nwt"]
-albedo_texture = ExtResource("2_0anvu")
-metallic = 1.0
-metallic_texture = ExtResource("3_68k1v")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wdrjk"]
+albedo_color = Color(1, 1, 0.7529412, 1)
+albedo_texture = ExtResource("2_68k1v")
+metallic = 0.6
+metallic_specular = 0.2
+metallic_texture = ExtResource("5_5vn53")
+metallic_texture_channel = 4
+roughness = 0.35
+roughness_texture_channel = 1
 normal_enabled = true
-normal_texture = ExtResource("4_b7raa")
+normal_texture = ExtResource("4_e8nwt")
+bent_normal_enabled = true
+bent_normal_texture = ExtResource("4_e8nwt")
 ao_enabled = true
-ao_light_affect = 0.35
+ao_light_affect = 0.8
 ao_texture = ExtResource("3_b7raa")
 
 [node name="PyriteTerrainChunk1" instance=ExtResource("1_s6ryl")]
 
 [node name="pyrite1" parent="." index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_e8nwt")
+surface_material_override/0 = SubResource("StandardMaterial3D_wdrjk")

@@ -67,6 +67,8 @@ public partial class CellBodyPlanEditorComponent
         UpdateCellTypesSecondaryInfo();
 
         OnCellToPlaceSelected(data.CellType.CellTypeName);
+
+        Editor.DirtyMutationPointsCache();
     }
 
     private void DeleteCellType(DuplicateDeleteCellTypeData data)
@@ -75,6 +77,8 @@ public partial class CellBodyPlanEditorComponent
             GD.PrintErr("Failed to delete cell type from species");
 
         UpdateCellTypeSelections();
+
+        Editor.DirtyMutationPointsCache();
     }
 
     [ArchiveAllowedMethod]

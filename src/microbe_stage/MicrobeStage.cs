@@ -1472,7 +1472,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     {
         base.OnGameContinuedAsSpecies(newPlayerSpecies, inPatch);
 
-        // Update spawners if staying in the same patch as otherwise they wouldn't be updated and would spawn the
+        // Update spawners if staying in the same patch as otherwise, they wouldn't be updated and would spawn the
         // obsolete species
         if (inPatch == GameWorld.Map.CurrentPatch)
         {
@@ -1710,6 +1710,16 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         // Don't clear the player object here as we want to wait until the player entity is deleted before creating
         // a new one to avoid having two player entities existing at the same time
+
+        if (GameWorld.Map.CurrentPatch == null)
+        {
+            GD.PrintErr("Current patch is unknown for some reason, can't update player spawn rate");
+            return;
+        }
+
+        // Update player spawn rate to make sure that if their own species is competing against the player, their spawn
+        // rate is reduced and thus makes the last live(s) easier
+        patchManager.UpdateSpawners(GameWorld.Map.CurrentPatch, this);
     }
 
     private bool PlayerIsEngulfed(Entity player)

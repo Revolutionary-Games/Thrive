@@ -76,6 +76,7 @@ public class EditorMPTests
 
     private readonly IReadOnlyMicrobeSpecies speciesTemplate1;
     private readonly IReadOnlyMicrobeSpecies speciesTemplate2;
+    private readonly IReadOnlyMicrobeSpecies speciesTemplate3;
 
     private readonly MicrobeSpeciesComparer speciesComparer;
 
@@ -92,6 +93,12 @@ public class EditorMPTests
         speciesTemplate2 = new MicrobeSpecies(1, "test1", "test1")
         {
             ModifiableOrganelles = { new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0) },
+            MembraneType = originalMembrane,
+        };
+
+        speciesTemplate3 = new MicrobeSpecies(1, "test1", "test1")
+        {
+            ModifiableOrganelles = { new OrganelleTemplate(dummyNucleus, new Hex(0, 0), 0) },
             MembraneType = originalMembrane,
         };
     }
@@ -1164,6 +1171,27 @@ public class EditorMPTests
         ApplyFacadeEdits(editsFacade, history);
 
         Assert.Equal(cheapOrganelle.MPCost, speciesComparer.Compare(originalSpecies, editsFacade));
+    }
+
+    [Fact]
+    public void EditorMPTests_RotatingOrganelleIsFree()
+    {
+        var originalSpecies = speciesTemplate3.Clone(true);
+        var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
+        var history = new EditorActionHistory<EditorAction>();
+
+        var originalToMove = originalSpecies.Organelles.GetElementAt(new Hex(0, 0), new List<Hex>()) ??
+            throw new Exception("Couldn't find organelle");
+
+        var moveData = new OrganelleMoveActionData(originalToMove, new Hex(0, 0), new Hex(1, 0), 0, 2);
+        history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData));
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(0, speciesComparer.Compare(originalSpecies, editsFacade));
+
+        moveData = new OrganelleMoveActionData(originalToMove, new Hex(1, 0), new Hex(2, 0), 2, 2);
+        history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData));
+        ApplyFacadeEdits(editsFacade, history);
+        Assert.Equal(Constants.ORGANELLE_MOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
     }
 
     private void ApplyFacadeEdits(MicrobeEditsFacade facade, EditorActionHistory<EditorAction> history)

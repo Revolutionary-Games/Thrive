@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-05 11:59+0200\n"
-"PO-Revision-Date: 2025-12-05 09:22+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2025-12-12 16:11+0200\n"
+"PO-Revision-Date: 2025-12-08 21:28+0000\n"
+"Last-Translator: Shigasaa <altitudes.etrangeres@ikmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -536,7 +536,15 @@ msgstr "Au delà de la cellule"
 msgid "BIG_IRON_CHUNK"
 msgstr "Gros fragment de fer"
 
+#, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Gros fragment de fer"
+
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Gros fragment de phosphate"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "Gros fragment de phosphate"
 
 msgid "BILLION_ABBREVIATION"
@@ -1941,7 +1949,7 @@ msgstr ""
 #, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"Bon retour dans l'[b]Éditeur de microbe[/b]. Vous reviendrez ici à chaque fois que vous vous reproduirez.\n"
+"Bon retour dans l'Éditeur de microbe. Vous reviendrez ici à chaque fois que vous vous reproduirez.\n"
 "\n"
 "L'écran de rapport présente une liste de changements dans le secteur que vous occupez. Essayez les différents outils a vôtre disposition pour en apprendre plus sur les évènements dans votre monde!\n"
 "\n"
@@ -2423,12 +2431,11 @@ msgstr "(tous les secteurs seront révélés)"
 msgid "FOG_OF_WAR_INTENSE"
 msgstr "Brouillard de guerre intense"
 
-#, fuzzy
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
-msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gazeux et l'énergie cellulaire sous forme d'[thrive:compound type=\"atp\"][/thrive:compound] pour produire de l'[thrive:compound type=\"ammoniaque\"][/thrive:compound], un nutriment essentiel à la croissance des cellules. Il s'agit d'un processus appelé [b]fixation anaérobie de l'azote[/b]. Comme la nitrogénase est suspendue directement dans le cytoplasme, le liquide environnant effectue une partie de la [b]glycolyse[/b]."
+msgstr "(seuls les secteurs où le joueur s'est rendu seront révélés)"
 
 msgid "FOG_OF_WAR_MODE"
-msgstr "Mode brouillard de guerre"
+msgstr "Mode du brouillard de guerre"
 
 msgid "FOG_OF_WAR_REGULAR"
 msgstr "Brouillard de guerre standard"
@@ -3843,9 +3850,8 @@ msgstr "Les cellules dotées de parois en cellulose ou en chitine ne peuvent pas
 msgid "MICROBE_LOADING_TIP_21"
 msgstr "Le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] peut être transformé en [thrive:compound type=\"glucose\"][/thrive:compound] via des chimioplastes et des protéines chimiosynthétiques. Le [thrive:compound type=\"iron\"][/thrive:compound] peut être converti en [thrive:compound type=\"atp\"][/thrive:compound] via la rusticyanine ou les ferroplastes."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_22"
-msgstr "Chaque visite à l'éditeur pendant la phase microbienne représente 100 millions d'années d'évolution."
+msgstr "Chaque visite à l'éditeur pendant la phase microbienne représente [thrive:constant]EDITOR_TIME_JUMP_MILLIONS_YEARS[/thrive:constant] millions d'années d'évolution."
 
 msgid "MICROBE_LOADING_TIP_3"
 msgstr "Vous pouvez ingérer des fragment de matière flottante, qu'il soit organiques ou non."
@@ -3901,12 +3907,11 @@ msgstr ""
 msgid "MICROBE_STAGE"
 msgstr "Phase microbienne"
 
-#, fuzzy
 msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 msgstr ""
-"Vous avez débloqué la possibilité de progresser vers la [b]multicellularité[/b]. Voici la prochaine étape de votre voyage.\n"
+"Vous avez débloqué la possibilité de progresser vers la [b]multicellularité[/b], la prochaine étape de votre voyage.\n"
 "\n"
-"Pour continuer, appuyez sur le bouton \"Devenir multicellulaire\"."
+"Pour continuer, appuyez sur le bouton «[b]Devenir multicellulaire[/b]»."
 
 #, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
@@ -3917,14 +3922,13 @@ msgstr ""
 "\n"
 "Suivez la ligne entre votre cellule et le [thrive:compound type=\"glucose\"][/thrive:compound] le plus proche."
 
-#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
-"Pour contrôler votre cellule utilisez les touches affichées près de votre cellule (au centre de l'écran) et la souris pour contrôler sa direction.\n"
+"Déplacez-vous avec les touches affichées près de votre cellule (au centre de l'écran) et dirigez-vous avec la souris.\n"
 "\n"
-"Le mode de mouvement peut être changé dans le menu des options.\n"
+"[b]Le mode de mouvement peut être changé dans le menu des options.[/b]\n"
 "\n"
-"Essayez toutes les touches pendant quelques secondes pour continuer."
+"Essayez chaque touche pendant quelques secondes pour continuer."
 
 #, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
@@ -3933,13 +3937,12 @@ msgstr ""
 "AVERTISSEMENT : la saisie par manette est expérimentale et n'est pas totalement utilisable (sans pavé tactile), il faut s'attendre à des bogues.\n"
 "Essayez toutes les touches pendant quelques secondes pour continuer."
 
-#, fuzzy
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Gardez un œil sur votre barre de santé près de votre barre d'[thrive:compound type=\"atp\"][/thrive:compound] (en bas à droite).\n"
-"Votre cellule meurt si elle est à court de vie.\n"
-"Vous régénérez votre santé tant que vous avez de l'[thrive:compound type=\"atp\"][/thrive:compound].\n"
-"Faites en sorte de collecter assez de [thrive:compound type=\"glucose\"][/thrive:compound] pour produire de l'[thrive:compound type=\"atp\"][/thrive:compound]."
+"Votre cellule meurt si elle perd toute sa vie.\n"
+"Vous gagnez de la vie tant que vous avez de l'[thrive:compound type=\"atp\"][/thrive:compound].\n"
+"Vous [b]perdez de la vie[/b] si vous n'avez plus d'[thrive:compound type=\"atp\"][/thrive:compound]."
 
 #, fuzzy
 msgid "MICROBE_STAGE_INITIAL"
@@ -5720,7 +5723,7 @@ msgstr "Exporter toutes les donnée des mondes en format Comma-Separated Values 
 
 #, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
-msgstr "Chaque [b]flagelle[/b] exerce une poussée en sens inverse de son orientation. Il fournit également une petite poussée dans les directions proches du sens opposé (plus précisément, les directions pour lesquelles la composante du vecteur opposé est positive). Lorsqu'un [b]flagelle[/b] est actif, il consomme de l'[/thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Afficher les effets de dommages à l'écran"
 
 msgid "SHOW_HELP"
 msgstr "Montrer l'aide"
@@ -5823,7 +5826,15 @@ msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [t
 msgid "SMALL_IRON_CHUNK"
 msgstr "Petit fragment de fer"
 
+#, fuzzy
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "Petit fragment de fer"
+
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Petit fragment de phosphate"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr "Petit fragment de phosphate"
 
 msgid "SMALL_SULFUR_CHUNK"
@@ -6279,9 +6290,8 @@ msgstr "Thermoplaste"
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Le thermoplaste est une structure à double membrane contenant des pigments thermosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du thermoplaste sont capables d'utiliser l'énergie des différences de chaleur dans l'environnement pour produire de l'[thrive:compound type=\"atp\"][/thrive:compound] à partir de l'eau dans un processus appelé [b]thermosynthèse[/b]. Le taux de production d'[thrive:compound type=\"atp\"][/thrive:compound] varie avec la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
-#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Produit du [thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnel à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et à la température."
+msgstr "Utilise la montée en température pour produire du [thrive:compound type=\"glucose\"][/thrive:compound]. Le taux de production est proportionnel à l'augmentation de la [thrive:compound type=\"temperature\"][/thrive:compound]. Utilisez la [b]vision termique[/b] pour trouver les zones froides ou chaudes."
 
 msgid "THERMOSYNTHASE"
 msgstr "Thermosynthase"
@@ -6290,9 +6300,8 @@ msgstr "Thermosynthase"
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "La thermosynthase est une protéine qui utilise la convection thermique pour changer de forme, ce qui lui permet de se replier et de se lier à l'ADP lorsqu'elle est exposée à la chaleur, puis de se déplier et de le recycler en [thrive:compound type=\"atp\"][/thrive:compound] lorsqu'elle est exposée au froid, dans un processus appelé [b]thermosynthèse[/b]. Le taux de production d'[thrive:compound type=\"atp\"][/thrive:compound] varie avec la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
-#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Produit l'[thrive:compound type=\"atp\"][/thrive:compound] en utilisant les gradients de température. Le taux varie en fonction de la [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Utilise la montée en température pour produire du [thrive:compound type=\"glucose\"][/thrive:compound]. Le taux de production est proportionnel à l'augmentation de la [thrive:compound type=\"temperature\"][/thrive:compound]. Utilisez la [b]vision termique[/b] pour trouver les zones froides ou chaudes."
 
 msgid "THERMOSYNTHESIS"
 msgstr "Thermosynthèse"
@@ -6386,7 +6395,7 @@ msgstr "[b][u]{0}[/u][/b] s'est séparé de [b][u]{1}[/u][/b] en tant que nouvel
 
 #, fuzzy
 msgid "TIMELINE_PLAYER_MIGRATED"
-msgstr "Une partie de la population de [b][u]{0}[/u][/b] a migré vers {1}"
+msgstr "[b][u]{0}[/u][/b] a migré vers ce secteur"
 
 #, fuzzy
 msgid "TIMELINE_PLAYER_MIGRATED_TO"
@@ -6498,14 +6507,13 @@ msgstr "Production d'oxygène trop basse, nécessite d'être {0}% plus haute"
 
 #, fuzzy
 msgid "TOLERANCES_TOO_LOW_PRESSURE"
-msgstr "Nuages de composés"
+msgstr "Pression tolérée trop basse de {0}"
 
 msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
 msgstr "Température préférée trop basse de {0}"
 
-#, fuzzy
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
-msgstr "{0} : +{1} ATP"
+msgstr "Protection UV trop basse, doit être {0}% plus élevée"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr "Pas adapté à vivre dans les conditions environnementales actuelles. Coût de l'osmorégulation {0}%, vitesse des processus biologiques {1}%, santé {2}%"
@@ -6625,7 +6633,7 @@ msgstr "Toxisome"
 
 #, fuzzy
 msgid "TOXISOME_DESCRIPTION"
-msgstr "Le lysosome est un organite lié à la membrane qui contient des enzymes hydrolytiques capables de décomposer diverses biomolécules. Les lysosomes permettent à la cellule de digérer les matières ingérées par endocytose et de nettoyer les déchets de la cellule dans un processus appelé [b]autophagie[/b]."
+msgstr "Un métabolosome modifié produisant une forme primitive de [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]. Peut être modifié pour changer la toxine pour d'autres effets, qui peuvent avoir besoin d'[thrive:compound type=\"oxygen\"][/thrive:compound] pour être produites."
 
 msgid "TRANSLATORS"
 msgstr "Traducteurs"
@@ -6991,7 +6999,7 @@ msgstr "Grotte sous-marine"
 
 #, fuzzy
 msgid "UNDERWATER_VENT_ERUPTION_IN"
-msgstr "Grotte sous-marine"
+msgstr "Éruption dans {0}"
 
 #, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
@@ -7516,18 +7524,23 @@ msgstr ""
 msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
 msgstr "Pas d'effets. Doit être implémenté."
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
 msgstr "Elles produisent de la lumière. Pas encore implémentées dans Thrive."
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
 msgstr "Pas de modifications. Doit être implémenté."
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
 msgstr "Pas de processus. Doit être implémenté."
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_REQUIREMENTS"
 msgstr "Ne peut pas être ajouté à des cellules. Doit être implémenté."
 
@@ -7541,9 +7554,11 @@ msgstr ""
 "\n"
 "Si vous êtes favorable à l'inclusion de [b]vacuoles bioluminescentes[/b] ou si vous avez des suggestions de fonctions intéressantes pour le jeu, rendez-vous sur notre [color=#3796e1][url=https://suggestions.revolutionarygamesstudio.com/]tableau des suggestions[/url][/color]."
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
 msgstr "Pas disponible dans le jeu. Doit être implémenté."
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "Pas d'améliorations. Doit être implémenté."
 
