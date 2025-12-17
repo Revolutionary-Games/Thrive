@@ -387,6 +387,8 @@ public static class MicrobeControlHelpers
         if (mucilageCompound == Compound.Invalid)
             mucilageCompound = Compound.Mucilage;
 
+        var stateToSet = state ? MicrobeState.MucocystShield : MicrobeState.Normal;
+
         if (entity.Has<MicrobeColony>())
         {
             ref var colony = ref entity.Get<MicrobeColony>();
@@ -394,12 +396,17 @@ public static class MicrobeControlHelpers
             // TODO: is it a good idea to allocate a delegate here?
             colony.PerformForOtherColonyMembersThanLeader(m =>
                 m.Get<MicrobeControl>()
-                    .SetMucocystState(ref m.Get<OrganelleContainer>(), ref m.Get<CompoundStorage>(), m, state,
+                    .SetMucocystState(ref m.Get<OrganelleContainer>(), ref m.Get<CompoundStorage>(), in m, state,
                         mucilageCompound));
+
+            if (entity == colony.Leader)
+                SetStateColonyAware(ref control, entity, stateToSet);
         }
 
         if (organelleInfo.MucocystCount < 1)
             return;
+
+        control.State = stateToSet;
 
         if (state)
         {
@@ -415,14 +422,8 @@ public static class MicrobeControlHelpers
 
             availableCompounds.Compounds.TakeCompound(mucilageCompound, mucilageRequired);
 
-            control.State = MicrobeState.MucocystShield;
-
             // TODO: maybe it is too loud if all cells in a colony play the sound?
             entity.Get<SoundEffectPlayer>().PlaySoundEffect("res://assets/sounds/soundeffects/microbe-slime-jet.ogg");
-        }
-        else
-        {
-            control.State = MicrobeState.Normal;
         }
     }
 
