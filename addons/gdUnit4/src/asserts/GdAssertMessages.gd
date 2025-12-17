@@ -4,8 +4,8 @@ extends Resource
 const WARN_COLOR = "#EFF883"
 const ERROR_COLOR = "#CD5C5C"
 const VALUE_COLOR = "#1E90FF"
-const SUB_COLOR :=  Color(1, 0, 0, .3)
-const ADD_COLOR :=  Color(0, 1, 0, .3)
+const SUB_COLOR :=  Color(1, 0, 0, .15)
+const ADD_COLOR :=  Color(0, 1, 0, .15)
 
 
 # Dictionary of control characters and their readable representations

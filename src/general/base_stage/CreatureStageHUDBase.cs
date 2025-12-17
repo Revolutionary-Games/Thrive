@@ -170,6 +170,8 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
     private bool temporaryEnvironmentCompressed;
     private bool temporaryCompoundCompressed;
 
+    private bool registeredSettingsListeners;
+
     /// <summary>
     ///   Used by UpdateHoverInfo to run HOVER_PANEL_UPDATE_INTERVAL
     /// </summary>
@@ -252,6 +254,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
 
         SetEditorButtonFlashEffect(Settings.Instance.GUILightEffectsEnabled);
         Settings.Instance.GUILightEffectsEnabled.OnChanged += SetEditorButtonFlashEffect;
+        registeredSettingsListeners = true;
 
         damageShaderMaterial = (ShaderMaterial)damageScreenEffect.Material;
 
@@ -518,7 +521,20 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
             continueAs = GetPotentialSpeciesToContinueAs();
 
             if (continueAs == null)
+            {
                 GD.Print("No species to continue as found");
+            }
+            else
+            {
+                // Make sure we don't offer an invalid option to continue as that would result in an error after
+                // pressing the continuation button
+                if (continueAs.PlayerSpecies || continueAs == stage.GameWorld.PlayerSpecies)
+                {
+                    GD.PrintErr("Tried to continue as player species (or the same species), this should not happen: ",
+                        continueAs.FormattedIdentifier);
+                    continueAs = null;
+                }
+            }
         }
 
         box.ShowContinueAs = continueAs;
@@ -617,7 +633,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
     /// <param name="button">The button attached to the organism to fossilise</param>
     public void ShowFossilisationDialog(FossilisationButton button)
     {
-        if (!button.AttachedEntity.IsAlive())
+        if (!button.AttachedEntity.IsAliveAndNotNull())
         {
             GD.PrintErr("Tried to show fossilization dialog for a dead entity");
             return;
@@ -1182,6 +1198,13 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
             strainBarRedFill?.Dispose();
 
             barFillName.Dispose();
+
+            if (registeredSettingsListeners)
+            {
+                Settings.Instance.DisplayAbilitiesHotBar.OnChanged -= OnAbilitiesHotBarDisplayChanged;
+                Settings.Instance.GUILightEffectsEnabled.OnChanged -= SetEditorButtonFlashEffect;
+                registeredSettingsListeners = false;
+            }
         }
 
         base.Dispose(disposing);

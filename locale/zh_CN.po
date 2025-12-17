@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-28 14:55+0200\n"
-"PO-Revision-Date: 2025-11-28 09:29+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2025-12-12 16:11+0200\n"
+"PO-Revision-Date: 2025-12-05 22:50+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -533,7 +533,15 @@ msgstr "超越细胞"
 msgid "BIG_IRON_CHUNK"
 msgstr "大铁块"
 
+#, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "大铁块"
+
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "大磷酸盐块"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "大磷酸盐块"
 
 msgid "BILLION_ABBREVIATION"
@@ -1443,6 +1451,18 @@ msgstr ""
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "目前位置"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "目前位置"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "没有搜索到任何内容"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "没有搜索到任何内容"
 
 msgid "CURRENT_RESEARCH_NONE"
 msgstr "没有搜索到任何内容"
@@ -2590,6 +2610,10 @@ msgstr "GPU:"
 msgid "GRAPHICS"
 msgstr "图像"
 
+#, fuzzy
+msgid "GRAPHICS_PRESET"
+msgstr "图形团队"
+
 msgid "GRAPHICS_TEAM"
 msgstr "图形团队"
 
@@ -3662,6 +3686,10 @@ msgstr "微生物编辑器"
 
 msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr "微生物镜头倾角"
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
+msgstr "找到当前的地区"
 
 msgid "MICROBE_EDITOR"
 msgstr "微生物编辑器"
@@ -4895,6 +4923,30 @@ msgstr "捕食{0}"
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "查看预测背后的详细信息"
 
+#, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "自定义"
+
+#, fuzzy
+msgid "PRESET_HIGH"
+msgstr "重置"
+
+#, fuzzy
+msgid "PRESET_LOW"
+msgstr "重置"
+
+#, fuzzy
+msgid "PRESET_MEDIUM"
+msgstr "相对世界移动"
+
+#, fuzzy
+msgid "PRESET_VERY_HIGH"
+msgstr "非常高"
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "非常低"
+
 msgid "PRESSURE"
 msgstr "压力"
 
@@ -5569,7 +5621,15 @@ msgstr "将 [thrive:compound type=\"glucose\"][/thrive:compound] 转化为 [thri
 msgid "SMALL_IRON_CHUNK"
 msgstr "小铁块"
 
+#, fuzzy
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "小铁块"
+
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "小磷酸盐碎块"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr "小磷酸盐碎块"
 
 msgid "SMALL_SULFUR_CHUNK"
@@ -7192,18 +7252,23 @@ msgstr ""
 msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "无升级。"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
 msgstr "无效果。等待实现。"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
 msgstr "产生光。尚未在Thrive中实现。"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
 msgstr "无修改。等待实现。"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
 msgstr "无代谢过程。等待实现。"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_REQUIREMENTS"
 msgstr "无法被添加到细胞中。等待实现。"
 
@@ -7217,9 +7282,11 @@ msgstr ""
 "\n"
 "如果你强烈要求加入[b]发光液泡[/b]或对其他值得的游戏逻辑有建议，访问我们的[color=#3796e1][url=https://suggestions.revolutionarygamesstudio.com/]建议板[/url][/color]。"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
 msgstr "游戏中不可用，等待实现。"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "无升级。等待实现。"
 
@@ -8884,6 +8951,7 @@ msgstr ""
 "\n"
 "[indent]—   至少连续[b]5[/b] 代中包含[b]3[/b] 个[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][ /color][/b]。 [/indent]"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr ""
 "热合成最初由 Anthonie Muller 于1983年的一篇论文 (\"Thermoelectric Energy Conversion Could Be An Energy Source Of Living Organisms\", in Physics Letters A, vol. 96, Issue 6, pp. 319-321) 中提出。它能提供呼吸作用产生的总能量的一小部分 (A Search For Thermosynthesis: Starvation Survival In Thermally Cycled Bacteria)。\n"

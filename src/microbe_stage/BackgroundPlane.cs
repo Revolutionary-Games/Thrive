@@ -139,10 +139,12 @@ public partial class BackgroundPlane : Node3D
             return;
         }
 
+        // Free previous particles, if any, to not just load up on more and more different patch type particles
+        backgroundParticles?.DetachAndQueueFree();
+        backgroundParticles = null;
+
         if (background.ParticleEffectScene == null)
         {
-            backgroundParticles?.DetachAndQueueFree();
-            backgroundParticles = null;
             return;
         }
 

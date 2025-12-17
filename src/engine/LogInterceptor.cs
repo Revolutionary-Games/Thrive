@@ -104,6 +104,14 @@ public partial class LogInterceptor : Logger
             return;
         }
 
+        // Ignore unsupported antialiasing modes as it would be very complex to hide the options in the GUI:
+        // https://github.com/Revolutionary-Games/Thrive/pull/6535#issuecomment-3611112455
+        if ((rationale.Contains("only available when using the") && rationale.Contains("renderer.")) ||
+            (rationale.Contains("currently unavailable on") && rationale.Contains("renderer.")))
+        {
+            return;
+        }
+
         // Release-mode-only bug: https://github.com/Revolutionary-Games/Thrive/issues/5082
         if (rationale.Contains("tempt to disconnect a nonexistent connection from 'root:<Window"))
             return;

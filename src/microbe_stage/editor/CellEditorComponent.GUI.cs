@@ -183,22 +183,6 @@ public partial class CellEditorComponent
         }
     }
 
-    private void TriggerDelayedPredictionUpdateIfNeeded(double delta)
-    {
-        autoEvoPredictionStartTimer += delta;
-
-        if (autoEvoPredictionStartTimer > Constants.AUTO_EVO_PREDICTION_UPDATE_INTERVAL)
-        {
-            autoEvoPredictionStartTimer = 0;
-
-            if (autoEvoPredictionDirty)
-            {
-                StartAutoEvoPrediction();
-                autoEvoPredictionDirty = false;
-            }
-        }
-    }
-
     private void CheckSuggestionProgress()
     {
         try
@@ -608,14 +592,26 @@ public partial class CellEditorComponent
     /// <summary>
     ///   Cancels the previous auto-evo prediction run if there is one
     /// </summary>
-    private void CancelPreviousAutoEvoPrediction()
+    /// <returns>True, once there is no active run</returns>
+    private bool CancelPreviousAutoEvoPrediction()
     {
         if (waitingForPrediction == null)
-            return;
+            return true;
 
-        GD.Print("Canceling previous auto-evo prediction run as it didn't manage to finish yet");
-        waitingForPrediction.AutoEvoRun.Abort();
-        waitingForPrediction = null;
+        if (!waitingForPrediction.AutoEvoRun.Aborted)
+        {
+            GD.Print("Canceling previous auto-evo prediction run as it didn't manage to finish yet");
+            waitingForPrediction.AutoEvoRun.Abort();
+        }
+
+        if (waitingForPrediction.Finished)
+        {
+            GD.Print("Previous auto-evo prediction run finished now");
+            waitingForPrediction = null;
+            return true;
+        }
+
+        return false;
     }
 
     /// <summary>

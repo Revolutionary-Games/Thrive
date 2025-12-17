@@ -69,9 +69,9 @@ public partial class DamageSoundSystem : BaseSystem<World, float>
                 }
                 else if (damageSource == "pilus")
                 {
-                    // Play the pilus sound
+                    // Play the pilus sound (volume is relative to damage inflicted)
                     soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/pilus_puncture_stab.ogg",
-                        4.0f);
+                        0.75f + damageEventNotice.Amount / Constants.PILUS_MAX_DAMAGE * 3.25f);
                 }
                 else if (damageSource == "chunk")
                 {

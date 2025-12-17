@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using Arch.Core;
-using Arch.Core.Extensions;
 using AutoEvo;
 using Godot;
 using SharedBase.Archive;
@@ -210,6 +209,8 @@ public partial class CellEditorComponent :
 
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
+    private bool autoEvoPredictionDirty = true;
+    private double autoEvoPredictionStartTimer = 5;
     private bool? autoEvoPredictionRunSuccessful;
     private PendingAutoEvoPrediction? waitingForPrediction;
     private LocalizedStringBuilder? predictionDetailsText;
@@ -220,9 +221,6 @@ public partial class CellEditorComponent :
     private OrganelleSuggestionCalculation? inProgressSuggestion;
     private bool suggestionDirty;
     private double suggestionStartTimer;
-
-    private bool autoEvoPredictionDirty;
-    private double autoEvoPredictionStartTimer;
 
     private bool refreshTolerancesWarnings = true;
 
@@ -310,7 +308,7 @@ public partial class CellEditorComponent :
 
             previewMicrobeSpecies.MembraneRigidity = value;
 
-            if (previewMicrobe.IsAlive())
+            if (previewMicrobe.IsAliveAndNotNull())
                 previewSimulation!.ApplyMicrobeRigidity(previewMicrobe, previewMicrobeSpecies.MembraneRigidity);
         }
     }
@@ -335,7 +333,7 @@ public partial class CellEditorComponent :
 
             previewMicrobeSpecies.SpeciesColour = value;
 
-            if (previewMicrobe.IsAlive())
+            if (previewMicrobe.IsAliveAndNotNull())
                 previewSimulation!.ApplyMicrobeColour(previewMicrobe, previewMicrobeSpecies.SpeciesColour);
         }
     }
@@ -588,6 +586,9 @@ public partial class CellEditorComponent :
         // Visual simulation is needed very early when loading a save
         previewSimulation = new MicrobeVisualOnlySimulation();
 
+        // Just to make *absolutely* sure this value cannot point to an old world
+        previewMicrobe = Entity.Null;
+
         cellPreviewVisualsRoot = new Node3D
         {
             Name = "CellPreviewVisuals",
@@ -687,6 +688,28 @@ public partial class CellEditorComponent :
 
         base._Process(delta);
 
+        // To have a value available earlier, this can run even before the right tab is set
+        autoEvoPredictionStartTimer += delta;
+
+        // But don't start before the editor is ready
+        if (autoEvoPredictionDirty && Editor.EditorReady)
+        {
+            // Don't constantly trigger prediction runs
+            if (autoEvoPredictionStartTimer >= Constants.AUTO_EVO_PREDICTION_UPDATE_INTERVAL)
+            {
+                if (CancelPreviousAutoEvoPrediction())
+                {
+                    // Start a new run once safe to do so
+                    autoEvoPredictionStartTimer = 0;
+                    StartAutoEvoPrediction();
+                }
+            }
+        }
+        else
+        {
+            CheckRunningAutoEvoPrediction();
+        }
+
         if (!Visible)
             return;
 
@@ -698,9 +721,7 @@ public partial class CellEditorComponent :
             debugOverlay.ReportEntities(roughCount);
         }
 
-        CheckRunningAutoEvoPrediction();
         CheckRunningSuggestion(delta);
-        TriggerDelayedPredictionUpdateIfNeeded(delta);
 
         if (organelleDataDirty)
         {
@@ -1515,6 +1536,13 @@ public partial class CellEditorComponent :
         if (string.IsNullOrEmpty(ActiveActionName) || !Editor.ShowHover)
             return 0;
 
+        if (IsMulticellularEditor || IsMacroscopicEditor)
+        {
+            // If not initialized to edit anything, this cannot show any cost
+            if (Editor.EditedCellProperties == null)
+                return 0;
+        }
+
         // Endosymbiosis placement is free
         if (PendingEndosymbiontPlace != null)
             return 0;
@@ -1676,6 +1704,7 @@ public partial class CellEditorComponent :
         if (disposing)
         {
             previewSimulation?.Dispose();
+            previewMicrobe = Entity.Null;
         }
 
         base.Dispose(disposing);
@@ -1729,6 +1758,9 @@ public partial class CellEditorComponent :
         if (previewSimulation == null)
             throw new InvalidOperationException("Component needs to be initialized first");
 
+        if (previewSimulation.Disposed)
+            throw new InvalidOperationException("Preview world simulation has been disposed already");
+
 #if DEBUG
         if (previewMicrobe == default)
         {
@@ -1737,7 +1769,7 @@ public partial class CellEditorComponent :
         }
 #endif
 
-        if (previewMicrobe.IsAlive() && previewMicrobeSpecies != null)
+        if (previewMicrobe.IsAliveAndNotNull() && previewMicrobeSpecies != null)
             return false;
 
         if (cellPreviewVisualsRoot == null)
@@ -1750,11 +1782,13 @@ public partial class CellEditorComponent :
             throw new InvalidOperationException("can't setup preview before cell properties are known"),
             hexTemporaryMemory, hexTemporaryMemory2)
         {
-            // Force large normal size (instead of showing bacteria as smaller scale than the editor hexes)
+            // Force large normal size (instead of showing bacteria as a smaller scale than the editor hexes)
             IsBacteria = false,
         };
 
         previewMicrobe = previewSimulation.CreateVisualisationMicrobe(previewMicrobeSpecies);
+        if (!previewMicrobe.IsAliveAndNotNull())
+            throw new InvalidOperationException("Failed to create preview microbe");
 
         // Set its initial visibility
         cellPreviewVisualsRoot.Visible = MicrobePreviewMode;
@@ -1980,9 +2014,13 @@ public partial class CellEditorComponent :
     {
         // For now disabled in the multicellular editor as the microbe logic being used there doesn't make sense
         if (IsMulticellularEditor)
+        {
+            // Don't be dirty to not constantly try to retry the run
+            autoEvoPredictionDirty = false;
             return;
+        }
 
-        // The first prediction can be made only after population numbers from previous run are applied
+        // The first prediction can be made only after population numbers from the previous run are applied,
         // so this is just here to guard against that potential programming mistake that may happen when code is
         // changed
         if (!Editor.EditorReady)
@@ -1990,10 +2028,6 @@ public partial class CellEditorComponent :
             GD.PrintErr("Can't start auto-evo prediction before editor is ready");
             return;
         }
-
-        // Note that in rare cases the auto-evo run doesn't manage to stop before we edit the cached species object,
-        // which may cause occasional background task errors
-        CancelPreviousAutoEvoPrediction();
 
         cachedAutoEvoPredictionSpecies ??= new MicrobeSpecies(Editor.EditedBaseSpecies,
             Editor.EditedCellProperties ??
@@ -2365,7 +2399,7 @@ public partial class CellEditorComponent :
         OnRigidityChanged();
         OnColourChanged();
 
-        StartAutoEvoPrediction();
+        autoEvoPredictionDirty = true;
         suggestionDirty = true;
     }
 
@@ -2468,7 +2502,7 @@ public partial class CellEditorComponent :
 
         UpdateCellVisualization();
 
-        StartAutoEvoPrediction();
+        autoEvoPredictionDirty = true;
         suggestionDirty = true;
 
         UpdateFinishButtonWarningVisibility();

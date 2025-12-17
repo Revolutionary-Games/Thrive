@@ -126,11 +126,11 @@ public static class SaveUpgrader
         saveInfo.ThriveVersion = fromVersion;
         var nextVersion = step.VersionAfterUpgrade(saveInfo);
 
-        // Stop if found target version
+        // Stop if found the target version
         if (VersionUtils.Compare(nextVersion, toVersion) >= 0)
             return step;
 
-        // Otherwise verify that there exists steps until the toVersion
+        // Otherwise verify that there exist steps until the toVersion
         if (FindPathToVersion(saveInfo, nextVersion, toVersion) == null)
         {
             // No further path found

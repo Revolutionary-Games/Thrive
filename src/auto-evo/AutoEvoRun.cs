@@ -112,7 +112,7 @@ public class AutoEvoRun
     public bool WasSuccessful => Finished && !Aborted;
 
     /// <summary>
-    ///   If true the auto evo uses all available executor threads by running more concurrent concurrentStepTasks
+    ///   If true, the auto evo uses all available executor threads by running more concurrent concurrentStepTasks
     /// </summary>
     public bool FullSpeed { get; set; }
 

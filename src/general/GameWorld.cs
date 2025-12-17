@@ -693,11 +693,15 @@ public class GameWorld : IArchivable
     ///   Finds the species that is the closest relative to the given species
     /// </summary>
     /// <param name="relatedTo">This is the species to which the closet relative is searched</param>
-    /// <param name="onlyNonExtinct">If true this method will only return non-extinct species</param>
+    /// <param name="onlyNonExtinct">If true, this method will only return non-extinct species</param>
     /// <param name="filter">Optional extra filter to discard results if this returns false</param>
     /// <returns>The closest related species or null</returns>
     public Species? GetClosestRelatedSpecies(Species relatedTo, bool onlyNonExtinct, Func<Species, bool>? filter)
     {
+        // TODO: there is a rare bug here that this results in the "relatedTo" value being returned. This is worked
+        // around in the continuation GUI shown to the player but other uses of this method if added in the future
+        // could be impacted as well.
+
         // How closely related species are to the target
         var speciesDistance = new Dictionary<Species, int>();
 

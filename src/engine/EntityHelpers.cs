@@ -11,6 +11,18 @@ using Godot;
 public static class EntityHelpers
 {
     /// <summary>
+    ///   Entity alive check that is safe to call on null entities. The normal variant is not safe to call before
+    ///   checking something is not null! Note that this is not valid to check on <c>default(Entity)</c>,
+    /// </summary>
+    /// <param name="entity">Entity that is potentially null to check</param>
+    /// <returns>True if the entity is not null and not dead</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsAliveAndNotNull(this Entity entity)
+    {
+        return entity != Entity.Null && entity.IsAlive();
+    }
+
+    /// <summary>
     ///   Variant of checking for a component that is safe to call on entities that are possibly dead or null.
     ///   Makes Arch act much more like the previous DefaultECS we used before.
     /// </summary>
@@ -19,6 +31,7 @@ public static class EntityHelpers
     /// <returns>True if the entity is alive and has the specified component</returns>
     public static bool IsAliveAndHas<T>(this Entity entity)
     {
+        // Safely handle null values which the default IsAlive check does not do
         if (entity == Entity.Null)
             return false;
 

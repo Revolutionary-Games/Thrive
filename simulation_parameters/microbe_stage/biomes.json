@@ -4664,13 +4664,9 @@
           "Compounds": {},
           "DamageType": "toxin"
         },
-        "ironSmallChunk": {
-          "Name": "SMALL_IRON_CHUNK",
+        "ironSmallChunkBanana": {
+          "Name": "SMALL_IRON_CHUNK_BANANA",
           "Meshes": [
-            {
-              "ScenePath": "res://assets/models/IronRock2.tscn",
-              "ConvexShapePath": "res://assets/models/IronRock2.shape"
-            },
             {
               "ScenePath": "res://assets/models/easter_eggs/IronRockLittleBanana.tscn",
               "ConvexShapePath": "res://assets/models/easter_eggs/LittleBanana.shape"
@@ -4696,8 +4692,8 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "ironBigChunk": {
-          "Name": "BIG_IRON_CHUNK",
+        "ironBigChunkBanana": {
+          "Name": "BIG_IRON_CHUNK_BANANA",
           "Meshes": [
             {
               "ScenePath": "res://assets/models/easter_eggs/IronRockBigBanana.tscn",
@@ -4720,13 +4716,9 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "phosphateSmallChunk": {
-          "Name": "SMALL_PHOSPHATE_CHUNK",
+        "phosphateSmallChunkBanana": {
+          "Name": "SMALL_PHOSPHATE_CHUNK_BANANA",
           "Meshes": [
-            {
-              "ScenePath": "res://assets/models/PhosphateChunkStruviteSmall1.tscn",
-              "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteSmall1.shape"
-            },
             {
               "ScenePath": "res://assets/models/easter_eggs/PhosphateRockLittleBanana.tscn",
               "ConvexShapePath": "res://assets/models/easter_eggs/LittleBanana.shape"
@@ -4751,8 +4743,8 @@
             }
           }
         },
-        "phosphateBigChunk": {
-          "Name": "BIG_PHOSPHATE_CHUNK",
+        "phosphateBigChunkBanana": {
+          "Name": "BIG_PHOSPHATE_CHUNK_BANANA",
           "Meshes": [
             {
               "ScenePath": "res://assets/models/easter_eggs/PhosphateRockBigBanana.tscn",

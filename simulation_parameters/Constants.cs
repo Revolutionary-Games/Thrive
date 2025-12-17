@@ -1058,7 +1058,7 @@ public static class Constants
     /// </summary>
     public const float PILUS_MAX_DAMAGE = 45;
 
-    public const float PILUS_MIN_DAMAGE = 1;
+    public const float PILUS_MIN_DAMAGE = 2;
 
     public const float PILUS_PHYSICS_SIZE = 4.6f;
 
@@ -1081,7 +1081,7 @@ public static class Constants
     ///   How long the shortest pilus cooldown is after dealing damage. This is applied if the damage just barely
     ///   crosses <see cref="PILUS_MIN_DAMAGE_TRIGGER_COOLDOWN"/>
     /// </summary>
-    public const float PILUS_MIN_COOLDOWN = 0.1f;
+    public const float PILUS_MIN_COOLDOWN = 0.2f;
 
     public const float PILUS_MAX_COOLDOWN = 0.45f;
 
@@ -1305,9 +1305,9 @@ public static class Constants
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
 
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
-    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 35;
-    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
-    public const float AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING = 0.06f;
+    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 3500;
+    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100000;
+    public const float AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING = 0.00006f;
     public const float AUTO_EVO_SIZE_AFFECTED_PROJECTILE_MISS_FACTOR = 0.5f;
     public const float AUTO_EVO_TOXICITY_HIT_MODIFIER = 4.0f;
     public const float AUTO_EVO_SLIME_JET_SCORE = 30;
@@ -1906,8 +1906,14 @@ public static class Constants
     public const float MAX_AI_MUTATION_RATE = 3;
     public const float MIN_COMPOUND_DENSITY = 0.2f;
     public const float MAX_COMPOUND_DENSITY = 2;
-    public const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 0.6f;
+
+    /// <summary>
+    ///   Do not set below 1 as that *gives* population when it should be lost
+    /// </summary>
+    public const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 1;
+
     public const float MAX_PLAYER_DEATH_POPULATION_PENALTY = 5;
+
     public const float MIN_GLUCOSE_DECAY = 0.3f;
     public const float MAX_GLUCOSE_DECAY = 0.95f;
     public const float MIN_OSMOREGULATION_MULTIPLIER = 0.2f;
