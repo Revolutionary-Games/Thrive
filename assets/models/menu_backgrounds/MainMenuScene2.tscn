@@ -31,6 +31,7 @@ background_mode = 2
 sky = SubResource("5")
 sky_custom_fov = 113.6
 sky_rotation = Vector3(0, 0.349066, 0)
+ambient_light_source = 2
 ambient_light_color = Color(0.207843, 0.376471, 0.509804, 1)
 ambient_light_sky_contribution = 0.0
 tonemap_mode = 2
@@ -322,21 +323,21 @@ subsurf_scatter_strength = 0.08
 uv1_scale = Vector3(10, 10, 10)
 
 [node name="MainMenuScene2" type="Node3D"]
-transform = Transform3D(0.147844, 0.269986, 0.951446, 0, 0.962018, -0.272985, -0.989011, 0.0403592, 0.142228, 0, 20, 0)
+transform = Transform3D(0.14784394, 0.26998556, 0.95144576, 0, 0.9620181, -0.2729854, -0.98901093, 0.040359244, 0.14222845, 0, 20, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("2")
 camera_attributes = SubResource("CameraAttributesPractical_73sbg")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.147844, 0.269986, 0.951446, 0, 0.962018, -0.272985, -0.989011, 0.0403592, 0.142228, 13.962, 4.231, 2.151)
+transform = Transform3D(0.14784394, 0.26998556, 0.95144576, 0, 0.9620181, -0.2729854, -0.98901093, 0.040359244, 0.14222845, 13.962, 4.231, 2.151)
 fov = 50.7
 near = 0.11
 far = 503.4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_c77e2")
+&"": SubResource("AnimationLibrary_c77e2")
 }
 autoplay = "CameraAnimation"
 speed_scale = 0.5
@@ -378,6 +379,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 2.0
 emission_ring_radius = 2.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 direction = Vector3(0, 1, 1)
 gravity = Vector3(0.028, 0, 0)
 initial_velocity_min = 0.5

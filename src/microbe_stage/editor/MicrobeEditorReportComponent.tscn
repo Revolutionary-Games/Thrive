@@ -42,17 +42,17 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_d1pk0"]
 
-[sub_resource type="StyleBoxFlat" id="42"]
+[sub_resource type="StyleBoxFlat" id="27"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.666667, 1, 0.941176, 1)
+bg_color = Color(0, 0.490196, 0.258824, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -74,23 +74,23 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id="27"]
+[sub_resource type="StyleBoxFlat" id="42"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color(0, 0.490196, 0.258824, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.666667, 1, 0.941176, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="MicrobeEditorReport" type="Control" node_paths=PackedStringArray("autoEvoSubtabButton", "timelineSubtabButton", "foodChainSubtabButton", "autoEvoSubtab", "timelineSubtab", "foodChainSubtab", "foodChainData", "timeIndicator", "externalEffectsLabel", "reportTabPatchName", "reportTabPatchSelector", "speciesChartContainer", "physicalConditionsChartContainer", "atmosphereChartContainer", "compoundsChartContainer", "noAutoEvoResultData", "graphicalResultsContainer", "majorEventsList", "showTextReportButton", "textReportDialog", "textReportLabel", "finishOrNextButton")]
+[node name="MicrobeEditorReport" type="Control" node_paths=PackedStringArray("autoEvoSubtabButton", "timelineSubtabButton", "foodChainSubtabButton", "autoEvoSubtab", "timelineSubtab", "foodChainSubtab", "foodChainScrollContainer", "foodChainData", "timeIndicator", "externalEffectsLabel", "reportTabPatchName", "reportTabPatchSelector", "speciesChartContainer", "physicalConditionsChartContainer", "atmosphereChartContainer", "compoundsChartContainer", "noAutoEvoResultData", "graphicalResultsContainer", "majorEventsList", "showTextReportButton", "textReportDialog", "textReportLabel", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -107,6 +107,7 @@ foodChainSubtabButton = NodePath("MarginContainer/HSplitContainer/PanelContainer
 autoEvoSubtab = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel")
 timelineSubtab = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel")
 foodChainSubtab = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab")
+foodChainScrollContainer = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab/DraggableScrollContainer")
 foodChainData = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab/DraggableScrollContainer/FoodChainDisplay")
 timeIndicator = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimeIndicator")
 externalEffectsLabel = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ExternalEffectsList")
@@ -560,9 +561,9 @@ focus_neighbor_top = NodePath("../../MarginContainer/HSplitContainer/PanelContai
 focus_next = NodePath(".")
 focus_previous = NodePath("../../MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector")
 mouse_filter = 1
-theme_override_styles/focus = SubResource("42")
-theme_override_styles/hover = SubResource("41")
 theme_override_styles/normal = SubResource("27")
+theme_override_styles/hover = SubResource("41")
+theme_override_styles/focus = SubResource("42")
 text = "NEXT_CAPITAL"
 
 [node name="TextReportWindow" parent="." instance=ExtResource("21_56xvy")]

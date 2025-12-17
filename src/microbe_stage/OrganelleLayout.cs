@@ -55,7 +55,18 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleL
             if (count == 0)
                 return new Hex(0, 0);
 
-            return Hex.CartesianToAxial(weightedSum / count);
+            weightedSum /= count;
+
+            // Truncate towards zero to avoid layout shifts.
+            // This is not a technically correct result as this will round some small changes to 0, however, this is
+            // needed to not end up with oscillations around like (-1, 0), (0, -1) loops, which cause errors in
+            // multicellular.
+            // The reason is that our hex size does not match up with integer coordinates, so theoretically values like
+            // 0.9 should not round to zero, but using rounding here results in still problems with the repositioning
+            // infinitely moving around the 0, 0 point.
+            weightedSum = new Vector3((int)weightedSum.X, weightedSum.Y, (int)weightedSum.Z);
+
+            return Hex.CartesianToAxial(weightedSum);
         }
     }
 

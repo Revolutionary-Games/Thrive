@@ -24,6 +24,7 @@ sky_material = SubResource("PanoramaSkyMaterial_b7e0u")
 resource_local_to_scene = true
 background_mode = 2
 sky = SubResource("1")
+ambient_light_source = 1
 ambient_light_color = Color(0.0313726, 0.443137, 0.482353, 1)
 
 [node name="MacroscopicStage" type="Node" node_paths=PackedStringArray("interactableSystem", "interactionPopup", "progressBarSystem", "selectBuildingPopup", "worldEnvironmentNode", "worldLightNode", "hudRoot")]

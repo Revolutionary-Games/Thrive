@@ -147,6 +147,24 @@ public partial class FoodChainDisplay : Control
         CreateLines();
     }
 
+    public Vector2 CalculateAverageNodePosition()
+    {
+        if (graphNodes.Count == 0)
+            return Vector2.Zero;
+
+        var position = Vector2.Zero;
+
+        foreach (var node in graphNodes)
+        {
+            if (node.CreatedControl != null)
+            {
+                position += node.CreatedControl.Position;
+            }
+        }
+
+        return position / graphNodes.Count;
+    }
+
     private static void HandleAddingPlayer(RunResults autoEvoResults, Patch forPatch, Species playerSpecies,
         HashSet<Species> seenSpecies)
     {
@@ -272,7 +290,7 @@ public partial class FoodChainDisplay : Control
         }
 
         // Make sure this control is big enough to contain all the child nodes and to make the scroll container work
-        CustomMinimumSize = new Vector2((int)Math.Ceiling(width), (int)Math.Ceiling(height));
+        CustomMinimumSize = new Vector2((int)Math.Ceiling(width), (int)Math.Ceiling(height)) + Margin;
     }
 
     private void CreateLines()

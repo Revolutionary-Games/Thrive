@@ -588,13 +588,12 @@ public partial class OptionsMenu : ControlWithInput
         // Need a reference to game properties in the current game for later comparisons.
         this.gameProperties = gameProperties;
 
-        // Set the mode to the one we opened with, and show/hide any options that should only be visible
+        // Set the mode to the one we opened with and show/hide any options that should only be visible
         // when the options menu is opened from in-game.
         SwitchMode(OptionsMode.InGame);
 
         // Set the state of the gui controls to match the settings.
-        if (savedTutorialsEnabled)
-            tutorialsEnabled.ButtonPressed = savedTutorialsEnabled;
+        tutorialsEnabled.ButtonPressed = savedTutorialsEnabled;
 
         ApplySettingsToControls(savedSettings);
         UpdateResetSaveButtonState();

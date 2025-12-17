@@ -76,6 +76,39 @@ public class CellLayout<T> : HexLayout<T>, IReadOnlyCellLayout<T>, IArchivable
         writer.WriteDelegateOrNull(onRemoved);
     }
 
+    /// <summary>
+    ///   A somewhat inefficient sanity check that this is a valid layout with no overlaps
+    /// </summary>
+    /// <exception cref="InvalidOperationException">Thrown if cells overlap</exception>
+    public void ThrowIfCellsOverlap()
+    {
+        var seen = new HashSet<Hex>();
+
+        foreach (var positionedCell in existingHexes)
+        {
+            var organellesInternal = positionedCell.ModifiableOrganelles.Organelles;
+            int organelleCount = organellesInternal.Count;
+
+            for (int i = 0; i < organelleCount; ++i)
+            {
+                var organelle = organellesInternal[i];
+
+                var organelleHexes = organelle.Definition.GetRotatedHexes(organelle.Orientation);
+                int hexCount = organelleHexes.Count;
+
+                for (int j = 0; j < hexCount; ++j)
+                {
+                    var position = Hex.RotateAxialNTimes(organelleHexes[j], positionedCell.Orientation) +
+                        organelle.Position + positionedCell.Position;
+                    if (!seen.Add(position))
+                    {
+                        throw new InvalidOperationException($"Cell {positionedCell} overlaps with another cell");
+                    }
+                }
+            }
+        }
+    }
+
     protected override void GetHexComponentPositions(T hex, List<Hex> result)
     {
         result.Clear();

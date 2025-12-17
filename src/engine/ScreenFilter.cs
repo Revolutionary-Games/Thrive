@@ -5,15 +5,9 @@
 /// </summary>
 public partial class ScreenFilter : ColorRect
 {
-#pragma warning disable CA2213
-    private ShaderMaterial? material;
-#pragma warning restore CA2213
-
     public override void _EnterTree()
     {
         base._EnterTree();
-
-        material ??= (ShaderMaterial)Material;
 
         UpdateEffect(Settings.Instance.CurrentScreenEffect);
 
@@ -29,9 +23,12 @@ public partial class ScreenFilter : ColorRect
 
     public void UpdateEffect(ScreenEffect? currentEffect)
     {
+        // Free any previous material
+        Visible = false;
+        Material = null;
+
         if (currentEffect?.ShaderPath == null)
         {
-            material!.Shader = null;
             return;
         }
 
@@ -39,6 +36,11 @@ public partial class ScreenFilter : ColorRect
 
         var effectShader = GD.Load<Shader>(currentEffect.ShaderPath);
 
-        material!.Shader = effectShader;
+        Material = new ShaderMaterial
+        {
+            Shader = effectShader,
+        };
+
+        Visible = true;
     }
 }

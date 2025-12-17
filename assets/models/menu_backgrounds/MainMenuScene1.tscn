@@ -26,6 +26,7 @@ sky_material = SubResource("ProceduralSkyMaterial_bibmf")
 background_mode = 2
 sky = SubResource("Sky_0h11p")
 sky_rotation = Vector3(-0.452023, 0, -0.269235)
+ambient_light_source = 1
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.24
 ambient_light_energy = 0.0
@@ -411,7 +412,7 @@ mesh = ExtResource("3_2s02u")
 skeleton = NodePath("")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.510837, 0.00851734, -0.858474, -0.0111761, 0.998933, 0.00326053, 0.858442, 0.00793674, 0.510898, -67.6689, -4.91601, 34.013)
+transform = Transform3D(0.5108369, 0.008517339, -0.85847396, -0.011176125, 0.998933, 0.003260527, 0.8584421, 0.007936738, 0.5108982, -67.6689, -4.91601, 34.013)
 current = true
 fov = 36.8
 far = 15000.0
@@ -450,7 +451,7 @@ mesh = SubResource("QuadMesh_cv5dq")
 skeleton = NodePath("../Sun")
 
 [node name="PlacedPlanet" type="Node3D" parent="."]
-transform = Transform3D(-1.73648, 0, 9.84808, 0, 10, 0, -9.84808, 0, -1.73648, 20.8068, -18.562, 23.6122)
+transform = Transform3D(-1.7364823, 0, 9.848079, 0, 10, 0, -9.848079, 0, -1.7364823, 20.8068, -18.562, 23.6122)
 
 [node name="PlaceholderPlanetGraphics" type="Node3D" parent="PlacedPlanet"]
 transform = Transform3D(0.130844, -0.238845, -0.962202, 0.184755, 0.959418, -0.21303, 0.974036, -0.149898, 0.169662, 0, 0, 0)
@@ -460,7 +461,7 @@ material_override = SubResource("StandardMaterial3D_3q10o")
 mesh = ExtResource("6_nwy0u")
 
 [node name="PlanetClouds" type="MeshInstance3D" parent="PlacedPlanet/PlaceholderPlanetGraphics"]
-transform = Transform3D(1.015, 0, -1.51247e-08, 0, 1.015, 0, 1.51247e-08, 0, 1.015, 0, 0, 0)
+transform = Transform3D(1.015, 0, -1.5124717e-08, 0, 1.015, 0, 1.5124717e-08, 0, 1.015, 0, 0, 0)
 material_override = ExtResource("7_s8v1p")
 mesh = ExtResource("6_nwy0u")
 
@@ -471,7 +472,7 @@ mesh = ExtResource("6_nwy0u")
 
 [node name="PlanetRotation" type="AnimationPlayer" parent="PlacedPlanet/PlaceholderPlanetGraphics"]
 libraries = {
-"": SubResource("AnimationLibrary_ayvgv")
+&"": SubResource("AnimationLibrary_ayvgv")
 }
 autoplay = "PlanetRotation"
 
@@ -497,7 +498,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -50.20
 
 [node name="CameraAnimation" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_vqvxl")
+&"": SubResource("AnimationLibrary_vqvxl")
 }
 autoplay = "CameraAnimation"
 speed_scale = 0.5
