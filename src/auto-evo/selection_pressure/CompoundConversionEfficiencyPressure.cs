@@ -9,6 +9,8 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
     public readonly CompoundDefinition FromCompound;
 
     public readonly CompoundDefinition ToCompound;
+    
+    private readonly CompoundDefinition atp = SimulationParameters.GetCompound(Compound.ATP);
 
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
@@ -72,13 +74,12 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
 
         var score = cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies, patch.Biome);
 
+        var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
         var activityScore = species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
 
         // Calculate how much energy is typically being consumed
-        var energyConsumption = (1 - activityScore) *
-            cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumptionStationary;
-        energyConsumption +=
-            activityScore * cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumption;
+        var energyConsumption = (1 - activityScore) * energyBalance.TotalConsumptionStationary;
+        energyConsumption += activityScore * energyBalance.TotalConsumption;
 
         // Modifier to fit the current mechanics of the Binding Agent. This should probably be removed or adjusted if
         // being in a colony no longer reduces osmoregulation cost.
