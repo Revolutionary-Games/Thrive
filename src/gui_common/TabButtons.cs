@@ -241,6 +241,36 @@ public partial class TabButtons : HBoxContainer
         return true;
     }
 
+    /// <summary>
+    /// Sets an appropriate custom minimum width in order to fit the real sizes of all the included buttons and both
+    /// indicators on a single line by finding the width of all the nodes that are being used.
+    /// </summary>
+    public void SetCustomMinimumSize()
+    {
+        // Start by adding together the widths of all the tab buttons
+        float newCustomMinimum = 0.0f;
+        foreach (var button in tabButtons)
+        {
+            newCustomMinimum += button.Size.X;
+        }
+
+        // Find the distance between each button (should get 0 if the constant doesn't exist, no need to check)
+        var separationBetweenButtons = tabButtonsContainer.GetThemeConstant("h_separation");
+
+        // Add 2x because the distance appears to be applied on both sides of each button
+        newCustomMinimum += (separationBetweenButtons * 2) * tabButtons.Count;
+
+        // Add the size of the left and right containers if they are visible or they take up space when invisible
+        if ((leftContainer is { Visible: true } && rightContainer is { Visible: true }) ||
+            (MoveIndicatorsTakeUpSpaceWhileInvisible && leftContainer is not null))
+        {
+            newCustomMinimum += rightContainer.Size.X + leftContainer.Size.X;
+        }
+
+        // Have to make a new vector to set as CustomMinimumSize's get only gets a temporary value 
+        CustomMinimumSize = new Vector2(newCustomMinimum, CustomMinimumSize.Y);
+    }
+
     private void TryToMoveToNextTab()
     {
         bool foundPressed = false;
