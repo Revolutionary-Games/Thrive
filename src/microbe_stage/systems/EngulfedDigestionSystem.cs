@@ -105,7 +105,7 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
             var engulfedObject = engulfer.EngulfedObjects![i];
 
 #if DEBUG
-            if (!engulfedObject.IsAlive())
+            if (!engulfedObject.IsAliveAndNotNull())
             {
                 throw new Exception(
                     "Digestion system has a non-alive engulfed object, engulfing system should have taken care " +

@@ -120,7 +120,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     public TutorialState TutorialState =>
         CurrentGame?.TutorialState ?? throw new InvalidOperationException("Game not started yet");
 
-    public override bool HasPlayer => Player != Entity.Null && Player.IsAlive();
+    public override bool HasPlayer => Player.IsAliveAndNotNull();
 
     public override bool HasAlivePlayer => HasPlayer && IsPlayerAlive();
 
@@ -985,7 +985,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             var doNotDespawn = PlayerOffspringHelpers.FindLatestSpawnedOffspring(WorldSimulation.EntitySystem);
 
 #if DEBUG
-            if (doNotDespawn.IsAlive() && !doNotDespawn.Has<Spawned>())
+            if (doNotDespawn.IsAliveAndNotNull() && !doNotDespawn.Has<Spawned>())
             {
                 throw new Exception(
                     "Spawned player offspring has no spawned component, microbe reproduction method is" +
@@ -1472,7 +1472,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     {
         base.OnGameContinuedAsSpecies(newPlayerSpecies, inPatch);
 
-        // Update spawners if staying in the same patch as otherwise they wouldn't be updated and would spawn the
+        // Update spawners if staying in the same patch as otherwise, they wouldn't be updated and would spawn the
         // obsolete species
         if (inPatch == GameWorld.Map.CurrentPatch)
         {
@@ -1710,6 +1710,16 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         // Don't clear the player object here as we want to wait until the player entity is deleted before creating
         // a new one to avoid having two player entities existing at the same time
+
+        if (GameWorld.Map.CurrentPatch == null)
+        {
+            GD.PrintErr("Current patch is unknown for some reason, can't update player spawn rate");
+            return;
+        }
+
+        // Update player spawn rate to make sure that if their own species is competing against the player, their spawn
+        // rate is reduced and thus makes the last live(s) easier
+        patchManager.UpdateSpawners(GameWorld.Map.CurrentPatch, this);
     }
 
     private bool PlayerIsEngulfed(Entity player)
@@ -1772,7 +1782,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         {
             try
             {
-                if (!player.IsAlive())
+                if (!player.IsAliveAndNotNull())
                 {
                     GD.PrintErr("Got player engulfed callback but player entity is dead");
                     OnCanEditStatusChanged(false);

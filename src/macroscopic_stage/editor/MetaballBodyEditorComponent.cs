@@ -1036,6 +1036,8 @@ public partial class MetaballBodyEditorComponent :
 
         UpdateCellTypeSelections();
 
+        Editor.DirtyMutationPointsCache();
+
         duplicateCellTypeDialog.Hide();
     }
 
@@ -1066,6 +1068,8 @@ public partial class MetaballBodyEditorComponent :
         EnqueueAction(new CombinedEditorAction(action));
 
         UpdateCellTypeSelections();
+
+        Editor.DirtyMutationPointsCache();
     }
 
     private void OnModifyCurrentCellTypePressed()

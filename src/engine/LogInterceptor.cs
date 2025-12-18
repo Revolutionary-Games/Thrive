@@ -104,6 +104,12 @@ public partial class LogInterceptor : Logger
             return;
         }
 
+        // Disconnected screens after changing settings can cause these
+        if (code.Contains("p_screen") && code.Contains("is out of bounds"))
+        {
+            return;
+        }
+
         // Ignore unsupported antialiasing modes as it would be very complex to hide the options in the GUI:
         // https://github.com/Revolutionary-Games/Thrive/pull/6535#issuecomment-3611112455
         if ((rationale.Contains("only available when using the") && rationale.Contains("renderer.")) ||

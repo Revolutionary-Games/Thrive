@@ -1879,7 +1879,8 @@ public partial class EngulfingSystem : BaseSystem<World, float>
             // Remove expired items *or* entities that are not alive any more (so they cannot be engulfed again and
             // thus don't need tracking). Clearing old items early helps avoid rare situations with saves being
             // unloadable (due to duplicate null values in the dictionary).
-            if (pair.Value >= Constants.ENGULF_EJECTED_COOLDOWN || pair.Key == default(Entity) || !pair.Key.IsAlive())
+            if (pair.Value >= Constants.ENGULF_EJECTED_COOLDOWN ||
+                pair.Key == default(Entity) || !pair.Key.IsAliveAndNotNull())
             {
                 engulfer.ExpelledObjects.Remove(pair.Key);
             }

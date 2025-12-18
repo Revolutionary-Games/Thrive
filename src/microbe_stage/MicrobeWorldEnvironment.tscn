@@ -13,7 +13,11 @@ sky_material = SubResource("ShaderMaterial_vkgr4")
 [sub_resource type="Environment" id="Environment_31nh3"]
 background_color = Color(1.63645e-06, 0.558327, 0.809688, 1)
 sky = SubResource("Sky_b4xyi")
+ambient_light_source = 2
+ambient_light_color = Color(0.984375, 0.984375, 0.984375, 1)
+ambient_light_energy = 0.07
 reflected_light_source = 2
+glow_enabled = true
 glow_normalized = true
 glow_strength = 1.8
 glow_bloom = 1.0

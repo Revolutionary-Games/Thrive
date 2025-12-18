@@ -114,6 +114,11 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     /// </remarks>
     public float WorldTimeScale { get; set; } = 1;
 
+    /// <summary>
+    ///   Set to true on Dispose, after which this may not be used anymore
+    /// </summary>
+    public bool Disposed { get; private set; }
+
     public bool NodeReferencesResolved { get; private set; }
 
     public abstract ushort CurrentArchiveVersion { get; }
@@ -452,6 +457,13 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     /// <returns>True when the entity is in this world and is not queued for deletion</returns>
     public bool IsEntityInWorld(Entity entity)
     {
+#if DEBUG
+        if (entity.IsAllZero())
+            throw new InvalidOperationException("Checking a zero initialized entity for being alive is a major bug");
+#endif
+        if (entity == Entity.Null)
+            return false;
+
         // TODO: check WorldId first somehow to ensure this doesn't access things out of bounds in the list of worlds?
 
         if (!entity.IsAlive())
@@ -658,6 +670,11 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
     protected void PerformEntityDestroy(Entity entity)
     {
+#if DEBUG
+        if (entity.IsAllZero() || entity == Entity.Null)
+            throw new ArgumentException("Entity reported to be destroyed cannot be null");
+#endif
+
         lock (entitiesToNotSave)
         {
             entitiesToNotSave.Remove(entity);
@@ -718,6 +735,8 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
     protected virtual void Dispose(bool disposing)
     {
+        Disposed = true;
+
         // TODO: decide if destroying all entities on world destroy is needed. It seems that disposing systems can
         // release their allocated resources so this all can just be let to go for memory to be garbage collected later
         // for faster world destroy

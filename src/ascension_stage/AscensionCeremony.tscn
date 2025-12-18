@@ -11,6 +11,7 @@
 background_mode = 2
 sky = SubResource("2")
 sky_rotation = Vector3(-0.452023, 0, -0.269235)
+ambient_light_source = 1
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.24
 ambient_light_energy = 0.0
@@ -177,6 +178,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("3")
 
 [node name="CreditsScroll" parent="CreditsDisplay" instance=ExtResource("2")]

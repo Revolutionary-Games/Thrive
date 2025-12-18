@@ -25,7 +25,7 @@ using Godot.Collections;
 /// <summary>
 ///     The GdUnit4 GDScript - C# API wrapper.
 /// </summary>
-public partial class GdUnit4CSharpApi : GdUnit4NetApiGodotBridge
+public partial class GdUnit4CSharpApi : RefCounted
 {
     /// <summary>
     ///     The signal to be emitted when the execution is completed.
@@ -56,7 +56,7 @@ public partial class GdUnit4CSharpApi : GdUnit4NetApiGodotBridge
         try
         {
             // Get the list of test case descriptors from the API
-            var testCaseDescriptors = DiscoverTestsFromScript(sourceScript);
+            var testCaseDescriptors = GdUnit4NetApiGodotBridge.DiscoverTestsFromScript(sourceScript);
 
             // Convert each TestCaseDescriptor to a Dictionary
             return testCaseDescriptors
@@ -74,11 +74,13 @@ public partial class GdUnit4CSharpApi : GdUnit4NetApiGodotBridge
                     ["fully_qualified_name"] = descriptor.FullyQualifiedName,
                     ["assembly_location"] = descriptor.AssemblyPath
                 })
-                .Aggregate(new Array<Dictionary>(), (array, dict) =>
-                {
-                    array.Add(dict);
-                    return array;
-                });
+                .Aggregate(
+                    new Array<Dictionary>(),
+                    (array, dict) =>
+                        {
+                            array.Add(dict);
+                            return array;
+                        });
         }
 #pragma warning disable CA1031
         catch (Exception e)
@@ -90,6 +92,23 @@ public partial class GdUnit4CSharpApi : GdUnit4NetApiGodotBridge
 #pragma warning restore IDE0028 // Do not catch general exception types
         }
     }
+
+    /// <summary>
+    /// Creates a test suite based on the specified source path and line number.
+    /// </summary>
+    /// <param name="sourcePath">The path to the source file from which to create the test suite.</param>
+    /// <param name="lineNumber">The line number in the source file where the method to test is defined.</param>
+    /// <param name="testSuitePath">The path where the test suite should be created.</param>
+    /// <returns>A dictionary containing information about the created test suite.</returns>
+    public static Dictionary CreateTestSuite(string sourcePath, int lineNumber, string testSuitePath)
+        => GdUnit4NetApiGodotBridge.CreateTestSuite(sourcePath, lineNumber, testSuitePath);
+
+    /// <summary>
+    /// Gets the version of the GdUnit4 assembly.
+    /// </summary>
+    /// <returns>The version string of the GdUnit4 assembly.</returns>
+    public static string Version()
+        => GdUnit4NetApiGodotBridge.Version();
 
     /// <inheritdoc />
     public override void _Notification(int what)
@@ -118,7 +137,7 @@ public partial class GdUnit4CSharpApi : GdUnit4NetApiGodotBridge
 
             Debug.Assert(tests != null, nameof(tests) + " != null");
             var testSuiteNodes = new List<TestSuiteNode> { BuildTestSuiteNodeFrom(tests) };
-            ExecuteAsync(testSuiteNodes, listener, executionCts.Token)
+            GdUnit4NetApiGodotBridge.ExecuteAsync(testSuiteNodes, listener, executionCts.Token)
                 .GetAwaiter()
                 .OnCompleted(() => EmitSignal(SignalName.ExecutionCompleted));
         }
