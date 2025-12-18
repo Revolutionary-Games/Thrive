@@ -1,14 +1,14 @@
 ﻿using System;
 using SharedBase.Archive;
 
-public class CellPlacementActionData : HexPlacementActionData<HexWithData<CellTemplate>, MulticellularSpecies>
+public class CellPlacementActionData : HexPlacementActionData<CellTemplate, MulticellularSpecies>
 {
-    public CellPlacementActionData(HexWithData<CellTemplate> hex, Hex location, int orientation) : base(hex, location,
+    public CellPlacementActionData(CellTemplate hex, Hex location, int orientation) : base(hex, location,
         orientation)
     {
     }
 
-    public CellPlacementActionData(HexWithData<CellTemplate> hex) : base(hex, hex.Position,
+    public CellPlacementActionData(CellTemplate hex) : base(hex, hex.Position,
         hex.Data?.Orientation ?? throw new ArgumentException("Hex with no data"))
     {
     }
@@ -31,7 +31,7 @@ public class CellPlacementActionData : HexPlacementActionData<HexWithData<CellTe
         if (version is > SERIALIZATION_VERSION_HEX or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_HEX);
 
-        var instance = new CellPlacementActionData(reader.ReadObject<HexWithData<CellTemplate>>(), reader.ReadHex(),
+        var instance = new CellPlacementActionData(reader.ReadObject<CellTemplate>(), reader.ReadHex(),
             reader.ReadInt32());
 
         instance.ReadBasePropertiesFromArchive(reader, version);

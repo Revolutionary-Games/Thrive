@@ -8,7 +8,7 @@ using Godot;
 /// </summary>
 public partial class CellPopupMenu : HexPopupMenu
 {
-    private List<HexWithData<CellTemplate>>? selectedCells;
+    private List<CellTemplate>? selectedCells;
 
     public override bool EnableModifyOption
     {
@@ -20,7 +20,7 @@ public partial class CellPopupMenu : HexPopupMenu
         }
     }
 
-    public List<HexWithData<CellTemplate>> SelectedCells
+    public List<CellTemplate> SelectedCells
     {
         get => selectedCells ??
             throw new InvalidOperationException($"{nameof(CellPopupMenu)} was not opened with cells set");
@@ -44,8 +44,8 @@ public partial class CellPopupMenu : HexPopupMenu
         }
     }
 
-    public IEnumerable<HexWithData<CellTemplate>> GetSelectedThatAreStillValid(
-        IReadOnlyCollection<HexWithData<CellTemplate>> allValidCells)
+    public IEnumerable<CellTemplate> GetSelectedThatAreStillValid(
+        IReadOnlyCollection<CellTemplate> allValidCells)
     {
         return SelectedCells.Where(allValidCells.Contains);
     }
@@ -55,7 +55,7 @@ public partial class CellPopupMenu : HexPopupMenu
         if (titleLabel == null)
             return;
 
-        var names = SelectedCells.Select(c => c.Data!.ModifiableCellType.CellTypeName).Distinct()
+        var names = SelectedCells.Select(c => c.ModifiableCellType.CellTypeName).Distinct()
             .ToList();
 
         if (names.Count == 1)

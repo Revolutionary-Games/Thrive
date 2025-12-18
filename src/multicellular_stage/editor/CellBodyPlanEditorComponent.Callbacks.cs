@@ -7,13 +7,13 @@ using SharedBase.Archive;
 public partial class CellBodyPlanEditorComponent
 {
     [ArchiveAllowedMethod]
-    private void OnCellAdded(HexWithData<CellTemplate> hexWithData)
+    private void OnCellAdded(CellTemplate hexWithData)
     {
         cellDataDirty = true;
     }
 
     [ArchiveAllowedMethod]
-    private void OnCellRemoved(HexWithData<CellTemplate> hexWithData)
+    private void OnCellRemoved(CellTemplate hexWithData)
     {
         cellDataDirty = true;
     }
@@ -86,8 +86,6 @@ public partial class CellBodyPlanEditorComponent
     {
         data.MovedHex.Position = data.NewLocation;
         data.MovedHex.Orientation = data.NewRotation;
-        data.MovedHex.Data!.Orientation = data.NewRotation;
-        data.MovedHex.Data.Position = data.NewLocation;
 
         if (editedMicrobeCells.Contains(data.MovedHex))
         {
@@ -106,8 +104,6 @@ public partial class CellBodyPlanEditorComponent
     {
         data.MovedHex.Position = data.OldLocation;
         data.MovedHex.Orientation = data.OldRotation;
-        data.MovedHex.Data!.Orientation = data.OldRotation;
-        data.MovedHex.Data.Position = data.OldLocation;
 
         UpdateAlreadyPlacedVisuals();
     }

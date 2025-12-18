@@ -28,47 +28,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     public CellLayout<CellTemplate> ModifiableGameplayCells { get; private set; } = new();
 
     // TODO: find a way around this adapter class
-    public IReadOnlyCellLayout<IReadOnlyCellTemplate> GameplayCells => readonlyCellLayoutAdapter ??=
+    public IReadOnlyCellLayout<IReadOnlyCellTemplate> CellLayout => readonlyCellLayoutAdapter ??=
         new ReadonlyCellLayoutAdapter<IReadOnlyCellTemplate, CellTemplate>(ModifiableGameplayCells);
-
-    /// <summary>
-    ///   The 'original' colony layout, from which the simulated one (<see cref="GameplayCells"/>) is generated.
-    /// </summary>
-    public IndividualHexLayout<CellTemplate> ModifiableEditorCells
-    {
-        get
-        {
-            if (modifiableEditorCells != null)
-            {
-#if DEBUG
-                if (modifiableEditorCells.Count < 1)
-                {
-                    Debugger.Break();
-                    GD.PrintErr("Editor cells are missing from species!");
-                }
-#endif
-                return modifiableEditorCells;
-            }
-
-            // Recalculate from the gameplay cells if the editor layout is missing
-            GD.Print($"Creating missing editor layout from gameplay cells for species: {FormattedIdentifier}");
-
-            var result = new IndividualHexLayout<CellTemplate>();
-
-            // A bit inefficient to need to allocate temporary memory here, but this is anyway pretty expensive to need
-            // to calculate this for a species
-            MulticellularLayoutHelpers.GenerateEditorLayoutFromGameplayLayout(result, ModifiableGameplayCells,
-                new List<Hex>(), new List<Hex>());
-
-            modifiableEditorCells = result;
-            return result;
-        }
-        set => modifiableEditorCells = value;
-    }
-
-    // TODO: find a away around this adapter class
-    public IReadOnlyIndividualLayout<IReadOnlyCellTemplate> EditorCells => readonlyIndividualLayoutAdapter ??=
-        new ReadonlyIndividualLayoutAdapter<CellTemplate, IReadOnlyCellTemplate>(ModifiableEditorCells);
 
     public List<CellType> ModifiableCellTypes { get; private set; } = new();
 
@@ -127,7 +88,6 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         WriteBasePropertiesToArchive(writer);
 
         writer.WriteObject(ModifiableGameplayCells);
-        writer.WriteObject(ModifiableEditorCells);
         writer.WriteObject(ModifiableCellTypes);
     }
 
@@ -350,11 +310,6 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         else
         {
             result.modifiableEditorCells.Clear();
-        }
-
-        foreach (var cellTemplate in (HexLayout<HexWithData<CellTemplate>>)ModifiableEditorCells)
-        {
-            result.modifiableEditorCells.AddFast(cellTemplate.Clone(), workMemory1, workMemory2);
         }
 
         foreach (var cellType in ModifiableCellTypes)

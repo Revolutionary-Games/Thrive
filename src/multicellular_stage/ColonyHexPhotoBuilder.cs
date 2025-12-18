@@ -70,7 +70,7 @@ public partial class ColonyHexPhotoBuilder : Node3D, IScenePhotographable
         if (Species == null)
             throw new InvalidOperationException("Species is not initialized");
 
-        foreach (var cell in Species.EditorCells)
+        foreach (var cell in Species.CellLayout)
         {
             var pos = Hex.AxialToCartesian(cell.Position);
 
@@ -91,7 +91,7 @@ public partial class ColonyHexPhotoBuilder : Node3D, IScenePhotographable
 
         float maxDistanceSquared = 0.0f;
 
-        foreach (var cell in species.EditorCells)
+        foreach (var cell in species.CellLayout)
         {
             maxDistanceSquared = MathF.Max(maxDistanceSquared, Hex.AxialToCartesian(cell.Position)
                 .DistanceSquaredTo(Vector3.Zero));

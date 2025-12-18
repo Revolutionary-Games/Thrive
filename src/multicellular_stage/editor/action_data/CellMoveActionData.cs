@@ -1,9 +1,9 @@
 ﻿using System;
 using SharedBase.Archive;
 
-public class CellMoveActionData : HexMoveActionData<HexWithData<CellTemplate>, MulticellularSpecies>
+public class CellMoveActionData : HexMoveActionData<CellTemplate, MulticellularSpecies>
 {
-    public CellMoveActionData(HexWithData<CellTemplate> organelle, Hex oldLocation, Hex newLocation, int oldRotation,
+    public CellMoveActionData(CellTemplate organelle, Hex oldLocation, Hex newLocation, int oldRotation,
         int newRotation) : base(organelle, oldLocation, newLocation, oldRotation, newRotation)
     {
     }
@@ -26,7 +26,7 @@ public class CellMoveActionData : HexMoveActionData<HexWithData<CellTemplate>, M
         if (version is > SERIALIZATION_VERSION_HEX or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_HEX);
 
-        var instance = new CellMoveActionData(reader.ReadObject<HexWithData<CellTemplate>>(), reader.ReadHex(),
+        var instance = new CellMoveActionData(reader.ReadObject<CellTemplate>(), reader.ReadHex(),
             reader.ReadHex(), reader.ReadInt32(), reader.ReadInt32());
 
         instance.ReadBasePropertiesFromArchive(reader, version);
