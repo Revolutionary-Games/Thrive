@@ -68,7 +68,7 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
 
             if (predationScore <= 1)
             {
-                score += 2.0f - predationScore;
+                score += 3.0f - predationScore;
                 continue;
             }
 
