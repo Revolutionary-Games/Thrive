@@ -1023,9 +1023,16 @@ public partial class MetaballBodyEditorComponent :
         var newType = (CellType)GetEditedCellDataIfEdited(type).Clone();
         newType.CellTypeName = newTypeName;
 
-        // TODO: make this into a reversible action (multicellular already has that)
-        Editor.EditedSpecies.ModifiableCellTypes.Add(newType);
-        GD.Print("New cell type created: ", newType.CellTypeName);
+        var data = new DuplicateDeleteCellTypeData(newType, false);
+
+        var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(
+            DuplicateCellType, 
+            DeleteCellType, 
+            data);
+
+        EnqueueAction(new CombinedEditorAction(action));
+
+        duplicateCellTypeDialog.Hide();
 
         UpdateCellTypeSelections();
 
@@ -1049,11 +1056,14 @@ public partial class MetaballBodyEditorComponent :
             return;
         }
 
-        // TODO: make a reversible action
-        if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(type))
-        {
-            GD.PrintErr("Failed to delete cell type from species");
-        }
+        var data = new DuplicateDeleteCellTypeData(type, true);
+
+        var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(
+            DeleteCellType, 
+            DuplicateCellType, 
+            data);
+
+        EnqueueAction(new CombinedEditorAction(action));
 
         UpdateCellTypeSelections();
     }
