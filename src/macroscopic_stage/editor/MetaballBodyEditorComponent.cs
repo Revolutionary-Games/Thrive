@@ -1025,10 +1025,7 @@ public partial class MetaballBodyEditorComponent :
 
         var data = new DuplicateDeleteCellTypeData(newType, false);
 
-        var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(
-            DuplicateCellType, 
-            DeleteCellType, 
-            data);
+        var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(DuplicateCellType, DeleteCellType, data);
 
         EnqueueAction(new CombinedEditorAction(action));
 
@@ -1060,10 +1057,7 @@ public partial class MetaballBodyEditorComponent :
 
         var data = new DuplicateDeleteCellTypeData(type, true);
 
-        var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(
-            DeleteCellType, 
-            DuplicateCellType, 
-            data);
+        var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(DeleteCellType, DuplicateCellType, data);
 
         EnqueueAction(new CombinedEditorAction(action));
 
