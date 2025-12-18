@@ -188,9 +188,9 @@ public partial class CellBodyPlanEditorComponent :
             var workMemory1 = new List<Hex>();
             var workMemory2 = new List<Hex>();
 
-            foreach (var editedMicrobeOrganelle in editedMicrobeCells)
+            foreach (var cell in editedMicrobeCells)
             {
-                newLayout.AddFast(editedMicrobeOrganelle, workMemory1, workMemory2);
+                newLayout.AddFast(cell, workMemory1, workMemory2);
             }
 
             editedMicrobeCells = newLayout;
@@ -1209,10 +1209,10 @@ public partial class CellBodyPlanEditorComponent :
         };
 
         // TODO: improve performance by calculating the balance per cell type
-        foreach (var hex in cells)
+        foreach (var cell in cells)
         {
-            ProcessSystem.ComputeEnergyBalanceFull(hex!.ModifiableOrganelles, conditionsData,
-                environmentalTolerances, hex.MembraneType,
+            ProcessSystem.ComputeEnergyBalanceFull(cell!.ModifiableOrganelles, conditionsData,
+                environmentalTolerances, cell.MembraneType,
                 maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
                 organismStatisticsPanel.CompoundAmountType, null, energyBalance);
         }
@@ -1322,11 +1322,11 @@ public partial class CellBodyPlanEditorComponent :
 
         foreach (var cellTemplate in editedMicrobeCells)
         {
-            GD.Print($"Placing {cellTemplate.FormattedName}:");
+            var cellType = CellTypeVisualsOverride?.GetCellType(cellTemplate.ModifiableCellType) ?? cellTemplate.ModifiableCellType;
 
-            foreach (var organelle in cellTemplate.ModifiableOrganelles)
+            foreach (var organelle in cellType.ModifiableOrganelles)
             {
-                GD.Print($"- {organelle.ReadableName}");
+                GD.Print($"- {organelle.Definition.Name}");
 
                 // Hexes are handled by UpdateAlreadyPlacedHexes
 
