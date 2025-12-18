@@ -9,7 +9,7 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
     public readonly CompoundDefinition FromCompound;
 
     public readonly CompoundDefinition ToCompound;
-    
+
     private readonly CompoundDefinition atp = SimulationParameters.GetCompound(Compound.ATP);
 
     // Needed for translation extraction
@@ -99,6 +99,16 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
             {
                 bindingModifier *= 1 - Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS;
             }
+        }
+
+        if (ToCompound.ID == atp.ID)
+        {
+            score *= score / energyBalance.TotalProduction;
+        }
+        else
+        {
+            score *= score * cache.GetCompoundConversionScoreForSpecies(ToCompound, atp, microbeSpecies, patch.Biome)
+                / energyBalance.TotalProduction;
         }
 
         // we need to factor in both conversion from source to output, and energy expenditure time
