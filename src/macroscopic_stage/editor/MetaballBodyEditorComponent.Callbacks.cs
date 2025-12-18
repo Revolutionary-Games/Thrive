@@ -114,16 +114,13 @@ public partial class MetaballBodyEditorComponent
             }
         }
     }
-    
+
     [ArchiveAllowedMethod]
     private void DuplicateCellType(DuplicateDeleteCellTypeData data)
     {
         var originalName = data.CellType.CellTypeName;
         var count = 1;
 
-        // Lógica de segurança: garante que o nome seja único ao refazer a ação,
-        // caso o jogador tenha criado outro tipo com o mesmo nome enquanto essa ação estava desfeita.
-        // Usa o método auxiliar existente na classe principal.
         while (!IsNewCellTypeNameValid(data.CellType.CellTypeName))
         {
             data.CellType.CellTypeName = $"{originalName} {count++}";
@@ -134,11 +131,9 @@ public partial class MetaballBodyEditorComponent
 
         UpdateCellTypeSelections();
 
-        // Seleciona o novo tipo automaticamente (equivalente ao OnCellToPlaceSelected)
         activeActionName = data.CellType.CellTypeName;
         OnCurrentActionChanged();
 
-        // Emite sinal para outros componentes saberem que este tipo foi selecionado
         EmitSignal(SignalName.OnCellTypeToEditSelected, data.CellType.CellTypeName);
     }
 
@@ -150,7 +145,6 @@ public partial class MetaballBodyEditorComponent
             GD.PrintErr("Failed to delete cell type from species");
         }
 
-        // Se o tipo deletado estava selecionado, limpa a seleção
         if (activeActionName == data.CellType.CellTypeName)
         {
             ClearSelectedAction();
