@@ -681,24 +681,42 @@ public partial class CellBodyPlanEditorComponent :
         if (MovingPlacedHex == null && activeActionName == null)
             return;
 
+        cellToPlace = CellTypeVisualsOverride?.GetCellType(cellToPlace) ?? cellToPlace;
+
         // For now a single hex represents entire cells
-        RenderHoveredHex(q, r, new[] { new Hex(0, 0) }, isPlacementProbablyValid,
+        RenderHoveredHex(q, r, cellToPlace.ModifiableOrganelles.SelectMany(o =>
+            o.Definition.GetRotatedHexes(o.Orientation + rotation)
+            .Select(a => Hex.RotateAxialNTimes(o.Position, rotation) + a)), isPlacementProbablyValid,
             out bool hadDuplicate);
 
         bool showModel = !hadDuplicate;
 
-        // When force updating this has to run to make sure the cell holder has been forced to refresh so that when
-        // it becomes visible it doesn't have outdated graphics on it
-        if (showModel || forceUpdateCellGraphics)
+        if (!showModel && !forceUpdateCellGraphics)
+            return;
+
+        foreach (var organelle in cellToPlace.ModifiableOrganelles)
         {
-            var cartesianPosition = Hex.AxialToCartesian(new Hex(q, r));
+            // When force updating this has to run to make sure the cell holder has been forced to refresh so that when
+            // it becomes visible it doesn't have outdated graphics on it
+            if (organelle.Definition.TryGetGraphicsScene(organelle.Upgrades, out var modelInfo))
+            {
+                var cartesianPosition = Hex.AxialToCartesian(new Hex(q, r) + Hex.RotateAxialNTimes(organelle.Position, rotation));
 
-            var modelHolder = hoverModels[usedHoverModel++];
+                if (usedHoverModel >= hoverModels.Count)
+                    hoverModels.Add(CreatePreviewModelHolder());
 
-            ShowCellTypeInModelHolder(modelHolder, GetEditedCellDataIfEdited(cellToPlace), cartesianPosition, rotation);
+                var organelleModel = hoverModels[usedHoverModel++];
 
-            if (showModel)
-                modelHolder.Visible = true;
+                organelleModel.Transform = new Transform3D(new Basis(MathUtils.CreateRotationForOrganelle(rotation)),
+                    cartesianPosition + organelle.Definition.ModelOffset);
+
+                organelleModel.Scale = organelle.Definition.GetUpgradesSizeModification(organelle.Upgrades);
+
+                organelleModel.Visible = true;
+
+                CellEditorComponent.UpdateOrganellePlaceHolderScene(organelleModel, modelInfo,
+                    Hex.GetRenderPriority(new Hex(q, r)), temporaryDisplayerFetchList);
+            }
         }
     }
 
@@ -1326,8 +1344,6 @@ public partial class CellBodyPlanEditorComponent :
 
             foreach (var organelle in cellType.ModifiableOrganelles)
             {
-                GD.Print($"- {organelle.Definition.Name}");
-
                 // Hexes are handled by UpdateAlreadyPlacedHexes
 
                 // Model of the organelle
@@ -1358,42 +1374,6 @@ public partial class CellBodyPlanEditorComponent :
             placedModels[placedModels.Count - 1].DetachAndQueueFree();
             placedModels.RemoveAt(placedModels.Count - 1);
         }
-    }
-
-    private void ShowCellTypeInModelHolder(SceneDisplayer modelHolder, CellType cell, Vector3 position, int orientation)
-    {
-        modelHolder.Transform = new Transform3D(Basis.Identity, position);
-
-        var rotation = MathUtils.CreateRotationForOrganelle(1 * orientation);
-
-        CellBillboard billboard;
-        bool wasExisting = false;
-
-        // Create a new billboard if one not already there for the displayer
-        if (modelHolder.InstancedNode is CellBillboard existing)
-        {
-            billboard = existing;
-            wasExisting = true;
-        }
-        else
-        {
-            billboard = (CellBillboard)billboardScene.Instantiate();
-        }
-
-        // Set look direction
-        billboard.Transform = new Transform3D(new Basis(rotation), new Vector3(0, 0, 0));
-
-        billboard.DisplayedCell = cell;
-
-        if (forceUpdateCellGraphics && wasExisting)
-        {
-            billboard.NotifyCellTypeMayHaveChanged();
-        }
-
-        modelHolder.LoadFromAlreadyLoadedNode(billboard);
-
-        // TODO: render priority setting for the cells? (similarly to how organelles are handled in the cell editor)
-        // Alternatively maybe 0.01 of randomness in y-position would be fine?
     }
 
     private void OnSpeciesNameChanged(string newText)
