@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Conversion helpers between the full (gameplay) and editor layouts of a multicellular species
@@ -20,14 +22,16 @@ public static class MulticellularLayoutHelpers
             targetEditorLayout.AddFast(hexWithData.Clone(), hexTemporaryMemory,
                 hexTemporaryMemory2);
 
+            var gameplayHex = hexWithData;
+
             var direction = new Vector2(0, -1);
 
-            if (hexWithData.Position != new Hex(0, 0))
+            if (gameplayHex.Position != new Hex(0, 0))
             {
-                direction = new Vector2(hexWithData.Position.Q, hexWithData.Position.R).Normalized();
+                direction = new Vector2(gameplayHex.Position.Q, gameplayHex.Position.R).Normalized();
             }
 
-            hexWithData.Data!.Position = new Hex(0, 0);
+            gameplayHex.Data!.Position = new Hex(0, 0);
 
             int distance = 0;
 
@@ -35,13 +39,13 @@ public static class MulticellularLayoutHelpers
             {
                 var positionVector = direction * distance;
                 var checkPosition = new Hex((int)positionVector.X, (int)positionVector.Y);
-                hexWithData.Data!.Position = checkPosition;
-                hexWithData.Position = checkPosition;
+                gameplayHex.Data!.Position = checkPosition;
+                gameplayHex.Position = checkPosition;
 
-                if (targetGameplayLayout.CanPlace(hexWithData.Data, hexTemporaryMemory,
+                if (targetGameplayLayout.CanPlace(gameplayHex.Data, hexTemporaryMemory,
                         hexTemporaryMemory2))
                 {
-                    targetGameplayLayout.AddFast(hexWithData.Data, hexTemporaryMemory,
+                    targetGameplayLayout.AddFast(gameplayHex.Data, hexTemporaryMemory,
                         hexTemporaryMemory2);
                     break;
                 }

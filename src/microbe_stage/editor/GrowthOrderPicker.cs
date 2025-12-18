@@ -230,6 +230,32 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
         return rawItems.OrderBy(i => i, itemComparer);
     }
 
+    /// <inheritdoc cref="ApplyOrderingToItems{T}(IEnumerable{T})" />
+    public IEnumerable<HexWithData<T>> ApplyOrderingToItems<T>(IEnumerable<HexWithData<T>> rawItems)
+        where T : IActionHex, IArchivable, ICloneable, IPlayerReadableName
+    {
+        if (itemControls.Count <= 0)
+        {
+            // If no existing items, can just return the raw list
+
+            // Except if this is loaded from a save and no real order was created yet, then use that
+            if (currentSavedOrder != null)
+            {
+                // It shouldn't be possible for the list to change so hopefully the save comparer never needs to be
+                // recreated
+                savedItemComparer ??= new SaveComparer(currentSavedOrder);
+                return rawItems.OrderBy(i => i.Data!, savedItemComparer);
+            }
+
+            return rawItems;
+        }
+
+        // Need to use LINQ sort here as it is a stable sort and our sorter only does a partial ordering
+        // Apparently `Order` might not be a stable sort so for safety `OrderBy` is used as that is guaranteed
+        // according to the documentation to be stable
+        return rawItems.OrderBy(i => i.Data!, itemComparer);
+    }
+
     /// <summary>
     ///   Gets the current order. Note that the returned object can be modified afterwards with new data if this method
     ///   is called again (so no new list is allocated on each call)

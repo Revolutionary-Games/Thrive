@@ -44,6 +44,9 @@ public partial class CellBodyPlanEditorComponent :
     private Button behaviourTabButton = null!;
 
     [Export]
+    private Button growthOrderTabButton = null!;
+
+    [Export]
     private PanelContainer structureTab = null!;
 
     [Export]
@@ -51,6 +54,12 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private BehaviourEditorSubComponent behaviourEditor = null!;
+
+    [Export]
+    private PanelContainer growthOrderTab = null!;
+
+    [Export]
+    private GrowthOrderPicker growthOrderGUI = null!;
 
     [Export]
     private CollapsibleList cellTypeSelectionList = null!;
@@ -114,6 +123,7 @@ public partial class CellBodyPlanEditorComponent :
         Structure,
         Reproduction,
         Behaviour,
+        GrowthOrder,
     }
 
     public override bool HasIslands =>
@@ -388,6 +398,16 @@ public partial class CellBodyPlanEditorComponent :
                     "Please include a save or screenshot of your species' cell types with the report");
                 break;
             }
+        }
+
+        var order = new HexWithData<CellTemplate>[editedMicrobeCells.Count];
+
+        editedMicrobeCells.CopyTo(order, 0);
+        editedMicrobeCells.Clear();
+
+        foreach (var cell in growthOrderGUI.ApplyOrderingToItems(order))
+        {
+            editedMicrobeCells.AddFast(cell, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         // Compute final cell layout positions and update the species
@@ -1546,6 +1566,7 @@ public partial class CellBodyPlanEditorComponent :
         structureTab.Hide();
         reproductionTab.Hide();
         behaviourEditor.Hide();
+        growthOrderTab.Hide();
 
         // Show selected
         switch (selectedSelectionMenuTab)
@@ -1568,6 +1589,15 @@ public partial class CellBodyPlanEditorComponent :
             {
                 behaviourEditor.Show();
                 behaviourTabButton.ButtonPressed = true;
+                break;
+            }
+
+            case SelectionMenuTab.GrowthOrder:
+            {
+                growthOrderTab.Show();
+                growthOrderTabButton.ButtonPressed = true;
+
+                UpdateGrowthOrderButtons();
                 break;
             }
 

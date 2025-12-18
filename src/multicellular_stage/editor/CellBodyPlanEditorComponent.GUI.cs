@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Systems;
 
@@ -141,5 +142,25 @@ public partial class CellBodyPlanEditorComponent
         organismStatisticsPanel.ApplyLightLevelSelection();
 
         UpdateCancelButtonVisibility();
+    }
+
+    private void UpdateGrowthOrderButtons()
+    {
+        if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
+        {
+            growthOrderGUI.UpdateItems(growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable().Select(o => o.Data!)));
+        }
+    }
+
+    private void OnResetGrowthOrderPressed()
+    {
+        growthOrderGUI.UpdateItems(editedMicrobeCells.AsModifiable().Select(o => o.Data!));
+
+        // UpdateGrowthOrderNumbers();
+    }
+
+    private void OnGrowthOrderCoordinatesToggled(bool show)
+    {
+        growthOrderGUI.ShowCoordinates = show;
     }
 }
