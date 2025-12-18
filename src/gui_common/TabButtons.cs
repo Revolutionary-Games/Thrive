@@ -242,8 +242,8 @@ public partial class TabButtons : HBoxContainer
     }
 
     /// <summary>
-    /// Sets an appropriate custom minimum width in order to fit the real sizes of all the included buttons and both
-    /// indicators on a single line by finding the width of all the nodes that are being used.
+    ///   Sets an appropriate custom minimum width in order to fit the real sizes of all the included buttons and both
+    ///   indicators on a single line by finding the width of all the nodes that are being used.
     /// </summary>
     public void SetCustomMinimumSize()
     {
@@ -267,7 +267,7 @@ public partial class TabButtons : HBoxContainer
             newCustomMinimum += rightContainer.Size.X + leftContainer.Size.X;
         }
 
-        // Have to make a new vector to set as CustomMinimumSize's get only gets a temporary value 
+        // Have to make a new vector to set as CustomMinimumSize's get only gets a temporary value
         CustomMinimumSize = new Vector2(newCustomMinimum, CustomMinimumSize.Y);
     }
 
