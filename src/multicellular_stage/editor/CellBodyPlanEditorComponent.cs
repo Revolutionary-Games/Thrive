@@ -1315,7 +1315,7 @@ public partial class CellBodyPlanEditorComponent :
 
         // TODO: rewrite somehow
         UpdateAlreadyPlacedHexes(editedMicrobeCells.Select(c => (c.Position,
-            (IReadOnlyList<Hex>)c!.Organelles.SelectMany(o => o.Definition.GetRotatedHexes(o.Orientation + c.Orientation).Select(a => a + Hex.RotateAxialNTimes(o.Position, c.Orientation))).ToList(),
+            (IReadOnlyList<Hex>)(CellTypeVisualsOverride?.GetCellType(c.ModifiableCellType) ?? c.ModifiableCellType).ModifiableOrganelles.SelectMany(o => o.Definition.GetRotatedHexes(o.Orientation + c.Orientation).Select(a => a + Hex.RotateAxialNTimes(o.Position, c.Orientation))).ToList(),
             Editor.HexPlacedThisSession<CellTemplate, MulticellularSpecies>(c))), islandResults);
 
         int nextFreeOrganelle = 0;
