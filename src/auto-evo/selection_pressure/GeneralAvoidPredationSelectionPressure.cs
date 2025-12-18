@@ -64,6 +64,13 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
         var score = 1.0f;
         foreach (var predator in patch.SpeciesInPatch)
         {
+            // No Cannibalism
+            // Compared by ID here to make sure temporary species variants are not allowed to predate themselves
+            if (species.ID == predator.Key.ID)
+            {
+                continue;
+            }
+
             var predationScore = cache.GetPredationScore(predator.Key, species, patch.Biome);
 
             if (predationScore <= 1)
