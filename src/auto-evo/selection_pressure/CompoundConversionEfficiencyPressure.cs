@@ -10,11 +10,11 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
 
     public readonly CompoundDefinition ToCompound;
 
-    private readonly CompoundDefinition atp = SimulationParameters.GetCompound(Compound.ATP);
-
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
     private static readonly LocalizedString NameString = new LocalizedString("MICHE_COMPOUND_EFFICIENCY_PRESSURE");
+
+    private readonly CompoundDefinition atp = SimulationParameters.GetCompound(Compound.ATP);
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
