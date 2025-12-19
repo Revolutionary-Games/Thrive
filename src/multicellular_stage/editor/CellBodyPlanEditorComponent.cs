@@ -62,6 +62,9 @@ public partial class CellBodyPlanEditorComponent :
     private GrowthOrderPicker growthOrderGUI = null!;
 
     [Export]
+    private CheckBox showGrowthOrderCoordinates = null!;
+
+    [Export]
     private CollapsibleList cellTypeSelectionList = null!;
 
     [Export]
@@ -115,6 +118,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private bool hasNegativeATPCells;
 
+    private bool showGrowthOrderNumbers;
+
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
 
@@ -160,11 +165,29 @@ public partial class CellBodyPlanEditorComponent :
 
     public bool CanBeSpecialReference => true;
 
+    /// <summary>
+    ///   When enabled numbers are shown above the organelles to indicate their growth order
+    /// </summary>
+    public bool ShowGrowthOrder
+    {
+        get => showGrowthOrderNumbers;
+        set
+        {
+            showGrowthOrderNumbers = value;
+
+            UpdateGrowthOrderButtons();
+        }
+    }
+
+    protected override bool ShowFloatingLabels => ShowGrowthOrder;
+
     protected override bool ForceHideHover => false;
 
     public override void _Ready()
     {
         base._Ready();
+
+        growthOrderGUI.ShowCoordinates = showGrowthOrderCoordinates.ButtonPressed;
 
         cellTypeSelectionButtonScene =
             GD.Load<PackedScene>("res://src/multicellular_stage/editor/CellTypeSelection.tscn");
@@ -236,6 +259,13 @@ public partial class CellBodyPlanEditorComponent :
         {
             OnCellsChanged();
             cellDataDirty = false;
+        }
+
+        // Update the growth order number positions each frame so that the camera moving doesn't get them out of sync
+        // could do this with a dirty-flag approach for saving on performance but for now this is probably fine
+        if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
+        {
+            UpdateGrowthOrderNumbers();
         }
 
         // Show the cell that is about to be placed
@@ -1180,6 +1210,8 @@ public partial class CellBodyPlanEditorComponent :
         UpdateArrow();
 
         UpdateFinishButtonWarningVisibility();
+
+        UpdateGrowthOrderButtons();
     }
 
     private void UpdateStats()
@@ -1575,6 +1607,7 @@ public partial class CellBodyPlanEditorComponent :
             {
                 structureTab.Show();
                 structureTabButton.ButtonPressed = true;
+                ShowGrowthOrder = false;
                 break;
             }
 
@@ -1582,6 +1615,7 @@ public partial class CellBodyPlanEditorComponent :
             {
                 reproductionTab.Show();
                 reproductionTabButton.ButtonPressed = true;
+                ShowGrowthOrder = false;
                 break;
             }
 
@@ -1589,6 +1623,7 @@ public partial class CellBodyPlanEditorComponent :
             {
                 behaviourEditor.Show();
                 behaviourTabButton.ButtonPressed = true;
+                ShowGrowthOrder = false;
                 break;
             }
 
@@ -1597,6 +1632,7 @@ public partial class CellBodyPlanEditorComponent :
                 growthOrderTab.Show();
                 growthOrderTabButton.ButtonPressed = true;
 
+                ShowGrowthOrder = true;
                 UpdateGrowthOrderButtons();
                 break;
             }

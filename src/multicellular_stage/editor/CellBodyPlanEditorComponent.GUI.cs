@@ -151,13 +151,49 @@ public partial class CellBodyPlanEditorComponent
             growthOrderGUI.UpdateItems(
                 growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable().Select(o => o.Data!)));
         }
+
+        UpdateGrowthOrderNumbers();
     }
 
     private void OnResetGrowthOrderPressed()
     {
         growthOrderGUI.UpdateItems(editedMicrobeCells.AsModifiable().Select(o => o.Data!));
 
-        // UpdateGrowthOrderNumbers();
+        UpdateGrowthOrderNumbers();
+    }
+
+    private void UpdateGrowthOrderNumbers()
+    {
+        UpdateFloatingLabels(GrowthOrderFloatingNumbers());
+    }
+
+    private IEnumerable<(Vector2 Position, string Text)> GrowthOrderFloatingNumbers()
+    {
+        var orderList = growthOrderGUI.GetCurrentOrder();
+        var orderListCount = orderList.Count;
+
+        var cells = editedMicrobeCells;
+        var cellCount = cells.Count;
+
+        for (int i = 0; i < cellCount; ++i)
+        {
+            var cell = cells[i];
+
+            // TODO: fallback numbers if item not found?
+            var order = -1;
+
+            for (int j = 0; j < orderListCount; ++j)
+            {
+                if (ReferenceEquals(orderList[j], cell.Data!))
+                {
+                    // +1 to be user readable numbers
+                    order = j + 1;
+                    break;
+                }
+            }
+
+            yield return (camera!.UnprojectPosition(Hex.AxialToCartesian(cell.Position)), order.ToString());
+        }
     }
 
     private void OnGrowthOrderCoordinatesToggled(bool show)

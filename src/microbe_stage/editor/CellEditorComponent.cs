@@ -142,9 +142,6 @@ public partial class CellEditorComponent :
     private CheckBox showGrowthOrderCoordinates = null!;
 
     [Export]
-    private Control growthOrderNumberContainer = null!;
-
-    [Export]
     private PopupMicheViewer micheViewer = null!;
 
     [Export]
@@ -483,6 +480,8 @@ public partial class CellEditorComponent :
         (ArchiveObjectType)ThriveArchiveObjectType.CellEditorComponent;
 
     public bool CanBeSpecialReference => true;
+
+    protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
     protected override bool ForceHideHover => MicrobePreviewMode;
 

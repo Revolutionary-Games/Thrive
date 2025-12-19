@@ -77,6 +77,9 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     protected PackedScene modelScene = null!;
 
     protected AudioStream hexPlacementSound = null!;
+
+    [Export]
+    protected Control floatingLabelContainer = null!;
 #pragma warning restore CA2213
 
     protected string? activeActionName;
@@ -95,6 +98,8 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     protected int usedHoverModel;
 
     protected int placementRotation;
+
+    private readonly Dictionary<string, FloatingLabel> createdFloatingLabels = new();
 
     private readonly NodePath positionZReference = new("position:z");
 
@@ -180,6 +185,8 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     public override bool CanCancelAction => CanCancelMove;
 
     public virtual bool HasIslands => throw new GodotAbstractPropertyNotOverriddenException();
+
+    protected virtual bool ShowFloatingLabels => false;
 
     protected virtual bool ForceHideHover => throw new GodotAbstractPropertyNotOverriddenException();
 
@@ -1052,6 +1059,47 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         }
     }
 
+    /// <summary>
+    ///   Updates floating labels that can be used by inheriting classes for arbitrary purposes (like growth order)
+    /// </summary>
+    protected void UpdateFloatingLabels(IEnumerable<(Vector2 Position, string Text)> labels)
+    {
+        if (!ShowFloatingLabels)
+        {
+            floatingLabelContainer.Visible = false;
+            return;
+        }
+
+        floatingLabelContainer.Visible = true;
+
+        // Setup tracking for what gets used
+        foreach (var orderLabel in createdFloatingLabels.Values)
+        {
+            orderLabel.Marked = false;
+        }
+
+        foreach (var label in labels)
+        {
+            if (!createdFloatingLabels.TryGetValue(label.Text, out var graphicalLabel))
+            {
+                graphicalLabel = FloatingLabel.Create(label.Text);
+                floatingLabelContainer.AddChild(graphicalLabel);
+                createdFloatingLabels.Add(label.Text, graphicalLabel);
+            }
+
+            graphicalLabel.Position = label.Position;
+            graphicalLabel.Visible = true;
+            graphicalLabel.Marked = true;
+        }
+
+        // Hide unused labels
+        foreach (var orderLabel in createdFloatingLabels.Values)
+        {
+            if (!orderLabel.Marked)
+                orderLabel.Visible = false;
+        }
+    }
+
     protected virtual void PerformActiveAction()
     {
         throw new GodotAbstractMethodNotOverriddenException();
@@ -1135,5 +1183,22 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     private void UpdateSymmetryIcon()
     {
         componentBottomLeftButtons.SetSymmetry(symmetry);
+    }
+
+    /// <summary>
+    ///   A simple label displaying any arbitrary info, e.g. growth order
+    /// </summary>
+    protected partial class FloatingLabel : Label
+    {
+        public bool Marked { get; set; }
+
+        public static FloatingLabel Create(string text)
+        {
+            return new FloatingLabel
+            {
+                Text = text,
+                Marked = true,
+            };
+        }
     }
 }

@@ -20,16 +20,14 @@ public static class MulticellularLayoutHelpers
             targetEditorLayout.AddFast(hexWithData.Clone(), hexTemporaryMemory,
                 hexTemporaryMemory2);
 
-            var gameplayHex = hexWithData;
-
             var direction = new Vector2(0, -1);
 
-            if (gameplayHex.Position != new Hex(0, 0))
+            if (hexWithData.Position != new Hex(0, 0))
             {
-                direction = new Vector2(gameplayHex.Position.Q, gameplayHex.Position.R).Normalized();
+                direction = new Vector2(hexWithData.Position.Q, hexWithData.Position.R).Normalized();
             }
 
-            gameplayHex.Data!.Position = new Hex(0, 0);
+            hexWithData.Data!.Position = new Hex(0, 0);
 
             int distance = 0;
 
@@ -37,13 +35,13 @@ public static class MulticellularLayoutHelpers
             {
                 var positionVector = direction * distance;
                 var checkPosition = new Hex((int)positionVector.X, (int)positionVector.Y);
-                gameplayHex.Data!.Position = checkPosition;
-                gameplayHex.Position = checkPosition;
+                hexWithData.Data!.Position = checkPosition;
+                hexWithData.Position = checkPosition;
 
-                if (targetGameplayLayout.CanPlace(gameplayHex.Data, hexTemporaryMemory,
+                if (targetGameplayLayout.CanPlace(hexWithData.Data, hexTemporaryMemory,
                         hexTemporaryMemory2))
                 {
-                    targetGameplayLayout.AddFast(gameplayHex.Data, hexTemporaryMemory,
+                    targetGameplayLayout.AddFast(hexWithData.Data, hexTemporaryMemory,
                         hexTemporaryMemory2);
                     break;
                 }

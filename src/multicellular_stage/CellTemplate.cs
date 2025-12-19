@@ -32,13 +32,10 @@ public class CellTemplate : IPositionedCell, ICloneable, IArchivable, IReadOnlyH
         set => orientation = value % 6;
     }
 
-    public string ReadableName
-    {
-        get
-        {
-            return modifiableCellType.FormattedName;
-        }
-    }
+    public string ReadableName => modifiableCellType.FormattedName;
+
+    public string ReadableExactIdentifier => Localization.Translate("ITEM_AT_2D_COORDINATES")
+        .FormatSafe(ReadableName, Position.Q, Position.R);
 
     public virtual CellType ModifiableCellType
     {
