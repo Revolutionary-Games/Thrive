@@ -427,7 +427,7 @@ public class GameProperties : IArchivable
     private static void MakeCellPlacementMakeSenseForMacroscopic(MulticellularSpecies species)
     {
         // We want at least COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC cells in a kind of long pattern
-        species.ModifiableGameplayCells.Clear();
+        species.ModifiableCellLayout.Clear();
 
         var type = species.ModifiableCellTypes.First();
 
@@ -455,9 +455,9 @@ public class GameProperties : IArchivable
                 while (!placed)
                 {
                     var template = new CellTemplate(type, columnStart, 0);
-                    if (species.ModifiableGameplayCells.CanPlace(template, workMemory1, workMemory2))
+                    if (species.ModifiableCellLayout.CanPlace(template, workMemory1, workMemory2))
                     {
-                        species.ModifiableGameplayCells.AddFast(template, workMemory1, workMemory2);
+                        species.ModifiableCellLayout.AddFast(template, workMemory1, workMemory2);
                         placed = true;
                         break;
                     }
@@ -481,9 +481,9 @@ public class GameProperties : IArchivable
             for (int distance = 0; distance < 10000; ++distance)
             {
                 var template = new CellTemplate(type, columnStart + columnCellOffset * distance, 0);
-                if (species.ModifiableGameplayCells.CanPlace(template, workMemory1, workMemory2))
+                if (species.ModifiableCellLayout.CanPlace(template, workMemory1, workMemory2))
                 {
-                    species.ModifiableGameplayCells.AddFast(template, workMemory1, workMemory2);
+                    species.ModifiableCellLayout.AddFast(template, workMemory1, workMemory2);
                     --columnCellsLeft;
 
                     if (columnCellsLeft < 1)
@@ -493,7 +493,7 @@ public class GameProperties : IArchivable
         }
 
         // Make sure we hit the required cell count
-        while (species.ModifiableGameplayCells.Count < Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC)
+        while (species.ModifiableCellLayout.Count < Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC)
         {
             var direction = new Vector2(0, -1);
 
@@ -503,9 +503,9 @@ public class GameProperties : IArchivable
                 var template = new CellTemplate(type,
                     new Hex(MathUtils.RoundToInt(finalPos.X), MathUtils.RoundToInt(finalPos.Y)), 0);
 
-                if (species.ModifiableGameplayCells.CanPlace(template, workMemory1, workMemory2))
+                if (species.ModifiableCellLayout.CanPlace(template, workMemory1, workMemory2))
                 {
-                    species.ModifiableGameplayCells.AddFast(template, workMemory1, workMemory2);
+                    species.ModifiableCellLayout.AddFast(template, workMemory1, workMemory2);
                     break;
                 }
             }

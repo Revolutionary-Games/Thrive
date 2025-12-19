@@ -339,7 +339,7 @@ public partial class CellBodyPlanEditorComponent :
 
         behaviourEditor.OnEditorSpeciesSetup(species);
 
-        foreach (var cell in Editor.EditedSpecies.ModifiableGameplayCells)
+        foreach (var cell in Editor.EditedSpecies.ModifiableCellLayout)
         {
             // Clone here so that we don't directly modify the original data which will cause errors with MP
             // comparisons
@@ -391,11 +391,11 @@ public partial class CellBodyPlanEditorComponent :
             }
         }
 
-        editedSpecies.ModifiableGameplayCells.Clear();
+        editedSpecies.ModifiableCellLayout.Clear();
 
         foreach (var cellTemplate in editedMicrobeCells)
         {
-            editedSpecies.ModifiableGameplayCells.AddFast(cellTemplate, hexTemporaryMemory, hexTemporaryMemory2);
+            editedSpecies.ModifiableCellLayout.AddFast(cellTemplate, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         editedSpecies.OnEdited();

@@ -144,10 +144,10 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         var dummySpawnSystem = new DummySpawnSystem();
 
-        int count = species.ModifiableGameplayCells.Count;
+        int count = species.ModifiableCellLayout.Count;
         for (int i = 1; i < count; ++i)
         {
-            var cell = species.ModifiableGameplayCells[i];
+            var cell = species.ModifiableCellLayout[i];
 
             DelayedColonyOperationSystem.CreateDelayAttachedMicrobe(ref foundEntity.Get<WorldPosition>(),
                 in foundEntity, i, cell, species, this, dummyEnvironment, recorder, dummySpawnSystem, false);
@@ -368,10 +368,10 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         Vector3 center = Vector3.Zero;
 
-        int count = species.ModifiableGameplayCells.Count;
+        int count = species.ModifiableCellLayout.Count;
         for (int i = 0; i < count; ++i)
         {
-            center += Hex.AxialToCartesian(species.ModifiableGameplayCells[i].Position);
+            center += Hex.AxialToCartesian(species.ModifiableCellLayout[i].Position);
         }
 
         center /= count;
