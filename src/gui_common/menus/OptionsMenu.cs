@@ -950,6 +950,11 @@ public partial class OptionsMenu : ControlWithInput
         DisplayResolution();
         DisplayGpuInfo();
         DisplayDisplayList();
+
+        // Calculate and set the minimum size of the tab buttons, as their size may have changed with the new language.
+        // Has to use a callback as the buttons do not finish resizing until later in the frame.
+        // Not entirely sure why, to be honest, but this only runs when the language changes, so it should be fine
+        Invoke.Instance.Perform(tabButtons.SetCustomMinimumSize);
     }
 
     /// <summary>
@@ -2841,11 +2846,6 @@ public partial class OptionsMenu : ControlWithInput
         Settings.Instance.ApplyLanguageSettings();
         UpdateResetSaveButtonState();
         UpdateCurrentLanguageProgress();
-
-        // Calculate and set the minimum size of the tab buttons, as their size may have changed with the new language.
-        // Has to use a callback as the buttons do not finish resizing until later in the frame.
-        // Not entirely sure why, to be honest, but this only runs when the language changes, so it should be fine
-        Callable.From(tabButtons.SetCustomMinimumSize).CallDeferred();
     }
 
     private void OnResetLanguagePressed()
@@ -2857,11 +2857,6 @@ public partial class OptionsMenu : ControlWithInput
         UpdateSelectedLanguage(Settings.Instance);
         UpdateResetSaveButtonState();
         UpdateCurrentLanguageProgress();
-
-        // Calculate and set the minimum size of the tab buttons, as their size may have changed with the new language.
-        // Has to use a callback as the buttons do not finish resizing until later in the frame.
-        // Not entirely sure why, to be honest, but this only runs when the language changes, so it should be fine
-        Callable.From(tabButtons.SetCustomMinimumSize).CallDeferred();
     }
 
     private void OnTranslationSitePressed()
