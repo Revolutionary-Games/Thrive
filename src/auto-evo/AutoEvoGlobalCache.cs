@@ -56,7 +56,7 @@ public class AutoEvoGlobalCache
         AmmoniaPressure = new ReproductionCompoundPressure(Compound.Ammonia, worldSettings.DayNightCycleEnabled, 0.3f);
 
         MinorGlucoseConversionEfficiencyPressure =
-            new CompoundConversionEfficiencyPressure(Compound.Glucose, Compound.ATP, true, 0.2f);
+            new CompoundConversionEfficiencyPressure(Compound.Glucose, Compound.ATP, true, 0.4f);
         MaintainGlucose = new MaintainCompoundPressure(Compound.Glucose, 1.5f);
 
         GlucoseConversionEfficiencyPressure =
