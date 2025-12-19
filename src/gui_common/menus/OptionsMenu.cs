@@ -949,6 +949,7 @@ public partial class OptionsMenu : ControlWithInput
         UpdateDefaultAudioOutputDeviceText();
         DisplayResolution();
         DisplayGpuInfo();
+
         // The options menu associated with the pause menu is not always initialized, as such we don't need to update
         // the display options if not required
         if (displaysCache.Count > 0)
