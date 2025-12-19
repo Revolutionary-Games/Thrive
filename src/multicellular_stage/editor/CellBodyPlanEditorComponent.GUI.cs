@@ -148,7 +148,8 @@ public partial class CellBodyPlanEditorComponent
     {
         if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
         {
-            growthOrderGUI.UpdateItems(growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable().Select(o => o.Data!)));
+            growthOrderGUI.UpdateItems(
+                growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable().Select(o => o.Data!)));
         }
     }
 

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
-using SharedBase.Archive;
 
 /// <summary>
 ///   Conversion helpers between the full (gameplay) and editor layouts of a multicellular species
