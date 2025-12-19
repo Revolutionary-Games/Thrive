@@ -874,7 +874,8 @@ public partial class CellEditorComponent
                 }
             }
 
-            yield return (camera!.UnprojectPosition(Hex.AxialToCartesian(editedMicrobeOrganelle.Position)), order.ToString());
+            yield return (camera!.UnprojectPosition(Hex.AxialToCartesian(editedMicrobeOrganelle.Position)),
+                order.ToString());
         }
     }
 
