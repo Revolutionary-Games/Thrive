@@ -2,31 +2,20 @@
 
 using SharedBase.Archive;
 
-public class CompoundConversionEfficiencyPressure : SelectionPressure
+public class EnergyConsumptionPressure : SelectionPressure
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
-    public readonly CompoundDefinition FromCompound;
-
-    public readonly CompoundDefinition ToCompound;
-
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    private static readonly LocalizedString NameString = new LocalizedString("MICHE_COMPOUND_EFFICIENCY_PRESSURE");
-
-    private readonly CompoundDefinition atp = SimulationParameters.GetCompound(Compound.ATP);
+    private static readonly LocalizedString NameString = new LocalizedString("ENERGY_CONSUMPTION_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    private readonly bool usedForSurvival;
-
-    public CompoundConversionEfficiencyPressure(Compound compound, Compound outCompound,
-        bool usedForSurvival, float weight) :
+    public EnergyConsumptionPressure(float weight) :
         base(weight, [
-            AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, outCompound),
             new AddOrganelleAnywhere(organelle => organelle.HasBindingFeature),
             new AddOrganelleAnywhere(organelle => organelle.HasSignalingFeature),
-            RemoveOrganelle.ThatCreateCompound(outCompound),
             new ChangeMembraneType("double"),
             new ChangeMembraneType("cellulose"),
             new ChangeMembraneType("chitin"),
@@ -34,9 +23,6 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
             new ChangeMembraneType("silica"),
         ])
     {
-        FromCompound = SimulationParameters.GetCompound(compound);
-        ToCompound = SimulationParameters.GetCompound(outCompound);
-        this.usedForSurvival = usedForSurvival;
     }
 
     public override LocalizedString Name => NameString;
@@ -44,35 +30,24 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
     public override ArchiveObjectType ArchiveObjectType =>
-        (ArchiveObjectType)ThriveArchiveObjectType.CompoundConversionEfficiencyPressure;
+        (ArchiveObjectType)ThriveArchiveObjectType.EnergyConsumptionPressure;
 
-    public static CompoundConversionEfficiencyPressure ReadFromArchive(ISArchiveReader reader, ushort version,
+    public static EnergyConsumptionPressure ReadFromArchive(ISArchiveReader reader, ushort version,
         int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var instance = new CompoundConversionEfficiencyPressure((Compound)reader.ReadInt32(),
-            (Compound)reader.ReadInt32(), reader.ReadBool(), reader.ReadFloat());
+        var instance = new EnergyConsumptionPressure(reader.ReadFloat());
 
         instance.ReadBasePropertiesFromArchive(reader, 1);
         return instance;
-    }
-
-    public override void WriteToArchive(ISArchiveWriter writer)
-    {
-        writer.Write((int)FromCompound.ID);
-        writer.Write((int)ToCompound.ID);
-        writer.Write(usedForSurvival);
-        base.WriteToArchive(writer);
     }
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
-
-        var score = cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies, patch.Biome);
 
         var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
         var activityScore = species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
@@ -101,21 +76,7 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
             }
         }
 
-        if (ToCompound.ID == atp.ID)
-        {
-            score *= score / energyBalance.TotalProduction;
-        }
-        else
-        {
-            score *= score * cache.GetCompoundConversionScoreForSpecies(ToCompound, atp, microbeSpecies, patch.Biome)
-                / energyBalance.TotalProduction;
-        }
-
-        // we need to factor in both conversion from source to output, and energy expenditure time
-        if (usedForSurvival)
-        {
-            score /= energyConsumption * bindingModifier;
-        }
+        var score = 1 / (energyConsumption * bindingModifier);
 
         return score;
     }
@@ -123,10 +84,5 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
     public override float GetEnergy(Patch patch)
     {
         return 0;
-    }
-
-    public override string ToString()
-    {
-        return $"{Name} ({FromCompound.Name})";
     }
 }
