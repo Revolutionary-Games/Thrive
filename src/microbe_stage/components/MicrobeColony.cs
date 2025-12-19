@@ -302,7 +302,7 @@ public static class MicrobeColonyHelpers
     public static void GetColonySpecialOrganelles(this ref MicrobeColony colony, out bool hasAgentVacuoles,
         out bool hasSlimeJets, out bool hasMucocysts, out bool hasSignalingAgents)
     {
-        CalculateColonySpecialOrganelles(ref colony, out var agentVacuoles, out var slimeJets, out var mucocysts);
+        colony.CalculateColonySpecialOrganelles(out var agentVacuoles, out var slimeJets, out var mucocysts);
 
         hasAgentVacuoles = agentVacuoles > 0;
         hasSlimeJets = slimeJets > 0;

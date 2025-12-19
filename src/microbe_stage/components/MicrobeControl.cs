@@ -231,7 +231,7 @@ public static class MicrobeControlHelpers
                         ref var memberHealth = ref colonyMember.Get<Health>();
                         ref var memberCompoundStorage = ref colonyMember.Get<CompoundStorage>();
 
-                        ForceStateApplyIfRequired(ref memberControl, ref memberHealth, ref memberCompoundStorage,
+                        memberControl.ForceStateApplyIfRequired(ref memberHealth, ref memberCompoundStorage,
                             colonyMember, MicrobeState.Engulf, false, atp);
                     }
                 }
@@ -241,7 +241,7 @@ public static class MicrobeControlHelpers
             // cause a real issue (as it should do nothing) but would be good to fix the logic
         }
 
-        ForceStateApplyIfRequired(ref control, ref health, ref compoundStorage, entity, MicrobeState.Engulf, true, atp);
+        control.ForceStateApplyIfRequired(ref health, ref compoundStorage, entity, MicrobeState.Engulf, true, atp);
     }
 
     /// <summary>
