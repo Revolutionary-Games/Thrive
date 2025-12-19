@@ -178,6 +178,16 @@ public partial class PlayerMicrobeInput : NodeWithInput
             ref var colony = ref player.Get<MicrobeColony>();
 
             colonyMucocyst = colony.ColonyState == MicrobeState.MucocystShield;
+
+            // Colony can have individual members in the mucocyst state, so we must check that here
+            for (int i = 0; i < colony.ColonyMembers.Length; ++i)
+            {
+                var member = colony.ColonyMembers[i];
+                if (member.Get<MicrobeControl>().State == MicrobeState.MucocystShield)
+                {
+                    colonyMucocyst = true;
+                }
+            }
         }
 
         if (control.State == MicrobeState.MucocystShield || colonyMucocyst)

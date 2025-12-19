@@ -174,6 +174,11 @@ public static class MicrobeControlHelpers
     public static void SetStateColonyAware(this ref MicrobeControl control, in Entity entity,
         MicrobeState targetState)
     {
+#if DEBUG
+        if (targetState == MicrobeState.MucocystShield)
+            GD.PrintErr("This shouldn't be used to enable mucocyst state as this skips mucocyst amount checks");
+#endif
+
         if (entity.Has<MicrobeColony>())
         {
             ref var colony = ref entity.Get<MicrobeColony>();
@@ -396,19 +401,22 @@ public static class MicrobeControlHelpers
                 m.Get<MicrobeControl>()
                     .SetMucocystState(ref m.Get<OrganelleContainer>(), ref m.Get<CompoundStorage>(), in m, state,
                         mucilageCompound));
-
-            if (entity == colony.Leader)
-                SetStateColonyAware(ref control, entity, state ? MicrobeState.MucocystShield : MicrobeState.Normal);
         }
 
         if (organelleInfo.MucocystCount < 1)
+        {
+            // Ensure cells that have no business being in the mucocyst state cannot get into it accidentally
+            if (control.State == MicrobeState.MucocystShield)
+                control.State = MicrobeState.Normal;
+
             return;
+        }
 
         if (state)
         {
             // Apply the activation cost before activating the mucocyst shield
-            var mucilageCapactiy = availableCompounds.Compounds.GetCapacityForCompound(mucilageCompound);
-            var mucilageRequired = mucilageCapactiy * Constants.MUCOCYST_ACTIVATION_MUCILAGE_FRACTION;
+            var mucilageCapacity = availableCompounds.Compounds.GetCapacityForCompound(mucilageCompound);
+            var mucilageRequired = mucilageCapacity * Constants.MUCOCYST_ACTIVATION_MUCILAGE_FRACTION;
             if (availableCompounds.Compounds.GetCompoundAmount(mucilageCompound) < mucilageRequired)
             {
                 entity.SendNoticeIfPossible(() =>
