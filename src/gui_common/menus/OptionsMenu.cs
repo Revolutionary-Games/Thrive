@@ -949,7 +949,12 @@ public partial class OptionsMenu : ControlWithInput
         UpdateDefaultAudioOutputDeviceText();
         DisplayResolution();
         DisplayGpuInfo();
-        DisplayDisplayList();
+        // The options menu associated with the pause menu is not always initialized, as such we don't need to update
+        // the display options if not required
+        if (displaysCache.Count > 0)
+        {
+            DisplayDisplayList();
+        }
 
         // Calculate and set the minimum size of the tab buttons, as their size may have changed with the new language.
         // Has to use a callback as the buttons do not finish resizing until later in the frame.
@@ -958,7 +963,7 @@ public partial class OptionsMenu : ControlWithInput
     }
 
     /// <summary>
-    ///   Changes the active settings tab that is displayed, or returns if the tab is already active.
+    ///   Changes the active settings tab that is displayed or returns if the tab is already active.
     /// </summary>
     private void ChangeSettingsTab(string newTabName)
     {

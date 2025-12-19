@@ -10,6 +10,8 @@ public class SpecifiedInputKey : ICloneable
 {
     private StringBuilder? toStringBuilder;
 
+    // NOTE: for good practice these should be disposed, however, this class is used all over without disposing,
+    // so it'd be very hard to get the dispose method to trigger
     private StringName? marginLeftName;
     private StringName? marginTopName;
 
@@ -142,8 +144,8 @@ public class SpecifiedInputKey : ICloneable
     /// <summary>
     ///   Packs a code along with a device identifier
     /// </summary>
-    /// <param name="code">The input code to pack, needs to be 31 bytes or fewer</param>
-    /// <param name="device">The device, needs to be 32 bytes or fewer</param>
+    /// <param name="code">The input code to pack, which needs to be 31 bytes or fewer</param>
+    /// <param name="device">The device, which needs to be 32 bytes or fewer</param>
     /// <returns>The packed value</returns>
     public static ulong PackCodeWithDevice(long code, int device)
     {
