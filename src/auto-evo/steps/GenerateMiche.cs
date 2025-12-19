@@ -33,11 +33,13 @@ public class GenerateMiche : IRunStep
         var rootMiche = new Miche(globalCache.RootPressure);
         var metabolicRoot = new Miche(globalCache.MetabolicStabilityPressure);
         var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
+        var energyConsumptionMiche = new Miche(globalCache.EnergyConsumptionPressure);
         var generatedMiche = new Miche(globalCache.EnvironmentalTolerancesPressure);
 
         rootMiche.AddChild(metabolicRoot);
         metabolicRoot.AddChild(avoidPredationMiche);
-        avoidPredationMiche.AddChild(generatedMiche);
+        avoidPredationMiche.AddChild(energyConsumptionMiche);
+        energyConsumptionMiche.AddChild(generatedMiche);
 
         // "Autotrophic" Miches
         var phosphateMiche = new Miche(globalCache.PhosphatePressure);
