@@ -60,6 +60,8 @@ public partial class TabButtons : HBoxContainer
     private Container tabButtonsContainerNoWrap = null!;
 #pragma warning restore CA2213
 
+    private StringName? horizontalSeparationStringName;
+
     public enum PressType
     {
         SetPressedState,
@@ -255,12 +257,13 @@ public partial class TabButtons : HBoxContainer
         }
 
         // Find the distance between each button (should get 0 if the constant doesn't exist, no need to check)
-        var separationBetweenButtons = tabButtonsContainer.GetThemeConstant("h_separation");
+        horizontalSeparationStringName ??= new StringName("h_separation");
+        var separationBetweenButtons = tabButtonsContainer.GetThemeConstant(horizontalSeparationStringName);
 
         // Add 2x because the distance appears to be applied on both sides of each button
         newCustomMinimum += (separationBetweenButtons * 2) * tabButtons.Count;
 
-        // Add the size of the left and right containers if they are visible or they take up space when invisible
+        // Add the size of the left and right containers if they are visible or take up space when invisible
         if ((leftContainer is { Visible: true } && rightContainer is { Visible: true }) ||
             (MoveIndicatorsTakeUpSpaceWhileInvisible && leftContainer is not null))
         {
@@ -269,6 +272,19 @@ public partial class TabButtons : HBoxContainer
 
         // Have to make a new vector to set as CustomMinimumSize's get only gets a temporary value
         CustomMinimumSize = new Vector2(newCustomMinimum, CustomMinimumSize.Y);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (horizontalSeparationStringName != null)
+            {
+                horizontalSeparationStringName.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void TryToMoveToNextTab()
