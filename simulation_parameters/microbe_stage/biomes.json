@@ -547,7 +547,7 @@
       "MaxClusters": 5,
       "PotentialClusters": [
         {
-          "RelativeChance": 10,
+          "RelativeChance": 1,
           "SpawnStrategy": 2,
           "TerrainGroups": [
             {
@@ -584,7 +584,7 @@
           ]
         },
         {
-          "RelativeChance": 10,
+          "RelativeChance": 1,
           "SpawnStrategy": 2,
           "TerrainGroups": [
             {
@@ -621,7 +621,7 @@
           ]
         },
         {
-          "RelativeChance": 10,
+          "RelativeChance": 2,
           "SpawnStrategy": 2,
           "TerrainGroups": [
             {
@@ -658,7 +658,7 @@
           ]
         },
         {
-          "RelativeChance": 1,
+          "RelativeChance": 7,
           "TerrainGroups": [
             {
               "RelativePosition": {
@@ -694,7 +694,7 @@
           ]
         },
         {
-          "RelativeChance": 10,
+          "RelativeChance": 3,
           "SpawnStrategy": 2,
           "TerrainGroups": [
             {
@@ -731,7 +731,7 @@
           ]
         },
         {
-          "RelativeChance": 1,
+          "RelativeChance": 3,
           "SpawnStrategy": 2,
           "TerrainGroups": [
             {
@@ -762,25 +762,11 @@
                     "z": 0
                   },
                   "RandomizeRotation": true
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "RelativeChance": 1,
-          "TerrainGroups": [
-            {
-              "RelativePosition": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "Chunks": [
+                },
                 {
                   "Visuals": "QuartzTerrain3",
                   "CollisionShapePath": "res://assets/models/microbe_terrain/QuartzTerrainChunk3.shape",
-                  "Radius": 13.1,
+                  "Radius": 12,
                   "RelativePosition": {
                     "x": 0,
                     "y": 0,
@@ -3186,11 +3172,11 @@
       }
     },
     "Terrain": {
-      "MinClusters": 4,
-      "MaxClusters": 8,
+      "MinClusters": 1,
+      "MaxClusters": 3,
       "PotentialClusters": [
         {
-          "RelativeChance": 1,
+          "RelativeChance": 3,
           "SpawnStrategy": 1,
           "TerrainGroups": [
             {
@@ -3227,7 +3213,7 @@
           ]
         },
         {
-          "RelativeChance": 1,
+          "RelativeChance": 2,
           "SpawnStrategy": 1,
           "TerrainGroups": [
             {

@@ -11,6 +11,8 @@ public struct CollisionShapeLoader : IArchivableComponent
 
     public string CollisionResourcePath;
 
+    public bool SkipCollisionLoading;
+
     /// <summary>
     ///   Density of the shape. Only applies if <see cref="ApplyDensity"/> is true.
     /// </summary>

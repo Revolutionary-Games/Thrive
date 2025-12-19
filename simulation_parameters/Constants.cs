@@ -188,8 +188,12 @@ public static class Constants
 
     public const float CLOUD_CHEAT_DENSITY = 16000.0f;
 
-    public const float TERRAIN_GRID_SIZE = 300;
-    public const float TERRAIN_GRID_SIZE_INV = 1 / TERRAIN_GRID_SIZE;
+    // public const float TERRAIN_GRID_SIZE = 200;
+    public const float TERRAIN_GRID_SIZE_X = 150;
+    public const float TERRAIN_GRID_SIZE_Z = 125;
+    // public const float TERRAIN_GRID_SIZE_INV = 1 / TERRAIN_GRID_SIZE;
+    public const float TERRAIN_GRID_SIZE_INV_X = 1 / TERRAIN_GRID_SIZE_X;
+    public const float TERRAIN_GRID_SIZE_INV_Z = 1 / TERRAIN_GRID_SIZE_Z;
     public const float TERRAIN_EDGE_PROTECTION_SIZE = 1;
 
     /// <summary>
@@ -808,7 +812,7 @@ public static class Constants
 
     public const float MICROBE_CAMERA_MIN_HEIGHT = 3.0f;
 
-    public const float MICROBE_CAMERA_MAX_HEIGHT = 80.0f;
+    public const float MICROBE_CAMERA_MAX_HEIGHT = 11111.0f;
 
     public const float MULTICELLULAR_CAMERA_MIN_HEIGHT = 8.0f;
 

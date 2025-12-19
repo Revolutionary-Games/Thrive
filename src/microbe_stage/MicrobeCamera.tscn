@@ -16,3 +16,4 @@ backgroundPlane = NodePath("BackgroundPlane")
 current = true
 
 [node name="BackgroundPlane" parent="." instance=ExtResource("2_yrakl")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, -10)

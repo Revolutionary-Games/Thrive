@@ -80,8 +80,8 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
 
     public static Vector2I PositionToTerrainCell(Vector3 position)
     {
-        return new Vector2I((int)(position.X * Constants.TERRAIN_GRID_SIZE_INV),
-            (int)(position.Z * Constants.TERRAIN_GRID_SIZE_INV));
+        return new Vector2I((int)(position.X * Constants.TERRAIN_GRID_SIZE_INV_X),
+            (int)(position.Z * Constants.TERRAIN_GRID_SIZE_INV_Z));
     }
 
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
@@ -367,6 +367,28 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
             }
         }
     }
+    
+    private List<SpawnedTerrainCluster> GetNeighbouringClusters(Vector2I cell)
+    {
+        var result = new List<SpawnedTerrainCluster>();
+
+        for (int x = -1; x <= 1; ++x)
+        {
+            for (int z = -1; z <= 1; ++z)
+            {
+                if (x == 0 && z == 0)
+                    continue;
+
+                var neighborCell = new Vector2I(cell.X + x, cell.Y + z);
+                if (terrainGridData.TryGetValue(neighborCell, out var neighborClusters))
+                {
+                    result.AddRange(neighborClusters);
+                }
+            }
+        }
+
+        return result;
+    }
 
     private void SpawnTerrainCell(Vector2I cell)
     {
@@ -399,6 +421,7 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
         var recorder = worldSimulation.StartRecordingEntityCommands();
 
         var result = new List<SpawnedTerrainCluster>();
+        var neighbouringClusters = GetNeighbouringClusters(cell);
 
         while (clusters > 0)
         {
@@ -410,12 +433,14 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
             for (int i = 0; i < retries; ++i)
             {
                 // Try a few random clusters in case one fits
-                if (SpawnNewCluster(cell, result, recorder, random))
+                if (SpawnNewCluster(cell, result, neighbouringClusters, recorder, random))
                 {
                     // GD.Print("Success");
                     succeeded = true;
                     break;
                 }
+
+                // SpawnCornerChunks(cell, recorder, result, random);
 
                 // GD.Print("Failed to spawn cluster, retrying with different type");
             }

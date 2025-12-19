@@ -105,7 +105,7 @@ public class TerrainConfiguration : RegistryType
             if (Radius <= 0.5f)
                 throw new InvalidRegistryDataException(name, GetType().Name, "Terrain chunk radius is unset");
 
-            if (Radius > 0.5f * Constants.TERRAIN_GRID_SIZE)
+            if (Radius is > 0.5f * Constants.TERRAIN_GRID_SIZE_X or > 0.5f * Constants.TERRAIN_GRID_SIZE_Z)
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     "Terrain chunk is so big it's not going to fit");

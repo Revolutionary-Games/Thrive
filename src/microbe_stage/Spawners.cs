@@ -1048,7 +1048,8 @@ public static class SpawnHelpers
 
     public static void SpawnMicrobeTerrainWithoutFinalizing(CommandBuffer entityRecorder,
         IWorldSimulation worldSimulation, Vector3 location,
-        TerrainConfiguration.TerrainChunkConfiguration chunkConfiguration, uint groupId, Random random)
+        TerrainConfiguration.TerrainChunkConfiguration chunkConfiguration, uint groupId, Random random,
+        bool skipCollisionLoading = false)
     {
         var entity = worldSimulation.CreateEntityDeferred(entityRecorder, TerrainSignature);
 
@@ -1071,15 +1072,55 @@ public static class SpawnHelpers
         });
 
         entityRecorder.Set<Physics>(entity);
+
         entityRecorder.Set(entity, new PhysicsShapeHolder
         {
             BodyIsStatic = true,
         });
+
         entityRecorder.Set(entity, new CollisionShapeLoader
         {
             Density = 1000,
             SkipForceRecreateBodyIfCreated = true,
             CollisionResourcePath = chunkConfiguration.CollisionShapePath,
+            SkipCollisionLoading = skipCollisionLoading,
+        });
+
+        entityRecorder.Set(entity, new MicrobeTerrainChunk
+        {
+            TerrainGroupId = groupId,
+        });
+
+        entityRecorder.Set<StaticBodyMarker>(entity);
+    }
+
+    public static void SpawnCollisionWithoutFinalizing(CommandBuffer entityRecorder,
+        IWorldSimulation worldSimulation, Vector3 location, uint groupId, float radius)
+    {
+        var entity = worldSimulation.CreateEntityDeferred(entityRecorder, TerrainSignature);
+
+        Quaternion rotation = Quaternion.Identity;
+        entityRecorder.Set(entity, new WorldPosition(location, rotation));
+
+        entityRecorder.Set<SpatialInstance>(entity);
+        entityRecorder.Set(entity, new PredefinedVisuals
+        {
+            VisualIdentifier = VisualResourceIdentifier.None,
+        });
+
+        entityRecorder.Set<Physics>(entity);
+
+        entityRecorder.Set(entity, new PhysicsShapeHolder
+        {
+            BodyIsStatic = true,
+            Shape = PhysicsShape.CreateSphere(radius),
+        });
+
+        entityRecorder.Set(entity, new CollisionShapeLoader
+        {
+            Density = 1001,
+            SkipForceRecreateBodyIfCreated = true,
+            SkipCollisionLoading = true,
         });
 
         entityRecorder.Set(entity, new MicrobeTerrainChunk
