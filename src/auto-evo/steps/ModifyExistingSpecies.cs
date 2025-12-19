@@ -508,8 +508,8 @@ public class ModifyExistingSpecies : IRunStep
 
     private class MutationSorter(Patch patch, SimulationCache cache) : IComparer<Tuple<MicrobeSpecies, double>>
     {
-        // This isn't the cleanest but this class is just optimized for performance so if someone forgets to set up
-        // this then bad things will happen
+        // This isn't the cleanest, but this class is just optimized for performance, so if someone forgets to set up
+        // this, then bad things will happen
         private List<SelectionPressure> pressures = null!;
         private MicrobeSpecies baseSpecies = null!;
 

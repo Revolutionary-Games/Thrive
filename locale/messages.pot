@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-12 16:11+0200\n"
+"POT-Creation-Date: 2025-12-18 14:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -344,9 +344,9 @@ msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
 #: ../src/gui_common/menus/PlanetStatistics.tscn:145
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:594
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:474
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:478
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:608
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:475
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:479
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:255
 msgid "ATMOSPHERIC_GASSES"
 msgstr ""
@@ -437,7 +437,7 @@ msgstr ""
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:578
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:579
 msgid "AUTO-EVO_RESULTS_TITLE"
 msgstr ""
 
@@ -457,7 +457,7 @@ msgstr ""
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:201
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:202
 msgid "AUTO_EVO"
 msgstr ""
 
@@ -469,16 +469,16 @@ msgstr ""
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:310
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:260
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:261
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:532
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:267
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:268
 msgid "AUTO_EVO_RESULTS"
 msgstr ""
 
@@ -490,7 +490,7 @@ msgstr ""
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:316
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:312
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
@@ -520,7 +520,6 @@ msgstr ""
 msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetStatistics.tscn:101
 #: ../src/gui_common/menus/PlanetStatistics.tscn:127
 msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
 msgstr ""
@@ -535,6 +534,10 @@ msgstr ""
 
 #: ../src/gui_common/menus/PlanetStatistics.tscn:157
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
+
+#: ../src/gui_common/menus/PlanetStatistics.tscn:101
+msgid "AVERAGE_SURFACE_TEMPERATURE"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:544
@@ -1203,7 +1206,7 @@ msgstr ""
 #: ../src/gui_common/menus/OptionsMenu.tscn:3435
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1381
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:123
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:605
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:606
 #: ../src/microbe_stage/ProcessPanel.tscn:61 ../src/modding/ModManager.tscn:698
 #: ../src/thriveopedia/Thriveopedia.tscn:297
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:220
@@ -1339,9 +1342,9 @@ msgid "COMPLETE_ACTION"
 msgstr ""
 
 #: ../src/gui_common/menus/PlanetStatistics.tscn:228
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:598
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:483
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:487
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:612
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:484
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/CompoundPanels.tscn:662
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:338
@@ -2901,7 +2904,7 @@ msgstr ""
 msgid "EXTERNAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:283
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:284
 msgid "EXTERNAL_EFFECTS"
 msgstr ""
 
@@ -2913,13 +2916,13 @@ msgstr ""
 msgid "EXTINCTION_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:607
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:618
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:621
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:632
 msgid "EXTINCT_FROM_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:606
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:619
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:620
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:633
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr ""
 
@@ -3129,7 +3132,7 @@ msgstr ""
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:212
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:213
 msgid "FOOD_CHAIN"
 msgstr ""
 
@@ -3394,7 +3397,7 @@ msgstr ""
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:380
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:381
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
@@ -4896,7 +4899,7 @@ msgstr ""
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:392
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:393
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
@@ -5071,7 +5074,7 @@ msgid "MEDIUM_SULFUR_CHUNK"
 msgstr ""
 
 #: ../src/auto-evo/EvolutionaryTree.cs:405
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:238
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:237
 #: ../src/microbe_stage/editor/TimelineTab.cs:226
 msgid "MEGA_YEARS"
 msgstr ""
@@ -6021,7 +6024,7 @@ msgstr ""
 #: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:689
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1223
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:177
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:566
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:567
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:648
 msgid "NEXT_CAPITAL"
 msgstr ""
@@ -6680,7 +6683,7 @@ msgstr ""
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:179
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:180
 #: ../src/microbe_stage/PatchMapGenerator.cs:1131
 msgid "PATCH_NAME"
 msgstr ""
@@ -6763,7 +6766,7 @@ msgstr ""
 #: ../src/gui_common/CompoundAmount.cs:316
 #: ../src/gui_common/menus/OptionsMenu.cs:1973
 #: ../src/gui_common/menus/PlanetStatistics.cs:113
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:554
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:568
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:879
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.cs:98
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:157
@@ -6826,7 +6829,7 @@ msgid "PHOTOSYNTHESIS"
 msgstr ""
 
 #: ../src/gui_common/menus/PlanetStatistics.tscn:89
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:492
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:493
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:158
 msgid "PHYSICAL_CONDITIONS"
 msgstr ""
@@ -8048,7 +8051,7 @@ msgstr ""
 msgid "SPECIES_IN_OTHER_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:596
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:610
 msgid "SPECIES_LIST"
 msgstr ""
 
@@ -8069,8 +8072,8 @@ msgstr ""
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:464
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:468
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:465
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:469
 msgid "SPECIES_POPULATION"
 msgstr ""
 
@@ -8133,7 +8136,7 @@ msgid "START_RESEARCH"
 msgstr ""
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:46
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:458
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:459
 #: ../src/microbe_stage/HUDBottomBar.tscn:120
 msgid "STATISTICS"
 msgstr ""
@@ -8346,7 +8349,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:209
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:861
 #: ../src/microbe_stage/editor/LightConfigurationPanel.tscn:98
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:535
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:536
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:222
 msgid "SUNLIGHT"
 msgstr ""
@@ -8480,8 +8483,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:855
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:886
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:894
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:437
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:528
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:451
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:529
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:160
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:170
 msgid "TEMPERATURE"
@@ -8626,15 +8629,15 @@ msgstr ""
 msgid "TIDEPOOL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:223
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:224
 msgid "TIMELINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:374
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:375
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:386
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:387
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
@@ -8687,7 +8690,7 @@ msgstr ""
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:245
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:244
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr ""
 
@@ -9555,7 +9558,7 @@ msgstr ""
 msgid "VIEW_SOURCE_CODE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:293
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:294
 msgid "VIEW_TEXT_REPORT"
 msgstr ""
 
@@ -11974,11 +11977,11 @@ msgstr ""
 msgid "X_TWITTER_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:591
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:592
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:595
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:598
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:605
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:606
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:607
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:609
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:612
 msgid "YEARS"
 msgstr ""
 
