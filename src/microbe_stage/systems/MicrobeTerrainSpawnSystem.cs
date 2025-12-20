@@ -258,6 +258,7 @@ public partial class MicrobeTerrainSystem
         {
             SpawnHelpers.SpawnCollisionWithoutFinalizing(recorder, worldSimulation,
                 groupSpawnData.Position, groupId, groupSpawnData.CollisionRadius);
+            data.ExpectedMemberCount += 1;
         }
 
         foreach (var position in groupSpawnData.ChunksPositions)
@@ -267,7 +268,6 @@ public partial class MicrobeTerrainSystem
 
             SpawnHelpers.SpawnMicrobeTerrainWithoutFinalizing(recorder, worldSimulation,
                 position + yOffset, chunk, groupId, random, skipDefaultCollisionsLoading);
-
             data.ExpectedMemberCount += 1;
         }
 
