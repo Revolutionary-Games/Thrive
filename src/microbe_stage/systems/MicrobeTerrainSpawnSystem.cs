@@ -238,7 +238,6 @@ public partial class MicrobeTerrainSystem
             var group = clusterSpawnData.Groups[i];
             var data = SpawnTerrainGroup(group, recorder, random);
 
-            data.ExpectedMemberCount += 1;
             groupData[index] = data;
             ++index;
         }
