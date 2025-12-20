@@ -80,8 +80,8 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
 
     public static Vector2I PositionToTerrainCell(Vector3 position)
     {
-        return new Vector2I((int)(position.X * Constants.TERRAIN_GRID_SIZE_INV_X),
-            (int)(position.Z * Constants.TERRAIN_GRID_SIZE_INV_Z));
+        return new Vector2I((int)Math.Floor(position.X * Constants.TERRAIN_GRID_SIZE_INV_X),
+            (int)Math.Floor(position.Z * Constants.TERRAIN_GRID_SIZE_INV_Z));
     }
 
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
@@ -231,9 +231,9 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
             // Queue despawning of terrain cells that are out of range
             foreach (var entry in terrainGridData)
             {
-                var minX = playerGrid.X - Constants.TERRAIN_SPAWN_AREA_NUMBER - 1;
+                var minX = playerGrid.X - Constants.TERRAIN_SPAWN_AREA_NUMBER;
                 var maxX = playerGrid.X + Constants.TERRAIN_SPAWN_AREA_NUMBER;
-                var minZ = playerGrid.Y - Constants.TERRAIN_SPAWN_AREA_NUMBER - 1;
+                var minZ = playerGrid.Y - Constants.TERRAIN_SPAWN_AREA_NUMBER;
                 var maxZ = playerGrid.Y + Constants.TERRAIN_SPAWN_AREA_NUMBER;
 
                 var shouldDespawn = entry.Key.X < minX || entry.Key.X > maxX ||
@@ -250,10 +250,10 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
             bool initialSpawn = terrainGridData.Count - despawnQueue.Count < 1;
 
             // Spawn in terrain cells that are now in range
-            for (int x = playerGrid.X - Constants.TERRAIN_SPAWN_AREA_NUMBER - 1;
+            for (int x = playerGrid.X - Constants.TERRAIN_SPAWN_AREA_NUMBER;
                  x <= playerGrid.X + Constants.TERRAIN_SPAWN_AREA_NUMBER; ++x)
             {
-                for (int z = playerGrid.Y - Constants.TERRAIN_SPAWN_AREA_NUMBER - 1;
+                for (int z = playerGrid.Y - Constants.TERRAIN_SPAWN_AREA_NUMBER;
                      z <= playerGrid.Y + Constants.TERRAIN_SPAWN_AREA_NUMBER; ++z)
                 {
                     var currentPos = new Vector2I(x, z);
@@ -367,28 +367,6 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
             }
         }
     }
-    
-    private List<SpawnedTerrainCluster> GetNeighbouringClusters(Vector2I cell)
-    {
-        var result = new List<SpawnedTerrainCluster>();
-
-        for (int x = -1; x <= 1; ++x)
-        {
-            for (int z = -1; z <= 1; ++z)
-            {
-                if (x == 0 && z == 0)
-                    continue;
-
-                var neighborCell = new Vector2I(cell.X + x, cell.Y + z);
-                if (terrainGridData.TryGetValue(neighborCell, out var neighborClusters))
-                {
-                    result.AddRange(neighborClusters);
-                }
-            }
-        }
-
-        return result;
-    }
 
     private void SpawnTerrainCell(Vector2I cell)
     {
@@ -421,7 +399,6 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
         var recorder = worldSimulation.StartRecordingEntityCommands();
 
         var result = new List<SpawnedTerrainCluster>();
-        var neighbouringClusters = GetNeighbouringClusters(cell);
 
         while (clusters > 0)
         {
@@ -433,7 +410,7 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
             for (int i = 0; i < retries; ++i)
             {
                 // Try a few random clusters in case one fits
-                if (SpawnNewCluster(cell, result, neighbouringClusters, recorder, random))
+                if (SpawnNewCluster(cell, result, recorder, random))
                 {
                     // GD.Print("Success");
                     succeeded = true;

@@ -189,8 +189,8 @@ public static class Constants
     public const float CLOUD_CHEAT_DENSITY = 16000.0f;
 
     // public const float TERRAIN_GRID_SIZE = 200;
-    public const float TERRAIN_GRID_SIZE_X = 150;
-    public const float TERRAIN_GRID_SIZE_Z = 125;
+    public const float TERRAIN_GRID_SIZE_X = 300;
+    public const float TERRAIN_GRID_SIZE_Z = 275;
     // public const float TERRAIN_GRID_SIZE_INV = 1 / TERRAIN_GRID_SIZE;
     public const float TERRAIN_GRID_SIZE_INV_X = 1 / TERRAIN_GRID_SIZE_X;
     public const float TERRAIN_GRID_SIZE_INV_Z = 1 / TERRAIN_GRID_SIZE_Z;
@@ -207,6 +207,15 @@ public static class Constants
     ///   by the terrain.
     /// </summary>
     public const int TERRAIN_SPAWN_AREA_NUMBER = 1;
+
+    public const int TERRAIN_VENT_SEGMENTS = 6;
+    public const int TERRAIN_VENT_RINGS_MAX = 5;
+    public const int TERRAIN_VENT_RINGS_MIN = 2;
+    public const int TERRAIN_SECOND_VENT_RINGS_MIN_THRESHOLD = 3;
+    public const float TERRAIN_SECOND_VENT_CHANCE = 0.4f;
+    public const int TERRAIN_VENT_OVERLAP_MARGIN = 2;
+    public const int TERRAIN_VENT_RING_HEIGHT_REDUCTION = 10;
+    public const int TERRAIN_VENT_OUTER_RING_HEIGHT = -27;
 
     public const int MEMBRANE_RESOLUTION = 10;
     public const int MEMBRANE_VERTICAL_RESOLUTION = 7;
