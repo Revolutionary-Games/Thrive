@@ -60,7 +60,7 @@ public partial class TabButtons : HBoxContainer
     private Container tabButtonsContainerNoWrap = null!;
 #pragma warning restore CA2213
 
-    private StringName? horizontalSeparationStringName;
+    private StringName? horizontalSeparationName;
 
     public enum PressType
     {
@@ -257,8 +257,8 @@ public partial class TabButtons : HBoxContainer
         }
 
         // Find the distance between each button (should get 0 if the constant doesn't exist, no need to check)
-        horizontalSeparationStringName ??= new StringName("h_separation");
-        var separationBetweenButtons = tabButtonsContainer.GetThemeConstant(horizontalSeparationStringName);
+        horizontalSeparationName ??= new StringName("h_separation");
+        var separationBetweenButtons = tabButtonsContainer.GetThemeConstant(horizontalSeparationName);
 
         // Add 2x because the distance appears to be applied on both sides of each button
         newCustomMinimum += (separationBetweenButtons * 2) * tabButtons.Count;
@@ -278,9 +278,9 @@ public partial class TabButtons : HBoxContainer
     {
         if (disposing)
         {
-            if (horizontalSeparationStringName != null)
+            if (horizontalSeparationName != null)
             {
-                horizontalSeparationStringName.Dispose();
+                horizontalSeparationName.Dispose();
             }
         }
 
