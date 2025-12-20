@@ -29,7 +29,7 @@ public partial class MicrobeTerrainSystem
     }
 
     private (bool SkipSpawn, Vector3? Position) GetSpawnStartingPosition(Vector2I baseCell,
-        List<SpawnedTerrainCluster> spawned, XoShiRo128starstar random, float overlapRadius = 0f)
+        List<SpawnedTerrainCluster> spawned, XoShiRo128starstar random, float overlapRadius = 0.0f)
     {
         var (minX, maxX, minZ, maxZ) = GetCellBordersForGroup(baseCell, overlapRadius);
 
@@ -233,7 +233,7 @@ public partial class MicrobeTerrainSystem
         var groupData = new SpawnedTerrainGroup[clusterSpawnData.Groups.Count];
         var index = 0;
 
-        for (var i = 0; i < clusterSpawnData.Groups.Count; i++)
+        for (var i = 0; i < clusterSpawnData.Groups.Count; ++i)
         {
             var group = clusterSpawnData.Groups[i];
             var data = SpawnTerrainGroup(group, recorder, random);

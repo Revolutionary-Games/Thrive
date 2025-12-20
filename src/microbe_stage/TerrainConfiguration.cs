@@ -174,12 +174,6 @@ public class TerrainConfiguration : RegistryType
         [JsonProperty]
         public readonly TerrainSpawnStrategy SpawnStrategy = TerrainSpawnStrategy.Single;
 
-        [JsonProperty]
-        public readonly int MinChunks = 5;
-
-        [JsonProperty]
-        public readonly int MaxChunks = 10;
-
         public void Check(string name)
         {
             if (TerrainGroups.Count < 1)

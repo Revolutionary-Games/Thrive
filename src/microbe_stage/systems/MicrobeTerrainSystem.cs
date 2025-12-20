@@ -22,8 +22,6 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
 
     private readonly IWorldSimulation worldSimulation;
 
-    // private readonly MicrobeTerrainSystemSpawn spawnHelper;
-
     private readonly QueryDescription allTerrainQuery = new QueryDescription().WithAll<MicrobeTerrainChunk>();
 
     private readonly Dictionary<Vector2I, List<SpawnedTerrainCluster>> terrainGridData = new();
@@ -151,23 +149,7 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
         if (!terrainGridData.TryGetValue(cell, out var clusters))
             return false;
 
-        // Find if too close to any terrain group
-        foreach (var cluster in clusters)
-        {
-            foreach (var terrainGroup in cluster.TerrainGroups)
-            {
-                // Check individual groups in a cluster the spawn position is too close to
-                if (position.DistanceSquaredTo(terrainGroup.Position) <=
-                    MathUtils.Square(checkRadius + terrainGroup.Radius))
-                {
-                    // Found a colliding part
-                    return true;
-                }
-            }
-        }
-
-        // No terrain encountered
-        return false;
+        return OverlapsWithAlreadySpawned(clusters, position, checkRadius);
     }
 
     public override void Update(in float delta)
@@ -277,6 +259,11 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
                                 spawnQueue.Add(currentPos);
                             }
                         }
+                    }
+                    else
+                    {
+                        // Make sure existing data won't be deleted
+                        despawnQueue.Remove(currentPos);
                     }
                 }
             }
@@ -412,12 +399,9 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
                 // Try a few random clusters in case one fits
                 if (SpawnNewCluster(cell, result, recorder, random))
                 {
-                    // GD.Print("Success");
                     succeeded = true;
                     break;
                 }
-
-                // GD.Print("Failed to spawn cluster, retrying with different type");
             }
 
             if (succeeded)

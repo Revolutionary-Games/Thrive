@@ -821,7 +821,7 @@ public static class Constants
 
     public const float MICROBE_CAMERA_MIN_HEIGHT = 3.0f;
 
-    public const float MICROBE_CAMERA_MAX_HEIGHT = 11111.0f;
+    public const float MICROBE_CAMERA_MAX_HEIGHT = 80.0f;
 
     public const float MULTICELLULAR_CAMERA_MIN_HEIGHT = 8.0f;
 

@@ -1072,12 +1072,10 @@ public static class SpawnHelpers
         });
 
         entityRecorder.Set<Physics>(entity);
-
         entityRecorder.Set(entity, new PhysicsShapeHolder
         {
             BodyIsStatic = true,
         });
-
         entityRecorder.Set(entity, new CollisionShapeLoader
         {
             Density = 1000,
