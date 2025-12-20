@@ -211,6 +211,7 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
     ///   reordering existing items and only adding new ones to the end.
     /// </summary>
     /// <param name="rawItems">Items to apply ordering to</param>
+    /// <param name="keySelector">A function that converts a raw item into a IPlayerReadableName</param>
     /// <returns>Items with current GUI order state applied to them</returns>
     public IEnumerable<T> ApplyOrderingToItems<T>(IEnumerable<T> rawItems, Func<T, IPlayerReadableName> keySelector)
     {
