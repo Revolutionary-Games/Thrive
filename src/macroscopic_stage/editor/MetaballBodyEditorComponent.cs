@@ -1024,16 +1024,8 @@ public partial class MetaballBodyEditorComponent :
         newType.CellTypeName = newTypeName;
 
         var data = new DuplicateDeleteCellTypeData(newType, false);
-
         var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(DuplicateCellType, DeleteCellType, data);
-
         EnqueueAction(new CombinedEditorAction(action));
-
-        duplicateCellTypeDialog.Hide();
-
-        UpdateCellTypeSelections();
-
-        Editor.DirtyMutationPointsCache();
 
         duplicateCellTypeDialog.Hide();
     }
@@ -1056,11 +1048,8 @@ public partial class MetaballBodyEditorComponent :
         }
 
         var data = new DuplicateDeleteCellTypeData(type, true);
-
         var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(DeleteCellType, DuplicateCellType, data);
-
         EnqueueAction(new CombinedEditorAction(action));
-
         UpdateCellTypeSelections();
 
         Editor.DirtyMutationPointsCache();
