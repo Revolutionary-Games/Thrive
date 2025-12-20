@@ -329,6 +329,7 @@ public partial class CellBodyPlanEditorComponent :
         base.WritePropertiesToArchive(writer);
 
         writer.WriteObjectProperties(behaviourEditor);
+        writer.WriteObjectProperties(growthOrderGUI);
         writer.Write(newName);
         writer.WriteObject(editedMicrobeCells);
         writer.Write((int)selectedSelectionMenuTab);
@@ -342,6 +343,7 @@ public partial class CellBodyPlanEditorComponent :
         base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
 
         reader.ReadObjectProperties(behaviourEditor);
+        reader.ReadObjectProperties(growthOrderGUI);
         newName = reader.ReadString() ?? throw new NullArchiveObjectException();
         editedMicrobeCells = reader.ReadObject<IndividualHexLayout<CellTemplate>>();
         selectedSelectionMenuTab = (SelectionMenuTab)reader.ReadInt32();
