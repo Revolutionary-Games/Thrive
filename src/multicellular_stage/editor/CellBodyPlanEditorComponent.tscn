@@ -385,6 +385,7 @@ offset_left = -170.0
 offset_top = 10.0
 offset_right = 170.0
 offset_bottom = 57.0
+grow_horizontal = 2
 
 [node name="LightConfiguration" parent="TopPanel" instance=ExtResource("3_nj0t6")]
 layout_mode = 2
@@ -641,7 +642,7 @@ layout_mode = 2
 [node name="Explanation" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+text = "COLONY_GROWTH_ORDER_EXPLANATION"
 label_settings = ExtResource("6_pwhoj")
 autowrap_mode = 3
 
