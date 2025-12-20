@@ -435,7 +435,7 @@ public partial class CellBodyPlanEditorComponent :
         editedMicrobeCells.CopyTo(order, 0);
         editedMicrobeCells.Clear();
 
-        foreach (var cell in growthOrderGUI.ApplyOrderingToItems(order))
+        foreach (var cell in growthOrderGUI.ApplyOrderingToItems(order, i => i.Data!))
         {
             editedMicrobeCells.AddFast(cell, hexTemporaryMemory, hexTemporaryMemory2);
         }

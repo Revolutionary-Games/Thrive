@@ -199,14 +199,20 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
             lastItem.CanMoveDown = false;
     }
 
+    /// <inheritdoc cref="ApplyOrderingToItems{T}(IEnumerable{T}, Func{T, IPlayerReadableName})"/>
+    public IEnumerable<T> ApplyOrderingToItems<T>(IEnumerable<T> rawItems)
+        where T : IPlayerReadableName
+    {
+        return ApplyOrderingToItems(rawItems, i => i);
+    }
+
     /// <summary>
     ///   Applies current item ordering to a sequence. Allows for example calling <see cref="UpdateItems"/> without
     ///   reordering existing items and only adding new ones to the end.
     /// </summary>
     /// <param name="rawItems">Items to apply ordering to</param>
     /// <returns>Items with current GUI order state applied to them</returns>
-    public IEnumerable<T> ApplyOrderingToItems<T>(IEnumerable<T> rawItems)
-        where T : IPlayerReadableName
+    public IEnumerable<T> ApplyOrderingToItems<T>(IEnumerable<T> rawItems, Func<T, IPlayerReadableName> keySelector)
     {
         if (itemControls.Count <= 0)
         {
@@ -218,7 +224,7 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
                 // It shouldn't be possible for the list to change so hopefully the save comparer never needs to be
                 // recreated
                 savedItemComparer ??= new SaveComparer(currentSavedOrder);
-                return rawItems.OrderBy(i => i, savedItemComparer);
+                return rawItems.OrderBy(keySelector, savedItemComparer);
             }
 
             return rawItems;
@@ -227,33 +233,7 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
         // Need to use LINQ sort here as it is a stable sort and our sorter only does a partial ordering
         // Apparently `Order` might not be a stable sort so for safety `OrderBy` is used as that is guaranteed
         // according to the documentation to be stable
-        return rawItems.OrderBy(i => i, itemComparer);
-    }
-
-    /// <inheritdoc cref="ApplyOrderingToItems{T}(IEnumerable{T})" />
-    public IEnumerable<HexWithData<T>> ApplyOrderingToItems<T>(IEnumerable<HexWithData<T>> rawItems)
-        where T : IActionHex, IArchivable, ICloneable, IPlayerReadableName
-    {
-        if (itemControls.Count <= 0)
-        {
-            // If no existing items, can just return the raw list
-
-            // Except if this is loaded from a save and no real order was created yet, then use that
-            if (currentSavedOrder != null)
-            {
-                // It shouldn't be possible for the list to change so hopefully the save comparer never needs to be
-                // recreated
-                savedItemComparer ??= new SaveComparer(currentSavedOrder);
-                return rawItems.OrderBy(i => i.Data!, savedItemComparer);
-            }
-
-            return rawItems;
-        }
-
-        // Need to use LINQ sort here as it is a stable sort and our sorter only does a partial ordering
-        // Apparently `Order` might not be a stable sort so for safety `OrderBy` is used as that is guaranteed
-        // according to the documentation to be stable
-        return rawItems.OrderBy(i => i.Data!, itemComparer);
+        return rawItems.OrderBy(keySelector, itemComparer);
     }
 
     /// <summary>
