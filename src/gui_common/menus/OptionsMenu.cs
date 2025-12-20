@@ -567,6 +567,9 @@ public partial class OptionsMenu : ControlWithInput
         ApplySettingsToControls(savedSettings);
         UpdateResetSaveButtonState();
 
+        // Calculate and set the minimum size of the tab buttons
+        tabButtons.SetCustomMinimumSize();
+
         Show();
     }
 
@@ -597,6 +600,9 @@ public partial class OptionsMenu : ControlWithInput
 
         ApplySettingsToControls(savedSettings);
         UpdateResetSaveButtonState();
+
+        // Calculate and set the minimum size of the tab buttons
+        tabButtons.SetCustomMinimumSize();
 
         Show();
     }
@@ -950,6 +956,11 @@ public partial class OptionsMenu : ControlWithInput
         {
             DisplayDisplayList();
         }
+
+        // Calculate and set the minimum size of the tab buttons, as their size may have changed with the new language.
+        // Has to use a callback as the buttons do not finish resizing until later in the frame.
+        // Not entirely sure why, to be honest, but this only runs when the language changes, so it should be fine
+        Invoke.Instance.Perform(tabButtons.SetCustomMinimumSize);
     }
 
     /// <summary>
