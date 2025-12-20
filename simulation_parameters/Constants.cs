@@ -190,7 +190,9 @@ public static class Constants
 
     // public const float TERRAIN_GRID_SIZE = 200;
     public const float TERRAIN_GRID_SIZE_X = 300;
+
     public const float TERRAIN_GRID_SIZE_Z = 275;
+
     // public const float TERRAIN_GRID_SIZE_INV = 1 / TERRAIN_GRID_SIZE;
     public const float TERRAIN_GRID_SIZE_INV_X = 1 / TERRAIN_GRID_SIZE_X;
     public const float TERRAIN_GRID_SIZE_INV_Z = 1 / TERRAIN_GRID_SIZE_Z;
