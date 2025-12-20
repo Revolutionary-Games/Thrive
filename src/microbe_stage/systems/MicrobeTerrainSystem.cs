@@ -417,8 +417,6 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
                     break;
                 }
 
-                // SpawnCornerChunks(cell, recorder, result, random);
-
                 // GD.Print("Failed to spawn cluster, retrying with different type");
             }
 

@@ -8,7 +8,6 @@ using ThriveScriptsShared;
 public enum TerrainSpawnStrategy
 {
     Single,
-    Row,
     Vent,
 }
 

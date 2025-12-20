@@ -12,32 +12,6 @@ using Xoshiro.PRNG32;
 /// </summary>
 public partial class MicrobeTerrainSystem
 {
-    private void SpawnCornerChunks(Vector2I baseCell, CommandBuffer recorder,
-        List<SpawnedTerrainCluster> spawned, XoShiRo128starstar random)
-    {
-        var minX = baseCell.X * Constants.TERRAIN_GRID_SIZE_X + 5;
-        var maxX = (baseCell.X + 1) * Constants.TERRAIN_GRID_SIZE_X - 5;
-        var minZ = baseCell.Y * Constants.TERRAIN_GRID_SIZE_Z + 5;
-        var maxZ = (baseCell.Y + 1) * Constants.TERRAIN_GRID_SIZE_Z - 5;
-
-        List<Vector3> positions =
-        [
-            new(minX, 0, minZ),
-            new(maxX, 0, minZ),
-            new(minX, 0, maxZ),
-            new(maxX, 0, maxZ),
-        ];
-
-        var cluster = terrainConfiguration!.GetRandomCluster(random);
-        var chosenGroup = cluster.TerrainGroups.GetItemByIndex(random.Next(cluster.TerrainGroups.Count));
-        var groupSpawnData = new GroupSpawnData(new Vector3(minX, 0, minZ), positions,
-            chosenGroup.MaxPossibleChunkRadius,
-            cluster.TerrainGroups.GetItemByIndex(0).Chunks);
-        var clusterSpawnData = new ClusterSpawnData(new Vector3(minX, 0, minZ), [groupSpawnData]);
-
-        spawned.Add(SpawnTerrainCluster(clusterSpawnData, recorder, random));
-    }
-
     private bool SpawnNewCluster(Vector2I baseCell, List<SpawnedTerrainCluster> spawned,
         CommandBuffer recorder, XoShiRo128starstar random)
     {
@@ -47,8 +21,6 @@ public partial class MicrobeTerrainSystem
         {
             case TerrainSpawnStrategy.Single:
                 return SpawnSingleTerrain(baseCell, cluster, recorder, spawned, random);
-            case TerrainSpawnStrategy.Row:
-                return SpawnRowTerrain(baseCell, cluster, recorder, spawned, random);
             case TerrainSpawnStrategy.Vent:
                 return SpawnVentTerrain(baseCell, cluster, recorder, spawned, random);
         }
@@ -159,60 +131,6 @@ public partial class MicrobeTerrainSystem
         var clusterSpawnData = new ClusterSpawnData(position, [groupSpawnData]);
 
         spawned.Add(SpawnTerrainCluster(clusterSpawnData, recorder, random));
-        return true;
-    }
-
-    private bool SpawnRowTerrain(Vector2I baseCell, TerrainConfiguration.TerrainClusterConfiguration cluster,
-        CommandBuffer recorder, List<SpawnedTerrainCluster> spawned,
-        XoShiRo128starstar random)
-    {
-        var (skipSpawn, startingPosition) =
-            GetSpawnStartingPosition(baseCell, spawned, random);
-
-        if (skipSpawn)
-            return true;
-
-        if (startingPosition is null)
-            return false;
-
-        var position = startingPosition.Value;
-
-        var chosenGroup = cluster.TerrainGroups.GetItemByIndex(random.Next(cluster.TerrainGroups.Count));
-        var offsetDirection = random.Next(-chosenGroup.MaxPossibleChunkRadius, chosenGroup.MaxPossibleChunkRadius);
-        var chunksPositions = new List<Vector3>();
-        var groupSpawnDataList = new List<GroupSpawnData>();
-
-        var numberOfChunks = random.Next(cluster.MinChunks, cluster.MaxChunks + 1);
-        for (var i = 1; i < numberOfChunks; ++i)
-        {
-            position = new Vector3(position.X, position.Y, position.Z);
-
-            var overlaps = OverlapsWithAlreadySpawned(spawned, position);
-
-            if (overlaps)
-                break;
-
-            chunksPositions.Add(position);
-
-            var xOffsetVariation = random.Next(-5, 5);
-            var shift = Math.Clamp(offsetDirection + xOffsetVariation, -chosenGroup.MaxPossibleChunkRadius,
-                chosenGroup.MaxPossibleChunkRadius);
-
-            position.X += shift;
-            position.Z += (float)Math.Sqrt(Math.Pow(chosenGroup.MaxPossibleChunkRadius, 2) - Math.Pow(shift, 2));
-
-            var groupSpawnData = new GroupSpawnData(position, [position], chosenGroup.MaxPossibleChunkRadius,
-                cluster.TerrainGroups.GetItemByIndex(0).Chunks);
-            groupSpawnDataList.Add(groupSpawnData);
-        }
-
-        if (chunksPositions.Count < cluster.MinChunks)
-            return false;
-
-        var clusterSpawnData = new ClusterSpawnData(position, groupSpawnDataList);
-
-        spawned.Add(SpawnTerrainCluster(clusterSpawnData, recorder, random));
-
         return true;
     }
 
