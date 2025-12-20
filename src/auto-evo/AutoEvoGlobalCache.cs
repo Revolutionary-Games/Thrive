@@ -49,7 +49,7 @@ public class AutoEvoGlobalCache
     {
         RootPressure = new RootPressure();
         MetabolicStabilityPressure = new MetabolicStabilityPressure(10.0f);
-        GeneralAvoidPredationSelectionPressure = new GeneralAvoidPredationSelectionPressure(1.0f);
+        GeneralAvoidPredationSelectionPressure = new GeneralAvoidPredationSelectionPressure(2.0f);
         EnergyConsumptionPressure = new EnergyConsumptionPressure(0.1f);
         EnvironmentalTolerancesPressure = new EnvironmentalTolerancePressure(4);
 
@@ -58,7 +58,7 @@ public class AutoEvoGlobalCache
         AmmoniaPressure = new ReproductionCompoundPressure(Compound.Ammonia, worldSettings.DayNightCycleEnabled, 0.3f);
 
         MinorGlucoseConversionEfficiencyPressure =
-            new CompoundConversionEfficiencyPressure(Compound.Glucose, Compound.ATP, true, 0.4f);
+            new CompoundConversionEfficiencyPressure(Compound.Glucose, Compound.ATP, true, 0.6f);
         MaintainGlucose = new MaintainCompoundPressure(Compound.Glucose, 1.5f);
 
         GlucoseConversionEfficiencyPressure =
@@ -73,7 +73,7 @@ public class AutoEvoGlobalCache
             Compound.Iron, Compound.ATP, 1.0f);
 
         HydrogenSulfideConversionEfficiencyPressure = new CompoundConversionEfficiencyPressure(Compound.Hydrogensulfide,
-            Compound.Glucose, true, 1.0f);
+            Compound.Glucose, true, 1.2f);
         HydrogenSulfideCloudPressure = new CompoundCloudPressure(Compound.Hydrogensulfide,
             worldSettings.DayNightCycleEnabled, 1.0f);
         SmallSulfurChunkPressure = new ChunkCompoundPressure("sulfurSmallChunk",
@@ -93,7 +93,7 @@ public class AutoEvoGlobalCache
             new LocalizedString("RADIOACTIVE_CHUNK"), Compound.Radiation, Compound.ATP, 1.0f);
 
         TemperatureConversionEfficiencyPressure =
-            new CompoundConversionEfficiencyPressure(Compound.Temperature, Compound.Glucose, true, 1.0f);
+            new CompoundConversionEfficiencyPressure(Compound.Temperature, Compound.Glucose, true, 1.2f);
         TemperatureCompoundPressure = new EnvironmentalCompoundPressure(Compound.Temperature, Compound.Glucose,
             100, 1.0f);
         HasTemperature = !worldSettings.LAWK;
