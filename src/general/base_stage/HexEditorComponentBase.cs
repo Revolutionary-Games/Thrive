@@ -99,7 +99,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
     protected int placementRotation;
 
-    private static readonly StringName FontColorOverrideName = new("font_color");
+    private readonly StringName fontColorOverrideName = new("font_color");
 
     private readonly List<FloatingLabel> createdFloatingLabels = new();
 
@@ -1079,7 +1079,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
         foreach (var label in labels)
         {
-            FloatingLabel graphicalLabel = null!;
+            FloatingLabel graphicalLabel;
 
             if (currentLabelId >= createdFloatingLabels.Count)
             {
@@ -1100,11 +1100,11 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
             if (label.TextColor != Colors.White)
             {
-                graphicalLabel.AddThemeColorOverride(FontColorOverrideName, label.TextColor);
+                graphicalLabel.AddThemeColorOverride(fontColorOverrideName, label.TextColor);
             }
             else
             {
-                graphicalLabel.RemoveThemeColorOverride(FontColorOverrideName);
+                graphicalLabel.RemoveThemeColorOverride(fontColorOverrideName);
             }
 
             ++currentLabelId;
@@ -1179,6 +1179,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         if (disposing)
         {
             positionZReference.Dispose();
+            fontColorOverrideName.Dispose();
         }
 
         base.Dispose(disposing);
