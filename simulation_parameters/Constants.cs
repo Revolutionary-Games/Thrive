@@ -1356,7 +1356,7 @@ public static class Constants
 
     public const float AUTO_EVO_MAX_BONUS_FROM_ENVIRONMENTAL_STORAGE = 2.5f;
 
-    public const double AUTO_EVO_COLOR_CHANGE_MAX_STEP = 0.5f;
+    public const float AUTO_EVO_COLOR_CHANGE_MAX_STEP = 0.5f;
 
     public const float AUTO_EVO_MUTATION_RIGIDITY_STEP = 0.35f;
     public const float AUTO_EVO_MUTATION_TOXICITY_STEP = 0.2f;

@@ -88,15 +88,7 @@ public static class CommonMutationFunctions
             mutated = mutation.Item1;
             mp -= mutation.Item2;
 
-            var oldColour = mutated.SpeciesColour;
-
-            var redShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
-            var greenShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
-            var blueShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
-
-            mutated.SpeciesColour = new Color(Math.Clamp((float)(oldColour.R + redShift), 0, 1),
-                Math.Clamp((float)(oldColour.G + greenShift), 0, 1),
-                Math.Clamp((float)(oldColour.B + blueShift), 0, 1));
+            MutationLogicFunctions.ColorNewMicrobeSpecies(random, mutated);
         }
 
         mutated.ModifiableTolerances.CopyFrom(forPatch.GenerateTolerancesForMicrobe(mutated.Organelles));

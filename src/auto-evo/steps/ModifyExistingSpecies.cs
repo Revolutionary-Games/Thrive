@@ -219,6 +219,10 @@ public class ModifyExistingSpecies : IRunStep
                         MichePopulation.CalculateMicrobePopulationInPatch(mutation.MutatedSpecies, miche!, patch,
                             cache);
 
+                    MutationLogicFunctions.NameNewMicrobeSpecies(mutation.MutatedSpecies, mutation.ParentSpecies);
+                    MutationLogicFunctions.ColorNewMicrobeSpecies(random, mutation.MutatedSpecies,
+                        mutation.ParentSpecies);
+
                     if (newPopulation > Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
                     {
                         results.AddPossibleMutation(mutation.MutatedSpecies,
@@ -478,26 +482,6 @@ public class ModifyExistingSpecies : IRunStep
         foreach (var topMutation in temporaryResultForTopMutations)
         {
             lastGeneratedMutations.Add(topMutation.Item1);
-        }
-
-        // TODO: could maybe optimize things by only giving name and colour changes for mutations that are selected
-        // in the end
-        foreach (var variant in lastGeneratedMutations)
-        {
-            if (variant == baseSpecies)
-                continue;
-
-            MutationLogicFunctions.NameNewMicrobeSpecies(variant, baseSpecies);
-
-            var oldColour = variant.SpeciesColour;
-
-            var redShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
-            var greenShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
-            var blueShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
-
-            variant.SpeciesColour = new Color(Math.Clamp((float)(oldColour.R + redShift), 0, 1),
-                Math.Clamp((float)(oldColour.G + greenShift), 0, 1),
-                Math.Clamp((float)(oldColour.B + blueShift), 0, 1));
         }
 
         return lastGeneratedMutations;
