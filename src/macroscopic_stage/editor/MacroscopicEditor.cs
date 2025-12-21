@@ -515,7 +515,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         bodyEditorLight.Visible = bodyEditor;
     }
 
-    private void OnStartEditingCellType(string? name)
+    private void OnStartEditingCellType(string? name, bool switchTab)
     {
         if (CanCancelAction)
         {
@@ -547,7 +547,8 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
             cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
         }
 
-        SetEditorTab(EditorTab.CellTypeEditor);
+        if (switchTab)
+            SetEditorTab(EditorTab.CellTypeEditor);
     }
 
     private void CheckAndApplyCellTypeEdit()

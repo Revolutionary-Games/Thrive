@@ -87,7 +87,7 @@ public partial class MetaballBodyEditorComponent :
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
     [Signal]
-    public delegate void OnCellTypeToEditSelectedEventHandler(string name);
+    public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
 
     public enum SelectionMenuTab
     {
@@ -830,7 +830,7 @@ public partial class MetaballBodyEditorComponent :
     {
         // Should be safe for us to try to signal to edit any kind of cell so this doesn't check if the cell is removed
         EmitSignal(SignalName.OnCellTypeToEditSelected,
-            metaballPopupMenu.SelectedMetaballs.First().ModifiableCellType.CellTypeName);
+            metaballPopupMenu.SelectedMetaballs.First().ModifiableCellType.CellTypeName, true);
     }
 
     /// <summary>
@@ -940,7 +940,7 @@ public partial class MetaballBodyEditorComponent :
         OnCurrentActionChanged();
 
         // Clear the edited cell type
-        EmitSignal(SignalName.OnCellTypeToEditSelected, default(Variant));
+        EmitSignal(SignalName.OnCellTypeToEditSelected, default(Variant), false);
     }
 
     private void OnMetaballsChanged()
@@ -1062,7 +1062,7 @@ public partial class MetaballBodyEditorComponent :
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(SignalName.OnCellTypeToEditSelected, activeActionName);
+        EmitSignal(SignalName.OnCellTypeToEditSelected, activeActionName, true);
     }
 
     private void RegenerateCellTypeIcon(CellType type)

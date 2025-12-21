@@ -78,7 +78,7 @@ public partial class MetaballBodyEditorComponent
         Editor.EditedSpecies.ModifiableCellTypes.Add(data.CellType);
         GD.Print("New cell type created: ", data.CellType.CellTypeName);
 
-        EmitSignal(SignalName.OnCellTypeToEditSelected, data.CellType.CellTypeName);
+        EmitSignal(SignalName.OnCellTypeToEditSelected, data.CellType.CellTypeName, false);
 
         UpdateCellTypeSelections();
 
