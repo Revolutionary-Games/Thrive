@@ -189,10 +189,7 @@ public static class Constants
     public const float CLOUD_CHEAT_DENSITY = 16000.0f;
 
     public const float TERRAIN_GRID_SIZE_X = 330;
-
     public const float TERRAIN_GRID_SIZE_Z = 315;
-
-    // public const float TERRAIN_GRID_SIZE_INV = 1 / TERRAIN_GRID_SIZE;
     public const float TERRAIN_GRID_SIZE_INV_X = 1 / TERRAIN_GRID_SIZE_X;
     public const float TERRAIN_GRID_SIZE_INV_Z = 1 / TERRAIN_GRID_SIZE_Z;
     public const float TERRAIN_EDGE_PROTECTION_SIZE = 1;
