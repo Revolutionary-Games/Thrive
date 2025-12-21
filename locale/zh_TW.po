@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-21 03:10+0300\n"
-"PO-Revision-Date: 2025-12-11 04:10+0000\n"
+"POT-Creation-Date: 2025-12-18 14:19+0200\n"
+"PO-Revision-Date: 2025-12-17 13:52+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -427,6 +427,10 @@ msgstr "平均地表其他氣體含量"
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr "平均地表氧含量"
 
+#, fuzzy
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr "平均地表其他氣體含量"
+
 msgid "AWAKENING_STAGE"
 msgstr "覺醒階段"
 
@@ -532,16 +536,14 @@ msgstr "超越細胞"
 msgid "BIG_IRON_CHUNK"
 msgstr "大鐵塊"
 
-#, fuzzy
 msgid "BIG_IRON_CHUNK_BANANA"
-msgstr "大鐵塊"
+msgstr "大鐵香蕉塊"
 
 msgid "BIG_PHOSPHATE_CHUNK"
 msgstr "大磷酸鹽塊"
 
-#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK_BANANA"
-msgstr "大磷酸鹽塊"
+msgstr "大磷酸鹽香蕉塊"
 
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
@@ -5613,16 +5615,14 @@ msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive
 msgid "SMALL_IRON_CHUNK"
 msgstr "小鐵塊"
 
-#, fuzzy
 msgid "SMALL_IRON_CHUNK_BANANA"
-msgstr "小鐵塊"
+msgstr "小鐵香蕉塊"
 
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "小磷酸鹽塊"
 
-#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
-msgstr "小磷酸鹽塊"
+msgstr "小磷酸鹽香蕉塊"
 
 msgid "SMALL_SULFUR_CHUNK"
 msgstr "小硫磺塊"
@@ -6473,7 +6473,6 @@ msgstr ""
 "\n"
 "另一種稍微提高[b]移動速度[/b] [thrive:icon]MovementIcon[/thrive:icon] 的方法是在[u]細胞膜分頁[/u]中增加細胞膜的流動性。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
 msgstr ""
 "這是食物鏈顯示面板。\n"
@@ -9227,24 +9226,22 @@ msgstr "科技編輯器、國家編輯器、隊伍編輯器"
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "啟用[i]熱視覺[/i]，可切換開關。這會將水的相對溫度疊加顯示到螢幕上，溫度較高的區域會顯示得更紅。"
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr ""
-"利用環境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度以[thrive:compound type=\"atp\"][/thrive:compound] 的形式產生能量。效率高於原核版本的[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]。\n"
+"利用環境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度生產[thrive:compound type=\"glucose\"][/thrive:compound]。效率高於原核版本的[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]。\n"
 "\n"
 "現實中未發現的假說細胞器。在開啟[i]僅限已知生命形式[/i]選項的遊戲中不可用。\n"
 "\n"
-"它是一種有膜細胞器，膜狀隔間內含有熱敏酶。它是一種已被其真核宿主同化的原核生物。這些酶能夠利用周圍環境中[thrive:compound type=\"temperature\"][/thrive:compound] 上升的能量生產[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[i]熱合成[/i]。"
+"它是一種有膜細胞器，膜狀隔間內含有熱敏酶。它是一種已被其真核宿主同化的原核生物。這些酶能夠利用周圍環境中[thrive:compound type=\"temperature\"][/thrive:compound] 上升的能量生產[thrive:compound type=\"glucose\"][/thrive:compound]，此過程被稱為[i]熱合成[/i]。"
 
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "無修改。"
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr ""
-"[b]熱合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] [i]增加[/i] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]熱合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] [i]增加[/i] → [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"透過上升的[thrive:compound type=\"temperature\"][/thrive:compound] 來產生能量。隨著[thrive:compound type=\"temperature\"][/thrive:compound] 提升，熱敏酶會改變形狀，從而將 [i]ADP[/i] 循環轉化為[thrive:compound type=\"atp\"][/thrive:compound]。隨著細胞冷卻，酶會恢復到先前的形狀，使該過程能重複進行。效率高於[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]中的[i]細菌熱合成[/i]。其[thrive:compound type=\"atp\"][/thrive:compound] 的生產速率與[thrive:compound type=\"temperature\"][/thrive:compound] 的[i]增量[/i]成正比。"
+"透過上升的[thrive:compound type=\"temperature\"][/thrive:compound] 來產生能量。隨著[thrive:compound type=\"temperature\"][/thrive:compound] 提升，熱敏酶會改變形狀，從而將各種化合物轉化為[thrive:compound type=\"glucose\"][/thrive:compound]。隨著細胞冷卻，酶會恢復到先前的形狀，使該過程能重複進行。效率高於[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]中的[i]細菌熱合成[/i]。其[thrive:compound type=\"glucose\"][/thrive:compound] 的生產速率與[thrive:compound type=\"temperature\"][/thrive:compound] 的[i]增量[/i]成正比。"
 
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""

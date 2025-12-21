@@ -577,14 +577,22 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             showSiderophore = false;
 
             engulfing = colony.ColonyState == MicrobeState.Engulf;
+
+            // We don't set the mucocyst state on the colony as it has quite strict requirements,
+            // so we need to loop them specifically (below this simple check that doesn't really find anything)
             usingMucocyst = colony.ColonyState == MicrobeState.MucocystShield;
 
             for (int i = 0; i < colony.ColonyMembers.Length; ++i)
             {
-                if (colony.ColonyMembers[i].Get<Engulfer>().EngulfedObjects is { Count: > 0 })
+                var member = colony.ColonyMembers[i];
+                if (member.Get<Engulfer>().EngulfedObjects is { Count: > 0 })
                 {
                     isDigesting = true;
-                    break;
+                }
+
+                if (member.Get<MicrobeControl>().State == MicrobeState.MucocystShield)
+                {
+                    usingMucocyst = true;
                 }
             }
         }
