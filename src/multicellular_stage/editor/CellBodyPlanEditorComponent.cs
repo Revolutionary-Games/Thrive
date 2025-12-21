@@ -34,7 +34,7 @@ public partial class CellBodyPlanEditorComponent :
     /// <summary>
     ///   Stores cells that end up being disconnected from the colony because of growth order
     /// </summary>
-    private readonly List<Hex> wrongGrowthOrderCells = new();
+    private readonly HashSet<Hex> wrongGrowthOrderCells = new();
 
 #pragma warning disable CA2213
 
