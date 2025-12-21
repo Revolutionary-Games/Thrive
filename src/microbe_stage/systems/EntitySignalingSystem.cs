@@ -33,6 +33,33 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>, IArchiveU
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.EntitySignalingSystem;
 
+    public void OnEntityDestroyed(in Entity entity)
+    {
+        if (!entity.Has<CommandSignaler>())
+            return;
+
+        // As signalling channels aren't immediately cleared, we need to clear data on entity death to not have invalid
+        // entities on the channels
+        // TODO: we could instead refresh the sent signals cache each update which would make this death callback not
+        // required
+        ref var commandSignaler = ref entity.Get<CommandSignaler>();
+        if (commandSignaler.Command != MicrobeSignalCommand.None)
+        {
+            if (!entitiesOnChannels.TryGetValue(commandSignaler.SignalingChannel, out var channel))
+                return;
+
+            foreach (var tuple in channel)
+            {
+                if (tuple.Entity == entity)
+                {
+                    if (!channel.Remove(tuple))
+                        GD.PrintErr("Failed to remove dead entity from a signaling channel");
+                    break;
+                }
+            }
+        }
+    }
+
     public override void Update(in float delta)
     {
         // We manually call these to ensure the order
@@ -79,7 +106,8 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>, IArchiveU
             break;
         }
 
-        // Clear away the still left categories
+        // Clear away the still left categories (this makes sure that signal channels are emptied before each run
+        // and don't persistently contain data)
         foreach (var value in entitiesOnChannels.Values)
         {
             value.Clear();
@@ -103,15 +131,24 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>, IArchiveU
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void UpdateSignalSend(ref CommandSignaler signaling, ref WorldPosition position, in Entity entity)
     {
+        // We can refresh our signal immediately to make receivers receive info faster, even if the full cache refresh
+        // doesn't happen each game update
         if (signaling.QueuedSignalingCommand != null)
         {
             signaling.Command = signaling.QueuedSignalingCommand.Value;
             signaling.QueuedSignalingCommand = null;
         }
 
-        // Build a mapping of signallers by their channel and position to speed up the update logic below
         if (signaling.Command == MicrobeSignalCommand.None)
             return;
+
+        // As the channels are cleared sometimes, it's very important to not run this all the time as that
+        // adds duplicate entries to the channel which makes things more difficult to make sure there aren't dead
+        // entities on the channel
+        if (!timeToUpdate)
+            return;
+
+        // Build a mapping of signallers by their channel and position to speed up the update logic below
 
         if (!entitiesOnChannels.TryGetValue(signaling.SignalingChannel, out var channel))
         {
@@ -163,13 +200,23 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>, IArchiveU
                 // TODO: should there be a max distance after which the signaling agent is considered to be so
                 // weak that it is not detected?
 
-                signaling.ReceivedCommandSource = bestSignaler.Value.Position;
-                signaling.ReceivedCommandFromEntity = bestSignaler.Value.Entity;
+                var sourceEntity = bestSignaler.Value.Entity;
 
-                ref var signalerData = ref bestSignaler.Value.Entity.Get<CommandSignaler>();
-                signaling.ReceivedCommand = signalerData.Command;
+                if (!sourceEntity.IsAliveAndHas<CommandSignaler>())
+                {
+                    GD.PrintErr(
+                        $"Received a signal command from an invalid entity (no signaler component): {sourceEntity}");
+                }
+                else
+                {
+                    signaling.ReceivedCommandSource = bestSignaler.Value.Position;
+                    signaling.ReceivedCommandFromEntity = bestSignaler.Value.Entity;
 
-                foundSignal = true;
+                    ref var signalerData = ref sourceEntity.Get<CommandSignaler>();
+                    signaling.ReceivedCommand = signalerData.Command;
+
+                    foundSignal = true;
+                }
             }
         }
 
