@@ -256,7 +256,7 @@ public partial class MicrobeTerrainSystem
         var skipDefaultCollisionsLoading = groupSpawnData.CollisionRadius > 0;
         if (skipDefaultCollisionsLoading)
         {
-            SpawnHelpers.SpawnCollisionWithoutFinalizing(recorder, worldSimulation,
+            SpawnHelpers.SpawnTerrainCollisionWithoutFinalizing(recorder, worldSimulation,
                 groupSpawnData.Position, groupId, groupSpawnData.CollisionRadius);
             data.ExpectedMemberCount += 1;
         }
@@ -266,8 +266,17 @@ public partial class MicrobeTerrainSystem
             var chunk = groupSpawnData.Chunks.GetItemByIndex(random.Next(groupSpawnData.Chunks.Count));
             var yOffset = new Vector3(0, random.NextSingle() * Constants.TERRAIN_HEIGHT_RANDOMNESS, 0);
 
-            SpawnHelpers.SpawnMicrobeTerrainWithoutFinalizing(recorder, worldSimulation,
-                position + yOffset, chunk, groupId, random, skipDefaultCollisionsLoading);
+            if (skipDefaultCollisionsLoading)
+            {
+                SpawnHelpers.SpawnTerrainWithoutCollisionWithoutFinalizing(recorder, worldSimulation,
+                    position + yOffset, chunk, groupId, random);
+            }
+            else
+            {
+                SpawnHelpers.SpawnMicrobeTerrainWithoutFinalizing(recorder, worldSimulation,
+                    position + yOffset, chunk, groupId, random);
+            }
+
             data.ExpectedMemberCount += 1;
         }
 
