@@ -1659,6 +1659,8 @@ public partial class CellBodyPlanEditorComponent :
         behaviourEditor.Hide();
         growthOrderTab.Hide();
 
+        ShowGrowthOrder = selectedSelectionMenuTab is SelectionMenuTab.GrowthOrder;
+
         // Show selected
         switch (selectedSelectionMenuTab)
         {
@@ -1666,7 +1668,6 @@ public partial class CellBodyPlanEditorComponent :
             {
                 structureTab.Show();
                 structureTabButton.ButtonPressed = true;
-                ShowGrowthOrder = false;
                 break;
             }
 
@@ -1674,7 +1675,6 @@ public partial class CellBodyPlanEditorComponent :
             {
                 reproductionTab.Show();
                 reproductionTabButton.ButtonPressed = true;
-                ShowGrowthOrder = false;
                 break;
             }
 
@@ -1682,7 +1682,6 @@ public partial class CellBodyPlanEditorComponent :
             {
                 behaviourEditor.Show();
                 behaviourTabButton.ButtonPressed = true;
-                ShowGrowthOrder = false;
                 break;
             }
 
@@ -1691,7 +1690,6 @@ public partial class CellBodyPlanEditorComponent :
                 growthOrderTab.Show();
                 growthOrderTabButton.ButtonPressed = true;
 
-                ShowGrowthOrder = true;
                 UpdateGrowthOrderUI();
                 break;
             }

@@ -2927,6 +2927,9 @@ public partial class CellEditorComponent :
         growthOrderTab.Hide();
         toleranceTab.Hide();
 
+        ShowGrowthOrder = selectedSelectionMenuTab is SelectionMenuTab.GrowthOrder;
+        MicrobePreviewMode = selectedSelectionMenuTab is SelectionMenuTab.Membrane;
+
         // Show selected
         switch (selectedSelectionMenuTab)
         {
@@ -2934,8 +2937,6 @@ public partial class CellEditorComponent :
             {
                 structureTab.Show();
                 structureTabButton.ButtonPressed = true;
-                MicrobePreviewMode = false;
-                ShowGrowthOrder = false;
                 break;
             }
 
@@ -2943,8 +2944,6 @@ public partial class CellEditorComponent :
             {
                 appearanceTab.Show();
                 appearanceTabButton.ButtonPressed = true;
-                MicrobePreviewMode = true;
-                ShowGrowthOrder = false;
                 break;
             }
 
@@ -2952,8 +2951,6 @@ public partial class CellEditorComponent :
             {
                 behaviourEditor.Show();
                 behaviourTabButton.ButtonPressed = true;
-                MicrobePreviewMode = false;
-                ShowGrowthOrder = false;
                 break;
             }
 
@@ -2961,8 +2958,6 @@ public partial class CellEditorComponent :
             {
                 growthOrderTab.Show();
                 growthOrderTabButton.ButtonPressed = true;
-                MicrobePreviewMode = false;
-                ShowGrowthOrder = true;
 
                 UpdateGrowthOrderUI();
                 break;
@@ -2972,8 +2967,6 @@ public partial class CellEditorComponent :
             {
                 toleranceTab.Show();
                 toleranceTabButton.ButtonPressed = true;
-                MicrobePreviewMode = false;
-                ShowGrowthOrder = false;
                 break;
             }
 
