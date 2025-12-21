@@ -849,7 +849,7 @@ public partial class CellEditorComponent
         UpdateFloatingLabels(GrowthOrderFloatingNumbers());
     }
 
-    private IEnumerable<(Vector2 Position, string Text)> GrowthOrderFloatingNumbers()
+    private IEnumerable<(Vector2 Position, string Text, Color TextColor)> GrowthOrderFloatingNumbers()
     {
         var orderList = growthOrderGUI.GetCurrentOrder();
         var orderListCount = orderList.Count;
@@ -875,7 +875,7 @@ public partial class CellEditorComponent
             }
 
             yield return (camera!.UnprojectPosition(Hex.AxialToCartesian(editedMicrobeOrganelle.Position)),
-                order.ToString());
+                order.ToString(), Colors.White);
         }
     }
 

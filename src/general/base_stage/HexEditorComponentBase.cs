@@ -99,6 +99,8 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
     protected int placementRotation;
 
+    private static readonly StringName FontColorOverrideName = new("font_color");
+
     private readonly Dictionary<string, FloatingLabel> createdFloatingLabels = new();
 
     private readonly NodePath positionZReference = new("position:z");
@@ -1062,7 +1064,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     /// <summary>
     ///   Updates floating labels that can be used by inheriting classes for arbitrary purposes (like growth order)
     /// </summary>
-    protected void UpdateFloatingLabels(IEnumerable<(Vector2 Position, string Text)> labels)
+    protected void UpdateFloatingLabels(IEnumerable<(Vector2 Position, string Text, Color TextColor)> labels)
     {
         if (!ShowFloatingLabels)
         {
@@ -1090,6 +1092,15 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
             graphicalLabel.Position = label.Position;
             graphicalLabel.Visible = true;
             graphicalLabel.Marked = true;
+
+            if (label.TextColor != Colors.White)
+            {
+                graphicalLabel.AddThemeColorOverride(FontColorOverrideName, label.TextColor);
+            }
+            else
+            {
+                graphicalLabel.RemoveThemeColorOverride(FontColorOverrideName);
+            }
         }
 
         // Hide unused labels

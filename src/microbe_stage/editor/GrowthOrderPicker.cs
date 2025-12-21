@@ -50,6 +50,9 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
     [Signal]
     public delegate void OrderResetEventHandler();
 
+    [Signal]
+    public delegate void OnGrowthOrderChangedEventHandler();
+
     /// <summary>
     ///   Can be turned off to hide coordinates in the display list
     /// </summary>
@@ -264,6 +267,7 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
     {
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(SignalName.OrderReset);
+        EmitSignal(SignalName.OnGrowthOrderChanged);
     }
 
     private void MoveDown(DraggableItem item)
@@ -372,6 +376,8 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
 
             itemControl.SetLabelText(GetText((IPlayerReadableName)itemControl.UserData));
         }
+
+        EmitSignal(SignalName.OnGrowthOrderChanged);
     }
 
     private void SwapControls(DraggableItem from, DraggableItem to)
@@ -389,6 +395,8 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
 
         to.UserData = temp;
         to.SetLabelText(GetText((IPlayerReadableName)to.UserData));
+
+        EmitSignal(SignalName.OnGrowthOrderChanged);
     }
 
     private string GetText(IPlayerReadableName playerReadableName)

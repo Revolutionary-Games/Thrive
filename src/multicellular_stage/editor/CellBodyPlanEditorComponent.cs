@@ -31,6 +31,11 @@ public partial class CellBodyPlanEditorComponent :
 
     private readonly Dictionary<CellType, int> cellTypesCount = new();
 
+    /// <summary>
+    ///   Stores cells that end up being disconnected from the colony because of growth order
+    /// </summary>
+    private readonly List<Hex> wrongGrowthOrderCells = new();
+
 #pragma warning disable CA2213
 
     // Selection menu tab selector buttons
@@ -101,6 +106,9 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private CustomConfirmationDialog negativeAtpPopup = null!;
+
+    [Export]
+    private CustomConfirmationDialog wrongGrowthOrderPopup = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";
@@ -146,6 +154,9 @@ public partial class CellBodyPlanEditorComponent :
                 return true;
 
             if (HasIslands)
+                return true;
+
+            if (wrongGrowthOrderCells.Count > 0)
                 return true;
 
             return false;
@@ -466,6 +477,12 @@ public partial class CellBodyPlanEditorComponent :
             !editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
         {
             negativeAtpPopup.PopupCenteredShrink();
+            return false;
+        }
+
+        if (wrongGrowthOrderCells.Count > 0)
+        {
+            wrongGrowthOrderPopup.PopupCenteredShrink();
             return false;
         }
 
@@ -1211,6 +1228,8 @@ public partial class CellBodyPlanEditorComponent :
 
         UpdateArrow();
 
+        RecalculateWrongGrowthOrderCells();
+
         UpdateFinishButtonWarningVisibility();
 
         UpdateGrowthOrderButtons();
@@ -1358,6 +1377,49 @@ public partial class CellBodyPlanEditorComponent :
             cellTypesCount.TryGetValue(type, out var count);
             cellTypesCount[type] = count + 1;
         }
+    }
+
+    /// <summary>
+    ///   Recalculates cells that end up being disconnected because of their growth order.
+    ///   Saves the results in <see cref="wrongGrowthOrderCells"/>
+    /// </summary>
+    private void RecalculateWrongGrowthOrderCells()
+    {
+        wrongGrowthOrderCells.Clear();
+
+        // Reuse this work memory
+        islandsWorkMemory1.Clear();
+
+        foreach (var cell in growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!))
+        {
+            islandsWorkMemory1.Add(cell.Position);
+
+            if (islandsWorkMemory1.Count == 1)
+                continue;
+
+            bool hasNeighboor = false;
+
+            foreach (var offset in Hex.HexNeighbourOffset.Values)
+            {
+                if (islandsWorkMemory1.Contains(cell.Position + offset))
+                {
+                    hasNeighboor = true;
+                    break;
+                }
+            }
+
+            if (!hasNeighboor)
+            {
+                wrongGrowthOrderCells.Add(cell.Position);
+            }
+        }
+    }
+
+    private void OnGrowthOrderChanged()
+    {
+        RecalculateWrongGrowthOrderCells();
+
+        UpdateFinishButtonWarningVisibility();
     }
 
     /// <summary>

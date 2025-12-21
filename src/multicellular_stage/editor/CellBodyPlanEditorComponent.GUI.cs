@@ -167,7 +167,7 @@ public partial class CellBodyPlanEditorComponent
         UpdateFloatingLabels(GrowthOrderFloatingNumbers());
     }
 
-    private IEnumerable<(Vector2 Position, string Text)> GrowthOrderFloatingNumbers()
+    private IEnumerable<(Vector2 Position, string Text, Color TextColor)> GrowthOrderFloatingNumbers()
     {
         var orderList = growthOrderGUI.GetCurrentOrder();
         var orderListCount = orderList.Count;
@@ -192,7 +192,8 @@ public partial class CellBodyPlanEditorComponent
                 }
             }
 
-            yield return (camera!.UnprojectPosition(Hex.AxialToCartesian(cell.Position)), order.ToString());
+            yield return (camera!.UnprojectPosition(Hex.AxialToCartesian(cell.Position)), order.ToString(),
+                wrongGrowthOrderCells.Contains(cell.Position) ? Colors.Red : Colors.White);
         }
     }
 

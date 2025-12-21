@@ -329,7 +329,7 @@ _data = {
 &"show": SubResource("44")
 }
 
-[node name="CellBodyPlanEditorComponent" type="Control" node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "negativeAtpPopup", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
+[node name="CellBodyPlanEditorComponent" type="Control" node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "negativeAtpPopup", "wrongGrowthOrderPopup", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -358,6 +358,7 @@ duplicateCellTypeName = NodePath("NewCellTypeSetup/VBoxContainer2/NewName")
 cellPopupMenu = NodePath("CellPopupMenu")
 organismStatisticsPanel = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel")
 negativeAtpPopup = NodePath("NegativeAtpWarning")
+wrongGrowthOrderPopup = NodePath("WrongGrowthOrderError")
 floatingLabelContainer = NodePath("GrowthOrderNumberContainer")
 islandPopup = NodePath("IslandError")
 componentBottomLeftButtons = NodePath("EditorComponentBottomLeftButtons")
@@ -768,6 +769,15 @@ offset_bottom = 85.0
 DialogText = "NEGATIVE_ATP_BALANCE_TEXT"
 WindowTitle = "NEGATIVE_ATP_BALANCE"
 
+[node name="WrongGrowthOrderError" parent="." instance=ExtResource("7")]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 85.0
+HideCancelButton = true
+DialogText = "WRONG_GROWTH_ORDER_TEXT"
+WindowTitle = "WRONG_GROWTH_ORDER"
+
 [node name="CannotDeleteInUseType" parent="." instance=ExtResource("7")]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
@@ -848,6 +858,7 @@ ShowToggles = false
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify" to="." method="OnModifyCurrentCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete" to="." method="OnDeleteCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate" to="." method="OnTypeDuplicateStartPressed"]
+[connection signal="OnGrowthOrderChanged" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker" to="." method="OnGrowthOrderChanged"]
 [connection signal="OrderReset" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker" to="." method="OnResetGrowthOrderPressed"]
 [connection signal="toggled" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/Coordinates" to="." method="OnGrowthOrderCoordinatesToggled"]
 [connection signal="OnEnergyBalanceOptionsChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="OnEnergyBalanceOptionsChanged"]
