@@ -28,9 +28,9 @@ public static class CellBodyPlanInternalCalculations
     ///   Calculates a colony's speed. The algorithm is an approximation, but should be based on the one in
     ///   MicrobeMovementSystem.cs
     /// </summary>
-    public static float CalculateSpeed(IReadOnlyList<HexWithData<CellTemplate>> cells)
+    public static float CalculateSpeed(IReadOnlyList<CellTemplate> cells)
     {
-        var leader = cells[0].Data!;
+        var leader = cells[0];
 
         var speed = MicrobeInternalCalculations.CalculateSpeed(leader.ModifiableOrganelles, leader.MembraneType,
             leader.MembraneRigidity, leader.IsBacteria);
@@ -46,7 +46,7 @@ public static class CellBodyPlanInternalCalculations
 
         foreach (var hex in cells)
         {
-            var cell = hex.Data!;
+            var cell = hex;
 
             if (cell == leader)
                 continue;
@@ -82,14 +82,14 @@ public static class CellBodyPlanInternalCalculations
     ///   Calculates a colony's nutrient cost
     /// </summary>
     public static (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCost(
-        IReadOnlyList<HexWithData<CellTemplate>> cells)
+        IReadOnlyList<CellTemplate> cells)
     {
         float ammoniaCostTotal = 0;
         float phosphatesCostTotal = 0;
 
         foreach (var hex in cells)
         {
-            var cell = hex.Data!;
+            var cell = hex;
 
             foreach (var organelle in cell.Organelles)
             {
@@ -120,9 +120,9 @@ public static class CellBodyPlanInternalCalculations
     ///   Calculates a colony's rotation speed. The code here should be based on the algorithm in
     ///   <see cref="MicrobeColonyHelpers.CalculateRotationSpeed"/>
     /// </summary>
-    public static float CalculateRotationSpeed(IReadOnlyList<HexWithData<CellTemplate>> cells)
+    public static float CalculateRotationSpeed(IReadOnlyList<CellTemplate> cells)
     {
-        var leader = cells[0].Data!;
+        var leader = cells[0];
 
         var colonyRotation = MicrobeInternalCalculations.CalculateRotationSpeed(leader.ModifiableOrganelles);
 
@@ -133,7 +133,7 @@ public static class CellBodyPlanInternalCalculations
             var distanceSquared = leaderPosition.DistanceSquaredTo(Hex.AxialToCartesian(colonyMember.Position));
 
             var memberRotation = MicrobeInternalCalculations
-                    .CalculateRotationSpeed(colonyMember.Data!.ModifiableOrganelles)
+                    .CalculateRotationSpeed(colonyMember.ModifiableOrganelles)
                 * (1 + 0.03f * distanceSquared);
 
             colonyRotation += memberRotation;

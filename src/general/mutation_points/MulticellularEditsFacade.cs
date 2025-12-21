@@ -6,11 +6,11 @@ using System.Linq;
 using Godot;
 
 public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMulticellularSpecies,
-    IReadOnlyIndividualLayout<IReadOnlyCellTemplate>, IReadOnlyList<IReadOnlyCellTypeDefinition>
+    IReadOnlyCellLayout<IReadOnlyCellTemplate>, IReadOnlyList<IReadOnlyCellTypeDefinition>
 {
     private readonly IReadOnlyMulticellularSpecies multicellularSpecies;
 
-    private readonly List<IReadOnlyHexWithData<IReadOnlyCellTemplate>> removedCells = new();
+    private readonly List<IReadOnlyCellTemplate> removedCells = new();
     private readonly List<CellWithOriginalReference> addedCells = new();
 
     private readonly Stack<CellWithOriginalReference> unusedCells = new();
@@ -20,28 +20,14 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
     public MulticellularEditsFacade(IReadOnlyMulticellularSpecies species) : base(species)
     {
         multicellularSpecies = species;
-
-        foreach (var readOnlyHexWithData in species.EditorCells)
-        {
-            if (readOnlyHexWithData.Data == null)
-                throw new Exception("Cell has no data in multicellular species");
-        }
     }
-
-    public IReadOnlyIndividualLayout<IReadOnlyCellTemplate> EditorCells => this;
 
     public IReadOnlyList<IReadOnlyCellTypeDefinition> CellTypes => this;
 
-    /// <summary>
-    ///   For MP calculations it is not required to also get the gameplay layout, so for simplicity this is not
-    ///   implemented for now.
-    /// </summary>
-    /// <exception cref="NotSupportedException">Thrown whenever this is tried to be accessed</exception>
-    public IReadOnlyCellLayout<IReadOnlyCellTemplate> GameplayCells =>
-        throw new NotSupportedException("Facade doesn't support getting the gameplay cells");
+    public IReadOnlyCellLayout<IReadOnlyCellTemplate> CellLayout => this;
 
     // Approximate counts
-    public int Count => multicellularSpecies.EditorCells.Count + addedCells.Count - removedCells.Count;
+    public int Count => multicellularSpecies.CellLayout.Count + addedCells.Count - removedCells.Count;
 
     int IReadOnlyCollection<IReadOnlyCellTypeDefinition>.Count =>
         multicellularSpecies.CellTypes.Count + cellTypes.ApproximateCount;
@@ -57,7 +43,7 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         set => throw new NotSupportedException("Facade cannot set cells by index");
     }
 
-    public IEnumerator<IReadOnlyHexWithData<IReadOnlyCellTemplate>> GetEnumerator()
+    public IEnumerator<IReadOnlyCellTemplate> GetEnumerator()
     {
         ResolveDataIfDirty();
         return new CellEnumerator(this);
@@ -74,10 +60,10 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         return ((IEnumerable<IReadOnlyCellDefinition>)this).GetEnumerator();
     }
 
-    public IReadOnlyHexWithData<IReadOnlyCellTemplate>? GetElementAt(Hex location, List<Hex> temporaryHexesStorage)
+    public IReadOnlyCellTemplate? GetElementAt(Hex location, List<Hex> temporaryHexesStorage)
     {
         ResolveDataIfDirty();
-        var originalItem = multicellularSpecies.EditorCells.GetElementAt(location, temporaryHexesStorage);
+        var originalItem = multicellularSpecies.CellLayout.GetElementAt(location, temporaryHexesStorage);
 
         if (originalItem != null && !removedCells.Contains(originalItem))
             return originalItem;
@@ -91,12 +77,12 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         return null;
     }
 
-    public IReadOnlyHexWithData<IReadOnlyCellTemplate>? GetByExactElementRootPosition(Hex location)
+    public IReadOnlyCellTemplate? GetByExactElementRootPosition(Hex location)
     {
         ResolveDataIfDirty();
 
         // This is basically the same as above as cells only occupy a single hex
-        var originalItem = multicellularSpecies.EditorCells.GetByExactElementRootPosition(location);
+        var originalItem = multicellularSpecies.CellLayout.GetByExactElementRootPosition(location);
 
         if (originalItem != null && !removedCells.Contains(originalItem))
             return originalItem;
@@ -140,7 +126,7 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
 #if DEBUG
             if (cellTypes.ResolveCellDefinition(newCell.Data.CellType) !=
-                cellTypes.ResolveCellDefinition(cellPlacementActionData.PlacedHex.Data?.CellType))
+                cellTypes.ResolveCellDefinition(cellPlacementActionData.PlacedHex.CellType))
             {
                 throw new Exception("Failed to setup cell type correctly");
             }
@@ -150,7 +136,7 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
         if (actionData is CellMoveActionData cellMoveActionData)
         {
-            IReadOnlyHexWithData<IReadOnlyCellTemplate>? original = null;
+            IReadOnlyCellTemplate? original = null;
 
             // Find a match first if we have done something on this before
             foreach (var addedCell in addedCells)
@@ -160,8 +146,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
                 {
                     original = addedCell;
 
-                    if (cellTypes.ResolveCellDefinition(original.Data!.CellType) !=
-                        cellTypes.ResolveCellDefinition(cellMoveActionData.MovedHex.Data?.CellType))
+                    if (cellTypes.ResolveCellDefinition(original.CellType) !=
+                        cellTypes.ResolveCellDefinition(cellMoveActionData.MovedHex.CellType))
                     {
                         throw new InvalidOperationException("Found an unrelated cell at move old location");
                     }
@@ -175,12 +161,12 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
             {
                 // Then match to the original body plan
                 original =
-                    multicellularSpecies.EditorCells.GetByExactElementRootPosition(cellMoveActionData.OldLocation);
+                    multicellularSpecies.CellLayout.GetByExactElementRootPosition(cellMoveActionData.OldLocation);
 
                 if (original != null)
                 {
-                    if (cellTypes.ResolveCellDefinition(original.Data!.CellType) !=
-                        cellTypes.ResolveCellDefinition(cellMoveActionData.MovedHex.Data?.CellType))
+                    if (cellTypes.ResolveCellDefinition(original.CellType) !=
+                        cellTypes.ResolveCellDefinition(cellMoveActionData.MovedHex.CellType))
                     {
                         GD.PrintErr("Found unrelated cell at exact position of moved cell");
                     }
@@ -203,7 +189,7 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
         if (actionData is CellRemoveActionData cellRemoveActionData)
         {
-            IReadOnlyHexWithData<IReadOnlyCellTemplate>? original = null;
+            IReadOnlyCellTemplate? original = null;
 
             // Find a match first if we have done something to this before
             foreach (var addedCell in addedCells)
@@ -213,8 +199,8 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
                 {
                     original = addedCell;
 
-                    if (cellTypes.ResolveCellDefinition(original.Data!.CellType) !=
-                        cellTypes.ResolveCellDefinition(cellRemoveActionData.RemovedHex.Data?.CellType))
+                    if (cellTypes.ResolveCellDefinition(original.CellType) !=
+                        cellTypes.ResolveCellDefinition(cellRemoveActionData.RemovedHex.CellType))
                     {
                         throw new InvalidOperationException("Found an unrelated cell at delete location");
                     }
@@ -228,12 +214,12 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
             {
                 // Then match to the originals
                 original =
-                    multicellularSpecies.EditorCells.GetByExactElementRootPosition(cellRemoveActionData.Location);
+                    multicellularSpecies.CellLayout.GetByExactElementRootPosition(cellRemoveActionData.Location);
 
                 if (original != null)
                 {
-                    if (cellTypes.ResolveCellDefinition(original.Data!.CellType) !=
-                        cellTypes.ResolveCellDefinition(cellRemoveActionData.RemovedHex.Data?.CellType))
+                    if (cellTypes.ResolveCellDefinition(original.CellType) !=
+                        cellTypes.ResolveCellDefinition(cellRemoveActionData.RemovedHex.CellType))
                     {
                         GD.PrintErr("Found unrelated cell at exact position of removed cell");
                     }
@@ -282,23 +268,23 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         return base.ApplyAction(actionData);
     }
 
-    private CellWithOriginalReference GetModifiable(IReadOnlyHexWithData<IReadOnlyCellTemplate> cellTemplate)
+    private CellWithOriginalReference GetModifiable(IReadOnlyCellTemplate cellTemplate)
     {
         if (unusedCells.TryPop(out var existing))
         {
-            existing.ReuseFor(cellTemplate, cellTypes.GetOrCreateCellType(cellTemplate.Data!.CellType));
+            existing.ReuseFor(cellTemplate, cellTypes.GetOrCreateCellType(cellTemplate.CellType));
             return existing;
         }
 
-        return new CellWithOriginalReference(cellTemplate, cellTypes.GetOrCreateCellType(cellTemplate.Data!.CellType));
+        return new CellWithOriginalReference(cellTemplate, cellTypes.GetOrCreateCellType(cellTemplate.CellType));
     }
 
-    private sealed class CellWithOriginalReference : IReadOnlyHexWithData<IReadOnlyCellTemplate>, IReadOnlyCellTemplate
+    private sealed class CellWithOriginalReference : IReadOnlyCellTemplate
     {
         private IReadOnlyCellTypeDefinition usingCustomType;
 
         // The underlying cell type is always the same, so we just cast without caring here (also in ReuseFor)
-        public CellWithOriginalReference(IReadOnlyHexWithData<IReadOnlyCellTemplate> original,
+        public CellWithOriginalReference(IReadOnlyCellTemplate original,
             CellTypeEditsFacade typeWrapper)
         {
             Position = original.Position;
@@ -323,7 +309,7 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
         public IReadOnlyCellTypeDefinition CellType => usingCustomType;
 
-        public IReadOnlyHexWithData<IReadOnlyCellTemplate> OriginalFrom { get; private set; }
+        public IReadOnlyCellTemplate OriginalFrom { get; private set; }
 
         // Data forwarding for the interface implementation
         public IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> Organelles => CellType.Organelles;
@@ -334,10 +320,10 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
 
         public bool MatchesDefinition(IActionHex other)
         {
-            return OriginalFrom.Data?.CellType == ((IReadOnlyHexWithData<IReadOnlyCellTemplate>)other).Data?.CellType;
+            return OriginalFrom.CellType == ((IReadOnlyCellTemplate)other).CellType;
         }
 
-        internal void ReuseFor(IReadOnlyHexWithData<IReadOnlyCellTemplate> original, CellTypeEditsFacade typeWrapper)
+        internal void ReuseFor(IReadOnlyCellTemplate original, CellTypeEditsFacade typeWrapper)
         {
             if (original is CellWithOriginalReference withAncestorReference)
             {
@@ -355,23 +341,23 @@ public sealed class MulticellularEditsFacade : SpeciesEditsFacade, IReadOnlyMult
         }
     }
 
-    private class CellEnumerator : IEnumerator<IReadOnlyHexWithData<IReadOnlyCellTemplate>>
+    private class CellEnumerator : IEnumerator<IReadOnlyCellTemplate>
     {
         private readonly MulticellularEditsFacade dataSource;
 
-        private readonly IEnumerator<IReadOnlyHexWithData<IReadOnlyCellTemplate>> originalReader;
+        private readonly IEnumerator<IReadOnlyCellTemplate> originalReader;
 
         private int readIndex = -1;
 
-        private IReadOnlyHexWithData<IReadOnlyCellTemplate>? current;
+        private IReadOnlyCellTemplate? current;
 
         public CellEnumerator(MulticellularEditsFacade dataSource)
         {
             this.dataSource = dataSource;
-            originalReader = dataSource.multicellularSpecies.EditorCells.GetEnumerator();
+            originalReader = dataSource.multicellularSpecies.CellLayout.GetEnumerator();
         }
 
-        IReadOnlyHexWithData<IReadOnlyCellTemplate> IEnumerator<IReadOnlyHexWithData<IReadOnlyCellTemplate>>.Current =>
+        IReadOnlyCellTemplate IEnumerator<IReadOnlyCellTemplate>.Current =>
             current ?? throw new InvalidOperationException("No element");
 
         object? IEnumerator.Current => current;

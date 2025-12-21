@@ -934,7 +934,7 @@ public static class MicrobeColonyHelpers
     public static float SpawnAsFullyGrownMulticellularColony(Entity entity, MulticellularSpecies species,
         float originalWeight, CommandBuffer commandBuffer)
     {
-        int members = species.ModifiableGameplayCells.Count - 1;
+        int members = species.ModifiableCellLayout.Count - 1;
 
         // Ignore fully spawning multicellular species that only have one cell in them
         if (members < 1)

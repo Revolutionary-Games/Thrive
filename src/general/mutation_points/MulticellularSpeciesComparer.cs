@@ -10,8 +10,8 @@ public class MulticellularSpeciesComparer
     private readonly List<IReadOnlyCellTypeDefinition> originalCellTypes = new();
     private readonly List<IReadOnlyCellTypeDefinition> newCellTypes = new();
 
-    private readonly List<IReadOnlyHexWithData<IReadOnlyCellTemplate>> newCells = new();
-    private readonly List<IReadOnlyHexWithData<IReadOnlyCellTemplate>> oldCells = new();
+    private readonly List<IReadOnlyCellTemplate> newCells = new();
+    private readonly List<IReadOnlyCellTemplate> oldCells = new();
 
     public static double CompareCellTypes(List<IReadOnlyCellTypeDefinition> originalCellTypes,
         List<IReadOnlyCellTypeDefinition> newCellTypes, MicrobeSpeciesComparer typeComparer)
@@ -82,8 +82,8 @@ public class MulticellularSpeciesComparer
         newCellTypes.Clear();
 
         // Then body plan change costs
-        newCells.AddRange(speciesB.EditorCells);
-        oldCells.AddRange(speciesA.EditorCells);
+        newCells.AddRange(speciesB.CellLayout);
+        oldCells.AddRange(speciesA.CellLayout);
 
         // TODO: should this go in reverse order for more efficient removes?
         foreach (var newCell in newCells)
@@ -94,8 +94,8 @@ public class MulticellularSpeciesComparer
             {
                 // TODO: should we add leniency here on the name?
                 if (oldCell.Position == newCell.Position &&
-                    StringComparer.InvariantCultureIgnoreCase.Equals(oldCell.Data!.CellType.CellTypeName,
-                        newCell.Data!.CellType.CellTypeName))
+                    StringComparer.InvariantCultureIgnoreCase.Equals(oldCell.CellType.CellTypeName,
+                        newCell.CellType.CellTypeName))
                 {
                     if (!oldCells.Remove(oldCell))
                         throw new Exception("Expected remove failed");
@@ -112,8 +112,8 @@ public class MulticellularSpeciesComparer
                 // end up with a single move and add operation in the end anyway
                 foreach (var oldCell in oldCells)
                 {
-                    if (StringComparer.InvariantCultureIgnoreCase.Equals(oldCell.Data!.CellType.CellTypeName,
-                            newCell.Data!.CellType.CellTypeName))
+                    if (StringComparer.InvariantCultureIgnoreCase.Equals(oldCell.CellType.CellTypeName,
+                            newCell.CellType.CellTypeName))
                     {
                         if (!oldCells.Remove(oldCell))
                             throw new Exception("Expected remove failed");
@@ -130,7 +130,7 @@ public class MulticellularSpeciesComparer
             if (!match)
             {
                 // Added a new cell
-                cost += newCell.Data!.CellType.MPCost;
+                cost += newCell.CellType.MPCost;
             }
         }
 

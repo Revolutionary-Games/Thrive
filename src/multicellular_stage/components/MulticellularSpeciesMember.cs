@@ -21,7 +21,7 @@ public struct MulticellularSpeciesMember : IArchivableComponent
     /// <summary>
     ///   Used to keep track of which part of a body plan a non-first cell in a multicellular colony is.
     ///   This is required for regrowing after losing a cell. This is the index of
-    ///   <see cref="MulticellularCellType"/> in the <see cref="MulticellularSpecies.ModifiableGameplayCells"/>
+    ///   <see cref="MulticellularCellType"/> in the <see cref="MulticellularSpecies.ModifiableCellLayout"/>
     /// </summary>
     public int MulticellularBodyPlanPartIndex;
 
@@ -33,7 +33,7 @@ public struct MulticellularSpeciesMember : IArchivableComponent
     public MulticellularSpeciesMember(MulticellularSpecies species, CellType cellType,
         int cellBodyPlanIndex)
     {
-        if (cellBodyPlanIndex < 0 || cellBodyPlanIndex >= species.ModifiableGameplayCells.Count)
+        if (cellBodyPlanIndex < 0 || cellBodyPlanIndex >= species.ModifiableCellLayout.Count)
             throw new ArgumentException("Bad body plan index given");
 
         Species = species;

@@ -29,10 +29,10 @@ public partial class MulticellularStageStarter : ComplexStageStarterBase
         {
             var template = new CellTemplate(cellType, new Hex(q, 1), 0);
 
-            if (!playerSpecies.ModifiableGameplayCells.CanPlace(template, workMemory1, workMemory2))
+            if (!playerSpecies.ModifiableCellLayout.CanPlace(template, workMemory1, workMemory2))
                 continue;
 
-            playerSpecies.ModifiableGameplayCells.AddFast(template, workMemory1, workMemory2);
+            playerSpecies.ModifiableCellLayout.AddFast(template, workMemory1, workMemory2);
             break;
         }
 
@@ -40,10 +40,10 @@ public partial class MulticellularStageStarter : ComplexStageStarterBase
         {
             var template = new CellTemplate(cellType, new Hex(q, 1), 0);
 
-            if (!playerSpecies.ModifiableGameplayCells.CanPlace(template, workMemory1, workMemory2))
+            if (!playerSpecies.ModifiableCellLayout.CanPlace(template, workMemory1, workMemory2))
                 continue;
 
-            playerSpecies.ModifiableGameplayCells.AddFast(template, workMemory1, workMemory2);
+            playerSpecies.ModifiableCellLayout.AddFast(template, workMemory1, workMemory2);
             break;
         }
 

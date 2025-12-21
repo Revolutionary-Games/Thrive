@@ -158,7 +158,7 @@ public class GameWorld : IArchivable
                 else if (PlayerSpecies is MulticellularSpecies multicellularSpecies)
                 {
                     PlayerSpecies.ModifiableTolerances.CopyFrom(patch.GenerateTolerancesForMicrobe(multicellularSpecies
-                        .ModifiableGameplayCells[0].ModifiableOrganelles));
+                        .ModifiableCellLayout[0].ModifiableOrganelles));
                 }
                 else
                 {
@@ -836,7 +836,7 @@ public class GameWorld : IArchivable
 
         var stemCellType = new CellType(microbeSpecies, workMemory1, workMemory2);
 
-        multicellularVersion.ModifiableGameplayCells.AddFast(new CellTemplate(stemCellType), workMemory1, workMemory2);
+        multicellularVersion.ModifiableCellLayout.AddFast(new CellTemplate(stemCellType), workMemory1, workMemory2);
         multicellularVersion.ModifiableCellTypes.Add(stemCellType);
 
         multicellularVersion.OnEdited();
@@ -871,7 +871,7 @@ public class GameWorld : IArchivable
         // Create metaballs for everything first
         var metaballs = new List<MacroscopicMetaball>();
 
-        foreach (var cellTemplate in earlySpecies.ModifiableGameplayCells)
+        foreach (var cellTemplate in earlySpecies.ModifiableCellLayout)
         {
             var metaball = new MacroscopicMetaball(cellTemplate.ModifiableCellType)
             {
