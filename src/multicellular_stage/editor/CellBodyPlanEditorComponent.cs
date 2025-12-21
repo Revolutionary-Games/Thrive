@@ -186,7 +186,7 @@ public partial class CellBodyPlanEditorComponent :
         {
             showGrowthOrderNumbers = value;
 
-            UpdateGrowthOrderButtons();
+            UpdateGrowthOrderUI();
         }
     }
 
@@ -270,13 +270,6 @@ public partial class CellBodyPlanEditorComponent :
         {
             OnCellsChanged();
             cellDataDirty = false;
-        }
-
-        // Update the growth order number positions each frame so that the camera moving doesn't get them out of sync
-        // could do this with a dirty-flag approach for saving on performance but for now this is probably fine
-        if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
-        {
-            UpdateGrowthOrderNumbers();
         }
 
         // Show the cell that is about to be placed
@@ -1232,7 +1225,7 @@ public partial class CellBodyPlanEditorComponent :
 
         UpdateFinishButtonWarningVisibility();
 
-        UpdateGrowthOrderButtons();
+        UpdateGrowthOrderUI();
     }
 
     private void UpdateStats()
@@ -1418,6 +1411,8 @@ public partial class CellBodyPlanEditorComponent :
     private void OnGrowthOrderChanged()
     {
         RecalculateWrongGrowthOrderCells();
+
+        UpdateGrowthOrderUI();
 
         UpdateFinishButtonWarningVisibility();
     }
@@ -1697,7 +1692,7 @@ public partial class CellBodyPlanEditorComponent :
                 growthOrderTabButton.ButtonPressed = true;
 
                 ShowGrowthOrder = true;
-                UpdateGrowthOrderButtons();
+                UpdateGrowthOrderUI();
                 break;
             }
 

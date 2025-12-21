@@ -392,7 +392,7 @@ public partial class CellEditorComponent :
         {
             showGrowthOrderNumbers = value;
 
-            UpdateGrowthOrderButtons();
+            UpdateGrowthOrderUI();
         }
     }
 
@@ -733,13 +733,6 @@ public partial class CellEditorComponent :
         {
             // Init being called is checked at the start of this method
             previewSimulation!.ProcessAll((float)delta);
-        }
-
-        // Update the growth order number positions each frame so that the camera moving doesn't get them out of sync
-        // could do this with a dirty-flag approach for saving on performance but for now this is probably fine
-        if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
-        {
-            UpdateGrowthOrderNumbers();
         }
 
         if (refreshTolerancesWarnings)
@@ -2509,7 +2502,7 @@ public partial class CellEditorComponent :
         // Updated here to make sure everything else has been updated first so tooltips are accurate
         UpdateOrganelleUnlockTooltips(false);
 
-        UpdateGrowthOrderButtons();
+        UpdateGrowthOrderUI();
     }
 
     /// <summary>
@@ -2868,6 +2861,11 @@ public partial class CellEditorComponent :
         target.ModifiableTolerances.CopyFrom(tolerancesEditor.CurrentTolerances);
     }
 
+    private void OnGrowthOrderChanged()
+    {
+        UpdateGrowthOrderUI();
+    }
+
     private void SetLightLevelOption(int option)
     {
         // Show selected light level
@@ -2966,7 +2964,7 @@ public partial class CellEditorComponent :
                 MicrobePreviewMode = false;
                 ShowGrowthOrder = true;
 
-                UpdateGrowthOrderButtons();
+                UpdateGrowthOrderUI();
                 break;
             }
 

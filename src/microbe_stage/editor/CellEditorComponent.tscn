@@ -1403,6 +1403,7 @@ libraries = {
 [connection signal="value_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider" to="." method="OnRigidityChanged"]
 [connection signal="color_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/TweakedColourPicker" to="." method="OnColorChanged"]
 [connection signal="OnBehaviourChanged" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour" to="." method="OnEmbeddedBehaviourEditorChangedData"]
+[connection signal="OnGrowthOrderChanged" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker" to="." method="OnGrowthOrderChanged"]
 [connection signal="OrderReset" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker" to="." method="OnResetGrowthOrderPressed"]
 [connection signal="toggled" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/Coordinates" to="." method="OnGrowthOrderCoordinatesToggled"]
 [connection signal="OnTolerancesChanged" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor" to="." method="OnTolerancesEditorChangedData"]

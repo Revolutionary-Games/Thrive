@@ -144,7 +144,7 @@ public partial class CellBodyPlanEditorComponent
         UpdateCancelButtonVisibility();
     }
 
-    private void UpdateGrowthOrderButtons()
+    private void UpdateGrowthOrderUI()
     {
         if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
         {
@@ -164,10 +164,13 @@ public partial class CellBodyPlanEditorComponent
 
     private void UpdateGrowthOrderNumbers()
     {
-        UpdateFloatingLabels(GrowthOrderFloatingNumbers());
+        if (!ShowGrowthOrder)
+            return;
+
+        UpdateFloatingLabelConfiguration(GrowthOrderFloatingNumbers());
     }
 
-    private IEnumerable<(Vector2 Position, string Text, Color TextColor)> GrowthOrderFloatingNumbers()
+    private IEnumerable<(Vector3 Position, string Text, Color TextColor)> GrowthOrderFloatingNumbers()
     {
         var orderList = growthOrderGUI.GetCurrentOrder();
         var orderListCount = orderList.Count;
@@ -192,7 +195,7 @@ public partial class CellBodyPlanEditorComponent
                 }
             }
 
-            yield return (camera!.UnprojectPosition(Hex.AxialToCartesian(cell.Position)), order.ToString(),
+            yield return (Hex.AxialToCartesian(cell.Position), order.ToString(),
                 wrongGrowthOrderCells.Contains(cell.Position) ? Colors.Red : Colors.White);
         }
     }

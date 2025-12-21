@@ -827,7 +827,7 @@ public partial class CellEditorComponent
         }
     }
 
-    private void UpdateGrowthOrderButtons()
+    private void UpdateGrowthOrderUI()
     {
         // To save on performance, only update this when it is actually visible to the player
         if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
@@ -846,10 +846,13 @@ public partial class CellEditorComponent
 
     private void UpdateGrowthOrderNumbers()
     {
-        UpdateFloatingLabels(GrowthOrderFloatingNumbers());
+        if (!ShowGrowthOrder)
+            return;
+
+        UpdateFloatingLabelConfiguration(GrowthOrderFloatingNumbers());
     }
 
-    private IEnumerable<(Vector2 Position, string Text, Color TextColor)> GrowthOrderFloatingNumbers()
+    private IEnumerable<(Vector3 Position, string Text, Color TextColor)> GrowthOrderFloatingNumbers()
     {
         var orderList = growthOrderGUI.GetCurrentOrder();
         var orderListCount = orderList.Count;
@@ -874,7 +877,7 @@ public partial class CellEditorComponent
                 }
             }
 
-            yield return (camera!.UnprojectPosition(Hex.AxialToCartesian(editedMicrobeOrganelle.Position)),
+            yield return (Hex.AxialToCartesian(editedMicrobeOrganelle.Position),
                 order.ToString(), Colors.White);
         }
     }

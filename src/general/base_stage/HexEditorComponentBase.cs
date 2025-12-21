@@ -101,7 +101,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
     private static readonly StringName FontColorOverrideName = new("font_color");
 
-    private readonly Dictionary<string, FloatingLabel> createdFloatingLabels = new();
+    private readonly List<FloatingLabel> createdFloatingLabels = new();
 
     private readonly NodePath positionZReference = new("position:z");
 
@@ -287,6 +287,8 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
 
         camera.UpdateCameraPosition(delta, cameraFollow.GlobalPosition);
+
+        UpdateFloatingLabelPositions();
     }
 
     public override void WritePropertiesToArchive(ISArchiveWriter writer)
@@ -1062,36 +1064,38 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     }
 
     /// <summary>
-    ///   Updates floating labels that can be used by inheriting classes for arbitrary purposes (like growth order)
+    ///   Updates floating labels which can be used by inheriting classes for arbitrary purposes (like growth order)
     /// </summary>
-    protected void UpdateFloatingLabels(IEnumerable<(Vector2 Position, string Text, Color TextColor)> labels)
+    protected void UpdateFloatingLabelConfiguration(IEnumerable<(Vector3 TargetPosition, string Text, Color TextColor)> labels)
     {
-        if (!ShowFloatingLabels)
-        {
-            floatingLabelContainer.Visible = false;
-            return;
-        }
-
-        floatingLabelContainer.Visible = true;
-
         // Setup tracking for what gets used
-        foreach (var orderLabel in createdFloatingLabels.Values)
+        for (int i = 0; i < createdFloatingLabels.Count; i++)
         {
-            orderLabel.Marked = false;
+            createdFloatingLabels[i].Active = false;
         }
+
+        int currentLabelId = 0;
 
         foreach (var label in labels)
         {
-            if (!createdFloatingLabels.TryGetValue(label.Text, out var graphicalLabel))
+            FloatingLabel graphicalLabel = null!;
+
+            if (currentLabelId >= createdFloatingLabels.Count)
             {
-                graphicalLabel = FloatingLabel.Create(label.Text);
+                graphicalLabel = new FloatingLabel();
                 floatingLabelContainer.AddChild(graphicalLabel);
-                createdFloatingLabels.Add(label.Text, graphicalLabel);
+                createdFloatingLabels.Add(graphicalLabel);
+            }
+            else
+            {
+                graphicalLabel = createdFloatingLabels[currentLabelId];
             }
 
-            graphicalLabel.Position = label.Position;
+            graphicalLabel.Active = true;
             graphicalLabel.Visible = true;
-            graphicalLabel.Marked = true;
+
+            graphicalLabel.TargetPosition = label.TargetPosition;
+            graphicalLabel.Text = label.Text;
 
             if (label.TextColor != Colors.White)
             {
@@ -1101,14 +1105,17 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
             {
                 graphicalLabel.RemoveThemeColorOverride(FontColorOverrideName);
             }
+
+            ++currentLabelId;
         }
 
         // Hide unused labels
-        foreach (var orderLabel in createdFloatingLabels.Values)
+        for (int i = currentLabelId; i < createdFloatingLabels.Count; i++)
         {
-            if (!orderLabel.Marked)
-                orderLabel.Visible = false;
+            createdFloatingLabels[i].Visible = false;
         }
+
+        UpdateFloatingLabelPositions();
     }
 
     protected virtual void PerformActiveAction()
@@ -1176,6 +1183,29 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         base.Dispose(disposing);
     }
 
+    private void UpdateFloatingLabelPositions()
+    {
+        if (!ShowFloatingLabels)
+        {
+            floatingLabelContainer.Visible = false;
+            return;
+        }
+
+        floatingLabelContainer.Visible = true;
+
+        int count = createdFloatingLabels.Count;
+        for (int i = 0; i < count; i++)
+        {
+            var label = createdFloatingLabels[i];
+
+            if (!label.Active)
+                continue;
+
+            label.Visible = true;
+            label.Position = camera!.UnprojectPosition(label.TargetPosition);
+        }
+    }
+
     /// <summary>
     ///   Moves the camera in a direction (note that height (y-axis) should not be used)
     /// </summary>
@@ -1201,15 +1231,8 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     /// </summary>
     protected partial class FloatingLabel : Label
     {
-        public bool Marked { get; set; }
+        public bool Active { get; set; } = true;
 
-        public static FloatingLabel Create(string text)
-        {
-            return new FloatingLabel
-            {
-                Text = text,
-                Marked = true,
-            };
-        }
+        public Vector3 TargetPosition { get; set; }
     }
 }
