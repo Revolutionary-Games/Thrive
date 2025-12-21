@@ -202,7 +202,7 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
             lastItem.CanMoveDown = false;
     }
 
-    /// <inheritdoc cref="ApplyOrderingToItems{T}(IEnumerable{T}, Func{T, IPlayerReadableName})"/>
+    /// <inheritdoc cref="ApplyOrderingToItems{T}(IEnumerable{T}, Func{T,IPlayerReadableName})"/>
     public IEnumerable<T> ApplyOrderingToItems<T>(IEnumerable<T> rawItems)
         where T : IPlayerReadableName
     {
