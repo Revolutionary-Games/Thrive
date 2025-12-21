@@ -1066,10 +1066,11 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     /// <summary>
     ///   Updates floating labels which can be used by inheriting classes for arbitrary purposes (like growth order)
     /// </summary>
-    protected void UpdateFloatingLabelConfiguration(IEnumerable<(Vector3 TargetPosition, string Text, Color TextColor)> labels)
+    protected void UpdateFloatingLabelConfiguration(
+        IEnumerable<(Vector3 TargetPosition, string Text, Color TextColor)> labels)
     {
         // Setup tracking for what gets used
-        for (int i = 0; i < createdFloatingLabels.Count; i++)
+        for (int i = 0; i < createdFloatingLabels.Count; ++i)
         {
             createdFloatingLabels[i].Active = false;
         }
@@ -1110,7 +1111,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         }
 
         // Hide unused labels
-        for (int i = currentLabelId; i < createdFloatingLabels.Count; i++)
+        for (int i = currentLabelId; i < createdFloatingLabels.Count; ++i)
         {
             createdFloatingLabels[i].Visible = false;
         }
@@ -1194,7 +1195,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         floatingLabelContainer.Visible = true;
 
         int count = createdFloatingLabels.Count;
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; ++i)
         {
             var label = createdFloatingLabels[i];
 
