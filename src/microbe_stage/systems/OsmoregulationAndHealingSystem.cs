@@ -147,7 +147,6 @@ public partial class OsmoregulationAndHealingSystem : BaseSystem<World, float>
             osmoregulationCost *= 20.0f / (20.0f + colonySize);
         }
 
-        // 30% osmoregulation bonus if have nucleus
         if (!cellProperties.IsBacteria)
         {
             osmoregulationCost *= Constants.NUCLEUS_OSMOREGULATION_COST_MODIFIER;
