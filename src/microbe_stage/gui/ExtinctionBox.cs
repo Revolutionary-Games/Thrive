@@ -5,6 +5,7 @@
 /// </summary>
 public partial class ExtinctionBox : CustomWindow
 {
+    public string AmountSuffix = Constants.MICROBE_POPULATION_SUFFIX;
 #pragma warning disable CA2213
     [Export]
     private Control extinctionMenu = null!;
@@ -143,8 +144,7 @@ public partial class ExtinctionBox : CustomWindow
         {
             continueButton.Visible = true;
             continueText.ExtendedBbcode = Localization.Translate("CONTINUE_AS_SPECIES")
-                .FormatSafe(ShowContinueAs.FormattedNameBbCode,
-                    StringUtils.ThreeDigitFormat(ShowContinueAs.Population));
+                .FormatSafe(ShowContinueAs.FormattedNameBbCode, $"{ShowContinueAs.Population} {AmountSuffix}");
             continueText.Visible = true;
         }
         else
