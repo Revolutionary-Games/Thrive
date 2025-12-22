@@ -72,6 +72,7 @@ public class ReproductionCompoundPressure : SelectionPressure
             return 0;
 
         var activeProcessList = cache.GetActiveProcessList(microbeSpecies);
+        var activity = microbeSpecies.Behaviour.Activity;
 
         // Let the miche function even at a compound level of 0
         var compoundAmount = 1.0f;
@@ -88,7 +89,7 @@ public class ReproductionCompoundPressure : SelectionPressure
         // Species that are less active during the night get a small penalty here based on their activity
         if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome))
         {
-            var multiplier = species.Behaviour.Activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
+            var multiplier = activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
 
             // Make the multiplier less extreme
             multiplier *= Constants.AUTO_EVO_NIGHT_SESSILITY_COLLECTING_PENALTY_MULTIPLIER;
@@ -158,7 +159,7 @@ public class ReproductionCompoundPressure : SelectionPressure
         var finalScore = 0.1f;
 
         // modify score by activity
-        var activityFraction = microbeSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+        var activityFraction = activity / Constants.MAX_SPECIES_ACTIVITY;
 
         finalScore += (score + chemoreceptorScore) * activityFraction;
         finalScore += score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
