@@ -177,7 +177,7 @@ public class GlobalGlaciationEvent : IWorldEffect
 
         PatchEventProperties eventProperties = new()
         {
-            SunlightAmbientMultiplier = Math.Min(GetSunlightMultiplier() * (isIceShelf ? 1.5f : 1), 1.0f),
+            SunlightAmbientMultiplier = Math.Min(GetSunlightMultiplier(), 1.0f),
             TemperatureAmbientFixedValue = isIceShelf ? random.Next(-7, 0) : random.Next(-4, 2),
         };
 
