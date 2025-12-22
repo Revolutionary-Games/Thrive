@@ -20,6 +20,9 @@ public partial class DebugOverlays : Control
     private CustomWindow debugPanelDialog = null!;
 
     [Export]
+    private CustomWindow debugConsole = null!;
+
+    [Export]
     private CheckBox fpsCheckBox = null!;
 
     [Export]
@@ -63,6 +66,8 @@ public partial class DebugOverlays : Control
 
         if (instance == this)
             instance = null;
+
+        DebugConsoleManager.Clear();
     }
 
     public override void _Process(double delta)
@@ -112,6 +117,19 @@ public partial class DebugOverlays : Control
         else
         {
             debugPanelDialog.Hide();
+        }
+    }
+
+    [RunOnKeyDown("toggle_debug_console", OnlyUnhandled = false)]
+    public void OnDebugConsoleToggled()
+    {
+        if (!debugConsole.Visible)
+        {
+            debugConsole.Show();
+        }
+        else
+        {
+            debugConsole.Hide();
         }
     }
 
