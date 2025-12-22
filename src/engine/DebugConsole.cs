@@ -68,9 +68,6 @@ public partial class DebugConsole : CustomWindow
         {
             foreach (var ln in lineBuffer)
             {
-                consoleArea.SetCaretLine(-1);
-                consoleArea.SetCaretColumn(-1);
-
                 consoleArea.InsertTextAtCaret(ln.Line);
             }
 
