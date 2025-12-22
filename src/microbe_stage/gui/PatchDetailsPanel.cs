@@ -442,7 +442,8 @@ public partial class PatchDetailsPanel : PanelContainer, IArchiveUpdatable
         foreach (var species in SelectedPatch.SpeciesInPatch.Keys.OrderBy(s => s.FormattedName))
         {
             speciesList.AppendLine(Localization.Translate("SPECIES_WITH_POPULATION").FormatSafe(
-                species.FormattedNameBbCode, $"{SelectedPatch.GetSpeciesSimulationPopulation(species)} {AmountSuffix}"));
+                species.FormattedNameBbCode,
+                $"{SelectedPatch.GetSpeciesSimulationPopulation(species)} {AmountSuffix}"));
         }
 
         speciesInfoDisplay.ExtendedBbcode = speciesList.ToString();
