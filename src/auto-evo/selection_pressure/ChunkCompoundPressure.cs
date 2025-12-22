@@ -81,7 +81,12 @@ public class ChunkCompoundPressure : SelectionPressure
 
         // Additional bonus from chemoreceptor
         var chemoreceptorScore = cache.GetChemoreceptorChunkScore(microbeSpecies, chunk, compound, patch.Biome);
-        score += chemoreceptorScore;
+
+        // modify score by activity
+        var activityFraction = microbeSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
+
+        score = (score + chemoreceptorScore) * activityFraction
+            + score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
 
         // Diminishing returns on storage
         score += (MathF.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) / 0.8f;
