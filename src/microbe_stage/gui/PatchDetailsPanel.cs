@@ -13,7 +13,6 @@ using Range = Godot.Range;
 public partial class PatchDetailsPanel : PanelContainer, IArchiveUpdatable
 {
     public const ushort SERIALIZATION_VERSION = 1;
-    public string AmountSuffix = Constants.MICROBE_POPULATION_SUFFIX;
 
 #pragma warning disable CA2213
     [Export]
@@ -443,7 +442,7 @@ public partial class PatchDetailsPanel : PanelContainer, IArchiveUpdatable
         {
             speciesList.AppendLine(Localization.Translate("SPECIES_WITH_POPULATION").FormatSafe(
                 species.FormattedNameBbCode,
-                $"{SelectedPatch.GetSpeciesSimulationPopulation(species)} {AmountSuffix}"));
+                $"{SelectedPatch.GetSpeciesSimulationPopulation(species)} {Constants.MICROBE_POPULATION_SUFFIX}"));
         }
 
         speciesInfoDisplay.ExtendedBbcode = speciesList.ToString();
