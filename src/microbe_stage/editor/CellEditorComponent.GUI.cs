@@ -17,8 +17,6 @@ using UnlockConstraints;
 /// </remarks>
 public partial class CellEditorComponent
 {
-    private readonly Dictionary<int, GrowthOrderLabel> createdGrowthOrderLabels = new();
-
     private readonly List<Label> activeToleranceWarnings = new();
 
     private int usedToleranceWarnings;
@@ -829,22 +827,33 @@ public partial class CellEditorComponent
         }
     }
 
+    private void UpdateGrowthOrderUI()
+    {
+        // To save on performance, only update this when it is actually visible to the player
+        if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
+        {
+            growthOrderGUI.UpdateItems(growthOrderGUI.ApplyOrderingToItems(editedMicrobeOrganelles.Organelles));
+        }
+
+        UpdateGrowthOrderNumbers();
+    }
+
+    private void OnResetGrowthOrderPressed()
+    {
+        growthOrderGUI.UpdateItems(editedMicrobeOrganelles.Organelles);
+        UpdateGrowthOrderNumbers();
+    }
+
     private void UpdateGrowthOrderNumbers()
     {
         if (!ShowGrowthOrder)
-        {
-            growthOrderNumberContainer.Visible = false;
             return;
-        }
 
-        growthOrderNumberContainer.Visible = true;
+        UpdateFloatingLabelConfiguration(GrowthOrderFloatingNumbers());
+    }
 
-        // Setup tracking for what gets used
-        foreach (var orderLabel in createdGrowthOrderLabels.Values)
-        {
-            orderLabel.Marked = false;
-        }
-
+    private IEnumerable<(Vector3 Position, string Text, Color TextColor)> GrowthOrderFloatingNumbers()
+    {
         var orderList = growthOrderGUI.GetCurrentOrder();
         var orderListCount = orderList.Count;
 
@@ -868,62 +877,13 @@ public partial class CellEditorComponent
                 }
             }
 
-            if (!createdGrowthOrderLabels.TryGetValue(order, out var graphicalLabel))
-            {
-                graphicalLabel = GrowthOrderLabel.Create(order);
-                growthOrderNumberContainer.AddChild(graphicalLabel);
-                createdGrowthOrderLabels.Add(order, graphicalLabel);
-            }
-
-            graphicalLabel.Position = camera!.UnprojectPosition(Hex.AxialToCartesian(editedMicrobeOrganelle.Position));
-            graphicalLabel.Visible = true;
-            graphicalLabel.Marked = true;
+            yield return (Hex.AxialToCartesian(editedMicrobeOrganelle.Position),
+                order.ToString(), Colors.White);
         }
-
-        // Hide unused labels
-        foreach (var orderLabel in createdGrowthOrderLabels.Values)
-        {
-            if (!orderLabel.Marked)
-                orderLabel.Visible = false;
-        }
-    }
-
-    private void UpdateGrowthOrderButtons()
-    {
-        // To save on performance, only update this when it is actually visible to the player
-        if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
-        {
-            growthOrderGUI.UpdateItems(growthOrderGUI.ApplyOrderingToItems(editedMicrobeOrganelles.Organelles));
-        }
-
-        UpdateGrowthOrderNumbers();
-    }
-
-    private void OnResetGrowthOrderPressed()
-    {
-        growthOrderGUI.UpdateItems(editedMicrobeOrganelles.Organelles);
-        UpdateGrowthOrderNumbers();
     }
 
     private void OnGrowthOrderCoordinatesToggled(bool show)
     {
         growthOrderGUI.ShowCoordinates = show;
-    }
-
-    /// <summary>
-    ///   A simple label showing the growth order of something
-    /// </summary>
-    private partial class GrowthOrderLabel : Label
-    {
-        public bool Marked { get; set; }
-
-        public static GrowthOrderLabel Create(int number)
-        {
-            return new GrowthOrderLabel
-            {
-                Text = number.ToString(),
-                Marked = true,
-            };
-        }
     }
 }
