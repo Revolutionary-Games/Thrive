@@ -94,7 +94,7 @@ offset_right = 380.0
 offset_bottom = 372.0
 theme = ExtResource("9_qsaes")
 script = ExtResource("10_syfxw")
-consoleArea = NodePath("VBoxContainer/ConsoleArea")
+consoleArea = NodePath("VBoxContainer/RichTextLabel")
 WindowTitle = "DEBUG_CONSOLE"
 Resizable = true
 
@@ -113,11 +113,12 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="ConsoleArea" type="TextEdit" parent="DebugConsole/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="DebugConsole/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-editable = false
-drag_and_drop_selection_enabled = false
+focus_mode = 2
+autowrap_mode = 0
+selection_enabled = true
 
 [node name="LineEdit" type="LineEdit" parent="DebugConsole/VBoxContainer"]
 layout_mode = 2

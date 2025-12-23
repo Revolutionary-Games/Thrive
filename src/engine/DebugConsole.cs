@@ -11,7 +11,7 @@ public partial class DebugConsole : CustomWindow
 
 #pragma warning disable CA2213
     [Export]
-    private TextEdit consoleArea = null!;
+    private RichTextLabel consoleArea = null!;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -40,9 +40,6 @@ public partial class DebugConsole : CustomWindow
 
     public override void _Ready()
     {
-        consoleArea.SyntaxHighlighter = DebugConsoleManager.Highlighter;
-        consoleArea.SetEditable(false);
-
         ReloadGUI();
 
         base._Ready();
@@ -66,9 +63,24 @@ public partial class DebugConsole : CustomWindow
     {
         lock (lineBuffer)
         {
+            var lineCount = consoleArea.GetLineCount();
+
+            if (lineCount + lineBuffer.Count > DebugConsoleManager.MaxConsoleSize)
+            {
+                for (var i = 0; i < lineBuffer.Count; i += 1)
+                {
+                    consoleArea.RemoveParagraph(0, true);
+                }
+
+                consoleArea.InvalidateParagraph(0);
+            }
+
             foreach (var ln in lineBuffer)
             {
-                consoleArea.InsertTextAtCaret(ln.Line);
+                consoleArea.PushColor(ln.Color);
+                consoleArea.AppendText(ln.Line.StripEdges(false));
+                consoleArea.Pop();
+                consoleArea.Newline();
             }
 
             lineBuffer.Clear();

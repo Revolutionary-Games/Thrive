@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
-using Godot.Collections;
 
 /// <summary>
 ///   The debug console manager.
 ///   This is used by Debug Consoles to retrieve logs.
 ///   System output is transferred to this manager by the LogInterceptor.
 /// </summary>
-public static partial class DebugConsoleManager
+public static class DebugConsoleManager
 {
-    public static readonly DebugConsoleHighlighter Highlighter = new();
-
-    private const uint MaxConsoleSize = 255;
+    public const uint MaxConsoleSize = 255;
 
     private static readonly List<ConsoleLine> Lines = [];
 
@@ -71,33 +68,8 @@ public static partial class DebugConsoleManager
     /// <param name="Color"> the line color</param>
     public record ConsoleLine(string Line, Color Color);
 
-    /// <summary>
-    ///   A custom syntax highlighter for our Debug Console to support custom line colors.
-    /// </summary>
-    public partial class DebugConsoleHighlighter : SyntaxHighlighter
+    public class ConsoleLineArgs(ConsoleLine line) : EventArgs
     {
-        public override Dictionary _GetLineSyntaxHighlighting(int line)
-        {
-            var result = new Dictionary();
-
-            var formatDict = new Dictionary
-            {
-                { "color", Colors.White },
-            };
-
-            result[0] = formatDict;
-
-            return result;
-        }
-    }
-
-    public class ConsoleLineArgs : EventArgs
-    {
-        public ConsoleLineArgs(ConsoleLine line)
-        {
-            Line = line;
-        }
-
-        public ConsoleLine Line { get; set; }
+        public ConsoleLine Line { get; } = line;
     }
 }

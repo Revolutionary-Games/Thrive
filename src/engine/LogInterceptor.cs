@@ -29,9 +29,6 @@ public partial class LogInterceptor : Logger
             return;
         }
 
-        DebugConsoleManager.Print("init");
-        DebugConsoleManager.Print("init", true);
-
         instance = new LogInterceptor();
         OS.AddLogger(instance);
     }
