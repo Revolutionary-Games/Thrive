@@ -95,7 +95,7 @@ offset_bottom = 372.0
 theme = ExtResource("9_qsaes")
 script = ExtResource("10_syfxw")
 consoleArea = NodePath("VBoxContainer/ConsoleArea")
-WindowTitle = "Debug Console"
+WindowTitle = "DEBUG_CONSOLE"
 Resizable = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DebugConsole"]
@@ -121,7 +121,7 @@ drag_and_drop_selection_enabled = false
 
 [node name="LineEdit" type="LineEdit" parent="DebugConsole/VBoxContainer"]
 layout_mode = 2
-placeholder_text = "Command"
+placeholder_text = "COMMAND_INPUT_LINE_EDIT"
 
 [node name="DebugPanel" parent="." instance=ExtResource("1")]
 layout_mode = 0
