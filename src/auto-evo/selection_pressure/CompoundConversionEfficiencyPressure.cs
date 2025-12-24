@@ -65,22 +65,7 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
 
-        var score = cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies, patch.Biome);
-
-        var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
-
-        // Assume that the species cannot focus efficiently on one energy source if it converts others as well
-        if (ToCompound.ID == atp.ID)
-        {
-            score *= score / energyBalance.TotalProduction;
-        }
-        else
-        {
-            score *= score * cache.GetCompoundConversionScoreForSpecies(ToCompound, atp, microbeSpecies, patch.Biome)
-                / energyBalance.TotalProduction;
-        }
-
-        return score;
+        return cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies, patch.Biome);
     }
 
     public override float GetEnergy(Patch patch)
