@@ -68,7 +68,7 @@ void start() {
     TRANSFORM[2].xyz *= visibleScale;
     
     CUSTOM.w = 1.0f - backgroundFactor * 0.9f;
-    CUSTOM.z = gameTime + LIFETIME * 0.5f;
+    CUSTOM.z = gameTime;
 }
 
 void process() {
