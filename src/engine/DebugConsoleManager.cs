@@ -22,8 +22,8 @@ public static class DebugConsoleManager
     /// <param name="isError">Whether it is an error message</param>
     public static void Print(string line, bool isError = false)
     {
-        var col = isError ? Colors.Red : Colors.White;
-        var consoleLine = new ConsoleLine(line, col);
+        var color = isError ? Colors.Red : Colors.White;
+        var consoleLine = new ConsoleLine(line, color);
 
         lock (Lines)
         {
@@ -39,9 +39,6 @@ public static class DebugConsoleManager
         OnMessageReceived?.Invoke(null, new ConsoleLineArgs(consoleLine));
     }
 
-    /// <summary>
-    ///   Clears logs in the console manager.
-    /// </summary>
     public static void Clear()
     {
         lock (Lines)
@@ -50,9 +47,6 @@ public static class DebugConsoleManager
         }
     }
 
-    /// <summary>
-    ///   Returns a readonly copy list of the console lines.
-    /// </summary>
     public static IReadOnlyList<ConsoleLine> GetLines()
     {
         lock (Lines)
