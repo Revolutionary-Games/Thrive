@@ -508,6 +508,8 @@ public class Settings
     [JsonProperty]
     public SettingValue<bool> CheatsEnabled { get; private set; } = new(false);
 
+    public SettingValue<bool> DebugConsoleEnabled { get; private set; } = new(false);
+
     /// <summary>
     ///   Enables online news feed
     /// </summary>
