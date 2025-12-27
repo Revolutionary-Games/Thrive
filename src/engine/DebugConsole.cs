@@ -14,9 +14,6 @@ public partial class DebugConsole : CustomWindow
     private RichTextLabel consoleArea = null!;
 #pragma warning restore CA2213
 
-    /// <summary>
-    ///   Whether the console may be opened.
-    /// </summary>
     public static bool CanOpenConsole => Settings.Instance.DebugConsoleEnabled;
 
     public bool IsConsoleOpen

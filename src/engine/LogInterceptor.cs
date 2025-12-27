@@ -83,8 +83,7 @@ public partial class LogInterceptor : Logger
             // These errors as they aren't very visible, would make sense to show despite a debugger being attached
         }
 
-        // Print to debug console
-        DebugConsoleManager.Print(message);
+        DebugConsoleManager.Print(message, error);
     }
 
     public override void _LogError(string function, string file, int line, string code, string rationale,
