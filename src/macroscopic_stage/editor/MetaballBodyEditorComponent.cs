@@ -87,7 +87,7 @@ public partial class MetaballBodyEditorComponent :
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
     [Signal]
-    public delegate void OnCellTypeToEditSelectedEventHandler(string name);
+    public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
 
     public enum SelectionMenuTab
     {
@@ -830,7 +830,7 @@ public partial class MetaballBodyEditorComponent :
     {
         // Should be safe for us to try to signal to edit any kind of cell so this doesn't check if the cell is removed
         EmitSignal(SignalName.OnCellTypeToEditSelected,
-            metaballPopupMenu.SelectedMetaballs.First().ModifiableCellType.CellTypeName);
+            metaballPopupMenu.SelectedMetaballs.First().ModifiableCellType.CellTypeName, true);
     }
 
     /// <summary>
@@ -940,7 +940,7 @@ public partial class MetaballBodyEditorComponent :
         OnCurrentActionChanged();
 
         // Clear the edited cell type
-        EmitSignal(SignalName.OnCellTypeToEditSelected, default(Variant));
+        EmitSignal(SignalName.OnCellTypeToEditSelected, default(Variant), false);
     }
 
     private void OnMetaballsChanged()
@@ -1023,13 +1023,9 @@ public partial class MetaballBodyEditorComponent :
         var newType = (CellType)GetEditedCellDataIfEdited(type).Clone();
         newType.CellTypeName = newTypeName;
 
-        // TODO: make this into a reversible action (multicellular already has that)
-        Editor.EditedSpecies.ModifiableCellTypes.Add(newType);
-        GD.Print("New cell type created: ", newType.CellTypeName);
-
-        UpdateCellTypeSelections();
-
-        Editor.DirtyMutationPointsCache();
+        var data = new DuplicateDeleteCellTypeData(newType, false);
+        var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(DuplicateCellType, DeleteCellType, data);
+        EnqueueAction(new CombinedEditorAction(action));
 
         duplicateCellTypeDialog.Hide();
     }
@@ -1051,12 +1047,9 @@ public partial class MetaballBodyEditorComponent :
             return;
         }
 
-        // TODO: make a reversible action
-        if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(type))
-        {
-            GD.PrintErr("Failed to delete cell type from species");
-        }
-
+        var data = new DuplicateDeleteCellTypeData(type, true);
+        var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(DeleteCellType, DuplicateCellType, data);
+        EnqueueAction(new CombinedEditorAction(action));
         UpdateCellTypeSelections();
 
         Editor.DirtyMutationPointsCache();
@@ -1069,7 +1062,7 @@ public partial class MetaballBodyEditorComponent :
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(SignalName.OnCellTypeToEditSelected, activeActionName);
+        EmitSignal(SignalName.OnCellTypeToEditSelected, activeActionName, true);
     }
 
     private void RegenerateCellTypeIcon(CellType type)

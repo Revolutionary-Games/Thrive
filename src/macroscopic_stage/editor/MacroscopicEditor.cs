@@ -515,7 +515,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         bodyEditorLight.Visible = bodyEditor;
     }
 
-    private void OnStartEditingCellType(string? name)
+    private void OnStartEditingCellType(string? name, bool switchTab)
     {
         if (CanCancelAction)
         {
@@ -547,7 +547,8 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
             cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
         }
 
-        SetEditorTab(EditorTab.CellTypeEditor);
+        if (switchTab)
+            SetEditorTab(EditorTab.CellTypeEditor);
     }
 
     private void CheckAndApplyCellTypeEdit()
@@ -678,8 +679,14 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         {
             targetTab = EditorTab.CellTypeEditor;
         }
-        else if (actionData != null && bodyPlanEditorTab.IsMetaballAction(actionData))
+        else if ((actionData != null && bodyPlanEditorTab.IsMetaballAction(actionData)) ||
+                 actionData is EditorCombinableActionData<MacroscopicSpecies>)
         {
+            targetTab = EditorTab.CellEditor;
+        }
+        else if (actionData is EditorCombinableActionData<MulticellularSpecies>)
+        {
+            // We need this as this is used by the duplicate / delete action
             targetTab = EditorTab.CellEditor;
         }
         else

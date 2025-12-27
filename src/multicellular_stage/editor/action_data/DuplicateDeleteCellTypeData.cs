@@ -2,7 +2,8 @@
 using SharedBase.Archive;
 
 /// <summary>
-///   Stores information for duplicating and deleting cell types.
+///   Stores information for duplicating and deleting cell types. Note that while this uses the multicellular species
+///   type, this also applies for macroscopic species.
 /// </summary>
 public class DuplicateDeleteCellTypeData : EditorCombinableActionData<MulticellularSpecies>
 {
