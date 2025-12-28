@@ -264,7 +264,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
     public class ChunkScene : IArchivable
 #pragma warning restore CA1001
     {
-        public const ushort SERIALIZATION_VERSION_SCENE = 1;
+        public const ushort SERIALIZATION_VERSION_SCENE = 2;
 
         /// <summary>
         ///   Scene to use for this chunk. Note that this and the following 2 variables reflect
@@ -287,6 +287,11 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
         ///   Path to the convex collision shape of this chunk's graphical mesh (if any).
         /// </summary>
         public string? ConvexShapePath;
+
+        /// <summary>
+        ///   Configuration for complex collision shapes (if any).
+        /// </summary>
+        public List<ComplexCollisionShapeConfiguration>? ComplexCollisionShapeConfigurations;
 
         /// <summary>
         ///   Need to be set to true on particle type visuals as those need special handling
@@ -316,6 +321,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
 
             // Default init for non-copied things
             ConvexShapePath = null;
+            ComplexCollisionShapeConfigurations = null;
             IsParticles = false;
             PlayAnimation = false;
             MissingDefaultShaderSupport = false;
@@ -329,6 +335,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
             SceneModelPath = null;
             SceneAnimationPath = null;
             ConvexShapePath = null;
+            ComplexCollisionShapeConfigurations = null;
             IsParticles = false;
             PlayAnimation = false;
             MissingDefaultShaderSupport = false;
@@ -370,6 +377,17 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
                 instance.SceneAnimationPath = new NodePath(rawAnimation);
 
             instance.ConvexShapePath = reader.ReadString();
+
+            if (version <= 1)
+            {
+                instance.ComplexCollisionShapeConfigurations = null;
+            }
+            else
+            {
+                instance.ComplexCollisionShapeConfigurations =
+                    reader.ReadObject<List<ComplexCollisionShapeConfiguration>>();
+            }
+
             instance.IsParticles = reader.ReadBool();
             instance.PlayAnimation = reader.ReadBool();
             instance.MissingDefaultShaderSupport = reader.ReadBool();
@@ -383,9 +401,35 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
             writer.Write(SceneModelPath?.ToString());
             writer.Write(SceneAnimationPath?.ToString());
             writer.Write(ConvexShapePath);
+            writer.WriteObjectOrNull(ComplexCollisionShapeConfigurations);
             writer.Write(IsParticles);
             writer.Write(PlayAnimation);
             writer.Write(MissingDefaultShaderSupport);
+        }
+    }
+
+    public class ComplexCollisionShapeConfiguration
+    {
+        /// <summary>
+        ///   Path to the convex collision shape of this chunk's graphical mesh (if any).
+        /// </summary>
+        public string CollisionShapePath;
+
+        /// <summary>
+        ///   Starting position of the shapes. Used with primitive shapes to position them correctly.
+        /// </summary>
+        public Vector3 Position;
+
+        /// <summary>
+        ///   Rotation of the shapes in radians. Used with primitive shapes to roatate them correctly.
+        /// </summary>
+        public Vector3 Rotation;
+
+        public ComplexCollisionShapeConfiguration(string collisionShapePath)
+        {
+            CollisionShapePath = collisionShapePath;
+            Position = Vector3.Zero;
+            Rotation = Vector3.Zero;
         }
     }
 }

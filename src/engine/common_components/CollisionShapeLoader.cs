@@ -1,5 +1,8 @@
 ﻿namespace Components;
 
+using System;
+using System.Collections.Generic;
+using Godot;
 using SharedBase.Archive;
 
 /// <summary>
@@ -7,9 +10,13 @@ using SharedBase.Archive;
 /// </summary>
 public struct CollisionShapeLoader : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
-    public string CollisionResourcePath;
+    public string? CollisionResourcePath;
+
+    public List<ChunkConfiguration.ComplexCollisionShapeConfiguration>? ComplexCollisionShapes;
+
+    public bool IsComplexCollision;
 
     /// <summary>
     ///   Density of the shape. Only applies if <see cref="ApplyDensity"/> is true.
@@ -36,6 +43,19 @@ public struct CollisionShapeLoader : IArchivableComponent
     public CollisionShapeLoader(string resourcePath, float density)
     {
         CollisionResourcePath = resourcePath;
+        IsComplexCollision = false;
+        Density = density;
+        ApplyDensity = true;
+
+        SkipForceRecreateBodyIfCreated = false;
+        ShapeLoaded = false;
+    }
+
+    public CollisionShapeLoader(List<ChunkConfiguration.ComplexCollisionShapeConfiguration> complexCollisionShapes,
+        float density)
+    {
+        ComplexCollisionShapes = complexCollisionShapes;
+        IsComplexCollision = true;
         Density = density;
         ApplyDensity = true;
 
@@ -49,6 +69,7 @@ public struct CollisionShapeLoader : IArchivableComponent
     public void WriteToArchive(ISArchiveWriter writer)
     {
         writer.Write(CollisionResourcePath);
+        writer.WriteObjectOrNull(ComplexCollisionShapes);
         writer.Write(Density);
         writer.Write(ApplyDensity);
         writer.Write(SkipForceRecreateBodyIfCreated);
@@ -62,12 +83,33 @@ public static class CollisionShapeLoaderHelpers
         if (version is > CollisionShapeLoader.SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, CollisionShapeLoader.SERIALIZATION_VERSION);
 
+        var collisionResourcePath = reader.ReadString();
+        List<ChunkConfiguration.ComplexCollisionShapeConfiguration> shapeConfigurations = new();
+
+        if (version <= 1)
+        {
+            if (collisionResourcePath != null)
+            {
+                ChunkConfiguration.ComplexCollisionShapeConfiguration shapeConfiguration = new(collisionResourcePath);
+                shapeConfigurations.Add(shapeConfiguration);
+            }
+        }
+        else
+        {
+            shapeConfigurations = reader.ReadObject<List<ChunkConfiguration.ComplexCollisionShapeConfiguration>>();
+        }
+
+        var density = reader.ReadFloat();
+        var applyDensity = reader.ReadBool();
+        var skipForceRecreateBodyIfCreated = reader.ReadBool();
+
         return new CollisionShapeLoader
         {
-            CollisionResourcePath = reader.ReadString()!,
-            Density = reader.ReadFloat(),
-            ApplyDensity = reader.ReadBool(),
-            SkipForceRecreateBodyIfCreated = reader.ReadBool(),
+            CollisionResourcePath = collisionResourcePath,
+            ComplexCollisionShapes = shapeConfigurations,
+            Density = density,
+            ApplyDensity = applyDensity,
+            SkipForceRecreateBodyIfCreated = skipForceRecreateBodyIfCreated,
         };
     }
 }
