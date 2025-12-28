@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4dyrcb6l1u3o"]
+[gd_scene load_steps=13 format=3 uid="uid://c4dyrcb6l1u3o"]
 
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="2_gkxar"]
@@ -11,6 +11,7 @@
 [ext_resource type="LabelSettings" uid="uid://dj8uej1eg2iuh" path="res://src/gui_common/fonts/Body-Regular-Small-Orange.tres" id="7_8xdu2"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="9_qsaes"]
 [ext_resource type="Script" uid="uid://copwda0puhvx2" path="res://src/engine/DebugConsole.cs" id="10_syfxw"]
+[ext_resource type="FontVariation" uid="uid://k7u2fkgwhsf0" path="res://assets/fonts/variants/RobotoMono-Regular.tres" id="11_0g2tr"]
 
 [node name="DebugOverlay" type="Control" node_paths=PackedStringArray("debugCoordinates", "inspectorDialog", "debugPanelDialog", "debugConsole", "fpsCheckBox", "performanceMetricsCheckBox", "inspectorCheckbox", "fpsCounter", "performanceMetrics", "labelsLayer", "fpsDisplayLabel", "fpsLabel", "deltaLabel", "metricsText")]
 layout_mode = 3
@@ -86,7 +87,8 @@ layout_mode = 2
 text = "METRICS_CONTENT"
 label_settings = ExtResource("3_fussq")
 
-[node name="DebugConsole" type="Control" parent="." node_paths=PackedStringArray("consoleArea")]
+[node name="DebugConsole" type="Control" parent="." node_paths=PackedStringArray("consoleArea", "commandInput")]
+visible = false
 anchors_preset = 0
 offset_left = 43.0
 offset_top = 35.0
@@ -94,7 +96,8 @@ offset_right = 380.0
 offset_bottom = 372.0
 theme = ExtResource("9_qsaes")
 script = ExtResource("10_syfxw")
-consoleArea = NodePath("VBoxContainer/RichTextLabel")
+consoleArea = NodePath("VBoxContainer/ConsoleOutput")
+commandInput = NodePath("VBoxContainer/ConsoleInput")
 WindowTitle = "DEBUG_CONSOLE"
 Resizable = true
 
@@ -113,16 +116,22 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="DebugConsole/VBoxContainer"]
+[node name="ConsoleOutput" type="RichTextLabel" parent="DebugConsole/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 2
+theme_override_fonts/normal_font = ExtResource("11_0g2tr")
+bbcode_enabled = true
+scroll_following = true
 autowrap_mode = 0
 selection_enabled = true
 
-[node name="LineEdit" type="LineEdit" parent="DebugConsole/VBoxContainer"]
+[node name="ConsoleInput" type="LineEdit" parent="DebugConsole/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("11_0g2tr")
 placeholder_text = "COMMAND_INPUT_LINE_EDIT"
+keep_editing_on_text_submit = true
+caret_blink = true
 
 [node name="DebugPanel" parent="." instance=ExtResource("1")]
 layout_mode = 0
