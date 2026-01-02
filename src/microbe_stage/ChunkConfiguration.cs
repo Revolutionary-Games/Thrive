@@ -378,11 +378,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
 
             instance.ConvexShapePath = reader.ReadString();
 
-            if (version <= 1)
-            {
-                instance.ComplexCollisionShapeConfigurations = null;
-            }
-            else
+            if (version >= 2)
             {
                 instance.ComplexCollisionShapeConfigurations =
                     reader.ReadObjectOrNull<List<ComplexCollisionShapeConfiguration>>();
