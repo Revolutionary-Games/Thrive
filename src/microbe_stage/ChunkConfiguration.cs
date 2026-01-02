@@ -385,7 +385,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
             else
             {
                 instance.ComplexCollisionShapeConfigurations =
-                    reader.ReadObject<List<ComplexCollisionShapeConfiguration>>();
+                    reader.ReadObjectOrNull<List<ComplexCollisionShapeConfiguration>>();
             }
 
             instance.IsParticles = reader.ReadBool();
