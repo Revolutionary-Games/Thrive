@@ -413,7 +413,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
         /// <summary>
         ///   Path to the convex collision shape of this chunk's graphical mesh (if any).
         /// </summary>
-        public string CollisionShapePath;
+        public string? CollisionShapePath;
 
         /// <summary>
         ///   Starting position of the shapes. Used with primitive shapes to position them correctly.

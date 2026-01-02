@@ -54,6 +54,12 @@ public partial class CollisionShapeLoaderSystem : BaseSystem<World, float>
 
             foreach (var complexCollision in loader.ComplexCollisionShapes!)
             {
+                if (complexCollision.CollisionShapePath == null)
+                {
+                    GD.PrintErr("CollisionShapePath is null in complex collision shape");
+                    continue;
+                }
+
                 var shape = PhysicsShape.CreateShapeFromGodotResource(complexCollision.CollisionShapePath, density);
                 if (shape == null)
                     continue;
