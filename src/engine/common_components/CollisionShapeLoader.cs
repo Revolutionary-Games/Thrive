@@ -68,6 +68,7 @@ public struct CollisionShapeLoader : IArchivableComponent
     {
         writer.Write(CollisionResourcePath);
         writer.WriteObjectOrNull(ComplexCollisionShapes);
+        writer.Write(IsComplexCollision);
         writer.Write(Density);
         writer.Write(ApplyDensity);
         writer.Write(SkipForceRecreateBodyIfCreated);
@@ -82,21 +83,15 @@ public static class CollisionShapeLoaderHelpers
             throw new InvalidArchiveVersionException(version, CollisionShapeLoader.SERIALIZATION_VERSION);
 
         var collisionResourcePath = reader.ReadString();
-        List<ChunkConfiguration.ComplexCollisionShapeConfiguration> shapeConfigurations = new();
+        List<ChunkConfiguration.ComplexCollisionShapeConfiguration>? shapeConfigurations = new();
 
-        if (version <= 1)
+        if (version >= 2)
         {
-            if (collisionResourcePath != null)
-            {
-                ChunkConfiguration.ComplexCollisionShapeConfiguration shapeConfiguration = new(collisionResourcePath);
-                shapeConfigurations.Add(shapeConfiguration);
-            }
-        }
-        else
-        {
-            shapeConfigurations = reader.ReadObject<List<ChunkConfiguration.ComplexCollisionShapeConfiguration>>();
+            shapeConfigurations =
+                reader.ReadObjectOrNull<List<ChunkConfiguration.ComplexCollisionShapeConfiguration>>();
         }
 
+        var isComplexCollision = reader.ReadBool();
         var density = reader.ReadFloat();
         var applyDensity = reader.ReadBool();
         var skipForceRecreateBodyIfCreated = reader.ReadBool();
@@ -105,6 +100,7 @@ public static class CollisionShapeLoaderHelpers
         {
             CollisionResourcePath = collisionResourcePath,
             ComplexCollisionShapes = shapeConfigurations,
+            IsComplexCollision = isComplexCollision,
             Density = density,
             ApplyDensity = applyDensity,
             SkipForceRecreateBodyIfCreated = skipForceRecreateBodyIfCreated,

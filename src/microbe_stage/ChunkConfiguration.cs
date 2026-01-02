@@ -408,8 +408,10 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
         }
     }
 
-    public class ComplexCollisionShapeConfiguration
+    public class ComplexCollisionShapeConfiguration : IArchivable
     {
+        public const ushort SERIALIZATION_VERSION_SCENE = 1;
+
         /// <summary>
         ///   Path to the convex collision shape of this chunk's graphical mesh (if any).
         /// </summary>
@@ -425,11 +427,48 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
         /// </summary>
         public Vector3 Rotation;
 
-        public ComplexCollisionShapeConfiguration(string collisionShapePath)
+        public ComplexCollisionShapeConfiguration(string collisionShapePath, Vector3? position, Vector3? rotation)
         {
             CollisionShapePath = collisionShapePath;
-            Position = Vector3.Zero;
-            Rotation = Vector3.Zero;
+            Position = position ?? Vector3.Zero;
+            Rotation = rotation ?? Vector3.Zero;
+        }
+
+        [JsonIgnore]
+        public ushort CurrentArchiveVersion => SERIALIZATION_VERSION_SCENE;
+
+        [JsonIgnore]
+        public ArchiveObjectType ArchiveObjectType =>
+            (ArchiveObjectType)ThriveArchiveObjectType.ComplexCollisionShapeConfiguration;
+
+        [JsonIgnore]
+        public bool CanBeReferencedInArchive => false;
+
+        // ReSharper disable once MemberHidesStaticFromOuterClass
+        public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+        {
+            if (type != (ArchiveObjectType)ThriveArchiveObjectType.ComplexCollisionShapeConfiguration)
+                throw new NotSupportedException();
+
+            writer.WriteObject((ComplexCollisionShapeConfiguration)obj);
+        }
+
+        // ReSharper disable once MemberHidesStaticFromOuterClass
+        public static object ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+        {
+            if (version is > SERIALIZATION_VERSION_SCENE or <= 0)
+                throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_SCENE);
+
+            return new ComplexCollisionShapeConfiguration(reader.ReadString() ?? throw new NullArchiveObjectException(),
+                reader.ReadVector3(),
+                reader.ReadVector3());
+        }
+
+        public void WriteToArchive(ISArchiveWriter writer)
+        {
+            writer.Write(CollisionShapePath);
+            writer.Write(Position);
+            writer.Write(Rotation);
         }
     }
 }
