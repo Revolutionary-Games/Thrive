@@ -83,15 +83,16 @@ public static class CollisionShapeLoaderHelpers
             throw new InvalidArchiveVersionException(version, CollisionShapeLoader.SERIALIZATION_VERSION);
 
         var collisionResourcePath = reader.ReadString();
+        var isComplexCollision = false;
         List<ChunkConfiguration.ComplexCollisionShapeConfiguration>? shapeConfigurations = new();
 
         if (version >= 2)
         {
             shapeConfigurations =
                 reader.ReadObjectOrNull<List<ChunkConfiguration.ComplexCollisionShapeConfiguration>>();
+            isComplexCollision = reader.ReadBool();
         }
 
-        var isComplexCollision = reader.ReadBool();
         var density = reader.ReadFloat();
         var applyDensity = reader.ReadBool();
         var skipForceRecreateBodyIfCreated = reader.ReadBool();

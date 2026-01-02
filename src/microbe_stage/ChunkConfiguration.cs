@@ -419,7 +419,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
         public Vector3 Position;
 
         /// <summary>
-        ///   Rotation of the shapes in radians. Used with primitive shapes to roatate them correctly.
+        ///   Rotation of the shapes in radians. Used with primitive shapes to rotate them correctly.
         /// </summary>
         public Vector3 Rotation;
 
