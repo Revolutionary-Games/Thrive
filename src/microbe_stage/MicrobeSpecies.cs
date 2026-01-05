@@ -264,6 +264,12 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
         var cachedCapacity = StorageCapacity;
 
+        var cachedCapacities = StorageCapacities.Specific;
+        foreach (var key in cachedCapacities.Keys)
+        {
+            GD.Print(key);
+        }
+
         InitialCompounds.Clear();
 
         foreach (var compoundBalance in compoundBalances)
