@@ -219,12 +219,13 @@ public class ModifyExistingSpecies : IRunStep
                         MichePopulation.CalculateMicrobePopulationInPatch(mutation.MutatedSpecies, miche!, patch,
                             cache);
 
-                    MutationLogicFunctions.NameNewMicrobeSpecies(mutation.MutatedSpecies, mutation.ParentSpecies);
-                    MutationLogicFunctions.ColorNewMicrobeSpecies(random, mutation.MutatedSpecies,
-                        mutation.ParentSpecies);
-
                     if (newPopulation > Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
                     {
+                        // Only apply a new name and colour to results that are actually kept
+                        MutationLogicFunctions.NameNewMicrobeSpecies(mutation.MutatedSpecies, mutation.ParentSpecies);
+                        MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutation.MutatedSpecies,
+                            mutation.ParentSpecies);
+
                         results.AddPossibleMutation(mutation.MutatedSpecies,
                             new KeyValuePair<Patch, long>(patch, newPopulation), mutation.AddType,
                             mutation.ParentSpecies);
