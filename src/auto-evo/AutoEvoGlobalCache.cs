@@ -49,8 +49,8 @@ public class AutoEvoGlobalCache
     {
         RootPressure = new RootPressure();
         MetabolicStabilityPressure = new MetabolicStabilityPressure(10.0f);
-        GeneralAvoidPredationSelectionPressure = new GeneralAvoidPredationSelectionPressure(1.8f);
-        EnergyConsumptionPressure = new EnergyConsumptionPressure(0.3f);
+        GeneralAvoidPredationSelectionPressure = new GeneralAvoidPredationSelectionPressure(1.4f);
+        EnergyConsumptionPressure = new EnergyConsumptionPressure(0.5f);
         EnvironmentalTolerancesPressure = new EnvironmentalTolerancePressure(4);
 
         PhosphatePressure = new ReproductionCompoundPressure(
@@ -58,42 +58,42 @@ public class AutoEvoGlobalCache
         AmmoniaPressure = new ReproductionCompoundPressure(Compound.Ammonia, worldSettings.DayNightCycleEnabled, 0.3f);
 
         MinorGlucoseConversionEfficiencyPressure =
-            new CompoundConversionEfficiencyPressure(Compound.Glucose, Compound.ATP, true, 0.8f);
+            new CompoundConversionEfficiencyPressure(Compound.Glucose, Compound.ATP, true, 0.45f);
         MaintainGlucose = new MaintainCompoundPressure(Compound.Glucose, 1.5f);
 
         GlucoseConversionEfficiencyPressure =
             new CompoundConversionEfficiencyPressure(Compound.Glucose, Compound.ATP, true, 1.5f);
-        GlucoseCloudPressure = new CompoundCloudPressure(Compound.Glucose, worldSettings.DayNightCycleEnabled, 1.2f);
+        GlucoseCloudPressure = new CompoundCloudPressure(Compound.Glucose, worldSettings.DayNightCycleEnabled, 1.0f);
 
         IronConversionEfficiencyPressure =
-            new CompoundConversionEfficiencyPressure(Compound.Iron, Compound.ATP, true, 1.7f);
+            new CompoundConversionEfficiencyPressure(Compound.Iron, Compound.ATP, true, 1.5f);
         SmallIronChunkPressure = new ChunkCompoundPressure("ironSmallChunk", new LocalizedString("SMALL_IRON_CHUNK"),
-            Compound.Iron, Compound.ATP, 1.2f);
+            Compound.Iron, Compound.ATP, 1.0f);
         BigIronChunkPressure = new ChunkCompoundPressure("ironBigChunk", new LocalizedString("BIG_IRON_CHUNK"),
-            Compound.Iron, Compound.ATP, 1.2f);
+            Compound.Iron, Compound.ATP, 1.0f);
 
         HydrogenSulfideConversionEfficiencyPressure = new CompoundConversionEfficiencyPressure(Compound.Hydrogensulfide,
-            Compound.Glucose, true, 1.4f);
+            Compound.Glucose, true, 1.0f);
         HydrogenSulfideCloudPressure = new CompoundCloudPressure(Compound.Hydrogensulfide,
             worldSettings.DayNightCycleEnabled, 1.2f);
         SmallSulfurChunkPressure = new ChunkCompoundPressure("sulfurSmallChunk",
-            new LocalizedString("SMALL_SULFUR_CHUNK"), Compound.Hydrogensulfide, Compound.Glucose, 1.2f);
+            new LocalizedString("SMALL_SULFUR_CHUNK"), Compound.Hydrogensulfide, Compound.Glucose, 1.0f);
         MediumSulfurChunkPressure = new ChunkCompoundPressure("sulfurMediumChunk",
-            new LocalizedString("MEDIUM_SULFUR_CHUNK"), Compound.Hydrogensulfide, Compound.Glucose, 1.2f);
+            new LocalizedString("MEDIUM_SULFUR_CHUNK"), Compound.Hydrogensulfide, Compound.Glucose, 1.0f);
         LargeSulfurChunkPressure = new ChunkCompoundPressure("sulfurLargeChunk",
-            new LocalizedString("LARGE_SULFUR_CHUNK"), Compound.Hydrogensulfide, Compound.Glucose, 1.2f);
+            new LocalizedString("LARGE_SULFUR_CHUNK"), Compound.Hydrogensulfide, Compound.Glucose, 1.0f);
 
         SunlightConversionEfficiencyPressure =
-            new CompoundConversionEfficiencyPressure(Compound.Sunlight, Compound.Glucose, true, 1.2f);
+            new CompoundConversionEfficiencyPressure(Compound.Sunlight, Compound.Glucose, true, 1.0f);
         SunlightCompoundPressure = new EnvironmentalCompoundPressure(Compound.Sunlight, Compound.Glucose, 20000, 1.0f);
 
         RadiationConversionEfficiencyPressure =
-            new CompoundConversionEfficiencyPressure(Compound.Radiation, Compound.ATP, true, 1.2f);
+            new CompoundConversionEfficiencyPressure(Compound.Radiation, Compound.ATP, true, 1.0f);
         RadioactiveChunkPressure = new ChunkCompoundPressure("radioactiveChunk",
             new LocalizedString("RADIOACTIVE_CHUNK"), Compound.Radiation, Compound.ATP, 1.0f);
 
         TemperatureConversionEfficiencyPressure =
-            new CompoundConversionEfficiencyPressure(Compound.Temperature, Compound.Glucose, true, 1.2f);
+            new CompoundConversionEfficiencyPressure(Compound.Temperature, Compound.Glucose, true, 1.0f);
         TemperatureCompoundPressure = new EnvironmentalCompoundPressure(Compound.Temperature, Compound.Glucose,
             100, 1.0f);
         HasTemperature = !worldSettings.LAWK;
