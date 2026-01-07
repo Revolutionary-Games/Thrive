@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using SharedBase.Archive;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   This contains the single game settings.
@@ -108,7 +109,11 @@ public class GameProperties : IArchivable
     /// </remarks>
     public static GameProperties StartNewMulticellularGame(WorldGenerationSettings settings, bool freebuild = false)
     {
+        settings.Origin = WorldGenerationSettings.LifeOrigin.Pond;
+
         var game = new GameProperties(settings);
+
+        OxygenateWorld(game.GameWorld.Map);
 
         // Modify the player species to actually make sense to be in the multicellular stage
         var playerSpecies = MakePlayerOrganellesMakeSenseForMulticellular(game);
@@ -377,6 +382,32 @@ public class GameProperties : IArchivable
         ApplyDescensionPerks();
     }
 
+    private static void OxygenateWorld(PatchMap map)
+    {
+        var changes = new Dictionary<Compound, float>();
+
+        // ReSharper disable once CollectionNeverUpdated.Local
+        var cloudSizes = new Dictionary<Compound, float>();
+
+        var random = new XoShiRo256starstar();
+
+        foreach (var patch in map.Patches.Values)
+        {
+            var hasOxygen = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Oxygen,
+                out var currentOxygen);
+
+            if (!hasOxygen)
+                continue;
+
+            currentOxygen.Ambient = patch.IsSurfacePatch() ? random.Next(0.3f, 0.4f) : random.Next(0.05f, 0.15f);
+            changes[Compound.Oxygen] = currentOxygen.Ambient;
+            patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, cloudSizes);
+
+            changes.Clear();
+            cloudSizes.Clear();
+        }
+    }
+
     private static MicrobeSpecies MakePlayerOrganellesMakeSenseForMulticellular(GameProperties game)
     {
         var simulationParameters = SimulationParameters.Instance;
@@ -389,7 +420,7 @@ public class GameProperties : IArchivable
             new Hex(0, -3), 0), workMemory1, workMemory2);
         playerSpecies.IsBacteria = false;
 
-        var hydrogenosome = simulationParameters.GetOrganelleType("hydrogenosome");
+        var mitochondrion = simulationParameters.GetOrganelleType("mitochondrion");
 
         // Remove the original cytoplasm in the species and replace with hydrogenosome for a more efficient layout
         playerSpecies.Organelles.RemoveHexAt(new Hex(0, 0), workMemory1);
@@ -397,20 +428,14 @@ public class GameProperties : IArchivable
         playerSpecies.Organelles.AddFast(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
             new Hex(0, 2), 0), workMemory1, workMemory2);
 
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(mitochondrion,
             new Hex(-1, 2), 0), workMemory1, workMemory2);
 
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(mitochondrion,
             new Hex(1, 1), 0), workMemory1, workMemory2);
 
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(mitochondrion,
             new Hex(0, 1), 0), workMemory1, workMemory2);
-
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
-            new Hex(2, -2), 0), workMemory1, workMemory2);
-
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
-            new Hex(-2, 0), 0), workMemory1, workMemory2);
 
         var cytoplasm = simulationParameters.GetOrganelleType("cytoplasm");
 
