@@ -26,7 +26,7 @@ public class MutationLogicFunctions
         newSpecies.Epithet = SimulationParameters.Instance.NameGenerator.GenerateNameSection(null, true);
     }
 
-    public static void ColorNewMicrobeSpecies(Random random, MicrobeSpecies newSpecies,
+    public static void ColourNewMicrobeSpecies(Random random, MicrobeSpecies newSpecies,
         MicrobeSpecies? parentSpecies = null)
     {
         // If for some silly reason the species are the same don't recolor

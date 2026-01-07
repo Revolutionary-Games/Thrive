@@ -87,7 +87,7 @@ public static class CommonMutationFunctions
             mutated = mutation.Item1;
             mp -= mutation.Item2;
 
-            MutationLogicFunctions.ColorNewMicrobeSpecies(random, mutated);
+            MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutated);
         }
 
         mutated.ModifiableTolerances.CopyFrom(forPatch.GenerateTolerancesForMicrobe(mutated.Organelles));
