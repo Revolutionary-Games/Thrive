@@ -1427,8 +1427,6 @@ public partial class CellBodyPlanEditorComponent :
 
         foreach (var cell in editedMicrobeCells.AsModifiable())
         {
-            GD.Print($"{cell.Position} -> {cell.Position - leaderPosition}");
-
             cell.Position -= leaderPosition;
             cell.Data!.Position -= leaderPosition;
         }
