@@ -14,16 +14,11 @@ public partial class DebugConsole : CustomWindow
     private RichTextLabel consoleArea = null!;
 #pragma warning restore CA2213
 
-    public static bool CanOpenConsole => Settings.Instance.DebugConsoleEnabled;
-
     public bool IsConsoleOpen
     {
         get => Visible;
         set
         {
-            if (!CanOpenConsole && value)
-                throw new InvalidOperationException("Debug Console is disabled");
-
             if (value)
             {
                 Show();
