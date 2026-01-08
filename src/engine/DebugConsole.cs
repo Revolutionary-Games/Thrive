@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -88,7 +87,11 @@ public partial class DebugConsole : CustomWindow
 
     public void ReloadGUI()
     {
-        lineBuffer.Clear();
+        lock (lineBuffer)
+        {
+            lineBuffer.Clear();
+        }
+
         consoleArea.Clear();
 
         foreach (var ln in DebugConsoleManager.GetLines())
