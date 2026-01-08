@@ -7,7 +7,7 @@ using Godot;
 /// </summary>
 public partial class DebugConsole : CustomWindow
 {
-    private readonly List<DebugConsoleManager.ConsoleLine> lineBuffer = [];
+    private readonly Queue<DebugConsoleManager.ConsoleLine> lineBuffer = [];
 
 #pragma warning disable CA2213
     [Export]
@@ -58,6 +58,9 @@ public partial class DebugConsole : CustomWindow
 
     public override void _Process(double delta)
     {
+        if (!IsConsoleOpen)
+            return;
+
         lock (lineBuffer)
         {
             var lineCount = consoleArea.GetLineCount();
@@ -72,8 +75,10 @@ public partial class DebugConsole : CustomWindow
                 consoleArea.InvalidateParagraph(0);
             }
 
-            foreach (var ln in lineBuffer)
+            while (lineBuffer.Count > 0)
             {
+                var ln = lineBuffer.Dequeue();
+
                 consoleArea.PushColor(ln.Color);
                 consoleArea.AppendText(ln.Line.StripEdges(false));
                 consoleArea.Pop();
@@ -88,7 +93,8 @@ public partial class DebugConsole : CustomWindow
 
     public void ReloadGUI()
     {
-        consoleArea.Text = string.Empty;
+        lineBuffer.Clear();
+        consoleArea.Clear();
 
         foreach (var ln in DebugConsoleManager.GetLines())
         {
@@ -105,7 +111,7 @@ public partial class DebugConsole : CustomWindow
     {
         lock (lineBuffer)
         {
-            lineBuffer.Add(line);
+            lineBuffer.Enqueue(line);
         }
     }
 }

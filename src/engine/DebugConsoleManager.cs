@@ -11,7 +11,7 @@ public static class DebugConsoleManager
 {
     public const uint MaxConsoleSize = 255;
 
-    private static readonly List<ConsoleLine> Lines = [];
+    private static readonly Queue<ConsoleLine> Lines = [];
 
     public static event EventHandler<ConsoleLineArgs>? OnMessageReceived;
 
@@ -30,10 +30,10 @@ public static class DebugConsoleManager
             // for now, we cap max console size to MaxConsoleSize to avoid flooding
             if (Lines.Count > MaxConsoleSize)
             {
-                Lines.RemoveAt(0);
+                Lines.Dequeue();
             }
 
-            Lines.Add(consoleLine);
+            Lines.Enqueue(consoleLine);
         }
 
         OnMessageReceived?.Invoke(null, new ConsoleLineArgs(consoleLine));
@@ -60,7 +60,7 @@ public static class DebugConsoleManager
     /// </summary>
     /// <param name="Line"> the line content </param>
     /// <param name="Color"> the line color</param>
-    public record ConsoleLine(string Line, Color Color);
+    public record struct ConsoleLine(string Line, Color Color);
 
     public class ConsoleLineArgs(ConsoleLine line) : EventArgs
     {
