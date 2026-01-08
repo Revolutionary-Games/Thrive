@@ -408,7 +408,7 @@ public static class EngulfableHelpers
                     {
                         var hostilePosition = engulfable.HostileEngulfer.Get<WorldPosition>().Position;
 
-                        customizeCallback = (ref Vector3 position) =>
+                        customizeCallback = (ref position) =>
                         {
                             var direction = hostilePosition.DirectionTo(position);
                             position += direction *
