@@ -272,11 +272,8 @@ public static class EngulfableHelpers
         {
             ref var cellProperties = ref entity.Get<CellProperties>();
 
-            if (cellProperties.CreatedMembrane != null)
-            {
-                // Make the membrane not wiggle to make it look better
-                cellProperties.CreatedMembrane.WigglyNess = 0;
-            }
+            // Make the membrane not wiggle to make it look better
+            cellProperties.CreatedMembrane?.WigglyNess = 0;
         }
 
         // Stop being in ready to reproduce state while engulfed
