@@ -1536,6 +1536,13 @@ public partial class CellEditorComponent :
         if (string.IsNullOrEmpty(ActiveActionName) || !Editor.ShowHover)
             return 0;
 
+        if (IsMulticellularEditor || IsMacroscopicEditor)
+        {
+            // If not initialized to edit anything, this cannot show any cost
+            if (Editor.EditedCellProperties == null)
+                return 0;
+        }
+
         // Endosymbiosis placement is free
         if (PendingEndosymbiontPlace != null)
             return 0;

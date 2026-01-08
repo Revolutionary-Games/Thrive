@@ -248,7 +248,7 @@ public static class StringUtils
     public static string ThreeDigitFormat(double value)
     {
         if (value is >= 1000 or <= -1000)
-            return FormatNumber(value);
+            return value.FormatNumber();
 
         if (value is >= 100 or <= -100)
             return value.ToString("F0", CultureInfo.CurrentCulture);
@@ -263,7 +263,7 @@ public static class StringUtils
     {
         if (value is >= 1000 or <= -1000)
         {
-            result.Append(FormatNumber(value));
+            result.Append(value.FormatNumber());
             return;
         }
 
@@ -279,7 +279,7 @@ public static class StringUtils
     public static string ThreeDigitFormat(long value)
     {
         if (value is >= 1000 or <= -1000)
-            return FormatNumber(value);
+            return value.FormatNumber();
 
         return value.ToString(CultureInfo.CurrentCulture);
     }

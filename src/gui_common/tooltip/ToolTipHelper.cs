@@ -173,7 +173,7 @@ public static class ToolTipHelper
         {
             // Not the most efficient as we've already looked up the data, but this isn't used that much so the extra
             // slowness shouldn't matter
-            UnRegisterToolTipForControl(control, toolTipCallbackData.ToolTip);
+            control.UnRegisterToolTipForControl(toolTipCallbackData.ToolTip);
 
             // If this is converted to unregister all, then the list of things to unregister needs to be enumerated
             // first. Here we can get by with a return;

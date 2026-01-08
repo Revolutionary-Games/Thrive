@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using Godot;
 
 public sealed class MacroscopicEditsFacade : SpeciesEditsFacade, IReadOnlyMacroscopicSpecies,
     IReadOnlyList<IReadOnlyCellTypeDefinition>, IReadOnlyMacroscopicMetaballLayout
@@ -227,18 +229,28 @@ public sealed class MacroscopicEditsFacade : SpeciesEditsFacade, IReadOnlyMacros
             return true;
 
         // Need to handle edits to the cell types (by forwarding to the right facade)
-        if (actionData is EditorCombinableActionData<CellType> cellTypeEdit && cellTypeEdit.Context != null)
+        if (actionData is EditorCombinableActionData<CellType> cellTypeEdit)
         {
-            // Get the cell type edit that matches the context
-            var targetType = cellTypes.GetOrCreateCellType(cellTypeEdit.Context);
+            if (cellTypeEdit.Context != null)
+            {
+                // Get the cell type edit that matches the context
+                var targetType = cellTypes.GetOrCreateCellType(cellTypeEdit.Context);
 
-            cellTypes.OnEditOnType(targetType, cellTypeEdit.Context);
+                cellTypes.OnEditOnType(targetType, cellTypeEdit.Context);
 
-            // And then apply the change. The overall start applying changes has been called already
-            if (!targetType.ApplyAction(cellTypeEdit))
-                throw new Exception("Failed to apply cell type edit");
+                // And then apply the change. The overall start applying changes has been called already
+                if (!targetType.ApplyAction(cellTypeEdit))
+                    throw new Exception("Failed to apply cell type edit");
 
-            return true;
+                return true;
+            }
+
+            GD.PrintErr("Cell type edit without context");
+
+#if DEBUG
+            if (Debugger.IsAttached)
+                Debugger.Break();
+#endif
         }
 
         return base.ApplyAction(actionData);
@@ -414,6 +426,11 @@ public sealed class MacroscopicEditsFacade : SpeciesEditsFacade, IReadOnlyMacros
         public void UpdateParent(MetaballWithOriginalReference? newParent)
         {
             parent = newParent;
+        }
+
+        public override string ToString()
+        {
+            return $"Facade for: {OriginalFrom}";
         }
 
         internal void ReuseFor(IReadonlyMacroscopicMetaball original, MetaballWithOriginalReference? newParent)

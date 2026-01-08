@@ -1356,7 +1356,7 @@ public static class Constants
 
     public const float AUTO_EVO_MAX_BONUS_FROM_ENVIRONMENTAL_STORAGE = 2.5f;
 
-    public const double AUTO_EVO_COLOR_CHANGE_MAX_STEP = 0.5f;
+    public const float AUTO_EVO_COLOR_CHANGE_MAX_STEP = 0.5f;
 
     public const float AUTO_EVO_MUTATION_RIGIDITY_STEP = 0.35f;
     public const float AUTO_EVO_MUTATION_TOXICITY_STEP = 0.2f;
@@ -1906,8 +1906,14 @@ public static class Constants
     public const float MAX_AI_MUTATION_RATE = 3;
     public const float MIN_COMPOUND_DENSITY = 0.2f;
     public const float MAX_COMPOUND_DENSITY = 2;
-    public const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 0.6f;
+
+    /// <summary>
+    ///   Do not set below 1 as that *gives* population when it should be lost
+    /// </summary>
+    public const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 1;
+
     public const float MAX_PLAYER_DEATH_POPULATION_PENALTY = 5;
+
     public const float MIN_GLUCOSE_DECAY = 0.3f;
     public const float MAX_GLUCOSE_DECAY = 0.95f;
     public const float MIN_OSMOREGULATION_MULTIPLIER = 0.2f;

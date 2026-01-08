@@ -221,6 +221,11 @@ public class ModifyExistingSpecies : IRunStep
 
                     if (newPopulation > Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
                     {
+                        // Only apply a new name and colour to results that are actually kept
+                        MutationLogicFunctions.NameNewMicrobeSpecies(mutation.MutatedSpecies, mutation.ParentSpecies);
+                        MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutation.MutatedSpecies,
+                            mutation.ParentSpecies);
+
                         results.AddPossibleMutation(mutation.MutatedSpecies,
                             new KeyValuePair<Patch, long>(patch, newPopulation), mutation.AddType,
                             mutation.ParentSpecies);
@@ -480,26 +485,6 @@ public class ModifyExistingSpecies : IRunStep
             lastGeneratedMutations.Add(topMutation.Item1);
         }
 
-        // TODO: could maybe optimize things by only giving name and colour changes for mutations that are selected
-        // in the end
-        foreach (var variant in lastGeneratedMutations)
-        {
-            if (variant == baseSpecies)
-                continue;
-
-            MutationLogicFunctions.NameNewMicrobeSpecies(variant, baseSpecies);
-
-            var oldColour = variant.SpeciesColour;
-
-            var redShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
-            var greenShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
-            var blueShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
-
-            variant.SpeciesColour = new Color(Math.Clamp((float)(oldColour.R + redShift), 0, 1),
-                Math.Clamp((float)(oldColour.G + greenShift), 0, 1),
-                Math.Clamp((float)(oldColour.B + blueShift), 0, 1));
-        }
-
         return lastGeneratedMutations;
     }
 
@@ -508,8 +493,8 @@ public class ModifyExistingSpecies : IRunStep
 
     private class MutationSorter(Patch patch, SimulationCache cache) : IComparer<Tuple<MicrobeSpecies, double>>
     {
-        // This isn't the cleanest but this class is just optimized for performance so if someone forgets to set up
-        // this then bad things will happen
+        // This isn't the cleanest, but this class is just optimized for performance, so if someone forgets to set up
+        // this, then bad things will happen
         private List<SelectionPressure> pressures = null!;
         private MicrobeSpecies baseSpecies = null!;
 

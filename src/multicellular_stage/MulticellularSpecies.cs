@@ -177,6 +177,10 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             }
 #endif
         }
+
+#if DEBUG
+        ModifiableGameplayCells.ThrowIfCellsOverlap();
+#endif
     }
 
     public override bool RepositionToOrigin()

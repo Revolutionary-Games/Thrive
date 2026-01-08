@@ -34,7 +34,7 @@ public static class ArchiveValueTypeHelpers
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        return ReadVector2I(reader);
+        return reader.ReadVector2I();
     }
 
     public static void WriteVector2IBoxed(ISArchiveWriter writer, ArchiveObjectType type, object obj)
