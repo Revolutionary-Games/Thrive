@@ -436,15 +436,7 @@ public partial class CellBodyPlanEditorComponent :
             }
         }
 
-        var order = new HexWithData<CellTemplate>[editedMicrobeCells.Count];
-
-        editedMicrobeCells.CopyTo(order, 0);
-        editedMicrobeCells.Clear();
-
-        foreach (var cell in growthOrderGUI.ApplyOrderingToItems(order, i => i.Data!))
-        {
-            editedMicrobeCells.AddFast(cell, hexTemporaryMemory, hexTemporaryMemory2);
-        }
+        ApplyGrowthOrderToCells();
 
         // Compute final cell layout positions and update the species
         // TODO: maybe in the future we want to switch to editing the full hex layout with the entire cells in this
@@ -1415,6 +1407,31 @@ public partial class CellBodyPlanEditorComponent :
         UpdateGrowthOrderUI();
 
         UpdateFinishButtonWarningVisibility();
+    }
+
+    private void ApplyGrowthOrderToCells()
+    {
+        var order = new HexWithData<CellTemplate>[editedMicrobeCells.Count];
+
+        editedMicrobeCells.CopyTo(order, 0);
+        editedMicrobeCells.Clear();
+
+        foreach (var cell in growthOrderGUI.ApplyOrderingToItems(order, i => i.Data!))
+        {
+            editedMicrobeCells.AddFast(cell, hexTemporaryMemory, hexTemporaryMemory2);
+        }
+
+        var leaderPosition = editedMicrobeCells[0].Position;
+
+        GD.Print(leaderPosition);
+
+        foreach (var cell in editedMicrobeCells.AsModifiable())
+        {
+            GD.Print($"{cell.Position} -> {cell.Position - leaderPosition}");
+
+            cell.Position -= leaderPosition;
+            cell.Data!.Position -= leaderPosition;
+        }
     }
 
     /// <summary>
