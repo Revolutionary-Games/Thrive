@@ -12,7 +12,7 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
@@ -333,10 +333,10 @@ public partial class CellBodyPlanEditorComponent :
         base.WritePropertiesToArchive(writer);
 
         writer.WriteObjectProperties(behaviourEditor);
-        writer.WriteObjectProperties(growthOrderGUI);
         writer.Write(newName);
         writer.WriteObject(editedMicrobeCells);
         writer.Write((int)selectedSelectionMenuTab);
+        writer.WriteObjectProperties(growthOrderGUI);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -347,7 +347,7 @@ public partial class CellBodyPlanEditorComponent :
         base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
 
         reader.ReadObjectProperties(behaviourEditor);
-        reader.ReadObjectProperties(growthOrderGUI);
+
         newName = reader.ReadString() ?? throw new NullArchiveObjectException();
         editedMicrobeCells = reader.ReadObject<IndividualHexLayout<CellTemplate>>();
         selectedSelectionMenuTab = (SelectionMenuTab)reader.ReadInt32();
@@ -375,6 +375,11 @@ public partial class CellBodyPlanEditorComponent :
                 throw new Exception("Couldn't copy data correctly from old save");
 
             editedMicrobeCells = newLayout;
+        }
+
+        if (version >= 3)
+        {
+            reader.ReadObjectProperties(growthOrderGUI);
         }
     }
 
