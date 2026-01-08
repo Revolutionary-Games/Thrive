@@ -1070,9 +1070,9 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         IEnumerable<(Vector3 TargetPosition, string Text, Color TextColor)> labels)
     {
         // Setup tracking for what gets used
-        for (int i = 0; i < createdFloatingLabels.Count; ++i)
+        foreach (var label in createdFloatingLabels)
         {
-            createdFloatingLabels[i].Active = false;
+            label.Active = false;
         }
 
         int currentLabelId = 0;
