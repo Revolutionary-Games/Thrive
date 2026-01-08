@@ -112,12 +112,6 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     }
 
     /// <summary>
-    ///   TODO: this should be removed as this is not accurate (only accurate if specialized storage vacuoles aren't
-    ///   used)
-    /// </summary>
-    public float StorageCapacity => MicrobeInternalCalculations.CalculateCapacity(Organelles);
-
-    /// <summary>
     ///   Compound capacities members of this species can store in their default configurations
     /// </summary>
     public (float Nominal, Dictionary<Compound, float> Specific) StorageCapacities
@@ -125,11 +119,6 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         get
         {
             var specific = MicrobeInternalCalculations.GetTotalSpecificCapacity(Organelles, out var nominal);
-            if (specific.Count != 0)
-            {
-                GD.Print("We found one! " + specific.Count);
-            }
-
             return (nominal, specific);
         }
     }
@@ -268,7 +257,6 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         bool giveBonusGlucose = Organelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
 
         var cachedCapacities = StorageCapacities;
-        var oldCapacity = StorageCapacity;
 
         InitialCompounds.Clear();
 
@@ -278,18 +266,13 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
             if (!simulationParameters.GetCompoundDefinition(compoundBalance.Key).CanBeInitialCompound)
                 continue;
 
-            if (!cachedCapacities.Specific.TryGetValue(compoundBalance.Key, out var cachedCapacity))
-            {
-                cachedCapacity = cachedCapacities.Nominal;
-            }
-            else
-            {
-                GD.Print(compoundBalance.Key + " new " + cachedCapacity + " old " + oldCapacity);
-            }
+            // Find the specific capacity, if any, and add it to the nominal
+            cachedCapacities.Specific.TryGetValue(compoundBalance.Key, out var compoundCapacity);
+            compoundCapacity += cachedCapacities.Nominal;
 
             if (compoundBalance.Key == Compound.Glucose && giveBonusGlucose)
             {
-                InitialCompounds.Add(compoundBalance.Key, cachedCapacity);
+                InitialCompounds.Add(compoundBalance.Key, compoundCapacity);
                 continue;
             }
 
@@ -303,8 +286,8 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
             var compoundInitialAmount =
                 Math.Abs(balanceValue.Consumption) * Constants.INITIAL_COMPOUND_TIME;
 
-            if (compoundInitialAmount > cachedCapacity)
-                compoundInitialAmount = cachedCapacity;
+            if (compoundInitialAmount > compoundCapacity)
+                compoundInitialAmount = compoundCapacity;
 
             InitialCompounds.Add(compoundBalance.Key, compoundInitialAmount);
         }
