@@ -1020,10 +1020,7 @@ public partial class CellBodyPlanEditorComponent :
                 var tooltip = ToolTipManager.Instance.GetToolTipIfExists<CellTypeTooltip>(cellType.CellTypeName,
                     "cellTypes");
 
-                if (tooltip != null)
-                {
-                    tooltip.MutationPointCost = GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier;
-                }
+                tooltip?.MutationPointCost = GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier;
             }
 
             control.MPCost = GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier;
@@ -1643,11 +1640,7 @@ public partial class CellBodyPlanEditorComponent :
                 var tooltip = ToolTipManager.Instance.GetToolTipIfExists<CellTypeTooltip>(newType.CellTypeName,
                     "cellTypes");
 
-                if (tooltip != null)
-                {
-                    tooltip.MutationPointCost =
-                        newType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
-                }
+                tooltip?.MutationPointCost = newType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
 
                 control.ReportTypeChanged();
             }

@@ -259,8 +259,7 @@ public partial class CellEditorComponent
 
             var tooltip = GetSelectionTooltip(organelle.InternalName, "organelleSelection");
 
-            if (tooltip != null)
-                tooltip.OsmoregulationCost = osmoregulationCost;
+            tooltip?.OsmoregulationCost = osmoregulationCost;
         }
     }
 
@@ -342,10 +341,7 @@ public partial class CellEditorComponent
                 continue;
 
             var tooltip = GetSelectionTooltip(organelle.InternalName, "organelleSelection");
-            if (tooltip != null)
-            {
-                tooltip.RequiresNucleus = organelle.RequiresNucleus && !HasNucleus;
-            }
+            tooltip?.RequiresNucleus = organelle.RequiresNucleus && !HasNucleus;
         }
 
         CreateUndiscoveredOrganellesButtons(true, autoUnlockOrganelles);
@@ -501,8 +497,7 @@ public partial class CellEditorComponent
 
             // Set the cost factor for each organelle tooltip
             var tooltip = GetSelectionTooltip(entry.Key.InternalName, "organelleSelection");
-            if (tooltip != null)
-                tooltip.MutationPointCost = cost;
+            tooltip?.MutationPointCost = cost;
         }
 
         // Set the cost factor for each membrane button
@@ -514,17 +509,13 @@ public partial class CellEditorComponent
 
             // Set the cost factor for each membrane tooltip
             var tooltip = GetSelectionTooltip(entry.Key.InternalName, "membraneSelection");
-            if (tooltip != null)
-                tooltip.MutationPointCost = cost;
+            tooltip?.MutationPointCost = cost;
         }
 
         // Set the cost factor for the rigidity tooltip
         var rigidityTooltip = GetSelectionTooltip("rigiditySlider", "editor");
-        if (rigidityTooltip != null)
-        {
-            rigidityTooltip.MutationPointCost = (int)Math.Min(
-                Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
-        }
+        rigidityTooltip?.MutationPointCost =
+            (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
 
         tolerancesEditor.MPDisplayCostMultiplier = CostMultiplier;
         tolerancesEditor.UpdateMPCostInToolTips();

@@ -197,9 +197,8 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
             while (enumerator.MoveNext());
         }
 
-        // Last item cannot move down in the list
-        if (lastItem != null)
-            lastItem.CanMoveDown = false;
+        // The last item cannot move down in the list
+        lastItem?.CanMoveDown = false;
     }
 
     /// <inheritdoc cref="ApplyOrderingToItems{T}(IEnumerable{T}, Func{T,IPlayerReadableName})"/>
