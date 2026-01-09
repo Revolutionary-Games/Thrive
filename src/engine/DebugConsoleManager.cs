@@ -31,6 +31,26 @@ public partial class DebugConsoleManager : Node
         return instance;
     }
 
+    public override void _Process(double delta)
+    {
+        lock (inbox)
+        {
+            while (inbox.TryDequeue(out var line))
+            {
+                History.AddToBack(line);
+
+                if (History.Count > MaxConsoleSize)
+                {
+                    History.RemoveFromFront();
+                }
+
+                OnLogReceived?.Invoke(null, new ConsoleLineArgs(line));
+            }
+        }
+
+        base._Process(delta);
+    }
+
     /// <summary>
     ///   Adds a log entry to the console manager.
     /// </summary>
@@ -55,26 +75,6 @@ public partial class DebugConsoleManager : Node
         {
             inbox.Enqueue(consoleLine);
         }
-    }
-
-    public override void _Process(double delta)
-    {
-        lock (inbox)
-        {
-            while (inbox.TryDequeue(out var line))
-            {
-                History.AddToBack(line);
-
-                if (History.Count > MaxConsoleSize)
-                {
-                    History.RemoveFromFront();
-                }
-
-                OnLogReceived?.Invoke(null, new ConsoleLineArgs(line));
-            }
-        }
-
-        base._Process(delta);
     }
 
     public void Clear()
