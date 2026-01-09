@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-18 14:19+0200\n"
-"PO-Revision-Date: 2025-12-31 14:01+0000\n"
+"POT-Creation-Date: 2026-01-09 17:12-0500\n"
+"PO-Revision-Date: 2025-12-18 17:38+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
-"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: tr\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
@@ -427,8 +427,9 @@ msgstr "Yüzeydeki ortalama diğer gaz seviyeleri"
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr "Yüzeydeki ortalama oksijen seviyesi"
 
+#, fuzzy
 msgid "AVERAGE_SURFACE_TEMPERATURE"
-msgstr "Yüzeydeki ortalama sıcaklık"
+msgstr "Yüzeydeki ortalama diğer gaz seviyeleri"
 
 msgid "AWAKENING_STAGE"
 msgstr "Uyanış Evresi"
@@ -624,6 +625,22 @@ msgstr "Kalsiyum Karbonat"
 
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Bu hücre zarı, kalsiyum karbonattan yapılmış güçlü bir kabuğa sahiptir. Hasara karşı kolayca direnir ve şeklinin bozulmaması için daha az enerji gerektirir. Böyle ağır bir kabuğa sahip olmanın dezavantajları ise hücrenin çok daha yavaş olması ve kaynakları emmenin biraz daha zaman almasıdır."
+
+#, fuzzy
+msgid "CALVIN_GLUCOSE"
+msgstr "Glukoz oluştur"
+
+#, fuzzy
+msgid "CALVIN_GLUCOSE_DESCRIPTION"
+msgstr "Selülaz, hücrenin selüloz hücre zarını parçalamasını sağlar. Her eklemede etkisi artar."
+
+#, fuzzy
+msgid "CALVIN_NONE"
+msgstr "Yok"
+
+#, fuzzy
+msgid "CALVIN_NONE_DESCRIPTION"
+msgstr "Sil tüyleri kamçılara benzer ancak, yönlü itiş kuvveti sağlamak yerine, hücrelerin dönmesi için dönme kuvveti sağlar."
 
 msgid "CAMERA"
 msgstr "Kamera"
@@ -2583,6 +2600,10 @@ msgstr "Glukoz konsantrasyonu sert bir şekilde düştü!"
 msgid "GLUCOSE_LEVEL"
 msgstr "Glukoz seviyesi"
 
+#, fuzzy
+msgid "GLUCOSE_SYNTHESIS"
+msgstr "Lusiferaz Sentezi"
+
 msgid "GLYCOLYSIS"
 msgstr "Glikoliz"
 
@@ -3831,33 +3852,33 @@ msgstr ""
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"Uzaklardaki yabancı bir gezegende, derin denizlerde asırlardır süre gelen volkanik aktiviteler olağanüstü bir şeyin oluşmasına neden oldu.\n"
+"Uzaklardaki bir yabancı gezegende, derin denizlerde sonsuz asırlar süren volkanik aktiviteler yeni bir olayın gelişmesine neden oldu.\n"
 "\n"
-"Yaşam.\n"
+"Hayat.\n"
 "\n"
-"Sen, bu gezegendeki Son Evrensel Ortak Atasın (SEOA). Bu basit baloncuk, sudaki moleküllerden kendini kopyalayabilir. Böylece zamanla, yıldızlara hakim olacak karmaşık bir türe dönüşebilir.\n"
+"Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA). Bu basit baloncuk, sudaki moleküllerden kendini kopyalayabilir. Böylece zamanla, yıldızlara hakim olacak karmaşık bir türe dönüşebilir.\n"
 "\n"
-"Ama bu hasım dünyada hayatta kalmak için, öncelikle bileşik toplayıp büyümeli, yayılmalı ve diğer mikroplarla rekabet ederken evrimleşmelisin."
+"Ama önce, diğer mikroplarla rekabet ederken büyümek, yayılmak ve evrimleşmek için bileşikler toplayıp bu hasım dünyada hayatta kalmanız gerekiyor."
 
 msgid "MICROBE_STAGE_INITIAL_PANSPERMIA"
 msgstr ""
-"Uzaklardaki yabancı bir gezegende, yeni bir olayın kökenlerini taşıyan bir meteor muazzam mesafeler kat ederek yere çarptı.\n"
+"Uzaklardaki bir yabancı gezegende bir göktaşı, muazzam mesafeler kat ettikten sonra yere çarptı ve yeni bir olayı meydana getirecek tohumları bu gezegene taşıdı.\n"
 "\n"
-"Yaşam.\n"
+"Hayat.\n"
 "\n"
-"Sen, bu gezegendeki Son Evrensel Ortak Atasın (SEOA). Kendini kopyalayabilen bu baloncuk, tıpkı ana dünyasında olduğu gibi bu okyanusta da yaşayabilir. Belki bir gün, uzak torunları o dünyayı yeniden bulacaktır.\n"
+"Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA). Kendini çoğaltabilen bu baloncuk, ana dünyasında olduğu gibi bu okyanusta da yaşayabilir. Belki bir gün, uzak torunları o dünyayı yeniden bulurlar.\n"
 "\n"
-"Ama bu tehlikeli sularda hayatta kalmak için, öncelikle bileşik toplayıp büyümeli, yayılmalı ve diğer mikroplarla rekabet ederken evrimleşmelisin."
+"Ama önce, diğer mikroplarla rekabet ederken büyümek, yayılmak ve evrimleşmek için bileşikler toplayıp bu tehlikeli sularda hayatta kalmanız gerekiyor."
 
 msgid "MICROBE_STAGE_INITIAL_POND"
 msgstr ""
-"Uzaklardaki yabancı bir gezegende, sıcak havuzlarda asırlarca süren kimyasal evrim olağanüstü bir şeyin oluşmasına neden oldu.\n"
+"Uzaklardaki bir yabancı gezegende, ısınmış havuzlarda sonsuz asırlar süren kimyasal evrim yeni bir olayın gelişmesine neden oldu.\n"
 "\n"
-"Yaşam.\n"
+"Hayat.\n"
 "\n"
-"Sen, bu gezegendeki Son Evrensel Ortak Atasın (SEOA). Bu basit baloncuk, sudaki moleküllerden kendini kopyalayabilir. Böylece zamanla, yıldızlara hakim olacak karmaşık bir türe dönüşebilir.\n"
+"Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA). Bu basit baloncuk, sudaki moleküllerden kendini kopyalayabilir. Böylece zamanla, yıldızlara hakim olacak karmaşık bir türe dönüşebilir.\n"
 "\n"
-"Ama bu hasım dünyada hayatta kalmak için, öncelikle bileşik toplayıp büyümeli, yayılmalı ve diğer mikroplarla rekabet ederken evrimleşmelisin."
+"Ama önce, diğer mikroplarla rekabet ederken büyümek, yayılmak ve evrimleşmek için bileşikler toplayıp bu hasım dünyada hayatta kalmanız gerekiyor."
 
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
@@ -3953,7 +3974,7 @@ msgid "MODELS"
 msgstr "Modeller"
 
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
-msgstr "2D hareket modu, daha sonra ayarlar menüsünden her an değiştirilebilir"
+msgstr "2D hareket modu daha sonra ayarlar menüsünden her an değiştirilebilir"
 
 msgid "MODIFY"
 msgstr "Değişiklik Yap"
@@ -4816,6 +4837,14 @@ msgid "PHOSPHATES_LEVELS"
 msgstr "Fosfat seviyesi"
 
 msgid "PHOTOSYNTHESIS"
+msgstr "Fotosentez"
+
+#, fuzzy
+msgid "PHOTOSYNTHESIS_ATP"
+msgstr "Fotosentez"
+
+#, fuzzy
+msgid "PHOTOSYNTHESIS_GLUCOSE"
 msgstr "Fotosentez"
 
 msgid "PHYSICAL_CONDITIONS"
@@ -9554,7 +9583,7 @@ msgstr "Büyüme Sırası"
 
 #, fuzzy
 msgid "WRONG_GROWTH_ORDER_TEXT"
-msgstr "Bu sekme, organellerin büyüme sırasının ayarlanmasını sağlar. Bu ayar, büyüme aşamasındayken kararsız ATP üretimi olan hücreler için önemli olabilir. Ayrıca, organel sırasının biyoişlem çalıştırma sırasına bir etkisi vardır. Bu ayarın düzenlenmesi yalnızca yapı düzenlemesi bittikten sonra önerilir. Çünkü yapı düzenlemeleri bu ayardaki değişiklikleri geri alabilir."
+msgstr "Büyüme Sırası"
 
 msgid "XBOX360"
 msgstr "Xbox 360"

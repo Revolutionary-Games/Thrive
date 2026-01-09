@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-18 14:19+0200\n"
+"POT-Creation-Date: 2026-01-09 17:12-0500\n"
 "PO-Revision-Date: 2025-11-14 11:00+0000\n"
 "Last-Translator: Sur3 <sur3@gmx.de>\n"
 "Language-Team: Japanese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ja/>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.11.4\n"
 "Generated-By: Thrive.Scripts 1.2.0.0\n"
@@ -628,6 +628,21 @@ msgstr "炭酸カルシウム"
 
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "この膜は炭酸カルシウムで作られた強固な殻を持っています。ダメージに強く、変形させないためのエネルギーも少なくて済みます。ただし、重い殻を持つデメリットとして、細胞の移動速度が遅くなり、資源の吸収にも時間がかかります。"
+
+#, fuzzy
+msgid "CALVIN_GLUCOSE"
+msgstr "グルコースをスポーン"
+
+#, fuzzy
+msgid "CALVIN_GLUCOSE_DESCRIPTION"
+msgstr "セルラーゼは細胞がセルロース膜を分解できるようにします。追加するたびその効果は高まります。"
+
+msgid "CALVIN_NONE"
+msgstr ""
+
+#, fuzzy
+msgid "CALVIN_NONE_DESCRIPTION"
+msgstr "繊毛は鞭毛に似ていますが、前進の推進力を生むのではなく、細胞が回転するのを助ける回転力を生みます。"
 
 msgid "CAMERA"
 msgstr "カメラ"
@@ -2456,6 +2471,10 @@ msgstr ""
 #, fuzzy
 msgid "GLUCOSE_LEVEL"
 msgstr "グルコース"
+
+#, fuzzy
+msgid "GLUCOSE_SYNTHESIS"
+msgstr "化学合成"
 
 msgid "GLYCOLYSIS"
 msgstr ""
@@ -4557,6 +4576,14 @@ msgstr "リン酸塩"
 
 msgid "PHOTOSYNTHESIS"
 msgstr ""
+
+#, fuzzy
+msgid "PHOTOSYNTHESIS_ATP"
+msgstr "化学合成"
+
+#, fuzzy
+msgid "PHOTOSYNTHESIS_GLUCOSE"
+msgstr "化学合成"
 
 msgid "PHYSICAL_CONDITIONS"
 msgstr ""

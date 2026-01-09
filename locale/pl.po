@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-18 14:19+0200\n"
-"PO-Revision-Date: 2025-12-20 22:46+0000\n"
-"Last-Translator: DrAlienizer <dr4gonizer@proton.me>\n"
+"POT-Creation-Date: 2026-01-09 17:12-0500\n"
+"PO-Revision-Date: 2025-12-05 22:50+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
-"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pl\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
@@ -629,6 +629,22 @@ msgstr "Węglanowo-Wapienna"
 
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Ta membrana ma silną muszlę zrobioną z węglanu wapnia. Może z łatwością opierać się obrażeniom i wymaga mniej energii do utrzymania kształtu. Wady posiadania tak ciężkiej muszli są takie, że komórka jest znacznie wolniejsza i długo zajmuje jej wchłanianie zasobów."
+
+#, fuzzy
+msgid "CALVIN_GLUCOSE"
+msgstr "Stwórz glukozę"
+
+#, fuzzy
+msgid "CALVIN_GLUCOSE_DESCRIPTION"
+msgstr "Celulaza umożliwia komórce trawienie celulozowych błon. Każde dodanie zwiększa wydajność."
+
+#, fuzzy
+msgid "CALVIN_NONE"
+msgstr "Brak"
+
+#, fuzzy
+msgid "CALVIN_NONE_DESCRIPTION"
+msgstr "Rzęski są podobne do wici lecz zamiast dostarczać kierunkową siłę ciągu dodają siłę obrotową by pomóc komórkom się obracać."
 
 msgid "CAMERA"
 msgstr "Kamera"
@@ -2621,6 +2637,10 @@ msgstr "Stężenie glukozy drastycznie spadło!"
 msgid "GLUCOSE_LEVEL"
 msgstr "Poziom glukozy"
 
+#, fuzzy
+msgid "GLUCOSE_SYNTHESIS"
+msgstr "Synteza śluzu"
+
 msgid "GLYCOLYSIS"
 msgstr "Glikoliza"
 
@@ -2916,7 +2936,7 @@ msgid "INTERACTION_CONSTRUCT"
 msgstr "Zakończ Budowę"
 
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
-msgstr "Zakończ budowę (brakuje wymaganych materiałów)"
+msgstr ""
 
 msgid "INTERACTION_CRAFT"
 msgstr "Stwórz..."
@@ -4046,7 +4066,7 @@ msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
 msgstr "(lokalizacja początkowa)"
 
 msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
-msgstr "W jednej sesji edytora można migrować tylko raz. Poniżej możesz zobaczyć cel migracji i go zachować albo anulować, aby wybrać inny"
+msgstr ""
 
 #, fuzzy
 msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
@@ -4113,7 +4133,7 @@ msgid "MODELS"
 msgstr "Modele"
 
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
-msgstr "W każdej chwili możesz zmienić tryb ruchu 2D w menu opcji"
+msgstr ""
 
 msgid "MODIFY"
 msgstr "Modyfikuj"
@@ -4933,10 +4953,10 @@ msgid "PATCH_NAME"
 msgstr "{0}: {1}"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
-msgstr "Ostatnio grałeś w Thrive {0}, od tego czasu wyszła jedna nowa wersja"
+msgstr ""
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
-msgstr "Ostatnio grałeś w Thrive {0}, od tego czasu wydano {1} nowe wersje"
+msgstr ""
 
 msgid "PATCH_NOTES_TITLE"
 msgstr "Zmiany w aktualizacji"
@@ -5019,6 +5039,14 @@ msgid "PHOSPHATES_LEVELS"
 msgstr "Fosforany (PO₄³⁻)"
 
 msgid "PHOTOSYNTHESIS"
+msgstr "Fotosynteza"
+
+#, fuzzy
+msgid "PHOTOSYNTHESIS_ATP"
+msgstr "Fotosynteza"
+
+#, fuzzy
+msgid "PHOTOSYNTHESIS_GLUCOSE"
 msgstr "Fotosynteza"
 
 msgid "PHYSICAL_CONDITIONS"
@@ -5503,13 +5531,6 @@ msgstr "Utlenia [thrive:compound type=\"iron\"]Żelazo[/thrive:compound] wydziel
 
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
-"Thrive uruchomił się w trybie awaryjnym, ponieważ podczas poprzedniego uruchamiania wystąpił błąd.\n"
-"\n"
-"Mógł go spowodować mod lub odtwarzacz wideo. Wczytywanie modów i/lub odtwarzanie wideo może być zapobiegawczo wstrzymane, dopóki nie uruchomisz ponownie gry.\n"
-"\n"
-"Zanim to zrobisz, wyłącz wszystkie mody, które mogą powodować problemy lub są niezgodne z obecną wersją Thrive (możesz przejrzeć logi z poprzednich uruchomień, aby sprawdzić, czy przyczynił się do tego jakiś mod). W przypadku problemów z odtwarzaczem wideo, skorzystaj z opcji wymuszenia jego wyłączenia w programie uruchamiającym.\n"
-"\n"
-"Jeśli problem nie zostanie rozwiązany, konieczne będzie kilkukrotne restartowanie gry i powodowanie awarii, aby ponownie włączyć tryb awaryjny."
 
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive Uruchomiło Się W Trybie Bezpiecznym"
@@ -6134,7 +6155,7 @@ msgid "STRUCTURE_DYSON_SWARM"
 msgstr "Struktura"
 
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
-msgstr "Dostarczono wymagane materiały do budowy"
+msgstr ""
 
 msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
 msgstr ""
@@ -6143,7 +6164,7 @@ msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr "Budowa: {0}"
 
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
-msgstr "Materiały wymagane do zakończenia budowy: {0}"
+msgstr ""
 
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr "{0} (koszt początkowy: {1}, razem: {2})"
@@ -9263,7 +9284,7 @@ msgstr "Kolejność wzrostu"
 
 #, fuzzy
 msgid "WRONG_GROWTH_ORDER_TEXT"
-msgstr "(gdy włączone, limituje prędkość wzrostu, jeśli wyłączone, jedynie dostępne związki wpływają na wzrost)"
+msgstr "Kolejność wzrostu"
 
 msgid "XBOX360"
 msgstr "Xbox 360"

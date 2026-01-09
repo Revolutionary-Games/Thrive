@@ -291,6 +291,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
         int organelleCount = organelles.Count;
         for (int i = 0; i < organelleCount; ++i)
         {
+            GD.Print(organelles[i]);
             var organelle = organelles[i];
 
             AddOrganelleATPTracking(organelle, biome, environmentTolerances, amountType, cache, result);

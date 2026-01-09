@@ -181,6 +181,11 @@ public class OrganelleDefinition : RegistryType
     public Dictionary<string, AvailableUpgrade> AvailableUpgrades = new();
 
     /// <summary>
+    ///   The name of the default ("none") upgrade, if needed
+    /// </summary>
+    public string? DefaultUpgradeName;
+
+    /// <summary>
     ///   The possible conditions where a player can unlock this organelle.
     /// </summary>
     public List<ConditionSet>? UnlockConditions;

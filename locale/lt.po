@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-18 14:19+0200\n"
+"POT-Creation-Date: 2026-01-09 17:12-0500\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
-"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: lt\n"
 "Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > 19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? 1 : 2);\n"
 "X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
@@ -652,6 +652,21 @@ msgstr "Kalcio Karbonatas"
 
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Ši membrana turi tvirtą apvalkalą, pagamintą iš kalcio karbonato. Ji lengvai atlaiko pažeidimus ir reikalauja mažiau energijos, kad nesideformuotų. Tokio sunkaus apvalkalo trūkumas yra tas, kad ląstelė yra daug lėtesnė ir ilgai įsisavina išteklius."
+
+#, fuzzy
+msgid "CALVIN_GLUCOSE"
+msgstr "Celiuliozė"
+
+#, fuzzy
+msgid "CALVIN_GLUCOSE_DESCRIPTION"
+msgstr "Celiulazė leidžia ląstelei suskaidyti celiuliozės membraną. Kiekvienas papildymas didina veiksmingumą."
+
+msgid "CALVIN_NONE"
+msgstr ""
+
+#, fuzzy
+msgid "CALVIN_NONE_DESCRIPTION"
+msgstr "Cilijos plaukeliai yra panašūs į blakstienėles, tačiau, užuot teikę krypties traukos jėgą, jie suteikia sukimosi jėgą, padedančią ląstelėms suktis."
 
 msgid "CAMERA"
 msgstr "Kamera"
@@ -2647,6 +2662,10 @@ msgstr "Gliukozės koncentracija smarkiai sumažėjo!"
 #, fuzzy
 msgid "GLUCOSE_LEVEL"
 msgstr "{0}-{1}m žemiau jūros lygio"
+
+#, fuzzy
+msgid "GLUCOSE_SYNTHESIS"
+msgstr "Chemosintezė"
 
 msgid "GLYCOLYSIS"
 msgstr ""
@@ -4911,6 +4930,14 @@ msgstr "Didelis Geležies Gabalas"
 
 msgid "PHOTOSYNTHESIS"
 msgstr ""
+
+#, fuzzy
+msgid "PHOTOSYNTHESIS_ATP"
+msgstr "Chemosintezė"
+
+#, fuzzy
+msgid "PHOTOSYNTHESIS_GLUCOSE"
+msgstr "Chemosintezė"
 
 msgid "PHYSICAL_CONDITIONS"
 msgstr ""
@@ -9081,10 +9108,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "WIKI_IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Chemoplastas yra dvigubos membranos struktūra, kurioje yra baltymų, galinčių paversti [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], dujinį [thrive:compound type=\"carbondioxide\"][/thrive:compound] ir vandenį į [thrive:compound type=\"glucose\"][/thrive:compound], vykstant procesui, vadinamam [b]vandenilio sulfido chemosinteze[/b]. Jo [thrive:compound type=\"glucose\"][/thrive:compound] gamybos greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos."
-
-#, fuzzy
-#~ msgid "WIKI_PHOTOSYNTHESIS"
-#~ msgstr "Chemosintezė"
 
 #, fuzzy
 #~ msgid "WIKI_SOCIETY_STAGE"

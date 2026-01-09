@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-18 14:19+0200\n"
+"POT-Creation-Date: 2026-01-09 17:12-0500\n"
 "PO-Revision-Date: 2025-10-16 19:56+0000\n"
 "Last-Translator: Jens Schwartz Linder <jesclinder@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
-"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: sv\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.9.0\n"
@@ -660,6 +660,22 @@ msgstr "Kalciumkarbonat"
 
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Detta membran har ett starkt skal gjort av kalciumkarbonat. Det kan lätt motstå skada och kräver mindre energi för att hålla sin form. Nackdelarna av ett sådant tungt skal är att cellen blir mycket långsammare och tar längre tid att ta upp resurser."
+
+#, fuzzy
+msgid "CALVIN_GLUCOSE"
+msgstr "Spawna glukos"
+
+#, fuzzy
+msgid "CALVIN_GLUCOSE_DESCRIPTION"
+msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+
+#, fuzzy
+msgid "CALVIN_NONE"
+msgstr "Signaleringsmedel"
+
+#, fuzzy
+msgid "CALVIN_NONE_DESCRIPTION"
+msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
 msgid "CAMERA"
 msgstr "Kamera"
@@ -2783,6 +2799,10 @@ msgstr "Glukoskoncentrationerna har sjunkit drastiskt!"
 #, fuzzy
 msgid "GLUCOSE_LEVEL"
 msgstr "{0}-{1}m under havsnivån"
+
+#, fuzzy
+msgid "GLUCOSE_SYNTHESIS"
+msgstr "Mucilagesyntes"
 
 msgid "GLYCOLYSIS"
 msgstr "Glykolys"
@@ -5231,6 +5251,14 @@ msgid "PHOSPHATES_LEVELS"
 msgstr "Fosfat kostnad:"
 
 msgid "PHOTOSYNTHESIS"
+msgstr "Fotosyntes"
+
+#, fuzzy
+msgid "PHOTOSYNTHESIS_ATP"
+msgstr "Fotosyntes"
+
+#, fuzzy
+msgid "PHOTOSYNTHESIS_GLUCOSE"
 msgstr "Fotosyntes"
 
 msgid "PHYSICAL_CONDITIONS"

@@ -1,0 +1,87 @@
+﻿using System;
+using SharedBase.Archive;
+
+/// <summary>
+///   Upgrades for toxin firing organelles
+/// </summary>
+/// <remarks>
+///   <para>
+///     This is in a separate files as there isn't a toxin organelle component file to put this into
+///   </para>
+/// </remarks>
+public class CalvinUpgrades : IComponentSpecificUpgrades
+{
+    public const ushort SERIALIZATION_VERSION = 1;
+
+    public CalvinUpgrades(CalvinType baseType, float toxicity)
+    {
+        BaseType = baseType;
+        Toxicity = toxicity;
+    }
+
+    /// <summary>
+    ///   Category of the selected toxin to fire. Note that this doesn't *really* need to be here as the toxin type
+    ///   is actually determined by the unlocked features in the base upgrades class, but for now this is here for
+    ///   completeness’s sake. It is hopefully not possible for this to get out of sync with the other data.
+    /// </summary>
+    public CalvinType BaseType { get; set; }
+
+    /// <summary>
+    ///   Toxicity / speed of firing of the toxin. Range is -1 to 1, with 0 being the default. 1 is the maximum potency
+    ///   and -1 is the maximum firerate with minimum potency.
+    /// </summary>
+    public float Toxicity { get; set; }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ToxinUpgrades;
+
+    public bool CanBeReferencedInArchive => false;
+
+    public static CalvinUpgrades ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new CalvinUpgrades((CalvinType)reader.ReadInt32(), reader.ReadFloat());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write((int)BaseType);
+        writer.Write(Toxicity);
+    }
+
+    public double CalculateCost(IComponentSpecificUpgrades? previousUpgrades)
+    {
+        // TODO: calculate cost of this upgrade once custom upgrades can cost MP
+        return 0;
+    }
+
+    public bool Equals(IComponentSpecificUpgrades? other)
+    {
+        if (other is CalvinUpgrades calvinUpgrades)
+        {
+            return calvinUpgrades.BaseType == BaseType &&
+                Math.Abs(Toxicity - calvinUpgrades.Toxicity) < MathUtils.EPSILON;
+        }
+
+        return false;
+    }
+
+    public object Clone()
+    {
+        return new CalvinUpgrades(BaseType, Toxicity);
+    }
+
+    public override int GetHashCode()
+    {
+        return int.RotateLeft(Toxicity.GetHashCode(), 3) ^ BaseType.GetHashCode();
+    }
+
+    public ulong GetVisualHashCode()
+    {
+        // Upgrades don't affect the visuals
+        return 3L << 32;
+    }
+}

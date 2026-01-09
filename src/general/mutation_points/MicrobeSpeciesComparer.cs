@@ -45,7 +45,6 @@ public class MicrobeSpeciesComparer
         for (int i = 0; i < count; ++i)
         {
             var newUpgrade = newUpgrades[i];
-
             if (oldUpgrades.Contains(newUpgrade))
                 continue;
 

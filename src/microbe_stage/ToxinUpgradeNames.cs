@@ -37,7 +37,7 @@ public static class ToxinUpgradeNames
         if (TryGetToxinTypeFromName(name, out var result))
             return result;
 
-        throw new ArgumentException("Name doesn't match any toxin upgrade name");
+        throw new ArgumentException("Name doesn't match any toxin upgrade name, name was " + name);
     }
 
     public static bool TryGetToxinTypeFromName(string name, out ToxinType type)

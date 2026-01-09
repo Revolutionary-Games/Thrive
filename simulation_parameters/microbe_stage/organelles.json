@@ -333,7 +333,7 @@
     ],
     "Processes": {
       "glycolysis": 1,
-      "chromatophore_photosynthesis": 1
+      "chromatophore_glucogenesis": 1
     },
     "Components": {
       "Storage": {
@@ -362,6 +362,28 @@
         }
       }
     ],
+    "UpgradeGUI": "res://src/microbe_stage/editor/upgrades/ChromatophoreUpgradeGUI.tscn",
+    "UpgraderSkipDefaultControls": true,
+    "DefaultUpgradeName": "glucose",
+    "AvailableUpgrades": {
+      "nocalvin": {
+        "Name": "CALVIN_NONE",
+        "Description": "CALVIN_NONE_DESCRIPTION",
+        "MPCost": 10,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png",
+        "OverrideProcesses": {
+          "chromatophore_glucogenesis": 0,
+          "chromatophore_ATP_synthesis": 1
+        }
+      },
+      "none": {
+        "IsDefault": true,
+        "Name": "CALVIN_GLUCOSE",
+        "Description": "CALVIN_GLUCOSE_DESCRIPTION",
+        "MPCost": 10,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+      }
+    },
     "EditorButtonGroup": "Protein",
     "EditorButtonOrder": 2,
     "EndosymbiosisUnlocks": "chloroplast"

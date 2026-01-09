@@ -81,9 +81,9 @@ public class AvailableUpgrade : IRegistryType
         if (string.IsNullOrEmpty(Description))
             throw new InvalidRegistryDataException(name, GetType().Name, "Description is not set");
 
-        if (IsDefault)
+        if (IsDefault && string.IsNullOrEmpty(IconPath))
         {
-            // For the default upgrade we don't have an icon right now, but might have something in the future
+            // For the default upgrade we don't require an icon right now, but might have something in the future
             IconPath = string.Empty;
         }
         else
@@ -96,8 +96,9 @@ public class AvailableUpgrade : IRegistryType
         {
             foreach (var process in overrideProcesses)
             {
-                if (process.Value <= 0)
-                    throw new InvalidRegistryDataException(name, GetType().Name, "Process speed should be positive");
+                if (process.Value < 0)
+                    throw new InvalidRegistryDataException(name, GetType().Name,
+                        "Process speed should not be negative");
             }
         }
 

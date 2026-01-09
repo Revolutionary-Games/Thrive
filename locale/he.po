@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-18 14:19+0200\n"
+"POT-Creation-Date: 2026-01-09 17:12-0500\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
-"Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: he\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && n % 10 == 0) ? 2 : 3));\n"
 "X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
@@ -649,6 +649,22 @@ msgstr "סידן פחמתי"
 
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "לממברנה זו יש קליפה חזקה העשויה מסידן פחמתי. הוא מסוגל בקלות לעמוד בפני נזק ודורש פחות אנרגיה כדי לא לעוות. החסרונות זה שמעטפת כה כבדה עד שהיא גורמת לתא לנוע באטיות הרבה יותר וגם לוקח יותר זמן לספוג משאבים."
+
+#, fuzzy
+msgid "CALVIN_GLUCOSE"
+msgstr "זמן גלוקוז"
+
+#, fuzzy
+msgid "CALVIN_GLUCOSE_DESCRIPTION"
+msgstr "צילולאז מאפשרים לתא לפרק ממברנות העשויות מתאית. כל תוספת מגדילה את יעילותו."
+
+#, fuzzy
+msgid "CALVIN_NONE"
+msgstr "שום דבר"
+
+#, fuzzy
+msgid "CALVIN_NONE_DESCRIPTION"
+msgstr "ריסונים דומים לשוטונים אבל במקום שהם מספקים דחף לכיוון מסוים הם עוזרים לתא להסתובב ולפנות."
 
 msgid "CAMERA"
 msgstr "מצלמה"
@@ -2745,6 +2761,10 @@ msgstr "ריכוזי הגלוקוז ירדו בצורה דרסטית!"
 #, fuzzy
 msgid "GLUCOSE_LEVEL"
 msgstr "{0}-{1}מ' מתחת פני הים"
+
+#, fuzzy
+msgid "GLUCOSE_SYNTHESIS"
+msgstr "ייצור ריר"
 
 msgid "GLYCOLYSIS"
 msgstr "גליקוליזה"
@@ -5219,6 +5239,14 @@ msgid "PHOSPHATES_LEVELS"
 msgstr "פוספט"
 
 msgid "PHOTOSYNTHESIS"
+msgstr "פוטוסינתזה"
+
+#, fuzzy
+msgid "PHOTOSYNTHESIS_ATP"
+msgstr "פוטוסינתזה"
+
+#, fuzzy
+msgid "PHOTOSYNTHESIS_GLUCOSE"
 msgstr "פוטוסינתזה"
 
 msgid "PHYSICAL_CONDITIONS"

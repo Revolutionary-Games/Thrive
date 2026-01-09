@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-18 14:19+0200\n"
+"POT-Creation-Date: 2026-01-09 17:12-0500\n"
 "PO-Revision-Date: 2025-12-08 21:28+0000\n"
 "Last-Translator: Matthias Ulbl <matthias.ulbl@gmx.at>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
@@ -630,6 +630,22 @@ msgstr "Kalk"
 
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Diese Membran hat eine starke Schale aus Kalziumkarbonat. Sie kann Beschädigungen leicht widerstehen und benötigt weniger Energie, um sich nicht zu verformen. Der Nachteil einer so schweren Hülle ist, dass die Zelle viel langsamer ist und eine Weile braucht, um Ressourcen zu absorbieren."
+
+#, fuzzy
+msgid "CALVIN_GLUCOSE"
+msgstr "Glukose erzeugen"
+
+#, fuzzy
+msgid "CALVIN_GLUCOSE_DESCRIPTION"
+msgstr "Cellulase ermöglicht es der Zelle Cellulose Membranen zu zersetzen. Dies erhöht die Effektivität des Prozesses."
+
+#, fuzzy
+msgid "CALVIN_NONE"
+msgstr "deaktiviert"
+
+#, fuzzy
+msgid "CALVIN_NONE_DESCRIPTION"
+msgstr "Zilien funktionieren ähnlich wie Flagellen. Aber anstatt Antrieb in eine bestimmte Richtung zu geben, helfen sie bei der Drehbewegung der Zelle."
 
 msgid "CAMERA"
 msgstr "Kamera"
@@ -2606,6 +2622,10 @@ msgstr "Die Glukosekonzentration ist drastisch gesunken!"
 
 msgid "GLUCOSE_LEVEL"
 msgstr "Glukosevorkommen"
+
+#, fuzzy
+msgid "GLUCOSE_SYNTHESIS"
+msgstr "Luciferase-Synthese"
 
 msgid "GLYCOLYSIS"
 msgstr "Glykolyse"
@@ -4890,6 +4910,14 @@ msgid "PHOSPHATES_LEVELS"
 msgstr "Phosphatvorkommen"
 
 msgid "PHOTOSYNTHESIS"
+msgstr "Photosynthese"
+
+#, fuzzy
+msgid "PHOTOSYNTHESIS_ATP"
+msgstr "Photosynthese"
+
+#, fuzzy
+msgid "PHOTOSYNTHESIS_GLUCOSE"
 msgstr "Photosynthese"
 
 msgid "PHYSICAL_CONDITIONS"
