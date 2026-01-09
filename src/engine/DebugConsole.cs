@@ -43,4 +43,9 @@ public partial class DebugConsole : CustomWindow
         consoleArea.AddText(line.Line);
         consoleArea.Pop();
     }
+
+    private void AddLog(object? o, DebugConsoleManager.ConsoleLineArgs line)
+    {
+        AddLog(line.Line);
+    }
 }
