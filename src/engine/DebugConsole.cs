@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using Godot;
 
 /// <summary>
@@ -6,8 +6,6 @@ using Godot;
 /// </summary>
 public partial class DebugConsole : CustomWindow
 {
-    private readonly Queue<DebugConsoleManager.ConsoleLine> lineBuffer = [];
-
 #pragma warning disable CA2213
     [Export]
     private RichTextLabel consoleArea = null!;
@@ -29,87 +27,37 @@ public partial class DebugConsole : CustomWindow
         }
     }
 
-    public override void _Ready()
-    {
-        ReloadGUI();
-
-        base._Ready();
-    }
-
-    public override void _EnterTree()
-    {
-        DebugConsoleManager.OnMessageReceived += AddLog;
-
-        base._EnterTree();
-    }
-
-    public override void _ExitTree()
-    {
-        DebugConsoleManager.OnMessageReceived -= AddLog;
-
-        base._ExitTree();
-    }
-
     public override void _Process(double delta)
     {
         if (!IsConsoleOpen)
             return;
 
-        lock (lineBuffer)
+        var lineCount = consoleArea.GetLineCount();
+        var lines = DebugConsoleManager.Lines;
+
+        if (lineCount + lines.Count > DebugConsoleManager.MaxConsoleSize)
         {
-            var lineCount = consoleArea.GetLineCount();
-
-            if (lineCount + lineBuffer.Count > DebugConsoleManager.MaxConsoleSize)
+            for (var i = 0; i < lines.Count; i += 1)
             {
-                for (var i = 0; i < lineBuffer.Count; i += 1)
-                {
-                    consoleArea.RemoveParagraph(0, true);
-                }
-
-                consoleArea.InvalidateParagraph(0);
+                consoleArea.RemoveParagraph(0, true);
             }
 
-            while (lineBuffer.Count > 0)
-            {
-                var ln = lineBuffer.Dequeue();
+            consoleArea.InvalidateParagraph(0);
+        }
 
-                consoleArea.PushColor(ln.Color);
-                consoleArea.AppendText(ln.Line.StripEdges(false));
-                consoleArea.Pop();
-                consoleArea.Newline();
-            }
-
-            lineBuffer.Clear();
+        while (lines.TryDequeue(out var ln))
+        {
+            consoleArea.PushColor(ln.Color);
+            consoleArea.AppendText(ln.Line.StripEdges(false));
+            consoleArea.Pop();
+            consoleArea.Newline();
         }
 
         base._Process(delta);
     }
 
-    public void ReloadGUI()
-    {
-        lock (lineBuffer)
-        {
-            lineBuffer.Clear();
-        }
-
-        consoleArea.Clear();
-
-        foreach (var ln in DebugConsoleManager.GetLines())
-        {
-            AddLog(ln);
-        }
-    }
-
-    public void AddLog(object? s, DebugConsoleManager.ConsoleLineArgs args)
-    {
-        AddLog(args.Line);
-    }
-
     public void AddLog(DebugConsoleManager.ConsoleLine line)
     {
-        lock (lineBuffer)
-        {
-            lineBuffer.Enqueue(line);
-        }
+        DebugConsoleManager.Lines.Enqueue(line);
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using Godot;
 
 /// <summary>
@@ -11,9 +11,7 @@ public static class DebugConsoleManager
 {
     public const uint MaxConsoleSize = 255;
 
-    private static readonly Queue<ConsoleLine> Lines = [];
-
-    public static event EventHandler<ConsoleLineArgs>? OnMessageReceived;
+    public static readonly ConcurrentQueue<ConsoleLine> Lines = [];
 
     /// <summary>
     ///   Adds a log entry to the console manager.
@@ -25,34 +23,27 @@ public static class DebugConsoleManager
         var color = isError ? Colors.Red : Colors.White;
         var consoleLine = new ConsoleLine(line, color);
 
-        lock (Lines)
-        {
-            // for now, we cap max console size to MaxConsoleSize to avoid flooding
-            if (Lines.Count > MaxConsoleSize)
-            {
-                Lines.Dequeue();
-            }
+        Print(consoleLine);
+    }
 
-            Lines.Enqueue(consoleLine);
+    /// <summary>
+    ///   Adds a log entry to the console manager.
+    /// </summary>
+    /// <param name="consoleLine">The console line data</param>
+    public static void Print(ConsoleLine consoleLine)
+    {
+        // for now, we cap max console size to MaxConsoleSize to avoid flooding
+        if (Lines.Count > MaxConsoleSize)
+        {
+            Lines.TryDequeue(out _);
         }
 
-        OnMessageReceived?.Invoke(null, new ConsoleLineArgs(consoleLine));
+        Lines.Enqueue(consoleLine);
     }
 
     public static void Clear()
     {
-        lock (Lines)
-        {
-            Lines.Clear();
-        }
-    }
-
-    public static IReadOnlyList<ConsoleLine> GetLines()
-    {
-        lock (Lines)
-        {
-            return Lines.ToArray();
-        }
+        Lines.Clear();
     }
 
     /// <summary>
