@@ -1,24 +1,42 @@
 ﻿using System;
-using System.Collections.Concurrent;
+using System.Collections.Generic;
 using Godot;
+using Nito.Collections;
 
 /// <summary>
 ///   The debug console manager.
 ///   This is used by Debug Consoles to retrieve logs.
 ///   System output is transferred to this manager by the LogInterceptor.
 /// </summary>
-public static class DebugConsoleManager
+[GodotAutoload]
+public partial class DebugConsoleManager : Node
 {
     public const uint MaxConsoleSize = 255;
 
-    public static readonly ConcurrentQueue<ConsoleLine> Lines = [];
+    public readonly Deque<ConsoleLine> History = [];
+
+    private static DebugConsoleManager? instance;
+
+    private readonly Queue<ConsoleLine> inbox = [];
+
+    private DebugConsoleManager()
+    {
+        instance = this;
+    }
+
+    public event EventHandler<ConsoleLineArgs>? OnLogReceived;
+
+    public static DebugConsoleManager? GetInstance()
+    {
+        return instance;
+    }
 
     /// <summary>
     ///   Adds a log entry to the console manager.
     /// </summary>
     /// <param name="line">The message of the log</param>
     /// <param name="isError">Whether it is an error message</param>
-    public static void Print(string line, bool isError = false)
+    public void Print(string line, bool isError = false)
     {
         var color = isError ? Colors.Red : Colors.White;
         var consoleLine = new ConsoleLine(line, color);
@@ -30,20 +48,38 @@ public static class DebugConsoleManager
     ///   Adds a log entry to the console manager.
     /// </summary>
     /// <param name="consoleLine">The console line data</param>
-    public static void Print(ConsoleLine consoleLine)
+    public void Print(ConsoleLine consoleLine)
     {
         // for now, we cap max console size to MaxConsoleSize to avoid flooding
-        if (Lines.Count > MaxConsoleSize)
+        lock (inbox)
         {
-            Lines.TryDequeue(out _);
+            inbox.Enqueue(consoleLine);
         }
-
-        Lines.Enqueue(consoleLine);
     }
 
-    public static void Clear()
+    public override void _Process(double delta)
     {
-        Lines.Clear();
+        lock (inbox)
+        {
+            while (inbox.TryDequeue(out var line))
+            {
+                History.AddToBack(line);
+
+                if (History.Count > MaxConsoleSize)
+                {
+                    History.RemoveFromFront();
+                }
+
+                OnLogReceived?.Invoke(null, new ConsoleLineArgs(line));
+            }
+        }
+
+        base._Process(delta);
+    }
+
+    public void Clear()
+    {
+        History.Clear();
     }
 
     /// <summary>

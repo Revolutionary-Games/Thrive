@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Text;
 using Godot;
@@ -83,7 +83,7 @@ public partial class LogInterceptor : Logger
             // These errors as they aren't very visible, would make sense to show despite a debugger being attached
         }
 
-        DebugConsoleManager.Print(message, error);
+        DebugConsoleManager.GetInstance()!.Print(message, error);
     }
 
     public override void _LogError(string function, string file, int line, string code, string rationale,
@@ -91,7 +91,7 @@ public partial class LogInterceptor : Logger
     {
         base._LogError(function, file, line, code, rationale, editorNotify, errorType, scriptBacktraces);
 
-        DebugConsoleManager.Print(code + ": " + rationale, true);
+        DebugConsoleManager.GetInstance()!.Print(code + ": " + rationale, true);
 
         // Only trigger on errors
         if (errorType != (int)ErrorType.Error)

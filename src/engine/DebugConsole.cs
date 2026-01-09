@@ -26,37 +26,21 @@ public partial class DebugConsole : CustomWindow
         }
     }
 
-    public override void _Process(double delta)
+    public override void _Ready()
     {
-        if (!IsConsoleOpen)
-            return;
-
-        var lineCount = consoleArea.GetLineCount();
-        var lines = DebugConsoleManager.Lines;
-
-        if (lineCount + lines.Count > DebugConsoleManager.MaxConsoleSize)
+        consoleArea.Clear();
+        foreach (var line in DebugConsoleManager.GetInstance()!.History)
         {
-            for (var i = 0; i < lines.Count; i += 1)
-            {
-                consoleArea.RemoveParagraph(0, true);
-            }
-
-            consoleArea.InvalidateParagraph(0);
+            AddLog(line);
         }
 
-        while (lines.TryDequeue(out var ln))
-        {
-            consoleArea.PushColor(ln.Color);
-            consoleArea.AppendText(ln.Line.StripEdges(false));
-            consoleArea.Pop();
-            consoleArea.Newline();
-        }
-
-        base._Process(delta);
+        DebugConsoleManager.GetInstance()!.OnLogReceived += AddLog;
     }
 
     public void AddLog(DebugConsoleManager.ConsoleLine line)
     {
-        DebugConsoleManager.Lines.Enqueue(line);
+        consoleArea.PushColor(line.Color);
+        consoleArea.AddText(line.Line);
+        consoleArea.Pop();
     }
 }
