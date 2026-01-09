@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Components;
@@ -965,7 +964,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         // Spawn another cell from the player species
         // This needs to be done after updating the player so that multicellular organisms are accurately separated
         cellProperties.Divide(ref Player.Get<OrganelleContainer>(), Player, playerSpecies, WorldSimulation,
-            this, WorldSimulation.SpawnSystem, (ref Entity daughter, CommandBuffer commandBuffer) =>
+            this, WorldSimulation.SpawnSystem, (ref daughter, commandBuffer) =>
             {
                 // Mark as a player-reproduced entity
                 commandBuffer.Add(daughter, new PlayerOffspring

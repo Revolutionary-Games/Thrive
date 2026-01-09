@@ -1469,7 +1469,7 @@ public class MicrobeSpawner : Spawner
         if (microbeSpecies != null)
             bacteria = microbeSpecies.IsBacteria;
 
-        var firstSpawn = new SingleItemSpawnQueue((out Entity entity) =>
+        var firstSpawn = new SingleItemSpawnQueue((out entity) =>
         {
             // The true here is that this is AI-controlled
             var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironmentSource,
@@ -1498,7 +1498,7 @@ public class MicrobeSpawner : Spawner
         if (stateData == null)
             return firstSpawn;
 
-        var swarmQueue = new CallbackSpawnQueue<List<Vector3>>((List<Vector3> positions, out Entity entity) =>
+        var swarmQueue = new CallbackSpawnQueue<List<Vector3>>((positions, out entity) =>
         {
             var (recorder, weight) = SpawnHelpers.SpawnBacteriaSwarmMember(worldSimulation, spawnEnvironmentSource,
                 Species, positions[0], out entity);
@@ -1574,7 +1574,7 @@ public class ChunkSpawner : Spawner
 
     public override SpawnQueue Spawn(IWorldSimulation worldSimulation, Vector3 location, ISpawnSystem spawnSystem)
     {
-        return new SingleItemSpawnQueue((out Entity entity) =>
+        return new SingleItemSpawnQueue((out entity) =>
         {
             var recorder = SpawnHelpers.SpawnChunkWithoutFinalizing(worldSimulation,
                 chunkType, location, random, false, out entity);
