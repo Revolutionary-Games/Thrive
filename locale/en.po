@@ -898,6 +898,9 @@ msgstr "Coastal"
 msgid "COLLISION_SHAPE"
 msgstr "Show physics debug shapes"
 
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "This tab allows setting the order in which the colony cells grow, with the first cell in the order being the root (or bud) cell. You can use this to prioritise the growth of more crucial cells or to ensure that the colony's production and consumption are properly balanced."
+
 msgid "COLOUR"
 msgstr "Colour"
 
@@ -9545,6 +9548,12 @@ msgstr "Warm"
 
 msgid "WORST_PATCH_COLON"
 msgstr "Worst Patch:"
+
+msgid "WRONG_GROWTH_ORDER"
+msgstr "Incorrect growth order"
+
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "The colony's growth order causes some cells to be separated. This happens when a cell are placed earlier in the order than the cells that connect it to the root. Please check the Growth Order tab for cells marked red and correct the order."
 
 msgid "XBOX360"
 msgstr "Xbox 360"

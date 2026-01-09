@@ -189,18 +189,10 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         // isn't centered, that'll cause issues?
         // var centerOfMass = ModifiableCells.CenterOfMass;
 
-        var centerOfMass = ModifiableGameplayCells[0].Position;
+        bool changes = RepositionGameplayCells();
+        changes |= RepositionEditorCells();
 
-        if (centerOfMass.Q == 0 && centerOfMass.R == 0)
-            return false;
-
-        foreach (var cell in ModifiableGameplayCells)
-        {
-            // This calculation aligns the center of mass with the origin by moving every organelle of the microbe.
-            cell.Position -= centerOfMass;
-        }
-
-        return true;
+        return changes;
     }
 
     public override void UpdateInitialCompounds()
@@ -403,5 +395,37 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         }
 
         return result;
+    }
+
+    private bool RepositionGameplayCells()
+    {
+        var centerOfMass = ModifiableGameplayCells[0].Position;
+
+        if (centerOfMass.Q == 0 && centerOfMass.R == 0)
+            return false;
+
+        foreach (var cell in ModifiableGameplayCells)
+        {
+            // This calculation aligns the center of mass with the origin by moving every cell of the colony.
+            cell.Position -= centerOfMass;
+        }
+
+        return true;
+    }
+
+    private bool RepositionEditorCells()
+    {
+        var editorLeaderPosition = ModifiableEditorCells[0].Position;
+
+        if (editorLeaderPosition.Q == 0 && editorLeaderPosition.R == 0)
+            return false;
+
+        foreach (var cell in ModifiableEditorCells.AsModifiable())
+        {
+            cell.Position -= editorLeaderPosition;
+            cell.Data!.Position -= editorLeaderPosition;
+        }
+
+        return true;
     }
 }
