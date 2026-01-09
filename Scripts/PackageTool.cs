@@ -832,8 +832,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         Directory.CreateDirectory(tempFolder);
 
         ColourConsole.WriteDebugLine($"Using C# zip library to extract to temporary folder: {tempFolder}");
-        using var archiveZip = new ZipArchive(File.OpenRead(sourceZip), ZipArchiveMode.Read, false);
-        archiveZip.ExtractToDirectory(tempFolder);
+        await using var archiveZip = new ZipArchive(File.OpenRead(sourceZip), ZipArchiveMode.Read, false);
+        await archiveZip.ExtractToDirectoryAsync(tempFolder, cancellationToken);
 
         ColourConsole.WriteInfoLine("Performing final signing for Mac build");
 

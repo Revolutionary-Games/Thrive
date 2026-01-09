@@ -1595,7 +1595,7 @@ public partial class CellBodyPlanEditorComponent :
 
         var type = CellTypeFromName(activeActionName!);
 
-        // Disallow deleting a type that is in use currently
+        // Disallow deleting a type in use currently
         if (editedMicrobeCells.AsModifiable().Any(c => c.Data!.ModifiableCellType == type))
         {
             GD.Print("Can't delete in use cell type");

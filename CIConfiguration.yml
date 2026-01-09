@@ -2,12 +2,12 @@ version: 1
 
 jobs:
   build:
-    image: thrive/godot-ci:v30
+    image: thrive/godot-ci:v31
     cache:
       loadFrom:
-        - v14-{Branch}-build
-        - v14-master-build
-      writeTo: v14-{Branch}-build
+        - v15-{Branch}-build
+        - v15-master-build
+      writeTo: v15-{Branch}-build
       shared:
         .git/lfs: v8-lfs
         .import: v14-import
@@ -36,12 +36,12 @@ jobs:
          name: Upload devbuilds
          command: dotnet run --project Scripts -- upload
   jetbrains:
-    image: thrive/godot-ci:v30
+    image: thrive/godot-ci:v31
     cache:
       loadFrom:
-        - v9-{Branch}-jetbrains
-        - v9-master-jetbrains
-      writeTo: v9-{Branch}-jetbrains
+        - v10-{Branch}-jetbrains
+        - v10-master-jetbrains
+      writeTo: v10-{Branch}-jetbrains
       shared:
         .git/lfs: v8-lfs
       system:
@@ -94,12 +94,12 @@ jobs:
                 rm -f cleanup_diff.patch
             fi
   format_test:
-    image: thrive/godot-ci:v30
+    image: thrive/godot-ci:v31
     cache:
       loadFrom:
-        - v10-{Branch}-format
-        - v10-master-format
-      writeTo: v10-{Branch}-format
+        - v11-{Branch}-format
+        - v11-master-format
+      writeTo: v11-{Branch}-format
       shared:
         .git/lfs: v8-lfs
         native_libs: v2-native

@@ -411,6 +411,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         engulfingSystem.OnEntityDestroyed(entity);
         colonyStatsUpdateSystem.OnEntityDestroyed(entity);
+        entitySignalingSystem.OnEntityDestroyed(entity);
     }
 
     protected override void OnPlayerPositionSet(Vector3 playerPosition)
