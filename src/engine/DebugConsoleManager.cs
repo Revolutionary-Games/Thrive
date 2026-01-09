@@ -70,13 +70,15 @@ public partial class DebugConsoleManager : Node
     /// <param name="consoleLine">The console line data</param>
     public void Print(ConsoleLine consoleLine)
     {
-        // for now, we cap max console size to MaxConsoleSize to avoid flooding
         lock (inbox)
         {
             inbox.Enqueue(consoleLine);
         }
     }
 
+    /// <summary>
+    ///   Clears the debug console History.
+    /// </summary>
     public void Clear()
     {
         History.Clear();
