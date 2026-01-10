@@ -27,7 +27,8 @@ const float CLOUD_MAX_INTENSITY_SHOWN = 1000.f;
 
 float getIntensity(float value)
 {
-    return min(DENSITY_MULTIPLIER * atan(0.006f * CLOUD_MAX_INTENSITY_SHOWN * value), 1.0f) * BrightnessMultiplier;
+    float baseIntensity = DENSITY_MULTIPLIER * atan(0.006f * CLOUD_MAX_INTENSITY_SHOWN * value);
+    return min(baseIntensity * BrightnessMultiplier, 1.0f);
 }
 
 void fragment() {
