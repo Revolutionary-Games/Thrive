@@ -29,7 +29,10 @@ public static class PatchEventUtils
                 random.Next(minMultiplier, maxMultiplier);
 
             chunkConfiguration.Density *= multiplier;
-            chunkConfiguration.Density *= chunkConfiguration.Compounds?.ContainsKey(Compound.Iron) == true ? 2.5f : 1;
+            if (chunkConfiguration.Compounds != null && chunkConfiguration.Compounds.ContainsKey(Compound.Iron))
+            {
+                chunkConfiguration.Density *= 2.5f;
+            }
 
             if (addChunks)
             {

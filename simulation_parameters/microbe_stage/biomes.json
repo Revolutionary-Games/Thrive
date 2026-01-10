@@ -3521,7 +3521,11 @@
           "VentAmount": 0.01,
           "Damages": 30,
           "DeleteOnTouch": false,
-          "Compounds": {},
+          "Compounds": {
+            "phosphates": {
+              "Amount": 0.6
+            }
+          },
           "DamageType": "ice"
         },
         "ironSmallChunk": {
@@ -5215,7 +5219,11 @@
           "VentAmount": 0.01,
           "Damages": 30,
           "DeleteOnTouch": false,
-          "Compounds": {},
+          "Compounds": {
+            "phosphates": {
+              "Amount": 0.6
+            }
+          },
           "DamageType": "ice"
         },
         "meteorIronSmallChunk": {
