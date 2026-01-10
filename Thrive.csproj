@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Godot.NET.Sdk/4.5.0">
+<Project Sdk="Godot.NET.Sdk/4.5.1">
   <PropertyGroup>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <TargetFramework>net10.0</TargetFramework>
@@ -103,8 +103,7 @@
   <ItemGroup>
     <ProjectReference Include="RevolutionaryGamesCommon\LauncherThriveShared\LauncherThriveShared.csproj" />
     <ProjectReference Include="RevolutionaryGamesCommon\SharedBase\SharedBase.csproj" />
-    <ProjectReference Include="third_party\Arch.Extended\Arch.System.SourceGenerator\Arch.System.SourceGenerator.csproj" 
-                      OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="third_party\Arch.Extended\Arch.System.SourceGenerator\Arch.System.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     <ProjectReference Include="third_party\Arch.Extended\Arch.System\Arch.System.csproj" />
     <ProjectReference Include="third_party\Arch\src\Arch\Arch.csproj" />
     <ProjectReference Include="third_party\ThirdParty.csproj" />

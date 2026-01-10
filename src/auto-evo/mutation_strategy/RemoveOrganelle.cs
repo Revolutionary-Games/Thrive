@@ -52,7 +52,7 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
         if (mp < Constants.ORGANELLE_REMOVE_COST)
             return null;
 
-        var organelles = baseSpecies.Organelles.Where(x => Criteria(x.Definition))
+        var organelles = baseSpecies.t_ModifiableOrganelles.Where(x => Criteria(x.Definition))
             .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS);
 
         List<Tuple<MicrobeSpecies, double>>? mutated = null;
@@ -73,8 +73,8 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
             // Is this the best way to do this? Probably not, but this is how mutations.cs does is
             // and the other way outright did not work
             // This is now slightly improved - hhyyrylainen
-            var baseOrganelles = baseSpecies.Organelles.Organelles;
-            var count = baseSpecies.Organelles.Count;
+            var baseOrganelles = baseSpecies.ReadonlyOrganelles.Organelles;
+            var count = baseSpecies.ReadonlyOrganelles.Count;
 
             for (var i = 0; i < count; ++i)
             {
@@ -85,10 +85,10 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 
                 // Copy the organelle
                 var newOrganelle = parentOrganelle.Clone();
-                newSpecies.Organelles.AddIfPossible(newOrganelle, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
+                newSpecies.t_ModifiableOrganelles.AddIfPossible(newOrganelle, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
             }
 
-            CommonMutationFunctions.AttachIslandHexes(newSpecies.Organelles, workMemory);
+            CommonMutationFunctions.AttachIslandHexes(newSpecies.t_ModifiableOrganelles, workMemory);
 
             mutated ??= new List<Tuple<MicrobeSpecies, double>>();
             mutated.Add(Tuple.Create(newSpecies, mp - Constants.ORGANELLE_REMOVE_COST));

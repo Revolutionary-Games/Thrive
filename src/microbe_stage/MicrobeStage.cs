@@ -913,7 +913,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
                 species.Species, species.Species, WorldSimulation,
                 workData1, workData2);
 
-            foreach (var organelle in species.Species.Organelles)
+            foreach (var organelle in species.Species.ReadonlyOrganelles)
             {
                 if (organelle.Definition.HasHeatCollection)
                 {

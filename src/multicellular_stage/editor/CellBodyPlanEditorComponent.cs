@@ -1099,15 +1099,15 @@ public partial class CellBodyPlanEditorComponent :
         bool moving = organismStatisticsPanel.CalculateBalancesWhenMoving;
 
         var maximumMovementDirection =
-            MicrobeInternalCalculations.MaximumSpeedDirection(cellType.ModifiableOrganelles);
+            MicrobeInternalCalculations.MaximumSpeedDirection(cellType.ReadonlyOrganelles);
 
-        ProcessSystem.ComputeEnergyBalanceFull(cellType.ModifiableOrganelles, Editor.CurrentPatch.Biome,
+        ProcessSystem.ComputeEnergyBalanceFull(cellType.ReadonlyOrganelles, Editor.CurrentPatch.Biome,
             environmentalTolerances,
             cellType.MembraneType,
             maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
             organismStatisticsPanel.CompoundAmountType, null, energyBalance);
 
-        AddCellTypeCompoundBalance(balances, cellType.ModifiableOrganelles, organismStatisticsPanel.BalanceDisplayType,
+        AddCellTypeCompoundBalance(balances, cellType.ReadonlyOrganelles, organismStatisticsPanel.BalanceDisplayType,
             organismStatisticsPanel.CompoundAmountType, Editor.CurrentPatch.Biome, energyBalance,
             environmentalTolerances);
 
@@ -1120,17 +1120,17 @@ public partial class CellBodyPlanEditorComponent :
             cellType.MembraneType, cellType.MembraneRigidity));
 
         tooltip.UpdateStorageIndicator(
-            MicrobeInternalCalculations.GetTotalNominalCapacity(cellType.ModifiableOrganelles));
+            MicrobeInternalCalculations.GetTotalNominalCapacity(cellType.ReadonlyOrganelles));
 
-        tooltip.UpdateSpeedIndicator(MicrobeInternalCalculations.CalculateSpeed(cellType.ModifiableOrganelles,
+        tooltip.UpdateSpeedIndicator(MicrobeInternalCalculations.CalculateSpeed(cellType.ReadonlyOrganelles,
             cellType.MembraneType, cellType.MembraneRigidity, cellType.IsBacteria, false));
 
         tooltip.UpdateRotationSpeedIndicator(
-            MicrobeInternalCalculations.CalculateRotationSpeed(cellType.ModifiableOrganelles));
+            MicrobeInternalCalculations.CalculateRotationSpeed(cellType.ReadonlyOrganelles));
 
         tooltip.UpdateSizeIndicator(cellType.Organelles.Sum(o => o.Definition.HexCount));
         tooltip.UpdateDigestionSpeedIndicator(
-            MicrobeInternalCalculations.CalculateTotalDigestionSpeed(cellType.ModifiableOrganelles));
+            MicrobeInternalCalculations.CalculateTotalDigestionSpeed(cellType.ReadonlyOrganelles));
 
         button.ShowInsufficientATPWarning = energyBalance.TotalProduction < energyBalance.TotalConsumption;
 
@@ -1261,7 +1261,7 @@ public partial class CellBodyPlanEditorComponent :
         // Cells can't individually move in the body plan, so this probably makes sense
         var maximumMovementDirection =
             MicrobeInternalCalculations.MaximumSpeedDirection(
-                GetEditedCellDataIfEdited(cells[0].Data!.ModifiableCellType).ModifiableOrganelles);
+                GetEditedCellDataIfEdited(cells[0].Data!.ModifiableCellType).ReadonlyOrganelles);
 
         // TODO: environmental tolerances for multicellular
         var environmentalTolerances = new ResolvedMicrobeTolerances
@@ -1274,7 +1274,7 @@ public partial class CellBodyPlanEditorComponent :
         // TODO: improve performance by calculating the balance per cell type
         foreach (var hex in cells)
         {
-            ProcessSystem.ComputeEnergyBalanceFull(hex.Data!.ModifiableOrganelles, conditionsData,
+            ProcessSystem.ComputeEnergyBalanceFull(hex.Data!.ReadonlyOrganelles, conditionsData,
                 environmentalTolerances, hex.Data.MembraneType,
                 maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
                 organismStatisticsPanel.CompoundAmountType, null, energyBalance);
@@ -1323,7 +1323,7 @@ public partial class CellBodyPlanEditorComponent :
         foreach (var cell in cells)
         {
             AddCellTypeCompoundBalance(compoundBalanceData,
-                GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType).ModifiableOrganelles, calculationType,
+                GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType).ReadonlyOrganelles, calculationType,
                 amountType, biome, energyBalance, environmentalTolerances);
         }
 

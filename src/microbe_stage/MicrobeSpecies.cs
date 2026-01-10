@@ -19,7 +19,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
-        Organelles = new OrganelleLayout<OrganelleTemplate>();
+        t_ModifiableOrganelles = new OrganelleLayout<OrganelleTemplate>();
     }
 
     /// <summary>
@@ -36,9 +36,9 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     {
         cloneOf.ClonePropertiesTo(this);
 
-        foreach (var organelle in withCellDefinition.ModifiableOrganelles)
+        foreach (var organelle in withCellDefinition.ReadonlyOrganelles)
         {
-            Organelles.AddFast(organelle, workMemory1, workMemory2);
+            t_ModifiableOrganelles.AddFast(organelle, workMemory1, workMemory2);
         }
 
         MembraneType = withCellDefinition.MembraneType;
@@ -66,9 +66,11 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     ///     Do not change this once the object is in use as the readonly adapter will not have been updated.
     ///   </para>
     /// </remarks>
-    public OrganelleLayout<OrganelleTemplate> Organelles { get; private set; }
+    ///
+    //TODO! reminder to remove the T as its just temporary while i move everything over
+    public OrganelleLayout<OrganelleTemplate> t_ModifiableOrganelles { get; private set; }
 
-    public OrganelleLayout<OrganelleTemplate> ModifiableOrganelles => Organelles;
+    public OrganelleLayout<OrganelleTemplate> ReadonlyOrganelles => t_ModifiableOrganelles;
 
     public Color Colour
     {
@@ -80,7 +82,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     // Base refers here to the fact that these are the values when a cell is freshly spawned and has no
     // reproduction progress.
     public float BaseSpeed =>
-        MicrobeInternalCalculations.CalculateSpeed(Organelles.Organelles, MembraneType, MembraneRigidity, IsBacteria);
+        MicrobeInternalCalculations.CalculateSpeed(ReadonlyOrganelles.Organelles, MembraneType, MembraneRigidity, IsBacteria);
 
     public float BaseRotationSpeed { get; set; }
 
@@ -97,7 +99,8 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
             var raw = 0.0f;
 
             // Need to do the calculation this way to avoid extra memory allocations
-            var organelles = Organelles.Organelles;
+            // keeping it with modifiable since the above comment seems to reccomend it ~Psyke
+            var organelles = t_ModifiableOrganelles.Organelles;
             int count = organelles.Count;
             for (int i = 0; i < count; ++i)
             {
@@ -118,7 +121,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     {
         get
         {
-            var specific = MicrobeInternalCalculations.GetTotalSpecificCapacity(Organelles, out var nominal);
+            var specific = MicrobeInternalCalculations.GetTotalSpecificCapacity(ReadonlyOrganelles, out var nominal);
             return (nominal, specific);
         }
     }
@@ -142,7 +145,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     // here
     IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> IReadOnlyCellDefinition.Organelles =>
         readonlyLayout ??=
-            new ReadonlyOrganelleLayoutAdapter<IReadOnlyOrganelleTemplate, OrganelleTemplate>(Organelles);
+            new ReadonlyOrganelleLayoutAdapter<IReadOnlyOrganelleTemplate, OrganelleTemplate>(ReadonlyOrganelles);
 
     public static bool StateHasStabilizedImpl(IWorldSimulation worldSimulation)
     {
@@ -167,7 +170,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         instance.IsBacteria = reader.ReadBool();
         instance.MembraneType = reader.ReadObject<MembraneType>();
         instance.MembraneRigidity = reader.ReadFloat();
-        instance.Organelles = reader.ReadObject<OrganelleLayout<OrganelleTemplate>>();
+        instance.t_ModifiableOrganelles = reader.ReadObject<OrganelleLayout<OrganelleTemplate>>();
         instance.BaseRotationSpeed = reader.ReadFloat();
 
         return instance;
@@ -181,7 +184,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         writer.WriteObject(MembraneType);
         writer.Write(MembraneRigidity);
 
-        writer.WriteObject(Organelles);
+        writer.WriteObject(t_ModifiableOrganelles);
         writer.Write(BaseRotationSpeed);
     }
 
@@ -189,7 +192,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     {
         var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
         IsBacteria = true;
-        var organelles = Organelles.Organelles;
+        var organelles = t_ModifiableOrganelles.Organelles;
         var count = organelles.Count;
 
         for (int i = 0; i < count; ++i)
@@ -212,10 +215,10 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         UpdateIsBacteria();
 
         // Reset endosymbiont status so that they aren't free to move / delete in the next editor cycle
-        var count = Organelles.Organelles.Count;
+        var count = t_ModifiableOrganelles.Organelles.Count;
         for (var i = 0; i < count; ++i)
         {
-            ModifiableOrganelles.Organelles[i].IsEndosymbiont = false;
+            ReadonlyOrganelles.Organelles[i].IsEndosymbiont = false;
         }
 
         cachedFillTimes.Clear();
@@ -223,7 +226,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
     public override bool RepositionToOrigin()
     {
-        var changes = Organelles.RepositionToOrigin();
+        var changes = t_ModifiableOrganelles.RepositionToOrigin();
         CalculateRotationSpeed();
         return changes;
     }
@@ -251,10 +254,10 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         };
 
         // False is passed here until we can make the initial compounds patch specific
-        ProcessSystem.ComputeCompoundBalance(Organelles, biomeConditions, environmentalTolerances,
+        ProcessSystem.ComputeCompoundBalance(t_ModifiableOrganelles, biomeConditions, environmentalTolerances,
             CompoundAmountType.Biome, false, compoundBalances);
 
-        bool giveBonusGlucose = Organelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
+        bool giveBonusGlucose = t_ModifiableOrganelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
 
         var cachedCapacities = StorageCapacities;
 
@@ -314,7 +317,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
             if (!cachedFillTimes.TryGetValue(biome, out compoundTimes))
             {
                 // TODO: should moving be false in some cases?
-                compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(Organelles,
+                compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(t_ModifiableOrganelles,
                     MembraneType, true, PlayerSpecies, biome, resolvedTolerances, spawnEnvironment.WorldSettings);
                 cachedFillTimes[biome] = compoundTimes;
             }
@@ -330,14 +333,14 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
         var casted = (MicrobeSpecies)mutation;
 
-        Organelles.Clear();
+        t_ModifiableOrganelles.Clear();
 
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
 
-        foreach (var organelle in casted.Organelles)
+        foreach (var organelle in casted.t_ModifiableOrganelles)
         {
-            Organelles.AddFast(organelle.Clone(), workMemory1, workMemory2);
+            t_ModifiableOrganelles.AddFast(organelle.Clone(), workMemory1, workMemory2);
         }
 
         IsBacteria = casted.IsBacteria;
@@ -349,7 +352,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
     public override float GetPredationTargetSizeFactor()
     {
-        return Organelles.Count;
+        return t_ModifiableOrganelles.Count;
     }
 
     public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
@@ -384,7 +387,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
         if (cloneOrganelles)
         {
-            result.Organelles = Organelles.Clone();
+            result.t_ModifiableOrganelles = t_ModifiableOrganelles.Clone();
         }
 
         return result;
@@ -395,14 +398,14 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         var hash = base.GetVisualHashCode();
 
         // This code also exists in CellType visual calculation
-        var count = Organelles.Count;
+        var count = t_ModifiableOrganelles.Count;
 
         hash ^= PersistentStringHash.GetHash(MembraneType.InternalName) * 5743;
         hash ^= (ulong)MembraneRigidity.GetHashCode() * 5749;
         hash ^= (IsBacteria ? 1UL : 0UL) * 5779UL;
         hash ^= (ulong)count * 131;
 
-        var list = Organelles.Organelles;
+        var list = t_ModifiableOrganelles.Organelles;
 
         for (int i = 0; i < count; ++i)
         {
@@ -437,11 +440,11 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     {
         var result = base.CalculateTotalReproductionCost();
 
-        int organelleCount = Organelles.Organelles.Count;
+        int organelleCount = t_ModifiableOrganelles.Organelles.Count;
 
         for (int i = 0; i < organelleCount; ++i)
         {
-            result.Merge(Organelles.Organelles[i].Definition.InitialComposition);
+            result.Merge(t_ModifiableOrganelles.Organelles[i].Definition.InitialComposition);
         }
 
         return result;
@@ -449,6 +452,6 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
     private void CalculateRotationSpeed()
     {
-        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles);
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(t_ModifiableOrganelles.Organelles);
     }
 }

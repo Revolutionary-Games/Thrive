@@ -90,7 +90,7 @@ public static class CommonMutationFunctions
             MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutated);
         }
 
-        mutated.ModifiableTolerances.CopyFrom(forPatch.GenerateTolerancesForMicrobe(mutated.Organelles));
+        mutated.ModifiableTolerances.CopyFrom(forPatch.GenerateTolerancesForMicrobe(mutated.ReadonlyOrganelles));
 
         // Override the default species starting name to have more variability in the names
         var nameGenerator = SimulationParameters.Instance.NameGenerator;
@@ -119,17 +119,17 @@ public static class CommonMutationFunctions
         switch (strategy)
         {
             case OrganelleAddStrategy.Realistic:
-                position = GetRealisticPosition(organelle, newSpecies.Organelles, direction, workMemory1, workMemory3,
+                position = GetRealisticPosition(organelle, newSpecies.t_ModifiableOrganelles, direction, workMemory1, workMemory3,
                     random);
                 break;
             case OrganelleAddStrategy.Spiral:
-                position = GetSpiralPosition(organelle, newSpecies.Organelles, workMemory1, workMemory3);
+                position = GetSpiralPosition(organelle, newSpecies.t_ModifiableOrganelles, workMemory1, workMemory3);
                 break;
             case OrganelleAddStrategy.Front:
-                position = GetFrontPosition(organelle, newSpecies.Organelles, workMemory1, workMemory3);
+                position = GetFrontPosition(organelle, newSpecies.t_ModifiableOrganelles, workMemory1, workMemory3);
                 break;
             case OrganelleAddStrategy.Back:
-                position = GetBackPosition(organelle, newSpecies.Organelles, workMemory1, workMemory3);
+                position = GetBackPosition(organelle, newSpecies.t_ModifiableOrganelles, workMemory1, workMemory3);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(strategy), strategy, null);
@@ -139,7 +139,7 @@ public static class CommonMutationFunctions
         if (position == null)
             return false;
 
-        newSpecies.Organelles.AddFast(position, workMemory1, workMemory2);
+        newSpecies.t_ModifiableOrganelles.AddFast(position, workMemory1, workMemory2);
 
         // If the new species is eukaryotic, mark this as such.
         if (organelle == Nucleus)

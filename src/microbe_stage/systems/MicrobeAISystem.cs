@@ -1417,7 +1417,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             if (species is MicrobeSpecies microbeSpecies)
             {
                 // TODO: thread local storage for this cache
-                result = MicrobeInternalCalculations.UsesDayVaryingCompounds(microbeSpecies.Organelles, patch.Biome,
+                result = MicrobeInternalCalculations.UsesDayVaryingCompounds(microbeSpecies.t_ModifiableOrganelles, patch.Biome,
                     varyingCompoundsTemporary);
             }
             else if (species is MulticellularSpecies multicellularSpecies)
@@ -1426,7 +1426,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 // accurate.
                 // TODO: thread local storage for this cache
                 result = MicrobeInternalCalculations.UsesDayVaryingCompounds(
-                    multicellularSpecies.ModifiableGameplayCells[0].ModifiableOrganelles, patch.Biome,
+                    multicellularSpecies.ModifiableGameplayCells[0].ReadonlyOrganelles, patch.Biome,
                     varyingCompoundsTemporary);
             }
             else

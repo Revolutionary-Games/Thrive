@@ -46,7 +46,7 @@ public class MacroscopicSpecies : Species, IReadOnlyMacroscopicSpecies
     /// </summary>
     public IEnumerable<OrganelleTemplate> Organelles =>
         ((MetaballLayout<MacroscopicMetaball>)ModifiableBodyLayout).Select(m => m.ModifiableCellType).Distinct()
-        .SelectMany(c => c.ModifiableOrganelles);
+        .SelectMany(c => c.ReadonlyOrganelles);
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 

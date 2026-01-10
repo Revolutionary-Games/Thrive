@@ -709,9 +709,9 @@ public partial class ProcessSystem : BaseSystem<World, float>
             return 0;
 
         var balance = new EnergyBalanceInfoSimple();
-        var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(microbeSpecies.Organelles);
+        var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(microbeSpecies.ReadonlyOrganelles);
 
-        ComputeEnergyBalanceSimple(microbeSpecies.Organelles, conditions, environmentTolerances,
+        ComputeEnergyBalanceSimple(microbeSpecies.ReadonlyOrganelles, conditions, environmentTolerances,
             microbeSpecies.MembraneType, maximumMovementDirection, false, false, worldGenerationSettings,
             CompoundAmountType.Average, cache, balance);
 
@@ -726,7 +726,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
         // called time would be wasted on trying to match up processes between different species which is unlikely to
         // work)
         processesResult.Clear();
-        ComputeActiveProcessList(microbeSpecies.Organelles, ref processesResult);
+        ComputeActiveProcessList(microbeSpecies.ReadonlyOrganelles, ref processesResult);
 
         return balanceModifier;
     }

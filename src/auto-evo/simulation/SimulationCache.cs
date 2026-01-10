@@ -101,13 +101,13 @@ public class SimulationCache
             return cached;
         }
 
-        var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(species.Organelles);
+        var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(species.ReadonlyOrganelles);
 
         // TODO: check if caching instances of these objects would be better than always recreating
         cached = new EnergyBalanceInfoSimple();
 
         // Auto-evo uses the average values of compound during the course of a simulated day
-        ProcessSystem.ComputeEnergyBalanceSimple(species.Organelles, biomeConditions,
+        ProcessSystem.ComputeEnergyBalanceSimple(species.ReadonlyOrganelles, biomeConditions,
             GetEnvironmentalTolerances(species, biomeConditions), species.MembraneType,
             maximumMovementDirection, true, species.PlayerSpecies, worldSettings, CompoundAmountType.Average, this,
             cached);
@@ -124,7 +124,7 @@ public class SimulationCache
             return cached;
         }
 
-        cached = MicrobeInternalCalculations.CalculateSpeed(species.Organelles.Organelles, species.MembraneType,
+        cached = MicrobeInternalCalculations.CalculateSpeed(species.ReadonlyOrganelles.Organelles, species.MembraneType,
             species.MembraneRigidity, species.IsBacteria, true);
 
         cachedBaseSpeeds.Add(species, cached);
@@ -151,7 +151,7 @@ public class SimulationCache
             return cached;
         }
 
-        cached = MicrobeInternalCalculations.CalculateRotationSpeed(species.Organelles.Organelles);
+        cached = MicrobeInternalCalculations.CalculateRotationSpeed(species.ReadonlyOrganelles.Organelles);
 
         cachedBaseRotationSpeeds.Add(species, cached);
         return cached;
@@ -358,7 +358,7 @@ public class SimulationCache
         var hasSignallingAgent = false;
         var hasBindingAgent = false;
 
-        var organelles = predator.Organelles.Organelles;
+        var organelles = predator.ReadonlyOrganelles.Organelles;
         int count = organelles.Count;
         for (int i = 0; i < count; ++i)
         {
@@ -375,7 +375,7 @@ public class SimulationCache
 
         // TODO: switch to a manual loop to avoid an allocation
         var preyOxygenUsingOrganellesCount = 0;
-        foreach (var organelle in prey.Organelles.Organelles)
+        foreach (var organelle in prey.ReadonlyOrganelles.Organelles)
         {
             if (organelle.Definition.IsOxygenMetabolism)
                 preyOxygenUsingOrganellesCount += 1;
@@ -626,7 +626,7 @@ public class SimulationCache
             return cached;
         }
 
-        cached = MicrobeInternalCalculations.UsesDayVaryingCompounds(species.Organelles, biomeConditions, null);
+        cached = MicrobeInternalCalculations.UsesDayVaryingCompounds(species.ReadonlyOrganelles, biomeConditions, null);
 
         cachedUsesVaryingCompounds.Add(key, cached);
         return cached;
@@ -644,7 +644,7 @@ public class SimulationCache
 
         cached = 0.0f;
         var hasChemoreceptor = false;
-        foreach (var organelle in species.Organelles.Organelles)
+        foreach (var organelle in species.ReadonlyOrganelles.Organelles)
         {
             var organelleTargetCompound = organelle.GetActiveTargetCompound();
             if (organelleTargetCompound == Compound.Invalid)
@@ -682,7 +682,7 @@ public class SimulationCache
         // Need to have chemoreceptor to be able to "smell" chunks
         cached = 0.0f;
         var hasChemoreceptor = false;
-        foreach (var organelle in species.Organelles.Organelles)
+        foreach (var organelle in species.ReadonlyOrganelles.Organelles)
         {
             var organelleTargetCompound = organelle.GetActiveTargetCompound();
             if (organelleTargetCompound == Compound.Invalid)
@@ -762,7 +762,7 @@ public class SimulationCache
             return cached;
         }
 
-        ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref cached);
+        ProcessSystem.ComputeActiveProcessList(microbeSpecies.t_ModifiableOrganelles, ref cached);
         cachedProcessLists.Add(microbeSpecies, cached);
 
         return cached;
@@ -788,7 +788,7 @@ public class SimulationCache
         var mucocystsScore = Constants.AUTO_EVO_MUCOCYST_SCORE;
         var pullingCiliaModifier = 1.0f;
 
-        var organelles = microbeSpecies.Organelles.Organelles;
+        var organelles = microbeSpecies.t_ModifiableOrganelles.Organelles;
         var organelleCount = organelles.Count;
         var totalToxinOrganellesCount = 0;
         var totalToxinTypesCount = 0;
@@ -968,7 +968,7 @@ public class SimulationCache
         if (cachedEnzymeScores.TryGetValue(key, out var cached))
             return cached;
 
-        var organelles = predator.Organelles.Organelles;
+        var organelles = predator.ReadonlyOrganelles.Organelles;
         var isMembraneDigestible = dissolverEnzyme == Constants.LIPASE_ENZYME;
         var enzymesScore = 0.0f;
 
@@ -1035,11 +1035,11 @@ public class SimulationCache
         float daySeconds = worldSettings.DayLength * worldSettings.DaytimeFraction;
 
         var cachedCapacities =
-            MicrobeInternalCalculations.GetTotalSpecificCapacity(species.Organelles, out var cachedCapacity);
+            MicrobeInternalCalculations.GetTotalSpecificCapacity(species.ReadonlyOrganelles, out var cachedCapacity);
 
         Dictionary<Compound, CompoundBalance>? dayCompoundBalances = null;
         var (canSurvive, requiredAmounts) = MicrobeInternalCalculations.CalculateNightStorageRequirements(
-            species.Organelles, species.MembraneType, moving, species.PlayerSpecies, biomeConditions,
+            species.ReadonlyOrganelles, species.MembraneType, moving, species.PlayerSpecies, biomeConditions,
             GetEnvironmentalTolerances(species, biomeConditions), worldSettings,
             ref dayCompoundBalances);
 
@@ -1047,7 +1047,7 @@ public class SimulationCache
             throw new Exception("Day compound balance should have been calculated");
 
         var resultCompounds =
-            MicrobeInternalCalculations.GetCompoundsProducedByProcessesTakingIn(compound, species.Organelles);
+            MicrobeInternalCalculations.GetCompoundsProducedByProcessesTakingIn(compound, species.ReadonlyOrganelles);
 
         float cacheScore = 0;
         int scoreCount = 0;

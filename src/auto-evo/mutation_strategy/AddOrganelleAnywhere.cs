@@ -113,7 +113,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
                 continue;
 
             // Don't add duplicate unique organelles
-            if (organelle.Unique && baseSpecies.Organelles.Select(x => x.Definition).Contains(organelle))
+            if (organelle.Unique && baseSpecies.t_ModifiableOrganelles.Select(x => x.Definition).Contains(organelle))
                 continue;
 
             var newSpecies = (MicrobeSpecies)baseSpecies.Clone();

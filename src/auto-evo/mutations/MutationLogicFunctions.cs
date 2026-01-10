@@ -68,8 +68,8 @@ public class MutationLogicFunctions
 
     private static bool MicrobeSpeciesIsNewGenus(MicrobeSpecies species1, MicrobeSpecies species2)
     {
-        var species1UniqueOrganelles = species1.Organelles.Select(o => o.Definition).ToHashSet();
-        var species2UniqueOrganelles = species2.Organelles.Select(o => o.Definition).ToHashSet();
+        var species1UniqueOrganelles = species1.ReadonlyOrganelles.Select(o => o.Definition).ToHashSet();
+        var species2UniqueOrganelles = species2.ReadonlyOrganelles.Select(o => o.Definition).ToHashSet();
 
         return species1UniqueOrganelles.Union(species2UniqueOrganelles).Count()
             - species1UniqueOrganelles.Intersect(species2UniqueOrganelles).Count()

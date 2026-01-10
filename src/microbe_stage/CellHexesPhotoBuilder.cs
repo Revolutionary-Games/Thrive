@@ -73,7 +73,7 @@ public partial class CellHexesPhotoBuilder : Node3D, IScenePhotographable
 
         // TODO: The code below is partly duplicate to CellEditorComponent and HexEditorComponentBase.
         // If that code is changed this needs changes too.
-        var organelleLayout = Species.Organelles.Organelles;
+        var organelleLayout = Species.ReadonlyOrganelles.Organelles;
         foreach (var organelle in organelleLayout)
         {
             var position = organelle.Position;
@@ -114,7 +114,7 @@ public partial class CellHexesPhotoBuilder : Node3D, IScenePhotographable
 
         float farthest = 0;
 
-        foreach (var organelle in species.Organelles)
+        foreach (var organelle in species.ReadonlyOrganelles)
         {
             var position = organelle.Position;
             foreach (var hex in organelle.RotatedHexes)
