@@ -416,33 +416,33 @@ public class GameProperties : IArchivable
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
 
-        playerSpecies.t_ModifiableOrganelles.AddFast(new OrganelleTemplate(simulationParameters.GetOrganelleType("nucleus"),
+        playerSpecies.ModifiableOrganelles.AddFast(new OrganelleTemplate(simulationParameters.GetOrganelleType("nucleus"),
             new Hex(0, -3), 0), workMemory1, workMemory2);
         playerSpecies.IsBacteria = false;
 
         var mitochondrion = simulationParameters.GetOrganelleType("mitochondrion");
 
         // Remove the original cytoplasm in the species and replace with hydrogenosome for a more efficient layout
-        playerSpecies.t_ModifiableOrganelles.RemoveHexAt(new Hex(0, 0), workMemory1);
+        playerSpecies.ModifiableOrganelles.RemoveHexAt(new Hex(0, 0), workMemory1);
 
-        playerSpecies.t_ModifiableOrganelles.AddFast(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
+        playerSpecies.ModifiableOrganelles.AddFast(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
             new Hex(0, 2), 0), workMemory1, workMemory2);
 
-        playerSpecies.t_ModifiableOrganelles.AddFast(new OrganelleTemplate(mitochondrion,
+        playerSpecies.ModifiableOrganelles.AddFast(new OrganelleTemplate(mitochondrion,
             new Hex(-1, 2), 0), workMemory1, workMemory2);
 
-        playerSpecies.t_ModifiableOrganelles.AddFast(new OrganelleTemplate(mitochondrion,
+        playerSpecies.ModifiableOrganelles.AddFast(new OrganelleTemplate(mitochondrion,
             new Hex(1, 1), 0), workMemory1, workMemory2);
 
-        playerSpecies.t_ModifiableOrganelles.AddFast(new OrganelleTemplate(mitochondrion,
+        playerSpecies.ModifiableOrganelles.AddFast(new OrganelleTemplate(mitochondrion,
             new Hex(0, 1), 0), workMemory1, workMemory2);
 
         var cytoplasm = simulationParameters.GetOrganelleType("cytoplasm");
 
-        playerSpecies.t_ModifiableOrganelles.AddFast(new OrganelleTemplate(cytoplasm,
+        playerSpecies.ModifiableOrganelles.AddFast(new OrganelleTemplate(cytoplasm,
             new Hex(1, -1), 0), workMemory1, workMemory2);
 
-        playerSpecies.t_ModifiableOrganelles.AddFast(new OrganelleTemplate(cytoplasm,
+        playerSpecies.ModifiableOrganelles.AddFast(new OrganelleTemplate(cytoplasm,
             new Hex(-1, 0), 0), workMemory1, workMemory2);
 
         playerSpecies.OnEdited();

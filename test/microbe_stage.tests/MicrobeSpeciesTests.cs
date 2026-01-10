@@ -29,16 +29,16 @@ public class MicrobeSpeciesTests
         };
 
         testSpecies1.BecomePlayerSpecies();
-        testSpecies1.t_ModifiableOrganelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("cytoplasm"),
+        testSpecies1.ModifiableOrganelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("cytoplasm"),
             new Hex(0, 0), 0));
-        testSpecies1.t_ModifiableOrganelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("rusticyanin"),
+        testSpecies1.ModifiableOrganelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("rusticyanin"),
             new Hex(1, 0), 0));
-        testSpecies1.t_ModifiableOrganelles.Add(new OrganelleTemplate(
+        testSpecies1.ModifiableOrganelles.Add(new OrganelleTemplate(
             SimulationParameters.Instance.GetOrganelleType("chromatophore"),
             new Hex(1, 1), 0));
-        testSpecies1.t_ModifiableOrganelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("nitrogenase"),
+        testSpecies1.ModifiableOrganelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("nitrogenase"),
             new Hex(0, 1), 0));
-        testSpecies1.t_ModifiableOrganelles.Add(
+        testSpecies1.ModifiableOrganelles.Add(
             new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("cytoplasm"), new Hex(2, 1), 3)
             {
                 ModifiableUpgrades = new OrganelleUpgrades
@@ -58,7 +58,7 @@ public class MicrobeSpeciesTests
         };
 
         testSpecies2.BecomePlayerSpecies();
-        testSpecies2.t_ModifiableOrganelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("cytoplasm"),
+        testSpecies2.ModifiableOrganelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("cytoplasm"),
             new Hex(0, 0), 0));
         testSpecies2.OnEdited();
     }

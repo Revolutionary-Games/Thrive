@@ -2838,7 +2838,7 @@ public partial class CellEditorComponent :
         target.MembraneRigidity = Rigidity;
         target.IsBacteria = true;
 
-        target.t_ModifiableOrganelles.Clear();
+        target.ModifiableOrganelles.Clear();
 
         // TODO: if this is too slow to copy each organelle like this, we'll need to find a faster way to get the data
         // in, perhaps by sharing the entire Organelles object
@@ -2847,7 +2847,7 @@ public partial class CellEditorComponent :
             if (entry.Definition == nucleus)
                 target.IsBacteria = false;
 
-            target.t_ModifiableOrganelles.AddFast(entry, hexTemporaryMemory, hexTemporaryMemory2);
+            target.ModifiableOrganelles.AddFast(entry, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         // Copy behaviour if it is known
@@ -3465,11 +3465,11 @@ public partial class CellEditorComponent :
             if (pristineSpeciesCopy.PlayerSpecies)
                 calculationSpecies.BecomePlayerSpecies();
 
-            calculationSpecies.t_ModifiableOrganelles.Clear();
+            calculationSpecies.ModifiableOrganelles.Clear();
 
             foreach (var entry in pristineSpeciesCopy.ReadonlyOrganelles)
             {
-                calculationSpecies.t_ModifiableOrganelles.AddFast(entry, workMemory1, workMemory2);
+                calculationSpecies.ModifiableOrganelles.AddFast(entry, workMemory1, workMemory2);
             }
 
             // The pristine copy is not modified, so it is safe to not clone here

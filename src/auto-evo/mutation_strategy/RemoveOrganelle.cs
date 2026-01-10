@@ -52,7 +52,7 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
         if (mp < Constants.ORGANELLE_REMOVE_COST)
             return null;
 
-        var organelles = baseSpecies.t_ModifiableOrganelles.Where(x => Criteria(x.Definition))
+        var organelles = baseSpecies.ModifiableOrganelles.Where(x => Criteria(x.Definition))
             .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS);
 
         List<Tuple<MicrobeSpecies, double>>? mutated = null;
@@ -85,10 +85,10 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 
                 // Copy the organelle
                 var newOrganelle = parentOrganelle.Clone();
-                newSpecies.t_ModifiableOrganelles.AddIfPossible(newOrganelle, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
+                newSpecies.ModifiableOrganelles.AddIfPossible(newOrganelle, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
             }
 
-            CommonMutationFunctions.AttachIslandHexes(newSpecies.t_ModifiableOrganelles, workMemory);
+            CommonMutationFunctions.AttachIslandHexes(newSpecies.ModifiableOrganelles, workMemory);
 
             mutated ??= new List<Tuple<MicrobeSpecies, double>>();
             mutated.Add(Tuple.Create(newSpecies, mp - Constants.ORGANELLE_REMOVE_COST));

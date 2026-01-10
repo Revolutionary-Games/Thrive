@@ -119,17 +119,17 @@ public static class CommonMutationFunctions
         switch (strategy)
         {
             case OrganelleAddStrategy.Realistic:
-                position = GetRealisticPosition(organelle, newSpecies.t_ModifiableOrganelles, direction, workMemory1, workMemory3,
+                position = GetRealisticPosition(organelle, newSpecies.ModifiableOrganelles, direction, workMemory1, workMemory3,
                     random);
                 break;
             case OrganelleAddStrategy.Spiral:
-                position = GetSpiralPosition(organelle, newSpecies.t_ModifiableOrganelles, workMemory1, workMemory3);
+                position = GetSpiralPosition(organelle, newSpecies.ModifiableOrganelles, workMemory1, workMemory3);
                 break;
             case OrganelleAddStrategy.Front:
-                position = GetFrontPosition(organelle, newSpecies.t_ModifiableOrganelles, workMemory1, workMemory3);
+                position = GetFrontPosition(organelle, newSpecies.ModifiableOrganelles, workMemory1, workMemory3);
                 break;
             case OrganelleAddStrategy.Back:
-                position = GetBackPosition(organelle, newSpecies.t_ModifiableOrganelles, workMemory1, workMemory3);
+                position = GetBackPosition(organelle, newSpecies.ModifiableOrganelles, workMemory1, workMemory3);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(strategy), strategy, null);
@@ -139,7 +139,7 @@ public static class CommonMutationFunctions
         if (position == null)
             return false;
 
-        newSpecies.t_ModifiableOrganelles.AddFast(position, workMemory1, workMemory2);
+        newSpecies.ModifiableOrganelles.AddFast(position, workMemory1, workMemory2);
 
         // If the new species is eukaryotic, mark this as such.
         if (organelle == Nucleus)

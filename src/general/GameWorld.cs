@@ -265,7 +265,7 @@ public class GameWorld : IArchivable
 
         species.MembraneType = SimulationParameters.Instance.GetMembrane("single");
 
-        species.t_ModifiableOrganelles.AddFast(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("cytoplasm"),
+        species.ModifiableOrganelles.AddFast(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("cytoplasm"),
             new Hex(0, 0), 0), workMemory1, workMemory2);
 
         species.OnEdited();

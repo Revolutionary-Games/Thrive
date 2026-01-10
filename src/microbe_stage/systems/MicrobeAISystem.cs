@@ -1417,7 +1417,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             if (species is MicrobeSpecies microbeSpecies)
             {
                 // TODO: thread local storage for this cache
-                result = MicrobeInternalCalculations.UsesDayVaryingCompounds(microbeSpecies.t_ModifiableOrganelles, patch.Biome,
+                result = MicrobeInternalCalculations.UsesDayVaryingCompounds(microbeSpecies.ModifiableOrganelles, patch.Biome,
                     varyingCompoundsTemporary);
             }
             else if (species is MulticellularSpecies multicellularSpecies)

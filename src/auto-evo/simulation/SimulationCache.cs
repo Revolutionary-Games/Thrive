@@ -762,7 +762,7 @@ public class SimulationCache
             return cached;
         }
 
-        ProcessSystem.ComputeActiveProcessList(microbeSpecies.t_ModifiableOrganelles, ref cached);
+        ProcessSystem.ComputeActiveProcessList(microbeSpecies.ModifiableOrganelles, ref cached);
         cachedProcessLists.Add(microbeSpecies, cached);
 
         return cached;
@@ -788,7 +788,7 @@ public class SimulationCache
         var mucocystsScore = Constants.AUTO_EVO_MUCOCYST_SCORE;
         var pullingCiliaModifier = 1.0f;
 
-        var organelles = microbeSpecies.t_ModifiableOrganelles.Organelles;
+        var organelles = microbeSpecies.ModifiableOrganelles.Organelles;
         var organelleCount = organelles.Count;
         var totalToxinOrganellesCount = 0;
         var totalToxinTypesCount = 0;
