@@ -566,8 +566,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         }
 
         var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
-
-        sunlightChart.TooltipYAxisFormat = percentageFormat + " lx";
+        var sunlight = SimulationParameters.Instance.GetCompoundDefinition(Compound.Sunlight);
+        sunlightChart.TooltipYAxisFormat = percentageFormat + sunlight.Unit;
         atmosphericGassesChart.TooltipYAxisFormat = percentageFormat;
 
         speciesPopulationChart.LegendMode = LineChart.LegendDisplayMode.DropDown;
@@ -602,8 +602,11 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             speciesPopulationChart.LegendMode = LineChart.LegendDisplayMode.CustomOrNone;
         }
 
-        sunlightChart.Plot(Localization.Translate("YEARS"), "% lx", 5, null, null, null, 5);
-        temperatureChart.Plot(Localization.Translate("YEARS"), "°C", 5, null, null, null, 5);
+        var temperature = SimulationParameters.Instance.GetCompoundDefinition(Compound.Temperature);
+        temperatureChart.Plot(Localization.Translate("YEARS"),
+            temperature.Unit ?? "MISSING CONFIGURED UNIT", 5, null, null, null, 5);
+
+        sunlightChart.Plot(Localization.Translate("YEARS"), percentageFormat + sunlight.Unit, 5, null, null, null, 5);
         atmosphericGassesChart.Plot(Localization.Translate("YEARS"), "%", 5,
             Localization.Translate("ATMOSPHERIC_GASSES"), null, null, 5);
         speciesPopulationChart.Plot(Localization.Translate("YEARS"), string.Empty, 5,
