@@ -310,7 +310,7 @@ public class MeteorImpactEvent : IWorldEffect
             if (!definition.IsEnvironmental)
             {
                 // glucose, phosphates, iron, sulfur
-                currentCompoundLevel.Density = -levelChange / 3;
+                currentCompoundLevel.Density = -levelChange * 0.2f;
                 tempCompoundChanges[compoundName] = currentCompoundLevel.Density;
                 tempCloudSizes[compoundName] = currentCompoundLevel.Amount;
             }

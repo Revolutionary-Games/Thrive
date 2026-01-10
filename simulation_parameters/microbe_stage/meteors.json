@@ -4,7 +4,7 @@
     "Compounds": {
       "Carbondioxide": 0.25
     },
-    "Probability": 0.25,
+    "Probability": 0.1,
     "VisualEffect": "MeteorPlainImpact"
   },
   "iron_meteor": {
@@ -14,9 +14,9 @@
     ],
     "Compounds": {
       "Carbondioxide": 0.15,
-      "Iron": 0.00005
+      "Iron": 0.0001
     },
-    "Probability": 0.25,
+    "Probability": 0.3,
     "VisualEffect": "MeteorIronImpact"
   },
   "phosphates_meteor": {
@@ -26,9 +26,9 @@
     ],
     "Compounds": {
       "Carbondioxide": 0.15,
-      "Phosphates": 0.00005
+      "Phosphates": 0.0001
     },
-    "Probability": 0.2,
+    "Probability": 0.15,
     "VisualEffect": "MeteorPhosphatesImpact"
   },
   "sulfide_meteor": {
@@ -39,7 +39,7 @@
     ],
     "Compounds": {
       "Carbondioxide": 0.15,
-      "Hydrogensulfide": 0.001
+      "Hydrogensulfide": 0.002
     },
     "Probability": 0.1,
     "VisualEffect": "MeteorSulfurImpact"
@@ -51,16 +51,16 @@
     "Compounds": {
       "Carbondioxide": 0.20
     },
-    "Probability": 0.1,
+    "Probability": 0.2,
     "VisualEffect": "MeteorRadioactiveImpact"
   },
   "glucose_meteor": {
     "Chunks": [],
     "Compounds": {
       "Carbondioxide": 0.15,
-      "Glucose": 0.00005
+      "Glucose": 0.0002
     },
-    "Probability": 0.1,
+    "Probability": 0.15,
     "VisualEffect": "MeteorGlucoseImpact"
   }
 }
