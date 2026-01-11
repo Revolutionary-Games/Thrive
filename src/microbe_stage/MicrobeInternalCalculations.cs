@@ -696,7 +696,7 @@ public static class MicrobeInternalCalculations
     public static void CalculatePossibleEndosymbiontsFromSpecies(MicrobeSpecies species,
         List<(OrganelleDefinition Organelle, int Cost)> result, bool lawk)
     {
-        var organelles = species.Organelles.Organelles;
+        var organelles = species.ReadonlyOrganelles.Organelles;
 
         int organelleCount = organelles.Count;
         for (int i = 0; i < organelleCount; ++i)

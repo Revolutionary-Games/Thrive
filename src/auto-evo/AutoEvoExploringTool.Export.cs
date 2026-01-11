@@ -100,11 +100,11 @@ public partial class AutoEvoExploringTool
                         microbeSpecies.BaseRotationSpeed.ToString(CultureInfo.InvariantCulture),
                         microbeSpecies.StorageCapacities.Nominal.ToString(CultureInfo.InvariantCulture),
                         microbeSpecies.IsBacteria.ToString(),
-                        microbeSpecies.Organelles.Count.ToString(),
+                        microbeSpecies.ReadonlyOrganelles.Count.ToString(),
                     });
 
                     data.AddRange(allOrganelles
-                        .Select(d => microbeSpecies.Organelles.Count(t => t.Definition == d).ToString()));
+                        .Select(d => microbeSpecies.ReadonlyOrganelles.Count(t => t.Definition == d).ToString()));
                 }
                 else
                 {

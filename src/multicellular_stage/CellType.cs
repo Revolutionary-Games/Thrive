@@ -14,7 +14,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
 
     public CellType(OrganelleLayout<OrganelleTemplate> organelles, MembraneType membraneType)
     {
-        ModifiableOrganelles = organelles;
+        ReadonlyOrganelles = organelles;
         MembraneType = membraneType;
         CanEngulf = membraneType.CanEngulf;
     }
@@ -22,7 +22,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
     public CellType(MembraneType membraneType)
     {
         MembraneType = membraneType;
-        ModifiableOrganelles = new OrganelleLayout<OrganelleTemplate>();
+        ReadonlyOrganelles = new OrganelleLayout<OrganelleTemplate>();
         CanEngulf = membraneType.CanEngulf;
     }
 
@@ -35,9 +35,9 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
     public CellType(MicrobeSpecies microbeSpecies, List<Hex> workMemory1, List<Hex> workMemory2) :
         this(microbeSpecies.MembraneType)
     {
-        foreach (var organelle in microbeSpecies.Organelles)
+        foreach (var organelle in microbeSpecies.ReadonlyOrganelles)
         {
-            ModifiableOrganelles.AddFast(organelle.Clone(), workMemory1, workMemory2);
+            ReadonlyOrganelles.AddFast(organelle.Clone(), workMemory1, workMemory2);
         }
 
         MembraneRigidity = microbeSpecies.MembraneRigidity;
@@ -49,9 +49,9 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
 
     // TODO: avoid this adapter object allocation
     public IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> Organelles => readonlyLayout ??=
-        new ReadonlyOrganelleLayoutAdapter<IReadOnlyOrganelleTemplate, OrganelleTemplate>(ModifiableOrganelles);
+        new ReadonlyOrganelleLayoutAdapter<IReadOnlyOrganelleTemplate, OrganelleTemplate>(ReadonlyOrganelles);
 
-    public OrganelleLayout<OrganelleTemplate> ModifiableOrganelles { get; }
+    public OrganelleLayout<OrganelleTemplate> ReadonlyOrganelles { get; }
 
     public string CellTypeName { get; set; } = "error";
     public int MPCost { get; set; } = 15;
@@ -98,7 +98,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.WriteObject(ModifiableOrganelles);
+        writer.WriteObject(ReadonlyOrganelles);
         writer.WriteObject(MembraneType);
 
         writer.Write(CellTypeName);
@@ -111,7 +111,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
 
     public bool RepositionToOrigin()
     {
-        var changes = ModifiableOrganelles.RepositionToOrigin();
+        var changes = ReadonlyOrganelles.RepositionToOrigin();
         CalculateRotationSpeed();
         return changes;
     }
@@ -183,13 +183,13 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         bool shouldUpdatePosition = false)
     {
         // Code very similar to what CellEditorComponent does on applying changes
-        ModifiableOrganelles.Clear();
+        ReadonlyOrganelles.Clear();
 
         // Even in a multicellular context, it should always be safe to apply the organelle growth order
-        foreach (var organelle in otherType.ModifiableOrganelles)
+        foreach (var organelle in otherType.ReadonlyOrganelles)
         {
             var organelleToAdd = organelle.Clone();
-            ModifiableOrganelles.AddFast(organelleToAdd, hexTemporaryMemory, hexTemporaryMemory2);
+            ReadonlyOrganelles.AddFast(organelleToAdd, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         if (shouldUpdatePosition)
@@ -222,7 +222,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
 
         foreach (var organelle in Organelles)
         {
-            result.ModifiableOrganelles.AddFast(organelle.Clone(), workMemory1, workMemory2);
+            result.ReadonlyOrganelles.AddFast(organelle.Clone(), workMemory1, workMemory2);
         }
 
         return result;
@@ -242,7 +242,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         // is applied by MicrobeSpecies' base class.
         hash ^= Colour.GetVisualHashCode();
 
-        var list = ModifiableOrganelles.Organelles;
+        var list = ReadonlyOrganelles.Organelles;
 
         for (int i = 0; i < count; ++i)
         {
@@ -264,7 +264,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         int hash = CellTypeName.GetHashCode() ^ MembraneType.InternalName.GetHashCode() * 5743 ^
             MembraneRigidity.GetHashCode() * 5749 ^ (IsBacteria ? 1 : 0) * 5779 ^ count * 131;
 
-        var list = ModifiableOrganelles.Organelles;
+        var list = ReadonlyOrganelles.Organelles;
 
         for (int i = 0; i < count; ++i)
         {
@@ -282,6 +282,6 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
     private void CalculateRotationSpeed()
     {
         // TODO: switch this to use a read only interface
-        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(ModifiableOrganelles.Organelles);
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(ReadonlyOrganelles.Organelles);
     }
 }

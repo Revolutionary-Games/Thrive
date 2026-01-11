@@ -13,7 +13,7 @@ using Godot;
 /// </remarks>
 public interface ICellDefinition : IReadOnlyCellDefinition, ISimulationPhotographable
 {
-    public OrganelleLayout<OrganelleTemplate> ModifiableOrganelles { get; }
+    public OrganelleLayout<OrganelleTemplate> ReadonlyOrganelles { get; }
     public new MembraneType MembraneType { get; set; }
     public new float MembraneRigidity { get; set; }
     public new Color Colour { get; set; }

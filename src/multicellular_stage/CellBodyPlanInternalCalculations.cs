@@ -15,10 +15,10 @@ public static class CellBodyPlanInternalCalculations
         // TODO: Check if it's possible to do those calculations per cell type and multiply by the types' cell counts
         foreach (var cell in cells)
         {
-            var totalNominalCap = MicrobeInternalCalculations.GetTotalNominalCapacity(cell.ModifiableOrganelles);
+            var totalNominalCap = MicrobeInternalCalculations.GetTotalNominalCapacity(cell.ReadonlyOrganelles);
             nominalCapacity += totalNominalCap;
 
-            MicrobeInternalCalculations.AddSpecificCapacity(cell.ModifiableOrganelles, capacities);
+            MicrobeInternalCalculations.AddSpecificCapacity(cell.ReadonlyOrganelles, capacities);
         }
 
         return capacities;
@@ -32,7 +32,7 @@ public static class CellBodyPlanInternalCalculations
     {
         var leader = cells[0].Data!;
 
-        var speed = MicrobeInternalCalculations.CalculateSpeed(leader.ModifiableOrganelles, leader.MembraneType,
+        var speed = MicrobeInternalCalculations.CalculateSpeed(leader.ReadonlyOrganelles, leader.MembraneType,
             leader.MembraneRigidity, leader.IsBacteria);
 
         if (cells.Count == 1)
@@ -124,7 +124,7 @@ public static class CellBodyPlanInternalCalculations
     {
         var leader = cells[0].Data!;
 
-        var colonyRotation = MicrobeInternalCalculations.CalculateRotationSpeed(leader.ModifiableOrganelles);
+        var colonyRotation = MicrobeInternalCalculations.CalculateRotationSpeed(leader.ReadonlyOrganelles);
 
         Vector3 leaderPosition = Hex.AxialToCartesian(leader.Position);
 
@@ -133,7 +133,7 @@ public static class CellBodyPlanInternalCalculations
             var distanceSquared = leaderPosition.DistanceSquaredTo(Hex.AxialToCartesian(colonyMember.Position));
 
             var memberRotation = MicrobeInternalCalculations
-                    .CalculateRotationSpeed(colonyMember.Data!.ModifiableOrganelles)
+                    .CalculateRotationSpeed(colonyMember.Data!.ReadonlyOrganelles)
                 * (1 + 0.03f * distanceSquared);
 
             colonyRotation += memberRotation;

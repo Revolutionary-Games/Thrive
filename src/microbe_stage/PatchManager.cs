@@ -254,7 +254,7 @@ public class PatchManager
 
                 if (entry.Key is MicrobeSpecies microbeSpecies)
                 {
-                    hasBinding = microbeSpecies.Organelles.Any(o => o.Definition.HasBindingFeature);
+                    hasBinding = microbeSpecies.ReadonlyOrganelles.Any(o => o.Definition.HasBindingFeature);
                 }
 
                 if (hasBinding)

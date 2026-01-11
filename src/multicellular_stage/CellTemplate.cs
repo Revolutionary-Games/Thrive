@@ -72,7 +72,7 @@ public class CellTemplate : IPositionedCell, ICloneable, IArchivable, IReadOnlyH
     public string FormattedName => ModifiableCellType.CellTypeName;
 
     public IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> Organelles => ModifiableCellType.Organelles;
-    public OrganelleLayout<OrganelleTemplate> ModifiableOrganelles => ModifiableCellType.ModifiableOrganelles;
+    public OrganelleLayout<OrganelleTemplate> ReadonlyOrganelles => ModifiableCellType.ReadonlyOrganelles;
 
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;

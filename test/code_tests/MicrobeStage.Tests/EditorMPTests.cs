@@ -399,7 +399,7 @@ public class EditorMPTests
         var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
-        var template = originalSpecies.Organelles.GetElementAt(new Hex(0, 0), new List<Hex>()) ??
+        var template = originalSpecies.ReadonlyOrganelles.GetElementAt(new Hex(0, 0), new List<Hex>()) ??
             throw new Exception("Couldn't find organelle");
 
         var upgrades1 = new OrganelleUpgrades
@@ -430,7 +430,7 @@ public class EditorMPTests
         var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
-        var template = originalSpecies.Organelles.GetElementAt(new Hex(0, 0), new List<Hex>()) ??
+        var template = originalSpecies.ReadonlyOrganelles.GetElementAt(new Hex(0, 0), new List<Hex>()) ??
             throw new Exception("Couldn't find organelle");
 
         var upgrades1 = new OrganelleUpgrades
@@ -461,7 +461,7 @@ public class EditorMPTests
         var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
-        var template = originalSpecies.Organelles.GetElementAt(new Hex(0, 0), new List<Hex>()) ??
+        var template = originalSpecies.ReadonlyOrganelles.GetElementAt(new Hex(0, 0), new List<Hex>()) ??
             throw new Exception("Couldn't find organelle");
 
         var upgrades1 = new OrganelleUpgrades
@@ -578,7 +578,7 @@ public class EditorMPTests
         var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
-        var template = originalSpecies.Organelles.GetElementAt(new Hex(0, 0), new List<Hex>()) ??
+        var template = originalSpecies.ReadonlyOrganelles.GetElementAt(new Hex(0, 0), new List<Hex>()) ??
             throw new Exception("Couldn't find organelle");
 
         var upgrades1 = new OrganelleUpgrades
@@ -691,7 +691,7 @@ public class EditorMPTests
         var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
-        var template1 = originalSpecies.Organelles.GetElementAt(new Hex(2, 1), new List<Hex>()) ??
+        var template1 = originalSpecies.ReadonlyOrganelles.GetElementAt(new Hex(2, 1), new List<Hex>()) ??
             throw new Exception("Couldn't find organelle");
 
         var moveData = new OrganelleMoveActionData(template1, new Hex(2, 1), new Hex(1, 0), 0, 0);
@@ -1150,7 +1150,7 @@ public class EditorMPTests
         var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
-        var originalToRemove = originalSpecies.Organelles.GetElementAt(new Hex(0, 0), new List<Hex>()) ??
+        var originalToRemove = originalSpecies.ReadonlyOrganelles.GetElementAt(new Hex(0, 0), new List<Hex>()) ??
             throw new Exception("Couldn't find organelle");
 
         var template2 = new OrganelleTemplate(cheapOrganelle, new Hex(1, 0), 0);
@@ -1180,7 +1180,7 @@ public class EditorMPTests
         var editsFacade = new MicrobeEditsFacade(originalSpecies, dummyNucleus);
         var history = new EditorActionHistory<EditorAction>();
 
-        var originalToMove = originalSpecies.Organelles.GetElementAt(new Hex(0, 0), new List<Hex>()) ??
+        var originalToMove = originalSpecies.ReadonlyOrganelles.GetElementAt(new Hex(0, 0), new List<Hex>()) ??
             throw new Exception("Couldn't find organelle");
 
         var moveData = new OrganelleMoveActionData(originalToMove, new Hex(0, 0), new Hex(1, 0), 0, 2);
