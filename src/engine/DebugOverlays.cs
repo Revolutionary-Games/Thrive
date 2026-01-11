@@ -20,7 +20,7 @@ public partial class DebugOverlays : Control
     private CustomWindow debugPanelDialog = null!;
 
     [Export]
-    private CustomWindow debugConsole = null!;
+    private DebugConsole debugConsole = null!;
 
     [Export]
     private CheckBox fpsCheckBox = null!;
@@ -123,14 +123,7 @@ public partial class DebugOverlays : Control
     [RunOnKeyDown("toggle_debug_console", OnlyUnhandled = false)]
     public void OnDebugConsoleToggled()
     {
-        if (!debugConsole.Visible)
-        {
-            debugConsole.Show();
-        }
-        else
-        {
-            debugConsole.Hide();
-        }
+        debugConsole.IsConsoleOpen = !debugConsole.IsConsoleOpen;
     }
 
     [RunOnKeyDown("toggle_FPS", OnlyUnhandled = false)]

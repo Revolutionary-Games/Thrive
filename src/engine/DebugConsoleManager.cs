@@ -24,7 +24,9 @@ public partial class DebugConsoleManager : Node
         instance = this;
     }
 
-    public event EventHandler<ConsoleLineArgs>? OnLogReceived;
+    public event EventHandler<EventArgs>? OnHistoryUpdated;
+
+    public int MessageCount { get; private set; } = 0;
 
     public static DebugConsoleManager? GetInstance()
     {
@@ -33,8 +35,16 @@ public partial class DebugConsoleManager : Node
 
     public override void _Process(double delta)
     {
+        if (OnHistoryUpdated == null)
+            return;
+
         lock (inbox)
         {
+            if (inbox.Count == 0)
+                return;
+
+            MessageCount += inbox.Count;
+
             while (inbox.TryDequeue(out var line))
             {
                 History.AddToBack(line);
@@ -43,9 +53,9 @@ public partial class DebugConsoleManager : Node
                 {
                     History.RemoveFromFront();
                 }
-
-                OnLogReceived?.Invoke(null, new ConsoleLineArgs(line));
             }
+
+            OnHistoryUpdated.Invoke(null, EventArgs.Empty);
         }
 
         base._Process(delta);
@@ -90,9 +100,4 @@ public partial class DebugConsoleManager : Node
     /// <param name="Line"> the line content </param>
     /// <param name="Color"> the line color</param>
     public record struct ConsoleLine(string Line, Color Color);
-
-    public class ConsoleLineArgs(ConsoleLine line) : EventArgs
-    {
-        public ConsoleLine Line { get; } = line;
-    }
 }
