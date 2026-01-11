@@ -26,7 +26,7 @@ public partial class DebugConsoleManager : Node
 
     public event EventHandler<EventArgs>? OnHistoryUpdated;
 
-    public int MessageCount { get; private set; } = 0;
+    public int MessageCount { get; private set; }
 
     public static DebugConsoleManager? GetInstance()
     {
