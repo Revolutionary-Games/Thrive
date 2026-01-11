@@ -96,7 +96,7 @@ public partial class DebugConsole : CustomWindow
         }
 
         int start = debugConsoleManager.History.Count - linesToAdd;
-        for (int i = start; i < debugConsoleManager.History.Count; i++)
+        for (int i = start; i < debugConsoleManager.History.Count; ++i)
         {
             var line = debugConsoleManager.History[i];
             AddLog(line);
