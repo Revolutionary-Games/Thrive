@@ -10,7 +10,7 @@
 [ext_resource type="LabelSettings" uid="uid://c7r7hod24qer8" path="res://src/gui_common/fonts/Body-Regular-Small-Blue.tres" id="6_05a1v"]
 [ext_resource type="LabelSettings" uid="uid://dj8uej1eg2iuh" path="res://src/gui_common/fonts/Body-Regular-Small-Orange.tres" id="7_8xdu2"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="9_qsaes"]
-[ext_resource type="Script" uid="uid://copwda0puhvx2" path="res://src/engine/DebugConsole.cs" id="10_syfxw"]
+[ext_resource type="Script" uid="uid://ctv5goidw0qvu" path="res://src/engine/DebugConsole.cs" id="10_syfxw"]
 [ext_resource type="FontVariation" uid="uid://k7u2fkgwhsf0" path="res://assets/fonts/variants/RobotoMono-Regular.tres" id="11_0g2tr"]
 
 [node name="DebugOverlay" type="Control" node_paths=PackedStringArray("debugCoordinates", "inspectorDialog", "debugPanelDialog", "debugConsole", "fpsCheckBox", "performanceMetricsCheckBox", "inspectorCheckbox", "fpsCounter", "performanceMetrics", "labelsLayer", "fpsDisplayLabel", "fpsLabel", "deltaLabel", "metricsText")]
@@ -87,7 +87,7 @@ layout_mode = 2
 text = "METRICS_CONTENT"
 label_settings = ExtResource("3_fussq")
 
-[node name="DebugConsole" type="Control" parent="." node_paths=PackedStringArray("consoleArea", "commandInput")]
+[node name="DebugConsole" type="Control" parent="." node_paths=PackedStringArray("consoleArea")]
 visible = false
 anchors_preset = 0
 offset_left = 43.0
@@ -97,7 +97,6 @@ offset_bottom = 372.0
 theme = ExtResource("9_qsaes")
 script = ExtResource("10_syfxw")
 consoleArea = NodePath("VBoxContainer/ConsoleOutput")
-commandInput = NodePath("VBoxContainer/ConsoleInput")
 WindowTitle = "DEBUG_CONSOLE"
 Resizable = true
 
