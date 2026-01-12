@@ -32,8 +32,6 @@ public partial class DebugConsole : CustomWindow
             else
             {
                 Hide();
-
-                debugConsoleManager.OnHistoryUpdated -= RefreshLogs;
             }
         }
     }
@@ -72,6 +70,13 @@ public partial class DebugConsole : CustomWindow
         lastClearId = lastMessageId;
 
         consoleArea.Clear();
+    }
+
+    protected override void OnHidden()
+    {
+        DebugConsoleManager.Instance.OnHistoryUpdated -= RefreshLogs;
+
+        base.OnHidden();
     }
 
     private void RefreshLogs()
