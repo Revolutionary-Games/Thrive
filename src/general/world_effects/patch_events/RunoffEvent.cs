@@ -22,15 +22,6 @@ public class RunoffEvent : IWorldEffect
         { Compound.Phosphates, ["phosphateBigChunk"] },
     };
 
-    private static readonly Compound[] CompoundsToAffect =
-    [
-        Compound.Ammonia,
-        Compound.Phosphates,
-        Compound.Nitrogen,
-        Compound.Hydrogensulfide,
-        Compound.Iron,
-    ];
-
     private readonly Dictionary<Compound, float> compoundChanges = new();
     private readonly Dictionary<Compound, float> cloudSizes = new();
 
