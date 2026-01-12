@@ -26,12 +26,9 @@ public partial class DebugConsoleManager : Node
 
     public event EventHandler<EventArgs>? OnHistoryUpdated;
 
-    public int MessageCount { get; private set; }
+    public static DebugConsoleManager Instance => instance ?? throw new InstanceNotLoadedYetException();
 
-    public static DebugConsoleManager? GetInstance()
-    {
-        return instance;
-    }
+    public int MessageCount { get; private set; }
 
     public override void _Process(double delta)
     {

@@ -19,7 +19,7 @@ public partial class DebugConsole : CustomWindow
         get => Visible;
         set
         {
-            var debugConsoleManager = DebugConsoleManager.GetInstance()!;
+            var debugConsoleManager = DebugConsoleManager.Instance;
 
             if (value)
             {
@@ -50,6 +50,8 @@ public partial class DebugConsole : CustomWindow
         // make sure we unsubscribe from the event handler.
         IsConsoleOpen = false;
 
+        Clear();
+
         base._ExitTree();
     }
 
@@ -69,7 +71,7 @@ public partial class DebugConsole : CustomWindow
 
     private void RefreshLogs()
     {
-        var debugConsoleManager = DebugConsoleManager.GetInstance()!;
+        var debugConsoleManager = DebugConsoleManager.Instance;
 
         int newMessageCount = debugConsoleManager.MessageCount - lastMessageId;
         if (newMessageCount <= 0)
@@ -84,9 +86,12 @@ public partial class DebugConsole : CustomWindow
             // console renderer backed by a ring-buffer, if performance ever becomes a concern in this console.
             // For now, I use this hybrid approach, which only removes the front paragraph (oldest line) if there's only
             // one pending message.
-            if (newMessageCount == 1)
+            if (newMessageCount <= 0.1 * DebugConsoleManager.MaxConsoleSize)
             {
-                consoleArea.RemoveParagraph(0);
+                for (int i = 0; i < newMessageCount; ++i)
+                    consoleArea.RemoveParagraph(0, true);
+
+                consoleArea.InvalidateParagraph(0);
             }
             else
             {

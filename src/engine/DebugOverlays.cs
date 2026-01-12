@@ -66,8 +66,6 @@ public partial class DebugOverlays : Control
 
         if (instance == this)
             instance = null;
-
-        DebugConsoleManager.GetInstance()!.Clear();
     }
 
     public override void _Process(double delta)
