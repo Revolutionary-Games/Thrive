@@ -40,7 +40,12 @@ public partial class DebugConsole : CustomWindow
 
     public override void _Ready()
     {
-        RefreshLogs();
+        if (Visible)
+        {
+            DebugConsoleManager.Instance.OnHistoryUpdated += RefreshLogs;
+
+            RefreshLogs();
+        }
 
         base._Ready();
     }
