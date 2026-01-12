@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Godot;
 using Godot.Collections;
 using Newtonsoft.Json;

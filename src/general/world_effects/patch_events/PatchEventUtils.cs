@@ -29,6 +29,10 @@ public static class PatchEventUtils
                 random.Next(minMultiplier, maxMultiplier);
 
             chunkConfiguration.Density *= multiplier;
+            if (chunkConfiguration.Compounds != null && chunkConfiguration.Compounds.ContainsKey(Compound.Iron))
+            {
+                chunkConfiguration.Density *= 2.5f;
+            }
 
             if (addChunks)
             {
@@ -120,6 +124,9 @@ public static class PatchEventUtils
 
     private static float GetChanceOfAffectAnotherCompound(float chance, int numberOfAffectedCompounds)
     {
+        if (numberOfAffectedCompounds <= 1)
+            return 1.0f;
+
         // Each additional compound has a diminishing chance of being affected
         return (float)Math.Pow(chance, numberOfAffectedCompounds);
     }

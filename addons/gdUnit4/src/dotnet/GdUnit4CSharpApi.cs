@@ -211,29 +211,29 @@ using Godot.Collections;
 
 public partial class GdUnit4CSharpApi : RefCounted
 {
-	[Signal]
-	public delegate void ExecutionCompletedEventHandler();
+    [Signal]
+    public delegate void ExecutionCompletedEventHandler();
 
-	public static bool IsApiLoaded()
-	{
-		GD.PushWarning("No `gdunit4.api` dependency found, check your project dependencies.");
-		return false;
-	}
+    public static bool IsApiLoaded()
+    {
+        GD.PushWarning("No `gdunit4.api` dependency found, check your project dependencies.");
+        return false;
+    }
 
 
-	public static string Version()
-		=> "Unknown";
+    public static string Version()
+        => "Unknown";
 
-	public static Array<Dictionary> DiscoverTests(CSharpScript sourceScript) => new();
+    public static Array<Dictionary> DiscoverTests(CSharpScript sourceScript) => new();
 
-	public void ExecuteAsync(Array<Dictionary> tests, Callable listener)
-	{
-	}
+    public void ExecuteAsync(Array<Dictionary> tests, Callable listener)
+    {
+    }
 
-	public static bool IsTestSuite(CSharpScript script)
-		=> false;
+    public static bool IsTestSuite(CSharpScript script)
+        => false;
 
-	public static Dictionary CreateTestSuite(string sourcePath, int lineNumber, string testSuitePath)
-		=> new();
+    public static Dictionary CreateTestSuite(string sourcePath, int lineNumber, string testSuitePath)
+        => new();
 }
 #endif

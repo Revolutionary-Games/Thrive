@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -30,7 +30,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private const double SHOW_REVERT_POPUP_FOR = 80;
 
-    private readonly Dictionary<(string Category, LocalizedString Name), int> hoveredEntities = new();
     private readonly Dictionary<CompoundDefinition, InspectedEntityLabel> hoveredCompoundControls = new();
 
     [Export]
@@ -659,23 +658,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         mouseHoverPanel.ClearEntries(FLOATING_CHUNKS_CATEGORY);
         mouseHoverPanel.ClearEntries(AGENTS_CATEGORY);
 
-        // Show the entity's name and count of hovered entities
-        hoveredEntities.Clear();
-
         foreach (var entity in stage.HoverInfo.Entities)
         {
             if (!entity.IsAliveAndHas<ReadableName>())
                 continue;
-
-            var name = entity.Get<ReadableName>().Name;
-
-            if (entity.Has<PlayerMarker>())
-            {
-                // Special handling for player
-                var label = mouseHoverPanel.AddItem(SPECIES_CATEGORY, name.ToString());
-                label.SetDescription(Localization.Translate("PLAYER"));
-                continue;
-            }
 
             string category;
 
@@ -693,17 +679,16 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 category = FLOATING_CHUNKS_CATEGORY;
             }
 
-            var key = (category, name);
-            hoveredEntities.TryGetValue(key, out int count);
-            hoveredEntities[key] = count + 1;
-        }
+            var item = mouseHoverPanel.AddItem(category, entity.Get<ReadableName>().Name.ToString());
 
-        foreach (var hoveredEntity in hoveredEntities)
-        {
-            var item = mouseHoverPanel.AddItem(hoveredEntity.Key.Category, hoveredEntity.Key.Name.ToString());
-
-            if (hoveredEntity.Value > 1)
-                item.SetDescription(Localization.Translate("N_TIMES").FormatSafe(hoveredEntity.Value));
+            if (entity.Has<PlayerMarker>())
+            {
+                item.SetDescription(Localization.Translate("PLAYER"));
+            }
+            else if (entity.TryGet<Health>(out var health))
+            {
+                item.SetDescription($"{MathF.Round(health.CurrentHealth, 1)}/{MathF.Round(health.MaxHealth, 1)}");
+            }
         }
     }
 

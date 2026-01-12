@@ -50,6 +50,9 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
     [Signal]
     public delegate void OrderResetEventHandler();
 
+    [Signal]
+    public delegate void OnGrowthOrderChangedEventHandler();
+
     /// <summary>
     ///   Can be turned off to hide coordinates in the display list
     /// </summary>
@@ -194,9 +197,15 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
             while (enumerator.MoveNext());
         }
 
-        // Last item cannot move down in the list
-        if (lastItem != null)
-            lastItem.CanMoveDown = false;
+        // The last item cannot move down in the list
+        lastItem?.CanMoveDown = false;
+    }
+
+    /// <inheritdoc cref="ApplyOrderingToItems{T}(IEnumerable{T}, Func{T,IPlayerReadableName})"/>
+    public IEnumerable<T> ApplyOrderingToItems<T>(IEnumerable<T> rawItems)
+        where T : IPlayerReadableName
+    {
+        return ApplyOrderingToItems(rawItems, i => i);
     }
 
     /// <summary>
@@ -204,9 +213,9 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
     ///   reordering existing items and only adding new ones to the end.
     /// </summary>
     /// <param name="rawItems">Items to apply ordering to</param>
+    /// <param name="keySelector">A function that converts a raw item into a IPlayerReadableName</param>
     /// <returns>Items with current GUI order state applied to them</returns>
-    public IEnumerable<T> ApplyOrderingToItems<T>(IEnumerable<T> rawItems)
-        where T : IPlayerReadableName
+    public IEnumerable<T> ApplyOrderingToItems<T>(IEnumerable<T> rawItems, Func<T, IPlayerReadableName> keySelector)
     {
         if (itemControls.Count <= 0)
         {
@@ -218,7 +227,7 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
                 // It shouldn't be possible for the list to change so hopefully the save comparer never needs to be
                 // recreated
                 savedItemComparer ??= new SaveComparer(currentSavedOrder);
-                return rawItems.OrderBy(i => i, savedItemComparer);
+                return rawItems.OrderBy(keySelector, savedItemComparer);
             }
 
             return rawItems;
@@ -227,7 +236,7 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
         // Need to use LINQ sort here as it is a stable sort and our sorter only does a partial ordering
         // Apparently `Order` might not be a stable sort so for safety `OrderBy` is used as that is guaranteed
         // according to the documentation to be stable
-        return rawItems.OrderBy(i => i, itemComparer);
+        return rawItems.OrderBy(keySelector, itemComparer);
     }
 
     /// <summary>
@@ -257,6 +266,7 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
     {
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(SignalName.OrderReset);
+        EmitSignal(SignalName.OnGrowthOrderChanged);
     }
 
     private void MoveDown(DraggableItem item)
@@ -365,6 +375,8 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
 
             itemControl.SetLabelText(GetText((IPlayerReadableName)itemControl.UserData));
         }
+
+        EmitSignal(SignalName.OnGrowthOrderChanged);
     }
 
     private void SwapControls(DraggableItem from, DraggableItem to)
@@ -382,6 +394,8 @@ public partial class GrowthOrderPicker : Control, IArchiveUpdatable
 
         to.UserData = temp;
         to.SetLabelText(GetText((IPlayerReadableName)to.UserData));
+
+        EmitSignal(SignalName.OnGrowthOrderChanged);
     }
 
     private string GetText(IPlayerReadableName playerReadableName)

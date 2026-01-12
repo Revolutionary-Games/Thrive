@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-27 11:35+0100\n"
-"PO-Revision-Date: 2025-12-18 17:38+0000\n"
+"POT-Creation-Date: 2025-12-18 14:19+0200\n"
+"PO-Revision-Date: 2025-12-31 14:01+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -427,9 +427,8 @@ msgstr "Yüzeydeki ortalama diğer gaz seviyeleri"
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr "Yüzeydeki ortalama oksijen seviyesi"
 
-#, fuzzy
 msgid "AVERAGE_SURFACE_TEMPERATURE"
-msgstr "Yüzeydeki ortalama diğer gaz seviyeleri"
+msgstr "Yüzeydeki ortalama sıcaklık"
 
 msgid "AWAKENING_STAGE"
 msgstr "Uyanış Evresi"
@@ -898,6 +897,10 @@ msgstr "Sahil"
 msgid "COLLISION_SHAPE"
 msgstr "Fizik hata ayıklama şekillerini göster"
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "Bu sekme, organellerin büyüme sırasının ayarlanmasını sağlar. Bu ayar, büyüme aşamasındayken kararsız ATP üretimi olan hücreler için önemli olabilir. Ayrıca, organel sırasının biyoişlem çalıştırma sırasına bir etkisi vardır. Bu ayarın düzenlenmesi yalnızca yapı düzenlemesi bittikten sonra önerilir. Çünkü yapı düzenlemeleri bu ayardaki değişiklikleri geri alabilir."
+
 msgid "COLOUR"
 msgstr "Renk"
 
@@ -948,9 +951,6 @@ msgstr "Doygunluk değeri, belli bir renkteki gri miktarı"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Değer (parlaklık) değeri, renkteki parlaklığın şiddeti"
-
-msgid "COMMAND_INPUT_LINE_EDIT"
-msgstr ""
 
 msgid "COMMON_ABILITIES"
 msgstr "Ortak Yetenekler"
@@ -1544,10 +1544,6 @@ msgstr "Ölü Bölge Yapılandırması"
 
 msgid "DEATH"
 msgstr "ölüm"
-
-#, fuzzy
-msgid "DEBUG_CONSOLE"
-msgstr "Hata Ayıklama Paneli"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -3835,33 +3831,33 @@ msgstr ""
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"Uzaklardaki bir yabancı gezegende, derin denizlerde sonsuz asırlar süren volkanik aktiviteler yeni bir olayın gelişmesine neden oldu.\n"
+"Uzaklardaki yabancı bir gezegende, derin denizlerde asırlardır süre gelen volkanik aktiviteler olağanüstü bir şeyin oluşmasına neden oldu.\n"
 "\n"
-"Hayat.\n"
+"Yaşam.\n"
 "\n"
-"Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA). Bu basit baloncuk, sudaki moleküllerden kendini kopyalayabilir. Böylece zamanla, yıldızlara hakim olacak karmaşık bir türe dönüşebilir.\n"
+"Sen, bu gezegendeki Son Evrensel Ortak Atasın (SEOA). Bu basit baloncuk, sudaki moleküllerden kendini kopyalayabilir. Böylece zamanla, yıldızlara hakim olacak karmaşık bir türe dönüşebilir.\n"
 "\n"
-"Ama önce, diğer mikroplarla rekabet ederken büyümek, yayılmak ve evrimleşmek için bileşikler toplayıp bu hasım dünyada hayatta kalmanız gerekiyor."
+"Ama bu hasım dünyada hayatta kalmak için, öncelikle bileşik toplayıp büyümeli, yayılmalı ve diğer mikroplarla rekabet ederken evrimleşmelisin."
 
 msgid "MICROBE_STAGE_INITIAL_PANSPERMIA"
 msgstr ""
-"Uzaklardaki bir yabancı gezegende bir göktaşı, muazzam mesafeler kat ettikten sonra yere çarptı ve yeni bir olayı meydana getirecek tohumları bu gezegene taşıdı.\n"
+"Uzaklardaki yabancı bir gezegende, yeni bir olayın kökenlerini taşıyan bir meteor muazzam mesafeler kat ederek yere çarptı.\n"
 "\n"
-"Hayat.\n"
+"Yaşam.\n"
 "\n"
-"Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA). Kendini çoğaltabilen bu baloncuk, ana dünyasında olduğu gibi bu okyanusta da yaşayabilir. Belki bir gün, uzak torunları o dünyayı yeniden bulurlar.\n"
+"Sen, bu gezegendeki Son Evrensel Ortak Atasın (SEOA). Kendini kopyalayabilen bu baloncuk, tıpkı ana dünyasında olduğu gibi bu okyanusta da yaşayabilir. Belki bir gün, uzak torunları o dünyayı yeniden bulacaktır.\n"
 "\n"
-"Ama önce, diğer mikroplarla rekabet ederken büyümek, yayılmak ve evrimleşmek için bileşikler toplayıp bu tehlikeli sularda hayatta kalmanız gerekiyor."
+"Ama bu tehlikeli sularda hayatta kalmak için, öncelikle bileşik toplayıp büyümeli, yayılmalı ve diğer mikroplarla rekabet ederken evrimleşmelisin."
 
 msgid "MICROBE_STAGE_INITIAL_POND"
 msgstr ""
-"Uzaklardaki bir yabancı gezegende, ısınmış havuzlarda sonsuz asırlar süren kimyasal evrim yeni bir olayın gelişmesine neden oldu.\n"
+"Uzaklardaki yabancı bir gezegende, sıcak havuzlarda asırlarca süren kimyasal evrim olağanüstü bir şeyin oluşmasına neden oldu.\n"
 "\n"
-"Hayat.\n"
+"Yaşam.\n"
 "\n"
-"Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA). Bu basit baloncuk, sudaki moleküllerden kendini kopyalayabilir. Böylece zamanla, yıldızlara hakim olacak karmaşık bir türe dönüşebilir.\n"
+"Sen, bu gezegendeki Son Evrensel Ortak Atasın (SEOA). Bu basit baloncuk, sudaki moleküllerden kendini kopyalayabilir. Böylece zamanla, yıldızlara hakim olacak karmaşık bir türe dönüşebilir.\n"
 "\n"
-"Ama önce, diğer mikroplarla rekabet ederken büyümek, yayılmak ve evrimleşmek için bileşikler toplayıp bu hasım dünyada hayatta kalmanız gerekiyor."
+"Ama bu hasım dünyada hayatta kalmak için, öncelikle bileşik toplayıp büyümeli, yayılmalı ve diğer mikroplarla rekabet ederken evrimleşmelisin."
 
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
@@ -3957,7 +3953,7 @@ msgid "MODELS"
 msgstr "Modeller"
 
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
-msgstr "2D hareket modu daha sonra ayarlar menüsünden her an değiştirilebilir"
+msgstr "2D hareket modu, daha sonra ayarlar menüsünden her an değiştirilebilir"
 
 msgid "MODIFY"
 msgstr "Değişiklik Yap"
@@ -6202,10 +6198,6 @@ msgstr "Bağ kurma moduna geç"
 
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Bağ kurma moduna geç. Bir koloni oluşturmak için diğer hücrelere dokunun."
-
-#, fuzzy
-msgid "TOGGLE_DEBUG_CONSOLE"
-msgstr "Hata ayıklama panelini aç"
 
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Hata ayıklama panelini aç"
@@ -9555,6 +9547,14 @@ msgstr "Sıcak"
 
 msgid "WORST_PATCH_COLON"
 msgstr "En Kötü Arazi:"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "Büyüme Sırası"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "Bu sekme, organellerin büyüme sırasının ayarlanmasını sağlar. Bu ayar, büyüme aşamasındayken kararsız ATP üretimi olan hücreler için önemli olabilir. Ayrıca, organel sırasının biyoişlem çalıştırma sırasına bir etkisi vardır. Bu ayarın düzenlenmesi yalnızca yapı düzenlemesi bittikten sonra önerilir. Çünkü yapı düzenlemeleri bu ayardaki değişiklikleri geri alabilir."
 
 msgid "XBOX360"
 msgstr "Xbox 360"

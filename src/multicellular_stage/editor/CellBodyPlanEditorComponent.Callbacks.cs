@@ -71,6 +71,7 @@ public partial class CellBodyPlanEditorComponent
         Editor.DirtyMutationPointsCache();
     }
 
+    [ArchiveAllowedMethod]
     private void DeleteCellType(DuplicateDeleteCellTypeData data)
     {
         if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(data.CellType))
