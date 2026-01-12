@@ -8,7 +8,7 @@ using Vector3 = Godot.Vector3;
 /// <summary>
 ///   Represents a microbial species with microbe stage specific species things.
 /// </summary>
-public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
+public sealed class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
@@ -66,8 +66,6 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     ///     Do not change this once the object is in use as the readonly adapter will not have been updated.
     ///   </para>
     /// </remarks>
-    ///
-    //TODO! reminder to remove the T as its just temporary while i move everything over
     public OrganelleLayout<OrganelleTemplate> ModifiableOrganelles { get; private set; }
 
     public OrganelleLayout<OrganelleTemplate> ReadonlyOrganelles => ModifiableOrganelles;
@@ -146,7 +144,6 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> IReadOnlyCellDefinition.Organelles =>
         readonlyLayout ??=
             new ReadonlyOrganelleLayoutAdapter<IReadOnlyOrganelleTemplate, OrganelleTemplate>(ReadonlyOrganelles);
-
     public static bool StateHasStabilizedImpl(IWorldSimulation worldSimulation)
     {
         // This is stabilised as long as the default no background operations check passes.
