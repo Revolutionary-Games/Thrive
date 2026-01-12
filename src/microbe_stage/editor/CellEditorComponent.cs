@@ -358,7 +358,7 @@ public partial class CellEditorComponent :
     public EndosymbiontPlaceActionData? PendingEndosymbiontPlace { get; protected set; }
 
     /// <summary>
-    ///   If this is enabled, the editor will show how the edited cell would look like in the environment with
+    ///   If this is enabled, the editor will show what the edited cell would look like in the environment with
     ///   parameters set in the editor. Editing hexes is disabled during this (except undo / redo).
     /// </summary>
     public bool MicrobePreviewMode
@@ -368,8 +368,7 @@ public partial class CellEditorComponent :
         {
             microbePreviewMode = value;
 
-            if (cellPreviewVisualsRoot != null)
-                cellPreviewVisualsRoot.Visible = value;
+            cellPreviewVisualsRoot?.Visible = value;
 
             // Need to reapply the species as changes to it are ignored when the appearance tab is not shown
             UpdateCellVisualization();
@@ -1373,7 +1372,7 @@ public partial class CellEditorComponent :
             Rigidity);
 
         // In some cases "theoreticalCost" might get rounded improperly
-        var theoreticalCost = Editor.WhatWouldActionsCost(new[] { data });
+        var theoreticalCost = Editor.WhatWouldActionsCost([data]);
 
         // Removed cast to int here doesn't solve https://github.com/Revolutionary-Games/Thrive/issues/5821
         var cost = Math.Ceiling(Math.Ceiling(theoreticalCost / costPerStep) * costPerStep);
@@ -1560,9 +1559,7 @@ public partial class CellEditorComponent :
         }
         else
         {
-            moveOccupancies =
-                GetMultiActionWithOccupancies(positions.Take(1).ToList(),
-                    new List<OrganelleTemplate> { MovingPlacedHex }, true);
+            moveOccupancies = GetMultiActionWithOccupancies(positions.Take(1).ToList(), [MovingPlacedHex], true);
         }
 
         return Editor.WhatWouldActionsCost(moveOccupancies.Data);
@@ -2332,8 +2329,7 @@ public partial class CellEditorComponent :
         if (organelle.Definition.Unique)
             DeselectOrganelleToPlace();
 
-        var replacedCytoplasmActions =
-            GetReplacedCytoplasmRemoveAction(new[] { organelle }).Cast<EditorAction>().ToList();
+        var replacedCytoplasmActions = GetReplacedCytoplasmRemoveAction([organelle]).Cast<EditorAction>().ToList();
 
         var action = new SingleEditorAction<OrganellePlacementActionData>(DoOrganellePlaceAction,
             UndoOrganellePlaceAction,
@@ -2358,9 +2354,7 @@ public partial class CellEditorComponent :
         if (!IsMoveTargetValid(newLocation, newRotation, organelle))
             return false;
 
-        var multiAction = GetMultiActionWithOccupancies(
-            new List<(Hex Hex, int Orientation)> { (newLocation, newRotation) },
-            new List<OrganelleTemplate> { organelle }, true);
+        var multiAction = GetMultiActionWithOccupancies([(newLocation, newRotation)], [organelle], true);
 
         // Too low mutation points, cancel move
         if (Editor.MutationPoints < Editor.WhatWouldActionsCost(multiAction.Data))
@@ -2729,13 +2723,13 @@ public partial class CellEditorComponent :
 
         // Multicellular parts only available (visible) in multicellular
         // For now there aren't any multicellular specific organelles so the section is hidden
-        partsSelectionContainer.GetNode<CollapsibleList>(OrganelleDefinition.OrganelleGroup.Multicellular.ToString())
+        partsSelectionContainer.GetNode<CollapsibleList>(nameof(OrganelleDefinition.OrganelleGroup.Multicellular))
             .Visible = false;
 
         // TODO: put this code back in if we get multicellular specific organelles
         // .Visible = IsMulticellularEditor;
 
-        partsSelectionContainer.GetNode<CollapsibleList>(OrganelleDefinition.OrganelleGroup.Macroscopic.ToString())
+        partsSelectionContainer.GetNode<CollapsibleList>(nameof(OrganelleDefinition.OrganelleGroup.Macroscopic))
             .Visible = IsMacroscopicEditor;
     }
 

@@ -1200,8 +1200,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
         // Only carry out this process if you have all the required ingredients and enough space for the outputs
         if (!canDoProcess)
         {
-            if (currentProcessStatistics != null)
-                currentProcessStatistics.CurrentSpeed = 0;
+            currentProcessStatistics?.CurrentSpeed = 0;
             return;
         }
 
@@ -1216,21 +1215,17 @@ public partial class ProcessSystem : BaseSystem<World, float>
             if (processorInfo.ATPProductionSpeedModifier < 0)
             {
                 // Process is disabled
-                if (currentProcessStatistics != null)
-                    currentProcessStatistics.CurrentSpeed = 0;
+                currentProcessStatistics?.CurrentSpeed = 0;
                 return;
             }
 
             totalModifier *= processorInfo.ATPProductionSpeedModifier;
         }
 
-        if (currentProcessStatistics != null)
-        {
-            // TODO: should the overall speed modifier be included in here? It already has scaled the inputs and
-            // outputs
-            currentProcessStatistics.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier *
-                process.SpeedMultiplier * overallSpeedModifier;
-        }
+        // TODO: should the overall speed modifier be included in here? It already has scaled the inputs and
+        // outputs
+        currentProcessStatistics?.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier *
+            process.SpeedMultiplier * overallSpeedModifier;
 
         // Consume inputs
         foreach (var entry in processData.Inputs)
