@@ -89,8 +89,7 @@ public partial class DebugConsole : CustomWindow
             // Apparently, RichTextLabel uses a vector to store paragraphs. If it uses a vector, so we can't just remove
             // paragraphs freely efficiently. Perhaps, in the future, we should implement our own RichTextLabel or
             // console renderer backed by a ring-buffer, if performance ever becomes a concern in this console.
-            // For now, I use this hybrid approach, which only removes the front paragraph (oldest line) if there's only
-            // one pending message.
+            // For now, I use this hybrid approach, which should be good enough.
             if (newMessageCount <= 0.1 * DebugConsoleManager.MaxConsoleSize)
             {
                 for (int i = 0; i < newMessageCount; ++i)
