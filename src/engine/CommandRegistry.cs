@@ -238,6 +238,11 @@ public class CommandRegistry
     {
         failed = true;
 
+        if (command.IsCheat)
+        {
+            PauseMenu.Instance.GameProperties?.ReportCheatsUsed();
+        }
+
         var method = command.MethodInfo;
         var parameters = method.GetParameters();
 
@@ -282,11 +287,6 @@ public class CommandRegistry
             GD.PrintErr($"Command execution error: {e}");
 
             return true;
-        }
-
-        if (command.IsCheat)
-        {
-            PauseMenu.Instance.GameProperties?.ReportCheatsUsed();
         }
 
         failed = false;
