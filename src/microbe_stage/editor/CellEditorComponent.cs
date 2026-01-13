@@ -368,8 +368,7 @@ public partial class CellEditorComponent :
         {
             microbePreviewMode = value;
 
-            if (cellPreviewVisualsRoot != null)
-                cellPreviewVisualsRoot.Visible = value;
+            cellPreviewVisualsRoot?.Visible = value;
 
             // Need to reapply the species as changes to it are ignored when the appearance tab is not shown
             UpdateCellVisualization();
