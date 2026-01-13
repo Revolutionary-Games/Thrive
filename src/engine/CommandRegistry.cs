@@ -207,10 +207,10 @@ public class CommandRegistry
         return new string(buffer[..writeIndex]);
     }
 
-    [Command("help", false, "Shows hints and infos about all the registered commands.")]
+    [Command("help", false, "Shows hints and info about all the registered commands.")]
     private static void CommandHelp()
     {
-        var cmds = instance?.commands!;
+        var cmds = Instance.commands!;
         int count = cmds.Values.Sum(v => v.Length);
 
         GD.Print($"Total registered Commands: {count}");
