@@ -2,7 +2,6 @@
 
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate;
 
 public class DehydratedInfo
 {
@@ -16,7 +15,6 @@ public class DehydratedInfo
         BuildZipHash = buildZipHash;
         ArchiveFile = archiveFile;
     }
-    
     public ISet<string> DehydratedObjects { get; }
 
     public string Branch { get; }
