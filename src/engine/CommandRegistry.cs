@@ -173,7 +173,10 @@ public class CommandRegistry
             return source.ToString();
         }
 
-        Span<char> buffer = stackalloc char[source.Length];
+        Span<char> buffer = source.Length <= 256
+            ? stackalloc char[source.Length]
+            : new char[source.Length];
+
         int writeIndex = 0;
 
         for (int i = 0; i < source.Length; i++)
