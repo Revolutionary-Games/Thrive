@@ -179,7 +179,7 @@ public class CommandRegistry
 
         int writeIndex = 0;
 
-        for (int i = 0; i < source.Length; i++)
+        for (int i = 0; i < source.Length; ++i)
         {
             char c = source[i];
 
@@ -196,7 +196,7 @@ public class CommandRegistry
                     _ => next,
                 };
 
-                i++;
+                ++i;
             }
             else
             {
@@ -264,7 +264,7 @@ public class CommandRegistry
         if (requiresInvoker)
             invokeArgs[0] = invoker;
 
-        for (int i = 0; i < expectedArgs; i++)
+        for (int i = 0; i < expectedArgs; ++i)
         {
             var targetType = parameters[i + paramOffset].ParameterType;
             var (val, isQuoted) = rawArgs[i];
