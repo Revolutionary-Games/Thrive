@@ -32,6 +32,13 @@ public partial class DebugConsoleManager : Node
 
     public int MessageCount { get; private set; }
 
+    public override void _ExitTree()
+    {
+        CommandRegistry.Shutdown();
+
+        base._ExitTree();
+    }
+
     public override void _Process(double delta)
     {
         if (OnHistoryUpdated == null)
@@ -58,13 +65,6 @@ public partial class DebugConsoleManager : Node
         }
 
         base._Process(delta);
-    }
-
-    public override void _ExitTree()
-    {
-        CommandRegistry.Shutdown();
-
-        base._ExitTree();
     }
 
     /// <summary>
