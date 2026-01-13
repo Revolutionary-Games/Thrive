@@ -344,7 +344,8 @@ public class CommandRegistry : IDisposable
 
         var tempDict = new Dictionary<string, List<Command>>();
 
-        const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance;
+        const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic |
+            BindingFlags.Static | BindingFlags.Instance;
 
         foreach (var assembly in assemblies)
         {
