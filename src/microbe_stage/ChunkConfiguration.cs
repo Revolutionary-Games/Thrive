@@ -264,7 +264,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
     public class ChunkScene : IArchivable
 #pragma warning restore CA1001
     {
-        public const ushort SERIALIZATION_VERSION_SCENE = 2;
+        public const ushort SERIALIZATION_VERSION_SCENE = 1;
 
         /// <summary>
         ///   Scene to use for this chunk. Note that this and the following 2 variables reflect

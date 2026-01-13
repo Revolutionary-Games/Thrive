@@ -42,7 +42,7 @@ public partial class CollisionShapeLoaderSystem : BaseSystem<World, float>
         }
 
         // TODO: switch to pre-processing collision shapes before the game is exported for faster runtime loading
-        shapeHolder.Shape = PhysicsShape.CreateShapeFromGodotResource(loader.CollisionResourcePath!, density);
+        shapeHolder.Shape = PhysicsShape.CreateShapeFromGodotResource(loader.CollisionResourcePath, density);
 
         if (!loader.SkipForceRecreateBodyIfCreated)
             shapeHolder.UpdateBodyShapeIfCreated = true;

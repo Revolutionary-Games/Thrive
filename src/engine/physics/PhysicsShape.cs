@@ -331,7 +331,7 @@ public class PhysicsShape : IDisposable
 
             // Probably don't need to support these weird types for a long time
             /*case HeightMapShape3D heightMapShape:
-                case WorldBoundaryShape3D worldBoundaryShape:*/
+            case WorldBoundaryShape3D worldBoundaryShape:*/
 
             default:
                 GD.PrintErr("Failed to load Godot physics shape for converting (unknown type): ", path);

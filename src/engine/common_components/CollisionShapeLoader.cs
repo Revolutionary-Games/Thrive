@@ -9,7 +9,7 @@ public struct CollisionShapeLoader : IArchivableComponent
 {
     public const ushort SERIALIZATION_VERSION = 2;
 
-    public string? CollisionResourcePath;
+    public string CollisionResourcePath;
 
     /// <summary>
     ///   Density of the shape. Only applies if <see cref="ApplyDensity"/> is true.
@@ -62,17 +62,12 @@ public static class CollisionShapeLoaderHelpers
         if (version is > CollisionShapeLoader.SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, CollisionShapeLoader.SERIALIZATION_VERSION);
 
-        var collisionResourcePath = reader.ReadString();
-        var density = reader.ReadFloat();
-        var applyDensity = reader.ReadBool();
-        var skipForceRecreateBodyIfCreated = reader.ReadBool();
-
         return new CollisionShapeLoader
         {
-            CollisionResourcePath = collisionResourcePath,
-            Density = density,
-            ApplyDensity = applyDensity,
-            SkipForceRecreateBodyIfCreated = skipForceRecreateBodyIfCreated,
+            CollisionResourcePath = reader.ReadString()!,
+            Density = reader.ReadFloat(),
+            ApplyDensity = reader.ReadBool(),
+            SkipForceRecreateBodyIfCreated = reader.ReadBool(),
         };
     }
 }
