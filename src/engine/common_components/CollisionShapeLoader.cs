@@ -7,7 +7,7 @@ using SharedBase.Archive;
 /// </summary>
 public struct CollisionShapeLoader : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 1;
 
     public string CollisionResourcePath;
 
