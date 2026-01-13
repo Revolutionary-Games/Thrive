@@ -24,10 +24,7 @@ public partial class CommandRegistry : Node
         instance = this;
     }
 
-    public static CommandRegistry? GetInstance()
-    {
-        return instance;
-    }
+    public static CommandRegistry Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     /// <summary>
     ///   Returns true iff the CommandRegistry has already registered all the commands.
@@ -146,7 +143,7 @@ public partial class CommandRegistry : Node
     }
 
     [Command("help", "Shows hints and infos about all the registered commands.")]
-    private static void Help()
+    private static void CommandHelp()
     {
         var cmds = instance?.commands!;
         int count = cmds.Values.Sum(v => v.Length);

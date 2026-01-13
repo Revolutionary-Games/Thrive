@@ -12,6 +12,9 @@ public partial class DebugConsole : CustomWindow
 #pragma warning disable CA2213
     [Export]
     private RichTextLabel consoleArea = null!;
+
+    [Export]
+    private LineEdit commandInput = null!;
 #pragma warning restore CA2213
 
     public bool IsConsoleOpen
@@ -19,15 +22,10 @@ public partial class DebugConsole : CustomWindow
         get => Visible;
         set
         {
-            var debugConsoleManager = DebugConsoleManager.Instance;
-
             if (value)
             {
                 Show();
-
-                debugConsoleManager.OnHistoryUpdated += RefreshLogs;
-
-                RefreshLogs();
+                Activate();
             }
             else
             {
@@ -39,11 +37,7 @@ public partial class DebugConsole : CustomWindow
     public override void _Ready()
     {
         if (Visible)
-        {
-            DebugConsoleManager.Instance.OnHistoryUpdated += RefreshLogs;
-
-            RefreshLogs();
-        }
+            Activate();
 
         base._Ready();
     }
@@ -75,8 +69,35 @@ public partial class DebugConsole : CustomWindow
     protected override void OnHidden()
     {
         DebugConsoleManager.Instance.OnHistoryUpdated -= RefreshLogs;
+        commandInput.TextSubmitted -= CommandSubmitted;
 
         base.OnHidden();
+    }
+
+    [Command("clear", "Clears this console.")]
+    private static void CommandClear(DebugConsole console)
+    {
+        console.Clear();
+    }
+
+    [Command("echo", "Echoes a message in this console.")]
+    private static void CommandEcho(DebugConsole console, string msg)
+    {
+        console.AddLog(new DebugConsoleManager.ConsoleLine(msg, Colors.White));
+    }
+
+    [Command("echo", "Echoes a colored message in this console.")]
+    private static void CommandEcho(DebugConsole console, string msg, int r, int g, int b)
+    {
+        console.AddLog(new DebugConsoleManager.ConsoleLine(msg, new Color(r, g, b)));
+    }
+
+    private void Activate()
+    {
+        DebugConsoleManager.Instance.OnHistoryUpdated += RefreshLogs;
+        commandInput.TextSubmitted += CommandSubmitted;
+
+        RefreshLogs();
     }
 
     private void RefreshLogs()
@@ -122,5 +143,14 @@ public partial class DebugConsole : CustomWindow
     private void RefreshLogs(object? o, EventArgs e)
     {
         RefreshLogs();
+    }
+
+    private void CommandSubmitted(string cmd)
+    {
+        commandInput.Clear();
+
+        AddLog(new DebugConsoleManager.ConsoleLine($"> {cmd}\n", Colors.LightGray));
+
+        CommandRegistry.Instance.Execute(this, cmd);
     }
 }
