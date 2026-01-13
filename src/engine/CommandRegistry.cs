@@ -356,12 +356,10 @@ public class CommandRegistry : IDisposable
 
                 foreach (var method in type.GetMethods(flags))
                 {
-                    var cmdAttributes =
-                        ((CommandAttribute[])method
-                            .GetCustomAttributes(typeof(CommandAttribute), true)).ToArray();
-
-                    if (cmdAttributes.Length == 0)
+                    if (!method.IsDefined(typeof(CommandAttribute), true))
                         continue;
+
+                    var cmdAttributes = method.GetCustomAttributes<CommandAttribute>(true);
 
                     foreach (var attr in cmdAttributes)
                     {
