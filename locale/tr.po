@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-01-12 15:26+0100\n"
-"PO-Revision-Date: 2025-12-31 14:01+0000\n"
+"PO-Revision-Date: 2026-01-10 15:26+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.15.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -897,9 +897,8 @@ msgstr "Sahil"
 msgid "COLLISION_SHAPE"
 msgstr "Fizik hata ayıklama şekillerini göster"
 
-#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
-msgstr "Bu sekme, organellerin büyüme sırasının ayarlanmasını sağlar. Bu ayar, büyüme aşamasındayken kararsız ATP üretimi olan hücreler için önemli olabilir. Ayrıca, organel sırasının biyoişlem çalıştırma sırasına bir etkisi vardır. Bu ayarın düzenlenmesi yalnızca yapı düzenlemesi bittikten sonra önerilir. Çünkü yapı düzenlemeleri bu ayardaki değişiklikleri geri alabilir."
+msgstr "Bu sekme, hücre kolonilerinin büyüme sırasının ayarlanmasını sağlar. Bu sıradaki ilk hücre, kök (veya tomurcuk) hücresidir. Bu sekmeyi, daha kritik hücrelerin büyümesine öncelik tanımak ya da koloninin üretim ve tüketiminin uygun bir şekilde dengelenmesini sağlamak için kullanabilirsin."
 
 msgid "COLOUR"
 msgstr "Renk"
@@ -9559,13 +9558,11 @@ msgstr "Sıcak"
 msgid "WORST_PATCH_COLON"
 msgstr "En Kötü Arazi:"
 
-#, fuzzy
 msgid "WRONG_GROWTH_ORDER"
-msgstr "Büyüme Sırası"
+msgstr "Hatalı büyüme sırası"
 
-#, fuzzy
 msgid "WRONG_GROWTH_ORDER_TEXT"
-msgstr "Bu sekme, organellerin büyüme sırasının ayarlanmasını sağlar. Bu ayar, büyüme aşamasındayken kararsız ATP üretimi olan hücreler için önemli olabilir. Ayrıca, organel sırasının biyoişlem çalıştırma sırasına bir etkisi vardır. Bu ayarın düzenlenmesi yalnızca yapı düzenlemesi bittikten sonra önerilir. Çünkü yapı düzenlemeleri bu ayardaki değişiklikleri geri alabilir."
+msgstr "Kolonilerin büyüme sırası, bazı hücrelerin ayrılmasına neden oluyor. Bu durum, bir hücrenin onu köke bağlayan hücrelerden önce yerleştirilmesi durumunda meydana gelir. Bu sırayı düzeltmek için lütfen Büyüme Sırası sekmesinde kırmızı olarak işaretlenmiş hücreleri inceleyin."
 
 msgid "XBOX360"
 msgstr "Xbox 360"

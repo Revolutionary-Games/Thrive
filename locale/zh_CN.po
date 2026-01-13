@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-01-12 15:26+0100\n"
-"PO-Revision-Date: 2026-01-01 23:54+0000\n"
+"PO-Revision-Date: 2026-01-09 18:57+0000\n"
 "Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.15.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -898,9 +898,8 @@ msgstr "海岸"
 msgid "COLLISION_SHAPE"
 msgstr "生成具有碰撞形状的实体"
 
-#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
-msgstr "此选项卡用于设置细胞器生长的顺序。对于那些在生长过程中 ATP 生成不稳定的细胞而言，此设置至关重要。细胞器生长顺序也会影响生物过程的运行顺序。建议在完成结构编辑后再修改此项，因为编辑结构可能导致此处的更改被舍弃。"
+msgstr "该选项卡允许设定群落细胞的生长顺序，其中排序首位的细胞即为根细胞（或称芽体）。您可以利用此功能优先生长更关键的细胞，或确保群落的物质生产与消耗维持适当的平衡。"
 
 msgid "COLOUR"
 msgstr "颜色"
@@ -9561,13 +9560,11 @@ msgstr "温暖"
 msgid "WORST_PATCH_COLON"
 msgstr "表现最糟的地区："
 
-#, fuzzy
 msgid "WRONG_GROWTH_ORDER"
-msgstr "生长顺序"
+msgstr "错误的生长顺序"
 
-#, fuzzy
 msgid "WRONG_GROWTH_ORDER_TEXT"
-msgstr "此选项卡用于设置细胞器生长的顺序。对于那些在生长过程中 ATP 生成不稳定的细胞而言，此设置至关重要。细胞器生长顺序也会影响生物过程的运行顺序。建议在完成结构编辑后再修改此项，因为编辑结构可能导致此处的更改被舍弃。"
+msgstr "群落的生长顺序导致部分细胞与主体分离。这种情况发生在某个细胞的生长顺序排在了将其连接至根部的中间细胞之前。请检查“生长顺序”选项卡中标红的细胞，并修正排序。"
 
 msgid "XBOX360"
 msgstr "Xbox 360"
