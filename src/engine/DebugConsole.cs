@@ -39,8 +39,7 @@ public partial class DebugConsole : CustomWindow
         if (Visible)
             Activate();
 
-        commandInput.Connect(
-            LineEdit.SignalName.TextSubmitted,
+        commandInput.Connect(LineEdit.SignalName.TextSubmitted,
             new Callable(this, nameof(CommandSubmitted)));
 
         base._Ready();

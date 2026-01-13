@@ -176,15 +176,7 @@ public class CommandRegistry : IDisposable
             return true;
         }
 
-        try
-        {
-            result = Convert.ChangeType(token.ToString(), type);
-            return true;
-        }
-        catch
-        {
-            return false;
-        }
+        return false;
     }
 
     private static string Unescape(ReadOnlySpan<char> source)
