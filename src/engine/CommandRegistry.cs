@@ -67,7 +67,7 @@ public class CommandRegistry
         if (!tokenizer.MoveNext(out var cmdNameSpan, out _))
             return false;
 
-        string cmdName = cmdNameSpan.ToString().ToLower();
+        string cmdName = cmdNameSpan.ToString().ToLowerInvariant();
 
         if (!commands!.TryGetValue(cmdName, out var candidates))
         {
@@ -326,7 +326,7 @@ public class CommandRegistry
 
                     foreach (var attr in cmdAttributes)
                     {
-                        var name = attr.CommandName.ToLower();
+                        var name = attr.CommandName.ToLowerInvariant();
 
                         if (!method.IsStatic)
                         {
