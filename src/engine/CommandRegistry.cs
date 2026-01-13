@@ -137,9 +137,20 @@ public class CommandRegistry
 
         if (type == typeof(bool))
         {
-            result = token is "1"
-                || token.Equals("true", StringComparison.OrdinalIgnoreCase)
-                || token.Equals("on", StringComparison.OrdinalIgnoreCase);
+            if (token is "1" ||
+                token.Equals("true", StringComparison.OrdinalIgnoreCase) ||
+                token.Equals("on", StringComparison.OrdinalIgnoreCase))
+            {
+                result = true;
+                return true;
+            }
+
+            if (token is not "0" &&
+                !token.Equals("false", StringComparison.OrdinalIgnoreCase) &&
+                !token.Equals("off", StringComparison.OrdinalIgnoreCase))
+                return false;
+
+            result = false;
             return true;
         }
 
