@@ -9,9 +9,7 @@ using Godot;
 /// <summary>
 ///   Command registry and processor.
 /// </summary>
-#pragma warning disable CA1001
-public class CommandRegistry
-#pragma warning restore CA1001
+public class CommandRegistry : IDisposable
 {
     private static CommandRegistry? instance;
 
@@ -35,6 +33,18 @@ public class CommandRegistry
         }
 
         instance = new CommandRegistry();
+    }
+
+    public static void Shutdown()
+    {
+        if (instance == null)
+        {
+            GD.PrintErr("CommandRegistry: Not initialized.");
+            return;
+        }
+
+        instance.Dispose();
+        instance = null;
     }
 
     /// <summary>
@@ -90,6 +100,18 @@ public class CommandRegistry
 
         GD.PrintErr($"Command '{cmdName}': No overload matched arguments. Found {candidates.Length} candidates.");
         return false;
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposing)
+            registerCommandsTask?.Dispose();
     }
 
     private static bool TryParseSpanToType(ReadOnlySpan<char> token, Type type, bool isQuoted, out object? result)
@@ -219,7 +241,9 @@ public class CommandRegistry
         {
             foreach (var cmd in group.Value)
             {
-                var paramsInfo = string.Join(", ", cmd.MethodInfo.GetParameters().Select(p => p.ParameterType.Name));
+                var paramsInfo = string.Join(", ", cmd.MethodInfo
+                    .GetParameters()
+                    .Select(p => p.ParameterType.Name));
                 GD.Print($"{cmd.CommandName}({paramsInfo}): {cmd.HelpText}");
             }
         }
@@ -237,7 +261,8 @@ public class CommandRegistry
     ///   affected by a command execution failure due to reasons different from argument mismatch, e.g. a command
     ///   execution failure.
     /// </returns>
-    private bool TryExecuteCandidate(Command command, DebugConsole? invoker, List<(string Value, bool IsQuoted)> rawArgs, out bool failed)
+    private bool TryExecuteCandidate(
+        Command command, DebugConsole? invoker, List<(string Value, bool IsQuoted)> rawArgs, out bool failed)
     {
         failed = true;
 
@@ -331,9 +356,8 @@ public class CommandRegistry
                 foreach (var method in type.GetMethods(flags))
                 {
                     var cmdAttributes =
-                        ((CommandAttribute[])method.GetCustomAttributes(typeof(CommandAttribute), true))
-                        .Distinct()
-                        .ToArray();
+                        ((CommandAttribute[])method
+                            .GetCustomAttributes(typeof(CommandAttribute), true)).ToArray();
 
                     if (cmdAttributes.Length == 0)
                         continue;

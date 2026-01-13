@@ -60,6 +60,13 @@ public partial class DebugConsoleManager : Node
         base._Process(delta);
     }
 
+    public override void _ExitTree()
+    {
+        CommandRegistry.Shutdown();
+
+        base._ExitTree();
+    }
+
     /// <summary>
     ///   Adds a log entry to the console manager.
     /// </summary>
