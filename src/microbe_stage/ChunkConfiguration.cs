@@ -289,11 +289,6 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
         public string? ConvexShapePath;
 
         /// <summary>
-        ///   Configuration for complex collision shapes (if any).
-        /// </summary>
-        public List<ComplexCollisionShapeConfiguration>? ComplexCollisionShapeConfigurations;
-
-        /// <summary>
         ///   Need to be set to true on particle type visuals as those need special handling
         /// </summary>
         public bool IsParticles;
@@ -321,7 +316,6 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
 
             // Default init for non-copied things
             ConvexShapePath = null;
-            ComplexCollisionShapeConfigurations = null;
             IsParticles = false;
             PlayAnimation = false;
             MissingDefaultShaderSupport = false;
@@ -335,7 +329,6 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
             SceneModelPath = null;
             SceneAnimationPath = null;
             ConvexShapePath = null;
-            ComplexCollisionShapeConfigurations = null;
             IsParticles = false;
             PlayAnimation = false;
             MissingDefaultShaderSupport = false;
@@ -377,13 +370,6 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
                 instance.SceneAnimationPath = new NodePath(rawAnimation);
 
             instance.ConvexShapePath = reader.ReadString();
-
-            if (version >= 2)
-            {
-                instance.ComplexCollisionShapeConfigurations =
-                    reader.ReadObjectOrNull<List<ComplexCollisionShapeConfiguration>>();
-            }
-
             instance.IsParticles = reader.ReadBool();
             instance.PlayAnimation = reader.ReadBool();
             instance.MissingDefaultShaderSupport = reader.ReadBool();
@@ -397,7 +383,6 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
             writer.Write(SceneModelPath?.ToString());
             writer.Write(SceneAnimationPath?.ToString());
             writer.Write(ConvexShapePath);
-            writer.WriteObjectOrNull(ComplexCollisionShapeConfigurations);
             writer.Write(IsParticles);
             writer.Write(PlayAnimation);
             writer.Write(MissingDefaultShaderSupport);

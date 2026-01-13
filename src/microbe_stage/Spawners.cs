@@ -340,9 +340,7 @@ public static class SpawnHelpers
         bool hasRadiation = hasCompounds && chunkType.Compounds?.Any(x => x.Key == Compound.Radiation) == true;
         bool vents = hasCompounds && chunkType.VentAmount > 0;
         bool timedLife = !chunkType.Dissolves;
-        bool isSphereShape = selectedMesh.ConvexShapePath == null &&
-            selectedMesh.ComplexCollisionShapeConfigurations == null;
-        bool isMultipleShapes = selectedMesh.ComplexCollisionShapeConfigurations != null;
+        bool isSphereShape = selectedMesh.ConvexShapePath == null;
         bool engulfable = chunkType.Size > 0;
         bool usesDamageTouch = chunkType.Damages > 0 || chunkType.DeleteOnTouch;
 
@@ -527,11 +525,6 @@ public static class SpawnHelpers
         {
             commandRecorder.Set(entity, new SimpleShapeCreator(SimpleShapeType.Sphere, chunkType.Radius,
                 chunkType.PhysicsDensity));
-        }
-        else if (isMultipleShapes)
-        {
-            commandRecorder.Set(entity,
-                new CollisionShapeLoader(selectedMesh.ComplexCollisionShapeConfigurations!, chunkType.PhysicsDensity));
         }
         else
         {

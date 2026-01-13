@@ -1,11 +1,9 @@
 ﻿namespace Systems;
 
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.System;
 using Components;
-using Godot;
 
 /// <summary>
 ///   Loads predefined collision shapes from resources
@@ -44,31 +42,7 @@ public partial class CollisionShapeLoaderSystem : BaseSystem<World, float>
         }
 
         // TODO: switch to pre-processing collision shapes before the game is exported for faster runtime loading
-        if (!loader.IsComplexCollision)
-        {
-            shapeHolder.Shape = PhysicsShape.CreateShapeFromGodotResource(loader.CollisionResourcePath!, density);
-        }
-        else
-        {
-            var subShapes = new List<(PhysicsShape, Vector3, Quaternion)>();
-
-            foreach (var complexCollision in loader.ComplexCollisionShapes!)
-            {
-                if (complexCollision.CollisionShapePath == null)
-                {
-                    GD.PrintErr("CollisionShapePath is null in complex collision shape");
-                    continue;
-                }
-
-                var shape = PhysicsShape.CreateShapeFromGodotResource(complexCollision.CollisionShapePath, density);
-                if (shape == null)
-                    continue;
-
-                subShapes.Add((shape, complexCollision.Position, Quaternion.FromEuler(complexCollision.Rotation)));
-            }
-
-            shapeHolder.Shape = PhysicsShape.CreateCombinedShapeStatic(subShapes);
-        }
+        shapeHolder.Shape = PhysicsShape.CreateShapeFromGodotResource(loader.CollisionResourcePath!, density);
 
         if (!loader.SkipForceRecreateBodyIfCreated)
             shapeHolder.UpdateBodyShapeIfCreated = true;
