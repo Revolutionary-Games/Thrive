@@ -39,6 +39,10 @@ public partial class DebugConsole : CustomWindow
         if (Visible)
             Activate();
 
+        commandInput.Connect(
+            LineEdit.SignalName.TextSubmitted,
+            new Callable(this, nameof(CommandSubmitted)));
+
         base._Ready();
     }
 
@@ -69,7 +73,6 @@ public partial class DebugConsole : CustomWindow
     protected override void OnHidden()
     {
         DebugConsoleManager.Instance.OnHistoryUpdated -= RefreshLogs;
-        commandInput.TextSubmitted -= CommandSubmitted;
 
         base.OnHidden();
     }
@@ -83,19 +86,18 @@ public partial class DebugConsole : CustomWindow
     [Command("echo", "Echoes a message in this console.")]
     private static void CommandEcho(DebugConsole console, string msg)
     {
-        console.AddLog(new DebugConsoleManager.ConsoleLine(msg, Colors.White));
+        console.AddLog(new DebugConsoleManager.ConsoleLine(msg + "\n", Colors.White));
     }
 
     [Command("echo", "Echoes a colored message in this console.")]
     private static void CommandEcho(DebugConsole console, string msg, int r, int g, int b)
     {
-        console.AddLog(new DebugConsoleManager.ConsoleLine(msg, new Color(r, g, b)));
+        console.AddLog(new DebugConsoleManager.ConsoleLine(msg + "\n", new Color(r, g, b)));
     }
 
     private void Activate()
     {
         DebugConsoleManager.Instance.OnHistoryUpdated += RefreshLogs;
-        commandInput.TextSubmitted += CommandSubmitted;
 
         RefreshLogs();
     }

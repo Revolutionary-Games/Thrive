@@ -7,24 +7,35 @@ using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
-///   Singleton managing Commands
+///   Command registry and processor.
 /// </summary>
-[GodotAutoload]
-public partial class CommandRegistry : Node
+#pragma warning disable CA1001
+public class CommandRegistry
+#pragma warning restore CA1001
 {
     private static CommandRegistry? instance;
 
     private FrozenDictionary<string, Command[]>? commands;
+
     private Task? registerCommandsTask;
 
     private CommandRegistry()
     {
         ExecuteRegisterCommandsTask();
-
-        instance = this;
     }
 
     public static CommandRegistry Instance => instance ?? throw new InstanceNotLoadedYetException();
+
+    public static void Initialize()
+    {
+        if (instance != null)
+        {
+            GD.PrintErr("CommandRegistry: Already initialized.");
+            return;
+        }
+
+        instance = new CommandRegistry();
+    }
 
     /// <summary>
     ///   Returns true iff the CommandRegistry has already registered all the commands.
@@ -81,26 +92,66 @@ public partial class CommandRegistry : Node
         return false;
     }
 
-    private static object ParseSpanToType(ReadOnlySpan<char> token, Type type, bool isQuoted)
+    private static bool TryParseSpanToType(ReadOnlySpan<char> token, Type type, bool isQuoted, out object? result)
     {
+        result = null;
+
         if (type == typeof(string) || isQuoted)
         {
-            return Unescape(token);
+            result = Unescape(token);
+            return true;
         }
 
         if (type == typeof(int))
-            return int.Parse(token);
+        {
+            if (int.TryParse(token, out int intVal))
+            {
+                result = intVal;
+                return true;
+            }
+
+            return false;
+        }
+
         if (type == typeof(float))
-            return float.Parse(token);
+        {
+            if (float.TryParse(token, out float floatVal))
+            {
+                result = floatVal;
+                return true;
+            }
+
+            return false;
+        }
+
         if (type == typeof(double))
-            return double.Parse(token);
+        {
+            if (double.TryParse(token, out double doubleVal))
+            {
+                result = doubleVal;
+                return true;
+            }
+
+            return false;
+        }
 
         if (type == typeof(bool))
         {
-            return token is "1" || token.Equals("true", StringComparison.OrdinalIgnoreCase) || token.Equals("on", StringComparison.OrdinalIgnoreCase);
+            result = token is "1"
+                || token.Equals("true", StringComparison.OrdinalIgnoreCase)
+                || token.Equals("on", StringComparison.OrdinalIgnoreCase);
+            return true;
         }
 
-        return Convert.ChangeType(token.ToString(), type);
+        try
+        {
+            result = Convert.ChangeType(token.ToString(), type);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     private static string Unescape(ReadOnlySpan<char> source)
@@ -194,21 +245,19 @@ public partial class CommandRegistry : Node
         if (requiresInvoker)
             invokeArgs[0] = invoker;
 
-        try
+        for (int i = 0; i < expectedArgs; i++)
         {
-            for (int i = 0; i < expectedArgs; i++)
-            {
-                var targetType = parameters[i + paramOffset].ParameterType;
-                var (val, isQuoted) = rawArgs[i];
+            var targetType = parameters[i + paramOffset].ParameterType;
+            var (val, isQuoted) = rawArgs[i];
 
-                invokeArgs[i + paramOffset] = ParseSpanToType(val.AsSpan(), targetType, isQuoted);
+            if (!TryParseSpanToType(val.AsSpan(), targetType, isQuoted, out var parsedValue))
+            {
+                // This happens if the parameter conversion fails. We gracefully return false hoping to find a
+                // better candidate for command execution.
+                return false;
             }
-        }
-        catch (Exception)
-        {
-            // This exception happens if the parameter conversion fails. We gracefully return false hoping to find a
-            // better candidate for command execution.
-            return false;
+
+            invokeArgs[i + paramOffset] = parsedValue;
         }
 
         try
@@ -217,7 +266,7 @@ public partial class CommandRegistry : Node
         }
         catch (Exception e)
         {
-            // A serious exception happened during command method invocation, we need to log this.
+            // An exception happened during command method invocation, we need to log this.
             // We also return true here, because it was a good candidate parameter-wise.
             GD.PrintErr($"Command execution error: {e}");
 
@@ -236,7 +285,9 @@ public partial class CommandRegistry : Node
     /// </summary>
     private void ExecuteRegisterCommandsTask()
     {
-        registerCommandsTask = Task.Run(RegisterCommands);
+        registerCommandsTask = new Task(RegisterCommands);
+
+        TaskExecutor.Instance.AddTask(registerCommandsTask);
     }
 
     /// <summary>
@@ -244,33 +295,52 @@ public partial class CommandRegistry : Node
     /// </summary>
     private void RegisterCommands()
     {
-        var allMethods = AppDomain.CurrentDomain.GetAssemblies()
-            .Where(a => a.GetName().Name!.StartsWith("Thrive"))
-            .SelectMany(a => a.GetTypes())
-            .SelectMany(t => t.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance))
-            .Select(m => (Method: m, Attr: m.GetCustomAttribute<CommandAttribute>()))
-            .Where(x => x.Attr != null);
+        var assemblies = AppDomain.CurrentDomain.GetAssemblies()
+            .Where(a => a.GetName().Name!.StartsWith("Thrive"));
 
         var tempDict = new Dictionary<string, List<Command>>();
 
-        foreach (var (method, attr) in allMethods)
+        const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance;
+
+        foreach (var assembly in assemblies)
         {
-            if (!method.IsStatic)
+            foreach (var type in assembly.GetTypes())
             {
-                GD.PushWarning($"CommandRegistry: Ignored '{attr!.CommandName}'. Method must be static.");
-                continue;
+                if (type.IsEnum)
+                    continue;
+
+                foreach (var method in type.GetMethods(flags))
+                {
+                    var cmdAttributes =
+                        ((CommandAttribute[])method.GetCustomAttributes(typeof(CommandAttribute), true))
+                        .Distinct()
+                        .ToArray();
+
+                    if (cmdAttributes.Length == 0)
+                        continue;
+
+                    foreach (var attr in cmdAttributes)
+                    {
+                        var name = attr.CommandName.ToLower();
+
+                        if (!method.IsStatic)
+                        {
+                            GD.PushWarning($"CommandRegistry: Ignored '{name}'. Method must be static.");
+                            continue;
+                        }
+
+                        var cmd = new Command(method, name, attr.HelpText);
+
+                        if (!tempDict.TryGetValue(name, out var list))
+                        {
+                            list = [];
+                            tempDict[name] = list;
+                        }
+
+                        list.Add(cmd);
+                    }
+                }
             }
-
-            var name = attr!.CommandName.ToLower();
-            var cmd = new Command(method, name, attr.HelpText);
-
-            if (!tempDict.TryGetValue(name, out var list))
-            {
-                list = [];
-                tempDict[name] = list;
-            }
-
-            list.Add(cmd);
         }
 
         commands = tempDict.ToFrozenDictionary(

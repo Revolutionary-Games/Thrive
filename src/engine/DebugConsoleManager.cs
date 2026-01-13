@@ -22,6 +22,8 @@ public partial class DebugConsoleManager : Node
     private DebugConsoleManager()
     {
         instance = this;
+
+        CommandRegistry.Initialize();
     }
 
     public event EventHandler<EventArgs>? OnHistoryUpdated;
