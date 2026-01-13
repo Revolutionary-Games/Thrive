@@ -145,6 +145,7 @@ public sealed class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefi
     IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> IReadOnlyCellDefinition.Organelles =>
         readonlyLayout ??=
             new ReadonlyOrganelleLayoutAdapter<IReadOnlyOrganelleTemplate, OrganelleTemplate>(ReadonlyOrganelles);
+
     public static bool StateHasStabilizedImpl(IWorldSimulation worldSimulation)
     {
         // This is stabilised as long as the default no background operations check passes.

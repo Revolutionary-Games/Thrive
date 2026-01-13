@@ -15,6 +15,7 @@ public class DehydratedInfo
         BuildZipHash = buildZipHash;
         ArchiveFile = archiveFile;
     }
+
     public ISet<string> DehydratedObjects { get; }
 
     public string Branch { get; }
