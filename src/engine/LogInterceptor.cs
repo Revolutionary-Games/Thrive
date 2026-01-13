@@ -82,12 +82,16 @@ public partial class LogInterceptor : Logger
             // Should we do some handling for them?
             // These errors as they aren't very visible, would make sense to show despite a debugger being attached
         }
+
+        DebugConsoleManager.Instance.Print(message, error);
     }
 
     public override void _LogError(string function, string file, int line, string code, string rationale,
         bool editorNotify, int errorType, Array<ScriptBacktrace> scriptBacktraces)
     {
         base._LogError(function, file, line, code, rationale, editorNotify, errorType, scriptBacktraces);
+
+        DebugConsoleManager.Instance.Print(code + ": " + rationale, true);
 
         // Only trigger on errors
         if (errorType != (int)ErrorType.Error)
