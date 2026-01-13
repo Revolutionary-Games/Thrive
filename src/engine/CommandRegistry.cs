@@ -195,9 +195,7 @@ public class CommandRegistry : IDisposable
             return source.ToString();
         }
 
-        Span<char> buffer = source.Length <= 256
-            ? stackalloc char[source.Length]
-            : new char[source.Length];
+        Span<char> buffer = source.Length <= 256 ? stackalloc char[source.Length] : new char[source.Length];
 
         int writeIndex = 0;
 
@@ -261,8 +259,8 @@ public class CommandRegistry : IDisposable
     ///   affected by a command execution failure due to reasons different from argument mismatch, e.g. a command
     ///   execution failure.
     /// </returns>
-    private bool TryExecuteCandidate(
-        Command command, DebugConsole? invoker, List<(string Value, bool IsQuoted)> rawArgs, out bool failed)
+    private bool TryExecuteCandidate(Command command, DebugConsole? invoker,
+        List<(string Value, bool IsQuoted)> rawArgs, out bool failed)
     {
         failed = true;
 
@@ -386,8 +384,7 @@ public class CommandRegistry : IDisposable
             }
         }
 
-        commands = tempDict.ToFrozenDictionary(
-            k => k.Key,
+        commands = tempDict.ToFrozenDictionary(k => k.Key,
             v => v.Value.ToArray());
 
         GD.Print($"CommandRegistry: Loaded. Command groups: {commands.Count}.");
