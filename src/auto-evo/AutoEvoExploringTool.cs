@@ -1178,7 +1178,9 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                 MicrobeSpeciesUpgradesStatistics[upgradeName] = (
                     MicrobeSpeciesUpgradesStatistics[upgradeName].Name,
                     microbeSpecies.Average(s =>
-                        s.ReadonlyOrganelles.Any(o => o.Upgrades?.UnlockedFeatures.Contains(upgradeName) ?? false) ? 1 : 0),
+                        s.ReadonlyOrganelles.Any(o => o.Upgrades?.UnlockedFeatures.Contains(upgradeName) ?? false) ?
+                            1 :
+                            0),
                     microbeSpecies.Average(s =>
                         s.ReadonlyOrganelles.Count(o => o.Upgrades?.UnlockedFeatures.Contains(upgradeName) ?? false)));
             }

@@ -80,7 +80,8 @@ public sealed class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefi
     // Base refers here to the fact that these are the values when a cell is freshly spawned and has no
     // reproduction progress.
     public float BaseSpeed =>
-        MicrobeInternalCalculations.CalculateSpeed(ReadonlyOrganelles.Organelles, MembraneType, MembraneRigidity, IsBacteria);
+        MicrobeInternalCalculations.CalculateSpeed(ReadonlyOrganelles.Organelles, MembraneType, MembraneRigidity,
+            IsBacteria);
 
     public float BaseRotationSpeed { get; set; }
 
@@ -254,7 +255,8 @@ public sealed class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefi
         ProcessSystem.ComputeCompoundBalance(ReadonlyOrganelles, biomeConditions, environmentalTolerances,
             CompoundAmountType.Biome, false, compoundBalances);
 
-        bool giveBonusGlucose = ReadonlyOrganelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
+        bool giveBonusGlucose =
+            ReadonlyOrganelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
 
         var cachedCapacities = StorageCapacities;
 

@@ -119,7 +119,8 @@ public static class CommonMutationFunctions
         switch (strategy)
         {
             case OrganelleAddStrategy.Realistic:
-                position = GetRealisticPosition(organelle, newSpecies.ModifiableOrganelles, direction, workMemory1, workMemory3,
+                position = GetRealisticPosition(organelle, newSpecies.ModifiableOrganelles, direction, workMemory1,
+                    workMemory3,
                     random);
                 break;
             case OrganelleAddStrategy.Spiral:

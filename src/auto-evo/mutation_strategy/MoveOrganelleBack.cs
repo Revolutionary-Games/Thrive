@@ -28,7 +28,8 @@ internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
         var workMemory2 = new List<Hex>();
         var workMemory3 = new HashSet<Hex>();
 
-        foreach (OrganelleTemplate organelle in baseSpecies.ModifiableOrganelles.Where(x => allOrganelles.Contains(x.Definition)))
+        foreach (OrganelleTemplate organelle in baseSpecies.ModifiableOrganelles.Where(x =>
+                     allOrganelles.Contains(x.Definition)))
         {
             MicrobeSpecies newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 

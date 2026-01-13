@@ -709,7 +709,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
             return 0;
 
         var balance = new EnergyBalanceInfoSimple();
-        var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(microbeSpecies.ReadonlyOrganelles);
+        var maximumMovementDirection =
+            MicrobeInternalCalculations.MaximumSpeedDirection(microbeSpecies.ReadonlyOrganelles);
 
         ComputeEnergyBalanceSimple(microbeSpecies.ReadonlyOrganelles, conditions, environmentTolerances,
             microbeSpecies.MembraneType, maximumMovementDirection, false, false, worldGenerationSettings,
