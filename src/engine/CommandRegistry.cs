@@ -266,11 +266,6 @@ public class CommandRegistry : IDisposable
     {
         failed = true;
 
-        if (command.IsCheat)
-        {
-            PauseMenu.Instance.GameProperties?.ReportCheatsUsed();
-        }
-
         var method = command.MethodInfo;
         var parameters = method.GetParameters();
 
@@ -302,6 +297,11 @@ public class CommandRegistry : IDisposable
             }
 
             invokeArgs[i + paramOffset] = parsedValue;
+        }
+
+        if (command.IsCheat)
+        {
+            PauseMenu.Instance.GameProperties?.ReportCheatsUsed();
         }
 
         try
