@@ -193,7 +193,7 @@ public class CommandRegistry
         return new string(buffer[..writeIndex]);
     }
 
-    [Command("help", "Shows hints and infos about all the registered commands.")]
+    [Command("help", false, "Shows hints and infos about all the registered commands.")]
     private static void CommandHelp()
     {
         var cmds = instance?.commands!;
@@ -273,6 +273,11 @@ public class CommandRegistry
             return true;
         }
 
+        if (command.IsCheat)
+        {
+            PauseMenu.Instance.GameProperties?.ReportCheatsUsed();
+        }
+
         failed = false;
 
         return true;
@@ -329,7 +334,8 @@ public class CommandRegistry
                             continue;
                         }
 
-                        var cmd = new Command(method, name, attr.HelpText);
+                        var isCheat = attr.IsCheat;
+                        var cmd = new Command(method, name, isCheat, attr.HelpText);
 
                         if (!tempDict.TryGetValue(name, out var list))
                         {
@@ -349,6 +355,8 @@ public class CommandRegistry
 
         GD.Print($"CommandRegistry: Loaded. Command groups: {commands.Count}.");
     }
+
+    public record struct Command(MethodInfo MethodInfo, string CommandName, bool IsCheat, string HelpText);
 
     /// <summary>
     ///   A custom command parser.
@@ -409,6 +417,4 @@ public class CommandRegistry
             return true;
         }
     }
-
-    public record struct Command(MethodInfo MethodInfo, string CommandName, string HelpText);
 }

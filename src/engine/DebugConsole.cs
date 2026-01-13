@@ -77,19 +77,19 @@ public partial class DebugConsole : CustomWindow
         base.OnHidden();
     }
 
-    [Command("clear", "Clears this console.")]
+    [Command("clear", false, "Clears this console.")]
     private static void CommandClear(DebugConsole console)
     {
         console.Clear();
     }
 
-    [Command("echo", "Echoes a message in this console.")]
+    [Command("echo", false, "Echoes a message in this console.")]
     private static void CommandEcho(DebugConsole console, string msg)
     {
         console.AddLog(new DebugConsoleManager.ConsoleLine(msg + "\n", Colors.White));
     }
 
-    [Command("echo", "Echoes a colored message in this console.")]
+    [Command("echo", false, "Echoes a colored message in this console.")]
     private static void CommandEcho(DebugConsole console, string msg, int r, int g, int b)
     {
         console.AddLog(new DebugConsoleManager.ConsoleLine(msg + "\n", new Color(r, g, b)));
