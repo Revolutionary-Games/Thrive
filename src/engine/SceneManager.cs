@@ -250,6 +250,18 @@ public partial class SceneManager : Node
         return alreadyQuit;
     }
 
+    [Command("load", true, "Switches to the specified game state.")]
+    private static void CommandLoadScene(MainGameState state)
+    {
+        Instance.SwitchToScene(state);
+    }
+
+    [Command("load", true, "Switches to the specified scene, given its resource path.")]
+    private static void CommandLoadScene(string scenePath)
+    {
+        Instance.SwitchToScene(scenePath);
+    }
+
     /// <summary>
     ///   Ensures the shutdown node is last in tree order, this is needed for it to actually execute last
     /// </summary>
