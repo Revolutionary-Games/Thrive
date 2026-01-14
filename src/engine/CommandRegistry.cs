@@ -183,16 +183,49 @@ public class CommandRegistry : IDisposable
 
         if (type.IsEnum)
         {
-            if (Enum.TryParse(type, token, out object? enumVal))
+            if (Enum.TryParse(type, token, true, out object? enumValue))
             {
-                if (Enum.IsDefined(type, enumVal))
+                if (Enum.IsDefined(type, enumValue))
                 {
-                    result = enumVal;
+                    result = enumValue;
+                    return true;
+                }
+            }
+
+            if (TryGetAlias(type, token, out enumValue))
+            {
+                if (enumValue != null)
+                {
+                    result = enumValue;
                     return true;
                 }
             }
         }
 
+        return false;
+    }
+
+    private static bool TryGetAlias(Type type, ReadOnlySpan<char> token, out object? val)
+    {
+        foreach (var field in type.GetFields())
+        {
+            if (!field.IsDefined(typeof(AliasAttribute), true))
+                continue;
+
+            foreach (var attribute in field.GetCustomAttributes<AliasAttribute>(true))
+            {
+                foreach (var alias in attribute.Aliases)
+                {
+                    if (alias.Equals(token, StringComparison.OrdinalIgnoreCase))
+                    {
+                        val = field.GetValue(null);
+                        return true;
+                    }
+                }
+            }
+        }
+
+        val = null;
         return false;
     }
 
