@@ -98,6 +98,8 @@ public partial class DebugConsole : CustomWindow
     {
         DebugConsoleManager.Instance.OnHistoryUpdated += RefreshLogs;
 
+        commandInput.GrabFocus();
+
         RefreshLogs();
     }
 
