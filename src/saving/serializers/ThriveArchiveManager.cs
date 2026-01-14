@@ -287,13 +287,6 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ChunkScene,
             typeof(ChunkConfiguration.ChunkScene), ChunkConfiguration.ChunkScene.ReadFromArchive);
 
-        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ComplexCollisionShapeConfiguration,
-            typeof(ChunkConfiguration.ComplexCollisionShapeConfiguration),
-            ChunkConfiguration.ComplexCollisionShapeConfiguration.WriteToArchive);
-        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ComplexCollisionShapeConfiguration,
-            typeof(ChunkConfiguration.ComplexCollisionShapeConfiguration),
-            ChunkConfiguration.ComplexCollisionShapeConfiguration.ReadFromArchive);
-
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ChunkCompound,
             typeof(ChunkConfiguration.ChunkCompound), ChunkConfiguration.ChunkCompound.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ChunkCompound,

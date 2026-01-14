@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8ck5mosuq7xq"
-path.s3tc="res://.godot/imported/Snowflake_3_normal.png-366cce6a891439c65dc9537340633f89.s3tc.ctex"
-path.etc2="res://.godot/imported/Snowflake_3_normal.png-366cce6a891439c65dc9537340633f89.etc2.ctex"
+uid="uid://b1re7y7q2gur4"
+path.s3tc="res://.godot/imported/Snowflake.png-29132a3482c532b84d7bcb76a36b46d4.s3tc.ctex"
+path.etc2="res://.godot/imported/Snowflake.png-29132a3482c532b84d7bcb76a36b46d4.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/environment/Snowflake_3_normal.png"
-dest_files=["res://.godot/imported/Snowflake_3_normal.png-366cce6a891439c65dc9537340633f89.s3tc.ctex", "res://.godot/imported/Snowflake_3_normal.png-366cce6a891439c65dc9537340633f89.etc2.ctex"]
+source_file="res://assets/textures/Snowflake.png"
+dest_files=["res://.godot/imported/Snowflake.png-29132a3482c532b84d7bcb76a36b46d4.s3tc.ctex", "res://.godot/imported/Snowflake.png-29132a3482c532b84d7bcb76a36b46d4.etc2.ctex"]
 
 [params]
 
@@ -23,12 +23,12 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://assets/textures/environment/Snowflake_3_normal.png"
+roughness/mode=0
+roughness/src_normal=""
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2

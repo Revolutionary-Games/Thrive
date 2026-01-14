@@ -1,11 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgjd2lmgerqiv"]
+[gd_scene load_steps=7 format=3 uid="uid://bgjd2lmgerqiv"]
 
 [ext_resource type="PackedScene" uid="uid://bovjmbsp1hgf" path="res://assets/models/IceSnowflakeChunk1.glb" id="1_11gvl"]
 [ext_resource type="Shader" uid="uid://b4sr4fjh8yyvt" path="res://shaders/CrystalOpaque.gdshader" id="2_64s5o"]
-[ext_resource type="Texture2D" uid="uid://b1re7y7q2gur4" path="res://assets/textures/environment/Snowflake.png" id="3_11gvl"]
-[ext_resource type="Texture2D" uid="uid://dxsrdrgv74mvv" path="res://assets/textures/environment/Snowflake_1_normal.png" id="4_bwwp2"]
+[ext_resource type="Texture2D" uid="uid://b1re7y7q2gur4" path="res://assets/textures/Snowflake.png" id="3_11gvl"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="4_11gvl"]
+[ext_resource type="Texture2D" uid="uid://dxsrdrgv74mvv" path="res://assets/textures/Snowflake_1_normal.png" id="4_bwwp2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p27wa"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_64s5o")
 shader_parameter/albedo = Color(0.8392157, 1, 1, 0.87058824)
@@ -18,6 +20,7 @@ shader_parameter/specular = 0.7
 shader_parameter/metallic = 0.57
 shader_parameter/emission = Color(0.32156864, 0.32156864, 0.43529412, 1)
 shader_parameter/emissionEnergy = 0.25
+shader_parameter/dissolveTexture = ExtResource("4_11gvl")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
 shader_parameter/outlineWidth = 0.0
