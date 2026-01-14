@@ -120,7 +120,7 @@ public class CommandRegistry : IDisposable
     {
         result = null;
 
-        if (type == typeof(string) || isQuoted)
+        if (type == typeof(string) && isQuoted)
         {
             result = Unescape(token);
             return true;
@@ -179,6 +179,18 @@ public class CommandRegistry : IDisposable
 
             result = false;
             return true;
+        }
+
+        if (type.IsEnum)
+        {
+            if (Enum.TryParse(type, token, out object? enumVal))
+            {
+                if (Enum.IsDefined(type, enumVal))
+                {
+                    result = enumVal;
+                    return true;
+                }
+            }
         }
 
         return false;
