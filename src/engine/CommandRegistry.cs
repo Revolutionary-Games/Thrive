@@ -77,11 +77,11 @@ public class CommandRegistry : IDisposable
         if (!tokenizer.MoveNext(out var cmdNameSpan, out _))
             return false;
 
-        string cmdName = cmdNameSpan.ToString().ToLowerInvariant();
+        var commandName = cmdNameSpan.ToString().ToLowerInvariant();
 
-        if (!commands!.TryGetValue(cmdName, out var candidates))
+        if (!commands!.TryGetValue(commandName, out var candidates))
         {
-            GD.PrintErr($"Unknown command: {cmdName}");
+            GD.PrintErr($"Unknown command: {commandName}");
             return false;
         }
 
@@ -92,13 +92,15 @@ public class CommandRegistry : IDisposable
             rawArgs.Add((token.ToString(), isQuoted));
         }
 
-        bool failed = true;
-        if (candidates.Any(command => TryExecuteCandidate(command, invoker, rawArgs, out failed)))
+        foreach (var command in candidates)
         {
-            return !failed;
+            if (TryExecuteCandidate(command, invoker, rawArgs, out bool failed))
+            {
+                return !failed;
+            }
         }
 
-        GD.PrintErr($"Command '{cmdName}': No overload matched arguments. Found {candidates.Length} candidates.");
+        GD.PrintErr($"Command '{commandName}': No overload matched arguments. Found {candidates.Length} candidates.");
         return false;
     }
 
@@ -167,10 +169,13 @@ public class CommandRegistry : IDisposable
                 return true;
             }
 
+            // Make sure the "false" value is allowed
             if (token is not "0" &&
                 !token.Equals("false", StringComparison.OrdinalIgnoreCase) &&
                 !token.Equals("off", StringComparison.OrdinalIgnoreCase))
+            {
                 return false;
+            }
 
             result = false;
             return true;
@@ -222,19 +227,19 @@ public class CommandRegistry : IDisposable
     [Command("help", false, "Shows hints and info about all the registered commands.")]
     private static void CommandHelp()
     {
-        var cmds = Instance.commands!;
-        int count = cmds.Values.Sum(v => v.Length);
+        var commands = Instance.commands!;
+        int count = commands.Values.Sum(v => v.Length);
 
         GD.Print($"Total registered Commands: {count}");
 
-        foreach (var group in cmds)
+        foreach (var group in commands)
         {
-            foreach (var cmd in group.Value)
+            foreach (var command in group.Value)
             {
-                var paramsInfo = string.Join(", ", cmd.MethodInfo
+                var paramsInfo = string.Join(", ", command.MethodInfo
                     .GetParameters()
                     .Select(p => p.ParameterType.Name));
-                GD.Print($"{cmd.CommandName}({paramsInfo}): {cmd.HelpText}");
+                GD.Print($"{command.CommandName}({paramsInfo}): {command.HelpText}");
             }
         }
     }
@@ -277,9 +282,9 @@ public class CommandRegistry : IDisposable
         for (int i = 0; i < expectedArgs; ++i)
         {
             var targetType = parameters[i + paramOffset].ParameterType;
-            var (val, isQuoted) = rawArgs[i];
+            var (value, isQuoted) = rawArgs[i];
 
-            if (!TryParseSpanToType(val.AsSpan(), targetType, isQuoted, out var parsedValue))
+            if (!TryParseSpanToType(value.AsSpan(), targetType, isQuoted, out var parsedValue))
             {
                 // This happens if the parameter conversion fails. We gracefully return false hoping to find a
                 // better candidate for command execution.
@@ -291,7 +296,7 @@ public class CommandRegistry : IDisposable
 
         if (command.IsCheat)
         {
-            PauseMenu.Instance.GameProperties?.ReportCheatsUsed();
+            AchievementsManager.ReportCheatsUsed();
         }
 
         try
@@ -333,7 +338,8 @@ public class CommandRegistry : IDisposable
     }
 
     /// <summary>
-    ///   Looks for methods that have the CommandAttribute by looking into the Assemblies, and registers them.
+    ///   This method looks for methods that have the CommandAttribute by looking into the Assemblies
+    ///   and registers them.
     /// </summary>
     private void RegisterCommands()
     {
@@ -357,20 +363,18 @@ public class CommandRegistry : IDisposable
                     if (!method.IsDefined(typeof(CommandAttribute), true))
                         continue;
 
-                    var cmdAttributes = method.GetCustomAttributes<CommandAttribute>(true);
-
-                    foreach (var attr in cmdAttributes)
+                    foreach (var attribute in method.GetCustomAttributes<CommandAttribute>(true))
                     {
-                        var name = attr.CommandName.ToLowerInvariant();
+                        var name = attribute.CommandName.ToLowerInvariant();
 
                         if (!method.IsStatic)
                         {
-                            GD.PushWarning($"CommandRegistry: Ignored '{name}'. Method must be static.");
+                            GD.PrintErr($"CommandRegistry: Ignored '{name}'. Method must be static.");
                             continue;
                         }
 
-                        var isCheat = attr.IsCheat;
-                        var cmd = new Command(method, name, isCheat, attr.HelpText);
+                        var isCheat = attribute.IsCheat;
+                        var command = new Command(method, name, isCheat, attribute.HelpText);
 
                         if (!tempDict.TryGetValue(name, out var list))
                         {
@@ -378,7 +382,7 @@ public class CommandRegistry : IDisposable
                             tempDict[name] = list;
                         }
 
-                        list.Add(cmd);
+                        list.Add(command);
                     }
                 }
             }
