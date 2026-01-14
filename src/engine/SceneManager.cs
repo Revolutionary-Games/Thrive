@@ -253,6 +253,9 @@ public partial class SceneManager : Node
     [Command("load", true, "Switches to the specified game state.")]
     private static void CommandLoadScene(MainGameState state)
     {
+        CheatManager.OnCheatsDisabled();
+        AchievementsManager.ReportNewGameStarted(true);
+
         Instance.SwitchToScene(state);
     }
 
@@ -264,6 +267,9 @@ public partial class SceneManager : Node
             GD.PrintErr("Load command: the resource at the specified path does not exist.");
             return false;
         }
+
+        CheatManager.OnCheatsDisabled();
+        AchievementsManager.ReportNewGameStarted(true);
 
         Instance.SwitchToScene(scenePath);
 
