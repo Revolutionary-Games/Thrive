@@ -257,9 +257,17 @@ public partial class SceneManager : Node
     }
 
     [Command("load", true, "Switches to the specified scene, given its resource path.")]
-    private static void CommandLoadScene(string scenePath)
+    private static bool CommandLoadScene(string scenePath)
     {
+        if (!ResourceLoader.Exists(scenePath))
+        {
+            GD.PrintErr("Load command: the resource at the specified path does not exist.");
+            return false;
+        }
+
         Instance.SwitchToScene(scenePath);
+
+        return true;
     }
 
     /// <summary>
