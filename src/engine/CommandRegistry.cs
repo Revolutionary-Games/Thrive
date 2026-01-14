@@ -306,9 +306,13 @@ public class CommandRegistry : IDisposable
             if (invoker != null && result is bool success)
             {
                 if (success)
+                {
                     invoker.AddLog(new DebugConsoleManager.ConsoleLine("Success\n", Colors.Green));
+                }
                 else
+                {
                     invoker.AddLog(new DebugConsoleManager.ConsoleLine("Failed\n", Colors.Red));
+                }
             }
         }
         catch (Exception e)
