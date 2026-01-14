@@ -22,6 +22,8 @@ public partial class DebugConsoleManager : Node
     private DebugConsoleManager()
     {
         instance = this;
+
+        CommandRegistry.Initialize();
     }
 
     public event EventHandler<EventArgs>? OnHistoryUpdated;
@@ -29,6 +31,13 @@ public partial class DebugConsoleManager : Node
     public static DebugConsoleManager Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public int MessageCount { get; private set; }
+
+    public override void _ExitTree()
+    {
+        CommandRegistry.Shutdown();
+
+        base._ExitTree();
+    }
 
     public override void _Process(double delta)
     {
