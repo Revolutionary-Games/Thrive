@@ -266,7 +266,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
-scroll_vertical = 100
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer"]
 layout_mode = 2
@@ -304,6 +303,7 @@ autowrap_mode = 2
 
 [node name="Vsync" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -580,6 +580,7 @@ editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 8
 text = "100%"
+label_settings = ExtResource("7_etww0")
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -794,6 +795,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_paabc")
 
 [node name="ChromaticToggle" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBocContainer23/HBoxContainer/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="HBocContainer24" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -833,6 +835,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_paabc")
 
 [node name="BloomToggle" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBocContainer24/HBoxContainer/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="VBoxContainer13" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -851,6 +854,7 @@ autowrap_mode = 2
 
 [node name="DisplayBackgroundParticles" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="VBoxContainer14" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -869,6 +873,7 @@ autowrap_mode = 2
 
 [node name="BackgroundDistortion" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="LowQualityBackgroundContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -889,6 +894,7 @@ autowrap_mode = 2
 [node name="LowQualityBlur" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/LowQualityBackgroundContainer/HBoxContainer"]
 layout_mode = 2
 tooltip_text = "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+flat = true
 
 [node name="VBoxContainer29" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -939,6 +945,7 @@ autowrap_mode = 2
 
 [node name="MicrobeRipples" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="VBoxContainer17" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -957,6 +964,7 @@ autowrap_mode = 2
 
 [node name="MicrobeCameraTilt" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="VBoxContainer18" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -975,6 +983,7 @@ autowrap_mode = 2
 
 [node name="Menu3DBackgroundsToggle" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer18/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="VBoxContainer19" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1189,6 +1198,7 @@ autowrap_mode = 2
 
 [node name="DisplayAbilitiesBar" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer24/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="VBoxContainer26" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1207,6 +1217,7 @@ autowrap_mode = 2
 
 [node name="DamageEffect" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer26/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="VBoxContainer28" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1227,6 +1238,7 @@ autowrap_mode = 2
 [node name="GUILightsEffectToggle" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer28/HBoxContainer"]
 layout_mode = 2
 tooltip_text = "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
+flat = true
 
 [node name="VBoxContainer27" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1245,6 +1257,7 @@ autowrap_mode = 2
 
 [node name="DisplayPartNamesToggle" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer27/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="Sound" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer"]
 visible = false
@@ -1262,7 +1275,6 @@ horizontal_scroll_mode = 0
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer"]
@@ -1551,7 +1563,6 @@ horizontal_scroll_mode = 0
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer"]
@@ -1691,6 +1702,7 @@ autowrap_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 5
+flat = true
 
 [node name="VBoxContainer5" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1711,6 +1723,7 @@ autowrap_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 5
+flat = true
 
 [node name="ThreadedExplanationLabel" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5"]
 custom_minimum_size = Vector2(200, 0)
@@ -1844,6 +1857,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 5
 tooltip_text = "ASSUME_HYPERTHREADING_TOOLTIP"
+flat = true
 
 [node name="VBoxContainer10" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1864,6 +1878,7 @@ autowrap_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 5
+flat = true
 
 [node name="VBoxContainer11" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1913,6 +1928,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 5
 tooltip_text = "NATIVE_THREAD_ADVICE_TOOLTIP"
+flat = true
 
 [node name="VBoxContainer13" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1976,6 +1992,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 5
 tooltip_text = "DISK_CACHE_TOOLTIP"
+flat = true
 
 [node name="VBoxContainer16" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -2003,6 +2020,7 @@ layout_mode = 2
 tooltip_text = "CURRENT_CACHE_SIZE_TOOLTIP"
 mouse_filter = 1
 text = "0"
+label_settings = ExtResource("7_etww0")
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(10, 0)
@@ -2084,6 +2102,7 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "0"
+label_settings = ExtResource("7_etww0")
 horizontal_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/MemoryCacheDuration/HBoxContainer/HBoxContainer"]
@@ -2126,6 +2145,7 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "0"
+label_settings = ExtResource("7_etww0")
 horizontal_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/DiskCacheMaxTime/HBoxContainer/HBoxContainer"]
@@ -2168,6 +2188,7 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "0"
+label_settings = ExtResource("7_etww0")
 horizontal_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/MaxMemoryItems/HBoxContainer/HBoxContainer"]
@@ -2209,6 +2230,7 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "0"
+label_settings = ExtResource("7_etww0")
 horizontal_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/MemoryOnlyCacheTime/HBoxContainer/HBoxContainer"]
@@ -2371,6 +2393,7 @@ autowrap_mode = 2
 
 [node name="SameBothAxesSensitivity" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="Spacer8" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
@@ -2431,6 +2454,7 @@ autowrap_mode = 2
 
 [node name="VirtualWindowSize" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -2528,6 +2552,7 @@ autowrap_mode = 2
 
 [node name="SameBothAxesSensitivity" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="Spacer11" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
@@ -2644,6 +2669,7 @@ autowrap_mode = 2
 
 [node name="EdgePan" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer9/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="HBoxContainer11" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -2770,6 +2796,7 @@ autowrap_mode = 2
 
 [node name="Intro" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -2788,6 +2815,7 @@ autowrap_mode = 2
 
 [node name="MicrobeIntro" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -2806,6 +2834,7 @@ autowrap_mode = 2
 
 [node name="AutoSave" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="VBoxContainer9" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -2874,6 +2903,7 @@ autowrap_mode = 2
 
 [node name="UnsavedProgressWarning" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="VBoxContainer5" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -2894,6 +2924,7 @@ autowrap_mode = 2
 [node name="TutorialsEnabledOnNewGame" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer"]
 layout_mode = 2
 tooltip_text = "SHOW_TUTORIALS_OPTION_TOOLTIP"
+flat = true
 
 [node name="CurrentGameTutorialsContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -2912,6 +2943,7 @@ autowrap_mode = 2
 
 [node name="TutorialsEnabled" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/CurrentGameTutorialsContainer/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -2966,6 +2998,7 @@ autowrap_mode = 2
 
 [node name="Cheats" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer11/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="VBoxContainer12" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -2984,6 +3017,7 @@ autowrap_mode = 2
 
 [node name="CustomUsernameEnabled" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="VBoxContainer13" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -3024,6 +3058,7 @@ autowrap_mode = 2
 
 [node name="WebFeeds" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14/HBoxContainer"]
 layout_mode = 2
+flat = true
 
 [node name="VBoxContainer15" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -3044,6 +3079,7 @@ autowrap_mode = 2
 [node name="ShowNewPatchNotes" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15/HBoxContainer"]
 layout_mode = 2
 tooltip_text = "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+flat = true
 
 [node name="VBoxContainer16" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
