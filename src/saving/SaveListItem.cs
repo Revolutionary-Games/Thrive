@@ -157,6 +157,20 @@ public partial class SaveListItem : PanelContainer
         UpdateHighlighting();
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (loadingData || (saveInfoLoadTask != null && !saveInfoLoadTask.Loaded))
+        {
+            if (saveInfoLoadTask != null)
+            {
+                // On slower computers the save list loads can clog up the load
+                ResourceManager.Instance.CancelLoad(saveInfoLoadTask);
+            }
+        }
+    }
+
     public override void _Process(double delta)
     {
         if (!loadingData)
@@ -328,8 +342,7 @@ public partial class SaveListItem : PanelContainer
 
     private void UpdateName()
     {
-        if (saveNameLabel != null)
-            saveNameLabel.Text = saveName.Replace(Constants.SAVE_EXTENSION_WITH_DOT, string.Empty);
+        saveNameLabel?.Text = saveName.Replace(Constants.SAVE_EXTENSION_WITH_DOT, string.Empty);
     }
 
     private void LoadSavePressed()
@@ -361,10 +374,7 @@ public partial class SaveListItem : PanelContainer
 
     private void UpdateHighlighting()
     {
-        if (highlightPanel == null)
-            return;
-
-        highlightPanel.Visible = Highlighted || Selected;
+        highlightPanel?.Visible = Highlighted || Selected;
     }
 
     private void DeletePressed()
@@ -390,6 +400,9 @@ public partial class SaveListItem : PanelContainer
 
         // See the TODO comment in PerformPostProcessing
         public bool RequiresSyncPostProcess => true;
+
+        public bool CancelRequested { get; set; }
+
         public float EstimatedTimeRequired => 0.025f;
         public bool LoadingPrepared { get; set; }
         public bool Loaded { get; private set; }
