@@ -205,27 +205,26 @@ public class CommandRegistry : IDisposable
         return false;
     }
 
-    private static bool TryGetAlias(Type type, ReadOnlySpan<char> token, out object? val)
+    private static bool TryGetAlias(Type type, ReadOnlySpan<char> token, out object? value)
     {
         foreach (var field in type.GetFields())
         {
             if (!field.IsDefined(typeof(AliasAttribute), true))
                 continue;
 
-            foreach (var attribute in field.GetCustomAttributes<AliasAttribute>(true))
+            var attribute = field.GetCustomAttribute<AliasAttribute>(true)!;
+
+            foreach (var alias in attribute.Aliases)
             {
-                foreach (var alias in attribute.Aliases)
+                if (alias.Equals(token, StringComparison.OrdinalIgnoreCase))
                 {
-                    if (alias.Equals(token, StringComparison.OrdinalIgnoreCase))
-                    {
-                        val = field.GetValue(null);
-                        return true;
-                    }
+                    value = field.GetValue(null);
+                    return true;
                 }
             }
         }
 
-        val = null;
+        value = null;
         return false;
     }
 
