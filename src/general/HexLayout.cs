@@ -112,7 +112,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
     }
 
     /// <summary>
-    ///   Returns true if hex can be placed at location. Only checks that the location doesn't overlap with any
+    ///   Returns true if hex can be placed at a location. Only checks that the location doesn't overlap with any
     ///   existing hexes
     /// </summary>
     public virtual bool CanPlace(T hex, List<Hex> temporaryStorage, List<Hex> temporaryStorage2)
@@ -225,7 +225,6 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
         {
             var existingHex = existingHexes[i];
 
-            var relative = location - existingHex.Position;
             temporaryHexesStorage.Clear();
             GetHexComponentPositions(existingHex, temporaryHexesStorage);
 
@@ -233,14 +232,14 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
 
             for (int j = 0; j < hexCount; ++j)
             {
-                if (temporaryHexesStorage[j].Equals(relative))
+                if (temporaryHexesStorage[j] + existingHex.Position == location)
                 {
                     return existingHex;
                 }
             }
         }
 
-        return default;
+        return null;
     }
 
     /// <summary>

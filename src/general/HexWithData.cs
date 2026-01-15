@@ -14,7 +14,15 @@ public class HexWithData<T> : IPositionedHex, IReadOnlyHexWithData<T>, IArchivab
 
     public T? Data { get; set; }
     public Hex Position { get; set; }
-    public int Orientation { get; set; }
+
+    public int Orientation
+    {
+        get;
+
+        // Normalize rotations to work similarly to CellTemplate, otherwise this will break everything by not matching
+        // rotations
+        set => field = value % 6;
+    }
 
     public ushort CurrentArchiveVersion => HexLayoutSerializer.SERIALIZATION_VERSION;
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ExtendedHexWithData;
@@ -50,10 +58,7 @@ public class HexWithData<T> : IPositionedHex, IReadOnlyHexWithData<T>, IArchivab
 
     public HexWithData<T> Clone()
     {
-        return new HexWithData<T>((T?)Data?.Clone(), Position, Orientation)
-        {
-            Orientation = Orientation,
-        };
+        return new HexWithData<T>((T?)Data?.Clone(), Position, Orientation);
     }
 
     public override string ToString()
