@@ -2,7 +2,8 @@
 using Godot;
 using SharedBase.Archive;
 
-public class CellTemplate : IPositionedCell, ICloneable, IArchivable, IReadOnlyHexWithData<IReadOnlyCellTemplate>
+public class CellTemplate : IPositionedCell, ICloneable, IArchivable, IReadOnlyHexWithData<IReadOnlyCellTemplate>,
+    IPlayerReadableName
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
@@ -30,6 +31,11 @@ public class CellTemplate : IPositionedCell, ICloneable, IArchivable, IReadOnlyH
         // We normalize rotations here as it isn't normalized later for cell templates
         set => orientation = value % 6;
     }
+
+    public string ReadableName => modifiableCellType.FormattedName;
+
+    public string ReadableExactIdentifier => Localization.Translate("ITEM_AT_2D_COORDINATES")
+        .FormatSafe(ReadableName, Position.Q, Position.R);
 
     public virtual CellType ModifiableCellType
     {

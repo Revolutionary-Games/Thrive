@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
@@ -989,7 +988,7 @@ public static class MicrobeColonyHelpers
                 // fastest cell inside it
                 var memberRotation = MicrobeInternalCalculations
                         .CalculateRotationSpeed(colonyMember.Get<OrganelleContainer>().Organelles!.Organelles)
-                    * (1 + 0.03f * distanceSquared);
+                    * (1 + 0.007f * distanceSquared);
 
                 colonyRotation += memberRotation;
             }

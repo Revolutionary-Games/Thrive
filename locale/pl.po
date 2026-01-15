@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-02 16:33+0100\n"
-"PO-Revision-Date: 2025-12-05 22:50+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-01-12 15:26+0100\n"
+"PO-Revision-Date: 2025-12-20 22:46+0000\n"
+"Last-Translator: DrAlienizer <dr4gonizer@proton.me>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -903,6 +903,10 @@ msgstr "Przybrzeże"
 msgid "COLLISION_SHAPE"
 msgstr "Przywołaj byty z kształtami kolizji"
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "(gdy włączone, limituje prędkość wzrostu, jeśli wyłączone, jedynie dostępne związki wpływają na wzrost)"
+
 msgid "COLOUR"
 msgstr "Kolor"
 
@@ -953,6 +957,9 @@ msgstr "Wartość nasycenia, ilość szarości w konkretnym kolorze"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Jasność lub intensywność koloru"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr ""
 
 msgid "COMMON_ABILITIES"
 msgstr "Pospolite Umiejętności"
@@ -1559,6 +1566,10 @@ msgstr "Konfiguracja Martwej Strefy"
 
 msgid "DEATH"
 msgstr "śmierć"
+
+#, fuzzy
+msgid "DEBUG_CONSOLE"
+msgstr "Panel Debugowania"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -2916,7 +2927,7 @@ msgid "INTERACTION_CONSTRUCT"
 msgstr "Zakończ Budowę"
 
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
-msgstr ""
+msgstr "Zakończ budowę (brakuje wymaganych materiałów)"
 
 msgid "INTERACTION_CRAFT"
 msgstr "Stwórz..."
@@ -4046,7 +4057,7 @@ msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
 msgstr "(lokalizacja początkowa)"
 
 msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
-msgstr ""
+msgstr "W jednej sesji edytora można migrować tylko raz. Poniżej możesz zobaczyć cel migracji i go zachować albo anulować, aby wybrać inny"
 
 #, fuzzy
 msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
@@ -4113,7 +4124,7 @@ msgid "MODELS"
 msgstr "Modele"
 
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
-msgstr ""
+msgstr "W każdej chwili możesz zmienić tryb ruchu 2D w menu opcji"
 
 msgid "MODIFY"
 msgstr "Modyfikuj"
@@ -4933,10 +4944,10 @@ msgid "PATCH_NAME"
 msgstr "{0}: {1}"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
-msgstr ""
+msgstr "Ostatnio grałeś w Thrive {0}, od tego czasu wyszła jedna nowa wersja"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
-msgstr ""
+msgstr "Ostatnio grałeś w Thrive {0}, od tego czasu wydano {1} nowe wersje"
 
 msgid "PATCH_NOTES_TITLE"
 msgstr "Zmiany w aktualizacji"
@@ -5503,6 +5514,13 @@ msgstr "Utlenia [thrive:compound type=\"iron\"]Żelazo[/thrive:compound] wydziel
 
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
+"Thrive uruchomił się w trybie awaryjnym, ponieważ podczas poprzedniego uruchamiania wystąpił błąd.\n"
+"\n"
+"Mógł go spowodować mod lub odtwarzacz wideo. Wczytywanie modów i/lub odtwarzanie wideo może być zapobiegawczo wstrzymane, dopóki nie uruchomisz ponownie gry.\n"
+"\n"
+"Zanim to zrobisz, wyłącz wszystkie mody, które mogą powodować problemy lub są niezgodne z obecną wersją Thrive (możesz przejrzeć logi z poprzednich uruchomień, aby sprawdzić, czy przyczynił się do tego jakiś mod). W przypadku problemów z odtwarzaczem wideo, skorzystaj z opcji wymuszenia jego wyłączenia w programie uruchamiającym.\n"
+"\n"
+"Jeśli problem nie zostanie rozwiązany, konieczne będzie kilkukrotne restartowanie gry i powodowanie awarii, aby ponownie włączyć tryb awaryjny."
 
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive Uruchomiło Się W Trybie Bezpiecznym"
@@ -6127,7 +6145,7 @@ msgid "STRUCTURE_DYSON_SWARM"
 msgstr "Struktura"
 
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
-msgstr ""
+msgstr "Dostarczono wymagane materiały do budowy"
 
 msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
 msgstr ""
@@ -6136,7 +6154,7 @@ msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr "Budowa: {0}"
 
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
-msgstr ""
+msgstr "Materiały wymagane do zakończenia budowy: {0}"
 
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr "{0} (koszt początkowy: {1}, razem: {2})"
@@ -6451,6 +6469,10 @@ msgstr "Przełączenie wiązania"
 
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Przełącz tryb łączenia. Dotykaj innych komórek by stworzyć kolonię."
+
+#, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Włącz panel debugowania"
 
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Włącz panel debugowania"
@@ -9249,6 +9271,14 @@ msgstr "Ciepło"
 
 msgid "WORST_PATCH_COLON"
 msgstr "Najgorzej radzi sobie w:"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "Kolejność wzrostu"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "(gdy włączone, limituje prędkość wzrostu, jeśli wyłączone, jedynie dostępne związki wpływają na wzrost)"
 
 msgid "XBOX360"
 msgstr "Xbox 360"

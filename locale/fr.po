@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-02 16:33+0100\n"
-"PO-Revision-Date: 2025-12-08 21:28+0000\n"
+"POT-Creation-Date: 2026-01-12 15:26+0100\n"
+"PO-Revision-Date: 2025-12-28 16:00+0000\n"
 "Last-Translator: Shigasaa <altitudes.etrangeres@ikmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -41,7 +41,7 @@ msgid "ABORTED_DOT"
 msgstr "Abandonné."
 
 msgid "ABSORBERS_COUNT"
-msgstr ""
+msgstr "Absorbeurs :"
 
 msgid "ABYSSOPELAGIC"
 msgstr "Abyssopélagique"
@@ -145,7 +145,6 @@ msgstr "(vitesse de mutation des espèces contrôlées par l'IA)"
 msgid "ALL"
 msgstr "Tout"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
 msgstr "Permettre d'échanger avec une espèce apparenté à l'extinction de la vôtre"
 
@@ -427,13 +426,11 @@ msgstr "Niveau moyen d'azote à la surface"
 msgid "AVERAGE_SURFACE_OTHER_LEVEL"
 msgstr "Niveau moyen des autre gaz"
 
-#, fuzzy
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr "Niveau moyen d'oxygène à la surface"
 
-#, fuzzy
 msgid "AVERAGE_SURFACE_TEMPERATURE"
-msgstr "Niveau moyen des autre gaz"
+msgstr "Température moyenne à la surface"
 
 msgid "AWAKENING_STAGE"
 msgstr "Phase d’éveil"
@@ -540,14 +537,12 @@ msgstr "Au delà de la cellule"
 msgid "BIG_IRON_CHUNK"
 msgstr "Gros fragment de fer"
 
-#, fuzzy
 msgid "BIG_IRON_CHUNK_BANANA"
 msgstr "Gros fragment de fer"
 
 msgid "BIG_PHOSPHATE_CHUNK"
 msgstr "Gros fragment de phosphate"
 
-#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "Gros fragment de phosphate"
 
@@ -623,9 +618,8 @@ msgstr "Temps de conservation du cache en mémoire"
 msgid "CACHE_TIME_MEMORY_ONLY"
 msgstr "Temps de conservation du cache quand seule la mémoire cache est utilisée"
 
-#, fuzzy
 msgid "CACHING_TITLE"
-msgstr "Mise en chache"
+msgstr "Mise en cache"
 
 msgid "CALCIUM_CARBONATE"
 msgstr "Carbonate de calcium"
@@ -750,7 +744,6 @@ msgstr "Synthèse des inhibiteurs de canaux"
 msgid "CHEATS"
 msgstr "Triches"
 
-#, fuzzy
 msgid "CHEATS_USED_NOTICE"
 msgstr "De la triche a été utilisé dans cette partie."
 
@@ -868,9 +861,8 @@ msgstr "Sélectionner"
 msgid "CLIMATE_INSTABILITY"
 msgstr "Instabilité du climat"
 
-#, fuzzy
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr "(influence la fréquence et l'intensité des évenement comme la glaciation mondiale)"
+msgstr "(influence la fréquence et l'intensité des événements comme la glaciation mondiale)"
 
 msgid "CLIMATE_STABILITY_AVERAGE"
 msgstr "Moyenne"
@@ -908,6 +900,10 @@ msgstr "Littoral"
 
 msgid "COLLISION_SHAPE"
 msgstr "Créer les entités avec les formes de collision"
+
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "(si elle est activée, la vitesse de croissance est plafonnée, si elle est désactivée, seuls les composés disponibles affectent la vitesse de croissance)"
 
 msgid "COLOUR"
 msgstr "Couleur"
@@ -959,6 +955,9 @@ msgstr "Saturation de la couleur (proportion de gris)"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Luminosité ou intensité de la couleur"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr ""
 
 msgid "COMMON_ABILITIES"
 msgstr "Capacités communes"
@@ -1064,15 +1063,12 @@ msgstr "Très élevé"
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Très bas"
 
-#, fuzzy
 msgid "COMPOUND_REPRODUCTION_SOURCE"
 msgstr "Consommation de {0}"
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(insuffisant pour passer la nuit qui dure {0} s)"
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
 msgstr "Seulement {1} [thrive:compound type=\"{0}\"][/thrive:compound] peuvent être produits pendant la journée, mais pour passer la nuit, {2} sont nécessaires."
 
@@ -1082,7 +1078,6 @@ msgstr "La capacité de stockage est insuffisante pour [thrive:compound type=\"{
 msgid "COMPOUND_STORAGE_STATS_TITLE"
 msgstr "Capacités de stockage"
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
 msgstr ""
 "Cette section montre le temps qu'il faut à la cellule pour épuiser chaque type de composé en partant d'une réserve pleine.\n"
@@ -1148,9 +1143,8 @@ msgstr "Certains paramètres sont invalides"
 msgid "CONFIRM_RESET_ACHIEVEMENTS"
 msgstr "Confirmer la réinitialisation des succès ?"
 
-#, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
-msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+msgstr "Êtes-vous vraiment sûr de vouloir réinitialiser TOUS les succès et statistiques liées ? Cette action est irréversible et vous devrez recommencer depuis le début pour obtenir tous les succès, l'ensemble de votre progression actuelle étant réinitialisée."
 
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Unité : {0}"
@@ -1355,7 +1349,6 @@ msgstr "Protanopie (rouge-vert)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopie (bleu-jaune)"
 
-#, fuzzy
 msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
 msgstr "Processeur trop lent pour la vitesse sélectionnée, vitesse réinitialisée"
 
@@ -1460,9 +1453,8 @@ msgstr ""
 msgid "CURRENT_DEVELOPERS"
 msgstr "Développeurs actuels"
 
-#, fuzzy
 msgid "CURRENT_DILUTION"
-msgstr "POSITION ACTUELLE"
+msgstr "Événement de dilution actuel"
 
 msgid "CURRENT_DILUTION_TOOLTIP"
 msgstr ""
@@ -1472,17 +1464,14 @@ msgstr ""
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "POSITION ACTUELLE"
 
-#, fuzzy
 msgid "CURRENT_PARTICLES_ALL"
-msgstr "POSITION ACTUELLE"
+msgstr "Tout"
 
-#, fuzzy
 msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
-msgstr "Aucune recherche en cours"
+msgstr "Cercles uniquement"
 
-#, fuzzy
 msgid "CURRENT_PARTICLES_NONE"
-msgstr "Aucune recherche en cours"
+msgstr "Aucun"
 
 msgid "CURRENT_RESEARCH_NONE"
 msgstr "Aucune recherche en cours"
@@ -1530,13 +1519,11 @@ msgstr "Glycolyse cytoplasmique"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#, fuzzy
 msgid "CYTOTOXIN_SYNTHESIS"
-msgstr "Synthèse des cytotoxines"
+msgstr "Synthèse de cytotoxine"
 
-#, fuzzy
 msgid "DAMAGE_SOURCE_RADIATION"
-msgstr "(coût des organites, membranes et autres éléments dans l'éditeur)"
+msgstr "radiation"
 
 msgid "DAY_LENGTH"
 msgstr "Durée de la journée"
@@ -1565,16 +1552,18 @@ msgstr "Configuration des zones mortes"
 msgid "DEATH"
 msgstr "mort"
 
+#, fuzzy
+msgid "DEBUG_CONSOLE"
+msgstr "Débogueur"
+
 msgid "DEBUG_COORDINATES"
 msgstr ""
 "Position : {0}\n"
 "Pointeur à : {1}"
 
-#, fuzzy
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
-msgstr "Le dessin de débogage physique n'est pas disponible dans ce type de build"
+msgstr "Le débogage physique n'est pas disponible dans ce type de build"
 
-#, fuzzy
 msgid "DEBUG_HEAT_AT_CURSOR"
 msgstr "Température : {0}"
 
@@ -1584,7 +1573,6 @@ msgstr "Débogueur"
 msgid "DECEMBER"
 msgstr "Décembre"
 
-#, fuzzy
 msgid "DECREASE_ITEM_SIZE"
 msgstr "Rétrécir l'objet"
 
@@ -4227,7 +4215,7 @@ msgid "MONITOR_AUTO"
 msgstr "Automatique"
 
 msgid "MONITOR_IDENTIFIER"
-msgstr ""
+msgstr "Moniteur {0}"
 
 msgid "MORE_INFO"
 msgstr "Plus d'informations"
@@ -5306,11 +5294,11 @@ msgstr "(obtenir passivement des composés de reproduction de l'environnement sa
 
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr ""
-"Configure qui qui se arrive aux composés stockés à l'entrée dans l'éditeur.\n"
-"Partager avec la cellule sœur lui donne la moitié des composés à la sortie de l'éditeur.\n"
-"Tout garder est l'option égoïste de garder tous les composés tel quel.\n"
-"Toujours remplir fait le plein de vos réserves initiales.\n"
-"Remplir au changement de secteur fait le plein si vous venez de changer de secteur."
+"Configure ce qui arrive aux composés stockés lorsque vous passez à l'éditeur.\n"
+"La division avec une cellule sœur lui attribue la moitié des composés stockés à la sortie de l'éditeur.\n"
+"Tout conserver est l'option égoïste qui consiste à conserver tous les composés stockés tels quels.\n"
+"Toujours remplir tous les composés jusqu'à la quantité initiale générée par la cellule.\n"
+"Remplir les composés initiaux lors du changement de secteur, mais uniquement si le secteur a été modifié."
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduction :"
@@ -5935,7 +5923,7 @@ msgid "SPECIES_LIST"
 msgstr "Liste des espèces"
 
 msgid "SPECIES_MEMBER_IMPACT_ON_POP"
-msgstr ""
+msgstr "Impact de la mort des membres de l'espèce"
 
 #, fuzzy
 msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
@@ -6453,6 +6441,10 @@ msgstr "Activer le mode liaison"
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Activez le mode liaison. Entrez en contact avec d'autres cellules pour créer une colonie."
 
+#, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Activer/désactiver le panneau de débogage"
+
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Activer/désactiver le panneau de débogage"
 
@@ -6847,12 +6839,15 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
 msgstr ""
-"La barre de production d'ATP à droite indique la quantité de [thrive:compound type=\"atp\"][/thrive:compound] produite par votre cellule par rapport à la quantité consommée. Si la barre supérieure est plus courte que la barre inférieure, cela signifie que vous ne produisez pas assez d'[thrive:compound type=\"atp\"][/thrive:compound].\n"
+"L'éditeur des tolérances permet de changer les [b]conditions environementales auxquelles votre espèce est adaptée[/b]. Ça inclut la [thrive:compound type=\"temperature\"][/thrive:compound] et la [b]pression[/b] [thrive:icon]Pressure[/thrive:icon] du secteur occupé.\n"
 "\n"
-"La barre du bas montre le coût de l'[b]osmorégulation[/b] [thrive:icon]OsmoIcon[/thrive:icon] et le coût du [b]déplacement[/b] [thrive:icon]MovementIcon[/thrive:icon].\n"
-"L'[b]Osmorégulation[/b] [thrive:icon]OsmoIcon[/thrive:icon] est [u]le coût fondamental pour rester en vie[/u]. Chaque élément que vous ajoutez augmente ce coût.\n"
+"Lorsque vous migrer vers un secteur auquel vou n'êtes pas adapté, vous subirez [b]différents effets négatifs[/b]. Ajuster les curseurs pour corriger soit les conditions préférées, soit l'amplitude de tolérance selon les conditions du nouveau secteur pour retirer ces effets. Les conditions inadéquates sont affichées en rouge.\n"
 "\n"
-"Si votre production de [thrive:compound type=\"atp\"][/thrive:compound] est négative, assurez-vous d'augmenter votre production de [thrive:compound type=\"atp\"][/thrive:compound] ou d'ajouter du [b]stockage[/b] [thrive:icon]StorageIcon[/thrive:icon] pour vous permettre de vous déplacer en plusieurs étapes."
+"Pour devenir [b]parfaitement adapté[/b] et recevoir des bonus au lieu d'effets négatifs, l'amplitude de tolérance doit être réduite au maximum tout en restant adapté au secteur. Les nombres deviendront alors vert et les bonus seront appliqués.\n"
+"\n"
+"Le compromis d'une adaptation parfaite est de ne pas pouvoir survivre dans une large gamme de secteurs. Prévoir d'augmenter l'amplitude de tolérance avant de migrer est une bonne stratégie si [b]il vous reste des PM[/b] [thrive:icon] [thrive:icon]MP[/thrive:icon] à utiliser avant de quitter l'éditeur.\n"
+"\n"
+"Changez une des tolérances environementales pour fermer ce tutoriel."
 
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -7409,7 +7404,7 @@ msgstr ""
 "Ce que fait l'Ascension, si vous avez recherché les Outils Divins, est d'ajouter un nouveau panneau \"Outils Divins\" accessible à tout instant dans le jeu, ce qui permet de changer tout ce que vous désirez. De la création totale d'un système solaire à la création de la plus petite bactérie, de la destruction complète d'une civilisation à la possession de l'un de ses membres, tout est possible."
 
 msgid "WIKI_ASCENSION_TRANSITIONS"
-msgstr ""
+msgstr "Vous entrerez dans l'Ascension une fois que votre espèce aura franchi un portail de l'Ascension. Nous souhaiterons probablement afficher le générique du jeu après la cinématique marquant l'entrée dans la phase d'Ascension. Une fois le générique terminé, le joueur sera renvoyé dans le jeu, dans la phase d'Ascension, avec un message de félicitations. Pour en faire le dernier obstacle du jeu, le portail nécessitera beaucoup de recherche (y compris les outils divins mentionnés ci-dessus) et une tonne d'énergie, équivalente à plusieurs soleils, pour être créée et fonctionner. Les autres espèces potentiellement hostiles auront ici leur dernière chance d'attaquer le joueur avant qu'il n'obtienne un pouvoir infini et ne puisse simplement effacer les empires interstellaires concurrents."
 
 msgid "WIKI_ASCENSION_UI"
 msgstr "Prochainement."
@@ -7666,6 +7661,13 @@ msgstr "Pas de conditions."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
 msgstr ""
+"[color=#3796e1][url=https://fr.wikipedia.org/wiki/Chimiotrophie]La chimiosynthèse[/url][/color] est un processus métabolique présent chez de nombreux microbes dans le monde réel, où elle sert essentiellement d'alternative à la photosynthèse. Alors que la photosynthèse utilise les photons de la lumière solaire pour fournir l'énergie nécessaire aux réactions chimiques, la chimiosynthèse utilise plutôt l'oxydation de composés inorganiques tels que le fer ou le sulfure d'hydrogène pour fournir cette énergie.\n"
+"\n"
+"À titre d'exemple, la chimiosynthèse du sulfure d'hydrogène peut être résumée par l'équation chimique suivante :\n"
+"\n"
+"18H<sub>2</sub>S + 6CO<sub>2</sub> + 3O<sub>2</sub> → C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> (carbohydrate) + 12H<sub>2</sub>O + 18S\n"
+"\n"
+"Dans la réaction ci-dessus, le sulfure d'hydrogène sert de source d'électrons lorsqu'il réagit avec le dioxyde de carbone et l'oxygène, ce qui entraîne la formation d'une molécule de glucide ainsi que d'eau et d'atomes de soufre libres. Ainsi, alors que la photosynthèse entraîne la libération d'oxygène gazeux, la chimiosynthèse à base de sulfure d'hydrogène produit du soufre, qui s'agrège généralement en globules solides."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_STRATEGY"
 msgstr ""
@@ -8057,6 +8059,11 @@ msgstr "Produit du [thrive:compound type=\"glucose\"][/thrive:compound]. Taux pr
 
 msgid "WIKI_FERROPLAST_REQUIREMENTS"
 msgstr ""
+"Une cellule doit avoir un [b][color=#3796e1][url=thriveopedia:nucleus]Noyau[/url][/color][/b] pour développer des [b]Ferroplastes[/b].\n"
+"\n"
+"Si les améliorations des organites sont activées dans les paramètres du jeu, la condition suivante doit être remplie [i]pour la cellule du joueur[/i] :\n"
+"\n"
+"[indent]—   Contient de la [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyanine[/url][/color][/b] durant minimum [b]6[/b] générations à la suite.[/indent]"
 
 #, fuzzy
 msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
@@ -8423,6 +8430,11 @@ msgstr "À venir"
 
 msgid "WIKI_HYDROGENASE_STRATEGY"
 msgstr ""
+"Au départ, l'hydrogénase sera l'élément fondamental du traitement du glucose dans une atmosphère anoxygénique, permettant aux joueurs de tirer parti des nuages de glucose initialement abondants. Sa production d'énergie constante, qui n'est limitée par aucun composé atmosphérique, en fait un élément très polyvalent et important pour les procaryotes à faible consommation d'énergie. Les joueurs qui souhaitent utiliser le glucose doivent généralement s'adapter à la fermentation clostridienne. \n"
+"\n"
+"À terme, il est probablement préférable que l'hydrogénase commence à être remplacée par des métabolosomes. En raison de leur nature aérobie, les métabolosomes sont beaucoup plus efficaces que l'hydrogénase, et tirer parti de l'oxygène est un élément important pour progresser vers le stade d'eucaryote, puis finalement de multicellulaire.\n"
+"\n"
+"Il est important de garder à l'esprit que vous devrez probablement remplacer les hydrogénases une fois que votre monde sera oxygéné. Le spam d'hydrogénases pourrait entraîner plusieurs générations de suppression/remplacement d'éléments une fois que votre monde sera oxygéné. Ainsi, associer certaines hydrogénases à un autre processus métabolique, tel que la chimiosynthèse, ou maintenir un organisme relativement peu énergivore pourrait être une stratégie bénéfique. À mesure que le monde s'oxygène, l'hydrogénase fonctionnerait probablement mieux dans des zones plus profondes et moins riches en oxygène."
 
 msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "Pas d'améliorations."
@@ -8667,6 +8679,49 @@ msgstr "Éditeur de microbe"
 
 msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
 msgstr ""
+"La phase Microbe se déroule dans un environnement 3D vu sous un angle 2D, comme à travers un microscope. Ici, le joueur doit diriger sa cellule vers des nuages composés de couleurs vives afin de la maintenir en vie et de la faire grandir jusqu'à ce qu'elle puisse se reproduire. Au début du jeu, il n'y a pas de prédateurs, les seuls dangers étant la famine et quelques toxines occasionnelles. Cependant, à mesure que le joueur se reproduit, de nouvelles espèces concurrentes se ramifient à partir de l'espèce du joueur et deviennent progressivement un obstacle de plus en plus dangereux à surmonter pour le joueur. Alors qu'au début, le joueur n'est qu'une minuscule cellule capable de consommer uniquement du [thrive :compound type=\"glucose\"] [/thrive :compound] [thrive :compound type=\"ammonia\"][/thrive :compound] et du [thrive :compound type=\"phosphates\"][/thrive :compound], il pourra adapter sa cellule comme il le souhaite après chaque reproduction, ce qui lui conférera de nouvelles capacités et options au fil du temps. Cela a toutefois un coût, car plus la cellule du joueur devient grande et complexe, plus elle aura besoin de nourriture pour se maintenir. Le joueur doit veiller à ce que sa cellule soit toujours viable, sinon il mourra rapidement de faim. De plus, les espèces issues de la vôtre hériteront de vos adaptations, le joueur doit donc faire attention à la rapidité avec laquelle il développe des éléments tels que des armes.\n"
+"\n"
+"[b][u]Contrôles[/u][/b]\n"
+"\n"
+"La phase Microbe se joue au clavier et à la souris. La cellule est toujours orientée vers le curseur de la souris, tandis que les touches WASD permettent de la déplacer dans une direction relative à la position du curseur. Par exemple, appuyer sur la touche W fera avancer la cellule vers le curseur de la souris. Appuyer sur la touche S fera reculer la cellule loin du curseur de la souris. Ces commandes permettent au joueur de déplacer stratégiquement sa cellule pour esquiver les projectiles toxiques ou se positionner de manière à capturer autant de cellules proies que possible. La souris est également utilisée pour interagir avec les différents éléments de l'interface utilisateur à l'écran.\n"
+"\n"
+"Appuyez sur la touche G pour activer le mode Engloutissement . Dans ce mode, la cellule commencera à clignoter avec une superposition bleue et endommagera toutes les cellules plus petites qui entreront en contact. Toutes les cellules ont cette capacité, quelles que soient leurs adaptations. Il est donc judicieux d'éviter de s'approcher des cellules plus grandes si le joueur ne dispose d'aucune défense..\n"
+"\n"
+"Appuyez sur la touche E pour expulser un projectile toxique de votre cellule, si celle-ci possède des composants générateurs de toxines.\n"
+"\n"
+"À l'aide de la molette de la souris, le joueur peut régler son champ de vision. Cela est très utile pour explorer l'environnement qui l'entoure ou pour examiner de près sa cellule.\n"
+"\n"
+"Appuyer sur X activera le déplacement automatique, ce qui fera avancer le joueur automatiquement. Cela évite au joueur d'avoir à maintenir enfoncées les touches de déplacement lorsqu'il n'a pas besoin d'un contrôle précis. Le joueur peut toujours diriger le personnage à l'aide de la souris dans cet état et peut annuler le déplacement automatique à tout moment en appuyant sur n'importe quelle touche de déplacement.\n"
+"\n"
+"[b][u]Environnement[/u][/b]\n"
+"\n"
+"Ici se trouve les paramètres uniques liés au climat de la zone actuelle et qui agissent comme un effet passif sur les cellules.\n"
+"\n"
+"[indent]—   [b]Température :[/b] Mesure de la chaleur dans l'environnement actuel. La température n'a actuellement aucun effet direct sur les cellules, mais elle est nécessaire pour produire de l'énergie à l'aide de thermoplastiques.[/indent]\n"
+"\n"
+"[indent]—   [b]Pression :[/b] La force de compression dans l'environnement en fonction de la profondeur. La pression n'a actuellement aucun effet dans le jeu.[/indent]\n"
+"\n"
+"[indent]—   [b]Lux :[/b] La quantité de lumière atteignant l'environnement. Le lux est essentiel au bon fonctionnement de la photosynthèse, c'est pourquoi les organismes photosynthétiques doivent s'assurer que l'environnement dans lequel ils vivent dispose d'une lumière suffisante pour subvenir à leurs besoins. Un lux de 50 % ou plus constitue un habitat parfaitement adapté aux organismes photosynthétiques.[/indent]\n"
+"\n"
+"Ici se trouve les gaz présents dans une zone et qui n'ont pas d'existence physique dans le monde du jeu. Ces éléments ont un effet passif sur divers processus de la cellule et peuvent être nécessaires au fonctionnement de certaines protéines et organites.\n"
+"\n"
+"[thrive :compound type=\"oxygen\"][/thrive :compound] [b]Oxygène :[/b] Un gaz important pour la respiration aérobie, l'[b]Oxygène[/b] est utilisé dans les éléments tels que les [b][color=#3796e1][url=thriveopedia :metabolosome]Métabolosomes[/url][/color][/b] pour remplir leurs fonctions.Plus il y a d'[b]Oxygène[/b]  dans la zone, meilleure sera leur performance. Actuellement, l'[b]Oxygène[/b]  n'a aucun autre effet sur les cellules. La concentration débute à 0% partout, augmente avec la fréquence de la photosynthèse et diminue avec la fréquence de la respiration, la fixation aérobie du [thrive :compound type=\"nitrogen\"][/thrive :compound] et la synthèse de certaines toxines.\n"
+"\n"
+"[thrive :compound type=\"nitrogen\"][/thrive :compound] [b]Azote :[/b] Un gaz utilisé par les cellules pour la fixation de l'[b]Azote[/b] dans la synthèse de l'[thrive :compound type=\"ammonia\"][/thrive :compound]. L'[b]Azote[/b] n'a aucun autre effet pour le moment. La concentration diminue en fonction de la fréquence de fixation de l'[b]Azote[/b].\n"
+"\n"
+"[thrive :compound type=\"carbondioxide\"][/thrive :compound] [b]Dioxyde de Carbone :[/b] Un gaz important pour la chimiosynthèse et la photosynthèse. Le [b]Dioxyde de Carbone[/b] est actuellement présent à une concentration comprise entre 8 % et 30 % dans différentes zones. La concentration diminue avec la fréquence de la photosynthèse et de la chimiosynthèse du [thrive :compound type=\"iron\"][/thrive :compound] ou de l'[thrive :compound type=\"hydrogensulfide\"][/thrive :compound], et augmente avec la fréquence de la respiration.\n"
+"\n"
+"Plusieurs composés sont présents dans le stade Microbe. Vous trouverez ci-dessous une liste de tous les composés et de leurs utilisations.\n"
+"\n"
+"[thrive :compound type=\"glucose\"][/thrive :compound] [b]Glucose :[/b] Stockage de l'[thrive :compound type=\"atp\"][/thrive :compound]principal pour les cellules, et source initiale de nourriture pour le joueur. Le [b]Glucose[/b] est consommé par plusieurs organites et protéines pour produire de l'[thrive :compound type=\"atp\"][/thrive :compound], les plus notables étant le [b][color=#3796e1][url=thriveopedia :metabolosome]Métabolosomes[/url][/color][/b] et la [b][color=#3796e1][url=thriveopedia :mitochondrion]Mitochondrie[/url][/color][/b] car elles sont spécifiquement utilisé pour le [b]Glucose[/b]. Lorsque le joueur meurt, il réapparaît avec une réserve de [b]Glucose[/b] dans sa cellule, ce qui lui permet de reprendre facilement le jeu sans craindre de mourir de faim. Le joueur doit faire attention s'il compte sur le [b]Glucose[/b] facilement disponible dans l'environnement, car à chaque génération, les quantités globales de [b]Glucose[/b] diminuent. Les nuages de [b]Glucose[/b] sont de couleur blanche.\n"
+"\n"
+"[thrive :compound type=\"ammonia\"][/thrive :compound] [b]Ammoniac :[/b] Composés essentiels à la reproduction. L'[b]Ammoniac[/b] est utilisé pour développer et reproduire les protéines et les organites au sein de la cellule et peut être trouvé facilement dans l'environnement. Les éléments tels que le [b][color=#3796e1][url=thriveopedia :nitrogenase]Nitrogénase[/url][/color][/b] et le[b][color=#3796e1][url=thriveopedia :nitrogenfixingplastid]Nitroplast[/url][/color][/b] peuvent produire de l'[b]Ammoniac[/b] depuis de l'[thrive :compound type=\"atp\"][/thrive :compound] et du [thrive :compound type=\"nitrogen\"][/thrive :compound], évitant ainsi au joueur d'avoir à le rechercher activement dans l'environnement pour se reproduire. Les nuages d'[b]Ammoniac[/b] sont de couleur orange.\n"
+"\n"
+"[thrive :compound type=\"phosphates\"][/thrive :compound] [b]Phosphate :[/b] Identique dans sa fonction à [thrive :compound type=\"ammonia\"][/thrive :compound], le [b]Phosphate[/b] est indispensable à la reproduction. Contrairement à l'[thrive :compound type=\"ammonia\"][/thrive :compound], il n’existe aucun moyen de synthétiser le [b]Phosphate[/b] : il ne peut donc être obtenu que dans l’environnement ou par la prédation. Les nuages de [b]Phosphates[/b] sont de couleur violette. Les cristaux de [b]Phosphates[/b] sont bleus ou bleu-vert.\n"
+"\n"
+"[thrive :compound type=\"hydrogensulfide\"][/thrive :compound] [b]Sulfure d’Hydrogène :[/b] Source alternative de [thrive :compound type=\"glucose\"][/thrive :compound] pour les cellules, présent en grande quantité dans un nombre limité de zones spécifiques. Si un joueur souhaite utiliser le [b]Sulfure d’Hydrogène[/b] comme source d’énergie, il doit s’assurer que la zone qu’il occupe contient ce composé. Le [b]Sulfure d’Hydrogène[/b] n’est utilisable que si le joueur possède des [b][color=#3796e1][url=thriveopedia :chemoSynthesizingProteins]Protéines Chimiosynthétiques[/url][/color][/b] ; dans le cas contraire, la cellule ne peut pas absorber le composé, et toute quantité déjà stockée sera rapidement expulsée.\n"
+"\n"
+"[thrive :compound type=\"iron\"][/thrive :compound] [b]Fer :[/b] Autre source alternative d'[thrive :compound type=\"atp\"][/thrive :compound], le [b]Fer[/b] est une ressource relativement rare, présente dans presque toutes les zones du monde, mais pas dans toutes. Contrairement aux autres composés, le [b]Fer[/b] peut être trouvé non seulement sous forme de nuages, mais aussi sous forme de fragments de tailles variables qui suivent les nuages de [b]Fer[/b] lors de leur déplacement. Le [b]Fer[/b] ne peut être utilisé par une cellule que si celle-ci possède de la [b][color=#3796e1][url=thriveopedia :rusticyanin]Rusticyanine[/url][/color][/b]. Les nuages de [b]Fer[/b] apparaissent de couleur brune. Les fragments eux-mêmes peuvent être engloutis et constituent une source significative de [b]Fer[/b]."
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_GDD"
@@ -8909,9 +8964,12 @@ msgstr ""
 
 msgid "WIKI_OXYTOXISOME_EFFECTS"
 msgstr ""
+"Si une cellule possède au moins un [b]Toxisome[/b] ou une [b][color=#3796e1][url=thriveopedia:oxytoxy]Vacuole à toxines[/url][/color][/b], elle peut tirer des projectiles toxiques, en consommant l'[thrive:compound type=\"oxytoxy\"][/thrive:compound] stocké pour ce faire. Ces projectiles infligent des dégâts aux cellules d’autres espèces, mais ne blessent pas les membres de l’espèce qui les a tirés.\n"
+"\n"
+"Les dégâts infligés augmentent en fonction de la quantité d'[thrive:compound type=\"oxytoxy\"][/thrive:compound] projetée."
 
 msgid "WIKI_OXYTOXISOME_INTRO"
-msgstr ""
+msgstr "[b][color=#3796e1][url=thriveopedia:metabolosome]Métabolosome[/url][/color][/b] modifié qui produit de l'[thrive:compound type=\"oxytoxy\"][/thrive:compound],un agent toxique pouvant être projeté. Version inférieure de la [b][color=#3796e1][url=thriveopedia:oxytoxy]Vacuole à toxines[/url][/color][/b]."
 
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "Pas de modifications."
@@ -9692,6 +9750,14 @@ msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Pire secteur :"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "Ordre de croissance"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "(si elle est activée, la vitesse de croissance est plafonnée, si elle est désactivée, seuls les composés disponibles affectent la vitesse de croissance)"
 
 msgid "XBOX360"
 msgstr "Xbox 360"

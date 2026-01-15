@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-02 16:33+0100\n"
+"POT-Creation-Date: 2026-01-12 15:26+0100\n"
 "PO-Revision-Date: 2025-12-18 14:20+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -898,6 +898,9 @@ msgstr "Coastal"
 msgid "COLLISION_SHAPE"
 msgstr "Show physics debug shapes"
 
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "This tab allows setting the order in which the colony cells grow, with the first cell in the order being the root (or bud) cell. You can use this to prioritise the growth of more crucial cells or to ensure that the colony's production and consumption are properly balanced."
+
 msgid "COLOUR"
 msgstr "Colour"
 
@@ -948,6 +951,9 @@ msgstr "Saturation value, the amount of gray in a particular colour"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Value (brightness) value, brightness or intensity of the colour"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr "Insert Command"
 
 msgid "COMMON_ABILITIES"
 msgstr "Common Abilities"
@@ -1541,6 +1547,9 @@ msgstr "Deadzone Configuration"
 
 msgid "DEATH"
 msgstr "death"
+
+msgid "DEBUG_CONSOLE"
+msgstr "Debug Console"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -6199,6 +6208,9 @@ msgstr "Toggle binding mode"
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Toggle binding mode. Touch other cells to create a colony."
 
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Toggle debug panel"
+
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Toggle debug panel"
 
@@ -9548,6 +9560,12 @@ msgstr "Warm"
 
 msgid "WORST_PATCH_COLON"
 msgstr "Worst Patch:"
+
+msgid "WRONG_GROWTH_ORDER"
+msgstr "Incorrect growth order"
+
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "The colony's growth order causes some cells to be separated. This happens when a cell are placed earlier in the order than the cells that connect it to the root. Please check the Growth Order tab for cells marked red and correct the order."
 
 msgid "XBOX360"
 msgstr "Xbox 360"
