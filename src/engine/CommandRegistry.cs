@@ -205,7 +205,7 @@ public class CommandRegistry : IDisposable
         return false;
     }
 
-    private static bool TryGetAlias(Type type, ReadOnlySpan<char> token, out object? val)
+    private static bool TryGetAlias(Type type, ReadOnlySpan<char> token, out object? value)
     {
         foreach (var field in type.GetFields())
         {
