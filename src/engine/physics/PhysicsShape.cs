@@ -345,13 +345,13 @@ public class PhysicsShape : IDisposable
     {
         var shapes =
             ThriveJsonConverter.Instance
-                .DeserializeFile<List<ChunkConfiguration.ComplexCollisionShapeConfiguration>>(path);
+                .DeserializeFile<List<ComplexCollisionShapeConfiguration>>(path);
 
         var subShapes = new List<(PhysicsShape, Vector3, Quaternion)>();
 
         foreach (var complexCollision in shapes ?? [])
         {
-            if (complexCollision.CollisionShapePath == null)
+            if (string.IsNullOrEmpty(complexCollision.CollisionShapePath))
             {
                 GD.PrintErr("CollisionShapePath is null in complex collision shape");
                 continue;
@@ -378,6 +378,32 @@ public class PhysicsShape : IDisposable
         {
             NativeMethods.ReleaseShape(nativeInstance);
             nativeInstance = new IntPtr(0);
+        }
+    }
+
+    public class ComplexCollisionShapeConfiguration
+    {
+        /// <summary>
+        ///   Path to the convex collision shape this part uses. Must be set as this is the only way to create
+        ///   a complex shape currently.
+        /// </summary>
+        public string CollisionShapePath;
+
+        /// <summary>
+        ///   Starting position of the shapes. Used with primitive shapes to position them correctly.
+        /// </summary>
+        public Vector3 Position;
+
+        /// <summary>
+        ///   Rotation of the shapes in radians. Used with primitive shapes to rotate them correctly.
+        /// </summary>
+        public Vector3 Rotation;
+
+        public ComplexCollisionShapeConfiguration(string collisionShapePath, Vector3 position, Vector3 rotation)
+        {
+            CollisionShapePath = collisionShapePath;
+            Position = position;
+            Rotation = rotation;
         }
     }
 }

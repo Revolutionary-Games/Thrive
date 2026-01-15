@@ -388,29 +388,4 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
             writer.Write(MissingDefaultShaderSupport);
         }
     }
-
-    public class ComplexCollisionShapeConfiguration
-    {
-        /// <summary>
-        ///   Path to the convex collision shape of this chunk's graphical mesh (if any).
-        /// </summary>
-        public string? CollisionShapePath;
-
-        /// <summary>
-        ///   Starting position of the shapes. Used with primitive shapes to position them correctly.
-        /// </summary>
-        public Vector3 Position;
-
-        /// <summary>
-        ///   Rotation of the shapes in radians. Used with primitive shapes to rotate them correctly.
-        /// </summary>
-        public Vector3 Rotation;
-
-        public ComplexCollisionShapeConfiguration(string collisionShapePath, Vector3? position, Vector3? rotation)
-        {
-            CollisionShapePath = collisionShapePath;
-            Position = position ?? Vector3.Zero;
-            Rotation = rotation ?? Vector3.Zero;
-        }
-    }
 }
