@@ -159,10 +159,7 @@ public partial class AscensionCeremony : Node
             case State.Ascending:
             {
                 // TODO: some kind of actual ascending animation
-                if (gateWalker != null)
-                {
-                    gateWalker.GlobalPosition += new Vector3(0, 300 * (float)delta, 0);
-                }
+                gateWalker?.GlobalPosition += new Vector3(0, 300 * (float)delta, 0);
 
                 stateTimer += delta;
 
