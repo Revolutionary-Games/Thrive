@@ -209,10 +209,10 @@ public class CommandRegistry : IDisposable
     {
         foreach (var field in type.GetFields())
         {
-            if (!field.IsDefined(typeof(AliasAttribute), true))
-                continue;
+            var attribute = field.GetCustomAttribute<AliasAttribute>(true);
 
-            var attribute = field.GetCustomAttribute<AliasAttribute>(true)!;
+            if (attribute == null)
+                continue;
 
             foreach (var alias in attribute.Aliases)
             {
