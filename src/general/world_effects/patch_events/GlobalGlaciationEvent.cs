@@ -12,7 +12,10 @@ public class GlobalGlaciationEvent : IWorldEffect
     private const string Background = "iceshelf";
 
     private static readonly string[] IceChunksConfigurations =
-        ["glaciationIceShard", "glaciationIceChunkSmall", "glaciationIceChunkBig", "glaciationIceSnowflake"];
+    [
+        "glaciationIceShard", "glaciationIceChunkSmall", "glaciationIceChunkBig", "glaciationIceSnowflake",
+        "glaciationIceSnowflakeBig",
+    ];
 
     private readonly XoShiRo256starstar random;
 

@@ -3504,6 +3504,36 @@
           "Compounds": {},
           "DamageType": "ice"
         },
+        "iceSnowflakeBig": {
+          "Name": "ICE_SNOWFLAKE_BIG",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/IceSnowflakeChunk1.tscn",
+              "ConvexShapePath": "res://assets/models/IceSnowflakeChunk1Shape.json",
+              "MissingDefaultShaderSupport": true
+            },
+            {
+              "ScenePath": "res://assets/models/IceSnowflakeChunk2.tscn",
+              "ConvexShapePath": "res://assets/models/IceSnowflakeChunk2.shape",
+              "MissingDefaultShaderSupport": true
+            },
+            {
+              "ScenePath": "res://assets/models/IceSnowflakeChunk3.tscn",
+              "ConvexShapePath": "res://assets/models/IceSnowflakeChunk3Shape.json",
+              "MissingDefaultShaderSupport": true
+            }
+          ],
+          "Density": 0.00007,
+          "Dissolves": false,
+          "Radius": 40,
+          "ChunkScale": 1,
+          "PhysicsDensity": 10000,
+          "Size": 1200,
+          "Damages": 45,
+          "DeleteOnTouch": false,
+          "Compounds": {},
+          "DamageType": "ice"
+        },
         "iceSnowflake": {
           "Name": "SNOWFLAKE",
           "Meshes": [
@@ -5224,6 +5254,36 @@
               "Amount": 0.6
             }
           },
+          "DamageType": "ice"
+        },
+        "glaciationIceSnowflakeBig": {
+          "Name": "ICE_SNOWFLAKE_BIG",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/IceSnowflakeChunk1.tscn",
+              "ConvexShapePath": "res://assets/models/IceSnowflakeChunk1Shape.json",
+              "MissingDefaultShaderSupport": true
+            },
+            {
+              "ScenePath": "res://assets/models/IceSnowflakeChunk2.tscn",
+              "ConvexShapePath": "res://assets/models/IceSnowflakeChunk2.shape",
+              "MissingDefaultShaderSupport": true
+            },
+            {
+              "ScenePath": "res://assets/models/IceSnowflakeChunk3.tscn",
+              "ConvexShapePath": "res://assets/models/IceSnowflakeChunk3Shape.json",
+              "MissingDefaultShaderSupport": true
+            }
+          ],
+          "Density": 0.00007,
+          "Dissolves": false,
+          "Radius": 40,
+          "ChunkScale": 1,
+          "PhysicsDensity": 10000,
+          "Size": 1200,
+          "Damages": 45,
+          "DeleteOnTouch": false,
+          "Compounds": {},
           "DamageType": "ice"
         },
         "meteorIronSmallChunk": {
