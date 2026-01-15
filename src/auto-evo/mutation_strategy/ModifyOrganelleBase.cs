@@ -42,7 +42,7 @@ public abstract class ModifyOrganelleBase : IMutationStrategy<MicrobeSpecies>
         List<int>? organelleIndexesToMutate = null;
 
         // Manual looping to avoid one enumerator allocation per call
-        var organelleList = baseSpecies.Organelles.Organelles;
+        var organelleList = baseSpecies.ModifiableOrganelles.Organelles;
         var organelleCount = organelleList.Count;
         for (var i = 0; i < organelleCount; ++i)
         {
@@ -98,14 +98,14 @@ public abstract class ModifyOrganelleBase : IMutationStrategy<MicrobeSpecies>
 
                     // We did not change the position at all, so we can safely put down the organelle as upgrades
                     // cannot affect the shape
-                    newSpecies.Organelles.AddAutoEvoAttemptOrganelle(upgradedOrganelle);
+                    newSpecies.ModifiableOrganelles.AddAutoEvoAttemptOrganelle(upgradedOrganelle);
                     mutatedOrganelle = true;
                 }
                 else
                 {
                     // TODO: switch away from cloning again once ensured that auto-evo does not modify original
                     // organelles
-                    newSpecies.Organelles.AddAutoEvoAttemptOrganelle(organelleList[j].Clone());
+                    newSpecies.ModifiableOrganelles.AddAutoEvoAttemptOrganelle(organelleList[j].Clone());
 
                     // newSpecies.Organelles.AddAutoEvoAttemptOrganelle(organelleList[j]);
                 }

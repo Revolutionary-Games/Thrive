@@ -596,7 +596,7 @@ public partial class PhysicsTest : Node
                 random);
 
         testMicrobeOrganellePositions =
-            microbeSpecies.Organelles.Select(o => new JVecF3(Hex.AxialToCartesian(o.Position))).ToArray();
+            microbeSpecies.ModifiableOrganelles.Select(o => new JVecF3(Hex.AxialToCartesian(o.Position))).ToArray();
 
         int created = 0;
 

@@ -1169,8 +1169,8 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
             foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
             {
                 MicrobeSpeciesOrganelleStatistics[organelle] = (
-                    microbeSpecies.Average(s => s.Organelles.Any(o => o.Definition == organelle) ? 1 : 0),
-                    microbeSpecies.Average(s => s.Organelles.Count(o => o.Definition == organelle)));
+                    microbeSpecies.Average(s => s.ReadonlyOrganelles.Any(o => o.Definition == organelle) ? 1 : 0),
+                    microbeSpecies.Average(s => s.ReadonlyOrganelles.Count(o => o.Definition == organelle)));
             }
 
             foreach (var upgradeName in MicrobeSpeciesUpgradesStatistics.Keys)
@@ -1178,9 +1178,11 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                 MicrobeSpeciesUpgradesStatistics[upgradeName] = (
                     MicrobeSpeciesUpgradesStatistics[upgradeName].Name,
                     microbeSpecies.Average(s =>
-                        s.Organelles.Any(o => o.Upgrades?.UnlockedFeatures.Contains(upgradeName) ?? false) ? 1 : 0),
+                        s.ReadonlyOrganelles.Any(o => o.Upgrades?.UnlockedFeatures.Contains(upgradeName) ?? false) ?
+                            1 :
+                            0),
                     microbeSpecies.Average(s =>
-                        s.Organelles.Count(o => o.Upgrades?.UnlockedFeatures.Contains(upgradeName) ?? false)));
+                        s.ReadonlyOrganelles.Count(o => o.Upgrades?.UnlockedFeatures.Contains(upgradeName) ?? false)));
             }
 
             foreach (var membrane in SimulationParameters.Instance.GetAllMembranes())
@@ -1192,11 +1194,11 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
             foreach (var enzyme in MicrobeSpeciesEnzymesStatistics.Keys)
             {
                 MicrobeSpeciesEnzymesStatistics[enzyme] = (
-                    microbeSpecies.Average(s => s.Organelles.Any(o =>
+                    microbeSpecies.Average(s => s.ReadonlyOrganelles.Any(o =>
                         o.Definition.Enzymes.TryGetValue(enzyme, out var value) && value > 0) ?
                         1 :
                         0),
-                    microbeSpecies.Average(s => s.Organelles.Count(o =>
+                    microbeSpecies.Average(s => s.ReadonlyOrganelles.Count(o =>
                         o.Definition.Enzymes.TryGetValue(enzyme, out var value) && value > 0)));
             }
         }

@@ -149,10 +149,10 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             }
 
             // Reset endosymbiont status so that they aren't free to move / delete in the next editor cycle
-            var count = cellType.ModifiableOrganelles.Count;
+            var count = cellType.ReadonlyOrganelles.Count;
             for (var i = 0; i < count; ++i)
             {
-                cellType.ModifiableOrganelles.Organelles[i].IsEndosymbiont = false;
+                cellType.ReadonlyOrganelles.Organelles[i].IsEndosymbiont = false;
             }
         }
 
@@ -214,10 +214,10 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             ProcessSpeedModifier = 1,
         };
 
-        ProcessSystem.ComputeCompoundBalance(ModifiableGameplayCells[0].ModifiableOrganelles,
+        ProcessSystem.ComputeCompoundBalance(ModifiableGameplayCells[0].ReadonlyOrganelles,
             biomeConditions, environmentalTolerances, CompoundAmountType.Biome, false, compoundBalances);
         var storageCapacity =
-            MicrobeInternalCalculations.CalculateCapacity(ModifiableGameplayCells[0].ModifiableOrganelles);
+            MicrobeInternalCalculations.CalculateCapacity(ModifiableGameplayCells[0].ReadonlyOrganelles);
 
         InitialCompounds.Clear();
 
@@ -261,7 +261,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         // TODO: CACHING IS MISSING from here (but microbe has it)
         // TODO: should moving be false in some cases?
         var compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(
-            cellType.ModifiableOrganelles, cellType.MembraneType, true, PlayerSpecies,
+            cellType.ReadonlyOrganelles, cellType.MembraneType, true, PlayerSpecies,
             microbeSpawnEnvironment.CurrentBiome, environmentalTolerances,
             microbeSpawnEnvironment.WorldSettings);
 

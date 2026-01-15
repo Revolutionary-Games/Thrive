@@ -153,12 +153,12 @@ public class GameWorld : IArchivable
                 if (PlayerSpecies is MicrobeSpecies microbeSpecies)
                 {
                     PlayerSpecies.ModifiableTolerances.CopyFrom(
-                        patch.GenerateTolerancesForMicrobe(microbeSpecies.Organelles));
+                        patch.GenerateTolerancesForMicrobe(microbeSpecies.ReadonlyOrganelles));
                 }
                 else if (PlayerSpecies is MulticellularSpecies multicellularSpecies)
                 {
                     PlayerSpecies.ModifiableTolerances.CopyFrom(patch.GenerateTolerancesForMicrobe(multicellularSpecies
-                        .ModifiableGameplayCells[0].ModifiableOrganelles));
+                        .ModifiableGameplayCells[0].ReadonlyOrganelles));
                 }
                 else
                 {
@@ -265,7 +265,8 @@ public class GameWorld : IArchivable
 
         species.MembraneType = SimulationParameters.Instance.GetMembrane("single");
 
-        species.Organelles.AddFast(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("cytoplasm"),
+        species.ModifiableOrganelles.AddFast(new OrganelleTemplate(
+            SimulationParameters.Instance.GetOrganelleType("cytoplasm"),
             new Hex(0, 0), 0), workMemory1, workMemory2);
 
         species.OnEdited();

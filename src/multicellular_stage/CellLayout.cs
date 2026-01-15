@@ -86,7 +86,7 @@ public class CellLayout<T> : HexLayout<T>, IReadOnlyCellLayout<T>, IArchivable
 
         foreach (var positionedCell in existingHexes)
         {
-            var organellesInternal = positionedCell.ModifiableOrganelles.Organelles;
+            var organellesInternal = positionedCell.ReadonlyOrganelles.Organelles;
             int organelleCount = organellesInternal.Count;
 
             for (int i = 0; i < organelleCount; ++i)
@@ -113,7 +113,7 @@ public class CellLayout<T> : HexLayout<T>, IReadOnlyCellLayout<T>, IArchivable
     {
         result.Clear();
 
-        var organellesInternal = hex.ModifiableOrganelles.Organelles;
+        var organellesInternal = hex.ReadonlyOrganelles.Organelles;
         int organelleCount = organellesInternal.Count;
 
         for (int i = 0; i < organelleCount; ++i)

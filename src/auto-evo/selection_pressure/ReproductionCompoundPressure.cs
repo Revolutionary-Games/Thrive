@@ -161,7 +161,7 @@ public class ReproductionCompoundPressure : SelectionPressure
         // being in a colony no longer reduces osmoregulation cost.
         var bindingModifier = 1.0f;
 
-        MicrobeInternalCalculations.GetBindingAndSignalling(microbeSpecies.Organelles.Organelles,
+        MicrobeInternalCalculations.GetBindingAndSignalling(microbeSpecies.ReadonlyOrganelles.Organelles,
             out var hasBindingAgent, out var hasSignallingAgent);
 
         if (hasBindingAgent)

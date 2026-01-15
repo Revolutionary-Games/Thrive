@@ -1121,7 +1121,7 @@ public partial class PatchMapDrawer : Control
 
             if (playerSpecies is MicrobeSpecies microbeSpecies)
             {
-                speciesSizeModifier = Math.Sqrt(microbeSpecies.Organelles.Organelles.Count);
+                speciesSizeModifier = Math.Sqrt(microbeSpecies.ReadonlyOrganelles.Organelles.Count);
             }
             else if (playerSpecies is MulticellularSpecies)
             {

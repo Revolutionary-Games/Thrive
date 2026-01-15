@@ -980,7 +980,7 @@ public partial class CellEditorComponent :
         }
 
         // Get the species organelles to be edited. This also updates the placeholder hexes
-        foreach (var organelle in properties.ModifiableOrganelles.Organelles)
+        foreach (var organelle in properties.ReadonlyOrganelles.Organelles)
         {
             editedMicrobeOrganelles.AddFast(organelle.Clone(), hexTemporaryMemory, hexTemporaryMemory2);
         }
@@ -989,7 +989,7 @@ public partial class CellEditorComponent :
 
         // This needs to be calculated here, otherwise ATP-related unlock conditions would
         // get null as the ATP balance
-        CalculateEnergyAndCompoundBalance(properties.ModifiableOrganelles.Organelles, properties.MembraneType,
+        CalculateEnergyAndCompoundBalance(properties.ReadonlyOrganelles.Organelles, properties.MembraneType,
             Editor.CurrentPatch.Biome);
 
         UpdateOrganelleUnlockTooltips(true);
@@ -1027,13 +1027,13 @@ public partial class CellEditorComponent :
         // Apply changes to the species organelles
         // It is easiest to just replace all
         // Note that if this code is changed, then also CellType.CopyFrom needs changes
-        editedProperties.ModifiableOrganelles.Clear();
+        editedProperties.ReadonlyOrganelles.Clear();
 
         // Even in a multicellular context, it should always be safe to apply the organelle growth order
         foreach (var organelle in growthOrderGUI.ApplyOrderingToItems(editedMicrobeOrganelles.Organelles))
         {
             var organelleToAdd = organelle.Clone();
-            editedProperties.ModifiableOrganelles.AddFast(organelleToAdd, hexTemporaryMemory, hexTemporaryMemory2);
+            editedProperties.ReadonlyOrganelles.AddFast(organelleToAdd, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         if (shouldUpdatePosition)
@@ -2832,7 +2832,7 @@ public partial class CellEditorComponent :
         target.MembraneRigidity = Rigidity;
         target.IsBacteria = true;
 
-        target.Organelles.Clear();
+        target.ModifiableOrganelles.Clear();
 
         // TODO: if this is too slow to copy each organelle like this, we'll need to find a faster way to get the data
         // in, perhaps by sharing the entire Organelles object
@@ -2841,7 +2841,7 @@ public partial class CellEditorComponent :
             if (entry.Definition == nucleus)
                 target.IsBacteria = false;
 
-            target.Organelles.AddFast(entry, hexTemporaryMemory, hexTemporaryMemory2);
+            target.ModifiableOrganelles.AddFast(entry, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         // Copy behaviour if it is known
@@ -3459,11 +3459,11 @@ public partial class CellEditorComponent :
             if (pristineSpeciesCopy.PlayerSpecies)
                 calculationSpecies.BecomePlayerSpecies();
 
-            calculationSpecies.Organelles.Clear();
+            calculationSpecies.ModifiableOrganelles.Clear();
 
-            foreach (var entry in pristineSpeciesCopy.Organelles)
+            foreach (var entry in pristineSpeciesCopy.ReadonlyOrganelles)
             {
-                calculationSpecies.Organelles.AddFast(entry, workMemory1, workMemory2);
+                calculationSpecies.ModifiableOrganelles.AddFast(entry, workMemory1, workMemory2);
             }
 
             // The pristine copy is not modified, so it is safe to not clone here

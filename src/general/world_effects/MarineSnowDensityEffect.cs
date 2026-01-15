@@ -137,7 +137,7 @@ public class MarineSnowDensityEffect : IWorldEffect
             // For now, only microbe species affect what organelles are available
             if (tuple.Key is MicrobeSpecies microbeSpecies)
             {
-                foreach (var organelle in microbeSpecies.Organelles)
+                foreach (var organelle in microbeSpecies.ReadonlyOrganelles)
                 {
                     availableOrganelles.Add(organelle.Definition);
                 }
