@@ -99,7 +99,7 @@ public class CellLayout<T> : HexLayout<T>, IReadOnlyCellLayout<T>, IArchivable
                 for (int j = 0; j < hexCount; ++j)
                 {
                     var position = Hex.RotateAxialNTimes(organelleHexes[j], positionedCell.Orientation) +
-                        organelle.Position + positionedCell.Position;
+                        Hex.RotateAxialNTimes(organelle.Position, positionedCell.Orientation) + positionedCell.Position;
                     if (!seen.Add(position))
                     {
                         throw new InvalidOperationException($"Cell {positionedCell} overlaps with another cell");
@@ -125,7 +125,9 @@ public class CellLayout<T> : HexLayout<T>, IReadOnlyCellLayout<T>, IArchivable
 
             for (int j = 0; j < hexCount; ++j)
             {
-                result.Add(Hex.RotateAxialNTimes(organelleHexes[j], hex.Orientation) + organelle.Position);
+                // Very important to also rotate the position by the orientation of the cell (the hex)
+                result.Add(Hex.RotateAxialNTimes(organelleHexes[j], hex.Orientation) +
+                    Hex.RotateAxialNTimes(organelle.Position, hex.Orientation));
             }
         }
     }
