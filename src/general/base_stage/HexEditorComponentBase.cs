@@ -77,6 +77,9 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     protected PackedScene modelScene = null!;
 
     protected AudioStream hexPlacementSound = null!;
+
+    [Export]
+    protected Control floatingLabelContainer = null!;
 #pragma warning restore CA2213
 
     protected string? activeActionName;
@@ -95,6 +98,10 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     protected int usedHoverModel;
 
     protected int placementRotation;
+
+    private readonly StringName fontColorOverrideName = new("font_color");
+
+    private readonly List<FloatingLabel> createdFloatingLabels = new();
 
     private readonly NodePath positionZReference = new("position:z");
 
@@ -180,6 +187,8 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     public override bool CanCancelAction => CanCancelMove;
 
     public virtual bool HasIslands => throw new GodotAbstractPropertyNotOverriddenException();
+
+    protected virtual bool ShowFloatingLabels => false;
 
     protected virtual bool ForceHideHover => throw new GodotAbstractPropertyNotOverriddenException();
 
@@ -278,6 +287,8 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
 
         camera.UpdateCameraPosition(delta, cameraFollow.GlobalPosition);
+
+        UpdateFloatingLabelPositions();
     }
 
     public override void WritePropertiesToArchive(ISArchiveWriter writer)
@@ -1052,6 +1063,62 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         }
     }
 
+    /// <summary>
+    ///   Updates floating labels which can be used by inheriting classes for arbitrary purposes (like growth order)
+    /// </summary>
+    protected void UpdateFloatingLabelConfiguration(
+        IEnumerable<(Vector3 TargetPosition, string Text, Color TextColor)> labels)
+    {
+        // Setup tracking for what gets used
+        foreach (var label in createdFloatingLabels)
+        {
+            label.Active = false;
+        }
+
+        int currentLabelId = 0;
+
+        foreach (var label in labels)
+        {
+            FloatingLabel graphicalLabel;
+
+            if (currentLabelId >= createdFloatingLabels.Count)
+            {
+                graphicalLabel = new FloatingLabel();
+                floatingLabelContainer.AddChild(graphicalLabel);
+                createdFloatingLabels.Add(graphicalLabel);
+            }
+            else
+            {
+                graphicalLabel = createdFloatingLabels[currentLabelId];
+            }
+
+            graphicalLabel.Active = true;
+            graphicalLabel.Visible = true;
+
+            graphicalLabel.TargetPosition = label.TargetPosition;
+            graphicalLabel.Text = label.Text;
+
+            if (label.TextColor != Colors.White)
+            {
+                graphicalLabel.AddThemeColorOverride(fontColorOverrideName, label.TextColor);
+            }
+            else
+            {
+                graphicalLabel.RemoveThemeColorOverride(fontColorOverrideName);
+            }
+
+            ++currentLabelId;
+        }
+
+        // Hide unused labels
+        for (int i = currentLabelId; i < createdFloatingLabels.Count; ++i)
+        {
+            createdFloatingLabels[i].Visible = false;
+        }
+
+        UpdateFloatingLabelPositions();
+    }
+
     protected virtual void PerformActiveAction()
     {
         throw new GodotAbstractMethodNotOverriddenException();
@@ -1112,9 +1179,33 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         if (disposing)
         {
             positionZReference.Dispose();
+            fontColorOverrideName.Dispose();
         }
 
         base.Dispose(disposing);
+    }
+
+    private void UpdateFloatingLabelPositions()
+    {
+        if (!ShowFloatingLabels)
+        {
+            floatingLabelContainer.Visible = false;
+            return;
+        }
+
+        floatingLabelContainer.Visible = true;
+
+        int count = createdFloatingLabels.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            var label = createdFloatingLabels[i];
+
+            if (!label.Active)
+                continue;
+
+            label.Visible = true;
+            label.Position = camera!.UnprojectPosition(label.TargetPosition);
+        }
     }
 
     /// <summary>
@@ -1135,5 +1226,15 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     private void UpdateSymmetryIcon()
     {
         componentBottomLeftButtons.SetSymmetry(symmetry);
+    }
+
+    /// <summary>
+    ///   A simple label displaying any arbitrary info, e.g. growth order
+    /// </summary>
+    protected partial class FloatingLabel : Label
+    {
+        public bool Active { get; set; } = true;
+
+        public Vector3 TargetPosition { get; set; }
     }
 }

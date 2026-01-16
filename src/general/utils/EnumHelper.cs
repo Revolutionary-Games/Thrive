@@ -25,6 +25,6 @@ public static class EnumHelper
     public static T GetAttribute<T>(this Enum e)
         where T : Attribute
     {
-        return GetAttributes<T>(e).First();
+        return e.GetAttributes<T>().First();
     }
 }

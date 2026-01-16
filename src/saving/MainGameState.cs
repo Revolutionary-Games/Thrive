@@ -17,6 +17,7 @@ public enum MainGameState
     /// <summary>
     ///   Microbe stage
     /// </summary>
+    [Alias("microbe")]
     MicrobeStage,
 
     /// <summary>
@@ -24,23 +25,29 @@ public enum MainGameState
     /// </summary>
     MicrobeEditor,
 
+    [Alias("multicellular")]
     MulticellularEditor,
 
     /// <summary>
     ///   The macroscopic environment that is 3D
     /// </summary>
+    [Alias("macroscopic")]
     MacroscopicStage,
 
     MacroscopicEditor,
 
+    [Alias("society")]
     SocietyStage,
 
+    [Alias("industrial")]
     IndustrialStage,
 
+    [Alias("space")]
     SpaceStage,
 
     /// <summary>
     ///   The cutscene where the player gets to ascension
     /// </summary>
+    [Alias("ascension")]
     AscensionCeremony,
 }

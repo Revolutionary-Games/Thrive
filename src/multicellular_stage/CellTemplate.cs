@@ -2,11 +2,11 @@
 using Godot;
 using SharedBase.Archive;
 
-public class CellTemplate : IPositionedCell, ICloneable, IArchivable, IReadOnlyHexWithData<IReadOnlyCellTemplate>
+public class CellTemplate : IPositionedCell, ICloneable, IReadOnlyHexWithData<IReadOnlyCellTemplate>,
+    IPlayerReadableName
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
-    private int orientation;
     private CellType modifiableCellType;
 
     public CellTemplate(CellType cellType, Hex position, int orientation)
@@ -16,20 +16,20 @@ public class CellTemplate : IPositionedCell, ICloneable, IArchivable, IReadOnlyH
         Orientation = orientation;
     }
 
-    public CellTemplate(CellType cellType)
-    {
-        modifiableCellType = cellType;
-    }
-
     public Hex Position { get; set; }
 
     public int Orientation
     {
-        get => orientation;
+        get;
 
         // We normalize rotations here as it isn't normalized later for cell templates
-        set => orientation = value % 6;
+        set => field = value % 6;
     }
+
+    public string ReadableName => modifiableCellType.FormattedName;
+
+    public string ReadableExactIdentifier => Localization.Translate("ITEM_AT_2D_COORDINATES")
+        .FormatSafe(ReadableName, Position.Q, Position.R);
 
     public virtual CellType ModifiableCellType
     {
@@ -136,11 +136,7 @@ public class CellTemplate : IPositionedCell, ICloneable, IArchivable, IReadOnlyH
 
     public object Clone()
     {
-        return new CellTemplate(ModifiableCellType)
-        {
-            Position = Position,
-            Orientation = Orientation,
-        };
+        return new CellTemplate(ModifiableCellType, Position, Orientation);
     }
 
     public ulong GetVisualHashCode()

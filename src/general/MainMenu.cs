@@ -366,13 +366,13 @@ public partial class MainMenu : NodeWithInput
     }
 
     /// <summary>
-    ///   This is when ESC is pressed. Main menu priority is lower than Options Menu
+    ///   This is when ESC is pressed. The main menu priority is lower than Options Menu
     ///   to avoid capturing ESC presses in the Options Menu.
     /// </summary>
     [RunOnKeyDown("ui_cancel", Priority = Constants.MAIN_MENU_CANCEL_PRIORITY)]
     public bool OnEscapePressed()
     {
-        // In a sub menu (that doesn't have its own class)
+        // In a submenu (that doesn't have its own class)
         if (CurrentMenuIndex != 0 && CurrentMenuIndex < uint.MaxValue)
         {
             SetCurrentMenu(0);
@@ -937,8 +937,7 @@ public partial class MainMenu : NodeWithInput
 
     private void OnReturnFromThriveopedia()
     {
-        if (thriveopedia != null)
-            thriveopedia.Visible = false;
+        thriveopedia?.Visible = false;
 
         SetCurrentMenu(0, false);
     }
@@ -1061,12 +1060,9 @@ public partial class MainMenu : NodeWithInput
         galleryViewer.OpenFullRect();
         Jukebox.Instance.PlayCategory("ArtGallery");
 
-        if (created3DBackground != null)
-        {
-            // Hide the 3D background while in the gallery as it is a fullscreen popup and rendering the expensive 3D
-            // scene underneath it is not the best
-            created3DBackground.Visible = false;
-        }
+        // Hide the 3D background while in the gallery as it is a fullscreen popup and rendering the expensive 3D
+        // scene underneath it is not the best
+        created3DBackground?.Visible = false;
     }
 
     private void OnReturnFromArtGallery()
@@ -1074,10 +1070,7 @@ public partial class MainMenu : NodeWithInput
         SetCurrentMenu(2, false);
         Jukebox.Instance.PlayCategory("Menu");
 
-        if (created3DBackground != null)
-        {
-            created3DBackground.Visible = true;
-        }
+        created3DBackground?.Visible = true;
 
         ResetPerformanceTracking();
     }
@@ -1129,11 +1122,8 @@ public partial class MainMenu : NodeWithInput
 
     private void OnNewGameIntroVideoStarted()
     {
-        if (created3DBackground != null)
-        {
-            // Hide the background again when playing a video as the 3D backgrounds are performance intensive
-            created3DBackground.Visible = false;
-        }
+        // Hide the background again when playing a video as the 3D backgrounds are performance intensive
+        created3DBackground?.Visible = false;
     }
 
     private void OnThriveopediaOpened(string pageName)

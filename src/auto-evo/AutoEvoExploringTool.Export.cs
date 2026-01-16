@@ -98,7 +98,7 @@ public partial class AutoEvoExploringTool
                         microbeSpecies.MembraneRigidity.ToString(CultureInfo.InvariantCulture),
                         microbeSpecies.BaseSpeed.ToString(CultureInfo.InvariantCulture),
                         microbeSpecies.BaseRotationSpeed.ToString(CultureInfo.InvariantCulture),
-                        microbeSpecies.StorageCapacity.ToString(CultureInfo.InvariantCulture),
+                        microbeSpecies.StorageCapacities.Nominal.ToString(CultureInfo.InvariantCulture),
                         microbeSpecies.IsBacteria.ToString(),
                         microbeSpecies.Organelles.Count.ToString(),
                     });

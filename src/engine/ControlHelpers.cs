@@ -214,7 +214,7 @@ public static class ControlHelpers
 
             if (child is Control childAsControl)
             {
-                var childResult = FirstFocusableControl(childAsControl, preferNonDisabledNodes);
+                var childResult = childAsControl.FirstFocusableControl(preferNonDisabledNodes);
 
                 if (childResult != null)
                     return childResult;

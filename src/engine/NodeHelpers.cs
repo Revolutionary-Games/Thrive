@@ -274,7 +274,7 @@ public static class NodeHelpers
                 break;
             }
 
-            count += RecursiveCountChildren(child, includeInternal);
+            count += child.RecursiveCountChildren(includeInternal);
         }
 
         return childCount + count;
@@ -340,7 +340,7 @@ public static class NodeHelpers
 
             if (child.GetChildCount() > 0)
             {
-                var recursiveResult = FirstDescendantOfType<T>(child);
+                var recursiveResult = child.FirstDescendantOfType<T>();
 
                 if (recursiveResult != null)
                     return recursiveResult;

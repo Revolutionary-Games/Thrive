@@ -428,6 +428,11 @@ public sealed class MacroscopicEditsFacade : SpeciesEditsFacade, IReadOnlyMacros
             parent = newParent;
         }
 
+        public override string ToString()
+        {
+            return $"Facade for: {OriginalFrom}";
+        }
+
         internal void ReuseFor(IReadonlyMacroscopicMetaball original, MetaballWithOriginalReference? newParent)
         {
             if (original is MetaballWithOriginalReference)

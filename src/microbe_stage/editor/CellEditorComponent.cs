@@ -142,9 +142,6 @@ public partial class CellEditorComponent :
     private CheckBox showGrowthOrderCoordinates = null!;
 
     [Export]
-    private Control growthOrderNumberContainer = null!;
-
-    [Export]
     private PopupMicheViewer micheViewer = null!;
 
     [Export]
@@ -361,7 +358,7 @@ public partial class CellEditorComponent :
     public EndosymbiontPlaceActionData? PendingEndosymbiontPlace { get; protected set; }
 
     /// <summary>
-    ///   If this is enabled, the editor will show how the edited cell would look like in the environment with
+    ///   If this is enabled, the editor will show what the edited cell would look like in the environment with
     ///   parameters set in the editor. Editing hexes is disabled during this (except undo / redo).
     /// </summary>
     public bool MicrobePreviewMode
@@ -371,8 +368,7 @@ public partial class CellEditorComponent :
         {
             microbePreviewMode = value;
 
-            if (cellPreviewVisualsRoot != null)
-                cellPreviewVisualsRoot.Visible = value;
+            cellPreviewVisualsRoot?.Visible = value;
 
             // Need to reapply the species as changes to it are ignored when the appearance tab is not shown
             UpdateCellVisualization();
@@ -395,7 +391,7 @@ public partial class CellEditorComponent :
         {
             showGrowthOrderNumbers = value;
 
-            UpdateGrowthOrderButtons();
+            UpdateGrowthOrderUI();
         }
     }
 
@@ -483,6 +479,8 @@ public partial class CellEditorComponent :
         (ArchiveObjectType)ThriveArchiveObjectType.CellEditorComponent;
 
     public bool CanBeSpecialReference => true;
+
+    protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
     protected override bool ForceHideHover => MicrobePreviewMode;
 
@@ -734,13 +732,6 @@ public partial class CellEditorComponent :
         {
             // Init being called is checked at the start of this method
             previewSimulation!.ProcessAll((float)delta);
-        }
-
-        // Update the growth order number positions each frame so that the camera moving doesn't get them out of sync
-        // could do this with a dirty-flag approach for saving on performance but for now this is probably fine
-        if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
-        {
-            UpdateGrowthOrderNumbers();
         }
 
         if (refreshTolerancesWarnings)
@@ -1381,7 +1372,7 @@ public partial class CellEditorComponent :
             Rigidity);
 
         // In some cases "theoreticalCost" might get rounded improperly
-        var theoreticalCost = Editor.WhatWouldActionsCost(new[] { data });
+        var theoreticalCost = Editor.WhatWouldActionsCost([data]);
 
         // Removed cast to int here doesn't solve https://github.com/Revolutionary-Games/Thrive/issues/5821
         var cost = Math.Ceiling(Math.Ceiling(theoreticalCost / costPerStep) * costPerStep);
@@ -1568,9 +1559,7 @@ public partial class CellEditorComponent :
         }
         else
         {
-            moveOccupancies =
-                GetMultiActionWithOccupancies(positions.Take(1).ToList(),
-                    new List<OrganelleTemplate> { MovingPlacedHex }, true);
+            moveOccupancies = GetMultiActionWithOccupancies(positions.Take(1).ToList(), [MovingPlacedHex], true);
         }
 
         return Editor.WhatWouldActionsCost(moveOccupancies.Data);
@@ -2340,8 +2329,7 @@ public partial class CellEditorComponent :
         if (organelle.Definition.Unique)
             DeselectOrganelleToPlace();
 
-        var replacedCytoplasmActions =
-            GetReplacedCytoplasmRemoveAction(new[] { organelle }).Cast<EditorAction>().ToList();
+        var replacedCytoplasmActions = GetReplacedCytoplasmRemoveAction([organelle]).Cast<EditorAction>().ToList();
 
         var action = new SingleEditorAction<OrganellePlacementActionData>(DoOrganellePlaceAction,
             UndoOrganellePlaceAction,
@@ -2366,9 +2354,7 @@ public partial class CellEditorComponent :
         if (!IsMoveTargetValid(newLocation, newRotation, organelle))
             return false;
 
-        var multiAction = GetMultiActionWithOccupancies(
-            new List<(Hex Hex, int Orientation)> { (newLocation, newRotation) },
-            new List<OrganelleTemplate> { organelle }, true);
+        var multiAction = GetMultiActionWithOccupancies([(newLocation, newRotation)], [organelle], true);
 
         // Too low mutation points, cancel move
         if (Editor.MutationPoints < Editor.WhatWouldActionsCost(multiAction.Data))
@@ -2510,7 +2496,7 @@ public partial class CellEditorComponent :
         // Updated here to make sure everything else has been updated first so tooltips are accurate
         UpdateOrganelleUnlockTooltips(false);
 
-        UpdateGrowthOrderButtons();
+        UpdateGrowthOrderUI();
     }
 
     /// <summary>
@@ -2737,13 +2723,13 @@ public partial class CellEditorComponent :
 
         // Multicellular parts only available (visible) in multicellular
         // For now there aren't any multicellular specific organelles so the section is hidden
-        partsSelectionContainer.GetNode<CollapsibleList>(OrganelleDefinition.OrganelleGroup.Multicellular.ToString())
+        partsSelectionContainer.GetNode<CollapsibleList>(nameof(OrganelleDefinition.OrganelleGroup.Multicellular))
             .Visible = false;
 
         // TODO: put this code back in if we get multicellular specific organelles
         // .Visible = IsMulticellularEditor;
 
-        partsSelectionContainer.GetNode<CollapsibleList>(OrganelleDefinition.OrganelleGroup.Macroscopic.ToString())
+        partsSelectionContainer.GetNode<CollapsibleList>(nameof(OrganelleDefinition.OrganelleGroup.Macroscopic))
             .Visible = IsMacroscopicEditor;
     }
 
@@ -2869,6 +2855,11 @@ public partial class CellEditorComponent :
         target.ModifiableTolerances.CopyFrom(tolerancesEditor.CurrentTolerances);
     }
 
+    private void OnGrowthOrderChanged()
+    {
+        UpdateGrowthOrderUI();
+    }
+
     private void SetLightLevelOption(int option)
     {
         // Show selected light level
@@ -2930,6 +2921,9 @@ public partial class CellEditorComponent :
         growthOrderTab.Hide();
         toleranceTab.Hide();
 
+        ShowGrowthOrder = selectedSelectionMenuTab is SelectionMenuTab.GrowthOrder;
+        MicrobePreviewMode = selectedSelectionMenuTab is SelectionMenuTab.Membrane;
+
         // Show selected
         switch (selectedSelectionMenuTab)
         {
@@ -2937,8 +2931,6 @@ public partial class CellEditorComponent :
             {
                 structureTab.Show();
                 structureTabButton.ButtonPressed = true;
-                MicrobePreviewMode = false;
-                ShowGrowthOrder = false;
                 break;
             }
 
@@ -2946,8 +2938,6 @@ public partial class CellEditorComponent :
             {
                 appearanceTab.Show();
                 appearanceTabButton.ButtonPressed = true;
-                MicrobePreviewMode = true;
-                ShowGrowthOrder = false;
                 break;
             }
 
@@ -2955,8 +2945,6 @@ public partial class CellEditorComponent :
             {
                 behaviourEditor.Show();
                 behaviourTabButton.ButtonPressed = true;
-                MicrobePreviewMode = false;
-                ShowGrowthOrder = false;
                 break;
             }
 
@@ -2964,10 +2952,8 @@ public partial class CellEditorComponent :
             {
                 growthOrderTab.Show();
                 growthOrderTabButton.ButtonPressed = true;
-                MicrobePreviewMode = false;
-                ShowGrowthOrder = true;
 
-                UpdateGrowthOrderButtons();
+                UpdateGrowthOrderUI();
                 break;
             }
 
@@ -2975,8 +2961,6 @@ public partial class CellEditorComponent :
             {
                 toleranceTab.Show();
                 toleranceTabButton.ButtonPressed = true;
-                MicrobePreviewMode = false;
-                ShowGrowthOrder = false;
                 break;
             }
 

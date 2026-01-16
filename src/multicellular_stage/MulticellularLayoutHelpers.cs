@@ -29,6 +29,9 @@ public static class MulticellularLayoutHelpers
 
             hexWithData.Data!.Position = new Hex(0, 0);
 
+            // Remember to also copy rotation
+            hexWithData.Data.Orientation = hexWithData.Orientation;
+
             int distance = 0;
 
             while (true)
@@ -86,10 +89,16 @@ public static class MulticellularLayoutHelpers
 
                 var checkPosition = new Hex((int)positionVector.X, (int)positionVector.Y);
                 hex.Position = checkPosition;
+                hex.Orientation = cell.Orientation;
 
                 // This should never be null, but for extra safety this is done
                 if (hex.Data != null)
+                {
                     hex.Data.Position = checkPosition;
+
+                    // Also preserve orientation in the different representation
+                    hex.Data.Orientation = cell.Orientation;
+                }
 
                 if (target.CanPlace(hex, hexTemporaryMemory, hexTemporaryMemory2))
                 {

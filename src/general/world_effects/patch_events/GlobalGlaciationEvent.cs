@@ -12,7 +12,10 @@ public class GlobalGlaciationEvent : IWorldEffect
     private const string Background = "iceshelf";
 
     private static readonly string[] IceChunksConfigurations =
-        ["glaciationIceShard", "glaciationIceChunkSmall", "glaciationIceChunkBig", "glaciationIceSnowflake"];
+    [
+        "glaciationIceShard", "glaciationIceChunkSmall", "glaciationIceChunkBig", "glaciationIceSnowflake",
+        "glaciationIceSnowflakeBig",
+    ];
 
     private readonly XoShiRo256starstar random;
 
@@ -177,7 +180,7 @@ public class GlobalGlaciationEvent : IWorldEffect
 
         PatchEventProperties eventProperties = new()
         {
-            SunlightAmbientMultiplier = Math.Min(GetSunlightMultiplier() * (isIceShelf ? 1.5f : 1), 1.0f),
+            SunlightAmbientMultiplier = Math.Min(GetSunlightMultiplier(), 1.0f),
             TemperatureAmbientFixedValue = isIceShelf ? random.Next(-7, 0) : random.Next(-4, 2),
         };
 

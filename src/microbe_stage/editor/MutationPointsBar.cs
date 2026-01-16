@@ -93,11 +93,13 @@ public partial class MutationPointsBar : HBoxContainer
                 currentMutationPointsLabel.Text = $"{currentMutationPoints:0.#}";
             }
 
-            if (ShowPercentageSymbol)
+            // TODO: implement full support for free percentage symbol placement within the mutation points bar
+            // for now we detect a format we cannot support and suppress the percentage symbol
+            // The reason is that the "100 / 100" is logically the unit that is a percentage so we would need an
+            // approach where the percentage symbol can escape the current label and go all the way to the start.
+            // See: https://github.com/Revolutionary-Games/Thrive/issues/6584
+            if (ShowPercentageSymbol && Localization.Translate("PERCENTAGE_VALUE").EndsWith('%'))
             {
-                // TODO: switch this class to using translation keys properly instead of this approach
-                // We have PERCENTAGE_VALUE translation string, but I didn't add that here as this already uses partial
-                // formatting with plain strings so I just extended the existing solution here -hhyyrylainen
                 baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0} %";
             }
             else
