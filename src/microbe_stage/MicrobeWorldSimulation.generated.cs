@@ -8,7 +8,7 @@ using Godot;
 
 public partial class MicrobeWorldSimulation
 {
-    private readonly Barrier barrier1 = new(2);
+    private readonly SimpleBarrier barrier1 = new(2);
 
     private void InitGenerated()
     {
