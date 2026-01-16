@@ -8,7 +8,7 @@ public class SimpleBarrier
     private readonly int threadCount;
 
     // local phase
-    private volatile int currentPhase = 0;
+    private volatile int currentPhase;
 
     // remaining participants on the local phase
     private volatile int remainingParticipants;
@@ -37,12 +37,12 @@ public class SimpleBarrier
         {
             while (currentPhase == phase)
             {
-                // TODO: Use WFE on ARM.
+                // TODO: Use the ARM instruction WFE on ARM.
 
                 CPUHelpers.HyperThreadPause();
             }
         }
 
-        // TODO: Use SEV on ARM.
+        // TODO: Use the ARM instruction SEV on ARM.
     }
 }

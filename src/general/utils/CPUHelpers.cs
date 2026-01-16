@@ -21,8 +21,8 @@ public class CPUHelpers
         else if (IsARM)
         {
             // This is almost equivalent to X86's Pause.
-            // Warning: this is implemented as NOP on some CPUs, so it might not be the best option here.
-            // This should be implemented as WFE and woke up by SEV, which would require custom bindings.
+            // Warning: this is implemented as NOP on some ARM CPUs, so it might not be the best option here.
+            // This should be implemented as WFE and woke up by SEV, on ARM, which would require custom bindings.
             ArmBase.Yield();
         }
         else
