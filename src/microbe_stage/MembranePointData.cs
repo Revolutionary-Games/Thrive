@@ -33,23 +33,13 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
         finalMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
         {
             var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
-
-            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-            lock (generator)
-            {
-                return generator.GenerateMesh(this);
-            }
+            return generator.GenerateMesh(this);
         });
 
         finalEngulfMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
         {
             var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
-
-            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-            lock (generator)
-            {
-                return generator.GenerateEngulfMesh(this);
-            }
+            return generator.GenerateEngulfMesh(this);
         });
 
         // Copy the membrane data, this copied array can then be referenced by Membrane instances as long as there

@@ -418,16 +418,10 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         {
             var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
 
-            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-            MembranePointData cacheEntry;
-            lock (generator)
-            {
-                cacheEntry = generator.GenerateShape(ref generationParameters);
-            }
+            var cacheEntry = generator.GenerateShape(ref generationParameters);
 
             // Cache entry now owns the array data that was in the generationParameters and will return it to the
             // pool when the cache disposes it
-
             var hash = ProceduralDataCache.Instance.WriteMembraneData(ref cacheEntry);
 
             // TODO: already generate the 3D points here for use on the main thread for faster membrane creation?
