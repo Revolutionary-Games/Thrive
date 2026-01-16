@@ -285,10 +285,12 @@ public partial class CellBodyPlanEditorComponent :
             {
                 cellType = CellTypeFromName(activeActionName);
 
+                var position = new Hex(q, r);
+
                 // Can place stuff at all?
-                // TODO: should placementRotation be used here in some way?
                 isPlacementProbablyValid =
-                    IsValidPlacement(new HexWithData<CellTemplate>(new CellTemplate(cellType), new Hex(q, r), 0));
+                    IsValidPlacement(new HexWithData<CellTemplate>(
+                        new CellTemplate(cellType, position, placementRotation), position, placementRotation));
             }
             else if (MovingPlacedHex != null)
             {
