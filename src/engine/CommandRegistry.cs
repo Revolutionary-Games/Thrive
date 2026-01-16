@@ -120,7 +120,7 @@ public class CommandRegistry : IDisposable
     {
         result = null;
 
-        if (type == typeof(string) || isQuoted)
+        if (type == typeof(string) && isQuoted)
         {
             result = Unescape(token);
             return true;
@@ -181,6 +181,50 @@ public class CommandRegistry : IDisposable
             return true;
         }
 
+        if (type.IsEnum)
+        {
+            if (Enum.TryParse(type, token, true, out object? enumValue))
+            {
+                if (Enum.IsDefined(type, enumValue))
+                {
+                    result = enumValue;
+                    return true;
+                }
+            }
+
+            if (TryGetAlias(type, token, out enumValue))
+            {
+                if (enumValue != null)
+                {
+                    result = enumValue;
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private static bool TryGetAlias(Type type, ReadOnlySpan<char> token, out object? value)
+    {
+        foreach (var field in type.GetFields())
+        {
+            var attribute = field.GetCustomAttribute<AliasAttribute>(true);
+
+            if (attribute == null)
+                continue;
+
+            foreach (var alias in attribute.Aliases)
+            {
+                if (alias.Equals(token, StringComparison.OrdinalIgnoreCase))
+                {
+                    value = field.GetValue(null);
+                    return true;
+                }
+            }
+        }
+
+        value = null;
         return false;
     }
 
