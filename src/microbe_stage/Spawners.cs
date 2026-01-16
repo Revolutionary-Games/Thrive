@@ -735,7 +735,7 @@ public static class SpawnHelpers
                     throw new ArgumentException("First Multicellular cell must have body plan index of 0");
                 }
 
-                resolvedCellType = multicellularSpecies.Cells[0].CellType;
+                resolvedCellType = multicellularSpecies.ModifiableGameplayCells[0].ModifiableCellType;
 
                 usedCellDefinition = resolvedCellType;
                 var properties = new CellProperties(usedCellDefinition);
@@ -749,7 +749,7 @@ public static class SpawnHelpers
             }
 
 #if DEBUG
-            if (multicellularData.CellBodyPlanIndex >= multicellularSpecies.Cells.Count)
+            if (multicellularData.CellBodyPlanIndex >= multicellularSpecies.ModifiableGameplayCells.Count)
                 throw new InvalidOperationException("Bad body plan index was generated for a cell");
 #endif
 
@@ -954,7 +954,7 @@ public static class SpawnHelpers
                     {
                         // -1 here as the bud is always spawned, so the number of cells to add on top of that is the max
                         // count
-                        var maxCount = multicellular.Cells.Count - 1;
+                        var maxCount = multicellular.ModifiableGameplayCells.Count - 1;
                         int cellsToAdd = 0;
 
                         while (cellsToAdd < maxCount)
@@ -1469,7 +1469,7 @@ public class MicrobeSpawner : Spawner
         if (microbeSpecies != null)
             bacteria = microbeSpecies.IsBacteria;
 
-        var firstSpawn = new SingleItemSpawnQueue((out Entity entity) =>
+        var firstSpawn = new SingleItemSpawnQueue((out entity) =>
         {
             // The true here is that this is AI-controlled
             var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironmentSource,
@@ -1498,7 +1498,7 @@ public class MicrobeSpawner : Spawner
         if (stateData == null)
             return firstSpawn;
 
-        var swarmQueue = new CallbackSpawnQueue<List<Vector3>>((List<Vector3> positions, out Entity entity) =>
+        var swarmQueue = new CallbackSpawnQueue<List<Vector3>>((positions, out entity) =>
         {
             var (recorder, weight) = SpawnHelpers.SpawnBacteriaSwarmMember(worldSimulation, spawnEnvironmentSource,
                 Species, positions[0], out entity);
@@ -1574,7 +1574,7 @@ public class ChunkSpawner : Spawner
 
     public override SpawnQueue Spawn(IWorldSimulation worldSimulation, Vector3 location, ISpawnSystem spawnSystem)
     {
-        return new SingleItemSpawnQueue((out Entity entity) =>
+        return new SingleItemSpawnQueue((out entity) =>
         {
             var recorder = SpawnHelpers.SpawnChunkWithoutFinalizing(worldSimulation,
                 chunkType, location, random, false, out entity);

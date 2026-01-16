@@ -17,8 +17,6 @@ using UnlockConstraints;
 /// </remarks>
 public partial class CellEditorComponent
 {
-    private readonly Dictionary<int, GrowthOrderLabel> createdGrowthOrderLabels = new();
-
     private readonly List<Label> activeToleranceWarnings = new();
 
     private int usedToleranceWarnings;
@@ -183,22 +181,6 @@ public partial class CellEditorComponent
         }
     }
 
-    private void TriggerDelayedPredictionUpdateIfNeeded(double delta)
-    {
-        autoEvoPredictionStartTimer += delta;
-
-        if (autoEvoPredictionStartTimer > Constants.AUTO_EVO_PREDICTION_UPDATE_INTERVAL)
-        {
-            autoEvoPredictionStartTimer = 0;
-
-            if (autoEvoPredictionDirty)
-            {
-                StartAutoEvoPrediction();
-                autoEvoPredictionDirty = false;
-            }
-        }
-    }
-
     private void CheckSuggestionProgress()
     {
         try
@@ -277,8 +259,7 @@ public partial class CellEditorComponent
 
             var tooltip = GetSelectionTooltip(organelle.InternalName, "organelleSelection");
 
-            if (tooltip != null)
-                tooltip.OsmoregulationCost = osmoregulationCost;
+            tooltip?.OsmoregulationCost = osmoregulationCost;
         }
     }
 
@@ -360,10 +341,7 @@ public partial class CellEditorComponent
                 continue;
 
             var tooltip = GetSelectionTooltip(organelle.InternalName, "organelleSelection");
-            if (tooltip != null)
-            {
-                tooltip.RequiresNucleus = organelle.RequiresNucleus && !HasNucleus;
-            }
+            tooltip?.RequiresNucleus = organelle.RequiresNucleus && !HasNucleus;
         }
 
         CreateUndiscoveredOrganellesButtons(true, autoUnlockOrganelles);
@@ -519,8 +497,7 @@ public partial class CellEditorComponent
 
             // Set the cost factor for each organelle tooltip
             var tooltip = GetSelectionTooltip(entry.Key.InternalName, "organelleSelection");
-            if (tooltip != null)
-                tooltip.MutationPointCost = cost;
+            tooltip?.MutationPointCost = cost;
         }
 
         // Set the cost factor for each membrane button
@@ -532,17 +509,13 @@ public partial class CellEditorComponent
 
             // Set the cost factor for each membrane tooltip
             var tooltip = GetSelectionTooltip(entry.Key.InternalName, "membraneSelection");
-            if (tooltip != null)
-                tooltip.MutationPointCost = cost;
+            tooltip?.MutationPointCost = cost;
         }
 
         // Set the cost factor for the rigidity tooltip
         var rigidityTooltip = GetSelectionTooltip("rigiditySlider", "editor");
-        if (rigidityTooltip != null)
-        {
-            rigidityTooltip.MutationPointCost = (int)Math.Min(
-                Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
-        }
+        rigidityTooltip?.MutationPointCost =
+            (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
 
         tolerancesEditor.MPDisplayCostMultiplier = CostMultiplier;
         tolerancesEditor.UpdateMPCostInToolTips();
@@ -608,14 +581,26 @@ public partial class CellEditorComponent
     /// <summary>
     ///   Cancels the previous auto-evo prediction run if there is one
     /// </summary>
-    private void CancelPreviousAutoEvoPrediction()
+    /// <returns>True, once there is no active run</returns>
+    private bool CancelPreviousAutoEvoPrediction()
     {
         if (waitingForPrediction == null)
-            return;
+            return true;
 
-        GD.Print("Canceling previous auto-evo prediction run as it didn't manage to finish yet");
-        waitingForPrediction.AutoEvoRun.Abort();
-        waitingForPrediction = null;
+        if (!waitingForPrediction.AutoEvoRun.Aborted)
+        {
+            GD.Print("Canceling previous auto-evo prediction run as it didn't manage to finish yet");
+            waitingForPrediction.AutoEvoRun.Abort();
+        }
+
+        if (waitingForPrediction.Finished)
+        {
+            GD.Print("Previous auto-evo prediction run finished now");
+            waitingForPrediction = null;
+            return true;
+        }
+
+        return false;
     }
 
     /// <summary>
@@ -651,13 +636,19 @@ public partial class CellEditorComponent
 
         endosymbiosisPopup.Lawk = Editor.CurrentGame.GameWorld.WorldSettings.LAWK;
 
+        UpdateEndosymbiosisSpeciesData();
+
+        endosymbiosisPopup.OpenCentered(false);
+    }
+
+    private void UpdateEndosymbiosisSpeciesData()
+    {
         // Note that the IsBacteria flag we read here is one editor cycle old (so placing a nucleus doesn't immediately
         // make this check work differently)
         endosymbiosisPopup.UpdateData(Editor.EditedBaseSpecies.Endosymbiosis,
             Editor.EditedCellProperties?.IsBacteria ??
-            throw new Exception("Cell properties needs to be known already"));
-
-        endosymbiosisPopup.OpenCentered(false);
+            throw new Exception("Cell properties needs to be known already"),
+            Editor.CurrentPatch.SpeciesInPatch.Keys);
     }
 
     private void OnEndosymbiosisSelected(int targetSpecies, string targetOrganelle, int cost)
@@ -827,22 +818,33 @@ public partial class CellEditorComponent
         }
     }
 
+    private void UpdateGrowthOrderUI()
+    {
+        // To save on performance, only update this when it is actually visible to the player
+        if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
+        {
+            growthOrderGUI.UpdateItems(growthOrderGUI.ApplyOrderingToItems(editedMicrobeOrganelles.Organelles));
+        }
+
+        UpdateGrowthOrderNumbers();
+    }
+
+    private void OnResetGrowthOrderPressed()
+    {
+        growthOrderGUI.UpdateItems(editedMicrobeOrganelles.Organelles);
+        UpdateGrowthOrderNumbers();
+    }
+
     private void UpdateGrowthOrderNumbers()
     {
         if (!ShowGrowthOrder)
-        {
-            growthOrderNumberContainer.Visible = false;
             return;
-        }
 
-        growthOrderNumberContainer.Visible = true;
+        UpdateFloatingLabelConfiguration(GrowthOrderFloatingNumbers());
+    }
 
-        // Setup tracking for what gets used
-        foreach (var orderLabel in createdGrowthOrderLabels.Values)
-        {
-            orderLabel.Marked = false;
-        }
-
+    private IEnumerable<(Vector3 Position, string Text, Color TextColor)> GrowthOrderFloatingNumbers()
+    {
         var orderList = growthOrderGUI.GetCurrentOrder();
         var orderListCount = orderList.Count;
 
@@ -866,62 +868,13 @@ public partial class CellEditorComponent
                 }
             }
 
-            if (!createdGrowthOrderLabels.TryGetValue(order, out var graphicalLabel))
-            {
-                graphicalLabel = GrowthOrderLabel.Create(order);
-                growthOrderNumberContainer.AddChild(graphicalLabel);
-                createdGrowthOrderLabels.Add(order, graphicalLabel);
-            }
-
-            graphicalLabel.Position = camera!.UnprojectPosition(Hex.AxialToCartesian(editedMicrobeOrganelle.Position));
-            graphicalLabel.Visible = true;
-            graphicalLabel.Marked = true;
+            yield return (Hex.AxialToCartesian(editedMicrobeOrganelle.Position),
+                order.ToString(), Colors.White);
         }
-
-        // Hide unused labels
-        foreach (var orderLabel in createdGrowthOrderLabels.Values)
-        {
-            if (!orderLabel.Marked)
-                orderLabel.Visible = false;
-        }
-    }
-
-    private void UpdateGrowthOrderButtons()
-    {
-        // To save on performance, only update this when it is actually visible to the player
-        if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
-        {
-            growthOrderGUI.UpdateItems(growthOrderGUI.ApplyOrderingToItems(editedMicrobeOrganelles.Organelles));
-        }
-
-        UpdateGrowthOrderNumbers();
-    }
-
-    private void OnResetGrowthOrderPressed()
-    {
-        growthOrderGUI.UpdateItems(editedMicrobeOrganelles.Organelles);
-        UpdateGrowthOrderNumbers();
     }
 
     private void OnGrowthOrderCoordinatesToggled(bool show)
     {
         growthOrderGUI.ShowCoordinates = show;
-    }
-
-    /// <summary>
-    ///   A simple label showing the growth order of something
-    /// </summary>
-    private partial class GrowthOrderLabel : Label
-    {
-        public bool Marked { get; set; }
-
-        public static GrowthOrderLabel Create(int number)
-        {
-            return new GrowthOrderLabel
-            {
-                Text = number.ToString(),
-                Marked = true,
-            };
-        }
     }
 }

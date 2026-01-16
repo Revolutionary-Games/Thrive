@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
@@ -15,7 +14,7 @@ using SharedBase.Archive;
 /// </summary>
 public struct MicrobeColony : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     /// <summary>
     ///   All colony members of this colony. The cell at index 0 has to be the <see cref="Leader"/>. Only modify
@@ -24,7 +23,7 @@ public struct MicrobeColony : IArchivableComponent
     public Entity[] ColonyMembers;
 
     /// <summary>
-    ///   Lead cell of the colony. This is the newMember that exists separately in the world, all others are
+    ///   Lead cell of the colony. This is the newMember that exists separately in the world; all others are
     ///   attached to it with <see cref="AttachedToEntity"/> components. Note this is always assumed to be the
     ///   same as the entity that has this <see cref="MicrobeColony"/> component on it.
     /// </summary>
@@ -54,14 +53,21 @@ public struct MicrobeColony : IArchivableComponent
 
     // Note that the following statistics should be accessed through the helpers to ensure that they have been
     // calculated. This is implemented like this to simplify spawning to not require full entities to exist at that
-    // point. Instead only when the properties are used they are calculated when the colony member entities are
+    // point. Instead, only when the properties are used they are calculated when the colony member entities are
     // certainly created.
 
     public int HexCount;
+
+    /// <summary>
+    ///   Cached approximate radius of the colony. 0 or negative is a placeholder value. To access this use
+    ///   <see cref="MicrobeColonyHelpers.GetApproximateColonyRadius"/>
+    /// </summary>
+    public float CachedRadius;
+
     public bool CanEngulf;
 
     /// <summary>
-    ///   Internal variable don't touch.
+    ///   Internal variable, don't touch.
     /// </summary>
     public bool DerivedStatisticsCalculated;
 
@@ -74,7 +80,7 @@ public struct MicrobeColony : IArchivableComponent
     /// <remarks>
     ///   <para>
     ///     It is mandatory to call <see cref="MicrobeColonyHelpers.AddInitialColonyMember"/> on each of the
-    ///     members *after* the leader to setup the state for the entities correctly.
+    ///     members *after* the leader to set up the state for the entities correctly.
     ///   </para>
     /// </remarks>
     public MicrobeColony(in Entity leader, MicrobeState initialState, params Entity[] allMembers)
@@ -109,6 +115,7 @@ public struct MicrobeColony : IArchivableComponent
         HexCount = 0;
         CanEngulf = false;
         DerivedStatisticsCalculated = false;
+        CachedRadius = 0;
         EntityWeightApplied = false;
     }
 
@@ -141,6 +148,7 @@ public struct MicrobeColony : IArchivableComponent
         HexCount = 0;
         CanEngulf = false;
         DerivedStatisticsCalculated = false;
+        CachedRadius = 0;
         EntityWeightApplied = false;
     }
 
@@ -158,6 +166,7 @@ public struct MicrobeColony : IArchivableComponent
         writer.Write(CanEngulf);
         writer.Write(DerivedStatisticsCalculated);
         writer.Write(EntityWeightApplied);
+        writer.Write(CachedRadius);
     }
 }
 
@@ -185,6 +194,7 @@ public static class MicrobeColonyHelpers
             CanEngulf = reader.ReadBool(),
             DerivedStatisticsCalculated = reader.ReadBool(),
             EntityWeightApplied = reader.ReadBool(),
+            CachedRadius = version > 1 ? reader.ReadFloat() : 0,
         };
     }
 
@@ -291,7 +301,7 @@ public static class MicrobeColonyHelpers
     public static void GetColonySpecialOrganelles(this ref MicrobeColony colony, out bool hasAgentVacuoles,
         out bool hasSlimeJets, out bool hasMucocysts, out bool hasSignalingAgents)
     {
-        CalculateColonySpecialOrganelles(ref colony, out var agentVacuoles, out var slimeJets, out var mucocysts);
+        colony.CalculateColonySpecialOrganelles(out var agentVacuoles, out var slimeJets, out var mucocysts);
 
         hasAgentVacuoles = agentVacuoles > 0;
         hasSlimeJets = slimeJets > 0;
@@ -354,6 +364,64 @@ public static class MicrobeColonyHelpers
         }
 
         return result;
+    }
+
+    /// <summary>
+    ///   Calculates a rough overall radius of the colony.
+    ///   Only possible once members are initialised with their membrane. The value is cached for future calls.
+    /// </summary>
+    /// <param name="colony">Colony to calculate a radius for</param>
+    /// <returns>The radius of the colony *or* 0 if data is not available yet</returns>
+    public static float GetApproximateColonyRadius(this ref MicrobeColony colony)
+    {
+        if (colony.CachedRadius > 0)
+            return colony.CachedRadius;
+
+        float maxRadiusSquared = 0;
+
+        foreach (var cell in colony.ColonyMembers)
+        {
+            // Make sure leader is not unnecessarily processed, but if there exists a single member colony for a while,
+            // it should be processed correctly
+            if (cell == colony.Leader && colony.ColonyMembers.Length > 1)
+                continue;
+
+            float attachDistance = 0;
+
+            if (cell.Has<AttachedToEntity>())
+            {
+                attachDistance = cell.Get<AttachedToEntity>().RelativePosition.LengthSquared();
+            }
+            else if (cell == colony.Leader)
+            {
+            }
+            else
+            {
+                GD.PrintErr("Colony member has no attached component in radius calculation");
+            }
+
+            if (!cell.Has<CellProperties>())
+            {
+                GD.PrintErr("Cell colony has something that isn't a cell (CellProperties missing)");
+                return 0;
+            }
+
+            // If data not ready yet, skip calculation
+            var membrane = cell.Get<CellProperties>().CreatedMembrane;
+            if (membrane == null)
+                return 0;
+
+            var radius = membrane.EncompassingCircleRadius;
+            var distanceSquared = attachDistance + radius * radius;
+
+            if (distanceSquared > maxRadiusSquared)
+                maxRadiusSquared = distanceSquared;
+        }
+
+        var maxRadius = MathF.Sqrt(maxRadiusSquared);
+
+        colony.CachedRadius = maxRadius;
+        return maxRadius;
     }
 
     /// <summary>
@@ -648,9 +716,9 @@ public static class MicrobeColonyHelpers
             // This is this way around to support recursive calls also adding things here
             DependentMembersToRemove.RemoveAt(DependentMembersToRemove.Count - 1);
 
-            if (!next.IsAlive())
+            if (!next.IsAliveAndNotNull())
             {
-                // This entity is already dead, this should hopefully never trigger. If this does then this would
+                // This entity is already dead, this should hopefully never trigger. If this does, then this would
                 // give some more info on a colony despawn crash problem.
                 GD.PrintErr("Dependent colony member to remove is already dead, doing only " +
                     "light fallback cleanup");
@@ -865,7 +933,7 @@ public static class MicrobeColonyHelpers
     public static float SpawnAsFullyGrownMulticellularColony(Entity entity, MulticellularSpecies species,
         float originalWeight, CommandBuffer commandBuffer)
     {
-        int members = species.Cells.Count - 1;
+        int members = species.ModifiableGameplayCells.Count - 1;
 
         // Ignore fully spawning multicellular species that only have one cell in them
         if (members < 1)
@@ -920,7 +988,7 @@ public static class MicrobeColonyHelpers
                 // fastest cell inside it
                 var memberRotation = MicrobeInternalCalculations
                         .CalculateRotationSpeed(colonyMember.Get<OrganelleContainer>().Organelles!.Organelles)
-                    * (1 + 0.03f * distanceSquared);
+                    * (1 + 0.007f * distanceSquared);
 
                 colonyRotation += memberRotation;
             }
@@ -1037,7 +1105,10 @@ public static class MicrobeColonyHelpers
     {
         foreach (var colonyMember in colony.ColonyMembers)
         {
-            if (!colonyMember.IsAlive())
+            if (colonyMember.IsAllZero())
+                throw new Exception("Colony has a default initialized entity reference in it");
+
+            if (!colonyMember.IsAliveAndNotNull())
                 throw new Exception("Colony has a non-alive member");
         }
     }
@@ -1296,6 +1367,7 @@ public static class MicrobeColonyHelpers
     private static void MarkMembersChanged(this ref MicrobeColony colony)
     {
         colony.DerivedStatisticsCalculated = false;
+        colony.CachedRadius = 0;
         colony.EntityWeightApplied = false;
 
         // TODO: maybe in some situations creating the compound bag could be entirely safely skipped here

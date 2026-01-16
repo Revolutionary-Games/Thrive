@@ -65,6 +65,8 @@ public partial class GenerateThreadedSystems : Node
 
     public static int RandomStartSeed = 234546523;
 
+    public static bool UseExtraInterceptor = false;
+
     private const string ThreadComponentCheckCode = @"
         lock (debugWriteLock)
         {
@@ -284,6 +286,13 @@ public partial class GenerateThreadedSystems : Node
         textOutput.Add(StringUtils.GetIndent(indent) + "if (Debugger.IsAttached)");
         textOutput.Add(StringUtils.GetIndent(indent + 1) + "Debugger.Break();");
         textOutput.Add("#endif");
+
+        if (UseExtraInterceptor)
+        {
+            textOutput.Add(string.Empty);
+            textOutput.Add(StringUtils.GetIndent(indent) +
+                $"LogInterceptor.ForwardCaughtError(e, \"Game Simulation Failure ({name})\");");
+        }
 
         textOutput.Add(string.Empty);
         textOutput.Add(StringUtils.GetIndent(indent) + "throw;");

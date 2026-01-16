@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Components;
@@ -120,7 +119,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     public TutorialState TutorialState =>
         CurrentGame?.TutorialState ?? throw new InvalidOperationException("Game not started yet");
 
-    public override bool HasPlayer => Player != Entity.Null && Player.IsAlive();
+    public override bool HasPlayer => Player.IsAliveAndNotNull();
 
     public override bool HasAlivePlayer => HasPlayer && IsPlayerAlive();
 
@@ -681,6 +680,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         RecordPlayerReproduction();
 
+        PauseMenu.Instance.ReportStageTransition();
+
         // We don't free this here as the editor will return to this scene
         if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
         {
@@ -744,7 +745,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             // Direct component setting is safe as we verified above we aren't running during a simulation update
             microbe.Remove<MicrobeSpeciesMember>();
             microbe.Set(new SpeciesMember(multicellularSpecies));
-            microbe.Add(new MulticellularSpeciesMember(multicellularSpecies, multicellularSpecies.CellTypes[0], 0));
+            microbe.Add(new MulticellularSpeciesMember(multicellularSpecies,
+                multicellularSpecies.ModifiableCellTypes[0], 0));
 
             microbe.Add(new MulticellularGrowth(multicellularSpecies));
 
@@ -891,7 +893,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             // TODO: multicellular tolerances
 
             // Allow updating the first cell type to reproduce (reproduction order changed)
-            earlySpeciesType.MulticellularCellType = earlySpeciesType.Species.Cells[0].CellType;
+            earlySpeciesType.MulticellularCellType =
+                earlySpeciesType.Species.ModifiableGameplayCells[0].ModifiableCellType;
 
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
                 earlySpeciesType.MulticellularCellType, earlySpeciesType.Species, WorldSimulation, workData1,
@@ -961,7 +964,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         // Spawn another cell from the player species
         // This needs to be done after updating the player so that multicellular organisms are accurately separated
         cellProperties.Divide(ref Player.Get<OrganelleContainer>(), Player, playerSpecies, WorldSimulation,
-            this, WorldSimulation.SpawnSystem, (ref Entity daughter, CommandBuffer commandBuffer) =>
+            this, WorldSimulation.SpawnSystem, (ref daughter, commandBuffer) =>
             {
                 // Mark as a player-reproduced entity
                 commandBuffer.Add(daughter, new PlayerOffspring
@@ -981,7 +984,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             var doNotDespawn = PlayerOffspringHelpers.FindLatestSpawnedOffspring(WorldSimulation.EntitySystem);
 
 #if DEBUG
-            if (doNotDespawn.IsAlive() && !doNotDespawn.Has<Spawned>())
+            if (doNotDespawn.IsAliveAndNotNull() && !doNotDespawn.Has<Spawned>())
             {
                 throw new Exception(
                     "Spawned player offspring has no spawned component, microbe reproduction method is" +
@@ -1468,7 +1471,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     {
         base.OnGameContinuedAsSpecies(newPlayerSpecies, inPatch);
 
-        // Update spawners if staying in the same patch as otherwise they wouldn't be updated and would spawn the
+        // Update spawners if staying in the same patch as otherwise, they wouldn't be updated and would spawn the
         // obsolete species
         if (inPatch == GameWorld.Map.CurrentPatch)
         {
@@ -1514,6 +1517,11 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         }
     }
 
+    protected override void SaveGame(string name)
+    {
+        SaveHelper.Save(name, this);
+    }
+
     private void UpdateZoomLevels(bool isMulticellular)
     {
         if (isMulticellular)
@@ -1522,7 +1530,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
             float maxDistance = 0.0f;
 
-            foreach (var cell in species.Cells)
+            foreach (var cell in species.ModifiableGameplayCells)
             {
                 float distance = Hex.AxialToCartesian(cell.Position).LengthSquared();
 
@@ -1564,11 +1572,6 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             .Ambient;
         templateMaxLightLevel = GameWorld.Map.CurrentPatch.BiomeTemplate.Conditions
             .GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient;
-    }
-
-    private void SaveGame(string name)
-    {
-        SaveHelper.Save(name, this);
     }
 
     private void OnFinishLoading()
@@ -1706,6 +1709,16 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         // Don't clear the player object here as we want to wait until the player entity is deleted before creating
         // a new one to avoid having two player entities existing at the same time
+
+        if (GameWorld.Map.CurrentPatch == null)
+        {
+            GD.PrintErr("Current patch is unknown for some reason, can't update player spawn rate");
+            return;
+        }
+
+        // Update player spawn rate to make sure that if their own species is competing against the player, their spawn
+        // rate is reduced and thus makes the last live(s) easier
+        patchManager.UpdateSpawners(GameWorld.Map.CurrentPatch, this);
     }
 
     private bool PlayerIsEngulfed(Entity player)
@@ -1768,7 +1781,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         {
             try
             {
-                if (!player.IsAlive())
+                if (!player.IsAliveAndNotNull())
                 {
                     GD.PrintErr("Got player engulfed callback but player entity is dead");
                     OnCanEditStatusChanged(false);

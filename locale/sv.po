@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2026-01-12 15:26+0100\n"
 "PO-Revision-Date: 2025-10-16 19:56+0000\n"
 "Last-Translator: Jens Schwartz Linder <jesclinder@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -278,7 +278,8 @@ msgstr "Ascentionsstadiet"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Modmonteringsklass krävs när montering specificeras"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Modmontering krävs när autoharmony är aktiverat"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -440,6 +441,9 @@ msgstr ""
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr ""
 
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr "Uppvaknandestadiet"
 
@@ -555,7 +559,15 @@ msgstr ""
 msgid "BIG_IRON_CHUNK"
 msgstr "Stor järnbit"
 
+#, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Stor järnbit"
+
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Stor fosfatbit"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "Stor fosfatbit"
 
 msgid "BILLION_ABBREVIATION"
@@ -939,6 +951,10 @@ msgstr "Kust"
 msgid "COLLISION_SHAPE"
 msgstr ""
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
 msgid "COLOUR"
 msgstr "Färg"
 
@@ -991,6 +1007,9 @@ msgstr "Mättnadsvärde, mängden grått i en viss färg"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Värde (ljusstyrka) värde, ljusstyrka eller intensitet för färgen"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr ""
 
 #, fuzzy
 msgid "COMMON_ABILITIES"
@@ -1109,6 +1128,10 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Hjälp"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} konsumtion"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1508,8 +1531,28 @@ msgstr "Slem sekretion"
 msgid "CURRENT_DEVELOPERS"
 msgstr "Nuvarande utvecklare"
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "NUVARANDE PLATS"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "NUVARANDE PLATS"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "NUVARANDE PLATS"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "NUVARANDE PLATS"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Visa förmågor"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "Visa förmågor"
 
 #, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
@@ -1589,6 +1632,9 @@ msgstr ""
 
 msgid "DEATH"
 msgstr "död"
+
+msgid "DEBUG_CONSOLE"
+msgstr ""
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1853,6 +1899,10 @@ msgstr "Visa förmågor"
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "Visa förmågor"
+
+#, fuzzy
+msgid "DISPLAY_SELECTION"
+msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Jämnt spridd miljömatkälla av {0}"
@@ -2257,6 +2307,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Självmord"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Självmord"
 
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
@@ -2761,6 +2819,10 @@ msgstr "Grotta"
 msgid "GRAPHICS"
 msgstr "Grafik"
 
+#, fuzzy
+msgid "GRAPHICS_PRESET"
+msgstr "Grafik"
+
 msgid "GRAPHICS_TEAM"
 msgstr "Grafik"
 
@@ -2886,6 +2948,9 @@ msgstr ""
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
@@ -2893,6 +2958,9 @@ msgid "ID_NUMBER"
 msgstr ""
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 #, fuzzy
@@ -3015,6 +3083,14 @@ msgstr "Inspektera"
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Fortsätt"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}:+{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3141,18 +3217,6 @@ msgstr "med concentration av"
 
 msgid "JANUARY"
 msgstr "Januari"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON debug läge:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Alltid"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automatiskt"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Aldrig"
 
 msgid "JULY"
 msgstr "Juli"
@@ -3895,6 +3959,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Plundring av {0}"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reproduktion:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -3920,6 +3988,10 @@ msgstr "Mikrobredigerare"
 #, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr "Organismstatistik"
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
+msgstr "Avbryt denna handling"
 
 msgid "MICROBE_EDITOR"
 msgstr "Mikrobredigerare"
@@ -4239,6 +4311,10 @@ msgstr "Modifiera Typ"
 msgid "MODS"
 msgstr "Mod"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Avstängt"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4271,9 +4347,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 msgid "MOD_CREATION_FAILED"
@@ -4348,6 +4421,12 @@ msgid "MOD_UPLOADER"
 msgstr ""
 
 msgid "MOD_VERSION"
+msgstr ""
+
+msgid "MONITOR_AUTO"
+msgstr ""
+
+msgid "MONITOR_IDENTIFIER"
 msgstr ""
 
 msgid "MORE_INFO"
@@ -5266,6 +5345,30 @@ msgstr "Plundring av {0}"
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Fortsätt"
 
+#, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "Anpassat"
+
+#, fuzzy
+msgid "PRESET_HIGH"
+msgstr "Nollställ"
+
+#, fuzzy
+msgid "PRESET_LOW"
+msgstr "Nollställ"
+
+#, fuzzy
+msgid "PRESET_MEDIUM"
+msgstr "för att öka hastigheten"
+
+#, fuzzy
+msgid "PRESET_VERY_HIGH"
+msgstr "Nollställ Inputs"
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "Hjälp"
+
 msgid "PRESSURE"
 msgstr "Tryck"
 
@@ -5600,6 +5703,9 @@ msgstr "Snurra höger"
 msgid "ROTATION_COLON"
 msgstr "befolkning:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Kör auto-evo under spelgång"
 
@@ -5668,13 +5774,6 @@ msgstr "Använt utrymme:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Att radera denna sparfil är permanent och kan inte ångras. Är du säker på att du vill radera {0} för gott?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "JSON debug läge:"
 
 msgid "SAVE_FAILED"
 msgstr "Sparande misslyckades"
@@ -6019,7 +6118,15 @@ msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandnin
 msgid "SMALL_IRON_CHUNK"
 msgstr "Liten Järnbit"
 
+#, fuzzy
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "Liten Järnbit"
+
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Liten fosfatbit"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr "Liten fosfatbit"
 
 #, fuzzy
@@ -6106,6 +6213,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "har muterat"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Avbryt denna handling"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Maximalt antal arter i ett område innan tvingade utdöenden"
 
 msgid "SPECIES_LIST"
 msgstr "Artlista"
@@ -6648,6 +6763,10 @@ msgstr "Växla bindning av och på"
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Växla bindning av och på"
 
+#, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Växla debug-panel på och av"
+
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Växla debug-panel på och av"
 
@@ -7161,6 +7280,17 @@ msgstr "Ångra"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Ångra den senaste handlingen"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "DU HAR FRODATS!"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Mutationspoäng"
@@ -7332,6 +7462,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licenser Och Använda Bibliotek"
 
@@ -7341,13 +7474,6 @@ msgstr ""
 #, fuzzy
 msgid "USES_FEATURE"
 msgstr "Temperatur"
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#, fuzzy
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Självmord"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Använd ett anpassat användarnamn"
@@ -9379,6 +9505,14 @@ msgstr "Temp."
 msgid "WORST_PATCH_COLON"
 msgstr ""
 
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "Tillväxtordning"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
 msgid "XBOX360"
 msgstr ""
 
@@ -9418,6 +9552,30 @@ msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
+
+#, fuzzy
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Självmord"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Reproduktion:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON debug läge:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Alltid"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automatiskt"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Aldrig"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "JSON debug läge:"
 
 #, fuzzy
 #~ msgid "OUTDATED"
@@ -9752,9 +9910,6 @@ msgstr "Zooma ut"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Betrakta områden med upp till såhär många arter som att de har låg biodiversitet"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Maximalt antal arter i ett område innan tvingade utdöenden"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Ursprunglig population för biodiversitetsökande art"

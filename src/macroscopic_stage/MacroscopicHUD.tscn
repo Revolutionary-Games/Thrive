@@ -59,18 +59,6 @@ border_color = Color(0.533333, 0.745098, 0.815686, 0.392157)
 texture = ExtResource("26")
 region_rect = Rect2(0, 0, 86, 52)
 
-[sub_resource type="StyleBoxFlat" id="33"]
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 1, 1, 0.784314)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
-
 [sub_resource type="StyleBoxFlat" id="34"]
 bg_color = Color(0.168627, 0.0470588, 0.552941, 1)
 draw_center = false
@@ -84,7 +72,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pur5"]
+[sub_resource type="StyleBoxFlat" id="33"]
 draw_center = false
 border_width_left = 2
 border_width_top = 2
@@ -103,6 +91,18 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.701961, 0.701961, 0.701961, 0.588235)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pur5"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.784314)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
@@ -407,6 +407,7 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="ProcessPanel" parent="." instance=ExtResource("13")]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 72.0
 offset_right = 408.0
@@ -438,9 +439,9 @@ alignment = 1
 visible = false
 layout_mode = 2
 tooltip_text = "TOGGLE_ENGULF"
-theme_override_styles/hover = SubResource("33")
-theme_override_styles/pressed = SubResource("33")
 theme_override_styles/normal = SubResource("34")
+theme_override_styles/pressed = SubResource("33")
+theme_override_styles/hover = SubResource("33")
 ActionIcon = ExtResource("28")
 ActionName = "g_interact"
 
@@ -462,9 +463,9 @@ ActionName = "g_build_structure"
 visible = false
 layout_mode = 2
 tooltip_text = "TOGGLE_ENGULF"
-theme_override_styles/hover = SubResource("33")
-theme_override_styles/pressed = SubResource("33")
 theme_override_styles/normal = SubResource("34")
+theme_override_styles/pressed = SubResource("33")
+theme_override_styles/hover = SubResource("33")
 ActionIcon = ExtResource("71")
 ActionName = "g_toggle_engulf"
 
@@ -478,9 +479,9 @@ ActionName = "g_fire_toxin"
 [node name="SignalingAgents" parent="ScrollContainer/HotBar" instance=ExtResource("78")]
 visible = false
 layout_mode = 2
-theme_override_styles/hover = SubResource("33")
-theme_override_styles/pressed = SubResource("33")
 theme_override_styles/normal = SubResource("34")
+theme_override_styles/pressed = SubResource("33")
+theme_override_styles/hover = SubResource("33")
 toggle_mode = true
 ActionIcon = ExtResource("76")
 ActionName = "g_pack_commands"
@@ -504,9 +505,9 @@ ActionName = "g_eject_engulfed"
 visible = false
 layout_mode = 2
 tooltip_text = "SPRINT_ACTION_TOOLTIP"
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pur5")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_0pur5")
 theme_override_styles/normal = SubResource("StyleBoxFlat_1ao1s")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0pur5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0pur5")
 ActionIcon = ExtResource("30_isqlj")
 ActionName = "g_sprint"
 
@@ -514,9 +515,9 @@ ActionName = "g_sprint"
 visible = false
 layout_mode = 2
 tooltip_text = "MUCOCYST_ACTION_TOOLTIP"
-theme_override_styles/hover = SubResource("33")
-theme_override_styles/pressed = SubResource("33")
 theme_override_styles/normal = SubResource("34")
+theme_override_styles/pressed = SubResource("33")
+theme_override_styles/hover = SubResource("33")
 toggle_mode = true
 ActionIcon = ExtResource("31_pjbt3")
 ActionName = "g_toggle_mucocyst"
@@ -551,6 +552,7 @@ offset_bottom = -101.0
 offset_bottom = -24.0
 
 [node name="InventoryScreen" parent="." instance=ExtResource("29")]
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -575,14 +577,17 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RadialPopup" parent="." instance=ExtResource("32")]
+layout_mode = 0
 
 [node name="MoveToLandConfirmation" parent="." instance=ExtResource("17")]
 custom_minimum_size = Vector2(450, 0)
+layout_mode = 0
 DialogText = "MOVING_TO_LAND_PROTOTYPE"
 WindowTitle = "MOVING_TO_LAND_PROTOTYPE_TITLE"
 
 [node name="MoveToAwakeningConfirm" parent="." instance=ExtResource("17")]
 custom_minimum_size = Vector2(450, 0)
+layout_mode = 0
 DialogText = "MOVING_TO_AWAKENING_PROTOTYPE"
 WindowTitle = "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 
@@ -613,11 +618,8 @@ show_percentage = false
 [connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
 [connection signal="OnEnvironmentToggled" from="BottomLeft/HUDBottomBar" to="." method="EnvironmentButtonPressed"]
 [connection signal="OnHeatToggled" from="BottomLeft/HUDBottomBar" to="." method="HeatViewButtonPressed"]
-[connection signal="OnHelpPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenHelp"]
-[connection signal="OnMenuPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenMenu"]
 [connection signal="OnPausePressed" from="BottomLeft/HUDBottomBar" to="." method="PauseButtonPressed"]
 [connection signal="OnProcessesPressed" from="BottomLeft/HUDBottomBar" to="." method="ProcessPanelButtonPressed"]
-[connection signal="OnStatisticsPressed" from="BottomLeft/HUDBottomBar" to="." method="StatisticsButtonPressed"]
 [connection signal="OnSuicidePressed" from="BottomLeft/HUDBottomBar" to="." method="OnSuicide"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/ToLand" to="." method="OnMoveToLandPressed"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Awaken" to="." method="OnAwakenPressed"]

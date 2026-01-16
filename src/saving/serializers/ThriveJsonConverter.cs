@@ -2,15 +2,15 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using Godot;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using Saving;
 using Saving.Serializers;
+using FileAccess = Godot.FileAccess;
 
 /// <summary>
 ///   Main JSON conversion class for Thrive handling all our custom stuff
@@ -63,6 +63,20 @@ public class ThriveJsonConverter : IDisposable
         return PerformWithSettings(s => JsonConvert.DeserializeObject<T>(json, s));
     }
 
+    public T? DeserializeFile<T>(string path)
+    {
+        try
+        {
+            var json = ReadJSONFile(path);
+            return PerformWithSettings(s => JsonConvert.DeserializeObject<T>(json, s));
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Failed to deserialize file {path}: {e.Message}");
+            return default;
+        }
+    }
+
     public void Dispose()
     {
         Dispose(true);
@@ -80,6 +94,20 @@ public class ThriveJsonConverter : IDisposable
 
             disposed = true;
         }
+    }
+
+    private static string ReadJSONFile(string path)
+    {
+        string? result;
+        using (var file = FileAccess.Open(path, FileAccess.ModeFlags.Read))
+        {
+            result = file.GetAsText();
+        }
+
+        if (string.IsNullOrEmpty(result))
+            throw new IOException($"Failed to read json file: {path}");
+
+        return result;
     }
 
     private JsonSerializerSettings CreateSettings()
@@ -104,26 +132,12 @@ public class ThriveJsonConverter : IDisposable
             // it to ignore these. Though we use simpler loads now, so this might be able to be removed.
             ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
 
-            // Skip writing null properties. This saves a bit of data and as saves are not manually edited shouldn't
-            // really miss out on anything by just having null values omitted. One potential pitfall is the requirement
-            // to not rely on a null value to be passed to a JSON constructor
+            // Skip writing null properties.
+            // This saves a bit of data, and as saves are not manually edited, shouldn't really miss out on anything
+            // by just having null values omitted. One potential pitfall is the requirement to not rely on a null
+            // value to be passed to a JSON constructor
             NullValueHandling = NullValueHandling.Ignore,
-
-            TraceWriter = GetTraceWriter(Settings.Instance.JSONDebugMode, JSONDebug.ErrorHasOccurred),
         };
-    }
-
-    private ITraceWriter? GetTraceWriter(JSONDebug.DebugMode debugMode, bool errorHasOccurred)
-    {
-        if (debugMode == JSONDebug.DebugMode.AlwaysDisabled)
-            return null;
-
-        if (debugMode == JSONDebug.DebugMode.AlwaysEnabled || errorHasOccurred)
-        {
-            return new MemoryTraceWriter();
-        }
-
-        return null;
     }
 
     private T PerformWithSettings<T>(Func<JsonSerializerSettings, T> func)
@@ -150,51 +164,11 @@ public class ThriveJsonConverter : IDisposable
         {
             return func(settings);
         }
-        catch (Exception e)
-        {
-            // Don't do our special automatic debug enabling if debug writing is already on
-            if (JSONDebug.ErrorHasOccurred || settings.TraceWriter != null)
-                throw;
-
-            JSONDebug.ErrorHasOccurred = true;
-
-            if (Settings.Instance.JSONDebugMode == JSONDebug.DebugMode.Automatic)
-            {
-                GD.Print("JSON error happened, retrying with debug printing (mode is automatic), first exception: ",
-                    e);
-
-                // Seems like the json library doesn't have nullability annotations
-                currentJsonSettings.Value = null!;
-                PerformWithSettings(func);
-
-                // If we get here, we didn't get another exception...
-                // So we could maybe re-throw the first exception so that we fail like we should
-                GD.PrintErr("Expected an exception for the second try at JSON operation, but it succeeded, " +
-                    "re-throwing the original exception");
-                throw;
-            }
-            else
-            {
-                throw;
-            }
-        }
         finally
         {
             if (!recursive)
             {
                 currentJsonSettings.Value = null!;
-
-                if (settings.TraceWriter != null)
-                {
-                    JSONDebug.OnTraceFinished(settings.TraceWriter);
-
-                    // This shouldn't get reused so no point in creating a new instance here
-                    settings.TraceWriter = null;
-                }
-            }
-            else
-            {
-                settings.TraceWriter?.Trace(TraceLevel.Info, "Exited recursive object", null);
             }
         }
     }

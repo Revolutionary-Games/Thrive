@@ -48,7 +48,8 @@ public partial class MainMenu : NodeWithInput
     private NewGameSettings newGameSettings = null!;
     private AnimationPlayer guiAnimations = null!;
     private SaveManagerGUI saves = null!;
-    private Thriveopedia thriveopedia = null!;
+
+    private Thriveopedia? thriveopedia;
 
     [Export]
     private ModManager modManager = null!;
@@ -139,6 +140,9 @@ public partial class MainMenu : NodeWithInput
 
     [Export]
     private CenterContainer menus = null!;
+
+    [Export]
+    private PackedScene thriveopediaScene = null!;
 #pragma warning restore CA2213
 
     private Array<Node>? menuArray;
@@ -189,6 +193,8 @@ public partial class MainMenu : NodeWithInput
         // Unpause the game as the MainMenu should never be paused.
         PauseManager.Instance.ForceClear();
         MouseCaptureManager.ForceDisableCapture();
+        PauseMenu.Instance.ReportStageTransition();
+        PauseMenu.Instance.ForgetCurrentlyOpenPage();
 
         RunMenuSetup();
 
@@ -360,13 +366,13 @@ public partial class MainMenu : NodeWithInput
     }
 
     /// <summary>
-    ///   This is when ESC is pressed. Main menu priority is lower than Options Menu
+    ///   This is when ESC is pressed. The main menu priority is lower than Options Menu
     ///   to avoid capturing ESC presses in the Options Menu.
     /// </summary>
     [RunOnKeyDown("ui_cancel", Priority = Constants.MAIN_MENU_CANCEL_PRIORITY)]
     public bool OnEscapePressed()
     {
-        // In a sub menu (that doesn't have its own class)
+        // In a submenu (that doesn't have its own class)
         if (CurrentMenuIndex != 0 && CurrentMenuIndex < uint.MaxValue)
         {
             SetCurrentMenu(0);
@@ -386,7 +392,7 @@ public partial class MainMenu : NodeWithInput
     }
 
     /// <summary>
-    ///   Setup the main menu.
+    ///   Set up the main menu.
     /// </summary>
     private void RunMenuSetup()
     {
@@ -406,7 +412,6 @@ public partial class MainMenu : NodeWithInput
         options = GetNode<OptionsMenu>("OptionsMenu");
         newGameSettings = GetNode<NewGameSettings>("NewGameSettings");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
-        thriveopedia = GetNode<Thriveopedia>("Thriveopedia");
 
         // Set initial menu
         SwitchMenu();
@@ -932,7 +937,8 @@ public partial class MainMenu : NodeWithInput
 
     private void OnReturnFromThriveopedia()
     {
-        thriveopedia.Visible = false;
+        thriveopedia?.Visible = false;
+
         SetCurrentMenu(0, false);
     }
 
@@ -989,6 +995,21 @@ public partial class MainMenu : NodeWithInput
         // Hide all the other menus
         SetCurrentMenu(uint.MaxValue, false);
 
+        // Create the Thriveopedia if it doesn't exist yet
+        if (thriveopedia == null)
+        {
+            thriveopedia = thriveopediaScene.Instantiate<Thriveopedia>();
+
+            // Thriveopedia needs to start off hidden to work correctly
+            thriveopedia.Visible = false;
+
+            // Hook up the necessary signals
+            thriveopedia.Connect(Thriveopedia.SignalName.OnThriveopediaClosed,
+                new Callable(this, nameof(OnReturnFromThriveopedia)));
+
+            AddChild(thriveopedia);
+        }
+
         // Show the Thriveopedia
         thriveopedia.OpenFromMainMenu();
     }
@@ -1039,12 +1060,9 @@ public partial class MainMenu : NodeWithInput
         galleryViewer.OpenFullRect();
         Jukebox.Instance.PlayCategory("ArtGallery");
 
-        if (created3DBackground != null)
-        {
-            // Hide the 3D background while in the gallery as it is a fullscreen popup and rendering the expensive 3D
-            // scene underneath it is not the best
-            created3DBackground.Visible = false;
-        }
+        // Hide the 3D background while in the gallery as it is a fullscreen popup and rendering the expensive 3D
+        // scene underneath it is not the best
+        created3DBackground?.Visible = false;
     }
 
     private void OnReturnFromArtGallery()
@@ -1052,10 +1070,7 @@ public partial class MainMenu : NodeWithInput
         SetCurrentMenu(2, false);
         Jukebox.Instance.PlayCategory("Menu");
 
-        if (created3DBackground != null)
-        {
-            created3DBackground.Visible = true;
-        }
+        created3DBackground?.Visible = true;
 
         ResetPerformanceTracking();
     }
@@ -1107,17 +1122,23 @@ public partial class MainMenu : NodeWithInput
 
     private void OnNewGameIntroVideoStarted()
     {
-        if (created3DBackground != null)
-        {
-            // Hide the background again when playing a video as the 3D backgrounds are performance intensive
-            created3DBackground.Visible = false;
-        }
+        // Hide the background again when playing a video as the 3D backgrounds are performance intensive
+        created3DBackground?.Visible = false;
     }
 
     private void OnThriveopediaOpened(string pageName)
     {
-        thriveopedia.OpenFromMainMenu();
-        thriveopedia.ChangePage(pageName);
+        // Make sure Thriveopedia is created if missing
+        if (thriveopedia == null)
+        {
+            GD.Print("Creating Thriveopedia due to page open request");
+            ThriveopediaPressed();
+        }
+
+        thriveopedia!.OpenFromMainMenu();
+
+        // TODO: does something already play a sound or not in this case?
+        thriveopedia.ChangePage(pageName, false);
     }
 
     private void ResetPerformanceTracking()

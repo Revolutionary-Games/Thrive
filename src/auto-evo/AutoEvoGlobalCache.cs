@@ -9,6 +9,9 @@ public class AutoEvoGlobalCache
     public readonly MetabolicStabilityPressure MetabolicStabilityPressure;
     public readonly EnvironmentalTolerancePressure EnvironmentalTolerancesPressure;
 
+    public readonly ReproductionCompoundPressure PhosphatePressure;
+    public readonly ReproductionCompoundPressure AmmoniaPressure;
+
     public readonly CompoundConversionEfficiencyPressure MinorGlucoseConversionEfficiencyPressure;
     public readonly MaintainCompoundPressure MaintainGlucose;
 
@@ -46,6 +49,10 @@ public class AutoEvoGlobalCache
         MetabolicStabilityPressure = new MetabolicStabilityPressure(10.0f);
         EnvironmentalTolerancesPressure = new EnvironmentalTolerancePressure(4);
 
+        PhosphatePressure = new ReproductionCompoundPressure(
+            Compound.Phosphates, worldSettings.DayNightCycleEnabled, 0.3f);
+        AmmoniaPressure = new ReproductionCompoundPressure(Compound.Ammonia, worldSettings.DayNightCycleEnabled, 0.3f);
+
         MinorGlucoseConversionEfficiencyPressure =
             new CompoundConversionEfficiencyPressure(Compound.Glucose, Compound.ATP, true, 0.45f);
         MaintainGlucose = new MaintainCompoundPressure(Compound.Glucose, 1.5f);
@@ -82,8 +89,9 @@ public class AutoEvoGlobalCache
             new LocalizedString("RADIOACTIVE_CHUNK"), Compound.Radiation, Compound.ATP, 1.0f);
 
         TemperatureConversionEfficiencyPressure =
-            new CompoundConversionEfficiencyPressure(Compound.Temperature, Compound.ATP, true, 1.0f);
-        TemperatureCompoundPressure = new EnvironmentalCompoundPressure(Compound.Temperature, Compound.ATP, 100, 1.0f);
+            new CompoundConversionEfficiencyPressure(Compound.Temperature, Compound.Glucose, true, 1.0f);
+        TemperatureCompoundPressure = new EnvironmentalCompoundPressure(Compound.Temperature, Compound.Glucose,
+            100, 1.0f);
         HasTemperature = !worldSettings.LAWK;
 
         PredatorRoot = new PredatorRoot(1.0f);

@@ -53,34 +53,32 @@ public class MaintainCompoundPressure : SelectionPressure
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
 
+        var activeProcessList = cache.GetActiveProcessList(microbeSpecies);
+
         var compoundUsed = 0.0f;
         var compoundCreated = 0.0f;
 
         var biomeConditions = patch.Biome;
         var resolvedTolerances = cache.GetEnvironmentalTolerances(microbeSpecies, biomeConditions);
 
-        for (var i = 0; i < microbeSpecies.Organelles.Count; ++i)
+        foreach (var process in activeProcessList)
         {
-            var organelle = microbeSpecies.Organelles[i];
-            foreach (var process in organelle.Definition.RunnableProcesses)
+            if (process.Process.Inputs.TryGetValue(compound, out var inputAmount))
             {
-                if (process.Process.Inputs.TryGetValue(compound, out var inputAmount))
-                {
-                    var processSpeed = cache
-                        .GetProcessMaximumSpeed(process, resolvedTolerances.ProcessSpeedModifier, biomeConditions)
-                        .CurrentSpeed;
+                var processSpeed = cache
+                    .GetProcessMaximumSpeed(process, resolvedTolerances.ProcessSpeedModifier, biomeConditions)
+                    .CurrentSpeed;
 
-                    compoundUsed += inputAmount * processSpeed;
-                }
+                compoundUsed += inputAmount * processSpeed;
+            }
 
-                if (process.Process.Outputs.TryGetValue(compound, out var outputAmount))
-                {
-                    var processSpeed = cache
-                        .GetProcessMaximumSpeed(process, resolvedTolerances.ProcessSpeedModifier, biomeConditions)
-                        .CurrentSpeed;
+            if (process.Process.Outputs.TryGetValue(compound, out var outputAmount))
+            {
+                var processSpeed = cache
+                    .GetProcessMaximumSpeed(process, resolvedTolerances.ProcessSpeedModifier, biomeConditions)
+                    .CurrentSpeed;
 
-                    compoundCreated += outputAmount * processSpeed;
-                }
+                compoundCreated += outputAmount * processSpeed;
             }
         }
 

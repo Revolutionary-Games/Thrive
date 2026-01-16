@@ -32,7 +32,7 @@ region_rect = Rect2(0, 0, 258, 1)
 
 [sub_resource type="StyleBoxEmpty" id="7"]
 
-[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("backButton", "resetButton", "saveButton", "tabButtons", "graphicsButton", "soundButton", "performanceButton", "inputsButton", "miscButton", "graphicsTab", "vsync", "resolution", "displayMode", "antiAliasingMode", "msaaSection", "msaaResolution", "renderScale", "renderScaleLabel", "upscalingMethod", "upscalingSharpening", "maxFramesPerSecond", "colourblindSetting", "chromaticAberrationToggle", "chromaticAberrationSlider", "controllerPromptType", "displayAbilitiesHotBarToggle", "anisotropicFilterLevel", "damageEffect", "strainVisibility", "displayBackgroundParticlesToggle", "guiLightEffectsToggle", "displayPartNamesToggle", "displayMenu3DBackgroundsToggle", "displayMicrobeBackgroundDistortionToggle", "lowQualityBackgroundBlurToggle", "bloomEffectToggle", "bloomSlider", "blurSlider", "gpuName", "usedRendererName", "videoMemory", "soundTab", "masterVolume", "masterMuted", "musicVolume", "musicMuted", "ambianceVolume", "ambianceMuted", "sfxVolume", "sfxMuted", "guiVolume", "guiMuted", "audioOutputDeviceSelection", "languageSelection", "resetLanguageButton", "languageProgressLabel", "performanceTab", "cloudInterval", "cloudResolutionTitle", "cloudResolution", "runAutoEvoDuringGameplay", "runGameSimulationMultithreaded", "detectedCPUCount", "activeThreadCount", "assumeHyperthreading", "useManualThreadCount", "threadCountSlider", "useManualNativeThreadCount", "nativeThreadCountSlider", "maxSpawnedEntities", "useDiskCaching", "maxCacheSizeSlider", "maxCacheSizeLabel", "currentCacheSize", "maxMemoryCacheTimeSlider", "maxMemoryCacheTimeLabel", "maxDiskCacheTimeSlider", "maxDiskCacheTimeLabel", "maxMemoryItemsSlider", "maxMemoryItemsLabel", "maxMemoryOnlyCacheTimeSlider", "maxMemoryOnlyCacheTimeLabel", "inputsTab", "mouseAxisSensitivitiesBound", "mouseHorizontalSensitivity", "mouseHorizontalInverted", "mouseVerticalSensitivity", "mouseVerticalInverted", "mouseWindowSizeScaling", "mouseWindowSizeScalingWithLogicalSize", "controllerAxisSensitivitiesBound", "controllerHorizontalSensitivity", "controllerHorizontalInverted", "controllerVerticalSensitivity", "controllerVerticalInverted", "twoDimensionalMovement", "threeDimensionalMovement", "mouseEdgePanEnabled", "mouseEdgePanSensitivity", "inputGroupList", "deadzoneConfigurationPopup", "miscTab", "playIntro", "playMicrobeIntro", "cheats", "tutorialsEnabledOnNewGame", "autoSave", "maxAutoSaves", "maxQuickSaves", "customUsernameEnabled", "customUsername", "webFeedsEnabled", "microbeRippleEffect", "microbeCameraTilt", "showNewPatchNotes", "dismissedNoticeCount", "jsonDebugMode", "screenEffectSelect", "commitLabel", "builtAtLabel", "tutorialsEnabled", "tutorialsEnabledContainer", "unsavedProgressWarningEnabled", "resetAchievementsButton", "screenshotDirectoryWarningBox", "backConfirmationBox", "defaultsConfirmationBox", "confirmAchievementsReset", "errorAcceptBox", "patchNotesBox", "patchNotesDisplayer")]
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("backButton", "resetButton", "saveButton", "tabButtons", "graphicsButton", "soundButton", "performanceButton", "inputsButton", "miscButton", "graphicsTab", "vsync", "graphicsPreset", "displayOptionContainer", "display", "resolution", "displayMode", "antiAliasingMode", "msaaSection", "msaaResolution", "renderScale", "renderScaleLabel", "upscalingMethod", "upscalingSharpening", "maxFramesPerSecond", "colourblindSetting", "chromaticAberrationToggle", "chromaticAberrationSlider", "controllerPromptType", "displayAbilitiesHotBarToggle", "anisotropicFilterLevel", "damageEffect", "strainVisibility", "displayBackgroundParticlesToggle", "guiLightEffectsToggle", "displayPartNamesToggle", "displayMenu3DBackgroundsToggle", "displayMicrobeBackgroundDistortionToggle", "lowQualityBackgroundBlurToggle", "microbeCurrentParticles", "bloomEffectToggle", "bloomSlider", "blurSlider", "gpuName", "usedRendererName", "videoMemory", "soundTab", "masterVolume", "masterMuted", "musicVolume", "musicMuted", "ambianceVolume", "ambianceMuted", "sfxVolume", "sfxMuted", "guiVolume", "guiMuted", "audioOutputDeviceSelection", "languageSelection", "resetLanguageButton", "languageProgressLabel", "performanceTab", "cloudInterval", "cloudResolutionTitle", "cloudResolution", "runAutoEvoDuringGameplay", "runGameSimulationMultithreaded", "detectedCPUCount", "activeThreadCount", "assumeHyperthreading", "useManualThreadCount", "threadCountSlider", "useManualNativeThreadCount", "nativeThreadCountSlider", "maxSpawnedEntities", "useDiskCaching", "maxCacheSizeSlider", "maxCacheSizeLabel", "currentCacheSize", "maxMemoryCacheTimeSlider", "maxMemoryCacheTimeLabel", "maxDiskCacheTimeSlider", "maxDiskCacheTimeLabel", "maxMemoryItemsSlider", "maxMemoryItemsLabel", "maxMemoryOnlyCacheTimeSlider", "maxMemoryOnlyCacheTimeLabel", "inputsTab", "mouseAxisSensitivitiesBound", "mouseHorizontalSensitivity", "mouseHorizontalInverted", "mouseVerticalSensitivity", "mouseVerticalInverted", "mouseWindowSizeScaling", "mouseWindowSizeScalingWithLogicalSize", "controllerAxisSensitivitiesBound", "controllerHorizontalSensitivity", "controllerHorizontalInverted", "controllerVerticalSensitivity", "controllerVerticalInverted", "twoDimensionalMovement", "threeDimensionalMovement", "mouseEdgePanEnabled", "mouseEdgePanSensitivity", "inputGroupList", "deadzoneConfigurationPopup", "miscTab", "playIntro", "playMicrobeIntro", "cheats", "tutorialsEnabledOnNewGame", "autoSave", "maxAutoSaves", "maxQuickSaves", "customUsernameEnabled", "customUsername", "webFeedsEnabled", "microbeRippleEffect", "microbeCameraTilt", "showNewPatchNotes", "dismissedNoticeCount", "screenEffectSelect", "commitLabel", "builtAtLabel", "tutorialsEnabled", "tutorialsEnabledContainer", "unsavedProgressWarningEnabled", "resetAchievementsButton", "screenshotDirectoryWarningBox", "backConfirmationBox", "defaultsConfirmationBox", "confirmAchievementsReset", "errorAcceptBox", "patchNotesBox", "patchNotesDisplayer")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -57,10 +57,13 @@ inputsButton = NodePath("CenterContainer/VBoxContainer/TabButtons/InputsButton")
 miscButton = NodePath("CenterContainer/VBoxContainer/TabButtons/MiscButton")
 graphicsTab = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics")
 vsync = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/Vsync")
+graphicsPreset = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15/HBoxContainer/GraphicsPreset")
+displayOptionContainer = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/MonitorSelectionContainer")
+display = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/MonitorSelectionContainer/HBoxContainer/Display")
 resolution = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7/HBoxContainer/Resolution")
 displayMode = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer/DisplayMode")
 antiAliasingMode = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/HBoxContainer/AntiAliasingMode")
-msaaSection = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer/MSAAResolution")
+msaaSection = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5")
 msaaResolution = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer/MSAAResolution")
 renderScale = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer/RenderScale")
 renderScaleLabel = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer/HBoxContainer/ScaleValue")
@@ -81,6 +84,7 @@ displayPartNamesToggle = NodePath("CenterContainer/VBoxContainer/VBoxContainer/V
 displayMenu3DBackgroundsToggle = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer18/HBoxContainer/Menu3DBackgroundsToggle")
 displayMicrobeBackgroundDistortionToggle = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14/HBoxContainer/BackgroundDistortion")
 lowQualityBackgroundBlurToggle = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/LowQualityBackgroundContainer/HBoxContainer/LowQualityBlur")
+microbeCurrentParticles = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer29/HBoxContainer/CurrentParticles")
 bloomEffectToggle = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBocContainer24/HBoxContainer/HBoxContainer/BloomToggle")
 bloomSlider = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBocContainer24/HBoxContainer/HBoxContainer/BloomAmount")
 blurSlider = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer19/HBoxContainer/BlurAmount")
@@ -162,7 +166,6 @@ microbeRippleEffect = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBox
 microbeCameraTilt = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer/MicrobeCameraTilt")
 showNewPatchNotes = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15/HBoxContainer/ShowNewPatchNotes")
 dismissedNoticeCount = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer/HBoxContainer/DismissedCount")
-jsonDebugMode = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/VBoxContainer3/HBoxContainer/JSONDebug")
 screenEffectSelect = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10/VBoxContainer3/HBoxContainer/ScreenEffect")
 commitLabel = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer18/HBoxContainer/Commit")
 builtAtLabel = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer19/HBoxContainer/BuiltAt")
@@ -188,7 +191,7 @@ layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="TabButtons" parent="CenterContainer/VBoxContainer" instance=ExtResource("14")]
-custom_minimum_size = Vector2(1200, 0)
+custom_minimum_size = Vector2(850, 0)
 layout_mode = 2
 MoveIndicatorsTakeUpSpaceWhileInvisible = true
 
@@ -263,6 +266,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
+scroll_vertical = 100
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer"]
 layout_mode = 2
@@ -331,6 +335,67 @@ popup/item_1/text = "FULLSCREEN"
 popup/item_1/id = 1
 popup/item_2/text = "EXCLUSIVE_FULLSCREEN"
 popup/item_2/id = 2
+
+[node name="MonitorSelectionContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/MonitorSelectionContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/MonitorSelectionContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "DISPLAY_SELECTION"
+autowrap_mode = 2
+
+[node name="Display" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/MonitorSelectionContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+autowrap_mode = 2
+
+[node name="VBoxContainer15" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "GRAPHICS_PRESET"
+autowrap_mode = 2
+
+[node name="GraphicsPreset" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+autowrap_mode = 2
+selected = 0
+item_count = 6
+popup/item_0/text = "PRESET_CUSTOM"
+popup/item_0/id = 0
+popup/item_1/text = "PRESET_VERY_LOW"
+popup/item_1/id = 1
+popup/item_2/text = "PRESET_LOW"
+popup/item_2/id = 2
+popup/item_3/text = "PRESET_MEDIUM"
+popup/item_3/id = 3
+popup/item_4/text = "PRESET_HIGH"
+popup/item_4/id = 4
+popup/item_5/text = "PRESET_VERY_HIGH"
+popup/item_5/id = 5
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -824,6 +889,38 @@ autowrap_mode = 2
 [node name="LowQualityBlur" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/LowQualityBackgroundContainer/HBoxContainer"]
 layout_mode = 2
 tooltip_text = "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+
+[node name="VBoxContainer29" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer29"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer29/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "MICROBE_CURRENT_PARTICLES"
+autowrap_mode = 2
+
+[node name="CurrentParticles" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer29/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+autowrap_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "CURRENT_PARTICLES_ALL"
+popup/item_0/id = 0
+popup/item_1/text = "CURRENT_PARTICLES_CIRCLES_ONLY"
+popup/item_1/id = 1
+popup/item_2/text = "CURRENT_PARTICLES_NONE"
+popup/item_2/id = 2
 
 [node name="VBoxContainer16" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -2171,7 +2268,7 @@ size_flags_horizontal = 3
 [node name="FocusGrabber" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("13")]
 layout_mode = 2
 Priority = 3
-NodeToGiveFocusTo = NodePath("../HBoxContainer5/Horizontal")
+NodeToGiveFocusTo = NodePath("../HBoxContainer5/HorizontalInverted")
 GrabFocusWhenBecomingVisible = true
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -2300,6 +2397,7 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 0
 size_flags_stretch_ratio = 2.0
 autowrap_mode = 2
 selected = 0
@@ -2380,7 +2478,6 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_paabc")
 
 [node name="HorizontalInverted" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
 layout_mode = 2
-size_flags_horizontal = 3
 text = "INVERTED"
 
 [node name="HBoxContainer10" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -2412,7 +2509,6 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_paabc")
 
 [node name="VerticalInverted" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
 layout_mode = 2
-size_flags_horizontal = 3
 text = "INVERTED"
 
 [node name="VBoxContainer5" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -2438,29 +2534,16 @@ custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer6" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6/HBoxContainer"]
+[node name="DeadzonesButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 3.0
-mouse_filter = 0
-
-[node name="DeadzonesButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-focus_neighbor_right = NodePath("../../../VBoxContainer7/HBoxContainer/Movement2DType")
-focus_neighbor_bottom = NodePath("../../../VBoxContainer7/HBoxContainer/Movement2DType")
-focus_next = NodePath("../../../VBoxContainer7/HBoxContainer/Movement2DType")
+size_flags_horizontal = 10
+focus_neighbor_right = NodePath("../../VBoxContainer7/HBoxContainer/Movement2DType")
+focus_neighbor_bottom = NodePath("../../VBoxContainer7/HBoxContainer/Movement2DType")
+focus_next = NodePath("../../VBoxContainer7/HBoxContainer/Movement2DType")
 text = "CONTROLLER_DEADZONES"
-autowrap_mode = 2
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
@@ -2488,8 +2571,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 2.0
-focus_neighbor_left = NodePath("../../../VBoxContainer6/HBoxContainer/DeadzonesButton")
-focus_neighbor_top = NodePath("../../../VBoxContainer6/HBoxContainer/DeadzonesButton")
+focus_neighbor_left = NodePath("../../../HBoxContainer/DeadzonesButton")
+focus_neighbor_top = NodePath("../../../HBoxContainer/DeadzonesButton")
 focus_neighbor_bottom = NodePath("../../../VBoxContainer8/HBoxContainer/Movement3DType")
 autowrap_mode = 2
 selected = 0
@@ -2528,7 +2611,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 2.0
-focus_neighbor_left = NodePath("../../../VBoxContainer6/HBoxContainer/DeadzonesButton")
+focus_neighbor_left = NodePath("../../../HBoxContainer/DeadzonesButton")
 focus_neighbor_top = NodePath("../../../VBoxContainer7/HBoxContainer/Movement2DType")
 focus_neighbor_right = NodePath("../../../../../../../HBoxContainer/ResetInputsButton")
 autowrap_mode = 2
@@ -2830,31 +2913,15 @@ autowrap_mode = 2
 [node name="TutorialsEnabled" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/CurrentGameTutorialsContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer8" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer"]
+[node name="ResetTutorials" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 3.0
-mouse_filter = 0
-
-[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-
-[node name="ResetTutorials" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 10
 size_flags_stretch_ratio = 3.0
 tooltip_text = "RESET_SHOWN_TUTORIALS_TOOLTIP"
 text = "RESET_SHOWN_TUTORIALS"
-autowrap_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
@@ -2978,42 +3045,6 @@ autowrap_mode = 2
 layout_mode = 2
 tooltip_text = "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 
-[node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/VBoxContainer3"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/VBoxContainer3/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-size_flags_stretch_ratio = 3.0
-text = "JSON_DEBUG_MODE"
-autowrap_mode = 2
-
-[node name="JSONDebug" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/VBoxContainer3/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-size_flags_stretch_ratio = 2.0
-autowrap_mode = 2
-selected = 0
-item_count = 3
-popup/item_0/text = "JSON_DEBUG_MODE_AUTO"
-popup/item_0/id = 0
-popup/item_1/text = "JSON_DEBUG_MODE_ALWAYS"
-popup/item_1/id = 1
-popup/item_2/text = "JSON_DEBUG_MODE_NEVER"
-popup/item_2/id = 2
-
 [node name="VBoxContainer16" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -3082,6 +3113,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 2.0
+focus_neighbor_left = NodePath("../../../VBoxContainer/ResetAchievements")
 action_mode = 0
 text = "RESET_DISMISSED_POPUPS"
 autowrap_mode = 2
@@ -3152,9 +3184,7 @@ layout_mode = 2
 [node name="CommitInfo" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer18/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 5
-size_flags_stretch_ratio = 3.0
 tooltip_text = "EXACT_VERSION_TOOLTIP"
 mouse_filter = 1
 text = "EXACT_VERSION_COLON"
@@ -3162,11 +3192,16 @@ autowrap_mode = 2
 
 [node name="Commit" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer18/HBoxContainer"]
 editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 tooltip_text = "EXACT_VERSION_TOOLTIP"
 mouse_filter = 1
 text = "f71f72462dcc5cdeec1f0cbf5b96969ac475e2c5"
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="VBoxContainer19" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -3390,6 +3425,8 @@ grow_vertical = 1
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/MiscButton" to="." method="ChangeSettingsTab" binds= ["Miscellaneous"]]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/Vsync" to="." method="OnVSyncToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer/DisplayMode" to="." method="OnDisplayModeSelected"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/MonitorSelectionContainer/HBoxContainer/Display" to="." method="OnMonitorSelected"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15/HBoxContainer/GraphicsPreset" to="." method="OnGraphicsPresetSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/HBoxContainer/AntiAliasingMode" to="." method="OnAntiAliasingModeSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer/MSAAResolution" to="." method="OnMSAAResolutionSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6/HBoxContainer/AnisotropicFilterLevel" to="." method="OnAnisotropicFilteringSelected"]
@@ -3405,6 +3442,7 @@ grow_vertical = 1
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13/HBoxContainer/DisplayBackgroundParticles" to="." method="OnDisplayBackgroundParticlesToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14/HBoxContainer/BackgroundDistortion" to="." method="OnMicrobeBackgroundDistortionToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/LowQualityBackgroundContainer/HBoxContainer/LowQualityBlur" to="." method="OnLowQualityBackgroundBlurToggled"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer29/HBoxContainer/CurrentParticles" to="." method="OnCurrentParticlesOptionSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16/HBoxContainer/MicrobeRipples" to="." method="OnMicrobeRippleToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer/MicrobeCameraTilt" to="." method="OnMicrobeCameraTiltToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer18/HBoxContainer/Menu3DBackgroundsToggle" to="." method="OnDisplay3DMenuBackgroundsToggled"]
@@ -3458,7 +3496,7 @@ grow_vertical = 1
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10/Vertical" to="." method="OnControllerVerticalSensitivityChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10/VerticalInverted" to="." method="OnInvertedControllerVerticalToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer/SameBothAxesSensitivity" to="." method="OnControllerAxesBoundToggled"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6/HBoxContainer/DeadzonesButton" to="." method="OnOpenDeadzoneConfigurationPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/DeadzonesButton" to="." method="OnOpenDeadzoneConfigurationPressed"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7/HBoxContainer/Movement2DType" to="." method="OnMovement2DTypeSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer/Movement3DType" to="." method="OnMovement3DTypeSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer9/HBoxContainer/EdgePan" to="." method="OnMouseEdgePanToggled"]
@@ -3472,7 +3510,7 @@ grow_vertical = 1
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6/HBoxContainer/UnsavedProgressWarning" to="." method="OnUnsavedProgressWarningToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer/TutorialsEnabledOnNewGame" to="." method="OnTutorialsOnNewGameToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/CurrentGameTutorialsContainer/HBoxContainer/TutorialsEnabled" to="." method="OnTutorialsEnabledToggled"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer/ResetTutorials" to="." method="OnResetShownTutorials"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/ResetTutorials" to="." method="OnResetShownTutorials"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/ScreenshotFolder" to="." method="OnOpenScreenshotFolder"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/LogButton" to="." method="OnLogButtonPressed"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer11/HBoxContainer/Cheats" to="." method="OnCheatsToggled"]
@@ -3480,7 +3518,6 @@ grow_vertical = 1
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13/HBoxContainer/CustomUsername" to="." method="OnCustomUsernameTextChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14/HBoxContainer/WebFeeds" to="." method="OnWebFeedsEnabledToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15/HBoxContainer/ShowNewPatchNotes" to="." method="OnPatchNotesEnabledToggled"]
-[connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/VBoxContainer3/HBoxContainer/JSONDebug" to="." method="OnJSONDebugModeSelected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16/HBoxContainer/ViewPatchNotes" to="." method="OnOpenPatchNotesPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer/ResetDismissed" to="." method="OnResetDismissedPopups"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/ResetAchievements" to="." method="ResetAchievementsPressed"]

@@ -111,8 +111,8 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterEnumType((ArchiveObjectType)ThriveArchiveObjectType.CompoundEnum, ArchiveEnumType.UInt16,
             typeof(Compound));
 
-        RegisterEnumType((ArchiveObjectType)ThriveArchiveObjectType.WorldEffectTypes, ArchiveEnumType.Int32,
-            typeof(WorldEffectTypes));
+        RegisterEnumType((ArchiveObjectType)ThriveArchiveObjectType.PatchEventTypes, ArchiveEnumType.Int32,
+            typeof(PatchEventTypes));
 
         RegisterEnumType((ArchiveObjectType)ThriveArchiveObjectType.ToxinType, ArchiveEnumType.Int32,
             typeof(ToxinType));
@@ -347,6 +347,18 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(Endosymbiont), Endosymbiont.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Endosymbiont,
             typeof(Endosymbiont), Endosymbiont.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.InProgressEndosymbiosis,
+            typeof(EndosymbiosisData.InProgressEndosymbiosis),
+            EndosymbiosisData.InProgressEndosymbiosis.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.AgentProperties,
+            typeof(AgentProperties), AgentProperties.ReadFromArchive);
+
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchEventProperties,
+            typeof(PatchEventProperties), PatchEventProperties.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchEventProperties,
+            typeof(PatchEventProperties), PatchEventProperties.ReadFromArchive);
     }
 
     private void RegisterComponentParts()
@@ -409,8 +421,17 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(GlobalGlaciationEvent), GlobalGlaciationEvent.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.MeteorImpactEvent,
             typeof(MeteorImpactEvent), MeteorImpactEvent.ReadFromArchive);
-        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.UnderwaterVentEruptionEffect,
-            typeof(UnderwaterVentEruptionEffect), UnderwaterVentEruptionEffect.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.UnderwaterVentEruptionEvent,
+            typeof(UnderwaterVentEruptionEvent), UnderwaterVentEruptionEvent.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.RunoffEvent,
+            typeof(RunoffEvent), RunoffEvent.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.UpwellingEvent,
+            typeof(UpwellingEvent), UpwellingEvent.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CurrentDilutionEvent,
+            typeof(CurrentDilutionEvent), CurrentDilutionEvent.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PatchEventsManager,
+            typeof(PatchEventsManager), PatchEventsManager.ReadFromArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GlucoseReductionEffect,
             typeof(GlucoseReductionEffect), GlucoseReductionEffect.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CompoundDiffusionEffect,
@@ -427,6 +448,8 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(PhotosynthesisProductionEffect), PhotosynthesisProductionEffect.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.VolcanismEffect,
             typeof(VolcanismEffect), VolcanismEffect.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.AmmoniaProductionEffect,
+            typeof(AmmoniaProductionEffect), AmmoniaProductionEffect.ReadFromArchive);
     }
 
     private void RegisterTutorial()
@@ -501,6 +524,8 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(RootPressure), RootPressure.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.TemperatureSessilityPressure,
             typeof(TemperatureSessilityPressure), TemperatureSessilityPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ReproductionCompoundPressure,
+            typeof(ReproductionCompoundPressure), ReproductionCompoundPressure.ReadFromArchive);
     }
 
     private void RegisterEditor()
@@ -592,6 +617,11 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganellePlacementActionData,
             typeof(OrganellePlacementActionData), OrganellePlacementActionData.ReadFromArchive);
 
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EndosymbiontPlaceActionData,
+            typeof(EndosymbiontPlaceActionData), EndosymbiontPlaceActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EndosymbiontPlaceActionData,
+            typeof(EndosymbiontPlaceActionData), EndosymbiontPlaceActionData.ReadFromArchive);
+
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleRemoveActionData,
             typeof(OrganelleRemoveActionData), OrganelleRemoveActionData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.OrganelleRemoveActionData,
@@ -630,6 +660,14 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(CellMoveActionData), CellMoveActionData.WriteToArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellMoveActionData,
             typeof(CellMoveActionData), CellMoveActionData.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellRemoveActionData,
+            typeof(CellRemoveActionData), CellRemoveActionData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.CellRemoveActionData,
+            typeof(CellRemoveActionData), CellRemoveActionData.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.DuplicateDeleteCellTypeData,
+            typeof(DuplicateDeleteCellTypeData), DuplicateDeleteCellTypeData.WriteToArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.DuplicateDeleteCellTypeData,
+            typeof(DuplicateDeleteCellTypeData), DuplicateDeleteCellTypeData.ReadFromArchive);
     }
 
     private void RegisterFossils()

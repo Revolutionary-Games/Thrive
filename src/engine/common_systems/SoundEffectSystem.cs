@@ -1,5 +1,6 @@
 ﻿namespace Systems;
 
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Arch.Core;
@@ -564,6 +565,11 @@ public partial class SoundEffectSystem : BaseSystem<World, float>
 
         protected CurrentlyPlayingBase(in Entity entity, string sound, ushort id, bool loop)
         {
+#if DEBUG
+            if (entity == Entity.Null || entity.IsAllZero())
+                throw new ArgumentException("Entity must be valid for currently playing sound base");
+#endif
+
             Entity = entity;
             Sound = sound;
             SoundId = id;

@@ -84,7 +84,10 @@ public partial class EndosymbiontOrganelleSystem : BaseSystem<World, float>
 
     private void CreateNewOrganelle(OrganelleLayout<PlacedOrganelle> organelles, OrganelleDefinition definition)
     {
-        var newOrganelle = new PlacedOrganelle(definition, new Hex(0, 0), 0, null);
+        var newOrganelle = new PlacedOrganelle(definition, new Hex(0, 0), 0, null)
+        {
+            IsEndosymbiont = true,
+        };
 
         // Find the last placed organelle to efficiently find an empty position
         var searchStart = organelles.Organelles[^1].Position;

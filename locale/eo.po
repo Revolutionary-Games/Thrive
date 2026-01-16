@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2026-01-12 15:26+0100\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -283,7 +283,7 @@ msgstr "Versio:"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr ""
 
 msgid "ASSUME_HYPERTHREADING"
@@ -444,6 +444,9 @@ msgstr ""
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr ""
 
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr ""
 
@@ -569,7 +572,15 @@ msgid "BIG_IRON_CHUNK"
 msgstr "Granda Fera Peco"
 
 #, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Granda Fera Peco"
+
+#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Granda Fera Peco"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "Granda Fera Peco"
 
 msgid "BILLION_ABBREVIATION"
@@ -965,6 +976,10 @@ msgstr "Marbordo"
 msgid "COLLISION_SHAPE"
 msgstr ""
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
 msgid "COLOUR"
 msgstr "Koloro"
 
@@ -1016,6 +1031,9 @@ msgstr "Aldonunovan funkcion por klavo"
 #, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr ""
 
 #, fuzzy
 msgid "COMMON_ABILITIES"
@@ -1139,6 +1157,10 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Kunmetaĵaj Ekvilibro"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "Kunmetitaj nuboj"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1538,8 +1560,28 @@ msgstr "Rekomenci"
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "NUNA LOKO"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "NUNA LOKO"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "NUNA LOKO"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "NUNA LOKO"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Kapabloj"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "Kapabloj"
 
 #, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
@@ -1611,6 +1653,9 @@ msgstr "Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke v
 
 msgid "DEATH"
 msgstr "morto"
+
+msgid "DEBUG_CONSOLE"
+msgstr ""
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1867,6 +1912,10 @@ msgstr "Kapabloj"
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "Kapabloj"
+
+#, fuzzy
+msgid "DISPLAY_SELECTION"
+msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr ""
@@ -2270,6 +2319,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Aldonunovan funkcion por klavo"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Aldonunovan funkcion por klavo"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -2765,6 +2822,10 @@ msgid "GRAPHICS"
 msgstr "Grafikaĵoj"
 
 #, fuzzy
+msgid "GRAPHICS_PRESET"
+msgstr "Grafikaĵoj"
+
+#, fuzzy
 msgid "GRAPHICS_TEAM"
 msgstr "Grafikaĵoj"
 
@@ -2890,6 +2951,9 @@ msgstr ""
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
@@ -2897,6 +2961,9 @@ msgid "ID_NUMBER"
 msgstr ""
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 #, fuzzy
@@ -3020,6 +3087,14 @@ msgstr ""
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Rekomenci"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3146,18 +3221,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr "kun koncentriĝo de"
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3922,6 +3985,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr ""
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "reproduktis"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -3960,6 +4027,10 @@ msgstr "Ŝarĝante Mikrobredaktilon"
 
 #, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "Organisma Statistiko"
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
 msgstr "Organisma Statistiko"
 
 #, fuzzy
@@ -4317,6 +4388,10 @@ msgstr "Modifi"
 msgid "MODS"
 msgstr ""
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Trompaĵoj estas ebligitaj"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4349,9 +4424,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 #, fuzzy
@@ -4432,6 +4504,12 @@ msgstr ""
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Versio:"
+
+msgid "MONITOR_AUTO"
+msgstr ""
+
+msgid "MONITOR_IDENTIFIER"
+msgstr ""
 
 msgid "MORE_INFO"
 msgstr ""
@@ -5358,6 +5436,30 @@ msgstr ""
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Rekomenci"
 
+#, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "Ĉe Kursoro(montrilo):"
+
+#, fuzzy
+msgid "PRESET_HIGH"
+msgstr "Rekomencu"
+
+#, fuzzy
+msgid "PRESET_LOW"
+msgstr "Rekomencu"
+
+#, fuzzy
+msgid "PRESET_MEDIUM"
+msgstr "popliigi la movadon"
+
+#, fuzzy
+msgid "PRESET_VERY_HIGH"
+msgstr "Restarigu"
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "Kunmetaĵaj Ekvilibro"
+
 msgid "PRESSURE"
 msgstr "Premo"
 
@@ -5694,6 +5796,9 @@ msgstr "Rotaciu dekstren"
 msgid "ROTATION_COLON"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "aŭtomatan evolucion dum ludado"
 
@@ -5762,12 +5867,6 @@ msgstr "Spaco uzata:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi volas por ĉiam forigi {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr ""
 
 msgid "SAVE_FAILED"
 msgstr "Konservado malsukcesis"
@@ -6125,7 +6224,15 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "Malgranda Fera Peco"
 
 #, fuzzy
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "Malgranda Fera Peco"
+
+#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Malgranda Fera Peco"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr "Malgranda Fera Peco"
 
 #, fuzzy
@@ -6219,6 +6326,14 @@ msgstr "Listo de Specioj"
 #, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "havas mutacion"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "formortis de la planedo"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "formortis de la planedo"
 
 msgid "SPECIES_LIST"
 msgstr "Listo de Specioj"
@@ -6751,6 +6866,10 @@ msgstr "Ŝaltu engluton"
 
 #, fuzzy
 msgid "TOGGLE_BINDING_TOOLTIP"
+msgstr "Ŝaltu engluton"
+
+#, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
 msgstr "Ŝaltu engluton"
 
 #, fuzzy
@@ -7332,6 +7451,17 @@ msgstr "Malfaru"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Malfaru la lastan agon"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Piku aliajn ĉelojn per ĉi tio."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "VI PROSPERIS!"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Mutaciaj Poentoj"
@@ -7506,6 +7636,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -7515,13 +7648,6 @@ msgstr ""
 #, fuzzy
 msgid "USES_FEATURE"
 msgstr "Temperaturo"
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#, fuzzy
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Aldonunovan funkcion por klavo"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Uzu propran salutnomon"
@@ -9747,6 +9873,14 @@ msgstr "Tеmp."
 msgid "WORST_PATCH_COLON"
 msgstr "Specioj:"
 
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "KONFIRMU"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
 msgid "XBOX360"
 msgstr ""
 
@@ -9786,6 +9920,14 @@ msgstr "Zomu"
 
 msgid "ZOOM_OUT"
 msgstr "Malzomu"
+
+#, fuzzy
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Aldonunovan funkcion por klavo"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "reproduktis"
 
 #, fuzzy
 #~ msgid "OUTDATED"
@@ -10135,10 +10277,6 @@ msgstr "Malzomu"
 #, fuzzy
 #~ msgid "EDITING"
 #~ msgstr "itino"
-
-#, fuzzy
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "formortis de la planedo"
 
 #, fuzzy
 #~ msgid "NOT_FOUND_CHUNK"

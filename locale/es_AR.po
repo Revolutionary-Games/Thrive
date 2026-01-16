@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
-"PO-Revision-Date: 2025-04-04 10:42+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-01-12 15:26+0100\n"
+"PO-Revision-Date: 2025-11-23 10:05+0000\n"
+"Last-Translator: Ariadna Gorosterrazu Ghezzi <ariadnagorosterrazu@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -55,13 +55,13 @@ msgid "ACHIEVEMENTS"
 msgstr "Movimiento basal"
 
 msgid "ACHIEVEMENTS_TOTAL"
-msgstr ""
+msgstr "Logros {0} / {1}"
 
 msgid "ACHIEVEMENT_ACHIEVED"
-msgstr ""
+msgstr "Completado"
 
 msgid "ACHIEVEMENT_LOCKED"
-msgstr ""
+msgstr "Bloqueado"
 
 msgid "ACTION_AWAKEN"
 msgstr "Despertar ({0:F1} / {1:F1})"
@@ -282,7 +282,7 @@ msgstr "Etapa de Ascensión"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr ""
 
 msgid "ASSUME_HYPERTHREADING"
@@ -444,6 +444,9 @@ msgstr ""
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr ""
 
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr "Etapa de despertar"
 
@@ -549,7 +552,15 @@ msgstr ""
 msgid "BIG_IRON_CHUNK"
 msgstr "Pedazo grande de hierro"
 
+#, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Pedazo grande de hierro"
+
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Pedazo grande de fosfato"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "Pedazo grande de fosfato"
 
 #, fuzzy
@@ -785,7 +796,7 @@ msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "CHEMORECEPTOR"
-msgstr ""
+msgstr "Quimiorreceptor"
 
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr ""
@@ -920,6 +931,10 @@ msgstr "Costero"
 msgid "COLLISION_SHAPE"
 msgstr ""
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "Normal"
+
 msgid "COLOUR"
 msgstr ""
 
@@ -960,6 +975,9 @@ msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr ""
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
+msgstr ""
+
+msgid "COMMAND_INPUT_LINE_EDIT"
 msgstr ""
 
 msgid "COMMON_ABILITIES"
@@ -1072,6 +1090,10 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Anda a la etapa del despertar. Solo cuando dejes de ser un boludo ( El tipo de tejido son axones)."
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} consume"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1454,8 +1476,28 @@ msgstr "Disparar toxina"
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "población:"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "población:"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "Cancelar acción actual"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Barrita de habilidades (recomendado)"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "Barrita de habilidades (recomendado)"
 
 #, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
@@ -1521,6 +1563,9 @@ msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
 msgid "DEATH"
+msgstr ""
+
+msgid "DEBUG_CONSOLE"
 msgstr ""
 
 msgid "DEBUG_COORDINATES"
@@ -1748,6 +1793,10 @@ msgstr "Barrita de habilidades (recomendado)"
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "Barrita de habilidades (recomendado)"
+
+#, fuzzy
+msgid "DISPLAY_SELECTION"
+msgstr "población:"
 
 #, fuzzy
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
@@ -2141,6 +2190,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Disparar toxina"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Disparar toxina"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -2617,6 +2674,10 @@ msgstr "Nuevo Juego"
 msgid "GRAPHICS"
 msgstr "Gráficos"
 
+#, fuzzy
+msgid "GRAPHICS_PRESET"
+msgstr "Gráficos"
+
 msgid "GRAPHICS_TEAM"
 msgstr ""
 
@@ -2742,6 +2803,9 @@ msgstr ""
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
@@ -2749,6 +2813,9 @@ msgid "ID_NUMBER"
 msgstr ""
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
@@ -2856,6 +2923,14 @@ msgstr ""
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Disparar toxina"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "Predicción del Auto-evo"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(Velocidad en la que las especies guiadas por IA mutan)"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -2973,18 +3048,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr ""
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3732,6 +3795,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Depredación de {0}"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Resolución:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -3757,6 +3824,10 @@ msgstr "Habilitar el editor"
 #, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr "Mover organela"
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
+msgstr "Cancelar acción actual"
 
 #, fuzzy
 msgid "MICROBE_EDITOR"
@@ -4073,6 +4144,10 @@ msgstr ""
 msgid "MODS"
 msgstr "Mods"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Desactivado"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4105,9 +4180,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 msgid "MOD_CREATION_FAILED"
@@ -4177,6 +4249,12 @@ msgid "MOD_UPLOADER"
 msgstr ""
 
 msgid "MOD_VERSION"
+msgstr ""
+
+msgid "MONITOR_AUTO"
+msgstr ""
+
+msgid "MONITOR_IDENTIFIER"
 msgstr ""
 
 msgid "MORE_INFO"
@@ -5048,6 +5126,28 @@ msgstr "Depredación de {0}"
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "En el cursor:"
+
+#, fuzzy
+msgid "PRESET_HIGH"
+msgstr "NOW ENGLISH"
+
+#, fuzzy
+msgid "PRESET_LOW"
+msgstr "NOW ENGLISH"
+
+msgid "PRESET_MEDIUM"
+msgstr ""
+
+msgid "PRESET_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "Anda a la etapa del despertar. Solo cuando dejes de ser un boludo ( El tipo de tejido son axones)."
+
 msgid "PRESSURE"
 msgstr ""
 
@@ -5371,6 +5471,9 @@ msgstr ""
 msgid "ROTATION_COLON"
 msgstr "población:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
 
@@ -5433,12 +5536,6 @@ msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr ""
 
 msgid "SAVE_FAILED"
@@ -5769,7 +5866,15 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "Pedacito de hierro"
 
 #, fuzzy
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "Pedacito de hierro"
+
+#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Pedacito de hierro"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr "Pedacito de hierro"
 
 #, fuzzy
@@ -5845,6 +5950,14 @@ msgstr ""
 #, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "posee una mutación"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Cancelar acción actual"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "populación en parches:"
 
 msgid "SPECIES_LIST"
 msgstr ""
@@ -6365,6 +6478,10 @@ msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Activar vinculación"
 
 #, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Activar/Desactivar engullir"
+
+#, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Activar/Desactivar engullir"
 
@@ -6844,6 +6961,17 @@ msgstr "Deshacer"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr ""
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "población:"
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "\" {0} \" - {1}"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Depredación de {0}"
@@ -7006,6 +7134,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -7013,12 +7144,6 @@ msgid "USED_RENDERER_NAME"
 msgstr ""
 
 msgid "USES_FEATURE"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
@@ -9285,6 +9410,14 @@ msgstr ""
 msgid "WORST_PATCH_COLON"
 msgstr ""
 
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "Normal"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "Normal"
+
 msgid "XBOX360"
 msgstr ""
 
@@ -9324,6 +9457,10 @@ msgstr "Acercar la pantalla"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar la pantalla"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Resolución:"
 
 #, fuzzy
 #~ msgid "OUTDATED"
@@ -9626,10 +9763,6 @@ msgstr "Alejar la pantalla"
 #~ msgstr "Permitir que no migren (Solo si quieren migrar a otra parte de latam)"
 
 #, fuzzy
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "populación en parches:"
-
-#, fuzzy
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Pedazote de hierro"
 
@@ -9681,9 +9814,9 @@ msgstr "Alejar la pantalla"
 #~ msgstr "Presiona el botón de deshacer en el editor para corregir el error"
 
 #, fuzzy
-#~ msgid "CURRENT_GENERATION_COLON"
-#~ msgstr "población:"
-
-#, fuzzy
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "Sin correr."
+
+#, fuzzy
+#~ msgid "CURRENT_GENERATION_COLON"
+#~ msgstr "población:"

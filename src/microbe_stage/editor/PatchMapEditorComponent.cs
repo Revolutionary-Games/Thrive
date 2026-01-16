@@ -17,7 +17,7 @@ using SharedBase.Archive;
 /// <typeparam name="TEditor">Type of editor this component is for</typeparam>
 [GodotAbstract]
 public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEditor>
-    where TEditor : IEditorWithPatches
+    where TEditor : class, IEditorWithPatches
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
@@ -148,8 +148,9 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         fogOfWar = (FogOfWarMode)reader.ReadInt32();
     }
 
-    public void SetMap(PatchMap map)
+    public void SetMap(PatchMap map, uint playerSpeciesID)
     {
+        mapDrawer.PlayerSpeciesID = playerSpeciesID;
         mapDrawer.Map = map;
     }
 

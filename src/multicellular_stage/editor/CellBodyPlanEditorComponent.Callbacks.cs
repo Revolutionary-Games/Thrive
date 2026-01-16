@@ -46,42 +46,49 @@ public partial class CellBodyPlanEditorComponent
     [ArchiveAllowedMethod]
     private void DuplicateCellType(DuplicateDeleteCellTypeData data)
     {
-        var originalName = data.CellType.TypeName;
+        var originalName = data.CellType.CellTypeName;
         var count = 1;
 
         // Renaming a cell doesn't create an editor action, so it's possible for someone to duplicate a cell type, undo
         // the duplication, change another cell type's name to the old duplicate's name, then redo the duplication,
         // which would lead to duplicate names, so this loop ensures the duplicated cell's name will be unique
-        while (!Editor.IsNewCellTypeNameValid(data.CellType.TypeName))
+        while (!Editor.IsNewCellTypeNameValid(data.CellType.CellTypeName))
         {
-            data.CellType.TypeName = $"{originalName} {count++}";
+            data.CellType.CellTypeName = $"{originalName} {count++}";
         }
 
-        Editor.EditedSpecies.CellTypes.Add(data.CellType);
-        GD.Print("New cell type created: ", data.CellType.TypeName);
+        Editor.EditedSpecies.ModifiableCellTypes.Add(data.CellType);
+        GD.Print("New cell type created: ", data.CellType.CellTypeName);
 
-        EmitSignal(SignalName.OnCellTypeToEditSelected, data.CellType.TypeName, false);
+        EmitSignal(SignalName.OnCellTypeToEditSelected, data.CellType.CellTypeName, false);
 
         UpdateCellTypeSelections();
 
         UpdateCellTypesSecondaryInfo();
 
-        OnCellToPlaceSelected(data.CellType.TypeName);
+        OnCellToPlaceSelected(data.CellType.CellTypeName);
+
+        Editor.DirtyMutationPointsCache();
     }
 
+    [ArchiveAllowedMethod]
     private void DeleteCellType(DuplicateDeleteCellTypeData data)
     {
-        if (!Editor.EditedSpecies.CellTypes.Remove(data.CellType))
+        if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(data.CellType))
             GD.PrintErr("Failed to delete cell type from species");
 
         UpdateCellTypeSelections();
+
+        Editor.DirtyMutationPointsCache();
     }
 
     [ArchiveAllowedMethod]
     private void DoCellMoveAction(CellMoveActionData data)
     {
         data.MovedHex.Position = data.NewLocation;
+        data.MovedHex.Orientation = data.NewRotation;
         data.MovedHex.Data!.Orientation = data.NewRotation;
+        data.MovedHex.Data.Position = data.NewLocation;
 
         if (editedMicrobeCells.Contains(data.MovedHex))
         {
@@ -99,7 +106,9 @@ public partial class CellBodyPlanEditorComponent
     private void UndoCellMoveAction(CellMoveActionData data)
     {
         data.MovedHex.Position = data.OldLocation;
+        data.MovedHex.Orientation = data.OldRotation;
         data.MovedHex.Data!.Orientation = data.OldRotation;
+        data.MovedHex.Data.Position = data.OldLocation;
 
         UpdateAlreadyPlacedVisuals();
     }

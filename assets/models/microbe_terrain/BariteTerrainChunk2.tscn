@@ -1,9 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0vd6lq0h6phh"]
+[gd_scene load_steps=6 format=3 uid="uid://c0vd6lq0h6phh"]
 
 [ext_resource type="PackedScene" uid="uid://uly05ipvxfel" path="res://assets/models/microbe_terrain/BariteTerrainChunk2.glb" id="1_3yt7f"]
-[ext_resource type="Material" uid="uid://qsr6bmmxigxq" path="res://assets/models/microbe_terrain/BariteTerrainChunk.material" id="2_u3qww"]
+[ext_resource type="Texture2D" uid="uid://bmtu0lb0jv3v3" path="res://assets/textures/environment/Barite.png" id="2_pujbj"]
+[ext_resource type="Texture2D" uid="uid://bq1nahbak6cbw" path="res://assets/textures/environment/Barite2AO.png" id="3_prgf4"]
+[ext_resource type="Texture2D" uid="uid://bkgdgi6speo8c" path="res://assets/textures/environment/Barite_normal.png" id="4_arse6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e67l8"]
+albedo_texture = ExtResource("2_pujbj")
+normal_enabled = true
+normal_texture = ExtResource("4_arse6")
+ao_enabled = true
+ao_light_affect = 0.35
+ao_texture = ExtResource("3_prgf4")
 
 [node name="BariteTerrainChunk2" instance=ExtResource("1_3yt7f")]
 
 [node name="barite2" parent="." index="0"]
-surface_material_override/0 = ExtResource("2_u3qww")
+surface_material_override/0 = SubResource("StandardMaterial3D_e67l8")

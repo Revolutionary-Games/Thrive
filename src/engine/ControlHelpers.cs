@@ -161,6 +161,16 @@ public static class ControlHelpers
         return result;
     }
 
+    /// <summary>
+    ///   Custom focus drawing for controls that cannot do it.
+    /// </summary>
+    /// <param name="control">Control to draw custom focus borders around when it is focused</param>
+    /// <remarks>
+    ///   <para>
+    ///     With the latest Godot 4 updates, this seems to not be required for labels any more as those have inbuilt
+    ///     focus theming now.
+    ///   </para>
+    /// </remarks>
     public static void RegisterCustomFocusDrawer(this Control control)
     {
         control.Connect(CanvasItem.SignalName.Draw, Callable.From(() => GUICommon.Instance.ProxyDrawFocus(control)));
@@ -204,7 +214,7 @@ public static class ControlHelpers
 
             if (child is Control childAsControl)
             {
-                var childResult = FirstFocusableControl(childAsControl, preferNonDisabledNodes);
+                var childResult = childAsControl.FirstFocusableControl(preferNonDisabledNodes);
 
                 if (childResult != null)
                     return childResult;

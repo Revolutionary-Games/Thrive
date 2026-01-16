@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2026-01-12 15:26+0100\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (Cyrillic script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -288,7 +288,7 @@ msgstr "Верзија:"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr ""
 
 msgid "ASSUME_HYPERTHREADING"
@@ -449,6 +449,9 @@ msgstr ""
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr ""
 
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr ""
 
@@ -577,7 +580,15 @@ msgid "BIG_IRON_CHUNK"
 msgstr "Велики комад гвожђа"
 
 #, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Велики комад гвожђа"
+
+#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Велики комад гвожђа"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "Велики комад гвожђа"
 
 msgid "BILLION_ABBREVIATION"
@@ -972,6 +983,10 @@ msgstr "Приобални"
 msgid "COLLISION_SHAPE"
 msgstr ""
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "Број популације од {0} променио се за {1} због: {2}"
+
 msgid "COLOUR"
 msgstr "Боја"
 
@@ -1023,6 +1038,9 @@ msgstr "Додајте ново везивање тастера"
 #, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr ""
 
 #, fuzzy
 msgid "COMMON_ABILITIES"
@@ -1144,6 +1162,10 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Додајте ново везивање тастера"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "Облак једињења"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1542,8 +1564,28 @@ msgstr "Наставити"
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "ТРЕНУТНА ЛОКАЦИЈА"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "ТРЕНУТНА ЛОКАЦИЈА"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ТРЕНУТНА ЛОКАЦИЈА"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "ТРЕНУТНА ЛОКАЦИЈА"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Способности"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "Способности"
 
 #, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
@@ -1614,6 +1656,9 @@ msgid "DEADZONE_CONFIGURATION"
 msgstr "Брисање овог чувања не може се опозвати. Да ли сте сигурни да желите трајно да га избришете?"
 
 msgid "DEATH"
+msgstr ""
+
+msgid "DEBUG_CONSOLE"
 msgstr ""
 
 msgid "DEBUG_COORDINATES"
@@ -1870,6 +1915,10 @@ msgstr "Способности"
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "Способности"
+
+#, fuzzy
+msgid "DISPLAY_SELECTION"
+msgstr "Лепљива унутрашњост ћелије. Цитоплазма је основна смеша јона, протеина и других супстанци растворених у води која испуњава унутрашњост ћелије. Једна од функција коју обавља је ферментација, претварање глукозе у ATP енергију. Да би ћелије којима недостају органели имали напреднији метаболизам, на то се ослањају у енергији. Такође се користи за складиштење молекула у ћелији и за повећање величине ћелије."
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr ""
@@ -2271,6 +2320,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -2767,6 +2824,10 @@ msgid "GRAPHICS"
 msgstr "Графика"
 
 #, fuzzy
+msgid "GRAPHICS_PRESET"
+msgstr "Графика"
+
+#, fuzzy
 msgid "GRAPHICS_TEAM"
 msgstr "Графика"
 
@@ -2891,6 +2952,9 @@ msgstr ""
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
@@ -2898,6 +2962,9 @@ msgid "ID_NUMBER"
 msgstr ""
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 #, fuzzy
@@ -3021,6 +3088,14 @@ msgstr ""
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Наставити"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "ATP ПРОИЗВОДЊА ПРЕНИЗАК!"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "Број популације од {0} променио се за {1} због: {2}"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3147,18 +3222,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr "са концентрацијом"
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3924,6 +3987,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr ""
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Производи"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -3963,6 +4030,10 @@ msgstr "Учитавање Уређивача Микроба"
 #, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr "Статистика Организма"
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
+msgstr "Откажи претходну акцију"
 
 #, fuzzy
 msgid "MICROBE_EDITOR"
@@ -4318,6 +4389,10 @@ msgstr ""
 msgid "MODS"
 msgstr ""
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Укључи тастери за варања"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4350,9 +4425,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 #, fuzzy
@@ -4434,6 +4506,12 @@ msgstr ""
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Верзија:"
+
+msgid "MONITOR_AUTO"
+msgstr ""
+
+msgid "MONITOR_IDENTIFIER"
+msgstr ""
 
 msgid "MORE_INFO"
 msgstr ""
@@ -5355,6 +5433,30 @@ msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Наставити"
 
 #, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "На Курсору:"
+
+#, fuzzy
+msgid "PRESET_HIGH"
+msgstr "Ресетовати"
+
+#, fuzzy
+msgid "PRESET_LOW"
+msgstr "Ресетовати"
+
+#, fuzzy
+msgid "PRESET_MEDIUM"
+msgstr "за повећање кретања"
+
+#, fuzzy
+msgid "PRESET_VERY_HIGH"
+msgstr "Ресетујте Уноси"
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "Додајте ново везивање тастера"
+
+#, fuzzy
 msgid "PRESSURE"
 msgstr "Прити."
 
@@ -5691,6 +5793,9 @@ msgstr "Ротирајте десно"
 msgid "ROTATION_COLON"
 msgstr "популација:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Покрените аутоматску-еволуцију током играња"
 
@@ -5757,12 +5862,6 @@ msgstr "Коришћен простор:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Брисање овог чувања не може се опозвати. Да ли сте сигурни да желите трајно избрисати {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr ""
 
 msgid "SAVE_FAILED"
 msgstr "Сачување није успело"
@@ -6120,7 +6219,15 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "Мали гвоздени комад"
 
 #, fuzzy
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "Мали гвоздени комад"
+
+#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Мали гвоздени комад"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr "Мали гвоздени комад"
 
 #, fuzzy
@@ -6213,6 +6320,14 @@ msgstr "Врсте Присутне"
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "је мутирао"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Откажи претходну акцију"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Изаберите зону да бисте овде приказали детаље"
 
 #, fuzzy
 msgid "SPECIES_LIST"
@@ -6746,6 +6861,10 @@ msgstr "Укључи повезивање"
 #, fuzzy
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Укључи повезивање"
+
+#, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Укључите гутање"
 
 #, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
@@ -7319,6 +7438,17 @@ msgstr "Поништи"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Опозови последњу акцију"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Избодите друге ћелије са ово."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Мутације Поени"
@@ -7492,6 +7622,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -7501,13 +7634,6 @@ msgstr ""
 #, fuzzy
 msgid "USES_FEATURE"
 msgstr "Температура"
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#, fuzzy
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Додајте ново везивање тастера"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Користите прилагођено корисничко име"
@@ -9730,6 +9856,14 @@ msgstr "Темп."
 msgid "WORST_PATCH_COLON"
 msgstr "Врсте:"
 
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "ПОТВРДИ"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "Број популације од {0} променио се за {1} због: {2}"
+
 msgid "XBOX360"
 msgstr ""
 
@@ -9769,6 +9903,14 @@ msgstr "Зумирати"
 
 msgid "ZOOM_OUT"
 msgstr "Одзумирати"
+
+#, fuzzy
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Додајте ново везивање тастера"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Производи"
 
 #, fuzzy
 #~ msgid "OUTDATED"
@@ -10118,10 +10260,6 @@ msgstr "Одзумирати"
 #, fuzzy
 #~ msgid "EDITING"
 #~ msgstr "Хитин"
-
-#, fuzzy
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Изаберите зону да бисте овде приказали детаље"
 
 #, fuzzy
 #~ msgid "NOT_FOUND_CHUNK"

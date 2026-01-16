@@ -424,6 +424,7 @@ public partial class InputManager : Node
                     else
                     {
                         GD.PrintErr("Failed to perform input method invoke: ", e);
+                        LogInterceptor.ForwardCaughtError(e);
                     }
 
                     destroyed.Add(instance);
@@ -433,6 +434,7 @@ public partial class InputManager : Node
                 {
                     GD.PrintErr("Failed to perform input method invoke due to parameter conversion: ", e);
                     GD.PrintErr($"Target method failed to invoke is: {method.DeclaringType?.FullName}.{method.Name}");
+                    LogInterceptor.ForwardCaughtError(e);
 
                     // Is probably good to put this here to ensure the error doesn't get printed infinitely
                     destroyed.Add(instance);
@@ -730,6 +732,8 @@ public partial class InputManager : Node
     {
         attributes.Clear();
 
+        var inputAttributeType = typeof(InputAttribute);
+
         foreach (var assembly in assemblies)
         {
             // foreach type in the specified assemblies
@@ -743,15 +747,22 @@ public partial class InputManager : Node
                 // foreach method in the classes
                 foreach (var methodInfo in type.GetMethods())
                 {
+                    // Skip any method that doesn't need handling
+                    if (!methodInfo.IsDefined(inputAttributeType, true))
+                        continue;
+
                     // Check attributes (duplicate attributes that may be caused by finding duplicates through
                     // inheritance are skipped)
                     var inputAttributes =
-                        ((InputAttribute[])methodInfo.GetCustomAttributes(typeof(InputAttribute), true)).Distinct()
+                        ((InputAttribute[])methodInfo.GetCustomAttributes(inputAttributeType, true)).Distinct()
                         .ToArray();
                     if (inputAttributes.Length == 0)
+                    {
+                        GD.PrintErr("We found a method that has the input attribute but the list is empty");
                         continue;
+                    }
 
-                    // Get the RunOnAxisGroupAttribute, if there is one
+                    // Get the RunOnAxisGroupAttribute if there is one
                     var runOnAxisGroupAttribute =
                         (RunOnAxisGroupAttribute?)inputAttributes.FirstOrDefault(p => p is RunOnAxisGroupAttribute);
 

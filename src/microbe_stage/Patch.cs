@@ -10,7 +10,7 @@ using SharedBase.Archive;
 /// </summary>
 public class Patch : IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
@@ -29,11 +29,6 @@ public class Patch : IArchivable
     ///   <see cref="GetSpeciesGameplayPopulation"/>
     /// </summary>
     private readonly Dictionary<Species, long> gameplayPopulations = new();
-
-    /// <summary>
-    ///   The current effects on the patch node (shown in the patch map)
-    /// </summary>
-    private readonly List<WorldEffectTypes> activeWorldEffectVisuals = new();
 
     private Deque<PatchSnapshot> history = new();
 
@@ -63,14 +58,13 @@ public class Patch : IArchivable
     }
 
     private Patch(LocalizedString name, int id, Biome biomeTemplate, PatchSnapshot currentSnapshot,
-        Dictionary<Species, long> gameplayPopulations, List<WorldEffectTypes> activeWorldEffectVisuals)
+        Dictionary<Species, long> gameplayPopulations)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
         this.currentSnapshot = currentSnapshot;
         this.gameplayPopulations = gameplayPopulations;
-        this.activeWorldEffectVisuals = activeWorldEffectVisuals;
     }
 
     public int ID { get; }
@@ -133,6 +127,12 @@ public class Patch : IArchivable
     ///   Logged events that specifically occurred in this patch.
     /// </summary>
     public IReadOnlyList<GameEventDescription> EventsLog => currentSnapshot.EventsLog;
+
+    /// <summary>
+    ///   Current patch events affecting this patch with their properties.
+    /// </summary>
+    public IReadOnlyDictionary<PatchEventTypes, PatchEventProperties> ActivePatchEvents =>
+        currentSnapshot.ActivePatchEvents;
 
     /// <summary>
     ///   The name of the patch the player should see; this accounts for fog of war and <see cref="Visibility"/>
@@ -198,15 +198,43 @@ public class Patch : IArchivable
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var instance = new Patch(reader.ReadObject<LocalizedString>(), reader.ReadInt32(), reader.ReadObject<Biome>(),
-            reader.ReadObject<PatchSnapshot>(), reader.ReadObject<Dictionary<Species, long>>(),
-            reader.ReadObject<List<WorldEffectTypes>>())
+        // Read all required fields from archive before Patch initialization
+        var name = reader.ReadObject<LocalizedString>();
+        var id = reader.ReadInt32();
+        var biomeTemplate = reader.ReadObject<Biome>();
+        var currentSnapshot = reader.ReadObject<PatchSnapshot>();
+        var gameplayPopulations = reader.ReadObject<Dictionary<Species, long>>();
+
+        if (version <= 1)
         {
-            BiomeType = (BiomeType)reader.ReadInt32(),
-            Depth = reader.ReadObject<int[]>(),
-            Visibility = (MapElementVisibility)reader.ReadInt32(),
-            ScreenCoordinates = reader.ReadVector2(),
-            DynamicDataSeed = reader.ReadInt64(),
+            var patchEventTypes = reader.ReadObject<List<PatchEventTypes>>();
+            foreach (var eventType in patchEventTypes)
+            {
+                currentSnapshot.ActivePatchEvents.Add(eventType, new PatchEventProperties());
+            }
+
+            // Starting sunlight and temperature are set here instead of in biome conditions because they
+            // are not present there
+            var biomeReference = SimulationParameters.Instance.GetBiome(biomeTemplate.InternalName);
+            currentSnapshot.Biome.StartingSunlightValue = biomeReference.Conditions.Compounds
+                .GetValueOrDefault(Compound.Sunlight, default(BiomeCompoundProperties)).Ambient;
+            currentSnapshot.Biome.StartingTemperatureValue = biomeReference.Conditions.Compounds
+                .GetValueOrDefault(Compound.Temperature, default(BiomeCompoundProperties)).Ambient;
+        }
+
+        var biomeType = (BiomeType)reader.ReadInt32();
+        var depth = reader.ReadObject<int[]>();
+        var visibility = (MapElementVisibility)reader.ReadInt32();
+        var screenCoordinates = reader.ReadVector2();
+        var dynamicDataSeed = reader.ReadInt64();
+
+        var instance = new Patch(name, id, biomeTemplate, currentSnapshot, gameplayPopulations)
+        {
+            BiomeType = biomeType,
+            Depth = depth,
+            Visibility = visibility,
+            ScreenCoordinates = screenCoordinates,
+            DynamicDataSeed = dynamicDataSeed,
         };
 
         reader.ReportObjectConstructorDone(instance, referenceId);
@@ -229,7 +257,6 @@ public class Patch : IArchivable
         writer.WriteObject(BiomeTemplate);
         writer.WriteObject(currentSnapshot);
         writer.WriteObject(gameplayPopulations);
-        writer.WriteObject(activeWorldEffectVisuals);
         writer.Write((int)BiomeType);
         writer.WriteObject(Depth);
         writer.Write((int)Visibility);
@@ -436,6 +463,17 @@ public class Patch : IArchivable
     public bool IsSurfacePatch()
     {
         return Depth[0] == 0 && BiomeType != BiomeType.Cave;
+    }
+
+    public bool IsOceanicPatch()
+    {
+        return BiomeType is BiomeType.Epipelagic or BiomeType.IceShelf or BiomeType.Mesopelagic
+            or BiomeType.Bathypelagic or BiomeType.Abyssopelagic or BiomeType.Seafloor;
+    }
+
+    public bool IsContinentalPatch()
+    {
+        return BiomeType is BiomeType.Banana or BiomeType.Coastal or BiomeType.Estuary or BiomeType.Tidepool;
     }
 
     public float GetCompoundAmountForDisplay(Compound compound,
@@ -686,24 +724,14 @@ public class Patch : IArchivable
             Region.Visibility = visibility;
     }
 
-    public void AddPatchEventRecord(WorldEffectTypes worldEffect, double happenedAt)
+    public void ApplyPatchEventVisuals(PatchMapNode node,
+        IReadOnlyDictionary<PatchEventTypes, PatchEventProperties>? events = null)
     {
-        // TODO: switch this class to have more of the logic for keeping event history together
-        _ = happenedAt;
+        // If the events are not specified, use the ones from the current generation
+        events ??= ActivePatchEvents;
 
-        activeWorldEffectVisuals.Add(worldEffect);
-    }
-
-    public void ClearPatchNodeEventVisuals()
-    {
-        // TODO: see the TODO comment in AddPatchEventRecord
-        activeWorldEffectVisuals.Clear();
-    }
-
-    public void ApplyPatchEventVisuals(PatchMapNode node)
-    {
         if (Visibility == MapElementVisibility.Shown)
-            node.ShowEventVisuals(activeWorldEffectVisuals);
+            node.ShowEventVisuals(events);
     }
 
     public override string ToString()
@@ -743,7 +771,7 @@ public class Patch : IArchivable
 /// </summary>
 public class PatchSnapshot : ICloneable, IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     public double TimePeriod;
 
@@ -754,6 +782,8 @@ public class PatchSnapshot : ICloneable, IArchivable
     public string? Background;
 
     public List<GameEventDescription> EventsLog = new();
+
+    public Dictionary<PatchEventTypes, PatchEventProperties> ActivePatchEvents = new();
 
     public PatchSnapshot(BiomeConditions biome, string? background)
     {
@@ -784,6 +814,9 @@ public class PatchSnapshot : ICloneable, IArchivable
             SpeciesInPatch = reader.ReadObject<Dictionary<Species, long>>(),
             RecordedSpeciesInfo = reader.ReadObject<Dictionary<Species, SpeciesInfo>>(),
             EventsLog = reader.ReadObject<List<GameEventDescription>>(),
+            ActivePatchEvents = version <= 1 ?
+                new Dictionary<PatchEventTypes, PatchEventProperties>() :
+                reader.ReadObject<Dictionary<PatchEventTypes, PatchEventProperties>>(),
         };
     }
 
@@ -795,6 +828,7 @@ public class PatchSnapshot : ICloneable, IArchivable
         writer.WriteObject(SpeciesInPatch);
         writer.WriteObject(RecordedSpeciesInfo);
         writer.WriteObject(EventsLog);
+        writer.WriteObject(ActivePatchEvents);
     }
 
     public void ReplaceSpecies(Species old, Species newSpecies)
@@ -823,6 +857,7 @@ public class PatchSnapshot : ICloneable, IArchivable
             SpeciesInPatch = new Dictionary<Species, long>(SpeciesInPatch),
             RecordedSpeciesInfo = new Dictionary<Species, SpeciesInfo>(RecordedSpeciesInfo),
             EventsLog = new List<GameEventDescription>(EventsLog),
+            ActivePatchEvents = new Dictionary<PatchEventTypes, PatchEventProperties>(ActivePatchEvents),
         };
 
         return result;

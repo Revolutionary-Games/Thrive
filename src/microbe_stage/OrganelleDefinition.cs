@@ -347,7 +347,7 @@ public class OrganelleDefinition : RegistryType
     ///   boxing)
     /// </param>
     /// <returns>True when this has a scene</returns>
-    public bool TryGetGraphicsScene(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo modelInfo)
+    public bool TryGetGraphicsScene(IReadOnlyOrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo modelInfo)
     {
         if (TryGetGraphicsForUpgrade(upgrades, out modelInfo))
         {
@@ -363,7 +363,7 @@ public class OrganelleDefinition : RegistryType
         return true;
     }
 
-    public bool TryGetCorpseChunkGraphics(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo modelInfo)
+    public bool TryGetCorpseChunkGraphics(IReadOnlyOrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo modelInfo)
     {
         if (TryGetGraphicsForUpgrade(upgrades, out modelInfo))
         {
@@ -400,7 +400,7 @@ public class OrganelleDefinition : RegistryType
         return false;
     }
 
-    public Vector3 GetUpgradesSizeModification(OrganelleUpgrades? upgrades)
+    public Vector3 GetUpgradesSizeModification(IReadOnlyOrganelleUpgrades? upgrades)
     {
         var scale = Constants.DEFAULT_HEX_SIZE;
         var scaleZ = scale;
@@ -498,7 +498,7 @@ public class OrganelleDefinition : RegistryType
     ///   upgrade affects the processes
     /// </summary>
     /// <returns>Upgraded processes</returns>
-    public List<TweakedProcess>? GetUpgradeProcesses(OrganelleUpgrades upgrades)
+    public List<TweakedProcess>? GetUpgradeProcesses(IReadOnlyOrganelleUpgrades upgrades)
     {
         // Early return for types that don't support such upgrades for efficiency
         if (!hasProcessAffectingUpgrades)
@@ -896,7 +896,8 @@ public class OrganelleDefinition : RegistryType
             ToleranceModifierTemperatureRange != 0 || ToleranceModifierPressureRange != 0;
     }
 
-    private bool TryGetGraphicsForUpgrade(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo upgradeScene)
+    private bool TryGetGraphicsForUpgrade(IReadOnlyOrganelleUpgrades? upgrades,
+        out LoadedSceneWithModelInfo upgradeScene)
     {
         if (upgrades == null)
         {

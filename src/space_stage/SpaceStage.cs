@@ -444,6 +444,8 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
         // Show the congratulations popup for being ascended (once we are back in the stage)
         showAscensionCongratulations = true;
+
+        PauseMenu.Instance.ReportEnterGameState(GameState, CurrentGame);
     }
 
     public void OnBecomeAscended()
@@ -592,6 +594,7 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         strategicCamera.AllowPlayerInput = false;
 
         HUD.CloseAllOpenWindows();
+        PauseMenu.Instance.ReportStageTransition();
 
         PauseManager.Instance.Resume(nameof(ascensionMoveConfirmationPopup));
     }

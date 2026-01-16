@@ -7,18 +7,26 @@ using SharedBase.Archive;
 ///   Basically just adding the positioning info on top of OrganelleDefinition.
 ///   When the layout is instantiated in a cell, the PlacedOrganelle class is used.
 /// </summary>
-public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, IPlayerReadableName
+public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganelle, IActionHex, IPlayerReadableName,
+    ICloneable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
-    public readonly OrganelleDefinition Definition;
+    private bool isEndosymbiont;
 
-    public OrganelleTemplate(OrganelleDefinition definition, Hex location, int rotation)
+    public OrganelleTemplate(OrganelleDefinition definition, Hex location, int rotation, bool isEndosymbiont = false)
     {
         Definition = definition;
         Position = location;
         Orientation = rotation;
+        this.isEndosymbiont = isEndosymbiont;
     }
+
+    /// <summary>
+    ///   The type of the organelle. This is a protected settable for very specific uses of cached objects, but in
+    ///   general the type should never change.
+    /// </summary>
+    public OrganelleDefinition Definition { get; protected set; }
 
     public Hex Position { get; set; }
 
@@ -32,7 +40,11 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
     /// <summary>
     ///   The upgrades this organelle will have when instantiated in a microbe
     /// </summary>
-    public OrganelleUpgrades? Upgrades { get; set; }
+    public virtual OrganelleUpgrades? ModifiableUpgrades { get; set; }
+
+    public virtual IReadOnlyOrganelleUpgrades? Upgrades => ModifiableUpgrades;
+
+    public virtual bool IsEndosymbiont { get => isEndosymbiont; set => isEndosymbiont = value; }
 
     public string ReadableName => Definition.Name;
 
@@ -48,7 +60,7 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
     public bool CanBeReferencedInArchive => true;
 
 #pragma warning disable CA1033
-    OrganelleDefinition IPositionedOrganelle.Definition => Definition;
+    OrganelleDefinition IReadOnlyPositionedOrganelle.Definition => Definition;
 #pragma warning restore CA1033
 
     public static OrganelleTemplate ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
@@ -58,7 +70,8 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
 
         return new OrganelleTemplate(reader.ReadObject<OrganelleDefinition>(), reader.ReadHex(), reader.ReadInt32())
         {
-            Upgrades = reader.ReadObjectOrNull<OrganelleUpgrades>(),
+            ModifiableUpgrades = reader.ReadObjectOrNull<OrganelleUpgrades>(),
+            IsEndosymbiont = version > 1 && reader.ReadBool(),
         };
     }
 
@@ -67,7 +80,8 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
         writer.WriteObject(Definition);
         writer.Write(Position);
         writer.Write(Orientation);
-        writer.WriteObjectOrNull(Upgrades);
+        writer.WriteObjectOrNull(ModifiableUpgrades);
+        writer.Write(IsEndosymbiont);
     }
 
     public bool MatchesDefinition(IActionHex other)
@@ -90,6 +104,26 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
 
         // No other organelles are known to set up their active enzymes
         return false;
+    }
+
+    public float GetActiveToxicity()
+    {
+        if (Upgrades?.CustomUpgradeData is ToxinUpgrades toxinData)
+        {
+            return toxinData.Toxicity;
+        }
+
+        return Constants.DEFAULT_TOXICITY;
+    }
+
+    public ToxinType GetActiveToxin()
+    {
+        if (Upgrades?.CustomUpgradeData is ToxinUpgrades toxinData)
+        {
+            return toxinData.BaseType;
+        }
+
+        return ToxinType.Cytotoxin;
     }
 
     public Species? GetActiveTargetSpecies()
@@ -120,11 +154,17 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
         return Compound.Invalid;
     }
 
-    public object Clone()
+    public OrganelleTemplate Clone()
+    {
+        return Clone(true);
+    }
+
+    public OrganelleTemplate Clone(bool deepClone)
     {
         return new OrganelleTemplate(Definition, Position, Orientation)
         {
-            Upgrades = (OrganelleUpgrades?)Upgrades?.Clone(),
+            ModifiableUpgrades = deepClone ? ModifiableUpgrades?.Clone() : ModifiableUpgrades,
+            IsEndosymbiont = IsEndosymbiont,
         };
     }
 
@@ -137,6 +177,16 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
     public ulong GetVisualHashCode()
     {
         return (ulong)Position.GetHashCode() * 131 ^ (ulong)Orientation * 2909 ^ Definition.GetVisualHashCode() * 947 ^
-            (Upgrades != null ? Upgrades.GetVisualHashCode() : 1) * 1063;
+            (ModifiableUpgrades?.GetVisualHashCode() ?? 1) * 1063;
+    }
+
+    public override string ToString()
+    {
+        return ReadableExactIdentifier;
+    }
+
+    object ICloneable.Clone()
+    {
+        return Clone();
     }
 }

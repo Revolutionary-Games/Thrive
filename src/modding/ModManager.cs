@@ -118,9 +118,6 @@ public partial class ModManager : Control
     private Label fullInfoAssemblyModClass = null!;
 
     [Export]
-    private Label fullInfoAutoHarmony = null!;
-
-    [Export]
     private Button openWorkshopButton = null!;
 
     [Export]
@@ -269,25 +266,25 @@ public partial class ModManager : Control
             }
         }
 
-        if (info.ModAssembly != null && info.AssemblyModClass == null && info.UseAutoHarmony != true)
+        if (info.ModAssembly != null && info.AssemblyModClass == null)
         {
             if (throwOnError)
             {
                 throw new ArgumentException(Localization.Translate("ASSEMBLY_CLASS_REQUIRED"));
             }
 
-            GD.PrintErr("AssemblyModClass must be set if ModAssembly is set (and auto harmony is not used)");
+            GD.PrintErr("AssemblyModClass must be set if ModAssembly is set");
             return false;
         }
 
-        if (info.UseAutoHarmony == true && string.IsNullOrEmpty(info.ModAssembly))
+        if (!string.IsNullOrEmpty(info.AssemblyModClass) && string.IsNullOrEmpty(info.ModAssembly))
         {
             if (throwOnError)
             {
-                throw new ArgumentException(Localization.Translate("ASSEMBLY_REQUIRED_WITH_HARMONY"));
+                throw new ArgumentException(Localization.Translate("ASSEMBLY_REQUIRED_WITH_MOD_CLASS"));
             }
 
-            GD.PrintErr("ModAssembly must be set if UseAutoHarmony is true");
+            GD.PrintErr("ModAssembly must be set if AssemblyModClass is set");
             return false;
         }
 
@@ -811,9 +808,6 @@ public partial class ModManager : Control
         fullInfoPckName.Text = info.PckToLoad;
         fullInfoModAssembly.Text = info.ModAssembly;
         fullInfoAssemblyModClass.Text = info.AssemblyModClass;
-        fullInfoAutoHarmony.Text = info.UseAutoHarmony == true ?
-            Localization.Translate("USES_FEATURE") :
-            Localization.Translate("DOES_NOT_USE_FEATURE");
 
         modFullInfoPopup.PopupCenteredShrink();
     }
@@ -916,5 +910,12 @@ public partial class ModManager : Control
     private void ConfirmBackWithUnAppliedChanges()
     {
         EmitSignal(SignalName.OnClosed);
+    }
+
+    private void DummyTranslations()
+    {
+        // Some translations that are probably useful in the future
+        Localization.Translate("USES_FEATURE");
+        Localization.Translate("DOES_NOT_USE_FEATURE");
     }
 }

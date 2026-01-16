@@ -5,11 +5,11 @@ using System.Linq;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
-using Saving;
+using SharedBase.Utilities;
 using Environment = System.Environment;
 
 /// <summary>
-///   Class that handles storing and applying player changeable game settings.
+///   Class that handles storing and applying player-changeable game settings.
 /// </summary>
 public class Settings
 {
@@ -25,13 +25,16 @@ public class Settings
     /// </summary>
     private static readonly Settings SingletonInstance = InitializeGlobalSettings();
 
+    private static int oldDisplaySelectionIndex = -2;
+
     static Settings()
     {
     }
 
     private Settings()
     {
-        // This is mainly just to make sure the property is read here before anyone can change TranslationServer locale
+        // This is mainly just to make sure the property is read here before anyone can change the
+        // TranslationServer locale
         if (DefaultLanguage.Length < 1)
             GD.PrintErr("Default locale is empty");
     }
@@ -72,6 +75,13 @@ public class Settings
         Disabled,
     }
 
+    public enum MicrobeCurrentParticlesMode
+    {
+        All,
+        OnlyCircles,
+        None,
+    }
+
     public static Settings Instance => SingletonInstance;
 
     public static string DefaultLanguage => DefaultLanguageValue;
@@ -79,7 +89,7 @@ public class Settings
     public static CultureInfo DefaultCulture => DefaultCultureValue;
 
     /// <summary>
-    ///   If environment is steam returns SteamHandler.DisplayName, else Environment.UserName
+    ///   If the environment is Steam, returns SteamHandler.DisplayName, else Environment.UserName
     /// </summary>
     public static string EnvironmentUserName => SteamHandler.Instance.IsLoaded ?
         SteamHandler.Instance.DisplayName :
@@ -121,6 +131,18 @@ public class Settings
     /// </summary>
     [JsonProperty]
     public SettingValue<float> RenderScale { get; private set; } = new(1.0f);
+
+    /// <summary>
+    ///   Selected window index for the game window. -1 means automatic, and we don't control it.
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<int> SelectedDisplayIndex { get; set; } = new(-1);
+
+    /// <summary>
+    ///   When we are changing monitors, centers our window afterwards.
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> CenterWindowOnMonitorOrModeChange { get; set; } = new(true);
 
     /// <summary>
     ///   Upscaling method to use when the render scale is less than 1
@@ -179,13 +201,20 @@ public class Settings
     public SettingValue<bool> MicrobeBackgroundBlurLowQuality { get; private set; } = new(false);
 
     /// <summary>
+    ///   Sets the type of displayed microbe current particles
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<MicrobeCurrentParticlesMode> MicrobeCurrentParticles { get; private set; } =
+        new(MicrobeCurrentParticlesMode.All);
+
+    /// <summary>
     ///   Sets whether microbes make ripples as they move
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> MicrobeRippleEffect { get; private set; } = new(true);
 
     /// <summary>
-    ///   Sets whether the camera will slightly tilt toward cursor
+    ///   Sets whether the camera will slightly tilt toward the cursor
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> MicrobeCameraTilt { get; private set; } = new(false);
@@ -197,13 +226,13 @@ public class Settings
     public SettingValue<ControllerType> ControllerPromptType { get; private set; } = new(ControllerType.Automatic);
 
     /// <summary>
-    ///   Red screen effect for when player is harmed
+    ///   Red screen effect for when the player is harmed
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> ScreenDamageEffect { get; private set; } = new(true);
 
     /// <summary>
-    ///   When should the strain bar be visible
+    ///   Sets when the strain bar should be visible
     /// </summary>
     public SettingValue<StrainBarVisibility> StrainBarVisibilityMode { get; private set; } =
         new(StrainBarVisibility.VisibleWhenOverZero);
@@ -214,7 +243,7 @@ public class Settings
     public SettingValue<bool> BloomEnabled { get; private set; } = new(true);
 
     /// <summary>
-    ///   Bloom effect strength (if 0 bloom option should be set disabled)
+    ///   Bloom effect strength (if 0, the bloom option should be set disabled)
     /// </summary>
     [JsonProperty]
     public SettingValue<float> BloomStrength { get; private set; } = new(0.65f);
@@ -509,13 +538,6 @@ public class Settings
     [JsonProperty]
     public SettingValue<IReadOnlyCollection<DismissibleNotice>> PermanentlyDismissedNotices { get; private set; } =
         new(new HashSet<DismissibleNotice>());
-
-    /// <summary>
-    ///   The Db value to be added to the master audio bus
-    /// </summary>
-    [JsonProperty]
-    public SettingValue<JSONDebug.DebugMode> JSONDebugMode { get; private set; } =
-        new(JSONDebug.DebugMode.Automatic);
 
     /// <summary>
     ///   The screen effect currently being used
@@ -829,6 +851,9 @@ public class Settings
     public void LoadDefaults()
     {
         Settings settings = new Settings();
+
+        settings.ApplyPostInit();
+
         CopySettings(settings);
     }
 
@@ -1042,8 +1067,6 @@ public class Settings
 
         // Default to wanting the current mode. This is after the maximized mode handling so that the game won't
         // switch away from maximized mode to windowed mode.
-        // DisplayServer.WindowMode.ExclusiveFullscreen
-        // TODO: set the default clear color to black to make the 1px border disappear on windows
         var wantedMode = mode;
 
         switch (DisplayMode.Value)
@@ -1065,10 +1088,57 @@ public class Settings
                 break;
         }
 
-        if (mode != wantedMode)
+        var windowModeChanged = mode != wantedMode;
+
+        bool monitorChanged = false;
+
+        // Only control monitor if we are controlling that
+        if (SelectedDisplayIndex.Value >= 0)
+        {
+            // Monitor moving on desktop platforms
+            if (!FeatureInformation.IsMobile)
+            {
+                var targetScreen = SelectedDisplayIndex.Value;
+
+                // Move if not set to the right monitor (or if window mode is changing)
+                if (oldDisplaySelectionIndex != targetScreen || windowModeChanged)
+                {
+                    GD.Print($"Moving our window to screen {targetScreen}");
+                    monitorChanged = true;
+
+                    DisplayServer.WindowSetCurrentScreen(targetScreen, 0);
+
+                    oldDisplaySelectionIndex = targetScreen;
+                }
+            }
+        }
+
+        if (windowModeChanged)
         {
             GD.Print($"Switching window mode from {mode} to {wantedMode}");
             DisplayServer.WindowSetMode(wantedMode);
+        }
+
+        // Center the window if it is in Windowed mode and the screen or window mode has changed
+        if ((windowModeChanged || monitorChanged) && wantedMode == DisplayServer.WindowMode.Windowed)
+        {
+            var screen = DisplayServer.WindowGetCurrentScreen(0);
+            var size = DisplayServer.ScreenGetSize(screen);
+            var windowSize = DisplayServer.WindowGetSize();
+
+            // Make sure we only apply this if we got valid data
+            if (size.X > 0 && size.Y > 0 && windowSize.X > 0 && windowSize.Y > 0)
+            {
+                GD.Print("Centering window");
+                var position = DisplayServer.ScreenGetPosition(screen);
+
+                var centeredPos = position + (size - windowSize) / 2;
+                DisplayServer.WindowSetPosition(centeredPos, 0);
+            }
+            else
+            {
+                GD.Print("Centering window failed as we didn't get screen data");
+            }
         }
 
         // TODO: switch the setting to allow specifying all of the 4 possible values
@@ -1241,6 +1311,9 @@ public class Settings
                 + "Using default settings instead.");
 
             var settings = new Settings();
+
+            settings.ApplyPostInit();
+
             settings.Save();
 
             return settings;
@@ -1284,7 +1357,7 @@ public class Settings
     /// <summary>
     ///   Tries to return the best supported Godot locale match.
     ///   Godot locale is different from C# culture.
-    ///   Compare for example fi_FI (Godot) to fi-FI (C#).
+    ///   Compare, for example, fi_FI (Godot) to fi-FI (C#).
     /// </summary>
     /// <param name="locale">locale to check</param>
     /// <returns>supported locale</returns>
@@ -1355,5 +1428,56 @@ public class Settings
 
             setting.AssignFrom(source);
         }
+    }
+
+    /// <summary>
+    ///   Customizes settings after creating them based on the current environment
+    /// </summary>
+    private void ApplyPostInit()
+    {
+        long availableRam = 0;
+        try
+        {
+            availableRam = OS.GetMemoryInfo()["physical"].AsInt64();
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Failed to get physical memory info: ", e);
+        }
+
+        GD.Print("Detected system RAM (MiB) as: ", availableRam / GlobalConstants.MEBIBYTE);
+
+        var preset = GraphicsPresets.Preset.High;
+
+        // Automatic preset adjustment based on some conditions
+        if (FeatureInformation.GetVideoDriver() == OS.RenderingDriver.Opengl3 ||
+            availableRam < (long)GlobalConstants.GIBIBYTE * 3)
+        {
+            preset = GraphicsPresets.Preset.Low;
+
+            // Apparently on Linux with a dedicated GPU this detection is not correct, so we have some safety
+            // handling here
+            bool hasDedicatedGpu = RenderingServer.GetVideoAdapterType() is RenderingDevice.DeviceType.DiscreteGpu
+                or RenderingDevice.DeviceType.Other;
+
+            // Additionally, if integrated graphics and system memory is not very high set to very low
+
+            if ((!hasDedicatedGpu && availableRam < (long)GlobalConstants.GIBIBYTE * 11) ||
+                (availableRam < (long)GlobalConstants.GIBIBYTE * 3))
+            {
+                GD.Print("Detected integrated graphics and low system memory (or very low memory)");
+                preset = GraphicsPresets.Preset.VeryLow;
+            }
+        }
+        else if (Environment.ProcessorCount <= 4 || availableRam < (long)GlobalConstants.GIBIBYTE * 6)
+        {
+            // Assume 2 CPU cores have hyperthreading so this is probably a laptop system, so pick medium
+            preset = GraphicsPresets.Preset.Medium;
+        }
+
+        GD.Print("Picked graphics preset: ", preset);
+
+        // Apply graphics preset to the initial settings
+        GraphicsPresets.ApplyPreset(preset, this);
     }
 }

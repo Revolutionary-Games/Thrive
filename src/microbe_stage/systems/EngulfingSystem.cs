@@ -1032,10 +1032,13 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         {
             ref var collision = ref collisions![i];
 
-            if (collision.SecondEntity == Entity.Null)
+            if (collision.SecondEntity == default(Entity))
+            {
+                GD.PrintErr("Collision second entity is zero initialized (invalid data)");
                 continue;
+            }
 
-            if (!collision.SecondEntity.Has<Engulfable>())
+            if (!collision.SecondEntity.IsAliveAndHas<Engulfable>())
                 continue;
 
             // Can't engulf through our pilus
@@ -1873,7 +1876,11 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
         foreach (var pair in tempWorkSpaceForTimeReduction)
         {
-            if (pair.Value >= Constants.ENGULF_EJECTED_COOLDOWN)
+            // Remove expired items *or* entities that are not alive any more (so they cannot be engulfed again and
+            // thus don't need tracking). Clearing old items early helps avoid rare situations with saves being
+            // unloadable (due to duplicate null values in the dictionary).
+            if (pair.Value >= Constants.ENGULF_EJECTED_COOLDOWN ||
+                pair.Key == default(Entity) || !pair.Key.IsAliveAndNotNull())
             {
                 engulfer.ExpelledObjects.Remove(pair.Key);
             }

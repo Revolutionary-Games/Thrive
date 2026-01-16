@@ -1,6 +1,8 @@
-﻿using Arch.Core;
+﻿using System.Linq;
+using Arch.Core;
 using Arch.Core.Extensions;
 using Components;
+using Godot;
 using SharedBase.Archive;
 
 /// <summary>
@@ -56,11 +58,57 @@ public static class ComponentDeserializers
                 entity.Add(MicrobeAIHelpers.ReadFromArchive(reader, version));
                 return true;
             case ThriveArchiveObjectType.ComponentMicrobeColony:
-                entity.Add(MicrobeColonyHelpers.ReadFromArchive(reader, version));
+            {
+                var colony = MicrobeColonyHelpers.ReadFromArchive(reader, version);
+
+                // Filter out invalid data
+                if (colony.ColonyMembers == null! || colony.ColonyMembers.Length < 1)
+                {
+                    GD.PrintErr("Ignoring colony component with no members");
+                    return true;
+                }
+
+                while (true)
+                {
+                    var didSomething = false;
+                    int count = colony.ColonyMembers.Length;
+                    for (int i = 0; i < count; ++i)
+                    {
+                        if (colony.ColonyMembers[i] == Entity.Null || colony.ColonyMembers[i].IsAllZero())
+                        {
+                            // This wastes a bunch of memory but is done only for bad saves
+                            GD.PrintErr("Removing colony member from colony with invalid entity id");
+                            colony.ColonyMembers = colony.ColonyMembers.Except([colony.ColonyMembers[i]]).ToArray();
+                            didSomething = true;
+                            break;
+                        }
+                    }
+
+                    if (!didSomething)
+                        break;
+                }
+
+                entity.Add(colony);
                 return true;
+            }
+
             case ThriveArchiveObjectType.ComponentMicrobeColonyMember:
-                entity.Add(MicrobeColonyMemberHelpers.ReadFromArchive(reader, version));
+            {
+                var member = MicrobeColonyMemberHelpers.ReadFromArchive(reader, version);
+
+                // Skip invalid colony members (apparently this wasn't a reported bug, but probably good to have this
+                // anyway)
+                if (member.ColonyLeader == default || member.ColonyLeader == Entity.Null ||
+                    !member.ColonyLeader.IsAlive())
+                {
+                    GD.PrintErr("Ignoring colony member component that has invalid leader");
+                    return true;
+                }
+
+                entity.Add(member);
                 return true;
+            }
+
             case ThriveArchiveObjectType.ComponentMicrobeControl:
                 entity.Add(MicrobeControlHelpers.ReadFromArchive(reader, version));
                 return true;
@@ -231,6 +279,9 @@ public static class ComponentDeserializers
                 return true;
             case ThriveArchiveObjectType.ComponentMicrobeEventCallbacks:
                 entity.Add(MicrobeEventCallbackHelpers.ReadFromArchive(reader, version));
+                return true;
+            case ThriveArchiveObjectType.ComponentCellDivisionCollisionDisabler:
+                entity.Add(CellDivisionCollisionDisablerHelpers.ReadFromArchive(reader, version));
                 return true;
         }
 

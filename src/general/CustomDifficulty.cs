@@ -5,7 +5,7 @@
 /// </summary>
 public class CustomDifficulty : IDifficulty
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     private bool applyGrowthOverride;
     private bool growthLimitOverride;
@@ -49,6 +49,9 @@ public class CustomDifficulty : IDifficulty
     }
 
     public FogOfWarMode FogOfWarMode { get; set; }
+
+    public bool InstantKillProtection { get; set; }
+
     public bool OrganelleUnlocksEnabled { get; set; }
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
@@ -60,7 +63,7 @@ public class CustomDifficulty : IDifficulty
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        return new CustomDifficulty
+        var instance = new CustomDifficulty
         {
             MPMultiplier = reader.ReadFloat(),
             AIMutationMultiplier = reader.ReadFloat(),
@@ -74,6 +77,24 @@ public class CustomDifficulty : IDifficulty
             ReproductionCompounds = (ReproductionCompoundHandling)reader.ReadInt32(),
             SwitchSpeciesOnExtinction = reader.ReadBool(),
         };
+
+        if (version > 1)
+        {
+            instance.FogOfWarMode = (FogOfWarMode)reader.ReadInt32();
+            instance.OrganelleUnlocksEnabled = reader.ReadBool();
+            instance.limitGrowthRate = reader.ReadBool();
+        }
+
+        if (version > 2)
+        {
+            instance.InstantKillProtection = reader.ReadBool();
+        }
+        else
+        {
+            instance.InstantKillProtection = true;
+        }
+
+        return instance;
     }
 
     public void WriteToArchive(ISArchiveWriter writer)
@@ -89,6 +110,14 @@ public class CustomDifficulty : IDifficulty
         writer.Write(FreeGlucoseCloud);
         writer.Write((int)ReproductionCompounds);
         writer.Write(SwitchSpeciesOnExtinction);
+
+        // Version 2 fields that were forgotten in the first version (and caused a map reveal bug)
+        writer.Write((int)FogOfWarMode);
+        writer.Write(OrganelleUnlocksEnabled);
+        writer.Write(limitGrowthRate);
+
+        // Version 3 fields that were added after
+        writer.Write(InstantKillProtection);
     }
 
     public void SetGrowthRateLimitCheatOverride(bool newLimitSetting)

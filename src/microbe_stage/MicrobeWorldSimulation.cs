@@ -1,4 +1,5 @@
 ﻿using Arch.Core;
+using Components;
 using Godot;
 using SharedBase.Archive;
 using Systems;
@@ -75,6 +76,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private RadiationDamageSystem radiationDamageSystem = null!;
     private SlimeSlowdownSystem slimeSlowdownSystem = null!;
     private MucocystSystem mucocystSystem = null!;
+    private MicrobeDivisionClippingSystem microbeDivisionClippingSystem = null!;
 
     private MicrobePhysicsCreationAndSizeSystem microbePhysicsCreationAndSizeSystem = null!;
     private MicrobeRenderPrioritySystem microbeRenderPrioritySystem = null!;
@@ -253,6 +255,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         radiationDamageSystem = new RadiationDamageSystem(EntitySystem);
         slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem);
         mucocystSystem = new MucocystSystem(EntitySystem);
+        microbeDivisionClippingSystem = new MicrobeDivisionClippingSystem(this, physics, EntitySystem);
         microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem);
         microbeRenderPrioritySystem = new MicrobeRenderPrioritySystem(EntitySystem);
         tintColourApplyingSystem = new TintColourApplyingSystem(EntitySystem);
@@ -300,6 +303,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     public void InitForCurrentGame(GameProperties currentGame)
     {
         osmoregulationAndHealingSystem.SetWorld(currentGame.GameWorld);
+        HealthHelpers.SetWorld(currentGame.GameWorld);
         microbeReproductionSystem.SetWorld(currentGame.GameWorld);
         microbeDeathSystem.SetWorld(currentGame.GameWorld);
         microbeHeatAccumulationSystem.SetWorld(currentGame.GameWorld);
@@ -407,6 +411,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         engulfingSystem.OnEntityDestroyed(entity);
         colonyStatsUpdateSystem.OnEntityDestroyed(entity);
+        entitySignalingSystem.OnEntityDestroyed(entity);
     }
 
     protected override void OnPlayerPositionSet(Vector3 playerPosition)
@@ -493,6 +498,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 radiationDamageSystem.Dispose();
                 slimeSlowdownSystem.Dispose();
                 mucocystSystem.Dispose();
+                microbeDivisionClippingSystem.Dispose();
                 microbePhysicsCreationAndSizeSystem.Dispose();
                 microbeRenderPrioritySystem.Dispose();
                 microbeReproductionSystem.Dispose();

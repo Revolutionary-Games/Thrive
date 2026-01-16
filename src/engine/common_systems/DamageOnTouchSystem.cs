@@ -52,8 +52,11 @@ public partial class DamageOnTouchSystem : BaseSystem<World, float>
         {
             ref var collision = ref collisions![i];
 
+            if (collision.SecondEntity == default(Entity))
+                continue;
+
             // Skip collisions with things that can't be damaged
-            if (collision.SecondEntity == Entity.Null || !collision.SecondEntity.Has<Health>())
+            if (!collision.SecondEntity.IsAliveAndHas<Health>())
                 continue;
 
             // If this doesn't cause any damage, we can consider this hit here immediately a success
@@ -135,17 +138,18 @@ public partial class DamageOnTouchSystem : BaseSystem<World, float>
                         subShape, out var hitEntity))
                 {
                     hitEntity.Get<Health>()
-                        .DealMicrobeDamage(ref hitEntity.Get<CellProperties>(), damageValue, damageType, protection);
+                        .DealMicrobeDamage(ref hitEntity.Get<CellProperties>(), hitEntity, damageValue, damageType,
+                            protection);
 
                     return true;
                 }
             }
 
-            health.DealMicrobeDamage(ref entity.Get<CellProperties>(), damageValue, damageType, protection);
+            health.DealMicrobeDamage(ref entity.Get<CellProperties>(), entity, damageValue, damageType, protection);
         }
         else
         {
-            health.DealDamage(damageValue, damageType, HealthHelpers.GetInstantKillProtectionThreshold(entity));
+            health.DealDamage(entity, damageValue, damageType, HealthHelpers.GetInstantKillProtectionThreshold(entity));
         }
 
         return true;

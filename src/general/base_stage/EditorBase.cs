@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 using AutoEvo;
 using Godot;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 /// <summary>
@@ -45,27 +44,20 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     protected Node world = null!;
 
     [Export]
-    protected PauseMenu pauseMenu = null!;
-
-    [Export]
     protected MicrobeEditorTabButtons? editorTabSelector;
 #pragma warning restore CA2213
 
     /// <summary>
     ///   Where all user actions will  be registered
     /// </summary>
-    [JsonProperty]
     protected EditorActionHistory<TAction> history = null!;
 
     protected bool ready;
 
-    [JsonProperty]
     protected RunResults? autoEvoResults;
 
-    [JsonProperty]
     protected LocalizedStringBuilder? autoEvoExternal;
 
-    [JsonProperty]
     protected EditorTab selectedEditorTab = EditorTab.Report;
 
     /// <summary>
@@ -77,8 +69,9 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     /// <summary>
     ///   This is protected only so that this is loaded from a save. No derived class should modify this
     /// </summary>
-    [JsonProperty]
     protected GameProperties? currentGame;
+
+    private readonly List<EditorCombinableActionData> actionCache = new();
 
 #pragma warning disable CA2213
     [Export]
@@ -90,7 +83,6 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     /// <summary>
     ///   The fraction of daylight the editor is previewing things at
     /// </summary>
-    [JsonProperty]
     private float dayLightFraction = 1.0f;
 
     protected EditorBase()
@@ -99,15 +91,15 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     /// <summary>
     ///   Base Node where all dynamically created world Nodes in the editor should go. Optionally grouped under
-    ///   a one more level of parent nodes so that different editor components can have their things visible at
+    ///   a one higher level of parent nodes so that different editor components can have their things visible at
     ///   different times
     /// </summary>
     public Node3D RootOfDynamicallySpawned { get; private set; } = null!;
 
-    [JsonIgnore]
+    public virtual MainGameState GameState => throw new GodotAbstractPropertyNotOverriddenException();
+
     public bool TransitionFinished { get; protected set; }
 
-    [JsonIgnore]
     public double MutationPoints
     {
         get => mutationPointsCache ?? CalculateMutationPointsLeft();
@@ -118,13 +110,10 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         }
     }
 
-    [JsonProperty]
     public bool FreeBuilding { get; protected set; }
 
-    [JsonIgnore]
     public RunResults? PreviousAutoEvoResults => autoEvoResults;
 
-    [JsonIgnore]
     public GameProperties CurrentGame
     {
         get => currentGame ?? throw new InvalidOperationException("Editor not initialized with current game yet");
@@ -134,7 +123,6 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     /// <summary>
     ///   Accesses the current tutorial data
     /// </summary>
-    [JsonIgnore]
     public TutorialState TutorialState => CurrentGame.TutorialState ??
         throw new InvalidOperationException("Editor doesn't have current game set yet");
 
@@ -142,7 +130,6 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     ///   If set the editor returns to this stage. The CurrentGame
     ///   should be shared with this stage. If not set returns to a newly created instance of the stage
     /// </summary>
-    [JsonProperty]
     public TStage? ReturnToStage { get; set; }
 
     /// <summary>
@@ -154,17 +141,14 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     ///     player was in the cell editor tab and saved.
     ///   </para>
     /// </remarks>
-    [JsonProperty]
     public bool ShowHover { get; set; }
 
-    [JsonIgnore]
     public Node GameStateRoot => this;
 
     public bool IsLoadedFromSave { get; set; }
 
     public bool NodeReferencesResolved { get; private set; }
 
-    [JsonIgnore]
     public float DayLightFraction
     {
         get => dayLightFraction;
@@ -179,18 +163,12 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         }
     }
 
-    [JsonProperty]
     public bool EditorReady
     {
         get => ready;
-        set
-        {
-            ready = value;
-            pauseMenu.GameLoading = !value;
-        }
+        set => ready = value;
     }
 
-    [JsonIgnore]
     public virtual bool CanCancelAction => throw new GodotAbstractPropertyNotOverriddenException();
 
     public virtual Species EditedBaseSpecies => throw new GodotAbstractPropertyNotOverriddenException();
@@ -248,6 +226,8 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         base._EnterTree();
 
         AchievementsManager.OnPlayerHasCheatedEvent += OnCheatsUsed;
+
+        PauseMenu.Instance.Connect(PauseMenu.SignalName.MakeSave, new Callable(this, nameof(SaveGame)));
     }
 
     public override void _ExitTree()
@@ -277,6 +257,8 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         {
             GD.Print("Editor's return to stage is already disposed");
         }
+
+        PauseMenu.Instance.Disconnect(PauseMenu.SignalName.MakeSave, new Callable(this, nameof(SaveGame)));
     }
 
     public override void _Process(double delta)
@@ -323,7 +305,8 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         GD.Print("Hiding loading screen for editor as we were loaded from a save");
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f, () => LoadingScreen.Instance.Hide(),
             false, false);
-        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f, null, false, false);
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f,
+            () => { PauseMenu.Instance.ReportEnterGameState(GameState, CurrentGame); }, false, false);
     }
 
     /// <summary>
@@ -357,6 +340,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         if (EditedBaseSpecies == null)
             throw new InvalidOperationException("Editor not initialized, missing edited species");
 
+        PauseMenu.Instance.ReportStageTransition();
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, OnEditorExitTransitionFinished,
             false);
 
@@ -527,15 +511,37 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     public virtual double WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
-        // TODO: determine if it is better to use extra memory here or if enumerating multiple times is better (or
-        // there's a way to redo this method interface to not need either workaround). Right now this is set to use
-        // extra memory as some quite complex filtering situations trigger this code so just to not have any unexpected
-        // performance impact of complicated data filtering pipelines this uses a temporary list
-        var tempActions = actions.ToList();
+        // We need to know the current amount of MP to compare the difference
+        if (mutationPointsCache == null)
+            CalculateMutationPointsLeft();
 
-        AddContextToActions(tempActions);
+        history.GetPerformedActionData(actionCache);
 
-        return history.WhatWouldActionsCost(tempActions);
+        foreach (var action in actions)
+        {
+            AddContextToAction(action);
+            actionCache.Add(action);
+        }
+
+        var result = CalculateUsedMutationPoints(actionCache);
+        actionCache.Clear();
+
+        // Need to compare with already used count, so we need to do this calculation to get that
+        // Freebuild doesn't calculate MP, so it is always 0 here.
+        double alreadyUsed;
+        if (mutationPointsCache == null)
+        {
+            // If set to 0, this would show a huge number as the total cost of everything, so instead we set it
+            // to itself to get a 0-cost result
+            alreadyUsed = result;
+        }
+        else
+        {
+            alreadyUsed = Constants.BASE_MUTATION_POINTS - mutationPointsCache!.Value;
+        }
+
+        // Need to adjust the result from absolute cost to relative cost
+        return result - alreadyUsed;
     }
 
     public virtual bool EnqueueAction(TAction action)
@@ -566,7 +572,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         return EnqueueAction((TAction)action);
     }
 
-    public virtual void AddContextToActions(IEnumerable<CombinableActionData> editorActions)
+    public virtual void AddContextToAction(CombinableActionData editorActions)
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }
@@ -657,7 +663,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     public void OpenSpeciesInfoFor(Species species)
     {
-        pauseMenu.OpenToSpeciesPage(species);
+        PauseMenu.Instance.OpenToSpeciesPage(species);
     }
 
     public double CalculateNextGenerationTimePoint()
@@ -680,8 +686,6 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     protected virtual void InitEditor(bool fresh)
     {
-        pauseMenu.GameProperties = CurrentGame;
-
         if (fresh)
         {
             // Auto save is wanted once possible
@@ -751,7 +755,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         if (EditedBaseSpecies == null)
             throw new Exception($"Editor setup which was just ran didn't setup {nameof(EditedBaseSpecies)}");
 
-        pauseMenu.SetNewSaveNameFromSpeciesName();
+        PauseMenu.Instance.SetNewSaveNameFromSpeciesName();
 
         ApplyComponentLightLevels();
     }
@@ -853,6 +857,8 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     {
         EditorReady = true;
         LoadingScreen.Instance.Hide();
+
+        PauseMenu.Instance.ReportEnterGameState(GameState, CurrentGame);
 
         GD.Print("Elapsing time on editor entry");
         ElapseEditorEntryTime();
@@ -1047,6 +1053,11 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         }
     }
 
+    protected virtual double CalculateUsedMutationPoints(List<EditorCombinableActionData> performedActionData)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
     /// <summary>
     ///   Applies the changes done and exits the editor back to <see cref="ReturnToStage"/>
     /// </summary>
@@ -1083,6 +1094,16 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         }
 
         ApplyCheatsUsedFlag();
+    }
+
+    protected void OnOpenPauseMenu()
+    {
+        PauseMenu.Instance.Open();
+    }
+
+    protected void OnOpenPauseMenuToHelp()
+    {
+        PauseMenu.Instance.OpenToHelp();
     }
 
     private void MakeSureEditorReturnIsGood()
@@ -1123,7 +1144,9 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         if (FreeBuilding || CheatManager.InfiniteMP)
             return Constants.BASE_MUTATION_POINTS;
 
-        mutationPointsCache = history.CalculateMutationPointsLeft();
+        history.GetPerformedActionData(actionCache);
+        mutationPointsCache = Constants.BASE_MUTATION_POINTS - CalculateUsedMutationPoints(actionCache);
+        actionCache.Clear();
 
         if (mutationPointsCache.Value is < Constants.ALLOWED_MP_OVERSHOOT or > Constants.BASE_MUTATION_POINTS)
         {

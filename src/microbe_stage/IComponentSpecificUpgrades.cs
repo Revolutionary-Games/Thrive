@@ -14,4 +14,12 @@ public interface IComponentSpecificUpgrades : ICloneable, IEquatable<IComponentS
     /// </summary>
     /// <returns>A hash representing the visual state of this upgrade component</returns>
     public ulong GetVisualHashCode();
+
+    /// <summary>
+    ///   Calculates the cost of this upgrade in reference to another one. Used to make sure auto-evo doesn't
+    ///   overspend MP
+    /// </summary>
+    /// <param name="previousUpgrades">Previous upgrades (should be the same type) or null</param>
+    /// <returns>Cost of the upgrade</returns>
+    public double CalculateCost(IComponentSpecificUpgrades? previousUpgrades);
 }

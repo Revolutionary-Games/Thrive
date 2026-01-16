@@ -17,6 +17,7 @@ structurePopup = NodePath("SpaceStructureInfoPopup")
 descendButton = NodePath("Descend")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." index="0" instance=ExtResource("5")]
+layout_mode = 0
 
 [node name="BottomRight" parent="." index="1"]
 visible = false
@@ -69,6 +70,7 @@ offset_bottom = 34.5
 grow_vertical = 2
 
 [node name="SpaceConstructionPopup" parent="." index="12" instance=ExtResource("6")]
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0

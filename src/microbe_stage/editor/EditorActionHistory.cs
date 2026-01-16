@@ -1,4 +1,6 @@
-﻿using System;
+﻿// #define DEBUG_ACTION_COSTS
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Saving.Serializers;
@@ -37,60 +39,6 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         (ArchiveObjectType)ThriveArchiveObjectType.ExtendedEditorActionHistory;
 
     private List<EditorCombinableActionData> History => cache ??= GetActionHistorySinceLastHistoryResettingAction();
-
-    /// <summary>
-    ///   Calculates how much MP these actions would cost if performed on top of the current history.
-    /// </summary>
-    public double WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
-    {
-        double sum = 0;
-
-        // TODO: there's a potential pitfall here in that if multiple things are in actions they cannot see each other
-        // and thus their total cost once applied may not be the same as calculated here.
-        // A proper solution would need to build a temporary list of all the data and insert the actions into it and
-        // only then calculate the resulting change in cost.
-
-        // TODO: somehow avoid the enumerator allocation here
-        foreach (var action in actions)
-            sum += WhatWouldActionCost(action);
-
-        return sum;
-    }
-
-    /// <summary>
-    ///   Calculates how much MP this action would cost if performed on top of the current history.
-    /// </summary>
-    public double WhatWouldActionCost(EditorCombinableActionData combinableAction)
-    {
-        if (CheatManager.InfiniteMP)
-            return 0;
-
-        return combinableAction.CalculateCost(History, History.Count);
-    }
-
-    /// <summary>
-    ///   Calculates the remaining MP from the action history.
-    /// </summary>
-    public double CalculateMutationPointsLeft()
-    {
-        if (CheatManager.InfiniteMP)
-            return Constants.BASE_MUTATION_POINTS;
-
-        // As History is a reference, changing this affects the history cache
-        var processedHistory = History;
-
-        double mpLeft = Constants.BASE_MUTATION_POINTS;
-
-        var count = processedHistory.Count;
-        for (int i = 0; i < count; ++i)
-        {
-            var action = processedHistory[i];
-
-            mpLeft -= action.CalculateCost(History, i);
-        }
-
-        return mpLeft;
-    }
 
     public override bool Redo()
     {
@@ -187,6 +135,14 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         where TContext : IArchivable
     {
         return GetContext<TContext>(ActionToUndo());
+    }
+
+    public void GetPerformedActionData(List<EditorCombinableActionData> result)
+    {
+        for (int i = 0; i < ActionIndex; ++i)
+        {
+            Actions[i].CopyData(result);
+        }
     }
 
     private static TContext? GetContext<TContext>(TAction? action)

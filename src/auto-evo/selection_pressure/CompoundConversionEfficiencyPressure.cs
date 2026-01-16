@@ -22,6 +22,8 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
         bool usedForSurvival, float weight) :
         base(weight, [
             AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, outCompound),
+            new AddOrganelleAnywhere(organelle => organelle.HasBindingFeature),
+            new AddOrganelleAnywhere(organelle => organelle.HasSignalingFeature),
             RemoveOrganelle.ThatCreateCompound(outCompound),
         ])
     {
@@ -65,9 +67,32 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
 
         var score = cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies, patch.Biome);
 
+        // Modifier to fit the current mechanics of the Binding Agent. This should probably be removed or adjusted if
+        // being in a colony no longer reduces osmoregulation cost.
+        var bindingModifier = 1.0f;
+
+        MicrobeInternalCalculations.GetBindingAndSignalling(microbeSpecies.Organelles.Organelles,
+            out var hasBindingAgent, out var hasSignallingAgent);
+
+        if (hasBindingAgent)
+        {
+            if (hasSignallingAgent)
+            {
+                bindingModifier *= 1 -
+                    Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS * Constants.AUTO_EVO_SIGNALLING_BONUS;
+            }
+            else
+            {
+                bindingModifier *= 1 - Constants.AUTO_EVO_COLONY_OSMOREGULATION_BONUS;
+            }
+        }
+
         // we need to factor in both conversion from source to output, and energy expenditure time
         if (usedForSurvival)
-            score /= cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumptionStationary;
+        {
+            score /= cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumptionStationary *
+                bindingModifier;
+        }
 
         return score;
     }

@@ -122,7 +122,7 @@ public partial class ColonyBindingSystem : BaseSystem<World, float>
         {
             ref var collision = ref collisions![i];
 
-            if (collision.SecondEntity == Entity.Null)
+            if (collision.SecondEntity == Entity.Null || collision.SecondEntity == default(Entity))
                 continue;
 
             if (!organelles.CanBindWith(ourSpecies.Species, collision.SecondEntity))
@@ -173,7 +173,7 @@ public partial class ColonyBindingSystem : BaseSystem<World, float>
     private bool BeginBind(ref MicrobeControl control, in Entity primaryEntity, int indexOfMemberToBindTo,
         in Entity other)
     {
-        if (!other.IsAlive())
+        if (other.IsAllZero() || !other.IsAliveAndNotNull())
         {
             GD.PrintErr("Binding attempted on a dead entity");
             return false;

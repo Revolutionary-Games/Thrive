@@ -74,11 +74,11 @@ public partial class SiderophoreSystem : BaseSystem<World, float>
     {
         var target = collision.SecondEntity;
 
-        if (target == Entity.Null)
+        if (target == default(Entity))
             return false;
 
         // Skip if hit something that isn't a valid target
-        if (!target.Has<SiderophoreTarget>() || !target.Has<CompoundStorage>())
+        if (!target.IsAliveAndHas<SiderophoreTarget>() || !target.Has<CompoundStorage>())
             return false;
 
         ref var compounds = ref target.Get<CompoundStorage>();

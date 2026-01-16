@@ -84,6 +84,9 @@ public class DifficultyPreset : RegistryType, IDifficulty
     public FogOfWarMode FogOfWarMode { get; private set; }
 
     [JsonProperty]
+    public bool InstantKillProtection { get; private set; }
+
+    [JsonProperty]
     public bool OrganelleUnlocksEnabled { get; private set; }
 
     public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.DifficultyPreset;

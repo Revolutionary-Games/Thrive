@@ -95,7 +95,7 @@ public partial class SocietyCreature : Node3D, IEntity
 
         // Setup graphics
         // TODO: handle lateSpecies.Scale
-        metaballDisplayer.DisplayFromLayout(lateSpecies.BodyLayout);
+        metaballDisplayer.DisplayFromLayout(lateSpecies.ModifiableBodyLayout);
     }
 
     public bool HasReachedGoal()

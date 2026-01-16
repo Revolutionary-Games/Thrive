@@ -158,7 +158,16 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
         {
             if (!matrix.IsConnectionRedundant && matrix.GeneratedConnection == null)
             {
-                ref var colony = ref entity.Get<MicrobeColonyMember>().ColonyLeader.Get<MicrobeColony>();
+                var leader = entity.Get<MicrobeColonyMember>().ColonyLeader;
+
+                if (!leader.IsAliveAndHas<MicrobeColony>())
+                {
+                    GD.PrintErr($"Leader of a colony is missing or missing MicrobeColony component, " +
+                        $"can't generate intercellular matrix for {entity}");
+                    return;
+                }
+
+                ref var colony = ref leader.Get<MicrobeColony>();
 
                 AddIntercellularConnection(entity, ref matrix, ref colony, ref spatialInstance, ref cellProperties);
             }

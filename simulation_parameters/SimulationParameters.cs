@@ -57,6 +57,7 @@ public partial class SimulationParameters : Node
     private Dictionary<string, Technology> technologies = null!;
     private Dictionary<string, VisualResourceData> visualResources = null!;
     private Dictionary<VisualResourceIdentifier, VisualResourceData> visualResourceByIdentifier = null!;
+    private Dictionary<string, SceneResource> sceneResources = null!;
     private Dictionary<string, StageResourcesList> stageResources = null!;
     private Dictionary<MainGameState, StageResourcesList> stageResourcesByEnum = null!;
 
@@ -210,6 +211,8 @@ public partial class SimulationParameters : Node
 
         technologies =
             LoadRegistry<Technology>("res://simulation_parameters/awakening_stage/technologies.json");
+
+        sceneResources = LoadRegistry<SceneResource>("res://simulation_parameters/common/scene_resources.json");
 
         visualResources =
             LoadRegistry<VisualResourceData>("res://simulation_parameters/common/visual_resources.json");
@@ -545,6 +548,12 @@ public partial class SimulationParameters : Node
 
         GD.PrintErr("Visual resource doesn't exist: ", (long)identifier);
         return GetErrorVisual();
+    }
+
+    public SceneResource GetSceneResource(string identifier)
+    {
+        // TODO: error scene?
+        return sceneResources[identifier];
     }
 
     public VisualResourceData GetVisualResource(string internalName)
@@ -903,6 +912,43 @@ public partial class SimulationParameters : Node
                     $"value {entry.Value.EditorButtonOrder} is used multiple times.");
             }
         }
+
+#if DEBUG
+
+        // Check for duplicate resource identifiers
+        var seenIdentifiers = new HashSet<string>();
+        var seenInstances = new HashSet<object>();
+
+        foreach (var entry in stageResourcesByEnum)
+        {
+            foreach (var resource in entry.Value.RequiredScenes)
+            {
+                if (!seenIdentifiers.Add(resource.Identifier))
+                {
+                    // If the identifier is the same, the identity must match
+                    if (seenInstances.Add(resource))
+                        throw new InvalidRegistryDataException($"Duplicate resource identifier: {resource.Identifier}");
+                }
+                else
+                {
+                    seenInstances.Add(resource);
+                }
+            }
+
+            foreach (var resource in entry.Value.RequiredVisualResources)
+            {
+                if (!seenIdentifiers.Add(resource.Identifier))
+                {
+                    if (seenInstances.Add(resource))
+                        throw new InvalidRegistryDataException($"Duplicate resource identifier: {resource.Identifier}");
+                }
+                else
+                {
+                    seenInstances.Add(resource);
+                }
+            }
+        }
+#endif
     }
 
     private List<CompoundDefinition> ComputeCloudCompounds()

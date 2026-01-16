@@ -2,7 +2,6 @@
 
 using System.Runtime.CompilerServices;
 using Arch.Core;
-using Arch.Core.Extensions;
 using Arch.System;
 using Components;
 
@@ -36,12 +35,12 @@ public partial class MicrobeCollisionSoundSystem : BaseSystem<World, float>
             if (collision.JustStarted != 1)
                 continue;
 
-            if (collision.SecondEntity == Entity.Null)
+            if (collision.SecondEntity == default(Entity))
                 continue;
 
             // TODO: should collisions with any physics entities count?
             // For now collisions with just microbes count
-            if (!collision.SecondEntity.Has<CellProperties>())
+            if (!collision.SecondEntity.IsAliveAndHas<CellProperties>())
                 continue;
 
             // Play bump sound if the collision is hard enough (there's enough physics bodies overlap)

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2026-01-12 15:26+0100\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -297,8 +297,9 @@ msgstr "Versi:"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Susunan kelas mod dibutuhkan jika sebuah susunan ditentukan"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr ""
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
+msgstr "Susunan kelas mod dibutuhkan jika sebuah susunan ditentukan"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Asumsikan hyperthreading diaktifkan pada CPU"
@@ -458,6 +459,9 @@ msgstr ""
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr ""
 
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr ""
 
@@ -576,7 +580,15 @@ msgid "BIG_IRON_CHUNK"
 msgstr "Potongan Besi Besar"
 
 #, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Potongan Besi Besar"
+
+#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Potongan Besi Besar"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "Potongan Besi Besar"
 
 msgid "BILLION_ABBREVIATION"
@@ -959,6 +971,10 @@ msgstr "Pesisir"
 msgid "COLLISION_SHAPE"
 msgstr "Munculkan entitas dengan bentukan pendeteksi benturan"
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
 msgid "COLOUR"
 msgstr "Warna"
 
@@ -1005,6 +1021,9 @@ msgstr "Nilai saturasi, jumlah abu-abu dari sebuah warna"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Nilai kecerahan, kecerahan atau intensitas dari warna"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr ""
 
 #, fuzzy
 msgid "COMMON_ABILITIES"
@@ -1127,6 +1146,10 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Keseimbangan Senyawa"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "konsumsi {0}"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1524,8 +1547,28 @@ msgstr "Lanjutkan"
 msgid "CURRENT_DEVELOPERS"
 msgstr "Pengembang Masa Ini"
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "LOKASI SEKARANG"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "LOKASI SEKARANG"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "LOKASI SEKARANG"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "LOKASI SEKARANG"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Tampilkan Bilah Kemampuan Sel"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "Tampilkan Bilah Kemampuan Sel"
 
 #, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
@@ -1598,6 +1641,10 @@ msgstr "Save yang terhapus tidak akan bisa dikembalikan, apakah kamu yakin ingin
 
 msgid "DEATH"
 msgstr "mati"
+
+#, fuzzy
+msgid "DEBUG_CONSOLE"
+msgstr "Panel Debug"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1854,6 +1901,10 @@ msgstr "Tampilkan Bilah Kemampuan Sel"
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "Tampilkan Bilah Kemampuan Sel"
+
+#, fuzzy
+msgid "DISPLAY_SELECTION"
+msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Penyebaran yang merata dari sumber makanan {0}"
@@ -2244,6 +2295,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Tambah keybind baru"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Tambah keybind baru"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Pohon Evolusi"
@@ -2764,6 +2823,10 @@ msgid "GRAPHICS"
 msgstr "Grafik"
 
 #, fuzzy
+msgid "GRAPHICS_PRESET"
+msgstr "Grafik"
+
+#, fuzzy
 msgid "GRAPHICS_TEAM"
 msgstr "Grafik"
 
@@ -2894,6 +2957,9 @@ msgstr ""
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
@@ -2901,6 +2967,9 @@ msgid "ID_NUMBER"
 msgstr ""
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 #, fuzzy
@@ -3023,6 +3092,14 @@ msgstr ""
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Lanjutkan"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3149,18 +3226,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr "Selesaikan Satu Generasi"
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3931,6 +3996,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Predasi {0}"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reproduksi:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -3956,6 +4025,10 @@ msgstr "Editor Mikrob"
 #, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr "Statistika Organisme"
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
+msgstr "Batal tindakan ini"
 
 msgid "MICROBE_EDITOR"
 msgstr "Editor Mikrob"
@@ -4293,6 +4366,10 @@ msgstr "Ubah Tipe"
 msgid "MODS"
 msgstr "Mod"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Aktifkan tombol cheat"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4325,9 +4402,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 #, fuzzy
@@ -4413,6 +4487,12 @@ msgstr ""
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Versi:"
+
+msgid "MONITOR_AUTO"
+msgstr ""
+
+msgid "MONITOR_IDENTIFIER"
+msgstr ""
 
 msgid "MORE_INFO"
 msgstr ""
@@ -5323,6 +5403,30 @@ msgstr "Predasi {0}"
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Lanjutkan"
 
+#, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "Pilihan"
+
+#, fuzzy
+msgid "PRESET_HIGH"
+msgstr "Setel ulang"
+
+#, fuzzy
+msgid "PRESET_LOW"
+msgstr "Setel ulang"
+
+#, fuzzy
+msgid "PRESET_MEDIUM"
+msgstr "Pergerakan Dasar"
+
+#, fuzzy
+msgid "PRESET_VERY_HIGH"
+msgstr "Setel Ulang Input"
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "Keseimbangan Senyawa"
+
 msgid "PRESSURE"
 msgstr "Tekanan"
 
@@ -5654,6 +5758,9 @@ msgstr "Putar kanan"
 msgid "ROTATION_COLON"
 msgstr "{0} populasi berubah {1} karena: {2}"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Jalankan auto-evo selama berlangsungnya permainan"
 
@@ -5718,12 +5825,6 @@ msgstr "Ruang terpakai:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Save yang terhapus tidak akan bisa dikembalikan, apakah kamu yakin ingin menghapus {0} secara permanen?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr ""
 
 msgid "SAVE_FAILED"
 msgstr "Gagal menyimpan"
@@ -6077,7 +6178,15 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "Potongan Besi Kecil"
 
 #, fuzzy
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "Potongan Besi Kecil"
+
+#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Potongan Besi Kecil"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr "Potongan Besi Kecil"
 
 #, fuzzy
@@ -6164,6 +6273,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "mengalami mutasi"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Batal tindakan ini"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Ambang batas jumlah spesies di suatu daerah untuk terjadinya kepunahan paksa"
 
 msgid "SPECIES_LIST"
 msgstr "Daftar Spesies"
@@ -6696,6 +6813,10 @@ msgstr "Nyala/matikan pelekatan"
 #, fuzzy
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Nyala/matikan pelekatan"
+
+#, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Nyala/matikan panel debug"
 
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Nyala/matikan panel debug"
@@ -7280,6 +7401,17 @@ msgstr "Batal"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Batalkan tindakan terakhir"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Tusuk sel lain dengan ini."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "KAMU TELAH BERKEMBANG!"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Poin Mutasi"
@@ -7452,6 +7584,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Lisensi dan Libraries yang Digunakan"
 
@@ -7461,13 +7596,6 @@ msgstr ""
 #, fuzzy
 msgid "USES_FEATURE"
 msgstr "Suhu"
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#, fuzzy
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Tambah keybind baru"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gunakan nama pengguna kustom"
@@ -9519,6 +9647,14 @@ msgstr "Suhu"
 msgid "WORST_PATCH_COLON"
 msgstr "Spesies:"
 
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "KONFIRMASI"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
 msgid "XBOX360"
 msgstr ""
 
@@ -9562,6 +9698,14 @@ msgstr "Perbesar"
 
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
+
+#, fuzzy
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Tambah keybind baru"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Reproduksi:"
 
 #, fuzzy
 #~ msgid "OUTDATED"
@@ -9882,9 +10026,6 @@ msgstr "Perkecil"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Anggap daerah-daerah dengan jumlah spesies sebanyak ini memiliki biodiversitas yang rendah"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Ambang batas jumlah spesies di suatu daerah untuk terjadinya kepunahan paksa"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Populasi awal untuk spesies peningkat biodiversitas"

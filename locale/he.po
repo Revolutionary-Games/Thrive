@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2026-01-12 15:26+0100\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -274,7 +274,8 @@ msgstr "גרסה:"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "נדרשת מחלקת פריקת מוד בזמן שפריקה היא ספיציפית"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "נדרשת מחלקת פריקת מוד בזמן שפריקה Harmony מוד נבחרה"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -434,6 +435,9 @@ msgstr ""
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr ""
 
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr ""
 
@@ -544,7 +548,15 @@ msgid "BIG_IRON_CHUNK"
 msgstr "גוש ברזל גדול"
 
 #, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "גוש ברזל גדול"
+
+#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "גוש ברזל גדול"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "גוש ברזל גדול"
 
 msgid "BILLION_ABBREVIATION"
@@ -911,6 +923,10 @@ msgstr "חוף"
 msgid "COLLISION_SHAPE"
 msgstr "זמן ישויות עם צורות התנגשות"
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "(כאשר מופעל מגביל מהירות הצמיחה, ואם מושבת רק תרכובות הזמינות משפיעות על מהירות הצמיחה)"
+
 msgid "COLOUR"
 msgstr "צבע"
 
@@ -961,6 +977,9 @@ msgstr "ערך הרוויה, הכמות צבע האפור בצבע מסוים"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "ערך הבהירות, עוצמת הצבע"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr ""
 
 #, fuzzy
 msgid "COMMON_ABILITIES"
@@ -1077,6 +1096,10 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "מאזן תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} צריכה"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1513,8 +1536,28 @@ msgstr "הפרש ריר"
 msgid "CURRENT_DEVELOPERS"
 msgstr "מפתחים נוכחים"
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "מיקום נוכחי"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "מיקום נוכחי"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "מיקום נוכחי"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "מיקום נוכחי"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "הצג שמות כפתורי בחירת חלקים"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "הצג שמות כפתורי בחירת חלקים"
 
 #, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
@@ -1583,6 +1626,10 @@ msgstr "תצורת שטח מת"
 
 msgid "DEATH"
 msgstr "מוות"
+
+#, fuzzy
+msgid "DEBUG_CONSOLE"
+msgstr "חלונית דיבאג"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1832,6 +1879,10 @@ msgstr "הצג שמות כפתורי בחירת חלקים"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "הצג שמות כפתורי בחירת חלקים"
+
+#, fuzzy
+msgid "DISPLAY_SELECTION"
+msgstr "ליפאז מאפשרים לתא לפרק את רוב סוגי הממברנות. התא שלך כבר מייצר את האנזים הזה ללא הליזוזום, אבל על ידי בחירה בסוג זה מאפשר לך להגביר את יעילותו."
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "פיזור אחיד של מקור מזון סביבתי של {0}"
@@ -2214,6 +2265,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "זוהי מחויבת הקוד המדויקת שממנה הורכבה הגרסה הזו של Thrive"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "זוהי מחויבת הקוד המדויקת שממנה הורכבה הגרסה הזו של Thrive"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "עץ אבולוציוני"
@@ -2722,6 +2781,10 @@ msgstr "מעבד גרפי:"
 msgid "GRAPHICS"
 msgstr "גרפיקה"
 
+#, fuzzy
+msgid "GRAPHICS_PRESET"
+msgstr "צוות גרפיקה"
+
 msgid "GRAPHICS_TEAM"
 msgstr "צוות גרפיקה"
 
@@ -2851,6 +2914,9 @@ msgstr ""
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "מספר ID אינו חוקי"
 
@@ -2858,6 +2924,9 @@ msgid "ID_NUMBER"
 msgstr "מספר ID"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 #, fuzzy
@@ -2980,6 +3049,14 @@ msgstr "לבדוק"
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "ראו את הדף הSteam שלנו"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: {1}+ ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(כמות הגלוקוז שנשמר בסביבה בכל דור)"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3106,18 +3183,6 @@ msgstr "סיים דור אחד"
 
 msgid "JANUARY"
 msgstr "ינואר"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "מצב ניפוי JSON:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "תמיד"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "באופן אוטומטי"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "לעולם לא"
 
 msgid "JULY"
 msgstr "יולי"
@@ -3871,6 +3936,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "טריפה של {0}"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "סוגי רבייה:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -3897,6 +3966,10 @@ msgstr "עורך המיקרובי"
 #, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr "סטטיסטיקת האורגניזם"
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
+msgstr "מצא את האזור הנוכחי"
 
 msgid "MICROBE_EDITOR"
 msgstr "עורך המיקרובי"
@@ -4236,6 +4309,10 @@ msgstr "שנה סוג"
 msgid "MODS"
 msgstr "מודים"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "אין מודים מופעלים"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "זוהה מודים מותקנים, אך אין מודים מופעלים.\n"
@@ -4272,9 +4349,6 @@ msgstr "{0}: קריאת פריקת הרכבה מוד זה נכשלה פרט ל: 
 
 msgid "MOD_AUTHOR"
 msgstr "יוצר המוד:"
-
-msgid "MOD_AUTO_HARMONY"
-msgstr "השתמש באוטו-Harmony:"
 
 msgid "MOD_CREATION_FAILED"
 msgstr "יצירת מוד נכשלה"
@@ -4344,6 +4418,13 @@ msgstr "מעלה מוד"
 
 msgid "MOD_VERSION"
 msgstr "גרסת המוד:"
+
+#, fuzzy
+msgid "MONITOR_AUTO"
+msgstr "יוצר המוד:"
+
+msgid "MONITOR_IDENTIFIER"
+msgstr ""
 
 msgid "MORE_INFO"
 msgstr "הראה עוד מידע"
@@ -5252,6 +5333,30 @@ msgstr "טריפה של {0}"
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "הצג מידע מפורט מאחורי החיזוי"
 
+#, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "מותאם אישית"
+
+#, fuzzy
+msgid "PRESET_HIGH"
+msgstr "איפוס"
+
+#, fuzzy
+msgid "PRESET_LOW"
+msgstr "איפוס"
+
+#, fuzzy
+msgid "PRESET_MEDIUM"
+msgstr "להגדלת התנועה"
+
+#, fuzzy
+msgid "PRESET_VERY_HIGH"
+msgstr "איפוס חיבורי מקשים"
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "מאזן תרכובות"
+
 msgid "PRESSURE"
 msgstr "לחץ"
 
@@ -5575,6 +5680,9 @@ msgstr "סובב ימינה"
 msgid "ROTATION_COLON"
 msgstr "רוטציה:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "הפעל התפתחות אוטומטית במהלך המשחק"
 
@@ -5643,13 +5751,6 @@ msgstr "שטח משומש:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "מחיקת שמירה זו היינו פעולה בלתי הפיכה, האם אתה בטוח שאתה רוצה למחוק לצמיתות את {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "מצב ניפוי JSON:"
 
 msgid "SAVE_FAILED"
 msgstr "שמירה נכשלה"
@@ -5972,7 +6073,15 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "גוש ברזל קטן"
 
 #, fuzzy
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "גוש ברזל קטן"
+
+#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "גוש ברזל קטן"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr "גוש ברזל קטן"
 
 #, fuzzy
@@ -6058,6 +6167,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "עבר מוטציה"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "מצא את האזור הנוכחי"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "מספר מינים מרבי באזור לפני הכחדות מכוונות"
 
 msgid "SPECIES_LIST"
 msgstr "רשימת מינים"
@@ -6578,6 +6695,10 @@ msgstr "החלף מצב קישור"
 #, fuzzy
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "החלף מצב קישור"
+
+#, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "החלף חלונית דיבאג"
 
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "החלף חלונית דיבאג"
@@ -7177,6 +7298,17 @@ msgstr "בטל"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "בטל פעולה אחרונה"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "דקור תאים אחרים בעזרתו."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "אתה שגשגת!"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "קצב מוטציות של AI"
@@ -7344,6 +7476,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "רישיונות וספריות שימוש"
 
@@ -7352,12 +7487,6 @@ msgstr "מעבד בשימוש:"
 
 msgid "USES_FEATURE"
 msgstr "כן"
-
-msgid "USE_AUTO_HARMONY"
-msgstr "השתמש במעלה אוטו-Harmony"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "מעלה אוטומטי את Harmony מהמפרק (לא דורש מחלקת מוד מסויימת)"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "השתמש בשם משתמש מותאמת אישית"
@@ -9433,6 +9562,14 @@ msgstr "טמפ'."
 msgid "WORST_PATCH_COLON"
 msgstr "האזור הגרוע ביותר:"
 
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "הגבל שימוש בתרכובות לצורך גידול"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "(כאשר מופעל מגביל מהירות הצמיחה, ואם מושבת רק תרכובות הזמינות משפיעות על מהירות הצמיחה)"
+
 msgid "XBOX360"
 msgstr ""
 
@@ -9476,6 +9613,35 @@ msgstr "להתמקד"
 
 msgid "ZOOM_OUT"
 msgstr "זום החוצה"
+
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "השתמש באוטו-Harmony:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "השתמש במעלה אוטו-Harmony"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "מעלה אוטומטי את Harmony מהמפרק (לא דורש מחלקת מוד מסויימת)"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "סוגי רבייה:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "מצב ניפוי JSON:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "תמיד"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "באופן אוטומטי"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "לעולם לא"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "מצב ניפוי JSON:"
 
 #, fuzzy
 #~ msgid "OUTDATED"
@@ -9817,9 +9983,6 @@ msgstr "זום החוצה"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "שקול אזורים עם עד כה מספר מינים בעלי מגוון ביולוגי נמוך"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "מספר מינים מרבי באזור לפני הכחדות מכוונות"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "אוכלוסיה ראשונית למינים הגדלים במגוון הביולוגי"

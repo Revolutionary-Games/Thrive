@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
-"PO-Revision-Date: 2025-09-25 23:49+0000\n"
+"POT-Creation-Date: 2026-01-12 15:26+0100\n"
+"PO-Revision-Date: 2025-11-14 11:00+0000\n"
 "Last-Translator: JESUS5PACHECO <jesusxpacheco5@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
@@ -274,7 +274,8 @@ msgstr "Estadio de ascenso"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Se requiere la clase del ensamblaje del mod cuando se especifica el ensamblaje"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Se requiere la clase del ensamblaje del mod cuando se especifica el ensamblaje"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -434,6 +435,10 @@ msgstr "Nivel promedio de gases en la superficie"
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr "Nivel promedio de oxigeno en la superficie"
 
+#, fuzzy
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr "Nivel promedio de gases en la superficie"
+
 msgid "AWAKENING_STAGE"
 msgstr "Etapa del despertar"
 
@@ -539,7 +544,15 @@ msgstr "Más allá de la célula"
 msgid "BIG_IRON_CHUNK"
 msgstr "Fragmento de hierro grande"
 
+#, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Fragmento de hierro grande"
+
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Fragmento de Fosfato grande"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "Fragmento de Fosfato grande"
 
 msgid "BILLION_ABBREVIATION"
@@ -906,6 +919,10 @@ msgstr "Costero"
 msgid "COLLISION_SHAPE"
 msgstr "Crear entidades con cuadros de colisión"
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "(Si es habilitado, limita la cantidad necesaria de compuestos; si no, solo los compuestos disponibles limitan la velocidad de crecimiento)"
+
 msgid "COLOUR"
 msgstr "Color"
 
@@ -956,6 +973,9 @@ msgstr "Saturación"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Brillo"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr ""
 
 msgid "COMMON_ABILITIES"
 msgstr "Habilidades Comunes"
@@ -1063,6 +1083,10 @@ msgstr "muy alto"
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "muy bajo"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "Consumo de: {0}"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(no es suficiente para soportar la noche, que dura {0}s)"
@@ -1384,7 +1408,7 @@ msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr "Hacha de mano de Piedra"
 
 msgid "CRAFTING_RESULTS"
-msgstr "Results"
+msgstr "Resultados"
 
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr "Selecciona una receta de elaboración o añade objetos para filtrar"
@@ -1451,8 +1475,28 @@ msgstr ""
 msgid "CURRENT_DEVELOPERS"
 msgstr "Desarrolladores actuales"
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "POSICIÓN ACTUAL"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "POSICIÓN ACTUAL"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "POSICIÓN ACTUAL"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "POSICIÓN ACTUAL"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Nada en investigación"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "Nada en investigación"
 
 msgid "CURRENT_RESEARCH_NONE"
 msgstr "Nada en investigación"
@@ -1533,6 +1577,10 @@ msgstr "Configuración de zona muerta"
 
 msgid "DEATH"
 msgstr "muerte"
+
+#, fuzzy
+msgid "DEBUG_CONSOLE"
+msgstr "Panel de Depuración"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1783,6 +1831,10 @@ msgstr "Modo de visualización:"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Mostrar nombre de botones durante selección de partes"
+
+#, fuzzy
+msgid "DISPLAY_SELECTION"
+msgstr "La lipasa permite que la célula disuelva varios tipos de membranas. Tu célula ya produce algunas de las enzimas necesarias, pero el Lisosoma hace que este proceso sea mas efectivo."
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Fuente de alimento ambiental distribuida uniformemente de {0}"
@@ -2148,6 +2200,18 @@ msgstr ""
 "Evento de impacto de meteorito de Sulfuro\n"
 "Incrementa los niveles de Dióxido de Carbono y Sulfuro\n"
 "Produce fragmentos de Sulfuro."
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr ""
+"Evento de erupción\n"
+"Se crea más sulfuro de hidrógeno y dióxido de carbono"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr ""
+"Evento de erupción\n"
+"Se crea más sulfuro de hidrógeno y dióxido de carbono"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Arbol Evolutivo"
@@ -2602,6 +2666,10 @@ msgstr "GPU:"
 msgid "GRAPHICS"
 msgstr "Gráficos"
 
+#, fuzzy
+msgid "GRAPHICS_PRESET"
+msgstr "Equipo de diseño grafico"
+
 msgid "GRAPHICS_TEAM"
 msgstr "Equipo de diseño grafico"
 
@@ -2720,6 +2788,10 @@ msgstr "Fragmento de Hielo Grande"
 msgid "ICE_CHUNK_SMALL"
 msgstr "Pequeño trozo de hielo"
 
+#, fuzzy
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr "Copo de nieve"
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "Número de ID inválido"
 
@@ -2728,6 +2800,9 @@ msgstr "Número ID"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(dependiendo del modo de renderizado y re-escalado, no todos los métodos están disponibles)"
+
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "Archivos de Imagen Soportados"
@@ -2827,6 +2902,14 @@ msgstr "Inspector"
 
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Visita nuestra página de Instagram"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(proporción de glucosa retenida en el ambiente en cada generación)"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Activar Puerta de Ascensión"
@@ -2942,18 +3025,6 @@ msgstr ":"
 
 msgid "JANUARY"
 msgstr "Enero"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "Modo de depuración JSON:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Siempre"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automáticamente"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Nunca"
 
 msgid "JULY"
 msgstr "Julio"
@@ -3689,6 +3760,10 @@ msgstr "Presión de efectividad de la depredación"
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Depredación de {0}"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reproducción:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr "Presión radicular"
 
@@ -3714,6 +3789,10 @@ msgstr "Editor de microbio"
 #, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr "  Estadísticas del Organismo"
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
+msgstr "Ir a Zona Actual"
 
 msgid "MICROBE_EDITOR"
 msgstr "Editor de microbio"
@@ -4046,6 +4125,10 @@ msgstr "Modificar Tipo"
 msgid "MODS"
 msgstr "Mods"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "No hay mods habilitados"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Se ha detectado la instalación de mods, pero no hay mods habilitados.\n"
@@ -4082,9 +4165,6 @@ msgstr "{0}: el método de descarga del ensamblaje del mod con excepción de: {1
 
 msgid "MOD_AUTHOR"
 msgstr "Autor del Mod:"
-
-msgid "MOD_AUTO_HARMONY"
-msgstr "Usa Auto Harmony:"
 
 msgid "MOD_CREATION_FAILED"
 msgstr "Creación de Mod Fallida"
@@ -4154,6 +4234,13 @@ msgstr "Cargador de Mods"
 
 msgid "MOD_VERSION"
 msgstr "Versión:"
+
+#, fuzzy
+msgid "MONITOR_AUTO"
+msgstr "Autor del Mod:"
+
+msgid "MONITOR_IDENTIFIER"
+msgstr ""
 
 msgid "MORE_INFO"
 msgstr "Mostrar más información"
@@ -5084,6 +5171,30 @@ msgstr "Depredación de {0}"
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Ver información detallada sobre la predicción"
 
+#, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "Personalizado"
+
+#, fuzzy
+msgid "PRESET_HIGH"
+msgstr "Restablecer"
+
+#, fuzzy
+msgid "PRESET_LOW"
+msgstr "Restablecer"
+
+#, fuzzy
+msgid "PRESET_MEDIUM"
+msgstr "para incrementar la velocidad de movimiento"
+
+#, fuzzy
+msgid "PRESET_VERY_HIGH"
+msgstr "muy alto"
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "muy bajo"
+
 msgid "PRESSURE"
 msgstr "Presión"
 
@@ -5406,6 +5517,9 @@ msgstr "Girar a la derecha"
 msgid "ROTATION_COLON"
 msgstr "Rotación:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Ejecutar auto-evo durante el juego"
 
@@ -5478,13 +5592,6 @@ msgstr "Espacio usado:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Eliminar esta partida es irreversible, ¿estás seguro de querer eliminar {0} permanentemente?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "Al reportar un error de guardado por favor incluir [color=#3796e1][url={0}]{1}[/url][/color] desde de [color=#3796e1][url={2}]logs folder[/url][/color] pues es información critica para los desarrolladores de Thrive para averiguar cual fue el error de guardado. Sin ese Archivo, será extremadamente difícil diagnosticar y arreglar este problema."
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Modo de depuración JSON:"
 
 msgid "SAVE_FAILED"
 msgstr "Guardado fallido"
@@ -5811,7 +5918,15 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "Fragmento de hierro pequeño"
 
 #, fuzzy
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "Fragmento de hierro pequeño"
+
+#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Fragmento de hierro pequeño"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr "Fragmento de hierro pequeño"
 
 #, fuzzy
@@ -5898,6 +6013,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "ha mutado"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Ir a Zona Actual"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Forzar extinction en zonas con igual o major cantidad de especies"
 
 msgid "SPECIES_LIST"
 msgstr "Especies presentes"
@@ -6446,6 +6569,10 @@ msgstr "Alternar unión"
 #, fuzzy
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Alternar unión"
+
+#, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Activa el panel de depuración"
 
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Activa el panel de depuración"
@@ -7043,6 +7170,17 @@ msgstr "Deshacer"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Deshacer la última acción"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Ataca a otras células con esto."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "¡HAS PROSPERADO!"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Velocidad de mutación de la AI"
@@ -7214,6 +7352,9 @@ msgstr "Técnica de re-escalado:"
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licencias y Bibliotecas Usadas"
 
@@ -7222,12 +7363,6 @@ msgstr "Renderizardor en uso:"
 
 msgid "USES_FEATURE"
 msgstr "Si"
-
-msgid "USE_AUTO_HARMONY"
-msgstr "Usar carga Automática de Harmony"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Automáticamente carga parches de Harmony desde Assembly (no requiere especificar la clase del mod)"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Usar un nombre personalizado"
@@ -9385,6 +9520,14 @@ msgid "WORST_PATCH_COLON"
 msgstr "Peor bioma:"
 
 #, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "Orden de crecimiento"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "(Si es habilitado, limita la cantidad necesaria de compuestos; si no, solo los compuestos disponibles limitan la velocidad de crecimiento)"
+
+#, fuzzy
 msgid "XBOX360"
 msgstr "Xbox 360"
 
@@ -9418,18 +9561,46 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Puedes apoyar el desarrollo de Thrive en Patreon."
 
-#, fuzzy
 msgid "YUM_EXCLAMATION"
-msgstr ""
-"Los microbios centrados buscarán recursos o presas más lejanas\n"
-"y es posible codicien más los fragmentos de recursos.\n"
-"Los microbios reactivos cambiarán de objetivo después de un tiempo."
+msgstr "¡Delicioso!"
 
 msgid "ZOOM_IN"
 msgstr "Hacer zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
+
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Usa Auto Harmony:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Usar carga Automática de Harmony"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Automáticamente carga parches de Harmony desde Assembly (no requiere especificar la clase del mod)"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Reproducción:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "Modo de depuración JSON:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Siempre"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automáticamente"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Nunca"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "Al reportar un error de guardado por favor incluir [color=#3796e1][url={0}]{1}[/url][/color] desde de [color=#3796e1][url={2}]logs folder[/url][/color] pues es información critica para los desarrolladores de Thrive para averiguar cual fue el error de guardado. Sin ese Archivo, será extremadamente difícil diagnosticar y arreglar este problema."
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Modo de depuración JSON:"
 
 #, fuzzy
 #~ msgid "OUTDATED"
@@ -9763,9 +9934,6 @@ msgstr "Alejar el zoom"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Considerar zonas con igual o menor cantidad de especies como zonas de baja biodiversidad"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Forzar extinction en zonas con igual o major cantidad de especies"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Población inicial para especies creadas para aumentar biodiversidad"

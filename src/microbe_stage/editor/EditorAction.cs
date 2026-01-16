@@ -12,18 +12,6 @@ public abstract class EditorAction : ReversibleAction
     // Then make it clear in renames that merging is purely to combine subsequent actions into a single undo/redo step
 
     /// <summary>
-    ///   Calculates the cost for this action.
-    ///   Each action separately calculates their true cost by inspecting other performed actions
-    /// </summary>
-    /// <param name="history">History of performed actions before the current action</param>
-    /// <param name="insertPosition">
-    ///   The position this action would be put at, if less than the count of <see cref="history"/> then this means
-    ///   that there are also future actions after this which may need to be considered in the cost.
-    /// </param>
-    /// <returns>True cost of this action given the other actions</returns>
-    public abstract double CalculateCost(IReadOnlyList<EditorAction> history, int insertPosition);
-
-    /// <summary>
     ///   Used to replace the data in this action with data that has been merged
     ///   (<see cref="CombinableActionData.TryMerge"/>) with other data
     /// </summary>
@@ -38,10 +26,9 @@ public abstract class EditorAction : ReversibleAction
     /// <returns>The number of items consumed</returns>
     public abstract int ApplyPartialMergedData(List<EditorCombinableActionData> newData, int startIndex);
 
-    public abstract double GetBaseCost();
-
     /// <summary>
     ///   Copies the <see cref="Data"/> to the target collection in the most efficient way possible.
+    ///   Doesn't clear the target.
     /// </summary>
     /// <param name="target">Where to copy the data from this</param>
     public abstract void CopyData(ICollection<EditorCombinableActionData> target);

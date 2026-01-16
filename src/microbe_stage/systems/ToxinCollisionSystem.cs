@@ -93,13 +93,13 @@ public partial class ToxinCollisionSystem : BaseSystem<World, float>
 
         var damageTarget = collision.SecondEntity;
 
-        if (damageTarget == Entity.Null)
+        if (damageTarget == default(Entity))
             return false;
 
         // TODO: there is a pretty rare bug where the collision data has random entities in it
 
         // Skip if hit something that's not a microbe (we don't know how to damage other things currently)
-        if (!damageTarget.Has<SpeciesMember>())
+        if (!damageTarget.IsAliveAndHas<SpeciesMember>())
             return false;
 
         ref var speciesComponent = ref damageTarget.Get<SpeciesMember>();
@@ -242,7 +242,7 @@ public partial class ToxinCollisionSystem : BaseSystem<World, float>
         {
             foreach (var firingEntity in entities)
             {
-                if (firingEntity == Entity.Null || !firingEntity.IsAlive())
+                if (!firingEntity.IsAliveAndNotNull())
                     continue;
 
                 if (firingEntity.Has<PlayerMarker>())

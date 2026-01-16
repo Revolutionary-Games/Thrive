@@ -9,7 +9,7 @@ using ThriveScriptsShared;
 /// </summary>
 public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     private Dictionary<Compound, BiomeCompoundProperties> compounds;
 
@@ -73,6 +73,14 @@ public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
     public float Pressure { get; set; } = 101325;
 
     /// <summary>
+    ///   Starting sunlight and temperature values for this biome when a patch is created. They are used in
+    ///   <see cref="PatchEventsManager"/> to modify the patch's sunlight and temperature when patch events occur.
+    /// </summary>
+    public float StartingSunlightValue { get; set; }
+
+    public float StartingTemperatureValue { get; set; }
+
+    /// <summary>
     ///   The compound amounts that change in realtime during gameplay
     /// </summary>
     public IDictionary<Compound, BiomeCompoundProperties> CurrentCompoundAmounts { get; }
@@ -106,7 +114,7 @@ public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
 
     /// <summary>
     ///   Allows access to modification of the compound values in the biome permanently. Should only be used by
-    ///   auto-evo or map generator. After changing <see cref="AverageCompounds"/> must be updated.
+    ///   auto-evo, patch events or map generator. After changing <see cref="AverageCompounds"/> must be updated.
     ///   <see cref="ModifyLongTermCondition"/> is the preferred method to update this data which handles that
     ///   automatically. Or for more advanced handling (of gases especially):
     ///   <see cref="ApplyLongTermCompoundChanges"/>
@@ -149,15 +157,35 @@ public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        return new BiomeConditions(reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>(),
-            reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>(),
-            reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>(),
-            reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>(),
-            reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>())
+        var compounds = reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>();
+        var currentCompoundAmounts = reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>();
+        var averageCompoundAmounts = reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>();
+        var maximumCompoundAmounts = reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>();
+        var minimumCompoundAmounts = reader.ReadObject<Dictionary<Compound, BiomeCompoundProperties>>();
+        var chunks = reader.ReadObject<Dictionary<string, ChunkConfiguration>>();
+        var pressure = reader.ReadFloat();
+
+        var biomeConditions = new BiomeConditions(compounds,
+            currentCompoundAmounts,
+            averageCompoundAmounts,
+            maximumCompoundAmounts,
+            minimumCompoundAmounts)
         {
-            Chunks = reader.ReadObject<Dictionary<string, ChunkConfiguration>>(),
-            Pressure = reader.ReadFloat(),
+            Chunks = chunks,
+            Pressure = pressure,
         };
+
+        // Values for version <= 1 are properly set in Patch after loading.
+        if (version >= 2)
+        {
+            float startingSunlightValue = reader.ReadFloat();
+            float startingTemperatureValue = reader.ReadFloat();
+
+            biomeConditions.StartingSunlightValue = startingSunlightValue;
+            biomeConditions.StartingTemperatureValue = startingTemperatureValue;
+        }
+
+        return biomeConditions;
     }
 
     public void WriteToArchive(ISArchiveWriter writer)
@@ -170,6 +198,8 @@ public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
 
         writer.WriteObject(Chunks);
         writer.Write(Pressure);
+        writer.Write(StartingSunlightValue);
+        writer.Write(StartingTemperatureValue);
     }
 
     public BiomeCompoundProperties GetCompound(Compound compound, CompoundAmountType amountType)

@@ -32,13 +32,17 @@ offset_right = 49.0
 offset_bottom = 70.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
 theme_override_constants/separation = 5
 
 [node name="ExtraErrorDescription" type="Label" parent="VBoxContainer" index="0"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 label_settings = ExtResource("4_afnvo")
+autowrap_mode = 3
 
 [node name="ExceptionBox" type="VBoxContainer" parent="VBoxContainer" index="1"]
 visible = false

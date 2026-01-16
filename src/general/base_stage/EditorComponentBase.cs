@@ -10,7 +10,7 @@ using SharedBase.Archive;
 [GodotAbstract]
 public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorComponent, IArchiveUpdatable,
     ISaveLoadedTracked
-    where TEditor : IEditor
+    where TEditor : class, IEditor
 {
     public const ushort SERIALIZATION_VERSION_BASE = 1;
 
@@ -42,6 +42,12 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
     ///   logic
     /// </summary>
     public virtual bool IsSubComponent => false;
+
+    /// <summary>
+    ///   Returns true if init has been called on this component. This is needed in some complex callback situations
+    ///   where some things would otherwise apply too early.
+    /// </summary>
+    public bool IsComponentInitialized => editor != null;
 
     public bool IsLoadedFromSave { get; set; }
 

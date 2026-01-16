@@ -170,6 +170,10 @@ public class PatchManager
 
         GD.Print("Number of chunks in this patch = ", biome.Chunks.Count);
 
+        // Note that if the mesh list changes for a chunk between patches, that is not supported and will just update
+        // the density here. So be careful to name different chunk types with different names in different patches
+        // if they are actually different.
+
         foreach (var entry in biome.Chunks)
         {
             // Don't spawn Easter eggs if the player has chosen not to
@@ -221,7 +225,9 @@ public class PatchManager
         foreach (var entry in patch.SpeciesInPatch.OrderByDescending(s => s.Value))
         {
             var species = entry.Key;
-            var population = entry.Value;
+
+            // To allow player deaths to immediately impact populations, get the gameplay-adjusted population here
+            var population = patch.GetSpeciesGameplayPopulation(species);
 
             if (population <= 0)
             {

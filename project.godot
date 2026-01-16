@@ -15,7 +15,7 @@ config/description="Thrive is an open source evolution simulation game.
 Play as a microbe on an alien world trying to survive and adapt to your surroundings in order to thrive.
 
 https://revolutionarygamesstudio.com/"
-config/version="0.9.0.0"
+config/version="1.0.0.0"
 run/main_scene="res://src/general/MainMenu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Thrive"
@@ -32,6 +32,7 @@ driver/output_latency=20
 [autoload]
 
 Invoke="*res://src/engine/Invoke.cs"
+DebugConsoleManager="*res://src/engine/DebugConsoleManager.cs"
 StartupActions="*res://src/engine/StartupActions.cs"
 Localization="*res://src/engine/Localization.cs"
 SteamHandler="*res://src/steam/SteamHandler.cs"
@@ -54,7 +55,9 @@ DiskCache="*res://src/engine/caching/DiskCache.cs"
 ProceduralDataCache="*res://src/engine/ProceduralDataCache.cs"
 PhotoStudio="*res://src/engine/PhotoStudio.tscn"
 PauseManager="*res://src/engine/PauseManager.cs"
+PauseMenu="*res://src/general/PauseMenu.tscn"
 GUIFocusSetter="*res://src/engine/GUIFocusSetter.cs"
+UnHandledErrorsGUI="*res://src/engine/UnHandledErrorsGUI.tscn"
 DebugDrawer="*res://src/engine/DebugDrawer.tscn"
 PostStartupActions="*res://src/engine/PostStartupActions.cs"
 
@@ -90,6 +93,10 @@ enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
 [global]
 
 hardened=false
+
+[gui]
+
+common/snap_controls_to_pixels=false
 
 [importer_defaults]
 
@@ -524,6 +531,11 @@ e_decrease_size={
 g_toggle_speed_mode={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":74,"key_label":0,"unicode":106,"location":0,"echo":false,"script":null)
+]
+}
+toggle_debug_console={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194341,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2026-01-12 15:26+0100\n"
 "PO-Revision-Date: 2025-04-26 10:58+0000\n"
 "Last-Translator: Samuel Haššo <snurka1999@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -263,7 +263,7 @@ msgstr "Rusticyanín"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr ""
 
 msgid "ASSUME_HYPERTHREADING"
@@ -420,6 +420,9 @@ msgstr ""
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr ""
 
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr ""
 
@@ -539,7 +542,15 @@ msgid "BIG_IRON_CHUNK"
 msgstr "Veľký kus železa"
 
 #, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Veľký kus železa"
+
+#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Veľký kus železa"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "Veľký kus železa"
 
 msgid "BILLION_ABBREVIATION"
@@ -904,6 +915,10 @@ msgstr "Pobrežie"
 msgid "COLLISION_SHAPE"
 msgstr "Umiestniť entity s kolíznymi tvarmi"
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "(rýchlosť, akou druhy AI mutujú)"
+
 msgid "COLOUR"
 msgstr "Farba"
 
@@ -953,6 +968,9 @@ msgstr "Saturácia - množstvo sivej farby"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Jas - svetlosť alebo intenzita farby"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr ""
 
 #, fuzzy
 msgid "COMMON_ABILITIES"
@@ -1070,6 +1088,10 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Zobraziť / skryť prostredie a zlúčeniny"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} spotreba"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1457,8 +1479,28 @@ msgstr "Pozastaviť hru"
 msgid "CURRENT_DEVELOPERS"
 msgstr "Súčasní vývojári"
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "SÚČASNÁ POLOHA"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "SÚČASNÁ POLOHA"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "SÚČASNÁ POLOHA"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "SÚČASNÁ POLOHA"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Zobraziť názvy tlačidiel pri výbere častí"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "Zobraziť názvy tlačidiel pri výbere častí"
 
 #, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
@@ -1529,6 +1571,10 @@ msgstr ""
 
 msgid "DEATH"
 msgstr "smrť"
+
+#, fuzzy
+msgid "DEBUG_CONSOLE"
+msgstr "Debugovací panel"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1763,6 +1809,10 @@ msgid "DISPLAY_MODE"
 msgstr "Zobraziť názvy tlačidiel pri výbere častí"
 
 msgid "DISPLAY_PART_NAMES"
+msgstr "Zobraziť názvy tlačidiel pri výbere častí"
+
+#, fuzzy
+msgid "DISPLAY_SELECTION"
 msgstr "Zobraziť názvy tlačidiel pri výbere častí"
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
@@ -2119,6 +2169,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Vrátiť sa k základnému zobrazeniu nastavení"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Vrátiť sa k základnému zobrazeniu nastavení"
 
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
@@ -2619,6 +2677,10 @@ msgstr "GPU:"
 msgid "GRAPHICS"
 msgstr "Grafika"
 
+#, fuzzy
+msgid "GRAPHICS_PRESET"
+msgstr "Grafici"
+
 msgid "GRAPHICS_TEAM"
 msgstr "Grafici"
 
@@ -2743,6 +2805,9 @@ msgstr ""
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID nie je platné číslo"
 
@@ -2751,6 +2816,9 @@ msgid "ID_NUMBER"
 msgstr "Identifikačné číslo"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 #, fuzzy
@@ -2868,6 +2936,14 @@ msgstr "Prezrieť"
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Pozastaviť hru"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(proporcia glukózy v prostredí každú generáciu"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -2991,18 +3067,6 @@ msgstr "@"
 
 msgid "JANUARY"
 msgstr "Január"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "Debugovací režim JSON:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Vždy"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automaticky"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Nikdy"
 
 msgid "JULY"
 msgstr "Júl"
@@ -3741,6 +3805,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Dravosť {0}"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reprodukcia:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -3765,6 +3833,10 @@ msgstr "Editor Mikróbov"
 
 #, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "Štatistika organizmu"
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
 msgstr "Štatistika organizmu"
 
 msgid "MICROBE_EDITOR"
@@ -4036,6 +4108,10 @@ msgstr "Upraviť typ"
 msgid "MODS"
 msgstr "Módy"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Vypnuté"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4069,9 +4145,6 @@ msgstr ""
 
 msgid "MOD_AUTHOR"
 msgstr "Autor módu:"
-
-msgid "MOD_AUTO_HARMONY"
-msgstr ""
 
 #, fuzzy
 msgid "MOD_CREATION_FAILED"
@@ -4147,6 +4220,13 @@ msgstr "Nahrávač módov"
 
 msgid "MOD_VERSION"
 msgstr "Verzia modu:"
+
+#, fuzzy
+msgid "MONITOR_AUTO"
+msgstr "Autor módu:"
+
+msgid "MONITOR_IDENTIFIER"
+msgstr ""
 
 msgid "MORE_INFO"
 msgstr "Zobraziť viac informácií"
@@ -5030,6 +5110,30 @@ msgstr "Dravosť {0}"
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Zobraziť podrobné informácie o predpovedi"
 
+#, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "Vlastná"
+
+#, fuzzy
+msgid "PRESET_HIGH"
+msgstr "Resetovať"
+
+#, fuzzy
+msgid "PRESET_LOW"
+msgstr "Resetovať"
+
+#, fuzzy
+msgid "PRESET_MEDIUM"
+msgstr "Základný pohyb"
+
+#, fuzzy
+msgid "PRESET_VERY_HIGH"
+msgstr "Resetovať ovládanie"
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "Zobraziť / skryť prostredie a zlúčeniny"
+
 msgid "PRESSURE"
 msgstr "Tlak"
 
@@ -5356,6 +5460,9 @@ msgstr "Otočiť doprava"
 msgid "ROTATION_COLON"
 msgstr "Rotácia:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Spustiť automatickú evolúciu počas hry"
 
@@ -5422,13 +5529,6 @@ msgstr "Využitý priestor:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Debugovací režim JSON:"
 
 msgid "SAVE_FAILED"
 msgstr "Uloženie zlyhalo"
@@ -5750,7 +5850,15 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "Malý kus železa"
 
 #, fuzzy
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "Malý kus železa"
+
+#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Malý kus železa"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr "Malý kus železa"
 
 #, fuzzy
@@ -5828,6 +5936,14 @@ msgstr "{0} (x{1})"
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "zmutoval"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "vyhynul v tejto oblasti"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "vyhynul v tejto oblasti"
 
 msgid "SPECIES_LIST"
 msgstr "Zoznam druhov"
@@ -6346,6 +6462,10 @@ msgstr "Prepnúť spájanie"
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Prepnúť spájanie"
 
+#, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Prepnúť debugovací panel"
+
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Prepnúť debugovací panel"
 
@@ -6734,6 +6854,17 @@ msgstr "Zrušiť"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Zrušiť poslednú zmenu"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Môže sa použiť na bodnutie iných buniek alebo na obranu proti ich toxínom."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Odstrániť lokálne údaje"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Miera mutácie AI"
@@ -6902,6 +7033,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licencie a použité knižnice"
 
@@ -6910,12 +7044,6 @@ msgstr ""
 
 msgid "USES_FEATURE"
 msgstr "Áno"
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Použiť vlastné používateľské meno"
@@ -8907,6 +9035,14 @@ msgstr "Teplota."
 msgid "WORST_PATCH_COLON"
 msgstr "Najhoršia oblasť:"
 
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "Normálny"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "(rýchlosť, akou druhy AI mutujú)"
+
 msgid "XBOX360"
 msgstr ""
 
@@ -8949,6 +9085,26 @@ msgstr "Priblížiť"
 
 msgid "ZOOM_OUT"
 msgstr "Oddialiť"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Reprodukcia:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "Debugovací režim JSON:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Vždy"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automaticky"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Nikdy"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Debugovací režim JSON:"
 
 #, fuzzy
 #~ msgid "OUTDATED"
@@ -9235,10 +9391,6 @@ msgstr "Oddialiť"
 #, fuzzy
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Časť populácie [b][u]{0}[/u][/b] migrovala do {1}"
-
-#, fuzzy
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "vyhynul v tejto oblasti"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Chyba: Kus nebol nájdený"

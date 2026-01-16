@@ -278,7 +278,7 @@ func monitor_signals(source :Object, _auto_free := true) -> Object:
 	__lazy_load("res://addons/gdUnit4/src/core/thread/GdUnitThreadManager.gd")\
 		.get_current_context()\
 		.get_signal_collector()\
-		.register_emitter(source)
+		.register_emitter(source, true) # force recreate to start with a fresh monitoring
 	return auto_free(source) if _auto_free else source
 
 

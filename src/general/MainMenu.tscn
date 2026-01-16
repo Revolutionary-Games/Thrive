@@ -160,6 +160,7 @@ modsInstalledButNotEnabledWarning = NodePath("ModsInstalledButNothingEnabledWarn
 lowPerformanceWarning = NodePath("LowPerformanceDialog")
 thanksDialog = NodePath("ThanksForBuyingDialog")
 menus = NodePath("MenuContainers/Menus")
+thriveopediaScene = ExtResource("49")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -846,10 +847,6 @@ grow_vertical = 2
 visible = false
 layout_mode = 1
 
-[node name="Thriveopedia" parent="." instance=ExtResource("49")]
-visible = false
-layout_mode = 1
-
 [node name="LicensesDisplay" parent="." instance=ExtResource("12")]
 layout_mode = 1
 
@@ -1029,7 +1026,6 @@ ShowCloseButton = false
 [connection signal="OnNewGameSettingsClosed" from="NewGameSettings" to="." method="OnReturnFromNewGameSettings"]
 [connection signal="OnNewGameVideoStarted" from="NewGameSettings" to="." method="OnNewGameIntroVideoStarted"]
 [connection signal="OnWantToSwitchToOptionsMenu" from="NewGameSettings" to="." method="OnRedirectedToOptionsMenuFromNewGameSettings"]
-[connection signal="OnThriveopediaClosed" from="Thriveopedia" to="." method="OnReturnFromThriveopedia"]
 [connection signal="hidden" from="LicensesDisplay" to="." method="OnReturnFromLicenses"]
 [connection signal="hidden" from="GalleryViewer" to="." method="OnReturnFromArtGallery"]
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]

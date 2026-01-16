@@ -82,14 +82,25 @@ public static class EngulferHelpers
         if (version is > Engulfer.SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, Engulfer.SERIALIZATION_VERSION);
 
-        return new Engulfer
+        // This code can trigger load failures due to coalescing dead entities to null, so we need to allow those while
+        // loading this
+        reader.AllowDuplicateCollectionItems = true;
+
+        try
         {
-            EngulfedObjects = reader.ReadObjectOrNull<List<Entity>>(),
-            ExpelledObjects = reader.ReadObjectOrNull<Dictionary<Entity, float>>(),
-            EngulfingSize = reader.ReadFloat(),
-            UsedEngulfingCapacity = reader.ReadFloat(),
-            EngulfStorageSize = reader.ReadFloat(),
-        };
+            return new Engulfer
+            {
+                EngulfedObjects = reader.ReadObjectOrNull<List<Entity>>(),
+                ExpelledObjects = reader.ReadObjectOrNull<Dictionary<Entity, float>>(),
+                EngulfingSize = reader.ReadFloat(),
+                UsedEngulfingCapacity = reader.ReadFloat(),
+                EngulfStorageSize = reader.ReadFloat(),
+            };
+        }
+        finally
+        {
+            reader.AllowDuplicateCollectionItems = false;
+        }
     }
 
     /// <summary>
@@ -98,7 +109,7 @@ public static class EngulferHelpers
     public static EngulfCheckResult CanEngulfObject(this ref readonly Engulfer engulfer, uint engulferSpeciesID,
         in Entity target)
     {
-        if (target == Entity.Null || !target.IsAlive())
+        if (!target.IsAliveAndNotNull())
             return EngulfCheckResult.TargetDead;
 
         bool invulnerable = false;
@@ -269,8 +280,8 @@ public static class EngulferHelpers
 
             foreach (var ourEngulfedEntity in engulfer.EngulfedObjects.ToList())
             {
-                if (!engulfer.EngulfedObjects.Remove(ourEngulfedEntity) || !ourEngulfedEntity.IsAlive() ||
-                    !ourEngulfedEntity.Has<Engulfable>())
+                if (!engulfer.EngulfedObjects.Remove(ourEngulfedEntity) ||
+                    !ourEngulfedEntity.IsAliveAndHas<Engulfable>())
                 {
                     continue;
                 }

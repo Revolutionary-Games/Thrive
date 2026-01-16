@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using SharedBase.Archive;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   This contains the single game settings.
@@ -108,7 +109,11 @@ public class GameProperties : IArchivable
     /// </remarks>
     public static GameProperties StartNewMulticellularGame(WorldGenerationSettings settings, bool freebuild = false)
     {
+        settings.Origin = WorldGenerationSettings.LifeOrigin.Pond;
+
         var game = new GameProperties(settings);
+
+        OxygenateWorld(game.GameWorld.Map);
 
         // Modify the player species to actually make sense to be in the multicellular stage
         var playerSpecies = MakePlayerOrganellesMakeSenseForMulticellular(game);
@@ -159,8 +164,8 @@ public class GameProperties : IArchivable
         var playerSpecies = (MacroscopicSpecies)game.GameWorld.PlayerSpecies;
 
         // Create the brain tissue type
-        var brainType = (CellType)playerSpecies.CellTypes.First().Clone();
-        brainType.TypeName = Localization.Translate("BRAIN_CELL_NAME_DEFAULT");
+        var brainType = (CellType)playerSpecies.ModifiableCellTypes.First().Clone();
+        brainType.CellTypeName = Localization.Translate("BRAIN_CELL_NAME_DEFAULT");
         brainType.Colour = new Color(0.807f, 0.498f, 0.498f);
 
         var axon = SimulationParameters.Instance.GetOrganelleType("axon");
@@ -173,10 +178,10 @@ public class GameProperties : IArchivable
             var template = new OrganelleTemplate(axon, new Hex(0, r), 0);
 
             // Add no longer allows replacing cytoplasm by default
-            if (!brainType.Organelles.CanPlaceAndIsTouching(template, false, workMemory1, workMemory2, false))
+            if (!brainType.ModifiableOrganelles.CanPlaceAndIsTouching(template, false, workMemory1, workMemory2, false))
                 continue;
 
-            brainType.Organelles.AddFast(template, workMemory1, workMemory2);
+            brainType.ModifiableOrganelles.AddFast(template, workMemory1, workMemory2);
             brainType.RepositionToOrigin();
             break;
         }
@@ -184,10 +189,10 @@ public class GameProperties : IArchivable
         if (!brainType.IsBrainTissueType())
             throw new Exception("Converting to brain tissue type failed");
 
-        playerSpecies.CellTypes.Add(brainType);
+        playerSpecies.ModifiableCellTypes.Add(brainType);
 
         // Place enough of that for becoming aware
-        while (MacroscopicSpecies.CalculateMacroscopicTypeFromLayout(playerSpecies.BodyLayout,
+        while (MacroscopicSpecies.CalculateMacroscopicTypeFromLayout(playerSpecies.ModifiableBodyLayout,
                    playerSpecies.Scale) == MacroscopicSpeciesType.Macroscopic)
         {
             AddBrainTissue(playerSpecies);
@@ -208,7 +213,7 @@ public class GameProperties : IArchivable
         // Further modify the player species to qualify for awakening stage
         var playerSpecies = (MacroscopicSpecies)game.GameWorld.PlayerSpecies;
 
-        while (MacroscopicSpecies.CalculateMacroscopicTypeFromLayout(playerSpecies.BodyLayout,
+        while (MacroscopicSpecies.CalculateMacroscopicTypeFromLayout(playerSpecies.ModifiableBodyLayout,
                    playerSpecies.Scale) != MacroscopicSpeciesType.Awakened)
         {
             AddBrainTissue(playerSpecies);
@@ -377,6 +382,32 @@ public class GameProperties : IArchivable
         ApplyDescensionPerks();
     }
 
+    private static void OxygenateWorld(PatchMap map)
+    {
+        var changes = new Dictionary<Compound, float>();
+
+        // ReSharper disable once CollectionNeverUpdated.Local
+        var cloudSizes = new Dictionary<Compound, float>();
+
+        var random = new XoShiRo256starstar();
+
+        foreach (var patch in map.Patches.Values)
+        {
+            var hasOxygen = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Oxygen,
+                out var currentOxygen);
+
+            if (!hasOxygen)
+                continue;
+
+            currentOxygen.Ambient = patch.IsSurfacePatch() ? random.Next(0.3f, 0.4f) : random.Next(0.05f, 0.15f);
+            changes[Compound.Oxygen] = currentOxygen.Ambient;
+            patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, cloudSizes);
+
+            changes.Clear();
+            cloudSizes.Clear();
+        }
+    }
+
     private static MicrobeSpecies MakePlayerOrganellesMakeSenseForMulticellular(GameProperties game)
     {
         var simulationParameters = SimulationParameters.Instance;
@@ -389,7 +420,7 @@ public class GameProperties : IArchivable
             new Hex(0, -3), 0), workMemory1, workMemory2);
         playerSpecies.IsBacteria = false;
 
-        var hydrogenosome = simulationParameters.GetOrganelleType("hydrogenosome");
+        var mitochondrion = simulationParameters.GetOrganelleType("mitochondrion");
 
         // Remove the original cytoplasm in the species and replace with hydrogenosome for a more efficient layout
         playerSpecies.Organelles.RemoveHexAt(new Hex(0, 0), workMemory1);
@@ -397,29 +428,14 @@ public class GameProperties : IArchivable
         playerSpecies.Organelles.AddFast(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
             new Hex(0, 2), 0), workMemory1, workMemory2);
 
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(mitochondrion,
             new Hex(-1, 2), 0), workMemory1, workMemory2);
 
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(mitochondrion,
             new Hex(1, 1), 0), workMemory1, workMemory2);
 
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(mitochondrion,
             new Hex(0, 1), 0), workMemory1, workMemory2);
-
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
-            new Hex(2, -2), 0), workMemory1, workMemory2);
-
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
-            new Hex(1, -5), 0), workMemory1, workMemory2);
-
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
-            new Hex(0, -5), 0), workMemory1, workMemory2);
-
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
-            new Hex(-1, -4), 0), workMemory1, workMemory2);
-
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
-            new Hex(-2, 0), 0), workMemory1, workMemory2);
 
         var cytoplasm = simulationParameters.GetOrganelleType("cytoplasm");
 
@@ -436,9 +452,9 @@ public class GameProperties : IArchivable
     private static void MakeCellPlacementMakeSenseForMacroscopic(MulticellularSpecies species)
     {
         // We want at least COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC cells in a kind of long pattern
-        species.Cells.Clear();
+        species.ModifiableGameplayCells.Clear();
 
-        var type = species.CellTypes.First();
+        var type = species.ModifiableCellTypes.First();
 
         int columns = 3;
 
@@ -464,9 +480,9 @@ public class GameProperties : IArchivable
                 while (!placed)
                 {
                     var template = new CellTemplate(type, columnStart, 0);
-                    if (species.Cells.CanPlace(template, workMemory1, workMemory2))
+                    if (species.ModifiableGameplayCells.CanPlace(template, workMemory1, workMemory2))
                     {
-                        species.Cells.AddFast(template, workMemory1, workMemory2);
+                        species.ModifiableGameplayCells.AddFast(template, workMemory1, workMemory2);
                         placed = true;
                         break;
                     }
@@ -490,9 +506,9 @@ public class GameProperties : IArchivable
             for (int distance = 0; distance < 10000; ++distance)
             {
                 var template = new CellTemplate(type, columnStart + columnCellOffset * distance, 0);
-                if (species.Cells.CanPlace(template, workMemory1, workMemory2))
+                if (species.ModifiableGameplayCells.CanPlace(template, workMemory1, workMemory2))
                 {
-                    species.Cells.AddFast(template, workMemory1, workMemory2);
+                    species.ModifiableGameplayCells.AddFast(template, workMemory1, workMemory2);
                     --columnCellsLeft;
 
                     if (columnCellsLeft < 1)
@@ -502,7 +518,7 @@ public class GameProperties : IArchivable
         }
 
         // Make sure we hit the required cell count
-        while (species.Cells.Count < Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC)
+        while (species.ModifiableGameplayCells.Count < Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC)
         {
             var direction = new Vector2(0, -1);
 
@@ -512,9 +528,9 @@ public class GameProperties : IArchivable
                 var template = new CellTemplate(type,
                     new Hex(MathUtils.RoundToInt(finalPos.X), MathUtils.RoundToInt(finalPos.Y)), 0);
 
-                if (species.Cells.CanPlace(template, workMemory1, workMemory2))
+                if (species.ModifiableGameplayCells.CanPlace(template, workMemory1, workMemory2))
                 {
-                    species.Cells.AddFast(template, workMemory1, workMemory2);
+                    species.ModifiableGameplayCells.AddFast(template, workMemory1, workMemory2);
                     break;
                 }
             }
@@ -525,7 +541,7 @@ public class GameProperties : IArchivable
 
     private static void AddBrainTissue(MacroscopicSpecies species, float brainTissueSize = 1)
     {
-        var axonType = species.CellTypes.First(c => c.IsBrainTissueType());
+        var axonType = species.ModifiableCellTypes.First(c => c.IsBrainTissueType());
 
         // TODO: a more intelligent algorithm
         // For now just find free positions above the origin and link it to the closest metaball
@@ -557,25 +573,25 @@ public class GameProperties : IArchivable
 
                     metaball.Position = position;
 
-                    var (overlap, parent) = species.BodyLayout.CheckOverlapAndFindClosest(metaball);
+                    var (overlap, parent) = species.ModifiableBodyLayout.CheckOverlapAndFindClosest(metaball);
 
                     if (overlap)
                         continue;
 
                     // Found a suitable place, adjust the position to be touching the parent
-                    metaball.Parent = parent;
+                    metaball.ModifiableParent = parent;
                     metaball.AdjustPositionToTouchParent();
 
                     // Skip if now the metaball would end up being inside something else
                     // TODO: a better approach would be to slide the metaball around its parent until it is no longer
                     // touching
-                    if (species.BodyLayout.CheckOverlapAndFindClosest(metaball).Overlap)
+                    if (species.ModifiableBodyLayout.CheckOverlapAndFindClosest(metaball).Overlap)
                     {
-                        metaball.Parent = null;
+                        metaball.ModifiableParent = null;
                         continue;
                     }
 
-                    species.BodyLayout.Add(metaball);
+                    species.ModifiableBodyLayout.Add(metaball);
                     return;
                 }
             }

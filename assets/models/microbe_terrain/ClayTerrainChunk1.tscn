@@ -1,9 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://glw134awyb7d"]
+[gd_scene load_steps=6 format=3 uid="uid://glw134awyb7d"]
 
 [ext_resource type="PackedScene" uid="uid://dl7gg4f1jbray" path="res://assets/models/microbe_terrain/ClayTerrainChunk1.glb" id="1_q6tlx"]
-[ext_resource type="Material" uid="uid://doux3w47yc4ml" path="res://assets/models/microbe_terrain/ClayTerrainMaterial.material" id="2_xiovj"]
+[ext_resource type="Texture2D" uid="uid://kdbsfcs3vl61" path="res://assets/textures/environment/Clay.png" id="2_pxws5"]
+[ext_resource type="Texture2D" uid="uid://dpejypgopsowf" path="res://assets/textures/environment/Clay1AO.png" id="3_i3qqk"]
+[ext_resource type="Texture2D" uid="uid://b6gderonlhdxd" path="res://assets/textures/environment/Clay_normal.png" id="4_il83f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pxws5"]
+resource_name = "clay"
+cull_mode = 2
+albedo_color = Color(0.6455554, 0.5105478, 0.39702916, 1)
+albedo_texture = ExtResource("2_pxws5")
+roughness = 0.75454545
+normal_enabled = true
+normal_scale = 0.70000005
+normal_texture = ExtResource("4_il83f")
+ao_enabled = true
+ao_light_affect = 0.35
+ao_texture = ExtResource("3_i3qqk")
 
 [node name="ClayTerrainChunk1" instance=ExtResource("1_q6tlx")]
 
 [node name="clay1" parent="." index="0"]
-surface_material_override/0 = ExtResource("2_xiovj")
+surface_material_override/0 = SubResource("StandardMaterial3D_pxws5")

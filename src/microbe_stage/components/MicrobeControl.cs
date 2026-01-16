@@ -174,6 +174,11 @@ public static class MicrobeControlHelpers
     public static void SetStateColonyAware(this ref MicrobeControl control, in Entity entity,
         MicrobeState targetState)
     {
+#if DEBUG
+        if (targetState == MicrobeState.MucocystShield)
+            GD.PrintErr("This shouldn't be used to enable mucocyst state as this skips mucocyst amount checks");
+#endif
+
         if (entity.Has<MicrobeColony>())
         {
             ref var colony = ref entity.Get<MicrobeColony>();
@@ -226,7 +231,7 @@ public static class MicrobeControlHelpers
                         ref var memberHealth = ref colonyMember.Get<Health>();
                         ref var memberCompoundStorage = ref colonyMember.Get<CompoundStorage>();
 
-                        ForceStateApplyIfRequired(ref memberControl, ref memberHealth, ref memberCompoundStorage,
+                        memberControl.ForceStateApplyIfRequired(ref memberHealth, ref memberCompoundStorage,
                             colonyMember, MicrobeState.Engulf, false, atp);
                     }
                 }
@@ -236,7 +241,7 @@ public static class MicrobeControlHelpers
             // cause a real issue (as it should do nothing) but would be good to fix the logic
         }
 
-        ForceStateApplyIfRequired(ref control, ref health, ref compoundStorage, entity, MicrobeState.Engulf, true, atp);
+        control.ForceStateApplyIfRequired(ref health, ref compoundStorage, entity, MicrobeState.Engulf, true, atp);
     }
 
     /// <summary>
@@ -394,18 +399,24 @@ public static class MicrobeControlHelpers
             // TODO: is it a good idea to allocate a delegate here?
             colony.PerformForOtherColonyMembersThanLeader(m =>
                 m.Get<MicrobeControl>()
-                    .SetMucocystState(ref m.Get<OrganelleContainer>(), ref m.Get<CompoundStorage>(), m, state,
+                    .SetMucocystState(ref m.Get<OrganelleContainer>(), ref m.Get<CompoundStorage>(), in m, state,
                         mucilageCompound));
         }
 
         if (organelleInfo.MucocystCount < 1)
+        {
+            // Ensure cells that have no business being in the mucocyst state cannot get into it accidentally
+            if (control.State == MicrobeState.MucocystShield)
+                control.State = MicrobeState.Normal;
+
             return;
+        }
 
         if (state)
         {
             // Apply the activation cost before activating the mucocyst shield
-            var mucilageCapactiy = availableCompounds.Compounds.GetCapacityForCompound(mucilageCompound);
-            var mucilageRequired = mucilageCapactiy * Constants.MUCOCYST_ACTIVATION_MUCILAGE_FRACTION;
+            var mucilageCapacity = availableCompounds.Compounds.GetCapacityForCompound(mucilageCompound);
+            var mucilageRequired = mucilageCapacity * Constants.MUCOCYST_ACTIVATION_MUCILAGE_FRACTION;
             if (availableCompounds.Compounds.GetCompoundAmount(mucilageCompound) < mucilageRequired)
             {
                 entity.SendNoticeIfPossible(() =>
@@ -449,7 +460,7 @@ public static class MicrobeControlHelpers
 
             // Need to force this cell into a mode, so cause the damage.
             // We checked above that damage won't kill, so we don't check for damage protection on the player.
-            health.DealDamage(damage, "forcedState", -1);
+            health.DealDamage(entity, damage, "forcedState", -1);
 
             control.ForcedStateRemaining = Constants.ENGULF_NO_ATP_TIME;
 

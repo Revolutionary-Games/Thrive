@@ -184,6 +184,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
 
                 // The fade is pretty long here to give some time after the camera stops moving before the fade out
                 // is complete
+                PauseMenu.Instance.ReportStageTransition();
                 TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 3.5f, SwitchToSocietyScene, false);
                 MovingToEditor = true;
                 movingToSocietyStage = false;
@@ -268,6 +269,8 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         editor.ReturnToStage = this;
 
         GiveReproductionPopulationBonus();
+
+        PauseMenu.Instance.ReportStageTransition();
 
         // We don't free this here as the editor will return to this scene
         if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
@@ -534,7 +537,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
             return;
         }
 
-        if (pauseMenu.Visible)
+        if (PauseMenu.Instance.Visible)
             return;
 
         selectBuildingPopup.OpenWithStructures(CurrentGame!.TechWeb.GetAvailableStructures(), Player, Player);
@@ -565,7 +568,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
             return true;
         }
 
-        if (pauseMenu.Visible)
+        if (PauseMenu.Instance.Visible)
             return false;
 
         try
@@ -827,6 +830,13 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         SaveHelper.ShowErrorAboutPrototypeSaving(this);
     }
 
+    protected override void SaveGame(string name)
+    {
+        // TODO: saving for this stage
+        _ = name;
+        SaveHelper.ShowErrorAboutPrototypeSaving(this);
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -838,13 +848,6 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         }
 
         base.Dispose(disposing);
-    }
-
-    private void SaveGame(string name)
-    {
-        // TODO: saving for this stage
-        _ = name;
-        SaveHelper.ShowErrorAboutPrototypeSaving(this);
     }
 
     private void OnFinishLoading()

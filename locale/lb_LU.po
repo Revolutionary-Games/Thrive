@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
+"POT-Creation-Date: 2026-01-12 15:26+0100\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Luxembourgish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lb/>\n"
@@ -287,7 +287,8 @@ msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Programklass ass erfuerderlech, wann uginn"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Programklass ass erfuerderlech, wann 'auto harmony' aktivéiert ass"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -452,6 +453,9 @@ msgstr ""
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr ""
 
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr "Erwäche Stuf"
 
@@ -560,7 +564,15 @@ msgid "BIG_IRON_CHUNK"
 msgstr "Grousst Eisensteck"
 
 #, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Grousst Eisensteck"
+
+#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Grousst Eisensteck"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "Grousst Eisensteck"
 
 msgid "BILLION_ABBREVIATION"
@@ -920,6 +932,10 @@ msgstr "Küst"
 msgid "COLLISION_SHAPE"
 msgstr "Physics Kollisionsformen weisen"
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
+
 msgid "COLOUR"
 msgstr "Faarf"
 
@@ -970,6 +986,9 @@ msgstr "Sättegung vun der Faarf"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Hellegkeet/Intensitéit vun der Faarf"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr ""
 
 msgid "COMMON_ABILITIES"
 msgstr "Heefeg Fäegkeeten"
@@ -1084,6 +1103,10 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Stoff-Niveauen"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "Diviseur Wolleken Opléisung:"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr ""
@@ -1447,8 +1470,27 @@ msgstr "Sättegung vun der Faarf"
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "Aktioun ofbriechen"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "Aktioun ofbriechen"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
+
+msgid "CURRENT_PARTICLES_ALL"
+msgstr ""
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Sättegung vun der Faarf"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "Aktioun ofbriechen"
 
 msgid "CURRENT_RESEARCH_NONE"
 msgstr ""
@@ -1510,6 +1552,9 @@ msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
 msgid "DEATH"
+msgstr ""
+
+msgid "DEBUG_CONSOLE"
 msgstr ""
 
 msgid "DEBUG_COORDINATES"
@@ -1727,6 +1772,9 @@ msgid "DISPLAY_MODE"
 msgstr ""
 
 msgid "DISPLAY_PART_NAMES"
+msgstr ""
+
+msgid "DISPLAY_SELECTION"
 msgstr ""
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
@@ -2059,6 +2107,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Nei Tastebindung bäifügen"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Nei Tastebindung bäifügen"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -2504,6 +2560,10 @@ msgstr ""
 msgid "GRAPHICS"
 msgstr "Graphiken"
 
+#, fuzzy
+msgid "GRAPHICS_PRESET"
+msgstr "Graphiken"
+
 msgid "GRAPHICS_TEAM"
 msgstr ""
 
@@ -2623,6 +2683,9 @@ msgstr ""
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
@@ -2630,6 +2693,9 @@ msgid "ID_NUMBER"
 msgstr ""
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
@@ -2732,6 +2798,14 @@ msgstr ""
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Op d' 'Erwaachen Stuf' weidergoen. Accessibel wann's de genuch Gehier hues (eng Zort Geweebe mat Axonen)."
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr ""
@@ -2843,18 +2917,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr ""
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3555,6 +3617,10 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr ""
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
@@ -3575,6 +3641,23 @@ msgstr ""
 
 #, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr ""
+"[b]Generatiounen[/b]\n"
+"  {0}\n"
+"[b]All Aarten:[/b]\n"
+"  Duerchschnëtt {1}; Standard Deviatioun {2}\n"
+"[b]Nach liewend Aarten:[/b]\n"
+"  Duerchschnëtt {3}; Standard Deviatioun {4}\n"
+"[b]Pro-Gebitt Aarten Unzuel:[/b]\n"
+"  Duerchschnëtt {5}; Standard Deviatioun {6}\n"
+"[b]Pro-Gebitt Total Populatioun:[/b]\n"
+"  Duerchschnëtt {7}; Standard Deviatioun {8}\n"
+"[b]Duerchschnëttlëch Hex Gréisst Mikroben Aarten:[/b]\n"
+"  Duerchschnëtt {9}; Standard Deviatioun {10}\n"
+"[b]Algeméng Organellen Daten:[/b]"
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
 msgstr ""
 "[b]Generatiounen[/b]\n"
 "  {0}\n"
@@ -3913,6 +3996,9 @@ msgstr ""
 msgid "MODS"
 msgstr ""
 
+msgid "MODS_ARE_ENABLED"
+msgstr ""
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3944,9 +4030,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 msgid "MOD_CREATION_FAILED"
@@ -4016,6 +4099,12 @@ msgid "MOD_UPLOADER"
 msgstr ""
 
 msgid "MOD_VERSION"
+msgstr ""
+
+msgid "MONITOR_AUTO"
+msgstr ""
+
+msgid "MONITOR_IDENTIFIER"
 msgstr ""
 
 msgid "MORE_INFO"
@@ -4829,6 +4918,28 @@ msgstr ""
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "Beim Feil:"
+
+#, fuzzy
+msgid "PRESET_HIGH"
+msgstr "Zrécksetzen"
+
+#, fuzzy
+msgid "PRESET_LOW"
+msgstr "Zrécksetzen"
+
+msgid "PRESET_MEDIUM"
+msgstr ""
+
+msgid "PRESET_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "Stoff-Niveauen"
+
 msgid "PRESSURE"
 msgstr ""
 
@@ -5143,6 +5254,9 @@ msgstr "No riets dréinen"
 msgid "ROTATION_COLON"
 msgstr ""
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Auto-Évo wärend dem Spill lafe loosen"
 
@@ -5202,12 +5316,6 @@ msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr ""
 
 msgid "SAVE_FAILED"
@@ -5508,8 +5616,16 @@ msgstr ""
 msgid "SMALL_IRON_CHUNK"
 msgstr "Klengt Stéck Eisen"
 
+#, fuzzy
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "Klengt Stéck Eisen"
+
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr ""
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
+msgstr "Grousst Eisensteck"
 
 #, fuzzy
 msgid "SMALL_SULFUR_CHUNK"
@@ -5579,6 +5695,12 @@ msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
+msgstr ""
+
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr ""
+
+msgid "SPECIES_IN_OTHER_PATCHES"
 msgstr ""
 
 msgid "SPECIES_LIST"
@@ -6068,6 +6190,10 @@ msgstr ""
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Verschléng Modus un/aus maachen"
+
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr ""
 
@@ -6439,6 +6565,17 @@ msgstr "Zeréckgoen"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Läscht Aktioun réckgängeg maachen"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "All d'Zellen \"gesinn\" nëmmen duerch Chemorezeptioun. Dat ass wéi Zellen Informatioune iwwert hiert Ëmfeld kréien. D'Organelle representéiert d'Evolutioun vu méi raffinéierter Chemorezeptioun. Well de Spiller schonn op der Zelle Stuf gesinn kann, gëtt d'Organell mat engem Stréch representéiert deen ausserhalb vun Bildschierm op Stoffer weist déi de Spiller nach net gesinn kann."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "\"{0}\" - {1}"
+
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr ""
 
@@ -6588,6 +6725,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -6595,12 +6735,6 @@ msgid "USED_RENDERER_NAME"
 msgstr ""
 
 msgid "USES_FEATURE"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
@@ -8506,6 +8640,14 @@ msgstr ""
 msgid "WORST_PATCH_COLON"
 msgstr ""
 
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
+
 msgid "XBOX360"
 msgstr ""
 
@@ -8547,6 +8689,10 @@ msgstr "Eran Zoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Eraus Zoomen"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"

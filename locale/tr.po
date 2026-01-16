@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-30 12:31+0200\n"
-"PO-Revision-Date: 2025-10-31 01:28+0000\n"
+"POT-Creation-Date: 2026-01-12 15:26+0100\n"
+"PO-Revision-Date: 2026-01-10 15:26+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.15.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -158,7 +158,7 @@ msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Kuşaklar:[/b]\n"
 "   {0}\n"
-"[b]Toplam Tür:[/b]\n"
+"[b]Toplam Tür Sayısı:[/b]\n"
 "   Ortalama {1}; Standart sapma {2}\n"
 "[b]Hayatta Olan Türler:[/b]\n"
 "   Ortalama {3}; Standart sapma {4}\n"
@@ -271,8 +271,8 @@ msgstr "Tırmanış Evresi"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Assembly belirtildiğinde, assembly modunun sınıfı gereklidir"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr "Oto Harmony etkinleştirildiğinde, Assembly modu gereklidir"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
+msgstr "Bir mod sınıfı belirlendiğinde, assembly gereklidir"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "İşlemcide hiper iş parçacığını etkin varsay"
@@ -427,6 +427,9 @@ msgstr "Yüzeydeki ortalama diğer gaz seviyeleri"
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr "Yüzeydeki ortalama oksijen seviyesi"
 
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr "Yüzeydeki ortalama sıcaklık"
+
 msgid "AWAKENING_STAGE"
 msgstr "Uyanış Evresi"
 
@@ -532,8 +535,14 @@ msgstr "Hücrenin Ötesinde"
 msgid "BIG_IRON_CHUNK"
 msgstr "Büyük Demir Parçası"
 
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Büyük Demir Muz Parçası"
+
 msgid "BIG_PHOSPHATE_CHUNK"
 msgstr "Büyük Fosfat Parçası"
+
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
+msgstr "Büyük Fosfat Muz Parçası"
 
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} Mr"
@@ -888,6 +897,9 @@ msgstr "Sahil"
 msgid "COLLISION_SHAPE"
 msgstr "Fizik hata ayıklama şekillerini göster"
 
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "Bu sekme, hücre kolonilerinin büyüme sırasının ayarlanmasını sağlar. Bu sıradaki ilk hücre, kök (veya tomurcuk) hücresidir. Bu sekmeyi, daha kritik hücrelerin büyümesine öncelik tanımak ya da koloninin üretim ve tüketiminin uygun bir şekilde dengelenmesini sağlamak için kullanabilirsin."
+
 msgid "COLOUR"
 msgstr "Renk"
 
@@ -938,6 +950,9 @@ msgstr "Doygunluk değeri, belli bir renkteki gri miktarı"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Değer (parlaklık) değeri, renkteki parlaklığın şiddeti"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr ""
 
 msgid "COMMON_ABILITIES"
 msgstr "Ortak Yetenekler"
@@ -1041,6 +1056,9 @@ msgstr "Çok yüksek"
 
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Çok düşük"
+
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} tüketimi"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "({0} s uzun bir gece vaktine dayanmak için yeterli değil)"
@@ -1299,7 +1317,7 @@ msgstr "Kontrol Cihazı Ölü Bölgeleri"
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr ""
 "Bu araç, kontrol cihazının eksen ölü bölgelerinin yapılandırılmasını sağlar. Ölü bölge büyüklükleri, hareketin girdi olarak algılanmasından önce bir kontrol çubuğunun (veya benzeri bir butonun) ne kadar hareket ettirilmesi gerektiğini denetler.\n"
-"Kalibrasyona başlamadan önce, lütfen bütün kontrol cihazı çubuklarını oynatın ve bırakın. Ayrıca kontrol cihazında, bunun benzeri bir işlev gören butonlara (örneğin tetik tuşları) da basın ve onları bırakın."
+"Kalibrasyona başlamadan önce, lütfen bütün kontrol cihazı çubuklarını oynatın ve bırakın. Ayrıca kontrol cihazında, bunun benzeri bir işlev gören butonlara da (örneğin tetik tuşları) basın ve onları bırakın."
 
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr "Ölü Bölge:"
@@ -1429,8 +1447,25 @@ msgstr ""
 msgid "CURRENT_DEVELOPERS"
 msgstr "Mevcut Oyun Geliştiricileri"
 
+msgid "CURRENT_DILUTION"
+msgstr "Akıntı seyrelmesi olayı"
+
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr ""
+"Bileşikler seyreltildi.\n"
+"Konsantrasyonu azalan bileşikler:"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "MEVCUT KONUM"
+
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "Hepsi"
+
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Sadece daireler"
+
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "Hiçbiri"
 
 msgid "CURRENT_RESEARCH_NONE"
 msgstr "Herhangi bir araştırma yok"
@@ -1511,6 +1546,10 @@ msgstr "Ölü Bölge Yapılandırması"
 
 msgid "DEATH"
 msgstr "ölüm"
+
+#, fuzzy
+msgid "DEBUG_CONSOLE"
+msgstr "Hata Ayıklama Paneli"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1757,6 +1796,9 @@ msgstr "Görüntü modu:"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Parça seçim butonunun altında parça isimlerini göster"
+
+msgid "DISPLAY_SELECTION"
+msgstr "Monitör:"
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "{0} çevresel besin kaynağı eşit oranda dağıtılarak"
@@ -2125,6 +2167,16 @@ msgstr ""
 "Karbondioksit ve kükürt seviyelerini arttırır.\n"
 "Kükürt parçaları oluşturur."
 
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr ""
+"Çökeltiler, karadan kıyı sulara taşınarak bu suları zenginleştirdi.\n"
+"Konsantrasyonu artan bileşikler:"
+
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr ""
+"Bileşikler, okyanus tabanından yukarı taşınarak yukarıdaki suları zenginleştirdi.\n"
+"Konsantrasyonu artan bileşikler:"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evrim Ağacı"
 
@@ -2391,7 +2443,7 @@ msgid "FOSSIL_DATA_LOAD_FAILED"
 msgstr "Fosil Verisini Yükleme Başarısız"
 
 msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
-msgstr "Veri ya eski ya da geçersiz olduğundan fosil dosyası okunamadı"
+msgstr "Veriler eski ya da geçersiz olduğundan fosil dosyası okunamadı"
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Fosil Silme Başarısız"
@@ -2564,6 +2616,9 @@ msgstr "GPU:"
 msgid "GRAPHICS"
 msgstr "Görüntü"
 
+msgid "GRAPHICS_PRESET"
+msgstr "Grafik ön ayarı:"
+
 msgid "GRAPHICS_TEAM"
 msgstr "Grafik Ekibi"
 
@@ -2682,6 +2737,10 @@ msgstr "Büyük Buz Parçası"
 msgid "ICE_CHUNK_SMALL"
 msgstr "Küçük Buz Parçası"
 
+#, fuzzy
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr "Kar Tanesi"
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID geçerli bir sayı değil"
 
@@ -2690,6 +2749,9 @@ msgstr "ID Numarası"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(görüntü modu ve yükseltme ayarlarına bağlı olarak, bütün yöntemler mevcut olmayabilir)"
+
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr "Ek hataları yoksay"
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "Desteklenen Resim Dosyaları"
@@ -2789,6 +2851,12 @@ msgstr "Denetleyici"
 
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Instagram profilimizi ziyaret edin"
+
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "Anında ölüm koruması"
+
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(bu ayar, yüksek cana sahip bir oyuncuyu öldürecek bir hasar﻿ olsa bile, size az bir can bırakır)"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Tırmanış Kapısını Etkinleştir"
@@ -2904,18 +2972,6 @@ msgstr ":"
 
 msgid "JANUARY"
 msgstr "Ocak"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON hata ayıklama modu:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Her zaman"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Otomatik olarak"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Hiçbir zaman"
 
 msgid "JULY"
 msgstr "Temmuz"
@@ -3427,7 +3483,7 @@ msgid "MAKE_CELL_THAT_EATS_RADIATION"
 msgstr "Radyoaktiviteden enerji kazanan bir hücre oluştur"
 
 msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
-msgstr " Enerji için yalnızca kemosentez kullanan bir hücre oluştur"
+msgstr "Enerji için yalnızca kemosentez kullanan bir hücre oluştur"
 
 msgid "MAKE_NO_CHANGES_IN_EDITOR"
 msgstr "Editörde, mikrobunuzda hiçbir değişiklik yapmayın"
@@ -3615,6 +3671,9 @@ msgstr "Yırtıcı Etkinlik Baskısı"
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Yırtıcı Kök Baskısı"
 
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Üremede Kullanılan Bileşik Baskısı:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr "Kök Baskı"
 
@@ -3635,6 +3694,9 @@ msgstr "Mikrop Performansı"
 
 msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr "Mikrop kamera hareketi"
+
+msgid "MICROBE_CURRENT_PARTICLES"
+msgstr "Mevcut mikrop parçacıkları:"
 
 msgid "MICROBE_EDITOR"
 msgstr "Mikrop Editörü"
@@ -3706,7 +3768,7 @@ msgid "MICROBE_LOADING_TIP_7"
 msgstr "Biyomlar farklı arkaplanlardan çok daha fazlasıdır. Farklı biyomlardaki bileşikler ve yüzen parçalar, farklı oranlarda oluşur."
 
 msgid "MICROBE_LOADING_TIP_8"
-msgstr "Hücrenizin arkasına, simetrik olacak şekilde, kamçı veya balçık fışkırtıcı yerleştirin. Aksi takdirde, enerjiyi boşa harcarsınız."
+msgstr "Hücrenizin arkasına, simetrik olacak şekilde, kamçı veya balçık fışkırtıcı yerleştirin. Aksi takdirde, enerjiyi boşa harcamış olursunuz."
 
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "Parçaları nereye yerleştirdiğiniz önemlidir. Hücrenizin şekli, hareket ve dönme hızınızı etkiler."
@@ -3779,33 +3841,33 @@ msgstr ""
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"Uzaklardaki bir yabancı gezegende, derin denizlerde sonsuz asırlar süren volkanik aktiviteler yeni bir olayın gelişmesine neden oldu.\n"
+"Uzaklardaki yabancı bir gezegende, derin denizlerde asırlardır süre gelen volkanik aktiviteler olağanüstü bir şeyin oluşmasına neden oldu.\n"
 "\n"
-"Hayat.\n"
+"Yaşam.\n"
 "\n"
-"Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA). Bu basit baloncuk, sudaki moleküllerden kendini kopyalayabilir. Böylece zamanla, yıldızlara hakim olacak karmaşık bir türe dönüşebilir.\n"
+"Sen, bu gezegendeki Son Evrensel Ortak Atasın (SEOA). Bu basit baloncuk, sudaki moleküllerden kendini kopyalayabilir. Böylece zamanla, yıldızlara hakim olacak karmaşık bir türe dönüşebilir.\n"
 "\n"
-"Ama önce, diğer mikroplarla rekabet ederken büyümek, yayılmak ve evrimleşmek için bileşikler toplayıp bu hasım dünyada hayatta kalmanız gerekiyor."
+"Ama bu hasım dünyada hayatta kalmak için, öncelikle bileşik toplayıp büyümeli, yayılmalı ve diğer mikroplarla rekabet ederken evrimleşmelisin."
 
 msgid "MICROBE_STAGE_INITIAL_PANSPERMIA"
 msgstr ""
-"Uzaklardaki bir yabancı gezegende bir göktaşı, muazzam mesafeler kat ettikten sonra yere çarptı ve yeni bir olayı meydana getirecek tohumları bu gezegene taşıdı.\n"
+"Uzaklardaki yabancı bir gezegende, yeni bir olayın kökenlerini taşıyan bir meteor muazzam mesafeler kat ederek yere çarptı.\n"
 "\n"
-"Hayat.\n"
+"Yaşam.\n"
 "\n"
-"Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA). Kendini çoğaltabilen bu baloncuk, ana dünyasında olduğu gibi bu okyanusta da yaşayabilir. Belki bir gün, uzak torunları o dünyayı yeniden bulurlar.\n"
+"Sen, bu gezegendeki Son Evrensel Ortak Atasın (SEOA). Kendini kopyalayabilen bu baloncuk, tıpkı ana dünyasında olduğu gibi bu okyanusta da yaşayabilir. Belki bir gün, uzak torunları o dünyayı yeniden bulacaktır.\n"
 "\n"
-"Ama önce, diğer mikroplarla rekabet ederken büyümek, yayılmak ve evrimleşmek için bileşikler toplayıp bu tehlikeli sularda hayatta kalmanız gerekiyor."
+"Ama bu tehlikeli sularda hayatta kalmak için, öncelikle bileşik toplayıp büyümeli, yayılmalı ve diğer mikroplarla rekabet ederken evrimleşmelisin."
 
 msgid "MICROBE_STAGE_INITIAL_POND"
 msgstr ""
-"Uzaklardaki bir yabancı gezegende, ısınmış havuzlarda sonsuz asırlar süren kimyasal evrim yeni bir olayın gelişmesine neden oldu.\n"
+"Uzaklardaki yabancı bir gezegende, sıcak havuzlarda asırlarca süren kimyasal evrim olağanüstü bir şeyin oluşmasına neden oldu.\n"
 "\n"
-"Hayat.\n"
+"Yaşam.\n"
 "\n"
-"Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA). Bu basit baloncuk, sudaki moleküllerden kendini kopyalayabilir. Böylece zamanla, yıldızlara hakim olacak karmaşık bir türe dönüşebilir.\n"
+"Sen, bu gezegendeki Son Evrensel Ortak Atasın (SEOA). Bu basit baloncuk, sudaki moleküllerden kendini kopyalayabilir. Böylece zamanla, yıldızlara hakim olacak karmaşık bir türe dönüşebilir.\n"
 "\n"
-"Ama önce, diğer mikroplarla rekabet ederken büyümek, yayılmak ve evrimleşmek için bileşikler toplayıp bu hasım dünyada hayatta kalmanız gerekiyor."
+"Ama bu hasım dünyada hayatta kalmak için, öncelikle bileşik toplayıp büyümeli, yayılmalı ve diğer mikroplarla rekabet ederken evrimleşmelisin."
 
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
@@ -3901,7 +3963,7 @@ msgid "MODELS"
 msgstr "Modeller"
 
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
-msgstr "2D hareket modu daha sonra ayarlar menüsünden her an değiştirilebilir"
+msgstr "2D hareket modu, daha sonra ayarlar menüsünden her an değiştirilebilir"
 
 msgid "MODIFY"
 msgstr "Değişiklik Yap"
@@ -3914,6 +3976,9 @@ msgstr "Türde Değişiklik Yap"
 
 msgid "MODS"
 msgstr "Modlar"
+
+msgid "MODS_ARE_ENABLED"
+msgstr "Modlar Etkinleştirildi"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -3950,9 +4015,6 @@ msgstr "{0}: Assembly modu kaldırma yöntem çağrısı başarısız, olağand�
 
 msgid "MOD_AUTHOR"
 msgstr "Mod Sahibi:"
-
-msgid "MOD_AUTO_HARMONY"
-msgstr "Oto Harmony Kullanır:"
 
 msgid "MOD_CREATION_FAILED"
 msgstr "Mod Oluşturma Başarısız"
@@ -4022,6 +4084,12 @@ msgstr "Modu Yükleyen"
 
 msgid "MOD_VERSION"
 msgstr "Mod Sürümü:"
+
+msgid "MONITOR_AUTO"
+msgstr "Otomatik"
+
+msgid "MONITOR_IDENTIFIER"
+msgstr "Monitör {0}"
 
 msgid "MORE_INFO"
 msgstr "Daha Fazla Bilgi Göster"
@@ -4325,7 +4393,7 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr "Editör, şimdi girilmek için hazır"
 
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
-msgstr "Mevcut çevresel koşullara uyum sağlayamaz. Dezavantajları kaldırmak için tercih edilen koşulları ya da tolerans aralığını değiştirin."
+msgstr "Bu tür, mevcut çevresel koşullara uyum sağlayamaz. Dezavantajları kaldırmak için tercih edilen koşulları ya da tolerans aralığını değiştirin."
 
 msgid "NOT_STARTED_DOT"
 msgstr "Başlatılmadı."
@@ -4863,6 +4931,24 @@ msgstr "{0} türünün yenilmesi"
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Tahminin ardındaki detaylı bilgiyi incele"
 
+msgid "PRESET_CUSTOM"
+msgstr "Özel"
+
+msgid "PRESET_HIGH"
+msgstr "Yüksek"
+
+msgid "PRESET_LOW"
+msgstr "Düşük"
+
+msgid "PRESET_MEDIUM"
+msgstr "Orta"
+
+msgid "PRESET_VERY_HIGH"
+msgstr "Çok yüksek"
+
+msgid "PRESET_VERY_LOW"
+msgstr "Çok düşük"
+
 msgid "PRESSURE"
 msgstr "Basınç"
 
@@ -5163,6 +5249,9 @@ msgstr "Sağa döndür"
 msgid "ROTATION_COLON"
 msgstr "Dönme:"
 
+msgid "RUNOFF_EVENT"
+msgstr "Yüzey akışı olayı"
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Oyun esnasında oto-evrimi çalıştır"
 
@@ -5230,12 +5319,6 @@ msgstr "Hileler Kullanıldı"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Bu kaydı silme işlemi geri alınamaz, {0} kaydını kalıcı olarak silmek istediğinizden emin misiniz?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "Bir kayıt hatasını bildirirken lütfen [color=#3796e1][url={2}]log klasöründen[/url][/color] [color=#3796e1][url={0}]{1}[/url][/color] dosyasını dahil edin. Bu dosya, Thrive geliştiricilerinin kaydetme hatasının ne olduğunu anlaması için kritik bilgiler içerir. Bu dosya olmadan, mevcut problemi teşhis etmek ve düzeltmek fazlasıyla zor olacaktır."
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Lütfen bu kayıt hatasını bildirmeden önce JSON hata ayıklama modunun devre dışı bırakılmadığından emin olun. Otomatik JSON hata ayıklama modu, [color=#3796e1][url={1}]log klasöründe[/url][/color] {0} adı verilen ek bir dosya oluşturdu. Bu dosya, Thrive geliştiricilerinin kaydetme hatasının ne olduğunu anlaması için kritik bilgiler içerir."
 
 msgid "SAVE_FAILED"
 msgstr "Kaydetme başarısız"
@@ -5540,8 +5623,14 @@ msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:com
 msgid "SMALL_IRON_CHUNK"
 msgstr "Küçük Demir Parçası"
 
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "Küçük Demir Muz Parçası"
+
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Küçük Fosfat Parçası"
+
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
+msgstr "Küçük Fosfat Muz Parçası"
 
 msgid "SMALL_SULFUR_CHUNK"
 msgstr "Küçük Kükürt Parçası"
@@ -5621,6 +5710,12 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "mutasyona uğradı"
+
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Mevcut arazideki türler"
+
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Diğer arazilerdeki türler"
 
 msgid "SPECIES_LIST"
 msgstr "Tür Listesi"
@@ -5968,19 +6063,19 @@ msgid "THERMOPLAST"
 msgstr "Termoplast"
 
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki pigmentler, [b]termosentez[/b] adı verilen bir işlemde, sudan [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek için çevrelerindeki artan [thrive:compound type=\"temperature\"]sıcaklığı[/thrive:compound] enerji olarak kullanır. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] farkı ile doğru orantılıdır."
+msgstr "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki pigmentler, [b]termosentez[/b] adı verilen bir işlemde, [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için çevrelerindeki artan [thrive:compound type=\"temperature\"]sıcaklığı[/thrive:compound] enerji olarak kullanır. [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] farkı ile doğru orantılıdır."
 
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Artan sıcaklığı kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Bu oran, [thrive:compound type=\"temperature\"]sıcaklıktaki[/thrive:compound] artış ile doğru orantılıdır. Sıcak ve soğuk alanları bulmak için [b]termal görüşü[/b] kullanın."
+msgstr "Artan sıcaklığı kullanarak [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretir. Bu oran, [thrive:compound type=\"temperature\"]sıcaklıktaki[/thrive:compound] artış ile doğru orantılıdır. Sıcak ve soğuk alanları bulmak için [b]termal görüşü[/b] kullanın."
 
 msgid "THERMOSYNTHASE"
 msgstr "Termosentaz"
 
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "Termosentaz, ısı aktarımını kullanarak şekil değiştiren bir proteindir. Bu onun, [b]termosentez[/b] adı verilen bir işlemde, hava ısınırken katlanmasını ve ADP'ye bağlanmasını ve de ADP'nin [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşmesini sağlar. Ardından, hava soğurken protein açılır ve [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] yine artacağı zaman döngünün tekrarlanmasını sağlar. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] farkı ile doğru orantılıdır."
+msgstr "Termosentaz, ısı aktarımını kullanarak şekil değiştiren bir proteindir. Bu onun, [b]termosentez[/b] adı verilen bir işlemde, [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüşmesini sağlar. Ardından, hava soğurken protein açılır ve [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] yine artacağı zaman döngünün tekrarlanmasını sağlar. [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] farkı ile doğru orantılıdır."
 
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Artan sıcaklığı kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Bu oran, [thrive:compound type=\"temperature\"]sıcaklıktaki[/thrive:compound] artış ile doğru orantılıdır. Sıcak ve soğuk alanları bulmak için [b]termal görüşü[/b] kullanın."
+msgstr "Artan sıcaklığı kullanarak [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretir. Bu oran, [thrive:compound type=\"temperature\"]sıcaklıktaki[/thrive:compound] artış ile doğru orantılıdır. Sıcak ve soğuk alanları bulmak için [b]termal görüşü[/b] kullanın."
 
 msgid "THERMOSYNTHESIS"
 msgstr "Termosentez"
@@ -6114,6 +6209,10 @@ msgstr "Bağ kurma moduna geç"
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Bağ kurma moduna geç. Bir koloni oluşturmak için diğer hücrelere dokunun."
 
+#, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Hata ayıklama panelini aç"
+
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Hata ayıklama panelini aç"
 
@@ -6159,25 +6258,25 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Bağ koparma moduna geç"
 
 msgid "TOLERANCES_TOO_HIGH_PRESSURE"
-msgstr "{0} tarafından tercih edilen baskı çok yüksek"
+msgstr "{0} değeri, tercih edilen baskı değerinden çok yüksek"
 
 msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
-msgstr "{0} tarafından tercih edilen sıcaklık çok yüksek"
+msgstr "{0} değeri, tercih edilen sıcaklık değerinden çok yüksek"
 
 msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
 msgstr "Oksijen koruması çok düşük, %{0} değerinden yüksek olmalı"
 
 msgid "TOLERANCES_TOO_LOW_PRESSURE"
-msgstr "{0} tarafından tercih edilen baskı çok düşük"
+msgstr "{0} değeri, tercih edilen baskı değerinden çok düşük"
 
 msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
-msgstr "{0} tarafından tercih edilen sıcaklık çok düşük"
+msgstr "{0} değeri, tercih edilen sıcaklık değerinden çok düşük"
 
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr "UV koruması çok düşük, %{0} değerinden yüksek olmalı"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-msgstr "Mevcut çevresel koşullara uyum sağlayamaz. Ozmoregülasyon maliyeti: %{0}, biyoişlem hızı %{1}, sağlık %{2}"
+msgstr "Bu tür, mevcut çevresel koşullara uyum sağlayamaz. Ozmoregülasyon maliyeti: %{0}, biyoişlem hızı %{1}, sağlık %{2}"
 
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
@@ -6187,12 +6286,12 @@ msgstr ""
 "[b]Basınç[/b]\n"
 "  Aralık: {2}-{3} Pa\n"
 "[b]Oksijen Direnci[/b]\n"
-"  {4}%\n"
+"  %{4}\n"
 "[b]UV Direnci[/b]\n"
-"  {5}%"
+"  %{5}"
 
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
-msgstr "Toleranslar, bazı organellerden hem olumlu hem de olumsuz yönde etkilenir. Organellerden gelen değişime temel değer eklendikten sonra, etkili değer burada gösterilir. Bazı organeller, belli oyun tarzları ile birlikte çalışırken diğerlerine zarar verebilir."
+msgstr "Toleranslar, bazı organellerden hem olumlu hem de olumsuz yönde etkilenir. Organellerden gelen değişime temel değer eklendikten sonra, etkili değer burada gösterilir. Bazı organeller, belli oyun tarzları ile birlikte çalışırken diğerlerinde zarar verebilir."
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "Hassasiyet:"
@@ -6667,6 +6766,17 @@ msgstr "Geri al"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Son eylemi geri al"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr "Beklenmeyen Hatalar: {0}"
+
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr ""
+"Oyun beklenmeyen bir hatayla karşılaştı. Oyuna devam etmek mümkün, ancak hatalar daha da kötüleşebilir. En güvenli seçenek, oyunu tamamen yeniden başlatmak ve en son kaydı yüklemektir. Şu anda kaydetmek mümkün olabilir.\n"
+"Bu hatayı bildirirseniz, lütfen hatayı kopyalamak için bu butonu kullanın ve raporunuza ekleyin."
+
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Beklenmeyen Bir Hata Meydana Geldi"
+
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "İnşa Et"
 
@@ -6816,6 +6926,9 @@ msgstr "Yükseltme yöntemi:"
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr "FSR keskinleştirme"
 
+msgid "UPWELLING_EVENT"
+msgstr "Ani deniz soğuması olayı"
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Lisanslar ve Kullanılan Kitaplıklar"
 
@@ -6824,12 +6937,6 @@ msgstr "Kullanılan işleyici:"
 
 msgid "USES_FEATURE"
 msgstr "Evet"
-
-msgid "USE_AUTO_HARMONY"
-msgstr "Oto Harmony Yüklemesini Kullan"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Assembly'den Harmony yamalarını otomatik olarak yükle (mod sınıfı belirlemeyi gerektirmez)"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Özel bir kullanıcı adı kullan"
@@ -7142,19 +7249,19 @@ msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "Geliştirme yok."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
-msgstr "Etki yok. Henüz eklenmedi."
+msgstr "[b]Biyolüminesan Kofullu[/b] hücrelerin Oksijen Toleransı artmış olur."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
-msgstr "Işık oluşturur. Thrive'a henüz eklenmedi."
+msgstr "[thrive:compound type=\"sunlight\"]Güneş ışığı[/thrive:compound] oluşturur ve buna sahip olan bir hücrenin Oksijen Toleransını arttırır."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
-msgstr "Değişiklikler yok. Henüz eklenmedi."
+msgstr "Değişiklikler yok."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
-msgstr "İşlem yok. Henüz eklenmedi."
+msgstr "[b]Lusiferaz Sentezi[/b]: [thrive:compound type=\"atp\"]ATP[/thrive:compound] + [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] → [thrive:compound type=\"sunlight\"]Güneş Işığı[/thrive:compound]"
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_REQUIREMENTS"
-msgstr "Hücrelere eklenemez. Henüz eklenmedi."
+msgstr "Bir hücre, [b]Biyolüminesan Kofulu[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7167,10 +7274,10 @@ msgstr ""
 "Eğer [b]Biyolüminesan Kofulların[/b] dahil edilmesinde ısrarcıysanız veya oyun içi işlevler için değerli önerileriniz varsa, [color=#3796e1][url=https://suggestions.revolutionarygamesstudio.com/]öneriler panomuza[/url][/color] uğrayın."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
-msgstr "Oyunda mevcut değil. Henüz eklenmedi."
+msgstr "Eğer hücreniz oksijensiz çalışmakta ise ve hücrenizin Oksijen Toleransını arttırmanız gerekirse, hücrenize [b]Biyolüminesan Koful[/b] ekleyin."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
-msgstr "Geliştirme yok. Henüz eklenmedi."
+msgstr "Geliştirme yok."
 
 msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
 msgstr "Beden Planı Editörü, Hücre Editörü"
@@ -7980,7 +8087,7 @@ msgstr ""
 "\n"
 "Biyomlar farklı arkaplanlardan çok daha fazlasıdır. Farklı biyomlardaki bileşikler ve yüzen parçalar, farklı oranlarda oluşur.\n"
 "\n"
-"Hücrenizin arkasına, simetrik olacak şekilde, kamçı veya balçık fışkırtıcı yerleştirin. Aksi takdirde, enerjiyi boşa harcarsınız.\n"
+"Hücrenizin arkasına, simetrik olacak şekilde, kamçı veya balçık fışkırtıcı yerleştirin. Aksi takdirde, enerjiyi boşa harcamış olursunuz.\n"
 "\n"
 "Parçaları nereye yerleştirdiğiniz önemlidir. Hücrenizin şekli, hareket ve dönme hızınızı etkiler."
 
@@ -8344,7 +8451,7 @@ msgstr ""
 "\n"
 "[indent]—   [b]Basınç:[/b] Ortamda, derinliğe bağlı olarak oluşan baskı kuvvetidir. Basınç şu an için oyunda bir etkiye sahip değildir.[/indent]\n"
 "\n"
-"[indent]—   [b]Işık Şiddeti:[/b] Ortama ulaşan ışık miktarıdır. Işık şiddeti, fotosentez için hayati bir öneme sahiptir. Bu yüzden fotosentez yapan hücreler, bulundukları ortamın onları destekleyecek kadar ışık içerdiğinden emin olmalıdır. 50% lux ve üzeri, fotosentez yapan hücreler için tamamen uygun bir yuva sağlar.[/indent]\n"
+"[indent]—   [b]Işık Şiddeti:[/b] Ortama ulaşan ışık miktarıdır. Işık şiddeti, fotosentez için hayati bir öneme sahiptir. Bu yüzden fotosentez yapan hücreler, bulundukları ortamın onları destekleyecek kadar ışık içerdiğinden emin olmalıdır. %50 lux ve üzeri, fotosentez yapan hücreler için tamamen uygun bir yuva sağlar.[/indent]\n"
 "\n"
 "Aşağıdaki gazlar, bir arazi içerisinde bulunan ve oyun dünyasında fiziksel bir varlığı olmayan gazlardır. Bu elementler, hücrelerin çeşitli işlemleri üzerinde pasif bir etki yaratır ve bazı proteinlerin ve organellerin çalışması için gerekli olabilir.\n"
 "\n"
@@ -8955,7 +9062,7 @@ msgstr ""
 
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr ""
-"[thrive:compound type=\"iron\"]Demir[/thrive:compound], ortamda çok geç bozunduğu için, [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] yerine kullanmak için değerli bir alternatif kaynaktır. Ayrıca [thrive:compound type=\"iron\"]demir[/thrive:compound], doğrudan ATP şeklinde aktarılır. Bu yüzden, Mikrop Evre'sinin başlarında enerjik bir organizma oluşturmak için oldukça ucuz bir yol olabilir. Ancak, [thrive:compound type=\"iron\"]demir[/thrive:compound] hızla tüketildiğinden, oyuncuların sürekli olarak daha büyük bulut yayan parçaların yakınında olmaya dikkat etmeleri ve, daha hareketli bir organizma ile oynamayı seçerlerse, bu kaynağı çok dikkatli bir şekilde yönetmeleri gerekir.\n"
+"[thrive:compound type=\"iron\"]Demir[/thrive:compound], ortamda çok geç bozunduğu için, [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] yerine kullanılabilecek değerli bir alternatif kaynaktır. Ayrıca [thrive:compound type=\"iron\"]demir[/thrive:compound], doğrudan ATP şeklinde aktarılır. Bu yüzden, Mikrop Evre'sinin başlarında enerjik bir organizma oluşturmak için oldukça ucuz bir yol olabilir. Ancak, [thrive:compound type=\"iron\"]demir[/thrive:compound] hızla tüketildiğinden, oyuncuların sürekli olarak daha büyük bulut yayan parçaların yakınında olmaya dikkat etmeleri ve, daha hareketli bir organizma ile oynamayı seçerlerse, bu kaynağı çok dikkatli bir şekilde yönetmeleri gerekir.\n"
 "\n"
 "Depo, demir oksitleyen organizmalar tarafından kullanılabilecek çok faydalı bir özelliktir. Çünkü, hızla tükenen bu bileşenin daha fazlasını depolamalarına imkan sağlar. Büyüklük de faydalıdır, çünkü büyük organizmalar etrafta yüzen daha küçük [thrive:compound type=\"iron\"]demir[/thrive:compound] parçalarını yutabilir. Bu, hareket özgürlüğünüzü arttırır, çünkü çevrenizi keşfederken yanınızda bir parça [thrive:compound type=\"iron\"]demir[/thrive:compound] taşıyor olursunuz. [b]Sitoplazma[/b], demir oksitleyen organizmalar için dikkate alınması gereken çok yararlı bir parçadır. Çünkü, büyüklük ve depoyu ucuza arttırmanızı sağlar. [b]Kofullar[/b] ise, ökaryot olduğunuzda çok kullanışlıdır.\n"
 "\n"
@@ -9125,20 +9232,20 @@ msgstr "İstenildiğinde, açılıp kapatılabilen [i]termal görüşü[/i] etki
 
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr ""
-"Ortamdaki [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] değişimini kullanarak [thrive:compound type=\"atp\"]ATP'den[/thrive:compound] enerji üretir. Daha verimsiz olan [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosentazın[/url][/color][/b] ökaryotik formudur.\n"
+"Ortamdaki [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] değişimini kullanarak [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretir. Daha verimsiz olan [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosentazın[/url][/color][/b] ökaryotik formudur.\n"
 "\n"
 "Gerçek hayatta bulunmayan kuramsal bir organeldir. [i]BH[/i] (Bildiğimiz Hayat) seçeneği etkin olan oyunlarda mevcut değildir.\n"
 "\n"
-"Bu organel, zarlı bölmeler içinde ısıya duyarlı enzimler barındıran, zarla çevrili bir organeldir. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Enzimler, [i]termosentez[/i] adı verilen bir işlemde, [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek için etraflarında bulunan artan[thrive:compound type=\"temperature\"]sıcaklığı[/thrive:compound] enerji olarak kullanırlar."
+"Bu organel, zarlı bölmeler içinde ısıya duyarlı enzimler barındıran, zarla çevrili bir organeldir. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Enzimler, [i]termosentez[/i] adı verilen bir işlemde, [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için etraflarında bulunan artan[thrive:compound type=\"temperature\"]sıcaklığı[/thrive:compound] enerji olarak kullanırlar."
 
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "Değişiklikler yok."
 
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr ""
-"[b]Termosentez[/b]: [thrive:compound type=\"temperature\"]Sıcaklık[/thrive:compound] [i]artışı[/i] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
+"[b]Termosentez[/b]: [thrive:compound type=\"temperature\"]Sıcaklık[/thrive:compound] [i]artışı[/i] → [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound]\n"
 "\n"
-"Artan [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile enerji üretir. Isıya duyarlı enzimler, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] arttıkça şekil değiştirerek [i]ADP'nin[/i] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] geri dönüştürülmesini sağlar. Hücre soğuduğunda ise enzimler eski şekillerine geri döner, böylece işlem tekrar edebilir. Bu işlem, [b][color=#3796e1][url=thriveopedia:thermosynthase]termosentazda[/url][/color][/b] bulunan [i]Bakteri Termosentezinin[/i] daha verimli bir formudur. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] [i]farkı[/i] ile doğru orantılıdır."
+"Artan [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile enerji üretir. Isıya duyarlı enzimler, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] arttıkça şekil değiştirerek çeşitli bileşiklerin [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürülmesini sağlar. Hücre soğuduğunda ise enzimler eski şekillerine geri döner, böylece işlem tekrar edebilir. Bu işlem, [b][color=#3796e1][url=thriveopedia:thermosynthase]termosentazda[/url][/color][/b] bulunan [i]Bakteri Termosentezinin[/i] daha verimli bir formudur. [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] [i]farkı[/i] ile doğru orantılıdır."
 
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
@@ -9154,13 +9261,13 @@ msgstr ""
 "\n"
 "Muller termosentezin, en eski (kükürt temelli) fotosentezin öncüsü olabileceğini dahi ileri sürmüştür (Photosystem 0, A Proposed Ancestral Photosystem Without Reducing Power That Synthesized ATP During Light-Dark Cycling).\n"
 "\n"
+"Thrive'ın ilk sürümlerinde, bu organel doğrudan ATP üretmekteydi. Ancak oyunun dengelenmesi amacıyla, bu organel artık glukoz üretmektedir. Ama bunun için karbonun nereden geldiğine dair bir açıklama yoktur. Yani bu durum, Thrive'ın gerçekçiliğe karşı bir ihmalidir. Eğer birisi uzak gelecekte daha uzun vadeli depolama için gönüllü olarak ATP'yi glukoza dönüştüren bir organel yaparsa, bu durum düzeltilebilir.\n"
+"\n"
 "[color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]Vikipedi'de Termosentez[/url][/color]"
 
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr ""
-"Muhtemelen ototrofinin en hareketli formu olan [b]Termosentez[/b], neredeyse sürekli hareket etmeyi gerektirir. Sürekli olarak soğuk alanlardan sıcak alanlara ve buradan tekrar geri gitmeniz gerekir. Hücrenin sıcaklığı artmayı durdurduğunda, [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi sıfıra düşer. En etkili şekilde alanların içinden geçmek ve hücrenizin etrafındaki sıcak ve soğuk alanları görebilmek için [i]termal görüşü[/i] etkinleştirmeniz en iyi seçenektir. Termoplastlar, çok daha sıcak arazilerde çok daha etkilidir. Bu yüzden, bu organelin Yanardağ Bacaları gibi arazilerde kullanılması en iyisidir.\n"
-"\n"
-"[b]Termoplastın[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi sık sık duracağından, ikinci bir enerji kaynağına sahip olmak önemlidir. Aksi takdirde, [thrive:compound type=\"atp\"]ATP[/thrive:compound] eksikliğinden dolayı devamlı hasar alırsınız.\n"
+"Muhtemelen ototrofinin en hareketli formu olan [b]Termosentez[/b], neredeyse sürekli hareket etmeyi gerektirir. Sürekli olarak soğuk alanlardan sıcak alanlara ve buradan tekrar geri gitmeniz gerekir. Hücrenin sıcaklığı artmayı durdurduğunda, [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretimi sıfıra düşer. En etkili şekilde alanların içinden geçmek ve hücrenizin etrafındaki sıcak ve soğuk alanları görebilmek için [i]termal görüşü[/i] etkinleştirmeniz en iyi seçenektir. Termoplastlar, çok daha sıcak arazilerde çok daha etkilidir. Bu yüzden, bu organelin Yanardağ Bacaları gibi arazilerde kullanılması en iyisidir.\n"
 "\n"
 "Organel kilidini açma etkinken, hücrenizde [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosentaz[/url][/color][/b] ile birkaç kez çoğalmanın gerekli olması, [b]Termoplastları[/b] evrimleştiren bir oyuncunun, [b]Termoplastları[/b] kazandığı zaman, muhtemelen [b]Termosentez[/b] üzerinde ağırlıklı olarak uzmanlaşmış olacağı anlamına gelir."
 
@@ -9172,11 +9279,11 @@ msgstr "İstenildiğinde, açılıp kapatılabilen [i]termal görüşü[/i] etki
 
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
-"Ortamdaki [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] değişimini kullanarak [thrive:compound type=\"atp\"]ATP'den[/thrive:compound] enerji üretir. Daha verimli olan [b][color=#3796e1][url=thriveopedia:thermoplast]Termoplastın[/url][/color][/b] prokaryotik formudur.\n"
+"Ortamdaki [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] değişimini kullanarak [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretir. Daha verimli olan [b][color=#3796e1][url=thriveopedia:thermoplast]Termoplastın[/url][/color][/b] prokaryotik formudur.\n"
 "\n"
 "Gerçek hayatta bulunmayan kuramsal bir organeldir. [i]BH[/i] (Bildiğimiz Hayat) seçeneği etkin olan oyunlarda mevcut değildir.\n"
 "\n"
-"Bu organel, ısıya duyarlı enzimler barındıran zarlı bölmeler kümesidir. Enzimler, [i]termosentez[/i] adı verilen bir işlemde, [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek için etraflarında bulunan artan[thrive:compound type=\"temperature\"]sıcaklığı[/thrive:compound] enerji olarak kullanırlar."
+"Bu organel, ısıya duyarlı enzimler barındıran zarlı bölmeler kümesidir. Enzimler, [i]termosentez[/i] adı verilen bir işlemde, [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için etraflarında bulunan artan[thrive:compound type=\"temperature\"]sıcaklığı[/thrive:compound] enerji olarak kullanırlar."
 
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "Değişiklikler yok."
@@ -9185,7 +9292,11 @@ msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr ""
 "[b]Bakteri Termosentezi[/b]: [thrive:compound type=\"temperature\"]Sıcaklık[/thrive:compound] [i]artışı[/i] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
 "\n"
-"Artan [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile enerji üretir. Isıya duyarlı enzimler, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] arttıkça şekil değiştirerek [i]ADP'nin[/i] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] geri dönüştürülmesini sağlar. Hücre soğuduğunda ise enzimler eski şekillerine geri döner, böylece işlem tekrar edebilir. Bu işlem, [b][color=#3796e1][url=thriveopedia:thermoplast]termoplastlarda[/url][/color][/b] bulunan [b]Termosentezin[/b] daha verimsiz bir formudur. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] [i]farkı[/i] ile doğru orantılıdır."
+"Artan [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile enerji üretir. Isıya duyarlı enzimler, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] arttıkça şekil değiştirerek [i]ADP'nin[/i] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] geri dönüştürülmesini sağlar. Hücre soğuduğunda ise enzimler eski şekillerine geri döner, böylece işlem tekrar edebilir. Bu işlem, [b][color=#3796e1][url=thriveopedia:thermoplast]termoplastlarda[/url][/color][/b] bulunan [b]Termosentezin[/b] daha verimsiz bir formudur. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] [i]farkı[/i] ile doğru orantılıdır.\n"
+"\n"
+"[b]Glikoliz:[/b] [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
+"\n"
+"[b]Termosentaz[/b] proteinleri direkt b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmada[/url][/color][/b] asılı kaldığından, etrafında bulunan akışkan [b]Glikoliz[/b] yapabilir."
 
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr ""
@@ -9197,13 +9308,13 @@ msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr ""
 "[b]Termosentaz[/b], hayali bir enzimdir. [color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]Termosentez[/url][/color] işlemi, teorik olsa da, genelde biyolojik olarak makul görülmektedir.\n"
 "\n"
-"Termosentez, ilk olarak Anthonie Muller tarafından 1983 yılında yayımlanan \"Thermoelectric Energy Conversion Could Be An Energy Source Of Living Organisms\" (Physics Letters A, cilt 96, Sayı 6, s. 319-321) makalesinde ileri sürülmüştür. Muller termosentezin, en eski (kükürt temelli) fotosentezin öncüsü olabileceğini dahi ileri sürmüştür (bu bağlantıyı incele: A Search For Thermosynthesis: Starvation Survival In Thermally Cycled Bacteria)."
+"Termosentez, ilk olarak Anthonie Muller tarafından 1983 yılında yayımlanan \"Thermoelectric Energy Conversion Could Be An Energy Source Of Living Organisms\" (Physics Letters A, cilt 96, Sayı 6, s. 319-321) makalesinde ileri sürülmüştür. Muller termosentezin, en eski (kükürt temelli) fotosentezin öncüsü olabileceğini dahi ileri sürmüştür (bu bağlantıyı incele: A Search For Thermosynthesis: Starvation Survival In Thermally Cycled Bacteria).\n"
+"\n"
+"Thrive'ın ilk sürümlerinde, bu organel doğrudan ATP üretmekteydi. Ancak oyunun dengelenmesi amacıyla, bu organel artık glukoz üretmektedir. Ama bunun için karbonun nereden geldiğine dair bir açıklama yoktur. Yani bu durum, Thrive'ın gerçekçiliğe karşı bir ihmalidir. Eğer birisi uzak gelecekte daha uzun vadeli depolama için gönüllü olarak ATP'yi glukoza dönüştüren bir organel yaparsa, bu durum düzeltilebilir."
 
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr ""
-"Muhtemelen ototrofinin en hareketli formu olan [i]Termosentez[/i], neredeyse sürekli hareket etmeyi gerektirir. Sürekli olarak soğuk alanlardan sıcak alanlara ve buradan tekrar geri gitmeniz gerekir. Hücrenin sıcaklığı artmayı durdurduğunda, [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi sıfıra düşer. En etkili şekilde alanların içinden geçmek ve hücrenizin etrafındaki sıcak ve soğuk alanları görebilmek için [i]termal görüşü[/i] etkinleştirmeniz en iyi seçenektir. Termosentaz, çok daha sıcak arazilerde çok daha etkilidir. Bu yüzden, bu organelin Yanardağ Bacaları gibi arazilerde kullanılması en iyisidir.\n"
-"\n"
-"[b]Termosentazın[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi sık sık duracağından, ikinci bir enerji kaynağına sahip olmak önemlidir. Aksi takdirde, [thrive:compound type=\"atp\"]ATP[/thrive:compound] eksikliğinden dolayı devamlı hasar alırsınız.\n"
+"Muhtemelen ototrofinin en hareketli formu olan [i]Termosentez[/i], neredeyse sürekli hareket etmeyi gerektirir. Sürekli olarak soğuk alanlardan sıcak alanlara ve buradan tekrar geri gitmeniz gerekir. Hücrenin sıcaklığı artmayı durdurduğunda, [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretimi sıfıra düşer. En etkili şekilde alanların içinden geçmek ve hücrenizin etrafındaki sıcak ve soğuk alanları görebilmek için [i]termal görüşü[/i] etkinleştirmeniz en iyi seçenektir. Termosentaz, çok daha sıcak arazilerde çok daha etkilidir. Bu yüzden, bu organelin Yanardağ Bacaları gibi arazilerde kullanılması en iyisidir.\n"
 "\n"
 "Daha verimli olanı, bir hücre, [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeği[/url][/color][/b] evrimleştirdiğinde mevcut olan [b][color=#3796e1][url=thriveopedia:thermoplast]Termoplasttır[/url][/color][/b]. Ökaryotik karşılığı olan bütün prokaryotik organeller gibi, [b]Termosentazı[/b] da mümkün olduğunda [b][color=#3796e1][url=thriveopedia:thermoplast]Termoplastlar[/url][/color][/b] ile değiştirmenizi öneriyoruz."
 
@@ -9451,6 +9562,12 @@ msgstr "Sıcak"
 msgid "WORST_PATCH_COLON"
 msgstr "En Kötü Arazi:"
 
+msgid "WRONG_GROWTH_ORDER"
+msgstr "Hatalı büyüme sırası"
+
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "Kolonilerin büyüme sırası, bazı hücrelerin ayrılmasına neden oluyor. Bu durum, bir hücrenin onu köke bağlayan hücrelerden önce yerleştirilmesi durumunda meydana gelir. Bu sırayı düzeltmek için lütfen Büyüme Sırası sekmesinde kırmızı olarak işaretlenmiş hücreleri inceleyin."
+
 msgid "XBOX360"
 msgstr "Xbox 360"
 
@@ -9488,6 +9605,37 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Oto Harmony Kullanır:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Oto Harmony Yüklemesini Kullan"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Assembly'den Harmony yamalarını otomatik olarak yükle (mod sınıfı belirlemeyi gerektirmez)"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Editörden çıkışta bileşikler:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON hata ayıklama modu:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Her zaman"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Otomatik olarak"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Hiçbir zaman"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "Bir kayıt hatasını bildirirken lütfen [color=#3796e1][url={2}]log klasöründen[/url][/color] [color=#3796e1][url={0}]{1}[/url][/color] dosyasını dahil edin. Bu dosya, Thrive geliştiricilerinin kaydetme hatasının ne olduğunu anlaması için kritik bilgiler içerir. Bu dosya olmadan, mevcut problemi teşhis etmek ve düzeltmek fazlasıyla zor olacaktır."
+
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Lütfen bu kayıt hatasını bildirmeden önce JSON hata ayıklama modunun devre dışı bırakılmadığından emin olun. Otomatik JSON hata ayıklama modu, [color=#3796e1][url={1}]log klasöründe[/url][/color] {0} adı verilen ek bir dosya oluşturdu. Bu dosya, Thrive geliştiricilerinin kaydetme hatasının ne olduğunu anlaması için kritik bilgiler içerir."
 
 #, fuzzy
 #~ msgid "OUTDATED"
@@ -9905,9 +10053,6 @@ msgstr "Uzaklaştır"
 
 #~ msgid "LOOKING_AT"
 #~ msgstr "Bakılan:"
-
-#~ msgid "SPECIES_N_TIMES"
-#~ msgstr "{0} (x{1})"
 
 #~ msgid "PLAYER_CELL"
 #~ msgstr "Oyuncu Hücresi"

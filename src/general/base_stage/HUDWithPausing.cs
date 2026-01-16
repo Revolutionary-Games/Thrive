@@ -38,7 +38,7 @@ public partial class HUDWithPausing : HUDBase
 
     public virtual void PauseButtonPressed(bool buttonState)
     {
-        if (menu.Visible)
+        if (PauseMenu.Instance.Visible)
         {
             return;
         }
