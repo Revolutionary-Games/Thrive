@@ -156,11 +156,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         if (data == null)
         {
-            if (cellProperties.CreatedMembrane != null)
-            {
-                // Let other users of the membrane know that we are in the process of re-creating the shape
-                cellProperties.CreatedMembrane.IsChangingShape = true;
-            }
+            // Let other users of the membrane know that we are in the process of re-creating the shape
+            cellProperties.CreatedMembrane?.IsChangingShape = true;
 
             // Need to wait for membrane generation. Organelle visuals aren't created yet even if they could be
             // to avoid the organelles popping in before the membrane.
