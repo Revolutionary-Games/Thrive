@@ -37,8 +37,12 @@ public class SimpleBarrier
         {
             while (currentPhase == phase)
             {
+                // TODO: Use WFE on ARM.
+
                 CPUHelpers.HyperThreadPause();
             }
         }
+
+        // TODO: Use SEV on ARM.
     }
 }
