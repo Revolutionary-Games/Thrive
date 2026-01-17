@@ -210,58 +210,68 @@ layout_mode = 2
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "PAUSE_MENU_RESUME_TOOLTIP"
+theme_type_variation = &"BigFontButton"
 text = "RESUME"
 
 [node name="SaveGame" type="Button" parent="CenterContainer/PrimaryMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "SAVE_GAME_BUTTON_TOOLTIP"
+theme_type_variation = &"BigFontButton"
 text = "SAVE_GAME"
 
 [node name="LoadGame" type="Button" parent="CenterContainer/PrimaryMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "LOAD_GAME_BUTTON_TOOLTIP"
+theme_type_variation = &"BigFontButton"
 text = "LOAD_GAME"
 
 [node name="Thriveopedia" type="Button" parent="CenterContainer/PrimaryMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "THRIVEOPEDIA_HINT_IN_GAME"
+theme_type_variation = &"BigFontButton"
 text = "THRIVEOPEDIA"
 
 [node name="Achievements" type="Button" parent="CenterContainer/PrimaryMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
+theme_type_variation = &"BigFontButton"
 text = "ACHIEVEMENTS"
 
 [node name="Help" type="Button" parent="CenterContainer/PrimaryMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "HELP_BUTTON_TOOLTIP"
+theme_type_variation = &"BigFontButton"
 text = "HELP"
 
 [node name="ReportBug" type="Button" parent="CenterContainer/PrimaryMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
+theme_type_variation = &"BigFontButton"
 text = "REPORT_BUG"
 
 [node name="Options" type="Button" parent="CenterContainer/PrimaryMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "OPTIONS_BUTTON_TOOLTIP"
+theme_type_variation = &"BigFontButton"
 text = "OPTIONS"
 
 [node name="ReturnToMenu" type="Button" parent="CenterContainer/PrimaryMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "RETURN_TO_MENU_TOOLTIP"
+theme_type_variation = &"BigFontButton"
 text = "RETURN_TO_MENU"
 
 [node name="Exit" type="Button" parent="CenterContainer/PrimaryMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "QUIT_BUTTON_TOOLTIP"
+theme_type_variation = &"BigFontButton"
 text = "EXIT"
 
 [node name="FocusGrabber" parent="CenterContainer/PrimaryMenu" instance=ExtResource("9")]
