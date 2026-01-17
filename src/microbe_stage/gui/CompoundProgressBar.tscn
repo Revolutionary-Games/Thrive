@@ -26,7 +26,7 @@ compactLabelSettings = ExtResource("2_txlhc")
 
 [node name="Icon" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(25, 25)
-layout_mode = 2
+layout_mode = 0
 offset_right = 25.0
 offset_bottom = 25.0
 size_flags_horizontal = 0
@@ -73,4 +73,5 @@ offset_bottom = 25.0
 grow_horizontal = 0
 text = "0.0 / 4"
 label_settings = ExtResource("2_xwjgn")
+horizontal_alignment = 2
 vertical_alignment = 1
