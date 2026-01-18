@@ -84,11 +84,11 @@ public partial class MicrobeTerrainSystem
     private (float MinX, float MaxX, float MinZ, float MaxZ) GetCellBordersForGroup(Vector2I baseCell,
         float overlapRadius)
     {
-        var minX = baseCell.X * Constants.TERRAIN_GRID_SIZE_X + Constants.TERRAIN_EDGE_PROTECTION_SIZE + overlapRadius;
-        var maxX = (baseCell.X + 1) * Constants.TERRAIN_GRID_SIZE_X - Constants.TERRAIN_EDGE_PROTECTION_SIZE -
+        var minX = baseCell.X * Constants.TERRAIN_GRID_SIZE + Constants.TERRAIN_EDGE_PROTECTION_SIZE + overlapRadius;
+        var maxX = (baseCell.X + 1) * Constants.TERRAIN_GRID_SIZE - Constants.TERRAIN_EDGE_PROTECTION_SIZE -
             overlapRadius;
-        var minZ = baseCell.Y * Constants.TERRAIN_GRID_SIZE_Z + Constants.TERRAIN_EDGE_PROTECTION_SIZE + overlapRadius;
-        var maxZ = (baseCell.Y + 1) * Constants.TERRAIN_GRID_SIZE_Z - Constants.TERRAIN_EDGE_PROTECTION_SIZE -
+        var minZ = baseCell.Y * Constants.TERRAIN_GRID_SIZE + Constants.TERRAIN_EDGE_PROTECTION_SIZE + overlapRadius;
+        var maxZ = (baseCell.Y + 1) * Constants.TERRAIN_GRID_SIZE - Constants.TERRAIN_EDGE_PROTECTION_SIZE -
             overlapRadius;
         return (minX, maxX, minZ, maxZ);
     }
@@ -126,9 +126,9 @@ public partial class MicrobeTerrainSystem
         var position = startingPosition.Value;
 
         var chosenGroup = cluster.TerrainGroups.GetItemByIndex(random.Next(cluster.TerrainGroups.Count));
-        var groupSpawnData = new GroupSpawnData(position, [position], chosenGroup.MaxPossibleChunkRadius,
-            cluster.TerrainGroups.GetItemByIndex(0).Chunks);
-        var clusterSpawnData = new ClusterSpawnData(position, [groupSpawnData]);
+        var groupSpawnData = new GroupSpawnData(position, [position], chosenGroup.Radius,
+            cluster.TerrainGroups.GetItemByIndex(0).Chunks, chosenGroup.RandomizeRotation);
+        var clusterSpawnData = new ClusterSpawnData(position, [groupSpawnData], cluster.RandomizeRotation);
 
         spawned.Add(SpawnTerrainCluster(clusterSpawnData, recorder, random));
         return true;
@@ -139,7 +139,7 @@ public partial class MicrobeTerrainSystem
         XoShiRo128starstar random)
     {
         var chosenGroup = cluster.TerrainGroups.GetItemByIndex(random.Next(cluster.TerrainGroups.Count));
-        var radius = chosenGroup.MaxPossibleChunkRadius;
+        var radius = chosenGroup.Radius;
         var layers = random.Next(Constants.TERRAIN_VENT_RINGS_MIN, Constants.TERRAIN_VENT_RINGS_MAX);
         var collisionRadius = radius * layers;
         var overlapRadius = radius * (layers + Constants.TERRAIN_VENT_OVERLAP_MARGIN);
@@ -165,7 +165,7 @@ public partial class MicrobeTerrainSystem
         var chunksPositions = GetNewVentTerrainPositions(radius, position, random, layers);
 
         groupSpawnData.Add(new GroupSpawnData(position, chunksPositions, overlapRadius,
-            chosenGroup.Chunks, collisionRadius));
+            chosenGroup.Chunks, chosenGroup.RandomizeRotation, collisionRadius));
 
         // Generates a second smaller vent right beside the first one if it fits the grid and doesn't overlap
         // with other terrain. Therefore TERRAIN_SECOND_VENT_CHANCE is lower in practise
@@ -187,11 +187,11 @@ public partial class MicrobeTerrainSystem
             {
                 var secondVentChunksPositions = GetNewVentTerrainPositions(radius, secondVentPosition, random, layers);
                 groupSpawnData.Add(new GroupSpawnData(secondVentPosition, secondVentChunksPositions, overlapRadius,
-                    chosenGroup.Chunks, collisionRadius));
+                    chosenGroup.Chunks, chosenGroup.RandomizeRotation, collisionRadius));
             }
         }
 
-        var clusterSpawnData = new ClusterSpawnData(position, groupSpawnData);
+        var clusterSpawnData = new ClusterSpawnData(position, groupSpawnData, cluster.RandomizeRotation);
 
         spawned.Add(SpawnTerrainCluster(clusterSpawnData, recorder, random));
 
@@ -233,10 +233,15 @@ public partial class MicrobeTerrainSystem
         var groupData = new SpawnedTerrainGroup[clusterSpawnData.Groups.Count];
         var index = 0;
 
+        var clusterRotation = Quaternion.Identity;
+
+        if (clusterSpawnData.RandomizeRotation)
+            clusterRotation = new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
+
         for (var i = 0; i < clusterSpawnData.Groups.Count; ++i)
         {
             var group = clusterSpawnData.Groups[i];
-            var data = SpawnTerrainGroup(group, recorder, random);
+            var data = SpawnTerrainGroup(group, clusterRotation, recorder, random);
 
             groupData[index] = data;
             ++index;
@@ -245,13 +250,19 @@ public partial class MicrobeTerrainSystem
         return new SpawnedTerrainCluster(clusterSpawnData.Position, groupData);
     }
 
-    private SpawnedTerrainGroup SpawnTerrainGroup(GroupSpawnData groupSpawnData, CommandBuffer recorder,
+    private SpawnedTerrainGroup SpawnTerrainGroup(GroupSpawnData groupSpawnData, Quaternion clusterRotation,
+        CommandBuffer recorder,
         XoShiRo128starstar random)
     {
         var groupId = nextGroupId++;
         var data = new SpawnedTerrainGroup(groupSpawnData.Position,
             groupSpawnData.OverlapRadius,
             groupId);
+
+        var groupRotation = clusterRotation;
+
+        if (groupSpawnData.RandomizeRotation)
+            groupRotation += new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
 
         var skipDefaultCollisionsLoading = groupSpawnData.CollisionRadius > 0;
         if (skipDefaultCollisionsLoading)
@@ -269,7 +280,7 @@ public partial class MicrobeTerrainSystem
             if (skipDefaultCollisionsLoading)
             {
                 SpawnHelpers.SpawnTerrainWithoutCollisionWithoutFinalizing(recorder, worldSimulation,
-                    position + yOffset, chunk, groupId, random);
+                    position * groupRotation + yOffset, groupRotation, chunk, groupId, random);
             }
             else
             {
@@ -295,13 +306,14 @@ public partial class MicrobeTerrainSystem
     ///   other chunk's collision meshes won't be loaded
     /// </param>
     private class GroupSpawnData(Vector3 position, List<Vector3> chunksPositions, float overlapRadius,
-        List<TerrainConfiguration.TerrainChunkConfiguration> chunks, float collisionRadius = 0)
+        List<TerrainConfiguration.TerrainChunkConfiguration> chunks, bool randomizeRotation, float collisionRadius = 0)
     {
         public readonly Vector3 Position = position;
         public readonly List<Vector3> ChunksPositions = chunksPositions;
         public readonly float OverlapRadius = overlapRadius;
         public readonly float CollisionRadius = collisionRadius;
         public readonly List<TerrainConfiguration.TerrainChunkConfiguration> Chunks = chunks;
+        public readonly bool RandomizeRotation = randomizeRotation;
     }
 
     /// <summary>
@@ -311,9 +323,10 @@ public partial class MicrobeTerrainSystem
     /// <param name="position">Main position of the cluster</param>
     /// <param name="groups">Groups that compose the cluster</param>
     private class ClusterSpawnData(Vector3 position,
-        List<GroupSpawnData> groups)
+        List<GroupSpawnData> groups, bool randomizeRotation)
     {
         public readonly Vector3 Position = position;
         public readonly List<GroupSpawnData> Groups = groups;
+        public readonly bool RandomizeRotation = randomizeRotation;
     }
 }

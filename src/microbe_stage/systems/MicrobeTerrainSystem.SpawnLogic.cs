@@ -33,17 +33,14 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
 
     private readonly List<SpawnedTerrainCluster> blankClusterList = new();
 
-    private readonly float playerProtectionRadius = 50;
-
-    private readonly int maxSpawnAttempts = 10;
-    private readonly int differentClusterTypeAttempts = 3;
-
-    private readonly int spawnsPerUpdate = 2;
-    private readonly int despawnsPerUpdate = 5;
-
     private Vector3 playerPosition;
 
     private Vector3 nextPlayerPosition;
+
+    private float playerProtectionRadius = 50;
+
+    private int maxSpawnAttempts = 10;
+    private int differentClusterTypeAttempts = 3;
 
     private long baseSeed;
 
@@ -53,6 +50,9 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
     private int unsuccessfulFetches;
 
     private bool printedClustersTightWarning;
+
+    private int spawnsPerUpdate = 2;
+    private int despawnsPerUpdate = 5;
 
     /// <summary>
     ///   Used to mark entity groups for finding them. Wraparound shouldn't cause problems as the spawns should be
@@ -78,8 +78,8 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
 
     public static Vector2I PositionToTerrainCell(Vector3 position)
     {
-        return new Vector2I((int)Math.Floor(position.X * Constants.TERRAIN_GRID_SIZE_INV_X),
-            (int)Math.Floor(position.Z * Constants.TERRAIN_GRID_SIZE_INV_Z));
+        return new Vector2I((int)Math.Floor(position.X * Constants.TERRAIN_GRID_SIZE_INV),
+            (int)Math.Floor(position.Z * Constants.TERRAIN_GRID_SIZE_INV));
     }
 
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)

@@ -1096,7 +1096,7 @@ public static class SpawnHelpers
     }
 
     public static void SpawnTerrainWithoutCollisionWithoutFinalizing(CommandBuffer entityRecorder,
-        IWorldSimulation worldSimulation, Vector3 location,
+        IWorldSimulation worldSimulation, Vector3 location, Quaternion baseRotation,
         TerrainConfiguration.TerrainChunkConfiguration chunkConfiguration, uint groupId, Random random)
     {
         var entity = worldSimulation.CreateEntityDeferred(entityRecorder, TerrainWithCustomCollisionSignature);
@@ -1104,11 +1104,11 @@ public static class SpawnHelpers
         Quaternion rotation;
         if (chunkConfiguration.RandomizeRotation)
         {
-            rotation = new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
+            rotation = baseRotation * new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
         }
         else
         {
-            rotation = chunkConfiguration.DefaultRotation;
+            rotation = baseRotation * chunkConfiguration.DefaultRotation;
         }
 
         entityRecorder.Set(entity, new WorldPosition(location, rotation));
