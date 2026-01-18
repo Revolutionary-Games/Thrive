@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-18 14:51+0700\n"
+"POT-Creation-Date: 2026-01-18 20:22+0700\n"
 "PO-Revision-Date: 2025-12-08 21:28+0000\n"
 "Last-Translator: Matthias Ulbl <matthias.ulbl@gmx.at>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -3476,6 +3476,13 @@ msgstr "(niedrigere Werte verbessern die Leistung)"
 msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
 msgstr "(niedrigere Werte ergeben ein schärferes Bild)"
 
+msgid "LOW_MENU_PERFORMANCE"
+msgstr "Leistung"
+
+#, fuzzy
+msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
+msgstr "Enthält Verdauungsenzyme, welche die Geschwidigkeit und die Effizienz der Verdauung verbessern. Die Art des enthaltenen Enzyms kann verändert werden. Es kann nur ein Enzym pro Lysosom benutzt werden."
+
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "Hintergrundunschärfe in niedriger Auflösung"
 
@@ -4019,6 +4026,12 @@ msgstr "Modifikationen"
 msgid "MODS_ARE_ENABLED"
 msgstr "Keine Mods aktiv"
 
+msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
+msgstr ""
+"Installierte Mods wurden erkannt, aber es sind keine Mods aktiviert.\n"
+"\n"
+"Mods müssen nach der Installation aktiviert werden. Besuchen Sie den Mod-Manager über die Schaltfläche \"Mods\" im Menü \"Extras\"."
+
 msgid "MOD_ASSEMBLY"
 msgstr "Mod Programmbibliothek:"
 
@@ -4455,6 +4468,9 @@ msgstr "Kein Fossilienverzeichnis gefunden"
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "Löschen bestätigen"
 
+msgid "NO_MODS_ENABLED"
+msgstr "Keine Mods aktiv"
+
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Keine Prozesse"
 
@@ -4523,6 +4539,9 @@ msgstr ""
 "Da sich Thrive derzeit noch in einem frühen Entwicklungsstadium befindet, hat Abwärtskompatibilität keine Priorität.\n"
 "Du kannst alle Probleme melden auf die du stoßt, aber sie haben im Moment nicht die höchste Priorität.\n"
 "Möchtest du trotzdem versuchen den Spielstand zu laden?"
+
+msgid "OPENGL_MODE_WARNING"
+msgstr "OpenGL-Modus-Warnung"
 
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr "Du betreibst Thrive mit OpenGL. Dies ist schwerwiegend ungetestet und wird wahrscheinlich Probleme verursachen. Versichere dich, dass du eine ausreichend aktuelle Grafikkarte und Grafiktreiber verwendest. Auf Laptops ist es u.U. erforderlich, die Verwendung von AMD- oder Nvidia-Grafikkarten zur Ausführung von Thrive zu erzwingen."
@@ -5383,6 +5402,9 @@ msgstr ""
 "\n"
 "Wenn das Problem, das den Startfehler verursacht, nicht behoben wird, müssen Sie Thrive mehrmals neu starten und abstürzen lassen, um wieder in den abgesicherten Modus zu gelangen."
 
+msgid "SAFE_MODE_TITLE"
+msgstr "Thrive im abgesicherten Modus gestartet"
+
 msgid "SAVE"
 msgstr "Speichern"
 
@@ -5937,6 +5959,10 @@ msgstr "Steam ist momentan nicht erreichbar, bitte versuche es erneut"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Unbekannter Steam-Fehler ist aufgetreten"
 
+#, fuzzy
+msgid "STEAM_INIT_FAILED"
+msgstr "Initialisierung der Steam-Client-Bibliothek fehlgeschlagen"
+
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Initialisierung der Steam-Client-Bibliothek fehlgeschlagen. Steam-Funktionen sind nicht verfügbar.\n"
@@ -6157,6 +6183,9 @@ msgstr ""
 "Danke fürs spielen!\n"
 "\n"
 "Falls du das Spiel genossen hast, erzähle bitte deinen Freunden von uns."
+
+msgid "THANK_YOU_TITLE"
+msgstr "Vielen Dank"
 
 msgid "THEORY_TEAM"
 msgstr "Theoretiker Team"
@@ -9345,35 +9374,6 @@ msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
-
-#~ msgid "LOW_MENU_PERFORMANCE"
-#~ msgstr "Leistung"
-
-#, fuzzy
-#~ msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
-#~ msgstr "Enthält Verdauungsenzyme, welche die Geschwidigkeit und die Effizienz der Verdauung verbessern. Die Art des enthaltenen Enzyms kann verändert werden. Es kann nur ein Enzym pro Lysosom benutzt werden."
-
-#~ msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
-#~ msgstr ""
-#~ "Installierte Mods wurden erkannt, aber es sind keine Mods aktiviert.\n"
-#~ "\n"
-#~ "Mods müssen nach der Installation aktiviert werden. Besuchen Sie den Mod-Manager über die Schaltfläche \"Mods\" im Menü \"Extras\"."
-
-#~ msgid "NO_MODS_ENABLED"
-#~ msgstr "Keine Mods aktiv"
-
-#~ msgid "OPENGL_MODE_WARNING"
-#~ msgstr "OpenGL-Modus-Warnung"
-
-#~ msgid "SAFE_MODE_TITLE"
-#~ msgstr "Thrive im abgesicherten Modus gestartet"
-
-#, fuzzy
-#~ msgid "STEAM_INIT_FAILED"
-#~ msgstr "Initialisierung der Steam-Client-Bibliothek fehlgeschlagen"
-
-#~ msgid "THANK_YOU_TITLE"
-#~ msgstr "Vielen Dank"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Benutzt Auto Harmony:"

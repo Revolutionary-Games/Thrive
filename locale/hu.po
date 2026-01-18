@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-18 14:51+0700\n"
+"POT-Creation-Date: 2026-01-18 20:22+0700\n"
 "PO-Revision-Date: 2025-12-05 09:23+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -3711,6 +3711,16 @@ msgstr "(a nagyobb értékek javíthatják a teljesítményt)"
 msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
 msgstr "(alacsonyabb érték élesebb képet eredményez)"
 
+#, fuzzy
+msgid "LOW_MENU_PERFORMANCE"
+msgstr "Teljesítmény"
+
+msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
+msgstr ""
+"Az átlagos képkockasebességed nagyon alacsony.\n"
+"A 3D menühátterek engedélyezve vannak, amelyek jelentős rendszererőforrásokat használhatnak fel. Az opció kikapcsolása jelentősen növelheti a teljesítményt.\n"
+"Szeretnéd ezt most megtenni?"
+
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "Alacsony felbontású háttérelmosás"
 
@@ -4336,6 +4346,13 @@ msgstr "Modok"
 msgid "MODS_ARE_ENABLED"
 msgstr "Kikapcsolva"
 
+#, fuzzy
+msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
+msgstr ""
+"Telepített modok észlelve, de nincsen mod engedélyezve.\n"
+"\n"
+"A modokat engedélyezni kell telepítés után. Látogasd meg a mod menedzsert a modok gomb használatával az Extrák menüpont alatt."
+
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
@@ -4807,6 +4824,10 @@ msgstr "A mentések mappa nem található"
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "A jelen játékban már nem érhetők el eredmények"
 
+#, fuzzy
+msgid "NO_MODS_ENABLED"
+msgstr "Kikapcsolva"
+
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Nincs folyamat"
 
@@ -4880,6 +4901,10 @@ msgstr ""
 "Mivel a Thrive még eléggé gyermekcipőben jár, ezért nem elsődleges cél a mentések kompatibilitása.\n"
 "Jelentheted ezeket a hibákat a fejlesztőknek, de ezek nem elsődlegesek.\n"
 "Biztos be akarod tölteni a mentést?"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "GLES2 mód figyelmeztetés"
 
 #, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
@@ -5760,6 +5785,10 @@ msgstr ""
 "A bátor sejtek nem ijednek meg a ragadozó sejtektől,\n"
 "így nagy eséllyel védekezésképp vissza is támadnak."
 
+#, fuzzy
+msgid "SAFE_MODE_TITLE"
+msgstr "Helyi adatok törlése"
+
 msgid "SAVE"
 msgstr "Mentés"
 
@@ -6344,6 +6373,10 @@ msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Ismeretlen Steam hiba történt"
 
 #, fuzzy
+msgid "STEAM_INIT_FAILED"
+msgstr "A mentés sikertelen! Hiba történt"
+
+#, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
@@ -6565,6 +6598,9 @@ msgstr ""
 "Köszönjük, hogy játszottál a játékkal!\n"
 "\n"
 "Ha élvezted a játékot, akkor beszélj a barátaidnak is rólunk."
+
+msgid "THANK_YOU_TITLE"
+msgstr "Köszönjük"
 
 msgid "THEORY_TEAM"
 msgstr "Elméleti csapat"
@@ -9632,42 +9668,6 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
-
-#, fuzzy
-#~ msgid "LOW_MENU_PERFORMANCE"
-#~ msgstr "Teljesítmény"
-
-#~ msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
-#~ msgstr ""
-#~ "Az átlagos képkockasebességed nagyon alacsony.\n"
-#~ "A 3D menühátterek engedélyezve vannak, amelyek jelentős rendszererőforrásokat használhatnak fel. Az opció kikapcsolása jelentősen növelheti a teljesítményt.\n"
-#~ "Szeretnéd ezt most megtenni?"
-
-#, fuzzy
-#~ msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
-#~ msgstr ""
-#~ "Telepített modok észlelve, de nincsen mod engedélyezve.\n"
-#~ "\n"
-#~ "A modokat engedélyezni kell telepítés után. Látogasd meg a mod menedzsert a modok gomb használatával az Extrák menüpont alatt."
-
-#, fuzzy
-#~ msgid "NO_MODS_ENABLED"
-#~ msgstr "Kikapcsolva"
-
-#, fuzzy
-#~ msgid "OPENGL_MODE_WARNING"
-#~ msgstr "GLES2 mód figyelmeztetés"
-
-#, fuzzy
-#~ msgid "SAFE_MODE_TITLE"
-#~ msgstr "Helyi adatok törlése"
-
-#, fuzzy
-#~ msgid "STEAM_INIT_FAILED"
-#~ msgstr "A mentés sikertelen! Hiba történt"
-
-#~ msgid "THANK_YOU_TITLE"
-#~ msgstr "Köszönjük"
 
 #, fuzzy
 #~ msgid "MOD_AUTO_HARMONY"

@@ -940,6 +940,7 @@ offset_right = 680.0
 offset_bottom = 148.0
 HideCancelButton = true
 DialogText = "OPENGL_MODE_WARNING_EXPLANATION"
+WindowTitle = "OPENGL_MODE_WARNING"
 
 [node name="ModsInstalledButNothingEnabledWarning" parent="." instance=ExtResource("59")]
 custom_minimum_size = Vector2(550, 0)
@@ -947,6 +948,11 @@ layout_mode = 0
 offset_right = 163.0
 offset_bottom = 97.0
 DialogType = 1
+CenterText = false
+HideCancelButton = true
+DialogText = "MODS_INSTALLED_BUT_NOT_ENABLED"
+WindowTitle = "NO_MODS_ENABLED"
+Exclusive = false
 
 [node name="SafeModeWarningDialog" parent="." instance=ExtResource("4")]
 custom_minimum_size = Vector2(550, 370)
@@ -955,6 +961,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 HideCancelButton = true
 DialogText = "SAFE_MODE_EXPLANATION"
+WindowTitle = "SAFE_MODE_TITLE"
 
 [node name="ModFailureDialog" parent="." instance=ExtResource("15")]
 custom_minimum_size = Vector2(400, 350)
@@ -970,6 +977,10 @@ offset_right = 163.0
 offset_bottom = 97.0
 NoticeType = 1
 AutomaticallyCheckDismissPermanently = true
+CenterText = false
+HideCancelButton = true
+DialogText = "THANKS_FOR_BUYING_THRIVE_2"
+WindowTitle = "THANK_YOU_TITLE"
 
 [node name="SteamFailedDialog" parent="." instance=ExtResource("4")]
 custom_minimum_size = Vector2(500, 0)
@@ -978,6 +989,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 HideCancelButton = true
 DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
+WindowTitle = "STEAM_INIT_FAILED"
 
 [node name="LowPerformanceDialog" parent="." instance=ExtResource("59")]
 custom_minimum_size = Vector2(500, 0)
@@ -985,6 +997,9 @@ layout_mode = 0
 NoticeType = 2
 DialogType = 1
 PermanentDismissType = 1
+DialogText = "LOW_MENU_PERFORMANCE_DESCRIPTION"
+WindowTitle = "LOW_MENU_PERFORMANCE"
+ShowCloseButton = false
 
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/LoadGame" to="." method="LoadGamePressed"]
@@ -1011,8 +1026,27 @@ PermanentDismissType = 1
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Benchmarks/MicrobeBenchmark" to="." method="MicrobeBenchmarkPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Benchmarks/CloudBenchmark" to="." method="CloudBenchmarkPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Benchmarks/Back" to="." method="OnReturnFromBenchmarks"]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/OfficialWebsiteButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://revolutionarygamesstudio.com/"]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/CommunityForumButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://community.revolutionarygamesstudio.com/"]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/DevelopmentForumButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://forum.revolutionarygamesstudio.com/"]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/DevelopmentWikiButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://wiki.revolutionarygamesstudio.com/"]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/CommunityWikiButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://thrive.fandom.com/wiki/Thrive_Wiki"]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/ReportBugButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://community.revolutionarygamesstudio.com/c/bug-reports/13"]]
 [connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
 [connection signal="pressed" from="MenuContainers/SocialMedia/RevolutionaryGamesButton" to="." method="OnWebsitesButtonPressed"]
+[connection signal="pressed" from="MenuContainers/SocialMedia/SteamButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://store.steampowered.com/app/1779200/Thrive/"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/ItchButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://revolutionarygames.itch.io/thrive"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/PatreonButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://www.patreon.com/thrivegame"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/GitHubButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://github.com/Revolutionary-Games/Thrive"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/YouTubeButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://www.youtube.com/c/RevolutionaryGames"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/ThreadsButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://www.threads.net/@thrive_game"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/RedditButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://www.reddit.com/r/thrive/"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/DiscordButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://discordapp.com/invite/ECR9E8x"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/FacebookButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://www.facebook.com/Thrive-182887991751358/"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/TwitterButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://x.com/Thrive_Game"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/InstagramButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://www.instagram.com/thrive_game/"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/MastodonButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://mastodon.social/@Thrive_Game"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/BlueskyButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://bsky.app/profile/revolutionarygamesstudio.com"]]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
 [connection signal="OnNewGameSettingsClosed" from="NewGameSettings" to="." method="OnReturnFromNewGameSettings"]

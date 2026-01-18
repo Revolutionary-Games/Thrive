@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-18 14:51+0700\n"
+"POT-Creation-Date: 2026-01-18 20:22+0700\n"
 "PO-Revision-Date: 2025-12-05 22:50+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -3574,6 +3574,13 @@ msgstr "(valores mais altos melhoram o desempenho)"
 msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
 msgstr ""
 
+msgid "LOW_MENU_PERFORMANCE"
+msgstr "Desempenho Baixo Detetado"
+
+#, fuzzy
+msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
+msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode libertar toxinas pressionado [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] é baixa, será possível disparar, mas o dano irá ser reduzido."
+
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr ""
 
@@ -4183,6 +4190,10 @@ msgstr "Mods"
 msgid "MODS_ARE_ENABLED"
 msgstr "Sem Mods ativos"
 
+#, fuzzy
+msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
+msgstr "Sem Mods ativos"
+
 msgid "MOD_ASSEMBLY"
 msgstr "Assembly do Mod:"
 
@@ -4634,6 +4645,9 @@ msgstr "Nenhum diretório de ficheiros guardados encontrado"
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr "Confirmar Apagar"
 
+msgid "NO_MODS_ENABLED"
+msgstr "Sem Mods ativos"
+
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Sem processos"
 
@@ -4704,6 +4718,10 @@ msgstr ""
 "Como o Thrive está atualmente no início do desenvolvimento, a compatibilidade de jogos guardados não é uma prioridade.\n"
 "Podes reportar quaisquer problemas que encontrares, no entanto eles não têm uma prioridade alta no momento.\n"
 "Queres tentar carregar o jogo guardado mesmo assim?"
+
+#, fuzzy
+msgid "OPENGL_MODE_WARNING"
+msgstr "Aviso do modo GLES2"
 
 #, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
@@ -5569,6 +5587,9 @@ msgstr ""
 "Os micróbios corajosos não se deixam intimidar pelos predadores próximos\n"
 "e, mais provavelmente, irão atacar de volta."
 
+msgid "SAFE_MODE_TITLE"
+msgstr "Thrive iniciado no Modo Seguro"
+
 msgid "SAVE"
 msgstr "Gravar"
 
@@ -6132,6 +6153,9 @@ msgstr "O Steam não está disponível no momento, tente novamente"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Ocorreu um erro desconhecido da Steam"
 
+msgid "STEAM_INIT_FAILED"
+msgstr "Falha na inicialização do Steam"
+
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "A inicialização da biblioteca do cliente Steam falhou. As funcionalidades do Steam ficarão indisponíveis.\n"
@@ -6353,6 +6377,9 @@ msgstr ""
 "Obrigado por jogares!\n"
 "\n"
 "Se gostaste do jogo, diz aos teus amigos."
+
+msgid "THANK_YOU_TITLE"
+msgstr "Obrigado"
 
 msgid "THEORY_TEAM"
 msgstr "Equipa de Teoria"
@@ -9375,29 +9402,6 @@ msgstr "Ampliar"
 
 msgid "ZOOM_OUT"
 msgstr "Reduzir"
-
-#~ msgid "LOW_MENU_PERFORMANCE"
-#~ msgstr "Desempenho Baixo Detetado"
-
-#, fuzzy
-#~ msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
-#~ msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode libertar toxinas pressionado [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] é baixa, será possível disparar, mas o dano irá ser reduzido."
-
-#~ msgid "NO_MODS_ENABLED"
-#~ msgstr "Sem Mods ativos"
-
-#, fuzzy
-#~ msgid "OPENGL_MODE_WARNING"
-#~ msgstr "Aviso do modo GLES2"
-
-#~ msgid "SAFE_MODE_TITLE"
-#~ msgstr "Thrive iniciado no Modo Seguro"
-
-#~ msgid "STEAM_INIT_FAILED"
-#~ msgstr "Falha na inicialização do Steam"
-
-#~ msgid "THANK_YOU_TITLE"
-#~ msgstr "Obrigado"
 
 #, fuzzy
 #~ msgid "MOD_AUTO_HARMONY"
