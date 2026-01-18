@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -9,6 +10,7 @@ using System.Threading;
 using Godot;
 using Newtonsoft.Json;
 using Saving.Serializers;
+using FileAccess = Godot.FileAccess;
 
 /// <summary>
 ///   Main JSON conversion class for Thrive handling all our custom stuff
@@ -61,6 +63,20 @@ public class ThriveJsonConverter : IDisposable
         return PerformWithSettings(s => JsonConvert.DeserializeObject<T>(json, s));
     }
 
+    public T? DeserializeFile<T>(string path)
+    {
+        try
+        {
+            var json = ReadJSONFile(path);
+            return PerformWithSettings(s => JsonConvert.DeserializeObject<T>(json, s));
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Failed to deserialize file {path}: {e.Message}");
+            return default;
+        }
+    }
+
     public void Dispose()
     {
         Dispose(true);
@@ -78,6 +94,20 @@ public class ThriveJsonConverter : IDisposable
 
             disposed = true;
         }
+    }
+
+    private static string ReadJSONFile(string path)
+    {
+        string? result;
+        using (var file = FileAccess.Open(path, FileAccess.ModeFlags.Read))
+        {
+            result = file.GetAsText();
+        }
+
+        if (string.IsNullOrEmpty(result))
+            throw new IOException($"Failed to read json file: {path}");
+
+        return result;
     }
 
     private JsonSerializerSettings CreateSettings()

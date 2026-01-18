@@ -15,6 +15,8 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     private const double EMERGENCY_SHOW_TABS_AFTER_SECONDS = 4;
 
+    // TODO: this prevents directly starting the editor scene due to depending on the simulation parameters being
+    // loaded
     private readonly MicrobeSpeciesComparer speciesComparer = new();
 
 #pragma warning disable CA2213
