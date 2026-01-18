@@ -153,7 +153,6 @@ text = "LAWK_ONLY"
 [node name="LAWKButton" type="CheckButton" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer4/HBoxContainer"]
 layout_mode = 2
 button_pressed = true
-flat = true
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer4"]
 custom_minimum_size = Vector2(200, 0)
@@ -846,7 +845,6 @@ text = "FREE_GLUCOSE_CLOUD"
 [node name="FreeGlucoseCloud" type="CheckButton" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer17/HBoxContainer"]
 layout_mode = 2
 button_pressed = true
-flat = true
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer17"]
 custom_minimum_size = Vector2(200, 0)
@@ -872,7 +870,6 @@ text = "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
 [node name="AllowSpeciesSwitch" type="CheckButton" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer18/HBoxContainer"]
 layout_mode = 2
 button_pressed = true
-flat = true
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer18"]
 custom_minimum_size = Vector2(200, 0)
@@ -898,7 +895,6 @@ text = "LIMIT_GROWTH_RATE"
 [node name="LimitGrowth" type="CheckButton" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer19/HBoxContainer"]
 layout_mode = 2
 button_pressed = true
-flat = true
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer19"]
 custom_minimum_size = Vector2(200, 0)
@@ -924,7 +920,6 @@ text = "INSTANT_KILL_PROTECTION"
 [node name="InstantKillProtection" type="CheckButton" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer20/HBoxContainer"]
 layout_mode = 2
 button_pressed = true
-flat = true
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer20"]
 custom_minimum_size = Vector2(200, 0)
@@ -950,7 +945,6 @@ text = "ORGANELLE_UNLOCKS_ENABLED"
 [node name="OrganellesUnlocks" type="CheckButton" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer21/HBoxContainer"]
 layout_mode = 2
 button_pressed = true
-flat = true
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer21"]
 custom_minimum_size = Vector2(200, 0)
@@ -1000,7 +994,6 @@ text = "INCLUDE_MULTICELLULAR_PROTOTYPE"
 [node name="IncludeMulticellular" type="CheckButton" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer5/HBoxContainer"]
 layout_mode = 2
 button_pressed = true
-flat = true
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer5"]
 custom_minimum_size = Vector2(200, 0)
@@ -1026,7 +1019,6 @@ text = "EASTER_EGGS"
 [node name="EasterEggs" type="CheckButton" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer6/HBoxContainer"]
 layout_mode = 2
 button_pressed = true
-flat = true
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer6"]
 custom_minimum_size = Vector2(200, 0)
@@ -1051,7 +1043,6 @@ text = "EXPERIMENTAL_FEATURES"
 
 [node name="ExperimentalFeatures" type="CheckButton" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer7/HBoxContainer"]
 layout_mode = 2
-flat = true
 
 [node name="ExperimentalWarningLabel" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptionsContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer7"]
 custom_minimum_size = Vector2(200, 0)
