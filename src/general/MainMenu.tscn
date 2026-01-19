@@ -309,7 +309,6 @@ focus_neighbor_top = NodePath(".")
 focus_neighbor_bottom = NodePath("../LoadGame")
 focus_previous = NodePath(".")
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "NEW_GAME"
 
 [node name="LoadGame" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
@@ -317,7 +316,6 @@ custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "LOAD_GAME_BUTTON_TOOLTIP"
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "LOAD_GAME"
 
 [node name="Options" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
@@ -325,35 +323,30 @@ custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "OPTIONS_BUTTON_TOOLTIP"
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "OPTIONS"
 
 [node name="Tools" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "TOOLS"
 
 [node name="ViewSourceCode" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "VIEW_SOURCE_CODE"
 
 [node name="Extras" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "EXTRAS"
 
 [node name="Credits" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "CREDITS"
 
 [node name="Launcher" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
@@ -361,7 +354,6 @@ custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "QUIT_BUTTON_TOOLTIP"
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "EXIT_TO_LAUNCHER"
 
 [node name="Quit" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
@@ -372,7 +364,6 @@ focus_neighbor_left = NodePath("../../../../SocialMedia/BlueskyButton")
 focus_neighbor_bottom = NodePath(".")
 focus_next = NodePath("../../../../SocialMedia/RevolutionaryGamesButton")
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "QUIT"
 
 [node name="FocusGrabber" parent="MenuContainers/Menus/VBoxContainer/MainMenu" instance=ExtResource("56")]
@@ -394,7 +385,6 @@ size_flags_vertical = 0
 focus_neighbor_top = NodePath(".")
 focus_previous = NodePath(".")
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "MICROBE_FREEBUILD_EDITOR"
 
 [node name="FreebuildMulticellularEditor" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
@@ -402,7 +392,6 @@ custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "MULTICELLULAR_FREEBUILD_EDITOR"
 
 [node name="AutoEvoExploring" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
@@ -412,7 +401,6 @@ size_flags_vertical = 0
 focus_neighbor_bottom = NodePath("../PlanetCustomizer")
 focus_next = NodePath("../PlanetCustomizer")
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "AUTO_EVO_EXPLORING_TOOL"
 
 [node name="PlanetCustomizer" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
@@ -422,7 +410,6 @@ size_flags_vertical = 0
 focus_neighbor_bottom = NodePath("../Benchmarks")
 focus_next = NodePath("../Benchmarks")
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "PLANET_CUSTOMIZER"
 
 [node name="Benchmarks" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
@@ -432,7 +419,6 @@ size_flags_vertical = 0
 focus_neighbor_bottom = NodePath("../Back")
 focus_next = NodePath("../Back")
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "BENCHMARKS"
 
 [node name="Back" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
@@ -443,7 +429,6 @@ focus_neighbor_left = NodePath("../../../../SocialMedia/TwitterButton")
 focus_neighbor_top = NodePath("../Benchmarks")
 focus_previous = NodePath("../Benchmarks")
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "BACK"
 
 [node name="FocusGrabber" parent="MenuContainers/Menus/VBoxContainer/Tools" instance=ExtResource("56")]
@@ -465,7 +450,6 @@ size_flags_vertical = 0
 focus_neighbor_top = NodePath(".")
 focus_previous = NodePath(".")
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "THRIVEOPEDIA"
 
 [node name="Achievements" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
@@ -473,7 +457,6 @@ custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "ACHIEVEMENTS"
 
 [node name="Mods" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
@@ -481,7 +464,6 @@ custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "MODS"
 
 [node name="ArtGallery" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
@@ -489,7 +471,6 @@ custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "ART_GALLERY"
 
 [node name="Licenses" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
@@ -497,7 +478,6 @@ custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "LICENSES"
 
 [node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
@@ -505,7 +485,6 @@ custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "VISIT_SUGGESTIONS_SITE"
 
 [node name="Back" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
@@ -516,7 +495,6 @@ focus_neighbor_left = NodePath("../../../../SocialMedia/TwitterButton")
 focus_neighbor_bottom = NodePath(".")
 focus_next = NodePath(".")
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "BACK"
 
 [node name="FocusGrabber" parent="MenuContainers/Menus/VBoxContainer/Extras" instance=ExtResource("56")]
@@ -538,7 +516,6 @@ size_flags_vertical = 0
 focus_neighbor_top = NodePath(".")
 focus_previous = NodePath(".")
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "MICROBE_BENCHMARK"
 
 [node name="CloudBenchmark" type="Button" parent="MenuContainers/Menus/VBoxContainer/Benchmarks"]
@@ -548,7 +525,6 @@ size_flags_vertical = 0
 focus_neighbor_top = NodePath(".")
 focus_previous = NodePath(".")
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "COMPOUND_CLOUD_BENCHMARK"
 
 [node name="unknown" type="Button" parent="MenuContainers/Menus/VBoxContainer/Benchmarks"]
@@ -558,7 +534,6 @@ layout_mode = 2
 size_flags_vertical = 0
 focus_mode = 0
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 disabled = true
 text = "???"
 
@@ -568,7 +543,6 @@ layout_mode = 2
 size_flags_vertical = 0
 focus_neighbor_left = NodePath("../../../../SocialMedia/TwitterButton")
 mouse_filter = 1
-theme_type_variation = &"BigFontButton"
 text = "BACK"
 
 [node name="FocusGrabber" parent="MenuContainers/Menus/VBoxContainer/Benchmarks" instance=ExtResource("56")]
