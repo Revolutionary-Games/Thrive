@@ -157,6 +157,22 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         writer.WriteObjectOrNull(editedSpecies);
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        CheatManager.OnRevealAllPatches += OnRevealAllPatchesCheatUsed;
+        CheatManager.OnUnlockAllOrganelles += OnUnlockAllOrganellesCheatUsed;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        CheatManager.OnRevealAllPatches -= OnRevealAllPatchesCheatUsed;
+        CheatManager.OnUnlockAllOrganelles -= OnUnlockAllOrganellesCheatUsed;
+    }
+
     public void SendAutoEvoResultsToReportComponent()
     {
         if (autoEvoResults == null)
@@ -491,6 +507,21 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         selectedCellTypeToEdit = null;
 
         base.OnEditorExitTransitionFinished();
+    }
+
+    private void OnRevealAllPatchesCheatUsed(object? sender, EventArgs args)
+    {
+        CurrentGame.GameWorld.Map.RevealAllPatches();
+        patchMapTab.MarkDrawerDirty();
+    }
+
+    private void OnUnlockAllOrganellesCheatUsed(object? sender, EventArgs args)
+    {
+        if (CurrentGame.GameWorld.UnlockProgress.UnlockAll)
+            return;
+
+        CurrentGame.GameWorld.UnlockProgress.UnlockAll = true;
+        cellEditorTab.UnlockAllOrganelles();
     }
 
     private void UpdateAutoEvoToReportTab()
