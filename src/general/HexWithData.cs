@@ -1,4 +1,5 @@
 ﻿using System;
+using Godot;
 using Saving.Serializers;
 using SharedBase.Archive;
 
@@ -7,14 +8,34 @@ public class HexWithData<T> : IPositionedHex, IReadOnlyHexWithData<T>, IArchivab
 {
     public HexWithData(T? data, Hex position, int orientation)
     {
+        // This is before the if-check to apply the custom value setter
+        Orientation = orientation;
+
+#if DEBUG
+        if (data is IPositionedHex posHex)
+        {
+            if (posHex.Position != position || posHex.Orientation != Orientation)
+            {
+                GD.PrintErr("HexWithData position and orientation mismatch with data object");
+            }
+        }
+#endif
+
         Data = data;
         Position = position;
-        Orientation = orientation;
     }
 
     public T? Data { get; set; }
     public Hex Position { get; set; }
-    public int Orientation { get; set; }
+
+    public int Orientation
+    {
+        get;
+
+        // Normalize rotations to work similarly to CellTemplate, otherwise this will break everything by not matching
+        // rotations
+        set => field = value % 6;
+    }
 
     public ushort CurrentArchiveVersion => HexLayoutSerializer.SERIALIZATION_VERSION;
     public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ExtendedHexWithData;
@@ -50,10 +71,7 @@ public class HexWithData<T> : IPositionedHex, IReadOnlyHexWithData<T>, IArchivab
 
     public HexWithData<T> Clone()
     {
-        return new HexWithData<T>((T?)Data?.Clone(), Position, Orientation)
-        {
-            Orientation = Orientation,
-        };
+        return new HexWithData<T>((T?)Data?.Clone(), Position, Orientation);
     }
 
     public override string ToString()
