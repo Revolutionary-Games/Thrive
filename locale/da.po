@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-18 20:22+0700\n"
-"PO-Revision-Date: 2026-01-16 15:11+0000\n"
-"Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
+"POT-Creation-Date: 2026-01-12 15:26+0100\n"
+"PO-Revision-Date: 2026-01-19 13:09+0000\n"
+"Last-Translator: Magnus Norling Svane <magn665e@icloud.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -269,10 +269,10 @@ msgid "ASCENSION_STAGE"
 msgstr "Opstigningsstadiet"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr ""
+msgstr "Mod assembly klasse er påkrævet når assembly er specificeret"
 
 msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
-msgstr ""
+msgstr "Assembly er påkrævet når en mod klasse er specificeret"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Antag CPU har hyperthreading slået til"
@@ -291,9 +291,13 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "ATP balance"
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr ""
+"Denne sektion viser den totale ATP (energi) balance for den nuværende celle.\n"
+"For at kunne overleve kræver det at balancen er positiv. Stillestående celler kan overveje en balance hvor bevægelse er udelukket.\n"
+"Dropdownen nedenunder kan bruges til at checke hvad der ville ske hvis cellen ikke havde adgang til nogle af de ressourcer nødvendige for at producere ATP.\n"
+"F.eks. kan nogle celler kun vedligeholde en positiv ATP balance når de har flere forskellige stoftyper til at skabe ATP med på en gang.\n"
+"Disse typer celler er sværere at spille, da de kræver at man har flere forskellige typer stoffer lageret på en gang for at kunne overleve."
 
 #, fuzzy
 msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
@@ -945,7 +949,7 @@ msgid "COMMAND_INPUT_LINE_EDIT"
 msgstr "Indsæt kommando"
 
 msgid "COMMON_ABILITIES"
-msgstr "Almindelige Kræfter"
+msgstr "Almindelige evner"
 
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr "Almene editor og strategi stadier"
@@ -1731,7 +1735,7 @@ msgid "DISPLAY_3D_MENU_BACKGROUNDS"
 msgstr "Vis 3D menu baggrunde"
 
 msgid "DISPLAY_ABILITIES_BAR"
-msgstr "Vis kræfter bar"
+msgstr "Vis evner bar"
 
 msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
 msgstr "Anvend forvrængning af mickrobe baggrunde"
@@ -2721,7 +2725,7 @@ msgid "INFO_BOX_NEXT_STAGE"
 msgstr "Næste stadie"
 
 msgid "INFO_BOX_OSMOREGULATION_COST"
-msgstr "Osmoregulering omkostning"
+msgstr "Osmoreguleringsomkostning"
 
 msgid "INFO_BOX_PREVIOUS_STAGE"
 msgstr "Forrige stadie"
@@ -3138,7 +3142,7 @@ msgid "LAWK_ONLY"
 msgstr "Kun LSVK"
 
 msgid "LAWK_ONLY_EXPLANATION"
-msgstr "(begrænser dele og kræfter til Liv Som Vi Kender det)"
+msgstr "(begrænser dele og evner til Liv Som Vi Kender det)"
 
 msgid "LEAD_ARTIST"
 msgstr "Lead artist"
@@ -3350,13 +3354,11 @@ msgstr "(lavere værdier øger performance)"
 msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
 msgstr "(lavere værdier gør billedet skarpere)"
 
-#, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
-msgstr "(lavere værdier øger performance)"
+msgstr ""
 
-#, fuzzy
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
-msgstr "Indeholder fordøjelsesenzymer. Kan modificeres for at skifte hvilket enzym den indeholder. Kun et enzym per lysosom kan bruges ad gangen. Enzymer øger hastigheden og forbedrer effektiviteten af fordøjelsen."
+msgstr ""
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "Lavresolution baggrundssløring"
@@ -3546,19 +3548,19 @@ msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
 msgstr "Endosymbiose selektionstryk"
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr "Miljømæssig stof tryk"
+msgstr "Miljømæssig stoftryk"
 
 msgid "MICHE_ENVIRONMENTAL_TOLERANCE"
-msgstr "Miljømæssig stoffer tryk"
+msgstr "Miljømæssig stoffers tryk"
 
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
-msgstr ""
+msgstr "Oprethold stoftryk"
 
 msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
-msgstr ""
+msgstr "Metabolisk stabilitetspres"
 
 msgid "MICHE_NO_OP_PRESSURE"
-msgstr ""
+msgstr "Ingen operationspres"
 
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
 msgstr ""
@@ -3576,173 +3578,226 @@ msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
 msgstr ""
 
 msgid "MICHE_TREE"
-msgstr ""
+msgstr "Miche træ"
 
 msgid "MICROBE"
-msgstr ""
+msgstr "Mikrobe"
 
 msgid "MICROBES_COUNT"
-msgstr ""
+msgstr "Mikrobe antal:"
 
 msgid "MICROBE_BENCHMARK"
-msgstr ""
+msgstr "Mikrobe benchmark"
 
 msgid "MICROBE_CAMERA_TILT_EFFECT"
-msgstr ""
+msgstr "Mikrobe kamera tilt"
 
 msgid "MICROBE_CURRENT_PARTICLES"
-msgstr ""
+msgstr "Nuværende mikrobe partikler:"
 
 msgid "MICROBE_EDITOR"
-msgstr ""
+msgstr "Mikrobe editor"
 
 msgid "MICROBE_ENZYME_STATISTICS"
-msgstr ""
+msgstr "[b]Enzyme data:[/b]"
 
 msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr ""
+msgstr "Mikrobe fribyg editor"
 
 msgid "MICROBE_LOADING_TIP_1"
-msgstr ""
+msgstr "Hver hex af cytoplasma koster 1 [thrive:compound type=\"atp\"][/thrive:compound] per sekund at vedligeholde, men det skaber 3 [thrive:compound type=\"atp\"][/thrive:compound]. Hvis du mangler [thrive:compound type=\"atp\"][/thrive:compound], så prøv at tilføje et par hexes, eller at fjerne nogle organeller."
 
 msgid "MICROBE_LOADING_TIP_10"
-msgstr ""
+msgstr "Din celle bruger [thrive:compound type=\"atp\"][/thrive:compound] som dens energikilde. Hvis det løber tør, så dør du."
 
 msgid "MICROBE_LOADING_TIP_11"
-msgstr ""
+msgstr "For at kunne tilgå editoren og reproducere, skal du holde dig i live længe nok. Du kan øge væksthastigheden ved at samle [thrive:compound type=\"ammonia\"][/thrive:compound] (orange sky) og [thrive:compound type=\"phosphates\"][/thrive:compound] (lilla sky)."
 
 msgid "MICROBE_LOADING_TIP_12"
-msgstr ""
+msgstr "Du kan opsluge ting som er mindre end dig for at fodre dig selv ved at trykke på [thrive:input]g_toggle_engulf[/thrive:input]. Dette koster ekstra [thrive:compound type=\"atp\"][/thrive:compound] og gør dig langsommere. Glem ike at trykke på [thrive:input]g_toggle_engulf[/thrive:input] igen for at stoppe med at opsluge."
 
 msgid "MICROBE_LOADING_TIP_13"
-msgstr ""
+msgstr "Jo større den celle er, desto flere [thrive:compound type=\"atp\"][/thrive:compound]-producerende dele har du brug for bare for at holde dig selv i live. Metabolosomer, rusticyanin, hydrogenase og selv cytoplasma producerer [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "MICROBE_LOADING_TIP_14"
-msgstr ""
+msgstr "Der er mange organeller i editoren du kan bruge til at udvikle dig selv med, hvilket tillader mange forskellige spillestiler."
 
 msgid "MICROBE_LOADING_TIP_15"
-msgstr ""
+msgstr "Der er en begrænset mængde ressourcer tilgængelig for hver art, så ved at øge størrelsen på din celle mindsker du også din maksimale bestandsstørrelse."
 
 msgid "MICROBE_LOADING_TIP_16"
-msgstr ""
+msgstr "Brug [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input] og [thrive:input]g_move_right[/thrive:input] for at bevæge dig, og musen til at rotere. Brug [thrive:input]g_fire_toxin[/thrive:input] til at skyde [thrive:compound type=\"oxytoxy\"][/thrive:compound] hvis du har en toksin vacuole. Tryk [thrive:input]g_toggle_engulf[/thrive:input] for at slå opslugnings tilstanden til og fra. Du kan zoome ind og ud med musehjulet."
 
 msgid "MICROBE_LOADING_TIP_17"
-msgstr ""
+msgstr "For at reproducere skal du splitte hvor af dine organeller i to. Organeller har brug for tid til at splitte, men ved at samle [thrive:compound type=\"ammonia\"][/thrive:compound] og [thrive:compound type=\"phosphates\"][/thrive:compound] bliver processen hurtigere."
 
 msgid "MICROBE_LOADING_TIP_18"
-msgstr ""
+msgstr "Pas på, for dine konkurrenter udvikler sig sideløbende med dig. Hver gang du tilgår editoren udvikler de sig også."
 
 msgid "MICROBE_LOADING_TIP_19"
-msgstr ""
+msgstr "Bindingsmiddle tillader dig at bygge en cellekoloni med andre af din art. Cellerne deler alle stoffer, agerer som en, og tillader dig at udvikle dig til en flercellet organisme."
 
 msgid "MICROBE_LOADING_TIP_2"
-msgstr ""
+msgstr "Jo flere (eller længere) flageller du har, desto hurtigere bevæger du dig - vroom vroom! Det koster dog mere ATP."
 
 msgid "MICROBE_LOADING_TIP_20"
-msgstr ""
+msgstr "Celler med cellulose eller kitin membraner kan ikke fordøjes af prokaryoter. En ekaryote med lysosomer kan ernære sig af disse ved at producere enzymer, der nedbryder cellevæggene."
 
 msgid "MICROBE_LOADING_TIP_21"
-msgstr ""
+msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kan laves om til [thrive:compound type=\"glucose\"][/thrive:compound] via kemplaster og kemosynteserende proteiner. [thrive:compound type=\"iron\"][/thrive:compound] kan laves om til [thrive:compound type=\"atp\"][/thrive:compound] via rusticyanin eler ferroplaster."
 
 msgid "MICROBE_LOADING_TIP_22"
-msgstr ""
+msgstr "Hvert besøg til editoren i Mikrobestadiet repræsenterer [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milioner af års evolution."
 
 msgid "MICROBE_LOADING_TIP_3"
-msgstr ""
+msgstr "Du kan opsluge klumper af flydende materiale, uanset om de er dele af døde celler eller mineraler."
 
 msgid "MICROBE_LOADING_TIP_4"
-msgstr ""
+msgstr "Forbered dig før du tilføjer en cellekerne. De er ret dyre - både up-front og i løbende udgifter!"
 
 msgid "MICROBE_LOADING_TIP_5"
-msgstr ""
+msgstr "Hvis du er hurtig nok kan du bruge toksiner til skubbe andre toksiner væk fra dig."
 
 msgid "MICROBE_LOADING_TIP_6"
-msgstr ""
+msgstr "En celle kan opsluges hvis den er halvt så stor som dig."
 
 msgid "MICROBE_LOADING_TIP_7"
-msgstr ""
+msgstr "Biomer er mere end bare forskellige baggrunde - stofferne og de flydende klumper i forskellige biomer findes it forskellige mængder."
 
 msgid "MICROBE_LOADING_TIP_8"
-msgstr ""
+msgstr "Placer flageller eller slimjets symmetrisk, bagerst i din celle. Ellers spilder du en masse energi."
 
 msgid "MICROBE_LOADING_TIP_9"
-msgstr ""
+msgstr "Det betyder noget hvor du placerer dine dele. Formen på din celle påvirker hastigheden du drejer og bevæger dig på."
 
 msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
-msgstr ""
+msgstr "{0}: Fundet i {1} arter"
 
 msgid "MICROBE_MEMBRANE_STATISTICS"
-msgstr ""
+msgstr "[b]Membraner Data:[/b]"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
-msgstr ""
+msgstr "  {0}: Fundet i {1} arter, gennemsnitligt {2} i hver"
 
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
-msgstr ""
+msgstr "[b]Organel upgrades data:[/b]"
 
 msgid "MICROBE_RIPPLE_EFFECT"
-msgstr ""
+msgstr "Mikrobe bølgeeffekt ved bevægelse"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
+"[b]Stadie[/b]\n"
+"  Mikrobe\n"
+"[b]Membran type[/b]\n"
+"  {0}\n"
+"[b]Membran stivhed[/b]\n"
+"  {1}\n"
+"[b]Basis hastighed[/b]\n"
+"  {2}\n"
+"[b]Basis rotationshastighed[/b]\n"
+"  {3}\n"
+"[b]Basis hex størrelse[/b]\n"
+"  {4}"
 
 msgid "MICROBE_STAGE"
-msgstr ""
+msgstr "Mikrobestadiet"
 
 msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 msgstr ""
+"Du har opnået evnen til at fortsætte mod at blive [b]flercellet[/b] - det næste skridt på din rejse.\n"
+"\n"
+"For at fortsætte, tryk på [b]\"Bliv flercellet\"[/b] knappen."
 
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
+"For at overleve har en mikrobe brug for energi ([thrive:compound type=\"atp\"][/thrive:compound]). For din art betyder det at finde sukker ([thrive:compound type=\"glucose\"][/thrive:compound]).\n"
+"\n"
+"Følg linjen fra din celle til den nærliggende hvide sky [thrive:compound type=\"glucose\"][/thrive:compound] og bevæge dig over skyen for at absorbere det."
 
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
+"Brug tasterne vist nær din celle (midten af skærmen) for at bevæge din celle, og musen for at styre hvilken vej cellen vender.\n"
+"\n"
+"[b]Måden der bevæges på kan ændres i indstillingsmenuen.[/b]\n"
+"\n"
+"Prøv alle tasterne i en par sekunder for at fortsætte."
 
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
+"For at styre din celle skal du bruge kontrollerne, der vises omkring cellen, til at bevæge dig, og den anden styrepind til at pege cellen i en retning.\n"
+"ADVARSEL: controller input er eksperimentel og er ikke fuldt u brugbart (uden en touchpad). Forvent fejl.\n"
+"Prøv alle de forskellige retninger i et par sekunder for at bevæge dig."
 
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
+"hold øje med din helbredsbar ved siden af din ([thrive:compound type=\"atp\"][/thrive:compound]) bar (nederst til højre).\n"
+"Din celle dør hvis den løber tør for liv.\n"
+"Du regenerer dit liv så længe du har [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"Du [b]mister liv[/b] hvis du intet [thrive:compound type=\"atp\"][/thrive:compound] har."
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
+"På en fjern, fremmed planet, har æoner af vulkansk aktivitet i de dybe have skabt noget bemærkelsesværdigt.\n"
+"\n"
+"Liv.\n"
+"\n"
+"Du er den sidste fælles forfader (LUCA - Last Universal Common Ancestor) på planeten. Denne simple bobble kan replikere sig selv fra molekyler i vandet. Med tid, så udvikler den sig måske til komplekse arter der dominerer stjernerne.\n"
+"\n"
+"Men først er du nødt til at overleve denne fjendtlige verden ved at samle stoffer for at for at gro, sprede dig ud, og udvikle dig, mens du konkurrerer med andre mikrober."
 
 msgid "MICROBE_STAGE_INITIAL_PANSPERMIA"
 msgstr ""
+"På en fjern, fremmed planet, har en meteor slået ned efter en lang rejse, og har inde is sig medbragt frøene for en nyt fænomen på planten.\n"
+"\n"
+"Liv.\n"
+"\n"
+"Du er den sidste fælles forfader (LUCA - Last Universal Common Ancestor) på planeten. Denne simple bobble kan leve i dette have lige så vel som på dens hjemplanet. Med tid, så vil dens fjerne efterkommere måske finde den verden igen.\n"
+"\n"
+"Men først er du nødt til at overleve dette fjendtlige hav ved at samle stoffer for at for at gro, sprede dig ud, og udvikle dig, mens du konkurrerer med andre mikrober."
 
 msgid "MICROBE_STAGE_INITIAL_POND"
 msgstr ""
+"På en fjern, fremmed planet, har æoner af kemisk evolution i ophedede pøler skabt noget bemærkelsesværdigt.\n"
+"\n"
+"Liv.\n"
+"\n"
+"Du er den sidste fælles forfader (LUCA - Last Universal Common Ancestor) på planeten. Denne simple bobble kan replikere sig selv fra molekyler i vandet. Med tid, så udvikler den sig måske til komplekse arter der dominerer stjernerne.\n"
+"\n"
+"Men først er du nødt til at overleve denne fjendtlige verden ved at samle stoffer for at for at gro, sprede dig ud, og udvikle dig, mens du konkurrerer med andre mikrober."
 
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
+"I processen med at vokse nok til at reproducere vil hver af dine organeller dele sig. De nye organeller giver bonusser (samt osmoreguleringsomkostninger) på samme måde som dem, din mikrobe startede med.\n"
+"\n"
+"Med tid vil organeller begynde at duplikere. Det går hurtigere hvis der samles stoffer. Så snart alle organeller har delt sig kan din celle reproducere, og editoren kan tilgås."
 
 msgid "MICROBIAL_MASSACRE"
-msgstr ""
+msgstr "Mikrobe massakre"
 
 msgid "MICRO_BORG"
-msgstr ""
+msgstr "Micro-Borg"
 
 msgid "MIDDLE_MOUSE"
-msgstr ""
+msgstr "Midterste museknap"
 
 msgid "MIGRATION_FAILED_TO_ADD"
 msgstr ""
 
-#, fuzzy
 msgid "MIGRATION_MANAGER"
-msgstr "Opvågne ({0:F1}/{1:F1})"
+msgstr "Migrationsmanager"
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
-msgstr ""
+msgstr "Vil migrere bestand fra {0} to ..."
 
 msgid "MIGRATION_STATUS_TEXT"
-msgstr ""
+msgstr "Vil migrere {2} enheder af bestanden fra {0} til {1}"
 
 msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
-msgstr ""
+msgstr "Vælg en destinations patch for migreringen, som er forbundet med kilde patchen"
 
 msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
-msgstr ""
+msgstr "Kun en migrering kan finde sted per editor session. Du kan se migreringen i køen nedenunder, og enten beholde den eller annullere den, og så derefter lave en ny migrering"
 
 msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
 msgstr ""
@@ -4235,9 +4290,8 @@ msgstr ""
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr ""
 
-#, fuzzy
 msgid "NO_MODS_ENABLED"
-msgstr "Snydetaster aktiveret"
+msgstr ""
 
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr ""
@@ -5084,9 +5138,8 @@ msgstr ""
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 
-#, fuzzy
 msgid "SAFE_MODE_TITLE"
-msgstr "Spilsystemer"
+msgstr ""
 
 msgid "SAVE"
 msgstr ""
@@ -5811,9 +5864,8 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#, fuzzy
 msgid "THANK_YOU_TITLE"
-msgstr "Links"
+msgstr ""
 
 msgid "THEORY_TEAM"
 msgstr ""
