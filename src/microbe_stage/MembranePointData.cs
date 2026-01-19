@@ -33,23 +33,13 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
         finalMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
         {
             var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
-
-            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-            lock (generator)
-            {
-                return generator.GenerateMesh(this);
-            }
+            return generator.GenerateMesh(this);
         });
 
         finalEngulfMesh = new Lazy<(ArrayMesh Mesh, int SurfaceIndex)>(() =>
         {
             var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
-
-            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-            lock (generator)
-            {
-                return generator.GenerateEngulfMesh(this);
-            }
+            return generator.GenerateEngulfMesh(this);
         });
 
         // Copy the membrane data, this copied array can then be referenced by Membrane instances as long as there
@@ -231,15 +221,25 @@ public sealed class MembraneCollisionShape : ICacheableData
     {
         unchecked
         {
-            long hash = ~(long)pointCount;
-            hash ^= density.GetHashCode();
+            const long offset = -3750763034362895579;
+            const long prime = 1099511628211;
+
+            long hash = offset;
+
+            hash ^= pointCount;
+            hash *= prime;
+
+            hash ^= BitConverter.SingleToInt32Bits(density);
+            hash *= prime;
 
             for (int i = 0; i < pointCount; ++i)
             {
-                hash ^= i * 17 + points[i].GetHashCode();
+                hash ^= points[i].GetHashCode();
+                hash *= prime;
             }
 
-            hash ^= isBacteria ? 7907 : 7867;
+            hash ^= isBacteria ? 1 : 0;
+            hash *= prime;
 
             return hash;
         }
@@ -253,16 +253,26 @@ public sealed class MembraneCollisionShape : ICacheableData
 
         unchecked
         {
-            long hash = ~(long)pointCount;
-            hash ^= density.GetHashCode();
+            const long offset = -3750763034362895579;
+            const long prime = 1099511628211;
+
+            long hash = offset;
+
+            hash ^= pointCount;
+            hash *= prime;
+
+            hash ^= BitConverter.SingleToInt32Bits(density);
+            hash *= prime;
 
             for (int i = 0; i < pointCount; ++i)
             {
                 var point = points[i];
-                hash ^= i * 17 + JVecF3.GetCompatibleHashCode(point.X, 0, point.Y);
+                hash ^= JVecF3.GetCompatibleHashCode(point.X, 0, point.Y);
+                hash *= prime;
             }
 
-            hash ^= isBacteria ? 7907 : 7867;
+            hash ^= isBacteria ? 1 : 0;
+            hash *= prime;
 
             return hash;
         }

@@ -156,11 +156,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         if (data == null)
         {
-            if (cellProperties.CreatedMembrane != null)
-            {
-                // Let other users of the membrane know that we are in the process of re-creating the shape
-                cellProperties.CreatedMembrane.IsChangingShape = true;
-            }
+            // Let other users of the membrane know that we are in the process of re-creating the shape
+            cellProperties.CreatedMembrane?.IsChangingShape = true;
 
             // Need to wait for membrane generation. Organelle visuals aren't created yet even if they could be
             // to avoid the organelles popping in before the membrane.
@@ -418,16 +415,10 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         {
             var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
 
-            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-            MembranePointData cacheEntry;
-            lock (generator)
-            {
-                cacheEntry = generator.GenerateShape(ref generationParameters);
-            }
+            var cacheEntry = generator.GenerateShape(ref generationParameters);
 
             // Cache entry now owns the array data that was in the generationParameters and will return it to the
             // pool when the cache disposes it
-
             var hash = ProceduralDataCache.Instance.WriteMembraneData(ref cacheEntry);
 
             // TODO: already generate the 3D points here for use on the main thread for faster membrane creation?
