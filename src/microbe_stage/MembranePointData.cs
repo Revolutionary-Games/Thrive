@@ -276,7 +276,8 @@ public sealed class MembraneCollisionShape : ICacheableData
 
             for (int i = 0; i < pointCount; ++i)
             {
-                hash ^= JVecF3.GetCompatibleHashCode(points[i].X, 0, points[i].Y);
+                var point = points[i];
+                hash ^= JVecF3.GetCompatibleHashCode(point.X, 0, point.Y);
                 hash *= prime;
             }
 
