@@ -32,7 +32,7 @@ region_rect = Rect2(0, 0, 258, 1)
 
 [sub_resource type="StyleBoxEmpty" id="7"]
 
-[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("backButton", "resetButton", "saveButton", "tabButtons", "graphicsButton", "soundButton", "performanceButton", "inputsButton", "miscButton", "graphicsTab", "vsync", "graphicsPreset", "displayOptionContainer", "display", "resolution", "displayMode", "antiAliasingMode", "msaaSection", "msaaResolution", "renderScale", "renderScaleLabel", "upscalingMethod", "upscalingSharpening", "maxFramesPerSecond", "colourblindSetting", "chromaticAberrationToggle", "chromaticAberrationSlider", "controllerPromptType", "displayAbilitiesHotBarToggle", "anisotropicFilterLevel", "damageEffect", "strainVisibility", "displayBackgroundParticlesToggle", "guiLightEffectsToggle", "displayPartNamesToggle", "displayMenu3DBackgroundsToggle", "displayMicrobeBackgroundDistortionToggle", "lowQualityBackgroundBlurToggle", "microbeCurrentParticles", "bloomEffectToggle", "bloomSlider", "blurSlider", "gpuName", "usedRendererName", "videoMemory", "soundTab", "masterVolume", "masterMuted", "musicVolume", "musicMuted", "ambianceVolume", "ambianceMuted", "sfxVolume", "sfxMuted", "guiVolume", "guiMuted", "audioOutputDeviceSelection", "languageSelection", "resetLanguageButton", "languageProgressLabel", "performanceTab", "cloudInterval", "cloudResolutionTitle", "cloudResolution", "runAutoEvoDuringGameplay", "runGameSimulationMultithreaded", "detectedCPUCount", "activeThreadCount", "assumeHyperthreading", "useManualThreadCount", "threadCountSlider", "useManualNativeThreadCount", "nativeThreadCountSlider", "maxSpawnedEntities", "useDiskCaching", "maxCacheSizeSlider", "maxCacheSizeLabel", "currentCacheSize", "maxMemoryCacheTimeSlider", "maxMemoryCacheTimeLabel", "maxDiskCacheTimeSlider", "maxDiskCacheTimeLabel", "maxMemoryItemsSlider", "maxMemoryItemsLabel", "maxMemoryOnlyCacheTimeSlider", "maxMemoryOnlyCacheTimeLabel", "inputsTab", "mouseAxisSensitivitiesBound", "mouseHorizontalSensitivity", "mouseHorizontalInverted", "mouseVerticalSensitivity", "mouseVerticalInverted", "mouseWindowSizeScaling", "mouseWindowSizeScalingWithLogicalSize", "controllerAxisSensitivitiesBound", "controllerHorizontalSensitivity", "controllerHorizontalInverted", "controllerVerticalSensitivity", "controllerVerticalInverted", "twoDimensionalMovement", "threeDimensionalMovement", "mouseEdgePanEnabled", "mouseEdgePanSensitivity", "inputGroupList", "deadzoneConfigurationPopup", "miscTab", "playIntro", "playMicrobeIntro", "cheats", "tutorialsEnabledOnNewGame", "autoSave", "maxAutoSaves", "maxQuickSaves", "customUsernameEnabled", "customUsername", "webFeedsEnabled", "microbeRippleEffect", "microbeCameraTilt", "showNewPatchNotes", "dismissedNoticeCount", "screenEffectSelect", "commitLabel", "builtAtLabel", "tutorialsEnabled", "tutorialsEnabledContainer", "unsavedProgressWarningEnabled", "resetAchievementsButton", "screenshotDirectoryWarningBox", "backConfirmationBox", "defaultsConfirmationBox", "confirmAchievementsReset", "errorAcceptBox", "patchNotesBox", "patchNotesDisplayer")]
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("backButton", "resetButton", "saveButton", "tabButtons", "graphicsButton", "soundButton", "performanceButton", "inputsButton", "miscButton", "graphicsTab", "vsync", "graphicsPreset", "displayOptionContainer", "display", "resolution", "displayMode", "antiAliasingMode", "msaaSection", "msaaResolution", "renderScale", "renderScaleLabel", "upscalingMethod", "upscalingSharpening", "maxFramesPerSecond", "colourblindSetting", "chromaticAberrationToggle", "chromaticAberrationSlider", "controllerPromptType", "displayAbilitiesHotBarToggle", "anisotropicFilterLevel", "currentGUIScaleDisplay", "damageEffect", "strainVisibility", "displayBackgroundParticlesToggle", "guiLightEffectsToggle", "displayPartNamesToggle", "displayMenu3DBackgroundsToggle", "displayMicrobeBackgroundDistortionToggle", "lowQualityBackgroundBlurToggle", "microbeCurrentParticles", "bloomEffectToggle", "bloomSlider", "blurSlider", "gpuName", "usedRendererName", "videoMemory", "soundTab", "masterVolume", "masterMuted", "musicVolume", "musicMuted", "ambianceVolume", "ambianceMuted", "sfxVolume", "sfxMuted", "guiVolume", "guiMuted", "audioOutputDeviceSelection", "languageSelection", "resetLanguageButton", "languageProgressLabel", "performanceTab", "cloudInterval", "cloudResolutionTitle", "cloudResolution", "runAutoEvoDuringGameplay", "runGameSimulationMultithreaded", "detectedCPUCount", "activeThreadCount", "assumeHyperthreading", "useManualThreadCount", "threadCountSlider", "useManualNativeThreadCount", "nativeThreadCountSlider", "maxSpawnedEntities", "useDiskCaching", "maxCacheSizeSlider", "maxCacheSizeLabel", "currentCacheSize", "maxMemoryCacheTimeSlider", "maxMemoryCacheTimeLabel", "maxDiskCacheTimeSlider", "maxDiskCacheTimeLabel", "maxMemoryItemsSlider", "maxMemoryItemsLabel", "maxMemoryOnlyCacheTimeSlider", "maxMemoryOnlyCacheTimeLabel", "inputsTab", "mouseAxisSensitivitiesBound", "mouseHorizontalSensitivity", "mouseHorizontalInverted", "mouseVerticalSensitivity", "mouseVerticalInverted", "mouseWindowSizeScaling", "mouseWindowSizeScalingWithLogicalSize", "controllerAxisSensitivitiesBound", "controllerHorizontalSensitivity", "controllerHorizontalInverted", "controllerVerticalSensitivity", "controllerVerticalInverted", "twoDimensionalMovement", "threeDimensionalMovement", "mouseEdgePanEnabled", "mouseEdgePanSensitivity", "inputGroupList", "deadzoneConfigurationPopup", "miscTab", "playIntro", "playMicrobeIntro", "cheats", "tutorialsEnabledOnNewGame", "autoSave", "maxAutoSaves", "maxQuickSaves", "customUsernameEnabled", "customUsername", "webFeedsEnabled", "microbeRippleEffect", "microbeCameraTilt", "showNewPatchNotes", "dismissedNoticeCount", "screenEffectSelect", "commitLabel", "builtAtLabel", "tutorialsEnabled", "tutorialsEnabledContainer", "unsavedProgressWarningEnabled", "resetAchievementsButton", "screenshotDirectoryWarningBox", "backConfirmationBox", "defaultsConfirmationBox", "confirmAchievementsReset", "errorAcceptBox", "patchNotesBox", "patchNotesDisplayer")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -76,6 +76,7 @@ chromaticAberrationSlider = NodePath("CenterContainer/VBoxContainer/VBoxContaine
 controllerPromptType = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer23/HBoxContainer/ControllerPromptType")
 displayAbilitiesHotBarToggle = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer24/HBoxContainer/DisplayAbilitiesBar")
 anisotropicFilterLevel = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6/HBoxContainer/AnisotropicFilterLevel")
+currentGUIScaleDisplay = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer30/HBoxContainer/HBoxContainer/GUIScaleDisplay")
 damageEffect = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer26/HBoxContainer/DamageEffect")
 strainVisibility = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer25/HBoxContainer/StrainBarMode")
 displayBackgroundParticlesToggle = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13/HBoxContainer/DisplayBackgroundParticles")
@@ -1098,6 +1099,51 @@ label_settings = ExtResource("8_jegpj")
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/separator = SubResource("8")
+
+[node name="VBoxContainer30" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer30"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer30/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 3.0
+text = "GUI_SCALE_OPTION"
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer30/HBoxContainer"]
+layout_mode = 2
+
+[node name="GUIScaleDisplay" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer30/HBoxContainer/HBoxContainer"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "100%"
+
+[node name="DecreaseScale" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer30/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath("../IncreaseScale")
+focus_next = NodePath("../IncreaseScale")
+text = "-"
+
+[node name="IncreaseScale" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer30/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../DecreaseScale")
+focus_neighbor_right = NodePath(".")
+focus_previous = NodePath("../DecreaseScale")
+text = "+"
+
+[node name="ScaleExplanation" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer30"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "GUI_SCALE_INCREASED_SIZE_NOTE"
+label_settings = ExtResource("7_etww0")
+autowrap_mode = 2
 
 [node name="VBoxContainer23" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -3447,6 +3493,8 @@ grow_vertical = 1
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer/MicrobeCameraTilt" to="." method="OnMicrobeCameraTiltToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer18/HBoxContainer/Menu3DBackgroundsToggle" to="." method="OnDisplay3DMenuBackgroundsToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer19/HBoxContainer/BlurAmount" to="." method="OnBlurStrengthChanged"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer30/HBoxContainer/HBoxContainer/DecreaseScale" to="." method="OnDecreaseGUIScale"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer30/HBoxContainer/HBoxContainer/IncreaseScale" to="." method="OnIncreaseGUIScale"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer23/HBoxContainer/ControllerPromptType" to="." method="OnControllerTypeSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer25/HBoxContainer/StrainBarMode" to="." method="OnStrainVisibilityModeSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer24/HBoxContainer/DisplayAbilitiesBar" to="." method="OnDisplayAbilitiesHotBarToggled"]
