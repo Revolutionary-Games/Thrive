@@ -442,8 +442,7 @@ public partial class CompoundAmount : HBoxContainer
 
     private void UpdateTooltip()
     {
-        if (icon != null)
-            icon.TooltipText = compoundDefinition!.Name;
+        icon?.TooltipText = compoundDefinition!.Name;
     }
 
     private void OnTranslationsChanged()
