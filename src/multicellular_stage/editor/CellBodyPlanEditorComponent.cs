@@ -1592,6 +1592,8 @@ public partial class CellBodyPlanEditorComponent :
 
         GUICommon.Instance.PlayButtonPressSound();
 
+        // Apparently this works without needing to call GetEditedCellDataIfEdited here. But keep an eye out
+        // for allowing deleting a used type problem.
         var type = CellTypeFromName(activeActionName!);
 
         // Disallow deleting a type in use currently
