@@ -1119,19 +1119,21 @@ autowrap_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer30/HBoxContainer"]
 layout_mode = 2
 
-[node name="GUIScaleDisplay" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer30/HBoxContainer/HBoxContainer"]
-editor_description = "PLACEHOLDER"
-layout_mode = 2
-text = "100%"
-
 [node name="DecreaseScale" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer30/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
 focus_neighbor_right = NodePath("../IncreaseScale")
 focus_next = NodePath("../IncreaseScale")
 text = "-"
 
+[node name="GUIScaleDisplay" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer30/HBoxContainer/HBoxContainer"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "100%"
+
 [node name="IncreaseScale" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer30/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 focus_neighbor_left = NodePath("../DecreaseScale")
 focus_neighbor_right = NodePath(".")
