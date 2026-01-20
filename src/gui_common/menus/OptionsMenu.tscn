@@ -1129,8 +1129,10 @@ text = "-"
 
 [node name="GUIScaleDisplay" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer30/HBoxContainer/HBoxContainer"]
 editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(56, 0)
 layout_mode = 2
 text = "100%"
+horizontal_alignment = 1
 
 [node name="IncreaseScale" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer30/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 0)
