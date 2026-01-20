@@ -164,9 +164,6 @@ public partial class CellBillboard : Node3D
 
     private void ApplyScale()
     {
-        if (quad == null)
-            return;
-
-        quad.Scale = new Vector3(scale, scale, scale);
+        quad?.Scale = new Vector3(scale, scale, scale);
     }
 }

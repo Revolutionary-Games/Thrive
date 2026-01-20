@@ -194,8 +194,7 @@ public partial class ModifierInfoLabel : HBoxContainer
 
     private void AdjustValueMinSize(float size)
     {
-        if (valueLabel != null)
-            valueLabel.CustomMinimumSize = new Vector2(size, 20.0f);
+        valueLabel?.CustomMinimumSize = new Vector2(size, 20.0f);
     }
 
     private void UpdateName()
@@ -221,9 +220,6 @@ public partial class ModifierInfoLabel : HBoxContainer
 
     private void UpdateIcon()
     {
-        if (icon == null)
-            return;
-
-        icon.Texture = iconTexture;
+        icon?.Texture = iconTexture;
     }
 }
