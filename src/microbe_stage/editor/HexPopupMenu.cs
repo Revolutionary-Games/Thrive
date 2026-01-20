@@ -182,10 +182,7 @@ public partial class HexPopupMenu : CustomPopupMenu
 
     private void UpdateModifyButton()
     {
-        if (modifyButton == null)
-            return;
-
-        modifyButton.Disabled = !EnableModifyOption;
+        modifyButton?.Disabled = !EnableModifyOption;
     }
 
     private void UpdateButtonContentsColour(string optionName, bool pressed)

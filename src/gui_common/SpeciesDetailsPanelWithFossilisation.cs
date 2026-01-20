@@ -30,8 +30,7 @@ public partial class SpeciesDetailsPanelWithFossilisation : VBoxContainer
 
             previewSpecies = value;
 
-            if (speciesDetailsPanel != null)
-                speciesDetailsPanel.PreviewSpecies = value;
+            speciesDetailsPanel?.PreviewSpecies = value;
 
             UpdateFossilisationButtonState();
         }

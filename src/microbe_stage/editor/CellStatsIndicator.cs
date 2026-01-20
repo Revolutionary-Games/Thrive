@@ -211,10 +211,7 @@ public partial class CellStatsIndicator : HBoxContainer
 
     private void UpdateDescription()
     {
-        if (descriptionLabel == null)
-            return;
-
-        descriptionLabel.Text = Localization.Translate(Description);
+        descriptionLabel?.Text = Localization.Translate(Description);
     }
 
     private void UpdateValue()

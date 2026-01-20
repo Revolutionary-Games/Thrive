@@ -190,8 +190,7 @@ public partial class MacroscopicCamera : Node3D, IGodotEarlyNodeResolve
 
     private void ApplyArmLength()
     {
-        if (arm != null)
-            arm.SpringLength = armLength;
+        arm?.SpringLength = armLength;
     }
 
     private void ApplyCurrentValue()

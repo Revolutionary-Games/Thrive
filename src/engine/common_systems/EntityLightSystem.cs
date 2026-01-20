@@ -93,8 +93,7 @@ public partial class EntityLightSystem : BaseSystem<World, float>
                 else
                 {
                     // Disable light if created
-                    if (data.CreatedLight != null)
-                        data.CreatedLight.Visible = false;
+                    data.CreatedLight?.Visible = false;
                 }
             }
         }
