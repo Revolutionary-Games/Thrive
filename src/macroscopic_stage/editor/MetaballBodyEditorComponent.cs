@@ -1039,8 +1039,11 @@ public partial class MetaballBodyEditorComponent :
 
         var type = CellTypeFromName(activeActionName!);
 
+        // Get the actual type we store to match with the created metaballs
+        var placementType = GetEditedCellDataIfEdited(type);
+
         // Disallow deleting a type that is in use currently
-        if (editedMetaballs.Any(c => c.ModifiableCellType == type))
+        if (editedMetaballs.Any(c => c.ModifiableCellType == placementType))
         {
             GD.Print("Can't delete in use cell type");
             cannotDeleteInUseTypeDialog.PopupCenteredShrink();
