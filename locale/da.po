@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-01-21 10:22+0200\n"
-"PO-Revision-Date: 2026-01-20 09:33+0000\n"
+"PO-Revision-Date: 2026-01-21 13:55+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
 "Language: da\n"
@@ -648,7 +648,7 @@ msgid "CANNOT_IMPROVE_PERFECTION"
 msgstr "Kan ikke forbedre perfektion"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr "Kan ikke flytte en metaball ind i dens forgængertræ"
+msgstr "Kan ikke flytte en metabold ind i dens forgængertræ"
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
 msgstr "Hjernekraftsmængden er nu for lav til at forblive på det nuværende stadie. Det er ikke på nuværende tidspunkt muligt at gå tilbage til et tidligere stadie. Øg venligst hjernekraften for at fortsætte."
@@ -1697,12 +1697,12 @@ msgstr ""
 "Forbind venligst alle placerede celler med hinanden for at fortsætte."
 
 msgid "DISCONNECTED_METABALLS"
-msgstr "Uforbundne Metaballs"
+msgstr "Uforbundne Metabolde"
 
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
-"Der er placeret metaballs som ikke er forbundet med resten.\n"
-"Flyt venligst alle placerede metaballs ved siden af andre for at fortsætte."
+"Der er placeret metabolde som ikke er forbundet med resten.\n"
+"Flyt venligst alle placerede metabolde ved siden af andre for at fortsætte."
 
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Uforbundne organeller"
@@ -4120,7 +4120,7 @@ msgid "MULTIPLE_CELLS"
 msgstr "Adskillelige celler"
 
 msgid "MULTIPLE_METABALLS"
-msgstr "Adskillelige metaballs"
+msgstr "Adskillelige metabolde"
 
 msgid "MULTIPLE_ORGANELLES"
 msgstr "Adskillelige organeller"
@@ -4271,238 +4271,242 @@ msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Mangler {0} for at opsluge målet"
 
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
-msgstr "Nuværende celle størelse er for ille til at opsluge målet"
+msgstr "Nuværende celle størelse er for lille til at opsluge målet"
 
 msgid "NOTICE_ENGULF_STORAGE_FULL"
-msgstr ""
+msgstr "Ikke nok plads i opslugt masse lageret til at opsluge målet"
 
 msgid "NOTICE_HIT_BY_ATP_TOXIN"
-msgstr ""
+msgstr "ATP produktion forhindret af toksin"
 
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
-msgstr ""
+msgstr "Basal bevægelseshastighed formindsket pga. toksin"
 
 msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
-msgstr ""
+msgstr "Skadet af svovlbrint uden at have kemosynteserende proteiner"
 
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
-msgstr ""
+msgstr "Ikke nok mucilage til at aktivere mucocyst skjold"
 
 msgid "NOTICE_RADIATION_DAMAGE"
-msgstr ""
+msgstr "Skadet af for meget stråling"
 
 msgid "NOTICE_READY_TO_EDIT"
-msgstr ""
+msgstr "Editoren er nu klar til at tilgås"
 
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr ""
 
 msgid "NOT_STARTED_DOT"
-msgstr ""
+msgstr "Ikke startet."
 
 msgid "NOVEMBER"
-msgstr ""
+msgstr "November"
 
 msgid "NO_AI"
-msgstr ""
+msgstr "Ingen AI"
 
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "Ingen data vises"
 
 msgid "NO_EVENTS_RECORDED"
-msgstr ""
+msgstr "Ingen begivenheder nedfældet"
 
 msgid "NO_FOSSIL_DIRECTORY"
-msgstr ""
+msgstr "Ingen fossilmappe fundet"
 
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
-msgstr ""
+msgstr "Nuværende spil er ikke længere gyldigt for achievements"
 
 msgid "NO_MODS_ENABLED"
-msgstr ""
+msgstr "Ingens mods slået til"
 
 msgid "NO_ORGANELLE_PROCESSES"
-msgstr ""
+msgstr "Ingen processer"
 
 msgid "NO_SAVEGAMES_FOUND"
-msgstr ""
+msgstr "Ingen gemte spil fundet"
 
 msgid "NO_SAVE_DIRECTORY"
-msgstr ""
+msgstr "Intet gemt spil mappe fundet"
 
 msgid "NO_SCREENSHOT_DIRECTORY"
-msgstr ""
+msgstr "Ingen screenshot mappe fundet"
 
 msgid "NO_SELECTED_MOD"
-msgstr ""
+msgstr "Ingen valgt mod"
 
-#, fuzzy
 msgid "NO_SUGGESTION"
-msgstr "Halver Bestand"
+msgstr "Intet"
 
 msgid "NUCLEUS"
-msgstr ""
+msgstr "Cellekerne"
 
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
+"Kan ikke slette cellekernen da denne evolution ikke kan fortrydes.\n"
+"Hvis den blev placeret i den nuværende session er undo og redo stadig tilladt."
 
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
 
 msgid "NUCLEUS_SMALL_DESCRIPTION"
-msgstr ""
+msgstr "Tillader evolutionen af mere komplekse, membranbundne organeller, og reducere skade med 50%. Koster en hel del ATP at vedligeholde. Denne evolution kan ikke ændres igen."
 
 msgid "NUMLOCK"
-msgstr ""
+msgstr "Num Lock"
 
-#, fuzzy
 msgid "NUTRIENT_COST_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr "Viser hvor manger stoffer din celle skal bruge for at skille sig. Højere værdier betyder at reproduktion tage mere tid og kræfter."
 
 msgid "N_A"
-msgstr ""
+msgstr "N/A"
 
 msgid "N_A_MP"
-msgstr ""
+msgstr "N/A MP"
 
 msgid "N_TIMES"
-msgstr ""
+msgstr "x{0}"
 
 msgid "OCTOBER"
-msgstr ""
+msgstr "Oktober"
 
 msgid "OFF"
-msgstr ""
+msgstr "Af"
 
 msgid "OFFICIAL_WEBSITE"
-msgstr ""
+msgstr "Officiel hjemmeside"
 
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Besøg Revolutionary Games officielle hjemmeside"
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
 msgid "OPENGL_MODE_WARNING"
-msgstr ""
+msgstr "OpenGL tilstand advarsel"
 
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr ""
 
 msgid "OPEN_FOLDER"
-msgstr ""
+msgstr "Åben mappe"
 
 msgid "OPEN_FOSSIL_FOLDER"
-msgstr ""
+msgstr "Åben fossilmappe"
 
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
+"Er du sikker på du vil starte et nyt spil med den valgte art?\n"
+"Du vil miste alt ikke-gemt fremskridt."
 
 msgid "OPEN_GOD_TOOLS"
-msgstr ""
+msgstr "Gudeværktøjer"
 
 msgid "OPEN_HELP_SCREEN"
-msgstr ""
+msgstr "Åben hjælpeskærm"
 
 msgid "OPEN_IN_FREEBUILD"
-msgstr ""
+msgstr "Åben i fribyg"
 
 msgid "OPEN_LOGS_FOLDER"
-msgstr ""
+msgstr "Åben log mappen"
 
 msgid "OPEN_MOD_URL"
-msgstr ""
+msgstr "Åben info URL"
 
 msgid "OPEN_ORGANELLES_PAGE"
-msgstr ""
+msgstr "Åben organelsiden"
 
 msgid "OPEN_ORGANELLE_MENU"
-msgstr ""
+msgstr "Åben organel menu"
 
 msgid "OPEN_RESEARCH_SCREEN"
-msgstr ""
+msgstr "Åben forskningsvinduet"
 
 msgid "OPEN_SAVE_DIRECTORY"
-msgstr ""
+msgstr "Åben gemte filers mappe"
 
 msgid "OPEN_SCIENCE_MENU"
-msgstr ""
+msgstr "Åben videnskabsmenu"
 
 msgid "OPEN_SCREENSHOT_FOLDER"
-msgstr ""
+msgstr "Åben screenshot mappe"
 
 msgid "OPEN_THE_MENU"
-msgstr ""
+msgstr "Åben menuen"
 
 msgid "OPEN_TRANSLATION_SITE"
-msgstr ""
+msgstr "Hjælp med at oversætte spillet"
 
 msgid "OPERATION_PAUSED_DOT"
-msgstr ""
+msgstr "Pauset."
 
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
+"Opportunistiske mikrober kæmper om klumper med rivaler, og\n"
+"vil forsøge at jage bytte med toksiner hvis de ikke kan opsluge dem.\n"
+"Forsigtige mikrober er mindre tilbøjelige til at bringe dem selv i fare over klumper."
 
 msgid "OPPORTUNISTIC"
-msgstr ""
+msgstr "Opportunistisk"
 
 msgid "OPTIONS"
-msgstr ""
+msgstr "Indstillinger"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Skift dine indstillinger"
 
 msgid "ORGANELLES"
-msgstr ""
+msgstr "Organeller"
 
 msgid "ORGANELLES_BUTTON"
-msgstr ""
+msgstr "Organeller"
 
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr ""
 
 msgid "ORGANELLE_AXON"
-msgstr ""
+msgstr "Axon"
 
 msgid "ORGANELLE_AXON_DESCRIPTION"
-msgstr ""
+msgstr "Axoner er nervefibre som neuroner bruger til at kommunikere og forbinde med hinanden Placering af denne organel omdanner celletypen til hjernevæv."
 
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
-msgstr ""
+msgstr "Makroskopisk"
 
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
-msgstr ""
+msgstr "Flercellet"
 
 msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
 msgstr ""
 
 msgid "ORGANELLE_MYOFIBRIL"
-msgstr ""
+msgstr "Myofibril"
 
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
-msgstr ""
+msgstr "Tillader at skabe muskelceller. På nuværende tidspunkt i prototypen øger den hastigheden af din organisme."
 
 msgid "ORGANELLE_PILUS"
-msgstr ""
+msgstr "Perforerende Pilus"
 
 msgid "ORGANELLE_PILUS_DESCRIPTION"
 msgstr ""
 
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Kan bruges til at stikke andre celler eller til at forsvare imod deres toksiner."
 
 msgid "ORGANELLE_PLURAL"
-msgstr ""
+msgstr "{0} organeller"
 
 msgid "ORGANELLE_SINGULAR"
-msgstr ""
+msgstr "{0} organel"
 
-#, fuzzy
 msgid "ORGANELLE_SUGGESTION_COLON"
-msgstr "Halver Bestand"
+msgstr "Organel forslag:"
 
 #, fuzzy
 msgid "ORGANELLE_SUGGESTION_TOOLTIP"
@@ -4515,170 +4519,173 @@ msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
 msgstr ""
 
 msgid "ORGANISM_STATISTICS"
-msgstr ""
+msgstr "Organismestatistik"
 
 msgid "OR_UNLOCK_CONDITION"
-msgstr ""
+msgstr "eller"
 
 msgid "OSMOREGULATION"
-msgstr ""
+msgstr "Osmoregulering"
 
 msgid "OSMOREGULATION_COST"
-msgstr ""
+msgstr "Osmoreguleringsomkostning"
 
 msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr ""
+msgstr "Osmoreguleringsomkostning multiplikator"
 
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
+msgstr "(omkostningen af spillerens arts osmoregulering)"
 
 msgid "OTHER_COMPOUNDS"
-msgstr ""
+msgstr "Andre"
 
 msgid "OUR_WIKI"
-msgstr ""
+msgstr "vores Wiki"
 
 msgid "OUTDATED_ITEM"
-msgstr ""
+msgstr "FORÆLDET"
 
 msgid "OUTDATED_NOTICE"
-msgstr ""
+msgstr "Denne side eller sektion indeholder forældet information. Det sker ofter når planer bliver ændret efter noget er blevet skrevet ned."
 
 msgid "OUTREACH_TEAM"
-msgstr ""
+msgstr "Outreach Team"
 
 msgid "OUTSIDE_CONTRIBUTORS"
-msgstr ""
+msgstr "Udefrakommende Bidragsydere"
 
 msgid "OVERWRITE_EXISTING_SAVE"
-msgstr ""
+msgstr "Overskriv eksisterende gemte spil:"
 
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
-msgstr ""
+msgstr "Overskriv eksisterende gemte spil?"
 
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
+"En fossiliseret art med dette navn eksisterer allerede.\n"
+"Er du sikker på du vil overskrive sen?"
 
 msgid "OXYGEN"
-msgstr ""
+msgstr "Ilt"
 
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
-msgstr ""
+msgstr "Ilthæmmer-syntese"
 
 msgid "OXYGEN_RESISTANCE"
-msgstr ""
+msgstr "Iltresistensen"
 
-#, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr "Hvor meget ilt-baseret skade din art kan afbøde før effekten bliver skadefuld. Hvis du er i en patch med for meget ilt i forhold til din resistens, vil det have negative konsekvenser."
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "OXYTOXY_NT"
-msgstr ""
+msgstr "OxyToks NT"
 
 msgid "OXYTOXY_SYNTHESIS"
-msgstr ""
+msgstr "OxyToks syntese"
 
 msgid "PAGEDOWN"
-msgstr ""
+msgstr "Side ned"
 
 msgid "PAGEUP"
-msgstr ""
+msgstr "Side op"
 
 msgid "PAGE_BACK"
-msgstr ""
+msgstr "tilbage"
 
 msgid "PAGE_FORWARD"
-msgstr ""
+msgstr "Frem"
 
 msgid "PAGE_TITLE"
-msgstr ""
+msgstr "Sidetitel"
 
 msgid "PAN_CAMERA_DOWN"
-msgstr ""
+msgstr "Panorer nedad"
 
 msgid "PAN_CAMERA_LEFT"
-msgstr ""
+msgstr "Panorer til venstre"
 
 msgid "PAN_CAMERA_RESET"
-msgstr ""
+msgstr "Gendan kamera"
 
 msgid "PAN_CAMERA_RIGHT"
-msgstr ""
+msgstr "Panorer til højre"
 
 msgid "PAN_CAMERA_UP"
-msgstr ""
+msgstr "Panorer opad"
 
 msgid "PAST_DEVELOPERS"
-msgstr ""
+msgstr "Tidligere udviklere"
 
 msgid "PATCHES_NUMBER"
-msgstr ""
+msgstr "Antal patches:"
 
 msgid "PATCH_COLON"
-msgstr ""
+msgstr "Patch:"
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
+"Din art er udød i denne patch.\n"
+"Men det er ikke slut endnu, du kan stadig vælge en ny patch at spille i!"
 
 msgid "PATCH_EXTINCTION_CAPITAL"
-msgstr ""
+msgstr "PATCH UDRYDDELSE"
 
 msgid "PATCH_MAP"
-msgstr ""
+msgstr "Patch kort"
 
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
-msgstr ""
+msgstr "Klik, træk og zoom for at bevæge dig rundt"
 
 msgid "PATCH_NAME"
-msgstr ""
+msgstr "{0} {1}"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
-msgstr ""
+msgstr "Du spillede sidst Thrive {0}, siden da har der været en ny udgivelse"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
-msgstr ""
+msgstr "Du spillede sidst Thrive {0}, siden da har der været {1} nye udgivelser"
 
 msgid "PATCH_NOTES_TITLE"
-msgstr ""
+msgstr "Patch notes"
 
 msgid "PATCH_NOTE_BULLET_POINT"
-msgstr ""
+msgstr "— {0}"
 
 msgid "PATCH_NOTE_CHANGES_HEADING"
-msgstr ""
+msgstr "Ændringer:"
 
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
-msgstr ""
+msgstr "Se udgivelsens fulde detailer på [color=#3796e1][url={0}]GitHub[/url][/color]"
 
 msgid "PATREON_TOOLTIP"
-msgstr ""
+msgstr "Besøg vores Patreon side"
 
 msgid "PATRONS"
-msgstr ""
+msgstr "Patrons"
 
 msgid "PAUSED"
-msgstr ""
+msgstr "PAUSET"
 
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
-msgstr ""
+msgstr "Tilbage til spillet"
 
 msgid "PAUSE_PROMPT"
-msgstr ""
+msgstr "[center]Tryk på [thrive:input]g_pause[/thrive:input] for at slå pause fra[/center]"
 
 msgid "PAUSE_TOOLTIP"
-msgstr ""
+msgstr "Pause spillet"
 
 msgid "PCK_LOAD_FAILED"
-msgstr ""
+msgstr "Fejlede i at loade pck fil ({0})"
 
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
-msgstr ""
+msgstr "Fejlede i at loade pck file ({0}) fordi filen ikke eksisterer"
 
 msgid "PEACEFUL"
-msgstr ""
+msgstr "Fredfyldt"
 
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr ""
@@ -4687,7 +4694,7 @@ msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
 msgid "PERCENTAGE_VALUE"
-msgstr ""
+msgstr "{0}%"
 
 msgid "PERFECT_ADAPTATION_DESCRIPTION"
 msgstr ""
@@ -4699,515 +4706,526 @@ msgid "PERFORM_UNBINDING"
 msgstr ""
 
 msgid "PER_SECOND_ABBREVIATION"
-msgstr ""
+msgstr "/s"
 
 msgid "PER_SECOND_SLASH"
-msgstr ""
+msgstr "/sekund"
 
 msgid "PHOSPHATE"
-msgstr ""
+msgstr "Fosfat"
 
 msgid "PHOSPHATES_COST"
-msgstr ""
+msgstr "Fosfatomkostning:"
 
 msgid "PHOSPHATES_LEVELS"
-msgstr ""
+msgstr "Fosfatniveau"
 
 msgid "PHOTOSYNTHESIS"
-msgstr ""
+msgstr "Fosfatsyntese"
 
 msgid "PHYSICAL_CONDITIONS"
-msgstr ""
+msgstr "Fysiske tilstande"
 
 msgid "PHYSICAL_RESISTANCE"
-msgstr ""
+msgstr "Fysisk resistens"
 
 msgid "PLACE_ORGANELLE"
-msgstr ""
+msgstr "Placer organel (eller andre placerbare ting)"
 
 msgid "PLANET"
-msgstr ""
+msgstr "Planet"
 
 msgid "PLANET_CUSTOMIZER"
-msgstr ""
+msgstr "Planet redigeringsværktøj"
 
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
+"Kun LSVK: {0}\n"
+"Livets oprindelse: {1}\n"
+"Dag/nat cyclus: {2}\n"
+"Dagslængde: {3} sekunder\n"
+"Tilfældig planet seed: {4}"
 
 msgid "PLANET_RANDOM_SEED"
-msgstr ""
+msgstr "Tilfældig planet seed"
 
 msgid "PLANET_STATISTICS"
-msgstr ""
+msgstr "Planetstatistik"
 
 msgid "PLAYER"
-msgstr ""
+msgstr "Spiller"
 
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
-msgstr ""
+msgstr "Spiller dødsfald bestand straf"
 
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
-msgstr ""
+msgstr "(koefficient for reduction af spiller artens bestand for hver gang spilleren dør)"
 
 msgid "PLAYER_DIED"
-msgstr ""
+msgstr "spilleren døde"
 
 msgid "PLAYER_DUPLICATE"
-msgstr ""
+msgstr "Dupliker spiller"
 
 msgid "PLAYER_EXTINCT"
-msgstr ""
+msgstr "Spilleren er uddød"
 
 msgid "PLAYER_RELATIVE_MOVEMENT"
-msgstr ""
+msgstr "Relativ spilleren"
 
-#, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr ""
+"I relativ spilleren bevægelsestilstand er bevægelsestasterne relative til rotationen af spillerens celle.\n"
+"Dvs. at bevægelse af musemarkøren ændrer hvad der er fremad for cellen.\n"
+"Dette er standard bevægelsestilstanden for Thrive."
 
 msgid "PLAYER_REPRODUCED"
-msgstr ""
+msgstr "spilleren reproducerede"
 
 msgid "PLAYER_SPEED"
 msgstr ""
+"Spiller\n"
+"Hastighed"
 
 msgid "PLAYSTATION_3"
-msgstr ""
+msgstr "PlayStation 3"
 
 msgid "PLAYSTATION_4"
-msgstr ""
+msgstr "PlayStation 4"
 
 msgid "PLAYSTATION_5"
-msgstr ""
+msgstr "PlayStation 5"
 
 msgid "PLAY_INTRO_VIDEO"
-msgstr ""
+msgstr "Afspil intro video"
 
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
-msgstr ""
+msgstr "Afspil mikrobe intro ved nyt spil"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
-msgstr ""
+msgstr "Spil med nuværende indstillinger"
 
 msgid "POPULATION_CAPITAL"
-msgstr ""
+msgstr "BESTAND:"
 
 msgid "POPULATION_COLON"
-msgstr ""
+msgstr "bestand:"
 
 msgid "POPULATION_IN_PATCHES"
-msgstr ""
+msgstr "bestanden i patches:"
 
 msgid "POPULATION_IN_PATCH_SHORT"
-msgstr ""
+msgstr "{0} ({1})"
 
 msgid "POSITION_NUMBER"
-msgstr ""
+msgstr "{0}."
 
 msgid "PREDATION_FOOD_SOURCE"
-msgstr ""
+msgstr "Rovdrift af {0}"
 
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
-msgstr ""
+msgstr "Vis detaileret information bag forudsigelsen"
 
 msgid "PRESET_CUSTOM"
-msgstr ""
+msgstr "Tilpasset"
 
 msgid "PRESET_HIGH"
-msgstr ""
+msgstr "Høj"
 
 msgid "PRESET_LOW"
-msgstr ""
+msgstr "Lav"
 
 msgid "PRESET_MEDIUM"
-msgstr ""
+msgstr "Mellem"
 
 msgid "PRESET_VERY_HIGH"
-msgstr ""
+msgstr "Meget høj"
 
 msgid "PRESET_VERY_LOW"
-msgstr ""
+msgstr "Meget lav"
 
 msgid "PRESSURE"
-msgstr ""
+msgstr "Tryk"
 
 msgid "PRESSURE_SHORT"
-msgstr ""
+msgstr "Tryk"
 
-#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr "Din arts fortrukne tryk. Konfigureret som minimum og maksimum værdier med hver deres slider. Når forholdene er uden for det spænd vil det have en negativ effekt på din art. Ændre spændet ved at fjerne markeringen i afkrydsningsfeltet under slideren."
 
 msgid "PRESS_KEY_DOT_DOT_DOT"
-msgstr ""
+msgstr "Tryk på en tast..."
 
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
-msgstr ""
+msgstr "Forhåndsvisningsbilledet findes ikke"
 
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
-msgstr ""
+msgstr "Forhåndsvisningsbilledets fil er for stor"
 
 msgid "PREVIOUS_COLON"
-msgstr ""
+msgstr "forrige:"
 
 msgid "PROCESSING_LOADED_OBJECTS"
-msgstr ""
+msgstr "Behandler indlæste objekter"
 
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
-msgstr ""
+msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
-msgstr ""
+msgstr "Celleprocesser"
 
 msgid "PROCESS_SPEED_MODIFIER"
-msgstr ""
+msgstr "Bioprocess hastighed"
 
 #, fuzzy
 msgid "PROCESS_TOGGLE_TOOLTIP"
 msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
 
 msgid "PROGRAMMING_TEAM"
-msgstr ""
+msgstr "Programmerings Team"
 
 msgid "PROJECT_MANAGEMENT_TEAM"
-msgstr ""
+msgstr "Projekt Management Team"
 
 msgid "PROTEINS"
-msgstr ""
+msgstr "Proteiner"
 
 msgid "PROTOPLASM"
-msgstr ""
+msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
-msgstr ""
+msgstr "Pull Requests / Programmering"
 
 msgid "QUADRILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} Bia."
 
 msgid "QUICK_LOAD"
-msgstr ""
+msgstr "Hurtig indlæsning"
 
 msgid "QUICK_SAVE"
-msgstr ""
+msgstr "Hurtig gem"
 
 msgid "QUIT"
-msgstr ""
+msgstr "Afslut"
 
 msgid "QUIT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Afslut spillet"
 
 msgid "QUIT_GAME_WARNING"
 msgstr ""
+"Er du sikker på du vil afslutte spillet?\n"
+"Du vil miste alt ikke-gemt fremskridt."
 
 msgid "RADIATION"
-msgstr ""
+msgstr "Stråling"
 
-#, fuzzy
 msgid "RADIATION_LEVELS"
-msgstr "Slet"
+msgstr "Strålingsniveau"
 
 msgid "RADIOACTIVE_CHUNK"
-msgstr ""
+msgstr "Radioaktiv stenklump"
 
 msgid "RADIOSYNTHESIS"
-msgstr ""
+msgstr "Radiosyntese"
 
 msgid "RANDOMIZE_SPECIES_NAME"
-msgstr ""
+msgstr "Generer tilfældigt artsnavn"
 
 msgid "RANDOM_SEED_TOOLTIP"
-msgstr ""
+msgstr "Værdien brugt til at generere verdenen, som skal være et positivt heltal"
 
 msgid "RAW"
-msgstr ""
+msgstr "Rå"
 
 msgid "RAW_VALUE_COLON"
-msgstr ""
+msgstr "Rå:"
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES"
-msgstr ""
+msgstr "Nå generation 15 med en enkelt art på minimum mellem sværhedsgrad"
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
-msgstr ""
+msgstr "Nå generation {0}/{1} med en enkelt art på minimum mellem sværhedsgrad"
 
 msgid "REACH_MULTICELLULAR_STAGE"
-msgstr ""
+msgstr "Nå flercellestadiet"
 
 msgid "READING_SAVE_DATA"
-msgstr ""
+msgstr "Læser gemt spildata"
 
 msgid "READY"
-msgstr ""
+msgstr "Klar"
 
 msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr ""
+msgstr "Anbefal Thrive:"
 
 msgid "REDDIT_TOOLTIP"
-msgstr ""
+msgstr "Besøg vore subreddit"
 
 msgid "REDO"
-msgstr ""
+msgstr "Genindfør"
 
 msgid "REDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Genindfør sidste handling"
 
 msgid "REFRESH"
-msgstr ""
+msgstr "Opdater"
 
 msgid "REGENERATE_BUTTON"
-msgstr ""
+msgstr "Regenerer verden"
 
 msgid "REGIONS_NUMBER"
-msgstr ""
+msgstr "Antal regioner:"
 
 msgid "RENDER_SCALE"
-msgstr ""
+msgstr "Opløsningsskala"
 
 msgid "REPORT"
-msgstr ""
+msgstr "Anmeld"
 
 msgid "REPORT_BUG"
-msgstr ""
+msgstr "Anmeld en fejl"
 
 msgid "REPRODUCED"
-msgstr ""
+msgstr "reproduceret"
 
 msgid "REPRODUCTION"
-msgstr ""
+msgstr "Reproduktion"
 
 msgid "REPRODUCTION_ASEXUAL"
-msgstr ""
+msgstr "Aseksuel"
 
 msgid "REPRODUCTION_BUDDING"
-msgstr ""
+msgstr "Spirende"
 
 msgid "REPRODUCTION_COMPOUNDS_MODE"
-msgstr ""
+msgstr "Stoffer når editor forlades:"
 
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
-msgstr ""
+msgstr "(hvad der sker med stofferne som spilleren har lagret når man vender tilbage til stadiet fra editoren)"
 
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr ""
 
 msgid "REPRODUCTION_METHOD"
-msgstr ""
+msgstr "Reproduktion:"
 
 msgid "REQUIRES_NUCLEUS"
-msgstr ""
+msgstr "Kræver cellekerne"
 
 msgid "RESEARCH"
-msgstr ""
+msgstr "Forskning"
 
 msgid "RESET"
-msgstr ""
+msgstr "Gendan"
 
 msgid "RESET_ACHIEVEMENTS"
-msgstr ""
+msgstr "Gendan achievements"
 
 msgid "RESET_DEADZONES"
-msgstr ""
+msgstr "Gendan dødzoner"
 
 msgid "RESET_DISMISSED_POPUPS"
-msgstr ""
+msgstr "Gendan afviste popups"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr ""
+msgstr "Gendan input til standardværdierne?"
 
 msgid "RESET_ITEM_ORDER_TO_DEFAULT"
-msgstr ""
+msgstr "Gendan rækkefølgen på genstande til standard"
 
 msgid "RESET_KEYBINDINGS"
-msgstr ""
+msgstr "Gendan tastebindinger"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
-msgstr ""
+msgstr "Standardindstillinger"
 
 msgid "RESET_SHOWN_TUTORIALS"
-msgstr ""
+msgstr "Gendan viste vejledninger"
 
-#, fuzzy
 msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr "Markér alle vejledninger som at de ikke er blevet set endnu. Dette får alle vejledninger til at blive vist igen."
 
 msgid "RESET_TO_DEFAULTS"
-msgstr ""
+msgstr "Gendan til standard?"
 
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
-msgstr ""
+msgstr "Resistent overfor basal opslugning"
 
 msgid "RESIZE_METABALL_TOOLTIP"
-msgstr ""
+msgstr "Juster størrelsen af metabolden der placeres. Kan alternativt ændres med tastaturbindinger."
 
 msgid "RESOLUTION"
-msgstr ""
+msgstr "Opløsning:"
 
 msgid "RESOURCE_ABSORBTION_SPEED"
-msgstr ""
+msgstr "Ressource absorbereingshastighed"
 
 msgid "RESOURCE_AMOUNT_SHORT"
-msgstr ""
+msgstr "{0}: {1}"
 
 msgid "RESOURCE_ENERGY"
-msgstr ""
+msgstr "Energi"
 
 msgid "RESOURCE_FOOD"
-msgstr ""
+msgstr "Mad"
 
 msgid "RESOURCE_ROCK"
-msgstr ""
+msgstr "Sten"
 
 msgid "RESOURCE_WOOD"
-msgstr ""
+msgstr "Træ"
 
 msgid "RESPIRATION"
-msgstr ""
+msgstr "Aerob respiration"
 
 msgid "RESPONSIVE"
-msgstr ""
+msgstr "Responsiv"
 
 msgid "RESTART_REQUIRED"
-msgstr ""
+msgstr "Genstart påkrævet"
 
 msgid "RESUME"
-msgstr ""
+msgstr "Fortsæt"
 
 msgid "RESUME_TOOLTIP"
-msgstr ""
+msgstr "Fortsæt spillet"
 
 msgid "RETURN_TO_MENU"
-msgstr ""
+msgstr "Tilbage til menuen"
 
 msgid "RETURN_TO_MENU_TOOLTIP"
-msgstr ""
+msgstr "Forlad til menuen"
 
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
+"Er du sikker på du vil forlade spillet tilbage til hovedmenuen?\n"
+"Du vil miste alt ikke-gemt fremskridt."
 
 msgid "REVEAL_ALL_PATCHES"
-msgstr ""
+msgstr "Afslør alle patches"
 
-#, fuzzy
 msgid "REVERT_TO_EDITOR"
-msgstr "3D Editor"
+msgstr "Vend tilbage til editoren"
 
 msgid "REVERT_TO_EDITOR_EXPLANATION"
-msgstr ""
+msgstr "Hvis din nuværende mikrobe ikke er egnet til at overleve i dette miljø, så kan vende tilbage til den forrige gang du var i editoren og prøve noget anderledes."
 
 msgid "REVERT_TO_EDITOR_PROMPT"
-msgstr ""
+msgstr "Vend tilbage til editoren?"
 
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
-msgstr ""
+msgstr "Besøg Revolutionary Games officielle sider"
 
 msgid "RIGHT_ARROW"
-msgstr ""
+msgstr "→"
 
 msgid "RIGHT_MOUSE"
-msgstr ""
+msgstr "Højre museknap"
 
 msgid "RIGID"
-msgstr ""
+msgstr "Stiv"
 
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "En stivere membran er mere modstandsdygtig over for skade, men gør det sværere for cellen at bevæge sig rundt."
 
 msgid "ROTATE_LEFT"
-msgstr ""
+msgstr "Rotér venstre"
 
 msgid "ROTATE_RIGHT"
-msgstr ""
+msgstr "Rotér højre"
 
 msgid "ROTATION_COLON"
-msgstr ""
+msgstr "Rotation:"
 
 msgid "RUNOFF_EVENT"
-msgstr ""
+msgstr "Afløb begivenhed"
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
-msgstr ""
+msgstr "Kør auto-evo mens der spilles"
 
 #, fuzzy
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
 msgstr "Auto-Evo udforskningsværktøj"
 
 msgid "RUN_ONE_STEP"
-msgstr ""
+msgstr "Kør et trin"
 
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
-msgstr ""
+msgstr "{0} ved at sende: {1} af bestanden fra patch: {2}"
 
 msgid "RUN_RESULT_GENE_CODE"
-msgstr ""
+msgstr "genkode:"
 
 msgid "RUN_RESULT_NICHE_FILL"
-msgstr ""
+msgstr "opstod for at udfylde en niche"
 
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
-msgstr ""
+msgstr "opstod grundet forskellige selektionspres"
 
 msgid "RUN_RESULT_SPLIT_FROM"
-msgstr ""
+msgstr "splittede fra {0}"
 
 msgid "RUN_RESULT_SPLIT_OFF_TO"
-msgstr ""
+msgstr "bestanden i nogle patches splittede for at danne ny art: {0}:"
 
 msgid "RUN_X_WORLDS"
-msgstr ""
+msgstr "Kør {0} verdener"
 
 msgid "RUN_X_WORLDS_TOOLTIP"
-msgstr ""
+msgstr "Kør et bestemt antal verdener, hvor mængden af generationer hver verden kører styres af spin boxen ovenover."
 
 msgid "RUSTICYANIN"
-msgstr ""
+msgstr "Rusticyanin"
 
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr ""
+msgstr "Rusticyanin er et protein der kan ændre [thrive:compound type=\"iron\"][/thrive:compound] fra en kemisk tilstand til en anden. Denne proces, kaldet [b]jernoxidering[/b], frigiver energi som cellen så kan høste."
 
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Bruger [thrive:compound type=\"iron\"][/thrive:compound] for at producere [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 
 msgid "SAFE_MODE_TITLE"
-msgstr ""
+msgstr "Thrive startede i fejlsikret tilstand"
 
 msgid "SAVE"
-msgstr ""
+msgstr "Gem"
 
 msgid "SAVE_AND_CONTINUE"
-msgstr ""
+msgstr "Gem og fortsæt"
 
 msgid "SAVE_AUTOSAVE"
-msgstr ""
+msgstr "Autosave"
 
 msgid "SAVE_CHEATS_USED"
-msgstr ""
+msgstr "Snydekoder brugt"
 
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
+msgstr "Sletning af denne fil kan ikke gøres om, er du sikker på du permanent vil slette {0}?"
 
 msgid "SAVE_FAILED"
-msgstr ""
+msgstr "Sletning fejlede"
 
 msgid "SAVE_GAME"
-msgstr ""
+msgstr "Gem spil"
 
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Åben gemte-spil menuen for at gemme dit spil"
 
 msgid "SAVE_HAS_DIFFERENT_VERSION"
-msgstr ""
+msgstr "Det gemte spil har en anden version"
 
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
+"Det gemte spils version du forsøger at hente ind passer ikke med spillets version.\n"
+"Hent venligst det gemte spil manuelt gennem menuen."
 
 msgid "SAVE_HAS_INVALID_GAME_STATE"
-msgstr ""
+msgstr "Gemte spil har en ugyldig spil state scene"
 
 msgid "SAVE_INVALID"
-msgstr ""
+msgstr "Ugyldig"
 
 msgid "SAVE_IS_INVALID"
 msgstr ""
@@ -5216,16 +5234,16 @@ msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
-msgstr ""
+msgstr ". Fejlede i at befri allerede indhentede ressourcer: {0}"
 
 msgid "SAVE_MANUAL"
-msgstr ""
+msgstr "Manuel"
 
 msgid "SAVE_QUICKSAVE"
-msgstr ""
+msgstr "Quicksave"
 
 msgid "SAVE_SPACE_USED"
-msgstr ""
+msgstr "Plads brugt:"
 
 msgid "SAVE_UPGRADE_FAILED"
 msgstr ""
@@ -5237,7 +5255,7 @@ msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr ""
 
 msgid "SAVING_DOT_DOT_DOT"
-msgstr ""
+msgstr "Gemmer..."
 
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr ""
@@ -5249,68 +5267,68 @@ msgid "SAVING_SUCCEEDED"
 msgstr ""
 
 msgid "SCALING_NONE"
-msgstr ""
+msgstr "Ingen"
 
 msgid "SCALING_ON"
-msgstr ""
+msgstr "Skaleret"
 
 msgid "SCALING_ON_INVERSE"
-msgstr ""
+msgstr "Inverst skaleret"
 
 msgid "SCREEN_EFFECT"
-msgstr ""
+msgstr "Skærmeffekt"
 
 msgid "SCREEN_EFFECT_GAMEBOY"
-msgstr ""
+msgstr "GB Palette"
 
 msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
-msgstr ""
+msgstr "GB Color grafik"
 
 msgid "SCREEN_EFFECT_GREYSCALE"
-msgstr ""
+msgstr "Gråtone"
 
 msgid "SCREEN_EFFECT_NONE"
-msgstr ""
+msgstr "Ingen"
 
 msgid "SCREEN_RELATIVE_MOVEMENT"
-msgstr ""
+msgstr "Relativt skærmen"
 
 #, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
 msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
 
 msgid "SCROLLLOCK"
-msgstr ""
+msgstr "Scroll Lock"
 
 msgid "SEARCH_DOT_DOT_DOT"
-msgstr ""
+msgstr "Søger..."
 
 msgid "SEARCH_PLACEHOLDER"
-msgstr ""
+msgstr "Søg..."
 
 msgid "SEARCH_RADIUS"
-msgstr ""
+msgstr "Søgningsradius:"
 
 msgid "SEA_FLOOR"
-msgstr ""
+msgstr "Havbund"
 
 msgid "SECRETE_SLIME"
-msgstr ""
+msgstr "Udskil mucilage"
 
 msgid "SECRETE_SLIME_TOOLTIP"
-msgstr ""
+msgstr "Udskille mucilage for et fartboost, og gør celler fanget i slimen langsommere"
 
 msgid "SEED_LABEL"
-msgstr ""
+msgstr "Planet seed: {0}"
 
 msgid "SELECTED"
-msgstr ""
+msgstr "Valgt"
 
 msgid "SELECTED_COLON"
-msgstr ""
+msgstr "Valgt:"
 
 msgid "SELECTED_MOD"
-msgstr ""
+msgstr "Valgte mods:"
 
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr ""
@@ -5322,93 +5340,95 @@ msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr ""
 
 msgid "SELECT_A_GENERATION"
-msgstr ""
+msgstr "Vælg en generation"
 
 msgid "SELECT_A_PATCH"
-msgstr ""
+msgstr "Vælg en patch for at vise detaljerne her"
 
 msgid "SELECT_A_SPECIES"
-msgstr ""
+msgstr "Vælg en art"
 
 msgid "SELECT_A_TECHNOLOGY"
-msgstr ""
+msgstr "Vælg en teknologi fra TechWeb"
 
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
-msgstr ""
+msgstr "Vælg en celletype til at redigere her fra editorfanen"
 
 msgid "SELECT_ENZYME"
-msgstr ""
+msgstr "Vælg enzym:"
 
 msgid "SELECT_MOVEMENT_MODE_TITLE"
-msgstr ""
+msgstr "Vælg bevægelsestilstand"
 
 msgid "SELECT_OPTION"
-msgstr ""
+msgstr "Vælg en mulighed"
 
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr ""
 
 msgid "SELECT_SPACE_STRUCTURE_TITLE"
-msgstr ""
+msgstr "Vælg en struktur at konstruere"
 
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
-msgstr ""
+msgstr "Vælg en struktur at placere"
 
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
-msgstr ""
+msgstr "Vælg en vævstype til at redigere her fra editorfanen"
 
 msgid "SELECT_VACUOLE_COMPOUND_COLON"
-msgstr ""
+msgstr "Vælg stoffet vakuolen lagrer:"
 
 msgid "SEPTEMBER"
-msgstr ""
+msgstr "September"
 
 msgid "SESSILE"
-msgstr ""
+msgstr "Stillestående"
 
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-msgstr ""
+msgstr "Denne værdi er kun gældende for nye spil startet efter indstillingen er ændret"
 
 msgid "SFX_VOLUME"
-msgstr ""
+msgstr "SFX lydstyrke"
 
 msgid "SHIFT"
-msgstr ""
+msgstr "Shift"
 
 msgid "SHOW_ALL_TUTORIALS"
-msgstr ""
+msgstr "Vis alle vejledninger (igen)"
 
 #, fuzzy
 msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
 msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
 
 msgid "SHOW_DAMAGE_EFFECT"
-msgstr ""
+msgstr "Vis skadeeffekt på skærmen"
 
 msgid "SHOW_HELP"
-msgstr ""
+msgstr "Vis hjælp"
 
 msgid "SHOW_ITEM_COORDINATES"
-msgstr ""
+msgstr "Vis koordinator"
 
 msgid "SHOW_MAP"
-msgstr ""
+msgstr "Vis kort"
 
 msgid "SHOW_NEW_PATCH_NOTES"
-msgstr ""
+msgstr "Vi nye patchnotes automatisk"
 
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr ""
+msgstr "Vis patchnotes for nye Thrive udgivelser automatis i hovedmenuen"
 
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
-msgstr ""
+msgstr "Vis vejledninger (i det nuværende spil)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
-msgstr ""
+msgstr "Vi vejledninger (i nye spil)"
 
-#, fuzzy
 msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr ""
+"Vis eller slå vejledninger helt fra. Det anbefales ikke at slå det fra.\n"
+"I stedet for, slå vejledninger når et nyt spil startes fra, dette sørger for at det kun er vejledninger du ikke har set endnu der vises.\n"
+"Vi anbefalet kraftigt dette, da nye vejledninger bliver tilføjet regelmæssigt, og som ellers ville blive overset af spillere der har spille Thrive før."
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5417,44 +5437,43 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 
 msgid "SHOW_WEB_NEWS_FEED"
-msgstr ""
+msgstr "Vis Thrive nyhedsfeed (downloader fra internettet)"
 
-#, fuzzy
 msgid "SIDEROPHORE_ACTION_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr "Affyr siderofor"
 
 msgid "SIGNALING_AGENT"
-msgstr ""
+msgstr "Signaleringsagent"
 
 msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
-msgstr ""
+msgstr "Holden tasten nede for at vise flokkommandoer, for at kommandere ander celler"
 
 msgid "SIGNALING_AGENT_DESCRIPTION"
-msgstr ""
+msgstr "Signaleringsagenter tillader cellen at skabe kemikalier som andre celler kan reagere på. De signalerende kemikalier kan bruges til at tiltrække andre celler, eller advare dem om fare for at få dem til at flygte."
 
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Hold [thrive:input]g_pack_commands[/thrive:input] nede for at åbne en menu hvor kommandoer kan udstedes til andre medlemmer af din art."
 
 msgid "SIGNAL_COMMAND_AGGRESSION"
-msgstr ""
+msgstr "Bliv aggressiv"
 
 msgid "SIGNAL_COMMAND_FLEE"
-msgstr ""
+msgstr "Flygt"
 
 msgid "SIGNAL_COMMAND_FOLLOW"
-msgstr ""
+msgstr "Følg mig"
 
 msgid "SIGNAL_COMMAND_NONE"
-msgstr ""
+msgstr "Ingen kommando"
 
 msgid "SIGNAL_COMMAND_TO_ME"
-msgstr ""
+msgstr "Bevæg jer til mig"
 
 msgid "SIGNAL_TO_EMIT"
-msgstr ""
+msgstr "Signal der udsendes"
 
 msgid "SILICA"
-msgstr ""
+msgstr "Silica"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
@@ -5463,16 +5482,16 @@ msgid "SIMULATION_CONFIG"
 msgstr ""
 
 msgid "SIXTEEN_TIMES"
-msgstr ""
+msgstr "16x"
 
 msgid "SIZE_COLON"
-msgstr ""
+msgstr "Størrelse:"
 
 msgid "SLIDESHOW"
-msgstr ""
+msgstr "Slideshow"
 
 msgid "SLIME_JET"
-msgstr ""
+msgstr "Slimjet"
 
 msgid "SLIME_JET_DESCRIPTION"
 msgstr ""
@@ -5481,97 +5500,107 @@ msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "SMALL_IRON_CHUNK"
-msgstr ""
+msgstr "Lille jernklump"
 
 msgid "SMALL_IRON_CHUNK_BANANA"
-msgstr ""
+msgstr "Lille jernbananklump"
 
 msgid "SMALL_PHOSPHATE_CHUNK"
-msgstr ""
+msgstr "Lille fosfatklump"
 
 msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
-msgstr ""
+msgstr "Lille fosfatbananklump"
 
 msgid "SMALL_SULFUR_CHUNK"
-msgstr ""
+msgstr "Lille sulfurklump"
 
 msgid "SNOWFLAKE"
-msgstr ""
+msgstr "Snefnug"
 
 msgid "SOCIETY_STAGE"
-msgstr ""
+msgstr "Samfundsstadie"
 
 msgid "SOUND"
-msgstr ""
+msgstr "Lyd"
 
 msgid "SOUND_TEAM"
-msgstr ""
+msgstr "Lyd Team"
 
 msgid "SOUND_TEAM_LEAD"
-msgstr ""
+msgstr "Lyd Team Lead"
 
 msgid "SOUND_TEAM_LEADS"
-msgstr ""
+msgstr "Lyd Team Leads"
 
 msgid "SPACE"
-msgstr ""
+msgstr "Rummet"
 
 msgid "SPACE_STAGE"
-msgstr ""
+msgstr "Rumstadie"
 
 msgid "SPACE_STRUCTURE_HAS_RESOURCES"
-msgstr ""
+msgstr "Strukturen venter på konstruktionsflåde for at kunne bygges"
 
 msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
-msgstr ""
+msgstr "Ingen ekstra information tilgængelig"
 
 msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
-msgstr ""
+msgstr "Struktur venter på konstruktionsflåde og ressourcer: {0}"
 
 msgid "SPAWN_AMMONIA"
-msgstr ""
+msgstr "Skab ammoniak"
 
 msgid "SPAWN_ENEMY"
-msgstr ""
+msgstr "Skab fjende"
 
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
 msgid "SPAWN_GLUCOSE"
-msgstr ""
+msgstr "Skab glukose"
 
 msgid "SPAWN_PHOSPHATES"
-msgstr ""
+msgstr "Skab fosfat"
 
 msgid "SPECIAL_MOUSE_1"
-msgstr ""
+msgstr "Museknap special 1"
 
 msgid "SPECIAL_MOUSE_2"
-msgstr ""
+msgstr "Museknap special 2"
 
 msgid "SPECIES"
-msgstr ""
+msgstr "Art"
 
 msgid "SPECIES_COLON"
-msgstr ""
+msgstr "Art:"
 
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
+"[b]Art[/b]\n"
+"  {0}:{1}\n"
+"[b]Generation[/b]\n"
+"  {2}\n"
+"[b]Bestand[/b]\n"
+"  {3}\n"
+"[b]Farve[/b]\n"
+"  #{4}\n"
+"[b]Opførelse[/b]\n"
+"  {5}"
 
 msgid "SPECIES_HAS_A_MUTATION"
-msgstr ""
+msgstr "er muteret"
 
 msgid "SPECIES_IN_CURRENT_PATCH"
-msgstr ""
+msgstr "Art i nuværende patch"
 
 msgid "SPECIES_IN_OTHER_PATCHES"
-msgstr ""
+msgstr "Art i andre patches"
 
 msgid "SPECIES_LIST"
-msgstr ""
+msgstr "Artliste"
 
 msgid "SPECIES_MEMBER_IMPACT_ON_POP"
-msgstr ""
+msgstr "Påvirkning af artsfællers dødsfald"
 
 msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
 msgstr ""
