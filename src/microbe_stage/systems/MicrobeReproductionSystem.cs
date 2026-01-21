@@ -78,6 +78,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
         float remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS *
             (hexCount * Constants.MICROBE_REPRODUCTION_FREE_RATE_FROM_HEX + 1.0f) * delta;
 
+        // TODO: some scaling based on the number of cells in the colony to not have a major slog?
         if (isMulticellular)
             remainingFreeCompounds *= Constants.MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
 
@@ -87,6 +88,11 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
         {
             remainingAllowedCompoundUse = remainingFreeCompounds * Constants.MICROBE_REPRODUCTION_MAX_COMPOUND_USE;
         }
+
+        // Somehow this code was forgotten but *now* properly allow multicellular species to grow at a more intended
+        // speed
+        if (isMulticellular)
+            remainingAllowedCompoundUse *= Constants.MULTICELLULAR_REPRODUCTION_COMPOUND_MAX_USE_MULTIPLIER;
 
         return (remainingAllowedCompoundUse, remainingFreeCompounds);
     }

@@ -867,6 +867,11 @@ public static class Constants
     public const float MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER = 2;
 
     /// <summary>
+    ///   A multiplier for <see cref="MICROBE_REPRODUCTION_MAX_COMPOUND_USE"/> for multicellular microbes
+    /// </summary>
+    public const float MULTICELLULAR_REPRODUCTION_COMPOUND_MAX_USE_MULTIPLIER = 3;
+
+    /// <summary>
     ///   How much ammonia a microbe needs on top of the organelle initial compositions to reproduce
     /// </summary>
     public const float MICROBE_REPRODUCTION_COST_BASE_AMMONIA = 16;
