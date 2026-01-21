@@ -1,7 +1,13 @@
-﻿namespace AutoEvo;
+﻿// Tradeoff between safety and faster score lookups
+
+#define USE_HASHED_SCORE_KEYS
+
+namespace AutoEvo;
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using Godot;
 using Systems;
 
@@ -27,7 +33,11 @@ public class SimulationCache
 
     private readonly WorldGenerationSettings worldSettings;
 
+#if USE_HASHED_SCORE_KEYS
+    private readonly Dictionary<ulong, float> cachedPressureScores = new();
+#else
     private readonly Dictionary<(Species, SelectionPressure, Patch), float> cachedPressureScores = new();
+#endif
 
     private readonly Dictionary<(MicrobeSpecies, IBiomeConditions), EnergyBalanceInfoSimple>
         cachedSimpleEnergyBalances = [];
@@ -76,14 +86,29 @@ public class SimulationCache
 
     public float GetPressureScore(SelectionPressure pressure, Patch patch, Species species)
     {
-        var key = (species, pressure, patch);
+#if USE_HASHED_SCORE_KEYS
 
-        if (cachedPressureScores.TryGetValue(key, out var cached))
+        // TODO: even better would be if pressure scores had unique IDs and we could use the species ID +
+        // some modification marker as the hash input here
+        var key = (ulong)(uint)pressure.GetHashCode() << 32 | (uint)species.GetHashCode();
+
+        // Use a big prime to shuffle the hash to hopefully avoid collisions
+        key *= 11265003396083139817;
+
+        key += (ulong)patch.ID;
+
+        key *= 13900709095051265681;
+#else
+        var key = (species, pressure, patch);
+#endif
+
+        ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(cachedPressureScores, key);
+        if (!Unsafe.IsNullRef(ref score))
         {
-            return cached;
+            return score;
         }
 
-        cached = pressure.Score(species, patch, this);
+        var cached = pressure.Score(species, patch, this);
 
         cachedPressureScores.Add(key, cached);
         return cached;
@@ -96,15 +121,16 @@ public class SimulationCache
         // different species but with same organelles to be able to use the same cache value) would be nice here
         var key = (species, biomeConditions);
 
-        if (cachedSimpleEnergyBalances.TryGetValue(key, out var cached))
+        ref var balance = ref CollectionsMarshal.GetValueRefOrNullRef(cachedSimpleEnergyBalances, key);
+        if (!Unsafe.IsNullRef(ref balance))
         {
-            return cached;
+            return balance;
         }
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(species.Organelles);
 
         // TODO: check if caching instances of these objects would be better than always recreating
-        cached = new EnergyBalanceInfoSimple();
+        var cached = new EnergyBalanceInfoSimple();
 
         // Auto-evo uses the average values of compound during the course of a simulated day
         ProcessSystem.ComputeEnergyBalanceSimple(species.Organelles, biomeConditions,
@@ -119,12 +145,13 @@ public class SimulationCache
     // TODO: Both of these seem like something that could easily be stored on the species with OnEdited
     public float GetSpeedForSpecies(MicrobeSpecies species)
     {
-        if (cachedBaseSpeeds.TryGetValue(species, out var cached))
+        ref var speed = ref CollectionsMarshal.GetValueRefOrNullRef(cachedBaseSpeeds, species);
+        if (!Unsafe.IsNullRef(ref speed))
         {
-            return cached;
+            return speed;
         }
 
-        cached = MicrobeInternalCalculations.CalculateSpeed(species.Organelles.Organelles, species.MembraneType,
+        var cached = MicrobeInternalCalculations.CalculateSpeed(species.Organelles.Organelles, species.MembraneType,
             species.MembraneRigidity, species.IsBacteria, true);
 
         cachedBaseSpeeds.Add(species, cached);
@@ -133,12 +160,13 @@ public class SimulationCache
 
     public float GetBaseHexSizeForSpecies(MicrobeSpecies species)
     {
-        if (cachedBaseHexSizes.TryGetValue(species, out var cached))
+        ref var size = ref CollectionsMarshal.GetValueRefOrNullRef(cachedBaseHexSizes, species);
+        if (!Unsafe.IsNullRef(ref size))
         {
-            return cached;
+            return size;
         }
 
-        cached = species.BaseHexSize;
+        var cached = species.BaseHexSize;
 
         cachedBaseHexSizes.Add(species, cached);
         return cached;
@@ -146,12 +174,13 @@ public class SimulationCache
 
     public float GetRotationSpeedForSpecies(MicrobeSpecies species)
     {
-        if (cachedBaseRotationSpeeds.TryGetValue(species, out var cached))
+        ref var speed = ref CollectionsMarshal.GetValueRefOrNullRef(cachedBaseRotationSpeeds, species);
+        if (!Unsafe.IsNullRef(ref speed))
         {
-            return cached;
+            return speed;
         }
 
-        cached = MicrobeInternalCalculations.CalculateRotationSpeed(species.Organelles.Organelles);
+        var cached = MicrobeInternalCalculations.CalculateRotationSpeed(species.Organelles.Organelles);
 
         cachedBaseRotationSpeeds.Add(species, cached);
         return cached;
@@ -162,9 +191,10 @@ public class SimulationCache
     {
         var key = (species, biomeConditions, fromCompound, toCompound);
 
-        if (cachedCompoundScores.TryGetValue(key, out var cached))
+        ref var scores = ref CollectionsMarshal.GetValueRefOrNullRef(cachedCompoundScores, key);
+        if (!Unsafe.IsNullRef(ref scores))
         {
-            return cached;
+            return scores;
         }
 
         var compoundIn = 0.0f;
@@ -185,6 +215,7 @@ public class SimulationCache
             }
         }
 
+        float cached;
         if (compoundIn <= 0)
         {
             cached = 0;
@@ -203,12 +234,13 @@ public class SimulationCache
     {
         var key = (species, biomeConditions, fromCompound, toCompound);
 
-        if (cachedGeneratedCompound.TryGetValue(key, out var cached))
+        ref var amount = ref CollectionsMarshal.GetValueRefOrNullRef(cachedGeneratedCompound, key);
+        if (!Unsafe.IsNullRef(ref amount))
         {
-            return cached;
+            return amount;
         }
 
-        cached = 0.0f;
+        var cached = 0.0f;
 
         var activeProcessList = GetActiveProcessList(species);
 
@@ -253,12 +285,13 @@ public class SimulationCache
     {
         var key = (process, speedModifier, biomeConditions);
 
-        if (cachedProcessSpeeds.TryGetValue(key, out var cached))
+        ref var speed = ref CollectionsMarshal.GetValueRefOrNullRef(cachedProcessSpeeds, key);
+        if (!Unsafe.IsNullRef(ref speed))
         {
-            return cached;
+            return speed;
         }
 
-        cached = ProcessSystem.CalculateProcessMaximumSpeed(process, speedModifier, biomeConditions,
+        var cached = ProcessSystem.CalculateProcessMaximumSpeed(process, speedModifier, biomeConditions,
             CompoundAmountType.Average, true);
 
         cachedProcessSpeeds.Add(key, cached);
@@ -281,9 +314,10 @@ public class SimulationCache
 
         var key = (microbeSpecies: predator, prey, biomeConditions);
 
-        if (predationScores.TryGetValue(key, out var cached))
+        ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(predationScores, key);
+        if (!Unsafe.IsNullRef(ref score))
         {
-            return cached;
+            return score;
         }
 
         var sprintMultiplier = Constants.SPRINTING_FORCE_MULTIPLIER;
@@ -609,7 +643,7 @@ public class SimulationCache
         if (predatorSlimeJetScore > 0)
             preySlimeJetScore = 0;
 
-        cached = (scoreMultiplier * behaviourScore *
+        var cached = (scoreMultiplier * behaviourScore *
                 (pilusScore + engulfmentScore + damagingToxinScore) - (preySlimeJetScore + preyMucocystsScore)) /
             (GetEnergyBalanceForSpecies(predator, biomeConditions).TotalConsumption * bindingModifier);
 
@@ -621,12 +655,13 @@ public class SimulationCache
     {
         var key = (species, biomeConditions);
 
-        if (cachedUsesVaryingCompounds.TryGetValue(key, out var cached))
+        ref var usesVarying = ref CollectionsMarshal.GetValueRefOrNullRef(cachedUsesVaryingCompounds, key);
+        if (!Unsafe.IsNullRef(ref usesVarying))
         {
-            return cached;
+            return usesVarying;
         }
 
-        cached = MicrobeInternalCalculations.UsesDayVaryingCompounds(species.Organelles, biomeConditions, null);
+        var cached = MicrobeInternalCalculations.UsesDayVaryingCompounds(species.Organelles, biomeConditions, null);
 
         cachedUsesVaryingCompounds.Add(key, cached);
         return cached;
@@ -637,12 +672,13 @@ public class SimulationCache
     {
         var key = (species, compound, biomeConditions);
 
-        if (chemoreceptorCloudScores.TryGetValue(key, out var cached))
+        ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(chemoreceptorCloudScores, key);
+        if (!Unsafe.IsNullRef(ref score))
         {
-            return cached;
+            return score;
         }
 
-        cached = 0.0f;
+        var cached = 0.0f;
         var hasChemoreceptor = false;
         foreach (var organelle in species.Organelles.Organelles)
         {
@@ -674,13 +710,14 @@ public class SimulationCache
     {
         var key = (species, chunk, compound, biomeConditions);
 
-        if (chemoreceptorChunkScores.TryGetValue(key, out var cached))
+        ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(chemoreceptorChunkScores, key);
+        if (!Unsafe.IsNullRef(ref score))
         {
-            return cached;
+            return score;
         }
 
         // Need to have chemoreceptor to be able to "smell" chunks
-        cached = 0.0f;
+        var cached = 0.0f;
         var hasChemoreceptor = false;
         foreach (var organelle in species.Organelles.Organelles)
         {
@@ -714,12 +751,13 @@ public class SimulationCache
     {
         var key = (species, biomeConditions);
 
-        if (cachedStorageScores.TryGetValue(key, out var cached))
+        ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(cachedStorageScores, key);
+        if (!Unsafe.IsNullRef(ref score))
         {
-            return cached;
+            return score;
         }
 
-        cached = CalculateStorageScore(species, biomeConditions, compound);
+        var cached = CalculateStorageScore(species, biomeConditions, compound);
 
         cachedStorageScores.Add(key, cached);
         return cached;
@@ -770,8 +808,11 @@ public class SimulationCache
 
     public PredationToolsRawScores GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
     {
-        if (cachedPredationToolsRawScores.TryGetValue(microbeSpecies, out var cached))
-            return cached;
+        ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(cachedPredationToolsRawScores, microbeSpecies);
+        if (!Unsafe.IsNullRef(ref score))
+        {
+            return score;
+        }
 
         var averageToxicity = 0.0f;
         var totalToxicity = 0.0f;
@@ -965,8 +1006,12 @@ public class SimulationCache
     public float GetEnzymesScore(MicrobeSpecies predator, string dissolverEnzyme)
     {
         var key = (predator, dissolverEnzyme);
-        if (cachedEnzymeScores.TryGetValue(key, out var cached))
-            return cached;
+
+        ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(cachedEnzymeScores, key);
+        if (!Unsafe.IsNullRef(ref score))
+        {
+            return score;
+        }
 
         var organelles = predator.Organelles.Organelles;
         var isMembraneDigestible = dissolverEnzyme == Constants.LIPASE_ENZYME;
@@ -1015,8 +1060,12 @@ public class SimulationCache
         BiomeConditions biomeConditions)
     {
         var key = (species, biomeConditions);
-        if (cachedResolvedTolerances.TryGetValue(key, out var cached))
-            return cached;
+
+        ref var tolerance = ref CollectionsMarshal.GetValueRefOrNullRef(cachedResolvedTolerances, key);
+        if (!Unsafe.IsNullRef(ref tolerance))
+        {
+            return tolerance;
+        }
 
         var tolerances = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(species, biomeConditions);
 
