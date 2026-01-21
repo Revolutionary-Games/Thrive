@@ -49,7 +49,7 @@ public class AutoEvoGlobalCache
     {
         RootPressure = new RootPressure();
         MetabolicStabilityPressure = new MetabolicStabilityPressure(10.0f);
-        GeneralAvoidPredationSelectionPressure = new GeneralAvoidPredationSelectionPressure(1.4f);
+        GeneralAvoidPredationSelectionPressure = new GeneralAvoidPredationSelectionPressure(1.6f);
         EnergyConsumptionPressure = new EnergyConsumptionPressure(0.5f);
         EnvironmentalTolerancesPressure = new EnvironmentalTolerancePressure(4);
 

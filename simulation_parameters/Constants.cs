@@ -1311,7 +1311,7 @@ public static class Constants
 
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 4000;
-    public const float AUTO_EVO_PILUS_DEFENSE_SCORE = 2000;
+    public const float AUTO_EVO_PILUS_DEFENSE_SCORE = 3000;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100000;
     public const float AUTO_EVO_TOXIN_ENGULFMENT_DEFENSE_MODIFIER = 0.01f;
     public const float AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING = 0.00006f;
