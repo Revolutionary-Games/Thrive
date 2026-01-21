@@ -155,13 +155,105 @@ public class PhysicsShape : IDisposable
         if (cached != null)
             return cached;
 
+        // TODO: pre-bake collision shapes for game export (the fallback conversion below should only need to be used
+        // when debugging to make the release version perform better)
+
+        if (IsComplexShape(path))
+        {
+            cached = LoadComplexShape(path, density);
+        }
+        else
+        {
+            cached = LoadShape3D(path, density);
+        }
+
+        if (cached == null)
+        {
+            return null;
+        }
+
+        cache.WriteLoadedShape(path, density, cached);
+
+        return cached;
+    }
+
+    /// <summary>
+    ///   Gets the mass of this shape, unit size of normal density has mass of 1000 so in most cases the mass should be
+    ///   divided by 1000 for processing purposes (though physics forces will work correctly with unadjusted values)
+    /// </summary>
+    /// <returns>The mass</returns>
+    public float GetMass()
+    {
+        return NativeMethods.ShapeGetMass(AccessShapeInternal());
+    }
+
+    public uint GetSubShapeIndexFromData(uint subShapeData)
+    {
+        return NativeMethods.ShapeGetSubShapeIndex(AccessShapeInternal(), subShapeData);
+    }
+
+    /// <summary>
+    ///   Calculates how much angular velocity this shape would get given the torque (based on this shapes rotational
+    ///   inertia)
+    /// </summary>
+    /// <param name="torque">The raw torque to apply</param>
+    /// <returns>Resulting angular velocities around the same axes as the torque was given in</returns>
+    public Vector3 CalculateResultingTorqueFromInertia(Vector3 torque)
+    {
+        return NativeMethods.ShapeCalculateResultingAngularVelocity(AccessShapeInternal(), new JVecF3(torque));
+    }
+
+    /// <summary>
+    ///   Calculates how much of a rotation around the y-axis is kept if applied to this shape
+    /// </summary>
+    /// <returns>A speed factor that is roughly around 0-1 range but doesn't follow any hard limits</returns>
+    public float TestYRotationInertiaFactor()
+    {
+        // We give torque vector to apply to the shape and then compare
+        // the resulting angular velocities to see how fast the shape can turn
+        // We use a multiplier here to ensure the float values don't get very low very fast
+        var torqueToTest = Vector3.Up * 1000;
+
+        var velocities = CalculateResultingTorqueFromInertia(torqueToTest);
+
+        // Detect how much torque was preserved
+        var speedFraction = velocities.Y / torqueToTest.Y;
+        speedFraction *= 1000;
+
+        return speedFraction;
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal IntPtr AccessShapeInternal()
+    {
+        if (disposed)
+            throw new ObjectDisposedException(nameof(PhysicsShape));
+
+        return nativeInstance;
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        ReleaseUnmanagedResources();
+        if (disposing)
+        {
+            disposed = true;
+        }
+    }
+
+    private static PhysicsShape? LoadShape3D(string path, float density)
+    {
         // Base scale for physics bodies. This is now always one as shapes are assumed to be scaled correctly when
         // saved to disk
         const float scale = 1;
 
-        // TODO: pre-bake collision shapes for game export (the fallback conversion below should only need to be used
-        // when debugging to make the release version perform better)
-
+        PhysicsShape? cached;
         var godotData = GD.Load<Shape3D>(path);
 
         if (godotData == null)
@@ -246,79 +338,38 @@ public class PhysicsShape : IDisposable
                 return null;
         }
 
-        cache.WriteLoadedShape(path, density, cached);
-
         return cached;
     }
 
-    /// <summary>
-    ///   Gets the mass of this shape, unit size of normal density has mass of 1000 so in most cases the mass should be
-    ///   divided by 1000 for processing purposes (though physics forces will work correctly with unadjusted values)
-    /// </summary>
-    /// <returns>The mass</returns>
-    public float GetMass()
+    private static PhysicsShape LoadComplexShape(string path, float density)
     {
-        return NativeMethods.ShapeGetMass(AccessShapeInternal());
-    }
+        var shapes =
+            ThriveJsonConverter.Instance
+                .DeserializeFile<List<ComplexCollisionShapeConfiguration>>(path);
 
-    public uint GetSubShapeIndexFromData(uint subShapeData)
-    {
-        return NativeMethods.ShapeGetSubShapeIndex(AccessShapeInternal(), subShapeData);
-    }
+        var subShapes = new List<(PhysicsShape, Vector3, Quaternion)>();
 
-    /// <summary>
-    ///   Calculates how much angular velocity this shape would get given the torque (based on this shapes rotational
-    ///   inertia)
-    /// </summary>
-    /// <param name="torque">The raw torque to apply</param>
-    /// <returns>Resulting angular velocities around the same axes as the torque was given in</returns>
-    public Vector3 CalculateResultingTorqueFromInertia(Vector3 torque)
-    {
-        return NativeMethods.ShapeCalculateResultingAngularVelocity(AccessShapeInternal(), new JVecF3(torque));
-    }
-
-    /// <summary>
-    ///   Calculates how much of a rotation around the y-axis is kept if applied to this shape
-    /// </summary>
-    /// <returns>A speed factor that is roughly around 0-1 range but doesn't follow any hard limits</returns>
-    public float TestYRotationInertiaFactor()
-    {
-        // We give torque vector to apply to the shape and then compare
-        // the resulting angular velocities to see how fast the shape can turn
-        // We use a multiplier here to ensure the float values don't get very low very fast
-        var torqueToTest = Vector3.Up * 1000;
-
-        var velocities = CalculateResultingTorqueFromInertia(torqueToTest);
-
-        // Detect how much torque was preserved
-        var speedFraction = velocities.Y / torqueToTest.Y;
-        speedFraction *= 1000;
-
-        return speedFraction;
-    }
-
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal IntPtr AccessShapeInternal()
-    {
-        if (disposed)
-            throw new ObjectDisposedException(nameof(PhysicsShape));
-
-        return nativeInstance;
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        ReleaseUnmanagedResources();
-        if (disposing)
+        foreach (var complexCollision in shapes ?? [])
         {
-            disposed = true;
+            if (string.IsNullOrEmpty(complexCollision.CollisionShapePath))
+            {
+                GD.PrintErr("CollisionShapePath is null in complex collision shape");
+                continue;
+            }
+
+            var shape = CreateShapeFromGodotResource(complexCollision.CollisionShapePath, density);
+            if (shape == null)
+                continue;
+
+            subShapes.Add((shape, complexCollision.Position, Quaternion.FromEuler(complexCollision.Rotation)));
         }
+
+        return CreateCombinedShapeStatic(subShapes);
+    }
+
+    private static bool IsComplexShape(string path)
+    {
+        return path.EndsWith(".json");
     }
 
     private void ReleaseUnmanagedResources()
@@ -327,6 +378,32 @@ public class PhysicsShape : IDisposable
         {
             NativeMethods.ReleaseShape(nativeInstance);
             nativeInstance = new IntPtr(0);
+        }
+    }
+
+    public class ComplexCollisionShapeConfiguration
+    {
+        /// <summary>
+        ///   Path to the convex collision shape this part uses. Must be set as this is the only way to create
+        ///   a complex shape currently.
+        /// </summary>
+        public string CollisionShapePath;
+
+        /// <summary>
+        ///   Starting position of the shapes. Used with primitive shapes to position them correctly.
+        /// </summary>
+        public Vector3 Position;
+
+        /// <summary>
+        ///   Rotation of the shapes in radians. Used with primitive shapes to rotate them correctly.
+        /// </summary>
+        public Vector3 Rotation;
+
+        public ComplexCollisionShapeConfiguration(string collisionShapePath, Vector3 position, Vector3 rotation)
+        {
+            CollisionShapePath = collisionShapePath;
+            Position = position;
+            Rotation = rotation;
         }
     }
 }

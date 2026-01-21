@@ -12,7 +12,7 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 2;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
@@ -31,6 +31,11 @@ public partial class CellBodyPlanEditorComponent :
 
     private readonly Dictionary<CellType, int> cellTypesCount = new();
 
+    /// <summary>
+    ///   Stores cells that end up being disconnected from the colony because of growth order
+    /// </summary>
+    private readonly HashSet<Hex> wrongGrowthOrderCells = new();
+
 #pragma warning disable CA2213
 
     // Selection menu tab selector buttons
@@ -44,6 +49,9 @@ public partial class CellBodyPlanEditorComponent :
     private Button behaviourTabButton = null!;
 
     [Export]
+    private Button growthOrderTabButton = null!;
+
+    [Export]
     private PanelContainer structureTab = null!;
 
     [Export]
@@ -51,6 +59,15 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private BehaviourEditorSubComponent behaviourEditor = null!;
+
+    [Export]
+    private PanelContainer growthOrderTab = null!;
+
+    [Export]
+    private GrowthOrderPicker growthOrderGUI = null!;
+
+    [Export]
+    private CheckBox showGrowthOrderCoordinates = null!;
 
     [Export]
     private CollapsibleList cellTypeSelectionList = null!;
@@ -89,6 +106,9 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private CustomConfirmationDialog negativeAtpPopup = null!;
+
+    [Export]
+    private CustomConfirmationDialog wrongGrowthOrderPopup = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";
@@ -106,6 +126,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private bool hasNegativeATPCells;
 
+    private bool showGrowthOrderNumbers;
+
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
 
@@ -114,6 +136,7 @@ public partial class CellBodyPlanEditorComponent :
         Structure,
         Reproduction,
         Behaviour,
+        GrowthOrder,
     }
 
     public override bool HasIslands =>
@@ -133,6 +156,9 @@ public partial class CellBodyPlanEditorComponent :
             if (HasIslands)
                 return true;
 
+            if (wrongGrowthOrderCells.Count > 0)
+                return true;
+
             return false;
         }
     }
@@ -150,11 +176,29 @@ public partial class CellBodyPlanEditorComponent :
 
     public bool CanBeSpecialReference => true;
 
+    /// <summary>
+    ///   When enabled numbers are shown above the organelles to indicate their growth order
+    /// </summary>
+    public bool ShowGrowthOrder
+    {
+        get => showGrowthOrderNumbers;
+        set
+        {
+            showGrowthOrderNumbers = value;
+
+            UpdateGrowthOrderUI();
+        }
+    }
+
+    protected override bool ShowFloatingLabels => ShowGrowthOrder;
+
     protected override bool ForceHideHover => false;
 
     public override void _Ready()
     {
         base._Ready();
+
+        growthOrderGUI.ShowCoordinates = showGrowthOrderCoordinates.ButtonPressed;
 
         cellTypeSelectionButtonScene =
             GD.Load<PackedScene>("res://src/multicellular_stage/editor/CellTypeSelection.tscn");
@@ -241,10 +285,12 @@ public partial class CellBodyPlanEditorComponent :
             {
                 cellType = CellTypeFromName(activeActionName);
 
+                var position = new Hex(q, r);
+
                 // Can place stuff at all?
-                // TODO: should placementRotation be used here in some way?
                 isPlacementProbablyValid =
-                    IsValidPlacement(new HexWithData<CellTemplate>(new CellTemplate(cellType), new Hex(q, r), 0));
+                    IsValidPlacement(new HexWithData<CellTemplate>(
+                        new CellTemplate(cellType, position, placementRotation), position, placementRotation));
             }
             else if (MovingPlacedHex != null)
             {
@@ -292,6 +338,7 @@ public partial class CellBodyPlanEditorComponent :
         writer.Write(newName);
         writer.WriteObject(editedMicrobeCells);
         writer.Write((int)selectedSelectionMenuTab);
+        writer.WriteObjectProperties(growthOrderGUI);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -302,6 +349,7 @@ public partial class CellBodyPlanEditorComponent :
         base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
 
         reader.ReadObjectProperties(behaviourEditor);
+
         newName = reader.ReadString() ?? throw new NullArchiveObjectException();
         editedMicrobeCells = reader.ReadObject<IndividualHexLayout<CellTemplate>>();
         selectedSelectionMenuTab = (SelectionMenuTab)reader.ReadInt32();
@@ -329,6 +377,11 @@ public partial class CellBodyPlanEditorComponent :
                 throw new Exception("Couldn't copy data correctly from old save");
 
             editedMicrobeCells = newLayout;
+        }
+
+        if (version >= 3)
+        {
+            reader.ReadObjectProperties(growthOrderGUI);
         }
     }
 
@@ -390,6 +443,8 @@ public partial class CellBodyPlanEditorComponent :
             }
         }
 
+        ApplyGrowthOrderToCells();
+
         // Compute final cell layout positions and update the species
         // TODO: maybe in the future we want to switch to editing the full hex layout with the entire cells in this
         // editor so this step can be skipped. Or another approach that keeps the shape the player worked on better
@@ -414,6 +469,12 @@ public partial class CellBodyPlanEditorComponent :
             !editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
         {
             negativeAtpPopup.PopupCenteredShrink();
+            return false;
+        }
+
+        if (wrongGrowthOrderCells.Count > 0)
+        {
+            wrongGrowthOrderPopup.PopupCenteredShrink();
             return false;
         }
 
@@ -961,10 +1022,7 @@ public partial class CellBodyPlanEditorComponent :
                 var tooltip = ToolTipManager.Instance.GetToolTipIfExists<CellTypeTooltip>(cellType.CellTypeName,
                     "cellTypes");
 
-                if (tooltip != null)
-                {
-                    tooltip.MutationPointCost = GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier;
-                }
+                tooltip?.MutationPointCost = GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier;
             }
 
             control.MPCost = GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier;
@@ -1159,7 +1217,11 @@ public partial class CellBodyPlanEditorComponent :
 
         UpdateArrow();
 
+        RecalculateWrongGrowthOrderCells();
+
         UpdateFinishButtonWarningVisibility();
+
+        UpdateGrowthOrderUI();
     }
 
     private void UpdateStats()
@@ -1303,6 +1365,74 @@ public partial class CellBodyPlanEditorComponent :
 
             cellTypesCount.TryGetValue(type, out var count);
             cellTypesCount[type] = count + 1;
+        }
+    }
+
+    /// <summary>
+    ///   Recalculates cells that end up being disconnected because of their growth order.
+    ///   Saves the results in <see cref="wrongGrowthOrderCells"/>
+    /// </summary>
+    private void RecalculateWrongGrowthOrderCells()
+    {
+        wrongGrowthOrderCells.Clear();
+
+        // Reuse this work memory
+        islandsWorkMemory1.Clear();
+
+        foreach (var cell in growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable(), i => i.Data!))
+        {
+            islandsWorkMemory1.Add(cell.Position);
+
+            if (islandsWorkMemory1.Count == 1)
+                continue;
+
+            bool hasNeighboor = false;
+
+            foreach (var offset in Hex.HexNeighbourOffset.Values)
+            {
+                if (islandsWorkMemory1.Contains(cell.Position + offset))
+                {
+                    hasNeighboor = true;
+                    break;
+                }
+            }
+
+            if (!hasNeighboor)
+            {
+                wrongGrowthOrderCells.Add(cell.Position);
+            }
+        }
+    }
+
+    private void OnGrowthOrderChanged()
+    {
+        RecalculateWrongGrowthOrderCells();
+
+        UpdateGrowthOrderUI();
+
+        UpdateFinishButtonWarningVisibility();
+    }
+
+    private void ApplyGrowthOrderToCells()
+    {
+        var order = new HexWithData<CellTemplate>[editedMicrobeCells.Count];
+
+        editedMicrobeCells.CopyTo(order, 0);
+        editedMicrobeCells.Clear();
+
+        foreach (var cell in growthOrderGUI.ApplyOrderingToItems(order, i => i.Data!))
+        {
+            editedMicrobeCells.AddFast(cell, hexTemporaryMemory, hexTemporaryMemory2);
+        }
+
+        var leaderPosition = editedMicrobeCells[0].Position;
+
+        GD.Print(leaderPosition);
+
+        foreach (var cell in editedMicrobeCells.AsModifiable())
+        {
+            cell.Position -= leaderPosition;
+            cell.Data!.Position -= leaderPosition;
         }
     }
 
@@ -1462,9 +1592,11 @@ public partial class CellBodyPlanEditorComponent :
 
         GUICommon.Instance.PlayButtonPressSound();
 
+        // Apparently this works without needing to call GetEditedCellDataIfEdited here. But keep an eye out
+        // for allowing deleting a used type problem.
         var type = CellTypeFromName(activeActionName!);
 
-        // Disallow deleting a type that is in use currently
+        // Disallow deleting a type in use currently
         if (editedMicrobeCells.AsModifiable().Any(c => c.Data!.ModifiableCellType == type))
         {
             GD.Print("Can't delete in use cell type");
@@ -1512,11 +1644,7 @@ public partial class CellBodyPlanEditorComponent :
                 var tooltip = ToolTipManager.Instance.GetToolTipIfExists<CellTypeTooltip>(newType.CellTypeName,
                     "cellTypes");
 
-                if (tooltip != null)
-                {
-                    tooltip.MutationPointCost =
-                        newType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
-                }
+                tooltip?.MutationPointCost = newType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
 
                 control.ReportTypeChanged();
             }
@@ -1546,6 +1674,9 @@ public partial class CellBodyPlanEditorComponent :
         structureTab.Hide();
         reproductionTab.Hide();
         behaviourEditor.Hide();
+        growthOrderTab.Hide();
+
+        ShowGrowthOrder = selectedSelectionMenuTab is SelectionMenuTab.GrowthOrder;
 
         // Show selected
         switch (selectedSelectionMenuTab)
@@ -1568,6 +1699,15 @@ public partial class CellBodyPlanEditorComponent :
             {
                 behaviourEditor.Show();
                 behaviourTabButton.ButtonPressed = true;
+                break;
+            }
+
+            case SelectionMenuTab.GrowthOrder:
+            {
+                growthOrderTab.Show();
+                growthOrderTabButton.ButtonPressed = true;
+
+                UpdateGrowthOrderUI();
                 break;
             }
 

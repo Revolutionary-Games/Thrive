@@ -867,6 +867,11 @@ public static class Constants
     public const float MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER = 2;
 
     /// <summary>
+    ///   A multiplier for <see cref="MICROBE_REPRODUCTION_MAX_COMPOUND_USE"/> for multicellular microbes
+    /// </summary>
+    public const float MULTICELLULAR_REPRODUCTION_COMPOUND_MAX_USE_MULTIPLIER = 3;
+
+    /// <summary>
     ///   How much ammonia a microbe needs on top of the organelle initial compositions to reproduce
     /// </summary>
     public const float MICROBE_REPRODUCTION_COST_BASE_AMMONIA = 16;
@@ -1365,7 +1370,7 @@ public static class Constants
 
     public const float AUTO_EVO_MAX_BONUS_FROM_ENVIRONMENTAL_STORAGE = 2.5f;
 
-    public const double AUTO_EVO_COLOR_CHANGE_MAX_STEP = 0.5f;
+    public const float AUTO_EVO_COLOR_CHANGE_MAX_STEP = 0.5f;
 
     public const float AUTO_EVO_MUTATION_RIGIDITY_STEP = 0.35f;
     public const float AUTO_EVO_MUTATION_TOXICITY_STEP = 0.2f;
@@ -1477,36 +1482,36 @@ public static class Constants
     public const int GLOBAL_GLACIATION_HEADS_UP_DURATION = 1;
     public const float GLOBAL_GLACIATION_SUNLIGHT_MULTIPLICATION = 0.5f;
 
-    public const float METEOR_IMPACT_CHANCE = 0.23f;
+    public const float METEOR_IMPACT_CHANCE = 0.28f;
     public const float METEOR_IMPACT_SUNLIGHT_MULTIPLICATION = 0.75f;
 
-    public const int RUNOFF_MIN_DURATION = 1;
-    public const int RUNOFF_MAX_DURATION = 3;
+    public const int RUNOFF_MIN_DURATION = 2;
+    public const int RUNOFF_MAX_DURATION = 4;
     public const float RUNOFF_INITIAL_CHANCE = 0.35f;
     public const float RUNOFF_FINAL_CHANCE = 0.1f;
     public const int RUNOFF_CHANCE_DIMINISH_DURATION = 15;
-    public const float RUNOFF_CHANCE_OF_AFFECTING_ANOTHER_COMPOUND = 0.77f;
-    public const float RUNOFF_COMPOUND_CHANGE = 0.000025f;
-    public const float RUNOFF_MIN_CHUNK_DENSITY_MULTIPLIER = 8.0f;
-    public const float RUNOFF_MAX_CHUNK_DENSITY_MULTIPLIER = 30.0f;
+    public const float RUNOFF_CHANCE_OF_AFFECTING_ANOTHER_COMPOUND = 0.8f;
+    public const float RUNOFF_COMPOUND_CHANGE = 0.00002f;
+    public const float RUNOFF_MIN_CHUNK_DENSITY_MULTIPLIER = 20.0f;
+    public const float RUNOFF_MAX_CHUNK_DENSITY_MULTIPLIER = 40.0f;
 
-    public const int UPWELLING_MIN_DURATION = 1;
-    public const int UPWELLING_MAX_DURATION = 3;
+    public const int UPWELLING_MIN_DURATION = 2;
+    public const int UPWELLING_MAX_DURATION = 4;
     public const float UPWELLING_INITIAL_CHANCE = 0.35f;
     public const float UPWELLING_FINAL_CHANCE = 0.1f;
     public const int UPWELLING_CHANCE_DIMINISH_DURATION = 15;
-    public const float UPWELLING_CHANCE_OF_AFFECTING_ANOTHER_COMPOUND = 0.77f;
-    public const float UPWELLING_DILUTION_COMPOUND_CHANGE = 0.000025f;
+    public const float UPWELLING_CHANCE_OF_AFFECTING_ANOTHER_COMPOUND = 0.8f;
+    public const float UPWELLING_DILUTION_COMPOUND_CHANGE = 0.00002f;
 
-    public const int CURRENT_DILUTION_MIN_DURATION = 1;
-    public const int CURRENT_DILUTION_MAX_DURATION = 3;
-    public const float CURRENT_DILUTION_INITIAL_CHANCE = 0.38f;
-    public const float CURRENT_DILUTION_FINAL_CHANCE = 0.12f;
+    public const int CURRENT_DILUTION_MIN_DURATION = 2;
+    public const int CURRENT_DILUTION_MAX_DURATION = 4;
+    public const float CURRENT_DILUTION_INITIAL_CHANCE = 0.4f;
+    public const float CURRENT_DILUTION_FINAL_CHANCE = 0.11f;
     public const int CURRENT_DILUTION_CHANCE_DIMINISH_DURATION = 18;
-    public const float CURRENT_DILUTION_CHANCE_OF_AFFECTING_ANOTHER_COMPOUND = 0.73f;
+    public const float CURRENT_DILUTION_CHANCE_OF_AFFECTING_ANOTHER_COMPOUND = 0.8f;
     public const float CURRENT_DILUTION_COMPOUND_CHANGE = -0.000025f;
-    public const float CURRENT_DILUTION_MIN_CHUNK_DENSITY_MULTIPLIER = 8.0f;
-    public const float CURRENT_DILUTION_MAX_CHUNK_DENSITY_MULTIPLIER = 30.0f;
+    public const float CURRENT_DILUTION_MIN_CHUNK_DENSITY_MULTIPLIER = 20.0f;
+    public const float CURRENT_DILUTION_MAX_CHUNK_DENSITY_MULTIPLIER = 40.0f;
 
     // These control how many game entities can exist at once
     public const int TINY_MAX_SPAWNED_ENTITIES = 80;

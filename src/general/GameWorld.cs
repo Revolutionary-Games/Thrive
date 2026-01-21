@@ -836,7 +836,8 @@ public class GameWorld : IArchivable
 
         var stemCellType = new CellType(microbeSpecies, workMemory1, workMemory2);
 
-        multicellularVersion.ModifiableGameplayCells.AddFast(new CellTemplate(stemCellType), workMemory1, workMemory2);
+        multicellularVersion.ModifiableGameplayCells.AddFast(new CellTemplate(stemCellType, new Hex(0, 0), 0),
+            workMemory1, workMemory2);
         multicellularVersion.ModifiableCellTypes.Add(stemCellType);
 
         multicellularVersion.OnEdited();

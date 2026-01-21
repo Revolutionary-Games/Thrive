@@ -8,7 +8,7 @@ using Godot;
 /// <remarks>
 ///   <para>
 ///     This is disposable to allow releasing extra resources that were allocated when removed from the cache.
-///     Note that after dispose this cache data instance is not safe to use at all.
+///     Note that after Dispose this cache data instance is not safe to use at all.
 ///   </para>
 /// </remarks>
 public interface ICacheableData : IDisposable
@@ -49,7 +49,7 @@ public static class CacheableDataExtensions
     public static T? FetchDataFromCache<T>(this T currentParameters, Func<long, T?> dataFetch)
         where T : class, ICacheableData
     {
-        return FetchDataFromCache<T, T>(currentParameters, dataFetch);
+        return currentParameters.FetchDataFromCache<T, T>(dataFetch);
     }
 
     public static void OnCacheHashCollision<T>(long hash)

@@ -53,7 +53,7 @@ public static class CompoundStorageHelpers
                 if (amount < MathUtils.EPSILON)
                     continue;
 
-                VentChunkCompound(ref storage, compound, amount, position, compoundClouds);
+                storage.VentChunkCompound(compound, amount, position, compoundClouds);
             }
         }
     }

@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
@@ -20,16 +21,29 @@ using Godot;
 [RuntimeCost(0.25f)]
 public partial class EndosymbiontOrganelleSystem : BaseSystem<World, float>
 {
-    // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-    // private readonly ThreadLocal<List<Hex>> hexWorkData = new(() => new List<Hex>());
-    // private readonly ThreadLocal<List<Hex>> hexWorkData2 = new(() => new List<Hex>());
-
-    private readonly List<Hex> hexWorkData = new();
-    private readonly List<Hex> hexWorkData2 = new();
-    private readonly HashSet<Hex> hexWorkData3 = new();
+    private readonly ThreadLocal<List<Hex>> hexWorkData = new(() => new List<Hex>());
+    private readonly ThreadLocal<List<Hex>> hexWorkData2 = new(() => new List<Hex>());
+    private readonly ThreadLocal<HashSet<Hex>> hexWorkData3 = new(() => new HashSet<Hex>());
 
     public EndosymbiontOrganelleSystem(World world) : base(world)
     {
+    }
+
+    public sealed override void Dispose()
+    {
+        Dispose(true);
+        base.Dispose();
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            hexWorkData.Dispose();
+            hexWorkData2.Dispose();
+            hexWorkData3.Dispose();
+        }
     }
 
     [Query]
@@ -92,22 +106,13 @@ public partial class EndosymbiontOrganelleSystem : BaseSystem<World, float>
         // Find the last placed organelle to efficiently find an empty position
         var searchStart = organelles.Organelles[^1].Position;
 
-        var workData1 = hexWorkData;
-        var workData2 = hexWorkData2;
-        var workData3 = hexWorkData3;
+        var workData1 = hexWorkData.Value!;
+        var workData2 = hexWorkData2.Value!;
+        var workData3 = hexWorkData3.Value!;
 
-        // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-        lock (workData1)
-        {
-            lock (workData2)
-            {
-                // Work data 3 is not locked as it is only used when the other two are locked
-
-                // Spiral search for space for the organelle. This will be pretty slow if huge non-player cells are
-                // allowed to do this.
-                organelles.FindAndPlaceAtValidPosition(newOrganelle, searchStart.Q, searchStart.R, workData1, workData2,
-                    workData3);
-            }
-        }
+        // Spiral search for space for the organelle. This will be pretty slow if huge non-player cells are
+        // allowed to do this.
+        organelles.FindAndPlaceAtValidPosition(newOrganelle, searchStart.Q, searchStart.R, workData1, workData2,
+            workData3);
     }
 }

@@ -131,8 +131,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
             if (updateNeeded)
                 UpdateAlreadyPlacedVisuals();
 
-            if (hoverMetaballDisplayer != null)
-                hoverMetaballDisplayer.Visible = !PreviewMode;
+            hoverMetaballDisplayer?.Visible = !PreviewMode;
         }
     }
 
@@ -328,10 +327,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
             hoverMetaballDisplayer!.Visible = shown && !PreviewMode;
         }
 
-        if (visualMetaballDisplayer != null)
-        {
-            visualMetaballDisplayer.Visible = shown && PreviewMode;
-        }
+        visualMetaballDisplayer?.Visible = shown && PreviewMode;
     }
 
     public void SetEditorWorldGuideObjectVisibility(bool shown)
@@ -491,8 +487,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         if (metaballSize > Constants.METABALL_MAX_SIZE)
             metaballSize = Constants.METABALL_MAX_SIZE;
 
-        if (metaballResizeScroll != null)
-            metaballResizeScroll.Value = metaballSize;
+        metaballResizeScroll?.Value = metaballSize;
     }
 
     [RunOnKeyDown("e_decrease_size", Priority = 1)]
@@ -503,8 +498,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         if (metaballSize < Constants.METABALL_MIN_SIZE)
             metaballSize = Constants.METABALL_MIN_SIZE;
 
-        if (metaballResizeScroll != null)
-            metaballResizeScroll.Value = metaballSize;
+        metaballResizeScroll?.Value = metaballSize;
     }
 
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)

@@ -27,9 +27,9 @@
       "a": 1
     },
     "WaterCurrents": {
-      "Speed": 1.0,
-      "Chaoticness": 1.2,
-      "InverseScale": 1.0,
+      "Speed": 2.5,
+      "Chaoticness": 20.0,
+      "InverseScale": 0.4,
       "ParticleCount": 1000,
       "UseTrails": true,
       "Colour": {
@@ -902,9 +902,9 @@
       "a": 1
     },
     "WaterCurrents": {
-      "Speed": 1.5,
-      "Chaoticness": 1.75,
-      "InverseScale": 1.0,
+      "Speed": 4.0,
+      "Chaoticness": 20.0,
+      "InverseScale": 0.3,
       "ParticleCount": 1500,
       "UseTrails": true,
       "Colour": {
@@ -1299,8 +1299,8 @@
       "a": 1
     },
     "WaterCurrents": {
-      "Speed": 0.75,
-      "Chaoticness": 0.75,
+      "Speed": 3.0,
+      "Chaoticness": 0.25,
       "InverseScale": 0.8,
       "ParticleCount": 1000,
       "Colour": {
@@ -2059,8 +2059,8 @@
       "a": 1
     },
     "WaterCurrents": {
-      "Speed": 0.8,
-      "Chaoticness": 0.8,
+      "Speed": 1.5,
+      "Chaoticness": 15.0,
       "InverseScale": 0.8,
       "ParticleCount": 900,
       "UseTrails": true,
@@ -3500,6 +3500,36 @@
           "PhysicsDensity": 4000,
           "Size": 1200,
           "Damages": 30,
+          "DeleteOnTouch": false,
+          "Compounds": {},
+          "DamageType": "ice"
+        },
+        "iceSnowflakeBig": {
+          "Name": "ICE_SNOWFLAKE_BIG",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/IceSnowflakeChunk1.tscn",
+              "ConvexShapePath": "res://assets/models/IceSnowflakeChunk1Shape.json",
+              "MissingDefaultShaderSupport": true
+            },
+            {
+              "ScenePath": "res://assets/models/IceSnowflakeChunk2.tscn",
+              "ConvexShapePath": "res://assets/models/IceSnowflakeChunk2.shape",
+              "MissingDefaultShaderSupport": true
+            },
+            {
+              "ScenePath": "res://assets/models/IceSnowflakeChunk3.tscn",
+              "ConvexShapePath": "res://assets/models/IceSnowflakeChunk3Shape.json",
+              "MissingDefaultShaderSupport": true
+            }
+          ],
+          "Density": 0.00007,
+          "Dissolves": false,
+          "Radius": 40,
+          "ChunkScale": 1,
+          "PhysicsDensity": 10000,
+          "Size": 1200,
+          "Damages": 45,
           "DeleteOnTouch": false,
           "Compounds": {},
           "DamageType": "ice"
@@ -5226,6 +5256,36 @@
           },
           "DamageType": "ice"
         },
+        "glaciationIceSnowflakeBig": {
+          "Name": "ICE_SNOWFLAKE_BIG",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/IceSnowflakeChunk1.tscn",
+              "ConvexShapePath": "res://assets/models/IceSnowflakeChunk1Shape.json",
+              "MissingDefaultShaderSupport": true
+            },
+            {
+              "ScenePath": "res://assets/models/IceSnowflakeChunk2.tscn",
+              "ConvexShapePath": "res://assets/models/IceSnowflakeChunk2.shape",
+              "MissingDefaultShaderSupport": true
+            },
+            {
+              "ScenePath": "res://assets/models/IceSnowflakeChunk3.tscn",
+              "ConvexShapePath": "res://assets/models/IceSnowflakeChunk3Shape.json",
+              "MissingDefaultShaderSupport": true
+            }
+          ],
+          "Density": 0.00007,
+          "Dissolves": false,
+          "Radius": 40,
+          "ChunkScale": 1,
+          "PhysicsDensity": 10000,
+          "Size": 1200,
+          "Damages": 45,
+          "DeleteOnTouch": false,
+          "Compounds": {},
+          "DamageType": "ice"
+        },
         "meteorIronSmallChunk": {
           "Name": "SMALL_IRON_CHUNK",
           "Meshes": [
@@ -5257,7 +5317,7 @@
           "DeleteOnTouch": false,
           "Compounds": {
             "iron": {
-              "Amount": 15
+              "Amount": 25
             }
           },
           "DissolverEnzyme": "rusticyanin"
@@ -5285,7 +5345,7 @@
           "DeleteOnTouch": false,
           "Compounds": {
             "iron": {
-              "Amount": 60000
+              "Amount": 88000
             }
           },
           "DissolverEnzyme": "rusticyanin"
@@ -5313,7 +5373,7 @@
           "DeleteOnTouch": false,
           "Compounds": {
             "hydrogensulfide": {
-              "Amount": 60
+              "Amount": 100
             }
           }
         },
@@ -5336,7 +5396,7 @@
           "DeleteOnTouch": false,
           "Compounds": {
             "hydrogensulfide": {
-              "Amount": 4000
+              "Amount": 5000
             }
           }
         },
@@ -5348,7 +5408,7 @@
               "ConvexShapePath": "res://assets/models/SulfurChunkAluniteLarge1.shape"
             }
           ],
-          "Density": 0.00004,
+          "Density": 0.00009,
           "Dissolves": true,
           "Radius": 10,
           "ChunkScale": 1,
@@ -5359,7 +5419,7 @@
           "DeleteOnTouch": false,
           "Compounds": {
             "hydrogensulfide": {
-              "Amount": 16000
+              "Amount": 20000
             }
           }
         },
@@ -5382,7 +5442,7 @@
           "DeleteOnTouch": false,
           "Compounds": {
             "phosphates": {
-              "Amount": 10
+              "Amount": 20
             }
           }
         },
@@ -5394,7 +5454,7 @@
               "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteLarge1.shape"
             }
           ],
-          "Density": 0.00006,
+          "Density": 0.00009,
           "Dissolves": true,
           "Radius": 6,
           "ChunkScale": 1,
@@ -5417,7 +5477,7 @@
               "ConvexShapePath": "res://assets/models/RadioactiveChunk1.shape"
             }
           ],
-          "Density": 0.000025,
+          "Density": 0.000075,
           "Dissolves": false,
           "Radius": 10,
           "ChunkScale": 1,
@@ -5452,7 +5512,7 @@
               "ConvexShapePath": "res://assets/models/Iron4.shape"
             }
           ],
-          "Density": 0.000001,
+          "Density": 0.00001,
           "Dissolves": true,
           "Radius": 1,
           "ChunkScale": 1,
@@ -5463,7 +5523,7 @@
           "DeleteOnTouch": false,
           "Compounds": {
             "iron": {
-              "Amount": 15
+              "Amount": 25
             }
           },
           "DissolverEnzyme": "rusticyanin"

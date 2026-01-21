@@ -12,6 +12,14 @@ public interface IResource
     public bool RequiresSyncPostProcess { get; }
 
     /// <summary>
+    ///   Set to true if the loading of the resource is no longer desired. For example, loading save data when no
+    ///   longer relevant is cancelled to let the resource manager skip loading.
+    ///   Normal game resources may not have this set as otherwise the loading screen can get stuck waiting infinitely
+    ///   for something to complete.
+    /// </summary>
+    public bool CancelRequested { get; set; }
+
+    /// <summary>
     ///   Should estimate roughly how long loading this resource takes in the usual case. This is used to skip more
     ///   loading work if there isn't that much time budget remaining in a frame. This should be very cheap to ask,
     ///   and if not, then this should be cached by the resource type. This is the estimated time in seconds.

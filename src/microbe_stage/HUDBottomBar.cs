@@ -234,26 +234,17 @@ public partial class HUDBottomBar : HBoxContainer
 
     private void UpdateCompoundButton()
     {
-        if (compoundsButton == null)
-            return;
-
-        compoundsButton.ButtonPressed = CompoundsPressed;
+        compoundsButton?.ButtonPressed = CompoundsPressed;
     }
 
     private void UpdateEnvironmentButton()
     {
-        if (environmentButton == null)
-            return;
-
-        environmentButton.ButtonPressed = EnvironmentPressed;
+        environmentButton?.ButtonPressed = EnvironmentPressed;
     }
 
     private void UpdateProcessPanelButton()
     {
-        if (processPanelButton == null)
-            return;
-
-        processPanelButton.ButtonPressed = ProcessesPressed;
+        processPanelButton?.ButtonPressed = ProcessesPressed;
     }
 
     private void SpeedButtonPressed()
@@ -274,16 +265,12 @@ public partial class HUDBottomBar : HBoxContainer
 
     private void UpdateButtonVisibility()
     {
-        if (compoundsButton != null)
-            compoundsButton.Visible = ShowCompoundPanelToggles;
+        compoundsButton?.Visible = ShowCompoundPanelToggles;
 
-        if (environmentButton != null)
-            environmentButton.Visible = ShowCompoundPanelToggles;
+        environmentButton?.Visible = ShowCompoundPanelToggles;
 
-        if (suicideButton != null)
-            suicideButton.Visible = ShowSuicideButton;
+        suicideButton?.Visible = ShowSuicideButton;
 
-        if (processPanelButton != null)
-            processPanelButton.Visible = ShowProcessesButton;
+        processPanelButton?.Visible = ShowProcessesButton;
     }
 }
