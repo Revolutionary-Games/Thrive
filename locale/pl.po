@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-19 15:16+0100\n"
-"PO-Revision-Date: 2025-12-05 22:50+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-01-21 17:40+0100\n"
+"PO-Revision-Date: 2026-01-13 20:27+0000\n"
+"Last-Translator: Marcy L <marcythebeast@proton.me>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.15.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -2780,7 +2780,7 @@ msgid "ID_NUMBER"
 msgstr "Numer ID"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
-msgstr ""
+msgstr "(w zależności od trybu renderowania oraz upscalingu nie wszystkie metody są dostępne)"
 
 msgid "IGNORE_FURTHER_ERRORS"
 msgstr "Pomiń pozostałe błędy"
@@ -2912,7 +2912,7 @@ msgid "INTERACTION_CONSTRUCT"
 msgstr "Zakończ Budowę"
 
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
-msgstr ""
+msgstr "Zakończ budowę (brakuje wymaganych materiałów)"
 
 msgid "INTERACTION_CRAFT"
 msgstr "Stwórz..."
@@ -3508,7 +3508,7 @@ msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(większe wartości zwiększają wydajność)"
 
 msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
-msgstr ""
+msgstr "(niższe wartości tworzą ostrzejszy obraz)"
 
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
@@ -3761,7 +3761,7 @@ msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
 msgstr "Ciśnienie stabilności metabolicznej"
 
 msgid "MICHE_NO_OP_PRESSURE"
-msgstr ""
+msgstr "Brak Ciśnienia Roboczego"
 
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
 msgstr "Presja efektów drapieżnictwa"
@@ -4042,7 +4042,7 @@ msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
 msgstr "(lokalizacja początkowa)"
 
 msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
-msgstr ""
+msgstr "W jednej sesji edytora można migrować tylko raz. Poniżej możesz zobaczyć cel migracji i go zachować albo anulować, aby wybrać inny"
 
 #, fuzzy
 msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
@@ -4109,7 +4109,7 @@ msgid "MODELS"
 msgstr "Modele"
 
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
-msgstr ""
+msgstr "W każdej chwili możesz zmienić tryb ruchu 2D w menu opcji"
 
 msgid "MODIFY"
 msgstr "Modyfikuj"
@@ -4236,7 +4236,7 @@ msgid "MONITOR_AUTO"
 msgstr "Autor Moda:"
 
 msgid "MONITOR_IDENTIFIER"
-msgstr ""
+msgstr "Monitor {0}"
 
 msgid "MORE_INFO"
 msgstr "Pokaż Więcej Informacji"
@@ -4245,7 +4245,7 @@ msgid "MORE_INFO_PROMPT"
 msgstr "Naciśnij [thrive:input]help[/thrive:input] aby zobaczyć więcej informacji w Thriveopedii."
 
 msgid "MOUSE_EDGE_PANNING_OPTION"
-msgstr ""
+msgstr "Strategicznie dopasowuje ujęcie gdy kursor znajduje się na krawędzi ekranu"
 
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr "Czułość wyglądu myszy"
@@ -4424,6 +4424,9 @@ msgstr "{0} (N)"
 
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr ""
+"Wątki natywne są używane do innych zadań niż wątki zarządzane.\n"
+"Więcej wątków w procesorze z wieloma rdzeniamy zazwyczaj poprawia wydajność do pewnego limitu\n"
+"zbyt wiele wątków razem zacznie zmniejszać wydajność."
 
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatywny bilans ATP"
@@ -4502,7 +4505,7 @@ msgid "NOTHING_HERE"
 msgstr "Nic tu nie ma"
 
 msgid "NOTHING_TO_INTERACT_WITH"
-msgstr ""
+msgstr "Nic do wejścia w interakcję"
 
 #, fuzzy
 msgid "NOTICE_BINDING_OUT_OF_ATP"
@@ -4929,10 +4932,10 @@ msgid "PATCH_NAME"
 msgstr "{0}: {1}"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
-msgstr ""
+msgstr "Ostatnio grałeś w Thrive {0}, od tego czasu wyszła jedna nowa wersja"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
-msgstr ""
+msgstr "Ostatnio grałeś w Thrive {0}, od tego czasu wydano {1} nowe wersje"
 
 msgid "PATCH_NOTES_TITLE"
 msgstr "Zmiany w aktualizacji"
@@ -4944,7 +4947,7 @@ msgid "PATCH_NOTE_CHANGES_HEADING"
 msgstr "Zmiany:"
 
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
-msgstr ""
+msgstr "Zobacz wszystkie szczegóły tej wersji na [color=#3796e1][url={0}]GitHub[/url][/color]"
 
 msgid "PATREON_TOOLTIP"
 msgstr "Odwiedź naszego Patreona"
@@ -5246,7 +5249,7 @@ msgid "RAW_VALUE_COLON"
 msgstr "Surowy:"
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES"
-msgstr ""
+msgstr "Dotrzyj do 15 generacji wyłącznie jednym gatunkiem na conajmniej normalnym poziomie trudności"
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr "Osiągnij pokolenie {0}/{1} jednym gatunkiem na przynajmniej normalnym poziomie trudności"
@@ -5499,6 +5502,13 @@ msgstr "Utlenia [thrive:compound type=\"iron\"]Żelazo[/thrive:compound] wydziel
 
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
+"Thrive uruchomił się w trybie awaryjnym, ponieważ podczas poprzedniego uruchamiania wystąpił błąd.\n"
+"\n"
+"Mógł go spowodować mod lub odtwarzacz wideo. Wczytywanie modów i/lub odtwarzanie wideo może być zapobiegawczo wstrzymane, dopóki nie uruchomisz ponownie gry.\n"
+"\n"
+"Zanim to zrobisz, wyłącz wszystkie mody, które mogą powodować problemy lub są niezgodne z obecną wersją Thrive (możesz przejrzeć logi z poprzednich uruchomień, aby sprawdzić, czy przyczynił się do tego jakiś mod). W przypadku problemów z odtwarzaczem wideo, skorzystaj z opcji wymuszenia jego wyłączenia w programie uruchamiającym.\n"
+"\n"
+"Jeśli problem nie zostanie rozwiązany, konieczne będzie kilkukrotne restartowanie gry i powodowanie awarii, aby ponownie włączyć tryb awaryjny."
 
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive Uruchomiło Się W Trybie Bezpiecznym"
@@ -5696,7 +5706,7 @@ msgid "SELECT_SPACE_STRUCTURE_TITLE"
 msgstr "Zbuduj Strukturę"
 
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
-msgstr ""
+msgstr "Wybierz Strukturę do Umieszczenia"
 
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "Wybierz typ tkanki do edytowania"
@@ -5748,7 +5758,7 @@ msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Automatycznie pokazuj nowości z aktualizacji"
 
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr ""
+msgstr "Pokazuj spis zmian nowych aktualizacji Thrive automatycznie w menu głównym."
 
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Pokazuj samouczki (w aktualnej rozgrywce)"
@@ -5777,7 +5787,7 @@ msgid "SIGNALING_AGENT"
 msgstr "Czynnik Komunikacyjny"
 
 msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
-msgstr ""
+msgstr "Przytrzymaj klawisz aby pokazać menu poleceń watahy aby zarządzać innymi komórkami"
 
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Czynnik komunikacyjny pozwala komórkom na wydzielanie związków chemicznych odpowiedzialnych za komunikację między nimi. Substancje sygnalizacyjne pozwalają na zwabianie innych komórek (swojego gatunku) lub na ostrzeganie ich przed niebezpieczeństwem i zachęcanie ich do ucieczki."
@@ -5884,7 +5894,7 @@ msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
 msgstr "Zbuduj Strukturę"
 
 msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
-msgstr ""
+msgstr "Struktura oczekuje na flotę konstrukcyjną oraz zasoby: {0}"
 
 msgid "SPAWN_AMMONIA"
 msgstr "Stwórz amoniak"
@@ -6051,13 +6061,13 @@ msgid "STEAM_ERROR_INVALID_PARAMETER"
 msgstr "Przesłano nieprawidłowy parametr do Steama"
 
 msgid "STEAM_ERROR_LOCKING_FAILED"
-msgstr ""
+msgstr "Steam nie mógł uzyskać dostępu do zamka UGC"
 
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
 msgstr "Niezalogowano na Steam"
 
 msgid "STEAM_ERROR_TIMEOUT"
-msgstr ""
+msgstr "Operacja Steam oczekiwała zbyt długo, spróbuj ponownie"
 
 msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr "Steam jest obecnie niedostępny, spróbuj ponownie"
@@ -6100,7 +6110,7 @@ msgid "STRAIN_BAR_TOOLTIP"
 msgstr "Odwiedź naszego Patreona"
 
 msgid "STRAIN_BAR_VISIBILITY"
-msgstr ""
+msgstr "Widoczność paska obciążenia"
 
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -6123,7 +6133,7 @@ msgid "STRUCTURE_DYSON_SWARM"
 msgstr "Struktura"
 
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
-msgstr ""
+msgstr "Dostarczono wymagane materiały do budowy"
 
 msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
 msgstr ""
@@ -6132,19 +6142,19 @@ msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr "Budowa: {0}"
 
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
-msgstr ""
+msgstr "Materiały wymagane do zakończenia budowy: {0}"
 
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr "{0} (koszt początkowy: {1}, razem: {2})"
 
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
-msgstr ""
+msgstr "{0} (NIE WYSTARCZA ABY ZACZĄĆ: {1}, razem: {2})"
 
 msgid "STRUCTURE_SOCIETY_CENTER"
-msgstr ""
+msgstr "Centrum Społeczności"
 
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
-msgstr ""
+msgstr "Fabryka Napędzana Parą"
 
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
 msgstr "Przeprowadź endosymbiozę"
@@ -6229,13 +6239,13 @@ msgid "TECHNOLOGY_HUNTER_GATHERING"
 msgstr ""
 
 msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
-msgstr ""
+msgstr "Kosmos Zaawansowany"
 
 msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
 msgstr "Przemysłowa"
 
 msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
-msgstr ""
+msgstr "Przed Społeczeństwem"
 
 msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
 msgstr "Prymitywna"
@@ -6253,16 +6263,16 @@ msgid "TECHNOLOGY_ROCKETRY"
 msgstr "Technika rakietowa"
 
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
-msgstr ""
+msgstr "Podstawowe Kamienne Narzędzia"
 
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr ""
 
 msgid "TECHNOLOGY_STEAM_POWER"
-msgstr ""
+msgstr "Zasilanie Parowe"
 
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
-msgstr ""
+msgstr "Odblokowano technologię:{0}"
 
 msgid "TEMPERATURE"
 msgstr "Temperatura"
@@ -6360,6 +6370,15 @@ msgstr "Otwórz Thriveopedia'ę"
 
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
+"Thriveopedia to centralna bilbioteka i kiosk informycyjny dla zawartości Thrive. Znajdziesz tutaj odpowiedzi do jakichkolwiek pytań jakie możesz mieć o grze, twoim obecnym świecie, oraz projekcie rozwoju Thrive.\n"
+"\n"
+"Na ten moment, Thriveopedia jest stosunkowo pusta, jednak możesz wciąż odwiedzić kilka stron używająć drzewa stron oraz przycisków nawigacyjnych. Pamiętaj że strony związane z daną grą w postępie pokażą się tylko gdy Thriveopedia jest otwarta przez menu pauzy w grze.\n"
+"\n"
+"Możesz znaleść więcej informacji o grze na stronach poniżej.\n"
+"\n"
+"[color=#3796e1][url=https://revolutionarygamesstudio.com/]Oficjalna Strona[/url][/color]\n"
+"[color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/wiki/Main_Page]Wiki Developerskie[/url][/color]\n"
+"[color=#3796e1][url=https://thrive.fandom.com/wiki/Thrive_Wiki]Wiki Społecznościowe[/url][/color]"
 
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "Dom"
@@ -6503,7 +6522,7 @@ msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
 msgstr "Preferowana temperatura jest zbyt wysoka o {0}"
 
 msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
-msgstr ""
+msgstr "Zabezpieczenie Tlenu jest zbyt niskie, musi być {0}% wyższe"
 
 msgid "TOLERANCES_TOO_LOW_PRESSURE"
 msgstr "Preferowane ciśnienie jest zbyt niskie o {0}"
@@ -6542,19 +6561,19 @@ msgstr ""
 "Rozgrywka takimi komórkami jest trudniejsza, ponieważ do przetrwania wymagają równoczesnego składowania wielu rodzajów związków."
 
 msgid "TOLERANCE_RANGE_LABEL"
-msgstr ""
+msgstr "Elastyczność:"
 
 msgid "TOOLS"
 msgstr "Narzędzia"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
+msgstr "Toporek"
 
 msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr ""
+msgstr "Zakres ciśnienia jest zbyt szeroki"
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr ""
+msgstr "Nie wszystkie najnowsze wersje są wyświetlane ponieważ jest ich zbyt dużo"
 
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
@@ -6583,7 +6602,7 @@ msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
 msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
 
 msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
-msgstr ""
+msgstr "Tempo Strzału oraz Toksyczność:"
 
 #, fuzzy
 msgid "TOXIN_MACROLIDE"
@@ -6596,7 +6615,7 @@ msgid "TOXIN_MACROLIDE_DESCRIPTION"
 msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
 
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
-msgstr ""
+msgstr "Cyjanek"
 
 #, fuzzy
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
@@ -6607,10 +6626,10 @@ msgid "TOXIN_OXYTOXY_DESCRIPTION"
 msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
 
 msgid "TOXIN_PREFER_FIRE_RATE"
-msgstr ""
+msgstr "Szybkostrzelność"
 
 msgid "TOXIN_PREFER_TOXICITY"
-msgstr ""
+msgstr "Toksyczny"
 
 #, fuzzy
 msgid "TOXIN_PROPERTIES_HEADING"
@@ -6703,6 +6722,11 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
+"Możesz dodać organellę [b]chemoreceptorową[/b] do twojej komórki.\n"
+"\n"
+"Chemoreceptory reprezentują wzrost możliwości twojego gatunku aby odczuwać rzeczy wokół nich.\n"
+"\n"
+"Położenie chemoreceptoru pozwoli ci wykryć takie związki organiczne jak [thrive:compound type=\"glucose\"][/thrive:compound] i poprowadzi cie do nich. Może również zostać użyty do wykrycia komórek innych gatunków."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
@@ -6736,6 +6760,13 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
+"[b]Wici[/b] popychają twojego mikroba w kierunku odwrotnym do ich ułożenia.\n"
+"\n"
+"Umieszczenie witki w stronę odwrotną do frontowej strzałki będzie pchało twojego mikroba do przodu. [b]Gruczoły śluzowe[/b] są układane w ten sam sposób.\n"
+"\n"
+"Wici to organella bardzo bogate w [thrive:compound type=\"atp\"][/thrive:compound], przez co nie są zbyt dobre dla małych komórek.\n"
+"\n"
+"Innym sposobem aby w małym stopniu zwiększyć [b] prędkość poruszania[/b] [thrive:icon]MovementIcon[/thrive:icon] jest sprawienie aby twoja membrana była bardziej płynna w [u]zakładce membrany[/u]."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
@@ -7005,7 +7036,7 @@ msgid "UNDO_THE_LAST_ACTION"
 msgstr "Cofnij ostatnią czynność"
 
 msgid "UNHANDLED_ERROR_COUNT"
-msgstr ""
+msgstr "Nieobsłużone Błędy: {0}"
 
 msgid "UNHANDLED_ERROR_DESCRIPTION"
 msgstr ""
@@ -7435,7 +7466,7 @@ msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 
 msgid "WIKI_AXON_INTRO"
-msgstr ""
+msgstr "Włókna nerwowe pomiędzy neuronami, dostępne od Fazy Wielokomórkowej. Potrzebne do zwiększenia zdolności umysłowej organizmu oraz postępu do kolejnych faz."
 
 msgid "WIKI_AXON_MODIFICATIONS"
 msgstr "Brak modyfikacji."
@@ -8401,7 +8432,7 @@ msgid "WIKI_MULTICELLULAR_STAGE_UI"
 msgstr "Etap Wielokomórkowca"
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
-msgstr ""
+msgstr "Dla każdej komórki w wielokomórkowym organizmie który posiada [b]Miofibryl[/b], prędkość poruszania się tego organizmu zwiększa się proporcionalnie do objętości tej komórki. Komórki z [b]Miofibrylami[/b] są klasyfikowane jako posiadające tkankę mięśniową."
 
 msgid "WIKI_MYOFIBRIL_INTRO"
 msgstr ""
@@ -8419,7 +8450,7 @@ msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
 msgstr "Wkrótce"
 
 msgid "WIKI_MYOFIBRIL_STRATEGY"
-msgstr ""
+msgstr "Zalecamy aby dodać jeden [b]Miofibryl[/b] do paru rodzajów komórek w twoim wielokomórkowym organizmie, jednak dodawanie więcej niż jednego jest zbędne. Na ten moment kolejne [b]Miofibryle[/b] nie zapewniają żadnych korzyści."
 
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr "Brak ulepszeń"
@@ -8897,7 +8928,7 @@ msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr "Brak wymagań."
 
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Bakterie oraz inne mikroby mogą produkować strumienie polisacharydowego \"szlamu\" jako jedną z wielu form [color=#3796e1][url=https://pl.wikipedia.org/wiki/Ruch_%C5%9Blizgowy]ruchu ślizgowego[/url][/color], pchając tę komórkę w kierunku przeciwnym do strumienia, oraz zostawiając za sobą szlak [b]Śluzu[/b] ."
 
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
@@ -9284,6 +9315,48 @@ msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
+
+#~ msgid "AVERAGE_SURFACE_TEMPERATURE"
+#~ msgstr "Średnia temperatura powierzchni"
+
+#, fuzzy
+#~ msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+#~ msgstr "(gdy włączone, limituje prędkość wzrostu, jeśli wyłączone, jedynie dostępne związki wpływają na wzrost)"
+
+#~ msgid "COMMAND_INPUT_LINE_EDIT"
+#~ msgstr "Wpisz Polecenie"
+
+#, fuzzy
+#~ msgid "DEBUG_CONSOLE"
+#~ msgstr "Panel Debugowania"
+
+#, fuzzy
+#~ msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+#~ msgstr "(większe wartości zwiększają wydajność)"
+
+#, fuzzy
+#~ msgid "GUI_SCALE_OPTION"
+#~ msgstr "Zamknąć opcje?"
+
+#, fuzzy
+#~ msgid "ICE_SNOWFLAKE_BIG"
+#~ msgstr "Płatek śniegu"
+
+#, fuzzy
+#~ msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
+#~ msgstr "Wykonuj auto-ewo w trakcie rozgrywki"
+
+#, fuzzy
+#~ msgid "TOGGLE_DEBUG_CONSOLE"
+#~ msgstr "Włącz panel debugowania"
+
+#, fuzzy
+#~ msgid "WRONG_GROWTH_ORDER"
+#~ msgstr "Kolejność wzrostu"
+
+#, fuzzy
+#~ msgid "WRONG_GROWTH_ORDER_TEXT"
+#~ msgstr "(gdy włączone, limituje prędkość wzrostu, jeśli wyłączone, jedynie dostępne związki wpływają na wzrost)"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Używa Auto Harmonii:"

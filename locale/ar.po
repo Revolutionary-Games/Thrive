@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-19 15:16+0100\n"
-"PO-Revision-Date: 2025-10-21 17:38+0000\n"
-"Last-Translator: youseftulbah <yousef.m.tulbah@gmail.com>\n"
+"POT-Creation-Date: 2026-01-21 17:40+0100\n"
+"PO-Revision-Date: 2026-01-08 20:20+0000\n"
+"Last-Translator: khalid <khalid50540@gmail.com>\n"
 "Language-Team: Arabic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "نمط الحركة ثنائي الابعاد:"
 
 msgid "3D_EDITOR"
-msgstr "المصمم ثلاثي الأبعاد"
+msgstr "محرك التصميم ثلاثي الأبعاد"
 
 msgid "3D_MOVEMENT"
 msgstr "حركة ثلاثية الابعاد"
@@ -69,7 +69,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "انتقل إلى مرحلة الاستيقاظ والتي تصبح متاحةً عند توفر قوة عقل كافية (أي أنسجة ذات محاور عصبية)."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr "حظر النشاط أثناء تنفيذ نشاط آخر"
+msgstr "النشاط محظور لان هناك نشاط اخر قيد التنفيذ"
 
 msgid "ACTION_DELETE"
 msgstr "حذف"
@@ -84,7 +84,7 @@ msgid "ACTION_HALF_POPULATION"
 msgstr "تقليص عدد السكان الى النصف"
 
 msgid "ACTION_TELEPORT"
-msgstr "النقل الآلي"
+msgstr "التنقل عن بعد"
 
 msgid "ACTIVE"
 msgstr "نشط"
@@ -244,7 +244,7 @@ msgid "ARTIST_COLON"
 msgstr "الفنان:"
 
 msgid "ARTWORK_TITLE"
-msgstr ""
+msgstr "{1} - \"{0}\""
 
 msgid "ART_BY"
 msgstr "فن من صنع {0}"
@@ -253,14 +253,13 @@ msgid "ART_GALLERY"
 msgstr "معرض الفنون"
 
 msgid "ASCENSION_CONGRATULATIONS"
-msgstr ""
+msgstr "تهانيا!"
 
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
 
-#, fuzzy
 msgid "ASCENSION_STAGE"
-msgstr "عام"
+msgstr "مرحلة التطور"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
@@ -275,13 +274,13 @@ msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
 msgid "ATMOSPHERIC_GASSES"
-msgstr ""
+msgstr "الغازات الهوائية"
 
 msgid "ATP"
-msgstr "ATP"
+msgstr "طاقة"
 
 msgid "ATP_BALANCE"
-msgstr ""
+msgstr "رصيد الطاقة"
 
 #, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
@@ -292,31 +291,32 @@ msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
-msgstr ""
+msgstr "لا يوجد موارد ثانوية"
 
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
-msgstr ""
+msgstr "لا يوجد جلوكوز"
 
+#, fuzzy
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
-msgstr ""
+msgstr "لا يوجد كبريتيت الهيدروجين"
 
 msgid "ATP_BALANCE_WITHOUT_IRON"
-msgstr ""
+msgstr "لا يوجد حديد"
 
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
-msgstr ""
+msgstr "مع كامل المركبات المطلوبة"
 
 msgid "ATP_PRODUCTION"
-msgstr ""
+msgstr "معدل انتاج الطاقة"
 
 msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr ""
+msgstr "معدل انتاج الطاقة منخفض جدا!"
 
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr ""
 
 msgid "AT_CURSOR"
-msgstr ""
+msgstr "على زر النقر:"
 
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "منفذ مخرج الصوت:"
@@ -334,19 +334,19 @@ msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr ""
 
 msgid "AUTO-EVO_PREDICTION"
-msgstr ""
+msgstr "توقعات التطور الذاتي"
 
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 
 msgid "AUTO-EVO_RESULTS_TITLE"
-msgstr ""
+msgstr "نتائج التطور الذاتي"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr ""
 
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
-msgstr ""
+msgstr "قوة التطور الذاتي على اللاعب"
 
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
 msgstr ""
@@ -355,22 +355,22 @@ msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "حفظ التخزينة التلقائي خلال اللعب"
 
 msgid "AUTO_EVO"
-msgstr ""
+msgstr "التطور الذاتي"
 
 msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
-msgstr ""
+msgstr "استعمله في مستكشف التطور الذاتي"
 
 msgid "AUTO_EVO_EXPLORING_TOOL"
-msgstr ""
+msgstr "اداة استكشاف التطور الذاتي"
 
 msgid "AUTO_EVO_FAILED"
-msgstr ""
+msgstr "فشل تشغيل التطور الذاتي"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
 
 msgid "AUTO_EVO_RESULTS"
-msgstr ""
+msgstr "نتائج التطور الذاتي:"
 
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
 msgstr "النتائج العالمية"
@@ -379,10 +379,10 @@ msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr "نتائج الدفعة المختارة"
 
 msgid "AUTO_EVO_RUN_STATUS"
-msgstr ""
+msgstr "حالة التشغيل:"
 
 msgid "AUTO_EVO_STATUS_COLON"
-msgstr ""
+msgstr "حالة التطور الذاتي:"
 
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "التحرك الى الامام تلقائيا"
@@ -861,20 +861,19 @@ msgid "CLIMATE_STABILITY_STABLE"
 msgstr ""
 
 msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
+msgstr "غير ثابت"
 
 msgid "CLOSE"
-msgstr ""
+msgstr "إغلاق"
 
 msgid "CLOSE_OPTIONS"
-msgstr ""
+msgstr "إغلاق الخيارات؟"
 
 msgid "CLOSTRIDIAL_FERMENTATION"
 msgstr ""
 
-#, fuzzy
 msgid "CLOUD_BENCHMARK"
-msgstr "فترة الميكروبات"
+msgstr "المعيار التقني للحوسبة السحابية"
 
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr ""
@@ -892,10 +891,10 @@ msgid "COLLISION_SHAPE"
 msgstr ""
 
 msgid "COLOUR"
-msgstr ""
+msgstr "اللون"
 
 msgid "COLOURBLIND_CORRECTION"
-msgstr ""
+msgstr "تصحيح عمى الالوان:"
 
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr ""
@@ -956,10 +955,10 @@ msgid "COMPILED_AT_COLON"
 msgstr ""
 
 msgid "COMPLETE_ACTION"
-msgstr ""
+msgstr "اكتمل"
 
 msgid "COMPOUNDS"
-msgstr ""
+msgstr "مركب"
 
 msgid "COMPOUNDS_AT_EQUILIBRIUM"
 msgstr ""
@@ -968,10 +967,10 @@ msgid "COMPOUNDS_AT_MAX_SPEED"
 msgstr ""
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
+msgstr "اظهر/اخف المركبات"
 
 msgid "COMPOUNDS_COLON"
-msgstr ""
+msgstr "المركبات:"
 
 msgid "COMPOUND_BALANCE_FILL_TIME"
 msgstr ""
@@ -984,7 +983,7 @@ msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
 msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 msgid "COMPOUND_BALANCE_TITLE"
-msgstr ""
+msgstr "مستوى المركبات"
 
 #, fuzzy
 msgid "COMPOUND_BALANCE_TOOLTIP"
@@ -1007,15 +1006,13 @@ msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr ""
 
 msgid "COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "{0} الاستهلاك"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_KEEP"
-msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+msgstr "الاحتفاظ على الكل"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_SPLIT_SISTER"
-msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+msgstr "التقاسم مع الخلية المتطابقة"
 
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP"
@@ -1025,27 +1022,23 @@ msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا �
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "فترة الميكروبات"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_AVERAGE"
-msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+msgstr "متوسط"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_HIGH"
-msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+msgstr "عالي"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_LOW"
-msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+msgstr "منخفض"
 
 msgid "COMPOUND_LEVEL_VERY_HIGH"
-msgstr ""
+msgstr "عالي جدا"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
-msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+msgstr "منخفض جدا"
 
 msgid "COMPOUND_REPRODUCTION_SOURCE"
-msgstr ""
+msgstr "{0} الاستهلاك"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr ""
@@ -1057,7 +1050,7 @@ msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
 msgstr ""
 
 msgid "COMPOUND_STORAGE_STATS_TITLE"
-msgstr ""
+msgstr "سعة المخازن"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
@@ -1070,19 +1063,19 @@ msgid "CONCEPT_ART"
 msgstr "فن التصور"
 
 msgid "CONFIG"
-msgstr ""
+msgstr "الاعدادات"
 
 msgid "CONFIRM_CAPITAL"
-msgstr ""
+msgstr "التأكيد"
 
 msgid "CONFIRM_DELETE"
-msgstr ""
+msgstr "تأكيد الحذف"
 
 msgid "CONFIRM_EXIT"
-msgstr ""
+msgstr "تأكيد الخروج"
 
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
-msgstr ""
+msgstr "تأكيد حفظ البديل"
 
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
 msgstr ""
@@ -1097,7 +1090,7 @@ msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr ""
 
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
-msgstr ""
+msgstr "الذهاب الى مرحلة الفضاء"
 
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr ""
@@ -1106,7 +1099,7 @@ msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr ""
+msgstr "بعض الاعدادت غير صحيحة"
 
 msgid "CONFIRM_RESET_ACHIEVEMENTS"
 msgstr ""
@@ -1127,13 +1120,13 @@ msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
 msgid "CONTINUE"
-msgstr ""
+msgstr "الاستمرار"
 
 msgid "CONTINUE_AS_SPECIES"
 msgstr ""
 
 msgid "CONTINUE_THRIVING"
-msgstr ""
+msgstr "الاستمرار في الإزدهار"
 
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
@@ -1145,7 +1138,7 @@ msgid "CONTROLLER_ANY_DEVICE"
 msgstr ""
 
 msgid "CONTROLLER_AXIS_L2"
-msgstr ""
+msgstr "L2"
 
 msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
 msgstr ""
@@ -1163,7 +1156,7 @@ msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
 msgstr ""
 
 msgid "CONTROLLER_AXIS_R2"
-msgstr ""
+msgstr "R2"
 
 msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
 msgstr ""
@@ -1217,25 +1210,25 @@ msgid "CONTROLLER_BUTTON_PS3_START"
 msgstr ""
 
 msgid "CONTROLLER_BUTTON_PS_CIRCLE"
-msgstr ""
+msgstr "O"
 
 msgid "CONTROLLER_BUTTON_PS_CROSS"
-msgstr ""
+msgstr "X"
 
 msgid "CONTROLLER_BUTTON_PS_L1"
-msgstr ""
+msgstr "L1"
 
 msgid "CONTROLLER_BUTTON_PS_L3"
-msgstr ""
+msgstr "L3"
 
 msgid "CONTROLLER_BUTTON_PS_OPTIONS"
-msgstr ""
+msgstr "الخيارات­"
 
 msgid "CONTROLLER_BUTTON_PS_R1"
-msgstr ""
+msgstr "R1"
 
 msgid "CONTROLLER_BUTTON_PS_R3"
-msgstr ""
+msgstr "R3"
 
 msgid "CONTROLLER_BUTTON_PS_SHARE"
 msgstr ""
@@ -1244,10 +1237,10 @@ msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
 msgstr ""
 
 msgid "CONTROLLER_BUTTON_PS_SQUARE"
-msgstr ""
+msgstr "مربع"
 
 msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
-msgstr ""
+msgstr "مثلث"
 
 msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
 msgstr ""
@@ -1256,16 +1249,16 @@ msgid "CONTROLLER_BUTTON_RIGHT_STICK"
 msgstr ""
 
 msgid "CONTROLLER_BUTTON_TOUCH_PAD"
-msgstr ""
+msgstr "لوح اللمس"
 
 msgid "CONTROLLER_BUTTON_UNKNOWN"
-msgstr ""
+msgstr "زر غير معروف"
 
 msgid "CONTROLLER_BUTTON_XBOX_A"
-msgstr ""
+msgstr "A"
 
 msgid "CONTROLLER_BUTTON_XBOX_B"
-msgstr ""
+msgstr "B"
 
 msgid "CONTROLLER_BUTTON_XBOX_BACK"
 msgstr ""
@@ -1277,10 +1270,10 @@ msgid "CONTROLLER_BUTTON_XBOX_START"
 msgstr ""
 
 msgid "CONTROLLER_BUTTON_XBOX_X"
-msgstr ""
+msgstr "X"
 
 msgid "CONTROLLER_BUTTON_XBOX_Y"
-msgstr ""
+msgstr "‪Y"
 
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
@@ -1304,7 +1297,7 @@ msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr ""
 
 msgid "COPY_RESULTS"
-msgstr ""
+msgstr "نسخ النتائج"
 
 msgid "CORRECTION_PROTANOPE"
 msgstr ""
@@ -1316,7 +1309,7 @@ msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
 msgstr ""
 
 msgid "CPU_THREADS"
-msgstr ""
+msgstr "ا"
 
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr ""
@@ -1349,7 +1342,7 @@ msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr ""
 
 msgid "CRAFTING_RESULTS"
-msgstr ""
+msgstr "النتيجة"
 
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
@@ -1424,18 +1417,16 @@ msgid "CURRENT_DILUTION_TOOLTIP"
 msgstr "إلغاء الإجراء الحالي"
 
 msgid "CURRENT_LOCATION_CAPITAL"
-msgstr ""
+msgstr "الموقع الحالي"
 
 msgid "CURRENT_PARTICLES_ALL"
-msgstr ""
+msgstr "الكل"
 
-#, fuzzy
 msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
-msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+msgstr "الدوائر فقط"
 
-#, fuzzy
 msgid "CURRENT_PARTICLES_NONE"
-msgstr "إلغاء الإجراء الحالي"
+msgstr "لاشيء"
 
 msgid "CURRENT_RESEARCH_NONE"
 msgstr ""
@@ -1444,7 +1435,7 @@ msgid "CURRENT_RESEARCH_PROGRESS"
 msgstr ""
 
 msgid "CURRENT_WORLD"
-msgstr ""
+msgstr "العالم الحالي"
 
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
@@ -1469,16 +1460,16 @@ msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "عام"
 
 msgid "DAMAGE_SOURCE_RADIATION"
-msgstr ""
+msgstr "اشعاعات"
 
 msgid "DAY_LENGTH"
-msgstr ""
+msgstr "مدة اليوم"
 
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr ""
 
 msgid "DAY_NIGHT_CYCLE_ENABLED"
-msgstr ""
+msgstr "تفعيل دورة الليل والنهار"
 
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr ""
@@ -1496,7 +1487,7 @@ msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
 msgid "DEATH"
-msgstr ""
+msgstr "الموت"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1505,22 +1496,22 @@ msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
 msgid "DEBUG_HEAT_AT_CURSOR"
-msgstr ""
+msgstr "نسبة الحرارة: {0}"
 
 msgid "DEBUG_PANEL"
-msgstr ""
+msgstr "لوحة اكتشاف الاخطاء البرمجية"
 
 msgid "DECEMBER"
-msgstr ""
+msgstr "ديسمبر"
 
 msgid "DECREASE_ITEM_SIZE"
-msgstr ""
+msgstr "تقليص الحجم"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
 msgid "DELETE"
-msgstr ""
+msgstr "حذف"
 
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
@@ -1529,16 +1520,16 @@ msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr ""
 
 msgid "DELETE_OLD_SAVES_PROMPT"
-msgstr ""
+msgstr "حذف التخزينات القديمة؟"
 
 msgid "DELETE_ORGANELLE"
-msgstr ""
+msgstr "حذف العضية"
 
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 
 msgid "DELETE_SELECTED"
-msgstr ""
+msgstr "حذف المحدد"
 
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr ""
@@ -1547,7 +1538,7 @@ msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 
 msgid "DELETE_THIS_SAVE_PROMPT"
-msgstr ""
+msgstr "حذف هذه التخزينة؟"
 
 msgid "DESCEND_BUTTON"
 msgstr ""
@@ -1559,10 +1550,10 @@ msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
 
 msgid "DESCRIPTION"
-msgstr ""
+msgstr "الوصف:"
 
 msgid "DESCRIPTION_COLON"
-msgstr ""
+msgstr "الوصف:"
 
 msgid "DESCRIPTION_TOO_LONG"
 msgstr ""
@@ -1577,10 +1568,10 @@ msgid "DEVBUILD_VERSION_INFO"
 msgstr ""
 
 msgid "DEVELOPERS"
-msgstr ""
+msgstr "المطورين"
 
 msgid "DEVELOPMENT_FORUM"
-msgstr ""
+msgstr "منتدى التطوير"
 
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr ""
@@ -1589,29 +1580,29 @@ msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
 
 msgid "DEVELOPMENT_WIKI"
-msgstr ""
+msgstr "موسوعة التطوير"
 
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "زر موسوعتنا للتطوير"
 
 msgid "DEVOURED"
-msgstr ""
+msgstr "ملتهم"
 
 msgid "DEV_BUILD_PATRONS"
 msgstr ""
 
 msgid "DIFFICULTY"
-msgstr ""
+msgstr "الصعوبة"
 
 #, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr "مخصص"
 
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "الصعوبة بشكل عام"
 
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr "مخصص"
+msgstr "مخصوص"
 
 msgid "DIFFICULTY_PRESET_EASY"
 msgstr "سهل"
@@ -1620,25 +1611,25 @@ msgid "DIFFICULTY_PRESET_HARD"
 msgstr "صعب"
 
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr "عادي"
+msgstr "متوسط"
 
 msgid "DIGESTION_EFFICIENCY"
-msgstr ""
+msgstr "فعالية الهضم"
 
 msgid "DIGESTION_EFFICIENCY_COLON"
-msgstr ""
+msgstr "فعالية الهضم:"
 
 msgid "DIGESTION_SPEED"
-msgstr ""
+msgstr "سرعة الهضم"
 
 msgid "DIGESTION_SPEED_COLON"
-msgstr ""
+msgstr "سرعة الهضم:"
 
 msgid "DIGESTION_SPEED_VALUE"
-msgstr ""
+msgstr "{0}/ثانية"
 
 msgid "DISABLED"
-msgstr ""
+msgstr "موقف"
 
 #, fuzzy
 msgid "DISABLE_ALL"
@@ -8128,12 +8119,11 @@ msgstr "فترة الميكروبات"
 msgid "WIKI_PAGE_NITROPLAST"
 msgstr "فترة الميكروبات"
 
-#, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
-msgstr "عام"
+msgstr "النواة"
 
 msgid "WIKI_PAGE_ORGANELLES_ROOT"
-msgstr ""
+msgstr "العضيات"
 
 #, fuzzy
 msgid "WIKI_PAGE_OXYTOXISOME"
@@ -8162,16 +8152,14 @@ msgstr "فترة الميكروبات"
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "فترة الميكروبات"
 
-#, fuzzy
 msgid "WIKI_PAGE_SOCIETY_STAGE"
-msgstr "فترة الميكروبات"
+msgstr "مرحلة المجتمعات"
 
-#, fuzzy
 msgid "WIKI_PAGE_SPACE_STAGE"
-msgstr "فترة الميكروبات"
+msgstr "مرحلة الفضاء"
 
 msgid "WIKI_PAGE_STAGES_ROOT"
-msgstr ""
+msgstr "المراحل"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -8405,7 +8393,7 @@ msgstr ""
 
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_FEATURES"
-msgstr "فترة الميكروبات"
+msgstr "تراقبوا."
 
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_INTRO"
@@ -8533,8 +8521,9 @@ msgstr ""
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr "فترة الميكروبات"
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
-msgstr ""
+msgstr "لا يوجد تعديلات."
 
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
 msgstr ""
@@ -8578,20 +8567,19 @@ msgid "WIKI_VACUOLE_STRATEGY"
 msgstr "فترة الميكروبات"
 
 msgid "WIKI_VACUOLE_UPGRADES"
-msgstr ""
+msgstr "لا يوجد تطويرات."
 
-#, fuzzy
 msgid "WIKI_YES"
-msgstr "عام"
+msgstr "نعم"
 
 msgid "WILL_YOU_THRIVE"
-msgstr ""
+msgstr "هل سوف تزدهر؟"
 
 msgid "WINDOWED"
 msgstr ""
 
 msgid "WIN_BOX_TITLE"
-msgstr ""
+msgstr "لقد ازدهرت بنجاح!"
 
 msgid "WIN_TEXT"
 msgstr ""
@@ -8603,7 +8591,7 @@ msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
 msgstr ""
 
 msgid "WORKSHOP_ITEM_DESCRIPTION"
-msgstr ""
+msgstr "تفاصيل الإضافة:"
 
 msgid "WORKSHOP_ITEM_PREVIEW"
 msgstr ""
@@ -8612,7 +8600,7 @@ msgid "WORKSHOP_ITEM_TAGS"
 msgstr ""
 
 msgid "WORKSHOP_ITEM_TITLE"
-msgstr ""
+msgstr "عنوان الاضافة:"
 
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr ""
@@ -8654,7 +8642,7 @@ msgid "WORLD_OCEANIC_COVERAGE_SMALL"
 msgstr "صغير"
 
 msgid "WORLD_RELATIVE_MOVEMENT"
-msgstr ""
+msgstr "من منظور العالم"
 
 msgid "WORLD_SIZE"
 msgstr "حجم العالم"
@@ -8676,36 +8664,36 @@ msgid "WORLD_SIZE_TOOLTIP"
 msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 msgid "WORLD_TEMPERATURE"
-msgstr ""
+msgstr "درجة حرارة العالم"
 
 msgid "WORLD_TEMPERATURE_COLD"
-msgstr ""
+msgstr "بارد"
 
 msgid "WORLD_TEMPERATURE_EXPLANATION"
 msgstr ""
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+msgstr "درجة الحرارة"
 
 msgid "WORLD_TEMPERATURE_WARM"
-msgstr ""
+msgstr "دافئ"
 
 msgid "WORST_PATCH_COLON"
-msgstr ""
+msgstr "أسوء دفعة:"
 
 msgid "XBOX360"
-msgstr ""
-
-msgid "XBOX_ONE"
-msgstr ""
-
-msgid "XBOX_SERIES"
-msgstr ""
+msgstr "اكس بوكس 360"
 
 #, fuzzy
+msgid "XBOX_ONE"
+msgstr "اكس بوكس ون"
+
+#, fuzzy
+msgid "XBOX_SERIES"
+msgstr "Xbox موديل X"
+
 msgid "X_TWITTER_TOOLTIP"
-msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+msgstr "زر صفحة التويتر الخاصة بنا"
 
 msgid "YEARS"
 msgstr "سنوات"
@@ -8714,7 +8702,7 @@ msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
 msgstr ""
 
 msgid "YOUTUBE_TOOLTIP"
-msgstr ""
+msgstr "زر قناتنا في اليوتيوب"
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
@@ -8723,13 +8711,44 @@ msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
 msgid "YUM_EXCLAMATION"
-msgstr ""
+msgstr "لذيذ!"
 
 msgid "ZOOM_IN"
-msgstr ""
+msgstr "تقريب الشاشة"
 
 msgid "ZOOM_OUT"
-msgstr ""
+msgstr "ابعاد الشاشة"
+
+#~ msgid "AVERAGE_SURFACE_TEMPERATURE"
+#~ msgstr "متوسط حرارة السطح"
+
+#, fuzzy
+#~ msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+#~ msgstr "(يقتصر الأجزاء والقدرات على ما في الحياة كما نعرفها فقط)"
+
+#, fuzzy
+#~ msgid "DEBUG_CONSOLE"
+#~ msgstr "لوحة اكتشاف الاخطاء البرمجية"
+
+#, fuzzy
+#~ msgid "GUI_SCALE_OPTION"
+#~ msgstr "إغلاق الخيارات؟"
+
+#, fuzzy
+#~ msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
+#~ msgstr "اداة استكشاف التطور الذاتي"
+
+#, fuzzy
+#~ msgid "TOGGLE_DEBUG_CONSOLE"
+#~ msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+
+#, fuzzy
+#~ msgid "WRONG_GROWTH_ORDER"
+#~ msgstr "(يقتصر الأجزاء والقدرات على ما في الحياة كما نعرفها فقط)"
+
+#, fuzzy
+#~ msgid "WRONG_GROWTH_ORDER_TEXT"
+#~ msgstr "(يقتصر الأجزاء والقدرات على ما في الحياة كما نعرفها فقط)"
 
 #, fuzzy
 #~ msgid "REPRODUCTION_COMPOUND_USAGE"

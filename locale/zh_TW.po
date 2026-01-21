@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-19 15:16+0100\n"
-"PO-Revision-Date: 2025-12-11 04:10+0000\n"
+"POT-Creation-Date: 2026-01-21 17:40+0100\n"
+"PO-Revision-Date: 2026-01-19 08:15+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.15.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -532,16 +532,14 @@ msgstr "超越細胞"
 msgid "BIG_IRON_CHUNK"
 msgstr "大鐵塊"
 
-#, fuzzy
 msgid "BIG_IRON_CHUNK_BANANA"
-msgstr "大鐵塊"
+msgstr "大鐵香蕉塊"
 
 msgid "BIG_PHOSPHATE_CHUNK"
 msgstr "大磷酸鹽塊"
 
-#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK_BANANA"
-msgstr "大磷酸鹽塊"
+msgstr "大磷酸鹽香蕉塊"
 
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
@@ -2726,10 +2724,10 @@ msgid "ICESHELF"
 msgstr "冰棚"
 
 msgid "ICE_CHUNK_BIG"
-msgstr "大型冰塊"
+msgstr "大冰塊"
 
 msgid "ICE_CHUNK_SMALL"
-msgstr "小型冰塊"
+msgstr "小冰塊"
 
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID 無效"
@@ -4574,7 +4572,7 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "多細胞生物"
 
 msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
-msgstr "此分頁允許設定細胞器生長的順序。這對於在生長過程中 ATP 生產不穩定的細胞非常重要。生長順序也會對生物代謝的運作順序造成影響。建議僅在完成結構編輯後進行修改，因為可以如同結構編輯一樣取消此處所做的變更。"
+msgstr "此分頁允許設定細胞器的生長順序。這對於在生長過程中 ATP 生產不穩定的細胞非常重要。生長順序也會對生物代謝的運作順序造成影響。建議僅在完成結構編輯後進行修改，因為可以如同結構編輯一樣取消此處所做的變更。"
 
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "肌原纖維"
@@ -5613,16 +5611,14 @@ msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive
 msgid "SMALL_IRON_CHUNK"
 msgstr "小鐵塊"
 
-#, fuzzy
 msgid "SMALL_IRON_CHUNK_BANANA"
-msgstr "小鐵塊"
+msgstr "小鐵香蕉塊"
 
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "小磷酸鹽塊"
 
-#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
-msgstr "小磷酸鹽塊"
+msgstr "小磷酸鹽香蕉塊"
 
 msgid "SMALL_SULFUR_CHUNK"
 msgstr "小硫磺塊"
@@ -6473,7 +6469,6 @@ msgstr ""
 "\n"
 "另一種稍微提高[b]移動速度[/b] [thrive:icon]MovementIcon[/thrive:icon] 的方法是在[u]細胞膜分頁[/u]中增加細胞膜的流動性。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
 msgstr ""
 "這是食物鏈顯示面板。\n"
@@ -7237,25 +7232,20 @@ msgstr ""
 msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "無升級。"
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
-msgstr "無效果。等待實現。"
+msgstr "具有[b]生物發光液泡[/b]的細胞耐氧性增加。"
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
-msgstr "創造光。尚未在 Thrive 中實現。"
+msgstr "產生[thrive:compound type=\"sunlight\"][/thrive:compound] 並提高該細胞的氧耐受性。"
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
-msgstr "無修改。等待實現。"
+msgstr "無修改。"
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
-msgstr "無代謝過程。等待實現。"
+msgstr "[b]螢光素酶合成[/b]：[thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"sunlight\"][/thrive:compound]"
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_REQUIREMENTS"
-msgstr "無法加入到細胞中。等待實現。"
+msgstr "細胞必須有[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]才能演化出[b]生物發光液泡[/b]。"
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7267,13 +7257,11 @@ msgstr ""
 "\n"
 "如果您對包含[b]生物發光液泡[/b]有強烈的感覺，或者對有價值的遊戲內功能有建議，請前往我們的[color=#3796e1][url=https://suggestions.revolutionarygamesstudio.com/]建議板[/url][/color]。"
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
-msgstr "遊戲中不可用。等待實現。"
+msgstr "如果您的細胞是厭氧的，並且您需要提高細胞的氧耐性，請在細胞中加入[b]生物發光液泡[/b]。"
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
-msgstr "無升級。等待實現。"
+msgstr "無升級。"
 
 msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
 msgstr "軀體設計編輯器、細胞編輯器"
@@ -9227,24 +9215,22 @@ msgstr "科技編輯器、國家編輯器、隊伍編輯器"
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "啟用[i]熱視覺[/i]，可切換開關。這會將水的相對溫度疊加顯示到螢幕上，溫度較高的區域會顯示得更紅。"
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr ""
-"利用環境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度以[thrive:compound type=\"atp\"][/thrive:compound] 的形式產生能量。效率高於原核版本的[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]。\n"
+"利用環境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度生產[thrive:compound type=\"glucose\"][/thrive:compound]。效率高於原核版本的[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]。\n"
 "\n"
 "現實中未發現的假說細胞器。在開啟[i]僅限已知生命形式[/i]選項的遊戲中不可用。\n"
 "\n"
-"它是一種有膜細胞器，膜狀隔間內含有熱敏酶。它是一種已被其真核宿主同化的原核生物。這些酶能夠利用周圍環境中[thrive:compound type=\"temperature\"][/thrive:compound] 上升的能量生產[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[i]熱合成[/i]。"
+"它是一種有膜細胞器，膜狀隔間內含有熱敏酶。它是一種已被其真核宿主同化的原核生物。這些酶能夠利用周圍環境中[thrive:compound type=\"temperature\"][/thrive:compound] 上升的能量生產[thrive:compound type=\"glucose\"][/thrive:compound]，此過程被稱為[i]熱合成[/i]。"
 
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "無修改。"
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr ""
-"[b]熱合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] [i]增加[/i] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]熱合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] [i]增加[/i] → [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"透過上升的[thrive:compound type=\"temperature\"][/thrive:compound] 來產生能量。隨著[thrive:compound type=\"temperature\"][/thrive:compound] 提升，熱敏酶會改變形狀，從而將 [i]ADP[/i] 循環轉化為[thrive:compound type=\"atp\"][/thrive:compound]。隨著細胞冷卻，酶會恢復到先前的形狀，使該過程能重複進行。效率高於[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]中的[i]細菌熱合成[/i]。其[thrive:compound type=\"atp\"][/thrive:compound] 的生產速率與[thrive:compound type=\"temperature\"][/thrive:compound] 的[i]增量[/i]成正比。"
+"透過上升的[thrive:compound type=\"temperature\"][/thrive:compound] 來產生能量。隨著[thrive:compound type=\"temperature\"][/thrive:compound] 提升，熱敏酶會改變形狀，從而將各種化合物轉化為[thrive:compound type=\"glucose\"][/thrive:compound]。隨著細胞冷卻，酶會恢復到先前的形狀，使該過程能重複進行。效率高於[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]中的[i]細菌熱合成[/i]。其[thrive:compound type=\"glucose\"][/thrive:compound] 的生產速率與[thrive:compound type=\"temperature\"][/thrive:compound] 的[i]增量[/i]成正比。"
 
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
@@ -9254,21 +9240,19 @@ msgstr ""
 "\n"
 "[indent]—   至少連續 [b]5[/b] 代中包含 [b]3[/b] 個[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]。[/indent]"
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr ""
 "熱合成最早是由 Anthonie Muller 於 1983 年的一篇論文中提出的（\"Thermoelectric energy conversion could be an energy source of living organisms\", Physics Letters A, Volume 96, Issue 6, p. 319-321）。它能提供的能量僅為呼吸作用總能量的一小部分（A Search For Thermosynthesis: Starvation Survival In Thermally Cycled Bacteria）。\n"
 "\n"
 "Muller 還提出，熱合成可能是最早的（基於硫的）光合作用的先驅（Photosystem 0, A Proposed Ancestral Photosystem Without Reducing Power That Synthesized ATP During Light-Dark cycling）。\n"
 "\n"
+"在早期版本的 Thrive 中，這個細胞器可以直接生產 ATP，但出於遊戲平衡性的考慮，現在它生產的是葡萄糖，但沒有解釋所需的碳源從何而來。這又為 Thrive 增添了一處不真實的缺陷。或許在遙遠的未來，如果有人願意開發一個能將 ATP 轉化為葡萄糖以進行長期儲存的細胞器，這個問題就能解決。\n"
+"\n"
 "[color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]Wikipedia 中的熱合成[/url][/color]"
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr ""
-"[b]熱合成[/b]可能是最具移動性的自營形式，它需要持續不斷的運動。您需要從較冷的區域移動到較熱的區域，然後再返回。當細胞溫度停止升高後，[thrive:compound type=\"atp\"][/thrive:compound] 的產量將降至零。最好啟動[i]熱視覺[/i]來觀察細胞周圍的冷熱區域，以便更有效地在這些區域之間穿梭。熱能體在溫度較高的區域效率更高，因此最適合在海底熱泉使用。\n"
-"\n"
-"由於[b]熱能體[/b]的[thrive:compound type=\"atp\"][/thrive:compound] 生產會經常停止，因此擁有第二能量來源非常重要，否則您將因缺乏[thrive:compound type=\"atp\"][/thrive:compound] 而受到持續傷害。\n"
+"[b]熱合成[/b]可能是最具移動性的自營形式，它需要持續不斷的運動。您需要從較冷的區域移動到較熱的區域，然後再返回。當細胞溫度停止升高後，[thrive:compound type=\"glucose\"][/thrive:compound] 的產量將降至零。最好啟動[i]熱視覺[/i]來觀察細胞周圍的冷熱區域，以便更有效地在這些區域之間穿梭。熱能體在溫度較高的區域效率更高，因此最適合在海底熱泉使用。\n"
 "\n"
 "啟用細胞器解鎖後，需要在細胞中使用[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]進行多次繁殖，意味著玩家演化[b]熱能體[/b]時，他們可能已經非常專注於[b]熱合成[/b]以獲得[b]熱能體[/b]。"
 
@@ -9278,24 +9262,26 @@ msgstr "無升級。"
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "啟用[i]熱視覺[/i]，可切換開關。這會將水的相對溫度疊加顯示到螢幕上，溫度較高的區域會顯示得更紅。"
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
-"利用環境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度以[thrive:compound type=\"atp\"][/thrive:compound] 的形式產生能量。效率低於真核版本的[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]。\n"
+"利用環境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度生產[thrive:compound type=\"glucose\"][/thrive:compound]。效率低於真核版本的[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]。\n"
 "\n"
 "現實中未發現的假說細胞器。在開啟[i]僅限已知生命形式[/i]選項的遊戲中不可用。\n"
 "\n"
-"它是一組含有熱敏酶的膜狀隔間結構。這些酶能夠利用周圍環境中[thrive:compound type=\"temperature\"][/thrive:compound] 上升的能量生產[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[i]熱合成[/i]。"
+"它是一組含有熱敏酶的膜狀隔間結構。這些酶能夠利用周圍環境中[thrive:compound type=\"temperature\"][/thrive:compound] 上升的能量生產[thrive:compound type=\"glucose\"][/thrive:compound]，此過程被稱為[i]熱合成[/i]。"
 
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "無修改。"
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr ""
-"[b]細菌熱合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] [i]增加[/i] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]細菌熱合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] [i]增加[/i] → [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"透過上升的[thrive:compound type=\"temperature\"][/thrive:compound] 來產生能量。隨著[thrive:compound type=\"temperature\"][/thrive:compound] 提升，熱敏酶會改變形狀，從而將 [i]ADP[/i] 循環轉化為[thrive:compound type=\"atp\"][/thrive:compound]。隨著細胞冷卻，酶會恢復到先前的形狀，使該過程能重複進行。效率低於[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]中的[i]熱合成[/i]。其[thrive:compound type=\"atp\"][/thrive:compound] 的生產速率與[thrive:compound type=\"temperature\"][/thrive:compound] 的[i]增量[/i]成正比。"
+"透過上升的[thrive:compound type=\"temperature\"][/thrive:compound] 來產生能量。隨著[thrive:compound type=\"temperature\"][/thrive:compound] 提升，熱敏酶會改變形狀，從而將各種化合物轉化為[thrive:compound type=\"glucose\"][/thrive:compound]。隨著細胞冷卻，酶會恢復到先前的形狀，使該過程能重複進行。效率低於[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]中的[i]熱合成[/i]。其[thrive:compound type=\"glucose\"][/thrive:compound] 的生產速率與[thrive:compound type=\"temperature\"][/thrive:compound] 的[i]增量[/i]成正比。\n"
+"\n"
+"[b]糖解[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"由於[b]熱合成酶[/b]直接懸浮在[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]中，周圍的液體也能進行一些[b]糖解[/b]。"
 
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr ""
@@ -9303,19 +9289,17 @@ msgstr ""
 "\n"
 "[indent]—   位於至少 [b]50 °C[/b] [thrive:compound type=\"temperature\"][/thrive:compound] 的區域。[/indent]"
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr ""
 "[b]熱合成酶[/b]是一種虛構的酶，但[color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]熱合成[/url][/color]代謝的理論通常被認為在生物學上是合理的。\n"
 "\n"
-"熱合成最早是由 Anthonie Muller 於 1983 年的一篇論文中提出的（\"Thermoelectric energy conversion could be an energy source of living organisms\", Physics Letters A, Volume 96, Issue 6, p. 319-321）。Muller 還提出，熱合成可能是最早的（基於硫的）光合作用的先驅（參見：A search for thermosynthesis: starvation survival in thermally cycled bacteria）。"
+"熱合成最早是由 Anthonie Muller 於 1983 年的一篇論文中提出的（\"Thermoelectric energy conversion could be an energy source of living organisms\", Physics Letters A, Volume 96, Issue 6, p. 319-321）。Muller 還提出，熱合成可能是最早的（基於硫的）光合作用的先驅（參見：A search for thermosynthesis: starvation survival in thermally cycled bacteria）。\n"
+"\n"
+"在早期版本的 Thrive 中，這個細胞器可以直接生產 ATP，但出於遊戲平衡性的考慮，現在它生產的是葡萄糖，但沒有解釋所需的碳源從何而來。這又為 Thrive 增添了一處不真實的缺陷。或許在遙遠的未來，如果有人願意開發一個能將 ATP 轉化為葡萄糖以進行長期儲存的細胞器，這個問題就能解決。"
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr ""
-"[i]熱合成[/i]可能是最具移動性的自營形式，它需要持續不斷的運動。您需要從較冷的區域移動到較熱的區域，然後再返回。當細胞溫度停止升高後，[thrive:compound type=\"atp\"][/thrive:compound] 的產量將降至零。最好啟動[i]熱視覺[/i]來觀察細胞周圍的冷熱區域，以便更有效地在這些區域之間穿梭。熱合成酶在溫度較高的區域效率更高，因此最適合在海底熱泉使用。\n"
-"\n"
-"由於[b]熱合成酶[/b]的[thrive:compound type=\"atp\"][/thrive:compound] 生產會經常停止，因此擁有第二能量來源非常重要，否則您將因缺乏[thrive:compound type=\"atp\"][/thrive:compound] 而受到持續傷害。\n"
+"[i]熱合成[/i]可能是最具移動性的自營形式，它需要持續不斷的運動。您需要從較冷的區域移動到較熱的區域，然後再返回。當細胞溫度停止升高後，[thrive:compound type=\"glucose\"][/thrive:compound] 的產量將降至零。最好啟動[i]熱視覺[/i]來觀察細胞周圍的冷熱區域，以便更有效地在這些區域之間穿梭。熱合成酶在溫度較高的區域效率更高，因此最適合在海底熱泉使用。\n"
 "\n"
 "更高效的是[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]，一旦細胞演化出[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]就可用。與所有原核細胞器與真核細胞器一樣，我們建議在盡可能的情況下將[b]熱合成酶[/b]替換為[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]。"
 
@@ -9600,6 +9584,43 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#~ msgid "AVERAGE_SURFACE_TEMPERATURE"
+#~ msgstr "平均地表溫度"
+
+#~ msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+#~ msgstr "此分頁允許設定群落細胞的生長順序，順序中的首個細胞是根細胞（或芽細胞）。您可以使用此功能優先生長更關鍵的細胞，或確保群落的生產與消耗維持適當的平衡。"
+
+#~ msgid "COMMAND_INPUT_LINE_EDIT"
+#~ msgstr "插入命令"
+
+#~ msgid "DEBUG_CONSOLE"
+#~ msgstr "除錯控制台"
+
+#, fuzzy
+#~ msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+#~ msgstr "（較低的值可提高性能）"
+
+#, fuzzy
+#~ msgid "GUI_SCALE_OPTION"
+#~ msgstr "關閉選項選單？"
+
+#~ msgid "ICE_SNOWFLAKE_BIG"
+#~ msgstr "大冰雪花塊"
+
+#, fuzzy
+#~ msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
+#~ msgstr "在遊戲過程中運行 Auto-Evo"
+
+#, fuzzy
+#~ msgid "TOGGLE_DEBUG_CONSOLE"
+#~ msgstr "切換除錯面板"
+
+#~ msgid "WRONG_GROWTH_ORDER"
+#~ msgstr "錯誤的生長順序"
+
+#~ msgid "WRONG_GROWTH_ORDER_TEXT"
+#~ msgstr "群落的生長順序導致部分細胞分離。這是因為某個細胞的生長順序在連接它與根部的細胞之前。請查看「生長順序」分頁，找到標記為紅色的細胞並修正其排序。"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "使用自動 Harmony："

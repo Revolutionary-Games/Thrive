@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-19 15:16+0100\n"
-"PO-Revision-Date: 2025-12-06 19:09+0000\n"
+"POT-Creation-Date: 2026-01-21 17:40+0100\n"
+"PO-Revision-Date: 2026-01-19 08:15+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.15.1\n"
 "Generated-By: Babel 2.9.1\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -530,16 +530,14 @@ msgstr "უჯრედის მიღმა"
 msgid "BIG_IRON_CHUNK"
 msgstr "რკინის დიდი ნაჭერი"
 
-#, fuzzy
 msgid "BIG_IRON_CHUNK_BANANA"
-msgstr "რკინის დიდი ნაჭერი"
+msgstr "დიდი რკინის ბანანის ნაგლეჯი"
 
 msgid "BIG_PHOSPHATE_CHUNK"
 msgstr "დიდი ფოსფატის ნაჭერი"
 
-#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK_BANANA"
-msgstr "დიდი ფოსფატის ნაჭერი"
+msgstr "დიდი ფოსფატის ბანანის ნაჭერი"
 
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} მლრდ"
@@ -2574,7 +2572,7 @@ msgid "HYDROGENASE"
 msgstr "ჰიდროგენაზა"
 
 msgid "HYDROGENASE_DESCRIPTION"
-msgstr ""
+msgstr "ახდენს [thrive:compound type=\"glucose\"][/thrive:compound]-ის ფერმენტაციას ენერგიის მისაღებად და გამოყოფს თანაპროდუქტებს, მაგალითად, წყალბადს. [thrive:compound type=\"oxygen\"][/thrive:compound]-ის დაბალი დონის პირობებში უფრო ეფექტურია, ვიდრე მეტაბოლოსომები. ბევრი ორგანიზმი უჟანგბადო გარემოში ამას ენერგიის ძირითად წყაროდ იყენებს."
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "გადაჰყავს [thrive:compound type=\\\"glucose\\\"][/thrive:compound] [thrive:compound type=\\\"atp\\\"][/thrive:compound]-ში."
@@ -5366,16 +5364,14 @@ msgstr "გადაჰყავს [thrive:compound type=\"glucose\"][/thrive:c
 msgid "SMALL_IRON_CHUNK"
 msgstr "რკინის პატარა ნაჭერი"
 
-#, fuzzy
 msgid "SMALL_IRON_CHUNK_BANANA"
-msgstr "რკინის პატარა ნაჭერი"
+msgstr "პატარა რკინის ბანანის ნაჭერი"
 
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "პატარა ფოსფატის ნაგლეჯი"
 
-#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
-msgstr "პატარა ფოსფატის ნაგლეჯი"
+msgstr "პატარა ფოსფატის ბანანის ნაგლეჯი"
 
 msgid "SMALL_SULFUR_CHUNK"
 msgstr "გოგირდის პატარა ნაჭერი"
@@ -6182,6 +6178,11 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
+"თქვენს სახეობებში ცვლილებები არ შეგიტანიათ.\n"
+"\n"
+"როცა რედაქტორიდან გახვალთ, [u]თქვენს სახეობას ვერ ჩაასწორებთ, სანამ მორიგ ჯერზე არ გამრავლდებით.[/u].\n"
+"\n"
+"იმისათვის, რომ თამაშში წინ წახვიდეთ, უნდა განვითარდეთ და შეეგუოთ, ასე რომ, რეკომენდებულია, თქვენი სახეობა [i]თითქმის[/i]ყოველ ჯერზე გააუმჯობესოთ."
 
 msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
 msgstr ""
@@ -6744,7 +6745,7 @@ msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
 msgstr ""
 
 msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "მრავალუჯრედიან ევკარიოტულ ორგანიზმებში ცალკეული უჯრედები ერთმანეთთან დაკავშირებულია სხვადასხვაგვარი უჯრედის წებოვანი მოლეკულებით (CAM-ებით), რომლებიც განლაგებულია მათი უჯრედის მემბრანების გარე ზედაპირზე. CAM-ების ერთ-ერთი მთავარი კატეგორიაა ტრანსმემბრანული ცილები (ანუ ცილები, რომლებიც ჩაშენებულია უჯრედის მემბრანაში და ვრცელდება როგორც უჯრედის შიგნით, ისე მის გარეთ), მაგალითად, კადჰერინები. მათ აქვთ უჯრედგარე დანამატები, რომლებსაც შეუძლიათ დაუკავშირდნენ სხვა უჯრედების კადჰერინებს და ამგვარად შეკრან შესაბამისი უჯრედები."
 
 msgid "WIKI_BINDING_AGENT_STRATEGY"
 msgstr ""
@@ -6795,7 +6796,7 @@ msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
 msgstr "უჯრედს [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] განვითარებისთვის [b]ქემოპლასტები[/b] სჭირდება."
 
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "მიუხედავად იმისა, რომ რეალურ სამყაროში არ არსებობენ მიკრობები ორგანელებით, რომლებსაც „ქემოპლასტები“ ეწოდება, [color=#3796e1][url=https://en.wikipedia.org/wiki/Chemosynthesis]ქემოსინთეზი[/url][/color] არის მეტაბოლური პროცესი, რომელიც ბევრ მიკრობულ ტაქსონში გვხვდება. მიტოქონდრიებისა და ქლოროპლასტების არსებობის გათვალისწინებით (რომლებიც მემბრანით გარსშემორტყმული ორგანელებია და ენდოსიმბიოზის შედეგად წარმოიქმნენ), სრულიად დასაშვებია, რომ ქემოპლასტის მსგავსი ორგანელა ანალოგიურად განვითარებულიყო ქემოსინთეზური მიკრობისგან, რომელიც უფრო დიდმა უჯრედმა შთანთქა."
 
 msgid "WIKI_CHEMOPLAST_STRATEGY"
 msgstr ""
@@ -6819,7 +6820,7 @@ msgid "WIKI_CHEMORECEPTOR_REQUIREMENTS"
 msgstr "მოთხოვნების გარეშე"
 
 msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "[color=#3796e1][url=https://en.wikipedia.org/wiki/Chemoreceptor]ქემორეცეპტორები[/url][/color] არის უჯრედის ზედაპირზე განლაგებული სენსორული სტრუქტურების კლასი, რომელიც, როგორც წესი, პროკარიოტების შემთხვევაში გრძელი სპირალური ცილებისგან შედგება, ხოლო ევკარიოტების შემთხვევაში — უფრო რთული წამწამებისგან. ზოგადად რომ ვთქვათ, მათი დანიშნულებაა აცნობოს უჯრედს გარემოში ქიმიური ნაერთების არსებობის შესახებ და მისცეს მას საშუალება, საჭიროებისამებრ იმოძრაოს მათკენ ან მათგან შორს."
 
 msgid "WIKI_CHEMORECEPTOR_STRATEGY"
 msgstr ""
@@ -8183,6 +8184,40 @@ msgstr "გადიდება"
 
 msgid "ZOOM_OUT"
 msgstr "დაპატარავება"
+
+#~ msgid "AVERAGE_SURFACE_TEMPERATURE"
+#~ msgstr "ზედაპირის საშუალო ტემპერატურა"
+
+#~ msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+#~ msgstr "ეს ჩანართი საშუალებას გაძლევთ, განსაზღვროთ კოლონიის უჯრედების ზრდის მიმდევრობა, სადაც პირველი უჯრედი არის ფესვი (ან კვირტი). ამის გამოყენება შეგიძლიათ უფრო კრიტიკული უჯრედების ზრდის პრიორიტეტიზაციისთვის ან იმის უზრუნველსაყოფად, რომ კოლონიის წარმოება და მოხმარება სათანადოდ იყოს დაბალანსებული."
+
+#~ msgid "DEBUG_CONSOLE"
+#~ msgstr "გამართვის კონსოლი"
+
+#, fuzzy
+#~ msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+#~ msgstr "(დაბალი მნიშვნელობები ზრდის წარმადობას)"
+
+#, fuzzy
+#~ msgid "GUI_SCALE_OPTION"
+#~ msgstr "დავხურო პარამეტრები?"
+
+#~ msgid "ICE_SNOWFLAKE_BIG"
+#~ msgstr "დიდი ყინულიანი თოვლის ფიფქის ნაგლეჯი"
+
+#, fuzzy
+#~ msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
+#~ msgstr "ავტოევოს გაშვება თამაშისას"
+
+#, fuzzy
+#~ msgid "TOGGLE_DEBUG_CONSOLE"
+#~ msgstr "გამართვის პანელის გადართვა"
+
+#~ msgid "WRONG_GROWTH_ORDER"
+#~ msgstr "ზრდის არასწორი მიმდევრობა"
+
+#~ msgid "WRONG_GROWTH_ORDER_TEXT"
+#~ msgstr "კოლონიის ზრდის მიმდევრობა იწვევს ზოგიერთი უჯრედის განცალკევებას. ეს ხდება მაშინ, როცა უჯრედი მიმდევრობაში უფრო წინ არის განთავსებული, ვიდრე ის უჯრედები, რომლებიც მას ფესვთან აკავშირებს. „ზრდის მიმდევრობის“ ჩანართში შეამოწმეთ წითლად მონიშნული უჯრედები და შეასწორეთ მიმდევრობა."
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "იყენებს ავტომატურ ჰარმონიას:"
