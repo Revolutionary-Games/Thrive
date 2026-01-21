@@ -1102,7 +1102,7 @@ public static class Constants
     public const float HUD_BAR_FLASH_DURATION = 0.67f;
 
     // Darwinian Evo Values
-    public const int CREATURE_DEATH_POPULATION_LOSS = -60;
+    public const int CREATURE_DEATH_POPULATION_LOSS = -30;
     public const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
 
     // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4694
