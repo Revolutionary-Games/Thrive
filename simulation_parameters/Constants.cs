@@ -867,7 +867,7 @@ public static class Constants
     public const float MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER = 2;
 
     /// <summary>
-    ///   A multiplier for <see cref="MICROBE_REPRODUCTION_FREE_COMPOUNDS"/> for multicellular microbes
+    ///   A multiplier for <see cref="MICROBE_REPRODUCTION_MAX_COMPOUND_USE"/> for multicellular microbes
     /// </summary>
     public const float MULTICELLULAR_REPRODUCTION_COMPOUND_MAX_USE_MULTIPLIER = 3;
 
