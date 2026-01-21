@@ -320,6 +320,8 @@ public class SimulationCache
             return score;
         }
 
+        var cached = 0.0f;
+
         // First values necessary to check whether predation is possible at all
         var predatorToolScores = GetPredationToolsRawScores(predator);
 
@@ -345,7 +347,6 @@ public class SimulationCache
             }
             else
             {
-                cached = 0;
                 predationScores.Add(key, cached);
                 return cached;
             }
@@ -818,7 +819,7 @@ public class SimulationCache
         if (predatorSlimeJetScore > 0)
             preySlimeJetScore = 0;
 
-        var cached = scoreMultiplier * aggressionScore *
+        cached = scoreMultiplier * aggressionScore *
             (pilusScore + engulfmentScore + damagingToxinScore) - (preySlimeJetScore + preyMucocystsScore +
                 preyPilusScore + preyDamagingToxinScore);
         if (cached < 0)
