@@ -318,6 +318,19 @@ public partial class PlayerMicrobeInput : NodeWithInput
         }
     }
 
+    [RunOnKeyToggle("g_toggle_thermal_vision")]
+    public void ToggleThermalVision(bool pressed)
+    {
+        if (pressed)
+        {
+            stage.SetSpecialViewMode(ViewMode.Heat);
+        }
+        else
+        {
+            stage.SetSpecialViewMode(ViewMode.Normal);
+        }
+    }
+
     [RunOnKeyDown("g_unbind_all")]
     public void UnbindAll()
     {
