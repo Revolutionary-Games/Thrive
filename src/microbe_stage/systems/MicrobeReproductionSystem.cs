@@ -89,7 +89,8 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
             remainingAllowedCompoundUse = remainingFreeCompounds * Constants.MICROBE_REPRODUCTION_MAX_COMPOUND_USE;
         }
 
-        // Somehow this code was forgotten but *now* properly allow multicellular species
+        // Somehow this code was forgotten but *now* properly allow multicellular species to grow at a more intended
+        // speed
         if (isMulticellular)
             remainingAllowedCompoundUse *= Constants.MULTICELLULAR_REPRODUCTION_COMPOUND_MAX_USE_MULTIPLIER;
 
