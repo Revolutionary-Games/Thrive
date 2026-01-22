@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-01-21 17:54+0200\n"
-"PO-Revision-Date: 2026-01-22 12:12+0000\n"
+"PO-Revision-Date: 2026-01-22 14:03+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
 "Language: da\n"
@@ -735,7 +735,7 @@ msgid "CHANGE_THE_SYMMETRY"
 msgstr "Ændre symmetrien"
 
 msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
-msgstr ""
+msgstr "Kanalhæmmersyntese"
 
 msgid "CHEATS"
 msgstr "Snyd"
@@ -6139,81 +6139,88 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Slå afbinding til/fra"
 
 msgid "TOLERANCES_TOO_HIGH_PRESSURE"
-msgstr ""
+msgstr "Foretrukkent tryk er {0} for højt"
 
 msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
-msgstr ""
+msgstr "Foretrukken temperatur er {0} for højt"
 
 msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
-msgstr ""
+msgstr "Iltbeskyttelse er for lav, skal være {0}% højere"
 
 msgid "TOLERANCES_TOO_LOW_PRESSURE"
-msgstr ""
+msgstr "Foretrukkent tryk er {0} for lavt"
 
 msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
-msgstr ""
+msgstr "Foretrukken temperatur er {0} for lavt"
 
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
-msgstr ""
+msgstr "UV-beskyttelse er for lav, skal være {0} højere"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-msgstr ""
+msgstr "Ikke tilpasset det nuværende miljø. Osmoreguleringsomkostning {0}%, bioproceshastighed {1}%, helbred {2}%"
 
-#, fuzzy
 msgid "TOLERANCE_DETAIL_TEXT"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr ""
+"[b]Temperatur[/b]\n"
+"  Foretrukken: {0}°C\n"
+"  Spænd: ±{1}°C\n"
+"[b]Tryk[/b]\n"
+"  Spænd: {2}-{3} Pa\n"
+"[b]Iltresistens[/b]\n"
+"  {4}%\n"
+"[b]UV-resistens[/b]\n"
+"  {5}%"
 
-#, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr "Tolerancer er påvirket af visse organeller, både positivt og negativt. Den effektive værdi vises here efter at basis værdien er lagt sammen med ændringerne fra organellerne. Nogle organeller passer godt sammen med visse spillestile, men er skadelige for andre."
 
 msgid "TOLERANCE_RANGE_LABEL"
-msgstr ""
+msgstr "Fleksibilitet:"
 
 msgid "TOOLS"
-msgstr ""
+msgstr "Værktøj"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
+msgstr "Håndøkse"
 
 msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr ""
+msgstr "Trykspændet er for bredt"
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr ""
+msgstr "Viser ikke alle nylige versioner, da der er for mange"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
-msgstr ""
+msgstr "Samlet energi:"
 
 msgid "TOTAL_SAVES"
-msgstr ""
+msgstr "Antal gemte spil:"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
-msgstr ""
+msgstr "Kanalhæmmer"
 
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr ""
 
 msgid "TOXIN_COMPOUND"
-msgstr ""
+msgstr "Toksin"
 
 msgid "TOXIN_CYTOTOXIN"
-msgstr ""
+msgstr "Cytotoksin"
 
 msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
-msgstr ""
+msgstr "En simpel toksin der er rimelig effektiv imod celler ude specialiserede membraner."
 
 msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
 msgstr ""
 
 msgid "TOXIN_MACROLIDE"
-msgstr ""
+msgstr "Macrolid"
 
 msgid "TOXIN_MACROLIDE_DESCRIPTION"
-msgstr ""
+msgstr "En toksin der kraftigt nedsætter basis hastigheden, hvilket gør simple celler ude af stand til at bevæge sig."
 
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
-msgstr ""
+msgstr "Cyanid"
 
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
 msgstr ""
@@ -6222,29 +6229,29 @@ msgid "TOXIN_OXYTOXY_DESCRIPTION"
 msgstr ""
 
 msgid "TOXIN_PREFER_FIRE_RATE"
-msgstr ""
+msgstr "Hurtigaffyrende"
 
 msgid "TOXIN_PREFER_TOXICITY"
-msgstr ""
+msgstr "Giftig"
 
 msgid "TOXIN_PROPERTIES_HEADING"
-msgstr ""
+msgstr "Toksin effekter på målet"
 
 msgid "TOXIN_RESISTANCE"
-msgstr ""
+msgstr "Toksinresistens"
 
 #, fuzzy
 msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
 msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
 
 msgid "TOXIN_TYPE_COLON"
-msgstr ""
+msgstr "Toksintype:"
 
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
 msgstr ""
 
 msgid "TOXIN_VACUOLE"
-msgstr ""
+msgstr "Toksinvakuole"
 
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
@@ -6259,25 +6266,25 @@ msgid "TOXISOME_DESCRIPTION"
 msgstr ""
 
 msgid "TRANSLATORS"
-msgstr ""
+msgstr "Oversættere"
 
 msgid "TRANSPARENCY"
-msgstr ""
+msgstr "Gennemsigtighed"
 
 msgid "TRILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} Bil."
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
-msgstr ""
+msgstr "Prøv at fossiliser nogle arter!"
 
 msgid "TRY_MAKING_A_SAVE"
-msgstr ""
+msgstr "Prøv at gemme spillet!"
 
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
-msgstr ""
+msgstr "Prøv at tage nogle skærmbilleder!"
 
 msgid "TUTORIAL"
-msgstr ""
+msgstr "Vejledning"
 
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
@@ -6388,13 +6395,13 @@ msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
 msgstr ""
 
 msgid "TUTORIAL_VIEW_NOW"
-msgstr ""
+msgstr "Vis nu"
 
 msgid "TWO_TIMES"
-msgstr ""
+msgstr "2x"
 
 msgid "TYPE_COLON"
-msgstr ""
+msgstr "Type:"
 
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
@@ -6415,109 +6422,109 @@ msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
 msgid "UNDERWATERCAVE"
-msgstr ""
+msgstr "Undervandshule"
 
 msgid "UNDERWATER_VENT_ERUPTION"
 msgstr ""
 
 msgid "UNDERWATER_VENT_ERUPTION_IN"
-msgstr ""
+msgstr "Udbrud om {0}"
 
 msgid "UNDISCOVERED_ORGANELLES"
-msgstr ""
+msgstr "Uopdaget"
 
 msgid "UNDISCOVERED_PATCH"
-msgstr ""
+msgstr "Uopdaget område"
 
 msgid "UNDO"
-msgstr ""
+msgstr "Gør om"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr ""
 
 msgid "UNHANDLED_ERROR_COUNT"
-msgstr ""
+msgstr "Ubehandlede fejl: {0}"
 
 msgid "UNHANDLED_ERROR_DESCRIPTION"
 msgstr ""
 
 msgid "UNHANDLED_ERROR_TITLE"
-msgstr ""
+msgstr "En ubehandlet fejl er sket"
 
 msgid "UNIT_ACTION_CONSTRUCT"
-msgstr ""
+msgstr "Byg"
 
 msgid "UNIT_ACTION_MOVE"
-msgstr ""
+msgstr "Bevæg"
 
 msgid "UNIT_ADVANCED_SPACESHIP"
-msgstr ""
+msgstr "Avanceret rumskib"
 
 msgid "UNIT_SIMPLE_ROCKET"
-msgstr ""
+msgstr "Simpel raket"
 
 msgid "UNKNOWN"
-msgstr ""
+msgstr "Ukendt"
 
 msgid "UNKNOWN_DISPLAY_DRIVER"
-msgstr ""
+msgstr "Ukendt"
 
 msgid "UNKNOWN_MOUSE"
-msgstr ""
+msgstr "Ukendt mus"
 
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
-msgstr ""
+msgstr "?"
 
 msgid "UNKNOWN_PATCH"
-msgstr ""
+msgstr "Ukendt område"
 
 msgid "UNKNOWN_SHORT"
-msgstr ""
+msgstr "?"
 
 msgid "UNKNOWN_VERSION"
-msgstr ""
+msgstr "Ukendt version"
 
 msgid "UNKNOWN_WORKSHOP_ID"
-msgstr ""
+msgstr "Ukendt Workshop ID for denne mod"
 
 msgid "UNLIMIT_GROWTH_SPEED"
 msgstr ""
 
 msgid "UNLOCKED_NEW_ORGANELLE"
-msgstr ""
+msgstr "NY"
 
 msgid "UNLOCK_ALL_ORGANELLES"
-msgstr ""
+msgstr "Åben op for alle organeller"
 
 msgid "UNLOCK_CONDITION_ATP_PRODUCTION_ABOVE"
-msgstr ""
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound] produktion når {0}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_ABOVE"
-msgstr ""
+msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] i område er mere end {1}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_BELOW"
-msgstr ""
+msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] i område er mindre end {1}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_BETWEEN"
-msgstr ""
+msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] i område er mellem {1} og {2}"
 
 msgid "UNLOCK_CONDITION_DIGESTED_MICROBES_ABOVE"
-msgstr ""
+msgstr "{0} mikrober er fordøjet  (lige nu er det på {1})"
 
 msgid "UNLOCK_CONDITION_ENGULFED_MICROBES_ABOVE"
-msgstr ""
+msgstr "{0} mikrober er opslugt (lige nu er det på {1})"
 
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
-msgstr ""
+msgstr "overskydende [thrive:compound type=\"atp\"][/thrive:compound] når {0}"
 
 msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
-msgstr ""
+msgstr "skade modtaget når {0} (lige nu er det på {1})"
 
 msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
-msgstr ""
+msgstr "skade modtaget fra {1} når {0} (lige nu er det på {2})"
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
-msgstr ""
+msgstr "Dødstæller når {0} (lige nu er den på {1})"
 
 msgid "UNLOCK_CONDITION_REPRODUCED_WITH"
 msgstr ""
