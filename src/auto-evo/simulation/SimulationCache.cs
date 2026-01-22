@@ -2,6 +2,9 @@
 
 #define USE_HASHED_SCORE_KEYS
 
+// Some extra debug stuff that should be disabled in most cases
+// #define VERIFY_PROCESS_SPEED_CACHE_RETURNS
+
 namespace AutoEvo;
 
 using System;
@@ -35,49 +38,28 @@ public class SimulationCache
 
 #if USE_HASHED_SCORE_KEYS
     private readonly Dictionary<ulong, float> cachedPressureScores = new();
+
+    private readonly Dictionary<ulong, EnergyBalanceInfoSimple> cachedSimpleEnergyBalances = [];
 #else
     private readonly Dictionary<(Species, SelectionPressure, Patch), float> cachedPressureScores = new();
-#endif
 
     private readonly Dictionary<(MicrobeSpecies, IBiomeConditions), EnergyBalanceInfoSimple>
         cachedSimpleEnergyBalances = [];
+#endif
 
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseSpeeds = new();
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseHexSizes = new();
-    private readonly Dictionary<MicrobeSpecies, float> cachedBaseRotationSpeeds = new();
-
-    private readonly Dictionary<(MicrobeSpecies, BiomeConditions, CompoundDefinition, CompoundDefinition), float>
-        cachedCompoundScores = new();
-
-    private readonly Dictionary<(MicrobeSpecies, BiomeConditions, CompoundDefinition, CompoundDefinition), float>
-        cachedGeneratedCompound = new();
 
     private readonly Dictionary<(MicrobeSpecies, MicrobeSpecies, IBiomeConditions), float> predationScores = new();
 
-    private readonly Dictionary<(MicrobeSpecies, CompoundDefinition, IBiomeConditions), float>
-        chemoreceptorCloudScores = new();
-
-    private readonly Dictionary<(MicrobeSpecies, ChunkConfiguration, CompoundDefinition, IBiomeConditions), float>
-        chemoreceptorChunkScores = new();
-
-    private readonly Dictionary<(TweakedProcess, float, IBiomeConditions), ProcessSpeedInformation>
-        cachedProcessSpeeds = new();
+    private readonly Dictionary<ulong, ProcessSpeedInformation> cachedProcessSpeeds = new();
 
     private readonly Dictionary<MicrobeSpecies, PredationToolsRawScores>
         cachedPredationToolsRawScores = new();
 
     private readonly Dictionary<MicrobeSpecies, List<TweakedProcess>> cachedProcessLists = new();
 
-    private readonly Dictionary<(MicrobeSpecies, string), float> cachedEnzymeScores = new();
-
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), bool> cachedUsesVaryingCompounds = new();
-
-    private readonly Dictionary<(MicrobeSpecies, BiomeConditions), float> cachedStorageScores = new();
-
-    private readonly Dictionary<(MicrobeSpecies, BiomeConditions), ResolvedMicrobeTolerances> cachedResolvedTolerances =
-        new();
-
-    private readonly Dictionary<Enzyme, int> tempEnzymes = new();
 
     public SimulationCache(WorldGenerationSettings worldSettings)
     {
@@ -119,8 +101,12 @@ public class SimulationCache
     {
         // TODO: this gets called an absolute ton with the new auto-evo so a more efficient caching method (to allow
         // different species but with same organelles to be able to use the same cache value) would be nice here
-        var key = (species, biomeConditions);
 
+#if USE_HASHED_SCORE_KEYS
+        var key = (ulong)(uint)biomeConditions.GetHashCode() << 32 | (uint)species.GetHashCode();
+#else
+        var key = (species, biomeConditions);
+#endif
         ref var balance = ref CollectionsMarshal.GetValueRefOrNullRef(cachedSimpleEnergyBalances, key);
         if (!Unsafe.IsNullRef(ref balance))
         {
@@ -143,6 +129,7 @@ public class SimulationCache
     }
 
     // TODO: Both of these seem like something that could easily be stored on the species with OnEdited
+    // And also *not* caching them at all is much slower (so if not cached in species, they must be cached here)
     public float GetSpeedForSpecies(MicrobeSpecies species)
     {
         ref var speed = ref CollectionsMarshal.GetValueRefOrNullRef(cachedBaseSpeeds, species);
@@ -174,34 +161,25 @@ public class SimulationCache
 
     public float GetRotationSpeedForSpecies(MicrobeSpecies species)
     {
-        ref var speed = ref CollectionsMarshal.GetValueRefOrNullRef(cachedBaseRotationSpeeds, species);
-        if (!Unsafe.IsNullRef(ref speed))
-        {
-            return speed;
-        }
-
-        var cached = MicrobeInternalCalculations.CalculateRotationSpeed(species.Organelles.Organelles);
-
-        cachedBaseRotationSpeeds.Add(species, cached);
-        return cached;
+        // TODO: this might be useful to cache though this is just used from a single place (though targeted
+        // prey species by multiple predators might benefit ever so slightly, but it seems kind of unlikely).
+        // A more useful thing would be to cache this directly in the species when calculating other movement cached
+        // properties.
+        return MicrobeInternalCalculations.CalculateRotationSpeed(species.Organelles.Organelles);
     }
 
     public float GetCompoundConversionScoreForSpecies(CompoundDefinition fromCompound, CompoundDefinition toCompound,
-        MicrobeSpecies species, BiomeConditions biomeConditions)
+        MicrobeSpecies species)
     {
-        var key = (species, biomeConditions, fromCompound, toCompound);
-
-        ref var scores = ref CollectionsMarshal.GetValueRefOrNullRef(cachedCompoundScores, key);
-        if (!Unsafe.IsNullRef(ref scores))
-        {
-            return scores;
-        }
+        // This method is faster when not using caching
+        // With cache: 3 925 ms for 1,470 million calls
+        // Without caching: 2 284 ms for 1,291 million calls
 
         var compoundIn = 0.0f;
         var compoundOut = 0.0f;
         var activeProcessList = GetActiveProcessList(species);
 
-        // For maximum efficiency as this is called an absolute ton the following approach is used
+        // For maximum efficiency, as this is called an absolute ton, the following approach is used
         foreach (var process in activeProcessList)
         {
             if (process.Process.Inputs.TryGetValue(fromCompound, out var inputAmount))
@@ -225,20 +203,15 @@ public class SimulationCache
             cached = compoundOut / compoundIn;
         }
 
-        cachedCompoundScores.Add(key, cached);
         return cached;
     }
 
     public float GetCompoundGeneratedFrom(CompoundDefinition fromCompound, CompoundDefinition toCompound,
         MicrobeSpecies species, BiomeConditions biomeConditions)
     {
-        var key = (species, biomeConditions, fromCompound, toCompound);
-
-        ref var amount = ref CollectionsMarshal.GetValueRefOrNullRef(cachedGeneratedCompound, key);
-        if (!Unsafe.IsNullRef(ref amount))
-        {
-            return amount;
-        }
+        // This method is faster when not using caching
+        // With cache: 2 408 ms for 776 344 calls
+        // Without caching: 1 257 ms for 680 411 calls
 
         var cached = 0.0f;
 
@@ -261,7 +234,6 @@ public class SimulationCache
             }
         }
 
-        cachedGeneratedCompound.Add(key, cached);
         return cached;
     }
 
@@ -277,20 +249,41 @@ public class SimulationCache
     /// <returns>The speed information for the process</returns>
     /// <remarks>
     ///   <para>
-    ///     TODO: check if this method's caching ability has been compromised with adding speedModifier
+    ///     This is important to cache as it is called very many times, but the speed modifier slightly reduces
+    ///     the cache usefulness.
     ///   </para>
     /// </remarks>
     public ProcessSpeedInformation GetProcessMaximumSpeed(TweakedProcess process, float speedModifier,
         IBiomeConditions biomeConditions)
     {
-        var key = (process, speedModifier, biomeConditions);
+        // For caching resolve some data already to have better cache hits
+        var effectiveMultiplier = process.Rate * speedModifier;
+
+        // 16 low bits of the key (as process amounts are limited, we save bits on them)
+        ulong key = process.Process.ProcessId;
+
+        // These slightly overlap, but hopefully this doesn't lead to collisions (the most significant effect would be
+        // just a process or two running at the wrong speed)
+        // The overlap is 16 bits of the upper end of the float
+        key |= (ulong)(uint)BitConverter.SingleToInt32Bits(effectiveMultiplier) << 16;
+        key ^= (ulong)(uint)biomeConditions.GetHashCode() << 32;
+
+        // Shuffle key bits with a prime number (we could do a double shuffle above, but processes are needed so much
+        // that we do not want the extra work)
+        key *= 9853659385249210933;
 
         ref var speed = ref CollectionsMarshal.GetValueRefOrNullRef(cachedProcessSpeeds, key);
         if (!Unsafe.IsNullRef(ref speed))
         {
+#if VERIFY_PROCESS_SPEED_CACHE_RETURNS
+            if (speed.Process != process.Process)
+                throw new Exception("Cached process speed does not match requested process");
+#endif
+
             return speed;
         }
 
+        // TODO: cache process speed information objects?
         var cached = ProcessSystem.CalculateProcessMaximumSpeed(process, speedModifier, biomeConditions,
             CompoundAmountType.Average, true);
 
@@ -332,7 +325,7 @@ public class SimulationCache
         var channelInhibitorScore = predatorToolScores.ChannelInhibitorScore;
         var canEngulf = predator.CanEngulf;
 
-        // Don't bother with the rest if predator cannot predate
+        // Don't bother with the rest if the predator cannot predate
         var engulfOnly = false;
 
         if (pilusScore == 0 &&
@@ -382,7 +375,7 @@ public class SimulationCache
         var signallingBonus = Constants.AUTO_EVO_SIGNALLING_BONUS;
 
         // We want prey defensive measures to only reduce predation score, not eliminate it.
-        // (Predation Score is reduced to 0 anyway if the "prey" has higher predation score to the predator)
+        // (Predation Score is reduced to 0 anyway if the "prey" has a higher predation score to the predator)
         var defenseScoreModifier = Constants.AUTO_EVO_PREDATION_DEFENSE_SCORE_MODIFIER;
 
         // TODO: If these two methods were combined it might result in better performance with needing just
@@ -447,7 +440,7 @@ public class SimulationCache
         var preyAggressionScore = prey.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
         var preyOpportunismScore = prey.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
 
-        // prey effectiveness at running away depends on how quickly they choose to run away
+        // prey's effectiveness at running away depends on how quickly they choose to run away
         preySpeed *= preyFearScore;
 
         // Sprinting calculations
@@ -518,7 +511,7 @@ public class SimulationCache
             preyInhibitedPreyEnergyProduction *= 1 - channelInhibitorATPDebuff *
                 MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(toxicity, ToxinType.ChannelInhibitor);
 
-            // If inhibited energy production would affect movement,
+            // If inhibited energy production affects movement,
             // add (part of) the inhibitor score to macrolide score
             if (preyInhibitedPreyEnergyProduction < preyEnergyBalance.TotalConsumption)
             {
@@ -831,6 +824,7 @@ public class SimulationCache
 
     public bool GetUsesVaryingCompoundsForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions)
     {
+        // Disabling this cache makes this ever so slightly slower
         var key = (species, biomeConditions);
 
         ref var usesVarying = ref CollectionsMarshal.GetValueRefOrNullRef(cachedUsesVaryingCompounds, key);
@@ -848,13 +842,9 @@ public class SimulationCache
     public float GetChemoreceptorCloudScore(MicrobeSpecies species, CompoundDefinition compound,
         BiomeConditions biomeConditions)
     {
-        var key = (species, compound, biomeConditions);
-
-        ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(chemoreceptorCloudScores, key);
-        if (!Unsafe.IsNullRef(ref score))
-        {
-            return score;
-        }
+        // This method is faster when not using caching
+        // With cache: 2 192 ms for 1,245 million calls
+        // Without caching: 762 ms for 1,096 million calls
 
         var cached = 0.0f;
         var hasChemoreceptor = false;
@@ -879,20 +869,15 @@ public class SimulationCache
             }
         }
 
-        chemoreceptorCloudScores.Add(key, cached);
         return cached;
     }
 
     public float GetChemoreceptorChunkScore(MicrobeSpecies species, ChunkConfiguration chunk,
-        CompoundDefinition compound, BiomeConditions biomeConditions)
+        CompoundDefinition compound)
     {
-        var key = (species, chunk, compound, biomeConditions);
-
-        ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(chemoreceptorChunkScores, key);
-        if (!Unsafe.IsNullRef(ref score))
-        {
-            return score;
-        }
+        // This method is faster when not using caching
+        // With cache: 3 977 ms for 2,005 million calls
+        // Without caching: 916 ms for 1,285 million calls
 
         // Need to have chemoreceptor to be able to "smell" chunks
         var cached = 0.0f;
@@ -920,24 +905,6 @@ public class SimulationCache
                 / (chunk.Density * MathF.Pow(compoundAmount.Amount, Constants.AUTO_EVO_CHUNK_AMOUNT_NERF));
         }
 
-        chemoreceptorChunkScores.Add(key, cached);
-        return cached;
-    }
-
-    public float GetStorageAndDayGenerationScore(MicrobeSpecies species, BiomeConditions biomeConditions,
-        Compound compound)
-    {
-        var key = (species, biomeConditions);
-
-        ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(cachedStorageScores, key);
-        if (!Unsafe.IsNullRef(ref score))
-        {
-            return score;
-        }
-
-        var cached = CalculateStorageScore(species, biomeConditions, compound);
-
-        cachedStorageScores.Add(key, cached);
         return cached;
     }
 
@@ -956,18 +923,10 @@ public class SimulationCache
         cachedSimpleEnergyBalances.Clear();
         cachedBaseSpeeds.Clear();
         cachedBaseHexSizes.Clear();
-        cachedBaseRotationSpeeds.Clear();
-        cachedCompoundScores.Clear();
-        cachedGeneratedCompound.Clear();
         predationScores.Clear();
-        chemoreceptorCloudScores.Clear();
-        chemoreceptorChunkScores.Clear();
         cachedProcessSpeeds.Clear();
         cachedPredationToolsRawScores.Clear();
-        cachedEnzymeScores.Clear();
         cachedUsesVaryingCompounds.Clear();
-        cachedStorageScores.Clear();
-        cachedResolvedTolerances.Clear();
         cachedProcessLists.Clear();
     }
 
@@ -978,14 +937,17 @@ public class SimulationCache
             return cached;
         }
 
+        // TODO: a buffer of process lists (to make small list allocations rarer) (as cached is null here if not found)
         ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref cached);
-        cachedProcessLists.Add(microbeSpecies, cached);
 
+        cachedProcessLists.Add(microbeSpecies, cached);
         return cached;
     }
 
     public PredationToolsRawScores GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
     {
+        // Seems like this takes twice the amount of time from the predation score calculation if this is not cached,
+        // so this should definitely use caching.
         ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(cachedPredationToolsRawScores, microbeSpecies);
         if (!Unsafe.IsNullRef(ref score))
         {
@@ -1023,7 +985,7 @@ public class SimulationCache
         var slimeJetsMultiplier = 1.0f;
 
         var hasOxytoxy = false;
-        var hasCytoxin = false;
+        var hasCytotoxin = false;
         var hasMacrolide = false;
         var hasChannelInhibitor = false;
         var hasOxygenMetabolismInhibitor = false;
@@ -1032,7 +994,8 @@ public class SimulationCache
         {
             var organelle = organelles[i];
 
-            if (organelle.Definition.HasPilusComponent)
+            var organelleDefinition = organelle.Definition;
+            if (organelleDefinition.HasPilusComponent)
             {
                 // Make sure that pili are positioned at the front of the cell for offensive action,
                 // and the back of the cell for defensive action
@@ -1050,7 +1013,7 @@ public class SimulationCache
                 continue;
             }
 
-            if (organelle.Definition.HasSlimeJetComponent)
+            if (organelleDefinition.HasSlimeJetComponent)
             {
                 if (organelle.Upgrades?.UnlockedFeatures.Contains(SlimeJetComponent.MUCOCYST_UPGRADE_NAME) == true)
                 {
@@ -1066,7 +1029,7 @@ public class SimulationCache
                 continue;
             }
 
-            if (organelle.Definition.HasCiliaComponent)
+            if (organelleDefinition.HasCiliaComponent)
             {
                 if (organelle.Upgrades != null &&
                     organelle.Upgrades.UnlockedFeatures.Contains(CiliaComponent.CILIA_PULL_UPGRADE_NAME))
@@ -1076,47 +1039,48 @@ public class SimulationCache
                 }
             }
 
-            foreach (var process in organelle.Definition.RunnableProcesses)
+            foreach (var process in organelleDefinition.RunnableProcesses)
             {
+                ref var toxinAmount = ref CollectionsMarshal.GetValueRefOrNullRef(process.Process.Outputs, oxytoxy);
+                if (Unsafe.IsNullRef(ref toxinAmount))
+                    continue;
+
                 // Big branch to calculate scores for each toxin type
-                if (process.Process.Outputs.TryGetValue(oxytoxy, out var toxinAmount))
+                var activeToxin = organelle.GetActiveToxin();
+                if (activeToxin == ToxinType.Oxytoxy && !hasOxytoxy)
                 {
-                    var activeToxin = organelle.GetActiveToxin();
-                    if (activeToxin == ToxinType.Oxytoxy && !hasOxytoxy)
-                    {
-                        totalToxinTypesCount += 1;
-                        hasOxytoxy = true;
-                    }
-
-                    if (activeToxin == ToxinType.Cytotoxin && !hasCytoxin)
-                    {
-                        totalToxinTypesCount += 1;
-                        hasCytoxin = true;
-                    }
-
-                    if (activeToxin == ToxinType.Macrolide && !hasMacrolide)
-                    {
-                        totalToxinTypesCount += 1;
-                        hasMacrolide = true;
-                    }
-
-                    if (activeToxin == ToxinType.ChannelInhibitor && !hasChannelInhibitor)
-                    {
-                        totalToxinTypesCount += 1;
-                        hasChannelInhibitor = true;
-                    }
-
-                    if (activeToxin == ToxinType.OxygenMetabolismInhibitor &&
-                        !hasOxygenMetabolismInhibitor)
-                    {
-                        totalToxinTypesCount += 1;
-                        hasOxygenMetabolismInhibitor = true;
-                    }
-
-                    totalToxicity += organelle.GetActiveToxicity();
-                    totalToxinOrganellesCount += 1;
-                    totalToxinScore += toxinAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
+                    totalToxinTypesCount += 1;
+                    hasOxytoxy = true;
                 }
+
+                if (activeToxin == ToxinType.Cytotoxin && !hasCytotoxin)
+                {
+                    totalToxinTypesCount += 1;
+                    hasCytotoxin = true;
+                }
+
+                if (activeToxin == ToxinType.Macrolide && !hasMacrolide)
+                {
+                    totalToxinTypesCount += 1;
+                    hasMacrolide = true;
+                }
+
+                if (activeToxin == ToxinType.ChannelInhibitor && !hasChannelInhibitor)
+                {
+                    totalToxinTypesCount += 1;
+                    hasChannelInhibitor = true;
+                }
+
+                if (activeToxin == ToxinType.OxygenMetabolismInhibitor &&
+                    !hasOxygenMetabolismInhibitor)
+                {
+                    totalToxinTypesCount += 1;
+                    hasOxygenMetabolismInhibitor = true;
+                }
+
+                totalToxicity += organelle.GetActiveToxicity();
+                totalToxinOrganellesCount += 1;
+                totalToxinScore += toxinAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
             }
         }
 
@@ -1138,7 +1102,7 @@ public class SimulationCache
                 MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(averageToxicity, ToxinType.Oxytoxy);
         }
 
-        if (hasCytoxin)
+        if (hasCytotoxin)
         {
             cytotoxinScore = everyToxinScore *
                 MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity(averageToxicity, ToxinType.Cytotoxin);
@@ -1206,14 +1170,8 @@ public class SimulationCache
 
     public float GetEnzymesScore(MicrobeSpecies predator, string dissolverEnzyme)
     {
-        var key = (predator, dissolverEnzyme);
-
-        ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(cachedEnzymeScores, key);
-        if (!Unsafe.IsNullRef(ref score))
-        {
-            return score;
-        }
-
+        // This is not cached as it is not useful at the present time (as this is only called from places that cache
+        // stuff)
         var organelles = predator.Organelles.Organelles;
         var isMembraneDigestible = dissolverEnzyme == Constants.LIPASE_ENZYME;
         var enzymesScore = 0.0f;
@@ -1224,28 +1182,28 @@ public class SimulationCache
             enzymesScore += Constants.AUTO_EVO_BASE_DIGESTION_SCORE;
         }
 
+        var scoreInfo = Constants.AutoEvoLysosomeEnzymesScores;
+
         var count = organelles.Count;
         for (var i = 0; i < count; ++i)
         {
             var placedOrganelle = organelles[i];
 
-            if (placedOrganelle.GetActiveEnzymes(tempEnzymes))
+            var enzyme = placedOrganelle.GetActiveTargetEnzyme(dissolverEnzyme);
+            if (enzyme != null)
             {
-                foreach (var enzyme in tempEnzymes)
-                {
-                    if (enzyme.Key.InternalName != dissolverEnzyme)
-                        continue;
+                // No need to check the amount here as organelle data validates enzyme amounts are above 0
 
-                    // No need to check the amount here as organelle data validates enzyme amounts are above 0
+                isMembraneDigestible = true;
 
-                    isMembraneDigestible = true;
+                // This doesn't use safety as it will be otherwise masking very subtle bugs with some enzyme not
+                // working in auto-evo
+                ref var individualScore =
+                    ref CollectionsMarshal.GetValueRefOrNullRef(scoreInfo, enzyme.InternalName);
+                if (Unsafe.IsNullRef(ref individualScore))
+                    throw new InvalidOperationException("Missing enzyme score for: " + enzyme.InternalName);
 
-                    // This doesn't use safety as it will be otherwise masking very subtle bugs with some enzyme not
-                    // working in auto-evo
-                    enzymesScore += Constants.AutoEvoLysosomeEnzymesScores[enzyme.Key.InternalName];
-                }
-
-                tempEnzymes.Clear();
+                enzymesScore += individualScore;
             }
         }
 
@@ -1253,107 +1211,25 @@ public class SimulationCache
         if (!isMembraneDigestible)
             enzymesScore = 0;
 
-        cachedEnzymeScores.Add(key, enzymesScore);
         return enzymesScore;
     }
 
     public ResolvedMicrobeTolerances GetEnvironmentalTolerances(MicrobeSpecies species,
         BiomeConditions biomeConditions)
     {
-        var key = (species, biomeConditions);
-
-        ref var tolerance = ref CollectionsMarshal.GetValueRefOrNullRef(cachedResolvedTolerances, key);
-        if (!Unsafe.IsNullRef(ref tolerance))
-        {
-            return tolerance;
-        }
+        // This method is faster when not using caching
+        // With cache: 1 692 ms for 1,882 million calls
+        // Without caching: 132 ms for 2,095 million calls
 
         var tolerances = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(species, biomeConditions);
 
         var result = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances);
 
-        cachedResolvedTolerances.Add(key, result);
         return result;
     }
 
-    private float CalculateStorageScore(MicrobeSpecies species, BiomeConditions biomeConditions, Compound compound)
-    {
-        // TODO: maybe a bit lower value to determine when moving kicks in (though optimally the calculation could
-        // take in a float in range 0-1 to make much more gradual behaviour changes possible)
-        var moving = species.Behaviour.Activity >= Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
-
-        float daySeconds = worldSettings.DayLength * worldSettings.DaytimeFraction;
-
-        var cachedCapacities =
-            MicrobeInternalCalculations.GetTotalSpecificCapacity(species.Organelles, out var cachedCapacity);
-
-        Dictionary<Compound, CompoundBalance>? dayCompoundBalances = null;
-        var (canSurvive, requiredAmounts) = MicrobeInternalCalculations.CalculateNightStorageRequirements(
-            species.Organelles, species.MembraneType, moving, species.PlayerSpecies, biomeConditions,
-            GetEnvironmentalTolerances(species, biomeConditions), worldSettings,
-            ref dayCompoundBalances);
-
-        if (dayCompoundBalances == null)
-            throw new Exception("Day compound balance should have been calculated");
-
-        var resultCompounds =
-            MicrobeInternalCalculations.GetCompoundsProducedByProcessesTakingIn(compound, species.Organelles);
-
-        float cacheScore = 0;
-        int scoreCount = 0;
-
-        foreach (var requiredAmount in requiredAmounts)
-        {
-            // Handle only the relevant compound type
-            if (requiredAmount.Value <= 0 ||
-                (!resultCompounds.Contains(requiredAmount.Key) && requiredAmount.Key != compound))
-            {
-                continue;
-            }
-
-            cacheScore += cachedCapacities.GetValueOrDefault(requiredAmount.Key, cachedCapacity) / requiredAmount.Value;
-            ++scoreCount;
-        }
-
-        if (scoreCount == 0)
-        {
-            // No scores (maybe all production is negative or irrelevant compound type)
-            return 1;
-        }
-
-        // Additionally penalize species that cannot generate enough compounds during the day to fill required
-        // amount of storage
-        foreach (var handledCompound in resultCompounds)
-        {
-            if (!dayCompoundBalances.TryGetValue(handledCompound, out var dayBalance) || !(dayBalance.Balance >= 0))
-                continue;
-
-            var dayGenerated = dayBalance.Balance * daySeconds;
-            var required = requiredAmounts.GetValueOrDefault(handledCompound, 0);
-
-            if (!(dayGenerated < required))
-                continue;
-
-            if (required <= 0)
-                throw new Exception("Required compound amount should not be zero or negative");
-
-            float insufficientProductionScore = dayGenerated / required;
-            cacheScore *= insufficientProductionScore;
-        }
-
-        cacheScore /= scoreCount;
-
-        // Extra penalty if cell cannot store enough stuff to survive to make that situation much more harsh
-        if (!canSurvive)
-        {
-            cacheScore *= Constants.AUTO_EVO_NIGHT_STORAGE_NOT_ENOUGH_PENALTY;
-        }
-
-        return Math.Clamp(cacheScore, 0, Constants.AUTO_EVO_MAX_BONUS_FROM_ENVIRONMENTAL_STORAGE);
-    }
-
     /// <summary>
-    ///   Calculates cos of angle between the organelle and vertical axis
+    ///   Calculates cos of the angle between the organelle and vertical axis
     /// </summary>
     private float CalculateAngleMultiplier(Hex pos, bool front)
     {
@@ -1365,7 +1241,7 @@ public class SimulationCache
         Vector3 downVector = front ? new Vector3(0, 0, -1) : new Vector3(0, 0, 1);
         float angleCos = organellePosition.Normalized().Dot(downVector);
 
-        // If degrees is higher than 40 then return 0
+        // If degrees are higher than 40, then return 0
         return angleCos >= 0.75 ? angleCos : 0;
     }
 
