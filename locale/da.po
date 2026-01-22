@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-01-21 10:22+0200\n"
-"PO-Revision-Date: 2026-01-21 13:55+0000\n"
+"PO-Revision-Date: 2026-01-21 15:58+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
 "Language: da\n"
@@ -162,9 +162,9 @@ msgstr ""
 "  Gennemsnitlig {1}; Standardafvigelse {2}\n"
 "[b]Arter stadig i live:[/b]\n"
 "  Gennemsnitlig {3}; Standardafvigelse {4}\n"
-"[b]Arter pr. patch:[/b]\n"
+"[b]Arter pr. område:[/b]\n"
 "  Gennemsnitlig {5}; Standardafvigelse {6}\n"
-"[b]Total bestand pr. patch:[/b]\n"
+"[b]Total bestand pr. område:[/b]\n"
 "  Gennemsnitlig {7}; Standardafvigelse {8}\n"
 "[b]Gennemsnitlig hex størrelse af mikrobe arter:[/b]\n"
 "  Gennemsnitlig {9}; Standardafvigelse {10}\n"
@@ -390,7 +390,7 @@ msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
 msgstr "Globale resultater"
 
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
-msgstr "Valgte patch resultater"
+msgstr "Valgte områderesultater"
 
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "kørselsstatus:"
@@ -522,7 +522,7 @@ msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Resultater:"
 
 msgid "BEST_PATCH_COLON"
-msgstr "Bedste patch:"
+msgstr "Bedste område:"
 
 msgid "BETTER_TOGETHER"
 msgstr "Bedre sammen"
@@ -859,7 +859,7 @@ msgid "CLIMATE_INSTABILITY"
 msgstr "Klima instabilitet"
 
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr "(påvirker frekvensen og alvorligheden af patch begivenheder såsom global glaciation)"
+msgstr "(påvirker frekvensen og alvorligheden af områdebegivenheder såsom global glaciation)"
 
 msgid "CLIMATE_STABILITY_AVERAGE"
 msgstr "Gennemsnit"
@@ -1032,7 +1032,7 @@ msgid "COMPOUND_HANDLE_TOP_UP"
 msgstr ""
 
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
-msgstr ""
+msgstr "Top up ved område skift"
 
 msgid "COMPOUND_LEVEL_AVERAGE"
 msgstr "Gennemsnit"
@@ -1459,7 +1459,7 @@ msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 "[b]Generationer:[/b] \n"
 "  {0}\n"
-"[b]Totale antal patches:[/b]\n"
+"[b]Totale antal områder:[/b]\n"
 "  {1}\n"
 "[b]Total Auto-Evo tid:[/b]\n"
 "  {2}\n"
@@ -1467,7 +1467,7 @@ msgstr ""
 "  {3}\n"
 "[b]Arter stadig i live:[/b]\n"
 "  {4}\n"
-"[b]Antal arter pr. patch:[/b]\n"
+"[b]Antal arter pr. område:[/b]\n"
 "  Gennemsnit {5}; Standard afvigelse {6}\n"
 "[b]Total bestand:[/b]\n"
 "  {7}\n"
@@ -2172,13 +2172,13 @@ msgid "EXTINCTION_CAPITAL"
 msgstr "UDSLETTELSE"
 
 msgid "EXTINCT_FROM_PATCH"
-msgstr "Uddød fra patch"
+msgstr "Uddød fra område"
 
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Uddød fra planeten"
 
 msgid "EXTINCT_IN_PATCH"
-msgstr "uddød i patch"
+msgstr "uddød i område"
 
 msgid "EXTINCT_SPECIES"
 msgstr "Uddøde arter"
@@ -2248,7 +2248,7 @@ msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filtrer genstande efter kategori:"
 
 msgid "FIND_CURRENT_PATCH"
-msgstr "Find nuværende patch"
+msgstr "Find nuværende område"
 
 msgid "FINISHED_DOT"
 msgstr "Færdiggjort."
@@ -2311,13 +2311,13 @@ msgid "FOG_OF_WAR_DISABLED"
 msgstr "Krigens tåge slået fra"
 
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
-msgstr "(alle patches vil være afsløret)"
+msgstr "(alle områder vil være afsløret)"
 
 msgid "FOG_OF_WAR_INTENSE"
 msgstr "Intens krigens tåge"
 
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
-msgstr "(kun patches som spilleren har besøgt vil blive afsløret)"
+msgstr "(kun områder som spilleren har besøgt vil blive afsløret)"
 
 msgid "FOG_OF_WAR_MODE"
 msgstr "Krigens tåge tilstand"
@@ -2326,7 +2326,7 @@ msgid "FOG_OF_WAR_REGULAR"
 msgstr "Normal krigens tåge"
 
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
-msgstr "(patches som spilleren har besøgt, samt tilstødende patches, vil blive afsløret)"
+msgstr "(områder som spilleren har besøgt, samt tilstødende områder, vil blive afsløret)"
 
 msgid "FOOD_CHAIN"
 msgstr "Fødekæde"
@@ -2420,7 +2420,7 @@ msgstr "Spilsystemer"
 
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
-"Vis den totale forudsete mængde energi samlet af din art i alle patches og den resulterende bestand (i parentes).\n"
+"Vis den totale forudsete mængde energi samlet af din art i alle områder og den resulterende bestand (i parentes).\n"
 "Forrige energi: {0}"
 
 msgid "GENERAL"
@@ -2478,7 +2478,7 @@ msgid "GLES3"
 msgstr "GLES3"
 
 msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
-msgstr "Global glaciation begivenhed er sluttet i alle patches"
+msgstr "Global glaciation begivenhed er sluttet i alle områder"
 
 msgid "GLOBAL_GLACIATION_EVENT"
 msgstr "Global glaciation begivenhed"
@@ -2488,7 +2488,7 @@ msgstr ""
 "Global glaciation begivenhed\n"
 "Begivenheden skyldes stigende koncentrationer af ilt i atmosfæren.\n"
 "Den vil vare i adskillelige generationer, hvor sollys og temperaturen vil reduceres.\n"
-"Isklumper vil nu også dukke op i disse patches."
+"Isklumper vil nu også dukke op i disse områder."
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
 msgstr "Global glaciation begivenhed vil affyre om {0} generationer"
@@ -2497,7 +2497,7 @@ msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
 msgstr "Global glaciation begivenhed vil affyre om {0} generation"
 
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
-msgstr "Global glaciation begivenhed er startet i alle overflade patches"
+msgstr "Global glaciation begivenhed er startet i alle overflade områder"
 
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
@@ -2697,7 +2697,7 @@ msgid "INCREASE_ITEM_SIZE"
 msgstr "Forøg objekt størrelse"
 
 msgid "INDICATOR_SPECIES_IS_NEW"
-msgstr "Indikerer at denne art er ny til denne patch eller verden"
+msgstr "Indikerer at denne art er ny til dette område eller verden"
 
 msgid "INDICATOR_SPECIES_MUTATED"
 msgstr "Indikerer at denne art er muteret under denne auto-evo cyklus"
@@ -3511,10 +3511,10 @@ msgid "METEOR_IMPACT_EVENT"
 msgstr "Meteornedslags begivenhed"
 
 msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr "Meteornedslags begivenhed påvirker {0} patches"
+msgstr "Meteornedslags begivenhed påvirker {0} områder"
 
 msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr "Meteornedslags begivenhed påvirker {0} patch"
+msgstr "Meteornedslags begivenhed påvirker {0} område"
 
 msgid "METRICS"
 msgstr "Præstationsmålinger"
@@ -3529,7 +3529,7 @@ msgid "MICHE"
 msgstr "Miche"
 
 msgid "MICHES_FOR_PATCH"
-msgstr "Micher for patch {0}"
+msgstr "Micher for område {0}"
 
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "Undgå prædation selektionstryk"
@@ -3802,19 +3802,19 @@ msgid "MIGRATION_STATUS_TEXT"
 msgstr "Vil migrere {2} enheder af bestanden fra {0} til {1}"
 
 msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
-msgstr "Vælg en destinations patch for migreringen, som er forbundet med kilde patchen"
+msgstr "Vælg et destinations område for migreringen, som er forbundet med kilde området"
 
 msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
 msgstr "Kun en migrering kan finde sted per editor session. Du kan se migreringen i køen nedenunder, og enten beholde den eller annullere den, og så derefter lave en ny migrering"
 
 msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
-msgstr "Vælg hvor stor en andel af bestanden skal migrere fra kilden til destinationen"
+msgstr "Vælg hvor stor en andel af bestanden skal migrere fra kilde området til destinationen"
 
 msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
-msgstr "Vælg en patch som din art allerede er i, der kan fungere som kilden for migrationen"
+msgstr "Vælg et område som din art allerede er i, der kan fungere som kilden for migrationen"
 
 msgid "MIGRATION_TOOLTIP"
-msgstr "Migrer din art mellem patches uden selv at flytte til en anden patch"
+msgstr "Migrer din art mellem områder uden selv at flytte til et andet område"
 
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} Mil."
@@ -4045,7 +4045,7 @@ msgid "MOVE_RIGHT"
 msgstr "Bevæg højre"
 
 msgid "MOVE_TO_ANY_PATCH"
-msgstr "Flyt til hvilken som helst patch"
+msgstr "Flyt til et hvilket som helst område"
 
 msgid "MOVE_TO_LAND"
 msgstr "Flyt til land"
@@ -4059,7 +4059,7 @@ msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Fortsæt til det næste spilstadie - Flercellet. Tilgængeligt så snart du har en stor nok cellekoloni."
 
 msgid "MOVE_TO_THIS_PATCH"
-msgstr "Flyt til denne patch"
+msgstr "Flyt til dette område"
 
 msgid "MOVE_UP_OR_JUMP"
 msgstr "Bevæg op eller ned"
@@ -4575,7 +4575,7 @@ msgid "OXYGEN_RESISTANCE"
 msgstr "Iltresistensen"
 
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
-msgstr "Hvor meget ilt-baseret skade din art kan afbøde før effekten bliver skadefuld. Hvis du er i en patch med for meget ilt i forhold til din resistens, vil det have negative konsekvenser."
+msgstr "Hvor meget ilt-baseret skade din art kan afbøde før effekten bliver skadefuld. Hvis du er i et område med for meget ilt i forhold til din resistens, vil det have negative konsekvenser."
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -4620,21 +4620,21 @@ msgid "PAST_DEVELOPERS"
 msgstr "Tidligere udviklere"
 
 msgid "PATCHES_NUMBER"
-msgstr "Antal patches:"
+msgstr "Antal områder:"
 
 msgid "PATCH_COLON"
-msgstr "Patch:"
+msgstr "Område:"
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
-"Din art er udød i denne patch.\n"
-"Men det er ikke slut endnu, du kan stadig vælge en ny patch at spille i!"
+"Din art er udød i dette område.\n"
+"Men det er ikke slut endnu, du kan stadig vælge et nyt område at spille i!"
 
 msgid "PATCH_EXTINCTION_CAPITAL"
-msgstr "PATCH UDRYDDELSE"
+msgstr "OMRÅDE UDRYDDELSE"
 
 msgid "PATCH_MAP"
-msgstr "Patch kort"
+msgstr "Områdekort"
 
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Klik, træk og zoom for at bevæge dig rundt"
@@ -4812,7 +4812,7 @@ msgid "POPULATION_COLON"
 msgstr "bestand:"
 
 msgid "POPULATION_IN_PATCHES"
-msgstr "bestanden i patches:"
+msgstr "bestanden i områder:"
 
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
@@ -5102,7 +5102,7 @@ msgstr ""
 "Du vil miste alt ikke-gemt fremskridt."
 
 msgid "REVEAL_ALL_PATCHES"
-msgstr "Afslør alle patches"
+msgstr "Afslør alle områder"
 
 msgid "REVERT_TO_EDITOR"
 msgstr "Vend tilbage til editoren"
@@ -5151,7 +5151,7 @@ msgid "RUN_ONE_STEP"
 msgstr "Kør et trin"
 
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
-msgstr "{0} ved at sende: {1} af bestanden fra patch: {2}"
+msgstr "{0} ved at sende: {1} af bestanden fra område: {2}"
 
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "genkode:"
@@ -5166,7 +5166,7 @@ msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "splittede fra {0}"
 
 msgid "RUN_RESULT_SPLIT_OFF_TO"
-msgstr "bestanden i nogle patches splittede for at danne ny art: {0}:"
+msgstr "bestanden i nogle områder splittede for at danne ny art: {0}:"
 
 msgid "RUN_X_WORLDS"
 msgstr "Kør {0} verdener"
@@ -5343,7 +5343,7 @@ msgid "SELECT_A_GENERATION"
 msgstr "Vælg en generation"
 
 msgid "SELECT_A_PATCH"
-msgstr "Vælg en patch for at vise detaljerne her"
+msgstr "Vælg et område for at vise detaljerne her"
 
 msgid "SELECT_A_SPECIES"
 msgstr "Vælg en art"
@@ -5413,7 +5413,7 @@ msgid "SHOW_MAP"
 msgstr "Vis kort"
 
 msgid "SHOW_NEW_PATCH_NOTES"
-msgstr "Vi nye patchnotes automatisk"
+msgstr "Vis nye patchnotes automatisk"
 
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Vis patchnotes for nye Thrive udgivelser automatis i hovedmenuen"
@@ -5591,10 +5591,10 @@ msgid "SPECIES_HAS_A_MUTATION"
 msgstr "er muteret"
 
 msgid "SPECIES_IN_CURRENT_PATCH"
-msgstr "Art i nuværende patch"
+msgstr "Art i nuværende område"
 
 msgid "SPECIES_IN_OTHER_PATCHES"
-msgstr "Art i andre patches"
+msgstr "Art i andre områder"
 
 msgid "SPECIES_LIST"
 msgstr "Artliste"
@@ -5603,80 +5603,79 @@ msgid "SPECIES_MEMBER_IMPACT_ON_POP"
 msgstr "Påvirkning af artsfællers dødsfald"
 
 msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
-msgstr ""
+msgstr "(hvor meget AI medlemmer af spillerens art der dør eller reproducerer påvirker bestanden som eksterne effekter)"
 
 msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr ""
+msgstr "Artens navn..."
 
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
-msgstr ""
+msgstr "Artens navn er for lang!"
 
 msgid "SPECIES_POPULATION"
-msgstr ""
+msgstr "Artens bestand"
 
 msgid "SPECIES_PRESENT"
-msgstr ""
+msgstr "Art til stede"
 
 msgid "SPECIES_TO_FIND"
-msgstr ""
+msgstr "Art at finde:"
 
 msgid "SPECIES_WITH_POPULATION"
-msgstr ""
+msgstr "{0} med bestand på: {1}"
 
 msgid "SPEED"
-msgstr ""
+msgstr "Hastighed"
 
 msgid "SPEED_COLON"
-msgstr ""
+msgstr "Hastighed:"
 
 msgid "SPREAD_TO_PATCHES"
-msgstr ""
+msgstr "spred til områder:"
 
 msgid "SPRINT"
-msgstr ""
+msgstr "Sprint"
 
-#, fuzzy
 msgid "SPRINT_ACTION_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr "Slå sprinttilstand til/fra. Sprintende celler bevæger sig hurtigere, men forbruger mere ATP, og efterhånden som belastningen opbygges, forbruger den endnu mere ATP."
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Pausemenu"
 
 msgid "START"
-msgstr ""
+msgstr "Start"
 
 msgid "STARTING"
-msgstr ""
+msgstr "Starter"
 
 msgid "START_CALIBRATION"
-msgstr ""
+msgstr "Start kalibrering"
 
 msgid "START_GAME"
-msgstr ""
+msgstr "Start spil"
 
 msgid "START_RESEARCH"
-msgstr ""
+msgstr "Start forskning"
 
 msgid "STATISTICS"
-msgstr ""
+msgstr "Statistik"
 
 msgid "STAT_ATP_PRODUCTION_REDUCTION"
-msgstr ""
+msgstr "ATP produktions straf"
 
 msgid "STAT_BASE_MOVEMENT_REDUCTION"
-msgstr ""
+msgstr "Basal bevægelsesreduktion"
 
 msgid "STAT_DAMAGE"
-msgstr ""
+msgstr "Skade"
 
 msgid "STAT_DAMAGE_PER_OXYGEN"
-msgstr ""
+msgstr "Skadeskalering pr. organel der bruger ilt"
 
 msgid "STEAM_CLIENT_INIT_FAILED"
-msgstr ""
+msgstr "Steam-klient bibliotek fejlede initialisering"
 
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
-msgstr ""
+msgstr "Din Steam konto ejer ikke et licens til Thrive"
 
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
@@ -5724,25 +5723,25 @@ msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 
 msgid "STEAM_TOOLTIP"
-msgstr ""
+msgstr "Besøg vore Steam side"
 
 msgid "STEM_CELL_NAME"
-msgstr ""
+msgstr "Stam"
 
 msgid "STOP"
-msgstr ""
+msgstr "Stop"
 
 msgid "STORAGE"
-msgstr ""
+msgstr "Lager"
 
 msgid "STORAGE_COLON"
-msgstr ""
+msgstr "Lager:"
 
 msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
-msgstr ""
+msgstr "sekunder af"
 
 msgid "STORE_LOGGED_IN_AS"
-msgstr ""
+msgstr "Logget ind som: {0}"
 
 #, fuzzy
 msgid "STRAIN_BAR_TOOLTIP"
@@ -5752,22 +5751,22 @@ msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
 
 msgid "STRATEGY_STAGES"
-msgstr ""
+msgstr "Stategistadier"
 
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
 msgid "STRUCTURAL"
-msgstr ""
+msgstr "Strukturel"
 
 msgid "STRUCTURE"
-msgstr ""
+msgstr "Struktur"
 
 msgid "STRUCTURE_ASCENSION_GATE"
 msgstr ""
 
 msgid "STRUCTURE_DYSON_SWARM"
-msgstr ""
+msgstr "Dysonsværm"
 
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
@@ -5776,22 +5775,22 @@ msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
 msgstr ""
 
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
-msgstr ""
+msgstr "Bygger: {0}"
 
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr ""
 
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
-msgstr ""
+msgstr "{0} (start pris: {1}, total: {2})"
 
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
-msgstr ""
+msgstr "{0} (IKKE NOK TIL AT STARTE: {1}, total: {2})"
 
 msgid "STRUCTURE_SOCIETY_CENTER"
-msgstr ""
+msgstr "Samfundscenter"
 
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
-msgstr ""
+msgstr "Dampdrevet fabrik"
 
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
 msgstr ""
@@ -5806,19 +5805,19 @@ msgid "SUCCESS_BUT_MISSING_ID"
 msgstr ""
 
 msgid "SUICIDE_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Gå bort med det samme"
 
 msgid "SUNLIGHT"
-msgstr ""
+msgstr "Sollys"
 
 msgid "SUPPORTER_PATRONS"
-msgstr ""
+msgstr "Supportere"
 
 msgid "SURVIVAL_TITLE"
-msgstr ""
+msgstr "Overlevelse"
 
 msgid "SURVIVE_WITH_A_NUCLEUS"
-msgstr ""
+msgstr "Placér og overlev en generation med en cellekerne"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
@@ -5830,7 +5829,7 @@ msgid "SWITCH_TO_TOP_CAMERA"
 msgstr ""
 
 msgid "SYSREQ"
-msgstr ""
+msgstr "SysRq"
 
 #, fuzzy
 msgid "TAB_CHANGE_BLOCKED_WHILE_ACTION_IN_PROGRESS"
@@ -5852,41 +5851,40 @@ msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
 msgid "TAKE_SCREENSHOT"
-msgstr ""
+msgstr "Tag et skærmbillede"
 
 msgid "TARGET_TYPE_COLON"
-msgstr ""
+msgstr "Måltype:"
 
-#, fuzzy
 msgid "TASTE_THE_SUN"
-msgstr "Nuværende tråde:"
+msgstr "Smag på Solen"
 
 msgid "TASTY_RADIATION"
-msgstr ""
+msgstr "Lækker Stråling"
 
 msgid "TECHNOLOGY_ASCENSION"
-msgstr ""
+msgstr "Opstandelse"
 
 msgid "TECHNOLOGY_HUNTER_GATHERING"
-msgstr ""
+msgstr "Jæger-samler"
 
 msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
 msgstr ""
 
 msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
-msgstr ""
+msgstr "Industriel"
 
 msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
 msgstr ""
 
 msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
-msgstr ""
+msgstr "Primitiv"
 
 msgid "TECHNOLOGY_LEVEL_SCIFI"
-msgstr ""
+msgstr "Sci-fi"
 
 msgid "TECHNOLOGY_LEVEL_SPACE_AGE"
-msgstr ""
+msgstr "Rumalder"
 
 msgid "TECHNOLOGY_REQUIRED_LEVEL"
 msgstr ""
