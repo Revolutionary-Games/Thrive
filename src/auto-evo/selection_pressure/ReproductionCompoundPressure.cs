@@ -113,8 +113,8 @@ public class ReproductionCompoundPressure : SelectionPressure
         {
             if (chunk.Compounds != null && chunk.Compounds.ContainsKey(compound))
             {
-                var chunkChemoreceptorScore = cache.GetChemoreceptorChunkScore(
-                    microbeSpecies, chunk, compoundDefinition);
+                var chunkChemoreceptorScore =
+                    cache.GetChemoreceptorChunkScore(microbeSpecies, chunk, compoundDefinition);
                 var chunkScore = 1.0f;
 
                 // Speed is not too important to chunk microbes,
