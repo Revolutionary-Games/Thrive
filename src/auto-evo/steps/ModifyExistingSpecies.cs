@@ -340,18 +340,6 @@ public class ModifyExistingSpecies : IRunStep
         }
     }
 
-    private void SpeciesDependentPressures(List<SelectionPressure> dataReceiver, Miche targetMiche, Species species)
-    {
-        predatorPressuresTemporary.Clear();
-
-        PredatorsOf(predatorPressuresTemporary, targetMiche, species);
-
-        foreach (var predator in predatorPressuresTemporary)
-        {
-            dataReceiver.Add(new AvoidPredationSelectionPressure(predator, 5.0f));
-        }
-    }
-
     /// <summary>
     ///   Returns a new list of all species that have filled a predation miche to eat the provided species.
     /// </summary>
