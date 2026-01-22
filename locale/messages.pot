@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-21 17:54+0200\n"
+"POT-Creation-Date: 2026-01-22 15:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -717,7 +717,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:5050
 #: ../simulation_parameters/microbe_stage/biomes.json:5326
 #: ../simulation_parameters/microbe_stage/biomes.json:5532
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:68
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:72
 msgid "BIG_IRON_CHUNK"
 msgstr ""
 
@@ -1139,8 +1139,8 @@ msgstr ""
 msgid "CHUNK_CELL_CORPSE_PART"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:118
-#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:148
+#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:124
+#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:154
 msgid "CHUNK_FOOD_SOURCE"
 msgstr ""
 
@@ -1248,7 +1248,7 @@ msgstr ""
 msgid "COASTAL"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:164
+#: ../src/engine/DebugOverlays.tscn:165
 msgid "COLLISION_SHAPE"
 msgstr ""
 
@@ -1313,7 +1313,7 @@ msgstr ""
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:132
+#: ../src/engine/DebugOverlays.tscn:133
 msgid "COMMAND_INPUT_LINE_EDIT"
 msgstr ""
 
@@ -1417,7 +1417,7 @@ msgstr ""
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/CompoundCloudPressure.cs:106
+#: ../src/auto-evo/selection_pressure/CompoundCloudPressure.cs:113
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr ""
 
@@ -1487,7 +1487,7 @@ msgstr ""
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/ReproductionCompoundPressure.cs:203
+#: ../src/auto-evo/selection_pressure/ReproductionCompoundPressure.cs:180
 msgid "COMPOUND_REPRODUCTION_SOURCE"
 msgstr ""
 
@@ -2099,7 +2099,7 @@ msgid "DEBUG_CONSOLE"
 msgstr ""
 
 #: ../src/engine/DebugOverlays.Inspector.cs:41
-#: ../src/engine/DebugOverlays.tscn:215
+#: ../src/engine/DebugOverlays.tscn:216
 msgid "DEBUG_COORDINATES"
 msgstr ""
 
@@ -2111,7 +2111,7 @@ msgstr ""
 msgid "DEBUG_HEAT_AT_CURSOR"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:140
+#: ../src/engine/DebugOverlays.tscn:141
 msgid "DEBUG_PANEL"
 msgstr ""
 
@@ -2440,7 +2440,7 @@ msgstr ""
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:178
+#: ../src/engine/DebugOverlays.tscn:179
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
@@ -2688,6 +2688,10 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
+#: ../src/auto-evo/selection_pressure/EnergyConsumptionPressure.cs:11
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr ""
+
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:3149
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
@@ -2720,7 +2724,7 @@ msgstr ""
 msgid "ENTER_EXISTING_WORKSHOP_ID"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:169
+#: ../src/engine/DebugOverlays.tscn:170
 msgid "ENTITY_LABEL"
 msgstr ""
 
@@ -3226,7 +3230,7 @@ msgstr ""
 msgid "FPS"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:154
+#: ../src/engine/DebugOverlays.tscn:155
 msgid "FPS_DISPLAY"
 msgstr ""
 
@@ -4139,7 +4143,7 @@ msgstr ""
 msgid "INSPECT"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:174 ../src/engine/DebugOverlays.tscn:202
+#: ../src/engine/DebugOverlays.tscn:175 ../src/engine/DebugOverlays.tscn:203
 msgid "INSPECTOR"
 msgstr ""
 
@@ -4558,7 +4562,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:4322
 #: ../simulation_parameters/microbe_stage/biomes.json:5404
 #: ../simulation_parameters/microbe_stage/biomes.json:5610
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:80
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:84
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
 
@@ -5101,7 +5105,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:4299
 #: ../simulation_parameters/microbe_stage/biomes.json:5381
 #: ../simulation_parameters/microbe_stage/biomes.json:5587
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:78
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:82
 msgid "MEDIUM_SULFUR_CHUNK"
 msgstr ""
 
@@ -5171,7 +5175,7 @@ msgstr ""
 msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:53 ../src/engine/DebugOverlays.tscn:159
+#: ../src/engine/DebugOverlays.tscn:53 ../src/engine/DebugOverlays.tscn:160
 msgid "METRICS"
 msgstr ""
 
@@ -5197,6 +5201,7 @@ msgid "MICHES_FOR_PATCH"
 msgstr ""
 
 #: ../src/auto-evo/selection_pressure/AvoidPredationSelectionPressure.cs:14
+#: ../src/auto-evo/selection_pressure/GeneralAvoidPredationSelectionPressure.cs:12
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr ""
 
@@ -5426,7 +5431,7 @@ msgstr ""
 msgid "MICROBE_RIPPLE_EFFECT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:423
+#: ../src/microbe_stage/MicrobeSpecies.cs:424
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -6991,7 +6996,7 @@ msgstr ""
 msgid "POSITION_NUMBER"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/PredationEffectivenessPressure.cs:117
+#: ../src/auto-evo/selection_pressure/PredationEffectivenessPressure.cs:118
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
 
@@ -7134,7 +7139,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:451
 #: ../simulation_parameters/microbe_stage/biomes.json:3173
 #: ../simulation_parameters/microbe_stage/biomes.json:5473
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:89
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:93
 msgid "RADIOACTIVE_CHUNK"
 msgstr ""
 
@@ -7952,7 +7957,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:5014
 #: ../simulation_parameters/microbe_stage/biomes.json:5290
 #: ../simulation_parameters/microbe_stage/biomes.json:5496
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:66
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:70
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
 
@@ -7982,7 +7987,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:4268
 #: ../simulation_parameters/microbe_stage/biomes.json:5354
 #: ../simulation_parameters/microbe_stage/biomes.json:5560
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:76
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:80
 msgid "SMALL_SULFUR_CHUNK"
 msgstr ""
 
@@ -8839,7 +8844,7 @@ msgstr ""
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:428
+#: ../src/microbe_stage/MicrobeSpecies.cs:429
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
 
@@ -8997,7 +9002,7 @@ msgstr ""
 msgid "TRANSLATORS"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:185
+#: ../src/engine/DebugOverlays.tscn:186
 msgid "TRANSPARENCY"
 msgstr ""
 

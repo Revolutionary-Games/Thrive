@@ -83,7 +83,7 @@ public class EnvironmentalCompoundPressure : SelectionPressure
 
         var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
 
-        // Penalize Species that do not rely on this compound
+        // Penalize Species that cannot rely exclusively on this compound
         return MathF.Min(amountCreated / energyBalance.TotalConsumption, 1);
     }
 

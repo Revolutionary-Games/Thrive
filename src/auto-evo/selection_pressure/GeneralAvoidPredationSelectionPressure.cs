@@ -2,11 +2,9 @@
 
 using SharedBase.Archive;
 
-public class AvoidPredationSelectionPressure : SelectionPressure
+public class GeneralAvoidPredationSelectionPressure : SelectionPressure
 {
     public const ushort SERIALIZATION_VERSION = 1;
-
-    public readonly Species Predator;
 
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
@@ -15,7 +13,7 @@ public class AvoidPredationSelectionPressure : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    public AvoidPredationSelectionPressure(Species predator, float weight) : base(weight, [
+    public GeneralAvoidPredationSelectionPressure(float weight) : base(weight, [
         AddOrganelleAnywhere.ThatCreateCompound(Compound.Oxytoxy),
         new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent,
             CommonMutationFunctions.Direction.Rear),
@@ -40,7 +38,6 @@ public class AvoidPredationSelectionPressure : SelectionPressure
         new ChangeMembraneRigidity(false),
     ])
     {
-        Predator = predator;
     }
 
     public override LocalizedString Name => NameString;
@@ -48,45 +45,48 @@ public class AvoidPredationSelectionPressure : SelectionPressure
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
     public override ArchiveObjectType ArchiveObjectType =>
-        (ArchiveObjectType)ThriveArchiveObjectType.AvoidPredationSelectionPressure;
+        (ArchiveObjectType)ThriveArchiveObjectType.GeneralAvoidPredationSelectionPressure;
 
-    public static AvoidPredationSelectionPressure ReadFromArchive(ISArchiveReader reader, ushort version,
+    public static GeneralAvoidPredationSelectionPressure ReadFromArchive(ISArchiveReader reader, ushort version,
         int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var instance = new AvoidPredationSelectionPressure(reader.ReadObject<Species>(), reader.ReadFloat());
+        var instance = new GeneralAvoidPredationSelectionPressure(reader.ReadFloat());
 
         instance.ReadBasePropertiesFromArchive(reader, 1);
         return instance;
     }
 
-    public override void WriteToArchive(ISArchiveWriter writer)
-    {
-        writer.WriteObject(Predator);
-        base.WriteToArchive(writer);
-    }
-
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        var predationScore = cache.GetPredationScore(Predator, species, patch.Biome);
-
-        if (predationScore <= 1)
+        var score = 1.0f;
+        foreach (var predator in patch.SpeciesInPatch)
         {
-            return 2.0f - predationScore;
+            // No Cannibalism
+            // Compared by ID here to make sure temporary species variants are not allowed to predate themselves
+            if (species.ID == predator.Key.ID)
+            {
+                continue;
+            }
+
+            var predationScore = cache.GetPredationScore(predator.Key, species, patch.Biome);
+
+            if (predationScore <= 1)
+            {
+                score += 3.0f - predationScore;
+                continue;
+            }
+
+            score += 1 / predationScore;
         }
 
-        return 1 / predationScore;
+        return score;
     }
 
     public override float GetEnergy(Patch patch)
     {
         return 0;
-    }
-
-    public override string ToString()
-    {
-        return $"{Name} ({Predator.FormattedName})";
     }
 }
