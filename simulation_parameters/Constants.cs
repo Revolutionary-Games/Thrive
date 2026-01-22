@@ -1310,11 +1310,11 @@ public static class Constants
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
 
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
-    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 4000;
+    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 4500;
     public const float AUTO_EVO_PILUS_DEFENSE_SCORE = 3000;
-    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100000;
-    public const float AUTO_EVO_TOXIN_ENGULFMENT_DEFENSE_MODIFIER = 0.01f;
-    public const float AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING = 0.00006f;
+    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 90000;
+    public const float AUTO_EVO_TOXIN_ENGULFMENT_DEFENSE_MODIFIER = 0.007f;
+    public const float AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING = 0.00008f;
     public const float AUTO_EVO_SIZE_AFFECTED_PROJECTILE_MISS_FACTOR = 0.5f;
     public const float AUTO_EVO_TOXICITY_HIT_MODIFIER = 4.0f;
     public const float AUTO_EVO_SLIME_JET_SCORE = 30;
@@ -1335,7 +1335,7 @@ public static class Constants
     public const float AUTO_EVO_REPRODUCTION_COMPOUND_PRODUCTION_SCORE = 3000.0f;
     public const float AUTO_EVO_REPRODUCTION_COMPOUND_COST_WEAKENING_MODIFIER = 0.2f;
 
-    public const float AUTO_EVO_PREDATION_DEFENSE_SCORE_MODIFIER = 0.25f;
+    public const float AUTO_EVO_PREDATION_DEFENSE_SCORE_MODIFIER = 0.5f;
 
     public const float AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS_SMALL = 1.5f;
     public const float AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS = 20.0f;
@@ -1349,11 +1349,6 @@ public static class Constants
     ///   Auto-evo effect bonus from using the signalling agent to bring help
     /// </summary>
     public const float AUTO_EVO_SIGNALLING_BONUS = 1.4f;
-
-    /// <summary>
-    ///   Weight of the selection pressure used to create temporary miche nodes for avoiding predation
-    /// </summary>
-    public const float AUTO_EVO_AVOID_PREDATION_PRESSURE_WEIGHT = 5.0f;
 
     public const int AI_FOLLOW_PLAYER_MIGRATION_TO_EMPTY_PATCH_THRESHOLD = 2;
 
