@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -313,6 +314,9 @@ public partial class SaveList : ScrollContainer
             GD.Print("Selected save is a backup, really going to load after upgrade: ", saveToBeLoaded);
         }
 
+        var timer = new Stopwatch();
+        timer.Start();
+
         // Perform save upgrade (the game will lag here, but I'll leave it to someone else to make a progress bar)
         // Instead could show a popup with a spinner on it and run the upgrade with TaskExecutor in the background
         var task = new Task(() => SaveUpgrader.PerformSaveUpgrade(saveToUpgrade));
@@ -334,6 +338,8 @@ public partial class SaveList : ScrollContainer
             GD.PrintErr("Save upgrade failed: ", e);
             return;
         }
+
+        GD.Print($"Total time save upgrade took: {timer.Elapsed}");
 
         OnConfirmSaveLoad();
     }

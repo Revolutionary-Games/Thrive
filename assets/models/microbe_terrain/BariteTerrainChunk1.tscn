@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://nj65hcfbnuu5"]
+
+[ext_resource type="PackedScene" uid="uid://biobalqnstclh" path="res://assets/models/microbe_terrain/BariteTerrainChunk1.glb" id="1_mcvkv"]
+[ext_resource type="Texture2D" uid="uid://bmtu0lb0jv3v3" path="res://assets/textures/environment/Barite.png" id="2_n7emb"]
+[ext_resource type="Texture2D" uid="uid://b2rbtdf62otpu" path="res://assets/textures/environment/Barite1AO.png" id="3_ho207"]
+[ext_resource type="Texture2D" uid="uid://bkgdgi6speo8c" path="res://assets/textures/environment/Barite_normal.png" id="4_luaj4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2x3yd"]
+albedo_texture = ExtResource("2_n7emb")
+normal_enabled = true
+normal_texture = ExtResource("4_luaj4")
+ao_enabled = true
+ao_light_affect = 0.35
+ao_texture = ExtResource("3_ho207")
+
+[node name="BariteTerrainChunk1" instance=ExtResource("1_mcvkv")]
+
+[node name="barite1" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_2x3yd")

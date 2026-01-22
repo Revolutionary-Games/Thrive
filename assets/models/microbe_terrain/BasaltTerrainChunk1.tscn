@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcq4cjdunn4xy"]
+
+[ext_resource type="PackedScene" uid="uid://dqxsf3ohkg3pb" path="res://assets/models/microbe_terrain/BasaltTerrainChunk1.glb" id="1_0y5lw"]
+[ext_resource type="Texture2D" uid="uid://cvpcr3hwcpfrn" path="res://assets/textures/environment/Basalt.png" id="2_kh5jy"]
+[ext_resource type="Texture2D" uid="uid://cco4yj8ykgih8" path="res://assets/textures/environment/Basalt1AO.png" id="3_o3hcm"]
+[ext_resource type="Texture2D" uid="uid://oawrgw356m5h" path="res://assets/textures/environment/Basalt_normal.png" id="4_67t4u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_524g3"]
+albedo_texture = ExtResource("2_kh5jy")
+normal_enabled = true
+normal_texture = ExtResource("4_67t4u")
+ao_enabled = true
+ao_light_affect = 0.35
+ao_texture = ExtResource("3_o3hcm")
+
+[node name="BasaltTerrainChunk1" instance=ExtResource("1_0y5lw")]
+
+[node name="basalt1" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_524g3")

@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Globalization;
 using Godot;
+using Saving;
 
 /// <summary>
-///   An item in the saves list. This is a class to handle loading its data from the file
+///   An item in the save list. This is a class to handle loading its data from the file
 /// </summary>
 public partial class SaveListItem : PanelContainer
 {
+    public static readonly object ResizeLock = new();
+
     [Export]
     public bool Selectable;
 
     [Export]
     public bool Loadable = true;
-
-    private static readonly object ResizeLock = new();
 
 #pragma warning disable CA2213
     [Export]
@@ -66,6 +67,7 @@ public partial class SaveListItem : PanelContainer
     private bool isKnownIncompatible;
     private bool isUpgradeable;
     private bool isIncompatiblePrototype;
+    private bool isKnownCompatible;
 
     [Signal]
     public delegate void OnSelectedChangedEventHandler();
@@ -155,6 +157,20 @@ public partial class SaveListItem : PanelContainer
         UpdateHighlighting();
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (loadingData || (saveInfoLoadTask != null && !saveInfoLoadTask.Loaded))
+        {
+            if (saveInfoLoadTask != null)
+            {
+                // On slower computers the save list loads can clog up the load
+                ResourceManager.Instance.CancelLoad(saveInfoLoadTask);
+            }
+        }
+    }
+
     public override void _Process(double delta)
     {
         if (!loadingData)
@@ -189,26 +205,46 @@ public partial class SaveListItem : PanelContainer
 
         if (versionDifference != 0)
         {
-            if (save.Info.IsPrototype)
+            versionWarning.Visible = true;
+
+            // Check if the version is known compatible
+            if (CompatibleSaveVersions.IsMarkedCompatible(save.Info.ThriveVersion, save.Info.IsPrototype))
             {
-                isIncompatiblePrototype = true;
+                versionWarning.Visible = false;
+                isKnownCompatible = true;
             }
             else
             {
-                if (versionDifference < 0 && SaveUpgrader.CanUpgradeSaveToVersion(save.Info))
-                {
-                    isUpgradeable = true;
-                }
+                // Not explicitly marked compatible, but might be loadable
 
-                if (SaveHelper.IsKnownIncompatible(save.Info.ThriveVersion))
+                if (save.Info.IsPrototype)
                 {
-                    isKnownIncompatible = true;
+                    // Disallowed save to try to load from a different version due to being a prototype
+                    isIncompatiblePrototype = true;
+                }
+                else
+                {
+                    if (versionDifference < 0 && SaveUpgrader.CanUpgradeSaveToVersion(save.Info))
+                    {
+                        isUpgradeable = true;
+                    }
                 }
             }
+
+            if (SaveHelper.IsKnownIncompatible(save.Info.ThriveVersion))
+            {
+                isKnownIncompatible = true;
+                versionWarning.Visible = true;
+                isKnownCompatible = false;
+            }
+        }
+        else
+        {
+            versionWarning.Visible = false;
         }
 
         version.Text = save.Info.ThriveVersion;
-        versionWarning.Visible = versionDifference != 0;
+
         type.Text = save.Info.TranslatedSaveTypeString;
         createdAt.Text = save.Info.CreatedAt.ToString("G", CultureInfo.CurrentCulture);
         createdBy.Text = save.Info.Creator;
@@ -273,7 +309,15 @@ public partial class SaveListItem : PanelContainer
 
         if (versionDifference < 0)
         {
-            EmitSignal(SignalName.OnOldSaveLoaded);
+            if (isKnownCompatible)
+            {
+                EmitSignal(SignalName.OnProblemFreeSaveLoaded);
+            }
+            else
+            {
+                EmitSignal(SignalName.OnOldSaveLoaded);
+            }
+
             return;
         }
 
@@ -298,8 +342,7 @@ public partial class SaveListItem : PanelContainer
 
     private void UpdateName()
     {
-        if (saveNameLabel != null)
-            saveNameLabel.Text = saveName.Replace(Constants.SAVE_EXTENSION_WITH_DOT, string.Empty);
+        saveNameLabel?.Text = saveName.Replace(Constants.SAVE_EXTENSION_WITH_DOT, string.Empty);
     }
 
     private void LoadSavePressed()
@@ -331,10 +374,7 @@ public partial class SaveListItem : PanelContainer
 
     private void UpdateHighlighting()
     {
-        if (highlightPanel == null)
-            return;
-
-        highlightPanel.Visible = Highlighted || Selected;
+        highlightPanel?.Visible = Highlighted || Selected;
     }
 
     private void DeletePressed()
@@ -360,6 +400,9 @@ public partial class SaveListItem : PanelContainer
 
         // See the TODO comment in PerformPostProcessing
         public bool RequiresSyncPostProcess => true;
+
+        public bool CancelRequested { get; set; }
+
         public float EstimatedTimeRequired => 0.025f;
         public bool LoadingPrepared { get; set; }
         public bool Loaded { get; private set; }

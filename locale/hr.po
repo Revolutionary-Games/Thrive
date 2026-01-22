@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-01 16:03+0300\n"
-"PO-Revision-Date: 2025-03-20 20:10+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-01-22 16:04+0200\n"
+"PO-Revision-Date: 2025-09-24 02:53+0000\n"
+"Last-Translator: Emanuel Gossain <thisisfor33@gmail.com>\n"
 "Language-Team: Croatian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hr/>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.10.3\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -50,16 +50,16 @@ msgid "ACCEPT"
 msgstr "Prihvati"
 
 msgid "ACHIEVEMENTS"
-msgstr ""
+msgstr "Postignuća"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
 
 msgid "ACHIEVEMENT_ACHIEVED"
-msgstr ""
+msgstr "Dovršeno"
 
 msgid "ACHIEVEMENT_LOCKED"
-msgstr ""
+msgstr "Zaključano"
 
 msgid "ACTION_AWAKEN"
 msgstr "Probuditi ({0:F1} / {1:F1})"
@@ -190,6 +190,10 @@ msgstr "Amonijak"
 msgid "AMMONIA_COST"
 msgstr "Amonijak"
 
+#, fuzzy
+msgid "AMMONIA_LEVELS"
+msgstr "Amonijak"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Kolićina automatskih spremanja za čuvanje:"
 
@@ -271,7 +275,7 @@ msgstr "Čestitamo!"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr ""
 
 msgid "ASSUME_HYPERTHREADING"
@@ -407,6 +411,24 @@ msgstr ""
 msgid "AVAILABLE_MODS"
 msgstr ""
 
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr ""
 
@@ -505,10 +527,22 @@ msgstr ""
 msgid "BEST_PATCH_COLON"
 msgstr ""
 
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr ""
+
 msgid "BIG_IRON_CHUNK"
 msgstr ""
 
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr ""
+
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr ""
+
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr ""
 
 msgid "BILLION_ABBREVIATION"
@@ -612,6 +646,9 @@ msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
 
 msgid "CANNOT_ENGULF"
+msgstr ""
+
+msgid "CANNOT_IMPROVE_PERFECTION"
 msgstr ""
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
@@ -856,6 +893,14 @@ msgstr ""
 msgid "COLLISION_SHAPE"
 msgstr ""
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr ""
+"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+"i veća je šansa da će se braniti kada su napadnuti.\n"
+"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+"i manja je šansa da će koristiti toksine protiv predatora."
+
 msgid "COLOUR"
 msgstr ""
 
@@ -896,6 +941,9 @@ msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr ""
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
+msgstr ""
+
+msgid "COMMAND_INPUT_LINE_EDIT"
 msgstr ""
 
 msgid "COMMON_ABILITIES"
@@ -988,6 +1036,28 @@ msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Uređivač mikroba"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
+
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr ""
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr ""
@@ -1248,6 +1318,9 @@ msgstr ""
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr ""
+
 msgid "CPU_THREADS"
 msgstr ""
 
@@ -1348,7 +1421,24 @@ msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
+msgid "CURRENT_DILUTION"
+msgstr ""
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
+
 msgid "CURRENT_LOCATION_CAPITAL"
+msgstr ""
+
+msgid "CURRENT_PARTICLES_ALL"
+msgstr ""
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
+
+msgid "CURRENT_PARTICLES_NONE"
 msgstr ""
 
 msgid "CURRENT_RESEARCH_NONE"
@@ -1415,6 +1505,9 @@ msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
 msgid "DEATH"
+msgstr ""
+
+msgid "DEBUG_CONSOLE"
 msgstr ""
 
 msgid "DEBUG_COORDINATES"
@@ -1632,6 +1725,9 @@ msgstr ""
 msgid "DISPLAY_PART_NAMES"
 msgstr ""
 
+msgid "DISPLAY_SELECTION"
+msgstr ""
+
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr ""
 
@@ -1751,6 +1847,15 @@ msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"Ovo je uređivač stanica u kojem možete razvijati svoju vrstu trošeći bodove mutacije (MP). U svakoj generaciji uvijek ćete imati 100 MP za potrošiti, stoga nemojte štedjeti!\n"
+"\n"
+"Šesterokutna ćelija u središtu vašeg zaslona je vaša stanica, koja se sastoji od jednog dijela citoplazme.\n"
+"\n"
+"Za nastavak, odaberite novi dio s lijeve ploče. Zatim, lijevom tipkom miša kliknite pokraj postojeće ćelije da biste ga postavili. Možete rotirati dijelove pomoću [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 "Ovo je uređivač stanica u kojem možete razvijati svoju vrstu trošeći bodove mutacije (MP). U svakoj generaciji uvijek ćete imati 100 MP za potrošiti, stoga nemojte štedjeti!\n"
@@ -1758,6 +1863,10 @@ msgstr ""
 "Šesterokutna ćelija u središtu vašeg zaslona je vaša stanica, koja se sastoji od jednog dijela citoplazme.\n"
 "\n"
 "Za nastavak, odaberite novi dio s lijeve ploče. Zatim, lijevom tipkom miša kliknite pokraj postojeće ćelije da biste ga postavili. Možete rotirati dijelove pomoću [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "Stadij mikroba"
 
 msgid "EFFECTIVE_VALUE"
 msgstr ""
@@ -1854,6 +1963,9 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr ""
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
@@ -1864,6 +1976,9 @@ msgid "ENERGY_SOURCES"
 msgstr ""
 
 msgid "ENERGY_SUMMARY_LINE"
+msgstr ""
+
+msgid "ENGULF_CELL_OR_CHUNK"
 msgstr ""
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
@@ -1960,6 +2075,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -2197,6 +2320,10 @@ msgstr ""
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "Umjetnik:"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
@@ -2219,6 +2346,12 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
 msgid "FOSSILISE"
+msgstr ""
+
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr ""
+
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
 msgstr ""
 
 msgid "FOSSIL_DELETION_FAILED"
@@ -2300,9 +2433,8 @@ msgstr "Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogr
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogrešku"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Višestanični stadij"
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
 
 msgid "GENERATIONS"
 msgstr ""
@@ -2368,6 +2500,10 @@ msgstr ""
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "\"{0}\" - {1}"
+
 msgid "GLYCOLYSIS"
 msgstr ""
 
@@ -2375,6 +2511,9 @@ msgid "GODMODE"
 msgstr ""
 
 msgid "GOD_TOOLS_TITLE"
+msgstr ""
+
+msgid "GOING_NUCLEAR"
 msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
@@ -2392,6 +2531,9 @@ msgstr ""
 msgid "GRAPHICS"
 msgstr ""
 
+msgid "GRAPHICS_PRESET"
+msgstr ""
+
 msgid "GRAPHICS_TEAM"
 msgstr ""
 
@@ -2402,6 +2544,12 @@ msgid "GUI"
 msgstr ""
 
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
+msgstr ""
+
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr ""
+
+msgid "GUI_SCALE_OPTION"
 msgstr ""
 
 msgid "GUI_TAB_NAVIGATION"
@@ -2469,7 +2617,7 @@ msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
 msgid "HYDROGENASE"
-msgstr ""
+msgstr "Hidrogenaza"
 
 msgid "HYDROGENASE_DESCRIPTION"
 msgstr ""
@@ -2490,6 +2638,9 @@ msgstr ""
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
+msgid "HYDROGEN_SULFIDE_LEVELS"
+msgstr ""
+
 msgid "ICESHARD"
 msgstr ""
 
@@ -2502,6 +2653,9 @@ msgstr ""
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
@@ -2509,6 +2663,9 @@ msgid "ID_NUMBER"
 msgstr ""
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
@@ -2614,6 +2771,13 @@ msgstr ""
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
 
+msgid "INSTANT_KILL_PROTECTION"
+msgstr ""
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(brzina kojom UI vrste mutira)"
+
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr ""
 
@@ -2707,6 +2871,9 @@ msgstr ""
 msgid "IRON"
 msgstr ""
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 msgid "IRON_OXIDATION"
 msgstr ""
 
@@ -2720,18 +2887,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr ""
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3232,8 +3387,28 @@ msgid "MACROSCOPIC"
 msgstr ""
 
 #, fuzzy
+msgid "MACROSCOPIC_EDITOR"
+msgstr "Stadij mikroba"
+
+#, fuzzy
 msgid "MACROSCOPIC_STAGE"
 msgstr "Stadij mikroba"
+
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr ""
+"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+"i veća je šansa da će se braniti kada su napadnuti.\n"
+"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+"i manja je šansa da će koristiti toksine protiv predatora."
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Sinteza OksiToksina"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "3D uređivač"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -3390,6 +3565,14 @@ msgstr ""
 "[b]Osnova veličina, u ćelijama[/b]\n"
 "  {4}"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr ""
+"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+"i veća je šansa da će se braniti kada su napadnuti.\n"
+"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+"i manja je šansa da će koristiti toksine protiv predatora."
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3411,7 +3594,18 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr ""
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr ""
+"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+"i veća je šansa da će se braniti kada su napadnuti.\n"
+"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+"i manja je šansa da će koristiti toksine protiv predatora."
+
 msgid "MICHE_ROOT_PRESSURE"
+msgstr ""
+
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
 msgstr ""
 
 msgid "MICHE_TREE"
@@ -3431,6 +3625,10 @@ msgstr "Uređivač mikroba"
 
 #, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] te miš koriste se za kretanje. [thrive:input]g_fire_toxin[/thrive:input] za ispucavanje [thrive:compound type=\"oxytoxy\"][/thrive:compound] ako posjeduješ vakuolu za toksin. [thrive:input]g_toggle_engulf[/thrive:input] za paljenje/gašenje gutanja. Kotač miša koristi se za podešavanje zumiranja."
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
 msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] te miš koriste se za kretanje. [thrive:input]g_fire_toxin[/thrive:input] za ispucavanje [thrive:compound type=\"oxytoxy\"][/thrive:compound] ako posjeduješ vakuolu za toksin. [thrive:input]g_toggle_engulf[/thrive:input] za paljenje/gašenje gutanja. Kotač miša koristi se za podešavanje zumiranja."
 
 msgid "MICROBE_EDITOR"
@@ -3639,6 +3837,10 @@ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/t
 msgid "MICROBIAL_MASSACRE"
 msgstr "Stadij mikroba"
 
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "Stadij mikroba"
+
 msgid "MIDDLE_MOUSE"
 msgstr ""
 
@@ -3753,6 +3955,9 @@ msgstr ""
 msgid "MODS"
 msgstr ""
 
+msgid "MODS_ARE_ENABLED"
+msgstr ""
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3784,9 +3989,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 msgid "MOD_CREATION_FAILED"
@@ -3856,6 +4058,12 @@ msgid "MOD_UPLOADER"
 msgstr ""
 
 msgid "MOD_VERSION"
+msgstr ""
+
+msgid "MONITOR_AUTO"
+msgstr ""
+
+msgid "MONITOR_IDENTIFIER"
 msgstr ""
 
 msgid "MORE_INFO"
@@ -4129,6 +4337,9 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr ""
 
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr ""
+
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr ""
 
@@ -4157,6 +4368,9 @@ msgid "NO_EVENTS_RECORDED"
 msgstr ""
 
 msgid "NO_FOSSIL_DIRECTORY"
+msgstr ""
+
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr ""
 
 msgid "NO_MODS_ENABLED"
@@ -4393,6 +4607,9 @@ msgstr ""
 msgid "OUR_WIKI"
 msgstr ""
 
+msgid "OUTDATED_ITEM"
+msgstr ""
+
 msgid "OUTDATED_NOTICE"
 msgstr ""
 
@@ -4466,6 +4683,9 @@ msgid "PAN_CAMERA_UP"
 msgstr ""
 
 msgid "PAST_DEVELOPERS"
+msgstr ""
+
+msgid "PATCHES_NUMBER"
 msgstr ""
 
 #, fuzzy
@@ -4567,6 +4787,9 @@ msgstr ""
 msgid "PHOSPHATES_COST"
 msgstr ""
 
+msgid "PHOSPHATES_LEVELS"
+msgstr ""
+
 msgid "PHOTOSYNTHESIS"
 msgstr ""
 
@@ -4590,6 +4813,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] te miš koriste se za kretanje. [thrive:input]g_fire_toxin[/thrive:input] za ispucavanje [thrive:compound type=\"oxytoxy\"][/thrive:compound] ako posjeduješ vakuolu za toksin. [thrive:input]g_toggle_engulf[/thrive:input] za paljenje/gašenje gutanja. Kotač miša koristi se za podešavanje zumiranja."
 
 msgid "PLAYER"
 msgstr ""
@@ -4660,6 +4887,26 @@ msgstr ""
 
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "Prilagođeno"
+
+msgid "PRESET_HIGH"
+msgstr ""
+
+msgid "PRESET_LOW"
+msgstr ""
+
+msgid "PRESET_MEDIUM"
+msgstr ""
+
+msgid "PRESET_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
 
 msgid "PRESSURE"
 msgstr ""
@@ -4733,14 +4980,17 @@ msgid "QUIT_GAME_WARNING"
 msgstr ""
 
 msgid "RADIATION"
-msgstr ""
+msgstr "Radijacija"
+
+#, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Izbriši"
 
 msgid "RADIOACTIVE_CHUNK"
 msgstr ""
 
-#, fuzzy
 msgid "RADIOSYNTHESIS"
-msgstr "Sinteza OksiToksina"
+msgstr "Radiosinteza"
 
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr ""
@@ -4753,6 +5003,16 @@ msgstr ""
 
 msgid "RAW_VALUE_COLON"
 msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Višestanični stadij"
 
 msgid "READING_SAVE_DATA"
 msgstr ""
@@ -4778,6 +5038,9 @@ msgstr ""
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Višestanični stadij"
+
+msgid "REGIONS_NUMBER"
+msgstr ""
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -4916,6 +5179,21 @@ msgstr ""
 msgid "REVEAL_ALL_PATCHES"
 msgstr ""
 
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "3D uređivač"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr ""
+"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+"i veća je šansa da će se braniti kada su napadnuti.\n"
+"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+"i manja je šansa da će koristiti toksine protiv predatora."
+
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr ""
+
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr ""
 
@@ -4940,7 +5218,13 @@ msgstr ""
 msgid "ROTATION_COLON"
 msgstr ""
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
+msgstr ""
+
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
 msgstr ""
 
 msgid "RUN_ONE_STEP"
@@ -4998,12 +5282,6 @@ msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr ""
 
 msgid "SAVE_FAILED"
@@ -5209,6 +5487,9 @@ msgstr ""
 msgid "SHOW_ITEM_COORDINATES"
 msgstr ""
 
+msgid "SHOW_MAP"
+msgstr ""
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
@@ -5298,7 +5579,13 @@ msgstr ""
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
 
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr ""
+
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr ""
+
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr ""
 
 msgid "SMALL_SULFUR_CHUNK"
@@ -5370,6 +5657,12 @@ msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
+msgstr ""
+
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr ""
+
+msgid "SPECIES_IN_OTHER_PATCHES"
 msgstr ""
 
 msgid "SPECIES_LIST"
@@ -5575,6 +5868,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
@@ -5594,6 +5890,9 @@ msgid "SUPPORTER_PATRONS"
 msgstr ""
 
 msgid "SURVIVAL_TITLE"
+msgstr ""
+
+msgid "SURVIVE_WITH_A_NUCLEUS"
 msgstr ""
 
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -5632,6 +5931,17 @@ msgstr ""
 
 msgid "TARGET_TYPE_COLON"
 msgstr ""
+
+msgid "TASTE_THE_SUN"
+msgstr ""
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr ""
+"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+"i veća je šansa da će se braniti kada su napadnuti.\n"
+"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+"i manja je šansa da će koristiti toksine protiv predatora."
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -5724,6 +6034,10 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
+#, fuzzy
+msgid "THE_EDITOR"
+msgstr "3D uređivač"
+
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr ""
 
@@ -5765,6 +6079,9 @@ msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
 
 msgid "THRIVE_LICENSES"
+msgstr ""
+
+msgid "THRIVIN_ACHIEVEMENT"
 msgstr ""
 
 msgid "THYLAKOIDS"
@@ -5862,6 +6179,9 @@ msgstr ""
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr ""
 
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr ""
+
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr ""
 
@@ -5927,6 +6247,22 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]Stadij[/b]\n"
+"  Mikrob\n"
+"[b]Tip membrane[/b]\n"
+"  {0}\n"
+"[b]Krutost membrane[/b]\n"
+"  {1}\n"
+"[b]Osnovna brzina[/b]\n"
+"  {2}\n"
+"[b]Osnovna brzina rotacije[/b]\n"
+"  {3}\n"
+"[b]Osnova veličina, u ćelijama[/b]\n"
+"  {4}"
+
+#, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
 
@@ -5952,7 +6288,7 @@ msgid "TOTAL_SAVES"
 msgstr ""
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
-msgstr ""
+msgstr "Inhibitor Kanala"
 
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr ""
@@ -6043,14 +6379,6 @@ msgstr ""
 
 msgid "TUTORIAL"
 msgstr ""
-
-#, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr ""
-"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
-"i veća je šansa da će se braniti kada su napadnuti.\n"
-"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
-"i manja je šansa da će koristiti toksine protiv predatora."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6275,6 +6603,14 @@ msgstr ""
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Višestanični stadij"
 
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr ""
+"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+"i veća je šansa da će se braniti kada su napadnuti.\n"
+"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+"i manja je šansa da će koristiti toksine protiv predatora."
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
@@ -6322,6 +6658,17 @@ msgstr ""
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr ""
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Anaerobna fiksacija dušika"
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "\"{0}\" - {1}"
 
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr ""
@@ -6470,6 +6817,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -6477,12 +6827,6 @@ msgid "USED_RENDERER_NAME"
 msgstr ""
 
 msgid "USES_FEATURE"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
@@ -6526,6 +6870,9 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr ""
 
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VENTS_ARE_HOME"
 msgstr ""
 
 msgid "VERSION_COLON"
@@ -8384,6 +8731,22 @@ msgstr ""
 msgid "WORST_PATCH_COLON"
 msgstr ""
 
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr ""
+"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+"i veća je šansa da će se braniti kada su napadnuti.\n"
+"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+"i manja je šansa da će koristiti toksine protiv predatora."
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr ""
+"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+"i veća je šansa da će se braniti kada su napadnuti.\n"
+"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+"i manja je šansa da će koristiti toksine protiv predatora."
+
 msgid "XBOX360"
 msgstr ""
 
@@ -8412,6 +8775,12 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr ""
+"Aktivni mikrobi će se kretati kada se ništa zanimljivo ne događa.\n"
+"Sesilni mikrobi će mirovati i čekati da se okoliš promijeni prije nego što nešto naprave."
+
 msgid "ZOOM_IN"
 msgstr ""
 
@@ -8419,8 +8788,16 @@ msgid "ZOOM_OUT"
 msgstr "Povećaj"
 
 #, fuzzy
-#~ msgid "WORLD_SEA_LEVEL"
-#~ msgstr "\"{0}\" - {1}"
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr ""
+#~ "Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+#~ "i veća je šansa da će se braniti kada su napadnuti.\n"
+#~ "Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+#~ "i manja je šansa da će koristiti toksine protiv predatora."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Višestanični stadij"
 
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"

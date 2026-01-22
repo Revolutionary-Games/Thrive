@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Godot;
+using SharedBase.Archive;
 
 /// <summary>
 ///   This partial class has all the editor action callbacks needed for the microbe editor
 /// </summary>
-[DeserializedCallbackTarget]
 public partial class CellEditorComponent
 {
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnOrganelleAdded(OrganelleTemplate organelle)
     {
         organelleDataDirty = true;
         microbeVisualizationOrganellePositionsAreDirty = true;
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnOrganelleRemoved(OrganelleTemplate organelle)
     {
         organelleDataDirty = true;
         microbeVisualizationOrganellePositionsAreDirty = true;
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoOrganellePlaceAction(OrganellePlacementActionData data)
     {
         data.ReplacedCytoplasm = new List<OrganelleTemplate>();
@@ -55,7 +55,7 @@ public partial class CellEditorComponent
         editedMicrobeOrganelles.AddFast(organelle, hexTemporaryMemory, hexTemporaryMemory2);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoOrganellePlaceAction(OrganellePlacementActionData data)
     {
         if (!editedMicrobeOrganelles.Remove(data.PlacedHex))
@@ -80,7 +80,7 @@ public partial class CellEditorComponent
         }
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoOrganelleRemoveAction(OrganelleRemoveActionData data)
     {
         if (!editedMicrobeOrganelles.Remove(data.RemovedHex))
@@ -96,13 +96,13 @@ public partial class CellEditorComponent
         }
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoOrganelleRemoveAction(OrganelleRemoveActionData data)
     {
         editedMicrobeOrganelles.AddFast(data.RemovedHex, hexTemporaryMemory, hexTemporaryMemory2);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoOrganelleMoveAction(OrganelleMoveActionData data)
     {
         if (IsMulticellularEditor)
@@ -123,7 +123,7 @@ public partial class CellEditorComponent
             UpdateAlreadyPlacedVisuals();
 
             // Organelle placement *might* affect auto-evo in the future, so this is here for that reason
-            StartAutoEvoPrediction();
+            autoEvoPredictionDirty = true;
 
             // Suggestion is not restarted as the overall shape / movement speed is likely not significant enough to
             // invalidate the suggestion
@@ -139,7 +139,7 @@ public partial class CellEditorComponent
         // OnMembraneChanged();
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoOrganelleMoveAction(OrganelleMoveActionData data)
     {
         if (IsMulticellularEditor)
@@ -156,20 +156,24 @@ public partial class CellEditorComponent
         data.MovedHex.Orientation = data.OldRotation;
 
         UpdateAlreadyPlacedVisuals();
-        StartAutoEvoPrediction();
         UpdateStats();
+
+        autoEvoPredictionDirty = true;
+
+        // As this is a move, this kind of doesn't need to trigger suggestions again, so this apparently doesn't
 
         // TODO: dynamic MP PR had this line:
         // OnMembraneChanged();
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoNewMicrobeAction(NewMicrobeActionData data)
     {
         // TODO: could maybe grab the current organelles and put them in the action here? This could be more safe
         // against weird situations where it might be possible if the undo / redo system is changed to restore
         // the wrong organelles
 
+        // If these are changed, then the behaviour in MicrobeEditsFacade needs updating
         Editor.MutationPoints = Constants.BASE_MUTATION_POINTS;
         Membrane = SimulationParameters.Instance.GetMembrane("single");
         editedMicrobeOrganelles.Clear();
@@ -187,7 +191,7 @@ public partial class CellEditorComponent
         OnPostNewMicrobeChange();
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoNewMicrobeAction(NewMicrobeActionData data)
     {
         editedMicrobeOrganelles.Clear();
@@ -219,7 +223,7 @@ public partial class CellEditorComponent
         OnPostNewMicrobeChange();
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoMembraneChangeAction(MembraneActionData data)
     {
         var membrane = data.NewMembrane;
@@ -236,19 +240,19 @@ public partial class CellEditorComponent
         CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
         SetMembraneTooltips(Membrane);
 
-        StartAutoEvoPrediction();
+        autoEvoPredictionDirty = true;
         suggestionDirty = true;
 
         if (previewMicrobeSpecies != null)
         {
             previewMicrobeSpecies.MembraneType = membrane;
 
-            if (previewMicrobe.IsAlive)
+            if (previewMicrobe.IsAliveAndNotNull())
                 previewSimulation!.ApplyMicrobeMembraneType(previewMicrobe, membrane);
         }
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoMembraneChangeAction(MembraneActionData data)
     {
         Membrane = data.OldMembrane;
@@ -260,19 +264,19 @@ public partial class CellEditorComponent
         organismStatisticsPanel.UpdateSpeed(CalculateSpeed());
         organismStatisticsPanel.UpdateHitpoints(CalculateHitpoints());
 
-        StartAutoEvoPrediction();
+        autoEvoPredictionDirty = true;
         suggestionDirty = true;
 
         if (previewMicrobeSpecies != null)
         {
             previewMicrobeSpecies.MembraneType = Membrane;
 
-            if (previewMicrobe.IsAlive)
+            if (previewMicrobe.IsAliveAndNotNull())
                 previewSimulation!.ApplyMicrobeMembraneType(previewMicrobe, Membrane);
         }
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoRigidityChangeAction(RigidityActionData data)
     {
         Rigidity = data.NewRigidity;
@@ -283,48 +287,48 @@ public partial class CellEditorComponent
         OnRigidityChanged();
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoRigidityChangeAction(RigidityActionData data)
     {
         Rigidity = data.PreviousRigidity;
         OnRigidityChanged();
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoColourChangeAction(ColourActionData data)
     {
         Colour = data.NewColour;
         OnColourChanged();
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoColourChangeAction(ColourActionData data)
     {
         Colour = data.PreviousColour;
         OnColourChanged();
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoOrganelleUpgradeAction(OrganelleUpgradeActionData data)
     {
-        data.UpgradedOrganelle.Upgrades = data.NewUpgrades;
+        data.UpgradedOrganelle.ModifiableUpgrades = data.NewUpgrades;
 
         microbeVisualizationOrganellePositionsAreDirty = true;
 
         OnOrganellesChanged();
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoOrganelleUpgradeAction(OrganelleUpgradeActionData data)
     {
-        data.UpgradedOrganelle.Upgrades = data.OldUpgrades;
+        data.UpgradedOrganelle.ModifiableUpgrades = data.OldUpgrades;
 
         microbeVisualizationOrganellePositionsAreDirty = true;
 
         OnOrganellesChanged();
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoEndosymbiontPlaceAction(EndosymbiontPlaceActionData data)
     {
         // Perform the unlocking to make the endosymbiont placeable for later
@@ -359,7 +363,7 @@ public partial class CellEditorComponent
             var overwrote =
                 Editor.EditedBaseSpecies.Endosymbiosis.ResumeEndosymbiosisProcess(data.OverriddenEndosymbiosisOnUndo);
 
-            // Hopefully there's no way to hit this condition, if there is then this needs some fix
+            // Hopefully there's no way to hit this condition, if there is, then this needs some fix
             if (overwrote != null && overwrote != data.RelatedEndosymbiosisAction)
             {
                 GD.PrintErr("Losing an in-progress endosymbiosis info on redo");
@@ -369,7 +373,7 @@ public partial class CellEditorComponent
         }
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoEndosymbiontPlaceAction(EndosymbiontPlaceActionData data)
     {
         if (!editedMicrobeOrganelles.Remove(data.PlacedOrganelle))

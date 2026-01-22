@@ -224,6 +224,11 @@ public class ModifyExistingSpecies : IRunStep
 
                     if (newPopulation > Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
                     {
+                        // Only apply a new name and colour to results that are actually kept
+                        MutationLogicFunctions.NameNewMicrobeSpecies(mutation.MutatedSpecies, mutation.ParentSpecies);
+                        MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutation.MutatedSpecies,
+                            mutation.ParentSpecies);
+
                         results.AddPossibleMutation(mutation.MutatedSpecies,
                             new KeyValuePair<Patch, long>(patch, newPopulation), mutation.AddType,
                             mutation.ParentSpecies);
@@ -301,19 +306,6 @@ public class ModifyExistingSpecies : IRunStep
         inputSpecies.Add(new Mutant(microbeSpecies, totalMP));
 
         GenerateMutations(microbeSpecies, miche!, 1);
-    }
-
-    private void SpeciesDependentPressures(Stack<SelectionPressure> dataReceiver, Miche targetMiche, Species species)
-    {
-        predatorPressuresTemporary.Clear();
-
-        PredatorsOf(predatorPressuresTemporary, targetMiche, species);
-
-        foreach (var predator in predatorPressuresTemporary)
-        {
-            // TODO: Make that weight a constant
-            dataReceiver.Push(new AvoidPredationSelectionPressure(predator, 5.0f));
-        }
     }
 
     /// <summary>
@@ -479,9 +471,9 @@ public class ModifyExistingSpecies : IRunStep
 
     private class MutationSorter(Patch patch, SimulationCache cache) : IComparer<Mutant>
     {
-        // This isn't the cleanest but this class is just optimized for performance so if someone forgets to set up
-        // this then bad things will happen
-        private IEnumerable<SelectionPressure> pressures = null!;
+        // This isn't the cleanest, but this class is just optimized for performance, so if someone forgets to set up
+        // this, then bad things will happen
+        private List<SelectionPressure> pressures = null!;
         private MicrobeSpecies baseSpecies = null!;
 
         public void Setup(MicrobeSpecies species, IEnumerable<SelectionPressure> selectionPressures)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Systems;
 
@@ -32,9 +33,11 @@ public partial class CellBodyPlanEditorComponent
     ///   selectable.
     ///   https://github.com/Revolutionary-Games/Thrive/issues/5863
     /// </summary>
-    private void HandleProcessList(IReadOnlyList<HexWithData<CellTemplate>> cells, EnergyBalanceInfoFull energyBalance,
-        IBiomeConditions biome)
+    private void HandleProcessList(EnergyBalanceInfoFull energyBalance, IBiomeConditions biome)
     {
+        // TODO: this used to have an unused "cells" parameter so figure out why it was added and if it should have
+        // done something
+
         // Empty list to later fill
         var processStatistics = new List<ProcessSpeedInformation>();
 
@@ -46,7 +49,7 @@ public partial class CellBodyPlanEditorComponent
         {
             newProcesses.Clear();
 
-            ProcessSystem.ComputeActiveProcessList(cellType.Key.Organelles, ref newProcesses);
+            ProcessSystem.ComputeActiveProcessList(cellType.Key.ModifiableOrganelles, ref newProcesses);
 
             for (int i = 0; i < newProcesses.Count; ++i)
             {
@@ -139,5 +142,66 @@ public partial class CellBodyPlanEditorComponent
         organismStatisticsPanel.ApplyLightLevelSelection();
 
         UpdateCancelButtonVisibility();
+    }
+
+    private void UpdateGrowthOrderUI()
+    {
+        if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
+        {
+            growthOrderGUI.UpdateItems(
+                growthOrderGUI.ApplyOrderingToItems(editedMicrobeCells.AsModifiable().Select(o => o.Data!)));
+        }
+
+        UpdateGrowthOrderNumbers();
+    }
+
+    private void OnResetGrowthOrderPressed()
+    {
+        growthOrderGUI.UpdateItems(editedMicrobeCells.AsModifiable().Select(o => o.Data!));
+
+        UpdateGrowthOrderNumbers();
+    }
+
+    private void UpdateGrowthOrderNumbers()
+    {
+        if (!ShowGrowthOrder)
+            return;
+
+        UpdateFloatingLabelConfiguration(GrowthOrderFloatingNumbers());
+    }
+
+    private IEnumerable<(Vector3 Position, string Text, Color TextColor)> GrowthOrderFloatingNumbers()
+    {
+        var orderList = growthOrderGUI.GetCurrentOrder();
+        var orderListCount = orderList.Count;
+
+        var cells = editedMicrobeCells;
+        var cellCount = cells.Count;
+
+        for (int i = 0; i < cellCount; ++i)
+        {
+            var cell = cells[i];
+
+            // TODO: fallback numbers if item not found?
+            var order = -1;
+
+            for (int j = 0; j < orderListCount; ++j)
+            {
+                if (ReferenceEquals(orderList[j], cell.Data!))
+                {
+                    // +1 to be user readable numbers
+                    order = j + 1;
+                    break;
+                }
+            }
+
+            yield return (Hex.AxialToCartesian(cell.Position), order.ToString(),
+                wrongGrowthOrderCells.Contains(cell.Position) ? Colors.Red : Colors.White);
+        }
+    }
+
+    private void OnGrowthOrderCoordinatesToggled(bool show)
+    {
+        growthOrderGUI.ShowCoordinates = show;
     }
 }

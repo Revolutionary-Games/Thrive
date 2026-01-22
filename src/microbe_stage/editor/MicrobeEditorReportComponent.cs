@@ -4,15 +4,16 @@ using System.Globalization;
 using System.Linq;
 using AutoEvo;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   The report tab of the microbe editor
 /// </summary>
 [IgnoreNoMethodsTakingInput]
-[SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn", UsesEarlyResolve = false)]
 public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportData>
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private readonly NodePath scaleReference = new("scale");
 
 #pragma warning disable CA2213
@@ -33,6 +34,9 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     [Export]
     private Container foodChainSubtab = null!;
+
+    [Export]
+    private DraggableScrollContainer foodChainScrollContainer = null!;
 
     [Export]
     private FoodChainDisplay foodChainData = null!;
@@ -96,7 +100,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     private PackedScene speciesResultButtonScene = null!;
 #pragma warning restore CA2213
 
-    [JsonProperty]
     private ReportSubtab selectedReportSubtab = ReportSubtab.AutoEvo;
 
     private bool queuedAutoEvoReportUpdate;
@@ -112,6 +115,11 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         Timeline,
         FoodChain,
     }
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.MicrobeEditorReportComponent;
 
     private Patch PatchToShowInfoFor => currentlyDisplayedPatch ?? Editor.CurrentPatch;
 
@@ -141,9 +149,27 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         RegisterTooltips();
     }
 
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(SERIALIZATION_VERSION_BASE);
+        base.WritePropertiesToArchive(writer);
+
+        writer.Write((int)selectedReportSubtab);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
+
+        selectedReportSubtab = (ReportSubtab)reader.ReadInt32();
+    }
+
     public override void OnFinishEditing()
     {
-        // Report has no effect so there's nothing to do here
+        // Report has no effect, so there's nothing to do here
     }
 
     public void UpdateReportTabPatchSelector()
@@ -189,11 +215,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             }
         }
 
-        // Refresh this expensive graphical report only if it is visible
-        if (selectedReportSubtab == ReportSubtab.FoodChain && autoEvoResults != null)
-        {
-            foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor, PlayerSpecies);
-        }
+        UpdateFoodChainIfNecessary(autoEvoResults);
     }
 
     public void UpdatePatchDetails(Patch currentOrSelectedPatch, Patch? selectedPatch = null)
@@ -269,10 +291,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         {
             queuedAutoEvoReportUpdate = true;
 
-            if (selectedReportSubtab == ReportSubtab.FoodChain)
-            {
-                foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor, PlayerSpecies);
-            }
+            UpdateFoodChainIfNecessary(autoEvoResults);
         }
 
         showTextReportButton.Visible = getTextReport != null;
@@ -364,6 +383,24 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     private void UpdateReportTabPatchName()
     {
         reportTabPatchName.Text = PatchToShowInfoFor.Name.ToString();
+    }
+
+    private void UpdateFoodChainIfNecessary(RunResults? autoEvoResults)
+    {
+        if (selectedReportSubtab != ReportSubtab.FoodChain || autoEvoResults == null)
+            return;
+
+        foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor, PlayerSpecies);
+
+        Invoke.Instance.Queue(CenterFoodChainScroll);
+    }
+
+    private void CenterFoodChainScroll()
+    {
+        var center = foodChainData.CalculateAverageNodePosition() - foodChainScrollContainer.Size * 0.5f;
+
+        foodChainScrollContainer.ScrollHorizontal = (int)center.X;
+        foodChainScrollContainer.ScrollVertical = (int)center.Y;
     }
 
     /// <summary>
@@ -652,10 +689,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
                 foodChainSubtab.Show();
                 foodChainSubtabButton.ButtonPressed = true;
 
-                if (autoEvoResults != null)
-                {
-                    foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor, PlayerSpecies);
-                }
+                UpdateFoodChainIfNecessary(autoEvoResults);
 
                 break;
             }
@@ -685,10 +719,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             }
         }
 
-        if (selectedReportSubtab == ReportSubtab.FoodChain && autoEvoResults != null)
-        {
-            foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor, PlayerSpecies);
-        }
+        UpdateFoodChainIfNecessary(autoEvoResults);
     }
 
     /// <summary>

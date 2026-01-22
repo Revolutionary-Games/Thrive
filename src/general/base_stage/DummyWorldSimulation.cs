@@ -1,26 +1,31 @@
 ﻿using System;
-using DefaultEcs;
-using DefaultEcs.Command;
+using Arch.Buffer;
+using Arch.Core;
+using SharedBase.Archive;
 
 /// <summary>
 ///   For use in the prototypes not yet converted to using world simulations
 /// </summary>
 public class DummyWorldSimulation : IWorldSimulation
 {
-    public World EntitySystem { get; } = new();
+    public World EntitySystem { get; } = World.Create();
     public bool Processing { get; set; }
     public float WorldTimeScale { get; set; } = 1;
+
+    public ushort CurrentArchiveVersion => 1;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.DummyWorldSimulation;
+    public bool CanBeReferencedInArchive => false;
 
     public void ResolveNodeReferences()
     {
     }
 
-    public Entity CreateEmptyEntity()
+    public Entity CreateEntityDeferred(CommandBuffer recorder, ComponentType[] types)
     {
         throw new NotSupportedException("Dummy simulation doesn't support adding entities");
     }
 
-    public EntityRecord CreateEntityDeferred(WorldRecord activeRecording)
+    public Entity CreateEmptyEntity(ComponentType[] types)
     {
         throw new NotSupportedException("Dummy simulation doesn't support adding entities");
     }
@@ -49,18 +54,16 @@ public class DummyWorldSimulation : IWorldSimulation
         return false;
     }
 
-    public EntityCommandRecorder StartRecordingEntityCommands()
-    {
-        // Technically we could support this but we'd need actually some logic in the process method of ours
-        throw new NotSupportedException("Dummy simulation doesn't support deferred commands");
-    }
-
-    public WorldRecord GetRecorderWorld(EntityCommandRecorder recorder)
+    CommandBuffer IWorldSimulation.StartRecordingEntityCommands()
     {
         throw new NotSupportedException("Dummy simulation doesn't support deferred commands");
     }
 
-    public void FinishRecordingEntityCommands(EntityCommandRecorder recorder)
+    public void FinishRecordingEntityCommands(CommandBuffer recorder)
+    {
+    }
+
+    public void OnFailedRecordingEntityCommands(CommandBuffer recorder)
     {
     }
 
@@ -77,6 +80,16 @@ public class DummyWorldSimulation : IWorldSimulation
     public bool HasSystemsWithPendingOperations()
     {
         return false;
+    }
+
+    public float GetAndResetTrackedSimulationSpeedRatio()
+    {
+        return 1;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        // Nothing to write
     }
 
     public void Dispose()

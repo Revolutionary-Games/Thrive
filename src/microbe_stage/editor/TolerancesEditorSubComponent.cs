@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Handles showing tolerance adaptation controls (sliders) and applying their changes
 /// </summary>
-[JsonObject(MemberSerialization.OptIn)]
-[DeserializedCallbackTarget]
 [IgnoreNoMethodsTakingInput]
-[SceneLoadedClass("res://src/microbe_stage/editor/TolerancesEditorSubComponent.tscn", UsesEarlyResolve = false)]
-public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEditorData>
+public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEditorData>, IArchiveUpdatable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     [Export]
     [ExportCategory("Config")]
     public bool ShowZeroModifiers;
@@ -160,13 +159,18 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     [Signal]
     public delegate void OnTolerancesChangedEventHandler();
 
-    [JsonProperty]
     public EnvironmentalTolerances CurrentTolerances { get; private set; } = new();
 
-    [JsonIgnore]
     public override bool IsSubComponent => true;
 
     public float MPDisplayCostMultiplier { get; set; } = 1;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.TolerancesEditorSubComponent;
+
+    public bool CanBeSpecialReference => true;
 
     public override void _Ready()
     {
@@ -184,6 +188,24 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         base.Init(owningEditor, fresh);
 
         wasFreshInit = fresh;
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(SERIALIZATION_VERSION_BASE);
+        base.WritePropertiesToArchive(writer);
+
+        writer.WriteObjectProperties(CurrentTolerances);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
+
+        reader.ReadObjectProperties(CurrentTolerances);
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -211,7 +233,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     public override void OnFinishEditing()
     {
         // Apply the tolerances
-        Editor.EditedBaseSpecies.Tolerances.CopyFrom(CurrentTolerances);
+        Editor.EditedBaseSpecies.ModifiableTolerances.CopyFrom(CurrentTolerances);
     }
 
     public void OnDataTolerancesDependOnChanged()
@@ -226,7 +248,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         ResetToTolerances(Editor.EditedBaseSpecies.Tolerances);
     }
 
-    public void ResetToTolerances(EnvironmentalTolerances tolerances)
+    public void ResetToTolerances(IReadOnlyEnvironmentalTolerances tolerances)
     {
         CurrentTolerances.CopyFrom(tolerances);
 
@@ -502,8 +524,17 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (!TriggerChangeIfPossible())
         {
-            // Rollback value if not enough MP
-            temperatureSlider.Value = CurrentTolerances.PreferredTemperature;
+            var extremeTemp = CalculateSliderExtremeValue(Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_INVERTED,
+                value, CurrentTolerances.PreferredTemperature, temperatureSlider.Step);
+
+            reusableTolerances.PreferredTemperature = extremeTemp;
+            temperatureSlider.Value = extremeTemp;
+
+            // Attempt the previous rollback if failed again.
+            if (!TriggerChangeIfPossible())
+            {
+                temperatureSlider.Value = CurrentTolerances.PreferredTemperature;
+            }
         }
 
         automaticallyChanging = false;
@@ -522,7 +553,18 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (!TriggerChangeIfPossible())
         {
-            temperatureToleranceRangeSlider.Value = CurrentTolerances.TemperatureTolerance;
+            var extremeTempTolerance = CalculateSliderExtremeValue(
+                Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE_INVERTED,
+                value, CurrentTolerances.TemperatureTolerance, temperatureToleranceRangeSlider.Step);
+
+            reusableTolerances.TemperatureTolerance = extremeTempTolerance;
+            temperatureToleranceRangeSlider.Value = extremeTempTolerance;
+
+            // Attempt the previous rollback if failed again.
+            if (!TriggerChangeIfPossible())
+            {
+                temperatureToleranceRangeSlider.Value = CurrentTolerances.TemperatureTolerance;
+            }
         }
 
         automaticallyChanging = false;
@@ -535,10 +577,10 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         automaticallyChanging = true;
 
-        var previousRange = Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum);
-
         if (keepSamePressureFlexibility)
         {
+            var previousRange = Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum);
+
             // Update the other slider to keep the current flexibility range
             var maxShouldBe = value + previousRange;
 
@@ -560,26 +602,28 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         }
         else
         {
+            // Min can't go above the max
+            if (value > pressureMaxSlider.Value)
+            {
+                value = (float)pressureMaxSlider.Value;
+            }
+
             var newRange = Math.Abs(pressureMaxSlider.Value - value);
 
             // Ensure flexibility doesn't go above the configured limit
-            if (newRange > previousRange && newRange > Constants.TOLERANCE_PRESSURE_RANGE_MAX)
+            if (newRange > Constants.TOLERANCE_PRESSURE_RANGE_MAX)
             {
-                pressureMinSlider.Value = CurrentTolerances.PressureMinimum;
+                value = CurrentTolerances.PressureMaximum - Constants.TOLERANCE_PRESSURE_RANGE_MAX;
+
+                TryApplyPressureChange(value, (float)pressureMaxSlider.Value, true, true);
 
                 invalidChangeAnimation.Play(tooWideRangeName);
                 automaticallyChanging = false;
                 return;
             }
-
-            // Min can't go above the max
-            if (value > pressureMaxSlider.Value)
-            {
-                pressureMaxSlider.Value = value;
-            }
         }
 
-        TryApplyPressureChange(value, (float)pressureMaxSlider.Value);
+        TryApplyPressureChange(value, (float)pressureMaxSlider.Value, true);
         automaticallyChanging = false;
     }
 
@@ -590,10 +634,10 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         automaticallyChanging = true;
 
-        var previousRange = Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum);
-
         if (keepSamePressureFlexibility)
         {
+            var previousRange = Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum);
+
             // Update the other slider to keep the current flexibility range
             var minShouldBe = value - previousRange;
 
@@ -613,26 +657,26 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         }
         else
         {
-            var newRange = Math.Abs(value - pressureMinSlider.Value);
-
-            if (newRange > previousRange && newRange > Constants.TOLERANCE_PRESSURE_RANGE_MAX)
-            {
-                pressureMaxSlider.Value = CurrentTolerances.PressureMaximum;
-
-                invalidChangeAnimation.Play(tooWideRangeName);
-
-                automaticallyChanging = false;
-                return;
-            }
-
             // Max can't go below the min
             if (value < pressureMinSlider.Value)
             {
-                pressureMinSlider.Value = value;
+                value = (float)pressureMinSlider.Value;
+            }
+
+            var newRange = Math.Abs(value - pressureMinSlider.Value);
+            if (newRange > Constants.TOLERANCE_PRESSURE_RANGE_MAX)
+            {
+                value = CurrentTolerances.PressureMinimum + Constants.TOLERANCE_PRESSURE_RANGE_MAX;
+
+                TryApplyPressureChange((float)pressureMinSlider.Value, value, false, true);
+
+                invalidChangeAnimation.Play(tooWideRangeName);
+                automaticallyChanging = false;
+                return;
             }
         }
 
-        TryApplyPressureChange((float)pressureMinSlider.Value, value);
+        TryApplyPressureChange((float)pressureMinSlider.Value, value, false);
         automaticallyChanging = false;
     }
 
@@ -641,17 +685,71 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         keepSamePressureFlexibility = keepCurrent;
     }
 
-    private void TryApplyPressureChange(float min, float max)
+    private void TryApplyPressureChange(float min, float max, bool minimumChanging, bool force = false)
     {
         reusableTolerances ??= new EnvironmentalTolerances();
         reusableTolerances.CopyFrom(CurrentTolerances);
         reusableTolerances.PressureMinimum = min;
         reusableTolerances.PressureMaximum = max;
 
-        if (!TriggerChangeIfPossible())
+        if (force || !TriggerChangeIfPossible())
         {
-            pressureMinSlider.Value = CurrentTolerances.PressureMinimum;
-            pressureMaxSlider.Value = CurrentTolerances.PressureMaximum;
+            var pressureRange = max - min;
+
+            if (keepSamePressureFlexibility)
+            {
+                var extremeMin = CalculateSliderExtremeValue(Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_INVERTED,
+                    min,
+                    CurrentTolerances.PressureMinimum,
+                    pressureMinSlider.Step);
+
+                var extremeMax = extremeMin + pressureRange;
+
+                reusableTolerances.PressureMinimum = extremeMin;
+                reusableTolerances.PressureMaximum = extremeMax;
+
+                pressureMinSlider.Value = extremeMin;
+                pressureMaxSlider.Value = extremeMax;
+            }
+            else
+            {
+                if (minimumChanging)
+                {
+                    var extremeMin = CalculateSliderExtremeValue(
+                        Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE_INVERTED,
+                        min, CurrentTolerances.PressureMinimum,
+                        pressureMinSlider.Step);
+
+                    extremeMin = Math.Clamp(extremeMin, max - Constants.TOLERANCE_PRESSURE_RANGE_MAX, max);
+
+                    pressureMinSlider.Value = extremeMin;
+                    pressureMaxSlider.Value = max;
+                    reusableTolerances.PressureMinimum = extremeMin;
+                    reusableTolerances.PressureMaximum = max;
+                }
+                else
+                {
+                    var extremeMax = CalculateSliderExtremeValue(
+                        Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE_INVERTED,
+                        max, CurrentTolerances.PressureMaximum,
+                        pressureMaxSlider.Step);
+
+                    extremeMax = Math.Clamp(extremeMax, min, min + Constants.TOLERANCE_PRESSURE_RANGE_MAX);
+
+                    pressureMinSlider.Value = min;
+                    pressureMaxSlider.Value = extremeMax;
+
+                    reusableTolerances.PressureMinimum = min;
+                    reusableTolerances.PressureMaximum = extremeMax;
+                }
+            }
+
+            // Attempt the previous rollback if failed again.
+            if (!TriggerChangeIfPossible())
+            {
+                pressureMinSlider.Value = CurrentTolerances.PressureMinimum;
+                pressureMaxSlider.Value = CurrentTolerances.PressureMaximum;
+            }
         }
     }
 
@@ -668,7 +766,17 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (!TriggerChangeIfPossible())
         {
-            oxygenResistanceSlider.Value = CurrentTolerances.OxygenResistance;
+            var extremeResistance = CalculateSliderExtremeValue(Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN_INVERTED,
+                value, CurrentTolerances.OxygenResistance, oxygenResistanceSlider.Step);
+
+            reusableTolerances.OxygenResistance = extremeResistance;
+            oxygenResistanceSlider.Value = extremeResistance;
+
+            // Attempt the previous rollback if failed again.
+            if (!TriggerChangeIfPossible())
+            {
+                oxygenResistanceSlider.Value = CurrentTolerances.OxygenResistance;
+            }
         }
 
         automaticallyChanging = false;
@@ -687,10 +795,42 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (!TriggerChangeIfPossible())
         {
-            uvResistanceSlider.Value = CurrentTolerances.UVResistance;
+            var extremeResistance = CalculateSliderExtremeValue(Constants.TOLERANCE_CHANGE_MP_PER_UV_INVERTED,
+                value, CurrentTolerances.UVResistance, uvResistanceSlider.Step);
+
+            reusableTolerances.UVResistance = extremeResistance;
+            uvResistanceSlider.Value = extremeResistance;
+
+            // Attempt the previous rollback if failed again.
+            if (!TriggerChangeIfPossible())
+            {
+                uvResistanceSlider.Value = CurrentTolerances.UVResistance;
+            }
         }
 
         automaticallyChanging = false;
+    }
+
+    /// <summary>
+    ///   Calculates the extremeties of a slider movement when cost is the limiting factor.
+    /// </summary>
+    /// <param name="costPerAction">How much MP does changing this value cost? Inverted</param>
+    /// <param name="sliderValue">What the slider value currently is at</param>
+    /// <param name="originalValue">What the slider value was originally at</param>
+    /// <param name="step">The size of each jump on the slider</param>
+    /// <returns>The value the slider and parameter should now be at.</returns>
+    private float CalculateSliderExtremeValue(double costPerAction, float sliderValue, float originalValue,
+        double step)
+    {
+        var pointsLeft = Editor.MutationPoints;
+        var numActions = Math.Abs(Math.Floor((pointsLeft / step) * costPerAction) * step);
+
+        if (sliderValue == originalValue)
+            return originalValue;
+        if (sliderValue < originalValue)
+            return originalValue - (float)numActions;
+
+        return originalValue + (float)numActions;
     }
 
     private bool TriggerChangeIfPossible()
@@ -949,7 +1089,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         temperatureToleranceMarker.OptimalValue = (patchTemperature - (float)temperatureSlider.MinValue)
             / (float)(temperatureSlider.MaxValue - temperatureSlider.MinValue);
 
-        float pressureRangeFraction = (patchPressure - (float)pressureMaxSlider.MinValue)
+        float pressureRangeFraction =
+            (patchPressure - (float)pressureMaxSlider.MinValue)
             / (float)(pressureMaxSlider.MaxValue - pressureMaxSlider.MinValue);
 
         minPressureToleranceMarker.OptimalValue = pressureRangeFraction;
@@ -964,7 +1105,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         uvToleranceMarker.OptimalValue = requiredUVResistance;
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoToleranceChangeAction(ToleranceActionData data)
     {
         CurrentTolerances.CopyFrom(data.NewTolerances);
@@ -980,7 +1121,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         OnChanged();
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoToleranceChangeAction(ToleranceActionData data)
     {
         CurrentTolerances.CopyFrom(data.OldTolerances);

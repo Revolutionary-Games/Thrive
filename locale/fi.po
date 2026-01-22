@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-01 16:03+0300\n"
-"PO-Revision-Date: 2025-05-25 15:00+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-01-22 16:04+0200\n"
+"PO-Revision-Date: 2026-01-09 12:55+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.15.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -57,18 +57,17 @@ msgstr "Abyssaalivyöhyke"
 msgid "ACCEPT"
 msgstr "Hyväksy"
 
-#, fuzzy
 msgid "ACHIEVEMENTS"
-msgstr "Perus liikkuminen"
+msgstr "Saavutukset"
 
 msgid "ACHIEVEMENTS_TOTAL"
-msgstr ""
+msgstr "Saavutukset {0} / {1}"
 
 msgid "ACHIEVEMENT_ACHIEVED"
-msgstr ""
+msgstr "Avattu"
 
 msgid "ACHIEVEMENT_LOCKED"
-msgstr ""
+msgstr "Lukittu"
 
 msgid "ACTION_AWAKEN"
 msgstr "Herää ({0:F1} / {1:F1})"
@@ -106,9 +105,8 @@ msgstr ""
 "Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
 "Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
 
-#, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr "Auto-evon suorittaminen epäonnistui"
+msgstr "Lisätarkistukset havaitsivat ongelman: {0}"
 
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Lisää uusi syöte"
@@ -162,9 +160,8 @@ msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Laji
 msgid "ALL"
 msgstr "Kaikki"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
-msgstr "on saanut mutaation"
+msgstr "Salli lajin vaihto sukupuuton sattuessa"
 
 #, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
@@ -199,6 +196,9 @@ msgstr "Ammoniakki"
 
 msgid "AMMONIA_COST"
 msgstr "Ammoniakki-kustannus:"
+
+msgid "AMMONIA_LEVELS"
+msgstr "Ammoniakin määrä"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Paikat automaattitallenuksille:"
@@ -272,8 +272,8 @@ msgstr "Nousemusvaihe"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Modin assembly-luokka on vaadittu kun assembly on määritelty"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr "Modin assembly on vaadittu kun automattinen Harmony on aktiivinen"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
+msgstr "Modin Assembly on vaadittu kun modin luokan nimi on määritelty"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Oleta, että prosessorissa on hyperthreading käytössä"
@@ -301,21 +301,19 @@ msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr "Näytä / piilota ympäristö ja yhdisteet"
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
-msgstr ""
+msgstr "Ilman ulkoisia resursseja"
 
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
-msgstr ""
+msgstr "Ilman glukoosia"
 
-#, fuzzy
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
-msgstr "Rikkivety"
+msgstr "Ilman rikkivetyä"
 
-#, fuzzy
 msgid "ATP_BALANCE_WITHOUT_IRON"
-msgstr "ATP Tasapaino"
+msgstr "Ilman rautaa"
 
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
-msgstr ""
+msgstr "Kaikkien vaadittujen yhdisteiden ollessa saatavilla"
 
 msgid "ATP_PRODUCTION"
 msgstr "ATP:n tuotanto"
@@ -343,9 +341,8 @@ msgstr "automaattinen"
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
-#, fuzzy
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr "{0} populaatio muuttui {1} syystä: {2}"
+msgstr "{0} populaatio muuttui {1} alueella {2} syystä: {3}"
 
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evon ennuste"
@@ -355,16 +352,14 @@ msgstr ""
 "Tämä paneeli näyttää ennusteen muokatun lajin populaatiolle auto-evon mukaan.\n"
 "Auto-evo ajaa populaatiosimulaatiota, joka oman suoriutumisen lisäksi vaikuttaa lajisi populaatioon."
 
-#, fuzzy
 msgid "AUTO-EVO_RESULTS_TITLE"
-msgstr "Auto-evo tulokset:"
+msgstr "Auto-evo tulokset"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% valmis. {1:n0}/{2:n0} vaihetta."
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
-msgstr "Mutaatiohinnan kerroin"
+msgstr "Auto-evon vaikutuksen vahvuus pelaajaan"
 
 #, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
@@ -378,13 +373,11 @@ msgstr "Tallenna automaattisesti"
 msgid "AUTO_EVO"
 msgstr "Auto-evo"
 
-#, fuzzy
 msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
-msgstr "suorituksen status:"
+msgstr "Käytä auto-evon tutkijassa"
 
-#, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
-msgstr "suorituksen status:"
+msgstr "Auto-evon tutkija -työkalu"
 
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evon suorittaminen epäonnistui"
@@ -395,20 +388,17 @@ msgstr ""
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo tulokset:"
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
-msgstr "Auto-evo tulokset:"
+msgstr "Maailmanlaajuiset tulokset"
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
-msgstr "Auto-evo tulokset:"
+msgstr "Valitun alueen tulokset"
 
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "suorituksen status:"
 
-#, fuzzy
 msgid "AUTO_EVO_STATUS_COLON"
-msgstr "suorituksen status:"
+msgstr "Auto-evon tila:"
 
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Liiku automaattisesti eteenpäin"
@@ -421,6 +411,24 @@ msgstr "Saatavilla olevat rakennusprojektit"
 
 msgid "AVAILABLE_MODS"
 msgstr "Saatavilla Olevat Modit"
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr "Pinnan CO2 määrän keskiarvo"
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr "Pinnan auringonvalon keskiarvo"
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr ""
 
 msgid "AWAKENING_STAGE"
 msgstr "Havahtumisvaihe"
@@ -535,11 +543,25 @@ msgstr "Tulokset:"
 msgid "BEST_PATCH_COLON"
 msgstr "Lajit:"
 
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr ""
+
 msgid "BIG_IRON_CHUNK"
 msgstr "Iso rautalohkare"
 
 #, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Iso rautalohkare"
+
+#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Iso rautalohkare"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "Iso rautalohkare"
 
 msgid "BILLION_ABBREVIATION"
@@ -652,6 +674,9 @@ msgstr "Soluelimen tyyppiä ei voi poistaa"
 
 msgid "CANNOT_ENGULF"
 msgstr "Ei voi niellä"
+
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
@@ -915,6 +940,10 @@ msgstr "Rantavyöhyke"
 msgid "COLLISION_SHAPE"
 msgstr "Näytä fysiikan törmäysmuodot"
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
 msgid "COLOUR"
 msgstr "Väri"
 
@@ -968,6 +997,9 @@ msgstr "Lisää uusi syöte"
 #, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Lisää uusi syöte"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr ""
 
 #, fuzzy
 msgid "COMMON_ABILITIES"
@@ -1074,6 +1106,29 @@ msgstr "Näytä / piilota ympäristö ja yhdisteet"
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Yhdistepilvet"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Keskiverto"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Yhdisteiden tasapainopisteet"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Yhdistepilvet"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Yhdisteiden tasapainopisteet"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0}:n kulutus"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1376,6 +1431,10 @@ msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (sininen-keltainen)"
 
 #, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "{0}:n kulutus"
+
+#, fuzzy
 msgid "CPU_THREADS"
 msgstr "Taustasuorittajia:"
 
@@ -1488,8 +1547,28 @@ msgstr "Jatka"
 msgid "CURRENT_DEVELOPERS"
 msgstr "Nykyiset kehittäjät"
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "NYKYINEN SIJAINTI"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "NYKYINEN SIJAINTI"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "NYKYINEN SIJAINTI"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "NYKYINEN SIJAINTI"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Näytä kykypalkki"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "Näytä kykypalkki"
 
 #, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
@@ -1571,6 +1650,10 @@ msgstr "Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti poista
 
 msgid "DEATH"
 msgstr "kuolema"
+
+#, fuzzy
+msgid "DEBUG_CONSOLE"
+msgstr "Virheenkorjauspaneeli"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1838,6 +1921,10 @@ msgstr "Näytä kykypalkki"
 msgid "DISPLAY_PART_NAMES"
 msgstr "Näytä kykypalkki"
 
+#, fuzzy
+msgid "DISPLAY_SELECTION"
+msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
+
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Tasaisesti jakautunut ympäristössä esiintyvä ruuanlähde: {0}"
 
@@ -1992,6 +2079,15 @@ msgstr ""
 "Kun olet valmis jatkamaan, paina \"jatka\" painiketta alhaalla oikealla."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"Tämä on solueditori, jossa voit jalostaa lajiasi käyttämällä mutaatiopisteitä (MP). Jokaisella sukupolvella sinulla on 100MP:tä käytettävänä, eivätkä ne siirry seuraavalle sukupolvelle - älä siis turhaan säästä niitä!\n"
+"\n"
+"Hexa(goni) ruudun keskellä kuvastaa soluasi, joka muodostuu toistaiseksi yhdestä solulima-osasta.\n"
+"\n"
+"Valitse soluelinosa vasemmasta paneelista jatkaaksesi. Sitten klikkaa vasemmalla hiiren painikkeella hexaa, johon haluat osan sijoittaa. Voit kiertää osia painamalla A tai D."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 "Tämä on solueditori, jossa voit jalostaa lajiasi käyttämällä mutaatiopisteitä (MP). Jokaisella sukupolvella sinulla on 100MP:tä käytettävänä, eivätkä ne siirry seuraavalle sukupolvelle - älä siis turhaan säästä niitä!\n"
@@ -1999,6 +2095,17 @@ msgstr ""
 "Hexa(goni) ruudun keskellä kuvastaa soluasi, joka muodostuu toistaiseksi yhdestä solulima-osasta.\n"
 "\n"
 "Valitse soluelinosa vasemmasta paneelista jatkaaksesi. Sitten klikkaa vasemmalla hiiren painikkeella hexaa, johon haluat osan sijoittaa. Voit kiertää osia painamalla A tai D."
+
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr ""
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"\n"
+"Elämä.\n"
+"\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"\n"
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
 
 #, fuzzy
 msgid "EFFECTIVE_VALUE"
@@ -2115,6 +2222,10 @@ msgstr "{0}: +{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
 
+#, fuzzy
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr "Yhdistepilvet"
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energiaa {0} jota käytetään {1}"
 
@@ -2126,6 +2237,9 @@ msgid "ENERGY_SOURCES"
 msgstr "Energianlähteet:"
 
 msgid "ENERGY_SUMMARY_LINE"
+msgstr ""
+
+msgid "ENGULF_CELL_OR_CHUNK"
 msgstr ""
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
@@ -2238,6 +2352,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Lisää uusi syöte"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Lisää uusi syöte"
 
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
@@ -2510,6 +2632,10 @@ msgstr "Poista Paikallinen Data"
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "Jatka"
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "Varastotila:"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Virhe: {0}"
 
@@ -2542,6 +2668,14 @@ msgstr ""
 #, fuzzy
 msgid "FOSSILISE"
 msgstr "Sessiili"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Auto-evon suorittaminen epäonnistui"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Pistä muita soluja tällä."
 
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
@@ -2632,9 +2766,8 @@ msgstr "Paina kumoamispainiketta editorissa korjataksesi tehdyn virheen"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Paina kumoamispainiketta editorissa korjataksesi tehdyn virheen"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Sukupolvi:"
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
 
 #, fuzzy
 msgid "GENERATIONS"
@@ -2705,6 +2838,10 @@ msgstr "Glukoosi"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glukoosin pitoisuudet ovat tippuneet rajusti!"
 
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}m merenpinnan alapuolella"
+
 msgid "GLYCOLYSIS"
 msgstr "Glykolyysi"
 
@@ -2714,6 +2851,9 @@ msgstr "Kuolemattomuus"
 #, fuzzy
 msgid "GOD_TOOLS_TITLE"
 msgstr "Lisää uusi syöte"
+
+msgid "GOING_NUCLEAR"
+msgstr ""
 
 #, fuzzy
 msgid "GOOGLY_EYE_CELL"
@@ -2732,6 +2872,10 @@ msgstr "{0} {1}"
 msgid "GRAPHICS"
 msgstr "Grafiikat"
 
+#, fuzzy
+msgid "GRAPHICS_PRESET"
+msgstr "Grafiikkatiimi"
+
 msgid "GRAPHICS_TEAM"
 msgstr "Grafiikkatiimi"
 
@@ -2744,6 +2888,14 @@ msgstr "Käyttöliittymä"
 
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr "(suuremmat arvot lisäävät suorituskykyä)"
+
+#, fuzzy
+msgid "GUI_SCALE_OPTION"
+msgstr "Sulje asetukset?"
 
 #, fuzzy
 msgid "GUI_TAB_NAVIGATION"
@@ -2839,6 +2991,10 @@ msgid "HYDROGEN_SULFIDE"
 msgstr "Rikkivety"
 
 #, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
+msgstr "Rikkivety"
+
+#, fuzzy
 msgid "ICESHARD"
 msgstr "Jääsirpale"
 
@@ -2851,6 +3007,9 @@ msgstr ""
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
@@ -2858,6 +3017,9 @@ msgid "ID_NUMBER"
 msgstr "ID-Numero"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 #, fuzzy
@@ -2981,6 +3143,14 @@ msgstr ""
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Laita peli tauolle"
 
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Aktivoi nousemusportti"
 
@@ -3083,6 +3253,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Rauta"
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 #, fuzzy
 msgid "IRON_OXIDATION"
 msgstr "Lahjoitukset"
@@ -3100,18 +3273,6 @@ msgstr "konsentraatiosta riippuen"
 
 msgid "JANUARY"
 msgstr "Tammikuu"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON-virheenkäsittelymoodi:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Aina"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automaattisesti"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Ei koskaan"
 
 msgid "JULY"
 msgstr "Heinäkuu"
@@ -3665,6 +3826,10 @@ msgid "MACROSCOPIC"
 msgstr "Muutu Makroskooppiseksi ({0}/{1})"
 
 #, fuzzy
+msgid "MACROSCOPIC_EDITOR"
+msgstr "Ladataan mikrobieditoria"
+
+#, fuzzy
 msgid "MACROSCOPIC_STAGE"
 msgstr ""
 "Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
@@ -3675,12 +3840,25 @@ msgstr ""
 "\n"
 "Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
 
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr ""
+"Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
+"Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Kemosynteesi"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "Avaa editorin lukitus"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
-#, fuzzy
 msgid "MAP"
-msgstr "ATP"
+msgstr "kartta"
 
 msgid "MARCH"
 msgstr "Maaliskuu"
@@ -3831,6 +4009,10 @@ msgstr ""
 msgid "MICHE_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "[u]{0}[/u] jakautui [u]{1}[/u]:sta uudeksi lajiksi lajin valintapaineista johtuen"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3854,8 +4036,16 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Lajin {0} saalistus"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Lisääntyminen:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
+msgstr "Lajin {0} saalistus"
 
 msgid "MICHE_TREE"
 msgstr ""
@@ -3889,6 +4079,10 @@ msgstr "Mikrobieditori"
 #, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr "Statistiikkaa organismista"
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
+msgstr "Peruuta nykyinen toimenpide"
 
 msgid "MICROBE_EDITOR"
 msgstr "Mikrobieditori"
@@ -4115,6 +4309,17 @@ msgstr ""
 "\n"
 "Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
 
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr ""
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"\n"
+"Elämä.\n"
+"\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"\n"
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
+
 msgid "MIDDLE_MOUSE"
 msgstr "Hiiren keskimmäinen painike"
 
@@ -4238,6 +4443,10 @@ msgstr "Vaihda tyyppiä"
 msgid "MODS"
 msgstr "Modit"
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Ei käytössä"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4271,9 +4480,6 @@ msgstr ""
 
 msgid "MOD_AUTHOR"
 msgstr "Modin Tekijä:"
-
-msgid "MOD_AUTO_HARMONY"
-msgstr ""
 
 #, fuzzy
 msgid "MOD_CREATION_FAILED"
@@ -4355,6 +4561,13 @@ msgstr "Modin Lähettäjä"
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Versio:"
+
+#, fuzzy
+msgid "MONITOR_AUTO"
+msgstr "Modin Tekijä:"
+
+msgid "MONITOR_IDENTIFIER"
+msgstr ""
 
 msgid "MORE_INFO"
 msgstr "Näytä Lisää Tietoa"
@@ -4659,6 +4872,10 @@ msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Perus liikkuminen"
 
 #, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Rikkivety"
+
+#, fuzzy
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "Käänteisesti skaalattu"
 
@@ -4691,6 +4908,10 @@ msgstr "Tapahtumia ei tallennettu"
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Avaa tallennusten kansio"
+
+#, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "Vahvista poistuminen"
 
 #, fuzzy
 msgid "NO_MODS_ENABLED"
@@ -4959,6 +5180,10 @@ msgid "OUR_WIKI"
 msgstr "Wikimme"
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Peruutettu."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "Peruutettu."
 
@@ -5039,6 +5264,10 @@ msgstr "Siirrä kameraa ylöspäin"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Entiset kehittäjät"
+
+#, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "{0} {1}"
 
 #, fuzzy
 msgid "PATCH_COLON"
@@ -5151,6 +5380,10 @@ msgstr "Fosfaatti"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfaatti"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Fosfaatti"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosynteesi"
 
@@ -5176,6 +5409,10 @@ msgstr "Avaa lokien kansio"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Planeetan satunnainen lähtöarvo"
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Statistiikkaa"
 
 #, fuzzy
 msgid "PLAYER"
@@ -5254,6 +5491,30 @@ msgstr "Lajin {0} saalistus"
 #, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Jatka"
+
+#, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "Mukautettu"
+
+#, fuzzy
+msgid "PRESET_HIGH"
+msgstr "Kumoa muutokset"
+
+#, fuzzy
+msgid "PRESET_LOW"
+msgstr "Kumoa muutokset"
+
+#, fuzzy
+msgid "PRESET_MEDIUM"
+msgstr "Suhteellinen maailmaan"
+
+#, fuzzy
+msgid "PRESET_VERY_HIGH"
+msgstr "Palauta syötteet oletuksiksi"
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "Yhdisteiden tasapainopisteet"
 
 msgid "PRESSURE"
 msgstr "Paine"
@@ -5336,6 +5597,10 @@ msgid "RADIATION"
 msgstr "Soluhengitys"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Soluhengitys"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Iso rautalohkare"
 
@@ -5356,6 +5621,16 @@ msgstr "Raaka"
 #, fuzzy
 msgid "RAW_VALUE_COLON"
 msgstr "Uusi nimi:"
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Monisoluinen vaihe"
 
 msgid "READING_SAVE_DATA"
 msgstr "Luetaan tallennuksen tietoja"
@@ -5383,6 +5658,10 @@ msgstr "Virkistä"
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Soluelin"
+
+#, fuzzy
+msgid "REGIONS_NUMBER"
+msgstr "ID-Numero"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5535,6 +5814,18 @@ msgid "REVEAL_ALL_PATCHES"
 msgstr "levisi alueille:"
 
 #, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Avaa editorin lukitus"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Näytä Lisää Tietoa"
+
+#, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Tehnyt Revolutionary Games Studio"
 
@@ -5560,7 +5851,14 @@ msgstr "Käännä oikealle"
 msgid "ROTATION_COLON"
 msgstr "Pyöriminen:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
+msgstr "Suorita auto-evo pelin aikana"
+
+#, fuzzy
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
 msgstr "Suorita auto-evo pelin aikana"
 
 msgid "RUN_ONE_STEP"
@@ -5629,13 +5927,6 @@ msgstr "Tilaa käytössä:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti lopullisesti poistaa {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "JSON-virheenkäsittelymoodi:"
 
 msgid "SAVE_FAILED"
 msgstr "Tallennus epäonnistui"
@@ -5870,6 +6161,10 @@ msgid "SHOW_ITEM_COORDINATES"
 msgstr "Näytä tutoriaalit"
 
 #, fuzzy
+msgid "SHOW_MAP"
+msgstr "Näytä apu"
+
+#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
@@ -5971,7 +6266,15 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "Pieni rautalohkare"
 
 #, fuzzy
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "Pieni rautalohkare"
+
+#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Pieni rautalohkare"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr "Pieni rautalohkare"
 
 #, fuzzy
@@ -6064,6 +6367,14 @@ msgstr "{0} (x{1})"
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "on saanut mutaation"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Peruuta nykyinen toimenpide"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "sukupuuttoon planeetalta"
 
 msgid "SPECIES_LIST"
 msgstr "Lista lajeista"
@@ -6290,6 +6601,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr "onnistunut tappo"
 
@@ -6310,6 +6624,10 @@ msgstr "Tukijat"
 
 msgid "SURVIVAL_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "Tuma"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
@@ -6350,6 +6668,14 @@ msgstr "Ota ruudunkaappaus"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "Terv.:"
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Nykyinen suorittajien määrä:"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "Soluhengitys"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "Nousemus"
@@ -6457,6 +6783,10 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
+msgid "THE_EDITOR"
+msgstr "Avaa editorin lukitus"
+
+#, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Aluekartta"
 
@@ -6499,6 +6829,10 @@ msgstr ""
 
 msgid "THRIVE_LICENSES"
 msgstr "Thriven lisenssit"
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Perus liikkuminen"
 
 msgid "THYLAKOIDS"
 msgstr "Tylakoidit"
@@ -6590,6 +6924,10 @@ msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Aloita/lopeta kiinnittyminen"
 
 #, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Aloita/lopeta nieleminen"
+
+#, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Aloita/lopeta nieleminen"
 
@@ -6659,6 +6997,10 @@ msgstr "{0}: +{1} ATP"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr "{0} (x{1})"
 
 #, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
@@ -6806,13 +7148,6 @@ msgstr "Kokeile ottaa ruudunkaappauksia!"
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutoriaali"
-
-#, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr ""
-"Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän matkan päästä\n"
-"ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
-"Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -7105,6 +7440,13 @@ msgstr ""
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Ladataan mikrobieditoria"
 
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr ""
+"Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän matkan päästä\n"
+"ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
+"Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Katso nyt"
 
@@ -7162,6 +7504,17 @@ msgstr "Kumoa"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Kumoa viimeisin toimenpide"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Pistä muita soluja tällä."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "OLET SELVIYTYNYT!"
 
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
@@ -7334,6 +7687,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Lisenssit ja käytetyt kirjastot"
 
@@ -7342,13 +7698,6 @@ msgstr "Käytetty renderöijä:"
 
 msgid "USES_FEATURE"
 msgstr "Kyllä"
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#, fuzzy
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Lisää uusi syöte"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Käytä annettua käyttäjänimeä"
@@ -7396,6 +7745,10 @@ msgstr "Lisää solun varastointitilaa kerätyille yhdisteille."
 
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VENTS_ARE_HOME"
+msgstr "Tapahtumia ei tallennettu"
 
 msgid "VERSION_COLON"
 msgstr "Versio:"
@@ -9533,6 +9886,14 @@ msgstr "Lämpö."
 msgid "WORST_PATCH_COLON"
 msgstr "Lajit:"
 
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "VAHVISTA"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
 msgid "XBOX360"
 msgstr "Xbox 360"
 
@@ -9565,11 +9926,50 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Voit tukea Thriven jatkokehitystä Patreonissa."
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr ""
+"Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän matkan päästä\n"
+"ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
+"Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
+
 msgid "ZOOM_IN"
 msgstr "Zoomaa sisään"
 
 msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
+
+#, fuzzy
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Lisää uusi syöte"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Lisääntyminen:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON-virheenkäsittelymoodi:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Aina"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automaattisesti"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Ei koskaan"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "JSON-virheenkäsittelymoodi:"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Peruutettu."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Sukupolvi:"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
@@ -9843,10 +10243,6 @@ msgstr "Zoomaa ulospäin"
 #~ "Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
 
 #, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Kemosynteesi"
-
-#, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"
 #~ msgstr "Glykolyysi"
 
@@ -9930,10 +10326,6 @@ msgstr "Zoomaa ulospäin"
 
 #~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 #~ msgstr "Uuden lajin luomisen mahdollisuus pienen lajimäärän (matala biodiversiteetti) alueissa"
-
-#, fuzzy
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "sukupuuttoon planeetalta"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Virhe: lohkaretta ei löytynyt"

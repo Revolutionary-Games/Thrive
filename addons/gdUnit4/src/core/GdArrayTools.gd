@@ -14,11 +14,12 @@ const ARRAY_TYPES := [
 	TYPE_PACKED_STRING_ARRAY,
 	TYPE_PACKED_VECTOR2_ARRAY,
 	TYPE_PACKED_VECTOR3_ARRAY,
+	TYPE_PACKED_VECTOR4_ARRAY,
 	TYPE_PACKED_COLOR_ARRAY
 ]
 
 
-static func is_array_type(value :Variant) -> bool:
+static func is_array_type(value: Variant) -> bool:
 	return is_type_array(typeof(value))
 
 

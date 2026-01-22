@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Components;
-using DefaultEcs;
 using Godot;
 
 /// <summary>
@@ -170,7 +171,26 @@ public partial class PlayerMicrobeInput : NodeWithInput
         var player = stage.Player;
         ref var control = ref player.Get<MicrobeControl>();
 
-        if (control.State == MicrobeState.MucocystShield)
+        var colonyMucocyst = false;
+
+        if (player.Has<MicrobeColony>())
+        {
+            ref var colony = ref player.Get<MicrobeColony>();
+
+            colonyMucocyst = colony.ColonyState == MicrobeState.MucocystShield;
+
+            // Colony can have individual members in the mucocyst state, so we must check that here
+            for (int i = 0; i < colony.ColonyMembers.Length; ++i)
+            {
+                var member = colony.ColonyMembers[i];
+                if (member.Get<MicrobeControl>().State == MicrobeState.MucocystShield)
+                {
+                    colonyMucocyst = true;
+                }
+            }
+        }
+
+        if (control.State == MicrobeState.MucocystShield || colonyMucocyst)
         {
             control.SetMucocystState(ref player.Get<OrganelleContainer>(), ref player.Get<CompoundStorage>(), player,
                 false);
@@ -227,6 +247,25 @@ public partial class PlayerMicrobeInput : NodeWithInput
             foreach (var engulfedObject in engulfer.EngulfedObjects)
             {
                 engulfer.EjectEngulfable(ref engulfedObject.Get<Engulfable>());
+            }
+        }
+
+        if (!stage.Player.Has<MicrobeColony>())
+            return;
+
+        ref var colony = ref stage.Player.Get<MicrobeColony>();
+
+        // Skip the first colony member (i.e. the root cell) which was already handled
+        for (int i = 1; i < colony.ColonyMembers.Length; ++i)
+        {
+            ref var memberEngulfer = ref colony.ColonyMembers[i].Get<Engulfer>();
+
+            if (memberEngulfer.EngulfedObjects is not { Count: > 0 })
+                continue;
+
+            foreach (var engulfedObject in memberEngulfer.EngulfedObjects)
+            {
+                memberEngulfer.EjectEngulfable(ref engulfedObject.Get<Engulfable>());
             }
         }
     }
@@ -306,10 +345,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
             return false;
 
         var target = stage.HoverInfo.Entities.FirstOrDefault();
-        if (target == default || !target.IsAlive)
-            return false;
-
-        if (!target.IsAlive || !target.Has<MicrobeSpeciesMember>())
+        if (target == default || !target.IsAliveAndHas<MicrobeSpeciesMember>())
             return false;
 
         // If didn't hit a cell colony, can't do anything
@@ -319,7 +355,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
         RemoveCellFromColony(target);
 
         // Removing a colony member should reset the microbe mode so this text should be hidden anyway soon, but
-        // apparently we wanted extra guarantee here
+        // apparently we wanted an extra guarantee here
         stage.HUD.HintText = string.Empty;
         return true;
     }

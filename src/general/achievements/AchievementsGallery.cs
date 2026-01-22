@@ -6,7 +6,7 @@ using Godot;
 /// </summary>
 public partial class AchievementsGallery : Control
 {
-    private readonly List<AchievementCard> achievementCards = new();
+    private readonly Dictionary<int, AchievementCard> achievementCards = new();
 
 #pragma warning disable CA2213
     [Export]
@@ -23,36 +23,41 @@ public partial class AchievementsGallery : Control
         base._Ready();
 
         cardScene = GD.Load<PackedScene>("res://src/general/achievements/AchievementCard.tscn");
-    }
 
-    public void Refresh()
-    {
-        // Refresh the cards
-
-        // TODO: could do a lighter refresh than this, but for now the performance of this is sufficient with the
-        // achievement count we have currently
-        foreach (var achievementCard in achievementCards)
-        {
-            achievementCard.QueueFree();
-        }
-
-        achievementCards.Clear();
+        // Add all achievement cards
 
         bool first = true;
 
         foreach (var achievement in AchievementsManager.Instance.GetAchievements())
         {
             var instance = cardScene.Instantiate<AchievementCard>();
-
-            instance.UpdateDataFrom(achievement, AchievementsManager.Instance.GetStats());
+            instance.Visible = false;
 
             cardContainer.AddChild(instance);
-            achievementCards.Add(instance);
+            achievementCards.Add(achievement.Identifier, instance);
 
             if (first)
             {
                 first = false;
                 grabberToUpdate.NodeToGiveFocusTo = instance.GetPath();
+            }
+        }
+    }
+
+    public void Refresh()
+    {
+        // Refresh the cards
+
+        foreach (var achievement in AchievementsManager.Instance.GetAchievements())
+        {
+            // TODO: should this show a card that just has the text "hidden" on it?
+            if (achievement.HideIfNotAchieved && !achievement.Achieved)
+                continue;
+
+            if (achievementCards.TryGetValue(achievement.Identifier, out var achievementCard))
+            {
+                achievementCard.UpdateDataFrom(achievement, AchievementsManager.Instance.GetStats());
+                achievementCard.Visible = true;
             }
         }
     }

@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Components;
-using DefaultEcs;
 using Godot;
 using JetBrains.Annotations;
 
@@ -49,7 +50,7 @@ public class ColonyCompoundBag : ICompoundStorage
 
             foreach (var colonyMember in colonyMembers)
             {
-                if (!colonyMember.Has<CompoundStorage>())
+                if (!colonyMember.IsAliveAndHas<CompoundStorage>())
                 {
                     GD.PrintErr("Colony compound bag member entity has no compound storage");
                     continue;

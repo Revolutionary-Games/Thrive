@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Linq;
+using Arch.Core;
 using Components;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Base stage for the stages where the player controls a single creature
 /// </summary>
 /// <typeparam name="TPlayer">The type of the player object</typeparam>
 /// <typeparam name="TSimulation">The type of simulation this stage uses</typeparam>
-[JsonObject(IsReference = true)]
-[UseThriveSerializer]
 [GodotAbstract]
 public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreatureStage
     where TSimulation : class, IWorldSimulation, new()
 {
+    protected const ushort SERIALIZATION_VERSION_CREATURE = 1;
+
 #pragma warning disable CA2213
     protected DirectionalLight3D worldLight = null!;
 #pragma warning restore CA2213
@@ -22,17 +23,23 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
     /// <summary>
     ///   Used to differentiate between spawning the player the first time and respawning
     /// </summary>
-    [JsonProperty]
     protected bool spawnedPlayer;
 
-    [JsonProperty]
     protected double playerRespawnTimer;
+
+    protected int deathsSinceLastEditorExit;
 
     /// <summary>
     ///   True when the player is extinct in the current patch. The player can still move to another patch.
     /// </summary>
-    [JsonProperty]
     protected bool playerExtinctInCurrentPatch;
+
+    private double timeSinceSimulationPerformanceCheck;
+
+    /// <summary>
+    ///   Used to trigger actions when the player goes from being alive to being not there (i.e. having died)
+    /// </summary>
+    private bool lastSeenPlayerAlive;
 
     public CreatureStageBase()
     {
@@ -43,36 +50,32 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         WorldSimulation = worldSimulation;
     }
 
-    // TODO: eventually convert this just to a Entity without having any generic type configurability here
+    // TODO: eventually convert this just to a Entity without having any generic type configurability here once
+    // macroscopic starts using entities
     /// <summary>
     ///   The current player or null.
     /// </summary>
     /// <remarks>
     ///   <para>
     ///     This is JSON ignored as the entity reference can't be loaded currently, see why here:
-    ///     <see cref="SaveContext.OldToNewEntityMapping"/>
+    ///     <see cref="Saving.Serializers.ThriveArchiveManager.OldToNewEntityMapping"/>
     ///   </para>
     /// </remarks>
-    [JsonIgnore]
     public TPlayer? Player { get; protected set; }
 
-    [JsonIgnore]
     public virtual bool HasPlayer => throw new GodotAbstractPropertyNotOverriddenException();
 
-    [JsonIgnore]
     public virtual bool HasAlivePlayer => throw new GodotAbstractPropertyNotOverriddenException();
 
-    [JsonProperty]
     public TSimulation WorldSimulation { get; private set; } = null!;
 
     /// <summary>
-    ///   True when transitioning to the editor. Note this should only be unset *after* switching scenes to the editor
-    ///   otherwise some tree exit operations won't run correctly.
+    ///   True when transitioning to the editor.
+    ///   Note this should only be unset *after* switching scenes to the editor because otherwise some tree exit
+    ///   operations won't run correctly.
     /// </summary>
-    [JsonIgnore]
     public bool MovingToEditor { get; set; }
 
-    [JsonIgnore]
     protected virtual ICreatureStageHUD BaseHUD => throw new GodotAbstractPropertyNotOverriddenException();
 
     public override void ResolveNodeReferences()
@@ -122,7 +125,15 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             else
             {
                 // Respawn the player once the timer is up
-                playerRespawnTimer -= delta;
+                playerRespawnTimer -= delta * GetWorldTimeMultiplier();
+
+                if (lastSeenPlayerAlive)
+                {
+                    lastSeenPlayerAlive = false;
+                    ++deathsSinceLastEditorExit;
+
+                    OnPlayerDeath(deathsSinceLastEditorExit);
+                }
 
                 if (playerRespawnTimer <= 0)
                 {
@@ -131,8 +142,22 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             }
         }
 
+        // Track fast speed mode performance
+        if (HasPlayer)
+        {
+            timeSinceSimulationPerformanceCheck += delta;
+
+            if (timeSinceSimulationPerformanceCheck >= 1)
+            {
+                timeSinceSimulationPerformanceCheck = 0;
+                CheckPerformanceEnoughForSimulationSpeed();
+            }
+
+            lastSeenPlayerAlive = true;
+        }
+
         // Start auto-evo if stage entry finished, don't need to auto save,
-        // settings have auto-evo be started during gameplay and auto-evo is not already started
+        // settings have auto-evo be started during gameplay and auto-evo is not yet started
         if (TransitionFinished && !wantsToSave && Settings.Instance.RunAutoEvoDuringGamePlay)
         {
             GameWorld.IsAutoEvoFinished(true);
@@ -145,15 +170,11 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             float totalEntityWeight = 0;
             int totalEntityCount = 0;
 
-            foreach (var entity in WorldSimulation.EntitySystem)
+            WorldSimulation.EntitySystem.Query(new QueryDescription().WithAll<Spawned>(), (ref Spawned spawned) =>
             {
                 ++totalEntityCount;
-
-                if (!entity.Has<Spawned>())
-                    continue;
-
-                totalEntityWeight += entity.Get<Spawned>().EntityWeight;
-            }
+                totalEntityWeight += spawned.EntityWeight;
+            });
 
             debugOverlay.ReportEntities(totalEntityWeight, totalEntityCount);
         }
@@ -169,6 +190,11 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         SpawnPlayer();
 
         base.StartNewGame();
+    }
+
+    public override float GetWorldTimeMultiplier()
+    {
+        return WorldSimulation.WorldTimeScale;
     }
 
     /// <summary>
@@ -189,6 +215,8 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
 
         // Now the editor increases the generation, so we don't do that here any more
 
+        deathsSinceLastEditorExit = 0;
+
         // Make sure the player is spawned
         SpawnPlayer();
 
@@ -208,11 +236,15 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         // changed while in the editor, it doesn't update this stage's translation cache.
         TranslationServer.SetLocale(TranslationServer.GetLocale());
 
-        // Auto save is wanted once possible (unless we are in prototypes)
-        if (!CurrentGame.InPrototypes)
-            wantsToSave = true;
+        // Auto save is wanted once possible
+        wantsToSave = true;
 
-        pauseMenu.SetNewSaveNameFromSpeciesName();
+        // Unless we are in prototypes (except ones that allow saving)
+        if (CurrentGame.InPrototypes && !SaveHelper.CanSaveInPrototype(GameState))
+        {
+            GD.Print("Suppressing auto save in prototypes");
+            wantsToSave = false;
+        }
     }
 
     public virtual void MoveToEditor()
@@ -287,6 +319,33 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         GD.PrintErr("This stage doesn't support view mode: " + mode);
     }
 
+    protected override void WriteBasePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(SERIALIZATION_VERSION_STAGE_BASE);
+        base.WriteBasePropertiesToArchive(writer);
+
+        writer.Write(spawnedPlayer);
+        writer.Write(playerRespawnTimer);
+        writer.Write(deathsSinceLastEditorExit);
+        writer.Write(playerExtinctInCurrentPatch);
+        writer.WriteObject(WorldSimulation);
+    }
+
+    protected override void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_CREATURE or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_CREATURE);
+
+        // Base uses different versioning than us
+        base.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        spawnedPlayer = reader.ReadBool();
+        playerRespawnTimer = reader.ReadDouble();
+        deathsSinceLastEditorExit = reader.ReadInt32();
+        playerExtinctInCurrentPatch = reader.ReadBool();
+        WorldSimulation = reader.ReadObject<TSimulation>();
+    }
+
     protected override void SetupStage()
     {
         EnsureWorldSimulationIsCreated();
@@ -354,7 +413,7 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             }
             else if (GameWorld.Map.CurrentPatch.GetSpeciesGameplayPopulation(playerSpecies) <= 0)
             {
-                // Has run out of population in current patch but not globally
+                // Has run out of population in the current patch but not globally
                 PlayerExtinctInPatch();
             }
 
@@ -364,6 +423,14 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
 
         // Player is not extinct, so can respawn
         SpawnPlayer();
+    }
+
+    /// <summary>
+    ///   Triggered when the player is detected as being deleted after having been previously alive
+    /// </summary>
+    /// <param name="deathsSinceEditor">How many times the player has died since the editor</param>
+    protected virtual void OnPlayerDeath(int deathsSinceEditor)
+    {
     }
 
     protected override bool IsGameOver()
@@ -493,6 +560,23 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         // TODO: to be fully accurate we probably should re-trigger auto-evo to start from scratch here
     }
 
+    private void CheckPerformanceEnoughForSimulationSpeed()
+    {
+        if (WorldSimulation.WorldTimeScale <= 1)
+            return;
+
+        var simulationRatio = WorldSimulation.GetAndResetTrackedSimulationSpeedRatio();
+
+        if (simulationRatio < Constants.SIMULATION_REQUIRED_FAST_MODE_SUCCESS_RATE)
+        {
+            GD.Print($"Disabling fast mode as ratio of managing to simulate fast mode is only: {simulationRatio}");
+            BaseHUD.HUDMessages.ShowMessage(new SimpleHUDMessage(
+                Localization.Translate("CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"),
+                DisplayDuration.Long));
+            BaseHUD.ApplySpeedMode(false);
+        }
+    }
+
     private void AdjustTolerancesToWorkInPatch(MicrobeSpecies species, Patch currentPatch)
     {
         var optimal = currentPatch.GenerateTolerancesForMicrobe(species.Organelles);
@@ -506,25 +590,25 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
 
         if (current.OxygenScore < 1)
         {
-            species.Tolerances.OxygenResistance = optimal.OxygenResistance;
+            species.ModifiableTolerances.OxygenResistance = optimal.OxygenResistance;
         }
 
         if (current.UVScore < 1)
         {
-            species.Tolerances.UVResistance = optimal.UVResistance;
+            species.ModifiableTolerances.UVResistance = optimal.UVResistance;
         }
 
         if (current.TemperatureScore < 1)
         {
-            species.Tolerances.PreferredTemperature = optimal.PreferredTemperature;
+            species.ModifiableTolerances.PreferredTemperature = optimal.PreferredTemperature;
 
             // TODO: should this reset tolerance range if it is calculated to be perfect?
         }
 
         if (current.PressureScore < 1)
         {
-            species.Tolerances.PressureMinimum = optimal.PressureMinimum;
-            species.Tolerances.PressureMaximum = optimal.PressureMaximum;
+            species.ModifiableTolerances.PressureMinimum = optimal.PressureMinimum;
+            species.ModifiableTolerances.PressureMaximum = optimal.PressureMaximum;
         }
     }
 }

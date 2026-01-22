@@ -246,6 +246,10 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     protected override async Task<bool> OnBeforeStartExport(CancellationToken cancellationToken)
     {
+        // If it exists, delete the test runner before export
+        if (Directory.Exists("gdunit4_testadapter_v5"))
+            Directory.Delete("gdunit4_testadapter_v5", true);
+
         // Make sure Godot Editor is configured with the right native libraries as it exports them itself
         ColourConsole.WriteInfoLine("Making sure GDExtension is installed in Godot as the distributable version");
 
@@ -828,8 +832,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         Directory.CreateDirectory(tempFolder);
 
         ColourConsole.WriteDebugLine($"Using C# zip library to extract to temporary folder: {tempFolder}");
-        using var archiveZip = new ZipArchive(File.OpenRead(sourceZip), ZipArchiveMode.Read, false);
-        archiveZip.ExtractToDirectory(tempFolder);
+        await using var archiveZip = new ZipArchive(File.OpenRead(sourceZip), ZipArchiveMode.Read, false);
+        await archiveZip.ExtractToDirectoryAsync(tempFolder, cancellationToken);
 
         ColourConsole.WriteInfoLine("Performing final signing for Mac build");
 

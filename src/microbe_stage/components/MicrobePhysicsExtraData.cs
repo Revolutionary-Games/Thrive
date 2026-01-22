@@ -1,5 +1,6 @@
 ﻿namespace Components;
 
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
@@ -12,9 +13,10 @@ using Systems;
 ///     that shouldn't be used before the new shape is generated and this is updated after loading.
 ///   </para>
 /// </remarks>
-[JSONDynamicTypeAllowed]
-public struct MicrobePhysicsExtraData
+public struct MicrobePhysicsExtraData : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   When this is 0 this data is not initialized. Don't change the values in this struct from anywhere else
     ///   than <see cref="MicrobePhysicsCreationAndSizeSystem"/>
@@ -38,10 +40,35 @@ public struct MicrobePhysicsExtraData
     ///   pili.
     /// </summary>
     public int PilusInjectisomeCount;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMicrobePhysicsExtraData;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(TotalShapeCount);
+        writer.Write(MicrobeShapesCount);
+        writer.Write(PilusCount);
+        writer.Write(PilusInjectisomeCount);
+    }
 }
 
 public static class MicrobePhysicsExtraDataHelpers
 {
+    public static MicrobePhysicsExtraData ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > MicrobePhysicsExtraData.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, MicrobePhysicsExtraData.SERIALIZATION_VERSION);
+
+        return new MicrobePhysicsExtraData
+        {
+            TotalShapeCount = reader.ReadInt32(),
+            MicrobeShapesCount = reader.ReadInt32(),
+            PilusCount = reader.ReadInt32(),
+            PilusInjectisomeCount = reader.ReadInt32(),
+        };
+    }
+
     public static bool IsSubShapePilus(this ref MicrobePhysicsExtraData physicsExtraData, uint subShape)
     {
         // Index needs to be higher than all the microbes index but lower than the number of pili above that

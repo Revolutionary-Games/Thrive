@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoEvo;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Editor patch map component
@@ -17,15 +17,15 @@ using Newtonsoft.Json;
 /// <typeparam name="TEditor">Type of editor this component is for</typeparam>
 [GodotAbstract]
 public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEditor>
-    where TEditor : IEditorWithPatches
+    where TEditor : class, IEditorWithPatches
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Where the player wants to move after editing
     /// </summary>
-    [JsonProperty]
     protected Patch? targetPatch;
 
-    [JsonProperty]
     protected Patch playerPatchOnEntry = null!;
 
 #pragma warning disable CA2213
@@ -33,15 +33,12 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     protected PatchMapDrawer mapDrawer = null!;
 
     [Export]
-    [AssignOnlyChildItemsOnDeserialize]
-    [JsonProperty]
     protected PatchDetailsPanel detailsPanel = null!;
 
     [Export]
     private Label seedLabel = null!;
 #pragma warning restore CA2213
 
-    [JsonProperty]
     private FogOfWarMode fogOfWar;
 
     private bool enabledMigrationPatchFilter;
@@ -53,23 +50,22 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     /// <summary>
     ///   Returns the current patch the player is in
     /// </summary>
-    [JsonIgnore]
     public Patch CurrentPatch => targetPatch ?? playerPatchOnEntry;
 
     /// <summary>
     ///   Returns the patch where the player wants to move after editing
     /// </summary>
-    [JsonIgnore]
     public Patch? TargetPatch => targetPatch;
 
-    [JsonIgnore]
     public Patch? SelectedPatch => mapDrawer.SelectedPatch;
 
     /// <summary>
     ///   Called when the selected patch changes
     /// </summary>
-    [JsonIgnore]
     public Action<Patch>? OnSelectedPatchChanged { get; set; }
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.PatchMapEditor;
 
     public override void _Ready()
     {
@@ -128,8 +124,33 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         UpdateSeedLabel();
     }
 
-    public void SetMap(PatchMap map)
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
     {
+        writer.Write(SERIALIZATION_VERSION_BASE);
+        base.WritePropertiesToArchive(writer);
+
+        writer.WriteObjectOrNull(targetPatch);
+        writer.WriteObject(playerPatchOnEntry);
+        writer.WriteObjectProperties(detailsPanel);
+        writer.Write((int)fogOfWar);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
+
+        targetPatch = reader.ReadObjectOrNull<Patch>();
+        playerPatchOnEntry = reader.ReadObject<Patch>();
+        reader.ReadObjectProperties(detailsPanel);
+        fogOfWar = (FogOfWarMode)reader.ReadInt32();
+    }
+
+    public void SetMap(PatchMap map, uint playerSpeciesID)
+    {
+        mapDrawer.PlayerSpeciesID = playerSpeciesID;
         mapDrawer.Map = map;
     }
 
@@ -161,6 +182,29 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
                 GD.Print("AI will try to follow player migration to make the world less empty");
                 AddExtraAISpeciesMigrationTo(targetPatch, previousPatch ?? targetPatch.Adjacent.First(),
                     Editor.CurrentGame.GameWorld, Editor.EditedBaseSpecies);
+            }
+        }
+        else
+        {
+            var currentPatch = Editor.CurrentGame.GameWorld.Map.CurrentPatch;
+            if (currentPatch != null)
+            {
+                // Ensure the player is in the current patch when exiting, as otherwise that will not allow player
+                // population to be added to the current patch, and that can cause false extinction events
+                if (currentPatch.FindSpeciesByID(Editor.CurrentGame.GameWorld
+                        .PlayerSpecies.ID) == null)
+                {
+                    // Note: this is just fixing the most serious symptom of the issue, but this doesn't do anything to
+                    // the root cause of the problem
+                    GD.PrintErr("Something has removed the player species from the current patch. " +
+                        "Adding back the player to fix this.");
+                    if (!currentPatch.AddSpecies(Editor.CurrentGame.GameWorld.PlayerSpecies, 0))
+                        GD.PrintErr("Failed to add the player species back");
+                }
+            }
+            else
+            {
+                GD.PrintErr("Player current patch is not set on the map when exiting map editor component");
             }
         }
 

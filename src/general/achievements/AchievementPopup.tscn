@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://vxpha1231qqg"]
+[gd_scene load_steps=9 format=3 uid="uid://vxpha1231qqg"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_075i1"]
 [ext_resource type="Script" uid="uid://bq1o3iij8w0l8" path="res://src/general/achievements/AchievementPopup.cs" id="2_b36ht"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="2_hfuph"]
 [ext_resource type="Texture2D" uid="uid://m0njd7ke5uvc" path="res://assets/textures/gui/bevel/achievements/LockedAchievement.png" id="3_65m1b"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="3_b36ht"]
+[ext_resource type="Texture2D" uid="uid://cgnxx3w3ctp4y" path="res://assets/textures/gui/bevel/achievements/UnlockedMicrobeAchievement.png" id="4_76qsw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65m1b"]
 bg_color = Color(0, 0.128333, 0.14, 0.862745)
@@ -31,12 +32,15 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="AchievementPopup" type="PanelContainer" node_paths=PackedStringArray("title", "icon", "description", "backgroundToAdjustStyle")]
-custom_minimum_size = Vector2(280, 70)
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -331.0
+offset_top = -79.0
+offset_right = -1.0
+offset_bottom = -1.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("1_075i1")
@@ -57,11 +61,14 @@ theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(350, 72)
 layout_mode = 2
 
 [node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(64, 64)
+clip_contents = true
+custom_minimum_size = Vector2(93, 93)
 layout_mode = 2
+texture = ExtResource("4_76qsw")
 expand_mode = 1
 stretch_mode = 5
 
@@ -73,8 +80,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Name" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(100, 12)
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(100, 22)
 layout_mode = 2
+text = "Thrivin'"
 label_settings = ExtResource("2_hfuph")
 autowrap_mode = 3
 max_lines_visible = 3
@@ -84,8 +93,12 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="ProgressOrDescription" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(100, 12)
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(100, 41)
 layout_mode = 2
+size_flags_vertical = 8
+text = "Reach generation 15 with a single species with at least medium difficulty
+placeholder"
 label_settings = ExtResource("3_b36ht")
 horizontal_alignment = 2
 vertical_alignment = 2

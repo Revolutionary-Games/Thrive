@@ -1,4 +1,6 @@
-﻿using Godot;
+﻿using System;
+using System.Diagnostics;
+using Godot;
 
 /// <summary>
 ///   Button which links to a Thriveopedia page but uses only text. Added manually.
@@ -27,7 +29,23 @@ public partial class TextPageLinkButton : Button
 
     public void OnSelectedStageChanged()
     {
-        if (ThriveopediaManager.GetPage(PageName) is ThriveopediaWikiPage wikiPage)
+        IThriveopediaPage page;
+        try
+        {
+            page = ThriveopediaManager.GetPage(PageName);
+        }
+        catch (Exception e)
+        {
+#if DEBUG
+            if (Debugger.IsAttached)
+                Debugger.Break();
+#endif
+
+            GD.PrintErr($"Failed to get page with name \"{PageName}\" for link button: ", e);
+            return;
+        }
+
+        if (page is ThriveopediaWikiPage wikiPage)
         {
             Visible = wikiPage.VisibleInTree;
         }

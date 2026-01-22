@@ -1,21 +1,36 @@
-﻿public class CellMoveActionData : HexMoveActionData<HexWithData<CellTemplate>, MulticellularSpecies>
+﻿using System;
+using SharedBase.Archive;
+
+public class CellMoveActionData : HexMoveActionData<HexWithData<CellTemplate>, MulticellularSpecies>
 {
     public CellMoveActionData(HexWithData<CellTemplate> organelle, Hex oldLocation, Hex newLocation, int oldRotation,
         int newRotation) : base(organelle, oldLocation, newLocation, oldRotation, newRotation)
     {
     }
 
-    protected override CombinableActionData CreateDerivedMoveAction(HexWithData<CellTemplate> hex, Hex oldLocation,
-        Hex newLocation, int oldRotation, int newRotation)
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION_HEX;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.CellMoveActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
-        return new CellMoveActionData(hex, oldLocation, newLocation, oldRotation, newRotation);
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.CellMoveActionData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((CellMoveActionData)obj);
     }
 
-    protected override CombinableActionData CreateDerivedPlacementAction(
-        HexPlacementActionData<HexWithData<CellTemplate>, MulticellularSpecies> data)
+    public static CellMoveActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
-        var placementActionData = (CellPlacementActionData)data;
+        if (version is > SERIALIZATION_VERSION_HEX or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_HEX);
 
-        return new CellPlacementActionData(placementActionData.PlacedHex, NewLocation, NewRotation);
+        var instance = new CellMoveActionData(reader.ReadObject<HexWithData<CellTemplate>>(), reader.ReadHex(),
+            reader.ReadHex(), reader.ReadInt32(), reader.ReadInt32());
+
+        instance.ReadBasePropertiesFromArchive(reader, version);
+
+        return instance;
     }
 }

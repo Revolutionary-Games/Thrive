@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   A structure placed in the world. May or may not be fully constructed
@@ -94,6 +95,10 @@ public partial class PlacedStructure : Node3D, IInteractableEntity, IConstructab
 
     [JsonIgnore]
     public float TimedActionDuration => 5;
+
+    public ushort CurrentArchiveVersion => 1;
+    public ArchiveObjectType ArchiveObjectType => ArchiveObjectType.Invalid;
+    public bool CanBeReferencedInArchive => false;
 
     public override void _Ready()
     {
@@ -284,6 +289,11 @@ public partial class PlacedStructure : Node3D, IInteractableEntity, IConstructab
             return;
 
         OnCompleted();
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        throw new NotImplementedException();
     }
 
     private void OnCompleted()

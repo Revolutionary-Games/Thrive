@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using SharedBase.Archive;
 
-[JSONAlwaysDynamicType]
 public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemplate, CellType>
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public List<OrganelleTemplate>? ReplacedCytoplasm;
 
     public OrganellePlacementActionData(OrganelleTemplate organelle, Hex location, int orientation) : base(organelle,
@@ -10,40 +13,40 @@ public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemp
     {
     }
 
-    protected override double CalculateCostInternal()
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.OrganellePlacementActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
-        return PlacedHex.Definition.MPCost;
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.ReproductionOrganelleData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((OrganellePlacementActionData)obj);
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    public static OrganellePlacementActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
-        if (other is OrganelleMoveActionData moveActionData &&
-            moveActionData.MovedHex.Definition == PlacedHex.Definition)
-        {
-            if (moveActionData.OldLocation == Location)
-                return ActionInterferenceMode.Combinable;
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-            if (ReplacedCytoplasm?.Contains(moveActionData.MovedHex) == true)
-                return ActionInterferenceMode.ReplacesOther;
-        }
+        var hexVersion = reader.ReadUInt16();
+        var instance = new OrganellePlacementActionData(reader.ReadObject<OrganelleTemplate>(), reader.ReadHex(),
+            reader.ReadInt32());
 
-        if (other is OrganellePlacementActionData placementActionData &&
-            ReplacedCytoplasm?.Contains(placementActionData.PlacedHex) == true)
-            return ActionInterferenceMode.ReplacesOther;
+        // Base version is different
+        instance.ReadBasePropertiesFromArchive(reader, hexVersion);
 
-        return base.GetInterferenceModeWithGuaranteed(other);
+        instance.ReplacedCytoplasm = reader.ReadObjectOrNull<List<OrganelleTemplate>>();
+        return instance;
     }
 
-    protected override CombinableActionData CreateDerivedMoveAction(
-        HexRemoveActionData<OrganelleTemplate, CellType> data)
+    public override void WriteToArchive(ISArchiveWriter writer)
     {
-        return new OrganelleMoveActionData(data.RemovedHex, data.Location, Location,
-            data.Orientation, Orientation);
-    }
+        writer.Write(SERIALIZATION_VERSION_HEX);
+        base.WriteToArchive(writer);
 
-    protected override CombinableActionData CreateDerivedPlacementAction(
-        HexMoveActionData<OrganelleTemplate, CellType> data)
-    {
-        return new OrganellePlacementActionData(PlacedHex, data.NewLocation, data.NewRotation);
+        writer.WriteObjectOrNull(ReplacedCytoplasm);
     }
 }

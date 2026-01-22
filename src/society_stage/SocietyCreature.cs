@@ -6,8 +6,6 @@ using Newtonsoft.Json;
 ///   A type of creature in the society stage, mostly just moves around to try to look busy to the player
 /// </summary>
 [JsonObject(IsReference = true)]
-[JSONAlwaysDynamicType]
-[SceneLoadedClass("res://src/society_stage/SocietyCreature.tscn", UsesEarlyResolve = false)]
 public partial class SocietyCreature : Node3D, IEntity
 {
 #pragma warning disable CA2213
@@ -97,7 +95,7 @@ public partial class SocietyCreature : Node3D, IEntity
 
         // Setup graphics
         // TODO: handle lateSpecies.Scale
-        metaballDisplayer.DisplayFromLayout(lateSpecies.BodyLayout);
+        metaballDisplayer.DisplayFromLayout(lateSpecies.ModifiableBodyLayout);
     }
 
     public bool HasReachedGoal()

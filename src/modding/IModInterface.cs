@@ -1,5 +1,5 @@
-﻿using DefaultEcs;
-using DefaultEcs.Command;
+﻿using Arch.Buffer;
+using Arch.Core;
 using Godot;
 
 /// <summary>
@@ -9,28 +9,28 @@ using Godot;
 /// <remarks>
 ///   <para>
 ///     Direct access to other game classes and code is allowed (and not really possible to block) from mods, but
-///     the code might change drastically between versions and often break mods. As such this class collects some
-///     operations mods are likely want to do and provides a way to do them in a way that won't be broken each
-///     new release.
+///     the code might change drastically between versions and often break mods.
+///     As such, this class collects some operations mods are likely to want to do and provides a way to do them in a
+///     way that won't be broken each new release.
 ///   </para>
 ///   <para>
 ///     This interface is specially released into the public domain (or if not valid in your jurisdiction,
-///     under the MIT license)
+///     under the MIT licence)
 ///   </para>
 /// </remarks>
 public interface IModInterface
 {
     public delegate void OnSceneChangedHandler(Node newScene);
 
-    public delegate void OnDamageReceivedHandler(Entity damageReceiver, float amount, bool isPlayer);
+    public delegate void OnDamageReceivedHandler(Entity damageReceiver, float amount, string source, bool isPlayer);
 
     public delegate void OnPlayerMicrobeSpawnedHandler(Entity player);
 
-    public delegate void OnMicrobeSpawnedHandler(EntityRecord microbe);
+    public delegate void OnMicrobeSpawnedHandler(Entity microbe, CommandBuffer commandBuffer);
 
-    public delegate void OnChunkSpawnedHandler(EntityRecord chunk, bool environmental);
+    public delegate void OnChunkSpawnedHandler(Entity chunk, bool environmental, CommandBuffer commandBuffer);
 
-    public delegate void OnToxinEmittedHandler(EntityRecord toxin);
+    public delegate void OnToxinEmittedHandler(Entity toxin, CommandBuffer commandBuffer);
 
     public delegate void OnMicrobeDiedHandler(Entity microbe, bool isPlayer);
 
@@ -54,7 +54,7 @@ public interface IModInterface
     public SceneTree SceneTree { get; }
 
     /// <summary>
-    ///   Returns the currently active scene in the game (for example the MainMenu or the MicrobeStage)
+    ///   Returns the currently active scene in the game (for example, the MainMenu or the MicrobeStage)
     /// </summary>
     public Node CurrentScene { get; }
 }

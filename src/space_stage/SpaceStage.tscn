@@ -1,11 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://d2lgqc5cfta2m"]
+[gd_scene load_steps=17 format=3 uid="uid://d2lgqc5cfta2m"]
 
 [ext_resource type="Script" uid="uid://fetj4ns7gr7h" path="res://src/space_stage/SpaceStage.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://cd1w0b7mbdwcu" path="res://src/society_stage/StrategicCamera.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://c2h4vpmx0juq8" path="res://assets/models/menu_backgrounds/StarsMesh.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://dokew8lhrri5" path="res://assets/models/menu_backgrounds/Comet.tscn" id="4_aqo7l"]
 [ext_resource type="PackedScene" uid="uid://i8evqpkyb68h" path="res://src/space_stage/gui/SpaceHUD.tscn" id="7"]
-[ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://iejv3lkw2njv" path="res://src/space_stage/PlayerSpaceInput.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://ibkg658cekm3" path="res://src/industrial_stage/gui/StrategicEntityNameLabelSystem.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://dx44coqov3ndt" path="res://src/ascension_stage/gui/AscensionCongratulationsPopup.tscn" id="15"]
@@ -29,6 +28,7 @@ sky_material = SubResource("ProceduralSkyMaterial_wwqur")
 background_mode = 2
 sky = SubResource("2")
 sky_rotation = Vector3(-0.452023, 0, -0.269235)
+ambient_light_source = 1
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.3
 ambient_light_energy = 0.0
@@ -68,7 +68,7 @@ emission = Color(0.843137, 0.780392, 0.627451, 1)
 emission_energy_multiplier = 10.0
 disable_receive_shadows = true
 
-[node name="SpaceStage" type="Node" node_paths=PackedStringArray("nameLabelSystem", "ascensionMoveConfirmationPopup", "ascensionCongratulationsPopup", "descendConfirmationPopup", "godTools", "strategicCamera", "pauseMenu", "hudRoot")]
+[node name="SpaceStage" type="Node" node_paths=PackedStringArray("nameLabelSystem", "ascensionMoveConfirmationPopup", "ascensionCongratulationsPopup", "descendConfirmationPopup", "godTools", "strategicCamera", "hudRoot")]
 script = ExtResource("1")
 nameLabelSystem = NodePath("StrategicEntityNameLabelSystem")
 ascensionMoveConfirmationPopup = NodePath("AscensionConfirmation")
@@ -76,7 +76,6 @@ ascensionCongratulationsPopup = NodePath("AscensionCongratulationsPopup")
 descendConfirmationPopup = NodePath("DescendConfirmationDialog")
 godTools = NodePath("GodToolsPopup")
 strategicCamera = NodePath("World/StrategicCamera")
-pauseMenu = NodePath("PauseMenu")
 hudRoot = NodePath("SpaceHUD")
 
 [node name="World" type="Node" parent="."]
@@ -123,8 +122,7 @@ visible = false
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SpaceHUD" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("7")]
-menu = NodePath("../PauseMenu")
+[node name="SpaceHUD" parent="." instance=ExtResource("7")]
 
 [node name="GodToolsPopup" parent="." instance=ExtResource("18")]
 offset_top = 0.0
@@ -142,11 +140,7 @@ offset_bottom = 300.0
 [node name="DescendConfirmationDialog" parent="." instance=ExtResource("16")]
 offset_bottom = 500.0
 
-[node name="PauseMenu" parent="." instance=ExtResource("8")]
-
 [connection signal="OnDescendPressed" from="SpaceHUD" to="." method="OnDescendButtonPressed"]
-[connection signal="OnOpenMenu" from="SpaceHUD" to="PauseMenu" method="Open"]
-[connection signal="OnOpenMenuToHelp" from="SpaceHUD" to="PauseMenu" method="OpenToHelp"]
 [connection signal="OnStartResearching" from="SpaceHUD" to="." method="StartResearching"]
 [connection signal="Canceled" from="AscensionConfirmation" to="." method="CancelMoveToAscension"]
 [connection signal="Confirmed" from="AscensionConfirmation" to="." method="OnConfirmMoveToAscension"]

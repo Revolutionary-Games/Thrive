@@ -1,20 +1,19 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using Saving.Serializers;
+using SharedBase.Archive;
 
 /// <summary>
 ///   This action contains a single "action" in contrast to <see cref="CombinedEditorAction"/> which can
 ///   have a number of actions that are logically a single step.
 /// </summary>
 /// <typeparam name="T">Type of the action data to hold</typeparam>
-[JSONAlwaysDynamicType]
-public class SingleEditorAction<T> : EditorAction
+public class SingleEditorAction<T> : EditorAction, IEnumerable<EditorCombinableActionData>
     where T : EditorCombinableActionData
 {
-    [JsonProperty]
     private readonly Action<T> redo;
 
-    [JsonProperty]
     private readonly Action<T> undo;
 
     public SingleEditorAction(Action<T> redo, Action<T> undo, T data)
@@ -24,16 +23,29 @@ public class SingleEditorAction<T> : EditorAction
         SingleData = data;
     }
 
-    [JsonProperty]
     public T SingleData { get; private set; }
 
-    [JsonIgnore]
-    public override IEnumerable<EditorCombinableActionData> Data => new[] { SingleData };
+    public override IEnumerable<EditorCombinableActionData> Data => this;
+
+    public override ushort CurrentArchiveVersion => ActionHistorySerializer.SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.ExtendedSingleEditorAction;
 
     public static implicit operator SingleEditorAction<EditorCombinableActionData>(SingleEditorAction<T> action)
     {
         return new SingleEditorAction<EditorCombinableActionData>(d => action.redo((T)d),
             d => action.undo((T)d), action.SingleData);
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteDelegate(redo);
+        writer.WriteDelegate(undo);
+        writer.WriteObject(SingleData);
+
+        writer.Write(SERIALIZATION_VERSION_REVERSIBLE);
+        base.WriteToArchive(writer);
     }
 
     public override void DoAction()
@@ -44,11 +56,6 @@ public class SingleEditorAction<T> : EditorAction
     public override void UndoAction()
     {
         undo(SingleData);
-    }
-
-    public override double CalculateCost()
-    {
-        return SingleData.CalculateCost();
     }
 
     public override void ApplyMergedData(IEnumerable<EditorCombinableActionData> newData)
@@ -79,5 +86,21 @@ public class SingleEditorAction<T> : EditorAction
         }
 
         return 0;
+    }
+
+    public override void CopyData(ICollection<EditorCombinableActionData> target)
+    {
+        target.Add(SingleData);
+    }
+
+    public IEnumerator<EditorCombinableActionData> GetEnumerator()
+    {
+        // Creating an enumerator like this should use a minimal amount of allocated memory
+        yield return SingleData;
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        yield return SingleData;
     }
 }

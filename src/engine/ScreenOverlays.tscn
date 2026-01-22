@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://woqh47yetqtm" path="res://src/saving/SaveStatusOverlay.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://d386dbkjbq2rh" path="res://src/engine/LoadingScreen.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://cmg6okryq4k0l" path="res://src/engine/ColourblindScreenFilter.tscn" id="4"]
-[ext_resource type="PackedScene" path="res://src/gui_common/QuickLoadHandler.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://b5b4oe4lcttdp" path="res://src/gui_common/QuickLoadHandler.tscn" id="5"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="6"]
 [ext_resource type="PackedScene" uid="uid://c4dyrcb6l1u3o" path="res://src/engine/DebugOverlays.tscn" id="7"]
 [ext_resource type="Script" uid="uid://lsmrjt7il0xb" path="res://src/gui_common/TransitionManager.cs" id="8"]
@@ -21,8 +21,12 @@ visible = false
 
 [node name="TransitionManager" type="Control" parent="NormalOverlays"]
 process_mode = 3
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("8")
 
@@ -30,6 +34,8 @@ script = ExtResource("8")
 visible = false
 
 [node name="QuickLoad" parent="NormalOverlays" instance=ExtResource("5")]
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("6")
 
 [node name="OverlaysOnTopOfModals" type="CanvasLayer" parent="."]
@@ -41,11 +47,7 @@ layer = 127
 layer = 128
 
 [node name="ScreenFilter" parent="Effects" instance=ExtResource("1")]
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-mouse_filter = 2
+visible = false
 
 [node name="ColourblindScreenFilter" parent="Effects" instance=ExtResource("4")]
 visible = false

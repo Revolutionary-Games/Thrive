@@ -6,8 +6,6 @@ const GdUnitTools := preload("res://addons/gdUnit4/src/core/GdUnitTools.gd")
 
 
 # introduced with Godot 4.3.beta1
-const TYPE_PACKED_VECTOR4_ARRAY = 38 #TYPE_PACKED_VECTOR4_ARRAY
-
 const TYPE_VOID 	= 1000
 const TYPE_VARARG 	= 1001
 const TYPE_VARIANT	= 1002
@@ -18,10 +16,6 @@ const TYPE_NODE 	= 2001
 const TYPE_CONTROL	= 2002
 const TYPE_CANVAS	= 2003
 const TYPE_ENUM		= 2004
-
-
-# used as default value for varargs
-const TYPE_VARARG_PLACEHOLDER_VALUE = "__null__"
 
 
 const TYPE_AS_STRING_MAPPINGS := {
@@ -72,11 +66,18 @@ const TYPE_AS_STRING_MAPPINGS := {
 }
 
 
+class EditorNotifications:
+	# NOTE: Hardcoding to avoid runtime errors in exported projects when editor
+	#       classes are not available. These values are unlikely to change.
+	# See: EditorSettings.NOTIFICATION_EDITOR_SETTINGS_CHANGED
+	const NOTIFICATION_EDITOR_SETTINGS_CHANGED := 10000
+
+
 const NOTIFICATION_AS_STRING_MAPPINGS := {
 	TYPE_OBJECT: {
 		Object.NOTIFICATION_POSTINITIALIZE : "POSTINITIALIZE",
 		Object.NOTIFICATION_PREDELETE: "PREDELETE",
-		EditorSettings.NOTIFICATION_EDITOR_SETTINGS_CHANGED: "EDITOR_SETTINGS_CHANGED",
+		EditorNotifications.NOTIFICATION_EDITOR_SETTINGS_CHANGED: "EDITOR_SETTINGS_CHANGED",
 	},
 	TYPE_NODE: {
 		Node.NOTIFICATION_ENTER_TREE : "ENTER_TREE",

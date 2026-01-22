@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-01 16:03+0300\n"
+"POT-Creation-Date: 2026-01-22 16:04+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (Latin script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
@@ -196,6 +196,10 @@ msgstr "Amonijak"
 msgid "AMMONIA_COST"
 msgstr "Amonijak"
 
+#, fuzzy
+msgid "AMMONIA_LEVELS"
+msgstr "Amonijak"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Količina automatskog čuvanja da zadržati:"
 
@@ -275,7 +279,7 @@ msgstr "Rusticijanin je protein koji može da koristi gasoviti ugljen-dioksid i 
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr ""
 
 msgid "ASSUME_HYPERTHREADING"
@@ -421,6 +425,24 @@ msgstr ""
 msgid "AVAILABLE_MODS"
 msgstr ""
 
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr ""
 
@@ -525,11 +547,25 @@ msgstr ""
 msgid "BEST_PATCH_COLON"
 msgstr "Vrste:"
 
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr ""
+
 msgid "BIG_IRON_CHUNK"
 msgstr "Veliki komad gvožđa"
 
 #, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Veliki komad gvožđa"
+
+#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Veliki komad gvožđa"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "Veliki komad gvožđa"
 
 msgid "BILLION_ABBREVIATION"
@@ -647,6 +683,9 @@ msgstr ""
 
 msgid "CANNOT_ENGULF"
 msgstr "Ne može da guta"
+
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
@@ -921,6 +960,10 @@ msgstr "Priobalni"
 msgid "COLLISION_SHAPE"
 msgstr ""
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
 msgid "COLOUR"
 msgstr "Boja"
 
@@ -972,6 +1015,9 @@ msgstr "Dodajte novo vezivanje tastera"
 #, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr ""
 
 #, fuzzy
 msgid "COMMON_ABILITIES"
@@ -1073,6 +1119,29 @@ msgstr "Dodajte novo vezivanje tastera"
 
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Oblak jedinjenja"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Oblak jedinjenja"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Oblak jedinjenja"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
 msgstr "Oblak jedinjenja"
 
 #, fuzzy
@@ -1354,6 +1423,10 @@ msgstr ""
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "Oblak jedinjenja"
+
 msgid "CPU_THREADS"
 msgstr ""
 
@@ -1464,8 +1537,28 @@ msgstr "Nastaviti"
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "Generacija:"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "Generacija:"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "Sposobnosti"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Sposobnosti"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "Sposobnosti"
 
 #, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
@@ -1535,6 +1628,9 @@ msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
 msgid "DEATH"
+msgstr ""
+
+msgid "DEBUG_CONSOLE"
 msgstr ""
 
 msgid "DEBUG_COORDINATES"
@@ -1785,6 +1881,10 @@ msgstr "Sposobnosti"
 msgid "DISPLAY_PART_NAMES"
 msgstr "Sposobnosti"
 
+#, fuzzy
+msgid "DISPLAY_SELECTION"
+msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
+
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr ""
 
@@ -1918,8 +2018,16 @@ msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr "Učitavanje Uređivača Mikroba"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr "Učitavanje Uređivača Mikroba"
+
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "Zona: {0}"
 
 msgid "EFFECTIVE_VALUE"
 msgstr ""
@@ -2019,6 +2127,10 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
+#, fuzzy
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr "Oblak jedinjenja"
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
@@ -2030,6 +2142,9 @@ msgid "ENERGY_SOURCES"
 msgstr ""
 
 msgid "ENERGY_SUMMARY_LINE"
+msgstr ""
+
+msgid "ENGULF_CELL_OR_CHUNK"
 msgstr ""
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
@@ -2134,6 +2249,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -2390,6 +2513,10 @@ msgstr ""
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "Nastaviti"
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "Skladište"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
@@ -2417,6 +2544,14 @@ msgstr ""
 
 msgid "FOSSILISE"
 msgstr ""
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Automatska-evolucija nije uspela"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
@@ -2505,9 +2640,8 @@ msgstr "Pritisnite dugme poništi u uređivaču da biste ispravili grešku"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Pritisnite dugme poništi u uređivaču da biste ispravili grešku"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Generacija:"
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
 
 #, fuzzy
 msgid "GENERATIONS"
@@ -2575,6 +2709,10 @@ msgstr "Glukoza"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "Glukoza"
+
 msgid "GLYCOLYSIS"
 msgstr "Glikoliza"
 
@@ -2584,6 +2722,9 @@ msgstr ""
 #, fuzzy
 msgid "GOD_TOOLS_TITLE"
 msgstr "Dodajte novo vezivanje tastera"
+
+msgid "GOING_NUCLEAR"
+msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
 msgstr ""
@@ -2602,6 +2743,10 @@ msgid "GRAPHICS"
 msgstr "Grafika"
 
 #, fuzzy
+msgid "GRAPHICS_PRESET"
+msgstr "Grafika"
+
+#, fuzzy
 msgid "GRAPHICS_TEAM"
 msgstr "Grafika"
 
@@ -2615,6 +2760,14 @@ msgstr ""
 #, fuzzy
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr "Moć ćelije. Mitohondrion (množina: mitohondrije) je dvostruka membranska struktura ispunjena proteinima i enzimima. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. U stanju je da pretvori glukozu u ATP sa mnogo većom efikasnošću nego što se to može učiniti u citoplazmi u procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP."
+
+#, fuzzy
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr "(veće vrednosti poboljšavaju performanse)"
+
+#, fuzzy
+msgid "GUI_SCALE_OPTION"
+msgstr "Zatvoriti opcije?"
 
 msgid "GUI_TAB_NAVIGATION"
 msgstr ""
@@ -2710,6 +2863,10 @@ msgid "HYDROGEN_SULFIDE"
 msgstr "Vodonik Sulfid"
 
 #, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
+msgstr "Vodonik Sulfid"
+
+#, fuzzy
 msgid "ICESHARD"
 msgstr "Krhotina Leda"
 
@@ -2722,6 +2879,9 @@ msgstr ""
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
@@ -2729,6 +2889,9 @@ msgid "ID_NUMBER"
 msgstr ""
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 #, fuzzy
@@ -2849,6 +3012,14 @@ msgid "INSTAGRAM_TOOLTIP"
 msgstr "Nastaviti"
 
 #, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0:F1}% završeno. {1:n0}/{2:n0} koraka."
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Mutacije Poeni"
 
@@ -2950,6 +3121,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Gvožđe"
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 #, fuzzy
 msgid "IRON_OXIDATION"
 msgstr "Opcije"
@@ -2966,18 +3140,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr "sa koncentracijom"
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3517,8 +3679,24 @@ msgid "MACROSCOPIC"
 msgstr ""
 
 #, fuzzy
+msgid "MACROSCOPIC_EDITOR"
+msgstr "Učitavanje Uređivača Mikroba"
+
+#, fuzzy
 msgid "MACROSCOPIC_STAGE"
 msgstr "Zona: {0}"
+
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Hemosinteza"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "Omogućite uređivač"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -3677,6 +3855,10 @@ msgstr ""
 msgid "MICHE_DETAIL_TEXT"
 msgstr "Vrste:"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "se proširila na zone:"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3699,8 +3881,16 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr ""
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Proizvodi"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
+msgstr "se proširila na zone:"
 
 msgid "MICHE_TREE"
 msgstr ""
@@ -3719,6 +3909,10 @@ msgstr "Učitavanje Uređivača Mikroba"
 
 #, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "Statistika Organizma"
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
 msgstr "Statistika Organizma"
 
 #, fuzzy
@@ -3883,6 +4077,10 @@ msgstr "Statistika Organizma"
 msgid "MICROBIAL_MASSACRE"
 msgstr "Zona: {0}"
 
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "Zona: {0}"
+
 msgid "MIDDLE_MOUSE"
 msgstr "Srednji miš"
 
@@ -3992,6 +4190,10 @@ msgstr ""
 msgid "MODS"
 msgstr ""
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Uključi tasteri za varanja"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4024,9 +4226,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 #, fuzzy
@@ -4101,6 +4300,12 @@ msgid "MOD_UPLOADER"
 msgstr ""
 
 msgid "MOD_VERSION"
+msgstr ""
+
+msgid "MONITOR_AUTO"
+msgstr ""
+
+msgid "MONITOR_IDENTIFIER"
 msgstr ""
 
 msgid "MORE_INFO"
@@ -4402,6 +4607,10 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Vodonik Sulfid"
+
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr ""
 
@@ -4433,6 +4642,10 @@ msgstr ""
 
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
+
+#, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "POTVRDI"
 
 #, fuzzy
 msgid "NO_MODS_ENABLED"
@@ -4689,6 +4902,10 @@ msgid "OUR_WIKI"
 msgstr ""
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Prekinuto."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "Prekinuto."
 
@@ -4768,6 +4985,10 @@ msgstr "Okrenite kameru prema gore"
 
 msgid "PAST_DEVELOPERS"
 msgstr ""
+
+#, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "Pećina"
 
 #, fuzzy
 msgid "PATCH_COLON"
@@ -4873,6 +5094,10 @@ msgstr "Fosfat"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfat"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Fosfat"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosinteza"
 
@@ -4897,6 +5122,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Statistika"
 
 #, fuzzy
 msgid "PLAYER"
@@ -4979,6 +5208,30 @@ msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Nastaviti"
 
 #, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "Na Kursoru:"
+
+#, fuzzy
+msgid "PRESET_HIGH"
+msgstr "Resetovati"
+
+#, fuzzy
+msgid "PRESET_LOW"
+msgstr "Resetovati"
+
+#, fuzzy
+msgid "PRESET_MEDIUM"
+msgstr "za povećanje kretanja"
+
+#, fuzzy
+msgid "PRESET_VERY_HIGH"
+msgstr "Resetujte Unosi"
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
 msgid "PRESSURE"
 msgstr "Priti."
 
@@ -5058,6 +5311,10 @@ msgid "RADIATION"
 msgstr "Disanje"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Disanje"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Veliki komad gvožđa"
 
@@ -5078,6 +5335,16 @@ msgstr ""
 #, fuzzy
 msgid "RAW_VALUE_COLON"
 msgstr "Brzina:"
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Postavite organelu"
 
 msgid "READING_SAVE_DATA"
 msgstr ""
@@ -5104,6 +5371,9 @@ msgstr ""
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Organele"
+
+msgid "REGIONS_NUMBER"
+msgstr ""
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5258,6 +5528,18 @@ msgid "REVEAL_ALL_PATCHES"
 msgstr "se proširila na zone:"
 
 #, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Omogućite uređivač"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Stavite fosfat"
+
+#, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
@@ -5284,7 +5566,14 @@ msgstr "Rotirajte desno"
 msgid "ROTATION_COLON"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
+msgstr "Pokrenite automatsku-evoluciju tokom igranja"
+
+#, fuzzy
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
 msgstr "Pokrenite automatsku-evoluciju tokom igranja"
 
 msgid "RUN_ONE_STEP"
@@ -5350,12 +5639,6 @@ msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr ""
 
 msgid "SAVE_FAILED"
@@ -5591,6 +5874,10 @@ msgid "SHOW_ITEM_COORDINATES"
 msgstr ""
 
 #, fuzzy
+msgid "SHOW_MAP"
+msgstr "Pokažite pomoć"
+
+#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Pećina"
 
@@ -5706,7 +5993,15 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "Mali gvozdeni komad"
 
 #, fuzzy
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "Mali gvozdeni komad"
+
+#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Mali gvozdeni komad"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr "Mali gvozdeni komad"
 
 #, fuzzy
@@ -5786,6 +6081,14 @@ msgstr "Vrste:"
 #, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "ima mutaciju"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "POPULACIJA:"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "POPULACIJA:"
 
 msgid "SPECIES_LIST"
 msgstr ""
@@ -6001,6 +6304,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr "uspešno ubistvo"
 
@@ -6022,6 +6328,10 @@ msgstr ""
 
 msgid "SURVIVAL_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "Ćelijsko Jezgro"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
@@ -6061,6 +6371,14 @@ msgstr "Napravite snimak ekrana"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "Zdrav.:"
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Sačuvaj i nastavi"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "Disanje"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -6160,6 +6478,10 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
+msgid "THE_EDITOR"
+msgstr "Omogućite uređivač"
+
+#, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Karta Zone"
 
@@ -6202,6 +6524,10 @@ msgstr ""
 
 msgid "THRIVE_LICENSES"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Pokret"
 
 msgid "THYLAKOIDS"
 msgstr "Tilakoidi"
@@ -6281,6 +6607,10 @@ msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Prebacite gutanje"
 
 #, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Prebacite gutanje"
+
+#, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Prebacite gutanje"
 
@@ -6351,6 +6681,10 @@ msgstr ""
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr "Vrste:"
 
 #, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
@@ -6492,10 +6826,6 @@ msgid "TUTORIAL"
 msgstr ""
 
 #, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "Izbodite druge ćelije sa ovo."
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr "Učitavanje Uređivača Mikroba"
 
@@ -6629,6 +6959,10 @@ msgstr "Slobodna-Gradnja Uređivač Mikroba"
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Učitavanje Uređivača Mikroba"
 
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "Izbodite druge ćelije sa ovo."
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
@@ -6682,6 +7016,17 @@ msgstr "Poništi"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Opozovi poslednju akciju"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Izbodite druge ćelije sa ovo."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Dodajte novo vezivanje tastera"
 
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
@@ -6854,6 +7199,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -6863,13 +7211,6 @@ msgstr ""
 #, fuzzy
 msgid "USES_FEATURE"
 msgstr "Temperatura"
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#, fuzzy
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Dodajte novo vezivanje tastera"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Koristite prilagođeno korisničko ime"
@@ -6916,6 +7257,9 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VENTS_ARE_HOME"
 msgstr ""
 
 #, fuzzy
@@ -8919,6 +9263,14 @@ msgstr "Temp."
 msgid "WORST_PATCH_COLON"
 msgstr "Vrste:"
 
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "POTVRDI"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
 msgid "XBOX360"
 msgstr ""
 
@@ -8949,11 +9301,31 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr "Pomerite nadole"
+
 msgid "ZOOM_IN"
 msgstr "Zumirati"
 
 msgid "ZOOM_OUT"
 msgstr "Odzumirati"
+
+#, fuzzy
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Proizvodi"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Prekinuto."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Generacija:"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
@@ -9192,10 +9564,6 @@ msgstr "Odzumirati"
 #~ msgstr "Zona: {0}"
 
 #, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Hemosinteza"
-
-#, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"
 #~ msgstr "Glikoliza"
 
@@ -9258,10 +9626,6 @@ msgstr "Odzumirati"
 #~ msgstr "populacija:"
 
 #, fuzzy
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "POPULACIJA:"
-
-#, fuzzy
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Veliki komad gvožđa"
 
@@ -9307,10 +9671,6 @@ msgstr "Odzumirati"
 #, fuzzy
 #~ msgid "SPECIES_DETAILS"
 #~ msgstr "Vrste:"
-
-#, fuzzy
-#~ msgid "CURRENT_GENERATION_COLON"
-#~ msgstr "Generacija:"
 
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
@@ -9504,10 +9864,6 @@ msgstr "Odzumirati"
 #~ msgstr "Rotirajte desno"
 
 #, fuzzy
-#~ msgid "EXCLAMDOWN"
-#~ msgstr "Pomerite nadole"
-
-#, fuzzy
 #~ msgid "COPYRIGHT"
 #~ msgstr "Pomerite se desno"
 
@@ -9526,3 +9882,7 @@ msgstr "Odzumirati"
 #, fuzzy
 #~ msgid "BACKTAB"
 #~ msgstr "Nazad"
+
+#, fuzzy
+#~ msgid "CURRENT_GENERATION_COLON"
+#~ msgstr "Generacija:"

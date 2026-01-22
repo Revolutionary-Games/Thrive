@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
-///   Editor component that specializes in hex-based stuff editing
+///   Editor component that specialises in hex-based stuff editing
 /// </summary>
 /// <typeparam name="TEditor">Type of editor this class can be put in</typeparam>
 /// <typeparam name="TCombinedAction">Type of editor action this class works with</typeparam>
@@ -14,13 +14,15 @@ using Newtonsoft.Json;
 /// <typeparam name="TContext">Extra action context data this manages on actions</typeparam>
 [GodotAbstract]
 public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, THexMove, TContext> :
-    EditorComponentWithActionsBase<TEditor, TCombinedAction>,
-    ISaveLoadedTracked, IChildPropertiesLoadCallback
+    EditorComponentWithActionsBase<TEditor, TCombinedAction>
     where TEditor : class, IHexEditor, IEditorWithActions
     where TCombinedAction : CombinedEditorAction
     where TAction : EditorAction
-    where THexMove : class, IActionHex
+    where THexMove : class, IActionHex, IArchivable
+    where TContext : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION_HEX = 1;
+
     /// <summary>
     ///   The hexes that are positioned under the cursor to show where the player is about to place something.
     /// </summary>
@@ -42,7 +44,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     protected readonly Dictionary<MeshInstance3D, Material> hoverOverriddenMaterials = new();
 
     /// <summary>
-    ///   This is the placed down version of models, compare to <see cref="hoverModels"/>
+    ///   This is the placed-down version of models, compare to <see cref="hoverModels"/>
     /// </summary>
     protected readonly List<SceneDisplayer> placedModels = new();
 
@@ -60,7 +62,6 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     [Export]
     protected MicrobeCamera? camera;
 
-    [JsonIgnore]
     [Export]
     protected MeshInstance3D editorArrow = null!;
 
@@ -76,14 +77,16 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     protected PackedScene modelScene = null!;
 
     protected AudioStream hexPlacementSound = null!;
+
+    [Export]
+    protected Control floatingLabelContainer = null!;
 #pragma warning restore CA2213
 
-    [JsonProperty]
     protected string? activeActionName;
 
     /// <summary>
     ///   This is a global assessment if the currently being placed thing / action is valid (if not all hover hexes
-    ///   will be shown as invalid)
+    ///   are shown as invalid)
     /// </summary>
     protected bool isPlacementProbablyValid;
 
@@ -94,8 +97,11 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
     protected int usedHoverModel;
 
-    [JsonProperty]
     protected int placementRotation;
+
+    private readonly StringName fontColorOverrideName = new("font_color");
+
+    private readonly List<FloatingLabel> createdFloatingLabels = new();
 
     private readonly NodePath positionZReference = new("position:z");
 
@@ -123,7 +129,6 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     /// <summary>
     ///   The symmetry setting of the editor.
     /// </summary>
-    [JsonProperty]
     public HexEditorSymmetry Symmetry
     {
         get => symmetry;
@@ -131,10 +136,9 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     }
 
     /// <summary>
-    ///   Hex that is in the process of being moved but a new location hasn't been selected yet.
+    ///   Hex that is in the process of being moved, but a new location hasn't been selected yet.
     ///   If null, nothing is in the process of moving.
     /// </summary>
-    [JsonProperty]
     public THexMove? MovingPlacedHex { get; protected set; }
 
     /// <summary>
@@ -147,7 +151,6 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     ///     This approach also allows different editor components to remember where they placed the camera.
     ///   </para>
     /// </remarks>
-    [JsonProperty]
     public Vector3 CameraPosition
     {
         get => cameraPosition;
@@ -158,10 +161,8 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         }
     }
 
-    [JsonProperty]
     public float CameraHeight { get; private set; } = Constants.EDITOR_DEFAULT_CAMERA_HEIGHT;
 
-    [JsonIgnore]
     public IEnumerable<(Hex Hex, int Orientation)>? MouseHoverPositions
     {
         get => mouseHoverPositions;
@@ -179,18 +180,15 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     }
 
     /// <summary>
-    ///   If true a hex move is in progress and can be canceled
+    ///   If true, a hex move is in progress and can be canceled
     /// </summary>
-    [JsonIgnore]
     public bool CanCancelMove => MovingPlacedHex != null;
 
-    [JsonIgnore]
     public override bool CanCancelAction => CanCancelMove;
 
-    [JsonIgnore]
     public virtual bool HasIslands => throw new GodotAbstractPropertyNotOverriddenException();
 
-    public bool IsLoadedFromSave { get; set; }
+    protected virtual bool ShowFloatingLabels => false;
 
     protected virtual bool ForceHideHover => throw new GodotAbstractPropertyNotOverriddenException();
 
@@ -226,7 +224,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
         UpdateSymmetryIcon();
 
-        // For now we never reuse editors so it isn't worth the trouble to have code to properly clear these
+        // For now, we never reuse editors, so it isn't worth the trouble to have code to properly clear these
         if (hoverHexes.Count > 0 || hoverModels.Count > 0 || hoverOverriddenMaterials.Count > 0)
             throw new InvalidOperationException("This editor has already been initialized (hexes not empty)");
 
@@ -242,7 +240,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
             hoverModels.Add(CreatePreviewModelHolder());
         }
 
-        // The world is reset each time so these are gone. We throw an exception if that's not the case as that
+        // The world is reset each time, so these are gone. We throw an exception if that's not the case as that
         // indicates a programming bug
         if (placedHexes.Count > 0 || placedModels.Count > 0)
             throw new InvalidOperationException("This editor has already been initialized (placed hexes not empty)");
@@ -289,6 +287,39 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
 
         camera.UpdateCameraPosition(delta, cameraFollow.GlobalPosition);
+
+        UpdateFloatingLabelPositions();
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(SERIALIZATION_VERSION_BASE);
+        base.WritePropertiesToArchive(writer);
+
+        writer.Write(activeActionName);
+        writer.Write(placementRotation);
+        writer.Write((int)Symmetry);
+        writer.WriteObjectOrNull(MovingPlacedHex);
+        writer.Write(CameraPosition);
+        writer.Write(CameraHeight);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_HEX or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_HEX);
+
+        base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
+
+        activeActionName = reader.ReadString();
+        placementRotation = reader.ReadInt32();
+        Symmetry = (HexEditorSymmetry)reader.ReadInt32();
+        MovingPlacedHex = reader.ReadObjectOrNull<THexMove>();
+        CameraPosition = reader.ReadVector3();
+        CameraHeight = reader.ReadFloat();
+
+        // A bit of a hack to make sure our camera doesn't lose its zoom level
+        camera!.IsLoadedFromSave = true;
     }
 
     public void ResetSymmetryButton()
@@ -633,18 +664,6 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     public void PlayHexPlacementSound()
     {
         GUICommon.Instance.PlayCustomSound(hexPlacementSound, 0.7f);
-    }
-
-    public void OnNoPropertiesLoaded()
-    {
-        // Something is wrong if a hex editor has this method called on it
-        throw new InvalidOperationException();
-    }
-
-    public virtual void OnPropertiesLoaded()
-    {
-        // A bit of a hack to make sure our camera doesn't lose its zoom level
-        camera!.IsLoadedFromSave = true;
     }
 
     /// <summary>
@@ -1044,6 +1063,62 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         }
     }
 
+    /// <summary>
+    ///   Updates floating labels which can be used by inheriting classes for arbitrary purposes (like growth order)
+    /// </summary>
+    protected void UpdateFloatingLabelConfiguration(
+        IEnumerable<(Vector3 TargetPosition, string Text, Color TextColor)> labels)
+    {
+        // Setup tracking for what gets used
+        foreach (var label in createdFloatingLabels)
+        {
+            label.Active = false;
+        }
+
+        int currentLabelId = 0;
+
+        foreach (var label in labels)
+        {
+            FloatingLabel graphicalLabel;
+
+            if (currentLabelId >= createdFloatingLabels.Count)
+            {
+                graphicalLabel = new FloatingLabel();
+                floatingLabelContainer.AddChild(graphicalLabel);
+                createdFloatingLabels.Add(graphicalLabel);
+            }
+            else
+            {
+                graphicalLabel = createdFloatingLabels[currentLabelId];
+            }
+
+            graphicalLabel.Active = true;
+            graphicalLabel.Visible = true;
+
+            graphicalLabel.TargetPosition = label.TargetPosition;
+            graphicalLabel.Text = label.Text;
+
+            if (label.TextColor != Colors.White)
+            {
+                graphicalLabel.AddThemeColorOverride(fontColorOverrideName, label.TextColor);
+            }
+            else
+            {
+                graphicalLabel.RemoveThemeColorOverride(fontColorOverrideName);
+            }
+
+            ++currentLabelId;
+        }
+
+        // Hide unused labels
+        for (int i = currentLabelId; i < createdFloatingLabels.Count; ++i)
+        {
+            createdFloatingLabels[i].Visible = false;
+        }
+
+        UpdateFloatingLabelPositions();
+    }
+
     protected virtual void PerformActiveAction()
     {
         throw new GodotAbstractMethodNotOverriddenException();
@@ -1104,9 +1179,33 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         if (disposing)
         {
             positionZReference.Dispose();
+            fontColorOverrideName.Dispose();
         }
 
         base.Dispose(disposing);
+    }
+
+    private void UpdateFloatingLabelPositions()
+    {
+        if (!ShowFloatingLabels)
+        {
+            floatingLabelContainer.Visible = false;
+            return;
+        }
+
+        floatingLabelContainer.Visible = true;
+
+        int count = createdFloatingLabels.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            var label = createdFloatingLabels[i];
+
+            if (!label.Active)
+                continue;
+
+            label.Visible = true;
+            label.Position = camera!.UnprojectPosition(label.TargetPosition);
+        }
     }
 
     /// <summary>
@@ -1127,5 +1226,15 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     private void UpdateSymmetryIcon()
     {
         componentBottomLeftButtons.SetSymmetry(symmetry);
+    }
+
+    /// <summary>
+    ///   A simple label displaying any arbitrary info, e.g. growth order
+    /// </summary>
+    protected partial class FloatingLabel : Label
+    {
+        public bool Active { get; set; } = true;
+
+        public Vector3 TargetPosition { get; set; }
     }
 }

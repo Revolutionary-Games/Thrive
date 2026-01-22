@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using Saving.Serializers;
+using SharedBase.Archive;
 
-public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
+public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData, IMetaballAction
     where TMetaball : Metaball
 {
     public TMetaball RemovedMetaball;
@@ -12,12 +13,11 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
     public Metaball? Parent;
 
     /// <summary>
-    ///   If any metaballs that were the children of <see cref="RemovedMetaball"/> exist, they need to be moved,
+    ///   If any metaballs that were the children of <see cref="RemovedMetaball"/> exist, they need to be moved;
     ///   that movement data is stored here
     /// </summary>
     public List<MetaballMoveActionData<TMetaball>>? ReParentedMetaballs;
 
-    [JsonConstructor]
     public MetaballRemoveActionData(TMetaball metaball, Vector3 position, Metaball? parent,
         List<MetaballMoveActionData<TMetaball>>? reParentedMetaballs)
     {
@@ -31,9 +31,14 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
     {
         RemovedMetaball = metaball;
         Position = metaball.Position;
-        Parent = metaball.Parent;
+        Parent = metaball.ModifiableParent;
         ReParentedMetaballs = reParentedMetaballs;
     }
+
+    public override ushort CurrentArchiveVersion => MetaballActionDataSerializer.SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.MetaballRemoveActionData;
 
     public static List<MetaballMoveActionData<TMetaball>>? CreateMovementActionForChildren(TMetaball removedMetaball,
         MetaballLayout<TMetaball> descendantData)
@@ -45,7 +50,7 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
 
         var result = new List<MetaballMoveActionData<TMetaball>>();
 
-        Metaball? parentMetaball = removedMetaball.Parent;
+        Metaball? parentMetaball = removedMetaball.ModifiableParent;
 
         var descendantList = new List<TMetaball>();
 
@@ -90,7 +95,7 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
                 if (descendantPosition.IsEqualApprox(descendant.Position))
                     continue;
 
-                var descendantParent = descendant.Parent;
+                var descendantParent = descendant.ModifiableParent;
 
                 if (descendantParent == removedMetaball)
                     descendantParent = parentMetaball;
@@ -99,60 +104,33 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
                     throw new Exception("logic error in child metaball adjustment action generation");
 
                 result.Add(new MetaballMoveActionData<TMetaball>(descendant, descendant.Position,
-                    descendantPosition, descendant.Parent, descendantParent, null));
+                    descendantPosition, descendant.ModifiableParent, descendantParent, null));
             }
         }
 
         return result;
     }
 
-    protected override double CalculateCostInternal()
+    public override void WriteToArchive(ISArchiveWriter writer)
     {
-        return Constants.METABALL_REMOVE_COST;
+        writer.WriteObject(RemovedMetaball);
+        writer.Write(Position);
+        writer.WriteObjectOrNull(Parent);
+
+        writer.Write(SERIALIZATION_VERSION_EDITOR);
+        base.WriteToArchive(writer);
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    public void FinishBaseLoad(ISArchiveReader reader, ushort version)
     {
-        // If this metaball got placed in this session on the same position
-        if (other is MetaballPlacementActionData<TMetaball> placementActionData &&
-            placementActionData.PlacedMetaball.MatchesDefinition(RemovedMetaball))
-        {
-            // If this metaball got placed on the same position
-            if (placementActionData.Position.DistanceSquaredTo(Position) < MathUtils.EPSILON &&
-                placementActionData.Parent == Parent)
-                return ActionInterferenceMode.CancelsOut;
+        if (version == 0 || version > CurrentArchiveVersion)
+            throw new InvalidArchiveVersionException(version, CurrentArchiveVersion);
 
-            // Removing a metaball and then placing it is a move operation
-            return ActionInterferenceMode.Combinable;
-        }
-
-        // If this metaball got moved in this session
-        if (other is MetaballMoveActionData<TMetaball> moveActionData &&
-            moveActionData.MovedMetaball.MatchesDefinition(RemovedMetaball) &&
-            moveActionData.NewPosition.DistanceSquaredTo(Position) < MathUtils.EPSILON &&
-            moveActionData.NewParent == Parent)
-        {
-            return ActionInterferenceMode.Combinable;
-        }
-
-        return ActionInterferenceMode.NoInterference;
+        ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        if (other is MetaballPlacementActionData<TMetaball> placementActionData)
-        {
-            return new MetaballMoveActionData<TMetaball>(placementActionData.PlacedMetaball, Position,
-                placementActionData.Position,
-                Parent, placementActionData.Parent, MetaballMoveActionData<TMetaball>.UpdateNewMovementPositions(
-                    ReParentedMetaballs,
-                    placementActionData.Position - Position));
-        }
-
-        var moveActionData = (MetaballMoveActionData<TMetaball>)other;
-        return new MetaballRemoveActionData<TMetaball>(RemovedMetaball, moveActionData.OldPosition,
-            moveActionData.OldParent,
-            MetaballMoveActionData<TMetaball>.UpdateOldMovementPositions(ReParentedMetaballs,
-                moveActionData.OldPosition - Position));
+        return false;
     }
 }

@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   Done editor actions are stored here to provide undo/redo functionality
 /// </summary>
-[JSONAlwaysDynamicType]
 public abstract class EditorAction : ReversibleAction
 {
-    [JsonIgnore]
     public abstract IEnumerable<EditorCombinableActionData> Data { get; }
 
-    public abstract double CalculateCost();
+    // Plan:
+    // Then make it clear in renames that merging is purely to combine subsequent actions into a single undo/redo step
 
     /// <summary>
     ///   Used to replace the data in this action with data that has been merged
@@ -27,4 +25,11 @@ public abstract class EditorAction : ReversibleAction
     /// </summary>
     /// <returns>The number of items consumed</returns>
     public abstract int ApplyPartialMergedData(List<EditorCombinableActionData> newData, int startIndex);
+
+    /// <summary>
+    ///   Copies the <see cref="Data"/> to the target collection in the most efficient way possible.
+    ///   Doesn't clear the target.
+    /// </summary>
+    /// <param name="target">Where to copy the data from this</param>
+    public abstract void CopyData(ICollection<EditorCombinableActionData> target);
 }

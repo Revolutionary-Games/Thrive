@@ -10,10 +10,18 @@ public partial class FluidCurrentDisplay : GpuParticles3D
     private readonly StringName gameTimeParameterName = new("gameTime");
     private readonly StringName speedParameterName = new("speed");
     private readonly StringName chaoticnessParameterName = new("chaoticness");
-    private readonly StringName scaleParameterName = new("scale");
+    private readonly StringName inverseScaleParameterName = new("inverseScale");
     private readonly StringName brightnessParameterName = new("brightness");
+    private readonly StringName colorParameterName = new("colorValue");
+    private readonly StringName particleDepthVariationParameterName = new("particleDepthVariation");
 
 #pragma warning disable CA2213
+    [Export]
+    private Mesh normalParticleMesh = null!;
+
+    [Export]
+    private Mesh trailedParticleMesh = null!;
+
     private ShaderMaterial material = null!;
 
     private Node3D parent = null!;
@@ -21,15 +29,43 @@ public partial class FluidCurrentDisplay : GpuParticles3D
     private IWorldSimulation timeScaling = null!;
 #pragma warning restore CA2213
 
+    private Settings.MicrobeCurrentParticlesMode initializedMode;
+
     private float time;
 
     private Vector3 previousParentPosition;
+
+    /// <summary>
+    ///   Remembered previous biome for re-enabling the effect
+    /// </summary>
+    private Biome? previousBiome;
 
     public override void _Ready()
     {
         base._Ready();
 
         material = (ShaderMaterial)ProcessMaterial;
+        initializedMode = Settings.Instance.MicrobeCurrentParticles;
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        Settings.Instance.MicrobeCurrentParticles.OnChanged += OnModeChanged;
+
+        if (material != null!)
+        {
+            // Apply any mode updates we missed while being detached
+            OnModeChanged(Settings.Instance.MicrobeCurrentParticles);
+        }
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        Settings.Instance.MicrobeCurrentParticles.OnChanged -= OnModeChanged;
     }
 
     public void Init(IWorldSimulation worldTimeSource, Node3D parentNode)
@@ -41,6 +77,9 @@ public partial class FluidCurrentDisplay : GpuParticles3D
     public override void _Process(double delta)
     {
         base._Process(delta);
+
+        if (initializedMode == Settings.MicrobeCurrentParticlesMode.None)
+            return;
 
         var parentPos = parent.Position;
 
@@ -57,29 +96,61 @@ public partial class FluidCurrentDisplay : GpuParticles3D
             GlobalPosition = new Vector3(previousParentPosition.X, 1.0f, previousParentPosition.Z);
         }
 
-        if (!PauseManager.Instance.Paused)
-        {
-            SpeedScale = timeScaling.WorldTimeScale;
-
-            time += (float)(delta * SpeedScale);
-
-            material.SetShaderParameter(gameTimeParameterName, time);
-        }
-        else
-        {
-            SpeedScale = 0.0f;
-        }
+        SpeedScale = timeScaling.WorldTimeScale;
     }
 
     public void ApplyBiome(Biome biome)
     {
-        material.SetShaderParameter(speedParameterName, biome.WaterCurrentSpeed);
-        material.SetShaderParameter(chaoticnessParameterName, biome.WaterCurrentChaoticness);
-        material.SetShaderParameter(scaleParameterName, biome.WaterCurrentScale);
+        // Remember the settings we should have if we are enabled later
+        previousBiome = biome;
 
-        material.SetShaderParameter(brightnessParameterName, biome.CompoundCloudBrightness);
+        if (initializedMode == Settings.MicrobeCurrentParticlesMode.None)
+        {
+            Visible = false;
+            return;
+        }
 
-        Amount = biome.WaterCurrentParticleCount;
+        Visible = true;
+
+        material.SetShaderParameter(speedParameterName, biome.WaterCurrents.Speed);
+        material.SetShaderParameter(chaoticnessParameterName, biome.WaterCurrents.Chaoticness);
+        material.SetShaderParameter(inverseScaleParameterName, biome.WaterCurrents.InverseScale);
+
+        material.SetShaderParameter(colorParameterName, biome.WaterCurrents.Colour);
+
+        TrailEnabled = biome.WaterCurrents.UseTrails && initializedMode == Settings.MicrobeCurrentParticlesMode.All;
+        if (TrailEnabled)
+        {
+            DrawPass1 = trailedParticleMesh;
+            material.SetShaderParameter(particleDepthVariationParameterName, 0.0f);
+        }
+        else
+        {
+            DrawPass1 = normalParticleMesh;
+            material.SetShaderParameter(particleDepthVariationParameterName, 1.0f);
+        }
+
+        Amount = biome.WaterCurrents.ParticleCount;
+    }
+
+    public void UpdateLightLevel(Patch patch)
+    {
+        float lightLevel = patch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient;
+
+        // Store this in the material as we don't have an easy variable to remember this if we happen to be re-enabled
+        // later
+        material.SetShaderParameter(brightnessParameterName,
+            (patch.BiomeTemplate.CompoundCloudBrightness - 1.0f) * lightLevel + 1.0f);
+    }
+
+    public void UpdateTime(float newTime)
+    {
+        time = newTime;
+
+        if (initializedMode == Settings.MicrobeCurrentParticlesMode.None)
+            return;
+
+        material.SetShaderParameter(gameTimeParameterName, time);
     }
 
     protected override void Dispose(bool disposing)
@@ -89,10 +160,36 @@ public partial class FluidCurrentDisplay : GpuParticles3D
             gameTimeParameterName.Dispose();
             speedParameterName.Dispose();
             chaoticnessParameterName.Dispose();
-            scaleParameterName.Dispose();
+            inverseScaleParameterName.Dispose();
             brightnessParameterName.Dispose();
+            colorParameterName.Dispose();
+            particleDepthVariationParameterName.Dispose();
         }
 
         base.Dispose(disposing);
+    }
+
+    private void OnModeChanged(Settings.MicrobeCurrentParticlesMode value)
+    {
+        if (initializedMode == value)
+            return;
+
+        // Need to react to option change while the game is running
+        initializedMode = value;
+
+        if (initializedMode == Settings.MicrobeCurrentParticlesMode.None)
+        {
+            Visible = false;
+            return;
+        }
+
+        if (previousBiome != null)
+        {
+            ApplyBiome(previousBiome);
+        }
+        else
+        {
+            GD.PrintErr("Cannot enable fluid current display without knowing a biome to apply");
+        }
     }
 }

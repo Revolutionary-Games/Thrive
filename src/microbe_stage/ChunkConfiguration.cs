@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   See FloatingChunk for what many of the fields here do
 /// </summary>
-public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
+public struct ChunkConfiguration : IEquatable<ChunkConfiguration>, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public string Name;
 
     /// <summary>
@@ -24,6 +27,8 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     public float Radius;
     public float ChunkScale;
     public float PhysicsDensity;
+
+    // TODO: rename Size to EngulfSize after making sure it isn't used for other purposes
     public float Size;
 
     /// <summary>
@@ -41,7 +46,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     /// <summary>
     ///   The name of the kind of damage type this chunk inflicts.
     /// </summary>
-    public string DamageType;
+    public string? DamageType;
 
     public Dictionary<Compound, ChunkCompound>? Compounds;
 
@@ -53,7 +58,16 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     /// <summary>
     ///   The type of enzyme needed to break down this chunk.
     /// </summary>
-    public string DissolverEnzyme;
+    public string? DissolverEnzyme;
+
+    [JsonIgnore]
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    [JsonIgnore]
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ChunkConfiguration;
+
+    [JsonIgnore]
+    public bool CanBeReferencedInArchive => false;
 
     public static bool operator ==(ChunkConfiguration left, ChunkConfiguration right)
     {
@@ -63,6 +77,72 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     public static bool operator !=(ChunkConfiguration left, ChunkConfiguration right)
     {
         return !(left == right);
+    }
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.ChunkConfiguration)
+            throw new NotSupportedException();
+
+        writer.WriteObject((ChunkConfiguration)obj);
+    }
+
+    public static ChunkConfiguration ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new ChunkConfiguration
+        {
+            Name = reader.ReadString() ?? throw new NullArchiveObjectException(),
+            Meshes = reader.ReadObject<List<ChunkScene>>(),
+            Density = reader.ReadFloat(),
+            Dissolves = reader.ReadBool(),
+            Radius = reader.ReadFloat(),
+            ChunkScale = reader.ReadFloat(),
+            PhysicsDensity = reader.ReadFloat(),
+            Size = reader.ReadFloat(),
+            VentAmount = reader.ReadFloat(),
+            Damages = reader.ReadFloat(),
+            DeleteOnTouch = reader.ReadBool(),
+            DamageType = reader.ReadString(),
+            Compounds = reader.ReadObjectOrNull<Dictionary<Compound, ChunkCompound>>(),
+            EasterEgg = reader.ReadBool(),
+            DissolverEnzyme = reader.ReadString(),
+        };
+    }
+
+    public static object ReadFromArchiveBoxed(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        return ReadFromArchive(reader, version);
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(Name);
+        writer.WriteObject(Meshes);
+        writer.Write(Density);
+        writer.Write(Dissolves);
+        writer.Write(Radius);
+        writer.Write(ChunkScale);
+        writer.Write(PhysicsDensity);
+        writer.Write(Size);
+        writer.Write(VentAmount);
+        writer.Write(Damages);
+        writer.Write(DeleteOnTouch);
+        writer.Write(DamageType);
+
+        if (Compounds != null)
+        {
+            writer.WriteObject(Compounds);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
+
+        writer.Write(EasterEgg);
+        writer.Write(DissolverEnzyme);
     }
 
     public override bool Equals(object? obj)
@@ -99,9 +179,20 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
             Equals(Compounds, other.Compounds);
     }
 
-    public struct ChunkCompound : IEquatable<ChunkCompound>
+    public struct ChunkCompound : IEquatable<ChunkCompound>, IArchivable
     {
+        public const ushort SERIALIZATION_VERSION_COMPOUND = 1;
+
         public float Amount;
+
+        [JsonIgnore]
+        public ushort CurrentArchiveVersion => SERIALIZATION_VERSION_COMPOUND;
+
+        [JsonIgnore]
+        public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ChunkCompound;
+
+        [JsonIgnore]
+        public bool CanBeReferencedInArchive => false;
 
         public static bool operator ==(ChunkCompound left, ChunkCompound right)
         {
@@ -111,6 +202,38 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         public static bool operator !=(ChunkCompound left, ChunkCompound right)
         {
             return !(left == right);
+        }
+
+        // ReSharper disable once MemberHidesStaticFromOuterClass
+        public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+        {
+            if (type != (ArchiveObjectType)ThriveArchiveObjectType.ChunkCompound)
+                throw new NotSupportedException();
+
+            writer.WriteObject((ChunkCompound)obj);
+        }
+
+        // ReSharper disable once MemberHidesStaticFromOuterClass
+        public static ChunkCompound ReadFromArchive(ISArchiveReader reader, ushort version)
+        {
+            if (version is > SERIALIZATION_VERSION_COMPOUND or <= 0)
+                throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_COMPOUND);
+
+            return new ChunkCompound
+            {
+                Amount = reader.ReadFloat(),
+            };
+        }
+
+        // ReSharper disable once MemberHidesStaticFromOuterClass
+        public static object ReadFromArchiveBoxed(ISArchiveReader reader, ushort version, int referenceId)
+        {
+            return ReadFromArchive(reader, version);
+        }
+
+        public void WriteToArchive(ISArchiveWriter writer)
+        {
+            writer.Write(Amount);
         }
 
         public override bool Equals(object? obj)
@@ -135,10 +258,14 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     }
 
     /// <summary>
-    ///   Don't modify instances of this class
+    ///   Don't modify instances of this class. This is not disposable as this data is loaded from JSON (and archives).
     /// </summary>
-    public class ChunkScene
+#pragma warning disable CA1001
+    public class ChunkScene : IArchivable
+#pragma warning restore CA1001
     {
+        public const ushort SERIALIZATION_VERSION_SCENE = 1;
+
         /// <summary>
         ///   Scene to use for this chunk. Note that this and the following 2 variables reflect
         ///   <see cref="SceneWithModelInfo"/> but this isn't converted to use that for save compatibility (and this
@@ -177,19 +304,6 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         /// </summary>
         public bool MissingDefaultShaderSupport;
 
-        [JsonConstructor]
-        public ChunkScene(string scenePath)
-        {
-            ScenePath = scenePath;
-
-            SceneModelPath = null;
-            SceneAnimationPath = null;
-            ConvexShapePath = null;
-            IsParticles = false;
-            PlayAnimation = false;
-            MissingDefaultShaderSupport = false;
-        }
-
         public ChunkScene(LoadedSceneWithModelInfo fromModelInfo)
         {
             // TODO: investigate if it would make sense to switch ScenePath to be also a loaded scene (that would be
@@ -205,6 +319,73 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
             IsParticles = false;
             PlayAnimation = false;
             MissingDefaultShaderSupport = false;
+        }
+
+        [JsonConstructor]
+        public ChunkScene(string scenePath)
+        {
+            ScenePath = scenePath;
+
+            SceneModelPath = null;
+            SceneAnimationPath = null;
+            ConvexShapePath = null;
+            IsParticles = false;
+            PlayAnimation = false;
+            MissingDefaultShaderSupport = false;
+        }
+
+        [JsonIgnore]
+        public ushort CurrentArchiveVersion => SERIALIZATION_VERSION_SCENE;
+
+        [JsonIgnore]
+        public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.ChunkScene;
+
+        [JsonIgnore]
+        public bool CanBeReferencedInArchive => false;
+
+        // ReSharper disable once MemberHidesStaticFromOuterClass
+        public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+        {
+            if (type != (ArchiveObjectType)ThriveArchiveObjectType.ChunkScene)
+                throw new NotSupportedException();
+
+            writer.WriteObject((ChunkScene)obj);
+        }
+
+        // ReSharper disable once MemberHidesStaticFromOuterClass
+        public static object ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+        {
+            if (version is > SERIALIZATION_VERSION_SCENE or <= 0)
+                throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_SCENE);
+
+            var instance = new ChunkScene(reader.ReadString() ?? throw new NullArchiveObjectException());
+
+            var rawModel = reader.ReadString();
+            var rawAnimation = reader.ReadString();
+
+            if (rawModel != null)
+                instance.SceneModelPath = new NodePath(rawModel);
+
+            if (rawAnimation != null)
+                instance.SceneAnimationPath = new NodePath(rawAnimation);
+
+            instance.ConvexShapePath = reader.ReadString();
+            instance.IsParticles = reader.ReadBool();
+            instance.PlayAnimation = reader.ReadBool();
+            instance.MissingDefaultShaderSupport = reader.ReadBool();
+
+            return instance;
+        }
+
+        public void WriteToArchive(ISArchiveWriter writer)
+        {
+            writer.Write(ScenePath);
+            writer.Write(SceneModelPath?.ToString());
+            writer.Write(SceneAnimationPath?.ToString());
+            writer.Write(ConvexShapePath);
+            writer.Write(IsParticles);
+            writer.Write(PlayAnimation);
+            writer.Write(MissingDefaultShaderSupport);
         }
     }
 }

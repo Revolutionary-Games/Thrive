@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-01 16:03+0300\n"
+"POT-Creation-Date: 2026-01-22 16:04+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -203,6 +203,10 @@ msgstr "암모니아"
 msgid "AMMONIA_COST"
 msgstr "암모니아"
 
+#, fuzzy
+msgid "AMMONIA_LEVELS"
+msgstr "암모니아"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "저장할 수 있는 자동저장 갯수:"
 
@@ -291,7 +295,8 @@ msgstr "버전:"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "어셈블리가 특정 될 경우엔 모드 어셈블리 클래스가 필요합니다"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "자동 하모니가 활성화 되었을 때엔 모드 어셈블리가 필요합니다"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -436,6 +441,24 @@ msgstr "사용 가능한 건설 프로젝트"
 msgid "AVAILABLE_MODS"
 msgstr "사용 가능한 모드"
 
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr "의식 단계"
 
@@ -547,11 +570,25 @@ msgstr "결과:"
 msgid "BEST_PATCH_COLON"
 msgstr "종:"
 
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr ""
+
 msgid "BIG_IRON_CHUNK"
 msgstr "큰 철 덩어리"
 
 #, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "큰 철 덩어리"
+
+#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "큰 철 덩어리"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "큰 철 덩어리"
 
 msgid "BILLION_ABBREVIATION"
@@ -666,6 +703,9 @@ msgstr "이미 사용한 세포 종류는 삭제 불가함"
 
 msgid "CANNOT_ENGULF"
 msgstr "삼킬 수 없음"
+
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
@@ -939,6 +979,10 @@ msgstr "해안"
 msgid "COLLISION_SHAPE"
 msgstr ""
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "(활성화하면 성장 속도를 제한하며, 비활성화하면 성장 속도가 오직 사용할 수 있는 화합물의 양에 영향을 받음)"
+
 msgid "COLOUR"
 msgstr "색"
 
@@ -990,6 +1034,9 @@ msgstr "새로운 키 배치 추가"
 #, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "새로운 키 배치 추가"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr ""
 
 #, fuzzy
 msgid "COMMON_ABILITIES"
@@ -1094,6 +1141,29 @@ msgstr "새로운 키 배치 추가"
 
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "화합물 구름"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "성분 비율"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "성분 비율"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "화합물 구름"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "성분 비율"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
 msgstr "화합물 구름"
 
 #, fuzzy
@@ -1384,6 +1454,10 @@ msgstr ""
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "화합물 구름"
+
 msgid "CPU_THREADS"
 msgstr ""
 
@@ -1497,8 +1571,28 @@ msgstr "점액 분비"
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "현재 위치"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "현재 위치"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "현재 위치"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "현재 위치"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "능력"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "능력"
 
 #, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
@@ -1569,6 +1663,10 @@ msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적�
 
 msgid "DEATH"
 msgstr "죽음"
+
+#, fuzzy
+msgid "DEBUG_CONSOLE"
+msgstr "디버그 패널"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1825,6 +1923,10 @@ msgstr "능력"
 msgid "DISPLAY_PART_NAMES"
 msgstr "능력"
 
+#, fuzzy
+msgid "DISPLAY_SELECTION"
+msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
+
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr ""
 
@@ -1965,6 +2067,16 @@ msgstr ""
 "다음 편집기 탭으로 이동하기 위해, 오른쪽 아래의 다음 버튼을 누르세요."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"미생물 편집기에 어서오세요.\n"
+"여기서 게임 시작 이후 또는 편집기에서 마지막으로 있었던 일을 알아볼 수 있습니다. 그 후 당신의 종에 변화를 주세요.\n"
+"\n"
+"이 탭에선 어떤 종이, 어디서, 얼마나 있는지 알아볼 수 있습니다. 상단에서 환경의 변화 또한 알 수 있습니다.\n"
+"\n"
+"다음 편집기 탭으로 이동하기 위해, 오른쪽 아래의 다음 버튼을 누르세요."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 "미생물 편집기에 어서오세요.\n"
@@ -1973,6 +2085,10 @@ msgstr ""
 "이 탭에선 어떤 종이, 어디서, 얼마나 있는지 알아볼 수 있습니다. 상단에서 환경의 변화 또한 알 수 있습니다.\n"
 "\n"
 "다음 편집기 탭으로 이동하기 위해, 오른쪽 아래의 다음 버튼을 누르세요."
+
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "미생물 단계"
 
 msgid "EFFECTIVE_VALUE"
 msgstr ""
@@ -2081,6 +2197,10 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
+#, fuzzy
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr "화합물 구름"
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
@@ -2092,6 +2212,9 @@ msgid "ENERGY_SOURCES"
 msgstr ""
 
 msgid "ENERGY_SUMMARY_LINE"
+msgstr ""
+
+msgid "ENGULF_CELL_OR_CHUNK"
 msgstr ""
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
@@ -2199,6 +2322,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "새로운 키 배치 추가"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "새로운 키 배치 추가"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "진화 계보"
@@ -2458,6 +2589,10 @@ msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "재개"
 
 #, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "저장소"
+
+#, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "저장 오류"
 
@@ -2485,6 +2620,14 @@ msgstr ""
 
 msgid "FOSSILISE"
 msgstr ""
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "자동 진화 실행 실패"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
 
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
@@ -2572,9 +2715,8 @@ msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습�
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "세대"
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
 
 msgid "GENERATIONS"
 msgstr "세대"
@@ -2643,6 +2785,10 @@ msgstr "포도당"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "해수면으로부터 {0}-{1}m"
+
 msgid "GLYCOLYSIS"
 msgstr "포도당"
 
@@ -2652,6 +2798,9 @@ msgstr ""
 #, fuzzy
 msgid "GOD_TOOLS_TITLE"
 msgstr "새로운 키 배치 추가"
+
+msgid "GOING_NUCLEAR"
+msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "만화 눈 세포"
@@ -2670,6 +2819,10 @@ msgid "GRAPHICS"
 msgstr "그래픽"
 
 #, fuzzy
+msgid "GRAPHICS_PRESET"
+msgstr "그래픽"
+
+#, fuzzy
 msgid "GRAPHICS_TEAM"
 msgstr "그래픽"
 
@@ -2683,6 +2836,14 @@ msgstr ""
 #, fuzzy
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
+
+#, fuzzy
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr "(높은 값일수록 더 나은 성능)"
+
+#, fuzzy
+msgid "GUI_SCALE_OPTION"
+msgstr "설정을 종료합니까?"
 
 #, fuzzy
 msgid "GUI_TAB_NAVIGATION"
@@ -2781,6 +2942,10 @@ msgid "HYDROGEN_SULFIDE"
 msgstr "황화수소"
 
 #, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
+msgstr "황화수소"
+
+#, fuzzy
 msgid "ICESHARD"
 msgstr "빙상"
 
@@ -2793,6 +2958,9 @@ msgstr ""
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
@@ -2800,6 +2968,9 @@ msgid "ID_NUMBER"
 msgstr ""
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 #, fuzzy
@@ -2925,6 +3096,14 @@ msgid "INSTAGRAM_TOOLTIP"
 msgstr "재개"
 
 #, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "ATP 생산이 너무 적음!"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(매 세대마다 환경에 남는 포도당의 비율)"
+
+#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "변이 점수"
 
@@ -3030,6 +3209,9 @@ msgstr ""
 msgid "IRON"
 msgstr "철"
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 #, fuzzy
 msgid "IRON_OXIDATION"
 msgstr "설정"
@@ -3046,18 +3228,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr "한 세대 끝내기"
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3609,8 +3779,24 @@ msgid "MACROSCOPIC"
 msgstr ""
 
 #, fuzzy
+msgid "MACROSCOPIC_EDITOR"
+msgstr "미생물 편집기 불러오는 중"
+
+#, fuzzy
 msgid "MACROSCOPIC_STAGE"
 msgstr "미생물 단계"
+
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "(AI 종이 변이하는 속도)"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "화학적 합성"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "편집기 활성화"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -3770,6 +3956,10 @@ msgstr ""
 msgid "MICHE_DETAIL_TEXT"
 msgstr "존재하는 종"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "퍼뜨리기:"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3792,8 +3982,16 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr ""
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "생산"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
+msgstr "퍼뜨리기:"
 
 msgid "MICHE_TREE"
 msgstr ""
@@ -3826,6 +4024,10 @@ msgstr "미생물 편집기"
 
 #, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "생체 상태창"
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
 msgstr "생체 상태창"
 
 msgid "MICROBE_EDITOR"
@@ -4034,6 +4236,17 @@ msgstr "생체 상태창"
 msgid "MICROBIAL_MASSACRE"
 msgstr "미생물 단계"
 
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr ""
+"멀리 떨어진 외계 행성에서, 수 많은 화산 활동과 유성 충돌이 우주에서 새로운 현상을 만들어 냈습니다.\n"
+"\n"
+"생명.\n"
+"\n"
+"단순한 미생물이 바다 깊은 곳에 살고 있습니다. 당신은 이 행성에 남은 모든 생물의 마지막 공통 조상(LUCA) 입니다.\n"
+"\n"
+"이 거친 세계에서 살아남기 위해, 찾을 수 있는 화합물들을 모아 세대별로 진화하여 다른 미생물들과 경쟁해야 합니다."
+
 msgid "MIDDLE_MOUSE"
 msgstr "마우스 가운데 버튼"
 
@@ -4154,6 +4367,10 @@ msgstr ""
 msgid "MODS"
 msgstr ""
 
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "치트 키 활성화"
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4186,9 +4403,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 #, fuzzy
@@ -4269,6 +4483,12 @@ msgstr ""
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "버전:"
+
+msgid "MONITOR_AUTO"
+msgstr ""
+
+msgid "MONITOR_IDENTIFIER"
+msgstr ""
 
 msgid "MORE_INFO"
 msgstr ""
@@ -4568,6 +4788,10 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "기초 이동"
 
+#, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "황화수소"
+
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr ""
 
@@ -4599,6 +4823,10 @@ msgstr ""
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "저장 폴더 열기"
+
+#, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "나가기 확인"
 
 #, fuzzy
 msgid "NO_MODS_ENABLED"
@@ -4863,6 +5091,10 @@ msgid "OUR_WIKI"
 msgstr ""
 
 #, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "시작되지 않음."
+
+#, fuzzy
 msgid "OUTDATED_NOTICE"
 msgstr "시작되지 않음."
 
@@ -4945,6 +5177,10 @@ msgstr "위쪽으로 시야 이동"
 
 msgid "PAST_DEVELOPERS"
 msgstr ""
+
+#, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "동굴"
 
 #, fuzzy
 msgid "PATCH_COLON"
@@ -5055,6 +5291,10 @@ msgstr "인산염"
 msgid "PHOSPHATES_COST"
 msgstr "인산염"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "인산염"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "광합성"
 
@@ -5080,6 +5320,10 @@ msgstr "로그 폴더 열기"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "상태"
 
 #, fuzzy
 msgid "PLAYER"
@@ -5157,6 +5401,30 @@ msgstr ""
 #, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "재개"
+
+#, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "직접 설정"
+
+#, fuzzy
+msgid "PRESET_HIGH"
+msgstr "초기화"
+
+#, fuzzy
+msgid "PRESET_LOW"
+msgstr "초기화"
+
+#, fuzzy
+msgid "PRESET_MEDIUM"
+msgstr "이동 속도 향상"
+
+#, fuzzy
+msgid "PRESET_VERY_HIGH"
+msgstr "키 설정 초기화"
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "성분 비율"
 
 #, fuzzy
 msgid "PRESSURE"
@@ -5239,6 +5507,10 @@ msgid "RADIATION"
 msgstr "호흡"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "호흡"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "큰 철 덩어리"
 
@@ -5259,6 +5531,16 @@ msgstr ""
 #, fuzzy
 msgid "RAW_VALUE_COLON"
 msgstr "속도:"
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "다세포 단계"
 
 msgid "READING_SAVE_DATA"
 msgstr "저장된 데이터 읽는 중"
@@ -5285,6 +5567,9 @@ msgstr "새로 고침"
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "세포 기관"
+
+msgid "REGIONS_NUMBER"
+msgstr ""
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5441,6 +5726,18 @@ msgid "REVEAL_ALL_PATCHES"
 msgstr "다음 지역으로 퍼짐:"
 
 #, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "편집기 활성화"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "(활성화하면 성장 속도를 제한하며, 비활성화하면 성장 속도가 오직 사용할 수 있는 화합물의 양에 영향을 받음)"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "이전 저장을 삭제합니까?"
+
+#, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
@@ -5467,7 +5764,14 @@ msgstr "오른쪽으로 회전"
 msgid "ROTATION_COLON"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
+msgstr "게임 플레이 중 Auto-Evo 자동 진화 실행"
+
+#, fuzzy
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
 msgstr "게임 플레이 중 Auto-Evo 자동 진화 실행"
 
 msgid "RUN_ONE_STEP"
@@ -5538,12 +5842,6 @@ msgstr "사용된 용량:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 {0} 을 삭제하시겠습니까?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr ""
 
 msgid "SAVE_FAILED"
 msgstr "저장 실패"
@@ -5782,6 +6080,10 @@ msgid "SHOW_ITEM_COORDINATES"
 msgstr "튜토리얼 보기"
 
 #, fuzzy
+msgid "SHOW_MAP"
+msgstr "도움말 보기"
+
+#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "동굴"
 
@@ -5894,7 +6196,15 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "작은 철 덩어리"
 
 #, fuzzy
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "작은 철 덩어리"
+
+#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "작은 철 덩어리"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr "작은 철 덩어리"
 
 #, fuzzy
@@ -5972,6 +6282,14 @@ msgstr "존재하는 종"
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "변이함"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "강제 멸종이 일어나기 전에 지역에 존재할 수 있는 최대 종 수"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "강제 멸종이 일어나기 전에 지역에 존재할 수 있는 최대 종 수"
 
 #, fuzzy
 msgid "SPECIES_LIST"
@@ -6192,6 +6510,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr "처치 성공"
 
@@ -6213,6 +6534,10 @@ msgstr ""
 
 msgid "SURVIVAL_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "핵"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "전방 카메라 보기로 전환"
@@ -6253,6 +6578,14 @@ msgstr "스크린샷 촬영"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "생명력:"
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "저장 및 계속"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "호흡"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -6351,6 +6684,10 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
+msgid "THE_EDITOR"
+msgstr "편집기 활성화"
+
+#, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "지역 지도"
 
@@ -6393,6 +6730,10 @@ msgstr ""
 
 msgid "THRIVE_LICENSES"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "기초 이동"
 
 msgid "THYLAKOIDS"
 msgstr "틸라코이드"
@@ -6475,6 +6816,10 @@ msgstr "결합 모드 켜고 끄기"
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "결합 모드 켜고 끄기"
 
+#, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "디버깅 패널 켜고 끄기"
+
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "디버깅 패널 켜고 끄기"
 
@@ -6543,6 +6888,10 @@ msgstr ""
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr "존재하는 종"
 
 #, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
@@ -6686,10 +7035,6 @@ msgstr "스크린샷 촬영"
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "튜토리얼"
-
-#, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "이것으로 다른 세포를 찌르세요."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6985,6 +7330,10 @@ msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "미생물 편집기 불러오는 중"
 
 #, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "이것으로 다른 세포를 찌르세요."
+
+#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "튜토리얼"
 
@@ -7041,6 +7390,17 @@ msgstr "실행 취소"
 
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "마지막 활동 취소"
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "이것으로 다른 세포를 찌르세요."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "번영했습니다!"
 
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
@@ -7215,6 +7575,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -7224,13 +7587,6 @@ msgstr ""
 #, fuzzy
 msgid "USES_FEATURE"
 msgstr "온도"
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#, fuzzy
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "새로운 키 배치 추가"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "임의 사용자 이름 사용"
@@ -7277,6 +7633,9 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
 
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VENTS_ARE_HOME"
 msgstr ""
 
 #, fuzzy
@@ -9308,6 +9667,14 @@ msgstr "온도."
 msgid "WORST_PATCH_COLON"
 msgstr "종:"
 
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "확인"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "(활성화하면 성장 속도를 제한하며, 비활성화하면 성장 속도가 오직 사용할 수 있는 화합물의 양에 영향을 받음)"
+
 msgid "XBOX360"
 msgstr ""
 
@@ -9338,11 +9705,31 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr "휠 아래로"
+
 msgid "ZOOM_IN"
 msgstr "확대"
 
 msgid "ZOOM_OUT"
 msgstr "축소"
+
+#, fuzzy
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "새로운 키 배치 추가"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "생산"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "시작되지 않음."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "세대"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
@@ -9579,10 +9966,6 @@ msgstr "축소"
 #~ msgstr "미생물 단계"
 
 #, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "화학적 합성"
-
-#, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"
 #~ msgstr "포도당"
 
@@ -9663,9 +10046,6 @@ msgstr "축소"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "지역의 생물 다양성이 낮은 것으로 간주되게 하는 최대 생물종 수"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "강제 멸종이 일어나기 전에 지역에 존재할 수 있는 최대 종 수"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "생물 다양성을 증진하는 종의 최초 개체수"
@@ -9969,10 +10349,6 @@ msgstr "축소"
 #, fuzzy
 #~ msgid "BRACERIGHT"
 #~ msgstr "오른쪽으로 회전"
-
-#, fuzzy
-#~ msgid "EXCLAMDOWN"
-#~ msgstr "휠 아래로"
 
 #, fuzzy
 #~ msgid "YEN"

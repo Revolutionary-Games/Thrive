@@ -199,18 +199,14 @@ public partial class ChemicalEquation : VBoxContainer
 
         UpdateSecondLabel();
 
-        if (environmentSeparator != null)
-            environmentSeparator.Text = GetEnvironmentLabelText();
+        environmentSeparator?.Text = GetEnvironmentLabelText();
     }
 
     private void UpdateSecondLabel()
     {
-        if (perSecondLabel != null)
-        {
-            perSecondLabel.Text = showFullSecondText ?
-                Localization.Translate("PER_SECOND_SLASH") :
-                Localization.Translate("PER_SECOND_ABBREVIATION");
-        }
+        perSecondLabel?.Text = showFullSecondText ?
+            Localization.Translate("PER_SECOND_SLASH") :
+            Localization.Translate("PER_SECOND_ABBREVIATION");
     }
 
     private void UpdateEquation()
@@ -266,11 +262,9 @@ public partial class ChemicalEquation : VBoxContainer
 
     private void UpdateHeader()
     {
-        if (spinner != null)
-            spinner.Visible = ShowSpinner;
+        spinner?.Visible = ShowSpinner;
 
-        if (toggleProcess != null)
-            toggleProcess.Visible = ShowToggle;
+        toggleProcess?.Visible = ShowToggle;
 
         if (title == null || EquationFromProcess == null)
             return;
@@ -294,11 +288,9 @@ public partial class ChemicalEquation : VBoxContainer
             // Just environmental stuff
             hasNoInputs = true;
 
-            if (equationArrow != null)
-                equationArrow.Visible = false;
+            equationArrow?.Visible = false;
 
-            if (leftSide != null)
-                leftSide.Visible = false;
+            leftSide?.Visible = false;
         }
         else
         {
@@ -381,11 +373,9 @@ public partial class ChemicalEquation : VBoxContainer
         }
         else
         {
-            if (environmentSeparator != null)
-                environmentSeparator.Visible = false;
+            environmentSeparator?.Visible = false;
 
-            if (environmentSection != null)
-                environmentSection.Visible = false;
+            environmentSection?.Visible = false;
         }
     }
 
@@ -401,7 +391,6 @@ public partial class ChemicalEquation : VBoxContainer
 
     private void ApplyProcessToggleValue()
     {
-        if (toggleProcess != null)
-            toggleProcess.ButtonPressed = ProcessEnabled;
+        toggleProcess?.ButtonPressed = ProcessEnabled;
     }
 }

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-01 16:03+0300\n"
-"PO-Revision-Date: 2025-05-25 15:00+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-01-22 16:04+0200\n"
+"PO-Revision-Date: 2025-12-05 09:23+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgid "ABILITIES"
 msgstr "Képességek"
 
 msgid "ABORT"
-msgstr "Megszakít"
+msgstr "Megszakítás"
 
 msgid "ABORTED_DOT"
 msgstr "Megszakítva."
@@ -49,28 +49,26 @@ msgstr "Abisszopelágikus"
 msgid "ACCEPT"
 msgstr "Elfogad"
 
-#, fuzzy
 msgid "ACHIEVEMENTS"
-msgstr "Alap mozgás"
+msgstr "Teljesítmények"
 
 msgid "ACHIEVEMENTS_TOTAL"
-msgstr ""
+msgstr "Teljesítmények:{0}/{1}"
 
 msgid "ACHIEVEMENT_ACHIEVED"
-msgstr ""
+msgstr "Teljesítve"
 
 msgid "ACHIEVEMENT_LOCKED"
-msgstr ""
+msgstr "Zárva"
 
 msgid "ACTION_AWAKEN"
-msgstr "Felébred ({0:F1} / {1:F1})"
+msgstr "Ébredés ({0:F1} / {1:F1})"
 
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Lépj át az Ébredés szakaszába. Elérhető, ha rendelkezel elegendő agykapacitással (axonokkal rendelkező szövettípus)."
 
-#, fuzzy
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr "Akció blokkolva, miközben egy másik folyamatban van"
+msgstr "Akció blokkolva, mert egy másik folyamatban van"
 
 msgid "ACTION_DELETE"
 msgstr "Törlés"
@@ -91,7 +89,7 @@ msgid "ACTIVE"
 msgstr "Aktív"
 
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Észlelhető szálak:"
+msgstr "Aktív szálak:"
 
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
@@ -99,9 +97,8 @@ msgstr ""
 "A rögzült sejtek inkább egy helyben maradva várnak a környezet változásaira, mielőtt cselekednek."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr "A további jóváhagyások problémát észleltek:{0}"
+msgstr "A további ellenőrzések problémát észleltek:{0}"
 
-#, fuzzy
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Új billentyű hozzáadása"
 
@@ -111,12 +108,11 @@ msgstr "Speciális"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Speciális beállítási nézet megnyitása"
 
-#, fuzzy
 msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerob Nitrifikáció"
+msgstr "Aerob nitrogénkötés"
 
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerob Nitrifikáció"
+msgstr "Aerob nitrogénkötés"
 
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
@@ -125,9 +121,8 @@ msgstr "Aerob légzés"
 msgid "AGENTS"
 msgstr "Ügynökök"
 
-#, fuzzy
 msgid "AGENTS_COLON"
-msgstr "Hatóanyagok:"
+msgstr "Ügynökök:"
 
 msgid "AGENT_NAME"
 msgstr "{0} hatóanyag"
@@ -154,13 +149,8 @@ msgstr "Összes"
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
 msgstr "Rokon fajra váltás kihaláskor"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
-msgstr ""
-"Az agresszív sejtek a prédáikat távolabbról is le fogják vadászni,\n"
-"és nagyobb eséllyel küzdenek más ragadozók ellen, ha megtámadják őket.\n"
-"A békés sejtek nem kergetnek más prédákat,\n"
-"és kevesebb eséllyel használnak mérgeket ragadozók ellen."
+msgstr "(Engedélyezi, hogy kihaláskor folytasd a játékot másik fajjal ahelyett, hogy véget érne a játék)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Általános statisztika az összes világról"
@@ -169,18 +159,17 @@ msgstr "Általános statisztika az összes világról"
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Generációk:[/b]\n"
-"  {0}\n"
+"{0}\n"
 "[b]Összes faj:[/b]\n"
-"  Átlag {1}; Szórás {2}\n"
-"[b]Életben lévő fajok:[/b]\n"
-"  Átlag {3}; Szórás{4}\n"
-"[b]Fajok száma/patch:[/b]\n"
-"  Átlag {5}; Szórás {6}\n"
-"[b]Összpopuláció/patch:[/b]\n"
-"  Átlag {7}; Szórás {8}\n"
-"[b]Mikroba fajok átlagos hex mérete:[/b]\n"
-"  Átlag {9}; Szórás {10}\n"
-"[b]Általános sejtszervecske-adatok:[/b]"
+"Átlag {1}; Szórás {2}\n"
+"[b]Még élő fajok száma:[/b]\n"
+"Átlag {3}; Szórás {4}\n"
+"[b]Foltok szerinti fajszám:[/b]\n"
+"Átlag {5}; Szórás {6}\n"
+"[b]Foltok szerinti össznépesség:[/b]\n"
+"Átlag {7}; Szórás {8}\n"
+"[b]Mikroba fajok átlagos hatszög mérete:[/b]\n"
+"Átlag {9}; Szórás {10}"
 
 #, fuzzy
 msgid "ALREADY_ASCENDED"
@@ -198,9 +187,11 @@ msgstr "Környezeti hangerő"
 msgid "AMMONIA"
 msgstr "Ammónia"
 
-#, fuzzy
 msgid "AMMONIA_COST"
-msgstr "Ammónia"
+msgstr "Ammónia ára:"
+
+msgid "AMMONIA_LEVELS"
+msgstr "Ammónia szintje"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Megtartható automatikus mentések száma:"
@@ -208,33 +199,30 @@ msgstr "Megtartható automatikus mentések száma:"
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Megtartható gyorsmentések száma:"
 
+#, fuzzy
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerob Nitrifikáció"
+msgstr "Anaerob Nitrogénkötés"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "és"
 
 msgid "ANISOTROPIC_FILTERING"
-msgstr ""
+msgstr "Anizotróp szűrés:"
 
 msgid "ANTIALIASING_MSAA_TAA"
-msgstr ""
+msgstr "MSAA + TAA"
 
-#, fuzzy
 msgid "ANTI_ALIASING_FXAA"
-msgstr "Többszörös élsimítás:"
+msgstr "FXAA"
 
-#, fuzzy
 msgid "ANTI_ALIASING_MODE"
-msgstr "Többszörös élsimítás:"
+msgstr "Élsimítás módja:"
 
-#, fuzzy
 msgid "ANTI_ALIASING_MSAA"
-msgstr "Többszörös élsimítás:"
+msgstr "Többszörös élsimítás"
 
-#, fuzzy
 msgid "ANTI_ALIASING_TAA"
-msgstr "Többszörös élsimítás:"
+msgstr "Időbeli élsimítás"
 
 msgid "APPEARANCE"
 msgstr "Kinézet"
@@ -249,7 +237,7 @@ msgid "APRIL"
 msgstr "Április"
 
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr "Biztos MINDEN beállítást vissza akarsz állítani az alap értelmezetre?"
+msgstr "Biztos MINDEN beállítást vissza akarsz állítani az alapértelmezettre?"
 
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Biztos vissza akarod állítani a bemeneti beállításokat az alapokra?"
@@ -264,31 +252,30 @@ msgid "ART_BY"
 msgstr "A rajzot {0} készítette"
 
 msgid "ART_GALLERY"
-msgstr "Rajz galéria"
+msgstr "Művészeti galéria"
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr "Gratulálok!"
 
-#, fuzzy
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
 "Felemelkedtél és befejezted a játékot. Gratulálunk, hogy elérted a játék végét!\n"
 "\n"
-"Tovább játszhatsz az űrszakaszban feloldott isteni eszközökkel, hogy szabadmódban szórakozhass.\n"
+"Tovább játszhatsz az űrszakaszban feloldott isteni eszközökkel, hogy szabad módban szórakozhass.\n"
 "\n"
-"Az is lehetséges, hogy ebben a mentésben leereszkedj és visszatérj a baktérium szakaszba, és újra végigjátszd az összes szakaszt extra képességekkel.\n"
+"Lehetőség van arra is, hogy ebben a mentésben leereszkedj és visszatérj a mikroba szakaszba, és újra végigjátszd az összes szakaszt extra képességekkel.\n"
 "\n"
 "Összes feljutott idő ebben a mentésben: {0}"
 
-#, fuzzy
 msgid "ASCENSION_STAGE"
-msgstr "Verzió:"
+msgstr "Felemelkedési szakasz"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr ""
+msgstr "Ha megadsz egy assembly-t, a hozzátartozó osztályt is meg kell adni"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr ""
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
+msgstr "A Mod assembly megadása kötelező, ha a Harmony automatikus használata engedélyezve van"
 
 #, fuzzy
 msgid "ASSUME_HYPERTHREADING"
@@ -308,13 +295,19 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "ATP egyensúly"
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
-msgstr "Az összetevők mutatása / elrejtése"
+msgstr ""
+"Ez a szakasz megmutatja a jelenlegi sejt összes ATP (energia) egyenlegét.\n"
+"A túléléshez az egyenlegnek pozitívnak kell lennie. A helyhez kötött sejtek esetében az egyenleg mozgás nélkül is pozitívnak tekinthető.\n"
+"Az alábbi legördülő menü segítségével ellenőrizheted, mi történne, ha a sejt nem jutna bizonyos ATP-termeléshez szükséges forráshoz.\n"
+"Például egyes sejtek csak akkor tudják fenntartani a pozitív ATP-egyenleget, ha egyszerre több különböző vegyületből tudnak ATP-t előállítani.\n"
+"Az ilyen sejtek irányítása nehezebb, mivel egyszerre többféle vegyületet kell tárolniuk a túléléshez."
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
-msgstr "Az összetevők mutatása / elrejtése"
+msgstr ""
+"Ez a szakasz az ATP (energia) egyenlegek kiszámítására szolgáló beállításokat jeleníti meg a sejtek számára.\n"
+"A kiszámított egyenlegek a sejt típusának kiválasztási menüjében láthatók.\n"
+"Az alábbi legördülő menüvel ellenőrizheted, mi történne, ha a sejt nem jutna hozzá bizonyos ATP-termeléshez szükséges forráshoz."
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
 msgstr "Külső erőforrások nélkül"
@@ -332,10 +325,10 @@ msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
 msgstr "Minden szükséges vegyülettel"
 
 msgid "ATP_PRODUCTION"
-msgstr "ATP előállítás"
+msgstr "ATP termelés"
 
 msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr "AZ ATP TERMELŐDÉSE TÚL ALACSONY!"
+msgstr "AZ ATP TERMELÉS TÚL ALACSONY!"
 
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "A mentési fájl írása sikertelen volt. A mentési név túl hosszú lehet, vagy nincs írási hozzáférése a mentési mappához."
@@ -367,23 +360,20 @@ msgstr ""
 "Ez a panel megmutatja a szerkesztett élőlényeknek az auto-evo által megbecsült populációinak egyedszámait.\n"
 "Az auto-evo egy populáció szimulációt futtat, ami a saját fajod populációját (és a játék teljesítményét) is befolyásolja."
 
-#, fuzzy
 msgid "AUTO-EVO_RESULTS_TITLE"
-msgstr "Auto-Evo eredmények:"
+msgstr "Auto-Evo eredmények"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% kész. {1:n0}/{2:n0} lépés."
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
-msgstr "Mutációs költség szorzó"
+msgstr "Auto-evo erőssége a játékoson"
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
-msgstr "(a szervek, membránok, és egyéb dolgok költsége a szerkesztőben)"
+msgstr "(az auto-evo által a játékos faján alkalmazott populációváltozás százalékos aránya)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr "Automata mentés a játék során"
+msgstr "Automatikus mentés játék közben"
 
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
@@ -417,7 +407,7 @@ msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Auto-Evo státusz:"
 
 msgid "AUTO_MOVE_FORWARDS"
-msgstr "Automata mozgás előre"
+msgstr "Automatikus előremozgás"
 
 msgid "AUTO_RESOLUTION"
 msgstr "Auto ({0}x{1})"
@@ -428,9 +418,26 @@ msgstr "Elérhető építési projektek"
 msgid "AVAILABLE_MODS"
 msgstr "Elérhető modok"
 
-#, fuzzy
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
-msgstr "Felkelési fázis"
+msgstr "Ébredési szakasz"
 
 msgid "AWARE_STAGE"
 msgstr "Tudatos fázis"
@@ -439,7 +446,7 @@ msgid "BACK"
 msgstr "Vissza"
 
 msgid "BACKGROUND_BLUR"
-msgstr ""
+msgstr "Háttér elmosódása:"
 
 msgid "BACKSLASH"
 msgstr "fordított perjel"
@@ -448,11 +455,10 @@ msgid "BACKSPACE"
 msgstr "Törlés"
 
 msgid "BACK_TO_SETTINGS"
-msgstr ""
+msgstr "Vissza a beállításokhoz"
 
-#, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
-msgstr "Termoszintézis"
+msgstr "Bakteriális termoszintézis"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
 msgstr "Nappali időszakkal számolás"
@@ -464,9 +470,8 @@ msgstr "Ha be van jelölve, a panelen számított számok úgy kerülnek kiszám
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
 msgstr "Mozgás beszámítása"
 
-#, fuzzy
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
-msgstr "Speciális beállítási nézet megnyitása"
+msgstr "Ha be van jelölve, akkor a panelben a sejt folyamatos mozgását feltételezve számolja ki a mérleget és a többi értéket"
 
 msgid "BASE_MOBILITY"
 msgstr "Alap mozgékonyság"
@@ -484,10 +489,10 @@ msgid "BATHYPELAGIC"
 msgstr "Batipelágikus"
 
 msgid "BECOME_MACROSCOPIC"
-msgstr "Makroszkopikussá válni ({0}/{1})"
+msgstr "Makroszkopikussá válás ({0}/{1})"
 
 msgid "BECOME_MULTICELLULAR"
-msgstr "Többsejtűvé válni ({0}/{1})"
+msgstr "Többsejtűvé válás ({0}/{1})"
 
 msgid "BEGIN_THRIVING"
 msgstr "A túlélés kezdése"
@@ -495,9 +500,8 @@ msgstr "A túlélés kezdése"
 msgid "BEHAVIOUR"
 msgstr "Viselkedés"
 
-#, fuzzy
 msgid "BEHAVIOUR_ACTIVITY"
-msgstr "Viselkedés"
+msgstr "Aktivitás"
 
 msgid "BEHAVIOUR_AGGRESSION"
 msgstr "Aggresszió"
@@ -529,16 +533,29 @@ msgstr "Eredmények:"
 msgid "BEST_PATCH_COLON"
 msgstr "Legjobb patch:"
 
+msgid "BETTER_TOGETHER"
+msgstr "Jobb együtt"
+
+msgid "BEYOND_THE_CELL"
+msgstr "A sejten túl"
+
 msgid "BIG_IRON_CHUNK"
+msgstr "Nagy vasdarab"
+
+#, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
 msgstr "Nagy vasdarab"
 
 msgid "BIG_PHOSPHATE_CHUNK"
 msgstr "Nagy foszfátdarab"
 
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
+msgstr "Nagy foszfátdarab"
+
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
-#, fuzzy
 msgid "BINDING_AGENT"
 msgstr "Kötőszövet"
 
@@ -546,7 +563,7 @@ msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
 
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Nyomd meg a [thrive:input]g_toggle_binding[/thrive:input] billentyűt a Kötési mód ki- és bekapcsolásához. Kötési módban más, ugyanahhoz a fajhoz tartozó sejteket kapcsolhatsz a kolóniádhoz egyszerű érintéssel. Hogy elhagyd a kolóniát, nyomd meg a [thrive:input]g_unbind_all[/thrive:input] billentyűt. Nem léphetsz be a szerkesztőbe, amíg össze vagy kapcsolódva más sejtekkel."
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Tengelyek összekötése"
@@ -554,24 +571,20 @@ msgstr "Tengelyek összekötése"
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Foszforeszkáló vakuólum"
 
-#, fuzzy
 msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
-msgstr "Foszforeszkáló vakuólum"
+msgstr "Egy vakuólum, amely reakcióhelyeket tartalmaz, ahol a luciferázt felhasználva látható fényt bocsátanak ki. Feltételezik, hogy a biolumineszcencia eredetileg az [thrive:compound type=\"oxygen\"][/thrive:compound] elleni védekezésként alakult ki. Amikor bekövetkezett a Nagy Oxigenizációs Esemény, az anaerob környezethez szokott mikroorganizmusok számos új problémával szembesültek az oxigén rendkívül magas reakciókészsége miatt, amely jelentős károkat okozott. Ezek a vakuólumok hozzáadhatók az oxigén-ellenállás növelésére, és emellett látványos fényjelenségeket produkálnak. A jövőben a biolumineszcencia akár kommunikációs eszközként is szolgálhat."
 
-#, fuzzy
 msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t használ, hogy az [thrive:compound type=\"oxygen\"][/thrive:compound]-t fénnyé alakítsa. Egyelőre nincs más játékmeneti hatása, kivéve az oxigén-ellenállás növelését."
 
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
-#, fuzzy
 msgid "BLOOM_RENDER_EFFECT"
-msgstr "Külső effektek:"
+msgstr "Bloom effekt:"
 
-#, fuzzy
 msgid "BLUESKY_TOOLTIP"
-msgstr "Játék szüneteltetése"
+msgstr "Látogasd meg Bluesky profilunkat"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neuron"
@@ -588,9 +601,8 @@ msgstr "A műhely böngészése"
 msgid "BUILD_CITY"
 msgstr "Város építése"
 
-#, fuzzy
 msgid "BUILD_QUEUE"
-msgstr "Struktúra"
+msgstr "Építési sor"
 
 msgid "BUILD_STRUCTURE"
 msgstr "Struktúra építése"
@@ -602,20 +614,19 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "A Revolutionary Games Studio-tól"
 
 msgid "CACHE_DISK_MAX_TIME"
-msgstr ""
+msgstr "A fájlok lemezen tartásának maximális időtartama törlés előtt"
 
 msgid "CACHE_MEMORY_MAX_ITEMS"
-msgstr ""
+msgstr "Gyorsítótár-elemek max. száma a memóriában"
 
 msgid "CACHE_TIME_MEMORY"
-msgstr ""
+msgstr "Gyorsítótárelemek megőrzési ideje a memóriában"
 
 msgid "CACHE_TIME_MEMORY_ONLY"
-msgstr ""
+msgstr "Gyorsítótár időtartama kizárólag memóriás gyorsításhoz"
 
-#, fuzzy
 msgid "CACHING_TITLE"
-msgstr "Nincs cím"
+msgstr "Gyorsítótárazás"
 
 msgid "CALCIUM_CARBONATE"
 msgstr "Kálcium-karbonát"
@@ -644,8 +655,11 @@ msgstr "A használt sejttípust nem lehet törölni"
 msgid "CANNOT_ENGULF"
 msgstr "Nem képes bekebelezésre"
 
-msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
+msgid "CANNOT_IMPROVE_PERFECTION"
 msgstr ""
+
+msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
+msgstr "A metaball nem helyezhető át a saját leszármazottai közé"
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
 msgstr "Az agykapacitás túl alacsony a jelenlegi fázisban maradáshoz. Korábbi fázisokhoz visszatérni jelenleg nem lehetséges, a folytatáshoz növeld meg az agykapacitást."
@@ -653,12 +667,11 @@ msgstr "Az agykapacitás túl alacsony a jelenlegi fázisban maradáshoz. Koráb
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
 msgstr "Az agykapacitást nem lehet csökkenteni, hogy visszatérj korábbi fázishoz"
 
-#, fuzzy
 msgid "CANNOT_WRITE_SAVE"
-msgstr "Új mentés létrehozása"
+msgstr "Mentés nem lehetséges"
 
 msgid "CANT_LOAD_MOD_INFO"
-msgstr ""
+msgstr "Nem sikerült betölteni a(z) {0} mod adatait"
 
 msgid "CAPSLOCK"
 msgstr "Caps Lock"
@@ -685,7 +698,7 @@ msgid "CATEGORY_VERY_LITTLE"
 msgstr "nagyon kicsi mennyiség"
 
 msgid "CAUTIOUS"
-msgstr "Gyanakvó"
+msgstr "Óvatos"
 
 msgid "CELL"
 msgstr "Sejt"
@@ -696,16 +709,14 @@ msgstr "Sejtek"
 msgid "CELLULASE"
 msgstr "Celluláz"
 
-#, fuzzy
 msgid "CELLULASE_DESCRIPTION"
-msgstr "Az eukarióta sejtek legmeghatározóbb jellemzője. A sejtmaghoz még hozzá tartozik az endoplazmatikus membránrendszer és a golgi-készülék is."
+msgstr "A celluláz lehetővé teszi a sejt számára a cellulóz membrán lebontását. Minden hozzáadás növeli a hatékonyságot."
 
 msgid "CELLULOSE"
 msgstr "Cellulóz"
 
-#, fuzzy
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr "Ez a membrán egy fallal rendelkezik, ami jobb védelmet jelent a sérülések ellen, főleg a fizikai sérülések ellen. Kevesebb energia szükséges neki formája megtartásához, viszont lassú a bekebelezése és lassítja magát a sejtet is."
+msgstr "Ez a membrán egy fallal rendelkezik, ami jobb védelmet jelent a sérülések ellen, főleg a fizikai sérülések ellen. Kevesebb energia szükséges neki formája megtartásához, viszont nem képes bekebelezése és lassítja magát a sejtet is. [b]Cellulóz képes megemészteni ezt a falat[/b] így a sejt sebezhetővé válik a ragadozók általi bekebelezésre."
 
 #, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
@@ -729,9 +740,8 @@ msgstr "A leírás túl hosszú"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Szimmetria változtatása"
 
-#, fuzzy
 msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
-msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
+msgstr "Ioncsatorna-gátló toxin szintézise"
 
 msgid "CHEATS"
 msgstr "Csalások"
@@ -764,9 +774,11 @@ msgstr "Kemoreceptor"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Minden sejt csak kemoreceptorok segítségével képes \"látni\", így tudnak információt gyűjteni a környezetükről. Ezen sejtszervecske hozzáadásával sokkal finomhangoltabb lesz a sejted kemorecepciója. Egy vonal fog megjelenni játékon belül, mely jelképezi a sejt \"látását\", és a sejt közelében található vegyületekre mutat."
 
-#, fuzzy
 msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
-msgstr "Minimális detektálandó mennyiség:"
+msgstr ""
+"Beállítja a vegyület-észlelési küszöböt. Az alacsony értékek nagyon halvány nyomokat is jelezhetnek, amelyekben azonban lehet, hogy nincs hasznos mennyiség az adott vegyületből.\n"
+"Egy lehetséges stratégia a keresési sugár és a minimális mennyiség növelése, hogy a legközelebbi, valóban sűrűbb felhőt érzékelje.\n"
+"A kémiai receptor a vegyületfelhő egyes pontjait „szagolja”, nem pedig a teljes felhő összmennyiségét."
 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "A kemoreceptor segítségével messzebbi vegyületeket detektálhatsz. Az elhelyezése után módosítsd a kemoreceptort a vegyület kiválasztásával, és a segédvonal színének beállításával."
@@ -810,13 +822,13 @@ msgid "CHLOROPLAST"
 msgstr "Kloroplasztisz"
 
 msgid "CHLOROPLAST_DESCRIPTION"
-msgstr ""
+msgstr "A kloroplasztisz egy kettős membránnal rendelkező struktúra, amely fényérzékeny pigmenteket tartalmaz, ezek membrános zsákokban rétegződnek.Ez egy prokarióta, amelyet az eukarióta gazdasejt hasznosított saját céljaira. A kloroplasztisz pigmentjei képesek a fény energiáját felhasználva gázhalmazállapotú [thrive:compound type=\"carbondioxide\"][/thrive:compound]-ból és vízből [thrive:compound type=\"glucose\"][/thrive:compound]-t előállítani, egy [b]fotoszintézisnek[/b] nevezett folyamat során.Ezek a pigmentek adják a kloroplasztisznak az egyedi színét is. A [thrive:compound type=\"glucose\"][/thrive:compound] termelésének üteme a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjával és a [thrive:compound type=\"sunlight\"][/thrive:compound] intenzitásával arányosan változik."
 
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. Hatékonysága függ a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától és a [thrive:compound type=\"sunlight\"][/thrive:compound] intenzitásától."
 
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr "A kiválasztott fájl neve ({0}) már létezik. Lecseréled?"
+msgstr "A kiválasztott fájl neve ({0}) már létezik. Felülírod?"
 
 msgid "CHROMATIC_ABERRATION"
 msgstr "Kromatikus aberráció:"
@@ -825,7 +837,7 @@ msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. A folyamat gyorsasága a [thrive:compound type=\"carbondioxide\"] koncentrációjától és a [thrive:compound type=\"sunlight\"][/thrive:compound] intenzitásától függ."
 
 msgid "CHUNK_CELL_CORPSE_PART"
-msgstr ""
+msgstr "Elhalt sejt darabja"
 
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} fogyasztás"
@@ -855,22 +867,19 @@ msgid "CLICK_TO_SELECT"
 msgstr "Mentés/-ek törlése"
 
 msgid "CLIMATE_INSTABILITY"
-msgstr ""
+msgstr "Instabil éghajlat"
 
-#, fuzzy
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Az aktív sejtek össze-vissza bolyonganak a vizekben, ha semmi érdekes nem történik.\n"
-"A rögzült sejtek inkább egy helyben maradva várnak a környezet változásaira, mielőtt cselekednek."
+msgstr "(befolyásolja a környezeti események – például a globális eljegesedés – gyakoriságát és súlyosságát)"
 
 msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
+msgstr "Átlagos"
 
 msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
+msgstr "Stabil"
 
 msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
+msgstr "Instabil"
 
 msgid "CLOSE"
 msgstr "Bezár"
@@ -879,7 +888,7 @@ msgid "CLOSE_OPTIONS"
 msgstr "Bezárod a beállítás panelt?"
 
 msgid "CLOSTRIDIAL_FERMENTATION"
-msgstr ""
+msgstr "Clostridium fermentáció"
 
 #, fuzzy
 msgid "CLOUD_BENCHMARK"
@@ -901,6 +910,10 @@ msgstr "Partvidéki"
 #, fuzzy
 msgid "COLLISION_SHAPE"
 msgstr "Entitások lerakása ütközési alakzatokkal"
+
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
 msgid "COLOUR"
 msgstr "Szín"
@@ -954,6 +967,9 @@ msgstr "Telítettségi érték, a szürke mennyisége egy adott színben"
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Érték (fényerősség) értéke, a szín fényerőssége vagy intenzitása"
 
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr ""
+
 #, fuzzy
 msgid "COMMON_ABILITIES"
 msgstr "Képességek"
@@ -967,9 +983,8 @@ msgstr "Közösségi Fórum"
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Csatlakozz a Thrive közösségéhez a közösségi fórumunkon"
 
-#, fuzzy
 msgid "COMMUNITY_WIKI"
-msgstr "Wikipédiánk"
+msgstr "Közösségi Wiki"
 
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Látogasd meg a közösségi wikipédiánkat"
@@ -984,16 +999,15 @@ msgstr "Befejezés"
 msgid "COMPOUNDS"
 msgstr "Vegyületek"
 
-#, fuzzy
 msgid "COMPOUNDS_AT_EQUILIBRIUM"
-msgstr "Megtalálható vegyületek:"
+msgstr "Egyensúlyi helyzetben"
 
 #, fuzzy
 msgid "COMPOUNDS_AT_MAX_SPEED"
 msgstr "Egyensúly max sebességnél"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "Az összetevők mutatása / elrejtése"
+msgstr "Összetevők mutatása / elrejtése"
 
 msgid "COMPOUNDS_COLON"
 msgstr "Vegyületek:"
@@ -1006,9 +1020,10 @@ msgstr "(megtölti a tárhelyet {0} mp alatt)"
 msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
 msgstr "(megtölti a tárhelyet {0} mp alatt, ami több, mint a {1} mp-nyi használható napfény)"
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
-msgstr "Az összetevők mutatása / elrejtése"
+msgstr ""
+"A vegyület-egyensúly számításának módja.\n"
+"A „maximális sebesség” például úgy számol, mintha minden folyamat maximális sebességgel futna,míg az „egyensúly” úgy számol, hogy a folyamatok csak olyan gyorsan futnak, amíg az ATP-egyensúly nem válik negatívvá."
 
 #, fuzzy
 msgid "COMPOUND_BALANCE_TITLE"
@@ -1027,7 +1042,7 @@ msgid "COMPOUND_CLOUD_BENCHMARK"
 msgstr "Vegyületfelhők sűrűsége"
 
 msgid "COMPOUND_CLOUD_DENSITY"
-msgstr "Vegyületfelhők sűrűsége"
+msgstr "Vegyületfelhő sűrűsége"
 
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(a vegyületfelhők sűrűsége a környezetben)"
@@ -1053,6 +1068,29 @@ msgstr "Az összetevők mutatása / elrejtése"
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Vegyületfelhők sűrűsége"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Átlagos"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Vegyület egyensúlyok"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Vegyületfelhők"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Összes megtartása"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} fogyasztás"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1090,34 +1128,39 @@ msgid "CONFIRM_DELETE"
 msgstr "Törlés megerősítése"
 
 msgid "CONFIRM_EXIT"
-msgstr "Kilépés elfogadása"
+msgstr "Kilépés megerősítése"
 
 #, fuzzy
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Felülírás megerősítése"
 
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
-msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+msgstr "Tovább lépsz a felemelkedés szakaszába?"
 
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
-msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+msgstr ""
+"Most már felemelkedhetsz, és beléphetsz a Felemelkedés szakaszába a Felemelkedés Kapujának aktiválásával.\n"
+"\n"
+"Ez korlátlan hatalmat nyit meg számodra néhány új Isteni Eszköz formájában, amelyeket ebben a mentésben használhatsz.\n"
+"\n"
+"A felemelkedés azt is jelenti, hogy teljesítetted a játékot — de továbbra is folytathatod a játékot. Felemelkedsz?"
 
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
-msgstr ""
+msgstr "Tovább lépsz az ipari szakaszba?"
 
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
-msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+msgstr "Egy gyár elhelyezésével belépsz az ipari szakaszba. Tovább lépsz a következő korszakba?"
 
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
-msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+msgstr "Belépsz az Űrkorszakba?"
 
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
-msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+msgstr ""
+"Most már beléphetsz az Űrkorszakba az első űrhajó elindításával.\n"
+"\n"
+"A prototípus jelenlegi állapotában még nem lehet visszatérni a bolygóra, de a terv az, hogy az Űrkorszak során zökkenőmentesen lehessen ki- és bezoomolni a bolygókra.\n"
+"\n"
+"Ha megszakítod az indítást, az űrhajóegység megsemmisül.Elindítod az űrhajót?"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Belépés a játékba ezekkel a beállításokkal"
@@ -1125,9 +1168,8 @@ msgstr "Belépés a játékba ezekkel a beállításokkal"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Egyes beállítások érvénytelenek"
 
-#, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS"
-msgstr "Törlés megerősítése"
+msgstr "Eredmények visszaállításának megerősítése?"
 
 #, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
@@ -1162,7 +1204,7 @@ msgstr ""
 "Ha a folytatást választod, akkor kérünk vedd figyelembe, hogy ezek mind prototípusok, és ne panaszkodj a hiányosságok miatt."
 
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr "Folytatod a fázis prototípusokkal?"
+msgstr "Folytatod a prototípus fázisokkal?"
 
 #, fuzzy
 msgid "CONTROLLER_ANY_DEVICE"
@@ -1207,7 +1249,7 @@ msgid "CONTROLLER_AXIS_RIGHT_Y"
 msgstr "Jobb Joystick Vertikális"
 
 msgid "CONTROLLER_AXIS_VISUALIZERS"
-msgstr ""
+msgstr "Játékvezérlő tengelyek megjelenítése:"
 
 msgid "CONTROLLER_BUTTON_DPAD_DOWN"
 msgstr "D-pad le"
@@ -1225,25 +1267,25 @@ msgid "CONTROLLER_BUTTON_DPAD_UP"
 msgstr "D-pad fel"
 
 msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
-msgstr ""
+msgstr "Bal vállgomb"
 
 msgid "CONTROLLER_BUTTON_LEFT_STICK"
-msgstr ""
+msgstr "Bal joystick megnyomás"
 
 msgid "CONTROLLER_BUTTON_MISC1"
 msgstr ""
 
 msgid "CONTROLLER_BUTTON_PADDLE1"
-msgstr ""
+msgstr "Paddle 1. gomb"
 
 msgid "CONTROLLER_BUTTON_PADDLE2"
-msgstr ""
+msgstr "Paddle 2. gomb"
 
 msgid "CONTROLLER_BUTTON_PADDLE3"
-msgstr ""
+msgstr "Paddle 3. gomb"
 
 msgid "CONTROLLER_BUTTON_PADDLE4"
-msgstr ""
+msgstr "Paddle 4. gomb"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_PS3_SELECT"
@@ -1277,7 +1319,6 @@ msgstr "R1"
 msgid "CONTROLLER_BUTTON_PS_R3"
 msgstr "R3"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SHARE"
 msgstr "Share"
 
@@ -1294,10 +1335,10 @@ msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
 msgstr "Háromszög"
 
 msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
-msgstr ""
+msgstr "Jobb vállgomb"
 
 msgid "CONTROLLER_BUTTON_RIGHT_STICK"
-msgstr ""
+msgstr "Jobb joystick megnyomás"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_TOUCH_PAD"
@@ -1313,11 +1354,9 @@ msgstr "A"
 msgid "CONTROLLER_BUTTON_XBOX_B"
 msgstr "B"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_BACK"
 msgstr "Back"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
 msgstr "Guide"
 
@@ -1364,6 +1403,10 @@ msgstr "Protanóp (Piros-Zöld)"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanóp (Kék-Citrom)"
+
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "{0} fogyasztás"
 
 msgid "CPU_THREADS"
 msgstr "Szálak"
@@ -1464,9 +1507,8 @@ msgstr "Stáblista"
 msgid "CTRL"
 msgstr "Ctrl"
 
-#, fuzzy
 msgid "CURRENT_CACHE_SIZE"
-msgstr "Képesség sáv megjelenítése"
+msgstr "Jelenlegi méret:"
 
 #, fuzzy
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
@@ -1475,8 +1517,28 @@ msgstr "Játék folytatása"
 msgid "CURRENT_DEVELOPERS"
 msgstr "Jelenlegi fejlesztők"
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "JELENLEGI TARTÓZKODÁSI HELY"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "JELENLEGI TARTÓZKODÁSI HELY"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "JELENLEGI TARTÓZKODÁSI HELY"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "JELENLEGI TARTÓZKODÁSI HELY"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Képesség sáv megjelenítése"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "Képesség sáv megjelenítése"
 
 #, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
@@ -1560,14 +1622,17 @@ msgid "DEADZONE_CALIBRATION_INPROGRESS"
 msgstr "Erre a nyelvre való fordítás {0}%-a van elkészülve"
 
 msgid "DEADZONE_CALIBRATION_IS_RESET"
-msgstr ""
+msgstr "Holtjáték kalibrációk visszaállítva"
 
-#, fuzzy
 msgid "DEADZONE_CONFIGURATION"
-msgstr "Biztos, hogy végérvényesen törölni akarod ezt a mentést?"
+msgstr "Halott zóna beállítása"
 
 msgid "DEATH"
 msgstr ""
+
+#, fuzzy
+msgid "DEBUG_CONSOLE"
+msgstr "Debug panel"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1575,9 +1640,8 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
-#, fuzzy
 msgid "DEBUG_HEAT_AT_CURSOR"
-msgstr "A kurzornál:"
+msgstr "Hőérték a kurzornál: {0}"
 
 msgid "DEBUG_PANEL"
 msgstr "Debug panel"
@@ -1627,9 +1691,8 @@ msgstr "Biztos végérvényesen törölni akarsz {0} mentést?"
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Törlöd ezt a mentést?"
 
-#, fuzzy
 msgid "DESCEND_BUTTON"
-msgstr "Biztos, hogy végérvényesen törölni akarod ezt a mentést?"
+msgstr "Leszállás"
 
 #, fuzzy
 msgid "DESCEND_CONFIRMATION"
@@ -1716,7 +1779,7 @@ msgid "DIGESTION_EFFICIENCY"
 msgstr "Emésztés hatékonysága"
 
 msgid "DIGESTION_EFFICIENCY_COLON"
-msgstr "Emésztés hatékonysága"
+msgstr "Emésztés hatékonysága:"
 
 #, fuzzy
 msgid "DIGESTION_SPEED"
@@ -1825,6 +1888,10 @@ msgstr "Képesség sáv megjelenítése"
 msgid "DISPLAY_PART_NAMES"
 msgstr "Képesség sáv megjelenítése"
 
+#, fuzzy
+msgid "DISPLAY_SELECTION"
+msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
+
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "{0} egyenletesen elterjedt környezeti táplálékforrása"
 
@@ -1872,10 +1939,10 @@ msgid "EASTEREGG_MESSAGE_12"
 msgstr "Na azok a kék sejtek."
 
 msgid "EASTEREGG_MESSAGE_13"
-msgstr "Itt egy kis tanács. A biomok kicsivel többek, mint egy csicsás háttér. Bizonyos vegyületek bizonyos biomokban különböző mértékekben találhatóak meg."
+msgstr "Ha a sejted 150 hatszögnyi, elnyelheted a nagy vastömböket!"
 
 msgid "EASTEREGG_MESSAGE_14"
-msgstr "Itt egy kis tanács. Minél több ostorod van, annál gyorsabban mész (VuTuTuTu), viszont ez több ATP-t is használ"
+msgstr "Érdekesség: a Földön körülbelül 8000 csillós egysejtű faj él."
 
 msgid "EASTEREGG_MESSAGE_15"
 msgstr "Itt egy kis tanács. Darabkákat is el tudsz nyelni, akár vas, akár más."
@@ -1884,16 +1951,16 @@ msgid "EASTEREGG_MESSAGE_16"
 msgstr "Itt egy kis tanács. Készülj fel, mielőtt egy sejtmaggal gazdagítod a sejtedet. Nagyon drágák azok az izék, és nem könnyű őket fenntartani."
 
 msgid "EASTEREGG_MESSAGE_17"
-msgstr "Érdekesség: Tudtad, hogy a Földön több, mint 8000 csillós faj él?"
+msgstr "Érdekesség: Az Amőba citoplazmából képződő 'lábakkal' vadássza le és kapja el áldozatát. ezeket állábaknak nevezzük. ilyeneket a Thrive-ban is szeretnénk megvalósítani."
 
 msgid "EASTEREGG_MESSAGE_18"
-msgstr "Érdekesség: A Stentor egy olyan csillós egysejtű, mely képes megnyúlni, és elkapni zsákmányát a trombitaszerű sejtszájával úgy, hogy a sejtszáj körüli csillókkal áramlatot generál."
+msgstr "A baktériumok erősebbek lehetnek, mint amilyennek látszanak; bár aprónak tűnnek, egyesek képesek befúródni a testedbe, és így ölni meg!"
 
 msgid "EASTEREGG_MESSAGE_2"
-msgstr "Itt egy kis tanács. A mérgek arra is használhatók, hogy más mérgeket üss el magad elől, ha elég gyors vagy."
+msgstr "Az egyik első játszható prototípust fantasztikus programozónk, Untrustedlife készítette!"
 
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "Itt egy kis tanács. Az ozmoreguláció másodpercenként 1 ATP-be kerül hexagononként. Mindegyik citoplazma hexagon 5 ATP-t termel, ami azt jelenti, hogy ha az ozmoreguláció során ATP-t veszítesz, akkor csak adj a sejtedhez egy pár hexagonnyi citoplazmát, és távolíts el pár sejtszervecskét."
+msgstr "A játék összes élőlénye egy közös őstől származik. Meg tudod állapítani, melyek állnak a legközelebb egymáshoz!"
 
 msgid "EASTEREGG_MESSAGE_4"
 msgstr "Érdekesség: a valóságban a prokariótáknak vannak úgynevezett biokamráik, melyek sejtszervecskeként viselkednek, és poliéderes sejtszervecskének is hívják ezeket."
@@ -1905,7 +1972,7 @@ msgid "EASTEREGG_MESSAGE_6"
 msgstr "Itt egy kis tanács. Néha jobb döntés elmenekülni más sejtek elől."
 
 msgid "EASTEREGG_MESSAGE_7"
-msgstr "Itt egy kis tanács. Ha egy sejt a tiédnek a fele, akkor tudod őt elnyelni."
+msgstr "A Thrive egy idegen világot szimulál,így ne számíts arra, hogy ugyanazokat a lényeket találod meg benne, mint a Földön!"
 
 msgid "EASTEREGG_MESSAGE_8"
 msgstr "Itt egy kis tanács. A baktériumok erősebbek is lehetnek, mint ahogy kinéznek. Kicsinek nézhetnek ki, de némelyik beléd tud fúródni, és úgy tud megölni!"
@@ -1962,6 +2029,16 @@ msgstr ""
 "A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"Üdvözöllek a Sejtszerkesztőben.\n"
+"Itt megnézheted, hogy mi történt, mióta elkezdted a játékot, vagy mióta elhagytad a szerkesztőt. Ezek után pedig változtathatsz a fajodon.\n"
+"\n"
+"Ezen a lapon láthatsz egy jelentést, hogy mely fajok léteznek még rajtad kívül. Továbbá azt is megmutatja, hogy hol találhatóak, és mekkora a létszámuk. Plusz fent a változásokat is mutatja a környezetedben.\n"
+"\n"
+"A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 "Üdvözöllek a Sejtszerkesztőben.\n"
@@ -1970,6 +2047,10 @@ msgstr ""
 "Ezen a lapon láthatsz egy jelentést, hogy mely fajok léteznek még rajtad kívül. Továbbá azt is megmutatja, hogy hol találhatóak, és mekkora a létszámuk. Plusz fent a változásokat is mutatja a környezetedben.\n"
 "\n"
 "A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
+
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "Felkelési fázis"
 
 #, fuzzy
 msgid "EFFECTIVE_VALUE"
@@ -2018,9 +2099,8 @@ msgstr "Sejtszervecske elhelyezése"
 msgid "ENDOSYMBIOSIS_BUTTON"
 msgstr "Endoszimbiózis"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
-msgstr "Összes szétválasztása"
+msgstr "A jelen endoszimbiózis folyamatának megszakítása. Ezzel elvész minden előrehaladás ezen az endoszimbiontán!"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
@@ -2035,7 +2115,7 @@ msgstr ""
 "és kevesebb eséllyel használnak mérgeket ragadozók ellen."
 
 msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
-msgstr ""
+msgstr "Nincs bekebelezve endoszimbiontává alakítható egyed"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
@@ -2076,6 +2156,10 @@ msgstr "{0}: +{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
 
+#, fuzzy
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr "Vegyületfelhők"
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
@@ -2088,8 +2172,11 @@ msgstr "Energia forrásai:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
+msgid "ENGULF_CELL_OR_CHUNK"
+msgstr "Másik sejt vagy anyagdarab bekebelezése"
+
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
-msgstr ""
+msgstr "Sérülés: Bekebelezés módba lépés ATP nélkül"
 
 msgid "ENTER_EXISTING_ID"
 msgstr "Írj be egy létező ID-t"
@@ -2175,6 +2262,8 @@ msgstr ""
 
 msgid "EVENT_METEOR_GLUCOSE"
 msgstr ""
+"Glükózmeteor becsapódási esemény\n"
+"Növeli a szén-dioxid és a glükóz mennyiségét."
 
 #, fuzzy
 msgid "EVENT_METEOR_IRON"
@@ -2192,9 +2281,27 @@ msgstr ""
 
 msgid "EVENT_METEOR_RADIOACTIVE"
 msgstr ""
+"Radioaktív meteorbecsapódási esemény\n"
+"Növeli a szén-dioxid szintet.\n"
+"Radioaktív anyagdarabokat hagy hátra."
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+"Kénmeteor becsapódási esemény\n"
+"Növeli a szén-dioxid és a kén mennyiségét.\n"
+"Kéndarabkákat hagy hátra."
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr ""
+"Kitörési patch esemény\n"
+"További hidrogén-szulfidot és szén-dioxidot hoz létre"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr ""
+"Kitörési patch esemény\n"
+"További hidrogén-szulfidot és szén-dioxidot hoz létre"
 
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
@@ -2213,10 +2320,10 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Öngyilkosság"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
-msgstr ""
+msgstr "Kivétel történt a betöltött objektumok feldolgozása során"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr ""
+msgstr "Kivétel történt a mentés betöltése során"
 
 #, fuzzy
 msgid "EXCLUSIVE_FULLSCREEN"
@@ -2357,7 +2464,7 @@ msgstr ""
 "{18}"
 
 msgid "FEED_ITEM_PUBLISHED_AT"
-msgstr ""
+msgstr "Közzétéve: {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
@@ -2404,7 +2511,7 @@ msgid "FLAGELLUM"
 msgstr "Ostor"
 
 msgid "FLAGELLUM_DESCRIPTION"
-msgstr ""
+msgstr "Az ostor (flagellum) egy a sejtmembránból kiinduló, fehérjeszálakból álló köteg, amely [thrive:compound type=\"atp\"][/thrive:compound]-t használva hullámzó mozgással egy adott irányba mozgatja a sejtet. Az ostor helyzete határozza meg a kifejtett tolóerő irányát. A tolóerő az ostor irányával ellentétes; ha például az erőt kifejtő ostor a sejt bal oldalán van, a sejt jobbra fog mozogni."
 
 #, fuzzy
 msgid "FLAGELLUM_LENGTH_DESCRIPTION"
@@ -2440,6 +2547,7 @@ msgstr "Fókuszált"
 msgid "FOCUS_EXPLANATION"
 msgstr ""
 "A fókuszált sejtek nagyobb távolságokat tesznek meg táplálék reményében.\n"
+"Egyesek különösen elszántak lehetnek a táplálékdarabok iránt.\n"
 "A reszponzív sejtek hamar új célpontokat keresnek."
 
 #, fuzzy
@@ -2477,6 +2585,10 @@ msgstr "Helyi adatok törlése"
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "Játék folytatása"
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "Tárhely:"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Hiba: {0}"
 
@@ -2501,14 +2613,24 @@ msgstr ""
 "{0}"
 
 msgid "FOSSILISATION_HINT"
-msgstr ""
+msgstr "Faj fosszilizálása"
 
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
-msgstr ""
+msgstr "Faj fosszilizálása (már fosszilizálva)"
 
 #, fuzzy
 msgid "FOSSILISE"
 msgstr "Rögzült"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Mod létrehozása sikertelen"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr ""
+"Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
+"{0}"
 
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
@@ -2573,9 +2695,8 @@ msgstr "Alap"
 msgid "GENERAL_LOADING_TIP_1"
 msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_2"
-msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+msgstr "Vigyázz a nagyobb organizmusokkal. Meg fognak enni, és nem túl kellemes lenyelve lenni!"
 
 #, fuzzy
 msgid "GENERAL_LOADING_TIP_3"
@@ -2597,9 +2718,8 @@ msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy v
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Generációk"
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
 
 msgid "GENERATIONS"
 msgstr "Generációk"
@@ -2608,16 +2728,16 @@ msgid "GENERATION_COLON"
 msgstr "Generáció:"
 
 msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
+msgstr "Geológiai aktivitás"
 
 msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
+msgstr "Aktív"
 
 msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
+msgstr "Átlagos"
 
 msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
+msgstr "Szunnyadó"
 
 #, fuzzy
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
@@ -2635,19 +2755,18 @@ msgstr ""
 msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
 msgstr ""
 
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT"
-msgstr "Teljes populáció:"
+msgstr "Globális eljegesedési esemény"
 
 #, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "Lépj át az Ébredés szakaszába. Elérhető, ha rendelkezel elegendő agykapacitással (axonokkal rendelkező szövettípus)."
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
-msgstr ""
+msgstr "Globális eljegesedés következik {0} generáció múlva"
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
-msgstr ""
+msgstr "Globális eljegesedés következik {0} generáció múlva"
 
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
 msgstr ""
@@ -2669,6 +2788,10 @@ msgstr "Glükóz"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "A glükóz koncentrációk drasztikusan csökkentek!"
 
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}m-el a tengerszint alatt"
+
 msgid "GLYCOLYSIS"
 msgstr "Glikolízis"
 
@@ -2678,6 +2801,9 @@ msgstr "Isten mód"
 #, fuzzy
 msgid "GOD_TOOLS_TITLE"
 msgstr "Segítség"
+
+msgid "GOING_NUCLEAR"
+msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "Gülüszemes sejt"
@@ -2694,6 +2820,10 @@ msgstr "GPU:"
 msgid "GRAPHICS"
 msgstr "Grafika"
 
+#, fuzzy
+msgid "GRAPHICS_PRESET"
+msgstr "Grafikus csapat"
+
 msgid "GRAPHICS_TEAM"
 msgstr "Grafikus csapat"
 
@@ -2706,6 +2836,18 @@ msgstr ""
 
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
+"Engedélyezi felvillanó fényeffekteket a GUI-ban (pl. a szerkesztő gombjain).\n"
+"\n"
+"Ha azt tapasztalod, hogy a szerkesztő gombjai részben eltűnnek,\n"
+"ezen opció letiltása megoldhatja a problémát."
+
+#, fuzzy
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr "(a nagyobb értékek javíthatják a teljesítményt)"
+
+#, fuzzy
+msgid "GUI_SCALE_OPTION"
+msgstr "Bezárod a beállítás panelt?"
 
 #, fuzzy
 msgid "GUI_TAB_NAVIGATION"
@@ -2750,7 +2892,7 @@ msgid "HOLD_TO_SHOW_CURSOR"
 msgstr "Tartsd nyomva a kurzor megjelenítéséhez"
 
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
-msgstr ""
+msgstr "A(z) [thrive:input]g_free_cursor[/thrive:input] nyomva tartása megjeleníti a kurzort"
 
 #, fuzzy
 msgid "HOLD_TO_SKIP_CREDITS"
@@ -2765,7 +2907,7 @@ msgid "HORIZONTAL_COLON"
 msgstr "Verzió:"
 
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
-msgstr ""
+msgstr "Vízszintes (Tengely: {0})"
 
 msgid "HP_COLON"
 msgstr "HP:"
@@ -2804,6 +2946,10 @@ msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrogén-szulfid"
 
 #, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
+msgstr "Hidrogén-szulfid"
+
+#, fuzzy
 msgid "ICESHARD"
 msgstr "Jégdarab"
 
@@ -2816,6 +2962,10 @@ msgstr "Nagy jégdarab"
 msgid "ICE_CHUNK_SMALL"
 msgstr "Kis jégdarab"
 
+#, fuzzy
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr "Hópehely"
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "Azonosító szám érvénytelen"
 
@@ -2823,6 +2973,9 @@ msgid "ID_NUMBER"
 msgstr "ID száma"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr "(a renderelési és felskálázási módtól és függően nem minden eljárás elérhető)"
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 #, fuzzy
@@ -2847,7 +3000,7 @@ msgid "INDICATOR_SPECIES_MUTATED"
 msgstr "Fajok mutációkihagyásának engedélyezése (ha a rendszer nem talált megfelelő mutációt)"
 
 msgid "INDUSTRIAL_STAGE"
-msgstr ""
+msgstr "Ipari fázis"
 
 msgid "INFINITE_COMPOUNDS"
 msgstr "Végtelen vegyületek"
@@ -2855,13 +3008,11 @@ msgstr "Végtelen vegyületek"
 msgid "INFINITE_MP"
 msgstr "Végtelen MP"
 
-#, fuzzy
 msgid "INFO_BOX_COST"
-msgstr "TÚLÉLTÉL!"
+msgstr "Alapköltség (MP)"
 
-#, fuzzy
 msgid "INFO_BOX_EDITORS"
-msgstr "TÚLÉLTÉL!"
+msgstr "Szerkeztők"
 
 msgid "INFO_BOX_ENZYMES"
 msgstr "Enzimek"
@@ -2877,17 +3028,15 @@ msgstr "Mappa neve:"
 msgid "INFO_BOX_MASS"
 msgstr "Tömeg"
 
-#, fuzzy
 msgid "INFO_BOX_NEXT_STAGE"
-msgstr "TÚLÉLTÉL!"
+msgstr "Következő fázis"
 
 #, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Ozmoreguláció ára"
 
-#, fuzzy
 msgid "INFO_BOX_PREVIOUS_STAGE"
-msgstr "TÚLÉLTÉL!"
+msgstr "Előző fázis"
 
 msgid "INFO_BOX_PROCESSES"
 msgstr "Folyamatok"
@@ -2896,17 +3045,14 @@ msgstr "Folyamatok"
 msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr "Sejtmag"
 
-#, fuzzy
 msgid "INFO_BOX_SIZE"
-msgstr "TÚLÉLTÉL!"
+msgstr "Méret (Hexák)"
 
-#, fuzzy
 msgid "INFO_BOX_STORAGE"
-msgstr "TÚLÉLTÉL!"
+msgstr "Tárhely"
 
-#, fuzzy
 msgid "INFO_BOX_UNIQUE"
-msgstr "TÚLÉLTÉL!"
+msgstr "Különleges"
 
 msgid "INFO_BOX_UPGRADES"
 msgstr "Fejlesztések"
@@ -2944,6 +3090,14 @@ msgstr "Ellenőriz"
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Játék szüneteltetése"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "A {0} populációjának egyedszáma megváltozott {1}-értékkel, emiatt az ok miatt: {2}"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -2998,13 +3152,13 @@ msgid "INTERNALS"
 msgstr "Külső"
 
 msgid "INTERNAL_NAME_IN_USE"
-msgstr ""
+msgstr "Már létezik egy mod a megadott belső névvel"
 
 msgid "INTERNAL_NAME_REQUIRED"
-msgstr ""
+msgstr "Belső név megadása kötelező"
 
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
-msgstr ""
+msgstr "A belső névnek nagybetűvel kell kezdődnie"
 
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "Érvénytelen adatok az ábrázoláshoz"
@@ -3012,16 +3166,14 @@ msgstr "Érvénytelen adatok az ábrázoláshoz"
 msgid "INVALID_ICON_PATH"
 msgstr ""
 
-#, fuzzy
 msgid "INVALID_SAVE_NAME_POPUP"
-msgstr "Betöltöd ezt az érvénytelen mentést?"
+msgstr "A mentés nem tartalmazhat speciális karaktereket (<>:\"/\\|?*)"
 
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "A faj nevének be kell tartania a kettős nevezéktan rendszerét (Generikus és Specifikus)!"
 
-#, fuzzy
 msgid "INVALID_TAG"
-msgstr "Betöltöd ezt az érvénytelen mentést?"
+msgstr "A megadott \"{0}\" címke érvénytelen"
 
 msgid "INVALID_URL_FORMAT"
 msgstr "Érvénytelen URL formátum"
@@ -3052,6 +3204,9 @@ msgstr "Protanóp (Piros-Zöld)"
 msgid "IRON"
 msgstr "Vas"
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 #, fuzzy
 msgid "IRON_OXIDATION"
 msgstr "Adományok"
@@ -3069,18 +3224,6 @@ msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lép�
 
 msgid "JANUARY"
 msgstr "Január"
-
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON debug mód:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Mindig"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automatikusan"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Soha"
 
 msgid "JULY"
 msgstr "Július"
@@ -3545,9 +3688,11 @@ msgstr "Játék betöltése"
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Korábbi mentett játékok betöltése"
 
-#, fuzzy
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
-msgstr "Betöltöd ezt az inkompatibilis mentést?"
+msgstr ""
+"A kiválasztott mentés egy prototípusban készült, amely más Thrive verzióval működik.\n"
+"Ezért ezt a mentést nem lehet betölteni, mivel a prototípus mentések nem frissíthetők.\n"
+"A mentéskompatibilitás fenntartása a prototípusoknál nagy terhet jelentene, mivel gyakran dolgozzák át a rendszereket, és a mentések frissítésének megírása jelentősen lassítaná a prototípus fejlesztését."
 
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Betöltöd ezt az inkompatibilis mentést?"
@@ -3576,24 +3721,26 @@ msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(a nagyobb értékek javíthatják a teljesítményt)"
 
 msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
-msgstr ""
+msgstr "(alacsonyabb érték élesebb képet eredményez)"
 
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Teljesítmény"
 
-#, fuzzy
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
-msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
+msgstr ""
+"Az átlagos képkockasebességed nagyon alacsony.\n"
+"A 3D menühátterek engedélyezve vannak, amelyek jelentős rendszererőforrásokat használhatnak fel. Az opció kikapcsolása jelentősen növelheti a teljesítményt.\n"
+"Szeretnéd ezt most megtenni?"
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
-msgstr ""
+msgstr "Alacsony felbontású háttérelmosás"
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-msgstr ""
+msgstr "Alacsonyabb felbontást használ a hátterek elmosásához, így javítva a teljesítményt."
 
 msgid "LUCIFERASE"
-msgstr ""
+msgstr "Luciferáz"
 
 #, fuzzy
 msgid "LUCIFERASE_SYNTHESIS"
@@ -3619,8 +3766,24 @@ msgid "MACROSCOPIC"
 msgstr "Makroszkopikussá válni ({0}/{1})"
 
 #, fuzzy
+msgid "MACROSCOPIC_EDITOR"
+msgstr "Sejtszerkesztő betöltése"
+
+#, fuzzy
 msgid "MACROSCOPIC_STAGE"
 msgstr "Sejtfázis"
+
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "(a szervek, membránok, és egyéb dolgok költsége a szerkesztőben)"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr " Készíts egy sejtet, mely csak kemoszintézist használ energianyeréshez"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "Szerkesztő engedélyezése"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "Idő manuális beállítása"
@@ -3664,9 +3827,8 @@ msgstr "Nem engedélyezett {0}-nál/nél több adathalmaz mutatása!"
 msgid "MAY"
 msgstr "Május"
 
-#, fuzzy
 msgid "MECHANICS_BUTTON"
-msgstr "Biztos, hogy végérvényesen törölni akarod ezt a mentést?"
+msgstr "Mechanikák"
 
 msgid "MEDIANEXT"
 msgstr "Média következő"
@@ -3718,7 +3880,7 @@ msgid "MESOPELAGIC"
 msgstr "Mezopelágikus"
 
 msgid "METABOLOSOMES"
-msgstr "Metaboloszómák"
+msgstr "Metaloboszómák"
 
 #, fuzzy
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -3734,7 +3896,7 @@ msgstr ""
 "Ez befolyásolja a szálak alapértelmezett számát, mivel a hyperthreading szálak nem olyan gyorsak, mint a valódi CPU-magok."
 
 msgid "METEOR_IMPACT_EVENT"
-msgstr ""
+msgstr "Meteorbecsapódási esemény"
 
 msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
 msgstr ""
@@ -3804,6 +3966,10 @@ msgstr ""
 "[b]Viselkedés[/b]\n"
 "  {5}"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "kölönböző kiválasztódási nyomások miatt, [u]{0}[/u] egy új fajként vált le [u]{1}[/u]-tól/től"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3827,8 +3993,16 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "{0} ragadozása"
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reprodukció:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
+msgstr "{0} ragadozása"
 
 msgid "MICHE_TREE"
 msgstr ""
@@ -3845,16 +4019,18 @@ msgstr "Sejtfázis"
 msgid "MICROBE_BENCHMARK"
 msgstr "Sejtszerkesztő"
 
-#, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
-msgstr "  {0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
+msgstr "Mikroba kamera dőlésszög"
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
+msgstr "Jelenlegi patch-re ugrás"
 
 msgid "MICROBE_EDITOR"
 msgstr "Sejtszerkesztő"
 
-#, fuzzy
 msgid "MICROBE_ENZYME_STATISTICS"
-msgstr "  {0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
+msgstr "[b]Enzimek adatai:[/b]"
 
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Sejtszerkesztő"
@@ -3923,9 +4099,8 @@ msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy v
 msgid "MICROBE_LOADING_TIP_3"
 msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_4"
-msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+msgstr "Készülj fel, mielőtt a sejtedhez hozzáadsz egy sejtmagot. Ezek a dolgok drágák, mind kezdeti költségük, mind a fenntartásuk miatt!"
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_5"
@@ -3949,22 +4124,22 @@ msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy v
 
 #, fuzzy
 msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
-msgstr "  {0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
+msgstr "{0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
 
 #, fuzzy
 msgid "MICROBE_MEMBRANE_STATISTICS"
-msgstr "  {0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
+msgstr "{0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
-msgstr "  {0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
+msgstr "0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
 
 #, fuzzy
 msgid "MICROBE_RIPPLE_EFFECT"
-msgstr "  {0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
+msgstr "{0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -4055,10 +4230,14 @@ msgstr ""
 
 #, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
-msgstr "  {0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
+msgstr "{0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
 
 #, fuzzy
 msgid "MICROBIAL_MASSACRE"
+msgstr "Sejtfázis"
+
+#, fuzzy
+msgid "MICRO_BORG"
 msgstr "Sejtfázis"
 
 msgid "MIDDLE_MOUSE"
@@ -4077,7 +4256,7 @@ msgstr ""
 "Figyelj arra, hogy elegendő glükózt gyűjts az ATP előállításához."
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
-msgstr ""
+msgstr "Populáció költöztetése innen: {0} ..."
 
 #, fuzzy
 msgid "MIGRATION_STATUS_TEXT"
@@ -4140,7 +4319,7 @@ msgid "MISSING_DESCRIPTION"
 msgstr "Nincs leírás"
 
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
-msgstr ""
+msgstr "Hiányzó vagy érvénytelen formátum egy kötelező mezőben: {0}"
 
 msgid "MISSING_TITLE"
 msgstr "Nincs cím"
@@ -4149,7 +4328,7 @@ msgid "MITOCHONDRION"
 msgstr "Mitokondrium"
 
 msgid "MITOCHONDRION_DESCRIPTION"
-msgstr ""
+msgstr "A sejt fő energiaellátó központja. A mitokondrium egy kettős membránrendszerű struktúra, amely fehérjéket és enzimeket tartalmaz. Ez egy prokarióta, amely egy eukarióta gazdasejtbe beolvadva látja el funkcióját. Sokkal hatékonyabban képes a [thrive:compound type=\"glucose\"][/thrive:compound]-ból [thrive:compound type=\"atp\"][/thrive:compound]-t előállítani, mint ahogy az a citoplazmában történne [b]aerob sejtlégzés[/b] által. A működéséhez [thrive:compound type=\"oxygen\"][/thrive:compound] szükséges, így alacsonyabb [thrive:compound type=\"oxygen\"][/thrive:compound]-szintű környezetben lelassul az [thrive:compound type=\"atp\"][/thrive:compound]-termelés."
 
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
@@ -4165,7 +4344,7 @@ msgid "MODELS"
 msgstr "Modellek"
 
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
-msgstr ""
+msgstr "A 2D mozgási mód később bármikor megváltoztatható a Beállítások menüben"
 
 msgid "MODIFY"
 msgstr "Módosít"
@@ -4178,6 +4357,10 @@ msgstr "Típus módosítása"
 
 msgid "MODS"
 msgstr "Modok"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Kikapcsolva"
 
 #, fuzzy
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
@@ -4215,10 +4398,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr "A mod készítője:"
-
-#, fuzzy
-msgid "MOD_AUTO_HARMONY"
 msgstr "A mod készítője:"
 
 msgid "MOD_CREATION_FAILED"
@@ -4295,6 +4474,13 @@ msgstr "Mod feltöltő"
 msgid "MOD_VERSION"
 msgstr "Mod verzió:"
 
+#, fuzzy
+msgid "MONITOR_AUTO"
+msgstr "A mod készítője:"
+
+msgid "MONITOR_IDENTIFIER"
+msgstr ""
+
 msgid "MORE_INFO"
 msgstr "Több infó mutatása"
 
@@ -4303,7 +4489,7 @@ msgid "MORE_INFO_PROMPT"
 msgstr "Több infó mutatása"
 
 msgid "MOUSE_EDGE_PANNING_OPTION"
-msgstr ""
+msgstr "Stratégiai nézet mozgatása, amikor a kurzor a képernyő széléhez ér"
 
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr "Egérérzékenység"
@@ -4360,7 +4546,7 @@ msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr "Öngyilkosság"
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-msgstr ""
+msgstr "Átlépés a többsejtű szakaszba. Akkor lesz elérhető, amikor a sejtkolónia kellően nagy."
 
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Átvándorlás ebbe a patch-be"
@@ -4378,15 +4564,8 @@ msgstr ""
 "\n"
 "Ha a folytatást választod, akkor kérünk vedd figyelembe, hogy ezek mind prototípusok, és ne panaszkodj a hiányosságok miatt."
 
-#, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
-msgstr ""
-"Elérkeztél a Thrive \"teljes\" részének a végéhez.\n"
-"Ha szeretnéd, akkor továbbléphetsz a következő fázisok prototípusaiba. Ezek nagyon hiányosak lehetnek és \"placeholder\" grafikai elemeket használnak. A játék részeként szerepelnek, hogy bemutassák a játék lehetséges jövőbeli irányát és a fázisok összekapcsolásáról alkotott általános elképzelésünket.\n"
-"\n"
-"A legtöbb prototípusban nem fogsz tudni menteni ha folytatod, vagy ha később folytatni akarod. Szóval ha vissza szeretnél térni egyszer ehhez a szakaszhoz, akkor kérünk téged, mentsd el most a játékot, mielőtt folytatnád.\n"
-"\n"
-"Ha a folytatást választod, akkor kérünk vedd figyelembe, hogy ezek mind prototípusok, és ne panaszkodj a hiányosságok miatt."
+msgstr "Átlépsz az Ébredés szakaszába?"
 
 #, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE"
@@ -4398,15 +4577,8 @@ msgstr ""
 "\n"
 "Ha a folytatást választod, akkor kérünk vedd figyelembe, hogy ezek mind prototípusok, és ne panaszkodj a hiányosságok miatt."
 
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
-msgstr ""
-"Elérkeztél a Thrive \"teljes\" részének a végéhez.\n"
-"Ha szeretnéd, akkor továbbléphetsz a következő fázisok prototípusaiba. Ezek nagyon hiányosak lehetnek és \"placeholder\" grafikai elemeket használnak. A játék részeként szerepelnek, hogy bemutassák a játék lehetséges jövőbeli irányát és a fázisok összekapcsolásáról alkotott általános elképzelésünket.\n"
-"\n"
-"A legtöbb prototípusban nem fogsz tudni menteni ha folytatod, vagy ha később folytatni akarod. Szóval ha vissza szeretnél térni egyszer ehhez a szakaszhoz, akkor kérünk téged, mentsd el most a játékot, mielőtt folytatnád.\n"
-"\n"
-"Ha a folytatást választod, akkor kérünk vedd figyelembe, hogy ezek mind prototípusok, és ne panaszkodj a hiányosságok miatt."
+msgstr "Szárazföldre lépsz?"
 
 #, fuzzy
 msgid "MOVING_TO_SOCIETY_STAGE"
@@ -4465,7 +4637,7 @@ msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Többszörös élsimítás:"
 
 msgid "MULTITHREADED_SIMULATION_ENABLED"
-msgstr ""
+msgstr "Szimuláció futtatása több szálon"
 
 #, fuzzy
 msgid "MULTITHREADED_SIMULATION_EXPLANATION"
@@ -4535,7 +4707,7 @@ msgstr ""
 "Így is be akarod tölteni a mentést?"
 
 msgid "NEWS"
-msgstr ""
+msgstr "HÍREK"
 
 msgid "NEW_GAME"
 msgstr "Új játék"
@@ -4544,7 +4716,7 @@ msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Új játék indítása"
 
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
-msgstr ""
+msgstr "Megjegyzés: A teljesítménnyel kapcsolatos opciókat bármikor megváltoztathatod a [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]beállítások menüben[/url][/color]"
 
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Az én király modom"
@@ -4578,7 +4750,7 @@ msgid "NITROPLAST"
 msgstr "Nitrifikáló színtest"
 
 msgid "NITROPLAST_DESCRIPTION"
-msgstr ""
+msgstr "A Nitroplasztisz egy sejtmembránnal rendelkező sejtszervecske, amely gáznemű [thrive:compound type=\"nitrogen\"][/thrive:compound] és [thrive:compound type=\"oxygen\"][/thrive:compound], illetve [thrive:compound type=\"atp\"][/thrive:compound] felhasználásával képes [thrive:compound type=\"ammonia\"][/thrive:compound] előállítására, amely a sejtnövekedés kulcsfontosságú tápanyaga. Ezt a folyamatot [b]aerob nitrogénmegkötésnek[/b] nevezzük."
 
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
@@ -4603,36 +4775,40 @@ msgid "NOTICE_BINDING_OUT_OF_ATP"
 msgstr "Összekapcsolás be/ki"
 
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
-msgstr ""
+msgstr "Sérülés ATP-hiány miatt"
 
 msgid "NOTICE_ENGULFING_OUT_OF_ATP"
-msgstr ""
+msgstr "Kilépés a bekebelezési módból az ATP fogyása miatt"
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
-msgstr ""
+msgstr "Sérülés a befogadott anyagban levő mérgek miatt"
 
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
-msgstr ""
+msgstr "A sejt mérete túl kicsi a cél bekebelezéséhez"
 
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
 msgid "NOTICE_HIT_BY_ATP_TOXIN"
-msgstr ""
+msgstr "Az ATP-termelés megállt egy méreg hatására"
 
 #, fuzzy
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Alap mozgás"
 
 #, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Hidrogén-szulfid"
+
+#, fuzzy
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "Nincs elég {0} a recept elkészítéséhez"
 
 msgid "NOTICE_RADIATION_DAMAGE"
-msgstr ""
+msgstr "Sérülés túlzott sugárzás miatt"
 
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
@@ -4661,12 +4837,15 @@ msgstr "Nincs feljegyzett esemény"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "A mentések mappa nem található"
 
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "A jelen játékban már nem érhetők el eredmények"
+
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Kikapcsolva"
 
 msgid "NO_ORGANELLE_PROCESSES"
-msgstr ""
+msgstr "Nincs folyamat"
 
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "Nincs mentés"
@@ -4689,13 +4868,15 @@ msgstr "Sejtmag"
 
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
+"A sejtmag nem törölhető, mert ez egy nem visszafordítható fejlődés.\n"
+"A jelenlegi munkamenetben hozzáadva a visszavonás azonban használható."
 
 #, fuzzy
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "Az eukarióta sejtek legmeghatározóbb jellemzője. A sejtmaghoz még hozzá tartozik az endoplazmatikus membránrendszer és a golgi-készülék is."
 
 msgid "NUCLEUS_SMALL_DESCRIPTION"
-msgstr ""
+msgstr "Lehetővé teszi az összetettebb, membránnal határolt sejtszervecskék kialakulását és 50%-kal csökkenti az elszenvedett sérülések mértékét. A fenntartása sok ATP-t igényel. Ez egy visszafordíthatatlan fejlődés."
 
 msgid "NUMLOCK"
 msgstr "Num Lock"
@@ -4718,10 +4899,10 @@ msgid "OCTOBER"
 msgstr "Október"
 
 msgid "OFF"
-msgstr ""
+msgstr "Ki"
 
 msgid "OFFICIAL_WEBSITE"
-msgstr ""
+msgstr "Hivatalos weboldal"
 
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
@@ -4754,6 +4935,8 @@ msgstr "Feljegyzés mappa megnyitása"
 
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
+"Biztosan új játékot akarsz kezdeni a kiválasztott fajjal?\n"
+"Minden nem mentett előrehaladás el fog veszni."
 
 #, fuzzy
 msgid "OPEN_GOD_TOOLS"
@@ -4895,7 +5078,7 @@ msgid "ORGANISM_STATISTICS"
 msgstr "Organizmus statisztikái"
 
 msgid "OR_UNLOCK_CONDITION"
-msgstr ""
+msgstr "vagy"
 
 msgid "OSMOREGULATION"
 msgstr "Ozmoreguláció"
@@ -4915,6 +5098,10 @@ msgstr "Vegyületek"
 
 msgid "OUR_WIKI"
 msgstr "Wikipédiánk"
+
+#, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Megszakítva."
 
 #, fuzzy
 msgid "OUTDATED_NOTICE"
@@ -4996,6 +5183,10 @@ msgstr "Pásztázás felfelé"
 msgid "PAST_DEVELOPERS"
 msgstr "Korábbi Fejlesztők"
 
+#, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "{0} {1}"
+
 msgid "PATCH_COLON"
 msgstr "Patch:"
 
@@ -5022,7 +5213,7 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO"
 msgstr "Helyi adatok törlése"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
-msgstr ""
+msgstr "A legutóbb játszott verzió a Thrive {0} volt, azóta {1} új kiadás jelent meg"
 
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
@@ -5031,7 +5222,7 @@ msgid "PATCH_NOTE_BULLET_POINT"
 msgstr "— {0}"
 
 msgid "PATCH_NOTE_CHANGES_HEADING"
-msgstr ""
+msgstr "Változtatások:"
 
 #, fuzzy
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
@@ -5066,9 +5257,8 @@ msgstr "pck fájl ({0}) betöltése sikertelen"
 msgid "PEACEFUL"
 msgstr "Békés"
 
-#, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
-msgstr "A Thrive-ot GLES2 módban futtatod. Ennek a módnak a használata nincs letesztelve, és nagy eséllyel hibákat okozhat. Próbáld meg frissíteni a videókártyád driverét vagy/és kényszerítsd az AMD vagy Nvidia grafikai szoftverét a Thrive futtatására."
+msgstr "Befejezett endoszimbiózis folyamat van, amelyet egy organellumként való elhelyezéssel lehet véglegesíteni. Ajánlott ezt a lehető leghamarabb megtenni, mert további endoszimbiózis fejlődés nem lehetséges, amíg ez nem történik meg. Megnézed most az endoszimbiózis állását?"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
@@ -5100,6 +5290,10 @@ msgstr "Foszfát"
 msgid "PHOSPHATES_COST"
 msgstr "Foszfát"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Foszfát"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotoszintézis"
 
@@ -5125,6 +5319,10 @@ msgstr "Mappa megnyitása"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Véletlen bolygó seed"
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Statisztikák"
 
 #, fuzzy
 msgid "PLAYER"
@@ -5200,6 +5398,30 @@ msgstr "{0} ragadozása"
 
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Tekintsd meg az előrejelzés mögötti részletes információkat"
+
+#, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "Egyéni"
+
+#, fuzzy
+msgid "PRESET_HIGH"
+msgstr "Visszaállít"
+
+#, fuzzy
+msgid "PRESET_LOW"
+msgstr "Visszaállít"
+
+#, fuzzy
+msgid "PRESET_MEDIUM"
+msgstr "Alap mozgás"
+
+#, fuzzy
+msgid "PRESET_VERY_HIGH"
+msgstr "Bemeneti eszközök visszaállítása"
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "Összes megtartása"
 
 msgid "PRESSURE"
 msgstr "Nyomás"
@@ -5281,6 +5503,10 @@ msgid "RADIATION"
 msgstr "Aerob légzés"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Aerob légzés"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Nagy foszfátdarab"
 
@@ -5292,7 +5518,7 @@ msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Faj nevének randomizálása"
 
 msgid "RANDOM_SEED_TOOLTIP"
-msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
+msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie"
 
 msgid "RAW"
 msgstr "Nyers"
@@ -5300,6 +5526,16 @@ msgstr "Nyers"
 #, fuzzy
 msgid "RAW_VALUE_COLON"
 msgstr "Új név:"
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr "Érj meg 15 generációt ugyanazzal a fajjal legalább Normál nehézségi szinten"
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr "Érj meg {0}/{1} generációt ugyanazzal a fajjal legalább Normál nehézségi szinten"
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Többsejtes fázis"
 
 msgid "READING_SAVE_DATA"
 msgstr "Mentési információ olvasása"
@@ -5328,8 +5564,12 @@ msgstr "Frissítés"
 msgid "REGENERATE_BUTTON"
 msgstr "Sejtszervecskék"
 
+#, fuzzy
+msgid "REGIONS_NUMBER"
+msgstr "ID száma"
+
 msgid "RENDER_SCALE"
-msgstr ""
+msgstr "Felbontás átméretezése"
 
 msgid "REPORT"
 msgstr "Jelentés"
@@ -5380,19 +5620,17 @@ msgstr "Visszaállít"
 msgid "RESET_ACHIEVEMENTS"
 msgstr ""
 
-#, fuzzy
 msgid "RESET_DEADZONES"
-msgstr "Visszaállítja-e az alap dolgokat?"
+msgstr "Deadzone-ok visszaállítása"
 
 msgid "RESET_DISMISSED_POPUPS"
-msgstr ""
+msgstr "Elvetett felugró ablakok visszaállítása"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Vissza akarod állítani a bemeneteket az alapokra?"
 
-#, fuzzy
 msgid "RESET_ITEM_ORDER_TO_DEFAULT"
-msgstr "Vissza akarod állítani a bemeneteket az alapokra?"
+msgstr "Elem sorrend visszaállítása alapértelmezettre"
 
 #, fuzzy
 msgid "RESET_KEYBINDINGS"
@@ -5413,7 +5651,7 @@ msgid "RESET_TO_DEFAULTS"
 msgstr "Visszaállítja-e az alap dolgokat?"
 
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
-msgstr ""
+msgstr "Ellenáll az alapvető bekebelezéssel szemben"
 
 #, fuzzy
 msgid "RESIZE_METABALL_TOOLTIP"
@@ -5475,6 +5713,17 @@ msgid "REVEAL_ALL_PATCHES"
 msgstr "Minden patch felfedése"
 
 #, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Menj a következő szerkesztő ablakba"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Visszamész a szerkesztőbe?"
+
+#, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "A Revolutionary Games Studio-tól"
 
@@ -5499,7 +5748,14 @@ msgstr "Forgatás jobbra"
 msgid "ROTATION_COLON"
 msgstr "Fordulás:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
+msgstr "Auto-evo futtatása játék alatt"
+
+#, fuzzy
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
 msgstr "Auto-evo futtatása játék alatt"
 
 msgid "RUN_ONE_STEP"
@@ -5524,7 +5780,7 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "néhány patch-ben populáció vált le, hogy új fajt alakítson {0}:"
 
 msgid "RUN_X_WORLDS"
-msgstr ""
+msgstr "Futtatás {0} világban"
 
 #, fuzzy
 msgid "RUN_X_WORLDS_TOOLTIP"
@@ -5568,13 +5824,6 @@ msgstr "Mérete:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Biztos véglegesen akarod törölni a következő mentést: {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "JSON debug mód:"
 
 msgid "SAVE_FAILED"
 msgstr "Mentés sikertelen"
@@ -5646,7 +5895,7 @@ msgid "SAVING_SUCCEEDED"
 msgstr "Sikeres mentés"
 
 msgid "SCALING_NONE"
-msgstr ""
+msgstr "Nincs"
 
 #, fuzzy
 msgid "SCALING_ON"
@@ -5668,14 +5917,14 @@ msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
 msgstr "Külső effektek:"
 
 msgid "SCREEN_EFFECT_GREYSCALE"
-msgstr ""
+msgstr "Szürkeárnyalatos"
 
 #, fuzzy
 msgid "SCREEN_EFFECT_NONE"
 msgstr "Képesség sáv megjelenítése"
 
 msgid "SCREEN_RELATIVE_MOVEMENT"
-msgstr ""
+msgstr "Képernyőhöz viszonyított"
 
 #, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
@@ -5688,7 +5937,7 @@ msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Keresés..."
 
 msgid "SEARCH_PLACEHOLDER"
-msgstr ""
+msgstr "Keresés..."
 
 msgid "SEARCH_RADIUS"
 msgstr "Keresési rádiusz:"
@@ -5697,7 +5946,7 @@ msgid "SEA_FLOOR"
 msgstr "Tengerfenék"
 
 msgid "SECRETE_SLIME"
-msgstr ""
+msgstr "Nyálkakiválasztás"
 
 #, fuzzy
 msgid "SECRETE_SLIME_TOOLTIP"
@@ -5779,7 +6028,7 @@ msgid "SESSILE"
 msgstr "Rögzült"
 
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-msgstr ""
+msgstr "Ez az opció csak az ezután elkezdett új játékokra vonatkozik"
 
 msgid "SFX_VOLUME"
 msgstr "SFX hangerő"
@@ -5796,7 +6045,7 @@ msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
 msgstr "Segítség"
 
 msgid "SHOW_DAMAGE_EFFECT"
-msgstr ""
+msgstr "Sérülés effektus megjelenítése"
 
 msgid "SHOW_HELP"
 msgstr "Segítség mutatása"
@@ -5804,6 +6053,10 @@ msgstr "Segítség mutatása"
 #, fuzzy
 msgid "SHOW_ITEM_COORDINATES"
 msgstr "{0} ({1}, {2}) helyen"
+
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "Segítség mutatása"
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -5827,10 +6080,10 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "\"Mentetlen játék\" figyelmeztetés mutatása"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
-msgstr ""
+msgstr "Figyelmeztetés megjelenítése, ha kilépéskor nincs mentve minden előrehaladás."
 
 msgid "SHOW_WEB_NEWS_FEED"
-msgstr ""
+msgstr "Thrive hírcsatorna megjelenítése (letöltés az internetről)"
 
 #, fuzzy
 msgid "SIDEROPHORE_ACTION_TOOLTIP"
@@ -5855,13 +6108,13 @@ msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
 msgid "SIGNAL_COMMAND_FLEE"
-msgstr ""
+msgstr "Menekülés"
 
 msgid "SIGNAL_COMMAND_FOLLOW"
-msgstr ""
+msgstr "Kövess"
 
 msgid "SIGNAL_COMMAND_NONE"
-msgstr ""
+msgstr "Nincs parancs"
 
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
@@ -5903,7 +6156,15 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "Kis vasdarab"
 
 #, fuzzy
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "Kis vasdarab"
+
+#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Kis vasdarab"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr "Kis vasdarab"
 
 #, fuzzy
@@ -5911,7 +6172,7 @@ msgid "SMALL_SULFUR_CHUNK"
 msgstr "Kis vasdarab"
 
 msgid "SNOWFLAKE"
-msgstr ""
+msgstr "Hópehely"
 
 #, fuzzy
 msgid "SOCIETY_STAGE"
@@ -5992,12 +6253,19 @@ msgstr ""
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "faj mutálódott"
 
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Jelenlegi patch-re ugrás"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "kihalt a bolygón"
+
 msgid "SPECIES_LIST"
 msgstr "Fajlista"
 
-#, fuzzy
 msgid "SPECIES_MEMBER_IMPACT_ON_POP"
-msgstr "Faj neve túl hosszú!"
+msgstr "A faj tagjainak halálának hatása"
 
 #, fuzzy
 msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
@@ -6051,7 +6319,7 @@ msgid "STARTING"
 msgstr "Indítás"
 
 msgid "START_CALIBRATION"
-msgstr ""
+msgstr "Kalibrálás indítása"
 
 #, fuzzy
 msgid "START_GAME"
@@ -6064,22 +6332,21 @@ msgstr "Újraindítás szükséges"
 msgid "STATISTICS"
 msgstr "Statisztikák"
 
-#, fuzzy
 msgid "STAT_ATP_PRODUCTION_REDUCTION"
-msgstr "AZ ATP TERMELŐDÉSE TÚL ALACSONY!"
+msgstr "ATP-termelés csökkentése"
 
 #, fuzzy
 msgid "STAT_BASE_MOVEMENT_REDUCTION"
 msgstr "Alap mozgás"
 
 msgid "STAT_DAMAGE"
-msgstr ""
+msgstr "Sérülés"
 
 msgid "STAT_DAMAGE_PER_OXYGEN"
 msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
-msgstr ""
+msgstr "Steam kliens könyvtár inicializálása sikertelen"
 
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr "A Steam fiókod nem rendelkezik a Thrive licencével"
@@ -6094,14 +6361,14 @@ msgid "STEAM_ERROR_BANNED"
 msgstr "Nem töltheted fel ezt a tartalmat, mert a Steam fiókod le van tiltva"
 
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
-msgstr ""
+msgstr "Steam felhőtárhely-kvóta vagy fájlméretkorlát túllépve"
 
 #, fuzzy
 msgid "STEAM_ERROR_DUPLICATE_NAME"
 msgstr "A játékos megkettőzése"
 
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
-msgstr ""
+msgstr "Fájl nem található"
 
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
@@ -6120,7 +6387,7 @@ msgid "STEAM_ERROR_TIMEOUT"
 msgstr ""
 
 msgid "STEAM_ERROR_UNAVAILABLE"
-msgstr ""
+msgstr "A Steam jelenleg nem elérhető; próbáld újra később"
 
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Ismeretlen Steam hiba történt"
@@ -6206,7 +6473,10 @@ msgid "STRUCTURE_SOCIETY_CENTER"
 msgstr ""
 
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
-msgstr ""
+msgstr "Gőzhajtású gyár"
+
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr "Endoszimbiózis sikeres végrehajtása"
 
 msgid "SUCCESSFUL_KILL"
 msgstr "sikeres ölés"
@@ -6227,7 +6497,11 @@ msgid "SUPPORTER_PATRONS"
 msgstr "Támogatók"
 
 msgid "SURVIVAL_TITLE"
-msgstr ""
+msgstr "Túlélés"
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "Sejtmag"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Váltás elülső kamera nézetre"
@@ -6269,8 +6543,16 @@ msgstr "Képernyőkép készítése"
 msgid "TARGET_TYPE_COLON"
 msgstr "Típus:"
 
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Észlelhető szálak:"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "Aerob légzés"
+
 msgid "TECHNOLOGY_ASCENSION"
-msgstr ""
+msgstr "Felemelkedés"
 
 msgid "TECHNOLOGY_HUNTER_GATHERING"
 msgstr ""
@@ -6279,19 +6561,19 @@ msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
 msgstr ""
 
 msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
-msgstr ""
+msgstr "Ipari"
 
 msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
 msgstr ""
 
 msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
-msgstr ""
+msgstr "Kezdetleges"
 
 msgid "TECHNOLOGY_LEVEL_SCIFI"
 msgstr ""
 
 msgid "TECHNOLOGY_LEVEL_SPACE_AGE"
-msgstr ""
+msgstr "Űrkorszak"
 
 msgid "TECHNOLOGY_REQUIRED_LEVEL"
 msgstr ""
@@ -6300,13 +6582,13 @@ msgid "TECHNOLOGY_ROCKETRY"
 msgstr ""
 
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
-msgstr ""
+msgstr "Egyszerű kőszerszámok"
 
 msgid "TECHNOLOGY_SOCIETY_CENTER"
 msgstr ""
 
 msgid "TECHNOLOGY_STEAM_POWER"
-msgstr ""
+msgstr "Gőzenergia"
 
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
@@ -6370,6 +6652,10 @@ msgstr "Termoszintézis"
 msgid "THE_DISTURBANCE"
 msgstr ""
 
+#, fuzzy
+msgid "THE_EDITOR"
+msgstr "Menj a következő szerkesztő ablakba"
+
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "A patch térkép"
 
@@ -6387,16 +6673,16 @@ msgid "THREADS"
 msgstr "Szálak:"
 
 msgid "THRIVEOPEDIA"
-msgstr ""
+msgstr "Thriveopédia"
 
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
 msgstr ""
 
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
-msgstr ""
+msgstr "Evolúciós fa"
 
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
-msgstr ""
+msgstr "A Thriveopédia megnyitása"
 
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
@@ -6405,13 +6691,17 @@ msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr ""
 
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
-msgstr ""
+msgstr "Múzeum"
 
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Patch térkép"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive licenszek"
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Alap mozgás"
 
 msgid "THYLAKOIDS"
 msgstr "Thilakoidok"
@@ -6427,10 +6717,10 @@ msgid "TIMELINE"
 msgstr "Idővonal"
 
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
-msgstr ""
+msgstr "Globális események mutatása"
 
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
-msgstr ""
+msgstr "Helyi események mutatása"
 
 #, fuzzy
 msgid "TIMELINE_NICHE_FILL"
@@ -6463,9 +6753,8 @@ msgstr "[u]{0}[/u] kihalt!"
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] eltűnt ebből a patch-ből"
 
-#, fuzzy
 msgid "TIMELINE_SPECIES_FOLLOWED"
-msgstr "[u]{0}[/u] kihalt!"
+msgstr "[b][u]{0}[/u][/b] felült [b][u]{1}[/u][/b] hátára ebben a foltban"
 
 #, fuzzy
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
@@ -6484,10 +6773,10 @@ msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[u]{0}[/u] egyedszáma növekedett: {1}"
 
 msgid "TIME_INDICATOR_TOOLTIP"
-msgstr ""
+msgstr "Eltelt idő: {0:#,#} év"
 
 msgid "TIME_OF_DAY"
-msgstr ""
+msgstr "Idő"
 
 msgid "TITLE_COLON"
 msgstr "Cím:"
@@ -6498,6 +6787,10 @@ msgstr "Összekapcsolás be/ki"
 #, fuzzy
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Összekapcsolás be/ki"
+
+#, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Debug panel be/ki"
 
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Debug panel be/ki"
@@ -6553,7 +6846,7 @@ msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
 msgstr ""
 
 msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
-msgstr ""
+msgstr "Az oxigénvédelem túl alacsony, {0}%-kal magasabb szükséges"
 
 #, fuzzy
 msgid "TOLERANCES_TOO_LOW_PRESSURE"
@@ -6570,11 +6863,25 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]Fajok[/b]\n"
+"  {0}:{1}\n"
+"[b]Generáció[/b]\n"
+"  {2}\n"
+"[b]Populáció[/b]\n"
+"  {3}\n"
+"[b]Szín[/b]\n"
+"  #{4}\n"
+"[b]Viselkedés[/b]\n"
+"  {5}"
+
+#, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr "Az összetevők mutatása / elrejtése"
 
 msgid "TOLERANCE_RANGE_LABEL"
-msgstr ""
+msgstr "Tűrés:"
 
 msgid "TOOLS"
 msgstr "Eszközök"
@@ -6628,7 +6935,7 @@ msgid "TOXIN_MACROLIDE_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
 
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
-msgstr ""
+msgstr "Cianid"
 
 #, fuzzy
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
@@ -6642,7 +6949,7 @@ msgid "TOXIN_PREFER_FIRE_RATE"
 msgstr ""
 
 msgid "TOXIN_PREFER_TOXICITY"
-msgstr ""
+msgstr "Mérgező"
 
 #, fuzzy
 msgid "TOXIN_PROPERTIES_HEADING"
@@ -6716,10 +7023,6 @@ msgid "TUTORIAL"
 msgstr "Tutorial"
 
 #, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "(a szerkesztő elhagyása után egy közeli glükózfelhő mellett lesz a sejted)"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Üdvözöllek a Sejtszerkesztőben.\n"
@@ -6773,16 +7076,15 @@ msgstr ""
 "\n"
 "A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
-"Ezek a fajok szerkesztésének alapjai. Befejezésként átnevezheted a fajodat, ha a bal alsó sarokban lévő névre kattintasz, és szerkeszted a szöveget.\n"
+"Az alkalmazkodás nehéz. Sokféle [thrive:compound type=\"atp\"][/thrive:compound] forrás létezik, de nem mind használható mindenhol. Használd az összes fül és panel adta lehetőséget, hogy a lehető legjobb döntést hozd, vagy egyszerűen próbálj ki valamit, és nézd meg, működik-e!\n"
 "\n"
-"Próbáld meg felfedezni a többi fület az MP sáv alatt, hogy megnézzd, hogyan tudod még testre szabni a celládat.\n"
+"Ne feledd: [u]ha nem termelsz elegendő [thrive:compound type=\"atp\"][/thrive:compound]-t, nem fogsz túlélni[/u].\n"
 "\n"
-"Ahhoz, hogy túlélj ebben a zord világban, megbízható energiaforrást kell találnod, mivel a természetes glükóz gyorsan csökken.\n"
+"Egyelőre működik, ha [thrive:compound type=\"glucose\"][/thrive:compound]-ot gyűjtesz és ATP-vé alakítod, de a természetes glükóz mennyisége generációnként csökkenni fog.\n"
 "\n"
-"Sok szerencsét!"
+"Végül átnevezheted a fajt: kattints a nevére a bal alsó sarokban, és szerkeszd a szöveget."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
@@ -6797,13 +7099,13 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
 msgstr ""
-"Ezek a fajok szerkesztésének alapjai. Befejezésként átnevezheted a fajodat, ha a bal alsó sarokban lévő névre kattintasz, és szerkeszted a szöveget.\n"
+"Ez az élelmiszerlánc kijelzője.\n"
 "\n"
-"Próbáld meg felfedezni a többi fület az MP sáv alatt, hogy megnézzd, hogyan tudod még testre szabni a celládat.\n"
+"Megmutatja, hogy az adott területen mely fajok milyen táplálékforrásokat fogyasztanak.\n"
 "\n"
-"Ahhoz, hogy túlélj ebben a zord világban, megbízható energiaforrást kell találnod, mivel a természetes glükóz gyorsan csökken.\n"
+"Itt láthatóak a ragadozó–zsákmány kapcsolatok, valamint a környezeti táplálékforrások is.\n"
 "\n"
-"Sok szerencsét!"
+"Ezek az információk segíthetnek eldönteni, merre fejleszd a fajt, de új játékosként nem kell aggódnod, ha nem érted teljesen ezt a képernyőt."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
@@ -6834,16 +7136,13 @@ msgstr ""
 "\n"
 "A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
-"Ezek a fajok szerkesztésének alapjai. Befejezésként átnevezheted a fajodat, ha a bal alsó sarokban lévő névre kattintasz, és szerkeszted a szöveget.\n"
+"Még nem változtattál a fajtádon.\n"
 "\n"
-"Próbáld meg felfedezni a többi fület az MP sáv alatt, hogy megnézzd, hogyan tudod még testre szabni a celládat.\n"
+"Miután elhagyod a szerkesztőt, [u]nem tudod szerkeszteni a fajtád, amíg legközelebb nem szaporodsz[/u].\n"
 "\n"
-"Ahhoz, hogy túlélj ebben a zord világban, megbízható energiaforrást kell találnod, mivel a természetes glükóz gyorsan csökken.\n"
-"\n"
-"Sok szerencsét!"
+"A játékban előrejutáshoz fejlődnöd és alkalmazkodnod kell, ezért ajánlott a fajt [i]szinte minden[/i] szerkesztési ciklusban módosítani."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
@@ -6990,6 +7289,10 @@ msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Többsejtes szerkesztő betöltése"
 
 #, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "(a szerkesztő elhagyása után egy közeli glükózfelhő mellett lesz a sejted)"
+
+#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial"
 
@@ -7015,11 +7318,8 @@ msgstr "Összes szétválasztása"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Szétkapcsolás mód"
 
-#, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
-msgstr ""
-"Ez a mentés a Thrive egyik frissebb verziójából származik, és nagy eséllyel nem kompatibilis.\n"
-"Így is be akarod tölteni a mentést?"
+msgstr "Ez egy hibakereső verzió, ahol az alábbi információk valószínűleg nem naprakészek"
 
 msgid "UNDERWATERCAVE"
 msgstr "Víz alatti barlang"
@@ -7045,6 +7345,17 @@ msgstr "Visszavonás"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Utolsó akció visszavonása"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "A pilusok sok mikroorganizmus felületén megtalálhatóak, amik finom szőrszálakhoz hasonlítanak. Több tíz, akár több száz pilus is található egy mikroorganizmuson, feladatuk pedig egy, vagy több is lehet a ragadozást beleértve."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Köszönjük"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "MI mutációs mértéke"
@@ -7054,10 +7365,10 @@ msgid "UNIT_ACTION_MOVE"
 msgstr "MI mutációs mértéke"
 
 msgid "UNIT_ADVANCED_SPACESHIP"
-msgstr ""
+msgstr "Fejlett űrhajó"
 
 msgid "UNIT_SIMPLE_ROCKET"
-msgstr ""
+msgstr "Egyszerű rakéta"
 
 msgid "UNKNOWN"
 msgstr "Ismeretlen"
@@ -7069,16 +7380,14 @@ msgstr "Képesség sáv megjelenítése"
 msgid "UNKNOWN_MOUSE"
 msgstr "Ismeretlen egér"
 
-#, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
-msgstr "Sejtszervecske elhelyezése"
+msgstr ""
 
 msgid "UNKNOWN_PATCH"
 msgstr "Ismeretlen patch"
 
-#, fuzzy
 msgid "UNKNOWN_SHORT"
-msgstr "Ismeretlen"
+msgstr "?"
 
 #, fuzzy
 msgid "UNKNOWN_VERSION"
@@ -7112,10 +7421,10 @@ msgid "UNLOCK_CONDITION_COMPOUND_IS_BETWEEN"
 msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] a patch-ben {1} és {2} között van"
 
 msgid "UNLOCK_CONDITION_DIGESTED_MICROBES_ABOVE"
-msgstr ""
+msgstr "{0} megemésztett mikroba  (jelenleg {1})"
 
 msgid "UNLOCK_CONDITION_ENGULFED_MICROBES_ABOVE"
-msgstr ""
+msgstr "{0} bekebelezett mikroba (jelenleg {1})"
 
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr ""
@@ -7199,18 +7508,21 @@ msgid "UPLOAD_SUCCEEDED"
 msgstr "Sikeres feltöltés"
 
 msgid "UPSCALE_BILINEAR"
-msgstr ""
+msgstr "Bilineáris felskálázás"
 
 msgid "UPSCALE_FSR_1"
-msgstr ""
+msgstr "FSR 1 felskálázás"
 
 msgid "UPSCALE_FSR_22"
-msgstr ""
+msgstr "FSR 2.2 felskálázás"
 
 msgid "UPSCALE_METHOD"
-msgstr ""
+msgstr "Felskálázási eljárás:"
 
 msgid "UPSCALE_SHARPENING_FSR"
+msgstr "FSR élesítés"
+
+msgid "UPWELLING_EVENT"
 msgstr ""
 
 #, fuzzy
@@ -7218,23 +7530,16 @@ msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licenszek"
 
 msgid "USED_RENDERER_NAME"
-msgstr ""
+msgstr "Használt renderelő:"
 
 msgid "USES_FEATURE"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#, fuzzy
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Öngyilkosság"
+msgstr "Igen"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Adj meg egy saját felhasználónevet"
 
 msgid "USE_DISK_CACHE"
-msgstr ""
+msgstr "Gyorsítótárazás a lemezen"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "A háttérben futó szálak számának manuális beállítása"
@@ -7277,6 +7582,10 @@ msgstr "Növeli a sejt tárkapacitását."
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
+#, fuzzy
+msgid "VENTS_ARE_HOME"
+msgstr "Nincs feljegyzett esemény"
+
 msgid "VERSION_COLON"
 msgstr "Verzió:"
 
@@ -7289,7 +7598,7 @@ msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr "Új név:"
 
 msgid "VIDEO_MEMORY"
-msgstr ""
+msgstr "Jelenleg használt videomemória:"
 
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
@@ -7365,7 +7674,7 @@ msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Várakozás az auto-evo-ra:"
 
 msgid "WELCOME_TO_THRIVEOPEDIA"
-msgstr ""
+msgstr "Üdvözlünk a Thriveopédián"
 
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "kihalt a bolygón"
@@ -7430,9 +7739,8 @@ msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségéve
 msgid "WIKI_ASCENSION_OVERVIEW"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_ASCENSION_TRANSITIONS"
-msgstr "Gratulálok!"
+msgstr "A felemelkedésbe akkor lépsz, amikor a fajtád áthalad egy Felemelkedés Kapun. Valószínűleg a játék végén, a felemelkedési szakaszba való belépés jelenete után szeretnénk megjeleníteni a stáblistát.A stáblista végeztével a játékos visszakerül a játékba a Felemelkedés szakaszban, egy gratuláló üzenettel.Ahhoz, hogy ez legyen a játék utolsó akadálya, a Felemelkedés Kapu sok kutatást igényel (beleértve a fent említett Isten Eszközöket), és rengeteg energiát – több napnyi energiát – a létrehozásához és működtetéséhez.Más, esetleg ellenséges fajok itt kapják meg az utolsó lehetőségüket, hogy megtámadják a játékost, mielőtt a játékos végtelen erőhöz jutna, és képes lenne egyszerűen eltörölni a versengő csillagrendszer-birodalmakat."
 
 #, fuzzy
 msgid "WIKI_ASCENSION_UI"
@@ -7493,13 +7801,13 @@ msgid "WIKI_AXON_INTRO"
 msgstr "Idegrostok neuronok között, elérhető a Többsejtű fázistól. Szükséges az organizmus agykapacitásának növeléséhez és a jövőbeli fázisok eléréséhez."
 
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr ""
+msgstr "Nincs módosítás."
 
 msgid "WIKI_AXON_PROCESSES"
-msgstr ""
+msgstr "Nincs folyamat."
 
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr ""
+msgstr "Csak a Többsejtű szakasztól kezdve elérhető."
 
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7590,7 +7898,7 @@ msgid "WIKI_CHEMOPLAST_INTRO"
 msgstr "Kemoplasztisz"
 
 msgid "WIKI_CHEMOPLAST_MODIFICATIONS"
-msgstr ""
+msgstr "Nincs módosítás."
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_PROCESSES"
@@ -7713,7 +8021,7 @@ msgid "WIKI_CILIA_INTRO"
 msgstr ""
 
 msgid "WIKI_CILIA_MODIFICATIONS"
-msgstr ""
+msgstr "Nincs módosítás."
 
 #, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
@@ -7866,7 +8174,7 @@ msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "Ostor"
 
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
-msgstr ""
+msgstr "Nincs módosítás."
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_PROCESSES"
@@ -7963,14 +8271,14 @@ msgid "WIKI_HEADING_MICROBE_STAGE_TIPS"
 msgstr "Felkelési fázis"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
-msgstr ""
+msgstr "Módosítások"
 
 #, fuzzy
 msgid "WIKI_HEADING_MORE_GAME_INFO"
 msgstr "Felkelési fázis"
 
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
-msgstr ""
+msgstr "Mutációk és Mutáció-pontok"
 
 #, fuzzy
 msgid "WIKI_HEADING_OVERVIEW"
@@ -7985,16 +8293,16 @@ msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
 msgstr "Fizikai körülmények"
 
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "Folyamatok"
 
 msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
-msgstr ""
+msgstr "Szaporodás a Mikroba szakaszban"
 
 msgid "WIKI_HEADING_REQUIREMENTS"
 msgstr ""
 
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Tudományos háttér"
 
 #, fuzzy
 msgid "WIKI_HEADING_STRATEGY"
@@ -8301,7 +8609,57 @@ msgstr ""
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_EDITOR"
-msgstr "Sejtszerkesztő"
+msgstr ""
+"A szerkesztőről\n"
+"\n"
+"A szerkesztő a mikrobai szakasz stratégiai oldala, amelyhez a játékos minden szaporodáskor hozzáfér. Ebben a szerkesztőben fejlesztheti a játékos a faját úgy, hogy a rendelkezésre álló fehérjék vagy sejtszervecskék listájáról elemeket helyez el a sejtjén. Minden generációban 100 mutációs pontot (MP) kap a játékos, amit ezekre az alkatrészekre költhet. A szerkesztő jelenleg három különálló ablakra van osztva: a jelentésoldalra, a folt térképre és magára a szerkesztőre.\n"
+"\n"
+"[u]Jelentés[/u]\n"
+"\n"
+"A jelentésmenü az első oldal, amit a játékos lát, amikor belép a szerkesztőbe. Ez az oldal bemutatja az összes környezeti változást, ami a szerkesztőbe lépés előtt történt – például fajpopulációk változását, vegyület-koncentrációt, stb. Az itt található információk hasznosak lehetnek, de nem szükségesek a sikeres játékhoz, így a játékosoknak nem kell feltétlenül elemezniük azokat.\n"
+"\n"
+"[u]Folt térkép[/u]\n"
+"\n"
+"A második oldal, amit a játékos meglátogat, a folt térkép. Ez a menü lényegében a világ térképét mutatja, amelyen a foltok a bejárható élőhelyeket (biomokat) képviselik, a köztük lévő vonalak pedig az átléphető útvonalakat. A játékos kiválaszthat minden látható foltot, hogy megnézze az adott biom környezeti statisztikáit, mint például a vegyület-koncentrációt, jelenlévő fajokat, stb. Ha a kiválasztott folt össze van kötve a játékos aktuális foltjával, akkor lehetőség lesz a szerkesztő elhagyása után abban a foltban játszani. Azoknak, akik új környezetbe kívánnak költözni, érdemes először megvizsgálni az adott foltot, hogy felkészülhessenek az ottani viszonyokra.\n"
+"\n"
+"A játékban jelenleg megtalálható folttípusok teljes listája:\n"
+"Abüsszopelágikus\n"
+"Batipelágikus\n"
+"Mezopelágikus\n"
+"Epipelágikus\n"
+"Tengerfenék\n"
+"Árapálymedence\n"
+"Torkolat\n"
+"Hőforrások\n"
+"Partvidék\n"
+"Jégtakaró\n"
+"Barlangok\n"
+"\n"
+"[u]Biomok[/u]\n"
+"\n"
+"Fő cikk: Mikrobiális biomok\n"
+"\n"
+"Minden folt egy adott biomot képvisel. A biom határozza meg az adott folt fizikai tulajdonságait, például a hőmérsékletet, nyomást és fényviszonyokat.\n"
+"\n"
+"[u]Sejtszerkesztő[/u]\n"
+"\n"
+"A szerkesztőoldalon testreszabhatja a játékos a sejtjét elemről elemre. Az oldal legnagyobb részét egy hatszögrács foglalja el, ahol a sejtrészek elhelyezhetők, középen a játékos aktuális sejtjével. A bal oldalon található az alkatrészlista, ahol kiválaszthatók a sejtrészek, illetve módosítható a sejt színe vagy membránja. Jobb felül az organizmus statisztikái láthatók, beleértve az ATP-egyensúly sávot, amely azt mutatja, mennyi ATP-t termel és fogyaszt a sejt. A játékosnak ügyelnie kell arra, hogy a piros sáv mindig rövidebb legyen a zöldnél, különben a saját alkotása okozza a vesztét. Jobb alul található az autoevolúció előrejelző ablak, amely megmutatja, milyen jól teljesítene a faj a végrehajtott változtatásokkal az algoritmus szerint. Bal felül a navigációs fülek és az MP sáv találhatók.\n"
+"Új részeket a játékos csak meglévő elfoglalt hatszögek mellé, vagy citoplazma hexek helyére tehet. Régi részek törlése jobb kattintással történik, ez 10 MP-be kerül. A képernyő alján található nyilakkal visszavonhatók vagy újra végrehajthatók a módosítások, de csak az aktuális szerkesztő szekcióban. Középen található a szimmetria gomb, amely módosítja a szimmetria módot. Minden rész törölhető, kivéve három kivételt: a sejtmag, kötőanyagok és a sejt utolsó hexje – ezek csak áthelyezhetők.\n"
+"\n"
+"A sejtszerkesztő három különálló fülre oszlik, amelyek mindegyike egyedi funkcióval bír.\n"
+"\n"
+"Szerkezet fül:\n"
+"Tartalmazza az összes választható részt, például fehérjéket, sejtszervecskéket és külső struktúrákat (pl. pilus). A játékos rákattint a kívánt ikonra, majd elhelyezi a rácson. A fül három részre van osztva: prokarióta struktúrák, külső organellumok és belső organellumok. A belső szervecskéket csak a sejtmag evolúciója után lehet használni. Az elhelyezett részek szabadon mozgathatók, módosíthatók, törölhetők.\n"
+"Membrán fül:\n"
+"A sejt membránjának testreszabása. Itt különböző membrán- és sejtfal típusok választhatók, mindegyik egyedi statokkal és képességekkel. A kiválasztáshoz elegendő MP-re és egy kattintásra van szükség. Egy csúszka segítségével állítható a membrán folyékonysága vagy merevsége, változtatásonként 2 MP áron. A folyékony sejtek gyorsabbak, de sérülékenyebbek; a merev sejtek lassabbak, de ellenállóbbak. Alul egy színkerék is található, amellyel a sejt színe módosítható – ez teljesen kozmetikai, nem kerül MP-be.\n"
+"Viselkedés fül:\n"
+"A játékos itt állíthatja be a faj mesterséges intelligenciájának viselkedési skáláit. A játékosra ez jelenleg nem hat, csak az AI-t irányítja. Minden csúszka egy személyiség-skála két véglete között mozog, és meghatározza, milyen irányba hajlik a faj.\n"
+"A jelenlegi személyiség skálák:\n"
+"Békés / Agresszív: mennyire ellenséges vagy közömbös más fajokkal szemben\n"
+"Óvatos / Lehetőségkereső: milyen mértékben vállalnak kockázatot előnyökért\n"
+"Bátor / Félős: milyen hamar menekülnek és mitől félnek\n"
+"Helyhez kötött / Aktív: mozognak-e inger nélkül\n"
+"Reszponzív / Fókuszált: milyen gyorsan váltanak célt,"
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
@@ -8704,7 +9062,6 @@ msgstr "Protoplazma"
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplazma"
 
-#, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Rusticyanin"
 
@@ -9284,6 +9641,14 @@ msgstr "Hőm."
 msgid "WORST_PATCH_COLON"
 msgstr "Legrosszabb patch:"
 
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "Elfogad"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+
 msgid "XBOX360"
 msgstr "Xbox 360"
 
@@ -9315,11 +9680,50 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "A Thrive fejlesztését támogatni is tudod Patreonon."
 
+msgid "YUM_EXCLAMATION"
+msgstr "Nyami!"
+
 msgid "ZOOM_IN"
 msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#, fuzzy
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "A mod készítője:"
+
+#, fuzzy
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Öngyilkosság"
+
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Reprodukció:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON debug mód:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Mindig"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automatikusan"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Soha"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "JSON debug mód:"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Megszakítva."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Generációk"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
@@ -9558,10 +9962,6 @@ msgstr "Távolodás"
 #~ msgstr "Tudatos fázis"
 
 #, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Kemoszintézis"
-
-#, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"
 #~ msgstr "Glikolízis"
 
@@ -9627,10 +10027,6 @@ msgstr "Távolodás"
 
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Fajok migrációkihagyásának engedélyezése (ha a rendszer nem talált jó vándorlási utat)"
-
-#, fuzzy
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "kihalt a bolygón"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Hiba: darabka nem található"

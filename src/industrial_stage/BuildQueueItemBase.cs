@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 ///   Base class for items that can be in the build queue, not to be confused with the GUI for displaying these:
 ///   <see cref="BuildQueueItemGUI"/>
 /// </summary>
-[JSONAlwaysDynamicType]
 public abstract class BuildQueueItemBase : IBuildQueueProgressItem
 {
     [JsonProperty]
@@ -64,7 +63,6 @@ public abstract class BuildQueueItemBase : IBuildQueueProgressItem
     protected abstract void OnFinished();
 }
 
-[JSONAlwaysDynamicType]
 public class UnitBuildQueueItem : BuildQueueItemBase
 {
     [JsonProperty]

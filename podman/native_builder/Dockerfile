@@ -5,8 +5,8 @@ RUN dnf install -y --setopt=deltarpm=false \
     cmake gcc-c++ clang lld git unzip \
     zlib-devel libxml2-devel libedit-devel ncurses-devel && dnf clean all
 
-ENV LLVM_VERSION "18.1.8"
-ENV NINJA_BUILD_VERSION "1.12.1"
+ENV LLVM_VERSION "21.1.1"
+ENV NINJA_BUILD_VERSION "1.13.1"
 
 # Parallel link jobs is recommended to be available ram / 15 GB (so this is now optimized for
 # 64 GB system)
@@ -91,11 +91,11 @@ FROM almalinux:9 as llvm-cross
 RUN dnf install -y --setopt=deltarpm=false \
     git unzip xz && dnf clean all
 
-ENV CMAKE_VERSION "3.30.3"
-ENV NINJA_BUILD_VERSION "1.12.1"
+ENV CMAKE_VERSION "3.31.8"
+ENV NINJA_BUILD_VERSION "1.13.1"
 
-# llvm-mingw 20240619 with LLVM 18.1.8
-ENV LLVM_MINGW_VERSION "20240619"
+# llvm-mingw 20250910 with LLVM 21.1.1
+ENV LLVM_MINGW_VERSION "20250910"
 
 # This probably controls what runtime is used
 # ucrt is much newer but only installed by default on Windows 10
@@ -133,14 +133,18 @@ FROM almalinux:9
 
 # gcc-c++ is needed on top of libstdc++-devel to get all standard headers
 RUN dnf update -y && dnf install -y --setopt=deltarpm=false \
-    git gcc-c++ glibc-devel && dnf clean all
+    git gcc-c++ glibc-devel libstdc++-devel && dnf clean all
+
+# Static library
+RUN dnf install --enablerepo=crb -y --setopt=deltarpm=false \
+    libstdc++-static && dnf clean all
 
 # binutils is removed so that the default linker doesn't exist
 # RUN dnf remove binutils -y
 # Remove binutils but leave gcc
 RUN rpm --erase binutils binutils-gold --nodeps
 
-ENV CMAKE_VERSION "3.30.3"
+ENV CMAKE_VERSION "3.31.8"
 
 # Install cmake without installing gcc as a dependency
 RUN curl -L \

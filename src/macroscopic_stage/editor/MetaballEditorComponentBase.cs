@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
-///   Editor component that specializes in metaball-based stuff editing
+///   Editor component that specialises in metaball-based stuff editing
 /// </summary>
 /// <typeparam name="TEditor">Type of editor this class can be put in</typeparam>
 /// <typeparam name="TCombinedAction">Type of editor action this class works with</typeparam>
@@ -13,13 +13,14 @@ using Newtonsoft.Json;
 /// <typeparam name="TMetaball">Type of metaballs this editor works with</typeparam>
 [GodotAbstract]
 public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TAction, TMetaball> :
-    EditorComponentWithActionsBase<TEditor, TCombinedAction>,
-    ISaveLoadedTracked, IChildPropertiesLoadCallback
+    EditorComponentWithActionsBase<TEditor, TCombinedAction>
     where TEditor : class, IHexEditor, IEditorWithActions
     where TCombinedAction : CombinedEditorAction
     where TAction : EditorAction
-    where TMetaball : Metaball
+    where TMetaball : Metaball, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION_META = 1;
+
     /// <summary>
     ///   Set above 0 to make sure the arrow doesn't overlap with the ground circle graphics
     /// </summary>
@@ -30,7 +31,6 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     [Export]
     protected EditorCamera3D camera = null!;
 
-    [JsonIgnore]
     [Export]
     protected MeshInstance3D editorArrow = null!;
 
@@ -40,10 +40,8 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     protected AudioStream hexPlacementSound = null!;
 #pragma warning restore CA2213
 
-    [JsonProperty]
     protected float metaballSize = 1.0f;
 
-    [JsonProperty]
     protected string? activeActionName;
 
     /// <summary>
@@ -51,7 +49,6 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     /// </summary>
     protected bool isPlacementProbablyValid;
 
-    [JsonProperty]
     protected MetaballLayout<TMetaball> editedMetaballs = null!;
 
     /// <summary>
@@ -64,12 +61,12 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     protected List<TMetaball> hoverMetaballData = new();
 
     /// <summary>
-    ///   Displays structure of metaballs in the editor
+    ///   Displays the structure of metaballs in the editor
     /// </summary>
     protected IMetaballDisplayer<TMetaball>? structuralMetaballDisplayer;
 
     /// <summary>
-    ///   Displays shape of the metaballs the way it would actually look in game. Used in preview mode.
+    ///   Displays the shape of the metaballs the way it would actually look in-game. Used in preview mode.
     ///   Should display metaballs using the convolution displayer.
     /// </summary>
     protected IMetaballDisplayer<TMetaball>? visualMetaballDisplayer;
@@ -112,7 +109,6 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     /// <summary>
     ///   The symmetry setting of the editor.
     /// </summary>
-    [JsonProperty]
     public HexEditorSymmetry Symmetry
     {
         get => symmetry;
@@ -123,7 +119,6 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     ///   If this is enabled, the creature will be shown as it would actually look in game. Editing metaballs is
     ///   disabled during preview (except for undo/redo).
     /// </summary>
-    [JsonProperty]
     public bool PreviewMode
     {
         get => previewMode;
@@ -136,8 +131,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
             if (updateNeeded)
                 UpdateAlreadyPlacedVisuals();
 
-            if (hoverMetaballDisplayer != null)
-                hoverMetaballDisplayer.Visible = !PreviewMode;
+            hoverMetaballDisplayer?.Visible = !PreviewMode;
         }
     }
 
@@ -145,12 +139,10 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     ///   Metaball that is in the process of being moved but a new location hasn't been selected yet.
     ///   If null, nothing is in the process of moving.
     /// </summary>
-    [JsonProperty]
     public TMetaball? MovingPlacedMetaball { get; protected set; }
 
     // TODO: implement 3D editor camera position and rotation saving
 
-    [JsonIgnore]
     public IEnumerable<(Vector3 Position, TMetaball? Parent)>? MouseHoverPositions
     {
         get => mouseHoverPositions;
@@ -168,18 +160,13 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     }
 
     /// <summary>
-    ///   If true a metaball move is in progress and can be canceled
+    ///   If true, a metaball move is in progress and can be cancelled
     /// </summary>
-    [JsonIgnore]
     public bool CanCancelMove => MovingPlacedMetaball != null;
 
-    [JsonIgnore]
     public override bool CanCancelAction => CanCancelMove;
 
-    [JsonIgnore]
     public virtual bool HasIslands => throw new GodotAbstractPropertyNotOverriddenException();
-
-    public bool IsLoadedFromSave { get; set; }
 
     protected virtual bool ForceHideHover => throw new GodotAbstractPropertyNotOverriddenException();
 
@@ -198,7 +185,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         if (IsLoadedFromSave)
         {
             // When directly loaded from the base scene (which is done when loading from a save), some of our
-            // node paths are not set so we need to skip them
+            // node paths are not set, so we need to skip them
             return;
         }
 
@@ -258,7 +245,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
             metaballResizeScroll.MinValue = Constants.METABALL_MIN_SIZE;
             metaballResizeScroll.MaxValue = Constants.METABALL_MAX_SIZE;
 
-            // Allow GUI to have smaller step but not bigger
+            // Allow GUI to have a smaller step but not bigger
             if (metaballResizeScroll.Step > Constants.METABALL_SIZE_STEP)
                 metaballResizeScroll.Step = Constants.METABALL_SIZE_STEP;
         }
@@ -292,6 +279,34 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         usedHoverMetaballIndex = 0;
     }
 
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(SERIALIZATION_VERSION_BASE);
+        base.WritePropertiesToArchive(writer);
+
+        writer.Write(metaballSize);
+        writer.Write(activeActionName);
+        writer.WriteObject(editedMetaballs);
+        writer.Write((int)Symmetry);
+        writer.Write(PreviewMode);
+        writer.WriteObjectOrNull(MovingPlacedMetaball);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_META or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_META);
+
+        base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
+
+        metaballSize = reader.ReadFloat();
+        activeActionName = reader.ReadString();
+        editedMetaballs = reader.ReadObject<MetaballLayout<TMetaball>>();
+        symmetry = (HexEditorSymmetry)reader.ReadInt32();
+        PreviewMode = reader.ReadBool();
+        MovingPlacedMetaball = reader.ReadObjectOrNull<TMetaball>();
+    }
+
     public void ResetSymmetryButton()
     {
         componentBottomLeftButtons.ResetSymmetry();
@@ -299,7 +314,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     }
 
     /// <summary>
-    ///   Set tab specific editor world object visibility
+    ///   Set tab-specific editor world object visibility
     /// </summary>
     /// <param name="shown">True if they should be visible</param>
     public virtual void SetEditorWorldTabSpecificObjectVisibility(bool shown)
@@ -312,10 +327,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
             hoverMetaballDisplayer!.Visible = shown && !PreviewMode;
         }
 
-        if (visualMetaballDisplayer != null)
-        {
-            visualMetaballDisplayer.Visible = shown && PreviewMode;
-        }
+        visualMetaballDisplayer?.Visible = shown && PreviewMode;
     }
 
     public void SetEditorWorldGuideObjectVisibility(bool shown)
@@ -475,8 +487,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         if (metaballSize > Constants.METABALL_MAX_SIZE)
             metaballSize = Constants.METABALL_MAX_SIZE;
 
-        if (metaballResizeScroll != null)
-            metaballResizeScroll.Value = metaballSize;
+        metaballResizeScroll?.Value = metaballSize;
     }
 
     [RunOnKeyDown("e_decrease_size", Priority = 1)]
@@ -487,8 +498,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         if (metaballSize < Constants.METABALL_MIN_SIZE)
             metaballSize = Constants.METABALL_MIN_SIZE;
 
-        if (metaballResizeScroll != null)
-            metaballResizeScroll.Value = metaballSize;
+        metaballResizeScroll?.Value = metaballSize;
     }
 
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
@@ -542,16 +552,6 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
             default:
                 return false;
         }
-    }
-
-    public void OnNoPropertiesLoaded()
-    {
-        // Something is wrong if this is called
-        throw new InvalidOperationException();
-    }
-
-    public virtual void OnPropertiesLoaded()
-    {
     }
 
     /// <summary>
@@ -890,7 +890,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         if (visualMetaballDisplayer == null || structuralMetaballDisplayer == null)
             throw new InvalidOperationException("Editor component not initialized");
 
-        // If not currently visible at all, don't update visibility, it'll be updated once this tab becomes active
+        // If not currently visible at all, don't update visibility; it'll be updated once this tab becomes active
         // again
         if (visualMetaballDisplayer.Visible || structuralMetaballDisplayer.Visible)
         {

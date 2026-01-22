@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-01 16:03+0300\n"
-"PO-Revision-Date: 2023-09-15 06:55+0000\n"
+"POT-Creation-Date: 2026-01-22 16:04+0200\n"
+"PO-Revision-Date: 2025-11-24 19:45+0000\n"
 "Last-Translator: Kristijan Miracevski <mircevskihristijan30@gmail.com>\n"
 "Language-Team: Macedonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/mk/>\n"
 "Language: mk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
-"X-Generator: Weblate 5.0\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Thrive.Scripts 1.1.0.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -41,7 +41,7 @@ msgid "ABORTED_DOT"
 msgstr "Абортирано."
 
 msgid "ABSORBERS_COUNT"
-msgstr ""
+msgstr "Абсорбирачи"
 
 msgid "ABYSSOPELAGIC"
 msgstr "Абисопелагичен"
@@ -50,16 +50,16 @@ msgid "ACCEPT"
 msgstr "Прифати"
 
 msgid "ACHIEVEMENTS"
-msgstr ""
+msgstr "достигнувања"
 
 msgid "ACHIEVEMENTS_TOTAL"
-msgstr ""
+msgstr "достигнувања{0}/{1}"
 
 msgid "ACHIEVEMENT_ACHIEVED"
-msgstr ""
+msgstr "Завршено"
 
 msgid "ACHIEVEMENT_LOCKED"
-msgstr ""
+msgstr "Заклучено"
 
 msgid "ACTION_AWAKEN"
 msgstr "Будење ({0:F1} / {1:F1})"
@@ -116,9 +116,8 @@ msgstr "Аеробна фиксација на азот"
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Аеробна фиксација на азот"
 
-#, fuzzy
 msgid "AEROBIC_RESPIRATION"
-msgstr "Аеробна фиксација на азот"
+msgstr "Аеробна респирација"
 
 #, fuzzy
 msgid "AGENTS"
@@ -128,9 +127,8 @@ msgstr "Агенти"
 msgid "AGENTS_COLON"
 msgstr "Агенти:"
 
-#, fuzzy
 msgid "AGENT_NAME"
-msgstr "Агент"
+msgstr "{0}Агент"
 
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
@@ -185,184 +183,205 @@ msgid "ALREADY_ASCENDED"
 msgstr "Веќе сте вознесени"
 
 msgid "ALT"
-msgstr ""
+msgstr "Alt"
 
 msgid "ALWAYS_VISIBLE"
-msgstr ""
+msgstr "Секогаш видливо"
 
 msgid "AMBIANCE_VOLUME"
-msgstr ""
+msgstr "Амбиентален волумен"
 
 msgid "AMMONIA"
-msgstr ""
+msgstr "Амониа"
 
 msgid "AMMONIA_COST"
-msgstr ""
+msgstr "Цена на амониа"
+
+msgid "AMMONIA_LEVELS"
+msgstr "Количина на амониа"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr ""
+msgstr "Количина на афтоматки зачувувања за чубања"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
+msgstr "Количина на брзи зачубања за чубање"
 
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr ""
+msgstr "Анаеробна фиксација на азот"
 
 msgid "AND_UNLOCK_CONDITION"
-msgstr ""
+msgstr "И"
 
 msgid "ANISOTROPIC_FILTERING"
-msgstr ""
+msgstr "Анизотропно филтрирање:"
 
 msgid "ANTIALIASING_MSAA_TAA"
-msgstr ""
+msgstr "MSAA + TAA"
 
 msgid "ANTI_ALIASING_FXAA"
-msgstr ""
+msgstr "FXAA"
 
 msgid "ANTI_ALIASING_MODE"
-msgstr ""
+msgstr "Режим на анти-алијасирање:"
 
 msgid "ANTI_ALIASING_MSAA"
-msgstr ""
+msgstr "MSAA"
 
 msgid "ANTI_ALIASING_TAA"
-msgstr ""
+msgstr "TAA"
 
 msgid "APPEARANCE"
-msgstr ""
+msgstr "Изглед"
 
 msgid "APPLY"
-msgstr ""
+msgstr "Зачувај промени"
 
 msgid "APPLY_CHANGES"
-msgstr ""
+msgstr "Примени промени"
 
 msgid "APRIL"
-msgstr ""
+msgstr "Април"
 
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr ""
+msgstr "Дали сте сигурни дека сакате да ги ресетирате СИТЕ поставки на стандардните вредности?"
 
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr ""
+msgstr "Дали сте сигурни дека сакате да ги ресетирате влезните поставки на стандардните вредности?"
 
 msgid "ARTIST_COLON"
-msgstr ""
+msgstr "Артисти:"
 
 msgid "ARTWORK_TITLE"
-msgstr ""
+msgstr "\"{0}\" - {1}"
 
 msgid "ART_BY"
-msgstr ""
+msgstr "Уметност од {0}"
 
 msgid "ART_GALLERY"
-msgstr ""
+msgstr "Уметничка галерија"
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr ""
 
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
+"Се искачивте и ја завршивте играта. Честитки за достигнувањето на крајот од играта!\n"
+"\n"
+"Можете да продолжите да играте во Вселенската фаза со отклучени Божји алатки за да се забавувате во песочната кутија.\n"
+"\n"
+"Исто така е можно да се спуштите и да се вратите во Микробната фаза во ова зачувување и повторно да играте низ сите фази со дополнителни погодности.\n"
+"\n"
+"Вкупно време на искачување во ова зачувување: {0}"
 
-#, fuzzy
 msgid "ASCENSION_STAGE"
-msgstr "3Д Едитор"
+msgstr "Фаза на Вознесение"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr ""
+msgstr "Класата на склопување на модови е задолжителна кога е наведено склопувањето"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr ""
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
+msgstr "Потребно е склопување на мод кога е овозможена автоматската хармонија"
 
 msgid "ASSUME_HYPERTHREADING"
-msgstr ""
+msgstr "Претпоставете дека процесорот има овозможено хипернижење"
 
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
+"Не може автоматски да се открие дали хипернишкањето е овозможено или не.\n"
+"Ова влијае на стандардниот број на нишки бидејќи нишките за хипернишкање не се толку брзи како вистинските јадра на процесорот."
 
 msgid "ATMOSPHERIC_GASSES"
-msgstr ""
+msgstr "Атмосферски гасови"
 
+#, fuzzy
 msgid "ATP"
-msgstr ""
+msgstr "ATP"
 
 msgid "ATP_BALANCE"
-msgstr ""
+msgstr "ATP Баланс"
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
-msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
+msgstr ""
+"Овој дел го прикажува вкупниот биланс на ATP (енергија) на моменталната клетка.\n"
+"За да преживее, билансот треба да биде позитивен. За сесилните клетки, тие може да го сметаат балансот за позитивен без движење.\n"
+"Паѓачкото мени подолу може да се користи за да се провери што би се случило ако клетката немала достапни ресурси за производство на ATP.\n"
+"На пример, некои клетки можат да одржат позитивен баланс на ATP само кога имаат повеќе типови соединенија за производство на ATP одеднаш.\n"
+"Овие типови клетки се потешки за користење бидејќи бараат складирање на повеќе типови соединенија одеднаш за да преживеат."
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
-msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
+msgstr ""
+"Овој дел прикажува опции за пресметување на ATP (енергетски) биланси за клетките.\n"
+"Пресметаните биланси се прикажани во менито за избор на тип на ќелија.\n"
+"Паѓачкото мени подолу може да се користи за да се провери што би се случило ако ќелијата нема некаков достапен ресурс од кој би се создал ATP."
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
-msgstr ""
+msgstr "Без надворешни ресурси"
 
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
-msgstr ""
+msgstr "Без гликоза"
 
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
-msgstr ""
+msgstr "Без водород сулфид"
 
 msgid "ATP_BALANCE_WITHOUT_IRON"
-msgstr ""
+msgstr "Без железо"
 
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
-msgstr ""
+msgstr "Со сите потребни супстанци"
 
 msgid "ATP_PRODUCTION"
-msgstr ""
+msgstr "ATP продукција"
 
 msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr ""
+msgstr "ПРОИЗВОДСТВОТО НА ATP Е ПРЕМНОГУ НИСКО!"
 
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr ""
+msgstr "Обидот за запишување на оваа датотека за зачувување не успеа. Името за зачувување можеби е предолго или можеби немате пристап за пишување во папката за зачувување."
 
 msgid "AT_CURSOR"
-msgstr ""
+msgstr "Кај глушецот:"
 
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Аудио излезен уред:"
 
 msgid "AUGUST"
-msgstr ""
+msgstr "Август"
 
 msgid "AUTO"
-msgstr ""
+msgstr "Абтоматски"
 
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr ""
+msgstr "Овој панел ги прикажува броевите од кои функционира предвидувањето за авто-ево. Вкупната енергија што еден вид може да ја собере и цената по единка од видот ја одредуваат конечната популација. Абтоматско-Ево користи поедноставен модел на реалност за да пресмета колку добро функционираат видовите врз основа на енергијата што можат да ја соберат. За секој извор на храна, прикажано е колку енергија добива видот од него. Дополнително, прикажана е вкупната енергија што е достапна од тој извор. Делот што видот го добива од вкупната енергија се базира на тоа колку е голема кондицијата во споредба со вкупната кондиција. Кондицијата е метрика за тоа колку добро видот може да го искористи тој извор на храна."
 
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr ""
+msgstr "Популациата на {0} се промени за {1} во {2} поради: {3}"
 
 msgid "AUTO-EVO_PREDICTION"
-msgstr ""
+msgstr "Абтоматско-Ево предвидубање"
 
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
+"Овој панел ја прикажува очекуваната вкупна собрана енергија и бројот на популации (во загради) од auto-evo за изменетиот вид.\n"
+"Auto-evo ја извршува симулацијата на популацијата, што е другиот дел (освен вашите сопствени перформанси) што влијае на вашата популација."
 
 msgid "AUTO-EVO_RESULTS_TITLE"
-msgstr ""
+msgstr "Ресултати на Абтоматско-Ево"
 
 msgid "AUTO-EVO_STEPS_DONE"
-msgstr ""
+msgstr "{0:F1}% завршено. {1:n0}/{2:n0} чекори."
 
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
-msgstr ""
+msgstr "Јачина на Автоматско-Ево на играчот"
 
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
-msgstr ""
+msgstr "(процентот на промена на популацијата во Автоматско-Ево важи за видот на играчот)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr ""
+msgstr "Абтоматско зачување додека играш"
 
 msgid "AUTO_EVO"
-msgstr ""
+msgstr "Автоматско-Ево"
 
 msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
 msgstr ""
@@ -377,10 +396,10 @@ msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
 
 msgid "AUTO_EVO_RESULTS"
-msgstr ""
+msgstr "Резултати на Автоматско-Ево"
 
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
-msgstr ""
+msgstr "Глобални ресултати"
 
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr ""
@@ -403,6 +422,24 @@ msgstr ""
 msgid "AVAILABLE_MODS"
 msgstr ""
 
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr ""
 
@@ -410,162 +447,176 @@ msgid "AWARE_STAGE"
 msgstr ""
 
 msgid "BACK"
-msgstr ""
+msgstr "Назад"
 
 msgid "BACKGROUND_BLUR"
-msgstr ""
+msgstr "Заматнување на позадината"
 
 msgid "BACKSLASH"
 msgstr ""
 
+#, fuzzy
 msgid "BACKSPACE"
-msgstr ""
+msgstr "Backspace"
 
 msgid "BACK_TO_SETTINGS"
 msgstr ""
 
-#, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
-msgstr "Аеробна фиксација на азот"
+msgstr "Бактериска термосинтеза"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
-msgstr ""
+msgstr "Пресметај како да е ден"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
-msgstr ""
+msgstr "Кога е означено, броевите пресметани во овој панел пресметуваат како секогаш да е ден"
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
-msgstr ""
+msgstr "Вклучете ги трошоците за движење"
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
-msgstr ""
+msgstr "Кога е означено, го пресметува балансот и другите броеви во овој панел, претпоставувајќи дека клетката постојано се движи"
 
 msgid "BASE_MOBILITY"
 msgstr ""
 
 msgid "BASE_MOVEMENT"
-msgstr ""
+msgstr "Движна базата"
 
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "Едноставно"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Врати се на основниот приказ за поставување"
 
 msgid "BATHYPELAGIC"
-msgstr ""
+msgstr "Батипелагични"
 
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "Стани макроскопскопичен ({0}/{1})"
 
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "Стани повеќеклеточен ({0}/{1})"
 
 msgid "BEGIN_THRIVING"
-msgstr ""
+msgstr "Започнете да напредувате"
 
 msgid "BEHAVIOUR"
-msgstr ""
+msgstr "Однесување"
 
 msgid "BEHAVIOUR_ACTIVITY"
-msgstr ""
+msgstr "Активност"
 
 msgid "BEHAVIOUR_AGGRESSION"
-msgstr ""
+msgstr "Агресија"
 
 msgid "BEHAVIOUR_FEAR"
-msgstr ""
+msgstr "Страв"
 
 msgid "BEHAVIOUR_FOCUS"
-msgstr ""
+msgstr "Фокус"
 
 msgid "BEHAVIOUR_OPPORTUNISM"
-msgstr ""
+msgstr "Опортунизам"
 
 msgid "BELOW_SEA_LEVEL"
-msgstr ""
+msgstr "{0}-{1} м под нивото на морето"
 
 msgid "BENCHMARKS"
-msgstr ""
+msgstr "Репери"
 
 msgid "BENCHMARK_FINISHED"
-msgstr ""
+msgstr "Реперот е завршен"
 
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "Реперентна фаза:"
 
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr ""
+msgstr "Резултати:"
 
 msgid "BEST_PATCH_COLON"
-msgstr ""
+msgstr "Најдобар Регион:"
+
+msgid "BETTER_TOGETHER"
+msgstr "Подобро Заедно"
+
+msgid "BEYOND_THE_CELL"
+msgstr "Понапредно од клетката"
 
 msgid "BIG_IRON_CHUNK"
-msgstr ""
+msgstr "Големо парче железо"
+
+#, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Големо парче железо"
 
 msgid "BIG_PHOSPHATE_CHUNK"
-msgstr ""
+msgstr "Големо парче фосфат"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
+msgstr "Големо парче фосфат"
 
 msgid "BILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} Б"
 
 msgid "BINDING_AGENT"
-msgstr ""
+msgstr "Средство за врзување"
 
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr ""
+msgstr "Овозможува врзување со други клетки. Ова е првиот чекор кон повеќеклеточност. Кога вашата клетка е дел од колонија, соединенијата се споделуваат меѓу клетките. Не можете да влезете во уредувачот додека сте дел од колонија, па затоа треба да се одврзете откако ќе соберете доволно соединенија за да ја поделите вашата клетка."
 
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Притиснете [thrive:input]g_toggle_binding[/thrive:input] за да го вклучите режимот на врзување. Кога сте во режим на врзување, можете да прикачите други клетки од вашиот вид на вашата колонија со нивно допирање. За да напуштите колонија, притиснете [thrive:input]g_unbind_all[/thrive:input]. Не можете да влезете во уредувачот додека сте поврзани со други клетки."
 
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "Сврзиги кординатите"
 
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr ""
+msgstr "Биолуминисцентна вакуола"
 
 msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
-msgstr ""
+msgstr "Вакуола што содржи места на реакција каде што луциферазата се консумира за ослободување на видлива светлина. Се претпоставува дека биолуминисценцијата првично еволуирала како механизам за заштита од [thrive:compound type=\"oxygen\"][/thrive:compound]. Кога се случил Големиот настан на оксигенација, микробите навикнати на анаеробни услови се соочиле со многу нови проблеми поради многу високата реактивност на кислородот што предизвикала многу штета. Овие вакуоли може да се додадат за да се зголеми отпорноста на кислород и да се добијат убави светла. Во иднина биолуминисценцијата може да биде средство за комуникација."
 
 msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Користи [thrive:compound type=\"atp\"][/thrive:compound] за да го претвори [thrive:compound type=\"oxygen\"][/thrive:compound] во светлина. Засега нема друго влијание врз играта освен зголемување на отпорноста на кислород."
 
 msgid "BIOME_LABEL"
-msgstr ""
+msgstr "Биом: {0}"
 
 msgid "BLOOM_RENDER_EFFECT"
-msgstr ""
+msgstr "Bloom ефект"
 
 #, fuzzy
 msgid "BLUESKY_TOOLTIP"
 msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
-msgstr ""
+msgstr "Нерв"
 
 msgid "BRAVE"
-msgstr ""
+msgstr "Храбар"
 
 msgid "BROWSE"
-msgstr ""
+msgstr "Прелистај"
 
 msgid "BROWSE_WORKSHOP"
-msgstr ""
+msgstr "Прелистајте ја работилницата"
 
 msgid "BUILD_CITY"
-msgstr ""
+msgstr "Изгради Град"
 
 msgid "BUILD_QUEUE"
 msgstr ""
 
 msgid "BUILD_STRUCTURE"
-msgstr ""
+msgstr "Изградете структура"
 
 msgid "BY"
-msgstr ""
+msgstr "Од:"
 
 msgid "BY_REVOLUTIONARY_GAMES"
-msgstr ""
+msgstr "Од Revolutionary Games Studio"
 
 msgid "CACHE_DISK_MAX_TIME"
 msgstr ""
@@ -607,6 +658,9 @@ msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
 
 msgid "CANNOT_ENGULF"
+msgstr ""
+
+msgid "CANNOT_IMPROVE_PERFECTION"
 msgstr ""
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
@@ -850,6 +904,14 @@ msgstr ""
 msgid "COLLISION_SHAPE"
 msgstr ""
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr ""
+"Агресивните микроби ќе го бркаат пленот на поголеми растојанија\n"
+"и имаат поголема веројатност да се борат со предатори кога ќе бидат нападнати.\n"
+"Мирните микроби нема да ги ангажираат другите на поголеми растојанија\n"
+"и имаат помала веројатност да користат токсини против предатори."
+
 msgid "COLOUR"
 msgstr ""
 
@@ -890,6 +952,9 @@ msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr ""
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
+msgstr ""
+
+msgid "COMMAND_INPUT_LINE_EDIT"
 msgstr ""
 
 msgid "COMMON_ABILITIES"
@@ -979,6 +1044,28 @@ msgid "COMPOUND_HANDLE_TOP_UP"
 msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
 
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
+
+msgid "COMPOUND_REPRODUCTION_SOURCE"
 msgstr ""
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1240,6 +1327,9 @@ msgstr ""
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr ""
+
 msgid "CPU_THREADS"
 msgstr ""
 
@@ -1340,7 +1430,24 @@ msgstr "Додадете ново врзување на клучот"
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
+msgid "CURRENT_DILUTION"
+msgstr ""
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "Додадете ново врзување на клучот"
+
 msgid "CURRENT_LOCATION_CAPITAL"
+msgstr ""
+
+msgid "CURRENT_PARTICLES_ALL"
+msgstr ""
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Додадете ново врзување на клучот"
+
+msgid "CURRENT_PARTICLES_NONE"
 msgstr ""
 
 msgid "CURRENT_RESEARCH_NONE"
@@ -1402,6 +1509,9 @@ msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
 msgid "DEATH"
+msgstr ""
+
+msgid "DEBUG_CONSOLE"
 msgstr ""
 
 msgid "DEBUG_COORDINATES"
@@ -1618,6 +1728,9 @@ msgstr ""
 msgid "DISPLAY_PART_NAMES"
 msgstr ""
 
+msgid "DISPLAY_SELECTION"
+msgstr ""
+
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr ""
 
@@ -1737,7 +1850,15 @@ msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr "3Д Едитор"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "3Д Едитор"
 
 msgid "EFFECTIVE_VALUE"
@@ -1826,6 +1947,9 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr ""
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
@@ -1836,6 +1960,9 @@ msgid "ENERGY_SOURCES"
 msgstr ""
 
 msgid "ENERGY_SUMMARY_LINE"
+msgstr ""
+
+msgid "ENGULF_CELL_OR_CHUNK"
 msgstr ""
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
@@ -1932,6 +2059,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Додадете ново врзување на клучот"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Додадете ново врзување на клучот"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -2160,6 +2295,10 @@ msgstr ""
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "Агенти:"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
@@ -2182,6 +2321,12 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
 msgid "FOSSILISE"
+msgstr ""
+
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr ""
+
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
 msgstr ""
 
 msgid "FOSSIL_DELETION_FAILED"
@@ -2257,7 +2402,7 @@ msgstr ""
 msgid "GENERAL_LOADING_TIP_7"
 msgstr ""
 
-msgid "GENERATE_BUTTON"
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr ""
 
 msgid "GENERATIONS"
@@ -2326,6 +2471,10 @@ msgstr ""
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
+
 msgid "GLYCOLYSIS"
 msgstr ""
 
@@ -2333,6 +2482,9 @@ msgid "GODMODE"
 msgstr ""
 
 msgid "GOD_TOOLS_TITLE"
+msgstr ""
+
+msgid "GOING_NUCLEAR"
 msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
@@ -2350,6 +2502,9 @@ msgstr ""
 msgid "GRAPHICS"
 msgstr ""
 
+msgid "GRAPHICS_PRESET"
+msgstr ""
+
 msgid "GRAPHICS_TEAM"
 msgstr ""
 
@@ -2360,6 +2515,12 @@ msgid "GUI"
 msgstr ""
 
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
+msgstr ""
+
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr ""
+
+msgid "GUI_SCALE_OPTION"
 msgstr ""
 
 msgid "GUI_TAB_NAVIGATION"
@@ -2449,6 +2610,9 @@ msgstr "3Д Едитор"
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
+msgid "HYDROGEN_SULFIDE_LEVELS"
+msgstr ""
+
 msgid "ICESHARD"
 msgstr ""
 
@@ -2461,6 +2625,9 @@ msgstr ""
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
@@ -2468,6 +2635,9 @@ msgid "ID_NUMBER"
 msgstr ""
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
@@ -2570,6 +2740,13 @@ msgstr ""
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Додадете ново врзување на клучот"
 
+msgid "INSTANT_KILL_PROTECTION"
+msgstr ""
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(брзина со која мутираат видовите на вештачка интелигенција)"
+
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr ""
 
@@ -2663,6 +2840,9 @@ msgstr ""
 msgid "IRON"
 msgstr ""
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 msgid "IRON_OXIDATION"
 msgstr ""
 
@@ -2676,18 +2856,6 @@ msgid "ITEM_NAME_SEPARATOR"
 msgstr ""
 
 msgid "JANUARY"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 msgid "JULY"
@@ -3188,7 +3356,22 @@ msgid "MACROSCOPIC"
 msgstr ""
 
 #, fuzzy
+msgid "MACROSCOPIC_EDITOR"
+msgstr "3Д Едитор"
+
+#, fuzzy
 msgid "MACROSCOPIC_STAGE"
+msgstr "3Д Едитор"
+
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr ""
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Аеробна фиксација на азот"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
 msgstr "3Д Едитор"
 
 msgid "MANUALLY_SET_TIME"
@@ -3333,6 +3516,9 @@ msgstr ""
 msgid "MICHE_DETAIL_TEXT"
 msgstr ""
 
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr ""
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3355,7 +3541,14 @@ msgstr ""
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr ""
 
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "3Д Едитор"
+
 msgid "MICHE_ROOT_PRESSURE"
+msgstr ""
+
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
 msgstr ""
 
 msgid "MICHE_TREE"
@@ -3372,6 +3565,23 @@ msgstr ""
 
 #, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr ""
+"[b]Генерации:[/b]\n"
+"  {0}\n"
+"[b]Вкупен вид:[/b]\n"
+"  Просечно {1}; Стандардна девијација {2}\n"
+"[b]Сè уште живи видови:[/b]\n"
+"  Просечно {3}; Стандардна девијација {4}\n"
+"[b]Број на видови по лепенка:[/b]\n"
+"  Просечно {5}; Стандардна девијација {6}\n"
+"[b]Вкупна популација по лепенка:[/b]\n"
+"  Просечно {7}; Стандардна девијација {8}\n"
+"[b]Просечна хексадетична големина на видови на микроби:[/b]\n"
+"  Просечно {9}; Стандардна девијација {10}\n"
+"[b]Генерички податоци за органели:[/b]"
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
 msgstr ""
 "[b]Генерации:[/b]\n"
 "  {0}\n"
@@ -3583,6 +3793,9 @@ msgstr ""
 msgid "MICROBIAL_MASSACRE"
 msgstr ""
 
+msgid "MICRO_BORG"
+msgstr ""
+
 msgid "MIDDLE_MOUSE"
 msgstr ""
 
@@ -3681,6 +3894,9 @@ msgstr ""
 msgid "MODS"
 msgstr ""
 
+msgid "MODS_ARE_ENABLED"
+msgstr ""
+
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3712,9 +3928,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 msgid "MOD_CREATION_FAILED"
@@ -3784,6 +3997,12 @@ msgid "MOD_UPLOADER"
 msgstr ""
 
 msgid "MOD_VERSION"
+msgstr ""
+
+msgid "MONITOR_AUTO"
+msgstr ""
+
+msgid "MONITOR_IDENTIFIER"
 msgstr ""
 
 msgid "MORE_INFO"
@@ -4055,6 +4274,9 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr ""
 
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr ""
+
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr ""
 
@@ -4083,6 +4305,9 @@ msgid "NO_EVENTS_RECORDED"
 msgstr ""
 
 msgid "NO_FOSSIL_DIRECTORY"
+msgstr ""
+
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr ""
 
 msgid "NO_MODS_ENABLED"
@@ -4305,6 +4530,9 @@ msgstr ""
 msgid "OUR_WIKI"
 msgstr ""
 
+msgid "OUTDATED_ITEM"
+msgstr ""
+
 msgid "OUTDATED_NOTICE"
 msgstr ""
 
@@ -4376,6 +4604,9 @@ msgid "PAN_CAMERA_UP"
 msgstr ""
 
 msgid "PAST_DEVELOPERS"
+msgstr ""
+
+msgid "PATCHES_NUMBER"
 msgstr ""
 
 msgid "PATCH_COLON"
@@ -4471,6 +4702,9 @@ msgstr ""
 msgid "PHOSPHATES_COST"
 msgstr ""
 
+msgid "PHOSPHATES_LEVELS"
+msgstr ""
+
 msgid "PHOTOSYNTHESIS"
 msgstr ""
 
@@ -4494,6 +4728,23 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr ""
+"[b]Генерации:[/b]\n"
+"  {0}\n"
+"[b]Вкупен вид:[/b]\n"
+"  Просечно {1}; Стандардна девијација {2}\n"
+"[b]Сè уште живи видови:[/b]\n"
+"  Просечно {3}; Стандардна девијација {4}\n"
+"[b]Број на видови по лепенка:[/b]\n"
+"  Просечно {5}; Стандардна девијација {6}\n"
+"[b]Вкупна популација по лепенка:[/b]\n"
+"  Просечно {7}; Стандардна девијација {8}\n"
+"[b]Просечна хексадетична големина на видови на микроби:[/b]\n"
+"  Просечно {9}; Стандардна девијација {10}\n"
+"[b]Генерички податоци за органели:[/b]"
 
 msgid "PLAYER"
 msgstr ""
@@ -4564,6 +4815,25 @@ msgstr ""
 
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr ""
+
+msgid "PRESET_CUSTOM"
+msgstr ""
+
+msgid "PRESET_HIGH"
+msgstr ""
+
+msgid "PRESET_LOW"
+msgstr ""
+
+msgid "PRESET_MEDIUM"
+msgstr ""
+
+msgid "PRESET_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
 
 msgid "PRESSURE"
 msgstr ""
@@ -4639,6 +4909,10 @@ msgstr ""
 msgid "RADIATION"
 msgstr ""
 
+#, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Избриши"
+
 msgid "RADIOACTIVE_CHUNK"
 msgstr ""
 
@@ -4657,6 +4931,16 @@ msgstr ""
 
 msgid "RAW_VALUE_COLON"
 msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "3Д Едитор"
 
 msgid "READING_SAVE_DATA"
 msgstr ""
@@ -4680,6 +4964,9 @@ msgid "REFRESH"
 msgstr ""
 
 msgid "REGENERATE_BUTTON"
+msgstr ""
+
+msgid "REGIONS_NUMBER"
 msgstr ""
 
 msgid "RENDER_SCALE"
@@ -4812,6 +5099,21 @@ msgstr ""
 msgid "REVEAL_ALL_PATCHES"
 msgstr ""
 
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr ""
+"Агресивните микроби ќе го бркаат пленот на поголеми растојанија\n"
+"и имаат поголема веројатност да се борат со предатори кога ќе бидат нападнати.\n"
+"Мирните микроби нема да ги ангажираат другите на поголеми растојанија\n"
+"и имаат помала веројатност да користат токсини против предатори."
+
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr ""
+
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr ""
 
@@ -4836,7 +5138,13 @@ msgstr ""
 msgid "ROTATION_COLON"
 msgstr ""
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
+msgstr ""
+
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
 msgstr ""
 
 msgid "RUN_ONE_STEP"
@@ -4894,12 +5202,6 @@ msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr ""
 
 msgid "SAVE_FAILED"
@@ -5105,6 +5407,9 @@ msgstr ""
 msgid "SHOW_ITEM_COORDINATES"
 msgstr ""
 
+msgid "SHOW_MAP"
+msgstr ""
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
@@ -5194,8 +5499,15 @@ msgstr ""
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
 
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr ""
+
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr ""
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
+msgstr "Големо парче фосфат"
 
 msgid "SMALL_SULFUR_CHUNK"
 msgstr ""
@@ -5264,6 +5576,12 @@ msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
+msgstr ""
+
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr ""
+
+msgid "SPECIES_IN_OTHER_PATCHES"
 msgstr ""
 
 msgid "SPECIES_LIST"
@@ -5438,7 +5756,7 @@ msgid "STRUCTURE_ASCENSION_GATE"
 msgstr ""
 
 msgid "STRUCTURE_DYSON_SWARM"
-msgstr ""
+msgstr "Дајсонов рој"
 
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr ""
@@ -5464,6 +5782,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
@@ -5483,6 +5804,9 @@ msgid "SUPPORTER_PATRONS"
 msgstr ""
 
 msgid "SURVIVAL_TITLE"
+msgstr ""
+
+msgid "SURVIVE_WITH_A_NUCLEUS"
 msgstr ""
 
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -5520,6 +5844,13 @@ msgid "TAKE_SCREENSHOT"
 msgstr ""
 
 msgid "TARGET_TYPE_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Тековни нишки:"
+
+msgid "TASTY_RADIATION"
 msgstr ""
 
 msgid "TECHNOLOGY_ASCENSION"
@@ -5613,6 +5944,10 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
+#, fuzzy
+msgid "THE_EDITOR"
+msgstr "3Д Едитор"
+
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr ""
 
@@ -5653,6 +5988,9 @@ msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
 
 msgid "THRIVE_LICENSES"
+msgstr ""
+
+msgid "THRIVIN_ACHIEVEMENT"
 msgstr ""
 
 msgid "THYLAKOIDS"
@@ -5724,6 +6062,10 @@ msgstr ""
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
+
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr ""
 
@@ -5788,6 +6130,10 @@ msgstr ""
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
 
 #, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
@@ -5907,9 +6253,6 @@ msgstr ""
 msgid "TUTORIAL"
 msgstr ""
 
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr ""
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 
@@ -6023,6 +6366,14 @@ msgstr ""
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr ""
+"Агресивните микроби ќе го бркаат пленот на поголеми растојанија\n"
+"и имаат поголема веројатност да се борат со предатори кога ќе бидат нападнати.\n"
+"Мирните микроби нема да ги ангажираат другите на поголеми растојанија\n"
+"и имаат помала веројатност да користат токсини против предатори."
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
@@ -6070,6 +6421,16 @@ msgid "UNDO"
 msgstr ""
 
 msgid "UNDO_THE_LAST_ACTION"
+msgstr ""
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Аеробна фиксација на азот"
+
+msgid "UNHANDLED_ERROR_TITLE"
 msgstr ""
 
 msgid "UNIT_ACTION_CONSTRUCT"
@@ -6219,6 +6580,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -6226,12 +6590,6 @@ msgid "USED_RENDERER_NAME"
 msgstr ""
 
 msgid "USES_FEATURE"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
@@ -6275,6 +6633,9 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr ""
 
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VENTS_ARE_HOME"
 msgstr ""
 
 msgid "VERSION_COLON"
@@ -8018,6 +8379,22 @@ msgstr ""
 msgid "WORST_PATCH_COLON"
 msgstr ""
 
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr ""
+"Агресивните микроби ќе го бркаат пленот на поголеми растојанија\n"
+"и имаат поголема веројатност да се борат со предатори кога ќе бидат нападнати.\n"
+"Мирните микроби нема да ги ангажираат другите на поголеми растојанија\n"
+"и имаат помала веројатност да користат токсини против предатори."
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr ""
+"Агресивните микроби ќе го бркаат пленот на поголеми растојанија\n"
+"и имаат поголема веројатност да се борат со предатори кога ќе бидат нападнати.\n"
+"Мирните микроби нема да ги ангажираат другите на поголеми растојанија\n"
+"и имаат помала веројатност да користат токсини против предатори."
+
 msgid "XBOX360"
 msgstr ""
 
@@ -8046,6 +8423,12 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr ""
+"Активните микроби ќе трчаат и ќе паднат кога ништо интересно не се случи.\n"
+"Микробите кои седат ќе бидат неподвижни и ќе чекаат да се промени околината пред да дејствуваат."
+
 msgid "ZOOM_IN"
 msgstr ""
 
@@ -8053,8 +8436,8 @@ msgid "ZOOM_OUT"
 msgstr ""
 
 #, fuzzy
-#~ msgid "WORLD_SEA_LEVEL"
-#~ msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "3Д Едитор"
 
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"

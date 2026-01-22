@@ -13,7 +13,6 @@ func _init(call_stage := true) -> void:
 func _execute(context :GdUnitExecutionContext) -> void:
 	var test_suite := context.test_suite
 
-	fire_event(GdUnitEvent.new().test_before(context.test_case.id()))
 	if _call_stage:
 		@warning_ignore("redundant_await")
 		await test_suite.before_test()

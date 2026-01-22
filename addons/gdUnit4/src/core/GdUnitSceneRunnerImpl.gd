@@ -82,7 +82,8 @@ func _init(p_scene: Variant, p_verbose: bool, p_hide_push_errors := false) -> vo
 	)
 	_simulate_start_time = LocalTime.now()
 	# we need to set inital a valid window otherwise the warp_mouse() is not handled
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	move_window_to_foreground()
+
 	# set inital mouse pos to 0,0
 	var max_iteration_to_wait := 0
 	while get_global_mouse_position() != Vector2.ZERO and max_iteration_to_wait < 100:
@@ -95,6 +96,7 @@ func _notification(what: int) -> void:
 		# reset time factor to normal
 		__deactivate_time_factor()
 		if is_instance_valid(_current_scene):
+			move_window_to_background()
 			_scene_tree().root.remove_child(_current_scene)
 			# do only free scenes instanciated by this runner
 			if _scene_auto_free:
@@ -107,33 +109,36 @@ func _scene_tree() -> SceneTree:
 	return Engine.get_main_loop() as SceneTree
 
 
+func await_input_processed() -> void:
+	if scene() != null and scene().process_mode != Node.PROCESS_MODE_DISABLED:
+		Input.flush_buffered_events()
+	await (Engine.get_main_loop() as SceneTree).process_frame
+	await (Engine.get_main_loop() as SceneTree).physics_frame
+
+
 @warning_ignore("return_value_discarded")
-func simulate_action_pressed(action: String) -> GdUnitSceneRunner:
-	simulate_action_press(action)
-	simulate_action_release(action)
+func simulate_action_pressed(action: String, event_index := -1) -> GdUnitSceneRunner:
+	simulate_action_press(action, event_index)
+	simulate_action_release(action, event_index)
 	return self
 
 
-func simulate_action_press(action: String) -> GdUnitSceneRunner:
+func simulate_action_press(action: String, event_index := -1) -> GdUnitSceneRunner:
 	__print_current_focus()
 	var event := InputEventAction.new()
 	event.pressed = true
 	event.action = action
-	if Engine.get_version_info().hex >= 0x40300:
-		@warning_ignore("unsafe_property_access")
-		event.event_index = InputMap.get_actions().find(action)
+	event.event_index = event_index
 	_action_on_press.append(action)
 	return _handle_input_event(event)
 
 
-func simulate_action_release(action: String) -> GdUnitSceneRunner:
+func simulate_action_release(action: String, event_index := -1) -> GdUnitSceneRunner:
 	__print_current_focus()
 	var event := InputEventAction.new()
 	event.pressed = false
 	event.action = action
-	if Engine.get_version_info().hex >= 0x40300:
-		@warning_ignore("unsafe_property_access")
-		event.event_index = InputMap.get_actions().find(action)
+	event.event_index = event_index
 	_action_on_press.erase(action)
 	return _handle_input_event(event)
 
@@ -152,6 +157,7 @@ func simulate_key_press(key_code: int, shift_pressed := false, ctrl_pressed := f
 	event.pressed = true
 	event.keycode = key_code as Key
 	event.physical_keycode = key_code as Key
+	event.unicode = key_code
 	event.alt_pressed = key_code == KEY_ALT
 	event.shift_pressed = shift_pressed or key_code == KEY_SHIFT
 	event.ctrl_pressed = ctrl_pressed or key_code == KEY_CTRL
@@ -166,16 +172,13 @@ func simulate_key_release(key_code: int, shift_pressed := false, ctrl_pressed :=
 	event.pressed = false
 	event.keycode = key_code as Key
 	event.physical_keycode = key_code as Key
+	event.unicode = key_code
 	event.alt_pressed = key_code == KEY_ALT
 	event.shift_pressed = shift_pressed or key_code == KEY_SHIFT
 	event.ctrl_pressed = ctrl_pressed or key_code == KEY_CTRL
 	_apply_input_modifiers(event)
 	_key_on_press.erase(key_code)
 	return _handle_input_event(event)
-
-
-func set_mouse_pos(pos: Vector2) -> GdUnitSceneRunner:
-	return set_mouse_position(pos)
 
 
 func set_mouse_position(pos: Vector2) -> GdUnitSceneRunner:
@@ -277,7 +280,7 @@ func simulate_screen_touch_pressed(index: int, position: Vector2, double_tap := 
 func simulate_screen_touch_press(index: int, position: Vector2, double_tap := false) -> GdUnitSceneRunner:
 	if is_emulate_mouse_from_touch():
 		# we need to simulate in addition to the touch the mouse events
-		set_mouse_pos(position)
+		set_mouse_position(position)
 		simulate_mouse_button_press(MOUSE_BUTTON_LEFT)
 	# push touch press event at position
 	var event := InputEventScreenTouch.new()
@@ -413,46 +416,21 @@ func simulate_frames(frames: int, delta_milli: int = -1) -> GdUnitSceneRunner:
 	return self
 
 
-func simulate_until_signal(
-	signal_name: String,
-	arg0: Variant = NO_ARG,
-	arg1: Variant = NO_ARG,
-	arg2: Variant = NO_ARG,
-	arg3: Variant = NO_ARG,
-	arg4: Variant = NO_ARG,
-	arg5: Variant = NO_ARG,
-	arg6: Variant = NO_ARG,
-	arg7: Variant = NO_ARG,
-	arg8: Variant = NO_ARG,
-	arg9: Variant = NO_ARG) -> GdUnitSceneRunner:
-	var args: Array = GdArrayTools.filter_value([arg0,arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9], NO_ARG)
+func simulate_until_signal(signal_name: String, ...args: Array) -> GdUnitSceneRunner:
 	await _awaiter.await_signal_idle_frames(scene(), signal_name, args, 10000)
 	return self
 
 
-func simulate_until_object_signal(
-	source: Object,
-	signal_name: String,
-	arg0: Variant = NO_ARG,
-	arg1: Variant = NO_ARG,
-	arg2: Variant = NO_ARG,
-	arg3: Variant = NO_ARG,
-	arg4: Variant = NO_ARG,
-	arg5: Variant = NO_ARG,
-	arg6: Variant = NO_ARG,
-	arg7: Variant = NO_ARG,
-	arg8: Variant = NO_ARG,
-	arg9: Variant = NO_ARG) -> GdUnitSceneRunner:
-	var args: Array = GdArrayTools.filter_value([arg0,arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9], NO_ARG)
+func simulate_until_object_signal(source: Object, signal_name: String, ...args: Array) -> GdUnitSceneRunner:
 	await _awaiter.await_signal_idle_frames(source, signal_name, args, 10000)
 	return self
 
 
-func await_func(func_name: String, args := []) -> GdUnitFuncAssert:
+func await_func(func_name: String, ...args: Array) -> GdUnitFuncAssert:
 	return GdUnitFuncAssertImpl.new(scene(), func_name, args)
 
 
-func await_func_on(instance: Object, func_name: String, args := []) -> GdUnitFuncAssert:
+func await_func_on(instance: Object, func_name: String, ...args: Array) -> GdUnitFuncAssert:
 	return GdUnitFuncAssertImpl.new(instance, func_name, args)
 
 
@@ -464,9 +442,17 @@ func await_signal_on(source: Object, signal_name: String, args := [], timeout :=
 	await _awaiter.await_signal_on(source, signal_name, args, timeout)
 
 
-func maximize_view() -> GdUnitSceneRunner:
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	DisplayServer.window_move_to_foreground()
+func move_window_to_foreground() -> GdUnitSceneRunner:
+	if not Engine.is_embedded_in_editor():
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		DisplayServer.window_move_to_foreground()
+	return self
+
+
+func move_window_to_background() -> GdUnitSceneRunner:
+	if not Engine.is_embedded_in_editor():
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MINIMIZED)
 	return self
 
 
@@ -488,19 +474,7 @@ func set_property(name: String, value: Variant) -> bool:
 	return true
 
 
-func invoke(
-	name: String,
-	arg0: Variant = NO_ARG,
-	arg1: Variant = NO_ARG,
-	arg2: Variant = NO_ARG,
-	arg3: Variant = NO_ARG,
-	arg4: Variant = NO_ARG,
-	arg5: Variant = NO_ARG,
-	arg6: Variant = NO_ARG,
-	arg7: Variant = NO_ARG,
-	arg8: Variant = NO_ARG,
-	arg9: Variant = NO_ARG) -> Variant:
-	var args: Array = GdArrayTools.filter_value([arg0,arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9], NO_ARG)
+func invoke(name: String, ...args: Array) -> Variant:
 	if scene().has_method(name):
 		return await scene().callv(name, args)
 	return "The method '%s' not exist checked loaded scene." % name

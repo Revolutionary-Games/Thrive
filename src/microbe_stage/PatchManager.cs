@@ -8,7 +8,7 @@ using Systems;
 /// <summary>
 ///   Manages applying patch data and setting up spawns in a <see cref="MicrobeWorldSimulation"/>
 /// </summary>
-public class PatchManager : IChildPropertiesLoadCallback
+public class PatchManager
 {
     // Currently active spawns
     private readonly List<CreatedSpawner> chunkSpawners = new();
@@ -16,6 +16,7 @@ public class PatchManager : IChildPropertiesLoadCallback
     private readonly List<CreatedSpawner> microbeSpawners = new();
 
     private SpawnSystem spawnSystem;
+    private MicrobeTerrainSystem terrainSystem;
     private ProcessSystem processSystem;
     private CompoundCloudSystem compoundCloudSystem;
     private TimedLifeSystem timedLife;
@@ -25,20 +26,11 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private float compoundCloudBrightness = 1.0f;
 
-    /// <summary>
-    ///   Used to detect when an old save is loaded, and we can't rely on the new logic for despawning things
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: remove this as it should be safe as there's been save breakage points added since this was added
-    ///   </para>
-    /// </remarks>
-    private bool skipDespawn;
-
-    public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
+    public PatchManager(SpawnSystem spawnSystem, MicrobeTerrainSystem terrainSystem, ProcessSystem processSystem,
         CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight3D worldLight)
     {
         this.spawnSystem = spawnSystem;
+        this.terrainSystem = terrainSystem;
         this.processSystem = processSystem;
         this.compoundCloudSystem = compoundCloudSystem;
         this.timedLife = timedLife;
@@ -46,15 +38,6 @@ public class PatchManager : IChildPropertiesLoadCallback
     }
 
     public GameProperties? CurrentGame { get; set; }
-
-    public void OnNoPropertiesLoaded()
-    {
-        skipDespawn = true;
-    }
-
-    public void OnPropertiesLoaded()
-    {
-    }
 
     /// <summary>
     ///   Applies all patch-related settings that are needed to be set. Like different spawners, despawning old
@@ -69,7 +52,7 @@ public class PatchManager : IChildPropertiesLoadCallback
     {
         var patchIsChanged = false;
 
-        if (previousPatch != currentPatch && !skipDespawn)
+        if (previousPatch != currentPatch)
         {
             if (previousPatch != null)
             {
@@ -84,6 +67,8 @@ public class PatchManager : IChildPropertiesLoadCallback
             // Despawn old entities
             spawnSystem.DespawnAll();
 
+            terrainSystem.DespawnAll();
+
             // And also all timed entities
             timedLife.DespawnAll();
 
@@ -94,12 +79,12 @@ public class PatchManager : IChildPropertiesLoadCallback
         }
 
         previousPatch = currentPatch;
-        skipDespawn = false;
 
         GD.Print($"Applying patch ({currentPatch.Name}) settings");
 
         // Update environment for the process system
         processSystem.SetBiome(currentPatch.Biome);
+        terrainSystem.SetPatch(currentPatch);
 
         // Apply spawn system settings
         UpdateSpawners(currentPatch, spawnEnvironment);
@@ -185,6 +170,10 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         GD.Print("Number of chunks in this patch = ", biome.Chunks.Count);
 
+        // Note that if the mesh list changes for a chunk between patches, that is not supported and will just update
+        // the density here. So be careful to name different chunk types with different names in different patches
+        // if they are actually different.
+
         foreach (var entry in biome.Chunks)
         {
             // Don't spawn Easter eggs if the player has chosen not to
@@ -236,7 +225,9 @@ public class PatchManager : IChildPropertiesLoadCallback
         foreach (var entry in patch.SpeciesInPatch.OrderByDescending(s => s.Value))
         {
             var species = entry.Key;
-            var population = entry.Value;
+
+            // To allow player deaths to immediately impact populations, get the gameplay-adjusted population here
+            var population = patch.GetSpeciesGameplayPopulation(species);
 
             if (population <= 0)
             {
@@ -349,7 +340,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         worldLight.LightColor = biome.Sunlight.Colour;
         worldLight.LightEnergy = biome.Sunlight.Energy * lightLevel;
-        worldLight.LightSpecular = biome.Sunlight.Specular;
+        worldLight.LightSpecular = biome.Sunlight.Specular * lightLevel;
     }
 
     private void UnmarkAllSpawners()

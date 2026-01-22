@@ -1,23 +1,22 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
 
 /// <summary>
 ///   Creates and applies light properties in a <see cref="SpatialInstance"/> from <see cref="EntityLight"/> data
 /// </summary>
-[With(typeof(EntityLight))]
-[With(typeof(SpatialInstance))]
 [RunsOnMainThread]
 [RuntimeCost(0.5f)]
-public class EntityLightSystem : AEntitySetSystem<float>
+public partial class EntityLightSystem : BaseSystem<World, float>
 {
     // TODO: light quality selection (this is lower quality)
     private OmniLight3D.ShadowMode lightShadowMode = OmniLight3D.ShadowMode.DualParaboloid;
 
-    public EntityLightSystem(World world) : base(world, null)
+    public EntityLightSystem(World world) : base(world)
     {
         // The low-quality light is not supported in fallback renderer, so switch to the other light mode if that
         // is detected
@@ -29,14 +28,12 @@ public class EntityLightSystem : AEntitySetSystem<float>
         }
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref EntityLight entityLight, ref SpatialInstance spatialInstance)
     {
-        ref var entityLight = ref entity.Get<EntityLight>();
-
         if (entityLight.LightsApplied)
             return;
-
-        ref var spatialInstance = ref entity.Get<SpatialInstance>();
 
         // Wait until graphics initialised
         if (spatialInstance.GraphicalInstance == null)
@@ -96,8 +93,7 @@ public class EntityLightSystem : AEntitySetSystem<float>
                 else
                 {
                     // Disable light if created
-                    if (data.CreatedLight != null)
-                        data.CreatedLight.Visible = false;
+                    data.CreatedLight?.Visible = false;
                 }
             }
         }

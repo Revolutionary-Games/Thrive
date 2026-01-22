@@ -22,6 +22,9 @@ public partial class PatchMapDrawer : Control
 
 #pragma warning disable CA2213
     [Export]
+    public Texture2D IndicatorTexture = null!;
+
+    [Export]
     public ShaderMaterial MonochromeMaterial = null!;
 #pragma warning restore CA2213
 
@@ -39,6 +42,9 @@ public partial class PatchMapDrawer : Control
 
 #pragma warning disable CA2213
     private PackedScene nodeScene = null!;
+
+    [Export]
+    private Control populationIndicatorContainer = null!;
 
     [Export]
     private Control patchNodeContainer = null!;
@@ -138,6 +144,11 @@ public partial class PatchMapDrawer : Control
     ///   Called when the currently shown patch properties should be looked up again
     /// </summary>
     public Action<PatchMapDrawer>? OnSelectedPatchChanged { get; set; }
+
+    /// <summary>
+    ///   Player species ID for player population indicator (dots on patch map)
+    /// </summary>
+    public uint PlayerSpeciesID { get; set; }
 
     public override void _Ready()
     {
@@ -269,22 +280,24 @@ public partial class PatchMapDrawer : Control
     ///   Update the patch event visuals on all created patch map nodes. Call if events change after initial graphics
     ///   init for this drawer.
     /// </summary>
+    /// <param name="snapshots">Snapshot provided by the auto-evo explorer tool to display proper event icons</param>
     /// <remarks>
     ///   <para>
-    ///     TODO: the auto-evo exploring tool needs to call this to show things properly
+    ///     The auto-evo exploring tool needs to call this to show things properly
     ///   </para>
     /// </remarks>
-    public void UpdatePatchEvents()
+    public void UpdatePatchEvents(Dictionary<int, PatchSnapshot>? snapshots = null)
     {
         foreach (var (patch, node) in nodes)
         {
-            patch.ApplyPatchEventVisuals(node);
+            patch.ApplyPatchEventVisuals(node, snapshots?[patch.ID].ActivePatchEvents);
         }
     }
 
     public void ClearMap()
     {
         lineContainer.QueueFreeChildren(false);
+        populationIndicatorContainer.QueueFreeChildren(false);
         patchNodeContainer.FreeChildren();
         nodes.Clear();
         connections.Clear();
@@ -1099,8 +1112,57 @@ public partial class PatchMapDrawer : Control
 
         patch.ApplyPatchEventVisuals(node);
 
+        var playerSpecies = patch.FindSpeciesByID(PlayerSpeciesID);
+        if (playerSpecies != null)
+        {
+            var playerPopulation = patch.GetSpeciesSimulationPopulation(playerSpecies);
+
+            var speciesSizeModifier = 1.0;
+
+            if (playerSpecies is MicrobeSpecies microbeSpecies)
+            {
+                speciesSizeModifier = Math.Sqrt(microbeSpecies.Organelles.Organelles.Count);
+            }
+            else if (playerSpecies is MulticellularSpecies)
+            {
+                // for now we use this constant until multicellular gets its own auto-evo
+                speciesSizeModifier = Constants.MULTICELLULAR_LIFE_INDICATOR_MODIFIER;
+            }
+
+            var numberOfIndicators = MathF.Sqrt(playerPopulation) *
+                Constants.INDICATORS_NUMBER_PER_POPULATION_SQUARED * speciesSizeModifier;
+            for (var i = 0; i < numberOfIndicators; ++i)
+            {
+                var lifeIndicator = new TextureRect
+                {
+                    Texture = IndicatorTexture,
+                    Position = GetIndicatorPosition(node, i, IndicatorTexture),
+                    MouseFilter = MouseFilterEnum.Ignore,
+                    ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+                    CustomMinimumSize = new Vector2(12.0f, 12.0f),
+                };
+
+                populationIndicatorContainer.AddChild(lifeIndicator);
+            }
+        }
+
         patchNodeContainer.AddChild(node);
         nodes.Add(node.Patch, node);
+    }
+
+    private Vector2 GetIndicatorPosition(PatchMapNode node, int dotIndex, Texture2D texture)
+    {
+        var indexModifier = MathF.Sin(dotIndex) * 0.5f + 0.5f;
+        var nodeModifier = node.Position.LengthSquared();
+        var nodeCenter = node.Position + new Vector2(Constants.PATCH_NODE_RECT_LENGTH / 2,
+            Constants.PATCH_NODE_RECT_LENGTH / 2) - new Vector2(texture.GetWidth() / 2.0f, texture.GetHeight() / 2.0f);
+
+        var offset = new Vector2(0,
+            indexModifier * Constants.PATCH_LIFE_INDICATOR_RADIUS_SCALE + Constants.PATCH_LIFE_INDICATOR_RADIUS_BASE);
+        var angle = (dotIndex * indexModifier + nodeModifier) * 1.618f;
+        offset = offset.Rotated(angle);
+
+        return nodeCenter + offset;
     }
 
     private void BuildPatchToRegionConnections(PatchRegion region1, PatchRegion region2, Vector2 regionPoint,

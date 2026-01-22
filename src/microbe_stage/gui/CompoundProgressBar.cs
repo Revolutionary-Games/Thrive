@@ -28,6 +28,11 @@ public partial class CompoundProgressBar : Control
     [Export]
     private Label amountLabel = null!;
 
+    [Export]
+    private LabelSettings compactLabelSettings = null!;
+
+    private LabelSettings normalLabelSettings = null!;
+
     private StyleBoxFlat? fillStyleBox;
 
     private Texture2D? queuedIcon;
@@ -334,6 +339,8 @@ public partial class CompoundProgressBar : Control
         // TODO: check that this fetches per scene instances properly
         fillStyleBox = (StyleBoxFlat)progressBar.GetThemeStylebox("fill");
 
+        normalLabelSettings = amountLabel.LabelSettings;
+
         UpdateName();
         UpdateValue();
         UpdateColour();
@@ -376,8 +383,7 @@ public partial class CompoundProgressBar : Control
         {
             playingFlashAnimation = false;
 
-            if (icon != null)
-                icon.SelfModulate = Colors.White;
+            icon?.SelfModulate = Colors.White;
 
             UpdateColour();
         }
@@ -402,12 +408,11 @@ public partial class CompoundProgressBar : Control
             flashAnimationTimer = 0;
             SetProcess(false);
 
-            if (icon != null)
-                icon.SelfModulate = Colors.White;
+            icon?.SelfModulate = Colors.White;
         }
-        else if (icon != null)
+        else
         {
-            icon.SelfModulate = Colors.White.Lerp(Colors.Red, (float)FlashAnimationSlerpFactor);
+            icon?.SelfModulate = Colors.White.Lerp(Colors.Red, (float)FlashAnimationSlerpFactor);
         }
 
         UpdateColour();
@@ -617,6 +622,7 @@ public partial class CompoundProgressBar : Control
                 tween.TweenProperty(this, minSizeXReference,
                     Narrow ? Constants.COMPOUND_BAR_NARROW_COMPACT_WIDTH : Constants.COMPOUND_BAR_COMPACT_WIDTH, 0.3);
 
+                amountLabel.LabelSettings = compactLabelSettings;
                 nameLabel.Hide();
             }
             else
@@ -624,6 +630,7 @@ public partial class CompoundProgressBar : Control
                 tween.TweenProperty(this, minSizeXReference,
                     Narrow ? Constants.COMPOUND_BAR_NARROW_NORMAL_WIDTH : Constants.COMPOUND_BAR_NORMAL_WIDTH, 0.3);
 
+                amountLabel.LabelSettings = normalLabelSettings;
                 nameLabel.Show();
             }
         }
@@ -636,6 +643,7 @@ public partial class CompoundProgressBar : Control
                         Narrow ? Constants.COMPOUND_BAR_NARROW_COMPACT_WIDTH : Constants.COMPOUND_BAR_COMPACT_WIDTH,
                         CustomMinimumSize.Y);
 
+                amountLabel.LabelSettings = compactLabelSettings;
                 nameLabel.Hide();
             }
             else
@@ -645,6 +653,7 @@ public partial class CompoundProgressBar : Control
                         Narrow ? Constants.COMPOUND_BAR_NARROW_NORMAL_WIDTH : Constants.COMPOUND_BAR_NORMAL_WIDTH,
                         CustomMinimumSize.Y);
 
+                amountLabel.LabelSettings = normalLabelSettings;
                 nameLabel.Show();
             }
         }

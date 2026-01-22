@@ -14,12 +14,6 @@ public partial class EditorCommonBottomLeftButtons : MarginContainer
     private TextureButton helpButton = null!;
 #pragma warning restore CA2213
 
-    [Signal]
-    public delegate void OnOpenMenuEventHandler();
-
-    [Signal]
-    public delegate void OnOpenHelpEventHandler();
-
     public override void _Ready()
     {
         base._Ready();
@@ -31,17 +25,19 @@ public partial class EditorCommonBottomLeftButtons : MarginContainer
     private void OnMenuButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(SignalName.OnOpenMenu);
+        PauseMenu.Instance.Open();
     }
 
     private void OnHelpButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(SignalName.OnOpenHelp);
+        PauseMenu.Instance.OpenToHelp();
     }
 
     private void OnStatisticsButtonPressed()
     {
+        // Bug is fixed in Thriveopedia about duplicate sound playing, so now we play sound here
+        GUICommon.Instance.PlayButtonPressSound();
         ThriveopediaManager.OpenPage("CurrentWorld");
     }
 }

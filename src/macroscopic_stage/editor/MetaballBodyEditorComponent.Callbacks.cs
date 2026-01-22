@@ -1,25 +1,25 @@
 ﻿using System.Diagnostics;
 using Godot;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Callbacks for the metaball body editor
 /// </summary>
-[DeserializedCallbackTarget]
 public partial class MetaballBodyEditorComponent
 {
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnMetaballAdded(MacroscopicMetaball metaball)
     {
         metaballDisplayDataDirty = true;
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void OnMetaballRemoved(MacroscopicMetaball metaball)
     {
         metaballDisplayDataDirty = true;
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoMetaballRemoveAction(MetaballRemoveActionData<MacroscopicMetaball> data)
     {
         editedMetaballs.Remove(data.RemovedMetaball);
@@ -34,7 +34,7 @@ public partial class MetaballBodyEditorComponent
         }
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoMetaballRemoveAction(MetaballRemoveActionData<MacroscopicMetaball> data)
     {
         if (data.ReParentedMetaballs != null)
@@ -48,23 +48,61 @@ public partial class MetaballBodyEditorComponent
         editedMetaballs.Add(data.RemovedMetaball);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoMetaballPlaceAction(MetaballPlacementActionData<MacroscopicMetaball> data)
     {
         editedMetaballs.Add(data.PlacedMetaball);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoMetaballPlaceAction(MetaballPlacementActionData<MacroscopicMetaball> data)
     {
         editedMetaballs.Remove(data.PlacedMetaball);
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
+    private void DuplicateCellType(DuplicateDeleteCellTypeData data)
+    {
+        var originalName = data.CellType.CellTypeName;
+        var count = 1;
+
+        // Explanation for this code copied from CellBodyPlanEditorComponent.DuplicateCellType:
+        // Renaming a cell doesn't create an editor action, so it's possible for someone to duplicate a cell type, undo
+        // the duplication, change another cell type's name to the old duplicate's name, then redo the duplication,
+        // which would lead to duplicate names, so this loop ensures the duplicated cell's name will be unique
+        while (!Editor.IsNewCellTypeNameValid(data.CellType.CellTypeName))
+        {
+            data.CellType.CellTypeName = $"{originalName} {count++}";
+        }
+
+        Editor.EditedSpecies.ModifiableCellTypes.Add(data.CellType);
+        GD.Print("New cell type created: ", data.CellType.CellTypeName);
+
+        EmitSignal(SignalName.OnCellTypeToEditSelected, data.CellType.CellTypeName, false);
+
+        UpdateCellTypeSelections();
+
+        OnCellToPlaceSelected(data.CellType.CellTypeName);
+
+        Editor.DirtyMutationPointsCache();
+    }
+
+    [ArchiveAllowedMethod]
+    private void DeleteCellType(DuplicateDeleteCellTypeData data)
+    {
+        if (!Editor.EditedSpecies.ModifiableCellTypes.Remove(data.CellType))
+            GD.PrintErr("Failed to delete cell type from species");
+
+        UpdateCellTypeSelections();
+
+        Editor.DirtyMutationPointsCache();
+    }
+
+    [ArchiveAllowedMethod]
     private void DoMetaballMoveAction(MetaballMoveActionData<MacroscopicMetaball> data)
     {
         data.MovedMetaball.Position = data.NewPosition;
-        data.MovedMetaball.Parent = data.NewParent;
+        data.MovedMetaball.ModifiableParent = data.NewParent;
 
         if (editedMetaballs.Contains(data.MovedMetaball))
         {
@@ -98,11 +136,11 @@ public partial class MetaballBodyEditorComponent
         }
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoMetaballMoveAction(MetaballMoveActionData<MacroscopicMetaball> data)
     {
         data.MovedMetaball.Position = data.OldPosition;
-        data.MovedMetaball.Parent = data.OldParent;
+        data.MovedMetaball.ModifiableParent = data.OldParent;
 
         metaballDisplayDataDirty = true;
 

@@ -100,7 +100,7 @@ public partial class SocietyStage : StrategyStageBase, ISocietyStructureDataAcce
             if (buildingToPlaceGhost != null)
             {
                 // Don't update the placing when we have a popup open
-                if (industrialStageConfirmPopup.Visible != true)
+                if (!industrialStageConfirmPopup.Visible)
                 {
                     // TODO: collision check with other buildings
                     buildingToPlaceGhost.GlobalPosition = GetPlayerCursorPointedWorldPosition();
@@ -119,6 +119,7 @@ public partial class SocietyStage : StrategyStageBase, ISocietyStructureDataAcce
                     HUD.EnsureGameIsUnpausedForEditor();
 
                     GD.Print("Starting fade out to industrial stage");
+                    PauseMenu.Instance.ReportStageTransition();
 
                     // The fade is pretty long here to give some time after the camera stops moving before the fade out
                     // is complete

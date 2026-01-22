@@ -1,11 +1,11 @@
 ﻿namespace AutoEvo;
 
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
-[JSONDynamicTypeAllowed]
 public class AvoidPredationSelectionPressure : SelectionPressure
 {
-    [JsonProperty]
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public readonly Species Predator;
 
     // Needed for translation extraction
@@ -18,14 +18,19 @@ public class AvoidPredationSelectionPressure : SelectionPressure
     public AvoidPredationSelectionPressure(Species predator, float weight) : base(weight, [
         AddOrganelleAnywhere.ThatCreateCompound(Compound.Oxytoxy),
         new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent,
-            CommonMutationFunctions.Direction.Front),
+            CommonMutationFunctions.Direction.Rear),
         new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,
             CommonMutationFunctions.Direction.Rear),
         new AddOrganelleAnywhere(organelle => organelle.HasSlimeJetComponent,
             CommonMutationFunctions.Direction.Rear),
+        new AddOrganelleAnywhere(organelle => organelle.HasCiliaComponent),
+        new MoveOrganelleBack(organelle => organelle.HasPilusComponent),
         new MoveOrganelleBack(organelle => organelle.HasSlimeJetComponent),
         new MoveOrganelleBack(organelle => organelle.HasMovementComponent),
-        new UpgradeOrganelle(organelle => organelle.HasSlimeJetComponent, SlimeJetComponent.MUCOCYST_UPGRADE_NAME),
+        new UpgradeOrganelle(organelle => organelle.HasSlimeJetComponent, SlimeJetComponent.MUCOCYST_UPGRADE_NAME,
+            true),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, -150.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, 150.0f),
         new ChangeMembraneType("double"),
         new ChangeMembraneType("cellulose"),
         new ChangeMembraneType("chitin"),
@@ -38,8 +43,30 @@ public class AvoidPredationSelectionPressure : SelectionPressure
         Predator = predator;
     }
 
-    [JsonIgnore]
     public override LocalizedString Name => NameString;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.AvoidPredationSelectionPressure;
+
+    public static AvoidPredationSelectionPressure ReadFromArchive(ISArchiveReader reader, ushort version,
+        int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new AvoidPredationSelectionPressure(reader.ReadObject<Species>(), reader.ReadFloat());
+
+        instance.ReadBasePropertiesFromArchive(reader, 1);
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(Predator);
+        base.WriteToArchive(writer);
+    }
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {

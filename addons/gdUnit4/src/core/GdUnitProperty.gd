@@ -46,16 +46,18 @@ func is_selectable_value() -> bool:
 	return not _value_set.is_empty()
 
 
-func set_value(p_value :Variant) -> void:
+func set_value(p_value: Variant) -> void:
 	match _type:
 		TYPE_STRING:
 			_value = str(p_value)
 		TYPE_BOOL:
-			_value = convert(p_value, TYPE_BOOL)
+			_value = type_convert(p_value, TYPE_BOOL)
 		TYPE_INT:
-			_value = convert(p_value, TYPE_INT)
+			_value = type_convert(p_value, TYPE_INT)
 		TYPE_FLOAT:
-			_value = convert(p_value, TYPE_FLOAT)
+			_value = type_convert(p_value, TYPE_FLOAT)
+		TYPE_DICTIONARY:
+			_value = type_convert(p_value, TYPE_DICTIONARY)
 		_:
 			_value = p_value
 

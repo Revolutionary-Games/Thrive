@@ -1,21 +1,44 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
 ///   Reduces hydrogen sulfide based on how many cells are eating it. This is needed to balance out
-///   <see cref="UnderwaterVentEruptionEffect"/> otherwise adding infinite hydrogen sulfide. This has a minimum floor
+///   <see cref="UnderwaterVentEruptionEvent"/> otherwise adding infinite hydrogen sulfide. This has a minimum floor
 ///   to ensure that if eruptions don't happen enough that hydrogen sulfide eaters aren't completely nonviable.
 /// </summary>
-[JSONDynamicTypeAllowed]
 public class HydrogenSulfideConsumptionEffect : IWorldEffect
 {
-    [JsonProperty]
-    private GameWorld targetWorld;
+    public const ushort SERIALIZATION_VERSION = 1;
+
+    private readonly List<TweakedProcess> microbeProcesses = new();
+
+    private readonly GameWorld targetWorld;
 
     public HydrogenSulfideConsumptionEffect(GameWorld targetWorld)
     {
         this.targetWorld = targetWorld;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.HydrogenSulfideConsumptionEffect;
+
+    public bool CanBeReferencedInArchive => false;
+
+    public static HydrogenSulfideConsumptionEffect ReadFromArchive(ISArchiveReader reader, ushort version,
+        int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new HydrogenSulfideConsumptionEffect(reader.ReadObject<GameWorld>());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(targetWorld);
     }
 
     public void OnRegisterToWorld()
@@ -24,7 +47,7 @@ public class HydrogenSulfideConsumptionEffect : IWorldEffect
 
     public void OnTimePassed(double elapsed, double totalTimePassed)
     {
-        List<TweakedProcess> microbeProcesses = [];
+        microbeProcesses.Clear();
 
         foreach (var key in targetWorld.Map.Patches.Keys)
         {
@@ -93,13 +116,32 @@ public class HydrogenSulfideConsumptionEffect : IWorldEffect
             var minimum =
                 patch.BiomeTemplate.Conditions.GetCompound(Compound.Hydrogensulfide, CompoundAmountType.Biome);
 
-            if (!speciesEatIt && minimum.Density <= MathUtils.EPSILON)
+            if (minimum.Density <= MathUtils.EPSILON)
             {
-                // In patches where there is no hydrogen sulfide naturally (it must have diffused there from elsewhere)
-                // have some natural decay to make sure the whole world isn't full of it
-                hydrogenSulfide.Density -= hydrogenSulfide.Density * Constants.HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR;
+                if (!speciesEatIt)
+                {
+                    // In patches where there is no hydrogen sulfide naturally (it must have diffused there from
+                    // elsewhere) have some natural decay to make sure the whole world isn't full of it
+                    hydrogenSulfide.Density -=
+                        hydrogenSulfide.Density * Constants.HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR;
+                }
 
-                if (hydrogenSulfide.Density < MathUtils.EPSILON * 50)
+                // When oxygen is present, the natural decay is increased (and present even if species eat it)
+                // to make the world once oxygenated much less full of hydrogen sulfide
+                var oxygen = patch.Biome.GetCompound(Compound.Oxygen, CompoundAmountType.Biome);
+
+                var oxygenSteps = oxygen.Ambient / Constants.HYDROGEN_SULFIDE_NATURAL_DECAY_INCREASE_PER_OXYGEN;
+                if (oxygenSteps > 0)
+                {
+                    hydrogenSulfide.Density -= hydrogenSulfide.Density *
+                        Constants.HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR_OXYGEN * oxygenSteps;
+
+                    // Higher min cutoff when there is some oxygen present
+                    if (hydrogenSulfide.Density < Constants.HYDROGEN_SULFIDE_OXYGEN_TOTAL_CUTOFF)
+                        hydrogenSulfide.Density = 0;
+                }
+
+                if (hydrogenSulfide.Density < MathUtils.EPSILON * 100)
                     hydrogenSulfide.Density = 0;
             }
 

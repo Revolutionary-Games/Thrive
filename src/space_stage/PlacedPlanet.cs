@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Planet that is placed in the space stage scene. For now uses just placeholder graphics
 /// </summary>
-[DeserializedCallbackTarget]
 public partial class PlacedPlanet : Node3D, IEntityWithNameLabel
 {
     private static readonly Lazy<PackedScene> LabelScene =

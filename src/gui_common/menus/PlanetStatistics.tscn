@@ -1,0 +1,379 @@
+[gd_scene load_steps=18 format=3 uid="uid://5j2erthkb4yy"]
+
+[ext_resource type="LabelSettings" uid="uid://bcafkdnj1p8bc" path="res://src/gui_common/fonts/Title-Bold-Normal.tres" id="2_856wo"]
+[ext_resource type="Script" uid="uid://bcvllo2a45yxh" path="res://src/gui_common/menus/PlanetStatistics.cs" id="2_owqas"]
+[ext_resource type="Texture2D" uid="uid://nckpuxkhcb0u" path="res://assets/textures/gui/bevel/Phosphates.svg" id="3_r2wvh"]
+[ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="4_myaoc"]
+[ext_resource type="Texture2D" uid="uid://d4bj3835y827e" path="res://assets/textures/gui/bevel/Ammonia.svg" id="4_owqas"]
+[ext_resource type="PackedScene" uid="uid://bq6aee8pw8y3m" path="res://src/gui_common/CollapsibleList.tscn" id="4_tcsvr"]
+[ext_resource type="Texture2D" uid="uid://d0lhje01k1lij" path="res://assets/textures/gui/bevel/Iron.svg" id="5_uhkkk"]
+[ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="6_myaoc"]
+[ext_resource type="Texture2D" uid="uid://drlnrba2dvitm" path="res://assets/textures/gui/bevel/Glucose.svg" id="6_whai7"]
+[ext_resource type="Texture2D" uid="uid://c253x2crwbldo" path="res://assets/textures/gui/bevel/Sunlight.svg" id="7_k5rxp"]
+[ext_resource type="Texture2D" uid="uid://dui1qqyh4jn7t" path="res://assets/textures/gui/bevel/HydrogenSulfide.svg" id="7_y3i3f"]
+[ext_resource type="Texture2D" uid="uid://djaidl3g28ibi" path="res://assets/textures/gui/bevel/Oxygen.svg" id="8_50pvu"]
+[ext_resource type="Texture2D" uid="uid://djm45ct5jk8oj" path="res://assets/textures/gui/bevel/Radiation.svg" id="8_iwqdh"]
+[ext_resource type="Texture2D" uid="uid://d0qdyfeacbf31" path="res://assets/textures/gui/bevel/Nitrogen.svg" id="9_1r75g"]
+[ext_resource type="Texture2D" uid="uid://ut73drrfbmk0" path="res://assets/textures/gui/bevel/Temperature.svg" id="10_whai7"]
+[ext_resource type="Texture2D" uid="uid://c2nk78uls8vui" path="res://assets/textures/gui/bevel/OtherCompounds.svg" id="11_c6j7g"]
+[ext_resource type="Texture2D" uid="uid://bylql42xmffwq" path="res://assets/textures/gui/bevel/CarbonDioxide.svg" id="11_y3i3f"]
+
+[node name="PatchDetailsContainer" type="VBoxContainer" node_paths=PackedStringArray("numberOfPatchesLabel", "numberOfRegionsLabel", "temperatureLevelLabel", "lightLevelLabel", "carbonOxideLevelLabel", "oxygenLevelLabel", "nitrogenLevelLabel", "otherGasesLevelLabel", "sulfideLevelLabel", "ammoniaLevelLabel", "glucoseLevelLabel", "phosphatesLevelLabel", "ironLevelLabel", "radiationLevelLabel")]
+offset_right = 200.0
+offset_bottom = 757.0
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+script = ExtResource("2_owqas")
+numberOfPatchesLabel = NodePath("HBoxContainer/PatchesNumber")
+numberOfRegionsLabel = NodePath("HBoxContainer2/RegionsNumber")
+temperatureLevelLabel = NodePath("PhysicalConditions/Temperature/temperature")
+lightLevelLabel = NodePath("PhysicalConditions/Light/light")
+carbonOxideLevelLabel = NodePath("AtmosphericGasses/CO2/carbonDioxide")
+oxygenLevelLabel = NodePath("AtmosphericGasses/Oxygen/oxygen")
+nitrogenLevelLabel = NodePath("AtmosphericGasses/Nitrogen/nitrogen")
+otherGasesLevelLabel = NodePath("AtmosphericGasses/Other/otherGases")
+sulfideLevelLabel = NodePath("Compounds/HydrogenSulfide/sulfide")
+ammoniaLevelLabel = NodePath("Compounds/Ammonia/ammonia")
+glucoseLevelLabel = NodePath("Compounds/Glucose/glucose")
+phosphatesLevelLabel = NodePath("Compounds/Phosphate/phosphates")
+ironLevelLabel = NodePath("Compounds/Iron/iron")
+radiationLevelLabel = NodePath("Compounds/Radiation/radiation")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "PLANET_STATISTICS"
+label_settings = ExtResource("2_856wo")
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+text = "REGIONS_NUMBER"
+label_settings = ExtResource("2_856wo")
+
+[node name="RegionsNumber" type="Label" parent="HBoxContainer2"]
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "1"
+label_settings = ExtResource("4_myaoc")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "PATCHES_NUMBER"
+label_settings = ExtResource("2_856wo")
+
+[node name="PatchesNumber" type="Label" parent="HBoxContainer"]
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "1"
+label_settings = ExtResource("4_myaoc")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PhysicalConditions" parent="." instance=ExtResource("4_tcsvr")]
+layout_mode = 2
+DisplayName = "PHYSICAL_CONDITIONS"
+Columns = 2
+
+[node name="Temperature" type="HBoxContainer" parent="PhysicalConditions"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="PhysicalConditions/Temperature"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "AVERAGE_SURFACE_TEMPERATURE"
+texture = ExtResource("10_whai7")
+expand_mode = 1
+
+[node name="temperature" type="Label" parent="PhysicalConditions/Temperature"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "52 C"
+label_settings = ExtResource("6_myaoc")
+
+[node name="Situation" type="TextureRect" parent="PhysicalConditions/Temperature"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Light" type="HBoxContainer" parent="PhysicalConditions"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="PhysicalConditions/Light"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "AVERAGE_SURFACE_LIGHT_LEVEL"
+texture = ExtResource("7_k5rxp")
+expand_mode = 1
+
+[node name="light" type="Label" parent="PhysicalConditions/Light"]
+layout_mode = 2
+text = "100%"
+label_settings = ExtResource("6_myaoc")
+
+[node name="Situation" type="TextureRect" parent="PhysicalConditions/Light"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+expand_mode = 1
+
+[node name="AtmosphericGasses" parent="." instance=ExtResource("4_tcsvr")]
+layout_mode = 2
+DisplayName = "ATMOSPHERIC_GASSES"
+Columns = 2
+
+[node name="Oxygen" type="HBoxContainer" parent="AtmosphericGasses"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="AtmosphericGasses/Oxygen"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "AVERAGE_SURFACE_OXYGEN_LEVEL"
+texture = ExtResource("8_50pvu")
+expand_mode = 1
+
+[node name="oxygen" type="Label" parent="AtmosphericGasses/Oxygen"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "Oxygen"
+label_settings = ExtResource("6_myaoc")
+
+[node name="Nitrogen" type="HBoxContainer" parent="AtmosphericGasses"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="AtmosphericGasses/Nitrogen"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "AVERAGE_SURFACE_NITROGEN_LEVEL"
+texture = ExtResource("9_1r75g")
+expand_mode = 1
+
+[node name="nitrogen" type="Label" parent="AtmosphericGasses/Nitrogen"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "Nitrogen"
+label_settings = ExtResource("6_myaoc")
+
+[node name="CO2" type="HBoxContainer" parent="AtmosphericGasses"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="AtmosphericGasses/CO2"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+texture = ExtResource("11_y3i3f")
+expand_mode = 1
+
+[node name="carbonDioxide" type="Label" parent="AtmosphericGasses/CO2"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "CO₂"
+label_settings = ExtResource("6_myaoc")
+
+[node name="Other" type="HBoxContainer" parent="AtmosphericGasses"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="AtmosphericGasses/Other"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "AVERAGE_SURFACE_OTHER_LEVEL"
+texture = ExtResource("11_c6j7g")
+expand_mode = 3
+
+[node name="otherGases" type="Label" parent="AtmosphericGasses/Other"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+tooltip_text = "OTHER_COMPOUNDS"
+mouse_filter = 1
+text = "Other"
+label_settings = ExtResource("6_myaoc")
+
+[node name="Compounds" parent="." instance=ExtResource("4_tcsvr")]
+layout_mode = 2
+DisplayName = "COMPOUNDS"
+Columns = 2
+
+[node name="HydrogenSulfide" type="HBoxContainer" parent="Compounds"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="Compounds/HydrogenSulfide"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "HYDROGEN_SULFIDE"
+texture = ExtResource("7_y3i3f")
+expand_mode = 1
+
+[node name="sulfide" type="Label" parent="Compounds/HydrogenSulfide"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "12%"
+label_settings = ExtResource("6_myaoc")
+
+[node name="Situation" type="TextureRect" parent="Compounds/HydrogenSulfide"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Ammonia" type="HBoxContainer" parent="Compounds"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="Compounds/Ammonia"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "AMMONIA"
+texture = ExtResource("4_owqas")
+expand_mode = 1
+
+[node name="ammonia" type="Label" parent="Compounds/Ammonia"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "5%"
+label_settings = ExtResource("6_myaoc")
+
+[node name="Situation" type="TextureRect" parent="Compounds/Ammonia"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Glucose" type="HBoxContainer" parent="Compounds"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="Compounds/Glucose"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "GLUCOSE"
+texture = ExtResource("6_whai7")
+expand_mode = 1
+
+[node name="glucose" type="Label" parent="Compounds/Glucose"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "9%"
+label_settings = ExtResource("6_myaoc")
+
+[node name="Situation" type="TextureRect" parent="Compounds/Glucose"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Phosphate" type="HBoxContainer" parent="Compounds"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="Compounds/Phosphate"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "PHOSPHATE"
+texture = ExtResource("3_r2wvh")
+expand_mode = 1
+
+[node name="phosphates" type="Label" parent="Compounds/Phosphate"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "5%"
+label_settings = ExtResource("6_myaoc")
+
+[node name="Situation" type="TextureRect" parent="Compounds/Phosphate"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Iron" type="HBoxContainer" parent="Compounds"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="Compounds/Iron"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "IRON"
+texture = ExtResource("5_uhkkk")
+expand_mode = 1
+
+[node name="iron" type="Label" parent="Compounds/Iron"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "5%"
+label_settings = ExtResource("6_myaoc")
+
+[node name="Situation" type="TextureRect" parent="Compounds/Iron"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Radiation" type="HBoxContainer" parent="Compounds"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="Compounds/Radiation"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "RADIATION"
+texture = ExtResource("8_iwqdh")
+expand_mode = 1
+
+[node name="radiation" type="Label" parent="Compounds/Radiation"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "1"
+label_settings = ExtResource("6_myaoc")
+
+[node name="Situation" type="TextureRect" parent="Compounds/Radiation"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+expand_mode = 1

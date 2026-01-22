@@ -1,14 +1,14 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Updates cell burst effects as time elapses. As this just setups the effect this doesn't need to run per frame
-///   normal update frequen.Y is fine.
+///   normal update frequency is fine.
 /// </summary>
 /// <remarks>
 ///   <para>
@@ -16,29 +16,24 @@ using World = DefaultEcs.World;
 ///     (if exists)
 ///   </para>
 /// </remarks>
-[With(typeof(CellBurstEffect))]
-[With(typeof(TimedLife))]
-[With(typeof(SpatialInstance))]
 [ReadsComponent(typeof(SpatialInstance))]
 [RunsBefore(typeof(TimedLifeSystem))]
 [RuntimeCost(0.25f)]
 [RunsOnMainThread]
-public sealed class CellBurstEffectSystem : AEntitySetSystem<float>
+public partial class CellBurstEffectSystem : BaseSystem<World, float>
 {
-    public CellBurstEffectSystem(World world) : base(world, null)
+    public CellBurstEffectSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref CellBurstEffect burstEffect, ref TimedLife timedLife, ref SpatialInstance spatial)
     {
-        ref var burstEffect = ref entity.Get<CellBurstEffect>();
-        ref var timedLife = ref entity.Get<TimedLife>();
-        ref var spatial = ref entity.Get<SpatialInstance>();
-
         if (burstEffect.Initialized)
             return;
 
-        // Skip if can't initialize yet
+        // Skip if this can't be initialized yet
         if (spatial.GraphicalInstance == null)
             return;
 

@@ -44,9 +44,9 @@ func write(report_dir :String) -> String:
 func apply_testsuite_reports(report_dir :String, template :String, test_suite_reports :Array[GdUnitReportSummary]) -> String:
 	var table_records := PackedStringArray()
 	for report:GdUnitTestSuiteReport in test_suite_reports:
-		var report_link := report.output_path(report_dir).replace(report_dir, "..")
+		var report_link := GdUnitHtmlReportWriter.create_output_path(report_dir, report.path(), report.name()).replace(report_dir, "..")
 		@warning_ignore("return_value_discarded")
-		table_records.append(report.create_record(report_link))
+		table_records.append(GdUnitHtmlPatterns.create_suite_record(report_link, report))
 	return template.replace(GdUnitHtmlPatterns.TABLE_BY_TESTSUITES, "\n".join(table_records))
 
 

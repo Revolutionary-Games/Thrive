@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Arch.Core;
 using Components;
-using DefaultEcs;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Adds extra digestion enzymes to an organelle
@@ -10,21 +11,29 @@ public class LysosomeComponent : IOrganelleComponent
 {
     public bool UsesSyncProcess { get; set; }
 
+    public static void CalculateLysosomeActiveEnzymes(LysosomeUpgrades? lysosomeData, Dictionary<Enzyme, int> result)
+    {
+        if (lysosomeData == null)
+        {
+            result[SimulationParameters.Instance.GetEnzyme(Constants.LIPASE_ENZYME)] = 1;
+            return;
+        }
+
+        var enzyme = lysosomeData.Enzyme;
+        result[enzyme] = 1;
+    }
+
     public void OnAttachToCell(PlacedOrganelle organelle)
     {
         var configuration = organelle.Upgrades?.CustomUpgradeData;
 
-        var enzyme = configuration is LysosomeUpgrades upgrades ?
-            upgrades.Enzyme :
-            SimulationParameters.Instance.GetEnzyme(Constants.LIPASE_ENZYME);
-
         // TODO: avoid allocating memory like this for each lysosome component
         // Could most likely refactor the PlacedOrganelle.GetEnzymes to take in the container.AvailableEnzymes
         // dictionary and write updated values to that
-        organelle.OverriddenEnzymes = new Dictionary<Enzyme, int>
-        {
-            { enzyme, 1 },
-        };
+        var enzymes = new Dictionary<Enzyme, int>();
+        CalculateLysosomeActiveEnzymes(configuration as LysosomeUpgrades, enzymes);
+
+        organelle.OverriddenEnzymes = enzymes;
     }
 
     public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
@@ -52,15 +61,41 @@ public class LysosomeComponentFactory : IOrganelleComponentFactory
     }
 }
 
-[JSONDynamicTypeAllowed]
 public class LysosomeUpgrades : IComponentSpecificUpgrades
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public LysosomeUpgrades(Enzyme enzyme)
     {
         Enzyme = enzyme;
     }
 
     public Enzyme Enzyme { get; set; }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.LysosomeUpgrades;
+
+    public bool CanBeReferencedInArchive => false;
+
+    public static LysosomeUpgrades ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new LysosomeUpgrades(reader.ReadObject<Enzyme>());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(Enzyme);
+    }
+
+    public double CalculateCost(IComponentSpecificUpgrades? previousUpgrades)
+    {
+        // TODO: calculate cost of this upgrade once custom upgrades can cost MP
+        return 0;
+    }
 
     public bool Equals(IComponentSpecificUpgrades? other)
     {

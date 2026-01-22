@@ -5,11 +5,11 @@ using System.Linq;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
-using Saving;
+using SharedBase.Utilities;
 using Environment = System.Environment;
 
 /// <summary>
-///   Class that handles storing and applying player changeable game settings.
+///   Class that handles storing and applying player-changeable game settings.
 /// </summary>
 public class Settings
 {
@@ -25,13 +25,16 @@ public class Settings
     /// </summary>
     private static readonly Settings SingletonInstance = InitializeGlobalSettings();
 
+    private static int oldDisplaySelectionIndex = -2;
+
     static Settings()
     {
     }
 
     private Settings()
     {
-        // This is mainly just to make sure the property is read here before anyone can change TranslationServer locale
+        // This is mainly just to make sure the property is read here before anyone can change the
+        // TranslationServer locale
         if (DefaultLanguage.Length < 1)
             GD.PrintErr("Default locale is empty");
     }
@@ -72,6 +75,13 @@ public class Settings
         Disabled,
     }
 
+    public enum MicrobeCurrentParticlesMode
+    {
+        All,
+        OnlyCircles,
+        None,
+    }
+
     public static Settings Instance => SingletonInstance;
 
     public static string DefaultLanguage => DefaultLanguageValue;
@@ -79,7 +89,7 @@ public class Settings
     public static CultureInfo DefaultCulture => DefaultCultureValue;
 
     /// <summary>
-    ///   If environment is steam returns SteamHandler.DisplayName, else Environment.UserName
+    ///   If the environment is Steam, returns SteamHandler.DisplayName, else Environment.UserName
     /// </summary>
     public static string EnvironmentUserName => SteamHandler.Instance.IsLoaded ?
         SteamHandler.Instance.DisplayName :
@@ -123,6 +133,18 @@ public class Settings
     public SettingValue<float> RenderScale { get; private set; } = new(1.0f);
 
     /// <summary>
+    ///   Selected window index for the game window. -1 means automatic, and we don't control it.
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<int> SelectedDisplayIndex { get; set; } = new(-1);
+
+    /// <summary>
+    ///   When we are changing monitors, centers our window afterwards.
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> CenterWindowOnMonitorOrModeChange { get; set; } = new(true);
+
+    /// <summary>
     ///   Upscaling method to use when the render scale is less than 1
     /// </summary>
     [JsonProperty]
@@ -160,6 +182,12 @@ public class Settings
     public SettingValue<bool> ChromaticEnabled { get; private set; } = new(true);
 
     /// <summary>
+    ///   Sets the overall GUI size modifier
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<float> GUIScale { get; private set; } = new(1.0f);
+
+    /// <summary>
     ///   Enable or disable microbe background distortion shader. Should be 0 for disabled and around 0.3-0.9 when
     ///   enabled.
     /// </summary>
@@ -179,13 +207,20 @@ public class Settings
     public SettingValue<bool> MicrobeBackgroundBlurLowQuality { get; private set; } = new(false);
 
     /// <summary>
+    ///   Sets the type of displayed microbe current particles
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<MicrobeCurrentParticlesMode> MicrobeCurrentParticles { get; private set; } =
+        new(MicrobeCurrentParticlesMode.All);
+
+    /// <summary>
     ///   Sets whether microbes make ripples as they move
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> MicrobeRippleEffect { get; private set; } = new(true);
 
     /// <summary>
-    ///   Sets whether the camera will slightly tilt toward cursor
+    ///   Sets whether the camera will slightly tilt toward the cursor
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> MicrobeCameraTilt { get; private set; } = new(false);
@@ -197,13 +232,13 @@ public class Settings
     public SettingValue<ControllerType> ControllerPromptType { get; private set; } = new(ControllerType.Automatic);
 
     /// <summary>
-    ///   Red screen effect for when player is harmed
+    ///   Red screen effect for when the player is harmed
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> ScreenDamageEffect { get; private set; } = new(true);
 
     /// <summary>
-    ///   When should the strain bar be visible
+    ///   Sets when the strain bar should be visible
     /// </summary>
     public SettingValue<StrainBarVisibility> StrainBarVisibilityMode { get; private set; } =
         new(StrainBarVisibility.VisibleWhenOverZero);
@@ -214,7 +249,7 @@ public class Settings
     public SettingValue<bool> BloomEnabled { get; private set; } = new(true);
 
     /// <summary>
-    ///   Bloom effect strength (if 0 bloom option should be set disabled)
+    ///   Bloom effect strength (if 0, the bloom option should be set disabled)
     /// </summary>
     [JsonProperty]
     public SettingValue<float> BloomStrength { get; private set; } = new(0.65f);
@@ -259,7 +294,7 @@ public class Settings
     public SettingValue<float> VolumeMaster { get; private set; } = new(0.0f);
 
     /// <summary>
-    ///   If true all sounds are muted
+    ///   If true, all sounds are muted
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> VolumeMasterMuted { get; private set; } = new(false);
@@ -271,7 +306,7 @@ public class Settings
     public SettingValue<float> VolumeMusic { get; private set; } = new(0.0f);
 
     /// <summary>
-    ///   If true music is muted
+    ///   If true, music is muted
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> VolumeMusicMuted { get; private set; } = new(false);
@@ -321,7 +356,7 @@ public class Settings
     // Performance Properties
 
     /// <summary>
-    ///   If this is over 0 then this limits how often compound clouds
+    ///   If this is over 0, then this limits how often compound clouds
     ///   are updated. The default value of 0.020 at 60 FPS makes
     ///   every other frame not update the clouds.
     /// </summary>
@@ -337,26 +372,27 @@ public class Settings
 
     /// <summary>
     ///   This can be freely adjusted to adjust the performance The
-    ///   higher this value is the smaller the size of the simulated
-    ///   cloud is and the performance is better.
+    ///   higher this value is, the smaller the size of the simulated
+    ///   cloud is, and the performance is better.
     /// </summary>
     [JsonProperty]
     public SettingValue<int> CloudResolution { get; private set; } = new(2);
 
     /// <summary>
-    ///   If true an auto-evo run is started during gameplay, taking up one of the background threads.
+    ///   If true, an auto-evo run is started during gameplay, taking up one of the background threads.
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> RunAutoEvoDuringGamePlay { get; private set; } = new(true);
 
     /// <summary>
-    ///   If true the game simulations can run in a multithreaded way (for example <see cref="MicrobeWorldSimulation"/>
+    ///   If true, the game simulations can run in a multithreaded way
+    ///   (for example <see cref="MicrobeWorldSimulation"/>)
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> RunGameSimulationMultithreaded { get; private set; } = new(true);
 
     /// <summary>
-    ///   If true it is assumed that the CPU has hyperthreading, meaning that real cores is CPU count / 2
+    ///   If true, it is assumed that the CPU has hyperthreading, meaning that real cores is CPU count / 2
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> AssumeCPUHasHyperthreading { get; private set; } = new(true);
@@ -368,7 +404,8 @@ public class Settings
     public SettingValue<bool> UseManualThreadCount { get; private set; } = new(false);
 
     /// <summary>
-    ///   Manually set number of background threads to use. Needs to be at least 2 if RunAutoEvoDuringGamePlay is true
+    ///   Manually set the number of background threads to use. Needs to be at least 2 if
+    ///   <see cref="RunAutoEvoDuringGamePlay"/> is true.
     /// </summary>
     [JsonProperty]
     public SettingValue<int> ThreadCount { get; private set; } = new(4);
@@ -377,7 +414,7 @@ public class Settings
     public SettingValue<bool> UseManualNativeThreadCount { get; private set; } = new(false);
 
     /// <summary>
-    ///   Manually set number of native threads to use. Applies similarly to the C# side of things (i.e. only when
+    ///   Manually set the number of native threads to use. Applies similarly to the C# side of things (i.e. only when
     ///   manual count is enabled)
     /// </summary>
     [JsonProperty]
@@ -390,7 +427,7 @@ public class Settings
     public SettingValue<int> MaxSpawnedEntities { get; private set; } = new(Constants.NORMAL_MAX_SPAWNED_ENTITIES);
 
     /// <summary>
-    ///   If true a disk cache is used for generated things
+    ///   If true, a disk cache is used for generated things
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> UseDiskCache { get; private set; } = new(true);
@@ -430,14 +467,14 @@ public class Settings
     // Misc Properties
 
     /// <summary>
-    ///   When true the main intro is played. Note <see cref="LaunchOptions.VideosEnabled"/> must also be true to play
+    ///   When true, the main intro is played. Note <see cref="LaunchOptions.VideosEnabled"/> must also be true to play
     ///   any videos as they need to be able to be skipped due to a rare Godot engine crash when playing them.
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> PlayIntroVideo { get; private set; } = new(true);
 
     /// <summary>
-    ///   When true the microbe intro is played on new game
+    ///   When true, the microbe intro is played on a new game
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> PlayMicrobeIntroVideo { get; private set; } = new(true);
@@ -459,6 +496,12 @@ public class Settings
     /// </summary>
     [JsonProperty]
     public SettingValue<int> MaxQuickSaves { get; private set; } = new(5);
+
+    /// <summary>
+    ///   Scale down screenshots in save files to save disk space
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> LimitSaveScreenshotSize { get; private set; } = new(true);
 
     /// <summary>
     ///   Saves the current settings by writing them to the settings configuration file.
@@ -486,7 +529,7 @@ public class Settings
     public SettingValue<bool> ShowNewPatchNotes { get; private set; } = new(true);
 
     /// <summary>
-    ///   If false username will be set to System username
+    ///   If false, the username will be set to System username
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> CustomUsernameEnabled { get; private set; } = new(false);
@@ -503,13 +546,6 @@ public class Settings
     [JsonProperty]
     public SettingValue<IReadOnlyCollection<DismissibleNotice>> PermanentlyDismissedNotices { get; private set; } =
         new(new HashSet<DismissibleNotice>());
-
-    /// <summary>
-    ///   The Db value to be added to the master audio bus
-    /// </summary>
-    [JsonProperty]
-    public SettingValue<JSONDebug.DebugMode> JSONDebugMode { get; private set; } =
-        new(JSONDebug.DebugMode.Automatic);
 
     /// <summary>
     ///   The screen effect currently being used
@@ -557,13 +593,13 @@ public class Settings
     public SettingValue<float> HorizontalMouseLookSensitivity { get; private set; } = new(0.003f);
 
     /// <summary>
-    ///   If true inverts the vertical axis inputs for mouse
+    ///   If true, inverts the vertical axis inputs for mouse
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> InvertVerticalMouseLook { get; private set; } = new(false);
 
     /// <summary>
-    ///   If true inverts the horizontal axis inputs for mouse
+    ///   If true, inverts the horizontal axis inputs for mouse
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> InvertHorizontalMouseLook { get; private set; } = new(false);
@@ -595,19 +631,19 @@ public class Settings
     public SettingValue<float> HorizontalControllerLookSensitivity { get; private set; } = new(1.4f);
 
     /// <summary>
-    ///   If true inverts the vertical axis inputs for controller
+    ///   If true, inverts the vertical axis inputs for controller
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> InvertVerticalControllerLook { get; private set; } = new(false);
 
     /// <summary>
-    ///   If true inverts the horizontal axis inputs for controller
+    ///   If true, inverts the horizontal axis inputs for the controller
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> InvertHorizontalControllerLook { get; private set; } = new(false);
 
     /// <summary>
-    ///   Sets how left/right inputs are interpreted in 2D (for example the microbe stage)
+    ///   Sets how left/right inputs are interpreted in 2D (for example, the microbe stage)
     /// </summary>
     [JsonProperty]
     public SettingValue<TwoDimensionalMovementMode> TwoDimensionalMovement { get; private set; } =
@@ -622,7 +658,7 @@ public class Settings
 
     // TODO: control in options
     /// <summary>
-    ///   If true putting the mouse to a screen edge pans the strategy view
+    ///   If true, putting the mouse to a screen edge pans the strategy view
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> PanStrategyViewWithMouse { get; private set; } = new(true);
@@ -711,13 +747,13 @@ public class Settings
     }
 
     /// <summary>
-    ///   Tries to return a C# culture info from Godot language name
+    ///   Tries to return C# culture info from Godot language name
     /// </summary>
     /// <param name="language">The language name to try to understand</param>
     /// <returns>The culture info</returns>
     public static CultureInfo GetCultureInfo(string language)
     {
-        // Perform hard coded translations first
+        // Perform hard-coded translations first
         var translated = TranslateLocaleToCSharp(language);
         if (translated != null)
             language = translated;
@@ -823,6 +859,9 @@ public class Settings
     public void LoadDefaults()
     {
         Settings settings = new Settings();
+
+        settings.ApplyPostInit();
+
         CopySettings(settings);
     }
 
@@ -862,7 +901,7 @@ public class Settings
         }
 
         // Delayed apply was implemented to fix problems within the Godot editor.
-        // So this might no longer be necessary, as this is now skipped within editor.
+        // So this might no longer be necessary, as this is now skipped within the editor.
         if (delayedApply)
         {
             GD.Print("Doing delayed apply for some settings");
@@ -873,12 +912,16 @@ public class Settings
 
             // If this is not delay applied, this also causes some errors in godot editor output when running
             Invoke.Instance.Queue(ApplyInputSettings);
+
+            // This requires GUI common to be loaded
+            Invoke.Instance.Queue(ApplyGUISettings);
         }
         else
         {
             ApplyGraphicsSettings();
             ApplySoundSettings();
             ApplyInputSettings();
+            ApplyGUISettings();
         }
 
         ApplyAudioOutputDeviceSettings();
@@ -916,7 +959,7 @@ public class Settings
 
         bool allowTemporal = true;
 
-        // When oversampling only bilinear is supported
+        // When oversampling, only bilinear is supported
         // And when exactly at 1 upscaling is not used, so also then turn off the effective mode (as FSR causes
         // warnings in compatibility renderer mode)
         if (RenderScale.Value >= 1)
@@ -982,6 +1025,17 @@ public class Settings
         }
     }
 
+    public void ApplyGUISettings()
+    {
+        var root = GUICommon.Instance.GetTree().Root;
+
+        var value = GUIScale.Value;
+        if (Math.Abs(value - 1.0f) > 0.00001f)
+            GD.Print("Setting GUI scale to ", value);
+
+        root.ContentScaleFactor = value;
+    }
+
     /// <summary>
     ///   Applies current sound settings to any applicable engine systems.
     /// </summary>
@@ -1036,8 +1090,6 @@ public class Settings
 
         // Default to wanting the current mode. This is after the maximized mode handling so that the game won't
         // switch away from maximized mode to windowed mode.
-        // DisplayServer.WindowMode.ExclusiveFullscreen
-        // TODO: set the default clear color to black to make the 1px border disappear on windows
         var wantedMode = mode;
 
         switch (DisplayMode.Value)
@@ -1059,10 +1111,57 @@ public class Settings
                 break;
         }
 
-        if (mode != wantedMode)
+        var windowModeChanged = mode != wantedMode;
+
+        bool monitorChanged = false;
+
+        // Only control monitor if we are controlling that
+        if (SelectedDisplayIndex.Value >= 0)
+        {
+            // Monitor moving on desktop platforms
+            if (!FeatureInformation.IsMobile)
+            {
+                var targetScreen = SelectedDisplayIndex.Value;
+
+                // Move if not set to the right monitor (or if window mode is changing)
+                if (oldDisplaySelectionIndex != targetScreen || windowModeChanged)
+                {
+                    GD.Print($"Moving our window to screen {targetScreen}");
+                    monitorChanged = true;
+
+                    DisplayServer.WindowSetCurrentScreen(targetScreen, 0);
+
+                    oldDisplaySelectionIndex = targetScreen;
+                }
+            }
+        }
+
+        if (windowModeChanged)
         {
             GD.Print($"Switching window mode from {mode} to {wantedMode}");
             DisplayServer.WindowSetMode(wantedMode);
+        }
+
+        // Center the window if it is in Windowed mode and the screen or window mode has changed
+        if ((windowModeChanged || monitorChanged) && wantedMode == DisplayServer.WindowMode.Windowed)
+        {
+            var screen = DisplayServer.WindowGetCurrentScreen(0);
+            var size = DisplayServer.ScreenGetSize(screen);
+            var windowSize = DisplayServer.WindowGetSize();
+
+            // Make sure we only apply this if we got valid data
+            if (size.X > 0 && size.Y > 0 && windowSize.X > 0 && windowSize.Y > 0)
+            {
+                GD.Print("Centering window");
+                var position = DisplayServer.ScreenGetPosition(screen);
+
+                var centeredPos = position + (size - windowSize) / 2;
+                DisplayServer.WindowSetPosition(centeredPos, 0);
+            }
+            else
+            {
+                GD.Print("Centering window failed as we didn't get screen data");
+            }
         }
 
         // TODO: switch the setting to allow specifying all of the 4 possible values
@@ -1235,6 +1334,9 @@ public class Settings
                 + "Using default settings instead.");
 
             var settings = new Settings();
+
+            settings.ApplyPostInit();
+
             settings.Save();
 
             return settings;
@@ -1278,7 +1380,7 @@ public class Settings
     /// <summary>
     ///   Tries to return the best supported Godot locale match.
     ///   Godot locale is different from C# culture.
-    ///   Compare for example fi_FI (Godot) to fi-FI (C#).
+    ///   Compare, for example, fi_FI (Godot) to fi-FI (C#).
     /// </summary>
     /// <param name="locale">locale to check</param>
     /// <returns>supported locale</returns>
@@ -1349,5 +1451,56 @@ public class Settings
 
             setting.AssignFrom(source);
         }
+    }
+
+    /// <summary>
+    ///   Customizes settings after creating them based on the current environment
+    /// </summary>
+    private void ApplyPostInit()
+    {
+        long availableRam = 0;
+        try
+        {
+            availableRam = OS.GetMemoryInfo()["physical"].AsInt64();
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Failed to get physical memory info: ", e);
+        }
+
+        GD.Print("Detected system RAM (MiB) as: ", availableRam / GlobalConstants.MEBIBYTE);
+
+        var preset = GraphicsPresets.Preset.High;
+
+        // Automatic preset adjustment based on some conditions
+        if (FeatureInformation.GetVideoDriver() == OS.RenderingDriver.Opengl3 ||
+            availableRam < (long)GlobalConstants.GIBIBYTE * 3)
+        {
+            preset = GraphicsPresets.Preset.Low;
+
+            // Apparently on Linux with a dedicated GPU this detection is not correct, so we have some safety
+            // handling here
+            bool hasDedicatedGpu = RenderingServer.GetVideoAdapterType() is RenderingDevice.DeviceType.DiscreteGpu
+                or RenderingDevice.DeviceType.Other;
+
+            // Additionally, if integrated graphics and system memory is not very high set to very low
+
+            if ((!hasDedicatedGpu && availableRam < (long)GlobalConstants.GIBIBYTE * 11) ||
+                (availableRam < (long)GlobalConstants.GIBIBYTE * 3))
+            {
+                GD.Print("Detected integrated graphics and low system memory (or very low memory)");
+                preset = GraphicsPresets.Preset.VeryLow;
+            }
+        }
+        else if (Environment.ProcessorCount <= 4 || availableRam < (long)GlobalConstants.GIBIBYTE * 6)
+        {
+            // Assume 2 CPU cores have hyperthreading so this is probably a laptop system, so pick medium
+            preset = GraphicsPresets.Preset.Medium;
+        }
+
+        GD.Print("Picked graphics preset: ", preset);
+
+        // Apply graphics preset to the initial settings
+        GraphicsPresets.ApplyPreset(preset, this);
     }
 }

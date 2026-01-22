@@ -11,12 +11,11 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p046t"]
 
-[node name="SettingsPanel" type="VBoxContainer" node_paths=PackedStringArray("lifeOriginButton", "worldSizeButton", "worldTemperatureButton", "worldSeaLevelButton", "worldGeologicalActivityButton", "worldClimateInstabilityButton", "lawkOnlyButton", "dayNightCycleButton", "dayLength", "dayLengthReadout", "dayLengthContainer", "gameSeed")]
-anchors_preset = 15
+[node name="SettingsPanel" type="VBoxContainer" node_paths=PackedStringArray("lifeOriginButton", "worldSizeButton", "worldTemperatureButton", "worldSeaLevelButton", "worldGeologicalActivityButton", "worldClimateInstabilityButton", "sulfideLevelButton", "glucoseLevelButton", "ironLevelButton", "ammoniaLevelButton", "phosphatesLevelButton", "radiationLevelButton", "lawkOnlyButton", "dayNightCycleButton", "dayLength", "dayLengthReadout", "dayLengthContainer", "gameSeed")]
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
+offset_bottom = 923.0
 grow_horizontal = 2
-grow_vertical = 2
 size_flags_vertical = 0
 theme = ExtResource("1_au4yw")
 theme_override_constants/separation = 10
@@ -28,6 +27,12 @@ worldTemperatureButton = NodePath("VBoxContainer5/HBoxContainer/WorldTemperature
 worldSeaLevelButton = NodePath("VBoxContainer6/HBoxContainer/WorldSeaLevel")
 worldGeologicalActivityButton = NodePath("VBoxContainer7/HBoxContainer/WorldGeologicalActivity")
 worldClimateInstabilityButton = NodePath("VBoxContainer8/HBoxContainer/WorldClimateInstability")
+sulfideLevelButton = NodePath("VBoxContainer9/HBoxContainer/SulfideLevel")
+glucoseLevelButton = NodePath("VBoxContainer10/HBoxContainer/GlucoseLevel")
+ironLevelButton = NodePath("VBoxContainer11/HBoxContainer/IronLevel")
+ammoniaLevelButton = NodePath("VBoxContainer12/HBoxContainer/AmmoniaLevel")
+phosphatesLevelButton = NodePath("VBoxContainer13/HBoxContainer/PhosphatesLevel")
+radiationLevelButton = NodePath("VBoxContainer14/HBoxContainer/RadiationLevel")
 lawkOnlyButton = NodePath("VBoxContainer/HBoxContainer/LAWKButton")
 dayNightCycleButton = NodePath("VBoxContainer2/HBoxContainer/DayNightCycleButton")
 dayLength = NodePath("DayLengthContainer/HBoxContainer/HBoxContainer/DayLength")
@@ -413,9 +418,222 @@ texture_disabled = ExtResource("8_4kewu")
 ignore_texture_size = true
 stretch_mode = 5
 
+[node name="HSeparator2" type="HSeparator" parent="."]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+
+[node name="VBoxContainer9" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer9"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer9/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "HYDROGEN_SULFIDE_LEVELS"
+
+[node name="SulfideLevel" type="OptionButton" parent="VBoxContainer9/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
+selected = 2
+item_count = 5
+popup/item_0/text = "COMPOUND_LEVEL_VERY_LOW"
+popup/item_0/id = 0
+popup/item_1/text = "COMPOUND_LEVEL_LOW"
+popup/item_1/id = 1
+popup/item_2/text = "COMPOUND_LEVEL_AVERAGE"
+popup/item_2/id = 2
+popup/item_3/text = "COMPOUND_LEVEL_HIGH"
+popup/item_3/id = 3
+popup/item_4/text = "COMPOUND_LEVEL_VERY_HIGH"
+popup/item_4/id = 4
+
+[node name="VBoxContainer10" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer10"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer10/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "GLUCOSE_LEVEL"
+
+[node name="GlucoseLevel" type="OptionButton" parent="VBoxContainer10/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
+selected = 2
+item_count = 5
+popup/item_0/text = "COMPOUND_LEVEL_VERY_LOW"
+popup/item_0/id = 0
+popup/item_1/text = "COMPOUND_LEVEL_LOW"
+popup/item_1/id = 1
+popup/item_2/text = "COMPOUND_LEVEL_AVERAGE"
+popup/item_2/id = 2
+popup/item_3/text = "COMPOUND_LEVEL_HIGH"
+popup/item_3/id = 3
+popup/item_4/text = "COMPOUND_LEVEL_VERY_HIGH"
+popup/item_4/id = 4
+
+[node name="VBoxContainer11" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer11"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer11/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "IRON_LEVELS"
+
+[node name="IronLevel" type="OptionButton" parent="VBoxContainer11/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
+selected = 2
+item_count = 5
+popup/item_0/text = "COMPOUND_LEVEL_VERY_LOW"
+popup/item_0/id = 0
+popup/item_1/text = "COMPOUND_LEVEL_LOW"
+popup/item_1/id = 1
+popup/item_2/text = "COMPOUND_LEVEL_AVERAGE"
+popup/item_2/id = 2
+popup/item_3/text = "COMPOUND_LEVEL_HIGH"
+popup/item_3/id = 3
+popup/item_4/text = "COMPOUND_LEVEL_VERY_HIGH"
+popup/item_4/id = 4
+
+[node name="VBoxContainer12" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer12"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer12/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "AMMONIA_LEVELS"
+
+[node name="AmmoniaLevel" type="OptionButton" parent="VBoxContainer12/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
+selected = 2
+item_count = 5
+popup/item_0/text = "COMPOUND_LEVEL_VERY_LOW"
+popup/item_0/id = 0
+popup/item_1/text = "COMPOUND_LEVEL_LOW"
+popup/item_1/id = 1
+popup/item_2/text = "COMPOUND_LEVEL_AVERAGE"
+popup/item_2/id = 2
+popup/item_3/text = "COMPOUND_LEVEL_HIGH"
+popup/item_3/id = 3
+popup/item_4/text = "COMPOUND_LEVEL_VERY_HIGH"
+popup/item_4/id = 4
+
+[node name="VBoxContainer13" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer13"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer13/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "PHOSPHATES_LEVELS"
+
+[node name="PhosphatesLevel" type="OptionButton" parent="VBoxContainer13/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
+selected = 2
+item_count = 5
+popup/item_0/text = "COMPOUND_LEVEL_VERY_LOW"
+popup/item_0/id = 0
+popup/item_1/text = "COMPOUND_LEVEL_LOW"
+popup/item_1/id = 1
+popup/item_2/text = "COMPOUND_LEVEL_AVERAGE"
+popup/item_2/id = 2
+popup/item_3/text = "COMPOUND_LEVEL_HIGH"
+popup/item_3/id = 3
+popup/item_4/text = "COMPOUND_LEVEL_VERY_HIGH"
+popup/item_4/id = 4
+
+[node name="VBoxContainer14" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer14"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer14/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "RADIATION_LEVELS"
+
+[node name="RadiationLevel" type="OptionButton" parent="VBoxContainer14/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
+selected = 2
+item_count = 5
+popup/item_0/text = "COMPOUND_LEVEL_VERY_LOW"
+popup/item_0/id = 0
+popup/item_1/text = "COMPOUND_LEVEL_LOW"
+popup/item_1/id = 1
+popup/item_2/text = "COMPOUND_LEVEL_AVERAGE"
+popup/item_2/id = 2
+popup/item_3/text = "COMPOUND_LEVEL_HIGH"
+popup/item_3/id = 3
+popup/item_4/text = "COMPOUND_LEVEL_VERY_HIGH"
+popup/item_4/id = 4
+
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/LAWKButton" to="." method="OnLAWKToggled"]
 [connection signal="item_selected" from="VBoxContainer3/HBoxContainer/LifeOrigin" to="." method="OnLifeOriginSelected"]
+[connection signal="item_selected" from="VBoxContainer4/HBoxContainer/WorldSize" to="." method="OnPlanetSettingsChanged"]
+[connection signal="item_selected" from="VBoxContainer5/HBoxContainer/WorldTemperature" to="." method="OnPlanetSettingsChanged"]
+[connection signal="item_selected" from="VBoxContainer6/HBoxContainer/WorldSeaLevel" to="." method="OnPlanetSettingsChanged"]
+[connection signal="item_selected" from="VBoxContainer7/HBoxContainer/WorldGeologicalActivity" to="." method="OnPlanetSettingsChanged"]
+[connection signal="item_selected" from="VBoxContainer8/HBoxContainer/WorldClimateInstability" to="." method="OnPlanetSettingsChanged"]
 [connection signal="toggled" from="VBoxContainer2/HBoxContainer/DayNightCycleButton" to="." method="OnDayNightCycleToggled"]
 [connection signal="value_changed" from="DayLengthContainer/HBoxContainer/HBoxContainer/DayLength" to="." method="OnDayLengthChanged"]
 [connection signal="text_changed" from="HBoxContainer3/HBoxContainer/GameSeed" to="." method="OnSeedChanged"]
 [connection signal="pressed" from="HBoxContainer3/HBoxContainer/RandomizeButton" to="." method="OnGenerateSeedPressed"]
+[connection signal="item_selected" from="VBoxContainer9/HBoxContainer/SulfideLevel" to="." method="OnPlanetSettingsChanged"]
+[connection signal="item_selected" from="VBoxContainer10/HBoxContainer/GlucoseLevel" to="." method="OnPlanetSettingsChanged"]
+[connection signal="item_selected" from="VBoxContainer11/HBoxContainer/IronLevel" to="." method="OnPlanetSettingsChanged"]
+[connection signal="item_selected" from="VBoxContainer12/HBoxContainer/AmmoniaLevel" to="." method="OnPlanetSettingsChanged"]
+[connection signal="item_selected" from="VBoxContainer13/HBoxContainer/PhosphatesLevel" to="." method="OnPlanetSettingsChanged"]
+[connection signal="item_selected" from="VBoxContainer14/HBoxContainer/RadiationLevel" to="." method="OnPlanetSettingsChanged"]

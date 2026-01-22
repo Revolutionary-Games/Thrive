@@ -1,7 +1,7 @@
 ﻿namespace Tutorial;
 
 using System;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Base for all tutorials that track how many times the player has come back from the editor
@@ -13,7 +13,6 @@ public abstract class SwimmingAroundCountingTutorial : TutorialPhase
         CanTrigger = false;
     }
 
-    [JsonProperty]
     public int NumberOfMicrobeStageEntries { get; set; }
 
     protected abstract int TriggersOnNthSwimmingSession { get; }
@@ -41,5 +40,19 @@ public abstract class SwimmingAroundCountingTutorial : TutorialPhase
         }
 
         return false;
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        base.WritePropertiesToArchive(writer);
+
+        writer.Write(NumberOfMicrobeStageEntries);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        base.ReadPropertiesFromArchive(reader, version);
+
+        NumberOfMicrobeStageEntries = reader.ReadInt32();
     }
 }

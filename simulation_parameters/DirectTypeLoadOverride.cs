@@ -8,7 +8,7 @@ public class DirectTypeLoadOverride : BaseThriveConverter
 {
     private readonly Type typeToOverrideLoadingFor;
 
-    public DirectTypeLoadOverride(Type typeToOverrideLoadingFor, ISaveContext? context) : base(context)
+    public DirectTypeLoadOverride(Type typeToOverrideLoadingFor)
     {
         this.typeToOverrideLoadingFor = typeToOverrideLoadingFor;
     }

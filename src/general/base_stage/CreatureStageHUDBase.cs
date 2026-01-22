@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Arch.Core.Extensions;
 using Components;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Base HUD class for stages where the player moves a creature around
 /// </summary>
 /// <typeparam name="TStage">The type of the stage this HUD is for</typeparam>
-[JsonObject(MemberSerialization.OptIn)]
 [GodotAbstract]
-public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureStageHUD
+public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureStageHUD, IArchiveUpdatable
     where TStage : GodotObject, ICreatureStage
 {
+    public const ushort SERIALIZATION_VERSION_CREATURE = 1;
+
 #pragma warning disable CA2213
     [Export]
     public PackedScene FossilisationButtonScene = null!;
@@ -36,6 +38,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     protected readonly List<Compound> allAgents = new();
 
 #pragma warning disable CA2213
+    protected readonly List<(Compound Compound, CompoundProgressBar Bar)> compoundBars = new();
+
     [Export]
     protected MouseHoverPanel mouseHoverPanel = null!;
 
@@ -126,8 +130,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     /// </summary>
     protected TStage? stage;
 
-    private readonly List<(Compound Compound, CompoundProgressBar Bar)> compoundBars = new();
-
     private readonly Dictionary<Compound, float> gatheredCompounds = new();
     private readonly Dictionary<Compound, float> totalNeededCompounds = new();
 
@@ -168,31 +170,21 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private bool temporaryEnvironmentCompressed;
     private bool temporaryCompoundCompressed;
 
+    private bool registeredSettingsListeners;
+
     /// <summary>
     ///   Used by UpdateHoverInfo to run HOVER_PANEL_UPDATE_INTERVAL
     /// </summary>
     private double hoverInfoTimeElapsed;
 
-    [JsonProperty]
     private float healthBarFlashDuration;
 
-    [JsonProperty]
     private Color healthBarFlashColour = new(0, 0, 0, 0);
 
     private float lastHealth;
     private float damageEffectCurrentValue;
 
     private bool strainIsRed;
-
-    protected CreatureStageHUDBase()
-    {
-    }
-
-    [Signal]
-    public delegate void OnOpenMenuEventHandler();
-
-    [Signal]
-    public delegate void OnOpenMenuToHelpEventHandler();
 
     /// <summary>
     ///   Gets and sets the text that appears at the upper HUD.
@@ -203,7 +195,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         set => hintText.Text = value;
     }
 
-    [JsonProperty]
     public bool EnvironmentPanelCompressed
     {
         get
@@ -227,7 +218,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         }
     }
 
-    [JsonProperty]
     public bool CompoundsPanelCompressed
     {
         get
@@ -250,6 +240,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         }
     }
 
+    public abstract ushort CurrentArchiveVersion { get; }
+    public abstract ArchiveObjectType ArchiveObjectType { get; }
+
     public override void _Ready()
     {
         base._Ready();
@@ -261,6 +254,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         SetEditorButtonFlashEffect(Settings.Instance.GUILightEffectsEnabled);
         Settings.Instance.GUILightEffectsEnabled.OnChanged += SetEditorButtonFlashEffect;
+        registeredSettingsListeners = true;
 
         damageShaderMaterial = (ShaderMaterial)damageScreenEffect.Material;
 
@@ -527,7 +521,20 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             continueAs = GetPotentialSpeciesToContinueAs();
 
             if (continueAs == null)
+            {
                 GD.Print("No species to continue as found");
+            }
+            else
+            {
+                // Make sure we don't offer an invalid option to continue as that would result in an error after
+                // pressing the continuation button
+                if (continueAs.PlayerSpecies || continueAs == stage.GameWorld.PlayerSpecies)
+                {
+                    GD.PrintErr("Tried to continue as player species (or the same species), this should not happen: ",
+                        continueAs.FormattedIdentifier);
+                    continueAs = null;
+                }
+            }
         }
 
         box.ShowContinueAs = continueAs;
@@ -604,7 +611,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         bottomLeftBar.Paused = Paused;
 
-        if (menu.Visible)
+        if (PauseMenu.Instance.Visible)
             return;
 
         if (Paused)
@@ -626,7 +633,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     /// <param name="button">The button attached to the organism to fossilise</param>
     public void ShowFossilisationDialog(FossilisationButton button)
     {
-        if (!button.AttachedEntity.IsAlive)
+        if (!button.AttachedEntity.IsAliveAndNotNull())
         {
             GD.PrintErr("Tried to show fossilization dialog for a dead entity");
             return;
@@ -689,6 +696,28 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
         environmentPanel.ShowPanel = true;
         bottomLeftBar.EnvironmentPressed = true;
+    }
+
+    public abstract void WritePropertiesToArchive(ISArchiveWriter writer);
+    public abstract void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version);
+
+    protected virtual void WriteBasePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(healthBarFlashDuration);
+        writer.Write(healthBarFlashColour);
+        writer.Write(EnvironmentPanelCompressed);
+        writer.Write(CompoundsPanelCompressed);
+    }
+
+    protected virtual void ReadBasePropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION_CREATURE or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_CREATURE);
+
+        healthBarFlashDuration = reader.ReadFloat();
+        healthBarFlashColour = reader.ReadColor();
+        EnvironmentPanelCompressed = reader.ReadBool();
+        CompoundsPanelCompressed = reader.ReadBool();
     }
 
     /// <summary>
@@ -758,13 +787,13 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
                 damageScreenEffect.Visible = false;
             }
 
-            // Start damage flash if player has taken enough damage
+            // Start damage flash if the player has taken enough damage
             if (hp < lastHealth && lastHealth - hp > Constants.SCREEN_DAMAGE_FLASH_THRESHOLD)
                 damageEffectCurrentValue = 1;
         }
         else if (damageEffectCurrentValue > 0)
         {
-            // Disable effect if user turned off the setting while flashing
+            // Disable effect if the player turned off the setting while flashing
             damageEffectCurrentValue = 0;
             damageScreenEffect.Visible = false;
         }
@@ -781,7 +810,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
         var readStrainFraction = ReadPlayerStrainFraction();
 
-        // Skip the rest of the method if the player does not have strain
+        // Skip the rest of the method if the player does not have a strain buildup
         if (readStrainFraction == null)
             return;
 
@@ -1141,16 +1170,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         return stage.GameWorld.GetClosestRelatedSpecies(currentPlayer, true, mustBeSameStage);
     }
 
-    protected void OpenMenu()
-    {
-        EmitSignal(SignalName.OnOpenMenu);
-    }
-
-    protected void OpenHelp()
-    {
-        EmitSignal(SignalName.OnOpenMenuToHelp);
-    }
-
     protected void FlashHealthBar(Color colour, float delta)
     {
         healthBarFlashDuration -= delta;
@@ -1179,6 +1198,13 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             strainBarRedFill?.Dispose();
 
             barFillName.Dispose();
+
+            if (registeredSettingsListeners)
+            {
+                Settings.Instance.DisplayAbilitiesHotBar.OnChanged -= OnAbilitiesHotBarDisplayChanged;
+                Settings.Instance.GUILightEffectsEnabled.OnChanged -= SetEditorButtonFlashEffect;
+                registeredSettingsListeners = false;
+            }
         }
 
         base.Dispose(disposing);
@@ -1228,17 +1254,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private void EnvironmentButtonPressed(bool pressed)
     {
         environmentPanel.ShowPanel = pressed;
-    }
-
-    private void HelpButtonPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        menu.OpenToHelp();
-    }
-
-    private void StatisticsButtonPressed()
-    {
-        ThriveopediaManager.OpenPage("CurrentWorld");
     }
 
     private void SpeedModeButtonPressed(bool pressed)

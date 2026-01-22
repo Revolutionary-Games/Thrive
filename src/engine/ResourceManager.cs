@@ -113,6 +113,13 @@ public partial class ResourceManager : Node
         queuedResources.Add(resource);
     }
 
+    public void CancelLoad(IResource resource)
+    {
+        // TODO: the collection is a blocking one so we cannot immediately remove the resource, so for now we use
+        // this soft cancellation flag to skip most of hte work
+        resource.CancelRequested = true;
+    }
+
     public void OnStageLoadStart(MainGameState gameState)
     {
         if (!gameStateLoaded)
@@ -178,6 +185,23 @@ public partial class ResourceManager : Node
         // Done loading
         totalStageResourcesLoaded = totalStageResourcesToLoad;
         gameStateLoaded = true;
+
+#if DEBUG
+        var resources = SimulationParameters.Instance.GetStageResources(gameStateThatIsLoading);
+
+        foreach (var resource in resources.RequiredScenes)
+        {
+            if (!resource.Loaded || resource.LoadedScene == null)
+            {
+                GD.PrintErr(
+                    $"Somehow preloaded scene is not loaded for stage ({gameStateThatIsLoading}): {resource.Path}");
+
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+            }
+        }
+#endif
+
         return true;
     }
 
@@ -263,8 +287,8 @@ public partial class ResourceManager : Node
                 {
                     var resource = processingResources[i];
 
-                    // If already loaded, don't need to do anything
-                    if (resource.Loaded)
+                    // If already loaded, don't need to do anything (or if cancelled)
+                    if (resource.Loaded || resource.CancelRequested)
                     {
                         processingResources.RemoveAt(i);
                         --count;
@@ -336,6 +360,10 @@ public partial class ResourceManager : Node
             }
             else if (queuedResources.TryTake(out var queueResource, 0))
             {
+                // Early skip cancelled items
+                if (queueResource.CancelRequested)
+                    continue;
+
                 processingResources.AddToBack(queueResource);
                 hasThingsInQueue = true;
                 progressedLoading = true;

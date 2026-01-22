@@ -1,34 +1,31 @@
-﻿using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
+﻿using System.Runtime.CompilerServices;
+using Arch.System;
+using Components;
 using Systems;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
-[With(typeof(StrainAffected))]
-[With(typeof(MicrobeControl))]
-[With(typeof(OrganelleContainer))]
+/// <summary>
+///   Handles strain buildup, reduction, and preventing sprinting when under too much strain
+/// </summary>
 [ReadsComponent(typeof(OrganelleContainer))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
-public sealed class StrainSystem : AEntitySetSystem<float>
+[RuntimeCost(0.5f)]
+public partial class StrainSystem : BaseSystem<World, float>
 {
-    public StrainSystem(World world, IParallelRunner runner) : base(world, runner,
-        Constants.SYSTEM_EXTREME_ENTITIES_PER_THREAD)
+    public StrainSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref StrainAffected strain, ref MicrobeControl control,
+        ref OrganelleContainer organelles)
     {
-        ref var strain = ref entity.Get<StrainAffected>();
-        ref var control = ref entity.Get<MicrobeControl>();
-
         if (control.OutOfSprint && control.Sprinting)
             control.Sprinting = false;
 
         if (strain.IsUnderStrain)
         {
-            ref var organelles = ref entity.Get<OrganelleContainer>();
-
             var strainIncrease = Constants.SPRINTING_STRAIN_INCREASE_PER_SECOND * delta;
             strainIncrease += organelles.HexCount * Constants.SPRINTING_STRAIN_INCREASE_PER_HEX;
 

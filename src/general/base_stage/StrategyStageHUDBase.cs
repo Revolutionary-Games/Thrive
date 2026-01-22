@@ -40,13 +40,6 @@ public partial class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySta
     {
     }
 
-    // These signals need to be copied to inheriting classes for Godot editor to pick them up
-    [Signal]
-    public delegate void OnOpenMenuEventHandler();
-
-    [Signal]
-    public delegate void OnOpenMenuToHelpEventHandler();
-
     [Signal]
     public delegate void OnStartResearchingEventHandler(string technology);
 
@@ -115,21 +108,6 @@ public partial class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySta
         // {
         //     // TODO: fossilisation if still wanted in this stage
         // }
-    }
-
-    protected void OpenMenu()
-    {
-        EmitSignal(SignalName.OnOpenMenu);
-    }
-
-    protected void OpenHelp()
-    {
-        EmitSignal(SignalName.OnOpenMenuToHelp);
-    }
-
-    private void StatisticsButtonPressed()
-    {
-        ThriveopediaManager.OpenPage("CurrentWorld");
     }
 
     private void ResearchScreenClosed()

@@ -109,7 +109,8 @@ public static class MicrobeInternalCalculations
         }
     }
 
-    public static float GetNominalCapacityForOrganelle(OrganelleDefinition definition, OrganelleUpgrades? upgrades)
+    public static float GetNominalCapacityForOrganelle(OrganelleDefinition definition,
+        IReadOnlyOrganelleUpgrades? upgrades)
     {
         if (upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
             storage.SpecializedFor != Compound.Invalid)
@@ -124,7 +125,7 @@ public static class MicrobeInternalCalculations
     }
 
     public static (Compound Compound, float Capacity)
-        GetAdditionalCapacityForOrganelle(OrganelleDefinition definition, OrganelleUpgrades? upgrades)
+        GetAdditionalCapacityForOrganelle(OrganelleDefinition definition, IReadOnlyOrganelleUpgrades? upgrades)
     {
         if (definition.Components.Storage == null)
             return (Compound.Invalid, 0);
@@ -546,7 +547,7 @@ public static class MicrobeInternalCalculations
     {
         if (usedProcessesCache == null)
         {
-            usedProcessesCache = new HashSet<BioProcess>();
+            usedProcessesCache = new HashSet<BioProcess>(organelles.Count + 1);
         }
         else
         {
@@ -790,6 +791,35 @@ public static class MicrobeInternalCalculations
             return Constants.AI_ACTIVITY_NIGHT_MULTIPLIER_SESSILE;
 
         return Constants.AI_ACTIVITY_NIGHT_MULTIPLIER;
+    }
+
+    public static void GetBindingAndSignalling(IReadOnlyList<OrganelleTemplate> organelles, out bool hasBindingAgent,
+        out bool hasSignallingAgent)
+    {
+        int count = organelles.Count;
+        hasBindingAgent = false;
+        hasSignallingAgent = false;
+
+        for (int i = 0; i < count; ++i)
+        {
+            var organelleDefinition = organelles[i].Definition;
+
+            if (organelleDefinition.HasBindingFeature)
+            {
+                hasBindingAgent = true;
+
+                if (hasSignallingAgent)
+                    break;
+            }
+
+            if (organelleDefinition.HasSignalingFeature)
+            {
+                hasSignallingAgent = true;
+
+                if (hasBindingAgent)
+                    break;
+            }
+        }
     }
 
     private static float MovementForce(float movementForce, float directionFactor)

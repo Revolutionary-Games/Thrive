@@ -1,24 +1,23 @@
 ﻿namespace Systems;
 
 using System;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Handles playing microbe damage sounds and clearing the list of received damage on a microbe
 /// </summary>
-[With(typeof(Health))]
-[With(typeof(SoundEffectPlayer))]
 [WritesToComponent(typeof(SoundEffectPlayer))]
 [RunsBefore(typeof(SoundEffectSystem))]
 [RuntimeCost(0.5f)]
-public sealed class DamageSoundSystem : AEntitySetSystem<float>
+public partial class DamageSoundSystem : BaseSystem<World, float>
 {
     private GameWorld? gameWorld;
 
-    public DamageSoundSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner)
+    public DamageSoundSystem(World world) : base(world)
     {
     }
 
@@ -28,26 +27,22 @@ public sealed class DamageSoundSystem : AEntitySetSystem<float>
         gameWorld = world;
     }
 
-    protected override void PreUpdate(float state)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(state);
-
         if (gameWorld == null)
             throw new InvalidOperationException("GameWorld not set");
     }
 
-    protected override void Update(float state, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref Health health, ref SoundEffectPlayer soundEffectPlayer, in Entity entity)
     {
-        ref var health = ref entity.Get<Health>();
-
         var receivedDamage = health.RecentDamageReceived;
 
         // We don't lock here before checking the count, it's probably fine as it should just read a single int,
         // but in the future if we get random crashes, add a "lock" statement around also the count access.
         if (receivedDamage == null || receivedDamage.Count < 1)
             return;
-
-        ref var soundEffectPlayer = ref entity.Get<SoundEffectPlayer>();
 
         bool isPlayer = entity.Has<PlayerMarker>();
 
@@ -74,9 +69,9 @@ public sealed class DamageSoundSystem : AEntitySetSystem<float>
                 }
                 else if (damageSource == "pilus")
                 {
-                    // Play the pilus sound
+                    // Play the pilus sound (volume is relative to damage inflicted)
                     soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/pilus_puncture_stab.ogg",
-                        4.0f);
+                        0.75f + damageEventNotice.Amount / Constants.PILUS_MAX_DAMAGE * 3.25f);
                 }
                 else if (damageSource == "chunk")
                 {

@@ -1,10 +1,8 @@
 ﻿using System;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
-[JSONAlwaysDynamicType]
 public class CellRemoveActionData : HexRemoveActionData<HexWithData<CellTemplate>, MulticellularSpecies>
 {
-    [JsonConstructor]
     public CellRemoveActionData(HexWithData<CellTemplate> hex, Hex location, int orientation) : base(hex, location,
         orientation)
     {
@@ -15,16 +13,29 @@ public class CellRemoveActionData : HexRemoveActionData<HexWithData<CellTemplate
     {
     }
 
-    protected override CombinableActionData CreateDerivedMoveAction(
-        HexPlacementActionData<HexWithData<CellTemplate>, MulticellularSpecies> data)
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION_HEX;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.CellRemoveActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
-        return new CellMoveActionData(data.PlacedHex, Location, data.Location,
-            Orientation, data.Orientation);
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.CellRemoveActionData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((CellRemoveActionData)obj);
     }
 
-    protected override CombinableActionData CreateDerivedRemoveAction(HexMoveActionData<HexWithData<CellTemplate>,
-        MulticellularSpecies> data)
+    public static CellRemoveActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
-        return new CellRemoveActionData(RemovedHex, data.OldLocation, data.OldRotation);
+        if (version is > SERIALIZATION_VERSION_HEX or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_HEX);
+
+        var instance = new CellRemoveActionData(reader.ReadObject<HexWithData<CellTemplate>>(), reader.ReadHex(),
+            reader.ReadInt32());
+
+        instance.ReadBasePropertiesFromArchive(reader, version);
+
+        return instance;
     }
 }

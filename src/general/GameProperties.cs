@@ -2,84 +2,81 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   This contains the single game settings.
 ///   This is recreated when starting a new game
 /// </summary>
-[JsonObject(IsReference = true)]
-public class GameProperties
+public class GameProperties : IArchivable
 {
-    [JsonProperty]
-    private readonly Dictionary<string, bool> setBoolStatuses = new();
+    public const int SERIALIZATION_VERSION = 1;
 
-    [JsonProperty]
-    private bool freeBuild;
-
-    [JsonProperty]
-    private bool cheatsUsed;
+    private readonly Dictionary<string, bool> setBoolStatuses;
 
     private GameProperties(WorldGenerationSettings? settings = null, Species? startingSpecies = null)
     {
         settings ??= new WorldGenerationSettings();
         GameWorld = new GameWorld(settings, startingSpecies);
         TutorialState = new TutorialState();
+        setBoolStatuses = new Dictionary<string, bool>();
     }
 
-    [JsonConstructor]
-    private GameProperties(GameWorld gameWorld, TutorialState tutorialState)
+    // Archive constructor
+    private GameProperties(GameWorld gameWorld, TutorialState tutorialState, Dictionary<string, bool> boolStatuses)
     {
         GameWorld = gameWorld;
         TutorialState = tutorialState;
+        setBoolStatuses = boolStatuses;
     }
 
     /// <summary>
     ///   The world this game is played in. Has all the species and map data
     /// </summary>
-    [JsonProperty]
     public GameWorld GameWorld { get; }
 
     /// <summary>
-    ///   When true the player is in freebuild mode and various things
+    ///   When true, the player is in freebuild mode, and various things
     ///   should be disabled / different.
     /// </summary>
-    [JsonIgnore]
-    public bool FreeBuild => freeBuild;
+    public bool FreeBuild { get; private set; }
 
     /// <summary>
     ///   True if the player has cheated in this game
     /// </summary>
-    [JsonIgnore]
-    public bool CheatsUsed => cheatsUsed;
+    public bool CheatsUsed { get; private set; }
 
     /// <summary>
     ///   True when the player is currently ascended and should be allowed to do anything
     /// </summary>
-    [JsonProperty]
     public bool Ascended { get; private set; }
 
     /// <summary>
     ///   Counts how many times the player has ascended with the current game in total
     /// </summary>
-    [JsonProperty]
     public int AscensionCounter { get; private set; }
 
     /// <summary>
     ///   The tutorial state for this game
     /// </summary>
-    [JsonProperty]
     public TutorialState TutorialState { get; }
 
-    // TODO: start using this to prevent saving
     /// <summary>
     ///   Set to true when the player has entered the stage prototypes and some extra restrictions apply
     /// </summary>
     public bool InPrototypes { get; private set; }
 
-    // Not saved for now as this is only in prototypes
-    [JsonIgnore]
+    /// <summary>
+    ///   ID of this playthrough
+    /// </summary>
+    public Guid PlaythroughID { get; private set; } = Guid.NewGuid();
+
     public TechWeb TechWeb { get; private set; } = new();
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.GameProperties;
+    public bool CanBeReferencedInArchive => true;
 
     /// <summary>
     ///   Starts a new game in the microbe stage
@@ -112,7 +109,11 @@ public class GameProperties
     /// </remarks>
     public static GameProperties StartNewMulticellularGame(WorldGenerationSettings settings, bool freebuild = false)
     {
+        settings.Origin = WorldGenerationSettings.LifeOrigin.Pond;
+
         var game = new GameProperties(settings);
+
+        OxygenateWorld(game.GameWorld.Map);
 
         // Modify the player species to actually make sense to be in the multicellular stage
         var playerSpecies = MakePlayerOrganellesMakeSenseForMulticellular(game);
@@ -163,8 +164,8 @@ public class GameProperties
         var playerSpecies = (MacroscopicSpecies)game.GameWorld.PlayerSpecies;
 
         // Create the brain tissue type
-        var brainType = (CellType)playerSpecies.CellTypes.First().Clone();
-        brainType.TypeName = Localization.Translate("BRAIN_CELL_NAME_DEFAULT");
+        var brainType = (CellType)playerSpecies.ModifiableCellTypes.First().Clone();
+        brainType.CellTypeName = Localization.Translate("BRAIN_CELL_NAME_DEFAULT");
         brainType.Colour = new Color(0.807f, 0.498f, 0.498f);
 
         var axon = SimulationParameters.Instance.GetOrganelleType("axon");
@@ -177,10 +178,10 @@ public class GameProperties
             var template = new OrganelleTemplate(axon, new Hex(0, r), 0);
 
             // Add no longer allows replacing cytoplasm by default
-            if (!brainType.Organelles.CanPlaceAndIsTouching(template, false, workMemory1, workMemory2, false))
+            if (!brainType.ModifiableOrganelles.CanPlaceAndIsTouching(template, false, workMemory1, workMemory2, false))
                 continue;
 
-            brainType.Organelles.AddFast(template, workMemory1, workMemory2);
+            brainType.ModifiableOrganelles.AddFast(template, workMemory1, workMemory2);
             brainType.RepositionToOrigin();
             break;
         }
@@ -188,10 +189,10 @@ public class GameProperties
         if (!brainType.IsBrainTissueType())
             throw new Exception("Converting to brain tissue type failed");
 
-        playerSpecies.CellTypes.Add(brainType);
+        playerSpecies.ModifiableCellTypes.Add(brainType);
 
         // Place enough of that for becoming aware
-        while (MacroscopicSpecies.CalculateMacroscopicTypeFromLayout(playerSpecies.BodyLayout,
+        while (MacroscopicSpecies.CalculateMacroscopicTypeFromLayout(playerSpecies.ModifiableBodyLayout,
                    playerSpecies.Scale) == MacroscopicSpeciesType.Macroscopic)
         {
             AddBrainTissue(playerSpecies);
@@ -212,7 +213,7 @@ public class GameProperties
         // Further modify the player species to qualify for awakening stage
         var playerSpecies = (MacroscopicSpecies)game.GameWorld.PlayerSpecies;
 
-        while (MacroscopicSpecies.CalculateMacroscopicTypeFromLayout(playerSpecies.BodyLayout,
+        while (MacroscopicSpecies.CalculateMacroscopicTypeFromLayout(playerSpecies.ModifiableBodyLayout,
                    playerSpecies.Scale) != MacroscopicSpeciesType.Awakened)
         {
             AddBrainTissue(playerSpecies);
@@ -271,6 +272,48 @@ public class GameProperties
         return game;
     }
 
+    public static GameProperties ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new GameProperties(reader.ReadObject<GameWorld>(),
+            reader.ReadObject<TutorialState>(),
+            reader.ReadObject<Dictionary<string, bool>>());
+
+        reader.ReportObjectConstructorDone(instance, referenceId);
+
+        instance.FreeBuild = reader.ReadBool();
+        instance.CheatsUsed = reader.ReadBool();
+        instance.Ascended = reader.ReadBool();
+        instance.AscensionCounter = reader.ReadInt32();
+        instance.InPrototypes = reader.ReadBool();
+        instance.PlaythroughID = Guid.Parse(reader.ReadString() ?? throw new NullArchiveObjectException());
+
+        // Not saved currently
+        // instance.TechWeb = reader.ReadObject<TechWeb>();
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(GameWorld);
+        writer.WriteObject(TutorialState);
+        writer.WriteObject(setBoolStatuses);
+
+        writer.Write(FreeBuild);
+        writer.Write(CheatsUsed);
+        writer.Write(Ascended);
+        writer.Write(AscensionCounter);
+        writer.Write(InPrototypes);
+        writer.Write(PlaythroughID.ToString());
+
+        // Not saved for now as this is only used in the prototypes
+
+        // writer.WriteObject(TechWeb);
+    }
+
     /// <summary>
     ///   Returns whether a key has a true bool set to it
     /// </summary>
@@ -295,7 +338,7 @@ public class GameProperties
     public void EnterFreeBuild()
     {
         GD.Print("Entering freebuild mode");
-        freeBuild = true;
+        FreeBuild = true;
     }
 
     public void EnterPrototypes()
@@ -321,7 +364,7 @@ public class GameProperties
 
     public void ReportCheatsUsed()
     {
-        cheatsUsed = true;
+        CheatsUsed = true;
     }
 
     public void BecomeDescendedVersionOf(GameProperties descendedGame)
@@ -339,6 +382,32 @@ public class GameProperties
         ApplyDescensionPerks();
     }
 
+    private static void OxygenateWorld(PatchMap map)
+    {
+        var changes = new Dictionary<Compound, float>();
+
+        // ReSharper disable once CollectionNeverUpdated.Local
+        var cloudSizes = new Dictionary<Compound, float>();
+
+        var random = new XoShiRo256starstar();
+
+        foreach (var patch in map.Patches.Values)
+        {
+            var hasOxygen = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Oxygen,
+                out var currentOxygen);
+
+            if (!hasOxygen)
+                continue;
+
+            currentOxygen.Ambient = patch.IsSurfacePatch() ? random.Next(0.3f, 0.4f) : random.Next(0.05f, 0.15f);
+            changes[Compound.Oxygen] = currentOxygen.Ambient;
+            patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, cloudSizes);
+
+            changes.Clear();
+            cloudSizes.Clear();
+        }
+    }
+
     private static MicrobeSpecies MakePlayerOrganellesMakeSenseForMulticellular(GameProperties game)
     {
         var simulationParameters = SimulationParameters.Instance;
@@ -351,7 +420,7 @@ public class GameProperties
             new Hex(0, -3), 0), workMemory1, workMemory2);
         playerSpecies.IsBacteria = false;
 
-        var hydrogenosome = simulationParameters.GetOrganelleType("hydrogenosome");
+        var mitochondrion = simulationParameters.GetOrganelleType("mitochondrion");
 
         // Remove the original cytoplasm in the species and replace with hydrogenosome for a more efficient layout
         playerSpecies.Organelles.RemoveHexAt(new Hex(0, 0), workMemory1);
@@ -359,13 +428,13 @@ public class GameProperties
         playerSpecies.Organelles.AddFast(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
             new Hex(0, 2), 0), workMemory1, workMemory2);
 
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(mitochondrion,
             new Hex(-1, 2), 0), workMemory1, workMemory2);
 
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(mitochondrion,
             new Hex(1, 1), 0), workMemory1, workMemory2);
 
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(mitochondrion,
             new Hex(0, 1), 0), workMemory1, workMemory2);
 
         var cytoplasm = simulationParameters.GetOrganelleType("cytoplasm");
@@ -383,9 +452,9 @@ public class GameProperties
     private static void MakeCellPlacementMakeSenseForMacroscopic(MulticellularSpecies species)
     {
         // We want at least COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC cells in a kind of long pattern
-        species.Cells.Clear();
+        species.ModifiableGameplayCells.Clear();
 
-        var type = species.CellTypes.First();
+        var type = species.ModifiableCellTypes.First();
 
         int columns = 3;
 
@@ -411,9 +480,9 @@ public class GameProperties
                 while (!placed)
                 {
                     var template = new CellTemplate(type, columnStart, 0);
-                    if (species.Cells.CanPlace(template, workMemory1, workMemory2))
+                    if (species.ModifiableGameplayCells.CanPlace(template, workMemory1, workMemory2))
                     {
-                        species.Cells.AddFast(template, workMemory1, workMemory2);
+                        species.ModifiableGameplayCells.AddFast(template, workMemory1, workMemory2);
                         placed = true;
                         break;
                     }
@@ -437,9 +506,9 @@ public class GameProperties
             for (int distance = 0; distance < 10000; ++distance)
             {
                 var template = new CellTemplate(type, columnStart + columnCellOffset * distance, 0);
-                if (species.Cells.CanPlace(template, workMemory1, workMemory2))
+                if (species.ModifiableGameplayCells.CanPlace(template, workMemory1, workMemory2))
                 {
-                    species.Cells.AddFast(template, workMemory1, workMemory2);
+                    species.ModifiableGameplayCells.AddFast(template, workMemory1, workMemory2);
                     --columnCellsLeft;
 
                     if (columnCellsLeft < 1)
@@ -449,7 +518,7 @@ public class GameProperties
         }
 
         // Make sure we hit the required cell count
-        while (species.Cells.Count < Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC)
+        while (species.ModifiableGameplayCells.Count < Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC)
         {
             var direction = new Vector2(0, -1);
 
@@ -459,9 +528,9 @@ public class GameProperties
                 var template = new CellTemplate(type,
                     new Hex(MathUtils.RoundToInt(finalPos.X), MathUtils.RoundToInt(finalPos.Y)), 0);
 
-                if (species.Cells.CanPlace(template, workMemory1, workMemory2))
+                if (species.ModifiableGameplayCells.CanPlace(template, workMemory1, workMemory2))
                 {
-                    species.Cells.AddFast(template, workMemory1, workMemory2);
+                    species.ModifiableGameplayCells.AddFast(template, workMemory1, workMemory2);
                     break;
                 }
             }
@@ -472,7 +541,7 @@ public class GameProperties
 
     private static void AddBrainTissue(MacroscopicSpecies species, float brainTissueSize = 1)
     {
-        var axonType = species.CellTypes.First(c => c.IsBrainTissueType());
+        var axonType = species.ModifiableCellTypes.First(c => c.IsBrainTissueType());
 
         // TODO: a more intelligent algorithm
         // For now just find free positions above the origin and link it to the closest metaball
@@ -504,25 +573,25 @@ public class GameProperties
 
                     metaball.Position = position;
 
-                    var (overlap, parent) = species.BodyLayout.CheckOverlapAndFindClosest(metaball);
+                    var (overlap, parent) = species.ModifiableBodyLayout.CheckOverlapAndFindClosest(metaball);
 
                     if (overlap)
                         continue;
 
                     // Found a suitable place, adjust the position to be touching the parent
-                    metaball.Parent = parent;
+                    metaball.ModifiableParent = parent;
                     metaball.AdjustPositionToTouchParent();
 
                     // Skip if now the metaball would end up being inside something else
                     // TODO: a better approach would be to slide the metaball around its parent until it is no longer
                     // touching
-                    if (species.BodyLayout.CheckOverlapAndFindClosest(metaball).Overlap)
+                    if (species.ModifiableBodyLayout.CheckOverlapAndFindClosest(metaball).Overlap)
                     {
-                        metaball.Parent = null;
+                        metaball.ModifiableParent = null;
                         continue;
                     }
 
-                    species.BodyLayout.Add(metaball);
+                    species.ModifiableBodyLayout.Add(metaball);
                     return;
                 }
             }

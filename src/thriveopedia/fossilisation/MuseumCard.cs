@@ -17,6 +17,9 @@ public partial class MuseumCard : Button
     [Export]
     private TextureButton deleteButton = null!;
 
+    [Export]
+    private Control outdatedText = null!;
+
     // TODO: check if this should be disposed
     private Image? fossilPreviewImage;
 
@@ -24,7 +27,9 @@ public partial class MuseumCard : Button
 
     private Color defaultDeleteModulate;
 
-    private Species? savedSpecies;
+    private string? speciesName;
+
+    private bool outdated;
 
     [Signal]
     public delegate void OnSpeciesSelectedEventHandler(MuseumCard card);
@@ -33,20 +38,20 @@ public partial class MuseumCard : Button
     public delegate void OnSpeciesDeletedEventHandler(MuseumCard card);
 
     /// <summary>
-    ///   The fossilised species associated with this card.
+    ///   The name of the fossilised species.
     /// </summary>
-    public Species? SavedSpecies
+    public string? SpeciesName
     {
-        get => savedSpecies;
+        get => speciesName;
         set
         {
-            savedSpecies = value;
+            speciesName = value;
             UpdateSpeciesName();
         }
     }
 
     /// <summary>
-    ///   If the fossil file had a preview image, that is set here and is used used to preview the species
+    ///   If the fossil file had a preview image, that is set here and is used to preview the species
     /// </summary>
     public Image? FossilPreviewImage
     {
@@ -61,7 +66,31 @@ public partial class MuseumCard : Button
         }
     }
 
+    /// <summary>
+    ///   If set to true, the card cannot be loaded and is shown with the "outdated" text
+    /// </summary>
+    public bool Outdated
+    {
+        get => outdated;
+        set
+        {
+            outdated = value;
+            UpdateOutdatedStatus();
+        }
+    }
+
     public string? FossilName { get; set; }
+
+    /// <summary>
+    ///   Original file name this data is loaded from
+    /// </summary>
+    public string OriginalName { get; set; } = string.Empty;
+
+    /// <summary>
+    ///   Indicates if this card is marked for a specific operation.
+    ///   Should be reset to false by any method using it.
+    /// </summary>
+    public bool Marked { get; set; }
 
     public override void _Ready()
     {
@@ -71,6 +100,7 @@ public partial class MuseumCard : Button
 
         UpdateSpeciesName();
         UpdatePreviewImage();
+        UpdateOutdatedStatus();
     }
 
     protected override void Dispose(bool disposing)
@@ -85,10 +115,10 @@ public partial class MuseumCard : Button
 
     private void UpdateSpeciesName()
     {
-        if (SavedSpecies == null || speciesNameLabel == null)
+        if (SpeciesName == null || speciesNameLabel == null)
             return;
 
-        speciesNameLabel.Text = SavedSpecies.FormattedName;
+        speciesNameLabel.Text = SpeciesName;
     }
 
     private void UpdatePreviewImage()
@@ -107,10 +137,19 @@ public partial class MuseumCard : Button
         }
     }
 
+    private void UpdateOutdatedStatus()
+    {
+        if (speciesPreview == null)
+            return;
+
+        speciesPreview.Modulate = outdated ? Colors.DarkSlateGray : Colors.White;
+        outdatedText.Visible = outdated;
+    }
+
     private void OnPressed()
     {
-        // TODO: it's slightly non-optimal that this triggers first and then OnDeletePressed when pressing on the
-        // delete button. Could maybe queue invoke the species select and skip that if the delete got pressed?
+        if (outdated)
+            return;
 
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(SignalName.OnSpeciesSelected, this);
@@ -118,12 +157,18 @@ public partial class MuseumCard : Button
 
     private void OnMouseEnter()
     {
+        if (outdated)
+            return;
+
         var tween = CreateTween();
         tween.TweenProperty(speciesPreview, modulateReference, Colors.Gray, 0.5);
     }
 
     private void OnMouseExit()
     {
+        if (outdated)
+            return;
+
         var tween = CreateTween();
         tween.TweenProperty(speciesPreview, modulateReference, Colors.White, 0.5);
     }

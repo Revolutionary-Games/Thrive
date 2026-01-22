@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
+using Saving;
+using Saving.Serializers;
 using DirAccess = Godot.DirAccess;
 using FileAccess = Godot.FileAccess;
 using Path = System.IO.Path;
@@ -17,34 +19,43 @@ public static class SaveHelper
 {
     /// <summary>
     ///   This is a list of known versions where save compatibility is very broken and loading needs to be prevented
-    ///   (unless there exists a version converter)
+    ///   (unless there exists a version converter).
+    ///   See also the opposite list in <see cref="CompatibleSaveVersions"/>
     /// </summary>
-    private static readonly List<string> KnownSaveIncompatibilityPoints = new()
-    {
+    private static readonly List<string> KnownSaveIncompatibilityPoints =
+    [
         "0.5.3.0",
         "0.5.3.1",
         "0.5.5.0-alpha",
         "0.5.9.0-alpha",
         "0.6.4.0-alpha",
         "0.6.6.0-alpha",
-    };
+        "0.8.4.0-alpha",
+        "0.9.0.0",
+    ];
 
-    private static readonly IReadOnlyList<MainGameState> StagesAllowingPrototypeSaving = new[]
-    {
+    private static readonly IReadOnlyList<MainGameState> StagesAllowingPrototypeSaving =
+    [
         MainGameState.MicrobeStage,
-    };
+        MainGameState.MulticellularEditor,
+    ];
 
     private static DateTime? lastSave;
+
+    // Just in case multiple threads might want to access this
+    private static object archiveManagerUseLock = new();
+
+    private static ThriveArchiveManager? cachedArchiveManager;
 
     public enum SaveOrder
     {
         /// <summary>
-        ///   The last modified (on disk) save is first
+        ///   The last modified (on disk) save is the first
         /// </summary>
         LastModifiedFirst,
 
         /// <summary>
-        ///   The first modified (on disk) save is first (oldest first)
+        ///   The first modified (on disk) save is the first (oldest first)
         /// </summary>
         FirstModifiedFirst,
 
@@ -87,7 +98,7 @@ public static class SaveHelper
     public static bool SavedRecently => lastSave != null ? DateTime.Now - lastSave < Constants.RecentSaveTime : false;
 
     /// <summary>
-    ///   Determines whether it's allowed to perform quick save and quick load, if set to false they will be disabled.
+    ///   Determines whether it's allowed to perform quick save and quick load, if set to false, they will be disabled.
     /// </summary>
     public static bool AllowQuickSavingAndLoading { get; set; } = true;
 
@@ -111,6 +122,15 @@ public static class SaveHelper
         {
             save.SavedProperties = state.CurrentGame;
             save.MicrobeEditor = state;
+        }, () => state, name);
+    }
+
+    public static void Save(string name, MulticellularEditor state)
+    {
+        InternalSaveHelper(SaveInformation.SaveType.Manual, MainGameState.MulticellularEditor, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MulticellularEditor = state;
         }, () => state, name);
     }
 
@@ -140,6 +160,15 @@ public static class SaveHelper
         }, () => state);
     }
 
+    public static void QuickSave(MulticellularEditor state)
+    {
+        InternalSaveHelper(SaveInformation.SaveType.QuickSave, MainGameState.MulticellularEditor, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MulticellularEditor = state;
+        }, () => state);
+    }
+
     /// <summary>
     ///   Auto save the game (if enabled in settings)
     /// </summary>
@@ -164,6 +193,18 @@ public static class SaveHelper
         {
             save.SavedProperties = state.CurrentGame;
             save.MicrobeEditor = state;
+        }, () => state);
+    }
+
+    public static void AutoSave(MulticellularEditor state)
+    {
+        if (!Settings.Instance.AutoSaveEnabled)
+            return;
+
+        InternalSaveHelper(SaveInformation.SaveType.AutoSave, MainGameState.MulticellularEditor, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MulticellularEditor = state;
         }, () => state);
     }
 
@@ -272,6 +313,78 @@ public static class SaveHelper
             {
                 result = result.OrderBy(s =>
                     FileAccess.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, s))).ToList();
+
+                break;
+            }
+        }
+
+        return result;
+    }
+
+    public static IEnumerable<(string SaveName, SaveInformation SaveInfo)> CreateListOfAutoSavesForGame(
+        Guid playthrough, SaveOrder order = SaveOrder.LastModifiedFirst)
+    {
+        var result = new List<(string SaveName, SaveInformation SaveInfo)>();
+
+        using var directory = DirAccess.Open(Constants.SAVE_FOLDER);
+
+        if (directory == null)
+            return result;
+
+        if (directory.ListDirBegin() != Error.Ok)
+        {
+            GD.PrintErr("Failed to begin listing files in saves folder");
+            return result;
+        }
+
+        while (true)
+        {
+            var filename = directory.GetNext();
+
+            if (string.IsNullOrEmpty(filename))
+                break;
+
+            if (!filename.EndsWith(Constants.SAVE_EXTENSION, StringComparison.Ordinal))
+                continue;
+
+            if (!Constants.AutoSaveRegex.IsMatch(filename))
+                continue;
+
+            // Skip folders
+            if (!directory.FileExists(filename))
+                continue;
+
+            // Need to load the save info here to determine the playthrough ID
+            try
+            {
+                var saveInfo = global::Save.LoadJustInfoFromSave(filename);
+                if (saveInfo.PlaythroughID != playthrough)
+                    continue;
+
+                result.Add((filename, saveInfo));
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr($"Failed to load save info for {filename}: {e}");
+            }
+        }
+
+        directory.ListDirEnd();
+
+        switch (order)
+        {
+            case SaveOrder.LastModifiedFirst:
+            {
+                result = result.OrderByDescending(s =>
+                    FileAccess.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, s.SaveName))).ToList();
+
+                break;
+            }
+
+            case SaveOrder.FirstModifiedFirst:
+            {
+                result = result.OrderBy(s =>
+                    FileAccess.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, s.SaveName))).ToList();
 
                 break;
             }
@@ -400,7 +513,7 @@ public static class SaveHelper
 
     /// <summary>
     ///   Returns true if the specified version is known to be incompatible
-    ///   from list in KnownSaveIncompatibilityPoints
+    ///   from a list in KnownSaveIncompatibilityPoints
     /// </summary>
     /// <param name="saveVersion">The save's version to check</param>
     /// <returns>True if certainly incompatible</returns>
@@ -457,6 +570,16 @@ public static class SaveHelper
     public static void ClearLastSaveTime()
     {
         lastSave = null;
+    }
+
+    /// <summary>
+    ///   Checks if a game state (that is a prototype) allows saving or not
+    /// </summary>
+    /// <param name="gameState">Game state to check</param>
+    /// <returns>True if saving is allowed despite being a prototype</returns>
+    public static bool CanSaveInPrototype(MainGameState gameState)
+    {
+        return StagesAllowingPrototypeSaving.Contains(gameState);
     }
 
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
@@ -545,16 +668,34 @@ public static class SaveHelper
 
     private static void PerformSave(InProgressSave inProgress, Save save)
     {
-        // Ensure the prototype state flag is also in the info data for use by the save list
-        save.Info.IsPrototype = save.SavedProperties?.InPrototypes ??
+        if (save.SavedProperties == null)
             throw new InvalidOperationException("Saved properties of a save to write to disk is unset");
+
+        // Ensure the prototype state flag is also in the info data for use by the save list (and other properties
+        // that are useful for quick access)
+        save.Info.IsPrototype = save.SavedProperties.InPrototypes;
+
+        save.Info.PlaythroughID = save.SavedProperties.PlaythroughID;
+
+        save.Info.GameState = save.GameState;
 
         // Ensure the cheat state flag is copied
         save.Info.CheatsUsed = save.SavedProperties.CheatsUsed;
 
+        save.Info.SaveVersion = SaveInformation.CURRENT_SAVE_VERSION;
+
         try
         {
+            lock (archiveManagerUseLock)
+            {
+                cachedArchiveManager ??= new ThriveArchiveManager();
+                save.SerializeData(cachedArchiveManager);
+            }
+
+            save.Info.HashOfArchiveContents = save.GetArchiveHash();
+
             save.SaveToFile();
+            save.Dispose();
             inProgress.ReportStatus(true, Localization.Translate("SAVING_SUCCEEDED"));
         }
         catch (Exception e)
@@ -563,6 +704,12 @@ public static class SaveHelper
             if (Debugger.IsAttached)
                 Debugger.Break();
 #endif
+
+            // Ensure archive manager is in good state
+            lock (archiveManagerUseLock)
+            {
+                cachedArchiveManager?.Clear();
+            }
 
             // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
             if (!Constants.CATCH_SAVE_ERRORS)

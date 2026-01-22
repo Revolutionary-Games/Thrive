@@ -3,17 +3,19 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DefaultEcs;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
 ///   Entity that contains <see cref="PlacedOrganelle"/>
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct OrganelleContainer
+public struct OrganelleContainer : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   Instances of all the organelles in this entity. This is saved but components are not saved. This means
     ///   that components are re-created when a save is loaded.
@@ -33,41 +35,36 @@ public struct OrganelleContainer
     public Dictionary<ToxinType, int>? AvailableToxinTypes;
 
     // The following few component vectors exist to allow access to update the state of a few organelle components
-    // from various systems to update the visuals state
+    // from various systems to update the visual state
 
     // TODO: maybe move these component caches to a separate component to reduce this component's size?
     /// <summary>
     ///   The slime jets attached to this microbe. JsonIgnore as the components add themselves to this list each
     ///   load (as they are recreated).
     /// </summary>
-    [JsonIgnore]
     public List<SlimeJetComponent>? SlimeJets;
 
     /// <summary>
     ///   Flagellum components that need to be animated when the cell is moving at top speed
     /// </summary>
-    [JsonIgnore]
     public List<MovementComponent>? ThrustComponents;
 
     // Note that this exists here for the potential future need that MicrobeMovementSystem will need to use cilia
-    // and reduce rotation rate if not enough ATP to rotate at full speed
+    // and reduce the rotation rate if not enough ATP to rotate at full speed
     // ReSharper disable once CollectionNeverQueried.Global
     /// <summary>
     ///   Cilia components that need to be animated when the cell is rotating fast
     /// </summary>
-    [JsonIgnore]
     public List<CiliaComponent>? RotationComponents;
 
     /// <summary>
     ///   Compound detections set by chemoreceptor organelles.
     /// </summary>
-    [JsonIgnore]
     public HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)>? ActiveCompoundDetections;
 
     /// <summary>
     ///   Compound detections set by chemoreceptor organelles.
     /// </summary>
-    [JsonIgnore]
     public HashSet<(Species TargetSpecies, float Range, Color Colour)>? ActiveSpeciesDetections;
 
     /// <summary>
@@ -76,7 +73,7 @@ public struct OrganelleContainer
     public int AgentVacuoleCount;
 
     /// <summary>
-    ///   How good this microbe is at breaking down iron (score is sum of scores from all organelles)
+    ///   How good this microbe is at breaking down iron (score is a sum of scores from all organelles)
     /// </summary>
     public int IronBreakdownEfficiency;
 
@@ -89,6 +86,11 @@ public struct OrganelleContainer
     ///   How much the organelles provide radiation protection
     /// </summary>
     public int RadiationProtection;
+
+    /// <summary>
+    ///   Do the organelles provide hydrogen sulfide immunity
+    /// </summary>
+    public bool HydrogenSulfideProtection;
 
     /// <summary>
     ///   How many heat-collecting organelles this container has
@@ -138,37 +140,99 @@ public struct OrganelleContainer
     ///     sure that that code re-running after loading a save is not a problem.
     ///   </para>
     /// </remarks>
-    [JsonIgnore]
     public bool AllOrganellesDivided;
 
     /// <summary>
     ///   Reset this if the organelles are changed to make the <see cref="MicrobeVisualsSystem"/> recreate them
     /// </summary>
-    [JsonIgnore]
     public bool OrganelleVisualsCreated;
 
     /// <summary>
     ///   Reset this if organelles are changed. Otherwise, <see cref="SlimeJets"/> etc. variables won't work
     ///   correctly
     /// </summary>
-    [JsonIgnore]
     public bool OrganelleComponentsCached;
 
     /// <summary>
     ///   Internal variable used by the <see cref="MicrobeVisualsSystem"/> to only create visuals for missing /
     ///   removed organelles
     /// </summary>
-    [JsonIgnore]
     public Dictionary<PlacedOrganelle, Node3D>? CreatedOrganelleVisuals;
 
     // TODO: maybe put the process list refresh variable here and a some new system to regenerate the process list?
     // instead of just doing it when changing the organelles?
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentOrganelleContainer;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObjectOrNull(Organelles);
+
+        if (AvailableEnzymes != null)
+        {
+            writer.WriteObject(AvailableEnzymes);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
+
+        if (AvailableToxinTypes != null)
+        {
+            writer.WriteObject(AvailableToxinTypes);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
+
+        writer.Write(AgentVacuoleCount);
+        writer.Write(IronBreakdownEfficiency);
+        writer.Write(MucocystCount);
+        writer.Write(RadiationProtection);
+        writer.Write(HydrogenSulfideProtection);
+        writer.Write(HeatCollection);
+        writer.Write(OrganellesCapacity);
+        writer.Write(AverageToxinToxicity);
+        writer.Write(HexCount);
+        writer.Write(OxygenUsingOrganelles);
+        writer.Write(RotationSpeed);
+        writer.Write(HasSignalingAgent);
+        writer.Write(HasBindingAgent);
+    }
 }
 
 public static class OrganelleContainerHelpers
 {
     private static readonly Lazy<Enzyme> Lipase = new(() =>
         SimulationParameters.Instance.GetEnzyme(Constants.LIPASE_ENZYME));
+
+    public static OrganelleContainer ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > OrganelleContainer.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, OrganelleContainer.SERIALIZATION_VERSION);
+
+        return new OrganelleContainer
+        {
+            Organelles = reader.ReadObjectOrNull<OrganelleLayout<PlacedOrganelle>>(),
+            AvailableEnzymes = reader.ReadObjectOrNull<Dictionary<Enzyme, int>>(),
+            AvailableToxinTypes = reader.ReadObjectOrNull<Dictionary<ToxinType, int>>(),
+            AgentVacuoleCount = reader.ReadInt32(),
+            IronBreakdownEfficiency = reader.ReadInt32(),
+            MucocystCount = reader.ReadInt32(),
+            RadiationProtection = reader.ReadInt32(),
+            HydrogenSulfideProtection = reader.ReadBool(),
+            HeatCollection = reader.ReadInt32(),
+            OrganellesCapacity = reader.ReadFloat(),
+            AverageToxinToxicity = reader.ReadFloat(),
+            HexCount = reader.ReadInt32(),
+            OxygenUsingOrganelles = reader.ReadInt32(),
+            RotationSpeed = reader.ReadFloat(),
+            HasSignalingAgent = reader.ReadBool(),
+            HasBindingAgent = reader.ReadBool(),
+        };
+    }
 
     /// <summary>
     ///   Returns the check result whether this microbe can digest the target (has the enzyme necessary).
@@ -212,7 +276,7 @@ public static class OrganelleContainerHelpers
         Entity other)
     {
         // Can only bind with microbes
-        if (!other.Has<MicrobeSpeciesMember>())
+        if (!other.IsAliveAndHas<MicrobeSpeciesMember>())
             return false;
 
         // Things with missing binding agents can't bind (this is just an extra safety check and an excuse to make
@@ -261,11 +325,15 @@ public static class OrganelleContainerHelpers
 
         container.Organelles ??= new OrganelleLayout<PlacedOrganelle>();
 
-        foreach (var organelleTemplate in cellDefinition.Organelles)
+        foreach (var organelleTemplate in cellDefinition.ModifiableOrganelles)
         {
             container.Organelles.AddFast(new PlacedOrganelle(organelleTemplate.Definition,
                 organelleTemplate.Position,
-                organelleTemplate.Orientation, organelleTemplate.Upgrades), workMemory1, workMemory2);
+                organelleTemplate.Orientation, organelleTemplate.ModifiableUpgrades)
+            {
+                // This status is reset after exiting the editor, but for completeness copy it
+                IsEndosymbiont = organelleTemplate.IsEndosymbiont,
+            }, workMemory1, workMemory2);
         }
 
         container.CalculateOrganelleLayoutStatistics();
@@ -502,6 +570,7 @@ public static class OrganelleContainerHelpers
         container.OrganellesCapacity = 0;
         container.HasSignalingAgent = false;
         container.HasBindingAgent = false;
+        container.HydrogenSulfideProtection = false;
         container.HeatCollection = 0;
         container.OxygenUsingOrganelles = 0;
         container.RadiationProtection = 0;
@@ -582,6 +651,9 @@ public static class OrganelleContainerHelpers
 
             if (organelleDefinition.HasBindingFeature)
                 container.HasBindingAgent = true;
+
+            if (organelleDefinition.HasHydrogenSulfideProtection)
+                container.HydrogenSulfideProtection = true;
 
             if (organelleDefinition.HasRadiationProtection)
                 ++container.RadiationProtection;
