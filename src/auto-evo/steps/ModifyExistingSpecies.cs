@@ -348,8 +348,7 @@ public class ModifyExistingSpecies : IRunStep
 
         foreach (var predator in predatorPressuresTemporary)
         {
-            dataReceiver.Add(new AvoidPredationSelectionPressure(predator,
-                Constants.AUTO_EVO_AVOID_PREDATION_PRESSURE_WEIGHT));
+            dataReceiver.Add(new AvoidPredationSelectionPressure(predator, 5.0f));
         }
     }
 

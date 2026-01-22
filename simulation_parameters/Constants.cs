@@ -1350,11 +1350,6 @@ public static class Constants
     /// </summary>
     public const float AUTO_EVO_SIGNALLING_BONUS = 1.4f;
 
-    /// <summary>
-    ///   Weight of the selection pressure used to create temporary miche nodes for avoiding predation
-    /// </summary>
-    public const float AUTO_EVO_AVOID_PREDATION_PRESSURE_WEIGHT = 5.0f;
-
     public const int AI_FOLLOW_PLAYER_MIGRATION_TO_EMPTY_PATCH_THRESHOLD = 2;
 
     public const int AI_FOLLOW_FREE_POPULATION_GIVEN = 100;
