@@ -49,7 +49,7 @@ public class AutoEvoGlobalCache
     {
         RootPressure = new RootPressure();
         MetabolicStabilityPressure = new MetabolicStabilityPressure(10.0f);
-        GeneralAvoidPredationSelectionPressure = new GeneralAvoidPredationSelectionPressure(1.6f);
+        GeneralAvoidPredationSelectionPressure = new GeneralAvoidPredationSelectionPressure(1.4f);
         EnergyConsumptionPressure = new EnergyConsumptionPressure(0.5f);
         EnvironmentalTolerancesPressure = new EnvironmentalTolerancePressure(4);
 
@@ -75,7 +75,7 @@ public class AutoEvoGlobalCache
         HydrogenSulfideConversionEfficiencyPressure = new CompoundConversionEfficiencyPressure(Compound.Hydrogensulfide,
             Compound.Glucose, true, 1.0f);
         HydrogenSulfideCloudPressure = new CompoundCloudPressure(Compound.Hydrogensulfide,
-            worldSettings.DayNightCycleEnabled, 1.2f);
+            worldSettings.DayNightCycleEnabled, 1.0f);
         SmallSulfurChunkPressure = new ChunkCompoundPressure("sulfurSmallChunk",
             new LocalizedString("SMALL_SULFUR_CHUNK"), Compound.Hydrogensulfide, Compound.Glucose, 1.0f);
         MediumSulfurChunkPressure = new ChunkCompoundPressure("sulfurMediumChunk",
