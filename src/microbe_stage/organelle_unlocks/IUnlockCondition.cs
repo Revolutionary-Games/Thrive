@@ -38,7 +38,7 @@ public interface IUnlockStateDataSource
 
 public interface IPlayerDataSource
 {
-    public EnergyBalanceInfoFull? EnergyBalance { get; }
+    public EnergyBalanceInfoSimple? EnergyBalance { get; }
     public float Speed { get; }
 }
 
