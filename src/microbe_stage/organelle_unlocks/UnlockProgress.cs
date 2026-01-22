@@ -69,7 +69,7 @@ public class UnlockProgress : IArchiveUpdatable
     /// <summary>
     ///   Is the organelle unlocked?
     /// </summary>
-    public bool IsUnlocked(OrganelleDefinition organelle, WorldAndPlayerDataSource worldAndPlayerArgs,
+    public bool IsUnlocked(OrganelleDefinition organelle, WorldAndPlayerDataSource worldAndPlayerData,
         GameProperties game, bool autoUnlock)
     {
         if (organelle.UnlockConditions == null || game.FreeBuild || UnlockAll)
@@ -80,7 +80,7 @@ public class UnlockProgress : IArchiveUpdatable
             bool anyConditionSatisfied = false;
             foreach (var condition in organelle.UnlockConditions)
             {
-                if (condition.Satisfied(worldAndPlayerArgs))
+                if (condition.Satisfied(worldAndPlayerData))
                 {
                     anyConditionSatisfied = true;
                     break;

@@ -366,7 +366,7 @@ public partial class CellEditorComponent
         var groupsWithUndiscoveredOrganelles =
             new Dictionary<OrganelleDefinition.OrganelleGroup, (LocalizedStringBuilder UnlockText, int Count)>();
 
-        var worldAndPlayerArgs = GetUnlockPlayerDataSource();
+        var worldAndPlayerData = GetUnlockPlayerDataSource();
 
         foreach (var entry in allPartSelectionElements)
         {
@@ -374,7 +374,7 @@ public partial class CellEditorComponent
             var control = entry.Value;
 
             // Skip already unlocked organelles
-            if (Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(organelle, worldAndPlayerArgs,
+            if (Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(organelle, worldAndPlayerData,
                     Editor.CurrentGame, autoUnlock))
             {
                 control.Undiscovered = false;
@@ -410,7 +410,7 @@ public partial class CellEditorComponent
                 group.UnlockText.Append("\n\n");
                 group.UnlockText.Append(unlockTextString);
                 group.UnlockText.Append(" ");
-                organelle.GenerateUnlockRequirementsText(group.UnlockText, worldAndPlayerArgs);
+                organelle.GenerateUnlockRequirementsText(group.UnlockText, worldAndPlayerData);
                 groupsWithUndiscoveredOrganelles[buttonGroup] = group;
             }
             else
@@ -423,7 +423,7 @@ public partial class CellEditorComponent
 
                 unlockText.Append(unlockTextString);
                 unlockText.Append(" ");
-                organelle.GenerateUnlockRequirementsText(unlockText, worldAndPlayerArgs);
+                organelle.GenerateUnlockRequirementsText(unlockText, worldAndPlayerData);
                 groupsWithUndiscoveredOrganelles.Add(buttonGroup, (unlockText, 1));
             }
         }
@@ -474,7 +474,7 @@ public partial class CellEditorComponent
     private WorldAndPlayerDataSource GetUnlockPlayerDataSource()
     {
         return new WorldAndPlayerDataSource(Editor.CurrentGame.GameWorld, Editor.CurrentPatch,
-            energyBalanceInfo, Editor.EditedCellProperties);
+            new MicrobeUnlocksData(Editor.EditedCellProperties, energyBalanceInfo));
     }
 
     private SelectionMenuToolTip? GetSelectionTooltip(string name, string group)
@@ -876,5 +876,31 @@ public partial class CellEditorComponent
     private void OnGrowthOrderCoordinatesToggled(bool show)
     {
         growthOrderGUI.ShowCoordinates = show;
+    }
+
+    private class MicrobeUnlocksData : IPlayerDataSource
+    {
+        public ICellDefinition? CellDefinition;
+
+        public MicrobeUnlocksData(ICellDefinition? cellDefinition, EnergyBalanceInfoFull? energyBalance)
+        {
+            CellDefinition = cellDefinition;
+            EnergyBalance = energyBalance;
+        }
+
+        public EnergyBalanceInfoFull? EnergyBalance { get; set; }
+
+        public float Speed
+        {
+            get
+            {
+                if (CellDefinition == null)
+                    return 0;
+
+                return MicrobeInternalCalculations.CalculateSpeed(
+                    CellDefinition.ModifiableOrganelles.Organelles, CellDefinition.MembraneType,
+                    CellDefinition.MembraneRigidity, CellDefinition.IsBacteria);
+            }
+        }
     }
 }

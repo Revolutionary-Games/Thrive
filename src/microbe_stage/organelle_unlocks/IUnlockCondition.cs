@@ -36,19 +36,22 @@ public interface IUnlockStateDataSource
 {
 }
 
+public interface IPlayerDataSource
+{
+    public EnergyBalanceInfoFull? EnergyBalance { get; }
+    public float Speed { get; }
+}
+
 public class WorldAndPlayerDataSource : IUnlockStateDataSource
 {
     public readonly Patch CurrentPatch;
     public readonly GameWorld World;
-    public readonly EnergyBalanceInfoFull? EnergyBalance;
-    public readonly ICellDefinition? PlayerData;
+    public readonly IPlayerDataSource PlayerDataSource;
 
-    public WorldAndPlayerDataSource(GameWorld world, Patch currentPatch, EnergyBalanceInfoFull? energyBalance,
-        ICellDefinition? playerData)
+    public WorldAndPlayerDataSource(GameWorld world, Patch currentPatch, IPlayerDataSource playerDataSource)
     {
         World = world;
         CurrentPatch = currentPatch;
-        EnergyBalance = energyBalance;
-        PlayerData = playerData;
+        PlayerDataSource = playerDataSource;
     }
 }
