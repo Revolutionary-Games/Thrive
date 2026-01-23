@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using SharedBase.Archive;
+using UnlockConstraints;
 
 /// <summary>
 ///   Main class of the microbe editor
@@ -60,6 +61,10 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     public Patch? TargetPatch => patchMapTab.TargetPatch;
 
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
+
+    public WorldAndPlayerDataSource UnlocksDataSource =>
+        new WorldAndPlayerDataSource(CurrentGame.GameWorld, CurrentPatch,
+            new MicrobeUnlocksData(EditedCellProperties, cellEditorTab.EnergyBalanceInfo));
 
     public override MainGameState GameState => MainGameState.MicrobeEditor;
 
@@ -569,6 +574,32 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         {
             // Make sure tabs are shown if the tutorial is turned off
             ShowTabBar(true);
+        }
+    }
+
+    private class MicrobeUnlocksData : IPlayerDataSource
+    {
+        public ICellDefinition? CellDefinition;
+
+        public MicrobeUnlocksData(ICellDefinition? cellDefinition, EnergyBalanceInfoSimple? energyBalance)
+        {
+            CellDefinition = cellDefinition;
+            EnergyBalance = energyBalance;
+        }
+
+        public EnergyBalanceInfoSimple? EnergyBalance { get; set; }
+
+        public float Speed
+        {
+            get
+            {
+                if (CellDefinition == null)
+                    return 0;
+
+                return MicrobeInternalCalculations.CalculateSpeed(
+                    CellDefinition.ModifiableOrganelles.Organelles, CellDefinition.MembraneType,
+                    CellDefinition.MembraneRigidity, CellDefinition.IsBacteria);
+            }
         }
     }
 }

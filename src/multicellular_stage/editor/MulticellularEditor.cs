@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using SharedBase.Archive;
+using UnlockConstraints;
 
 /// <summary>
 ///   The multicellular stage editor main class
@@ -86,6 +87,10 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.MulticellularEditor;
+
+    public WorldAndPlayerDataSource UnlocksDataSource =>
+        new WorldAndPlayerDataSource(CurrentGame.GameWorld, CurrentPatch,
+            new MulticellularUnlocksData(editedSpecies?.ModifiableEditorCells, cellEditorTab.EnergyBalanceInfo));
 
     protected override string MusicCategory => "MulticellularEditor";
 
@@ -677,5 +682,29 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             return;
 
         SetEditorTab(targetTab);
+    }
+
+    private class MulticellularUnlocksData : IPlayerDataSource
+    {
+        public IReadOnlyList<HexWithData<CellTemplate>>? CellLayout;
+
+        public MulticellularUnlocksData(IReadOnlyList<HexWithData<CellTemplate>>? cellLayout, EnergyBalanceInfoSimple? energyBalance)
+        {
+            CellLayout = cellLayout;
+            EnergyBalance = energyBalance;
+        }
+
+        public EnergyBalanceInfoSimple? EnergyBalance { get; set; }
+
+        public float Speed
+        {
+            get
+            {
+                if (CellLayout == null)
+                    return 0;
+
+                return CellBodyPlanInternalCalculations.CalculateSpeed(CellLayout);
+            }
+        }
     }
 }

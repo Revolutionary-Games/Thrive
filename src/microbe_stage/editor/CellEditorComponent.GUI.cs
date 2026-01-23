@@ -366,7 +366,7 @@ public partial class CellEditorComponent
         var groupsWithUndiscoveredOrganelles =
             new Dictionary<OrganelleDefinition.OrganelleGroup, (LocalizedStringBuilder UnlockText, int Count)>();
 
-        var worldAndPlayerData = GetUnlockPlayerDataSource();
+        var worldAndPlayerData = Editor.UnlocksDataSource;
 
         foreach (var entry in allPartSelectionElements)
         {
@@ -469,12 +469,6 @@ public partial class CellEditorComponent
         UpdateMicrobePartSelections();
         CreateUndiscoveredOrganellesButtons(true, false);
         UpdateOrganelleButtons(activeActionName);
-    }
-
-    private WorldAndPlayerDataSource GetUnlockPlayerDataSource()
-    {
-        return new WorldAndPlayerDataSource(Editor.CurrentGame.GameWorld, Editor.CurrentPatch,
-            new MicrobeUnlocksData(Editor.EditedCellProperties, energyBalanceInfo));
     }
 
     private SelectionMenuToolTip? GetSelectionTooltip(string name, string group)
@@ -876,31 +870,5 @@ public partial class CellEditorComponent
     private void OnGrowthOrderCoordinatesToggled(bool show)
     {
         growthOrderGUI.ShowCoordinates = show;
-    }
-
-    private class MicrobeUnlocksData : IPlayerDataSource
-    {
-        public ICellDefinition? CellDefinition;
-
-        public MicrobeUnlocksData(ICellDefinition? cellDefinition, EnergyBalanceInfoFull? energyBalance)
-        {
-            CellDefinition = cellDefinition;
-            EnergyBalance = energyBalance;
-        }
-
-        public EnergyBalanceInfoFull? EnergyBalance { get; set; }
-
-        public float Speed
-        {
-            get
-            {
-                if (CellDefinition == null)
-                    return 0;
-
-                return MicrobeInternalCalculations.CalculateSpeed(
-                    CellDefinition.ModifiableOrganelles.Organelles, CellDefinition.MembraneType,
-                    CellDefinition.MembraneRigidity, CellDefinition.IsBacteria);
-            }
-        }
     }
 }
