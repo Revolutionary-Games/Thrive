@@ -262,7 +262,11 @@ public partial class SceneManager : Node
     [Command("load", true, "Switches to the specified scene, given its resource path.")]
     private static bool CommandLoadScene(string scenePath)
     {
-        if (!ResourceLoader.Exists(scenePath))
+        if (scenePath.Equals("multicellular", StringComparison.OrdinalIgnoreCase))
+        {
+            scenePath = "res://src/stage_starters/MulticellularStageStarter.tscn";
+        }
+        else if (!ResourceLoader.Exists(scenePath))
         {
             GD.PrintErr("Load command: the resource at the specified path does not exist.");
             return false;
