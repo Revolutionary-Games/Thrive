@@ -24,8 +24,6 @@ public class ReproductionStatistic : IStatistic, IArchiveUpdatable
     {
         ++TimesReproduced;
 
-        var organelles = player.Get<OrganelleContainer>().Organelles!;
-
         // Due to needing to track how many generations in a row organelle was in the player's species, all organelles
         // (even ones that aren't currently added) need to be processed
         foreach (var definition in SimulationParameters.Instance.GetAllOrganelles())
@@ -35,7 +33,7 @@ public class ReproductionStatistic : IStatistic, IArchiveUpdatable
                 data = ReproducedWithOrganelle[definition] = new ReproductionOrganelleData();
             }
 
-            data.IncrementBy(CountOrganellesOfType(definition, organelles));
+            data.IncrementBy(CountOrganellesOfType(definition, player));
         }
 
         if (ReproducedInBiomes.TryGetValue(biome, out var value))
@@ -66,11 +64,11 @@ public class ReproductionStatistic : IStatistic, IArchiveUpdatable
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private int CountOrganellesOfType(OrganelleDefinition definition, OrganelleLayout<PlacedOrganelle> layout)
+    private int CountOrganellesOfType(OrganelleDefinition definition, in Entity player)
     {
         int count = 0;
 
-        foreach (var organelle in layout.Organelles)
+        foreach (var organelle in player.Get<OrganelleContainer>().Organelles!.Organelles)
         {
             // As the player grows before reproducing, this might end up doubly counting organelles, so this skip is
             // here
@@ -79,6 +77,18 @@ public class ReproductionStatistic : IStatistic, IArchiveUpdatable
 
             if (organelle.Definition == definition)
                 ++count;
+        }
+
+        if (player.TryGet<MicrobeColony>(out var colony))
+        {
+            for (int i = 1; i < colony.ColonyMembers.Length; i++)
+            {
+                foreach (var organelle in player.Get<OrganelleContainer>().Organelles!.Organelles)
+                {
+                    if (organelle.Definition == definition)
+                        ++count;
+                }
+            }
         }
 
         return count;
