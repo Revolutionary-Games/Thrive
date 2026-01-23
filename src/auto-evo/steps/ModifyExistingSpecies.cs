@@ -471,7 +471,7 @@ public class ModifyExistingSpecies : IRunStep
     {
         // This isn't the cleanest, but this class is just optimized for performance, so if someone forgets to set up
         // this, then bad things will happen
-        private List<SelectionPressure> pressures = null!;
+        private IEnumerable<SelectionPressure> pressures = null!;
         private MicrobeSpecies baseSpecies = null!;
 
         public void Setup(MicrobeSpecies species, IEnumerable<SelectionPressure> selectionPressures)
