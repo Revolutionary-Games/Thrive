@@ -262,7 +262,8 @@ public partial class SceneManager : Node
     [Command("load", true, "Switches to the specified scene, given its resource path.")]
     private static bool CommandLoadScene(string scenePath)
     {
-        if (scenePath.Equals("multicellular", StringComparison.OrdinalIgnoreCase))
+        if (scenePath.Equals("multicellular", StringComparison.OrdinalIgnoreCase) ||
+            scenePath.Equals("MulticellularStage", StringComparison.OrdinalIgnoreCase))
         {
             scenePath = "res://src/stage_starters/MulticellularStageStarter.tscn";
         }
