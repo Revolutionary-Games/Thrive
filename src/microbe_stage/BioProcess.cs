@@ -28,6 +28,13 @@ public class BioProcess : RegistryType
     /// </summary>
     public bool IsMetabolismProcess;
 
+    /// <summary>
+    ///   ID of the process for more efficient matching. Note that this is not persistent! But calculated at game
+    ///   startup each time. So do not save this in any permanent data.
+    /// </summary>
+    [JsonIgnore]
+    public ushort ProcessId;
+
 #pragma warning disable 169,649 // Used through reflection (and JSON)
     private string? untranslatedName;
 
@@ -84,6 +91,8 @@ public class BioProcess : RegistryType
 
     public void Resolve(SimulationParameters simulationParameters)
     {
+        ProcessId = simulationParameters.GetNextProcessId();
+
         // Resolve inputs and outputs
         foreach (var entry in inputsRaw!)
         {

@@ -108,14 +108,19 @@ public partial class ProcessSystem : BaseSystem<World, float>
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Linearly scans for duplicate processes (merging them). Might need to be updated to use a map provided by a
-    ///     parameter if the current algorithm is too slow.
+    ///     Does a linear scan for duplicate processes (merging them).
+    ///     Might need to be updated to use a map provided by a parameter if the current algorithm is too slow.
     ///   </para>
     /// </remarks>
     public static void MergeProcessLists(List<TweakedProcess> result, List<TweakedProcess> toAdd)
     {
+        // Pre-allocate size
+        if (result.Capacity - result.Count < toAdd.Count)
+            result.Capacity += toAdd.Count;
+
         int processCount = toAdd.Count;
 
+        // TODO: auto-evo spends quite a bit of time combining data here, so some smarter algorithm would be nice
         for (int i = 0; i < processCount; ++i)
         {
             var process = toAdd[i];
@@ -123,7 +128,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             bool added = false;
 
-            // Try to add to existing result first
+            // Try to add to an existing result first
             int resultCount = result.Count;
             for (int j = 0; j < resultCount; ++j)
             {
@@ -133,15 +138,15 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
                     if (!replacedEntry.Marked)
                     {
-                        // Added to an entry that is kept for keeping a consistent speed multiplier, but isn't yet
-                        // considered to be a real result entry
+                        // Added to an entry that is kept for keeping a consistent speed multiplier but isn't yet
+                        // considered to be a real result entry.
                         // To keep consistent ordering no matter what the old data is, we need to move the current
                         // item to be in place of the first non-marked item
                         for (int l = 0; l < j; ++l)
                         {
                             if (!result[l].Marked)
                             {
-                                // Swap positions of the data, as we will write to the k index (that is updated)
+                                // Swap positions of the data, as we will write to the k index (that is updated),
                                 // we need to only write the moving away data to perform the swap
                                 result[j] = result[l];
                                 j = l;
@@ -158,7 +163,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
                     }
                     else
                     {
-                        // Add to the existing rate, as TweakedProcess is a struct this doesn't allocate memory
+                        // Add to the existing rate. As TweakedProcess is a struct, this doesn't allocate memory
                         result[j] = new TweakedProcess(processKey, process.Rate + replacedEntry.Rate)
                         {
                             SpeedMultiplier = replacedEntry.SpeedMultiplier,
@@ -220,7 +225,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     ///   movement organelles are assumed to be inactive in the balance calculation.
     /// </param>
     /// <param name="includeMovementCost">
-    ///   Only when true are movement related energy costs included in the calculation. When false base movement data
+    ///   Only when true are movement-related energy costs included in the calculation. When false base movement data
     ///   is provided, but it is not taken into account in the sums, but total movement cost is not calculated. If that
     ///   is required then include movement cost parameter should be set to true and from the result the variables
     ///   giving balance without movement should be used as an alternative to setting this false.

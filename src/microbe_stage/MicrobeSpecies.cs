@@ -111,6 +111,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         }
     }
 
+    // TODO: precalculate this as it'll help auto-evo quite a bit
     /// <summary>
     ///   Compound capacities members of this species can store in their default configurations
     /// </summary>
