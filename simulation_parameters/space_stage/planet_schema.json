@@ -5,7 +5,7 @@
   "properties": {
     "Name": {
       "description": "Name of this planet",
-      "type": "string", 
+      "type": "string",
       "minLength": 1
     },
     "Diameter": {
@@ -14,25 +14,25 @@
       "minimum": 0.01
     },
     "Water": {
-      "description": "What percentage of this planet's surface is water (also determines land surface percentage)",
+      "description": "What percentage of this planet\u0027s surface is water (also determines land surface percentage)",
       "type": "number",
       "minimum": 0,
       "maximum": 100
     },
     "LandColour": {
-      "description": "Hex colour code of this planet's land surface (currently a single flat colour)",
+      "description": "Hex colour code of this planet\u0027s land surface (currently a single flat colour)",
       "type": "string",
       "minLength": 6,
       "maxLength": 6
     },
     "WaterColour": {
-      "description": "Hex colour code of this planet's water surface (currently a single flat colour)",
+      "description": "Hex colour code of this planet\u0027s water surface (currently a single flat colour)",
       "type": "string",
       "minLength": 6,
       "maxLength": 6
     },
     "Cloudiness": {
-      "description": "What percentage of the planet's surface is covered by clouds",
+      "description": "What percentage of the planet\u0027s surface is covered by clouds",
       "type": "number",
       "minimum": 0,
       "maximum": 100
@@ -46,7 +46,7 @@
       "uniqueItems": true
     },
     "Gravity": {
-      "description": "Strength of this planet's gravity relative to Earth's (1 = 9.81 m/s)",
+      "description": "Strength of this planet\u0027s gravity relative to Earth\u0027s (1 = 9.81 m/s)",
       "type": "number",
       "minimum": 0.01
     }
