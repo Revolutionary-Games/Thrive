@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-22 16:04+0200\n"
+"POT-Creation-Date: 2026-01-23 21:12+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -902,7 +902,7 @@ msgstr ""
 msgid "CANNOT_IMPROVE_PERFECTION"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.cs:773
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.cs:795
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
@@ -2449,6 +2449,10 @@ msgstr ""
 msgid "DUPLICATE_TYPE"
 msgstr ""
 
+#: ../simulation_parameters/space_stage/planet_schema.json:12
+msgid "Diameter of this planet in kilometers (currently assuming that this planet is perfectly round)"
+msgstr ""
+
 #: ../simulation_parameters/common/help_texts.json:257
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
@@ -3649,6 +3653,14 @@ msgstr ""
 
 #: ../src/gui_common/menus/PlanetSettings.tscn:437
 msgid "HYDROGEN_SULFIDE_LEVELS"
+msgstr ""
+
+#: ../simulation_parameters/space_stage/planet_schema.json:23
+msgid "Hex colour code of this planet's land surface (currently a single flat colour)"
+msgstr ""
+
+#: ../simulation_parameters/space_stage/planet_schema.json:29
+msgid "Hex colour code of this planet's water surface (currently a single flat colour)"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3434
@@ -4984,6 +4996,10 @@ msgstr ""
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr ""
 
+#: ../simulation_parameters/space_stage/planet_schema.json:41
+msgid "List of the species on this planet (currently no other information about them, can be empty)"
+msgstr ""
+
 #: ../simulation_parameters/microbe_stage/bio_processes.json:84
 #: ../simulation_parameters/microbe_stage/bio_processes.json:93
 msgid "MACROLIDE_SYNTHESIS"
@@ -5431,7 +5447,7 @@ msgstr ""
 msgid "MICROBE_RIPPLE_EFFECT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:423
+#: ../src/microbe_stage/MicrobeSpecies.cs:424
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -5881,12 +5897,12 @@ msgstr ""
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballPopupMenu.cs:85
-#: ../src/macroscopic_stage/editor/MetaballPopupMenu.cs:107
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:84
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:106
-#: ../src/multicellular_stage/editor/CellPopupMenu.cs:85
-#: ../src/multicellular_stage/editor/CellPopupMenu.cs:106
+#: ../src/macroscopic_stage/editor/MetaballPopupMenu.cs:94
+#: ../src/macroscopic_stage/editor/MetaballPopupMenu.cs:116
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:92
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:114
+#: ../src/multicellular_stage/editor/CellPopupMenu.cs:93
+#: ../src/multicellular_stage/editor/CellPopupMenu.cs:114
 msgid "MP_COST"
 msgstr ""
 
@@ -6351,6 +6367,10 @@ msgstr ""
 
 #: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.cs:45
 msgid "N_TIMES"
+msgstr ""
+
+#: ../simulation_parameters/space_stage/planet_schema.json:7
+msgid "Name of this planet"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:555
@@ -8426,6 +8446,10 @@ msgstr ""
 msgid "SYSREQ"
 msgstr ""
 
+#: ../simulation_parameters/space_stage/planet_schema.json:49
+msgid "Strength of this planet's gravity relative to Earth's (1 = 9.81 m/s)"
+msgstr ""
+
 #: ../src/general/base_stage/EditorComponentBase.cs:217
 msgid "TAB_CHANGE_BLOCKED_WHILE_ACTION_IN_PROGRESS"
 msgstr ""
@@ -8816,35 +8840,35 @@ msgstr ""
 msgid "TOGGLE_UNBINDING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:137
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:151
 msgid "TOLERANCES_TOO_HIGH_PRESSURE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:122
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:136
 msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:149
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:163
 msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:142
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:156
 msgid "TOLERANCES_TOO_LOW_PRESSURE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:127
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:141
 msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:155
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:169
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:112
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:126
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:428
+#: ../src/microbe_stage/MicrobeSpecies.cs:429
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
 
@@ -12015,6 +12039,14 @@ msgstr ""
 
 #: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:778
 msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr ""
+
+#: ../simulation_parameters/space_stage/planet_schema.json:35
+msgid "What percentage of the planet's surface is covered by clouds"
+msgstr ""
+
+#: ../simulation_parameters/space_stage/planet_schema.json:17
+msgid "What percentage of this planet's surface is water (also determines land surface percentage)"
 msgstr ""
 
 #: ../src/gui_common/menus/OptionsMenu.tscn:1178
