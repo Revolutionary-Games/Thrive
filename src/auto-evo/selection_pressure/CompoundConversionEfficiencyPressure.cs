@@ -1,7 +1,5 @@
 ﻿namespace AutoEvo;
 
-using System;
-using Newtonsoft.Json;
 using SharedBase.Archive;
 
 public class CompoundConversionEfficiencyPressure : SelectionPressure
