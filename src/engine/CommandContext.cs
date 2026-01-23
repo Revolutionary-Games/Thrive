@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Godot;
 
 public class CommandContext(DebugConsole? debugConsole, int executionToken)

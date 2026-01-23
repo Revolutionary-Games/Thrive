@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Godot;
@@ -149,7 +149,7 @@ public class DebugEntryFactory
             // + 1 is because we use the 'x' char as prefix.
             amountStringBuilder.Length = written + 1;
 
-            for (int i = 0; i < written; i++)
+            for (int i = 0; i < written; ++i)
             {
                 amountStringBuilder[i + 1] = span[i];
             }
@@ -226,7 +226,7 @@ public class DebugEntryFactory
 
         if (stack)
         {
-            lastMessage.Amount++;
+            ++lastMessage.Amount;
         }
         else
         {

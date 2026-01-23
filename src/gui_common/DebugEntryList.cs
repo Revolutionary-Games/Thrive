@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
 using Nito.Collections;
 
@@ -48,7 +48,7 @@ public partial class DebugEntryList : Panel
         foreach (var entry in privateHistory)
         {
             if (entry.BeginTimestamp >= minTimestamp)
-                count++;
+                ++count;
         }
 
         return count;
@@ -74,7 +74,7 @@ public partial class DebugEntryList : Panel
         while (currentLocalIndex < privateHistory.Count &&
                privateHistory[currentLocalIndex].BeginTimestamp < minTimestamp)
         {
-            currentLocalIndex++;
+            ++currentLocalIndex;
         }
 
         int currentVisualIndex = 0;
@@ -98,14 +98,14 @@ public partial class DebugEntryList : Panel
 
             if (skipLocal)
             {
-                currentLocalIndex++;
+                ++currentLocalIndex;
             }
             else
             {
-                currentGlobalId++;
+                ++currentGlobalId;
             }
 
-            currentVisualIndex++;
+            ++currentVisualIndex;
         }
 
         // Rendering
@@ -145,12 +145,12 @@ public partial class DebugEntryList : Panel
             if (useLocal)
             {
                 currentDebugEntry = privateHistory[currentLocalIndex];
-                currentLocalIndex++;
+                ++currentLocalIndex;
             }
             else
             {
                 currentDebugEntry = history[currentGlobalId];
-                currentGlobalId++;
+                ++currentGlobalId;
             }
 
             currentDebugEntry.Update();
@@ -163,7 +163,7 @@ public partial class DebugEntryList : Panel
                 break;
             }
 
-            entryPanelIndex++;
+            ++entryPanelIndex;
         }
 
         lastIdLoaded = visualSkipCount;
