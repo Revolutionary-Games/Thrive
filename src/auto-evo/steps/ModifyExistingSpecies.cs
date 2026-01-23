@@ -300,8 +300,6 @@ public class ModifyExistingSpecies : IRunStep
         generateMutationsWorkingMemory.Clear();
         pressureStack.Clear();
 
-        SpeciesDependentPressures(pressureStack, miche!, microbeSpecies);
-
         var inputSpecies = generateMutationsWorkingMemory.GetMutationsAtDepth(0);
         inputSpecies.Add(new Mutant(microbeSpecies, totalMP));
 
