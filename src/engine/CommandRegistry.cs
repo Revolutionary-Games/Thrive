@@ -306,9 +306,10 @@ public class CommandRegistry : IDisposable
     /// <param name="command">The command to be executed.</param>
     /// <param name="invoker">The invoker console, which is injected if required.</param>
     /// <param name="rawArgs">The raw command arguments.</param>
+    /// <param name="ignoreQuoted">If set to true, then unquoted text is considered to be a match for strings.</param>
     /// <param name="failed">false iff the command execution succeeds without any exception.</param>
     /// <returns>
-    ///   true iff the command candidate has the correct arguments for execution. This value is not
+    ///   True iff the command candidate has the correct arguments for execution. This value is not
     ///   affected by a command execution failure due to reasons different from argument mismatch, e.g. a command
     ///   execution failure.
     /// </returns>
