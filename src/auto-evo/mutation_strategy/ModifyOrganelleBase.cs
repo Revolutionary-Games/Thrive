@@ -28,7 +28,7 @@ public abstract class ModifyOrganelleBase : IMutationStrategy<MicrobeSpecies>
     /// </summary>
     public abstract bool ExpectedToCostMP { get; }
 
-    public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
+    public List<CommonMutationFunctions.Mutant>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
         // While some upgrades are free, it still might be good to stop looking for mutations once something has
@@ -64,7 +64,7 @@ public abstract class ModifyOrganelleBase : IMutationStrategy<MicrobeSpecies>
             return null;
         }
 
-        var mutated = new List<Tuple<MicrobeSpecies, double>>();
+        var mutated = new List<CommonMutationFunctions.Mutant>();
 
         // Pick a random organelle that can be mutated each time
         organelleIndexesToMutate.Shuffle(random);
@@ -113,7 +113,7 @@ public abstract class ModifyOrganelleBase : IMutationStrategy<MicrobeSpecies>
 
             if (mutatedOrganelle)
             {
-                mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp - mpCost));
+                mutated.Add(new CommonMutationFunctions.Mutant(newSpecies, mp - mpCost));
             }
         }
 
