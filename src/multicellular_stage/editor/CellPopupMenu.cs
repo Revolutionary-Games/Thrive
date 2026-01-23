@@ -73,6 +73,14 @@ public partial class CellPopupMenu : HexPopupMenu
         if (deleteButton == null)
             return;
 
+        if (!ShowDeleteOption)
+        {
+            deleteButton.Visible = false;
+            return;
+        }
+
+        deleteButton.Visible = true;
+
         var mpCost = GetActionPrice?.Invoke(SelectedCells
                 .Select(o =>
                     (EditorCombinableActionData)new CellRemoveActionData(o))) ??
