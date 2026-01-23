@@ -60,14 +60,14 @@ public class CommandRegistry : IDisposable
     ///   If the command execution fails, this method indirectly returns the result in the standard console.<br/>
     ///   The command is run directly by the caller thread.
     /// </summary>
-    /// <param name="invoker">The invoker console. Can be null.</param>
+    /// <param name="context">The command context.</param>
     /// <param name="cmd">The input command string, including the parameters</param>
     /// <returns><code>true</code> if and only if the command execution succeeds.</returns>
-    public bool Execute(DebugConsole? invoker, string cmd)
+    public bool Execute(CommandContext context, string cmd)
     {
         if (registerCommandsTask != null && !registerCommandsTask!.IsCompleted)
         {
-            GD.PrintErr("CommandRegistry: Still loading. Hold your horses.");
+            context.PrintWarning("CommandRegistry: Still loading. Hold your horses.");
             return false;
         }
 
@@ -81,7 +81,7 @@ public class CommandRegistry : IDisposable
 
         if (!commands!.TryGetValue(commandName, out var candidates))
         {
-            GD.PrintErr($"Unknown command: {commandName}");
+            context.PrintErr($"Unknown command: {commandName}");
             return false;
         }
 
@@ -94,13 +94,14 @@ public class CommandRegistry : IDisposable
 
         foreach (var command in candidates)
         {
-            if (TryExecuteCandidate(command, invoker, rawArgs, out bool failed))
+            if (TryExecuteCandidate(command, context, rawArgs, out bool failed))
             {
                 return !failed;
             }
         }
 
-        GD.PrintErr($"Command '{commandName}': No overload matched arguments. Found {candidates.Length} candidates.");
+        context.PrintErr(
+            $"Command '{commandName}': No overload matched arguments. Found {candidates.Length} candidates.");
         return false;
     }
 
@@ -292,7 +293,7 @@ public class CommandRegistry : IDisposable
     ///   Tries to execute a possibly overloaded command candidate.
     /// </summary>
     /// <param name="command">The command to be executed.</param>
-    /// <param name="invoker">The invoker console, which is injected if required.</param>
+    /// <param name="context">The command context.</param>
     /// <param name="rawArgs">The raw command arguments.</param>
     /// <param name="failed">false iff the command execution succeeds without any exception.</param>
     /// <returns>
@@ -300,7 +301,7 @@ public class CommandRegistry : IDisposable
     ///   affected by a command execution failure due to reasons different from argument mismatch, e.g. a command
     ///   execution failure.
     /// </returns>
-    private bool TryExecuteCandidate(Command command, DebugConsole? invoker,
+    private bool TryExecuteCandidate(Command command, CommandContext context,
         List<(string Value, bool IsQuoted)> rawArgs, out bool failed)
     {
         failed = true;
@@ -308,7 +309,7 @@ public class CommandRegistry : IDisposable
         var method = command.MethodInfo;
         var parameters = method.GetParameters();
 
-        bool requiresInvoker = parameters.Length > 0 && parameters[0].ParameterType == typeof(DebugConsole);
+        bool requiresInvoker = parameters.Length > 0 && parameters[0].ParameterType == typeof(CommandContext);
         int paramOffset = requiresInvoker ? 1 : 0;
         int expectedArgs = parameters.Length - paramOffset;
 
@@ -321,7 +322,7 @@ public class CommandRegistry : IDisposable
         object?[] invokeArgs = new object[parameters.Length];
 
         if (requiresInvoker)
-            invokeArgs[0] = invoker;
+            invokeArgs[0] = context;
 
         for (int i = 0; i < expectedArgs; ++i)
         {
@@ -347,15 +348,15 @@ public class CommandRegistry : IDisposable
         {
             var result = method.Invoke(null, invokeArgs);
 
-            if (invoker != null && result is bool success)
+            if (result is bool success)
             {
                 if (success)
                 {
-                    invoker.AddLog(new DebugConsoleManager.ConsoleLine("Success\n", Colors.Green));
+                    context.Print("Success", Colors.Green);
                 }
                 else
                 {
-                    invoker.AddLog(new DebugConsoleManager.ConsoleLine("Failed\n", Colors.Red));
+                    context.Print("Failure", Colors.Red);
                 }
             }
         }

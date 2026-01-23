@@ -11,10 +11,13 @@ public partial class DebugConsole : CustomWindow
 
 #pragma warning disable CA2213
     [Export]
-    private RichTextLabel consoleArea = null!;
+    private DebugEntryList debugEntryList = null!;
 
     [Export]
     private LineEdit commandInput = null!;
+
+    [Export]
+    private VScrollBar scrollBar = null!;
 #pragma warning restore CA2213
 
     public bool IsConsoleOpen
@@ -39,34 +42,33 @@ public partial class DebugConsole : CustomWindow
         if (Visible)
             Activate();
 
-        commandInput.Connect(LineEdit.SignalName.TextSubmitted,
-            new Callable(this, nameof(CommandSubmitted)));
+        commandInput.Connect(LineEdit.SignalName.TextSubmitted, new Callable(this, nameof(CommandSubmitted)));
+        scrollBar.Connect(ScrollBar.SignalName.Scrolling, new Callable(this, nameof(RefreshLogs)));
 
         base._Ready();
     }
 
     public override void _ExitTree()
     {
-        // make sure we unsubscribe from the event handler.
+        // Make sure we unsubscribe from the event handler.
         IsConsoleOpen = false;
-
         Clear();
 
         base._ExitTree();
     }
 
-    public void AddLog(DebugConsoleManager.ConsoleLine line)
+    public void AddPrivateLog(DebugConsoleManager.RawDebugEntry line)
     {
-        consoleArea.PushColor(line.Color);
-        consoleArea.AddText(line.Line);
-        consoleArea.Pop();
+        var debugEntryFactory = DebugEntryFactory.Instance;
+
+        debugEntryFactory.TryAddMessage(line.Id, line, true);
+        debugEntryFactory.UpdateDebugEntry(line.Id);
     }
 
     public void Clear()
     {
-        lastClearId = lastMessageId;
-
-        consoleArea.Clear();
+        lastClearId = DebugConsoleManager.Instance.History.Count;
+        RefreshLogs();
     }
 
     protected override void OnHidden()
@@ -77,21 +79,21 @@ public partial class DebugConsole : CustomWindow
     }
 
     [Command("clear", false, "Clears this console.")]
-    private static void CommandClear(DebugConsole console)
+    private static void CommandClear(CommandContext context)
     {
-        console.Clear();
+        context.Clear();
     }
 
     [Command("echo", false, "Echoes a message in this console.")]
-    private static void CommandEcho(DebugConsole console, string msg)
+    private static void CommandEcho(CommandContext context, string msg)
     {
-        console.AddLog(new DebugConsoleManager.ConsoleLine(msg + "\n", Colors.White));
+        context.Print(msg);
     }
 
     [Command("echo", false, "Echoes a colored message in this console.")]
-    private static void CommandEcho(DebugConsole console, string msg, int r, int g, int b)
+    private static void CommandEcho(CommandContext context, string msg, int r, int g, int b)
     {
-        console.AddLog(new DebugConsoleManager.ConsoleLine(msg + "\n", new Color(r, g, b)));
+        context.Print(msg, new Color(r, g, b));
     }
 
     private void Activate()
@@ -105,42 +107,35 @@ public partial class DebugConsole : CustomWindow
 
     private void RefreshLogs()
     {
-        var debugConsoleManager = DebugConsoleManager.Instance;
+        var history = DebugConsoleManager.Instance.History;
 
-        int newMessageCount = debugConsoleManager.MessageCount - lastMessageId;
-        if (newMessageCount <= 0)
-            return;
+        int globalCount = history.Count - lastClearId;
 
-        int paragraphCount = consoleArea.GetParagraphCount();
-        int linesToAdd = Math.Min(newMessageCount, debugConsoleManager.History.Count);
-        if (paragraphCount + linesToAdd > debugConsoleManager.History.Count)
-        {
-            // Apparently, RichTextLabel uses a vector to store paragraphs. If it uses a vector, so we can't just remove
-            // paragraphs freely efficiently. Perhaps, in the future, we should implement our own RichTextLabel or
-            // console renderer backed by a ring-buffer, if performance ever becomes a concern in this console.
-            // For now, I use this hybrid approach, which should be good enough.
-            if (newMessageCount <= 0.1 * DebugConsoleManager.MaxConsoleSize)
-            {
-                for (int i = 0; i < newMessageCount; ++i)
-                    consoleArea.RemoveParagraph(0, true);
+        long minTime = 0;
+        if (lastClearId < history.Count && lastClearId >= 0)
+            minTime = history[lastClearId].BeginTimestamp;
 
-                consoleArea.InvalidateParagraph(0);
-            }
-            else
-            {
-                consoleArea.Clear();
-                linesToAdd = debugConsoleManager.History.Count;
-            }
-        }
+        int privateCount = debugEntryList.GetCountNewerThan(minTime);
+        int totalItems = globalCount + privateCount;
 
-        int start = debugConsoleManager.History.Count - linesToAdd;
-        for (int i = start; i < debugConsoleManager.History.Count; ++i)
-        {
-            var line = debugConsoleManager.History[i];
-            AddLog(line);
-        }
+        bool shouldStickToBottom = scrollBar.Value + scrollBar.Page > scrollBar.MaxValue - 1;
 
-        lastMessageId = debugConsoleManager.MessageCount;
+        scrollBar.MaxValue = totalItems;
+
+        if (shouldStickToBottom)
+            scrollBar.Value = Math.Max(0, totalItems - scrollBar.Page);
+
+        int offset = (int)scrollBar.Value;
+
+        if (offset > totalItems)
+            offset = totalItems;
+
+        if (offset < 0)
+            offset = 0;
+
+        int renderedCount = debugEntryList.LoadFrom(offset, lastClearId);
+
+        scrollBar.Page = renderedCount;
     }
 
     private void RefreshLogs(object? o, EventArgs e)
@@ -152,8 +147,25 @@ public partial class DebugConsole : CustomWindow
     {
         commandInput.Clear();
 
-        AddLog(new DebugConsoleManager.ConsoleLine($"> {cmd}\n", Colors.LightGray));
+        var debugConsoleManager = DebugConsoleManager.Instance;
+        var commandRegistry = CommandRegistry.Instance;
+        var debugEntryFactory = DebugEntryFactory.Instance;
 
-        CommandRegistry.Instance.Execute(this, cmd);
+        int executionToken = debugConsoleManager.GetAvailableCustomDebugEntryId();
+
+        debugEntryList.AddPrivateEntry(debugEntryFactory.GetDebugEntry(executionToken));
+
+        var context = new CommandContext(this, executionToken);
+
+        // Prints command in console and updates the entry to immediately show what command is being executed.
+        context.Print($"Command > {cmd}\n", Colors.LightGray);
+        debugEntryFactory.UpdateDebugEntry(executionToken);
+
+        commandRegistry.Execute(context, cmd);
+
+        // This updates the debug entry to reflect the final command output, if any, and releases the executionToken.
+        debugConsoleManager.ReleaseCustomDebugEntryId(executionToken);
+
+        RefreshLogs();
     }
 }
