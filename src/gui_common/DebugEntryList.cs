@@ -24,6 +24,19 @@ public partial class DebugEntryList : Panel
     private VBoxContainer entryPanelsContainer = null!;
 #pragma warning restore CA2213
 
+    public override void _Ready()
+    {
+        debugEntryPanelScene ??= SceneManager.Instance.LoadScene("res://src/gui_common/DebugEntryPanel.tscn");
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        debugEntryPanelScene?.Dispose();
+        debugEntryPanelScene = null;
+    }
+
     public int GetPrivateCount()
     {
         return privateHistory.Count;
@@ -170,18 +183,5 @@ public partial class DebugEntryList : Panel
             privateHistory.RemoveFromFront();
 
         Refresh();
-    }
-
-    public override void _Ready()
-    {
-        debugEntryPanelScene ??= SceneManager.Instance.LoadScene("res://src/gui_common/DebugEntryPanel.tscn");
-    }
-
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-
-        debugEntryPanelScene?.Dispose();
-        debugEntryPanelScene = null;
     }
 }
