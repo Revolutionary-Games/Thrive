@@ -152,6 +152,9 @@ public sealed class MacroscopicEditsFacade : SpeciesEditsFacade, IReadOnlyMacros
         {
             var removedMetaball = FindMatching(metaballRemoveActionData.RemovedMetaball, true);
 
+            // TODO: if we allow removing the root metaball in the future this needs to handle that, for now this
+            // just allows it through (if someone generated that action) but then the comparison fails as the tree
+            // has no root
             if (removedMetaball != null)
             {
                 if (!newMetaballStructure.Remove(removedMetaball))

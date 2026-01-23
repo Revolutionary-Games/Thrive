@@ -24,6 +24,7 @@ public partial class HexPopupMenu : CustomPopupMenu
 
     private bool showPopup;
     private bool enableDelete = true;
+    private bool showDelete = true;
     private bool enableMove = true;
     private bool enableModify;
 
@@ -74,6 +75,16 @@ public partial class HexPopupMenu : CustomPopupMenu
         set
         {
             enableDelete = value;
+            UpdateDeleteButton();
+        }
+    }
+
+    public bool ShowDeleteOption
+    {
+        get => showDelete;
+        set
+        {
+            showDelete = value;
             UpdateDeleteButton();
         }
     }
