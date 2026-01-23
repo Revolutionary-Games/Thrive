@@ -3,8 +3,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using static CommonMutationFunctions;
 using Godot;
+using static CommonMutationFunctions;
 
 public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
 {
