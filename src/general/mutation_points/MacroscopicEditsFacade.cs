@@ -343,17 +343,31 @@ public sealed class MacroscopicEditsFacade : SpeciesEditsFacade, IReadOnlyMacros
         if (newMetaballStructure.Contains(newParent))
             throw new Exception("Somehow parent is already added to new");
 
-        if (!ReferenceEquals(GetModifiable(macroscopicParent, macroscopicParent.ModifiableParent, fuzzyMatch),
-                newParent))
+        foreach (var alreadyAdded in newMetaballStructure)
+        {
+            if (alreadyAdded.Position == newParent.Position)
+                throw new Exception("Metaball position is already used, but we created a new parent");
+        }
+#endif
+
+        // Need to add it to the already added (because otherwise it will not be found)
+        newMetaballStructure.Add(newParent);
+
+        // Do some sanity checking as this facade algorithm is very complex, so we want the structure edits to work
+        // in a consistent manner before getting further
+#if DEBUG
+        if (!ReferenceEquals(FindMatching(parent, false), newParent))
+            throw new Exception("Failed to create new parent metaball correctly");
+
+        if (!ReferenceEquals(FindMatching(macroscopicParent, false), newParent))
         {
             throw new Exception("Failed to create new parent metaball correctly");
         }
 #endif
 
-        // Need to add it to the already added
-        newMetaballStructure.Add(newParent);
-
 #if DEBUG
+
+        // Make sure future calls to this method work correctly
         if (!ReferenceEquals(ResolveParentReference(parent, fuzzyMatch), newParent))
         {
             throw new Exception("Failed to resolve parent reference correctly");
