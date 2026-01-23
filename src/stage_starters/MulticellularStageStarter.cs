@@ -47,6 +47,12 @@ public partial class MulticellularStageStarter : ComplexStageStarterBase
             break;
         }
 
+        // Refresh the editor cells
+        var editorCells = playerSpecies.ModifiableEditorCells;
+        editorCells.Clear();
+        MulticellularLayoutHelpers.GenerateEditorLayoutFromGameplayLayout(editorCells,
+            playerSpecies.ModifiableGameplayCells, workMemory1, workMemory2);
+
         playerSpecies.OnEdited();
 
         stage.CurrentGame = game;

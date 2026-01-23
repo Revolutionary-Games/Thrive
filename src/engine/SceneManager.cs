@@ -262,10 +262,13 @@ public partial class SceneManager : Node
     [Command("load", true, "Switches to the specified scene, given its resource path.")]
     private static bool CommandLoadScene(string scenePath)
     {
+        bool overrideGameStartAgain = false;
+
         if (scenePath.Equals("multicellular", StringComparison.OrdinalIgnoreCase) ||
             scenePath.Equals("MulticellularStage", StringComparison.OrdinalIgnoreCase))
         {
             scenePath = "res://src/stage_starters/MulticellularStageStarter.tscn";
+            overrideGameStartAgain = true;
         }
         else if (!ResourceLoader.Exists(scenePath))
         {
@@ -278,11 +281,18 @@ public partial class SceneManager : Node
 
         Instance.SwitchToScene(scenePath);
 
+        // When using a scene starter, we need to report a second new game start to get the cheated flags updated
+        if (overrideGameStartAgain)
+        {
+            // Due to the way the scene switch works, this needs a bunch of delay
+            Invoke.Instance.Delay(() => { AchievementsManager.ReportNewGameStarted(true); }, 1);
+        }
+
         return true;
     }
 
     /// <summary>
-    ///   Ensures the shutdown node is last in tree order, this is needed for it to actually execute last
+    ///   Ensures the shutdown node is last in tree order; this is needed for it to actually execute last
     /// </summary>
     private void EnsureShutdownIsLastChild()
     {

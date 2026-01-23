@@ -25,7 +25,6 @@ public enum MainGameState
     /// </summary>
     MicrobeEditor,
 
-    [Alias("multicellular")]
     MulticellularEditor,
 
     /// <summary>
