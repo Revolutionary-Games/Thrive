@@ -73,6 +73,15 @@ public partial class MetaballPopupMenu : HexPopupMenu
         if (deleteButton == null)
             return;
 
+        if (!ShowDeleteOption)
+        {
+            // Do not try to even calculate the remove if hidden totally as the action might be invalid
+            deleteButton.Visible = false;
+            return;
+        }
+
+        deleteButton.Visible = true;
+
         var mpCost = GetActionPrice?.Invoke(SelectedMetaballs
                 .Select(o =>
                     (EditorCombinableActionData)new MetaballRemoveActionData<MacroscopicMetaball>(o, null))) ??
