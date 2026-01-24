@@ -83,7 +83,7 @@ public class ReproductionStatistic : IStatistic, IArchiveUpdatable
         {
             var members = colony.ColonyMembers;
 
-            for (int i = 1; i < members.Length; i++)
+            for (int i = 1; i < members.Length; ++i)
             {
                 foreach (var organelle in members[i].Get<OrganelleContainer>().Organelles!.Organelles)
                 {

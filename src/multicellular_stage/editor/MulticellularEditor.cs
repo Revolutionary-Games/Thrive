@@ -688,7 +688,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     {
         public IReadOnlyList<HexWithData<CellTemplate>>? CellLayout;
 
-        public MulticellularUnlocksData(IReadOnlyList<HexWithData<CellTemplate>>? cellLayout, EnergyBalanceInfoSimple? energyBalance)
+        public MulticellularUnlocksData(IReadOnlyList<HexWithData<CellTemplate>>? cellLayout,
+            EnergyBalanceInfoSimple? energyBalance)
         {
             CellLayout = cellLayout;
             EnergyBalance = energyBalance;
