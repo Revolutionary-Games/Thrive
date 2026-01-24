@@ -830,6 +830,9 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         SceneManager.Instance.SwitchToScene(editor, false);
 
+        // TODO: Implement unlock statistics for the macroscopic stage before removing this
+        GameWorld.UnlockProgress.UnlockAll = true;
+
         MovingToEditor = false;
     }
 
