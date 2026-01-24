@@ -81,12 +81,16 @@ public class ReproductionStatistic : IStatistic, IArchiveUpdatable
 
         if (player.TryGet<MicrobeColony>(out var colony))
         {
-            for (int i = 1; i < colony.ColonyMembers.Length; i++)
+            var members = colony.ColonyMembers;
+
+            for (int i = 1; i < members.Length; i++)
             {
-                foreach (var organelle in player.Get<OrganelleContainer>().Organelles!.Organelles)
+                foreach (var organelle in members[i].Get<OrganelleContainer>().Organelles!.Organelles)
                 {
                     if (organelle.Definition == definition)
+                    {
                         ++count;
+                    }
                 }
             }
         }
