@@ -68,6 +68,12 @@ public static class MicrobeEnvironmentalToleranceCalculations
     public static void ApplyOrganelleEffectsOnTolerances(IReadOnlyList<OrganelleTemplate> organelles,
         ref ToleranceValues tolerances)
     {
+        float temperatureChange = 0;
+        float oxygenChange = 0;
+        float uvChange = 0;
+        float pressureMinimumChange = 0;
+        float pressureMaximumChange = 0;
+
         int organelleCount = organelles.Count;
         for (int i = 0; i < organelleCount; ++i)
         {
@@ -75,13 +81,21 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
             if (organelleDefinition.AffectsTolerances)
             {
-                tolerances.TemperatureTolerance += organelleDefinition.ToleranceModifierTemperatureRange;
-                tolerances.OxygenResistance += organelleDefinition.ToleranceModifierOxygen;
-                tolerances.UVResistance += organelleDefinition.ToleranceModifierUV;
-                tolerances.PressureMinimum -= organelleDefinition.ToleranceModifierPressureRange;
-                tolerances.PressureMaximum += organelleDefinition.ToleranceModifierPressureRange;
+                // Buffer all changes so that float rounding doesn't cause us issues
+                temperatureChange += organelleDefinition.ToleranceModifierTemperatureRange;
+                oxygenChange += organelleDefinition.ToleranceModifierOxygen;
+                uvChange += organelleDefinition.ToleranceModifierUV;
+                pressureMinimumChange -= organelleDefinition.ToleranceModifierPressureRange;
+                pressureMaximumChange += organelleDefinition.ToleranceModifierPressureRange;
             }
         }
+
+        // Then apply all at once
+        tolerances.TemperatureTolerance += temperatureChange;
+        tolerances.OxygenResistance += oxygenChange;
+        tolerances.UVResistance += uvChange;
+        tolerances.PressureMinimum -= pressureMinimumChange;
+        tolerances.PressureMaximum += pressureMaximumChange;
     }
 
     public static void GenerateToleranceEffectSummariesByOrganelle(IReadOnlyList<OrganelleTemplate> organelles,

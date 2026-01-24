@@ -73,6 +73,14 @@ public partial class OrganellePopupMenu : HexPopupMenu
         if (deleteButton == null)
             return;
 
+        if (!ShowDeleteOption)
+        {
+            deleteButton.Visible = false;
+            return;
+        }
+
+        deleteButton.Visible = true;
+
         var mpCost = GetActionPrice?.Invoke(SelectedOrganelles
                 .Select(o => (EditorCombinableActionData)new OrganelleRemoveActionData(o))) ??
             throw new ArgumentException($"{nameof(GetActionPrice)} not set");

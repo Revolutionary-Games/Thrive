@@ -94,7 +94,18 @@ public class CommandRegistry : IDisposable
 
         foreach (var command in candidates)
         {
-            if (TryExecuteCandidate(command, invoker, rawArgs, out bool failed))
+            if (TryExecuteCandidate(command, invoker, rawArgs, false, out bool failed))
+            {
+                return !failed;
+            }
+        }
+
+        // As a last resort, we try to force string parsing wherever possible.
+        // Relying on this should be discouraged when designing commands, but it's useful to cover edge-cases where
+        // a value is not present in an enum, like for the load commands.
+        foreach (var command in candidates)
+        {
+            if (TryExecuteCandidate(command, invoker, rawArgs, true, out bool failed))
             {
                 return !failed;
             }
@@ -116,11 +127,12 @@ public class CommandRegistry : IDisposable
             registerCommandsTask?.Dispose();
     }
 
-    private static bool TryParseSpanToType(ReadOnlySpan<char> token, Type type, bool isQuoted, out object? result)
+    private static bool TryParseSpanToType(ReadOnlySpan<char> token, Type type, bool isQuoted, bool ignoreQuoted,
+        out object? result)
     {
         result = null;
 
-        if (type == typeof(string) && isQuoted)
+        if (type == typeof(string) && (isQuoted || ignoreQuoted))
         {
             result = Unescape(token);
             return true;
@@ -294,14 +306,15 @@ public class CommandRegistry : IDisposable
     /// <param name="command">The command to be executed.</param>
     /// <param name="invoker">The invoker console, which is injected if required.</param>
     /// <param name="rawArgs">The raw command arguments.</param>
+    /// <param name="ignoreQuoted">If set to true, then unquoted text is considered to be a match for strings.</param>
     /// <param name="failed">false iff the command execution succeeds without any exception.</param>
     /// <returns>
-    ///   true iff the command candidate has the correct arguments for execution. This value is not
+    ///   True iff the command candidate has the correct arguments for execution. This value is not
     ///   affected by a command execution failure due to reasons different from argument mismatch, e.g. a command
     ///   execution failure.
     /// </returns>
     private bool TryExecuteCandidate(Command command, DebugConsole? invoker,
-        List<(string Value, bool IsQuoted)> rawArgs, out bool failed)
+        List<(string Value, bool IsQuoted)> rawArgs, bool ignoreQuoted, out bool failed)
     {
         failed = true;
 
@@ -328,7 +341,7 @@ public class CommandRegistry : IDisposable
             var targetType = parameters[i + paramOffset].ParameterType;
             var (value, isQuoted) = rawArgs[i];
 
-            if (!TryParseSpanToType(value.AsSpan(), targetType, isQuoted, out var parsedValue))
+            if (!TryParseSpanToType(value.AsSpan(), targetType, isQuoted, ignoreQuoted, out var parsedValue))
             {
                 // This happens if the parameter conversion fails. We gracefully return false hoping to find a
                 // better candidate for command execution.

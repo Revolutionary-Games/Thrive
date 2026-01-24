@@ -867,6 +867,11 @@ public static class Constants
     public const float MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER = 2;
 
     /// <summary>
+    ///   A multiplier for <see cref="MICROBE_REPRODUCTION_MAX_COMPOUND_USE"/> for multicellular microbes
+    /// </summary>
+    public const float MULTICELLULAR_REPRODUCTION_COMPOUND_MAX_USE_MULTIPLIER = 3;
+
+    /// <summary>
     ///   How much ammonia a microbe needs on top of the organelle initial compositions to reproduce
     /// </summary>
     public const float MICROBE_REPRODUCTION_COST_BASE_AMMONIA = 16;
@@ -1097,7 +1102,7 @@ public static class Constants
     public const float HUD_BAR_FLASH_DURATION = 0.67f;
 
     // Darwinian Evo Values
-    public const int CREATURE_DEATH_POPULATION_LOSS = -60;
+    public const int CREATURE_DEATH_POPULATION_LOSS = -30;
     public const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
 
     // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4694
@@ -1305,17 +1310,19 @@ public static class Constants
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
 
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
-    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 3500;
-    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100000;
-    public const float AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING = 0.00006f;
+    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 4500;
+    public const float AUTO_EVO_PILUS_DEFENSE_SCORE = 3000;
+    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 90000;
+    public const float AUTO_EVO_TOXIN_ENGULFMENT_DEFENSE_MODIFIER = 0.007f;
+    public const float AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING = 0.00008f;
     public const float AUTO_EVO_SIZE_AFFECTED_PROJECTILE_MISS_FACTOR = 0.5f;
     public const float AUTO_EVO_TOXICITY_HIT_MODIFIER = 4.0f;
     public const float AUTO_EVO_SLIME_JET_SCORE = 30;
     public const float AUTO_EVO_MUCOCYST_SCORE = 40;
     public const float AUTO_EVO_PULL_CILIA_MODIFIER = 0.8f;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
-    public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER = 1.18f;
-    public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER = 0.7f;
+    public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER = 1.2f;
+    public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER = 0.8f;
     public const float AUTO_EVO_CHEMORECEPTOR_BASE_SCORE = 0.4f;
     public const float AUTO_EVO_CHEMORECEPTOR_VARIABLE_CLOUD_SCORE = 8;
     public const float AUTO_EVO_CHEMORECEPTOR_VARIABLE_CHUNK_SCORE = 0.00007f;
@@ -1326,7 +1333,9 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
     public const float AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION = 0.1f;
     public const float AUTO_EVO_REPRODUCTION_COMPOUND_PRODUCTION_SCORE = 3000.0f;
-    public const float AUTO_EVO_REPRODUCTION_COMPOUND_COST_WEAKENING_MODIFIER = 0.5f;
+    public const float AUTO_EVO_REPRODUCTION_COMPOUND_COST_WEAKENING_MODIFIER = 0.2f;
+
+    public const float AUTO_EVO_PREDATION_DEFENSE_SCORE_MODIFIER = 0.5f;
 
     public const float AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS_SMALL = 1.5f;
     public const float AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS = 20.0f;

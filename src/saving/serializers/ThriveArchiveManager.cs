@@ -526,6 +526,10 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
             typeof(TemperatureSessilityPressure), TemperatureSessilityPressure.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.ReproductionCompoundPressure,
             typeof(ReproductionCompoundPressure), ReproductionCompoundPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.GeneralAvoidPredationSelectionPressure,
+            typeof(GeneralAvoidPredationSelectionPressure), GeneralAvoidPredationSelectionPressure.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.EnergyConsumptionPressure,
+            typeof(EnergyConsumptionPressure), EnergyConsumptionPressure.ReadFromArchive);
     }
 
     private void RegisterEditor()

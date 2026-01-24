@@ -95,7 +95,7 @@ public static class MembraneComputationHelpers
 
         if (result != null)
         {
-            // Return the no longer needed hex positions to the cache (when we need to generate new data, the hexes
+            // Return the no longer necessary hex positions to the cache (when we need to generate new data, the hexes
             // will get owned by the cache entry)
             ArrayPool<Vector2>.Shared.Return(hexes);
 
@@ -103,13 +103,9 @@ public static class MembraneComputationHelpers
         }
 
         // Need to compute the data now, it doesn't exist in the cache
-        // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
         var generator = MembraneShapeGenerator.GetThreadSpecificGenerator();
 
-        lock (generator)
-        {
-            result = generator.GenerateShape(hexes, length, membraneType);
-        }
+        result = generator.GenerateShape(hexes, length, membraneType);
 
         cache.WriteMembraneData(ref result);
         return result;

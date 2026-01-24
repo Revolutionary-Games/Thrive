@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-12 15:26+0100\n"
-"PO-Revision-Date: 2026-01-09 18:57+0000\n"
+"POT-Creation-Date: 2026-01-22 16:04+0200\n"
+"PO-Revision-Date: 2026-01-22 16:17+0000\n"
 "Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -953,7 +953,7 @@ msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "V值，决定明度"
 
 msgid "COMMAND_INPUT_LINE_EDIT"
-msgstr ""
+msgstr "插入命令"
 
 msgid "COMMON_ABILITIES"
 msgstr "常见能力"
@@ -1548,9 +1548,8 @@ msgstr "死区控制"
 msgid "DEATH"
 msgstr "死亡数"
 
-#, fuzzy
 msgid "DEBUG_CONSOLE"
-msgstr "调试菜单"
+msgstr "调试控制台"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -2041,6 +2040,9 @@ msgstr ""
 "{0}： +{1} ATP\n"
 "含消耗：\n"
 "{2}"
+
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr "能量消耗压力"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1}在{0}的能量"
@@ -2636,6 +2638,12 @@ msgstr ""
 "如果您遇到编辑器按钮部分消失的问题，\n"
 "可以试试禁用这个功能，问题可能会消失。"
 
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr "（注：增大GUI界面缩放比例是一项实验性功能，可能会导致元素超出屏幕显示范围）"
+
+msgid "GUI_SCALE_OPTION"
+msgstr "GUI缩放："
+
 msgid "GUI_TAB_NAVIGATION"
 msgstr "界面选项卡导航"
 
@@ -2738,9 +2746,8 @@ msgstr "大碎冰砾"
 msgid "ICE_CHUNK_SMALL"
 msgstr "小碎冰砾"
 
-#, fuzzy
 msgid "ICE_SNOWFLAKE_BIG"
-msgstr "雪花"
+msgstr "大雪花"
 
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID无效"
@@ -3476,6 +3483,9 @@ msgstr "大环内酯物合成"
 
 msgid "MACROSCOPIC"
 msgstr "宏观生物"
+
+msgid "MACROSCOPIC_EDITOR"
+msgstr "宏观生物编辑器"
 
 msgid "MACROSCOPIC_STAGE"
 msgstr "宏观生物阶段"
@@ -5256,6 +5266,13 @@ msgstr "径流事件"
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "在游戏中启用自动演化系统 (Auto-Evo)"
 
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
+msgstr ""
+"启用后，自动演化将在游戏过程中提前启动，以缩短加载界面的等待时间。\n"
+"在 CPU 核心数较少的系统上，这可能会导致额外的卡顿。\n"
+"若禁用，自动演化将仅在加载界面期间进行，但仍会照常执行。\n"
+"由于自动演化是游戏的核心机制，因此无法将其完全关闭。"
+
 msgid "RUN_ONE_STEP"
 msgstr "运行一步"
 
@@ -6210,9 +6227,8 @@ msgstr "切换聚合模式"
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "切换聚合模式，触碰其他细胞以建立群落。"
 
-#, fuzzy
 msgid "TOGGLE_DEBUG_CONSOLE"
-msgstr "控制调试菜单"
+msgstr "切换调试控制台"
 
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "控制调试菜单"
