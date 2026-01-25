@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-01-22 16:04+0200\n"
-"PO-Revision-Date: 2026-01-22 14:03+0000\n"
+"PO-Revision-Date: 2026-01-23 12:59+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
 "Language: da\n"
@@ -65,7 +65,7 @@ msgid "ACTION_AWAKEN"
 msgstr "Opvågne ({0:F1}/{1:F1})"
 
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr "Tag til Opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Handling blokeret mens en anden udføres"
@@ -193,10 +193,10 @@ msgid "AMMONIA_LEVELS"
 msgstr "Ammoniak niveau"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr "Antal autosaves der beholdes:"
+msgstr "Antal autolagringer der beholdes:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr "Antal quicksaves der beholdes:"
+msgstr "Antal hurtiglagringer der beholdes:"
 
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Anaerob kvælstoffiksering"
@@ -259,9 +259,9 @@ msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
 "Du har steget op og gennemført spillet. Tillykke med at have nået slutningen på spillet!\n"
 "\n"
-"Du kan fortsætte med at spille i rumstadiet med de opnåede gudeværktøjer og eksperimentere frit i sandkassen.\n"
+"Du kan fortsætte med at spille i Rumstadiet med de opnåede gude-værktøjer og eksperimentere frit i sandkassen.\n"
 "\n"
-"Det er også muligt at nedstige og vende tilbage til mikrobe-stadiet i denne fil, så du kan spille alle stadier igen med ekstra fordele.\n"
+"Det er også muligt at nedstige og vende tilbage til Mikrobestadiet i denne fil, så du kan spille alle stadier igen med ekstra fordele.\n"
 "\n"
 "Samlet antal opstigninger i denne fil: {0}"
 
@@ -299,9 +299,11 @@ msgstr ""
 "F.eks. kan nogle celler kun vedligeholde en positiv ATP balance når de har flere forskellige stoftyper til at skabe ATP med på en gang.\n"
 "Disse typer celler er sværere at spille, da de kræver at man har flere forskellige typer stoffer lageret på en gang for at kunne overleve."
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr ""
+"Denne sektion viser indstillinger for beregning af ATP-balancer (energi) for celler.\n"
+"De udregnede balancer er vist i cellens typevælger menu.\n"
+"Dropdownen nedenunder kan bruges til at tjekke hvad der ville ske hvis cellen ikke have visse ressourcer tilgængelige til at skabe ATP med."
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
 msgstr "Uden eksterne ressourcer"
@@ -325,7 +327,7 @@ msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP PRODUKTION ER FOR LAV!"
 
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr "Forsøget på at gemme til denne fil mislykkedes. Fil navnet er muligvis for langt, eller du har ikke skriverettigheder til mappen der gemmes til."
+msgstr "Forsøget på at gemme til denne lagring mislykkedes. Lagringens navn er muligvis for langt, eller du har ikke skriverettigheder til mappen der gemmes til."
 
 msgid "AT_CURSOR"
 msgstr "Ved musemarkøren:"
@@ -366,7 +368,7 @@ msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
 msgstr "(procentdel af bestandændring auto-evo anvender på spillerens art)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr "Autosave undervejs i spillet"
+msgstr "Autolagring undervejs i spillet"
 
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
@@ -381,7 +383,7 @@ msgid "AUTO_EVO_FAILED"
 msgstr "Auto-Evo mislykkedes"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
-msgstr "Auto-evo resultater mangler. Det er forventet at den mangler hvis du har hentet en gammel save. Hvis du ikke har hentet en gammel save, rapporter det venligst til os som en fejl, og send os dit spils log fil."
+msgstr "Auto-evo resultater mangler. Det er forventet at den mangler hvis du har hentet en gammel lagring. Hvis du ikke har hentet en gammel lagring, rapporter det venligst til os som en fejl, og send os dit spils log fil."
 
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo resultater:"
@@ -429,7 +431,7 @@ msgid "AVERAGE_SURFACE_TEMPERATURE"
 msgstr "Gennemsnitlig overflade temperatur"
 
 msgid "AWAKENING_STAGE"
-msgstr "Opstandsstaddiet"
+msgstr "Opvågningsstaddiet"
 
 msgid "AWARE_STAGE"
 msgstr "Sansestadiet"
@@ -657,7 +659,7 @@ msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
 msgstr "Kan ikke gå tilbage til et tidligere stadie ved at reducere hjernekraft"
 
 msgid "CANNOT_WRITE_SAVE"
-msgstr "Kan ikke gemme til fil"
+msgstr "Kan ikke skrive til lagring"
 
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "Kan ikke hente info omkring mod for {0}"
@@ -812,9 +814,8 @@ msgstr "Denne membran har en væg, hvilket betyder den har bedre beskyttelse imo
 msgid "CHLOROPLAST"
 msgstr "Kloroplast"
 
-#, fuzzy
 msgid "CHLOROPLAST_DESCRIPTION"
-msgstr "Kloroplasten er en struktur med dobbeltmembran der indeholder lysfølsomme pigmenter, som er stablet sammen i hindeagtige sække."
+msgstr "Kloroplasten er en struktur med dobbeltmembran der indeholder lysfølsomme pigmenter, som er stablet sammen i hindeagtige sække. Det er en prokaryote der er blevet assimileret til brug af sin eukaryotiske vært. Pigmenterne i kloroplasten er i stand til at bruge energien fra lys til at producere [thrive:compound type=\"glucose\"][/thrive:compound] fra gasformig [thrive:compound type=\"carbondioxide\"][/thrive:compound] og vand i en proces kaldet [b]fotosyntese[/b]. Dise pigmenter er også det der giver den særprægede farve. Hastigeden af dens [thrive:compound type=\"glucose\"][/thrive:compound] produktion skalerer med koncentrationen af [thrive:compound type=\"carbondioxide\"][/thrive:compound], og intensiteten af [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Producerer [thrive:compound type=\"glucose\"][/thrive:compound]. Hastigheden skalerer med koncentrationen af [thrive:compound type=\"carbondioxide\"][/thrive:compound] og intensiteten af [thrive:compound type=\"sunlight\"][/thrive:compound]."
@@ -847,7 +848,7 @@ msgid "CITY_SHORT_STATISTICS"
 msgstr "Befolkning: {0} Mad: {1} Videnskab: {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
-msgstr "Ryd gamle saves"
+msgstr "Ryd gamle lagringer"
 
 msgid "CLEAR_CACHE"
 msgstr "Ryd cache"
@@ -877,7 +878,7 @@ msgid "CLOSE_OPTIONS"
 msgstr "Luk indstillinger?"
 
 msgid "CLOSTRIDIAL_FERMENTATION"
-msgstr ""
+msgstr "Clostridialfermentering"
 
 msgid "CLOUD_BENCHMARK"
 msgstr "Sky benchmark"
@@ -920,9 +921,11 @@ msgstr "Farvens grønne kanal værdi"
 
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
+"Slår HSV-tilstand (farvetone, mætning, værdi) til eller fra. \n"
+"Kan ikke slås til i rå tilstand."
 
 msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr ""
+msgstr "Farvetoneværdi, farvens andel"
 
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr "Vælg en farve fra spil vinduet"
@@ -935,15 +938,19 @@ msgstr ""
 
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
+"Slå rå tilstand til og fra.\n"
+"I rå tilstand kan dug få R, G, B\n"
+"farveværdierne til at gå forbi 1,0.\n"
+"Kan ikke slås til i HSV-tilstand."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Farvens røde kanal værdi"
 
 msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr ""
+msgstr "Mætningsværdi, mængden af gråt i en bestemt farve"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr ""
+msgstr "Værdi (lysstyrke), farvens lysstyrke eller intensitet"
 
 msgid "COMMAND_INPUT_LINE_EDIT"
 msgstr "Indsæt kommando"
@@ -979,7 +986,7 @@ msgid "COMPOUNDS_AT_EQUILIBRIUM"
 msgstr "Balance ved ligevægt"
 
 msgid "COMPOUNDS_AT_MAX_SPEED"
-msgstr "Balance ved maks hastighed"
+msgstr "Balance ved max hastighed"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Vis / gem stoffer"
@@ -995,6 +1002,8 @@ msgstr "(fylder lager om {0} s hvilket er længere end det brugbare dagslys af {
 
 msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
 msgstr ""
+"Tilstand til at kalkulere stofbalance, f.eks. max hastighed kalkulerer ud fra antagelsen at alle processer kører ved max hastighed,\n"
+"hvor ligevægt kalkulerer med processer der kun kører så hurtigt som nødvendigt for at have en ikke-negativ ATP balance."
 
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Stofbalancer"
@@ -1029,7 +1038,7 @@ msgid "COMPOUND_HANDLE_SPLIT_SISTER"
 msgstr "Split med søster celle"
 
 msgid "COMPOUND_HANDLE_TOP_UP"
-msgstr ""
+msgstr "Top altid op til startniveau"
 
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Top up ved område skift"
@@ -1093,22 +1102,33 @@ msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Bekræft overskrivning"
 
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
-msgstr "Flyt til opstandelsesstadiet?"
+msgstr "Flyt til Opstigningsstadiet?"
 
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr ""
+"Du kan nu stige op og nå Opstigningsstadiet ved at aktivere Opstigningsporten,\n"
+"\n"
+"Det vil give dig uanede kræfter i form af en række nye gude-værktøjer du kan bruge i denne fil.\n"
+"\n"
+"At opstige betyder at du har klaret spillet, men du vil stadig være i stand til at blive ved med at spille. Vil du opstige?"
 
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
 msgstr "Flyt til Industristadiet?"
 
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
-msgstr "Ved at placere en fabrik vil du avancere til industristadiet. Fortsæt til næste stadie?"
+msgstr "Ved at placere en fabrik vil du avancere til Industristadiet. Fortsæt til næste stadie?"
 
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
-msgstr "Flyt til rumstadiet?"
+msgstr "Flyt til Rumstadiet?"
 
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr ""
+"Du kan nu fortsætte til Rumstadiet ved at opsende din første rumskib.\n"
+"\n"
+"Lige nu kan du ikke i prototypen vende tilbage til din planet, men den fremtidige plan er at man i Rumstadiet kan zoome gnidningsfrit ind og ud af planter.\n"
+"\n"
+"\n"
+"Hvis du annullerer opsendelsen vil det ødelægge rumskibet. Opsend rumskibet?"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Start spillet med disse indstillinger"
@@ -1336,7 +1356,7 @@ msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
 msgstr ""
 
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
-msgstr ""
+msgstr "Kunne ikke finde inputelementer til fremstilling"
 
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr "Input"
@@ -1345,13 +1365,13 @@ msgid "CRAFTING_KNOWN_ITEMS"
 msgstr "Kendte opskrifter"
 
 msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
-msgstr ""
+msgstr "Ikke nok {0} til at fremstille opskrift"
 
 msgid "CRAFTING_NO_RECIPE_SELECTED"
-msgstr ""
+msgstr "Vælg venligst først en opskrift ovenover der skal fremstilles"
 
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
-msgstr ""
+msgstr "Ingen plads til at tage alle fremstillingsresultaterne"
 
 msgid "CRAFTING_RECIPE_DISPLAY"
 msgstr "{0} ({1})"
@@ -1363,22 +1383,22 @@ msgid "CRAFTING_RESULTS"
 msgstr "Resultater"
 
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
-msgstr ""
+msgstr "Vel en fremstillingsopskrift eller vælg genstande at filtrere"
 
 msgid "CRAFTING_TAKE_ALL"
 msgstr "Tag alle"
 
 msgid "CRAFTING_TITLE"
-msgstr ""
+msgstr "Fremstilling"
 
 msgid "CREATE"
-msgstr ""
+msgstr "Skab"
 
 msgid "CREATED_AT"
-msgstr ""
+msgstr "Skabt af:"
 
 msgid "CREATED_ON_PLATFORM"
-msgstr ""
+msgstr "Skabt på platform:"
 
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "Skab en ny mikrobe"
@@ -1408,7 +1428,7 @@ msgid "CREATING_DOT_DOT_DOT"
 msgstr "Skaber..."
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
-msgstr "Skaber objekter fra gemte fil"
+msgstr "Skaber objekter fra lagring"
 
 msgid "CREDITS"
 msgstr "Anerkendelser"
@@ -1419,19 +1439,21 @@ msgstr "CTRL"
 msgid "CURRENT_CACHE_SIZE"
 msgstr "Nuværende størrelse:"
 
-#, fuzzy
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr ""
+"Størrelsen på alle cachede genstande lageret på disken. Kan til en hver tid slettes uden problemer,\n"
+"men næste gang der er brug for en genstand der villet have været i cachen vil det tage længere tid at generere."
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Nuværende udviklere"
 
 msgid "CURRENT_DILUTION"
-msgstr ""
+msgstr "Nuværende udvandingsbegivenhed"
 
-#, fuzzy
 msgid "CURRENT_DILUTION_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr ""
+"Stoffer er blevet udvandet.\n"
+"Sænker koncentrationen af:"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "NUVÆRENDE LOKATION"
@@ -1439,9 +1461,8 @@ msgstr "NUVÆRENDE LOKATION"
 msgid "CURRENT_PARTICLES_ALL"
 msgstr "Alle"
 
-#, fuzzy
 msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr "Kun cirkler"
 
 msgid "CURRENT_PARTICLES_NONE"
 msgstr "Ingen"
@@ -1485,7 +1506,7 @@ msgid "CYTOPLASM"
 msgstr "Cytoplasma"
 
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr ""
+msgstr "Cellens klæbrige indmad. Cytoplasma er en basal blanding af ioner, proteiner, og andre substanser opløst i vand der fylder cellens indre. En af funktionerne det udfører er [b]glykolyse[/b], konverteringen af [thrive:compound type=\"glucose\"][/thrive:compound] om til [thrive:compound type=\"atp\"][/thrive:compound]. Celler der mangler organeller for at have en mere avanceret metabolisme, er afhængige af dem for at skaffe energi. De kan også bruges til at lagre molekuler inde i cellen, samt vokse cellen større."
 
 msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr "Cytoplasma glykolyse"
@@ -1557,12 +1578,16 @@ msgstr "Slet"
 
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
+"Sletning af gamle auto- og hurtiglagringer kan ikke gøre om, er du sikker på du vil slette følgende?\n"
+" - {0} Autolagring(er)\n"
+" - {1} Hurtiglagring(er)\n"
+" - {2} Backuplagring(er)"
 
 msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr ""
+msgstr "Sletning af fossilet kan ikke gøres om, er du sikker på du permanent vil slette det?"
 
 msgid "DELETE_OLD_SAVES_PROMPT"
-msgstr "Slet gamle gemte filer?"
+msgstr "Slet gamle lagringer?"
 
 msgid "DELETE_ORGANELLE"
 msgstr "Slet organel"
@@ -1574,7 +1599,7 @@ msgid "DELETE_SELECTED"
 msgstr "Slet valgte"
 
 msgid "DELETE_SELECTED_SAVES_PROMPT"
-msgstr "Slet valgte gemte fil(er)?"
+msgstr "Slet valgte lagring(er)?"
 
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
@@ -1590,6 +1615,11 @@ msgstr ""
 
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
+"Nedstigning vil fjerne din opsteget status og sende dig tilbage til Mikrobestadiet. Derfra kan du spille igennem spillet igen med den nuværende lagring.\n"
+"\n"
+"Du vil modtage en nedstignings frynsegode i din nye gennemspilning. I fremtidige versioner vil du kunne vælge din frynsegode selv, men for nu vil den altid være en 20% reduktion på osmoreguleringsomkostninger. \n"
+"\n"
+"Så snart du bekræfter nedstigningen kan du redigere spilindstillingerne for f.eks. at vælge et nyt verdens seed for at spille på et andet kort, eller slå LSVK fra."
 
 msgid "DESCRIPTION"
 msgstr "Beskrivelse:"
@@ -1601,10 +1631,10 @@ msgid "DESCRIPTION_TOO_LONG"
 msgstr "Beskrivelse er for lang"
 
 msgid "DESPAWN_ENTITIES"
-msgstr ""
+msgstr "Fjern alle entiteter"
 
 msgid "DETECTED_CPU_COUNT"
-msgstr ""
+msgstr "Registreret CPU antal:"
 
 msgid "DEVBUILD_VERSION_INFO"
 msgstr ""
@@ -1639,9 +1669,17 @@ msgstr "Devbuilds Supportere"
 msgid "DIFFICULTY"
 msgstr "Sværhedsgrad"
 
-#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
-msgstr "Nemt"
+msgstr ""
+"Sværhedsgrad forudindstilling: {0}\n"
+"Mutationsomkostning multiplikator: {1}\n"
+"AI mutationshastighed: {2}\n"
+"Stofsky tæthed: {3}\n"
+"Straf på bestanden ved spillerens død: {4}\n"
+"Tilbageholdelse af glukose i miljøet: {5}\n"
+"Osmoreguleringsomkostnings multiplikator: {6}\n"
+"Gratis glukosesky når editoren forlades: {7}\n"
+"Begræns brugen af vækststoffer: {8}"
 
 msgid "DIFFICULTY_PRESET"
 msgstr "Sværhedsgrad preset"
@@ -1674,10 +1712,10 @@ msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
 msgid "DISABLED"
-msgstr ""
+msgstr "Deaktiveret"
 
 msgid "DISABLE_ALL"
-msgstr ""
+msgstr "Deaktivér alle"
 
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Vrag og fortsæt"
@@ -1715,15 +1753,18 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Join vores community Discord server"
 
-#, fuzzy
 msgid "DISK_CACHE_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr ""
+"Nå det er slået til, så vil noget af det data der er dyrt at skabe blive skrevet til disken så der er hurtigere at indhent når det skal bruges.\n"
+"Hvis det er slået fra bruges kun caching i hukommelsen."
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Afviste popups:"
 
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
+"Dette viser hvor mange popups der er blevet permanent afvist af brugeren.\n"
+"Hvis nogle af de afvist popups rent faktisk er ønskede, så kan knappen er ved siden af gøre alle de afviste popups synlige igen."
 
 msgid "DISMISS_INFORMATION_PERMANENTLY"
 msgstr "Vis ikke dette igen"
@@ -1750,16 +1791,16 @@ msgid "DISPLAY_DRIVER_VULKAN"
 msgstr "Vulkan"
 
 msgid "DISPLAY_MODE"
-msgstr ""
+msgstr "Visningstilstand:"
 
 msgid "DISPLAY_PART_NAMES"
-msgstr ""
+msgstr "Vis delvælger knapnavne"
 
 msgid "DISPLAY_SELECTION"
 msgstr "Skærm:"
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "Spred {0} miljømæssige madkilder ligeligt"
 
 msgid "DOES_NOT_USE_FEATURE"
 msgstr "Nej"
@@ -1777,25 +1818,25 @@ msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Dobbeltklik for at se i fuld skærm"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "En membran med to lag, den har bedre beskytelse mod skade og bruger mindre energi på ikke at miste formen. Cellen bevæger sig dog langsommere, og absorberingshastigheden af ressourcer sænkes også."
 
 msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 msgstr "Skift mellem normal og dobbelt spilhastighed"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
-msgstr ""
+msgstr "Hiv denne for at ændre rækkefølgen på genstandene med musen"
 
 msgid "DUMP_SCENE_TREE"
-msgstr ""
+msgstr "Dump scenetræ"
 
 msgid "DUPLICATE_TYPE"
 msgstr "Dupliker type"
 
 msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
+msgstr "Sjov fakta: Didinium'en og Paramecium'en er det perfekte eksempel på rovdyr-byttedyr forhold, og er bevet studeret i årtier. Så, er du en Didinium eller en Paramecium? Rovdyr, eller bytte?"
 
 msgid "EASTEREGG_MESSAGE_10"
-msgstr ""
+msgstr "SPRÆLLENDE TING!!"
 
 msgid "EASTEREGG_MESSAGE_11"
 msgstr ""
@@ -2200,13 +2241,13 @@ msgid "FAILED"
 msgstr "Fejlet"
 
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
-msgstr "Fejl: Sletning af en eller flere save filer mislykkedes."
+msgstr "Fejl: Sletning af en eller flere lagringsfiler mislykkedes."
 
 msgid "FAILED_SAVE_DELETION"
-msgstr "Fejl: Sletning af save mislykkedes"
+msgstr "Fejl: Sletning af lagring mislykkedes"
 
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
-msgstr "Savefilen kunne ikke slettes."
+msgstr "Lagringsfilen kunne ikke slettes."
 
 msgid "FEARFUL"
 msgstr "Frygtfuld"
@@ -2354,7 +2395,7 @@ msgid "FOSSILISATION"
 msgstr "Fossilisering"
 
 msgid "FOSSILISATION_EXPLANATION"
-msgstr "Fossiliser denne art for at gemme den i museumet. Du kan tilgå museumet fra Thriveopedia'en, eller loade en Fossiliseret art i fribyg-editoren."
+msgstr "Fossiliser denne art for at gemme den i museumet. Du kan tilgå museumet fra Thriveopedia'en, eller indlæs en Fossiliseret art i fribyg-editoren."
 
 msgid "FOSSILISATION_FAILED"
 msgstr "Fossilisering mislykkedes"
@@ -2794,10 +2835,10 @@ msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
 msgstr "(skade der ville dræbe en spiller med meget liv efterlader dig i stedet med en lille smule liv)"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
-msgstr "Aktiver Opstandelsesport"
+msgstr "Aktivér Opstigningsport"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
-msgstr "Aktiver opstandelsesport (MANGLER ENERGI)"
+msgstr "Aktivér Opstigningsport (MANGLER ENERGI)"
 
 msgid "INTERACTION_CONSTRUCT"
 msgstr "Færdiggør byggeri"
@@ -2851,7 +2892,7 @@ msgid "INVALID_ICON_PATH"
 msgstr "Ugyldig mod ikon sti"
 
 msgid "INVALID_SAVE_NAME_POPUP"
-msgstr "Save navn må ikke indeholde specialtegn (<>:\"/\\|?*)"
+msgstr "Lagringsnavn må ikke indeholde specialtegn (<>:\"/\\|?*)"
 
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Art navn skal holde sig til binomial navngivningssystem (genus og epitet)!"
@@ -2918,7 +2959,7 @@ msgid "KEEP_CURRENT_SHORT"
 msgstr "Behold nuværende"
 
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "Behold det nuværende tryktoleransområde, mens du flytter min- og maks-skyderne"
+msgstr "Behold det nuværende tryktoleransområde, mens du flytter min- og max-skyderne"
 
 msgid "KEEP_MIGRATION"
 msgstr "Behold migration"
@@ -3250,7 +3291,7 @@ msgid "LIGHT_LEVEL_NIGHT"
 msgstr "Nat"
 
 msgid "LIGHT_MAX"
-msgstr "Maks lys"
+msgstr "Max lys"
 
 msgid "LIMIT_EXTREME"
 msgstr "Ekstrem"
@@ -3316,13 +3357,13 @@ msgid "LOADING_MICROBE_EDITOR"
 msgstr "Indlæser mikroskopisk editor"
 
 msgid "LOADING_MICROBE_STAGE"
-msgstr "Indlæser mikrobestadie"
+msgstr "Indlæser Mikrobestadie"
 
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Indlæser flercellet editor"
 
 msgid "LOADING_MULTICELLULAR_STAGE"
-msgstr "Indlæser flercellestadie"
+msgstr "Indlæser Flercellestadie"
 
 msgid "LOADING_STAGE"
 msgstr "Indlæser stadie"
@@ -3438,13 +3479,13 @@ msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
 
 msgid "MAX_FPS"
-msgstr "Maks FPS:"
+msgstr "Max FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Ubegrænset"
 
 msgid "MAX_SIZE_COLON"
-msgstr "Maks størrelse:"
+msgstr "Max størrelse:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maksimale antal entiteter:"
@@ -4060,7 +4101,7 @@ msgstr "Flyt til land"
 
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr ""
-"Fortsæt til makroskopiskstadiet. Tilgængeligt når din celle koloni er stor nok.\n"
+"Fortsæt til Makroskopiskstadiet. Tilgængeligt når din celle koloni er stor nok.\n"
 "Dette kræver at du tilføjer nok celler i editoren, og derefter vokser din koloni til minimumsstørrelsen."
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
@@ -4074,14 +4115,14 @@ msgstr "Bevæg op eller ned"
 
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
-"Du skal til at fortsætte til opvågningsstadiet. Så snart du fortsætter kan du ikke vende tilbage.\n"
+"Du skal til at fortsætte til Opvågningsstadiet. Så snart du fortsætter kan du ikke vende tilbage.\n"
 "\n"
 "Hvis du på nuværende tidspunkt er under vand, så vil du permanent sidde fast der, og vil være ude af stand til at gennemføre spillet.\n"
 "\n"
 "Så vær meget forsigtigt med at fortsætte hvis du ikke er flyttet på land endnu."
 
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
-msgstr "Fortsæt til opvågningsstadiet?"
+msgstr "Fortsæt til Opvågningsstadiet?"
 
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
@@ -4197,8 +4238,8 @@ msgstr "Ny"
 
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
-"Denne gemte fil er fra en nyere version af Thrive, og er højst sandsyneligt inkompatibel.\n"
-"Ønsker du at forsøge at indlæse filen alligevel?"
+"Denne lagring er fra en nyere version af Thrive, og er højst sandsyneligt inkompatibel.\n"
+"Ønsker du at forsøge at indlæse lagringen alligevel?"
 
 msgid "NEWS"
 msgstr "NYHEDER"
@@ -4333,10 +4374,10 @@ msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Ingen processer"
 
 msgid "NO_SAVEGAMES_FOUND"
-msgstr "Ingen gemte spil fundet"
+msgstr "Ingen lagringer fundet"
 
 msgid "NO_SAVE_DIRECTORY"
-msgstr "Intet gemt spil mappe fundet"
+msgstr "Ingen lagringsmappe fundet"
 
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Ingen screenshot mappe fundet"
@@ -4436,7 +4477,7 @@ msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Åben forskningsvinduet"
 
 msgid "OPEN_SAVE_DIRECTORY"
-msgstr "Åben gemte filers mappe"
+msgstr "Åben lagringsmappe"
 
 msgid "OPEN_SCIENCE_MENU"
 msgstr "Åben videnskabsmenu"
@@ -4563,10 +4604,10 @@ msgid "OUTSIDE_CONTRIBUTORS"
 msgstr "Udefrakommende Bidragsydere"
 
 msgid "OVERWRITE_EXISTING_SAVE"
-msgstr "Overskriv eksisterende gemte spil:"
+msgstr "Overskriv eksisterende lagring:"
 
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
-msgstr "Overskriv eksisterende gemte spil?"
+msgstr "Overskriv eksisterende lagring?"
 
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
@@ -4911,7 +4952,7 @@ msgid "QUICK_LOAD"
 msgstr "Hurtig indlæsning"
 
 msgid "QUICK_SAVE"
-msgstr "Hurtig gem"
+msgstr "Hurtiglagring"
 
 msgid "QUIT"
 msgstr "Afslut"
@@ -4958,7 +4999,7 @@ msgid "REACH_MULTICELLULAR_STAGE"
 msgstr "Nå flercellestadiet"
 
 msgid "READING_SAVE_DATA"
-msgstr "Læser gemt spildata"
+msgstr "Læser lagringsdata"
 
 msgid "READY"
 msgstr "Klar"
@@ -5204,33 +5245,33 @@ msgid "SAVE_AND_CONTINUE"
 msgstr "Gem og fortsæt"
 
 msgid "SAVE_AUTOSAVE"
-msgstr "Autosave"
+msgstr "Autolagring"
 
 msgid "SAVE_CHEATS_USED"
 msgstr "Snydekoder brugt"
 
 msgid "SAVE_DELETE_WARNING"
-msgstr "Sletning af denne fil kan ikke gøres om, er du sikker på du permanent vil slette {0}?"
+msgstr "Sletning af lagring kan ikke gøres om, er du sikker på du permanent vil slette {0}?"
 
 msgid "SAVE_FAILED"
-msgstr "Sletning fejlede"
+msgstr "Lagring fejlede"
 
 msgid "SAVE_GAME"
 msgstr "Gem spil"
 
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
-msgstr "Åben gemte-spil menuen for at gemme dit spil"
+msgstr "Åben lagringmenuen for at gemme dit spil"
 
 msgid "SAVE_HAS_DIFFERENT_VERSION"
-msgstr "Det gemte spil har en anden version"
+msgstr "Lagringen har en anden version"
 
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
-"Det gemte spils version du forsøger at hente ind passer ikke med spillets version.\n"
+"Versionen på den lagring du forsøger at hente ind passer ikke med spillets version.\n"
 "Hent venligst det gemte spil manuelt gennem menuen."
 
 msgid "SAVE_HAS_INVALID_GAME_STATE"
-msgstr "Gemte spil har en ugyldig spil state scene"
+msgstr "Lagringen har en ugyldig spil state scene"
 
 msgid "SAVE_INVALID"
 msgstr "Ugyldig"
@@ -5248,7 +5289,7 @@ msgid "SAVE_MANUAL"
 msgstr "Manuel"
 
 msgid "SAVE_QUICKSAVE"
-msgstr "Quicksave"
+msgstr "Hurtiglagring"
 
 msgid "SAVE_SPACE_USED"
 msgstr "Plads brugt:"
@@ -5871,7 +5912,7 @@ msgid "TASTY_RADIATION"
 msgstr "Lækker Stråling"
 
 msgid "TECHNOLOGY_ASCENSION"
-msgstr "Opstandelse"
+msgstr "Opstigning"
 
 msgid "TECHNOLOGY_HUNTER_GATHERING"
 msgstr "Jæger-samler"
@@ -6197,7 +6238,7 @@ msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Samlet energi:"
 
 msgid "TOTAL_SAVES"
-msgstr "Antal gemte spil:"
+msgstr "Antal lagringer:"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
 msgstr "Kanalhæmmer"
@@ -6513,58 +6554,60 @@ msgid "UNLOCK_CONDITION_COMPOUND_IS_BETWEEN"
 msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] i område er mellem {1} og {2}"
 
 msgid "UNLOCK_CONDITION_DIGESTED_MICROBES_ABOVE"
-msgstr "{0} mikrober er fordøjet  (lige nu er det på {1})"
+msgstr "{0} mikrober er fordøjet (nuværende antal er {1})"
 
 msgid "UNLOCK_CONDITION_ENGULFED_MICROBES_ABOVE"
-msgstr "{0} mikrober er opslugt (lige nu er det på {1})"
+msgstr "{0} mikrober er opslugt (nuværende antal er {1})"
 
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr "overskydende [thrive:compound type=\"atp\"][/thrive:compound] når {0}"
 
 msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
-msgstr "skade modtaget når {0} (lige nu er det på {1})"
+msgstr "skade modtaget når op på {0} (nuværende er der på {1})"
 
 msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
-msgstr "skade modtaget fra {1} når {0} (lige nu er det på {2})"
+msgstr "skade modtaget fra {1} når {0} (nuværende er det på {2})"
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
-msgstr "Dødstæller når {0} (lige nu er den på {1})"
+msgstr "Dødstæller når {0} (nuværende antal er {1})"
 
 msgid "UNLOCK_CONDITION_REPRODUCED_WITH"
-msgstr ""
+msgstr "organismen indeholder mindst {1} {0} i {2} generationer (nuværende antal er {3})"
 
 msgid "UNLOCK_CONDITION_REPRODUCED_WITH_IN_A_ROW"
-msgstr ""
+msgstr "organismen indeholder mindst {1} {0} i {2} generationer i træk (nuværende antal er {3})"
 
 msgid "UNLOCK_CONDITION_REPRODUCE_IN_BIOME"
-msgstr ""
+msgstr "reproducerer i {0} biomen"
 
 msgid "UNLOCK_CONDITION_SPEED_BELOW"
-msgstr ""
+msgstr "hastigheden falder ned under {0}"
 
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
-msgstr ""
+msgstr "[b]{0}[/b] tilgængelig når"
 
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
+"Du har ikke-gemte ændringer der vil blive forkastet.\n"
+"Er du sikker på du vil fortsætte?"
 
 msgid "UNTITLED"
-msgstr ""
+msgstr "Unavngivet"
 
 msgid "UPGRADE_CILIA_PULL"
-msgstr ""
+msgstr "Trækkende cillie"
 
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr ""
 
 msgid "UPGRADE_COST"
-msgstr ""
+msgstr "{0} ({1} MP)"
 
 msgid "UPGRADE_DESCRIPTION_NONE"
-msgstr ""
+msgstr "Den standarde, ikke-opgraderet tilstand"
 
 msgid "UPGRADE_NAME_NONE"
-msgstr ""
+msgstr "Ingen opgradering"
 
 msgid "UPGRADE_PILUS_INJECTISOME"
 msgstr ""
@@ -6579,25 +6622,25 @@ msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
 msgstr ""
 
 msgid "UPLOAD"
-msgstr ""
+msgstr "Upload"
 
 msgid "UPLOADING_DOT_DOT_DOT"
-msgstr ""
+msgstr "Uploader..."
 
 msgid "UPLOAD_SUCCEEDED"
-msgstr ""
+msgstr "Upload lykkedes"
 
 msgid "UPSCALE_BILINEAR"
-msgstr ""
+msgstr "Bilinear Opskalering"
 
 msgid "UPSCALE_FSR_1"
-msgstr ""
+msgstr "FSR 1 Opskalering"
 
 msgid "UPSCALE_FSR_22"
-msgstr ""
+msgstr "FSR 2.2 Opskalering"
 
 msgid "UPSCALE_METHOD"
-msgstr ""
+msgstr "Opskaleringsmetode:"
 
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
@@ -6606,44 +6649,44 @@ msgid "UPWELLING_EVENT"
 msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
-msgstr ""
+msgstr "Licenser og brugte biblioteker"
 
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
 msgid "USES_FEATURE"
-msgstr ""
+msgstr "Ja"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr ""
 
 msgid "USE_DISK_CACHE"
-msgstr ""
+msgstr "Brug disk cache"
 
 msgid "USE_MANUAL_THREAD_COUNT"
-msgstr ""
+msgstr "Manuelt sæt antallet af baggrundstråde"
 
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr ""
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
-msgstr ""
+msgstr "Brug virtuel vindue størrelse"
 
 msgid "UV_PROTECTION"
-msgstr ""
+msgstr "UV resistens"
 
 #, fuzzy
 msgid "UV_TOLERANCE_TOOLTIP"
 msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
 
 msgid "VACUOLE"
-msgstr ""
+msgstr "Vakuole"
 
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
 
 msgid "VACUOLE_IS_SPECIALIZED"
-msgstr ""
+msgstr "Specialiseret vakuole"
 
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
 msgstr ""
@@ -6655,143 +6698,142 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr ""
 
 msgid "VALUE_WITH_UNIT"
-msgstr ""
+msgstr "{0} {1}"
 
 msgid "VENTS_ARE_HOME"
 msgstr ""
 
 msgid "VERSION_COLON"
-msgstr ""
+msgstr "Version:"
 
 msgid "VERTICAL_COLON"
-msgstr ""
+msgstr "Vertikal:"
 
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
-msgstr ""
+msgstr "Vertikal (akse: {0})"
 
 msgid "VIDEO_MEMORY"
-msgstr ""
+msgstr "Videohukommelse brugt på nuværende tidspunkt:"
 
 msgid "VIDEO_MEMORY_MIB"
-msgstr ""
+msgstr "{0} MiB"
 
 msgid "VIEWER"
-msgstr ""
+msgstr "Viser"
 
 msgid "VIEW_ALL"
-msgstr ""
+msgstr "Vis alle"
 
 msgid "VIEW_CELL_PROCESSES"
-msgstr ""
+msgstr "Vis celleprocesser"
 
 msgid "VIEW_ONLINE"
-msgstr ""
+msgstr "Vis online"
 
 msgid "VIEW_PATCH_MICHES"
-msgstr ""
+msgstr "Vis micher"
 
 msgid "VIEW_PATCH_NOTES"
-msgstr ""
+msgstr "Vis patch notes"
 
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
-msgstr ""
+msgstr "Vis den seneste eller alle Thrive patch notes nu"
 
 msgid "VIEW_PENDING_ACTIONS"
-msgstr ""
+msgstr "Vis nu"
 
 msgid "VIEW_SOURCE_CODE"
-msgstr ""
+msgstr "Vis source code"
 
 msgid "VIEW_TEXT_REPORT"
-msgstr ""
+msgstr "Vis tekst rapport"
 
 msgid "VIP_PATRONS"
-msgstr ""
+msgstr "VIP Supportere"
 
 msgid "VISIBLE"
-msgstr ""
+msgstr "Synlig"
 
 msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
-msgstr ""
+msgstr "Synlig når næsten fuld"
 
 msgid "VISIBLE_WHEN_OVER_ZERO"
-msgstr ""
+msgstr "Synlig når over nul"
 
 msgid "VISIT_SUGGESTIONS_SITE"
-msgstr ""
+msgstr "Foreslå en feature"
 
 msgid "VOLCANIC_VENT"
 msgstr ""
 
 msgid "VOLUMEDOWN"
-msgstr ""
+msgstr "Lydstyrke ned"
 
 msgid "VOLUMEMUTE"
-msgstr ""
+msgstr "Lydstyrke lydløs"
 
 msgid "VOLUMEUP"
-msgstr ""
+msgstr "Lydstyrke op"
 
 msgid "VSYNC"
-msgstr ""
+msgstr "VSync"
 
 msgid "WAITING_FOR_AUTO_EVO"
-msgstr ""
+msgstr "Venter på auto-evo:"
 
 msgid "WELCOME_TO_THRIVEOPEDIA"
-msgstr ""
+msgstr "Velkommen til Thriveopedia'en"
 
 msgid "WENT_EXTINCT_FROM_PLANET"
-msgstr ""
+msgstr "uddøde fra planeten"
 
 msgid "WENT_EXTINCT_IN"
-msgstr ""
+msgstr "uddøde i {0}"
 
 msgid "WHEEL_DOWN"
-msgstr ""
+msgstr "Musehjul ned"
 
 msgid "WHEEL_LEFT"
-msgstr ""
+msgstr "Musehjul venstre"
 
 msgid "WHEEL_RIGHT"
-msgstr ""
+msgstr "Musehjul højre"
 
 msgid "WHEEL_UP"
-msgstr ""
+msgstr "Musehjul op"
 
 msgid "WIKI"
-msgstr ""
+msgstr "Wiki"
 
 msgid "WIKI_2D"
-msgstr ""
+msgstr "2D"
 
 msgid "WIKI_3D"
-msgstr ""
+msgstr "3D"
 
 msgid "WIKI_3D_COMMA_SANDBOX"
-msgstr ""
+msgstr "3D, Sandkasse"
 
 msgid "WIKI_3D_COMMA_STRATEGY"
-msgstr ""
+msgstr "3D, Strategi"
 
 msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
-msgstr ""
+msgstr "3D, Strategi, Rummet"
 
 msgid "WIKI_8_BRACKET_16"
-msgstr ""
+msgstr "8 (16)"
 
 msgid "WIKI_ASCENSION"
-msgstr ""
+msgstr "Opstigning"
 
-#, fuzzy
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
-msgstr "3D Bevægelse"
+msgstr "Arbejde på Opstigningen er endnu ikke påbegyndt."
 
 msgid "WIKI_ASCENSION_FEATURES"
-msgstr ""
+msgstr "Kommer snart."
 
 msgid "WIKI_ASCENSION_INTRO"
-msgstr ""
+msgstr "I en nødeskal: Dette er slutspillet, hvor du kan fare galaksen rundt som en metafysisk skabning, der former og observerer som du ønsker det. Det har været en lang rejse, og du fortjener det."
 
 msgid "WIKI_ASCENSION_OVERVIEW"
 msgstr ""
@@ -6800,13 +6842,13 @@ msgid "WIKI_ASCENSION_TRANSITIONS"
 msgstr ""
 
 msgid "WIKI_ASCENSION_UI"
-msgstr ""
+msgstr "Kommer snart."
 
 msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
-msgstr ""
+msgstr "Arbejde på Opvågningsstadiet er endnu ikke påbegyndt."
 
 msgid "WIKI_AWAKENING_STAGE_FEATURES"
-msgstr ""
+msgstr "Kommer snart."
 
 msgid "WIKI_AWAKENING_STAGE_INTRO"
 msgstr ""
@@ -6818,14 +6860,14 @@ msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
 msgstr ""
 
 msgid "WIKI_AWAKENING_STAGE_UI"
-msgstr ""
+msgstr "Kommer snart."
 
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
 msgstr "3D Bevægelse"
 
 msgid "WIKI_AWARE_STAGE_FEATURES"
-msgstr ""
+msgstr "Kommer snart."
 
 msgid "WIKI_AWARE_STAGE_INTRO"
 msgstr ""
@@ -6837,7 +6879,7 @@ msgid "WIKI_AWARE_STAGE_TRANSITIONS"
 msgstr ""
 
 msgid "WIKI_AWARE_STAGE_UI"
-msgstr ""
+msgstr "Kommer snart."
 
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
@@ -6846,13 +6888,13 @@ msgid "WIKI_AXON_INTRO"
 msgstr ""
 
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr ""
+msgstr "Ingen modifikationer."
 
 msgid "WIKI_AXON_PROCESSES"
-msgstr ""
+msgstr "Ingen processer."
 
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr ""
+msgstr "Kun tilgængeligt fra Flercellestadiet og fremefter."
 
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -6888,7 +6930,7 @@ msgid "WIKI_BINDING_AGENT_STRATEGY"
 msgstr ""
 
 msgid "WIKI_BINDING_AGENT_UPGRADES"
-msgstr ""
+msgstr "Ingen opgraderinger."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
 msgstr ""
