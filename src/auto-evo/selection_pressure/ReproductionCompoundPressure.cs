@@ -23,11 +23,9 @@ public class ReproductionCompoundPressure : SelectionPressure
         base(weight, [
             new AddOrganelleAnywhere(organelle => organelle.HasChemoreceptorComponent),
             AddOrganelleAnywhere.ThatCreateCompound(compound),
-            new ChangeMembraneRigidity(true),
             new UpgradeOrganelle(organelle => organelle.HasChemoreceptorComponent,
                 new ChemoreceptorUpgrades(compound, null, Constants.CHEMORECEPTOR_RANGE_DEFAULT,
                     Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, SimulationParameters.GetCompound(compound).Colour)),
-            new ChangeMembraneType("single"),
         ])
     {
         compoundDefinition = SimulationParameters.GetCompound(compound);

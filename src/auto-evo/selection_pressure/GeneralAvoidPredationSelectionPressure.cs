@@ -29,6 +29,7 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
         new UpgradeOrganelle(organelle => organelle.HasSlimeJetComponent, SlimeJetComponent.MUCOCYST_UPGRADE_NAME,
             true),
         new UpgradeOrganelle(organelle => organelle.HasMovementComponent, new FlagellumUpgrades(0.5f)),
+        new UpgradeOrganelle(organelle => organelle.HasMovementComponent, new FlagellumUpgrades(1.0f)),
         new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, -150.0f),
         new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, 150.0f),
         new ChangeMembraneType("double"),
