@@ -94,7 +94,7 @@ public class CommandRegistry : IDisposable
 
         foreach (var command in candidates)
         {
-            if (TryExecuteCandidate(command, invoker, rawArgs, false, out bool failed))
+            if (TryExecuteCandidate(command, context, rawArgs, false, out bool failed))
             {
                 return !failed;
             }
@@ -105,7 +105,7 @@ public class CommandRegistry : IDisposable
         // a value is not present in an enum, like for the load commands.
         foreach (var command in candidates)
         {
-            if (TryExecuteCandidate(command, invoker, rawArgs, true, out bool failed))
+            if (TryExecuteCandidate(command, context, rawArgs, true, out bool failed))
             {
                 return !failed;
             }
@@ -314,7 +314,7 @@ public class CommandRegistry : IDisposable
     ///   affected by a command execution failure due to reasons different from argument mismatch, e.g. a command
     ///   execution failure.
     /// </returns>
-    private bool TryExecuteCandidate(Command command, DebugConsole? invoker,
+    private bool TryExecuteCandidate(Command command, CommandContext? context,
         List<(string Value, bool IsQuoted)> rawArgs, bool ignoreQuoted, out bool failed)
     {
         failed = true;
