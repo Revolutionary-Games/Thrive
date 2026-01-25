@@ -182,6 +182,12 @@ public class Settings
     public SettingValue<bool> ChromaticEnabled { get; private set; } = new(true);
 
     /// <summary>
+    ///   Sets the overall GUI size modifier
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<float> GUIScale { get; private set; } = new(1.0f);
+
+    /// <summary>
     ///   Enable or disable microbe background distortion shader. Should be 0 for disabled and around 0.3-0.9 when
     ///   enabled.
     /// </summary>
@@ -288,7 +294,7 @@ public class Settings
     public SettingValue<float> VolumeMaster { get; private set; } = new(0.0f);
 
     /// <summary>
-    ///   If true all sounds are muted
+    ///   If true, all sounds are muted
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> VolumeMasterMuted { get; private set; } = new(false);
@@ -300,7 +306,7 @@ public class Settings
     public SettingValue<float> VolumeMusic { get; private set; } = new(0.0f);
 
     /// <summary>
-    ///   If true music is muted
+    ///   If true, music is muted
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> VolumeMusicMuted { get; private set; } = new(false);
@@ -350,7 +356,7 @@ public class Settings
     // Performance Properties
 
     /// <summary>
-    ///   If this is over 0 then this limits how often compound clouds
+    ///   If this is over 0, then this limits how often compound clouds
     ///   are updated. The default value of 0.020 at 60 FPS makes
     ///   every other frame not update the clouds.
     /// </summary>
@@ -366,26 +372,27 @@ public class Settings
 
     /// <summary>
     ///   This can be freely adjusted to adjust the performance The
-    ///   higher this value is the smaller the size of the simulated
-    ///   cloud is and the performance is better.
+    ///   higher this value is, the smaller the size of the simulated
+    ///   cloud is, and the performance is better.
     /// </summary>
     [JsonProperty]
     public SettingValue<int> CloudResolution { get; private set; } = new(2);
 
     /// <summary>
-    ///   If true an auto-evo run is started during gameplay, taking up one of the background threads.
+    ///   If true, an auto-evo run is started during gameplay, taking up one of the background threads.
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> RunAutoEvoDuringGamePlay { get; private set; } = new(true);
 
     /// <summary>
-    ///   If true the game simulations can run in a multithreaded way (for example <see cref="MicrobeWorldSimulation"/>
+    ///   If true, the game simulations can run in a multithreaded way
+    ///   (for example <see cref="MicrobeWorldSimulation"/>)
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> RunGameSimulationMultithreaded { get; private set; } = new(true);
 
     /// <summary>
-    ///   If true it is assumed that the CPU has hyperthreading, meaning that real cores is CPU count / 2
+    ///   If true, it is assumed that the CPU has hyperthreading, meaning that real cores is CPU count / 2
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> AssumeCPUHasHyperthreading { get; private set; } = new(true);
@@ -397,7 +404,8 @@ public class Settings
     public SettingValue<bool> UseManualThreadCount { get; private set; } = new(false);
 
     /// <summary>
-    ///   Manually set number of background threads to use. Needs to be at least 2 if RunAutoEvoDuringGamePlay is true
+    ///   Manually set the number of background threads to use. Needs to be at least 2 if
+    ///   <see cref="RunAutoEvoDuringGamePlay"/> is true.
     /// </summary>
     [JsonProperty]
     public SettingValue<int> ThreadCount { get; private set; } = new(4);
@@ -406,7 +414,7 @@ public class Settings
     public SettingValue<bool> UseManualNativeThreadCount { get; private set; } = new(false);
 
     /// <summary>
-    ///   Manually set number of native threads to use. Applies similarly to the C# side of things (i.e. only when
+    ///   Manually set the number of native threads to use. Applies similarly to the C# side of things (i.e. only when
     ///   manual count is enabled)
     /// </summary>
     [JsonProperty]
@@ -419,7 +427,7 @@ public class Settings
     public SettingValue<int> MaxSpawnedEntities { get; private set; } = new(Constants.NORMAL_MAX_SPAWNED_ENTITIES);
 
     /// <summary>
-    ///   If true a disk cache is used for generated things
+    ///   If true, a disk cache is used for generated things
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> UseDiskCache { get; private set; } = new(true);
@@ -459,14 +467,14 @@ public class Settings
     // Misc Properties
 
     /// <summary>
-    ///   When true the main intro is played. Note <see cref="LaunchOptions.VideosEnabled"/> must also be true to play
+    ///   When true, the main intro is played. Note <see cref="LaunchOptions.VideosEnabled"/> must also be true to play
     ///   any videos as they need to be able to be skipped due to a rare Godot engine crash when playing them.
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> PlayIntroVideo { get; private set; } = new(true);
 
     /// <summary>
-    ///   When true the microbe intro is played on new game
+    ///   When true, the microbe intro is played on a new game
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> PlayMicrobeIntroVideo { get; private set; } = new(true);
@@ -521,7 +529,7 @@ public class Settings
     public SettingValue<bool> ShowNewPatchNotes { get; private set; } = new(true);
 
     /// <summary>
-    ///   If false username will be set to System username
+    ///   If false, the username will be set to System username
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> CustomUsernameEnabled { get; private set; } = new(false);
@@ -585,13 +593,13 @@ public class Settings
     public SettingValue<float> HorizontalMouseLookSensitivity { get; private set; } = new(0.003f);
 
     /// <summary>
-    ///   If true inverts the vertical axis inputs for mouse
+    ///   If true, inverts the vertical axis inputs for mouse
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> InvertVerticalMouseLook { get; private set; } = new(false);
 
     /// <summary>
-    ///   If true inverts the horizontal axis inputs for mouse
+    ///   If true, inverts the horizontal axis inputs for mouse
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> InvertHorizontalMouseLook { get; private set; } = new(false);
@@ -623,19 +631,19 @@ public class Settings
     public SettingValue<float> HorizontalControllerLookSensitivity { get; private set; } = new(1.4f);
 
     /// <summary>
-    ///   If true inverts the vertical axis inputs for controller
+    ///   If true, inverts the vertical axis inputs for controller
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> InvertVerticalControllerLook { get; private set; } = new(false);
 
     /// <summary>
-    ///   If true inverts the horizontal axis inputs for controller
+    ///   If true, inverts the horizontal axis inputs for the controller
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> InvertHorizontalControllerLook { get; private set; } = new(false);
 
     /// <summary>
-    ///   Sets how left/right inputs are interpreted in 2D (for example the microbe stage)
+    ///   Sets how left/right inputs are interpreted in 2D (for example, the microbe stage)
     /// </summary>
     [JsonProperty]
     public SettingValue<TwoDimensionalMovementMode> TwoDimensionalMovement { get; private set; } =
@@ -650,7 +658,7 @@ public class Settings
 
     // TODO: control in options
     /// <summary>
-    ///   If true putting the mouse to a screen edge pans the strategy view
+    ///   If true, putting the mouse to a screen edge pans the strategy view
     /// </summary>
     [JsonProperty]
     public SettingValue<bool> PanStrategyViewWithMouse { get; private set; } = new(true);
@@ -739,13 +747,13 @@ public class Settings
     }
 
     /// <summary>
-    ///   Tries to return a C# culture info from Godot language name
+    ///   Tries to return C# culture info from Godot language name
     /// </summary>
     /// <param name="language">The language name to try to understand</param>
     /// <returns>The culture info</returns>
     public static CultureInfo GetCultureInfo(string language)
     {
-        // Perform hard coded translations first
+        // Perform hard-coded translations first
         var translated = TranslateLocaleToCSharp(language);
         if (translated != null)
             language = translated;
@@ -893,7 +901,7 @@ public class Settings
         }
 
         // Delayed apply was implemented to fix problems within the Godot editor.
-        // So this might no longer be necessary, as this is now skipped within editor.
+        // So this might no longer be necessary, as this is now skipped within the editor.
         if (delayedApply)
         {
             GD.Print("Doing delayed apply for some settings");
@@ -904,12 +912,16 @@ public class Settings
 
             // If this is not delay applied, this also causes some errors in godot editor output when running
             Invoke.Instance.Queue(ApplyInputSettings);
+
+            // This requires GUI common to be loaded
+            Invoke.Instance.Queue(ApplyGUISettings);
         }
         else
         {
             ApplyGraphicsSettings();
             ApplySoundSettings();
             ApplyInputSettings();
+            ApplyGUISettings();
         }
 
         ApplyAudioOutputDeviceSettings();
@@ -947,7 +959,7 @@ public class Settings
 
         bool allowTemporal = true;
 
-        // When oversampling only bilinear is supported
+        // When oversampling, only bilinear is supported
         // And when exactly at 1 upscaling is not used, so also then turn off the effective mode (as FSR causes
         // warnings in compatibility renderer mode)
         if (RenderScale.Value >= 1)
@@ -1011,6 +1023,17 @@ public class Settings
                 GD.PrintErr("Unknown anti aliasing mode: ", AntiAliasing.Value);
                 break;
         }
+    }
+
+    public void ApplyGUISettings()
+    {
+        var root = GUICommon.Instance.GetTree().Root;
+
+        var value = GUIScale.Value;
+        if (Math.Abs(value - 1.0f) > 0.00001f)
+            GD.Print("Setting GUI scale to ", value);
+
+        root.ContentScaleFactor = value;
     }
 
     /// <summary>

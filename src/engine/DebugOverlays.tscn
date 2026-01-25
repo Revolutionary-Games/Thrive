@@ -92,8 +92,8 @@ label_settings = ExtResource("3_fussq")
 anchors_preset = 0
 offset_left = 43.0
 offset_top = 35.0
-offset_right = 380.0
-offset_bottom = 372.0
+offset_right = 659.0
+offset_bottom = 337.0
 theme = ExtResource("9_qsaes")
 script = ExtResource("10_syfxw")
 debugEntryList = NodePath("VBoxContainer/HBoxContainer/DebugEntryList")
@@ -114,16 +114,13 @@ alignment = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="DebugConsole/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="DebugEntryList" parent="DebugConsole/VBoxContainer/HBoxContainer" instance=ExtResource("11_ja1wl")]
-clip_contents = true
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ConsoleScrollBar" type="VScrollBar" parent="DebugConsole/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-max_value = 10.0
-step = 1.0
+focus_mode = 2
+mouse_force_pass_scroll_events = false
+theme_override_fonts/normal_font = ExtResource("11_0g2tr")
+bbcode_enabled = true
+scroll_following = true
+autowrap_mode = 0
+selection_enabled = true
 
 [node name="ConsoleInput" type="LineEdit" parent="DebugConsole/VBoxContainer"]
 layout_mode = 2

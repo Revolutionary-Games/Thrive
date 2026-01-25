@@ -65,6 +65,8 @@ public partial class SimulationParameters : Node
     private List<Enzyme>? cachedDigestiveEnzymes;
     private List<double>? cachedMeteorChances;
 
+    private ushort bioProcessIdCounter;
+
     public static SimulationParameters Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public IEnumerable<NamedInputGroup> InputGroups => inputGroups;
@@ -578,6 +580,14 @@ public partial class SimulationParameters : Node
     public TerrainConfiguration GetTerrainConfigurationForBiome(string internalName)
     {
         return biomes[internalName].Terrain ?? throw new Exception($"No terrain for biome type: {internalName}");
+    }
+
+    public ushort GetNextProcessId()
+    {
+        if (bioProcessIdCounter == ushort.MaxValue)
+            throw new InvalidOperationException("Ran out of BioProcess IDs");
+
+        return ++bioProcessIdCounter;
     }
 
     /// <summary>

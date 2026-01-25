@@ -106,6 +106,17 @@ public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganell
         return false;
     }
 
+    public Enzyme? GetActiveTargetEnzyme(string internalName)
+    {
+        if (Definition.HasLysosomeComponent)
+        {
+            return LysosomeComponent.HasActiveEnzyme(Upgrades?.CustomUpgradeData as LysosomeUpgrades, internalName);
+        }
+
+        // No other organelles are known to set up their active enzymes
+        return null;
+    }
+
     public float GetActiveToxicity()
     {
         if (Upgrades?.CustomUpgradeData is ToxinUpgrades toxinData)

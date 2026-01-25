@@ -23,6 +23,24 @@ public class LysosomeComponent : IOrganelleComponent
         result[enzyme] = 1;
     }
 
+    public static Enzyme? HasActiveEnzyme(LysosomeUpgrades? lysosomeData, string internalName)
+    {
+        if (lysosomeData == null)
+        {
+            if (internalName == Constants.LIPASE_ENZYME)
+                return SimulationParameters.Instance.GetEnzyme(Constants.LIPASE_ENZYME);
+
+            return null;
+        }
+
+        var enzyme = lysosomeData.Enzyme;
+
+        if (enzyme.InternalName == internalName)
+            return enzyme;
+
+        return null;
+    }
+
     public void OnAttachToCell(PlacedOrganelle organelle)
     {
         var configuration = organelle.Upgrades?.CustomUpgradeData;

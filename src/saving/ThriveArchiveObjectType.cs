@@ -308,6 +308,8 @@ public enum ThriveArchiveObjectType : uint
     ReproductionCompoundPressure = 4391,
     AmmoniaProductionEffect = 4392,
     CellTypeEditsHolder = 4393,
+    GeneralAvoidPredationSelectionPressure = 4394,
+    EnergyConsumptionPressure = 4395,
 
     // Special flag types
     ExtendedOrganelleLayout = OrganelleLayout | ArchiveObjectType.ExtendedTypeFlag,

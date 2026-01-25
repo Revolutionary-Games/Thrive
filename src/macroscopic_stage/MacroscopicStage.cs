@@ -39,7 +39,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     private Camera3D? animationCamera;
 #pragma warning restore CA2213
 
-    // TODO: convert this over to the archve system
+    // TODO: convert this over to the archive system
     /// <summary>
     ///   Used to detect when the player automatically advances stages in the editor (awakening is explicit with a
     ///   button as it should be only used after moving to land)
@@ -357,7 +357,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
                 child.QueueFree();
         }
 
-        // And setup the land "environment"
+        // And set up the land "environment"
 
         // Clear the underwater background
         // TODO: above water panorama backgrounds
@@ -491,7 +491,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
             "Pick up rocks to craft an axe to get resources to build a Society Center to advance.",
             DisplayDuration.ExtraLong);
 
-        // Music is different in the awakening stage (and we don't visit the editor here so we need to trigger a music
+        // Music is different in the awakening stage (and we don't visit the editor here, so we need to trigger a music
         // change here)
         StartMusic();
     }
@@ -517,7 +517,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
             return;
         }
 
-        // Show interaction context menu for the player to do something with the target
+        // Show the interaction context menu for the player to do something with the target
         interactionPopup.ShowForInteractable(target, Player.CalculatePossibleActions(target));
 
         // TODO: somehow refresh the inventory screen if it is open and the player decided to do a pick up action
@@ -576,7 +576,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
             // Refresh the items on the ground near the player to show in the inventory screen
             var groundObjects = interactableSystem.GetAllNearbyObjects();
 
-            // Filter to only carriable objects to not let the player to pick up trees and stuff
+            // Filter to only carriable objects to not let the player pick up trees and stuff
             HUD.OpenInventory(Player, groundObjects.Where(o => o.CanBeCarried));
         }
         catch (Exception e)
@@ -597,7 +597,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         HUD.HUDMessages.ShowMessage(Localization.Translate("MOVING_TO_SOCIETY_STAGE"), DisplayDuration.Long);
         movingToSocietyStage = true;
 
-        // Show cursor while we are switching
+        // Show the cursor while we are switching
         MouseCaptureManager.ReportOpenCapturePrevention(STAGE_TRANSITION_MOUSE_LOCK);
 
         // Unset the player to disallow doing this multiple times in a row and to disable the player
@@ -642,7 +642,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         societyCameraAnimationStart = animationCamera.GlobalTransform;
         societyCameraAnimationEnd = StrategicCameraHelpers.CalculateCameraPosition(animationEndCameraLookPoint, 1);
 
-        // Detach from the previous place to not have the arm etc. control nodes apply to it anymore
+        // Detach from the previous place to not have the arm etc. control nodes apply to it any more
         animationCamera.ReParent(rootOfDynamicallySpawned);
     }
 
@@ -650,7 +650,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     {
         if (CurrentGame?.GameWorld.Map.CurrentPatch != null)
         {
-            // Panoramas don't exist yet when above water so we need this null check
+            // Panoramas don't exist yet when above water, so we need this null check
             if (worldEnvironmentNode.Environment != null)
             {
                 var sky = worldEnvironmentNode.Environment.Sky;
@@ -686,7 +686,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         // TODO: implement
         if (!IsLoadedFromSave)
         {
-            // If this is a new game (first time entering the stage), start the camera in top down view
+            // If this is a new game (first time entering the stage), start the camera in the top-down view
             // as a learning tool
             if (!CurrentGame.IsBoolSet("played_multicellular"))
             {
@@ -843,8 +843,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         {
             interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
 
-            if (CurrentGame != null)
-                CurrentGame.TechWeb.OnTechnologyUnlockedHandler -= ShowTechnologyUnlockMessage;
+            CurrentGame?.TechWeb.OnTechnologyUnlockedHandler -= ShowTechnologyUnlockMessage;
         }
 
         base.Dispose(disposing);
@@ -911,7 +910,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
             firstSocietyCenterTransform);
         societyCenter.ForceCompletion();
 
-        // Stop explicitly preventing mouse capture (the society stage won't capture the mouse anyway but to not
+        // Stop explicitly preventing mouse capture (the society stage won't capture the mouse anyway, but to not
         // have a pending force no-capture on this is good)
         Invoke.Instance.Queue(() =>
         {
