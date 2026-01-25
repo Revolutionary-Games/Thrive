@@ -1142,7 +1142,6 @@ public partial class PatchMapDrawer : Control
                     CustomMinimumSize = new Vector2(12.0f, 12.0f),
                 };
 
-                // https://github.com/Revolutionary-Games/Thrive/issues/6676
                 populationIndicatorContainer.Position =
                     new Vector2((Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_REGION_BORDER_WIDTH / 4) / 4,
                         (Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_REGION_BORDER_WIDTH / 4) / 4);
