@@ -45,7 +45,9 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
     private Vector4 decayRates;
 
-    // Which square plane player is in
+    /// <summary>
+    ///   Which square plane player is in
+    /// </summary>
     private Vector2I playersPosition = new(0, 0);
 
     /// <summary>
@@ -910,7 +912,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
     private Vector3 GetWorldPositionForAdvection(int x0, int y0)
     {
-        int worldShift = 200;
+        int worldShift = Constants.CLOUD_SIZE / Constants.CLOUD_PLANE_SQUARES_PER_SIDE * CloudResolution;
         int xShift = GetEdgeShift(x0, playersPosition.X);
         int yShift = GetEdgeShift(y0, playersPosition.Y);
 
