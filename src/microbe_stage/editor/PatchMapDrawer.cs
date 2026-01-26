@@ -1142,10 +1142,6 @@ public partial class PatchMapDrawer : Control
                     CustomMinimumSize = new Vector2(12.0f, 12.0f),
                 };
 
-                populationIndicatorContainer.Position =
-                    new Vector2((Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_REGION_BORDER_WIDTH / 4) / 4,
-                        (Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_REGION_BORDER_WIDTH / 4) / 4);
-
                 populationIndicatorContainer.AddChild(lifeIndicator);
             }
         }
@@ -1158,8 +1154,9 @@ public partial class PatchMapDrawer : Control
     {
         var indexModifier = MathF.Sin(dotIndex) * 0.5f + 0.5f;
         var nodeModifier = node.Position.LengthSquared();
-        var nodeCenter = node.Position + new Vector2(Constants.PATCH_NODE_RECT_LENGTH / 2,
-            Constants.PATCH_NODE_RECT_LENGTH / 2) - new Vector2(texture.GetWidth() / 2.0f, texture.GetHeight() / 2.0f);
+        var nodeCenter = node.Position +
+            new Vector2((Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_REGION_BORDER_WIDTH / 4) / 4,
+            (Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_REGION_BORDER_WIDTH / 4) / 4);
 
         var offset = new Vector2(0,
             indexModifier * Constants.PATCH_LIFE_INDICATOR_RADIUS_SCALE + Constants.PATCH_LIFE_INDICATOR_RADIUS_BASE);
