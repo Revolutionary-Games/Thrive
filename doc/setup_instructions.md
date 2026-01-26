@@ -162,6 +162,8 @@ https://docs.godotengine.org/en/stable/tutorials/scripting/c_sharp/c_sharp_basic
 
 ### Visual Studio Code
 
+**Visual Studio Code is not the same as Visual Studio.**
+
 Note: Setting up Visual Studio Code with Linux is possible, however it
 is recommended to use Rider instead.
 
