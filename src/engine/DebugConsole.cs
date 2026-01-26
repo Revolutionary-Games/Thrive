@@ -39,9 +39,6 @@ public partial class DebugConsole : CustomWindow
 
     public override void _Ready()
     {
-        if (Visible)
-            Activate();
-
         commandInput.Connect(LineEdit.SignalName.TextSubmitted, new Callable(this, nameof(CommandSubmitted)));
         scrollBar.Connect(ScrollBar.SignalName.Scrolling, new Callable(this, nameof(RefreshLogs)));
 

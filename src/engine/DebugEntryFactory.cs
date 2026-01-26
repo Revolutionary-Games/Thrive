@@ -80,13 +80,13 @@ public class DebugEntryFactory
         return true;
     }
 
-    public void UpdateDebugEntry(int id, bool freeze = false)
+    public bool UpdateDebugEntry(int id, bool freeze = false)
     {
         var pipeline = GetPipeline(id, 0, out var richTextBuilder);
         var debugEntry = GetDebugEntry(id);
 
-        if (debugEntry.Frozen)
-            return;
+        if (debugEntry.Frozen || !pipeline.Dirty)
+            return false;
 
         var lastMessage = pipeline.LastMessage;
         var value = richTextBuilder.ToString();
@@ -96,6 +96,8 @@ public class DebugEntryFactory
         debugEntry.Amount = lastMessage.Amount;
         debugEntry.AmountTextCache = amountTextCache;
         debugEntry.Frozen = freeze;
+
+        return true;
     }
 
     public DebugEntry GetDebugEntry(int id, bool freeze = false)
@@ -103,7 +105,12 @@ public class DebugEntryFactory
         var pipeline = GetPipeline(id, 0, out var richTextBuilder);
 
         if (pipeline.DebugEntryCache != null)
+        {
+            if (pipeline.Dirty)
+                pipeline.DebugEntryCache.Update();
+
             return pipeline.DebugEntryCache;
+        }
 
         richTextBuilder = pipeline.RichTextBuilder;
 
@@ -247,6 +254,8 @@ public class DebugEntryFactory
 
             pipeline.LastMessage = message;
         }
+
+        pipeline.Dirty = true;
     }
 
     private DebugEntryFactoryPipeline GetPipeline(int id, long beginTimestamp, out StringBuilder richTextBuilder)
@@ -275,5 +284,7 @@ public class DebugEntryFactory
         public DebugEntry? DebugEntryCache { get; set; } = debugEntryCache;
         public bool MultipleMessages { get; set; } = multipleMessages;
         public long BeginTimestamp { get; set; } = beginTimestamp;
+
+        public bool Dirty = false;
     }
 }

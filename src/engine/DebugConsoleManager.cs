@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
 using Nito.Collections;
+using Environment = System.Environment;
 
 /// <summary>
 ///   The debug console manager.
@@ -125,7 +126,7 @@ public partial class DebugConsoleManager : Node
     /// <param name="isError">Whether it is an error message</param>
     public void Print(string line, bool isError = false)
     {
-        int threadId = System.Environment.CurrentManagedThreadId;
+        int threadId = Environment.CurrentManagedThreadId;
 
         if (threadId >= 1 << 16)
         {

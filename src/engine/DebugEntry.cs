@@ -80,11 +80,11 @@ public sealed class DebugEntry
 
     public bool IsMultipleMessages => Amount > 1;
 
-    public void Update()
+    public bool Update()
     {
         if (Frozen)
-            return;
+            return false;
 
-        DebugEntryFactory.Instance.UpdateDebugEntry(pipelineId);
+        return DebugEntryFactory.Instance.UpdateDebugEntry(pipelineId);
     }
 }

@@ -15,6 +15,8 @@ public partial class DebugEntryList : Control
     // This is a local history for private debug messages.
     private readonly Deque<DebugEntry> privateHistory = [];
 
+    private Callable onResizedCallable;
+
     private int lastIdLoaded;
 
     [Export]
@@ -29,11 +31,25 @@ public partial class DebugEntryList : Control
     [Export(PropertyHint.Range, "10, 100")]
     private int maxVisiblePanels = DefaultMaxVisiblePanels;
 
+    private bool dirty;
+
     public override void _Ready()
     {
-        Connect(Control.SignalName.Resized, new Callable(this, nameof(OnResized)));
+        onResizedCallable = new Callable(this, nameof(OnResized));
+
+        Connect(Control.SignalName.Resized, onResizedCallable);
 
         base._Ready();
+    }
+
+    public override void _Process(double delta)
+    {
+        if (dirty)
+            RecalculateLayoutFrom(0);
+
+        dirty = false;
+
+        base._Process(delta);
     }
 
     public int GetPrivateCount()
@@ -104,6 +120,8 @@ public partial class DebugEntryList : Control
             ++currentVisualIndex;
         }
 
+        GD.Print($"☺ {currentGlobalId} {maxGlobalId}");
+
         // Rendering
         int entryPanelIndex = 0;
         while (currentGlobalId < maxGlobalId || currentLocalIndex < privateHistory.Count)
@@ -121,6 +139,8 @@ public partial class DebugEntryList : Control
 
                 entryLabels.Add(newLabel);
                 AddChild(newLabel);
+
+                newLabel.Connect(Control.SignalName.Resized, onResizedCallable);
 
                 currentLabel = newLabel;
             }
@@ -156,18 +176,16 @@ public partial class DebugEntryList : Control
 
             currentDebugEntry.Update();
 
-            // GD.Print($"☺ {currentDebugEntry.Text}");
-
             currentLabel.Text = currentDebugEntry.Text;
             currentLabel.Visible = true;
-
-            RecalculateLayoutFrom(entryPanelIndex);
 
             if (currentLabel.Size.Y > 0 && currentLabel.Position.Y + currentLabel.Size.Y > Size.Y)
                 break;
 
             ++entryPanelIndex;
         }
+
+        dirty = true;
 
         lastIdLoaded = visualSkipCount;
         return entryPanelIndex;
@@ -207,18 +225,15 @@ public partial class DebugEntryList : Control
             float y = previousLabelY + previousLabelH + entrySeparation;
             float w = Size.X - leftMargin - rightMargin;
 
-            // Force height recalculation.
-            float h = 0;
-
             label.Position = new Vector2(x, y);
 
             // Ensure the label fills the control, as it doesn't resize on Y automatically even with FitContent enabled.
-            label.Size = new Vector2(w, h);
+            label.CustomMinimumSize = new Vector2(w, 0);
         }
     }
 
     private void OnResized()
     {
-        RecalculateLayoutFrom(0);
+        dirty = true;
     }
 }
