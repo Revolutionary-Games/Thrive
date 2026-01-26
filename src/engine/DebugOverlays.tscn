@@ -12,7 +12,7 @@
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="9_qsaes"]
 [ext_resource type="Script" uid="uid://ctv5goidw0qvu" path="res://src/engine/DebugConsole.cs" id="10_syfxw"]
 [ext_resource type="FontVariation" uid="uid://k7u2fkgwhsf0" path="res://assets/fonts/variants/RobotoMono-Regular.tres" id="11_0g2tr"]
-[ext_resource type="PackedScene" uid="uid://cdixr6a8cyl0e" path="res://src/gui_common/DebugEntryList.tscn" id="11_ja1wl"]
+[ext_resource type="PackedScene" uid="uid://bd7s2fq7wrh5x" path="res://src/gui_common/DebugEntryList.tscn" id="11_ja1wl"]
 
 [node name="DebugOverlay" type="Control" node_paths=PackedStringArray("debugCoordinates", "inspectorDialog", "debugPanelDialog", "debugConsole", "fpsCheckBox", "performanceMetricsCheckBox", "inspectorCheckbox", "fpsCounter", "performanceMetrics", "labelsLayer", "fpsDisplayLabel", "fpsLabel", "deltaLabel", "metricsText")]
 layout_mode = 3
@@ -92,13 +92,13 @@ label_settings = ExtResource("3_fussq")
 anchors_preset = 0
 offset_left = 43.0
 offset_top = 35.0
-offset_right = 659.0
-offset_bottom = 337.0
+offset_right = 387.0
+offset_bottom = 377.0
 theme = ExtResource("9_qsaes")
 script = ExtResource("10_syfxw")
 debugEntryList = NodePath("VBoxContainer/HBoxContainer/DebugEntryList")
 commandInput = NodePath("VBoxContainer/ConsoleInput")
-scrollBar = NodePath("VBoxContainer/HBoxContainer/ConsoleScrollBar")
+scrollBar = NodePath("VBoxContainer/HBoxContainer/VScrollBar")
 WindowTitle = "DEBUG_CONSOLE"
 Resizable = true
 
@@ -112,15 +112,19 @@ size_flags_horizontal = 3
 alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="DebugConsole/VBoxContainer"]
+clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 2
 mouse_force_pass_scroll_events = false
-theme_override_fonts/normal_font = ExtResource("11_0g2tr")
-bbcode_enabled = true
-scroll_following = true
-autowrap_mode = 0
-selection_enabled = true
+
+[node name="DebugEntryList" parent="DebugConsole/VBoxContainer/HBoxContainer" instance=ExtResource("11_ja1wl")]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VScrollBar" type="VScrollBar" parent="DebugConsole/VBoxContainer/HBoxContainer"]
+layout_mode = 2
 
 [node name="ConsoleInput" type="LineEdit" parent="DebugConsole/VBoxContainer"]
 layout_mode = 2

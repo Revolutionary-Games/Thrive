@@ -314,7 +314,7 @@ public class CommandRegistry : IDisposable
     ///   affected by a command execution failure due to reasons different from argument mismatch, e.g. a command
     ///   execution failure.
     /// </returns>
-    private bool TryExecuteCandidate(Command command, CommandContext? context,
+    private bool TryExecuteCandidate(Command command, CommandContext context,
         List<(string Value, bool IsQuoted)> rawArgs, bool ignoreQuoted, out bool failed)
     {
         failed = true;

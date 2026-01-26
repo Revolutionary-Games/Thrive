@@ -107,35 +107,7 @@ public partial class DebugConsole : CustomWindow
 
     private void RefreshLogs()
     {
-        var history = DebugConsoleManager.Instance.History;
-
-        int globalCount = history.Count - lastClearId;
-
-        long minTime = 0;
-        if (lastClearId < history.Count && lastClearId >= 0)
-            minTime = history[lastClearId].BeginTimestamp;
-
-        int privateCount = debugEntryList.GetCountNewerThan(minTime);
-        int totalItems = globalCount + privateCount;
-
-        bool shouldStickToBottom = scrollBar.Value + scrollBar.Page > scrollBar.MaxValue - 1;
-
-        scrollBar.MaxValue = totalItems;
-
-        if (shouldStickToBottom)
-            scrollBar.Value = Math.Max(0, totalItems - scrollBar.Page);
-
-        int offset = (int)scrollBar.Value;
-
-        if (offset > totalItems)
-            offset = totalItems;
-
-        if (offset < 0)
-            offset = 0;
-
-        int renderedCount = debugEntryList.LoadFrom(offset, lastClearId);
-
-        scrollBar.Page = renderedCount;
+        debugEntryList.Refresh();
     }
 
     private void RefreshLogs(object? o, EventArgs e)

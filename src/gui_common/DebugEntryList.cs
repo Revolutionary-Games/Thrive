@@ -5,36 +5,35 @@ using Nito.Collections;
 /// <summary>
 ///   A container for DebugEntryPanels
 /// </summary>
-public partial class DebugEntryList : Panel
+public partial class DebugEntryList : Control
 {
-    public const uint MaxPrivateHistorySize = 32;
-    private const int MaxVisiblePanels = 50;
+    private const uint MaxPrivateHistorySize = 32;
+    private const int DefaultMaxVisiblePanels = 50;
 
-    private static PackedScene? debugEntryPanelScene;
-
-    private readonly List<DebugEntryPanel> entryPanels = [];
+    private readonly List<RichTextLabel> entryLabels = [];
 
     // This is a local history for private debug messages.
     private readonly Deque<DebugEntry> privateHistory = [];
 
     private int lastIdLoaded;
 
-#pragma warning disable CA2213
     [Export]
-    private VBoxContainer entryPanelsContainer = null!;
-#pragma warning restore CA2213
+    private int entrySeparation = 3;
+
+    [Export]
+    private int leftMargin = 3;
+
+    [Export]
+    private int rightMargin = 3;
+
+    [Export(PropertyHint.Range, "10, 100")]
+    private int maxVisiblePanels = DefaultMaxVisiblePanels;
 
     public override void _Ready()
     {
-        debugEntryPanelScene ??= SceneManager.Instance.LoadScene("res://src/gui_common/DebugEntryPanel.tscn");
-    }
+        Connect(Control.SignalName.Resized, new Callable(this, nameof(OnResized)));
 
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-
-        debugEntryPanelScene?.Dispose();
-        debugEntryPanelScene = null;
+        base._Ready();
     }
 
     public int GetPrivateCount()
@@ -56,9 +55,6 @@ public partial class DebugEntryList : Panel
 
     public int LoadFrom(int visualSkipCount, int globalStartId)
     {
-        if (debugEntryPanelScene == null)
-            return 0;
-
         var history = DebugConsoleManager.Instance.History;
         int maxGlobalId = history.Count;
 
@@ -112,20 +108,25 @@ public partial class DebugEntryList : Panel
         int entryPanelIndex = 0;
         while (currentGlobalId < maxGlobalId || currentLocalIndex < privateHistory.Count)
         {
-            if (entryPanelIndex >= MaxVisiblePanels)
+            if (entryPanelIndex >= maxVisiblePanels)
                 break;
 
-            DebugEntryPanel currentPanel;
-            if (entryPanels.Count == entryPanelIndex)
+            RichTextLabel currentLabel;
+            if (entryLabels.Count == entryPanelIndex)
             {
-                var newPanel = debugEntryPanelScene.Instantiate<DebugEntryPanel>();
-                entryPanels.Add(newPanel);
-                entryPanelsContainer.AddChild(newPanel);
-                currentPanel = newPanel;
+                var newLabel = new RichTextLabel();
+                newLabel.FitContent = true;
+                newLabel.BbcodeEnabled = true;
+                newLabel.SizeFlagsVertical = SizeFlags.ShrinkBegin;
+
+                entryLabels.Add(newLabel);
+                AddChild(newLabel);
+
+                currentLabel = newLabel;
             }
             else
             {
-                currentPanel = entryPanels[entryPanelIndex];
+                currentLabel = entryLabels[entryPanelIndex];
             }
 
             bool useLocal = false;
@@ -154,14 +155,16 @@ public partial class DebugEntryList : Panel
             }
 
             currentDebugEntry.Update();
-            currentPanel.CurrentDebugEntry = currentDebugEntry;
-            currentPanel.Visible = true;
 
-            if (currentPanel.Size.Y > 0 &&
-                currentPanel.Position.Y + currentPanel.Size.Y > Size.Y)
-            {
+            // GD.Print($"☺ {currentDebugEntry.Text}");
+
+            currentLabel.Text = currentDebugEntry.Text;
+            currentLabel.Visible = true;
+
+            RecalculateLayoutFrom(entryPanelIndex);
+
+            if (currentLabel.Size.Y > 0 && currentLabel.Position.Y + currentLabel.Size.Y > Size.Y)
                 break;
-            }
 
             ++entryPanelIndex;
         }
@@ -183,5 +186,39 @@ public partial class DebugEntryList : Panel
             privateHistory.RemoveFromFront();
 
         Refresh();
+    }
+
+    private void RecalculateLayoutFrom(int id)
+    {
+        int previousLabelY = 0, previousLabelH = 0;
+        for (int i = id; i < entryLabels.Count; ++i)
+        {
+            if (i != 0)
+            {
+                var previousLabel = entryLabels[i - 1];
+
+                previousLabelY = (int)previousLabel.Position.Y;
+                previousLabelH = (int)previousLabel.Size.Y;
+            }
+
+            var label = entryLabels[i];
+
+            float x = leftMargin;
+            float y = previousLabelY + previousLabelH + entrySeparation;
+            float w = Size.X - leftMargin - rightMargin;
+
+            // Force height recalculation.
+            float h = 0;
+
+            label.Position = new Vector2(x, y);
+
+            // Ensure the label fills the control, as it doesn't resize on Y automatically even with FitContent enabled.
+            label.Size = new Vector2(w, h);
+        }
+    }
+
+    private void OnResized()
+    {
+        RecalculateLayoutFrom(0);
     }
 }
