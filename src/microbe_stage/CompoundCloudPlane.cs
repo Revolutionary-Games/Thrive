@@ -345,7 +345,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         PartialDiffuse(3 * cellSize - halfEdgeWidth, 0, halfEdgeWidth, PlaneSize, delta);
 
         // Horizontal edge rows
-        for (int square = 0; square < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; square++)
+        for (int square = 0; square < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++square)
         {
             int x = square * cellSize + halfEdgeWidth;
             int width = cellSize - edgeWidth;
