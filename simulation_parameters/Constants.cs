@@ -1133,6 +1133,7 @@ public static class Constants
 
     public const int ORGANELLE_REMOVE_COST = 10;
     public const int ORGANELLE_MOVE_COST = 5;
+    public const int ORGANELLE_CHEAPEST_COST = 20;
 
     public const string ORGANELLE_UPGRADE_SPECIAL_NONE = "none";
 
