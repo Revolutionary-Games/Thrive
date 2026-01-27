@@ -61,6 +61,26 @@ public partial class DebugEntryList : Control
         base._Process(delta);
     }
 
+    public override void _Input(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton mouseEvent)
+        {
+            switch (mouseEvent.ButtonIndex)
+            {
+                case MouseButton.WheelUp:
+                    scrollBar.Value -= 1;
+                    break;
+                case MouseButton.WheelDown:
+                    scrollBar.Value += 1;
+                    break;
+            }
+        }
+
+        OnScrolled();
+
+        base._Input(@event);
+    }
+
     public int GetPrivateCount()
     {
         return privateHistory.Count;
