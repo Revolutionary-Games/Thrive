@@ -273,13 +273,13 @@ public class DebugEntryFactory
         DebugConsoleManager.RawDebugEntry lastMessage, DebugEntry? debugEntryCache, long beginTimestamp,
         bool multipleMessages)
     {
+        public bool Dirty;
+
         public StringBuilder RichTextBuilder { get; } = richTextBuilder;
         public StringBuilder? AmountStringBuilder { get; } = amountStringBuilder;
         public DebugConsoleManager.RawDebugEntry LastMessage { get; set; } = lastMessage;
         public DebugEntry? DebugEntryCache { get; set; } = debugEntryCache;
         public bool MultipleMessages { get; set; } = multipleMessages;
         public long BeginTimestamp { get; set; } = beginTimestamp;
-
-        public bool Dirty = false;
     }
 }

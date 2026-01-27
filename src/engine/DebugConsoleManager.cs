@@ -147,6 +147,10 @@ public partial class DebugConsoleManager : Node
         if (rawDebugEntry.Line.StartsWith('☺'))
             return;
 
+        // Avoid logging empty messages.
+        if (rawDebugEntry.Line == string.Empty)
+            return;
+
         lock (inbox)
         {
             inbox.Enqueue(rawDebugEntry);

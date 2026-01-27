@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Nito.Collections;
 
@@ -16,8 +17,14 @@ public partial class DebugEntryList : Control
     private readonly Deque<DebugEntry> privateHistory = [];
 
     private Callable onResizedCallable;
+    private Callable onScrolledCallable;
 
     private int lastIdLoaded;
+
+#pragma warning disable CA2213
+    [Export]
+    private VScrollBar scrollBar = null!;
+#pragma warning restore CA2213
 
     [Export]
     private int entrySeparation = 3;
@@ -36,8 +43,10 @@ public partial class DebugEntryList : Control
     public override void _Ready()
     {
         onResizedCallable = new Callable(this, nameof(OnResized));
+        onScrolledCallable = new Callable(this, nameof(OnScrolled));
 
         Connect(Control.SignalName.Resized, onResizedCallable);
+        scrollBar.Connect(ScrollBar.SignalName.Scrolling, onScrolledCallable);
 
         base._Ready();
     }
@@ -45,7 +54,7 @@ public partial class DebugEntryList : Control
     public override void _Process(double delta)
     {
         if (dirty)
-            RecalculateLayoutFrom(0);
+            LayOut();
 
         dirty = false;
 
@@ -120,8 +129,6 @@ public partial class DebugEntryList : Control
             ++currentVisualIndex;
         }
 
-        GD.Print($"☺ {currentGlobalId} {maxGlobalId}");
-
         // Rendering
         int entryPanelIndex = 0;
         while (currentGlobalId < maxGlobalId || currentLocalIndex < privateHistory.Count)
@@ -179,11 +186,13 @@ public partial class DebugEntryList : Control
             currentLabel.Text = currentDebugEntry.Text;
             currentLabel.Visible = true;
 
-            if (currentLabel.Size.Y > 0 && currentLabel.Position.Y + currentLabel.Size.Y > Size.Y)
-                break;
-
             ++entryPanelIndex;
         }
+
+        // We don't set Visible to false here, because the visibility can be reset to true in LayOutEntriesFrom, causing
+        // the rendering of duplicates. Instead, we empty the text completely.
+        for (int i = entryPanelIndex; i < entryLabels.Count; i++)
+            entryLabels[i].Text = string.Empty;
 
         dirty = true;
 
@@ -206,8 +215,20 @@ public partial class DebugEntryList : Control
         Refresh();
     }
 
-    private void RecalculateLayoutFrom(int id)
+    private void LayOut()
     {
+        int visibleEntries = LayOutEntriesFrom(0);
+
+        LayOutScrollbar();
+
+        // Scrollbar update:
+        scrollBar.SetMax(DebugConsoleManager.Instance.History.Count + privateHistory.Count);
+        scrollBar.SetPage(visibleEntries);
+    }
+
+    private int LayOutEntriesFrom(int id)
+    {
+        int visibleEntries = 0;
         int previousLabelY = 0, previousLabelH = 0;
         for (int i = id; i < entryLabels.Count; ++i)
         {
@@ -221,19 +242,52 @@ public partial class DebugEntryList : Control
 
             var label = entryLabels[i];
 
+            // We reached the end of the visible labels. Nothing more to lay out.
+            if (label.Text == string.Empty)
+                break;
+
             float x = leftMargin;
             float y = previousLabelY + previousLabelH + entrySeparation;
-            float w = Size.X - leftMargin - rightMargin;
+            float w = Size.X - leftMargin - 2 * rightMargin - scrollBar.Size.X;
 
             label.Position = new Vector2(x, y);
 
             // Ensure the label fills the control, as it doesn't resize on Y automatically even with FitContent enabled.
             label.CustomMinimumSize = new Vector2(w, 0);
+            label.Size = new Vector2(w, 0);
+
+            if (y > Size.Y)
+            {
+                label.Visible = false;
+            }
+            else
+            {
+                label.Visible = true;
+                if (Size.Y - y > label.GetContentHeight())
+                    visibleEntries++;
+            }
         }
+
+        return visibleEntries;
+    }
+
+    private void LayOutScrollbar()
+    {
+        var w = Math.Min(10, scrollBar.Size.X);
+
+        scrollBar.Position = new Vector2(Size.X - w + rightMargin, entrySeparation);
+        scrollBar.Size = new Vector2(w, Size.Y - 2 * entrySeparation);
     }
 
     private void OnResized()
     {
         dirty = true;
+    }
+
+    private void OnScrolled()
+    {
+        lastIdLoaded = (int)scrollBar.Value;
+
+        Refresh();
     }
 }

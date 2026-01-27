@@ -88,7 +88,7 @@ layout_mode = 2
 text = "METRICS_CONTENT"
 label_settings = ExtResource("3_fussq")
 
-[node name="DebugConsole" type="Control" parent="." node_paths=PackedStringArray("debugEntryList", "commandInput", "scrollBar")]
+[node name="DebugConsole" type="Control" parent="." node_paths=PackedStringArray("debugEntryList", "commandInput")]
 anchors_preset = 0
 offset_left = 43.0
 offset_top = 35.0
@@ -96,34 +96,22 @@ offset_right = 387.0
 offset_bottom = 377.0
 theme = ExtResource("9_qsaes")
 script = ExtResource("10_syfxw")
-debugEntryList = NodePath("VBoxContainer/HBoxContainer/DebugEntryList")
+debugEntryList = NodePath("VBoxContainer/DebugEntryList")
 commandInput = NodePath("VBoxContainer/ConsoleInput")
-scrollBar = NodePath("VBoxContainer/HBoxContainer/VScrollBar")
 WindowTitle = "DEBUG_CONSOLE"
 Resizable = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DebugConsole"]
-layout_mode = 0
-offset_right = 337.0
-offset_bottom = 337.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DebugConsole/VBoxContainer"]
+[node name="DebugEntryList" parent="DebugConsole/VBoxContainer" instance=ExtResource("11_ja1wl")]
 clip_contents = true
-layout_mode = 2
-size_flags_vertical = 3
-focus_mode = 2
-mouse_force_pass_scroll_events = false
-
-[node name="DebugEntryList" parent="DebugConsole/VBoxContainer/HBoxContainer" instance=ExtResource("11_ja1wl")]
-clip_contents = true
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VScrollBar" type="VScrollBar" parent="DebugConsole/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
 [node name="ConsoleInput" type="LineEdit" parent="DebugConsole/VBoxContainer"]

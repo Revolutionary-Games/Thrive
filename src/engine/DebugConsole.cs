@@ -15,9 +15,6 @@ public partial class DebugConsole : CustomWindow
 
     [Export]
     private LineEdit commandInput = null!;
-
-    [Export]
-    private VScrollBar scrollBar = null!;
 #pragma warning restore CA2213
 
     public bool IsConsoleOpen
@@ -40,7 +37,6 @@ public partial class DebugConsole : CustomWindow
     public override void _Ready()
     {
         commandInput.Connect(LineEdit.SignalName.TextSubmitted, new Callable(this, nameof(CommandSubmitted)));
-        scrollBar.Connect(ScrollBar.SignalName.Scrolling, new Callable(this, nameof(RefreshLogs)));
 
         base._Ready();
     }
