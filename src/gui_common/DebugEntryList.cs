@@ -189,6 +189,7 @@ public partial class DebugEntryList : Control
             ++entryPanelIndex;
         }
 
+        // Hide the remaining labels.
         // We don't set Visible to false here, because the visibility can be reset to true in LayOutEntriesFrom, causing
         // the rendering of duplicates. Instead, we empty the text completely.
         for (int i = entryPanelIndex; i < entryLabels.Count; ++i)
@@ -221,8 +222,17 @@ public partial class DebugEntryList : Control
 
         LayOutScrollbar();
 
-        // Scrollbar update:
-        scrollBar.SetMax(DebugConsoleManager.Instance.History.Count + privateHistory.Count);
+        var history = DebugConsoleManager.Instance.History;
+
+        long minTimestamp = 0;
+        if (history.Count > 0)
+        {
+            minTimestamp = history[0].BeginTimestamp;
+        }
+
+        int validPrivateCount = GetCountNewerThan(minTimestamp);
+
+        scrollBar.SetMax(history.Count + validPrivateCount);
         scrollBar.SetPage(visibleEntries);
     }
 
