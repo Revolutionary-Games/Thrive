@@ -99,7 +99,7 @@ public class MeteorImpactEvent : IWorldEffect
 
     private void ChooseAffectedPatches()
     {
-        var impactSize = random.Next(0, 3);
+        var impactSize = random.Next(0, 5);
 
         var surfacePatches = new List<Patch>();
         foreach (var patch in targetWorld.Map.Patches.Values)
