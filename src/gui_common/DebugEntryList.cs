@@ -69,14 +69,14 @@ public partial class DebugEntryList : Control
             {
                 case MouseButton.WheelUp:
                     scrollBar.Value -= 1;
+                    OnScrolled();
                     break;
                 case MouseButton.WheelDown:
                     scrollBar.Value += 1;
+                    OnScrolled();
                     break;
             }
         }
-
-        OnScrolled();
 
         base._Input(@event);
     }

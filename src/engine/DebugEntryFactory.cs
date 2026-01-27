@@ -89,8 +89,26 @@ public class DebugEntryFactory
             return false;
 
         var lastMessage = pipeline.LastMessage;
-        var value = richTextBuilder.ToString();
         var amountTextCache = GetAmountString(id);
+
+        if (!string.IsNullOrEmpty(amountTextCache) && richTextBuilder.Length > 0)
+        {
+            int endPointer = pipeline.MessagePointer - 1;
+            bool wantsNewline = richTextBuilder[endPointer] == '\n';
+
+            richTextBuilder.Length = endPointer;
+
+            richTextBuilder.Append(" [color=dark_gray][lb]");
+            richTextBuilder.Append(amountTextCache);
+            richTextBuilder.Append("[rb][/color]");
+
+            wantsNewline |= richTextBuilder[^1] != '\n';
+
+            if (wantsNewline)
+                richTextBuilder.Append('\n');
+        }
+
+        var value = richTextBuilder.ToString();
 
         debugEntry.Text = value;
         debugEntry.Amount = lastMessage.Amount;
@@ -178,17 +196,17 @@ public class DebugEntryFactory
         var lastMessage = pipeline.LastMessage;
         var isFirstMessage = lastMessage.Id == -1;
 
-        if ((!rawDebugEntry.NoTimeDifference || MaxTimestampDifferenceForStacking <= 0) && !isFirstMessage &&
-            rawDebugEntry.Timestamp - lastMessage.Timestamp >= MaxTimestampDifferenceForStacking)
-        {
-            return false;
-        }
-
         if (suppressMessageStacking || rawDebugEntry != lastMessage)
         {
             if (lastMessage.Amount > 1)
             {
                 // The current new message is different from the multiple equivalent previous messages.
+                return false;
+            }
+
+            if ((!rawDebugEntry.NoTimeDifference || MaxTimestampDifferenceForStacking <= 0) && !isFirstMessage &&
+                rawDebugEntry.Timestamp - lastMessage.Timestamp >= MaxTimestampDifferenceForStacking)
+            {
                 return false;
             }
 
@@ -242,15 +260,17 @@ public class DebugEntryFactory
             richTextBuilder.Append($"[color=#{message.Color.ToHtml()}]");
             richTextBuilder.Append(message.Line);
 
-            if (richTextBuilder[^1] != '\n')
-                richTextBuilder.Append('\n');
+            // Overwrite newline.
+            richTextBuilder.Length -= 1;
 
-            richTextBuilder.Append("[/color]");
+            // End-of-line. Ensure a newline is appended at the end too.
+            richTextBuilder.Append("[/color]\n");
 
             pipeline.LastMessage = message;
         }
 
         pipeline.Dirty = true;
+        pipeline.MessagePointer = richTextBuilder.Length;
     }
 
     private DebugEntryFactoryPipeline GetPipeline(int id, long beginTimestamp, out StringBuilder richTextBuilder)
@@ -274,6 +294,7 @@ public class DebugEntryFactory
         bool multipleMessages)
     {
         public bool Dirty;
+        public int MessagePointer;
 
         public StringBuilder RichTextBuilder { get; } = richTextBuilder;
         public StringBuilder? AmountStringBuilder { get; } = amountStringBuilder;

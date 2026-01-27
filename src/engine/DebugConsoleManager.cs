@@ -143,10 +143,6 @@ public partial class DebugConsoleManager : Node
     /// <param name="rawDebugEntry">The console line data</param>
     public void Print(RawDebugEntry rawDebugEntry)
     {
-        // This is for debugging. If we log a message that starts with the null char, we ignore it in the manager.
-        if (rawDebugEntry.Line.StartsWith('☺'))
-            return;
-
         // Avoid logging empty messages.
         if (rawDebugEntry.Line == string.Empty)
             return;
