@@ -216,7 +216,7 @@ public partial class DebugEntryList : Control
                 var previousLabel = entryLabels[i - 1];
 
                 previousLabelY = (int)previousLabel.Position.Y;
-                previousLabelH = (int)previousLabel.Size.Y;
+                previousLabelH = previousLabel.GetContentHeight();
             }
 
             var label = entryLabels[i];

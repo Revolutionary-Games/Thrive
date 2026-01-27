@@ -105,12 +105,7 @@ public class DebugEntryFactory
         var pipeline = GetPipeline(id, 0, out var richTextBuilder);
 
         if (pipeline.DebugEntryCache != null)
-        {
-            if (pipeline.Dirty)
-                pipeline.DebugEntryCache.Update();
-
             return pipeline.DebugEntryCache;
-        }
 
         richTextBuilder = pipeline.RichTextBuilder;
 
