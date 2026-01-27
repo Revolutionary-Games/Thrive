@@ -1136,7 +1136,7 @@ public partial class PatchMapDrawer : Control
                 var lifeIndicator = new TextureRect
                 {
                     Texture = IndicatorTexture,
-                    Position = GetIndicatorPosition(node, i, IndicatorTexture),
+                    Position = GetIndicatorPosition(node, i, 12.0f),
                     MouseFilter = MouseFilterEnum.Ignore,
                     ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
                     CustomMinimumSize = new Vector2(12.0f, 12.0f),
@@ -1150,12 +1150,14 @@ public partial class PatchMapDrawer : Control
         nodes.Add(node.Patch, node);
     }
 
-    private Vector2 GetIndicatorPosition(PatchMapNode node, int dotIndex, Texture2D texture)
+    private Vector2 GetIndicatorPosition(PatchMapNode node, int dotIndex, float dotSize)
     {
+        var halfDotSize = dotSize * 0.5f;
+
         var indexModifier = MathF.Sin(dotIndex) * 0.5f + 0.5f;
         var nodeModifier = node.Position.LengthSquared();
         var nodeCenter = node.Position + new Vector2(Constants.PATCH_NODE_RECT_LENGTH / 2,
-            Constants.PATCH_NODE_RECT_LENGTH / 2) - new Vector2(texture.GetWidth() / 2.0f, texture.GetHeight() / 2.0f);
+            Constants.PATCH_NODE_RECT_LENGTH / 2) - new Vector2(halfDotSize, halfDotSize);
 
         var offset = new Vector2(0,
             indexModifier * Constants.PATCH_LIFE_INDICATOR_RADIUS_SCALE + Constants.PATCH_LIFE_INDICATOR_RADIUS_BASE);
