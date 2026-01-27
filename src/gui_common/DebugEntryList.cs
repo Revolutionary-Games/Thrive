@@ -191,7 +191,7 @@ public partial class DebugEntryList : Control
 
         // We don't set Visible to false here, because the visibility can be reset to true in LayOutEntriesFrom, causing
         // the rendering of duplicates. Instead, we empty the text completely.
-        for (int i = entryPanelIndex; i < entryLabels.Count; i++)
+        for (int i = entryPanelIndex; i < entryLabels.Count; ++i)
             entryLabels[i].Text = string.Empty;
 
         dirty = true;
@@ -264,7 +264,7 @@ public partial class DebugEntryList : Control
             {
                 label.Visible = true;
                 if (Size.Y - y > label.GetContentHeight())
-                    visibleEntries++;
+                    ++visibleEntries;
             }
         }
 
