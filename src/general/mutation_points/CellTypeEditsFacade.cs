@@ -89,6 +89,11 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
     public int MPCost => originalCell.MPCost;
     public string CellTypeName => originalCell.CellTypeName;
 
+    /// <summary>
+    ///   For now, there's no action that changes what a type was split from, so we just forward this
+    /// </summary>
+    public string? SplitFromTypeName => originalCell.SplitFromTypeName;
+
     // TODO: check that this is right (there might sometimes be too many items in removedOrganelles)
     // Though this seems to not be relied on currently
     public int Count => originalCell.Organelles.Count + addedOrganelles.Count - removedOrganelles.Count;

@@ -136,6 +136,11 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
     public string CellTypeName => FormattedName;
 
+    /// <summary>
+    ///   Microbes are never split from any cell type
+    /// </summary>
+    public string? SplitFromTypeName => null;
+
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeSpecies;
 

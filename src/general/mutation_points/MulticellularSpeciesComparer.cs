@@ -48,6 +48,36 @@ public class MulticellularSpeciesComparer
                 }
             }
 
+            // If no match to the old name, then try to compare against the cell type it was split from to get a
+            // reasonable MP usage estimate of the changes roughly. (This doesn't need to be fully accurate as
+            // after a duplication action happens, the duplicated cell type then exists in the original list
+            // {as it is added immediately} and the small inaccurate cost goes away.)
+            if (!string.IsNullOrEmpty(newCellType.SplitFromTypeName) && original == null)
+            {
+                foreach (var originalType in originalCellTypes)
+                {
+                    if (originalType.CellTypeName == newCellType.SplitFromTypeName)
+                    {
+                        original = originalType;
+                        break;
+                    }
+                }
+
+                // Then also match against any new cell types (except self) for where this split from to not cost
+                // (much) MP on the initial split operation and allow it to proceed
+                if (original == null)
+                {
+                    foreach (var newType in newCellTypes)
+                    {
+                        if (newType.CellTypeName == newCellType.SplitFromTypeName && newType != newCellType)
+                        {
+                            original = newType;
+                            break;
+                        }
+                    }
+                }
+            }
+
             // If still null, grab the first old type as the player is likely to duplicate from the stem type
             // If we need more control cell types would need to store the name of the type they are duplicated from
             original ??= originalCellTypes.FirstOrDefault();

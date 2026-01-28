@@ -8,7 +8,7 @@ using SharedBase.Archive;
 /// </summary>
 public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable, IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     private IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate>? readonlyLayout;
 
@@ -56,6 +56,8 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
     public string CellTypeName { get; set; } = "error";
     public int MPCost { get; set; } = 15;
 
+    public string? SplitFromTypeName { get; set; }
+
     public MembraneType MembraneType { get; set; }
     public float MembraneRigidity { get; set; }
     public Color Colour { get; set; }
@@ -85,7 +87,8 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        return new CellType(reader.ReadObject<OrganelleLayout<OrganelleTemplate>>(), reader.ReadObject<MembraneType>())
+        var result = new CellType(reader.ReadObject<OrganelleLayout<OrganelleTemplate>>(),
+            reader.ReadObject<MembraneType>())
         {
             CellTypeName = reader.ReadString() ?? throw new NullArchiveObjectException(),
             MPCost = reader.ReadInt32(),
@@ -94,6 +97,11 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
             IsBacteria = reader.ReadBool(),
             BaseRotationSpeed = reader.ReadFloat(),
         };
+
+        if (version > 1)
+            result.SplitFromTypeName = reader.ReadString();
+
+        return result;
     }
 
     public void WriteToArchive(ISArchiveWriter writer)
@@ -107,6 +115,8 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         writer.Write(Colour);
         writer.Write(IsBacteria);
         writer.Write(BaseRotationSpeed);
+
+        writer.Write(SplitFromTypeName);
     }
 
     public bool RepositionToOrigin()

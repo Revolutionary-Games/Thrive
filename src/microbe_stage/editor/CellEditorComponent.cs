@@ -703,7 +703,7 @@ public partial class CellEditorComponent :
                 }
             }
         }
-        else
+        else if (Editor.EditorReady)
         {
             CheckRunningAutoEvoPrediction();
         }

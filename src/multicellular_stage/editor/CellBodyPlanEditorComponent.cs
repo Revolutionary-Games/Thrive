@@ -1578,6 +1578,10 @@ public partial class CellBodyPlanEditorComponent :
         var newType = (CellType)GetEditedCellDataIfEdited(type).Clone();
         newType.CellTypeName = newTypeName;
 
+        // Remember what this split from for better MP result calculations (as otherwise matching intermediate cell
+        // types with minimum MP usage is very challenging)
+        newType.SplitFromTypeName = type.CellTypeName;
+
         var data = new DuplicateDeleteCellTypeData(newType, false);
         var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(DuplicateCellType, DeleteCellType, data);
         EnqueueAction(new CombinedEditorAction(action));
