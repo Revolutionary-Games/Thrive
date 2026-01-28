@@ -705,9 +705,7 @@ public class Settings
             CustomUsername.Value :
             EnvironmentUserName;
 
-    public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
-
-    public int CloudSimulationHeight => Constants.CLOUD_Y_EXTENT / CloudResolution;
+    public int CloudSimulationWidth => Constants.CLOUD_EXTENT / CloudResolution;
 
     public static bool operator ==(Settings? lhs, Settings? rhs)
     {
