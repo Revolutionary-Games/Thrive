@@ -1099,7 +1099,7 @@ public partial class CellBodyPlanEditorComponent :
         // Energy and compound balance calculations
         var balances = new Dictionary<Compound, CompoundBalance>();
 
-        var energyBalanceInfo = new EnergyBalanceInfoFull();
+        energyBalanceInfo = new EnergyBalanceInfoFull();
         energyBalanceInfo.SetupTrackingForRequiredCompounds();
 
         bool moving = organismStatisticsPanel.CalculateBalancesWhenMoving;
