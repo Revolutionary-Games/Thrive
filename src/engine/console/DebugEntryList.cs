@@ -41,6 +41,8 @@ public partial class DebugEntryList : Control
 
     private bool dirty;
 
+    private int globalStartId;
+
     public override void _Ready()
     {
         onResizedCallable = new Callable(this, nameof(OnResized));
@@ -96,7 +98,7 @@ public partial class DebugEntryList : Control
         return count;
     }
 
-    public int LoadFrom(int visualSkipCount, int globalStartId)
+    public int LoadFrom(int visualSkipCount)
     {
         var history = DebugConsoleManager.Instance.History;
         int maxGlobalId = history.Count;
@@ -221,7 +223,13 @@ public partial class DebugEntryList : Control
 
     public void Refresh()
     {
-        LoadFrom(lastIdLoaded, 0);
+        LoadFrom(lastIdLoaded);
+    }
+
+    public void Clear()
+    {
+        globalStartId = DebugConsoleManager.Instance.History.Count;
+        privateHistory.Clear();
     }
 
     public void AddPrivateEntry(DebugEntry entry)
@@ -243,14 +251,14 @@ public partial class DebugEntryList : Control
         var history = DebugConsoleManager.Instance.History;
 
         long minTimestamp = 0;
-        if (history.Count > 0)
+        if (history.Count - globalStartId > 0)
         {
-            minTimestamp = history[0].BeginTimestamp;
+            minTimestamp = history[globalStartId].BeginTimestamp;
         }
 
         int validPrivateCount = GetCountNewerThan(minTimestamp);
 
-        scrollBar.SetMax(history.Count + validPrivateCount);
+        scrollBar.SetMax(history.Count - globalStartId + validPrivateCount);
         scrollBar.SetPage(visibleEntries);
     }
 
@@ -303,7 +311,7 @@ public partial class DebugEntryList : Control
     {
         var w = Math.Min(10, scrollBar.Size.X);
 
-        scrollBar.Position = new Vector2(Size.X - w + rightMargin, entrySeparation);
+        scrollBar.Position = new Vector2(Size.X - w, entrySeparation);
         scrollBar.Size = new Vector2(w, Size.Y - 2 * entrySeparation);
     }
 
