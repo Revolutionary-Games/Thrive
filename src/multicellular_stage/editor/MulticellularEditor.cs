@@ -90,7 +90,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     public WorldAndPlayerDataSource UnlocksDataSource =>
         new(CurrentGame.GameWorld, CurrentPatch,
-            new MulticellularUnlocksData(editedSpecies?.ModifiableEditorCells, cellEditorTab.EnergyBalanceInfo));
+            new MulticellularUnlocksData(editedSpecies?.ModifiableEditorCells, cellEditorTab?.EnergyBalanceInfo));
 
     protected override string MusicCategory => "MulticellularEditor";
 

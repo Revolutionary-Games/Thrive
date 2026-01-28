@@ -64,7 +64,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     public WorldAndPlayerDataSource UnlocksDataSource =>
         new(CurrentGame.GameWorld, CurrentPatch,
-            new MicrobeUnlocksData(EditedCellProperties, cellEditorTab.EnergyBalanceInfo));
+            new MicrobeUnlocksData(EditedCellProperties, cellEditorTab?.EnergyBalanceInfo));
 
     public override MainGameState GameState => MainGameState.MicrobeEditor;
 
