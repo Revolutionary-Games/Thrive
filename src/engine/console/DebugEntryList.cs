@@ -13,11 +13,12 @@ public partial class DebugEntryList : Control
 
     private readonly List<RichTextLabel> entryLabels = [];
 
-    // This is a local history for private debug messages.
+    /// <summary>
+    ///   This is a local history for private debug messages.
+    /// </summary>
     private readonly Deque<DebugEntry> privateHistory = [];
 
     private Callable onResizedCallable;
-    private Callable onScrolledCallable;
 
     private int lastIdLoaded;
 
@@ -43,10 +44,7 @@ public partial class DebugEntryList : Control
     public override void _Ready()
     {
         onResizedCallable = new Callable(this, nameof(OnResized));
-        onScrolledCallable = new Callable(this, nameof(OnScrolled));
-
         Connect(Control.SignalName.Resized, onResizedCallable);
-        scrollBar.Connect(ScrollBar.SignalName.Scrolling, onScrolledCallable);
 
         base._Ready();
     }

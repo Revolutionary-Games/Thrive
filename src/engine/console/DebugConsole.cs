@@ -52,7 +52,7 @@ public partial class DebugConsole : CustomWindow
 
     public void AddPrivateLog(DebugConsoleManager.RawDebugEntry line)
     {
-        var debugEntryFactory = DebugEntryFactory.Instance;
+        var debugEntryFactory = DebugConsoleManager.Instance.DebugEntryFactory;
 
         debugEntryFactory.TryAddMessage(line.Id, line, true);
         debugEntryFactory.UpdateDebugEntry(line.Id);
@@ -114,7 +114,7 @@ public partial class DebugConsole : CustomWindow
 
         var debugConsoleManager = DebugConsoleManager.Instance;
         var commandRegistry = CommandRegistry.Instance;
-        var debugEntryFactory = DebugEntryFactory.Instance;
+        var debugEntryFactory = debugConsoleManager.DebugEntryFactory;
 
         int executionToken = debugConsoleManager.GetAvailableCustomDebugEntryId();
 

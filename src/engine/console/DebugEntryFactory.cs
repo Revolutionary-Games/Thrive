@@ -4,48 +4,22 @@ using System.Text;
 using Godot;
 
 /// <summary>
-///   This singleton is responsible for the controlled creation and updates of DebugEntry instances.
+///   This class is responsible for the controlled creation and updates of DebugEntry instances.
 /// </summary>
 public class DebugEntryFactory
 {
     // This is in ticks, or 100 ns, so this is equivalent to 1 ms.
     private const long DEFAULT_MAX_TIMESTAMP_DIFFERENCE_FOR_STACKING = 10000;
 
-    private static DebugEntryFactory? instance;
-
     private readonly DebugConsoleManager.RawDebugEntry debugEntryBuildDataPlaceholder = new(string.Empty, Colors.White,
         0, -1);
 
     private readonly Dictionary<int, DebugEntryFactoryPipeline> pipelines = new();
 
-    public static DebugEntryFactory Instance => instance ?? throw new InstanceNotLoadedYetException();
-
     /// <summary>
     ///   The maximum timestamp difference required to stack two consecutive messages into one, in ticks (100 ns).
     /// </summary>
     public long MaxTimestampDifferenceForStacking { get; set; } = DEFAULT_MAX_TIMESTAMP_DIFFERENCE_FOR_STACKING;
-
-    public static void Initialize()
-    {
-        if (instance != null)
-        {
-            GD.PrintErr("DebugEntryFactory: Already initialized.");
-            return;
-        }
-
-        instance = new DebugEntryFactory();
-    }
-
-    public static void Shutdown()
-    {
-        if (instance == null)
-        {
-            GD.PrintErr("DebugEntryFactory: Not initialized.");
-            return;
-        }
-
-        instance = null;
-    }
 
     public bool Flush(int id)
     {
@@ -112,7 +86,7 @@ public class DebugEntryFactory
 
         debugEntry.Text = value;
         debugEntry.Amount = lastMessage.Amount;
-        debugEntry.AmountTextCache = amountTextCache;
+        debugEntry.AmountText = amountTextCache;
         debugEntry.Frozen = freeze;
 
         return true;
@@ -130,13 +104,8 @@ public class DebugEntryFactory
         var lastMessage = pipeline.LastMessage;
         var value = richTextBuilder.ToString();
         var amountTextCache = GetAmountString(id);
-        var debugEntry = new DebugEntry(value,
-            lastMessage.Amount,
-            amountTextCache,
-            lastMessage.Color,
-            pipeline.BeginTimestamp,
-            freeze,
-            id);
+        var debugEntry = new DebugEntry(value, lastMessage.Amount, amountTextCache, lastMessage.Color,
+            pipeline.BeginTimestamp, freeze, id);
 
         pipeline.DebugEntryCache = debugEntry;
 

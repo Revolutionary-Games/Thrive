@@ -16,6 +16,7 @@ public partial class DebugConsoleManager : Node
     public const uint MaxHistorySize = 255;
 
     public readonly Deque<DebugEntry> History = [];
+    public readonly DebugEntryFactory DebugEntryFactory;
 
     private static DebugConsoleManager? instance;
 
@@ -31,7 +32,8 @@ public partial class DebugConsoleManager : Node
         instance = this;
 
         CommandRegistry.Initialize();
-        DebugEntryFactory.Initialize();
+
+        DebugEntryFactory = new DebugEntryFactory();
     }
 
     public event EventHandler<EventArgs>? OnHistoryUpdated;
@@ -44,7 +46,6 @@ public partial class DebugConsoleManager : Node
     public override void _ExitTree()
     {
         CommandRegistry.Shutdown();
-        DebugEntryFactory.Shutdown();
 
         base._ExitTree();
     }
@@ -62,22 +63,20 @@ public partial class DebugConsoleManager : Node
             TotalMessageCount += inbox.Count;
             MessageCountInHistory += inbox.Count;
 
-            var debugEntryFactory = DebugEntryFactory.Instance;
-
             while (inbox.TryDequeue(out var rawDebugEntry))
             {
                 int id = rawDebugEntry.Id;
 
-                if (!debugEntryFactory.TryAddMessage(id, rawDebugEntry))
+                if (!DebugEntryFactory.TryAddMessage(id, rawDebugEntry))
                 {
-                    debugEntryFactory.UpdateDebugEntry(id);
-                    debugEntryFactory.Flush(id);
+                    DebugEntryFactory.UpdateDebugEntry(id);
+                    DebugEntryFactory.Flush(id);
                     activeEntries.Remove(id);
 
-                    debugEntryFactory.NotifyRootMessage(id, rawDebugEntry);
-                    if (debugEntryFactory.TryAddMessage(id, rawDebugEntry))
+                    DebugEntryFactory.NotifyRootMessage(id, rawDebugEntry);
+                    if (DebugEntryFactory.TryAddMessage(id, rawDebugEntry))
                     {
-                        var newEntry = debugEntryFactory.GetDebugEntry(id);
+                        var newEntry = DebugEntryFactory.GetDebugEntry(id);
                         History.AddToBack(newEntry);
                         activeEntries[id] = newEntry;
                     }
@@ -90,7 +89,7 @@ public partial class DebugConsoleManager : Node
                 {
                     if (!activeEntries.ContainsKey(id))
                     {
-                        var liveEntry = debugEntryFactory.GetDebugEntry(id);
+                        var liveEntry = DebugEntryFactory.GetDebugEntry(id);
                         History.AddToBack(liveEntry);
                         activeEntries[id] = liveEntry;
                     }
@@ -167,13 +166,11 @@ public partial class DebugConsoleManager : Node
         if (id < 1 << 16)
             GD.PrintErr("Invalid custom id. Custom ids should be generated with GenerateCustomDebugEntryId.");
 
-        if (!DebugEntryFactory.Instance.Flush(id))
+        if (!DebugEntryFactory.Flush(id))
             GD.PrintErr("Invalid custom id. This id has never been generated.");
 
-        var debugEntryFactory = DebugEntryFactory.Instance;
-
-        debugEntryFactory.UpdateDebugEntry(id);
-        debugEntryFactory.Flush(id);
+        DebugEntryFactory.UpdateDebugEntry(id);
+        DebugEntryFactory.Flush(id);
 
         activeEntries.Remove(id);
         customIdsBucket.Enqueue(id);
@@ -190,7 +187,7 @@ public partial class DebugConsoleManager : Node
         if (activeEntries.ContainsKey(id))
             return id;
 
-        var liveEntry = DebugEntryFactory.Instance.GetDebugEntry(id);
+        var liveEntry = DebugEntryFactory.GetDebugEntry(id);
         History.AddToBack(liveEntry);
         activeEntries[id] = liveEntry;
 

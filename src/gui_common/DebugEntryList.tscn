@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bd7s2fq7wrh5x"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_vmasg"]
-[ext_resource type="Script" uid="uid://dsui8iq3v3a7t" path="res://src/gui_common/DebugEntryList.cs" id="2_xi34k"]
+[ext_resource type="Script" uid="uid://dsui8iq3v3a7t" path="res://src/engine/console/DebugEntryList.cs" id="2_xi34k"]
 
 [node name="DebugEntryList" type="Control" node_paths=PackedStringArray("scrollBar")]
 layout_mode = 3
@@ -20,3 +20,5 @@ scrollBar = NodePath("VScrollBar")
 layout_mode = 0
 offset_right = 6.0
 offset_bottom = 40.0
+
+[connection signal="scrolling" from="VScrollBar" to="." method="OnScrolled"]
