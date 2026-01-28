@@ -1454,6 +1454,13 @@ public partial class CellEditorComponent :
                 PlayHexPlacementSound();
                 break;
             }
+
+            // If placed a unique organelle successfully, clear the placement action
+            if (data is OrganellePlacementActionData { PlacedHex.Definition.Unique: true })
+            {
+                GD.Print("Clearing to be placed organelle type as we placed something unique");
+                DeselectOrganelleToPlace();
+            }
         }
 
         base.OnValidAction(actions);
@@ -2318,16 +2325,16 @@ public partial class CellEditorComponent :
 
     private CombinedEditorAction? CreateAddOrganelleAction(OrganelleTemplate organelle)
     {
-        // 1 - you put a unique organelle (means only one instance allowed) but you already have it
-        // 2 - you put an organelle that requires nucleus but you don't have one
+        // 1 - you put a unique organelle (means only one instance allowed), but you already have it
+        // 2 - you put an organelle that requires nucleus, but you don't have one
         if ((organelle.Definition.Unique && HasOrganelle(organelle.Definition)) ||
             (organelle.Definition.RequiresNucleus && !HasNucleus))
         {
             return null;
         }
 
-        if (organelle.Definition.Unique)
-            DeselectOrganelleToPlace();
+        // This used to deselect things if we created an action for a unique organelle, however, that could trigger
+        // on placement fail so that code is now on action success callback
 
         var replacedCytoplasmActions = GetReplacedCytoplasmRemoveAction([organelle]).Cast<EditorAction>().ToList();
 
