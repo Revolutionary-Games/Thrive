@@ -14,7 +14,8 @@ public class MulticellularSpeciesComparer
     private readonly List<IReadOnlyHexWithData<IReadOnlyCellTemplate>> oldCells = new();
 
     public static double CompareCellTypes(List<IReadOnlyCellTypeDefinition> originalCellTypes,
-        List<IReadOnlyCellTypeDefinition> newCellTypes, MicrobeSpeciesComparer typeComparer)
+        List<IReadOnlyCellTypeDefinition> newCellTypes, MicrobeSpeciesComparer typeComparer, double maxSingleActionCost,
+        double costMultiplier = 1)
     {
         double cost = 0;
 
@@ -89,7 +90,7 @@ public class MulticellularSpeciesComparer
                 original = newCellTypes.FirstOrDefault(c => c != temp) ?? newCellType;
             }
 
-            cost += typeComparer.CompareCellType(original, newCellType, true);
+            cost += typeComparer.CompareCellType(original, newCellType, true, maxSingleActionCost, costMultiplier);
         }
 
         // We don't need to process removed cell types as they are free to remove
@@ -97,17 +98,19 @@ public class MulticellularSpeciesComparer
         return cost;
     }
 
-    public double Compare(IReadOnlyMulticellularSpecies speciesA, IReadOnlyMulticellularSpecies speciesB)
+    public double Compare(IReadOnlyMulticellularSpecies speciesA, IReadOnlyMulticellularSpecies speciesB,
+        double maxSingleActionCost, double costMultiplier = 1)
     {
         // Base cost
-        double cost = SpeciesComparer.GetRequiredMutationPoints(speciesA, speciesB);
+        double cost =
+            SpeciesComparer.GetRequiredMutationPoints(speciesA, speciesB, maxSingleActionCost, costMultiplier);
 
         originalCellTypes.AddRange(speciesA.CellTypes);
         newCellTypes.AddRange(speciesB.CellTypes);
 
         // Cost from each cell type change
-        cost += CompareCellTypes(originalCellTypes, newCellTypes, cellTypeComparer) *
-            Constants.MULTICELLULAR_EDITOR_COST_FACTOR;
+        cost += CompareCellTypes(originalCellTypes, newCellTypes, cellTypeComparer, maxSingleActionCost,
+            costMultiplier * Constants.MULTICELLULAR_EDITOR_COST_FACTOR);
         originalCellTypes.Clear();
         newCellTypes.Clear();
 
@@ -151,7 +154,7 @@ public class MulticellularSpeciesComparer
                         match = true;
 
                         // A move
-                        cost += Constants.ORGANELLE_MOVE_COST;
+                        cost += Math.Min(Constants.ORGANELLE_MOVE_COST * costMultiplier, maxSingleActionCost);
                         break;
                     }
                 }
@@ -160,7 +163,7 @@ public class MulticellularSpeciesComparer
             if (!match)
             {
                 // Added a new cell
-                cost += newCell.Data!.CellType.MPCost;
+                cost += Math.Min(newCell.Data!.CellType.MPCost * costMultiplier, maxSingleActionCost);
             }
         }
 
@@ -170,7 +173,7 @@ public class MulticellularSpeciesComparer
             cost += Constants.ORGANELLE_REMOVE_COST;
         }*/
 
-        cost += oldCells.Count * Constants.METABALL_REMOVE_COST;
+        cost += oldCells.Count * Math.Min(Constants.CELL_REMOVE_COST * costMultiplier, maxSingleActionCost);
 
         oldCells.Clear();
         newCells.Clear();

@@ -66,7 +66,8 @@ public class MetaballEditorTests
             _ => { }, _ => { }, resizeActionData));
 
         ApplyFacadeEdits(editsFacade, history);
-        Assert.Equal(Constants.METABALL_RESIZE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
+        Assert.Equal(Constants.METABALL_RESIZE_COST,
+            speciesComparer.Compare(originalSpecies, editsFacade, Constants.MAX_SINGLE_EDIT_MP_COST));
 
         var removeData =
             new MetaballRemoveActionData<MacroscopicMetaball>(metaball, null);
@@ -75,7 +76,8 @@ public class MetaballEditorTests
             new SingleEditorAction<MetaballRemoveActionData<MacroscopicMetaball>>(_ => { }, _ => { }, removeData));
 
         ApplyFacadeEdits(editsFacade, history);
-        Assert.Equal(Constants.METABALL_REMOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
+        Assert.Equal(Constants.METABALL_REMOVE_COST,
+            speciesComparer.Compare(originalSpecies, editsFacade, Constants.MAX_SINGLE_EDIT_MP_COST));
     }
 
     [Fact]
@@ -103,7 +105,8 @@ public class MetaballEditorTests
             moveActionData));
 
         ApplyFacadeEdits(editsFacade, history);
-        Assert.Equal(Constants.METABALL_MOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
+        Assert.Equal(Constants.METABALL_MOVE_COST,
+            speciesComparer.Compare(originalSpecies, editsFacade, Constants.MAX_SINGLE_EDIT_MP_COST));
 
         var removeData =
             new MetaballRemoveActionData<MacroscopicMetaball>(metaball, null);
@@ -113,7 +116,8 @@ public class MetaballEditorTests
 
         // Deleting cancels the move cost, results in just removal cost
         ApplyFacadeEdits(editsFacade, history);
-        Assert.Equal(Constants.METABALL_REMOVE_COST, speciesComparer.Compare(originalSpecies, editsFacade));
+        Assert.Equal(Constants.METABALL_REMOVE_COST,
+            speciesComparer.Compare(originalSpecies, editsFacade, Constants.MAX_SINGLE_EDIT_MP_COST));
     }
 
     [Fact]
@@ -140,7 +144,8 @@ public class MetaballEditorTests
             placementData));
 
         ApplyFacadeEdits(editsFacade, history);
-        Assert.Equal(Constants.METABALL_ADD_COST, speciesComparer.Compare(originalSpecies, editsFacade));
+        Assert.Equal(Constants.METABALL_ADD_COST,
+            speciesComparer.Compare(originalSpecies, editsFacade, Constants.MAX_SINGLE_EDIT_MP_COST));
 
         var removeData = new MetaballRemoveActionData<MacroscopicMetaball>(metaball, null);
 
@@ -149,7 +154,7 @@ public class MetaballEditorTests
 
         // Adding and then removing should result in 0 net cost (full refund)
         ApplyFacadeEdits(editsFacade, history);
-        Assert.Equal(0, speciesComparer.Compare(originalSpecies, editsFacade));
+        Assert.Equal(0, speciesComparer.Compare(originalSpecies, editsFacade, Constants.MAX_SINGLE_EDIT_MP_COST));
     }
 
     private void ApplyFacadeEdits(MacroscopicEditsFacade facade, EditorActionHistory<EditorAction> history)

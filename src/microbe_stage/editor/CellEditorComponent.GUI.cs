@@ -358,6 +358,9 @@ public partial class CellEditorComponent
 
     private void CreateUndiscoveredOrganellesButtons(bool refresh = false, bool autoUnlock = true)
     {
+        if (allPartSelectionElements.Count < 1)
+            GD.PrintErr("Create undiscovered organelles buttons is called too early");
+
         // Note that if autoUnlock is true and this is called after the editor is initialized there's a potential
         // logic conflict with UndoEndosymbiontPlaceAction in case we ever decide to allow organelle actions to also
         // occur after entering the editor (other than endosymbiosis unlocks)
@@ -488,10 +491,13 @@ public partial class CellEditorComponent
     /// </summary>
     private void UpdateMPCost()
     {
+        if (placeablePartSelectionElements.Count < 1 || membraneSelectionElements.Count < 1)
+            GD.PrintErr("Cannot update MP cost tooltips as they are not initialised");
+
         // Set the cost factor for each organelle button
         foreach (var entry in placeablePartSelectionElements)
         {
-            var cost = (int)Math.Min(entry.Key.MPCost * CostMultiplier, 100);
+            var cost = (int)Math.Min(entry.Key.MPCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
 
             entry.Value.MPCost = cost;
 
@@ -503,7 +509,7 @@ public partial class CellEditorComponent
         // Set the cost factor for each membrane button
         foreach (var entry in membraneSelectionElements)
         {
-            var cost = (int)Math.Min(entry.Key.EditorCost * CostMultiplier, 100);
+            var cost = (int)Math.Min(entry.Key.EditorCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
 
             entry.Value.MPCost = cost;
 
@@ -515,7 +521,8 @@ public partial class CellEditorComponent
         // Set the cost factor for the rigidity tooltip
         var rigidityTooltip = GetSelectionTooltip("rigiditySlider", "editor");
         rigidityTooltip?.MutationPointCost =
-            (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
+            (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier,
+                Constants.MAX_SINGLE_EDIT_MP_COST);
 
         tolerancesEditor.MPDisplayCostMultiplier = CostMultiplier;
         tolerancesEditor.UpdateMPCostInToolTips();
@@ -611,14 +618,15 @@ public partial class CellEditorComponent
         foreach (var entry in placeablePartSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;
-            entry.Value.MPCost = (int)(entry.Key.MPCost * CostMultiplier);
+            entry.Value.MPCost = (int)Math.Min(entry.Key.MPCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
 
         foreach (var entry in membraneSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;
-            entry.Value.MPCost = (int)(entry.Key.EditorCost * CostMultiplier);
+            entry.Value.MPCost =
+                (int)Math.Min(entry.Key.EditorCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
     }
