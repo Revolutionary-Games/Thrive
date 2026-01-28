@@ -5,18 +5,24 @@ public class CommandContext(DebugConsole? debugConsole, int executionToken)
 {
     public void Clear()
     {
+        // Clear only if we're not headless.
         debugConsole?.Clear();
     }
 
     public void Print(string message, Color color)
     {
-        if (debugConsole == null)
-            return;
-
         var debugEntry = new DebugConsoleManager.RawDebugEntry(message, color, Stopwatch.GetTimestamp(), executionToken,
             true);
 
-        debugConsole.AddPrivateLog(debugEntry);
+        if (debugConsole != null)
+        {
+            debugConsole.AddPrivateLog(debugEntry);
+        }
+        else
+        {
+            // We're headless, so we log to the global history.
+            DebugConsoleManager.Instance.Print(debugEntry);
+        }
     }
 
     public void Print(string message)
