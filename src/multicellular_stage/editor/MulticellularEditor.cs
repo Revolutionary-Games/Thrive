@@ -735,7 +735,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
                 if (CellLayout == null)
                     return 0;
 
-                return CellBodyPlanInternalCalculations.CalculateSpeed(CellLayout);
+                return MicrobeInternalCalculations.SpeedToUserReadableNumber(
+                    CellBodyPlanInternalCalculations.CalculateSpeed(CellLayout));
             }
         }
     }

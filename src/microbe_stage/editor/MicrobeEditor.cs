@@ -63,7 +63,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
 
     public WorldAndPlayerDataSource UnlocksDataSource =>
-        new WorldAndPlayerDataSource(CurrentGame.GameWorld, CurrentPatch,
+        new(CurrentGame.GameWorld, CurrentPatch,
             new MicrobeUnlocksData(EditedCellProperties, cellEditorTab.EnergyBalanceInfo));
 
     public override MainGameState GameState => MainGameState.MicrobeEditor;
@@ -596,9 +596,10 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
                 if (CellDefinition == null)
                     return 0;
 
-                return MicrobeInternalCalculations.CalculateSpeed(
-                    CellDefinition.ModifiableOrganelles.Organelles, CellDefinition.MembraneType,
-                    CellDefinition.MembraneRigidity, CellDefinition.IsBacteria);
+                return MicrobeInternalCalculations.SpeedToUserReadableNumber(
+                        MicrobeInternalCalculations.CalculateSpeed(
+                            CellDefinition.ModifiableOrganelles.Organelles, CellDefinition.MembraneType,
+                            CellDefinition.MembraneRigidity, CellDefinition.IsBacteria));
             }
         }
     }
