@@ -56,6 +56,11 @@ public interface IReadOnlyCellTypeDefinition : IReadOnlyCellDefinition
     public int MPCost { get; }
 
     public string CellTypeName { get; }
+
+    /// <summary>
+    ///   If known from what cell type this cell was split from, this is the name of that type.
+    /// </summary>
+    public string? SplitFromTypeName { get; }
 }
 
 /// <summary>

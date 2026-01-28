@@ -1044,6 +1044,7 @@ public partial class MetaballBodyEditorComponent :
         // TODO: store name of the original cell type this is cloned from to make MP comparisons easier?
         var newType = (CellType)GetEditedCellDataIfEdited(type).Clone();
         newType.CellTypeName = newTypeName;
+        newType.SplitFromTypeName = type.CellTypeName;
 
         var data = new DuplicateDeleteCellTypeData(newType, false);
         var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(DuplicateCellType, DeleteCellType, data);
