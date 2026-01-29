@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhy1rrdfux74j"]
+[gd_scene format=3 uid="uid://bhy1rrdfux74j"]
 
 [ext_resource type="LabelSettings" uid="uid://terwl7t76t4h" path="res://src/gui_common/fonts/Body-Regular-AlmostSmall.tres" id="2_1r5af"]
 [ext_resource type="Script" uid="uid://dnml8vp4fgrbu" path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.cs" id="3"]
 [ext_resource type="LabelSettings" uid="uid://dd3w1mc3ion6w" path="res://src/gui_common/fonts/Body-Bold-AlmostSmall.tres" id="3_jhdqu"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="4_2uv7j"]
 
-[node name="ModifierInfo" type="HBoxContainer"]
+[node name="ModifierInfo" type="HBoxContainer" unique_id=22067038]
 offset_right = 28.0
 offset_bottom = 20.0
 size_flags_horizontal = 3
@@ -13,21 +13,21 @@ script = ExtResource("3")
 ModifierNameFont = ExtResource("2_1r5af")
 ModifierValueFont = ExtResource("3_jhdqu")
 
-[node name="Icon" type="TextureRect" parent="."]
+[node name="Icon" type="TextureRect" parent="." unique_id=1073221877]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Name" type="Label" parent="."]
+[node name="Name" type="Label" parent="." unique_id=772424677]
 layout_mode = 2
 label_settings = ExtResource("3_jhdqu")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1626024636]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="Value" type="Label" parent="HBoxContainer"]
+[node name="Value" type="Label" parent="HBoxContainer" unique_id=377926650]
 layout_mode = 2
 label_settings = ExtResource("4_2uv7j")

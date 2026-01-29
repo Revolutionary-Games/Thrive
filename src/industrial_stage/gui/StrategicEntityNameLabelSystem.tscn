@@ -1,13 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://ibkg658cekm3"]
+[gd_scene format=3 uid="uid://ibkg658cekm3"]
 
 [ext_resource type="Script" uid="uid://bm8nb1fobexmr" path="res://src/industrial_stage/gui/StrategicEntityNameLabelSystem.cs" id="1"]
 
-[node name="StrategicEntityNameLabelSystem" type="Control"]
+[node name="StrategicEntityNameLabelSystem" type="Control" unique_id=543006063]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2

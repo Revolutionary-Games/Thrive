@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://df5b2gnvubofe"]
+[gd_scene format=3 uid="uid://df5b2gnvubofe"]
 
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="Script" uid="uid://duj2vnshko76v" path="res://src/modding/NewModGUI.cs" id="2"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="3_paixo"]
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="4_bos37"]
 
-[node name="NewModGUI" type="Control" node_paths=PackedStringArray("dialog", "internalName", "name", "author", "version", "description", "longDescription", "iconFile", "infoUrl", "license", "recommendedThrive", "minimumThrive", "maximumThrive", "pckName", "modAssembly", "assemblyModClass", "errorDisplay")]
+[node name="NewModGUI" type="Control" unique_id=587189769 node_paths=PackedStringArray("dialog", "internalName", "name", "author", "version", "description", "longDescription", "iconFile", "infoUrl", "license", "recommendedThrive", "minimumThrive", "maximumThrive", "pckName", "modAssembly", "assemblyModClass", "errorDisplay")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,14 +32,14 @@ modAssembly = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContain
 assemblyModClass = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/AssemblyModClass")
 errorDisplay = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Error")
 
-[node name="CustomWindow" parent="." instance=ExtResource("1")]
+[node name="CustomWindow" parent="." unique_id=240244952 instance=ExtResource("1")]
 visible = true
 layout_mode = 0
 WindowTitle = "CREATE_NEW_MOD"
 Resizable = true
 ExclusiveAllowCloseOnEscape = false
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CustomWindow"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CustomWindow" unique_id=686131556]
 custom_minimum_size = Vector2(550, 450)
 layout_mode = 0
 offset_left = 15.0
@@ -48,276 +48,276 @@ offset_right = 565.0
 offset_bottom = 465.0
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="CustomWindow/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CustomWindow/ScrollContainer" unique_id=190694818]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CustomWindow/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CustomWindow/ScrollContainer/MarginContainer" unique_id=109436354]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HelpLine" type="HBoxContainer" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HelpLine" type="HBoxContainer" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1542545946]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/HelpLine"]
+[node name="Label" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/HelpLine" unique_id=1852811848]
 layout_mode = 2
 text = "MODDING_INSTRUCTIONS_ON"
 
-[node name="LinkButton" type="LinkButton" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/HelpLine"]
+[node name="LinkButton" type="LinkButton" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/HelpLine" unique_id=1118044545]
 layout_mode = 2
 button_mask = 5
 text = "OUR_WIKI"
 
-[node name="Control" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1191082832]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Form" type="VBoxContainer" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Form" type="VBoxContainer" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer" unique_id=174013793]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=713591235]
 layout_mode = 2
 text = "MOD_INTERNAL_NAME"
 label_settings = ExtResource("3_paixo")
 
-[node name="InternalName" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="InternalName" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=890624943]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Folder name here..."
 max_length = 100
 
-[node name="Spacer14" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Spacer14" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=719009622]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label2" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1589731480]
 layout_mode = 2
 text = "MOD_NAME"
 label_settings = ExtResource("3_paixo")
 
-[node name="Name" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Name" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1335358439]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Name goes here..."
 max_length = 120
 
-[node name="Spacer" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Spacer" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=63685904]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label3" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=885530235]
 layout_mode = 2
 text = "MOD_AUTHOR"
 label_settings = ExtResource("3_paixo")
 
-[node name="Author" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Author" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1301408286]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Author goes here..."
 max_length = 120
 
-[node name="Spacer2" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Spacer2" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=359290]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Label4" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label4" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1915101967]
 layout_mode = 2
 text = "MOD_VERSION"
 label_settings = ExtResource("3_paixo")
 
-[node name="Version" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Version" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=842285624]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "1.0"
 max_length = 50
 
-[node name="Spacer3" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Spacer3" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1566971775]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Label5" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label5" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=935053004]
 layout_mode = 2
 text = "MOD_DESCRIPTION"
 label_settings = ExtResource("3_paixo")
 
-[node name="Description" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Description" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1435922418]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Mod description"
 max_length = 150
 
-[node name="Spacer4" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Spacer4" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=553242608]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Label6" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label6" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1115448760]
 layout_mode = 2
 text = "MOD_EXTENDED_DESCRIPTION"
 label_settings = ExtResource("3_paixo")
 
-[node name="LongDescription" type="TextEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="LongDescription" type="TextEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=375018023]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 text = "Longer mod description"
 draw_tabs = true
 
-[node name="Spacer5" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Spacer5" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=754944254]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Label7" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label7" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1052440992]
 layout_mode = 2
 text = "MOD_ICON_FILE"
 label_settings = ExtResource("3_paixo")
 
-[node name="IconFile" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="IconFile" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1576735486]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "mod_icon.png"
 max_length = 200
 
-[node name="Spacer6" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Spacer6" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=585940903]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Label8" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label8" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=629348897]
 layout_mode = 2
 text = "MOD_INFO_URL"
 label_settings = ExtResource("3_paixo")
 
-[node name="InfoURL" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="InfoURL" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1034531107]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "some URL"
 max_length = 200
 
-[node name="Spacer7" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Spacer7" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=541059829]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Label9" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label9" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1476077730]
 layout_mode = 2
 text = "MOD_LICENSE"
 label_settings = ExtResource("3_paixo")
 
-[node name="License" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="License" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1544414861]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "MIT"
 max_length = 50
 
-[node name="Spacer8" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Spacer8" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1093318845]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Label10" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label10" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1857837773]
 layout_mode = 2
 text = "MOD_RECOMMENDED_THRIVE"
 label_settings = ExtResource("3_paixo")
 
-[node name="RecommendedThrive" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="RecommendedThrive" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1456668909]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "0.5.6"
 max_length = 40
 
-[node name="Spacer9" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Spacer9" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=438171173]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Label11" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label11" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=883436110]
 layout_mode = 2
 text = "MOD_MINIMUM_THRIVE"
 label_settings = ExtResource("3_paixo")
 
-[node name="MinimumThrive" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="MinimumThrive" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1816674135]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "0.5.6-alpha"
 max_length = 40
 
-[node name="Spacer10" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Spacer10" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=177084106]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Label12" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label12" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1714211534]
 layout_mode = 2
 text = "MOD_MAXIMUM_THRIVE"
 label_settings = ExtResource("3_paixo")
 
-[node name="MaximumThrive" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="MaximumThrive" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1739612573]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "0.5.6"
 max_length = 40
 
-[node name="Spacer11" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Spacer11" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=909969520]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Label13" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label13" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1803138859]
 layout_mode = 2
 text = "MOD_PCK_NAME"
 label_settings = ExtResource("3_paixo")
 
-[node name="PckName" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="PckName" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1043486192]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "ModName.pck"
 max_length = 200
 
-[node name="Spacer12" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Spacer12" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=647683145]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Label14" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label14" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=787246718]
 layout_mode = 2
 text = "MOD_ASSEMBLY"
 label_settings = ExtResource("3_paixo")
 
-[node name="ModAssembly" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="ModAssembly" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1489140130]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Mod.dll"
 max_length = 200
 
-[node name="Spacer13" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Spacer13" type="Control" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=1014979602]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Label15" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label15" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=2041473727]
 layout_mode = 2
 text = "MOD_ASSEMBLY_CLASS"
 label_settings = ExtResource("3_paixo")
 
-[node name="AssemblyModClass" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="AssemblyModClass" type="LineEdit" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form" unique_id=231822544]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "ModClass"
 max_length = 200
 
-[node name="Error" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Error" type="Label" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1193542734]
 layout_mode = 2
 max_lines_visible = 5
 
-[node name="BottomButtons" type="HBoxContainer" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="BottomButtons" type="HBoxContainer" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1229628012]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Create" type="Button" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/BottomButtons"]
+[node name="Create" type="Button" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/BottomButtons" unique_id=10427275]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_bos37")
 theme_override_font_sizes/font_size = 18
 text = "CREATE"
 
-[node name="Cancel" type="Button" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/BottomButtons"]
+[node name="Cancel" type="Button" parent="CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/BottomButtons" unique_id=733725658]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "CANCEL"
