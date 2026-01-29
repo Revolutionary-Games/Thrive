@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-01-22 16:04+0200\n"
-"PO-Revision-Date: 2026-01-23 12:59+0000\n"
+"PO-Revision-Date: 2026-01-29 14:31+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
 "Language: da\n"
@@ -214,7 +214,7 @@ msgid "ANTI_ALIASING_FXAA"
 msgstr "FXAA"
 
 msgid "ANTI_ALIASING_MODE"
-msgstr "Anti-aliasing metode:"
+msgstr "Anti-aliasing tilstand:"
 
 msgid "ANTI_ALIASING_MSAA"
 msgstr "MSAA"
@@ -1318,6 +1318,8 @@ msgstr "Controller Deadzoner"
 
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr ""
+"Dette værktøj tillader konfiguration af controller akse dødszoner. Dødszone størrelsen kontrollere hvor meget kontrolpinden (eller analog knappen) kal bevæges før bevægelsen bliver registreret som input.\n"
+"Før du starter kalibreringen, så bevæg venligst alle controller pinde rundt og give slip på dem, og trykke ned og derefter slippe alle analog knapper (f.eks. triggers) på din controller."
 
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr "Deadzone:"
@@ -1353,7 +1355,7 @@ msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "Ryd valgte inputs"
 
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
-msgstr ""
+msgstr "Fejl: intern fejl i fremstillings gentandsforbrug"
 
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr "Kunne ikke finde inputelementer til fremstilling"
@@ -1533,16 +1535,16 @@ msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr "(fotosyntese er mere ineffektiv om natten, og kræver mere pre-planlægning)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
-msgstr ""
+msgstr "Dødszone kalibrering færdiggjort. De nye dødszoner vises nedenunder på akse værdivisningerne."
 
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
-msgstr ""
+msgstr "Dødszone kalibrering er i gang. Rør venligst ikke ved nogle knapper eller pinde på din kontroller, og vent i nogle sekunder."
 
 msgid "DEADZONE_CALIBRATION_IS_RESET"
-msgstr ""
+msgstr "Dødszone kalibrering er blevet gendannet"
 
 msgid "DEADZONE_CONFIGURATION"
-msgstr ""
+msgstr "Dødszone konfiguration"
 
 msgid "DEATH"
 msgstr "døden"
@@ -1556,7 +1558,7 @@ msgstr ""
 "Kigger på koordinater: {1}"
 
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
-msgstr ""
+msgstr "Physics debug draw er ikke tilgængelig for denne build type"
 
 msgid "DEBUG_HEAT_AT_CURSOR"
 msgstr "Varmeværdi: {0}"
@@ -1593,7 +1595,7 @@ msgid "DELETE_ORGANELLE"
 msgstr "Slet organel"
 
 msgid "DELETE_SAVE_CONFIRMATION"
-msgstr ""
+msgstr "Sletning af denne lagring kan ikke gøres om. Er du sikker på du vil slette den permanent?"
 
 msgid "DELETE_SELECTED"
 msgstr "Slet valgte"
@@ -1602,16 +1604,16 @@ msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Slet valgte lagring(er)?"
 
 msgid "DELETE_SELECTED_SAVE_WARNING"
-msgstr ""
+msgstr "Sletning af de valgte lagring(er) kan ikke gøres om, er du sikker på du vil slette {0} lagring(er) permanent?"
 
 msgid "DELETE_THIS_SAVE_PROMPT"
-msgstr ""
+msgstr "Slet denne lagring?"
 
 msgid "DESCEND_BUTTON"
-msgstr ""
+msgstr "Nedstig"
 
 msgid "DESCEND_CONFIRMATION"
-msgstr ""
+msgstr "Er du sikker på du vil nedstige?"
 
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
@@ -1776,7 +1778,7 @@ msgid "DISPLAY_3D_MENU_BACKGROUNDS"
 msgstr "Vis 3D menu baggrunde"
 
 msgid "DISPLAY_ABILITIES_BAR"
-msgstr "Vis evner bar"
+msgstr "Vis evner bjælke"
 
 msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
 msgstr "Anvend forvrængning af mickrobe baggrunde"
@@ -1839,28 +1841,28 @@ msgid "EASTEREGG_MESSAGE_10"
 msgstr "SPRÆLLENDE TING!!"
 
 msgid "EASTEREGG_MESSAGE_11"
-msgstr ""
+msgstr "Smelde metaldet."
 
 msgid "EASTEREGG_MESSAGE_12"
-msgstr ""
+msgstr "De blå celler hva."
 
 msgid "EASTEREGG_MESSAGE_13"
 msgstr "Hvis din celle er 150 hexes kan du opsluge selv store jernklumper!"
 
 msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
+msgstr "Sjov Fakta: der er over 8000 forskellige cilie arter på Jorden."
 
 msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
+msgstr "Sjov fakta: Stentoren er en ciliate der kan strække sig selv og fange bytte med en slags trumpet-lignende mund, der trækker bytte til sig ved at skabe vandstrømme med sine cilier."
 
 msgid "EASTEREGG_MESSAGE_16"
-msgstr ""
+msgstr "Sjov fakta: Didinium'en er en ciliate der jæger Paramecia."
 
 msgid "EASTEREGG_MESSAGE_17"
-msgstr ""
+msgstr "Sjov fakta: Amøber jæger og fanger deres bytte med 'ben' lavet a cytoplasma kaldet pseudopodier, som vi godt kunne tænke os at have i Thrive en dag."
 
 msgid "EASTEREGG_MESSAGE_18"
-msgstr ""
+msgstr "Bakterier kan være stærkere end de ser ud; De ser måske små ud, men nogle af dem kan grave sig ind i dig og dræbe dig på den måde!"
 
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "En af de første spilbare gameplay prototyper lavet af vores fantastiske programmør, Untrustedlife!"
@@ -1869,10 +1871,10 @@ msgid "EASTEREGG_MESSAGE_3"
 msgstr "Alle væsner i spillet vil have udviklet sig fr en fælles forfader. Se om du kan identificere hvilke er mest beslægtet med hinanden!"
 
 msgid "EASTEREGG_MESSAGE_4"
-msgstr ""
+msgstr "Sjov fakta: I virkeligheden har prokaryoter såkaldte biokompartementer, der fungerer som organeller, og som faktisk kaldes polyedre organeller."
 
 msgid "EASTEREGG_MESSAGE_5"
-msgstr ""
+msgstr "Sjov fakta: metabolosomen er hvad der kaldes for en polyeder organel."
 
 msgid "EASTEREGG_MESSAGE_6"
 msgstr "Thrives sound team lead har skabt mange sange som endnu ikke er blevet tilføjet til spillet. Du kan høre dem, eller se streams hvor han komponerer musik, ovre på hans YouTube kanal, Oliver Lugg."
@@ -1881,25 +1883,25 @@ msgid "EASTEREGG_MESSAGE_7"
 msgstr "Thrive er ment som en simulation af en fremmede planet, så forvent ikke at se alle de samme væsner som her på Jorden!"
 
 msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
+msgstr "Sjov fakta: Thrive holdet laver en gang i mellem podcasts, du burde tjekke dem ud!"
 
 msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
+msgstr "Sjov fakta: Thrive er lavet med en open source engine, Godot, og alt af spillets koden kan ses online."
 
 msgid "EASTER_EGGS"
 msgstr "Inkluder easter eggs"
 
 msgid "EASTER_EGGS_EXPLANATION"
-msgstr ""
+msgstr "(spawner tilfældigt hemmeligheder i spillet)"
 
 msgid "EASTER_EGG_BANANA_BIOME"
 msgstr "Banan biom"
 
 msgid "EDGE_PAN_SPEED"
-msgstr ""
+msgstr "Panoreringhastighed:"
 
 msgid "EDITING_TITLE"
-msgstr ""
+msgstr "Redigering"
 
 msgid "EDITOR"
 msgstr "Editor"
@@ -1912,16 +1914,43 @@ msgstr "Gå til editoren for at modificere din art"
 
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
+"Din mikrobe har endnu engang reproduceret succesfuldt, og tager dermed endnu et skridt mod at blive ti en mere avanceret livsform.\n"
+"\n"
+"[b]Målet i den tidlige del af spillet[/b] er at finde et godt [u]område[/u] at bo i, samt en pålidelig kilde til mad der.\n"
+"\n"
+"Senere kan du begynde at tænke på at tilføje en [b]cellekerne[/b], som er måden at komme videre i spillet, men tilføj den ikke for tideligt da det er en meget dyr organel. \n"
+"\n"
+"Tryk på \"næste\" knappen for at fortsætte til [b]områdekortet[/b]."
 
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
+"Velkommen tilbage til mikrobeeditoren. Du vil vende tilbage hertil hver gang du reproducerer.\n"
+"\n"
+"Rapportskærmen giver dig en liste af ændringer i den region du opholder dig i. Prøv at udforske de forskellige værktøjer du har til rådighed for at lære mere om begivenheder i din verden!\n"
+"\n"
+"Efter at have gransket hvad der er sket, så kan du [b]lave ændringer[/b] for at tilpasse din art.\n"
+"\n"
+"Når du er klar, tryk på \"næste\" knappen nederst tl højre for at fortsætte."
 
-#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
-msgstr "Teleportere"
+msgstr ""
+"For at bliveflercellet er du nødt til at placere [b]bindingsagenter[/b].\n"
+"\n"
+"[b]Bindingsagenter[/b] er nøglen til at blive flercellet, da de tillader dig at binde dig til andre celler og lave kolonier med dem.\n"
+"\n"
+"Men [b]bindingsagenter[/b] er en organel der skal [u]låses op for[/u] ved at vedligeholde et overskud af [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Se om du har låst op for [b]bindingsagenter[/b] endnu. Hvis du har, så prøv at placere dem nu."
 
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
+"For at fortsætte udviklingen skal du før eller siden placere en [b]cellekerne[/b].\n"
+"\n"
+"Ved at tilføje en [b]cellekerne[/b] låser du op for mere avancerede organeller, såsom [b]bindingsagenter[/b], der tillader dig at binde dig med andre celler af din art for derved at blive [u]flercellet[/u].\n"
+"\n"
+"Prøv at placere en [b]cellekerne[/b] for at lukke denne vejledning.\n"
+"\n"
+"Hvis din celle endnu ikke er klar til en cellekerne, så brug [b]fortryd knappen[/b] til at [u]fjerne[/u] cellekernen igen."
 
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "Ændre din mikrobe for første gang"
@@ -1942,61 +1971,61 @@ msgid "EMITTERS_COUNT"
 msgstr "Udsendere:"
 
 msgid "ENABLED_MODS"
-msgstr ""
+msgstr "Aktiverede mods"
 
 msgid "ENABLE_ALL_COMPATIBLE"
-msgstr ""
+msgstr "Aktivér alle kompatible mods"
 
 msgid "ENABLE_EDITOR"
-msgstr ""
+msgstr "Aktivér editoren"
 
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
-msgstr ""
+msgstr "Aktivér GUI lyseffekter"
 
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
-msgstr ""
+msgstr "Endosymbiose-procesen er allerede fuldendt, færdiggør den i editoren"
 
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
-msgstr ""
+msgstr "Lavede endosymbiose målet om til en midlertidig organel, dette vil fortsætte endosymbiosen hvis du når til editoren"
 
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
-msgstr ""
+msgstr "Endosymbionttypen er allerede tilstede, gå til editoren for at gøre fremskridt med endosymbioseprocesen"
 
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
-msgstr ""
+msgstr "Tilgængelige organeller der kan laves om til"
 
 msgid "ENDOSYMBIOSIS_BUTTON"
-msgstr ""
+msgstr "Endosymbiose"
 
 msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
-msgstr ""
+msgstr "Annuller denne endosymbiose proces. Du mister de nuværende femskridt på denne endosymbiont!"
 
 msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
-msgstr ""
+msgstr "Færdiggør denne endosymbiose proces og placér den som en organel"
 
 msgid "ENDOSYMBIOSIS_EXPLANATION"
-msgstr ""
+msgstr "Endosymbiose er en process der laver en anden art om til en endosymbiont (en art der lever inden i en anden i et symbiotisk forhold). Dette låser op for det skabte organel, og giver en gratis udgave af organellen. Gyldige kandidater der kan laves om til organeller vises nedenunder når de før er blevet opslugt. Hvor længe processen varer afhænger af hvor egnet kandidaten er til endosymbiose (dette vises nedenunder hver kandidat organel)."
 
 msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
-msgstr ""
+msgstr "Ingen arter egnede til at lave om til endosymbionter er blevet opslugt endnu"
 
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
 msgstr "Denne art kan ikke blive lavet om til en gyldig organel"
 
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
-msgstr ""
+msgstr "For at fortsætte endosymbioseprocesen, så skal den udvalgte art opsluges for at lave den om til en midlertidig organel (kun en kan vær til stede af gangen). Fremskridt er gemt så snart du når til editoren med den midlertidige organel tilstede."
 
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
-msgstr ""
+msgstr "Prokaryoter kan højst have en endosymbiont"
 
 msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
-msgstr ""
+msgstr "Overlev til editoren med denne art som en midlertidig organel for at gøre fremskridt"
 
 msgid "ENDOSYMBIOSIS_START_TOOLTIP"
-msgstr ""
+msgstr "Start endosybiose for denne art (tilgængelig så snart mål organeltypen er valgt)"
 
 msgid "ENDOSYMBIOSIS_TITLE"
-msgstr ""
+msgstr "Endosymbiose"
 
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr "- {0}: {1} /sekundet"
@@ -2013,9 +2042,8 @@ msgstr ""
 "Mens der fortæres:\n"
 "{2}"
 
-#, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
-msgstr "Oprethold stoftryk"
+msgstr "Energiforbrugs pres"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energi i {0} for {1}"
@@ -2027,7 +2055,7 @@ msgid "ENERGY_SOURCES"
 msgstr "Energikilder:"
 
 msgid "ENERGY_SUMMARY_LINE"
-msgstr ""
+msgstr "Total mængde energi samlet er {0}, med individuel omkostning på {1}, hvilket resulterer i den ikke-justerede bestand på {2}"
 
 msgid "ENGULF_CELL_OR_CHUNK"
 msgstr "Opslug en anden celle eller en klump"
@@ -2072,28 +2100,28 @@ msgid "ERROR"
 msgstr "Fejl"
 
 msgid "ERROR_CREATING_FOLDER"
-msgstr ""
+msgstr "Der opstod en fejl med at skabe mod'ens mappe"
 
 msgid "ERROR_CREATING_INFO_FILE"
-msgstr ""
+msgstr "Der opstod en fejl med at skabe mod'ens info fil"
 
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr ""
+msgstr "Fejl: Mislykkedes i at gemme nye indstillinger til konfigurations filen."
 
 msgid "ERROR_FETCHING_EXPLANATION"
-msgstr ""
+msgstr "Mislykkede i at hente nyheder grundet en fejl: {0}"
 
 msgid "ERROR_FETCHING_NEWS"
-msgstr ""
+msgstr "Nyhedshentning fejlede"
 
 msgid "ERROR_LOADING"
-msgstr ""
+msgstr "Indhenting mislykkedes"
 
 msgid "ERROR_SAVING"
-msgstr ""
+msgstr "Lagring mislykkedes"
 
 msgid "ERROR_UPLOADING_EXCEPTION"
-msgstr ""
+msgstr "En undtagelse forekom: {0}"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -2158,18 +2186,21 @@ msgstr "Evolutionære træ"
 
 msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr ""
+"Mislykkedes i at bygge det evolutionære træ.\n"
+"\n"
+"Gør venligst udviklerne opmærksomme og giv dem spillogs'ne."
 
 msgid "EXACT_VERSION_COLON"
 msgstr "Præcise Thrive version:"
 
 msgid "EXACT_VERSION_TOOLTIP"
-msgstr ""
+msgstr "Dette er den præcise kode commit som denne version af Thrive er kompileret ud fra"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
-msgstr ""
+msgstr "Der skete en undtagelse mens der forsøgtes at håndtere indhentede objekter"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr ""
+msgstr "En undtagelse skete under indhentning af gemt data"
 
 msgid "EXCLUSIVE_FULLSCREEN"
 msgstr "Ekslusiv fuldskærm"
@@ -2190,10 +2221,10 @@ msgid "EXPERIMENTAL_FEATURES"
 msgstr "Eksperimentale features"
 
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr ""
+msgstr "(aktiverer ekstra features der ikke er poleret nok til at være i spillet som standard. Hvis du spiller med dem er vi interesseret i din feedback)"
 
 msgid "EXPERIMENTAL_FEATURES_WARNING"
-msgstr ""
+msgstr "(ADVARSEL: eksperimentale features kan ødelægge spilbalancen og andre aspekter, og anbefales derfor kun til spillere med erfaring i Thrive. Hvis du rapportere om bugs skal du på forhånd sige i din rapport at du har aktiveret eksperimentale features.)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Eksporter alle verdener"
@@ -2269,16 +2300,16 @@ msgid "FEBRUARY"
 msgstr "Februar"
 
 msgid "FEED_ITEM_CONTENT_PARSING_FAILED"
-msgstr ""
+msgstr "Parsing af indholdet for denne feed genstand mislykkedes."
 
 msgid "FEED_ITEM_MISSING_CONTENT"
-msgstr ""
+msgstr "Denne feed genstand mangler dens indhold."
 
 msgid "FEED_ITEM_PUBLISHED_AT"
 msgstr "Udgivet af {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
-msgstr ""
+msgstr "Denne genstand blev trunkeret da den var for lang, læs venligst originalen med al indholdet. {0}"
 
 msgid "FERROPLAST"
 msgstr "Ferroplast"
@@ -2572,7 +2603,7 @@ msgid "GOD_TOOLS_TITLE"
 msgstr "Gudeværktøjer"
 
 msgid "GOING_NUCLEAR"
-msgstr ""
+msgstr "Kernekraft"
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "Googly eye celle"
@@ -2603,14 +2634,16 @@ msgstr "GUI"
 
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
+"Aktiverer lysblinkeffekter i brugerfladen (f.eks. blink på knapper i editoren).\n"
+"\n"
+"Hvis du oplever en fejl hvor dele af editorknappen forsvinder.\n"
+"så prøv at deaktivere dette for at se om problemet forsvinder."
 
-#, fuzzy
 msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
-msgstr "(lavere værdier øger performance)"
+msgstr "(note: forøgelse af GUI skalering er en eksperimental feature og kan få elementer til at forlade skærmen)"
 
-#, fuzzy
 msgid "GUI_SCALE_OPTION"
-msgstr "Luk indstillinger?"
+msgstr "Skaleringsmultiplikator:"
 
 msgid "GUI_TAB_NAVIGATION"
 msgstr "UI fane navigation"
@@ -2626,9 +2659,9 @@ msgstr "Helbredsmodifikationer"
 
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr ""
-"Baren viser din celles nuværende temperatur. De gule indikatorer viser det effektive område for energiproduktion.\n"
-"Den hvide lodrette bar viser den temperatur i omgivelserne, som baren nærmer sig.\n"
-"Indikatoren under baren skifter farve når der produceres energi."
+"Bjælken viser din celles nuværende temperatur. De gule indikatorer viser det effektive område for energiproduktion.\n"
+"Den hvide lodrette bjælke viser den temperatur i omgivelserne, som bjælken nærmer sig.\n"
+"Indikatoren under bjælken skifter farve når der produceres energi."
 
 msgid "HELP"
 msgstr "Hjælp"
@@ -2637,10 +2670,10 @@ msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Hvordan man spiller spillet"
 
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
-msgstr "(højere værdier øger performance)"
+msgstr "(højere værdier øger ydeevne)"
 
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
-msgstr "(højere værdier forværer performance)"
+msgstr "(højere værdier forværer ydeevne)"
 
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr "Hold nede for at skifte mellem pan- og rotationstilstand"
@@ -2847,7 +2880,7 @@ msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
 msgstr "Færdiggør byggeri (mangler påkrævede materialer)"
 
 msgid "INTERACTION_CRAFT"
-msgstr ""
+msgstr "Fremstil..."
 
 msgid "INTERACTION_DEPOSIT_RESOURCES"
 msgstr "Aflever materialer"
@@ -2874,7 +2907,7 @@ msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr "Samle op (FULD)"
 
 msgid "INTERNALS"
-msgstr ""
+msgstr "Indvendige"
 
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "Der er allerede en mod med det specifikke interne navn"
@@ -2913,7 +2946,7 @@ msgid "INVENTORY_TITLE"
 msgstr "Inventar"
 
 msgid "INVENTORY_TOGGLE_CRAFTING"
-msgstr ""
+msgstr "Fremstilling"
 
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr "Jord"
@@ -3297,10 +3330,10 @@ msgid "LIMIT_EXTREME"
 msgstr "Ekstrem"
 
 msgid "LIMIT_GROWTH_RATE"
-msgstr ""
+msgstr "Begræns vækststof forbrug"
 
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
-msgstr ""
+msgstr "(når det er slået til sættes en grænse for væksthastigheden, når den er slået fra er det kun tilgængeligt stof der påvirker væksthastigheden)"
 
 msgid "LIMIT_HUGE"
 msgstr "Kæmpe"
@@ -3382,18 +3415,27 @@ msgstr "Indlæs tidligere gemte spil"
 
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
+"Den valgte lagring sat til at indhentes er en lagring lavet i en prototype med en anden Thrive version.\n"
+"Derfor kan denne lagring ikke hentes, da prototypelagringer ikke kan opgraderes.\n"
+"At vedligeholde lagrings kompatibilitet for prototyper ville være en meget stor byrde, da ting ofte bliver lavet om, og at skulle lave lagringsopgraderinger ville sænke farten prototyperne udvikles med ret meget."
 
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
-msgstr ""
+msgstr "Indhent inkompatibel lagring?"
 
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
+"Den valgte lagring sat til at indhentes er kendt for at være kompatibel med denne version af Thrive.\n"
+"Og der findes ikke nogen lagringsopgradering til denne lagring.\n"
+"Da Thrive stadig er tidligt i sin udvikling er lagringskompatibilitet ikke prioriteret højt, og derfor findes der ikke opgraderinger til alle versioner."
 
 msgid "LOAD_INVALID_SAVE_PROMPT"
-msgstr ""
+msgstr "Indhent ugyldig lagring?"
 
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
+"Lagrings informationkunne ikke hentes for denne fil.\n"
+"Denne lagring er højst sandsyneligt korrupt, eller i et nyere format ikke understøttet af denne udgave af Thrive.\n"
+"Vil du forsøge at hente denne lagring alligevel?"
 
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
@@ -3402,22 +3444,25 @@ msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Lås dag nat cyklus"
 
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
-msgstr "(lavere værdier øger performance)"
+msgstr "(lavere værdier øger ydeevne)"
 
 msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
 msgstr "(lavere værdier gør billedet skarpere)"
 
 msgid "LOW_MENU_PERFORMANCE"
-msgstr ""
+msgstr "Lav ydeevne registreret"
 
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr ""
+"Din gennemsnitlige framerate er meget lav.\n"
+"3D menubaggrunde er slået til, hvilket kan bruge en stor andel af systemets ressourcer. Hvis den indstilling slås fra kan det måske kraftigt øge ydeevnen.\n"
+"Ønsker du at gøre dette nu?"
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "Lavresolution baggrundssløring"
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-msgstr "Gør baggrunden sløret med en lav resolution, hvilket øger performance."
+msgstr "Gør baggrunden sløret med en lav resolution, hvilket øger ydeevnen."
 
 msgid "LUCIFERASE"
 msgstr "Luciferase"
@@ -3440,9 +3485,8 @@ msgstr "Makrolidsyntese"
 msgid "MACROSCOPIC"
 msgstr "Makroskopisk"
 
-#, fuzzy
 msgid "MACROSCOPIC_EDITOR"
-msgstr "Indlæser makroskopisk editor"
+msgstr "Makroskopisk editor"
 
 msgid "MACROSCOPIC_STAGE"
 msgstr "Makroskopiskstadie"
@@ -3474,9 +3518,8 @@ msgstr "Hoved lydstyrke"
 msgid "MASTODON_TOOLTIP"
 msgstr "Besøg vores Mastodon sociale medie profil"
 
-#, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr "Maximal størrelse disk cachen burde fylde (genstande vil automatisk blive fjernet hvis cachen vokser sig for stor)"
 
 msgid "MAX_FPS"
 msgstr "Max FPS:"
@@ -3497,7 +3540,7 @@ msgid "MAY"
 msgstr "Maj"
 
 msgid "MECHANICS_BUTTON"
-msgstr ""
+msgstr "Mekanismer"
 
 msgid "MEDIANEXT"
 msgstr "Media næste"
@@ -3566,10 +3609,25 @@ msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
 msgstr "Meteornedslags begivenhed påvirker {0} patch"
 
 msgid "METRICS"
-msgstr "Præstationsmålinger"
+msgstr "Ydeevnemålinger"
 
 msgid "METRICS_CONTENT"
 msgstr ""
+"Proces tid: {0} s\n"
+"Physics tid: {1} s\n"
+"Entiteter: {2} (vægt: {3})\n"
+"Spawned: {4} Despawned: {5}\n"
+"Brugte nodes: {6}\n"
+"Brugt hukommelse: {7}\n"
+"GPU hukommelse: {8}\n"
+"Renderede objekter: {9}\n"
+"Totale draw kald: {10}\n"
+"Renderede primitiver {11}\n"
+"Forældreløse nodes: {12}\n"
+"Audio latency: {13} ms\n"
+"Totale tråde: {14}\n"
+"Total CPU tid:\n"
+"{15}"
 
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
@@ -3620,19 +3678,19 @@ msgid "MICHE_NO_OP_PRESSURE"
 msgstr "Ingen operationspres"
 
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr ""
+msgstr "Rovdyrseffektivitets pres"
 
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
-msgstr ""
+msgstr "Rovdyrs grundpres"
 
 msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
-msgstr ""
+msgstr "Reproduktionsstof forbrugspres:"
 
 msgid "MICHE_ROOT_PRESSURE"
-msgstr ""
+msgstr "Rodpres"
 
 msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
-msgstr ""
+msgstr "Temperaturbevægelsespres"
 
 msgid "MICHE_TREE"
 msgstr "Miche træ"
@@ -3788,7 +3846,7 @@ msgstr ""
 
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
-"hold øje med din helbredsbar ved siden af din ([thrive:compound type=\"atp\"][/thrive:compound]) bar (nederst til højre).\n"
+"Hold øje med din helbredsbjælke ved siden af din ([thrive:compound type=\"atp\"][/thrive:compound]) bjælke (nederst til højre).\n"
 "Din celle dør hvis den løber tør for liv.\n"
 "Du regenerer dit liv så længe du har [thrive:compound type=\"atp\"][/thrive:compound].\n"
 "Du [b]mister liv[/b] hvis du intet [thrive:compound type=\"atp\"][/thrive:compound] har."
@@ -3839,10 +3897,10 @@ msgid "MIDDLE_MOUSE"
 msgstr "Midterste museknap"
 
 msgid "MIGRATION_FAILED_TO_ADD"
-msgstr ""
+msgstr "Fejl: kunne ikke tilføje migration, tjek venligst migrationsparametre"
 
 msgid "MIGRATION_MANAGER"
-msgstr "Migrationsmanager"
+msgstr "Migrationsstyring"
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr "Vil migrere bestand fra {0} to ..."
@@ -3902,7 +3960,7 @@ msgid "MITOCHONDRION"
 msgstr "Mitokondrie"
 
 msgid "MITOCHONDRION_DESCRIPTION"
-msgstr ""
+msgstr "Cellens kraftværker. Mitokondrien en dobbeltmembran struktur fyldt med proteiner og enzymer. Det er en prokaryote der er blevet assimileret til brug af sin eukaryotiske vært. Den er i stand til at konvertere [thrive:compound type=\"glucose\"][/thrive:compound] til [thrive:compound type=\"atp\"][/thrive:compound] langt mere effektivt end cytoplasma i en proces kaldet [b]aerob respiration[/b]. Det kræver dog [thrive:compound type=\"oxygen\"][/thrive:compound] for at fungere, og lavere niveauer af [thrive:compound type=\"oxygen\"][/thrive:compound] i miljøet vil sænke hastigheden på produktionen af [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Laver [thrive:compound type=\"glucose\"][/thrive:compound] om til [thrive:compound type=\"atp\"][/thrive:compound]. Hastigheden skalerer med koncentrationen af [thrive:compound type=\"oxygen\"][/thrive:compound]."
@@ -3953,25 +4011,25 @@ msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: specificeret mod klasse \"{1}\" ikke fundet i mod's assembly"
 
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
-msgstr ""
+msgstr "{0}: mod'ens assembly initialisering metode kald fejlede"
 
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
-msgstr ""
+msgstr "{0}: mod'ens assembly initialisering metode kald fejlede med en undtagelse: {1}"
 
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
-msgstr ""
+msgstr "{0}: assembly fejlede med en undtagelse {1}"
 
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
-msgstr ""
+msgstr "{0}: mod'ens assembly unload metode kald fejlede"
 
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
-msgstr ""
+msgstr "{0}: mod'ens assembly unload metode kald fejlede med en undtagelse: {1}"
 
 msgid "MOD_AUTHOR"
 msgstr "Mod skaber:"
 
 msgid "MOD_CREATION_FAILED"
-msgstr ""
+msgstr "Mod skabelse fejlede"
 
 msgid "MOD_DESCRIPTION"
 msgstr "Mod beskrivelse:"
@@ -3980,10 +4038,10 @@ msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Mod lang beskrivelse:"
 
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
-msgstr ""
+msgstr "{0} mod'ens Harmony indhentning fejlede med en undtagelse: {1}"
 
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
-msgstr ""
+msgstr "{0} mod'ens Harmony unloading fejlede med en undtagelse: {1}"
 
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}: har ingen hentbare ressourcer"
@@ -4004,22 +4062,22 @@ msgid "MOD_LOAD_ERRORS"
 msgstr "Mod indhentnings fejl"
 
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr ""
+msgstr "Fejl opstod ved indhentning af en eller flere mods. Logs kan indeholde mere information."
 
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
-msgstr ""
+msgstr "Fejl opstod ved indhentning eller unloading af en eller flere mods. Logs kan indeholde mere information."
 
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
-msgstr ""
+msgstr "Note: mange mods kræver at spillet genstartes for at hente og unloade ordentligt. Indhent kun mods du stoler på, da de kan indeholde eksekverbar kode."
 
 msgid "MOD_LOAD_UNLOAD_RESTART"
-msgstr ""
+msgstr "En eller flee mods kræver at spillet genstartes for at hente eller unloade ordentligt"
 
 msgid "MOD_MAXIMUM_THRIVE"
-msgstr ""
+msgstr "Maximal understøttet Thrive version:"
 
 msgid "MOD_MINIMUM_THRIVE"
-msgstr ""
+msgstr "Minimum understøttet Trive version:"
 
 msgid "MOD_NAME"
 msgstr "Mod navn:"
@@ -4181,7 +4239,7 @@ msgid "MULTITHREADED_SIMULATION_ENABLED"
 msgstr "Kør spilsimulationen med flere tråde"
 
 msgid "MULTITHREADED_SIMULATION_EXPLANATION"
-msgstr ""
+msgstr "(når den er aktiveret kan mere end en processing tråd bruges til at køre grund spillogik opdateringer, kan muligvis sænke ydeevnen med et lavt antal baggrundstråde)"
 
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
@@ -4224,6 +4282,9 @@ msgstr "{0} (U)"
 
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr ""
+"Native tråde bruges til andre opgaver end managed tråde.\n"
+"Flere tråde på CPU’er med mange kerner øger generelt ydeevnen op til et vist punkt.\n"
+"For mange samlede tråde vil begynde at reducere ydeevnen."
 
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negativ ATP balance"
@@ -4251,7 +4312,7 @@ msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Start et nyt spil"
 
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
-msgstr ""
+msgstr "Note: du kan ændre ydeevne relaterede indstillinger når som helst i [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]indstillingsmenuen[/url][/color] for at forbedre spillets ydeevne"
 
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Min seje mod"
@@ -4344,7 +4405,7 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr "Editoren er nu klar til at tilgås"
 
 msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
-msgstr ""
+msgstr "Ikke tilpasset nuværende områdes forhold. Ændre de foretrukne forhold eller toleranceområde for at fjerne de negative effekter."
 
 msgid "NOT_STARTED_DOT"
 msgstr "Ikke startet."
@@ -4397,7 +4458,7 @@ msgstr ""
 "Hvis den blev placeret i den nuværende session er undo og redo stadig tilladt."
 
 msgid "NUCLEUS_DESCRIPTION"
-msgstr ""
+msgstr "Den definerende feature for eukaryotiske celler. Cellekernen inkluderer også de endoplasmatiske retikulum og Golgiapparatet. Det er en evolution af prokaryotiske celler for at udvikle et system af interne membraner, gjort ved at assimilere en anden prokaryote inden i dem selv. Dette tillader dem at opdele eller afskærme forskellige processer der ske inde i cellen og forhindre at de overlapper. Det tillader deres nye membranbundne organeller at være meget mere komplekse, effektive og specialiseret ned hvis de var frit flydende i cytoplasma. Det medfører dog at cellen bliver meget større, og kræver meget af cellens energi at vedligeholde."
 
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Tillader evolutionen af mere komplekse, membranbundne organeller, og reducere skade med 50%. Koster en hel del ATP at vedligeholde. Denne evolution kan ikke ændres igen."
@@ -4434,12 +4495,16 @@ msgstr "OK"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
+"Denne lagring er fra en gammel version af thrive, og kan derfor være inkompatibel.\n"
+"Da Thrive er tidligt i sin udvikling er lagringskompatibilitet ikke en prioriteret.\n"
+"Du skal være velkommen til at rapportere problemer du støder på, men de har ikke den højeste prioritet lige nu.\n"
+"Vil du forsøge at hente lagringen alligevel?"
 
 msgid "OPENGL_MODE_WARNING"
 msgstr "OpenGL tilstand advarsel"
 
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
-msgstr ""
+msgstr "Du kører Thrive med OpenGL. Dette er i høj grad utestet og vil højst sandsynligt skabe problemer. Sørg for at du bruger et nyt nok grafikkort eller integreret grafik, og prøv at opdatere video driverne. For bærbare computere kan du blive nødt til at tvinge dedikeret AMD eller Nvidia grafik til at blive brugt til at køre Thrive, i stedet for det integrerede grafik."
 
 msgid "OPEN_FOLDER"
 msgstr "Åben mappe"
@@ -4516,7 +4581,7 @@ msgid "ORGANELLES_BUTTON"
 msgstr "Organeller"
 
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
-msgstr ""
+msgstr "Aflåsningskravene tjekkes kun en gang per generation når editoren tilgås. Alternativt kan nogle organeller låse op for gennem endosymbiose."
 
 msgid "ORGANELLE_AXON"
 msgstr "Axon"
@@ -4531,7 +4596,7 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Flercellet"
 
 msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
-msgstr ""
+msgstr "I denne fane kan rækkefølgen organeller vokser i ændres. Det kan være vigtigt for celler der har en ustabil ATP produktion mens de er i gang med at vokse. Organelrækkefølgen har også en effekt på bioproces kørselsrækkefølgen. Det anbefales at rækkefølgen først ændres efter alle strukturelle ændringer er foretaget, da ændringer på strukturen kan omgøre de ændringer der laves her."
 
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Myofibril"
@@ -4543,7 +4608,7 @@ msgid "ORGANELLE_PILUS"
 msgstr "Perforerende Pilus"
 
 msgid "ORGANELLE_PILUS_DESCRIPTION"
-msgstr ""
+msgstr "Pili (ental: pilus) findes på overfladen af mange mikroorganismer og minder om fine hår. Hundredvis af pili kan være til stede på overfladen af en mikroorganisme, og tjener en af flere formål, heriblandt prædation. Patogen mikroorganismer bruger pili virulent enten for at hægte og binde sig til værtens væv, eller til at slippe igennem den ydre membran for at få adgang til cytoplasmaen. Mange lignende pili eksisterer men er ikke evolutionært beslægtet, og stammer fra konvergent udvikling. en enkelt organisme kan havemulighed for at have fleer forskellige slags pili, og dem der findes på overfladen bliver konstant erstattet og skiftet ud."
 
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Kan bruges til at stikke andre celler eller til at forsvare imod deres toksiner."
@@ -4557,15 +4622,18 @@ msgstr "{0} organel"
 msgid "ORGANELLE_SUGGESTION_COLON"
 msgstr "Organel forslag:"
 
-#, fuzzy
 msgid "ORGANELLE_SUGGESTION_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr ""
+"Denne indikator viser en foreslået organel der kan tilføjes til cellen.\n"
+"Foreslaget er kalkuleret af auto-evo, baseret på hvilken organel der mest ville øge indtaget af energi.\n"
+"Nogle gange er der ikke en enkelt god organel der kan tilføjes, men større redigering med flere organeller kan stadig være gavnlige i det lange løb.\n"
+"At fjerne eksisterende organeller er ofte også en brugbar strategi."
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
-msgstr ""
+msgstr "Organel oplåsning aktiveret"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
-msgstr ""
+msgstr "(nogle organeller har oplåsnings krav som skal mødes før de kan placeres)"
 
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismestatistik"
@@ -4627,7 +4695,7 @@ msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Hvor meget ilt-baseret skade din art kan afbøde før effekten bliver skadefuld. Hvis du er i en patch med for meget ilt i forhold til din resistens, vil det have negative konsekvenser."
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Laver [thrive:compound type=\"atp\"][/thrive:compound] om til [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Kan frigive toksiner ved at trykke på [thrive:input]g_fire_toxin[/thrive:input]. Når [thrive:compound type=\"oxytoxy\"][/thrive:compound] mængden er lav, så er det stadig muligt at skyde, men skaden vil være reduceret."
 
 msgid "OXYTOXY_NT"
 msgstr "OxyToks NT"
@@ -4672,7 +4740,7 @@ msgid "PATCHES_NUMBER"
 msgstr "Antal patches:"
 
 msgid "PATCH_COLON"
-msgstr "Patch:"
+msgstr "Område:"
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -4737,22 +4805,22 @@ msgid "PEACEFUL"
 msgstr "Fredfyldt"
 
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
-msgstr ""
+msgstr "Der er en færdiggjort endosymbioseproces der kan afsluttes ved at placere den som en organel. Det anbefales at gøre det så snart som muligt, da der ikke kan gøres yderligere fremskridt med endosymbiose før det er gjort. Se endosymbiose fremskridtet nu?"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
-msgstr ""
+msgstr "Afventende endosymbioseproces færdiggørelse"
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
 msgid "PERFECT_ADAPTATION_DESCRIPTION"
-msgstr ""
+msgstr "Når toleranceområdet er skruet ned til de minimale værdier og din art kan lide de nuværende forhold, så vil en perfekt tilpasset bonus blive tilføjet. Det giver en fordel hvis du planlægger at blve i et enkelt område frem for at sprede dig ud."
 
 msgid "PERFORMANCE"
-msgstr ""
+msgstr "Ydeevne"
 
 msgid "PERFORM_UNBINDING"
-msgstr ""
+msgstr "Ophæv binding"
 
 msgid "PER_SECOND_ABBREVIATION"
 msgstr "/s"
@@ -4926,9 +4994,11 @@ msgstr "Celleprocesser"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Bioprocess hastighed"
 
-#, fuzzy
 msgid "PROCESS_TOGGLE_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr ""
+"Slå procesen til og fra. Det giver avanceret kontrol over celleprocesserne.\n"
+"F.eks. kan det bruges til at slå toksin produktion fra når det ikke er nødvendigt.\n"
+"Kan også bruge til at balancere hvilke energikilder der bruges for at øge effektiviteten, men det er en meget avanceret taktik."
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Programmerings Team"
@@ -5054,6 +5124,11 @@ msgstr "(hvad der sker med stofferne som spilleren har lagret når man vender ti
 
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr ""
+"Konfigurere hvad der sker med lagret stoffer nå editoren tilgås.\n"
+"Deling med søstercelle giver hver celle halvdelen af de lagrede stoffer når editoren forlades.\n"
+"Behold alt er det selviske valg, hvor alle lagrede stoffer beholdes som de er.\n"
+"Top altid op fylder alle stoffer op til det niveau cellen originalt starter med.\n"
+"Top op ved område skift fylder alle stoffer op til det start niveauet, men kun hvis området skiftes."
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduktion:"
@@ -5192,9 +5267,12 @@ msgstr "Afløb begivenhed"
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Kør auto-evo mens der spilles"
 
-#, fuzzy
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
-msgstr "Auto-Evo udforskningsværktøj"
+msgstr ""
+"Når det er slået til, så starter auto-evo mens der spilles for at reducere tiden der skal bruges ved loading skærme.\n"
+"Det kan give ekstra lag med systemer med et lavt antal CPU kerner.\n"
+"Hvis det er slået fra, så starter auto-evo kun ved loading skærme, men det vil stadig køre.\n"
+"Der er ingen måde at slå auto-evo helt fra på, da de er en essentiel del af spillet."
 
 msgid "RUN_ONE_STEP"
 msgstr "Kør et trin"
@@ -5234,6 +5312,14 @@ msgstr "Bruger [thrive:compound type=\"iron\"][/thrive:compound] for at producer
 
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
+"Thrive er startet i fejlsikker tilstand grunde en tidligere fejl med at starte.\n"
+"\n"
+"Det skyldes højst sandsynligt enten en mod eller videoafspileren. Som en forholdsregel, så er indhentning aktiverede mods muligvis blevet sprunget over og/eller afspilning af videoer slået fra. Dette vil være i effekt indtil Thrive genstartes.\n"
+"\n"
+"Før du genstarter så deaktiver venligst alle mods der kunne være problematiske eller ikke kompatible med denne versoin af Thrive (du kan læse i logfilerne fra tidligere opstart for at se om en mod er den sandsynelige synder).\n"
+"For problemer relateret til videoafspilleren, så brug venligts launcher indstillingen til at tvinge deaktiverigen af videoer.\n"
+"\n"
+"Hvis du ikke løser problemerne der får opstarten til at fejle, så bliver du nødt til at genstarte og crashe Thrive adskillelige gange for at komme tilbage til fejlsikret tilstand."
 
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive startede i fejlsikret tilstand"
@@ -5277,10 +5363,14 @@ msgid "SAVE_INVALID"
 msgstr "Ugyldig"
 
 msgid "SAVE_IS_INVALID"
-msgstr ""
+msgstr "Lagring er ugyldig"
 
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
+"Den valgte lagring er fra en ældre version af Thrive, men den kan opgraderes.\n"
+"En backup fil vil blive skabt før opgraderingen, hvis ikke den allerede er lavet.\n"
+"Hvis du undlader at opgradere, så vil lagringen blive forsøgt indhentes som normalt.\n"
+"Forsøg at opgradere denne lagring?"
 
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Fejlede i at befri allerede indhentede ressourcer: {0}"
@@ -5295,25 +5385,25 @@ msgid "SAVE_SPACE_USED"
 msgstr "Plads brugt:"
 
 msgid "SAVE_UPGRADE_FAILED"
-msgstr ""
+msgstr "Lagringsopgradering fejlede"
 
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr ""
+msgstr "Opgradering af den specificerede lagring fejlede pga. følgende fejl:"
 
 msgid "SAVING_DATA_FAILED_DUE_TO"
-msgstr ""
+msgstr "Fejlede i at gemme information grundet undtagelse: {0}"
 
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Gemmer..."
 
 msgid "SAVING_FAILED_WITH_EXCEPTION"
-msgstr ""
+msgstr "Lagring fejlede! Der skete en undtagelse"
 
 msgid "SAVING_NOT_POSSIBLE"
-msgstr ""
+msgstr "Lagring er ikke muligt på nuværende tidspunkt grundet:"
 
 msgid "SAVING_SUCCEEDED"
-msgstr ""
+msgstr "Lagring lykkedes"
 
 msgid "SCALING_NONE"
 msgstr "Ingen"
@@ -5340,11 +5430,13 @@ msgid "SCREEN_EFFECT_NONE"
 msgstr "Ingen"
 
 msgid "SCREEN_RELATIVE_MOVEMENT"
-msgstr "Relativt skærmen"
+msgstr "Skærmrelativt"
 
-#, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr ""
+"I skærmrelativt tilstand vil bevægelsestasterne altid specificere en retning i relation til skærmen.\n"
+"Så cellens rotation har igen indvirkning på hvilken retning hver tast svarer til.\n"
+"Denne tilstand vil muligvis være mere velkendt for nye spillere af Thrive."
 
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
@@ -5380,13 +5472,13 @@ msgid "SELECTED_MOD"
 msgstr "Valgte mods:"
 
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
-msgstr ""
+msgstr "Valgte lagring er inkompatibel"
 
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
-msgstr ""
+msgstr "Valgte lagring er fra en inkompatibel prototype"
 
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
-msgstr ""
+msgstr "Valgte lagring kan opgraderes"
 
 msgid "SELECT_A_GENERATION"
 msgstr "Vælg en generation"
@@ -5413,7 +5505,7 @@ msgid "SELECT_OPTION"
 msgstr "Vælg en mulighed"
 
 msgid "SELECT_PREVIEW_IMAGE"
-msgstr ""
+msgstr "Vælg billede til forhåndsvisning"
 
 msgid "SELECT_SPACE_STRUCTURE_TITLE"
 msgstr "Vælg en struktur at konstruere"
@@ -5445,9 +5537,8 @@ msgstr "Shift"
 msgid "SHOW_ALL_TUTORIALS"
 msgstr "Vis alle vejledninger (igen)"
 
-#, fuzzy
 msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr "Vælg mellem altid at vise alle vejledninger, eller kun vise vejledninger der ikke er blevet færdiggjort i en vilkårlig gennemspilning"
 
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Vis skadeeffekt på skærmen"
@@ -5480,10 +5571,10 @@ msgstr ""
 "Vi anbefalet kraftigt dette, da nye vejledninger bliver tilføjet regelmæssigt, og som ellers ville blive overset af spillere der har spille Thrive før."
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
-msgstr ""
+msgstr "Vis ikke-lageret fremskridtadvarsel"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
-msgstr ""
+msgstr "Viser / fjerner advarselspopupen ved ikke-lageret fremskridt når spilleren forsøger at forlade spillet."
 
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "Vis Thrive nyhedsfeed (downloader fra internettet)"
@@ -5525,10 +5616,10 @@ msgid "SILICA"
 msgstr "Silica"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "Denne membran har en stærk væg lavet af silica. Den er god til at modstå skade, særligt fysisk skade er den meget resistent overfor. Den kræver også mindre energi for at holde formen. Cellen bliver dog en hel del langsommere, og hastigheden ressourcer absorberes reduceres."
 
 msgid "SIMULATION_CONFIG"
-msgstr ""
+msgstr "Simulation"
 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
@@ -5543,10 +5634,10 @@ msgid "SLIME_JET"
 msgstr "Slimjet"
 
 msgid "SLIME_JET_DESCRIPTION"
-msgstr ""
+msgstr "Mange organismer producerer polysakkaride slim-agtige substanser, og planteslim er en type polysakkaride. Selvom mange arter bruger slim til bevægelse, udskiller visse typer bakterier disse stoffer under højt tryk bag sig. Disse slim jets fungerer so raketmotorer der skubber cellen fremad med en utrolig fart. Sli bruges også til at hæmme rovdyr ved at fange dem i en substans som kun jet brugere kan navigere."
 
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Laver [thrive:compound type=\"glucose\"][/thrive:compound] om til [thrive:compound type=\"mucilage\"][/thrive:compound]. Tryk på [thrive:input]g_secrete_slime[/thrive:input] for at frigive lagret [thrive:compound type=\"mucilage\"][/thrive:compound], og derved øge cellens fart mens rovdyr sænkes."
 
 msgid "SMALL_IRON_CHUNK"
 msgstr "Lille jernklump"
@@ -5603,7 +5694,7 @@ msgid "SPAWN_ENEMY"
 msgstr "Skab fjende"
 
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
-msgstr ""
+msgstr "Kan ikke bruge spawn fjender snydekode da dette område ikke indeholder nogle fjendtlige arter"
 
 msgid "SPAWN_GLUCOSE"
 msgstr "Skab glukose"
@@ -5727,49 +5818,51 @@ msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr "Din Steam konto ejer ikke et licens til Thrive"
 
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
-msgstr ""
+msgstr "Din Steam konto er på nuværende tidspunkt i kun-læs tilstand grundet en nylig kontoændring"
 
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
-msgstr ""
+msgstr "Steam meldte tilbage at filen allerede er uploadet, refresh venligst"
 
 msgid "STEAM_ERROR_BANNED"
-msgstr ""
+msgstr "Din Steam konto er bandlyst fra at uploade indhold"
 
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
-msgstr ""
+msgstr "Steam sky-lager kvote eller fil størrelse er overgået"
 
 msgid "STEAM_ERROR_DUPLICATE_NAME"
-msgstr ""
+msgstr "Steam meddelte om en duplikeret navn fejl"
 
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
-msgstr ""
+msgstr "Fil ikke fundet"
 
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
-msgstr ""
+msgstr "Din Steam konto er lige nu begrænset til ikke at kunne uploade indhold. Kontakt venligst Steam support."
 
 msgid "STEAM_ERROR_INVALID_PARAMETER"
-msgstr ""
+msgstr "Ugyldig parameter givet videre til Steam"
 
 msgid "STEAM_ERROR_LOCKING_FAILED"
-msgstr ""
+msgstr "Steam kunne ikk hente UGC lås"
 
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
-msgstr ""
+msgstr "Ikke logget ind i Steam"
 
 msgid "STEAM_ERROR_TIMEOUT"
-msgstr ""
+msgstr "Steam handling timede ud, prøv venligst igen"
 
 msgid "STEAM_ERROR_UNAVAILABLE"
-msgstr ""
+msgstr "Steam er lige nu ikke tilgængelig, prøv igen"
 
 msgid "STEAM_ERROR_UNKNOWN"
-msgstr ""
+msgstr "Der skete en ukendt Steam fejl"
 
 msgid "STEAM_INIT_FAILED"
-msgstr ""
+msgstr "Steam initialisering fejlede"
 
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
+"Steam klient bibliotek fejlede i at initialisere. Steam features er ikke tilgængelige.\n"
+"Sørg venligst for at du har Steam kørende og er logget ind i den rigtige konto. Kør venligst spillet gennem Steam client softwaren hvis denne fejle ikke ellers forsvinder."
 
 msgid "STEAM_TOOLTIP"
 msgstr "Besøg vore Steam side"
@@ -5792,18 +5885,19 @@ msgstr "sekunder af"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Logget ind som: {0}"
 
-#, fuzzy
 msgid "STRAIN_BAR_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr ""
+"Denne bjælke viser den aktuelle sprintbelastning. Jo højere bjælken er, desto mere ATP koster det at fortsætte med at sprinte.\n"
+"At komme sig over belastningen koster også ekstra ATP, indtil bjælken er helt tom."
 
 msgid "STRAIN_BAR_VISIBILITY"
-msgstr ""
+msgstr "Belastningsbjælke synlighed"
 
 msgid "STRATEGY_STAGES"
 msgstr "Stategistadier"
 
 msgid "STRICT_NICHE_COMPETITION"
-msgstr ""
+msgstr "Streng nichekonkurrence (forskelle i fitness overdrives)"
 
 msgid "STRUCTURAL"
 msgstr "Strukturel"
@@ -5812,22 +5906,22 @@ msgid "STRUCTURE"
 msgstr "Struktur"
 
 msgid "STRUCTURE_ASCENSION_GATE"
-msgstr ""
+msgstr "Opstandelsesport"
 
 msgid "STRUCTURE_DYSON_SWARM"
 msgstr "Dysonsværm"
 
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
-msgstr ""
+msgstr "Materialer nødvendige til konstruktionen er blevet anbragt"
 
 msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
-msgstr ""
+msgstr "Jæger-samler hytte"
 
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
 msgstr "Bygger: {0}"
 
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
-msgstr ""
+msgstr "Nødvendige materialer før konstruktionen kan færdiggøres: {0}"
 
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
 msgstr "{0} (start pris: {1}, total: {2})"
@@ -5842,16 +5936,16 @@ msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Dampdrevet fabrik"
 
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
-msgstr ""
+msgstr "Udfør endosymbiose succesfuldt"
 
 msgid "SUCCESSFUL_KILL"
-msgstr ""
+msgstr "succesfuldt drab"
 
 msgid "SUCCESSFUL_SCAVENGE"
-msgstr ""
+msgstr "succesfuld indsamling"
 
 msgid "SUCCESS_BUT_MISSING_ID"
-msgstr ""
+msgstr "Resultatet indikerede succes, men intet ID blev returneret"
 
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Gå bort med det samme"
@@ -5869,35 +5963,34 @@ msgid "SURVIVE_WITH_A_NUCLEUS"
 msgstr "Placér og overlev en generation med en cellekerne"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "Skift til front kamera visning"
 
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "Skift til højre kamera visning"
 
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "Skift til top kamera visning"
 
 msgid "SYSREQ"
 msgstr "SysRq"
 
-#, fuzzy
 msgid "TAB_CHANGE_BLOCKED_WHILE_ACTION_IN_PROGRESS"
-msgstr "Handling blokeret mens en anden udføres"
+msgstr "Faneskift blokeret mens en handling udføres"
 
 msgid "TAB_SECONDARY_SWITCH_LEFT"
-msgstr ""
+msgstr "Skift sekundære niveau fane til venstre"
 
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
-msgstr ""
+msgstr "Skift sekundære niveau fane til højre"
 
 msgid "TAB_SWITCH_LEFT"
-msgstr ""
+msgstr "Skift fane til venstre"
 
 msgid "TAB_SWITCH_RIGHT"
-msgstr ""
+msgstr "Skift fane til højre"
 
 msgid "TAGS_IS_WHITESPACE"
-msgstr ""
+msgstr "Tags indeholder kun mellemrum"
 
 msgid "TAKE_SCREENSHOT"
 msgstr "Tag et skærmbillede"
@@ -5918,13 +6011,13 @@ msgid "TECHNOLOGY_HUNTER_GATHERING"
 msgstr "Jæger-samler"
 
 msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
-msgstr ""
+msgstr "Rummet, avanceret"
 
 msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
 msgstr "Industriel"
 
 msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
-msgstr ""
+msgstr "Før-samfund"
 
 msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
 msgstr "Primitiv"
@@ -5951,7 +6044,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr "Dampkræft"
 
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
-msgstr ""
+msgstr "Åbnede op for teknologi: {0}"
 
 msgid "TEMPERATURE"
 msgstr "Temperatur"
@@ -5959,9 +6052,8 @@ msgstr "Temperatur"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
-#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr "Din arts foretrukne temperatur. Når foreholdne er uden for fleksibilitetsområdet omkring den ideelle temperatur, vil det have en negativ effekt der gør det sværere at overleve. Tilpas ved at bruge skyderne til de patches som du har tænkt dig at spille i."
 
 msgid "TESTING_TEAM"
 msgstr "Testing Team"
@@ -5990,19 +6082,19 @@ msgid "THERMOPLAST"
 msgstr "Termoplast"
 
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr ""
+msgstr "Termoplast er en dobbelt membran struktur der indeholder termosensitive pigmenter stablet sammen i hindeagtige sække. Det er en prokaryote der er blevet assimileret til brug af sin eukaryotiske vært. Pigmenterne i termoplasten er i stand til at bruge energi fra stigende [thrive:compound type=\"temperature\"][/thrive:compound] i deres omgivelser til at producere [thrive:compound type=\"glucose\"][/thrive:compound] i en proces kaldet [b]termosyntese[/b]. Hastigheden af dens [thrive:compound type=\"glucose\"][/thrive:compound] produktion skalerer med [thrive:compound type=\"temperature\"][/thrive:compound] delta'en."
 
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Bruger stigende temperatur til at producere [thrive:compound type=\"glucose\"][/thrive:compound]. Hastigheden skalerer med stigende [thrive:compound type=\"temperature\"][/thrive:compound]. Brug [b]termisk syn[/b] til at finde varme og kolde områder."
 
 msgid "THERMOSYNTHASE"
-msgstr "Termosyntese"
+msgstr "Termosyntase"
 
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr ""
+msgstr "Termosyntase er et protein der bruger termisk konvektion til at ændre dens form, hvilket konverteres til [thrive:compound type=\"glucose\"][/thrive:compound] i en proces kaldet [b]termosyntese[/b]. Proteinet folder derefter ud mens det nedkøles, hvilket tillader at cyklusen gentages når [thrive:compound type=\"temperature\"][/thrive:compound] stiger igen. Hastigheden af dens [thrive:compound type=\"glucose\"][/thrive:compound] produktion skalerer med [thrive:compound type=\"temperature\"][/thrive:compound] delta'en."
 
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Bruger stigende temperaturer til at producere [thrive:compound type=\"glucose\"][/thrive:compound]. Hastigheden skalerer med stigninger i [thrive:compound type=\"temperature\"][/thrive:compound]. Brug [b]termisk syn[/b] til at finde varme og kolde områder."
 
 msgid "THERMOSYNTHESIS"
 msgstr "Termosyntese"
@@ -6181,7 +6273,7 @@ msgid "TOGGLE_PAUSE"
 msgstr "Pause"
 
 msgid "TOGGLE_UNBINDING"
-msgstr "Slå afbinding til/fra"
+msgstr "Ophæv binding til/fra"
 
 msgid "TOLERANCES_TOO_HIGH_PRESSURE"
 msgstr "Foretrukkent tryk er {0} for højt"
@@ -6244,7 +6336,7 @@ msgid "TOXIN_CHANNEL_INHIBITOR"
 msgstr "Kanalhæmmer"
 
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
-msgstr ""
+msgstr "Hæmmer ATP produktionen i den påvirkede celle, hvilket reelt forhindrer dem i at bevæge sig hurtigt, og kan få celler uden meget overskydende ATP produktion til at dø."
 
 msgid "TOXIN_COMPOUND"
 msgstr "Toksin"
@@ -6256,7 +6348,7 @@ msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
 msgstr "En simpel toksin der er rimelig effektiv imod celler ude specialiserede membraner."
 
 msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
-msgstr ""
+msgstr "Affyringshastighed og toksicitet:"
 
 msgid "TOXIN_MACROLIDE"
 msgstr "Macrolid"
@@ -6268,10 +6360,10 @@ msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
 msgstr "Cyanid"
 
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
-msgstr ""
+msgstr "Cyanid angriber iltbaserede stofskifteprocesser og er meget effektivt mod celler med iltbaseret metabolisme."
 
 msgid "TOXIN_OXYTOXY_DESCRIPTION"
-msgstr ""
+msgstr "Iltbaseret toksin, der forårsager cellulær skade. Mindre effektivt mod arter der bruger ilt til deres metabolisme."
 
 msgid "TOXIN_PREFER_FIRE_RATE"
 msgstr "Hurtigaffyrende"
@@ -6285,30 +6377,34 @@ msgstr "Toksin effekter på målet"
 msgid "TOXIN_RESISTANCE"
 msgstr "Toksinresistens"
 
-#, fuzzy
 msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr ""
+"Toksiner kan tilpasses til at gøre mere skade, men affyres langsommere,\n"
+"eller til at affyres meget hurtigere, men med mindre skade pr. skud.\n"
+"Den gennemsnitlige toksicitet for alle toksinorganeller er det der bestemmer den samlede affyringshastighed og skademodifikator.\n"
+"Skadeværdien der vises her er kun fuldt ud nøjagtig, hvis dette er det eneste toksiske organel,\n"
+"eller hvis alle organeller er modificeret til at have den samme toksicitetsværdi."
 
 msgid "TOXIN_TYPE_COLON"
 msgstr "Toksintype:"
 
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
-msgstr ""
+msgstr "Forskellige typer toksintyper har diverse effekter der er mere effektive imod bestemte celletyper. Celler der har flere forskellige toksintyper bruger dem i sekvens, fremfor at affyre dem alle på en gang."
 
 msgid "TOXIN_VACUOLE"
 msgstr "Toksinvakuole"
 
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr ""
+msgstr "Toksinvakuolen er en vakuole der er blevet modificeret til den specifikke produktion, lager og sekretion af [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Flere toksinvakuoler vil øge hastigheden toksiner kan frigives. Kan modificeres for at ændre den genererede toksintype til andre effekter, hvilket kan kræve [thrive:compound type=\"oxygen\"][/thrive:compound] for at kunne producere."
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "LAver [thrive:compound type=\"atp\"][/thrive:compound] om til [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Kan frigive toksiner ved at trykke på [thrive:input]g_fire_toxin[/thrive:input]. Når [thrive:compound type=\"oxytoxy\"][/thrive:compound] mængden er lav, så er det stadig muligt at skyde, men skaden vil være reduceret."
 
 msgid "TOXISOME"
-msgstr ""
+msgstr "Toksisom"
 
 msgid "TOXISOME_DESCRIPTION"
-msgstr ""
+msgstr "En modificeret metabolosome ansvarlig for at producere primitive former af det toksiske stof [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]. Kan modificeres for at ændre den genererede toksintype til andre effekter, hvilket kan kræve [thrive:compound type=\"oxygen\"][/thrive:compound] for at kunne producere."
 
 msgid "TRANSLATORS"
 msgstr "Oversættere"
@@ -6333,49 +6429,145 @@ msgstr "Vejledning"
 
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
+"ATP produktionsbjælken til højre viser hvor meget [thrive:compound type=\"atp\"][/thrive:compound] din celle producerer sammenlignet med hvor meget den forbruger. hvis den øverste bjælke er kortere end den nederste, så producerer du ikke nok [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Den nederste bjælke indeholder [b]osmoreguleringsomkostning[/b] [thrive:icon]OsmoIcon[/thrive:icon] og [b]bevægelsesomkostning[/b] [thrive:icon]MovementIcon[/thrive:icon]. [b]Osmoregulering[/b] [thrive:icon]OsmoIcon[/thrive:icon] er [u]den basale omkostning for at holde dig i live[/u]. Hver del du tilføjer øger denne omkostning. Du behøver ikke betale [b]bevægelsesomkostningen[/b] [thrive:icon]MovementIcon[/thrive:icon] når du ikke er i bevægelse.\n"
+"\n"
+"Hvis din [thrive:compound type=\"atp\"][/thrive:compound] produktion er negativ, så sørg forat øge [thrive:compound type=\"atp\"][/thrive:compound] produktionen, eller tilføj mere [b]lagerplads[/b] [thrive:icon]StorageIcon[/thrive:icon] for at kunne bevæge dig i mindre ryk."
 
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
+"Dette panel viser en forudsigelse af din totale fremtidige indsamlet energi (og bestanden i parentes). Disse tal er simuleringen af [b]auto-evo[/b].\n"
+"\n"
+"De medregner ikke din individuelle præstation. Så i dit nuværende område vil de endelige tal være anderledes en de ville være alene med auto-evo. Din arts bestand mindskes hver gang din celle dør, og den stiger hver gang du når editoren.\n"
+"\n"
+"Men du bør forsøge at holde disse tal oppe, selv i områder du ikke er direkte involveret i.\n"
+"\n"
+"Du kan se mere detaljeret information bag denne forudsigelse ved at [b]trykke på spørgsmålstegnet i panelet. Tryk på det for at fortsætte.[/b]"
 
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
+"Dette er [b]mikrobeeditoren[/b], hvor du kan udvikle din art ved at bruge [b]mutationspoint[/b] (MP) [thrive:icon]MP[/thrive:icon]. Hver generation vil du altid have [b]100 MP[/b] [thrive:icon]MP[/thrive:icon] til at bruge, så der er ingen grund til at spare på dem!\n"
+"\n"
+"Hexen i midten af skærmen er din art. Lige nu er det bare en simpel mikrobe.\n"
+"\n"
+"For at fortsætte, vælg en del fra panelet til venstre. Venstre klik derefter ved siden af hexen for at placere den. Du kan rotere dele med [thrive:input]e_rotate_left[/thrive:input] og [thrive:input]e_rotate_right[/thrive:input].\n"
+"\n"
+"En sikker første evolution er at tilføje 1 eller 2 stykker cytoplasma eller [b]hydrogenase[/b] til din art."
 
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
+"Du kan tilføje en [b]kemoreceptor[/b] organel til din celle.\n"
+"\n"
+"Kemoreceptorere repræsenterer en forøgelse i din arts evne til at sanse ting omkring dem.\n"
+"\n"
+"Ved at placere en kan du opfange stoffer som [thrive:compound type=\"glucose\"][/thrive:compound], og den vil guide dig til det. Den kan også bruges til at opfange celler af andre arter."
 
 msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
 msgstr ""
+"Dette er stofbalance visningen. Den viser det totale forbrug og produktion af alle celleprocesserne.\n"
+"\n"
+"Det er et meget vigtigt værktøj til at tjekke effektiviteten af organeller der ikke direkte producerer [thrive:compound type=\"atp\"][/thrive:compound] da de [b]ikke vil vises [/b] i ATP balance bjælken.\n"
+"\n"
+"F.eks. kan fotosyntese strategier balanceres med denne visning; der skal være nok [b] fotosyntetiske[/b] glukoseproduktion til at have en positiv balance af [thrive:compound type=\"glucose\"][/thrive:compound] for at kunne skabe en succesfuld plante.\n"
+"\n"
+"Forståelse for at nogle organeller laver [u]mellemprodukter[/u] der kun [i]derefter[/i] bliver konverteret til [thrive:compound type=\"atp\"][/thrive:compound] er et centralt begreb i mere avancerede metaboliske veje. Lagringstiden under denne visning vil også være vigtig for avancerede celler."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
-msgstr "Teleportere"
+msgstr ""
+"Fordøjelseshastighed og effektivitets statistik kan ses i bunden af Organel statistik panelet.\n"
+"\n"
+"Forøgelse af disse stats gøre [u]prædation mere effektiv[/u]. Lysosomer kan også modificeres til at give diverse forskellige [b]enzymer[/b].\n"
+"\n"
+"Nye enzymtyper gør det muligt at spise forskellige slags bytte der muligvis er usårlige over for almindelig fordøjelse. Hver enzymtype har en seperat effektivitets stat.\n"
+"\n"
+"Du kan se de individuelle effektiviteter ved at holde musen hen over effektivitets staten. At specialisere i en type er mere effektivt, på bekostning af et smallere udvalg af bytte."
 
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
+"Tilpasning er svært. Der er mange [thrive:compound type=\"atp\"][/thrive:compound] kilder, men ikke alle af dem er brugbare overalt. Du kan bruge alle fanerne og panelerne her for at lave det mest velinformerede valg du kan, eller bare prøve et eller andet og se hvordan det virker!\n"
+"\n"
+"Bare husk: [u]hvis du ikke skaber nok [thrive:compound type=\"atp\"][/thrive:compound], så vil du ikke overleve[/u].\n"
+"\n"
+"En livsstil med at finde [thrive:compound type=\"glucose\"][/thrive:compound] og så lave det om til [thrive:compound type=\"atp\"][/thrive:compound] vil fungere for nu, men naturlige fremkomster af glukose vil mindskes hver generation.\n"
+"\n"
+"Slutteligt kan du omnavngive din art ved at klikke på navnet nederst til venstre og derefter redigere teksten."
 
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
+"[b]Flageller[/b] skubber din mikrobe i den modsatte retning af der den er placeret.\n"
+"\n"
+"Hvis du placerer en flagell i den modsatte side af pilen der viser fremad, så vil den skubbe din mikrobe fremad. [b]Slime jets[/b] er placeret på samme måde.\n"
+"\n"
+"Flageller er meget [thrive:compound type=\"atp\"][/thrive:compound] krævende organeller, og er derfor ikke særlig gode for små celler.\n"
+"\n"
+"En anden måde at øge [b]bevægelseshastigheden[/b] [thrive:icon]MovementIcon[/thrive:icon] en smule er at gøre din membran mere smidig i [u]membran fanen[/u]."
 
 msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
 msgstr ""
+"Dette er fødekæde visningen.\n"
+"\n"
+"Den viser hvilke madkilder hver art i det nuværende område spiser.\n"
+"\n"
+"Rovdyr-bytte kan ses her sammen med miljømæssige madkilder. \n"
+"\n"
+"Denne information kan give dig indsigt i hvilken vej du kan udvikle din art, men som ny spiller behøver du ikke bekymre dig over at forstå denne skærm."
 
 msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
+"Udover at kunne bevæge dig rundt på kortet kan du også styre migrationen af din arts bestand uden selv at flytte dig.\n"
+"\n"
+"Dette gør det muligt at sprede din art hurtigere til nye områder. Når din art er mere udbredt får du en større samlet bestand, og kan selv bevæge dig lettere.\n"
+"\n"
+"Vær dog forsigtig med ikke at sende din bestand til områder som din art ikke kan tolerere.\n"
+"\n"
+"Giv migrationsværktøjet et skud. Klik på ‘migrationsstyring’ knappen, og vælg derefter et kilde-område og et mål-område for at flytte medlemmer af din art imellem dem."
 
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
+"Du kan [b]modificere[/b] denne organel. Det låser op for [b]nye funktioner[/b] eller [b]opgraderinger[/b] for organellen.\n"
+"\n"
+"For at gøre dette, højre klik på organellen for at vise [b]organel popup menuen[/b], og tryk på \"Modificer\" knappen.\n"
+"\n"
+"Ved at kigge efter andre organeller der kan opgraderes kan du finde nye måder at spille spillet på.\n"
+"\n"
+"Modificer organellen for at fortsætte."
 
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
+"Din [thrive:compound type=\"atp\"][/thrive:compound] balance er negativ!\n"
+"\n"
+"Når alle processor kører og du bevæger dig, så udtømmer din celle dens [thrive:compound type=\"atp\"][/thrive:compound] og vil dø.\n"
+"\n"
+"Der er mange måder at regulere [thrive:compound type=\"atp\"][/thrive:compound] produktionen. Du kan øge den ved at tilføje organeller der [u]direkte[/u] producere [thrive:compound type=\"atp\"][/thrive:compound] så som [b]hydrogenase[/b]. Nogle [b]membraner[/b] giver også osmoregulerings [thrive:icon]OsmoIcon[/thrive:icon] rabbater. \n"
+"\n"
+"Alternativt kan du også fjerne unødvendige og redundante organeller. Hvis du lige har lavet en ændring, så kan du rulle den tilbage."
 
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
+"Du har ikke lavet nogen ændringer på din art.\n"
+"\n"
+"Så snart du forlader editoren [u]vil du ikke kunne redigere din art før næste gang du reproducerer[/u].\n"
+"\n"
+"For at kunne gøre fremskridt i spillet er du nødt til at udvikle og tilpasse dig, så det anbefales at redigere din art i de [i]fleste[/i] editor cykluser."
 
 msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
 msgstr ""
+"Du kan tilpasse din celle til forskellige[b]miljømæssige forhold[/b].\n"
+"\n"
+"Miljømæssige forhold kan skabe negative [i]og[/i] positive effekter. Så det er vigtigt at sørge for at ordentlige tolerancer er sat når man flytter til nye områder.\n"
+"\n"
+"Vælg \"tolerance\" fanen i panelet til venstre for at fortsætte."
 
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
+"Livet startede i et lille hjørne af denne verden, men det er allerede begyndt at sprede sig.\n"
+"\n"
+"Hvert ikon representerer et unikt miljø som du kan bo i, hvor panelet er til højre beskriver forholdene i det valgte [u]område[/u].\n"
+"\n"
+"Hvis du vælger at rejse, så sørg for at undersøge forskellene i forholdene, da områder kan have vidt forskellige krav for en effektiv overlevelse.\n"
+"\n"
+"Prøv at vælge et område for at fortsætte."
 
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
@@ -6449,28 +6641,28 @@ msgid "TYPE_COLON"
 msgstr "Type:"
 
 msgid "UNAPPLIED_MOD_CHANGES"
-msgstr ""
+msgstr "Der er uanvendte ændringer"
 
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr ""
+msgstr "Du skal anvende dine ændringer for at kunne hente eller unloade mods."
 
 msgid "UNBIND_ALL"
-msgstr ""
+msgstr "Ophæv alle bindinger"
 
 msgid "UNBIND_ALL_TOOLTIP"
-msgstr ""
+msgstr "Ophæv bindinger for alle celler i kolonien"
 
 msgid "UNBIND_HELP_TEXT"
-msgstr ""
+msgstr "Ophæv bindinger tilstand"
 
 msgid "UNCERTAIN_VERSION_WARNING"
-msgstr ""
+msgstr "Dette er en debug build, hvor info'en nedenunder nok ikke er opdateret"
 
 msgid "UNDERWATERCAVE"
 msgstr "Undervandshule"
 
 msgid "UNDERWATER_VENT_ERUPTION"
-msgstr ""
+msgstr "Undervandsvæld udbrud"
 
 msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr "Udbrud om {0}"
@@ -6482,16 +6674,18 @@ msgid "UNDISCOVERED_PATCH"
 msgstr "Uopdaget område"
 
 msgid "UNDO"
-msgstr "Gør om"
+msgstr "Rul tilbage"
 
 msgid "UNDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Rul den sidste handling tilbage"
 
 msgid "UNHANDLED_ERROR_COUNT"
 msgstr "Ubehandlede fejl: {0}"
 
 msgid "UNHANDLED_ERROR_DESCRIPTION"
 msgstr ""
+"Spillet stødte på en ubehandlet fejl. Det er måske muligt at fortsætte, men fejlene bliver måske værrere. Den sikreste mulighed er at genstarte spillet helt, og så hente den seneste lagring. Det er måske muligt at gemme nu.\n"
+"Hvis du indmelder denne fejl, å brug venligst knappen til at kopiere fejlen, og inkluder den i din fejlmelding."
 
 msgid "UNHANDLED_ERROR_TITLE"
 msgstr "En ubehandlet fejl er sket"
@@ -6533,7 +6727,7 @@ msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Ukendt Workshop ID for denne mod"
 
 msgid "UNLIMIT_GROWTH_SPEED"
-msgstr ""
+msgstr "Fjern væksthastighedsbegrænsning"
 
 msgid "UNLOCKED_NEW_ORGANELLE"
 msgstr "NY"
@@ -6598,7 +6792,7 @@ msgid "UPGRADE_CILIA_PULL"
 msgstr "Trækkende cillie"
 
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
-msgstr ""
+msgstr "Når opslugningstilstand ([thrive:input]g_toggle_engulf[/thrive:input]) er aktiveret, da vi denne type cilie skabe hvirvler i vandet der tiltrækker objekter i nærheden. Brugbart til at fange bytte med."
 
 msgid "UPGRADE_COST"
 msgstr "{0} ({1} MP)"
@@ -6610,16 +6804,16 @@ msgid "UPGRADE_NAME_NONE"
 msgstr "Ingen opgradering"
 
 msgid "UPGRADE_PILUS_INJECTISOME"
-msgstr ""
+msgstr "Injectisome pilus"
 
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
-msgstr ""
+msgstr "Laver pilusen om til en injectisome, der gør toksinskade når den spider ander celler"
 
 msgid "UPGRADE_SLIME_JET_MUCOCYST"
-msgstr ""
+msgstr "Slimcyste"
 
 msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
-msgstr ""
+msgstr "Lave slim jetten om til en Slimcyste, der skaber en beskyttende kappe af slim omkring cellen. Når den aktiveres giver den en midlertidig immunitet til alle skadestyper."
 
 msgid "UPLOAD"
 msgstr "Upload"
@@ -6643,22 +6837,22 @@ msgid "UPSCALE_METHOD"
 msgstr "Opskaleringsmetode:"
 
 msgid "UPSCALE_SHARPENING_FSR"
-msgstr ""
+msgstr "FSR skærpning"
 
 msgid "UPWELLING_EVENT"
-msgstr ""
+msgstr "Opstrømningsbegivenhed"
 
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licenser og brugte biblioteker"
 
 msgid "USED_RENDERER_NAME"
-msgstr ""
+msgstr "Anvendt renderer:"
 
 msgid "USES_FEATURE"
 msgstr "Ja"
 
 msgid "USE_A_CUSTOM_USERNAME"
-msgstr ""
+msgstr "Anvend et brugerdefineret brugernavn"
 
 msgid "USE_DISK_CACHE"
 msgstr "Brug disk cache"
@@ -6667,7 +6861,7 @@ msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Manuelt sæt antallet af baggrundstråde"
 
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
-msgstr ""
+msgstr "Manuelt sæt antallet af native side executor tråde"
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Brug virtuel vindue størrelse"
@@ -6675,33 +6869,32 @@ msgstr "Brug virtuel vindue størrelse"
 msgid "UV_PROTECTION"
 msgstr "UV resistens"
 
-#, fuzzy
 msgid "UV_TOLERANCE_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr "Hvor meget ultraviolet stråling din art kan modstå før harmfulde effekter sætter ind. Hvis du er i et område med for meget lys vil du modtage negative effekter indtil modstandskraften bliver øget."
 
 msgid "VACUOLE"
 msgstr "Vakuole"
 
 msgid "VACUOLE_DESCRIPTION"
-msgstr ""
+msgstr "Vakuolen er en intern hindeagtig organel brugt som lager for cellen. De udgøres af adskillelige vesikler, mindre hindeagtige strukturer som er udbredt anvendt i celler til opbevaring, der er smeltet sammen. Den er fyldt med vand som bruges til at holde molekuler, enzymer, solide elementer og andre substanser. Deres form er flydende, og kan variere mellem celler."
 
 msgid "VACUOLE_IS_SPECIALIZED"
 msgstr "Specialiseret vakuole"
 
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
-msgstr ""
+msgstr "Vakuolen vil lagre {0} enheder af alle stoffer"
 
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Øger lagerpladsen i cellen."
 
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
-msgstr ""
+msgstr "Vakuolen vil lagre {0} enheder af det valgte stof"
 
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
 msgid "VENTS_ARE_HOME"
-msgstr ""
+msgstr "Vældet er mit hjem"
 
 msgid "VERSION_COLON"
 msgstr "Version:"
@@ -6764,7 +6957,7 @@ msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Foreslå en feature"
 
 msgid "VOLCANIC_VENT"
-msgstr ""
+msgstr "Vulkanisk væld"
 
 msgid "VOLUMEDOWN"
 msgstr "Lydstyrke ned"
@@ -8217,7 +8410,7 @@ msgid "WIKI_VACUOLE_MODIFICATIONS"
 msgstr ""
 
 msgid "WIKI_VACUOLE_PROCESSES"
-msgstr ""
+msgstr "Ingen processer"
 
 msgid "WIKI_VACUOLE_REQUIREMENTS"
 msgstr ""
@@ -8229,101 +8422,102 @@ msgid "WIKI_VACUOLE_STRATEGY"
 msgstr ""
 
 msgid "WIKI_VACUOLE_UPGRADES"
-msgstr ""
+msgstr "Ingen opgraderinger."
 
 msgid "WIKI_YES"
-msgstr ""
+msgstr "Ja"
 
 msgid "WILL_YOU_THRIVE"
-msgstr ""
+msgstr "Vil du trives?"
 
 msgid "WINDOWED"
-msgstr ""
+msgstr "Vindue tilstand"
 
 msgid "WIN_BOX_TITLE"
-msgstr ""
+msgstr "DU HAR TRIVEDES!"
 
 msgid "WIN_TEXT"
-msgstr ""
+msgstr "Tillykke, du har vundet denne udgave af Thrive! Hvis du ønsker det kan du fortsætte med at spille efter den her besked forsvinder, eller starte et nyt soil i en ny verden. Du kan også tilføje bindingsagenter for at bygge en cellekoloni, og derefter prøve de senere spilprototyper."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
-msgstr ""
+msgstr "Genstand ændringsnoter"
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
-msgstr ""
+msgstr "Ændringsnoter der vises på Steam Workshop for denne version af genstanden (valgfrit)"
 
 msgid "WORKSHOP_ITEM_DESCRIPTION"
-msgstr ""
+msgstr "Genstand beskrivelse:"
 
 msgid "WORKSHOP_ITEM_PREVIEW"
-msgstr ""
+msgstr "Genstand forhåndsbillede:"
 
 msgid "WORKSHOP_ITEM_TAGS"
-msgstr ""
+msgstr "Genstand tags (komma \",\" separeret):"
 
 msgid "WORKSHOP_ITEM_TITLE"
-msgstr ""
+msgstr "Genstand titel:"
 
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
-msgstr ""
+msgstr "Upload af genstand til Steam Workshop lykkedes"
 
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
-msgstr ""
+msgstr "Upload af genstand til Steam Workshop lykkedes, men du er nødt til at acceptere Workshopens [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]servicevilkår[/url][/color] før den bliver synlig"
 
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
-msgstr ""
+msgstr "Ved at indsende denne genstand, der accepterer du Steam Workshop's [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]servicevilkår[/url][/color]"
 
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
-msgstr ""
+msgstr "Så snart en genstand er synlig, så vil den være synlig for alle"
 
 msgid "WORLD"
-msgstr ""
+msgstr "Verden"
 
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
-msgstr ""
+msgstr "Verdenens data eksportrede succesfuldt til {0}"
 
 msgid "WORLD_GENERAL_STATISTICS"
-msgstr ""
+msgstr "Generisk statistik for den nuværende verden"
 
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
+"Inkluder senere stadiers prototyper: {0}\n"
+"Inkluder påskeæg: {1}"
 
 msgid "WORLD_OCEANIC_COVERAGE"
-msgstr ""
+msgstr "Oceandække"
 
 msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
-msgstr ""
+msgstr "(påvirker hvor mange kontinentale og havområder der skabes)"
 
 msgid "WORLD_OCEANIC_COVERAGE_LARGE"
-msgstr ""
+msgstr "Stor"
 
 msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
-msgstr ""
+msgstr "Mellem"
 
 msgid "WORLD_OCEANIC_COVERAGE_SMALL"
-msgstr ""
+msgstr "Lille"
 
 msgid "WORLD_RELATIVE_MOVEMENT"
-msgstr ""
+msgstr "Relativ verdenen"
 
 msgid "WORLD_SIZE"
-msgstr ""
+msgstr "Verdensstørrelse"
 
 msgid "WORLD_SIZE_EXPLANATION"
-msgstr ""
+msgstr "(ændrer antallet af områder i verdenen)"
 
 msgid "WORLD_SIZE_LARGE"
-msgstr ""
+msgstr "Stor"
 
 msgid "WORLD_SIZE_MEDIUM"
-msgstr ""
+msgstr "Mellem"
 
 msgid "WORLD_SIZE_SMALL"
 msgstr "Lille"
 
-#, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr "En større verden kan gøre simulationen langsommere, og er ikke anbefalet på langsommere computere."
 
 msgid "WORLD_TEMPERATURE"
 msgstr "Verdenens temperatur"
@@ -8334,9 +8528,8 @@ msgstr "Kold"
 msgid "WORLD_TEMPERATURE_EXPLANATION"
 msgstr "(påvirker hvor mange frosne hav-patches der skabes)"
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Tag til opvågningsstadiet. Tilgængelig, når du har nok hjernekraft (vævstype med axoner)."
+msgstr "Tempereret"
 
 msgid "WORLD_TEMPERATURE_WARM"
 msgstr "Varm"
@@ -8345,10 +8538,10 @@ msgid "WORST_PATCH_COLON"
 msgstr "Værste Patch:"
 
 msgid "WRONG_GROWTH_ORDER"
-msgstr ""
+msgstr "Forkert vækstrækkefølge"
 
 msgid "WRONG_GROWTH_ORDER_TEXT"
-msgstr ""
+msgstr "Koloniens vækstrækkefølge gør at nogle celler er separeret fra resten. Dette sker når en celle er placeret tidligere i rækkefølgen end de celler der forbinder den med roden. Tjek venligst Vækstrækkefølge fanen efter celler der er markeret med rødt, og ret op på rækkefølgen."
 
 msgid "XBOX360"
 msgstr "Xbox 360"
@@ -8366,16 +8559,18 @@ msgid "YEARS"
 msgstr "år"
 
 msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
-msgstr ""
+msgstr "Indholdet på denne side er endnu ikke fuldt implementeret i spillet, og vil sandsynligvis ændre sig."
 
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Besøg vores YouTube kanal"
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
+"Thrive er et open source projekt.\n"
+"Du kan bidrage med en pull request uden at ansøge om at blive en del af holdet."
 
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr ""
+msgstr "Du kan støtte den fremtidige udvikling af thrive på Patreon."
 
 msgid "YUM_EXCLAMATION"
 msgstr "Lækkert!"
