@@ -18,7 +18,6 @@ public class TemperatureSessilityPressure : SelectionPressure
 
     public TemperatureSessilityPressure(float weight) : base(weight, [
         new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, 150.0f),
-        new UpgradeOrganelle(organelle => organelle.HasMovementComponent, new FlagellumUpgrades(1.0f)),
     ])
     {
     }
