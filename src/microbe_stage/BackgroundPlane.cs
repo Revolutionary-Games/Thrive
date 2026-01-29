@@ -9,8 +9,8 @@ public partial class BackgroundPlane : Node3D
     private readonly StringName blurAmountParameter = new("blurAmount");
     private readonly StringName textureAlbedoParameter = new("textureAlbedo");
     private readonly StringName worldPositionParameter = new("worldPos");
-    private readonly StringName lightLevelParameter = new("lightLevel");
     private readonly StringName distortionStrengthParameter = new("distortionFactor");
+    private readonly StringName lightColorParameter = new("lightColor");
 
 #pragma warning disable CA2213
 
@@ -46,6 +46,8 @@ public partial class BackgroundPlane : Node3D
     private double elapsed;
 
     private Vector2 previousWindowSize = new(1280, 720);
+
+    private Color previousColor;
 
     public float PlaneOffset
     {
@@ -165,9 +167,16 @@ public partial class BackgroundPlane : Node3D
             OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
     }
 
-    public void UpdateLightLevel(float lightLevel)
+    public void SetCompoundColoring(Color color)
     {
-        currentBackgroundMaterial.SetShaderParameter(lightLevelParameter, lightLevel);
+        // Don't do the calculation and sending to gpu again if not needed.
+        if (previousColor == color)
+            return;
+
+        previousColor = color;
+
+        currentBackgroundMaterial.SetShaderParameter(lightColorParameter,
+            new Vector3(color.R, color.G, color.B));
     }
 
     protected override void Dispose(bool disposing)
@@ -176,9 +185,9 @@ public partial class BackgroundPlane : Node3D
         {
             textureAlbedoParameter.Dispose();
             blurAmountParameter.Dispose();
-            lightLevelParameter.Dispose();
             distortionStrengthParameter.Dispose();
             worldPositionParameter.Dispose();
+            lightColorParameter.Dispose();
         }
 
         base.Dispose(disposing);

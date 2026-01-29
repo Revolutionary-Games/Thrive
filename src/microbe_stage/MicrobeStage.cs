@@ -44,9 +44,6 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
     [Export]
     private GuidanceLine guidanceLine = null!;
-
-    [Export]
-    private MicrobeWorldEnvironment microbeWorldEnvironment = null!;
 #pragma warning restore CA2213
 
     private Vector3? guidancePosition;
@@ -88,6 +85,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     private float maxLightLevel;
 
     private float templateMaxLightLevel;
+
+    private float previousLightLevel;
 
     private bool appliedPlayerGodMode;
 
@@ -1460,6 +1459,10 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         HUD.UpdateEnvironmentalBars(currentPatch.Biome);
 
+        UpdateEnvironmentalCompoundAwareness();
+
+        CalculateEnvironmentalLight();
+
         UpdateBackground();
 
         UpdatePatchLightLevelSettings();
@@ -1500,20 +1503,21 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             var lightLevel =
                 currentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient;
 
+            // Don't update the entire lighting pipeline if no need
+            if (lightLevel == previousLightLevel)
+                return;
+
+            previousLightLevel = lightLevel;
+
             float lightModifier = lightLevel / maxLightLevel;
 
             // Normalise by maximum light level in the patch
             Camera.LightLevel = lightModifier;
-
-            microbeWorldEnvironment.UpdateAmbientReflection(
-                currentPatch.BiomeTemplate.EnvironmentColour * lightModifier);
         }
         else
         {
             // Don't change lighting for patches without day/night effects
             Camera.LightLevel = 1.0f;
-
-            microbeWorldEnvironment.UpdateAmbientReflection(currentPatch.BiomeTemplate.EnvironmentColour);
         }
     }
 
@@ -1572,6 +1576,22 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             .Ambient;
         templateMaxLightLevel = GameWorld.Map.CurrentPatch.BiomeTemplate.Conditions
             .GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient;
+    }
+
+    private void UpdateEnvironmentalCompoundAwareness()
+    {
+        GameWorld.Map.CurrentPatch!.Biome.TryGetCompound(Compound.Oxygen, CompoundAmountType.Current, out var oxygen);
+        var ironAmount = GameWorld.Map.CurrentPatch.GetCompoundAmountInSnapshotForDisplay(
+            GameWorld.Map.CurrentPatch.CurrentSnapshot, Compound.Iron);
+
+        Camera.SetWaterColorFromCompounds(oxygen.Ambient, ironAmount);
+    }
+
+    private void CalculateEnvironmentalLight()
+    {
+        var envColor = GameWorld.Map.CurrentPatch!.BiomeTemplate.EnvironmentColour;
+
+        Camera.SetSkyColor(envColor);
     }
 
     private void OnFinishLoading()
