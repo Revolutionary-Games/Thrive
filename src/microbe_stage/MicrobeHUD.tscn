@@ -800,16 +800,16 @@ layout_mode = 1
 
 [node name="HeatAccumulationBar" parent="." instance=ExtResource("39_al48g")]
 visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 923.0
-offset_top = 681.0
-offset_right = 1051.0
-offset_bottom = 715.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = -357.0
+offset_top = -39.0
+offset_right = -229.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="Strain" type="ProgressBar" parent="."]
 visible = false
