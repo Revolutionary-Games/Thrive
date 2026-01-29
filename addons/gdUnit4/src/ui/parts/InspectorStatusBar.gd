@@ -9,7 +9,6 @@ signal select_flaky_next()
 signal select_flaky_prevous()
 signal select_skipped_next()
 signal select_skipped_prevous()
-signal request_discover_tests()
 
 @warning_ignore("unused_signal")
 signal tree_view_mode_changed(flat :bool)
@@ -65,10 +64,6 @@ func _ready() -> void:
 	_set_view_mode_menu_options()
 	GdUnitSignals.instance().gdunit_event.connect(_on_gdunit_event)
 	GdUnitSignals.instance().gdunit_settings_changed.connect(_on_settings_changed)
-	var command_handler := GdUnitCommandHandler.instance()
-	command_handler.gdunit_runner_start.connect(_on_gdunit_runner_start)
-	command_handler.gdunit_runner_stop.connect(_on_gdunit_runner_stop)
-
 
 
 func _set_sort_mode_menu_options() -> void:
@@ -151,6 +146,12 @@ func _on_gdunit_event(event: GdUnitEvent) -> void:
 		GdUnitEvent.TESTSUITE_AFTER:
 			status_changed(event.error_count(), event.failed_count(),  event.is_flaky(), 0)
 
+		GdUnitEvent.SESSION_START:
+			disable_buttons(true)
+
+		GdUnitEvent.SESSION_CLOSE:
+			disable_buttons(false)
+
 
 func _on_btn_error_up_pressed() -> void:
 	select_error_prevous.emit()
@@ -184,8 +185,8 @@ func _on_btn_skipped_down_pressed() -> void:
 	select_skipped_next.emit()
 
 
-func _on_tree_sync_pressed() -> void:
-	request_discover_tests.emit()
+func _on_btn_tree_sync_pressed() -> void:
+	await GdUnitTestDiscoverer.run()
 
 
 func _on_sort_mode_changed(index: int) -> void:
@@ -201,14 +202,6 @@ func _on_tree_view_mode_changed(index: int) ->void:
 ################################################################################
 # external signal receiver
 ################################################################################
-func _on_gdunit_runner_start() -> void:
-	disable_buttons(true)
-
-
-func _on_gdunit_runner_stop(_client_id: int) -> void:
-	disable_buttons(false)
-
-
 func _on_settings_changed(property :GdUnitProperty) -> void:
 	if property.name() == GdUnitSettings.INSPECTOR_TREE_SORT_MODE:
 		_set_sort_mode_menu_options()

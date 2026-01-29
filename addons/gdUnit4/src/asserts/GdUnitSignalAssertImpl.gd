@@ -91,7 +91,11 @@ func is_not_equal(_expected: Variant) -> GdUnitSignalAssert:
 
 
 # Verifies the signal exists checked the emitter
-func is_signal_exists(signal_name :String) -> GdUnitSignalAssert:
+func is_signal_exists(signal_name: Variant) -> GdUnitSignalAssert:
+	if not (signal_name is String or signal_name is Signal):
+		return report_error("Invalid signal_name: expected String or Signal, but is '%s'" % type_string(typeof(signal_name)))
+	signal_name = (signal_name as Signal).get_name() if signal_name is Signal else signal_name
+
 	if not _emitter.has_signal(signal_name):
 		@warning_ignore("return_value_discarded")
 		report_error("The signal '%s' not exists checked object '%s'." % [signal_name, _emitter.get_class()])
@@ -99,20 +103,36 @@ func is_signal_exists(signal_name :String) -> GdUnitSignalAssert:
 
 
 # Verifies that given signal is emitted until waiting time
-func is_emitted(name :String, args := []) -> GdUnitSignalAssert:
+func is_emitted(signal_name: Variant, ...signal_args: Array) -> GdUnitSignalAssert:
 	_line_number = GdUnitAssertions.get_line_number()
-	return await _wail_until_signal(name, args, false)
+	return await _wail_until_signal(
+		signal_name,
+		_wrap_arguments.callv(signal_args),
+		false)
 
 
 # Verifies that given signal is NOT emitted until waiting time
-func is_not_emitted(name :String, args := []) -> GdUnitSignalAssert:
+func is_not_emitted(signal_name: Variant, ...signal_args: Array) -> GdUnitSignalAssert:
 	_line_number = GdUnitAssertions.get_line_number()
-	return await _wail_until_signal(name, args, true)
+	return await _wail_until_signal(
+		signal_name,
+		_wrap_arguments.callv(signal_args),
+		true)
 
 
-func _wail_until_signal(signal_name :String, expected_args :Array, expect_not_emitted: bool) -> GdUnitSignalAssert:
+func _wrap_arguments(...args: Array) -> Array:
+	# Check using old syntax
+	if not args.is_empty() and args[0] is Array:
+		return args[0]
+	return args
+
+
+func _wail_until_signal(signal_value: Variant, expected_args: Array, expect_not_emitted: bool) -> GdUnitSignalAssert:
 	if _emitter == null:
 		return report_error("Can't wait for signal checked a NULL object.")
+	if not (signal_value is String or signal_value is Signal):
+		return report_error("Invalid signal_name: expected String or Signal, but is '%s'" % type_string(typeof(signal_value)))
+	var signal_name := (signal_value as Signal).get_name() if signal_value is Signal else signal_value
 	# first verify the signal is defined
 	if not _emitter.has_signal(signal_name):
 		return report_error("Can't wait for non-existion signal '%s' checked object '%s'." % [signal_name,_emitter.get_class()])

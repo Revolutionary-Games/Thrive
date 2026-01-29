@@ -3,7 +3,7 @@ class_name GdUnitThreadManager
 extends Object
 
 ## { <thread_id> = <GdUnitThreadContext> }
-var _thread_context_by_id := {}
+var _thread_context_by_id: Dictionary[int, GdUnitThreadContext] = {}
 ## holds the current thread id
 var _current_thread_id :int = -1
 
@@ -23,6 +23,11 @@ static func instance() -> GdUnitThreadManager:
 ## Godot issue https://github.com/godotengine/godot/issues/79637
 static func run(name :String, cb :Callable) -> Variant:
 	return await instance()._run(name, cb)
+
+
+static func interrupt() -> void:
+	for thread_context: GdUnitThreadContext in instance()._thread_context_by_id.values():
+		thread_context.terminate()
 
 
 ## Returns the current valid thread context
