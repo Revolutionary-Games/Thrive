@@ -1,16 +1,21 @@
-﻿using System.Threading;
+﻿using System.Runtime.InteropServices;
+using System.Threading;
 
 /// <summary>
 ///   A simple thread synchronization barrier
 /// </summary>
+[StructLayout(LayoutKind.Explicit, Size = 64)]
 public class SimpleBarrier
 {
+    [FieldOffset(0)]
     private readonly int threadCount;
 
     // local phase
+    [FieldOffset(64)]
     private volatile int currentPhase;
 
     // remaining participants on the local phase
+    [FieldOffset(128)]
     private volatile int remainingParticipants;
 
     public SimpleBarrier(int count)
