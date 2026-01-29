@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using SharedBase.Archive;
+using Systems;
 using UnlockConstraints;
 
 /// <summary>
@@ -63,8 +64,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
 
     public WorldAndPlayerDataSource UnlocksDataSource =>
-        new(CurrentGame.GameWorld, CurrentPatch,
-            new MicrobeUnlocksData(EditedCellProperties, cellEditorTab?.EnergyBalanceInfo));
+        new(CurrentGame.GameWorld, CurrentPatch, GetPlayerDataSource());
 
     public override MainGameState GameState => MainGameState.MicrobeEditor;
 
@@ -575,6 +575,25 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
             // Make sure tabs are shown if the tutorial is turned off
             ShowTabBar(true);
         }
+    }
+
+    private IPlayerDataSource GetPlayerDataSource()
+    {
+        EnergyBalanceInfoSimple? energyBalance = null;
+
+        if (editedSpecies != null)
+        {
+            energyBalance = new();
+
+            var tolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(editedSpecies, CurrentPatch.Biome));
+
+            ProcessSystem.ComputeEnergyBalanceSimple(EditedCellProperties.ModifiableOrganelles.Organelles, CurrentPatch.Biome,
+                in tolerances, EditedCellProperties.MembraneType, Vector3.Zero, false, true,
+                CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Maximum, null, energyBalance);
+        }
+
+        return new MicrobeUnlocksData(EditedCellProperties, energyBalance);
     }
 
     private class MicrobeUnlocksData : IPlayerDataSource

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using SharedBase.Archive;
+using Systems;
 using UnlockConstraints;
 
 /// <summary>
@@ -89,8 +90,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         (ArchiveObjectType)ThriveArchiveObjectType.MulticellularEditor;
 
     public WorldAndPlayerDataSource UnlocksDataSource =>
-        new(CurrentGame.GameWorld, CurrentPatch,
-            new MulticellularUnlocksData(editedSpecies?.ModifiableEditorCells, cellEditorTab?.EnergyBalanceInfo));
+        new(CurrentGame.GameWorld, CurrentPatch, GetPlayerDataSource());
 
     protected override string MusicCategory => "MulticellularEditor";
 
@@ -713,6 +713,56 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             return;
 
         SetEditorTab(targetTab);
+    }
+
+    private IPlayerDataSource GetPlayerDataSource()
+    {
+        EnergyBalanceInfoSimple? energyBalance = null;
+
+        if (editedSpecies != null)
+        {
+            energyBalance = new();
+
+            // TODO: replace with actual tolerances once they are implemented for this stage
+            var tolerances = new ResolvedMicrobeTolerances()
+            {
+                ProcessSpeedModifier = 1.0f,
+                HealthModifier = 1.0f,
+                OsmoregulationModifier = 1.0f,
+            };
+
+            foreach (var cellType in editedSpecies.ModifiableCellTypes)
+            {
+                var cellEnergyBalance = new EnergyBalanceInfoSimple();
+
+                ProcessSystem.ComputeEnergyBalanceSimple(cellType.ModifiableOrganelles.Organelles, CurrentPatch.Biome,
+                    in tolerances, cellType.MembraneType, Vector3.Zero, false, true,
+                    CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Maximum, null, cellEnergyBalance);
+
+                GetBestEnergyBalanceProperties(energyBalance, cellEnergyBalance);
+            }
+        }
+
+        return new MulticellularUnlocksData(editedSpecies?.ModifiableEditorCells, energyBalance);
+    }
+
+    private void GetBestEnergyBalanceProperties(EnergyBalanceInfoSimple energyBalance, EnergyBalanceInfoSimple toAdd)
+    {
+        energyBalance.BaseMovement = MathF.Max(energyBalance.BaseMovement, toAdd.BaseMovement);
+        energyBalance.Flagella = MathF.Max(energyBalance.Flagella, toAdd.Flagella);
+        energyBalance.Cilia = MathF.Max(energyBalance.Cilia, toAdd.Cilia);
+        energyBalance.TotalMovement = MathF.Max(energyBalance.TotalMovement, toAdd.TotalMovement);
+
+        energyBalance.Osmoregulation = MathF.Max(energyBalance.Osmoregulation, toAdd.Osmoregulation);
+
+        energyBalance.TotalProduction = MathF.Max(energyBalance.TotalProduction, toAdd.TotalProduction);
+        energyBalance.TotalConsumption = MathF.Max(energyBalance.TotalConsumption, toAdd.TotalConsumption);
+        energyBalance.TotalConsumptionStationary = MathF.Max(energyBalance.TotalConsumptionStationary,
+            toAdd.TotalConsumptionStationary);
+
+        energyBalance.FinalBalance = MathF.Max(energyBalance.FinalBalance, toAdd.FinalBalance);
+        energyBalance.FinalBalanceStationary = MathF.Max(energyBalance.FinalBalanceStationary,
+            toAdd.FinalBalanceStationary);
     }
 
     private class MulticellularUnlocksData : IPlayerDataSource

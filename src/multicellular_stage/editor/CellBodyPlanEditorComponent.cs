@@ -192,8 +192,6 @@ public partial class CellBodyPlanEditorComponent :
         }
     }
 
-    public EnergyBalanceInfoFull? EnergyBalanceInfo => energyBalanceInfo;
-
     protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
     protected override bool ForceHideHover => false;

@@ -480,8 +480,6 @@ public partial class CellEditorComponent :
 
     public bool CanBeSpecialReference => true;
 
-    public EnergyBalanceInfoFull? EnergyBalanceInfo => energyBalanceInfo;
-
     protected override bool ShowFloatingLabels => ShowGrowthOrder;
 
     protected override bool ForceHideHover => MicrobePreviewMode;

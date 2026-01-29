@@ -38,6 +38,10 @@ public interface IUnlockStateDataSource
 
 public interface IPlayerDataSource
 {
+    /// <summary>
+    ///   The energy balance of the player cell. If there are multiple cells (i.e. cell types), this is an aggregation
+    ///   of the best energy balance stats among them.
+    /// </summary>
     public EnergyBalanceInfoSimple? EnergyBalance { get; }
     public float Speed { get; }
 }
