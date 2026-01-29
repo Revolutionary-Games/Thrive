@@ -139,14 +139,17 @@ public class MeteorImpactEvent : IWorldEffect
             }
         }
 
-        // around half of all surface patches, canon explanation being meteor splitting into multiple pieces
+        // all surface patches in all adjacent regions
         if (impactSize > 0.9f)
         {
-            foreach (var patch in surfacePatches)
+            foreach (var adjacent in adjacentList)
             {
-                if (random.Next(0, 2) == 1)
+                foreach (var patch in adjacent.Patches)
                 {
-                    affectedPatchesIds.Add(patch.ID);
+                    if (patch.IsSurfacePatch())
+                    {
+                        affectedPatchesIds.Add(patch.ID);
+                    }
                 }
             }
         }
