@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-01-22 16:04+0200\n"
-"PO-Revision-Date: 2026-01-19 08:15+0000\n"
+"PO-Revision-Date: 2026-01-25 06:42+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -2041,9 +2041,8 @@ msgstr ""
 "消耗時：\n"
 "{2}"
 
-#, fuzzy
 msgid "ENERGY_CONSUMPTION_PRESSURE"
-msgstr "維持化合物壓力"
+msgstr "能量消耗壓力"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1} 在 {0}的能量"
@@ -2639,13 +2638,11 @@ msgstr ""
 "如果您遇到編輯器按鈕部分消失的問題，\n"
 "可以嘗試停用此功能，看看問題是否消失。"
 
-#, fuzzy
 msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
-msgstr "（較低的值可提高性能）"
+msgstr "（注意：增大 GUI 縮放比例是一項實驗性功能，可能會導致元素超出螢幕範圍）"
 
-#, fuzzy
 msgid "GUI_SCALE_OPTION"
-msgstr "關閉選項選單？"
+msgstr "縮放倍率："
 
 msgid "GUI_TAB_NAVIGATION"
 msgstr "使用者介面分頁引導"
@@ -3487,9 +3484,8 @@ msgstr "巨環內酯合成"
 msgid "MACROSCOPIC"
 msgstr "宏觀生物"
 
-#, fuzzy
 msgid "MACROSCOPIC_EDITOR"
-msgstr "載入宏觀生物編輯器中"
+msgstr "宏觀生物編輯器"
 
 msgid "MACROSCOPIC_STAGE"
 msgstr "宏觀生物階段"
@@ -5270,9 +5266,12 @@ msgstr "逕流事件"
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "在遊戲過程中運行 Auto-Evo"
 
-#, fuzzy
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
-msgstr "在遊戲過程中運行 Auto-Evo"
+msgstr ""
+"啟用後，Auto-Evo 會在遊戲過程中進行，以減少載入畫面所需的時間。\n"
+"這可能會導致 CPU 核心數較低的系統出現額外的卡頓。\n"
+"停用後，Auto-Evo 僅在載入畫面期間進行，但仍會正常執行。\n"
+"由於 Auto-Evo 是遊戲的核心功能之一，因此無法完全關閉。"
 
 msgid "RUN_ONE_STEP"
 msgstr "運行一步"
@@ -6228,9 +6227,8 @@ msgstr "切換結合模式"
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "切換結合模式。觸碰其他細胞以建立群落。"
 
-#, fuzzy
 msgid "TOGGLE_DEBUG_CONSOLE"
-msgstr "切換除錯面板"
+msgstr "切換除錯控制台"
 
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "切換除錯選單"
