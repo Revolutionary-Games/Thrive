@@ -267,7 +267,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
-scroll_vertical = 100
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer"]
 layout_mode = 2
@@ -581,6 +580,7 @@ editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 8
 text = "100%"
+label_settings = ExtResource("7_etww0")
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -1312,7 +1312,6 @@ horizontal_scroll_mode = 0
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer"]
@@ -1601,7 +1600,6 @@ horizontal_scroll_mode = 0
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer"]
@@ -2055,6 +2053,7 @@ layout_mode = 2
 tooltip_text = "CURRENT_CACHE_SIZE_TOOLTIP"
 mouse_filter = 1
 text = "0"
+label_settings = ExtResource("7_etww0")
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(10, 0)
@@ -2094,6 +2093,7 @@ autowrap_mode = 2
 layout_mode = 2
 tooltip_text = "MAX_CACHE_SIZE_TOOLTIP"
 mouse_filter = 1
+label_settings = ExtResource("7_etww0")
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(10, 0)
@@ -2136,6 +2136,7 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "0"
+label_settings = ExtResource("7_etww0")
 horizontal_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/MemoryCacheDuration/HBoxContainer/HBoxContainer"]
@@ -2178,6 +2179,7 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "0"
+label_settings = ExtResource("7_etww0")
 horizontal_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/DiskCacheMaxTime/HBoxContainer/HBoxContainer"]
@@ -2220,6 +2222,7 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "0"
+label_settings = ExtResource("7_etww0")
 horizontal_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/MaxMemoryItems/HBoxContainer/HBoxContainer"]
@@ -2261,6 +2264,7 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "0"
+label_settings = ExtResource("7_etww0")
 horizontal_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/MemoryOnlyCacheTime/HBoxContainer/HBoxContainer"]

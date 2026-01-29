@@ -20,8 +20,8 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id="3"]
-bg_color = Color(0.772549, 0.309804, 0.368627, 1)
+[sub_resource type="StyleBoxFlat" id="4"]
+bg_color = Color(0.921569, 0.403922, 0.470588, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -32,8 +32,8 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id="4"]
-bg_color = Color(0.921569, 0.403922, 0.470588, 1)
+[sub_resource type="StyleBoxFlat" id="3"]
+bg_color = Color(0.772549, 0.309804, 0.368627, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -68,8 +68,8 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id="7"]
-bg_color = Color(0, 0.435294, 0.52549, 1)
+[sub_resource type="StyleBoxFlat" id="8"]
+bg_color = Color(0.0666667, 1, 0.835294, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -80,8 +80,8 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id="8"]
-bg_color = Color(0.0666667, 1, 0.835294, 1)
+[sub_resource type="StyleBoxFlat" id="7"]
+bg_color = Color(0, 0.435294, 0.52549, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -104,10 +104,8 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="OrganellePopupMenu" instance=ExtResource("3") node_paths=PackedStringArray("modifyButton", "moveButton", "deleteButton", "titleLabel")]
+[node name="OrganellePopupMenu" node_paths=PackedStringArray("titleLabel", "deleteButton", "moveButton", "modifyButton") instance=ExtResource("3")]
 custom_minimum_size = Vector2(220, 139)
-layout_mode = 3
-anchors_preset = 0
 offset_bottom = 139.0
 script = ExtResource("8")
 titleLabel = NodePath("PanelContainer/VBoxContainer/MarginContainer/SelectedOrganelleName")
@@ -116,12 +114,10 @@ moveButton = NodePath("PanelContainer/VBoxContainer/Move")
 modifyButton = NodePath("PanelContainer/VBoxContainer/Modify")
 
 [node name="PanelContainer" parent="." index="0"]
-layout_mode = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-
-[node name="VBoxContainer" parent="PanelContainer" index="0"]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer" index="0"]
 layout_mode = 2
@@ -129,8 +125,10 @@ theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 10
 
 [node name="SelectedOrganelleName" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer" index="0"]
+custom_minimum_size = Vector2(195, 0)
 layout_mode = 2
 label_settings = ExtResource("3_yrfoj")
+autowrap_mode = 3
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer" index="1"]
 layout_mode = 2
@@ -141,20 +139,21 @@ layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("6")
-theme_override_styles/hover = SubResource("3")
 theme_override_styles/pressed = SubResource("4")
+theme_override_styles/hover = SubResource("3")
 theme_override_styles/disabled = SubResource("5")
 keep_pressed_outside = true
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Delete" index="0"]
-layout_mode = 0
-offset_right = 210.0
-offset_bottom = 35.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Delete/MarginContainer" index="0"]
 layout_mode = 2
@@ -164,7 +163,7 @@ theme_override_constants/separation = 7
 [node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/Delete/MarginContainer/HBoxContainer" index="0"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("4")
 expand_mode = 1
@@ -181,6 +180,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "-15 MP"
 label_settings = ExtResource("5_clp5b")
+horizontal_alignment = 2
 
 [node name="Move" type="Button" parent="PanelContainer/VBoxContainer" index="3"]
 custom_minimum_size = Vector2(165, 28)
@@ -188,20 +188,21 @@ layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("10")
-theme_override_styles/hover = SubResource("7")
 theme_override_styles/pressed = SubResource("8")
+theme_override_styles/hover = SubResource("7")
 theme_override_styles/disabled = SubResource("9")
 keep_pressed_outside = true
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Move" index="0"]
-layout_mode = 0
-offset_right = 210.0
-offset_bottom = 28.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Move/MarginContainer" index="0"]
 layout_mode = 2
@@ -211,7 +212,7 @@ theme_override_constants/separation = 7
 [node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/Move/MarginContainer/HBoxContainer" index="0"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("5")
 expand_mode = 1
@@ -228,6 +229,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "-2 MP/hex"
 label_settings = ExtResource("5_clp5b")
+horizontal_alignment = 2
 
 [node name="Modify" type="Button" parent="PanelContainer/VBoxContainer" index="4"]
 custom_minimum_size = Vector2(165, 28)
@@ -235,21 +237,22 @@ layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("10")
-theme_override_styles/hover = SubResource("7")
 theme_override_styles/pressed = SubResource("8")
+theme_override_styles/hover = SubResource("7")
 theme_override_styles/disabled = SubResource("9")
 disabled = true
 keep_pressed_outside = true
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Modify" index="0"]
-layout_mode = 0
-offset_right = 210.0
-offset_bottom = 28.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Modify/MarginContainer" index="0"]
 layout_mode = 2
@@ -259,7 +262,7 @@ theme_override_constants/separation = 7
 [node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/Modify/MarginContainer/HBoxContainer" index="0"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("6")
 expand_mode = 1
@@ -274,6 +277,7 @@ label_settings = ExtResource("5_clp5b")
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("5_clp5b")
+horizontal_alignment = 2
 
 [connection signal="button_down" from="PanelContainer/VBoxContainer/Delete" to="." method="UpdateButtonContentsColour" binds= ["Delete", true]]
 [connection signal="button_up" from="PanelContainer/VBoxContainer/Delete" to="." method="UpdateButtonContentsColour" binds= ["Delete", false]]

@@ -110,18 +110,18 @@ foodChainSubtab = NodePath("MarginContainer/HSplitContainer/PanelContainer/Margi
 foodChainScrollContainer = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab/DraggableScrollContainer")
 foodChainData = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab/DraggableScrollContainer/FoodChainDisplay")
 timeIndicator = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimeIndicator")
-externalEffectsLabel = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ExternalEffectsList")
+externalEffectsLabel = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/ScrollContainer/MarginContainer/VBoxContainer/ExternalEffectsList")
 reportTabPatchName = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchName")
 reportTabPatchSelector = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector")
 speciesChartContainer = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation")
 physicalConditionsChartContainer = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions")
 atmosphereChartContainer = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses")
 compoundsChartContainer = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds")
-noAutoEvoResultData = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ErrorNoSaveData")
-graphicalResultsContainer = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/GraphicalResultsContainers")
+noAutoEvoResultData = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/ScrollContainer/MarginContainer/VBoxContainer/ErrorNoSaveData")
+graphicalResultsContainer = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/ScrollContainer/MarginContainer/VBoxContainer/GraphicalResultsContainers")
 autoEvoReportSegmentTitleFont = ExtResource("3_u2fub")
-majorEventsList = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/MajorEvents")
-showTextReportButton = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ViewTextReport")
+majorEventsList = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/ScrollContainer/MarginContainer/VBoxContainer/MajorEvents")
+showTextReportButton = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/ScrollContainer/MarginContainer/VBoxContainer/ViewTextReport")
 textReportDialog = NodePath("TextReportWindow")
 textReportLabel = NodePath("TextReportWindow/VBoxContainer/ScrollContainer/TextualReport")
 finishOrNextButton = NodePath("NextTabButton/NextTabButton")
@@ -229,32 +229,33 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("29")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel"]
 layout_mode = 2
+follow_focus = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer"]
-layout_mode = 2
-follow_focus = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MajorEvents" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="MajorEvents" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 theme_override_styles/separator = SubResource("30")
 
-[node name="ErrorNoSaveData" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="ErrorNoSaveData" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
@@ -262,33 +263,33 @@ text = "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 label_settings = ExtResource("7_8c2s4")
 autowrap_mode = 3
 
-[node name="ExtraneousResultsTitle" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="ExtraneousResultsTitle" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 text = "AUTO_EVO_RESULTS"
 label_settings = ExtResource("7_8c2s4")
 
-[node name="AutoEvoResults" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2")]
+[node name="AutoEvoResults" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2")]
 layout_mode = 2
 fit_content = true
 
-[node name="GraphicalResultsContainers" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="GraphicalResultsContainers" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "EXTERNAL_EFFECTS"
 label_settings = ExtResource("7_8c2s4")
 
-[node name="ExternalEffectsList" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2")]
+[node name="ExternalEffectsList" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2")]
 layout_mode = 2
 fit_content = true
 
-[node name="ViewTextReport" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="ViewTextReport" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "VIEW_TEXT_REPORT"
@@ -322,40 +323,41 @@ script = ExtResource("4")
 TimePeriodTitleFont = ExtResource("9_8hrmr")
 EventLabelNormalFont = ExtResource("10_16cw6")
 EventLabelBoldFont = ExtResource("11_xdyjp")
-globalEventsContainer = NodePath("MarginContainer/ScrollContainer/MarginContainer/GlobalEventsContainer")
-localEventsContainer = NodePath("MarginContainer/ScrollContainer/MarginContainer/LocalEventsContainer")
-scrollContainer = NodePath("MarginContainer/ScrollContainer")
-localFilterButton = NodePath("MarginContainer/MarginContainer/HBoxContainer/LocalFilter")
-globalFilterButton = NodePath("MarginContainer/MarginContainer/HBoxContainer/GlobalFilter")
+globalEventsContainer = NodePath("ScrollContainer/MarginContainer/MarginContainer/GlobalEventsContainer")
+localEventsContainer = NodePath("ScrollContainer/MarginContainer/MarginContainer/LocalEventsContainer")
+scrollContainer = NodePath("ScrollContainer")
+localFilterButton = NodePath("ScrollContainer/MarginContainer/MarginContainer2/HBoxContainer/LocalFilter")
+globalFilterButton = NodePath("ScrollContainer/MarginContainer/MarginContainer2/HBoxContainer/GlobalFilter")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel"]
 layout_mode = 2
+follow_focus = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer"]
-layout_mode = 2
-follow_focus = true
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 20
 
-[node name="GlobalEventsContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer"]
+[node name="GlobalEventsContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/ScrollContainer/MarginContainer/MarginContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="LocalEventsContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer"]
+[node name="LocalEventsContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/ScrollContainer/MarginContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -363,12 +365,12 @@ mouse_filter = 2
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 15
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/ScrollContainer/MarginContainer/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="GlobalFilter" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer"]
+[node name="GlobalFilter" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/ScrollContainer/MarginContainer/MarginContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 0
@@ -380,7 +382,7 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_hdykd")
 text = "GLOBAL_INITIAL_LETTER"
 
-[node name="LocalFilter" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer"]
+[node name="LocalFilter" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/ScrollContainer/MarginContainer/MarginContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 0
@@ -609,9 +611,9 @@ text = "CLOSE"
 [connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AutoEvoButton" to="." method="SetReportSubtab" binds= ["AutoEvo"]]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FoodChainButton" to="." method="SetReportSubtab" binds= ["FoodChain"]]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimelineButton" to="." method="SetReportSubtab" binds= ["Timeline"]]
-[connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ViewTextReport" to="." method="OnPressedOpenTextReport"]
-[connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer/GlobalFilter" to="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel" method="OnFilterSelected" binds= [0]]
-[connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer/LocalFilter" to="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel" method="OnFilterSelected" binds= [1]]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/ScrollContainer/MarginContainer/VBoxContainer/ViewTextReport" to="." method="OnPressedOpenTextReport"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/ScrollContainer/MarginContainer/MarginContainer2/HBoxContainer/GlobalFilter" to="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel" method="OnFilterSelected" binds= [0]]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/ScrollContainer/MarginContainer/MarginContainer2/HBoxContainer/LocalFilter" to="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel" method="OnFilterSelected" binds= [1]]
 [connection signal="SpeciesSelected" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab/DraggableScrollContainer/FoodChainDisplay" to="." method="ShowExtraInfoOnSpecies"]
 [connection signal="mouse_entered" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer/Legend/temperature" to="." method="OnPhysicalConditionsChartLegendMoused" binds= ["temperature", true]]
 [connection signal="mouse_exited" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer/Legend/temperature" to="." method="OnPhysicalConditionsChartLegendMoused" binds= ["temperature", false]]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bt2fv82h01ice"]
+[gd_scene load_steps=55 format=3 uid="uid://bt2fv82h01ice"]
 
 [ext_resource type="PackedScene" uid="uid://ddbq6kni0re0u" path="res://src/gui_common/RadialPopup.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
@@ -51,7 +51,7 @@ corner_radius_bottom_left = 2
 
 [sub_resource type="Animation" id="39"]
 resource_name = "HideCompoundsPanels"
-length = 0.4
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -59,7 +59,7 @@ tracks/0/path = NodePath("BottomLeft/LeftPanels/CompoundPanels:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -71,7 +71,7 @@ tracks/1/path = NodePath("BottomLeft/LeftPanels/CompoundPanels:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -83,15 +83,39 @@ tracks/2/path = NodePath("BottomLeft/LeftPanels/CompoundPanels:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(2, 1),
 "update": 0,
 "values": [0, -350]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BottomLeft/LeftPanels/SmoothPopup:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BottomLeft/LeftPanels/SmoothPopup:custom_minimum_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, 147), Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="45"]
 resource_name = "ShowCompoundsPanels"
-length = 0.4
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -99,10 +123,73 @@ tracks/0/path = NodePath("BottomLeft/LeftPanels/CompoundPanels:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0.26666668, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BottomLeft/LeftPanels/CompoundPanels:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BottomLeft/LeftPanels/CompoundPanels:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.26666668, 0.6),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [-350, 0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BottomLeft/LeftPanels/SmoothPopup:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BottomLeft/LeftPanels/SmoothPopup:custom_minimum_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 147)]
+}
+
+[sub_resource type="Animation" id="Animation_joiju"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BottomLeft/LeftPanels/SmoothPopup:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -119,19 +206,20 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("BottomLeft/LeftPanels/CompoundPanels:position:x")
+tracks/2/path = NodePath("BottomLeft/LeftPanels/SmoothPopup:custom_minimum_size")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(-2, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-350, 0]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bjeaw"]
 _data = {
 &"HideCompoundsPanels": SubResource("39"),
+&"RESET": SubResource("Animation_joiju"),
 &"ShowCompoundsPanels": SubResource("45")
 }
 
@@ -210,7 +298,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(0.5, 2),
 "update": 0,
 "values": [-350, 0]
 }
@@ -353,18 +441,22 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = -0.139
 anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = 2.848
-offset_right = 258.0
-offset_bottom = -53.0
+offset_left = 8.0
+offset_top = 5.8479996
+offset_right = 264.0
+offset_bottom = -50.0
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 5
 alignment = 2
 
 [node name="EnvironmentPanel" parent="BottomLeft/LeftPanels" instance=ExtResource("13_wltm2")]
+layout_mode = 2
+
+[node name="SmoothPopup" type="Control" parent="BottomLeft/LeftPanels"]
+visible = false
 layout_mode = 2
 
 [node name="CompoundPanels" parent="BottomLeft/LeftPanels" instance=ExtResource("14_hlko5")]
@@ -373,10 +465,10 @@ ShowAgents = false
 
 [node name="HUDBottomBar" parent="BottomLeft" instance=ExtResource("59")]
 layout_mode = 1
-offset_left = 2.0
-offset_top = -46.0
-offset_right = 447.0
-offset_bottom = -3.0
+offset_left = 8.0
+offset_top = -43.0
+offset_right = 457.0
+offset_bottom = -8.0
 
 [node name="CompoundsPanelAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
