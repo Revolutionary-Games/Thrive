@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -39,7 +39,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     private readonly StringName brightnessParameterName = new("BrightnessMultiplier");
     private readonly StringName uvOffsetParameterName = new("UVOffset");
 
-    private readonly ConcurrentDictionary<(int, int, int, int), Vector2> cachedWorldShiftVectors = new();
+    private ImmutableDictionary<int, Vector2> cachedWorldShiftVectors = null!;
 
     private CompoundDefinition?[] compoundDefinitions = null!;
 
@@ -248,6 +248,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             OldDensity = new Vector4[PlaneSize, PlaneSize];
             SetMaterialUVForPosition();
         }
+
+        PrecalculateWorldShiftVectors();
     }
 
     /// <summary>
@@ -859,6 +861,12 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         base.Dispose(disposing);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int GetWorldShiftKey(int x0, int y0, int playerX, int playerY)
+    {
+        return x0 | y0 << 8 | playerX << 16 | playerY << 24;
+    }
+
     /// <summary>
     ///   Calculates the multipliers for the old density to move to new locations
     /// </summary>
@@ -916,25 +924,45 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         }
     }
 
+    private void PrecalculateWorldShiftVectors()
+    {
+        var shiftCache = new Dictionary<int, Vector2>(81);
+        int worldShift = Constants.CLOUD_SIZE / Constants.CLOUD_PLANE_SQUARES_PER_SIDE * CloudResolution;
+
+        int[] planeOffsets = { 0, 100, 200 };
+        int[] playerPositions = { 0, 1, 2 };
+
+        foreach (int x0 in planeOffsets)
+        {
+            foreach (int y0 in planeOffsets)
+            {
+                foreach (int playerX in playerPositions)
+                {
+                    foreach (int playerY in playerPositions)
+                    {
+                        int xShift = GetEdgeShift(x0, playerX);
+                        int yShift = GetEdgeShift(y0, playerY);
+
+                        var wholePlaneShift = new Vector2(worldShift * ((4 - playerX) % 3 - 1) - Constants.CLOUD_SIZE,
+                            worldShift * ((4 - playerY) % 3 - 1) - Constants.CLOUD_SIZE);
+
+                        var edgePlanesShift = new Vector2(xShift * worldShift, yShift * worldShift);
+
+                        int key = GetWorldShiftKey(x0, y0, playerX, playerY);
+                        shiftCache[key] = wholePlaneShift + edgePlanesShift;
+                    }
+                }
+            }
+        }
+
+        cachedWorldShiftVectors = shiftCache.ToImmutableDictionary();
+        GD.Print(cachedWorldShiftVectors.Count);
+    }
+
     private Vector2 GetWorldPositionForAdvection(int x0, int y0)
     {
-        var key = (x0, y0, playersPosition.X, playersPosition.Y);
-
-        var shift = cachedWorldShiftVectors.GetOrAdd(key, _ =>
-        {
-            int worldShift = Constants.CLOUD_SIZE / Constants.CLOUD_PLANE_SQUARES_PER_SIDE * CloudResolution;
-            int xShift = GetEdgeShift(x0, playersPosition.X);
-            int yShift = GetEdgeShift(y0, playersPosition.Y);
-
-            var wholePlaneShift = new Vector2(worldShift * ((4 - playersPosition.X) % 3 - 1) - Constants.CLOUD_SIZE,
-                worldShift * ((4 - playersPosition.Y) % 3 - 1) - Constants.CLOUD_SIZE);
-
-            var edgePlanesShift = new Vector2(xShift * worldShift, yShift * worldShift);
-
-            return wholePlaneShift + edgePlanesShift;
-        });
-
-        return cachedWorldPosition + shift;
+        var key = GetWorldShiftKey(x0, y0, playersPosition.X, playersPosition.Y);
+        return cachedWorldPosition + cachedWorldShiftVectors.GetValueOrDefault(key, new Vector2(0, 0));
     }
 
     private int GetEdgeShift(int coord, int playerPos)
