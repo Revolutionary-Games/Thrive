@@ -867,7 +867,6 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     ///     The name might not be super accurate as I just picked something to reduce code duplication
     ///   </para>
     /// </remarks>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static void CalculateMovementFactors(float dx, float dy, out int floorX, out int ceilX, out int floorY,
         out int ceilY, out float weightRight, out float weightLeft, out float weightBottom, out float weightTop)
     {
