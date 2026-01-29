@@ -99,7 +99,7 @@ public class MeteorImpactEvent : IWorldEffect
 
     private void ChooseAffectedPatches()
     {
-        var impactSize = random.Next(0, 3);
+        var impactSize = random.NextFloat();
 
         var surfacePatches = new List<Patch>();
         foreach (var patch in targetWorld.Map.Patches.Values)
@@ -112,15 +112,31 @@ public class MeteorImpactEvent : IWorldEffect
         var adjacentList = selectedPatch.Region.Adjacent;
         var adjacentRegion = adjacentList.Random(random);
 
-        // 1 patch
-        if (impactSize >= 0)
+        if (impactSize > 0.9f)
         {
-            affectedPatchesIds.Add(selectedPatch.ID);
+            // around half of all surface patches, canon explanation being meteor splitting into multiple pieces
+            foreach (var patch in surfacePatches)
+            {
+                if (random.Next(0, 2) == 1)
+                {
+                    affectedPatchesIds.Add(patch.ID);
+                }
+            }
         }
-
-        // all surface patches in region
-        if (impactSize >= 1)
+        else if (impactSize > 0.66f)
         {
+            // all surface patches in 2 neighbouring regions
+            foreach (var patch in adjacentRegion.Patches)
+            {
+                if (patch.IsSurfacePatch())
+                {
+                    affectedPatchesIds.Add(patch.ID);
+                }
+            }
+        }
+        else if (impactSize > 0.33f)
+        {
+            // all surface patches in region
             foreach (var adjacent in selectedPatch.Adjacent)
             {
                 if (adjacent.Region.ID == selectedPatch.Region.ID && adjacent.IsSurfacePatch())
@@ -129,17 +145,10 @@ public class MeteorImpactEvent : IWorldEffect
                 }
             }
         }
-
-        // all surface patches in 2 neighbouring regions
-        if (impactSize >= 2)
+        else
         {
-            foreach (var patch in adjacentRegion.Patches)
-            {
-                if (patch.IsSurfacePatch())
-                {
-                    affectedPatchesIds.Add(patch.ID);
-                }
-            }
+            // 1 patch
+            affectedPatchesIds.Add(selectedPatch.ID);
         }
     }
 
