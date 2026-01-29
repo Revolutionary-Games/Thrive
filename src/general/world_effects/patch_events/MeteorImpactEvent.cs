@@ -123,9 +123,17 @@ public class MeteorImpactEvent : IWorldEffect
                 }
             }
         }
-        else if (impactSize > 0.66f)
+        else if (impactSize > 0.67f)
         {
-            // all surface patches in 2 neighbouring regions
+            // all surface patches in region and 2 neighbouring regions
+            foreach (var adjacent in selectedPatch.Adjacent)
+            {
+                if (adjacent.Region.ID == selectedPatch.Region.ID && adjacent.IsSurfacePatch())
+                {
+                    affectedPatchesIds.Add(adjacent.ID);
+                }
+            }
+
             foreach (var patch in adjacentRegion.Patches)
             {
                 if (patch.IsSurfacePatch())
