@@ -1906,7 +1906,7 @@ public static class Constants
     // Min/max values for each customizable difficulty option
     public const float MIN_MP_MULTIPLIER = 0.2f;
     public const float MAX_MP_MULTIPLIER = 2;
-    public const float MIN_AI_MUTATION_RATE = 0.7f;
+    public const float MIN_AI_MUTATION_RATE = 0.0f;
     public const float MAX_AI_MUTATION_RATE = 3;
     public const float MIN_COMPOUND_DENSITY = 0.2f;
     public const float MAX_COMPOUND_DENSITY = 2;
