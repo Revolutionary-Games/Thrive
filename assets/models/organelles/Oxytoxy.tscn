@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnd8htcye7ffp"]
+[gd_scene format=3 uid="uid://dnd8htcye7ffp"]
 
 [ext_resource type="Shader" uid="uid://bpdtg8smolq32" path="res://shaders/OrganelleTransparent.gdshader" id="2"]
 [ext_resource type="Texture2D" uid="uid://cy5h6h7b5ru4o" path="res://assets/textures/ToxinVacuole.png" id="3_awuvr"]
@@ -20,6 +20,6 @@ shader_parameter/growColor = Color(0.227451, 0.180392, 0.215686, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
 
-[node name="Oxytoxy" type="MeshInstance3D"]
+[node name="Oxytoxy" type="MeshInstance3D" unique_id=849920374]
 material_override = SubResource("ShaderMaterial_pqdf6")
 mesh = ExtResource("4_s035l")

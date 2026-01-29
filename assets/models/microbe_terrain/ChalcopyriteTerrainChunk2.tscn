@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0rfa4d2jb0qg"]
+[gd_scene format=3 uid="uid://b0rfa4d2jb0qg"]
 
 [ext_resource type="PackedScene" uid="uid://cdehjfwsihrou" path="res://assets/models/microbe_terrain/ChalcopyriteTerrainChunk2.glb" id="1_8j7k4"]
 [ext_resource type="Texture2D" uid="uid://v2g5wc2sk61u" path="res://assets/textures/environment/chalcopyrite.png" id="2_hv8ra"]
@@ -16,7 +16,7 @@ ao_enabled = true
 ao_light_affect = 0.35
 ao_texture = ExtResource("3_mkoc7")
 
-[node name="ChalcopyriteTerrainChunk2" instance=ExtResource("1_8j7k4")]
+[node name="ChalcopyriteTerrainChunk2" unique_id=1388934644 instance=ExtResource("1_8j7k4")]
 
-[node name="chalcopyrite2" parent="." index="0"]
+[node name="chalcopyrite2" parent="." index="0" unique_id=1244189065]
 surface_material_override/0 = SubResource("StandardMaterial3D_es5aw")

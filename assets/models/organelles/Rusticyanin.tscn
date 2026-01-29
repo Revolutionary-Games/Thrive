@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bexhhxecb6yu2"]
+[gd_scene format=3 uid="uid://bexhhxecb6yu2"]
 
 [ext_resource type="ArrayMesh" uid="uid://iw38sx5ykkto" path="res://assets/models/organelles/Rusticyanin.mesh" id="1"]
 [ext_resource type="Shader" uid="uid://bpdtg8smolq32" path="res://shaders/OrganelleTransparent.gdshader" id="2"]
@@ -20,6 +20,6 @@ shader_parameter/growColor = Color(0.278857, 0.102169, 0.354115, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
 
-[node name="Rusticyanin" type="MeshInstance3D"]
+[node name="Rusticyanin" type="MeshInstance3D" unique_id=2123635477]
 material_override = SubResource("ShaderMaterial_qplf4")
 mesh = ExtResource("1")

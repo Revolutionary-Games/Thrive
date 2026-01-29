@@ -1,11 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0o560vbcgswt"]
+[gd_scene format=3 uid="uid://d0o560vbcgswt"]
 
 [ext_resource type="PackedScene" uid="uid://cs3kuijsfeoxr" path="res://assets/models/organelles/SlimeJet.glb" id="1"]
 [ext_resource type="Shader" uid="uid://bpdtg8smolq32" path="res://shaders/OrganelleTransparent.gdshader" id="2_4pk1c"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3"]
 [ext_resource type="Texture2D" uid="uid://dhfbtptdm6tk2" path="res://assets/textures/SlimeJet.png" id="4"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_88pld"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_swptq"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_4pk1c")
@@ -20,12 +20,12 @@ shader_parameter/growColor = Color(0.1, 0.1, 0.1, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
 
-[node name="SlimeJet" instance=ExtResource("1")]
+[node name="SlimeJet" unique_id=1853466832 instance=ExtResource("1")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.05, 0.2)
 
-[node name="Skeleton3D" parent="Armature" index="0"]
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(90829302) index="0" unique_id=81376671]
 bones/2/position = Vector3(0, 1.02498, 0)
 
-[node name="Mesh" parent="Armature/Skeleton3D" index="0"]
+[node name="Mesh" parent="Armature/Skeleton3D" index="0" unique_id=1700617354]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0530919)
-material_override = SubResource("ShaderMaterial_88pld")
+material_override = SubResource("ShaderMaterial_swptq")
