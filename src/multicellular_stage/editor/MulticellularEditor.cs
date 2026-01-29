@@ -721,10 +721,10 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         if (editedSpecies != null)
         {
-            energyBalance = new();
+            energyBalance = new EnergyBalanceInfoSimple();
 
             // TODO: replace with actual tolerances once they are implemented for this stage
-            var tolerances = new ResolvedMicrobeTolerances()
+            var tolerances = new ResolvedMicrobeTolerances
             {
                 ProcessSpeedModifier = 1.0f,
                 HealthModifier = 1.0f,

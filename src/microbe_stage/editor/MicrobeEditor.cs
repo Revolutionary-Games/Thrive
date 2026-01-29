@@ -583,13 +583,13 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         if (editedSpecies != null)
         {
-            energyBalance = new();
+            energyBalance = new EnergyBalanceInfoSimple();
 
             var tolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
-            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(editedSpecies, CurrentPatch.Biome));
+                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(editedSpecies, CurrentPatch.Biome));
 
-            ProcessSystem.ComputeEnergyBalanceSimple(EditedCellProperties.ModifiableOrganelles.Organelles, CurrentPatch.Biome,
-                in tolerances, EditedCellProperties.MembraneType, Vector3.Zero, false, true,
+            ProcessSystem.ComputeEnergyBalanceSimple(EditedCellProperties.ModifiableOrganelles.Organelles,
+                CurrentPatch.Biome, in tolerances, EditedCellProperties.MembraneType, Vector3.Zero, false, true,
                 CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Maximum, null, energyBalance);
         }
 
@@ -616,9 +616,9 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
                     return 0;
 
                 return MicrobeInternalCalculations.SpeedToUserReadableNumber(
-                        MicrobeInternalCalculations.CalculateSpeed(
-                            CellDefinition.ModifiableOrganelles.Organelles, CellDefinition.MembraneType,
-                            CellDefinition.MembraneRigidity, CellDefinition.IsBacteria));
+                    MicrobeInternalCalculations.CalculateSpeed(
+                        CellDefinition.ModifiableOrganelles.Organelles, CellDefinition.MembraneType,
+                        CellDefinition.MembraneRigidity, CellDefinition.IsBacteria));
             }
         }
     }
