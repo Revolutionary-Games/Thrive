@@ -33,10 +33,10 @@ public class AtpProductionAbove : WorldBasedUnlockCondition
 
     public override bool Satisfied(IUnlockStateDataSource data)
     {
-        if (data is not WorldAndPlayerDataSource worldArgs)
+        if (data is not WorldAndPlayerDataSource worldAndPlayerData)
             return false;
 
-        var energyBalance = worldArgs.EnergyBalance;
+        var energyBalance = worldAndPlayerData.PlayerDataSource.EnergyBalance;
 
         if (energyBalance == null)
             return false;
@@ -60,10 +60,10 @@ public class ExcessAtpAbove : WorldBasedUnlockCondition
 
     public override bool Satisfied(IUnlockStateDataSource data)
     {
-        if (data is not WorldAndPlayerDataSource worldArgs)
+        if (data is not WorldAndPlayerDataSource worldAndPlayerData)
             return false;
 
-        var energyBalance = worldArgs.EnergyBalance;
+        var energyBalance = worldAndPlayerData.PlayerDataSource.EnergyBalance;
 
         if (energyBalance == null)
             return false;
@@ -87,29 +87,15 @@ public class SpeedBelow : WorldBasedUnlockCondition
 
     public override bool Satisfied(IUnlockStateDataSource data)
     {
-        if (data is not WorldAndPlayerDataSource worldArgs)
+        if (data is not WorldAndPlayerDataSource worldAndPlayerData)
             return false;
 
-        var playerData = worldArgs.PlayerData;
-
-        if (playerData == null)
-            return false;
-
-        return GetPlayerSpeed(playerData) < Threshold;
+        return worldAndPlayerData.PlayerDataSource.Speed < Threshold;
     }
 
     public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
     {
         builder.Append(new LocalizedString("UNLOCK_CONDITION_SPEED_BELOW", Threshold));
-    }
-
-    private float GetPlayerSpeed(ICellDefinition playerData)
-    {
-        var rawSpeed = MicrobeInternalCalculations.CalculateSpeed(playerData.ModifiableOrganelles.Organelles,
-            playerData.MembraneType, playerData.MembraneRigidity, playerData.IsBacteria);
-
-        // This needs to be user-readable as it is shown by the tooltip
-        return (float)Math.Round(MicrobeInternalCalculations.SpeedToUserReadableNumber(rawSpeed), 1);
     }
 }
 
@@ -129,11 +115,11 @@ public class PatchCompound : WorldBasedUnlockCondition
 
     public override bool Satisfied(IUnlockStateDataSource data)
     {
-        if (data is not WorldAndPlayerDataSource worldArgs)
+        if (data is not WorldAndPlayerDataSource worldAndPlayerData)
             return false;
 
         // TODO: is it correct that this uses display adjusted values?
-        var current = worldArgs.CurrentPatch.GetCompoundAmountForDisplay(Compound, CompoundAmountType.Biome);
+        var current = worldAndPlayerData.CurrentPatch.GetCompoundAmountForDisplay(Compound, CompoundAmountType.Biome);
 
         var minSatisfied = !Min.HasValue || current >= Min;
         var maxSatisfied = !Max.HasValue || current <= Max;

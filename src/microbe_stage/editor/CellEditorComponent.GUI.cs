@@ -369,7 +369,7 @@ public partial class CellEditorComponent
         var groupsWithUndiscoveredOrganelles =
             new Dictionary<OrganelleDefinition.OrganelleGroup, (LocalizedStringBuilder UnlockText, int Count)>();
 
-        var worldAndPlayerArgs = GetUnlockPlayerDataSource();
+        var worldAndPlayerData = Editor.UnlocksDataSource;
 
         foreach (var entry in allPartSelectionElements)
         {
@@ -377,7 +377,7 @@ public partial class CellEditorComponent
             var control = entry.Value;
 
             // Skip already unlocked organelles
-            if (Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(organelle, worldAndPlayerArgs,
+            if (Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(organelle, worldAndPlayerData,
                     Editor.CurrentGame, autoUnlock))
             {
                 control.Undiscovered = false;
@@ -413,7 +413,7 @@ public partial class CellEditorComponent
                 group.UnlockText.Append("\n\n");
                 group.UnlockText.Append(unlockTextString);
                 group.UnlockText.Append(" ");
-                organelle.GenerateUnlockRequirementsText(group.UnlockText, worldAndPlayerArgs);
+                organelle.GenerateUnlockRequirementsText(group.UnlockText, worldAndPlayerData);
                 groupsWithUndiscoveredOrganelles[buttonGroup] = group;
             }
             else
@@ -426,7 +426,7 @@ public partial class CellEditorComponent
 
                 unlockText.Append(unlockTextString);
                 unlockText.Append(" ");
-                organelle.GenerateUnlockRequirementsText(unlockText, worldAndPlayerArgs);
+                organelle.GenerateUnlockRequirementsText(unlockText, worldAndPlayerData);
                 groupsWithUndiscoveredOrganelles.Add(buttonGroup, (unlockText, 1));
             }
         }
@@ -472,12 +472,6 @@ public partial class CellEditorComponent
         UpdateMicrobePartSelections();
         CreateUndiscoveredOrganellesButtons(true, false);
         UpdateOrganelleButtons(activeActionName);
-    }
-
-    private WorldAndPlayerDataSource GetUnlockPlayerDataSource()
-    {
-        return new WorldAndPlayerDataSource(Editor.CurrentGame.GameWorld, Editor.CurrentPatch,
-            energyBalanceInfo, Editor.EditedCellProperties);
     }
 
     private SelectionMenuToolTip? GetSelectionTooltip(string name, string group)

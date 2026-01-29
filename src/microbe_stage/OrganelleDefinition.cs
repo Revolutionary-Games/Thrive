@@ -781,7 +781,7 @@ public class OrganelleDefinition : RegistryType
     ///   A bbcode string containing all the unlock-conditions for this organelle.
     /// </summary>
     public void GenerateUnlockRequirementsText(LocalizedStringBuilder builder,
-        WorldAndPlayerDataSource worldAndPlayerArgs)
+        WorldAndPlayerDataSource worldAndPlayerData)
     {
         if (UnlockConditions != null)
         {
@@ -795,7 +795,7 @@ public class OrganelleDefinition : RegistryType
                     builder.Append(" ");
                 }
 
-                unlockCondition.GenerateTooltip(builder, worldAndPlayerArgs);
+                unlockCondition.GenerateTooltip(builder, worldAndPlayerData);
                 first = false;
             }
         }
