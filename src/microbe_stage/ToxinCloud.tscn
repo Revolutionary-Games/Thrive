@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://nrxvboo1uvg6"]
+[gd_scene format=3 uid="uid://nrxvboo1uvg6"]
 
 [ext_resource type="Material" uid="uid://bxccofrrhkghm" path="res://src/microbe_stage/particles/burst.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://cai50f52nr8gw" path="res://assets/textures/background_particle_fuzzy.png" id="2"]
@@ -16,7 +16,7 @@ billboard_mode = 1
 material = SubResource("1")
 size = Vector2(3, 3)
 
-[node name="ToxinCloud" type="GPUParticles3D"]
+[node name="ToxinCloud" type="GPUParticles3D" unique_id=121003994]
 amount = 50
 lifetime = 2.0
 process_material = ExtResource("1")

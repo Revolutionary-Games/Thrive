@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bjl5o7oy7yr15"]
+[gd_scene format=3 uid="uid://bjl5o7oy7yr15"]
 
 [ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="1"]
 [ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="3_lpicf"]
@@ -32,7 +32,7 @@
 texture = ExtResource("9")
 region_rect = Rect2(0, 0, 429, 1)
 
-[node name="PatchDetailsPanel" type="PanelContainer" node_paths=PackedStringArray("nothingSelected", "unknownPatch", "detailsContainer", "playerHere", "patchName", "biome", "depth", "moveToPatchHSeparator", "moveToPatchButton", "normalContentContainer", "migrationContentContainer", "migrateStartButton", "migrationStepExplanation", "migrationStatusLabel", "migrationErrorLabel", "migrationAmountSelector", "migrationAccept", "migrationCancel", "physicalConditionsContainer", "atmosphereContainer", "compoundsContainer", "speciesParentContainer", "micheViewButton")]
+[node name="PatchDetailsPanel" type="PanelContainer" unique_id=992163895 node_paths=PackedStringArray("nothingSelected", "unknownPatch", "detailsContainer", "playerHere", "patchName", "biome", "depth", "moveToPatchHSeparator", "moveToPatchButton", "normalContentContainer", "migrationContentContainer", "migrateStartButton", "migrationStepExplanation", "migrationStatusLabel", "migrationErrorLabel", "migrationAmountSelector", "migrationAccept", "migrationCancel", "physicalConditionsContainer", "atmosphereContainer", "compoundsContainer", "speciesParentContainer", "micheViewButton")]
 custom_minimum_size = Vector2(340, 0)
 offset_right = 352.0
 offset_bottom = 620.0
@@ -62,10 +62,10 @@ compoundsContainer = NodePath("NormalContent/MarginContainer/ScrollContainer/VBo
 speciesParentContainer = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox")
 micheViewButton = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/MichesViewButton")
 
-[node name="NormalContent" type="VBoxContainer" parent="."]
+[node name="NormalContent" type="VBoxContainer" parent="." unique_id=1076126936]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="NormalContent"]
+[node name="MarginContainer" type="MarginContainer" parent="NormalContent" unique_id=1584913909]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -74,23 +74,23 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="NormalContent/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="NormalContent/MarginContainer" unique_id=1566248335]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer" unique_id=580913793]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="NothingSelected" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="NothingSelected" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1630166083]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/NothingSelected"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/NothingSelected" unique_id=1288010165]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -99,12 +99,12 @@ label_settings = ExtResource("3_lpicf")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="UnknownPatch" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="UnknownPatch" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1674276021]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/UnknownPatch"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/UnknownPatch" unique_id=1121622606]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -113,15 +113,15 @@ label_settings = ExtResource("3_lpicf")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="PatchDetailsContainer" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="PatchDetailsContainer" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer" unique_id=140870917]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" unique_id=561955212]
 layout_mode = 2
 
-[node name="PatchName" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
+[node name="PatchName" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer" unique_id=1934875663]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -131,20 +131,20 @@ label_settings = ExtResource("5_xv7pc")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="PlayerHereLabel" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
+[node name="PlayerHereLabel" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer" unique_id=498469481]
 layout_mode = 2
 text = "CURRENT_LOCATION_CAPITAL"
 label_settings = ExtResource("5_133c0")
 horizontal_alignment = 1
 
-[node name="Biome" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
+[node name="Biome" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" unique_id=1552143154]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Biome: BIOME HERE"
 label_settings = ExtResource("7_o264b")
 horizontal_alignment = 1
 
-[node name="Depth" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
+[node name="Depth" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" unique_id=647203789]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -153,17 +153,17 @@ label_settings = ExtResource("7_o264b")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="PhysicalConditions" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" instance=ExtResource("7_np6c6")]
+[node name="PhysicalConditions" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" unique_id=909739988 instance=ExtResource("7_np6c6")]
 layout_mode = 2
 DisplayName = "PHYSICAL_CONDITIONS"
 Columns = 2
 
-[node name="Temperature" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
+[node name="Temperature" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions" unique_id=1993569629]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Temperature"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Temperature" unique_id=72140604]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -171,25 +171,25 @@ tooltip_text = "TEMPERATURE"
 texture = ExtResource("8_5yqej")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Temperature"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Temperature" unique_id=1196388138]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "52 C"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Temperature"]
+[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Temperature" unique_id=857706861]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Pressure" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
+[node name="Pressure" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions" unique_id=929322996]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Pressure"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Pressure" unique_id=1618096041]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -197,25 +197,25 @@ tooltip_text = "PRESSURE"
 texture = ExtResource("10_0uoue")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Pressure"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Pressure" unique_id=1150153091]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "102 kPA"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Pressure"]
+[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Pressure" unique_id=874311294]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Light" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
+[node name="Light" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions" unique_id=2050128973]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light" unique_id=1491281546]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -223,44 +223,44 @@ tooltip_text = "SUNLIGHT"
 texture = ExtResource("11_27t4p")
 expand_mode = 1
 
-[node name="LightInfo" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light"]
+[node name="LightInfo" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light" unique_id=1638909129]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="Current" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo"]
+[node name="Current" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo" unique_id=735293228]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo/Current"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo/Current" unique_id=767760210]
 layout_mode = 2
 text = "100%"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo/Current"]
+[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo/Current" unique_id=1999148328]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="MaxLabel" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo"]
+[node name="MaxLabel" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light/LightInfo" unique_id=1330802980]
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 2
 text = "LIGHT_MAX"
 label_settings = ExtResource("19_6m1o4")
 
-[node name="AtmosphericGasses" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" instance=ExtResource("7_np6c6")]
+[node name="AtmosphericGasses" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" unique_id=1685728584 instance=ExtResource("7_np6c6")]
 layout_mode = 2
 DisplayName = "ATMOSPHERIC_GASSES"
 Columns = 2
 
-[node name="Oxygen" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
+[node name="Oxygen" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses" unique_id=2010466753]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Oxygen"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Oxygen" unique_id=585097409]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -268,18 +268,18 @@ tooltip_text = "OXYGEN"
 texture = ExtResource("13_04tm8")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Oxygen"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Oxygen" unique_id=1402259732]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Oxygen"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Nitrogen" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
+[node name="Nitrogen" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses" unique_id=856409528]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Nitrogen"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Nitrogen" unique_id=669093897]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -287,18 +287,18 @@ tooltip_text = "NITROGEN"
 texture = ExtResource("14_20t6o")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Nitrogen"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Nitrogen" unique_id=2081480865]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Nitrogen"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="CO2" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
+[node name="CO2" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses" unique_id=260964445]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/CO2"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/CO2" unique_id=42865636]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -306,18 +306,18 @@ tooltip_text = "CARBON_DIOXIDE"
 texture = ExtResource("15_iepc5")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/CO2"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/CO2" unique_id=1485713730]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "CO₂"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Other" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
+[node name="Other" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses" unique_id=1271864517]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Other"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Other" unique_id=1719063475]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -325,7 +325,7 @@ tooltip_text = "OTHER_COMPOUNDS"
 texture = ExtResource("16_ggwv7")
 expand_mode = 3
 
-[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Other"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Other" unique_id=1806328657]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 tooltip_text = "OTHER_COMPOUNDS"
@@ -333,16 +333,16 @@ mouse_filter = 1
 text = "Other"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Compounds" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" instance=ExtResource("7_np6c6")]
+[node name="Compounds" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" unique_id=215393146 instance=ExtResource("7_np6c6")]
 layout_mode = 2
 DisplayName = "COMPOUNDS"
 Columns = 2
 
-[node name="HydrogenSulfide" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+[node name="HydrogenSulfide" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds" unique_id=1223576043]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HydrogenSulfide"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HydrogenSulfide" unique_id=1985717517]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -350,24 +350,24 @@ tooltip_text = "HYDROGEN_SULFIDE"
 texture = ExtResource("17_nrwlw")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HydrogenSulfide"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HydrogenSulfide" unique_id=326102820]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "12%"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HydrogenSulfide"]
+[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HydrogenSulfide" unique_id=2108745610]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Ammonia" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+[node name="Ammonia" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds" unique_id=129172789]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Ammonia"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Ammonia" unique_id=1981840176]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -375,24 +375,24 @@ tooltip_text = "AMMONIA"
 texture = ExtResource("18_h7r2b")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Ammonia"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Ammonia" unique_id=802876088]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "5%"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Ammonia"]
+[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Ammonia" unique_id=451422016]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Glucose" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+[node name="Glucose" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds" unique_id=1190825975]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Glucose"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Glucose" unique_id=2088965900]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -400,24 +400,24 @@ tooltip_text = "GLUCOSE"
 texture = ExtResource("19_xgafm")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Glucose"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Glucose" unique_id=788806053]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "9%"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Glucose"]
+[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Glucose" unique_id=41773685]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Phosphate" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+[node name="Phosphate" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds" unique_id=801436249]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Phosphate"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Phosphate" unique_id=2124981429]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -425,24 +425,24 @@ tooltip_text = "PHOSPHATE"
 texture = ExtResource("20_nvinp")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Phosphate"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Phosphate" unique_id=1976631212]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "5%"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Phosphate"]
+[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Phosphate" unique_id=1882992780]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Iron" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+[node name="Iron" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds" unique_id=465991972]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Iron"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Iron" unique_id=1279134086]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -450,24 +450,24 @@ tooltip_text = "IRON"
 texture = ExtResource("21_dqoqo")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Iron"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Iron" unique_id=1533413107]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "5%"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Iron"]
+[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Iron" unique_id=441062053]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Radiation" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+[node name="Radiation" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds" unique_id=856756741]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Radiation"]
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Radiation" unique_id=1016106790]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -475,46 +475,46 @@ tooltip_text = "RADIATION"
 texture = ExtResource("22_00ty1")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Radiation"]
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Radiation" unique_id=425883585]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "1"
 label_settings = ExtResource("15_ng6rp")
 
-[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Radiation"]
+[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Radiation" unique_id=1177994660]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 expand_mode = 1
 
-[node name="SpeciesBox" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" instance=ExtResource("7_np6c6")]
+[node name="SpeciesBox" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" unique_id=216206951 instance=ExtResource("7_np6c6")]
 layout_mode = 2
 DisplayName = "SPECIES_PRESENT"
 
-[node name="SpeciesList" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox" instance=ExtResource("1")]
+[node name="SpeciesList" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox" unique_id=2097639601 instance=ExtResource("1")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 fit_content = true
 
-[node name="MarginContainer" type="MarginContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer" unique_id=2129666072]
 layout_mode = 2
 theme_override_constants/margin_right = 12
 
-[node name="MichesViewButton" type="Button" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer"]
+[node name="MichesViewButton" type="Button" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer" unique_id=1066084127]
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "VIEW_PATCH_MICHES"
 
-[node name="Spacer" type="Control" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1662725771]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="NormalContent"]
+[node name="HSeparator" type="HSeparator" parent="NormalContent" unique_id=2098444874]
 layout_mode = 2
 theme_override_styles/separator = SubResource("34")
 
-[node name="MarginContainer2" type="MarginContainer" parent="NormalContent"]
+[node name="MarginContainer2" type="MarginContainer" parent="NormalContent" unique_id=395775586]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -522,14 +522,14 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="MoveToPatchButton" type="Button" parent="NormalContent/MarginContainer2"]
+[node name="MoveToPatchButton" type="Button" parent="NormalContent/MarginContainer2" unique_id=2130539148]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 focus_mode = 0
 disabled = true
 text = "MOVE_TO_THIS_PATCH"
 
-[node name="MarginContainer3" type="MarginContainer" parent="NormalContent"]
+[node name="MarginContainer3" type="MarginContainer" parent="NormalContent" unique_id=681399956]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -537,18 +537,18 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="MigrateButton" type="Button" parent="NormalContent/MarginContainer3"]
+[node name="MigrateButton" type="Button" parent="NormalContent/MarginContainer3" unique_id=931017851]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 tooltip_text = "MIGRATION_TOOLTIP"
 focus_mode = 0
 text = "MIGRATION_MANAGER"
 
-[node name="MigrationMenu" type="VBoxContainer" parent="."]
+[node name="MigrationMenu" type="VBoxContainer" parent="." unique_id=208189418]
 visible = false
 layout_mode = 2
 
-[node name="MarginContainer6" type="MarginContainer" parent="MigrationMenu"]
+[node name="MarginContainer6" type="MarginContainer" parent="MigrationMenu" unique_id=1793821951]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -556,14 +556,14 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="MigrationStatusLabel" type="Label" parent="MigrationMenu/MarginContainer6"]
+[node name="MigrationStatusLabel" type="Label" parent="MigrationMenu/MarginContainer6" unique_id=1472086087]
 custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
 text = "MIGRATION_STEP_SOURCE_EXPLANATION"
 label_settings = ExtResource("23_8qra5")
 autowrap_mode = 3
 
-[node name="MarginContainer3" type="MarginContainer" parent="MigrationMenu"]
+[node name="MarginContainer3" type="MarginContainer" parent="MigrationMenu" unique_id=88829576]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -571,11 +571,11 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="PopulationAmount" type="HSlider" parent="MigrationMenu/MarginContainer3"]
+[node name="PopulationAmount" type="HSlider" parent="MigrationMenu/MarginContainer3" unique_id=792067525]
 layout_mode = 2
 rounded = true
 
-[node name="MarginContainer7" type="MarginContainer" parent="MigrationMenu"]
+[node name="MarginContainer7" type="MarginContainer" parent="MigrationMenu" unique_id=797154210]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -583,13 +583,13 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="MigrationSetupDescription" type="Label" parent="MigrationMenu/MarginContainer7"]
+[node name="MigrationSetupDescription" type="Label" parent="MigrationMenu/MarginContainer7" unique_id=1402127793]
 custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
 label_settings = ExtResource("24_21yun")
 autowrap_mode = 3
 
-[node name="MarginContainer8" type="MarginContainer" parent="MigrationMenu"]
+[node name="MarginContainer8" type="MarginContainer" parent="MigrationMenu" unique_id=1366571399]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -597,17 +597,17 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="MigrationError" type="Label" parent="MigrationMenu/MarginContainer8"]
+[node name="MigrationError" type="Label" parent="MigrationMenu/MarginContainer8" unique_id=504512906]
 custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
 label_settings = ExtResource("25_dd3af")
 autowrap_mode = 3
 
-[node name="Spacer" type="Control" parent="MigrationMenu"]
+[node name="Spacer" type="Control" parent="MigrationMenu" unique_id=965217482]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer5" type="MarginContainer" parent="MigrationMenu"]
+[node name="MarginContainer5" type="MarginContainer" parent="MigrationMenu" unique_id=679739337]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -615,13 +615,13 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Accept" type="Button" parent="MigrationMenu/MarginContainer5"]
+[node name="Accept" type="Button" parent="MigrationMenu/MarginContainer5" unique_id=984320182]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 focus_mode = 0
 text = "ACCEPT"
 
-[node name="MarginContainer2" type="MarginContainer" parent="MigrationMenu"]
+[node name="MarginContainer2" type="MarginContainer" parent="MigrationMenu" unique_id=573827692]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -629,7 +629,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Cancel" type="Button" parent="MigrationMenu/MarginContainer2"]
+[node name="Cancel" type="Button" parent="MigrationMenu/MarginContainer2" unique_id=1177679599]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 focus_mode = 0

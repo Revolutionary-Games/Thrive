@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddwed0la23u0m"]
+[gd_scene format=3 uid="uid://ddwed0la23u0m"]
 
 [ext_resource type="Texture2D" uid="uid://gc70w2bqq323" path="res://assets/textures/snowflake2.png" id="1"]
 
@@ -45,7 +45,7 @@ hue_variation_max = 0.8
 
 [sub_resource type="QuadMesh" id="7"]
 
-[node name="Estuary" type="GPUParticles3D"]
+[node name="Estuary" type="GPUParticles3D" unique_id=27631602]
 process_mode = 1
 material_override = SubResource("1")
 cast_shadow = 0

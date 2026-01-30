@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bapb4m7jw7pc8"]
+[gd_scene format=3 uid="uid://bapb4m7jw7pc8"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="3"]
 [ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="3_g62sd"]
@@ -11,7 +11,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="38"]
 
-[node name="BehaviourEditorSubComponent" type="PanelContainer" node_paths=PackedStringArray("aggressionSlider", "opportunismSlider", "fearSlider", "activitySlider", "focusSlider")]
+[node name="BehaviourEditorSubComponent" type="PanelContainer" unique_id=923003428 node_paths=PackedStringArray("aggressionSlider", "opportunismSlider", "fearSlider", "activitySlider", "focusSlider")]
 offset_top = 303.0
 offset_right = 318.0
 offset_bottom = 556.0
@@ -26,39 +26,39 @@ fearSlider = NodePath("ScrollContainer/MarginContainer/VBoxContainer/Fear/FearSl
 activitySlider = NodePath("ScrollContainer/MarginContainer/VBoxContainer/Activity/ActivitySlider")
 focusSlider = NodePath("ScrollContainer/MarginContainer/VBoxContainer/Focus/FocusSlider")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1770525605]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer" unique_id=1229625079]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer" unique_id=1861383737]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="Aggression" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Aggression" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=615817662]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="HBoxContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Aggression"]
+[node name="HBoxContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Aggression" unique_id=1051937379]
 layout_mode = 2
 columns = 3
 
-[node name="AggressionLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Aggression/HBoxContainer"]
+[node name="AggressionLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Aggression/HBoxContainer" unique_id=570743568]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "PEACEFUL"
 label_settings = ExtResource("3_g62sd")
 
-[node name="HSeparator" type="HSeparator" parent="ScrollContainer/MarginContainer/VBoxContainer/Aggression/HBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/MarginContainer/VBoxContainer/Aggression/HBoxContainer" unique_id=700068994]
 custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 
-[node name="AggressionLabel2" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Aggression/HBoxContainer"]
+[node name="AggressionLabel2" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Aggression/HBoxContainer" unique_id=848353102]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -66,7 +66,7 @@ text = "AGGRESSIVE"
 label_settings = ExtResource("3_g62sd")
 horizontal_alignment = 2
 
-[node name="AggressionSlider" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer/Aggression"]
+[node name="AggressionSlider" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer/Aggression" unique_id=1969892277]
 layout_mode = 2
 focus_mode = 1
 mouse_filter = 1
@@ -79,15 +79,15 @@ scrollable = false
 tick_count = 9
 ticks_on_borders = true
 
-[node name="Opportunism" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Opportunism" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1269229721]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="HBoxContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Opportunism"]
+[node name="HBoxContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Opportunism" unique_id=2059331171]
 layout_mode = 2
 columns = 3
 
-[node name="OpportunismLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Opportunism/HBoxContainer"]
+[node name="OpportunismLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Opportunism/HBoxContainer" unique_id=1641363742]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -95,11 +95,11 @@ text = "CAUTIOUS"
 label_settings = ExtResource("3_g62sd")
 clip_text = true
 
-[node name="HSeparator" type="HSeparator" parent="ScrollContainer/MarginContainer/VBoxContainer/Opportunism/HBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/MarginContainer/VBoxContainer/Opportunism/HBoxContainer" unique_id=99476081]
 custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 
-[node name="OpportunismLabel2" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Opportunism/HBoxContainer"]
+[node name="OpportunismLabel2" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Opportunism/HBoxContainer" unique_id=2130519472]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -107,7 +107,7 @@ text = "OPPORTUNISTIC"
 label_settings = ExtResource("3_g62sd")
 horizontal_alignment = 2
 
-[node name="OpportunismSlider" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer/Opportunism"]
+[node name="OpportunismSlider" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer/Opportunism" unique_id=1972210309]
 layout_mode = 2
 focus_mode = 1
 mouse_filter = 1
@@ -120,26 +120,26 @@ scrollable = false
 tick_count = 9
 ticks_on_borders = true
 
-[node name="Fear" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Fear" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=398175531]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="HBoxContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Fear"]
+[node name="HBoxContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Fear" unique_id=684903902]
 layout_mode = 2
 columns = 3
 
-[node name="FearLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Fear/HBoxContainer"]
+[node name="FearLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Fear/HBoxContainer" unique_id=896441563]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "BRAVE"
 label_settings = ExtResource("3_g62sd")
 
-[node name="HSeparator" type="HSeparator" parent="ScrollContainer/MarginContainer/VBoxContainer/Fear/HBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/MarginContainer/VBoxContainer/Fear/HBoxContainer" unique_id=1555438943]
 custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 
-[node name="FearLabel2" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Fear/HBoxContainer"]
+[node name="FearLabel2" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Fear/HBoxContainer" unique_id=1782392127]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -147,7 +147,7 @@ text = "FEARFUL"
 label_settings = ExtResource("3_g62sd")
 horizontal_alignment = 2
 
-[node name="FearSlider" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer/Fear"]
+[node name="FearSlider" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer/Fear" unique_id=1932438415]
 layout_mode = 2
 focus_mode = 1
 mouse_filter = 1
@@ -160,26 +160,26 @@ scrollable = false
 tick_count = 9
 ticks_on_borders = true
 
-[node name="Activity" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Activity" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=830450842]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="HBoxContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Activity"]
+[node name="HBoxContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Activity" unique_id=1792221012]
 layout_mode = 2
 columns = 3
 
-[node name="ActivityLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Activity/HBoxContainer"]
+[node name="ActivityLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Activity/HBoxContainer" unique_id=1943292297]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "SESSILE"
 label_settings = ExtResource("3_g62sd")
 
-[node name="HSeparator" type="HSeparator" parent="ScrollContainer/MarginContainer/VBoxContainer/Activity/HBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/MarginContainer/VBoxContainer/Activity/HBoxContainer" unique_id=380712304]
 custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 
-[node name="ActivityLabel2" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Activity/HBoxContainer"]
+[node name="ActivityLabel2" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Activity/HBoxContainer" unique_id=1382087702]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -187,7 +187,7 @@ text = "ACTIVE"
 label_settings = ExtResource("3_g62sd")
 horizontal_alignment = 2
 
-[node name="ActivitySlider" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer/Activity"]
+[node name="ActivitySlider" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer/Activity" unique_id=1469871237]
 layout_mode = 2
 focus_mode = 1
 mouse_filter = 1
@@ -200,26 +200,26 @@ scrollable = false
 tick_count = 9
 ticks_on_borders = true
 
-[node name="Focus" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Focus" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1110117770]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="HBoxContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Focus"]
+[node name="HBoxContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Focus" unique_id=326008489]
 layout_mode = 2
 columns = 3
 
-[node name="FocusLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Focus/HBoxContainer"]
+[node name="FocusLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Focus/HBoxContainer" unique_id=118097027]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "RESPONSIVE"
 label_settings = ExtResource("3_g62sd")
 
-[node name="HSeparator" type="HSeparator" parent="ScrollContainer/MarginContainer/VBoxContainer/Focus/HBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/MarginContainer/VBoxContainer/Focus/HBoxContainer" unique_id=1945771170]
 custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 
-[node name="FocusLabel2" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Focus/HBoxContainer"]
+[node name="FocusLabel2" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Focus/HBoxContainer" unique_id=448414566]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -227,7 +227,7 @@ text = "FOCUSED"
 label_settings = ExtResource("3_g62sd")
 horizontal_alignment = 2
 
-[node name="FocusSlider" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer/Focus"]
+[node name="FocusSlider" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer/Focus" unique_id=2013739593]
 layout_mode = 2
 focus_mode = 1
 mouse_filter = 1

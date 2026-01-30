@@ -1,113 +1,129 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjqy3i4w0qtyt"]
+[gd_scene format=3 uid="uid://cjqy3i4w0qtyt"]
 
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="Script" uid="uid://j5se5oaue83k" path="res://test/WindowReorderingSupportTest.cs" id="2"]
 [ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="3"]
 
-[node name="WindowReorderingSupportTest" type="Control"]
+[node name="WindowReorderingSupportTest" type="Control" unique_id=297924048]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("2")
 
-[node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource("3")]
+[node name="AddWindowReorderingSupportToSiblings" parent="." unique_id=439213673 instance=ExtResource("3")]
+layout_mode = 0
 
-[node name="Automatic" type="Control" parent="."]
+[node name="Automatic" type="Control" parent="." unique_id=448995497]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="AddWindowReorderingSupportToSiblings" parent="Automatic" instance=ExtResource("3")]
+[node name="AddWindowReorderingSupportToSiblings" parent="Automatic" unique_id=989914638 instance=ExtResource("3")]
+layout_mode = 0
 
-[node name="Window1" parent="Automatic" instance=ExtResource("1")]
+[node name="Window1" parent="Automatic" unique_id=565591231 instance=ExtResource("1")]
+layout_mode = 0
 offset_right = 200.0
 offset_bottom = 125.0
 WindowReorderingPaths = []
 WindowTitle = "Window1"
 
-[node name="Control" type="Control" parent="Automatic/Window1"]
+[node name="Control" type="Control" parent="Automatic/Window1" unique_id=124914324]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Control2" type="Control" parent="Automatic/Window1/Control"]
+[node name="Control2" type="Control" parent="Automatic/Window1/Control" unique_id=521670655]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Control3" type="Control" parent="Automatic/Window1/Control/Control2"]
+[node name="Control3" type="Control" parent="Automatic/Window1/Control/Control2" unique_id=1210984700]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Child1ReordersWindow1" parent="Automatic/Window1/Control/Control2/Control3" instance=ExtResource("1")]
+[node name="Child1ReordersWindow1" parent="Automatic/Window1/Control/Control2/Control3" unique_id=1361520776 instance=ExtResource("1")]
+layout_mode = 0
 offset_right = 200.0
 offset_bottom = 125.0
 WindowReorderingPaths = []
 AutomaticWindowReorderingDepth = 5
 WindowTitle = "Child1ReordersWindow1"
 
-[node name="Window2" parent="Automatic" instance=ExtResource("1")]
+[node name="Window2" parent="Automatic" unique_id=2075889309 instance=ExtResource("1")]
+layout_mode = 0
 offset_right = 200.0
 offset_bottom = 125.0
 WindowReorderingPaths = []
 WindowTitle = "Window2"
 
-[node name="AddWindowReorderingSupportToSiblings" parent="Automatic/Window2" instance=ExtResource("3")]
+[node name="AddWindowReorderingSupportToSiblings" parent="Automatic/Window2" unique_id=1050357075 instance=ExtResource("3")]
+layout_mode = 0
 AutomaticWindowReorderingDepth = 1
 
-[node name="Child2AlwaysBottomReodersWindow2Manual" parent="Automatic/Window2" instance=ExtResource("1")]
+[node name="Child2AlwaysBottomReodersWindow2Manual" parent="Automatic/Window2" unique_id=505991949 instance=ExtResource("1")]
+layout_mode = 0
 offset_right = 200.0
 offset_bottom = 125.0
 WindowReorderingPaths = [NodePath("../../AddWindowReorderingSupportToSiblings")]
 AutomaticWindowReorderingDepth = 0
 WindowTitle = "Child2AlwaysBottomReodersWindow2Manual"
 
-[node name="Child2ReordersWindow2" parent="Automatic/Window2" instance=ExtResource("1")]
+[node name="Child2ReordersWindow2" parent="Automatic/Window2" unique_id=2117809963 instance=ExtResource("1")]
+layout_mode = 0
 offset_right = 200.0
 offset_bottom = 125.0
 WindowReorderingPaths = []
 WindowTitle = "Child2ReordersWindow2"
 
-[node name="Child2" parent="Automatic/Window2" instance=ExtResource("1")]
+[node name="Child2" parent="Automatic/Window2" unique_id=887276182 instance=ExtResource("1")]
+layout_mode = 0
 offset_right = 200.0
 offset_bottom = 125.0
 WindowReorderingPaths = []
 AllowWindowReorderingRecursion = false
 WindowTitle = "Child2"
 
-[node name="Child2AlwaysTop" parent="Automatic/Window2" instance=ExtResource("1")]
+[node name="Child2AlwaysTop" parent="Automatic/Window2" unique_id=1047972612 instance=ExtResource("1")]
+layout_mode = 0
 offset_right = 200.0
 offset_bottom = 125.0
 WindowReorderingPaths = []
 AutomaticWindowReorderingDepth = 0
 WindowTitle = "Child2AlwaysTop"
 
-[node name="Window3AlwaysTop" parent="Automatic" instance=ExtResource("1")]
+[node name="Window3AlwaysTop" parent="Automatic" unique_id=93506724 instance=ExtResource("1")]
+layout_mode = 0
 offset_right = 200.0
 offset_bottom = 125.0
 WindowReorderingPaths = []
 AutomaticWindowReorderingDepth = 0
 WindowTitle = "Window3AlwaysTop"
 
-[node name="AutomaticWindowSet" parent="Automatic" instance=ExtResource("1")]
+[node name="AutomaticWindowSet" parent="Automatic" unique_id=1847519234 instance=ExtResource("1")]
+layout_mode = 0
 offset_right = 300.0
 offset_bottom = 300.0
 WindowReorderingPaths = [NodePath("../../AddWindowReorderingSupportToSiblings")]
 AutomaticWindowReorderingDepth = 0
 WindowTitle = "AutomaticWindowSet"
 
-[node name="Manual" type="Control" parent="."]
+[node name="Manual" type="Control" parent="." unique_id=1996347626]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="AddWindowReorderingSupportToSiblings" parent="Manual" instance=ExtResource("3")]
+[node name="AddWindowReorderingSupportToSiblings" parent="Manual" unique_id=2038314504 instance=ExtResource("3")]
+layout_mode = 0
 offset_left = 1800.0
 offset_right = 1800.0
 
-[node name="Window12" parent="Manual" instance=ExtResource("1")]
+[node name="Window12" parent="Manual" unique_id=840163125 instance=ExtResource("1")]
+layout_mode = 0
 offset_left = 1800.0
 offset_right = 2000.0
 offset_bottom = 125.0
@@ -115,22 +131,23 @@ WindowReorderingPaths = [NodePath("../AddWindowReorderingSupportToSiblings")]
 AutomaticWindowReorderingDepth = 0
 WindowTitle = "Window12"
 
-[node name="Control" type="Control" parent="Manual/Window12"]
+[node name="Control" type="Control" parent="Manual/Window12" unique_id=186061457]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Control2" type="Control" parent="Manual/Window12/Control"]
+[node name="Control2" type="Control" parent="Manual/Window12/Control" unique_id=184997487]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Control3" type="Control" parent="Manual/Window12/Control/Control2"]
+[node name="Control3" type="Control" parent="Manual/Window12/Control/Control2" unique_id=84316055]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Child1ReordersWindow12" parent="Manual/Window12/Control/Control2/Control3" instance=ExtResource("1")]
+[node name="Child1ReordersWindow12" parent="Manual/Window12/Control/Control2/Control3" unique_id=1064038259 instance=ExtResource("1")]
+layout_mode = 0
 offset_left = 900.0
 offset_right = 1100.0
 offset_bottom = 125.0
@@ -138,7 +155,8 @@ WindowReorderingPaths = [NodePath("../../../../../AddWindowReorderingSupportToSi
 AutomaticWindowReorderingDepth = 0
 WindowTitle = "Child1ReordersWindow12"
 
-[node name="Window22" parent="Manual" instance=ExtResource("1")]
+[node name="Window22" parent="Manual" unique_id=489748871 instance=ExtResource("1")]
+layout_mode = 0
 offset_left = 1800.0
 offset_right = 2000.0
 offset_bottom = 125.0
@@ -146,10 +164,12 @@ WindowReorderingPaths = [NodePath("../AddWindowReorderingSupportToSiblings")]
 AutomaticWindowReorderingDepth = 0
 WindowTitle = "Window22"
 
-[node name="AddWindowReorderingSupportToSiblings" parent="Manual/Window22" instance=ExtResource("3")]
+[node name="AddWindowReorderingSupportToSiblings" parent="Manual/Window22" unique_id=28517741 instance=ExtResource("3")]
+layout_mode = 0
 WindowReorderingPaths = [NodePath("../../AddWindowReorderingSupportToSiblings")]
 
-[node name="Child2AlwaysBottomReodersWindow22" parent="Manual/Window22" instance=ExtResource("1")]
+[node name="Child2AlwaysBottomReodersWindow22" parent="Manual/Window22" unique_id=1112610249 instance=ExtResource("1")]
+layout_mode = 0
 offset_left = 900.0
 offset_right = 1100.0
 offset_bottom = 125.0
@@ -157,7 +177,8 @@ WindowReorderingPaths = [NodePath("../../AddWindowReorderingSupportToSiblings")]
 AutomaticWindowReorderingDepth = 0
 WindowTitle = "Child2AlwaysBottomReodersWindow22"
 
-[node name="Child2ReordersWindow22" parent="Manual/Window22" instance=ExtResource("1")]
+[node name="Child2ReordersWindow22" parent="Manual/Window22" unique_id=291128022 instance=ExtResource("1")]
+layout_mode = 0
 offset_left = 900.0
 offset_right = 1100.0
 offset_bottom = 125.0
@@ -166,7 +187,8 @@ AutomaticWindowReorderingDepth = 0
 AllowWindowReorderingRecursion = false
 WindowTitle = "Child2ReordersWindow22"
 
-[node name="Child22" parent="Manual/Window22" instance=ExtResource("1")]
+[node name="Child22" parent="Manual/Window22" unique_id=406601726 instance=ExtResource("1")]
+layout_mode = 0
 offset_left = 900.0
 offset_right = 1100.0
 offset_bottom = 125.0
@@ -175,7 +197,8 @@ AutomaticWindowReorderingDepth = 0
 AllowWindowReorderingRecursion = false
 WindowTitle = "Child22"
 
-[node name="Child2AlwaysTop2" parent="Manual/Window22" instance=ExtResource("1")]
+[node name="Child2AlwaysTop2" parent="Manual/Window22" unique_id=1629111550 instance=ExtResource("1")]
+layout_mode = 0
 offset_left = 900.0
 offset_right = 1100.0
 offset_bottom = 125.0
@@ -183,7 +206,8 @@ WindowReorderingPaths = []
 AutomaticWindowReorderingDepth = 0
 WindowTitle = "Child2AlwaysTop2"
 
-[node name="Window3AlwaysTop2" parent="Manual" instance=ExtResource("1")]
+[node name="Window3AlwaysTop2" parent="Manual" unique_id=1163209732 instance=ExtResource("1")]
+layout_mode = 0
 offset_left = 1800.0
 offset_right = 2000.0
 offset_bottom = 125.0
@@ -191,7 +215,8 @@ WindowReorderingPaths = []
 AutomaticWindowReorderingDepth = 0
 WindowTitle = "Window3AlwaysTop2"
 
-[node name="ManualWindowSet" parent="Manual" instance=ExtResource("1")]
+[node name="ManualWindowSet" parent="Manual" unique_id=880174209 instance=ExtResource("1")]
+layout_mode = 0
 offset_left = 1800.0
 offset_right = 2100.0
 offset_bottom = 300.0

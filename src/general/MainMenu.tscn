@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://c1fc2aip6oiqt"]
+[gd_scene format=3 uid="uid://c1fc2aip6oiqt"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="PackedScene" uid="uid://8to431fk1dnp" path="res://src/saving/SaveManagerGUI.tscn" id="2"]
@@ -118,7 +118,7 @@ _data = {
 &"RESET": SubResource("Animation_qunue")
 }
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("thriveLogo", "modManager", "galleryViewer", "newsFeed", "newsFeedDisabler", "patchNotes", "patchNotesDisabler", "feedPositioner", "creditsContainer", "credits", "licensesDisplay", "achievementsView", "freebuildButton", "multicellularFreebuildButton", "autoEvoExploringButton", "planetCustomizationButton", "microbeBenchmarkButton", "exitToLauncherButton", "storeLoggedInDisplay", "socialMediaContainer", "websiteButtonsContainer", "itchButton", "patreonButton", "openGlPopup", "modLoadFailures", "steamFailedPopup", "safeModeWarning", "modsInstalledButNotEnabledWarning", "lowPerformanceWarning", "thanksDialog", "menus")]
+[node name="MainMenu" type="Control" unique_id=1952085578 node_paths=PackedStringArray("thriveLogo", "modManager", "galleryViewer", "newsFeed", "newsFeedDisabler", "patchNotes", "patchNotesDisabler", "feedPositioner", "creditsContainer", "credits", "licensesDisplay", "achievementsView", "freebuildButton", "multicellularFreebuildButton", "autoEvoExploringButton", "planetCustomizationButton", "microbeBenchmarkButton", "exitToLauncherButton", "storeLoggedInDisplay", "socialMediaContainer", "websiteButtonsContainer", "itchButton", "patreonButton", "openGlPopup", "modLoadFailures", "steamFailedPopup", "safeModeWarning", "modsInstalledButNotEnabledWarning", "lowPerformanceWarning", "thanksDialog", "menus")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -162,7 +162,7 @@ thanksDialog = NodePath("ThanksForBuyingDialog")
 menus = NodePath("MenuContainers/Menus")
 thriveopediaScene = ExtResource("49")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=198789757]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -172,7 +172,7 @@ grow_vertical = 2
 expand_mode = 1
 stretch_mode = 6
 
-[node name="StoreUser" type="Label" parent="."]
+[node name="StoreUser" type="Label" parent="." unique_id=244183822]
 editor_description = "PLACEHOLDER"
 layout_mode = 1
 anchors_preset = -1
@@ -189,7 +189,7 @@ text = "Logged in as: name"
 label_settings = ExtResource("7_1nsb2")
 max_lines_visible = 1
 
-[node name="VersionNumber" type="Label" parent="."]
+[node name="VersionNumber" type="Label" parent="." unique_id=872821226]
 editor_description = "PLACEHOLDER"
 layout_mode = 1
 anchors_preset = -1
@@ -211,7 +211,7 @@ horizontal_alignment = 2
 vertical_alignment = 2
 script = ExtResource("5")
 
-[node name="MenuContainers" type="Control" parent="."]
+[node name="MenuContainers" type="Control" parent="." unique_id=781574598]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -219,7 +219,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LogoCenterContainer" type="CenterContainer" parent="MenuContainers"]
+[node name="LogoCenterContainer" type="CenterContainer" parent="MenuContainers" unique_id=1416876380]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -229,14 +229,14 @@ offset_right = 639.0
 offset_bottom = 217.0
 grow_horizontal = 2
 
-[node name="Logo" type="TextureRect" parent="MenuContainers/LogoCenterContainer"]
+[node name="Logo" type="TextureRect" parent="MenuContainers/LogoCenterContainer" unique_id=1260823172]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 texture = ExtResource("10")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="FeedPositioner" type="MarginContainer" parent="MenuContainers"]
+[node name="FeedPositioner" type="MarginContainer" parent="MenuContainers" unique_id=1232560905]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -248,35 +248,35 @@ offset_right = -30.0
 offset_bottom = -125.0
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/FeedPositioner"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/FeedPositioner" unique_id=2108988822]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="NewsDisabler" type="VBoxContainer" parent="MenuContainers/FeedPositioner/VBoxContainer"]
+[node name="NewsDisabler" type="VBoxContainer" parent="MenuContainers/FeedPositioner/VBoxContainer" unique_id=904464616]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="ThriveFeedDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/NewsDisabler" instance=ExtResource("57")]
+[node name="ThriveFeedDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/NewsDisabler" unique_id=1324435566 instance=ExtResource("57")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PatchNotesDisabler" type="VBoxContainer" parent="MenuContainers/FeedPositioner/VBoxContainer"]
+[node name="PatchNotesDisabler" type="VBoxContainer" parent="MenuContainers/FeedPositioner/VBoxContainer" unique_id=1086567921]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="PatchNotesDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler" instance=ExtResource("58")]
+[node name="PatchNotesDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler" unique_id=1966030530 instance=ExtResource("58")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Menus" type="CenterContainer" parent="MenuContainers"]
+[node name="Menus" type="CenterContainer" parent="MenuContainers" unique_id=287623375]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -288,20 +288,20 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/Menus"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/Menus" unique_id=772753812]
 layout_mode = 2
 
-[node name="MenuSlideAnimator" type="Control" parent="MenuContainers/Menus/VBoxContainer"]
+[node name="MenuSlideAnimator" type="Control" parent="MenuContainers/Menus/VBoxContainer" unique_id=1907568796]
 layout_mode = 2
 
-[node name="MainMenu" type="VBoxContainer" parent="MenuContainers/Menus/VBoxContainer" groups=["MenuItem"]]
+[node name="MainMenu" type="VBoxContainer" parent="MenuContainers/Menus/VBoxContainer" unique_id=1422078714 groups=["MenuItem"]]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Spacer" type="Control" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
+[node name="Spacer" type="Control" parent="MenuContainers/Menus/VBoxContainer/MainMenu" unique_id=824361395]
 layout_mode = 2
 
-[node name="NewGame" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
+[node name="NewGame" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu" unique_id=500343032]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "NEW_GAME_BUTTON_TOOLTIP"
@@ -311,52 +311,52 @@ focus_previous = NodePath(".")
 mouse_filter = 1
 text = "NEW_GAME"
 
-[node name="LoadGame" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
+[node name="LoadGame" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu" unique_id=2073318211]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "LOAD_GAME_BUTTON_TOOLTIP"
 mouse_filter = 1
 text = "LOAD_GAME"
 
-[node name="Options" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
+[node name="Options" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu" unique_id=205899857]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "OPTIONS_BUTTON_TOOLTIP"
 mouse_filter = 1
 text = "OPTIONS"
 
-[node name="Tools" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
+[node name="Tools" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu" unique_id=1246031489]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 mouse_filter = 1
 text = "TOOLS"
 
-[node name="ViewSourceCode" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
+[node name="ViewSourceCode" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu" unique_id=1105071526]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 mouse_filter = 1
 text = "VIEW_SOURCE_CODE"
 
-[node name="Extras" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
+[node name="Extras" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu" unique_id=1198307120]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 mouse_filter = 1
 text = "EXTRAS"
 
-[node name="Credits" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
+[node name="Credits" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu" unique_id=876497823]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 mouse_filter = 1
 text = "CREDITS"
 
-[node name="Launcher" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
+[node name="Launcher" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu" unique_id=672288818]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "QUIT_BUTTON_TOOLTIP"
 mouse_filter = 1
 text = "EXIT_TO_LAUNCHER"
 
-[node name="Quit" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu"]
+[node name="Quit" type="Button" parent="MenuContainers/Menus/VBoxContainer/MainMenu" unique_id=1620262167]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "QUIT_BUTTON_TOOLTIP"
@@ -366,19 +366,19 @@ focus_next = NodePath("../../../../SocialMedia/RevolutionaryGamesButton")
 mouse_filter = 1
 text = "QUIT"
 
-[node name="FocusGrabber" parent="MenuContainers/Menus/VBoxContainer/MainMenu" instance=ExtResource("56")]
+[node name="FocusGrabber" parent="MenuContainers/Menus/VBoxContainer/MainMenu" unique_id=1143343225 instance=ExtResource("56")]
 layout_mode = 2
 NodeToGiveFocusTo = NodePath("../NewGame")
 
-[node name="Tools" type="VBoxContainer" parent="MenuContainers/Menus/VBoxContainer" groups=["MenuItem"]]
+[node name="Tools" type="VBoxContainer" parent="MenuContainers/Menus/VBoxContainer" unique_id=1628190532 groups=["MenuItem"]]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Spacer" type="Control" parent="MenuContainers/Menus/VBoxContainer/Tools"]
+[node name="Spacer" type="Control" parent="MenuContainers/Menus/VBoxContainer/Tools" unique_id=48678721]
 layout_mode = 2
 
-[node name="FreebuildMicrobeEditor" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
+[node name="FreebuildMicrobeEditor" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools" unique_id=2031793438]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
@@ -387,14 +387,14 @@ focus_previous = NodePath(".")
 mouse_filter = 1
 text = "MICROBE_FREEBUILD_EDITOR"
 
-[node name="FreebuildMulticellularEditor" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
+[node name="FreebuildMulticellularEditor" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools" unique_id=1829964350]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
 text = "MULTICELLULAR_FREEBUILD_EDITOR"
 
-[node name="AutoEvoExploring" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
+[node name="AutoEvoExploring" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools" unique_id=1426703126]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
@@ -403,7 +403,7 @@ focus_next = NodePath("../PlanetCustomizer")
 mouse_filter = 1
 text = "AUTO_EVO_EXPLORING_TOOL"
 
-[node name="PlanetCustomizer" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
+[node name="PlanetCustomizer" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools" unique_id=1622050890]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
@@ -412,7 +412,7 @@ focus_next = NodePath("../Benchmarks")
 mouse_filter = 1
 text = "PLANET_CUSTOMIZER"
 
-[node name="Benchmarks" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
+[node name="Benchmarks" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools" unique_id=1408315292]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
@@ -421,7 +421,7 @@ focus_next = NodePath("../Back")
 mouse_filter = 1
 text = "BENCHMARKS"
 
-[node name="Back" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
+[node name="Back" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools" unique_id=550791830]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
@@ -431,19 +431,19 @@ focus_previous = NodePath("../Benchmarks")
 mouse_filter = 1
 text = "BACK"
 
-[node name="FocusGrabber" parent="MenuContainers/Menus/VBoxContainer/Tools" instance=ExtResource("56")]
+[node name="FocusGrabber" parent="MenuContainers/Menus/VBoxContainer/Tools" unique_id=577123575 instance=ExtResource("56")]
 layout_mode = 2
 NodeToGiveFocusTo = NodePath("../FreebuildMicrobeEditor")
 
-[node name="Extras" type="VBoxContainer" parent="MenuContainers/Menus/VBoxContainer" groups=["MenuItem"]]
+[node name="Extras" type="VBoxContainer" parent="MenuContainers/Menus/VBoxContainer" unique_id=322309357 groups=["MenuItem"]]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Spacer" type="Control" parent="MenuContainers/Menus/VBoxContainer/Extras"]
+[node name="Spacer" type="Control" parent="MenuContainers/Menus/VBoxContainer/Extras" unique_id=579331162]
 layout_mode = 2
 
-[node name="Thriveopedia" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
+[node name="Thriveopedia" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras" unique_id=485943073]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
@@ -452,42 +452,42 @@ focus_previous = NodePath(".")
 mouse_filter = 1
 text = "THRIVEOPEDIA"
 
-[node name="Achievements" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
+[node name="Achievements" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras" unique_id=588066631]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
 text = "ACHIEVEMENTS"
 
-[node name="Mods" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
+[node name="Mods" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras" unique_id=1997652506]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
 text = "MODS"
 
-[node name="ArtGallery" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
+[node name="ArtGallery" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras" unique_id=1312956756]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
 text = "ART_GALLERY"
 
-[node name="Licenses" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
+[node name="Licenses" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras" unique_id=1888217568]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
 text = "LICENSES"
 
-[node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
+[node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras" unique_id=648220432]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
 text = "VISIT_SUGGESTIONS_SITE"
 
-[node name="Back" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
+[node name="Back" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras" unique_id=1181977665]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
@@ -497,19 +497,19 @@ focus_next = NodePath(".")
 mouse_filter = 1
 text = "BACK"
 
-[node name="FocusGrabber" parent="MenuContainers/Menus/VBoxContainer/Extras" instance=ExtResource("56")]
+[node name="FocusGrabber" parent="MenuContainers/Menus/VBoxContainer/Extras" unique_id=159193838 instance=ExtResource("56")]
 layout_mode = 2
 NodeToGiveFocusTo = NodePath("../Thriveopedia")
 
-[node name="Benchmarks" type="VBoxContainer" parent="MenuContainers/Menus/VBoxContainer" groups=["MenuItem"]]
+[node name="Benchmarks" type="VBoxContainer" parent="MenuContainers/Menus/VBoxContainer" unique_id=437145572 groups=["MenuItem"]]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Spacer" type="Control" parent="MenuContainers/Menus/VBoxContainer/Benchmarks"]
+[node name="Spacer" type="Control" parent="MenuContainers/Menus/VBoxContainer/Benchmarks" unique_id=66681466]
 layout_mode = 2
 
-[node name="MicrobeBenchmark" type="Button" parent="MenuContainers/Menus/VBoxContainer/Benchmarks"]
+[node name="MicrobeBenchmark" type="Button" parent="MenuContainers/Menus/VBoxContainer/Benchmarks" unique_id=562931703]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
@@ -518,7 +518,7 @@ focus_previous = NodePath(".")
 mouse_filter = 1
 text = "MICROBE_BENCHMARK"
 
-[node name="CloudBenchmark" type="Button" parent="MenuContainers/Menus/VBoxContainer/Benchmarks"]
+[node name="CloudBenchmark" type="Button" parent="MenuContainers/Menus/VBoxContainer/Benchmarks" unique_id=2096092093]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
@@ -527,7 +527,7 @@ focus_previous = NodePath(".")
 mouse_filter = 1
 text = "COMPOUND_CLOUD_BENCHMARK"
 
-[node name="unknown" type="Button" parent="MenuContainers/Menus/VBoxContainer/Benchmarks"]
+[node name="unknown" type="Button" parent="MenuContainers/Menus/VBoxContainer/Benchmarks" unique_id=725865177]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
@@ -537,7 +537,7 @@ mouse_filter = 1
 disabled = true
 text = "???"
 
-[node name="Back" type="Button" parent="MenuContainers/Menus/VBoxContainer/Benchmarks"]
+[node name="Back" type="Button" parent="MenuContainers/Menus/VBoxContainer/Benchmarks" unique_id=1919415222]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
@@ -545,11 +545,11 @@ focus_neighbor_left = NodePath("../../../../SocialMedia/TwitterButton")
 mouse_filter = 1
 text = "BACK"
 
-[node name="FocusGrabber" parent="MenuContainers/Menus/VBoxContainer/Benchmarks" instance=ExtResource("56")]
+[node name="FocusGrabber" parent="MenuContainers/Menus/VBoxContainer/Benchmarks" unique_id=1909460143 instance=ExtResource("56")]
 layout_mode = 2
 NodeToGiveFocusTo = NodePath("../MicrobeBenchmark")
 
-[node name="WebsiteButtons" parent="MenuContainers" instance=ExtResource("12_a6o4c")]
+[node name="WebsiteButtons" parent="MenuContainers" unique_id=1551210061 instance=ExtResource("12_a6o4c")]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 359.0
@@ -558,7 +558,7 @@ offset_bottom = 428.0
 WindowTitle = "LINKS_TITLE"
 Movable = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuContainers/WebsiteButtons"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuContainers/WebsiteButtons" unique_id=561366154]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -572,19 +572,19 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MenuContainers/WebsiteButtons/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainers/WebsiteButtons/HBoxContainer" unique_id=1129801834]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer" unique_id=2025886568]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="Spacer" type="Control" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer" unique_id=783405488]
 layout_mode = 2
 
-[node name="OfficialWebsiteButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="OfficialWebsiteButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer" unique_id=514745794]
 layout_mode = 2
 tooltip_text = "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 focus_neighbor_left = NodePath(".")
@@ -597,7 +597,7 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 14
 text = "OFFICIAL_WEBSITE"
 
-[node name="CommunityForumButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="CommunityForumButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1618444309]
 layout_mode = 2
 tooltip_text = "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 focus_neighbor_left = NodePath(".")
@@ -606,7 +606,7 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 14
 text = "COMMUNITY_FORUM"
 
-[node name="DevelopmentForumButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="DevelopmentForumButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1738865244]
 layout_mode = 2
 tooltip_text = "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 focus_neighbor_left = NodePath(".")
@@ -615,7 +615,7 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 14
 text = "DEVELOPMENT_FORUM"
 
-[node name="DevelopmentWikiButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="DevelopmentWikiButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1233989716]
 layout_mode = 2
 tooltip_text = "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 focus_neighbor_left = NodePath(".")
@@ -624,7 +624,7 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 14
 text = "DEVELOPMENT_WIKI"
 
-[node name="CommunityWikiButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="CommunityWikiButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1874029990]
 layout_mode = 2
 tooltip_text = "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 focus_neighbor_left = NodePath(".")
@@ -633,7 +633,7 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 14
 text = "COMMUNITY_WIKI"
 
-[node name="ReportBugButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="ReportBugButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1448525459]
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
 focus_neighbor_right = NodePath(".")
@@ -641,7 +641,7 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 14
 text = "REPORT_BUG"
 
-[node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1210775237]
 layout_mode = 2
 size_flags_vertical = 0
 focus_neighbor_left = NodePath(".")
@@ -654,14 +654,14 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 14
 text = "VISIT_SUGGESTIONS_SITE"
 
-[node name="FocusGrabber" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("56")]
+[node name="FocusGrabber" parent="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer" unique_id=167786398 instance=ExtResource("56")]
 layout_mode = 2
 Priority = 10
 NodeToGiveFocusTo = NodePath("../OfficialWebsiteButton")
 AlwaysOverrideFocus = true
 SkipOverridingFocusForElements = [NodePath("../../../..")]
 
-[node name="SocialMedia" type="HBoxContainer" parent="MenuContainers"]
+[node name="SocialMedia" type="HBoxContainer" parent="MenuContainers" unique_id=640253740]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -674,7 +674,7 @@ grow_vertical = 0
 theme = ExtResource("1")
 theme_override_constants/separation = 10
 
-[node name="RevolutionaryGamesButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+[node name="RevolutionaryGamesButton" type="TextureButton" parent="MenuContainers/SocialMedia" unique_id=404686588]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 tooltip_text = "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
@@ -686,7 +686,7 @@ texture_focused = ExtResource("48")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="SteamButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+[node name="SteamButton" type="TextureButton" parent="MenuContainers/SocialMedia" unique_id=807728436]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 tooltip_text = "STEAM_TOOLTIP"
@@ -697,7 +697,7 @@ texture_focused = ExtResource("32")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="ItchButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+[node name="ItchButton" type="TextureButton" parent="MenuContainers/SocialMedia" unique_id=2122666119]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 tooltip_text = "ITCH_TOOLTIP"
@@ -708,7 +708,7 @@ texture_focused = ExtResource("35")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="PatreonButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+[node name="PatreonButton" type="TextureButton" parent="MenuContainers/SocialMedia" unique_id=1773891254]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 tooltip_text = "PATREON_TOOLTIP"
@@ -719,7 +719,7 @@ texture_focused = ExtResource("24_rpnak")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="GitHubButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+[node name="GitHubButton" type="TextureButton" parent="MenuContainers/SocialMedia" unique_id=1190961711]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 tooltip_text = "GITHUB_TOOLTIP"
@@ -730,7 +730,7 @@ texture_focused = ExtResource("38")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="YouTubeButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+[node name="YouTubeButton" type="TextureButton" parent="MenuContainers/SocialMedia" unique_id=88498287]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 tooltip_text = "YOUTUBE_TOOLTIP"
@@ -741,7 +741,7 @@ texture_focused = ExtResource("19")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="ThreadsButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+[node name="ThreadsButton" type="TextureButton" parent="MenuContainers/SocialMedia" unique_id=1727148878]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 tooltip_text = "META_THREADS_TOOLTIP"
@@ -752,7 +752,7 @@ texture_focused = ExtResource("33_b0j63")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="RedditButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+[node name="RedditButton" type="TextureButton" parent="MenuContainers/SocialMedia" unique_id=2048763289]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 tooltip_text = "REDDIT_TOOLTIP"
@@ -763,7 +763,7 @@ texture_focused = ExtResource("31")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="DiscordButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+[node name="DiscordButton" type="TextureButton" parent="MenuContainers/SocialMedia" unique_id=719286541]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 tooltip_text = "DISCORD_TOOLTIP"
@@ -774,7 +774,7 @@ texture_focused = ExtResource("40")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="FacebookButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+[node name="FacebookButton" type="TextureButton" parent="MenuContainers/SocialMedia" unique_id=368915444]
 editor_description = "Hidden until we can get control of our facebook back and start updating it again"
 visible = false
 custom_minimum_size = Vector2(25, 25)
@@ -787,7 +787,7 @@ texture_focused = ExtResource("41")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="TwitterButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+[node name="TwitterButton" type="TextureButton" parent="MenuContainers/SocialMedia" unique_id=1747006063]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 tooltip_text = "X_TWITTER_TOOLTIP"
@@ -798,7 +798,7 @@ texture_focused = ExtResource("45_jbwjm")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="InstagramButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+[node name="InstagramButton" type="TextureButton" parent="MenuContainers/SocialMedia" unique_id=1304128405]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 tooltip_text = "INSTAGRAM_TOOLTIP"
@@ -809,7 +809,7 @@ texture_focused = ExtResource("48_85kra")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="MastodonButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+[node name="MastodonButton" type="TextureButton" parent="MenuContainers/SocialMedia" unique_id=1627654061]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 tooltip_text = "MASTODON_TOOLTIP"
@@ -820,7 +820,7 @@ texture_focused = ExtResource("51_hsjiv")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="BlueskyButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+[node name="BlueskyButton" type="TextureButton" parent="MenuContainers/SocialMedia" unique_id=616965144]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 tooltip_text = "BLUESKY_TOOLTIP"
@@ -833,24 +833,24 @@ texture_focused = ExtResource("54_4ciye")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="OptionsMenu" parent="." instance=ExtResource("3")]
+[node name="OptionsMenu" parent="." unique_id=756280105 instance=ExtResource("3")]
 visible = false
 layout_mode = 1
 
-[node name="SaveManagerGUI" parent="." instance=ExtResource("2")]
+[node name="SaveManagerGUI" parent="." unique_id=1090587139 instance=ExtResource("2")]
 visible = false
 layout_mode = 1
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NewGameSettings" parent="." instance=ExtResource("18")]
+[node name="NewGameSettings" parent="." unique_id=1042098657 instance=ExtResource("18")]
 visible = false
 layout_mode = 1
 
-[node name="LicensesDisplay" parent="." instance=ExtResource("12")]
+[node name="LicensesDisplay" parent="." unique_id=595515674 instance=ExtResource("12")]
 layout_mode = 1
 
-[node name="GalleryViewer" parent="." instance=ExtResource("17")]
+[node name="GalleryViewer" parent="." unique_id=913887283 instance=ExtResource("17")]
 layout_mode = 1
 anchors_preset = 0
 anchor_right = 0.0
@@ -858,7 +858,7 @@ anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="CreditsView" type="Control" parent="."]
+[node name="CreditsView" type="Control" parent="." unique_id=1068400245]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -870,11 +870,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1")
 
-[node name="CreditsScroll" parent="CreditsView" instance=ExtResource("11")]
+[node name="CreditsScroll" parent="CreditsView" unique_id=1658889870 instance=ExtResource("11")]
 layout_mode = 1
 AutoStart = false
 
-[node name="Back" type="Button" parent="CreditsView"]
+[node name="Back" type="Button" parent="CreditsView" unique_id=1529653663]
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 0
 anchor_top = 0.931
@@ -889,24 +889,22 @@ size_flags_vertical = 0
 mouse_filter = 1
 text = "BACK"
 
-[node name="FocusGrabber" parent="CreditsView" instance=ExtResource("56")]
+[node name="FocusGrabber" parent="CreditsView" unique_id=1346098010 instance=ExtResource("56")]
 layout_mode = 0
 NodeToGiveFocusTo = NodePath("../Back")
 
-[node name="AchievementsView" parent="." instance=ExtResource("62_np7pl")]
+[node name="AchievementsView" parent="." unique_id=427178104 instance=ExtResource("62_np7pl")]
 visible = false
 layout_mode = 1
 
-[node name="ModManager" parent="." instance=ExtResource("14")]
+[node name="ModManager" parent="." unique_id=1287336664 instance=ExtResource("14")]
 visible = false
 layout_mode = 1
 
-[node name="GUIAnimations" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_wp2ig")
-}
+[node name="GUIAnimations" type="AnimationPlayer" parent="." unique_id=349236332]
+libraries/ = SubResource("AnimationLibrary_wp2ig")
 
-[node name="OpenGLWarningPopup" parent="." instance=ExtResource("4")]
+[node name="OpenGLWarningPopup" parent="." unique_id=101636610 instance=ExtResource("4")]
 custom_minimum_size = Vector2(680, 0)
 layout_mode = 0
 offset_top = 28.0
@@ -916,7 +914,7 @@ HideCancelButton = true
 DialogText = "OPENGL_MODE_WARNING_EXPLANATION"
 WindowTitle = "OPENGL_MODE_WARNING"
 
-[node name="ModsInstalledButNothingEnabledWarning" parent="." instance=ExtResource("59")]
+[node name="ModsInstalledButNothingEnabledWarning" parent="." unique_id=1725520606 instance=ExtResource("59")]
 custom_minimum_size = Vector2(550, 0)
 layout_mode = 0
 offset_right = 163.0
@@ -928,7 +926,7 @@ DialogText = "MODS_INSTALLED_BUT_NOT_ENABLED"
 WindowTitle = "NO_MODS_ENABLED"
 Exclusive = false
 
-[node name="SafeModeWarningDialog" parent="." instance=ExtResource("4")]
+[node name="SafeModeWarningDialog" parent="." unique_id=1952975024 instance=ExtResource("4")]
 custom_minimum_size = Vector2(550, 370)
 layout_mode = 0
 offset_right = 40.0
@@ -937,14 +935,14 @@ HideCancelButton = true
 DialogText = "SAFE_MODE_EXPLANATION"
 WindowTitle = "SAFE_MODE_TITLE"
 
-[node name="ModFailureDialog" parent="." instance=ExtResource("15")]
+[node name="ModFailureDialog" parent="." unique_id=740690534 instance=ExtResource("15")]
 custom_minimum_size = Vector2(400, 350)
 layout_mode = 0
 ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 ExceptionInfo = ""
 WindowTitle = "MOD_LOAD_ERRORS"
 
-[node name="ThanksForBuyingDialog" parent="." instance=ExtResource("59")]
+[node name="ThanksForBuyingDialog" parent="." unique_id=2023233165 instance=ExtResource("59")]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 offset_right = 163.0
@@ -956,7 +954,7 @@ HideCancelButton = true
 DialogText = "THANKS_FOR_BUYING_THRIVE_2"
 WindowTitle = "THANK_YOU_TITLE"
 
-[node name="SteamFailedDialog" parent="." instance=ExtResource("4")]
+[node name="SteamFailedDialog" parent="." unique_id=1632090857 instance=ExtResource("4")]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 offset_right = 40.0
@@ -965,7 +963,7 @@ HideCancelButton = true
 DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
 WindowTitle = "STEAM_INIT_FAILED"
 
-[node name="LowPerformanceDialog" parent="." instance=ExtResource("59")]
+[node name="LowPerformanceDialog" parent="." unique_id=565757019 instance=ExtResource("59")]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 NoticeType = 2

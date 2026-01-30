@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3vq1x8lvthvt"]
+[gd_scene format=3 uid="uid://d3vq1x8lvthvt"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://6yfse7bf5lb7" path="res://src/gui_common/ChemicalEquation.cs" id="2"]
@@ -12,7 +12,7 @@
 default_font = ExtResource("5_wdgi7")
 default_font_size = 18
 
-[node name="ChemicalEquation" type="VBoxContainer" node_paths=PackedStringArray("title", "toggleProcess", "spinner", "firstLineContainer")]
+[node name="ChemicalEquation" type="VBoxContainer" unique_id=664382039 node_paths=PackedStringArray("title", "toggleProcess", "spinner", "firstLineContainer")]
 process_priority = 7
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,16 +28,16 @@ firstLineContainer = NodePath("FirstLine")
 speedLimitedTitleFont = ExtResource("4_vbkf3")
 equationArrowTexture = ExtResource("5_tr4hc")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1401810773]
 layout_mode = 2
 
-[node name="SpinnerNode" type="Control" parent="HBoxContainer"]
+[node name="SpinnerNode" type="Control" parent="HBoxContainer" unique_id=1466707511]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
-[node name="Spinner" type="TextureRect" parent="HBoxContainer/SpinnerNode"]
+[node name="Spinner" type="TextureRect" parent="HBoxContainer/SpinnerNode" unique_id=1148069507]
 custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
+layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
 pivot_offset = Vector2(16, 16)
@@ -45,7 +45,7 @@ texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=617861566]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 3
@@ -54,13 +54,13 @@ label_settings = ExtResource("4_77wn0")
 vertical_alignment = 1
 max_lines_visible = 5
 
-[node name="ToggleProcess" type="CheckButton" parent="HBoxContainer"]
+[node name="ToggleProcess" type="CheckButton" parent="HBoxContainer" unique_id=1900492811]
 process_mode = 3
 layout_mode = 2
 tooltip_text = "PROCESS_TOGGLE_TOOLTIP"
 button_pressed = true
 
-[node name="FirstLine" type="HBoxContainer" parent="."]
+[node name="FirstLine" type="HBoxContainer" parent="." unique_id=2076490625]
 layout_mode = 2
 mouse_filter = 2
 theme = SubResource("1")
