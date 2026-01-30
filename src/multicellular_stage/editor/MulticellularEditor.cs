@@ -745,7 +745,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             GetBestEnergyBalanceProperties(energyBalance, cellEnergyBalance);
         }
 
-        return new MulticellularUnlocksData(editedSpecies?.ModifiableEditorCells, energyBalance);
+        return new MulticellularUnlocksData(editedSpecies.ModifiableEditorCells, energyBalance);
     }
 
     private void GetBestEnergyBalanceProperties(EnergyBalanceInfoSimple energyBalance, EnergyBalanceInfoSimple toAdd)
