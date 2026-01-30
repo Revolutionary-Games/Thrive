@@ -725,12 +725,6 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
     {
         public EnergyBalanceInfoSimple? EnergyBalance => null;
 
-        public float Speed
-        {
-            get
-            {
-                return 0;
-            }
-        }
+        public float Speed => 0.0f;
     }
 }

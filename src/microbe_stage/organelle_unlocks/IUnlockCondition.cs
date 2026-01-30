@@ -43,6 +43,7 @@ public interface IPlayerDataSource
     ///   of the best energy balance stats among them.
     /// </summary>
     public EnergyBalanceInfoSimple? EnergyBalance { get; }
+
     public float Speed { get; }
 }
 
