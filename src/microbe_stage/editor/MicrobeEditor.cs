@@ -616,8 +616,8 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
                     return 0;
 
                 return MicrobeInternalCalculations.SpeedToUserReadableNumber(MicrobeInternalCalculations.CalculateSpeed(
-                        CellDefinition.ModifiableOrganelles.Organelles, CellDefinition.MembraneType,
-                        CellDefinition.MembraneRigidity, CellDefinition.IsBacteria));
+                    CellDefinition.ModifiableOrganelles.Organelles, CellDefinition.MembraneType,
+                    CellDefinition.MembraneRigidity, CellDefinition.IsBacteria));
             }
         }
     }
