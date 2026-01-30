@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using SharedBase.Archive;
+using Systems;
+using UnlockConstraints;
 
 /// <summary>
 ///   Main class of the microbe editor
@@ -60,6 +62,9 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     public Patch? TargetPatch => patchMapTab.TargetPatch;
 
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
+
+    public WorldAndPlayerDataSource UnlocksDataSource =>
+        new(CurrentGame.GameWorld, CurrentPatch, GetPlayerDataSource());
 
     public override MainGameState GameState => MainGameState.MicrobeEditor;
 
@@ -572,6 +577,51 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         {
             // Make sure tabs are shown if the tutorial is turned off
             ShowTabBar(true);
+        }
+    }
+
+    private IPlayerDataSource GetPlayerDataSource()
+    {
+        if (editedSpecies == null)
+        {
+            throw new Exception("Tried to get player unlocks data source without an edited species being set");
+        }
+
+        var energyBalance = new EnergyBalanceInfoSimple();
+
+        var tolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(editedSpecies, CurrentPatch.Biome));
+
+        ProcessSystem.ComputeEnergyBalanceSimple(editedSpecies.ModifiableOrganelles.Organelles,
+            CurrentPatch.Biome, in tolerances, editedSpecies.MembraneType, Vector3.Zero, false, true,
+            CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Maximum, null, energyBalance);
+
+        return new MicrobeUnlocksData(editedSpecies, energyBalance);
+    }
+
+    private class MicrobeUnlocksData : IPlayerDataSource
+    {
+        public ICellDefinition? CellDefinition;
+
+        public MicrobeUnlocksData(ICellDefinition? cellDefinition, EnergyBalanceInfoSimple? energyBalance)
+        {
+            CellDefinition = cellDefinition;
+            EnergyBalance = energyBalance;
+        }
+
+        public EnergyBalanceInfoSimple? EnergyBalance { get; set; }
+
+        public float Speed
+        {
+            get
+            {
+                if (CellDefinition == null)
+                    return 0;
+
+                return MicrobeInternalCalculations.SpeedToUserReadableNumber(MicrobeInternalCalculations.CalculateSpeed(
+                    CellDefinition.ModifiableOrganelles.Organelles, CellDefinition.MembraneType,
+                    CellDefinition.MembraneRigidity, CellDefinition.IsBacteria));
+            }
         }
     }
 }

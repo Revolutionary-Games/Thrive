@@ -2110,23 +2110,21 @@ public partial class CellEditorComponent :
                 conditionsData);
         }
 
-        var energyBalance = new EnergyBalanceInfoFull();
-        energyBalance.SetupTrackingForRequiredCompounds();
+        energyBalanceInfo = new EnergyBalanceInfoFull();
+        energyBalanceInfo.SetupTrackingForRequiredCompounds();
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organelles);
 
         ProcessSystem.ComputeEnergyBalanceFull(organelles, conditionsData, CalculateLatestTolerances(), membrane,
             maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
-            organismStatisticsPanel.CompoundAmountType, null, energyBalance);
+            organismStatisticsPanel.CompoundAmountType, null, energyBalanceInfo);
 
-        energyBalanceInfo = energyBalance;
-
-        organismStatisticsPanel.UpdateEnergyBalance(energyBalance);
+        organismStatisticsPanel.UpdateEnergyBalance(energyBalanceInfo);
 
         if (Visible)
         {
             TutorialState?.SendEvent(TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged,
-                new EnergyBalanceEventArgs(energyBalance), this);
+                new EnergyBalanceEventArgs(energyBalanceInfo), this);
         }
 
         float nominalStorage = 0;
@@ -2135,20 +2133,20 @@ public partial class CellEditorComponent :
         // This takes balanceType into account as well, https://github.com/Revolutionary-Games/Thrive/issues/2068
         var compoundBalanceData =
             CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
-                organismStatisticsPanel.CompoundAmountType, organelles, conditionsData, energyBalance,
+                organismStatisticsPanel.CompoundAmountType, organelles, conditionsData, energyBalanceInfo,
                 ref specificStorages, ref nominalStorage);
 
         UpdateCompoundBalances(compoundBalanceData);
 
         // TODO: should this skip on being affected by the resource limited?
         var nightBalanceData = CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
-            CompoundAmountType.Minimum, organelles, conditionsData, energyBalance, ref specificStorages,
+            CompoundAmountType.Minimum, organelles, conditionsData, energyBalanceInfo, ref specificStorages,
             ref nominalStorage);
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
 
-        HandleProcessList(energyBalance, conditionsData);
+        HandleProcessList(energyBalanceInfo, conditionsData);
     }
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,

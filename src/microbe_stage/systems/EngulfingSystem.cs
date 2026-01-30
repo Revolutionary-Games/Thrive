@@ -1238,7 +1238,12 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
         CalculateAdditionalCompoundsInNewlyEngulfedObject(ref engulfable, targetEntity);
 
-        if (engulferEntity.Has<PlayerMarker>() && targetEntity.Has<CellProperties>())
+        var engulferIsPlayer = engulferEntity.Has<PlayerMarker>();
+
+        engulferIsPlayer |= engulferEntity.TryGet<MicrobeColonyMember>(out var colonyMember)
+            && colonyMember.ColonyLeader.Has<PlayerMarker>();
+
+        if (engulferIsPlayer && targetEntity.Has<CellProperties>())
         {
             gameWorld!.StatisticsTracker.TotalEngulfedByPlayer.Increment(1);
         }

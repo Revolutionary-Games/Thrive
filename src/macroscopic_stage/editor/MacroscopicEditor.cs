@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using UnlockConstraints;
 using Environment = Godot.Environment;
 
 /// <summary>
@@ -111,6 +112,9 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
     public IReadOnlyList<OrganelleTemplate>? EditedCellOrganelles => null;
 
     public override MainGameState GameState => MainGameState.MacroscopicEditor;
+
+    public WorldAndPlayerDataSource UnlocksDataSource =>
+        new(CurrentGame.GameWorld, CurrentPatch, new MacroscopicUnlocksData());
 
     protected override string MusicCategory => "MacroscopicEditor";
 
@@ -716,5 +720,12 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         {
             worldEnvironmentNode.Environment = environment;
         }
+    }
+
+    private class MacroscopicUnlocksData : IPlayerDataSource
+    {
+        public EnergyBalanceInfoSimple? EnergyBalance => null;
+
+        public float Speed => 0.0f;
     }
 }
