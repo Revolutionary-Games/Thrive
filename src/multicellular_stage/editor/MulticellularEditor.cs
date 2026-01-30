@@ -717,30 +717,32 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     private IPlayerDataSource GetPlayerDataSource()
     {
+        if (editedSpecies == null)
+        {
+            throw new Exception("Tried to get player unlocks data source without an edited species being set");
+        }
+
         EnergyBalanceInfoSimple? energyBalance = null;
 
-        if (editedSpecies != null)
+        energyBalance = new EnergyBalanceInfoSimple();
+
+        // TODO: replace with actual tolerances once they are implemented for this stage
+        var tolerances = new ResolvedMicrobeTolerances
         {
-            energyBalance = new EnergyBalanceInfoSimple();
+            ProcessSpeedModifier = 1.0f,
+            HealthModifier = 1.0f,
+            OsmoregulationModifier = 1.0f,
+        };
 
-            // TODO: replace with actual tolerances once they are implemented for this stage
-            var tolerances = new ResolvedMicrobeTolerances
-            {
-                ProcessSpeedModifier = 1.0f,
-                HealthModifier = 1.0f,
-                OsmoregulationModifier = 1.0f,
-            };
+        foreach (var cellType in editedSpecies.ModifiableCellTypes)
+        {
+            var cellEnergyBalance = new EnergyBalanceInfoSimple();
 
-            foreach (var cellType in editedSpecies.ModifiableCellTypes)
-            {
-                var cellEnergyBalance = new EnergyBalanceInfoSimple();
+            ProcessSystem.ComputeEnergyBalanceSimple(cellType.ModifiableOrganelles.Organelles, CurrentPatch.Biome,
+                in tolerances, cellType.MembraneType, Vector3.Zero, false, true,
+                CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Maximum, null, cellEnergyBalance);
 
-                ProcessSystem.ComputeEnergyBalanceSimple(cellType.ModifiableOrganelles.Organelles, CurrentPatch.Biome,
-                    in tolerances, cellType.MembraneType, Vector3.Zero, false, true,
-                    CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Maximum, null, cellEnergyBalance);
-
-                GetBestEnergyBalanceProperties(energyBalance, cellEnergyBalance);
-            }
+            GetBestEnergyBalanceProperties(energyBalance, cellEnergyBalance);
         }
 
         return new MulticellularUnlocksData(editedSpecies?.ModifiableEditorCells, energyBalance);

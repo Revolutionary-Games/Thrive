@@ -579,21 +579,23 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     private IPlayerDataSource GetPlayerDataSource()
     {
-        EnergyBalanceInfoSimple? energyBalance = null;
-
-        if (editedSpecies != null)
+        if (editedSpecies == null)
         {
-            energyBalance = new EnergyBalanceInfoSimple();
-
-            var tolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
-                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(editedSpecies, CurrentPatch.Biome));
-
-            ProcessSystem.ComputeEnergyBalanceSimple(EditedCellProperties.ModifiableOrganelles.Organelles,
-                CurrentPatch.Biome, in tolerances, EditedCellProperties.MembraneType, Vector3.Zero, false, true,
-                CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Maximum, null, energyBalance);
+            throw new Exception("Tried to get player unlocks data source without an edited species being set");
         }
 
-        return new MicrobeUnlocksData(EditedCellProperties, energyBalance);
+        EnergyBalanceInfoSimple? energyBalance = null;
+
+        energyBalance = new EnergyBalanceInfoSimple();
+
+        var tolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(editedSpecies, CurrentPatch.Biome));
+
+        ProcessSystem.ComputeEnergyBalanceSimple(editedSpecies.ModifiableOrganelles.Organelles,
+            CurrentPatch.Biome, in tolerances, editedSpecies.MembraneType, Vector3.Zero, false, true,
+            CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Maximum, null, energyBalance);
+
+        return new MicrobeUnlocksData(editedSpecies, energyBalance);
     }
 
     private class MicrobeUnlocksData : IPlayerDataSource
