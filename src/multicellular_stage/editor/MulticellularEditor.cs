@@ -722,9 +722,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             throw new Exception("Tried to get player unlocks data source without an edited species being set");
         }
 
-        EnergyBalanceInfoSimple? energyBalance = null;
-
-        energyBalance = new EnergyBalanceInfoSimple();
+        var energyBalance = new EnergyBalanceInfoSimple();
 
         // TODO: replace with actual tolerances once they are implemented for this stage
         var tolerances = new ResolvedMicrobeTolerances

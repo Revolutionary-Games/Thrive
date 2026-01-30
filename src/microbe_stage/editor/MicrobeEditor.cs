@@ -584,9 +584,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
             throw new Exception("Tried to get player unlocks data source without an edited species being set");
         }
 
-        EnergyBalanceInfoSimple? energyBalance = null;
-
-        energyBalance = new EnergyBalanceInfoSimple();
+        var energyBalance = new EnergyBalanceInfoSimple();
 
         var tolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
             MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(editedSpecies, CurrentPatch.Biome));
