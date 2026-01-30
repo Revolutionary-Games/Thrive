@@ -127,7 +127,7 @@ public class MeteorImpactEvent : IWorldEffect
             }
         }
 
-        // all surface patches in 2 neighbouring regions
+        // all surface patches in a neighbouring region
         if (impactSize >= 0.67f)
         {
             foreach (var patch in adjacentRegion.Patches)
