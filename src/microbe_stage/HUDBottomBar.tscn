@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bdwkyuskd3u3r"]
+[gd_scene format=3 uid="uid://bdwkyuskd3u3r"]
 
 [ext_resource type="Texture2D" uid="uid://blqjm72pgomg0" path="res://assets/textures/gui/bevel/suicideButton.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://cp3nxr3dfb88o" path="res://assets/textures/gui/bevel/statisticsButton.png" id="2"]
@@ -36,7 +36,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="27"]
 
-[node name="HUDBottomBar" type="HBoxContainer" node_paths=PackedStringArray("pauseButton", "heatButton", "speedButton", "compoundsButton", "environmentButton", "processPanelButton", "suicideButton", "ProcessPanelButtonControl")]
+[node name="HUDBottomBar" type="HBoxContainer" unique_id=506249946 node_paths=PackedStringArray("pauseButton", "heatButton", "speedButton", "compoundsButton", "environmentButton", "processPanelButton", "suicideButton", "ProcessPanelButtonControl")]
 custom_minimum_size = Vector2(0, 35)
 anchors_preset = 2
 anchor_top = 1.0
@@ -56,7 +56,7 @@ processPanelButton = NodePath("ChemicalButton")
 suicideButton = NodePath("SuicideButton")
 ProcessPanelButtonControl = NodePath("ChemicalButton")
 
-[node name="OpenMenu" type="TextureButton" parent="."]
+[node name="OpenMenu" type="TextureButton" parent="." unique_id=474376962]
 custom_minimum_size = Vector2(50, 35)
 layout_mode = 2
 tooltip_text = "STAGE_MENU_BUTTON_TOOLTIP"
@@ -66,18 +66,18 @@ texture_hover = ExtResource("12")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="PauseButtonMargin" type="MarginContainer" parent="."]
+[node name="PauseButtonMargin" type="MarginContainer" parent="." unique_id=1504242947]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="PlayButton" parent="PauseButtonMargin" instance=ExtResource("6")]
+[node name="PlayButton" parent="PauseButtonMargin" unique_id=1738175148 instance=ExtResource("6")]
 layout_mode = 2
 PauseButtonTooltip = "PAUSE_TOOLTIP"
 PlayButtonTooltip = "RESUME_TOOLTIP"
 PauseButtonMode = true
 
-[node name="EnvironmentButton" type="TextureButton" parent="."]
+[node name="EnvironmentButton" type="TextureButton" parent="." unique_id=115949233]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 tooltip_text = "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
@@ -89,7 +89,7 @@ texture_hover = ExtResource("15")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="CompoundsButton" type="TextureButton" parent="."]
+[node name="CompoundsButton" type="TextureButton" parent="." unique_id=1718750020]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 tooltip_text = "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
@@ -102,7 +102,7 @@ texture_hover = ExtResource("13")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="ChemicalButton" type="TextureButton" parent="."]
+[node name="ChemicalButton" type="TextureButton" parent="." unique_id=1822322811]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 tooltip_text = "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
@@ -114,7 +114,7 @@ texture_hover = ExtResource("14_ti1r5")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="StatisticsButton" type="TextureButton" parent="."]
+[node name="StatisticsButton" type="TextureButton" parent="." unique_id=63097749]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 tooltip_text = "STATISTICS"
@@ -125,7 +125,7 @@ texture_hover = ExtResource("18")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="SpeedButton" type="TextureButton" parent="."]
+[node name="SpeedButton" type="TextureButton" parent="." unique_id=1625839572]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 tooltip_text = "DOUBLE_SPEED_TOGGLE_TOOLTIP"
@@ -139,7 +139,7 @@ texture_disabled = ExtResource("15_aq5wf")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="SearchButton" type="TextureButton" parent="."]
+[node name="SearchButton" type="TextureButton" parent="." unique_id=819359262]
 modulate = Color(0.384314, 0.384314, 0.384314, 1)
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
@@ -151,7 +151,7 @@ texture_hover = ExtResource("22")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="SuicideButton" type="TextureButton" parent="."]
+[node name="SuicideButton" type="TextureButton" parent="." unique_id=45342156]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 tooltip_text = "SUICIDE_BUTTON_TOOLTIP"
@@ -162,7 +162,7 @@ texture_hover = ExtResource("23")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="QuestionMarkButton" type="TextureButton" parent="."]
+[node name="QuestionMarkButton" type="TextureButton" parent="." unique_id=299461397]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 tooltip_text = "HELP_BUTTON_TOOLTIP"
@@ -173,7 +173,7 @@ texture_hover = ExtResource("16")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="HeatViewButton" type="TextureButton" parent="."]
+[node name="HeatViewButton" type="TextureButton" parent="." unique_id=949163463]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 tooltip_text = "TOGGLE_HEAT_VIEW_TOOLTIP"
@@ -187,7 +187,7 @@ texture_disabled = ExtResource("29_l10eo")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="HSeparator" type="HSeparator" parent="."]
+[node name="HSeparator" type="HSeparator" parent="." unique_id=2128205503]
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 theme_override_styles/separator = SubResource("27")

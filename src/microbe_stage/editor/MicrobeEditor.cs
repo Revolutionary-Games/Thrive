@@ -426,7 +426,10 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         editsFacade.SetActiveActions(performedActionData);
 
-        return speciesComparer.Compare(editedSpecies!, editsFacade) * CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+        // This doesn't use the cell editor CostMultiplier as this cost is purely used in the microbe stage, so we
+        //  don't need to apply the additional considerations on top of this
+        return speciesComparer.Compare(editedSpecies!, editsFacade, Constants.MAX_SINGLE_EDIT_MP_COST,
+            CurrentGame.GameWorld.WorldSettings.MPMultiplier);
     }
 
     protected override GameProperties StartNewGameForEditor()

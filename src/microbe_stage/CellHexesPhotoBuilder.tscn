@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://vdyvtgd64u0s"]
+[gd_scene format=3 uid="uid://vdyvtgd64u0s"]
 
 [ext_resource type="Script" uid="uid://dje7656685f0o" path="res://src/microbe_stage/CellHexesPhotoBuilder.cs" id="1"]
 
-[node name="CellHexPhotoBuilder" type="Node3D"]
+[node name="CellHexPhotoBuilder" type="Node3D" unique_id=334835934]
 script = ExtResource("1")

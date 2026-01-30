@@ -1015,7 +1015,8 @@ public partial class CellBodyPlanEditorComponent :
                 }
 
                 tooltip.Name = cellType.CellTypeName;
-                tooltip.MutationPointCost = GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier;
+                tooltip.MutationPointCost = Math.Min(GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier,
+                    Constants.MAX_SINGLE_EDIT_MP_COST);
 
                 control.RegisterToolTipForControl(tooltip, true);
             }
@@ -1024,10 +1025,12 @@ public partial class CellBodyPlanEditorComponent :
                 var tooltip = ToolTipManager.Instance.GetToolTipIfExists<CellTypeTooltip>(cellType.CellTypeName,
                     "cellTypes");
 
-                tooltip?.MutationPointCost = GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier;
+                tooltip?.MutationPointCost = Math.Min(GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier,
+                    Constants.MAX_SINGLE_EDIT_MP_COST);
             }
 
-            control.MPCost = GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier;
+            control.MPCost = Math.Min(GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier,
+                Constants.MAX_SINGLE_EDIT_MP_COST);
         }
 
         bool clearSelection = false;
@@ -1116,7 +1119,8 @@ public partial class CellBodyPlanEditorComponent :
             environmentalTolerances);
 
         tooltip.DisplayName = cellType.CellTypeName;
-        tooltip.MutationPointCost = cellType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+        tooltip.MutationPointCost = Math.Min(cellType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier,
+            Constants.MAX_SINGLE_EDIT_MP_COST);
         tooltip.DisplayCellTypeBalances(balances);
         tooltip.UpdateATPBalance(energyBalanceInfo.TotalProduction, energyBalanceInfo.TotalConsumption);
 
@@ -1580,6 +1584,10 @@ public partial class CellBodyPlanEditorComponent :
         var newType = (CellType)GetEditedCellDataIfEdited(type).Clone();
         newType.CellTypeName = newTypeName;
 
+        // Remember what this split from for better MP result calculations (as otherwise matching intermediate cell
+        // types with minimum MP usage is very challenging)
+        newType.SplitFromTypeName = type.CellTypeName;
+
         var data = new DuplicateDeleteCellTypeData(newType, false);
         var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(DuplicateCellType, DeleteCellType, data);
         EnqueueAction(new CombinedEditorAction(action));
@@ -1638,7 +1646,8 @@ public partial class CellBodyPlanEditorComponent :
                 GD.Print($"First edit of cell type {type.CellTypeName}");
                 var control = entry.Value;
                 control.CellType = newType;
-                control.MPCost = newType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+                control.MPCost = Math.Min(newType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier,
+                    Constants.MAX_SINGLE_EDIT_MP_COST);
 
                 // Name shouldn't be able to change here
 
@@ -1646,7 +1655,9 @@ public partial class CellBodyPlanEditorComponent :
                 var tooltip = ToolTipManager.Instance.GetToolTipIfExists<CellTypeTooltip>(newType.CellTypeName,
                     "cellTypes");
 
-                tooltip?.MutationPointCost = newType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+                tooltip?.MutationPointCost =
+                    Math.Min(newType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier,
+                        Constants.MAX_SINGLE_EDIT_MP_COST);
 
                 control.ReportTypeChanged();
             }

@@ -1,15 +1,15 @@
 class_name GdUnitThreadContext
 extends RefCounted
 
-var _thread :Thread
-var _thread_name :String
-var _thread_id :int
-var _signal_collector :GdUnitSignalCollector
-var _execution_context :GdUnitExecutionContext
+var _thread: Thread
+var _thread_name: String
+var _thread_id: int
+var _signal_collector: GdUnitSignalCollector
+var _execution_context: GdUnitExecutionContext
 var _asserts := []
 
 
-func _init(thread :Thread = null) -> void:
+func _init(thread: Thread = null) -> void:
 	if thread != null:
 		_thread = thread
 		_thread_name = thread.get_meta("name")
@@ -29,11 +29,15 @@ func dispose() -> void:
 	_thread = null
 
 
+func terminate() -> void:
+	_execution_context.terminate()
+
+
 func clear_assert() -> void:
 	_asserts.clear()
 
 
-func set_assert(value :GdUnitAssert) -> void:
+func set_assert(value: GdUnitAssert) -> void:
 	if value != null:
 		_asserts.append(value)
 
@@ -42,7 +46,7 @@ func get_assert() -> GdUnitAssert:
 	return null if _asserts.is_empty() else _asserts[-1]
 
 
-func set_execution_context(context :GdUnitExecutionContext) -> void:
+func set_execution_context(context: GdUnitExecutionContext) -> void:
 	_execution_context = context
 
 

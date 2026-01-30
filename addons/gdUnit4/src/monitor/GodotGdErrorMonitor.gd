@@ -1,94 +1,103 @@
 class_name GodotGdErrorMonitor
 extends GdUnitMonitor
 
-var _godot_log_file: String
-var _eof: int
 var _report_enabled := false
-var _entries: Array[ErrorLogEntry] = []
+var _logger: Logger
+
+
+class GdUnitLogger extends Logger:
+	var _entries: Array[ErrorLogEntry] = []
+	var _line_number: int
+
+
+	func entries() -> Array[ErrorLogEntry]:
+		return _entries
+
+
+	func _log_error(function: String, file: String, line: int, message: String, rationale: String, editor_notify: bool, error_type: int, script_backtraces: Array[ScriptBacktrace]) -> void:
+		match error_type:
+			ErrorType.ERROR_TYPE_WARNING:
+				var stack_trace := _build_stack_trace(script_backtraces)
+				_entries.append(ErrorLogEntry.of_push_warning(file, _line_number, message, stack_trace))
+
+			ErrorType.ERROR_TYPE_ERROR:
+				var stack_trace := _build_stack_trace(script_backtraces)
+				_entries.append(ErrorLogEntry.of_push_error(file, _line_number, message, stack_trace))
+
+			ErrorType.ERROR_TYPE_SCRIPT:
+				var stack_trace := _build_stack_trace(script_backtraces)
+				_entries.append(ErrorLogEntry.of_script_error(file, _line_number, message, stack_trace))
+
+			ErrorType.ERROR_TYPE_SHADER:
+				pass
+			_:
+				prints("Unknwon log type", message)
+
+	func _log_message(message: String, error: bool) -> void:
+		pass
+
+	func _build_stack_trace(script_backtraces: Array[ScriptBacktrace]) -> PackedStringArray:
+		for sb in script_backtraces:
+			for frame in sb.get_frame_count():
+				# Find start of test stack
+				if sb.get_frame_file(frame) == "res://addons/gdUnit4/src/core/_TestCase.gd":
+					var stack_trace := PackedStringArray()
+					for test_case_frame in range(0, frame):
+						_line_number = sb.get_frame_line(test_case_frame)
+						stack_trace.append("	at %s:%s" % [sb.get_frame_file(test_case_frame), sb.get_frame_line(test_case_frame)])
+					return stack_trace
+		# if no stack trace collected, we in an await function call
+		var sb := script_backtraces[0]
+		return ["	at %s:%s" % [sb.get_frame_file(0), sb.get_frame_line(0)]]
 
 
 func _init() -> void:
-	super("GodotGdErrorMonitor")
-	_godot_log_file = GdUnitSettings.get_log_path()
+	super("GdUnitLoggerMonitor")
 	_report_enabled = _is_reporting_enabled()
+	_logger = GdUnitLogger.new()
+	OS.add_logger(_logger)
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		if _logger:
+			OS.remove_logger(_logger)
 
 
 func start() -> void:
-	var file := FileAccess.open(_godot_log_file, FileAccess.READ)
-	if file:
-		file.seek_end(0)
-		_eof = file.get_length()
+	clear_logs()
 
 
 func stop() -> void:
 	pass
 
 
+func log_entries() -> Array[ErrorLogEntry]:
+	return _logger.entries()
+
+
 func to_reports() -> Array[GdUnitReport]:
 	var reports_: Array[GdUnitReport] = []
 	if _report_enabled:
-		reports_.assign(_entries.map(_to_report))
-	_entries.clear()
+		reports_.assign(log_entries().map(_to_report))
+
 	return reports_
 
 
 static func _to_report(errorLog: ErrorLogEntry) -> GdUnitReport:
-	var failure := "%s\n\t%s\n%s %s" % [
+	var failure := """
+		%s
+		%s %s
+		%s""".dedent().trim_prefix("\n") % [
 		GdAssertMessages._error("Godot Runtime Error !"),
-		GdAssertMessages._colored_value(errorLog._details),
 		GdAssertMessages._error("Error:"),
-		GdAssertMessages._colored_value(errorLog._message)]
+		GdAssertMessages._colored_value(errorLog._message),
+		GdAssertMessages._colored(errorLog._details, GdAssertMessages.VALUE_COLOR)]
 	return GdUnitReport.new().create(GdUnitReport.ABORT, errorLog._line, failure)
 
 
-func scan(force_collect_reports := false) -> Array[ErrorLogEntry]:
-	await (Engine.get_main_loop() as SceneTree).process_frame
-	await (Engine.get_main_loop() as SceneTree).physics_frame
-	_entries.append_array(_collect_log_entries(force_collect_reports))
-	return _entries
-
-
-func erase_log_entry(entry: ErrorLogEntry) -> void:
-	_entries.erase(entry)
-
-
-func collect_full_logs() -> PackedStringArray:
-	await (Engine.get_main_loop() as SceneTree).process_frame
-	await (Engine.get_main_loop() as SceneTree).physics_frame
-
-	var file := FileAccess.open(_godot_log_file, FileAccess.READ)
-	file.seek(_eof)
-	var records := PackedStringArray()
-	while not file.eof_reached():
-		@warning_ignore("return_value_discarded")
-		records.append(file.get_line())
-
-	return records
-
-
-func _collect_log_entries(force_collect_reports: bool) -> Array[ErrorLogEntry]:
-	var file := FileAccess.open(_godot_log_file, FileAccess.READ)
-	if not file:
-		# Log file might not be available.
-		return []
-	file.seek(_eof)
-	var records := PackedStringArray()
-	while not file.eof_reached():
-		@warning_ignore("return_value_discarded")
-		records.append(file.get_line())
-	file.seek_end(0)
-	_eof = file.get_length()
-	var log_entries: Array[ErrorLogEntry]= []
-	var is_report_errors := force_collect_reports or _is_report_push_errors()
-	var is_report_script_errors := force_collect_reports or _is_report_script_errors()
-	for index in records.size():
-		if force_collect_reports:
-			log_entries.append(ErrorLogEntry.extract_push_warning(records, index))
-		if is_report_errors:
-			log_entries.append(ErrorLogEntry.extract_push_error(records, index))
-		if is_report_script_errors:
-			log_entries.append(ErrorLogEntry.extract_error(records, index))
-	return log_entries.filter(func(value: ErrorLogEntry) -> bool: return value != null )
+func clear_logs() -> void:
+	log_entries().clear()
 
 
 func _is_reporting_enabled() -> bool:

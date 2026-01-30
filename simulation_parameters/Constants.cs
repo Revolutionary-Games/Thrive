@@ -168,18 +168,12 @@ public static class Constants
     /// </summary>
     public const int CLOUDS_IN_ONE = 4;
 
-    public const int CLOUD_SQUARES_PER_SIDE = 3;
-    public const int CLOUD_EDGE_WIDTH = 2;
+    public const int CLOUD_PLANE_SQUARES_PER_SIDE = 3;
+    public const int CLOUD_PLANE_EDGE_WIDTH = 2;
 
-    // NOTE: these 4 constants need to match what is set up in CompoundCloudPlane.tscn
-    public const int CLOUD_WIDTH = 300;
-    public const int CLOUD_X_EXTENT = CLOUD_WIDTH * 2;
-    public const int CLOUD_HEIGHT = 300;
-
-    // This is cloud local Y, not world Y
-    public const int CLOUD_Y_EXTENT = CLOUD_HEIGHT * 2;
-
-    public const float CLOUD_Y_COORDINATE = 0;
+    // NOTE: these 2 constants need to match what is set up in CompoundCloudPlane.tscn
+    public const int CLOUD_SIZE = 300;
+    public const int CLOUD_EXTENT = CLOUD_SIZE * 2;
 
     public const float CLOUD_DIFFUSION_RATE = 0.007f;
 
@@ -1128,6 +1122,11 @@ public static class Constants
     public const int BASE_MUTATION_POINTS = 100;
 
     /// <summary>
+    ///   Used to limit single edit costs to allow doing them even at double the MP cost.
+    /// </summary>
+    public const int MAX_SINGLE_EDIT_MP_COST = 100;
+
+    /// <summary>
     ///   As mutation points are now calculated with floats, there can be situations where the player just barely
     ///   cannot afford something they should be able to afford, so we allow going negative by this much.
     /// </summary>
@@ -1139,6 +1138,9 @@ public static class Constants
 
     public const int ORGANELLE_REMOVE_COST = 10;
     public const int ORGANELLE_MOVE_COST = 5;
+    public const int ORGANELLE_CHEAPEST_COST = 20;
+
+    public const int CELL_REMOVE_COST = 5;
 
     public const string ORGANELLE_UPGRADE_SPECIAL_NONE = "none";
 

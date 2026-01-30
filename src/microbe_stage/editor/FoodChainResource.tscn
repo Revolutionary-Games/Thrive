@@ -1,22 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwftj3xdc7y4u"]
+[gd_scene format=3 uid="uid://dwftj3xdc7y4u"]
 
 [ext_resource type="Script" uid="uid://bwb53frl722nt" path="res://src/microbe_stage/editor/FoodChainResource.cs" id="1_y7o6i"]
 
-[node name="FoodChainResource" type="PanelContainer" node_paths=PackedStringArray("texture")]
+[node name="FoodChainResource" type="PanelContainer" unique_id=2094255956 node_paths=PackedStringArray("texture")]
 custom_minimum_size = Vector2(32, 32)
 offset_right = 32.0
 offset_bottom = 32.0
 script = ExtResource("1_y7o6i")
 texture = NodePath("MarginContainer/Icon")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=212563477]
 layout_mode = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 1
 theme_override_constants/margin_bottom = 1
 
-[node name="Icon" type="TextureRect" parent="MarginContainer"]
+[node name="Icon" type="TextureRect" parent="MarginContainer" unique_id=1493995647]
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5

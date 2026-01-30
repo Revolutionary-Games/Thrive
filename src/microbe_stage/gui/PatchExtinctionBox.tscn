@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://g70pm5ndiqf2"]
+[gd_scene format=3 uid="uid://g70pm5ndiqf2"]
 
 [ext_resource type="PackedScene" uid="uid://cmhetwsk3qbb7" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="3"]
 [ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="3_dudgs"]
@@ -37,7 +37,7 @@ _data = {
 &"FadeIn": SubResource("2")
 }
 
-[node name="PatchExtinctionBox" type="Control" node_paths=PackedStringArray("mapDrawer", "detailsPanel", "animationPlayer")]
+[node name="PatchExtinctionBox" type="Control" unique_id=1927193264 node_paths=PackedStringArray("mapDrawer", "detailsPanel", "animationPlayer")]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -50,31 +50,31 @@ mapDrawer = NodePath("PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBox
 detailsPanel = NodePath("PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer2/PatchDetailsPanel")
 animationPlayer = NodePath("AnimationPlayer")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1505982910]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme_override_styles/panel = SubResource("1")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=275510000]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="PatchExtinctionBoxMenu" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="PatchExtinctionBoxMenu" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=2021934407]
 layout_mode = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu"]
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu" unique_id=1872022593]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.2, 0.2, 1)
 text = "PATCH_EXTINCTION_CAPITAL"
 label_settings = ExtResource("3_xy8f2")
 horizontal_alignment = 1
 
-[node name="Message" type="Label" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu"]
+[node name="Message" type="Label" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu" unique_id=1259268067]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "PATCH_EXTINCTION_BOX_TEXT"
@@ -82,72 +82,70 @@ label_settings = ExtResource("3_dudgs")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu" unique_id=643742567]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer" unique_id=977438007]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_styles/separator = SubResource("4")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer" unique_id=264459988]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_bottom = 45
 
-[node name="MapPanel" type="PanelContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer"]
+[node name="MapPanel" type="PanelContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer" unique_id=1250849329]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("8")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel" unique_id=101581043]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="DraggableScrollContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer" node_paths=PackedStringArray("content") instance=ExtResource("7")]
+[node name="DraggableScrollContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer" unique_id=1973077532 node_paths=PackedStringArray("content") instance=ExtResource("7")]
 layout_mode = 2
 content = NodePath("PatchMapDrawer")
 
-[node name="PatchMapDrawer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer/DraggableScrollContainer" instance=ExtResource("3")]
+[node name="PatchMapDrawer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer/DraggableScrollContainer" unique_id=362923573 instance=ExtResource("3")]
 custom_minimum_size = Vector2(1500, 1500)
 layout_mode = 2
 DrawDefaultMapIfEmpty = false
 MonochromeMaterial = SubResource("3")
 
-[node name="VBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer"]
+[node name="VBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer" unique_id=1408197190]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 2
 
-[node name="FindCurrentPatchButton" type="Button" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer/VBoxContainer"]
+[node name="FindCurrentPatchButton" type="Button" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer/VBoxContainer" unique_id=1318772323]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "FIND_CURRENT_PATCH"
 
-[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer" unique_id=547947761]
 layout_mode = 2
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_bottom = 45
 
-[node name="PatchDetailsPanel" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer2" instance=ExtResource("5")]
+[node name="PatchDetailsPanel" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer2" unique_id=1404834603 instance=ExtResource("5")]
 layout_mode = 2
 MigrationManagerEnabled = false
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer" unique_id=515858795]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_styles/separator = SubResource("4")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_818a6")
-}
-autoplay = "FadeIn"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=969052940]
+libraries/ = SubResource("AnimationLibrary_818a6")
+autoplay = &"FadeIn"
 
 [connection signal="OnCurrentPatchCentered" from="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer" to="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer/DraggableScrollContainer" method="CenterTo"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer/VBoxContainer/FindCurrentPatchButton" to="." method="OnFindCurrentPatchPressed"]

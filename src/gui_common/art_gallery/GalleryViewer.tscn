@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dt2b7uvqkvrng"]
+[gd_scene format=3 uid="uid://dt2b7uvqkvrng"]
 
 [ext_resource type="PackedScene" uid="uid://c4i1ie8aqbswd" path="res://src/gui_common/art_gallery/GalleryCard.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="11"]
 
-[node name="GalleryViewer" node_paths=PackedStringArray("cardTile", "tabButtons", "assetsCategoryDropdown", "slideshowButton") instance=ExtResource("2")]
+[node name="GalleryViewer" unique_id=1713257995 node_paths=PackedStringArray("cardTile", "tabButtons", "assetsCategoryDropdown", "slideshowButton") instance=ExtResource("2")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -34,45 +34,45 @@ Exclusive = true
 PreventsMouseCaptureWhileOpen = false
 FullRect = true
 
-[node name="MarginContainer" type="MarginContainer" parent="." index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="." index="0" unique_id=1357491910]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme_override_constants/margin_left = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" index="0" unique_id=1957538489]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TabButtons" parent="MarginContainer/VBoxContainer" index="0" instance=ExtResource("11")]
+[node name="TabButtons" parent="MarginContainer/VBoxContainer" index="0" unique_id=1085801597 instance=ExtResource("11")]
 layout_mode = 2
 TabsLoop = true
 TabChangeTriggerMethod = 0
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" index="1"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" index="1" unique_id=994235142]
 layout_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer" index="2"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer" index="2" unique_id=1415957727]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3" index="0"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3" index="0" unique_id=754716604]
 layout_mode = 2
 text = "FILTER_ITEMS_BY_CATEGORY_COLON"
 label_settings = ExtResource("8_3eot7")
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer3" index="1"]
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer3" index="1" unique_id=1585661191]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer" index="3"]
+[node name="HBoxContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer" index="3" unique_id=1972615155]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2" index="0"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2" index="0" unique_id=1513574834]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/ScrollContainer" index="0"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/ScrollContainer" index="0" unique_id=1512683238]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -80,32 +80,32 @@ theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 columns = 7
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" index="4"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" index="4" unique_id=1630236826]
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer" index="0"]
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer" index="0" unique_id=879676524]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CloseButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" index="1"]
+[node name="CloseButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" index="1" unique_id=1687914819]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 
-[node name="SlideshowButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" index="2"]
+[node name="SlideshowButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" index="2" unique_id=581328133]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "SLIDESHOW"
 
-[node name="FocusGrabber" parent="MarginContainer/VBoxContainer/HBoxContainer" index="3" instance=ExtResource("9")]
+[node name="FocusGrabber" parent="MarginContainer/VBoxContainer/HBoxContainer" index="3" unique_id=2103708491 instance=ExtResource("9")]
 layout_mode = 2
 size_flags_horizontal = 3
 Priority = 1
 NodeToGiveFocusTo = NodePath("../CloseButton")
 
-[node name="SlideScreen" parent="." index="1" instance=ExtResource("3")]
+[node name="SlideScreen" parent="." index="1" unique_id=501191649 instance=ExtResource("3")]
 layout_mode = 1
 
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer3/OptionButton" to="." method="OnCategorySelected"]

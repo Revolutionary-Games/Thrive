@@ -1,30 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyky307bhys7i"]
+[gd_scene format=3 uid="uid://cyky307bhys7i"]
 
 [ext_resource type="PackedScene" uid="uid://dj12vy45xfnoj" path="res://src/gui_common/PlaybackControls.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://cuga0i232g6bu" path="res://assets/textures/gui/bevel/musicNote.png" id="2"]
 [ext_resource type="Script" uid="uid://ck7qeqnf21dri" path="res://src/gui_common/art_gallery/GalleryCardAudio.cs" id="3"]
 [ext_resource type="PackedScene" uid="uid://c4i1ie8aqbswd" path="res://src/gui_common/art_gallery/GalleryCard.tscn" id="4"]
 
-[node name="GalleryCardAudio" node_paths=PackedStringArray("playbackControls") instance=ExtResource("4")]
+[node name="GalleryCardAudio" unique_id=410366586 node_paths=PackedStringArray("playbackControls") instance=ExtResource("4")]
 script = ExtResource("3")
 playbackControls = NodePath("MarginContainer/VBoxContainer/MarginContainer/PlaybackControls")
 MissingTexture = ExtResource("2")
 CanBeShownInASlideshow = false
 
-[node name="MarginContainer" parent="MarginContainer/VBoxContainer" index="1"]
+[node name="MarginContainer" parent="MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(873903597) index="1" unique_id=2046878213]
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 
-[node name="PreviewMargin" parent="MarginContainer/VBoxContainer/MarginContainer" index="0"]
+[node name="PreviewMargin" parent="MarginContainer/VBoxContainer/MarginContainer" index="0" unique_id=1480479526]
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 35
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 35
 
-[node name="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/PreviewMargin" index="0"]
+[node name="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/PreviewMargin" index="0" unique_id=1660833328]
 stretch_mode = 5
 
-[node name="PlaybackControls" parent="MarginContainer/VBoxContainer/MarginContainer" index="1" instance=ExtResource("1")]
+[node name="PlaybackControls" parent="MarginContainer/VBoxContainer/MarginContainer" index="1" unique_id=1395195995 instance=ExtResource("1")]
 layout_mode = 2
 
 [connection signal="Started" from="MarginContainer/VBoxContainer/MarginContainer/PlaybackControls" to="." method="OnStarted"]
