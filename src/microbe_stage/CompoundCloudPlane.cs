@@ -40,7 +40,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     private readonly StringName uvOffsetParameterName = new("UVOffset");
 
     // Do never modify this dictionary after construction, it is thread unsafe. This dictionary contains 81 values
-    private readonly Dictionary<int, Vector2> cachedWorldShiftVectors;
+    private Dictionary<int, Vector2> cachedWorldShiftVectors;
 
     private CompoundDefinition?[] compoundDefinitions = null!;
 
@@ -59,11 +59,6 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     ///   To allow multithreaded operations, a cached world position is needed
     /// </summary>
     private Vector2 cachedWorldPosition;
-
-    public CompoundCloudPlane()
-    {
-        cachedWorldShiftVectors = PrecalculateWorldShiftVectors();
-    }
 
     public int CloudResolution { get; private set; }
 
@@ -254,6 +249,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             OldDensity = new Vector4[PlaneSize, PlaneSize];
             SetMaterialUVForPosition();
         }
+        
+        cachedWorldShiftVectors = PrecalculateWorldShiftVectors();
     }
 
     /// <summary>
