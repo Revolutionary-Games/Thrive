@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Godot;
@@ -39,7 +39,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     private readonly StringName brightnessParameterName = new("BrightnessMultiplier");
     private readonly StringName uvOffsetParameterName = new("UVOffset");
 
-    private ImmutableDictionary<int, Vector2> cachedWorldShiftVectors = null!;
+    // Do never modify this dictionary after construction, it is thread unsafe. This dictionary contains 81 values
+    private readonly Dictionary<int, Vector2> cachedWorldShiftVectors;
 
     private CompoundDefinition?[] compoundDefinitions = null!;
 
@@ -58,6 +59,11 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     ///   To allow multithreaded operations, a cached world position is needed
     /// </summary>
     private Vector2 cachedWorldPosition;
+
+    public CompoundCloudPlane()
+    {
+        cachedWorldShiftVectors = PrecalculateWorldShiftVectors();
+    }
 
     public int CloudResolution { get; private set; }
 
@@ -248,8 +254,6 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             OldDensity = new Vector4[PlaneSize, PlaneSize];
             SetMaterialUVForPosition();
         }
-
-        PrecalculateWorldShiftVectors();
     }
 
     /// <summary>
@@ -387,6 +391,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             for (var j = 0; j < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++j)
             {
                 var y0 = j * planeChunkSize;
+
+                // TODO: fix task allocations
                 var task = new Task(() => PartialDiffuseCenter(x0, y0, planeChunkSize, delta));
                 queue.Add(task);
             }
@@ -408,6 +414,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             for (var j = 0; j < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++j)
             {
                 var y0 = j * planeChunkSize;
+
+                // TODO: fix task allocations
                 var task = new Task(() => PartialAdvect(x0, y0, planeChunkSize, delta));
                 queue.Add(task);
             }
@@ -428,6 +436,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             for (var j = 0; j < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++j)
             {
                 var y0 = j * planeChunkSize;
+
+                // TODO: fix task allocations
                 var task = new Task(() => PartialUpdateTextureImage(x0, y0, planeChunkSize, planeChunkSize));
                 queue.Add(task);
             }
@@ -864,6 +874,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int GetWorldShiftKey(int x0, int y0, int playerX, int playerY)
     {
+        // This is safe as long as the values are max 8 bit long, otherwise they will collide
         return x0 | y0 << 8 | playerX << 16 | playerY << 24;
     }
 
@@ -924,7 +935,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         }
     }
 
-    private void PrecalculateWorldShiftVectors()
+    private Dictionary<int, Vector2> PrecalculateWorldShiftVectors()
     {
         var shiftCache = new Dictionary<int, Vector2>(81);
         int worldShift = Constants.CLOUD_SIZE / Constants.CLOUD_PLANE_SQUARES_PER_SIDE * CloudResolution;
@@ -955,14 +966,21 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             }
         }
 
-        cachedWorldShiftVectors = shiftCache.ToImmutableDictionary();
-        GD.Print(cachedWorldShiftVectors.Count);
+        return shiftCache;
     }
 
     private Vector2 GetWorldPositionForAdvection(int x0, int y0)
     {
         var key = GetWorldShiftKey(x0, y0, playersPosition.X, playersPosition.Y);
-        return cachedWorldPosition + cachedWorldShiftVectors.GetValueOrDefault(key, new Vector2(0, 0));
+        ref var cached = ref CollectionsMarshal.GetValueRefOrNullRef(cachedWorldShiftVectors, key);
+        if (!Unsafe.IsNullRef(ref cached))
+            return cachedWorldPosition + cached;
+
+#if DEBUG
+        throw new ArgumentException("Position is impossible for cloud world shift lookup");
+#else
+        return cachedWorldPosition;
+#endif
     }
 
     private int GetEdgeShift(int coord, int playerPos)
@@ -980,7 +998,6 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         var resolution = CloudResolution;
         var worldPos = GetWorldPositionForAdvection(x0, y0);
 
-        // TODO: przeniesc graniczny warunkek?
         for (int x = x0; x < x0 + size; ++x)
         {
             var worldX = worldPos.X + x * resolution;
@@ -990,6 +1007,9 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                 var worldY = worldPos.Y + y * resolution;
 
                 var oldDensity = OldDensity[x, y];
+
+                // This is better for performance than checking length squared of oldDensity although
+                // might cause issues if for some reason density would end up with negative value
                 if (oldDensity.X + oldDensity.Y + oldDensity.Z + oldDensity.W < 1)
                     continue;
 
