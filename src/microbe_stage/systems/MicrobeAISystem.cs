@@ -477,8 +477,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             isIronEater = false;
 
         // If there are no threats, look for a chunk to eat
-        // TODO: still consider engulfing things if we're in a colony that can engulf (has engulfer cells)
-        if (cellProperties.MembraneType.CanEngulf)
+        if (cellProperties.MembraneType.CanEngulf || cellProperties.CanEngulfInColony(in entity))
         {
             var targetChunk = GetNearestChunkItem(in entity, ref engulfer, ref control, ref position, compounds,
                 speciesFocus, speciesOpportunism, random, isIronEater, strain, out var isChunkBigIron);
