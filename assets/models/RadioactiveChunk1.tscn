@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://oq2aawq8xamx"]
+[gd_scene format=3 uid="uid://oq2aawq8xamx"]
 
 [ext_resource type="Shader" uid="uid://do4akofb50cqg" path="res://shaders/EmissiveChunk.gdshader" id="1_mg4le"]
 [ext_resource type="Texture2D" uid="uid://chqec76b7yinx" path="res://assets/textures/RadioactiveChunk1_normal.png" id="2_bg0yx"]
@@ -90,11 +90,11 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_d5c6a")
 size = Vector2(40, 40)
 
-[node name="RadioactiveChunk" type="MeshInstance3D"]
+[node name="RadioactiveChunk" type="MeshInstance3D" unique_id=215547241]
 material_override = SubResource("ShaderMaterial_rmgh8")
 mesh = ExtResource("6_pkbv3")
 
-[node name="GlowParticles" type="GPUParticles3D" parent="."]
+[node name="GlowParticles" type="GPUParticles3D" parent="." unique_id=779868129]
 process_mode = 3
 transform = Transform3D(1, -9.68575e-08, 0, -5.96046e-08, 1, -7.45058e-09, -5.96046e-08, -7.45058e-09, 1, 0, 0, 0)
 amount = 5

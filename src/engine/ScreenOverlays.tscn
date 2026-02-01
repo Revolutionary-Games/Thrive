@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmw436s1ej6de"]
+[gd_scene format=3 uid="uid://bmw436s1ej6de"]
 
 [ext_resource type="PackedScene" uid="uid://c10c7kaxjt7xi" path="res://src/engine/ScreenFilter.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://woqh47yetqtm" path="res://src/saving/SaveStatusOverlay.tscn" id="2"]
@@ -9,17 +9,17 @@
 [ext_resource type="PackedScene" uid="uid://c4dyrcb6l1u3o" path="res://src/engine/DebugOverlays.tscn" id="7"]
 [ext_resource type="Script" uid="uid://lsmrjt7il0xb" path="res://src/gui_common/TransitionManager.cs" id="8"]
 
-[node name="ScreenOverlays" type="Node"]
+[node name="ScreenOverlays" type="Node" unique_id=1602586779]
 process_mode = 3
 process_priority = 2000
 
-[node name="NormalOverlays" type="CanvasLayer" parent="."]
+[node name="NormalOverlays" type="CanvasLayer" parent="." unique_id=265471570]
 layer = 125
 
-[node name="LoadingScreen" parent="NormalOverlays" instance=ExtResource("3")]
+[node name="LoadingScreen" parent="NormalOverlays" unique_id=163351852 instance=ExtResource("3")]
 visible = false
 
-[node name="TransitionManager" type="Control" parent="NormalOverlays"]
+[node name="TransitionManager" type="Control" parent="NormalOverlays" unique_id=1941417777]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -30,24 +30,24 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("8")
 
-[node name="SaveStatusOverlay" parent="NormalOverlays" instance=ExtResource("2")]
+[node name="SaveStatusOverlay" parent="NormalOverlays" unique_id=943859162 instance=ExtResource("2")]
 visible = false
 
-[node name="QuickLoad" parent="NormalOverlays" instance=ExtResource("5")]
+[node name="QuickLoad" parent="NormalOverlays" unique_id=835076305 instance=ExtResource("5")]
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("6")
 
-[node name="OverlaysOnTopOfModals" type="CanvasLayer" parent="."]
+[node name="OverlaysOnTopOfModals" type="CanvasLayer" parent="." unique_id=941284562]
 layer = 127
 
-[node name="DebugOverlay" parent="OverlaysOnTopOfModals" instance=ExtResource("7")]
+[node name="DebugOverlay" parent="OverlaysOnTopOfModals" unique_id=470426416 instance=ExtResource("7")]
 
-[node name="Effects" type="CanvasLayer" parent="."]
+[node name="Effects" type="CanvasLayer" parent="." unique_id=2004192704]
 layer = 128
 
-[node name="ScreenFilter" parent="Effects" instance=ExtResource("1")]
+[node name="ScreenFilter" parent="Effects" unique_id=817337921 instance=ExtResource("1")]
 visible = false
 
-[node name="ColourblindScreenFilter" parent="Effects" instance=ExtResource("4")]
+[node name="ColourblindScreenFilter" parent="Effects" unique_id=802848561 instance=ExtResource("4")]
 visible = false

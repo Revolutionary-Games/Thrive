@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://4m6cgv0wtsi1"]
+[gd_scene format=3 uid="uid://4m6cgv0wtsi1"]
 
 [ext_resource type="Texture2D" uid="uid://db8kib2sy8ytd" path="res://src/microbe_stage/particles/embergradient.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://bb51glw64iqe2" path="res://assets/textures/snowflake.png" id="2"]
@@ -36,7 +36,7 @@ color_ramp = ExtResource("1")
 
 [sub_resource type="QuadMesh" id="3"]
 
-[node name="Bathypelagic&seafloor" type="GPUParticles3D"]
+[node name="Bathypelagic&seafloor" type="GPUParticles3D" unique_id=1416510980]
 process_mode = 1
 material_override = SubResource("1")
 amount = 65

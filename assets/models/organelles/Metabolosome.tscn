@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://clbtuexjat3kg"]
+[gd_scene format=3 uid="uid://clbtuexjat3kg"]
 
 [ext_resource type="Texture2D" uid="uid://c7edib5xumkdm" path="res://assets/textures/metabolosome.png" id="2"]
 [ext_resource type="Shader" uid="uid://bpdtg8smolq32" path="res://shaders/OrganelleTransparent.gdshader" id="3"]
@@ -20,7 +20,7 @@ shader_parameter/growColor = Color(0.486275, 0.360784, 0.360784, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.02
 
-[node name="Metabolosome" type="MeshInstance3D"]
+[node name="Metabolosome" type="MeshInstance3D" unique_id=1447300321]
 transform = Transform3D(0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_8spi2")
 mesh = ExtResource("4_uralq")

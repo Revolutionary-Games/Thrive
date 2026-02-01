@@ -555,8 +555,6 @@ public partial class CellEditorComponent :
         cytoplasm = SimulationParameters.Instance.GetOrganelleType("cytoplasm");
         chemoSynthesizingProteins = SimulationParameters.Instance.GetOrganelleType("chemoSynthesizingProteins");
 
-        SetupMicrobePartSelections();
-
         ApplySelectionMenuTab();
         RegisterTooltips();
     }
@@ -580,6 +578,9 @@ public partial class CellEditorComponent :
             // Endosymbiosis is not managed through this component in multicellular
             endosymbiosisButton.Visible = false;
         }
+
+        // These tooltip updates are now here as they take current effective MP costs into account to write into them
+        SetupMicrobePartSelections();
 
         // Visual simulation is needed very early when loading a save
         previewSimulation = new MicrobeVisualOnlySimulation();
@@ -703,7 +704,7 @@ public partial class CellEditorComponent :
                 }
             }
         }
-        else
+        else if (Editor.EditorReady)
         {
             CheckRunningAutoEvoPrediction();
         }
@@ -992,6 +993,7 @@ public partial class CellEditorComponent :
         CalculateEnergyAndCompoundBalance(properties.ModifiableOrganelles.Organelles, properties.MembraneType,
             Editor.CurrentPatch.Biome);
 
+        // Checking unlock conditions can happen safely only after the selection buttons are set up
         UpdateOrganelleUnlockTooltips(true);
 
         UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
@@ -1453,6 +1455,13 @@ public partial class CellEditorComponent :
             {
                 PlayHexPlacementSound();
                 break;
+            }
+
+            // If placed a unique organelle successfully, clear the placement action
+            if (data is OrganellePlacementActionData { PlacedHex.Definition.Unique: true })
+            {
+                GD.Print("Clearing to be placed organelle type as we placed something unique");
+                DeselectOrganelleToPlace();
             }
         }
 
@@ -2101,23 +2110,21 @@ public partial class CellEditorComponent :
                 conditionsData);
         }
 
-        var energyBalance = new EnergyBalanceInfoFull();
-        energyBalance.SetupTrackingForRequiredCompounds();
+        energyBalanceInfo = new EnergyBalanceInfoFull();
+        energyBalanceInfo.SetupTrackingForRequiredCompounds();
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organelles);
 
         ProcessSystem.ComputeEnergyBalanceFull(organelles, conditionsData, CalculateLatestTolerances(), membrane,
             maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
-            organismStatisticsPanel.CompoundAmountType, null, energyBalance);
+            organismStatisticsPanel.CompoundAmountType, null, energyBalanceInfo);
 
-        energyBalanceInfo = energyBalance;
-
-        organismStatisticsPanel.UpdateEnergyBalance(energyBalance);
+        organismStatisticsPanel.UpdateEnergyBalance(energyBalanceInfo);
 
         if (Visible)
         {
             TutorialState?.SendEvent(TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged,
-                new EnergyBalanceEventArgs(energyBalance), this);
+                new EnergyBalanceEventArgs(energyBalanceInfo), this);
         }
 
         float nominalStorage = 0;
@@ -2126,20 +2133,20 @@ public partial class CellEditorComponent :
         // This takes balanceType into account as well, https://github.com/Revolutionary-Games/Thrive/issues/2068
         var compoundBalanceData =
             CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
-                organismStatisticsPanel.CompoundAmountType, organelles, conditionsData, energyBalance,
+                organismStatisticsPanel.CompoundAmountType, organelles, conditionsData, energyBalanceInfo,
                 ref specificStorages, ref nominalStorage);
 
         UpdateCompoundBalances(compoundBalanceData);
 
         // TODO: should this skip on being affected by the resource limited?
         var nightBalanceData = CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
-            CompoundAmountType.Minimum, organelles, conditionsData, energyBalance, ref specificStorages,
+            CompoundAmountType.Minimum, organelles, conditionsData, energyBalanceInfo, ref specificStorages,
             ref nominalStorage);
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
 
-        HandleProcessList(energyBalance, conditionsData);
+        HandleProcessList(energyBalanceInfo, conditionsData);
     }
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
@@ -2318,16 +2325,16 @@ public partial class CellEditorComponent :
 
     private CombinedEditorAction? CreateAddOrganelleAction(OrganelleTemplate organelle)
     {
-        // 1 - you put a unique organelle (means only one instance allowed) but you already have it
-        // 2 - you put an organelle that requires nucleus but you don't have one
+        // 1 - you put a unique organelle (means only one instance allowed), but you already have it
+        // 2 - you put an organelle that requires nucleus, but you don't have one
         if ((organelle.Definition.Unique && HasOrganelle(organelle.Definition)) ||
             (organelle.Definition.RequiresNucleus && !HasNucleus))
         {
             return null;
         }
 
-        if (organelle.Definition.Unique)
-            DeselectOrganelleToPlace();
+        // This used to deselect things if we created an action for a unique organelle, however, that could trigger
+        // on placement fail so that code is now on action success callback
 
         var replacedCytoplasmActions = GetReplacedCytoplasmRemoveAction([organelle]).Cast<EditorAction>().ToList();
 
@@ -2682,10 +2689,10 @@ public partial class CellEditorComponent :
             control.PartIcon = organelle.LoadedIcon ?? throw new Exception("Organelle with no icon");
             control.PartName = organelle.UntranslatedName;
             control.SelectionGroup = organelleButtonGroup;
-            control.MPCost = organelle.MPCost;
+            control.MPCost = Math.Min(organelle.MPCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
             control.Name = organelle.InternalName;
 
-            // Special case with registering the tooltip here for item with no associated organelle
+            // Special case with registering the tooltip here for an item with no associated organelle
             control.RegisterToolTipForControl(organelle.InternalName, "organelleSelection");
 
             group.AddItem(control);
@@ -2695,7 +2702,7 @@ public partial class CellEditorComponent :
             if (organelle.Unimplemented)
                 continue;
 
-            // Only add items with valid organelles to dictionary
+            // Only add items with valid organelles to the dictionary
             placeablePartSelectionElements.Add(organelle, control);
 
             control.Connect(MicrobePartSelection.SignalName.OnPartSelected,
@@ -2708,7 +2715,7 @@ public partial class CellEditorComponent :
             control.PartIcon = membraneType.LoadedIcon;
             control.PartName = membraneType.UntranslatedName;
             control.SelectionGroup = membraneButtonGroup;
-            control.MPCost = membraneType.EditorCost;
+            control.MPCost = Math.Min(membraneType.EditorCost * CostMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
             control.Name = membraneType.InternalName;
 
             control.RegisterToolTipForControl(membraneType.InternalName, "membraneSelection");

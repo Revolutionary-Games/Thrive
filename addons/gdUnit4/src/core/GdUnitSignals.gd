@@ -33,9 +33,9 @@ signal gdunit_client_connected(client_id: int)
 signal gdunit_client_disconnected(client_id: int)
 
 
-## Emitted when a client terminates unexpectedly.
+## Emitted when a the user stops (terminates) the current test session
 @warning_ignore("unused_signal")
-signal gdunit_client_terminated()
+signal gdunit_test_session_terminate()
 
 
 ## Emitted when a test execution event occurs.[br]

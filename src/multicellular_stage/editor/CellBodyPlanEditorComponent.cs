@@ -128,6 +128,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private bool showGrowthOrderNumbers;
 
+    private EnergyBalanceInfoFull? energyBalanceInfo;
+
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
 
@@ -1013,7 +1015,8 @@ public partial class CellBodyPlanEditorComponent :
                 }
 
                 tooltip.Name = cellType.CellTypeName;
-                tooltip.MutationPointCost = GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier;
+                tooltip.MutationPointCost = Math.Min(GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier,
+                    Constants.MAX_SINGLE_EDIT_MP_COST);
 
                 control.RegisterToolTipForControl(tooltip, true);
             }
@@ -1022,10 +1025,12 @@ public partial class CellBodyPlanEditorComponent :
                 var tooltip = ToolTipManager.Instance.GetToolTipIfExists<CellTypeTooltip>(cellType.CellTypeName,
                     "cellTypes");
 
-                tooltip?.MutationPointCost = GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier;
+                tooltip?.MutationPointCost = Math.Min(GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier,
+                    Constants.MAX_SINGLE_EDIT_MP_COST);
             }
 
-            control.MPCost = GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier;
+            control.MPCost = Math.Min(GetEditedCellDataIfEdited(cellType).MPCost * costMultiplier,
+                Constants.MAX_SINGLE_EDIT_MP_COST);
         }
 
         bool clearSelection = false;
@@ -1095,8 +1100,8 @@ public partial class CellBodyPlanEditorComponent :
         // Energy and compound balance calculations
         var balances = new Dictionary<Compound, CompoundBalance>();
 
-        var energyBalance = new EnergyBalanceInfoFull();
-        energyBalance.SetupTrackingForRequiredCompounds();
+        energyBalanceInfo = new EnergyBalanceInfoFull();
+        energyBalanceInfo.SetupTrackingForRequiredCompounds();
 
         bool moving = organismStatisticsPanel.CalculateBalancesWhenMoving;
 
@@ -1107,16 +1112,17 @@ public partial class CellBodyPlanEditorComponent :
             environmentalTolerances,
             cellType.MembraneType,
             maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
-            organismStatisticsPanel.CompoundAmountType, null, energyBalance);
+            organismStatisticsPanel.CompoundAmountType, null, energyBalanceInfo);
 
         AddCellTypeCompoundBalance(balances, cellType.ModifiableOrganelles, organismStatisticsPanel.BalanceDisplayType,
-            organismStatisticsPanel.CompoundAmountType, Editor.CurrentPatch.Biome, energyBalance,
+            organismStatisticsPanel.CompoundAmountType, Editor.CurrentPatch.Biome, energyBalanceInfo,
             environmentalTolerances);
 
         tooltip.DisplayName = cellType.CellTypeName;
-        tooltip.MutationPointCost = cellType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+        tooltip.MutationPointCost = Math.Min(cellType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier,
+            Constants.MAX_SINGLE_EDIT_MP_COST);
         tooltip.DisplayCellTypeBalances(balances);
-        tooltip.UpdateATPBalance(energyBalance.TotalProduction, energyBalance.TotalConsumption);
+        tooltip.UpdateATPBalance(energyBalanceInfo.TotalProduction, energyBalanceInfo.TotalConsumption);
 
         tooltip.UpdateHealthIndicator(MicrobeInternalCalculations.CalculateHealth(environmentalTolerances,
             cellType.MembraneType, cellType.MembraneRigidity));
@@ -1134,9 +1140,9 @@ public partial class CellBodyPlanEditorComponent :
         tooltip.UpdateDigestionSpeedIndicator(
             MicrobeInternalCalculations.CalculateTotalDigestionSpeed(cellType.ModifiableOrganelles));
 
-        button.ShowInsufficientATPWarning = energyBalance.TotalProduction < energyBalance.TotalConsumption;
+        button.ShowInsufficientATPWarning = energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumption;
 
-        if (energyBalance.TotalConsumption > energyBalance.TotalProduction
+        if (energyBalanceInfo.TotalConsumption > energyBalanceInfo.TotalProduction
             && cellCount > 0)
         {
             // This cell is present in the colony and has a negative energy balance
@@ -1257,8 +1263,8 @@ public partial class CellBodyPlanEditorComponent :
                 conditionsData);
         }
 
-        var energyBalance = new EnergyBalanceInfoFull();
-        energyBalance.SetupTrackingForRequiredCompounds();
+        energyBalanceInfo = new EnergyBalanceInfoFull();
+        energyBalanceInfo.SetupTrackingForRequiredCompounds();
 
         // Cells can't individually move in the body plan, so this probably makes sense
         var maximumMovementDirection =
@@ -1279,7 +1285,7 @@ public partial class CellBodyPlanEditorComponent :
             ProcessSystem.ComputeEnergyBalanceFull(hex.Data!.ModifiableOrganelles, conditionsData,
                 environmentalTolerances, hex.Data.MembraneType,
                 maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
-                organismStatisticsPanel.CompoundAmountType, null, energyBalance);
+                organismStatisticsPanel.CompoundAmountType, null, energyBalanceInfo);
         }
 
         // Passing those variables by refs to the following functions to reuse them
@@ -1290,14 +1296,14 @@ public partial class CellBodyPlanEditorComponent :
         var compoundBalanceData =
             CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
                 organismStatisticsPanel.CompoundAmountType,
-                cells, conditionsData, energyBalance,
+                cells, conditionsData, energyBalanceInfo,
                 ref specificStorages, ref nominalStorage);
 
         UpdateCompoundBalances(compoundBalanceData);
 
         // TODO: should this skip on being affected by the resource limited?
         var nightBalanceData = CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
-            CompoundAmountType.Minimum, cells, conditionsData, energyBalance, ref specificStorages,
+            CompoundAmountType.Minimum, cells, conditionsData, energyBalanceInfo, ref specificStorages,
             ref nominalStorage);
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
@@ -1305,7 +1311,7 @@ public partial class CellBodyPlanEditorComponent :
 
         // TODO: find out why this method used to take the cells parameter but now causes a warning so it is removed
         // HandleProcessList( cells, energyBalance, conditionsData);
-        HandleProcessList(energyBalance, conditionsData);
+        HandleProcessList(energyBalanceInfo, conditionsData);
     }
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
@@ -1578,6 +1584,10 @@ public partial class CellBodyPlanEditorComponent :
         var newType = (CellType)GetEditedCellDataIfEdited(type).Clone();
         newType.CellTypeName = newTypeName;
 
+        // Remember what this split from for better MP result calculations (as otherwise matching intermediate cell
+        // types with minimum MP usage is very challenging)
+        newType.SplitFromTypeName = type.CellTypeName;
+
         var data = new DuplicateDeleteCellTypeData(newType, false);
         var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(DuplicateCellType, DeleteCellType, data);
         EnqueueAction(new CombinedEditorAction(action));
@@ -1636,7 +1646,8 @@ public partial class CellBodyPlanEditorComponent :
                 GD.Print($"First edit of cell type {type.CellTypeName}");
                 var control = entry.Value;
                 control.CellType = newType;
-                control.MPCost = newType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+                control.MPCost = Math.Min(newType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier,
+                    Constants.MAX_SINGLE_EDIT_MP_COST);
 
                 // Name shouldn't be able to change here
 
@@ -1644,7 +1655,9 @@ public partial class CellBodyPlanEditorComponent :
                 var tooltip = ToolTipManager.Instance.GetToolTipIfExists<CellTypeTooltip>(newType.CellTypeName,
                     "cellTypes");
 
-                tooltip?.MutationPointCost = newType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+                tooltip?.MutationPointCost =
+                    Math.Min(newType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier,
+                        Constants.MAX_SINGLE_EDIT_MP_COST);
 
                 control.ReportTypeChanged();
             }

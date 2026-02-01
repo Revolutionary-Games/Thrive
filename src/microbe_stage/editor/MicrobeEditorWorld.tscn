@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://hxrn73ihp8r4"]
+[gd_scene format=3 uid="uid://hxrn73ihp8r4"]
 
 [ext_resource type="PackedScene" uid="uid://cpxcni1cii4k8" path="res://assets/models/EditorArrow.tscn" id="1"]
 [ext_resource type="Shader" uid="uid://srqfmfn6rh6j" path="res://shaders/EditorHexGrid.gdshader" id="3_yr5pr"]
@@ -16,23 +16,23 @@ shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/lineWidth = 0.02
 shader_parameter/edgeLength = 1.299
 
-[node name="MicrobeEditorWorld" type="Node"]
+[node name="MicrobeEditorWorld" type="Node" unique_id=619763701]
 
-[node name="PrimaryCamera" parent="." instance=ExtResource("5")]
+[node name="PrimaryCamera" parent="." unique_id=945110176 instance=ExtResource("5")]
 DefaultCameraHeight = 10.0
 MaxCameraHeight = 40.0
 InterpolateSpeed = 1.0
 
-[node name="CameraLookAt" type="Node3D" parent="."]
+[node name="CameraLookAt" type="Node3D" parent="." unique_id=957981856]
 
-[node name="EditorArrow" parent="." instance=ExtResource("1")]
+[node name="EditorArrow" parent="." unique_id=140026966 instance=ExtResource("1")]
 transform = Transform3D(-0.5, 0, -1.94707e-07, 0, 0.5, 0, 1.94707e-07, 0, -0.5, 0, 0.2, 0)
 
-[node name="Grid" type="MeshInstance3D" parent="."]
+[node name="Grid" type="MeshInstance3D" parent="." unique_id=784223655]
 mesh = SubResource("3")
 surface_material_override/0 = SubResource("ShaderMaterial_kek8v")
 
-[node name="EditorLight" type="OmniLight3D" parent="."]
+[node name="EditorLight" type="OmniLight3D" parent="." unique_id=160896804]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.40354, 8.30518, 4.37077)
 light_energy = 2.0
 light_indirect_energy = 1.5
@@ -40,4 +40,4 @@ shadow_enabled = true
 omni_range = 166.598
 omni_attenuation = 0.420448
 
-[node name="DynamicallySpawned" type="Node3D" parent="."]
+[node name="DynamicallySpawned" type="Node3D" parent="." unique_id=1483791305]

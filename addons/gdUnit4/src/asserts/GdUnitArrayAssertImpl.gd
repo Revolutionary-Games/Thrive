@@ -75,7 +75,7 @@ func _toPackedStringArray(value: Variant) -> PackedStringArray:
 	return PackedStringArray([str(value)])
 
 
-func _array_equals_div(current: Variant, expected: Variant, case_sensitive: bool = false) -> Array[Array]:
+func _array_equals_div(current: Variant, expected: Variant, case_sensitive: bool = false) -> Array:
 	var current_value := _toPackedStringArray(current)
 	var expected_value := _toPackedStringArray(expected)
 	var index_report := Array()
@@ -374,24 +374,12 @@ func extractv(...extractors: Array) -> GdUnitArrayAssert:
 		_current_value_provider = DefaultValueProvider.new(null)
 	else:
 		for element: Variant in current:
-			var ev: Array[Variant] = [
-				GdUnitTuple.NO_ARG,
-				GdUnitTuple.NO_ARG,
-				GdUnitTuple.NO_ARG,
-				GdUnitTuple.NO_ARG,
-				GdUnitTuple.NO_ARG,
-				GdUnitTuple.NO_ARG,
-				GdUnitTuple.NO_ARG,
-				GdUnitTuple.NO_ARG,
-				GdUnitTuple.NO_ARG,
-				GdUnitTuple.NO_ARG
-			]
-
+			var ev: Array[Variant] = []
 			for index: int in extractors.size():
 				var extractor: GdUnitValueExtractor = extractors[index]
-				ev[index] = extractor.extract_value(element)
+				ev.append(extractor.extract_value(element))
 			if extractors.size() > 1:
-				extracted_elements.append(GdUnitTuple.new(ev[0], ev[1], ev[2], ev[3], ev[4], ev[5], ev[6], ev[7], ev[8], ev[9]))
+				extracted_elements.append(GdUnitTuple.new.callv(ev))
 			else:
 				extracted_elements.append(ev[0])
 		_current_value_provider = DefaultValueProvider.new(extracted_elements)

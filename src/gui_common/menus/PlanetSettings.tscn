@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3rrmtcvwufb"]
+[gd_scene format=3 uid="uid://b3rrmtcvwufb"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_au4yw"]
 [ext_resource type="LabelSettings" uid="uid://uxdd8vb4xedn" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny.tres" id="1_o0axg"]
@@ -11,7 +11,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p046t"]
 
-[node name="SettingsPanel" type="VBoxContainer" node_paths=PackedStringArray("lifeOriginButton", "worldSizeButton", "worldTemperatureButton", "worldSeaLevelButton", "worldGeologicalActivityButton", "worldClimateInstabilityButton", "sulfideLevelButton", "glucoseLevelButton", "ironLevelButton", "ammoniaLevelButton", "phosphatesLevelButton", "radiationLevelButton", "lawkOnlyButton", "dayNightCycleButton", "dayLength", "dayLengthReadout", "dayLengthContainer", "gameSeed")]
+[node name="SettingsPanel" type="VBoxContainer" unique_id=889888459 node_paths=PackedStringArray("lifeOriginButton", "worldSizeButton", "worldTemperatureButton", "worldSeaLevelButton", "worldGeologicalActivityButton", "worldClimateInstabilityButton", "sulfideLevelButton", "glucoseLevelButton", "ironLevelButton", "ammoniaLevelButton", "phosphatesLevelButton", "radiationLevelButton", "lawkOnlyButton", "dayNightCycleButton", "dayLength", "dayLengthReadout", "dayLengthContainer", "gameSeed")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 923.0
@@ -40,30 +40,30 @@ dayLengthReadout = NodePath("DayLengthContainer/HBoxContainer/HBoxContainer/DayL
 dayLengthContainer = NodePath("DayLengthContainer")
 gameSeed = NodePath("HBoxContainer3/HBoxContainer/GameSeed")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1308190767]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="FocusGrabber" parent="VBoxContainer" instance=ExtResource("3_68oky")]
+[node name="FocusGrabber" parent="VBoxContainer" unique_id=867346926 instance=ExtResource("3_68oky")]
 layout_mode = 2
 Priority = 3
 NodeToGiveFocusTo = NodePath("../HBoxContainer/LAWKButton")
 GrabFocusWhenBecomingVisible = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=183565291]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1842283655]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "LAWK_ONLY"
 
-[node name="LAWKButton" type="CheckButton" parent="VBoxContainer/HBoxContainer"]
+[node name="LAWKButton" type="CheckButton" parent="VBoxContainer/HBoxContainer" unique_id=325258802]
 layout_mode = 2
 button_pressed = true
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=862354126]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -71,21 +71,21 @@ text = "LAWK_ONLY_EXPLANATION"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+[node name="VBoxContainer3" type="VBoxContainer" parent="." unique_id=1500919263]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer3" unique_id=416036712]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="VBoxContainer3/HBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer3/HBoxContainer" unique_id=119601165]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "LIFE_ORIGIN"
 
-[node name="LifeOrigin" type="OptionButton" parent="VBoxContainer3/HBoxContainer"]
+[node name="LifeOrigin" type="OptionButton" parent="VBoxContainer3/HBoxContainer" unique_id=583869909]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -102,7 +102,7 @@ popup/item_2/text = "LIFE_ORIGIN_PANSPERMIA"
 popup/item_2/id = 2
 popup/item_2/disabled = true
 
-[node name="Label3" type="Label" parent="VBoxContainer3"]
+[node name="Label3" type="Label" parent="VBoxContainer3" unique_id=1618168063]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -110,21 +110,21 @@ text = "LIFE_ORIGIN_EXPLANATION"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="."]
+[node name="VBoxContainer4" type="VBoxContainer" parent="." unique_id=270432883]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer4"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer4" unique_id=404041606]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer4/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer4/HBoxContainer" unique_id=1577629315]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "WORLD_SIZE"
 
-[node name="WorldSize" type="OptionButton" parent="VBoxContainer4/HBoxContainer"]
+[node name="WorldSize" type="OptionButton" parent="VBoxContainer4/HBoxContainer" unique_id=1023560626]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -140,7 +140,7 @@ popup/item_1/id = 1
 popup/item_2/text = "WORLD_SIZE_LARGE"
 popup/item_2/id = 2
 
-[node name="Label2" type="Label" parent="VBoxContainer4"]
+[node name="Label2" type="Label" parent="VBoxContainer4" unique_id=1909618005]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -148,21 +148,21 @@ text = "WORLD_SIZE_EXPLANATION"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
-[node name="VBoxContainer5" type="VBoxContainer" parent="."]
+[node name="VBoxContainer5" type="VBoxContainer" parent="." unique_id=2009188520]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer5"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer5" unique_id=496051124]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="VBoxContainer5/HBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer5/HBoxContainer" unique_id=953184583]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "WORLD_TEMPERATURE"
 
-[node name="WorldTemperature" type="OptionButton" parent="VBoxContainer5/HBoxContainer"]
+[node name="WorldTemperature" type="OptionButton" parent="VBoxContainer5/HBoxContainer" unique_id=1559387644]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -177,7 +177,7 @@ popup/item_1/id = 1
 popup/item_2/text = "WORLD_TEMPERATURE_WARM"
 popup/item_2/id = 2
 
-[node name="Label3" type="Label" parent="VBoxContainer5"]
+[node name="Label3" type="Label" parent="VBoxContainer5" unique_id=1817038670]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -185,21 +185,21 @@ text = "WORLD_TEMPERATURE_EXPLANATION"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
-[node name="VBoxContainer6" type="VBoxContainer" parent="."]
+[node name="VBoxContainer6" type="VBoxContainer" parent="." unique_id=4929661]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer6"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer6" unique_id=1384970484]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer6/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer6/HBoxContainer" unique_id=274163947]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "WORLD_OCEANIC_COVERAGE"
 
-[node name="WorldSeaLevel" type="OptionButton" parent="VBoxContainer6/HBoxContainer"]
+[node name="WorldSeaLevel" type="OptionButton" parent="VBoxContainer6/HBoxContainer" unique_id=412083081]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -214,7 +214,7 @@ popup/item_1/id = 1
 popup/item_2/text = "WORLD_OCEANIC_COVERAGE_LARGE"
 popup/item_2/id = 2
 
-[node name="Label2" type="Label" parent="VBoxContainer6"]
+[node name="Label2" type="Label" parent="VBoxContainer6" unique_id=1127312420]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -222,21 +222,21 @@ text = "WORLD_OCEANIC_COVERAGE_EXPLANATION"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
-[node name="VBoxContainer7" type="VBoxContainer" parent="."]
+[node name="VBoxContainer7" type="VBoxContainer" parent="." unique_id=605807732]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer7"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer7" unique_id=676283391]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="VBoxContainer7/HBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer7/HBoxContainer" unique_id=1073870130]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "GEOLOGICAL_ACTIVITY"
 
-[node name="WorldGeologicalActivity" type="OptionButton" parent="VBoxContainer7/HBoxContainer"]
+[node name="WorldGeologicalActivity" type="OptionButton" parent="VBoxContainer7/HBoxContainer" unique_id=333360415]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -251,7 +251,7 @@ popup/item_1/id = 1
 popup/item_2/text = "GEOLOGICAL_ACTIVITY_ACTIVE"
 popup/item_2/id = 2
 
-[node name="Label3" type="Label" parent="VBoxContainer7"]
+[node name="Label3" type="Label" parent="VBoxContainer7" unique_id=293013525]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -259,21 +259,21 @@ text = "GEOLOGICAL_ACTIVITY_EXPLANATION"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
-[node name="VBoxContainer8" type="VBoxContainer" parent="."]
+[node name="VBoxContainer8" type="VBoxContainer" parent="." unique_id=1115436170]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer8"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer8" unique_id=1742109901]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer8/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer8/HBoxContainer" unique_id=943889407]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "CLIMATE_INSTABILITY"
 
-[node name="WorldClimateInstability" type="OptionButton" parent="VBoxContainer8/HBoxContainer"]
+[node name="WorldClimateInstability" type="OptionButton" parent="VBoxContainer8/HBoxContainer" unique_id=1488462988]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -288,7 +288,7 @@ popup/item_1/id = 1
 popup/item_2/text = "CLIMATE_STABILITY_UNSTABLE"
 popup/item_2/id = 2
 
-[node name="Label3" type="Label" parent="VBoxContainer8"]
+[node name="Label3" type="Label" parent="VBoxContainer8" unique_id=666843087]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -296,28 +296,28 @@ text = "CLIMATE_INSTABILITY_EXPLANATION"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
-[node name="HSeparator" type="HSeparator" parent="."]
+[node name="HSeparator" type="HSeparator" parent="." unique_id=1788457120]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1541503957]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2" unique_id=1083393262]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer" unique_id=124119777]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "DAY_NIGHT_CYCLE_ENABLED"
 
-[node name="DayNightCycleButton" type="CheckButton" parent="VBoxContainer2/HBoxContainer"]
+[node name="DayNightCycleButton" type="CheckButton" parent="VBoxContainer2/HBoxContainer" unique_id=487861355]
 layout_mode = 2
 button_pressed = true
 
-[node name="Label2" type="Label" parent="VBoxContainer2"]
+[node name="Label2" type="Label" parent="VBoxContainer2" unique_id=215896218]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -325,26 +325,26 @@ text = "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
-[node name="DayLengthContainer" type="VBoxContainer" parent="."]
+[node name="DayLengthContainer" type="VBoxContainer" parent="." unique_id=1443366477]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DayLengthContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="DayLengthContainer" unique_id=1490103045]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="DayLengthContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="DayLengthContainer/HBoxContainer" unique_id=1030995417]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 text = "DAY_LENGTH"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DayLengthContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="DayLengthContainer/HBoxContainer" unique_id=442410768]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="DayLength" type="HSlider" parent="DayLengthContainer/HBoxContainer/HBoxContainer"]
+[node name="DayLength" type="HSlider" parent="DayLengthContainer/HBoxContainer/HBoxContainer" unique_id=3617620]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -358,18 +358,18 @@ value = 180.0
 rounded = true
 scrollable = false
 
-[node name="HSeparator" type="HSeparator" parent="DayLengthContainer/HBoxContainer/HBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="DayLengthContainer/HBoxContainer/HBoxContainer" unique_id=900149911]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/separator = SubResource("StyleBoxEmpty_p046t")
 
-[node name="DayLengthReadout" type="LineEdit" parent="DayLengthContainer/HBoxContainer/HBoxContainer"]
+[node name="DayLengthReadout" type="LineEdit" parent="DayLengthContainer/HBoxContainer/HBoxContainer" unique_id=1761541284]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 text = "180"
 editable = false
 
-[node name="Label" type="Label" parent="DayLengthContainer"]
+[node name="Label" type="Label" parent="DayLengthContainer" unique_id=629262602]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -377,22 +377,22 @@ text = "DAY_LENGTH_EXPLANATION"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+[node name="HBoxContainer3" type="HBoxContainer" parent="." unique_id=1581891050]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer3"]
+[node name="Label" type="Label" parent="HBoxContainer3" unique_id=1243598589]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 text = "PLANET_RANDOM_SEED"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer3" unique_id=1492411618]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="GameSeed" type="LineEdit" parent="HBoxContainer3/HBoxContainer"]
+[node name="GameSeed" type="LineEdit" parent="HBoxContainer3/HBoxContainer" unique_id=943534374]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 2
@@ -406,7 +406,7 @@ focus_next = NodePath("../RandomizeButton")
 focus_previous = NodePath("../../../DayLengthContainer/HBoxContainer/HBoxContainer/DayLength")
 text = "123456789"
 
-[node name="RandomizeButton" type="TextureButton" parent="HBoxContainer3/HBoxContainer"]
+[node name="RandomizeButton" type="TextureButton" parent="HBoxContainer3/HBoxContainer" unique_id=1856419105]
 custom_minimum_size = Vector2(31, 31)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -418,25 +418,25 @@ texture_disabled = ExtResource("8_4kewu")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="HSeparator2" type="HSeparator" parent="."]
+[node name="HSeparator2" type="HSeparator" parent="." unique_id=122646435]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 
-[node name="VBoxContainer9" type="VBoxContainer" parent="."]
+[node name="VBoxContainer9" type="VBoxContainer" parent="." unique_id=761032359]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer9"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer9" unique_id=358917786]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer9/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer9/HBoxContainer" unique_id=987019046]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "HYDROGEN_SULFIDE_LEVELS"
 
-[node name="SulfideLevel" type="OptionButton" parent="VBoxContainer9/HBoxContainer"]
+[node name="SulfideLevel" type="OptionButton" parent="VBoxContainer9/HBoxContainer" unique_id=21161463]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -455,21 +455,21 @@ popup/item_3/id = 3
 popup/item_4/text = "COMPOUND_LEVEL_VERY_HIGH"
 popup/item_4/id = 4
 
-[node name="VBoxContainer10" type="VBoxContainer" parent="."]
+[node name="VBoxContainer10" type="VBoxContainer" parent="." unique_id=399562036]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer10"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer10" unique_id=261388616]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer10/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer10/HBoxContainer" unique_id=1237346488]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "GLUCOSE_LEVEL"
 
-[node name="GlucoseLevel" type="OptionButton" parent="VBoxContainer10/HBoxContainer"]
+[node name="GlucoseLevel" type="OptionButton" parent="VBoxContainer10/HBoxContainer" unique_id=937412440]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -488,21 +488,21 @@ popup/item_3/id = 3
 popup/item_4/text = "COMPOUND_LEVEL_VERY_HIGH"
 popup/item_4/id = 4
 
-[node name="VBoxContainer11" type="VBoxContainer" parent="."]
+[node name="VBoxContainer11" type="VBoxContainer" parent="." unique_id=295474363]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer11"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer11" unique_id=1032562631]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer11/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer11/HBoxContainer" unique_id=976986174]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "IRON_LEVELS"
 
-[node name="IronLevel" type="OptionButton" parent="VBoxContainer11/HBoxContainer"]
+[node name="IronLevel" type="OptionButton" parent="VBoxContainer11/HBoxContainer" unique_id=1325047915]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -521,21 +521,21 @@ popup/item_3/id = 3
 popup/item_4/text = "COMPOUND_LEVEL_VERY_HIGH"
 popup/item_4/id = 4
 
-[node name="VBoxContainer12" type="VBoxContainer" parent="."]
+[node name="VBoxContainer12" type="VBoxContainer" parent="." unique_id=978652660]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer12"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer12" unique_id=464035178]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer12/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer12/HBoxContainer" unique_id=198113793]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "AMMONIA_LEVELS"
 
-[node name="AmmoniaLevel" type="OptionButton" parent="VBoxContainer12/HBoxContainer"]
+[node name="AmmoniaLevel" type="OptionButton" parent="VBoxContainer12/HBoxContainer" unique_id=233943984]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -554,21 +554,21 @@ popup/item_3/id = 3
 popup/item_4/text = "COMPOUND_LEVEL_VERY_HIGH"
 popup/item_4/id = 4
 
-[node name="VBoxContainer13" type="VBoxContainer" parent="."]
+[node name="VBoxContainer13" type="VBoxContainer" parent="." unique_id=1932163297]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer13"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer13" unique_id=2030345887]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer13/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer13/HBoxContainer" unique_id=2063806516]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "PHOSPHATES_LEVELS"
 
-[node name="PhosphatesLevel" type="OptionButton" parent="VBoxContainer13/HBoxContainer"]
+[node name="PhosphatesLevel" type="OptionButton" parent="VBoxContainer13/HBoxContainer" unique_id=1579134197]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -587,21 +587,21 @@ popup/item_3/id = 3
 popup/item_4/text = "COMPOUND_LEVEL_VERY_HIGH"
 popup/item_4/id = 4
 
-[node name="VBoxContainer14" type="VBoxContainer" parent="."]
+[node name="VBoxContainer14" type="VBoxContainer" parent="." unique_id=2089822443]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer14"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer14" unique_id=1053773024]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer14/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer14/HBoxContainer" unique_id=185873965]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "RADIATION_LEVELS"
 
-[node name="RadiationLevel" type="OptionButton" parent="VBoxContainer14/HBoxContainer"]
+[node name="RadiationLevel" type="OptionButton" parent="VBoxContainer14/HBoxContainer" unique_id=1363500747]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
