@@ -1258,9 +1258,9 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     /// </remarks>
     private bool IsVitalCompound(Compound compound, CompoundBag compounds)
     {
-        return compounds.IsUseful(compound)
-            && compound is Compound.Glucose or Compound.Iron
-            && compound is not Compound.Mucilage;
+        return compound is not Compound.Mucilage
+            && compounds.IsUseful(compound)
+            && compound is Compound.Glucose or Compound.Iron;
     }
 
     private void SetEngulfIfClose(ref MicrobeControl control, ref Engulfer engulfer, ref WorldPosition position,
