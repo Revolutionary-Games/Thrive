@@ -177,7 +177,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     [None<AttachedToEntity>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref MicrobeAI ai, ref Health health, ref StrainAffected strainAffected,
-        in Entity entity)
+        in Entity entity, Random random)
     {
         if (skipAI)
             return;
@@ -187,8 +187,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         if (ai.TimeUntilNextThink > 0)
             return;
 
-        // TODO: would be nice to add a tiny bit of randomness to the times here so that not all cells think at once
-        ai.TimeUntilNextThink = Constants.MICROBE_AI_THINK_INTERVAL;
+        // Random value is between -0.05 (inclusive) and 0.05 (exclusive). Thanks Desmos for helping me figure this out
+        ai.TimeUntilNextThink = Constants.MICROBE_AI_THINK_INTERVAL + (random.NextSingle() * 0.1f - 0.05f);
 
         // This is probably pretty useless for most situations, but hopefully this doesn't eat too much
         // performance
