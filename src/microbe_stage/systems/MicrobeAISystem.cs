@@ -177,7 +177,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     [None<AttachedToEntity>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref MicrobeAI ai, ref Health health, ref StrainAffected strainAffected,
-        in Entity entity, Random random)
+        in Entity entity, XoShiRo256starstar random)
     {
         if (skipAI)
             return;
@@ -187,7 +187,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         if (ai.TimeUntilNextThink > 0)
             return;
 
-        ai.TimeUntilNextThink = Constants.MICROBE_AI_THINK_INTERVAL + (float)(random.NextDouble() * 0.1 - 0.05);
+        ai.TimeUntilNextThink = Constants.MICROBE_AI_THINK_INTERVAL + (random.NextFloat() * 0.1f - 0.05f);
 
         // This is probably pretty useless for most situations, but hopefully this doesn't eat too much
         // performance
