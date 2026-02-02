@@ -39,8 +39,11 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     private readonly StringName brightnessParameterName = new("BrightnessMultiplier");
     private readonly StringName uvOffsetParameterName = new("UVOffset");
 
-    // Do never modify this dictionary after construction, it is thread unsafe. This dictionary contains 81 values
-    private Dictionary<int, Vector2> cachedWorldShiftVectors;
+    /// <summary>
+    ///   Do not ever modify this dictionary after construction, it is thread unsafe.
+    ///   This dictionary contains 81 values. And is filled in _Ready once the cloud size is known.
+    /// </summary>
+    private Dictionary<int, Vector2> cachedWorldShiftVectors = null!;
 
     private CompoundDefinition?[] compoundDefinitions = null!;
 
@@ -249,7 +252,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             OldDensity = new Vector4[PlaneSize, PlaneSize];
             SetMaterialUVForPosition();
         }
-        
+
         cachedWorldShiftVectors = PrecalculateWorldShiftVectors();
     }
 
@@ -345,11 +348,13 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
     /// <summary>
     ///   Updates the edge concentrations of this cloud before the rest of the cloud.
-    ///   This is not ran in parallel.
+    ///   This is not run in parallel.
     /// </summary>
     public void DiffuseEdges(float delta)
     {
+        // Increase diffusion effect
         delta *= 100.0f;
+
         int edgeWidth = Constants.CLOUD_PLANE_EDGE_WIDTH;
         int halfEdgeWidth = edgeWidth / 2;
         int planeChunkSize = PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
@@ -458,7 +463,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     }
 
     /// <summary>
-    ///   Interlocked add variant that is thread safe
+    ///   Interlocked add-variant that is thread safe
     /// </summary>
     public void AddCloudInterlocked(Compound compound, int x, int y, float density)
     {
@@ -531,7 +536,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     }
 
     /// <summary>
-    ///   Add cloud variant that ignores unhandled compound types
+    ///   Add-cloud variant that ignores unhandled compound types
     /// </summary>
     /// <returns>True if added, false if this didn't handle the given type</returns>
     public bool AddCloudInterlockedIfHandlesType(Compound compound, int x, int y, float density)
@@ -704,7 +709,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     }
 
     /// <summary>
-    ///   Checks if position is in this cloud, also returns relative coordinates
+    ///   Checks if the position is in this cloud, also returns relative coordinates
     /// </summary>
     public bool ContainsPosition(Vector3 worldPosition, out int x, out int y)
     {
@@ -723,13 +728,15 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             worldPosition.X - radius >= cachedWorldPosition.X + Constants.CLOUD_SIZE ||
             worldPosition.Z + radius < cachedWorldPosition.Y - Constants.CLOUD_SIZE ||
             worldPosition.Z - radius >= cachedWorldPosition.Y + Constants.CLOUD_SIZE)
+        {
             return false;
+        }
 
         return true;
     }
 
     /// <summary>
-    ///   Converts world coordinate to cloud relative (top left) coordinates
+    ///   Converts world coordinate to cloud-relative (top left) coordinates
     /// </summary>
     public void ConvertToCloudLocal(Vector3 worldPosition, out int x, out int y)
     {
@@ -779,7 +786,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             if (compound == Compound.Invalid)
                 break;
 
-            // Skip if compound is non-useful or disallowed to be absorbed
+            // Skip if the compound is non-useful or disallowed to be absorbed
             if (!compoundDefinitions[i]!.IsAbsorbable
                 || (!storage.IsUseful(compound) && !compoundDefinitions[i]!.AlwaysAbsorbable))
             {
@@ -789,7 +796,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             // Loop here to retry in case we read stale data
             while (true)
             {
-                // Overestimate of how much compounds we get
+                // Overestimate of how many compounds we get
                 float cloudAmount = HackyAddress(ref Density[localX, localY], i);
                 float generousAmount = cloudAmount * Constants.SKIP_TRYING_TO_ABSORB_RATIO;
 
@@ -806,7 +813,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                     if (freeSpace < 0.0f)
                         throw new InvalidOperationException("Free space for compounds is negative");
 
-                    // Allow partial absorption to allow cells to take from high density clouds
+                    // Allow partial absorption to allow cells to take from high-density clouds
                     multiplier = freeSpace / generousAmount;
                 }
 
@@ -819,7 +826,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
                 taken *= Constants.ABSORPTION_RATIO;
 
-                // This should never fail to add the full amount of compounds as we checked the free space above and
+                // This should never fail to add the full amount of compound as we checked the free space above and
                 // scaled the take amount accordingly
                 storage.AddCompound(compound, taken);
 
@@ -962,6 +969,9 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                 }
             }
         }
+
+        if (shiftCache.Count != 81)
+            throw new Exception("Logic error in PrecalculateWorldShiftVectors");
 
         return shiftCache;
     }
