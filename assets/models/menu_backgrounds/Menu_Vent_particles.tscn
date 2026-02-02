@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c46w6nmb14i0m"]
+[gd_scene format=3 uid="uid://c46w6nmb14i0m"]
 
 [ext_resource type="Texture2D" uid="uid://kloyvken30uu" path="res://assets/textures/menu_backgrounds/SingleClouds.png" id="1_x45yp"]
 [ext_resource type="Texture2D" uid="uid://dhad2rl5f4478" path="res://assets/textures/menu_backgrounds/SingleClouds_Normal.png" id="2_6n6kd"]
@@ -51,7 +51,7 @@ turbulence_initial_displacement_max = 0.2
 [sub_resource type="QuadMesh" id="QuadMesh_ysona"]
 size = Vector2(3, 3)
 
-[node name="VentParticles" type="GPUParticles3D"]
+[node name="VentParticles" type="GPUParticles3D" unique_id=1104129444]
 transform = Transform3D(5, 0, 0, 0, 3, 0, 0, 0, 5, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_5ixe1")
 cast_shadow = 0

@@ -1122,6 +1122,11 @@ public static class Constants
     public const int BASE_MUTATION_POINTS = 100;
 
     /// <summary>
+    ///   Used to limit single edit costs to allow doing them even at double the MP cost.
+    /// </summary>
+    public const int MAX_SINGLE_EDIT_MP_COST = 100;
+
+    /// <summary>
     ///   As mutation points are now calculated with floats, there can be situations where the player just barely
     ///   cannot afford something they should be able to afford, so we allow going negative by this much.
     /// </summary>
@@ -1134,6 +1139,8 @@ public static class Constants
     public const int ORGANELLE_REMOVE_COST = 10;
     public const int ORGANELLE_MOVE_COST = 5;
     public const int ORGANELLE_CHEAPEST_COST = 20;
+
+    public const int CELL_REMOVE_COST = 5;
 
     public const string ORGANELLE_UPGRADE_SPECIAL_NONE = "none";
 

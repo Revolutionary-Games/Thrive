@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0y22je0ulixy"]
+[gd_scene format=3 uid="uid://d0y22je0ulixy"]
 
 [ext_resource type="Shader" uid="uid://bxd4cdv4qekba" path="res://shaders/Crystal.gdshader" id="1_nhjnn"]
 [ext_resource type="Texture2D" uid="uid://c4givkmxrlllx" path="res://assets/textures/Crystal.png" id="2_j40of"]
@@ -25,6 +25,6 @@ shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.1
 shader_parameter/outlineWidth = 0.0
 
-[node name="LittleBanan" type="MeshInstance3D"]
+[node name="LittleBanan" type="MeshInstance3D" unique_id=1225360341]
 material_override = SubResource("ShaderMaterial_nih3b")
 mesh = ExtResource("5_sjcah")

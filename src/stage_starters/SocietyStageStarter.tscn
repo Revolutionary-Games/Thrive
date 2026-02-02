@@ -1,7 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://7krfbim4w7wm"]
+[gd_scene format=3 uid="uid://7krfbim4w7wm"]
 
 [ext_resource type="Script" uid="uid://cnxqqpqcp7xx5" path="res://src/stage_starters/SimpleStageStarter.cs" id="1"]
 
-[node name="SocietyStageStarter" type="Node"]
+[node name="SocietyStageStarter" type="Node" unique_id=1292227367]
 script = ExtResource("1")
 StageToSwitchTo = 6

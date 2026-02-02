@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtmtjvcktr5c2"]
+[gd_scene format=3 uid="uid://dtmtjvcktr5c2"]
 
 [ext_resource type="Shader" uid="uid://bxd4cdv4qekba" path="res://shaders/Crystal.gdshader" id="1_ah4jf"]
 [ext_resource type="Texture2D" uid="uid://dfw401vxsi10p" path="res://assets/textures/IceChunk.png" id="2_vhfcg"]
@@ -25,6 +25,6 @@ shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.5
 shader_parameter/outlineWidth = 0.0
 
-[node name="IceChunkSnowflake" type="MeshInstance3D"]
+[node name="IceChunkSnowflake" type="MeshInstance3D" unique_id=23639052]
 material_override = SubResource("ShaderMaterial_vhvjp")
 mesh = ExtResource("4_tpouo")

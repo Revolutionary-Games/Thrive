@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://br2qdth74t78h"]
+[gd_scene format=3 uid="uid://br2qdth74t78h"]
 
 [ext_resource type="Texture2D" uid="uid://d2rvjwrr2g3f7" path="res://assets/textures/gui/bevel/fossilisationButtonHover.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://u7bjh83fe6r3" path="res://assets/textures/gui/bevel/fossilisationButton.png" id="2"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cdbs8v4l0xwb" path="res://assets/textures/gui/bevel/fossilisationButtonAlreadyFossilised.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://dc30hltjoysie" path="res://assets/textures/gui/bevel/fossilisationButtonActive.png" id="5"]
 
-[node name="FossilisationButton" type="TextureButton"]
+[node name="FossilisationButton" type="TextureButton" unique_id=905885325]
 custom_minimum_size = Vector2(35, 35)
 anchors_preset = 15
 anchor_right = 1.0

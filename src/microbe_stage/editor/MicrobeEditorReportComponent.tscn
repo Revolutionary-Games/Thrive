@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://qdqcbnri7vsw"]
+[gd_scene format=3 uid="uid://qdqcbnri7vsw"]
 
 [ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="2"]
 [ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="3_ocn33"]
@@ -90,7 +90,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="MicrobeEditorReport" type="Control" node_paths=PackedStringArray("autoEvoSubtabButton", "timelineSubtabButton", "foodChainSubtabButton", "autoEvoSubtab", "timelineSubtab", "foodChainSubtab", "foodChainScrollContainer", "foodChainData", "timeIndicator", "externalEffectsLabel", "reportTabPatchName", "reportTabPatchSelector", "speciesChartContainer", "physicalConditionsChartContainer", "atmosphereChartContainer", "compoundsChartContainer", "noAutoEvoResultData", "graphicalResultsContainer", "majorEventsList", "showTextReportButton", "textReportDialog", "textReportLabel", "finishOrNextButton")]
+[node name="MicrobeEditorReport" type="Control" unique_id=2115182410 node_paths=PackedStringArray("autoEvoSubtabButton", "timelineSubtabButton", "foodChainSubtabButton", "autoEvoSubtab", "timelineSubtab", "foodChainSubtab", "foodChainScrollContainer", "foodChainData", "timeIndicator", "externalEffectsLabel", "reportTabPatchName", "reportTabPatchSelector", "speciesChartContainer", "physicalConditionsChartContainer", "atmosphereChartContainer", "compoundsChartContainer", "noAutoEvoResultData", "graphicalResultsContainer", "majorEventsList", "showTextReportButton", "textReportDialog", "textReportLabel", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -126,7 +126,7 @@ textReportDialog = NodePath("TextReportWindow")
 textReportLabel = NodePath("TextReportWindow/VBoxContainer/ScrollContainer/TextualReport")
 finishOrNextButton = NodePath("NextTabButton/NextTabButton")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=895307444]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -136,34 +136,34 @@ theme_override_constants/margin_top = 45
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 55
 
-[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer" unique_id=128188041]
 layout_mode = 2
 collapsed = true
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HSplitContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HSplitContainer" unique_id=1167096673]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer" unique_id=1526134307]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 35
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer" unique_id=981660825]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=310874074]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1888584671]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="PatchSelector" type="OptionButton" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="PatchSelector" type="OptionButton" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer" unique_id=2073022133]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 4
@@ -173,7 +173,7 @@ focus_next = NodePath("../../../../../../../../NextTabButton/NextTabButton")
 theme_override_constants/h_separation = 0
 clip_text = true
 
-[node name="PatchName" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="PatchName" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer" unique_id=466145763]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -182,7 +182,7 @@ label_settings = ExtResource("3_ocn33")
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="TimeIndicator" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TimeIndicator" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1885020845]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_vertical = 8
@@ -190,7 +190,7 @@ mouse_filter = 1
 label_settings = ExtResource("5_q5opo")
 horizontal_alignment = 1
 
-[node name="AutoEvoButton" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="AutoEvoButton" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=553380400]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 size_flags_vertical = 8
@@ -201,7 +201,7 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_vfabd")
 text = "AUTO_EVO"
 
-[node name="FoodChainButton" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="FoodChainButton" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=11977178]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 size_flags_vertical = 8
@@ -212,7 +212,7 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_vfabd")
 text = "FOOD_CHAIN"
 
-[node name="TimelineButton" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TimelineButton" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=290784711]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 size_flags_vertical = 8
@@ -223,38 +223,38 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_vfabd")
 text = "TIMELINE"
 
-[node name="EvoResultsPanel" type="PanelContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="EvoResultsPanel" type="PanelContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=837372734]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("29")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel" unique_id=1822228689]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer" unique_id=1843014457]
 layout_mode = 2
 follow_focus = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer" unique_id=1393815859]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MajorEvents" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="MajorEvents" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1039433503]
 layout_mode = 2
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=720394745]
 visible = false
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 theme_override_styles/separator = SubResource("30")
 
-[node name="ErrorNoSaveData" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="ErrorNoSaveData" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1556051763]
 visible = false
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
@@ -262,38 +262,38 @@ text = "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 label_settings = ExtResource("7_8c2s4")
 autowrap_mode = 3
 
-[node name="ExtraneousResultsTitle" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="ExtraneousResultsTitle" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=668426684]
 visible = false
 layout_mode = 2
 text = "AUTO_EVO_RESULTS"
 label_settings = ExtResource("7_8c2s4")
 
-[node name="AutoEvoResults" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2")]
+[node name="AutoEvoResults" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=332986058 instance=ExtResource("2")]
 layout_mode = 2
 fit_content = true
 
-[node name="GraphicalResultsContainers" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="GraphicalResultsContainers" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=200819504]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1687082311]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1974893109]
 layout_mode = 2
 text = "EXTERNAL_EFFECTS"
 label_settings = ExtResource("7_8c2s4")
 
-[node name="ExternalEffectsList" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2")]
+[node name="ExternalEffectsList" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1280008930 instance=ExtResource("2")]
 layout_mode = 2
 fit_content = true
 
-[node name="ViewTextReport" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="ViewTextReport" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=276605719]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "VIEW_TEXT_REPORT"
 
-[node name="TopFade" type="TextureRect" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel"]
+[node name="TopFade" type="TextureRect" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel" unique_id=306528210]
 modulate = Color(1, 1, 1, 0.392157)
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -303,7 +303,7 @@ texture = ExtResource("7")
 expand_mode = 1
 flip_v = true
 
-[node name="BottomFade" type="TextureRect" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel"]
+[node name="BottomFade" type="TextureRect" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel" unique_id=229877404]
 modulate = Color(1, 1, 1, 0.392157)
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -312,7 +312,7 @@ mouse_filter = 2
 texture = ExtResource("7")
 expand_mode = 1
 
-[node name="TimelinePanel" type="PanelContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("globalEventsContainer", "localEventsContainer", "scrollContainer", "localFilterButton", "globalFilterButton")]
+[node name="TimelinePanel" type="PanelContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1949191962 node_paths=PackedStringArray("globalEventsContainer", "localEventsContainer", "scrollContainer", "localFilterButton", "globalFilterButton")]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -328,34 +328,34 @@ scrollContainer = NodePath("MarginContainer/ScrollContainer")
 localFilterButton = NodePath("MarginContainer/MarginContainer/HBoxContainer/LocalFilter")
 globalFilterButton = NodePath("MarginContainer/MarginContainer/HBoxContainer/GlobalFilter")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel" unique_id=227675978]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer" unique_id=98369748]
 layout_mode = 2
 follow_focus = true
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer" unique_id=2118262752]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 20
 
-[node name="GlobalEventsContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer"]
+[node name="GlobalEventsContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer" unique_id=732770303]
 visible = false
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="LocalEventsContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer"]
+[node name="LocalEventsContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer" unique_id=1474032552]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer" unique_id=771860827]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -363,12 +363,12 @@ mouse_filter = 2
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 15
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer" unique_id=13231495]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="GlobalFilter" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer"]
+[node name="GlobalFilter" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer" unique_id=1473789842]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 0
@@ -380,7 +380,7 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_hdykd")
 text = "GLOBAL_INITIAL_LETTER"
 
-[node name="LocalFilter" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer"]
+[node name="LocalFilter" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer" unique_id=1596512252]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 0
@@ -392,7 +392,7 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_hdykd")
 text = "LOCAL_INITIAL_LETTER"
 
-[node name="TopFade" type="TextureRect" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel"]
+[node name="TopFade" type="TextureRect" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel" unique_id=2011836383]
 modulate = Color(1, 1, 1, 0.392157)
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -402,7 +402,7 @@ texture = ExtResource("7")
 expand_mode = 1
 flip_v = true
 
-[node name="BottomFade" type="TextureRect" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel"]
+[node name="BottomFade" type="TextureRect" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel" unique_id=1820885808]
 modulate = Color(1, 1, 1, 0.392157)
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -411,100 +411,100 @@ mouse_filter = 2
 texture = ExtResource("7")
 expand_mode = 1
 
-[node name="FoodTab" type="PanelContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="FoodTab" type="PanelContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=96193039]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("29")
 
-[node name="DraggableScrollContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab" node_paths=PackedStringArray("content") instance=ExtResource("14_ynonx")]
+[node name="DraggableScrollContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab" unique_id=1907918055 node_paths=PackedStringArray("content") instance=ExtResource("14_ynonx")]
 layout_mode = 2
 mouse_filter = 0
 mouse_force_pass_scroll_events = false
 content = NodePath("FoodChainDisplay")
 
-[node name="FoodChainDisplay" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab/DraggableScrollContainer" instance=ExtResource("14_ghu38")]
+[node name="FoodChainDisplay" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab/DraggableScrollContainer" unique_id=1993406935 instance=ExtResource("14_ghu38")]
 layout_mode = 2
 
-[node name="StatisticsPanel" type="PanelContainer" parent="MarginContainer/HSplitContainer"]
+[node name="StatisticsPanel" type="PanelContainer" parent="MarginContainer/HSplitContainer" unique_id=1173315025]
 custom_minimum_size = Vector2(340, 0)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel" unique_id=831671991]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer" unique_id=1199012704]
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer" unique_id=1959616013]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer" unique_id=1835549868]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
-[node name="Label" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1806490726]
 layout_mode = 2
 text = "STATISTICS"
 label_settings = ExtResource("3_ocn33")
 horizontal_alignment = 1
 
-[node name="SpeciesPopulation" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="SpeciesPopulation" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1032696842 instance=ExtResource("10")]
 layout_mode = 2
 DisplayName = "SPECIES_POPULATION"
 
-[node name="SpeciesChart" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation" instance=ExtResource("103")]
+[node name="SpeciesChart" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation" unique_id=1062699442 instance=ExtResource("103")]
 layout_mode = 2
 ChartName = "SPECIES_POPULATION"
 YAxisTicks = 6
 LegendMode = 1
 
-[node name="AtmosphericGasses" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="AtmosphericGasses" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2069592386 instance=ExtResource("10")]
 layout_mode = 2
 DisplayName = "ATMOSPHERIC_GASSES"
 
-[node name="AtmosphereChart" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses" instance=ExtResource("103")]
+[node name="AtmosphereChart" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses" unique_id=190901580 instance=ExtResource("103")]
 layout_mode = 2
 ChartName = "ATMOSPHERIC_GASSES"
 YAxisTicks = 6
 
-[node name="Compounds" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="Compounds" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1694832015 instance=ExtResource("10")]
 layout_mode = 2
 DisplayName = "COMPOUNDS"
 
-[node name="CompoundsChart" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds" instance=ExtResource("103")]
+[node name="CompoundsChart" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds" unique_id=1074664434 instance=ExtResource("103")]
 layout_mode = 2
 ChartName = "COMPOUNDS"
 YAxisTicks = 6
 
-[node name="PhysicalConditions" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+[node name="PhysicalConditions" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1513295280 instance=ExtResource("10")]
 layout_mode = 2
 DisplayName = "PHYSICAL_CONDITIONS"
 
-[node name="LegendContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions"]
+[node name="LegendContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions" unique_id=1886368269]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="Legend" type="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer"]
+[node name="Legend" type="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer" unique_id=1523773377]
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 2
 
-[node name="temperature" type="TextureButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer/Legend"]
+[node name="temperature" type="TextureButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer/Legend" unique_id=1450296258]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 toggle_mode = true
@@ -514,7 +514,7 @@ texture_normal = ExtResource("18_j02qe")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="sunlight" type="TextureButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer/Legend"]
+[node name="sunlight" type="TextureButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer/Legend" unique_id=1778958562]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 toggle_mode = true
@@ -524,20 +524,20 @@ texture_normal = ExtResource("19_fph1y")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Temperature" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions" instance=ExtResource("103")]
+[node name="Temperature" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions" unique_id=1217939311 instance=ExtResource("103")]
 layout_mode = 2
 ChartName = "TEMPERATURE"
 YAxisTicks = 6
 LegendMode = 2
 
-[node name="Sunlight" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions" instance=ExtResource("103")]
+[node name="Sunlight" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions" unique_id=637544525 instance=ExtResource("103")]
 visible = false
 layout_mode = 2
 ChartName = "SUNLIGHT"
 YAxisTicks = 6
 LegendMode = 2
 
-[node name="NextTabButton" type="MarginContainer" parent="."]
+[node name="NextTabButton" type="MarginContainer" parent="." unique_id=1831099270]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 0
 anchor_left = 1.0
@@ -550,11 +550,11 @@ grow_horizontal = 0
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="FocusGrabber" parent="NextTabButton" instance=ExtResource("5")]
+[node name="FocusGrabber" parent="NextTabButton" unique_id=1204189790 instance=ExtResource("5")]
 layout_mode = 2
 NodeToGiveFocusTo = NodePath("../NextTabButton")
 
-[node name="NextTabButton" type="Button" parent="NextTabButton"]
+[node name="NextTabButton" type="Button" parent="NextTabButton" unique_id=724220007]
 layout_mode = 2
 focus_neighbor_left = NodePath("../../MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector")
 focus_neighbor_top = NodePath("../../MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector")
@@ -566,7 +566,7 @@ theme_override_styles/hover = SubResource("41")
 theme_override_styles/focus = SubResource("42")
 text = "NEXT_CAPITAL"
 
-[node name="TextReportWindow" parent="." instance=ExtResource("21_56xvy")]
+[node name="TextReportWindow" parent="." unique_id=1485269127 instance=ExtResource("21_56xvy")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -579,29 +579,29 @@ grow_horizontal = 0
 WindowTitle = "AUTO-EVO_RESULTS_TITLE"
 Resizable = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TextReportWindow"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextReportWindow" unique_id=1096260622]
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TextReportWindow/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TextReportWindow/VBoxContainer" unique_id=368209415]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TextualReport" parent="TextReportWindow/VBoxContainer/ScrollContainer" instance=ExtResource("2")]
+[node name="TextualReport" parent="TextReportWindow/VBoxContainer/ScrollContainer" unique_id=806447041 instance=ExtResource("2")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 fit_content = true
 
-[node name="FocusGrabber" parent="TextReportWindow/VBoxContainer" instance=ExtResource("5")]
+[node name="FocusGrabber" parent="TextReportWindow/VBoxContainer" unique_id=276068539 instance=ExtResource("5")]
 layout_mode = 2
 Priority = 1
 NodeToGiveFocusTo = NodePath("../Button")
 GrabFocusWhenBecomingVisible = true
 
-[node name="Button" type="Button" parent="TextReportWindow/VBoxContainer"]
+[node name="Button" type="Button" parent="TextReportWindow/VBoxContainer" unique_id=1770712191]
 layout_mode = 2
 text = "CLOSE"
 

@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjo7cvvdvljxm"]
+[gd_scene format=3 uid="uid://cjo7cvvdvljxm"]
 
 [ext_resource type="Script" uid="uid://thf0wxjgtadk" path="res://src/microbe_stage/gui/MovementModeSelectionPopup.cs" id="1_j4wd8"]
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2_k7xhd"]
 [ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="3_k7xhd"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_xgpmt"]
 
-[node name="MovementModeSelectionPopup" type="Control" node_paths=PackedStringArray("actualPopup", "cellRelativePlayer", "cellRelativeCheckBox", "screenRelativePlayer", "screenRelativeCheckBox", "dismissPermanentlyCheckBox")]
+[node name="MovementModeSelectionPopup" type="Control" unique_id=834606195 node_paths=PackedStringArray("actualPopup", "cellRelativePlayer", "cellRelativeCheckBox", "screenRelativePlayer", "screenRelativeCheckBox", "dismissPermanentlyCheckBox")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,38 +21,39 @@ screenRelativePlayer = NodePath("Popup/VBoxContainer/HBoxContainer/Right/MarginC
 screenRelativeCheckBox = NodePath("Popup/VBoxContainer/HBoxContainer/Right/SelectRight")
 dismissPermanentlyCheckBox = NodePath("Popup/VBoxContainer/DismissPermanently")
 
-[node name="Popup" parent="." instance=ExtResource("2_k7xhd")]
+[node name="Popup" parent="." unique_id=1575032513 instance=ExtResource("2_k7xhd")]
 process_mode = 3
 custom_minimum_size = Vector2(750, 450)
+layout_mode = 0
 WindowTitle = "SELECT_MOVEMENT_MODE_TITLE"
 Resizable = true
 Exclusive = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Popup"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup" unique_id=288305499]
 custom_minimum_size = Vector2(750, 0)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Popup/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup/VBoxContainer" unique_id=1443323962]
 layout_mode = 2
 
-[node name="Left" type="VBoxContainer" parent="Popup/VBoxContainer/HBoxContainer"]
+[node name="Left" type="VBoxContainer" parent="Popup/VBoxContainer/HBoxContainer" unique_id=516149432]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
 mouse_filter = 0
 
-[node name="Label" type="Label" parent="Popup/VBoxContainer/HBoxContainer/Left"]
+[node name="Label" type="Label" parent="Popup/VBoxContainer/HBoxContainer/Left" unique_id=1662366686]
 layout_mode = 2
 mouse_filter = 1
 text = "PLAYER_RELATIVE_MOVEMENT"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Popup/VBoxContainer/HBoxContainer/Left"]
+[node name="MarginContainer" type="MarginContainer" parent="Popup/VBoxContainer/HBoxContainer/Left" unique_id=1841680069]
 layout_mode = 2
 
-[node name="CellPlayer" type="VideoStreamPlayer" parent="Popup/VBoxContainer/HBoxContainer/Left/MarginContainer"]
+[node name="CellPlayer" type="VideoStreamPlayer" parent="Popup/VBoxContainer/HBoxContainer/Left/MarginContainer" unique_id=904730239]
 custom_minimum_size = Vector2(240, 300)
 layout_mode = 2
 mouse_filter = 1
@@ -61,7 +62,7 @@ autoplay = true
 expand = true
 loop = true
 
-[node name="SelectLeft" type="CheckBox" parent="Popup/VBoxContainer/HBoxContainer/Left"]
+[node name="SelectLeft" type="CheckBox" parent="Popup/VBoxContainer/HBoxContainer/Left" unique_id=1420626657]
 layout_mode = 2
 size_flags_horizontal = 4
 focus_neighbor_left = NodePath(".")
@@ -72,25 +73,25 @@ focus_next = NodePath("../../../DismissPermanently")
 focus_previous = NodePath("../../Right/SelectRight")
 text = "SELECTED"
 
-[node name="VSeparator" type="VSeparator" parent="Popup/VBoxContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="Popup/VBoxContainer/HBoxContainer" unique_id=1054195026]
 layout_mode = 2
 
-[node name="Right" type="VBoxContainer" parent="Popup/VBoxContainer/HBoxContainer"]
+[node name="Right" type="VBoxContainer" parent="Popup/VBoxContainer/HBoxContainer" unique_id=33844897]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
 mouse_filter = 0
 
-[node name="Label" type="Label" parent="Popup/VBoxContainer/HBoxContainer/Right"]
+[node name="Label" type="Label" parent="Popup/VBoxContainer/HBoxContainer/Right" unique_id=127950793]
 layout_mode = 2
 mouse_filter = 1
 text = "SCREEN_RELATIVE_MOVEMENT"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Popup/VBoxContainer/HBoxContainer/Right"]
+[node name="MarginContainer" type="MarginContainer" parent="Popup/VBoxContainer/HBoxContainer/Right" unique_id=1496662464]
 layout_mode = 2
 
-[node name="ScreenPlayer" type="VideoStreamPlayer" parent="Popup/VBoxContainer/HBoxContainer/Right/MarginContainer"]
+[node name="ScreenPlayer" type="VideoStreamPlayer" parent="Popup/VBoxContainer/HBoxContainer/Right/MarginContainer" unique_id=1019998600]
 custom_minimum_size = Vector2(240, 300)
 layout_mode = 2
 mouse_filter = 1
@@ -99,7 +100,7 @@ autoplay = true
 expand = true
 loop = true
 
-[node name="SelectRight" type="CheckBox" parent="Popup/VBoxContainer/HBoxContainer/Right"]
+[node name="SelectRight" type="CheckBox" parent="Popup/VBoxContainer/HBoxContainer/Right" unique_id=497382144]
 layout_mode = 2
 size_flags_horizontal = 4
 focus_neighbor_left = NodePath("../../Left/SelectLeft")
@@ -110,7 +111,7 @@ focus_next = NodePath("../../../DismissPermanently")
 focus_previous = NodePath("../../Left/SelectLeft")
 text = "SELECTED"
 
-[node name="Label" type="Label" parent="Popup/VBoxContainer"]
+[node name="Label" type="Label" parent="Popup/VBoxContainer" unique_id=2083469131]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "MODE_CAN_BE_CHANGED_IN_OPTIONS"
@@ -118,17 +119,17 @@ label_settings = ExtResource("3_xgpmt")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Spacer" type="Control" parent="Popup/VBoxContainer"]
+[node name="Spacer" type="Control" parent="Popup/VBoxContainer" unique_id=304957220]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="FocusGrabber" parent="Popup/VBoxContainer" instance=ExtResource("3_k7xhd")]
+[node name="FocusGrabber" parent="Popup/VBoxContainer" unique_id=791157907 instance=ExtResource("3_k7xhd")]
 layout_mode = 2
 Priority = 2
 NodeToGiveFocusTo = NodePath("../Accept")
 GrabFocusWhenBecomingVisible = true
 
-[node name="DismissPermanently" type="CheckBox" parent="Popup/VBoxContainer"]
+[node name="DismissPermanently" type="CheckBox" parent="Popup/VBoxContainer" unique_id=657919634]
 layout_mode = 2
 focus_neighbor_left = NodePath("../HBoxContainer/Left/SelectLeft")
 focus_neighbor_top = NodePath("../HBoxContainer/Left/SelectLeft")
@@ -139,7 +140,7 @@ focus_previous = NodePath("../HBoxContainer/Left/SelectLeft")
 button_pressed = true
 text = "DISMISS_INFORMATION_PERMANENTLY"
 
-[node name="Accept" type="Button" parent="Popup/VBoxContainer"]
+[node name="Accept" type="Button" parent="Popup/VBoxContainer" unique_id=94585437]
 layout_mode = 2
 size_flags_horizontal = 4
 focus_neighbor_left = NodePath("../DismissPermanently")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c4dyrcb6l1u3o"]
+[gd_scene format=3 uid="uid://c4dyrcb6l1u3o"]
 
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="2_gkxar"]
@@ -14,7 +14,7 @@
 [ext_resource type="FontVariation" uid="uid://k7u2fkgwhsf0" path="res://assets/fonts/variants/RobotoMono-Regular.tres" id="11_0g2tr"]
 [ext_resource type="PackedScene" uid="uid://bd7s2fq7wrh5x" path="res://src/gui_common/DebugEntryList.tscn" id="11_ja1wl"]
 
-[node name="DebugOverlay" type="Control" node_paths=PackedStringArray("debugCoordinates", "inspectorDialog", "debugPanelDialog", "debugConsole", "fpsCheckBox", "performanceMetricsCheckBox", "inspectorCheckbox", "fpsCounter", "performanceMetrics", "labelsLayer", "fpsDisplayLabel", "fpsLabel", "deltaLabel", "metricsText")]
+[node name="DebugOverlay" type="Control" unique_id=2017744925 node_paths=PackedStringArray("debugCoordinates", "inspectorDialog", "debugPanelDialog", "debugConsole", "fpsCheckBox", "performanceMetricsCheckBox", "inspectorCheckbox", "fpsCounter", "performanceMetrics", "labelsLayer", "fpsDisplayLabel", "fpsLabel", "deltaLabel", "metricsText")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("3")
@@ -39,13 +39,13 @@ fpsLabel = NodePath("PerformanceMetrics/ScrollContainer/VBoxContainer/HBoxContai
 deltaLabel = NodePath("PerformanceMetrics/ScrollContainer/VBoxContainer/HBoxContainer/Delta")
 metricsText = NodePath("PerformanceMetrics/ScrollContainer/VBoxContainer/MetricsText")
 
-[node name="EntityLabels" type="Control" parent="."]
+[node name="EntityLabels" type="Control" parent="." unique_id=1748045185]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="PerformanceMetrics" parent="." instance=ExtResource("1")]
+[node name="PerformanceMetrics" parent="." unique_id=1768197256 instance=ExtResource("1")]
 layout_mode = 0
 offset_left = 54.0
 offset_top = 75.0
@@ -54,7 +54,7 @@ offset_bottom = 295.0
 WindowTitle = "METRICS"
 Resizable = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PerformanceMetrics"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PerformanceMetrics" unique_id=1884855181]
 custom_minimum_size = Vector2(220, 220)
 layout_mode = 0
 offset_left = 4.0
@@ -64,26 +64,26 @@ offset_bottom = 223.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PerformanceMetrics/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PerformanceMetrics/ScrollContainer" unique_id=1398861867]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PerformanceMetrics/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PerformanceMetrics/ScrollContainer/VBoxContainer" unique_id=1312640651]
 layout_mode = 2
 
-[node name="FPS" type="Label" parent="PerformanceMetrics/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="FPS" type="Label" parent="PerformanceMetrics/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1689159967]
 layout_mode = 2
 text = "FPS"
 label_settings = ExtResource("3_fussq")
 
-[node name="Delta" type="Label" parent="PerformanceMetrics/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Delta" type="Label" parent="PerformanceMetrics/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=912959037]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Delta: 0.002311"
 label_settings = ExtResource("3_fussq")
 
-[node name="MetricsText" type="Label" parent="PerformanceMetrics/ScrollContainer/VBoxContainer"]
+[node name="MetricsText" type="Label" parent="PerformanceMetrics/ScrollContainer/VBoxContainer" unique_id=521722696]
 layout_mode = 2
 text = "METRICS_CONTENT"
 label_settings = ExtResource("3_fussq")
@@ -101,7 +101,7 @@ commandInput = NodePath("VBoxContainer/ConsoleInput")
 WindowTitle = "DEBUG_CONSOLE"
 Resizable = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DebugConsole"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugConsole" unique_id=1681933144]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -114,66 +114,66 @@ size_flags_horizontal = 3
 clip_contents = true
 layout_mode = 2
 
-[node name="ConsoleInput" type="LineEdit" parent="DebugConsole/VBoxContainer"]
+[node name="ConsoleInput" type="LineEdit" parent="DebugConsole/VBoxContainer" unique_id=929832716]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("11_0g2tr")
 placeholder_text = "COMMAND_INPUT_LINE_EDIT"
 keep_editing_on_text_submit = true
 caret_blink = true
 
-[node name="DebugPanel" parent="." instance=ExtResource("1")]
+[node name="DebugPanel" parent="." unique_id=597323497 instance=ExtResource("1")]
 layout_mode = 0
 offset_left = 30.0
 offset_top = 30.0
 WindowTitle = "DEBUG_PANEL"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DebugPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugPanel" unique_id=1817126202]
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 144.0
 theme_override_constants/separation = 10
 
-[node name="Checkboxes" type="VBoxContainer" parent="DebugPanel/VBoxContainer"]
+[node name="Checkboxes" type="VBoxContainer" parent="DebugPanel/VBoxContainer" unique_id=1151309062]
 layout_mode = 2
 
-[node name="FPSCheckBox" type="CheckBox" parent="DebugPanel/VBoxContainer/Checkboxes"]
+[node name="FPSCheckBox" type="CheckBox" parent="DebugPanel/VBoxContainer/Checkboxes" unique_id=2137612254]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "FPS_DISPLAY"
 
-[node name="PerformanceMetricsCheckBox" type="CheckBox" parent="DebugPanel/VBoxContainer/Checkboxes"]
+[node name="PerformanceMetricsCheckBox" type="CheckBox" parent="DebugPanel/VBoxContainer/Checkboxes" unique_id=598325187]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "METRICS"
 
-[node name="CollisionShapeCheckBox" type="CheckBox" parent="DebugPanel/VBoxContainer/Checkboxes"]
+[node name="CollisionShapeCheckBox" type="CheckBox" parent="DebugPanel/VBoxContainer/Checkboxes" unique_id=1095619913]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "COLLISION_SHAPE"
 
-[node name="EntityLabelCheckBox" type="CheckBox" parent="DebugPanel/VBoxContainer/Checkboxes"]
+[node name="EntityLabelCheckBox" type="CheckBox" parent="DebugPanel/VBoxContainer/Checkboxes" unique_id=664657361]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "ENTITY_LABEL"
 
-[node name="InspectorCheckBox" type="CheckBox" parent="DebugPanel/VBoxContainer/Checkboxes"]
+[node name="InspectorCheckBox" type="CheckBox" parent="DebugPanel/VBoxContainer/Checkboxes" unique_id=611291888]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "INSPECTOR"
 
-[node name="Button" type="Button" parent="DebugPanel/VBoxContainer"]
+[node name="Button" type="Button" parent="DebugPanel/VBoxContainer" unique_id=578245959]
 layout_mode = 2
 text = "DUMP_SCENE_TREE"
 
-[node name="VBoxContainer" type="HBoxContainer" parent="DebugPanel/VBoxContainer"]
+[node name="VBoxContainer" type="HBoxContainer" parent="DebugPanel/VBoxContainer" unique_id=1984016029]
 layout_mode = 2
 
-[node name="RigidityLabel" type="Label" parent="DebugPanel/VBoxContainer/VBoxContainer"]
+[node name="RigidityLabel" type="Label" parent="DebugPanel/VBoxContainer/VBoxContainer" unique_id=1755099656]
 layout_mode = 2
 text = "TRANSPARENCY"
 label_settings = ExtResource("3_fussq")
 
-[node name="RigiditySlider" type="HSlider" parent="DebugPanel/VBoxContainer/VBoxContainer"]
+[node name="RigiditySlider" type="HSlider" parent="DebugPanel/VBoxContainer/VBoxContainer" unique_id=615907764]
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 0.7
@@ -181,7 +181,7 @@ step = 0.01
 scrollable = false
 ticks_on_borders = true
 
-[node name="Inspector" parent="." instance=ExtResource("1")]
+[node name="Inspector" parent="." unique_id=37857627 instance=ExtResource("1")]
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 0
 offset_left = 310.0
@@ -190,21 +190,21 @@ offset_bottom = 100.0
 WindowTitle = "INSPECTOR"
 Resizable = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Inspector"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Inspector" unique_id=332342206]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DebugCoordinates" type="Label" parent="Inspector/ScrollContainer"]
+[node name="DebugCoordinates" type="Label" parent="Inspector/ScrollContainer" unique_id=459704110]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "DEBUG_COORDINATES"
 label_settings = ExtResource("3_fussq")
 clip_text = true
 
-[node name="FPSCounter" type="Control" parent="."]
+[node name="FPSCounter" type="Control" parent="." unique_id=482295140]
 visible = false
 anchors_preset = 0
 offset_left = 30.0
@@ -212,7 +212,7 @@ offset_top = 30.0
 offset_right = 30.0
 offset_bottom = 30.0
 
-[node name="FPSDisplayLabel" type="Label" parent="FPSCounter"]
+[node name="FPSDisplayLabel" type="Label" parent="FPSCounter" unique_id=273174378]
 editor_description = "PLACEHOLDER"
 modulate = Color(0, 1, 0.12549, 1)
 layout_mode = 0

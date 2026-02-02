@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://rirjhe7rihaw"]
+[gd_scene format=3 uid="uid://rirjhe7rihaw"]
 
 [ext_resource type="PackedScene" uid="uid://bm22n8cc3snmo" path="res://assets/models/IceSnowflakeChunk3.glb" id="1_gxmcw"]
 [ext_resource type="Shader" uid="uid://b4sr4fjh8yyvt" path="res://shaders/CrystalOpaque.gdshader" id="2_0w207"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c8ck5mosuq7xq" path="res://assets/textures/Snowflake_3_normal.png" id="3_s5j0o"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="4_aye23"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xih12"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0w207"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_0w207")
@@ -25,8 +25,8 @@ shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
 shader_parameter/outlineWidth = 0.0
 
-[node name="SnowflakeChunk3" instance=ExtResource("1_gxmcw")]
+[node name="SnowflakeChunk3" unique_id=502260267 instance=ExtResource("1_gxmcw")]
 
-[node name="snowflake3" parent="." index="0"]
+[node name="snowflake3" parent="." index="0" unique_id=1392813731]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13969564, 1.9073486e-06, 0.01740551)
-material_override = SubResource("ShaderMaterial_xih12")
+material_override = SubResource("ShaderMaterial_0w207")
