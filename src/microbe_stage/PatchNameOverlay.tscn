@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwkek50fju0fu"]
+[gd_scene format=3 uid="uid://dwkek50fju0fu"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_um53y"]
 [ext_resource type="Script" uid="uid://dv60ccgxd8by2" path="res://src/microbe_stage/PatchNameOverlay.cs" id="3"]
@@ -46,7 +46,7 @@ _data = {
 &"FadeInOut": SubResource("37")
 }
 
-[node name="PatchNameOverlay" type="PanelContainer" node_paths=PackedStringArray("patchLabel", "patchOverlayAnimator")]
+[node name="PatchNameOverlay" type="PanelContainer" unique_id=872303427 node_paths=PackedStringArray("patchLabel", "patchOverlayAnimator")]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 130)
 anchors_preset = 14
@@ -63,17 +63,17 @@ script = ExtResource("3")
 patchLabel = NodePath("VBoxContainer/PatchLabel")
 patchOverlayAnimator = NodePath("AnimationPlayer")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1837835315]
 layout_mode = 2
 texture = SubResource("34")
 expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1249101586]
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="PatchLabel" type="Label" parent="VBoxContainer"]
+[node name="PatchLabel" type="Label" parent="VBoxContainer" unique_id=1231263687]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_vertical = 1
@@ -81,11 +81,9 @@ text = "Insert Patch Name"
 label_settings = ExtResource("3_ln4oc")
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=2124741841]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_p6wm2")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1372520531]
+libraries/ = SubResource("AnimationLibrary_p6wm2")

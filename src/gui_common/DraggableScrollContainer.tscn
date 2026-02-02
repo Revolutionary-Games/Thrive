@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://din62wkc2pcnk"]
+[gd_scene format=3 uid="uid://din62wkc2pcnk"]
 
 [ext_resource type="Script" uid="uid://csxspgo1a5cdo" path="res://src/gui_common/DraggableScrollContainer.cs" id="1"]
 
-[node name="DraggableScrollContainer" type="ScrollContainer"]
+[node name="DraggableScrollContainer" type="ScrollContainer" unique_id=114382119]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://clhnq4g06pd62"]
+[gd_scene format=3 uid="uid://clhnq4g06pd62"]
 
 [ext_resource type="Script" uid="uid://dn21wykwcft8b" path="res://src/auto-evo/MicheTree.cs" id="1_2futc"]
 
-[node name="MicheTree" type="VBoxContainer" node_paths=PackedStringArray("tree")]
+[node name="MicheTree" type="VBoxContainer" unique_id=364377126 node_paths=PackedStringArray("tree")]
 clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +12,7 @@ mouse_force_pass_scroll_events = false
 script = ExtResource("1_2futc")
 tree = NodePath("Tree")
 
-[node name="Tree" type="Control" parent="."]
+[node name="Tree" type="Control" parent="." unique_id=1272059884]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3

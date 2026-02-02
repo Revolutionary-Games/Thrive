@@ -24,9 +24,8 @@ extends RefCounted
 
 
 ## Simulates that a key has been pressed.[br]
+## @deprecated: the modifier [b]shift_pressed[/b] and [b]ctrl_pressed[/b] will be removed in v7.0
 ## [member key_code] : the key code e.g. [constant KEY_ENTER][br]
-## [member shift_pressed] : false by default set to true if simmulate shift is press[br]
-## [member ctrl_pressed] : false by default set to true if simmulate control is press[br]
 ## [codeblock]
 ##    func test_key_presssed():
 ##       var runner = scene_runner("res://scenes/simple_scene.tscn")
@@ -35,17 +34,43 @@ extends RefCounted
 @abstract func simulate_key_pressed(key_code: int, shift_pressed := false, ctrl_pressed := false) -> GdUnitSceneRunner
 
 
-## Simulates that a key is pressed.[br]
+## Simulates that a key is pressing.[br]
+## @deprecated: the modifier [b]shift_pressed[/b] and [b]ctrl_pressed[/b] will be removed in v7.0[br]See `test_key_shift_and_A_presssing` for example using key combinations
 ## [member key_code] : the key code e.g. [constant KEY_ENTER][br]
-## [member shift_pressed] : false by default set to true if simmulate shift is press[br]
-## [member ctrl_pressed] : false by default set to true if simmulate control is press[br]
+## [codeblock]
+##    # Do simulate key pressing A
+##    func test_key_A_presssing():
+##       var runner = scene_runner("res://scenes/simple_scene.tscn")
+##       await runner.simulate_key_press(KEY_A)
+##
+##
+##    # Do simulate keycombination pressing shift+A
+##    func test_key_shift_and_A_presssing():
+##       var runner = scene_runner("res://scenes/simple_scene.tscn")
+##       runner.simulate_key_press(KEY_SHIFT)
+##       runner.simulate_key_press(KEY_A)
+##       await _runner.await_input_processed()
+## [/codeblock]
 @abstract func simulate_key_press(key_code: int, shift_pressed := false, ctrl_pressed := false) -> GdUnitSceneRunner
 
 
 ## Simulates that a key has been released.[br]
 ## [member key_code] : the key code e.g. [constant KEY_ENTER][br]
-## [member shift_pressed] : false by default set to true if simmulate shift is press[br]
-## [member ctrl_pressed] : false by default set to true if simmulate control is press[br]
+## [codeblock]
+##    # Do simulate releasing key A
+##    func test_key_A_releasing():
+##       var runner = scene_runner("res://scenes/simple_scene.tscn")
+##       await runner.simulate_key_release(KEY_A)
+##
+##
+##    # Do simulate keycombination pressing shift+A
+##    func test_key_shift_and_A_releasing(():
+##       var runner = scene_runner("res://scenes/simple_scene.tscn")
+##       runner.simulate_key_release(KEY_SHIFT)
+##       runner.simulate_key_release(KEY_A)
+##       await _runner.await_input_processed()
+## [/codeblock]
+## @deprecated: the modifier [b]shift_pressed[/b] and [b]ctrl_pressed[/b] will be removed in v7.0[br]See `test_key_shift_and_A_releasing` for example using key combinations
 @abstract func simulate_key_release(key_code: int, shift_pressed := false, ctrl_pressed := false) -> GdUnitSceneRunner
 
 

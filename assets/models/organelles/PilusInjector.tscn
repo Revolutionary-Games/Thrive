@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://2urlja1v52e0"]
+[gd_scene format=3 uid="uid://2urlja1v52e0"]
 
 [ext_resource type="Shader" uid="uid://bpdtg8smolq32" path="res://shaders/OrganelleTransparent.gdshader" id="1_yre3g"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2_k8s0e"]
@@ -20,7 +20,7 @@ shader_parameter/growColor = Color(0.20214, 0.32706, 0.314724, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
 
-[node name="PilusInjector" type="MeshInstance3D"]
+[node name="PilusInjector" type="MeshInstance3D" unique_id=1993035690]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_glvo5")
 mesh = ExtResource("4_x60qj")

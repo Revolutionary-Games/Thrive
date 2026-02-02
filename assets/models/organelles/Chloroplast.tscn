@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://gqvy0jnwusjm"]
+[gd_scene format=3 uid="uid://gqvy0jnwusjm"]
 
 [ext_resource type="ArrayMesh" uid="uid://bgh8mdvynaiyb" path="res://assets/models/organelles/Chloroplast.mesh" id="2"]
 [ext_resource type="Shader" uid="uid://bpdtg8smolq32" path="res://shaders/OrganelleTransparent.gdshader" id="3"]
@@ -20,6 +20,6 @@ shader_parameter/growColor = Color(0.262745, 0.309804, 0.235294, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.01
 
-[node name="Chloroplast" type="MeshInstance3D"]
+[node name="Chloroplast" type="MeshInstance3D" unique_id=1954928862]
 material_override = SubResource("ShaderMaterial_uso25")
 mesh = ExtResource("2")

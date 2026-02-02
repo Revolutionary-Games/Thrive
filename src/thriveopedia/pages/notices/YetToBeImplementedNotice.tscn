@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://vrvxxb0rw1ed"]
+[gd_scene format=3 uid="uid://vrvxxb0rw1ed"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_n8n7q"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="2_wkirc"]
@@ -11,24 +11,24 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 5
 expand_margin_left = 1.0
 
-[node name="MarginContainer" type="MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" unique_id=352451514]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 28.0
 grow_horizontal = 2
 theme_override_constants/margin_bottom = 10
 
-[node name="OutdatedNotice" type="CenterContainer" parent="."]
+[node name="OutdatedNotice" type="CenterContainer" parent="." unique_id=184991516]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="OutdatedNotice"]
+[node name="PanelContainer" type="PanelContainer" parent="OutdatedNotice" unique_id=223853333]
 custom_minimum_size = Vector2(330, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme = ExtResource("1_n8n7q")
 
-[node name="MarginContainer" type="MarginContainer" parent="OutdatedNotice/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="OutdatedNotice/PanelContainer" unique_id=1663164935]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/margin_left = 3
@@ -36,15 +36,15 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="OutdatedNotice/PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="OutdatedNotice/PanelContainer/MarginContainer" unique_id=1036332688]
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="OutdatedNotice/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="Panel" type="Panel" parent="OutdatedNotice/PanelContainer/MarginContainer/HBoxContainer" unique_id=430549153]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_e8ofa")
 
-[node name="Label" type="Label" parent="OutdatedNotice/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="OutdatedNotice/PanelContainer/MarginContainer/HBoxContainer" unique_id=805634274]
 layout_mode = 2
 theme = ExtResource("1_n8n7q")
 text = "YET_TO_BE_IMPLEMENTED_NOTICE"

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnlockConstraints;
 
 /// <summary>
 ///   Data needed by the cell editor to function / apply the modifications
@@ -15,4 +16,6 @@ public interface ICellEditorData : IHexEditor, IEditorWithPatches, IEditorWithAc
     ///   Access to the latest edited organelle data
     /// </summary>
     public IReadOnlyList<OrganelleTemplate>? EditedCellOrganelles { get; }
+
+    public WorldAndPlayerDataSource UnlocksDataSource { get; }
 }

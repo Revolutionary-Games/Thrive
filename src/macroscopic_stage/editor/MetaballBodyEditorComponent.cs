@@ -374,7 +374,12 @@ public partial class MetaballBodyEditorComponent :
         var cellType = CellTypeFromName(activeActionName);
 
         if (MouseHoverPositions == null)
-            return Constants.METABALL_ADD_COST * Symmetry.PositionCount();
+        {
+            var costMultiplier = Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+
+            return Math.Min(Constants.METABALL_ADD_COST * costMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST) *
+                Symmetry.PositionCount();
+        }
 
         var positions = MouseHoverPositions.ToList();
 
@@ -883,7 +888,7 @@ public partial class MetaballBodyEditorComponent :
                     new Callable(this, nameof(OnCellToPlaceSelected)));
             }
 
-            control.MPCost = Constants.METABALL_ADD_COST * costMultiplier;
+            control.MPCost = Math.Min(Constants.METABALL_ADD_COST * costMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
 
             // TODO: remove this line after ATP balance calculations are implemented for this editor
             control.ShowInsufficientATPWarning = false;

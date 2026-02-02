@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cb54l5msbnmhx"]
+[gd_scene format=3 uid="uid://cb54l5msbnmhx"]
 
 [ext_resource type="Texture2D" uid="uid://bjlbcex6yyjj3" path="res://assets/textures/space/Rocket.png" id="1_ubdc0"]
 [ext_resource type="Texture2D" uid="uid://cp7w5cnnrrk1r" path="res://assets/textures/space/Rocket_normal.png" id="2_yu6c4"]
@@ -54,14 +54,14 @@ proximity_fade_distance = 0.1
 [sub_resource type="QuadMesh" id="QuadMesh_srknr"]
 material = SubResource("StandardMaterial3D_gwvq0")
 
-[node name="PlaceHolderRocket" type="Node3D"]
+[node name="PlaceHolderRocket" type="Node3D" unique_id=567897651]
 
-[node name="RocketMesh" type="MeshInstance3D" parent="."]
+[node name="RocketMesh" type="MeshInstance3D" parent="." unique_id=1564231253]
 transform = Transform3D(2.5, 0, 0, 0, -1.09278e-07, -2.5, 0, 2.5, -1.09278e-07, 0, 0.120438, 2.71394)
 material_override = SubResource("StandardMaterial3D_wnwdn")
 mesh = ExtResource("3_xicyw")
 
-[node name="RocketFire" type="GPUParticles3D" parent="."]
+[node name="RocketFire" type="GPUParticles3D" parent="." unique_id=715417699]
 transform = Transform3D(-4.37114e-08, 0, -1, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1.91069e-15, 0, 0.120438, -11.614)
 amount = 100
 lifetime = 0.6

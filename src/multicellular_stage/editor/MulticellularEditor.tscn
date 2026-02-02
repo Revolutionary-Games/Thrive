@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://80exn4x2sdv7"]
+[gd_scene format=3 uid="uid://80exn4x2sdv7"]
 
 [ext_resource type="Script" uid="uid://03l7xhf0xnm4" path="res://src/multicellular_stage/editor/MulticellularEditor.cs" id="1_kpf0e"]
 [ext_resource type="PackedScene" uid="uid://hxrn73ihp8r4" path="res://src/microbe_stage/editor/MicrobeEditorWorld.tscn" id="2_aqkc2"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://de2sohb3fjvc1" path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn" id="9_v3ojp"]
 [ext_resource type="PackedScene" uid="uid://cbthqg63bqkhx" path="res://src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn" id="10_xy0bv"]
 
-[node name="MulticellularEditor" type="Node" node_paths=PackedStringArray("reportTab", "patchMapTab", "bodyPlanEditorTab", "cellEditorTab", "noCellTypeSelected", "editorTabSelector", "editorGUIBaseNode")]
+[node name="MulticellularEditor" type="Node" unique_id=1184763186 node_paths=PackedStringArray("reportTab", "patchMapTab", "bodyPlanEditorTab", "cellEditorTab", "noCellTypeSelected", "editorTabSelector", "editorGUIBaseNode")]
 script = ExtResource("1_kpf0e")
 reportTab = NodePath("EarlyMulticellularEditorGUI/Report")
 patchMapTab = NodePath("EarlyMulticellularEditorGUI/PatchMap")
@@ -21,9 +21,9 @@ noCellTypeSelected = NodePath("EarlyMulticellularEditorGUI/NoCellSelected")
 editorTabSelector = NodePath("EarlyMulticellularEditorGUI/MicrobeEditorTabButtons")
 editorGUIBaseNode = NodePath("EarlyMulticellularEditorGUI")
 
-[node name="EditorWorld" parent="." instance=ExtResource("2_aqkc2")]
+[node name="EditorWorld" parent="." unique_id=1404595507 instance=ExtResource("2_aqkc2")]
 
-[node name="EarlyMulticellularEditorGUI" type="Control" parent="."]
+[node name="EarlyMulticellularEditorGUI" type="Control" parent="." unique_id=128875781]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,7 +32,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_th7yq")
 
-[node name="CellBodyPlanEditorComponent" parent="EarlyMulticellularEditorGUI" node_paths=PackedStringArray("cameraFollow", "camera", "editorArrow", "editorGrid") instance=ExtResource("4_6ypjp")]
+[node name="CellBodyPlanEditorComponent" parent="EarlyMulticellularEditorGUI" unique_id=1300078480 node_paths=PackedStringArray("cameraFollow", "camera", "editorArrow", "editorGrid") instance=ExtResource("4_6ypjp")]
 visible = false
 layout_mode = 1
 cameraFollow = NodePath("../../EditorWorld/CameraLookAt")
@@ -40,7 +40,7 @@ camera = NodePath("../../EditorWorld/PrimaryCamera")
 editorArrow = NodePath("../../EditorWorld/EditorArrow")
 editorGrid = NodePath("../../EditorWorld/Grid")
 
-[node name="CellEditor" parent="EarlyMulticellularEditorGUI" node_paths=PackedStringArray("cameraFollow", "camera", "editorArrow", "editorGrid") instance=ExtResource("5_qhuw3")]
+[node name="CellEditor" parent="EarlyMulticellularEditorGUI" unique_id=906763236 node_paths=PackedStringArray("cameraFollow", "camera", "editorArrow", "editorGrid") instance=ExtResource("5_qhuw3")]
 visible = false
 layout_mode = 1
 IsMulticellularEditor = true
@@ -49,24 +49,24 @@ camera = NodePath("../../EditorWorld/PrimaryCamera")
 editorArrow = NodePath("../../EditorWorld/EditorArrow")
 editorGrid = NodePath("../../EditorWorld/Grid")
 
-[node name="Report" parent="EarlyMulticellularEditorGUI" instance=ExtResource("6_1w772")]
+[node name="Report" parent="EarlyMulticellularEditorGUI" unique_id=1569179804 instance=ExtResource("6_1w772")]
 layout_mode = 1
 
-[node name="PatchMap" parent="EarlyMulticellularEditorGUI" instance=ExtResource("7_7emny")]
+[node name="PatchMap" parent="EarlyMulticellularEditorGUI" unique_id=1719476254 instance=ExtResource("7_7emny")]
 visible = false
 layout_mode = 1
 
-[node name="MicrobeEditorTabButtons" parent="EarlyMulticellularEditorGUI" instance=ExtResource("8_ed1b2")]
+[node name="MicrobeEditorTabButtons" parent="EarlyMulticellularEditorGUI" unique_id=1232439012 instance=ExtResource("8_ed1b2")]
 layout_mode = 0
 offset_right = 350.0
 offset_bottom = 45.0
 IsForMulticellular = true
 
-[node name="EditorCommonBottomLeftButtons" parent="EarlyMulticellularEditorGUI" instance=ExtResource("9_v3ojp")]
+[node name="EditorCommonBottomLeftButtons" parent="EarlyMulticellularEditorGUI" unique_id=1231096074 instance=ExtResource("9_v3ojp")]
 layout_mode = 1
 grow_vertical = 0
 
-[node name="NoCellSelected" type="MarginContainer" parent="EarlyMulticellularEditorGUI"]
+[node name="NoCellSelected" type="MarginContainer" parent="EarlyMulticellularEditorGUI" unique_id=1559690015]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -76,12 +76,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="EarlyMulticellularEditorGUI/NoCellSelected"]
+[node name="Label" type="Label" parent="EarlyMulticellularEditorGUI/NoCellSelected" unique_id=90112338]
 layout_mode = 2
 text = "SELECT_CELL_TYPE_FROM_EDITOR"
 horizontal_alignment = 1
 
-[node name="MicrobeEditorCheatMenu" parent="EarlyMulticellularEditorGUI" instance=ExtResource("10_xy0bv")]
+[node name="MicrobeEditorCheatMenu" parent="EarlyMulticellularEditorGUI" unique_id=966094592 instance=ExtResource("10_xy0bv")]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 30.0

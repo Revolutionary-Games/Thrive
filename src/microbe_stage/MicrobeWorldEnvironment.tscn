@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqpjtfkjeuwmq"]
+[gd_scene format=3 uid="uid://dqpjtfkjeuwmq"]
 
 [ext_resource type="Shader" uid="uid://cvvlsk7or1qyk" path="res://shaders/SimpleSky.gdshader" id="1_852k6"]
 [ext_resource type="Script" uid="uid://djjshn5bho65x" path="res://src/microbe_stage/MicrobeWorldEnvironment.cs" id="1_gansp"]
@@ -23,6 +23,6 @@ glow_strength = 1.8
 glow_bloom = 1.0
 glow_blend_mode = 4
 
-[node name="MicrobeWorldEnvironment" type="WorldEnvironment"]
+[node name="MicrobeWorldEnvironment" type="WorldEnvironment" unique_id=1163805713]
 environment = SubResource("Environment_31nh3")
 script = ExtResource("1_gansp")

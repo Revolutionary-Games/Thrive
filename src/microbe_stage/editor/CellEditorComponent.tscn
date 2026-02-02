@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://cwot2e52r7lx0"]
+[gd_scene format=3 uid="uid://cwot2e52r7lx0"]
 
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://0hb8nq18ljr8" path="res://src/microbe_stage/editor/LightConfigurationPanel.tscn" id="3_yy73o"]
@@ -513,7 +513,7 @@ _data = {
 &"ShowTopPanel": SubResource("Animation_pcyan")
 }
 
-[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("structureTabButton", "appearanceTabButton", "behaviourTabButton", "growthOrderTabButton", "toleranceTabButton", "structureTab", "appearanceTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "partsSelectionContainer", "membraneTypeSelection", "totalEnergyLabel", "autoEvoPredictionFailedLabel", "bestPatchLabel", "worstPatchLabel", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "autoEvoPredictionPanel", "rigiditySlider", "membraneColorPicker", "negativeAtpPopup", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "organelleMenu", "organelleUpgradeGUI", "showGrowthOrderCoordinates", "micheViewer", "organismStatisticsPanel", "autoEvoPredictionExplanationPopup", "autoEvoPredictionExplanationLabel", "rightPanel", "rightPanelScrollContainer", "bottomRightPanel", "tutorialAnimationPlayer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
+[node name="CellEditorComponent" type="Control" unique_id=1964999532 node_paths=PackedStringArray("structureTabButton", "appearanceTabButton", "behaviourTabButton", "growthOrderTabButton", "toleranceTabButton", "structureTab", "appearanceTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "partsSelectionContainer", "membraneTypeSelection", "totalEnergyLabel", "autoEvoPredictionFailedLabel", "bestPatchLabel", "worstPatchLabel", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "autoEvoPredictionPanel", "rigiditySlider", "membraneColorPicker", "negativeAtpPopup", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "organelleMenu", "organelleUpgradeGUI", "showGrowthOrderCoordinates", "micheViewer", "organismStatisticsPanel", "autoEvoPredictionExplanationPopup", "autoEvoPredictionExplanationLabel", "rightPanel", "rightPanelScrollContainer", "bottomRightPanel", "tutorialAnimationPlayer", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -573,7 +573,7 @@ cancelButton = NodePath("BottomRight/HBoxContainer/CancelButton")
 finishButtonWarningBadge = NodePath("BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
 finishOrNextButton = NodePath("BottomRight/HBoxContainer/ConfirmButton")
 
-[node name="GrowthOrderNumberContainer" type="Control" parent="."]
+[node name="GrowthOrderNumberContainer" type="Control" parent="." unique_id=1344755164]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -583,7 +583,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TopPanel" type="MarginContainer" parent="."]
+[node name="TopPanel" type="MarginContainer" parent="." unique_id=1081683577]
 layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
@@ -592,10 +592,10 @@ offset_top = 10.0
 offset_right = 280.0
 offset_bottom = 64.0
 
-[node name="LightConfigurationPanel" parent="TopPanel" instance=ExtResource("3_yy73o")]
+[node name="LightConfigurationPanel" parent="TopPanel" unique_id=726771345 instance=ExtResource("3_yy73o")]
 layout_mode = 2
 
-[node name="LeftPanel" type="MarginContainer" parent="."]
+[node name="LeftPanel" type="MarginContainer" parent="." unique_id=1908836377]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 0
 anchor_bottom = 1.0
@@ -608,30 +608,30 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="MainPanel" type="PanelContainer" parent="LeftPanel"]
+[node name="MainPanel" type="PanelContainer" parent="LeftPanel" unique_id=77017957]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_force_pass_scroll_events = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel" unique_id=711630570]
 layout_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer" unique_id=1521121434]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="MutationPointsBar" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2" instance=ExtResource("7")]
+[node name="MutationPointsBar" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2" unique_id=518298845 instance=ExtResource("7")]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer" unique_id=1818583773]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer" unique_id=201669192]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -640,15 +640,15 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="EditingPanel" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer"]
+[node name="EditingPanel" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer" unique_id=1362838942]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TabButtons" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource("19")]
+[node name="TabButtons" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=1377681619 instance=ExtResource("19")]
 layout_mode = 2
 LevelOnScreen = 1
 
-[node name="Structure" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
+[node name="Structure" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=1228334154]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
@@ -667,7 +667,7 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_xodoa")
 text = "STRUCTURE"
 
-[node name="Membrane" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
+[node name="Membrane" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=810519641]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
@@ -685,7 +685,7 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_xodoa")
 text = "MEMBRANE"
 
-[node name="Behaviour" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
+[node name="Behaviour" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=1763419755]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
@@ -703,7 +703,7 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_xodoa")
 text = "BEHAVIOUR"
 
-[node name="Growth" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
+[node name="Growth" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=1397249010]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -722,7 +722,7 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_xodoa")
 text = "GROWTH_ORDER"
 
-[node name="Tolerances" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
+[node name="Tolerances" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons" unique_id=1213845362]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -741,31 +741,31 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_xodoa")
 text = "ENVIRONMENT_TOLERANCE"
 
-[node name="Structure" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
+[node name="Structure" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=44201928]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("14")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure"]
+[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure" unique_id=1191969423]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer" unique_id=1041823507]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 10
 
-[node name="StructureContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer"]
+[node name="StructureContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer" unique_id=826205416]
 layout_mode = 2
 
-[node name="PartsSelection" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer"]
+[node name="PartsSelection" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer" unique_id=563050800]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_constants/separation = 10
 
-[node name="SearchBar" type="LineEdit" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection"]
+[node name="SearchBar" type="LineEdit" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection" unique_id=641861184]
 visible = false
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
@@ -776,102 +776,102 @@ theme_override_colors/selection_color = Color(1, 1, 1, 1)
 placeholder_text = "SEARCH_DOT_DOT_DOT"
 selecting_enabled = false
 
-[node name="Structural" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection" instance=ExtResource("45")]
+[node name="Structural" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection" unique_id=2014441691 instance=ExtResource("45")]
 layout_mode = 2
 DisplayName = "STRUCTURAL"
 Columns = 3
 
-[node name="Protein" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection" instance=ExtResource("45")]
+[node name="Protein" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection" unique_id=1341216428 instance=ExtResource("45")]
 layout_mode = 2
 DisplayName = "PROTEINS"
 Columns = 3
 
-[node name="External" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection" instance=ExtResource("45")]
+[node name="External" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection" unique_id=2054372493 instance=ExtResource("45")]
 layout_mode = 2
 DisplayName = "EXTERNAL"
 Columns = 3
 
-[node name="Organelle" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection" instance=ExtResource("45")]
+[node name="Organelle" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection" unique_id=1582782518 instance=ExtResource("45")]
 layout_mode = 2
 DisplayName = "ORGANELLES"
 Columns = 3
 
-[node name="Multicellular" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection" instance=ExtResource("45")]
+[node name="Multicellular" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection" unique_id=1161668541 instance=ExtResource("45")]
 layout_mode = 2
 DisplayName = "ORGANELLE_CATEGORY_MULTICELLULAR"
 Columns = 3
 
-[node name="Macroscopic" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection" instance=ExtResource("45")]
+[node name="Macroscopic" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection" unique_id=921434616 instance=ExtResource("45")]
 layout_mode = 2
 DisplayName = "ORGANELLE_CATEGORY_MACROSCOPIC"
 Columns = 3
 
-[node name="Endosymbiosis" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer"]
+[node name="Endosymbiosis" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer" unique_id=349927077]
 layout_mode = 2
 size_flags_vertical = 8
 text = "ENDOSYMBIOSIS_BUTTON"
 
-[node name="Membrane" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
+[node name="Membrane" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=211099789]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("16")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane"]
+[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane" unique_id=861667036]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer" unique_id=708805825]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer" unique_id=1348217851]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="MembraneTypes" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("45")]
+[node name="MembraneTypes" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1127176863 instance=ExtResource("45")]
 layout_mode = 2
 DisplayName = "MEMBRANE_TYPES"
 Columns = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1685568631]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=576377250]
 layout_mode = 2
 
-[node name="RigidityLabel" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="RigidityLabel" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=33835754]
 layout_mode = 2
 size_flags_vertical = 1
 text = "FLUIDITY_RIGIDITY"
 label_settings = ExtResource("8_mt8w8")
 
-[node name="HSeparator2" type="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1309676189]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("18")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1558634036]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1239198278]
 layout_mode = 2
 text = "FLUID"
 label_settings = ExtResource("8_mt8w8")
 
-[node name="Spacer" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="Spacer" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=122228867]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label2" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label2" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=293041806]
 layout_mode = 2
 text = "RIGID"
 label_settings = ExtResource("8_mt8w8")
 
-[node name="RigiditySlider" type="HSlider" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="RigiditySlider" type="HSlider" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1742571610]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 1
@@ -885,93 +885,93 @@ scrollable = false
 tick_count = 9
 ticks_on_borders = true
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1662412711]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=1493745697]
 layout_mode = 2
 
-[node name="ColourLabel" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="ColourLabel" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer" unique_id=952842435]
 layout_mode = 2
 size_flags_vertical = 1
 text = "COLOUR"
 label_settings = ExtResource("8_mt8w8")
 
-[node name="HSeparator3" type="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer" unique_id=550176671]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("16")
 
-[node name="TweakedColourPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource("43")]
+[node name="TweakedColourPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=50963317 instance=ExtResource("43")]
 layout_mode = 2
 
-[node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource("14")]
+[node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=1297442145 instance=ExtResource("14")]
 visible = false
 layout_mode = 2
 
-[node name="Growth" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
+[node name="Growth" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=16578458]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("14")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth"]
+[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth" unique_id=165973269]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer" unique_id=1787193658]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_right = 10
 
-[node name="GrowthContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer"]
+[node name="GrowthContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer" unique_id=1491139785]
 layout_mode = 2
 
-[node name="GrowthOrderPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer" instance=ExtResource("15_krpbw")]
+[node name="GrowthOrderPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer" unique_id=997994053 instance=ExtResource("15_krpbw")]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Coordinates" type="CheckBox" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer"]
+[node name="Coordinates" type="CheckBox" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer" unique_id=2071788182]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "SHOW_ITEM_COORDINATES"
 autowrap_mode = 3
 
-[node name="Spacer" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer"]
+[node name="Spacer" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer" unique_id=43074770]
 layout_mode = 2
 
-[node name="Explanation" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer"]
+[node name="Explanation" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer" unique_id=1918325304]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "ORGANELLE_GROWTH_ORDER_EXPLANATION"
 label_settings = ExtResource("28_qclxk")
 autowrap_mode = 3
 
-[node name="Tolerance" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
+[node name="Tolerance" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" unique_id=287852188]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("14")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance"]
+[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance" unique_id=2128959160]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer" unique_id=2071552820]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_right = 10
 
-[node name="TolerancesEditor" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer" instance=ExtResource("15_rbhjt")]
+[node name="TolerancesEditor" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer" unique_id=933978550 instance=ExtResource("15_rbhjt")]
 layout_mode = 2
 
-[node name="RightPanel" type="MarginContainer" parent="."]
+[node name="RightPanel" type="MarginContainer" parent="." unique_id=1065650677]
 custom_minimum_size = Vector2(285, 657)
 layout_mode = 1
 anchors_preset = 1
@@ -983,12 +983,12 @@ grow_horizontal = 0
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel" unique_id=212316704]
 layout_mode = 2
 mouse_filter = 0
 mouse_force_pass_scroll_events = false
 
-[node name="OrganismStatisticsPanel" parent="RightPanel/VBoxContainer" node_paths=PackedStringArray("processList", "processListWindow", "lightConfigurationPanel") instance=ExtResource("15_tdiis")]
+[node name="OrganismStatisticsPanel" parent="RightPanel/VBoxContainer" unique_id=1684870648 node_paths=PackedStringArray("processList", "processListWindow", "lightConfigurationPanel") instance=ExtResource("15_tdiis")]
 layout_mode = 2
 ShowHealthStat = true
 ShowSizeStat = true
@@ -1003,26 +1003,26 @@ processList = NodePath("../../../ProcessPanel/ScrollContainer/ProcessList")
 processListWindow = NodePath("../../../ProcessPanel")
 lightConfigurationPanel = NodePath("../../../TopPanel/LightConfigurationPanel")
 
-[node name="AutoEvoInfoPanel" type="PanelContainer" parent="RightPanel/VBoxContainer"]
+[node name="AutoEvoInfoPanel" type="PanelContainer" parent="RightPanel/VBoxContainer" unique_id=1135255199]
 custom_minimum_size = Vector2(0, 236)
 layout_mode = 2
 mouse_filter = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel" unique_id=1180698004]
 layout_mode = 2
 tooltip_text = "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 theme_override_constants/separation = 0
 
-[node name="Header" type="MarginContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer"]
+[node name="Header" type="MarginContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer" unique_id=1376802781]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Header"]
+[node name="HBoxContainer" type="HBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Header" unique_id=535168112]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Header/HBoxContainer"]
+[node name="Title" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Header/HBoxContainer" unique_id=1345751165]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1031,7 +1031,7 @@ text = "AUTO-EVO_PREDICTION"
 label_settings = ExtResource("14_fllwv")
 autowrap_mode = 3
 
-[node name="Details" type="TextureButton" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Header/HBoxContainer"]
+[node name="Details" type="TextureButton" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Header/HBoxContainer" unique_id=1677382004]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1045,11 +1045,11 @@ texture_hover = ExtResource("13")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Body" type="ScrollContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer"]
+[node name="Body" type="ScrollContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer" unique_id=1797186215]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body"]
+[node name="MarginContainer" type="MarginContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body" unique_id=1411103705]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -1058,38 +1058,38 @@ theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer" unique_id=1190554232]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer" unique_id=1621817648]
 layout_mode = 2
 
-[node name="Failed" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Failed" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1735745431]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.301961, 0.301961, 1)
 text = "FAILED"
 label_settings = ExtResource("24_ekuel")
 
-[node name="Total" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("12")]
+[node name="Total" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1186088473 instance=ExtResource("12")]
 layout_mode = 2
 tooltip_text = "GATHERED_ENERGY_TOOLTIP"
 InvalidIcon = ExtResource("20")
 Description = "TOTAL_GATHERED_ENERGY_COLON"
 
-[node name="Best" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Best" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1672844405]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Best"]
+[node name="Label" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Best" unique_id=1948196603]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "BEST_PATCH_COLON"
 label_settings = ExtResource("24_ekuel")
 autowrap_mode = 3
 
-[node name="Value" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Best"]
+[node name="Value" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Best" unique_id=2055328703]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -1099,17 +1099,17 @@ label_settings = ExtResource("25_68vjv")
 autowrap_mode = 3
 max_lines_visible = 2
 
-[node name="Worst" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Worst" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1397940363]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Worst"]
+[node name="Label" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Worst" unique_id=423991928]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "WORST_PATCH_COLON"
 label_settings = ExtResource("24_ekuel")
 autowrap_mode = 3
 
-[node name="Value" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Worst"]
+[node name="Value" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Worst" unique_id=311022494]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -1119,20 +1119,20 @@ label_settings = ExtResource("25_68vjv")
 autowrap_mode = 3
 max_lines_visible = 2
 
-[node name="Spacer" type="Control" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer" unique_id=901598773]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer" unique_id=1718240059]
 layout_mode = 2
 tooltip_text = "ORGANELLE_SUGGESTION_TOOLTIP"
 alignment = 2
 
-[node name="HFlowContainer" type="HFlowContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HFlowContainer" type="HFlowContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1564863677]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SuggestionLabel" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer"]
+[node name="SuggestionLabel" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer" unique_id=191197487]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1142,7 +1142,7 @@ text = "ORGANELLE_SUGGESTION_COLON"
 label_settings = ExtResource("28_qclxk")
 autowrap_mode = 2
 
-[node name="SugestionLoading" type="TextureRect" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer"]
+[node name="SugestionLoading" type="TextureRect" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer" unique_id=1757787310]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_vertical = 0
@@ -1151,20 +1151,20 @@ texture = ExtResource("20")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SuggestionValue" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer"]
+[node name="SuggestionValue" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer" unique_id=2035069802]
 visible = false
 layout_mode = 2
 tooltip_text = "ORGANELLE_SUGGESTION_TOOLTIP"
 mouse_filter = 1
 label_settings = ExtResource("24_ekuel")
 
-[node name="EditorComponentBottomLeftButtons" parent="." instance=ExtResource("3")]
+[node name="EditorComponentBottomLeftButtons" parent="." unique_id=2131992479 instance=ExtResource("3")]
 layout_mode = 1
 offset_top = -53.0
 offset_right = 641.0
 grow_vertical = 0
 
-[node name="ToleranceWarnings" type="VBoxContainer" parent="."]
+[node name="ToleranceWarnings" type="VBoxContainer" parent="." unique_id=1246429299]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1175,7 +1175,7 @@ offset_right = 352.0
 offset_bottom = 250.0
 grow_horizontal = 2
 
-[node name="BottomRight" type="MarginContainer" parent="."]
+[node name="BottomRight" type="MarginContainer" parent="." unique_id=1982206719]
 layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0
@@ -1188,15 +1188,15 @@ offset_bottom = -9.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomRight"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomRight" unique_id=796172930]
 layout_mode = 2
 alignment = 2
 
-[node name="FocusGrabber" parent="BottomRight/HBoxContainer" instance=ExtResource("16")]
+[node name="FocusGrabber" parent="BottomRight/HBoxContainer" unique_id=1501191268 instance=ExtResource("16")]
 layout_mode = 2
 NodeToGiveFocusTo = NodePath("../ConfirmButton")
 
-[node name="CancelButton" type="Button" parent="BottomRight/HBoxContainer"]
+[node name="CancelButton" type="Button" parent="BottomRight/HBoxContainer" unique_id=812460668]
 visible = false
 custom_minimum_size = Vector2(140, 40)
 layout_mode = 2
@@ -1212,7 +1212,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_tk5n4")
 shortcut_in_tooltip = false
 text = "CANCEL_ACTION_CAPITAL"
 
-[node name="ConfirmButton" type="Button" parent="BottomRight/HBoxContainer"]
+[node name="ConfirmButton" type="Button" parent="BottomRight/HBoxContainer" unique_id=1790166847]
 custom_minimum_size = Vector2(140, 40)
 layout_mode = 2
 mouse_force_pass_scroll_events = false
@@ -1222,7 +1222,7 @@ theme_override_styles/hover = SubResource("26")
 theme_override_styles/focus = SubResource("41")
 text = "NEXT_CAPITAL"
 
-[node name="MarginContainer" type="MarginContainer" parent="BottomRight/HBoxContainer/ConfirmButton"]
+[node name="MarginContainer" type="MarginContainer" parent="BottomRight/HBoxContainer/ConfirmButton" unique_id=667125106]
 layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
@@ -1236,7 +1236,7 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="WarningBadge" type="TextureRect" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer"]
+[node name="WarningBadge" type="TextureRect" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer" unique_id=127687397]
 visible = false
 custom_minimum_size = Vector2(21, 21)
 layout_mode = 2
@@ -1245,12 +1245,10 @@ size_flags_vertical = 0
 texture = ExtResource("21")
 expand_mode = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge"]
-libraries = {
-&"": SubResource("AnimationLibrary_18kr8")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge" unique_id=187445621]
+libraries/ = SubResource("AnimationLibrary_18kr8")
 
-[node name="NegativeAtpWarning" parent="." instance=ExtResource("9")]
+[node name="NegativeAtpWarning" parent="." unique_id=976017044 instance=ExtResource("9")]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 offset_right = 500.0
@@ -1258,7 +1256,7 @@ offset_bottom = 85.0
 DialogText = "NEGATIVE_ATP_BALANCE_TEXT"
 WindowTitle = "NEGATIVE_ATP_BALANCE"
 
-[node name="CompleteEndosymbiosisWarning" parent="." instance=ExtResource("9")]
+[node name="CompleteEndosymbiosisWarning" parent="." unique_id=1004429260 instance=ExtResource("9")]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 offset_right = 500.0
@@ -1269,7 +1267,7 @@ ConfirmText = "VIEW_PENDING_ACTIONS"
 CancelText = "EXIT_EDITOR"
 WindowTitle = "PENDING_ENDOSYMBIOSIS_TITLE"
 
-[node name="IslandError" parent="." instance=ExtResource("9")]
+[node name="IslandError" parent="." unique_id=408719075 instance=ExtResource("9")]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 0
 offset_right = 600.0
@@ -1278,7 +1276,7 @@ HideCancelButton = true
 DialogText = "DISCONNECTED_ORGANELLES_TEXT"
 WindowTitle = "DISCONNECTED_ORGANELLES"
 
-[node name="OrganelleUpgradeGUI" parent="." instance=ExtResource("30")]
+[node name="OrganelleUpgradeGUI" parent="." unique_id=1999166466 instance=ExtResource("30")]
 visible = false
 layout_mode = 0
 anchors_preset = 0
@@ -1289,7 +1287,7 @@ offset_bottom = -1.41425
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="OrganellePopupMenu" parent="." instance=ExtResource("47")]
+[node name="OrganellePopupMenu" parent="." unique_id=1750371247 instance=ExtResource("47")]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.15625
@@ -1297,10 +1295,10 @@ anchor_bottom = 0.183333
 offset_right = 0.0
 offset_bottom = 0.0
 
-[node name="EndosymbiosisPopup" parent="." instance=ExtResource("38_e0n84")]
+[node name="EndosymbiosisPopup" parent="." unique_id=390097206 instance=ExtResource("38_e0n84")]
 layout_mode = 1
 
-[node name="ProcessPanel" parent="." instance=ExtResource("39")]
+[node name="ProcessPanel" parent="." unique_id=201602767 instance=ExtResource("39")]
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 0
 offset_left = 10.0
@@ -1310,32 +1308,32 @@ offset_bottom = 672.414
 WindowTitle = "PROCESS_PANEL_TITLE"
 Resizable = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ProcessPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ProcessPanel" unique_id=1651615088]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 follow_focus = true
 
-[node name="ProcessList" parent="ProcessPanel/ScrollContainer" instance=ExtResource("41_n2bpg")]
+[node name="ProcessList" parent="ProcessPanel/ScrollContainer" unique_id=2094891942 instance=ExtResource("41_n2bpg")]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 ShowSpinners = false
 ShowToggles = false
 
-[node name="PredictionExplanation" parent="." instance=ExtResource("39")]
+[node name="PredictionExplanation" parent="." unique_id=841824435 instance=ExtResource("39")]
 custom_minimum_size = Vector2(550, 515)
 layout_mode = 0
 WindowTitle = "AUTO-EVO_PREDICTION"
 Resizable = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PredictionExplanation"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PredictionExplanation" unique_id=741235541]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PredictionExplanation/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PredictionExplanation/VBoxContainer" unique_id=1987019096]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -1343,25 +1341,25 @@ mouse_filter = 0
 mouse_force_pass_scroll_events = false
 horizontal_scroll_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="PredictionExplanation/VBoxContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PredictionExplanation/VBoxContainer/ScrollContainer" unique_id=1059592104]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer" unique_id=386654669]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ExplanationText" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("11")]
+[node name="ExplanationText" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=112351284 instance=ExtResource("11")]
 layout_mode = 2
 fit_content = true
 
-[node name="Spacer" type="Control" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=932298400]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Help" type="Label" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Help" type="Label" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1199899899]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1369,24 +1367,22 @@ text = "AUTO-EVO_EXPLANATION_EXPLANATION"
 label_settings = ExtResource("28_qclxk")
 autowrap_mode = 3
 
-[node name="MichesViewButton" type="Button" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="MichesViewButton" type="Button" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1636142138]
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "VIEW_PATCH_MICHES"
 
-[node name="Close" type="Button" parent="PredictionExplanation/VBoxContainer"]
+[node name="Close" type="Button" parent="PredictionExplanation/VBoxContainer" unique_id=1931871404]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 14
 text = "CLOSE"
 
-[node name="PopupMicheViewer" parent="." instance=ExtResource("44_bxafd")]
+[node name="PopupMicheViewer" parent="." unique_id=657349085 instance=ExtResource("44_bxafd")]
 layout_mode = 1
 
-[node name="TutorialAnimations" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_o1pli")
-}
+[node name="TutorialAnimations" type="AnimationPlayer" parent="." unique_id=494316874]
+libraries/ = SubResource("AnimationLibrary_o1pli")
 
 [connection signal="Clicked" from="." to="EditorComponentBottomLeftButtons" method="OnClickedOffName"]
 [connection signal="gui_input" from="." to="." method="OnHexEditorGuiInput"]

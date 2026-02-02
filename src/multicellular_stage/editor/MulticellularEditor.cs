@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using SharedBase.Archive;
+using Systems;
+using UnlockConstraints;
 
 /// <summary>
 ///   The multicellular stage editor main class
@@ -86,6 +88,9 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     public override ArchiveObjectType ArchiveObjectType =>
         (ArchiveObjectType)ThriveArchiveObjectType.MulticellularEditor;
+
+    public WorldAndPlayerDataSource UnlocksDataSource =>
+        new(CurrentGame.GameWorld, CurrentPatch, GetPlayerDataSource());
 
     protected override string MusicCategory => "MulticellularEditor";
 
@@ -392,7 +397,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         editsFacade.SetActiveActions(performedActionData);
 
-        return speciesComparer.Compare(editedSpecies!, editsFacade) * CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+        return speciesComparer.Compare(editedSpecies!, editsFacade, Constants.MAX_SINGLE_EDIT_MP_COST,
+            CurrentGame.GameWorld.WorldSettings.MPMultiplier);
     }
 
     protected override GameProperties StartNewGameForEditor()
@@ -708,5 +714,81 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             return;
 
         SetEditorTab(targetTab);
+    }
+
+    private IPlayerDataSource GetPlayerDataSource()
+    {
+        if (editedSpecies == null)
+        {
+            throw new Exception("Tried to get player unlocks data source without an edited species being set");
+        }
+
+        var energyBalance = new EnergyBalanceInfoSimple();
+
+        // TODO: replace with actual tolerances once they are implemented for this stage
+        var tolerances = new ResolvedMicrobeTolerances
+        {
+            ProcessSpeedModifier = 1.0f,
+            HealthModifier = 1.0f,
+            OsmoregulationModifier = 1.0f,
+        };
+
+        foreach (var cellType in editedSpecies.ModifiableCellTypes)
+        {
+            var cellEnergyBalance = new EnergyBalanceInfoSimple();
+
+            ProcessSystem.ComputeEnergyBalanceSimple(cellType.ModifiableOrganelles.Organelles, CurrentPatch.Biome,
+                in tolerances, cellType.MembraneType, Vector3.Zero, false, true,
+                CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Maximum, null, cellEnergyBalance);
+
+            GetBestEnergyBalanceProperties(energyBalance, cellEnergyBalance);
+        }
+
+        return new MulticellularUnlocksData(editedSpecies.ModifiableEditorCells, energyBalance);
+    }
+
+    private void GetBestEnergyBalanceProperties(EnergyBalanceInfoSimple energyBalance, EnergyBalanceInfoSimple toAdd)
+    {
+        energyBalance.BaseMovement = MathF.Max(energyBalance.BaseMovement, toAdd.BaseMovement);
+        energyBalance.Flagella = MathF.Max(energyBalance.Flagella, toAdd.Flagella);
+        energyBalance.Cilia = MathF.Max(energyBalance.Cilia, toAdd.Cilia);
+        energyBalance.TotalMovement = MathF.Max(energyBalance.TotalMovement, toAdd.TotalMovement);
+
+        energyBalance.Osmoregulation = MathF.Max(energyBalance.Osmoregulation, toAdd.Osmoregulation);
+
+        energyBalance.TotalProduction = MathF.Max(energyBalance.TotalProduction, toAdd.TotalProduction);
+        energyBalance.TotalConsumption = MathF.Max(energyBalance.TotalConsumption, toAdd.TotalConsumption);
+        energyBalance.TotalConsumptionStationary = MathF.Max(energyBalance.TotalConsumptionStationary,
+            toAdd.TotalConsumptionStationary);
+
+        energyBalance.FinalBalance = MathF.Max(energyBalance.FinalBalance, toAdd.FinalBalance);
+        energyBalance.FinalBalanceStationary = MathF.Max(energyBalance.FinalBalanceStationary,
+            toAdd.FinalBalanceStationary);
+    }
+
+    private class MulticellularUnlocksData : IPlayerDataSource
+    {
+        public IReadOnlyList<HexWithData<CellTemplate>>? CellLayout;
+
+        public MulticellularUnlocksData(IReadOnlyList<HexWithData<CellTemplate>>? cellLayout,
+            EnergyBalanceInfoSimple? energyBalance)
+        {
+            CellLayout = cellLayout;
+            EnergyBalance = energyBalance;
+        }
+
+        public EnergyBalanceInfoSimple? EnergyBalance { get; set; }
+
+        public float Speed
+        {
+            get
+            {
+                if (CellLayout == null)
+                    return 0;
+
+                return MicrobeInternalCalculations.SpeedToUserReadableNumber(
+                    CellBodyPlanInternalCalculations.CalculateSpeed(CellLayout));
+            }
+        }
     }
 }

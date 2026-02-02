@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://oslha78a5bb"]
+[gd_scene format=3 uid="uid://oslha78a5bb"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="PackedScene" uid="uid://dj12vy45xfnoj" path="res://src/gui_common/PlaybackControls.tscn" id="5"]
@@ -42,7 +42,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="SlideScreen" node_paths=PackedStringArray("slideTextureRect", "toolbar", "closeButton", "slideShowModeButton", "slideTitleLabel", "modelViewerContainer", "modelViewer", "modelHolder", "modelViewerCamera", "playbackControls") instance=ExtResource("9")]
+[node name="SlideScreen" unique_id=189404740 node_paths=PackedStringArray("slideTextureRect", "toolbar", "closeButton", "slideShowModeButton", "slideTitleLabel", "modelViewerContainer", "modelViewer", "modelHolder", "modelViewerCamera", "playbackControls") instance=ExtResource("9")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -64,22 +64,22 @@ modelViewerCamera = NodePath("Overlay/SubViewportContainer/ModelViewer/OrbitCame
 playbackControls = NodePath("Overlay/Toolbar/VBoxContainer/HBoxContainer/PlaybackControls")
 PreventsMouseCaptureWhileOpen = false
 
-[node name="Overlay" type="PanelContainer" parent="." index="0"]
+[node name="Overlay" type="PanelContainer" parent="." index="0" unique_id=937547082]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme_override_styles/panel = SubResource("2")
 
-[node name="SlideableTextureRect" parent="Overlay" index="0" instance=ExtResource("8")]
+[node name="SlideableTextureRect" parent="Overlay" index="0" unique_id=693343750 instance=ExtResource("8")]
 layout_mode = 2
 stretch_mode = 5
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Overlay" index="1"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Overlay" index="1" unique_id=1486423401]
 layout_mode = 2
 stretch = true
 script = ExtResource("10")
 
-[node name="ModelViewer" type="SubViewport" parent="Overlay/SubViewportContainer" index="0"]
+[node name="ModelViewer" type="SubViewport" parent="Overlay/SubViewportContainer" index="0" unique_id=1637580717]
 own_world_3d = true
 world_3d = SubResource("World3D_cpjvi")
 handle_input_locally = false
@@ -87,11 +87,11 @@ msaa_3d = 1
 size = Vector2i(2, 2)
 render_target_update_mode = 0
 
-[node name="ModelHolder" type="Node3D" parent="Overlay/SubViewportContainer/ModelViewer" index="0"]
+[node name="ModelHolder" type="Node3D" parent="Overlay/SubViewportContainer/ModelViewer" index="0" unique_id=10376159]
 
-[node name="OrbitCamera" parent="Overlay/SubViewportContainer/ModelViewer" index="1" instance=ExtResource("6")]
+[node name="OrbitCamera" parent="Overlay/SubViewportContainer/ModelViewer" index="1" unique_id=1446531243 instance=ExtResource("6")]
 
-[node name="MarginContainer" type="MarginContainer" parent="Overlay" index="2"]
+[node name="MarginContainer" type="MarginContainer" parent="Overlay" index="2" unique_id=1550347308]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -99,13 +99,13 @@ mouse_filter = 2
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 
-[node name="CloseButton" type="Button" parent="Overlay/MarginContainer" index="0"]
+[node name="CloseButton" type="Button" parent="Overlay/MarginContainer" index="0" unique_id=186687600]
 custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="TextureRect" type="TextureRect" parent="Overlay/MarginContainer/CloseButton" index="0"]
+[node name="TextureRect" type="TextureRect" parent="Overlay/MarginContainer/CloseButton" index="0" unique_id=1883282200]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 0
 anchor_left = 0.5
@@ -121,35 +121,35 @@ texture = ExtResource("7_i42j0")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Toolbar" type="MarginContainer" parent="Overlay" index="3"]
+[node name="Toolbar" type="MarginContainer" parent="Overlay" index="3" unique_id=28671411]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Overlay/Toolbar" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Overlay/Toolbar" index="0" unique_id=768801018]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="SlideTitle" type="Label" parent="Overlay/Toolbar/VBoxContainer" index="0"]
+[node name="SlideTitle" type="Label" parent="Overlay/Toolbar/VBoxContainer" index="0" unique_id=1437589684]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/normal = SubResource("6")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Overlay/Toolbar/VBoxContainer" index="1"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Overlay/Toolbar/VBoxContainer" index="1" unique_id=662459748]
 layout_mode = 2
 size_flags_horizontal = 4
 alignment = 1
 
-[node name="PreviousButton" type="Button" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer" index="0"]
+[node name="PreviousButton" type="Button" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer" index="0" unique_id=666017990]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 mouse_filter = 1
 theme_override_font_sizes/font_size = 18
 text = "<"
 
-[node name="SlideshowModeButton" type="Button" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer" index="1"]
+[node name="SlideshowModeButton" type="Button" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer" index="1" unique_id=1701199563]
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 1
@@ -157,12 +157,12 @@ theme_override_font_sizes/font_size = 18
 toggle_mode = true
 text = "SLIDESHOW"
 
-[node name="PlaybackControls" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer" index="2" instance=ExtResource("5")]
+[node name="PlaybackControls" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer" index="2" unique_id=927429644 instance=ExtResource("5")]
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="NextButton" type="Button" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer" index="3"]
+[node name="NextButton" type="Button" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer" index="3" unique_id=837828001]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 mouse_filter = 1

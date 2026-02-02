@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi1b07ws0noe3"]
+[gd_scene format=3 uid="uid://bi1b07ws0noe3"]
 
 [ext_resource type="PackedScene" uid="uid://d0ag8a5ioxgkw" path="res://src/microbe_stage/particles/AgentProjectile.tscn" id="1_ydyk0"]
 [ext_resource type="Texture2D" uid="uid://cai50f52nr8gw" path="res://assets/textures/background_particle_fuzzy.png" id="2_ryr2h"]
@@ -15,5 +15,5 @@ albedo_texture = ExtResource("2_ryr2h")
 material = SubResource("StandardMaterial3D_eqql3")
 size = Vector2(5, 5)
 
-[node name="AgentProjectileMacrolide" instance=ExtResource("1_ydyk0")]
+[node name="AgentProjectileMacrolide" unique_id=547424360 instance=ExtResource("1_ydyk0")]
 draw_pass_1 = SubResource("PlaneMesh_ivrrl")
