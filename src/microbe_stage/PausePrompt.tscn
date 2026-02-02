@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://qwg2dluu8ow0"]
+[gd_scene format=3 uid="uid://qwg2dluu8ow0"]
 
 [ext_resource type="LabelSettings" uid="uid://cis0p1u7hveec" path="res://src/gui_common/fonts/Title-SemiBold-Huge.tres" id="2_llgsb"]
 [ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
 
-[node name="PausePrompt" type="Control"]
+[node name="PausePrompt" type="Control" unique_id=1367893944]
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
 
-[node name="PausePromptLabel" type="Label" parent="."]
+[node name="PausePromptLabel" type="Label" parent="." unique_id=1318314634]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 1
 offset_left = -66.0
@@ -19,7 +19,7 @@ text = "PAUSED"
 label_settings = ExtResource("2_llgsb")
 horizontal_alignment = 1
 
-[node name="PauseInfo" parent="." instance=ExtResource("5")]
+[node name="PauseInfo" parent="." unique_id=37924705 instance=ExtResource("5")]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 1
 offset_left = -150.0

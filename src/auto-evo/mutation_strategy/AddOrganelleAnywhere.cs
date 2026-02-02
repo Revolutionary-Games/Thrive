@@ -80,8 +80,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
     public List<Mutant>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
-        // If a cheaper organelle gets added, this will need to be updated
-        if (mp < 20)
+        if (mp < Constants.ORGANELLE_CHEAPEST_COST)
             return null;
 
         // TODO: would the following be more efficient?

@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgeijgq7runaw"]
+[gd_scene format=3 uid="uid://bgeijgq7runaw"]
 
 [ext_resource type="Script" uid="uid://dyfrr0bluuvx7" path="res://src/gui_common/FocusGrabber.cs" id="1"]
 
-[node name="FocusGrabber" type="Control"]
+[node name="FocusGrabber" type="Control" unique_id=125641974]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 0

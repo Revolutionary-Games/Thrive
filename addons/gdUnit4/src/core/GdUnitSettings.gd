@@ -21,6 +21,7 @@ const TEST_SUITE_NAMING_CONVENTION = GROUP_TEST + "/test_suite_naming_convention
 const TEST_DISCOVER_ENABLED = GROUP_TEST + "/test_discovery"
 const TEST_FLAKY_CHECK = GROUP_TEST + "/flaky_check_enable"
 const TEST_FLAKY_MAX_RETRIES = GROUP_TEST + "/flaky_max_retries"
+const TEST_RERUN_UNTIL_FAILURE_RETRIES = GROUP_TEST + "/rerun_until_failure_retries"
 
 
 # Report Setiings
@@ -62,6 +63,7 @@ const SHORTCUT_INSPECTOR_RERUN_TEST = GROUP_SHORTCUT_INSPECTOR + "/rerun_test"
 const SHORTCUT_INSPECTOR_RERUN_TEST_DEBUG = GROUP_SHORTCUT_INSPECTOR + "/rerun_test_debug"
 const SHORTCUT_INSPECTOR_RUN_TEST_OVERALL = GROUP_SHORTCUT_INSPECTOR + "/run_test_overall"
 const SHORTCUT_INSPECTOR_RUN_TEST_STOP = GROUP_SHORTCUT_INSPECTOR + "/run_test_stop"
+const SHORTCUT_INSPECTOR_RERUN_TEST_UNTIL_FAILURE = GROUP_SHORTCUT_INSPECTOR + "/rerun_test_until_failure"
 
 const GROUP_SHORTCUT_EDITOR = SHORTCUT_SETTINGS + "/editor"
 const SHORTCUT_EDITOR_RUN_TEST = GROUP_SHORTCUT_EDITOR + "/run_test"
@@ -112,6 +114,7 @@ static func setup() -> void:
 	create_property_if_need(TEST_DISCOVER_ENABLED, false, "Automatically detect new tests in test lookup folders at runtime")
 	create_property_if_need(TEST_FLAKY_CHECK, false, "Rerun tests on failure and mark them as FLAKY")
 	create_property_if_need(TEST_FLAKY_MAX_RETRIES, 3, "Sets the number of retries for rerunning a flaky test")
+	create_property_if_need(TEST_RERUN_UNTIL_FAILURE_RETRIES, 10, "The number of reruns until the test fails.")
 	# report settings
 	create_property_if_need(REPORT_PUSH_ERRORS, false, "Report push_error() as failure")
 	create_property_if_need(REPORT_SCRIPT_ERRORS, true, "Report script errors as failure")
@@ -148,6 +151,7 @@ static func create_shortcut_properties_if_need() -> void:
 	# inspector
 	create_property_if_need(SHORTCUT_INSPECTOR_RERUN_TEST, GdUnitShortcut.default_keys(GdUnitShortcut.ShortCut.RERUN_TESTS), "Rerun the most recently executed tests")
 	create_property_if_need(SHORTCUT_INSPECTOR_RERUN_TEST_DEBUG, GdUnitShortcut.default_keys(GdUnitShortcut.ShortCut.RERUN_TESTS_DEBUG), "Rerun the most recently executed tests (Debug mode)")
+	create_property_if_need(SHORTCUT_INSPECTOR_RERUN_TEST_UNTIL_FAILURE, GdUnitShortcut.default_keys(GdUnitShortcut.ShortCut.RERUN_TESTS_UNTIL_FAILURE), "Rerun tests until failure occurs")
 	create_property_if_need(SHORTCUT_INSPECTOR_RUN_TEST_OVERALL, GdUnitShortcut.default_keys(GdUnitShortcut.ShortCut.RUN_TESTS_OVERALL), "Runs all tests (Debug mode)")
 	create_property_if_need(SHORTCUT_INSPECTOR_RUN_TEST_STOP, GdUnitShortcut.default_keys(GdUnitShortcut.ShortCut.STOP_TEST_RUN), "Stop the current test execution")
 	# script editor
@@ -155,8 +159,8 @@ static func create_shortcut_properties_if_need() -> void:
 	create_property_if_need(SHORTCUT_EDITOR_RUN_TEST_DEBUG, GdUnitShortcut.default_keys(GdUnitShortcut.ShortCut.RUN_TESTCASE_DEBUG), "Run the currently selected test (Debug mode).")
 	create_property_if_need(SHORTCUT_EDITOR_CREATE_TEST, GdUnitShortcut.default_keys(GdUnitShortcut.ShortCut.CREATE_TEST), "Create a new test case for the currently selected function")
 	# filesystem
-	create_property_if_need(SHORTCUT_FILESYSTEM_RUN_TEST, GdUnitShortcut.default_keys(GdUnitShortcut.ShortCut.NONE), "Run all test suites in the selected folder or file")
-	create_property_if_need(SHORTCUT_FILESYSTEM_RUN_TEST_DEBUG, GdUnitShortcut.default_keys(GdUnitShortcut.ShortCut.NONE), "Run all test suites in the selected folder or file (Debug)")
+	create_property_if_need(SHORTCUT_FILESYSTEM_RUN_TEST, GdUnitShortcut.default_keys(GdUnitShortcut.ShortCut.RUN_TESTSUITE), "Run all test suites in the selected folder or file")
+	create_property_if_need(SHORTCUT_FILESYSTEM_RUN_TEST_DEBUG, GdUnitShortcut.default_keys(GdUnitShortcut.ShortCut.RUN_TESTSUITE_DEBUG), "Run all test suites in the selected folder or file (Debug)")
 
 
 static func create_property_if_need(name :String, default :Variant, help :="", value_set := PackedStringArray()) -> void:
@@ -304,6 +308,10 @@ static func is_feature_enabled(feature: String) -> bool:
 
 static func get_flaky_max_retries() -> int:
 	return get_setting(TEST_FLAKY_MAX_RETRIES, 3)
+
+
+static func get_rerun_max_retries() -> int:
+	return get_setting(TEST_RERUN_UNTIL_FAILURE_RETRIES, 10)
 
 
 static func set_test_discover_enabled(enable :bool) -> void:

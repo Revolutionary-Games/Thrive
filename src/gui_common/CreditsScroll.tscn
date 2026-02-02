@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqwy12d33agr4"]
+[gd_scene format=3 uid="uid://cqwy12d33agr4"]
 
 [ext_resource type="Script" uid="uid://bi4yo4pw7164" path="res://src/gui_common/CreditsScroll.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
@@ -7,7 +7,7 @@
 [ext_resource type="LabelSettings" uid="uid://cis0p1u7hveec" path="res://src/gui_common/fonts/Title-SemiBold-Huge.tres" id="6_8g7ur"]
 [ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="7_86jbp"]
 
-[node name="CreditsScroll" type="Control" node_paths=PackedStringArray("logo", "revolutionaryGames", "supportedBy", "developersHeading")]
+[node name="CreditsScroll" type="Control" unique_id=1685913387 node_paths=PackedStringArray("logo", "revolutionaryGames", "supportedBy", "developersHeading")]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 15
@@ -24,22 +24,22 @@ developersHeading = NodePath("Developers")
 TeamNameFont = ExtResource("3_xqvak")
 SectionNameFont = ExtResource("6_8g7ur")
 
-[node name="LogoContainer" type="CenterContainer" parent="."]
-layout_mode = 2
+[node name="LogoContainer" type="CenterContainer" parent="." unique_id=1648893098]
+layout_mode = 0
 offset_left = -1.0
 offset_top = 238.0
 offset_right = 1281.0
 offset_bottom = 443.0
 
-[node name="Logo" type="TextureRect" parent="LogoContainer"]
+[node name="Logo" type="TextureRect" parent="LogoContainer" unique_id=1861840880]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="ByRevolutionaryGames" type="Label" parent="."]
-layout_mode = 2
+[node name="ByRevolutionaryGames" type="Label" parent="." unique_id=689819030]
+layout_mode = 0
 offset_top = 458.0
 offset_right = 1280.0
 offset_bottom = 511.0
@@ -47,17 +47,17 @@ text = "BY_REVOLUTIONARY_GAMES"
 label_settings = ExtResource("6_8g7ur")
 horizontal_alignment = 1
 
-[node name="SupportedBy" type="Label" parent="."]
-layout_mode = 2
+[node name="SupportedBy" type="Label" parent="." unique_id=900399026]
+layout_mode = 0
 offset_top = 625.0
 offset_right = 1280.0
 offset_bottom = 656.0
 text = "DEVELOPMENT_SUPPORTED_BY"
 horizontal_alignment = 1
 
-[node name="Developers" type="Label" parent="."]
+[node name="Developers" type="Label" parent="." unique_id=998483561]
 editor_description = "This is slightly wider than the sceen to make this visually look better above the \"lead developers\" dynamic part"
-layout_mode = 2
+layout_mode = 0
 offset_top = 677.0
 offset_right = 1311.0
 offset_bottom = 720.0

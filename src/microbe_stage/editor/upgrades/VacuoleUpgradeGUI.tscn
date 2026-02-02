@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://7fnpxxxvuc7w"]
+[gd_scene format=3 uid="uid://7fnpxxxvuc7w"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://7eapfuk2t4u" path="res://src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs" id="2"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_h8r74"]
 
-[node name="VacuoleUpgradeGUI" type="VBoxContainer" node_paths=PackedStringArray("compounds", "description", "isSpecializedCheckbox", "compoundSelection")]
+[node name="VacuoleUpgradeGUI" type="VBoxContainer" unique_id=1656035987 node_paths=PackedStringArray("compounds", "description", "isSpecializedCheckbox", "compoundSelection")]
 custom_minimum_size = Vector2(400, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,31 +18,31 @@ description = NodePath("Description")
 isSpecializedCheckbox = NodePath("CheckBox")
 compoundSelection = NodePath("CompoundSelection")
 
-[node name="CheckBox" type="CheckBox" parent="."]
+[node name="CheckBox" type="CheckBox" parent="." unique_id=2037408570]
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "VACUOLE_IS_SPECIALIZED"
 
-[node name="Spacer2" type="Control" parent="."]
+[node name="Spacer2" type="Control" parent="." unique_id=1668082139]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="CompoundSelection" type="VBoxContainer" parent="."]
+[node name="CompoundSelection" type="VBoxContainer" parent="." unique_id=447720063]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CompoundSelection"]
+[node name="Label" type="Label" parent="CompoundSelection" unique_id=914654148]
 layout_mode = 2
 text = "SELECT_VACUOLE_COMPOUND_COLON"
 label_settings = ExtResource("3_h8r74")
 
-[node name="OptionButton" type="OptionButton" parent="CompoundSelection"]
+[node name="OptionButton" type="OptionButton" parent="CompoundSelection" unique_id=1759499376]
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="CompoundSelection"]
+[node name="Spacer" type="Control" parent="CompoundSelection" unique_id=544205097]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Description" type="Label" parent="."]
+[node name="Description" type="Label" parent="." unique_id=371091978]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "DESCRIPTION GOES HERE"

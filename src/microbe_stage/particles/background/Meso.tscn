@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpudr2hu8yfr4"]
+[gd_scene format=3 uid="uid://bpudr2hu8yfr4"]
 
 [ext_resource type="Texture2D" uid="uid://db8kib2sy8ytd" path="res://src/microbe_stage/particles/embergradient.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://cai50f52nr8gw" path="res://assets/textures/background_particle_fuzzy.png" id="2"]
@@ -37,7 +37,7 @@ color_ramp = ExtResource("1")
 
 [sub_resource type="QuadMesh" id="5"]
 
-[node name="Meso" type="GPUParticles3D"]
+[node name="Meso" type="GPUParticles3D" unique_id=1706725013]
 process_mode = 1
 material_override = SubResource("1")
 cast_shadow = 0

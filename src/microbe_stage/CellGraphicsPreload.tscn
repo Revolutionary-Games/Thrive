@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://kme66mj8p305"]
+[gd_scene format=3 uid="uid://kme66mj8p305"]
 
 [ext_resource type="Shader" uid="uid://bhy30q2qx7hue" path="res://shaders/MembraneWaterRipple.gdshader" id="2_rtkco"]
 [ext_resource type="Shader" uid="uid://buhqlk4dv4wy4" path="res://shaders/EngulfEffect.gdshader" id="7_qq4s8"]
@@ -41,18 +41,19 @@ shader_parameter/Phase = 0.2
 shader_parameter/Attenuation = 0.998
 shader_parameter/StillnessFactor = 0.0
 shader_parameter/MembraneRadius = 5.0
+shader_parameter/GlobalAlpha = 1.0
 
-[node name="CellGraphicsPreload" type="Node3D"]
+[node name="CellGraphicsPreload" type="Node3D" unique_id=1102617988]
 editor_description = "Preloads cell membrane graphics effects"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1922966299]
 mesh = SubResource("BoxMesh_bp2ij")
 surface_material_override/0 = SubResource("ShaderMaterial_7kw28")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1138437915]
 mesh = SubResource("BoxMesh_bp2ij")
 surface_material_override/0 = SubResource("ShaderMaterial_3rchp")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1144886087]
 mesh = SubResource("BoxMesh_bp2ij")
 surface_material_override/0 = SubResource("ShaderMaterial_4iv3r")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c120hjc04sice"]
+[gd_scene format=3 uid="uid://c120hjc04sice"]
 
 [ext_resource type="Script" uid="uid://d224lkc2bm76y" path="res://src/gui_common/dialogs/LicensesDisplay.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
@@ -20,7 +20,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="LicensesDisplay" node_paths=PackedStringArray("textsContainer") instance=ExtResource("6")]
+[node name="LicensesDisplay" unique_id=194187551 node_paths=PackedStringArray("textsContainer") instance=ExtResource("6")]
 custom_minimum_size = Vector2(900, 600)
 offset_right = 900.0
 offset_bottom = 600.0
@@ -32,7 +32,7 @@ WindowTitle = "THRIVE_LICENSES"
 Resizable = true
 Exclusive = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="0" unique_id=54015635]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 15.0
@@ -40,22 +40,22 @@ offset_right = 885.0
 offset_bottom = 585.0
 theme_override_constants/separation = 10
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" index="0"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" index="0" unique_id=774641019]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("2")
 theme_override_styles/panel = SubResource("1")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer" index="0" unique_id=1721593406]
 layout_mode = 2
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="LicensesDisplay" type="ScrollContainer" parent="VBoxContainer/PanelContainer/MarginContainer" index="0"]
+[node name="LicensesDisplay" type="ScrollContainer" parent="VBoxContainer/PanelContainer/MarginContainer" index="0" unique_id=383315993]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer/MarginContainer/LicensesDisplay" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer/MarginContainer/LicensesDisplay" index="0" unique_id=1657804548]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -64,25 +64,25 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer/LicensesDisplay/MarginContainer" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer/LicensesDisplay/MarginContainer" index="0" unique_id=1306649824]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/LicensesDisplay/MarginContainer/VBoxContainer" index="0"]
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/LicensesDisplay/MarginContainer/VBoxContainer" index="0" unique_id=1404259756]
 layout_mode = 2
 text = "LICENSES_COVERING_THRIVE"
 label_settings = ExtResource("4_158nk")
 
-[node name="Texts" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer/LicensesDisplay/MarginContainer/VBoxContainer" index="1"]
+[node name="Texts" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer/LicensesDisplay/MarginContainer/VBoxContainer" index="1" unique_id=1933450294]
 layout_mode = 2
 
-[node name="FocusGrabber" parent="VBoxContainer" index="1" instance=ExtResource("5")]
+[node name="FocusGrabber" parent="VBoxContainer" index="1" unique_id=1875685816 instance=ExtResource("5")]
 layout_mode = 2
 Priority = 3
 NodeToGiveFocusTo = NodePath("../CloseButton")
 
-[node name="CloseButton" type="Button" parent="VBoxContainer" index="2"]
+[node name="CloseButton" type="Button" parent="VBoxContainer" index="2" unique_id=487305759]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4

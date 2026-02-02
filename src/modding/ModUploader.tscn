@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ehx86lo13kcg"]
+[gd_scene format=3 uid="uid://ehx86lo13kcg"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="2"]
@@ -7,7 +7,7 @@
 [ext_resource type="LabelSettings" uid="uid://fua052cwp5ap" path="res://src/gui_common/fonts/Body-Regular-AlmostSmaller.tres" id="4_77d33"]
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="5"]
 
-[node name="ModUploader" type="Control" node_paths=PackedStringArray("uploadDialog", "modSelect", "unknownItemActions", "createNewButton", "showManualEnterId", "manualIdEntry", "acceptManualId", "manualEnterIdSection", "detailsEditor", "editedTitle", "editedDescription", "editedVisibility", "editedTags", "previewImageRect", "toBeUploadedContentLocation", "changeNotes", "uploadSucceededDialog", "uploadSucceededText", "fileSelectDialog", "workshopNotice", "errorDisplay")]
+[node name="ModUploader" type="Control" unique_id=951807070 node_paths=PackedStringArray("uploadDialog", "modSelect", "unknownItemActions", "createNewButton", "showManualEnterId", "manualIdEntry", "acceptManualId", "manualEnterIdSection", "detailsEditor", "editedTitle", "editedDescription", "editedVisibility", "editedTags", "previewImageRect", "toBeUploadedContentLocation", "changeNotes", "uploadSucceededDialog", "uploadSucceededText", "fileSelectDialog", "workshopNotice", "errorDisplay")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,14 +39,15 @@ fileSelectDialog = NodePath("PreviewSelector")
 workshopNotice = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/WorkshopNotice")
 errorDisplay = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/Error")
 
-[node name="Dialog" parent="." instance=ExtResource("2")]
+[node name="Dialog" parent="." unique_id=78509164 instance=ExtResource("2")]
+layout_mode = 0
 offset_right = 580.0
 offset_bottom = 530.0
 HideOnOk = false
 ConfirmText = "UPLOAD"
 WindowTitle = "MOD_UPLOADER"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Dialog"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Dialog" unique_id=577712112]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 15.0
@@ -56,133 +57,133 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Dialog/VBoxContainer2"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Dialog/VBoxContainer2" unique_id=1773363222]
 custom_minimum_size = Vector2(550, 500)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer" unique_id=1716969081]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer" unique_id=1662343097]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1000184317]
 layout_mode = 2
 text = "MOD_TO_UPLOAD"
 
-[node name="Mods" type="OptionButton" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Mods" type="OptionButton" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=199303532]
 layout_mode = 2
 size_flags_horizontal = 3
 clip_text = true
 expand_icon = true
 
-[node name="Spacer" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer" unique_id=1714285440]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="UnknownItem" type="VBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer"]
+[node name="UnknownItem" type="VBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer" unique_id=2145102709]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem"]
+[node name="Label" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem" unique_id=1476215486]
 layout_mode = 2
 text = "UNKNOWN_WORKSHOP_ID"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem" unique_id=350226429]
 layout_mode = 2
 alignment = 1
 
-[node name="New" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/HBoxContainer"]
+[node name="New" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/HBoxContainer" unique_id=1242610374]
 layout_mode = 2
 text = "CREATE_NEW"
 
-[node name="Existing" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/HBoxContainer"]
+[node name="Existing" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/HBoxContainer" unique_id=949040027]
 layout_mode = 2
 toggle_mode = true
 text = "ENTER_EXISTING_ID"
 
-[node name="ManualId" type="VBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem"]
+[node name="ManualId" type="VBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem" unique_id=616683693]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/ManualId"]
+[node name="Label" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/ManualId" unique_id=1804433188]
 layout_mode = 2
 text = "ENTER_EXISTING_WORKSHOP_ID"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/ManualId"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/ManualId" unique_id=1604949268]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Id" type="LineEdit" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/ManualId/HBoxContainer"]
+[node name="Id" type="LineEdit" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/ManualId/HBoxContainer" unique_id=261339347]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "ID_NUMBER"
 max_length = 50
 
-[node name="Apply" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/ManualId/HBoxContainer"]
+[node name="Apply" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/ManualId/HBoxContainer" unique_id=847553574]
 layout_mode = 2
 text = "APPLY"
 
-[node name="DetailsEditor" type="VBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer"]
+[node name="DetailsEditor" type="VBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer" unique_id=137964316]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+[node name="Label" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor" unique_id=418967626]
 layout_mode = 2
 text = "WORKSHOP_ITEM_TITLE"
 
-[node name="Title" type="LineEdit" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+[node name="Title" type="LineEdit" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor" unique_id=1764440464]
 layout_mode = 2
 max_length = 128
 
-[node name="Spacer" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+[node name="Spacer" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor" unique_id=68720264]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+[node name="Label2" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor" unique_id=1298393242]
 layout_mode = 2
 text = "WORKSHOP_ITEM_DESCRIPTION"
 
-[node name="Description" type="TextEdit" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+[node name="Description" type="TextEdit" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor" unique_id=856520025]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
-[node name="Spacer2" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+[node name="Spacer2" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor" unique_id=216182207]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor" unique_id=226685153]
 layout_mode = 2
 
-[node name="CheckBox" type="CheckBox" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/HBoxContainer"]
+[node name="CheckBox" type="CheckBox" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/HBoxContainer" unique_id=1197981939]
 layout_mode = 2
 tooltip_text = "WORKSHOP_VISIBILITY_TOOLTIP"
 text = "VISIBLE"
 
-[node name="Label3" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+[node name="Label3" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor" unique_id=1582899457]
 layout_mode = 2
 text = "WORKSHOP_ITEM_TAGS"
 
-[node name="Tags" type="LineEdit" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+[node name="Tags" type="LineEdit" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor" unique_id=829945918]
 layout_mode = 2
 max_length = 150
 
-[node name="Spacer3" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+[node name="Spacer3" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor" unique_id=514023999]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
-[node name="Label4" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+[node name="Label4" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor" unique_id=933681999]
 layout_mode = 2
 text = "WORKSHOP_ITEM_PREVIEW"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor" unique_id=571263266]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/HBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/HBoxContainer2" unique_id=162651805]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -190,58 +191,58 @@ size_flags_vertical = 3
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Browse" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/HBoxContainer2"]
+[node name="Browse" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/HBoxContainer2" unique_id=477784146]
 layout_mode = 2
 size_flags_vertical = 4
 text = "BROWSE"
 
-[node name="Spacer5" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+[node name="Spacer5" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor" unique_id=313270897]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
-[node name="ContentLocation" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+[node name="ContentLocation" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor" unique_id=1707377447]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "CONTENT_UPLOADED_FROM"
 label_settings = ExtResource("4_77d33")
 autowrap_mode = 1
 
-[node name="Spacer6" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+[node name="Spacer6" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor" unique_id=952342416]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
-[node name="Forget" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+[node name="Forget" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor" unique_id=545287825]
 layout_mode = 2
 size_flags_horizontal = 0
 tooltip_text = "FORGET_MOD_DETAILS_TOOLTIP"
 text = "FORGET_MOD_DETAILS"
 
-[node name="Label5" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+[node name="Label5" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor" unique_id=389966694]
 layout_mode = 2
 tooltip_text = "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
 mouse_filter = 1
 text = "WORKSHOP_ITEM_CHANGE_NOTES"
 
-[node name="ChangeNotes" type="TextEdit" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+[node name="ChangeNotes" type="TextEdit" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor" unique_id=15939832]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 tooltip_text = "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
 
-[node name="WorkshopNotice" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer" instance=ExtResource("4")]
+[node name="WorkshopNotice" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer" unique_id=14696661 instance=ExtResource("4")]
 layout_mode = 2
 ExtendedBbcode = "MOD_UPLOADER"
 
-[node name="Error" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer"]
+[node name="Error" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer" unique_id=967708955]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 autowrap_mode = 3
 
-[node name="ButtonOverlapPreventer" type="Control" parent="Dialog/VBoxContainer2"]
+[node name="ButtonOverlapPreventer" type="Control" parent="Dialog/VBoxContainer2" unique_id=1128312758]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="PreviewSelector" type="FileDialog" parent="."]
+[node name="PreviewSelector" type="FileDialog" parent="." unique_id=634329821]
 title = "SELECT_PREVIEW_IMAGE"
 ok_button_text = "Open"
 mode_overrides_title = false
@@ -249,11 +250,12 @@ file_mode = 0
 access = 2
 use_native_dialog = true
 
-[node name="UploadSuccess" parent="." instance=ExtResource("5")]
+[node name="UploadSuccess" parent="." unique_id=258361807 instance=ExtResource("5")]
 custom_minimum_size = Vector2(450, 50)
+layout_mode = 0
 WindowTitle = "UPLOAD_SUCCEEDED"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UploadSuccess"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UploadSuccess" unique_id=2114041566]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 15.0
@@ -261,12 +263,12 @@ offset_right = 115.0
 offset_bottom = 104.0
 size_flags_horizontal = 3
 
-[node name="CustomRichTextLabel" parent="UploadSuccess/VBoxContainer" instance=ExtResource("4")]
+[node name="CustomRichTextLabel" parent="UploadSuccess/VBoxContainer" unique_id=1510980272 instance=ExtResource("4")]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="UploadSuccess/VBoxContainer"]
+[node name="Button" type="Button" parent="UploadSuccess/VBoxContainer" unique_id=643851442]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "OK"

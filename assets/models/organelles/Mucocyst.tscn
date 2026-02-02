@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://pus3h1fglxro"]
+[gd_scene format=3 uid="uid://pus3h1fglxro"]
 
 [ext_resource type="Shader" uid="uid://bpdtg8smolq32" path="res://shaders/OrganelleTransparent.gdshader" id="1_88k42"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2_juk0m"]
@@ -20,7 +20,7 @@ shader_parameter/growColor = Color(0.571083, 0.105, 0.7, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.01
 
-[node name="Mucocyst" type="MeshInstance3D"]
+[node name="Mucocyst" type="MeshInstance3D" unique_id=303613161]
 transform = Transform3D(1, 0, 0, 0, 0.866043, -0.49997, 0, 0.49997, 0.866043, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_sqodc")
 mesh = ExtResource("4_n3x7c")

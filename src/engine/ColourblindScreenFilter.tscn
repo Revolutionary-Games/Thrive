@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmg6okryq4k0l"]
+[gd_scene format=3 uid="uid://cmg6okryq4k0l"]
 
 [ext_resource type="Script" uid="uid://drrwkkq6115xw" path="res://src/engine/ColourblindScreenFilter.cs" id="1"]
 [ext_resource type="Texture2D" uid="uid://dtvbg17mj0i35" path="res://assets/textures/blank.png" id="2"]
@@ -8,7 +8,7 @@
 shader = ExtResource("3")
 shader_parameter/mode = 0
 
-[node name="ScreenFilter" type="TextureRect"]
+[node name="ScreenFilter" type="TextureRect" unique_id=1199099501]
 material = SubResource("1")
 anchors_preset = 15
 anchor_right = 1.0
