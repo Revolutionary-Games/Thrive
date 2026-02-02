@@ -599,6 +599,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
                     }
                 }
 
+                // TODO: Add consideration for if the cell produces a compound
                 if (!inPatch)
                     speedFactor = 0;
             }

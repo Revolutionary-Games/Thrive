@@ -83,10 +83,20 @@ public class BiomeResourceLimiterAdapter : IBiomeConditions
             case ResourceLimitingMode.WithoutHydrogenSulfide:
                 return compound != Compound.Hydrogensulfide;
             case ResourceLimitingMode.NoExternalResources:
-                return false;
+                return IsAmbientCompound(compound);
             default:
                 throw new ArgumentOutOfRangeException(nameof(limitingMode), "unimplemented limiting mode");
         }
+    }
+
+    private bool IsAmbientCompound(Compound compound)
+    {
+        if (baseConditions.TryGetCompound(compound, CompoundAmountType.Average, out var result))
+        {
+            return result.Ambient != 0;
+        }
+
+        return false;
     }
 
     private Dictionary<string, ChunkConfiguration> FilterChunks()
