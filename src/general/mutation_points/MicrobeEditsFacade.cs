@@ -85,6 +85,11 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
         }
     }
 
+    /// <summary>
+    ///   This returns null (at least currently), but for completeness we forward this
+    /// </summary>
+    public string? SplitFromTypeName => microbeSpecies.SplitFromTypeName;
+
     public int Count
     {
         get

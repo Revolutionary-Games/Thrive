@@ -70,8 +70,14 @@ func scan_directory(resource_path: String) -> Array[Script]:
 
 
 func _scan_test_suites_scripts(dir: DirAccess, collected_suites: Array[Script]) -> Array[Script]:
+		# Skip excluded directories
+	if dir.file_exists(".gdignore"):
+		prints("Exclude directory %s, containing .gdignore file" % dir.get_current_dir())
+		return []
+
 	if exclude_scan_directories.has(dir.get_current_dir()):
 		return collected_suites
+
 	var err := dir.list_dir_begin()
 	if err != OK:
 		push_error("Error on scanning directory %s" % dir.get_current_dir(), error_string(err))

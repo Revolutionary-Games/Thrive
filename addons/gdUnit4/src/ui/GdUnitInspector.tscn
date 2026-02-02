@@ -58,7 +58,6 @@ layout_mode = 2
 
 [node name="event_server" parent="." instance=ExtResource("7_721no")]
 
-[connection signal="request_discover_tests" from="VBoxContainer/Header/StatusBar" to="." method="_on_status_bar_request_discover_tests"]
 [connection signal="select_error_next" from="VBoxContainer/Header/StatusBar" to="VBoxContainer/MainPanel" method="_on_select_next_item_by_state" binds= [7]]
 [connection signal="select_error_prevous" from="VBoxContainer/Header/StatusBar" to="VBoxContainer/MainPanel" method="_on_select_previous_item_by_state" binds= [7]]
 [connection signal="select_failure_next" from="VBoxContainer/Header/StatusBar" to="VBoxContainer/MainPanel" method="_on_select_next_item_by_state" binds= [6]]

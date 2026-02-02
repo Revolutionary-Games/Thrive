@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dokew8lhrri5"]
+[gd_scene format=3 uid="uid://dokew8lhrri5"]
 
 [ext_resource type="PackedScene" uid="uid://c5ttb5il1h1ix" path="res://assets/models/IronRock1.tscn" id="1_dp368"]
 [ext_resource type="Material" uid="uid://d1e2we22pcrbu" path="res://assets/models/menu_backgrounds/CometTailEnd.tres" id="3_3f177"]
@@ -64,14 +64,14 @@ alpha_curve = SubResource("CurveTexture_emkw4")
 material = ExtResource("3_3f177")
 size = Vector2(0.6, 0.3)
 
-[node name="Comet" type="Node3D"]
+[node name="Comet" type="Node3D" unique_id=425110189]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
-[node name="Rock" parent="." instance=ExtResource("1_dp368")]
+[node name="Rock" parent="." unique_id=914128054 instance=ExtResource("1_dp368")]
 transform = Transform3D(0.112373, -0.0247943, -0.118349, 0.0060096, 0.259641, -0.0151955, 0.127422, 0.00962048, 0.105088, 0.00544083, 0.0140168, 0.0855283)
 material_override = SubResource("StandardMaterial3D_u4paa")
 
-[node name="TrailStart" type="GPUParticles3D" parent="."]
+[node name="TrailStart" type="GPUParticles3D" parent="." unique_id=978275434]
 transform = Transform3D(1, -9.68575e-08, 0, -5.96046e-08, 1, -7.45058e-09, -5.96046e-08, -7.45058e-09, 1, 0, 0.005, 0.0210335)
 amount = 500
 lifetime = 1.5
@@ -81,7 +81,7 @@ fixed_fps = 0
 process_material = SubResource("ParticleProcessMaterial_8tr0e")
 draw_pass_1 = SubResource("QuadMesh_80136")
 
-[node name="TrailEnd" type="GPUParticles3D" parent="."]
+[node name="TrailEnd" type="GPUParticles3D" parent="." unique_id=2011667551]
 transform = Transform3D(0.999999, -1.60187e-07, 0, -1.04308e-07, 1, -7.45058e-09, -5.96046e-08, -2.23517e-08, 1, 0, 0.005, 0.192)
 amount = 600
 lifetime = 4.0

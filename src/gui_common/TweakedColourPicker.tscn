@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwe0bjv8qtrtr"]
+[gd_scene format=3 uid="uid://cwe0bjv8qtrtr"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://d4b78cy8b8ok1" path="res://src/gui_common/TweakedColourPicker.cs" id="2"]
 
-[node name="TweakedColourPicker" type="ColorPicker"]
+[node name="TweakedColourPicker" type="ColorPicker" unique_id=63386205]
 offset_left = 28.0
 offset_top = 28.0
 offset_right = 28.0

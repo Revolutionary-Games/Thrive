@@ -1,28 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://3vnrqlyumqtd"]
+[gd_scene format=3 uid="uid://3vnrqlyumqtd"]
 
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="1"]
 [ext_resource type="Script" uid="uid://blontw2pgfy4" path="res://src/gui_common/dialogs/PermanentlyDismissibleDialog.cs" id="5"]
 
-[node name="PermanentlyDismissibleDialog" instance=ExtResource("1")]
+[node name="PermanentlyDismissibleDialog" unique_id=1758187450 instance=ExtResource("1")]
 script = ExtResource("5")
 NoticeType = 0
 DialogType = 0
 PermanentDismissType = 0
 AutomaticallyCheckDismissPermanently = false
 
-[node name="VBoxContainer" parent="." index="0"]
+[node name="VBoxContainer" parent="." index="0" unique_id=146557504]
 offset_right = 193.0
 offset_bottom = 116.0
 
-[node name="Spacer5" type="Control" parent="VBoxContainer" index="0"]
+[node name="Spacer5" type="Control" parent="VBoxContainer" index="0" unique_id=1692792464]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="CheckBox" type="CheckBox" parent="VBoxContainer" index="5"]
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer" index="5" unique_id=1712938605]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Spacer4" type="Control" parent="VBoxContainer" index="7"]
+[node name="Spacer4" type="Control" parent="VBoxContainer" index="7" unique_id=155166971]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 

@@ -779,9 +779,6 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         GameWorld.PlayerSpecies.Endosymbiosis.CancelAllEndosymbiosisTargets();
 
-        // TODO: The multicellular stage needs to be able to track statistics and not break organelle unlocks
-        GameWorld.UnlockProgress.UnlockAll = true;
-
         MovingToEditor = false;
     }
 
@@ -832,6 +829,9 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         GD.Print("Switching to macroscopic editor");
 
         SceneManager.Instance.SwitchToScene(editor, false);
+
+        // TODO: Implement unlock statistics for the macroscopic stage before removing this
+        GameWorld.UnlockProgress.UnlockAll = true;
 
         MovingToEditor = false;
     }

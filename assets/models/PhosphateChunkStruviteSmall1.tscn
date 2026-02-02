@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bj2bhfpek0lxw"]
+[gd_scene format=3 uid="uid://bj2bhfpek0lxw"]
 
 [ext_resource type="Shader" uid="uid://bxd4cdv4qekba" path="res://shaders/Crystal.gdshader" id="1_m8qe5"]
 [ext_resource type="Texture2D" uid="uid://c4givkmxrlllx" path="res://assets/textures/Crystal.png" id="2_3udni"]
@@ -25,6 +25,6 @@ shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
 shader_parameter/outlineWidth = 0.01
 
-[node name="Struvite" type="MeshInstance3D"]
+[node name="Struvite" type="MeshInstance3D" unique_id=1470388351]
 material_override = SubResource("ShaderMaterial_xyp8a")
 mesh = ExtResource("2_4stpu")

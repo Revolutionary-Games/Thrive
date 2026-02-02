@@ -65,10 +65,10 @@ func on_gdunit_event(event: GdUnitEvent) -> void:
 
 		GdUnitEvent.TESTSUITE_AFTER:
 			if not event.reports().is_empty():
-				_writer.color(Color.DARK_SALMON) \
-					.style(GdUnitMessageWriter.BOLD) \
-					.println_message(event.suite_name() + ":finalze")
-			_print_failure_report(event.reports())
+				_writer.indent(1).color(_engine_type_color).print_message(event._suite_name)
+				print_message(" > ")
+				print_message("finalize()", _function_color)
+				_print_failure_report(event.reports())
 			_print_statistics(_reporter.build_test_suite_statisitcs(event))
 			_print_status(event)
 			println_message("")
@@ -137,6 +137,7 @@ func _print_failure_report(reports: Array[GdUnitReport]) -> void:
 			or report.is_error()
 			or report.is_warning()
 			or report.is_skipped()
+			or report.is_orphan()
 		):
 			_writer.indent(1) \
 				.color(Color.DARK_TURQUOISE) \

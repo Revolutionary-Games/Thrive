@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://olpir0vkwcsi"]
+[gd_scene format=3 uid="uid://olpir0vkwcsi"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_ca4to"]
 [ext_resource type="Script" uid="uid://df7hj3vx7sdjv" path="res://src/microbe_stage/OrganismStatisticsPanel.cs" id="1_hd1ty"]
@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://sxqf3o1pkl0n" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" id="16_wlbdy"]
 [ext_resource type="PackedScene" uid="uid://doveokjve1v3t" path="res://src/microbe_stage/editor/CompoundStorageStatistics.tscn" id="17_pca5e"]
 
-[node name="OrganismStatisticsPanel" type="PanelContainer" node_paths=PackedStringArray("sizeLabel", "speedLabel", "rotationSpeedLabel", "hpLabel", "storageLabel", "digestionSpeedLabel", "digestionEfficiencyLabel", "ammoniaCostLabel", "phosphatesCostLabel", "digestionStatsSeparator", "generationLabel", "atpBalancePanel", "atpBalanceBarContainer", "atpBalanceLabel", "atpProductionLabel", "atpConsumptionLabel", "atpProductionBar", "atpConsumptionBar", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "processListButton")]
+[node name="OrganismStatisticsPanel" type="PanelContainer" unique_id=1690124975 node_paths=PackedStringArray("sizeLabel", "speedLabel", "rotationSpeedLabel", "hpLabel", "storageLabel", "digestionSpeedLabel", "digestionEfficiencyLabel", "ammoniaCostLabel", "phosphatesCostLabel", "digestionStatsSeparator", "generationLabel", "atpBalancePanel", "atpBalanceBarContainer", "atpBalanceLabel", "atpProductionLabel", "atpConsumptionLabel", "atpProductionBar", "atpConsumptionBar", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "processListButton")]
 size_flags_vertical = 3
 mouse_filter = 1
 theme = ExtResource("1_ca4to")
@@ -54,27 +54,27 @@ calculateBalancesAsIfDay = NodePath("VBoxContainer/Body/ScrollContainer/MarginCo
 calculateBalancesWhenMoving = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersWhenMoving")
 processListButton = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ProcessListButton")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=188876858]
 layout_mode = 2
 
-[node name="Header" type="MarginContainer" parent="VBoxContainer"]
+[node name="Header" type="MarginContainer" parent="VBoxContainer" unique_id=1873723259]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 
-[node name="Title" type="Label" parent="VBoxContainer/Header"]
+[node name="Title" type="Label" parent="VBoxContainer/Header" unique_id=20102595]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "ORGANISM_STATISTICS"
 label_settings = ExtResource("2_pxb83")
 autowrap_mode = 3
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=1924820261]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Body" type="MarginContainer" parent="VBoxContainer"]
+[node name="Body" type="MarginContainer" parent="VBoxContainer" unique_id=625385726]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 5
@@ -82,61 +82,61 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Body"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Body" unique_id=1102311447]
 layout_mode = 2
 follow_focus = true
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Body/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Body/ScrollContainer" unique_id=1764527976]
 layout_mode = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer" unique_id=743924629]
 custom_minimum_size = Vector2(246, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Hp" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+[node name="Hp" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=684963020 instance=ExtResource("3_mvl7o")]
 layout_mode = 2
 Icon = ExtResource("4_6j8dv")
 Description = "HP_COLON"
 
-[node name="Storage" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+[node name="Storage" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1365321099 instance=ExtResource("3_mvl7o")]
 layout_mode = 2
 tooltip_text = "CELL_STAT_STORAGE_TOOLTIP"
 Icon = ExtResource("6_6daqi")
 Description = "STORAGE_COLON"
 
-[node name="Speed" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+[node name="Speed" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=730282790 instance=ExtResource("3_mvl7o")]
 layout_mode = 2
 tooltip_text = "CELL_STAT_SPEED_TOOLTIP"
 Icon = ExtResource("7_qfkhg")
 Description = "SPEED_COLON"
 
-[node name="Rotation" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+[node name="Rotation" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=372416731 instance=ExtResource("3_mvl7o")]
 layout_mode = 2
 tooltip_text = "CELL_STAT_ROTATION_TOOLTIP"
 Icon = ExtResource("8_52j0g")
 Description = "ROTATION_COLON"
 
-[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=662403762]
 layout_mode = 2
 
-[node name="ATPBalancePanel" type="MarginContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="ATPBalancePanel" type="MarginContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1574538157]
 layout_mode = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel" unique_id=509791578]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="ATPBalanceTitle" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
+[node name="ATPBalanceTitle" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer" unique_id=1177536899]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -145,53 +145,53 @@ text = "ATP_BALANCE"
 label_settings = ExtResource("11_bfneb")
 autowrap_mode = 3
 
-[node name="Separator" type="Control" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
+[node name="Separator" type="Control" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer" unique_id=596663399]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="ATPBarContainer" type="VBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
+[node name="ATPBarContainer" type="VBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer" unique_id=446918862]
 layout_mode = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer" unique_id=1687808624]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 
-[node name="ATPProductionBar" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer" instance=ExtResource("13_rekbr")]
+[node name="ATPProductionBar" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer" unique_id=1109551612 instance=ExtResource("13_rekbr")]
 custom_minimum_size = Vector2(190, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer" unique_id=535438070]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "00000"
 label_settings = ExtResource("14_0mgfc")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer" unique_id=224399356]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 
-[node name="ATPConsumptionBar" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2" instance=ExtResource("13_rekbr")]
+[node name="ATPConsumptionBar" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2" unique_id=1404831771 instance=ExtResource("13_rekbr")]
 custom_minimum_size = Vector2(190, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2" unique_id=1657299070]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "00000"
 label_settings = ExtResource("14_0mgfc")
 
-[node name="Separator2" type="Control" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
+[node name="Separator2" type="Control" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer" unique_id=1190412576]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="ATPBalanceMode" type="OptionButton" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
+[node name="ATPBalanceMode" type="OptionButton" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer" unique_id=902910900]
 layout_mode = 2
 text_overrun_behavior = 3
 clip_text = true
@@ -209,14 +209,14 @@ popup/item_3/id = 3
 popup/item_4/text = "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
 popup/item_4/id = 4
 
-[node name="StorageNotEnough" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("15_ogl68")]
+[node name="StorageNotEnough" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=776631318 instance=ExtResource("15_ogl68")]
 visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_colors/default_color = Color(1, 0.301961, 0.301961, 1)
 fit_content = true
 
-[node name="NumbersAtDay" type="CheckBox" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="NumbersAtDay" type="CheckBox" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=918310456]
 layout_mode = 2
 tooltip_text = "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
 theme_override_font_sizes/font_size = 12
@@ -224,7 +224,7 @@ text = "BALANCE_DISPLAY_AT_DAY_ALWAYS"
 text_overrun_behavior = 4
 clip_text = true
 
-[node name="NumbersWhenMoving" type="CheckBox" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="NumbersWhenMoving" type="CheckBox" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=369779949]
 layout_mode = 2
 tooltip_text = "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
 theme_override_font_sizes/font_size = 12
@@ -233,68 +233,68 @@ text = "BALANCE_DISPLAY_WHILE_MOVING"
 text_overrun_behavior = 4
 clip_text = true
 
-[node name="Separator2" type="Control" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Separator2" type="Control" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2001792953]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 mouse_filter = 1
 
-[node name="CompoundBalanceDisplay" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("16_wlbdy")]
+[node name="CompoundBalanceDisplay" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1639990944 instance=ExtResource("16_wlbdy")]
 layout_mode = 2
 
-[node name="CompoundStorageStatistics" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("17_pca5e")]
+[node name="CompoundStorageStatistics" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=403454968 instance=ExtResource("17_pca5e")]
 layout_mode = 2
 
-[node name="ProcessListButton" type="Button" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="ProcessListButton" type="Button" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1137793449]
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "VIEW_CELL_PROCESSES"
 text_overrun_behavior = 3
 clip_text = true
 
-[node name="HSeparator5" type="HSeparator" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator5" type="HSeparator" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=221955861]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Size" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+[node name="Size" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1727742449 instance=ExtResource("3_mvl7o")]
 layout_mode = 2
 Icon = ExtResource("5_wtbqs")
 Description = "SIZE_COLON"
 
-[node name="DigestionSpeed" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+[node name="DigestionSpeed" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=153143313 instance=ExtResource("3_mvl7o")]
 layout_mode = 2
 Icon = ExtResource("9_yl0er")
 Description = "DIGESTION_SPEED_COLON"
 
-[node name="DigestionEfficiency" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+[node name="DigestionEfficiency" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=968816485 instance=ExtResource("3_mvl7o")]
 layout_mode = 2
 Icon = ExtResource("10_l6acm")
 Description = "DIGESTION_EFFICIENCY_COLON"
 
-[node name="HSeparator4" type="HSeparator" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=544545899]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="AmmoniaCost" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+[node name="AmmoniaCost" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=44092311 instance=ExtResource("3_mvl7o")]
 layout_mode = 2
 tooltip_text = "NUTRIENT_COST_TOOLTIP"
 Icon = ExtResource("14_t2dkg")
 Description = "AMMONIA_COST"
 
-[node name="PhosphatesCost" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+[node name="PhosphatesCost" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1309347158 instance=ExtResource("3_mvl7o")]
 layout_mode = 2
 tooltip_text = "NUTRIENT_COST_TOOLTIP"
 Icon = ExtResource("15_ytqp8")
 Description = "PHOSPHATES_COST"
 
-[node name="Generation" type="HBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Generation" type="HBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=997107705]
 layout_mode = 2
 
-[node name="Description" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation"]
+[node name="Description" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation" unique_id=830966425]
 layout_mode = 2
 text = "GENERATION_COLON"
 label_settings = ExtResource("11_bfneb")
 
-[node name="Value" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation"]
+[node name="Value" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation" unique_id=70161773]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "n/a"

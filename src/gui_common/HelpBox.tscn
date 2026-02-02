@@ -1,22 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://be0gvip4iiwtw"]
+[gd_scene format=3 uid="uid://be0gvip4iiwtw"]
 
 [ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 
-[node name="HelpBox" type="PanelContainer"]
+[node name="HelpBox" type="PanelContainer" unique_id=1131945263]
 offset_right = 360.0
 offset_bottom = 26.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme = ExtResource("2")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=13221797]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="CustomRichTextLabel" parent="MarginContainer" instance=ExtResource("1")]
+[node name="CustomRichTextLabel" parent="MarginContainer" unique_id=696875095 instance=ExtResource("1")]
 layout_mode = 2
 fit_content = true

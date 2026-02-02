@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://njelpsugkine"]
+[gd_scene format=3 uid="uid://njelpsugkine"]
 
 [ext_resource type="Script" uid="uid://bi4uxx3fuf2uu" path="res://src/society_stage/SocietyStage.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://cd1w0b7mbdwcu" path="res://src/society_stage/StrategicCamera.tscn" id="2"]
@@ -34,46 +34,46 @@ uv1_scale = Vector3(42, 42, 42)
 material = SubResource("4")
 size = Vector2(400, 400)
 
-[node name="SocietyStage" type="Node" node_paths=PackedStringArray("selectBuildingPopup", "industrialStageConfirmPopup", "strategicCamera", "hudRoot")]
+[node name="SocietyStage" type="Node" unique_id=1356299121 node_paths=PackedStringArray("selectBuildingPopup", "industrialStageConfirmPopup", "strategicCamera", "hudRoot")]
 script = ExtResource("1")
 selectBuildingPopup = NodePath("SelectBuildingPopup")
 industrialStageConfirmPopup = NodePath("ConfirmIndustrialStage")
 strategicCamera = NodePath("World/StrategicCamera")
 hudRoot = NodePath("SocietyHUD")
 
-[node name="World" type="Node" parent="."]
+[node name="World" type="Node" parent="." unique_id=1294192276]
 
-[node name="DynamicallySpawned" type="Node" parent="World"]
+[node name="DynamicallySpawned" type="Node" parent="World" unique_id=335168801]
 
-[node name="WorldLight" type="DirectionalLight3D" parent="World"]
+[node name="WorldLight" type="DirectionalLight3D" parent="World" unique_id=473410307]
 transform = Transform3D(-0.687551, 0.322878, -0.650403, 0.0453496, 0.913048, 0.405323, 0.724719, 0.249185, -0.642409, 0, 1.19209e-07, 0)
 shadow_enabled = true
 
-[node name="StrategicCamera" parent="World" instance=ExtResource("2")]
+[node name="StrategicCamera" parent="World" unique_id=880918530 instance=ExtResource("2")]
 
-[node name="TemporaryGround" type="Node3D" parent="World"]
+[node name="TemporaryGround" type="Node3D" parent="World" unique_id=2052231073]
 
-[node name="GroundCollisionPlane" type="StaticBody3D" parent="World/TemporaryGround"]
+[node name="GroundCollisionPlane" type="StaticBody3D" parent="World/TemporaryGround" unique_id=1369588964]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/TemporaryGround/GroundCollisionPlane"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/TemporaryGround/GroundCollisionPlane" unique_id=1632198539]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0279489, 0)
 shape = SubResource("1")
 
-[node name="Visual1" type="MeshInstance3D" parent="World/TemporaryGround"]
+[node name="Visual1" type="MeshInstance3D" parent="World/TemporaryGround" unique_id=903103846]
 mesh = SubResource("2")
 
-[node name="Visual2" type="MeshInstance3D" parent="World/TemporaryGround"]
+[node name="Visual2" type="MeshInstance3D" parent="World/TemporaryGround" unique_id=736692975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -400)
 mesh = SubResource("5")
 
-[node name="PlayerSocietyInput" parent="." instance=ExtResource("10")]
+[node name="PlayerSocietyInput" parent="." unique_id=81312024 instance=ExtResource("10")]
 
-[node name="SocietyHUD" parent="." instance=ExtResource("7")]
+[node name="SocietyHUD" parent="." unique_id=780026759 instance=ExtResource("7")]
 
-[node name="SelectBuildingPopup" parent="." instance=ExtResource("9")]
+[node name="SelectBuildingPopup" parent="." unique_id=1595799053 instance=ExtResource("9")]
 
-[node name="ConfirmIndustrialStage" parent="." instance=ExtResource("11")]
+[node name="ConfirmIndustrialStage" parent="." unique_id=948578615 instance=ExtResource("11")]
 custom_minimum_size = Vector2(500, 0)
 offset_right = 500.0
 offset_bottom = 0.0
