@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Godot;
@@ -40,10 +40,10 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     private readonly StringName uvOffsetParameterName = new("UVOffset");
 
     /// <summary>
-    ///   Do not ever modify this dictionary after construction, it is thread unsafe.
-    ///   This dictionary contains 81 values. And is filled in _Ready once the cloud size is known.
+    ///   Precalculated cache of world shift vectors. This dictionary contains 81 values.
+    ///   And is filled in _Ready once the cloud size is known.
     /// </summary>
-    private Dictionary<int, Vector2> cachedWorldShiftVectors = null!;
+    private FrozenDictionary<int, Vector2> cachedWorldShiftVectors = null!;
 
     private CompoundDefinition?[] compoundDefinitions = null!;
 
@@ -939,7 +939,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         }
     }
 
-    private Dictionary<int, Vector2> PrecalculateWorldShiftVectors()
+    private FrozenDictionary<int, Vector2> PrecalculateWorldShiftVectors()
     {
         var shiftCache = new Dictionary<int, Vector2>(81);
         int worldShift = Constants.CLOUD_SIZE / Constants.CLOUD_PLANE_SQUARES_PER_SIDE * CloudResolution;
@@ -973,14 +973,14 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         if (shiftCache.Count != 81)
             throw new Exception("Logic error in PrecalculateWorldShiftVectors");
 
-        return shiftCache;
+        return shiftCache.ToFrozenDictionary();
     }
 
     private Vector2 GetWorldPositionForAdvection(int x0, int y0)
     {
         var key = GetWorldShiftKey(x0, y0, playersPosition.X, playersPosition.Y);
-        ref var cached = ref CollectionsMarshal.GetValueRefOrNullRef(cachedWorldShiftVectors, key);
-        if (!Unsafe.IsNullRef(ref cached))
+        ref readonly var cached = ref cachedWorldShiftVectors.GetValueRefOrNullRef(key);
+        if (!Unsafe.IsNullRef(in cached))
             return cachedWorldPosition + cached;
 
 #if DEBUG
