@@ -1,4 +1,5 @@
 ﻿// Toggles using cached to world shift vectors or recalculating them each time
+
 #define CACHE_WORLD_COORDINATES
 
 using System;
@@ -1003,7 +1004,6 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         return cachedWorldPosition;
 #endif
 #else
-
         // Same math as in PrecalculateWorldShiftVectors. This is used when not caching.
         int worldShift = Constants.CLOUD_SIZE / Constants.CLOUD_PLANE_SQUARES_PER_SIDE * CloudResolution;
         var playerX = playersPosition.X;
