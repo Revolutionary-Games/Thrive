@@ -32,7 +32,7 @@ driver/output_latency=20
 [autoload]
 
 Invoke="*res://src/engine/Invoke.cs"
-DebugConsoleManager="*uid://dt4ks18nyfx4n"
+DebugConsoleManager="*res://src/engine/console/DebugConsoleManager.cs"
 StartupActions="*res://src/engine/StartupActions.cs"
 Localization="*res://src/engine/Localization.cs"
 SteamHandler="*res://src/steam/SteamHandler.cs"
