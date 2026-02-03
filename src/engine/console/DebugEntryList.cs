@@ -131,7 +131,8 @@ public partial class DebugEntryList : Control
             }
             else if (currentLocalIndex < privateHistory.Count)
             {
-                if (privateHistory[currentLocalIndex].BeginTimestamp < debugConsoleManager.GetMessageAt(currentGlobalId).BeginTimestamp)
+                if (privateHistory[currentLocalIndex].BeginTimestamp <
+                    debugConsoleManager.GetMessageAt(currentGlobalId).BeginTimestamp)
                 {
                     skipLocal = true;
                 }
@@ -183,7 +184,8 @@ public partial class DebugEntryList : Control
             }
             else if (currentLocalIndex < privateHistory.Count)
             {
-                if (privateHistory[currentLocalIndex].BeginTimestamp < debugConsoleManager.GetMessageAt(currentGlobalId).BeginTimestamp)
+                if (privateHistory[currentLocalIndex].BeginTimestamp <
+                    debugConsoleManager.GetMessageAt(currentGlobalId).BeginTimestamp)
                 {
                     useLocal = true;
                 }
