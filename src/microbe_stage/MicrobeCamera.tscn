@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bako5jivv1dji"]
+[gd_scene format=3 uid="uid://bako5jivv1dji"]
 
 [ext_resource type="PackedScene" uid="uid://dyko4f6a4agwn" path="res://src/microbe_stage/BackgroundPlane.tscn" id="2_yrakl"]
 [ext_resource type="Script" uid="uid://cnp0vke5arnoc" path="res://src/microbe_stage/MicrobeCamera.cs" id="3"]
 
-[node name="MicrobeCamera" type="Camera3D" node_paths=PackedStringArray("backgroundPlane")]
+[node name="MicrobeCamera" type="Camera3D" unique_id=1866226759 node_paths=PackedStringArray("backgroundPlane")]
 process_priority = 100
 transform = Transform3D(1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0)
 current = true
@@ -12,8 +12,8 @@ script = ExtResource("3")
 DefaultCameraHeight = 30.0
 backgroundPlane = NodePath("BackgroundPlane")
 
-[node name="AudioListener3D" type="AudioListener3D" parent="."]
+[node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=1185611321]
 current = true
 
-[node name="BackgroundPlane" parent="." instance=ExtResource("2_yrakl")]
+[node name="BackgroundPlane" parent="." unique_id=949185612 instance=ExtResource("2_yrakl")]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, -10)

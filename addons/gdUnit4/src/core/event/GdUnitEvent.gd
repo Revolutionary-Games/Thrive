@@ -132,7 +132,7 @@ func is_success() -> bool:
 
 
 func is_warning() -> bool:
-	return _statistics.get(WARNINGS, false)
+	return _statistics.get(WARNINGS, false) or orphan_nodes() > 0
 
 
 func is_failed() -> bool:

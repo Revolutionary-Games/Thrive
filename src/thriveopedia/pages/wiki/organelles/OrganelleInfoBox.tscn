@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://difkxs0cysyce"]
+[gd_scene format=3 uid="uid://difkxs0cysyce"]
 
 [ext_resource type="LabelSettings" uid="uid://dd3w1mc3ion6w" path="res://src/gui_common/fonts/Body-Bold-AlmostSmall.tres" id="3_vcfpd"]
 [ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="4_5e56e"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dh5l86bxf1fua" path="res://src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs" id="6"]
 [ext_resource type="Texture2D" uid="uid://bx240joai3755" path="res://assets/textures/gui/bevel/RequirementFulfilled.png" id="7"]
 
-[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("nameLabel", "icon", "model", "costLabel", "requiresNucleusIcon", "processesLabel", "enzymesLabel", "massLabel", "sizeLabel", "osmoregulationCostLabel", "storageLabel", "uniqueIcon", "upgradesLabel", "internalNameLabel")]
+[node name="PanelContainer" type="PanelContainer" unique_id=777736953 node_paths=PackedStringArray("nameLabel", "icon", "model", "costLabel", "requiresNucleusIcon", "processesLabel", "enzymesLabel", "massLabel", "sizeLabel", "osmoregulationCostLabel", "storageLabel", "uniqueIcon", "upgradesLabel", "internalNameLabel")]
 custom_minimum_size = Vector2(330, 0)
 offset_right = 286.0
 offset_bottom = 732.0
@@ -28,32 +28,32 @@ uniqueIcon = NodePath("MarginContainer/VBoxContainer/Unique/Value")
 upgradesLabel = NodePath("MarginContainer/VBoxContainer/Ugrades/Value")
 internalNameLabel = NodePath("MarginContainer/VBoxContainer/InternalName/Value")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1901645230]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1352265587]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1964639326]
 layout_mode = 2
 
-[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1355474186]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("3_vcfpd")
 
-[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1680350875]
 custom_minimum_size = Vector2(80, 60)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Model" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="Model" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=1307748467]
 visible = false
 custom_minimum_size = Vector2(250, 250)
 layout_mode = 2
@@ -61,215 +61,215 @@ size_flags_horizontal = 3
 expand_mode = 1
 stretch_mode = 5
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=832977977]
 modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 2
 
-[node name="Cost" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Cost" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1319282447]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Cost"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Cost" unique_id=1798942827]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "INFO_BOX_COST"
 label_settings = ExtResource("4_5e56e")
 
-[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Cost"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Cost" unique_id=1868431990]
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("5_2u1as")
 
-[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1415809815]
 modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 2
 
-[node name="RequiresNucleus" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="RequiresNucleus" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1794739883]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/RequiresNucleus"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/RequiresNucleus" unique_id=1912187401]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "INFO_BOX_REQUIRES_NUCLEUS"
 label_settings = ExtResource("4_5e56e")
 
-[node name="Value" type="TextureRect" parent="MarginContainer/VBoxContainer/RequiresNucleus"]
+[node name="Value" type="TextureRect" parent="MarginContainer/VBoxContainer/RequiresNucleus" unique_id=563562315]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("7")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=599331688]
 modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 2
 
-[node name="Processes" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Processes" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=827050786]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Processes"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Processes" unique_id=1131918504]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "INFO_BOX_PROCESSES"
 label_settings = ExtResource("4_5e56e")
 
-[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Processes"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Processes" unique_id=209368150]
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("5_2u1as")
 
-[node name="HSeparator5" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1954123055]
 modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 2
 
-[node name="Enzymes" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Enzymes" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1145773945]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Enzymes"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Enzymes" unique_id=130278139]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "INFO_BOX_ENZYMES"
 label_settings = ExtResource("4_5e56e")
 
-[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Enzymes"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Enzymes" unique_id=206646879]
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("5_2u1as")
 
-[node name="HSeparator6" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator6" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=694211002]
 modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 2
 
-[node name="Mass" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Mass" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=487434589]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Mass"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Mass" unique_id=1733973533]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "INFO_BOX_MASS"
 label_settings = ExtResource("4_5e56e")
 
-[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Mass"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Mass" unique_id=558125216]
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("5_2u1as")
 
-[node name="HSeparator7" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator7" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=442787525]
 modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 2
 
-[node name="Size" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Size" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1188473253]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Size"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Size" unique_id=446782789]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "INFO_BOX_SIZE"
 label_settings = ExtResource("4_5e56e")
 
-[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Size"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Size" unique_id=1765801134]
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("5_2u1as")
 
-[node name="HSeparator8" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator8" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1471904267]
 modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 2
 
-[node name="OsmoregulationCost" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="OsmoregulationCost" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=332936104]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/OsmoregulationCost"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/OsmoregulationCost" unique_id=896513687]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "INFO_BOX_OSMOREGULATION_COST"
 label_settings = ExtResource("4_5e56e")
 
-[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/OsmoregulationCost"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/OsmoregulationCost" unique_id=1874058908]
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("5_2u1as")
 
-[node name="HSeparator9" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator9" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1689588453]
 modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 2
 
-[node name="Storage" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Storage" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=768338212]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Storage"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Storage" unique_id=1509258846]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "INFO_BOX_STORAGE"
 label_settings = ExtResource("4_5e56e")
 
-[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Storage"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Storage" unique_id=1583186184]
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("5_2u1as")
 
-[node name="HSeparator10" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator10" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=928316879]
 modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 2
 
-[node name="Unique" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Unique" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=2146004203]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Unique"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Unique" unique_id=1762225331]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "INFO_BOX_UNIQUE"
 label_settings = ExtResource("4_5e56e")
 
-[node name="Value" type="TextureRect" parent="MarginContainer/VBoxContainer/Unique"]
+[node name="Value" type="TextureRect" parent="MarginContainer/VBoxContainer/Unique" unique_id=81307649]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("7")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="HSeparator11" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator11" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=828889295]
 modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 2
 
-[node name="Ugrades" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Ugrades" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1126705393]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Ugrades"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Ugrades" unique_id=1642146248]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "INFO_BOX_UPGRADES"
 label_settings = ExtResource("4_5e56e")
 
-[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Ugrades"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Ugrades" unique_id=1689784115]
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("5_2u1as")
 
-[node name="HSeparator13" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator13" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=89362971]
 modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 2
 
-[node name="InternalName" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="InternalName" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=755501658]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/InternalName"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/InternalName" unique_id=1560608354]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "INFO_BOX_INTERNAL_NAME"
 label_settings = ExtResource("4_5e56e")
 
-[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/InternalName"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/InternalName" unique_id=1293784559]
 layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("5_2u1as")

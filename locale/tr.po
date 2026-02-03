@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-12 15:26+0100\n"
-"PO-Revision-Date: 2026-01-15 11:29+0000\n"
+"POT-Creation-Date: 2026-01-22 16:04+0200\n"
+"PO-Revision-Date: 2026-01-22 14:23+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -2040,6 +2040,9 @@ msgstr ""
 "Şu tüketildiğinde:\n"
 "{2}"
 
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr "Enerji Tüketim Baskısı"
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1} için {0} arazisindeki enerji"
 
@@ -2633,6 +2636,12 @@ msgstr ""
 "\n"
 "Eğer editör butonundaki bazı parçaların kaybolması gibi hatalar deneyimlerseniz,\n"
 "bu ayarı kapatarak problemin çözülüp çözülmediğine bakabilirsiniz."
+
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr "(Not: Arayüz ölçeğini arttırma özelliği deneysel bir özelliktir. Bu özellik, elementlerin ekran dışına taşmasına neden olabilir.)"
+
+msgid "GUI_SCALE_OPTION"
+msgstr "Ölçek çarpanı:"
 
 msgid "GUI_TAB_NAVIGATION"
 msgstr "Kullanıcı Arayüzünde Sekme Gezinme"
@@ -3473,6 +3482,9 @@ msgstr "Makrolid Sentezi"
 
 msgid "MACROSCOPIC"
 msgstr "Makroskopik"
+
+msgid "MACROSCOPIC_EDITOR"
+msgstr "Makroskopik Editörü"
 
 msgid "MACROSCOPIC_STAGE"
 msgstr "Makroskopik Evresi"
@@ -5253,6 +5265,13 @@ msgstr "Yüzey akışı olayı"
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Oyun esnasında oto-evrimi çalıştır"
 
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
+msgstr ""
+"Etkinleştirildiğinde, yükleme ekranı sırasında gerekli sürenin azaltılması için, oto-evrim oyun sırasında başlatılır.\n"
+"Düşük bir işlemci çekirdek sayısı olan sistemlerde, bu ayar fazladan gecikmeye sebep olabilir.\n"
+"Devre dışı bırakıldığında ise, oto-evrim, yükleme ekranı sırasında başlar ama yine çalışmaya devam eder.\n"
+"Oto-evrimi tamamen kapatmanın bir yolu yoktur. Çünkü oto-evrim, oyunun temel bir parçasıdır."
+
 msgid "RUN_ONE_STEP"
 msgstr "Bir Adım İlerle"
 
@@ -6208,7 +6227,7 @@ msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Bağ kurma moduna geç. Bir koloni oluşturmak için diğer hücrelere dokunun."
 
 msgid "TOGGLE_DEBUG_CONSOLE"
-msgstr "Hata ayıklama panelini aç"
+msgstr "Hata ayıklama konsolunu aç"
 
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Hata ayıklama panelini aç"

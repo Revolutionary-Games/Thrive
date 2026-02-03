@@ -374,7 +374,12 @@ public partial class MetaballBodyEditorComponent :
         var cellType = CellTypeFromName(activeActionName);
 
         if (MouseHoverPositions == null)
-            return Constants.METABALL_ADD_COST * Symmetry.PositionCount();
+        {
+            var costMultiplier = Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
+
+            return Math.Min(Constants.METABALL_ADD_COST * costMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST) *
+                Symmetry.PositionCount();
+        }
 
         var positions = MouseHoverPositions.ToList();
 
@@ -479,6 +484,13 @@ public partial class MetaballBodyEditorComponent :
         if (editedMetaballs.Count - alreadyDeleted < 2)
             return null;
 
+        // Don't allow root deletion (for now at least)
+        if (metaball.Parent == null)
+        {
+            GD.Print("Preventing root metaball deletion");
+            return null;
+        }
+
         ++alreadyDeleted;
         return new SingleEditorAction<MetaballRemoveActionData<MacroscopicMetaball>>(DoMetaballRemoveAction,
             UndoMetaballRemoveAction,
@@ -525,10 +537,24 @@ public partial class MetaballBodyEditorComponent :
     {
         metaballPopupMenu.SelectedMetaballs = selectedMetaballs.ToList();
         metaballPopupMenu.GetActionPrice = Editor.WhatWouldActionsCost;
-        metaballPopupMenu.ShowPopup = true;
 
-        metaballPopupMenu.EnableDeleteOption = editedMetaballs.Count > 1;
-        metaballPopupMenu.EnableMoveOption = editedMetaballs.Count > 1;
+        // Root metaball cannot be moved or deleted for now as it will cause major problems
+        if (metaballPopupMenu.SelectedMetaballs.Any(m => m.Parent == null))
+        {
+            // Disable totally as even *calculating* with the action to remove the root metaball causes invalid action
+            // exceptions to be thrown
+            metaballPopupMenu.ShowDeleteOption = false;
+            metaballPopupMenu.EnableDeleteOption = false;
+            metaballPopupMenu.EnableMoveOption = false;
+        }
+        else
+        {
+            metaballPopupMenu.EnableDeleteOption = editedMetaballs.Count > 1;
+            metaballPopupMenu.ShowDeleteOption = true;
+            metaballPopupMenu.EnableMoveOption = editedMetaballs.Count > 1;
+        }
+
+        metaballPopupMenu.ShowPopup = true;
     }
 
     /// <summary>
@@ -731,8 +757,8 @@ public partial class MetaballBodyEditorComponent :
 
             if (moving)
             {
-                // If the metaball is moved to its descendant, then the move is much more complicated
-                // And currently not supported
+                // If the metaball is moved to its descendant, then the move is much more complicated.
+                // And currently not supported.
                 if (parent != null && editedMetaballs.IsDescendantsOf(parent, metaball))
                 {
                     GD.PrintErr("Logic for moving metaball to its descendant tree not implemented");
@@ -767,7 +793,8 @@ public partial class MetaballBodyEditorComponent :
         if (!IsMoveTargetValid(newLocation, newParent, metaball))
             return false;
 
-        // For now moving to descendant tree is not implement as it would be pretty tricky to get working correctly
+        // For now moving to the descendant tree is not implement as it would be pretty tricky to get working correctly
+        // This in effect prevents moving the root metaball (which is also prevented in the context popup)
         if (newParent != null && editedMetaballs.IsDescendantsOf(newParent, metaball))
         {
             ToolTipManager.Instance.ShowPopup(Localization.Translate("CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"),
@@ -861,7 +888,7 @@ public partial class MetaballBodyEditorComponent :
                     new Callable(this, nameof(OnCellToPlaceSelected)));
             }
 
-            control.MPCost = Constants.METABALL_ADD_COST * costMultiplier;
+            control.MPCost = Math.Min(Constants.METABALL_ADD_COST * costMultiplier, Constants.MAX_SINGLE_EDIT_MP_COST);
 
             // TODO: remove this line after ATP balance calculations are implemented for this editor
             control.ShowInsufficientATPWarning = false;
@@ -1022,6 +1049,7 @@ public partial class MetaballBodyEditorComponent :
         // TODO: store name of the original cell type this is cloned from to make MP comparisons easier?
         var newType = (CellType)GetEditedCellDataIfEdited(type).Clone();
         newType.CellTypeName = newTypeName;
+        newType.SplitFromTypeName = type.CellTypeName;
 
         var data = new DuplicateDeleteCellTypeData(newType, false);
         var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(DuplicateCellType, DeleteCellType, data);
@@ -1039,8 +1067,11 @@ public partial class MetaballBodyEditorComponent :
 
         var type = CellTypeFromName(activeActionName!);
 
+        // Get the actual type we store to match with the created metaballs
+        var placementType = GetEditedCellDataIfEdited(type);
+
         // Disallow deleting a type that is in use currently
-        if (editedMetaballs.Any(c => c.ModifiableCellType == type))
+        if (editedMetaballs.Any(c => c.ModifiableCellType == placementType))
         {
             GD.Print("Can't delete in use cell type");
             cannotDeleteInUseTypeDialog.PopupCenteredShrink();

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b468e0b04dot"]
+[gd_scene format=3 uid="uid://b468e0b04dot"]
 
 [ext_resource type="Shader" uid="uid://bxd4cdv4qekba" path="res://shaders/Crystal.gdshader" id="1_hlsws"]
 [ext_resource type="ArrayMesh" uid="uid://d2jrhrxmkd7dw" path="res://assets/models/IceChunkSmall1.mesh" id="2_3v8mk"]
@@ -25,6 +25,6 @@ shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
 shader_parameter/outlineWidth = 0.0
 
-[node name="IceChunkSmall" type="MeshInstance3D"]
+[node name="IceChunkSmall" type="MeshInstance3D" unique_id=1695698671]
 material_override = SubResource("ShaderMaterial_hlsws")
 mesh = ExtResource("2_3v8mk")

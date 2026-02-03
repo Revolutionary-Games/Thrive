@@ -168,18 +168,12 @@ public static class Constants
     /// </summary>
     public const int CLOUDS_IN_ONE = 4;
 
-    public const int CLOUD_SQUARES_PER_SIDE = 3;
-    public const int CLOUD_EDGE_WIDTH = 2;
+    public const int CLOUD_PLANE_SQUARES_PER_SIDE = 3;
+    public const int CLOUD_PLANE_EDGE_WIDTH = 2;
 
-    // NOTE: these 4 constants need to match what is set up in CompoundCloudPlane.tscn
-    public const int CLOUD_WIDTH = 300;
-    public const int CLOUD_X_EXTENT = CLOUD_WIDTH * 2;
-    public const int CLOUD_HEIGHT = 300;
-
-    // This is cloud local Y, not world Y
-    public const int CLOUD_Y_EXTENT = CLOUD_HEIGHT * 2;
-
-    public const float CLOUD_Y_COORDINATE = 0;
+    // NOTE: these 2 constants need to match what is set up in CompoundCloudPlane.tscn
+    public const int CLOUD_SIZE = 300;
+    public const int CLOUD_EXTENT = CLOUD_SIZE * 2;
 
     public const float CLOUD_DIFFUSION_RATE = 0.007f;
 
@@ -876,6 +870,11 @@ public static class Constants
     public const float MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER = 2;
 
     /// <summary>
+    ///   A multiplier for <see cref="MICROBE_REPRODUCTION_MAX_COMPOUND_USE"/> for multicellular microbes
+    /// </summary>
+    public const float MULTICELLULAR_REPRODUCTION_COMPOUND_MAX_USE_MULTIPLIER = 3;
+
+    /// <summary>
     ///   How much ammonia a microbe needs on top of the organelle initial compositions to reproduce
     /// </summary>
     public const float MICROBE_REPRODUCTION_COST_BASE_AMMONIA = 16;
@@ -1106,7 +1105,7 @@ public static class Constants
     public const float HUD_BAR_FLASH_DURATION = 0.67f;
 
     // Darwinian Evo Values
-    public const int CREATURE_DEATH_POPULATION_LOSS = -60;
+    public const int CREATURE_DEATH_POPULATION_LOSS = -30;
     public const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
 
     // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4694
@@ -1132,6 +1131,11 @@ public static class Constants
     public const int BASE_MUTATION_POINTS = 100;
 
     /// <summary>
+    ///   Used to limit single edit costs to allow doing them even at double the MP cost.
+    /// </summary>
+    public const int MAX_SINGLE_EDIT_MP_COST = 100;
+
+    /// <summary>
     ///   As mutation points are now calculated with floats, there can be situations where the player just barely
     ///   cannot afford something they should be able to afford, so we allow going negative by this much.
     /// </summary>
@@ -1143,6 +1147,9 @@ public static class Constants
 
     public const int ORGANELLE_REMOVE_COST = 10;
     public const int ORGANELLE_MOVE_COST = 5;
+    public const int ORGANELLE_CHEAPEST_COST = 20;
+
+    public const int CELL_REMOVE_COST = 5;
 
     public const string ORGANELLE_UPGRADE_SPECIAL_NONE = "none";
 
@@ -1314,17 +1321,19 @@ public static class Constants
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
 
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
-    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 3500;
-    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100000;
-    public const float AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING = 0.00006f;
+    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 4500;
+    public const float AUTO_EVO_PILUS_DEFENSE_SCORE = 3000;
+    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 90000;
+    public const float AUTO_EVO_TOXIN_ENGULFMENT_DEFENSE_MODIFIER = 0.007f;
+    public const float AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING = 0.00008f;
     public const float AUTO_EVO_SIZE_AFFECTED_PROJECTILE_MISS_FACTOR = 0.5f;
     public const float AUTO_EVO_TOXICITY_HIT_MODIFIER = 4.0f;
     public const float AUTO_EVO_SLIME_JET_SCORE = 30;
     public const float AUTO_EVO_MUCOCYST_SCORE = 40;
     public const float AUTO_EVO_PULL_CILIA_MODIFIER = 0.8f;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
-    public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER = 1.18f;
-    public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER = 0.7f;
+    public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER = 1.2f;
+    public const float AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER = 0.8f;
     public const float AUTO_EVO_CHEMORECEPTOR_BASE_SCORE = 0.4f;
     public const float AUTO_EVO_CHEMORECEPTOR_VARIABLE_CLOUD_SCORE = 8;
     public const float AUTO_EVO_CHEMORECEPTOR_VARIABLE_CHUNK_SCORE = 0.00007f;
@@ -1335,7 +1344,9 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
     public const float AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION = 0.1f;
     public const float AUTO_EVO_REPRODUCTION_COMPOUND_PRODUCTION_SCORE = 3000.0f;
-    public const float AUTO_EVO_REPRODUCTION_COMPOUND_COST_WEAKENING_MODIFIER = 0.5f;
+    public const float AUTO_EVO_REPRODUCTION_COMPOUND_COST_WEAKENING_MODIFIER = 0.2f;
+
+    public const float AUTO_EVO_PREDATION_DEFENSE_SCORE_MODIFIER = 0.5f;
 
     public const float AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS_SMALL = 1.5f;
     public const float AUTO_EVO_ARTIFICIAL_UPGRADE_BONUS = 20.0f;

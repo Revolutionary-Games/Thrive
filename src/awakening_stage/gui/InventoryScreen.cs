@@ -929,16 +929,14 @@ public partial class InventoryScreen : ControlWithInput
         // Moving an item to the slot that has it as the ghost item resets the state
         if (fromSlot.Item == fromSlot.GhostItem)
         {
-            if (fromSlot.GhostItem != null)
-                fromSlot.GhostItem.ShownAsGhostIn = null;
+            fromSlot.GhostItem?.ShownAsGhostIn = null;
 
             fromSlot.GhostItem = null;
         }
 
         if (toSlot.Item == toSlot.GhostItem)
         {
-            if (toSlot.GhostItem != null)
-                toSlot.GhostItem.ShownAsGhostIn = null;
+            toSlot.GhostItem?.ShownAsGhostIn = null;
 
             toSlot.GhostItem = null;
         }
@@ -1404,7 +1402,7 @@ public partial class InventoryScreen : ControlWithInput
             {
                 if (!originalSlot.Transient && originalSlot.Item == null)
                 {
-                    // When working correctly this should never fail
+                    // When working correctly, this should never fail
                     if (SwapSlotContentsIfPossible(currentlyOccupiedSlot, originalSlot))
                         return true;
 

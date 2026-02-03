@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://tvhbaau8rmaa"]
+[gd_scene format=3 uid="uid://tvhbaau8rmaa"]
 
 [ext_resource type="Shader" uid="uid://caplkvkclneuh" path="res://shaders/OrganelleOpaque.gdshader" id="1_liv11"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2_iaryo"]
@@ -18,6 +18,6 @@ shader_parameter/growColor = Color(0.1, 0.1, 0.1, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
 
-[node name="Melanosome" type="MeshInstance3D"]
+[node name="Melanosome" type="MeshInstance3D" unique_id=1120867577]
 material_override = SubResource("ShaderMaterial_dwonw")
 mesh = ExtResource("4_27xi5")

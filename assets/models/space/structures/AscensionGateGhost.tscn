@@ -1,54 +1,54 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0l7mebbx60fx"]
+[gd_scene format=3 uid="uid://c0l7mebbx60fx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qirts"]
 transparency = 4
 shading_mode = 0
 albedo_color = Color(1, 1, 1, 0.294118)
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=1558805854]
 
-[node name="AscensionGate" type="Node3D" parent="."]
+[node name="AscensionGate" type="Node3D" parent="." unique_id=724863499]
 
-[node name="Cylinder" type="CSGCylinder3D" parent="AscensionGate"]
+[node name="Cylinder" type="CSGCylinder3D" parent="AscensionGate" unique_id=1822346033]
 transform = Transform3D(0.92388, 0, 0.382683, 0, 1, 0, -0.382683, 0, 0.92388, 0, 0, 0)
 radius = 2.56087
 height = 0.237736
 material = SubResource("StandardMaterial3D_qirts")
 
-[node name="Temple" type="CSGPolygon3D" parent="AscensionGate"]
+[node name="Temple" type="CSGPolygon3D" parent="AscensionGate" unique_id=496295909]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1, 0, 0.7)
 polygon = PackedVector2Array(0, 0, 1, 2, 3, 2, 4, 0)
 depth = 2.8
 material = SubResource("StandardMaterial3D_qirts")
 
-[node name="EntrancePillar1" type="CSGCylinder3D" parent="AscensionGate"]
+[node name="EntrancePillar1" type="CSGCylinder3D" parent="AscensionGate" unique_id=1614136278]
 transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -0.2, 0.347342, -0.726975)
 radius = 0.05
 height = 0.5
 material = SubResource("StandardMaterial3D_qirts")
 
-[node name="EntrancePillar2" type="CSGCylinder3D" parent="AscensionGate"]
+[node name="EntrancePillar2" type="CSGCylinder3D" parent="AscensionGate" unique_id=734641038]
 transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 0.2, 0.347342, -0.726975)
 radius = 0.05
 height = 0.5
 material = SubResource("StandardMaterial3D_qirts")
 
-[node name="EntranceTop" type="CSGBox3D" parent="AscensionGate"]
+[node name="EntranceTop" type="CSGBox3D" parent="AscensionGate" unique_id=2121378375]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00660507, 0.590694, -0.726975)
 size = Vector3(0.5, 0.05, 0.1)
 material = SubResource("StandardMaterial3D_qirts")
 
-[node name="Pillar1" type="CSGBox3D" parent="AscensionGate"]
+[node name="Pillar1" type="CSGBox3D" parent="AscensionGate" unique_id=1352525689]
 transform = Transform3D(0.976145, -0.217121, 0, 0.217121, 0.976145, 0, 0, 0, 1, 1.53302, 1.99086, 0)
 size = Vector3(0.450878, 3.98205, 0.451)
 material = SubResource("StandardMaterial3D_qirts")
 
-[node name="Pillar2" type="CSGBox3D" parent="AscensionGate"]
+[node name="Pillar2" type="CSGBox3D" parent="AscensionGate" unique_id=780600291]
 transform = Transform3D(0.975981, 0.217854, 0, -0.217854, 0.975981, 0, 0, 0, 1, -1.62222, 1.99086, 0)
 size = Vector3(0.450878, 3.98205, 0.451)
 material = SubResource("StandardMaterial3D_qirts")
 
-[node name="Beacon2" type="CSGBox3D" parent="AscensionGate"]
+[node name="Beacon2" type="CSGBox3D" parent="AscensionGate" unique_id=2142692790]
 transform = Transform3D(0.212132, 0, 0.212132, 0, 1, 0, -0.212132, 0, 0.212132, 0, 1.17434, 0)
 size = Vector3(0.5, 0.5, 0.5)
 material = SubResource("StandardMaterial3D_qirts")

@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-12 15:26+0100\n"
-"PO-Revision-Date: 2026-01-04 22:06+0000\n"
-"Last-Translator: Lucas Henrique Alves Almeida <lukkas.hnr@gmail.com>\n"
+"POT-Creation-Date: 2026-01-22 16:04+0200\n"
+"PO-Revision-Date: 2026-01-25 06:42+0000\n"
+"Last-Translator: Davi Araújo <davi.augusto.araujo@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.15.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -89,7 +89,7 @@ msgid "ACTIVE"
 msgstr "Ativo"
 
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Tarefas atuais:"
+msgstr "Processos atuais:"
 
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
@@ -432,9 +432,8 @@ msgstr "Nível médio de outros gases na superfície"
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr "Nível médio de oxigênio na superfície"
 
-#, fuzzy
 msgid "AVERAGE_SURFACE_TEMPERATURE"
-msgstr "Nível médio de outros gases na superfície"
+msgstr "Temperatura média da superfície"
 
 msgid "AWAKENING_STAGE"
 msgstr "Estágio Desperto"
@@ -750,9 +749,8 @@ msgstr "Síntese de Inibidor de Canais"
 msgid "CHEATS"
 msgstr "Trapaças"
 
-#, fuzzy
 msgid "CHEATS_USED_NOTICE"
-msgstr "Esta página ou seção contém informações desatualizadas. Isso ocorre frequentemente quando há uma mudança de planos após algo ser escrito."
+msgstr "Trapaças foram usadas neste jogo."
 
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheats ativados"
@@ -907,9 +905,8 @@ msgstr "Costeiro"
 msgid "COLLISION_SHAPE"
 msgstr "Gerar entidades com formas de colisão"
 
-#, fuzzy
 msgid "COLONY_GROWTH_ORDER_EXPLANATION"
-msgstr "Esta aba permite definir a ordem em que as organelas crescem. Isso pode ser importante para células que têm produção instável de ATP enquanto crescem. A ordem das organelas também impacta a ordem de execução dos bio processos. Recomenda-se editar essa aba apenas após terminar de editar a estrutura, já que a edição de estruturas pode reverter mudanças feitas aqui."
+msgstr "Esta aba permite definir a ordem em que as células da colônia crescem, com a primeira célula na ordem sendo a célula raiz (ou broto). Você pode usar isso para priorizar o crescimento de células mais cruciais ou garantir que a produção e consumo da colônia estejam propriamente equilibrados."
 
 msgid "COLOUR"
 msgstr "Coloração"
@@ -963,7 +960,7 @@ msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Brilho ou intensidade da cor"
 
 msgid "COMMAND_INPUT_LINE_EDIT"
-msgstr ""
+msgstr "Inserir Comando"
 
 msgid "COMMON_ABILITIES"
 msgstr "Habilidades Comuns"
@@ -1053,28 +1050,23 @@ msgstr "Sempre Completar até Inicial"
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Completar na Mudança de Região"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_AVERAGE"
-msgstr "Média"
+msgstr "Médio"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_HIGH"
-msgstr "Equilíbrio dos Compostos"
+msgstr "Alto"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_LOW"
-msgstr "Nuvens de compostos"
+msgstr "Baixo"
 
 msgid "COMPOUND_LEVEL_VERY_HIGH"
 msgstr "Muito alto"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
-msgstr "Manter Todos"
+msgstr "Muito baixo"
 
-#, fuzzy
 msgid "COMPOUND_REPRODUCTION_SOURCE"
-msgstr "consumo de {0}"
+msgstr "Consumo de {0}"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(não é o suficiente para suportar a noite, que dura {0} segundos)"
@@ -1237,13 +1229,11 @@ msgstr "Botão Direcional Para Cima"
 msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
 msgstr "Botão de Ombro Esquerdo"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_LEFT_STICK"
-msgstr "Zonas mortas do controle"
+msgstr "Botão do Analógico Esquerdo"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_MISC1"
-msgstr "Zonas mortas do controle"
+msgstr "Botão Diverso do Controle"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_PADDLE1"
@@ -1288,9 +1278,8 @@ msgstr "R1"
 msgid "CONTROLLER_BUTTON_PS_R3"
 msgstr "R3"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SHARE"
-msgstr "Zonas mortas do controle"
+msgstr "Compartilhar"
 
 msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
 msgstr "Botão com Logo"
@@ -1301,13 +1290,11 @@ msgstr "Quadrado"
 msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
 msgstr "Triângulo"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
-msgstr "Visualizador dos eixos do controle:"
+msgstr "Botão de Ombro Direito"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_RIGHT_STICK"
-msgstr "Tipos de prompts de botões do controle:"
+msgstr "Botão do Analógico Direito"
 
 msgid "CONTROLLER_BUTTON_TOUCH_PAD"
 msgstr "Touch Pad"
@@ -1368,9 +1355,8 @@ msgstr "Protanopia (Vermelho-Verde)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (Azul-Amarelo)"
 
-#, fuzzy
 msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
-msgstr "Não há armazenamento suficiente para [thrive:compound type=\"{0}\"][/thrive:compound], visto que a noite dura {2} s, enquanto a célula consegue manter somente {1} s de compostos."
+msgstr "A CPU não é rápida o bastante para a velocidade selecionada, redefinindo a velocidade para padrão"
 
 msgid "CPU_THREADS"
 msgstr "Threads"
@@ -1465,35 +1451,33 @@ msgstr "CTRL"
 msgid "CURRENT_CACHE_SIZE"
 msgstr "Tamanho atual:"
 
-#, fuzzy
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
-msgstr "Expele mucilagem para aumentar a velocidade e desacelerar células presas na gosma"
+msgstr ""
+"O tamanho de todos os itens de cache armazenados no disco. Pode ser limpado com segurança a qualquer momento,\n"
+"mas quando um item que estaria no cache for necessário ele levará mais tempo para ser gerado."
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Desenvolvedores Atuais"
 
-#, fuzzy
 msgid "CURRENT_DILUTION"
-msgstr "LOCALIZAÇÃO ATUAL"
+msgstr "Evento de diluição de corrente"
 
-#, fuzzy
 msgid "CURRENT_DILUTION_TOOLTIP"
-msgstr "LOCALIZAÇÃO ATUAL"
+msgstr ""
+"Os compostos foram diluídos.\n"
+"Diminui a concentração de:"
 
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "LOCALIZAÇÃO ATUAL"
 
-#, fuzzy
 msgid "CURRENT_PARTICLES_ALL"
-msgstr "LOCALIZAÇÃO ATUAL"
+msgstr "Todas"
 
-#, fuzzy
 msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
-msgstr "Sem pesquisas ativas"
+msgstr "Apenas círculos"
 
-#, fuzzy
 msgid "CURRENT_PARTICLES_NONE"
-msgstr "Sem pesquisas ativas"
+msgstr "Nenhuma"
 
 msgid "CURRENT_RESEARCH_NONE"
 msgstr "Sem pesquisas ativas"
@@ -1575,9 +1559,8 @@ msgstr "Configuração da zona morta"
 msgid "DEATH"
 msgstr "morte"
 
-#, fuzzy
 msgid "DEBUG_CONSOLE"
-msgstr "Painel de depuração"
+msgstr "Console de Depuração"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1820,16 +1803,14 @@ msgstr "OpenGL"
 msgid "DISPLAY_DRIVER_VULKAN"
 msgstr "Vulkan"
 
-#, fuzzy
 msgid "DISPLAY_MODE"
-msgstr "Exibir nomes dos botões de seleções de partes"
+msgstr "Modo de exibição:"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Exibir nomes dos botões de seleções de partes"
 
-#, fuzzy
 msgid "DISPLAY_SELECTION"
-msgstr "A lipase permite que a célula quebre a maioria das membranas. Sua célula já produz um pouco dessa enzima sem o lisossomo, mas ao selecionar essa opção você aumentará sua eficácia."
+msgstr "Monitor:"
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Fonte de alimentação de {0} distribuída uniformemente"
@@ -2073,6 +2054,10 @@ msgstr ""
 "Enquanto consome:\n"
 "{2}"
 
+#, fuzzy
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr "Pressão para Manter Compostos"
+
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia em {0} para {1}"
 
@@ -2199,17 +2184,15 @@ msgstr ""
 "Aumenta os níveis de dióxido de carbono e enxofre.\n"
 "Gera pedaços de enxofre."
 
-#, fuzzy
 msgid "EVENT_RUNOFF_TOOLTIP"
 msgstr ""
-"Evento de erupção\n"
-"Cria mais sulfeto de hidrogênio e dióxido de carbono"
+"Sedimentos foram levados da terra para as águas costeiras, enriquecendo-as.\n"
+"Aumenta a concentração de:"
 
-#, fuzzy
 msgid "EVENT_UPWELLING_TOOLTIP"
 msgstr ""
-"Evento de erupção\n"
-"Cria mais sulfeto de hidrogênio e dióxido de carbono"
+"Compostos foram levantados do fundo do oceano, enriquecendo as águas acima.\n"
+"Aumenta a concentração de:"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Árvore Evolucionária"
@@ -2473,13 +2456,11 @@ msgstr "Fossilizar essa espécie (já fossilizada)"
 msgid "FOSSILISE"
 msgstr "Fossilizar"
 
-#, fuzzy
 msgid "FOSSIL_DATA_LOAD_FAILED"
-msgstr "Falha ao Remover Fóssil"
+msgstr "Falha ao Carregar Dados de Fóssil"
 
-#, fuzzy
 msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
-msgstr "Não foi possível remover o arquivo do fóssil"
+msgstr "Não foi possível ler o arquivo de fóssil porque os dados estavam desatualizados ou eram inválidos"
 
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Falha ao Remover Fóssil"
@@ -2622,9 +2603,8 @@ msgstr "Glicose"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "As concentrações de glicose caíram drasticamente!"
 
-#, fuzzy
 msgid "GLUCOSE_LEVEL"
-msgstr "{0}-{1}m sob o nível do mar"
+msgstr "Nível de glicose"
 
 msgid "GLYCOLYSIS"
 msgstr "Glicólise"
@@ -2653,9 +2633,8 @@ msgstr "GPU:"
 msgid "GRAPHICS"
 msgstr "Gráficos"
 
-#, fuzzy
 msgid "GRAPHICS_PRESET"
-msgstr "Equipe Gráfica"
+msgstr "Predefinição gráfica:"
 
 msgid "GRAPHICS_TEAM"
 msgstr "Equipe Gráfica"
@@ -2672,6 +2651,12 @@ msgstr ""
 "\n"
 "Se você tiver um bug onde partes do botão do editor desaparecem,\n"
 "você pode tentar desabilitar essa opção para ver se o problema desaparece."
+
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr "(obs.: aumentar o tamanho da interface é um recurso experimental e pode fazer os elementos ficarem fora da tela)"
+
+msgid "GUI_SCALE_OPTION"
+msgstr "Multiplicador de escala:"
 
 msgid "GUI_TAB_NAVIGATION"
 msgstr "Navegação em Abas da Interface"
@@ -2891,13 +2876,11 @@ msgstr "Inspecionar"
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Visite a nossa página no Instagram"
 
-#, fuzzy
 msgid "INSTANT_KILL_PROTECTION"
-msgstr "Proteção UV baixa demais, precisa ser {0}% mais alta"
+msgstr "Proteção contra morte instantânea"
 
-#, fuzzy
 msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
-msgstr "(proporção da glicose conservada no ambiente a cada geração)"
+msgstr "(danos que matariam um jogador com vida alta deixam você com um quantidade pequena de vida em vez disso)"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Ativar Portal da Ascensão"
@@ -3434,9 +3417,8 @@ msgstr "Carregando Estágio Multicelular"
 msgid "LOADING_STAGE"
 msgstr "Carregando Estágio"
 
-#, fuzzy
 msgid "LOADING_STAGE_ASSETS"
-msgstr "Carregando Jogo"
+msgstr "Carregando os Recursos do Estágio {0} / {1}"
 
 msgid "LOAD_FINISHED"
 msgstr "Carregamento terminado"
@@ -3520,15 +3502,17 @@ msgstr "Síntese de Macrolídeo"
 msgid "MACROSCOPIC"
 msgstr "Macroscópico"
 
+msgid "MACROSCOPIC_EDITOR"
+msgstr "Editor Macroscópico"
+
 msgid "MACROSCOPIC_STAGE"
 msgstr "Estágio Macroscópico"
 
 msgid "MAKE_CELL_THAT_EATS_RADIATION"
 msgstr "Faça uma célula que ganha energia a partir de radioatividade, e ganhe energia"
 
-#, fuzzy
 msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
-msgstr " Faça uma célula que usa apenas quimiossíntese para ganhar energia"
+msgstr "Faça uma célula que usa apenas quimiossíntese para ganhar energia"
 
 msgid "MAKE_NO_CHANGES_IN_EDITOR"
 msgstr "Não faça nenhuma mudança ao seu micróbio no editor"
@@ -3551,9 +3535,8 @@ msgstr "Volume principal"
 msgid "MASTODON_TOOLTIP"
 msgstr "Visite nosso perfil na rede social Mastodon"
 
-#, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
-msgstr "Expele mucilagem para aumentar a velocidade e desacelerar células presas na gosma"
+msgstr "O máximo de espaço que o cache em disco deve tomar (itens serão removidos automaticamente se o cache ficar grande demais)"
 
 msgid "MAX_FPS"
 msgstr "FPS máximo:"
@@ -3573,9 +3556,8 @@ msgstr "Não é permitido mostrar mais de {0} datasets!"
 msgid "MAY"
 msgstr "Maio"
 
-#, fuzzy
 msgid "MECHANICS_BUTTON"
-msgstr "Descender"
+msgstr "Mecânicas"
 
 msgid "MEDIANEXT"
 msgstr "Próximo"
@@ -3694,9 +3676,8 @@ msgstr ""
 "[b]Pontuações do Ocupante[/b]\n"
 "  {2}"
 
-#, fuzzy
 msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
-msgstr "Pressão para Evitar Seleção Predativa"
+msgstr "Pressão para Seleção Endossimbiótica"
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr "Pressão para Compostos Ambientais"
@@ -3719,9 +3700,8 @@ msgstr "Pressão para Efetividade de Predação"
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Pressão Raiz para Predador"
 
-#, fuzzy
 msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
-msgstr "Compostos na saída do editor:"
+msgstr "Pressão para Uso de Compostos para Reprodução:"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr "Pressão Raiz"
@@ -3742,13 +3722,11 @@ msgstr "Quantidade de micróbios:"
 msgid "MICROBE_BENCHMARK"
 msgstr "Teste de Desempenho de Micróbios"
 
-#, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
-msgstr "[b]Dados das Membranas:[/b]"
+msgstr "Inclinação da câmera microbial"
 
-#, fuzzy
 msgid "MICROBE_CURRENT_PARTICLES"
-msgstr "Ir para a região atual"
+msgstr "Partículas de corrente microbiais:"
 
 msgid "MICROBE_EDITOR"
 msgstr "Editor de Micróbios"
@@ -3837,9 +3815,8 @@ msgstr "  {0}: Organela encontrada em {1} espécie(s), tendo em média {2} cada"
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "[b]Dados de Melhorias de Organelas:[/b]"
 
-#, fuzzy
 msgid "MICROBE_RIPPLE_EFFECT"
-msgstr "[b]Dados das Membranas:[/b]"
+msgstr "Efeito de onda de movimento microbial"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -4016,9 +3993,8 @@ msgstr "Instruções para modding disponíveis em"
 msgid "MODELS"
 msgstr "Modelos"
 
-#, fuzzy
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
-msgstr "Mover visualização estratégica ao mover o cursor para as bordas da tela"
+msgstr "O modo de movimento em 2D pode ser alterado mais tarde no menu de opções a qualquer momento"
 
 msgid "MODIFY"
 msgstr "Modificar"
@@ -4032,9 +4008,8 @@ msgstr "Modificar tipo"
 msgid "MODS"
 msgstr "Mods"
 
-#, fuzzy
 msgid "MODS_ARE_ENABLED"
-msgstr "Nenhum mod ativado"
+msgstr "Mods Habilitados"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -4142,12 +4117,11 @@ msgstr "Carregador de Mods"
 msgid "MOD_VERSION"
 msgstr "Versão do Mod:"
 
-#, fuzzy
 msgid "MONITOR_AUTO"
-msgstr "Autor:"
+msgstr "Automático"
 
 msgid "MONITOR_IDENTIFIER"
-msgstr ""
+msgstr "Monitor {0}"
 
 msgid "MORE_INFO"
 msgstr "Mostrar Mais Informações"
@@ -4284,14 +4258,8 @@ msgstr "Anti-aliasing multi-amostras:"
 msgid "MULTITHREADED_SIMULATION_ENABLED"
 msgstr "Rodas simulação de jogo com threads múltiplas"
 
-#, fuzzy
 msgid "MULTITHREADED_SIMULATION_EXPLANATION"
-msgstr ""
-"Descender removerá seu status de ascensão e o retornará ao Estágio Microbial. A partir daí, você poderá jogar novamente no salvamento atual.\n"
-"\n"
-"Você receberá um benefício de descensão para o novo jogo. Em uma versão futura você poderá escolher o benefício, mas por enquanto será sempre uma redução de 20% na osmorregulação.\n"
-"\n"
-"Após confirmar a descensão, você poderá editar as configurações do jogo para escolher uma nova semente de mundo e jogar em um mapa diferente ou desabilitar a vida baseada na realidade, por exemplo."
+msgstr "(quando habilitado, mais de um thread de processamento é usado para executar as atualizações da lógica principal do jogo, pode diminuir a performance com um número baixo de tarefas de fundo)"
 
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
@@ -4441,9 +4409,8 @@ msgstr "Produção de ATP inibida por uma toxina"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Velocidade de movimento diminuída devido a uma toxina"
 
-#, fuzzy
 msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
-msgstr "Sulfeto de Hidrogênio"
+msgstr "Ferido por sulfeto de hidrogênio enquanto não tem Proteínas Quimiossintetizantes"
 
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "Não há mucilagem suficiente para ativar o escudo do mucocisto"
@@ -4709,9 +4676,8 @@ msgstr "Outros"
 msgid "OUR_WIKI"
 msgstr "nossa Wiki"
 
-#, fuzzy
 msgid "OUTDATED_ITEM"
-msgstr "Esta página ou seção contém informações desatualizadas. Isso ocorre frequentemente quando há uma mudança de planos após algo ser escrito."
+msgstr "DESATUALIZADO"
 
 msgid "OUTDATED_NOTICE"
 msgstr "Esta página ou seção contém informações desatualizadas. Isso ocorre frequentemente quando há uma mudança de planos após algo ser escrito."
@@ -4787,9 +4753,8 @@ msgstr "Mover a câmera para cima"
 msgid "PAST_DEVELOPERS"
 msgstr "Desenvolvedores Anteriores"
 
-#, fuzzy
 msgid "PATCHES_NUMBER"
-msgstr "{1} {0}"
+msgstr "Número de regiões:"
 
 msgid "PATCH_COLON"
 msgstr "Região:"
@@ -4944,9 +4909,11 @@ msgstr "O jogador foi extinto"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Relativo ao jogador"
 
-#, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
-msgstr "Relativo ao jogador"
+msgstr ""
+"No modo de movimento relativo ao jogador as teclas de movimento são relativas à rotação atual da célula do jogador.\n"
+"Então mover o cursor muda o que é considerado para frente para a célula.\n"
+"Este é o modo de movimento padrão do Thrive."
 
 msgid "PLAYER_REPRODUCED"
 msgstr "jogador se reproduziu"
@@ -5324,9 +5291,13 @@ msgid "ROTATION_COLON"
 msgstr "Rotação:"
 
 msgid "RUNOFF_EVENT"
-msgstr ""
+msgstr "Evento de escoamento"
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
+msgstr "Usar a auto-evo durante o jogo"
+
+#, fuzzy
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
 msgstr "Usar a auto-evo durante o jogo"
 
 msgid "RUN_ONE_STEP"
@@ -5488,9 +5459,11 @@ msgstr "Nenhum"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "Relativo à tela"
 
-#, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
-msgstr "Relativo à tela"
+msgstr ""
+"No modo de movimento relativo à tela as teclas de movimento sempre especificam uma direção em relação à tela.\n"
+"Então a rotação da célula não afeta a qual direção cada tecla corresponde.\n"
+"Este modo pode ser mais familiar para novos jogadores do Thrive."
 
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
@@ -6998,7 +6971,7 @@ msgid "UPSCALE_METHOD"
 msgstr "Método de upscaling:"
 
 msgid "UPSCALE_SHARPENING_FSR"
-msgstr ""
+msgstr "Nitidez FSR"
 
 msgid "UPWELLING_EVENT"
 msgstr ""
@@ -7101,7 +7074,7 @@ msgid "VIEW_SOURCE_CODE"
 msgstr "Ver Código Fonte"
 
 msgid "VIEW_TEXT_REPORT"
-msgstr ""
+msgstr "Ver Relatório de Texto"
 
 msgid "VIP_PATRONS"
 msgstr "Apoiadores VIP"
@@ -7550,7 +7523,7 @@ msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
 msgstr "Para a lista completa de compostos no Estágio Microbial, veja a tabela de Compostos na página Apêndices do Estágio Microbial."
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
-msgstr ""
+msgstr "O sistema de compostos é uma das mecânicas de jogo fundamentais por trás de simulações pelo jogo inteiro, projetado para ser usado em todo lugar, da homeostase até o comércio interestelar."
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
 msgstr ""

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxyq7khmy5j8v"]
+[gd_scene format=3 uid="uid://bxyq7khmy5j8v"]
 
 [ext_resource type="PackedScene" uid="uid://c5ttb5il1h1ix" path="res://assets/models/IronRock1.tscn" id="1_yklym"]
 [ext_resource type="Texture2D" uid="uid://btvaabw1tcq3d" path="res://assets/textures/IronChunk_Full.png" id="2_b3c0a"]
@@ -20,5 +20,5 @@ subsurf_scatter_enabled = true
 subsurf_scatter_strength = 0.08
 uv1_scale = Vector3(10, 10, 10)
 
-[node name="LargeBGRock" instance=ExtResource("1_yklym")]
+[node name="LargeBGRock" unique_id=1419235416 instance=ExtResource("1_yklym")]
 material_override = SubResource("StandardMaterial3D_lldvc")

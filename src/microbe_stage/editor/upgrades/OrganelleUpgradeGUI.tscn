@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0ihn5gix4eyp"]
+[gd_scene format=3 uid="uid://c0ihn5gix4eyp"]
 
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="Script" uid="uid://s73paciqalj0" path="res://src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.cs" id="3"]
 
-[node name="OrganelleUpgradeGUI" type="Control" node_paths=PackedStringArray("popup", "organelleSpecificContent", "scrollContainer", "generalUpgradesContainer", "upgradeSelectorButtonsContainer")]
+[node name="OrganelleUpgradeGUI" type="Control" unique_id=703550138 node_paths=PackedStringArray("popup", "organelleSpecificContent", "scrollContainer", "generalUpgradesContainer", "upgradeSelectorButtonsContainer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,12 +21,13 @@ scrollContainer = NodePath("ModifyPopup/VBoxContainer2/ScrollContainer")
 generalUpgradesContainer = NodePath("ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/DefaultUpgradeSelector")
 upgradeSelectorButtonsContainer = NodePath("ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/DefaultUpgradeSelector/UpgradeButtonsContainer")
 
-[node name="ModifyPopup" parent="." instance=ExtResource("1")]
+[node name="ModifyPopup" parent="." unique_id=1467507953 instance=ExtResource("1")]
+layout_mode = 0
 WindowTitle = "MODIFY_ORGANELLE"
 Resizable = true
 ShowCloseButton = false
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="ModifyPopup"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="ModifyPopup" unique_id=1901058281]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -34,7 +35,7 @@ size_flags_horizontal = 3
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ModifyPopup/VBoxContainer2"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ModifyPopup/VBoxContainer2" unique_id=473438404]
 custom_minimum_size = Vector2(400, 320)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -42,32 +43,32 @@ size_flags_vertical = 3
 mouse_filter = 0
 mouse_force_pass_scroll_events = false
 
-[node name="MarginContainer" type="MarginContainer" parent="ModifyPopup/VBoxContainer2/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ModifyPopup/VBoxContainer2/ScrollContainer" unique_id=377850613]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_right = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer" unique_id=102251447]
 layout_mode = 2
 
-[node name="DefaultUpgradeSelector" type="VBoxContainer" parent="ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="DefaultUpgradeSelector" type="VBoxContainer" parent="ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=918829559]
 layout_mode = 2
 
-[node name="UpgradeButtonsContainer" type="HFlowContainer" parent="ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/DefaultUpgradeSelector"]
+[node name="UpgradeButtonsContainer" type="HFlowContainer" parent="ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/DefaultUpgradeSelector" unique_id=2016474318]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Control" type="Control" parent="ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/DefaultUpgradeSelector"]
+[node name="Control" type="Control" parent="ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/DefaultUpgradeSelector" unique_id=1065126311]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="OrganelleSpecificContent" type="VBoxContainer" parent="ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="OrganelleSpecificContent" type="VBoxContainer" parent="ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1010884507]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Control" type="Control" parent="ModifyPopup/VBoxContainer2"]
+[node name="Control" type="Control" parent="ModifyPopup/VBoxContainer2" unique_id=894832003]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 mouse_filter = 2

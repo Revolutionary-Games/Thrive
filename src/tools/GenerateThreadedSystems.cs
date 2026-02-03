@@ -57,7 +57,7 @@ public partial class GenerateThreadedSystems : Node
     /// <summary>
     ///   When true forces use of system barrier class (currently this seems to prevent some thread deadlocking)
     /// </summary>
-    public static bool ForceUseSystemBarrier = true;
+    public static bool ForceUseSystemBarrier = false;
 
     public static bool UseMultithreadingToDoMoreSimulations = true;
 

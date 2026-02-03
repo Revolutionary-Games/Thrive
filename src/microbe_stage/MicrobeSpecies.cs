@@ -111,6 +111,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         }
     }
 
+    // TODO: precalculate this as it'll help auto-evo quite a bit
     /// <summary>
     ///   Compound capacities members of this species can store in their default configurations
     /// </summary>
@@ -134,6 +135,11 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     public int MPCost => -1;
 
     public string CellTypeName => FormattedName;
+
+    /// <summary>
+    ///   Microbes are never split from any cell type
+    /// </summary>
+    public string? SplitFromTypeName => null;
 
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeSpecies;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://i12oj7te2bsu"]
+[gd_scene format=3 uid="uid://i12oj7te2bsu"]
 
 [ext_resource type="Texture2D" uid="uid://c15l8f35mpwph" path="res://assets/textures/shard_particle.png" id="1"]
 
@@ -37,7 +37,7 @@ color_ramp = SubResource("3")
 
 [sub_resource type="QuadMesh" id="5"]
 
-[node name="Iceshelf" type="GPUParticles3D"]
+[node name="Iceshelf" type="GPUParticles3D" unique_id=360009555]
 process_mode = 1
 material_override = SubResource("1")
 amount = 65

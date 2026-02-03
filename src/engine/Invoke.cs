@@ -15,6 +15,9 @@ public partial class Invoke : Node
     private readonly BlockingCollection<Action> nextFrameInvokes = new();
     private readonly List<Action> tempActionList = new();
 
+    private readonly List<TimedAction> timedActions = new();
+    private readonly List<TimedAction> triggeredTimeActions = new();
+
     private bool disposed;
 
     private Invoke()
@@ -37,7 +40,28 @@ public partial class Invoke : Node
 
     public override void _Process(double delta)
     {
-        // Move the queued invokes to a temp list
+        // Process timers first
+        float elapsed = (float)Math.Clamp(delta, 0.0001, 0.16);
+
+        lock (timedActions)
+        {
+            foreach (var timedAction in timedActions)
+            {
+                timedAction.TimeLeft -= elapsed;
+                if (timedAction.TimeLeft <= 0)
+                    triggeredTimeActions.Add(timedAction);
+            }
+
+            foreach (var timedAction in triggeredTimeActions)
+            {
+                timedActions.Remove(timedAction);
+                queuedInvokes.Add(timedAction.Action);
+            }
+
+            triggeredTimeActions.Clear();
+        }
+
+        // Move the queued invoke operations to a temp list
         while (nextFrameInvokes.TryTake(out var tmp))
         {
             tempActionList.Add(tmp);
@@ -96,7 +120,7 @@ public partial class Invoke : Node
     /// <param name="action">Action to run</param>
     /// <param name="forObject">
     ///   Object the action is for. The action will be skipped automatically if the object is destroyed before the
-    ///   action is ran
+    ///   action is run
     /// </param>
     /// <param name="logDispose">
     ///   If true then a log message is printed if <see cref="forObject"/> is disposed before the action is ran
@@ -115,7 +139,7 @@ public partial class Invoke : Node
     }
 
     /// <summary>
-    ///   Performs an action as soon as possible, doesn't wait until next frame
+    ///   Performs an action as soon as possible, doesn't wait until the next frame
     /// </summary>
     /// <param name="action">The action to perform</param>
     public void Perform(Action action)
@@ -127,6 +151,19 @@ public partial class Invoke : Node
         }
 
         queuedInvokes.Add(action);
+    }
+
+    /// <summary>
+    ///   Delays an action for a given amount of time.
+    /// </summary>
+    /// <param name="action">The action to perform</param>
+    /// <param name="seconds">The amount of time to delay the action</param>
+    public void Delay(Action action, float seconds)
+    {
+        lock (timedActions)
+        {
+            timedActions.Add(new TimedAction(action, seconds));
+        }
     }
 
     protected override void Dispose(bool disposing)
@@ -159,7 +196,7 @@ public partial class Invoke : Node
         {
             // For now rely on asking Godot if the instance is valid (there doesn't seem to be easy access to the flag
             // on the object to see if the disposed flag is set, though we could call something like GetInstanceId and
-            // see if that throws disposed exception)
+            // see if that throws a disposed exception)
             if (!IsInstanceValid(objectToCheck))
             {
                 if (logFailure)
@@ -173,5 +210,11 @@ public partial class Invoke : Node
 
             underlyingAction.Invoke();
         }
+    }
+
+    private class TimedAction(Action action, float timeLeft)
+    {
+        public readonly Action Action = action;
+        public float TimeLeft = timeLeft;
     }
 }

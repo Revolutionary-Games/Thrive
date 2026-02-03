@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dtdy6blpg1njo"]
+[gd_scene format=3 uid="uid://dtdy6blpg1njo"]
 
 [sub_resource type="StandardMaterial3D" id="1"]
 
 [sub_resource type="BoxMesh" id="2"]
 material = SubResource("1")
 
-[node name="MissingItemPlaceholder" type="MeshInstance3D"]
+[node name="MissingItemPlaceholder" type="MeshInstance3D" unique_id=363891631]
 mesh = SubResource("2")

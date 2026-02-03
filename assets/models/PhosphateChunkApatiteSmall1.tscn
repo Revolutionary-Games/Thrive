@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ch5u7ojot5up8"]
+[gd_scene format=3 uid="uid://ch5u7ojot5up8"]
 
 [ext_resource type="Shader" uid="uid://bxd4cdv4qekba" path="res://shaders/Crystal.gdshader" id="1_g5rlt"]
 [ext_resource type="Texture2D" uid="uid://c4givkmxrlllx" path="res://assets/textures/Crystal.png" id="2_6ymvq"]
@@ -25,6 +25,6 @@ shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
 shader_parameter/outlineWidth = 0.0
 
-[node name="Apatite" type="MeshInstance3D"]
+[node name="Apatite" type="MeshInstance3D" unique_id=1953924118]
 material_override = SubResource("ShaderMaterial_6mvut")
 mesh = ExtResource("5_8bma3")
