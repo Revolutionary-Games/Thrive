@@ -11,6 +11,17 @@ using BenchmarkDotNet.Jobs;
 [MemoryDiagnoser]
 public class FrozenDictionaryBenchmark
 {
+    [Params(0, 0.01f, 0.1f, 0.9f)]
+    public float NonSequentialReads;
+
+    [Params(5000000)]
+    public int Reads;
+
+    // Threading doesn't seem to really have any effect on the benchmark results.
+    // [Params(0, 1, 2)]
+    [Params(0)]
+    public int ExtraReaderThreads;
+
     private const int CLOUD_PLANE_SQUARES_PER_SIDE = 3;
     private const int CLOUD_SIZE = 300;
 
@@ -19,21 +30,12 @@ public class FrozenDictionaryBenchmark
     private static readonly int[] PlaneOffsets = [0, 100, 200];
     private static readonly int[] PlayerPositions = [0, 1, 2];
 
-    private readonly Vector2 cachedWorldPosition = new(100, 100);
-
     // Not const so that this can theoretically change, which would impact optimizations
     private static int cloudResolution = 2;
 
+    private Vector2 cachedWorldPosition = new(100, 100);
+
     private Dictionary<int, Vector2> sourceData = null!;
-
-    [Params(0, 0.01f, 0.1f, 0.9f)]
-    public float NonSequentialReads;
-
-    [Params(5000000)]
-    public int Reads;
-
-    [Params(0, 1, 2)]
-    public int ExtraReaderThreads;
 
     [GlobalSetup]
     public void Setup()
@@ -73,15 +75,19 @@ public class FrozenDictionaryBenchmark
 
                 for (int i = 0; i < Reads; ++i)
                 {
+                    // Random is used outside the configuration so that random reads and sequential reads have a similar
+                    // constant overhead.
+                    // Putting this inside the if-statement significantly changes the results, with the direct
+                    // computation being favoured quite a lot.
+                    var (x, y, playerX, playerY) = GetRandomIndexes(random);
                     if (random.NextDouble() < NonSequentialReads)
                     {
-                        var (x, y, playerX, playerY) = GetRandomIndexes(random);
                         TryRead(x, y, playerX, playerY);
                     }
                     else
                     {
                         TryRead(xRead, yRead, playerXRead, playerYRead);
-                        xRead = IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
+                        IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
                     }
                 }
             });
@@ -96,15 +102,15 @@ public class FrozenDictionaryBenchmark
 
             for (int i = 0; i < Reads; ++i)
             {
+                var (x, y, playerX, playerY) = GetRandomIndexes(random);
                 if (random.NextDouble() < NonSequentialReads)
                 {
-                    var (x, y, playerX, playerY) = GetRandomIndexes(random);
                     TryRead(x, y, playerX, playerY);
                 }
                 else
                 {
                     TryRead(xRead, yRead, playerXRead, playerYRead);
-                    xRead = IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
+                    IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
                 }
             }
         }
@@ -138,16 +144,16 @@ public class FrozenDictionaryBenchmark
 
                 for (int i = 0; i < Reads; ++i)
                 {
+                    var key = GetRandomKey(random);
                     if (random.NextDouble() < NonSequentialReads)
                     {
-                        var key = GetRandomKey(random);
                         TryRead(key);
                     }
                     else
                     {
-                        var key = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
-                        TryRead(key);
-                        xRead = IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
+                        var indexedKey = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
+                        TryRead(indexedKey);
+                        IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
                     }
                 }
             });
@@ -162,16 +168,16 @@ public class FrozenDictionaryBenchmark
 
             for (int i = 0; i < Reads; ++i)
             {
+                var key = GetRandomKey(random);
                 if (random.NextDouble() < NonSequentialReads)
                 {
-                    var key = GetRandomKey(random);
                     TryRead(key);
                 }
                 else
                 {
-                    var key = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
-                    TryRead(key);
-                    xRead = IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
+                    var indexedKey = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
+                    TryRead(indexedKey);
+                    IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
                 }
             }
         }
@@ -206,16 +212,16 @@ public class FrozenDictionaryBenchmark
 
                 for (int i = 0; i < Reads; ++i)
                 {
+                    var key = GetRandomKey(random);
                     if (random.NextDouble() < NonSequentialReads)
                     {
-                        var key = GetRandomKey(random);
                         TryRead(key);
                     }
                     else
                     {
-                        var key = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
-                        TryRead(key);
-                        xRead = IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
+                        var indexedKey = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
+                        TryRead(indexedKey);
+                        IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
                     }
                 }
             });
@@ -230,16 +236,16 @@ public class FrozenDictionaryBenchmark
 
             for (int i = 0; i < Reads; ++i)
             {
+                var key = GetRandomKey(random);
                 if (random.NextDouble() < NonSequentialReads)
                 {
-                    var key = GetRandomKey(random);
                     TryRead(key);
                 }
                 else
                 {
-                    var key = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
-                    TryRead(key);
-                    xRead = IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
+                    var indexedKey = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
+                    TryRead(indexedKey);
+                    IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
                 }
             }
         }
@@ -273,16 +279,16 @@ public class FrozenDictionaryBenchmark
 
                 for (int i = 0; i < Reads; ++i)
                 {
+                    var key = GetRandomKey(random);
                     if (random.NextDouble() < NonSequentialReads)
                     {
-                        var key = GetRandomKey(random);
                         TryRead(key);
                     }
                     else
                     {
-                        var key = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
-                        TryRead(key);
-                        xRead = IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
+                        var indexedKey = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
+                        TryRead(indexedKey);
+                        IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
                     }
                 }
             });
@@ -297,16 +303,16 @@ public class FrozenDictionaryBenchmark
 
             for (int i = 0; i < Reads; ++i)
             {
+                var key = GetRandomKey(random);
                 if (random.NextDouble() < NonSequentialReads)
                 {
-                    var key = GetRandomKey(random);
                     TryRead(key);
                 }
                 else
                 {
-                    var key = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
-                    TryRead(key);
-                    xRead = IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
+                    var indexedKey = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
+                    TryRead(indexedKey);
+                    IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
                 }
             }
         }
@@ -341,16 +347,16 @@ public class FrozenDictionaryBenchmark
 
                 for (int i = 0; i < Reads; ++i)
                 {
+                    var key = GetRandomKey(random);
                     if (random.NextDouble() < NonSequentialReads)
                     {
-                        var key = GetRandomKey(random);
                         TryRead(key);
                     }
                     else
                     {
-                        var key = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
-                        TryRead(key);
-                        xRead = IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
+                        var indexedKey = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
+                        TryRead(indexedKey);
+                        IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
                     }
                 }
             });
@@ -365,16 +371,16 @@ public class FrozenDictionaryBenchmark
 
             for (int i = 0; i < Reads; ++i)
             {
+                var key = GetRandomKey(random);
                 if (random.NextDouble() < NonSequentialReads)
                 {
-                    var key = GetRandomKey(random);
                     TryRead(key);
                 }
                 else
                 {
-                    var key = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
-                    TryRead(key);
-                    xRead = IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
+                    var indexedKey = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
+                    TryRead(indexedKey);
+                    IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
                 }
             }
         }
@@ -405,7 +411,7 @@ public class FrozenDictionaryBenchmark
             PlayerPositions[playerYRead]);
     }
 
-    private static int IncrementRead(ref int xRead, ref int yRead, ref int playerXRead, ref int playerYRead)
+    private static void IncrementRead(ref int xRead, ref int yRead, ref int playerXRead, ref int playerYRead)
     {
         if (++xRead >= PlaneOffsets.Length)
         {
@@ -433,8 +439,6 @@ public class FrozenDictionaryBenchmark
             playerXRead = 0;
             playerYRead = 0;
         }
-
-        return xRead;
     }
 
     // Copied code from CompoundCloud plane for the benchmark
