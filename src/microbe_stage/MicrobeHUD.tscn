@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bt2fv82h01ice"]
+[gd_scene format=3 uid="uid://bt2fv82h01ice"]
 
 [ext_resource type="PackedScene" uid="uid://ddbq6kni0re0u" path="res://src/gui_common/RadialPopup.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
@@ -269,7 +269,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "siderophoreHotkey", "multicellularButton", "multicellularConfirmPopup", "previousSaveLoadAdvicePopup", "macroscopicButton", "heatAccumulationBar", "mouseHoverPanel", "environmentPanel", "compoundsPanel", "editorButton", "mucocystHotkey", "engulfHotkey", "secreteSlimeHotkey", "ejectEngulfedHotkey", "signalingAgentsHotkey", "atpBar", "healthBar", "atpLabel", "hpLabel", "populationLabel", "hintText", "packControlRadial", "bottomLeftBar", "sprintHotkey", "strainBar", "damageScreenEffect", "hotBar", "fireToxinHotkey", "processPanel", "pausePrompt", "pauseInfo", "hudMessages")]
+[node name="MicrobeHUD" type="Control" unique_id=1404145423 node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "siderophoreHotkey", "multicellularButton", "multicellularConfirmPopup", "previousSaveLoadAdvicePopup", "macroscopicButton", "heatAccumulationBar", "mouseHoverPanel", "environmentPanel", "compoundsPanel", "editorButton", "mucocystHotkey", "engulfHotkey", "secreteSlimeHotkey", "ejectEngulfedHotkey", "signalingAgentsHotkey", "atpBar", "healthBar", "atpLabel", "hpLabel", "populationLabel", "hintText", "packControlRadial", "bottomLeftBar", "sprintHotkey", "strainBar", "damageScreenEffect", "hotBar", "fireToxinHotkey", "processPanel", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -324,7 +324,7 @@ pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
 hudMessages = NodePath("HUDMessages")
 
-[node name="TopRight" type="MarginContainer" parent="."]
+[node name="TopRight" type="MarginContainer" parent="." unique_id=618573258]
 layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
@@ -337,10 +337,10 @@ theme = ExtResource("5")
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 
-[node name="MouseHoverPanel" parent="TopRight" instance=ExtResource("57")]
+[node name="MouseHoverPanel" parent="TopRight" unique_id=1923968137 instance=ExtResource("57")]
 layout_mode = 2
 
-[node name="BottomLeft" type="Control" parent="."]
+[node name="BottomLeft" type="Control" parent="." unique_id=1106123112]
 anchors_preset = 0
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -348,7 +348,7 @@ offset_top = -632.0
 offset_right = 455.0
 mouse_filter = 2
 
-[node name="LeftPanels" type="VBoxContainer" parent="BottomLeft"]
+[node name="LeftPanels" type="VBoxContainer" parent="BottomLeft" unique_id=1852951447]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = -0.139
@@ -364,31 +364,27 @@ mouse_filter = 2
 theme_override_constants/separation = 10
 alignment = 2
 
-[node name="EnvironmentPanel" parent="BottomLeft/LeftPanels" instance=ExtResource("13_wltm2")]
+[node name="EnvironmentPanel" parent="BottomLeft/LeftPanels" unique_id=100842504 instance=ExtResource("13_wltm2")]
 layout_mode = 2
 
-[node name="CompoundPanels" parent="BottomLeft/LeftPanels" instance=ExtResource("14_hlko5")]
+[node name="CompoundPanels" parent="BottomLeft/LeftPanels" unique_id=775237346 instance=ExtResource("14_hlko5")]
 layout_mode = 2
 ShowAgents = false
 
-[node name="HUDBottomBar" parent="BottomLeft" instance=ExtResource("59")]
+[node name="HUDBottomBar" parent="BottomLeft" unique_id=1653640078 instance=ExtResource("59")]
 layout_mode = 1
 offset_left = 2.0
 offset_top = -46.0
 offset_right = 447.0
 offset_bottom = -3.0
 
-[node name="CompoundsPanelAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_bjeaw")
-}
+[node name="CompoundsPanelAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1502267964]
+libraries/ = SubResource("AnimationLibrary_bjeaw")
 
-[node name="EnvironmentPanelAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_8um2t")
-}
+[node name="EnvironmentPanelAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1855135354]
+libraries/ = SubResource("AnimationLibrary_8um2t")
 
-[node name="BottomRight" type="Control" parent="."]
+[node name="BottomRight" type="Control" parent="." unique_id=1080932668]
 anchors_preset = 0
 anchor_left = 1.0
 anchor_top = 1.0
@@ -400,7 +396,7 @@ offset_right = 1.0
 offset_bottom = -1.0
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomRight"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomRight" unique_id=1976518622]
 layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0
@@ -415,32 +411,32 @@ grow_vertical = 0
 theme_override_constants/separation = 8
 alignment = 2
 
-[node name="Control" type="MarginContainer" parent="BottomRight/VBoxContainer"]
+[node name="Control" type="MarginContainer" parent="BottomRight/VBoxContainer" unique_id=1942287892]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="Multicellular" type="Button" parent="BottomRight/VBoxContainer/Control"]
+[node name="Multicellular" type="Button" parent="BottomRight/VBoxContainer/Control" unique_id=759289106]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 tooltip_text = "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 text = "BECOME_MULTICELLULAR"
 
-[node name="Macroscopic" type="Button" parent="BottomRight/VBoxContainer/Control"]
+[node name="Macroscopic" type="Button" parent="BottomRight/VBoxContainer/Control" unique_id=1192526415]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 tooltip_text = "MOVE_TO_MACROSCOPIC_TOOLTIP"
 text = "BECOME_MACROSCOPIC"
 
-[node name="PopulationData" type="HBoxContainer" parent="BottomRight/VBoxContainer"]
+[node name="PopulationData" type="HBoxContainer" parent="BottomRight/VBoxContainer" unique_id=1525230500]
 custom_minimum_size = Vector2(0, 17)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="BottomRight/VBoxContainer/PopulationData"]
+[node name="Label" type="Label" parent="BottomRight/VBoxContainer/PopulationData" unique_id=1558610474]
 custom_minimum_size = Vector2(87, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -448,7 +444,7 @@ theme_override_styles/normal = SubResource("28")
 text = "POPULATION_CAPITAL"
 label_settings = ExtResource("39_2oma1")
 
-[node name="Value" type="Label" parent="BottomRight/VBoxContainer/PopulationData"]
+[node name="Value" type="Label" parent="BottomRight/VBoxContainer/PopulationData" unique_id=1439733470]
 custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -458,7 +454,7 @@ text = "100"
 label_settings = ExtResource("39_2oma1")
 horizontal_alignment = 1
 
-[node name="DataValue" type="PanelContainer" parent="BottomRight"]
+[node name="DataValue" type="PanelContainer" parent="BottomRight" unique_id=587172462]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -476,7 +472,7 @@ size_flags_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("29")
 
-[node name="Margin" type="MarginContainer" parent="BottomRight/DataValue"]
+[node name="Margin" type="MarginContainer" parent="BottomRight/DataValue" unique_id=97607204]
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
@@ -485,27 +481,27 @@ theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 3
 
-[node name="VBox" type="VBoxContainer" parent="BottomRight/DataValue/Margin"]
+[node name="VBox" type="VBoxContainer" parent="BottomRight/DataValue/Margin" unique_id=1326525672]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="HPValue" type="Label" parent="BottomRight/DataValue/Margin/VBox"]
+[node name="HPValue" type="Label" parent="BottomRight/DataValue/Margin/VBox" unique_id=244663985]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 mouse_filter = 0
 text = "Hitpoints"
 label_settings = ExtResource("39_nfpcw")
 
-[node name="ATPValue" type="Label" parent="BottomRight/DataValue/Margin/VBox"]
+[node name="ATPValue" type="Label" parent="BottomRight/DataValue/Margin/VBox" unique_id=170611836]
 layout_mode = 2
 mouse_filter = 0
 text = "ATP"
 label_settings = ExtResource("39_nfpcw")
 clip_text = true
 
-[node name="HealthBar" type="TextureProgressBar" parent="BottomRight"]
+[node name="HealthBar" type="TextureProgressBar" parent="BottomRight" unique_id=1607971890]
 layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0
@@ -526,7 +522,7 @@ texture_progress = ExtResource("67")
 tint_under = Color(0, 0, 0, 0.752941)
 tint_progress = Color(0.960784, 0.270588, 0.478431, 1)
 
-[node name="HitpointIcon" type="TextureRect" parent="BottomRight/HealthBar"]
+[node name="HitpointIcon" type="TextureRect" parent="BottomRight/HealthBar" unique_id=787442961]
 layout_mode = 0
 offset_left = 21.46
 offset_top = 197.749
@@ -535,7 +531,7 @@ offset_bottom = 217.749
 texture = ExtResource("42")
 expand_mode = 1
 
-[node name="ATPBar" type="TextureProgressBar" parent="BottomRight"]
+[node name="ATPBar" type="TextureProgressBar" parent="BottomRight" unique_id=596118975]
 layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0
@@ -556,7 +552,7 @@ texture_progress = ExtResource("43")
 tint_under = Color(0, 0, 0, 0.752941)
 tint_progress = Color(0.439216, 0.956863, 0.137255, 1)
 
-[node name="ATPIcon" type="TextureRect" parent="BottomRight/ATPBar"]
+[node name="ATPIcon" type="TextureRect" parent="BottomRight/ATPBar" unique_id=517565337]
 layout_mode = 0
 offset_left = 18.5
 offset_top = 156.5
@@ -565,33 +561,33 @@ offset_bottom = 176.5
 texture = ExtResource("18_aod78")
 expand_mode = 1
 
-[node name="EditorButton" parent="BottomRight" instance=ExtResource("23_satig")]
+[node name="EditorButton" parent="BottomRight" unique_id=766925795 instance=ExtResource("23_satig")]
 layout_mode = 1
 anchors_preset = -1
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="HUDMessages" parent="." instance=ExtResource("56")]
+[node name="HUDMessages" parent="." unique_id=478342399 instance=ExtResource("56")]
 layout_mode = 1
 offset_top = 108.0
 offset_bottom = -432.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ProcessPanel" parent="." instance=ExtResource("61")]
+[node name="ProcessPanel" parent="." unique_id=1378601291 instance=ExtResource("61")]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 71.0
 offset_right = 402.0
 offset_bottom = 671.0
 
-[node name="MicrobeCheatMenu" parent="." instance=ExtResource("55")]
+[node name="MicrobeCheatMenu" parent="." unique_id=713905242 instance=ExtResource("55")]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 30.0
 offset_right = 207.0
 
-[node name="PausePrompt" parent="." instance=ExtResource("62")]
+[node name="PausePrompt" parent="." unique_id=2121291006 instance=ExtResource("62")]
 visible = false
 layout_mode = 1
 anchors_preset = 7
@@ -605,7 +601,7 @@ grow_vertical = 0
 [node name="PauseInfo" parent="PausePrompt" index="1"]
 offset_bottom = -24.0
 
-[node name="RevertToEditor" parent="." instance=ExtResource("40_e4my1")]
+[node name="RevertToEditor" parent="." unique_id=1914397684 instance=ExtResource("40_e4my1")]
 custom_minimum_size = Vector2(290, 120)
 layout_mode = 1
 anchors_preset = 1
@@ -618,17 +614,17 @@ offset_bottom = 314.0
 grow_horizontal = 0
 WindowTitle = "REVERT_TO_EDITOR_PROMPT"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="RevertToEditor"]
+[node name="VBoxContainer" type="VBoxContainer" parent="RevertToEditor" unique_id=501063200]
 custom_minimum_size = Vector2(290, 100)
 layout_mode = 0
 offset_right = 300.0
 offset_bottom = 167.0
 
-[node name="SizeHack" type="Control" parent="RevertToEditor/VBoxContainer"]
+[node name="SizeHack" type="Control" parent="RevertToEditor/VBoxContainer" unique_id=1752932721]
 editor_description = "Can't get the label to not blow up the popup size without this hack node here"
 layout_mode = 2
 
-[node name="Label" type="Label" parent="RevertToEditor/VBoxContainer/SizeHack"]
+[node name="Label" type="Label" parent="RevertToEditor/VBoxContainer/SizeHack" unique_id=1135284779]
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 0
 offset_right = 40.0
@@ -637,17 +633,17 @@ text = "REVERT_TO_EDITOR_EXPLANATION"
 label_settings = ExtResource("25_joiju")
 autowrap_mode = 3
 
-[node name="Control" type="Control" parent="RevertToEditor/VBoxContainer"]
+[node name="Control" type="Control" parent="RevertToEditor/VBoxContainer" unique_id=2002959349]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LoadSave" type="Button" parent="RevertToEditor/VBoxContainer"]
+[node name="LoadSave" type="Button" parent="RevertToEditor/VBoxContainer" unique_id=958420649]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "REVERT_TO_EDITOR"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=324593058]
 custom_minimum_size = Vector2(415, 69)
 layout_mode = 1
 anchors_preset = 7
@@ -663,13 +659,13 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("5")
 
-[node name="HotBar" type="HBoxContainer" parent="ScrollContainer"]
+[node name="HotBar" type="HBoxContainer" parent="ScrollContainer" unique_id=670340617]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="Engulfment" parent="ScrollContainer/HotBar" instance=ExtResource("65")]
+[node name="Engulfment" parent="ScrollContainer/HotBar" unique_id=1985978967 instance=ExtResource("65")]
 visible = false
 layout_mode = 2
 tooltip_text = "TOGGLE_ENGULF_TOOLTIP"
@@ -681,7 +677,7 @@ toggle_mode = true
 ActionIcon = ExtResource("9")
 ActionName = "g_toggle_engulf"
 
-[node name="EjectEngulfed" parent="ScrollContainer/HotBar" instance=ExtResource("65")]
+[node name="EjectEngulfed" parent="ScrollContainer/HotBar" unique_id=347004879 instance=ExtResource("65")]
 visible = false
 layout_mode = 2
 tooltip_text = "EJECT_ENGULFED_TOOLTIP"
@@ -691,7 +687,7 @@ theme_override_styles/hover = SubResource("1")
 ActionIcon = ExtResource("7")
 ActionName = "g_eject_engulfed"
 
-[node name="FireToxin" parent="ScrollContainer/HotBar" instance=ExtResource("65")]
+[node name="FireToxin" parent="ScrollContainer/HotBar" unique_id=1022582168 instance=ExtResource("65")]
 visible = false
 layout_mode = 2
 tooltip_text = "FIRE_TOXIN_TOOLTIP"
@@ -701,7 +697,7 @@ theme_override_styles/hover = SubResource("1")
 ActionIcon = ExtResource("10")
 ActionName = "g_fire_toxin"
 
-[node name="BindingMode" parent="ScrollContainer/HotBar" instance=ExtResource("65")]
+[node name="BindingMode" parent="ScrollContainer/HotBar" unique_id=949283854 instance=ExtResource("65")]
 visible = false
 layout_mode = 2
 tooltip_text = "TOGGLE_BINDING_TOOLTIP"
@@ -712,7 +708,7 @@ toggle_mode = true
 ActionIcon = ExtResource("72")
 ActionName = "g_toggle_binding"
 
-[node name="UnbindAll" parent="ScrollContainer/HotBar" instance=ExtResource("65")]
+[node name="UnbindAll" parent="ScrollContainer/HotBar" unique_id=1799180156 instance=ExtResource("65")]
 visible = false
 layout_mode = 2
 tooltip_text = "UNBIND_ALL_TOOLTIP"
@@ -722,7 +718,7 @@ theme_override_styles/hover = SubResource("1")
 ActionIcon = ExtResource("70")
 ActionName = "g_unbind_all"
 
-[node name="SignalingAgents" parent="ScrollContainer/HotBar" instance=ExtResource("65")]
+[node name="SignalingAgents" parent="ScrollContainer/HotBar" unique_id=1141467582 instance=ExtResource("65")]
 visible = false
 layout_mode = 2
 tooltip_text = "SIGNALING_AGENTS_ACTION_TOOLTIP"
@@ -733,7 +729,7 @@ toggle_mode = true
 ActionIcon = ExtResource("68")
 ActionName = "g_pack_commands"
 
-[node name="SecreteSlime" parent="ScrollContainer/HotBar" instance=ExtResource("65")]
+[node name="SecreteSlime" parent="ScrollContainer/HotBar" unique_id=284039704 instance=ExtResource("65")]
 visible = false
 layout_mode = 2
 tooltip_text = "SECRETE_SLIME_TOOLTIP"
@@ -743,7 +739,7 @@ theme_override_styles/hover = SubResource("1")
 ActionIcon = ExtResource("21")
 ActionName = "g_secrete_slime"
 
-[node name="Sprint" parent="ScrollContainer/HotBar" instance=ExtResource("65")]
+[node name="Sprint" parent="ScrollContainer/HotBar" unique_id=1478146988 instance=ExtResource("65")]
 visible = false
 layout_mode = 2
 tooltip_text = "SPRINT_ACTION_TOOLTIP"
@@ -754,7 +750,7 @@ toggle_mode = true
 ActionIcon = ExtResource("32_qhyce")
 ActionName = "g_sprint"
 
-[node name="Mucocyst" parent="ScrollContainer/HotBar" instance=ExtResource("65")]
+[node name="Mucocyst" parent="ScrollContainer/HotBar" unique_id=1975421576 instance=ExtResource("65")]
 visible = false
 layout_mode = 2
 tooltip_text = "MUCOCYST_ACTION_TOOLTIP"
@@ -765,7 +761,7 @@ toggle_mode = true
 ActionIcon = ExtResource("33_qrk4q")
 ActionName = "g_toggle_mucocyst"
 
-[node name="Siderophore" parent="ScrollContainer/HotBar" instance=ExtResource("65")]
+[node name="Siderophore" parent="ScrollContainer/HotBar" unique_id=54926622 instance=ExtResource("65")]
 visible = false
 layout_mode = 2
 tooltip_text = "SIDEROPHORE_ACTION_TOOLTIP"
@@ -775,7 +771,7 @@ theme_override_styles/hover = SubResource("1")
 ActionIcon = ExtResource("34_bs2fk")
 ActionName = "g_fire_siderophore"
 
-[node name="HintText" type="Label" parent="."]
+[node name="HintText" type="Label" parent="." unique_id=13979526]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -786,32 +782,32 @@ label_settings = ExtResource("61_5q73x")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="RadialPopup" parent="." instance=ExtResource("1")]
+[node name="RadialPopup" parent="." unique_id=728890523 instance=ExtResource("1")]
 layout_mode = 0
 
-[node name="StagePrototypeConfirm" parent="." instance=ExtResource("64")]
+[node name="StagePrototypeConfirm" parent="." unique_id=1093574560 instance=ExtResource("64")]
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 0
 offset_right = 300.0
 offset_bottom = 97.0
 
-[node name="DamageEffect" parent="." instance=ExtResource("35_h7kw8")]
+[node name="DamageEffect" parent="." unique_id=53873546 instance=ExtResource("35_h7kw8")]
 layout_mode = 1
 
-[node name="HeatAccumulationBar" parent="." instance=ExtResource("39_al48g")]
+[node name="HeatAccumulationBar" parent="." unique_id=1080187758 instance=ExtResource("39_al48g")]
 visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 923.0
-offset_top = 681.0
-offset_right = 1051.0
-offset_bottom = 715.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = -357.0
+offset_top = -39.0
+offset_right = -229.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
 
-[node name="Strain" type="ProgressBar" parent="."]
+[node name="Strain" type="ProgressBar" parent="." unique_id=1475448726]
 visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 1

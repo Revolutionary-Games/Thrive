@@ -1,18 +1,11 @@
 class_name GdUnitContextMenuItem
 
-enum MENU_ID {
-	UNDEFINED = 0,
-	TEST_RUN = 1000,
-	TEST_DEBUG = 1001,
-	TEST_RERUN = 1002,
-	CREATE_TEST = 1010,
-}
 
-var id: MENU_ID = MENU_ID.UNDEFINED:
+var command_id: String:
 	set(value):
-		id = value
+		command_id = value
 	get:
-		return id
+		return command_id
 
 var name: StringName:
 	set(value):
@@ -20,50 +13,33 @@ var name: StringName:
 	get:
 		return name
 
-var command: GdUnitCommand:
-	set(value):
-		command = value
-	get:
-		return command
-
 var visible: Callable:
 	set(value):
 		visible = value
 	get:
 		return visible
 
-var icon: String:
-	set(value):
-		icon = value
+var icon: Texture2D:
 	get:
-		return icon
+		return GdUnitCommandHandler.instance().command_icon(command_id)
 
 
-func _init(p_id: MENU_ID, p_name: StringName, p_icon :String, p_is_visible: Callable, p_command: GdUnitCommand) -> void:
-	assert(p_id != null, "(%s) missing parameter 'MENU_ID'" % p_name)
+func _init(p_command_id: String, p_name: StringName, p_is_visible: Callable) -> void:
+	assert(p_command_id != null and not p_command_id.is_empty(), "(%s) missing command id " % p_command_id)
 	assert(p_is_visible != null, "(%s) missing parameter 'GdUnitCommand'" % p_name)
-	assert(p_command != null, "(%s) missing parameter 'GdUnitCommand'" % p_name)
-	self.id = p_id
+
+	self.command_id = p_command_id
 	self.name = p_name
-	self.icon = p_icon
-	self.command = p_command
 	self.visible = p_is_visible
 
 
 func shortcut() -> Shortcut:
-	return GdUnitCommandHandler.instance().get_shortcut(command.shortcut)
+	return GdUnitCommandHandler.instance().command_shortcut(command_id)
 
 
-func is_enabled(script: Script) -> bool:
-	return command.is_enabled.call(script)
+func is_visible(...args: Array) -> bool:
+	return visible.callv(args)
 
 
-func is_visible(script: Script) -> bool:
-	return visible.call(script)
-
-
-func execute(arguments:=[]) -> void:
-	if arguments.is_empty():
-		command.runnable.call()
-	else:
-		command.runnable.callv(arguments)
+func execute(...args: Array) -> void:
+	GdUnitCommandHandler.instance().command_execute(command_id, args)

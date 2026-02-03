@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cp23vdxwoeegx"]
+[gd_scene format=3 uid="uid://cp23vdxwoeegx"]
 
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="3"]
 [ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="3_bvn5i"]
@@ -28,7 +28,7 @@ _data = {
 &"FadeIn": SubResource("2")
 }
 
-[node name="WinBox" instance=ExtResource("3")]
+[node name="WinBox" unique_id=1507142847 instance=ExtResource("3")]
 offset_right = 0.0
 offset_bottom = 0.0
 mouse_filter = 2
@@ -38,13 +38,13 @@ Decorate = false
 ExclusiveAllowCloseOnEscape = false
 FullRect = true
 
-[node name="MarginContainer" type="MarginContainer" parent="." index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="." index="0" unique_id=1528376869]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" index="0"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" index="0" unique_id=199272584]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -52,18 +52,18 @@ size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("3")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" index="0" unique_id=256230286]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_right = 150
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" index="0" unique_id=1210708666]
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+[node name="Title" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" index="0" unique_id=1322622863]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "WIN_BOX_TITLE"
@@ -71,7 +71,7 @@ label_settings = ExtResource("3_j7klg")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Message" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+[node name="Message" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" index="1" unique_id=1410622191]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "WIN_TEXT"
@@ -79,13 +79,11 @@ label_settings = ExtResource("3_bvn5i")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
-libraries = {
-&"": SubResource("AnimationLibrary_4wi48")
-}
-autoplay = "FadeIn"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=120993859]
+libraries/ = SubResource("AnimationLibrary_4wi48")
+autoplay = &"FadeIn"
 
-[node name="Timer" type="Timer" parent="." index="2"]
+[node name="Timer" type="Timer" parent="." index="2" unique_id=1872786694]
 wait_time = 15.0
 one_shot = true
 autostart = true

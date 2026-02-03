@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://8to431fk1dnp"]
+[gd_scene format=3 uid="uid://8to431fk1dnp"]
 
 [ext_resource type="Script" uid="uid://cir7ukg1m0v12" path="res://src/saving/SaveManagerGUI.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
@@ -6,11 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="5"]
 
-[node name="SaveManagerGUI" type="Control" node_paths=PackedStringArray("saveList", "selectedItemCount", "totalSaveCount", "totalSaveSize", "loadButton", "deleteSelectedButton", "deleteOldButton", "deleteSelectedConfirmDialog", "deleteOldConfirmDialog", "saveDirectoryWarningDialog", "errorSaveDeletionFailed")]
+[node name="SaveManagerGUI" type="Control" unique_id=299323140 node_paths=PackedStringArray("saveList", "selectedItemCount", "totalSaveCount", "totalSaveSize", "loadButton", "deleteSelectedButton", "deleteOldButton", "deleteSelectedConfirmDialog", "deleteOldConfirmDialog", "saveDirectoryWarningDialog", "errorSaveDeletionFailed")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("2")
 script = ExtResource("1")
 saveList = NodePath("CenterContainer/VBoxContainer/SaveList")
@@ -25,126 +27,126 @@ deleteOldConfirmDialog = NodePath("CenterContainer/VBoxContainer/DeleteOldConfir
 saveDirectoryWarningDialog = NodePath("CenterContainer/VBoxContainer/SaveDirectoryWarning")
 errorSaveDeletionFailed = NodePath("CenterContainer/SaveDeletionFailedDialog")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1462345203]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1465987944]
 custom_minimum_size = Vector2(1000, 600)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TopBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="TopBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1668410938]
 layout_mode = 2
 alignment = 1
 
-[node name="LoadButton" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
+[node name="LoadButton" type="Button" parent="CenterContainer/VBoxContainer/TopBox" unique_id=46429175]
 custom_minimum_size = Vector2(0, 37)
 layout_mode = 2
 disabled = true
 text = "LOAD"
 
-[node name="VSeparator" type="VSeparator" parent="CenterContainer/VBoxContainer/TopBox"]
+[node name="VSeparator" type="VSeparator" parent="CenterContainer/VBoxContainer/TopBox" unique_id=878109192]
 layout_mode = 2
 
-[node name="Refresh" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
+[node name="Refresh" type="Button" parent="CenterContainer/VBoxContainer/TopBox" unique_id=2126451051]
 custom_minimum_size = Vector2(0, 37)
 layout_mode = 2
 text = "REFRESH"
 
-[node name="DeleteSelected" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
+[node name="DeleteSelected" type="Button" parent="CenterContainer/VBoxContainer/TopBox" unique_id=51601531]
 custom_minimum_size = Vector2(0, 37)
 layout_mode = 2
 disabled = true
 text = "DELETE_SELECTED"
 
-[node name="DeleteOld" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
+[node name="DeleteOld" type="Button" parent="CenterContainer/VBoxContainer/TopBox" unique_id=702849289]
 custom_minimum_size = Vector2(0, 37)
 layout_mode = 2
 disabled = true
 text = "CLEAN_UP_OLD_SAVES"
 
-[node name="VSeparator2" type="VSeparator" parent="CenterContainer/VBoxContainer/TopBox"]
+[node name="VSeparator2" type="VSeparator" parent="CenterContainer/VBoxContainer/TopBox" unique_id=1227147337]
 layout_mode = 2
 
-[node name="OpenSaveDir" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
+[node name="OpenSaveDir" type="Button" parent="CenterContainer/VBoxContainer/TopBox" unique_id=1700695888]
 layout_mode = 2
 text = "OPEN_SAVE_DIRECTORY"
 
-[node name="SaveList" parent="CenterContainer/VBoxContainer" instance=ExtResource("3")]
+[node name="SaveList" parent="CenterContainer/VBoxContainer" unique_id=1687706330 instance=ExtResource("3")]
 layout_mode = 2
 size_flags_vertical = 3
 SelectableItems = true
 
-[node name="BottomBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="BottomBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=800689377]
 layout_mode = 2
 
-[node name="Back" type="Button" parent="CenterContainer/VBoxContainer/BottomBox"]
+[node name="Back" type="Button" parent="CenterContainer/VBoxContainer/BottomBox" unique_id=781612835]
 custom_minimum_size = Vector2(100, 35)
 layout_mode = 2
 text = "BACK"
 
-[node name="VSeparator2" type="VSeparator" parent="CenterContainer/VBoxContainer/BottomBox"]
+[node name="VSeparator2" type="VSeparator" parent="CenterContainer/VBoxContainer/BottomBox" unique_id=1165754162]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BottomBox" unique_id=116726446]
 layout_mode = 2
 text = "TOTAL_SAVES"
 
-[node name="SaveCount" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
+[node name="SaveCount" type="Label" parent="CenterContainer/VBoxContainer/BottomBox" unique_id=654854865]
 layout_mode = 2
 text = "0"
 
-[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/BottomBox"]
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/BottomBox" unique_id=415148110]
 custom_minimum_size = Vector2(3, 0)
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
+[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/BottomBox" unique_id=1387787812]
 layout_mode = 2
 text = "SAVE_SPACE_USED"
 
-[node name="SavesSpaceUsed" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
+[node name="SavesSpaceUsed" type="Label" parent="CenterContainer/VBoxContainer/BottomBox" unique_id=1101149358]
 layout_mode = 2
 text = "0"
 
-[node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer/BottomBox"]
+[node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer/BottomBox" unique_id=1723978601]
 custom_minimum_size = Vector2(3, 0)
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/BottomBox" unique_id=418730055]
 layout_mode = 2
 text = "SELECTED_COLON"
 
-[node name="SelectedCount" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
+[node name="SelectedCount" type="Label" parent="CenterContainer/VBoxContainer/BottomBox" unique_id=799470693]
 layout_mode = 2
 text = "0"
 
-[node name="FocusGrabber" parent="CenterContainer/VBoxContainer/BottomBox" instance=ExtResource("5")]
+[node name="FocusGrabber" parent="CenterContainer/VBoxContainer/BottomBox" unique_id=908126421 instance=ExtResource("5")]
 layout_mode = 2
 Priority = 1
 NodeToGiveFocusTo = NodePath("../Back")
 
-[node name="DeleteSelectedConfirmDialog" parent="CenterContainer/VBoxContainer" instance=ExtResource("4")]
+[node name="DeleteSelectedConfirmDialog" parent="CenterContainer/VBoxContainer" unique_id=1469696588 instance=ExtResource("4")]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 WindowTitle = "DELETE_SELECTED_SAVES_PROMPT"
 
-[node name="DeleteOldConfirmDialog" parent="CenterContainer/VBoxContainer" instance=ExtResource("4")]
+[node name="DeleteOldConfirmDialog" parent="CenterContainer/VBoxContainer" unique_id=1570587208 instance=ExtResource("4")]
 custom_minimum_size = Vector2(550, 0)
 layout_mode = 2
 WindowTitle = "DELETE_OLD_SAVES_PROMPT"
 
-[node name="SaveDirectoryWarning" parent="CenterContainer/VBoxContainer" instance=ExtResource("4")]
+[node name="SaveDirectoryWarning" parent="CenterContainer/VBoxContainer" unique_id=384389151 instance=ExtResource("4")]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 HideCancelButton = true
 DialogText = "TRY_MAKING_A_SAVE"
 WindowTitle = "NO_SAVE_DIRECTORY"
 
-[node name="SaveDeletionFailedDialog" parent="CenterContainer" instance=ExtResource("4")]
+[node name="SaveDeletionFailedDialog" parent="CenterContainer" unique_id=1520313274 instance=ExtResource("4")]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 HideCancelButton = true

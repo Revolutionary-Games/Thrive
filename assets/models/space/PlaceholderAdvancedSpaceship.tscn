@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bdvhu67uu45ej"]
+[gd_scene format=3 uid="uid://bdvhu67uu45ej"]
 
 [ext_resource type="Texture2D" uid="uid://brqk1odkw0fy3" path="res://assets/textures/space/Spaceship_albedo_roughness.png" id="1_7u0ip"]
 [ext_resource type="Texture2D" uid="uid://cda1j1liv0bks" path="res://assets/textures/space/Spaceship_emit.png" id="2_sojrh"]
@@ -65,15 +65,15 @@ lightmap_size_hint = Vector2i(7, 7)
 material = SubResource("StandardMaterial3D_bgmud")
 size = Vector2(0.3, 0.3)
 
-[node name="PlaceHolderAdvancedSpaceship" type="Node3D"]
+[node name="PlaceHolderAdvancedSpaceship" type="Node3D" unique_id=2012331352]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.870609, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=556009137]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.061735, 2.64271)
 material_override = SubResource("StandardMaterial3D_aurqk")
 mesh = ExtResource("3_g47x4")
 
-[node name="EngineFire" type="GPUParticles3D" parent="."]
+[node name="EngineFire" type="GPUParticles3D" parent="." unique_id=1755183989]
 process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.84348)
 cast_shadow = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bs5shdurovke8"]
+[gd_scene format=3 uid="uid://bs5shdurovke8"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="Texture2D" uid="uid://d0iv1w2t5wwae" path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" id="3"]
@@ -42,7 +42,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="SocietyHUD" type="Control" node_paths=PackedStringArray("populationLabel", "hintText", "bottomLeftBar", "researchScreen", "hotBar", "resourceDisplay", "pausePrompt", "pauseInfo", "hudMessages")]
+[node name="SocietyHUD" type="Control" unique_id=722284738 node_paths=PackedStringArray("populationLabel", "hintText", "bottomLeftBar", "researchScreen", "hotBar", "resourceDisplay", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -63,7 +63,7 @@ pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
 hudMessages = NodePath("HUDMessages")
 
-[node name="BottomRight" type="Control" parent="."]
+[node name="BottomRight" type="Control" parent="." unique_id=498656607]
 anchors_preset = 0
 anchor_left = 1.0
 anchor_top = 1.0
@@ -75,7 +75,7 @@ offset_right = 1.0
 offset_bottom = -1.0
 mouse_filter = 2
 
-[node name="EditorButton" type="TextureButton" parent="BottomRight"]
+[node name="EditorButton" type="TextureButton" parent="BottomRight" unique_id=1294047527]
 editor_description = "TOOLTIP_PLACEHOLDER"
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 0
@@ -97,7 +97,7 @@ texture_disabled = ExtResource("6_sr2v0")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="HUDBottomBar" parent="." instance=ExtResource("16")]
+[node name="HUDBottomBar" parent="." unique_id=505732405 instance=ExtResource("16")]
 layout_mode = 1
 offset_left = 0.0
 offset_top = -35.0
@@ -107,7 +107,7 @@ ShowCompoundPanelToggles = false
 ShowSuicideButton = false
 ShowProcessesButton = false
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=316801548]
 custom_minimum_size = Vector2(550, 69)
 layout_mode = 0
 anchor_left = 0.5
@@ -118,25 +118,25 @@ offset_left = -274.0
 offset_top = -69.0
 theme = ExtResource("2")
 
-[node name="HotBar" type="HBoxContainer" parent="ScrollContainer"]
+[node name="HotBar" type="HBoxContainer" parent="ScrollContainer" unique_id=1923250640]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="Build" parent="ScrollContainer/HotBar" instance=ExtResource("4")]
+[node name="Build" parent="ScrollContainer/HotBar" unique_id=1422302971 instance=ExtResource("4")]
 layout_mode = 2
 tooltip_text = "BUILD_STRUCTURE"
 ActionIcon = ExtResource("8")
 ActionName = "g_build_structure"
 
-[node name="Research" parent="ScrollContainer/HotBar" instance=ExtResource("4")]
+[node name="Research" parent="ScrollContainer/HotBar" unique_id=383932214 instance=ExtResource("4")]
 layout_mode = 2
 tooltip_text = "OPEN_RESEARCH_SCREEN"
 ActionIcon = ExtResource("10_33ly4")
 ActionName = "g_science"
 
-[node name="Possess" parent="ScrollContainer/HotBar" instance=ExtResource("4")]
+[node name="Possess" parent="ScrollContainer/HotBar" unique_id=1750074818 instance=ExtResource("4")]
 layout_mode = 2
 tooltip_text = "Possess a member of your species for direct control
 (as this is a very complex feature this will be the last thing to be added once the strategy stages are complete)"
@@ -147,14 +147,14 @@ disabled = true
 ActionIcon = ExtResource("3")
 ActionName = "g_toggle_engulf"
 
-[node name="HintText" type="Label" parent="."]
+[node name="HintText" type="Label" parent="." unique_id=2055578192]
 layout_mode = 0
 anchor_right = 1.0
 offset_top = 35.0
 offset_bottom = 59.0
 label_settings = ExtResource("12_3r5as")
 
-[node name="ResearchScreen" parent="." instance=ExtResource("11")]
+[node name="ResearchScreen" parent="." unique_id=1763704584 instance=ExtResource("11")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -167,7 +167,7 @@ offset_bottom = -117.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PausePrompt" parent="." instance=ExtResource("5")]
+[node name="PausePrompt" parent="." unique_id=650921269 instance=ExtResource("5")]
 visible = false
 layout_mode = 1
 anchors_preset = 7
@@ -178,7 +178,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HUDMessages" parent="." instance=ExtResource("6")]
+[node name="HUDMessages" parent="." unique_id=1513144034 instance=ExtResource("6")]
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 1
 anchors_preset = 10
@@ -187,35 +187,35 @@ offset_top = 108.0
 offset_bottom = 288.0
 grow_horizontal = 2
 
-[node name="TopBar" type="PanelContainer" parent="."]
+[node name="TopBar" type="PanelContainer" parent="." unique_id=882571377]
 layout_mode = 0
 anchor_right = 1.0
 offset_bottom = 36.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TopBar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBar" unique_id=1213275501]
 layout_mode = 2
 
-[node name="LeftSpacer" type="Control" parent="TopBar/HBoxContainer"]
+[node name="LeftSpacer" type="Control" parent="TopBar/HBoxContainer" unique_id=1786689801]
 custom_minimum_size = Vector2(8, 5)
 layout_mode = 2
 
-[node name="ResourceDisplayBar" parent="TopBar/HBoxContainer" instance=ExtResource("7")]
+[node name="ResourceDisplayBar" parent="TopBar/HBoxContainer" unique_id=1512491071 instance=ExtResource("7")]
 layout_mode = 2
 
-[node name="PopulationContainer" type="HBoxContainer" parent="TopBar/HBoxContainer"]
+[node name="PopulationContainer" type="HBoxContainer" parent="TopBar/HBoxContainer" unique_id=1464083732]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TopBar/HBoxContainer/PopulationContainer"]
+[node name="Label" type="Label" parent="TopBar/HBoxContainer/PopulationContainer" unique_id=1585407693]
 layout_mode = 2
 text = "POPULATION_CAPITAL"
 vertical_alignment = 1
 
-[node name="Population" type="Label" parent="TopBar/HBoxContainer/PopulationContainer"]
+[node name="Population" type="Label" parent="TopBar/HBoxContainer/PopulationContainer" unique_id=860778120]
 layout_mode = 2
 text = "123"
 vertical_alignment = 1
 
-[node name="RightSpacer" type="Control" parent="TopBar/HBoxContainer"]
+[node name="RightSpacer" type="Control" parent="TopBar/HBoxContainer" unique_id=2100161247]
 custom_minimum_size = Vector2(8, 5)
 layout_mode = 2
 

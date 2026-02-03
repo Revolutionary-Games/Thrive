@@ -107,7 +107,7 @@ func is_signal_collecting(emitter: Object, signal_name: String) -> bool:
 	return _collected_signals.has(emitter) and (_collected_signals[emitter] as Dictionary).has(signal_name)
 
 
-func match(emitter :Object, signal_name :String, args :Array) -> bool:
+func match(emitter: Object, signal_name: String, args: Array) -> bool:
 	#prints("match", signal_name,  _collected_signals[emitter][signal_name]);
 	if _collected_signals.is_empty() or not _collected_signals.has(emitter):
 		return false

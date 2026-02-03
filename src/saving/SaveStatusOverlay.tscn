@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://woqh47yetqtm"]
+[gd_scene format=3 uid="uid://woqh47yetqtm"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://3y3ig3107ad7" path="res://src/saving/SaveStatusOverlay.cs" id="2"]
@@ -52,7 +52,7 @@ _data = {
 &"SavingStatusFadeOut": SubResource("1")
 }
 
-[node name="SaveStatusOverlay" type="Control" node_paths=PackedStringArray("statusLabel", "animationPlayer", "errorDialog")]
+[node name="SaveStatusOverlay" type="Control" unique_id=200325234 node_paths=PackedStringArray("statusLabel", "animationPlayer", "errorDialog")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -67,7 +67,7 @@ statusLabel = NodePath("CenterContainer/StatusLabel")
 animationPlayer = NodePath("CenterContainer/AnimationPlayer")
 errorDialog = NodePath("CenterContainer2/ErrorDialog")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1783358062]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -75,17 +75,15 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="StatusLabel" type="Label" parent="CenterContainer"]
+[node name="StatusLabel" type="Label" parent="CenterContainer" unique_id=1575507773]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Saving status goes here..."
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer"]
-libraries = {
-&"": SubResource("AnimationLibrary_1toxe")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer" unique_id=1530626515]
+libraries/ = SubResource("AnimationLibrary_1toxe")
 
-[node name="CenterContainer2" type="CenterContainer" parent="."]
+[node name="CenterContainer2" type="CenterContainer" parent="." unique_id=2008968118]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -93,5 +91,5 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="ErrorDialog" parent="CenterContainer2" instance=ExtResource("3")]
+[node name="ErrorDialog" parent="CenterContainer2" unique_id=655560289 instance=ExtResource("3")]
 layout_mode = 2

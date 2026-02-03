@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://jatxjxj6uy0d"]
+[gd_scene format=3 uid="uid://jatxjxj6uy0d"]
 
 [ext_resource type="Texture2D" uid="uid://lf17qrqcwjtw" path="res://assets/textures/space/SpaceSkyStars.png" id="2_amqrd"]
 [ext_resource type="ArrayMesh" uid="uid://crviygmhtq7pk" path="res://assets/models/menu_backgrounds/SkySphere.mesh" id="3_2s02u"]
@@ -42,7 +42,6 @@ glow_levels/7 = 1.0
 glow_intensity = 0.5
 glow_strength = 0.85
 glow_bloom = 0.7
-glow_blend_mode = 1
 glow_hdr_threshold = 1.29
 glow_hdr_scale = 2.2
 glow_hdr_luminance_cap = 156.51
@@ -398,26 +397,25 @@ _data = {
 &"RESET": SubResource("24")
 }
 
-[node name="MainMenuScene1" type="Node3D"]
+[node name="MainMenuScene1" type="Node3D" unique_id=1216167333]
 transform = Transform3D(-0.305019, 0, 0.953396, 0, 1.001, 0, -0.953396, 0, -0.305019, 0, 0, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1653897674]
 environment = SubResource("1")
 camera_attributes = SubResource("CameraAttributesPractical_5nfsl")
 
-[node name="Stars" type="MeshInstance3D" parent="."]
+[node name="Stars" type="MeshInstance3D" parent="." unique_id=111546717]
 transform = Transform3D(330.486, 115.236, 0, -115.236, 330.486, 0, 0, 0, 350, -12.7566, 0, 8.74703)
 material_override = SubResource("StandardMaterial3D_ipeln")
 mesh = ExtResource("3_2s02u")
-skeleton = NodePath("")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=676353151]
 transform = Transform3D(0.5108369, 0.008517339, -0.85847396, -0.011176125, 0.998933, 0.003260527, 0.8584421, 0.007936738, 0.5108982, -67.6689, -4.91601, 34.013)
 current = true
 fov = 36.8
 far = 15000.0
 
-[node name="Sun" type="OmniLight3D" parent="."]
+[node name="Sun" type="OmniLight3D" parent="." unique_id=1851716979]
 transform = Transform3D(1, 0, 3.28153e-07, 0, 1, 0, -3.28153e-07, 0, 1, 26.1623, 30.7487, -115.11)
 light_color = Color(0.972549, 0.956863, 0.937255, 1)
 light_energy = 25.0
@@ -427,7 +425,7 @@ light_specular = 0.05
 light_bake_mode = 0
 omni_range = 8192.0
 
-[node name="ReflectionLight" type="OmniLight3D" parent="Sun"]
+[node name="ReflectionLight" type="OmniLight3D" parent="Sun" unique_id=1868742064]
 transform = Transform3D(1, 0, 3.27826e-07, 0, 1, 0, -3.27826e-07, 0, 1, 0.304825, -0.245861, 0.673294)
 light_color = Color(1, 1, 0.945098, 1)
 light_energy = 80.0
@@ -438,45 +436,43 @@ light_bake_mode = 0
 omni_range = 4096.0
 omni_attenuation = 1.05
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="Sun"]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Sun" unique_id=643953349]
 transform = Transform3D(0.994733, 0.102497, 0, -0.102497, 0.994733, 0, 0, 0, 1, 0, 0, 0)
 radius = 2.613
 radial_segments = 32
 rings = 16
 material = SubResource("19")
 
-[node name="StarBlocker" type="MeshInstance3D" parent="."]
+[node name="StarBlocker" type="MeshInstance3D" parent="." unique_id=171740611]
 transform = Transform3D(0.833967, -0.0715305, -0.545332, -0.0324972, 0.982377, -0.178555, 0.549042, 0.166797, 0.817762, 46.7938, 39.5764, -150.288)
 mesh = SubResource("QuadMesh_cv5dq")
 skeleton = NodePath("../Sun")
 
-[node name="PlacedPlanet" type="Node3D" parent="."]
+[node name="PlacedPlanet" type="Node3D" parent="." unique_id=1478946160]
 transform = Transform3D(-1.7364823, 0, 9.848079, 0, 10, 0, -9.848079, 0, -1.7364823, 20.8068, -18.562, 23.6122)
 
-[node name="PlaceholderPlanetGraphics" type="Node3D" parent="PlacedPlanet"]
+[node name="PlaceholderPlanetGraphics" type="Node3D" parent="PlacedPlanet" unique_id=278868039]
 transform = Transform3D(0.130844, -0.238845, -0.962202, 0.184755, 0.959418, -0.21303, 0.974036, -0.149898, 0.169662, 0, 0, 0)
 
-[node name="PlanetSphere" type="MeshInstance3D" parent="PlacedPlanet/PlaceholderPlanetGraphics"]
+[node name="PlanetSphere" type="MeshInstance3D" parent="PlacedPlanet/PlaceholderPlanetGraphics" unique_id=310580651]
 material_override = SubResource("StandardMaterial3D_3q10o")
 mesh = ExtResource("6_nwy0u")
 
-[node name="PlanetClouds" type="MeshInstance3D" parent="PlacedPlanet/PlaceholderPlanetGraphics"]
+[node name="PlanetClouds" type="MeshInstance3D" parent="PlacedPlanet/PlaceholderPlanetGraphics" unique_id=300365805]
 transform = Transform3D(1.015, 0, -1.5124717e-08, 0, 1.015, 0, 1.5124717e-08, 0, 1.015, 0, 0, 0)
 material_override = ExtResource("7_s8v1p")
 mesh = ExtResource("6_nwy0u")
 
-[node name="PlanetShadow" type="MeshInstance3D" parent="PlacedPlanet/PlaceholderPlanetGraphics"]
+[node name="PlanetShadow" type="MeshInstance3D" parent="PlacedPlanet/PlaceholderPlanetGraphics" unique_id=1636089742]
 transform = Transform3D(-0.957237, -0.0036606, 0.34347, 0.0522562, 1.00355, 0.156331, -0.339492, 0.164792, -0.944393, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_xh5e0")
 mesh = ExtResource("6_nwy0u")
 
-[node name="PlanetRotation" type="AnimationPlayer" parent="PlacedPlanet/PlaceholderPlanetGraphics"]
-libraries = {
-&"": SubResource("AnimationLibrary_ayvgv")
-}
-autoplay = "PlanetRotation"
+[node name="PlanetRotation" type="AnimationPlayer" parent="PlacedPlanet/PlaceholderPlanetGraphics" unique_id=1580248576]
+libraries/ = SubResource("AnimationLibrary_ayvgv")
+autoplay = &"PlanetRotation"
 
-[node name="FakeAtmoshereParticle" type="CPUParticles3D" parent="PlacedPlanet/PlaceholderPlanetGraphics"]
+[node name="FakeAtmoshereParticle" type="CPUParticles3D" parent="PlacedPlanet/PlaceholderPlanetGraphics" unique_id=2024563825]
 transform = Transform3D(-1001.23, 0.000144958, 5915.88, -0.000236511, 6000.03, -0.000816345, -5915.88, 0.000587463, -1001.23, 0.061, 0, 0.058)
 amount = 2
 lifetime = 1.42
@@ -487,18 +483,16 @@ gravity = Vector3(0, 0, 0)
 angle_min = 15.0
 angle_max = 15.0
 
-[node name="Comet" parent="." instance=ExtResource("4_6futg")]
+[node name="Comet" parent="." unique_id=648963956 instance=ExtResource("4_6futg")]
 transform = Transform3D(-0.135039, -0.0640295, -0.988769, 0.172987, 0.981061, -0.0871557, 0.975622, -0.182814, -0.121406, -28.3748, -2.46547, 2.2588)
 
-[node name="Comet2" parent="." instance=ExtResource("4_6futg")]
+[node name="Comet2" parent="." unique_id=1031951042 instance=ExtResource("4_6futg")]
 transform = Transform3D(-0.135039, -0.0640295, -0.988769, 0.172987, 0.981061, -0.0871557, 0.975623, -0.182814, -0.121406, -24.6598, -6.87856, -5.38809)
 
-[node name="Comet3" parent="." instance=ExtResource("4_6futg")]
+[node name="Comet3" parent="." unique_id=2044654622 instance=ExtResource("4_6futg")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -50.2067, -10.7811, 10.4715)
 
-[node name="CameraAnimation" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_vqvxl")
-}
-autoplay = "CameraAnimation"
+[node name="CameraAnimation" type="AnimationPlayer" parent="." unique_id=874845012]
+libraries/ = SubResource("AnimationLibrary_vqvxl")
+autoplay = &"CameraAnimation"
 speed_scale = 0.5

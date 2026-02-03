@@ -92,8 +92,8 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
 
         var engulferIsPlayer = entity.Has<PlayerMarker>();
 
-        // TODO: if the entity is a colony with the player being the lead cell should that situation set
-        // engulferIsPlayer?
+        engulferIsPlayer |= entity.TryGet<MicrobeColonyMember>(out var colonyMember)
+            && colonyMember.ColonyLeader.Has<PlayerMarker>();
 
         float usedCapacity = 0;
 

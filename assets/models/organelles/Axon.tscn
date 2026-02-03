@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccxl2erurixi"]
+[gd_scene format=3 uid="uid://ccxl2erurixi"]
 
 [ext_resource type="ArrayMesh" uid="uid://cj1k1ls08sppk" path="res://assets/models/organelles/Axon.mesh" id="1"]
 [ext_resource type="Texture2D" uid="uid://cluieg22tu25m" path="res://assets/textures/Axon.png" id="2"]
@@ -20,7 +20,7 @@ shader_parameter/growColor = Color(0.46, 0.46, 0.46, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
 
-[node name="Axon" type="MeshInstance3D"]
+[node name="Axon" type="MeshInstance3D" unique_id=1835736283]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.6)
 material_override = SubResource("1")
 mesh = ExtResource("1")

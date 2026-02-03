@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://u7o6febei0qr"]
+[gd_scene format=3 uid="uid://u7o6febei0qr"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://blgaold5owljl" path="res://src/gui_common/MouseHoverPanel.cs" id="4"]
@@ -10,7 +10,7 @@
 default_font = ExtResource("5_xjvdp")
 default_font_size = 14
 
-[node name="MouseHoverPanel" type="PanelContainer" node_paths=PackedStringArray("categoriesContainer", "nothingHereContainer")]
+[node name="MouseHoverPanel" type="PanelContainer" unique_id=668150449 node_paths=PackedStringArray("categoriesContainer", "nothingHereContainer")]
 custom_minimum_size = Vector2(250, 0)
 offset_right = 250.0
 offset_bottom = 73.0
@@ -22,7 +22,7 @@ script = ExtResource("4")
 categoriesContainer = NodePath("MarginContainer/VBoxContainer/Categories")
 nothingHereContainer = NodePath("MarginContainer/VBoxContainer/NothingHere")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1634931067]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 10
@@ -30,32 +30,32 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=255837871]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="MousePos" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="MousePos" type="Label" parent="MarginContainer/VBoxContainer" unique_id=883725950]
 layout_mode = 2
 text = "AT_CURSOR"
 label_settings = ExtResource("4_1ha7v")
 horizontal_alignment = 1
 
-[node name="TitleSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="TitleSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1660817667]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="NothingHere" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+[node name="NothingHere" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1663999925]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 10
 
-[node name="NothingHereLabel" type="Label" parent="MarginContainer/VBoxContainer/NothingHere"]
+[node name="NothingHereLabel" type="Label" parent="MarginContainer/VBoxContainer/NothingHere" unique_id=1510253584]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 text = "NOTHING_HERE"
 label_settings = ExtResource("5_ehek6")
 
-[node name="Categories" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Categories" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=605128846]
 layout_mode = 2
 theme = SubResource("1")

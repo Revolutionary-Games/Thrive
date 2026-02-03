@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://crcycwpjce12"]
+[gd_scene format=3 uid="uid://crcycwpjce12"]
 
 [ext_resource type="Material" uid="uid://bs8pe2iwtfsr4" path="res://src/microbe_stage/particles/Embers.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://cai50f52nr8gw" path="res://assets/textures/background_particle_fuzzy.png" id="2"]
@@ -17,7 +17,7 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="2"]
 
-[node name="Vent" type="GPUParticles3D"]
+[node name="Vent" type="GPUParticles3D" unique_id=1899464530]
 process_mode = 1
 material_override = SubResource("1")
 cast_shadow = 0

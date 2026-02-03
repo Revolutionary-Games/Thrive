@@ -16,17 +16,19 @@ public class MacroscopicSpeciesComparer
         cellTypeComparer = new MicrobeSpeciesComparer(cytoplasm);
     }
 
-    public double Compare(IReadOnlyMacroscopicSpecies speciesA, IReadOnlyMacroscopicSpecies speciesB)
+    public double Compare(IReadOnlyMacroscopicSpecies speciesA, IReadOnlyMacroscopicSpecies speciesB,
+        double maxSingleActionCost, double costMultiplier = 1)
     {
         // Base cost
-        double cost = SpeciesComparer.GetRequiredMutationPoints(speciesA, speciesB);
+        double cost =
+            SpeciesComparer.GetRequiredMutationPoints(speciesA, speciesB, maxSingleActionCost, costMultiplier);
 
         originalCellTypes.AddRange(speciesA.CellTypes);
         newCellTypes.AddRange(speciesB.CellTypes);
 
         // Cost from each cell type change
-        cost += MulticellularSpeciesComparer.CompareCellTypes(originalCellTypes, newCellTypes, cellTypeComparer) *
-            Constants.MULTICELLULAR_EDITOR_COST_FACTOR;
+        cost += MulticellularSpeciesComparer.CompareCellTypes(originalCellTypes, newCellTypes, cellTypeComparer,
+            maxSingleActionCost, costMultiplier * Constants.MULTICELLULAR_EDITOR_COST_FACTOR);
         originalCellTypes.Clear();
         newCellTypes.Clear();
 
@@ -37,7 +39,7 @@ public class MacroscopicSpeciesComparer
         var rootA = GetRoot(unusedOldMetaballs);
         var rootB = GetRoot(unusedNewMetaballs);
 
-        cost += RecursiveCompareChanges(rootA, rootB);
+        cost += RecursiveCompareChanges(rootA, rootB, maxSingleActionCost, costMultiplier);
 
         // Consider moves which are cheaper than an addition and a deletion
         foreach (var unusedOldMetaball in unusedOldMetaballs)
@@ -47,11 +49,11 @@ public class MacroscopicSpeciesComparer
 
             foreach (var unusedNewMetaball in unusedNewMetaballs)
             {
-                var tempCost = Constants.METABALL_MOVE_COST;
+                var tempCost = Math.Min(Constants.METABALL_MOVE_COST * costMultiplier, maxSingleActionCost);
 
                 if (Math.Abs(unusedNewMetaball.Size - unusedOldMetaball.Size) > 0.001f)
                 {
-                    tempCost += Constants.METABALL_RESIZE_COST;
+                    tempCost += Math.Min(Constants.METABALL_RESIZE_COST * costMultiplier, maxSingleActionCost);
                 }
 
                 // TODO: should there be a cost for metaballs to change type?
@@ -64,7 +66,7 @@ public class MacroscopicSpeciesComparer
             }
 
             if (bestMatch != null && minCost < double.MaxValue &&
-                minCost < Constants.METABALL_REMOVE_COST + Constants.METABALL_ADD_COST)
+                minCost < (Constants.METABALL_REMOVE_COST + Constants.METABALL_ADD_COST) * costMultiplier)
             {
                 // Saved some cost by turning this into a move
                 cost += minCost;
@@ -76,20 +78,20 @@ public class MacroscopicSpeciesComparer
             }
 
             // Can't match this up with anything
-            cost += Constants.METABALL_REMOVE_COST;
+            cost += Math.Min(Constants.METABALL_REMOVE_COST * costMultiplier, maxSingleActionCost);
         }
 
         unusedOldMetaballs.Clear();
 
         // All still left unused are new metaballs
-        cost += unusedNewMetaballs.Count * Constants.METABALL_ADD_COST;
+        cost += unusedNewMetaballs.Count * Math.Min(Constants.METABALL_ADD_COST * costMultiplier, maxSingleActionCost);
         unusedNewMetaballs.Clear();
 
         return cost;
     }
 
     private double RecursiveCompareChanges(IReadonlyMacroscopicMetaball metaballA,
-        IReadonlyMacroscopicMetaball metaballB)
+        IReadonlyMacroscopicMetaball metaballB, double maxSingleActionCost, double costMultiplier)
     {
         // Mark both as consumed
         unusedOldMetaballs.Remove(metaballA);
@@ -100,7 +102,7 @@ public class MacroscopicSpeciesComparer
         if (Math.Abs(metaballA.Size - metaballB.Size) > 0.01f)
         {
             // TODO: scale cost based on the size change
-            cost += Constants.METABALL_RESIZE_COST;
+            cost += Math.Min(Constants.METABALL_RESIZE_COST * costMultiplier, maxSingleActionCost);
         }
 
         var basePositionA = metaballA.Position;
@@ -172,11 +174,11 @@ public class MacroscopicSpeciesComparer
             // If their relative positions differ, then the child was moved
             if (childARelativePosition.DistanceSquaredTo(matchingChildB.Position - basePositionB) > 0.01f)
             {
-                cost += Constants.METABALL_MOVE_COST;
+                cost += Math.Min(Constants.METABALL_MOVE_COST * costMultiplier, maxSingleActionCost);
             }
 
             // Do the recursive comparison
-            cost += RecursiveCompareChanges(childA, matchingChildB);
+            cost += RecursiveCompareChanges(childA, matchingChildB, maxSingleActionCost, costMultiplier);
         }
 
         return cost;

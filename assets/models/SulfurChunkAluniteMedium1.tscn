@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cotse1iu452pa"]
+[gd_scene format=3 uid="uid://cotse1iu452pa"]
 
 [ext_resource type="Shader" uid="uid://dwec2fuh8kn2c" path="res://shaders/IronChunk.gdshader" id="1_odumb"]
 [ext_resource type="Texture2D" uid="uid://b2yxnpvehsb08" path="res://assets/textures/SulfurChunk1.png" id="2_8v5hb"]
@@ -22,6 +22,6 @@ shader_parameter/dissolveScale = 1.5
 shader_parameter/outlineWidth = 0.0
 shader_parameter/growColor = Color(0, 0, 0, 1)
 
-[node name="Sulfur" type="MeshInstance3D"]
+[node name="Sulfur" type="MeshInstance3D" unique_id=1229498567]
 material_override = SubResource("ShaderMaterial_rmyp7")
 mesh = ExtResource("5_0gqef")

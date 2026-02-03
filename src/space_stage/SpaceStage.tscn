@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d2lgqc5cfta2m"]
+[gd_scene format=3 uid="uid://d2lgqc5cfta2m"]
 
 [ext_resource type="Script" uid="uid://fetj4ns7gr7h" path="res://src/space_stage/SpaceStage.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://cd1w0b7mbdwcu" path="res://src/society_stage/StrategicCamera.tscn" id="2"]
@@ -44,7 +44,6 @@ glow_levels/7 = 1.0
 glow_intensity = 0.25
 glow_strength = 0.5
 glow_bloom = 0.5
-glow_blend_mode = 1
 glow_hdr_threshold = 1.29
 glow_hdr_scale = 2.2
 glow_hdr_luminance_cap = 156.51
@@ -68,7 +67,7 @@ emission = Color(0.843137, 0.780392, 0.627451, 1)
 emission_energy_multiplier = 10.0
 disable_receive_shadows = true
 
-[node name="SpaceStage" type="Node" node_paths=PackedStringArray("nameLabelSystem", "ascensionMoveConfirmationPopup", "ascensionCongratulationsPopup", "descendConfirmationPopup", "godTools", "strategicCamera", "hudRoot")]
+[node name="SpaceStage" type="Node" unique_id=41598415 node_paths=PackedStringArray("nameLabelSystem", "ascensionMoveConfirmationPopup", "ascensionCongratulationsPopup", "descendConfirmationPopup", "godTools", "strategicCamera", "hudRoot")]
 script = ExtResource("1")
 nameLabelSystem = NodePath("StrategicEntityNameLabelSystem")
 ascensionMoveConfirmationPopup = NodePath("AscensionConfirmation")
@@ -78,24 +77,24 @@ godTools = NodePath("GodToolsPopup")
 strategicCamera = NodePath("World/StrategicCamera")
 hudRoot = NodePath("SpaceHUD")
 
-[node name="World" type="Node" parent="."]
+[node name="World" type="Node" parent="." unique_id=104156003]
 
-[node name="DynamicallySpawned" type="Node" parent="World"]
+[node name="DynamicallySpawned" type="Node" parent="World" unique_id=495490047]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World" unique_id=1629473345]
 environment = SubResource("Environment_mi3wd")
 camera_attributes = SubResource("CameraAttributesPractical_s1pyx")
 
-[node name="StrategicCamera" parent="World" instance=ExtResource("2")]
+[node name="StrategicCamera" parent="World" unique_id=1873166997 instance=ExtResource("2")]
 far = 420.0
 MaxZoomLevel = 3.0
 
-[node name="starssphere" parent="World/StrategicCamera" instance=ExtResource("3")]
+[node name="starssphere" parent="World/StrategicCamera" unique_id=499349936 instance=ExtResource("3")]
 transform = Transform3D(200, -0.0491872, 0.0349051, 0.0488672, 199.992, 1.82209, -0.0353518, -1.82208, 199.992, -12.7566, 0, 8.74701)
 
-[node name="PlaceholderSpaceVisuals" type="Node3D" parent="World"]
+[node name="PlaceholderSpaceVisuals" type="Node3D" parent="World" unique_id=457252890]
 
-[node name="Sun" type="OmniLight3D" parent="World/PlaceholderSpaceVisuals"]
+[node name="Sun" type="OmniLight3D" parent="World/PlaceholderSpaceVisuals" unique_id=782273015]
 transform = Transform3D(1, 0, 3.28153e-07, 0, 1, 0, -3.28153e-07, 0, 1, 33.45, 22, -64)
 light_color = Color(0.972549, 0.956863, 0.937255, 1)
 light_energy = 25.0
@@ -105,39 +104,37 @@ light_specular = 0.1
 light_bake_mode = 0
 omni_range = 4096.0
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="World/PlaceholderSpaceVisuals/Sun"]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="World/PlaceholderSpaceVisuals/Sun" unique_id=1764534731]
 transform = Transform3D(0.994733, 0.102497, 0, -0.102497, 0.994733, 0, 0, 0, 1, 0, 0, 0)
 radius = 2.613
 radial_segments = 32
 rings = 16
 material = SubResource("StandardMaterial3D_6xbal")
 
-[node name="Comet" parent="World/PlaceholderSpaceVisuals" instance=ExtResource("4_aqo7l")]
+[node name="Comet" parent="World/PlaceholderSpaceVisuals" unique_id=1510324828 instance=ExtResource("4_aqo7l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.7012, 0, 0)
 
-[node name="PlayerSpaceInput" parent="." instance=ExtResource("9")]
+[node name="PlayerSpaceInput" parent="." unique_id=948483831 instance=ExtResource("9")]
 
-[node name="StrategicEntityNameLabelSystem" parent="." instance=ExtResource("10")]
+[node name="StrategicEntityNameLabelSystem" parent="." unique_id=1135815169 instance=ExtResource("10")]
 visible = false
-grow_horizontal = 2
-grow_vertical = 2
 
-[node name="SpaceHUD" parent="." instance=ExtResource("7")]
+[node name="SpaceHUD" parent="." unique_id=813544003 instance=ExtResource("7")]
 
-[node name="GodToolsPopup" parent="." instance=ExtResource("18")]
+[node name="GodToolsPopup" parent="." unique_id=1706772105 instance=ExtResource("18")]
 offset_top = 0.0
 offset_bottom = 225.0
 
-[node name="AscensionConfirmation" parent="." instance=ExtResource("17")]
+[node name="AscensionConfirmation" parent="." unique_id=1870467920 instance=ExtResource("17")]
 custom_minimum_size = Vector2(400, 0)
 DialogText = "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 WindowTitle = "CONFIRM_MOVE_TO_ASCENSION_STAGE"
 
-[node name="AscensionCongratulationsPopup" parent="." instance=ExtResource("15")]
+[node name="AscensionCongratulationsPopup" parent="." unique_id=293269094 instance=ExtResource("15")]
 offset_right = 450.0
 offset_bottom = 300.0
 
-[node name="DescendConfirmationDialog" parent="." instance=ExtResource("16")]
+[node name="DescendConfirmationDialog" parent="." unique_id=1262585964 instance=ExtResource("16")]
 offset_bottom = 500.0
 
 [connection signal="OnDescendPressed" from="SpaceHUD" to="." method="OnDescendButtonPressed"]
