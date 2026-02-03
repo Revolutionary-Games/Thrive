@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using Godot;
 using Nito.Collections;
 using Environment = System.Environment;
@@ -15,11 +16,11 @@ public partial class DebugConsoleManager : Node
 {
     public const uint MaxHistorySize = 255;
 
-    public readonly Deque<DebugEntry> History = [];
     public readonly DebugEntryFactory DebugEntryFactory;
 
     private static DebugConsoleManager? instance;
 
+    private readonly Deque<DebugEntry> history = [];
     private readonly Queue<int> customIdsBucket = [];
     private readonly Queue<RawDebugEntry> inbox = [];
 
@@ -41,7 +42,7 @@ public partial class DebugConsoleManager : Node
     public static DebugConsoleManager Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public int TotalMessageCount { get; private set; }
-    public int MessageCountInHistory { get; private set; }
+    public int MessageCountInHistory => history.Count;
 
     public override void _ExitTree()
     {
@@ -61,7 +62,6 @@ public partial class DebugConsoleManager : Node
                 return;
 
             TotalMessageCount += inbox.Count;
-            MessageCountInHistory += inbox.Count;
 
             while (inbox.TryDequeue(out var rawDebugEntry))
             {
@@ -77,7 +77,7 @@ public partial class DebugConsoleManager : Node
                     if (DebugEntryFactory.TryAddMessage(id, rawDebugEntry))
                     {
                         var newEntry = DebugEntryFactory.GetDebugEntry(id);
-                        History.AddToBack(newEntry);
+                        history.AddToBack(newEntry);
                         activeEntries[id] = newEntry;
                     }
                     else
@@ -90,17 +90,15 @@ public partial class DebugConsoleManager : Node
                     if (!activeEntries.ContainsKey(id))
                     {
                         var liveEntry = DebugEntryFactory.GetDebugEntry(id);
-                        History.AddToBack(liveEntry);
+                        history.AddToBack(liveEntry);
                         activeEntries[id] = liveEntry;
                     }
                 }
 
-                if (History.Count <= MaxHistorySize)
+                if (history.Count <= MaxHistorySize)
                     continue;
 
-                History.RemoveFromFront();
-
-                MessageCountInHistory--;
+                history.RemoveFromFront();
             }
 
             OnHistoryUpdated.Invoke(null, EventArgs.Empty);
@@ -152,12 +150,18 @@ public partial class DebugConsoleManager : Node
         }
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public DebugEntry GetMessageAt(int id)
+    {
+        return history[id];
+    }
+
     /// <summary>
     ///   Clears the debug console History.
     /// </summary>
     public void Clear()
     {
-        History.Clear();
+        history.Clear();
         activeEntries.Clear();
     }
 
@@ -188,7 +192,7 @@ public partial class DebugConsoleManager : Node
             return id;
 
         var liveEntry = DebugEntryFactory.GetDebugEntry(id);
-        History.AddToBack(liveEntry);
+        history.AddToBack(liveEntry);
         activeEntries[id] = liveEntry;
 
         return id;

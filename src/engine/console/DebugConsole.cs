@@ -60,7 +60,7 @@ public partial class DebugConsole : CustomWindow
 
     public void Clear()
     {
-        lastClearId = DebugConsoleManager.Instance.History.Count;
+        lastClearId = DebugConsoleManager.Instance.MessageCountInHistory;
         debugEntryList.Clear();
         RefreshLogs();
     }

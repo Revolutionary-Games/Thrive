@@ -100,13 +100,13 @@ public partial class DebugEntryList : Control
 
     public int LoadFrom(int visualSkipCount)
     {
-        var history = DebugConsoleManager.Instance.History;
-        int maxGlobalId = history.Count;
+        var debugConsoleManager = DebugConsoleManager.Instance;
+        int maxGlobalId = debugConsoleManager.MessageCountInHistory;
 
         long minTimestamp = 0;
         if (globalStartId < maxGlobalId && globalStartId >= 0)
         {
-            minTimestamp = history[globalStartId].BeginTimestamp;
+            minTimestamp = debugConsoleManager.GetMessageAt(globalStartId).BeginTimestamp;
         }
 
         int currentGlobalId = globalStartId;
@@ -131,7 +131,7 @@ public partial class DebugEntryList : Control
             }
             else if (currentLocalIndex < privateHistory.Count)
             {
-                if (privateHistory[currentLocalIndex].BeginTimestamp < history[currentGlobalId].BeginTimestamp)
+                if (privateHistory[currentLocalIndex].BeginTimestamp < debugConsoleManager.GetMessageAt(currentGlobalId).BeginTimestamp)
                 {
                     skipLocal = true;
                 }
@@ -183,7 +183,7 @@ public partial class DebugEntryList : Control
             }
             else if (currentLocalIndex < privateHistory.Count)
             {
-                if (privateHistory[currentLocalIndex].BeginTimestamp < history[currentGlobalId].BeginTimestamp)
+                if (privateHistory[currentLocalIndex].BeginTimestamp < debugConsoleManager.GetMessageAt(currentGlobalId).BeginTimestamp)
                 {
                     useLocal = true;
                 }
@@ -197,7 +197,7 @@ public partial class DebugEntryList : Control
             }
             else
             {
-                currentDebugEntry = history[currentGlobalId];
+                currentDebugEntry = debugConsoleManager.GetMessageAt(currentGlobalId);
                 ++currentGlobalId;
             }
 
@@ -228,7 +228,7 @@ public partial class DebugEntryList : Control
 
     public void Clear()
     {
-        globalStartId = DebugConsoleManager.Instance.History.Count;
+        globalStartId = DebugConsoleManager.Instance.MessageCountInHistory;
         privateHistory.Clear();
     }
 
@@ -248,17 +248,17 @@ public partial class DebugEntryList : Control
 
         LayOutScrollbar();
 
-        var history = DebugConsoleManager.Instance.History;
+        var debugConsoleManager = DebugConsoleManager.Instance;
 
         long minTimestamp = 0;
-        if (history.Count - globalStartId > 0)
+        if (debugConsoleManager.MessageCountInHistory - globalStartId > 0)
         {
-            minTimestamp = history[globalStartId].BeginTimestamp;
+            minTimestamp = debugConsoleManager.GetMessageAt(globalStartId).BeginTimestamp;
         }
 
         int validPrivateCount = GetCountNewerThan(minTimestamp);
 
-        scrollBar.SetMax(history.Count - globalStartId + validPrivateCount);
+        scrollBar.SetMax(debugConsoleManager.MessageCountInHistory - globalStartId + validPrivateCount);
         scrollBar.SetPage(visibleEntries);
     }
 
