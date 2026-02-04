@@ -535,7 +535,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     protected override IEnumerable<IProcessDisplayInfo>? GetPlayerProcessStatistics()
     {
-        var list = new Dictionary<TweakedProcess, AverageProcessStatistics>();
+        var list = new Dictionary<TweakedProcess, SummedProcessStatistics>();
 
         foreach (var process in stage!.Player.Get<BioProcesses>().ProcessStatistics!.Processes)
         {
@@ -543,22 +543,12 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
             if (!list.TryGetValue(process.Key, out var stats))
             {
-                stats = (AverageProcessStatistics)display;
-                list.Add(process.Key, stats);
+                stats = new SummedProcessStatistics(display);
+                list[process.Key] = stats;
             }
             else
             {
-                foreach (var input in display.Inputs)
-                {
-                    stats.WritableInputs.TryGetValue(input.Key, out var value);
-                    stats.WritableInputs[input.Key] = value + input.Value;
-                }
-
-                foreach (var output in display.Outputs)
-                {
-                    stats.WritableOutputs.TryGetValue(output.Key, out var value);
-                    stats.WritableOutputs[output.Key] = value + output.Value;
-                }
+                stats.AddProcess(display);
             }
         }
 
@@ -572,22 +562,12 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
                     if (!list.TryGetValue(process.Key, out var stats))
                     {
-                        stats = (AverageProcessStatistics)display;
-                        list.Add(process.Key, stats);
+                        stats = new SummedProcessStatistics(display);
+                        list[process.Key] = stats;
                     }
                     else
                     {
-                        foreach (var input in display.Inputs)
-                        {
-                            stats.WritableInputs.TryGetValue(input.Key, out var value);
-                            stats.WritableInputs[input.Key] = value + input.Value;
-                        }
-
-                        foreach (var output in display.Outputs)
-                        {
-                            stats.WritableOutputs.TryGetValue(output.Key, out var value);
-                            stats.WritableOutputs[output.Key] = value + output.Value;
-                        }
+                        stats.AddProcess(display);
                     }
                 }
             }
