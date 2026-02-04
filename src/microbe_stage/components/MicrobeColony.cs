@@ -208,20 +208,20 @@ public static class MicrobeColonyHelpers
     }
 
     /// <summary>
-    ///   Returns the distance between the colony member closest to the entity and the entity
+    ///   Returns the direction from the colony member closest to the entity and the entity
     /// </summary>
     /// <param name="entity">The position of the entity</param>
-    /// <returns>The distance</returns>
-    public static Vector3 GetDistanceTo(this ref MicrobeColony colony, ref Vector3 entity)
+    /// <returns>The direction</returns>
+    public static Vector3 GetDirectionTo(this ref MicrobeColony colony, ref Vector3 entity)
     {
-        List<Vector3> distances = new();
+        List<Vector3> directions = new();
 
         foreach (Entity member in colony.ColonyMembers)
         {
-            distances.Add(member.Get<WorldPosition>().Position.DirectionTo(entity));
+            directions.Add(member.Get<WorldPosition>().Position.DirectionTo(entity));
         }
 
-        return distances.Min();
+        return directions.Min();
     }
 
     /// <summary>
