@@ -234,8 +234,7 @@ public static class MichePopulation
 
         var leafNodes = new List<Miche>();
 
-        // TODO: When supporting multicellular species replace the is MicrobeSpecies with a null check
-        miche.GetLeafNodes(leafNodes, x => x.Occupant is MicrobeSpecies);
+        miche.GetLeafNodes(leafNodes);
 
         // TODO: check if energy should be calculated as doubles because the summed numbers can get pretty high that
         // might benefit from extra precision
@@ -273,8 +272,14 @@ public static class MichePopulation
                         break;
                     }
 
-                    var occupantScore =
-                        cache.GetPressureScore(currentMiche.Pressure, patch, (MicrobeSpecies)node.Occupant!);
+                    var occupantScore = 0.0f;
+
+                    // TODO: When supporting multicellular species replace the is MicrobeSpecies with a null check
+                    if (currentMiche.Occupant is MicrobeSpecies)
+                    {
+                        occupantScore =
+                            cache.GetPressureScore(currentMiche.Pressure, patch, (MicrobeSpecies)node.Occupant!);
+                    }
 
                     // If the occupant is somehow terrible, avoid division by zero
                     if (occupantScore <= 0)
