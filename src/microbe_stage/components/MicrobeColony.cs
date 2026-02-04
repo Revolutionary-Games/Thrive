@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
@@ -204,6 +205,22 @@ public static class MicrobeColonyHelpers
             return colony.ColonyCompounds;
 
         return colony.ColonyCompounds = new ColonyCompoundBag(colony.ColonyMembers);
+    }
+
+    /// <summary>
+    ///   Returns the distance between the colony member closest to the entity and the entity
+    /// </summary>
+    /// <returns>The distance</returns>
+    public static float GetDistanceTo(this ref MicrobeColony colony, ref Entity entity)
+    {
+        List<float> distances = new();
+
+        foreach (Entity member in colony.ColonyMembers)
+        {
+            distances.Add(member.Get<WorldPosition>().Position.DistanceTo(entity.Get<WorldPosition>().Position));
+        }
+
+        return distances.Min<float>();
     }
 
     /// <summary>
