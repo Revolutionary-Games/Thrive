@@ -210,14 +210,15 @@ public static class MicrobeColonyHelpers
     /// <summary>
     ///   Returns the distance between the colony member closest to the entity and the entity
     /// </summary>
+    /// <param name="entity">The position of the entity</param>
     /// <returns>The distance</returns>
-    public static float GetDistanceTo(this ref MicrobeColony colony, ref Entity entity)
+    public static float GetDistanceTo(this ref MicrobeColony colony, ref Vector3 entity)
     {
         List<float> distances = new();
 
         foreach (Entity member in colony.ColonyMembers)
         {
-            distances.Add(member.Get<WorldPosition>().Position.DistanceTo(entity.Get<WorldPosition>().Position));
+            distances.Add(member.Get<WorldPosition>().Position.DistanceTo(entity));
         }
 
         return distances.Min<float>();
