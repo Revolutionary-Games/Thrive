@@ -210,6 +210,7 @@ public static class MicrobeColonyHelpers
     /// <summary>
     ///   Returns the direction from the colony member closest to the entity and the entity
     /// </summary>
+    /// <param name="colony">The colony</param>
     /// <param name="entity">The position of the entity</param>
     /// <returns>The direction</returns>
     public static Vector3 GetDirectionTo(this ref MicrobeColony colony, ref Vector3 entity)
@@ -227,6 +228,7 @@ public static class MicrobeColonyHelpers
     /// <summary>
     ///   Returns the squared distance between the colony member closest to the entity and the entity
     /// </summary>
+    /// <param name="colony">The colony</param>
     /// <param name="entity">The position of the entity</param>
     /// <returns>The squared distance</returns>
     public static float GetSquaredDistanceTo(this ref MicrobeColony colony, ref Vector3 entity)
