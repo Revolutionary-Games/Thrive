@@ -212,16 +212,16 @@ public static class MicrobeColonyHelpers
     /// </summary>
     /// <param name="entity">The position of the entity</param>
     /// <returns>The distance</returns>
-    public static float GetDistanceTo(this ref MicrobeColony colony, ref Vector3 entity)
+    public static Vector3 GetDistanceTo(this ref MicrobeColony colony, ref Vector3 entity)
     {
-        List<float> distances = new();
+        List<Vector3> distances = new();
 
         foreach (Entity member in colony.ColonyMembers)
         {
-            distances.Add(member.Get<WorldPosition>().Position.DistanceTo(entity));
+            distances.Add(member.Get<WorldPosition>().Position.DirectionTo(entity));
         }
 
-        return distances.Min<float>();
+        return distances.Min();
     }
 
     /// <summary>
