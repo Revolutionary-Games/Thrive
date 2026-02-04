@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -20,7 +20,7 @@ public partial class ProcessPanel : CustomWindow
     [Signal]
     public delegate void ToggleProcessPressedEventHandler(ChemicalEquation equation);
 
-    public ProcessStatistics? ShownData { get; set; }
+    public IEnumerable<IProcessDisplayInfo>? ShownData { get; set; }
 
     public float ExternalSpeedModifier
     {
@@ -45,7 +45,7 @@ public partial class ProcessPanel : CustomWindow
         if (ShownData != null)
         {
             // Update the list object
-            processList.ProcessesToShow = ShownData.Processes.Select(p => p.Value.ComputeAverageValues());
+            processList.ProcessesToShow = ShownData;
         }
         else
         {

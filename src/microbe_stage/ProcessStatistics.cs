@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Godot;
+using Nito.Collections;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Godot;
-using Nito.Collections;
 
 /// <summary>
 ///   Holds process running statistics information
@@ -77,6 +78,32 @@ public sealed class ProcessStatistics
             Processes[forProcess] = entry;
             entry.Used = true;
             return entry;
+        }
+    }
+
+    public void SumProcessStatistics(ProcessStatistics other)
+    {
+        foreach (var pair in other.Processes)
+        {
+            var process = GetAndMarkUsed(pair.Key);
+
+            if (pair.Value.LimitingCompounds != null)
+            {
+                foreach (var limitingFactor in pair.Value.LimitingCompounds)
+                {
+                    process.AddLimitingFactor(limitingFactor);
+                }
+            }
+
+            foreach (var input in pair.Value.Inputs)
+            {
+                process.AddInputAmount(input.Key, input.Value);
+            }
+
+            foreach (var output in pair.Value.Outputs)
+            {
+                process.AddOutputAmount(output.Key, output.Value);
+            }
         }
     }
 }

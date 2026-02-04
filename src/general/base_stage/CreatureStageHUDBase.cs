@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -1077,7 +1078,7 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         processPanel.ExternalSpeedModifier = newValue;
     }
 
-    protected virtual ProcessStatistics? GetPlayerProcessStatistics()
+    protected virtual IEnumerable<IProcessDisplayInfo>? GetPlayerProcessStatistics()
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }
