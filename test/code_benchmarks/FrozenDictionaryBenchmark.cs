@@ -17,9 +17,8 @@ public class FrozenDictionaryBenchmark
     [Params(5000000)]
     public int Reads;
 
-    // Threading doesn't seem to really have any effect on the benchmark results.
-    // [Params(0, 1, 2)]
-    [Params(0)]
+    // Some approaches totally collapse with more threads added (so need to test this)
+    [Params(0, 1, 2)]
     public int ExtraReaderThreads;
 
     private const int CLOUD_PLANE_SQUARES_PER_SIDE = 3;
@@ -36,11 +35,13 @@ public class FrozenDictionaryBenchmark
     private Vector2 cachedWorldPosition = new(100, 100);
 
     private Dictionary<int, Vector2> sourceData = null!;
+    private Vector2[] sourceArray = null!;
 
     [GlobalSetup]
     public void Setup()
     {
         sourceData = PrecalculateWorldShiftVectors();
+        sourceArray = CalculateArrayCache();
     }
 
     [Benchmark]
@@ -388,6 +389,290 @@ public class FrozenDictionaryBenchmark
         Task.WaitAll(tasks);
     }
 
+    [Benchmark]
+    public void FrozenDictionaryDirectRandomTry()
+    {
+        var dictionary = sourceData.ToFrozenDictionary();
+        var tasks = new Task[ExtraReaderThreads];
+
+        void TryRead(int key)
+        {
+            if (!dictionary.TryGetValue(key, out var cached))
+                throw new Exception("Logic error");
+
+            _ = cachedWorldPosition + cached;
+        }
+
+        for (int task = 0; task < ExtraReaderThreads; ++task)
+        {
+            tasks[task] = Task.Run(() =>
+            {
+                var random = new Random(RandomSeed);
+                int xRead = 0;
+                int yRead = 0;
+                int playerXRead = 0;
+                int playerYRead = 0;
+
+                for (int i = 0; i < Reads; ++i)
+                {
+                    var key = GetRandomKeyDirect(random);
+                    if (random.NextDouble() < NonSequentialReads)
+                    {
+                        TryRead(key);
+                    }
+                    else
+                    {
+                        var indexedKey = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
+                        TryRead(indexedKey);
+                        IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
+                    }
+                }
+            });
+        }
+
+        {
+            var random = new Random(RandomSeed);
+            int xRead = 0;
+            int yRead = 0;
+            int playerXRead = 0;
+            int playerYRead = 0;
+
+            for (int i = 0; i < Reads; ++i)
+            {
+                var key = GetRandomKeyDirect(random);
+                if (random.NextDouble() < NonSequentialReads)
+                {
+                    TryRead(key);
+                }
+                else
+                {
+                    var indexedKey = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
+                    TryRead(indexedKey);
+                    IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
+                }
+            }
+        }
+
+        Task.WaitAll(tasks);
+    }
+
+    [Benchmark]
+    public void FrozenDictionaryDirectRandomRef()
+    {
+        var dictionary = sourceData.ToFrozenDictionary();
+        var tasks = new Task[ExtraReaderThreads];
+
+        void TryRead(int key)
+        {
+            ref readonly var cached = ref dictionary.GetValueRefOrNullRef(key);
+            if (Unsafe.IsNullRef(in cached))
+                throw new Exception("Logic error");
+
+            _ = cachedWorldPosition + cached;
+        }
+
+        for (int task = 0; task < ExtraReaderThreads; ++task)
+        {
+            tasks[task] = Task.Run(() =>
+            {
+                var random = new Random(RandomSeed);
+                int xRead = 0;
+                int yRead = 0;
+                int playerXRead = 0;
+                int playerYRead = 0;
+
+                for (int i = 0; i < Reads; ++i)
+                {
+                    var key = GetRandomKeyDirect(random);
+                    if (random.NextDouble() < NonSequentialReads)
+                    {
+                        TryRead(key);
+                    }
+                    else
+                    {
+                        var indexedKey = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
+                        TryRead(indexedKey);
+                        IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
+                    }
+                }
+            });
+        }
+
+        {
+            var random = new Random(RandomSeed);
+            int xRead = 0;
+            int yRead = 0;
+            int playerXRead = 0;
+            int playerYRead = 0;
+
+            for (int i = 0; i < Reads; ++i)
+            {
+                var key = GetRandomKeyDirect(random);
+                if (random.NextDouble() < NonSequentialReads)
+                {
+                    TryRead(key);
+                }
+                else
+                {
+                    var indexedKey = GetIndexKey(xRead, yRead, playerXRead, playerYRead);
+                    TryRead(indexedKey);
+                    IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
+                }
+            }
+        }
+
+        Task.WaitAll(tasks);
+    }
+
+    // For some reason this is a much slower version than ArrayFlatIndex
+    [Benchmark]
+    public void FlatArray()
+    {
+        var array = sourceArray;
+        var tasks = new Task[ExtraReaderThreads];
+
+        void TryRead(int key)
+        {
+            var cached = array[key];
+
+            _ = cachedWorldPosition + cached;
+        }
+
+        for (int task = 0; task < ExtraReaderThreads; ++task)
+        {
+            tasks[task] = Task.Run(() =>
+            {
+                var random = new Random(RandomSeed);
+                int xRead = 0;
+                int yRead = 0;
+                int playerXRead = 0;
+                int playerYRead = 0;
+
+                for (int i = 0; i < Reads; ++i)
+                {
+                    var (x, y, playerX, playerY) = GetRandomIndexes(random);
+                    if (random.NextDouble() < NonSequentialReads)
+                    {
+                        TryRead(GetFlatArrayIndex(x, y, playerX, playerY));
+                    }
+                    else
+                    {
+                        var index = GetFlatArrayIndex(xRead, yRead, playerXRead, playerYRead);
+                        TryRead(index);
+                        IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
+                    }
+                }
+            });
+        }
+
+        {
+            var random = new Random(RandomSeed);
+            int xRead = 0;
+            int yRead = 0;
+            int playerXRead = 0;
+            int playerYRead = 0;
+
+            for (int i = 0; i < Reads; ++i)
+            {
+                var (x, y, playerX, playerY) = GetRandomIndexes(random);
+                if (random.NextDouble() < NonSequentialReads)
+                {
+                    TryRead(GetFlatArrayIndex(x, y, playerX, playerY));
+                }
+                else
+                {
+                    var index = GetFlatArrayIndex(xRead, yRead, playerXRead, playerYRead);
+                    TryRead(index);
+                    IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
+                }
+            }
+        }
+
+        Task.WaitAll(tasks);
+    }
+
+    [Benchmark]
+    public void FlatArrayDirectRandom()
+    {
+        var array = sourceArray;
+        var tasks = new Task[ExtraReaderThreads];
+
+        void TryRead(int key)
+        {
+            var cached = array[key];
+
+            _ = cachedWorldPosition + cached;
+        }
+
+        for (int task = 0; task < ExtraReaderThreads; ++task)
+        {
+            tasks[task] = Task.Run(() =>
+            {
+                var random = new Random(RandomSeed);
+                int xRead = 0;
+                int yRead = 0;
+                int playerXRead = 0;
+                int playerYRead = 0;
+
+                for (int i = 0; i < Reads; ++i)
+                {
+                    int key = GetRandomKeyArray(random);
+                    if (random.NextDouble() < NonSequentialReads)
+                    {
+                        TryRead(key);
+                    }
+                    else
+                    {
+                        int index = GetFlatArrayIndex(xRead, yRead, playerXRead, playerYRead);
+                        TryRead(index);
+                        IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
+                    }
+                }
+            });
+        }
+
+        {
+            var random = new Random(RandomSeed);
+            int xRead = 0;
+            int yRead = 0;
+            int playerXRead = 0;
+            int playerYRead = 0;
+
+            for (int i = 0; i < Reads; ++i)
+            {
+                int key = GetRandomKeyArray(random);
+                if (random.NextDouble() < NonSequentialReads)
+                {
+                    TryRead(key);
+                }
+                else
+                {
+                    int index = GetFlatArrayIndex(xRead, yRead, playerXRead, playerYRead);
+                    TryRead(index);
+                    IncrementRead(ref xRead, ref yRead, ref playerXRead, ref playerYRead);
+                }
+            }
+        }
+
+        Task.WaitAll(tasks);
+    }
+
+    // This is the magic that makes ArrayFlatDirectRandomBits fast
+    private static int GetRandomKeyArray(Random random)
+    {
+        var key = random.Next(PlaneOffsets.Length) | random.Next(PlaneOffsets.Length) << 2 |
+            random.Next(PlayerPositions.Length) << 4 | random.Next(PlayerPositions.Length) << 6;
+        return key;
+    }
+
+    private static int GetRandomKeyDirect(Random random)
+    {
+        var key = PlaneOffsets[random.Next(PlaneOffsets.Length)] | PlaneOffsets[random.Next(PlaneOffsets.Length)] << 8 |
+            PlayerPositions[random.Next(PlayerPositions.Length)] << 16 |
+            PlayerPositions[random.Next(PlayerPositions.Length)] << 24;
+        return key;
+    }
+
     private static (int X, int Y, int PlayerX, int PlayerY) GetRandomIndexes(Random random)
     {
         return (random.Next(PlaneOffsets.Length),
@@ -502,10 +787,66 @@ public class FrozenDictionaryBenchmark
         return wholePlaneShift + edgePlanesShift;
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    // Seems like aggressive inlining hurts on these (in specific benchmarks)
+    // [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int GetWorldShiftKey(int x0, int y0, int playerX, int playerY)
     {
         // This is safe as long as the values are max 8 bit long, otherwise they will collide
         return x0 | y0 << 8 | playerX << 16 | playerY << 24;
+    }
+
+    // [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int GetFlatArrayIndex(int x0, int y0, int playerX, int playerY)
+    {
+        // This only works when only a few bits in each value are used, any overflow is not checked for efficiency
+        // reasons here.
+        // Each value gets only 2 bits as values are up to 3 distinct values per item
+
+        // Debug code which is slow (enable only when needed to debug)
+        /*if (x0 > 2 || y0 > 2 || playerX > 2 || playerY > 2)
+            throw new Exception("Logic error in GetFlatArrayIndex");*/
+
+        return x0 | y0 << 2 | playerX << 4 | playerY << 6;
+    }
+
+    private Vector2[] CalculateArrayCache()
+    {
+        // Our keys fit in 256 bits, so we can use a flat array for the backing store.
+        var array = new Vector2[256];
+
+        int worldShift = CLOUD_SIZE / CLOUD_PLANE_SQUARES_PER_SIDE * cloudResolution;
+
+        for (int xIndex = 0; xIndex < PlaneOffsets.Length; ++xIndex)
+        {
+            var x0 = PlaneOffsets[xIndex];
+
+            for (int yIndex = 0; yIndex < PlaneOffsets.Length; ++yIndex)
+            {
+                var y0 = PlaneOffsets[yIndex];
+
+                for (int playerXIndex = 0; playerXIndex < PlayerPositions.Length; ++playerXIndex)
+                {
+                    var playerX = PlayerPositions[playerXIndex];
+
+                    for (int playerYIndex = 0; playerYIndex < PlayerPositions.Length; ++playerYIndex)
+                    {
+                        var playerY = PlayerPositions[playerYIndex];
+
+                        int xShift = GetEdgeShift(x0, playerX);
+                        int yShift = GetEdgeShift(y0, playerY);
+
+                        var wholePlaneShift = new Vector2(worldShift * ((4 - playerX) % 3 - 1) - CLOUD_SIZE,
+                            worldShift * ((4 - playerY) % 3 - 1) - CLOUD_SIZE);
+
+                        var edgePlanesShift = new Vector2(xShift * worldShift, yShift * worldShift);
+
+                        int key = GetFlatArrayIndex(xIndex, yIndex, playerXIndex, playerYIndex);
+                        array[key] = wholePlaneShift + edgePlanesShift;
+                    }
+                }
+            }
+        }
+
+        return array;
     }
 }
