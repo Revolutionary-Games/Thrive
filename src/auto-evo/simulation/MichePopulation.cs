@@ -260,6 +260,9 @@ public static class MichePopulation
                 if (currentSpecies is not MicrobeSpecies microbeSpecies)
                     continue;
 
+                // TODO: When supporting multicellular species replace the MicrobeSpecies check
+                var occupantMicrobeSpecies = node.Occupant as MicrobeSpecies;
+
                 var traversalScore = 0.0f;
 
                 foreach (var currentMiche in currentBackTraversal)
@@ -274,8 +277,7 @@ public static class MichePopulation
 
                     var occupantScore = 0.0f;
 
-                    // TODO: When supporting multicellular species replace the is MicrobeSpecies with a null check
-                    if (currentMiche.Occupant is MicrobeSpecies occupantMicrobeSpecies)
+                    if (occupantMicrobeSpecies != null)
                     {
                         occupantScore =
                             cache.GetPressureScore(currentMiche.Pressure, patch, occupantMicrobeSpecies);
