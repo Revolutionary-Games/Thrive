@@ -53,8 +53,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     TODO: reimplement the cache as a flat array using bit-packing for the index (our unique values are few
-    ///     enough that we only need 256 element array currently). Implementation reference:
+    ///     This could be reimplemented as a 256-element flat array, but that actually loses in most tests to the
+    ///     frozen dictionary and only in very specific optimizer scenarios it wins. See:
     ///     https://forum.revolutionarygamesstudio.com/t/improving-cloud-performance-with-caching/1232/4
     ///   </para>
     /// </remarks>
