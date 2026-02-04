@@ -535,7 +535,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
         // If there are no chunks, look for living prey to hunt
         var possiblePrey = GetNearestPreyItem(ref ai, ref position, ref organelles, ref ourSpecies, ref engulfer,
-            compounds, speciesFocus, speciesAggression, speciesOpportunism, random);
+            compounds, speciesFocus, speciesAggression, speciesOpportunism, random, in entity);
         if (possiblePrey != Entity.Null && possiblePrey.IsAlive())
         {
             Vector3 prey;
@@ -782,15 +782,27 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     private Entity GetNearestPreyItem(ref MicrobeAI ai, ref WorldPosition position,
         ref OrganelleContainer organelles, ref SpeciesMember ourSpecies,
         ref Engulfer engulfer, CompoundBag ourCompounds, float speciesFocus, float speciesAggression,
-        float speciesOpportunism, Random random)
+        float speciesOpportunism, Random random, in Entity entity)
     {
         if (ai.FocusedPrey.IsAliveAndNotNull())
         {
             var focused = ai.FocusedPrey;
             try
             {
-                var distanceToFocusedPrey =
-                    position.Position.DistanceSquaredTo(focused.Get<WorldPosition>().Position);
+                float distanceToFocusedPrey;
+
+                if (entity.Has<MicrobeColonyMember>())
+                {
+                    var colonyLeader = entity.Get<MicrobeColonyMember>().ColonyLeader;
+
+                    distanceToFocusedPrey = colonyLeader.Get<MicrobeColony>()
+                        .GetSquaredDistanceTo(ref focused.Get<WorldPosition>().Position);
+                }
+                else
+                {
+                    distanceToFocusedPrey = position.Position.DistanceSquaredTo(focused.Get<WorldPosition>().Position);
+                }
+
                 if (!focused.Get<Health>().Dead &&
                     focused.Get<Engulfable>().PhagocytosisStep == PhagocytosisPhase.None && distanceToFocusedPrey <
                     3500.0f * speciesFocus / Constants.MAX_SPECIES_FOCUS)
