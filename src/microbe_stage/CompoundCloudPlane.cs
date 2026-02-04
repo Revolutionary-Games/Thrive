@@ -51,6 +51,13 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     ///   Precalculated cache of world shift vectors. This dictionary contains 81 values.
     ///   And is filled in _Ready once the cloud size is known.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: reimplement the cache as a flat array using bit-packing for the index (our unique values are few
+    ///     enough that we only need 256 element array currently). Implementation reference:
+    ///     https://forum.revolutionarygamesstudio.com/t/improving-cloud-performance-with-caching/1232/4
+    ///   </para>
+    /// </remarks>
     private FrozenDictionary<int, Vector2> cachedWorldShiftVectors = null!;
 #endif
 
