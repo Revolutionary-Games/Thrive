@@ -1001,8 +1001,13 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     {
 #if CACHE_WORLD_COORDINATES
         var key = GetWorldShiftKey(x0, y0, playersPosition.X, playersPosition.Y);
-        ref readonly var cached = ref cachedWorldShiftVectors.GetValueRefOrNullRef(key);
+
+        // This uses a direct try get as, according to benchmarks, that is slightly faster with the frozen dictionary
+        /*ref readonly var cached = ref cachedWorldShiftVectors.GetValueRefOrNullRef(key);
         if (!Unsafe.IsNullRef(in cached))
+            return cachedWorldPosition + cached;*/
+
+        if (cachedWorldShiftVectors.TryGetValue(key, out var cached))
             return cachedWorldPosition + cached;
 
 #if DEBUG
