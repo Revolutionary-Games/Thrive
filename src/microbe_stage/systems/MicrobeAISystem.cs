@@ -673,7 +673,20 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             }
 
             // And too distant things
-            var distance = (chunk.Position - position.Position).LengthSquared();
+            float distance;
+
+            if (entity.Has<MicrobeColonyMember>())
+            {
+                var colonyLeader = entity.Get<MicrobeColonyMember>().ColonyLeader;
+                var chunkPosition = chunk.Position;
+
+                distance = (colonyLeader.Get<MicrobeColony>().GetDistanceTo(ref chunkPosition) - position.Position)
+                    .LengthSquared();
+            }
+            else
+            {
+                distance = (chunk.Position - position.Position).LengthSquared();
+            }
 
             if (distance > bestFoundChunkDistance)
                 continue;
