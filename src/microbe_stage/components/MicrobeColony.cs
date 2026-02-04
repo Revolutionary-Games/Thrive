@@ -225,6 +225,23 @@ public static class MicrobeColonyHelpers
     }
 
     /// <summary>
+    ///   Returns the squared distance between the colony member closest to the entity and the entity
+    /// </summary>
+    /// <param name="entity">The position of the entity</param>
+    /// <returns>The squared distance</returns>
+    public static float GetSquaredDistanceTo(this ref MicrobeColony colony, ref Vector3 entity)
+    {
+        List<float> distances = new();
+
+        foreach (Entity member in colony.ColonyMembers)
+        {
+            distances.Add(member.Get<WorldPosition>().Position.DistanceSquaredTo(entity));
+        }
+
+        return distances.Min();
+    }
+
+    /// <summary>
     ///   Whether one or more member of this colony is allowed to enter engulf mode. This is recalculated if
     ///   the value is not currently known.
     /// </summary>
