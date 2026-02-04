@@ -40,7 +40,7 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
     private float playerProtectionRadius = 50;
 
     private int maxSpawnAttempts = 10;
-    private int differentClusterTypeAttempts = 3;
+    private int differentClusterTypeAttempts = 9;
 
     private long baseSeed;
 
@@ -415,7 +415,6 @@ public partial class MicrobeTerrainSystem : BaseSystem<World, float>, IArchivabl
             }
         }
 
-        // TODO: might want to remove this print entirely as it's only really useful when tweaking chunk spawn rates
 #if DEBUG
         if (result.Count < wantedClusters)
         {

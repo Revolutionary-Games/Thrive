@@ -142,9 +142,13 @@ public static class SpawnHelpers
         typeof(MicrobeTerrainChunk), typeof(PredefinedVisuals), typeof(Physics), typeof(PhysicsShapeHolder),
         typeof(CollisionShapeLoader), typeof(StaticBodyMarker));
 
-    private static readonly Signature TerrainWithCustomCollisionSignature = new(typeof(WorldPosition),
+    private static readonly Signature TerrainWithoutCollisionSignature = new(typeof(WorldPosition),
         typeof(SpatialInstance), typeof(MicrobeTerrainChunk), typeof(PredefinedVisuals), typeof(Physics),
-        typeof(PhysicsShapeHolder), typeof(StaticBodyMarker));
+        typeof(StaticBodyMarker));
+
+    private static readonly Signature TerrainCollisionShapeSignature = new(typeof(WorldPosition),
+        typeof(SpatialInstance), typeof(MicrobeTerrainChunk), typeof(Physics), typeof(PhysicsShapeHolder),
+        typeof(StaticBodyMarker));
 
     [Flags]
     private enum ChunkComponentFlag : short
@@ -1050,7 +1054,7 @@ public static class SpawnHelpers
         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0));
     }
 
-    public static void SpawnMicrobeTerrainWithoutFinalizing(CommandBuffer entityRecorder,
+    public static void SpawnTerrainWithoutFinalizing(CommandBuffer entityRecorder,
         IWorldSimulation worldSimulation, Vector3 location,
         TerrainConfiguration.TerrainChunkConfiguration chunkConfiguration, uint groupId, Random random)
     {
@@ -1096,19 +1100,19 @@ public static class SpawnHelpers
     }
 
     public static void SpawnTerrainWithoutCollisionWithoutFinalizing(CommandBuffer entityRecorder,
-        IWorldSimulation worldSimulation, Vector3 location, Quaternion baseRotation,
+        IWorldSimulation worldSimulation, Vector3 location,
         TerrainConfiguration.TerrainChunkConfiguration chunkConfiguration, uint groupId, Random random)
     {
-        var entity = worldSimulation.CreateEntityDeferred(entityRecorder, TerrainWithCustomCollisionSignature);
+        var entity = worldSimulation.CreateEntityDeferred(entityRecorder, TerrainWithoutCollisionSignature);
 
         Quaternion rotation;
         if (chunkConfiguration.RandomizeRotation)
         {
-            rotation = baseRotation * new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
+            rotation = new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
         }
         else
         {
-            rotation = baseRotation * chunkConfiguration.DefaultRotation;
+            rotation = chunkConfiguration.DefaultRotation;
         }
 
         entityRecorder.Set(entity, new WorldPosition(location, rotation));
@@ -1120,10 +1124,6 @@ public static class SpawnHelpers
         });
 
         entityRecorder.Set<Physics>(entity);
-        entityRecorder.Set(entity, new PhysicsShapeHolder
-        {
-            BodyIsStatic = true,
-        });
 
         entityRecorder.Set(entity, new MicrobeTerrainChunk
         {
@@ -1133,20 +1133,16 @@ public static class SpawnHelpers
         entityRecorder.Set<StaticBodyMarker>(entity);
     }
 
-    public static void SpawnTerrainCollisionWithoutFinalizing(CommandBuffer entityRecorder,
+    public static void SpawnTerrainCollisionShapeWithoutFinalizing(CommandBuffer entityRecorder,
         IWorldSimulation worldSimulation, Vector3 location, uint groupId, float radius)
     {
-        var entity = worldSimulation.CreateEntityDeferred(entityRecorder, TerrainWithCustomCollisionSignature);
+        var entity = worldSimulation.CreateEntityDeferred(entityRecorder, TerrainCollisionShapeSignature);
 
         Quaternion rotation = Quaternion.Identity;
 
         entityRecorder.Set(entity, new WorldPosition(location, rotation));
 
         entityRecorder.Set<SpatialInstance>(entity);
-        entityRecorder.Set(entity, new PredefinedVisuals
-        {
-            VisualIdentifier = VisualResourceIdentifier.None,
-        });
 
         entityRecorder.Set<Physics>(entity);
         entityRecorder.Set(entity, new PhysicsShapeHolder
