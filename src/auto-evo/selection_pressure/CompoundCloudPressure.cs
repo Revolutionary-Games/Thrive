@@ -1,7 +1,6 @@
 ﻿namespace AutoEvo;
 
 using System;
-using Godot;
 using SharedBase.Archive;
 
 public class CompoundCloudPressure : SelectionPressure
@@ -71,8 +70,6 @@ public class CompoundCloudPressure : SelectionPressure
             return 0;
 
         var score = MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.6f);
-
-        GD.Print(compound, " pressure called");
 
         var activity = microbeSpecies.Behaviour.Activity;
 
