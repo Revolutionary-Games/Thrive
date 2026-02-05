@@ -208,39 +208,46 @@ public static class MicrobeColonyHelpers
     }
 
     /// <summary>
-    ///   Returns the direction from the colony member closest to the entity and the entity
+    ///   Gets the direction from the colony member closest to the entity and the entity
     /// </summary>
     /// <param name="colony">The colony</param>
     /// <param name="entity">The position of the entity</param>
     /// <returns>The direction</returns>
     public static Vector3 GetDirectionTo(this ref MicrobeColony colony, ref Vector3 entity)
     {
-        List<Vector3> directions = new();
+        var currentShortestDirection = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
 
         foreach (Entity member in colony.ColonyMembers)
         {
-            directions.Add(member.Get<WorldPosition>().Position.DirectionTo(entity));
+            if (member.Get<WorldPosition>().Position.DirectionTo(entity).X < currentShortestDirection.X
+                && member.Get<WorldPosition>().Position.DirectionTo(entity).Z < currentShortestDirection.Z)
+            {
+                currentShortestDirection = member.Get<WorldPosition>().Position.DirectionTo(entity);
+            }
         }
 
-        return directions.Min();
+        return currentShortestDirection;
     }
 
     /// <summary>
-    ///   Returns the squared distance between the colony member closest to the entity and the entity
+    ///   Gets the squared distance between the colony member closest to the entity and the entity
     /// </summary>
     /// <param name="colony">The colony</param>
     /// <param name="entity">The position of the entity</param>
     /// <returns>The squared distance</returns>
     public static float GetSquaredDistanceTo(this ref MicrobeColony colony, ref Vector3 entity)
     {
-        List<float> distances = new();
+        var currentShortestSquaredDistance = float.MaxValue;
 
         foreach (Entity member in colony.ColonyMembers)
         {
-            distances.Add(member.Get<WorldPosition>().Position.DistanceSquaredTo(entity));
+            if (member.Get<WorldPosition>().Position.DistanceSquaredTo(entity) < currentShortestSquaredDistance)
+            {
+                currentShortestSquaredDistance = member.Get<WorldPosition>().Position.DistanceSquaredTo(entity);
+            }
         }
 
-        return distances.Min();
+        return currentShortestSquaredDistance;
     }
 
     /// <summary>
