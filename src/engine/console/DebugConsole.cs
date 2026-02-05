@@ -50,14 +50,6 @@ public partial class DebugConsole : CustomWindow
         base._ExitTree();
     }
 
-    public void AddPrivateLog(DebugConsoleManager.RawDebugEntry line)
-    {
-        var debugEntryFactory = DebugConsoleManager.Instance.DebugEntryFactory;
-
-        debugEntryFactory.TryAddMessage(line.Id, line, true);
-        debugEntryFactory.UpdateDebugEntry(line.Id);
-    }
-
     public void Clear()
     {
         lastClearId = DebugConsoleManager.Instance.MessageCountInHistory;

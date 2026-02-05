@@ -16,7 +16,10 @@ public class CommandContext(DebugConsole? debugConsole, int executionToken)
 
         if (debugConsole != null)
         {
-            debugConsole.AddPrivateLog(debugEntry);
+            var debugEntryFactory = DebugConsoleManager.Instance.DebugEntryFactory;
+
+            debugEntryFactory.TryAddMessage(executionToken, debugEntry, true);
+            debugEntryFactory.UpdateDebugEntry(executionToken);
         }
         else
         {

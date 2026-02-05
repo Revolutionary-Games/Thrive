@@ -232,6 +232,15 @@ public partial class DebugEntryList : Control
     {
         globalStartId = DebugConsoleManager.Instance.MessageCountInHistory;
         privateHistory.Clear();
+
+        foreach (var label in entryLabels)
+        {
+            label.Text = string.Empty;
+            label.Visible = false;
+        }
+
+        scrollBar.Value = 0;
+        lastIdLoaded = 0;
     }
 
     public void AddPrivateEntry(DebugEntry entry)

@@ -140,6 +140,9 @@ public partial class DebugConsoleManager : Node
     /// <param name="rawDebugEntry">The console line data</param>
     public void Print(RawDebugEntry rawDebugEntry)
     {
+        if (rawDebugEntry.Line.StartsWith("☺"))
+            return;
+
         // Avoid logging empty messages.
         if (rawDebugEntry.Line == string.Empty)
             return;
