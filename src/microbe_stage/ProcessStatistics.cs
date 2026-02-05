@@ -1,10 +1,9 @@
-﻿using Godot;
-using Nito.Collections;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Godot;
+using Nito.Collections;
 
 /// <summary>
 ///   Holds process running statistics information

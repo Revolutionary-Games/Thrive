@@ -1,4 +1,3 @@
-using Microsoft.CodeAnalysis;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -64,7 +63,7 @@ public partial class SummedProcessStatistics : IProcessDisplayInfo
     /// </summary>
     public IReadOnlyDictionary<Compound, float> Outputs => summedOutputs;
 
-    public IReadOnlyList<Compound> LimitingCompounds { get; set; }
+    public IReadOnlyList<Compound>? LimitingCompounds { get; set; }
 
     public bool Enabled { get; set; }
 
@@ -127,5 +126,10 @@ public partial class SummedProcessStatistics : IProcessDisplayInfo
         summedSpeed += displayInfo.CurrentSpeed;
 
         ++summedProcesses;
+    }
+
+    public override int GetHashCode()
+    {
+        return 3079 ^ Process.GetHashCode();
     }
 }
