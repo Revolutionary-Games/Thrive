@@ -4,7 +4,7 @@ using System.Linq;
 /// <summary>
 ///   Summed statistics of multiple processes
 /// </summary>
-public partial class SummedProcessStatistics : IProcessDisplayInfo
+public class SummedProcessStatistics : IProcessDisplayInfo
 {
     private readonly Dictionary<Compound, float> summedInputs = new();
 
@@ -72,31 +72,6 @@ public partial class SummedProcessStatistics : IProcessDisplayInfo
         return process == Process.Process;
     }
 
-    public bool Equals(IProcessDisplayInfo? obj)
-    {
-        if (ReferenceEquals(null, obj))
-            return false;
-        if (ReferenceEquals(this, obj))
-            return true;
-
-        return obj.MatchesUnderlyingProcess(Process.Process);
-    }
-
-    public override bool Equals(object? obj)
-    {
-        if (ReferenceEquals(null, obj))
-            return false;
-        if (ReferenceEquals(this, obj))
-            return true;
-
-        if (obj is SummedProcessStatistics statistics)
-        {
-            return Equals(this, statistics);
-        }
-
-        return false;
-    }
-
     public void AddProcess(IProcessDisplayInfo displayInfo)
     {
         foreach (var input in displayInfo.Inputs)
@@ -126,6 +101,31 @@ public partial class SummedProcessStatistics : IProcessDisplayInfo
         summedSpeed += displayInfo.CurrentSpeed;
 
         ++summedProcesses;
+    }
+
+    public bool Equals(IProcessDisplayInfo? obj)
+    {
+        if (ReferenceEquals(null, obj))
+            return false;
+        if (ReferenceEquals(this, obj))
+            return true;
+
+        return obj.MatchesUnderlyingProcess(Process.Process);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (ReferenceEquals(null, obj))
+            return false;
+        if (ReferenceEquals(this, obj))
+            return true;
+
+        if (obj is SummedProcessStatistics statistics)
+        {
+            return Equals(this, statistics);
+        }
+
+        return false;
     }
 
     public override int GetHashCode()
