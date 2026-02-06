@@ -240,9 +240,11 @@ public static class MicrobeColonyHelpers
 
         foreach (Entity member in colony.ColonyMembers)
         {
-            if (member.Get<WorldPosition>().Position.DistanceSquaredTo(entityPosition) < currentShortestSquaredDistance)
+            var currentSquaredDistance = member.Get<WorldPosition>().Position.DistanceSquaredTo(entityPosition);
+
+            if (currentSquaredDistance < currentShortestSquaredDistance)
             {
-                currentShortestSquaredDistance = member.Get<WorldPosition>().Position.DistanceSquaredTo(entityPosition);
+                currentShortestSquaredDistance = currentSquaredDistance;
             }
         }
 
