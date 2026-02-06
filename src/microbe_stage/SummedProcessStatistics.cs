@@ -14,8 +14,6 @@ public class SummedProcessStatistics : IProcessDisplayInfo
 
     private readonly Dictionary<Compound, float> summedOutputs = new();
 
-    private int summedProcesses;
-
     private float summedSpeed;
 
     public SummedProcessStatistics(IProcessDisplayInfo displayInfo)
@@ -44,7 +42,7 @@ public class SummedProcessStatistics : IProcessDisplayInfo
 
     public string Name => Process.Process.Name;
 
-    public float CurrentSpeed => summedSpeed / summedProcesses;
+    public float CurrentSpeed => summedSpeed;
 
     public IEnumerable<KeyValuePair<Compound, float>> Inputs => summedInputs;
 
@@ -100,8 +98,6 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         }
 
         summedSpeed += displayInfo.CurrentSpeed;
-
-        ++summedProcesses;
     }
 
     public bool Equals(IProcessDisplayInfo? obj)
@@ -111,7 +107,10 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         if (ReferenceEquals(this, obj))
             return true;
 
-        return obj.MatchesUnderlyingProcess(Process.Process);
+        if (!obj.MatchesUnderlyingProcess(Process.Process))
+            return false;
+
+        return summedSpeed == obj.CurrentSpeed;
     }
 
     public override bool Equals(object? obj)
@@ -131,6 +130,6 @@ public class SummedProcessStatistics : IProcessDisplayInfo
 
     public override int GetHashCode()
     {
-        return 3079 ^ Process.GetHashCode();
+        return 3079 ^ summedSpeed.GetHashCode() ^ Process.GetHashCode();
     }
 }
