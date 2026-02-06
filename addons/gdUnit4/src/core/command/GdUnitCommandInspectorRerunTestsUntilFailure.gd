@@ -29,7 +29,7 @@ func execute(..._parameters: Array) -> void:
 	var selected_item := inspector._tree.get_selected()
 	var tests_to_execute := inspector.collect_test_cases(selected_item)
 	var rerun_until_failure_count := GdUnitSettings.get_rerun_max_retries()
-	var saved_settings := ProjectSettings.get_setting(GdUnitSettings.TEST_FLAKY_CHECK)
+	var saved_settings: bool = ProjectSettings.get_setting(GdUnitSettings.TEST_FLAKY_CHECK)
 	ProjectSettings.set_setting(GdUnitSettings.TEST_FLAKY_CHECK, false)
 
 	GdUnitSignals.instance().gdunit_event.connect(_on_test_event)

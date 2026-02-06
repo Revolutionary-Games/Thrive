@@ -187,8 +187,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         if (ai.TimeUntilNextThink > 0)
             return;
 
-        // TODO: would be nice to add a tiny bit of randomness to the times here so that not all cells think at once
-        ai.TimeUntilNextThink = Constants.MICROBE_AI_THINK_INTERVAL;
+        var random = GetNextAIRandom();
+        ai.TimeUntilNextThink = Constants.MICROBE_AI_THINK_INTERVAL + (random.NextSingle() * 0.1f - 0.05f);
 
         // This is probably pretty useless for most situations, but hopefully this doesn't eat too much
         // performance
@@ -477,8 +477,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             isIronEater = false;
 
         // If there are no threats, look for a chunk to eat
-        // TODO: still consider engulfing things if we're in a colony that can engulf (has engulfer cells)
-        if (cellProperties.MembraneType.CanEngulf)
+        if (cellProperties.MembraneType.CanEngulf || cellProperties.CanEngulfInColony(in entity))
         {
             var targetChunk = GetNearestChunkItem(in entity, ref engulfer, ref control, ref position, compounds,
                 speciesFocus, speciesOpportunism, random, isIronEater, strain, out var isChunkBigIron);
@@ -1260,8 +1259,9 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     /// </remarks>
     private bool IsVitalCompound(Compound compound, CompoundBag compounds)
     {
-        // TODO: looking for mucilage should be prevented
-        return compounds.IsUseful(compound) && compound is Compound.Glucose or Compound.Iron;
+        return compound is not Compound.Mucilage
+            && compounds.IsUseful(compound)
+            && compound is Compound.Glucose or Compound.Iron;
     }
 
     private void SetEngulfIfClose(ref MicrobeControl control, ref Engulfer engulfer, ref WorldPosition position,

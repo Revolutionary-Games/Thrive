@@ -67,7 +67,7 @@ func _init(server_name := "GdUnit4 TCP Server") -> void:
 	GdUnitSignals.instance().gdunit_test_session_terminate.connect(func() -> void:
 		for connection in get_children():
 			if connection is TcpConnection:
-				connection.disconnect_from_server()
+				(connection as TcpConnection).disconnect_from_server()
 	)
 
 
