@@ -32,6 +32,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private readonly Dictionary<CompoundDefinition, InspectedEntityLabel> hoveredCompoundControls = new();
 
+    private readonly Dictionary<TweakedProcess, SummedProcessStatistics> processPanelWorkSpace = new();
+
     [Export]
     private ActionButton bindingModeHotkey = null!;
 
@@ -535,16 +537,16 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     protected override IEnumerable<IProcessDisplayInfo> GetPlayerProcessStatistics()
     {
-        var list = new Dictionary<TweakedProcess, SummedProcessStatistics>();
+        processPanelWorkSpace.Clear();
 
         foreach (var process in stage!.Player.Get<BioProcesses>().ProcessStatistics!.Processes)
         {
             var display = process.Value.ComputeAverageValues();
 
-            if (!list.TryGetValue(process.Key, out var stats))
+            if (!processPanelWorkSpace.TryGetValue(process.Key, out var stats))
             {
                 stats = new SummedProcessStatistics(display);
-                list[process.Key] = stats;
+                processPanelWorkSpace[process.Key] = stats;
             }
             else
             {
@@ -560,10 +562,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 {
                     var display = process.Value.ComputeAverageValues();
 
-                    if (!list.TryGetValue(process.Key, out var stats))
+                    if (!processPanelWorkSpace.TryGetValue(process.Key, out var stats))
                     {
                         stats = new SummedProcessStatistics(display);
-                        list[process.Key] = stats;
+                        processPanelWorkSpace[process.Key] = stats;
                     }
                     else
                     {
@@ -573,7 +575,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             }
         }
 
-        return list.Values;
+        return processPanelWorkSpace.Values;
     }
 
     protected override void CalculatePlayerReproductionProgress(Dictionary<Compound, float> gatheredCompounds,
