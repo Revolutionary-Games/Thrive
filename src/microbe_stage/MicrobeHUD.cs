@@ -535,11 +535,20 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         ingestedMatterBar.UpdateValue(GetPlayerUsedIngestionCapacity(), maxSize);
     }
 
-    protected override IEnumerable<IProcessDisplayInfo> GetPlayerProcessStatistics()
+    protected override IEnumerable<IProcessDisplayInfo>? GetPlayerProcessStatistics()
     {
         processPanelWorkSpace.Clear();
 
-        foreach (var process in stage!.Player.Get<BioProcesses>().ProcessStatistics!.Processes)
+        var playerProcesses = stage!.Player.Get<BioProcesses>().ProcessStatistics?.Processes;
+
+        if (playerProcesses == null)
+        {
+            GD.PrintErr("Player process statistics are uninitialized, can't display them in the process panel");
+
+            return null;
+        }
+
+        foreach (var process in playerProcesses)
         {
             var display = process.Value.ComputeAverageValues();
 
@@ -558,7 +567,16 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             for (int i = 1; i < colony.ColonyMembers.Length; ++i)
             {
-                foreach (var process in colony.ColonyMembers[i].Get<BioProcesses>().ProcessStatistics!.Processes)
+                var colonyMemberProcesses = colony.ColonyMembers[i].Get<BioProcesses>().ProcessStatistics?.Processes;
+
+                if (colonyMemberProcesses == null)
+                {
+                    GD.PrintErr("Colony member process statistics are uninitialized, can't display them in the process panel");
+
+                    return null;
+                }
+
+                foreach (var process in colonyMemberProcesses)
                 {
                     var display = process.Value.ComputeAverageValues();
 
