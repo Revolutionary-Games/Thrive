@@ -45,7 +45,17 @@ fossilisationFailedDialog = NodePath("FossilisationFailedDialog")
 WindowTitle = "FOSSILISATION"
 ExclusiveAllowCloseOnEscape = false
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="." index="0" unique_id=406948132]
+[node name="VBoxContainer" parent="." index="0" unique_id=146557504]
+visible = false
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 152.0
+offset_bottom = 69.0
+
+[node name="FocusGrabber" parent="VBoxContainer" index="4" unique_id=158342970]
+NodeToGiveFocusTo = NodePath("../../VBoxContainer2/HBoxContainer/CancelButton")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." index="1" unique_id=406948132]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 11.0
@@ -131,7 +141,7 @@ text = "FOSSILISE"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="OverwriteNameConfirmation" parent="." index="1" unique_id=1179250609 instance=ExtResource("4")]
+[node name="OverwriteNameConfirmation" parent="." index="2" unique_id=1179250609 instance=ExtResource("4")]
 custom_minimum_size = Vector2(440, 0)
 layout_mode = 0
 offset_left = 1.0
@@ -140,13 +150,15 @@ offset_right = 935.0
 offset_bottom = 599.0
 WindowTitle = "CONFIRM_FOSSILISATION_OVERWRITE"
 
-[node name="FossilisationFailedDialog" parent="." index="2" unique_id=2095718850 instance=ExtResource("4")]
+[node name="FossilisationFailedDialog" parent="." index="3" unique_id=2095718850 instance=ExtResource("4")]
 custom_minimum_size = Vector2(440, 0)
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 935.0
 offset_bottom = 599.0
+HideCancelButton = true
+DialogText = "FOSSILISATION_FAILED_DESCRIPTION"
 WindowTitle = "FOSSILISATION_FAILED"
 
 [connection signal="text_changed" from="VBoxContainer2/HBoxContainer2/SpeciesName" to="." method="OnNameTextChanged"]
@@ -154,3 +166,4 @@ WindowTitle = "FOSSILISATION_FAILED"
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer2/RandomizeButton" to="." method="OnRandomizeNamePressed"]
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer/CancelButton" to="." method="OnCancelPressed"]
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer/FossiliseButton" to="." method="OnFossilisePressed"]
+[connection signal="Confirmed" from="OverwriteNameConfirmation" to="." method="FossiliseSpecies"]
