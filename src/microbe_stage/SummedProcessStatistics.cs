@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
@@ -56,7 +56,8 @@ public class SummedProcessStatistics : IProcessDisplayInfo
     /// <summary>
     ///   Environment inputs that result in process running at maximum speed
     /// </summary>
-    public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs => summedFullSpeedRequiredEnvironmentalInputs;
+    public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
+        summedFullSpeedRequiredEnvironmentalInputs;
 
     /// <summary>
     ///   All the output compounds

@@ -42,15 +42,7 @@ public partial class ProcessPanel : CustomWindow
         if (!IsVisibleInTree())
             return;
 
-        if (ShownData != null)
-        {
-            // Update the list object
-            processList.ProcessesToShow = ShownData;
-        }
-        else
-        {
-            processList.ProcessesToShow = null;
-        }
+        processList.ProcessesToShow = ShownData;
     }
 
     private void ToggleProcessToggled(ChemicalEquation equation, bool enabled)
