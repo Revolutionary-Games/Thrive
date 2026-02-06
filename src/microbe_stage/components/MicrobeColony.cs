@@ -207,21 +207,21 @@ public static class MicrobeColonyHelpers
     }
 
     /// <summary>
-    ///   Gets the direction from the colony member closest to the entity and the entity
+    ///   Gets the direction from the colony member closest to the entity to that entity
     /// </summary>
     /// <param name="colony">The colony</param>
-    /// <param name="entity">The position of the entity</param>
+    /// <param name="entityPosition">The position of the entity</param>
     /// <returns>The direction</returns>
-    public static Vector3 GetDirectionTo(this ref MicrobeColony colony, ref Vector3 entity)
+    public static Vector3 GetDirectionTo(this ref MicrobeColony colony, Vector3 entityPosition)
     {
         var currentShortestDirection = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
 
         foreach (Entity member in colony.ColonyMembers)
         {
-            if (member.Get<WorldPosition>().Position.DirectionTo(entity).X < currentShortestDirection.X
-                && member.Get<WorldPosition>().Position.DirectionTo(entity).Z < currentShortestDirection.Z)
+            if (member.Get<WorldPosition>().Position.DirectionTo(entityPosition).X < currentShortestDirection.X
+                && member.Get<WorldPosition>().Position.DirectionTo(entityPosition).Z < currentShortestDirection.Z)
             {
-                currentShortestDirection = member.Get<WorldPosition>().Position.DirectionTo(entity);
+                currentShortestDirection = member.Get<WorldPosition>().Position.DirectionTo(entityPosition);
             }
         }
 
@@ -229,20 +229,20 @@ public static class MicrobeColonyHelpers
     }
 
     /// <summary>
-    ///   Gets the squared distance between the colony member closest to the entity and the entity
+    ///   Gets the squared distance between the colony member closest to the entity to that entity
     /// </summary>
     /// <param name="colony">The colony</param>
-    /// <param name="entity">The position of the entity</param>
+    /// <param name="entityPosition">The position of the entity</param>
     /// <returns>The squared distance</returns>
-    public static float GetSquaredDistanceTo(this ref MicrobeColony colony, ref Vector3 entity)
+    public static float GetSquaredDistanceTo(this ref MicrobeColony colony, Vector3 entityPosition)
     {
         var currentShortestSquaredDistance = float.MaxValue;
 
         foreach (Entity member in colony.ColonyMembers)
         {
-            if (member.Get<WorldPosition>().Position.DistanceSquaredTo(entity) < currentShortestSquaredDistance)
+            if (member.Get<WorldPosition>().Position.DistanceSquaredTo(entityPosition) < currentShortestSquaredDistance)
             {
-                currentShortestSquaredDistance = member.Get<WorldPosition>().Position.DistanceSquaredTo(entity);
+                currentShortestSquaredDistance = member.Get<WorldPosition>().Position.DistanceSquaredTo(entityPosition);
             }
         }
 

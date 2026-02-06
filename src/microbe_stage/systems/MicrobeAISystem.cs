@@ -680,7 +680,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 var colonyLeader = entity.Get<MicrobeColony>().Leader;
                 var chunkPosition = chunk.Position;
 
-                distance = (colonyLeader.Get<MicrobeColony>().GetDirectionTo(ref chunkPosition) - position.Position)
+                distance = (colonyLeader.Get<MicrobeColony>().GetDirectionTo(chunkPosition) - position.Position)
                     .LengthSquared();
             }
             else
@@ -796,7 +796,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                     var colonyLeader = entity.Get<MicrobeColony>().Leader;
 
                     distanceToFocusedPrey = colonyLeader.Get<MicrobeColony>()
-                        .GetSquaredDistanceTo(ref focused.Get<WorldPosition>().Position);
+                        .GetSquaredDistanceTo(focused.Get<WorldPosition>().Position);
                 }
                 else
                 {
