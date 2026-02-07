@@ -53,6 +53,9 @@ public partial class DebugConsoleManager : Node
 
     public override void _Process(double delta)
     {
+        // We choose to stack equivalent consecutive messages, while forcing separation on different entries.
+        const DebugEntryFactory.AddMessageMode addMessageMode = DebugEntryFactory.AddMessageMode.Split;
+
         if (OnHistoryUpdated == null)
             return;
 
@@ -67,14 +70,14 @@ public partial class DebugConsoleManager : Node
             {
                 int id = rawDebugEntry.Id;
 
-                if (!DebugEntryFactory.TryAddMessage(id, rawDebugEntry))
+                if (!DebugEntryFactory.TryAddMessage(id, rawDebugEntry, addMessageMode))
                 {
                     DebugEntryFactory.UpdateDebugEntry(id);
                     DebugEntryFactory.Flush(id);
                     activeEntries.Remove(id);
 
                     DebugEntryFactory.NotifyRootMessage(id, rawDebugEntry);
-                    if (DebugEntryFactory.TryAddMessage(id, rawDebugEntry))
+                    if (DebugEntryFactory.TryAddMessage(id, rawDebugEntry, addMessageMode))
                     {
                         var newEntry = DebugEntryFactory.GetDebugEntry(id);
                         history.AddToBack(newEntry);

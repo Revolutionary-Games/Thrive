@@ -28,7 +28,7 @@ public partial class DebugEntryList : Control
 #pragma warning restore CA2213
 
     [Export]
-    private int entrySeparation = 3;
+    private int entrySeparation = 2;
 
     [Export]
     private int leftMargin = 3;

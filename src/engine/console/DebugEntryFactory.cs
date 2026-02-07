@@ -16,6 +16,25 @@ public class DebugEntryFactory
 
     private readonly Dictionary<int, DebugEntryFactoryPipeline> pipelines = new();
 
+    [Flags]
+    public enum AddMessageMode
+    {
+        /// <summary>
+        ///   This mode causes messages to be stacked into a single entry if equivalent.
+        /// </summary>
+        Normal = 0b00,
+
+        /// <summary>
+        ///   This mode forces messages to not be stacked into a single entry if equivalent.
+        /// </summary>
+        NoStacking = 0b01,
+
+        /// <summary>
+        ///   This mode forces messages to be split into different entries if different.
+        /// </summary>
+        Split = 0b10,
+    }
+
     /// <summary>
     ///   The maximum timestamp difference required to stack two consecutive messages into one, in ticks (100 ns).
     /// </summary>
@@ -154,54 +173,58 @@ public class DebugEntryFactory
     ///   are stacked and the new message is different, or in case the messages are different and the new message
     ///   requires stacking. If this method fails, a new DebugEntryPanel should be created.
     /// </summary>
-    /// <param name="id">The message id</param>
-    /// <param name="rawDebugEntry">The console rawDebugEntry to append.</param>
-    /// <param name="suppressMessageStacking">Whether message stacking should be suppressed. Default is false.</param>
+    /// <param name="id"> The message id </param>
+    /// <param name="rawDebugEntry"> The console rawDebugEntry to append.</param>
+    /// <param name="messageMode"> The way this entry should be processed.</param>
     /// <returns>true if adding the message was successful, false otherwise.</returns>
     public bool TryAddMessage(int id, DebugConsoleManager.RawDebugEntry rawDebugEntry,
-        bool suppressMessageStacking = false)
+        AddMessageMode messageMode = AddMessageMode.Normal)
     {
         var pipeline = GetPipeline(id, rawDebugEntry.Timestamp, out _);
         var lastMessage = pipeline.LastMessage;
         var isFirstMessage = lastMessage.Id == -1;
+        var split = (messageMode & AddMessageMode.Split) == AddMessageMode.Split;
+        var noStack = (messageMode & AddMessageMode.NoStacking) == AddMessageMode.NoStacking;
 
-        if (suppressMessageStacking || rawDebugEntry != lastMessage)
+        if (noStack || rawDebugEntry != lastMessage)
         {
-            if (lastMessage.Amount > 1)
-            {
-                // The current new message is different from the multiple equivalent previous messages.
-                return false;
-            }
+            // Time debug entry coalesce disabled. See: https://github.com/Revolutionary-Games/Thrive/pull/6669
+            // The following commented code was responsible for coalescing time-sensitive message bursts.
+            // We decided disabling it because it caused inconsistency in the time-ordering of messages in the console.
+            // Maybe, in the future, this can be implemented as more robust code that also involves stack traces to
+            // allow for better filtering of messages.
 
+            /*
             if ((!rawDebugEntry.NoTimeDifference || MaxTimestampDifferenceForStacking <= 0) && !isFirstMessage &&
                 rawDebugEntry.Timestamp - lastMessage.Timestamp >= MaxTimestampDifferenceForStacking)
             {
                 return false;
             }
-
-            // The current new message is different from the previous one, or we suppressed message stacking
-            // so we can append it.
-            AddMessage(pipeline, rawDebugEntry, false);
+            */
 
             if (!isFirstMessage)
             {
+                if (split)
+                    return false;
+
                 pipeline.MultipleMessages = true;
             }
+
+            AddMessage(pipeline, rawDebugEntry, false);
+
+            return true;
         }
-        else
+
+        // Message should be stacked. See if it's possible.
+        // This entry contains multiple different messages, so we need a fresh new entry.
+        if (pipeline.MultipleMessages)
         {
-            if (pipeline.MultipleMessages)
-            {
-                // This DebugEntryPanel shows multiple different messages, so to stack multiple new messages we need
-                // another DebugEntryPanel.
-
-                return false;
-            }
-
-            // The current new message is equivalent to the previous one. Instead of appending it, we stack them and
-            // increment the amount counter.
-            AddMessage(pipeline, rawDebugEntry, true);
+            return false;
         }
+
+        // The current new message is equivalent to the previous one. Instead of appending it, we stack them and
+        // increment the amount counter.
+        AddMessage(pipeline, rawDebugEntry, true);
 
         return true;
     }
@@ -210,7 +233,6 @@ public class DebugEntryFactory
         bool stack)
     {
         var lastMessage = pipeline.LastMessage;
-        var amountStringBuilder = pipeline.AmountStringBuilder;
         var richTextBuilder = pipeline.RichTextBuilder;
 
         if (stack)
@@ -219,12 +241,6 @@ public class DebugEntryFactory
         }
         else
         {
-            if (lastMessage.Amount > 1 && amountStringBuilder != null)
-            {
-                richTextBuilder.Append(amountStringBuilder);
-                amountStringBuilder.Clear();
-            }
-
             // RichText to set foreground color.
             richTextBuilder.Append($"[color=#{message.Color.ToHtml()}]");
             richTextBuilder.Append(message.Line);

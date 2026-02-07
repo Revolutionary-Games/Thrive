@@ -18,7 +18,7 @@ public class CommandContext(DebugConsole? debugConsole, int executionToken)
         {
             var debugEntryFactory = DebugConsoleManager.Instance.DebugEntryFactory;
 
-            debugEntryFactory.TryAddMessage(executionToken, debugEntry, true);
+            debugEntryFactory.TryAddMessage(executionToken, debugEntry, DebugEntryFactory.AddMessageMode.NoStacking);
             debugEntryFactory.UpdateDebugEntry(executionToken);
         }
         else
