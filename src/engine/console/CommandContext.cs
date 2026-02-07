@@ -9,23 +9,28 @@ public class CommandContext(DebugConsole? debugConsole, int executionToken)
         debugConsole?.Clear();
     }
 
-    public void Print(string message, Color color)
+    public void Print(DebugConsoleManager.RawDebugEntry entry)
     {
-        var debugEntry = new DebugConsoleManager.RawDebugEntry(message, color, Stopwatch.GetTimestamp(), executionToken,
-            true);
-
         if (debugConsole != null)
         {
             var debugEntryFactory = DebugConsoleManager.Instance.DebugEntryFactory;
 
-            debugEntryFactory.TryAddMessage(executionToken, debugEntry, DebugEntryFactory.AddMessageMode.NoStacking);
+            debugEntryFactory.TryAddMessage(executionToken, entry, DebugEntryFactory.AddMessageMode.NoStacking);
             debugEntryFactory.UpdateDebugEntry(executionToken);
         }
         else
         {
             // We're headless, so we log to the global history.
-            DebugConsoleManager.Instance.Print(debugEntry);
+            DebugConsoleManager.Instance.Print(entry);
         }
+    }
+
+    public void Print(string message, Color color)
+    {
+        var debugEntry = new DebugConsoleManager.RawDebugEntry(message, color, Stopwatch.GetTimestamp(), executionToken,
+            true);
+
+        Print(debugEntry);
     }
 
     public void Print(string message)

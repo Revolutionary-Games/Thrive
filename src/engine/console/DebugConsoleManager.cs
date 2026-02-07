@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using Godot;
 using Nito.Collections;
 using Environment = System.Environment;
@@ -76,7 +75,7 @@ public partial class DebugConsoleManager : Node
                     DebugEntryFactory.Flush(id);
                     activeEntries.Remove(id);
 
-                    DebugEntryFactory.NotifyRootMessage(id, rawDebugEntry);
+                    DebugEntryFactory.ResetTimestamp(id, rawDebugEntry.Timestamp);
                     if (DebugEntryFactory.TryAddMessage(id, rawDebugEntry, addMessageMode))
                     {
                         var newEntry = DebugEntryFactory.GetDebugEntry(id);
@@ -156,7 +155,6 @@ public partial class DebugConsoleManager : Node
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public DebugEntry GetMessageAt(int id)
     {
         return history[id];
@@ -198,7 +196,6 @@ public partial class DebugConsoleManager : Node
             return id;
 
         var liveEntry = DebugEntryFactory.GetDebugEntry(id);
-        history.AddToBack(liveEntry);
         activeEntries[id] = liveEntry;
 
         return id;

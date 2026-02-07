@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using Godot;
 
@@ -59,16 +60,16 @@ public class DebugEntryFactory
     ///   This should be called right after flushing a pipeline to initialize the timestamp.
     /// </summary>
     /// <param name="id"> The pipeline id. </param>
-    /// <param name="toProcess"> The first RawDebugEntry to process in the flushed pipeline. </param>
+    /// <param name="timestamp"> The timestamp. </param>
     /// <returns>true iff the pipeline exists.</returns>
-    public bool NotifyRootMessage(int id, DebugConsoleManager.RawDebugEntry toProcess)
+    public bool ResetTimestamp(int id, long timestamp)
     {
         if (!pipelines.TryGetValue(id, out var pipeline))
             return false;
 
         // We need to keep track of the initial timestamp when we flush to start processing a new entry.
         // The first timestamp on the pipeline is handled by GetPipeline.
-        pipeline.BeginTimestamp = toProcess.Timestamp;
+        pipeline.BeginTimestamp = timestamp;
 
         return true;
     }
@@ -111,9 +112,15 @@ public class DebugEntryFactory
         return true;
     }
 
+    /// <summary>
+    ///   Returns the debug entry associated with the provided id. Please note that this method creates a new debug
+    ///   entry if it doesn't exist, so you should reset the timestamp before calling this.
+    /// </summary>
+    /// <param name="id"> The pipeline id associated with the requested debug entry. </param>
+    /// <param name="freeze"> Whether this entry should be frozen. Default is false. </param>
     public DebugEntry GetDebugEntry(int id, bool freeze = false)
     {
-        var pipeline = GetPipeline(id, 0, out var richTextBuilder);
+        var pipeline = GetPipeline(id, Stopwatch.GetTimestamp(), out var richTextBuilder);
 
         if (pipeline.DebugEntryCache != null)
             return pipeline.DebugEntryCache;

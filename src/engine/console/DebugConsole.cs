@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Godot;
 
 /// <summary>
@@ -6,9 +7,6 @@ using Godot;
 /// </summary>
 public partial class DebugConsole : CustomWindow
 {
-    private int lastClearId;
-    private int lastMessageId;
-
 #pragma warning disable CA2213
     [Export]
     private DebugEntryList debugEntryList = null!;
@@ -52,7 +50,6 @@ public partial class DebugConsole : CustomWindow
 
     public void Clear()
     {
-        lastClearId = DebugConsoleManager.Instance.MessageCountInHistory;
         debugEntryList.Clear();
         RefreshLogs();
     }
@@ -111,12 +108,16 @@ public partial class DebugConsole : CustomWindow
 
         int executionToken = debugConsoleManager.GetAvailableCustomDebugEntryId();
 
+        debugEntryFactory.ResetTimestamp(executionToken, Stopwatch.GetTimestamp());
+
         debugEntryList.AddPrivateEntry(debugEntryFactory.GetDebugEntry(executionToken));
 
         var context = new CommandContext(this, executionToken);
+        var commandMessage = new DebugConsoleManager.RawDebugEntry($"Command > {cmd}\n", Colors.LightGray,
+            Stopwatch.GetTimestamp(), executionToken);
 
         // Prints command in console and updates the entry to immediately show what command is being executed.
-        context.Print($"Command > {cmd}\n", Colors.LightGray);
+        context.Print(commandMessage);
         debugEntryFactory.UpdateDebugEntry(executionToken);
 
         commandRegistry.Execute(context, cmd);

@@ -112,10 +112,13 @@ public partial class DebugEntryList : Control
         int currentGlobalId = globalStartId;
         int currentLocalIndex = 0;
 
-        while (currentLocalIndex < privateHistory.Count &&
-               privateHistory[currentLocalIndex].BeginTimestamp < minTimestamp)
+        if (minTimestamp > 0)
         {
-            ++currentLocalIndex;
+            while (currentLocalIndex < privateHistory.Count &&
+                   privateHistory[currentLocalIndex].BeginTimestamp < minTimestamp)
+            {
+                ++currentLocalIndex;
+            }
         }
 
         int currentVisualIndex = 0;
