@@ -250,8 +250,9 @@ public class DebugEntryFactory
             richTextBuilder.Append($"[color=#{message.Color.ToHtml()}]");
             richTextBuilder.Append(message.Line);
 
-            // Overwrite newline.
-            richTextBuilder.Length -= 1;
+            // Overwrite newline if present.
+            if (richTextBuilder[^1] == '\n')
+                richTextBuilder.Length -= 1;
 
             // End-of-line. Ensure a newline is appended at the end too.
             richTextBuilder.Append("[/color]\n");
