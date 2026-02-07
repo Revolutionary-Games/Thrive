@@ -180,6 +180,11 @@ public class DebugEntryFactory
     public bool TryAddMessage(int id, DebugConsoleManager.RawDebugEntry rawDebugEntry,
         AddMessageMode messageMode = AddMessageMode.Normal)
     {
+        // We avoid logging empty stuff. This still allows strings that are empty with invisible characters, such as
+        // whitespaces.
+        if (string.IsNullOrEmpty(rawDebugEntry.Line))
+            return true;
+
         var pipeline = GetPipeline(id, rawDebugEntry.Timestamp, out _);
         var lastMessage = pipeline.LastMessage;
         var isFirstMessage = lastMessage.Id == -1;
