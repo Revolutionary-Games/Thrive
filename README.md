@@ -56,7 +56,7 @@ Thrive is written in C#. In order to work on the C# you need to compile Thrive y
 You can find instructions for how to do that in the [setup instructions][setupguide]. And 
 if you've never used Godot before please read [learning Godot][learninggodot]. This repository
 also contains a few helper scripts written in C# for working on the game. These can be ran
-with dotnet: `dotnet run --project Scripts -- help`.
+with dotnet: `dotnet run --project Scripts -- help`
 
 Be sure to have a look at the [styleguide][styleguide],
 both for guidelines on code formatting and git usage.
