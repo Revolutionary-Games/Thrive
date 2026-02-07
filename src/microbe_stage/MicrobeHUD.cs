@@ -571,7 +571,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
                 if (colonyMemberProcesses == null)
                 {
-                    GD.PrintErr("Colony member process statistics are uninitialized, can't display them in the process panel");
+                    GD.PrintErr(
+                        "Colony member process statistics are uninitialized, can't display them in the process panel");
 
                     return null;
                 }
