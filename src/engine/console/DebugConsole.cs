@@ -126,6 +126,9 @@ public partial class DebugConsole : CustomWindow
         // This updates the debug entry to reflect the final command output, if any, and releases the executionToken.
         debugConsoleManager.ReleaseCustomDebugEntryId(executionToken);
 
+        // Put focus on the command message.
+        debugEntryList.StickToBottom = true;
+
         RefreshLogs();
     }
 }
