@@ -385,6 +385,10 @@ public partial class DebugEntryList : Control
             // above is correct.
             if (id + idOffset >= entryLabels.Count)
                 throw new Exception("Debug entry layout has failed due to a logical bug.");
+
+            // Hide the previous label we don't need anymore if recalculating the layout.
+            if (retryLayout)
+                entryLabels[id + idOffset - 1].Visible = false;
         }
         while (retryLayout);
 
