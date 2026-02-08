@@ -109,9 +109,9 @@ public partial class DebugEntryList : Control
         int maxGlobalId = debugConsoleManager.MessageCountInHistory;
 
         long minTimestamp = 0;
-        if (globalStartId < maxGlobalId && globalStartId >= 0)
+        if (globalStartId < maxGlobalId && globalStartId >= 1)
         {
-            minTimestamp = debugConsoleManager.GetMessageAt(globalStartId).BeginTimestamp;
+            minTimestamp = debugConsoleManager.GetMessageAt(globalStartId - 1).BeginTimestamp;
         }
 
         int currentGlobalId = globalStartId;
