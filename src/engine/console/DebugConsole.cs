@@ -107,14 +107,15 @@ public partial class DebugConsole : CustomWindow
         var debugEntryFactory = debugConsoleManager.DebugEntryFactory;
 
         int executionToken = debugConsoleManager.GetAvailableCustomDebugEntryId();
+        long executionTimestamp = Stopwatch.GetTimestamp();
 
-        debugEntryFactory.ResetTimestamp(executionToken, Stopwatch.GetTimestamp());
+        debugEntryFactory.ResetTimestamp(executionToken, executionTimestamp);
 
         debugEntryList.AddPrivateEntry(debugEntryFactory.GetDebugEntry(executionToken));
 
         var context = new CommandContext(this, executionToken);
         var commandMessage = new DebugConsoleManager.RawDebugEntry($"Command > {cmd}\n", Colors.LightGray,
-            Stopwatch.GetTimestamp(), executionToken);
+            executionTimestamp, executionToken);
 
         // Prints command in console and updates the entry to immediately show what command is being executed.
         context.Print(commandMessage);
