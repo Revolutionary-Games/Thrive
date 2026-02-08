@@ -98,6 +98,18 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         }
 
         summedSpeed += displayInfo.CurrentSpeed;
+
+        Enabled = displayInfo.Enabled;
+    }
+
+    public void Clear()
+    {
+        summedSpeed = 0.0f;
+
+        summedInputs.Clear();
+        summedOutputs.Clear();
+        summedEnvironmentalInputs.Clear();
+        summedFullSpeedRequiredEnvironmentalInputs.Clear();
     }
 
     public bool Equals(IProcessDisplayInfo? obj)

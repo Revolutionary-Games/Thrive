@@ -32,7 +32,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private readonly Dictionary<CompoundDefinition, InspectedEntityLabel> hoveredCompoundControls = new();
 
-    private readonly Dictionary<TweakedProcess, SummedProcessStatistics> processPanelWorkSpace = new();
+    /// <summary>
+    ///   Because of how <see cref="ChildObjectCache{TKey, TNode}"/> works, process stats instances need to remain
+    ///   consistent to reduce update frequency.
+    /// </summary>
+    private readonly Dictionary<TweakedProcess, SummedProcessStatistics> organismProgresses = new();
 
     [Export]
     private ActionButton bindingModeHotkey = null!;
@@ -537,7 +541,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     protected override IEnumerable<IProcessDisplayInfo>? GetPlayerProcessStatistics()
     {
-        processPanelWorkSpace.Clear();
+        foreach (var process in organismProgresses)
+        {
+            process.Value.Clear();
+        }
 
         var playerProcesses = stage!.Player.Get<BioProcesses>().ProcessStatistics?.Processes;
 
@@ -552,10 +559,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             var display = process.Value.ComputeAverageValues();
 
-            if (!processPanelWorkSpace.TryGetValue(process.Key, out var stats))
+            if (!organismProgresses.TryGetValue(process.Key, out var stats))
             {
                 stats = new SummedProcessStatistics(display);
-                processPanelWorkSpace[process.Key] = stats;
+                organismProgresses[process.Key] = stats;
             }
             else
             {
@@ -581,10 +588,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 {
                     var display = process.Value.ComputeAverageValues();
 
-                    if (!processPanelWorkSpace.TryGetValue(process.Key, out var stats))
+                    if (!organismProgresses.TryGetValue(process.Key, out var stats))
                     {
                         stats = new SummedProcessStatistics(display);
-                        processPanelWorkSpace[process.Key] = stats;
+                        organismProgresses[process.Key] = stats;
                     }
                     else
                     {
@@ -594,7 +601,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             }
         }
 
-        return processPanelWorkSpace.Values;
+        return organismProgresses.Values;
     }
 
     protected override void CalculatePlayerReproductionProgress(Dictionary<Compound, float> gatheredCompounds,
