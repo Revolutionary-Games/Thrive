@@ -143,7 +143,7 @@ public partial class DebugConsoleManager : Node
     public void Print(RawDebugEntry rawDebugEntry)
     {
         // Avoid logging empty messages.
-        if (rawDebugEntry.Line == string.Empty)
+        if (rawDebugEntry.Text == string.Empty)
             return;
 
         lock (inbox)
@@ -210,10 +210,10 @@ public partial class DebugConsoleManager : Node
     /// <summary>
     ///   A utility record to define console line properties and data.
     /// </summary>
-    public sealed class RawDebugEntry(string line, Color color, long timestamp, int id, bool noTimeDifference = false)
+    public sealed class RawDebugEntry(string text, Color color, long timestamp, int id, bool noTimeDifference = false)
         : IEquatable<RawDebugEntry>
     {
-        public string Line { get; } = line;
+        public string Text { get; } = text;
         public Color Color { get; } = color;
         public long Timestamp { get; } = timestamp;
         public int Id { get; } = id;
@@ -235,7 +235,7 @@ public partial class DebugConsoleManager : Node
             if (other is null)
                 return false;
 
-            return Line == other.Line && Color.IsEqualApprox(other.Color) && Id == other.Id;
+            return Text == other.Text && Color.IsEqualApprox(other.Color) && Id == other.Id;
         }
 
         public override bool Equals(object? obj)
@@ -245,7 +245,7 @@ public partial class DebugConsoleManager : Node
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Line, Color, Id);
+            return HashCode.Combine(Text, Color, Id);
         }
     }
 }

@@ -189,7 +189,7 @@ public class DebugEntryFactory
     {
         // We avoid logging empty stuff. This still allows strings that are empty with invisible characters, such as
         // whitespaces.
-        if (string.IsNullOrEmpty(rawDebugEntry.Line))
+        if (string.IsNullOrEmpty(rawDebugEntry.Text))
             return true;
 
         var pipeline = GetPipeline(id, rawDebugEntry.Timestamp, out _);
@@ -255,7 +255,7 @@ public class DebugEntryFactory
         {
             // RichText to set foreground color.
             richTextBuilder.Append($"[color=#{message.Color.ToHtml()}]");
-            richTextBuilder.Append(message.Line);
+            richTextBuilder.Append(message.Text);
 
             // Overwrite newline if present.
             if (richTextBuilder[^1] == '\n')

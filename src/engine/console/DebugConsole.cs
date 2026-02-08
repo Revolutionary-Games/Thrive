@@ -98,7 +98,7 @@ public partial class DebugConsole : CustomWindow
         RefreshLogs();
     }
 
-    private void CommandSubmitted(string cmd)
+    private void CommandSubmitted(string command)
     {
         commandInput.Clear();
 
@@ -114,14 +114,14 @@ public partial class DebugConsole : CustomWindow
         debugEntryList.AddPrivateEntry(debugEntryFactory.GetDebugEntry(executionToken));
 
         var context = new CommandContext(this, executionToken);
-        var commandMessage = new DebugConsoleManager.RawDebugEntry($"Command > {cmd}\n", Colors.LightGray,
+        var commandMessage = new DebugConsoleManager.RawDebugEntry($"Command > {command}\n", Colors.LightGray,
             executionTimestamp, executionToken);
 
         // Prints command in console and updates the entry to immediately show what command is being executed.
         context.Print(commandMessage);
         debugEntryFactory.UpdateDebugEntry(executionToken);
 
-        commandRegistry.Execute(context, cmd);
+        commandRegistry.Execute(context, command);
 
         // This updates the debug entry to reflect the final command output, if any, and releases the executionToken.
         debugConsoleManager.ReleaseCustomDebugEntryId(executionToken);
