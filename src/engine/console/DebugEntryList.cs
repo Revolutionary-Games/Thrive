@@ -28,6 +28,9 @@ public partial class DebugEntryList : Control
 
     [Export]
     private HScrollBar hScrollBar = null!;
+
+    [Export]
+    private Font monospacedFont = null!;
 #pragma warning restore CA2213
 
     [Export]
@@ -46,8 +49,6 @@ public partial class DebugEntryList : Control
     private bool shiftDown;
     private int globalStartId;
 
-    private Font monospacedFont = null!;
-
     /// <summary>
     ///   This determines whether the scrollbar should stick its value to the bottom of the list.
     /// </summary>
@@ -57,8 +58,6 @@ public partial class DebugEntryList : Control
     {
         onResizedCallable = new Callable(this, nameof(OnResized));
         Connect(Control.SignalName.Resized, onResizedCallable);
-
-        monospacedFont = GD.Load<Font>("res://assets/fonts/RobotoMono-Variable.ttf");
 
         base._Ready();
     }
@@ -80,7 +79,7 @@ public partial class DebugEntryList : Control
             case InputEventMouseButton mouseEvent:
             {
                 ScrollBar bar = shiftDown ? hScrollBar : vScrollBar;
-                float speedMultiplier = shiftDown ? 20f : 1.0f;
+                float speedMultiplier = shiftDown ? 20.0f : 1.0f;
                 switch (mouseEvent.ButtonIndex)
                 {
                     case MouseButton.WheelUp:

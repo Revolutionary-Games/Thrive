@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_vmasg"]
 [ext_resource type="Script" uid="uid://dsui8iq3v3a7t" path="res://src/engine/console/DebugEntryList.cs" id="2_xi34k"]
+[ext_resource type="FontFile" uid="uid://cd1sb4ten5fqv" path="res://assets/fonts/RobotoMono-Variable.ttf" id="3_xi34k"]
 
 [node name="DebugEntryList" type="Control" unique_id=1097979611 node_paths=PackedStringArray("vScrollBar", "hScrollBar")]
 clip_contents = true
@@ -17,6 +18,7 @@ theme = ExtResource("1_vmasg")
 script = ExtResource("2_xi34k")
 vScrollBar = NodePath("VScrollBar")
 hScrollBar = NodePath("HScrollBar")
+monospacedFont = ExtResource("3_xi34k")
 
 [node name="VScrollBar" type="VScrollBar" parent="." unique_id=1825752563]
 layout_mode = 0
