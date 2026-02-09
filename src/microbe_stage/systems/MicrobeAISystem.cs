@@ -660,6 +660,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         BuildChunksCache();
 
         isBigIron = false;
+        var colony = entity.Get<MicrobeColony>();
 
         // Retrieve nearest potential chunk
         foreach (var chunk in chunkDataCache)
@@ -679,7 +680,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             {
                 var chunkPosition = chunk.Position;
 
-                distance = (entity.Get<MicrobeColony>().GetDirectionTo(chunkPosition) - position.Position)
+                distance = (colony.GetDirectionTo(chunkPosition) - position.Position)
                     .LengthSquared();
             }
             else
@@ -789,11 +790,11 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             try
             {
                 float distanceToFocusedPrey;
+                var colony = entity.Get<MicrobeColony>();
 
                 if (entity.Has<MicrobeColony>())
                 {
-                    distanceToFocusedPrey = entity.Get<MicrobeColony>()
-                        .GetSquaredDistanceTo(focused.Get<WorldPosition>().Position);
+                    distanceToFocusedPrey = colony.GetSquaredDistanceTo(focused.Get<WorldPosition>().Position);
                 }
                 else
                 {
