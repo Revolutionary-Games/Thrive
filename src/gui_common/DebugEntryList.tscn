@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bd7s2fq7wrh5x"]
+[gd_scene format=3 uid="uid://bd7s2fq7wrh5x"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_vmasg"]
 [ext_resource type="Script" uid="uid://dsui8iq3v3a7t" path="res://src/engine/console/DebugEntryList.cs" id="2_xi34k"]
 
-[node name="DebugEntryList" type="Control" node_paths=PackedStringArray("scrollBar")]
+[node name="DebugEntryList" type="Control" unique_id=1097979611 node_paths=PackedStringArray("vScrollBar", "hScrollBar")]
+clip_contents = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,11 +15,18 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_vmasg")
 script = ExtResource("2_xi34k")
-scrollBar = NodePath("VScrollBar")
+vScrollBar = NodePath("VScrollBar")
+hScrollBar = NodePath("HScrollBar")
 
-[node name="VScrollBar" type="VScrollBar" parent="."]
+[node name="VScrollBar" type="VScrollBar" parent="." unique_id=1825752563]
 layout_mode = 0
 offset_right = 6.0
 offset_bottom = 40.0
 
+[node name="HScrollBar" type="HScrollBar" parent="." unique_id=1244404361]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 6.0
+
 [connection signal="scrolling" from="VScrollBar" to="." method="OnScrolled"]
+[connection signal="scrolling" from="HScrollBar" to="." method="OnScrolled"]

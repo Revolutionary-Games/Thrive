@@ -89,7 +89,6 @@ text = "METRICS_CONTENT"
 label_settings = ExtResource("3_fussq")
 
 [node name="DebugConsole" type="Control" parent="." unique_id=677553174 node_paths=PackedStringArray("debugEntryList", "commandInput")]
-visible = false
 anchors_preset = 0
 offset_left = 43.0
 offset_top = 35.0
@@ -112,8 +111,8 @@ grow_vertical = 2
 size_flags_horizontal = 3
 
 [node name="DebugEntryList" parent="DebugConsole/VBoxContainer" unique_id=1527087407 instance=ExtResource("11_ja1wl")]
-clip_contents = true
 layout_mode = 2
+size_flags_horizontal = 1
 
 [node name="ConsoleInput" type="LineEdit" parent="DebugConsole/VBoxContainer" unique_id=929832716]
 layout_mode = 2

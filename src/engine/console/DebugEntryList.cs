@@ -24,7 +24,10 @@ public partial class DebugEntryList : Control
 
 #pragma warning disable CA2213
     [Export]
-    private VScrollBar scrollBar = null!;
+    private VScrollBar vScrollBar = null!;
+
+    [Export]
+    private HScrollBar hScrollBar = null!;
 #pragma warning restore CA2213
 
     [Export]
@@ -40,7 +43,7 @@ public partial class DebugEntryList : Control
     private int maxVisiblePanels = DefaultMaxVisiblePanels;
 
     private bool dirty;
-
+    private bool shiftDown;
     private int globalStartId;
 
     /// <summary>
@@ -68,19 +71,30 @@ public partial class DebugEntryList : Control
 
     public override void _Input(InputEvent @event)
     {
-        if (@event is InputEventMouseButton mouseEvent)
+        switch (@event)
         {
-            switch (mouseEvent.ButtonIndex)
+            case InputEventMouseButton mouseEvent:
             {
-                case MouseButton.WheelUp:
-                    scrollBar.Value -= 1;
-                    OnScrolled();
-                    break;
-                case MouseButton.WheelDown:
-                    scrollBar.Value += 1;
-                    OnScrolled();
-                    break;
+                ScrollBar bar = shiftDown ? hScrollBar : vScrollBar;
+                float speedMultiplier = shiftDown ? 20f : 1.0f;
+                switch (mouseEvent.ButtonIndex)
+                {
+                    case MouseButton.WheelUp:
+                        bar.Value -= 1.0f * speedMultiplier;
+                        OnScrolled();
+                        break;
+                    case MouseButton.WheelDown:
+                        bar.Value += 1.0f * speedMultiplier;
+                        OnScrolled();
+                        break;
+                }
+
+                break;
             }
+
+            case InputEventKey { Keycode: Key.Shift } keyEvent:
+                shiftDown = keyEvent.Pressed;
+                break;
         }
 
         base._Input(@event);
@@ -172,7 +186,7 @@ public partial class DebugEntryList : Control
                 newLabel.FitContent = true;
                 newLabel.BbcodeEnabled = true;
                 newLabel.SizeFlagsVertical = SizeFlags.ShrinkBegin;
-                newLabel.SetScrollActive(true);
+                newLabel.AutowrapMode = TextServer.AutowrapMode.Off;
 
                 entryLabels.Add(newLabel);
                 AddChild(newLabel);
@@ -248,7 +262,7 @@ public partial class DebugEntryList : Control
             label.Visible = false;
         }
 
-        scrollBar.Value = 0;
+        vScrollBar.Value = 0;
         lastIdLoaded = 0;
     }
 
@@ -281,15 +295,16 @@ public partial class DebugEntryList : Control
 
             int validPrivateCount = GetCountNewerThan(minTimestamp);
 
-            scrollBar.SetMax(debugConsoleManager.MessageCountInHistory - globalStartId + validPrivateCount);
-            scrollBar.SetPage(visibleEntries);
+            vScrollBar.SetMax(debugConsoleManager.MessageCountInHistory - globalStartId + validPrivateCount);
+            vScrollBar.SetPage(visibleEntries);
+            vScrollBar.Visible = Math.Abs(vScrollBar.MaxValue - vScrollBar.Page) >= 0.1f;
 
             if (!stickCheck)
                 break;
 
             if (StickToBottom)
             {
-                scrollBar.Value = scrollBar.MaxValue - scrollBar.Page;
+                vScrollBar.Value = vScrollBar.MaxValue - vScrollBar.Page;
                 stickCheck = false;
             }
             else
@@ -303,6 +318,7 @@ public partial class DebugEntryList : Control
     {
         int visibleEntries;
         int idOffset = 0;
+        int maxWidth = 0;
         bool retryLayout;
 
         if (entryLabels.Count == 0 || id >= entryLabels.Count)
@@ -337,16 +353,14 @@ public partial class DebugEntryList : Control
                 if (label.Text == string.Empty)
                     break;
 
-                float x = leftMargin;
+                float x = leftMargin - (float)hScrollBar.Value;
                 float y = previousLabelY + previousLabelH + entrySeparation;
-                float w = Size.X - leftMargin - 2 * rightMargin - scrollBar.Size.X;
 
                 label.Position = new Vector2(x, y);
 
-                // Ensure the label fills the control, as it doesn't resize on Y automatically even with FitContent
-                // enabled.
-                label.CustomMinimumSize = new Vector2(w, 0);
-                label.Size = new Vector2(w, 0);
+                int contentWidth = label.GetContentWidth();
+                if (contentWidth > maxWidth)
+                    maxWidth = contentWidth;
 
                 if (y > Size.Y)
                 {
@@ -392,15 +406,23 @@ public partial class DebugEntryList : Control
         }
         while (retryLayout);
 
+        hScrollBar.MaxValue = maxWidth;
+        hScrollBar.Page = Size.X - leftMargin - rightMargin - vScrollBar.Size.X;
+        hScrollBar.Visible = Math.Abs(hScrollBar.MaxValue - hScrollBar.Page) >= 0.1f;
+
         return visibleEntries;
     }
 
     private void LayOutScrollbar()
     {
-        var w = Math.Min(10, scrollBar.Size.X);
+        var w = Math.Min(10, vScrollBar.Size.X);
+        var h = Math.Min(10, hScrollBar.Size.Y);
 
-        scrollBar.Position = new Vector2(Size.X - w, entrySeparation);
-        scrollBar.Size = new Vector2(w, Size.Y - 2 * entrySeparation);
+        vScrollBar.Position = new Vector2(Size.X - w, entrySeparation);
+        vScrollBar.Size = new Vector2(w, Size.Y - 2 * entrySeparation);
+
+        hScrollBar.Position = new Vector2(leftMargin, Size.Y - h);
+        hScrollBar.Size = new Vector2(Size.X - leftMargin - rightMargin, h);
     }
 
     private void OnResized()
@@ -410,11 +432,11 @@ public partial class DebugEntryList : Control
 
     private void OnScrolled()
     {
-        lastIdLoaded = (int)scrollBar.Value;
+        lastIdLoaded = (int)vScrollBar.Value;
 
         // The scrollbar should stick to the bottom of the list if its page-adjusted value is greater than the
         // maximum.
-        StickToBottom = scrollBar.MaxValue - scrollBar.Value - scrollBar.Page < 0.1f;
+        StickToBottom = vScrollBar.MaxValue - vScrollBar.Value - vScrollBar.Page < 0.1f;
 
         Refresh();
     }
