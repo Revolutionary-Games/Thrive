@@ -730,8 +730,6 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         GiveReproductionPopulationBonus();
 
-        CurrentGame!.EnterPrototypes();
-
         var playerSpeciesMicrobes = GetAllPlayerSpeciesMicrobes();
 
         // Re-apply species here so that the player cell knows it is multicellular after this
@@ -777,6 +775,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             throw new Exception("failed to keep the current scene root");
         }
 
+        // TODO: allow endosymbiosis in multicellular (if we want to)
         GameWorld.PlayerSpecies.Endosymbiosis.CancelAllEndosymbiosisTargets();
 
         MovingToEditor = false;
