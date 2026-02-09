@@ -72,7 +72,7 @@ public partial class DebugEntryList : Control
         base._Process(delta);
     }
 
-    public override void _Input(InputEvent @event)
+    public override void _GuiInput(InputEvent @event)
     {
         switch (@event)
         {
@@ -100,7 +100,9 @@ public partial class DebugEntryList : Control
                 break;
         }
 
-        base._Input(@event);
+        GetViewport().SetInputAsHandled();
+
+        base._GuiInput(@event);
     }
 
     public int GetPrivateCount()
