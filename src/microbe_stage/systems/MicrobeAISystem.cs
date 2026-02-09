@@ -660,57 +660,101 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         BuildChunksCache();
 
         isBigIron = false;
-        var colony = entity.Get<MicrobeColony>();
 
         // Retrieve nearest potential chunk
-        foreach (var chunk in chunkDataCache)
+        if (entity.Has<MicrobeColony>())
         {
-            if (!ironEater)
+            var colony = entity.Get<MicrobeColony>();
+
+            foreach (var chunk in chunkDataCache)
             {
-                // Skip too big things
-
-                if (engulfer.EngulfingSize < chunk.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ)
-                    continue;
-            }
-
-            // And too distant things
-            float distance;
-
-            if (entity.Has<MicrobeColony>())
-            {
-                distance = colony.GetSquaredDistanceTo(chunk.Position);
-            }
-            else
-            {
-                distance = (chunk.Position - position.Position).LengthSquared();
-            }
-
-            if (distance > bestFoundChunkDistance)
-                continue;
-
-            if (distance > (20000.0 * speciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
-                continue;
-
-            foreach (var p in chunk.Compounds.Compounds)
-            {
-                if (ourCompounds.IsUseful(p.Key) && SimulationParameters.GetCompound(p.Key).Digestible)
+                if (!ironEater)
                 {
-                    if (chosenChunk == null)
-                    {
-                        chosenChunk = chunk;
-                        bestFoundChunkDistance = distance;
+                    // Skip too big things
 
-                        if (ironEater)
+                    if (engulfer.EngulfingSize < chunk.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ)
+                        continue;
+                }
+
+                // And too distant things
+                float distance;
+
+                distance = colony.GetSquaredDistanceTo(chunk.Position);
+
+                if (distance > bestFoundChunkDistance)
+                    continue;
+
+                if (distance > (20000.0 * speciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
+                    continue;
+
+                foreach (var p in chunk.Compounds.Compounds)
+                {
+                    if (ourCompounds.IsUseful(p.Key) && SimulationParameters.GetCompound(p.Key).Digestible)
+                    {
+                        if (chosenChunk == null)
                         {
-                            // TODO: this should have a more robust check (than just pure size)
-                            if (p.Key == Compound.Iron && chunk.EngulfSize > 50)
+                            chosenChunk = chunk;
+                            bestFoundChunkDistance = distance;
+
+                            if (ironEater)
                             {
-                                isBigIron = true;
+                                // TODO: this should have a more robust check (than just pure size)
+                                if (p.Key == Compound.Iron && chunk.EngulfSize > 50)
+                                {
+                                    isBigIron = true;
+                                }
                             }
                         }
-                    }
 
-                    break;
+                        break;
+                    }
+                }
+            }
+        }
+        else
+        {
+            foreach (var chunk in chunkDataCache)
+            {
+                if (!ironEater)
+                {
+                    // Skip too big things
+
+                    if (engulfer.EngulfingSize < chunk.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ)
+                        continue;
+                }
+
+                // And too distant things
+                float distance;
+
+                distance = (chunk.Position - position.Position).LengthSquared();
+
+                if (distance > bestFoundChunkDistance)
+                    continue;
+
+                if (distance > (20000.0 * speciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
+                    continue;
+
+                foreach (var p in chunk.Compounds.Compounds)
+                {
+                    if (ourCompounds.IsUseful(p.Key) && SimulationParameters.GetCompound(p.Key).Digestible)
+                    {
+                        if (chosenChunk == null)
+                        {
+                            chosenChunk = chunk;
+                            bestFoundChunkDistance = distance;
+
+                            if (ironEater)
+                            {
+                                // TODO: this should have a more robust check (than just pure size)
+                                if (p.Key == Compound.Iron && chunk.EngulfSize > 50)
+                                {
+                                    isBigIron = true;
+                                }
+                            }
+                        }
+
+                        break;
+                    }
                 }
             }
         }
@@ -787,10 +831,10 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             try
             {
                 float distanceToFocusedPrey;
-                var colony = entity.Get<MicrobeColony>();
 
                 if (entity.Has<MicrobeColony>())
                 {
+                    var colony = entity.Get<MicrobeColony>();
                     distanceToFocusedPrey = colony.GetSquaredDistanceTo(focused.Get<WorldPosition>().Position);
                 }
                 else
