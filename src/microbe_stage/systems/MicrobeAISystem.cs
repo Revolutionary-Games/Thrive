@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
@@ -83,6 +84,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
     private readonly Dictionary<Species, bool> speciesUsingVaryingCompounds = new();
     private readonly HashSet<BioProcess> varyingCompoundsTemporary = new();
+
+    private readonly ThreadLocal<List<Vector3>> colonyMemberPositions = new(() => new List<Vector3>());
 
     private GameWorld? gameWorld;
     private bool currentlyNight;
@@ -679,7 +682,12 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 // And too distant things
                 float distance;
 
-                distance = colony.GetSquaredDistanceTo(chunk.Position);
+                foreach (Entity member in colony.ColonyMembers)
+                {
+                    colonyMemberPositions.Value!.Add(member.Get<WorldPosition>().Position);
+                }
+
+                distance = colony.GetSquaredDistanceTo(colonyMemberPositions.Value!, chunk.Position);
 
                 if (distance > bestFoundChunkDistance)
                     continue;
@@ -835,7 +843,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 if (entity.Has<MicrobeColony>())
                 {
                     var colony = entity.Get<MicrobeColony>();
-                    distanceToFocusedPrey = colony.GetSquaredDistanceTo(focused.Get<WorldPosition>().Position);
+                    distanceToFocusedPrey = colony.GetSquaredDistanceTo(colonyMemberPositions.Value!,
+                        focused.Get<WorldPosition>().Position);
                 }
                 else
                 {
