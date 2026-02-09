@@ -157,6 +157,10 @@ public static class MichePopulation
                         if (migration.Item2.From == patch)
                         {
                             currentPopulation -= migration.Item2.Population;
+
+                            // Migrations cannot make species go locally extinct
+                            if (currentPopulation < Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
+                                currentPopulation = Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION;
                         }
                         else if (migration.Item2.To == patch)
                         {
