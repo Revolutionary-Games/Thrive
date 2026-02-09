@@ -88,18 +88,12 @@ public class DebugEntryFactory
         if (!string.IsNullOrEmpty(amountTextCache) && richTextBuilder.Length > 0)
         {
             int endPointer = pipeline.MessagePointer - 1;
-            bool wantsNewline = richTextBuilder[endPointer] == '\n';
 
             richTextBuilder.Length = endPointer;
 
             richTextBuilder.Append(" [color=dark_gray][lb]");
             richTextBuilder.Append(amountTextCache);
-            richTextBuilder.Append("[rb][/color]");
-
-            wantsNewline |= richTextBuilder[^1] != '\n';
-
-            if (wantsNewline)
-                richTextBuilder.Append('\n');
+            richTextBuilder.Append("[rb][/color]\n");
         }
 
         var value = richTextBuilder.ToString();
@@ -265,10 +259,10 @@ public class DebugEntryFactory
             richTextBuilder.Append("[/color]\n");
 
             pipeline.LastMessage = message;
+            pipeline.MessagePointer = richTextBuilder.Length;
         }
 
         pipeline.Dirty = true;
-        pipeline.MessagePointer = richTextBuilder.Length;
     }
 
     private DebugEntryFactoryPipeline GetPipeline(int id, long beginTimestamp, out StringBuilder richTextBuilder)

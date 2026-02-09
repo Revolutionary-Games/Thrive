@@ -27,6 +27,8 @@ public partial class DebugConsoleManager : Node
 
     private int customDebugEntryCounter;
 
+    private RawDebugEntry? lastProcessed;
+
     private DebugConsoleManager()
     {
         instance = this;
@@ -69,7 +71,8 @@ public partial class DebugConsoleManager : Node
             {
                 int id = rawDebugEntry.Id;
 
-                if (!DebugEntryFactory.TryAddMessage(id, rawDebugEntry, addMessageMode))
+                if (lastProcessed?.Text != rawDebugEntry.Text ||
+                    !DebugEntryFactory.TryAddMessage(id, rawDebugEntry, addMessageMode))
                 {
                     DebugEntryFactory.UpdateDebugEntry(id);
                     DebugEntryFactory.Flush(id);
@@ -96,6 +99,8 @@ public partial class DebugConsoleManager : Node
                         activeEntries[id] = liveEntry;
                     }
                 }
+
+                lastProcessed = rawDebugEntry;
 
                 if (history.Count <= MaxHistorySize)
                     continue;
@@ -142,6 +147,9 @@ public partial class DebugConsoleManager : Node
     /// <param name="rawDebugEntry">The console line data</param>
     public void Print(RawDebugEntry rawDebugEntry)
     {
+        if (rawDebugEntry.Text.StartsWith('☺'))
+            return;
+
         // Avoid logging empty messages.
         if (rawDebugEntry.Text == string.Empty)
             return;
@@ -152,7 +160,7 @@ public partial class DebugConsoleManager : Node
         }
     }
 
-    public DebugEntry GetMessageAt(int id)
+    public DebugEntry GetMessageAt(Index id)
     {
         return history[id];
     }
