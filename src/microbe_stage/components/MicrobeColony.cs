@@ -207,28 +207,6 @@ public static class MicrobeColonyHelpers
     }
 
     /// <summary>
-    ///   Gets the direction from the colony member closest to the entity to that entity
-    /// </summary>
-    /// <param name="colony">The colony</param>
-    /// <param name="entityPosition">The position of the entity</param>
-    /// <returns>The direction</returns>
-    public static Vector3 GetDirectionTo(this ref MicrobeColony colony, Vector3 entityPosition)
-    {
-        var currentShortestDirection = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
-
-        foreach (Entity member in colony.ColonyMembers)
-        {
-            if (member.Get<WorldPosition>().Position.DirectionTo(entityPosition).X < currentShortestDirection.X
-                && member.Get<WorldPosition>().Position.DirectionTo(entityPosition).Z < currentShortestDirection.Z)
-            {
-                currentShortestDirection = member.Get<WorldPosition>().Position.DirectionTo(entityPosition);
-            }
-        }
-
-        return currentShortestDirection;
-    }
-
-    /// <summary>
     ///   Gets the squared distance between the colony member closest to the entity to that entity
     /// </summary>
     /// <param name="colony">The colony</param>

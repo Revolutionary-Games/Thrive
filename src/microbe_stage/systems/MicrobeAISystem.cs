@@ -678,7 +678,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
             if (entity.Has<MicrobeColony>())
             {
-                distance = (colony.GetDirectionTo(chunk.Position) - position.Position).LengthSquared();
+                distance = colony.GetSquaredDistanceTo(chunk.Position);
             }
             else
             {
