@@ -209,16 +209,16 @@ public static class MicrobeColonyHelpers
     /// <summary>
     ///   Gets the squared distance between the colony member closest to the entity to that entity
     /// </summary>
-    /// <param name="colony">The colony</param>
+    /// <param name="colonyMemberPositions">The list of colony member positions</param>
     /// <param name="entityPosition">The position of the entity</param>
     /// <returns>The squared distance</returns>
-    public static float GetSquaredDistanceTo(this ref MicrobeColony colony, Vector3 entityPosition)
+    public static float GetSquaredDistanceTo(List<Vector3> colonyMemberPositions, Vector3 entityPosition)
     {
         var currentShortestSquaredDistance = float.MaxValue;
 
-        foreach (Entity member in colony.ColonyMembers)
+        foreach (Vector3 position in colonyMemberPositions)
         {
-            var currentSquaredDistance = member.Get<WorldPosition>().Position.DistanceSquaredTo(entityPosition);
+            var currentSquaredDistance = position.DistanceSquaredTo(entityPosition);
 
             if (currentSquaredDistance < currentShortestSquaredDistance)
             {
