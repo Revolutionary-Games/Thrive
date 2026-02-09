@@ -50,8 +50,8 @@ public partial class DebugEntryList : Control
 
     public override void _Ready()
     {
-        onResizedCallable = new Callable(this, nameof(OnResized));
-        Connect(Control.SignalName.Resized, onResizedCallable);
+        onResizedCallable = new Callable(this, nameof(MarkDirty));
+        Connect(Control.SignalName.Resized, new Callable(this, nameof(OnResized)));
 
         base._Ready();
     }
@@ -226,7 +226,7 @@ public partial class DebugEntryList : Control
         for (int i = entryPanelIndex; i < entryLabels.Count; ++i)
             entryLabels[i].Text = string.Empty;
 
-        dirty = true;
+        MarkDirty();
 
         lastIdLoaded = visualSkipCount;
         return entryPanelIndex;
@@ -271,6 +271,25 @@ public partial class DebugEntryList : Control
         {
             int visibleEntries = LayOutEntriesFrom(0);
 
+            if (entryLabels.Count > 0 && visibleEntries == entryLabels.Count)
+            {
+                var lastLabel = entryLabels[^1];
+                float listBottom = lastLabel.Position.Y + lastLabel.Size.Y;
+
+                if (listBottom < Size.Y)
+                {
+                    float remainingSpace = Size.Y - listBottom;
+                    float avgHeight = Math.Max(10, lastLabel.Size.Y + entrySeparation);
+                    int phantomItems = (int)(remainingSpace / avgHeight);
+
+                    visibleEntries += phantomItems;
+                }
+            }
+            else if (entryLabels.Count == 0 && Size.Y > 0)
+            {
+                visibleEntries = (int)(Size.Y / 20.0f);
+            }
+
             var debugConsoleManager = DebugConsoleManager.Instance;
 
             long minTimestamp = 0;
@@ -289,8 +308,17 @@ public partial class DebugEntryList : Control
 
             if (StickToBottom)
             {
-                scrollBar.Value = scrollBar.MaxValue - scrollBar.Page;
-                stickCheck = false;
+                double targetValue = scrollBar.MaxValue - scrollBar.Page;
+
+                if (Math.Abs(scrollBar.Value - targetValue) > 0.1)
+                {
+                    scrollBar.Value = targetValue;
+                    stickCheck = false;
+                }
+                else
+                {
+                    break;
+                }
             }
             else
             {
@@ -301,96 +329,48 @@ public partial class DebugEntryList : Control
 
     private int LayOutEntriesFrom(int id)
     {
-        int visibleEntries;
-        int idOffset = 0;
-        bool retryLayout;
-
         if (entryLabels.Count == 0 || id >= entryLabels.Count)
             return 0;
 
-        do
+        int visibleEntries = 0;
+        float w = Size.X - leftMargin - 2 * rightMargin - scrollBar.Size.X;
+
+        float currentY = entrySeparation;
+
+        for (int i = id; i < entryLabels.Count; ++i)
         {
-            retryLayout = false;
-            visibleEntries = 0;
+            var label = entryLabels[i];
 
-            for (int i = id + idOffset; i < entryLabels.Count; ++i)
+            if (label.Text == string.Empty)
+                break;
+
+            if (i > id)
             {
-                int previousLabelY;
-                int previousLabelH;
-
-                if (i > id + idOffset)
-                {
-                    var previousLabel = entryLabels[i - 1];
-                    previousLabelY = (int)previousLabel.Position.Y;
-                    previousLabelH = previousLabel.GetContentHeight();
-                }
-                else
-                {
-                    // First item of this pass: Reset the anchor to the top
-                    previousLabelY = 0;
-                    previousLabelH = 0;
-                }
-
-                var label = entryLabels[i];
-
-                // We reached the end of the visible labels. Nothing more to lay out.
-                if (label.Text == string.Empty)
-                    break;
-
-                float x = leftMargin;
-                float y = previousLabelY + previousLabelH + entrySeparation;
-                float w = Size.X - leftMargin - 2 * rightMargin - scrollBar.Size.X;
-
-                label.Position = new Vector2(x, y);
-
-                // Ensure the label fills the control, as it doesn't resize on Y automatically even with FitContent
-                // enabled.
-                label.CustomMinimumSize = new Vector2(w, 0);
-                label.Size = new Vector2(w, 0);
-
-                if (y > Size.Y)
-                {
-                    if (StickToBottom)
-                    {
-                        // We are not sticking to the bottom as requested, yet we still have some non-empty labels to
-                        // lay out. So, we increment the offset and retry the whole process.
-
-                        retryLayout = true;
-                        ++idOffset;
-                        break;
-                    }
-
-                    label.Visible = false;
-                }
-                else
-                {
-                    label.Visible = true;
-                    if (Size.Y - y > label.GetContentHeight())
-                    {
-                        ++visibleEntries;
-                    }
-                    else if (StickToBottom)
-                    {
-                        // The last entry is not fully visible, but we should stick to the bottom. We must retry to lay
-                        // out and eventually have this be fully visible.
-
-                        retryLayout = true;
-                        ++idOffset;
-                        break;
-                    }
-                }
+                var previousLabel = entryLabels[i - 1];
+                currentY += previousLabel.GetContentHeight() + entrySeparation;
             }
 
-            // This acts as a safety watchdog to prevent an infinite loop, but it should never be true if the algorithm
-            // above is correct.
-            if (id + idOffset >= entryLabels.Count)
-                throw new Exception("Debug entry layout has failed due to a logical bug.");
+            label.Position = new Vector2(leftMargin, currentY);
 
-            // Hide the previous label we don't need anymore if recalculating the layout.
-            if (retryLayout)
-                entryLabels[id + idOffset - 1].Visible = false;
+            label.CustomMinimumSize = new Vector2(w, 0);
+            label.Size = new Vector2(w, 0);
+
+            float labelHeight = label.GetContentHeight();
+
+            if (currentY >= Size.Y)
+            {
+                label.Visible = false;
+            }
+            else
+            {
+                label.Visible = true;
+
+                if (currentY + labelHeight <= Size.Y || i == id)
+                {
+                    ++visibleEntries;
+                }
+            }
         }
-        while (retryLayout);
 
         return visibleEntries;
     }
@@ -405,7 +385,16 @@ public partial class DebugEntryList : Control
 
     private void OnResized()
     {
-        dirty = true;
+        bool boundsStick = false;
+        if (entryLabels.Count > 0)
+        {
+            var lastEntryLabel = entryLabels[^1];
+            boundsStick = entryLabels.Count > 0 && lastEntryLabel.Position.Y + lastEntryLabel.Size.Y > Size.Y;
+        }
+
+        StickToBottom = scrollBar.MaxValue - scrollBar.Value - scrollBar.Page < 0.1f || boundsStick;
+
+        Refresh();
     }
 
     private void OnScrolled()
@@ -417,5 +406,10 @@ public partial class DebugEntryList : Control
         StickToBottom = scrollBar.MaxValue - scrollBar.Value - scrollBar.Page < 0.1f;
 
         Refresh();
+    }
+
+    private void MarkDirty()
+    {
+        dirty = true;
     }
 }
