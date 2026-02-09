@@ -852,11 +852,18 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         // Check win conditions
 
-        if (!CurrentGame!.FreeBuild && GameWorld.PlayerSpecies.Generation >= 20 &&
-            GameWorld.PlayerSpecies.Population >= 300 && !wonOnce)
+        // TODO: remove this entirely once macroscopic stage is no longer a prototype
+        if (!CurrentGame!.FreeBuild && GameWorld.PlayerSpecies.Generation >= 25 &&
+            GameWorld.PlayerSpecies.Population >= 300 &&
+            GameWorld.PlayerSpecies is MulticellularSpecies multicellular && !wonOnce)
         {
-            HUD.ToggleWinBox();
-            wonOnce = true;
+            // To make it less likely for the "you have won" and the multicellular tutorial popups to appear at the
+            // same time require the player to have done some multicellular placing
+            if (multicellular.GameplayCells.Count >= 10)
+            {
+                HUD.ToggleWinBox();
+                wonOnce = true;
+            }
         }
 
         loadSaveAdviceTriggered = false;
