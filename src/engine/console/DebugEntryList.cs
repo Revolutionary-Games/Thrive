@@ -46,6 +46,8 @@ public partial class DebugEntryList : Control
     private bool shiftDown;
     private int globalStartId;
 
+    private Font monospacedFont = null!;
+
     /// <summary>
     ///   This determines whether the scrollbar should stick its value to the bottom of the list.
     /// </summary>
@@ -55,6 +57,8 @@ public partial class DebugEntryList : Control
     {
         onResizedCallable = new Callable(this, nameof(OnResized));
         Connect(Control.SignalName.Resized, onResizedCallable);
+
+        monospacedFont = GD.Load<Font>("res://assets/fonts/RobotoMono-Variable.ttf");
 
         base._Ready();
     }
@@ -187,6 +191,8 @@ public partial class DebugEntryList : Control
                 newLabel.BbcodeEnabled = true;
                 newLabel.SizeFlagsVertical = SizeFlags.ShrinkBegin;
                 newLabel.AutowrapMode = TextServer.AutowrapMode.Off;
+                newLabel.AddThemeFontOverride("normal_font", monospacedFont);
+                newLabel.AddThemeFontSizeOverride("normal_font", 12);
 
                 entryLabels.Add(newLabel);
                 AddChild(newLabel);
