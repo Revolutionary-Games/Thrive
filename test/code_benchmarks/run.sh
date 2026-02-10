@@ -1,2 +1,2 @@
-﻿#!/usr/bin/sh
+#!/bin/sh
 dotnet run -c Release

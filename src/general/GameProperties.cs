@@ -120,8 +120,6 @@ public class GameProperties : IArchivable
 
         game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies);
 
-        game.EnterPrototypes();
-
         // TODO: generate multicellular species for freebuild
         if (freebuild)
         {

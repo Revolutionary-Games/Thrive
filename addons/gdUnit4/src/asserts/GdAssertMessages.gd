@@ -46,7 +46,7 @@ static func input_event_as_text(event :InputEvent) -> String:
 				location: %s
 				echo: %s""" % [
 					key_event.keycode,
-					event.as_text_keycode(),
+					key_event.as_text_keycode(),
 					key_event.pressed,
 					key_event.physical_keycode,
 					key_event.location,
