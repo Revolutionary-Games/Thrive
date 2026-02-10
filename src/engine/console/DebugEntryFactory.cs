@@ -124,8 +124,9 @@ public class DebugEntryFactory
         var lastMessage = pipeline.LastMessage;
         var value = richTextBuilder.ToString();
         var amountTextCache = GetAmountString(id);
+
         var debugEntry = new DebugEntry(value, lastMessage.Amount, amountTextCache, lastMessage.Color,
-            pipeline.BeginTimestamp, freeze, id);
+            pipeline.BeginTimestamp, freeze);
 
         pipeline.DebugEntryCache = debugEntry;
 

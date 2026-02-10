@@ -246,8 +246,6 @@ public partial class DebugEntryList : Control
                 ++currentGlobalId;
             }
 
-            currentDebugEntry.Update();
-
             currentLabel.Text = currentDebugEntry.Text;
             currentLabel.Visible = true;
 

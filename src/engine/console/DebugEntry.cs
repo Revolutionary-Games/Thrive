@@ -3,10 +3,7 @@ using Godot;
 
 public sealed class DebugEntry
 {
-    private readonly int pipelineId;
-
-    public DebugEntry(string text, int amount, string? amountText, Color messageColor, long beginTimestamp, bool frozen,
-        int pipelineId)
+    public DebugEntry(string text, int amount, string? amountText, Color messageColor, long beginTimestamp, bool frozen)
     {
         Text = text;
         Amount = amount;
@@ -14,8 +11,6 @@ public sealed class DebugEntry
         MessageColor = messageColor;
         Frozen = frozen;
         BeginTimestamp = beginTimestamp;
-
-        this.pipelineId = pipelineId;
     }
 
     public Color MessageColor { get; }
@@ -69,11 +64,6 @@ public sealed class DebugEntry
     public bool Frozen { get; set; }
 
     public bool IsMultipleMessages => Amount > 1;
-
-    public bool Update()
-    {
-        return !Frozen && DebugConsoleManager.Instance.DebugEntryFactory.UpdateDebugEntry(pipelineId);
-    }
 
     private void ThrowIfFrozen()
     {

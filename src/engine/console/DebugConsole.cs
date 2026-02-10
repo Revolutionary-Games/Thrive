@@ -111,7 +111,9 @@ public partial class DebugConsole : CustomWindow
 
         debugEntryFactory.ResetTimestamp(executionToken, executionTimestamp);
 
-        debugEntryList.AddPrivateEntry(debugEntryFactory.GetDebugEntry(executionToken));
+        var entry = debugEntryFactory.GetDebugEntry(executionToken);
+
+        debugEntryList.AddPrivateEntry(entry);
 
         var context = new CommandContext(this, executionToken);
         var commandMessage = new DebugConsoleManager.RawDebugEntry($"Command > {command}\n", Colors.LightGray,

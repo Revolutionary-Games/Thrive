@@ -23,8 +23,6 @@ public partial class DebugConsoleManager : Node
     private readonly Queue<int> customIdsBucket = [];
     private readonly Queue<RawDebugEntry> inbox = [];
 
-    private readonly Dictionary<int, DebugEntry> activeEntries = [];
-
     private int customDebugEntryCounter;
 
     private RawDebugEntry? lastProcessed;
@@ -76,27 +74,16 @@ public partial class DebugConsoleManager : Node
                 {
                     DebugEntryFactory.UpdateDebugEntry(id);
                     DebugEntryFactory.Flush(id);
-                    activeEntries.Remove(id);
 
                     DebugEntryFactory.ResetTimestamp(id, rawDebugEntry.Timestamp);
                     if (DebugEntryFactory.TryAddMessage(id, rawDebugEntry, addMessageMode))
                     {
                         var newEntry = DebugEntryFactory.GetDebugEntry(id);
                         history.AddToBack(newEntry);
-                        activeEntries[id] = newEntry;
                     }
                     else
                     {
                         throw new Exception("DebugEntryFactory.Flush has failed in correctly resetting state.");
-                    }
-                }
-                else
-                {
-                    if (!activeEntries.ContainsKey(id))
-                    {
-                        var liveEntry = DebugEntryFactory.GetDebugEntry(id);
-                        history.AddToBack(liveEntry);
-                        activeEntries[id] = liveEntry;
                     }
                 }
 
@@ -168,7 +155,6 @@ public partial class DebugConsoleManager : Node
     public void Clear()
     {
         history.Clear();
-        activeEntries.Clear();
     }
 
     public void ReleaseCustomDebugEntryId(int id)
@@ -182,7 +168,6 @@ public partial class DebugConsoleManager : Node
         DebugEntryFactory.UpdateDebugEntry(id);
         DebugEntryFactory.Flush(id);
 
-        activeEntries.Remove(id);
         customIdsBucket.Enqueue(id);
     }
 
@@ -192,15 +177,7 @@ public partial class DebugConsoleManager : Node
     /// </summary>
     public int GetAvailableCustomDebugEntryId()
     {
-        int id = customIdsBucket.TryDequeue(out var customId) ? customId : GenerateCustomDebugEntryId();
-
-        if (activeEntries.ContainsKey(id))
-            return id;
-
-        var liveEntry = DebugEntryFactory.GetDebugEntry(id);
-        activeEntries[id] = liveEntry;
-
-        return id;
+        return customIdsBucket.TryDequeue(out var customId) ? customId : GenerateCustomDebugEntryId();
     }
 
     /// <summary>
