@@ -819,9 +819,12 @@ public class GameWorld : IArchivable
     /// </summary>
     /// <param name="species">
     ///   The species to convert to a multicellular one. No checks are done to make sure the species is
-    ///   actually a valid multicellular one.
+    ///   actually valid multicellular.
     /// </param>
-    public MulticellularSpecies ChangeSpeciesToMulticellular(Species species)
+    /// <param name="initialBlob">
+    ///   If true, an initial blob of cells is created rather than just a single placed cell
+    /// </param>
+    public MulticellularSpecies ChangeSpeciesToMulticellular(Species species, bool initialBlob)
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
@@ -835,10 +838,66 @@ public class GameWorld : IArchivable
         var workMemory2 = new List<Hex>();
 
         var stemCellType = new CellType(microbeSpecies, workMemory1, workMemory2);
+        multicellularVersion.ModifiableCellTypes.Add(stemCellType);
 
         multicellularVersion.ModifiableGameplayCells.AddFast(new CellTemplate(stemCellType, new Hex(0, 0), 0),
             workMemory1, workMemory2);
-        multicellularVersion.ModifiableCellTypes.Add(stemCellType);
+
+        if (initialBlob)
+        {
+            // Create an initial cluster of cells to get multicellular started
+            // For now just 2 cells so that the new win condition can't be fulfilled in the first multicellular
+            // generation
+            var offset = new Hex(-1, 1);
+            var template = new CellTemplate(stemCellType, offset, 0);
+            while (true)
+            {
+                template.Position = offset;
+                if (multicellularVersion.ModifiableGameplayCells.CanPlace(template, workMemory1, workMemory2))
+                {
+                    multicellularVersion.ModifiableGameplayCells.AddFast(template,
+                        workMemory1, workMemory2);
+                    break;
+                }
+
+                offset.R += 1;
+
+                template.Position = offset;
+                if (multicellularVersion.ModifiableGameplayCells.CanPlace(template, workMemory1, workMemory2))
+                {
+                    multicellularVersion.ModifiableGameplayCells.AddFast(template,
+                        workMemory1, workMemory2);
+                    break;
+                }
+
+                offset.Q -= 1;
+            }
+
+            offset = new Hex(1, 0);
+            template = new CellTemplate(stemCellType, offset, 0);
+            while (true)
+            {
+                template.Position = offset;
+                if (multicellularVersion.ModifiableGameplayCells.CanPlace(template, workMemory1, workMemory2))
+                {
+                    multicellularVersion.ModifiableGameplayCells.AddFast(template,
+                        workMemory1, workMemory2);
+                    break;
+                }
+
+                offset.Q += 1;
+
+                template.Position = offset;
+                if (multicellularVersion.ModifiableGameplayCells.CanPlace(template, workMemory1, workMemory2))
+                {
+                    multicellularVersion.ModifiableGameplayCells.AddFast(template,
+                        workMemory1, workMemory2);
+                    break;
+                }
+
+                offset.R += 1;
+            }
+        }
 
         multicellularVersion.OnEdited();
         SwitchSpecies(species, multicellularVersion);

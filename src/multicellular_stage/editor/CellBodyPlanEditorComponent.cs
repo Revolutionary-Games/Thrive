@@ -747,7 +747,7 @@ public partial class CellBodyPlanEditorComponent :
             return;
 
         // For now a single hex represents entire cells
-        RenderHoveredHex(q, r, new[] { new Hex(0, 0) }, isPlacementProbablyValid,
+        RenderHoveredHex(q, r, [new Hex(0, 0)], isPlacementProbablyValid,
             out bool hadDuplicate);
 
         bool showModel = !hadDuplicate;
@@ -812,6 +812,7 @@ public partial class CellBodyPlanEditorComponent :
                 if (placed != null)
                 {
                     placementActions.Add(placed);
+                    GD.Print($"Trying to place cell \"{cellType.CellTypeName}\" at {hex}");
 
                     usedHexes.Add(hex);
                 }

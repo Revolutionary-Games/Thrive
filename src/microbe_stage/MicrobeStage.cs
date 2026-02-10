@@ -721,7 +721,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         GD.Print("Disbanding colony and becoming multicellular");
 
-        // Move to multicellular always happens when the player is in a colony, so we force disband that here before
+        // Move to multicellular always happens when the player is in a colony, so we force-disband that here before
         // proceeding
         MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(Player, WorldSimulation);
 
@@ -737,7 +737,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         // This prevents previous members of the player's colony from immediately being hostile
         bool playerHandled = false;
 
-        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(previousSpecies);
+        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(previousSpecies, true);
         foreach (var microbe in playerSpeciesMicrobes)
         {
             // Direct component setting is safe as we verified above we aren't running during a simulation update
