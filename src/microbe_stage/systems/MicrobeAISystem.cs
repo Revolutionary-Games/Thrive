@@ -676,7 +676,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             var colony = entity.Get<MicrobeColony>();
             List<Vector3> positionsLocal = colonyMemberPositions.Value!;
 
-            // Just to make sure
             positionsLocal.Clear();
 
             foreach (Entity member in colony.ColonyMembers)
