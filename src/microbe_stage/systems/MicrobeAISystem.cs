@@ -164,6 +164,12 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         }
     }
 
+    public override void Dispose()
+    {
+        Dispose(true);
+        base.Dispose();
+    }
+
     private static bool RollCheck(float ourStat, float dc, Random random)
     {
         return random.Next(0.0f, dc) <= ourStat;
@@ -1564,6 +1570,12 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
             return thinkRandoms[usedAIThinkRandomIndex++];
         }
+    }
+
+    private void Dispose(bool disposing)
+    {
+        if (disposing)
+            colonyMemberPositions.Dispose();
     }
 
     private readonly struct MicrobeCollectingQuery(
