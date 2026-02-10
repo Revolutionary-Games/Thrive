@@ -6,7 +6,7 @@ using SharedBase.Archive;
 /// </summary>
 public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmentalTolerances
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     [Flags]
     public enum ToleranceChangedStats
@@ -40,7 +40,7 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
     /// </remarks>
     public float PressureMinimum { get; set; } = 71325;
 
-    public float PressureTolerance { get; set; } = 1000;
+    public float PressureTolerance { get; set; } = 2000000;
 
     public float UVResistance { get; set; }
     public float OxygenResistance { get; set; }
@@ -77,9 +77,6 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
 
     public bool SanityCheckNoThrow()
     {
-        if (PressureMinimum > Math.Min(PressureMinimum + PressureTolerance, Constants.TOLERANCE_PRESSURE_MAX))
-            return false;
-
         if (PressureTolerance < 0)
             return false;
 
@@ -129,7 +126,16 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
         PreferredTemperature = reader.ReadFloat();
         TemperatureTolerance = reader.ReadFloat();
         PressureMinimum = reader.ReadFloat();
-        PressureTolerance = reader.ReadFloat();
+
+        if (version <= 1)
+        {
+            PressureTolerance = Math.Min(reader.ReadFloat() - PressureMinimum, Constants.TOLERANCE_PRESSURE_RANGE_MAX);
+        }
+        else
+        {
+            PressureTolerance = reader.ReadFloat();
+        }
+
         UVResistance = reader.ReadFloat();
         OxygenResistance = reader.ReadFloat();
     }

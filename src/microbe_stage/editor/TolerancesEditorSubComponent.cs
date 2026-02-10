@@ -104,12 +104,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     [Export]
     [ExportCategory("Style")]
-    private LabelSettings badValueFont = null!;
-
-    [Export]
-    private LabelSettings perfectValueFont = null!;
-
-    [Export]
     private LabelSettings badValueFontTiny = null!;
 
     [Export]
@@ -780,12 +774,12 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             // what is wrong
             if (patchTemperature > CurrentTolerances.PreferredTemperature)
             {
-                temperatureMaxLabel.LabelSettings = badValueFont;
+                temperatureMaxLabel.LabelSettings = badValueFontTiny;
                 temperatureMinLabel.LabelSettings = originalTemperatureFont;
             }
             else
             {
-                temperatureMinLabel.LabelSettings = badValueFont;
+                temperatureMinLabel.LabelSettings = badValueFontTiny;
                 temperatureMaxLabel.LabelSettings = originalTemperatureFont;
             }
 
@@ -794,8 +788,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         else if (Math.Abs(CurrentTolerances.TemperatureTolerance) < Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE)
         {
             // Perfectly adapted
-            temperatureMinLabel.LabelSettings = perfectValueFont;
-            temperatureMaxLabel.LabelSettings = perfectValueFont;
+            temperatureMinLabel.LabelSettings = perfectValueFontTiny;
+            temperatureMaxLabel.LabelSettings = perfectValueFontTiny;
 
             temperatureRangeDisplay.SetColorsAndRedraw(optimalDisplayGoodColor);
         }
@@ -858,7 +852,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             pressureMinLabel.LabelSettings = originalPressureFont;
             pressureRangeDisplay.SetColorsAndRedraw(optimalDisplayBadColor);
         }
-        else if (Math.Abs(CurrentTolerances.PressureMinimum + CurrentTolerances.PressureTolerance) < Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
+        else if (CurrentTolerances.PressureTolerance < Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
         {
             // Perfectly adapted
             pressureMinLabel.LabelSettings = perfectValueFontTiny;
@@ -886,7 +880,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         // Epsilon is subtracted here to avoid -0 triggering this
         if (oxygenResistanceWithOrganelles < requiredOxygenResistance - MathUtils.EPSILON)
         {
-            oxygenResistanceTotalLabel.LabelSettings = badValueFont;
+            oxygenResistanceTotalLabel.LabelSettings = badValueFontTiny;
             oxygenResistanceRangeDisplay.SetColorsAndRedraw(optimalDisplayBadColor);
         }
         else
@@ -931,7 +925,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (uvResistanceWithOrganelles < requiredUVResistance - MathUtils.EPSILON)
         {
-            uvResistanceTotalLabel.LabelSettings = badValueFont;
+            uvResistanceTotalLabel.LabelSettings = badValueFontTiny;
             uvResistanceRangeDisplay.SetColorsAndRedraw(optimalDisplayBadColor);
         }
         else

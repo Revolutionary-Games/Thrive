@@ -33,16 +33,11 @@ public static class SpeciesComparer
         // Pressure change is slightly tricky to calculate as from a pair of numbers we need to create 2 linked but
         // separate costs
         var minimumPressureChange = Math.Abs(oldTolerances.PressureMinimum - newTolerances.PressureMinimum);
-        var maximumPressureChange = Math.Abs(oldTolerances.PressureTolerance - newTolerances.PressureTolerance);
+        var pressureToleranceChange = Math.Abs(oldTolerances.PressureTolerance - newTolerances.PressureTolerance);
 
         // As moving one slider can end up changing the other value as well, we take the average of the change to take
         // that implicit doubled cost into account
-        var totalPressureChangeAverage = (maximumPressureChange + minimumPressureChange) * 0.5;
-
-        // Calculate pressure tolerance range change
-        var oldRange = Math.Abs(oldTolerances.PressureTolerance - oldTolerances.PressureMinimum);
-        var newRange = Math.Abs(newTolerances.PressureTolerance - newTolerances.PressureMinimum);
-        var pressureToleranceChange = Math.Abs(oldRange - newRange);
+        var totalPressureChangeAverage = (pressureToleranceChange + minimumPressureChange) * 0.5;
 
         // Then add up the costs based on the changes
         // TODO: this can't apply the max single action cost as otherwise *all* tolerance changes could be done at once

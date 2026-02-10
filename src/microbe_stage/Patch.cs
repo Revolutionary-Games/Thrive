@@ -612,7 +612,7 @@ public class Patch : IArchivable
         var maxPressure = Constants.TOLERANCE_INITIAL_PRESSURE_MAX_FRACTION * pressure;
 
         // Don't give too big initial tolerance range
-        var overshoot = (maxPressure - minPressure) - Constants.TOLERANCE_PRESSURE_RANGE_MAX;
+        var overshoot = (maxPressure - minPressure) - Constants.TOLERANCE_INITIAL_PRESSURE_RANGE;
         if (overshoot > 0)
         {
             // Add a little bit of extra buffer around the overshoot to ensure it is below the max
@@ -631,7 +631,7 @@ public class Patch : IArchivable
             }
 
 #if DEBUG
-            if (Math.Abs(maxPressure - minPressure) > Constants.TOLERANCE_PRESSURE_RANGE_MAX)
+            if (Math.Abs(maxPressure - minPressure) > Constants.TOLERANCE_INITIAL_PRESSURE_RANGE)
             {
                 GD.PrintErr("Ended up generating too wide initial tolerance");
 

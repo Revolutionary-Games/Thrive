@@ -311,8 +311,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             result.TemperatureScore = 1;
         }
 
-        var pressureMaximum = MathF.Min(speciesTolerances.PressureMinimum + speciesTolerances.PressureTolerance,
-            Constants.TOLERANCE_PRESSURE_MAX);
+        var pressureMaximum = speciesTolerances.PressureMinimum + speciesTolerances.PressureTolerance;
 
         // Pressure
         if (patchPressure > pressureMaximum)
@@ -394,6 +393,9 @@ public static class MicrobeEnvironmentalToleranceCalculations
         // Make the overall score an average of all values
         result.OverallScore =
             (result.TemperatureScore + result.PressureScore + result.OxygenScore + result.UVScore) / 4;
+
+        // GD.Print(result.TemperatureScore, result.PressureScore, result.OxygenScore, result.UVScore, result.OverallScore, missingSomething);
+        GD.Print($"{result.TemperatureScore}, {result.PressureScore}, {result.OxygenScore}, {result.UVScore}, {result.OverallScore}, {missingSomething}");
 
         // But if missing something, ensure the score is not 1.
         // This should happen only when all the scores are mostly 1,

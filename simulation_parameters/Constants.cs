@@ -1985,10 +1985,9 @@ public static class Constants
     public const float TOLERANCE_PERFECT_TEMPERATURE_SCORE = 0.1f;
 
     public const float TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE = 4000000;
-    public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 350000;
+    public const float TOLERANCE_PERFECT_PRESSURE_SCORE = 0.1f;
 
-    // These are chosen to be symmetric so that the pressure tolerance range ends up easier to show correctly in the
-    // GUI
+    // These are chosen to be symmetric so that the pressure tolerance range ends up easier to show correctly in the GUI
     public const float TOLERANCE_INITIAL_PRESSURE_MIN_FRACTION = 0.8f;
     public const float TOLERANCE_INITIAL_PRESSURE_MAX_FRACTION = 1.2f;
 
@@ -1998,8 +1997,10 @@ public static class Constants
     /// </summary>
     public const float TOLERANCE_PRESSURE_MAX = 80000000;
 
-    public const float TOLERANCE_PRESSURE_RANGE_MAX = 2000000;
-    public const float TOLERANCE_PERFECT_PRESSURE_SCORE = 0.1f;
+    public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 350000;
+
+    public const float TOLERANCE_INITIAL_PRESSURE_RANGE = 800000;
+    public const float TOLERANCE_PRESSURE_RANGE_MAX = 10000000;
 
     /// <summary>
     ///   UV effects only appear once this amount of UV is in a patch
