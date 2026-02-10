@@ -853,16 +853,15 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 if (entity.Has<MicrobeColony>())
                 {
                     List<Vector3> positionsLocal = colonyMemberPositions.Value!;
+                    var colony = entity.Get<MicrobeColony>();
 
-                    // Just to make sure
                     positionsLocal.Clear();
 
-                    foreach (Entity member in entity.Get<MicrobeColony>().ColonyMembers)
+                    foreach (Entity member in colony.ColonyMembers)
                     {
                         positionsLocal.Add(member.Get<WorldPosition>().Position);
                     }
 
-                    var colony = entity.Get<MicrobeColony>();
                     distanceToFocusedPrey = colony.GetSquaredDistanceTo(positionsLocal,
                         focused.Get<WorldPosition>().Position);
                 }
