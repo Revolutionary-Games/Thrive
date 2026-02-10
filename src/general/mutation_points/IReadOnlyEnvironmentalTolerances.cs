@@ -3,7 +3,7 @@
     public float PreferredTemperature { get; }
     public float TemperatureTolerance { get; }
     public float PressureMinimum { get; }
-    public float PressureMaximum { get; }
+    public float PressureTolerance { get; }
     public float UVResistance { get; }
     public float OxygenResistance { get; }
 

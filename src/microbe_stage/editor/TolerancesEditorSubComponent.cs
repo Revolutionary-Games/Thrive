@@ -852,13 +852,13 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             pressureMaxLabel.LabelSettings = originalPressureFont;
             pressureRangeDisplay.SetColorsAndRedraw(optimalDisplayBadColor);
         }
-        else if (patchPressure > Math.Min(CurrentTolerances.PressureMaximum, Constants.TOLERANCE_PRESSURE_MAX))
+        else if (patchPressure > Math.Min(CurrentTolerances.PressureMinimum + CurrentTolerances.PressureTolerance, Constants.TOLERANCE_PRESSURE_MAX))
         {
             pressureMaxLabel.LabelSettings = badValueFontTiny;
             pressureMinLabel.LabelSettings = originalPressureFont;
             pressureRangeDisplay.SetColorsAndRedraw(optimalDisplayBadColor);
         }
-        else if (Math.Abs(CurrentTolerances.PressureTolerance) < Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
+        else if (Math.Abs(CurrentTolerances.PressureMinimum + CurrentTolerances.PressureTolerance) < Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
         {
             // Perfectly adapted
             pressureMinLabel.LabelSettings = perfectValueFontTiny;
@@ -960,30 +960,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             uvResistanceModifierLabel.GetParent<Control>().Visible = false;
         }
-        else
-        {
-            uvResistanceModifierLabel.Visible = false;
-        }
-
-        // Update markers
-        // For non-percentage sliders, OptimalValue is calculated as a fraction between the min and max slider values
-        temperatureToleranceMarker.OptimalValue = (patchTemperature - (float)temperatureSlider.MinValue)
-            / (float)(temperatureSlider.MaxValue - temperatureSlider.MinValue);
-
-        float pressureRangeFraction =
-            (patchPressure - (float)pressureMaxSlider.MinValue)
-            / (float)(pressureMaxSlider.MaxValue - pressureMaxSlider.MinValue);
-
-        minPressureToleranceMarker.OptimalValue = pressureRangeFraction;
-        maxPressureToleranceMarker.OptimalValue = pressureRangeFraction;
-
-        // Don't show markers when they are at 0% as it looks confusing
-        oxygenToleranceMarker.ShowMarker = requiredOxygenResistance > MathUtils.EPSILON;
-        uvToleranceMarker.ShowMarker = requiredUVResistance > MathUtils.EPSILON;
-
-        oxygenToleranceMarker.OptimalValue = requiredOxygenResistance;
-
-        uvToleranceMarker.OptimalValue = requiredUVResistance;
     }
 
     [ArchiveAllowedMethod]

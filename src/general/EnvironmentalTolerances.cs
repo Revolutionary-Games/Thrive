@@ -40,7 +40,7 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
     /// </remarks>
     public float PressureMinimum { get; set; } = 71325;
 
-    public float PressureMaximum { get; set; } = 301325;
+    public float PressureTolerance { get; set; } = 1000;
 
     public float UVResistance { get; set; }
     public float OxygenResistance { get; set; }
@@ -64,7 +64,7 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
         PreferredTemperature = tolerancesToCopy.PreferredTemperature;
         TemperatureTolerance = tolerancesToCopy.TemperatureTolerance;
         PressureMinimum = tolerancesToCopy.PressureMinimum;
-        PressureMaximum = tolerancesToCopy.PressureMaximum;
+        PressureTolerance = tolerancesToCopy.PressureTolerance;
         UVResistance = tolerancesToCopy.UVResistance;
         OxygenResistance = tolerancesToCopy.OxygenResistance;
     }
@@ -77,10 +77,10 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
 
     public bool SanityCheckNoThrow()
     {
-        if (PressureMinimum > PressureMaximum)
+        if (PressureMinimum > Math.Min(PressureMinimum + PressureTolerance, Constants.TOLERANCE_PRESSURE_MAX))
             return false;
 
-        if (PressureMaximum < 0)
+        if (PressureTolerance < 0)
             return false;
 
         return true;
@@ -97,7 +97,7 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
         }
 
         if (Math.Abs(PressureMinimum - other.PressureMinimum) > 0.01f ||
-            Math.Abs(PressureMaximum - other.PressureMaximum) > 0.01f)
+            Math.Abs(PressureTolerance - other.PressureTolerance) > 0.01f)
         {
             changes |= ToleranceChangedStats.Pressure;
         }
@@ -116,7 +116,7 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
         writer.Write(PreferredTemperature);
         writer.Write(TemperatureTolerance);
         writer.Write(PressureMinimum);
-        writer.Write(PressureMaximum);
+        writer.Write(PressureTolerance);
         writer.Write(UVResistance);
         writer.Write(OxygenResistance);
     }
@@ -129,7 +129,7 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
         PreferredTemperature = reader.ReadFloat();
         TemperatureTolerance = reader.ReadFloat();
         PressureMinimum = reader.ReadFloat();
-        PressureMaximum = reader.ReadFloat();
+        PressureTolerance = reader.ReadFloat();
         UVResistance = reader.ReadFloat();
         OxygenResistance = reader.ReadFloat();
     }
@@ -151,7 +151,7 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
         return Math.Abs(PreferredTemperature - other.PreferredTemperature) < MathUtils.EPSILON &&
             Math.Abs(TemperatureTolerance - other.TemperatureTolerance) < MathUtils.EPSILON &&
             Math.Abs(PressureMinimum - other.PressureMinimum) < MathUtils.EPSILON &&
-            Math.Abs(PressureMaximum - other.PressureMaximum) < MathUtils.EPSILON &&
+            Math.Abs(PressureTolerance - other.PressureTolerance) < MathUtils.EPSILON &&
             Math.Abs(UVResistance - other.UVResistance) < MathUtils.EPSILON &&
             Math.Abs(OxygenResistance - other.OxygenResistance) < MathUtils.EPSILON;
     }
@@ -166,7 +166,7 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
     public override int GetHashCode()
     {
         return HashCode.Combine(PreferredTemperature, TemperatureTolerance, PressureMinimum,
-            PressureMaximum, UVResistance, OxygenResistance);
+            PressureTolerance, UVResistance, OxygenResistance);
     }
 
     protected bool Equals(EnvironmentalTolerances other)
@@ -174,7 +174,7 @@ public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmental
         return PreferredTemperature.Equals(other.PreferredTemperature) &&
             TemperatureTolerance.Equals(other.TemperatureTolerance) &&
             PressureMinimum.Equals(other.PressureMinimum) &&
-            PressureMaximum.Equals(other.PressureMaximum) && UVResistance.Equals(other.UVResistance) &&
+            PressureTolerance.Equals(other.PressureTolerance) && UVResistance.Equals(other.UVResistance) &&
             OxygenResistance.Equals(other.OxygenResistance);
     }
 }

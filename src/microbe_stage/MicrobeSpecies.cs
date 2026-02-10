@@ -434,8 +434,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
             Localization.Translate("TOLERANCE_DETAIL_TEXT").FormatSafe(Tolerances.PreferredTemperature,
                 Tolerances.TemperatureTolerance,
                 Tolerances.PressureMinimum,
-                Math.Min(Tolerances.PressureMaximum, Constants.TOLERANCE_PRESSURE_MAX),
-                Tolerances.PressureTolerance,
+                Math.Min(Tolerances.PressureMinimum + Tolerances.PressureTolerance, Constants.TOLERANCE_PRESSURE_MAX),
                 Math.Round(Tolerances.OxygenResistance * 100, 2),
                 Math.Round(Tolerances.UVResistance * 100, 2));
     }
