@@ -41,7 +41,7 @@ public partial class ProcessPanel : CustomWindow
 
             isMulticellular = value;
 
-            UpdateHelpButton();
+            UpdateMulticellularStatus();
         }
     }
 
@@ -59,7 +59,7 @@ public partial class ProcessPanel : CustomWindow
         // To make sure processes refresh when the game is paused
         ProcessMode = ProcessModeEnum.Always;
 
-        UpdateHelpButton();
+        UpdateMulticellularStatus();
     }
 
     public override void _Process(double delta)
@@ -80,8 +80,11 @@ public partial class ProcessPanel : CustomWindow
         EmitSignal(SignalName.ToggleProcessPressed, equation, enabled);
     }
 
-    private void UpdateHelpButton()
+    private void UpdateMulticellularStatus()
     {
         helpButtonContainer.Visible = isMulticellular;
+
+        WindowTitle = isMulticellular ? Localization.Translate("PROCESS_PANEL_TITLE_MULTICELLULAR")
+            : Localization.Translate("PROCESS_PANEL_TITLE");
     }
 }

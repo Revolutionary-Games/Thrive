@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-10 17:48+0300\n"
+"POT-Creation-Date: 2026-02-10 20:27+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -362,11 +362,11 @@ msgstr ""
 msgid "ATP_BALANCE"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:357
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:363
 msgid "ATP_BALANCE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:361
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:367
 msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr ""
 
@@ -390,12 +390,12 @@ msgstr ""
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:555
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:560
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:561
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:566
 msgid "ATP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:561
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:567
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
@@ -430,7 +430,6 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1030
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
-#: ../src/microbe_stage/ProcessPanel.tscn:83
 msgid "AUTO-EVO_PREDICTION"
 msgstr ""
 
@@ -614,7 +613,7 @@ msgstr ""
 msgid "BASE_MOBILITY"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:321
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:327
 msgid "BASE_MOVEMENT"
 msgstr ""
 
@@ -630,12 +629,12 @@ msgstr ""
 msgid "BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:894
+#: ../src/microbe_stage/MicrobeHUD.cs:901
 #: ../src/microbe_stage/MicrobeHUD.tscn:431
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:850
+#: ../src/microbe_stage/MicrobeHUD.cs:852
 #: ../src/microbe_stage/MicrobeHUD.tscn:424
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
@@ -1208,7 +1207,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1379
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:606
-#: ../src/microbe_stage/ProcessPanel.tscn:78 ../src/modding/ModManager.tscn:698
+#: ../src/microbe_stage/ProcessPanel.tscn:81 ../src/modding/ModManager.tscn:698
 #: ../src/thriveopedia/Thriveopedia.tscn:297
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:223
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:319
@@ -2230,7 +2229,7 @@ msgstr ""
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:412
+#: ../src/microbe_stage/MicrobeHUD.cs:414
 msgid "DEVOURED"
 msgstr ""
 
@@ -2287,7 +2286,7 @@ msgstr ""
 msgid "DIGESTION_SPEED_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:435
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:441
 #: ../src/multicellular_stage/editor/CellTypeTooltip.cs:130
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
@@ -2673,19 +2672,19 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:262
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:268
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:332
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:338
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:294
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:300
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:284
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:290
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
@@ -3189,12 +3188,12 @@ msgstr ""
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:770
+#: ../src/microbe_stage/MicrobeHUD.cs:772
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:16
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:769
+#: ../src/microbe_stage/MicrobeHUD.cs:771
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -5588,7 +5587,7 @@ msgstr ""
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:448
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:454
 msgid "MIXED_DOT_DOT_DOT"
 msgstr ""
 
@@ -5921,7 +5920,7 @@ msgstr ""
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr ""
 
-#: ../src/microbe_stage/ProcessPanel.tscn:90
+#: ../src/microbe_stage/ProcessPanel.tscn:99
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 msgstr ""
 
@@ -6344,7 +6343,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:3002
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:3014
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
-#: ../src/microbe_stage/MicrobeHUD.cs:717
+#: ../src/microbe_stage/MicrobeHUD.cs:719
 msgid "N_A"
 msgstr ""
 
@@ -6558,15 +6557,20 @@ msgstr ""
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
 msgstr ""
 
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:576
 #: ../src/microbe_stage/OrganismStatisticsPanel.tscn:69
 msgid "ORGANISM_STATISTICS"
+msgstr ""
+
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:581
+msgid "ORGANISM_STATISTICS_MULTICELLULAR"
 msgstr ""
 
 #: ../src/microbe_stage/OrganelleDefinition.cs:794
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:315
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:321
 msgid "OSMOREGULATION"
 msgstr ""
 
@@ -6818,13 +6822,13 @@ msgstr ""
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:510
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:586
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:373
-#: ../src/microbe_stage/MicrobeHUD.cs:418
+#: ../src/microbe_stage/MicrobeHUD.cs:420
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:141
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:144
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:156
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:157
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:443
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:469
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:449
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:475
 #: ../src/society_stage/gui/ResearchScreen.cs:34
 msgid "PERCENTAGE_VALUE"
 msgstr ""
@@ -6913,7 +6917,7 @@ msgstr ""
 msgid "PLANET_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:752
+#: ../src/microbe_stage/MicrobeHUD.cs:754
 msgid "PLAYER"
 msgstr ""
 
@@ -7073,9 +7077,15 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1308
-#: ../src/microbe_stage/ProcessPanel.tscn:20
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:833
+#: ../src/microbe_stage/ProcessPanel.cs:88
+#: ../src/microbe_stage/ProcessPanel.tscn:22
+#: ../src/microbe_stage/ProcessPanel.tscn:86
 msgid "PROCESS_PANEL_TITLE"
+msgstr ""
+
+#: ../src/microbe_stage/ProcessPanel.cs:87
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:833
+msgid "PROCESS_PANEL_TITLE_MULTICELLULAR"
 msgstr ""
 
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn:133
@@ -7885,27 +7895,27 @@ msgstr ""
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:229
+#: ../src/microbe_stage/MicrobeHUD.cs:231
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:228
+#: ../src/microbe_stage/MicrobeHUD.cs:230
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:226
+#: ../src/microbe_stage/MicrobeHUD.cs:228
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:225
+#: ../src/microbe_stage/MicrobeHUD.cs:227
 msgid "SIGNAL_COMMAND_NONE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:227
+#: ../src/microbe_stage/MicrobeHUD.cs:229
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:232
+#: ../src/microbe_stage/MicrobeHUD.cs:234
 msgid "SIGNAL_TO_EMIT"
 msgstr ""
 
@@ -9582,8 +9592,13 @@ msgstr ""
 msgid "VIEW_ALL"
 msgstr ""
 
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:577
 #: ../src/microbe_stage/OrganismStatisticsPanel.tscn:250
 msgid "VIEW_CELL_PROCESSES"
+msgstr ""
+
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:582
+msgid "VIEW_CELL_PROCESSES_MULTICELLULAR"
 msgstr ""
 
 #: ../src/thriveopedia/Thriveopedia.tscn:287
