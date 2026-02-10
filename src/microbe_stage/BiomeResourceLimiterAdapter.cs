@@ -12,24 +12,24 @@ public class BiomeResourceLimiterAdapter : IBiomeConditions
     private readonly ResourceLimitingMode limitingMode;
     private readonly IBiomeConditions baseConditions;
     private readonly Lazy<Dictionary<string, ChunkConfiguration>> filteredChunks;
-    private HashSet<Compound> CellProducedCompounds;
+    private HashSet<Compound> cellProducedCompounds;
 
     public BiomeResourceLimiterAdapter(ResourceLimitingMode limitingMode, IBiomeConditions baseConditions,
         IReadOnlyList<OrganelleTemplate>? organelles = null)
     {
         this.limitingMode = limitingMode;
         this.baseConditions = baseConditions;
-        CellProducedCompounds = new HashSet<Compound>();
+        cellProducedCompounds = new HashSet<Compound>();
         if (organelles != null)
         {
-            for (var i = 0; i < organelles.Count; i++)
+            for (var i = 0; i < organelles.Count; ++i)
             {
                 var organelle = organelles[i];
                 foreach (var process in organelle.Definition.RunnableProcesses)
                 {
                     foreach (var output in process.Process.Outputs)
                     {
-                        CellProducedCompounds.Add(output.Key.ID);
+                        cellProducedCompounds.Add(output.Key.ID);
                     }
                 }
             }
@@ -100,7 +100,7 @@ public class BiomeResourceLimiterAdapter : IBiomeConditions
             case ResourceLimitingMode.WithoutHydrogenSulfide:
                 return compound != Compound.Hydrogensulfide;
             case ResourceLimitingMode.NoExternalResources:
-                return IsAmbientCompound(compound) || CellProducedCompounds.Contains(compound);
+                return IsAmbientCompound(compound) || cellProducedCompounds.Contains(compound);
             default:
                 throw new ArgumentOutOfRangeException(nameof(limitingMode), "unimplemented limiting mode");
         }
