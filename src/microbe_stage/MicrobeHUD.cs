@@ -890,7 +890,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private void UpdateProcessPanelStatus(Entity player)
     {
-        processPanel.IsMulticellular = player.Has<MicrobeColony>();
+        processPanel.IsMicrobe = !player.Has<MicrobeColony>();
     }
 
     private void UpdateColonySizeForMacroscopic()

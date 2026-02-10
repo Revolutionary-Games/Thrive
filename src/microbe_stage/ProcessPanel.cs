@@ -23,23 +23,23 @@ public partial class ProcessPanel : CustomWindow
     private CustomWindow multicellularProcessPanelExplanation = null!;
 #pragma warning restore CA2213
 
-    private bool isMulticellular;
+    private bool isMicrobe;
 
     [Signal]
     public delegate void ToggleProcessPressedEventHandler(ChemicalEquation equation);
 
     public IEnumerable<IProcessDisplayInfo>? ShownData { get; set; }
 
-    public bool IsMulticellular
+    public bool IsMicrobe
     {
-        get => isMulticellular;
+        get => isMicrobe;
 
         set
         {
-            if (isMulticellular == value)
+            if (isMicrobe == value)
                 return;
 
-            isMulticellular = value;
+            isMicrobe = value;
 
             UpdateMulticellularStatus();
         }
@@ -82,10 +82,10 @@ public partial class ProcessPanel : CustomWindow
 
     private void UpdateMulticellularStatus()
     {
-        helpButtonContainer.Visible = isMulticellular;
+        helpButtonContainer.Visible = !isMicrobe;
 
-        WindowTitle = isMulticellular ?
-            Localization.Translate("PROCESS_PANEL_TITLE_MULTICELLULAR") :
+        WindowTitle = isMicrobe ?
+            Localization.Translate("PROCESS_PANEL_TITLE_MICROBE") :
             Localization.Translate("PROCESS_PANEL_TITLE");
     }
 }

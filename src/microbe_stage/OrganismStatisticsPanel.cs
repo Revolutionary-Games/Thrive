@@ -573,13 +573,13 @@ public partial class OrganismStatisticsPanel : PanelContainer
     {
         if (!IsMulticellularEditor)
         {
-            titleLabel.Text = Localization.Translate("ORGANISM_STATISTICS");
-            processListButton.Text = Localization.Translate("VIEW_CELL_PROCESSES");
+            titleLabel.Text = Localization.Translate("ORGANISM_STATISTICS_MICROBE");
+            processListButton.Text = Localization.Translate("VIEW_CELL_PROCESSES_MICROBE");
         }
         else
         {
-            titleLabel.Text = Localization.Translate("ORGANISM_STATISTICS_MULTICELLULAR");
-            processListButton.Text = Localization.Translate("VIEW_CELL_PROCESSES_MULTICELLULAR");
+            titleLabel.Text = Localization.Translate("ORGANISM_STATISTICS");
+            processListButton.Text = Localization.Translate("VIEW_CELL_PROCESSES");
         }
     }
 

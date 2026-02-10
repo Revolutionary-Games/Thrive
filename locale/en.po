@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-10 20:27+0300\n"
+"POT-Creation-Date: 2026-02-11 00:19+0300\n"
 "PO-Revision-Date: 2026-01-21 17:54+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -4638,10 +4638,10 @@ msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
 msgstr "(some organelles will have unlock conditions needed to place them)"
 
 msgid "ORGANISM_STATISTICS"
-msgstr "Cell Statistics"
+msgstr "Organism Statistics"
 
-msgid "ORGANISM_STATISTICS_MULTICELLULAR"
-msgstr "Colony Statistics"
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "Cell Statistics"
 
 msgid "OR_UNLOCK_CONDITION"
 msgstr "or"
@@ -4994,6 +4994,9 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Organism Processes"
+
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Cell Processes"
 
 msgid "PROCESS_PANEL_TITLE_MULTICELLULAR"
@@ -7031,10 +7034,10 @@ msgid "VIEW_ALL"
 msgstr "View All"
 
 msgid "VIEW_CELL_PROCESSES"
-msgstr "View Cell Processes"
+msgstr "View Organism Processes"
 
-msgid "VIEW_CELL_PROCESSES_MULTICELLULAR"
-msgstr "View Colony Processes"
+msgid "VIEW_CELL_PROCESSES_MICROBE"
+msgstr "View Cell Processes"
 
 msgid "VIEW_ONLINE"
 msgstr "View Online"
@@ -9635,6 +9638,12 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "ORGANISM_STATISTICS_MULTICELLULAR"
+#~ msgstr "Colony Statistics"
+
+#~ msgid "VIEW_CELL_PROCESSES_MULTICELLULAR"
+#~ msgstr "View Colony Processes"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Uses Auto Harmony:"
