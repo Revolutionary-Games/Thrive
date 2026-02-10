@@ -313,9 +313,37 @@ public partial class CellBodyPlanEditorComponent :
 
             if (cellType != null)
             {
+                HashSet<(Hex Hex, int Orientation)> hoveredHexes = new();
+
+                /*if (!componentBottomLeftButtons.SymmetryEnabled)
+                    effectiveSymmetry = HexEditorSymmetry.None;*/
+
                 RunWithSymmetry(q, r,
-                    (finalQ, finalR, rotation) => RenderHighlightedCell(finalQ, finalR, rotation, cellType),
+                    (finalQ, finalR, rotation) =>
+                    {
+                        RenderHighlightedCell(finalQ, finalR, rotation, cellType);
+
+                        var finalHex = new Hex(finalQ, finalR);
+
+                        // Only add unique positions so that duplicate actions are not attempted
+                        bool exists = false;
+                        foreach (var existingHex in hoveredHexes)
+                        {
+                            if (existingHex.Hex == finalHex)
+                            {
+                                exists = true;
+                                break;
+                            }
+                        }
+
+                        if (exists)
+                            return;
+
+                        hoveredHexes.Add((finalHex, rotation));
+                    },
                     effectiveSymmetry);
+
+                MouseHoverPositions = hoveredHexes.ToList();
             }
         }
         else if (forceUpdateCellGraphics)
