@@ -706,7 +706,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                     continue;
 
                 isBigIron =
-                    ChooseChunk(chunk, ourCompounds, chosenChunk, bestFoundChunkDistance, distance, ironEater, isBigIron);
+                    ChooseChunk(chunk, ourCompounds, chosenChunk, bestFoundChunkDistance,
+                        distance, ironEater, isBigIron);
             }
         }
         else
@@ -733,7 +734,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                     continue;
 
                 isBigIron =
-                    ChooseChunk(chunk, ourCompounds, chosenChunk, bestFoundChunkDistance, distance, ironEater, isBigIron);
+                    ChooseChunk(chunk, ourCompounds, chosenChunk, bestFoundChunkDistance,
+                        distance, ironEater, isBigIron);
             }
         }
 
