@@ -36,6 +36,7 @@ clip_contents = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 
 [connection signal="scrolling" from="VScrollBar" to="." method="OnScrolled"]
 [connection signal="scrolling" from="HScrollBar" to="." method="OnScrolled"]

@@ -49,7 +49,6 @@ public partial class DebugEntryList : Control
     private int maxVisiblePanels = DefaultMaxVisiblePanels;
 
     private bool dirty;
-    private bool shiftDown;
     private int globalStartId;
 
     /// <summary>
@@ -91,6 +90,7 @@ public partial class DebugEntryList : Control
         {
             case InputEventMouseButton mouseEvent:
             {
+                bool shiftDown = mouseEvent.IsShiftPressed();
                 ScrollBar bar = shiftDown ? hScrollBar : vScrollBar;
                 float speedMultiplier = shiftDown ? 20.0f : 1.0f;
                 switch (mouseEvent.ButtonIndex)
@@ -107,13 +107,9 @@ public partial class DebugEntryList : Control
 
                 break;
             }
-
-            case InputEventKey { Keycode: Key.Shift } keyEvent:
-                shiftDown = keyEvent.Pressed;
-                break;
         }
 
-        GetViewport().SetInputAsHandled();
+        AcceptEvent();
 
         base._GuiInput(@event);
     }
