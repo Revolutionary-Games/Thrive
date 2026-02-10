@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
@@ -122,7 +123,7 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         if (!obj.MatchesUnderlyingProcess(Process.Process))
             return false;
 
-        return summedSpeed == obj.CurrentSpeed;
+        return MathF.Abs(summedSpeed - obj.CurrentSpeed) < MathUtils.EPSILON;
     }
 
     public override bool Equals(object? obj)
