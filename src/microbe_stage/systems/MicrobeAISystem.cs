@@ -705,28 +705,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 if (distance > (20000.0 * speciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
                     continue;
 
-                foreach (var p in chunk.Compounds.Compounds)
-                {
-                    if (ourCompounds.IsUseful(p.Key) && SimulationParameters.GetCompound(p.Key).Digestible)
-                    {
-                        if (chosenChunk == null)
-                        {
-                            chosenChunk = chunk;
-                            bestFoundChunkDistance = distance;
-
-                            if (ironEater)
-                            {
-                                // TODO: this should have a more robust check (than just pure size)
-                                if (p.Key == Compound.Iron && chunk.EngulfSize > 50)
-                                {
-                                    isBigIron = true;
-                                }
-                            }
-                        }
-
-                        break;
-                    }
-                }
+                isBigIron =
+                    ChooseChunk(chunk, ourCompounds, chosenChunk, bestFoundChunkDistance, distance, ironEater, isBigIron);
             }
         }
         else
@@ -752,28 +732,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 if (distance > (20000.0 * speciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
                     continue;
 
-                foreach (var p in chunk.Compounds.Compounds)
-                {
-                    if (ourCompounds.IsUseful(p.Key) && SimulationParameters.GetCompound(p.Key).Digestible)
-                    {
-                        if (chosenChunk == null)
-                        {
-                            chosenChunk = chunk;
-                            bestFoundChunkDistance = distance;
-
-                            if (ironEater)
-                            {
-                                // TODO: this should have a more robust check (than just pure size)
-                                if (p.Key == Compound.Iron && chunk.EngulfSize > 50)
-                                {
-                                    isBigIron = true;
-                                }
-                            }
-                        }
-
-                        break;
-                    }
-                }
+                isBigIron =
+                    ChooseChunk(chunk, ourCompounds, chosenChunk, bestFoundChunkDistance, distance, ironEater, isBigIron);
             }
         }
 
@@ -1424,6 +1384,32 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     {
         return compounds.GetCompoundAmount(Compound.Oxytoxy) >=
             Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * speciesFocus / Constants.MAX_SPECIES_FOCUS;
+    }
+
+    private bool ChooseChunk((Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds) chunk,
+        CompoundBag ourCompounds,
+        (Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)? chosenChunk,
+        float bestFoundChunkDistance, float distance, bool ironEater, bool isBigIron)
+    {
+        foreach (var p in chunk.Compounds.Compounds)
+        {
+            if (ourCompounds.IsUseful(p.Key) && SimulationParameters.GetCompound(p.Key).Digestible)
+            {
+                if (chosenChunk == null)
+                {
+                    chosenChunk = chunk;
+                    bestFoundChunkDistance = distance;
+
+                    if (ironEater)
+                    {
+                        // TODO: this should have a more robust check (than just pure size)
+                        return p.Key == Compound.Iron && chunk.EngulfSize > 50;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
     private void CleanMicrobeCache()
