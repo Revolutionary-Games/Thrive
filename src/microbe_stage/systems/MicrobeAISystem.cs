@@ -674,6 +674,15 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         if (entity.Has<MicrobeColony>())
         {
             var colony = entity.Get<MicrobeColony>();
+            List<Vector3> positionsLocal = colonyMemberPositions.Value!;
+
+            // Just to make sure
+            positionsLocal.Clear();
+
+            foreach (Entity member in colony.ColonyMembers)
+            {
+                positionsLocal.Add(member.Get<WorldPosition>().Position);
+            }
 
             foreach (var chunk in chunkDataCache)
             {
@@ -687,16 +696,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
                 // And too distant things
                 float distance;
-
-                List<Vector3> positionsLocal = colonyMemberPositions.Value!;
-
-                // Just to make sure
-                positionsLocal.Clear();
-
-                foreach (Entity member in colony.ColonyMembers)
-                {
-                    positionsLocal.Add(member.Get<WorldPosition>().Position);
-                }
 
                 distance = colony.GetSquaredDistanceTo(positionsLocal, chunk.Position);
 
