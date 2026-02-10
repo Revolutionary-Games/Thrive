@@ -30,6 +30,9 @@ public partial class DebugEntryList : Control
     private HScrollBar hScrollBar = null!;
 
     [Export]
+    private Control textClipArea = null!;
+
+    [Export]
     private Font monospacedFont = null!;
 #pragma warning restore CA2213
 
@@ -196,7 +199,7 @@ public partial class DebugEntryList : Control
                 newLabel.AddThemeFontSizeOverride("normal_font", 12);
 
                 entryLabels.Add(newLabel);
-                AddChild(newLabel);
+                textClipArea.AddChild(newLabel);
 
                 newLabel.Connect(Control.SignalName.Resized, onResizedCallable);
 
@@ -285,7 +288,8 @@ public partial class DebugEntryList : Control
 
     private void LayOut()
     {
-        LayOutScrollbar();
+        LayOutScrollbars();
+        LayOutClipArea();
 
         bool stickCheck = true;
         while (true)
@@ -369,7 +373,7 @@ public partial class DebugEntryList : Control
                 if (contentWidth > maxWidth)
                     maxWidth = contentWidth;
 
-                if (y > Size.Y)
+                if (y > textClipArea.Size.Y)
                 {
                     if (StickToBottom)
                     {
@@ -386,7 +390,7 @@ public partial class DebugEntryList : Control
                 else
                 {
                     label.Visible = true;
-                    if (Size.Y - y > label.GetContentHeight())
+                    if (textClipArea.Size.Y - y > label.GetContentHeight())
                     {
                         ++visibleEntries;
                     }
@@ -420,7 +424,7 @@ public partial class DebugEntryList : Control
         return visibleEntries;
     }
 
-    private void LayOutScrollbar()
+    private void LayOutScrollbars()
     {
         var w = Math.Min(10, vScrollBar.Size.X);
         var h = Math.Min(10, hScrollBar.Size.Y);
@@ -429,7 +433,14 @@ public partial class DebugEntryList : Control
         vScrollBar.Size = new Vector2(w, Size.Y - 2 * entrySeparation);
 
         hScrollBar.Position = new Vector2(leftMargin, Size.Y - h);
-        hScrollBar.Size = new Vector2(Size.X - leftMargin - rightMargin, h);
+        hScrollBar.Size = new Vector2(Size.X - leftMargin - rightMargin - vScrollBar.Size.X, h);
+    }
+
+    private void LayOutClipArea()
+    {
+        textClipArea.Position = new Vector2(leftMargin, entrySeparation);
+        textClipArea.Size = new Vector2(Size.X - vScrollBar.Size.X - leftMargin - 2 * rightMargin,
+            Size.Y - hScrollBar.Size.Y - 3 * entrySeparation);
     }
 
     private void OnResized()
