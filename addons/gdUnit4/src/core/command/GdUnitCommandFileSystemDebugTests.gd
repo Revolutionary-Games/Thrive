@@ -11,5 +11,7 @@ func _init(test_session_command: GdUnitCommandTestSession) -> void:
 
 
 func execute(...parameters: Array) -> void:
+	if parameters.is_empty():
+		return
 	var selected_paths: PackedStringArray = parameters[0]
 	execute_tests(selected_paths, true)

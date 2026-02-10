@@ -29,13 +29,13 @@ func _to_string() -> String:
 	return _message
 
 
-static func of_push_warning(file: String, line: int, message: String, stack_trace: PackedStringArray) -> ErrorLogEntry:
+static func of_push_warning(line: int, message: String, stack_trace: PackedStringArray) -> ErrorLogEntry:
 	return ErrorLogEntry.new(TYPE.PUSH_WARNING, line, message, "\n".join(stack_trace))
 
 
-static func of_push_error(file: String, line: int, message: String, stack_trace: PackedStringArray) -> ErrorLogEntry:
+static func of_push_error(line: int, message: String, stack_trace: PackedStringArray) -> ErrorLogEntry:
 	return ErrorLogEntry.new(TYPE.PUSH_ERROR, line, message, "\n".join(stack_trace))
 
 
-static func of_script_error(file: String, line: int, message: String, stack_trace: PackedStringArray) -> ErrorLogEntry:
+static func of_script_error(line: int, message: String, stack_trace: PackedStringArray) -> ErrorLogEntry:
 	return ErrorLogEntry.new(TYPE.SCRIPT_ERROR, line, message, "\n".join(stack_trace))

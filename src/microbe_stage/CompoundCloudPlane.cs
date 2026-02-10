@@ -1,7 +1,10 @@
-﻿using System;
+﻿// Toggles using cached to world shift vectors or recalculating them each time
+
+#define CACHE_WORLD_COORDINATES
+
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Godot;
@@ -10,6 +13,10 @@ using Systems;
 using Vector2 = Godot.Vector2;
 using Vector3 = Godot.Vector3;
 using Vector4 = System.Numerics.Vector4;
+
+#if CACHE_WORLD_COORDINATES
+using System.Collections.Frozen;
+#endif
 
 /// <summary>
 ///   A single compound cloud plane that handles fluid simulation for 4 compound types at a single grid square location
@@ -39,11 +46,20 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     private readonly StringName brightnessParameterName = new("BrightnessMultiplier");
     private readonly StringName uvOffsetParameterName = new("UVOffset");
 
+#if CACHE_WORLD_COORDINATES
     /// <summary>
-    ///   Do not ever modify this dictionary after construction, it is thread unsafe.
-    ///   This dictionary contains 81 values. And is filled in _Ready once the cloud size is known.
+    ///   Precalculated cache of world shift vectors. This dictionary contains 81 values.
+    ///   And is filled in _Ready once the cloud size is known.
     /// </summary>
-    private Dictionary<int, Vector2> cachedWorldShiftVectors = null!;
+    /// <remarks>
+    ///   <para>
+    ///     This could be reimplemented as a 256-element flat array, but that actually loses in most tests to the
+    ///     frozen dictionary and only in very specific optimizer scenarios it wins. See:
+    ///     https://forum.revolutionarygamesstudio.com/t/improving-cloud-performance-with-caching/1232/4
+    ///   </para>
+    /// </remarks>
+    private FrozenDictionary<int, Vector2> cachedWorldShiftVectors = null!;
+#endif
 
     private CompoundDefinition?[] compoundDefinitions = null!;
 
@@ -253,7 +269,9 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             SetMaterialUVForPosition();
         }
 
+#if CACHE_WORLD_COORDINATES
         cachedWorldShiftVectors = PrecalculateWorldShiftVectors();
+#endif
     }
 
     /// <summary>
@@ -939,7 +957,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         }
     }
 
-    private Dictionary<int, Vector2> PrecalculateWorldShiftVectors()
+#if CACHE_WORLD_COORDINATES
+    private FrozenDictionary<int, Vector2> PrecalculateWorldShiftVectors()
     {
         var shiftCache = new Dictionary<int, Vector2>(81);
         int worldShift = Constants.CLOUD_SIZE / Constants.CLOUD_PLANE_SQUARES_PER_SIDE * CloudResolution;
@@ -955,6 +974,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                 {
                     foreach (int playerY in playerPositions)
                     {
+                        // When not caching equivalent math is in GetWorldPositionForAdvection
                         int xShift = GetEdgeShift(x0, playerX);
                         int yShift = GetEdgeShift(y0, playerY);
 
@@ -973,20 +993,44 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         if (shiftCache.Count != 81)
             throw new Exception("Logic error in PrecalculateWorldShiftVectors");
 
-        return shiftCache;
+        return shiftCache.ToFrozenDictionary();
     }
+#endif
 
     private Vector2 GetWorldPositionForAdvection(int x0, int y0)
     {
+#if CACHE_WORLD_COORDINATES
         var key = GetWorldShiftKey(x0, y0, playersPosition.X, playersPosition.Y);
-        ref var cached = ref CollectionsMarshal.GetValueRefOrNullRef(cachedWorldShiftVectors, key);
-        if (!Unsafe.IsNullRef(ref cached))
+
+        // In benchmarks the null ref or direct try get basically both get wins and losses, but the TryGet wins
+        // slightly more often, so it is used
+        /*ref readonly var cached = ref cachedWorldShiftVectors.GetValueRefOrNullRef(key);
+        if (!Unsafe.IsNullRef(in cached))
+            return cachedWorldPosition + cached;*/
+
+        if (cachedWorldShiftVectors.TryGetValue(key, out var cached))
             return cachedWorldPosition + cached;
 
 #if DEBUG
         throw new ArgumentException("Position is impossible for cloud world shift lookup");
 #else
         return cachedWorldPosition;
+#endif
+#else
+        // Same math as in PrecalculateWorldShiftVectors. This is used when not caching.
+        int worldShift = Constants.CLOUD_SIZE / Constants.CLOUD_PLANE_SQUARES_PER_SIDE * CloudResolution;
+        var playerX = playersPosition.X;
+        var playerY = playersPosition.Y;
+
+        int xShift = GetEdgeShift(x0, playerX);
+        int yShift = GetEdgeShift(y0, playerY);
+
+        var wholePlaneShift = new Vector2(worldShift * ((4 - playerX) % 3 - 1) - Constants.CLOUD_SIZE,
+            worldShift * ((4 - playerY) % 3 - 1) - Constants.CLOUD_SIZE);
+
+        var edgePlanesShift = new Vector2(xShift * worldShift, yShift * worldShift);
+
+        return cachedWorldPosition + wholePlaneShift + edgePlanesShift;
 #endif
     }
 

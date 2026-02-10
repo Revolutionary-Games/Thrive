@@ -800,7 +800,25 @@ public partial class CellEditorComponent :
                     (finalQ, finalR, rotation) =>
                     {
                         RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle, MovingPlacedHex?.Upgrades);
-                        hoveredHexes.Add((new Hex(finalQ, finalR), rotation));
+
+                        var finalHex = new Hex(finalQ, finalR);
+
+                        // Only add unique positions so that duplicate actions are not attempted which break the MP
+                        // system
+                        bool exists = false;
+                        foreach (var existingHex in hoveredHexes)
+                        {
+                            if (existingHex.Hex == finalHex)
+                            {
+                                exists = true;
+                                break;
+                            }
+                        }
+
+                        if (exists)
+                            return;
+
+                        hoveredHexes.Add((finalHex, rotation));
                     }, effectiveSymmetry);
 
                 MouseHoverPositions = hoveredHexes.ToList();

@@ -169,6 +169,8 @@ public class ThriveArchiveManager : DefaultArchiveManager, ISaveContext
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.PredefinedAutoEvoConfiguration,
             typeof(PredefinedAutoEvoConfiguration),
             PredefinedAutoEvoConfiguration.ReadFromArchive);
+        RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.AutoEvoConfiguration,
+            typeof(AutoEvoConfiguration), AutoEvoConfiguration.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.TerrainConfiguration,
             typeof(TerrainConfiguration), TerrainConfiguration.ReadFromArchive);
         RegisterObjectType((ArchiveObjectType)ThriveArchiveObjectType.Meteor, typeof(Meteor),

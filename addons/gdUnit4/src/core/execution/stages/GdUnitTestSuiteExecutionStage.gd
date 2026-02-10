@@ -133,7 +133,7 @@ func fire_test_skipped(context: GdUnitExecutionContext, skip_count := 1) -> void
 	}
 	var report := GdUnitReport.new() \
 		.create(GdUnitReport.SKIPPED, test_case.line_number(), GdAssertMessages.test_skipped("Skipped from the entire test suite"))
-	fire_event(GdUnitEvent.new().test_after(test_case.id(), statistics, [report]))
+	fire_event(GdUnitEvent.new().test_after(test_case.id(), test_case.test_name(), statistics, [report]))
 
 
 func set_debug_mode(debug_mode :bool = false) -> void:
