@@ -181,6 +181,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
             UpdateHeatHelperWidget(stage.Player);
 
+            UpdateProcessPanelStatus(stage.Player);
+
             UpdateProcessPanelExternalSpeedModifier(stage.WorldSimulation.WorldTimeScale);
         }
         else
@@ -884,6 +886,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
 
         UpdateColonySize(newColonySize);
+    }
+
+    private void UpdateProcessPanelStatus(Entity player)
+    {
+        processPanel.IsMulticellular = player.Has<MicrobeColony>();
     }
 
     private void UpdateColonySizeForMacroscopic()

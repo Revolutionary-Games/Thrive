@@ -119,6 +119,9 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
 
     [Export]
     protected FossilisationDialog fossilisationDialog = null!;
+
+    [Export]
+    protected ProcessPanel processPanel = null!;
 #pragma warning restore CA2213
 
     // Store these statefully for after player death
@@ -154,9 +157,6 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
 
     private CustomWindow? extinctionBox;
     private PatchExtinctionBox? patchExtinctionBox;
-
-    [Export]
-    private ProcessPanel processPanel = null!;
 
     private ShaderMaterial damageShaderMaterial = null!;
 #pragma warning restore CA2213

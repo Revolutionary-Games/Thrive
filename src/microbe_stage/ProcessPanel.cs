@@ -15,12 +15,35 @@ public partial class ProcessPanel : CustomWindow
 
     [Export]
     private Container closeButtonContainer = null!;
+
+    [Export]
+    private Container helpButtonContainer = null!;
+
+    [Export]
+    private CustomWindow multicellularProcessPanelExplanation = null!;
 #pragma warning restore CA2213
+
+    private bool isMulticellular = false;
 
     [Signal]
     public delegate void ToggleProcessPressedEventHandler(ChemicalEquation equation);
 
     public IEnumerable<IProcessDisplayInfo>? ShownData { get; set; }
+
+    public bool IsMulticellular
+    {
+        get => isMulticellular;
+
+        set
+        {
+            if (isMulticellular == value)
+                return;
+
+            isMulticellular = value;
+
+            UpdateHelpButton();
+        }
+    }
 
     public float ExternalSpeedModifier
     {
@@ -35,6 +58,8 @@ public partial class ProcessPanel : CustomWindow
 
         // To make sure processes refresh when the game is paused
         ProcessMode = ProcessModeEnum.Always;
+
+        UpdateHelpButton();
     }
 
     public override void _Process(double delta)
@@ -45,8 +70,18 @@ public partial class ProcessPanel : CustomWindow
         processList.ProcessesToShow = ShownData;
     }
 
+    public void OnHelpButtonPressed()
+    {
+        multicellularProcessPanelExplanation.PopupCenteredShrink();
+    }
+
     private void ToggleProcessToggled(ChemicalEquation equation, bool enabled)
     {
         EmitSignal(SignalName.ToggleProcessPressed, equation, enabled);
+    }
+
+    private void UpdateHelpButton()
+    {
+        helpButtonContainer.Visible = isMulticellular;
     }
 }

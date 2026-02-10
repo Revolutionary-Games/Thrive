@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-22 16:04+0200\n"
+"POT-Creation-Date: 2026-02-10 17:48+0300\n"
 "PO-Revision-Date: 2026-01-21 17:54+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -4219,6 +4219,9 @@ msgstr "Multicellular Freebuild Editor"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "While your cells share compounds, each cell needs to produce its own [thrive:compound type=\"atp\"][/thrive:compound]. Any cell that runs out of this will die."
 
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "This panel shows combined processes of your colony, summed across all of its cells. Note that unlike other compounds, ATP isn't shared between cells."
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Multicellular Stage"
 
@@ -4635,7 +4638,7 @@ msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
 msgstr "(some organelles will have unlock conditions needed to place them)"
 
 msgid "ORGANISM_STATISTICS"
-msgstr "Organism Statistics"
+msgstr "Cell Statistics"
 
 msgid "OR_UNLOCK_CONDITION"
 msgstr "or"
