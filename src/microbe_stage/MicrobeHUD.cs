@@ -44,6 +44,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     [Export]
     private Button multicellularButton = null!;
 
+    /// <summary>
+    ///   This is actually now the prototype confirmation before becoming macroscopic
+    /// </summary>
     [Export]
     private CustomWindow multicellularConfirmPopup = null!;
 
@@ -855,7 +858,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         if (!float.IsNaN(previousTemperature))
         {
-            // Only show good indicator when temperature is going up and it is within the ATP generation range
+            // Only show good indicator when temperature is going up, and it is within the ATP generation range
             heatAccumulationBar.UpdateIndicator(cellProperties.Temperature > previousTemperature + 0.00001f &&
                 cellProperties.Temperature >= Constants.THERMOPLAST_MIN_ATP_TEMPERATURE);
         }
@@ -863,21 +866,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         previousTemperature = cellProperties.Temperature;
     }
 
-    private void OnBecomeMulticellularPressed()
-    {
-        if (!Paused)
-        {
-            PauseButtonPressed(true);
-        }
-        else
-        {
-            GUICommon.Instance.PlayButtonPressSound();
-        }
-
-        multicellularConfirmPopup.PopupCenteredShrink();
-    }
-
-    private void OnBecomeMulticellularCanceled()
+    private void OnBecomeMacroscopicCanceled()
     {
         // The game should have been paused already but just in case
         if (Paused)
@@ -886,7 +875,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
     }
 
-    private void OnBecomeMulticellularConfirmed()
+    private void OnBecomeMulticellularPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
@@ -902,9 +891,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
-        GD.Print("Becoming multicellular. NOTE: game is moving to prototype parts of the game, " +
-            "expect non-finished and buggy things!");
-
         // To prevent being clicked twice
         multicellularButton.Disabled = true;
         editorButton.Disabled = true;
@@ -917,6 +903,20 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     }
 
     private void OnBecomeMacroscopicPressed()
+    {
+        if (!Paused)
+        {
+            PauseButtonPressed(true);
+        }
+        else
+        {
+            GUICommon.Instance.PlayButtonPressSound();
+        }
+
+        multicellularConfirmPopup.PopupCenteredShrink();
+    }
+
+    private void OnBecomeMacroscopicConfirmed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
@@ -933,7 +933,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
-        GD.Print("Becoming macroscopic");
+        GD.Print("Becoming macroscopic. NOTE: game is moving to prototype parts of the game, " +
+            "expect non-finished and buggy things!");
 
         // To prevent being clicked twice
         macroscopicButton.Disabled = true;
