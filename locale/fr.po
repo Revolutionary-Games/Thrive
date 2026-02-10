@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-22 16:04+0200\n"
-"PO-Revision-Date: 2026-02-05 17:14+0000\n"
+"POT-Creation-Date: 2026-02-10 09:55+0200\n"
+"PO-Revision-Date: 2026-02-09 13:34+0000\n"
 "Last-Translator: Shigasaa <altitudes.etrangeres@ikmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -7703,9 +7703,11 @@ msgstr ""
 msgid "WIKI_CHLOROPLAST_MODIFICATIONS"
 msgstr "Pas de modifications."
 
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_PROCESSES"
-msgstr "Produit du [thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et à l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]."
+msgstr ""
+"[b]Photosynthèse :[/b] [thrive:compound type=\"sunlight\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound] → [thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound]\n"
+"\n"
+"Une version optimisée de la [b]photosythèse chromatophorienne[/b] des [b][color=#3796e1][url=thriveopedia:chromatophore]thylakoïds[/url][/color][/b]. Elle vous permet de gouter le soleil plus efficacement ! Comme son homologue procaryote, les [b]chloroplastes[/b] effectuent la [b]photosythèse[/b] uniquement dans les secteurs illuminés ; et plus une cellule est proche de la surface plus le processus est effectif."
 
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr ""
@@ -7728,9 +7730,8 @@ msgstr ""
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Pas d'améliorations."
 
-#, fuzzy
 msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "Synthèse d'OxyToxy"
+msgstr "Photosynthèse chromatophorienne, glycolyse"
 
 msgid "WIKI_CILIA_EFFECTS"
 msgstr "Chaque hexagone de [b]cils[/b] augmente la vitesse de rotation d'une cellule, et consomme de l'[/thrive:compound type=\"atp\"][/thrive:compound] en échange d'une mobilité accrue. Cette amélioration dépend de l'emplacement de l'organite - plus il est éloigné du centre de la cellule, plus son moment d'inertie est élevé, et plus sa vitesse de rotation est grande."
@@ -9513,9 +9514,11 @@ msgstr "La [b]Carte des zones[/b] est une représentation de votre planète. Ell
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "Pas d'effets spéciaux."
 
-#, fuzzy
 msgid "WIKI_THYLAKOIDS_INTRO"
-msgstr "Les thylakoïdes sont des amas de protéines et de pigments photosensibles. Les pigments sont capables d'utiliser l'énergie de la [thrive:compound type=\"sunlight\"][/thrive:compound] pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir d'eau et de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux dans un processus appelé [b]photosynthèse[/b]. Ce sont également ces pigments qui leur donnent une couleur distinctive. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]. Comme les thylakoïdes sont suspendus directement dans le cytoplasme, le fluide environnant effectue une certaine [b]glycolyse[/b]."
+msgstr ""
+"Les [b]thylakoïdes[/b] sont des [color=#3796e1][url=thriveopedia:OrganellesRoot]organites[/url][/color] contenant des protéines et des pigments photosensibles qui sont capables d'utiliser l'énergie de la [thrive:compound type=\"sunlight\"][/thrive:compound] pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir d'eau et de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux par un processus appelé [b]photosynthèse[/b]. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépendant de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de la [thrive:compound type=\"sunlight\"][/thrive:compound], les [b]thylakoïdes[/b] sont utiles uniquement dans les secteurs de surface.\n"
+"\n"
+"La version procaryote du [b][color=#3796e1][url=thriveopedia:chloroplast]chloroplaste[/url][/color][/b], ce dernier effectuant une version optimisée de la [b]photosynthèse[/b]."
 
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "Pas de modifications"
@@ -9540,9 +9543,13 @@ msgstr ""
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
-#, fuzzy
 msgid "WIKI_THYLAKOIDS_STRATEGY"
-msgstr "Les thylakoïdes sont des amas de protéines et de pigments photosensibles. Les pigments sont capables d'utiliser l'énergie de la [thrive:compound type=\"sunlight\"][/thrive:compound] pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir d'eau et de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux dans un processus appelé [b]photosynthèse[/b]. Ce sont également ces pigments qui leur donnent une couleur distinctive. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]. Comme les thylakoïdes sont suspendus directement dans le cytoplasme, le fluide environnant effectue une certaine [b]glycolyse[/b]."
+msgstr ""
+"Dans les secteurs avec beaucoup de [thrive:compound type=\"sunlight\"][/thrive:compound], un seul hexagone de [b]thylakoïdes[/b] est un organisme autosuffisant. Grâce à la [b]photosynthèse chromatophorienne[/b] et la [b]glycolyse[/b], la production d'énergie est en surplus.\n"
+"\n"
+"Cependant, c'est vrai seulement dans les secteurs de surface, tel que les flaques tidales et estuaires. Il est vital de s'assurer que vous occupez un secteur adéquat avant de passer à cette méthode d'extraction d'énergie. Une fois établi, développer un phototrophe viable nécéssite simplement d'avoir une production de [thrive:compound type=\"glucose\"][/thrive:compound] nette positive pour la soutenir. De plus, une certaine partie de l'énergie consommée par une cellule l'est pour le déplacement, ne pas bouger peut donc augmenter drastiquement la prodduction de [thrive:compound type=\"glucose\"][/thrive:compound] nette.\n"
+"\n"
+"Si le cycle jour/nuit est activé dans les paramètres du jeu, créer un phototrophe viable peut demander de l'ingéniosité. Placez autant d'organites photosynthétiques que vous pouvez pour avoir une production de [thrive:compound type=\"glucose\"][/thrive:compound] maximale, ainsi que des ogranites avec pas mal de réserves (tel que les [b][color=#3796e1][url=thriveopedia:vacuole]vacuoles[/url][/color][/b]) pour pouvoir tenir la nuit. Il est conseillé de ne pas se déplacer la nuit, ou alors de chasser si vous avez un build mixotrophique. Il est également recommandé de se reproduire le matin quand la luminosité augmente, puisque vos réserves de [thrive:compound type=\"glucose\"][/thrive:compound] auront été divisées par deux."
 
 msgid "WIKI_THYLAKOIDS_UPGRADES"
 msgstr "Pas d'améliorations."
@@ -9610,7 +9617,8 @@ msgstr "Fenêtré"
 msgid "WIN_BOX_TITLE"
 msgstr "VOUS AVEZ PROSPÉRÉ !"
 
-msgid "WIN_TEXT"
+#, fuzzy
+msgid "WIN_TEXT_2"
 msgstr "Félicitations, vous avez gagné cette version de Thrive ! Vous pouvez continuer à jouer après la disparition de ce message si vous le souhaitez, ou commencer une nouvelle partie dans un nouveau monde. Vous pouvez également ajouter des agents liants pour construire une colonie cellulaire et essayer les prototypes de jeu ultérieurs."
 
 #, fuzzy
@@ -9779,6 +9787,9 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#~ msgid "WIN_TEXT"
+#~ msgstr "Félicitations, vous avez gagné cette version de Thrive ! Vous pouvez continuer à jouer après la disparition de ce message si vous le souhaitez, ou commencer une nouvelle partie dans un nouveau monde. Vous pouvez également ajouter des agents liants pour construire une colonie cellulaire et essayer les prototypes de jeu ultérieurs."
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Utiliser l'Auto Harmony :"
