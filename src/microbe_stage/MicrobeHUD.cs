@@ -32,6 +32,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private readonly Dictionary<CompoundDefinition, InspectedEntityLabel> hoveredCompoundControls = new();
 
+    private readonly Dictionary<TweakedProcess, SummedProcessStatistics> processPanelWorkSpace = new();
+
     [Export]
     private ActionButton bindingModeHotkey = null!;
 
@@ -536,9 +538,66 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         ingestedMatterBar.UpdateValue(GetPlayerUsedIngestionCapacity(), maxSize);
     }
 
-    protected override ProcessStatistics? GetPlayerProcessStatistics()
+    protected override IEnumerable<IProcessDisplayInfo>? GetPlayerProcessStatistics()
     {
-        return stage!.Player.Get<BioProcesses>().ProcessStatistics;
+        processPanelWorkSpace.Clear();
+
+        var playerProcesses = stage!.Player.Get<BioProcesses>().ProcessStatistics?.Processes;
+
+        if (playerProcesses == null)
+        {
+            GD.PrintErr("Player process statistics are uninitialized, can't display them in the process panel");
+
+            return null;
+        }
+
+        foreach (var process in playerProcesses)
+        {
+            var display = process.Value.ComputeAverageValues();
+
+            if (!processPanelWorkSpace.TryGetValue(process.Key, out var stats))
+            {
+                stats = new SummedProcessStatistics(display);
+                processPanelWorkSpace[process.Key] = stats;
+            }
+            else
+            {
+                stats.AddProcess(display);
+            }
+        }
+
+        if (stage.Player.TryGet<MicrobeColony>(out var colony))
+        {
+            for (int i = 1; i < colony.ColonyMembers.Length; ++i)
+            {
+                var colonyMemberProcesses = colony.ColonyMembers[i].Get<BioProcesses>().ProcessStatistics?.Processes;
+
+                if (colonyMemberProcesses == null)
+                {
+                    GD.PrintErr(
+                        "Colony member process statistics are uninitialized, can't display them in the process panel");
+
+                    return null;
+                }
+
+                foreach (var process in colonyMemberProcesses)
+                {
+                    var display = process.Value.ComputeAverageValues();
+
+                    if (!processPanelWorkSpace.TryGetValue(process.Key, out var stats))
+                    {
+                        stats = new SummedProcessStatistics(display);
+                        processPanelWorkSpace[process.Key] = stats;
+                    }
+                    else
+                    {
+                        stats.AddProcess(display);
+                    }
+                }
+            }
+        }
+
+        return processPanelWorkSpace.Values;
     }
 
     protected override void CalculatePlayerReproductionProgress(Dictionary<Compound, float> gatheredCompounds,
