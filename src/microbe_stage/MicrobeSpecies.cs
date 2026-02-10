@@ -1,25 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using Newtonsoft.Json;
-using Saving.Serializers;
+using Godot;
+using SharedBase.Archive;
 using Systems;
 using Vector3 = Godot.Vector3;
 
 /// <summary>
 ///   Represents a microbial species with microbe stage specific species things.
 /// </summary>
-[JsonObject(IsReference = true)]
-[TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
-[JSONDynamicTypeAllowed]
-[UseThriveConverter]
-[UseThriveSerializer]
-public class MicrobeSpecies : Species, ICellDefinition
+public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
         cachedFillTimes = new();
 
-    [JsonConstructor]
+    private IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate>? readonlyLayout;
+
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
         Organelles = new OrganelleLayout<OrganelleTemplate>();
@@ -33,20 +30,20 @@ public class MicrobeSpecies : Species, ICellDefinition
     ///   Properties from here are copied to this (except organelle objects are shared)
     /// </param>
     /// <param name="workMemory1">Temporary memory needed to copy the organelles</param>
-    /// <param name="workMemory2">More needed temporary memory</param>
+    /// <param name="workMemory2">More necessary temporary memory</param>
     public MicrobeSpecies(Species cloneOf, ICellDefinition withCellDefinition, List<Hex> workMemory1,
         List<Hex> workMemory2) : this(cloneOf.ID, cloneOf.Genus, cloneOf.Epithet)
     {
         cloneOf.ClonePropertiesTo(this);
 
-        foreach (var organelle in withCellDefinition.Organelles)
+        foreach (var organelle in withCellDefinition.ModifiableOrganelles)
         {
             Organelles.AddFast(organelle, workMemory1, workMemory2);
         }
 
         MembraneType = withCellDefinition.MembraneType;
         MembraneRigidity = withCellDefinition.MembraneRigidity;
-        Colour = withCellDefinition.Colour;
+        SpeciesColour = withCellDefinition.Colour;
         IsBacteria = withCellDefinition.IsBacteria;
     }
 
@@ -59,23 +56,32 @@ public class MicrobeSpecies : Species, ICellDefinition
 
     public float MembraneRigidity { get; set; }
 
+    // TODO: switch this primary to be the readonly organelles interface
     /// <summary>
-    ///   Organelles this species consist of. This is saved last to ensure organelle data that may refer back to this
-    ///   species can be loaded (for example cell-detecting chemoreceptors).
+    ///   Organelles of this species. This is saved (almost) last to ensure organelle data that may refer back to this
+    ///   species can be loaded (for example, cell-detecting chemoreceptors).
     /// </summary>
-    [JsonProperty(Order = 1)]
-    public OrganelleLayout<OrganelleTemplate> Organelles { get; set; }
+    /// <remarks>
+    ///   <para>
+    ///     Do not change this once the object is in use as the readonly adapter will not have been updated.
+    ///   </para>
+    /// </remarks>
+    public OrganelleLayout<OrganelleTemplate> Organelles { get; private set; }
 
-    [JsonIgnore]
-    public override string StringCode => ThriveJsonConverter.Instance.SerializeObject(this);
+    public OrganelleLayout<OrganelleTemplate> ModifiableOrganelles => Organelles;
 
-    // Even though these properties say "base" it includes the specialized organelle factors. Base refers here to
-    // the fact that these are the values when a cell is freshly spawned and has no reproduction progress.
-    [JsonIgnore]
+    public Color Colour
+    {
+        get => SpeciesColour;
+        set => SpeciesColour = value;
+    }
+
+    // Even though these properties say "base", it includes the specialized organelle factors.
+    // Base refers here to the fact that these are the values when a cell is freshly spawned and has no
+    // reproduction progress.
     public float BaseSpeed =>
         MicrobeInternalCalculations.CalculateSpeed(Organelles.Organelles, MembraneType, MembraneRigidity, IsBacteria);
 
-    [JsonProperty]
     public float BaseRotationSpeed { get; set; }
 
     /// <summary>
@@ -84,7 +90,6 @@ public class MicrobeSpecies : Species, ICellDefinition
     ///   (as well as the size this takes up as an <see cref="Components.Engulfable"/>) and the math should always
     ///   match between these two.
     /// </summary>
-    [JsonIgnore]
     public float BaseHexSize
     {
         get
@@ -106,17 +111,10 @@ public class MicrobeSpecies : Species, ICellDefinition
         }
     }
 
-    /// <summary>
-    ///   TODO: this should be removed as this is not accurate (only accurate if specialized storage vacuoles aren't
-    ///   used)
-    /// </summary>
-    [JsonIgnore]
-    public float StorageCapacity => MicrobeInternalCalculations.CalculateCapacity(Organelles);
-
+    // TODO: precalculate this as it'll help auto-evo quite a bit
     /// <summary>
     ///   Compound capacities members of this species can store in their default configurations
     /// </summary>
-    [JsonIgnore]
     public (float Nominal, Dictionary<Compound, float> Specific) StorageCapacities
     {
         get
@@ -126,18 +124,71 @@ public class MicrobeSpecies : Species, ICellDefinition
         }
     }
 
-    [JsonIgnore]
     public bool CanEngulf => !MembraneType.CellWall;
 
-    [JsonIgnore]
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
+    /// <summary>
+    ///   Not used for full microbes
+    /// </summary>
+    public int MPCost => -1;
+
+    public string CellTypeName => FormattedName;
+
+    /// <summary>
+    ///   Microbes are never split from any cell type
+    /// </summary>
+    public string? SplitFromTypeName => null;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeSpecies;
+
+    // TODO: sadly I found no way to finagle the interfaces to line up fully, so a very light adapter class is needed
+    // here
+    IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> IReadOnlyCellDefinition.Organelles =>
+        readonlyLayout ??=
+            new ReadonlyOrganelleLayoutAdapter<IReadOnlyOrganelleTemplate, OrganelleTemplate>(Organelles);
+
     public static bool StateHasStabilizedImpl(IWorldSimulation worldSimulation)
     {
-        // This is stabilized as long as the default no background operations check passes
-        // If this is changed CellType also needs changes
+        // This is stabilised as long as the default no background operations check passes.
+        // If this is changed, CellType also needs changes.
         return true;
+    }
+
+    public static MicrobeSpecies ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new MicrobeSpecies(reader.ReadUInt32(),
+            reader.ReadString() ?? throw new NullArchiveObjectException(),
+            reader.ReadString() ?? throw new NullArchiveObjectException());
+
+        reader.ReportObjectConstructorDone(instance, referenceId);
+
+        instance.ReadNonConstructorBaseProperties(reader, 1);
+
+        instance.IsBacteria = reader.ReadBool();
+        instance.MembraneType = reader.ReadObject<MembraneType>();
+        instance.MembraneRigidity = reader.ReadFloat();
+        instance.Organelles = reader.ReadObject<OrganelleLayout<OrganelleTemplate>>();
+        instance.BaseRotationSpeed = reader.ReadFloat();
+
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        WriteBasePropertiesToArchive(writer);
+
+        writer.Write(IsBacteria);
+        writer.WriteObject(MembraneType);
+        writer.Write(MembraneRigidity);
+
+        writer.WriteObject(Organelles);
+        writer.Write(BaseRotationSpeed);
     }
 
     public void UpdateIsBacteria()
@@ -165,6 +216,13 @@ public class MicrobeSpecies : Species, ICellDefinition
         RepositionToOrigin();
         UpdateInitialCompounds();
         UpdateIsBacteria();
+
+        // Reset endosymbiont status so that they aren't free to move / delete in the next editor cycle
+        var count = Organelles.Organelles.Count;
+        for (var i = 0; i < count; ++i)
+        {
+            ModifiableOrganelles.Organelles[i].IsEndosymbiont = false;
+        }
 
         cachedFillTimes.Clear();
     }
@@ -204,7 +262,7 @@ public class MicrobeSpecies : Species, ICellDefinition
 
         bool giveBonusGlucose = Organelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
 
-        var cachedCapacity = StorageCapacity;
+        var cachedCapacities = StorageCapacities;
 
         InitialCompounds.Clear();
 
@@ -214,9 +272,13 @@ public class MicrobeSpecies : Species, ICellDefinition
             if (!simulationParameters.GetCompoundDefinition(compoundBalance.Key).CanBeInitialCompound)
                 continue;
 
+            // Find the specific capacity, if any, and add it to the nominal
+            cachedCapacities.Specific.TryGetValue(compoundBalance.Key, out var compoundCapacity);
+            compoundCapacity += cachedCapacities.Nominal;
+
             if (compoundBalance.Key == Compound.Glucose && giveBonusGlucose)
             {
-                InitialCompounds.Add(compoundBalance.Key, cachedCapacity);
+                InitialCompounds.Add(compoundBalance.Key, compoundCapacity);
                 continue;
             }
 
@@ -230,8 +292,8 @@ public class MicrobeSpecies : Species, ICellDefinition
             var compoundInitialAmount =
                 Math.Abs(balanceValue.Consumption) * Constants.INITIAL_COMPOUND_TIME;
 
-            if (compoundInitialAmount > cachedCapacity)
-                compoundInitialAmount = cachedCapacity;
+            if (compoundInitialAmount > compoundCapacity)
+                compoundInitialAmount = compoundCapacity;
 
             InitialCompounds.Add(compoundBalance.Key, compoundInitialAmount);
         }
@@ -281,7 +343,7 @@ public class MicrobeSpecies : Species, ICellDefinition
 
         foreach (var organelle in casted.Organelles)
         {
-            Organelles.AddFast((OrganelleTemplate)organelle.Clone(), workMemory1, workMemory2);
+            Organelles.AddFast(organelle.Clone(), workMemory1, workMemory2);
         }
 
         IsBacteria = casted.IsBacteria;

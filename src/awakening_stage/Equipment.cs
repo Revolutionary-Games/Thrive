@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 
 // Instances are created only through code
 // ReSharper disable once Godot.MissingParameterlessConstructor
@@ -57,6 +58,10 @@ public partial class Equipment : RigidBody3D, IInteractableEntity
     [JsonIgnore]
     public bool CanBeCarried => true;
 
+    public ushort CurrentArchiveVersion => 1;
+    public ArchiveObjectType ArchiveObjectType => ArchiveObjectType.Invalid;
+    public bool CanBeReferencedInArchive => false;
+
     public IHarvestAction? GetHarvestingInfo()
     {
         return null;
@@ -75,5 +80,10 @@ public partial class Equipment : RigidBody3D, IInteractableEntity
     public void OnDestroyed()
     {
         AliveMarker.Alive = false;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        throw new NotImplementedException();
     }
 }

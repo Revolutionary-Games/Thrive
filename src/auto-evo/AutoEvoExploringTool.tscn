@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cgryi0yvh11d8"]
+[gd_scene format=3 uid="uid://cgryi0yvh11d8"]
 
 [ext_resource type="Script" uid="uid://btl24nbg2dyml" path="res://src/auto-evo/AutoEvoExploringTool.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
@@ -23,7 +23,7 @@
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_cxjso"]
 
-[node name="AutoEvoExploringTool" type="Node" node_paths=PackedStringArray("worldTab", "configTab", "historyReportSplit", "speciesSelectPanel", "mapTab", "reportTab", "viewerTab", "micheTab", "allWorldsStatisticsLabel", "worldsListMenu", "newWorldButton", "currentWorldStatisticsLabel", "worldExportButton", "moveAttemptsPerSpeciesSpinBox", "mutationsPerSpeciesSpinBox", "strictNicheCompetitionCheckBox", "runStatusLabel", "finishXGenerationsSpinBox", "finishXGenerationsButton", "runXWorldsSpinBox", "runXWorldsButton", "finishOneGenerationButton", "runOneStepButton", "abortButton", "playWithCurrentSettingButton", "autoEvoResultsLabel", "historyListMenu", "patchMapDrawer", "patchDetailsPanel", "speciesListMenu", "evolutionaryTree", "speciesDetailsPanelWithFossilisation", "patchListMenu", "micheTree", "micheDetailsPanel", "micheSpeciesDetailsPanel", "exitConfirmationDialog", "exportSuccessNotificationDialog")]
+[node name="AutoEvoExploringTool" type="Node" unique_id=130431707 node_paths=PackedStringArray("worldTab", "configTab", "historyReportSplit", "speciesSelectPanel", "mapTab", "reportTab", "viewerTab", "micheTab", "allWorldsStatisticsLabel", "worldsListMenu", "newWorldButton", "currentWorldStatisticsLabel", "worldExportButton", "moveAttemptsPerSpeciesSpinBox", "mutationsPerSpeciesSpinBox", "strictNicheCompetitionCheckBox", "runStatusLabel", "finishXGenerationsSpinBox", "finishXGenerationsButton", "runXWorldsSpinBox", "runXWorldsButton", "finishOneGenerationButton", "runOneStepButton", "abortButton", "playWithCurrentSettingButton", "autoEvoResultsLabel", "historyListMenu", "patchMapDrawer", "patchDetailsPanel", "speciesListMenu", "evolutionaryTree", "speciesDetailsPanelWithFossilisation", "patchListMenu", "micheTree", "micheDetailsPanel", "micheSpeciesDetailsPanel", "exitConfirmationDialog", "exportSuccessNotificationDialog")]
 script = ExtResource("1")
 worldTab = NodePath("GUI/VBoxContainer/WorldEditor")
 configTab = NodePath("GUI/VBoxContainer/ConfigEditor")
@@ -64,7 +64,7 @@ micheSpeciesDetailsPanel = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche/
 exitConfirmationDialog = NodePath("ExitConfirmationDialog")
 exportSuccessNotificationDialog = NodePath("ExportSuccessNotificationDialog")
 
-[node name="BackGround" type="TextureRect" parent="."]
+[node name="BackGround" type="TextureRect" parent="." unique_id=740226033]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -72,7 +72,7 @@ texture = ExtResource("8")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="GUI" type="MarginContainer" parent="."]
+[node name="GUI" type="MarginContainer" parent="." unique_id=212395571]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -84,138 +84,138 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI" unique_id=1630785187]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TabButtons" parent="GUI/VBoxContainer" instance=ExtResource("21")]
+[node name="TabButtons" parent="GUI/VBoxContainer" unique_id=1962487953 instance=ExtResource("21")]
 layout_mode = 2
 
-[node name="WorldButton" type="Button" parent="GUI/VBoxContainer/TabButtons"]
+[node name="WorldButton" type="Button" parent="GUI/VBoxContainer/TabButtons" unique_id=705570378]
 layout_mode = 2
 toggle_mode = true
 button_pressed = true
 button_group = SubResource("ButtonGroup_cxjso")
 text = "WORLD"
 
-[node name="ConfigButton" type="Button" parent="GUI/VBoxContainer/TabButtons"]
+[node name="ConfigButton" type="Button" parent="GUI/VBoxContainer/TabButtons" unique_id=1614533564]
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_cxjso")
 text = "CONFIG"
 
-[node name="MapButton" type="Button" parent="GUI/VBoxContainer/TabButtons"]
+[node name="MapButton" type="Button" parent="GUI/VBoxContainer/TabButtons" unique_id=1561338499]
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_cxjso")
 text = "MAP"
 
-[node name="ReportButton" type="Button" parent="GUI/VBoxContainer/TabButtons"]
+[node name="ReportButton" type="Button" parent="GUI/VBoxContainer/TabButtons" unique_id=75769173]
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_cxjso")
 text = "REPORT"
 
-[node name="ViewerButton" type="Button" parent="GUI/VBoxContainer/TabButtons"]
+[node name="ViewerButton" type="Button" parent="GUI/VBoxContainer/TabButtons" unique_id=1055558720]
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_cxjso")
 text = "VIEWER"
 
-[node name="MicheButton" type="Button" parent="GUI/VBoxContainer/TabButtons"]
+[node name="MicheButton" type="Button" parent="GUI/VBoxContainer/TabButtons" unique_id=468035971]
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_cxjso")
 text = "MICHE"
 
-[node name="WorldEditor" type="HBoxContainer" parent="GUI/VBoxContainer"]
+[node name="WorldEditor" type="HBoxContainer" parent="GUI/VBoxContainer" unique_id=1116187610]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
-[node name="AllWorldsStatPanel" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor"]
+[node name="AllWorldsStatPanel" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor" unique_id=1759600496]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel" unique_id=1513001190]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer" unique_id=308685199]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer" unique_id=940219322]
 layout_mode = 2
 text = "ALL_WORLDS_GENERAL_STATISTICS"
 label_settings = ExtResource("5_6c001")
 
-[node name="AllWorldsStatLabel" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer" instance=ExtResource("5")]
+[node name="AllWorldsStatLabel" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer" unique_id=10621480 instance=ExtResource("5")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 2
 selection_enabled = true
 
-[node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor"]
+[node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor" unique_id=1182565598]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2" unique_id=241797689]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer" unique_id=1452706081]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer" unique_id=31536362]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer" unique_id=919259324]
 layout_mode = 2
 text = "WORLD_GENERAL_STATISTICS"
 label_settings = ExtResource("5_6c001")
 
-[node name="CurrentWorldStatLabel" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5")]
+[node name="CurrentWorldStatLabel" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1391311967 instance=ExtResource("5")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 2
 selection_enabled = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor" unique_id=1984480142]
 layout_mode = 2
 
-[node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer" unique_id=1584967416]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2" unique_id=1406397028]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer" unique_id=1142756341]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=44721054]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "CURRENT_WORLD"
 label_settings = ExtResource("5_6c001")
 
-[node name="WorldsListMenu" type="MenuButton" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="WorldsListMenu" type="MenuButton" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=139189776]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 focus_mode = 2
@@ -223,7 +223,7 @@ text = "0"
 flat = false
 script = ExtResource("12")
 
-[node name="NewWorldButton" type="TextureButton" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="NewWorldButton" type="TextureButton" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=257518942]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 tooltip_text = "INIT_NEW_WORLD_TOOLTIP"
@@ -233,78 +233,78 @@ texture_hover = ExtResource("19")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Control" type="Control" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer"]
+[node name="Control" type="Control" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer" unique_id=88564307]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer" unique_id=46922807]
 custom_minimum_size = Vector2(310, 0)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer" unique_id=1741175379]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer" unique_id=1820869029]
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1168953846]
 layout_mode = 2
 text = "AUTO_EVO_STATUS_COLON"
 label_settings = ExtResource("5_6c001")
 
-[node name="RunStatusLabel" type="Label" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="RunStatusLabel" type="Label" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=783086810]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "READY"
 label_settings = ExtResource("11_crtm0")
 
-[node name="HSeparator3" type="HSeparator" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=521838457]
 layout_mode = 2
 
-[node name="RunStep" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="RunStep" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1106786442]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "RUN_ONE_STEP"
 
-[node name="RunGeneration" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="RunGeneration" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1379190847]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "FINISH_ONE_GENERATION"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1073110136]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="FinishXGenerationsSpin" type="SpinBox" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="FinishXGenerationsSpin" type="SpinBox" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1678787721]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 min_value = 2.0
 value = 10.0
 
-[node name="FinishXGenerations" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="FinishXGenerations" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1057409881]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 18
 text = "Finish 10 Generations"
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=50684969]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="RunXWorldsSpin" type="SpinBox" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="RunXWorldsSpin" type="SpinBox" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=1218511269]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 min_value = 2.0
 value = 5.0
 
-[node name="RunXWorlds" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="RunXWorlds" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=254208778]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 3
@@ -312,158 +312,158 @@ tooltip_text = "RUN_X_WORLDS_TOOLTIP"
 theme_override_font_sizes/font_size = 18
 text = "Run 5 worlds"
 
-[node name="Abort" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Abort" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2146439469]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "ABORT"
 
-[node name="HSeparator2" type="HSeparator" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1223828754]
 layout_mode = 2
 
-[node name="PlayWithThis" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="PlayWithThis" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1309655527]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "PLAY_WITH_CURRENT_SETTING"
 
-[node name="HSeparator" type="HSeparator" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=540324422]
 layout_mode = 2
 
-[node name="WorldExportButton" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="WorldExportButton" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=971555316]
 layout_mode = 2
 tooltip_text = "EXPORT_ALL_WORLDS_TOOLTIP"
 theme_override_font_sizes/font_size = 18
 text = "EXPORT_ALL_WORLDS"
 
-[node name="ConfigEditor" type="Control" parent="GUI/VBoxContainer"]
+[node name="ConfigEditor" type="Control" parent="GUI/VBoxContainer" unique_id=925880002]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/ConfigEditor"]
+[node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/ConfigEditor" unique_id=2080745071]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer" unique_id=980134144]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer" unique_id=451048944]
 layout_mode = 2
 
-[node name="ConfigEditorContainer" type="VBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer"]
+[node name="ConfigEditorContainer" type="VBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer" unique_id=1885036222]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MoveAttemptsPerSpecies" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
+[node name="MoveAttemptsPerSpecies" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" unique_id=1595437060]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies" unique_id=858551957]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "MOVE_ATTEMPTS_PER_SPECIES"
 label_settings = ExtResource("11_crtm0")
 
-[node name="MoveAttemptsPerSpecies" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies"]
+[node name="MoveAttemptsPerSpecies" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies" unique_id=1433660287]
 layout_mode = 2
 
-[node name="MutationsPerSpecies" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
+[node name="MutationsPerSpecies" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" unique_id=1352308987]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies" unique_id=1135046240]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "MUTATIONS_PER_SPECIES"
 label_settings = ExtResource("11_crtm0")
 
-[node name="MutationsPerSpecies" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies"]
+[node name="MutationsPerSpecies" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies" unique_id=501713249]
 layout_mode = 2
 
-[node name="StrictNicheCompetition" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
+[node name="StrictNicheCompetition" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" unique_id=1203572266]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "STRICT_NICHE_COMPETITION"
 
-[node name="HistoryReportSplit" type="VBoxContainer" parent="GUI/VBoxContainer"]
+[node name="HistoryReportSplit" type="VBoxContainer" parent="GUI/VBoxContainer" unique_id=1789293593]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="UpperSplit" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit"]
+[node name="UpperSplit" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit" unique_id=696191725]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="GenerationPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit"]
+[node name="GenerationPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit" unique_id=307693232]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel" unique_id=41820642]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer" unique_id=190214504]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer/HBoxContainer" unique_id=354281839]
 layout_mode = 2
 text = "GENERATIONS"
 label_settings = ExtResource("5_6c001")
 vertical_alignment = 1
 
-[node name="HistoryListMenu" type="MenuButton" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer/HBoxContainer"]
+[node name="HistoryListMenu" type="MenuButton" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer/HBoxContainer" unique_id=175650682]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "SELECT_A_GENERATION"
 flat = false
 script = ExtResource("12")
 
-[node name="SpeciesSelectPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit"]
+[node name="SpeciesSelectPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit" unique_id=679857446]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel" unique_id=365171961]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer" unique_id=2061385112]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer" unique_id=1227662413]
 layout_mode = 2
 text = "SPECIES"
 label_settings = ExtResource("5_6c001")
 vertical_alignment = 1
 
-[node name="SpeciesListMenu" type="MenuButton" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer"]
+[node name="SpeciesListMenu" type="MenuButton" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer" unique_id=353447987]
 layout_mode = 2
 focus_mode = 2
 text = "SELECT_A_SPECIES"
 flat = false
 script = ExtResource("12")
 
-[node name="PatchMap" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
+[node name="PatchMap" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit" unique_id=1761222621]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap" unique_id=2130508984]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -471,46 +471,46 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
-[node name="PatchMap" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer"]
+[node name="PatchMap" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer" unique_id=1034568754]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap" unique_id=1769806671]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="DraggableScrollContainer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer" node_paths=PackedStringArray("content") instance=ExtResource("16")]
+[node name="DraggableScrollContainer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer" unique_id=320643139 node_paths=PackedStringArray("content") instance=ExtResource("16")]
 layout_mode = 2
 content = NodePath("PatchMapDrawer")
 MinZoom = 0.2
 
-[node name="PatchMapDrawer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer" instance=ExtResource("13")]
+[node name="PatchMapDrawer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer" unique_id=263649078 instance=ExtResource("13")]
 layout_mode = 2
 DrawDefaultMapIfEmpty = false
 
-[node name="PatchDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer" instance=ExtResource("17")]
+[node name="PatchDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer" unique_id=1279931539 instance=ExtResource("17")]
 layout_mode = 2
 MoveToPatchButtonVisible = false
 MigrationManagerEnabled = false
 
-[node name="Report" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
+[node name="Report" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit" unique_id=626731319]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ResultsPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Report"]
+[node name="ResultsPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Report" unique_id=413576702]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel" unique_id=1274195047]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -519,30 +519,30 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer" unique_id=1258040777]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer" unique_id=63466816]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label2" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1224543662]
 layout_mode = 2
 text = "AUTO_EVO_RESULTS"
 label_settings = ExtResource("5_6c001")
 
-[node name="ResultsLabel" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5")]
+[node name="ResultsLabel" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=629952841 instance=ExtResource("5")]
 layout_mode = 2
 fit_content = true
 
-[node name="Viewer" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
+[node name="Viewer" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit" unique_id=1801902788]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer" unique_id=357290323]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -550,35 +550,35 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
-[node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer" unique_id=433829246]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer" unique_id=880688851]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer" unique_id=82754775]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=739750287]
 layout_mode = 2
 text = "EVOLUTIONARY_TREE"
 label_settings = ExtResource("5_6c001")
 
-[node name="EvolutionaryTree" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("14")]
+[node name="EvolutionaryTree" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=90850472 instance=ExtResource("14")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer" unique_id=669335729]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer2" unique_id=719545705]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 10
@@ -586,16 +586,16 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="SpeciesDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer2/MarginContainer" instance=ExtResource("9")]
+[node name="SpeciesDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer2/MarginContainer" unique_id=1696417797 instance=ExtResource("9")]
 layout_mode = 2
 
-[node name="Miche" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
+[node name="Miche" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit" unique_id=38519458]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche" unique_id=132484978]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -603,67 +603,67 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
-[node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer" unique_id=1360451820]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer" unique_id=368695628]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer/MarginContainer" unique_id=1713301505]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=612185203]
 layout_mode = 2
 text = "MICHE_TREE"
 label_settings = ExtResource("5_6c001")
 
-[node name="MicheTree" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("16_hpnq1")]
+[node name="MicheTree" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1414540171 instance=ExtResource("16_hpnq1")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer" unique_id=1036947062]
 layout_mode = 2
 
-[node name="PatchSelectPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer"]
+[node name="PatchSelectPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer" unique_id=654062299]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel" unique_id=2071892783]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel/MarginContainer" unique_id=47643901]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel/MarginContainer/HBoxContainer" unique_id=1102823699]
 layout_mode = 2
 text = "PATCH_COLON"
 label_settings = ExtResource("5_6c001")
 vertical_alignment = 1
 
-[node name="PatchListMenu" type="MenuButton" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel/MarginContainer/HBoxContainer"]
+[node name="PatchListMenu" type="MenuButton" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel/MarginContainer/HBoxContainer" unique_id=1520859073]
 layout_mode = 2
 focus_mode = 2
 text = "SELECT_A_PATCH"
 flat = false
 script = ExtResource("12")
 
-[node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer" unique_id=590888658]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2" unique_id=598225954]
 custom_minimum_size = Vector2(375, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 10
@@ -671,30 +671,30 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="SpeciesDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer" instance=ExtResource("17_rkk82")]
+[node name="SpeciesDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer" unique_id=1373292095 instance=ExtResource("17_rkk82")]
 visible = false
 layout_mode = 2
 
-[node name="MicheDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer" instance=ExtResource("18_qhnwh")]
+[node name="MicheDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer" unique_id=1691606791 instance=ExtResource("18_qhnwh")]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer" unique_id=1347730246]
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="GUI/VBoxContainer/HBoxContainer"]
+[node name="BackButton" type="Button" parent="GUI/VBoxContainer/HBoxContainer" unique_id=824277432]
 layout_mode = 2
 text = "BACK"
 
-[node name="FocusGrabber" parent="GUI/VBoxContainer/HBoxContainer" instance=ExtResource("20")]
+[node name="FocusGrabber" parent="GUI/VBoxContainer/HBoxContainer" unique_id=1407886223 instance=ExtResource("20")]
 layout_mode = 2
 NodeToGiveFocusTo = NodePath("../BackButton")
 
-[node name="ExitConfirmationDialog" parent="." instance=ExtResource("11")]
+[node name="ExitConfirmationDialog" parent="." unique_id=445474972 instance=ExtResource("11")]
 custom_minimum_size = Vector2(400, 0)
 DialogText = "RETURN_TO_MENU_WARNING"
 WindowTitle = "CONFIRM_EXIT"
 
-[node name="ExportSuccessNotificationDialog" parent="." instance=ExtResource("11")]
+[node name="ExportSuccessNotificationDialog" parent="." unique_id=928667647 instance=ExtResource("11")]
 custom_minimum_size = Vector2(400, 0)
 HideCancelButton = true
 WindowTitle = "EXPORT_SUCCESS"

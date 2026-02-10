@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfxl0yfq7aeis"]
+[gd_scene format=3 uid="uid://bfxl0yfq7aeis"]
 
 [ext_resource type="Shader" uid="uid://dwec2fuh8kn2c" path="res://shaders/IronChunk.gdshader" id="1_kcbqt"]
 [ext_resource type="ArrayMesh" uid="uid://dgkycegud6ju5" path="res://assets/models/IronRockLarge2.mesh" id="2_23yct"]
@@ -23,6 +23,6 @@ shader_parameter/dissolveScale = 2.0
 shader_parameter/outlineWidth = 0.0
 shader_parameter/growColor = Color(0.321569, 0.180392, 0.101961, 1)
 
-[node name="IronRockLarge2" type="MeshInstance3D"]
+[node name="IronRockLarge2" type="MeshInstance3D" unique_id=654094117]
 material_override = SubResource("ShaderMaterial_mw76i")
 mesh = ExtResource("2_23yct")

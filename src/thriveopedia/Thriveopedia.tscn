@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bt4wq0ddch84i"]
+[gd_scene format=3 uid="uid://bt4wq0ddch84i"]
 
 [ext_resource type="Script" uid="uid://0bqayucvq028" path="res://src/thriveopedia/Thriveopedia.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
@@ -153,7 +153,7 @@ _data = {
 &"RESET": SubResource("3")
 }
 
-[node name="Thriveopedia" type="Control" node_paths=PackedStringArray("backButton", "forwardButton", "pageContainer", "pageTreeContainer", "pageTreeContainerAnim", "pageTitle", "viewOnlineButton", "pageTree", "homePage")]
+[node name="Thriveopedia" type="Control" unique_id=164322853 node_paths=PackedStringArray("backButton", "forwardButton", "pageContainer", "pageTreeContainer", "pageTreeContainerAnim", "pageTitle", "viewOnlineButton", "pageTree", "homePage")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -172,13 +172,14 @@ viewOnlineButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/ViewOn
 pageTree = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
 homePage = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer/ThriveopediaHomePage")
 
-[node name="Overlay" type="ColorRect" parent="."]
+[node name="Overlay" type="ColorRect" parent="." unique_id=80300234]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_force_pass_scroll_events = false
 color = Color(0, 0, 0, 0.823529)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1310924619]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -187,14 +188,14 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1059418955]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1604105475]
 layout_mode = 2
 
-[node name="CollapseTreeButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="CollapseTreeButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=545966323]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 tooltip_text = "TOGGLE_NAVIGATION_TREE"
@@ -210,11 +211,11 @@ texture_focused = ExtResource("23")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2035777157]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 
-[node name="BackButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="BackButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=967900364]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 tooltip_text = "PAGE_BACK"
@@ -232,7 +233,7 @@ texture_focused = ExtResource("8_kjc2f")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="ForwardButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="ForwardButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1291633260]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 tooltip_text = "PAGE_FORWARD"
@@ -250,7 +251,7 @@ texture_focused = ExtResource("12_78la0")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="HomeButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="HomeButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=407384561]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 tooltip_text = "HOME"
@@ -266,31 +267,31 @@ texture_focused = ExtResource("3")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Control3" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Control3" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1386610260]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
-[node name="PageTitle" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="PageTitle" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=153917236]
 layout_mode = 2
 text = "PAGE_TITLE"
 label_settings = ExtResource("17_rwtrt")
 
-[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=164163407]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ViewOnlineButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="ViewOnlineButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1538059375]
 custom_minimum_size = Vector2(100, 35)
 layout_mode = 2
 focus_neighbor_bottom = NodePath(".")
 text = "VIEW_ONLINE"
 
-[node name="FocusGrabber" parent="MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("26")]
+[node name="FocusGrabber" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1993369198 instance=ExtResource("26")]
 layout_mode = 2
 Priority = 2
 NodeToGiveFocusTo = NodePath("../CloseButton")
 
-[node name="CloseButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="CloseButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=377867633]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 tooltip_text = "CLOSE"
@@ -303,60 +304,58 @@ texture_focused = ExtResource("20")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=769314815]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
-[node name="MarginContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="MarginContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1329499393]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2" unique_id=1865354755]
 layout_mode = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer" unique_id=2085682721]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer" unique_id=1291493738]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/MarginContainer" unique_id=172398948]
 layout_mode = 2
 
-[node name="SearchInput" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="SearchInput" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1998893549]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "SEARCH_PLACEHOLDER"
 
-[node name="PageTree" type="Tree" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer"]
+[node name="PageTree" type="Tree" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer" unique_id=1555543593]
 custom_minimum_size = Vector2(213, 300)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("2")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer"]
-libraries = {
-&"": SubResource("AnimationLibrary_4nf6r")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer" unique_id=728535929]
+libraries/ = SubResource("AnimationLibrary_4nf6r")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1564292021]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ThriveopediaHomePage" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer" instance=ExtResource("6")]
+[node name="ThriveopediaHomePage" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer" unique_id=87115576 instance=ExtResource("6")]
 layout_mode = 2
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/CollapseTreeButton" to="." method="OnCollapseTreePressed"]

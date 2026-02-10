@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1boea8qjx6xx"]
+[gd_scene format=3 uid="uid://b1boea8qjx6xx"]
 
 [ext_resource type="Script" uid="uid://b38gejqohshfe" path="res://src/gui_common/SpeciesDetailsPanel.cs" id="2"]
 [ext_resource type="PackedScene" uid="uid://b5cbn7afnas1x" path="res://src/gui_common/PhotographablePreview.tscn" id="4"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://b0ycij328egrn" path="res://src/gui_common/SpeciesPreview.cs" id="6"]
 [ext_resource type="Script" uid="uid://qy26p3ugf4wu" path="res://src/microbe_stage/CellHexesPreview.cs" id="7"]
 
-[node name="SpeciesDetailsPanel" type="MarginContainer" node_paths=PackedStringArray("SpeciesPreview", "speciesDetailsLabel", "hexesPreview")]
+[node name="SpeciesDetailsPanel" type="MarginContainer" unique_id=158586634 node_paths=PackedStringArray("SpeciesPreview", "speciesDetailsLabel", "hexesPreview")]
 custom_minimum_size = Vector2(352, 300)
 offset_right = 352.0
 offset_bottom = 562.0
@@ -21,27 +21,27 @@ SpeciesPreview = NodePath("ScrollContainer/VBoxContainer/HBoxContainer/SpeciesPr
 speciesDetailsLabel = NodePath("ScrollContainer/VBoxContainer/SpeciesInfoLabel")
 hexesPreview = NodePath("ScrollContainer/VBoxContainer/HBoxContainer/CellHexPreview")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1292953941]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=6780031]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=255281151]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
-[node name="SpeciesPreview" parent="ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4")]
+[node name="SpeciesPreview" parent="ScrollContainer/VBoxContainer/HBoxContainer" unique_id=658594927 instance=ExtResource("4")]
 layout_mode = 2
 script = ExtResource("6")
 
-[node name="CellHexPreview" parent="ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4")]
+[node name="CellHexPreview" parent="ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1367773357 instance=ExtResource("4")]
 layout_mode = 2
 script = ExtResource("7")
 
-[node name="SpeciesInfoLabel" parent="ScrollContainer/VBoxContainer" instance=ExtResource("5")]
+[node name="SpeciesInfoLabel" parent="ScrollContainer/VBoxContainer" unique_id=1220954061 instance=ExtResource("5")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

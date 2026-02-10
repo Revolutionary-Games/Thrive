@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using DefaultEcs;
+using Arch.Core;
 
 /// <summary>
 ///   Info regarding a physics collision in an entity simulation. Must match the PhysicsCollision class byte layout
@@ -10,7 +10,7 @@ using DefaultEcs;
 public readonly struct PhysicsCollision
 {
     /// <summary>
-    ///   When a sub shape data is equal to this, the shape is unknown and not a sub-shape. This must match what the
+    ///   When sub shape data is equal to this, the shape is unknown and not a sub-shape. This must match what the
     ///   native side has defined.
     /// </summary>
     public const uint COLLISION_UNKNOWN_SUB_SHAPE = uint.MaxValue;
@@ -28,7 +28,16 @@ public readonly struct PhysicsCollision
     /// </summary>
     public readonly Entity FirstEntity;
 
+    /// <summary>
+    ///   Physics sub-shape data for this collision. Unknown (uint.Max) when used in a collision filter. When used as
+    ///   a callback and sub-shape resolving is on, this is resolved to the sub-shape index. If the native module
+    ///   doesn't use this then <see cref="PhysicsShape.GetSubShapeIndexFromData"/> needs to be used from C# side.
+    /// </summary>
+    public readonly uint FirstSubShapeData;
+
     public readonly Entity SecondEntity;
+
+    public readonly uint SecondSubShapeData;
 
     /// <summary>
     ///   First colliding body, this is not wrapped in a <see cref="NativePhysicsBody"/> to avoid extra reference
@@ -39,22 +48,13 @@ public readonly struct PhysicsCollision
     public readonly IntPtr SecondBody;
 
     /// <summary>
-    ///   Physics sub-shape data for this collision. Unknown (uint.Max) when used in a collision filter. When used as
-    ///   a callback and sub-shape resolving is on this is resolved to the sub-shape index. If the native module
-    ///   doesn't use this then <see cref="PhysicsShape.GetSubShapeIndexFromData"/> needs to be used from C# side.
-    /// </summary>
-    public readonly uint FirstSubShapeData;
-
-    public readonly uint SecondSubShapeData;
-
-    /// <summary>
     ///   How hard the collision is. This is not calculated in the collision filter
     /// </summary>
     public readonly float PenetrationAmount;
 
     /// <summary>
-    ///   True on the first physics update this collision appeared (always true in the collision filter).
-    ///   Bool is not blittable type so this uses a byte instead.
+    ///   True, on the first physics update this collision appeared (always true in the collision filter).
+    ///   Bool is not a blittable type, so this uses a byte instead.
     /// </summary>
     public readonly byte JustStarted;
 

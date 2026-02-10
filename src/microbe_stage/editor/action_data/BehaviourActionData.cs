@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using SharedBase.Archive;
 
-[JSONAlwaysDynamicType]
 public class BehaviourActionData : EditorCombinableActionData
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public float NewValue;
     public float OldValue;
     public BehaviouralValueType Type;
@@ -15,60 +16,49 @@ public class BehaviourActionData : EditorCombinableActionData
         Type = type;
     }
 
-    protected override double CalculateBaseCostInternal()
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.BehaviourActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
-        // TODO: add a cost for this. CalculateCostInternal needs tweaking to handle this
-        return 0;
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.BehaviourActionData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((BehaviourActionData)obj);
     }
 
-    protected override (double Cost, double RefundCost) CalculateCostInternal(
-        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
+    public static BehaviourActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
-        var cost = CalculateBaseCostInternal();
-        double refund = 0;
-        bool seenOther = false;
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var count = history.Count;
-        for (int i = 0; i < insertPosition && i < count; ++i)
-        {
-            var other = history[i];
+        var instance = new BehaviourActionData(reader.ReadFloat(), reader.ReadFloat(),
+            (BehaviouralValueType)reader.ReadInt32());
 
-            if (other is BehaviourActionData behaviourChangeActionData && behaviourChangeActionData.Type == Type)
-            {
-                // If the value has been changed back to a previous value
-                if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON &&
-                    Math.Abs(behaviourChangeActionData.NewValue - OldValue) < MathUtils.EPSILON)
-                {
-                    cost = 0;
-                    refund += other.GetCalculatedSelfCost();
-                    continue;
-                }
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
 
-                // If the value has been changed twice
-                if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON ||
-                    Math.Abs(behaviourChangeActionData.NewValue - OldValue) < MathUtils.EPSILON)
-                {
-                    if (!seenOther)
-                    {
-                        seenOther = true;
+        return instance;
+    }
 
-                        // TODO: need to calculate real total cost from the other old value to our new value once
-                        // there are costs and not just 0
-                        // cost = CalculateBehaviourCost(behaviourChangeActionData.OldValue, NewValue);
-                        cost = 0;
-                    }
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(NewValue);
+        writer.Write(OldValue);
+        writer.Write((int)Type);
 
-                    refund += other.GetCalculatedSelfCost();
-                }
-            }
-        }
-
-        return (cost, refund);
+        writer.Write(SERIALIZATION_VERSION_EDITOR);
+        base.WriteToArchive(writer);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        return other is BehaviourActionData;
+        if (other is not BehaviourActionData otherBehaviour)
+            return false;
+
+        // Only combine the same type. Otherwise, terrible bugs happen.
+        return otherBehaviour.Type == Type;
     }
 
     protected override void MergeGuaranteed(CombinableActionData other)

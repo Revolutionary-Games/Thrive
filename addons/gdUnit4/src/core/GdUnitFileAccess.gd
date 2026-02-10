@@ -92,6 +92,7 @@ static func copy_directory(from_dir :String, to_dir :String, recursive :bool = f
 static func delete_directory(path :String, only_content := false) -> void:
 	var dir := DirAccess.open(path)
 	if dir != null:
+		dir.include_hidden = true
 		@warning_ignore("return_value_discarded")
 		dir.list_dir_begin()
 		var file_name := "."
@@ -165,6 +166,7 @@ static func scan_dir(path :String) -> PackedStringArray:
 	if dir == null or not dir.dir_exists(path):
 		return PackedStringArray()
 	var content := PackedStringArray()
+	dir.include_hidden = true
 	@warning_ignore("return_value_discarded")
 	dir.list_dir_begin()
 	var next := "."
@@ -194,7 +196,7 @@ static func resource_as_string(resource_path :String) -> String:
 	if file == null:
 		push_error("ERROR: Can't read resource '%s'. %s" % [resource_path, error_string(FileAccess.get_open_error())])
 		return ""
-	return file.get_as_text(true)
+	return file.get_as_text()
 
 
 static func make_qualified_path(path :String) -> String:

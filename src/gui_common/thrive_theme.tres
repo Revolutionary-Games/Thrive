@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=87 format=3 uid="uid://b4cx0o110g4b6"]
+[gd_resource type="Theme" format=3 uid="uid://b4cx0o110g4b6"]
 
 [ext_resource type="FontVariation" uid="uid://dgd4ajpji2jb1" path="res://assets/fonts/variants/Jura-SemiBold.tres" id="1_fiqxx"]
 [ext_resource type="Texture2D" uid="uid://buv1ildr71kdn" path="res://assets/textures/gui/bevel/CheckBClick.svg" id="2_vwq6n"]
@@ -258,6 +258,19 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tgp5w"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.06666667, 1, 0.8352941, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
 
 [sub_resource type="StyleBoxFlat" id="52"]
 content_margin_left = 10.0
@@ -781,6 +794,7 @@ Label/constants/shadow_as_outline = 0
 Label/constants/shadow_offset_x = 1
 Label/constants/shadow_offset_y = 1
 Label/fonts/font = ExtResource("27_037sv")
+Label/styles/focus = SubResource("StyleBoxFlat_tgp5w")
 Label/styles/normal = null
 LineEdit/colors/clear_button_color = Color(1, 1, 1, 1)
 LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)

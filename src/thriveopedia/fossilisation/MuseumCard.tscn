@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://v2omwwjlcdsq"]
+[gd_scene format=3 uid="uid://v2omwwjlcdsq"]
 
 [ext_resource type="Texture2D" uid="uid://w21wmrogs2g5" path="res://assets/misc/icon.png" id="2"]
 [ext_resource type="LabelSettings" uid="uid://dsxjdgavbi2j5" path="res://src/gui_common/fonts/Body-Regular-Small-Black.tres" id="2_jn0qd"]
-[ext_resource type="Texture2D" uid="uid://bkoy6kqmc5tld" path="res://assets/textures/gui/bevel/closeCross.svg" id="3_lhc46"]
+[ext_resource type="Texture2D" uid="uid://dyce855j08sc4" path="res://assets/textures/gui/bevel/closeCrossWhite.svg" id="3_jf61b"]
 [ext_resource type="Script" uid="uid://yqivwvuod7ru" path="res://src/thriveopedia/fossilisation/MuseumCard.cs" id="4"]
+[ext_resource type="LabelSettings" uid="uid://bl7dig4lq5ko" path="res://src/gui_common/fonts/Body-Regular-Small-Red.tres" id="5_jf61b"]
+
+[sub_resource type="StyleBoxEmpty" id="29"]
 
 [sub_resource type="StyleBoxFlat" id="27"]
 bg_color = Color(0, 0.129412, 0.141176, 0.752941)
@@ -18,8 +21,6 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxEmpty" id="29"]
-
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0.0666667, 1, 0.835294, 1)
 border_width_bottom = 3
@@ -27,24 +28,25 @@ border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 
-[node name="MuseumCard" type="Button" node_paths=PackedStringArray("speciesNameLabel", "speciesPreview", "deleteButton")]
+[node name="MuseumCard" type="Button" unique_id=2040170885 node_paths=PackedStringArray("speciesNameLabel", "speciesPreview", "deleteButton", "outdatedText")]
 custom_minimum_size = Vector2(170, 182)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -1110.0
 offset_bottom = -538.0
-theme_override_styles/hover = SubResource("27")
-theme_override_styles/pressed = SubResource("27")
 theme_override_styles/normal = SubResource("29")
+theme_override_styles/pressed = SubResource("27")
+theme_override_styles/hover = SubResource("27")
 toggle_mode = true
 action_mode = 0
 script = ExtResource("4")
 speciesNameLabel = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/Label")
 speciesPreview = NodePath("MarginContainer/VBoxContainer/MarginContainer/PreviewMargin/PreviewImage")
 deleteButton = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Delete")
+outdatedText = NodePath("MarginContainer/VBoxContainer/MarginContainer/PreviewMargin/OutdatedMarker")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=491754055]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -54,65 +56,72 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1855310355]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=1285973873]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("1")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer" unique_id=147544136]
 layout_mode = 2
-mouse_filter = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1855006694]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
-mouse_filter = 1
 text = "INSERT_TITLE"
 label_settings = ExtResource("2_jn0qd")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=132488361]
 layout_mode = 2
+mouse_filter = 2
 alignment = 2
 
-[node name="Delete" type="TextureButton" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="Delete" type="TextureButton" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1939756980]
 self_modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(14, 14)
 layout_mode = 2
 focus_mode = 0
-mouse_filter = 1
-texture_normal = ExtResource("3_lhc46")
+texture_normal = ExtResource("3_jf61b")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1488788389]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 theme_override_constants/margin_bottom = 5
 
-[node name="PreviewMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+[node name="PreviewMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=999253886]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="PreviewImage" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/PreviewMargin"]
+[node name="PreviewImage" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/PreviewMargin" unique_id=1066663932]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 texture = ExtResource("2")
 expand_mode = 1
 stretch_mode = 6
+
+[node name="OutdatedMarker" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/PreviewMargin" unique_id=411316159]
+visible = false
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "OUTDATED_ITEM"
+label_settings = ExtResource("5_jf61b")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExit"]

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-16 20:10+0200\n"
+"POT-Creation-Date: 2026-01-22 16:04+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -281,7 +281,8 @@ msgstr "Versió:"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Es requereix la classe de l'ensamblatge del mod quan s'especifica l'ensamblatge"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Es requereix l'ensamblatge de mod quan auto harmony està activat"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -441,6 +442,9 @@ msgstr ""
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr ""
 
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr ""
 
@@ -556,7 +560,15 @@ msgid "BIG_IRON_CHUNK"
 msgstr "Gran tros de Ferro"
 
 #, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Gran tros de Ferro"
+
+#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Gran tros de Ferro"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "Gran tros de Ferro"
 
 msgid "BILLION_ABBREVIATION"
@@ -924,6 +936,10 @@ msgstr "Zona costanera"
 msgid "COLLISION_SHAPE"
 msgstr "Generar entitats amb formes de col·lisió"
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "(velocitat a la qual les espècies de la IA muten)"
+
 msgid "COLOUR"
 msgstr "Color"
 
@@ -974,6 +990,9 @@ msgstr "Valor de saturació, la quantitat de gris en un color particular"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Valor (brillantor) valor, brillantor o intensitat del color"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr ""
 
 #, fuzzy
 msgid "COMMON_ABILITIES"
@@ -1095,6 +1114,10 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Equilibri de Compostos"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} consum"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1491,8 +1514,28 @@ msgstr "Secretar mucílag"
 msgid "CURRENT_DEVELOPERS"
 msgstr "Desenvolupadors Actuals"
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "INDRET ACTUAL"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "INDRET ACTUAL"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "INDRET ACTUAL"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "INDRET ACTUAL"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Mostrar noms de botons de selecció de parts"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "Mostrar noms de botons de selecció de parts"
 
 #, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
@@ -1564,6 +1607,10 @@ msgstr "L'acció d'eliminar aquest arxiu de guardat és irreversible. Esteu segu
 
 msgid "DEATH"
 msgstr "mort"
+
+#, fuzzy
+msgid "DEBUG_CONSOLE"
+msgstr "Tauler de Depuració"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1818,6 +1865,10 @@ msgstr "Mostrar noms de botons de selecció de parts"
 msgid "DISPLAY_PART_NAMES"
 msgstr "Mostrar noms de botons de selecció de parts"
 
+#, fuzzy
+msgid "DISPLAY_SELECTION"
+msgstr "La lipasa permet a la cèl·lula digerir la major part de membranes. La teva cèl·lula ja produeix una certa quantitat d'aquest enzim sense lisosoma, però seleccionant aquest tipus n'augmentaràs l'efectivitat."
+
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Font d'alimentació distribuïda uniformament de {0}"
 
@@ -1976,6 +2027,10 @@ msgstr ""
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "Estadi de Microbi"
 
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
+
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -2077,6 +2132,10 @@ msgstr "{0}: +{1} ATP"
 #, fuzzy
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr "Núvols de Compostos"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia a {0} per {1}"
@@ -2196,6 +2255,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
 
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
@@ -2516,6 +2583,14 @@ msgid "FOSSILISE"
 msgstr "Sèssil"
 
 #, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Creació de Mod Fallida"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Actualitzar l'arxiu de guardat especificat degut al següent error:"
+
+#, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Creació de Mod Fallida"
 
@@ -2703,6 +2778,10 @@ msgstr "{0} {1}"
 msgid "GRAPHICS"
 msgstr "Gràfics"
 
+#, fuzzy
+msgid "GRAPHICS_PRESET"
+msgstr "Equip de gràfics"
+
 msgid "GRAPHICS_TEAM"
 msgstr "Equip de gràfics"
 
@@ -2719,6 +2798,14 @@ msgstr ""
 "\n"
 "Si experimentes un bug on parts del botó de l'editor desapareixen,\n"
 "pots intentar desactivant això per veure si el problema s'arregla."
+
+#, fuzzy
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr "(valors més alts augmenten el rendiment)"
+
+#, fuzzy
+msgid "GUI_SCALE_OPTION"
+msgstr "Tancar opcions?"
 
 #, fuzzy
 msgid "GUI_TAB_NAVIGATION"
@@ -2833,6 +2920,9 @@ msgstr ""
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "L'ID no és un número vàlid"
 
@@ -2840,6 +2930,9 @@ msgid "ID_NUMBER"
 msgstr "Nombre d'ID"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 #, fuzzy
@@ -2961,6 +3054,14 @@ msgstr "Inspeccionar"
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Pausar el joc"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "Proporció de glucosa retinguda al medi ambient cada generació"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3089,23 +3190,19 @@ msgstr "Acaba una Generació"
 msgid "JANUARY"
 msgstr "Gener"
 
-msgid "JSON_DEBUG_MODE"
-msgstr "Mode debug de JSON:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Sempre"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automàticament"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Mai"
-
 msgid "JULY"
 msgstr "Juliol"
 
 msgid "JUNE"
 msgstr "Juny"
+
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Món Actual"
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "Pausar el joc"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3625,6 +3722,10 @@ msgid "MACROSCOPIC"
 msgstr "Esdevenir un Organisme Macroscòpic ({0}/{1})"
 
 #, fuzzy
+msgid "MACROSCOPIC_EDITOR"
+msgstr "S'està carregant l'Editor de Microbi"
+
+#, fuzzy
 msgid "MACROSCOPIC_STAGE"
 msgstr "Estadi de Microbi"
 
@@ -3822,6 +3923,10 @@ msgstr ""
 "[b]Comportament[/b]\n"
 "  {5}"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "[b][u]{0}[/u][/b] s'ha dividit de [b][u]{1}[/u][/b] com a noves espècies degut a diferents pressions selectives"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3844,6 +3949,10 @@ msgstr ""
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Predació de {0}"
+
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reproducció:"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
@@ -3870,6 +3979,10 @@ msgstr "Editor de Microbi"
 #, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr "Estadístiques de la Cèl·lula"
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
+msgstr "Trobar l'Ecosistema Actual"
 
 msgid "MICROBE_EDITOR"
 msgstr "Editor de Microbi"
@@ -4204,10 +4317,6 @@ msgstr "Models"
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
-#, fuzzy
-msgid "MODIFIER"
-msgstr "Modificar"
-
 msgid "MODIFY"
 msgstr "Modificar"
 
@@ -4219,6 +4328,10 @@ msgstr "Modificar Tipus"
 
 msgid "MODS"
 msgstr "Mods"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Inhabilitat"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -4253,9 +4366,6 @@ msgstr "{0}: el mètode de descàrrega d'ensamblatge del mod ha fallat amb una e
 
 msgid "MOD_AUTHOR"
 msgstr "Autor del Mod:"
-
-msgid "MOD_AUTO_HARMONY"
-msgstr "Fa servir Auto Harmony:"
 
 msgid "MOD_CREATION_FAILED"
 msgstr "Creació de Mod Fallida"
@@ -4325,6 +4435,13 @@ msgstr "Carregador de Mods"
 
 msgid "MOD_VERSION"
 msgstr "Versió del Mod:"
+
+#, fuzzy
+msgid "MONITOR_AUTO"
+msgstr "Autor del Mod:"
+
+msgid "MONITOR_IDENTIFIER"
+msgstr ""
 
 msgid "MORE_INFO"
 msgstr "Mostrar Més Informació"
@@ -4764,9 +4881,6 @@ msgstr ""
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Suicidi"
 
-msgid "OFFSET"
-msgstr ""
-
 msgid "OK"
 msgstr "D'acord"
 
@@ -4954,6 +5068,10 @@ msgstr "Compostos"
 
 msgid "OUR_WIKI"
 msgstr "la nostra Wiki"
+
+#, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Avortat."
 
 #, fuzzy
 msgid "OUTDATED_NOTICE"
@@ -5260,6 +5378,30 @@ msgstr "Predació de {0}"
 
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Veure informació detallada de la predicció"
+
+#, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "Personalitzat"
+
+#, fuzzy
+msgid "PRESET_HIGH"
+msgstr "Reset"
+
+#, fuzzy
+msgid "PRESET_LOW"
+msgstr "Reset"
+
+#, fuzzy
+msgid "PRESET_MEDIUM"
+msgstr "per augmentar la"
+
+#, fuzzy
+msgid "PRESET_VERY_HIGH"
+msgstr "Resetejar Inputs"
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "Equilibri de Compostos"
 
 msgid "PRESSURE"
 msgstr "Pressió"
@@ -5589,7 +5731,14 @@ msgstr "Rotar cap a la dreta"
 msgid "ROTATION_COLON"
 msgstr "Rotació:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
+msgstr "Activa la simulació auto-evo durant el joc"
+
+#, fuzzy
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
 msgstr "Activa la simulació auto-evo durant el joc"
 
 msgid "RUN_ONE_STEP"
@@ -5658,13 +5807,6 @@ msgstr "Espai emprat pels arxius:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "L'acció d'eliminar aquest arxiu de guardat és irreversible, esteu segur que voleu eliminar permanentment l'arxiu {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Mode debug de JSON:"
 
 msgid "SAVE_FAILED"
 msgstr "Acció de guardat fallida"
@@ -5993,7 +6135,15 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "Petit tros de Ferro"
 
 #, fuzzy
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "Petit tros de Ferro"
+
+#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Petit tros de Ferro"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr "Petit tros de Ferro"
 
 #, fuzzy
@@ -6080,6 +6230,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "ha mutat"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Trobar l'Ecosistema Actual"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "s'ha extingit de l'ecosistema"
 
 msgid "SPECIES_LIST"
 msgstr "Espècies presents"
@@ -6604,6 +6762,10 @@ msgstr "Activar el mode d'unió"
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Activar el mode d'unió"
 
+#, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Obrir el menú de debug"
+
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Obrir el menú de debug"
 
@@ -6701,22 +6863,17 @@ msgstr "Eines"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgid "TOO_LARGE_PRESSURE_RANGE"
 msgstr ""
 
-#, fuzzy
-msgid "TOTAL"
-msgstr "Nombre total d'arxius guardats:"
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr ""
 
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Artista:"
 
 msgid "TOTAL_SAVES"
-msgstr "Nombre total d'arxius guardats:"
-
-#, fuzzy
-msgid "TOTAL_VALUE"
 msgstr "Nombre total d'arxius guardats:"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
@@ -7197,6 +7354,17 @@ msgstr "Desfer l'acció"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Desfer la darrera acció"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Els Pili (singular: pilus) es troben a la superfície de molts micro-organismes i tenen forma de pèls. Hi poden haver desenes o centenars de pili a la superfície d'un micro-organisme, i es poden fer servir amb diferents finalitats, incloents la depredació. Els micro-organismes patogènics fan servir els pili per virulència, ja sigui per unir-se a teixits hoste, o per penetrar la membrana exterior i accedir al citoplasma. Molts Pili similars existeixen, però no estan evolutivament relacionats i són resultat d'evolució convergent. Un sol organisme ha de tenir l'habilitat de tenir diferents tipus de Pili, i aquells que són a la superfície són canviats i substituïts constantment."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "HAS ACONSEGUIT PROSPERAR!"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Taxa de mutació de la IA"
@@ -7366,6 +7534,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Llicències i llibreries utilitzades"
 
@@ -7374,12 +7545,6 @@ msgstr ""
 
 msgid "USES_FEATURE"
 msgstr "Si"
-
-msgid "USE_AUTO_HARMONY"
-msgstr "Utilitzar Càrrega Auto Harmony"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Fer servir un nom d'usuari propi"
@@ -9457,6 +9622,14 @@ msgstr "Temperatura"
 msgid "WORST_PATCH_COLON"
 msgstr "Pitjor Medi:"
 
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "Normal"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "(velocitat a la qual les espècies de la IA muten)"
+
 msgid "XBOX360"
 msgstr ""
 
@@ -9502,17 +9675,38 @@ msgstr "Enfocar la visió de la càmera"
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
 
-#, fuzzy
-#~ msgid "EFFECTIVE_VALUE"
-#~ msgstr "{0}%"
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Fa servir Auto Harmony:"
+
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Utilitzar Càrrega Auto Harmony"
+
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
 
 #, fuzzy
-#~ msgid "KEEP_CURRENT_SHORT"
-#~ msgstr "Món Actual"
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Reproducció:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "Mode debug de JSON:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Sempre"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automàticament"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Mai"
 
 #, fuzzy
-#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-#~ msgstr "Pausar el joc"
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Mode debug de JSON:"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Avortat."
 
 #, fuzzy
 #~ msgid "GENERATE_BUTTON"
@@ -9838,10 +10032,6 @@ msgstr "Zoom enfora"
 #, fuzzy
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Part de [b][u]{0}[/u][/b] població ha migrat a {1}"
-
-#, fuzzy
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "s'ha extingit de l'ecosistema"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Error: tros no trobat"

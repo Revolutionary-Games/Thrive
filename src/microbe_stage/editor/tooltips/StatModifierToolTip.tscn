@@ -21,7 +21,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="StatModifierToolTip" type="PanelContainer" node_paths=PackedStringArray("valueLabel", "descriptionLabel", "extraDescriptionLabel", "extraDescriptionSeparator", "statsContainer")]
+[node name="StatModifierToolTip" type="PanelContainer" unique_id=277172712 node_paths=PackedStringArray("valueLabel", "descriptionLabel", "extraDescriptionLabel", "extraDescriptionSeparator", "statsContainer")]
 custom_minimum_size = Vector2(400, 0)
 offset_top = 1.0
 offset_right = 400.0
@@ -39,7 +39,7 @@ breakdownFont = ExtResource("3_t1e3u")
 breakdownGoodFont = ExtResource("4_4hefh")
 breakdownBadFont = ExtResource("5_pvr7u")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=100110375]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 15
@@ -47,16 +47,16 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1318035853]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 15
 
-[node name="Top" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Top" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=43033385]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="EffectiveValue" type="Label" parent="MarginContainer/VBoxContainer/Top"]
+[node name="EffectiveValue" type="Label" parent="MarginContainer/VBoxContainer/Top" unique_id=851199464]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(230, 0)
 layout_mode = 2
@@ -67,32 +67,32 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="EffectiveValueTitle" type="Label" parent="MarginContainer/VBoxContainer/Top"]
+[node name="EffectiveValueTitle" type="Label" parent="MarginContainer/VBoxContainer/Top" unique_id=1308967114]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "TOTAL_VALUE"
+text = "EFFECTIVE_VALUE"
 label_settings = ExtResource("3_su033")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="StatDescription" parent="MarginContainer/VBoxContainer" instance=ExtResource("8_j3oaw")]
+[node name="StatDescription" parent="MarginContainer/VBoxContainer" unique_id=1068853179 instance=ExtResource("8_j3oaw")]
 layout_mode = 2
 mouse_filter = 2
 fit_content = true
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=360827977]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="ModifierSummary" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+[node name="ModifierSummary" type="GridContainer" parent="MarginContainer/VBoxContainer" unique_id=1599195471]
 layout_mode = 2
 mouse_filter = 2
 columns = 2
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=729553141]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="EndingRemarks" parent="MarginContainer/VBoxContainer" instance=ExtResource("8_j3oaw")]
+[node name="EndingRemarks" parent="MarginContainer/VBoxContainer" unique_id=1328257699 instance=ExtResource("8_j3oaw")]
 layout_mode = 2
 fit_content = true

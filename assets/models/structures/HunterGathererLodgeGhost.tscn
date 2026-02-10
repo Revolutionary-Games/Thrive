@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqfudx8yk2oku"]
+[gd_scene format=3 uid="uid://bqfudx8yk2oku"]
 
 [ext_resource type="PackedScene" uid="uid://bd4ueep7n0567" path="res://assets/models/structures/HunterGathererLodge.tscn" id="1"]
 
@@ -6,13 +6,13 @@
 transparency = 1
 albedo_color = Color(0.439216, 0.262745, 0.0392157, 0.662745)
 
-[node name="HunterGathererLodge" instance=ExtResource("1")]
+[node name="HunterGathererLodge" unique_id=1499318554 instance=ExtResource("1")]
 
-[node name="CollisionShape3D" parent="." index="0"]
+[node name="CollisionShape3D" parent="." index="0" unique_id=812592828]
 disabled = true
 
-[node name="CSGBox3D" parent="." index="1"]
+[node name="CSGBox3D" parent="." index="1" unique_id=637364677]
 material = SubResource("1")
 
-[node name="CSGBox4" parent="." index="2"]
+[node name="CSGBox4" parent="." index="2" unique_id=733599415]
 material = SubResource("1")

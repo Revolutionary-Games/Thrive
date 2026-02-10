@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using SharedBase.Archive;
 
-[JSONAlwaysDynamicType]
 public class RigidityActionData : EditorCombinableActionData<CellType>
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public float NewRigidity;
     public float PreviousRigidity;
 
@@ -13,43 +14,38 @@ public class RigidityActionData : EditorCombinableActionData<CellType>
         PreviousRigidity = previousRigidity;
     }
 
-    public static double CalculateRigidityCost(float newRigidity, float previousRigidity)
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.RigidityActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
-        return Math.Abs(newRigidity - previousRigidity) * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO *
-            Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.RigidityActionData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((RigidityActionData)obj);
     }
 
-    protected override double CalculateBaseCostInternal()
+    public static RigidityActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
-        return CalculateRigidityCost(NewRigidity, PreviousRigidity);
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new RigidityActionData(reader.ReadFloat(), reader.ReadFloat());
+
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        return instance;
     }
 
-    protected override (double Cost, double RefundCost) CalculateCostInternal(
-        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
+    public override void WriteToArchive(ISArchiveWriter writer)
     {
-        bool foundOther = false;
-        var cost = CalculateBaseCostInternal();
-        double refund = 0;
+        writer.Write(NewRigidity);
+        writer.Write(PreviousRigidity);
 
-        var count = history.Count;
-        for (int i = 0; i < insertPosition && i < count; ++i)
-        {
-            var other = history[i];
-
-            if (other is RigidityActionData rigidityChangeActionData && MatchesContext(rigidityChangeActionData))
-            {
-                // Calculate the cost as the total change and offset the previous action's cost by the change
-                if (!foundOther)
-                {
-                    cost = CalculateRigidityCost(NewRigidity, rigidityChangeActionData.PreviousRigidity);
-                    foundOther = true;
-                }
-
-                refund += other.GetCalculatedSelfCost() - other.GetCalculatedRefundCost();
-            }
-        }
-
-        return (cost, refund);
+        writer.Write(SERIALIZATION_VERSION_CONTEXT);
+        base.WriteToArchive(writer);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)

@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
-using Saving;
 using Tutorial;
 
 /// <summary>
-///   Handles the logic for the options menu GUI.
+///   Handles the logic for the options-menu GUI.
 /// </summary>
 /// <remarks>
 ///   <para>
@@ -25,6 +24,15 @@ public partial class OptionsMenu : ControlWithInput
     [Export]
     public bool DisableInactiveSliders;
 
+    [Export]
+    public float MaxRenderScale = 1.05f;
+
+    [Export]
+    public float MinRenderScale = 0.80f;
+
+    [Export]
+    public float RenderScaleStep = 0.025f;
+
     private static readonly Lazy<List<string>> LanguagesCache = new(() =>
         TranslationServer.GetLoadedLocales().OrderBy(i => i, StringComparer.InvariantCulture).ToList());
 
@@ -33,7 +41,10 @@ public partial class OptionsMenu : ControlWithInput
         .GetOutputDeviceList().Where(d => d != Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME)
         .Prepend(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME).ToList();
 
+    private readonly List<DisplayInfo> displaysCache = new();
+
 #pragma warning disable CA2213
+
     [Export]
     private Button backButton = null!;
 
@@ -68,6 +79,15 @@ public partial class OptionsMenu : ControlWithInput
 
     [Export]
     private CheckButton vsync = null!;
+
+    [Export]
+    private OptionButton graphicsPreset = null!;
+
+    [Export]
+    private VBoxContainer displayOptionContainer = null!;
+
+    [Export]
+    private OptionButton display = null!;
 
     [Export]
     private Label? resolution;
@@ -118,6 +138,9 @@ public partial class OptionsMenu : ControlWithInput
     private OptionButton anisotropicFilterLevel = null!;
 
     [Export]
+    private Label currentGUIScaleDisplay = null!;
+
+    [Export]
     private CheckButton damageEffect = null!;
 
     [Export]
@@ -140,6 +163,9 @@ public partial class OptionsMenu : ControlWithInput
 
     [Export]
     private CheckButton lowQualityBackgroundBlurToggle = null!;
+
+    [Export]
+    private OptionButton microbeCurrentParticles = null!;
 
     [Export]
     private CheckButton bloomEffectToggle = null!;
@@ -390,9 +416,6 @@ public partial class OptionsMenu : ControlWithInput
     private Label dismissedNoticeCount = null!;
 
     [Export]
-    private OptionButton jsonDebugMode = null!;
-
-    [Export]
     private OptionButton screenEffectSelect = null!;
 
     [Export]
@@ -451,8 +474,6 @@ public partial class OptionsMenu : ControlWithInput
 
     private GameProperties? gameProperties;
 
-    private bool nodeReferencesResolved;
-
     private bool elementItemSelectionsInitialized;
 
     private double displayedCacheSize = -1;
@@ -482,8 +503,6 @@ public partial class OptionsMenu : ControlWithInput
 
     public override void _Ready()
     {
-        ResolveNodeReferences(true);
-
         if (IsVisibleInTree())
         {
             GD.Print("Immediately loading options menu items as it is visible in _Ready");
@@ -504,25 +523,15 @@ public partial class OptionsMenu : ControlWithInput
 #endif
     }
 
-    public void ResolveNodeReferences(bool calledFromReady)
-    {
-        if (nodeReferencesResolved)
-            return;
-
-        builtAtLabel.RegisterCustomFocusDrawer();
-        nodeReferencesResolved = true;
-    }
-
     public override void _EnterTree()
     {
         base._EnterTree();
-
-        ResolveNodeReferences(false);
 
         cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options", false);
         guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options", false);
         assumeHyperthreading.RegisterToolTipForControl("assumeHyperthreading", "options", false);
         unsavedProgressWarningEnabled.RegisterToolTipForControl("unsavedProgressWarning", "options", false);
+        displayOptionContainer.Visible = !FeatureInformation.IsMobile;
 
         Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
     }
@@ -564,12 +573,15 @@ public partial class OptionsMenu : ControlWithInput
         // Copy the live game settings so we can check against them for changes.
         savedSettings = Settings.Instance.Clone();
 
-        // Set the mode to the one we opened with, and disable any options that should only be visible in game.
+        // Set the mode to the one we opened with and disable any options that should only be visible in-game.
         SwitchMode(OptionsMode.MainMenu);
 
         // Set the state of the gui controls to match the settings.
         ApplySettingsToControls(savedSettings);
         UpdateResetSaveButtonState();
+
+        // Calculate and set the minimum size of the tab buttons
+        tabButtons.SetCustomMinimumSize();
 
         Show();
     }
@@ -579,7 +591,7 @@ public partial class OptionsMenu : ControlWithInput
     /// </summary>
     public void OpenFromInGame(GameProperties gameProperties)
     {
-        // Shouldn't do anything if options is already open.
+        // Shouldn't do anything if the menu is already open.
         if (Visible)
             return;
 
@@ -592,16 +604,18 @@ public partial class OptionsMenu : ControlWithInput
         // Need a reference to game properties in the current game for later comparisons.
         this.gameProperties = gameProperties;
 
-        // Set the mode to the one we opened with, and show/hide any options that should only be visible
+        // Set the mode to the one we opened with and show/hide any options that should only be visible
         // when the options menu is opened from in-game.
         SwitchMode(OptionsMode.InGame);
 
         // Set the state of the gui controls to match the settings.
-        if (savedTutorialsEnabled)
-            tutorialsEnabled.ButtonPressed = savedTutorialsEnabled;
+        tutorialsEnabled.ButtonPressed = savedTutorialsEnabled;
 
         ApplySettingsToControls(savedSettings);
         UpdateResetSaveButtonState();
+
+        // Calculate and set the minimum size of the tab buttons
+        tabButtons.SetCustomMinimumSize();
 
         Show();
     }
@@ -619,39 +633,25 @@ public partial class OptionsMenu : ControlWithInput
 
         // Graphics
         vsync.ButtonPressed = settings.VSync;
+        graphicsPreset.Selected = CalculateGraphicsPreset(settings);
+        ApplyGraphicsPresetOptionsToControls(settings);
         displayMode.Selected = DisplayModeToIndex(settings.DisplayMode);
-        antiAliasingMode.Selected = AntiAliasingModeToIndex(settings.AntiAliasing);
-        msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
-        anisotropicFilterLevel.Selected = AnisotropicFilterLevelToIndex(settings.AnisotropicFilterLevel);
         maxFramesPerSecond.Selected = MaxFPSValueToIndex(settings.MaxFramesPerSecond);
-        renderScale.Value = settings.RenderScale;
-        upscalingMethod.Selected = UpscalingMethodValueToIndex(settings.UpscalingMethod);
         upscalingSharpening.Value = settings.UpscalingSharpening;
-        upscalingSharpening.Editable = settings.UpscalingMethod.Value != Settings.UpscalingMode.Bilinear;
         colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
-        chromaticAberrationToggle.ButtonPressed = settings.ChromaticEnabled;
         chromaticAberrationSlider.Editable = settings.ChromaticEnabled || !DisableInactiveSliders;
         controllerPromptType.Selected = ControllerPromptTypeToIndex(settings.ControllerPromptType);
         displayAbilitiesHotBarToggle.ButtonPressed = settings.DisplayAbilitiesHotBar;
         damageEffect.ButtonPressed = settings.ScreenDamageEffect;
         strainVisibility.Selected = (int)settings.StrainBarVisibilityMode.Value;
-        displayBackgroundParticlesToggle.ButtonPressed = settings.DisplayBackgroundParticles;
-        displayMicrobeBackgroundDistortionToggle.ButtonPressed = settings.MicrobeDistortionStrength.Value > 0;
-        lowQualityBackgroundBlurToggle.ButtonPressed = settings.MicrobeBackgroundBlurLowQuality;
-        microbeRippleEffect.ButtonPressed = settings.MicrobeRippleEffect;
         microbeCameraTilt.ButtonPressed = settings.MicrobeCameraTilt;
-        guiLightEffectsToggle.ButtonPressed = settings.GUILightEffectsEnabled;
         displayPartNamesToggle.ButtonPressed = settings.DisplayPartNames;
-        displayMenu3DBackgroundsToggle.ButtonPressed = settings.Menu3DBackgroundEnabled;
-        bloomEffectToggle.ButtonPressed = settings.BloomEnabled;
         bloomSlider.Value = settings.BloomStrength;
         bloomSlider.Editable = settings.BloomEnabled || !DisableInactiveSliders;
-        blurSlider.Value = settings.MicrobeBackgroundBlurStrength;
         DisplayResolution();
         DisplayGpuInfo();
-        UpdateRenderScale();
-        UpdateMSAAVisibility();
+        UpdateDisplay();
 
         // Sound
         masterVolume.Value = ConvertDbToSoundBar(settings.VolumeMaster);
@@ -699,6 +699,7 @@ public partial class OptionsMenu : ControlWithInput
         UpdateDiskMemoryPortionCacheTime();
         UpdateMemoryOnlyCacheTime();
         ApplyCacheSliderEnabledStates();
+        UpdateGUIScale(settings);
 
         UpdateCurrentCacheSize();
 
@@ -751,7 +752,6 @@ public partial class OptionsMenu : ControlWithInput
         customUsername.Editable = settings.CustomUsernameEnabled;
         webFeedsEnabled.ButtonPressed = settings.ThriveNewsFeedEnabled;
         showNewPatchNotes.ButtonPressed = settings.ShowNewPatchNotes;
-        jsonDebugMode.Selected = JSONDebugModeToIndex(settings.JSONDebugMode);
         screenEffectSelect.Selected = settings.CurrentScreenEffect.Value != null ?
             settings.CurrentScreenEffect.Value.Index :
             simulationParameters.GetScreenEffectByIndex(0).Index;
@@ -770,6 +770,33 @@ public partial class OptionsMenu : ControlWithInput
         {
             upscalingMethod.Disabled = false;
         }
+    }
+
+    public void ApplyGraphicsPresetOptionsToControls(Settings settings)
+    {
+        // This list of stuff to update must match the GraphicsPresets class
+        antiAliasingMode.Selected = AntiAliasingModeToIndex(settings.AntiAliasing);
+        msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
+        anisotropicFilterLevel.Selected = AnisotropicFilterLevelToIndex(settings.AnisotropicFilterLevel);
+        renderScale.Value = settings.RenderScale;
+        upscalingMethod.Selected = UpscalingMethodValueToIndex(settings.UpscalingMethod);
+        upscalingSharpening.Editable = settings.UpscalingMethod.Value != Settings.UpscalingMode.Bilinear;
+        chromaticAberrationToggle.ButtonPressed = settings.ChromaticEnabled;
+        chromaticAberrationSlider.Editable = settings.ChromaticEnabled || !DisableInactiveSliders;
+        displayBackgroundParticlesToggle.ButtonPressed = settings.DisplayBackgroundParticles;
+        displayMicrobeBackgroundDistortionToggle.ButtonPressed = settings.MicrobeDistortionStrength.Value > 0;
+        lowQualityBackgroundBlurToggle.ButtonPressed = settings.MicrobeBackgroundBlurLowQuality;
+        microbeCurrentParticles.Selected = CurrentParticlesModeToIndex(settings.MicrobeCurrentParticles);
+        microbeRippleEffect.ButtonPressed = settings.MicrobeRippleEffect;
+        guiLightEffectsToggle.ButtonPressed = settings.GUILightEffectsEnabled;
+        displayMenu3DBackgroundsToggle.ButtonPressed = settings.Menu3DBackgroundEnabled;
+        bloomEffectToggle.ButtonPressed = settings.BloomEnabled;
+        bloomSlider.Editable = settings.BloomEnabled || !DisableInactiveSliders;
+        blurSlider.Value = settings.MicrobeBackgroundBlurStrength;
+
+        DisplayResolution();
+        UpdateRenderScale();
+        UpdateMSAAVisibility();
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
@@ -806,6 +833,8 @@ public partial class OptionsMenu : ControlWithInput
 
         elementItemSelectionsInitialized = true;
 
+        RefreshDisplayCache();
+        DisplayDisplayList();
         LoadLanguages();
         LoadAudioOutputDevices();
         LoadScreenEffects();
@@ -841,6 +870,41 @@ public partial class OptionsMenu : ControlWithInput
             default:
                 throw new ArgumentException("Options menu SwitchMode called with an invalid mode argument");
         }
+    }
+
+    /// <summary>
+    ///   Refreshes the list of available displays. Needs to be called before the list is displayed.
+    /// </summary>
+    private void RefreshDisplayCache()
+    {
+        displaysCache.Clear();
+
+        var count = DisplayServer.GetScreenCount();
+
+        displaysCache.Add(new DisplayInfo(-1, new LocalizedString("MONITOR_AUTO")));
+
+        for (int i = 0; i < count; ++i)
+        {
+            displaysCache.Add(new DisplayInfo(i, new LocalizedString("MONITOR_IDENTIFIER", i + 1)));
+        }
+    }
+
+    /// <summary>
+    ///   Displays the list of monitors available on the system.
+    /// </summary>
+    private void DisplayDisplayList()
+    {
+        if (displaysCache.Count < 1)
+            GD.PrintErr("Displays list is not initialized");
+
+        display.Clear();
+        foreach (var displayInfo in displaysCache)
+        {
+            display.AddItem(displayInfo.Name.ToString(), displayInfo.Id);
+        }
+
+        // Make sure the selection index is remembered
+        UpdateDisplay();
     }
 
     /// <summary>
@@ -893,16 +957,35 @@ public partial class OptionsMenu : ControlWithInput
             .FormatSafe(Math.Round(videoMemoryInMebibytes, 2));
     }
 
+    private void UpdateGUIScale(Settings settings)
+    {
+        currentGUIScaleDisplay.Text = Localization.Translate("PERCENTAGE_VALUE")
+            .FormatSafe(Math.Round(settings.GUIScale.Value * 100, 1));
+    }
+
     private void OnTranslationsChanged()
     {
         BuildInputRebindControls();
         UpdateDefaultAudioOutputDeviceText();
         DisplayResolution();
         DisplayGpuInfo();
+        UpdateGUIScale(Settings.Instance);
+
+        // The options menu associated with the pause menu is not always initialized, as such we don't need to update
+        // the display options if not required
+        if (displaysCache.Count > 0)
+        {
+            DisplayDisplayList();
+        }
+
+        // Calculate and set the minimum size of the tab buttons, as their size may have changed with the new language.
+        // Has to use a callback as the buttons do not finish resizing until later in the frame.
+        // Not entirely sure why, to be honest, but this only runs when the language changes, so it should be fine
+        Invoke.Instance.Perform(tabButtons.SetCustomMinimumSize);
     }
 
     /// <summary>
-    ///   Changes the active settings tab that is displayed, or returns if the tab is already active.
+    ///   Changes the active settings tab that is displayed or returns if the tab is already active.
     /// </summary>
     private void ChangeSettingsTab(string newTabName)
     {
@@ -1338,35 +1421,35 @@ public partial class OptionsMenu : ControlWithInput
         }
     }
 
-    private int JSONDebugModeToIndex(JSONDebug.DebugMode mode)
+    private int CurrentParticlesModeToIndex(Settings.MicrobeCurrentParticlesMode mode)
     {
         switch (mode)
         {
-            case JSONDebug.DebugMode.AlwaysDisabled:
-                return 2;
-            case JSONDebug.DebugMode.Automatic:
+            case Settings.MicrobeCurrentParticlesMode.All:
                 return 0;
-            case JSONDebug.DebugMode.AlwaysEnabled:
+            case Settings.MicrobeCurrentParticlesMode.OnlyCircles:
                 return 1;
+            case Settings.MicrobeCurrentParticlesMode.None:
+                return 2;
+            default:
+                GD.PrintErr("invalid current particles mode value");
+                return 0;
         }
-
-        GD.PrintErr("invalid JSON debug mode value");
-        return 0;
     }
 
-    private JSONDebug.DebugMode JSONDebugIndexToMode(int index)
+    private Settings.MicrobeCurrentParticlesMode CurrentParticlesIndexToMode(int index)
     {
         switch (index)
         {
             case 0:
-                return JSONDebug.DebugMode.Automatic;
+                return Settings.MicrobeCurrentParticlesMode.All;
             case 1:
-                return JSONDebug.DebugMode.AlwaysEnabled;
+                return Settings.MicrobeCurrentParticlesMode.OnlyCircles;
             case 2:
-                return JSONDebug.DebugMode.AlwaysDisabled;
+                return Settings.MicrobeCurrentParticlesMode.None;
             default:
-                GD.PrintErr("invalid JSON debug mode index");
-                return JSONDebug.DebugMode.Automatic;
+                GD.PrintErr("invalid current particles mode index");
+                return Settings.MicrobeCurrentParticlesMode.All;
         }
     }
 
@@ -1772,11 +1855,89 @@ public partial class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
+    private void UpdateSelectedGraphicsPresetIfNeeded()
+    {
+        var wanted = CalculateGraphicsPreset(Settings.Instance);
+
+        if (graphicsPreset.Selected != wanted)
+            graphicsPreset.Selected = wanted;
+    }
+
+    private int CalculateGraphicsPreset(Settings settings)
+    {
+        switch (GraphicsPresets.GetPreset(settings))
+        {
+            case GraphicsPresets.Preset.Custom:
+                return 0;
+            case GraphicsPresets.Preset.VeryLow:
+                return 1;
+            case GraphicsPresets.Preset.Low:
+                return 2;
+            case GraphicsPresets.Preset.Medium:
+                return 3;
+            case GraphicsPresets.Preset.High:
+                return 4;
+            case GraphicsPresets.Preset.VeryHigh:
+                return 5;
+            default:
+                // This shouldn't happen, so making an extra call to GetPreset shouldn't matter here
+                GD.PrintErr("Unknown graphics preset: " + GraphicsPresets.GetPreset(settings));
+                return 0;
+        }
+    }
+
+    private void OnGraphicsPresetSelected(int index)
+    {
+        var preset = GraphicsPresets.Preset.Custom;
+
+        switch (index)
+        {
+            case 0:
+                preset = GraphicsPresets.Preset.Custom;
+                break;
+            case 1:
+                preset = GraphicsPresets.Preset.VeryLow;
+                break;
+            case 2:
+                preset = GraphicsPresets.Preset.Low;
+                break;
+            case 3:
+                preset = GraphicsPresets.Preset.Medium;
+                break;
+            case 4:
+                preset = GraphicsPresets.Preset.High;
+                break;
+            case 5:
+                preset = GraphicsPresets.Preset.VeryHigh;
+                break;
+            default:
+                GD.PrintErr("Invalid graphics preset index: ", index);
+                break;
+        }
+
+        if (preset == GraphicsPresets.Preset.Custom)
+        {
+            // Custom requires no handling
+            return;
+        }
+
+        // Otherwise we want to apply the preset
+        GD.Print("Applying graphics preset: " + preset);
+        GraphicsPresets.ApplyPreset(preset, Settings.Instance);
+
+        // And we need to re-apply the GUI control state for the graphics presets
+        ApplyGraphicsPresetOptionsToControls(Settings.Instance);
+
+        Settings.Instance.ApplyGraphicsSettings();
+        UpdateResetSaveButtonState();
+    }
+
     private void OnAntiAliasingModeSelected(int index)
     {
         Settings.Instance.AntiAliasing.Value = AntiAliasingIndexToValue(index);
         Settings.Instance.ApplyGraphicsSettings();
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
         UpdateMSAAVisibility();
     }
@@ -1788,11 +1949,31 @@ public partial class OptionsMenu : ControlWithInput
                 or Settings.AntiAliasingMode.MSAAAndTemporal;
     }
 
+    private void UpdateDisplay()
+    {
+        var currentDisplay = Settings.Instance.SelectedDisplayIndex.Value;
+
+        var index = -1;
+
+        for (var i = 0; i < displaysCache.Count; ++i)
+        {
+            var displayInfo = displaysCache[i];
+            if (displayInfo.Id == currentDisplay)
+            {
+                index = i;
+                break;
+            }
+        }
+
+        display.Selected = index;
+    }
+
     private void OnMSAAResolutionSelected(int index)
     {
         Settings.Instance.MSAAResolution.Value = MSAAIndexToResolution(index);
         Settings.Instance.ApplyGraphicsSettings();
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -1801,6 +1982,7 @@ public partial class OptionsMenu : ControlWithInput
         Settings.Instance.AnisotropicFilterLevel.Value = AnisotropicFilteringIndexToLevel(index);
         Settings.Instance.ApplyGraphicsSettings();
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -1817,6 +1999,7 @@ public partial class OptionsMenu : ControlWithInput
         Settings.Instance.RenderScale.Value = value;
         Settings.Instance.ApplyGraphicsSettings();
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
         DisplayResolution();
         UpdateRenderScale();
@@ -1828,11 +2011,30 @@ public partial class OptionsMenu : ControlWithInput
             Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(renderScale.Value * 100));
     }
 
+    private void OnMonitorSelected(int index)
+    {
+        if (index < 0 || index >= displaysCache.Count)
+        {
+            GD.PrintErr("Invalid monitor index selected");
+            return;
+        }
+
+        var newId = displaysCache[index].Id;
+
+        if (Settings.Instance.SelectedDisplayIndex.Value == newId)
+            return;
+
+        Settings.Instance.SelectedDisplayIndex.Value = newId;
+        Settings.Instance.ApplyWindowSettings();
+        UpdateResetSaveButtonState();
+    }
+
     private void OnUpscalingMethodSelected(int index)
     {
         Settings.Instance.UpscalingMethod.Value = UpscalingMethodIndexToValue(index);
         Settings.Instance.ApplyGraphicsSettings();
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
 
         upscalingSharpening.Editable = Settings.Instance.UpscalingMethod.Value != Settings.UpscalingMode.Bilinear;
@@ -1859,6 +2061,7 @@ public partial class OptionsMenu : ControlWithInput
         Settings.Instance.ChromaticEnabled.Value = toggle;
         chromaticAberrationSlider.Editable = toggle || !DisableInactiveSliders;
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -1866,6 +2069,24 @@ public partial class OptionsMenu : ControlWithInput
     {
         Settings.Instance.ChromaticAmount.Value = amount;
 
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnIncreaseGUIScale()
+    {
+        Settings.Instance.GUIScale.Value = Math.Min(MaxRenderScale, Settings.Instance.GUIScale.Value + RenderScaleStep);
+        Settings.Instance.ApplyGUISettings();
+
+        UpdateGUIScale(Settings.Instance);
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnDecreaseGUIScale()
+    {
+        Settings.Instance.GUIScale.Value = Math.Max(MinRenderScale, Settings.Instance.GUIScale.Value - RenderScaleStep);
+        Settings.Instance.ApplyGUISettings();
+
+        UpdateGUIScale(Settings.Instance);
         UpdateResetSaveButtonState();
     }
 
@@ -1893,7 +2114,7 @@ public partial class OptionsMenu : ControlWithInput
     private int ControllerPromptTypeToIndex(ControllerType controllerType)
     {
         // This is done like this to ensure that invalid values don't get converted to out of range values (for
-        // example when settings might be loaded that were saved by a newer Thrive version)
+        // example, when settings might be loaded that were saved by a newer Thrive version)
         switch (controllerType)
         {
             case ControllerType.Automatic:
@@ -1932,6 +2153,7 @@ public partial class OptionsMenu : ControlWithInput
     {
         Settings.Instance.DisplayBackgroundParticles.Value = toggle;
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -1946,6 +2168,7 @@ public partial class OptionsMenu : ControlWithInput
             Settings.Instance.MicrobeDistortionStrength.Value = 0;
         }
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -1953,6 +2176,15 @@ public partial class OptionsMenu : ControlWithInput
     {
         Settings.Instance.MicrobeBackgroundBlurLowQuality.Value = toggle;
 
+        UpdateSelectedGraphicsPresetIfNeeded();
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnCurrentParticlesOptionSelected(int index)
+    {
+        Settings.Instance.MicrobeCurrentParticles.Value = CurrentParticlesIndexToMode(index);
+
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -1960,6 +2192,7 @@ public partial class OptionsMenu : ControlWithInput
     {
         Settings.Instance.MicrobeRippleEffect.Value = toggle;
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -1974,6 +2207,7 @@ public partial class OptionsMenu : ControlWithInput
     {
         Settings.Instance.GUILightEffectsEnabled.Value = toggle;
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -1988,6 +2222,7 @@ public partial class OptionsMenu : ControlWithInput
     {
         Settings.Instance.Menu3DBackgroundEnabled.Value = toggle;
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -1996,6 +2231,7 @@ public partial class OptionsMenu : ControlWithInput
         Settings.Instance.BloomEnabled.Value = toggle;
         bloomSlider.Editable = toggle || !DisableInactiveSliders;
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -2010,6 +2246,7 @@ public partial class OptionsMenu : ControlWithInput
     {
         Settings.Instance.MicrobeBackgroundBlurStrength.Value = value;
 
+        UpdateSelectedGraphicsPresetIfNeeded();
         UpdateResetSaveButtonState();
     }
 
@@ -2565,13 +2802,6 @@ public partial class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
-    private void OnJSONDebugModeSelected(int index)
-    {
-        Settings.Instance.JSONDebugMode.Value = JSONDebugIndexToMode(index);
-
-        UpdateResetSaveButtonState();
-    }
-
     private void OnScreenEffectSelected(int index)
     {
         var effect = SimulationParameters.Instance.GetScreenEffectByIndex(index);
@@ -2736,4 +2966,6 @@ public partial class OptionsMenu : ControlWithInput
 
         AchievementsManager.Instance.Reset();
     }
+
+    private record DisplayInfo(int Id, LocalizedString Name);
 }

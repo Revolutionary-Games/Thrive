@@ -5,7 +5,8 @@ var saved_interactions := Dictionary()
 var verified_interactions := Array()
 
 
-func save_function_interaction(function_args :Array[Variant]) -> void:
+func save_function_interaction(func_name: String, args :Array[Variant]) -> void:
+	var function_args := [func_name] + args
 	var matcher := GdUnitArgumentMatchers.to_matcher(function_args, true)
 	for index in saved_interactions.keys().size():
 		var key: Variant = saved_interactions.keys()[index]
@@ -23,9 +24,10 @@ func do_verify_interactions(interactions_times: int = 1) -> void:
 	expected_interactions = interactions_times
 
 
-func verify_interactions(function_args: Array[Variant]) -> void:
+func verify_interactions(func_name: String, args: Array[Variant]) -> void:
 	var summary := Dictionary()
 	var total_interactions := 0
+	var function_args := [func_name] + args
 	var matcher := GdUnitArgumentMatchers.to_matcher(function_args, true)
 	for index in saved_interactions.keys().size():
 		var key: Variant = saved_interactions.keys()[index]
@@ -80,13 +82,3 @@ func verify_no_more_interactions() -> Dictionary:
 
 func reset_interactions() -> void:
 	saved_interactions.clear()
-
-
-func filter_vargs(arg_values: Array[Variant]) -> Array[Variant]:
-	var filtered: Array[Variant] = []
-	for index in arg_values.size():
-		var arg: Variant = arg_values[index]
-		if typeof(arg) == TYPE_STRING and arg == GdObjects.TYPE_VARARG_PLACEHOLDER_VALUE:
-			continue
-		filtered.append(arg)
-	return filtered

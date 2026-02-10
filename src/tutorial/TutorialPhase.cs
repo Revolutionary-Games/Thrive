@@ -1,13 +1,18 @@
 ﻿using System;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   A single tutorial in the game. Tutorials are split into subclasses to make the structure of the code much better.
 /// </summary>
-[JsonObject(IsReference = true)]
-public abstract class TutorialPhase
+public abstract class TutorialPhase : IArchiveUpdatable
 {
+    /// <summary>
+    ///   Base version of the serialization. If this is changed, *all* subclasses need to be updated as they aren't
+    ///   set up to write base versions separately.
+    /// </summary>
+    public const ushort SERIALIZATION_VERSION_BASE = 1;
+
     public delegate void OnTutorialOpenDelegate();
 
     public delegate void OnTutorialCompleteDelegate();
@@ -15,58 +20,48 @@ public abstract class TutorialPhase
     /// <summary>
     ///   If set to false, the trigger condition won't be checked for this tutorial
     /// </summary>
-    [JsonProperty]
     public bool CanTrigger { get; set; } = true;
 
-    [JsonProperty]
     public bool ShownCurrently { get; protected set; }
 
-    [JsonProperty]
     public bool HasBeenShown { get; protected set; }
 
-    [JsonProperty]
     public bool HandlesEvents { get; protected set; } = true;
 
     /// <summary>
     ///   When true, this tutorial wants the game paused
     /// </summary>
-    [JsonProperty]
     public bool Pauses { get; protected set; }
 
     /// <summary>
     ///   When true Process is called even when this is hidden
     /// </summary>
-    [JsonProperty]
     public bool ProcessWhileHidden { get; protected set; }
 
-    [JsonProperty]
     public float Time { get; protected set; }
 
-    [JsonProperty]
     public bool UsesPlayerPositionGuidance { get; protected set; }
 
     /// <summary>
     ///   A name that this tutorial reacts to by hiding itself
     /// </summary>
-    [JsonIgnore]
     public abstract string ClosedByName { get; }
 
-    [JsonIgnore]
     public bool Complete => !ShownCurrently && HasBeenShown;
 
-    [JsonIgnore]
     public bool WantsPaused => Pauses && ShownCurrently;
+
+    public abstract ushort CurrentArchiveVersion { get; }
+    public abstract ArchiveObjectType ArchiveObjectType { get; }
 
     /// <summary>
     ///   Event that is triggered when this tutorial opens
     /// </summary>
-    [JsonIgnore]
     public OnTutorialOpenDelegate? OnOpened { get; set; }
 
     /// <summary>
     ///   Event that is triggered when this tutorial closes for any reason
     /// </summary>
-    [JsonIgnore]
     public OnTutorialCompleteDelegate? OnClosed { get; set; }
 
     // GUI state applying functions, there is one per the type of tutorial GUI
@@ -120,8 +115,8 @@ public abstract class TutorialPhase
     }
 
     /// <summary>
-    ///   Enables trigger condition and sets run in background to true. Should only be used on tutorials that properly
-    ///   handle processing while hidden.
+    ///   Enables trigger condition and sets run in the background to true. Should only be used on tutorials
+    ///   that properly handle processing while hidden.
     /// </summary>
     public void EnableTriggerAndBackgroundProcess()
     {
@@ -154,13 +149,40 @@ public abstract class TutorialPhase
     /// <summary>
     ///   Called while this is shown
     /// </summary>
-    /// <param name="overallState">Access to all state</param>
+    /// <param name="overallState">Access to all the state</param>
     /// <param name="delta">Elapsed time</param>
     public void Process(TutorialState overallState, float delta)
     {
         Time += delta;
 
         OnProcess(overallState, delta);
+    }
+
+    public virtual void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(CanTrigger);
+        writer.Write(ShownCurrently);
+        writer.Write(HasBeenShown);
+        writer.Write(HandlesEvents);
+        writer.Write(Pauses);
+        writer.Write(ProcessWhileHidden);
+        writer.Write(Time);
+        writer.Write(UsesPlayerPositionGuidance);
+    }
+
+    public virtual void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version != SERIALIZATION_VERSION_BASE)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_BASE);
+
+        CanTrigger = reader.ReadBool();
+        ShownCurrently = reader.ReadBool();
+        HasBeenShown = reader.ReadBool();
+        HandlesEvents = reader.ReadBool();
+        Pauses = reader.ReadBool();
+        ProcessWhileHidden = reader.ReadBool();
+        Time = reader.ReadFloat();
+        UsesPlayerPositionGuidance = reader.ReadBool();
     }
 
     /// <summary>

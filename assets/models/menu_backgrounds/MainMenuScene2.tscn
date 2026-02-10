@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bjy0kv58k8fuk"]
+[gd_scene format=3 uid="uid://bjy0kv58k8fuk"]
 
 [ext_resource type="PackedScene" uid="uid://dktxuj5u5dkmy" path="res://assets/models/menu_backgrounds/UnderwaterChimney1.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://bbc87m2s4lt5b" path="res://assets/models/menu_backgrounds/UnderwaterSmoke.tscn" id="2_ggksx"]
@@ -31,6 +31,7 @@ background_mode = 2
 sky = SubResource("5")
 sky_custom_fov = 113.6
 sky_rotation = Vector3(0, 0.349066, 0)
+ambient_light_source = 2
 ambient_light_color = Color(0.207843, 0.376471, 0.509804, 1)
 ambient_light_sky_contribution = 0.0
 tonemap_mode = 2
@@ -51,7 +52,6 @@ glow_levels/7 = 1.0
 glow_intensity = 1.56
 glow_strength = 0.72
 glow_bloom = 0.31
-glow_blend_mode = 1
 glow_hdr_threshold = 0.5
 glow_hdr_scale = 1.47
 glow_hdr_luminance_cap = 28.96
@@ -321,42 +321,40 @@ subsurf_scatter_enabled = true
 subsurf_scatter_strength = 0.08
 uv1_scale = Vector3(10, 10, 10)
 
-[node name="MainMenuScene2" type="Node3D"]
-transform = Transform3D(0.147844, 0.269986, 0.951446, 0, 0.962018, -0.272985, -0.989011, 0.0403592, 0.142228, 0, 20, 0)
+[node name="MainMenuScene2" type="Node3D" unique_id=967854642]
+transform = Transform3D(0.14784394, 0.26998556, 0.9514457, 0, 0.962018, -0.27298537, -0.98901093, 0.040359244, 0.14222845, 0, 20, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=54988793]
 environment = SubResource("2")
 camera_attributes = SubResource("CameraAttributesPractical_73sbg")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.147844, 0.269986, 0.951446, 0, 0.962018, -0.272985, -0.989011, 0.0403592, 0.142228, 13.962, 4.231, 2.151)
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1338744972]
+transform = Transform3D(0.14784394, 0.26998556, 0.9514457, 0, 0.962018, -0.27298537, -0.98901093, 0.040359244, 0.14222845, 13.962, 4.231, 2.151)
 fov = 50.7
 near = 0.11
 far = 503.4
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_c77e2")
-}
-autoplay = "CameraAnimation"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2004009838]
+libraries/ = SubResource("AnimationLibrary_c77e2")
+autoplay = &"CameraAnimation"
 speed_scale = 0.5
 
-[node name="UnderwaterChimney" parent="." instance=ExtResource("1")]
+[node name="UnderwaterChimney" parent="." unique_id=862501162 instance=ExtResource("1")]
 transform = Transform3D(-1.04308e-07, 3.72529e-09, 1, 3.81842e-08, 1, -1.49012e-08, -1, -1.21072e-07, 1.49012e-08, 8.45773e-10, 0.237944, -0.0675197)
 
-[node name="UnderwaterSmoke" parent="." instance=ExtResource("2_ggksx")]
+[node name="UnderwaterSmoke" parent="." unique_id=1565583356 instance=ExtResource("2_ggksx")]
 transform = Transform3D(-5.24537e-08, 1.34111e-08, 1.2, 4.74974e-08, 1.2, -1.34111e-08, -1.2, 4.74974e-08, -5.24537e-08, -0.171367, 8.33485, -0.199303)
 amount = 45
 
-[node name="UnderwaterSmoke3" parent="." instance=ExtResource("2_ggksx")]
+[node name="UnderwaterSmoke3" parent="." unique_id=982572817 instance=ExtResource("2_ggksx")]
 transform = Transform3D(-1.27952e-07, 1.19209e-07, 0.2, 3.39156e-08, 1, -2.38419e-08, -0.2, 1.69578e-07, -1.27952e-07, 2.14645, 5.15188, -4.64297)
 amount = 35
 
-[node name="UnderwaterSmoke2" parent="." instance=ExtResource("2_ggksx")]
+[node name="UnderwaterSmoke2" parent="." unique_id=1159464672 instance=ExtResource("2_ggksx")]
 transform = Transform3D(-4.16439e-07, 7.82312e-08, 0.8, 1.78814e-08, 1, -6.25849e-08, -0.8, 2.23517e-08, -4.16439e-07, -0.914389, 4.00617, 5.94699)
 amount = 45
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1258640426]
 transform = Transform3D(0.0377496, -0.958749, 0.281736, 0.0414382, 0.283196, 0.958167, -0.998428, -0.0244959, 0.0504194, 2.04458, 17.2006, -0.294027)
 light_color = Color(0.5115, 0.727725, 0.93, 1)
 light_energy = 1.4
@@ -366,7 +364,7 @@ directional_shadow_blend_splits = true
 directional_shadow_fade_start = 0.0
 directional_shadow_max_distance = 2.9
 
-[node name="UnderwaterParticle" type="CPUParticles3D" parent="."]
+[node name="UnderwaterParticle" type="CPUParticles3D" parent="." unique_id=2038803021]
 transform = Transform3D(-2.23517e-08, 1.3411e-07, 1, 1.09711, -7.35745e-08, 4.09782e-08, 5.02914e-08, 1.37964, 7.45058e-08, 11.0658, 4.42627, -0.609888)
 amount = 10
 lifetime = 6.0
@@ -378,6 +376,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 2.0
 emission_ring_radius = 2.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 direction = Vector3(0, 1, 1)
 gravity = Vector3(0.028, 0, 0)
 initial_velocity_min = 0.5
@@ -395,48 +394,48 @@ color_ramp = SubResource("13")
 hue_variation_min = 0.2
 hue_variation_max = 0.6
 
-[node name="MicIron01" parent="." instance=ExtResource("4")]
+[node name="MicIron01" parent="." unique_id=1983345888 instance=ExtResource("4")]
 transform = Transform3D(-1.36145, -0.327708, 0.53763, 0.561249, -1.21216, 0.682401, 0.285377, 0.820536, 1.22281, 3.28674, 2.77764, 6.07618)
 material_override = SubResource("StandardMaterial3D_l4m6t")
 
-[node name="MicIron02" parent="." instance=ExtResource("4")]
+[node name="MicIron02" parent="." unique_id=1046356181 instance=ExtResource("4")]
 transform = Transform3D(-0.926986, 1.00265, -0.744954, 1.08048, 1.0385, 0.0766625, 0.472498, -0.407694, -1.63682, 4.68444, 3.59314, -0.902511)
 material_override = SubResource("StandardMaterial3D_j6868")
 
-[node name="MicIron03" parent="." instance=ExtResource("4")]
+[node name="MicIron03" parent="." unique_id=1844707955 instance=ExtResource("4")]
 transform = Transform3D(-0.360173, -0.654195, -1.30089, -0.670062, -1.11531, 0.746394, -1.29278, 0.760335, -0.0244336, 5.56655, 2.65982, -1.7794)
 material_override = SubResource("StandardMaterial3D_0fmvq")
 
-[node name="MicIron04" parent="." instance=ExtResource("4")]
+[node name="MicIron04" parent="." unique_id=1611204545 instance=ExtResource("4")]
 transform = Transform3D(-0.532813, -0.24943, -1.37981, 0.670184, -1.34186, -0.0162234, -1.23165, -0.622251, 0.588081, 3.89438, 2.8259, 3.30479)
 material_override = SubResource("StandardMaterial3D_prain")
 skeleton = NodePath("../MicIron01")
 
-[node name="MicIron05" parent="." instance=ExtResource("4")]
+[node name="MicIron05" parent="." unique_id=449536475 instance=ExtResource("4")]
 transform = Transform3D(-0.517362, 0.717379, 0.76643, 0.876839, 0.531358, -0.156466, -0.329222, 0.28787, -1.62115, 2.84574, 4.36142, 1.44398)
 material_override = SubResource("StandardMaterial3D_mgx42")
 
-[node name="LargeBGRock1" parent="." instance=ExtResource("7_k4o2y")]
+[node name="LargeBGRock1" parent="." unique_id=1962531051 instance=ExtResource("7_k4o2y")]
 transform = Transform3D(-39.1188, -31.2004, -58.1, -69.1557, 14.1386, 45.6353, -9.33928, 25.9933, -94.5611, -241.75, -15.5391, 66.8362)
 material_override = SubResource("StandardMaterial3D_qm1uc")
 skeleton = NodePath("../MicIron01")
 
-[node name="LargeBGRock2" parent="." instance=ExtResource("7_k4o2y")]
+[node name="LargeBGRock2" parent="." unique_id=2050750772 instance=ExtResource("7_k4o2y")]
 transform = Transform3D(10.4329, 42.0053, -5.42037, -46.3064, 9.1283, 42.3752, 14.0401, -1.10669, 143.788, -230.383, -8.87336, -18.0273)
 material_override = SubResource("StandardMaterial3D_afky6")
 skeleton = NodePath("../MicIron01")
 
-[node name="LargeBGRock3" parent="." instance=ExtResource("7_k4o2y")]
+[node name="LargeBGRock3" parent="." unique_id=1924287422 instance=ExtResource("7_k4o2y")]
 transform = Transform3D(59.6203, 39.6847, -42.7257, 36.2915, 53.6106, 40.6701, 97.6133, -44.1705, 10.9754, -256.378, 0.893318, -36.8873)
 material_override = SubResource("StandardMaterial3D_7uh8s")
 skeleton = NodePath("../MicIron01")
 
-[node name="LargeBGRock4" parent="." instance=ExtResource("7_k4o2y")]
+[node name="LargeBGRock4" parent="." unique_id=1201451935 instance=ExtResource("7_k4o2y")]
 transform = Transform3D(-8.32702, 55.3495, -232.599, -75.5187, 25.1237, 145.978, 48.2451, 48.8797, 188.355, -161, -57, -215)
 material_override = SubResource("StandardMaterial3D_l57cn")
 skeleton = NodePath("../MicIron01")
 
-[node name="LargeBGRock5" parent="." instance=ExtResource("7_k4o2y")]
+[node name="LargeBGRock5" parent="." unique_id=1877304127 instance=ExtResource("7_k4o2y")]
 transform = Transform3D(11.9783, 97.2947, 7.94097, 89.9908, -11.6401, 78.0929, 78.474, -1.50268, -90.7659, -459.6, 43, -380)
 material_override = SubResource("StandardMaterial3D_n7e3a")
 skeleton = NodePath("../MicIron01")

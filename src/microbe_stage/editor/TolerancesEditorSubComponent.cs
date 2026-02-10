@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Handles showing tolerance adaptation controls (sliders) and applying their changes
 /// </summary>
-[JsonObject(MemberSerialization.OptIn)]
-[DeserializedCallbackTarget]
 [IgnoreNoMethodsTakingInput]
-[SceneLoadedClass("res://src/microbe_stage/editor/TolerancesEditorSubComponent.tscn", UsesEarlyResolve = false)]
-public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEditorData>
+public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEditorData>, IArchiveUpdatable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     [Export]
     [ExportCategory("Config")]
     public bool ShowZeroModifiers;
@@ -157,13 +156,18 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     [Signal]
     public delegate void OnTolerancesChangedEventHandler();
 
-    [JsonProperty]
     public EnvironmentalTolerances CurrentTolerances { get; private set; } = new();
 
-    [JsonIgnore]
     public override bool IsSubComponent => true;
 
     public float MPDisplayCostMultiplier { get; set; } = 1;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.TolerancesEditorSubComponent;
+
+    public bool CanBeSpecialReference => true;
 
     public override void _Ready()
     {
@@ -181,6 +185,24 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         base.Init(owningEditor, fresh);
 
         wasFreshInit = fresh;
+    }
+
+    public override void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(SERIALIZATION_VERSION_BASE);
+        base.WritePropertiesToArchive(writer);
+
+        writer.WriteObjectProperties(CurrentTolerances);
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        base.ReadPropertiesFromArchive(reader, reader.ReadUInt16());
+
+        reader.ReadObjectProperties(CurrentTolerances);
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -208,7 +230,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     public override void OnFinishEditing()
     {
         // Apply the tolerances
-        Editor.EditedBaseSpecies.Tolerances.CopyFrom(CurrentTolerances);
+        Editor.EditedBaseSpecies.ModifiableTolerances.CopyFrom(CurrentTolerances);
     }
 
     public void OnDataTolerancesDependOnChanged(bool organellesChanged)
@@ -237,7 +259,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         ResetToTolerances(Editor.EditedBaseSpecies.Tolerances);
     }
 
-    public void ResetToTolerances(EnvironmentalTolerances tolerances)
+    public void ResetToTolerances(IReadOnlyEnvironmentalTolerances tolerances)
     {
         CurrentTolerances.CopyFrom(tolerances);
 
@@ -502,8 +524,17 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (!TriggerChangeIfPossible())
         {
-            // Rollback value if not enough MP
-            temperatureSlider.Value = CurrentTolerances.PreferredTemperature;
+            var extremeTemp = CalculateSliderExtremeValue(Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_INVERTED,
+                value, CurrentTolerances.PreferredTemperature, temperatureSlider.Step);
+
+            reusableTolerances.PreferredTemperature = extremeTemp;
+            temperatureSlider.Value = extremeTemp;
+
+            // Attempt the previous rollback if failed again.
+            if (!TriggerChangeIfPossible())
+            {
+                temperatureSlider.Value = CurrentTolerances.PreferredTemperature;
+            }
         }
 
         automaticallyChanging = false;
@@ -522,7 +553,18 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (!TriggerChangeIfPossible())
         {
-            temperatureToleranceRangeSlider.Value = CurrentTolerances.TemperatureTolerance;
+            var extremeTempTolerance = CalculateSliderExtremeValue(
+                Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE_INVERTED,
+                value, CurrentTolerances.TemperatureTolerance, temperatureToleranceRangeSlider.Step);
+
+            reusableTolerances.TemperatureTolerance = extremeTempTolerance;
+            temperatureToleranceRangeSlider.Value = extremeTempTolerance;
+
+            // Attempt the previous rollback if failed again.
+            if (!TriggerChangeIfPossible())
+            {
+                temperatureToleranceRangeSlider.Value = CurrentTolerances.TemperatureTolerance;
+            }
         }
 
         automaticallyChanging = false;
@@ -579,7 +621,17 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (!TriggerChangeIfPossible())
         {
-            oxygenResistanceSlider.Value = CurrentTolerances.OxygenResistance;
+            var extremeResistance = CalculateSliderExtremeValue(Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN_INVERTED,
+                value, CurrentTolerances.OxygenResistance, oxygenResistanceSlider.Step);
+
+            reusableTolerances.OxygenResistance = extremeResistance;
+            oxygenResistanceSlider.Value = extremeResistance;
+
+            // Attempt the previous rollback if failed again.
+            if (!TriggerChangeIfPossible())
+            {
+                oxygenResistanceSlider.Value = CurrentTolerances.OxygenResistance;
+            }
         }
 
         automaticallyChanging = false;
@@ -598,10 +650,42 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (!TriggerChangeIfPossible())
         {
-            uvResistanceSlider.Value = CurrentTolerances.UVResistance;
+            var extremeResistance = CalculateSliderExtremeValue(Constants.TOLERANCE_CHANGE_MP_PER_UV_INVERTED,
+                value, CurrentTolerances.UVResistance, uvResistanceSlider.Step);
+
+            reusableTolerances.UVResistance = extremeResistance;
+            uvResistanceSlider.Value = extremeResistance;
+
+            // Attempt the previous rollback if failed again.
+            if (!TriggerChangeIfPossible())
+            {
+                uvResistanceSlider.Value = CurrentTolerances.UVResistance;
+            }
         }
 
         automaticallyChanging = false;
+    }
+
+    /// <summary>
+    ///   Calculates the extremeties of a slider movement when cost is the limiting factor.
+    /// </summary>
+    /// <param name="costPerAction">How much MP does changing this value cost? Inverted</param>
+    /// <param name="sliderValue">What the slider value currently is at</param>
+    /// <param name="originalValue">What the slider value was originally at</param>
+    /// <param name="step">The size of each jump on the slider</param>
+    /// <returns>The value the slider and parameter should now be at.</returns>
+    private float CalculateSliderExtremeValue(double costPerAction, float sliderValue, float originalValue,
+        double step)
+    {
+        var pointsLeft = Editor.MutationPoints;
+        var numActions = Math.Abs(Math.Floor((pointsLeft / step) * costPerAction) * step);
+
+        if (sliderValue == originalValue)
+            return originalValue;
+        if (sliderValue < originalValue)
+            return originalValue - (float)numActions;
+
+        return originalValue + (float)numActions;
     }
 
     private bool TriggerChangeIfPossible()
@@ -876,9 +960,33 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             uvResistanceModifierLabel.GetParent<Control>().Visible = false;
         }
+        else
+        {
+            uvResistanceModifierLabel.Visible = false;
+        }
+
+        // Update markers
+        // For non-percentage sliders, OptimalValue is calculated as a fraction between the min and max slider values
+        temperatureToleranceMarker.OptimalValue = (patchTemperature - (float)temperatureSlider.MinValue)
+            / (float)(temperatureSlider.MaxValue - temperatureSlider.MinValue);
+
+        float pressureRangeFraction =
+            (patchPressure - (float)pressureMaxSlider.MinValue)
+            / (float)(pressureMaxSlider.MaxValue - pressureMaxSlider.MinValue);
+
+        minPressureToleranceMarker.OptimalValue = pressureRangeFraction;
+        maxPressureToleranceMarker.OptimalValue = pressureRangeFraction;
+
+        // Don't show markers when they are at 0% as it looks confusing
+        oxygenToleranceMarker.ShowMarker = requiredOxygenResistance > MathUtils.EPSILON;
+        uvToleranceMarker.ShowMarker = requiredUVResistance > MathUtils.EPSILON;
+
+        oxygenToleranceMarker.OptimalValue = requiredOxygenResistance;
+
+        uvToleranceMarker.OptimalValue = requiredUVResistance;
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void DoToleranceChangeAction(ToleranceActionData data)
     {
         CurrentTolerances.CopyFrom(data.NewTolerances);
@@ -894,7 +1002,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         OnChanged();
     }
 
-    [DeserializedCallbackAllowed]
+    [ArchiveAllowedMethod]
     private void UndoToleranceChangeAction(ToleranceActionData data)
     {
         CurrentTolerances.CopyFrom(data.OldTolerances);

@@ -60,6 +60,8 @@ public partial class TabButtons : HBoxContainer
     private Container tabButtonsContainerNoWrap = null!;
 #pragma warning restore CA2213
 
+    private StringName? horizontalSeparationName;
+
     public enum PressType
     {
         SetPressedState,
@@ -241,6 +243,50 @@ public partial class TabButtons : HBoxContainer
         return true;
     }
 
+    /// <summary>
+    ///   Sets an appropriate custom minimum width in order to fit the real sizes of all the included buttons and both
+    ///   indicators on a single line by finding the width of all the nodes that are being used.
+    /// </summary>
+    public void SetCustomMinimumSize()
+    {
+        // Start by adding together the widths of all the tab buttons
+        float newCustomMinimum = 0.0f;
+        foreach (var button in tabButtons)
+        {
+            newCustomMinimum += button.Size.X;
+        }
+
+        // Find the distance between each button (should get 0 if the constant doesn't exist, no need to check)
+        horizontalSeparationName ??= new StringName("h_separation");
+        var separationBetweenButtons = tabButtonsContainer.GetThemeConstant(horizontalSeparationName);
+
+        // Add 2x because the distance appears to be applied on both sides of each button
+        newCustomMinimum += (separationBetweenButtons * 2) * tabButtons.Count;
+
+        // Add the size of the left and right containers if they are visible or take up space when invisible
+        if ((leftContainer is { Visible: true } && rightContainer is { Visible: true }) ||
+            (MoveIndicatorsTakeUpSpaceWhileInvisible && leftContainer is not null))
+        {
+            newCustomMinimum += rightContainer.Size.X + leftContainer.Size.X;
+        }
+
+        // Have to make a new vector to set as CustomMinimumSize's get only gets a temporary value
+        CustomMinimumSize = new Vector2(newCustomMinimum, CustomMinimumSize.Y);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (horizontalSeparationName != null)
+            {
+                horizontalSeparationName.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void TryToMoveToNextTab()
     {
         bool foundPressed = false;
@@ -341,7 +387,7 @@ public partial class TabButtons : HBoxContainer
 
                 // If the button doesn't move to pressed state, set it here. This makes some differently made tab
                 // controlled buttons work (auto-evo exploring tool, for example)
-                if (button.ButtonPressed != true)
+                if (!button.ButtonPressed)
                     button.ButtonPressed = true;
 
                 break;

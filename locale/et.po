@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-16 20:10+0200\n"
+"POT-Creation-Date: 2026-01-22 16:04+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -297,7 +297,7 @@ msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Mod-monteerimisklass on nõutav, kui kokkupanek on täpsustatud"
 
 #, fuzzy
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Mod-monteerimisklass on nõutav, kui kokkupanek on täpsustatud"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -461,6 +461,9 @@ msgstr ""
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr ""
 
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr ""
 
@@ -585,7 +588,15 @@ msgid "BIG_IRON_CHUNK"
 msgstr "Suur raua tükk"
 
 #, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Suur raua tükk"
+
+#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Suur raua tükk"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "Suur raua tükk"
 
 msgid "BILLION_ABBREVIATION"
@@ -961,6 +972,10 @@ msgstr "Rannikuäärne"
 msgid "COLLISION_SHAPE"
 msgstr ""
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
+
 msgid "COLOUR"
 msgstr "Värv"
 
@@ -1011,6 +1026,9 @@ msgstr "Küllastusväärtus, halli hulk konkreetses värvitoonis"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Värvi väärtus (heledus), heledus või intensiivsus"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr ""
 
 #, fuzzy
 msgid "COMMON_ABILITIES"
@@ -1137,6 +1155,10 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Liitsaldod"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} tarbimine"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1537,8 +1559,28 @@ msgstr "Jätkake mängu"
 msgid "CURRENT_DEVELOPERS"
 msgstr "Praegused arendajad"
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "PRAEGUNE ASUKOHT"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "PRAEGUNE ASUKOHT"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "PRAEGUNE ASUKOHT"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "PRAEGUNE ASUKOHT"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Kuvamisvõimaluste riba"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "Kuvamisvõimaluste riba"
 
 #, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
@@ -1620,6 +1662,9 @@ msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, e
 
 msgid "DEATH"
 msgstr "surma"
+
+msgid "DEBUG_CONSOLE"
+msgstr ""
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1879,6 +1924,10 @@ msgstr "Kuvamisvõimaluste riba"
 msgid "DISPLAY_PART_NAMES"
 msgstr "Kuvamisvõimaluste riba"
 
+#, fuzzy
+msgid "DISPLAY_SELECTION"
+msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
+
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "{0} ühtlaselt jaotunud keskkonnatoiduallikas"
 
@@ -2057,6 +2106,10 @@ msgstr ""
 "\n"
 "Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
 
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
+
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -2165,6 +2218,10 @@ msgstr "{0}: +{1} ATP"
 #, fuzzy
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr "Liitpilved"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia: {0}, {1}"
@@ -2290,6 +2347,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "vabasurm"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "vabasurm"
 
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
@@ -2607,6 +2672,16 @@ msgid "FOSSILISE"
 msgstr "istuv"
 
 #, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Modifikatsiooni loomine ebaõnnestus"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr ""
+"Määratud salvestuse täiendamine nurjus järgmise tõrke tõttu:\n"
+"{0}"
+
+#, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Modifikatsiooni loomine ebaõnnestus"
 
@@ -2806,6 +2881,10 @@ msgstr "{0} {1}"
 msgid "GRAPHICS"
 msgstr "Graafika"
 
+#, fuzzy
+msgid "GRAPHICS_PRESET"
+msgstr "Graafika meeskond"
+
 msgid "GRAPHICS_TEAM"
 msgstr "Graafika meeskond"
 
@@ -2822,6 +2901,14 @@ msgstr ""
 "\n"
 "Kui ilmneb viga, mille tõttu osad redaktori nupust kaovad,\n"
 "võite proovida selle keelata, et näha, kas probleem on kadunud."
+
+#, fuzzy
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr "(kõrgemad väärtused suurendavad jõudlust)"
+
+#, fuzzy
+msgid "GUI_SCALE_OPTION"
+msgstr "Kas sulgeda valikud?"
 
 #, fuzzy
 msgid "GUI_TAB_NAVIGATION"
@@ -2935,6 +3022,9 @@ msgstr ""
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID ei ole kehtiv number"
 
@@ -2942,6 +3032,9 @@ msgid "ID_NUMBER"
 msgstr "Isikukood"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 #, fuzzy
@@ -3065,6 +3158,14 @@ msgstr "Kontrollige"
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Peata mäng"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3193,23 +3294,19 @@ msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse 
 msgid "JANUARY"
 msgstr "jaanuaril"
 
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON-i silumisrežiim:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Alati"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automaatselt"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Mitte kunagi"
-
 msgid "JULY"
 msgstr "juuli"
 
 msgid "JUNE"
 msgstr "juuni"
+
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Praegused arendajad"
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "Peata mäng"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3755,6 +3852,10 @@ msgid "MACROSCOPIC"
 msgstr "Muuta makroskoopiliseks ({0}/{1})"
 
 #, fuzzy
+msgid "MACROSCOPIC_EDITOR"
+msgstr "Mikroobide redaktori laadimine"
+
+#, fuzzy
 msgid "MACROSCOPIC_STAGE"
 msgstr ""
 "Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
@@ -3936,6 +4037,10 @@ msgstr ""
 msgid "MICHE_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "[u]{0}[/u] eraldus erineva valikusurve tõttu uuest liigist [u]{1}[/u]"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3958,6 +4063,10 @@ msgstr ""
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "{0} rööv"
+
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Paljundamine:"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
@@ -3998,6 +4107,10 @@ msgstr "Mikroobide redaktori laadimine"
 #, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr "Organismi statistika"
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
+msgstr "Kehtetu modiikooni tee"
 
 #, fuzzy
 msgid "MICROBE_EDITOR"
@@ -4348,10 +4461,6 @@ msgstr "Jumalarežiim"
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
-#, fuzzy
-msgid "MODIFIER"
-msgstr "Muutma"
-
 msgid "MODIFY"
 msgstr "Muutma"
 
@@ -4363,6 +4472,10 @@ msgstr "Muuda tüüp"
 
 msgid "MODS"
 msgstr "Modifikatsioonid"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "töövõimetu"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -4396,10 +4509,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: modi montaaži mahalaadimismeetodi kutse ebaõnnestus, välja arvatud erand: {1}"
 
 msgid "MOD_AUTHOR"
-msgstr "Modi autor:"
-
-#, fuzzy
-msgid "MOD_AUTO_HARMONY"
 msgstr "Modi autor:"
 
 msgid "MOD_CREATION_FAILED"
@@ -4472,6 +4581,13 @@ msgstr "Modifikatsiooni üleslaadija"
 
 msgid "MOD_VERSION"
 msgstr "Modifikatsiooni versioon:"
+
+#, fuzzy
+msgid "MONITOR_AUTO"
+msgstr "Modi autor:"
+
+msgid "MONITOR_IDENTIFIER"
+msgstr ""
 
 msgid "MORE_INFO"
 msgstr "Näita rohkem teavet"
@@ -4918,9 +5034,6 @@ msgstr ""
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "vabasurm"
 
-msgid "OFFSET"
-msgstr ""
-
 msgid "OK"
 msgstr "Okei"
 
@@ -5117,6 +5230,10 @@ msgstr "Ühendid"
 
 msgid "OUR_WIKI"
 msgstr "meie Viki"
+
+#, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "Katkestatud."
 
 #, fuzzy
 msgid "OUTDATED_NOTICE"
@@ -5423,6 +5540,30 @@ msgstr "{0} rööv"
 
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Vaadake ennustuse taga olevat üksikasjalikku teavet"
+
+#, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "Kohandatud"
+
+#, fuzzy
+msgid "PRESET_HIGH"
+msgstr "lähtestada"
+
+#, fuzzy
+msgid "PRESET_LOW"
+msgstr "lähtestada"
+
+#, fuzzy
+msgid "PRESET_MEDIUM"
+msgstr "Aluse liikumine"
+
+#, fuzzy
+msgid "PRESET_VERY_HIGH"
+msgstr "Lähtestage sisendid"
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "Liitsaldod"
 
 msgid "PRESSURE"
 msgstr "Surve"
@@ -5757,7 +5898,14 @@ msgstr "Pöörake paremale"
 msgid "ROTATION_COLON"
 msgstr "elanikkond:"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
+msgstr "Käivitage mängu ajal auto-evo"
+
+#, fuzzy
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
 msgstr "Käivitage mängu ajal auto-evo"
 
 msgid "RUN_ONE_STEP"
@@ -5826,13 +5974,6 @@ msgstr "Kasutatud ruum:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite faili {0} jäädavalt kustutada?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-#, fuzzy
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "JSON-i silumisrežiim:"
 
 msgid "SAVE_FAILED"
 msgstr "Salvestamine ebaõnnestus"
@@ -6167,7 +6308,15 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "Väike raua tükk"
 
 #, fuzzy
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "Väike raua tükk"
+
+#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Väike raua tükk"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr "Väike raua tükk"
 
 #, fuzzy
@@ -6259,6 +6408,14 @@ msgstr "{0} (x{1})"
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "on muteerunud"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Kehtetu modiikooni tee"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Lapist välja surnud"
 
 msgid "SPECIES_LIST"
 msgstr "Liikide nimekiri"
@@ -6807,6 +6964,10 @@ msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Lülitage sidumine sisse"
 
 #, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Neelamise sisse- ja väljalülitamine"
+
+#, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Neelamise sisse- ja väljalülitamine"
 
@@ -6896,22 +7057,17 @@ msgstr "Tööriistad"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgid "TOO_LARGE_PRESSURE_RANGE"
 msgstr ""
 
-#, fuzzy
-msgid "TOTAL"
-msgstr "Kokkuhoid:"
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr ""
 
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "eelmine:"
 
 msgid "TOTAL_SAVES"
-msgstr "Kokkuhoid:"
-
-#, fuzzy
-msgid "TOTAL_VALUE"
 msgstr "Kokkuhoid:"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
@@ -7393,6 +7549,17 @@ msgstr "Võta tagasi"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Võta viimane toiming tagasi"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Pili (ainsuses: pilus) leidub paljude mikroorganismide pinnal ja meenutab õhukesi karvu. Mikroorganismi pinnal võib esineda kümneid kuni sadu pilisid ja neil on üks mitmest eesmärgist, sealhulgas röövloomade rollist. Patogeensed mikroorganismid kasutavad pilisid virulentsuse tagamiseks kas peremeeskudede kinnitumiseks ja nendega seondumiseks või välismembraanist mööda tungimiseks, et pääseda tsütoplasmasse. Paljud sarnased pilid on olemas, kuid ei ole evolutsiooniliselt seotud ja on tekkinud konvergentse evolutsiooni tulemusena. Ühel organismil võib olla võime ekspresseerida mitut tüüpi pilisid ja neid, mis on pinnal, muudetakse ja asendatakse pidevalt."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "SA OLED ÕIDULIKUD!"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Mutatsioonipunktid"
@@ -7563,6 +7730,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Litsentsid ja kasutatud raamatukogud"
 
@@ -7572,13 +7742,6 @@ msgstr ""
 #, fuzzy
 msgid "USES_FEATURE"
 msgstr "Temperatuur"
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-#, fuzzy
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "vabasurm"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Kasutage kohandatud kasutajanime"
@@ -9776,6 +9939,14 @@ msgstr "temperatuur."
 msgid "WORST_PATCH_COLON"
 msgstr "Halvim plaaster:"
 
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "KINNITA"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
+
 msgid "XBOX360"
 msgstr ""
 
@@ -9822,16 +9993,36 @@ msgid "ZOOM_OUT"
 msgstr "Suumi välja"
 
 #, fuzzy
-#~ msgid "EFFECTIVE_VALUE"
-#~ msgstr "{0}%"
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Modi autor:"
 
 #, fuzzy
-#~ msgid "KEEP_CURRENT_SHORT"
-#~ msgstr "Praegused arendajad"
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "vabasurm"
 
 #, fuzzy
-#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-#~ msgstr "Peata mäng"
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Paljundamine:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON-i silumisrežiim:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Alati"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automaatselt"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Mitte kunagi"
+
+#, fuzzy
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "JSON-i silumisrežiim:"
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Katkestatud."
 
 #, fuzzy
 #~ msgid "GENERATE_BUTTON"
@@ -10185,10 +10376,6 @@ msgstr "Suumi välja"
 #, fuzzy
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Osa elanikkonnast [u]{0}[/u] on rännanud asukohta {1}"
-
-#, fuzzy
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Lapist välja surnud"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Viga: tükki ei leitud"

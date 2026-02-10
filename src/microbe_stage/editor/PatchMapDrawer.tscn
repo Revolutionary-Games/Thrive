@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmhetwsk3qbb7"]
+[gd_scene format=3 uid="uid://cmhetwsk3qbb7"]
 
 [ext_resource type="Script" uid="uid://b8r1ivv6csvoo" path="res://src/microbe_stage/editor/PatchMapDrawer.cs" id="1"]
 [ext_resource type="Shader" uid="uid://cpigmjcwmm61a" path="res://shaders/Monochrome.gdshader" id="2"]
+[ext_resource type="Texture2D" uid="uid://b5g4l3lj5jj5k" path="res://assets/textures/gui/bevel/MapDotIndicator.svg" id="2_xf0hu"]
 
 [sub_resource type="ShaderMaterial" id="1"]
 shader = ExtResource("2")
 
-[node name="PatchMapDrawer" type="Control" node_paths=PackedStringArray("patchNodeContainer", "lineContainer")]
+[node name="PatchMapDrawer" type="Control" unique_id=167402345 node_paths=PackedStringArray("populationIndicatorContainer", "patchNodeContainer", "lineContainer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,12 +19,17 @@ size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("1")
 DrawDefaultMapIfEmpty = true
+IndicatorTexture = ExtResource("2_xf0hu")
 MonochromeMaterial = SubResource("1")
+populationIndicatorContainer = NodePath("PopulationIndicatorContainer")
 patchNodeContainer = NodePath("PatchNodeContainer")
 lineContainer = NodePath("LineContainer")
 
-[node name="LineContainer" type="Control" parent="."]
+[node name="PopulationIndicatorContainer" type="Control" parent="." unique_id=1313504466]
 anchors_preset = 0
 
-[node name="PatchNodeContainer" type="Control" parent="."]
+[node name="LineContainer" type="Control" parent="." unique_id=1368435178]
+anchors_preset = 0
+
+[node name="PatchNodeContainer" type="Control" parent="." unique_id=1539765305]
 anchors_preset = 0

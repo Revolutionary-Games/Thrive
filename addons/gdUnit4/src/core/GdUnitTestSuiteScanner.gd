@@ -70,8 +70,14 @@ func scan_directory(resource_path: String) -> Array[Script]:
 
 
 func _scan_test_suites_scripts(dir: DirAccess, collected_suites: Array[Script]) -> Array[Script]:
+		# Skip excluded directories
+	if dir.file_exists(".gdignore"):
+		prints("Exclude directory %s, containing .gdignore file" % dir.get_current_dir())
+		return []
+
 	if exclude_scan_directories.has(dir.get_current_dir()):
 		return collected_suites
+
 	var err := dir.list_dir_begin()
 	if err != OK:
 		push_error("Error on scanning directory %s" % dir.get_current_dir(), error_string(err))
@@ -166,7 +172,8 @@ func _build_test_attribute(script: GDScript, fd: GdFunctionDescriptor) -> TestCa
 		if arg.type() == GdObjects.TYPE_FUZZER:
 			attribute.fuzzers.append(arg)
 		else:
-			match arg.name():
+			# We allow underscore as prefix to prevent unused argument warnings
+			match arg.name().trim_prefix("_"):
 				ARGUMENT_TIMEOUT:
 					attribute.timeout = type_convert(arg.default(), TYPE_INT)
 				ARGUMENT_SKIP:
@@ -239,7 +246,8 @@ static func parse_test_suite_name(script: Script) -> String:
 
 func _handle_test_suite_arguments(test_suite: GdUnitTestSuite, script: GDScript, fd: GdFunctionDescriptor) -> void:
 	for arg in fd.args():
-		match arg.name():
+		# We allow underscore as prefix to prevent unused argument warnings
+		match arg.name().trim_prefix("_"):
 			ARGUMENT_SKIP:
 				var result: Variant = _expression_runner.execute(script, arg.plain_value())
 				if result is bool:
@@ -355,9 +363,14 @@ static func add_test_case(resource_path: String, func_name: String)  -> GdUnitRe
 	var line_number := count_lines(script) + 2
 	var func_body := TEST_FUNC_TEMPLATE.replace("${func_name}", func_name)
 	if Engine.is_editor_hint():
-		var settings := EditorInterface.get_editor_settings()
-		var ident_type :int = settings.get_setting("text_editor/behavior/indent/type")
-		var ident_size :int = settings.get_setting("text_editor/behavior/indent/size")
+		# NOTE: Avoid using EditorInterface and EditorSettings directly,
+		#       as it causes compilation errors in exported projects.
+		@warning_ignore_start("unsafe_method_access")
+		var editor_interface: Object = Engine.get_singleton("EditorInterface")
+		var settings: Object = editor_interface.get_editor_settings()
+		var ident_type: int = settings.get_setting("text_editor/behavior/indent/type")
+		var ident_size: int = settings.get_setting("text_editor/behavior/indent/size")
+		@warning_ignore_restore("unsafe_method_access")
 		if ident_type == 1:
 			func_body = func_body.replace("	", "".lpad(ident_size, " "))
 	script.source_code += func_body

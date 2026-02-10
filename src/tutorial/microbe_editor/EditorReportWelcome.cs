@@ -1,16 +1,24 @@
 ﻿namespace Tutorial;
 
 using System;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Welcome message and intro to the report tab
 /// </summary>
 public class EditorReportWelcome : EditorEntryCountingTutorial
 {
-    private readonly string reportTab = EditorTab.Report.ToString();
-    private readonly string foodChainTab = MicrobeEditorReportComponent.ReportSubtab.FoodChain.ToString();
+    public const ushort SERIALIZATION_VERSION = 1;
+
+    private readonly string reportTab = nameof(EditorTab.Report);
+    private readonly string foodChainTab = nameof(MicrobeEditorReportComponent.ReportSubtab.FoodChain);
 
     public override string ClosedByName => "MicrobeEditorReport";
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.TutorialEditorReportWelcome;
 
     /// <summary>
     ///   On the first time in the editor we go directly to the cell editor tab, so this tutorial triggers on the
@@ -70,5 +78,14 @@ public class EditorReportWelcome : EditorEntryCountingTutorial
         }
 
         return false;
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        // Base version is not our version, so we pass 1 here
+        base.ReadPropertiesFromArchive(reader, 1);
     }
 }

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://s5lx0slvo702"]
+
+[ext_resource type="PackedScene" uid="uid://brup5drkbvi1u" path="res://assets/models/microbe_terrain/QuartzTerrainChunk1.glb" id="1_f8aly"]
+[ext_resource type="Texture2D" uid="uid://sdaqq7afc36o" path="res://assets/textures/environment/Quartz.png" id="2_7ygq6"]
+[ext_resource type="Texture2D" uid="uid://cmhptmecvbfq7" path="res://assets/textures/environment/Quartz1AO.png" id="3_oyhx3"]
+[ext_resource type="Texture2D" uid="uid://cgcbqdjlmxhy" path="res://assets/textures/environment/TerrainChunkShiny_mra.png" id="4_h1b0i"]
+[ext_resource type="Texture2D" uid="uid://ddlggf6thv1cb" path="res://assets/textures/environment/Quartz_normal.png" id="5_8yuml"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ew1e"]
+resource_name = "quartz"
+cull_mode = 2
+albedo_color = Color(0.92907894, 0.8961511, 0.83499074, 1)
+albedo_texture = ExtResource("2_7ygq6")
+metallic = 0.4
+metallic_specular = 0.3
+metallic_texture = ExtResource("4_h1b0i")
+metallic_texture_channel = 4
+roughness = 0.4
+roughness_texture_channel = 4
+normal_enabled = true
+normal_scale = 0.70000005
+normal_texture = ExtResource("5_8yuml")
+bent_normal_enabled = true
+bent_normal_texture = ExtResource("5_8yuml")
+ao_enabled = true
+ao_light_affect = 0.6
+ao_texture = ExtResource("3_oyhx3")
+
+[node name="QuartzTerrainChunk1" unique_id=1032874693 instance=ExtResource("1_f8aly")]
+
+[node name="quartz1" parent="." index="0" unique_id=1677312041]
+surface_material_override/0 = SubResource("StandardMaterial3D_2ew1e")

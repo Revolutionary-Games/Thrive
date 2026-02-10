@@ -1,28 +1,31 @@
 ﻿namespace AutoEvo;
 
 using System;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
-[JSONDynamicTypeAllowed]
 public class CompoundCloudPressure : SelectionPressure
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
     private static readonly LocalizedString NameString = new LocalizedString("MICHE_COMPOUND_CLOUD_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    [JsonProperty]
     private readonly Compound compound;
 
     private readonly CompoundDefinition compoundDefinition;
 
-    [JsonProperty]
     private readonly bool isDayNightCycleEnabled;
 
     public CompoundCloudPressure(Compound compound, bool isDayNightCycleEnabled, float weight) :
         base(weight, [
+            new AddOrganelleAnywhere(organelle => organelle.HasChemoreceptorComponent),
             new ChangeMembraneRigidity(true),
+            new UpgradeOrganelle(organelle => organelle.HasChemoreceptorComponent,
+                new ChemoreceptorUpgrades(compound, null, Constants.CHEMORECEPTOR_RANGE_DEFAULT,
+                    Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, SimulationParameters.GetCompound(compound).Colour)),
             new ChangeMembraneType("single"),
         ])
     {
@@ -35,8 +38,31 @@ public class CompoundCloudPressure : SelectionPressure
         this.isDayNightCycleEnabled = isDayNightCycleEnabled;
     }
 
-    [JsonIgnore]
     public override LocalizedString Name => NameString;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPressure;
+
+    public static CompoundCloudPressure ReadFromArchive(ISArchiveReader reader, ushort version,
+        int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new CompoundCloudPressure((Compound)reader.ReadInt32(), reader.ReadBool(), reader.ReadFloat());
+
+        instance.ReadBasePropertiesFromArchive(reader, 1);
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write((int)compound);
+        writer.Write(isDayNightCycleEnabled);
+        base.WriteToArchive(writer);
+    }
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
@@ -45,10 +71,12 @@ public class CompoundCloudPressure : SelectionPressure
 
         var score = MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.6f);
 
+        var activity = microbeSpecies.Behaviour.Activity;
+
         // Species that are less active during the night get a small penalty here based on their activity
         if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome))
         {
-            var multiplier = species.Behaviour.Activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
+            var multiplier = activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
 
             // Make the multiplier less extreme
             multiplier *= Constants.AUTO_EVO_NIGHT_SESSILITY_COLLECTING_PENALTY_MULTIPLIER;
@@ -58,6 +86,14 @@ public class CompoundCloudPressure : SelectionPressure
             if (multiplier <= 1)
                 score *= multiplier;
         }
+
+        var chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compoundDefinition, patch.Biome);
+
+        // modify score by activity
+        var activityFraction = activity / Constants.MAX_SPECIES_ACTIVITY;
+
+        score = (score + chemoreceptorScore) * activityFraction
+            + score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
 
         return score;
     }

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-16 20:10+0200\n"
-"PO-Revision-Date: 2025-08-13 14:57+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-01-22 16:04+0200\n"
+"PO-Revision-Date: 2025-11-28 09:29+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
 "Language: gsw\n"
 "MIME-Version: 1.0\n"
@@ -49,9 +49,8 @@ msgstr "Abyssopelagial"
 msgid "ACCEPT"
 msgstr "Akzeptiere"
 
-#, fuzzy
 msgid "ACHIEVEMENTS"
-msgstr "Grundmobilität"
+msgstr "Uuszeichnige"
 
 msgid "ACHIEVEMENTS_TOTAL"
 msgstr ""
@@ -190,9 +189,8 @@ msgstr "Ammoniak"
 msgid "AMMONIA_COST"
 msgstr "Ammoniak-Koschte:"
 
-#, fuzzy
 msgid "AMMONIA_LEVELS"
-msgstr "Ammoniak-Koschte:"
+msgstr "Ammoniaklevel"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Aazahl vode Autospiicherige:"
@@ -273,7 +271,8 @@ msgstr "Uufstigsphase"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Klasse vo de Programmbibliothek isch erforderlich, wenn aagäh"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Mod Assembler isch erforderlich wenn Auto Harmony aktiviert isch"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -375,9 +374,8 @@ msgstr "Automatisches spiichere während em Spiel"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#, fuzzy
 msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
-msgstr "Auto-Evo Erforschig"
+msgstr "Zur Verwendig im Auto-Evo Explorer"
 
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo Erforschig"
@@ -428,6 +426,9 @@ msgid "AVERAGE_SURFACE_OTHER_LEVEL"
 msgstr ""
 
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_TEMPERATURE"
 msgstr ""
 
 msgid "AWAKENING_STAGE"
@@ -535,7 +536,15 @@ msgstr ""
 msgid "BIG_IRON_CHUNK"
 msgstr "Grosse Isechlumpe"
 
+#, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Grosse Isechlumpe"
+
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Grosse Phosphatchlumpe"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "Grosse Phosphatchlumpe"
 
 msgid "BILLION_ABBREVIATION"
@@ -853,11 +862,8 @@ msgstr "Uuswähle"
 msgid "CLIMATE_INSTABILITY"
 msgstr ""
 
-#, fuzzy
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
-"Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
+msgstr "(beiiflusst d'Frequenz und Wirckig vo Regionale Events wie globale Iisziite)"
 
 msgid "CLIMATE_STABILITY_AVERAGE"
 msgstr ""
@@ -894,6 +900,10 @@ msgstr "Küschte"
 
 msgid "COLLISION_SHAPE"
 msgstr "Erzüügti Entitäte mit Kollisionskonture"
+
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "(Aktivierig beschränkt d'Wachstumsrate; Deaktivierig laht numme d'verfüegbare Stoffe s'Wachstum beiiflusse)"
 
 msgid "COLOUR"
 msgstr "Farb"
@@ -945,6 +955,9 @@ msgstr "Sättigungswert, de Aateil a Grau i enere bestimmte Farb"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Hellwert, Helligkeit oder Intensität vode Farb"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr ""
 
 msgid "COMMON_ABILITIES"
 msgstr "Gmeini Fähigkeite"
@@ -1034,24 +1047,24 @@ msgstr "Immer uf Uusgangsbestand uuffülle"
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Bi Breichwechsel uuffülle"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_AVERAGE"
 msgstr "Durchschnitt"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_HIGH"
-msgstr "Stoffhuushalt"
+msgstr "Höch"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_LOW"
-msgstr "Stoffwulche"
+msgstr "Tüüf"
 
 msgid "COMPOUND_LEVEL_VERY_HIGH"
 msgstr ""
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
-msgstr "Alli bhalte"
+msgstr "Sehr tüüf"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0}-Verbruuch"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(nöd gnueg, um d'Nacht z'überstah bi {0}s)"
@@ -1127,13 +1140,11 @@ msgstr "Mit dene Iistellige spiele"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "S'paar Iistellige sind ungültig"
 
-#, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS"
-msgstr "Lösche bestätige"
+msgstr "Uuszeichnige Zruggsetze?"
 
-#, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
-msgstr "De Chemorezeptor ermöglicht d'Erkennig vo Substanze us grössere Entfernig. Nach de Platzierig chammer d'Art vode Substanz und d'Farb vode Führigslinie uuswähle."
+msgstr "Bisch sicher, dass du ALLI dini Uuszeichnigge und Statistike zrugg setze wettsch? Das chammer nümme rückgängig mache und du muesch vo Vorne aafange."
 
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Einheit:{0}"
@@ -1338,9 +1349,8 @@ msgstr "Rotblindheit (Rot-Grüen)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Blaublindheit (Blau-Gäl)"
 
-#, fuzzy
 msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
-msgstr "Es isch nöd uusriichend Spiicher für [thrive:compound type=\"{0}\"][/thrive:compound] umme. D'Nacht duuret {2}s, aber de Spiicher langet numme für {1}s."
+msgstr "CPU isch nöd schnell gnueg für'd gwählti Gschwindigkeit, drumm wird d'Gschwindigkeit zrugg g'setzt"
 
 msgid "CPU_THREADS"
 msgstr "Threads"
@@ -1443,8 +1453,28 @@ msgstr ""
 msgid "CURRENT_DEVELOPERS"
 msgstr "Momentani Entwickler(inne)"
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "AKTUELLI POSITION"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "AKTUELLI POSITION"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "AKTUELLI POSITION"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "AKTUELLI POSITION"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Nüüt wird erforscht"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "Nüüt wird erforscht"
 
 msgid "CURRENT_RESEARCH_NONE"
 msgstr "Nüüt wird erforscht"
@@ -1525,6 +1555,10 @@ msgstr "Totzone kalibriere"
 
 msgid "DEATH"
 msgstr "Tot"
+
+#, fuzzy
+msgid "DEBUG_CONSOLE"
+msgstr "Debug-Fenster"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1772,6 +1806,10 @@ msgstr "Displaymodus:"
 msgid "DISPLAY_PART_NAMES"
 msgstr "Namme vo Schaltfläche ide Teil Uuswahl aazeige"
 
+#, fuzzy
+msgid "DISPLAY_SELECTION"
+msgstr "Lipase erlaubt es de Zelle die meiste Membrane z'verdaue. Dini Zelle produziert scho jetzt echli vo dem Enzym ohni Lysosome, aber wenn du dä Typ wählsch tuesch du d'Effizienz erhöhe."
+
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Gliichmässig verteilti ökologischi Nahrigsquelle vo {0}"
 
@@ -1903,16 +1941,15 @@ msgstr ""
 "\n"
 "Wenn du fertig bisch, druck \"wiiter\" unde rechts um wiiter z'cho."
 
-#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
 msgstr ""
-"Um wiiter z'cho muesch irgendwenn en [b]Zellkern[/b]\n"
+"Um mehrzellig z'werde muesch irgendwenn [b]Bindemittel[/b] platziere.\n"
 "\n"
-"En [b]Zellkern[/b] tuet fortgschritteni Organelle freischalte, sowie [b]Bindemittel[/b] was es diir erlaubt dich mit andere Zelle us de gliiche Spezies z'verbinde und [b]multizellulär[/b] z'werde.\n"
+"[b]Bindemittel[/b] isch de Schlüssel um mehrzellig z'werde, idem du dich mit andere Zelle zu enere Kolonie zemmebindisch.\n"
 "\n"
-"Versuechs en [b]Nukleus[/b] z'platziere um das Tutorial z'schlüüse.\n"
+"[b]Bindemittel[/b] isch aber en Organelle, wommer mit emene Überschuss vo [thrive:compound type=\"atp\"][/thrive:compound] [u]freischalte[/u] muen.\n"
 "\n"
-"Wenn dini Zelle nonig parat isch für en Zellkern, chasch de [b]rückgängig mache[/b] chnopf verwende um de Nukleus [u]rückgänig z'mache[/u]."
+"Lueg nah, öb du [b]Bindemittel[/b] scho freigschalte hesch. Wenn dem so isch, versuech's z'platziere."
 
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
@@ -1924,9 +1961,11 @@ msgstr ""
 "\n"
 "Wenn dini Zelle nonig parat isch für en Zellkern, chasch de [b]rückgängig mache[/b] chnopf verwende um de Nukleus [u]rückgänig z'mache[/u]."
 
-#, fuzzy
 msgid "EDIT_MICROBE_FIRST_TIME"
-msgstr "Laddet Mikrobestadium"
+msgstr "Veränder dini Mikrobe zum erschte mal"
+
+msgid "EFFECTIVE_VALUE"
+msgstr "Effektive Wert"
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -2011,6 +2050,9 @@ msgstr ""
 "{0}: +{1} ATP\n"
 "Bim Verbruuch vo:\n"
 "{2}"
+
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr ""
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie i {0} für {1}"
@@ -2137,6 +2179,18 @@ msgstr ""
 "Schwefelhaltige Meteoriteiischlag\n"
 "Erhöht Kohlestoff- & Schwefelwert.\n"
 "Generiert Schwefelchlumpe."
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr ""
+"Eruptionserignis\n"
+"Erschafft zuesätzliches Schwefelwasserstoff und Kohlestoffdioxid"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr ""
+"Eruptionserignis\n"
+"Erschafft zuesätzliches Schwefelwasserstoff und Kohlestoffdioxid"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evolutionsbaum"
@@ -2400,6 +2454,14 @@ msgstr "Die Art versteinere (isch scho versteinert)"
 msgid "FOSSILISE"
 msgstr "Versteinere"
 
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Löschig vom Fossil fehl g'schlagge"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Fossildatei hett mer nöd chönne lösche"
+
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Löschig vom Fossil fehl g'schlagge"
 
@@ -2495,11 +2557,8 @@ msgstr ""
 msgid "GEOLOGICAL_ACTIVITY_DORMANT"
 msgstr ""
 
-#, fuzzy
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
-"Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
+msgstr "(beiiflusst d'Frequenz und Uuswirckig vo Events wie Meteorite und Vulkanuusbrüch)"
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Bsuech oises GitHub Archiv"
@@ -2544,9 +2603,8 @@ msgstr "Glukose"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "D'Glukosekonzentration isch drastisch gsunke!"
 
-#, fuzzy
 msgid "GLUCOSE_LEVEL"
-msgstr "{0}-{1}m unter em Meeresspiegel"
+msgstr "Glukoselevel"
 
 msgid "GLYCOLYSIS"
 msgstr "Glykolyse"
@@ -2575,6 +2633,10 @@ msgstr "Graphikkarte:"
 msgid "GRAPHICS"
 msgstr "Graphik"
 
+#, fuzzy
+msgid "GRAPHICS_PRESET"
+msgstr "Graphikteam"
+
 msgid "GRAPHICS_TEAM"
 msgstr "Graphikteam"
 
@@ -2590,6 +2652,13 @@ msgstr ""
 "\n"
 "Wenn du en Fehler gsehsch, bi dem Teile vo Editorschaltfläche verschwindet,\n"
 "chasch du versueche, das z'deaktiviere um z'gseh, ob's Problem weg isch."
+
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr ""
+
+#, fuzzy
+msgid "GUI_SCALE_OPTION"
+msgstr "Optione schlüüse?"
 
 msgid "GUI_TAB_NAVIGATION"
 msgstr "UI-Tab Navigation"
@@ -2660,9 +2729,8 @@ msgstr "{0} (x{1})"
 msgid "HYDROGENASE"
 msgstr "Hydrogenase"
 
-#, fuzzy
 msgid "HYDROGENASE_DESCRIPTION"
-msgstr "Benutzt Wasserstoff um Energie vo [thrive:compound type=\\\"glucose\\\"][/thrive:compound] z'erhalte. Meh effektiv bi niedrige [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] Werte als metabolosome. Vieli Organisme in anoxische Umweltsituatione benutzed das als primäri Energiequelle."
+msgstr "Fermentier [thrive:compound type=\\\"glucose\\\"][/thrive:compound] um Energie und Nebeprodukt wie Wasserstoff z'erhalte. Meh effektiv bi niedrige [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] Werte als metabolosome. Vieli Organisme in anoxische Umweltsituatione benutzed das als primäri Energiequelle."
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Wandlet [thrive:compound type=\\\"glucose\\\"][/thrive:compound] zu [thrive:compound type=\\\"atp\\\"][/thrive:compound] um."
@@ -2670,9 +2738,8 @@ msgstr "Wandlet [thrive:compound type=\\\"glucose\\\"][/thrive:compound] zu [thr
 msgid "HYDROGENOSOME"
 msgstr "Hydrogenosom"
 
-#, fuzzy
 msgid "HYDROGENOSOME_DESCRIPTION"
-msgstr "Benutzt Wasserstoff um Energie vo [thrive:compound type=\\\"glucose\\\"][/thrive:compound] z'erhalte. S'Hydrogenosom isch e Membran-bundeni Organelle g'füllt mit Proteine und Enzyme. Es isch en Prokaryot wo vo emene Eukaryotische Wirt assimiliert worde isch. Effektiver als Hydrogenase und meh effektiv bi niedrige [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] Werte als es Mitochondrium. Vieli Organisme i anoxische Bedingige nemmet Bündel a Hydrogenosome als primäri Energiequelle."
+msgstr "Fermentiert [thrive:compound type=\\\"glucose\\\"][/thrive:compound] um Energie und Nebeprodukt wie Wasserstoff z'erhalte. S'Hydrogenosom isch e Membran-bundeni Organelle g'füllt mit Proteine und Enzyme. Es isch en Prokaryot wo vo emene Eukaryotische Wirt assimiliert worde isch. Effektiver als Hydrogenase und meh effektiv bi niedrige [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] Werte als es Mitochondrium. Vieli Organisme i anoxische Bedingige nemmet Bündel a Hydrogenosome als primäri Energiequelle."
 
 msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Wandlet [thrive:compound type=\\\"glucose\\\"][/thrive:compound] zu [thrive:compound type=\\\"atp\\\"][/thrive:compound] um."
@@ -2680,7 +2747,6 @@ msgstr "Wandlet [thrive:compound type=\\\"glucose\\\"][/thrive:compound] zu [thr
 msgid "HYDROGEN_SULFIDE"
 msgstr "Schwefelwasserstoff"
 
-#, fuzzy
 msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "Schwefelwasserstoff"
 
@@ -2696,6 +2762,10 @@ msgstr "Grosse Iisbrocke"
 msgid "ICE_CHUNK_SMALL"
 msgstr "Chliine Iisbrocke"
 
+#, fuzzy
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr "Grosse Iisbrocke"
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID isch kei gültigi Zahl"
 
@@ -2704,6 +2774,9 @@ msgstr "ID Nummer"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(je nach rendermodus und upscaling sind nöd alli Methode verfüegbar)"
+
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "Unterstützti Bilddateie"
@@ -2803,6 +2876,13 @@ msgstr "Inspekteur"
 
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Bsuech oisi Instagram Siite"
+
+msgid "INSTANT_KILL_PROTECTION"
+msgstr ""
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(Aateil a Glukose ide Umwelt, wo jede Generation erhalte blibt)"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Aktivier Uufstiigsportal"
@@ -2919,23 +2999,17 @@ msgstr ":"
 msgid "JANUARY"
 msgstr "Januar"
 
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON Debuggingmodus:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Immer"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automatisch"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Nie"
-
 msgid "JULY"
 msgstr "Juli"
 
 msgid "JUNE"
 msgstr "Juni"
+
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Jetziges B'halte"
+
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "B'halt d'jetzigi Drucktoleranz während dem d'Min- und Maximalpünkt bewegt werdet"
 
 msgid "KEEP_MIGRATION"
 msgstr "Migration B'halte"
@@ -3416,16 +3490,19 @@ msgstr ""
 msgid "MACROSCOPIC"
 msgstr ""
 
+#, fuzzy
+msgid "MACROSCOPIC_EDITOR"
+msgstr "Makroskopische Editor wird g'ladde"
+
 msgid "MACROSCOPIC_STAGE"
 msgstr ""
 
-#, fuzzy
 msgid "MAKE_CELL_THAT_EATS_RADIATION"
-msgstr "Strahlig"
+msgstr "Mach e Zelle wo Energie us Radioaktivität gwünnt"
 
 #, fuzzy
 msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
-msgstr "Bakterielli Thermosynthese"
+msgstr " Mach e Zelle wo nur us Chemosynthese Energie gwünnt"
 
 msgid "MAKE_NO_CHANGES_IN_EDITOR"
 msgstr ""
@@ -3568,6 +3645,9 @@ msgstr ""
 msgid "MICHE_DETAIL_TEXT"
 msgstr ""
 
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "Endosymbiose Selektionsdruck"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3587,6 +3667,9 @@ msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
 msgstr ""
 
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr ""
+
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
 msgstr ""
 
 msgid "MICHE_ROOT_PRESSURE"
@@ -3609,6 +3692,10 @@ msgstr ""
 
 msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr ""
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
+msgstr "Zum aktuelle Gebiet"
 
 msgid "MICROBE_EDITOR"
 msgstr ""
@@ -3823,10 +3910,6 @@ msgstr ""
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
-#, fuzzy
-msgid "MODIFIER"
-msgstr "Gsundheitsmodifikator"
-
 msgid "MODIFY"
 msgstr ""
 
@@ -3838,6 +3921,10 @@ msgstr ""
 
 msgid "MODS"
 msgstr ""
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Aktiviert"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -3870,9 +3957,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 msgid "MOD_CREATION_FAILED"
@@ -3942,6 +4026,12 @@ msgid "MOD_UPLOADER"
 msgstr ""
 
 msgid "MOD_VERSION"
+msgstr ""
+
+msgid "MONITOR_AUTO"
+msgstr ""
+
+msgid "MONITOR_IDENTIFIER"
 msgstr ""
 
 msgid "MORE_INFO"
@@ -4211,13 +4301,11 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr ""
 
-#, fuzzy
 msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
-msgstr "Schwefelwasserstoff"
+msgstr "Vo Schwefelwasserstoff g'schadet während kei Chemosyntheseprotein vorhande sind"
 
-#, fuzzy
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
-msgstr "Nöd gnueg {0}, um s'Rezept her z'stelle"
+msgstr "Nöd gnueg Schlimstoff um Schlimzyste-Schild z'aktiviere"
 
 msgid "NOTICE_RADIATION_DAMAGE"
 msgstr ""
@@ -4246,9 +4334,8 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
-#, fuzzy
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
-msgstr "Lösche bestätige"
+msgstr "Jetziges Spiel isch nümme für Uuszeichnige zueglah"
 
 msgid "NO_MODS_ENABLED"
 msgstr ""
@@ -4308,9 +4395,6 @@ msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
-msgstr ""
-
-msgid "OFFSET"
 msgstr ""
 
 msgid "OK"
@@ -4469,6 +4553,9 @@ msgstr ""
 msgid "OUR_WIKI"
 msgstr ""
 
+msgid "OUTDATED_ITEM"
+msgstr ""
+
 msgid "OUTDATED_NOTICE"
 msgstr ""
 
@@ -4541,9 +4628,8 @@ msgstr ""
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
-#, fuzzy
 msgid "PATCHES_NUMBER"
-msgstr "ID Nummer"
+msgstr "Aazahl Regione:"
 
 msgid "PATCH_COLON"
 msgstr ""
@@ -4656,9 +4742,8 @@ msgstr ""
 msgid "PLANET"
 msgstr ""
 
-#, fuzzy
 msgid "PLANET_CUSTOMIZER"
-msgstr "Am Zeiger:"
+msgstr "Planete-Editor"
 
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
@@ -4666,29 +4751,8 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#, fuzzy
 msgid "PLANET_STATISTICS"
-msgstr ""
-"[b]Generatione:[/b]\n"
-"  {0}\n"
-"[b]Gsamtzahl Beriich:[/b]\n"
-"  {1}\n"
-"[b]Gsamtzahl Auto-Evo-Ziit:[/b]\n"
-"  {2}\n"
-"[b]Geamtzahl Spezies:[/b]\n"
-"  {3}\n"
-"[b]Spezies no am Lebbe:[/b]\n"
-"  {4}\n"
-"[b]Spezies Anzahl pro Beriich:[/b]\n"
-"  Durchschnitt {5}; Standardabwiichig {6}\n"
-"[b]Gsamtpopulation:[/b]\n"
-"  {7}\n"
-"[b]Populationsstärchschti Spezies:[/b]\n"
-"  {8}\n"
-"[b]Grundlegendi Mikroben-Spezies Date:[/b]\n"
-"  Durchschnittlichi Grössi (i Hex-Feldern): {9}\n"
-"\n"
-"[b]Generischi Organellen-Date:[/b]"
+msgstr "Planetestatistik"
 
 msgid "PLAYER"
 msgstr ""
@@ -4761,6 +4825,26 @@ msgstr ""
 
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "Benutzerdefiniert"
+
+msgid "PRESET_HIGH"
+msgstr ""
+
+msgid "PRESET_LOW"
+msgstr ""
+
+msgid "PRESET_MEDIUM"
+msgstr ""
+
+msgid "PRESET_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "Sehr tüüf"
 
 msgid "PRESSURE"
 msgstr ""
@@ -4837,9 +4921,8 @@ msgstr ""
 msgid "RADIATION"
 msgstr ""
 
-#, fuzzy
 msgid "RADIATION_LEVELS"
-msgstr "Lösche"
+msgstr "Radioaktivität"
 
 msgid "RADIOACTIVE_CHUNK"
 msgstr ""
@@ -4865,9 +4948,8 @@ msgstr ""
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr ""
 
-#, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
-msgstr "Multizelluläres Stadium laded"
+msgstr "Erreich s'Multizelluläre Stadium"
 
 msgid "READING_SAVE_DATA"
 msgstr ""
@@ -4890,13 +4972,11 @@ msgstr ""
 msgid "REFRESH"
 msgstr ""
 
-#, fuzzy
 msgid "REGENERATE_BUTTON"
-msgstr "Zruggentwickle"
+msgstr "Welt Wiederherstelle"
 
-#, fuzzy
 msgid "REGIONS_NUMBER"
-msgstr "ID Nummer"
+msgstr "Aazahl Regione:"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5024,17 +5104,14 @@ msgstr ""
 msgid "REVEAL_ALL_PATCHES"
 msgstr ""
 
-#, fuzzy
 msgid "REVERT_TO_EDITOR"
-msgstr "Editor verlah"
+msgstr "Zum Editor zrugg"
 
-#, fuzzy
 msgid "REVERT_TO_EDITOR_EXPLANATION"
-msgstr "(zuefällig generierti Easter-eggs während em Spiel)"
+msgstr "Wenn dini jetzigi Mikrobe nöd a d'Umwelt aapasst isch, denn chasch zum Editor zrugg und öppis anderes probiere."
 
-#, fuzzy
 msgid "REVERT_TO_EDITOR_PROMPT"
-msgstr "Alti Spiicherständ lösche?"
+msgstr "Zum Editor zrugg?"
 
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr ""
@@ -5060,8 +5137,15 @@ msgstr ""
 msgid "ROTATION_COLON"
 msgstr ""
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
+
+#, fuzzy
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
+msgstr "Auto-Evo Erforschig"
 
 msgid "RUN_ONE_STEP"
 msgstr ""
@@ -5118,12 +5202,6 @@ msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr ""
 
 msgid "SAVE_FAILED"
@@ -5420,8 +5498,15 @@ msgstr ""
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
 
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr ""
+
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr ""
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
+msgstr "Grosse Phosphatchlumpe"
 
 msgid "SMALL_SULFUR_CHUNK"
 msgstr ""
@@ -5490,6 +5575,13 @@ msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
+msgstr ""
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Zum aktuelle Gebiet"
+
+msgid "SPECIES_IN_OTHER_PATCHES"
 msgstr ""
 
 msgid "SPECIES_LIST"
@@ -5728,7 +5820,6 @@ msgstr ""
 msgid "SYSREQ"
 msgstr ""
 
-#, fuzzy
 msgid "TAB_CHANGE_BLOCKED_WHILE_ACTION_IN_PROGRESS"
 msgstr "Aktion isch blockiert während en anderi im Gang isch"
 
@@ -5753,13 +5844,11 @@ msgstr ""
 msgid "TARGET_TYPE_COLON"
 msgstr ""
 
-#, fuzzy
 msgid "TASTE_THE_SUN"
-msgstr "Aktuelli Threads:"
+msgstr "Schmeck d'Sunne"
 
-#, fuzzy
 msgid "TASTY_RADIATION"
-msgstr "Strahlig"
+msgstr "Leckeri Strahlig"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -5851,9 +5940,8 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#, fuzzy
 msgid "THE_EDITOR"
-msgstr "Editor verlah"
+msgstr "De Editor"
 
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr ""
@@ -5897,9 +5985,8 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr ""
 
-#, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
-msgstr "Grundmobilität"
+msgstr "Am Gedeihe"
 
 msgid "THYLAKOIDS"
 msgstr ""
@@ -5969,6 +6056,10 @@ msgstr ""
 
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Debug-Fenster"
 
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr ""
@@ -6048,19 +6139,16 @@ msgstr ""
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgid "TOO_LARGE_PRESSURE_RANGE"
 msgstr ""
 
-msgid "TOTAL"
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr ""
 
 msgid "TOTAL_SAVES"
-msgstr ""
-
-msgid "TOTAL_VALUE"
 msgstr ""
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
@@ -6255,9 +6343,8 @@ msgstr ""
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 
-#, fuzzy
 msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
-msgstr "Die Tafle zeigt d'Wert aa, mit dene d'Auto-Evo-Vorhersag schafft. D'Gsammtenergie, wo e Spezies uufnäh chann, und d'Köschte pro Einzeltier vode Spezies bestimmet d'endgültigi Bevölkerig. Auto-Evo verwendet es vereifachtes Modell vode Realität um z'berechne, wie guet die Spezies uf Basis vo ihre erbrachte Energie abschniidet. Für jedi Nahrigsquelle wird aazeiget, wie viel Energie d'Art us dere gwünnt. Zuesätzlich wird d'Gsammtenergie, wo us dere Quelle zur Verfüegig staht, aazeiget. De Aateil wo die Art a dere Gsammtenergie gwünnt, basiert druff, wie gross ihri Fitness im Vergliich zur Gsammtfitness isch. Die Fitness isch es Maas defür, wie guet die Spezies die Nahrigsquelle verwende cha."
+msgstr "Alli Tutorials werdet wieder aazeiget. Wenn die Option abgschalte isch werdet numme Tutorials aazeiget, wommer nonig gha hett. Es isch sicher die Option ab z'schalte, au wemmer zum erschte mal spielt."
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
@@ -6305,6 +6392,16 @@ msgid "UNDO"
 msgstr ""
 
 msgid "UNDO_THE_LAST_ACTION"
+msgstr ""
+
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "E zweischichtigi Membran bütet bessere Schutz vor Schade und benötigt weniger Energie um sich nöd z'deformiere. Sie verlangsamt allerdings d'Zelle und senkt ihri Fähigkeit Ressource z'absorbiere."
+
+msgid "UNHANDLED_ERROR_TITLE"
 msgstr ""
 
 msgid "UNIT_ACTION_CONSTRUCT"
@@ -6454,6 +6551,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -6461,12 +6561,6 @@ msgid "USED_RENDERER_NAME"
 msgstr ""
 
 msgid "USES_FEATURE"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
@@ -8059,16 +8153,14 @@ msgstr ""
 msgid "WORLD_OCEANIC_COVERAGE"
 msgstr ""
 
-#, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
-msgstr "(veränderet d'Nummer vo Gebiet ide Welt)"
+msgstr "(veränderet d'Aazahl vo Land- und Meer-Gebiete ide Welt)"
 
 msgid "WORLD_OCEANIC_COVERAGE_LARGE"
 msgstr ""
 
-#, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
-msgstr "(veränderet d'Nummer vo Gebiet ide Welt)"
+msgstr "Medium"
 
 msgid "WORLD_OCEANIC_COVERAGE_SMALL"
 msgstr ""
@@ -8100,9 +8192,8 @@ msgstr ""
 msgid "WORLD_TEMPERATURE_COLD"
 msgstr ""
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr "(veränderet d'Nummer vo Gebiet ide Welt)"
+msgstr "(veränderet d'Aazahl a Arktische Meeresgebiete ide Welt)"
 
 msgid "WORLD_TEMPERATURE_TEMPERATE"
 msgstr ""
@@ -8112,6 +8203,14 @@ msgstr ""
 
 msgid "WORST_PATCH_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "Wachstumsordnig"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "(Aktivierig beschränkt d'Wachstumsrate; Deaktivierig laht numme d'verfüegbare Stoffe s'Wachstum beiiflusse)"
 
 msgid "XBOX360"
 msgstr ""
@@ -8140,12 +8239,8 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
-#, fuzzy
 msgid "YUM_EXCLAMATION"
-msgstr ""
-"Fokussierti Mikrobe werdet über e grösseri Entfernig nach Chlumpe oder Beuti luege\n"
-"und sind möglicherwiis sehr viel ehrgiziger, wenn's um Chlumpe gaht.\n"
-"Inkonsequenti Mikrobe wechslet schneller zu neue Ziel."
+msgstr "Lecker!"
 
 msgid "ZOOM_IN"
 msgstr ""
@@ -8153,14 +8248,17 @@ msgstr ""
 msgid "ZOOM_OUT"
 msgstr ""
 
-#~ msgid "EFFECTIVE_VALUE"
-#~ msgstr "Effektive Wert"
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON Debuggingmodus:"
 
-#~ msgid "KEEP_CURRENT_SHORT"
-#~ msgstr "Jetziges B'halte"
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Immer"
 
-#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-#~ msgstr "B'halt d'jetzigi Drucktoleranz während dem d'Min- und Maximalpünkt bewegt werdet"
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automatisch"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Nie"
 
 #, fuzzy
 #~ msgid "GENERATE_BUTTON"

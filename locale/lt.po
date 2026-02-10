@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-16 20:10+0200\n"
+"POT-Creation-Date: 2026-01-22 16:04+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
@@ -286,7 +286,8 @@ msgstr "Chemoplastas"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Modifikacijos surinkimo klasė reikalinga, kai nurodytas surinkimas"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "Mod assembly yra reikalinga, kai įjungta Auto Harmony"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -444,6 +445,9 @@ msgstr ""
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr ""
 
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr "Nubudimo Etapas"
 
@@ -552,7 +556,15 @@ msgid "BIG_IRON_CHUNK"
 msgstr "Didelis Geležies Gabalas"
 
 #, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Didelis Geležies Gabalas"
+
+#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Didelis Geležies Gabalas"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "Didelis Geležies Gabalas"
 
 msgid "BILLION_ABBREVIATION"
@@ -911,6 +923,10 @@ msgstr "Pakrantė"
 msgid "COLLISION_SHAPE"
 msgstr "Sukurti subjektus su susidūrimo formomis"
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
 msgid "COLOUR"
 msgstr "Spalva"
 
@@ -961,6 +977,9 @@ msgstr "Sodrumo vertė - pilkos spalvos kiekis tam tikroje spalvoje"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Vertė (ryškumas) spalvos vertė, ryškumas arba intensyvumas"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr ""
 
 msgid "COMMON_ABILITIES"
 msgstr "Bendri Gebėjimai"
@@ -1076,6 +1095,10 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Junginių Balansai"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} suvartojimas"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1517,8 +1540,28 @@ msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sve
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "Atšaukti dabartinį veiksmą"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "Atšaukti dabartinį veiksmą"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "Atidaryti pagalbos langą"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Atidaryti pagalbos langą"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "Atidaryti pagalbos langą"
 
 #, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
@@ -1584,6 +1627,9 @@ msgstr ""
 
 msgid "DEATH"
 msgstr "mirtis"
+
+msgid "DEBUG_CONSOLE"
+msgstr ""
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1814,6 +1860,9 @@ msgstr ""
 msgid "DISPLAY_PART_NAMES"
 msgstr ""
 
+msgid "DISPLAY_SELECTION"
+msgstr ""
+
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr ""
 
@@ -1946,6 +1995,10 @@ msgstr "Chemoreceptorius"
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
 
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
+
 msgid "EIGHT_TIMES"
 msgstr ""
 
@@ -2039,6 +2092,10 @@ msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
+
+#, fuzzy
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr "Junginių debesys"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
@@ -2154,6 +2211,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "Baigti žaidimą"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "Baigti žaidimą"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -2434,6 +2499,14 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr ""
 
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "(pradžios vieta)"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Elemento aprašymas:"
+
 msgid "FOSSIL_DELETION_FAILED"
 msgstr ""
 
@@ -2614,6 +2687,9 @@ msgstr "Pavadinimas:"
 msgid "GRAPHICS"
 msgstr ""
 
+msgid "GRAPHICS_PRESET"
+msgstr ""
+
 msgid "GRAPHICS_TEAM"
 msgstr ""
 
@@ -2626,6 +2702,13 @@ msgstr ""
 
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
+
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr ""
+
+#, fuzzy
+msgid "GUI_SCALE_OPTION"
+msgstr "Uždaryti parinktis?"
 
 msgid "GUI_TAB_NAVIGATION"
 msgstr ""
@@ -2732,6 +2815,9 @@ msgstr ""
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
@@ -2739,6 +2825,9 @@ msgid "ID_NUMBER"
 msgstr "ID kodas"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
@@ -2850,6 +2939,14 @@ msgstr "Peržiūrėti"
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "ATP GAMYBA PER MAŽA!"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -2972,23 +3069,19 @@ msgstr ""
 msgid "JANUARY"
 msgstr ""
 
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr ""
-
 msgid "JULY"
 msgstr ""
 
 msgid "JUNE"
 msgstr ""
+
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Spaud."
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "Baigti žaidimą"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3486,6 +3579,10 @@ msgid "MACROSCOPIC"
 msgstr "Tapti Makroskopiniu ({0}/{1})"
 
 #, fuzzy
+msgid "MACROSCOPIC_EDITOR"
+msgstr "Tapti Makroskopiniu ({0}/{1})"
+
+#, fuzzy
 msgid "MACROSCOPIC_STAGE"
 msgstr "Mikroorganizmo būsena"
 
@@ -3650,6 +3747,14 @@ msgstr ""
 msgid "MICHE_DETAIL_TEXT"
 msgstr "Mikroorganizmo būsena"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr ""
+"Agresyvūs mikrobai vysis grobį didesnius atstumus\n"
+"ir bus labiau linkę kovoti su grobuoniu, kai šis užpuls.\n"
+"Taikūs mikrobai nepuls kitų per didesnį atstumą\n"
+"ir bus mažiau linkę naudoti toksinus prieš grobuonis."
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3671,6 +3776,10 @@ msgstr ""
 
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "ATP GAMYBA PER MAŽA!"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
@@ -3696,6 +3805,10 @@ msgstr "Mikroorganizmų redaktorius"
 
 #, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "Tam, kad atrakinti redaktorių ir dauginimąsi tau reikės surinkti [thrive:compound type=\"ammonia\"][/thrive:compound] (Oranžinis Debesis) ir [thrive:compound type=\"phosphates\"][/thrive:compound] (Purpurinis Debesis)."
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
 msgstr "Tam, kad atrakinti redaktorių ir dauginimąsi tau reikės surinkti [thrive:compound type=\"ammonia\"][/thrive:compound] (Oranžinis Debesis) ir [thrive:compound type=\"phosphates\"][/thrive:compound] (Purpurinis Debesis)."
 
 msgid "MICROBE_EDITOR"
@@ -3958,9 +4071,6 @@ msgstr "Modeliai"
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
-msgid "MODIFIER"
-msgstr ""
-
 msgid "MODIFY"
 msgstr ""
 
@@ -3972,6 +4082,10 @@ msgstr ""
 
 msgid "MODS"
 msgstr "Modifikacijos"
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "Įjungtas"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -4005,9 +4119,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 msgid "MOD_CREATION_FAILED"
@@ -4077,6 +4188,12 @@ msgid "MOD_UPLOADER"
 msgstr ""
 
 msgid "MOD_VERSION"
+msgstr ""
+
+msgid "MONITOR_AUTO"
+msgstr ""
+
+msgid "MONITOR_IDENTIFIER"
 msgstr ""
 
 msgid "MORE_INFO"
@@ -4460,9 +4577,6 @@ msgstr ""
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Įkelti anksčiau išsaugotus žaidimus"
 
-msgid "OFFSET"
-msgstr ""
-
 msgid "OK"
 msgstr "Gerai"
 
@@ -4632,6 +4746,9 @@ msgid "OTHER_COMPOUNDS"
 msgstr "Junginiai"
 
 msgid "OUR_WIKI"
+msgstr ""
+
+msgid "OUTDATED_ITEM"
 msgstr ""
 
 msgid "OUTDATED_NOTICE"
@@ -4915,6 +5032,26 @@ msgstr ""
 
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "Pasirinktinis"
+
+msgid "PRESET_HIGH"
+msgstr ""
+
+msgid "PRESET_LOW"
+msgstr ""
+
+msgid "PRESET_MEDIUM"
+msgstr ""
+
+msgid "PRESET_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "Junginių Balansai"
 
 msgid "PRESSURE"
 msgstr ""
@@ -5231,8 +5368,15 @@ msgstr ""
 msgid "ROTATION_COLON"
 msgstr ""
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
+
+#, fuzzy
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
+msgstr "Auto-Evo Tyrinėjimo Įrankis"
 
 msgid "RUN_ONE_STEP"
 msgstr ""
@@ -5291,12 +5435,6 @@ msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr ""
 
 msgid "SAVE_FAILED"
@@ -5602,8 +5740,15 @@ msgstr ""
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
 
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr ""
+
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr ""
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
+msgstr "Didelis Geležies Gabalas"
 
 msgid "SMALL_SULFUR_CHUNK"
 msgstr ""
@@ -5674,6 +5819,12 @@ msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
+msgstr ""
+
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr ""
+
+msgid "SPECIES_IN_OTHER_PATCHES"
 msgstr ""
 
 msgid "SPECIES_LIST"
@@ -6171,6 +6322,10 @@ msgstr ""
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
+#, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Pereiti į Nubudimo Stadiją. Ji galima, kai turi pakankamai protinės galios (audinio tipas su aksonais)."
+
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr ""
 
@@ -6254,19 +6409,16 @@ msgstr "Įrankiai"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgid "TOO_LARGE_PRESSURE_RANGE"
 msgstr ""
 
-msgid "TOTAL"
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr ""
 
 msgid "TOTAL_SAVES"
-msgstr ""
-
-msgid "TOTAL_VALUE"
 msgstr ""
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
@@ -6549,6 +6701,17 @@ msgstr ""
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Atšaukti paskutinį veiksmą"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Elemento aprašymas:"
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "\"{0}\" - {1}"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "DI mutacijos greitis"
@@ -6704,6 +6867,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -6711,12 +6877,6 @@ msgid "USED_RENDERER_NAME"
 msgstr ""
 
 msgid "USES_FEATURE"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
@@ -8822,6 +8982,14 @@ msgstr "Temperatūra"
 msgid "WORST_PATCH_COLON"
 msgstr ""
 
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
 msgid "XBOX360"
 msgstr ""
 
@@ -8864,16 +9032,8 @@ msgid "ZOOM_OUT"
 msgstr ""
 
 #, fuzzy
-#~ msgid "EFFECTIVE_VALUE"
-#~ msgstr "{0}%"
-
-#, fuzzy
-#~ msgid "KEEP_CURRENT_SHORT"
-#~ msgstr "Spaud."
-
-#, fuzzy
-#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-#~ msgstr "Baigti žaidimą"
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "ATP GAMYBA PER MAŽA!"
 
 #, fuzzy
 #~ msgid "GENERATE_BUTTON"

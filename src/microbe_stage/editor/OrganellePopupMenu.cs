@@ -4,14 +4,14 @@ using System.Linq;
 using Godot;
 
 /// <summary>
-///   Manages a custom context menu solely for showing list of options for a placed organelle in the microbe editor.
+///   Manages a custom context menu solely for showing a list of options for a placed organelle in the microbe editor.
 /// </summary>
 public partial class OrganellePopupMenu : HexPopupMenu
 {
     private List<OrganelleTemplate>? selectedOrganelles;
 
     /// <summary>
-    ///   The placed organelles to be shown options of. The main organelle is at index 0, if there are multiple
+    ///   The placed organelles to be shown options of. The main organelle is at index 0 if there is multiple
     ///   selected with symmetry. Note that most uses should use <see cref="GetSelectedThatAreStillValid"/> instead.
     /// </summary>
     public List<OrganelleTemplate> SelectedOrganelles
@@ -24,8 +24,6 @@ public partial class OrganellePopupMenu : HexPopupMenu
             UpdateTitleLabel();
         }
     }
-
-    public float CostMultiplier { get; set; } = 1.0f;
 
     public override void _Ready()
     {
@@ -75,11 +73,16 @@ public partial class OrganellePopupMenu : HexPopupMenu
         if (deleteButton == null)
             return;
 
+        if (!ShowDeleteOption)
+        {
+            deleteButton.Visible = false;
+            return;
+        }
+
+        deleteButton.Visible = true;
+
         var mpCost = GetActionPrice?.Invoke(SelectedOrganelles
-                .Select(o => (EditorCombinableActionData)new OrganelleRemoveActionData(o)
-                {
-                    CostMultiplier = CostMultiplier,
-                })) ??
+                .Select(o => (EditorCombinableActionData)new OrganelleRemoveActionData(o))) ??
             throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         mpCost = Math.Round(mpCost, Constants.MUTATION_POINTS_DECIMALS);
@@ -99,10 +102,7 @@ public partial class OrganellePopupMenu : HexPopupMenu
 
         var mpCost = GetActionPrice?.Invoke(SelectedOrganelles.Select(o =>
             (EditorCombinableActionData)new OrganelleMoveActionData(o, o.Position, o.Position + new Hex(5, 5),
-                o.Orientation, o.Orientation)
-            {
-                CostMultiplier = CostMultiplier,
-            })) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
+                o.Orientation, o.Orientation))) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         mpCost = Math.Round(mpCost, Constants.MUTATION_POINTS_DECIMALS);
 

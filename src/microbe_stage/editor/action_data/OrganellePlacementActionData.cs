@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using SharedBase.Archive;
 
-[JSONAlwaysDynamicType]
 public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemplate, CellType>
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public List<OrganelleTemplate>? ReplacedCytoplasm;
 
     public OrganellePlacementActionData(OrganelleTemplate organelle, Hex location, int orientation) : base(organelle,
@@ -10,42 +13,40 @@ public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemp
     {
     }
 
-    protected override double CalculateBaseCostInternal()
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.OrganellePlacementActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
-        return PlacedHex.Definition.MPCost;
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.ReproductionOrganelleData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((OrganellePlacementActionData)obj);
     }
 
-    protected override (double Cost, double RefundCost) CalculateCostInternal(
-        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
+    public static OrganellePlacementActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
-        double refund = 0;
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var count = history.Count;
-        for (int i = 0; i < insertPosition && i < count; ++i)
-        {
-            var other = history[i];
+        var hexVersion = reader.ReadUInt16();
+        var instance = new OrganellePlacementActionData(reader.ReadObject<OrganelleTemplate>(), reader.ReadHex(),
+            reader.ReadInt32());
 
-            if (other is OrganelleMoveActionData moveActionData && MatchesContext(moveActionData))
-            {
-                if ((moveActionData.MovedHex.Definition == PlacedHex.Definition &&
-                        moveActionData.OldLocation == Location) ||
-                    ReplacedCytoplasm?.Contains(moveActionData.MovedHex) == true)
-                {
-                    refund += other.GetCalculatedSelfCost();
-                    continue;
-                }
-            }
+        // Base version is different
+        instance.ReadBasePropertiesFromArchive(reader, hexVersion);
 
-            if (other is OrganellePlacementActionData placementActionData &&
-                ReplacedCytoplasm?.Contains(placementActionData.PlacedHex) == true &&
-                MatchesContext(placementActionData))
-            {
-                refund += other.GetCalculatedSelfCost();
-            }
-        }
+        instance.ReplacedCytoplasm = reader.ReadObjectOrNull<List<OrganelleTemplate>>();
+        return instance;
+    }
 
-        var baseCost = base.CalculateCostInternal(history, insertPosition);
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(SERIALIZATION_VERSION_HEX);
+        base.WriteToArchive(writer);
 
-        return (baseCost.Cost, refund + baseCost.RefundCost);
+        writer.WriteObjectOrNull(ReplacedCytoplasm);
     }
 }

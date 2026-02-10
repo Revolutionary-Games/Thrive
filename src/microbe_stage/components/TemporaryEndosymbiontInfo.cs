@@ -2,22 +2,47 @@
 
 using System.Collections.Generic;
 using Godot;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Holds data related to organelles that have been added as temporary endosymbionts
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct TemporaryEndosymbiontInfo
+public struct TemporaryEndosymbiontInfo : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public List<Species>? EndosymbiontSpeciesPresent;
 
     public List<Species>? CreatedOrganelleInstancesFor;
 
     public bool Applied;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentTemporaryEndosymbiontInfo;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObjectOrNull(EndosymbiontSpeciesPresent);
+        writer.WriteObjectOrNull(CreatedOrganelleInstancesFor);
+        writer.Write(Applied);
+    }
 }
 
 public static class TemporaryEndosymbiontInfoHelpers
 {
+    public static TemporaryEndosymbiontInfo ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > TemporaryEndosymbiontInfo.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, TemporaryEndosymbiontInfo.SERIALIZATION_VERSION);
+
+        return new TemporaryEndosymbiontInfo
+        {
+            EndosymbiontSpeciesPresent = reader.ReadObjectOrNull<List<Species>>(),
+            CreatedOrganelleInstancesFor = reader.ReadObjectOrNull<List<Species>>(),
+            Applied = reader.ReadBool(),
+        };
+    }
+
     public static void AddSpeciesEndosymbiont(this ref TemporaryEndosymbiontInfo info, Species species)
     {
         info.EndosymbiontSpeciesPresent ??= new List<Species>();

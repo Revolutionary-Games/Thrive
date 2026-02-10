@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://djcg7apclas2h"]
+
+[ext_resource type="PackedScene" uid="uid://c4swd7qo1ei08" path="res://assets/models/microbe_terrain/CalciteTerrainChunk2.glb" id="1_5h8vr"]
+[ext_resource type="Texture2D" uid="uid://3l22ragylwd" path="res://assets/textures/environment/Calcite.png" id="2_o6ql1"]
+[ext_resource type="Texture2D" uid="uid://dhowofjywe8h0" path="res://assets/textures/environment/Calcite2AO.png" id="3_xuxbg"]
+[ext_resource type="Texture2D" uid="uid://dt13s657v4nrj" path="res://assets/textures/environment/Calcite_normal.png" id="4_b8483"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yxmtr"]
+albedo_texture = ExtResource("2_o6ql1")
+normal_enabled = true
+normal_texture = ExtResource("4_b8483")
+ao_enabled = true
+ao_light_affect = 0.35
+ao_texture = ExtResource("3_xuxbg")
+
+[node name="CalciteTerrainChunk2" unique_id=1028057135 instance=ExtResource("1_5h8vr")]
+
+[node name="calcite2" parent="." index="0" unique_id=1329944629]
+surface_material_override/0 = SubResource("StandardMaterial3D_yxmtr")

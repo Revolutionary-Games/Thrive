@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://woqh47yetqtm"]
+[gd_scene format=3 uid="uid://woqh47yetqtm"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://3y3ig3107ad7" path="res://src/saving/SaveStatusOverlay.cs" id="2"]
 [ext_resource type="PackedScene" uid="uid://2nt57gfubafw" path="res://src/gui_common/dialogs/ErrorDialog.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="4"]
 
 [sub_resource type="Animation" id="Animation_hwcmd"]
 length = 0.001
@@ -53,7 +52,7 @@ _data = {
 &"SavingStatusFadeOut": SubResource("1")
 }
 
-[node name="SaveStatusOverlay" type="Control" node_paths=PackedStringArray("statusLabel", "animationPlayer", "errorDialog", "errorJsonDebugAdvice", "errorJsonDebugLabel")]
+[node name="SaveStatusOverlay" type="Control" unique_id=200325234 node_paths=PackedStringArray("statusLabel", "animationPlayer", "errorDialog")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -67,10 +66,8 @@ script = ExtResource("2")
 statusLabel = NodePath("CenterContainer/StatusLabel")
 animationPlayer = NodePath("CenterContainer/AnimationPlayer")
 errorDialog = NodePath("CenterContainer2/ErrorDialog")
-errorJsonDebugAdvice = NodePath("CenterContainer2/ErrorDialog/VBoxContainer/ExceptionBox/JsonDebugInfo")
-errorJsonDebugLabel = NodePath("CenterContainer2/ErrorDialog/VBoxContainer/ExceptionBox/JsonDebugInfo")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1783358062]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -78,17 +75,15 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="StatusLabel" type="Label" parent="CenterContainer"]
+[node name="StatusLabel" type="Label" parent="CenterContainer" unique_id=1575507773]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "Saving status goes here..."
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer"]
-libraries = {
-&"": SubResource("AnimationLibrary_1toxe")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer" unique_id=1530626515]
+libraries/ = SubResource("AnimationLibrary_1toxe")
 
-[node name="CenterContainer2" type="CenterContainer" parent="."]
+[node name="CenterContainer2" type="CenterContainer" parent="." unique_id=2008968118]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -96,14 +91,5 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="ErrorDialog" parent="CenterContainer2" instance=ExtResource("3")]
+[node name="ErrorDialog" parent="CenterContainer2" unique_id=655560289 instance=ExtResource("3")]
 layout_mode = 2
-
-[node name="JsonDebugInfo" parent="CenterContainer2/ErrorDialog/VBoxContainer/ExceptionBox" index="2" instance=ExtResource("4")]
-layout_mode = 2
-size_flags_horizontal = 3
-ExtendedBbcode = "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-
-[connection signal="meta_clicked" from="CenterContainer2/ErrorDialog/VBoxContainer/ExceptionBox/JsonDebugInfo" to="." method="DebugAdviceMetaClicked"]
-
-[editable path="CenterContainer2/ErrorDialog"]

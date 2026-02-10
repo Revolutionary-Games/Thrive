@@ -1,12 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://8stwulpj5o0y"]
+[gd_scene format=3 uid="uid://8stwulpj5o0y"]
 
 [ext_resource type="PackedScene" uid="uid://bako5jivv1dji" path="res://src/microbe_stage/MicrobeCamera.tscn" id="1"]
 [ext_resource type="Script" uid="uid://w885v28sj30x" path="res://src/benchmark/microbe/MicrobeBenchmark.cs" id="2"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bqeojm252hm5x" path="res://src/benchmark/BenchmarkGUITopPart.tscn" id="4_komf4"]
 [ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="5_5gxef"]
 
-[node name="MicrobeBenchmark" type="Node" node_paths=PackedStringArray("microbesCountLabel", "worldRoot", "dynamicRoot", "benchmarkCamera", "guiContainer", "fpsLabel", "phaseLabel", "benchmarkResultText", "benchmarkFinishedText", "copyResultsButton")]
+[node name="MicrobeBenchmark" type="Node" unique_id=1442395241 node_paths=PackedStringArray("microbesCountLabel", "worldRoot", "dynamicRoot", "benchmarkCamera", "guiContainer", "fpsLabel", "phaseLabel", "benchmarkResultText", "benchmarkFinishedText", "copyResultsButton")]
 script = ExtResource("2")
 microbesCountLabel = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/Microbes")
 worldRoot = NodePath("WorldRoot")
@@ -19,18 +19,18 @@ benchmarkResultText = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxC
 benchmarkFinishedText = NodePath("GUIContainer/VBoxContainer/FinishedText")
 copyResultsButton = NodePath("GUIContainer/VBoxContainer/HBoxContainer/Copy")
 
-[node name="WorldRoot" type="Node3D" parent="."]
+[node name="WorldRoot" type="Node3D" parent="." unique_id=89395877]
 
-[node name="MicrobeCamera" parent="WorldRoot" instance=ExtResource("1")]
+[node name="MicrobeCamera" parent="WorldRoot" unique_id=2113430046 instance=ExtResource("1")]
 DefaultCameraHeight = 80.0
 MinCameraHeight = 80.0
 
-[node name="DynamicRoot" type="Node3D" parent="WorldRoot"]
+[node name="DynamicRoot" type="Node3D" parent="WorldRoot" unique_id=1222948390]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldRoot"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldRoot" unique_id=1077576283]
 transform = Transform3D(0.613214, 0.692812, -0.379447, -0.74027, 0.67164, 0.0299817, 0.275624, 0.262509, 0.924727, 0, 0, 0)
 
-[node name="GUIContainer" parent="." instance=ExtResource("4")]
+[node name="GUIContainer" parent="." unique_id=713252655 instance=ExtResource("4")]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -41,7 +41,7 @@ grow_horizontal = 0
 WindowTitle = "MICROBE_BENCHMARK"
 Resizable = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUIContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUIContainer" unique_id=1283166073]
 custom_minimum_size = Vector2(250, 320)
 layout_mode = 0
 offset_right = 250.0
@@ -49,46 +49,46 @@ offset_bottom = 320.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="GUIContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="GUIContainer/VBoxContainer" unique_id=2066492928]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUIContainer/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUIContainer/VBoxContainer/ScrollContainer" unique_id=2041405701]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BenchmarkGUITopPart" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_komf4")]
+[node name="BenchmarkGUITopPart" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1020028516 instance=ExtResource("4_komf4")]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1380311824]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=827570090]
 layout_mode = 2
 text = "MICROBES_COUNT"
 label_settings = ExtResource("5_5gxef")
 
-[node name="Control" type="Control" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+[node name="Control" type="Control" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=1196126210]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Microbes" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+[node name="Microbes" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=1488618045]
 layout_mode = 2
 text = "1"
 label_settings = ExtResource("5_5gxef")
 
-[node name="Control" type="Control" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=285022750]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="ResultsHeading" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="ResultsHeading" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1603294819]
 layout_mode = 2
 text = "BENCHMARK_RESULTS_COLON"
 label_settings = ExtResource("5_5gxef")
 
-[node name="Results" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Results" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1009445848]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -98,20 +98,20 @@ Other things: 1234"
 label_settings = ExtResource("5_5gxef")
 autowrap_mode = 3
 
-[node name="FinishedText" type="Label" parent="GUIContainer/VBoxContainer"]
+[node name="FinishedText" type="Label" parent="GUIContainer/VBoxContainer" unique_id=1335003043]
 layout_mode = 2
 text = "BENCHMARK_FINISHED"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUIContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUIContainer/VBoxContainer" unique_id=1442705458]
 layout_mode = 2
 alignment = 1
 
-[node name="QuitBenchmark" type="Button" parent="GUIContainer/VBoxContainer/HBoxContainer"]
+[node name="QuitBenchmark" type="Button" parent="GUIContainer/VBoxContainer/HBoxContainer" unique_id=1192718949]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "CLOSE"
 
-[node name="Copy" type="Button" parent="GUIContainer/VBoxContainer/HBoxContainer"]
+[node name="Copy" type="Button" parent="GUIContainer/VBoxContainer/HBoxContainer" unique_id=49017650]
 layout_mode = 2
 text = "COPY_RESULTS"
 

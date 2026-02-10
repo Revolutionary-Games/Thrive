@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://d0tsec3q07lee"]
+[gd_scene format=3 uid="uid://d0tsec3q07lee"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
-[ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://d0qfhc2op1auc" path="res://src/microbe_stage/editor/MicrobeEditorTabButtons.tscn" id="3"]
-[ext_resource type="Texture2D" uid="uid://dqiv4qrlqv425" path="res://assets/textures/background/panoramas/HydrothermalVents.png" id="3_6y4d0"]
+[ext_resource type="Texture2D" uid="uid://dqiv4qrlqv425" path="res://assets/textures/background/panoramas/HydrothermalVents.png" id="3_hbefc"]
 [ext_resource type="PackedScene" uid="uid://de2sohb3fjvc1" path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn" id="4"]
 [ext_resource type="Script" uid="uid://cg0bgc4s8b2y4" path="res://src/macroscopic_stage/editor/MacroscopicEditor.cs" id="5"]
 [ext_resource type="PackedScene" uid="uid://hxrn73ihp8r4" path="res://src/microbe_stage/editor/MicrobeEditorWorld.tscn" id="6"]
@@ -13,21 +12,22 @@
 [ext_resource type="PackedScene" uid="uid://qdqcbnri7vsw" path="res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://b6at78uxbps1" path="res://src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn" id="11"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7v6eu"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_hbefc"]
 resource_local_to_scene = true
-panorama = ExtResource("3_6y4d0")
+panorama = ExtResource("3_hbefc")
 
-[sub_resource type="Sky" id="Sky_3aerp"]
+[sub_resource type="Sky" id="Sky_pvnio"]
 resource_local_to_scene = true
-sky_material = SubResource("PanoramaSkyMaterial_7v6eu")
+sky_material = SubResource("PanoramaSkyMaterial_hbefc")
 
-[sub_resource type="Environment" id="Environment_x23mp"]
+[sub_resource type="Environment" id="Environment_x3jph"]
 resource_local_to_scene = true
 background_mode = 2
-sky = SubResource("Sky_3aerp")
+sky = SubResource("Sky_pvnio")
+ambient_light_source = 1
 ambient_light_color = Color(1, 1, 1, 1)
 
-[node name="MacroscopicEditor" type="Node" node_paths=PackedStringArray("reportTab", "patchMapTab", "bodyPlanEditorTab", "cellEditorTab", "cellEditorCamera", "cellEditorLight", "body3DEditorCamera", "bodyEditorLight", "worldEnvironmentNode", "noCellTypeSelected", "pauseMenu", "editorTabSelector", "editorGUIBaseNode")]
+[node name="MacroscopicEditor" type="Node" unique_id=1720613879 node_paths=PackedStringArray("reportTab", "patchMapTab", "bodyPlanEditorTab", "cellEditorTab", "cellEditorCamera", "cellEditorLight", "body3DEditorCamera", "bodyEditorLight", "worldEnvironmentNode", "noCellTypeSelected", "editorTabSelector", "editorGUIBaseNode")]
 script = ExtResource("5")
 reportTab = NodePath("MacroscopicEditorGUI/Report")
 patchMapTab = NodePath("MacroscopicEditorGUI/PatchMap")
@@ -39,24 +39,23 @@ body3DEditorCamera = NodePath("EditorWorld/PrimaryCamera")
 bodyEditorLight = NodePath("EditorWorld/EditorLight")
 worldEnvironmentNode = NodePath("EditorWorld/WorldEnvironment")
 noCellTypeSelected = NodePath("MacroscopicEditorGUI/NoCellSelected")
-pauseMenu = NodePath("PauseMenu")
 editorTabSelector = NodePath("MacroscopicEditorGUI/MicrobeEditorTabButtons")
 editorGUIBaseNode = NodePath("MacroscopicEditorGUI")
 
-[node name="EditorWorld" parent="." instance=ExtResource("7")]
+[node name="EditorWorld" parent="." unique_id=497301616 instance=ExtResource("7")]
 
-[node name="PrimaryCamera" parent="EditorWorld" index="0"]
+[node name="PrimaryCamera" parent="EditorWorld" index="0" unique_id=1227098236]
 current = true
 
-[node name="WorldEnvironment" parent="EditorWorld" index="6"]
-environment = SubResource("Environment_x23mp")
+[node name="WorldEnvironment" parent="EditorWorld" index="6" unique_id=232823169]
+environment = SubResource("Environment_x3jph")
 
-[node name="MicrobeEditorWorld" parent="." instance=ExtResource("6")]
+[node name="MicrobeEditorWorld" parent="." unique_id=1734008661 instance=ExtResource("6")]
 
 [node name="PrimaryCamera" parent="MicrobeEditorWorld" index="0"]
 current = false
 
-[node name="MacroscopicEditorGUI" type="Control" parent="."]
+[node name="MacroscopicEditorGUI" type="Control" parent="." unique_id=2093958898]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,14 +64,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1")
 
-[node name="MetaballBodyEditorComponent" parent="MacroscopicEditorGUI" node_paths=PackedStringArray("camera", "editorArrow", "editorGround") instance=ExtResource("11")]
+[node name="MetaballBodyEditorComponent" parent="MacroscopicEditorGUI" unique_id=268894686 node_paths=PackedStringArray("camera", "editorArrow", "editorGround") instance=ExtResource("11")]
 visible = false
 layout_mode = 1
 camera = NodePath("../../EditorWorld/PrimaryCamera")
 editorArrow = NodePath("../../EditorWorld/EditorArrow")
 editorGround = NodePath("../../EditorWorld/Ground")
 
-[node name="CellEditor" parent="MacroscopicEditorGUI" node_paths=PackedStringArray("cameraFollow", "camera", "editorArrow", "editorGrid") instance=ExtResource("9")]
+[node name="CellEditor" parent="MacroscopicEditorGUI" unique_id=1874028380 node_paths=PackedStringArray("cameraFollow", "camera", "editorArrow", "editorGrid") instance=ExtResource("9")]
 visible = false
 layout_mode = 1
 IsMulticellularEditor = true
@@ -82,24 +81,24 @@ camera = NodePath("../../MicrobeEditorWorld/PrimaryCamera")
 editorArrow = NodePath("../../MicrobeEditorWorld/EditorArrow")
 editorGrid = NodePath("../../MicrobeEditorWorld/Grid")
 
-[node name="Report" parent="MacroscopicEditorGUI" instance=ExtResource("10")]
+[node name="Report" parent="MacroscopicEditorGUI" unique_id=782414822 instance=ExtResource("10")]
 layout_mode = 1
 
-[node name="PatchMap" parent="MacroscopicEditorGUI" instance=ExtResource("8")]
+[node name="PatchMap" parent="MacroscopicEditorGUI" unique_id=1093652576 instance=ExtResource("8")]
 visible = false
 layout_mode = 1
 
-[node name="MicrobeEditorTabButtons" parent="MacroscopicEditorGUI" instance=ExtResource("3")]
+[node name="MicrobeEditorTabButtons" parent="MacroscopicEditorGUI" unique_id=1513316610 instance=ExtResource("3")]
 layout_mode = 0
 offset_right = 350.0
 offset_bottom = 45.0
 IsForMulticellular = true
 
-[node name="EditorCommonBottomLeftButtons" parent="MacroscopicEditorGUI" instance=ExtResource("4")]
+[node name="EditorCommonBottomLeftButtons" parent="MacroscopicEditorGUI" unique_id=1439994472 instance=ExtResource("4")]
 layout_mode = 1
 grow_vertical = 0
 
-[node name="NoCellSelected" type="MarginContainer" parent="MacroscopicEditorGUI"]
+[node name="NoCellSelected" type="MarginContainer" parent="MacroscopicEditorGUI" unique_id=1538417538]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -109,18 +108,13 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="MacroscopicEditorGUI/NoCellSelected"]
+[node name="Label" type="Label" parent="MacroscopicEditorGUI/NoCellSelected" unique_id=1450609770]
 layout_mode = 2
 text = "SELECT_TISSUE_TYPE_FROM_EDITOR"
 horizontal_alignment = 1
 
-[node name="PauseMenu" parent="." instance=ExtResource("2")]
-
 [connection signal="OnCellTypeToEditSelected" from="MacroscopicEditorGUI/MetaballBodyEditorComponent" to="." method="OnStartEditingCellType"]
 [connection signal="OnTabSelected" from="MacroscopicEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]
-[connection signal="OnOpenHelp" from="MacroscopicEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToHelp"]
-[connection signal="OnOpenMenu" from="MacroscopicEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="Open"]
-[connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 
 [editable path="EditorWorld"]
 [editable path="MicrobeEditorWorld"]

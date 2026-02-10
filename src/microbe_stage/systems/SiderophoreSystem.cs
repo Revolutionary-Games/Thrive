@@ -2,30 +2,27 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles siderophore projectile collisions
 /// </summary>
-[With(typeof(CollisionManagement))]
-[With(typeof(Physics))]
-[With(typeof(TimedLife))]
-[With(typeof(SiderophoreProjectile))]
+[WritesToComponent(typeof(CompoundStorage))]
 [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
 [RuntimeCost(0.5f, false)]
-public sealed class SiderophoreSystem : AEntitySetSystem<float>
+public partial class SiderophoreSystem : BaseSystem<World, float>
 {
     private readonly ChunkConfiguration smallIronChunkCache = SimulationParameters.Instance.GetBiome("default")
         .Conditions.Chunks["ironSmallChunk"];
 
     private readonly IWorldSimulation worldSimulation;
 
-    public SiderophoreSystem(World world, IParallelRunner runner, IWorldSimulation worldSimulation) :
-        base(world, runner)
+    public SiderophoreSystem(World world, IWorldSimulation worldSimulation) : base(world)
     {
         this.worldSimulation = worldSimulation;
 
@@ -33,14 +30,13 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
         smallIronChunkCache.Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>();
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [All<WorldPosition>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref SiderophoreProjectile projectile, ref CollisionManagement collisions, in Entity entity)
     {
-        ref var projectile = ref entity.Get<SiderophoreProjectile>();
-
         if (projectile.IsUsed)
             return;
-
-        ref var collisions = ref entity.Get<CollisionManagement>();
 
         if (!projectile.ProjectileInitialized)
         {
@@ -78,8 +74,11 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
     {
         var target = collision.SecondEntity;
 
+        if (target == default(Entity))
+            return false;
+
         // Skip if hit something that isn't a valid target
-        if (!target.Has<SiderophoreTarget>() || !target.Has<CompoundStorage>())
+        if (!target.IsAliveAndHas<SiderophoreTarget>() || !target.Has<CompoundStorage>())
             return false;
 
         ref var compounds = ref target.Get<CompoundStorage>();
@@ -95,7 +94,7 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
 
         var firstEntityPosition = collision.FirstEntity.Get<WorldPosition>().Position;
 
-        // This shallow copies a struct to modify here
+        // This makes a shallow copy of the struct to modify here
         var smallIronChunk = smallIronChunkCache;
 
         smallIronChunk.ChunkScale = (float)Math.Sqrt(size);

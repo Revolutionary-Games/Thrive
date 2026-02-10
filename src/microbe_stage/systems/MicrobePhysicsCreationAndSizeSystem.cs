@@ -3,16 +3,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
-///   Handles creating microbe physics and handling a few house keeping tasks based on the final cell size data
+///   Handles creating microbe physics and handling a few housekeeping tasks based on the final cell size data
 ///   from the membrane
 /// </summary>
 /// <remarks>
@@ -21,11 +22,6 @@ using World = DefaultEcs.World;
 ///     colony (only colony leader has a physics shape)
 ///   </para>
 /// </remarks>
-[With(typeof(CellProperties))]
-[With(typeof(MicrobePhysicsExtraData))]
-[With(typeof(OrganelleContainer))]
-[With(typeof(PhysicsShapeHolder))]
-[Without(typeof(AttachedToEntity))]
 [WritesToComponent(typeof(MicrobeColony))]
 [WritesToComponent(typeof(CompoundAbsorber))]
 [WritesToComponent(typeof(CurrentAffected))]
@@ -35,12 +31,11 @@ using World = DefaultEcs.World;
 [RunsBefore(typeof(PhysicsBodyCreationSystem))]
 [RunsBefore(typeof(MicrobeReproductionSystem))]
 [RunsBefore(typeof(MulticellularGrowthSystem))]
-public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float>
+public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, float>
 {
     private readonly float pilusDensity;
 
-    // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-    /*private readonly ThreadLocal<List<(PhysicsShape Shape, Vector3 Position, Quaternion Rotation)>>
+    private readonly ThreadLocal<List<(PhysicsShape Shape, Vector3 Position, Quaternion Rotation)>>
         temporaryCombinedShapeData = new(() => new List<(PhysicsShape Shape, Vector3 Position, Quaternion Rotation)>());
 
     private readonly ThreadLocal<List<(Membrane Membrane, bool Bacteria)>> temporaryColonyMemberMembranes =
@@ -51,15 +46,7 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
         temporaryColonyMemberOrganelles =
             new(() =>
                 new List<(OrganelleLayout<PlacedOrganelle> Organelles,
-                    Vector3 ExtraOffset, Quaternion ExtraRotation)>());*/
-
-    private readonly List<(PhysicsShape Shape, Vector3 Position, Quaternion Rotation)> temporaryCombinedShapeData =
-        new();
-
-    private readonly List<(Membrane Membrane, bool Bacteria)> temporaryColonyMemberMembranes = new();
-
-    private readonly List<(OrganelleLayout<PlacedOrganelle> Organelles, Vector3 ExtraOffset, Quaternion ExtraRotation)>
-        temporaryColonyMemberOrganelles = new();
+                    Vector3 ExtraOffset, Quaternion ExtraRotation)>());
 
     private readonly Lazy<PhysicsShape> eukaryoticPilus;
 
@@ -68,8 +55,7 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
     /// </summary>
     private readonly Lazy<PhysicsShape> prokaryoticPilus;
 
-    public MicrobePhysicsCreationAndSizeSystem(World world, IParallelRunner parallelRunner) : base(world,
-        parallelRunner)
+    public MicrobePhysicsCreationAndSizeSystem(World world) : base(world)
     {
         pilusDensity = SimulationParameters.Instance.GetOrganelleType("pilus").Density;
 
@@ -77,20 +63,31 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
         prokaryoticPilus = new Lazy<PhysicsShape>(() => CreatePilusShape(Constants.PILUS_PHYSICS_SIZE * 0.5f));
     }
 
-    public override void Dispose()
+    public sealed override void Dispose()
     {
         Dispose(true);
         base.Dispose();
+        GC.SuppressFinalize(this);
     }
 
-    protected override void Update(float delta, in Entity entity)
+    protected virtual void Dispose(bool disposing)
     {
-        ref var cellProperties = ref entity.Get<CellProperties>();
+        if (disposing)
+        {
+            temporaryCombinedShapeData.Dispose();
+            temporaryColonyMemberMembranes.Dispose();
+            temporaryColonyMemberOrganelles.Dispose();
+        }
+    }
 
+    [Query]
+    [None<AttachedToEntity>]
+    [All<MicrobePhysicsExtraData, OrganelleContainer>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref CellProperties cellProperties, ref PhysicsShapeHolder shapeHolder, in Entity entity)
+    {
         if (cellProperties.ShapeCreated)
             return;
-
-        ref var shapeHolder = ref entity.Get<PhysicsShapeHolder>();
 
         // We don't skip creating a shape if there is already one as microbes can change shape, so we re-apply
         // the shape if there is a previous one
@@ -99,10 +96,11 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
 
         var membrane = cellProperties.CreatedMembrane;
 
-        // Wait until membrane is created (and no longer being updated)
+        // Wait until the membrane is created (and no longer being updated)
         if (!cellProperties.IsMembraneReady())
             return;
 
+        // This uses this fetch approach as it is very rare that microbes need shapes created
         ref var extraData = ref entity.Get<MicrobePhysicsExtraData>();
 
         List<(Membrane Membrane, bool Bacteria)>? colonyMembranes = null;
@@ -134,16 +132,13 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
             // their bodies won't get created as they are disabled, so make sure that works and then remove this
             // TODO comment)
 
-            // If there are no pili or colony members then a single shape is enough for this microbe
+            // If there are no pili or colony members, then a single shape is enough for this microbe
             bool requiresCompoundShape = false;
 
             if (entity.Has<MicrobeColony>())
             {
                 // Skip creating shape if some colony member isn't ready yet
-                // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-                // colonyMembranes = temporaryColonyMemberMembranes.Value!;
-                colonyMembranes = temporaryColonyMemberMembranes;
-                Monitor.Enter(colonyMembranes);
+                colonyMembranes = temporaryColonyMemberMembranes.Value!;
 
                 ref var colony = ref entity.Get<MicrobeColony>();
 
@@ -194,28 +189,20 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
             {
                 // TODO: caching of compound shapes to make the old shape matching detection work
 
-                // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-                // var combinedData = temporaryCombinedShapeData.Value!;
+                var combinedData = temporaryCombinedShapeData.Value!;
 
-                lock (temporaryCombinedShapeData)
+                if (colonyMembranes != null)
                 {
-                    if (colonyMembranes != null)
-                    {
-                        // memberOrganelles = temporaryColonyMemberOrganelles.Value!;
-
-                        lock (temporaryColonyMemberOrganelles)
-                        {
-                            shapeHolder.Shape = CreateCompoundMicrobeShape(ref extraData, ref organelles,
-                                ref cellProperties, entity, temporaryCombinedShapeData, temporaryColonyMemberOrganelles,
-                                rawData, count, colonyMembranes);
-                        }
-                    }
-                    else
-                    {
-                        shapeHolder.Shape = CreateCompoundMicrobeShape(ref extraData, ref organelles,
-                            ref cellProperties, entity, temporaryCombinedShapeData, null, rawData, count,
-                            colonyMembranes);
-                    }
+                    var memberOrganelles = temporaryColonyMemberOrganelles.Value!;
+                    shapeHolder.Shape = CreateCompoundMicrobeShape(ref extraData, ref organelles,
+                        ref cellProperties, entity, combinedData, memberOrganelles,
+                        rawData, count, colonyMembranes);
+                }
+                else
+                {
+                    shapeHolder.Shape = CreateCompoundMicrobeShape(ref extraData, ref organelles,
+                        ref cellProperties, entity, combinedData, null, rawData, count,
+                        colonyMembranes);
                 }
 
                 if (colonyMembranes != null)
@@ -242,13 +229,7 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
         }
         finally
         {
-            if (colonyMembranes != null)
-            {
-                colonyMembranes.Clear();
-
-                // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-                Monitor.Exit(colonyMembranes);
-            }
+            colonyMembranes?.Clear();
         }
     }
 
@@ -337,7 +318,7 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
 
                 ref var currentMemberOrganelles = ref member.Get<OrganelleContainer>();
 
-                if (!member.Has<AttachedToEntity>())
+                if (!member.IsAliveAndHas<AttachedToEntity>())
                 {
                     GD.PrintErr("Colony member has no attached component, created combined body will be wrong");
                     continue;
@@ -356,8 +337,8 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
         }
 
         // Pili are after the microbe shapes, otherwise pilus collision detection can't be done as we just
-        // compare the sub-shape index to the number of microbe collisions to determine if something is a pilus
-        // And to detect between the pilus variants, first normal pili are created and only then injectisomes
+        // compare the sub-shape index to the number of microbe collisions to determine if something is a pilus.
+        // And to detect between the pilus variants, first normal pili are created and only then injectisomes.
         bool hasInjectisomes = false;
 
         foreach (var organelle in organelles.Organelles!)
@@ -468,7 +449,7 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
     /// <summary>
     ///   Updates the microbe movement's used rotation rate.
     ///   Note that the PhysicsShape is not currently used in rotation calculations, and this code is here due to
-    ///   earlier version requiring it.
+    ///   an earlier version requiring it.
     /// </summary>
     private void UpdateRotationRate(ref OrganelleContainer organelleContainer)
     {
@@ -505,17 +486,6 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
         {
             entity.Get<CurrentAffected>().EffectStrength = cellProperties.Radius
                 * Constants.CURRENT_FORCE_CELL_MULTIPLIER;
-        }
-    }
-
-    private void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-            /*temporaryCombinedShapeData.Dispose();
-            temporaryColonyMemberMembranes.Dispose();
-            temporaryColonyMemberOrganelles.Dispose();*/
         }
     }
 }

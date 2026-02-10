@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://chhcfab8qqrt1"]
+
+[ext_resource type="PackedScene" uid="uid://buucw5dsg2r7v" path="res://assets/models/microbe_terrain/SerpentiniteTerrainChunk1.glb" id="1_i0wob"]
+[ext_resource type="Texture2D" uid="uid://33pvh0blacl2" path="res://assets/textures/environment/serpentinite.png" id="2_gaw3q"]
+[ext_resource type="Texture2D" uid="uid://6duyh5qew7th" path="res://assets/textures/environment/Serpentinite1AO.png" id="3_02yl6"]
+[ext_resource type="Texture2D" uid="uid://d0kjur5jjwg5o" path="res://assets/textures/environment/serpentinite_normal.png" id="4_e6yfs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s8uhg"]
+albedo_texture = ExtResource("2_gaw3q")
+normal_enabled = true
+normal_texture = ExtResource("4_e6yfs")
+ao_enabled = true
+ao_light_affect = 0.35
+ao_texture = ExtResource("3_02yl6")
+
+[node name="SerpentiniteTerrainChunk1" unique_id=1425134733 instance=ExtResource("1_i0wob")]
+
+[node name="serpentinite1" parent="." index="0" unique_id=323230757]
+surface_material_override/0 = SubResource("StandardMaterial3D_s8uhg")

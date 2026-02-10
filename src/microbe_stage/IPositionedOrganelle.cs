@@ -1,17 +1,24 @@
 ﻿/// <summary>
 ///   Organelle type along with position information
 /// </summary>
-public interface IPositionedOrganelle : IPositionedHex
+public interface IPositionedOrganelle : IPositionedHex, IReadOnlyPositionedOrganelle
+{
+    public OrganelleUpgrades? ModifiableUpgrades { get; }
+
+    public new bool IsEndosymbiont { get; set; }
+}
+
+public interface IReadOnlyPositionedOrganelle : IReadOnlyPositionedHex
 {
     public OrganelleDefinition Definition { get; }
 
     /// <summary>
-    ///   This is now the number of times to rotate. This used to be the angle in degrees
-    /// </summary>
-    public int Orientation { get; set; }
-
-    /// <summary>
     ///   The upgrades that this organelle has which affect how the components function
     /// </summary>
-    public OrganelleUpgrades? Upgrades { get; }
+    public IReadOnlyOrganelleUpgrades? Upgrades { get; }
+
+    /// <summary>
+    ///   True if this organelle is an endosymbiont, which makes most operations free.
+    /// </summary>
+    public bool IsEndosymbiont { get; }
 }

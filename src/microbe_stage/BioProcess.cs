@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
+using SharedBase.Archive;
 using ThriveScriptsShared;
 
 /// <summary>
 ///   Definition of a bio process that cells can do in the form of a TweakedProcess.
 /// </summary>
-public class BioProcess : IRegistryType
+public class BioProcess : RegistryType
 {
     /// <summary>
     ///   User visible pretty name
@@ -14,7 +15,7 @@ public class BioProcess : IRegistryType
     public string Name = null!;
 
     /// <summary>
-    ///   Inputs the process needs. The keys are compound names and values are amounts
+    ///   Inputs the process requires. The keys are compound names and values are amounts
     /// </summary>
     [JsonIgnore]
     public Dictionary<CompoundDefinition, float> Inputs = new();
@@ -27,6 +28,13 @@ public class BioProcess : IRegistryType
     /// </summary>
     public bool IsMetabolismProcess;
 
+    /// <summary>
+    ///   ID of the process for more efficient matching. Note that this is not persistent! But calculated at game
+    ///   startup each time. So do not save this in any permanent data.
+    /// </summary>
+    [JsonIgnore]
+    public ushort ProcessId;
+
 #pragma warning disable 169,649 // Used through reflection (and JSON)
     private string? untranslatedName;
 
@@ -38,9 +46,15 @@ public class BioProcess : IRegistryType
     private Dictionary<Compound, float>? outputsRaw;
 #pragma warning restore 169,649
 
-    public string InternalName { get; set; } = null!;
+    [JsonIgnore]
+    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.BioProcess;
 
-    public void Check(string name)
+    public static object ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        return SimulationParameters.Instance.GetBioProcess(ReadInternalName(reader, version));
+    }
+
+    public override void Check(string name)
     {
         if (inputsRaw == null || outputsRaw == null)
         {
@@ -77,6 +91,8 @@ public class BioProcess : IRegistryType
 
     public void Resolve(SimulationParameters simulationParameters)
     {
+        ProcessId = simulationParameters.GetNextProcessId();
+
         // Resolve inputs and outputs
         foreach (var entry in inputsRaw!)
         {
@@ -89,7 +105,7 @@ public class BioProcess : IRegistryType
         }
     }
 
-    public void ApplyTranslations()
+    public override void ApplyTranslations()
     {
         TranslationHelper.ApplyTranslations(this);
     }

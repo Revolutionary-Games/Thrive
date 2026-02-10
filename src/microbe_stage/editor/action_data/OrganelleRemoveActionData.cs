@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using System;
+using SharedBase.Archive;
 
-[JSONAlwaysDynamicType]
 public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate, CellType>
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
-    ///   Used for replacing Cytoplasm. If true, this action is free.
+    ///   Used for replacing Cytoplasm. This used to make the action free, but now the species comparison needs special
+    ///   logic to detect this.
     /// </summary>
     public bool GotReplaced;
 
-    [JsonConstructor]
     public OrganelleRemoveActionData(OrganelleTemplate organelle, Hex location, int orientation) : base(organelle,
         location, orientation)
     {
@@ -20,43 +21,40 @@ public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate, 
     {
     }
 
-    protected override double CalculateBaseCostInternal()
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.OrganelleRemoveActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
-        return GotReplaced ? 0 : base.CalculateBaseCostInternal();
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.OrganelleRemoveActionData)
+            throw new NotSupportedException();
+
+        writer.WriteObject((OrganelleRemoveActionData)obj);
     }
 
-    protected override (double Cost, double RefundCost) CalculateCostInternal(
-        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
+    public static OrganelleRemoveActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
     {
-        var cost = base.CalculateCostInternal(history, insertPosition);
-        double refund = 0;
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var count = history.Count;
-        for (int i = 0; i < insertPosition && i < count; ++i)
-        {
-            var other = history[i];
+        var hexVersion = reader.ReadUInt16();
+        var instance = new OrganelleRemoveActionData(reader.ReadObject<OrganelleTemplate>(), reader.ReadHex(),
+            reader.ReadInt32());
 
-            // Endosymbionts can be deleted for free after placing (not that it is very useful, but it should be free)
-            if (other is EndosymbiontPlaceActionData endosymbiontPlaceActionData &&
-                MatchesContext(endosymbiontPlaceActionData))
-            {
-                if (RemovedHex == endosymbiontPlaceActionData.PlacedOrganelle)
-                {
-                    return (0, cost.RefundCost);
-                }
-            }
+        // Base version is different
+        instance.ReadBasePropertiesFromArchive(reader, hexVersion);
 
-            if (other is OrganelleUpgradeActionData upgradeActionData &&
-                upgradeActionData.UpgradedOrganelle == RemovedHex && MatchesContext(upgradeActionData))
-            {
-                // This replaces (refunds) the MP for an upgrade done to this organelle
-                if (ReferenceEquals(upgradeActionData.UpgradedOrganelle, RemovedHex))
-                {
-                    refund += upgradeActionData.GetCalculatedSelfCost();
-                }
-            }
-        }
+        instance.GotReplaced = reader.ReadBool();
+        return instance;
+    }
 
-        return (cost.Cost, cost.RefundCost + refund);
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(SERIALIZATION_VERSION_HEX);
+        base.WriteToArchive(writer);
+
+        writer.Write(GotReplaced);
     }
 }

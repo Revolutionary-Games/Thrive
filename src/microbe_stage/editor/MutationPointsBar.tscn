@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://seoiqsheiljf"]
+[gd_scene format=3 uid="uid://seoiqsheiljf"]
 
 [ext_resource type="Texture2D" uid="uid://drdwtf2f6qqch" path="res://assets/textures/gui/bevel/MP.png" id="2"]
 [ext_resource type="Material" uid="uid://dodp28iio21ld" path="res://src/microbe_stage/editor/MutationPointsTextMaterial.tres" id="3"]
@@ -59,7 +59,7 @@ _data = {
 &"FlashBar": SubResource("7")
 }
 
-[node name="MutationPointsBar" type="HBoxContainer" node_paths=PackedStringArray("currentMutationPointsLabel", "mutationPointsArrow", "resultingMutationPointsLabel", "baseMutationPointsLabel", "mutationPointsBar", "mutationPointsSubtractBar", "animationPlayer")]
+[node name="MutationPointsBar" type="HBoxContainer" unique_id=1253402411 node_paths=PackedStringArray("currentMutationPointsLabel", "mutationPointsArrow", "resultingMutationPointsLabel", "baseMutationPointsLabel", "mutationPointsBar", "mutationPointsSubtractBar", "animationPlayer")]
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 328.0
@@ -74,7 +74,7 @@ mutationPointsBar = NodePath("MarginContainer/MPBarMain")
 mutationPointsSubtractBar = NodePath("MarginContainer/MPBarSubtract")
 animationPlayer = NodePath("MarginContainer/MPBarMain/FlashAnimation")
 
-[node name="MPIcon" type="TextureRect" parent="."]
+[node name="MPIcon" type="TextureRect" parent="." unique_id=891587875]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -83,19 +83,19 @@ texture = ExtResource("2")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1821454888]
 show_behind_parent = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Background" type="ColorRect" parent="MarginContainer"]
+[node name="Background" type="ColorRect" parent="MarginContainer" unique_id=518908507]
 show_behind_parent = true
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 color = Color(0, 0, 0, 0.54902)
 
-[node name="MPBarSubtract" type="ProgressBar" parent="MarginContainer"]
+[node name="MPBarSubtract" type="ProgressBar" parent="MarginContainer" unique_id=999195967]
 self_modulate = Color(0.721569, 0.721569, 0.721569, 1)
 show_behind_parent = true
 layout_mode = 2
@@ -108,7 +108,7 @@ step = 0.1
 value = 100.0
 show_percentage = false
 
-[node name="MPBarMain" type="ProgressBar" parent="MarginContainer"]
+[node name="MPBarMain" type="ProgressBar" parent="MarginContainer" unique_id=1493721340]
 show_behind_parent = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -120,32 +120,32 @@ step = 0.1
 value = 100.0
 show_percentage = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MPBarMain"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MPBarMain" unique_id=1316988099]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MPBarMain/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MPBarMain/HBoxContainer" unique_id=2031336215]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 
-[node name="MPLabel" type="Label" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer"]
+[node name="MPLabel" type="Label" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer" unique_id=1654793076]
 material = ExtResource("3")
 layout_mode = 2
 text = "MUTATION_POINTS"
 label_settings = ExtResource("4_6f2eg")
 vertical_alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/MPBarMain/HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/MPBarMain/HBoxContainer" unique_id=1087352486]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 15
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer2" unique_id=1045543713]
 layout_mode = 2
 alignment = 2
 
-[node name="CurrentMp" type="Label" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
+[node name="CurrentMp" type="Label" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer" unique_id=1365515049]
 material = ExtResource("3")
 layout_mode = 2
 size_flags_horizontal = 0
@@ -153,7 +153,7 @@ text = "100"
 label_settings = ExtResource("4_6f2eg")
 vertical_alignment = 1
 
-[node name="MpArrow" type="TextureRect" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
+[node name="MpArrow" type="TextureRect" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer" unique_id=539993166]
 visible = false
 material = ExtResource("3")
 custom_minimum_size = Vector2(18, 20)
@@ -163,7 +163,7 @@ texture = ExtResource("4")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="ResultingMp" type="Label" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
+[node name="ResultingMp" type="Label" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer" unique_id=1177275330]
 editor_description = "PLACEHOLDER"
 visible = false
 material = ExtResource("3")
@@ -173,7 +173,7 @@ text = "100)"
 label_settings = ExtResource("4_6f2eg")
 vertical_alignment = 1
 
-[node name="BaseMp" type="Label" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
+[node name="BaseMp" type="Label" parent="MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer" unique_id=787269555]
 editor_description = "PLACEHOLDER"
 material = ExtResource("3")
 layout_mode = 2
@@ -182,7 +182,5 @@ text = "/ 100 %"
 label_settings = ExtResource("4_6f2eg")
 vertical_alignment = 1
 
-[node name="FlashAnimation" type="AnimationPlayer" parent="MarginContainer/MPBarMain"]
-libraries = {
-&"": SubResource("AnimationLibrary_g5nvi")
-}
+[node name="FlashAnimation" type="AnimationPlayer" parent="MarginContainer/MPBarMain" unique_id=940315002]
+libraries/ = SubResource("AnimationLibrary_g5nvi")

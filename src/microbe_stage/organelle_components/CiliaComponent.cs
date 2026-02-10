@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Components;
-using DefaultEcs;
 using Godot;
 
 public class CiliaComponent : IOrganelleComponent
 {
-    private const string CILIA_PULL_UPGRADE_NAME = "pull";
+    public const string CILIA_PULL_UPGRADE_NAME = "pull";
 
     private PlacedOrganelle parentOrganelle = null!;
 
@@ -195,8 +196,7 @@ public class CiliaComponent : IOrganelleComponent
             // Cilia initialization
             var recorder = worldSimulation.StartRecordingEntityCommands();
 
-            var entityRecord = recorder.Record(microbeEntity);
-            entityRecord.Set(new PhysicsSensor(Constants.MAX_SIMULTANEOUS_COLLISIONS_SENSOR)
+            recorder.Add(microbeEntity, new PhysicsSensor(Constants.MAX_SIMULTANEOUS_COLLISIONS_SENSOR)
             {
                 ActiveArea = CreateCiliaDetectorShape(sharedPullData.CiliaCount),
             });
@@ -209,8 +209,8 @@ public class CiliaComponent : IOrganelleComponent
 
         ref var sensor = ref microbeEntity.Get<PhysicsSensor>();
 
-        // When loading a save some state needs to be reinitialized. Or if the cilia count has changed then the shape
-        // also needs to be recreated
+        // When loading a save, some state needs to be reinitialized.
+        // Or if the cilia count has changed, then the shape also needs to be recreated.
         if (sensor.ActiveArea == null || sharedPullData.SizeCreatedWithCilia != sharedPullData.CiliaCount)
         {
             // TODO: could dispose the old area here to release that shape data faster
@@ -228,8 +228,8 @@ public class CiliaComponent : IOrganelleComponent
 
         sensor.GetDetectedBodies(sharedPullData.JustPulledEntities);
 
-        // Skipped when count is 1 as the cell is just detecting itself
-        if (sharedPullData.JustPulledEntities.Count < 2)
+        // Usually when there's at least one collision, it isn't just us (as our sensor tries to ignore us)
+        if (sharedPullData.JustPulledEntities.Count < 1)
         {
             sharedPullData.JustPulledEntities.Clear();
             return;
@@ -242,12 +242,15 @@ public class CiliaComponent : IOrganelleComponent
 
         foreach (var pulledEntity in sharedPullData.JustPulledEntities)
         {
-            // Don't pull self
+            // Don't pull self (if the self-collision ignoring did not apply fully due to body creation order)
             if (pulledEntity == microbeEntity)
                 continue;
 
+            if (pulledEntity == default(Entity))
+                continue;
+
             // Skip if something that can't be pulled
-            if (!pulledEntity.Has<ManualPhysicsControl>())
+            if (!pulledEntity.IsAliveAndHas<ManualPhysicsControl>())
                 continue;
 
             // Skip attached things
@@ -344,7 +347,7 @@ public class CiliaComponent : IOrganelleComponent
         public int SizeCreatedWithCilia;
 
         /// <summary>
-        ///   Used to detect if the primary cilia disappears
+        ///   Used to detect if the primary cilia disappear
         /// </summary>
         public int PullPerformed;
 

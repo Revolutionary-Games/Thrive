@@ -7,8 +7,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {},
@@ -44,7 +44,8 @@
       "none": {
         "IsDefault": true,
         "Name": "UPGRADE_NAME_NONE",
-        "Description": "UPGRADE_DESCRIPTION_NONE"
+        "Description": "UPGRADE_DESCRIPTION_NONE",
+        "MPCost": 15
       },
       "injectisome": {
         "Name": "UPGRADE_PILUS_INJECTISOME",
@@ -66,8 +67,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {
@@ -104,8 +105,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {
@@ -150,8 +151,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {
@@ -184,8 +185,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {
@@ -222,8 +223,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {
@@ -271,7 +272,8 @@
       "none": {
         "IsDefault": true,
         "Name": "TOXIN_CYTOTOXIN",
-        "Description": "TOXIN_CYTOTOXIN_DESCRIPTION"
+        "Description": "TOXIN_CYTOTOXIN_DESCRIPTION",
+        "MPCost": 10
       },
       "oxytoxy": {
         "Name": "OXYTOXY_NT",
@@ -325,8 +327,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {
@@ -342,7 +344,7 @@
       "UV": 0.03,
       "Oxygen": 0.01
     },
-    "Density": 1200,
+    "Density": 1600,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Chromatophore.tscn"
     },
@@ -372,8 +374,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {
@@ -387,7 +389,7 @@
     "ToleranceEffects": {
       "Oxygen": 0.03
     },
-    "Density": 1100,
+    "Density": 1000,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Metabolosome.tscn"
     },
@@ -417,8 +419,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {
@@ -432,7 +434,7 @@
     "ToleranceEffects": {
       "Oxygen": -0.03
     },
-    "Density": 1100,
+    "Density": 1000,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Hydrogenase.tscn"
     },
@@ -454,12 +456,12 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       },
       {
-        "r": -1,
-        "q": 0
+        "q": 0,
+        "r": -1
       }
     ],
     "Processes": {
@@ -473,7 +475,7 @@
     "ToleranceEffects": {
       "Oxygen": -0.06
     },
-    "Density": 1100,
+    "Density": 1000,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Hydrogenosome.tscn"
     },
@@ -508,12 +510,12 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       },
       {
-        "r": -1,
-        "q": 0
+        "q": 0,
+        "r": -1
       }
     ],
     "Processes": {
@@ -549,12 +551,13 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {
-      "bacterial_thermosynthesis": 1
+      "bacterial_thermosynthesis": 1,
+      "glycolysis": 1
     },
     "Components": {
       "Storage": {
@@ -598,12 +601,12 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       },
       {
-        "r": -1,
-        "q": 0
+        "q": 0,
+        "r": -1
       }
     ],
     "Processes": {
@@ -637,8 +640,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {},
@@ -647,7 +650,7 @@
         "Momentum": 50
       }
     },
-    "Density": 1200,
+    "Density": 1100,
     "RelativeDensityVolume": 1,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Flagellum.tscn",
@@ -686,8 +689,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {},
@@ -721,12 +724,12 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       },
       {
-        "r": -1,
-        "q": 0
+        "q": 0,
+        "r": -1
       }
     ],
     "Processes": {
@@ -740,7 +743,7 @@
     "ToleranceEffects": {
       "Oxygen": 0.06
     },
-    "Density": 1100,
+    "Density": 1000,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Mitochondrion.tscn"
     },
@@ -775,8 +778,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {
@@ -824,6 +827,7 @@
         "IsDefault": true,
         "Name": "TOXIN_CYTOTOXIN",
         "Description": "TOXIN_CYTOTOXIN_DESCRIPTION",
+        "MPCost": 10,
         "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
       },
       "oxytoxy": {
@@ -874,8 +878,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {},
@@ -919,16 +923,16 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       },
       {
-        "r": -1,
-        "q": 0
+        "q": 0,
+        "r": -1
       },
       {
-        "r": -1,
-        "q": 1
+        "q": 1,
+        "r": -1
       }
     ],
     "Processes": {
@@ -943,7 +947,7 @@
       "UV": 0.08,
       "Oxygen": 0.02
     },
-    "Density": 1200,
+    "Density": 1800,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Chloroplast.tscn"
     },
@@ -973,8 +977,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {
@@ -985,7 +989,7 @@
         "Capacity": 0.5
       }
     },
-    "Density": 1000,
+    "Density": 800,
     "CorpseChunkGraphics": {
       "ScenePath": "res://assets/models/organelles/Cytoplasm.tscn"
     },
@@ -1006,44 +1010,44 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       },
       {
-        "r": 0,
-        "q": 1
+        "q": 1,
+        "r": 0
       },
       {
-        "r": 1,
-        "q": 0
+        "q": 0,
+        "r": 1
       },
       {
-        "r": -1,
-        "q": 0
+        "q": 0,
+        "r": -1
       },
       {
-        "r": -1,
-        "q": 1
+        "q": 1,
+        "r": -1
       },
       {
-        "r": 1,
-        "q": -1
+        "q": -1,
+        "r": 1
       },
       {
-        "r": 0,
-        "q": -1
+        "q": -1,
+        "r": 0
       },
       {
-        "r": 1,
-        "q": 1
+        "q": 1,
+        "r": 1
       },
       {
-        "r": 2,
-        "q": 0
+        "q": 0,
+        "r": 2
       },
       {
-        "r": 2,
-        "q": -1
+        "q": -1,
+        "r": 2
       }
     ],
     "Processes": {},
@@ -1056,7 +1060,7 @@
       "Nucleus"
     ],
     "ShouldScale": false,
-    "Density": 1200,
+    "Density": 500,
     "RelativeDensityVolume": 1,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Nucleus.tscn"
@@ -1077,8 +1081,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {},
@@ -1106,8 +1110,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {
@@ -1140,7 +1144,8 @@
       "none": {
         "IsDefault": true,
         "Name": "UPGRADE_NAME_NONE",
-        "Description": "UPGRADE_DESCRIPTION_NONE"
+        "Description": "UPGRADE_DESCRIPTION_NONE",
+        "MPCost": 20
       },
       "mucocyst": {
         "Name": "UPGRADE_SLIME_JET_MUCOCYST",
@@ -1162,8 +1167,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {},
@@ -1191,8 +1196,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {
@@ -1235,12 +1240,12 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       },
       {
-        "r": -1,
-        "q": 0
+        "q": 0,
+        "r": -1
       }
     ],
     "Processes": {
@@ -1290,8 +1295,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {},
@@ -1337,8 +1342,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {},
@@ -1349,11 +1354,9 @@
       "Lysosome": {}
     },
     "Enzymes": {
-      "lipase": 1,
-      "chitinase": 0,
-      "cellulase": 0
+      "lipase": 1
     },
-    "Density": 1100,
+    "Density": 1000,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Lysosome.tscn"
     },
@@ -1386,12 +1389,12 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       },
       {
-        "r": -1,
-        "q": 0
+        "q": 0,
+        "r": -1
       }
     ],
     "Processes": {
@@ -1437,12 +1440,12 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       },
       {
-        "r": -1,
-        "q": 0
+        "q": 0,
+        "r": -1
       }
     ],
     "Processes": {
@@ -1490,8 +1493,8 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       }
     ],
     "Processes": {},
@@ -1522,24 +1525,24 @@
     },
     "Hexes": [
       {
-        "r": 0,
-        "q": 0
+        "q": 0,
+        "r": 0
       },
       {
-        "r": 1,
-        "q": 0
+        "q": 0,
+        "r": 1
       },
       {
-        "r": 2,
-        "q": 0
+        "q": 0,
+        "r": 2
       },
       {
-        "r": -1,
-        "q": 0
+        "q": 0,
+        "r": -1
       },
       {
-        "r": -2,
-        "q": 0
+        "q": 0,
+        "r": -2
       }
     ],
     "Processes": {},

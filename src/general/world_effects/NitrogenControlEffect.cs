@@ -1,29 +1,52 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Makes sure nitrogen is between a defined safe limit and attempts to correct things if not (as pure processes
 ///   don't result in nitrogen balance)
 /// </summary>
-[JSONDynamicTypeAllowed]
 public class NitrogenControlEffect : IWorldEffect
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     // ReSharper disable once CollectionNeverUpdated.Local
     /// <summary>
     ///   This doesn't add any clouds with sizes, so this is just a permanently empty dictionary
     /// </summary>
     private readonly Dictionary<Compound, float> cloudSizesDummy = new();
 
-    [JsonProperty]
     private readonly XoShiRo256starstar random = new();
 
-    [JsonProperty]
-    private GameWorld targetWorld;
+    private readonly GameWorld targetWorld;
 
     public NitrogenControlEffect(GameWorld targetWorld)
     {
         this.targetWorld = targetWorld;
+    }
+
+    private NitrogenControlEffect(GameWorld targetWorld, XoShiRo256starstar random)
+    {
+        this.targetWorld = targetWorld;
+        this.random = random;
+    }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.NitrogenControlEffect;
+    public bool CanBeReferencedInArchive => false;
+
+    public static NitrogenControlEffect ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new NitrogenControlEffect(reader.ReadObject<GameWorld>(), reader.ReadObject<XoShiRo256starstar>());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(targetWorld);
+        writer.WriteAnyRegisteredValueAsObject(random);
     }
 
     public void OnRegisterToWorld()

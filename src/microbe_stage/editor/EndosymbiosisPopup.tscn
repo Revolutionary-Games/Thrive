@@ -1,11 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6e83y3bsdx4q"]
+[gd_scene format=3 uid="uid://c6e83y3bsdx4q"]
 
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1_o4oq3"]
 [ext_resource type="Script" uid="uid://6gq7r0e7tea3" path="res://src/microbe_stage/editor/EndosymbiosisPopup.cs" id="2_s4663"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_50ouf"]
 
-[node name="EndosymbiosisPopup" node_paths=PackedStringArray("generalExplanationLabel", "inProgressAdviceLabel", "prokaryoteFullLabel", "choicesContainer", "progressContainer") instance=ExtResource("1_o4oq3")]
-custom_minimum_size = Vector2(400, 400)
+[node name="EndosymbiosisPopup" unique_id=1781593876 node_paths=PackedStringArray("generalExplanationLabel", "inProgressAdviceLabel", "prokaryoteFullLabel", "noSpeciesAvailableLabel", "currentPatchSpeciesContainer", "currentPatchSpecies", "otherPatchesSpeciesContainer", "otherPatchesSpecies", "progressContainer") instance=ExtResource("1_o4oq3")]
+custom_minimum_size = Vector2(460, 400)
 offset_left = 444.0
 offset_top = 162.0
 offset_right = 904.0
@@ -15,40 +15,45 @@ Lawk = false
 generalExplanationLabel = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Explanation")
 inProgressAdviceLabel = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EndosymbiosisProgressExplanation")
 prokaryoteFullLabel = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticLimit")
-choicesContainer = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EndosymbiontsToChoose")
+noSpeciesAvailableLabel = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NoSpeciesLabel")
+currentPatchSpeciesContainer = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/CurrentPatchEndosymbiontsContainer")
+currentPatchSpecies = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/CurrentPatchEndosymbiontsContainer/CurrentPatchEndosymbionts")
+otherPatchesSpeciesContainer = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/OtherPatchesEndosymbiontsContainer")
+otherPatchesSpecies = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/OtherPatchesEndosymbiontsContainer/OtherPatchesEndosymbionts")
 progressContainer = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EndosymbiosisProgress")
 WindowTitle = "ENDOSYMBIOSIS_TITLE"
 Resizable = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
-custom_minimum_size = Vector2(400, 400)
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="0" unique_id=582534784]
+custom_minimum_size = Vector2(460, 400)
 layout_mode = 0
 offset_right = 460.0
 offset_bottom = 400.0
 mouse_filter = 0
 mouse_force_pass_scroll_events = false
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" index="0"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" index="0" unique_id=923525266]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer" index="0" unique_id=1887688764]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer" index="0" unique_id=470651]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer" index="0"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Explanation" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
+[node name="Explanation" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0" unique_id=1048028308]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "ENDOSYMBIOSIS_EXPLANATION"
 label_settings = ExtResource("3_50ouf")
 autowrap_mode = 3
 
-[node name="EndosymbiosisProgressExplanation" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
+[node name="EndosymbiosisProgressExplanation" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1" unique_id=1170954181]
 visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -56,7 +61,7 @@ text = "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 label_settings = ExtResource("3_50ouf")
 autowrap_mode = 3
 
-[node name="ProkaryoticLimit" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
+[node name="ProkaryoticLimit" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2" unique_id=1238724350]
 visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -65,17 +70,53 @@ label_settings = ExtResource("3_50ouf")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="EndosymbiontsToChoose" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="3"]
+[node name="NoSpeciesLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="3" unique_id=910510386]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "ENDOSYMBIOSIS_NOTHING_ENGULFED"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="CurrentPatchEndosymbiontsContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="4" unique_id=1731060469]
+visible = false
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/CurrentPatchEndosymbiontsContainer" index="0" unique_id=567034801]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/CurrentPatchEndosymbiontsContainer" index="1" unique_id=448316288]
+layout_mode = 2
+text = "SPECIES_IN_CURRENT_PATCH"
+
+[node name="CurrentPatchEndosymbionts" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/CurrentPatchEndosymbiontsContainer" index="2" unique_id=1987474984]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="EndosymbiosisProgress" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="4"]
+[node name="OtherPatchesEndosymbiontsContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="5" unique_id=1355528607]
+visible = false
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/OtherPatchesEndosymbiontsContainer" index="0" unique_id=61647615]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/OtherPatchesEndosymbiontsContainer" index="1" unique_id=191152183]
+layout_mode = 2
+text = "SPECIES_IN_OTHER_PATCHES"
+
+[node name="OtherPatchesEndosymbionts" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/OtherPatchesEndosymbiontsContainer" index="2" unique_id=153500842]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Close" type="Button" parent="VBoxContainer" index="1"]
+[node name="EndosymbiosisProgress" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="6" unique_id=347215873]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Close" type="Button" parent="VBoxContainer" index="1" unique_id=1185012647]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8

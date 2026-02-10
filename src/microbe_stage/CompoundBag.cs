@@ -3,14 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Godot;
 using JetBrains.Annotations;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Object that stores compound amounts and capacities
 /// </summary>
-[UseThriveSerializer]
-public class CompoundBag : ICompoundStorage
+public class CompoundBag : ICompoundStorage, IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
+    // This is not saved as this is re-set by the process system very quickly
     private readonly HashSet<Compound> usefulCompounds = new();
 
     /// <summary>
@@ -18,7 +20,6 @@ public class CompoundBag : ICompoundStorage
     /// </summary>
     private readonly List<Compound> tempCompounds = new();
 
-    [JsonProperty]
     private Dictionary<Compound, float>? compoundCapacities;
 
     private float nominalCapacity;
@@ -26,13 +27,21 @@ public class CompoundBag : ICompoundStorage
     public CompoundBag(float nominalCapacity)
     {
         NominalCapacity = nominalCapacity;
+        Compounds = new Dictionary<Compound, float>();
+    }
+
+    private CompoundBag(Dictionary<Compound, float> compounds, Dictionary<Compound, float>? compoundCapacities,
+        float nominalCapacity)
+    {
+        Compounds = compounds;
+        this.compoundCapacities = compoundCapacities;
+        this.nominalCapacity = nominalCapacity;
     }
 
     /// <summary>
     ///   Specifies the default capacity for all compounds that do
     ///   not have a specific capacity set in <see cref="compoundCapacities"/>
     /// </summary>
-    [JsonProperty]
     public float NominalCapacity
     {
         get => nominalCapacity;
@@ -49,15 +58,43 @@ public class CompoundBag : ICompoundStorage
     ///   Returns all compounds. Don't modify the returned value!
     ///   Except if you want to ignore capacity...
     /// </summary>
-    [JsonProperty]
-    public Dictionary<Compound, float> Compounds { get; private set; } = new();
+    public Dictionary<Compound, float> Compounds { get; private set; }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CompoundBag;
+    public bool CanBeReferencedInArchive => false;
+
+    public static CompoundBag ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        return new CompoundBag(reader.ReadObject<Dictionary<Compound, float>>(),
+            reader.ReadObjectOrNull<Dictionary<Compound, float>>(), reader.ReadFloat());
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(Compounds);
+
+        if (compoundCapacities != null)
+        {
+            writer.WriteObject(compoundCapacities);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
+
+        writer.Write(NominalCapacity);
+    }
 
     /// <summary>
     ///   Gets the capacity for a given compound
     /// </summary>
     /// <param name="compound">Compound type to get capacity for</param>
     /// <param name="ignoreUsefulness">
-    ///   If true then the capacity check ignores if the compound is not considered useful and returns the real
+    ///   If true, then the capacity check ignores if the compound is not considered useful and returns the real
     ///   physical capacity even if the compound is not considered useful to add
     /// </param>
     /// <returns>

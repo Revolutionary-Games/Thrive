@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgtvltlo6yu5i"]
+[gd_scene format=3 uid="uid://cgtvltlo6yu5i"]
 
 [ext_resource type="Script" uid="uid://b482y88q3uiqw" path="res://src/ascension_stage/AscensionCeremony.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://cqwy12d33agr4" path="res://src/gui_common/CreditsScroll.tscn" id="2"]
@@ -11,6 +11,7 @@
 background_mode = 2
 sky = SubResource("2")
 sky_rotation = Vector3(-0.452023, 0, -0.269235)
+ambient_light_source = 1
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.24
 ambient_light_energy = 0.0
@@ -26,7 +27,6 @@ glow_levels/7 = 1.0
 glow_intensity = 0.5
 glow_strength = 0.85
 glow_bloom = 0.7
-glow_blend_mode = 1
 glow_hdr_threshold = 1.29
 glow_hdr_scale = 2.2
 glow_hdr_luminance_cap = 156.51
@@ -47,7 +47,7 @@ albedo_color = Color(0.270588, 0.909804, 0.976471, 0.666667)
 emission_enabled = true
 emission = Color(0.247059, 0.996078, 1, 1)
 
-[node name="AscensionCeremony" type="Node" node_paths=PackedStringArray("gateWalkerSpawn", "rootOfDynamicallySpawned", "rampStartPoint", "rampEndPoint", "ascensionPoint", "creditsDisplay", "creditsSkipInfoContainer", "creditsSkipPrompt", "customScreenBlanker", "worldCameraToDisable")]
+[node name="AscensionCeremony" type="Node" unique_id=975082412 node_paths=PackedStringArray("gateWalkerSpawn", "rootOfDynamicallySpawned", "rampStartPoint", "rampEndPoint", "ascensionPoint", "creditsDisplay", "creditsSkipInfoContainer", "creditsSkipPrompt", "customScreenBlanker", "worldCameraToDisable")]
 process_mode = 3
 script = ExtResource("1")
 ObserverSpawnPointPaths = Array[NodePath]([NodePath("World/ObserverSpawnPoint"), NodePath("World/ObserverSpawnPoint2"), NodePath("World/ObserverSpawnPoint3")])
@@ -62,128 +62,130 @@ creditsSkipPrompt = NodePath("CreditsDisplay/SkipInfoContainer/SkipPrompt")
 customScreenBlanker = NodePath("CustomBlanker")
 worldCameraToDisable = NodePath("World/StaticCamera")
 
-[node name="World" type="Node" parent="."]
+[node name="World" type="Node" parent="." unique_id=1678446976]
 
-[node name="StaticCamera" type="Camera3D" parent="World"]
+[node name="StaticCamera" type="Camera3D" parent="World" unique_id=741455890]
 transform = Transform3D(0.895238, -0.115327, 0.430405, 0, 0.965926, 0.258819, -0.445589, -0.231705, 0.864733, 15.9463, 9.97621, 27.0589)
 current = true
 fov = 80.0
 near = 0.01
 
-[node name="AudioListener3D" type="AudioListener3D" parent="World/StaticCamera"]
+[node name="AudioListener3D" type="AudioListener3D" parent="World/StaticCamera" unique_id=1844397027]
 current = true
 
-[node name="DynamicallySpawned" type="Node" parent="World"]
+[node name="DynamicallySpawned" type="Node" parent="World" unique_id=1835590001]
 
-[node name="WorldLight" type="DirectionalLight3D" parent="World"]
+[node name="WorldLight" type="DirectionalLight3D" parent="World" unique_id=676292013]
 transform = Transform3D(-0.687551, 0.322878, -0.650403, 0.0453496, 0.913048, 0.405323, 0.724719, 0.249185, -0.642409, 0, 1.19209e-07, 0)
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World" unique_id=2135900922]
 environment = SubResource("4")
 
-[node name="GateLight" type="OmniLight3D" parent="World"]
+[node name="GateLight" type="OmniLight3D" parent="World" unique_id=1684053657]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.468164, 4.72071, -0.00111282)
 light_color = Color(0.223529, 0.92549, 1, 1)
 light_energy = 1.2
 omni_range = 35.0259
 omni_attenuation = 1.36604
 
-[node name="AscensionGateInterior" type="Node3D" parent="World"]
+[node name="AscensionGateInterior" type="Node3D" parent="World" unique_id=2119533779]
 
-[node name="FloorCollision" type="StaticBody3D" parent="World/AscensionGateInterior"]
+[node name="FloorCollision" type="StaticBody3D" parent="World/AscensionGateInterior" unique_id=1012756239]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/AscensionGateInterior/FloorCollision"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/AscensionGateInterior/FloorCollision" unique_id=1741292419]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
 shape = SubResource("1")
 
-[node name="Floor" type="CSGBox3D" parent="World/AscensionGateInterior"]
+[node name="Floor" type="CSGBox3D" parent="World/AscensionGateInterior" unique_id=143873498]
 size = Vector3(50, 0.048, 70)
 material = SubResource("5")
 
-[node name="Ceiling" type="CSGBox3D" parent="World/AscensionGateInterior"]
+[node name="Ceiling" type="CSGBox3D" parent="World/AscensionGateInterior" unique_id=1337172742]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.0129, 0)
 size = Vector3(50, 0.0430779, 70)
 material = SubResource("5")
 
-[node name="Pillar" type="CSGCylinder3D" parent="World/AscensionGateInterior"]
+[node name="Pillar" type="CSGCylinder3D" parent="World/AscensionGateInterior" unique_id=1128491990]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8468, 11.9681, -34.6675)
 height = 24.0
 sides = 12
 
-[node name="Pillar2" type="CSGCylinder3D" parent="World/AscensionGateInterior"]
+[node name="Pillar2" type="CSGCylinder3D" parent="World/AscensionGateInterior" unique_id=127189504]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8372, 11.9681, 34.8368)
 height = 24.0
 sides = 12
 
-[node name="Pillar3" type="CSGCylinder3D" parent="World/AscensionGateInterior"]
+[node name="Pillar3" type="CSGCylinder3D" parent="World/AscensionGateInterior" unique_id=709977815]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8372, 11.9681, 0.186778)
 height = 24.0
 sides = 12
 
-[node name="Pillar4" type="CSGCylinder3D" parent="World/AscensionGateInterior"]
+[node name="Pillar4" type="CSGCylinder3D" parent="World/AscensionGateInterior" unique_id=79144309]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8372, 11.9681, -18.5713)
 height = 24.0
 sides = 12
 
-[node name="Pillar5" type="CSGCylinder3D" parent="World/AscensionGateInterior"]
+[node name="Pillar5" type="CSGCylinder3D" parent="World/AscensionGateInterior" unique_id=2028496249]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8372, 11.9681, 18.968)
 height = 24.0
 sides = 12
 
-[node name="CSGBox3" type="CSGBox3D" parent="World/AscensionGateInterior"]
+[node name="CSGBox3" type="CSGBox3D" parent="World/AscensionGateInterior" unique_id=1489821316]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.76837e-07, 0)
 size = Vector3(18, 4, 4)
 
-[node name="CSGBox4" type="CSGBox3D" parent="World/AscensionGateInterior"]
+[node name="CSGBox4" type="CSGBox3D" parent="World/AscensionGateInterior" unique_id=1840405666]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.76172, 0)
 size = Vector3(12, 12, 0.396676)
 material = SubResource("3")
 
-[node name="CSGBox5" type="CSGBox3D" parent="World/AscensionGateInterior"]
+[node name="CSGBox5" type="CSGBox3D" parent="World/AscensionGateInterior" unique_id=1411515789]
 transform = Transform3D(1, 0, 0, 0, 0.979845, -0.199761, 0, 0.199761, 0.979845, 0.0424042, 0.518774, 6.70115)
 size = Vector3(7, 1, 10)
 
-[node name="GateWalkerSpawnPoint" type="Node3D" parent="World"]
+[node name="GateWalkerSpawnPoint" type="Node3D" parent="World" unique_id=1686304091]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0819778, -3.8147e-06, 34.3979)
 
-[node name="RampStartPoint" type="Node3D" parent="World"]
+[node name="RampStartPoint" type="Node3D" parent="World" unique_id=1081112448]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.6382)
 
-[node name="RampEndPoint" type="Node3D" parent="World"]
+[node name="RampEndPoint" type="Node3D" parent="World" unique_id=1826817346]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14208, 2.02097)
 
-[node name="AscensionGatePoint" type="Node3D" parent="World"]
+[node name="AscensionGatePoint" type="Node3D" parent="World" unique_id=1356505725]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1171, -0.544976)
 
-[node name="ObserverSpawnPoint" type="Node3D" parent="World"]
+[node name="ObserverSpawnPoint" type="Node3D" parent="World" unique_id=702587347]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6221, 0, -29.2539)
 
-[node name="ObserverSpawnPoint2" type="Node3D" parent="World"]
+[node name="ObserverSpawnPoint2" type="Node3D" parent="World" unique_id=1395569845]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.38661, 0, -30.9077)
 
-[node name="ObserverSpawnPoint3" type="Node3D" parent="World"]
+[node name="ObserverSpawnPoint3" type="Node3D" parent="World" unique_id=1337181391]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.46, 0.926355, 11.5192)
 
-[node name="CustomBlanker" type="ColorRect" parent="."]
+[node name="CustomBlanker" type="ColorRect" parent="." unique_id=460879857]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0, 1)
 
-[node name="CreditsDisplay" type="Control" parent="."]
+[node name="CreditsDisplay" type="Control" parent="." unique_id=1656074038]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("3")
 
-[node name="CreditsScroll" parent="CreditsDisplay" instance=ExtResource("2")]
+[node name="CreditsScroll" parent="CreditsDisplay" unique_id=262655763 instance=ExtResource("2")]
 layout_mode = 1
 AutoStart = false
 
-[node name="SkipInfoContainer" type="HBoxContainer" parent="CreditsDisplay"]
+[node name="SkipInfoContainer" type="HBoxContainer" parent="CreditsDisplay" unique_id=24354107]
 layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0
@@ -197,11 +199,11 @@ grow_horizontal = 0
 grow_vertical = 0
 alignment = 2
 
-[node name="Label" type="Label" parent="CreditsDisplay/SkipInfoContainer"]
+[node name="Label" type="Label" parent="CreditsDisplay/SkipInfoContainer" unique_id=1198276735]
 layout_mode = 2
 text = "HOLD_TO_SKIP_CREDITS"
 
-[node name="SkipPrompt" parent="CreditsDisplay/SkipInfoContainer" instance=ExtResource("4")]
+[node name="SkipPrompt" parent="CreditsDisplay/SkipInfoContainer" unique_id=1917380880 instance=ExtResource("4")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 RequiredHoldTime = 5.0

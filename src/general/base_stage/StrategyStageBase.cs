@@ -215,8 +215,7 @@ public partial class StrategyStageBase : StageBase, IStrategyStage
     {
         if (disposing)
         {
-            if (CurrentGame != null)
-                CurrentGame.TechWeb.OnTechnologyUnlockedHandler -= ShowTechnologyUnlockMessage;
+            CurrentGame?.TechWeb.OnTechnologyUnlockedHandler -= ShowTechnologyUnlockMessage;
         }
 
         base.Dispose(disposing);

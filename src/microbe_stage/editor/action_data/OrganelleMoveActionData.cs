@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using SharedBase.Archive;
 
 public class OrganelleMoveActionData : HexMoveActionData<OrganelleTemplate, CellType>
 {
@@ -7,28 +8,29 @@ public class OrganelleMoveActionData : HexMoveActionData<OrganelleTemplate, Cell
     {
     }
 
-    protected override (double Cost, double RefundCost) CalculateCostInternal(
-        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION_HEX;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.OrganelleMoveActionData;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
-        var count = history.Count;
-        for (int i = 0; i < insertPosition && i < count; ++i)
-        {
-            var other = history[i];
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.OrganelleMoveActionData)
+            throw new NotSupportedException();
 
-            // Endosymbionts can be moved for free after placing
-            if (other is EndosymbiontPlaceActionData endosymbiontPlaceActionData &&
-                MatchesContext(endosymbiontPlaceActionData))
-            {
-                // If moved after placing
-                if (MovedHex == endosymbiontPlaceActionData.PlacedOrganelle &&
-                    OldLocation == endosymbiontPlaceActionData.PlacementLocation &&
-                    OldRotation == endosymbiontPlaceActionData.PlacementRotation)
-                {
-                    return (0, 0);
-                }
-            }
-        }
+        writer.WriteObject((OrganelleMoveActionData)obj);
+    }
 
-        return base.CalculateCostInternal(history, insertPosition);
+    public static OrganelleMoveActionData ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION_HEX or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_HEX);
+
+        var instance = new OrganelleMoveActionData(reader.ReadObject<OrganelleTemplate>(), reader.ReadHex(),
+            reader.ReadHex(), reader.ReadInt32(), reader.ReadInt32());
+
+        instance.ReadBasePropertiesFromArchive(reader, version);
+
+        return instance;
     }
 }

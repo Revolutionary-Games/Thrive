@@ -1,49 +1,49 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Causes radiation damage based on stored compounds and radiation resistance of microbes
 /// </summary>
-[With(typeof(Health))]
-[With(typeof(CompoundStorage))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(CellProperties))]
 [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
 [RunsAfter(typeof(IrradiationSystem))]
 [RunsBefore(typeof(DamageSoundSystem))]
 [RuntimeCost(0.5f)]
-public sealed class RadiationDamageSystem : AEntitySetSystem<float>
+public partial class RadiationDamageSystem : BaseSystem<World, float>
 {
     /// <summary>
     ///   Used to apply damage not on each game update
     /// </summary>
     private float elapsedSinceUpdate;
 
-    private bool trigger;
-
-    public RadiationDamageSystem(World world, IParallelRunner runner) : base(world, runner,
-        Constants.SYSTEM_HIGH_ENTITIES_PER_THREAD)
+    public RadiationDamageSystem(World world) : base(world)
     {
     }
 
-    protected override void PreUpdate(float delta)
+    public override void Update(in float delta)
     {
-        base.PreUpdate(delta);
         elapsedSinceUpdate += delta;
 
-        trigger = elapsedSinceUpdate >= Constants.RADIATION_DAMAGE_INTERVAL;
+        if (elapsedSinceUpdate >= Constants.RADIATION_DAMAGE_INTERVAL)
+        {
+            UpdateQuery(World);
+
+            elapsedSinceUpdate = 0;
+        }
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [All<Health, CellProperties>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref CompoundStorage compoundStorage, in Entity entity)
     {
-        if (!trigger)
-            return;
-
-        var compounds = entity.Get<CompoundStorage>().Compounds;
+        var compounds = compoundStorage.Compounds;
 
         var radiationAmount = compounds.GetCompoundAmount(Compound.Radiation);
 
@@ -79,19 +79,11 @@ public sealed class RadiationDamageSystem : AEntitySetSystem<float>
         // Apply damage if there is some to apply
         if (rawDamage > 0 && !health.Dead)
         {
-            health.DealMicrobeDamage(ref entity.Get<CellProperties>(), rawDamage, "radiation",
+            health.DealMicrobeDamage(ref entity.Get<CellProperties>(), entity, rawDamage, "radiation",
                 HealthHelpers.GetInstantKillProtectionThreshold(entity));
 
             entity.SendNoticeIfPossible(() =>
                 new SimpleHUDMessage(Localization.Translate("NOTICE_RADIATION_DAMAGE"), DisplayDuration.Short));
         }
-    }
-
-    protected override void PostUpdate(float state)
-    {
-        base.PostUpdate(state);
-
-        if (trigger)
-            elapsedSinceUpdate = 0;
     }
 }

@@ -9,13 +9,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using AutoEvo;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Runs biological processes on entities
@@ -25,13 +26,17 @@ using World = DefaultEcs.World;
 ///     This is marked as writing to the processes due to <see cref="BioProcesses.ProcessStatistics"/>
 ///   </para>
 /// </remarks>
-[With(typeof(CompoundStorage))]
-[With(typeof(BioProcesses))]
+/// <remarks>
+///   <para>
+///     Marked as being on the main thread as that's a limitation of Arch ECS parallel processing.
+///   </para>
+/// </remarks>
 [RunsAfter(typeof(CompoundAbsorptionSystem))]
 [RunsBefore(typeof(OsmoregulationAndHealingSystem))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
-[RuntimeCost(55)]
-public sealed class ProcessSystem : AEntitySetSystem<float>
+[RunsOnMainThread]
+[RuntimeCost(26)]
+public partial class ProcessSystem : BaseSystem<World, float>
 {
 #if CHECK_USED_STATISTICS
     private readonly List<ProcessStatistics> usedStatistics = new();
@@ -40,12 +45,11 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     private BiomeConditions? biome;
 
     /// <summary>
-    ///   Used to go from the calculated compound values to per second values for reporting statistics
+    ///   Used to go from the calculated compound values to per-second values for reporting statistics
     /// </summary>
     private float inverseDelta;
 
-    public ProcessSystem(World world, IParallelRunner runner) : base(world, runner,
-        Constants.SYSTEM_LOW_ENTITIES_PER_THREAD)
+    public ProcessSystem(World world) : base(world)
     {
     }
 
@@ -80,7 +84,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             MergeProcessLists(result, processes);
         }
 
-        // Remove unmarked processes, so that old processes aren't kept around
+        // Remove unmarked processes so that old processes aren't kept around
         // Also unmarks marked processes
         int writeIndex = 0;
 
@@ -104,14 +108,19 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Linearly scans for duplicate processes (merging them). Might need to be updated to use a map provided by a
-    ///     parameter if the current algorithm is too slow.
+    ///     Does a linear scan for duplicate processes (merging them).
+    ///     Might need to be updated to use a map provided by a parameter if the current algorithm is too slow.
     ///   </para>
     /// </remarks>
     public static void MergeProcessLists(List<TweakedProcess> result, List<TweakedProcess> toAdd)
     {
+        // Pre-allocate size
+        if (result.Capacity - result.Count < toAdd.Count)
+            result.Capacity += toAdd.Count;
+
         int processCount = toAdd.Count;
 
+        // TODO: auto-evo spends quite a bit of time combining data here, so some smarter algorithm would be nice
         for (int i = 0; i < processCount; ++i)
         {
             var process = toAdd[i];
@@ -119,7 +128,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
             bool added = false;
 
-            // Try to add to existing result first
+            // Try to add to an existing result first
             int resultCount = result.Count;
             for (int j = 0; j < resultCount; ++j)
             {
@@ -129,15 +138,15 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
                     if (!replacedEntry.Marked)
                     {
-                        // Added to an entry that is kept for keeping a consistent speed multiplier, but isn't yet
-                        // considered to be a real result entry
+                        // Added to an entry that is kept for keeping a consistent speed multiplier but isn't yet
+                        // considered to be a real result entry.
                         // To keep consistent ordering no matter what the old data is, we need to move the current
                         // item to be in place of the first non-marked item
                         for (int l = 0; l < j; ++l)
                         {
                             if (!result[l].Marked)
                             {
-                                // Swap positions of the data, as we will write to the k index (that is updated)
+                                // Swap positions of the data, as we will write to the k index (that is updated),
                                 // we need to only write the moving away data to perform the swap
                                 result[j] = result[l];
                                 j = l;
@@ -154,7 +163,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                     }
                     else
                     {
-                        // Add to the existing rate, as TweakedProcess is a struct this doesn't allocate memory
+                        // Add to the existing rate. As TweakedProcess is a struct, this doesn't allocate memory
                         result[j] = new TweakedProcess(processKey, process.Rate + replacedEntry.Rate)
                         {
                             SpeedMultiplier = replacedEntry.SpeedMultiplier,
@@ -216,7 +225,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   movement organelles are assumed to be inactive in the balance calculation.
     /// </param>
     /// <param name="includeMovementCost">
-    ///   Only when true are movement related energy costs included in the calculation. When false base movement data
+    ///   Only when true are movement-related energy costs included in the calculation. When false base movement data
     ///   is provided, but it is not taken into account in the sums, but total movement cost is not calculated. If that
     ///   is required then include movement cost parameter should be set to true and from the result the variables
     ///   giving balance without movement should be used as an alternative to setting this false.
@@ -778,7 +787,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         return GetAmbientInBiome(compound, biome, amountType);
     }
 
-    protected override void PreUpdate(float delta)
+    public override void BeforeUpdate(in float delta)
     {
         if (biome == null)
         {
@@ -793,48 +802,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             usedStatistics.Clear();
         }
 #endif
-    }
-
-    protected override void Update(float delta, in Entity entity)
-    {
-        ref var storage = ref entity.Get<CompoundStorage>();
-        ref var processes = ref entity.Get<BioProcesses>();
-
-        float overallSpeedModifier = 1.0f;
-
-        // TODO: remove this if check once save breakage is done
-        if (entity.Has<MicrobeEnvironmentalEffects>())
-        {
-            var microbeEnvironmentalEffects = entity.Get<MicrobeEnvironmentalEffects>();
-            overallSpeedModifier = microbeEnvironmentalEffects.ProcessSpeedModifier;
-
-            // TODO: hopefully in the far future this safety check could be removed
-            // https://github.com/Revolutionary-Games/Thrive/issues/5928
-            if (float.IsNaN(overallSpeedModifier) || float.IsInfinity(overallSpeedModifier) || overallSpeedModifier < 0)
-            {
-                GD.PrintErr(
-                    $"ProcessSystem: process speed modifier is invalid for entity {entity}: {overallSpeedModifier}");
-                overallSpeedModifier = 1.0f;
-
-                // Reset the data to not keep printing the error
-                microbeEnvironmentalEffects.ProcessSpeedModifier = 1.0f;
-            }
-        }
-
-#if DEBUG
-        if (overallSpeedModifier <= 0)
-        {
-            // This likely causes NaN values, so we need to track down places that would cause this.
-            // If desired in the future to be able to disable processing entirely, we might want to fix this case, but
-            // for now this should never be allowed to happen.
-            GD.PrintErr($"ProcessSystem: process speed modifier is invalid for {entity}: {overallSpeedModifier}");
-
-            if (Debugger.IsAttached)
-                Debugger.Break();
-        }
-#endif
-
-        ProcessNode(ref processes, ref storage, overallSpeedModifier, delta);
     }
 
     private static void CalculateSimplePartOfEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
@@ -965,6 +932,48 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             return 0;
 
         return environmentalCompoundProperties.Ambient;
+    }
+
+    [Query(Parallel = true)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, in Entity entity, ref CompoundStorage storage,
+        ref BioProcesses processes)
+    {
+        float overallSpeedModifier = 1.0f;
+
+        // TODO: remove this if check if it is decided this system is only to be used for the microbe stage
+        if (entity.Has<MicrobeEnvironmentalEffects>())
+        {
+            var microbeEnvironmentalEffects = entity.Get<MicrobeEnvironmentalEffects>();
+            overallSpeedModifier = microbeEnvironmentalEffects.ProcessSpeedModifier;
+
+            // TODO: hopefully in the far future this safety check could be removed
+            // https://github.com/Revolutionary-Games/Thrive/issues/5928
+            if (float.IsNaN(overallSpeedModifier) || float.IsInfinity(overallSpeedModifier) || overallSpeedModifier < 0)
+            {
+                GD.PrintErr(
+                    $"ProcessSystem: process speed modifier is invalid for entity {entity}: {overallSpeedModifier}");
+                overallSpeedModifier = 1.0f;
+
+                // Reset the data to not keep printing the error
+                microbeEnvironmentalEffects.ProcessSpeedModifier = 1.0f;
+            }
+        }
+
+#if DEBUG
+        if (overallSpeedModifier <= 0)
+        {
+            // This likely causes NaN values, so we need to track down places that would cause this.
+            // If desired in the future to be able to disable processing entirely, we might want to fix this case, but
+            // for now this should never be allowed to happen.
+            GD.PrintErr($"ProcessSystem: process speed modifier is invalid for {entity}: {overallSpeedModifier}");
+
+            if (Debugger.IsAttached)
+                Debugger.Break();
+        }
+#endif
+
+        ProcessNode(ref processes, ref storage, overallSpeedModifier, delta);
     }
 
     private void ProcessNode(ref BioProcesses processor, ref CompoundStorage storage, float overallSpeedModifier,
@@ -1196,8 +1205,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         // Only carry out this process if you have all the required ingredients and enough space for the outputs
         if (!canDoProcess)
         {
-            if (currentProcessStatistics != null)
-                currentProcessStatistics.CurrentSpeed = 0;
+            currentProcessStatistics?.CurrentSpeed = 0;
             return;
         }
 
@@ -1212,21 +1220,17 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             if (processorInfo.ATPProductionSpeedModifier < 0)
             {
                 // Process is disabled
-                if (currentProcessStatistics != null)
-                    currentProcessStatistics.CurrentSpeed = 0;
+                currentProcessStatistics?.CurrentSpeed = 0;
                 return;
             }
 
             totalModifier *= processorInfo.ATPProductionSpeedModifier;
         }
 
-        if (currentProcessStatistics != null)
-        {
-            // TODO: should the overall speed modifier be included in here? It already has scaled the inputs and
-            // outputs
-            currentProcessStatistics.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier *
-                process.SpeedMultiplier * overallSpeedModifier;
-        }
+        // TODO: should the overall speed modifier be included in here? It already has scaled the inputs and
+        // outputs
+        currentProcessStatistics?.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier *
+            process.SpeedMultiplier * overallSpeedModifier;
 
         // Consume inputs
         foreach (var entry in processData.Inputs)

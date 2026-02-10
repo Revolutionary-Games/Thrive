@@ -1,14 +1,15 @@
 ﻿namespace AutoEvo;
 
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Selection pressure that penalizes sessile (non-motile) species in high-temperature environments.
 ///   This pressure encourages species to become more mobile in hot conditions.
 /// </summary>
-[JSONDynamicTypeAllowed]
 public class TemperatureSessilityPressure : SelectionPressure
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
     private static readonly LocalizedString NameString = new LocalizedString("MICHE_TEMPERATURE_SESSILITY_PRESSURE");
@@ -22,8 +23,24 @@ public class TemperatureSessilityPressure : SelectionPressure
     {
     }
 
-    [JsonIgnore]
     public override LocalizedString Name => NameString;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.TemperatureSessilityPressure;
+
+    public static TemperatureSessilityPressure ReadFromArchive(ISArchiveReader reader, ushort version,
+        int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new TemperatureSessilityPressure(reader.ReadFloat());
+
+        instance.ReadBasePropertiesFromArchive(reader, 1);
+        return instance;
+    }
 
     /// <summary>
     ///   Calculates the selection pressure score based on temperature and species activity.

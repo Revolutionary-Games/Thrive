@@ -1,10 +1,11 @@
 ﻿namespace Systems;
 
 using System;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
 
 /// <summary>
@@ -17,13 +18,6 @@ using Godot;
 ///     this systems use so writing to it doesn't conflict with other systems.
 ///   </para>
 /// </remarks>
-[With(typeof(OrganelleContainer))]
-[With(typeof(CellProperties))]
-[With(typeof(MicrobeStatus))]
-[With(typeof(CompoundStorage))]
-[With(typeof(Engulfable))]
-[With(typeof(SpeciesMember))]
-[With(typeof(Health))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(MicrobeStatus))]
@@ -35,15 +29,14 @@ using Godot;
 [RunsAfter(typeof(DamageOnTouchSystem))]
 [RunsAfter(typeof(ToxinCollisionSystem))]
 [RuntimeCost(4)]
-public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
+public partial class OsmoregulationAndHealingSystem : BaseSystem<World, float>
 {
     private GameWorld? gameWorld;
 
     private bool hydrogenSulfideDamageTrigger;
     private float elapsedSinceTrigger;
 
-    public OsmoregulationAndHealingSystem(World world, IParallelRunner parallelRunner) :
-        base(world, parallelRunner)
+    public OsmoregulationAndHealingSystem(World world) : base(world)
     {
     }
 
@@ -52,14 +45,12 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
         gameWorld = world;
     }
 
-    protected override void PreUpdate(float state)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(state);
-
         if (gameWorld == null)
             throw new InvalidOperationException("GameWorld not set");
 
-        elapsedSinceTrigger += state;
+        elapsedSinceTrigger += delta;
 
         if (elapsedSinceTrigger >= Constants.HYDROGEN_SULFIDE_DAMAGE_INTERVAL)
         {
@@ -72,31 +63,35 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
         }
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [All<Engulfable>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref MicrobeStatus status, ref Health health,
+        ref CellProperties cellProperties, ref CompoundStorage compoundStorage,
+        ref OrganelleContainer organelleContainer, ref SpeciesMember speciesMember,
+        ref MicrobeEnvironmentalEffects microbeEnvironmentalEffects, in Entity entity)
     {
-        ref var status = ref entity.Get<MicrobeStatus>();
-        ref var health = ref entity.Get<Health>();
-        ref var cellProperties = ref entity.Get<CellProperties>();
-
         // Dead cells may not regenerate health
         if (health.Dead || health.CurrentHealth <= 0)
             return;
 
-        var compounds = entity.Get<CompoundStorage>().Compounds;
+        var compounds = compoundStorage.Compounds;
 
         HandleHitpointsRegeneration(ref health, compounds, delta);
 
-        TakeOsmoregulationEnergyCost(entity, ref cellProperties, compounds, delta);
+        TakeOsmoregulationEnergyCost(entity, ref cellProperties, ref organelleContainer,
+            ref microbeEnvironmentalEffects, compounds,
+            speciesMember.Species.PlayerSpecies, delta);
 
         HandleOsmoregulationDamage(entity, ref status, ref health, ref cellProperties, compounds, delta);
 
         if (hydrogenSulfideDamageTrigger
             && compounds.GetCompoundAmount(Compound.Hydrogensulfide) > Constants.HYDROGEN_SULFIDE_DAMAGE_THESHOLD
-            && !entity.Get<OrganelleContainer>().HydrogenSulfideProtection)
+            && !organelleContainer.HydrogenSulfideProtection)
         {
             compounds.TakeCompound(Compound.Hydrogensulfide, Constants.HYDROGEN_SULFIDE_DAMAGE_COMPOUND_DRAIN);
 
-            health.DealMicrobeDamage(ref cellProperties, Constants.HYDROGEN_SULFIDE_DAMAGE, "hydrogenSulfide",
+            health.DealMicrobeDamage(ref cellProperties, entity, Constants.HYDROGEN_SULFIDE_DAMAGE, "hydrogenSulfide",
                 HealthHelpers.GetInstantKillProtectionThreshold(entity));
 
             entity.SendNoticeIfPossible(() =>
@@ -127,12 +122,9 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
     }
 
     private void TakeOsmoregulationEnergyCost(in Entity entity, ref CellProperties cellProperties,
-        CompoundBag compounds, float delta)
+        ref OrganelleContainer organelles, ref MicrobeEnvironmentalEffects environmentalEffects, CompoundBag compounds,
+        bool playerSpecies, float delta)
     {
-        ref var organelles = ref entity.Get<OrganelleContainer>();
-
-        float environmentalMultiplier = 1.0f;
-
         var osmoregulationCost = organelles.HexCount * cellProperties.MembraneType.OsmoregulationFactor *
             Constants.ATP_COST_FOR_OSMOREGULATION * delta;
 
@@ -155,29 +147,24 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
             osmoregulationCost *= 20.0f / (20.0f + colonySize);
         }
 
-        // TODO: remove this check on next save breakage point
-        if (entity.Has<MicrobeEnvironmentalEffects>())
+        var environmentalMultiplier = environmentalEffects.OsmoregulationMultiplier;
+
+        // TODO: remove this safety check once it is no longer possible for this problem to happen
+        // https://github.com/Revolutionary-Games/Thrive/issues/5928
+        if (float.IsNaN(environmentalMultiplier) || environmentalMultiplier < 0)
         {
-            ref var environmentalEffects = ref entity.Get<MicrobeEnvironmentalEffects>();
-            environmentalMultiplier = environmentalEffects.OsmoregulationMultiplier;
+            GD.PrintErr("Microbe has invalid osmoregulation multiplier: ", environmentalMultiplier);
 
-            // TODO: remove this safety check once it is no longer possible for this problem to happen
-            // https://github.com/Revolutionary-Games/Thrive/issues/5928
-            if (float.IsNaN(environmentalMultiplier) || environmentalMultiplier < 0)
-            {
-                GD.PrintErr("Microbe has invalid osmoregulation multiplier: ", environmentalMultiplier);
+            // Reset the data to not spam the error
+            environmentalEffects.OsmoregulationMultiplier = 1.0f;
 
-                // Reset the data to not spam the error
-                environmentalEffects.OsmoregulationMultiplier = 1.0f;
-
-                environmentalMultiplier = 1.0f;
-            }
+            environmentalMultiplier = 1.0f;
         }
 
         osmoregulationCost *= environmentalMultiplier;
 
         // Only player species benefits from lowered osmoregulation
-        if (entity.Get<SpeciesMember>().Species.PlayerSpecies)
+        if (playerSpecies)
             osmoregulationCost *= gameWorld!.WorldSettings.OsmoregulationMultiplier;
 
         compounds.TakeCompound(Compound.ATP, osmoregulationCost);
@@ -192,7 +179,7 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
         if (compounds.GetCompoundAmount(Compound.ATP) > Constants.ATP_DAMAGE_THRESHOLD)
             return;
 
-        health.DealMicrobeDamage(ref cellProperties, health.MaxHealth * Constants.NO_ATP_DAMAGE_FRACTION,
+        health.DealMicrobeDamage(ref cellProperties, entity, health.MaxHealth * Constants.NO_ATP_DAMAGE_FRACTION,
             "atpDamage", HealthHelpers.GetInstantKillProtectionThreshold(entity));
     }
 

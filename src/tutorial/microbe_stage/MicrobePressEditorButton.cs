@@ -2,17 +2,23 @@
 
 using System;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Tells the player to press the editor button if it has been enabled too long
 /// </summary>
 public class MicrobePressEditorButton : TutorialPhase
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public override string ClosedByName => "MicrobeEditorPress";
 
-    [JsonIgnore]
     public Control? PressEditorButtonControl { get; set; }
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.TutorialMicrobePressEditorButton;
 
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {
@@ -63,6 +69,14 @@ public class MicrobePressEditorButton : TutorialPhase
     {
         base.Hide();
         ProcessWhileHidden = false;
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        base.ReadPropertiesFromArchive(reader, 1);
     }
 
     protected override void OnProcess(TutorialState overallState, float delta)

@@ -15,7 +15,7 @@ public partial class CellPopupMenu : HexPopupMenu
         get => true;
         set
         {
-            if (value != true)
+            if (!value)
                 throw new NotSupportedException();
         }
     }
@@ -55,7 +55,7 @@ public partial class CellPopupMenu : HexPopupMenu
         if (titleLabel == null)
             return;
 
-        var names = SelectedCells.Select(c => c.Data!.CellType.TypeName).Distinct()
+        var names = SelectedCells.Select(c => c.Data!.ModifiableCellType.CellTypeName).Distinct()
             .ToList();
 
         if (names.Count == 1)
@@ -72,6 +72,14 @@ public partial class CellPopupMenu : HexPopupMenu
     {
         if (deleteButton == null)
             return;
+
+        if (!ShowDeleteOption)
+        {
+            deleteButton.Visible = false;
+            return;
+        }
+
+        deleteButton.Visible = true;
 
         var mpCost = GetActionPrice?.Invoke(SelectedCells
                 .Select(o =>
@@ -93,7 +101,7 @@ public partial class CellPopupMenu : HexPopupMenu
             return;
 
         var mpCost = GetActionPrice?.Invoke(SelectedCells.Select(o =>
-            (EditorCombinableActionData)new CellMoveActionData(o, o.Position, o.Position + new Hex(5, 5), 0,
+            (EditorCombinableActionData)new CellMoveActionData(o, o.Position, o.Position + new Hex(5, 5), o.Orientation,
                 0))) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         mpCost = Math.Round(mpCost, Constants.MUTATION_POINTS_DECIMALS);

@@ -2,9 +2,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
     <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <!-- Ignore projects using their own build files -->
+  <PropertyGroup>
+    <DefaultItemExcludes>
+      $(DefaultItemExcludes);Arch\**\*;Arch.Extended\**\*
+    </DefaultItemExcludes>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -47,7 +54,7 @@
 
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.102" PrivateAssets="all" />
   </ItemGroup>
 
 </Project>

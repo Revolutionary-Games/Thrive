@@ -8,130 +8,76 @@
       "AgentProjectileMacrolide",
       "AgentProjectileCyanide",
       "AgentProjectileChannelInhibitor",
-      "SiderophoreProjectile"
+      "SiderophoreProjectile",
+      "ClayTerrain1",
+      "ClayTerrain2",
+      "QuartzTerrain1",
+      "QuartzTerrain2",
+      "QuartzTerrain3",
+      "PyriteTerrain1",
+      "PyriteTerrain2",
+      "ChalcopyriteTerrain1",
+      "ChalcopyriteTerrain2",
+      "SerpentiniteTerrain1",
+      "SerpentiniteTerrain2",
+      "BariteTerrainChunk1",
+      "BariteTerrainChunk2",
+      "BasaltTerrainChunk1",
+      "BasaltTerrainChunk2",
+      "CalciteTerrainChunk1",
+      "CalciteTerrainChunk2",
+      "GabbroTerrainChunk1",
+      "GabbroTerrainChunk2",
+      "PolymetallicNoduleTerrainChunk1",
+      "PolymetallicNoduleTerrainChunk2",
+      "PolymetallicNoduleTerrainChunk3",
+      "ZincOxideTerrainChunk1",
+      "ZincOxideTerrainChunk2"
     ],
     "RequiredScenes": [
-      {
-        "Path": "res://assets/models/IceChunkLarge1.tscn"
-      },
-      {
-        "Path": "res://assets/models/IceChunkLarge2.tscn"
-      },
-      {
-        "Path": "res://assets/models/IceChunkLarge3.tscn"
-      },
-      {
-        "Path": "res://assets/models/IceChunkSmall1.tscn"
-      },
-      {
-        "Path": "res://assets/models/IceChunkSmall2.tscn"
-      },
-      {
-        "Path": "res://assets/models/Iceshard1.tscn"
-      },
-      {
-        "Path": "res://assets/models/Iron3.tscn"
-      },
-      {
-        "Path": "res://assets/models/Iron4.tscn"
-      },
-      {
-        "Path": "res://assets/models/Iron5.tscn"
-      },
-      {
-        "Path": "res://assets/models/IronRock1.tscn"
-      },
-      {
-        "Path": "res://assets/models/IronRock2.tscn"
-      },
-      {
-        "Path": "res://assets/models/IronRockLarge2.tscn"
-      },
-      {
-        "Path": "res://assets/models/PhosphateChunkApatiteLarge1.tscn"
-      },
-      {
-        "Path": "res://assets/models/PhosphateChunkApatiteSmall1.tscn"
-      },
-      {
-        "Path": "res://assets/models/PhosphateChunkStruviteLarge.tscn"
-      },
-      {
-        "Path": "res://assets/models/PhosphateChunkStruviteSmall1.tscn"
-      },
-      {
-        "Path": "res://assets/models/PhosphateChunkStruviteSmall2.tscn"
-      },
-      {
-        "Path": "res://assets/models/RadioactiveChunk1.tscn"
-      },
-      {
-        "Path": "res://assets/models/SulfurChunkAluniteLarge1.tscn"
-      },
-      {
-        "Path": "res://assets/models/SulfurChunkAluniteMedium1.tscn"
-      },
-      {
-        "Path": "res://assets/models/SulfurChunkAluniteMedium2.tscn"
-      },
-      {
-        "Path": "res://assets/models/SulfurChunkAluniteSmall1.tscn"
-      },
-      {
-        "Path": "res://assets/models/SulfurChunkSmall1.tscn"
-      },
-      {
-        "Path": "res://assets/models/easter_eggs/GooglyEyeCell.tscn"
-      },
-      {
-        "Path": "res://assets/models/easter_eggs/IronRockBigBanana.tscn"
-      },
-      {
-        "Path": "res://assets/models/easter_eggs/IronRockLittleBanana.tscn"
-      },
-      {
-        "Path": "res://assets/models/easter_eggs/PhosphateRockBigBanana.tscn"
-      },
-      {
-        "Path": "res://assets/models/easter_eggs/PhosphateRockLittleBanana.tscn"
-      },
-      {
-        "Path": "res://assets/models/organelles/Flagellum.tscn"
-      },
-      {
-        "Path": "res://assets/models/organelles/Hydrogenase.tscn"
-      },
-      {
-        "Path": "res://assets/models/organelles/Metabolosome.tscn"
-      },
-      {
-        "Path": "res://assets/models/organelles/Mitochondrion.tscn"
-      },
-      {
-        "Path": "res://assets/models/organelles/NitrogenFixingPlastid.tscn"
-      },
-      {
-        "Path": "res://assets/models/organelles/Nucleus.tscn"
-      },
-      {
-        "Path": "res://assets/models/organelles/Thermoplast.tscn"
-      },
-      {
-        "Path": "res://assets/models/organelles/Hydrogenosome.tscn"
-      },
-      {
-        "Path": "res://src/microbe_stage/CellGraphicsPreload.tscn",
-        "EstimatedTimeRequired": 0.02
-      },
-      {
-        "Path": "res://src/microbe_stage/ToxinCloud.tscn"
-      },
-      {
-        "Path": "res://src/microbe_stage/MicrobeCommonPreload.tscn"
-      },
-      {
-        "Path": "res://src/multicellular_stage/IntercellularConnection.tscn"
-      }
+      "res://assets/models/IceChunkLarge1.tscn",
+      "res://assets/models/IceChunkLarge2.tscn",
+      "res://assets/models/IceChunkLarge3.tscn",
+      "res://assets/models/IceChunkSmall1.tscn",
+      "res://assets/models/IceChunkSmall2.tscn",
+      "res://assets/models/IceSnowflakeChunk1.tscn",
+      "res://assets/models/IceSnowflakeChunk2.tscn",
+      "res://assets/models/IceSnowflakeChunk3.tscn",
+      "res://assets/models/Iceshard1.tscn",
+      "res://assets/models/Iron3.tscn",
+      "res://assets/models/Iron4.tscn",
+      "res://assets/models/Iron5.tscn",
+      "res://assets/models/IronRock1.tscn",
+      "res://assets/models/IronRock2.tscn",
+      "res://assets/models/IronRockLarge2.tscn",
+      "res://assets/models/PhosphateChunkApatiteLarge1.tscn",
+      "res://assets/models/PhosphateChunkApatiteSmall1.tscn",
+      "res://assets/models/PhosphateChunkStruviteLarge.tscn",
+      "res://assets/models/PhosphateChunkStruviteSmall1.tscn",
+      "res://assets/models/PhosphateChunkStruviteSmall2.tscn",
+      "res://assets/models/RadioactiveChunk1.tscn",
+      "res://assets/models/SulfurChunkAluniteLarge1.tscn",
+      "res://assets/models/SulfurChunkAluniteMedium1.tscn",
+      "res://assets/models/SulfurChunkAluniteMedium2.tscn",
+      "res://assets/models/SulfurChunkAluniteSmall1.tscn",
+      "res://assets/models/SulfurChunkSmall1.tscn",
+      "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+      "res://assets/models/easter_eggs/IronRockBigBanana.tscn",
+      "res://assets/models/easter_eggs/IronRockLittleBanana.tscn",
+      "res://assets/models/easter_eggs/PhosphateRockBigBanana.tscn",
+      "res://assets/models/easter_eggs/PhosphateRockLittleBanana.tscn",
+      "res://assets/models/organelles/Flagellum.tscn",
+      "res://assets/models/organelles/Hydrogenase.tscn",
+      "res://assets/models/organelles/Metabolosome.tscn",
+      "res://assets/models/organelles/Mitochondrion.tscn",
+      "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
+      "res://assets/models/organelles/Nucleus.tscn",
+      "res://assets/models/organelles/Thermoplast.tscn",
+      "res://assets/models/organelles/Hydrogenosome.tscn",
+      "res://src/microbe_stage/CellGraphicsPreload.tscn",
+      "res://src/microbe_stage/ToxinCloud.tscn",
+      "res://src/microbe_stage/MicrobeCommonPreload.tscn",
+      "res://src/multicellular_stage/IntercellularConnection.tscn"
     ]
   },
   "MacroscopicStage": {
@@ -139,30 +85,14 @@
       "Error"
     ],
     "RequiredScenes": [
-      {
-        "Path": "res://assets/models/Iron5.tscn"
-      },
-      {
-        "Path": "res://assets/models/Tree01.tscn"
-      },
-      {
-        "Path": "res://assets/models/structures/SocietyCenter.tscn"
-      },
-      {
-        "Path": "res://assets/models/structures/SocietyCenterGhost.tscn"
-      },
-      {
-        "Path": "res://assets/models/structures/StructureScaffolding_5x20.tscn"
-      },
-      {
-        "Path": "res://assets/models/structures/StructureScaffolding_10x10.tscn"
-      },
-      {
-        "Path": "res://assets/models/structures/StructureScaffolding_20x20.tscn"
-      },
-      {
-        "Path": "res://assets/models/MissingItemPlaceholder.tscn"
-      }
+      "res://assets/models/Iron5.tscn",
+      "res://assets/models/Tree01.tscn",
+      "res://assets/models/structures/SocietyCenter.tscn",
+      "res://assets/models/structures/SocietyCenterGhost.tscn",
+      "res://assets/models/structures/StructureScaffolding_5x20.tscn",
+      "res://assets/models/structures/StructureScaffolding_10x10.tscn",
+      "res://assets/models/structures/StructureScaffolding_20x20.tscn",
+      "res://assets/models/MissingItemPlaceholder.tscn"
     ],
     "Textures": [
       {
@@ -178,36 +108,13 @@
       "Error"
     ],
     "RequiredScenes": [
-      {
-        "Path": "res://assets/models/structures/HunterGathererLodge.tscn"
-      },
-      {
-        "Path": "res://assets/models/structures/HunterGathererLodgeGhost.tscn"
-      },
-      {
-        "Path": "res://assets/models/structures/SocietyCenter.tscn"
-      },
-      {
-        "Path": "res://assets/models/structures/SocietyCenterGhost.tscn"
-      },
-      {
-        "Path": "res://assets/models/structures/StructureScaffolding_5x20.tscn"
-      },
-      {
-        "Path": "res://assets/models/structures/StructureScaffolding_10x10.tscn"
-      },
-      {
-        "Path": "res://assets/models/structures/StructureScaffolding_20x20.tscn"
-      },
-      {
-        "Path": "res://assets/models/structures/HunterGathererLodge.tscn"
-      },
-      {
-        "Path": "res://assets/models/structures/HunterGathererLodge.tscn"
-      },
-      {
-        "Path": "res://assets/models/structures/HunterGathererLodge.tscn"
-      }
+      "res://assets/models/structures/HunterGathererLodge.tscn",
+      "res://assets/models/structures/HunterGathererLodgeGhost.tscn",
+      "res://assets/models/structures/SocietyCenter.tscn",
+      "res://assets/models/structures/SocietyCenterGhost.tscn",
+      "res://assets/models/structures/StructureScaffolding_5x20.tscn",
+      "res://assets/models/structures/StructureScaffolding_10x10.tscn",
+      "res://assets/models/structures/StructureScaffolding_20x20.tscn"
     ],
     "Textures": [
       {
@@ -225,16 +132,10 @@
     ]
   },
   "IndustrialStage": {
-    "RequiredVisualResources": [
-      "Error"
-    ],
+    "RequiredVisualResources": [],
     "RequiredScenes": [
-      {
-        "Path": "res://assets/models/space/PlaceholderRocket.tscn"
-      },
-      {
-        "Path": "res://assets/models/space/PlaceholderRocketSpace.tscn"
-      }
+      "res://assets/models/space/PlaceholderRocket.tscn",
+      "res://assets/models/space/PlaceholderRocketSpace.tscn"
     ],
     "InheritFrom": "SocietyStage"
   },
@@ -243,45 +144,18 @@
       "Error"
     ],
     "RequiredScenes": [
-      {
-        "Path": "res://assets/models/menu_backgrounds/Comet.tscn"
-      },
-      {
-        "Path": "res://assets/models/menu_backgrounds/MenuPlanet.glb"
-      },
-      {
-        "Path": "res://assets/models/menu_backgrounds/StarsMesh.tscn"
-      },
-      {
-        "Path": "res://assets/models/space/PlaceholderRocketSpace.tscn"
-      },
-      {
-        "Path": "res://assets/models/space/PlaceholderAdvancedSpaceship.tscn"
-      },
-      {
-        "Path": "res://assets/models/space/structures/AscensionGate.tscn"
-      },
-      {
-        "Path": "res://assets/models/space/PlaceholderAdvancedSpaceship.tscn"
-      },
-      {
-        "Path": "res://assets/models/space/structures/AscensionGateGhost.tscn"
-      },
-      {
-        "Path": "res://assets/models/space/structures/DysonSwarm.tscn"
-      },
-      {
-        "Path": "res://assets/models/space/structures/DysonSwarmGhost.tscn"
-      },
-      {
-        "Path": "res://assets/models/structures/StructureScaffolding_5x20.tscn"
-      },
-      {
-        "Path": "res://assets/models/structures/StructureScaffolding_10x10.tscn"
-      },
-      {
-        "Path": "res://assets/models/structures/StructureScaffolding_20x20.tscn"
-      }
+      "res://assets/models/menu_backgrounds/Comet.tscn",
+      "res://assets/models/menu_backgrounds/MenuPlanet.glb",
+      "res://assets/models/menu_backgrounds/StarsMesh.tscn",
+      "res://assets/models/space/PlaceholderRocketSpace.tscn",
+      "res://assets/models/space/PlaceholderAdvancedSpaceship.tscn",
+      "res://assets/models/space/structures/AscensionGate.tscn",
+      "res://assets/models/space/structures/AscensionGateGhost.tscn",
+      "res://assets/models/space/structures/DysonSwarm.tscn",
+      "res://assets/models/space/structures/DysonSwarmGhost.tscn",
+      "res://assets/models/structures/StructureScaffolding_5x20.tscn",
+      "res://assets/models/structures/StructureScaffolding_10x10.tscn",
+      "res://assets/models/structures/StructureScaffolding_20x20.tscn"
     ]
   }
 }

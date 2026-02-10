@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://devtugnggmuol"]
+[gd_scene format=3 uid="uid://devtugnggmuol"]
 
 [ext_resource type="Script" uid="uid://exlgkif2qbrm" path="res://src/general/PauseMenu.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://bt4wq0ddch84i" path="res://src/thriveopedia/Thriveopedia.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="9"]
-[ext_resource type="PackedScene" uid="uid://cba187yaeukt3" path="res://src/gui_common/TopLevelContainer.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://bnjcexj3ob27" path="res://src/gui_common/menus/AchievementsView.tscn" id="9_rags2"]
 
 [sub_resource type="Animation" id="Animation_rnkue"]
 resource_name = "Close"
@@ -172,159 +172,156 @@ _data = {
 &"RESET": SubResource("Animation_ih5uy")
 }
 
-[node name="PauseMenu" node_paths=PackedStringArray("primaryMenu", "thriveopedia", "loadMenu", "optionsMenu", "saveMenu", "unsavedProgressWarning") instance=ExtResource("10")]
+[node name="PauseMenu" type="CanvasLayer" unique_id=1952885349 node_paths=PackedStringArray("primaryMenu", "thriveopedia", "achievementsView", "loadMenu", "optionsMenu", "saveMenu", "unsavedProgressWarning")]
 process_mode = 3
-visible = true
-offset_right = 1280.0
-offset_bottom = 720.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("2")
+layer = 2
 script = ExtResource("1")
-LoadSaveListPath = NodePath("CenterContainer/LoadMenu/SaveList")
 primaryMenu = NodePath("CenterContainer/PrimaryMenu")
 thriveopedia = NodePath("Thriveopedia")
+achievementsView = NodePath("AchievementsView")
 loadMenu = NodePath("CenterContainer/LoadMenu")
 optionsMenu = NodePath("OptionsMenu")
 saveMenu = NodePath("CenterContainer/NewSaveMenu")
 unsavedProgressWarning = NodePath("UnsavedProgressWarning")
-ExclusiveAllowCloseOnEscape = false
-FullRect = true
 
-[node name="Overlay" type="ColorRect" parent="." index="0"]
-layout_mode = 0
+[node name="Overlay" type="ColorRect" parent="." unique_id=1253938308]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_force_pass_scroll_events = false
 color = Color(0, 0, 0, 0.588235)
 
-[node name="CenterContainer" type="CenterContainer" parent="." index="1"]
-layout_mode = 0
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=388374716]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 0
 mouse_force_pass_scroll_events = false
 
-[node name="PrimaryMenu" type="VBoxContainer" parent="CenterContainer" index="0"]
+[node name="PrimaryMenu" type="VBoxContainer" parent="CenterContainer" unique_id=10635663]
 layout_mode = 2
 theme = ExtResource("2")
 theme_override_constants/separation = 10
 
-[node name="Control" type="Control" parent="CenterContainer/PrimaryMenu" index="0"]
+[node name="Control" type="Control" parent="CenterContainer/PrimaryMenu" unique_id=811336658]
 layout_mode = 2
 
-[node name="Resume" type="Button" parent="CenterContainer/PrimaryMenu" index="1"]
+[node name="Resume" type="Button" parent="CenterContainer/PrimaryMenu" unique_id=144965402]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "PAUSE_MENU_RESUME_TOOLTIP"
 text = "RESUME"
 
-[node name="SaveGame" type="Button" parent="CenterContainer/PrimaryMenu" index="2"]
+[node name="SaveGame" type="Button" parent="CenterContainer/PrimaryMenu" unique_id=1492433505]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "SAVE_GAME_BUTTON_TOOLTIP"
 text = "SAVE_GAME"
 
-[node name="LoadGame" type="Button" parent="CenterContainer/PrimaryMenu" index="3"]
+[node name="LoadGame" type="Button" parent="CenterContainer/PrimaryMenu" unique_id=1598283445]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "LOAD_GAME_BUTTON_TOOLTIP"
 text = "LOAD_GAME"
 
-[node name="Thriveopedia" type="Button" parent="CenterContainer/PrimaryMenu" index="4"]
+[node name="Thriveopedia" type="Button" parent="CenterContainer/PrimaryMenu" unique_id=2137568863]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "THRIVEOPEDIA_HINT_IN_GAME"
 text = "THRIVEOPEDIA"
 
-[node name="Help" type="Button" parent="CenterContainer/PrimaryMenu" index="5"]
+[node name="Achievements" type="Button" parent="CenterContainer/PrimaryMenu" unique_id=342704356]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+text = "ACHIEVEMENTS"
+
+[node name="Help" type="Button" parent="CenterContainer/PrimaryMenu" unique_id=505161843]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "HELP_BUTTON_TOOLTIP"
 text = "HELP"
 
-[node name="ReportBug" type="Button" parent="CenterContainer/PrimaryMenu" index="6"]
+[node name="ReportBug" type="Button" parent="CenterContainer/PrimaryMenu" unique_id=625775073]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 text = "REPORT_BUG"
 
-[node name="Options" type="Button" parent="CenterContainer/PrimaryMenu" index="7"]
+[node name="Options" type="Button" parent="CenterContainer/PrimaryMenu" unique_id=1625678643]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "OPTIONS_BUTTON_TOOLTIP"
 text = "OPTIONS"
 
-[node name="ReturnToMenu" type="Button" parent="CenterContainer/PrimaryMenu" index="8"]
+[node name="ReturnToMenu" type="Button" parent="CenterContainer/PrimaryMenu" unique_id=474351139]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "RETURN_TO_MENU_TOOLTIP"
 text = "RETURN_TO_MENU"
 
-[node name="Exit" type="Button" parent="CenterContainer/PrimaryMenu" index="9"]
+[node name="Exit" type="Button" parent="CenterContainer/PrimaryMenu" unique_id=1081813480]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "QUIT_BUTTON_TOOLTIP"
 text = "EXIT"
 
-[node name="FocusGrabber" parent="CenterContainer/PrimaryMenu" index="10" instance=ExtResource("9")]
+[node name="FocusGrabber" parent="CenterContainer/PrimaryMenu" unique_id=251012651 instance=ExtResource("9")]
 layout_mode = 2
 Priority = 1
 NodeToGiveFocusTo = NodePath("../Resume")
 AlwaysOverrideFocus = true
 SkipOverridingFocusForElements = [NodePath("../../..")]
 
-[node name="LoadMenu" type="VBoxContainer" parent="CenterContainer" index="1"]
+[node name="LoadMenu" type="VBoxContainer" parent="CenterContainer" unique_id=1965638108]
 visible = false
 custom_minimum_size = Vector2(1000, 600)
 layout_mode = 2
 
-[node name="SaveList" parent="CenterContainer/LoadMenu" index="0" instance=ExtResource("3")]
+[node name="SaveList" parent="CenterContainer/LoadMenu" unique_id=197748681 instance=ExtResource("3")]
 layout_mode = 2
 size_flags_vertical = 3
 AutoRefreshOnFirstVisible = false
 
-[node name="Back" type="Button" parent="CenterContainer/LoadMenu" index="1"]
+[node name="Back" type="Button" parent="CenterContainer/LoadMenu" unique_id=1331396895]
 custom_minimum_size = Vector2(100, 37)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2")
 text = "BACK"
 
-[node name="FocusGrabber" parent="CenterContainer/LoadMenu" index="2" instance=ExtResource("9")]
+[node name="FocusGrabber" parent="CenterContainer/LoadMenu" unique_id=1294375357 instance=ExtResource("9")]
 layout_mode = 2
 Priority = 2
 NodeToGiveFocusTo = NodePath("../Back")
 AlwaysOverrideFocus = true
 SkipOverridingFocusForElements = [NodePath("..")]
 
-[node name="NewSaveMenu" parent="CenterContainer" index="2" instance=ExtResource("5")]
+[node name="NewSaveMenu" parent="CenterContainer" unique_id=1813761359 instance=ExtResource("5")]
 visible = false
 custom_minimum_size = Vector2(1000, 600)
 layout_mode = 2
 
-[node name="OptionsMenu" parent="." index="2" instance=ExtResource("6")]
+[node name="OptionsMenu" parent="." unique_id=1510786363 instance=ExtResource("6")]
 visible = false
-layout_mode = 1
 
-[node name="Thriveopedia" parent="." index="3" instance=ExtResource("8")]
+[node name="Thriveopedia" parent="." unique_id=1322530783 instance=ExtResource("8")]
 visible = false
-layout_mode = 1
 
-[node name="UnsavedProgressWarning" parent="." index="4" instance=ExtResource("7")]
+[node name="AchievementsView" parent="." unique_id=1666590279 instance=ExtResource("9_rags2")]
+visible = false
+
+[node name="UnsavedProgressWarning" parent="." unique_id=3953117 instance=ExtResource("7")]
 custom_minimum_size = Vector2(391, 0)
-layout_mode = 1
 offset_right = 391.0
 WindowTitle = "CONFIRM_EXIT"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
-libraries = {
-&"": SubResource("AnimationLibrary_y4xuc")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1096985639]
+libraries/ = SubResource("AnimationLibrary_y4xuc")
 
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Resume" to="." method="ClosePressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/SaveGame" to="." method="OpenSavePressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/LoadGame" to="." method="OpenLoadPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Thriveopedia" to="." method="OpenThriveopediaPressed"]
+[connection signal="pressed" from="CenterContainer/PrimaryMenu/Achievements" to="." method="OpenAchievementsPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Help" to="." method="OpenToHelp"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/ReportBug" to="." method="OpenReportBugPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Options" to="." method="OpenOptionsPressed"]
@@ -338,4 +335,5 @@ libraries = {
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnOptionsClosed"]
 [connection signal="OnSceneChanged" from="Thriveopedia" to="." method="OnSceneChangedFromThriveopedia"]
 [connection signal="OnThriveopediaClosed" from="Thriveopedia" to="." method="OnThriveopediaClosed"]
+[connection signal="OnClosed" from="AchievementsView" to="." method="OnAchievementsClosed"]
 [connection signal="Confirmed" from="UnsavedProgressWarning" to="." method="ConfirmExit"]

@@ -1,24 +1,20 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using Saving.Serializers;
+using SharedBase.Archive;
 
 /// <summary>
 ///   This action contains a single "action" in contrast to <see cref="CombinedEditorAction"/> which can
 ///   have a number of actions that are logically a single step.
 /// </summary>
 /// <typeparam name="T">Type of the action data to hold</typeparam>
-[JSONAlwaysDynamicType]
 public class SingleEditorAction<T> : EditorAction, IEnumerable<EditorCombinableActionData>
     where T : EditorCombinableActionData
 {
-    [JsonProperty]
     private readonly Action<T> redo;
 
-    [JsonProperty]
     private readonly Action<T> undo;
-
-    private List<EditorCombinableActionData>? temporaryMergedData;
 
     public SingleEditorAction(Action<T> redo, Action<T> undo, T data)
     {
@@ -27,16 +23,29 @@ public class SingleEditorAction<T> : EditorAction, IEnumerable<EditorCombinableA
         SingleData = data;
     }
 
-    [JsonProperty]
     public T SingleData { get; private set; }
 
-    [JsonIgnore]
     public override IEnumerable<EditorCombinableActionData> Data => this;
+
+    public override ushort CurrentArchiveVersion => ActionHistorySerializer.SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.ExtendedSingleEditorAction;
 
     public static implicit operator SingleEditorAction<EditorCombinableActionData>(SingleEditorAction<T> action)
     {
         return new SingleEditorAction<EditorCombinableActionData>(d => action.redo((T)d),
             d => action.undo((T)d), action.SingleData);
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteDelegate(redo);
+        writer.WriteDelegate(undo);
+        writer.WriteObject(SingleData);
+
+        writer.Write(SERIALIZATION_VERSION_REVERSIBLE);
+        base.WriteToArchive(writer);
     }
 
     public override void DoAction()
@@ -47,27 +56,6 @@ public class SingleEditorAction<T> : EditorAction, IEnumerable<EditorCombinableA
     public override void UndoAction()
     {
         undo(SingleData);
-    }
-
-    public override double GetBaseCost()
-    {
-        return SingleData.GetBaseCost();
-    }
-
-    public override double CalculateCost(IReadOnlyList<EditorAction> history, int insertPosition)
-    {
-        // Note due to this object reuse this method is not re-entrant, but this approach is used to avoid short-lived
-        // allocations
-        temporaryMergedData ??= new List<EditorCombinableActionData>(history.Count);
-        temporaryMergedData.Clear();
-
-        var count = history.Count;
-        for (int i = 0; i < insertPosition && i < count; ++i)
-        {
-            history[i].CopyData(temporaryMergedData);
-        }
-
-        return SingleData.CalculateCost(temporaryMergedData, insertPosition);
     }
 
     public override void ApplyMergedData(IEnumerable<EditorCombinableActionData> newData)

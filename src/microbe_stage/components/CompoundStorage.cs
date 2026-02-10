@@ -2,18 +2,39 @@
 
 using System.Collections.Generic;
 using Godot;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Entity has storage space for compounds
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct CompoundStorage
+public struct CompoundStorage : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public CompoundBag Compounds;
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentCompoundStorage;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(Compounds);
+    }
 }
 
 public static class CompoundStorageHelpers
 {
+    public static CompoundStorage ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > CompoundStorage.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, CompoundStorage.SERIALIZATION_VERSION);
+
+        return new CompoundStorage
+        {
+            Compounds = reader.ReadObject<CompoundBag>(),
+        };
+    }
+
     /// <summary>
     ///   Vent all remaining compounds immediately
     /// </summary>
@@ -32,7 +53,7 @@ public static class CompoundStorageHelpers
                 if (amount < MathUtils.EPSILON)
                     continue;
 
-                VentChunkCompound(ref storage, compound, amount, position, compoundClouds);
+                storage.VentChunkCompound(compound, amount, position, compoundClouds);
             }
         }
     }

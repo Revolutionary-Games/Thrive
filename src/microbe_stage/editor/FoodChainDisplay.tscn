@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://d4bf4x375rb82"]
+[gd_scene format=3 uid="uid://d4bf4x375rb82"]
 
 [ext_resource type="Script" uid="uid://buki3sgyp52nf" path="res://src/microbe_stage/editor/FoodChainDisplay.cs" id="1_3fpim"]
 
-[node name="FoodChainDisplay" type="Control"]
+[node name="FoodChainDisplay" type="Control" unique_id=1643357664]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 3
 anchors_preset = 0
@@ -10,3 +10,4 @@ offset_right = 128.0
 offset_bottom = 128.0
 mouse_filter = 1
 script = ExtResource("1_3fpim")
+Margin = Vector2(450, 225)

@@ -1,5 +1,7 @@
-﻿using DefaultEcs;
-using DefaultEcs.Command;
+﻿using Arch.Buffer;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Components;
 using Godot;
 
 /// <summary>
@@ -30,9 +32,9 @@ public class ModInterface : IModInterface
         OnSceneChanged?.Invoke(newScene);
     }
 
-    public void TriggerOnDamageReceived(Entity damageReceiver, float amount, bool isPlayer)
+    public void TriggerOnDamageReceived(Entity damageReceiver, float amount, string source)
     {
-        OnDamageReceived?.Invoke(damageReceiver, amount, isPlayer);
+        OnDamageReceived?.Invoke(damageReceiver, amount, source, damageReceiver.Has<PlayerMarker>());
     }
 
     public void TriggerOnPlayerMicrobeSpawned(Entity player)
@@ -40,19 +42,19 @@ public class ModInterface : IModInterface
         OnPlayerMicrobeSpawned?.Invoke(player);
     }
 
-    public void TriggerOnMicrobeSpawned(EntityRecord microbe)
+    public void TriggerOnMicrobeSpawned(Entity microbe, CommandBuffer commandBuffer)
     {
-        OnMicrobeSpawned?.Invoke(microbe);
+        OnMicrobeSpawned?.Invoke(microbe, commandBuffer);
     }
 
-    public void TriggerOnChunkSpawned(EntityRecord chunk, bool environmental)
+    public void TriggerOnChunkSpawned(Entity chunk, bool environmental, CommandBuffer commandBuffer)
     {
-        OnChunkSpawned?.Invoke(chunk, environmental);
+        OnChunkSpawned?.Invoke(chunk, environmental, commandBuffer);
     }
 
-    public void TriggerOnToxinEmitted(EntityRecord toxin)
+    public void TriggerOnToxinEmitted(Entity toxin, CommandBuffer commandBuffer)
     {
-        OnToxinEmitted?.Invoke(toxin);
+        OnToxinEmitted?.Invoke(toxin, commandBuffer);
     }
 
     public void TriggerOnMicrobeDied(Entity microbe, bool isPlayer)

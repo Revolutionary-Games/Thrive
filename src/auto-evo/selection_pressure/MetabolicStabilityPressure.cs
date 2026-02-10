@@ -1,10 +1,11 @@
 ﻿namespace AutoEvo;
 
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
-[JSONDynamicTypeAllowed]
 public class MetabolicStabilityPressure : SelectionPressure
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
     private static readonly LocalizedString NameString = new LocalizedString("MICHE_METABOLIC_STABILITY_PRESSURE");
@@ -20,8 +21,24 @@ public class MetabolicStabilityPressure : SelectionPressure
     {
     }
 
-    [JsonIgnore]
     public override LocalizedString Name => NameString;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.MetabolicStabilityPressure;
+
+    public static MetabolicStabilityPressure ReadFromArchive(ISArchiveReader reader, ushort version,
+        int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new MetabolicStabilityPressure(reader.ReadFloat());
+
+        instance.ReadBasePropertiesFromArchive(reader, 1);
+        return instance;
+    }
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {

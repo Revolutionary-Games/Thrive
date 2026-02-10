@@ -1,21 +1,17 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles <see cref="Engulfable"/> entities that are currently engulfed or have been engulfed before and should
 ///   heal
 /// </summary>
-[With(typeof(Engulfable))]
-[With(typeof(Engulfer))]
-[With(typeof(Health))]
-[With(typeof(SoundEffectPlayer))]
-[With(typeof(MicrobeControl))]
 [WritesToComponent(typeof(CompoundAbsorber))]
 [WritesToComponent(typeof(UnneededCompoundVenter))]
 [WritesToComponent(typeof(RenderPriorityOverride))]
@@ -27,7 +23,7 @@ using World = DefaultEcs.World;
 [RunsAfter(typeof(EngulfingSystem))]
 [RunsAfter(typeof(EngulfedDigestionSystem))]
 [RuntimeCost(0.5f)]
-public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>
+public partial class EngulfedHandlingSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
     private readonly ISpawnSystem spawnSystem;
@@ -37,38 +33,47 @@ public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>
     private float playerEngulfedDeathTimer;
     private float previousPlayerEngulfedDeathTimer;
 
-    public EngulfedHandlingSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world,
-        IParallelRunner parallelRunner) : base(world, parallelRunner)
+    public EngulfedHandlingSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world) : base(world)
     {
         this.worldSimulation = worldSimulation;
         this.spawnSystem = spawnSystem;
     }
 
-    protected override void PreUpdate(float delta)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(delta);
-
         previousPlayerEngulfedDeathTimer = playerEngulfedDeathTimer;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    public override void AfterUpdate(in float delta)
     {
-        ref var engulfable = ref entity.Get<Engulfable>();
+        // If there's no player digestion progress, reset the timer
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        if (previousPlayerEngulfedDeathTimer == playerEngulfedDeathTimer)
+        {
+            // Just in case the player is engulfed again after escaping to make sure the player doesn't die faster
+            playerEngulfedDeathTimer = 0;
+        }
+    }
 
+    [Query]
+    [All<Health, Engulfer, SoundEffectPlayer>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref Engulfable engulfable, ref MicrobeControl control, in Entity entity)
+    {
         // Handle logic if the cell that's being/has been digested is us
         if (engulfable.PhagocytosisStep == PhagocytosisPhase.None)
         {
             if (engulfable.DigestedAmount >= 1 || (engulfable.DestroyIfPartiallyDigested &&
                     engulfable.DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD))
             {
-                // Too digested to live anymore
+                // Too digested to live any more
                 // Note that the microbe equivalent of this is handled in OnExpelledFromEngulfment
                 ref var health = ref entity.Get<Health>();
                 KillEngulfed(entity, ref health, ref engulfable);
             }
             else if (engulfable.DigestedAmount > 0)
             {
-                // Cell is not too damaged, can heal itself in open environment and continue living
+                // Cell is not too damaged, can heal itself in an open environment and continue living
                 engulfable.DigestedAmount -= delta * Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND;
 
                 if (engulfable.DigestedAmount < 0)
@@ -78,7 +83,6 @@ public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>
         else
         {
             // Disallow cells being in any state than normal while engulfed
-            ref var control = ref entity.Get<MicrobeControl>();
             control.State = MicrobeState.Normal;
 
             // TODO: it seems that this code is always ran, though with the PARTIALLY_DIGESTED_THRESHOLD check
@@ -87,7 +91,13 @@ public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>
             // Species handling for the player microbe in case the process into partial digestion took too long
             // so here we want to limit how long the player should wait until they respawn
             if (engulfable.PhagocytosisStep == PhagocytosisPhase.Ingested && entity.Has<PlayerMarker>())
-                playerEngulfedDeathTimer += delta;
+            {
+                // If the player still has toxin, there's a chance the player cell can escape
+                if (entity.Get<CompoundStorage>().Compounds.GetCompoundAmount(Compound.Oxytoxy) < 0.1f)
+                {
+                    playerEngulfedDeathTimer += delta;
+                }
+            }
 
             // TODO: the old system probably used to have:
             // engulfable.DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD here which is now gone to stop
@@ -102,36 +112,21 @@ public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>
             }
 
             // If the engulfing entity is dead, then this should have been ejected. The simulation world also has
-            // an on entity destroy callback that should do this so things are going pretty wrong if this is
+            // an on entity destroy callback that should do this, so things are going pretty wrong if this is
             // triggered
-            if (!engulfable.HostileEngulfer.IsAlive)
+            if (!engulfable.HostileEngulfer.IsAliveAndNotNull())
             {
                 GD.PrintErr("Entity is stuck inside a dead engulfer, force clearing state to rescue it");
 
                 engulfable.OnExpelledFromEngulfment(entity, spawnSystem, worldSimulation);
                 engulfable.PhagocytosisStep = PhagocytosisPhase.None;
-                engulfable.HostileEngulfer = default;
+                engulfable.HostileEngulfer = Entity.Null;
 
                 var recorder = worldSimulation.StartRecordingEntityCommands();
-
-                var entityRecord = recorder.Record(entity);
-                entityRecord.Remove<AttachedToEntity>();
+                recorder.Remove<AttachedToEntity>(entity);
 
                 worldSimulation.FinishRecordingEntityCommands(recorder);
             }
-        }
-    }
-
-    protected override void PostUpdate(float state)
-    {
-        base.PostUpdate(state);
-
-        // If there's no player digestion progress reset the timer
-        // ReSharper disable once CompareOfFloatsByEqualityOperator
-        if (previousPlayerEngulfedDeathTimer == playerEngulfedDeathTimer)
-        {
-            // Just in case player is engulfed again after escaping to make sure the player doesn't die faster
-            playerEngulfedDeathTimer = 0;
         }
     }
 
@@ -149,7 +144,7 @@ public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>
         }
 
         var hostile = engulfable.HostileEngulfer;
-        if (!hostile.IsAlive || !hostile.Has<Engulfer>())
+        if (!hostile.IsAliveAndHas<Engulfer>())
             return;
 
         ref var engulfer = ref entity.Get<Engulfer>();

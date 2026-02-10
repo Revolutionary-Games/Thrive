@@ -1,12 +1,13 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Buffer;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.Command;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles microbe binding mode for creating microbe colonies
@@ -14,20 +15,9 @@ using World = DefaultEcs.World;
 /// <remarks>
 ///   <para>
 ///     This could have a pretty low runtime cost set, but the profiling run was done without colony binding
-///     happening so it is expected that actual colony binds happening will take much more time.
+///     happening, so it is expected that actual colony binds happening will take much more time.
 ///   </para>
 /// </remarks>
-[With(typeof(MicrobeControl))]
-[With(typeof(CollisionManagement))]
-[With(typeof(MicrobeSpeciesMember))]
-[With(typeof(Health))]
-[With(typeof(SoundEffectPlayer))]
-[With(typeof(CompoundStorage))]
-[With(typeof(OrganelleContainer))]
-[With(typeof(MicrobePhysicsExtraData))]
-[With(typeof(CellProperties))]
-[With(typeof(WorldPosition))]
-[Without(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(CollisionManagement))]
 [ReadsComponent(typeof(MicrobePhysicsExtraData))]
 [ReadsComponent(typeof(WorldPosition))]
@@ -40,19 +30,25 @@ using World = DefaultEcs.World;
 [RunsBefore(typeof(MicrobeFlashingSystem))]
 [RunsAfter(typeof(MicrobeMovementSystem))]
 [RunsAfter(typeof(EngulfingSystem))]
-public sealed class ColonyBindingSystem : AEntitySetSystem<float>
+public partial class ColonyBindingSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
 
-    public ColonyBindingSystem(IWorldSimulation worldSimulation, World world, IParallelRunner parallelRunner) :
-        base(world, parallelRunner)
+    public ColonyBindingSystem(IWorldSimulation worldSimulation, World world) : base(world)
     {
         this.worldSimulation = worldSimulation;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [All<WorldPosition, CellProperties, MicrobePhysicsExtraData, OrganelleContainer,
+        MicrobeSpeciesMember, CollisionManagement, SoundEffectPlayer, CompoundStorage>]
+    [None<AttachedToEntity>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref MicrobeControl control, ref Health health, in Entity entity)
     {
-        ref var control = ref entity.Get<MicrobeControl>();
+        // Disallow binding to happen when dead
+        if (health.Dead)
+            return;
 
         if (control.State == MicrobeState.Unbinding)
         {
@@ -71,12 +67,6 @@ public sealed class ColonyBindingSystem : AEntitySetSystem<float>
 
     private void HandleBindingMode(ref MicrobeControl control, in Entity entity, float delta)
     {
-        ref var health = ref entity.Get<Health>();
-
-        // Disallow binding to happen when dead
-        if (health.Dead)
-            return;
-
         ref var organelles = ref entity.Get<OrganelleContainer>();
         ref var ourSpecies = ref entity.Get<MicrobeSpeciesMember>();
 
@@ -118,8 +108,8 @@ public sealed class ColonyBindingSystem : AEntitySetSystem<float>
         if (count <= 0)
             return;
 
-        // Can't bind when membrane is not ready (note this doesn't manage to check colony members so this isn't
-        // an exact check meaning the actual bind method can still fail later even if this check passes)
+        // Can't bind when membrane is not ready (note this doesn't manage to check colony members, so this isn't
+        // an exact check, meaning the actual bind method can still fail later even if this check passes)
         ref var cellProperties = ref entity.Get<CellProperties>();
 
         // TODO: should this require an up to date membrane data?
@@ -132,6 +122,9 @@ public sealed class ColonyBindingSystem : AEntitySetSystem<float>
         {
             ref var collision = ref collisions![i];
 
+            if (collision.SecondEntity == Entity.Null || collision.SecondEntity == default(Entity))
+                continue;
+
             if (!organelles.CanBindWith(ourSpecies.Species, collision.SecondEntity))
                 continue;
 
@@ -142,7 +135,7 @@ public sealed class ColonyBindingSystem : AEntitySetSystem<float>
             if (collision.SecondEntity.Has<AttachedToEntity>())
                 continue;
 
-            // Second entity is not a full microbe (this shouldn't happen but for safety this check is here)
+            // The second entity is not a full microbe (this shouldn't happen, but for safety this check is here)
             if (!collision.SecondEntity.Has<MicrobePhysicsExtraData>())
                 continue;
 
@@ -180,7 +173,7 @@ public sealed class ColonyBindingSystem : AEntitySetSystem<float>
     private bool BeginBind(ref MicrobeControl control, in Entity primaryEntity, int indexOfMemberToBindTo,
         in Entity other)
     {
-        if (!other.IsAlive)
+        if (other.IsAllZero() || !other.IsAliveAndNotNull())
         {
             GD.PrintErr("Binding attempted on a dead entity");
             return false;
@@ -211,7 +204,7 @@ public sealed class ColonyBindingSystem : AEntitySetSystem<float>
                 if (colony.AddInitialColonyMember(primaryEntity, indexOfMemberToBindTo, other, recorder))
                 {
                     // Add the colony component to the lead cell
-                    recorder.Record(primaryEntity).Set(colony);
+                    recorder.Add(primaryEntity, colony);
 
                     // Report not being able to reproduce by the lead cell
                     MicrobeColonyHelpers.ReportReproductionStatusOnAddToColony(primaryEntity);
@@ -244,12 +237,11 @@ public sealed class ColonyBindingSystem : AEntitySetSystem<float>
         if (!success)
         {
             GD.PrintErr("Failed to bind a new cell to a colony, rolling back entity commands");
-            recorder.Clear();
-            worldSimulation.FinishRecordingEntityCommands(recorder);
+            worldSimulation.OnFailedRecordingEntityCommands(recorder);
             return false;
         }
 
-        // Colony aware set is used above if it can be
+        // Colony-aware set is used above if it can be
         control.State = MicrobeState.Normal;
 
         // Other cell control is set by MicrobeColonyHelpers.OnColonyMemberAdded
@@ -259,7 +251,7 @@ public sealed class ColonyBindingSystem : AEntitySetSystem<float>
     }
 
     private bool HandleAddToColony(ref MicrobeColony colony, in Entity colonyEntity, int parentIndex,
-        in Entity newCell, EntityCommandRecorder entityCommandRecorder)
+        in Entity newCell, CommandBuffer entityCommandRecorder)
     {
         return colony.AddToColony(colonyEntity, parentIndex, newCell, entityCommandRecorder);
     }

@@ -2,35 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
+using Systems;
+using UnlockConstraints;
 
 /// <summary>
 ///   The multicellular stage editor main class
 /// </summary>
-[JsonObject(IsReference = true)]
-[SceneLoadedClass("res://src/multicellular_stage/editor/MulticellularEditor.tscn", UsesEarlyResolve = false)]
-[DeserializedCallbackTarget]
 public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData,
     ICellEditorData
 {
+    public const ushort SERIALIZATION_VERSION = 2;
+
+    private readonly MulticellularSpeciesComparer speciesComparer = new();
+
+    private readonly CellTypeEditsHolder cellTypeEditsHolder = new();
+
 #pragma warning disable CA2213
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     [Export]
     private MicrobeEditorReportComponent reportTab = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     [Export]
     private MicrobeEditorPatchMap patchMapTab = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     [Export]
     private CellBodyPlanEditorComponent bodyPlanEditorTab = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     [Export]
     private CellEditorComponent cellEditorTab = null!;
 
@@ -38,10 +35,19 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     private Control noCellTypeSelected = null!;
 #pragma warning restore CA2213
 
-    [JsonProperty]
+    /// <summary>
+    ///   Used to cache full edited status for <see cref="speciesComparer"/> usage
+    /// </summary>
+    private MulticellularEditsFacade? editsFacade;
+
     private MulticellularSpecies? editedSpecies;
 
-    [JsonProperty]
+    /// <summary>
+    ///   If not null, this is the cell type that is being edited. Note that this is always a temporary holder from
+    ///   <see cref="cellTypeEditsHolder"/>, so it can be modified without affecting the original cell type until
+    ///   editor exit. This complicates things when all users need to know if they want the latest edits or original
+    ///   data when reading this.
+    /// </summary>
     private CellType? selectedCellTypeToEdit;
 
     public override bool CanCancelAction
@@ -58,30 +64,33 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         }
     }
 
-    [JsonIgnore]
     public override Species EditedBaseSpecies =>
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
 
-    [JsonIgnore]
     public MulticellularSpecies EditedSpecies =>
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
 
-    [JsonIgnore]
     public Patch CurrentPatch => patchMapTab.CurrentPatch;
 
-    [JsonIgnore]
     public Patch? TargetPatch => patchMapTab.TargetPatch;
 
-    [JsonIgnore]
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
 
-    [JsonIgnore]
     public ICellDefinition? EditedCellProperties => selectedCellTypeToEdit;
 
     // TODO: could implement this if desired but for now this is always null (might be needed for multicellular
     // tolerances implementation)
-    [JsonIgnore]
     public IReadOnlyList<OrganelleTemplate>? EditedCellOrganelles => null;
+
+    public override MainGameState GameState => MainGameState.MulticellularEditor;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.MulticellularEditor;
+
+    public WorldAndPlayerDataSource UnlocksDataSource =>
+        new(CurrentGame.GameWorld, CurrentPatch, GetPlayerDataSource());
 
     protected override string MusicCategory => "MulticellularEditor";
 
@@ -91,6 +100,83 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         Localization.Translate("LOADING_MULTICELLULAR_EDITOR");
 
     protected override bool HasInProgressAction => CanCancelAction;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.MulticellularEditor)
+            throw new NotSupportedException();
+
+        writer.WriteObject((MulticellularEditor)obj);
+    }
+
+    public static MulticellularEditor ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var scene = GD.Load<PackedScene>("res://src/multicellular_stage/editor/MulticellularEditor.tscn");
+
+        var instance = scene.Instantiate<MulticellularEditor>();
+
+        instance.ResolveNodeReferences();
+
+        // This is needed first in case we are on the cell type editor tab
+        instance.selectedCellTypeToEdit = reader.ReadObjectOrNull<CellType>();
+
+        if (version > 1)
+        {
+            reader.ReadObjectProperties(instance.cellTypeEditsHolder);
+        }
+
+        // Set this first so that this is available immediately
+        instance.bodyPlanEditorTab.CellTypeVisualsOverride = instance.cellTypeEditsHolder;
+
+        reader.ReadObjectProperties(instance.reportTab);
+        reader.ReadObjectProperties(instance.patchMapTab);
+        reader.ReadObjectProperties(instance.bodyPlanEditorTab);
+        reader.ReadObjectProperties(instance.cellEditorTab);
+
+        // Base version is different
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        instance.editedSpecies = reader.ReadObjectOrNull<MulticellularSpecies>();
+
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObjectOrNull(selectedCellTypeToEdit);
+
+        writer.WriteObjectProperties(cellTypeEditsHolder);
+
+        writer.WriteObjectProperties(reportTab);
+        writer.WriteObjectProperties(patchMapTab);
+        writer.WriteObjectProperties(bodyPlanEditorTab);
+        writer.WriteObjectProperties(cellEditorTab);
+
+        // Don't call base as it is the base abstract one
+        writer.Write(SERIALIZATION_VERSION_BASE);
+        WriteBasePropertiesToArchive(writer);
+
+        writer.WriteObjectOrNull(editedSpecies);
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        CheatManager.OnRevealAllPatches += OnRevealAllPatchesCheatUsed;
+        CheatManager.OnUnlockAllOrganelles += OnUnlockAllOrganellesCheatUsed;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        CheatManager.OnRevealAllPatches -= OnRevealAllPatchesCheatUsed;
+        CheatManager.OnUnlockAllOrganelles -= OnUnlockAllOrganellesCheatUsed;
+    }
 
     public void SendAutoEvoResultsToReportComponent()
     {
@@ -120,16 +206,17 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         cellEditorTab.UpdateBackgroundImage(patch);
     }
 
-    public override void AddContextToActions(IEnumerable<CombinableActionData> actions)
+    public override void AddContextToAction(CombinableActionData action)
     {
-        // If a cell type is being edited, add its type to each action data, so that we can use it for undoing and
-        // redoing later
-        if (selectedEditorTab == EditorTab.CellTypeEditor && selectedCellTypeToEdit != null)
+        // If a cell type is being edited, add its type to each action data so that we can use it for undoing and
+        // redoing later. And this makes the MP system work.
+        if (selectedCellTypeToEdit != null)
         {
-            foreach (var actionData in actions)
+            if (action is EditorCombinableActionData<CellType> cellTypeData && cellTypeData.Context == null)
             {
-                if (actionData is EditorCombinableActionData<CellType> cellTypeData && cellTypeData.Context == null)
-                    cellTypeData.Context = selectedCellTypeToEdit;
+                // For MP comparisons of new cell types, we want a consistent reference to the original cell type,
+                // so we reverse map this back to the original
+                cellTypeData.Context = cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit);
             }
         }
     }
@@ -156,7 +243,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         // If the action we're redoing should be done on another cell type,
         // save our changes to the current cell type, then switch to the other one
-        SwapEditingCellIfNeeded(cellType);
+        SwapEditingCellIfNeeded(cellType != null ? cellTypeEditsHolder.GetCellType(cellType) : null);
 
         // If the action we're redoing should be done on another editor tab, switch to that tab
         SwapEditorTabIfNeeded(history.ActionToRedo());
@@ -169,8 +256,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         // Name is invalid if it is empty or a duplicate
         // TODO: should this ensure the name doesn't have trailing whitespace?
         // If so, CellTemplate.UpdateNameIfValid should be updated as well
-        return !string.IsNullOrWhiteSpace(newName) && !EditedSpecies.CellTypes.Any(c =>
-            c.TypeName.Equals(newName, StringComparison.InvariantCultureIgnoreCase));
+        return !string.IsNullOrWhiteSpace(newName) && !EditedSpecies.ModifiableCellTypes.Any(c =>
+            c.CellTypeName.Equals(newName, StringComparison.InvariantCultureIgnoreCase));
     }
 
     public override void Undo()
@@ -179,7 +266,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         // If the action we're undoing should be done on another cell type,
         // save our changes to the current cell type, then switch to the other one
-        SwapEditingCellIfNeeded(cellType);
+        SwapEditingCellIfNeeded(cellType != null ? cellTypeEditsHolder.GetCellType(cellType) : null);
 
         // If the action we're undoing should be done on another editor tab, switch to that tab
         SwapEditorTabIfNeeded(history.ActionToUndo());
@@ -193,7 +280,10 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override void InitEditor(bool fresh)
     {
-        patchMapTab.SetMap(CurrentGame.GameWorld.Map);
+        patchMapTab.SetMap(CurrentGame.GameWorld.Map, CurrentGame.GameWorld.PlayerSpecies.ID);
+
+        // Set first so that data can be immediately used in the cell editor tab
+        bodyPlanEditorTab.CellTypeVisualsOverride = cellTypeEditsHolder;
 
         base.InitEditor(fresh);
 
@@ -215,9 +305,6 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         }
 
         cellEditorTab.UpdateBackgroundImage(CurrentPatch);
-
-        // TODO: as we are a prototype we don't want to auto save
-        wantsToSave = false;
     }
 
     protected override void InitEditorGUI(bool fresh)
@@ -279,6 +366,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
 
         patchMapTab.UpdatePatchEvents();
+        patchMapTab.MarkDrawerDirty();
     }
 
     protected override void OnUndoPerformed()
@@ -297,8 +385,20 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override void UpdatePatchDetails()
     {
-        // Patch events are able to change the stage's background so it needs to be updated here.
+        // Patch events are able to change the stage's background, so it needs to be updated here.
         cellEditorTab.UpdateBackgroundImage(CurrentPatch);
+    }
+
+    protected override double CalculateUsedMutationPoints(List<EditorCombinableActionData> performedActionData)
+    {
+        editsFacade ??=
+            new MulticellularEditsFacade(editedSpecies ??
+                throw new Exception("Species not initialized before calculating MP"));
+
+        editsFacade.SetActiveActions(performedActionData);
+
+        return speciesComparer.Compare(editedSpecies!, editsFacade, Constants.MAX_SINGLE_EDIT_MP_COST,
+            CurrentGame.GameWorld.WorldSettings.MPMultiplier);
     }
 
     protected override GameProperties StartNewGameForEditor()
@@ -308,17 +408,17 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override void PerformAutoSave()
     {
-        SaveHelper.ShowErrorAboutPrototypeSaving(this);
+        SaveHelper.AutoSave(this);
     }
 
     protected override void PerformQuickSave()
     {
-        SaveHelper.ShowErrorAboutPrototypeSaving(this);
+        SaveHelper.QuickSave(this);
     }
 
     protected override void SaveGame(string name)
     {
-        SaveHelper.ShowErrorAboutPrototypeSaving(this);
+        SaveHelper.Save(name, this);
     }
 
     protected override void ApplyEditorTab()
@@ -402,6 +502,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     {
         var species = (MulticellularSpecies?)CurrentGame.GameWorld.PlayerSpecies;
         editedSpecies = species ?? throw new NullReferenceException("didn't find edited species");
+        cellTypeEditsHolder.Reset();
 
         base.SetupEditedSpecies();
     }
@@ -412,6 +513,21 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         selectedCellTypeToEdit = null;
 
         base.OnEditorExitTransitionFinished();
+    }
+
+    private void OnRevealAllPatchesCheatUsed(object? sender, EventArgs args)
+    {
+        CurrentGame.GameWorld.Map.RevealAllPatches();
+        patchMapTab.MarkDrawerDirty();
+    }
+
+    private void OnUnlockAllOrganellesCheatUsed(object? sender, EventArgs args)
+    {
+        if (CurrentGame.GameWorld.UnlockProgress.UnlockAll)
+            return;
+
+        CurrentGame.GameWorld.UnlockProgress.UnlockAll = true;
+        cellEditorTab.UnlockAllOrganelles();
     }
 
     private void UpdateAutoEvoToReportTab()
@@ -442,14 +558,15 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             return;
         }
 
-        var newTypeToEdit = EditedSpecies.CellTypes.First(c => c.TypeName == name);
+        var newTypeToEdit = EditedSpecies.ModifiableCellTypes.First(c => c.CellTypeName == name);
 
         // Only reinitialize the editor when required
-        if (selectedCellTypeToEdit == null || selectedCellTypeToEdit != newTypeToEdit)
+        if (selectedCellTypeToEdit == null ||
+            cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit) != newTypeToEdit)
         {
-            selectedCellTypeToEdit = newTypeToEdit;
+            selectedCellTypeToEdit = cellTypeEditsHolder.BeginOrContinueEdit(newTypeToEdit);
 
-            GD.Print("Start editing cell type: ", selectedCellTypeToEdit.TypeName);
+            GD.Print("Start editing cell type: ", selectedCellTypeToEdit.CellTypeName);
 
             // Reinitialize the cell editor to be able to edit the new cell type
             cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
@@ -464,10 +581,9 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         if (selectedCellTypeToEdit == null)
             return;
 
-        // TODO: only apply if there were changes
-        GD.Print("Applying changes made to cell type: ", selectedCellTypeToEdit.TypeName);
+        GD.Print("Saving temporary changes made to cell type: ", selectedCellTypeToEdit.CellTypeName);
 
-        // Apply any changes made to the selected cell
+        // Apply any changes made to the selected cell (but only to the edit holder to not break MP)
         FinishEditingSelectedCell();
     }
 
@@ -518,7 +634,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             cellEditorTab.OnFinishEditing(false);
 
             // cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
-            bodyPlanEditorTab.OnCellTypeEdited(selectedCellTypeToEdit);
+            bodyPlanEditorTab.OnCellTypeEdited(cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit));
         }
     }
 
@@ -527,19 +643,33 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         if (selectedCellTypeToEdit == null)
             return;
 
-        var oldName = selectedCellTypeToEdit.TypeName;
+        var oldName = selectedCellTypeToEdit.CellTypeName;
 
         cellEditorTab.OnFinishEditing(false);
 
-        // Revert to old name if the name is a duplicate
-        if (EditedSpecies.CellTypes.Any(c =>
-                c != selectedCellTypeToEdit && c.TypeName == selectedCellTypeToEdit.TypeName))
+        // Revert to the old name if the name is a duplicate
+        if (EditedSpecies.ModifiableCellTypes.Any(c =>
+                c != selectedCellTypeToEdit && c.CellTypeName == selectedCellTypeToEdit.CellTypeName))
         {
-            GD.Print("Cell editor renamed a cell type to a duplicate name, reverting");
-            selectedCellTypeToEdit.TypeName = oldName;
+            if (oldName != selectedCellTypeToEdit.CellTypeName)
+            {
+                GD.Print("Cell editor renamed a cell type to a duplicate name, reverting");
+                selectedCellTypeToEdit.CellTypeName = oldName;
+            }
+            else
+            {
+                GD.Print("Cell type name was not edited");
+            }
+        }
+        else
+        {
+            // Apply the name immediately to the original species so that MP comparison works better
+            GD.Print("Applying rename to original cell type immediately");
+            cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit).CellTypeName =
+                selectedCellTypeToEdit.CellTypeName;
         }
 
-        bodyPlanEditorTab.OnCellTypeEdited(selectedCellTypeToEdit);
+        bodyPlanEditorTab.OnCellTypeEdited(cellTypeEditsHolder.GetOriginalType(selectedCellTypeToEdit));
     }
 
     private void SwapEditingCellIfNeeded(CellType? newCell)
@@ -550,6 +680,10 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         // If we're switching to a new cell type, apply any changes made to the old one
         if (selectedEditorTab == EditorTab.CellTypeEditor && selectedCellTypeToEdit != null)
             FinishEditingSelectedCell();
+
+        // The edit should be to an already started cell type edit
+        if (ReferenceEquals(cellTypeEditsHolder.GetOriginalType(newCell), newCell))
+            GD.PrintErr("Trying to edit a cell type that hasn't been started yet, this will corrupt MP state");
 
         // This fixes complex cases where multiple types are undoing and redoing actions
         selectedCellTypeToEdit = newCell;
@@ -580,5 +714,81 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             return;
 
         SetEditorTab(targetTab);
+    }
+
+    private IPlayerDataSource GetPlayerDataSource()
+    {
+        if (editedSpecies == null)
+        {
+            throw new Exception("Tried to get player unlocks data source without an edited species being set");
+        }
+
+        var energyBalance = new EnergyBalanceInfoSimple();
+
+        // TODO: replace with actual tolerances once they are implemented for this stage
+        var tolerances = new ResolvedMicrobeTolerances
+        {
+            ProcessSpeedModifier = 1.0f,
+            HealthModifier = 1.0f,
+            OsmoregulationModifier = 1.0f,
+        };
+
+        foreach (var cellType in editedSpecies.ModifiableCellTypes)
+        {
+            var cellEnergyBalance = new EnergyBalanceInfoSimple();
+
+            ProcessSystem.ComputeEnergyBalanceSimple(cellType.ModifiableOrganelles.Organelles, CurrentPatch.Biome,
+                in tolerances, cellType.MembraneType, Vector3.Zero, false, true,
+                CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Maximum, null, cellEnergyBalance);
+
+            GetBestEnergyBalanceProperties(energyBalance, cellEnergyBalance);
+        }
+
+        return new MulticellularUnlocksData(editedSpecies.ModifiableEditorCells, energyBalance);
+    }
+
+    private void GetBestEnergyBalanceProperties(EnergyBalanceInfoSimple energyBalance, EnergyBalanceInfoSimple toAdd)
+    {
+        energyBalance.BaseMovement = MathF.Max(energyBalance.BaseMovement, toAdd.BaseMovement);
+        energyBalance.Flagella = MathF.Max(energyBalance.Flagella, toAdd.Flagella);
+        energyBalance.Cilia = MathF.Max(energyBalance.Cilia, toAdd.Cilia);
+        energyBalance.TotalMovement = MathF.Max(energyBalance.TotalMovement, toAdd.TotalMovement);
+
+        energyBalance.Osmoregulation = MathF.Max(energyBalance.Osmoregulation, toAdd.Osmoregulation);
+
+        energyBalance.TotalProduction = MathF.Max(energyBalance.TotalProduction, toAdd.TotalProduction);
+        energyBalance.TotalConsumption = MathF.Max(energyBalance.TotalConsumption, toAdd.TotalConsumption);
+        energyBalance.TotalConsumptionStationary = MathF.Max(energyBalance.TotalConsumptionStationary,
+            toAdd.TotalConsumptionStationary);
+
+        energyBalance.FinalBalance = MathF.Max(energyBalance.FinalBalance, toAdd.FinalBalance);
+        energyBalance.FinalBalanceStationary = MathF.Max(energyBalance.FinalBalanceStationary,
+            toAdd.FinalBalanceStationary);
+    }
+
+    private class MulticellularUnlocksData : IPlayerDataSource
+    {
+        public IReadOnlyList<HexWithData<CellTemplate>>? CellLayout;
+
+        public MulticellularUnlocksData(IReadOnlyList<HexWithData<CellTemplate>>? cellLayout,
+            EnergyBalanceInfoSimple? energyBalance)
+        {
+            CellLayout = cellLayout;
+            EnergyBalance = energyBalance;
+        }
+
+        public EnergyBalanceInfoSimple? EnergyBalance { get; set; }
+
+        public float Speed
+        {
+            get
+            {
+                if (CellLayout == null)
+                    return 0;
+
+                return MicrobeInternalCalculations.SpeedToUserReadableNumber(
+                    CellBodyPlanInternalCalculations.CalculateSpeed(CellLayout));
+            }
+        }
     }
 }

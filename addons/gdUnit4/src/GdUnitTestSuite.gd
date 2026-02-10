@@ -14,14 +14,13 @@
 class_name GdUnitTestSuite
 extends Node
 
-const NO_ARG :Variant = GdUnitConstants.NO_ARG
 
 ### internal runtime variables that must not be overwritten!!!
 @warning_ignore("unused_private_class_variable")
 var __is_skipped := false
 @warning_ignore("unused_private_class_variable")
-var __skip_reason :String = "Unknow."
-var __active_test_case :String
+var __skip_reason := "Unknow."
+var __active_test_case: String
 var __awaiter := __gdunit_awaiter()
 
 
@@ -29,7 +28,7 @@ var __awaiter := __gdunit_awaiter()
 ### in order to noticeably reduce the loading time of the test suite.
 # We go this hard way to increase the loading performance to avoid reparsing all the used scripts
 # for more detailed info -> https://github.com/godotengine/godot/issues/67400
-func __lazy_load(script_path :String) -> GDScript:
+func __lazy_load(script_path: String) -> GDScript:
 	return GdUnitAssertions.__lazy_load(script_path)
 
 
@@ -81,23 +80,23 @@ func after_test() -> void:
 	pass
 
 
-func is_failure(_expected_failure :String = NO_ARG) -> bool:
+func is_failure() -> bool:
 	return Engine.get_meta("GD_TEST_FAILURE") if Engine.has_meta("GD_TEST_FAILURE") else false
 
 
-func set_active_test_case(test_case :String) -> void:
+func set_active_test_case(test_case: String) -> void:
 	__active_test_case = test_case
 
 
 # === Tools ====================================================================
 # Mapps Godot error number to a readable error message. See at ERROR
 # https://docs.godotengine.org/de/stable/classes/class_@globalscope.html#enum-globalscope-error
-func error_as_string(error_number :int) -> String:
+func error_as_string(error_number: int) -> String:
 	return error_string(error_number)
 
 
 ## A litle helper to auto freeing your created objects after test execution
-func auto_free(obj :Variant) -> Variant:
+func auto_free(obj: Variant) -> Variant:
 	var execution_context := GdUnitThreadManager.get_current_context().get_execution_context()
 
 	assert(execution_context != null, "INTERNAL ERROR: The current execution_context is null! Please report this as bug.")
@@ -105,7 +104,7 @@ func auto_free(obj :Variant) -> Variant:
 
 
 @warning_ignore("native_method_override")
-func add_child(node :Node, force_readable_name := false, internal := Node.INTERNAL_MODE_DISABLED) -> void:
+func add_child(node: Node, force_readable_name := false, internal := Node.INTERNAL_MODE_DISABLED) -> void:
 	super.add_child(node, force_readable_name, internal)
 	var execution_context := GdUnitThreadManager.get_current_context().get_execution_context()
 	if execution_context != null:
@@ -123,7 +122,7 @@ func discard_error_interupted_by_timeout() -> void:
 ## Creates a new directory under the temporary directory *user://tmp*[br]
 ## Useful for storing data during test execution. [br]
 ## The directory is automatically deleted after test suite execution
-func create_temp_dir(relative_path :String) -> String:
+func create_temp_dir(relative_path: String) -> String:
 	@warning_ignore("unsafe_method_access")
 	return __gdunit_file_access().create_temp_dir(relative_path)
 
@@ -138,35 +137,35 @@ func clean_temp_dir() -> void:
 ## Creates a new file under the temporary directory *user://tmp* + <relative_path>[br]
 ## with given name <file_name> and given file <mode> (default = File.WRITE)[br]
 ## If success the returned File is automatically closed after the execution of the test suite
-func create_temp_file(relative_path :String, file_name :String, mode := FileAccess.WRITE) -> FileAccess:
+func create_temp_file(relative_path: String, file_name: String, mode := FileAccess.WRITE) -> FileAccess:
 	@warning_ignore("unsafe_method_access")
 	return __gdunit_file_access().create_temp_file(relative_path, file_name, mode)
 
 
 ## Reads a resource by given path <resource_path> into a PackedStringArray.
-func resource_as_array(resource_path :String) -> PackedStringArray:
+func resource_as_array(resource_path: String) -> PackedStringArray:
 	@warning_ignore("unsafe_method_access")
 	return __gdunit_file_access().resource_as_array(resource_path)
 
 
 ## Reads a resource by given path <resource_path> and returned the content as String.
-func resource_as_string(resource_path :String) -> String:
+func resource_as_string(resource_path: String) -> String:
 	@warning_ignore("unsafe_method_access")
 	return __gdunit_file_access().resource_as_string(resource_path)
 
 
 ## Reads a resource by given path <resource_path> and return Variand translated by str_to_var
-func resource_as_var(resource_path :String) -> Variant:
+func resource_as_var(resource_path: String) -> Variant:
 	@warning_ignore("unsafe_method_access", "unsafe_cast")
 	return str_to_var(__gdunit_file_access().resource_as_string(resource_path) as String)
 
 
-## Waits for given signal is emited by the <source> until a specified timeout to fail[br]
+## Waits for given signal to be emitted by <source> until a specified timeout to fail[br]
 ## source: the object from which the signal is emitted[br]
 ## signal_name: signal name[br]
 ## args: the expected signal arguments as an array[br]
 ## timeout: the timeout in ms, default is set to 2000ms
-func await_signal_on(source :Object, signal_name :String, args :Array = [], timeout :int = 2000) -> Variant:
+func await_signal_on(source: Object, signal_name: String, args: Array = [], timeout: int = 2000) -> Variant:
 	@warning_ignore("unsafe_method_access")
 	return await __awaiter.await_signal_on(source, signal_name, args, timeout)
 
@@ -177,16 +176,55 @@ func await_idle_frame() -> void:
 	await __awaiter.await_idle_frame()
 
 
-## Waits for for a given amount of milliseconds[br]
+## Waits for a given amount of milliseconds[br]
 ## example:[br]
 ## [codeblock]
 ##    # waits for 100ms
 ##    await await_millis(myNode, 100).completed
 ## [/codeblock][br]
 ## use this waiter and not `await get_tree().create_timer().timeout to prevent errors when a test case is timed out
-func await_millis(timeout :int) -> void:
+func await_millis(timeout: int) -> void:
 	@warning_ignore("unsafe_method_access")
 	await __awaiter.await_millis(timeout)
+
+
+## Collects detailed information about orphaned nodes for debugging purposes.[br]
+##
+## This function gathers comprehensive details about nodes that remain in memory
+## after test execution (orphans). It provides debugging information to help
+## identify the source of memory leaks in tests. Must be manually called in
+## tests when orphan nodes are detected.[br]
+## [br]
+## [b]When to Use:[/b][br]
+## - When GdUnit4 reports orphan nodes after test execution[br]
+## - For debugging memory leaks in test scenarios[br]
+## - To get detailed information about unreleased nodes[br]
+## [br]
+## [b]Usage Pattern:[/b][br]
+## Add this call at the end of tests that are suspected to create orphans,
+## or when the test runner reports orphan detection.[br]
+## [br]
+## [b]Examples:[/b]
+## [codeblock]
+## func test_scene_management():
+##     # Test code that might create orphan nodes
+##     var scene = preload("res://TestScene.tscn").instantiate()
+##     add_child(scene)
+##
+##     # Do test operations
+##     scene.some_method()
+##
+##     # Clean up (but might miss some nodes)
+##     scene.queue_free()
+##
+##     # Collect orphan details if any are detected
+##     collect_orphan_node_details()
+## [/codeblock]
+## [br]
+## [b]Note:[/b] This is a debugging utility function that should be removed
+## or commented out once orphan issues are resolved.
+func collect_orphan_node_details() -> void:
+	GdUnitThreadManager.get_current_context().get_execution_context().orphan_monitor_collect()
 
 
 ## Creates a new scene runner to allow simulate interactions checked a scene.[br]
@@ -200,7 +238,7 @@ func await_millis(timeout :int) -> void:
 ##    # or simply creates a runner by using the scene resource path
 ##    var runner := scene_runner("res://foo/my_scne.tscn")
 ## [/codeblock]
-func scene_runner(scene :Variant, verbose := false) -> GdUnitSceneRunner:
+func scene_runner(scene: Variant, verbose := false) -> GdUnitSceneRunner:
 	return auto_free(__lazy_load("res://addons/gdUnit4/src/core/GdUnitSceneRunnerImpl.gd").new(scene, verbose))
 
 
@@ -216,13 +254,13 @@ const RETURN_DEEP_STUB = GdUnitMock.RETURN_DEEP_STUB
 
 
 ## Creates a mock for given class name
-func mock(clazz :Variant, mock_mode := RETURN_DEFAULTS) -> Variant:
+func mock(clazz: Variant, mock_mode := RETURN_DEFAULTS) -> Variant:
 	@warning_ignore("unsafe_method_access")
 	return __lazy_load("res://addons/gdUnit4/src/mocking/GdUnitMockBuilder.gd").build(clazz, mock_mode)
 
 
 ## Creates a spy checked given object instance
-func spy(instance :Variant) -> Variant:
+func spy(instance: Variant) -> Variant:
 	@warning_ignore("unsafe_method_access")
 	return __lazy_load("res://addons/gdUnit4/src/spy/GdUnitSpyBuilder.gd").build(instance)
 
@@ -233,30 +271,30 @@ func spy(instance :Variant) -> Variant:
 ## 		# overrides the return value of myMock.is_selected() to false
 ## 		do_return(false).on(myMock).is_selected()
 ## 	[/codeblock]
-func do_return(value :Variant) -> GdUnitMock:
+func do_return(value: Variant) -> GdUnitMock:
 	return GdUnitMock.new(value)
 
 
 ## Verifies certain behavior happened at least once or exact number of times
-func verify(obj :Variant, times := 1) -> Variant:
+func verify(obj: Variant, times := 1) -> Variant:
 	@warning_ignore("unsafe_method_access")
 	return __gdunit_object_interactions().verify(obj, times)
 
 
 ## Verifies no interactions is happen checked this mock or spy
-func verify_no_interactions(obj :Variant) -> GdUnitAssert:
+func verify_no_interactions(obj: Variant) -> GdUnitAssert:
 	@warning_ignore("unsafe_method_access")
 	return __gdunit_object_interactions().verify_no_interactions(obj)
 
 
 ## Verifies the given mock or spy has any unverified interaction.
-func verify_no_more_interactions(obj :Variant) -> GdUnitAssert:
+func verify_no_more_interactions(obj: Variant) -> GdUnitAssert:
 	@warning_ignore("unsafe_method_access")
 	return __gdunit_object_interactions().verify_no_more_interactions(obj)
 
 
 ## Resets the saved function call counters checked a mock or spy
-func reset(obj :Variant) -> void:
+func reset(obj: Variant) -> void:
 	@warning_ignore("unsafe_method_access")
 	__gdunit_object_interactions().reset(obj)
 
@@ -273,12 +311,12 @@ func reset(obj :Variant) -> void:
 ##		# verify the signial is emitted
 ##		await assert_signal(emitter).is_emitted('my_signal')
 ##	[/codeblock]
-func monitor_signals(source :Object, _auto_free := true) -> Object:
+func monitor_signals(source: Object, _auto_free := true) -> Object:
 	@warning_ignore("unsafe_method_access")
 	__lazy_load("res://addons/gdUnit4/src/core/thread/GdUnitThreadManager.gd")\
 		.get_current_context()\
 		.get_signal_collector()\
-		.register_emitter(source)
+		.register_emitter(source, true) # force recreate to start with a fresh monitoring
 	return auto_free(source) if _auto_free else source
 
 
@@ -307,7 +345,7 @@ func any_float() -> GdUnitArgumentMatcher:
 	return __gdunit_argument_matchers().by_type(TYPE_FLOAT)
 
 
-## Argument matcher to match any string value
+## Argument matcher to match any String value
 func any_string() -> GdUnitArgumentMatcher:
 	@warning_ignore("unsafe_method_access")
 	return __gdunit_argument_matchers().by_type(TYPE_STRING)
@@ -362,7 +400,7 @@ func any_vector4() -> GdUnitArgumentMatcher:
 	return __gdunit_argument_matchers().by_type(TYPE_VECTOR4)
 
 
-## Argument matcher to match any Vector3i value
+## Argument matcher to match any Vector4i value
 func any_vector4i() -> GdUnitArgumentMatcher:
 	@warning_ignore("unsafe_method_access")
 	return __gdunit_argument_matchers().by_type(TYPE_VECTOR4I)
@@ -502,29 +540,46 @@ func any_class(clazz :Object) -> GdUnitArgumentMatcher:
 
 # === value extract utils ======================================================
 ## Builds an extractor by given function name and optional arguments
-func extr(func_name :String, args := Array()) -> GdUnitValueExtractor:
+func extr(func_name: String, args := Array()) -> GdUnitValueExtractor:
 	return __lazy_load("res://addons/gdUnit4/src/extractors/GdUnitFuncValueExtractor.gd").new(func_name, args)
 
 
-## Constructs a tuple by given arguments
-func tuple(arg0 :Variant,
-	arg1 :Variant=NO_ARG,
-	arg2 :Variant=NO_ARG,
-	arg3 :Variant=NO_ARG,
-	arg4 :Variant=NO_ARG,
-	arg5 :Variant=NO_ARG,
-	arg6 :Variant=NO_ARG,
-	arg7 :Variant=NO_ARG,
-	arg8 :Variant=NO_ARG,
-	arg9 :Variant=NO_ARG) -> GdUnitTuple:
-	return GdUnitTuple.new(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)
+## Creates a GdUnitTuple from the provided arguments for use in test assertions.
+## [br]
+## This is the primary helper function for creating tuples in GdUnit4 tests.
+## It provides a convenient way to group multiple expected values when using
+## [method extractv] assertions. The function enforces that tuples must contain
+## at least two values, as single-value extractions don't require tuple grouping.
+## [br]
+## [b]Parameters:[/b] [br]
+## - [code]...args[/code]: Variable number of arguments (minimum 2) to group into a tuple.
+##   Each argument represents a value to be compared in assertions.
+## [br]
+## [b]Returns:[/b] [br]
+## A [GdUnitTuple] containing the provided values, or an empty tuple if fewer than
+## 2 arguments are provided (with an error message).
+## [br]
+## [b]Error Handling:[/b] [br]
+## [codeblock]
+## # This will push an error and return empty tuple
+## var invalid = tuple("single_value")  # Error: requires at least 2 arguments
+## [br]
+## # Correct usage - minimum 2 arguments
+## var valid = tuple("name", "value")
+## var valid_multi = tuple(1, 2, 3, 4, 5)  # Can have many values
+## [/codeblock]
+func tuple(...args: Array) -> GdUnitTuple:
+	if args.size() < 2:
+		push_error("Tuple requires at least two arguments.")
+		return GdUnitTuple.new()
+	return GdUnitTuple.new.callv(args)
 
 
 # === Asserts ==================================================================
 
 ## The common assertion tool to verify values.
 ## It checks the given value by type to fit to the best assert
-func assert_that(current :Variant) -> GdUnitAssert:
+func assert_that(current: Variant) -> GdUnitAssert:
 	match typeof(current):
 		TYPE_BOOL:
 			return assert_bool(current)
@@ -549,22 +604,22 @@ func assert_that(current :Variant) -> GdUnitAssert:
 
 
 ## An assertion tool to verify boolean values.
-func assert_bool(current :Variant) -> GdUnitBoolAssert:
+func assert_bool(current: Variant) -> GdUnitBoolAssert:
 	return __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitBoolAssertImpl.gd").new(current)
 
 
 ## An assertion tool to verify String values.
-func assert_str(current :Variant) -> GdUnitStringAssert:
+func assert_str(current: Variant) -> GdUnitStringAssert:
 	return __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitStringAssertImpl.gd").new(current)
 
 
 ## An assertion tool to verify integer values.
-func assert_int(current :Variant) -> GdUnitIntAssert:
+func assert_int(current: Variant) -> GdUnitIntAssert:
 	return __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitIntAssertImpl.gd").new(current)
 
 
 ## An assertion tool to verify float values.
-func assert_float(current :Variant) -> GdUnitFloatAssert:
+func assert_float(current: Variant) -> GdUnitFloatAssert:
 	return __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitFloatAssertImpl.gd").new(current)
 
 
@@ -574,41 +629,41 @@ func assert_float(current :Variant) -> GdUnitFloatAssert:
 ##     [codeblock]
 ##		assert_vector(Vector2(1.2, 1.000001)).is_equal(Vector2(1.2, 1.000001))
 ##     [/codeblock]
-func assert_vector(current :Variant, type_check := true) -> GdUnitVectorAssert:
+func assert_vector(current: Variant, type_check := true) -> GdUnitVectorAssert:
 	return __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitVectorAssertImpl.gd").new(current, type_check)
 
 
 ## An assertion tool to verify arrays.
-func assert_array(current :Variant, type_check := true) -> GdUnitArrayAssert:
+func assert_array(current: Variant, type_check := true) -> GdUnitArrayAssert:
 	return __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitArrayAssertImpl.gd").new(current, type_check)
 
 
 ## An assertion tool to verify dictionaries.
-func assert_dict(current :Variant) -> GdUnitDictionaryAssert:
+func assert_dict(current: Variant) -> GdUnitDictionaryAssert:
 	return __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitDictionaryAssertImpl.gd").new(current)
 
 
 ## An assertion tool to verify FileAccess.
-func assert_file(current :Variant) -> GdUnitFileAssert:
+func assert_file(current: Variant) -> GdUnitFileAssert:
 	return __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitFileAssertImpl.gd").new(current)
 
 
 ## An assertion tool to verify Objects.
-func assert_object(current :Variant) -> GdUnitObjectAssert:
+func assert_object(current: Variant) -> GdUnitObjectAssert:
 	return __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitObjectAssertImpl.gd").new(current)
 
 
-func assert_result(current :Variant) -> GdUnitResultAssert:
+func assert_result(current: Variant) -> GdUnitResultAssert:
 	return __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitResultAssertImpl.gd").new(current)
 
 
 ## An assertion tool that waits until a certain time for an expected function return value
-func assert_func(instance :Object, func_name :String, args := Array()) -> GdUnitFuncAssert:
+func assert_func(instance: Object, func_name: String, args := Array()) -> GdUnitFuncAssert:
 	return __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitFuncAssertImpl.gd").new(instance, func_name, args)
 
 
-## An Assertion Tool to verify for emitted signals until a certain time.
-func assert_signal(instance :Object) -> GdUnitSignalAssert:
+## An assertion tool to verify for emitted signals until a certain time.
+func assert_signal(instance: Object) -> GdUnitSignalAssert:
 	return __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitSignalAssertImpl.gd").new(instance)
 
 
@@ -619,7 +674,7 @@ func assert_signal(instance :Object) -> GdUnitSignalAssert:
 ##		assert_failure(func(): assert_bool(true).is_not_equal(true)) \
 ##		    .has_message("Expecting:\n 'true'\n not equal to\n 'true'")
 ##     [/codeblock]
-func assert_failure(assertion :Callable) -> GdUnitFailureAssert:
+func assert_failure(assertion: Callable) -> GdUnitFailureAssert:
 	@warning_ignore("unsafe_method_access")
 	return __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitFailureAssertImpl.gd").new().execute(assertion)
 
@@ -631,24 +686,24 @@ func assert_failure(assertion :Callable) -> GdUnitFailureAssert:
 ##		await assert_failure_await(func(): assert_bool(true).is_not_equal(true)) \
 ##		    .has_message("Expecting:\n 'true'\n not equal to\n 'true'")
 ##     [/codeblock]
-func assert_failure_await(assertion :Callable) -> GdUnitFailureAssert:
+func assert_failure_await(assertion: Callable) -> GdUnitFailureAssert:
 	@warning_ignore("unsafe_method_access")
 	return await __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitFailureAssertImpl.gd").new().execute_and_await(assertion)
 
 
-## An assertion tool to verify for Godot errors.[br]
-## You can use to verify for certain Godot erros like failing assertions, push_error, push_warn.[br]
+## An assertion tool to verify Godot errors.[br]
+## You can use to verify certain Godot errors like failing assertions, push_error, push_warn.[br]
 ## Usage:
 ##     [codeblock]
-##		# tests no error was occured during execution the code
+##		# tests no error occurred during execution of the code
 ##		await assert_error(func (): return 0 )\
 ##		    .is_success()
 ##
-##		# tests an push_error('test error') was occured during execution the code
+##		# tests a push_error('test error') occured during execution of the code
 ##		await assert_error(func (): push_error('test error') )\
 ##		    .is_push_error('test error')
 ##     [/codeblock]
-func assert_error(current :Callable) -> GdUnitGodotErrorAssert:
+func assert_error(current: Callable) -> GdUnitGodotErrorAssert:
 	return __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitGodotErrorAssertImpl.gd").new(current)
 
 

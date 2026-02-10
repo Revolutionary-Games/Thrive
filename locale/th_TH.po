@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-16 20:10+0200\n"
+"POT-Creation-Date: 2026-01-22 16:04+0200\n"
 "PO-Revision-Date: 2025-05-27 06:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -276,7 +276,7 @@ msgstr "Rusticyanin เป็นโปรตีนที่สามารถใ
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr ""
 
 msgid "ASSUME_HYPERTHREADING"
@@ -435,6 +435,9 @@ msgstr ""
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr ""
 
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr ""
+
 msgid "AWAKENING_STAGE"
 msgstr ""
 
@@ -546,7 +549,15 @@ msgid "BIG_IRON_CHUNK"
 msgstr "ก้อนเหล็กขนาดใหญ่"
 
 #, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "ก้อนเหล็กขนาดใหญ่"
+
+#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "ก้อนเหล็กขนาดใหญ่"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "ก้อนเหล็กขนาดใหญ่"
 
 msgid "BILLION_ABBREVIATION"
@@ -934,6 +945,10 @@ msgstr "ชายฝั่ง"
 msgid "COLLISION_SHAPE"
 msgstr ""
 
+#, fuzzy
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
 msgid "COLOUR"
 msgstr ""
 
@@ -974,6 +989,9 @@ msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr ""
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
+msgstr ""
+
+msgid "COMMAND_INPUT_LINE_EDIT"
 msgstr ""
 
 #, fuzzy
@@ -1096,6 +1114,10 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "สารประกอบของเมฆ"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1487,8 +1509,28 @@ msgstr "ดำเนินการต่อ"
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
+#, fuzzy
+msgid "CURRENT_DILUTION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "ยกเลิกการกระทำปัจจุบัน"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "ความสามารถ"
+
+#, fuzzy
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "ความสามารถ"
 
 #, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
@@ -1557,6 +1599,9 @@ msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
 msgid "DEATH"
+msgstr ""
+
+msgid "DEBUG_CONSOLE"
 msgstr ""
 
 msgid "DEBUG_COORDINATES"
@@ -1795,6 +1840,10 @@ msgstr "ความสามารถ"
 msgid "DISPLAY_PART_NAMES"
 msgstr "ความสามารถ"
 
+#, fuzzy
+msgid "DISPLAY_SELECTION"
+msgstr "ภายในที่เหนอะหนะของเซลล์ ไซโทพลาสซึมเป็นส่วนผสมพื้นฐานของไอออนโปรตีนและสารอื่น ๆ ที่ละลายในน้ำที่เติมภายในเซลล์ หนึ่งในฟังก์ชั่นที่ทำคือไกลโคไลซิสการเปลี่ยนกลูโคสเป็นพลังงาน ATP สำหรับเซลล์ที่ขาดออร์แกเนลล์เพื่อให้มีการเผาผลาญขั้นสูงมากขึ้นนี่คือสิ่งที่พวกเขาต้องพึ่งพาเพื่อเป็นพลังงาน นอกจากนี้ยังใช้เพื่อเก็บโมเลกุลในเซลล์และเพื่อขยายขนาดของเซลล์"
+
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr ""
 
@@ -1959,6 +2008,9 @@ msgstr ""
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
 
+msgid "EFFECTIVE_VALUE"
+msgstr ""
+
 #, fuzzy
 msgid "EIGHT_TIMES"
 msgstr "เมาส์ขวา"
@@ -2050,6 +2102,10 @@ msgstr ""
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
+
+#, fuzzy
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr "สารประกอบของเมฆ"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
@@ -2170,6 +2226,14 @@ msgstr ""
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr "ดำเนินการต่อ"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -2463,6 +2527,14 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr ""
 
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "ประชากร:"
+
+#, fuzzy
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "แวคิวโอลเป็นออร์แกเนลล์เยื่อภายในที่ใช้สำหรับเก็บในเซลล์ ประกอบด้วยถุงหลายอันโครงสร้างของเยื่อขนาดเล็กที่ใช้กันอย่างแพร่หลายในเซลล์เพื่อการจัดเก็บที่หลอมรวมเข้าด้วยกัน เต็มไปด้วยน้ำซึ่งใช้บรรจุโมเลกุลเอนไซม์ของแข็งและสารอื่น ๆ รูปร่างของพวกมันเป็นของเหลวและอาจแตกต่างกันไประหว่างเซลล์"
+
 msgid "FOSSIL_DELETION_FAILED"
 msgstr ""
 
@@ -2652,6 +2724,10 @@ msgid "GRAPHICS"
 msgstr "กราฟิก"
 
 #, fuzzy
+msgid "GRAPHICS_PRESET"
+msgstr "กราฟิก"
+
+#, fuzzy
 msgid "GRAPHICS_TEAM"
 msgstr "กราฟิก"
 
@@ -2665,6 +2741,14 @@ msgstr ""
 #, fuzzy
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr "โรงไฟฟ้าของเซลล์ mitochondrion (พหูพจน์: mitochondria) เป็นโครงสร้างเมมเบรนสองชั้นที่เต็มไปด้วยโปรตีนและเอนไซม์ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต สามารถเปลี่ยนกลูโคสเป็น ATP ได้อย่างมีประสิทธิภาพสูงกว่าที่ทำได้ในไซโตพลาสซึมในกระบวนการที่เรียกว่า Aerobic Respiration อย่างไรก็ตามมันต้องการออกซิเจนในการทำงานและระดับออกซิเจนในสิ่งแวดล้อมที่ต่ำลงจะทำให้อัตราการผลิต ATP ช้าลง"
+
+#, fuzzy
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr "(ค่าที่สูงขึ้นจะเพิ่มประสิทธิภาพ)"
+
+#, fuzzy
+msgid "GUI_SCALE_OPTION"
+msgstr "ปิดตัวเลือกไหม"
 
 #, fuzzy
 msgid "GUI_TAB_NAVIGATION"
@@ -2777,6 +2861,9 @@ msgstr ""
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
@@ -2784,6 +2871,9 @@ msgid "ID_NUMBER"
 msgstr ""
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
+
+msgid "IGNORE_FURTHER_ERRORS"
 msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
@@ -2900,6 +2990,14 @@ msgstr ""
 #, fuzzy
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "{0: F1}% เสร็จสิ้น {1: n0} / {2: n0} ขั้นตอน"
+
+#, fuzzy
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3024,23 +3122,19 @@ msgstr "ด้วยความเข้มข้นของ"
 msgid "JANUARY"
 msgstr ""
 
-msgid "JSON_DEBUG_MODE"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr ""
-
 msgid "JULY"
 msgstr ""
 
 msgid "JUNE"
 msgstr ""
+
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "ดูซอร์สโค้ด"
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "ดำเนินการต่อ"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3560,6 +3654,10 @@ msgid "MACROSCOPIC"
 msgstr ""
 
 #, fuzzy
+msgid "MACROSCOPIC_EDITOR"
+msgstr "วางออร์แกเนลล์"
+
+#, fuzzy
 msgid "MACROSCOPIC_STAGE"
 msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
 
@@ -3732,6 +3830,10 @@ msgstr ""
 msgid "MICHE_DETAIL_TEXT"
 msgstr "เมาส์ขวา"
 
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "แพร่กระจายไปยังแพทช์:"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3753,6 +3855,10 @@ msgstr ""
 
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "ความละเอียด:"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
@@ -3779,6 +3885,10 @@ msgstr "สร้างจุลินทรีย์ฟรี"
 #, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr "เอาออร์แกเนลล์ออก"
+
+#, fuzzy
+msgid "MICROBE_CURRENT_PARTICLES"
+msgstr "ยกเลิกการกระทำปัจจุบัน"
 
 #, fuzzy
 msgid "MICROBE_EDITOR"
@@ -4094,9 +4204,6 @@ msgstr ""
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
-msgid "MODIFIER"
-msgstr ""
-
 msgid "MODIFY"
 msgstr ""
 
@@ -4109,6 +4216,10 @@ msgstr ""
 
 msgid "MODS"
 msgstr ""
+
+#, fuzzy
+msgid "MODS_ARE_ENABLED"
+msgstr "เปิดใช้งานโกงคีย์"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -4142,9 +4253,6 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 msgid "MOD_AUTHOR"
-msgstr ""
-
-msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
 msgid "MOD_CREATION_FAILED"
@@ -4218,6 +4326,12 @@ msgid "MOD_UPLOADER"
 msgstr ""
 
 msgid "MOD_VERSION"
+msgstr ""
+
+msgid "MONITOR_AUTO"
+msgstr ""
+
+msgid "MONITOR_IDENTIFIER"
 msgstr ""
 
 msgid "MORE_INFO"
@@ -4626,9 +4740,6 @@ msgstr ""
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
-msgid "OFFSET"
-msgstr ""
-
 msgid "OK"
 msgstr "ตกลง"
 
@@ -4815,6 +4926,10 @@ msgstr "สารประกอบของเมฆ"
 
 msgid "OUR_WIKI"
 msgstr ""
+
+#, fuzzy
+msgid "OUTDATED_ITEM"
+msgstr "ยกเลิก"
 
 #, fuzzy
 msgid "OUTDATED_NOTICE"
@@ -5110,6 +5225,29 @@ msgstr ""
 
 #, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
+msgstr "ดำเนินการต่อ"
+
+msgid "PRESET_CUSTOM"
+msgstr ""
+
+#, fuzzy
+msgid "PRESET_HIGH"
+msgstr "รีเซ็ต"
+
+#, fuzzy
+msgid "PRESET_LOW"
+msgstr "รีเซ็ต"
+
+#, fuzzy
+msgid "PRESET_MEDIUM"
+msgstr "เพื่อเพิ่มการเคลื่อนไหว"
+
+#, fuzzy
+msgid "PRESET_VERY_HIGH"
+msgstr "รีเซ็ตอินพุต"
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
 msgstr "ดำเนินการต่อ"
 
 msgid "PRESSURE"
@@ -5442,7 +5580,14 @@ msgstr "หมุนไปทางขวา"
 msgid "ROTATION_COLON"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
+msgid "RUNOFF_EVENT"
+msgstr ""
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
+msgstr "เรียกใช้ auto-evo ระหว่างการเล่นเกม"
+
+#, fuzzy
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
 msgstr "เรียกใช้ auto-evo ระหว่างการเล่นเกม"
 
 msgid "RUN_ONE_STEP"
@@ -5508,12 +5653,6 @@ msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
 msgstr ""
 
 msgid "SAVE_FAILED"
@@ -5868,7 +6007,15 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "ก้อนเหล็กขนาดเล็ก"
 
 #, fuzzy
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "ก้อนเหล็กขนาดเล็ก"
+
+#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "ก้อนเหล็กขนาดเล็ก"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr "ก้อนเหล็กขนาดเล็ก"
 
 #, fuzzy
@@ -5948,6 +6095,14 @@ msgstr "เมาส์ขวา"
 #, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "มีการกลายพันธุ์"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "ยกเลิกการกระทำปัจจุบัน"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "สูญพันธุ์ไปจากโลก"
 
 msgid "SPECIES_LIST"
 msgstr ""
@@ -6474,6 +6629,10 @@ msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "สลับเขมือบ"
 
 #, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "สลับเขมือบ"
+
+#, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "สลับเขมือบ"
 
@@ -6563,10 +6722,10 @@ msgstr "เครื่องมือ"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgid "TOO_LARGE_PRESSURE_RANGE"
 msgstr ""
 
-msgid "TOTAL"
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 #, fuzzy
@@ -6574,9 +6733,6 @@ msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "ก่อนหน้า:"
 
 msgid "TOTAL_SAVES"
-msgstr ""
-
-msgid "TOTAL_VALUE"
 msgstr ""
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
@@ -6964,6 +7120,17 @@ msgstr "เลิกทำ"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "เลิกทำการกระทำล่าสุด"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr ""
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "แทงเซลล์อื่นด้วยสิ่งนี้"
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "\"{0}\" - {1}"
+
 #, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "ความเข้มข้นของ"
@@ -7134,6 +7301,9 @@ msgstr ""
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
+msgid "UPWELLING_EVENT"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -7143,12 +7313,6 @@ msgstr ""
 #, fuzzy
 msgid "USES_FEATURE"
 msgstr "อุณหภูมิ"
-
-msgid "USE_AUTO_HARMONY"
-msgstr ""
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "ใช้ชื่อผู้ใช้ที่กำหนดเอง"
@@ -9189,6 +9353,14 @@ msgstr "อุณหภูมิ"
 msgid "WORST_PATCH_COLON"
 msgstr ""
 
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "ปกติ"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
 msgid "XBOX360"
 msgstr ""
 
@@ -9230,12 +9402,12 @@ msgid "ZOOM_OUT"
 msgstr "ซูมออก"
 
 #, fuzzy
-#~ msgid "KEEP_CURRENT_SHORT"
-#~ msgstr "ดูซอร์สโค้ด"
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "ความละเอียด:"
 
 #, fuzzy
-#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-#~ msgstr "ดำเนินการต่อ"
+#~ msgid "OUTDATED"
+#~ msgstr "ยกเลิก"
 
 #, fuzzy
 #~ msgid "GENERATE_BUTTON"
@@ -9545,10 +9717,6 @@ msgstr "ซูมออก"
 #~ msgstr "ไคติน"
 
 #, fuzzy
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "สูญพันธุ์ไปจากโลก"
-
-#, fuzzy
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "ก้อนเหล็กขนาดใหญ่"
 
@@ -9604,10 +9772,6 @@ msgstr "ซูมออก"
 #, fuzzy
 #~ msgid "SPECIES_DETAILS"
 #~ msgstr "เปิดโฟลเดอร์บันทึก"
-
-#, fuzzy
-#~ msgid "CURRENT_GENERATION_COLON"
-#~ msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
@@ -9688,3 +9852,7 @@ msgstr "ซูมออก"
 
 #~ msgid "E_DOT"
 #~ msgstr "E."
+
+#, fuzzy
+#~ msgid "CURRENT_GENERATION_COLON"
+#~ msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"

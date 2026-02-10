@@ -11,13 +11,13 @@ using Godot;
 ///     information adapter on a cell type definition (similarly to <see cref="OrganelleDefinition"/>).
 ///   </para>
 /// </remarks>
-public interface ICellDefinition : ISimulationPhotographable
+public interface ICellDefinition : IReadOnlyCellDefinition, ISimulationPhotographable
 {
-    public OrganelleLayout<OrganelleTemplate> Organelles { get; }
-    public MembraneType MembraneType { get; set; }
-    public float MembraneRigidity { get; set; }
-    public Color Colour { get; set; }
-    public bool IsBacteria { get; set; }
+    public OrganelleLayout<OrganelleTemplate> ModifiableOrganelles { get; }
+    public new MembraneType MembraneType { get; set; }
+    public new float MembraneRigidity { get; set; }
+    public new Color Colour { get; set; }
+    public new bool IsBacteria { get; set; }
 
     public float BaseRotationSpeed { get; set; }
 
@@ -35,6 +35,32 @@ public interface ICellDefinition : ISimulationPhotographable
     public bool RepositionToOrigin();
 
     public void UpdateNameIfValid(string newName);
+}
+
+public interface IReadOnlyCellDefinition
+{
+    public IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> Organelles { get; }
+    public MembraneType MembraneType { get; }
+    public float MembraneRigidity { get; }
+    public Color Colour { get; }
+    public bool IsBacteria { get; }
+}
+
+public interface ICellTypeDefinition : ICellDefinition, IReadOnlyCellTypeDefinition
+{
+    public new int MPCost { get; set; }
+}
+
+public interface IReadOnlyCellTypeDefinition : IReadOnlyCellDefinition
+{
+    public int MPCost { get; }
+
+    public string CellTypeName { get; }
+
+    /// <summary>
+    ///   If known from what cell type this cell was split from, this is the name of that type.
+    /// </summary>
+    public string? SplitFromTypeName { get; }
 }
 
 /// <summary>

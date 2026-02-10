@@ -1,16 +1,19 @@
 ﻿namespace Components;
 
 using System;
-using DefaultEcs;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
+using SharedBase.Archive;
 using Systems;
 
 /// <summary>
 ///   Control variables for specifying how a microbe wants to move / behave
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct MicrobeControl
+public struct MicrobeControl : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   The point towards which the microbe will move to point to
     /// </summary>
@@ -65,7 +68,7 @@ public struct MicrobeControl
     /// <remarks>
     ///   <para>
     ///     This is a byte to increase the size of this struct less, and it is unlikely there needs to be more than
-    ///     256 types of toxins to be fired so overflows are not serious.
+    ///     256 types of toxins to be fired, so overflows are not serious.
     ///   </para>
     /// </remarks>
     public byte FiredToxinCount;
@@ -109,10 +112,56 @@ public struct MicrobeControl
         Sprinting = false;
         MucocystEffectsApplied = false;
     }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMicrobeControl;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        // Keep the order in sync with ReadFromArchive
+        writer.Write(LookAtPoint);
+        writer.Write(MovementDirection);
+        writer.Write((int)QueuedToxinToEmit);
+        writer.Write(QueuedSiderophoreToEmit);
+        writer.Write(SlimeSecretionCooldown);
+        writer.Write(QueuedSlimeSecretionTime);
+        writer.Write(AgentEmissionCooldown);
+        writer.Write(ForcedStateRemaining);
+        writer.Write((int)State);
+        writer.Write(FiredToxinCount);
+        writer.Write(SlowedBySlime);
+        writer.Write(OutOfSprint);
+        writer.Write(Sprinting);
+        writer.Write(MucocystEffectsApplied);
+    }
 }
 
 public static class MicrobeControlHelpers
 {
+    public static MicrobeControl ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > MicrobeControl.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, MicrobeControl.SERIALIZATION_VERSION);
+
+        return new MicrobeControl
+        {
+            LookAtPoint = reader.ReadVector3(),
+            MovementDirection = reader.ReadVector3(),
+            QueuedToxinToEmit = (Compound)reader.ReadInt32(),
+            QueuedSiderophoreToEmit = reader.ReadBool(),
+            SlimeSecretionCooldown = reader.ReadFloat(),
+            QueuedSlimeSecretionTime = reader.ReadFloat(),
+            AgentEmissionCooldown = reader.ReadFloat(),
+            ForcedStateRemaining = reader.ReadFloat(),
+            State = (MicrobeState)reader.ReadInt32(),
+            FiredToxinCount = reader.ReadInt8(),
+            SlowedBySlime = reader.ReadBool(),
+            OutOfSprint = reader.ReadBool(),
+            Sprinting = reader.ReadBool(),
+            MucocystEffectsApplied = reader.ReadBool(),
+        };
+    }
+
     /// <summary>
     ///   Sets microbe state in a way that also applies the state to a colony if the entity is a lead cell
     /// </summary>
@@ -125,6 +174,11 @@ public static class MicrobeControlHelpers
     public static void SetStateColonyAware(this ref MicrobeControl control, in Entity entity,
         MicrobeState targetState)
     {
+#if DEBUG
+        if (targetState == MicrobeState.MucocystShield)
+            GD.PrintErr("This shouldn't be used to enable mucocyst state as this skips mucocyst amount checks");
+#endif
+
         if (entity.Has<MicrobeColony>())
         {
             ref var colony = ref entity.Get<MicrobeColony>();
@@ -137,7 +191,7 @@ public static class MicrobeControlHelpers
                 {
                     // The IsAlive check should be unnecessary here, but as this is a general method, there's this
                     // extra safety against crashing due to colony bugs
-                    if (colonyMember != entity && colonyMember.IsAlive)
+                    if (colonyMember != entity && colonyMember.IsAlive())
                     {
                         ref var memberControl = ref colonyMember.Get<MicrobeControl>();
                         memberControl.State = targetState;
@@ -169,15 +223,15 @@ public static class MicrobeControlHelpers
 
                 foreach (var colonyMember in colony.ColonyMembers)
                 {
-                    // The IsAlive check should be unnecessary here but as this is a general method there's this
+                    // The IsAlive check should be unnecessary here, but as this is a general method, there's this
                     // extra safety against crashing due to colony bugs
-                    if (colonyMember != entity && colonyMember.IsAlive)
+                    if (colonyMember != entity && colonyMember.IsAlive())
                     {
                         ref var memberControl = ref colonyMember.Get<MicrobeControl>();
                         ref var memberHealth = ref colonyMember.Get<Health>();
                         ref var memberCompoundStorage = ref colonyMember.Get<CompoundStorage>();
 
-                        ForceStateApplyIfRequired(ref memberControl, ref memberHealth, ref memberCompoundStorage,
+                        memberControl.ForceStateApplyIfRequired(ref memberHealth, ref memberCompoundStorage,
                             colonyMember, MicrobeState.Engulf, false, atp);
                     }
                 }
@@ -187,7 +241,7 @@ public static class MicrobeControlHelpers
             // cause a real issue (as it should do nothing) but would be good to fix the logic
         }
 
-        ForceStateApplyIfRequired(ref control, ref health, ref compoundStorage, entity, MicrobeState.Engulf, true, atp);
+        control.ForceStateApplyIfRequired(ref health, ref compoundStorage, entity, MicrobeState.Engulf, true, atp);
     }
 
     /// <summary>
@@ -345,18 +399,24 @@ public static class MicrobeControlHelpers
             // TODO: is it a good idea to allocate a delegate here?
             colony.PerformForOtherColonyMembersThanLeader(m =>
                 m.Get<MicrobeControl>()
-                    .SetMucocystState(ref m.Get<OrganelleContainer>(), ref m.Get<CompoundStorage>(), m, state,
+                    .SetMucocystState(ref m.Get<OrganelleContainer>(), ref m.Get<CompoundStorage>(), in m, state,
                         mucilageCompound));
         }
 
         if (organelleInfo.MucocystCount < 1)
+        {
+            // Ensure cells that have no business being in the mucocyst state cannot get into it accidentally
+            if (control.State == MicrobeState.MucocystShield)
+                control.State = MicrobeState.Normal;
+
             return;
+        }
 
         if (state)
         {
             // Apply the activation cost before activating the mucocyst shield
-            var mucilageCapactiy = availableCompounds.Compounds.GetCapacityForCompound(mucilageCompound);
-            var mucilageRequired = mucilageCapactiy * Constants.MUCOCYST_ACTIVATION_MUCILAGE_FRACTION;
+            var mucilageCapacity = availableCompounds.Compounds.GetCapacityForCompound(mucilageCompound);
+            var mucilageRequired = mucilageCapacity * Constants.MUCOCYST_ACTIVATION_MUCILAGE_FRACTION;
             if (availableCompounds.Compounds.GetCompoundAmount(mucilageCompound) < mucilageRequired)
             {
                 entity.SendNoticeIfPossible(() =>
@@ -400,7 +460,7 @@ public static class MicrobeControlHelpers
 
             // Need to force this cell into a mode, so cause the damage.
             // We checked above that damage won't kill, so we don't check for damage protection on the player.
-            health.DealDamage(damage, "forcedState", -1);
+            health.DealDamage(entity, damage, "forcedState", -1);
 
             control.ForcedStateRemaining = Constants.ENGULF_NO_ATP_TIME;
 

@@ -88,7 +88,7 @@ public partial class AutoEvoExploringTool
                     evolutionaryTree.CurrentWorldSpecies[speciesId], generation.ToString(),
                     splitFrom,
                     species.Population.ToString(),
-                    "#" + species.Colour.ToHtml(),
+                    "#" + species.SpeciesColour.ToHtml(),
                 };
 
                 data.AddRange(species.Behaviour.OrderBy(p => p.Key)
@@ -102,7 +102,7 @@ public partial class AutoEvoExploringTool
                         microbeSpecies.MembraneRigidity.ToString(CultureInfo.InvariantCulture),
                         microbeSpecies.BaseSpeed.ToString(CultureInfo.InvariantCulture),
                         microbeSpecies.BaseRotationSpeed.ToString(CultureInfo.InvariantCulture),
-                        microbeSpecies.StorageCapacity.ToString(CultureInfo.InvariantCulture),
+                        microbeSpecies.StorageCapacities.Nominal.ToString(CultureInfo.InvariantCulture),
                         microbeSpecies.IsBacteria.ToString(),
                         microbeSpecies.Organelles.Count.ToString(),
                     });

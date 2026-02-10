@@ -1,11 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://yxuatqlicwtn"]
+[gd_scene format=3 uid="uid://yxuatqlicwtn"]
 
 [ext_resource type="PackedScene" uid="uid://d2keheblwnnfe" path="res://assets/models/organelles/Cilia.glb" id="1_3y8uh"]
 [ext_resource type="Shader" uid="uid://bpdtg8smolq32" path="res://shaders/OrganelleTransparent.gdshader" id="2_dkpan"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_uptes"]
 [ext_resource type="Texture2D" uid="uid://1cvtjasc84ub" path="res://assets/textures/FilamentousOrganelle.png" id="4_52435"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jjmap"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u7slg"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_dkpan")
@@ -20,10 +20,10 @@ shader_parameter/growColor = Color(0.5, 0.5, 0.5, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0
 
-[node name="Cilia" instance=ExtResource("1_3y8uh")]
+[node name="Cilia" unique_id=2127076671 instance=ExtResource("1_3y8uh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.128127)
 
-[node name="Skeleton3D" parent="Armature" index="0"]
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(484513148) index="0" unique_id=288432206]
 bones/0/rotation = Quaternion(0.00725351, -0.723076, -0.00759352, 0.690688)
 bones/1/rotation = Quaternion(-0.00406095, -0.0784843, -0.146779, 0.986042)
 bones/2/rotation = Quaternion(-0.0267779, -0.113322, -0.0598286, 0.991394)
@@ -60,9 +60,9 @@ bones/22/rotation = Quaternion(-0.00509515, 0.223582, 0.0359652, 0.974008)
 bones/23/rotation = Quaternion(0.00162125, 0.115492, 0.00921006, 0.993264)
 bones/24/rotation = Quaternion(-0.00903337, -0.101841, 0.00500631, 0.994747)
 
-[node name="CiliaMesh" parent="Armature/Skeleton3D" index="0"]
-material_override = SubResource("ShaderMaterial_jjmap")
+[node name="CiliaMesh" parent="Armature/Skeleton3D" index="0" unique_id=1992635252]
+material_override = SubResource("ShaderMaterial_u7slg")
 
-[node name="AnimationPlayer" parent="." index="1"]
-autoplay = "wiggle"
+[node name="AnimationPlayer" parent="." index="1" unique_id=1086509473]
+autoplay = &"wiggle"
 speed_scale = 0.2

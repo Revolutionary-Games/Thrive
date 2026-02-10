@@ -2,32 +2,34 @@
 
 using System;
 using System.Collections.Generic;
-using DefaultEcs;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using Systems;
 using Xoshiro.PRNG32;
 
 /// <summary>
 ///   Something that can be engulfed by a microbe
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct Engulfable
+public struct Engulfable : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
-    ///   Stores the original scale when this becomes engulfed so that it can be always restored (in some
-    ///   situations storing this in the transport animation will cause problems with not being able to reliably
-    ///   restore this, so this extra variable is used to get this to be problem free)
+    ///   Stores the original scale when this becomes engulfed so that it can always be restored.
+    ///   In some situations storing this in the transport animation will cause problems with not being able to reliably
+    ///   restore this, so this extra variable is used to get this to be problem-free.
     /// </summary>
     public Vector3 OriginalScale;
 
     /// <summary>
-    ///   If this is being engulfed then this is not default and is a reference to the entity (trying to) eating us
+    ///   If this is being engulfed, then this is not null and is a reference to the entity (trying to) eating us
     /// </summary>
     public Entity HostileEngulfer;
 
     /// <summary>
-    ///   If not null then the engulfer must have the specified enzyme to be able to eat this
+    ///   If not null, then the engulfer must have the specified enzyme to be able to eat this
     /// </summary>
     public Enzyme? RequisiteEnzymeToDigest;
 
@@ -55,7 +57,7 @@ public struct Engulfable
     public float DigestedAmount;
 
     /// <summary>
-    ///   When this is engulfed this gets the total amount of compounds that exist here for digestion progress.
+    ///   When this is engulfed, this stores the total quantity of compounds available for digestion.
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -67,13 +69,10 @@ public struct Engulfable
     public int OriginalRenderPriority;
 
     /// <summary>
-    ///   The current step of phagocytosis process this engulfable is currently in. If not phagocytized,
+    ///   The current step of the phagocytosis process this engulfable is currently in. If not phagocytized,
     ///   state is None.
     /// </summary>
     public PhagocytosisPhase PhagocytosisStep;
-
-    // This might not need a reference to the hostile engulfer as this should have AttachedToEntity to mark what
-    // this is attached to
 
     /// <summary>
     ///   If this is partially digested when ejected from an engulfer, this is destroyed (with a dissolve animation
@@ -81,32 +80,157 @@ public struct Engulfable
     /// </summary>
     public bool DestroyIfPartiallyDigested;
 
-    [JsonIgnore]
+    public Engulfable(PhagocytosisPhase phase, Entity hostileEngulfer)
+    {
+        if (phase != PhagocytosisPhase.None || hostileEngulfer != Entity.Null)
+            throw new ArgumentException("This must be initialized to not be in engulfed state");
+
+        PhagocytosisStep = phase;
+        HostileEngulfer = hostileEngulfer;
+    }
+
     public float AdjustedEngulfSize => BaseEngulfSize * (1 - DigestedAmount);
 
-    public class BulkTransportAnimation
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentEngulfable;
+
+    public void WriteToArchive(ISArchiveWriter writer)
     {
+        writer.Write(OriginalScale);
+        writer.WriteAnyRegisteredValueAsObject(HostileEngulfer);
+
+        writer.WriteObjectOrNull(RequisiteEnzymeToDigest);
+
+        if (AdditionalEngulfableCompounds != null)
+        {
+            writer.WriteObject(AdditionalEngulfableCompounds);
+        }
+        else
+        {
+            writer.WriteNullObject();
+        }
+
+        writer.WriteObjectOrNull(BulkTransport);
+
+        writer.Write(BaseEngulfSize);
+        writer.Write(DigestedAmount);
+        writer.Write(InitialTotalEngulfableCompounds);
+        writer.Write(OriginalRenderPriority);
+        writer.Write((int)PhagocytosisStep);
+        writer.Write(DestroyIfPartiallyDigested);
+    }
+
+    public class BulkTransportAnimation : IArchivable
+    {
+        public const ushort SERIALIZATION_VERSION_TRANSPORT = 1;
+
         /// <summary>
-        ///   If false the animation is complete and doesn't require actions
+        ///   If false, the animation is complete and doesn't require actions
         /// </summary>
         public bool Interpolate;
 
         /// <summary>
-        ///   Used to only trigger the digestion eject once
+        ///   Used to only trigger the digestion ejected once
         /// </summary>
         public bool DigestionEjectionStarted;
 
         public float LerpDuration;
         public float AnimationTimeElapsed;
 
-        // TODO: refactor this to not use nullable values as that will save a bunch of boxing and memory allocation
-        public (Vector3? Position, Vector3? Scale, Vector3? EndosomeScale) TargetValuesToLerp;
-        public (Vector3 Position, Vector3 Scale, Vector3 EndosomeScale) InitialValuesToLerp;
+        // These used to be 2 tuples with nullable values, but that was a lot of boxing and saving was very hard to
+        // reimplement, so these are now plain values like this
+        public Vector3 TargetPositionToLerp;
+        public Vector3 TargetScaleToLerp;
+        public Vector3 TargetEndosomeScaleToLerp;
+
+        public Vector3 InitialPositionToLerp;
+        public Vector3 InitialScaleToLerp;
+        public Vector3 InitialEndosomeScaleToLerp;
+
+        public bool HasTargetPositionToLerp;
+        public bool HasTargetScaleToLerp;
+        public bool HasTargetEndosomeScaleToLerp;
+
+        public bool HasInitialPositionToLerp;
+        public bool HasInitialScaleToLerp;
+        public bool HasInitialEndosomeScaleToLerp;
+
+        public ushort CurrentArchiveVersion => SERIALIZATION_VERSION_TRANSPORT;
+        public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.BulkTransportAnimation;
+        public bool CanBeReferencedInArchive => false;
+
+        public static BulkTransportAnimation ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+        {
+            if (version is > SERIALIZATION_VERSION_TRANSPORT or <= 0)
+                throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION_TRANSPORT);
+
+            return new BulkTransportAnimation
+            {
+                Interpolate = reader.ReadBool(),
+                DigestionEjectionStarted = reader.ReadBool(),
+                LerpDuration = reader.ReadFloat(),
+                AnimationTimeElapsed = reader.ReadFloat(),
+                TargetPositionToLerp = reader.ReadVector3(),
+                TargetScaleToLerp = reader.ReadVector3(),
+                TargetEndosomeScaleToLerp = reader.ReadVector3(),
+                InitialPositionToLerp = reader.ReadVector3(),
+                InitialScaleToLerp = reader.ReadVector3(),
+                InitialEndosomeScaleToLerp = reader.ReadVector3(),
+                HasTargetPositionToLerp = reader.ReadBool(),
+                HasTargetScaleToLerp = reader.ReadBool(),
+                HasTargetEndosomeScaleToLerp = reader.ReadBool(),
+                HasInitialPositionToLerp = reader.ReadBool(),
+                HasInitialScaleToLerp = reader.ReadBool(),
+                HasInitialEndosomeScaleToLerp = reader.ReadBool(),
+            };
+        }
+
+        public void WriteToArchive(ISArchiveWriter writer)
+        {
+            writer.Write(Interpolate);
+            writer.Write(DigestionEjectionStarted);
+            writer.Write(LerpDuration);
+            writer.Write(AnimationTimeElapsed);
+
+            writer.Write(TargetPositionToLerp);
+            writer.Write(TargetScaleToLerp);
+            writer.Write(TargetEndosomeScaleToLerp);
+            writer.Write(InitialPositionToLerp);
+            writer.Write(InitialScaleToLerp);
+            writer.Write(InitialEndosomeScaleToLerp);
+            writer.Write(HasTargetPositionToLerp);
+            writer.Write(HasTargetScaleToLerp);
+            writer.Write(HasTargetEndosomeScaleToLerp);
+            writer.Write(HasInitialPositionToLerp);
+            writer.Write(HasInitialScaleToLerp);
+            writer.Write(HasInitialEndosomeScaleToLerp);
+        }
     }
 }
 
 public static class EngulfableHelpers
 {
+    public static Engulfable ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > Engulfable.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, Engulfable.SERIALIZATION_VERSION);
+
+        return new Engulfable
+        {
+            OriginalScale = reader.ReadVector3(),
+            HostileEngulfer = reader.ReadObject<Entity>(),
+            RequisiteEnzymeToDigest = reader.ReadObjectOrNull<Enzyme>(),
+            AdditionalEngulfableCompounds = reader.ReadObjectOrNull<Dictionary<Compound, float>>(),
+            BulkTransport = reader.ReadObjectOrNull<Engulfable.BulkTransportAnimation>(),
+            BaseEngulfSize = reader.ReadFloat(),
+            DigestedAmount = reader.ReadFloat(),
+            InitialTotalEngulfableCompounds = reader.ReadFloat(),
+            OriginalRenderPriority = reader.ReadInt32(),
+            PhagocytosisStep = (PhagocytosisPhase)reader.ReadInt32(),
+            DestroyIfPartiallyDigested = reader.ReadBool(),
+        };
+    }
+
     /// <summary>
     ///   Effective size of the engulfable for engulfability calculations
     /// </summary>
@@ -148,11 +272,8 @@ public static class EngulfableHelpers
         {
             ref var cellProperties = ref entity.Get<CellProperties>();
 
-            if (cellProperties.CreatedMembrane != null)
-            {
-                // Make membrane not wiggle to make it look better
-                cellProperties.CreatedMembrane.WigglyNess = 0;
-            }
+            // Make the membrane not wiggle to make it look better
+            cellProperties.CreatedMembrane?.WigglyNess = 0;
         }
 
         // Stop being in ready to reproduce state while engulfed
@@ -178,7 +299,7 @@ public static class EngulfableHelpers
         // Force mode to normal
         if (entity.Has<MicrobeControl>())
         {
-            // Cells are yanked from colonies so this doesn't need to use colony aware set
+            // Cells are yanked from colonies, so this doesn't need to use the colony-aware set
             entity.Get<MicrobeControl>().State = MicrobeState.Normal;
         }
 
@@ -280,11 +401,11 @@ public static class EngulfableHelpers
 
                     MicrobeDeathSystem.CustomizeSpawnedChunk? customizeCallback = null;
 
-                    if (engulfable.HostileEngulfer.Has<WorldPosition>())
+                    if (engulfable.HostileEngulfer.IsAliveAndHas<WorldPosition>())
                     {
                         var hostilePosition = engulfable.HostileEngulfer.Get<WorldPosition>().Position;
 
-                        customizeCallback = (ref Vector3 position) =>
+                        customizeCallback = (ref position) =>
                         {
                             var direction = hostilePosition.DirectionTo(position);
                             position += direction *
@@ -300,7 +421,7 @@ public static class EngulfableHelpers
 
                     var recorder = worldSimulation.StartRecordingEntityCommands();
 
-                    // In case there is no cell properties, this defaults to false in order to behave like the old
+                    // In case there are no cell properties, this defaults to false in order to behave like the old
                     // version of corpse chunk spawning
                     var isBacteria = false;
 
@@ -336,8 +457,7 @@ public static class EngulfableHelpers
                     GD.Print("Creating timed life now as safety fallback");
                     var recorder = worldSimulation.StartRecordingEntityCommands();
 
-                    var entityRecord = recorder.Record(entity);
-                    entityRecord.Set(new TimedLife(10));
+                    recorder.Add(entity, new TimedLife(10));
 
                     worldSimulation.FinishRecordingEntityCommands(recorder);
                 }

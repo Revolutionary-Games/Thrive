@@ -3,31 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Godot;
-using Newtonsoft.Json;
 using Nito.Collections;
 
 /// <summary>
 ///   Holds process running statistics information
 /// </summary>
-public class ProcessStatistics
+public sealed class ProcessStatistics
 {
     /// <summary>
-    ///   Temporary memory to use for <see cref="RemoveUnused"/> to avoid small constant allocations. This is no longer
-    ///   a ThreadLocal in <see cref="Systems.ProcessSystem"/> as that was causing the game process to lock up in
-    ///   Godot 4 (for unknown reasons). See: https://github.com/Revolutionary-Games/Thrive/issues/4989 for context.
+    ///   Temporary memory to use for <see cref="RemoveUnused"/> to avoid small constant allocations. This used to be
+    ///   thread local, but as we lock anyway, it doesn't really matter.
     /// </summary>
     private List<TweakedProcess>? temporaryRemovedItems;
 
     /// <summary>
     ///   The processes and their associated speed statistics
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This is JSON ignore to ensure that this object can exist in saves, but won't store non-savable information
-    ///     like the process statistics object. That's the situation now but maybe some other design would be better...
-    ///   </para>
-    /// </remarks>
-    [JsonIgnore]
     public Dictionary<TweakedProcess, SingleProcessStatistics> Processes { get; } = new();
 
     public void MarkAllUnused()

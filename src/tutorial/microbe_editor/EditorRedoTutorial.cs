@@ -2,17 +2,23 @@
 
 using System;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Redo tutorial in the cell editor
 /// </summary>
 public class EditorRedoTutorial : TutorialPhase
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public override string ClosedByName => "CellEditorRedo";
 
-    [JsonIgnore]
     public Control? EditorRedoButtonControl { get; set; }
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.TutorialEditorRedoTutorial;
 
     public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
@@ -55,5 +61,14 @@ public class EditorRedoTutorial : TutorialPhase
         }
 
         return false;
+    }
+
+    public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        // Base version is not our version, so we pass 1 here
+        base.ReadPropertiesFromArchive(reader, 1);
     }
 }

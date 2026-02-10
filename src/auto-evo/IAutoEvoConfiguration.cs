@@ -1,10 +1,10 @@
-﻿using ThriveScriptsShared;
+﻿using SharedBase.Archive;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Auto-evo configuration parameters to be used
 /// </summary>
-[SupportsCustomizedRegistryType(typeof(AutoEvoConfiguration))]
-public interface IAutoEvoConfiguration : IRegistryAssignable
+public interface IAutoEvoConfiguration : IRegistryAssignable, IArchivable
 {
     public int MutationsPerSpecies { get; }
 

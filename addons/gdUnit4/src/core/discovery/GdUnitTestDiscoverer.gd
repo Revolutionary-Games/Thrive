@@ -15,7 +15,7 @@ static func run() -> Array[GdUnitTestCase]:
 		var runner_config := GdUnitRunnerConfig.new()
 		runner_config.load_config()
 		var recovered_tests := runner_config.test_cases()
-		var test_suite_directories :PackedStringArray = GdUnitCommandHandler.scan_all_test_directories(GdUnitSettings.test_root_folder())
+		var test_suite_directories := scan_all_test_directories(GdUnitSettings.test_root_folder())
 		var scanner := GdUnitTestSuiteScanner.new()
 
 		var collected_tests: Array[GdUnitTestCase] = []
@@ -36,7 +36,7 @@ static func run() -> Array[GdUnitTestCase]:
 
 		console_log_discover_results(collected_tests)
 		if !recovered_tests.is_empty():
-			console_log("Recovery last test session successfully, %d tests restored." % recovered_tests.size(), true)
+			console_log("Recovered last test session successfully, %d tests restored." % recovered_tests.size(), true)
 		return collected_tests
 	)
 	# wait unblocked to the tread is finished
@@ -72,12 +72,12 @@ static func restore_last_session() -> void:
 	t.start(func () -> void:
 		# Do sync the main thread before emit the discovered test suites to the inspector
 		await (Engine.get_main_loop() as SceneTree).process_frame
-		console_log("Recovery last test session ..", true)
+		console_log("Recovering last test session ..", true)
 		GdUnitSignals.instance().gdunit_event.emit(GdUnitEventTestDiscoverStart.new())
 		for test_case in test_cases:
 			GdUnitTestDiscoverSink.discover(test_case)
 		GdUnitSignals.instance().gdunit_event.emit(GdUnitEventTestDiscoverEnd.new(0, 0))
-		console_log("Recovery last test session successfully, %d tests restored." % test_cases.size(), true)
+		console_log("Recovered last test session successfully, %d tests restored." % test_cases.size(), true)
 	)
 	t.wait_to_finish()
 
@@ -134,3 +134,38 @@ static func discover_tests(source_script: Script, discover_sink := default_disco
 			return
 		for test_case in GdUnit4CSharpApiLoader.discover_tests(source_script):
 			discover_sink.call(test_case)
+
+
+static func scan_all_test_directories(root: String) -> PackedStringArray:
+	var base_directory := "res://"
+	# If the test root folder is configured as blank, "/", or "res://", use the root folder as described in the settings panel
+	if root.is_empty() or root == "/" or root == base_directory:
+		return [base_directory]
+	return scan_test_directories(base_directory, root, [])
+
+
+static func scan_test_directories(base_directory: String, test_directory: String, test_suite_paths: PackedStringArray) -> PackedStringArray:
+	print_verbose("Scannning for test directory '%s' at %s" % [test_directory, base_directory])
+	for directory in DirAccess.get_directories_at(base_directory):
+		if directory.begins_with("."):
+			continue
+		var current_directory := normalize_path(base_directory + "/" + directory)
+		if FileAccess.file_exists(current_directory + "/.gdignore"):
+			continue
+		if GdUnitTestSuiteScanner.exclude_scan_directories.has(current_directory):
+			continue
+		if match_test_directory(directory, test_directory):
+			@warning_ignore("return_value_discarded")
+			test_suite_paths.append(current_directory)
+		else:
+			@warning_ignore("return_value_discarded")
+			scan_test_directories(current_directory, test_directory, test_suite_paths)
+	return test_suite_paths
+
+
+static func normalize_path(path: String) -> String:
+	return path.replace("///", "//")
+
+
+static func match_test_directory(directory: String, test_directory: String) -> bool:
+	return directory == test_directory or test_directory.is_empty() or test_directory == "/" or test_directory == "res://"

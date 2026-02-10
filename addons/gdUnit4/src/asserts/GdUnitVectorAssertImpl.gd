@@ -50,11 +50,13 @@ func current_value() -> Variant:
 
 
 func report_success() -> GdUnitVectorAssert:
+	@warning_ignore("return_value_discarded")
 	_base.report_success()
 	return self
 
 
 func report_error(error :String) -> GdUnitVectorAssert:
+	@warning_ignore("return_value_discarded")
 	_base.report_error(error)
 	return self
 
@@ -63,7 +65,7 @@ func failure_message() -> String:
 	return _base.failure_message()
 
 
-func override_failure_message(message :String) -> GdUnitVectorAssert:
+func override_failure_message(message: String) -> GdUnitVectorAssert:
 	@warning_ignore("return_value_discarded")
 	_base.override_failure_message(message)
 	return self

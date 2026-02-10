@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://cb2yke3pxw5jc"]
+
+[ext_resource type="Script" uid="uid://bgv4x2jiplx8n" path="res://src/engine/UnHandledErrorsGUI.cs" id="1_ca0xl"]
+[ext_resource type="LabelSettings" uid="uid://0xlqq0gc2g7u" path="res://src/gui_common/fonts/Body-Bold-Small-Red-Shadow.tres" id="2_3lj2u"]
+[ext_resource type="PackedScene" uid="uid://2nt57gfubafw" path="res://src/gui_common/dialogs/ErrorDialog.tscn" id="3_yklh4"]
+[ext_resource type="LabelSettings" uid="uid://o0tip7etc0x2" path="res://src/gui_common/fonts/Body-Bold-Small-Red.tres" id="4_6ks7o"]
+
+[node name="UnHandledErrorsGUI" type="Control" unique_id=954361024 node_paths=PackedStringArray("errorCount", "errorPopup", "ignoreFurtherErrors", "popupModsUsedWarning", "counterModsUsedWarning")]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_ca0xl")
+errorCount = NodePath("CanvasLayer/MarginContainer/VBoxContainer/ErrorCountLabel")
+errorPopup = NodePath("ErrorDialog")
+ignoreFurtherErrors = NodePath("ErrorDialog/VBoxContainer/IgnoreFurther")
+popupModsUsedWarning = NodePath("ErrorDialog/VBoxContainer/ExceptionBox/ModsEnabledWarning2")
+counterModsUsedWarning = NodePath("CanvasLayer/MarginContainer/VBoxContainer/ModsEnabledWarning")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1974040516]
+layer = 127
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1965836583]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+mouse_filter = 2
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=387511320]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ErrorCountLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=2030033993]
+visible = false
+layout_mode = 2
+text = "UNHANDLED_ERROR_COUNT"
+label_settings = ExtResource("2_3lj2u")
+horizontal_alignment = 2
+
+[node name="ModsEnabledWarning" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=1070647069]
+visible = false
+layout_mode = 2
+text = "MODS_ARE_ENABLED"
+label_settings = ExtResource("2_3lj2u")
+horizontal_alignment = 2
+
+[node name="ErrorDialog" parent="." unique_id=1622207355 instance=ExtResource("3_yklh4")]
+layout_mode = 0
+ErrorMessage = "UNHANDLED_ERROR_DESCRIPTION"
+ExceptionInfo = ""
+WindowTitle = "UNHANDLED_ERROR_TITLE"
+
+[node name="ModsEnabledWarning2" type="Label" parent="ErrorDialog/VBoxContainer/ExceptionBox" index="1" unique_id=1500109914]
+visible = false
+layout_mode = 2
+text = "MODS_ARE_ENABLED"
+label_settings = ExtResource("4_6ks7o")
+
+[node name="IgnoreFurther" type="CheckBox" parent="ErrorDialog/VBoxContainer" index="2" unique_id=153886069]
+layout_mode = 2
+text = "IGNORE_FURTHER_ERRORS"
+
+[connection signal="Closed" from="ErrorDialog" to="." method="OnErrorPopupClose"]
+
+[editable path="ErrorDialog"]

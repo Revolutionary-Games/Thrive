@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1s1rhn11i6si"]
+[gd_scene format=3 uid="uid://d1s1rhn11i6si"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://c40jvfvwvje3o" path="res://src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs" id="2"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_t3oq1"]
 
-[node name="LysosomeUpgradeGUI" type="VBoxContainer" node_paths=PackedStringArray("enzymes", "description")]
+[node name="LysosomeUpgradeGUI" type="VBoxContainer" unique_id=207660577 node_paths=PackedStringArray("enzymes", "description")]
 custom_minimum_size = Vector2(400, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,19 +16,19 @@ script = ExtResource("2")
 enzymes = NodePath("OptionButton")
 description = NodePath("Label2")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=978851175]
 layout_mode = 2
 text = "SELECT_ENZYME"
 label_settings = ExtResource("3_t3oq1")
 
-[node name="OptionButton" type="OptionButton" parent="."]
+[node name="OptionButton" type="OptionButton" parent="." unique_id=2021476886]
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="."]
+[node name="Spacer" type="Control" parent="." unique_id=264193732]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="."]
+[node name="Label2" type="Label" parent="." unique_id=1073400618]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 label_settings = ExtResource("3_t3oq1")

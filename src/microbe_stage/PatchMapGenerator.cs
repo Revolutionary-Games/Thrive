@@ -93,11 +93,12 @@ public static class PatchMapGenerator
                 // All continents must have at least one coastal or banana patch.
                 if (useRarePatch && banana == null)
                 {
-                    banana = NewPredefinedPatch(BiomeType.Banana, ++currentPatchId, region, regionName);
+                    banana = NewPredefinedPatch(BiomeType.Banana, ++currentPatchId, region, regionName,
+                        random.NextInt64());
                 }
                 else
                 {
-                    NewPredefinedPatch(BiomeType.Coastal, ++currentPatchId, region, regionName);
+                    NewPredefinedPatch(BiomeType.Coastal, ++currentPatchId, region, regionName, random.NextInt64());
                 }
 
                 // Ensure the region is non-empty if we need a tidepool.
@@ -112,7 +113,7 @@ public static class PatchMapGenerator
                     // Add at least one tidepool to the map, otherwise choose randomly
                     availableBiomes.MoveNext();
                     var biomeType = availableBiomes.Current;
-                    var patch = NewPredefinedPatch(biomeType, ++currentPatchId, region, regionName);
+                    var patch = NewPredefinedPatch(biomeType, ++currentPatchId, region, regionName, random.NextInt64());
                     --numberOfPatches;
 
                     if (biomeType == BiomeType.Tidepool)
@@ -120,30 +121,33 @@ public static class PatchMapGenerator
                 }
 
                 // If there's no tidepool, add one
-                tidepool ??= NewPredefinedPatch(BiomeType.Tidepool, ++currentPatchId, region, regionName);
+                tidepool ??= NewPredefinedPatch(BiomeType.Tidepool, ++currentPatchId, region, regionName,
+                    random.NextInt64());
             }
             else
             {
                 numberOfPatches = random.Next(0, 4);
 
                 // All oceans/seas must have at least one epipelagic/ice patch and a seafloor
-                NewPredefinedPatch(GetRandomSurfaceBiomeType(settings, random), ++currentPatchId, region, regionName);
+                NewPredefinedPatch(GetRandomSurfaceBiomeType(settings, random), ++currentPatchId, region, regionName,
+                    random.NextInt64());
 
                 // Add the patches between surface and sea floor
                 for (int patchIndex = 4; numberOfPatches > 0 && patchIndex <= (int)BiomeType.Abyssopelagic;
                      ++patchIndex, --numberOfPatches)
                 {
-                    NewPredefinedPatch((BiomeType)patchIndex, ++currentPatchId, region, regionName);
+                    NewPredefinedPatch((BiomeType)patchIndex, ++currentPatchId, region, regionName, random.NextInt64());
                 }
 
                 // Add the seafloor last
-                NewPredefinedPatch(BiomeType.Seafloor, ++currentPatchId, region, regionName);
+                NewPredefinedPatch(BiomeType.Seafloor, ++currentPatchId, region, regionName, random.NextInt64());
 
                 // Add at least one vent to the map, otherwise chance to add a vent if this is a sea/ocean region
                 if (vents == null || random.Next(0, 2) == 1)
                 {
                     // First call the function to add the vents to the region
-                    var patch = NewPredefinedPatch(BiomeType.Vents, ++currentPatchId, region, regionName);
+                    var patch = NewPredefinedPatch(BiomeType.Vents, ++currentPatchId, region, regionName,
+                        random.NextInt64());
 
                     // Then update vents variable if null
                     vents ??= patch;
@@ -153,7 +157,7 @@ public static class PatchMapGenerator
             // Random chance to create a cave
             if (random.Next(0, 2) == 1)
             {
-                NewPredefinedPatch(BiomeType.Cave, ++currentPatchId, region, regionName);
+                NewPredefinedPatch(BiomeType.Cave, ++currentPatchId, region, regionName, random.NextInt64());
             }
 
             BuildRegionSize(region);
@@ -183,11 +187,13 @@ public static class PatchMapGenerator
         if (tidepool == null)
             throw new InvalidOperationException($"No tidepool patch created for seed {settings.Seed}");
 
-        // This uses random so this affects the edge subtraction, but this doesn't depend on the selected start type
+        // This uses random so this affects the edge subtraction, but this doesn't depend on the selected start type,
         // so this makes the same map be generated anyway
         ConfigureStartingPatch(map, settings, defaultSpecies, vents, tidepool, random);
 
-        var edgeCount = random.Next(vertexCount, 2 * vertexCount - 4);
+        // For small maps 2 * vertexCount - 4 might be less than vertex count. That's why we increase the minimum
+        // amount here with the Max call.
+        var edgeCount = random.Next(vertexCount, Math.Max(vertexCount + 1, 2 * vertexCount - 4));
 
         // We make the graph by subtracting edges from its Delaunay Triangulation
         // as long as the graph stays connected.
@@ -534,6 +540,7 @@ public static class PatchMapGenerator
                 if (cave != null)
                 {
                     // Cave shouldn't be linked to seafloor, vent or itself
+                    // TODO: does this need to handle the case where waterPatchCount is 0?
                     caveLinkedTo = random.Next(0, waterPatchCount - 1);
                     LinkPatches(cave, region.Patches[caveLinkedTo]);
                 }
@@ -547,7 +554,9 @@ public static class PatchMapGenerator
                 var deepestSeaPatch = region.Patches[waterPatchCount - 2];
                 var seafloor = region.Patches[waterPatchCount - 1];
                 var depth = deepestSeaPatch.Depth;
-                deepestSeaPatch.Depth[1] = random.Next(depth[0] + 1, depth[1] - 10);
+
+                // The max call here ensures that the second value can never be too small and cause an error
+                deepestSeaPatch.Depth[1] = random.Next(depth[0] + 1, Math.Max(depth[0] + 1, depth[1] - 10));
 
                 seafloor.Depth[0] = deepestSeaPatch.Depth[1];
                 seafloor.Depth[1] = deepestSeaPatch.Depth[1] + 10;
@@ -805,14 +814,16 @@ public static class PatchMapGenerator
     /// <param name="id">ID of this patch</param>
     /// <param name="region">Region this patch belongs to</param>
     /// <param name="regionName">Name of the region</param>
+    /// <param name="patchDataSeed">Random seed for the patch terrain contents to be generated from</param>
     /// <returns>Predefined patch</returns>
     /// <exception cref="InvalidOperationException">Thrown if biome is not a valid value</exception>
-    private static Patch NewPredefinedPatch(BiomeType biome, int id, PatchRegion region, string regionName)
+    private static Patch NewPredefinedPatch(BiomeType biome, int id, PatchRegion region, string regionName,
+        long patchDataSeed)
     {
         var newPatch = biome switch
         {
             BiomeType.Abyssopelagic => new Patch(GetPatchLocalizedName(regionName, "ABYSSOPELAGIC"),
-                id, GetBiomeTemplate("abyssopelagic"), BiomeType.Abyssopelagic, region)
+                id, GetBiomeTemplate("abyssopelagic"), BiomeType.Abyssopelagic, region, patchDataSeed)
             {
                 Depth =
                 {
@@ -823,7 +834,7 @@ public static class PatchMapGenerator
             },
 
             BiomeType.Bathypelagic => new Patch(GetPatchLocalizedName(regionName, "BATHYPELAGIC"),
-                id, GetBiomeTemplate("bathypelagic"), BiomeType.Bathypelagic, region)
+                id, GetBiomeTemplate("bathypelagic"), BiomeType.Bathypelagic, region, patchDataSeed)
             {
                 Depth =
                 {
@@ -834,7 +845,7 @@ public static class PatchMapGenerator
             },
 
             BiomeType.Cave => new Patch(GetPatchLocalizedName(regionName, "UNDERWATERCAVE"),
-                id, GetBiomeTemplate("underwater_cave"), BiomeType.Cave, region)
+                id, GetBiomeTemplate("underwater_cave"), BiomeType.Cave, region, patchDataSeed)
             {
                 Depth =
                 {
@@ -845,7 +856,7 @@ public static class PatchMapGenerator
             },
 
             BiomeType.Coastal => new Patch(GetPatchLocalizedName(regionName, "COASTAL"),
-                id, GetBiomeTemplate("coastal"), BiomeType.Coastal, region)
+                id, GetBiomeTemplate("coastal"), BiomeType.Coastal, region, patchDataSeed)
             {
                 Depth =
                 {
@@ -856,7 +867,7 @@ public static class PatchMapGenerator
             },
 
             BiomeType.Epipelagic => new Patch(GetPatchLocalizedName(regionName, "EPIPELAGIC"),
-                id, GetBiomeTemplate("default"), BiomeType.Epipelagic, region)
+                id, GetBiomeTemplate("default"), BiomeType.Epipelagic, region, patchDataSeed)
             {
                 Depth =
                 {
@@ -867,7 +878,7 @@ public static class PatchMapGenerator
             },
 
             BiomeType.Estuary => new Patch(GetPatchLocalizedName(regionName, "ESTUARY"),
-                id, GetBiomeTemplate("estuary"), BiomeType.Estuary, region)
+                id, GetBiomeTemplate("estuary"), BiomeType.Estuary, region, patchDataSeed)
             {
                 Depth =
                 {
@@ -878,7 +889,7 @@ public static class PatchMapGenerator
             },
 
             BiomeType.IceShelf => new Patch(GetPatchLocalizedName(regionName, "ICESHELF"),
-                id, GetBiomeTemplate("ice_shelf"), BiomeType.IceShelf, region)
+                id, GetBiomeTemplate("ice_shelf"), BiomeType.IceShelf, region, patchDataSeed)
             {
                 Depth =
                 {
@@ -889,7 +900,7 @@ public static class PatchMapGenerator
             },
 
             BiomeType.Mesopelagic => new Patch(GetPatchLocalizedName(regionName, "MESOPELAGIC"),
-                id, GetBiomeTemplate("mesopelagic"), BiomeType.Mesopelagic, region)
+                id, GetBiomeTemplate("mesopelagic"), BiomeType.Mesopelagic, region, patchDataSeed)
             {
                 Depth =
                 {
@@ -900,7 +911,7 @@ public static class PatchMapGenerator
             },
 
             BiomeType.Seafloor => new Patch(GetPatchLocalizedName(regionName, "SEA_FLOOR"),
-                id, GetBiomeTemplate("seafloor"), BiomeType.Seafloor, region)
+                id, GetBiomeTemplate("seafloor"), BiomeType.Seafloor, region, patchDataSeed)
             {
                 Depth =
                 {
@@ -911,7 +922,7 @@ public static class PatchMapGenerator
             },
 
             BiomeType.Tidepool => new Patch(GetPatchLocalizedName(regionName, "TIDEPOOL"),
-                id, GetBiomeTemplate("tidepool"), BiomeType.Tidepool, region)
+                id, GetBiomeTemplate("tidepool"), BiomeType.Tidepool, region, patchDataSeed)
             {
                 Depth =
                 {
@@ -923,7 +934,7 @@ public static class PatchMapGenerator
 
             // ReSharper disable once StringLiteralTypo
             BiomeType.Vents => new Patch(GetPatchLocalizedName(regionName, "VOLCANIC_VENT"),
-                id, GetBiomeTemplate("aavolcanic_vent"), BiomeType.Vents, region)
+                id, GetBiomeTemplate("aavolcanic_vent"), BiomeType.Vents, region, patchDataSeed)
             {
                 Depth =
                 {
@@ -934,7 +945,7 @@ public static class PatchMapGenerator
             },
 
             BiomeType.Banana => new Patch(new LocalizedString("EASTER_EGG_BANANA_BIOME"),
-                id, GetBiomeTemplate("banana"), BiomeType.Banana, region)
+                id, GetBiomeTemplate("banana"), BiomeType.Banana, region, patchDataSeed)
             {
                 Depth =
                 {
@@ -982,7 +993,7 @@ public static class PatchMapGenerator
     /// </summary>
     /// <param name="map">The patch map to apply variations to</param>
     /// <param name="settings">The world generation settings to use for variations</param>
-    /// <param name="random">Random instance with certain seed</param>
+    /// <param name="random">Random instance with a certain seed</param>
     private static void ApplyPatchEnvironmentVariation(PatchMap map, WorldGenerationSettings settings, Random random)
     {
         foreach (var patch in map.Patches.Values)
@@ -996,6 +1007,26 @@ public static class PatchMapGenerator
 
             if (patch.IsSurfacePatch())
                 ApplyTemperatureVariation(patch, settings, random);
+
+            var hasTemperature =
+                patch.Biome.ChangeableCompounds.TryGetValue(Compound.Temperature, out var patchTemperature);
+            var hasSunlight =
+                patch.Biome.ChangeableCompounds.TryGetValue(Compound.Sunlight, out var patchSunlight);
+
+            if (!hasTemperature)
+            {
+                GD.PrintErr("Patch map generator encountered patch with unexpectedly no temperature.");
+                return;
+            }
+
+            if (!hasSunlight)
+            {
+                GD.PrintErr("Patch map generator encountered patch with unexpectedly no sunlight.");
+                return;
+            }
+
+            patch.Biome.StartingTemperatureValue = patchTemperature.Ambient;
+            patch.Biome.StartingSunlightValue = patchSunlight.Ambient;
         }
     }
 

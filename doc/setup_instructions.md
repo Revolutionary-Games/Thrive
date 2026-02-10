@@ -24,7 +24,7 @@ Prerequisites
 Godot .NET version
 ------------------
 
-The currently used Godot version is __4.4.1 .NET__. The regular version
+The currently used Godot version is __4.6 .NET__. The regular version
 will not work. You can download Godot here: https://godotengine.org/download/
 if it is still the latest stable version. If a new version of Godot has
 been released but Thrive has not been updated yet, you need to look
@@ -90,14 +90,14 @@ https://www.youtube.com/watch?v=HVsySz-h9r4
 .NET SDK
 ----------
 
-Next you need the .NET SDK. Recommended version currently is 9.0, but a
+Next you need the .NET SDK. Recommended version currently is 10.0, but a
 newer version may also work. You also need *runtime* 8.0 to run Thrive
 tests. This can be installed either with the sdk version 8.0 or just
 the plain runtime which saves some disk space.
 
 On Linux you can use your package manager to install .NET. The package
-might be called `dotnet-sdk-9.0`. For example on Fedora this can be
-installed with: `sudo dnf install dotnet-sdk-9.0 dotnet-runtime-8.0`
+might be called `dotnet-sdk-10.0`. For example on Fedora this can be
+installed with: `sudo dnf install dotnet-sdk-10.0 dotnet-runtime-8.0`
 
 On Windows you can download the .NET installer from:
 https://dotnet.microsoft.com/en-us/download
@@ -162,35 +162,22 @@ https://docs.godotengine.org/en/stable/tutorials/scripting/c_sharp/c_sharp_basic
 
 ### Visual Studio Code
 
+**Visual Studio Code is not the same as Visual Studio.**
+
 Note: Setting up Visual Studio Code with Linux is possible, however it
-is recommended to use Rider instead (this section may be neglected
-more than instructions for other tools).
+is recommended to use Rider instead.
 
-Visual Studio Code, not to be confused with Visual Studio, doesn't
-come with build tools, so you'll need to install the build tools for
-Visual Studio from here:
-https://visualstudio.microsoft.com/downloads/?q=build+tools You will
-need **at least** VS Build tools 2022 due to the version of C# used by
-Thrive. During the installation process, make sure MSBuild tools is
-listed under the installation details.
-
-Note: the following section is not updated for Godot 4
-
-Go back to where you downloaded the .NET SDK from and find _All .NET
-Framework Downloads_ Choose version 4.7 and select the Developer Pack.    
-If you can't find it you can download the 4.7.2 .NET developer pack from here: https://dotnet.microsoft.com/en-us/download/dotnet-framework/net472
-
-Open Visual Studio Code and go to the Extensions tab. Get the extensions
-_C#_, _Mono Debug_, and _C# Tools for Godot_.
+Open Visual Studio Code, go to the Extensions tab, and get the
+[C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) extension.
 
 Open up a Project in Godot. On the top toolbar, go to Editor -> Editor Settings.
-Scroll down on the left window until you find Mono. Click on Editor and set
-External Editor to Visual Studio Code. Click on Builds and set Build Tool to
-dotnet CLI.
+Note that there is a button to enable advanced options, which you may need to enable 
+to see the relevant options.
+Scroll down on the left window until you find Dotnet. Click on Editor and set
+External Editor to Visual Studio Code.
 
 If you want to setup live debugging with Godot follow the instructions here:
-https://docs.godotengine.org/en/3.3/getting_started/scripting/c_sharp/c_sharp_basics.html#visual-studio-code
-
+https://docs.godotengine.org/en/4.5/tutorials/scripting/c_sharp/c_sharp_basics.html#visual-studio-code
 
 Building Thrive
 ===============
@@ -578,6 +565,21 @@ is available through Homebrew.
 
 `msgmerge` is part of the gettext tools. So any errors with that
 missing are about these gettext tools.
+
+### Custom merge driver
+
+To quickly resolve merge conflicts in `.po` files you have to setup custom merge driver. You need to
+add these lines to your local `.git/config` file and you're ready to go:
+```
+[merge "po-smart"]
+    name = Merge PO preferring newer dates in header
+    driver = merge_drivers/merge-po-smart.sh %O %A %B
+```
+
+Unfortunately custom merge drivers are not supported by most IDE's GUI-version git, 
+so you need to do the merge from the command line. If for some reason the merge driver
+doesn't work, make sure the `merge_drivers/merge-po-smart.sh` file is executable
+(`chmod +x merge_drivers/merge-po-smart.sh`).
 
 ## Running the Format Checks
 

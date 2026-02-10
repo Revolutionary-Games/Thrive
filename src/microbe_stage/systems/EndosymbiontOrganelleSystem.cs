@@ -2,61 +2,68 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
 
 /// <summary>
 ///   Handles creating temporary organelles for endosymbiosis
 /// </summary>
-[With(typeof(TemporaryEndosymbiontInfo))]
-[With(typeof(OrganelleContainer))]
-[With(typeof(SpeciesMember))]
-[With(typeof(CompoundStorage))]
-[With(typeof(BioProcesses))]
-[With(typeof(Engulfer))]
-[With(typeof(Engulfable))]
-[With(typeof(CellProperties))]
 [ReadsComponent(typeof(SpeciesMember))]
 [ReadsComponent(typeof(CellProperties))]
 [RunsBefore(typeof(MicrobeReproductionSystem))]
 [RunsBefore(typeof(MicrobePhysicsCreationAndSizeSystem))]
 [RunsBefore(typeof(MicrobeVisualsSystem))]
-public class EndosymbiontOrganelleSystem : AEntitySetSystem<float>
+[RuntimeCost(0.25f)]
+public partial class EndosymbiontOrganelleSystem : BaseSystem<World, float>
 {
-    // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-    // private readonly ThreadLocal<List<Hex>> hexWorkData = new(() => new List<Hex>());
-    // private readonly ThreadLocal<List<Hex>> hexWorkData2 = new(() => new List<Hex>());
+    private readonly ThreadLocal<List<Hex>> hexWorkData = new(() => new List<Hex>());
+    private readonly ThreadLocal<List<Hex>> hexWorkData2 = new(() => new List<Hex>());
+    private readonly ThreadLocal<HashSet<Hex>> hexWorkData3 = new(() => new HashSet<Hex>());
 
-    private readonly List<Hex> hexWorkData = new();
-    private readonly List<Hex> hexWorkData2 = new();
-    private readonly HashSet<Hex> hexWorkData3 = new();
-
-    public EndosymbiontOrganelleSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner,
-        Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
+    public EndosymbiontOrganelleSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float state, in Entity entity)
+    public sealed override void Dispose()
     {
-        ref var endosymbiontInfo = ref entity.Get<TemporaryEndosymbiontInfo>();
+        Dispose(true);
+        base.Dispose();
+        GC.SuppressFinalize(this);
+    }
 
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            hexWorkData.Dispose();
+            hexWorkData2.Dispose();
+            hexWorkData3.Dispose();
+        }
+    }
+
+    [Query]
+    [All<SpeciesMember, CompoundStorage, BioProcesses, Engulfer, Engulfable, CellProperties>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref TemporaryEndosymbiontInfo endosymbiontInfo, ref OrganelleContainer organelleContainer,
+        in Entity entity)
+    {
         if (endosymbiontInfo.Applied)
             return;
-
-        ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 
         // Skip if organelles are not initialized
         if (organelleContainer.Organelles is not { Count: > 0 })
             return;
 
-        var species = entity.Get<SpeciesMember>().Species;
-
         if (endosymbiontInfo.EndosymbiontSpeciesPresent != null)
         {
             endosymbiontInfo.CreatedOrganelleInstancesFor ??= new List<Species>();
+
+            var species = entity.Get<SpeciesMember>().Species;
 
             foreach (var symbiontSpecies in endosymbiontInfo.EndosymbiontSpeciesPresent)
             {
@@ -64,7 +71,7 @@ public class EndosymbiontOrganelleSystem : AEntitySetSystem<float>
                 if (endosymbiontInfo.CreatedOrganelleInstancesFor.Contains(symbiontSpecies))
                     continue;
 
-                // When originally creating the symbiont info it is not yet resolved which organelle type they
+                // When originally creating the symbiont info, it is not yet resolved which organelle type they
                 // represent, so we need to find that now
                 try
                 {
@@ -72,7 +79,7 @@ public class EndosymbiontOrganelleSystem : AEntitySetSystem<float>
                     CreateNewOrganelle(organelleContainer.Organelles!, type);
 
                     // These are fetched inside the loop with the assumption that most of the time the loop runs 0
-                    // times and when not empty mostly just once
+                    // times and when not empty, mostly just once
                     organelleContainer.OnOrganellesChanged(ref entity.Get<CompoundStorage>(),
                         ref entity.Get<BioProcesses>(), ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
                         ref entity.Get<CellProperties>());
@@ -91,27 +98,21 @@ public class EndosymbiontOrganelleSystem : AEntitySetSystem<float>
 
     private void CreateNewOrganelle(OrganelleLayout<PlacedOrganelle> organelles, OrganelleDefinition definition)
     {
-        var newOrganelle = new PlacedOrganelle(definition, new Hex(0, 0), 0, null);
+        var newOrganelle = new PlacedOrganelle(definition, new Hex(0, 0), 0, null)
+        {
+            IsEndosymbiont = true,
+        };
 
         // Find the last placed organelle to efficiently find an empty position
         var searchStart = organelles.Organelles[^1].Position;
 
-        var workData1 = hexWorkData;
-        var workData2 = hexWorkData2;
-        var workData3 = hexWorkData3;
+        var workData1 = hexWorkData.Value!;
+        var workData2 = hexWorkData2.Value!;
+        var workData3 = hexWorkData3.Value!;
 
-        // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-        lock (workData1)
-        {
-            lock (workData2)
-            {
-                // Work data 3 is not locked as it is only used when the other two are locked
-
-                // Spiral search for space for the organelle. This will be pretty slow if huge non-player cells are
-                // allowed to do this.
-                organelles.FindAndPlaceAtValidPosition(newOrganelle, searchStart.Q, searchStart.R, workData1, workData2,
-                    workData3);
-            }
-        }
+        // Spiral search for space for the organelle. This will be pretty slow if huge non-player cells are
+        // allowed to do this.
+        organelles.FindAndPlaceAtValidPosition(newOrganelle, searchStart.Q, searchStart.R, workData1, workData2,
+            workData3);
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://i8evqpkyb68h"]
+[gd_scene format=3 uid="uid://i8evqpkyb68h"]
 
 [ext_resource type="PackedScene" uid="uid://bs5shdurovke8" path="res://src/society_stage/gui/SocietyHUD.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://c8k5d0maeisv" path="res://src/space_stage/gui/PlanetScreen.tscn" id="2"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://5li3f8hbav0q" path="res://src/space_stage/gui/SpaceConstructionPopup.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://cdngxfctlsoox" path="res://src/space_stage/gui/SpaceStructureInfoPopup.tscn" id="7"]
 
-[node name="SpaceHUD" node_paths=PackedStringArray("planetScreenPopup", "fleetPopup", "constructionPopup", "structurePopup", "descendButton") instance=ExtResource("1")]
+[node name="SpaceHUD" unique_id=1647131110 node_paths=PackedStringArray("planetScreenPopup", "fleetPopup", "constructionPopup", "structurePopup", "descendButton") instance=ExtResource("1")]
 script = ExtResource("3")
 planetScreenPopup = NodePath("PlanetScreen")
 fleetPopup = NodePath("SpaceFleetInfoPopup")
@@ -16,16 +16,17 @@ constructionPopup = NodePath("SpaceConstructionPopup")
 structurePopup = NodePath("SpaceStructureInfoPopup")
 descendButton = NodePath("Descend")
 
-[node name="AddWindowReorderingSupportToSiblings" parent="." index="0" instance=ExtResource("5")]
+[node name="AddWindowReorderingSupportToSiblings" parent="." index="0" unique_id=361099649 instance=ExtResource("5")]
+layout_mode = 0
 
-[node name="BottomRight" parent="." index="1"]
+[node name="BottomRight" parent="." index="1" unique_id=498656607]
 visible = false
 
-[node name="Build" parent="ScrollContainer/HotBar" index="0"]
+[node name="Build" parent="ScrollContainer/HotBar" parent_id_path=PackedInt32Array(1923250640) index="0" unique_id=1422302971]
 visible = false
 disabled = true
 
-[node name="ResearchScreen" parent="." index="5"]
+[node name="ResearchScreen" parent="." index="5" unique_id=1763704584]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
@@ -37,7 +38,7 @@ offset_bottom = 593.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="PlanetScreen" parent="." index="9" instance=ExtResource("2")]
+[node name="PlanetScreen" parent="." index="9" unique_id=1274402113 instance=ExtResource("2")]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -48,7 +49,7 @@ offset_right = 500.0
 offset_bottom = 175.0
 grow_vertical = 2
 
-[node name="SpaceStructureInfoPopup" parent="." index="10" instance=ExtResource("7")]
+[node name="SpaceStructureInfoPopup" parent="." index="10" unique_id=1403294378 instance=ExtResource("7")]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -57,7 +58,7 @@ offset_top = -34.5
 offset_bottom = 34.5
 grow_vertical = 2
 
-[node name="SpaceFleetInfoPopup" parent="." index="11" instance=ExtResource("4")]
+[node name="SpaceFleetInfoPopup" parent="." index="11" unique_id=123842481 instance=ExtResource("4")]
 layout_mode = 1
 anchors_preset = 6
 anchor_top = 0.5
@@ -68,12 +69,15 @@ offset_right = 0.0
 offset_bottom = 34.5
 grow_vertical = 2
 
-[node name="SpaceConstructionPopup" parent="." index="12" instance=ExtResource("6")]
+[node name="SpaceConstructionPopup" parent="." index="12" unique_id=290341325 instance=ExtResource("6")]
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
-[node name="Descend" type="Button" parent="." index="13"]
+[node name="Descend" type="Button" parent="." index="13" unique_id=2012805113]
 layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0

@@ -1,5 +1,5 @@
 @tool
-class_name GdUnitMessageWritter
+class_name GdUnitMessageWriter
 extends RefCounted
 ## Base interface class for writing formatted messages to different outputs.[br]
 ## [br]
@@ -64,14 +64,14 @@ var _current_flags := 0
 var _current_align := Align.LEFT
 
 ## The current text effect to be used for the next output operation
-var _current_effect := Effect.NONE
+var _current_effect := GdUnitMessageWriter.Effect.NONE
 
 
 ## Sets the text color for the next output operation.[br]
 ## [br]
 ## [param value] The color to be used for the text.
 ## Returns self for method chaining.
-func color(value: Color) -> GdUnitMessageWritter:
+func color(value: Color) -> GdUnitMessageWriter:
 	_current_color = value
 	return self
 
@@ -80,7 +80,7 @@ func color(value: Color) -> GdUnitMessageWritter:
 ## [br]
 ## [param value] The number of indentation levels, where each level equals two spaces.
 ## Returns self for method chaining.
-func indent(value: int) -> GdUnitMessageWritter:
+func indent(value: int) -> GdUnitMessageWriter:
 	_current_indent = value
 	return self
 
@@ -89,7 +89,7 @@ func indent(value: int) -> GdUnitMessageWritter:
 ## [br]
 ## [param value] A combination of style flags (BOLD, ITALIC, UNDERLINE).
 ## Returns self for method chaining.
-func style(value: int) -> GdUnitMessageWritter:
+func style(value: int) -> GdUnitMessageWriter:
 	_current_flags = value
 	return self
 
@@ -98,7 +98,7 @@ func style(value: int) -> GdUnitMessageWritter:
 ## [br]
 ## [param value] The effect to apply to the text (NONE, WAVE).
 ## Returns self for method chaining.
-func effect(value: Effect) -> GdUnitMessageWritter:
+func effect(value: GdUnitMessageWriter.Effect) -> GdUnitMessageWriter:
 	_current_effect = value
 	return self
 
@@ -107,7 +107,7 @@ func effect(value: Effect) -> GdUnitMessageWritter:
 ## [br]
 ## [param value] The alignment to use (LEFT, RIGHT).
 ## Returns self for method chaining.
-func align(value: Align) -> GdUnitMessageWritter:
+func align(value: Align) -> GdUnitMessageWriter:
 	_current_align = value
 	return self
 
@@ -121,7 +121,7 @@ func align(value: Align) -> GdUnitMessageWritter:
 ## - align: LEFT[br]
 ## - effect: NONE[br]
 ## Returns self for method chaining.
-func reset() -> GdUnitMessageWritter:
+func reset() -> GdUnitMessageWriter:
 	_current_color = Color.WHITE
 	_current_indent = 0
 	_current_flags = 0
@@ -203,7 +203,7 @@ func _println_message(_message: String, _color: Color, _indent: int, _flags: int
 ## [param effect] The effect to apply.[br]
 ## [param align] The text alignment.[br]
 ## [param flags] The style flags to apply.
-func _print_at(_message: String, _cursor_pos: int, _color: Color, _effect: Effect, _align: Align, _flags: int) -> void:
+func _print_at(_message: String, _cursor_pos: int, _color: Color, _effect: GdUnitMessageWriter.Effect, _align: Align, _flags: int) -> void:
 	pass
 
 

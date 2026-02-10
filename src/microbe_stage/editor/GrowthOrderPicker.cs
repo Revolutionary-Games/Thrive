@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Allows picking the growth order of things in a GUI
 /// </summary>
-[JsonObject(MemberSerialization.OptIn)]
-public partial class GrowthOrderPicker : Control
+public partial class GrowthOrderPicker : Control, IArchiveUpdatable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private readonly List<DraggableItem> itemControls = new();
 
     /// <summary>
@@ -49,6 +50,9 @@ public partial class GrowthOrderPicker : Control
     [Signal]
     public delegate void OrderResetEventHandler();
 
+    [Signal]
+    public delegate void OnGrowthOrderChangedEventHandler();
+
     /// <summary>
     ///   Can be turned off to hide coordinates in the display list
     /// </summary>
@@ -72,10 +76,9 @@ public partial class GrowthOrderPicker : Control
     }
 
     /// <summary>
-    ///   A special property to handle saving and loading of state. Can technically be used to read the data but this
+    ///   A special property to handle saving and loading of state. Can technically be used to read the data, but this
     ///   causes more memory allocations than necessary.
     /// </summary>
-    [JsonProperty]
     public List<IPlayerReadableName?> CurrentSavedOrder
     {
         get
@@ -91,6 +94,9 @@ public partial class GrowthOrderPicker : Control
         private set => currentSavedOrder = value;
     }
 
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.GrowthOrderPicker;
+
     public override void _Ready()
     {
         draggableItemScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/DraggableItem.tscn");
@@ -100,11 +106,21 @@ public partial class GrowthOrderPicker : Control
     {
     }
 
+    public void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(CurrentSavedOrder);
+    }
+
+    public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        CurrentSavedOrder = reader.ReadObject<List<IPlayerReadableName?>>();
+    }
+
     /// <summary>
     ///   Creates or updates the sequence of reorderable items. Note that item equality is checked with ReferenceEquals
     ///   and not value equality.
     /// </summary>
-    /// <param name="items">Sequence of items to ensure are shown in the given order</param>
+    /// <param name="items">Sequence of items to ensure things are shown in the given order</param>
     public void UpdateItems(IEnumerable<IPlayerReadableName> items)
     {
         // We are getting real items, so let go of any saved data
@@ -181,9 +197,15 @@ public partial class GrowthOrderPicker : Control
             while (enumerator.MoveNext());
         }
 
-        // Last item cannot move down in the list
-        if (lastItem != null)
-            lastItem.CanMoveDown = false;
+        // The last item cannot move down in the list
+        lastItem?.CanMoveDown = false;
+    }
+
+    /// <inheritdoc cref="ApplyOrderingToItems{T}(IEnumerable{T}, Func{T,IPlayerReadableName})"/>
+    public IEnumerable<T> ApplyOrderingToItems<T>(IEnumerable<T> rawItems)
+        where T : IPlayerReadableName
+    {
+        return ApplyOrderingToItems(rawItems, i => i);
     }
 
     /// <summary>
@@ -191,9 +213,9 @@ public partial class GrowthOrderPicker : Control
     ///   reordering existing items and only adding new ones to the end.
     /// </summary>
     /// <param name="rawItems">Items to apply ordering to</param>
+    /// <param name="keySelector">A function that converts a raw item into a IPlayerReadableName</param>
     /// <returns>Items with current GUI order state applied to them</returns>
-    public IEnumerable<T> ApplyOrderingToItems<T>(IEnumerable<T> rawItems)
-        where T : IPlayerReadableName
+    public IEnumerable<T> ApplyOrderingToItems<T>(IEnumerable<T> rawItems, Func<T, IPlayerReadableName> keySelector)
     {
         if (itemControls.Count <= 0)
         {
@@ -205,7 +227,7 @@ public partial class GrowthOrderPicker : Control
                 // It shouldn't be possible for the list to change so hopefully the save comparer never needs to be
                 // recreated
                 savedItemComparer ??= new SaveComparer(currentSavedOrder);
-                return rawItems.OrderBy(i => i, savedItemComparer);
+                return rawItems.OrderBy(keySelector, savedItemComparer);
             }
 
             return rawItems;
@@ -214,7 +236,7 @@ public partial class GrowthOrderPicker : Control
         // Need to use LINQ sort here as it is a stable sort and our sorter only does a partial ordering
         // Apparently `Order` might not be a stable sort so for safety `OrderBy` is used as that is guaranteed
         // according to the documentation to be stable
-        return rawItems.OrderBy(i => i, itemComparer);
+        return rawItems.OrderBy(keySelector, itemComparer);
     }
 
     /// <summary>
@@ -244,6 +266,7 @@ public partial class GrowthOrderPicker : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(SignalName.OrderReset);
+        EmitSignal(SignalName.OnGrowthOrderChanged);
     }
 
     private void MoveDown(DraggableItem item)
@@ -352,6 +375,8 @@ public partial class GrowthOrderPicker : Control
 
             itemControl.SetLabelText(GetText((IPlayerReadableName)itemControl.UserData));
         }
+
+        EmitSignal(SignalName.OnGrowthOrderChanged);
     }
 
     private void SwapControls(DraggableItem from, DraggableItem to)
@@ -369,6 +394,8 @@ public partial class GrowthOrderPicker : Control
 
         to.UserData = temp;
         to.SetLabelText(GetText((IPlayerReadableName)to.UserData));
+
+        EmitSignal(SignalName.OnGrowthOrderChanged);
     }
 
     private string GetText(IPlayerReadableName playerReadableName)

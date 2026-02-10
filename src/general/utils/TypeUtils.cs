@@ -41,6 +41,6 @@ public static class TypeUtils
         if (baseType == null)
             return false;
 
-        return IsAssignableToGenericType(baseType, genericType);
+        return baseType.IsAssignableToGenericType(genericType);
     }
 }

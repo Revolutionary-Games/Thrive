@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-16 20:10+0200\n"
-"PO-Revision-Date: 2025-08-22 10:08+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-01-22 16:04+0200\n"
+"PO-Revision-Date: 2026-01-25 06:42+0000\n"
+"Last-Translator: Davi Araújo <davi.augusto.araujo@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.15.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -89,7 +89,7 @@ msgid "ACTIVE"
 msgstr "Ativo"
 
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Tarefas atuais:"
+msgstr "Processos atuais:"
 
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
@@ -189,9 +189,8 @@ msgstr "Amônia"
 msgid "AMMONIA_COST"
 msgstr "Custo da Amônia:"
 
-#, fuzzy
 msgid "AMMONIA_LEVELS"
-msgstr "Custo da Amônia:"
+msgstr "Nível de amônia"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Quantidade de salvamentos automáticos para manter:"
@@ -209,11 +208,10 @@ msgid "ANISOTROPIC_FILTERING"
 msgstr "Filtragem anisotrópica:"
 
 msgid "ANTIALIASING_MSAA_TAA"
-msgstr ""
+msgstr "MSAA + TAA"
 
-#, fuzzy
 msgid "ANTI_ALIASING_FXAA"
-msgstr "Anti-aliasing multi-amostras:"
+msgstr "Anti-aliasing multi-amostras"
 
 #, fuzzy
 msgid "ANTI_ALIASING_MODE"
@@ -277,7 +275,7 @@ msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Classe do assembly do mod é requerida quando o assembly é especificado"
 
 #, fuzzy
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
 msgstr "A montagem do mod é necessária quando o auto harmony está ativado"
 
 msgid "ASSUME_HYPERTHREADING"
@@ -420,19 +418,22 @@ msgid "AVAILABLE_MODS"
 msgstr "Mods Disponíveis"
 
 msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
-msgstr ""
+msgstr "Nível médio de CO2 na superfície"
 
 msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
-msgstr ""
+msgstr "Nível médio de iluminação na superfície"
 
 msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
-msgstr ""
+msgstr "Nível médio de nitrogênio na superfície"
 
 msgid "AVERAGE_SURFACE_OTHER_LEVEL"
-msgstr ""
+msgstr "Nível médio de outros gases na superfície"
 
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
-msgstr ""
+msgstr "Nível médio de oxigênio na superfície"
+
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr "Temperatura média da superfície"
 
 msgid "AWAKENING_STAGE"
 msgstr "Estágio Desperto"
@@ -539,7 +540,15 @@ msgstr "Além da Célula"
 msgid "BIG_IRON_CHUNK"
 msgstr "Pedaço de Ferro Grande"
 
+#, fuzzy
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Pedaço de Ferro Grande"
+
 msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Pedaço de Fosfato Grande"
+
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
 msgstr "Pedaço de Fosfato Grande"
 
 msgid "BILLION_ABBREVIATION"
@@ -740,9 +749,8 @@ msgstr "Síntese de Inibidor de Canais"
 msgid "CHEATS"
 msgstr "Trapaças"
 
-#, fuzzy
 msgid "CHEATS_USED_NOTICE"
-msgstr "Esta página ou seção contém informações desatualizadas. Isso ocorre frequentemente quando há uma mudança de planos após algo ser escrito."
+msgstr "Trapaças foram usadas neste jogo."
 
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheats ativados"
@@ -897,6 +905,9 @@ msgstr "Costeiro"
 msgid "COLLISION_SHAPE"
 msgstr "Gerar entidades com formas de colisão"
 
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "Esta aba permite definir a ordem em que as células da colônia crescem, com a primeira célula na ordem sendo a célula raiz (ou broto). Você pode usar isso para priorizar o crescimento de células mais cruciais ou garantir que a produção e consumo da colônia estejam propriamente equilibrados."
+
 msgid "COLOUR"
 msgstr "Coloração"
 
@@ -947,6 +958,9 @@ msgstr "Valor de saturação, a quantidade de cinza em uma cor específica"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Brilho ou intensidade da cor"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr "Inserir Comando"
 
 msgid "COMMON_ABILITIES"
 msgstr "Habilidades Comuns"
@@ -1036,24 +1050,23 @@ msgstr "Sempre Completar até Inicial"
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Completar na Mudança de Região"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_AVERAGE"
-msgstr "Média"
+msgstr "Médio"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_HIGH"
-msgstr "Equilíbrio dos Compostos"
+msgstr "Alto"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_LOW"
-msgstr "Nuvens de compostos"
+msgstr "Baixo"
 
 msgid "COMPOUND_LEVEL_VERY_HIGH"
-msgstr ""
+msgstr "Muito alto"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
-msgstr "Manter Todos"
+msgstr "Muito baixo"
+
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "Consumo de {0}"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(não é o suficiente para suportar a noite, que dura {0} segundos)"
@@ -1216,13 +1229,11 @@ msgstr "Botão Direcional Para Cima"
 msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
 msgstr "Botão de Ombro Esquerdo"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_LEFT_STICK"
-msgstr "Zonas mortas do controle"
+msgstr "Botão do Analógico Esquerdo"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_MISC1"
-msgstr "Zonas mortas do controle"
+msgstr "Botão Diverso do Controle"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_PADDLE1"
@@ -1267,9 +1278,8 @@ msgstr "R1"
 msgid "CONTROLLER_BUTTON_PS_R3"
 msgstr "R3"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SHARE"
-msgstr "Zonas mortas do controle"
+msgstr "Compartilhar"
 
 msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
 msgstr "Botão com Logo"
@@ -1280,13 +1290,11 @@ msgstr "Quadrado"
 msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
 msgstr "Triângulo"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
-msgstr "Visualizador dos eixos do controle:"
+msgstr "Botão de Ombro Direito"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_RIGHT_STICK"
-msgstr "Tipos de prompts de botões do controle:"
+msgstr "Botão do Analógico Direito"
 
 msgid "CONTROLLER_BUTTON_TOUCH_PAD"
 msgstr "Touch Pad"
@@ -1347,9 +1355,8 @@ msgstr "Protanopia (Vermelho-Verde)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (Azul-Amarelo)"
 
-#, fuzzy
 msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
-msgstr "Não há armazenamento suficiente para [thrive:compound type=\"{0}\"][/thrive:compound], visto que a noite dura {2} s, enquanto a célula consegue manter somente {1} s de compostos."
+msgstr "A CPU não é rápida o bastante para a velocidade selecionada, redefinindo a velocidade para padrão"
 
 msgid "CPU_THREADS"
 msgstr "Threads"
@@ -1444,15 +1451,33 @@ msgstr "CTRL"
 msgid "CURRENT_CACHE_SIZE"
 msgstr "Tamanho atual:"
 
-#, fuzzy
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
-msgstr "Expele mucilagem para aumentar a velocidade e desacelerar células presas na gosma"
+msgstr ""
+"O tamanho de todos os itens de cache armazenados no disco. Pode ser limpado com segurança a qualquer momento,\n"
+"mas quando um item que estaria no cache for necessário ele levará mais tempo para ser gerado."
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Desenvolvedores Atuais"
 
+msgid "CURRENT_DILUTION"
+msgstr "Evento de diluição de corrente"
+
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr ""
+"Os compostos foram diluídos.\n"
+"Diminui a concentração de:"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "LOCALIZAÇÃO ATUAL"
+
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "Todas"
+
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Apenas círculos"
+
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "Nenhuma"
 
 msgid "CURRENT_RESEARCH_NONE"
 msgstr "Sem pesquisas ativas"
@@ -1533,6 +1558,9 @@ msgstr "Configuração da zona morta"
 
 msgid "DEATH"
 msgstr "morte"
+
+msgid "DEBUG_CONSOLE"
+msgstr "Console de Depuração"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1775,12 +1803,14 @@ msgstr "OpenGL"
 msgid "DISPLAY_DRIVER_VULKAN"
 msgstr "Vulkan"
 
-#, fuzzy
 msgid "DISPLAY_MODE"
-msgstr "Exibir nomes dos botões de seleções de partes"
+msgstr "Modo de exibição:"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Exibir nomes dos botões de seleções de partes"
+
+msgid "DISPLAY_SELECTION"
+msgstr "Monitor:"
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Fonte de alimentação de {0} distribuída uniformemente"
@@ -1937,6 +1967,9 @@ msgstr ""
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "Edite o seu micróbio pela primeira vez"
 
+msgid "EFFECTIVE_VALUE"
+msgstr "Valor Efetivo"
+
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -2020,6 +2053,10 @@ msgstr ""
 "{0}: +{1} ATP\n"
 "Enquanto consome:\n"
 "{2}"
+
+#, fuzzy
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr "Pressão para Manter Compostos"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia em {0} para {1}"
@@ -2146,6 +2183,16 @@ msgstr ""
 "Evento de impacto de meteoro de enxofre\n"
 "Aumenta os níveis de dióxido de carbono e enxofre.\n"
 "Gera pedaços de enxofre."
+
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr ""
+"Sedimentos foram levados da terra para as águas costeiras, enriquecendo-as.\n"
+"Aumenta a concentração de:"
+
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr ""
+"Compostos foram levantados do fundo do oceano, enriquecendo as águas acima.\n"
+"Aumenta a concentração de:"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Árvore Evolucionária"
@@ -2409,6 +2456,12 @@ msgstr "Fossilizar essa espécie (já fossilizada)"
 msgid "FOSSILISE"
 msgstr "Fossilizar"
 
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Falha ao Carregar Dados de Fóssil"
+
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "Não foi possível ler o arquivo de fóssil porque os dados estavam desatualizados ou eram inválidos"
+
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Falha ao Remover Fóssil"
 
@@ -2550,9 +2603,8 @@ msgstr "Glicose"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "As concentrações de glicose caíram drasticamente!"
 
-#, fuzzy
 msgid "GLUCOSE_LEVEL"
-msgstr "{0}-{1}m sob o nível do mar"
+msgstr "Nível de glicose"
 
 msgid "GLYCOLYSIS"
 msgstr "Glicólise"
@@ -2581,6 +2633,9 @@ msgstr "GPU:"
 msgid "GRAPHICS"
 msgstr "Gráficos"
 
+msgid "GRAPHICS_PRESET"
+msgstr "Predefinição gráfica:"
+
 msgid "GRAPHICS_TEAM"
 msgstr "Equipe Gráfica"
 
@@ -2596,6 +2651,12 @@ msgstr ""
 "\n"
 "Se você tiver um bug onde partes do botão do editor desaparecem,\n"
 "você pode tentar desabilitar essa opção para ver se o problema desaparece."
+
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr "(obs.: aumentar o tamanho da interface é um recurso experimental e pode fazer os elementos ficarem fora da tela)"
+
+msgid "GUI_SCALE_OPTION"
+msgstr "Multiplicador de escala:"
 
 msgid "GUI_TAB_NAVIGATION"
 msgstr "Navegação em Abas da Interface"
@@ -2700,6 +2761,10 @@ msgstr "Pedaço de Gelo Grande"
 msgid "ICE_CHUNK_SMALL"
 msgstr "Pedaço de Gelo Pequeno"
 
+#, fuzzy
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr "Floco de Neve"
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "O ID não é um número válido"
 
@@ -2707,7 +2772,10 @@ msgid "ID_NUMBER"
 msgstr "Número de ID"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
-msgstr ""
+msgstr "(dependendo do modo de renderização e upscaling, nem todos os métodos estarão disponíveis)"
+
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr "Ignorar outros erros"
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "Arquivos de Imagem Compatíveis"
@@ -2808,6 +2876,12 @@ msgstr "Inspecionar"
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Visite a nossa página no Instagram"
 
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "Proteção contra morte instantânea"
+
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(danos que matariam um jogador com vida alta deixam você com um quantidade pequena de vida em vez disso)"
+
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Ativar Portal da Ascensão"
 
@@ -2906,7 +2980,7 @@ msgid "IRON"
 msgstr "Ferro"
 
 msgid "IRON_LEVELS"
-msgstr ""
+msgstr "Nível de ferro"
 
 msgid "IRON_OXIDATION"
 msgstr "Oxidação de Ferro"
@@ -2923,23 +2997,17 @@ msgstr ":"
 msgid "JANUARY"
 msgstr "Janeiro"
 
-msgid "JSON_DEBUG_MODE"
-msgstr "Modo de depuração JSON:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Sempre"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automaticamente"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Nunca"
-
 msgid "JULY"
 msgstr "Julho"
 
 msgid "JUNE"
 msgstr "Junho"
+
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Manter atual"
+
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "Manter faixa de tolerância de pressão atual enquanto move sliders máximo e mínimo"
 
 msgid "KEEP_MIGRATION"
 msgstr "Manter Migração"
@@ -3349,9 +3417,8 @@ msgstr "Carregando Estágio Multicelular"
 msgid "LOADING_STAGE"
 msgstr "Carregando Estágio"
 
-#, fuzzy
 msgid "LOADING_STAGE_ASSETS"
-msgstr "Carregando Jogo"
+msgstr "Carregando os Recursos do Estágio {0} / {1}"
 
 msgid "LOAD_FINISHED"
 msgstr "Carregamento terminado"
@@ -3435,6 +3502,9 @@ msgstr "Síntese de Macrolídeo"
 msgid "MACROSCOPIC"
 msgstr "Macroscópico"
 
+msgid "MACROSCOPIC_EDITOR"
+msgstr "Editor Macroscópico"
+
 msgid "MACROSCOPIC_STAGE"
 msgstr "Estágio Macroscópico"
 
@@ -3442,7 +3512,7 @@ msgid "MAKE_CELL_THAT_EATS_RADIATION"
 msgstr "Faça uma célula que ganha energia a partir de radioatividade, e ganhe energia"
 
 msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
-msgstr " Faça uma célula que usa apenas quimiossíntese para ganhar energia"
+msgstr "Faça uma célula que usa apenas quimiossíntese para ganhar energia"
 
 msgid "MAKE_NO_CHANGES_IN_EDITOR"
 msgstr "Não faça nenhuma mudança ao seu micróbio no editor"
@@ -3465,9 +3535,8 @@ msgstr "Volume principal"
 msgid "MASTODON_TOOLTIP"
 msgstr "Visite nosso perfil na rede social Mastodon"
 
-#, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
-msgstr "Expele mucilagem para aumentar a velocidade e desacelerar células presas na gosma"
+msgstr "O máximo de espaço que o cache em disco deve tomar (itens serão removidos automaticamente se o cache ficar grande demais)"
 
 msgid "MAX_FPS"
 msgstr "FPS máximo:"
@@ -3487,9 +3556,8 @@ msgstr "Não é permitido mostrar mais de {0} datasets!"
 msgid "MAY"
 msgstr "Maio"
 
-#, fuzzy
 msgid "MECHANICS_BUTTON"
-msgstr "Descender"
+msgstr "Mecânicas"
 
 msgid "MEDIANEXT"
 msgstr "Próximo"
@@ -3608,6 +3676,9 @@ msgstr ""
 "[b]Pontuações do Ocupante[/b]\n"
 "  {2}"
 
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "Pressão para Seleção Endossimbiótica"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr "Pressão para Compostos Ambientais"
 
@@ -3629,6 +3700,9 @@ msgstr "Pressão para Efetividade de Predação"
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Pressão Raiz para Predador"
 
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Pressão para Uso de Compostos para Reprodução:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr "Pressão Raiz"
 
@@ -3648,9 +3722,11 @@ msgstr "Quantidade de micróbios:"
 msgid "MICROBE_BENCHMARK"
 msgstr "Teste de Desempenho de Micróbios"
 
-#, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
-msgstr "[b]Dados das Membranas:[/b]"
+msgstr "Inclinação da câmera microbial"
+
+msgid "MICROBE_CURRENT_PARTICLES"
+msgstr "Partículas de corrente microbiais:"
 
 msgid "MICROBE_EDITOR"
 msgstr "Editor de Micróbios"
@@ -3739,9 +3815,8 @@ msgstr "  {0}: Organela encontrada em {1} espécie(s), tendo em média {2} cada"
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "[b]Dados de Melhorias de Organelas:[/b]"
 
-#, fuzzy
 msgid "MICROBE_RIPPLE_EFFECT"
-msgstr "[b]Dados das Membranas:[/b]"
+msgstr "Efeito de onda de movimento microbial"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -3918,13 +3993,8 @@ msgstr "Instruções para modding disponíveis em"
 msgid "MODELS"
 msgstr "Modelos"
 
-#, fuzzy
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
-msgstr "Mover visualização estratégica ao mover o cursor para as bordas da tela"
-
-#, fuzzy
-msgid "MODIFIER"
-msgstr "Modificar"
+msgstr "O modo de movimento em 2D pode ser alterado mais tarde no menu de opções a qualquer momento"
 
 msgid "MODIFY"
 msgstr "Modificar"
@@ -3937,6 +4007,9 @@ msgstr "Modificar tipo"
 
 msgid "MODS"
 msgstr "Mods"
+
+msgid "MODS_ARE_ENABLED"
+msgstr "Mods Habilitados"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -3974,9 +4047,6 @@ msgstr "{0}: chamada do método unload do assembly do mod falhou com uma exceç�
 
 msgid "MOD_AUTHOR"
 msgstr "Autor:"
-
-msgid "MOD_AUTO_HARMONY"
-msgstr "Usa Auto Harmony:"
 
 msgid "MOD_CREATION_FAILED"
 msgstr "A Criação do Mod Falhou"
@@ -4046,6 +4116,12 @@ msgstr "Carregador de Mods"
 
 msgid "MOD_VERSION"
 msgstr "Versão do Mod:"
+
+msgid "MONITOR_AUTO"
+msgstr "Automático"
+
+msgid "MONITOR_IDENTIFIER"
+msgstr "Monitor {0}"
 
 msgid "MORE_INFO"
 msgstr "Mostrar Mais Informações"
@@ -4180,16 +4256,10 @@ msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anti-aliasing multi-amostras:"
 
 msgid "MULTITHREADED_SIMULATION_ENABLED"
-msgstr ""
+msgstr "Rodas simulação de jogo com threads múltiplas"
 
-#, fuzzy
 msgid "MULTITHREADED_SIMULATION_EXPLANATION"
-msgstr ""
-"Descender removerá seu status de ascensão e o retornará ao Estágio Microbial. A partir daí, você poderá jogar novamente no salvamento atual.\n"
-"\n"
-"Você receberá um benefício de descensão para o novo jogo. Em uma versão futura você poderá escolher o benefício, mas por enquanto será sempre uma redução de 20% na osmorregulação.\n"
-"\n"
-"Após confirmar a descensão, você poderá editar as configurações do jogo para escolher uma nova semente de mundo e jogar em um mapa diferente ou desabilitar a vida baseada na realidade, por exemplo."
+msgstr "(quando habilitado, mais de um thread de processamento é usado para executar as atualizações da lógica principal do jogo, pode diminuir a performance com um número baixo de tarefas de fundo)"
 
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
@@ -4339,9 +4409,8 @@ msgstr "Produção de ATP inibida por uma toxina"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Velocidade de movimento diminuída devido a uma toxina"
 
-#, fuzzy
 msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
-msgstr "Sulfeto de Hidrogênio"
+msgstr "Ferido por sulfeto de hidrogênio enquanto não tem Proteínas Quimiossintetizantes"
 
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "Não há mucilagem suficiente para ativar o escudo do mucocisto"
@@ -4437,9 +4506,6 @@ msgstr "Site oficial"
 
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Visite o site oficial do Revolutionary Games"
-
-msgid "OFFSET"
-msgstr ""
 
 msgid "OK"
 msgstr "OK"
@@ -4610,6 +4676,9 @@ msgstr "Outros"
 msgid "OUR_WIKI"
 msgstr "nossa Wiki"
 
+msgid "OUTDATED_ITEM"
+msgstr "DESATUALIZADO"
+
 msgid "OUTDATED_NOTICE"
 msgstr "Esta página ou seção contém informações desatualizadas. Isso ocorre frequentemente quando há uma mudança de planos após algo ser escrito."
 
@@ -4684,9 +4753,8 @@ msgstr "Mover a câmera para cima"
 msgid "PAST_DEVELOPERS"
 msgstr "Desenvolvedores Anteriores"
 
-#, fuzzy
 msgid "PATCHES_NUMBER"
-msgstr "{1} {0}"
+msgstr "Número de regiões:"
 
 msgid "PATCH_COLON"
 msgstr "Região:"
@@ -4841,9 +4909,11 @@ msgstr "O jogador foi extinto"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Relativo ao jogador"
 
-#, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
-msgstr "Relativo ao jogador"
+msgstr ""
+"No modo de movimento relativo ao jogador as teclas de movimento são relativas à rotação atual da célula do jogador.\n"
+"Então mover o cursor muda o que é considerado para frente para a célula.\n"
+"Este é o modo de movimento padrão do Thrive."
 
 msgid "PLAYER_REPRODUCED"
 msgstr "jogador se reproduziu"
@@ -4891,6 +4961,30 @@ msgstr "Predação de {0}"
 
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Ver informações detalhadas sobre a previsão"
+
+#, fuzzy
+msgid "PRESET_CUSTOM"
+msgstr "Personalizado"
+
+#, fuzzy
+msgid "PRESET_HIGH"
+msgstr "Redefinir"
+
+#, fuzzy
+msgid "PRESET_LOW"
+msgstr "Redefinir"
+
+#, fuzzy
+msgid "PRESET_MEDIUM"
+msgstr "Médio"
+
+#, fuzzy
+msgid "PRESET_VERY_HIGH"
+msgstr "Muito alto"
+
+#, fuzzy
+msgid "PRESET_VERY_LOW"
+msgstr "Manter Todos"
 
 msgid "PRESSURE"
 msgstr "Pressão"
@@ -5196,7 +5290,14 @@ msgstr "Girar à direita"
 msgid "ROTATION_COLON"
 msgstr "Rotação:"
 
+msgid "RUNOFF_EVENT"
+msgstr "Evento de escoamento"
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
+msgstr "Usar a auto-evo durante o jogo"
+
+#, fuzzy
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
 msgstr "Usar a auto-evo durante o jogo"
 
 msgid "RUN_ONE_STEP"
@@ -5264,12 +5365,6 @@ msgstr "Espaço usado:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Apagar o jogo salvo é irreversível, deseja apagar {0} permanentemente?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "Quando relatar um erro de salvamento, por favor inclua [color=#3796e1][url={0}]{1}[/url][/color] da [color=#3796e1][url={2}]pasta de logs[/url][/color] pois essa é uma informação crucial para os desenvolvedores do Thrive entenderem qual foi o erro de salvamento. Sem esse arquivo, será extremamente difícil diagnosticar e corrigir esse problema."
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Verifique se o modo de depuração JSON não está desativado antes de relatar esse erro de salvamento. O modo de depuração automática JSON deve ter criado um arquivo extra chamado {0} na [color=#3796e1][url={1}]pasta de logs[/url][/color]. Esse arquivo contém informações essenciais para que os desenvolvedores de Thrive descubram qual foi o erro de salvamento."
 
 msgid "SAVE_FAILED"
 msgstr "Falha ao Salvar"
@@ -5364,9 +5459,11 @@ msgstr "Nenhum"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "Relativo à tela"
 
-#, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
-msgstr "Relativo à tela"
+msgstr ""
+"No modo de movimento relativo à tela as teclas de movimento sempre especificam uma direção em relação à tela.\n"
+"Então a rotação da célula não afeta a qual direção cada tecla corresponde.\n"
+"Este modo pode ser mais familiar para novos jogadores do Thrive."
 
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
@@ -5573,7 +5670,15 @@ msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thri
 msgid "SMALL_IRON_CHUNK"
 msgstr "Pedaço de Ferro Pequeno"
 
+#, fuzzy
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "Pedaço de Ferro Pequeno"
+
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Pedaço de Fosfato Pequeno"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr "Pedaço de Fosfato Pequeno"
 
 msgid "SMALL_SULFUR_CHUNK"
@@ -5654,6 +5759,14 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "teve uma mutação"
+
+#, fuzzy
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Ir para a região atual"
+
+#, fuzzy
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Máximo de espécies na região"
 
 msgid "SPECIES_LIST"
 msgstr "Lista de espécies"
@@ -6000,18 +6113,22 @@ msgstr "Equipe de Teoria"
 msgid "THERMOPLAST"
 msgstr "Termoplasto"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "O termoplasto é uma estrutura de membrana dupla que contém pigmentos termossensíveis agrupados em sacos membranosos. É um procarionte que foi assimilado para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem usar a energia da [thrive:compound type=\"temperature\"][/thrive:compound] crescente no ambiente para produzir [thrive:compound type=\"atp\"][/thrive:compound] a partir de água em um processo chamado [b]termossíntese[/b]. A taxa da produção de [thrive:compound type=\"atp\"][/thrive:compound] aumenta proporcionalmente à [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Usa temperaturas crescentesa para produzir [thrive:compound type=\"atp\"][/thrive:compound]. Taxa aumenta proporcionalmente à [thrive:compound type=\"temperature\"][/thrive:compound]. Use a [b]visão térmica[/b] para encontrar áreas quentes e frias."
 
 msgid "THERMOSYNTHASE"
 msgstr "Termossintase"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "A termossintase é uma proteína que muda de forma usando a convecção térmica. Quando exposta ao calor, ela se dobra ligando-se ao ADP e a converte em [thrive:compound type=\"atp\"][/thrive:compound] em um processo chamado [b]termossíntese[/b]. Então, ela se desdobra quando se resfria, permitindo que repita o ciclo quando a [thrive:compound type=\"temperature\"][/thrive:compound] aumenta novamente. A taxa de produção de [thrive:compound type=\"atp\"][/thrive:compound] aumenta proporcionalmente à [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Usa temperaturas crescentes para produzir [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta proporcionalmente à [thrive:compound type=\"temperature\"][/thrive:compound]. Use [b]visão térmica[/b] para encontrar áreas quentes e frias."
 
@@ -6147,6 +6264,10 @@ msgstr "Ativar modo de ligação"
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Ativar modo de ligação. Toque em outras células para criar uma colônia."
 
+#, fuzzy
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Exibir painel de depuração"
+
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Exibir painel de depuração"
 
@@ -6239,21 +6360,16 @@ msgstr "Ferramentas"
 msgid "TOOL_HAND_AXE"
 msgstr "Machado de Mão"
 
+msgid "TOO_LARGE_PRESSURE_RANGE"
+msgstr "Faixa de pressão larga demais"
+
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr "Existem versões recentes demais, então todas não estão sendo mostradas"
-
-#, fuzzy
-msgid "TOTAL"
-msgstr "Salvamentos totais:"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Energia Acumulada:"
 
 msgid "TOTAL_SAVES"
-msgstr "Salvamentos totais:"
-
-#, fuzzy
-msgid "TOTAL_VALUE"
 msgstr "Salvamentos totais:"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
@@ -6697,6 +6813,17 @@ msgstr "Desfazer"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Desfazer a ultima ação"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr "Erros não tratados: {0}"
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr "Axônios são fibras nervosas que os neurônios utilizam para conectar e comunicar com outros neurônios. Essa organela transforma o tipo da célula em um tecido cerebral."
+
+#, fuzzy
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "Obrigado(a)"
+
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Construir"
 
@@ -6832,18 +6959,21 @@ msgid "UPLOAD_SUCCEEDED"
 msgstr "Upload Bem-Sucedido"
 
 msgid "UPSCALE_BILINEAR"
-msgstr ""
+msgstr "Upscaling Bilinear"
 
 msgid "UPSCALE_FSR_1"
-msgstr ""
+msgstr "Upscaling FSR 1"
 
 msgid "UPSCALE_FSR_22"
-msgstr ""
+msgstr "Upscaling FSR 2.2"
 
 msgid "UPSCALE_METHOD"
-msgstr ""
+msgstr "Método de upscaling:"
 
 msgid "UPSCALE_SHARPENING_FSR"
+msgstr "Nitidez FSR"
+
+msgid "UPWELLING_EVENT"
 msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
@@ -6854,12 +6984,6 @@ msgstr "Renderizador usado:"
 
 msgid "USES_FEATURE"
 msgstr "Sim"
-
-msgid "USE_AUTO_HARMONY"
-msgstr "Usar carregamento Auto Harmony"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Carregar patches Harmony do Assembly automaticamente (não é preciso especificar a classe do mod)"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Usar um nome personalizado"
@@ -6950,7 +7074,7 @@ msgid "VIEW_SOURCE_CODE"
 msgstr "Ver Código Fonte"
 
 msgid "VIEW_TEXT_REPORT"
-msgstr ""
+msgstr "Ver Relatório de Texto"
 
 msgid "VIP_PATRONS"
 msgstr "Apoiadores VIP"
@@ -7156,18 +7280,23 @@ msgstr "Permite a ligação com outras células. Este é o primeiro passo até a
 msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "Sem melhoras."
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
 msgstr "Sem efeitos. A ser implementado."
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
 msgstr "Gera luz. Ainda não implementado em Thrive."
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
 msgstr "Sem modificações. A ser implementado."
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
 msgstr "Sem processos. A ser implementado."
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_REQUIREMENTS"
 msgstr "Não pode ser adicionado a células. A ser implementado."
 
@@ -7175,9 +7304,11 @@ msgstr "Não pode ser adicionado a células. A ser implementado."
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "Vacúolo Bioluminescente"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
 msgstr "Não disponível no jogo. A ser implementado."
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "Sem melhoras. A ser implementado."
 
@@ -7322,12 +7453,20 @@ msgstr "Uma célula deve ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núc
 
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
 msgstr ""
+"Assim como os [b][color=#3796e1][url=thriveopedia:flagellum]Flagelos[/url][/color][/b], os [b]Cílios[/b] são pequenos fios que geram propulsão direcional, mas que se movem em configurações diferentes e também fornecem outros benefícios. Muitos organismos usam [b]Cílios[/b] para fins sensoriais e eles também podem empurrar e puxar nutrientes em volta de organismos maiores.\n"
+"\n"
+"Na vida real, os [b]Cílios[/b] geralmente ocorrem por todo o exterior da célula em vez de agrupamentos individuais. Células com esse revestimento são chamadas de ciliadas.\n"
+"\n"
+"Veja mais sobre esta organela na [color=#3796e1][url=https://pt.wikipedia.org/wiki/C%C3%ADlio_(citologia)]página da Wikipédia[/url][/color]"
 
 msgid "WIKI_CILIA_STRATEGY"
 msgstr "[b]Cílios[/b] são essenciais para células maiores, especialmente aquelas dependentes de predação. Sem elas, células grandes sofrem com velocidades de rotação extremamente baixas. Recomendamods adicionar [b]Cílios[/b] quão cedo o possível após evoluir o [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para combat o tamanho enorme desta organela crucial, e recomendamos coloca-los quão longe for possível do centro da célula para maximizar a força de rotação."
 
 msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
+"[b]Cílios Atratores[/b]\n"
+"\n"
+"Por [b]25[/b] pontos de mutação, modifique [b]Cílios[/b] já posicionados e transforme-os em [b]Cílios Atratores[/b]. Além dos efeitos normais da organela, os [b]Cílios Atratores[/b] geram vórtices que atraem pequenas células e pedaços, como organelas flutuantes."
 
 msgid "WIKI_COMPOUNDS_BUTTON"
 msgstr "Compostos"
@@ -7341,12 +7480,50 @@ msgstr "Para os primeiros estágios, os principais recursos de Thrive são [b]Co
 
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
+"Existem diversos [b]Compostos[/b] diferentes no Thrive.\n"
+"\n"
+"[b][u]Compostos em Nuvem[/u][/b]\n"
+"\n"
+"Estes Compostos surgem em nuvens geradas no [b]ambiente[/b].\n"
+"\n"
+"[indent]—   [thrive:compound type=\"glucose\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"iron\"][/thrive:compound] (Também é emitido de [b]Pedaços[/b])[/indent]\n"
+"[indent]—   [thrive:compound type=\"hydrogensulfide\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"ammonia\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"phosphates\"][/thrive:compound][/indent]\n"
+"\n"
+"[b][u]Gases Ambientais[/u][/b]\n"
+"\n"
+"Estes Compostos não aparecem em nuvens no ambiente, estando presentes por toda a região e afentando alguns processos. A quantidade desses compostos nas regiões sempre totaliza em 100%. Para ler mais sobre os gases, veja [color=#3796e1][url=thriveopedia:EnvironmentalConditions]Condições Ambientais[/url][/color].\n"
+"\n"
+"[indent]—   [thrive:compound type=\"oxygen\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"nitrogen\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"carbondioxide\"][/thrive:compound][/indent]\n"
+"\n"
+"[b][u]Compostos em Pedaços Flutuantes[/u][/b]\n"
+"\n"
+"Estes Compostos são encontrados em pedaços de mineais flutuando em algumas regiões.\n"
+"\n"
+"[indent]—   [thrive:compound type=\"iron\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"hydrogensulfide\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"phosphates\"][/thrive:compound][/indent]\n"
+"\n"
+"[b][u]Agentes[/u][/b]\n"
+"\n"
+"Estes Compostos são criados em [color=#3796e1][url=thriveopedia:OrganellesRoot]organelas[/url][/color] especiais e têm usos especiais.\n"
+"\n"
+"[indent]—   [thrive:compound type=\"oxytoxy\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"mucilage\"][/thrive:compound][/indent]\n"
+"\n"
+"[b][u]ATP[/u][/b]\n"
+"\n"
+"[indent]—   O [thrive:compound type=\"atp\"][/thrive:compound] é criado pricipalmente por meio da [thrive:compound type=\"glucose\"][/thrive:compound] e é necessário para manter o seu organismo vivo.[/indent]"
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
 msgstr "Para a lista completa de compostos no Estágio Microbial, veja a tabela de Compostos na página Apêndices do Estágio Microbial."
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
-msgstr ""
+msgstr "O sistema de compostos é uma das mecânicas de jogo fundamentais por trás de simulações pelo jogo inteiro, projetado para ser usado em todo lugar, da homeostase até o comércio interestelar."
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
 msgstr ""
@@ -8847,6 +9024,14 @@ msgstr "Quente"
 msgid "WORST_PATCH_COLON"
 msgstr "Pior Região:"
 
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER"
+msgstr "Ordem de Crescimento"
+
+#, fuzzy
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "Esta aba permite definir a ordem em que as organelas crescem. Isso pode ser importante para células que têm produção instável de ATP enquanto crescem. A ordem das organelas também impacta a ordem de execução dos bio processos. Recomenda-se editar essa aba apenas após terminar de editar a estrutura, já que a edição de estruturas pode reverter mudanças feitas aqui."
+
 msgid "XBOX360"
 msgstr "Xbox 360"
 
@@ -8885,17 +9070,40 @@ msgstr "Aumentar o zoom"
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
 
-#~ msgid "EFFECTIVE_VALUE"
-#~ msgstr "Valor Efetivo"
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Usa Auto Harmony:"
 
-#~ msgid "KEEP_CURRENT_SHORT"
-#~ msgstr "Manter atual"
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Usar carregamento Auto Harmony"
 
-#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-#~ msgstr "Manter faixa de tolerância de pressão atual enquanto move sliders máximo e mínimo"
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Carregar patches Harmony do Assembly automaticamente (não é preciso especificar a classe do mod)"
 
-#~ msgid "TOO_LARGE_PRESSURE_RANGE"
-#~ msgstr "Faixa de pressão larga demais"
+#, fuzzy
+#~ msgid "REPRODUCTION_COMPOUND_USAGE"
+#~ msgstr "Compostos na saída do editor:"
+
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "Modo de depuração JSON:"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Sempre"
+
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automaticamente"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Nunca"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "Quando relatar um erro de salvamento, por favor inclua [color=#3796e1][url={0}]{1}[/url][/color] da [color=#3796e1][url={2}]pasta de logs[/url][/color] pois essa é uma informação crucial para os desenvolvedores do Thrive entenderem qual foi o erro de salvamento. Sem esse arquivo, será extremamente difícil diagnosticar e corrigir esse problema."
+
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Verifique se o modo de depuração JSON não está desativado antes de relatar esse erro de salvamento. O modo de depuração automática JSON deve ter criado um arquivo extra chamado {0} na [color=#3796e1][url={1}]pasta de logs[/url][/color]. Esse arquivo contém informações essenciais para que os desenvolvedores de Thrive descubram qual foi o erro de salvamento."
+
+#, fuzzy
+#~ msgid "OUTDATED"
+#~ msgstr "Esta página ou seção contém informações desatualizadas. Isso ocorre frequentemente quando há uma mudança de planos após algo ser escrito."
 
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "Gerar Mundo"
@@ -9239,9 +9447,6 @@ msgstr "Diminuir o zoom"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Regiões com a seguinte quantidade de espécies serão consideradas como tendo baixa biodiversidade"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Máximo de espécies na região"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "População inicial para espécies que aumentam a biodiversidade"

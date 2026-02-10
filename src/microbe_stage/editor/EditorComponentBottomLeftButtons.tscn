@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bwegwjlcioasf"]
+[gd_scene format=3 uid="uid://bwegwjlcioasf"]
 
 [ext_resource type="Texture2D" uid="uid://diggoda10kfmt" path="res://assets/textures/gui/bevel/button.svg" id="3_xnvnb"]
 [ext_resource type="Texture2D" uid="uid://ch76ktrn1xy7r" path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" id="4"]
@@ -46,7 +46,7 @@ _data = {
 &"invalidSpeciesNameFlash": SubResource("22")
 }
 
-[node name="EditorComponentBottomLeftButtons" type="MarginContainer" node_paths=PackedStringArray("newButton", "speciesNameEdit", "randomizeNameButton", "symmetryButton", "symmetryIcon", "UndoButton", "RedoButton")]
+[node name="EditorComponentBottomLeftButtons" type="MarginContainer" unique_id=892315490 node_paths=PackedStringArray("newButton", "speciesNameEdit", "randomizeNameButton", "symmetryButton", "symmetryIcon", "UndoButton", "RedoButton")]
 custom_minimum_size = Vector2(641, 0)
 anchors_preset = 2
 anchor_top = 1.0
@@ -66,12 +66,12 @@ symmetryIcon = NodePath("HBoxContainer/SymmetryButton/SymmetryIcon")
 UndoButton = NodePath("HBoxContainer/UndoButton")
 RedoButton = NodePath("HBoxContainer/RedoButton")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=808404279]
 layout_mode = 2
 theme_override_constants/separation = 5
 alignment = 2
 
-[node name="SymmetryButton" type="TextureButton" parent="HBoxContainer"]
+[node name="SymmetryButton" type="TextureButton" parent="HBoxContainer" unique_id=1774106274]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 size_flags_vertical = 4
@@ -83,7 +83,7 @@ texture_disabled = ExtResource("6_a0v22")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="SymmetryIcon" type="TextureRect" parent="HBoxContainer/SymmetryButton"]
+[node name="SymmetryIcon" type="TextureRect" parent="HBoxContainer/SymmetryButton" unique_id=269071718]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -91,7 +91,7 @@ mouse_filter = 2
 texture = ExtResource("7_b41wt")
 expand_mode = 1
 
-[node name="UndoButton" type="TextureButton" parent="HBoxContainer"]
+[node name="UndoButton" type="TextureButton" parent="HBoxContainer" unique_id=333108518]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 size_flags_vertical = 4
@@ -103,7 +103,7 @@ texture_disabled = ExtResource("11_u7ura")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="RedoButton" type="TextureButton" parent="HBoxContainer"]
+[node name="RedoButton" type="TextureButton" parent="HBoxContainer" unique_id=1437128537]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 size_flags_vertical = 4
@@ -115,7 +115,7 @@ texture_disabled = ExtResource("15_4uesr")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="NewButton" type="TextureButton" parent="HBoxContainer"]
+[node name="NewButton" type="TextureButton" parent="HBoxContainer" unique_id=39496717]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 size_flags_vertical = 4
@@ -126,17 +126,17 @@ texture_disabled = ExtResource("19_gtqnh")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Spacer" type="Control" parent="HBoxContainer"]
+[node name="Spacer" type="Control" parent="HBoxContainer" unique_id=731754224]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 mouse_filter = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer" unique_id=697470766]
 custom_minimum_size = Vector2(275, 0)
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="SpeciesName" type="LineEdit" parent="HBoxContainer/HBoxContainer"]
+[node name="SpeciesName" type="LineEdit" parent="HBoxContainer/HBoxContainer" unique_id=1405978560]
 custom_minimum_size = Vector2(240, 27)
 layout_mode = 2
 focus_mode = 1
@@ -146,12 +146,10 @@ placeholder_text = "SPECIES_NAME_DOT_DOT_DOT"
 max_length = 60
 caret_blink = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HBoxContainer/HBoxContainer/SpeciesName"]
-libraries = {
-&"": SubResource("AnimationLibrary_b77ra")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HBoxContainer/HBoxContainer/SpeciesName" unique_id=74220758]
+libraries/ = SubResource("AnimationLibrary_b77ra")
 
-[node name="RandomizeButton" type="TextureButton" parent="HBoxContainer/HBoxContainer"]
+[node name="RandomizeButton" type="TextureButton" parent="HBoxContainer/HBoxContainer" unique_id=1854204331]
 custom_minimum_size = Vector2(31, 31)
 layout_mode = 2
 size_flags_horizontal = 0

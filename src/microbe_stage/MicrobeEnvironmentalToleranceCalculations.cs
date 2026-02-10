@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Godot;
 
 /// <summary>
 ///   Helper class that contains all the math for environmental tolerances in one place (though the microbe editor and
@@ -18,7 +19,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
     ///   The overall score, which ranges from 0 (not surviving at all) to 1 (well adapted),
     ///   and over 1 (for perfectly adapted, which gives bonuses)
     /// </returns>
-    public static float CalculateTotalToleranceScore(MicrobeSpecies species, BiomeConditions environment)
+    public static double CalculateTotalToleranceScore(MicrobeSpecies species, BiomeConditions environment)
     {
         var score = CalculateTolerances(species, environment);
         return score.OverallScore;
@@ -29,7 +30,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         return CalculateTolerances(species.Tolerances, species.Organelles, environment);
     }
 
-    public static ToleranceResult CalculateTolerances(EnvironmentalTolerances speciesTolerances,
+    public static ToleranceResult CalculateTolerances(IReadOnlyEnvironmentalTolerances speciesTolerances,
         IReadOnlyList<OrganelleTemplate> organelles, BiomeConditions environment)
     {
         var result = new ToleranceResult();
@@ -39,7 +40,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             PreferredTemperature = speciesTolerances.PreferredTemperature,
             TemperatureTolerance = speciesTolerances.TemperatureTolerance,
             PressureMinimum = speciesTolerances.PressureMinimum,
-            PressureTolerance = speciesTolerances.PressureTolerance,
+            PressureMaximum = speciesTolerances.PressureMaximum,
             OxygenResistance = speciesTolerances.OxygenResistance,
             UVResistance = speciesTolerances.UVResistance,
         };
@@ -67,6 +68,12 @@ public static class MicrobeEnvironmentalToleranceCalculations
     public static void ApplyOrganelleEffectsOnTolerances(IReadOnlyList<OrganelleTemplate> organelles,
         ref ToleranceValues tolerances)
     {
+        float temperatureChange = 0;
+        float oxygenChange = 0;
+        float uvChange = 0;
+        float pressureMinimumChange = 0;
+        float pressureMaximumChange = 0;
+
         int organelleCount = organelles.Count;
         for (int i = 0; i < organelleCount; ++i)
         {
@@ -74,12 +81,21 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
             if (organelleDefinition.AffectsTolerances)
             {
-                tolerances.TemperatureTolerance += organelleDefinition.ToleranceModifierTemperatureRange;
-                tolerances.OxygenResistance += organelleDefinition.ToleranceModifierOxygen;
-                tolerances.UVResistance += organelleDefinition.ToleranceModifierUV;
-                tolerances.PressureTolerance += organelleDefinition.ToleranceModifierPressureRange;
+                // Buffer all changes so that float rounding doesn't cause us issues
+                temperatureChange += organelleDefinition.ToleranceModifierTemperatureRange;
+                oxygenChange += organelleDefinition.ToleranceModifierOxygen;
+                uvChange += organelleDefinition.ToleranceModifierUV;
+                pressureMinimumChange -= organelleDefinition.ToleranceModifierPressureRange;
+                pressureMaximumChange += organelleDefinition.ToleranceModifierPressureRange;
             }
         }
+
+        // Then apply all at once
+        tolerances.TemperatureTolerance += temperatureChange;
+        tolerances.OxygenResistance += oxygenChange;
+        tolerances.UVResistance += uvChange;
+        tolerances.PressureMinimum -= pressureMinimumChange;
+        tolerances.PressureMaximum += pressureMaximumChange;
     }
 
     public static void GenerateToleranceEffectSummariesByOrganelle(IReadOnlyList<OrganelleTemplate> organelles,
@@ -101,7 +117,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
     }
 
     public static void GenerateToleranceProblemList(ToleranceResult data, in ResolvedMicrobeTolerances problemNumbers,
-        Action<string, float> resultCallback)
+        Action<string> resultCallback)
     {
         if (problemNumbers.HealthModifier < 1 || problemNumbers.ProcessSpeedModifier < 1 ||
             problemNumbers.OsmoregulationModifier > 1)
@@ -110,7 +126,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             resultCallback.Invoke(Localization.Translate("TOLERANCES_UNSUITABLE_DEBUFFS")
                 .FormatSafe($"+{(problemNumbers.OsmoregulationModifier - 1) * 100:0.#}",
                     -Math.Round((1 - problemNumbers.ProcessSpeedModifier) * 100, 1),
-                    -Math.Round((1 - problemNumbers.HealthModifier) * 100, 1)), 40);
+                    -Math.Round((1 - problemNumbers.HealthModifier) * 100, 1)));
         }
 
         if (data.TemperatureScore < 1)
@@ -118,12 +134,12 @@ public static class MicrobeEnvironmentalToleranceCalculations
             if (data.PerfectTemperatureAdjustment < 0)
             {
                 resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_HIGH_TEMPERATURE")
-                    .FormatSafe(Math.Round(-data.PerfectTemperatureAdjustment, 1)), 20);
+                    .FormatSafe(Math.Round(-data.PerfectTemperatureAdjustment, 1)));
             }
             else
             {
                 resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_TEMPERATURE")
-                    .FormatSafe(Math.Round(data.PerfectTemperatureAdjustment, 1)), 20);
+                    .FormatSafe(Math.Round(data.PerfectTemperatureAdjustment, 1)));
             }
         }
 
@@ -133,25 +149,25 @@ public static class MicrobeEnvironmentalToleranceCalculations
             {
                 // TODO: show the numbers in megapascals when makes sense
                 resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_HIGH_PRESSURE")
-                    .FormatSafe(Math.Round(-data.PerfectPressureAdjustment / 1000, 1)), 20);
+                    .FormatSafe(Math.Round(-data.PerfectPressureAdjustment / 1000, 1)));
             }
             else
             {
                 resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_PRESSURE")
-                    .FormatSafe(Math.Round(data.PerfectPressureAdjustment / 1000, 1)), 20);
+                    .FormatSafe(Math.Round(data.PerfectPressureAdjustment / 1000, 1)));
             }
         }
 
         if (data.OxygenScore < 1)
         {
             resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_OXYGEN_PROTECTION")
-                .FormatSafe(Math.Round(data.PerfectOxygenAdjustment * 100, 1)), 20);
+                .FormatSafe(Math.Round(data.PerfectOxygenAdjustment * 100, 1)));
         }
 
         if (data.UVScore < 1)
         {
             resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_UV_PROTECTION")
-                .FormatSafe(Math.Round(data.PerfectUVAdjustment * 100, 1)), 20);
+                .FormatSafe(Math.Round(data.PerfectUVAdjustment * 100, 1)));
         }
     }
 
@@ -163,46 +179,50 @@ public static class MicrobeEnvironmentalToleranceCalculations
         result.HealthModifier = 1;
         result.OsmoregulationModifier = 1;
 
-        if (data.TemperatureScore < 1)
+        var temperatureScore = (float)data.TemperatureScore;
+        if (temperatureScore < 1)
         {
             result.ProcessSpeedModifier *=
-                Math.Max(Constants.TOLERANCE_TEMPERATURE_SPEED_MODIFIER_MIN, data.TemperatureScore);
+                Math.Max(Constants.TOLERANCE_TEMPERATURE_SPEED_MODIFIER_MIN, temperatureScore);
 
             result.OsmoregulationModifier *= Math.Min(Constants.TOLERANCE_TEMPERATURE_OSMOREGULATION_MAX,
-                2 - data.TemperatureScore);
+                2 - temperatureScore);
 
-            result.HealthModifier *= Math.Max(Constants.TOLERANCE_TEMPERATURE_HEALTH_MIN, data.TemperatureScore);
+            result.HealthModifier *= Math.Max(Constants.TOLERANCE_TEMPERATURE_HEALTH_MIN, temperatureScore);
         }
         else if (data.TemperatureScore > 1)
         {
             result.ProcessSpeedModifier *=
-                Math.Max(Constants.TOLERANCE_TEMPERATURE_SPEED_BUFF_MAX, data.TemperatureScore);
+                Math.Max(Constants.TOLERANCE_TEMPERATURE_SPEED_BUFF_MAX, temperatureScore);
         }
 
-        if (data.PressureScore < 1)
+        var pressureScore = (float)data.PressureScore;
+        if (pressureScore < 1)
         {
             result.ProcessSpeedModifier *=
-                Math.Max(Constants.TOLERANCE_PRESSURE_SPEED_MODIFIER_MIN, data.PressureScore);
+                Math.Max(Constants.TOLERANCE_PRESSURE_SPEED_MODIFIER_MIN, pressureScore);
             result.OsmoregulationModifier *=
-                Math.Min(Constants.TOLERANCE_PRESSURE_OSMOREGULATION_MAX, 2 - data.PressureScore);
-            result.HealthModifier *= Math.Max(Constants.TOLERANCE_PRESSURE_HEALTH_MIN, data.PressureScore);
+                Math.Min(Constants.TOLERANCE_PRESSURE_OSMOREGULATION_MAX, 2 - pressureScore);
+            result.HealthModifier *= Math.Max(Constants.TOLERANCE_PRESSURE_HEALTH_MIN, pressureScore);
         }
         else if (data.PressureScore > 1)
         {
-            result.HealthModifier *= Math.Max(Constants.TOLERANCE_PRESSURE_HEALTH_BUFF_MAX, data.PressureScore);
+            result.HealthModifier *= Math.Max(Constants.TOLERANCE_PRESSURE_HEALTH_BUFF_MAX, pressureScore);
         }
 
-        if (data.OxygenScore < 1)
+        var oxygenScore = (float)data.OxygenScore;
+        if (oxygenScore < 1)
         {
-            result.HealthModifier *= Math.Max(Constants.TOLERANCE_OXYGEN_HEALTH_MIN, data.OxygenScore);
+            result.HealthModifier *= Math.Max(Constants.TOLERANCE_OXYGEN_HEALTH_MIN, oxygenScore);
             result.OsmoregulationModifier *=
-                Math.Min(Constants.TOLERANCE_OXYGEN_OSMOREGULATION_MAX, 2 - data.OxygenScore);
+                Math.Min(Constants.TOLERANCE_OXYGEN_OSMOREGULATION_MAX, 2 - oxygenScore);
         }
 
-        if (data.UVScore < 1)
+        var uvScore = (float)data.UVScore;
+        if (uvScore < 1)
         {
-            result.HealthModifier *= Math.Max(Constants.TOLERANCE_UV_HEALTH_MIN, data.UVScore);
-            result.OsmoregulationModifier *= Math.Min(Constants.TOLERANCE_UV_OSMOREGULATION_MAX, 2 - data.UVScore);
+            result.HealthModifier *= Math.Max(Constants.TOLERANCE_UV_HEALTH_MIN, uvScore);
+            result.OsmoregulationModifier *= Math.Min(Constants.TOLERANCE_UV_OSMOREGULATION_MAX, 2 - uvScore);
         }
 
 #if DEBUG
@@ -246,9 +266,12 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         // Always write the targets for becoming perfectly adapted
         result.PerfectTemperatureAdjustment = patchTemperature - speciesTolerances.PreferredTemperature;
-        result.PerfectPressureAdjustment = patchPressure - speciesTolerances.PressureMinimum;
         result.PerfectOxygenAdjustment = requiredOxygenResistance - speciesTolerances.OxygenResistance;
         result.PerfectUVAdjustment = requiredUVResistance - speciesTolerances.UVResistance;
+
+        // Need to get the average pressure value from the max and min to know how much to adjust
+        result.PerfectPressureAdjustment =
+            patchPressure - (speciesTolerances.PressureMaximum + speciesTolerances.PressureMinimum) * 0.5f;
 
         // TODO: the root cause of https://github.com/Revolutionary-Games/Thrive/issues/5928 is probably somewhere in
         // the following lines of code
@@ -327,19 +350,20 @@ public static class MicrobeEnvironmentalToleranceCalculations
         }
         else
         {
-            if (speciesTolerances.PressureTolerance <=
+            var range = Math.Abs(noExtraEffects.PressureMaximum - noExtraEffects.PressureMinimum);
+
+            if (range <=
                 Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
             {
                 // Perfectly adapted
                 var perfectionFactor = Constants.TOLERANCE_PERFECT_PRESSURE_SCORE *
-                    (1 - (speciesTolerances.PressureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE));
+                    (1 - (range / Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE));
                 result.PressureScore = 1 + perfectionFactor;
             }
             else
             {
                 // Adequately adapted, but could be made perfect
-                result.PressureRangeSizeAdjustment = Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE -
-                    speciesTolerances.PressureTolerance;
+                result.PressureRangeSizeAdjustment = Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE - range;
 
                 result.PressureScore = 1;
             }
@@ -373,11 +397,42 @@ public static class MicrobeEnvironmentalToleranceCalculations
         result.OverallScore =
             (result.TemperatureScore + result.PressureScore + result.OxygenScore + result.UVScore) / 4;
 
-        // But if missing something, ensure the score is not 1
+        // But if missing something, ensure the score is not 1.
+        // This should happen only when all the scores are mostly 1,
+        // but something is ever so slightly off and due to rounding, it would appear as a 1
         if (missingSomething && result.OverallScore >= 1)
         {
-            // TODO: maybe a lower value here or some other adjustment?
-            result.OverallScore = 0.99f;
+            // Don't allow any perfect scores to be over 1 any more as the below calculation will not manage to bring
+            // the score down
+            result.OverallScore =
+                (Math.Min(result.TemperatureScore, 1) + Math.Min(result.PressureScore, 1) +
+                    Math.Min(result.OxygenScore, 1) + Math.Min(result.UVScore, 1)) / 4;
+
+            // If that fixed it, then return immediately without further necessary adjustments
+            if (result.OverallScore < 1)
+                return;
+
+            // Find the stat that is slightly off due to tiny value rounding and apply a bit of penalty
+            if (speciesTolerances.OxygenResistance < requiredOxygenResistance)
+            {
+                result.OverallScore -= result.PerfectOxygenAdjustment;
+            }
+
+            if (speciesTolerances.UVResistance < requiredUVResistance)
+                result.OverallScore -= result.PerfectUVAdjustment;
+
+            if (result.OverallScore >= 1)
+            {
+#if DEBUG
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+#endif
+
+                GD.PrintErr(
+                    "Couldn't find a way to adjust tolerance score that should not be perfect to not be perfect");
+                GD.PrintErr("Applying epsilon amount of penalty to the score");
+                result.OverallScore -= MathUtils.EPSILON;
+            }
         }
     }
 
@@ -389,19 +444,16 @@ public static class MicrobeEnvironmentalToleranceCalculations
         public float PreferredTemperature;
         public float TemperatureTolerance;
         public float PressureMinimum;
-        public float PressureTolerance;
+        public float PressureMaximum;
         public float OxygenResistance;
         public float UVResistance;
-
-        public float PressureMaximum =>
-            MathF.Min(PressureMinimum + PressureTolerance, Constants.TOLERANCE_PRESSURE_MAX);
 
         public void CopyFrom(EnvironmentalTolerances tolerances)
         {
             PreferredTemperature = tolerances.PreferredTemperature;
             TemperatureTolerance = tolerances.TemperatureTolerance;
             PressureMinimum = tolerances.PressureMinimum;
-            PressureTolerance = tolerances.PressureTolerance;
+            PressureMaximum = tolerances.PressureMaximum;
             OxygenResistance = tolerances.OxygenResistance;
             UVResistance = tolerances.UVResistance;
         }
@@ -410,9 +462,10 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
 public class ToleranceResult
 {
-    public float OverallScore;
+    // The scores are doubles to avoid rounding problems where score is 1 but something is missing
+    public double OverallScore;
 
-    public float TemperatureScore;
+    public double TemperatureScore;
 
     /// <summary>
     ///   How to adjust the preferred temperature to get to the exact value in the biome
@@ -424,13 +477,13 @@ public class ToleranceResult
     /// </summary>
     public float TemperatureRangeSizeAdjustment;
 
-    public float PressureScore;
+    public double PressureScore;
     public float PerfectPressureAdjustment;
     public float PressureRangeSizeAdjustment;
 
-    public float OxygenScore;
+    public double OxygenScore;
     public float PerfectOxygenAdjustment;
 
-    public float UVScore;
+    public double UVScore;
     public float PerfectUVAdjustment;
 }

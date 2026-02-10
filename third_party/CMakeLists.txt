@@ -64,5 +64,14 @@ endif()
 # Boost libraries
 add_subdirectory(boost EXCLUDE_FROM_ALL)
 
+# Godot must have the build type specifiec, otherwise things will go very wrong
+# If the build tool is not set for this correctly, then this code is needed:
+# Copy build type info to Godot
+# if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+#   set(GODOTCPP_TARGET "template_debug")
+# else()
+#   set(GODOTCPP_TARGET "template_release")
+# endif()
+
 # gdextension base module
 add_subdirectory(godot-cpp EXCLUDE_FROM_ALL)

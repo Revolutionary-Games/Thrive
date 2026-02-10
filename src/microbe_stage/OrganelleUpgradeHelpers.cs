@@ -3,7 +3,7 @@
 /// </summary>
 public static class OrganelleUpgradeHelpers
 {
-    public static bool HasInjectisomeUpgrade(this OrganelleUpgrades? organelleUpgrades)
+    public static bool HasInjectisomeUpgrade(this IReadOnlyOrganelleUpgrades? organelleUpgrades)
     {
         if (organelleUpgrades == null)
             return false;

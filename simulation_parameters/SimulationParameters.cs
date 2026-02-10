@@ -57,12 +57,15 @@ public partial class SimulationParameters : Node
     private Dictionary<string, Technology> technologies = null!;
     private Dictionary<string, VisualResourceData> visualResources = null!;
     private Dictionary<VisualResourceIdentifier, VisualResourceData> visualResourceByIdentifier = null!;
+    private Dictionary<string, SceneResource> sceneResources = null!;
     private Dictionary<string, StageResourcesList> stageResources = null!;
     private Dictionary<MainGameState, StageResourcesList> stageResourcesByEnum = null!;
 
     private List<CompoundDefinition>? cachedCloudCompounds;
     private List<Enzyme>? cachedDigestiveEnzymes;
     private List<double>? cachedMeteorChances;
+
+    private ushort bioProcessIdCounter;
 
     public static SimulationParameters Instance => instance ?? throw new InstanceNotLoadedYetException();
 
@@ -115,9 +118,9 @@ public partial class SimulationParameters : Node
         {
             var deserializers = new JsonConverter[]
             {
-                new DirectTypeLoadOverride(typeof(CompoundDefinition), null),
-                new DirectTypeLoadOverride(typeof(Enzyme), null),
-                new DirectTypeLoadOverride(typeof(Biome), null),
+                new DirectTypeLoadOverride(typeof(CompoundDefinition)),
+                new DirectTypeLoadOverride(typeof(Enzyme)),
+                new DirectTypeLoadOverride(typeof(Biome)),
             };
 
             compounds = LoadRegistry<CompoundDefinition>("res://simulation_parameters/microbe_stage/compounds.json",
@@ -132,7 +135,7 @@ public partial class SimulationParameters : Node
 
             deserializers =
             [
-                new DirectTypeLoadOverride(typeof(OrganelleDefinition), null),
+                new DirectTypeLoadOverride(typeof(OrganelleDefinition)),
             ];
 
             organelles = LoadRegistry<OrganelleDefinition>("res://simulation_parameters/microbe_stage/organelles.json",
@@ -186,30 +189,32 @@ public partial class SimulationParameters : Node
 
         worldResources =
             LoadRegistry<WorldResource>("res://simulation_parameters/awakening_stage/world_resources.json",
-                [new DirectTypeLoadOverride(typeof(WorldResource), null)]);
+                [new DirectTypeLoadOverride(typeof(WorldResource))]);
 
         equipment =
             LoadRegistry<EquipmentDefinition>("res://simulation_parameters/awakening_stage/equipment.json",
-                [new DirectTypeLoadOverride(typeof(EquipmentDefinition), null)]);
+                [new DirectTypeLoadOverride(typeof(EquipmentDefinition))]);
 
         craftingRecipes =
             LoadRegistry<CraftingRecipe>("res://simulation_parameters/awakening_stage/crafting_recipes.json",
-                [new DirectTypeLoadOverride(typeof(CraftingRecipe), null)]);
+                [new DirectTypeLoadOverride(typeof(CraftingRecipe))]);
 
         structures =
             LoadRegistry<StructureDefinition>("res://simulation_parameters/awakening_stage/structures.json",
-                [new DirectTypeLoadOverride(typeof(StructureDefinition), null)]);
+                [new DirectTypeLoadOverride(typeof(StructureDefinition))]);
 
         unitTypes =
             LoadRegistry<UnitType>("res://simulation_parameters/industrial_stage/units.json",
-                [new DirectTypeLoadOverride(typeof(UnitType), null)]);
+                [new DirectTypeLoadOverride(typeof(UnitType))]);
 
         spaceStructures =
             LoadRegistry<SpaceStructureDefinition>("res://simulation_parameters/space_stage/space_structures.json",
-                [new DirectTypeLoadOverride(typeof(SpaceStructureDefinition), null)]);
+                [new DirectTypeLoadOverride(typeof(SpaceStructureDefinition))]);
 
         technologies =
             LoadRegistry<Technology>("res://simulation_parameters/awakening_stage/technologies.json");
+
+        sceneResources = LoadRegistry<SceneResource>("res://simulation_parameters/common/scene_resources.json");
 
         visualResources =
             LoadRegistry<VisualResourceData>("res://simulation_parameters/common/visual_resources.json");
@@ -231,6 +236,7 @@ public partial class SimulationParameters : Node
 #pragma warning restore CS0162
 
         CheckForInvalidValues();
+        IsCheapestOrganelleConstantUpToDate(GetAllOrganelles());
         ResolveValueRelationships();
 
         // Apply translations here to ensure that initial translations are correct when the game starts.
@@ -268,6 +274,18 @@ public partial class SimulationParameters : Node
     public bool DoesOrganelleExist(string name)
     {
         return organelles.ContainsKey(name);
+    }
+
+    public void IsCheapestOrganelleConstantUpToDate(IEnumerable<OrganelleDefinition> organelles)
+    {
+        foreach (var organelle in organelles)
+        {
+            if (organelle.MPCost < Constants.ORGANELLE_CHEAPEST_COST)
+            {
+                throw new InvalidRegistryDataException(
+                    $"{organelle.Name} is cheaper than {Constants.ORGANELLE_CHEAPEST_COST}, constant must be updated");
+            }
+        }
     }
 
     public MembraneType GetMembrane(string name)
@@ -547,6 +565,12 @@ public partial class SimulationParameters : Node
         return GetErrorVisual();
     }
 
+    public SceneResource GetSceneResource(string identifier)
+    {
+        // TODO: error scene?
+        return sceneResources[identifier];
+    }
+
     public VisualResourceData GetVisualResource(string internalName)
     {
         if (visualResources.TryGetValue(internalName, out var result))
@@ -564,6 +588,19 @@ public partial class SimulationParameters : Node
     public StageResourcesList GetStageResources(MainGameState gameState)
     {
         return stageResourcesByEnum[gameState];
+    }
+
+    public TerrainConfiguration GetTerrainConfigurationForBiome(string internalName)
+    {
+        return biomes[internalName].Terrain ?? throw new Exception($"No terrain for biome type: {internalName}");
+    }
+
+    public ushort GetNextProcessId()
+    {
+        if (bioProcessIdCounter == ushort.MaxValue)
+            throw new InvalidOperationException("Ran out of BioProcess IDs");
+
+        return ++bioProcessIdCounter;
     }
 
     /// <summary>
@@ -848,20 +885,25 @@ public partial class SimulationParameters : Node
 
         foreach (var entry in structures)
         {
-            entry.Value.Resolve();
+            entry.Value.Resolve(this);
         }
 
         foreach (var entry in unitTypes)
         {
-            entry.Value.Resolve();
+            entry.Value.Resolve(this);
         }
 
         foreach (var entry in spaceStructures)
         {
-            entry.Value.Resolve();
+            entry.Value.Resolve(this);
         }
 
         foreach (var entry in technologies)
+        {
+            entry.Value.Resolve(this);
+        }
+
+        foreach (var entry in craftingRecipes)
         {
             entry.Value.Resolve(this);
         }
@@ -893,6 +935,43 @@ public partial class SimulationParameters : Node
                     $"value {entry.Value.EditorButtonOrder} is used multiple times.");
             }
         }
+
+#if DEBUG
+
+        // Check for duplicate resource identifiers
+        var seenIdentifiers = new HashSet<string>();
+        var seenInstances = new HashSet<object>();
+
+        foreach (var entry in stageResourcesByEnum)
+        {
+            foreach (var resource in entry.Value.RequiredScenes)
+            {
+                if (!seenIdentifiers.Add(resource.Identifier))
+                {
+                    // If the identifier is the same, the identity must match
+                    if (seenInstances.Add(resource))
+                        throw new InvalidRegistryDataException($"Duplicate resource identifier: {resource.Identifier}");
+                }
+                else
+                {
+                    seenInstances.Add(resource);
+                }
+            }
+
+            foreach (var resource in entry.Value.RequiredVisualResources)
+            {
+                if (!seenIdentifiers.Add(resource.Identifier))
+                {
+                    if (seenInstances.Add(resource))
+                        throw new InvalidRegistryDataException($"Duplicate resource identifier: {resource.Identifier}");
+                }
+                else
+                {
+                    seenInstances.Add(resource);
+                }
+            }
+        }
+#endif
     }
 
     private List<CompoundDefinition> ComputeCloudCompounds()

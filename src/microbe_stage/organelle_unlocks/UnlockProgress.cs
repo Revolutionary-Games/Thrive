@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 using UnlockConstraints;
 
 /// <summary>
 ///   Stores which organelles have been unlocked by the player.
 /// </summary>
-[UseThriveSerializer]
-public class UnlockProgress
+public class UnlockProgress : IArchiveUpdatable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   The organelles that the player can use.
     ///   The default value is the by default unlocked organelles (ones without a condition)
     /// </summary>
-    [JsonProperty]
     private readonly HashSet<OrganelleDefinition> unlockedOrganelles =
         SimulationParameters.Instance.GetAllOrganelles().Where(o => o.UnlockConditions == null)
             .ToHashSet();
@@ -21,14 +21,15 @@ public class UnlockProgress
     /// <summary>
     ///   Organelles unlocked singe the last time in the editor.
     /// </summary>
-    [JsonProperty]
     private readonly HashSet<OrganelleDefinition> recentlyUnlocked = new();
 
     /// <summary>
     ///   If true, <see cref="IsUnlocked"/> will always return true
     /// </summary>
-    [JsonProperty]
     public bool UnlockAll { get; set; }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.UnlockProgress;
 
     public static bool SupportsGameState(MainGameState state)
     {
@@ -68,7 +69,7 @@ public class UnlockProgress
     /// <summary>
     ///   Is the organelle unlocked?
     /// </summary>
-    public bool IsUnlocked(OrganelleDefinition organelle, WorldAndPlayerDataSource worldAndPlayerArgs,
+    public bool IsUnlocked(OrganelleDefinition organelle, WorldAndPlayerDataSource worldAndPlayerData,
         GameProperties game, bool autoUnlock)
     {
         if (organelle.UnlockConditions == null || game.FreeBuild || UnlockAll)
@@ -79,7 +80,7 @@ public class UnlockProgress
             bool anyConditionSatisfied = false;
             foreach (var condition in organelle.UnlockConditions)
             {
-                if (condition.Satisfied(worldAndPlayerArgs))
+                if (condition.Satisfied(worldAndPlayerData))
                 {
                     anyConditionSatisfied = true;
                     break;
@@ -110,5 +111,32 @@ public class UnlockProgress
     public void ClearRecentlyUnlocked()
     {
         recentlyUnlocked.Clear();
+    }
+
+    public void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(unlockedOrganelles);
+        writer.WriteObject(recentlyUnlocked);
+        writer.Write(UnlockAll);
+    }
+
+    public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        unlockedOrganelles.Clear();
+        foreach (var item in reader.ReadObject<HashSet<OrganelleDefinition>>())
+        {
+            unlockedOrganelles.Add(item);
+        }
+
+        recentlyUnlocked.Clear();
+        foreach (var item in reader.ReadObject<HashSet<OrganelleDefinition>>())
+        {
+            recentlyUnlocked.Add(item);
+        }
+
+        UnlockAll = reader.ReadBool();
     }
 }

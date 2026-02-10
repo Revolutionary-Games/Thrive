@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-16 20:10+0200\n"
-"PO-Revision-Date: 2025-09-15 22:24+0200\n"
+"POT-Creation-Date: 2026-01-22 16:04+0200\n"
+"PO-Revision-Date: 2026-01-21 17:54+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.8\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -271,8 +271,8 @@ msgstr "Ascension Stage"
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Mod assembly class is required when assembly is specified"
 
-msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr "Mod assembly is required when auto harmony is enabled"
+msgid "ASSEMBLY_REQUIRED_WITH_MOD_CLASS"
+msgstr "Assembly is required when a mod class is specified"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Assume CPU has hyperthreading enabled"
@@ -427,6 +427,9 @@ msgstr "Average surface level of other gases"
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr "Average surface oxygen level"
 
+msgid "AVERAGE_SURFACE_TEMPERATURE"
+msgstr "Average surface temperature"
+
 msgid "AWAKENING_STAGE"
 msgstr "Awakening Stage"
 
@@ -532,8 +535,14 @@ msgstr "Beyond the Cell"
 msgid "BIG_IRON_CHUNK"
 msgstr "Big Iron Chunk"
 
+msgid "BIG_IRON_CHUNK_BANANA"
+msgstr "Big Iron Banana Chunk"
+
 msgid "BIG_PHOSPHATE_CHUNK"
 msgstr "Big Phosphate Chunk"
+
+msgid "BIG_PHOSPHATE_CHUNK_BANANA"
+msgstr "Big Phosphate Banana Chunk"
 
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
@@ -889,6 +898,9 @@ msgstr "Coastal"
 msgid "COLLISION_SHAPE"
 msgstr "Show physics debug shapes"
 
+msgid "COLONY_GROWTH_ORDER_EXPLANATION"
+msgstr "This tab allows setting the order in which the colony cells grow, with the first cell in the order being the root (or bud) cell. You can use this to prioritise the growth of more crucial cells or to ensure that the colony's production and consumption are properly balanced."
+
 msgid "COLOUR"
 msgstr "Colour"
 
@@ -939,6 +951,9 @@ msgstr "Saturation value, the amount of gray in a particular colour"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Value (brightness) value, brightness or intensity of the colour"
+
+msgid "COMMAND_INPUT_LINE_EDIT"
+msgstr "Insert Command"
 
 msgid "COMMON_ABILITIES"
 msgstr "Common Abilities"
@@ -1042,6 +1057,9 @@ msgstr "Very high"
 
 msgid "COMPOUND_LEVEL_VERY_LOW"
 msgstr "Very low"
+
+msgid "COMPOUND_REPRODUCTION_SOURCE"
+msgstr "{0} consumption"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(not enough to last the night which is {0} s long)"
@@ -1430,8 +1448,25 @@ msgstr ""
 msgid "CURRENT_DEVELOPERS"
 msgstr "Current Developers"
 
+msgid "CURRENT_DILUTION"
+msgstr "Current dilution event"
+
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr ""
+"Compounds have been diluted.\n"
+"Decreases concentration of:"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "CURRENT LOCATION"
+
+msgid "CURRENT_PARTICLES_ALL"
+msgstr "All"
+
+msgid "CURRENT_PARTICLES_CIRCLES_ONLY"
+msgstr "Circles only"
+
+msgid "CURRENT_PARTICLES_NONE"
+msgstr "None"
 
 msgid "CURRENT_RESEARCH_NONE"
 msgstr "Not researching anything"
@@ -1512,6 +1547,9 @@ msgstr "Deadzone Configuration"
 
 msgid "DEATH"
 msgstr "death"
+
+msgid "DEBUG_CONSOLE"
+msgstr "Debug Console"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1759,6 +1797,9 @@ msgstr "Display mode:"
 msgid "DISPLAY_PART_NAMES"
 msgstr "Display part selection button names"
 
+msgid "DISPLAY_SELECTION"
+msgstr "Monitor:"
+
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Uniformly spread environmental food source of {0}"
 
@@ -1913,6 +1954,9 @@ msgstr ""
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "Edit your microbe for the first time"
 
+msgid "EFFECTIVE_VALUE"
+msgstr "Effective Value"
+
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -1996,6 +2040,9 @@ msgstr ""
 "{0}: +{1} ATP\n"
 "While consuming:\n"
 "{2}"
+
+msgid "ENERGY_CONSUMPTION_PRESSURE"
+msgstr "Energy Consumption Pressure"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energy in {0} for {1}"
@@ -2122,6 +2169,16 @@ msgstr ""
 "Sulfur meteor impact event\n"
 "Raises carbon dioxide and sulfur levels.\n"
 "Spawns sulfur chunks."
+
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr ""
+"Sediments have been washed from land into coastal waters, enriching them.\n"
+"Increases concentration of:"
+
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr ""
+"Compounds have been carried up from the ocean floor, enriching the waters above.\n"
+"Increases concentration of:"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evolutionary Tree"
@@ -2385,6 +2442,12 @@ msgstr "Fossilise this species (already fossilised)"
 msgid "FOSSILISE"
 msgstr "Fossilise"
 
+msgid "FOSSIL_DATA_LOAD_FAILED"
+msgstr "Fossil Data Load Failed"
+
+msgid "FOSSIL_DATA_LOAD_FAILED_DESCRIPTION"
+msgstr "The fossil file could not be read because the data was either outdated or invalid"
+
 msgid "FOSSIL_DELETION_FAILED"
 msgstr "Fossil Deletion Failed"
 
@@ -2556,6 +2619,9 @@ msgstr "GPU:"
 msgid "GRAPHICS"
 msgstr "Graphics"
 
+msgid "GRAPHICS_PRESET"
+msgstr "Graphics preset:"
+
 msgid "GRAPHICS_TEAM"
 msgstr "Graphics Team"
 
@@ -2571,6 +2637,12 @@ msgstr ""
 "\n"
 "If you experience a bug where parts of the editor button is disappearing,\n"
 "you can try disabling this to see if the problem is gone."
+
+msgid "GUI_SCALE_INCREASED_SIZE_NOTE"
+msgstr "(note: increasing GUI scale is an experimental feature and may cause elements to go offscreen)"
+
+msgid "GUI_SCALE_OPTION"
+msgstr "Scale multiplier:"
 
 msgid "GUI_TAB_NAVIGATION"
 msgstr "UI Tab Navigation"
@@ -2674,6 +2746,9 @@ msgstr "Large Ice Chunk"
 msgid "ICE_CHUNK_SMALL"
 msgstr "Small Ice Chunk"
 
+msgid "ICE_SNOWFLAKE_BIG"
+msgstr "Large Ice Snowflake Chunk"
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID is not a valid number"
 
@@ -2682,6 +2757,9 @@ msgstr "ID Number"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr "(depending on rendering mode and upscaling not all methods are available)"
+
+msgid "IGNORE_FURTHER_ERRORS"
+msgstr "Ignore further errors"
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "Supported Image Files"
@@ -2781,6 +2859,12 @@ msgstr "Inspector"
 
 msgid "INSTAGRAM_TOOLTIP"
 msgstr "Visit our Instagram page"
+
+msgid "INSTANT_KILL_PROTECTION"
+msgstr "Instant kill protection"
+
+msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
+msgstr "(damage that would kill a player with high health leaves you with a small amount of health instead)"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Activate Ascension Gate"
@@ -2897,23 +2981,17 @@ msgstr ":"
 msgid "JANUARY"
 msgstr "January"
 
-msgid "JSON_DEBUG_MODE"
-msgstr "JSON debug mode:"
-
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Always"
-
-msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automatically"
-
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Never"
-
 msgid "JULY"
 msgstr "July"
 
 msgid "JUNE"
 msgstr "June"
+
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Keep Current"
+
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "Keep the current pressure tolerance range while moving the min and max sliders"
 
 msgid "KEEP_MIGRATION"
 msgstr "Keep Migration"
@@ -3406,6 +3484,9 @@ msgstr "Macrolide Synthesis"
 msgid "MACROSCOPIC"
 msgstr "Macroscopic"
 
+msgid "MACROSCOPIC_EDITOR"
+msgstr "Macroscopic Editor"
+
 msgid "MACROSCOPIC_STAGE"
 msgstr "Macroscopic Stage"
 
@@ -3413,7 +3494,7 @@ msgid "MAKE_CELL_THAT_EATS_RADIATION"
 msgstr "Make a cell that gains energy from radioactivity and gain energy"
 
 msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
-msgstr " Make a cell that only uses chemosynthesis for energy"
+msgstr "Make a cell that only uses chemosynthesis for energy"
 
 msgid "MAKE_NO_CHANGES_IN_EDITOR"
 msgstr "Make no changes to your microbe in the editor"
@@ -3577,6 +3658,9 @@ msgstr ""
 "[b]Occupant Scores[/b]\n"
 "  {2}"
 
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "Endosymbiosis Selection Pressure"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr "Environmental Compound Pressure"
 
@@ -3598,6 +3682,9 @@ msgstr "Predation Effectiveness Pressure"
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr "Predator Root Pressure"
 
+msgid "MICHE_REPRODUCTION_COMPOUND_USAGE"
+msgstr "Reproduction Compound Usage Pressure:"
+
 msgid "MICHE_ROOT_PRESSURE"
 msgstr "Root Pressure"
 
@@ -3618,6 +3705,9 @@ msgstr "Microbe Benchmark"
 
 msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr "Microbe camera tilt"
+
+msgid "MICROBE_CURRENT_PARTICLES"
+msgstr "Microbe current particles:"
 
 msgid "MICROBE_EDITOR"
 msgstr "Microbe Editor"
@@ -3886,9 +3976,6 @@ msgstr "Models"
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr "2D movement mode can be later changed in the options menu at any time"
 
-msgid "MODIFIER"
-msgstr "Modifier"
-
 msgid "MODIFY"
 msgstr "Modify"
 
@@ -3900,6 +3987,9 @@ msgstr "Modify Type"
 
 msgid "MODS"
 msgstr "Mods"
+
+msgid "MODS_ARE_ENABLED"
+msgstr "Mods Are Enabled"
 
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
@@ -3936,9 +4026,6 @@ msgstr "{0}: mod's assembly unload method call failed with an exception: {1}"
 
 msgid "MOD_AUTHOR"
 msgstr "Mod Author:"
-
-msgid "MOD_AUTO_HARMONY"
-msgstr "Uses Auto Harmony:"
 
 msgid "MOD_CREATION_FAILED"
 msgstr "Mod Creation Failed"
@@ -4008,6 +4095,12 @@ msgstr "Mod Uploader"
 
 msgid "MOD_VERSION"
 msgstr "Mod Version:"
+
+msgid "MONITOR_AUTO"
+msgstr "Auto"
+
+msgid "MONITOR_IDENTIFIER"
+msgstr "Monitor {0}"
 
 msgid "MORE_INFO"
 msgstr "Show More Info"
@@ -4396,9 +4489,6 @@ msgstr "Official Website"
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Visit the official Revolutionary Games website"
 
-msgid "OFFSET"
-msgstr "Offset"
-
 msgid "OK"
 msgstr "OK"
 
@@ -4567,6 +4657,9 @@ msgstr "Other"
 
 msgid "OUR_WIKI"
 msgstr "our Wiki"
+
+msgid "OUTDATED_ITEM"
+msgstr "OUTDATED"
 
 msgid "OUTDATED_NOTICE"
 msgstr "This page or section contains outdated information. This often happens when plans are changed after something has been written."
@@ -4848,6 +4941,24 @@ msgstr "Predation of {0}"
 
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "View detailed information behind the prediction"
+
+msgid "PRESET_CUSTOM"
+msgstr "Custom"
+
+msgid "PRESET_HIGH"
+msgstr "High"
+
+msgid "PRESET_LOW"
+msgstr "Low"
+
+msgid "PRESET_MEDIUM"
+msgstr "Medium"
+
+msgid "PRESET_VERY_HIGH"
+msgstr "Very high"
+
+msgid "PRESET_VERY_LOW"
+msgstr "Very low"
 
 msgid "PRESSURE"
 msgstr "Pressure"
@@ -5149,8 +5260,18 @@ msgstr "Rotate right"
 msgid "ROTATION_COLON"
 msgstr "Rotation:"
 
+msgid "RUNOFF_EVENT"
+msgstr "Runoff event"
+
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Run auto-evo during gameplay"
+
+msgid "RUN_AUTO_EVO_DURING_GAMEPLAY_TOOLTIP"
+msgstr ""
+"When enabled, auto-evo starts during gameplay to reduce the time needed during loading screens.\n"
+"This may cause extra lag on systems with a low CPU core count.\n"
+"If disabled, auto-evo only starts during loading screens, but it will still run.\n"
+"There is no way to turn off auto-evo completely as it is a core part of the game."
 
 msgid "RUN_ONE_STEP"
 msgstr "Run One Step"
@@ -5216,12 +5337,6 @@ msgstr "Cheats Used"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Deleting this save cannot be undone, are you sure you want to permanently delete {0}?"
-
-msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "When reporting a save error please include [color=#3796e1][url={0}]{1}[/url][/color] from the [color=#3796e1][url={2}]logs folder[/url][/color] as that is critical information for Thrive developers to figure out what the saving error was. Without that file it will be extremely difficult to diagnose and fix this problem."
-
-msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Please make sure JSON debug mode is not disabled before reporting this save error. Automatic JSON debug mode should have created an extra file called {0} in the [color=#3796e1][url={1}]logs folder[/url][/color]. That file contains critical information for Thrive developers to figure out what the saving error was."
 
 msgid "SAVE_FAILED"
 msgstr "Save failed"
@@ -5526,8 +5641,14 @@ msgstr "Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:
 msgid "SMALL_IRON_CHUNK"
 msgstr "Small Iron Chunk"
 
+msgid "SMALL_IRON_CHUNK_BANANA"
+msgstr "Small Iron Banana Chunk"
+
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Small Phosphate Chunk"
+
+msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
+msgstr "Small Phosphate Banana Chunk"
 
 msgid "SMALL_SULFUR_CHUNK"
 msgstr "Small Sulfur Chunk"
@@ -5607,6 +5728,12 @@ msgstr ""
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "has mutated"
+
+msgid "SPECIES_IN_CURRENT_PATCH"
+msgstr "Species in current patch"
+
+msgid "SPECIES_IN_OTHER_PATCHES"
+msgstr "Species in other patches"
 
 msgid "SPECIES_LIST"
 msgstr "Species List"
@@ -5954,19 +6081,19 @@ msgid "THERMOPLAST"
 msgstr "Thermoplast"
 
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr "The thermoplast is a double membrane structure containing thermosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the thermoplast are able to use the energy of rising [thrive:compound type=\"temperature\"][/thrive:compound] in their surroundings to produce [thrive:compound type=\"atp\"][/thrive:compound] from water in a process called [b]thermosynthesis[/b]. The rate of its [thrive:compound type=\"atp\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound] delta."
+msgstr "The thermoplast is a double membrane structure containing thermosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the thermoplast are able to use the energy of rising [thrive:compound type=\"temperature\"][/thrive:compound] in their surroundings to produce [thrive:compound type=\"glucose\"][/thrive:compound] in a process called [b]thermosynthesis[/b]. The rate of its [thrive:compound type=\"glucose\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound] delta."
 
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Uses rising temperatures to produce [thrive:compound type=\"atp\"][/thrive:compound]. Rate scales with increase in [thrive:compound type=\"temperature\"][/thrive:compound]. Use [b]thermal vision[/b] to find hot and cold areas."
+msgstr "Uses rising temperatures to produce [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with increase in [thrive:compound type=\"temperature\"][/thrive:compound]. Use [b]thermal vision[/b] to find hot and cold areas."
 
 msgid "THERMOSYNTHASE"
 msgstr "Thermosynthase"
 
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "Thermosynthase is a protein that uses thermal convection to change its form, allowing it to fold and bind to ADP when heating up, converting this to [thrive:compound type=\"atp\"][/thrive:compound] in a process called [b]thermosynthesis[/b]. The protein then unfolds as it cools, allowing it to repeat the cycle when the [thrive:compound type=\"temperature\"][/thrive:compound] increases again. The rate of its [thrive:compound type=\"atp\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound] delta."
+msgstr "Thermosynthase is a protein that uses thermal convection to change its form, converting this to [thrive:compound type=\"glucose\"][/thrive:compound] in a process called [b]thermosynthesis[/b]. The protein then unfolds as it cools, allowing it to repeat the cycle when the [thrive:compound type=\"temperature\"][/thrive:compound] increases again. The rate of its [thrive:compound type=\"glucose\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound] delta."
 
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Uses rising temperatures to produce [thrive:compound type=\"atp\"][/thrive:compound]. Rate scales with increase in [thrive:compound type=\"temperature\"][/thrive:compound]. Use [b]thermal vision[/b] to find hot and cold areas."
+msgstr "Uses rising temperatures to produce [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with increase in [thrive:compound type=\"temperature\"][/thrive:compound]. Use [b]thermal vision[/b] to find hot and cold areas."
 
 msgid "THERMOSYNTHESIS"
 msgstr "Thermosynthesis"
@@ -6100,6 +6227,9 @@ msgstr "Toggle binding mode"
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Toggle binding mode. Touch other cells to create a colony."
 
+msgid "TOGGLE_DEBUG_CONSOLE"
+msgstr "Toggle debug console"
+
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Toggle debug panel"
 
@@ -6163,7 +6293,7 @@ msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr "UV protection too low, needs to be {0}% higher"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-msgstr "[color=#ff4d4d][b]Not adapted to current environmental conditions.[/b] Osmoregulation cost {0}%, bioprocess speed {1}%, health {2}%[/color]"
+msgstr "Not adapted to current environmental conditions. Osmoregulation cost {0}%, bioprocess speed {1}%, health {2}%"
 
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
@@ -6172,14 +6302,13 @@ msgstr ""
 "  Range: ±{1}°C\n"
 "[b]Pressure[/b]\n"
 "  Range: {2}-{3} Pa\n"
-"  Tolerance: {4}\n"
 "[b]Oxygen Resistance[/b]\n"
-"  {5}%\n"
+"  {4}%\n"
 "[b]UV Resistance[/b]\n"
-"  {6}%"
+"  {5}%"
 
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
-msgstr "Tolerances are affected by some organelles, both positively and negatively. The total value is shown here after the base value is added together with the change from organelles. Some organelles synergize with certain playstyles but harm others."
+msgstr "Tolerances are affected by some organelles, both positively and negatively. The effective value is shown here after the base value is added together with the change from organelles. Some organelles synergize with certain playstyles but harm others."
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "Flexibility:"
@@ -6190,20 +6319,17 @@ msgstr "Tools"
 msgid "TOOL_HAND_AXE"
 msgstr "Hand Axe"
 
+msgid "TOO_LARGE_PRESSURE_RANGE"
+msgstr "Pressure range too wide"
+
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr "Not showing all recent versions as there are too many"
-
-msgid "TOTAL"
-msgstr "Total"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Gathered Energy:"
 
 msgid "TOTAL_SAVES"
 msgstr "Total saves:"
-
-msgid "TOTAL_VALUE"
-msgstr "Total Value"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
 msgstr "Channel Inhibitor"
@@ -6382,7 +6508,7 @@ msgstr ""
 "\n"
 "It shows what food sources each species in the current area eats.\n"
 "\n"
-"Predator-prey relationships are visible here along with environmental food sources. \n"
+"Predator-prey relationships are visible here along with environmental food sources.\n"
 "\n"
 "This information can give insights on which way to evolve your species, but as a new player you don't need to worry if you don't understand this screen."
 
@@ -6480,19 +6606,15 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
 msgstr ""
-"Your organism can only live in environmental conditions it is [b]adapted[/b] to.\n"
+"The tolerances editor allows changing the [b]environmental conditions your species is adapted to[/b]. These include [thrive:compound type=\"temperature\"][/thrive:compound] and [b]pressure[/b] [thrive:icon]Pressure[/thrive:icon] of the patch you reside in.\n"
 "\n"
-"The tolerances tab allows you to change what conditions your species can tolerate, such as [thrive:compound type=\"temperature\"][/thrive:compound] or [b]Pressure[/b] [thrive:icon]Pressure[/thrive:icon].\n"
+"When moving to a patch you aren't adapted to, there will be [b]various negative effects[/b]. Adjusting the sliders to correct either the preferred conditions or increasing the flexibility range for the new patch will remove these effects. The unsuitable conditions are shown in red.\n"
 "\n"
-"Here you can also increase your resistance to the harmful effects of [thrive:compound type=\"oxygen\"][/thrive:compound] and [thrive:compound type=\"sunlight\"][/thrive:compound].\n"
+"To become [b]perfectly adapted[/b] and gain bonuses instead of negative effects, the flexibility ranges need to be reduced to minimal values while still staying adapted to the patch. The numbers will then turn green and grant positive effects.\n"
 "\n"
-"[color=#ff4d4d]If the current conditions are out of range of your tolerances, you will suffer penalties[/color] to your [b]health[/b] [thrive:icon]HealthIcon[/thrive:icon], [b]osmoregulation[/b] [thrive:icon]OsmoIcon[/thrive:icon] and [b]bioprocess speed[/b].\n"
+"The trade-off with perfect adaptation is not being suitable for a wide range of patches. Planning before moving patches by increasing the tolerance ranges can be a good strategy if you have [b]some remaining MP[/b] [thrive:icon]MP[/thrive:icon] to use up before exiting the editor.\n"
 "\n"
-"[color=#338000]Likewise, if your tolerance [b]range[/b] is small enough, those same attributes get buffed.[/color] The tradeoff here is that with a small range you are limited to a smaller number of patches.\n"
-"\n"
-"Beware that [u]organelles in your cell can affect your [b]resistances[/b] and [b]flexibility[/b][/u].\n"
-"\n"
-"Try changing one of your tolerances to close this tutorial."
+"Try changing one of the environmental tolerances to close this tutorial."
 
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -6661,6 +6783,17 @@ msgstr "Undo"
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Undo the last action"
 
+msgid "UNHANDLED_ERROR_COUNT"
+msgstr "Unhandled Errors: {0}"
+
+msgid "UNHANDLED_ERROR_DESCRIPTION"
+msgstr ""
+"The game has run into an unhandled error. It may be possible to continue, but the errors may get worse. The safest option is to fully restart the game and load the latest save. It may be possible to make a save now.\n"
+"If you report this error, please use the button to copy the error and include that in your report."
+
+msgid "UNHANDLED_ERROR_TITLE"
+msgstr "An Unhandled Error Happened"
+
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr "Construct"
 
@@ -6810,6 +6943,9 @@ msgstr "Upscaling method:"
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr "FSR sharpening"
 
+msgid "UPWELLING_EVENT"
+msgstr "Upwelling event"
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licenses And Used Libraries"
 
@@ -6818,12 +6954,6 @@ msgstr "Used renderer:"
 
 msgid "USES_FEATURE"
 msgstr "Yes"
-
-msgid "USE_AUTO_HARMONY"
-msgstr "Use Auto Harmony Loading"
-
-msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Automatically load Harmony patches from Assembly (doesn't require specifying mod class)"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Use a custom username"
@@ -7136,19 +7266,19 @@ msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "No upgrades."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
-msgstr "No effects. To be implemented."
+msgstr "Cells with [b]Bioluminescent Vacuoles[/b] have their Oxygen Tolerance increased."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
-msgstr "Creates light. Not yet implemented in Thrive."
+msgstr "Creates [thrive:compound type=\"sunlight\"][/thrive:compound] and increases Oxygen Tolerance of a cell that has it."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
-msgstr "No modifications. To be implemented."
+msgstr "No modifications."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
-msgstr "No processes. To be implemented."
+msgstr "[b]Luciferase Synthesis[/b]: [thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"sunlight\"][/thrive:compound]"
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_REQUIREMENTS"
-msgstr "Cannot be added to cells. To be implemented."
+msgstr "A cell must have a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] to evolve [b]Bioluminescent Vacuole[/b]."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7161,10 +7291,10 @@ msgstr ""
 "If you feel strongly about the inclusion of [b]Bioluminescent Vacuoles[/b] or have suggestions for worthwhile in-game functions, head to our [color=#3796e1][url=https://suggestions.revolutionarygamesstudio.com/]suggestions board[/url][/color]."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
-msgstr "Not available in the game. To be implemented."
+msgstr "Add [b]Bioluminescent Vacuoles[/b] to your cell if your cell is anaerobic and you need to increase your cell's Oxygen Tolerance."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
-msgstr "No upgrades. To be implemented."
+msgstr "No upgrades."
 
 msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
 msgstr "Body Plan Editor, Cell Editor"
@@ -8950,9 +9080,11 @@ msgstr ""
 
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr ""
-"[thrive:compound type=\"iron\"][/thrive:compound] is a valuable alternative resource to use instead of [thrive:compound type=\"glucose\"][/thrive:compound] since it doesn't decay in the environment until much later. Rust-eating cells are likely to enjoy plentiful nutrients in patches where [thrive:compound type=\"iron\"][/thrive:compound] is abundant.\n"
+"[thrive:compound type=\"iron\"][/thrive:compound] is a valuable alternative resource to use instead of [thrive:compound type=\"glucose\"][/thrive:compound] since it doesn't decay in the environment until much later. [thrive:compound type=\"iron\"][/thrive:compound] is also directly transferred into ATP, so it can be a relatively cheap way to create an energetic organism early on in the Microbe Stage. However, because [thrive:compound type=\"iron\"][/thrive:compound] is burnt through rather quickly, players must be mindful to constantly be near larger cloud-emitting chunks, and must budget this resource very carefully if they choose to play as a more motile organism.\n"
 "\n"
-"Ingesting [thrive:compound type=\"iron\"][/thrive:compound] chunks may be tempting, but often you'll get more [thrive:compound type=\"iron\"][/thrive:compound] by holding near a bigger chunk as it produces more of the compound in cloud form. However, an ingested [thrive:compound type=\"iron\"][/thrive:compound] chunk allows you to carry more [thrive:compound type=\"iron\"][/thrive:compound] with you for longer journeys."
+"Storage can be a very useful attribute for iron-oxidizing organisms to utilize, as it allows them to store more of the rapidly-depleting compound. Size is also useful, as large organisms are able to ingest smaller [thrive:compound type=\"iron\"][/thrive:compound] chunks floating around. This will give you more freedom in movement, as you'll be carrying a chunk of [thrive:compound type=\"iron\"][/thrive:compound] with you as you explore your environment. [b] Cytoplasm [/b] is a very beneficial part to consider for iron-oxidizing organisms, as it allows you to cheaply build up size and storage. [b] Vacuoles [/b] are also very useful once you become a eukaryote. \n"
+"\n"
+"[thrive:compound type=\"iron\"][/thrive:compound] depletes more quickly as your organism places more demanding parts. It will also start to disappear with the rise of [b]Oxygen[/b]. As such, players who utilize [thrive:compound type=\"iron\"][/thrive:compound] must be vigilant as oxygen begins to dominate their atmosphere, and should consider aerobic respiration if they wish to create highly-efficient eukaryotes."
 
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "No upgrades."
@@ -9118,20 +9250,20 @@ msgstr "Enables [i]thermal vision[/i], which can be toggled on and off. This ove
 
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr ""
-"Produces energy in the form of [thrive:compound type=\"atp\"][/thrive:compound] using [thrive:compound type=\"temperature\"][/thrive:compound] gradients in the environment. Eukaryotic form of the less efficient [b][color=#3796e1][url=thriveopedia:thermosynthase]Thermosynthase[/url][/color][/b].\n"
+"Produces [thrive:compound type=\"glucose\"][/thrive:compound] using [thrive:compound type=\"temperature\"][/thrive:compound] gradients in the environment. Eukaryotic form of the less efficient [b][color=#3796e1][url=thriveopedia:thermosynthase]Thermosynthase[/url][/color][/b].\n"
 "\n"
 "Speculative organelle not found in real life. Unavailable in games with [i]LAWK[/i] (Life As We Know it) turned on.\n"
 "\n"
-"It is a membrane-bound organelle containing thermosensitive enzymes inside membranous compartments. It is a prokaryote that has been assimilated for use by its eukaryotic host. The enzymes are able to use the energy of rising [thrive:compound type=\"temperature\"][/thrive:compound] in their surroundings to produce [thrive:compound type=\"atp\"][/thrive:compound] in a process called [i]thermosynthesis[/i]."
+"It is a membrane-bound organelle containing thermosensitive enzymes inside membranous compartments. It is a prokaryote that has been assimilated for use by its eukaryotic host. The enzymes are able to use the energy of rising [thrive:compound type=\"temperature\"][/thrive:compound] in their surroundings to produce [thrive:compound type=\"glucose\"][/thrive:compound] in a process called [i]thermosynthesis[/i]."
 
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "No modifications."
 
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr ""
-"[b]Thermosynthesis[/b]: [thrive:compound type=\"temperature\"][/thrive:compound] [i]increase[/i] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]Thermosynthesis[/b]: [thrive:compound type=\"temperature\"][/thrive:compound] [i]increase[/i] → [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Generates energy from increasing [thrive:compound type=\"temperature\"][/thrive:compound]. The thermosensitive enzymes change shape as the [thrive:compound type=\"temperature\"][/thrive:compound] rises, allowing the recycling of [i]ADP[/i] into [thrive:compound type=\"atp\"][/thrive:compound]. As the cell cools, the enzymes return to their previous shape, allowing the process to repeat. More efficient form of [i]Bacterial Thermosynthesis[/i] present in [b][color=#3796e1][url=thriveopedia:thermosynthase]Thermosynthase[/url][/color][/b].The rate of its [thrive:compound type=\"atp\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound] [i]delta[/i]."
+"Generates energy from increasing [thrive:compound type=\"temperature\"][/thrive:compound]. The thermosensitive enzymes change shape as the [thrive:compound type=\"temperature\"][/thrive:compound] rises, allowing conversion of various compounds into [thrive:compound type=\"glucose\"][/thrive:compound]. As the cell cools, the enzymes return to their previous shape, allowing the process to repeat. More efficient form of [i]Bacterial Thermosynthesis[/i] present in [b][color=#3796e1][url=thriveopedia:thermosynthase]Thermosynthase[/url][/color][/b].The rate of its [thrive:compound type=\"glucose\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound] [i]delta[/i]."
 
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
@@ -9147,13 +9279,13 @@ msgstr ""
 "\n"
 "Muller even suggested thermosynthesis could have been a precursor to the earliest (sulfur-based) photosynthesis (Photosystem 0, A Proposed Ancestral Photosystem Without Reducing Power That Synthesized ATP During Light-Dark cycling). \n"
 "\n"
+"In earlier versions of Thrive this organelle produced ATP directly, however due to game balancing reasons it now produces glucose, but there's no explanation for where the carbon would come from for that. So that's one more Thrive sin against realism. This might get fixed in the far future if someone volunteers to implement an organelle that would turn ATP to glucose for longer term storage.\n"
+"\n"
 "[color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]Thermosynthesis on Wikipedia[/url][/color]"
 
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr ""
-"Probably the most mobile form of autotrophy, [b]Thermosynthesis[/b] requires almost constant movement. You need to go from colder areas to hotter ones and back again. After the cell's temperature has stopped increasing, [thrive:compound type=\"atp\"][/thrive:compound] production drops to zero. It is best to activate [i]thermal vision[/i] to see the hot and cold areas around your cell, to most effectively steer through them. Thermoplasts are much more effective in much hotter patches, and so are best used in the Volcanic Vents. \n"
-"\n"
-"Because the [b]Thermoplast's[/b] [thrive:compound type=\"atp\"][/thrive:compound] production will stop frequently, it is important to have a second energy source, or else you will take continual damage from lack of [thrive:compound type=\"atp\"][/thrive:compound]. \n"
+"Probably the most mobile form of autotrophy, [b]Thermosynthesis[/b] requires almost constant movement. You need to go from colder areas to hotter ones and back again. After the cell's temperature has stopped increasing, [thrive:compound type=\"glucose\"][/thrive:compound] production drops to zero. It is best to activate [i]thermal vision[/i] to see the hot and cold areas around your cell, to most effectively steer through them. Thermoplasts are much more effective in much hotter patches, and so are best used in the Volcanic Vents. \n"
 "\n"
 "With organelle unlocks enabled, the requirement to reproduce multiple times with [b][color=#3796e1][url=thriveopedia:thermosynthase]Thermosynthase[/url][/color][/b] in your cell means a player who evolves [b]Thermoplasts[/b] has likely already specialised quite heavily in [b]Thermosynthesis[/b] by the time they obtain [b]Thermoplasts[/b]."
 
@@ -9165,20 +9297,24 @@ msgstr "Enables [i]thermal vision[/i], which can be toggled on and off. This ove
 
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
-"Produces energy in the form of [thrive:compound type=\"atp\"][/thrive:compound] using [thrive:compound type=\"temperature\"][/thrive:compound] gradients in the environment. Prokaryotic form of the more efficient [b][color=#3796e1][url=thriveopedia:thermoplast]Thermoplast[/url][/color][/b].\n"
+"Produces [thrive:compound type=\"glucose\"][/thrive:compound] using [thrive:compound type=\"temperature\"][/thrive:compound] gradients in the environment. Prokaryotic form of the more efficient [b][color=#3796e1][url=thriveopedia:thermoplast]Thermoplast[/url][/color][/b].\n"
 "\n"
 "Speculative organelle not found in real life. Unavailable in games with [i]LAWK[/i] (Life As We Know it) turned on.\n"
 "\n"
-"It is a grouping of membranous compartments containing thermosensitive enzymes. The enzymes are able to use the energy of rising [thrive:compound type=\"temperature\"][/thrive:compound] in their surroundings to produce [thrive:compound type=\"atp\"][/thrive:compound] in a process called [i]thermosynthesis[/i]."
+"It is a grouping of membranous compartments containing thermosensitive enzymes. The enzymes are able to use the energy of rising [thrive:compound type=\"temperature\"][/thrive:compound] in their surroundings to produce [thrive:compound type=\"glucose\"][/thrive:compound] in a process called [i]thermosynthesis[/i]."
 
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "No modifications."
 
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr ""
-"[b]Bacterial Thermosynthesis[/b]: [thrive:compound type=\"temperature\"][/thrive:compound] [i]increase[/i] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]Bacterial Thermosynthesis[/b]: [thrive:compound type=\"temperature\"][/thrive:compound] [i]increase[/i] → [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Generates energy from increasing [thrive:compound type=\"temperature\"][/thrive:compound]. The thermosensitive enzymes change shape as the [thrive:compound type=\"temperature\"][/thrive:compound] rises, allowing the recycling of [i]ADP[/i] into [thrive:compound type=\"atp\"][/thrive:compound]. As the cell cools, the enzymes return to their previous shape, allowing the process to repeat. Less efficient form of the [i]Thermosynthesis[/i] present in [b][color=#3796e1][url=thriveopedia:thermoplast]Thermoplasts[/url][/color][/b].The rate of its [thrive:compound type=\"atp\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound] [i]delta[/i]."
+"Generates energy from increasing [thrive:compound type=\"temperature\"][/thrive:compound]. The thermosensitive enzymes change shape as the [thrive:compound type=\"temperature\"][/thrive:compound] rises, allowing the conversion of various compounds into [thrive:compound type=\"glucose\"][/thrive:compound]. As the cell cools, the enzymes return to their previous shape, allowing the process to repeat. Less efficient form of the [i]Thermosynthesis[/i] present in [b][color=#3796e1][url=thriveopedia:thermoplast]Thermoplasts[/url][/color][/b].The rate of its [thrive:compound type=\"glucose\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound] [i]delta[/i].\n"
+"\n"
+"[b]Glycolysis:[/b] [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Since [b]Thermosynthase[/b] proteins are suspended directly in the [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b], the surrounding fluid performs [b]Glycolysis[/b]."
 
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr ""
@@ -9190,13 +9326,13 @@ msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr ""
 "[b]Thermosynthase[/b] is a fictional enzyme, but the process of [color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]thermosynthesis[/url][/color], while theoretical, is generally regarded as biologically plausible.\n"
 "\n"
-"Thermosynthesis was first proposed by Anthonie Muller in a 1983 paper \"Thermoelectric energy conversion could be an energy source of living organisms\" (Physics Letters A, vol. 96, Issue 6, p. 319-321). Muller even suggested that thermosynthesis could have been a precursor to the earliest (sulfur-based) photosynthesis (see link: A Search For Thermosynthesis: Starvation Survival In Thermally Cycled Bacteria)."
+"Thermosynthesis was first proposed by Anthonie Muller in a 1983 paper \"Thermoelectric energy conversion could be an energy source of living organisms\" (Physics Letters A, vol. 96, Issue 6, p. 319-321). Muller even suggested that thermosynthesis could have been a precursor to the earliest (sulfur-based) photosynthesis (see link: A Search For Thermosynthesis: Starvation Survival In Thermally Cycled Bacteria).\n"
+"\n"
+"In earlier versions of Thrive this organelle produced ATP directly, however due to game balancing reasons it now produces glucose, but there's no explanation for where the carbon would come from for that. So that's one more Thrive sin against realism. This might get fixed in the far future if someone volunteers to implement an organelle that would turn ATP to glucose for longer term storage."
 
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr ""
-"Probably the most mobile form of autotrophy, [i]Thermosynthesis[/i] requires almost constant movement. You need to go from colder areas to hotter ones and back again. After the cell's temperature has stopped increasing, [thrive:compound type=\"atp\"][/thrive:compound] production drops to zero. It is best to activate [i]thermal vision[/i] to see the hot and cold areas around your cell, to most effectively steer through them. Thermosynthase is much more effective in much hotter patches, and so is best used in the Volcanic Vents. \n"
-"\n"
-"Because [b]Thermosynthase's[/b] [thrive:compound type=\"atp\"][/thrive:compound] production will stop frequently, it is important to have a second energy source, or else you will take continual damage from lack of [thrive:compound type=\"atp\"][/thrive:compound].  \n"
+"Probably the most mobile form of autotrophy, [i]Thermosynthesis[/i] requires almost constant movement. You need to go from colder areas to hotter ones and back again. After the cell's temperature has stopped increasing, [thrive:compound type=\"glucose\"][/thrive:compound] production drops to zero. It is best to activate [i]thermal vision[/i] to see the hot and cold areas around your cell, to most effectively steer through them. Thermosynthase is much more effective in much hotter patches, and so is best used in the Volcanic Vents. \n"
 "\n"
 "More efficient still is the [b][color=#3796e1][url=thriveopedia:thermoplast]Thermoplast[/url][/color][/b], available once a cell evolves a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b]. Like all prokaryotic organelles with eukaryotic counterparts, we recommend replacing [b]Thermosynthase[/b] with [b][color=#3796e1][url=thriveopedia:thermoplast]Thermoplasts[/url][/color][/b] when possible."
 
@@ -9444,6 +9580,12 @@ msgstr "Warm"
 msgid "WORST_PATCH_COLON"
 msgstr "Worst Patch:"
 
+msgid "WRONG_GROWTH_ORDER"
+msgstr "Incorrect growth order"
+
+msgid "WRONG_GROWTH_ORDER_TEXT"
+msgstr "The colony's growth order causes some cells to be separated. This happens when a cell are placed earlier in the order than the cells that connect it to the root. Please check the Growth Order tab for cells marked red and correct the order."
+
 msgid "XBOX360"
 msgstr "Xbox 360"
 
@@ -9482,26 +9624,41 @@ msgstr "Zoom in"
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
 
-#~ msgid "EFFECTIVE_VALUE"
-#~ msgstr "Effective Value"
+#~ msgid "MOD_AUTO_HARMONY"
+#~ msgstr "Uses Auto Harmony:"
 
-#~ msgid "PLUS_MINUS_VALUE_WITH_UNIT"
-#~ msgstr "± {0} {1}"
+#~ msgid "USE_AUTO_HARMONY"
+#~ msgstr "Use Auto Harmony Loading"
 
-#~ msgid "ADDITIONAL_RESISTANCE"
-#~ msgstr "Additional Resistance:"
+#~ msgid "USE_AUTO_HARMONY_TOOLTIP"
+#~ msgstr "Automatically load Harmony patches from Assembly (doesn't require specifying mod class)"
 
-#~ msgid "BASE"
-#~ msgstr "Base"
+#~ msgid "JSON_DEBUG_MODE"
+#~ msgstr "JSON debug mode:"
 
-#~ msgid "KEEP_CURRENT_SHORT"
-#~ msgstr "Keep Current"
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Always"
 
-#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-#~ msgstr "Keep the current pressure tolerance range while moving the min and max sliders"
+#~ msgid "JSON_DEBUG_MODE_AUTO"
+#~ msgstr "Automatically"
 
-#~ msgid "TOO_LARGE_PRESSURE_RANGE"
-#~ msgstr "Pressure range too wide"
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Never"
+
+#~ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
+#~ msgstr "When reporting a save error please include [color=#3796e1][url={0}]{1}[/url][/color] from the [color=#3796e1][url={2}]logs folder[/url][/color] as that is critical information for Thrive developers to figure out what the saving error was. Without that file it will be extremely difficult to diagnose and fix this problem."
+
+#~ msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
+#~ msgstr "Please make sure JSON debug mode is not disabled before reporting this save error. Automatic JSON debug mode should have created an extra file called {0} in the [color=#3796e1][url={1}]logs folder[/url][/color]. That file contains critical information for Thrive developers to figure out what the saving error was."
+
+#~ msgid "OUTDATED"
+#~ msgstr "OUTDATED"
+
+#~ msgid "SULFIDE_LEVELS"
+#~ msgstr "Sulfide level"
+
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Generate World"
 
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 #~ msgstr "The ATP consumption of this cell type is {0}."
@@ -9600,9 +9757,6 @@ msgstr "Zoom out"
 
 #~ msgid "LOW_BIODIVERSITY_LIMIT"
 #~ msgstr "Consider patches with up to this many species having low biodiversity"
-
-#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
-#~ msgstr "Maximum species in a patch before forced extinctions"
 
 #~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 #~ msgstr "Initial population for biodiversity-increasing species"
@@ -9870,9 +10024,6 @@ msgstr "Zoom out"
 
 #~ msgid "INTO"
 #~ msgstr "into"
-
-#~ msgid "OXYTOXY"
-#~ msgstr "OxyToxy"
 
 #~ msgid "DOT_CAN_RELEASE"
 #~ msgstr ". Can release"
@@ -10274,3 +10425,6 @@ msgstr "Zoom out"
 
 #~ msgid "TO_INCREASE_THE_MOVEMENT"
 #~ msgstr "to increase the movement"
+
+#~ msgid "OXYTOXY"
+#~ msgstr "OxyToxy"

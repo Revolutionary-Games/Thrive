@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dr0t26smimaix"]
+[gd_scene format=3 uid="uid://dr0t26smimaix"]
 
 [ext_resource type="Script" uid="uid://cob4womxc34jx" path="res://src/thriveopedia/pages/wiki/WikiPageSection.cs" id="2"]
 [ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="3_jl68p"]
 [ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="4"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 
-[node name="WikiPageSection" type="VBoxContainer" node_paths=PackedStringArray("heading", "separator", "body")]
+[node name="WikiPageSection" type="VBoxContainer" unique_id=1210395186 node_paths=PackedStringArray("heading", "separator", "body")]
 offset_right = 476.0
 offset_bottom = 73.0
 theme = ExtResource("5")
@@ -14,23 +14,23 @@ heading = NodePath("Heading")
 separator = NodePath("HSeparator")
 body = NodePath("Body")
 
-[node name="Heading" type="Label" parent="."]
+[node name="Heading" type="Label" parent="." unique_id=522645692]
 layout_mode = 2
 label_settings = ExtResource("3_jl68p")
 
-[node name="HSeparator" type="HSeparator" parent="."]
+[node name="HSeparator" type="HSeparator" parent="." unique_id=1100681655]
 modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="."]
+[node name="Spacer" type="Control" parent="." unique_id=51187325]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="Body" parent="." instance=ExtResource("4")]
+[node name="Body" parent="." unique_id=1564831433 instance=ExtResource("4")]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 16
 fit_content = true
 
-[node name="Spacer2" type="Control" parent="."]
+[node name="Spacer2" type="Control" parent="." unique_id=1564679220]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2

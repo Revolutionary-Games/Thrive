@@ -2,32 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
+using Systems;
+using UnlockConstraints;
 
 /// <summary>
 ///   Main class of the microbe editor
 /// </summary>
-[JsonObject(IsReference = true)]
-[SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditor.tscn", UsesEarlyResolve = false)]
 public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     private const string ADVANCED_TABS_SHOWN_BEFORE = "editor_advanced_tabs";
 
     private const double EMERGENCY_SHOW_TABS_AFTER_SECONDS = 4;
 
+    // TODO: this prevents directly starting the editor scene due to depending on the simulation parameters being
+    // loaded
+    private readonly MicrobeSpeciesComparer speciesComparer = new();
+
 #pragma warning disable CA2213
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     [Export]
     private MicrobeEditorReportComponent reportTab = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     [Export]
     private MicrobeEditorPatchMap patchMapTab = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     [Export]
     private CellEditorComponent cellEditorTab = null!;
 
@@ -37,39 +37,90 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     /// <summary>
     ///   The species that is being edited, changes are applied to it on exit
     /// </summary>
-    [JsonProperty]
     private MicrobeSpecies? editedSpecies;
+
+    /// <summary>
+    ///   Used to cache full edited status for <see cref="speciesComparer"/> usage
+    /// </summary>
+    private MicrobeEditsFacade? editsFacade;
 
     private bool checkingTabVisibility;
     private double tabCheckVisibilityTimer = 10;
 
     public override bool CanCancelAction => cellEditorTab.Visible && cellEditorTab.CanCancelAction;
 
-    [JsonIgnore]
     public override Species EditedBaseSpecies =>
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
 
-    [JsonIgnore]
     public ICellDefinition EditedCellProperties =>
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
 
-    [JsonIgnore]
     public IReadOnlyList<OrganelleTemplate> EditedCellOrganelles => cellEditorTab.GetLatestEditedOrganelles();
 
-    [JsonIgnore]
     public Patch CurrentPatch => patchMapTab.CurrentPatch;
 
-    [JsonIgnore]
     public Patch? TargetPatch => patchMapTab.TargetPatch;
 
-    [JsonIgnore]
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
+
+    public WorldAndPlayerDataSource UnlocksDataSource =>
+        new(CurrentGame.GameWorld, CurrentPatch, GetPlayerDataSource());
+
+    public override MainGameState GameState => MainGameState.MicrobeEditor;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeEditor;
 
     protected override string MusicCategory => "MicrobeEditor";
 
     protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
     protected override string EditorLoadingMessage => Localization.Translate("LOADING_MICROBE_EDITOR");
     protected override bool HasInProgressAction => CanCancelAction;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.MicrobeEditor)
+            throw new NotSupportedException();
+
+        writer.WriteObject((MicrobeEditor)obj);
+    }
+
+    public static MicrobeEditor ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var scene = GD.Load<PackedScene>("res://src/microbe_stage/editor/MicrobeEditor.tscn");
+
+        var instance = scene.Instantiate<MicrobeEditor>();
+
+        instance.ResolveNodeReferences();
+
+        reader.ReadObjectProperties(instance.reportTab);
+        reader.ReadObjectProperties(instance.patchMapTab);
+        reader.ReadObjectProperties(instance.cellEditorTab);
+
+        // Base version is different
+        instance.ReadBasePropertiesFromArchive(reader, reader.ReadUInt16());
+
+        instance.editedSpecies = reader.ReadObjectOrNull<MicrobeSpecies>();
+
+        return instance;
+    }
+
+    public override void WriteToArchive(ISArchiveWriter writer)
+    {
+        // Due to callbacks in history, subcomponents need to be written first
+        writer.WriteObjectProperties(reportTab);
+        writer.WriteObjectProperties(patchMapTab);
+        writer.WriteObjectProperties(cellEditorTab);
+
+        // Don't call base as it is the base abstract one
+        writer.Write(SERIALIZATION_VERSION_BASE);
+        WriteBasePropertiesToArchive(writer);
+
+        writer.WriteObjectOrNull(editedSpecies);
+    }
 
     public override void _Ready()
     {
@@ -168,7 +219,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         return result;
     }
 
-    public override void AddContextToActions(IEnumerable<CombinableActionData> editorActions)
+    public override void AddContextToAction(CombinableActionData editorActions)
     {
         // Microbe editor doesn't require any context data in actions
     }
@@ -180,7 +231,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     protected override void InitEditor(bool fresh)
     {
-        patchMapTab.SetMap(CurrentGame.GameWorld.Map);
+        patchMapTab.SetMap(CurrentGame.GameWorld.Map, CurrentGame.GameWorld.PlayerSpecies.ID);
 
         // Register showing certain parts of the GUI as the tutorial progresses
         TutorialState.EditorRedoTutorial.OnOpened += OnShowStatisticsForTutorial;
@@ -218,7 +269,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         // Make tutorials run
         cellEditorTab.TutorialState = TutorialState;
         tutorialGUI.EventReceiver = TutorialState;
-        pauseMenu.GameProperties = CurrentGame;
 
         // Send highlighted controls to the tutorial system
         cellEditorTab.SendObjectsToTutorials(TutorialState, tutorialGUI);
@@ -306,6 +356,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
 
         patchMapTab.UpdatePatchEvents();
+        patchMapTab.MarkDrawerDirty();
 
         if (TutorialState.Enabled)
         {
@@ -365,6 +416,20 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     {
         // Patch events are able to change the stage's background, so it needs to be updated here.
         cellEditorTab.UpdateBackgroundImage(CurrentPatch);
+    }
+
+    protected override double CalculateUsedMutationPoints(List<EditorCombinableActionData> performedActionData)
+    {
+        editsFacade ??=
+            new MicrobeEditsFacade(
+                editedSpecies ?? throw new Exception("Species not initialized before calculating MP"));
+
+        editsFacade.SetActiveActions(performedActionData);
+
+        // This doesn't use the cell editor CostMultiplier as this cost is purely used in the microbe stage, so we
+        //  don't need to apply the additional considerations on top of this
+        return speciesComparer.Compare(editedSpecies!, editsFacade, Constants.MAX_SINGLE_EDIT_MP_COST,
+            CurrentGame.GameWorld.WorldSettings.MPMultiplier);
     }
 
     protected override GameProperties StartNewGameForEditor()
@@ -512,6 +577,51 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         {
             // Make sure tabs are shown if the tutorial is turned off
             ShowTabBar(true);
+        }
+    }
+
+    private IPlayerDataSource GetPlayerDataSource()
+    {
+        if (editedSpecies == null)
+        {
+            throw new Exception("Tried to get player unlocks data source without an edited species being set");
+        }
+
+        var energyBalance = new EnergyBalanceInfoSimple();
+
+        var tolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(editedSpecies, CurrentPatch.Biome));
+
+        ProcessSystem.ComputeEnergyBalanceSimple(editedSpecies.ModifiableOrganelles.Organelles,
+            CurrentPatch.Biome, in tolerances, editedSpecies.MembraneType, Vector3.Zero, false, true,
+            CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Maximum, null, energyBalance);
+
+        return new MicrobeUnlocksData(editedSpecies, energyBalance);
+    }
+
+    private class MicrobeUnlocksData : IPlayerDataSource
+    {
+        public ICellDefinition? CellDefinition;
+
+        public MicrobeUnlocksData(ICellDefinition? cellDefinition, EnergyBalanceInfoSimple? energyBalance)
+        {
+            CellDefinition = cellDefinition;
+            EnergyBalance = energyBalance;
+        }
+
+        public EnergyBalanceInfoSimple? EnergyBalance { get; set; }
+
+        public float Speed
+        {
+            get
+            {
+                if (CellDefinition == null)
+                    return 0;
+
+                return MicrobeInternalCalculations.SpeedToUserReadableNumber(MicrobeInternalCalculations.CalculateSpeed(
+                    CellDefinition.ModifiableOrganelles.Organelles, CellDefinition.MembraneType,
+                    CellDefinition.MembraneRigidity, CellDefinition.IsBacteria));
+            }
         }
     }
 }

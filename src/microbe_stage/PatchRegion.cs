@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   A region is a something like a continent/ocean that contains multiple patches.
 /// </summary>
-[UseThriveSerializer]
-[JsonObject(IsReference = true)]
-public class PatchRegion
+public class PatchRegion : IArchivable
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     public PatchRegion(int id, string name, RegionType regionType, Vector2 screenCoordinates)
     {
         ID = id;
@@ -20,8 +21,7 @@ public class PatchRegion
         ScreenCoordinates = screenCoordinates;
     }
 
-    [JsonConstructor]
-    public PatchRegion(int id, string name, RegionType type, Vector2 screenCoordinates,
+    private PatchRegion(int id, string name, RegionType type, Vector2 screenCoordinates,
         float height, float width)
     {
         ID = id;
@@ -40,28 +40,21 @@ public class PatchRegion
         Predefined = 3,
     }
 
-    [JsonProperty]
     public RegionType Type { get; }
 
-    [JsonProperty]
     public int ID { get; }
 
     /// <summary>
     ///   Regions this is next to
     /// </summary>
-    [JsonIgnore]
-    public ISet<PatchRegion> Adjacent { get; } = new HashSet<PatchRegion>();
+    public ISet<PatchRegion> Adjacent { get; private set; } = new HashSet<PatchRegion>();
 
-    [JsonIgnore]
-    public Dictionary<int, HashSet<Patch>> PatchAdjacencies { get; } = new();
+    public Dictionary<int, HashSet<Patch>> PatchAdjacencies { get; private set; } = new();
 
-    [JsonProperty]
     public float Height { get; set; }
 
-    [JsonProperty]
     public float Width { get; set; }
 
-    [JsonIgnore]
     public Vector2 Size
     {
         get => new(Width, Height);
@@ -77,18 +70,16 @@ public class PatchRegion
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This is not translatable as this is just the output from the name generator, which isn't language specific
+    ///     This is not translatable as this is just the output from the name generator, which isn't language-specific
     ///     currently. And even once it is a different approach than <see cref="LocalizedString"/> will be needed to
     ///     allow randomly generated names to translate.
     ///   </para>
     /// </remarks>
-    [JsonProperty]
     public string Name { get; private set; }
 
     /// <summary>
     ///   Coordinates this region is to be displayed at in the GUI
     /// </summary>
-    [JsonProperty]
     public Vector2 ScreenCoordinates { get; set; }
 
     /// <summary>
@@ -96,14 +87,59 @@ public class PatchRegion
     ///   and also this can't be a JSON constructor parameter because the patches refer to this so we couldn't
     ///   construct anything to begin with.
     /// </summary>
-    [JsonProperty]
     public List<Patch> Patches { get; private set; } = null!;
 
-    [JsonProperty]
     public MapElementVisibility Visibility { get; set; } = MapElementVisibility.Hidden;
 
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.PatchRegion;
+    public bool CanBeReferencedInArchive => true;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.PatchRegion)
+            throw new NotSupportedException();
+
+        writer.WriteObject((PatchRegion)obj);
+    }
+
+    public static PatchRegion ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new PatchRegion(reader.ReadInt32(),
+            reader.ReadString() ?? throw new NullArchiveObjectException(),
+            (RegionType)reader.ReadInt32(), reader.ReadVector2(), reader.ReadFloat(), reader.ReadFloat());
+
+        reader.ReportObjectConstructorDone(instance, referenceId);
+
+        instance.Adjacent = reader.ReadObject<HashSet<PatchRegion>>();
+
+        instance.PatchAdjacencies = reader.ReadObject<Dictionary<int, HashSet<Patch>>>();
+        instance.Patches = reader.ReadObject<List<Patch>>();
+        instance.Visibility = (MapElementVisibility)reader.ReadInt32();
+
+        return instance;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(ID);
+        writer.Write(Name);
+        writer.Write((int)Type);
+        writer.Write(ScreenCoordinates);
+        writer.Write(Height);
+        writer.Write(Width);
+
+        writer.WriteObject(Adjacent);
+        writer.WriteObject(PatchAdjacencies);
+        writer.WriteObject(Patches);
+        writer.Write((int)Visibility);
+    }
+
     /// <summary>
-    ///   Adds a connection to region
+    ///   Adds a connection to a region
     /// </summary>
     /// <returns>True if this was new, false if already added</returns>
     public bool AddNeighbour(PatchRegion region)

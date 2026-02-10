@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dew8qwd0buvnb"]
+[gd_scene format=3 uid="uid://dew8qwd0buvnb"]
 
 [ext_resource type="Script" uid="uid://dvtcoa6g3lkyn" path="res://src/thriveopedia/fossilisation/FossilisationDialog.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="3"]
@@ -32,7 +32,7 @@ _data = {
 &"invalidSpeciesNameFlash": SubResource("1")
 }
 
-[node name="FossilisationDialog" node_paths=PackedStringArray("speciesNameEdit", "speciesDetailsPanel", "fossiliseButton", "overwriteNameConfirmationDialog", "fossilisationFailedDialog") instance=ExtResource("4")]
+[node name="FossilisationDialog" unique_id=984753152 node_paths=PackedStringArray("speciesNameEdit", "speciesDetailsPanel", "fossiliseButton", "overwriteNameConfirmationDialog", "fossilisationFailedDialog") instance=ExtResource("4")]
 custom_minimum_size = Vector2(364, 420)
 offset_right = 364.0
 offset_bottom = 420.0
@@ -45,33 +45,35 @@ fossilisationFailedDialog = NodePath("FossilisationFailedDialog")
 WindowTitle = "FOSSILISATION"
 ExclusiveAllowCloseOnEscape = false
 
-[node name="VBoxContainer" parent="." index="0"]
+[node name="VBoxContainer" parent="." index="0" unique_id=146557504]
 visible = false
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 152.0
 offset_bottom = 69.0
 
-[node name="FocusGrabber" parent="VBoxContainer" index="4"]
+[node name="FocusGrabber" parent="VBoxContainer" index="4" unique_id=158342970]
 NodeToGiveFocusTo = NodePath("../../VBoxContainer2/HBoxContainer/CancelButton")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="." index="1"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="." index="1" unique_id=406948132]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 11.0
 offset_right = 353.0
 offset_bottom = 409.0
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
 
-[node name="Spacer2" type="Control" parent="VBoxContainer2" index="0"]
+[node name="Spacer2" type="Control" parent="VBoxContainer2" index="0" unique_id=1673557192]
 custom_minimum_size = Vector2(342, 16)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2" index="1"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2" index="1" unique_id=666012127]
 custom_minimum_size = Vector2(275, 0)
 layout_mode = 2
 
-[node name="SpeciesName" type="LineEdit" parent="VBoxContainer2/HBoxContainer2" index="0"]
+[node name="SpeciesName" type="LineEdit" parent="VBoxContainer2/HBoxContainer2" index="0" unique_id=1436862999]
 custom_minimum_size = Vector2(240, 27)
 layout_mode = 2
 size_flags_vertical = 4
@@ -82,12 +84,10 @@ placeholder_text = "SPECIES_NAME_DOT_DOT_DOT"
 max_length = 100
 caret_blink = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer2/HBoxContainer2/SpeciesName" index="0"]
-libraries = {
-&"": SubResource("AnimationLibrary_igpw6")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer2/HBoxContainer2/SpeciesName" index="0" unique_id=786344404]
+libraries/ = SubResource("AnimationLibrary_igpw6")
 
-[node name="RandomizeButton" type="TextureButton" parent="VBoxContainer2/HBoxContainer2" index="1"]
+[node name="RandomizeButton" type="TextureButton" parent="VBoxContainer2/HBoxContainer2" index="1" unique_id=399239354]
 custom_minimum_size = Vector2(31, 31)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -99,58 +99,60 @@ texture_disabled = ExtResource("11")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Spacer" type="Control" parent="VBoxContainer2" index="2"]
+[node name="Spacer" type="Control" parent="VBoxContainer2" index="2" unique_id=275626661]
 custom_minimum_size = Vector2(342, 16)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SpeciesDetails" parent="VBoxContainer2" index="3" instance=ExtResource("5")]
+[node name="SpeciesDetails" parent="VBoxContainer2" index="3" unique_id=1584145580 instance=ExtResource("5")]
 layout_mode = 2
 
-[node name="Description" parent="VBoxContainer2" index="4" instance=ExtResource("3")]
+[node name="Description" parent="VBoxContainer2" index="4" unique_id=1233779701 instance=ExtResource("3")]
 custom_minimum_size = Vector2(342, 44)
 layout_mode = 2
 fit_content = true
 ExtendedBbcode = "FOSSILISATION_EXPLANATION"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2" index="5"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2" index="5" unique_id=489759531]
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="VBoxContainer2/HBoxContainer" index="0"]
+[node name="Spacer" type="Control" parent="VBoxContainer2/HBoxContainer" index="0" unique_id=1320714783]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CancelButton" type="Button" parent="VBoxContainer2/HBoxContainer" index="1"]
+[node name="CancelButton" type="Button" parent="VBoxContainer2/HBoxContainer" index="1" unique_id=19476337]
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 18
 text = "CANCEL"
 
-[node name="Spacer2" type="Control" parent="VBoxContainer2/HBoxContainer" index="2"]
+[node name="Spacer2" type="Control" parent="VBoxContainer2/HBoxContainer" index="2" unique_id=2060488545]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="FossiliseButton" type="Button" parent="VBoxContainer2/HBoxContainer" index="3"]
+[node name="FossiliseButton" type="Button" parent="VBoxContainer2/HBoxContainer" index="3" unique_id=1766889639]
 layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("10_wkor0")
 theme_override_font_sizes/font_size = 18
 text = "FOSSILISE"
 
-[node name="Spacer3" type="Control" parent="VBoxContainer2/HBoxContainer" index="4"]
+[node name="Spacer3" type="Control" parent="VBoxContainer2/HBoxContainer" index="4" unique_id=1667696265]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="OverwriteNameConfirmation" parent="." index="2" instance=ExtResource("4")]
+[node name="OverwriteNameConfirmation" parent="." index="2" unique_id=1179250609 instance=ExtResource("4")]
 custom_minimum_size = Vector2(440, 0)
+layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 935.0
 offset_bottom = 599.0
 WindowTitle = "CONFIRM_FOSSILISATION_OVERWRITE"
 
-[node name="FossilisationFailedDialog" parent="." index="3" instance=ExtResource("4")]
+[node name="FossilisationFailedDialog" parent="." index="3" unique_id=2095718850 instance=ExtResource("4")]
 custom_minimum_size = Vector2(440, 0)
+layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 935.0

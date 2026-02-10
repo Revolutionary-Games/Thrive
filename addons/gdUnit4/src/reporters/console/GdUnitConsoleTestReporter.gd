@@ -15,7 +15,7 @@ var test_session: GdUnitTestSession:
 			test_session.test_event.connect(on_gdunit_event)
 
 
-var _writer: GdUnitMessageWritter
+var _writer: GdUnitMessageWriter
 var _reporter: GdUnitTestReporter = GdUnitTestReporter.new()
 var _status_indent := 86
 var _detailed: bool
@@ -24,7 +24,7 @@ var _function_color: Color = Color.ANTIQUE_WHITE
 var _engine_type_color: Color = Color.ANTIQUE_WHITE
 
 
-func _init(writer: GdUnitMessageWritter, detailed := false) -> void:
+func _init(writer: GdUnitMessageWriter, detailed := false) -> void:
 	_writer = writer
 	_writer.clear()
 	_detailed = detailed
@@ -56,7 +56,7 @@ func on_gdunit_event(event: GdUnitEvent) -> void:
 			println_message(build_executed_test_case_msg(total_test_count(), total_skipped_count()), Color.DARK_SALMON)
 			println_message("Total execution time: %s" % LocalTime.elapsed(elapsed_time()), Color.DARK_SALMON)
 			# We need finally to set the wave effect to enable the animations
-			_writer.effect(GdUnitMessageWritter.Effect.WAVE).print_at("", 0)
+			_writer.effect(GdUnitMessageWriter.Effect.WAVE).print_at("", 0)
 
 		GdUnitEvent.TESTSUITE_BEFORE:
 			_reporter.init_statistics()
@@ -65,10 +65,10 @@ func on_gdunit_event(event: GdUnitEvent) -> void:
 
 		GdUnitEvent.TESTSUITE_AFTER:
 			if not event.reports().is_empty():
-				_writer.color(Color.DARK_SALMON)\
-					.style(GdUnitMessageWritter.BOLD)\
-					.println_message(event.suite_name()+":finalze")
-			_print_failure_report(event.reports())
+				_writer.indent(1).color(_engine_type_color).print_message(event._suite_name)
+				print_message(" > ")
+				print_message("finalize()", _function_color)
+				_print_failure_report(event.reports())
 			_print_statistics(_reporter.build_test_suite_statisitcs(event))
 			_print_status(event)
 			println_message("")
@@ -108,23 +108,23 @@ func _print_test_path(test: GdUnitTestCase, uid: GdUnitGUID) -> void:
 func _print_status(event: GdUnitEvent) -> void:
 	if event.is_flaky() and event.is_success():
 		var retries: int = event.statistic(GdUnitEvent.RETRY_COUNT)
-		_writer.color(Color.GREEN_YELLOW)\
-			.style(GdUnitMessageWritter.ITALIC)\
+		_writer.color(Color.GREEN_YELLOW) \
+			.style(GdUnitMessageWriter.ITALIC) \
 			.print_at("FLAKY (%d retries)" % retries, _status_indent)
 	elif event.is_success():
 		_writer.color(Color.FOREST_GREEN).print_at("PASSED", _status_indent)
 	elif event.is_skipped():
-		_writer.color(Color.GOLDENROD).style(GdUnitMessageWritter.ITALIC).print_at("SKIPPED", _status_indent)
+		_writer.color(Color.GOLDENROD).style(GdUnitMessageWriter.ITALIC).print_at("SKIPPED", _status_indent)
 	elif event.is_failed() or event.is_error():
-		var retries :int = event.statistic(GdUnitEvent.RETRY_COUNT)
+		var retries: int = event.statistic(GdUnitEvent.RETRY_COUNT)
 		var message := "FAILED (retry %d)" % retries if retries > 1 else "FAILED"
-		_writer.color(Color.FIREBRICK)\
-			.style(GdUnitMessageWritter.BOLD)\
-			.effect(GdUnitMessageWritter.Effect.WAVE)\
+		_writer.color(Color.FIREBRICK) \
+			.style(GdUnitMessageWriter.BOLD) \
+			.effect(GdUnitMessageWriter.Effect.WAVE) \
 			.print_at(message, _status_indent)
 	elif event.is_warning():
-		_writer.color(Color.GOLDENROD)\
-			.style(GdUnitMessageWritter.UNDERLINE)\
+		_writer.color(Color.GOLDENROD) \
+			.style(GdUnitMessageWriter.UNDERLINE) \
 			.print_at("WARNING", _status_indent)
 
 	println_message(" %s" % LocalTime.elapsed(event.elapsed_time()), Color.CORNFLOWER_BLUE)
@@ -137,10 +137,11 @@ func _print_failure_report(reports: Array[GdUnitReport]) -> void:
 			or report.is_error()
 			or report.is_warning()
 			or report.is_skipped()
+			or report.is_orphan()
 		):
-			_writer.indent(1)\
-				.color(Color.DARK_TURQUOISE)\
-				.style(GdUnitMessageWritter.BOLD | GdUnitMessageWritter.UNDERLINE)\
+			_writer.indent(1) \
+				.color(Color.DARK_TURQUOISE) \
+				.style(GdUnitMessageWriter.BOLD | GdUnitMessageWriter.UNDERLINE) \
 				.println_message("Report:")
 			var text := str(report)
 			for line in text.split("\n", false):
@@ -152,7 +153,7 @@ func _print_failure_report(reports: Array[GdUnitReport]) -> void:
 
 func _print_statistics(statistics: Dictionary) -> void:
 	print_message("Statistics:", Color.DODGER_BLUE)
-	print_message(" %d tests cases | %d errors | %d failures | %d flaky | %d skipped | %d orphans |" %\
+	print_message(" %d test cases | %d errors | %d failures | %d flaky | %d skipped | %d orphans |" % \
 		[statistics["total_count"],
 		statistics["error_count"],
 		statistics["failed_count"],
@@ -163,8 +164,8 @@ func _print_statistics(statistics: Dictionary) -> void:
 
 func _print_summary() -> void:
 	print_message("Overall Summary:", Color.DODGER_BLUE)
-	_writer\
-		.println_message(" %d tests cases | %d errors | %d failures | %d flaky | %d skipped | %d orphans |" % [
+	_writer \
+		.println_message(" %d test cases | %d errors | %d failures | %d flaky | %d skipped | %d orphans |" % [
 			total_test_count(),
 			total_error_count(),
 			total_failure_count(),
@@ -183,7 +184,7 @@ func build_executed_test_suite_msg(executed_count: int, total_count: int) -> Str
 func build_executed_test_case_msg(total_count: int, p_skipped_count: int) -> String:
 	if p_skipped_count == 0:
 		return "Executed test cases : (%d/%d)" % [total_count, total_count]
-	return "Executed test cases : (%d/%d), %d skipped" % [total_count-p_skipped_count, total_count, p_skipped_count]
+	return "Executed test cases : (%d/%d), %d skipped" % [total_count - p_skipped_count, total_count, p_skipped_count]
 
 
 func print_message(message: String, color: Color = _text_color) -> void:

@@ -80,8 +80,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
     public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
-        // If a cheaper organelle gets added, this will need to be updated
-        if (mp < 20)
+        if (mp < Constants.ORGANELLE_CHEAPEST_COST)
             return null;
 
         // TODO: would the following be more efficient?
@@ -112,6 +111,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
             if (organelle.RequiresNucleus && baseSpecies.IsBacteria)
                 continue;
 
+            // Don't add duplicate unique organelles
             if (organelle.Unique && baseSpecies.Organelles.Select(x => x.Definition).Contains(organelle))
                 continue;
 

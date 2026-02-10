@@ -1,29 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Type of cell in a multicellular species. There can be multiple instances of a cell type placed at once
 /// </summary>
-[JsonObject(IsReference = true)]
-public class CellType : ICellDefinition, ICloneable
+public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable, IArchivable
 {
-    [JsonConstructor]
+    public const ushort SERIALIZATION_VERSION = 2;
+
+    private IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate>? readonlyLayout;
+
     public CellType(OrganelleLayout<OrganelleTemplate> organelles, MembraneType membraneType)
     {
-        Organelles = organelles;
+        ModifiableOrganelles = organelles;
         MembraneType = membraneType;
+        CanEngulf = membraneType.CanEngulf;
     }
 
     public CellType(MembraneType membraneType)
     {
         MembraneType = membraneType;
-        Organelles = new OrganelleLayout<OrganelleTemplate>();
+        ModifiableOrganelles = new OrganelleLayout<OrganelleTemplate>();
+        CanEngulf = membraneType.CanEngulf;
     }
 
     /// <summary>
-    ///   Creates a cell type from the cell type of a microbe species
+    ///   Creates a cell type from the cell type of microbe species
     /// </summary>
     /// <param name="microbeSpecies">The microbe species to take the cell type parameters from</param>
     /// <param name="workMemory1">Temporary memory needed to copy organelle data</param>
@@ -33,21 +37,26 @@ public class CellType : ICellDefinition, ICloneable
     {
         foreach (var organelle in microbeSpecies.Organelles)
         {
-            Organelles.AddFast((OrganelleTemplate)organelle.Clone(), workMemory1, workMemory2);
+            ModifiableOrganelles.AddFast(organelle.Clone(), workMemory1, workMemory2);
         }
 
         MembraneRigidity = microbeSpecies.MembraneRigidity;
-        Colour = microbeSpecies.Colour;
+        Colour = microbeSpecies.SpeciesColour;
         IsBacteria = microbeSpecies.IsBacteria;
         CanEngulf = microbeSpecies.CanEngulf;
-        TypeName = Localization.Translate("STEM_CELL_NAME");
+        CellTypeName = Localization.Translate("STEM_CELL_NAME");
     }
 
-    [JsonProperty]
-    public OrganelleLayout<OrganelleTemplate> Organelles { get; private set; }
+    // TODO: avoid this adapter object allocation
+    public IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> Organelles => readonlyLayout ??=
+        new ReadonlyOrganelleLayoutAdapter<IReadOnlyOrganelleTemplate, OrganelleTemplate>(ModifiableOrganelles);
 
-    public string TypeName { get; set; } = "error";
+    public OrganelleLayout<OrganelleTemplate> ModifiableOrganelles { get; }
+
+    public string CellTypeName { get; set; } = "error";
     public int MPCost { get; set; } = 15;
+
+    public string? SplitFromTypeName { get; set; }
 
     public MembraneType MembraneType { get; set; }
     public float MembraneRigidity { get; set; }
@@ -56,16 +65,63 @@ public class CellType : ICellDefinition, ICloneable
     public float BaseRotationSpeed { get; set; }
     public bool CanEngulf { get; }
 
-    [JsonIgnore]
-    public string FormattedName => TypeName;
+    public string FormattedName => CellTypeName;
 
-    [JsonIgnore]
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.CellType;
+    public bool CanBeReferencedInArchive => true;
+
+    public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
+    {
+        if (type != (ArchiveObjectType)ThriveArchiveObjectType.CellType)
+            throw new NotSupportedException();
+
+        writer.WriteObject((CellType)obj);
+    }
+
+    public static CellType ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var result = new CellType(reader.ReadObject<OrganelleLayout<OrganelleTemplate>>(),
+            reader.ReadObject<MembraneType>())
+        {
+            CellTypeName = reader.ReadString() ?? throw new NullArchiveObjectException(),
+            MPCost = reader.ReadInt32(),
+            MembraneRigidity = reader.ReadFloat(),
+            Colour = reader.ReadColor(),
+            IsBacteria = reader.ReadBool(),
+            BaseRotationSpeed = reader.ReadFloat(),
+        };
+
+        if (version > 1)
+            result.SplitFromTypeName = reader.ReadString();
+
+        return result;
+    }
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteObject(ModifiableOrganelles);
+        writer.WriteObject(MembraneType);
+
+        writer.Write(CellTypeName);
+        writer.Write(MPCost);
+        writer.Write(MembraneRigidity);
+        writer.Write(Colour);
+        writer.Write(IsBacteria);
+        writer.Write(BaseRotationSpeed);
+
+        writer.Write(SplitFromTypeName);
+    }
+
     public bool RepositionToOrigin()
     {
-        var changes = Organelles.RepositionToOrigin();
+        var changes = ModifiableOrganelles.RepositionToOrigin();
         CalculateRotationSpeed();
         return changes;
     }
@@ -73,13 +129,13 @@ public class CellType : ICellDefinition, ICloneable
     public void UpdateNameIfValid(string newName)
     {
         if (!string.IsNullOrWhiteSpace(newName))
-            TypeName = newName;
+            CellTypeName = newName;
     }
 
     /// <summary>
     ///   Checks if this cell type is a brain tissue type
     /// </summary>
-    /// <returns>True when this is brain tissue</returns>
+    /// <returns>True when this is a brain tissue type</returns>
     /// <remarks>
     ///   <para>
     ///     TODO: make this check much more comprehensive to make brain tissue type more distinct
@@ -126,11 +182,45 @@ public class CellType : ICellDefinition, ICloneable
         return MicrobeSpecies.StateHasStabilizedImpl(worldSimulation);
     }
 
+    /// <summary>
+    ///   Replaces this type's data with the data from another type.
+    /// </summary>
+    /// <param name="otherType">Where to copy data from. Note that this does not deep copy the data!</param>
+    /// <param name="hexTemporaryMemory">Work memory</param>
+    /// <param name="hexTemporaryMemory2">Work memory 2</param>
+    /// <param name="shouldUpdatePosition">If true, repositions the organelles after copying to origin</param>
+    public void CopyFrom(CellType otherType, List<Hex> hexTemporaryMemory, List<Hex> hexTemporaryMemory2,
+        bool shouldUpdatePosition = false)
+    {
+        // Code very similar to what CellEditorComponent does on applying changes
+        ModifiableOrganelles.Clear();
+
+        // Even in a multicellular context, it should always be safe to apply the organelle growth order
+        foreach (var organelle in otherType.ModifiableOrganelles)
+        {
+            var organelleToAdd = organelle.Clone();
+            ModifiableOrganelles.AddFast(organelleToAdd, hexTemporaryMemory, hexTemporaryMemory2);
+        }
+
+        if (shouldUpdatePosition)
+            RepositionToOrigin();
+
+        // Update bacteria status
+        IsBacteria = otherType.IsBacteria;
+
+        UpdateNameIfValid(otherType.CellTypeName);
+
+        // Update membrane
+        MembraneType = otherType.MembraneType;
+        Colour = otherType.Colour;
+        MembraneRigidity = otherType.MembraneRigidity;
+    }
+
     public object Clone()
     {
         var result = new CellType(MembraneType)
         {
-            TypeName = TypeName,
+            CellTypeName = CellTypeName,
             MPCost = MPCost,
             MembraneRigidity = MembraneRigidity,
             Colour = Colour,
@@ -142,7 +232,7 @@ public class CellType : ICellDefinition, ICloneable
 
         foreach (var organelle in Organelles)
         {
-            result.Organelles.AddFast((OrganelleTemplate)organelle.Clone(), workMemory1, workMemory2);
+            result.ModifiableOrganelles.AddFast(organelle.Clone(), workMemory1, workMemory2);
         }
 
         return result;
@@ -158,15 +248,15 @@ public class CellType : ICellDefinition, ICloneable
         hash ^= (IsBacteria ? 1UL : 0UL) * 5779UL;
         hash ^= (ulong)count * 131;
 
-        // Additionally apply colour hash; this line doesn't appear in MicrobeSpecies, because colour hash
+        // Additionally, apply colour hash; this line doesn't appear in MicrobeSpecies, because colour hash
         // is applied by MicrobeSpecies' base class.
         hash ^= Colour.GetVisualHashCode();
 
-        var list = Organelles.Organelles;
+        var list = ModifiableOrganelles.Organelles;
 
         for (int i = 0; i < count; ++i)
         {
-            // Organelles in different order don't matter (in terms of visuals) so we don't apply any loop specific
+            // Organelles in different order don't matter (in terms of visuals), so we don't apply any loop-specific
             // stuff here
             unchecked
             {
@@ -181,10 +271,10 @@ public class CellType : ICellDefinition, ICloneable
     {
         var count = Organelles.Count;
 
-        int hash = TypeName.GetHashCode() ^ MembraneType.InternalName.GetHashCode() * 5743 ^
+        int hash = CellTypeName.GetHashCode() ^ MembraneType.InternalName.GetHashCode() * 5743 ^
             MembraneRigidity.GetHashCode() * 5749 ^ (IsBacteria ? 1 : 0) * 5779 ^ count * 131;
 
-        var list = Organelles.Organelles;
+        var list = ModifiableOrganelles.Organelles;
 
         for (int i = 0; i < count; ++i)
         {
@@ -194,8 +284,14 @@ public class CellType : ICellDefinition, ICloneable
         return hash;
     }
 
+    public override string ToString()
+    {
+        return $"CellType \"{CellTypeName}\" with {Organelles.Count} organelles";
+    }
+
     private void CalculateRotationSpeed()
     {
-        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles);
+        // TODO: switch this to use a read only interface
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(ModifiableOrganelles.Organelles);
     }
 }

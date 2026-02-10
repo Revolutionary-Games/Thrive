@@ -1,10 +1,11 @@
 ﻿namespace AutoEvo;
 
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
-[JSONDynamicTypeAllowed]
 public class PredatorRoot : SelectionPressure
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
     private static readonly LocalizedString NameString = new LocalizedString("MICHE_PREDATOR_ROOT_PRESSURE");
@@ -20,8 +21,24 @@ public class PredatorRoot : SelectionPressure
     {
     }
 
-    [JsonIgnore]
     public override LocalizedString Name => NameString;
+
+    public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.PredatorRoot;
+
+    public static PredatorRoot ReadFromArchive(ISArchiveReader reader, ushort version,
+        int referenceId)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        var instance = new PredatorRoot(reader.ReadFloat());
+
+        instance.ReadBasePropertiesFromArchive(reader, 1);
+        return instance;
+    }
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
@@ -29,15 +46,15 @@ public class PredatorRoot : SelectionPressure
             return 0;
 
         var atpFromGlucose = cache.GetCompoundGeneratedFrom(glucose, atp, microbeSpecies, patch.Biome);
+        var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
 
-        // Ensure that a predator actually needs the glucose from prey
-        if (atpFromGlucose >= cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumption)
+        // Ensure that a predator can actually survive off of only glucose
+        if (atpFromGlucose >= energyBalance.TotalConsumption)
         {
             return 1;
         }
 
-        if (atpFromGlucose >= cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome)
-                .TotalConsumptionStationary)
+        if (atpFromGlucose >= energyBalance.TotalConsumptionStationary)
         {
             return 0.5f;
         }

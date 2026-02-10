@@ -1,49 +1,12 @@
 ﻿using System;
-using Newtonsoft.Json;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Environmental tolerances of a species
 /// </summary>
-public class EnvironmentalTolerances
+public class EnvironmentalTolerances : IArchiveUpdatable, IReadOnlyEnvironmentalTolerances
 {
-    /// <summary>
-    ///   Temperature (in C) that this species likes to be in
-    /// </summary>
-    public float PreferredTemperature;
-
-    /// <summary>
-    ///   How wide a temperature range this species can stay in effectively. The range of temperatures is
-    ///   <c>PreferredTemperature - TemperatureTolerance</c> to <c>PreferredTemperature + TemperatureTolerance</c>
-    /// </summary>
-    public float TemperatureTolerance;
-
-    public float PressureMinimum;
-
-    /// <summary>
-    ///   This is specifically ignored, as pressure is saved as a maximum and minimum for save compatability.
-    /// </summary>
-    [JsonIgnore]
-    public float PressureTolerance;
-
-    public float UVResistance;
-    public float OxygenResistance;
-
-    public EnvironmentalTolerances()
-        : this(0, 0, 0, 0, 0, 0)
-    {
-    }
-
-    [JsonConstructor]
-    public EnvironmentalTolerances(float preferredTemperature, float temperatureTolerance, float pressureMinimum,
-        float pressureMaximum, float uvResistance, float oxygenResistance)
-    {
-        PreferredTemperature = preferredTemperature;
-        TemperatureTolerance = temperatureTolerance;
-        PressureMinimum = pressureMinimum;
-        PressureTolerance = pressureMaximum - pressureMinimum;
-        UVResistance = uvResistance;
-        OxygenResistance = oxygenResistance;
-    }
+    public const ushort SERIALIZATION_VERSION = 1;
 
     [Flags]
     public enum ToleranceChangedStats
@@ -54,8 +17,37 @@ public class EnvironmentalTolerances
         OxygenResistance = 8,
     }
 
-    [JsonProperty]
-    public float PressureMaximum => PressureMinimum + PressureTolerance;
+    /// <summary>
+    ///   Temperature (in C) that this species likes to be in
+    /// </summary>
+    public float PreferredTemperature { get; set; } = 15;
+
+    /// <summary>
+    ///   How wide a temperature range this species can stay in effectively. The range of temperatures is
+    ///   <c>PreferredTemperature - TemperatureTolerance</c> to <c>PreferredTemperature + TemperatureTolerance</c>
+    /// </summary>
+    public float TemperatureTolerance { get; set; } = 21;
+
+    /// <summary>
+    ///   Minimum pressure this species likes. The value is in Pa (pascals). This is not just a single range as
+    ///   the range needs to be lopsided towards surviving higher pressures.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The difference between the defaults may not be over Constants.TOLERANCE_PRESSURE_RANGE_MAX, otherwise the
+    ///     GUI will break when this data is fed in.
+    ///   </para>
+    /// </remarks>
+    public float PressureMinimum { get; set; } = 71325;
+
+    public float PressureMaximum { get; set; } = 301325;
+
+    public float UVResistance { get; set; }
+    public float OxygenResistance { get; set; }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+
+    public ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.EnvironmentalTolerances;
 
     public static bool operator ==(EnvironmentalTolerances? left, EnvironmentalTolerances? right)
     {
@@ -67,12 +59,12 @@ public class EnvironmentalTolerances
         return !Equals(left, right);
     }
 
-    public void CopyFrom(EnvironmentalTolerances tolerancesToCopy)
+    public void CopyFrom(IReadOnlyEnvironmentalTolerances tolerancesToCopy)
     {
         PreferredTemperature = tolerancesToCopy.PreferredTemperature;
         TemperatureTolerance = tolerancesToCopy.TemperatureTolerance;
         PressureMinimum = tolerancesToCopy.PressureMinimum;
-        PressureTolerance = tolerancesToCopy.PressureTolerance;
+        PressureMaximum = tolerancesToCopy.PressureMaximum;
         UVResistance = tolerancesToCopy.UVResistance;
         OxygenResistance = tolerancesToCopy.OxygenResistance;
     }
@@ -85,7 +77,7 @@ public class EnvironmentalTolerances
 
     public bool SanityCheckNoThrow()
     {
-        if (PressureMinimum > Math.Min(PressureMaximum, Constants.TOLERANCE_PRESSURE_MAX))
+        if (PressureMinimum > PressureMaximum)
             return false;
 
         if (PressureMaximum < 0)
@@ -105,7 +97,7 @@ public class EnvironmentalTolerances
         }
 
         if (Math.Abs(PressureMinimum - other.PressureMinimum) > 0.01f ||
-            Math.Abs(PressureTolerance - other.PressureTolerance) > 0.01f)
+            Math.Abs(PressureMaximum - other.PressureMaximum) > 0.01f)
         {
             changes |= ToleranceChangedStats.Pressure;
         }
@@ -117,6 +109,29 @@ public class EnvironmentalTolerances
             changes |= ToleranceChangedStats.OxygenResistance;
 
         return changes;
+    }
+
+    public void WritePropertiesToArchive(ISArchiveWriter writer)
+    {
+        writer.Write(PreferredTemperature);
+        writer.Write(TemperatureTolerance);
+        writer.Write(PressureMinimum);
+        writer.Write(PressureMaximum);
+        writer.Write(UVResistance);
+        writer.Write(OxygenResistance);
+    }
+
+    public void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
+
+        PreferredTemperature = reader.ReadFloat();
+        TemperatureTolerance = reader.ReadFloat();
+        PressureMinimum = reader.ReadFloat();
+        PressureMaximum = reader.ReadFloat();
+        UVResistance = reader.ReadFloat();
+        OxygenResistance = reader.ReadFloat();
     }
 
     public override bool Equals(object? obj)
@@ -136,7 +151,7 @@ public class EnvironmentalTolerances
         return Math.Abs(PreferredTemperature - other.PreferredTemperature) < MathUtils.EPSILON &&
             Math.Abs(TemperatureTolerance - other.TemperatureTolerance) < MathUtils.EPSILON &&
             Math.Abs(PressureMinimum - other.PressureMinimum) < MathUtils.EPSILON &&
-            Math.Abs(PressureTolerance - other.PressureTolerance) < MathUtils.EPSILON &&
+            Math.Abs(PressureMaximum - other.PressureMaximum) < MathUtils.EPSILON &&
             Math.Abs(UVResistance - other.UVResistance) < MathUtils.EPSILON &&
             Math.Abs(OxygenResistance - other.OxygenResistance) < MathUtils.EPSILON;
     }
@@ -151,7 +166,7 @@ public class EnvironmentalTolerances
     public override int GetHashCode()
     {
         return HashCode.Combine(PreferredTemperature, TemperatureTolerance, PressureMinimum,
-            PressureTolerance, UVResistance, OxygenResistance);
+            PressureMaximum, UVResistance, OxygenResistance);
     }
 
     protected bool Equals(EnvironmentalTolerances other)
@@ -159,8 +174,7 @@ public class EnvironmentalTolerances
         return PreferredTemperature.Equals(other.PreferredTemperature) &&
             TemperatureTolerance.Equals(other.TemperatureTolerance) &&
             PressureMinimum.Equals(other.PressureMinimum) &&
-            PressureTolerance.Equals(other.PressureTolerance) &&
-            UVResistance.Equals(other.UVResistance) &&
+            PressureMaximum.Equals(other.PressureMaximum) && UVResistance.Equals(other.UVResistance) &&
             OxygenResistance.Equals(other.OxygenResistance);
     }
 }

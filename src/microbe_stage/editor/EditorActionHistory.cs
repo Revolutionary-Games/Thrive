@@ -1,6 +1,10 @@
-﻿using System;
+﻿// #define DEBUG_ACTION_COSTS
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Saving.Serializers;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Holds the action history for the editor.
@@ -18,61 +22,23 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
 {
     private List<EditorCombinableActionData>? cache;
 
+    public EditorActionHistory()
+    {
+    }
+
+    /// <summary>
+    ///   Used by the deserializer
+    /// </summary>
+    protected EditorActionHistory(List<TAction> actions, int actionIndex) : base(actions, actionIndex)
+    {
+    }
+
+    public override ushort CurrentArchiveVersion => ActionHistorySerializer.SERIALIZATION_VERSION;
+
+    public override ArchiveObjectType ArchiveObjectType =>
+        (ArchiveObjectType)ThriveArchiveObjectType.ExtendedEditorActionHistory;
+
     private List<EditorCombinableActionData> History => cache ??= GetActionHistorySinceLastHistoryResettingAction();
-
-    /// <summary>
-    ///   Calculates how much MP these actions would cost if performed on top of the current history.
-    /// </summary>
-    public double WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
-    {
-        double sum = 0;
-
-        // TODO: there's a potential pitfall here in that if multiple things are in actions they cannot see each other
-        // and thus their total cost once applied may not be the same as calculated here.
-        // A proper solution would need to build a temporary list of all the data and insert the actions into it and
-        // only then calculate the resulting change in cost.
-
-        // TODO: somehow avoid the enumerator allocation here
-        foreach (var action in actions)
-            sum += WhatWouldActionCost(action);
-
-        return sum;
-    }
-
-    /// <summary>
-    ///   Calculates how much MP this action would cost if performed on top of the current history.
-    /// </summary>
-    public double WhatWouldActionCost(EditorCombinableActionData combinableAction)
-    {
-        if (CheatManager.InfiniteMP)
-            return 0;
-
-        return combinableAction.CalculateCost(History, History.Count);
-    }
-
-    /// <summary>
-    ///   Calculates the remaining MP from the action history.
-    /// </summary>
-    public double CalculateMutationPointsLeft()
-    {
-        if (CheatManager.InfiniteMP)
-            return Constants.BASE_MUTATION_POINTS;
-
-        // As History is a reference, changing this affects the history cache
-        var processedHistory = History;
-
-        double mpLeft = Constants.BASE_MUTATION_POINTS;
-
-        var count = processedHistory.Count;
-        for (int i = 0; i < count; ++i)
-        {
-            var action = processedHistory[i];
-
-            mpLeft -= action.CalculateCost(History, i);
-        }
-
-        return mpLeft;
-    }
 
     public override bool Redo()
     {
@@ -143,7 +109,8 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     }
 
     public bool HexPlacedThisSession<THex, TContext>(THex hex)
-        where THex : class, IActionHex
+        where THex : class, IActionHex, IArchivable
+        where TContext : IArchivable
     {
         return History.OfType<HexPlacementActionData<THex, TContext>>().Any(a => a.PlacedHex == hex);
     }
@@ -154,6 +121,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// <typeparam name="TContext">The type of context to be returned.</typeparam>
     /// <returns>The context the next action to redo should be performed in.</returns>
     public TContext? GetRedoContext<TContext>()
+        where TContext : IArchivable
     {
         return GetContext<TContext>(ActionToRedo());
     }
@@ -164,11 +132,21 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// <typeparam name="TContext">The type of context to be returned.</typeparam>
     /// <returns>The context the next action to undo should be performed in.</returns>
     public TContext? GetUndoContext<TContext>()
+        where TContext : IArchivable
     {
         return GetContext<TContext>(ActionToUndo());
     }
 
+    public void GetPerformedActionData(List<EditorCombinableActionData> result)
+    {
+        for (int i = 0; i < ActionIndex; ++i)
+        {
+            Actions[i].CopyData(result);
+        }
+    }
+
     private static TContext? GetContext<TContext>(TAction? action)
+        where TContext : IArchivable
     {
         // We don't allow combining actions from different contexts,
         // so we only need to check the first data for the context

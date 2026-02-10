@@ -1,12 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using Newtonsoft.Json;
-using Saving.Serializers;
 
 /// <summary>
 ///   Structure that can only be built in space / on an entire celestial body at once
 /// </summary>
-[TypeConverter($"Saving.Serializers.{nameof(SpaceStructureStringConverter)}")]
 public class SpaceStructureDefinition : BaseBuildableStructure
 {
     [JsonConstructor]

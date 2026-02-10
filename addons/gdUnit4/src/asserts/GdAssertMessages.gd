@@ -4,8 +4,8 @@ extends Resource
 const WARN_COLOR = "#EFF883"
 const ERROR_COLOR = "#CD5C5C"
 const VALUE_COLOR = "#1E90FF"
-const SUB_COLOR :=  Color(1, 0, 0, .3)
-const ADD_COLOR :=  Color(0, 1, 0, .3)
+const SUB_COLOR :=  Color(1, 0, 0, .15)
+const ADD_COLOR :=  Color(0, 1, 0, .15)
 
 
 # Dictionary of control characters and their readable representations
@@ -40,35 +40,53 @@ static func input_event_as_text(event :InputEvent) -> String:
 	var text := ""
 	if event is InputEventKey:
 		var key_event := event as InputEventKey
-		text += "InputEventKey : key='%s', pressed=%s, keycode=%d, physical_keycode=%s" % [
-					event.as_text(), key_event.pressed, key_event.keycode, key_event.physical_keycode]
+		text += """
+			InputEventKey : keycode=%s (%s) pressed: %s
+				physical_keycode: %s
+				location: %s
+				echo: %s""" % [
+					key_event.keycode,
+					event.as_text_keycode(),
+					key_event.pressed,
+					key_event.physical_keycode,
+					key_event.location,
+					key_event.echo]
 	else:
 		text += event.as_text()
 	if event is InputEventMouse:
 		var mouse_event := event as InputEventMouse
-		text += ", global_position %s" % mouse_event.global_position
+		text += """
+				global_position: %s""" % mouse_event.global_position
 	if event is InputEventWithModifiers:
 		var mouse_event := event as InputEventWithModifiers
-		text += ", shift=%s, alt=%s, control=%s, meta=%s, command=%s" % [
+		text += """
+				--------
+				mods: %s
+				shift: %s
+				alt: %s
+				control: %s
+				meta: %s
+				command: %s""" % [
+					mouse_event.get_modifiers_mask(),
 					mouse_event.shift_pressed,
 					mouse_event.alt_pressed,
 					mouse_event.ctrl_pressed,
 					mouse_event.meta_pressed,
 					mouse_event.command_or_control_autoremap]
-	return text
+	return text.dedent()
 
 
-static func _colored_string_div(characters :String) -> String:
-	return colored_array_div(characters.to_utf8_buffer())
+static func _colored_string_div(characters: String) -> String:
+	return colored_array_div(characters.to_utf32_buffer().to_int32_array())
 
 
-static func colored_array_div(characters :PackedByteArray) -> String:
+static func colored_array_div(characters: PackedInt32Array) -> String:
 	if characters.is_empty():
 		return "<empty>"
-	var result := PackedByteArray()
+	var result := PackedInt32Array()
 	var index := 0
-	var missing_chars := PackedByteArray()
-	var additional_chars := PackedByteArray()
+	var missing_chars := PackedInt32Array()
+	var additional_chars := PackedInt32Array()
 
 	while index < characters.size():
 		var character := characters[index]
@@ -84,17 +102,17 @@ static func colored_array_div(characters :PackedByteArray) -> String:
 			_:
 				if not missing_chars.is_empty():
 					result.append_array(format_chars(missing_chars, SUB_COLOR))
-					missing_chars = PackedByteArray()
+					missing_chars = PackedInt32Array()
 				if not additional_chars.is_empty():
 					result.append_array(format_chars(additional_chars, ADD_COLOR))
-					additional_chars = PackedByteArray()
+					additional_chars = PackedInt32Array()
 				@warning_ignore("return_value_discarded")
 				result.append(character)
 		index += 1
 
 	result.append_array(format_chars(missing_chars, SUB_COLOR))
 	result.append_array(format_chars(additional_chars, ADD_COLOR))
-	return result.get_string_from_utf8()
+	return result.to_byte_array().get_string_from_utf32()
 
 
 static func _typed_value(value :Variant) -> String:
@@ -117,6 +135,10 @@ static func _nerror(number :Variant) -> String:
 			return "[color=%s]%f[/color]" % [ERROR_COLOR, number]
 		_:
 			return "[color=%s]%s[/color]" % [ERROR_COLOR, str(number)]
+
+
+static func _colored(value: Variant, color: Color) -> String:
+	return "[color=%s]%s[/color]" % [color.to_html(), value]
 
 
 static func _colored_value(value :Variant) -> String:
@@ -161,19 +183,53 @@ static func _index_report_as_table(index_reports :Array) -> String:
 	return table.replace("$cells", cells)
 
 
-static func orphan_detected_on_suite_setup(count :int) -> String:
-	return "%s\n Detected <%d> orphan nodes during test suite setup stage! [b]Check before() and after()![/b]" % [
-		_warning("WARNING:"), count]
+
+static func orphan_warning(orphans_count: int) -> String:
+	return """
+		%s: Found %s possible orphan nodes.
+			Add %s to the end of the test to collect details.""".dedent().trim_prefix("\n") % [
+		_warning("WARNING:"),
+		_nerror(orphans_count),
+		_colored_value("collect_orphan_node_details()")
+	]
+
+static func orphan_detected_on_suite_setup(orphans: Array[GdUnitOrphanNodeInfo]) -> String:
+	return """
+		%s Detected %s orphan nodes!
+			[b]Verify your test suite setup.[/b]
+		%s""".dedent().trim_prefix("\n") % [
+		_warning("WARNING:"),
+		_nerror(orphans.size()),
+		_build_orphan_node_stacktrace(orphans)]
 
 
-static func orphan_detected_on_test_setup(count :int) -> String:
-	return "%s\n Detected <%d> orphan nodes during test setup! [b]Check before_test() and after_test()![/b]" % [
-		_warning("WARNING:"), count]
+static func orphan_detected_on_test_setup(orphans: Array[GdUnitOrphanNodeInfo]) -> String:
+	return """
+			%s Detected %s orphan nodes on test setup!
+				[b]Check before_test() and after_test()![/b]
+			%s""".dedent().trim_prefix("\n") % [
+				_warning("WARNING:"),
+				_nerror(orphans.size()),
+				_build_orphan_node_stacktrace(orphans)
+			]
 
 
-static func orphan_detected_on_test(count :int) -> String:
-	return "%s\n Detected <%d> orphan nodes during test execution!" % [
-		_warning("WARNING:"), count]
+static func orphan_detected_on_test(orphans: Array[GdUnitOrphanNodeInfo]) -> String:
+	return """
+		%s Detected %s orphan nodes!
+		%s""".dedent().trim_prefix("\n") % [
+			_warning("WARNING:"),
+			_nerror(orphans.size()),
+			_build_orphan_node_stacktrace(orphans)
+		]
+
+
+static func _build_orphan_node_stacktrace(orphans: Array[GdUnitOrphanNodeInfo]) -> String:
+	var stack_trace := "\n"
+	for orphan in orphans:
+		stack_trace += orphan.as_trace(orphan, true) + "\n"
+	return stack_trace.indent("    ")
+
 
 
 static func fuzzer_interuped(iterations: int, error: String) -> String:
@@ -186,6 +242,10 @@ static func fuzzer_interuped(iterations: int, error: String) -> String:
 
 static func test_timeout(timeout :int) -> String:
 	return "%s\n %s" % [_error("Timeout !"), _colored_value("Test timed out after %s" %  LocalTime.elapsed(timeout))]
+
+
+static func test_session_terminated() -> String:
+	return "%s" % _error("Test Session Terminated")
 
 
 # gdlint:disable = mixed-tabs-and-spaces
@@ -637,12 +697,12 @@ static func error_contains_exactly(current: Array, expected: Array) -> String:
 	return "%s\n %s\n but was\n %s" % [_error("Expecting exactly equal:"), _colored_value(expected), _colored_value(current)]
 
 
-static func format_chars(characters :PackedByteArray, type :Color) -> PackedByteArray:
+static func format_chars(characters: PackedInt32Array, type: Color) -> PackedInt32Array:
 	if characters.size() == 0:# or characters[0] == 10:
 		return characters
 
 	# Replace each control character with its readable form
-	var formatted_text := characters.get_string_from_utf8()
+	var formatted_text := characters.to_byte_array().get_string_from_utf32()
 	for control_char: String in CONTROL_CHARS:
 		var replace_text: String = CONTROL_CHARS[control_char]
 		formatted_text = formatted_text.replace(control_char, replace_text)
@@ -664,8 +724,8 @@ static func format_chars(characters :PackedByteArray, type :Color) -> PackedByte
 		ascii_text
 	]
 
-	var result := PackedByteArray()
-	result.append_array(message.to_utf8_buffer())
+	var result := PackedInt32Array()
+	result.append_array(message.to_utf32_buffer().to_int32_array())
 	return result
 
 

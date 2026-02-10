@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://rirjhe7rihaw"]
+
+[ext_resource type="PackedScene" uid="uid://bm22n8cc3snmo" path="res://assets/models/IceSnowflakeChunk3.glb" id="1_gxmcw"]
+[ext_resource type="Shader" uid="uid://b4sr4fjh8yyvt" path="res://shaders/CrystalOpaque.gdshader" id="2_0w207"]
+[ext_resource type="Texture2D" uid="uid://b1re7y7q2gur4" path="res://assets/textures/Snowflake.png" id="2_s5j0o"]
+[ext_resource type="Texture2D" uid="uid://c8ck5mosuq7xq" path="res://assets/textures/Snowflake_3_normal.png" id="3_s5j0o"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="4_aye23"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0w207"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_0w207")
+shader_parameter/albedo = Color(0.8392157, 1, 1, 0.87058824)
+shader_parameter/albedoTexture = ExtResource("2_s5j0o")
+shader_parameter/useNormal = true
+shader_parameter/normalTexture = ExtResource("3_s5j0o")
+shader_parameter/roughness = 0.6
+shader_parameter/roughnessTextureChannel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.7
+shader_parameter/metallic = 0.57
+shader_parameter/emission = Color(0.32156864, 0.32156864, 0.43529412, 1)
+shader_parameter/emissionEnergy = 0.25
+shader_parameter/dissolveTexture = ExtResource("4_aye23")
+shader_parameter/dissolveValue = 0.0
+shader_parameter/dissolveScale = 1.0
+shader_parameter/outlineWidth = 0.0
+
+[node name="SnowflakeChunk3" unique_id=502260267 instance=ExtResource("1_gxmcw")]
+
+[node name="snowflake3" parent="." index="0" unique_id=1392813731]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13969564, 1.9073486e-06, 0.01740551)
+material_override = SubResource("ShaderMaterial_0w207")

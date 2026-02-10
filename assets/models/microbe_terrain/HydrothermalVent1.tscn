@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://4bbdjbnovl8h"]
+
+[ext_resource type="PackedScene" uid="uid://ch6gwtv4twht" path="res://assets/models/microbe_terrain/HydrothermalVent1.glb" id="1_d0ev2"]
+[ext_resource type="Texture2D" uid="uid://bhrqlai6kukap" path="res://assets/textures/environment/HydrothermalVent1.png" id="2_gfywr"]
+[ext_resource type="Texture2D" uid="uid://b8vx0hm34fgw8" path="res://assets/textures/environment/HydrothermalVent1_normal.png" id="3_6d4ur"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6d4ur"]
+albedo_texture = ExtResource("2_gfywr")
+normal_enabled = true
+normal_texture = ExtResource("3_6d4ur")
+
+[node name="HydrothermalVent1" unique_id=66294728 instance=ExtResource("1_d0ev2")]
+
+[node name="BigChimney" parent="UnderwaterChimney" parent_id_path=PackedInt32Array(217785914) index="0" unique_id=125682546]
+surface_material_override/0 = SubResource("StandardMaterial3D_6d4ur")

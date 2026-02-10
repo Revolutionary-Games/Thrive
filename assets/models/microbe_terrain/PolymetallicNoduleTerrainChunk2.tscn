@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bpd04dfbkbwi5"]
+
+[ext_resource type="PackedScene" uid="uid://bddlaoi8k34g8" path="res://assets/models/microbe_terrain/PolymetallicNoduleTerrainChunk2.glb" id="1_5axyc"]
+[ext_resource type="Material" uid="uid://bd216owgjcr1" path="res://assets/models/microbe_terrain/PolymetallicNoduleTerrainChunk.material" id="2_23ds2"]
+
+[node name="PolymetallicNoduleTerrainChunk2" unique_id=2138467920 instance=ExtResource("1_5axyc")]
+
+[node name="polymetallicnodule2" parent="." index="0" unique_id=1447120056]
+surface_material_override/0 = ExtResource("2_23ds2")

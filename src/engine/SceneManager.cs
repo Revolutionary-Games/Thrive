@@ -250,8 +250,49 @@ public partial class SceneManager : Node
         return alreadyQuit;
     }
 
+    [Command("load", true, "Switches to the specified game state.")]
+    private static void CommandLoadScene(MainGameState state)
+    {
+        CheatManager.OnCheatsDisabled();
+        AchievementsManager.ReportNewGameStarted(true);
+
+        Instance.SwitchToScene(state);
+    }
+
+    [Command("load", true, "Switches to the specified scene, given its resource path.")]
+    private static bool CommandLoadScene(string scenePath)
+    {
+        bool overrideGameStartAgain = false;
+
+        if (scenePath.Equals("multicellular", StringComparison.OrdinalIgnoreCase) ||
+            scenePath.Equals("MulticellularStage", StringComparison.OrdinalIgnoreCase))
+        {
+            scenePath = "res://src/stage_starters/MulticellularStageStarter.tscn";
+            overrideGameStartAgain = true;
+        }
+        else if (!ResourceLoader.Exists(scenePath))
+        {
+            GD.PrintErr("Load command: the resource at the specified path does not exist.");
+            return false;
+        }
+
+        CheatManager.OnCheatsDisabled();
+        AchievementsManager.ReportNewGameStarted(true);
+
+        Instance.SwitchToScene(scenePath);
+
+        // When using a scene starter, we need to report a second new game start to get the cheated flags updated
+        if (overrideGameStartAgain)
+        {
+            // Due to the way the scene switch works, this needs a bunch of delay
+            Invoke.Instance.Delay(() => { AchievementsManager.ReportNewGameStarted(true); }, 1);
+        }
+
+        return true;
+    }
+
     /// <summary>
-    ///   Ensures the shutdown node is last in tree order, this is needed for it to actually execute last
+    ///   Ensures the shutdown node is last in tree order; this is needed for it to actually execute last
     /// </summary>
     private void EnsureShutdownIsLastChild()
     {

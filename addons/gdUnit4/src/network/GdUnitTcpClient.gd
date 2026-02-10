@@ -1,3 +1,4 @@
+@tool
 class_name GdUnitTcpClient
 extends GdUnitTcpNode
 
@@ -100,7 +101,8 @@ func process_rpc() -> void:
 	if _stream.get_available_bytes() > 0:
 		var rpc_data := rpc_receive()
 		if rpc_data is RPCClientDisconnect:
-			stop()
+			console("RPCClientDisconnect")
+			GdUnitSignals.instance().gdunit_test_session_terminate.emit.call_deferred()
 
 
 func send(data: RPC) -> void:

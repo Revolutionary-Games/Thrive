@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1yurukm6a0vq"]
+[gd_scene format=3 uid="uid://c1yurukm6a0vq"]
 
 [ext_resource type="PackedScene" uid="uid://c4q56mnjxg8vj" path="res://src/macroscopic_stage/editor/EditorCamera3D.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://cpxcni1cii4k8" path="res://assets/models/EditorArrow.tscn" id="2"]
@@ -19,11 +19,12 @@ sky_material = SubResource("PanoramaSkyMaterial_nliqr")
 resource_local_to_scene = true
 background_mode = 2
 sky = SubResource("5")
+ambient_light_source = 1
 ambient_light_color = Color(1, 1, 1, 1)
 
-[node name="3DEditorWorld" type="Node"]
+[node name="3DEditorWorld" type="Node" unique_id=158422131]
 
-[node name="PrimaryCamera" parent="." instance=ExtResource("1")]
+[node name="PrimaryCamera" parent="." unique_id=1227098236 instance=ExtResource("1")]
 MinDistance = 1.1
 MaxDistance = 100.0
 SidePresetViewDistances = 15.0
@@ -38,22 +39,22 @@ DefaultYRotation = 3.142
 ViewDistance = 12.0
 DefaultViewDistance = 12.0
 
-[node name="CameraRotationCenter" type="Node3D" parent="."]
+[node name="CameraRotationCenter" type="Node3D" parent="." unique_id=1593586086]
 
-[node name="EditorArrow" parent="." instance=ExtResource("2")]
+[node name="EditorArrow" parent="." unique_id=785324618 instance=ExtResource("2")]
 transform = Transform3D(-0.5, 0, -1.94707e-07, 0, 0.5, 0, 1.94707e-07, 0, -0.5, 0, 0.2, 0)
 
-[node name="EditorLight" type="OmniLight3D" parent="."]
+[node name="EditorLight" type="OmniLight3D" parent="." unique_id=1851608961]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 light_energy = 0.5
 shadow_enabled = true
 omni_range = 100.0
 omni_attenuation = 0.420448
 
-[node name="DynamicallySpawned" type="Node3D" parent="."]
+[node name="DynamicallySpawned" type="Node3D" parent="." unique_id=1350978535]
 
-[node name="Ground" type="MeshInstance3D" parent="."]
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=1201993402]
 mesh = SubResource("3")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=232823169]
 environment = SubResource("6")

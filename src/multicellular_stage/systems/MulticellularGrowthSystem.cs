@@ -3,12 +3,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles growth in multicellular cell colonies
@@ -21,17 +23,9 @@ using World = DefaultEcs.World;
 ///   </para>
 ///   <para>
 ///     The runtime cost is purely a guess here based on the fact that this is likely a bit heavy system like
-///     microbe reproduction but this does less so should probably have lower cost.
+///     microbe reproduction, but this does less so should probably have a lower cost.
 ///   </para>
 /// </remarks>
-[With(typeof(ReproductionStatus))]
-[With(typeof(MulticellularSpeciesMember))]
-[With(typeof(MulticellularGrowth))]
-[With(typeof(CompoundStorage))]
-[With(typeof(MicrobeStatus))]
-[With(typeof(OrganelleContainer))]
-[With(typeof(Health))]
-[Without(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(MicrobeStatus))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
@@ -40,12 +34,9 @@ using World = DefaultEcs.World;
 [RunsAfter(typeof(ProcessSystem))]
 [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
 [RuntimeCost(4, false)]
-public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
+public partial class MulticellularGrowthSystem : BaseSystem<World, float>
 {
-    // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-    // private readonly ThreadLocal<List<Compound>> temporaryWorkData = new(() => new List<Compound>());
-
-    private readonly List<Compound> temporaryWorkData = new();
+    private readonly ThreadLocal<List<Compound>> temporaryWorkData = new(() => new List<Compound>());
 
     private readonly IWorldSimulation worldSimulation;
     private readonly IMicrobeSpawnEnvironment spawnEnvironment;
@@ -53,8 +44,8 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
     private GameWorld? gameWorld;
 
     public MulticellularGrowthSystem(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
-        ISpawnSystem spawnSystem, World world, IParallelRunner runner) :
-        base(world, runner, Constants.SYSTEM_LOW_ENTITIES_PER_THREAD)
+        ISpawnSystem spawnSystem, World world) :
+        base(world)
     {
         this.worldSimulation = worldSimulation;
         this.spawnEnvironment = spawnEnvironment;
@@ -66,54 +57,47 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
         gameWorld = world;
     }
 
-    public override void Dispose()
-    {
-        Dispose(true);
-        base.Dispose();
-    }
-
-    protected override void PreUpdate(float delta)
+    public override void BeforeUpdate(in float delta)
     {
         if (gameWorld == null)
             throw new InvalidOperationException("GameWorld not set");
-
-        base.PreUpdate(delta);
     }
 
-    protected override void Update(float delta, in Entity entity)
+    public sealed override void Dispose()
     {
-        ref var health = ref entity.Get<Health>();
+        Dispose(true);
+        base.Dispose();
+        GC.SuppressFinalize(this);
+    }
 
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [None<AttachedToEntity>]
+    private void Update([Data] in float delta, ref MulticellularGrowth growth, ref Health health,
+        ref MicrobeControl microbeControl, ref MulticellularSpeciesMember speciesData,
+        ref OrganelleContainer organelleContainer,
+        ref MicrobeStatus status, ref ReproductionStatus baseReproduction, ref CompoundStorage compoundStorage,
+        in Entity entity)
+    {
         // Dead multicellular colonies can't reproduce
         if (health.Dead)
             return;
 
-        if (entity.Has<MicrobeControl>())
-        {
-            // Microbe reproduction is stopped when mucocyst is active (so makes sense to make same apply to
-            // multicellular). This is not a colony-aware check but probably good enough.
-            if (entity.Get<MicrobeControl>().State == MicrobeState.MucocystShield)
-                return;
-        }
+        // Microbe reproduction is stopped when mucocyst is active (so makes sense to make the same apply to
+        // multicellular). This is not a colony-aware check but probably good enough.
+        if (microbeControl.State == MicrobeState.MucocystShield)
+            return;
 
-        ref var growth = ref entity.Get<MulticellularGrowth>();
-        HandleMulticellularReproduction(ref growth, entity, delta);
+        HandleMulticellularReproduction(ref growth, ref speciesData, compoundStorage.Compounds, ref organelleContainer,
+            ref status, ref baseReproduction, entity, delta);
     }
 
-    private void HandleMulticellularReproduction(ref MulticellularGrowth multicellularGrowth, in Entity entity,
+    private void HandleMulticellularReproduction(ref MulticellularGrowth multicellularGrowth,
+        ref MulticellularSpeciesMember speciesData, CompoundBag compounds, ref OrganelleContainer organelleContainer,
+        ref MicrobeStatus status, ref ReproductionStatus baseReproduction, in Entity entity,
         float elapsedSinceLastUpdate)
     {
-        ref var speciesData = ref entity.Get<MulticellularSpeciesMember>();
-
-        var compounds = entity.Get<CompoundStorage>().Compounds;
-
-        ref var organelleContainer = ref entity.Get<OrganelleContainer>();
-
-        ref var status = ref entity.Get<MicrobeStatus>();
-
         status.ConsumeReproductionCompoundsReverse = !status.ConsumeReproductionCompoundsReverse;
-
-        ref var baseReproduction = ref entity.Get<ReproductionStatus>();
 
         multicellularGrowth.CompoundsUsedForMulticellularGrowth ??= new Dictionary<Compound, float>();
 
@@ -163,19 +147,15 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
                 {
                     // Apply the base reproduction cost at this point after growing the full layout
 
-                    // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-                    lock (temporaryWorkData)
+                    if (!MicrobeReproductionSystem.ProcessBaseReproductionCost(
+                            baseReproduction.MissingCompoundsForBaseReproduction, compounds,
+                            ref remainingAllowedCompoundUse,
+                            ref remainingFreeCompounds, status.ConsumeReproductionCompoundsReverse,
+                            temporaryWorkData.Value!,
+                            multicellularGrowth.CompoundsUsedForMulticellularGrowth))
                     {
-                        if (!MicrobeReproductionSystem.ProcessBaseReproductionCost(
-                                baseReproduction.MissingCompoundsForBaseReproduction, compounds,
-                                ref remainingAllowedCompoundUse,
-                                ref remainingFreeCompounds, status.ConsumeReproductionCompoundsReverse,
-                                temporaryWorkData,
-                                multicellularGrowth.CompoundsUsedForMulticellularGrowth))
-                        {
-                            // Not ready yet for budding
-                            return;
-                        }
+                        // Not ready yet for budding
+                        return;
                     }
 
                     // Budding cost is after the base reproduction cost has been overcome
@@ -192,14 +172,13 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
 
         bool stillNeedsSomething = false;
 
-        ref var microbeStatus = ref entity.Get<MicrobeStatus>();
-        microbeStatus.ConsumeReproductionCompoundsReverse = !microbeStatus.ConsumeReproductionCompoundsReverse;
+        status.ConsumeReproductionCompoundsReverse = !status.ConsumeReproductionCompoundsReverse;
 
         // Consume some compounds for the next cell in the layout
         // Similar logic for "growing" more cells than in PlacedOrganelle growth
         if (multicellularGrowth.CompoundsNeededForNextCell.Count > 0)
         {
-            int index = microbeStatus.ConsumeReproductionCompoundsReverse ?
+            int index = status.ConsumeReproductionCompoundsReverse ?
                 multicellularGrowth.CompoundsNeededForNextCell.Count - 1 :
                 0;
 
@@ -349,8 +328,7 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
     {
         if (disposing)
         {
-            // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
-            // temporaryWorkData.Dispose();
+            temporaryWorkData.Dispose();
         }
     }
 }

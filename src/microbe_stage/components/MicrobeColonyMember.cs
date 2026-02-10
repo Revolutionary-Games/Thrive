@@ -1,14 +1,16 @@
 ﻿namespace Components;
 
-using DefaultEcs;
+using Arch.Core;
+using SharedBase.Archive;
 
 /// <summary>
 ///   Marker for microbes that are in a cell colony. The cell colony leader has <see cref="MicrobeColony"/>
 ///   component on it.
 /// </summary>
-[JSONDynamicTypeAllowed]
-public struct MicrobeColonyMember
+public struct MicrobeColonyMember : IArchivableComponent
 {
+    public const ushort SERIALIZATION_VERSION = 1;
+
     /// <summary>
     ///   The colony leader can be accessed through this if colony members need to send messages back to the
     ///   colony
@@ -19,10 +21,29 @@ public struct MicrobeColonyMember
     {
         ColonyLeader = colonyLeader;
     }
+
+    public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
+    public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMicrobeColonyMember;
+
+    public void WriteToArchive(ISArchiveWriter writer)
+    {
+        writer.WriteAnyRegisteredValueAsObject(ColonyLeader);
+    }
 }
 
 public static class MicrobeColonyMemberHelpers
 {
+    public static MicrobeColonyMember ReadFromArchive(ISArchiveReader reader, ushort version)
+    {
+        if (version is > MicrobeColonyMember.SERIALIZATION_VERSION or <= 0)
+            throw new InvalidArchiveVersionException(version, MicrobeColonyMember.SERIALIZATION_VERSION);
+
+        return new MicrobeColonyMember
+        {
+            ColonyLeader = reader.ReadObject<Entity>(),
+        };
+    }
+
     /// <summary>
     ///   Gets the <see cref="MicrobeColony"/> from that colony's member
     /// </summary>
@@ -33,13 +54,13 @@ public static class MicrobeColonyMemberHelpers
     /// </returns>
     public static bool GetColonyFromMember(this ref MicrobeColonyMember member, out Entity colonyEntity)
     {
-        if (member.ColonyLeader.IsAlive && member.ColonyLeader.Has<MicrobeColony>())
+        if (member.ColonyLeader.IsAliveAndHas<MicrobeColony>())
         {
             colonyEntity = member.ColonyLeader;
             return true;
         }
 
-        colonyEntity = default;
+        colonyEntity = Entity.Null;
         return false;
     }
 }
