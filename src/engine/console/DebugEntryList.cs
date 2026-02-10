@@ -55,12 +55,22 @@ public partial class DebugEntryList : Control
     /// <summary>
     ///   This determines whether the scrollbar should stick its value to the bottom of the list.
     /// </summary>
-    public bool StickToBottom { get; set; } = true;
+    public bool StickToBottom
+    {
+        get;
+        set
+        {
+            field = value;
+            Refresh();
+        }
+    }
 
     public override void _Ready()
     {
         onResizedCallable = new Callable(this, nameof(OnResized));
         Connect(Control.SignalName.Resized, onResizedCallable);
+
+        StickToBottom = true;
 
         base._Ready();
     }
