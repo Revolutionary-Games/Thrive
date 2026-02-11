@@ -380,14 +380,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         // Use signaling agent if I have any with a chance of 5% per think
         if (organelles.HasSignalingAgent && random.NextSingle() < Constants.AI_SIGNALING_CHANCE)
         {
-            if (organelles.HasBindingAgent)
-            {
-                signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
-            }
-            else
-            {
-                signaling.QueuedSignalingCommand = MicrobeSignalCommand.None;
-            }
+            UseSignalingAgent(ref organelles, ref signaling);
         }
 
         // Follow received commands if we have them
@@ -535,6 +528,18 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         {
             // This organism is sessile, and will not act until the environment changes
             control.SetMoveSpeed(0.0f);
+        }
+    }
+
+    private void UseSignalingAgent(ref OrganelleContainer organelles, ref CommandSignaler signaling)
+    {
+        if (organelles.HasBindingAgent)
+        {
+            signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
+        }
+        else
+        {
+            signaling.QueuedSignalingCommand = MicrobeSignalCommand.None;
         }
     }
 
