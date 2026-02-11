@@ -377,6 +377,15 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             ai.ATPThreshold = 0.0f;
         }
 
+        // Use signaling agent if I have any with a chance of 5% per think
+        if (organelles.HasSignalingAgent && random.NextSingle() < Constants.AI_SIGNALING_CHANCE)
+        {
+            if (organelles.HasBindingAgent)
+            {
+                signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
+            }
+        }
+
         // Follow received commands if we have them
         if (organelles.HasSignalingAgent && signaling.ReceivedCommand != MicrobeSignalCommand.None)
         {
