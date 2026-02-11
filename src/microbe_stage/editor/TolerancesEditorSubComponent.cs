@@ -727,6 +727,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         // Temperature
 
+        var preferredTemperatureWithOrganelles =
+            CurrentTolerances.PreferredTemperature + organelleModifiers.PreferredTemperature;
         var temperatureToleranceWithOrganelles =
             CurrentTolerances.TemperatureTolerance + organelleModifiers.TemperatureTolerance;
 
@@ -736,11 +738,11 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         temperatureMinLabel.Text =
             unitFormat.FormatSafe(
-                Math.Round(CurrentTolerances.PreferredTemperature - temperatureToleranceWithOrganelles, 1),
+                Math.Round(preferredTemperatureWithOrganelles - temperatureToleranceWithOrganelles, 1),
                 temperature.Unit);
         temperatureMaxLabel.Text =
             unitFormat.FormatSafe(
-                Math.Round(CurrentTolerances.PreferredTemperature + temperatureToleranceWithOrganelles, 1),
+                Math.Round(preferredTemperatureWithOrganelles + temperatureToleranceWithOrganelles, 1),
                 temperature.Unit);
 
         temperatureToleranceLabel.Text = "±" + unitFormat.FormatSafe(
@@ -767,12 +769,12 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         }
 
         // Show in red the conditions that are not matching to make them easier to notice
-        if (Math.Abs(patchTemperature - CurrentTolerances.PreferredTemperature) >
+        if (Math.Abs(patchTemperature - preferredTemperatureWithOrganelles) >
             temperatureToleranceWithOrganelles)
         {
             // Mark the direction that is bad as the one having the problem to make it easier for the player to see
             // what is wrong
-            if (patchTemperature > CurrentTolerances.PreferredTemperature)
+            if (patchTemperature > preferredTemperatureWithOrganelles)
             {
                 temperatureMaxLabel.LabelSettings = badValueFontTiny;
                 temperatureMinLabel.LabelSettings = originalTemperatureFont;
@@ -846,7 +848,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             pressureMaxLabel.LabelSettings = originalPressureFont;
             pressureRangeDisplay.SetColorsAndRedraw(optimalDisplayBadColor);
         }
-        else if (patchPressure > Math.Min(CurrentTolerances.PressureMinimum + CurrentTolerances.PressureTolerance, Constants.TOLERANCE_PRESSURE_MAX))
+        else if (patchPressure > Math.Min(CurrentTolerances.PressureMinimum + CurrentTolerances.PressureTolerance,
+                     Constants.TOLERANCE_PRESSURE_MAX))
         {
             pressureMaxLabel.LabelSettings = badValueFontTiny;
             pressureMinLabel.LabelSettings = originalPressureFont;

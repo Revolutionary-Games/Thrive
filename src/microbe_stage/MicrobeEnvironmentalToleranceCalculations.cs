@@ -394,9 +394,6 @@ public static class MicrobeEnvironmentalToleranceCalculations
         result.OverallScore =
             (result.TemperatureScore + result.PressureScore + result.OxygenScore + result.UVScore) / 4;
 
-        // GD.Print(result.TemperatureScore, result.PressureScore, result.OxygenScore, result.UVScore, result.OverallScore, missingSomething);
-        GD.Print($"{result.TemperatureScore}, {result.PressureScore}, {result.OxygenScore}, {result.UVScore}, {result.OverallScore}, {missingSomething}");
-
         // But if missing something, ensure the score is not 1.
         // This should happen only when all the scores are mostly 1,
         // but something is ever so slightly off and due to rounding, it would appear as a 1
@@ -447,16 +444,6 @@ public static class MicrobeEnvironmentalToleranceCalculations
         public float PressureTolerance;
         public float OxygenResistance;
         public float UVResistance;
-
-        public void CopyFrom(EnvironmentalTolerances tolerances)
-        {
-            PreferredTemperature = tolerances.PreferredTemperature;
-            TemperatureTolerance = tolerances.TemperatureTolerance;
-            PressureMinimum = tolerances.PressureMinimum;
-            PressureTolerance = tolerances.PressureTolerance;
-            OxygenResistance = tolerances.OxygenResistance;
-            UVResistance = tolerances.UVResistance;
-        }
     }
 }
 
