@@ -191,9 +191,16 @@ public partial class DebugEntryList : Control
         {
             if (entryPanelIndex >= maxVisiblePanels)
             {
-                var last = entryLabels.RemoveFromFront();
-                entryLabels.AddToBack(last);
-                --entryPanelIndex;
+                if (StickToBottom)
+                {
+                    var last = entryLabels.RemoveFromFront();
+                    entryLabels.AddToBack(last);
+                    --entryPanelIndex;
+                }
+                else
+                {
+                    break;
+                }
             }
 
             RichTextLabel currentLabel;
