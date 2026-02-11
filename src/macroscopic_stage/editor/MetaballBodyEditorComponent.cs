@@ -373,6 +373,7 @@ public partial class MetaballBodyEditorComponent :
 
         var cellType = CellTypeFromName(activeActionName);
 
+        // TODO: seems like nothing implements setting this?
         if (MouseHoverPositions == null)
         {
             var costMultiplier = Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
