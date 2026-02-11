@@ -384,6 +384,10 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             {
                 signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
             }
+            else
+            {
+                signaling.QueuedSignalingCommand = MicrobeSignalCommand.None;
+            }
         }
 
         // Follow received commands if we have them
