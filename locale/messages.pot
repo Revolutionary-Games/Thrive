@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-10 09:55+0200\n"
+"POT-Creation-Date: 2026-02-11 10:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -131,11 +131,11 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1120
+#: ../src/general/NewGameSettings.tscn:1098
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1115
+#: ../src/general/NewGameSettings.tscn:1093
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -171,11 +171,11 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:427
+#: ../src/general/NewGameSettings.tscn:426
 msgid "AI_MUTATION_RATE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:458
+#: ../src/general/NewGameSettings.tscn:457
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr ""
 
@@ -184,11 +184,11 @@ msgstr ""
 msgid "ALL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:868
+#: ../src/general/NewGameSettings.tscn:867
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:878
+#: ../src/general/NewGameSettings.tscn:877
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
 msgstr ""
 
@@ -445,11 +445,11 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:663
+#: ../src/general/NewGameSettings.tscn:662
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:693
+#: ../src/general/NewGameSettings.tscn:692
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
 msgstr ""
 
@@ -557,7 +557,7 @@ msgstr ""
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:686
 #: ../src/general/MainMenu.tscn:432 ../src/general/MainMenu.tscn:498
 #: ../src/general/MainMenu.tscn:546 ../src/general/MainMenu.tscn:890
-#: ../src/general/NewGameSettings.tscn:1095 ../src/general/PauseMenu.tscn:289
+#: ../src/general/NewGameSettings.tscn:1073 ../src/general/PauseMenu.tscn:289
 #: ../src/gui_common/menus/AchievementsView.tscn:53
 #: ../src/gui_common/menus/OptionsMenu.tscn:3292
 #: ../src/gui_common/menus/PlanetCustomizerTool.tscn:160
@@ -617,11 +617,11 @@ msgstr ""
 msgid "BASE_MOVEMENT"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1110
+#: ../src/general/NewGameSettings.tscn:1088
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1105
+#: ../src/general/NewGameSettings.tscn:1083
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -629,12 +629,12 @@ msgstr ""
 msgid "BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:831
+#: ../src/microbe_stage/MicrobeHUD.cs:830
 #: ../src/microbe_stage/MicrobeHUD.tscn:431
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:787
+#: ../src/microbe_stage/MicrobeHUD.cs:786
 #: ../src/microbe_stage/MicrobeHUD.tscn:424
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
@@ -902,7 +902,7 @@ msgstr ""
 msgid "CANNOT_IMPROVE_PERFECTION"
 msgstr ""
 
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.cs:800
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.cs:801
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
@@ -1404,11 +1404,11 @@ msgstr ""
 msgid "COMPOUND_CLOUD_BENCHMARK"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:474
+#: ../src/general/NewGameSettings.tscn:473
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:505
+#: ../src/general/NewGameSettings.tscn:504
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
 
@@ -1421,19 +1421,19 @@ msgstr ""
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:777
+#: ../src/general/NewGameSettings.tscn:776
 msgid "COMPOUND_HANDLE_KEEP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:775
+#: ../src/general/NewGameSettings.tscn:774
 msgid "COMPOUND_HANDLE_SPLIT_SISTER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:779
+#: ../src/general/NewGameSettings.tscn:778
 msgid "COMPOUND_HANDLE_TOP_UP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:781
+#: ../src/general/NewGameSettings.tscn:780
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr ""
 
@@ -1566,12 +1566,12 @@ msgstr ""
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:391
-#: ../src/general/NewGameSettings.tscn:1128
+#: ../src/general/NewGameSettings.cs:385
+#: ../src/general/NewGameSettings.tscn:1106
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:397
+#: ../src/general/NewGameSettings.cs:391
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr ""
 
@@ -2237,23 +2237,23 @@ msgstr ""
 msgid "DEV_BUILD_PATRONS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:272
+#: ../src/general/NewGameSettings.tscn:271
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:26
 msgid "DIFFICULTY"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:375
+#: ../src/general/WorldGenerationSettings.cs:376
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:36
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:124
-#: ../src/general/NewGameSettings.tscn:353
+#: ../src/general/NewGameSettings.tscn:123
+#: ../src/general/NewGameSettings.tscn:352
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:63
-#: ../src/general/WorldGenerationSettings.cs:373
+#: ../src/general/WorldGenerationSettings.cs:374
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
 
@@ -2521,11 +2521,11 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1017
+#: ../src/general/NewGameSettings.tscn:995
 msgid "EASTER_EGGS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1027
+#: ../src/general/NewGameSettings.tscn:1005
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
 
@@ -2736,11 +2736,11 @@ msgstr ""
 msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:570
+#: ../src/general/NewGameSettings.tscn:569
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:600
+#: ../src/general/NewGameSettings.tscn:599
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr ""
 
@@ -2891,15 +2891,15 @@ msgstr ""
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1042
+#: ../src/general/NewGameSettings.tscn:1020
 msgid "EXPERIMENTAL_FEATURES"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1059
+#: ../src/general/NewGameSettings.tscn:1037
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1051
+#: ../src/general/NewGameSettings.tscn:1029
 msgid "EXPERIMENTAL_FEATURES_WARNING"
 msgstr ""
 
@@ -3124,7 +3124,7 @@ msgstr ""
 msgid "FOG_OF_WAR_DISABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:823
+#: ../src/general/NewGameSettings.cs:816
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
 msgstr ""
 
@@ -3132,11 +3132,11 @@ msgstr ""
 msgid "FOG_OF_WAR_INTENSE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:829
+#: ../src/general/NewGameSettings.cs:822
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:806
+#: ../src/general/NewGameSettings.tscn:805
 msgid "FOG_OF_WAR_MODE"
 msgstr ""
 
@@ -3144,7 +3144,7 @@ msgstr ""
 msgid "FOG_OF_WAR_REGULAR"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:826
+#: ../src/general/NewGameSettings.cs:819
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
 msgstr ""
 
@@ -3242,11 +3242,11 @@ msgstr ""
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:843
+#: ../src/general/NewGameSettings.tscn:842
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:853
+#: ../src/general/NewGameSettings.tscn:852
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
 
@@ -3693,14 +3693,6 @@ msgstr ""
 
 #: ../src/modding/ModUploader.cs:96
 msgid "IMAGE_FILE_TYPES"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:992
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:1002
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:262
@@ -4151,11 +4143,11 @@ msgstr ""
 msgid "INSTAGRAM_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:918
+#: ../src/general/NewGameSettings.tscn:917
 msgid "INSTANT_KILL_PROTECTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:928
+#: ../src/general/NewGameSettings.tscn:927
 msgid "INSTANT_KILL_PROTECTION_EXPLANATION"
 msgstr ""
 
@@ -4642,12 +4634,12 @@ msgstr ""
 msgid "LAUNCHMEDIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:151
+#: ../src/general/NewGameSettings.tscn:150
 #: ../src/gui_common/menus/PlanetSettings.tscn:60
 msgid "LAWK_ONLY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:161
+#: ../src/general/NewGameSettings.tscn:160
 #: ../src/gui_common/menus/PlanetSettings.tscn:70
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -4728,34 +4720,34 @@ msgstr ""
 msgid "LICENSES_COVERING_THRIVE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:177
+#: ../src/general/NewGameSettings.tscn:176
 #: ../src/gui_common/menus/PlanetSettings.tscn:86
 msgid "LIFE_ORIGIN"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:199
+#: ../src/general/NewGameSettings.tscn:198
 #: ../src/gui_common/menus/PlanetSettings.tscn:109
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:192
+#: ../src/general/NewGameSettings.tscn:191
 #: ../src/general/WorldGenerationSettings.cs:48
 #: ../src/gui_common/menus/PlanetSettings.tscn:101
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/WorldGenerationSettings.cs:45
 #: ../src/gui_common/menus/PlanetSettings.tscn:99
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:185
+#: ../src/general/NewGameSettings.tscn:184
 #: ../src/gui_common/menus/PlanetSettings.tscn:94
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:188
+#: ../src/general/NewGameSettings.tscn:187
 #: ../src/general/WorldGenerationSettings.cs:42
 #: ../src/gui_common/menus/PlanetSettings.tscn:97
 msgid "LIFE_ORIGIN_VENTS"
@@ -4793,11 +4785,11 @@ msgstr ""
 msgid "LIMIT_EXTREME"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:893
+#: ../src/general/NewGameSettings.tscn:892
 msgid "LIMIT_GROWTH_RATE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:903
+#: ../src/general/NewGameSettings.tscn:902
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr ""
 
@@ -5545,7 +5537,7 @@ msgstr ""
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:280
+#: ../src/general/NewGameSettings.tscn:279
 #: ../src/gui_common/menus/OptionsMenu.tscn:243
 msgid "MISC"
 msgstr ""
@@ -5968,11 +5960,11 @@ msgstr ""
 msgid "MUTATIONS_PER_SPECIES"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:380
+#: ../src/general/NewGameSettings.tscn:379
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:411
+#: ../src/general/NewGameSettings.tscn:410
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
@@ -6040,7 +6032,7 @@ msgstr ""
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:251
+#: ../src/general/NewGameSettings.tscn:250
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
 
@@ -6545,11 +6537,11 @@ msgstr ""
 msgid "ORGANELLE_SUGGESTION_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:943
+#: ../src/general/NewGameSettings.tscn:942
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:953
+#: ../src/general/NewGameSettings.tscn:952
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
 msgstr ""
 
@@ -6570,11 +6562,11 @@ msgstr ""
 msgid "OSMOREGULATION_COST"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:616
+#: ../src/general/NewGameSettings.tscn:615
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:647
+#: ../src/general/NewGameSettings.tscn:646
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
@@ -6794,11 +6786,11 @@ msgstr ""
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:775 ../src/general/NewGameSettings.cs:782
-#: ../src/general/NewGameSettings.cs:798
+#: ../src/general/NewGameSettings.cs:768 ../src/general/NewGameSettings.cs:775
+#: ../src/general/NewGameSettings.cs:791
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:99
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:125
-#: ../src/general/WorldGenerationSettings.cs:380
+#: ../src/general/WorldGenerationSettings.cs:381
 #: ../src/gui_common/CompoundAmount.cs:316
 #: ../src/gui_common/menus/OptionsMenu.cs:962
 #: ../src/gui_common/menus/OptionsMenu.cs:2011
@@ -6885,7 +6877,7 @@ msgstr ""
 msgid "PLACE_ORGANELLE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:264
+#: ../src/general/NewGameSettings.tscn:263
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:45
 msgid "PLANET"
 msgstr ""
@@ -6894,12 +6886,12 @@ msgstr ""
 msgid "PLANET_CUSTOMIZER"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:391
+#: ../src/general/WorldGenerationSettings.cs:392
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:55
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:210
+#: ../src/general/NewGameSettings.tscn:209
 #: ../src/gui_common/menus/PlanetSettings.tscn:387
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
@@ -6912,11 +6904,11 @@ msgstr ""
 msgid "PLAYER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:521
+#: ../src/general/NewGameSettings.tscn:520
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:554
+#: ../src/general/NewGameSettings.tscn:553
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr ""
 
@@ -7152,7 +7144,7 @@ msgstr ""
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:223
+#: ../src/general/NewGameSettings.tscn:222
 #: ../src/gui_common/menus/PlanetSettings.tscn:401
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr ""
@@ -7247,18 +7239,18 @@ msgstr ""
 msgid "REPRODUCTION_BUDDING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:759
+#: ../src/general/NewGameSettings.tscn:758
 msgid "REPRODUCTION_COMPOUNDS_MODE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:790
+#: ../src/general/NewGameSettings.tscn:789
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:757
-#: ../src/general/NewGameSettings.tscn:772
-#: ../src/general/NewGameSettings.tscn:788
-#: ../src/general/NewGameSettings.tscn:823
+#: ../src/general/NewGameSettings.tscn:756
+#: ../src/general/NewGameSettings.tscn:771
+#: ../src/general/NewGameSettings.tscn:787
+#: ../src/general/NewGameSettings.tscn:822
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr ""
 
@@ -8099,11 +8091,11 @@ msgstr ""
 msgid "SPECIES_LIST"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:709
+#: ../src/general/NewGameSettings.tscn:708
 msgid "SPECIES_MEMBER_IMPACT_ON_POP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:738
+#: ../src/general/NewGameSettings.tscn:737
 msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
 msgstr ""
 
@@ -8171,7 +8163,7 @@ msgstr ""
 msgid "START_CALIBRATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1131
+#: ../src/general/NewGameSettings.tscn:1109
 msgid "START_GAME"
 msgstr ""
 
@@ -11923,9 +11915,12 @@ msgstr ""
 msgid "WORLD_GENERAL_STATISTICS"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:403
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:74
 msgid "WORLD_MISC_DETAILS_STRING"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:404
+msgid "WORLD_MISC_DETAILS_STRING_2"
 msgstr ""
 
 #: ../src/gui_common/menus/PlanetSettings.tscn:200
