@@ -306,7 +306,7 @@ public partial class DebugEntryList : Control
             var debugConsoleManager = DebugConsoleManager.Instance;
 
             long minTimestamp = 0;
-            if (debugConsoleManager.MessageCountInHistory - globalStartId > 1)
+            if (debugConsoleManager.MessageCountInHistory - globalStartId > 0 && globalStartId > 1)
             {
                 minTimestamp = debugConsoleManager.GetMessageAt(globalStartId - 1).BeginTimestamp;
             }
@@ -425,7 +425,7 @@ public partial class DebugEntryList : Control
         while (retryLayout);
 
         hScrollBar.MaxValue = maxWidth;
-        hScrollBar.Page = Size.X - leftMargin - rightMargin - vScrollBar.Size.X;
+        hScrollBar.Page = textClipArea.Size.X - leftMargin - rightMargin - vScrollBar.Size.X;
         hScrollBar.Visible = Math.Abs(hScrollBar.MaxValue - hScrollBar.Page) >= 0.1f;
 
         return visibleEntries;
