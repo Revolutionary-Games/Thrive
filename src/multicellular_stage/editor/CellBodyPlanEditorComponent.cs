@@ -313,9 +313,37 @@ public partial class CellBodyPlanEditorComponent :
 
             if (cellType != null)
             {
+                HashSet<(Hex Hex, int Orientation)> hoveredHexes = new();
+
+                /*if (!componentBottomLeftButtons.SymmetryEnabled)
+                    effectiveSymmetry = HexEditorSymmetry.None;*/
+
                 RunWithSymmetry(q, r,
-                    (finalQ, finalR, rotation) => RenderHighlightedCell(finalQ, finalR, rotation, cellType),
+                    (finalQ, finalR, rotation) =>
+                    {
+                        RenderHighlightedCell(finalQ, finalR, rotation, cellType);
+
+                        var finalHex = new Hex(finalQ, finalR);
+
+                        // Only add unique positions so that duplicate actions are not attempted
+                        bool exists = false;
+                        foreach (var existingHex in hoveredHexes)
+                        {
+                            if (existingHex.Hex == finalHex)
+                            {
+                                exists = true;
+                                break;
+                            }
+                        }
+
+                        if (exists)
+                            return;
+
+                        hoveredHexes.Add((finalHex, rotation));
+                    },
                     effectiveSymmetry);
+
+                MouseHoverPositions = hoveredHexes.ToList();
             }
         }
         else if (forceUpdateCellGraphics)
@@ -747,7 +775,7 @@ public partial class CellBodyPlanEditorComponent :
             return;
 
         // For now a single hex represents entire cells
-        RenderHoveredHex(q, r, new[] { new Hex(0, 0) }, isPlacementProbablyValid,
+        RenderHoveredHex(q, r, [new Hex(0, 0)], isPlacementProbablyValid,
             out bool hadDuplicate);
 
         bool showModel = !hadDuplicate;
@@ -812,6 +840,7 @@ public partial class CellBodyPlanEditorComponent :
                 if (placed != null)
                 {
                     placementActions.Add(placed);
+                    GD.Print($"Trying to place cell \"{cellType.CellTypeName}\" at {hex}");
 
                     usedHexes.Add(hex);
                 }

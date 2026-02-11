@@ -598,7 +598,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="PauseInfo" parent="PausePrompt" index="1"]
+[node name="PauseInfo" parent="PausePrompt" index="1" unique_id=37924705]
 offset_bottom = -24.0
 
 [node name="RevertToEditor" parent="." unique_id=1914397684 instance=ExtResource("40_e4my1")]
@@ -852,7 +852,7 @@ show_percentage = false
 [connection signal="pressed" from="ScrollContainer/HotBar/Mucocyst" to="." method="OnMucocystPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Siderophore" to="." method="OnSiderophorePressed"]
 [connection signal="OnItemSelected" from="RadialPopup" to="." method="OnRadialItemSelected"]
-[connection signal="Canceled" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularCanceled"]
-[connection signal="Confirmed" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularConfirmed"]
+[connection signal="Canceled" from="StagePrototypeConfirm" to="." method="OnBecomeMacroscopicCanceled"]
+[connection signal="Confirmed" from="StagePrototypeConfirm" to="." method="OnBecomeMacroscopicConfirmed"]
 
 [editable path="PausePrompt"]
