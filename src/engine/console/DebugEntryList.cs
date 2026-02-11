@@ -306,9 +306,9 @@ public partial class DebugEntryList : Control
             var debugConsoleManager = DebugConsoleManager.Instance;
 
             long minTimestamp = 0;
-            if (debugConsoleManager.MessageCountInHistory - globalStartId > 0)
+            if (debugConsoleManager.MessageCountInHistory - globalStartId > 1)
             {
-                minTimestamp = debugConsoleManager.GetMessageAt(globalStartId).BeginTimestamp;
+                minTimestamp = debugConsoleManager.GetMessageAt(globalStartId - 1).BeginTimestamp;
             }
 
             int validPrivateCount = GetCountNewerThan(minTimestamp);
