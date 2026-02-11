@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Godot;
 using Nito.Collections;
 
@@ -11,7 +10,7 @@ public partial class DebugEntryList : Control
     private const uint MaxPrivateHistorySize = 32;
     private const int DefaultMaxVisiblePanels = 32;
 
-    private readonly List<RichTextLabel> entryLabels = [];
+    private readonly Deque<RichTextLabel> entryLabels = [];
 
     /// <summary>
     ///   This is a local history for private debug messages.
@@ -191,7 +190,11 @@ public partial class DebugEntryList : Control
         while (currentGlobalId < maxGlobalId || currentLocalIndex < privateHistory.Count)
         {
             if (entryPanelIndex >= maxVisiblePanels)
-                break;
+            {
+                var last = entryLabels.RemoveFromFront();
+                entryLabels.AddToBack(last);
+                --entryPanelIndex;
+            }
 
             RichTextLabel currentLabel;
             if (entryLabels.Count == entryPanelIndex)
@@ -204,7 +207,7 @@ public partial class DebugEntryList : Control
                 newLabel.AddThemeFontOverride("normal_font", monospacedFont);
                 newLabel.AddThemeFontSizeOverride("normal_font", 12);
 
-                entryLabels.Add(newLabel);
+                entryLabels.AddToBack(newLabel);
                 textClipArea.AddChild(newLabel);
 
                 newLabel.Connect(Control.SignalName.Resized, onResizedCallable);
