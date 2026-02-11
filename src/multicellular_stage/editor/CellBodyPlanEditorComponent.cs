@@ -1259,9 +1259,8 @@ public partial class CellBodyPlanEditorComponent :
 
         if (organismStatisticsPanel.ResourceLimitingMode != ResourceLimitingMode.AllResources)
         {
-            // TODO: Have this factor in produced compounds for the constructor
             conditionsData = new BiomeResourceLimiterAdapter(organismStatisticsPanel.ResourceLimitingMode,
-                conditionsData);
+                conditionsData, cells);
         }
 
         energyBalanceInfo = new EnergyBalanceInfoFull();

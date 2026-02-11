@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -12,19 +13,42 @@ public class BiomeResourceLimiterAdapter : IBiomeConditions
     private readonly ResourceLimitingMode limitingMode;
     private readonly IBiomeConditions baseConditions;
     private readonly Lazy<Dictionary<string, ChunkConfiguration>> filteredChunks;
-    private HashSet<Compound> cellProducedCompounds;
+    private readonly HashSet<Compound>? cellProducedCompounds;
 
-    public BiomeResourceLimiterAdapter(ResourceLimitingMode limitingMode, IBiomeConditions baseConditions,
-        IReadOnlyList<OrganelleTemplate>? organelles = null)
+    public BiomeResourceLimiterAdapter(ResourceLimitingMode limitingMode, IBiomeConditions baseConditions)
     {
         this.limitingMode = limitingMode;
         this.baseConditions = baseConditions;
+
+        filteredChunks = new Lazy<Dictionary<string, ChunkConfiguration>>(FilterChunks);
+    }
+
+    public BiomeResourceLimiterAdapter(ResourceLimitingMode limitingMode, IBiomeConditions baseConditions,
+        IReadOnlyList<OrganelleTemplate> organelles) : this(limitingMode, baseConditions)
+    {
         cellProducedCompounds = new HashSet<Compound>();
-        if (organelles != null)
+        for (var i = 0; i < organelles.Count; ++i)
         {
-            for (var i = 0; i < organelles.Count; ++i)
+            var organelle = organelles[i];
+            foreach (var process in organelle.Definition.RunnableProcesses)
             {
-                var organelle = organelles[i];
+                foreach (var output in process.Process.Outputs)
+                {
+                    cellProducedCompounds.Add(output.Key.ID);
+                }
+            }
+        }
+    }
+
+    public BiomeResourceLimiterAdapter(ResourceLimitingMode limitingMode, IBiomeConditions baseConditions,
+        IReadOnlyList<HexWithData<CellTemplate>> cells) : this(limitingMode, baseConditions)
+    {
+        cellProducedCompounds = new HashSet<Compound>();
+        foreach (var cell in cells)
+        {
+            for (int i = 0; i < cell.Data!.ModifiableOrganelles.Count; ++i)
+            {
+                var organelle = cell.Data!.ModifiableOrganelles[i];
                 foreach (var process in organelle.Definition.RunnableProcesses)
                 {
                     foreach (var output in process.Process.Outputs)
@@ -34,8 +58,6 @@ public class BiomeResourceLimiterAdapter : IBiomeConditions
                 }
             }
         }
-
-        filteredChunks = new Lazy<Dictionary<string, ChunkConfiguration>>(FilterChunks);
     }
 
     [JsonIgnore]
@@ -100,7 +122,8 @@ public class BiomeResourceLimiterAdapter : IBiomeConditions
             case ResourceLimitingMode.WithoutHydrogenSulfide:
                 return compound != Compound.Hydrogensulfide;
             case ResourceLimitingMode.NoExternalResources:
-                return IsAmbientCompound(compound) || cellProducedCompounds.Contains(compound);
+                return IsAmbientCompound(compound) || (cellProducedCompounds != null &&
+                    cellProducedCompounds.Contains(compound));
             default:
                 throw new ArgumentOutOfRangeException(nameof(limitingMode), "unimplemented limiting mode");
         }
