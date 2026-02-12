@@ -537,10 +537,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         {
             return MicrobeSignalCommand.MoveToMe;
         }
-        else
-        {
-            return MicrobeSignalCommand.None;
-        }
+        
+        return MicrobeSignalCommand.None;
     }
 
     private bool CheckForHuntingConditions(ref MicrobeAI ai, ref WorldPosition position,
