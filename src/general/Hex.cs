@@ -39,6 +39,17 @@ public struct Hex : IEquatable<Hex>
             { HexSide.TopLeft, new Hex(-1, 1) },
         };
 
+    public static readonly Dictionary<HexSide, Vector2> NormalizedVectorNeighbourOffset =
+        new()
+        {
+            { HexSide.Top, new Vector2(0, 1).Normalized() },
+            { HexSide.TopRight, new Vector2(1, 0).Normalized() },
+            { HexSide.BottomRight, new Vector2(1, -1).Normalized() },
+            { HexSide.Bottom, new Vector2(0, -1).Normalized() },
+            { HexSide.BottomLeft, new Vector2(-1, 0).Normalized() },
+            { HexSide.TopLeft, new Vector2(-1, 1).Normalized() },
+        };
+
     public int Q;
     public int R;
 
