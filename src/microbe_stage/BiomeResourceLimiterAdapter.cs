@@ -23,38 +23,14 @@ public class BiomeResourceLimiterAdapter : IBiomeConditions
     }
 
     public BiomeResourceLimiterAdapter(ResourceLimitingMode limitingMode, IBiomeConditions baseConditions,
-        IReadOnlyList<OrganelleTemplate> organelles) : this(limitingMode, baseConditions)
+        List<TweakedProcess> activeProcesses) : this(limitingMode, baseConditions)
     {
         cellProducedCompounds = new HashSet<Compound>();
-        for (var i = 0; i < organelles.Count; ++i)
+        foreach (var activeProcess in activeProcesses)
         {
-            var organelle = organelles[i];
-            foreach (var process in organelle.Definition.RunnableProcesses)
+            foreach (var output in activeProcess.Process.Outputs)
             {
-                foreach (var output in process.Process.Outputs)
-                {
-                    cellProducedCompounds.Add(output.Key.ID);
-                }
-            }
-        }
-    }
-
-    public BiomeResourceLimiterAdapter(ResourceLimitingMode limitingMode, IBiomeConditions baseConditions,
-        IReadOnlyList<HexWithData<CellTemplate>> cells) : this(limitingMode, baseConditions)
-    {
-        cellProducedCompounds = new HashSet<Compound>();
-        foreach (var cell in cells)
-        {
-            for (int i = 0; i < cell.Data!.ModifiableOrganelles.Count; ++i)
-            {
-                var organelle = cell.Data!.ModifiableOrganelles[i];
-                foreach (var process in organelle.Definition.RunnableProcesses)
-                {
-                    foreach (var output in process.Process.Outputs)
-                    {
-                        cellProducedCompounds.Add(output.Key.ID);
-                    }
-                }
+                cellProducedCompounds.Add(output.Key.ID);
             }
         }
     }

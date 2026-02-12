@@ -185,6 +185,8 @@ public partial class CellEditorComponent :
 
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
+    private List<TweakedProcess> tempAllProcesses = new();
+
     private string? bestPatchName;
 
     // This and worstPatchPopulation used to be displayed but are now kept for potential future use
@@ -2124,8 +2126,10 @@ public partial class CellEditorComponent :
 
         if (organismStatisticsPanel.ResourceLimitingMode != ResourceLimitingMode.AllResources)
         {
+            ProcessSystem.ComputeActiveProcessList(organelles, ref tempAllProcesses);
+
             conditionsData = new BiomeResourceLimiterAdapter(organismStatisticsPanel.ResourceLimitingMode,
-                conditionsData, organelles);
+                conditionsData, tempAllProcesses);
         }
 
         energyBalanceInfo = new EnergyBalanceInfoFull();
