@@ -540,7 +540,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         {
             return MicrobeSignalCommand.MoveToMe;
         }
-        else if (willBeAggressiveThisTime)
+
+        if (willBeAggressiveThisTime)
         {
             foreach (var organelle in organelles.Organelles!)
             {
@@ -548,10 +549,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 {
                     return MicrobeSignalCommand.FollowMe;
                 }
-                else
-                {
-                    return MicrobeSignalCommand.None;
-                }
+
+                return MicrobeSignalCommand.None;
             }
         }
         else if (!willBeAggressiveThisTime)
