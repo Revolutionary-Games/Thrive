@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-10 09:55+0200\n"
+"POT-Creation-Date: 2026-02-12 21:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1000,7 +1000,7 @@ msgstr ""
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:648
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:649
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -2574,7 +2574,7 @@ msgstr ""
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.tscn:69
+#: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.tscn:73
 msgid "EFFECTIVE_VALUE"
 msgstr ""
 
@@ -2692,19 +2692,19 @@ msgstr ""
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3174
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3175
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3009
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3010
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3185
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3186
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3178
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3179
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -3152,7 +3152,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3191
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3192
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3274,7 +3274,7 @@ msgstr ""
 msgid "GAME_SYSTEMS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3109
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3110
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1078
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
@@ -4325,14 +4325,6 @@ msgstr ""
 msgid "JUNE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:399
-msgid "KEEP_CURRENT_SHORT"
-msgstr ""
-
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:396
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr ""
-
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:822
 msgid "KEEP_MIGRATION"
 msgstr ""
@@ -4566,7 +4558,7 @@ msgstr ""
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1866
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1867
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -5603,6 +5595,11 @@ msgstr ""
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:110
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:254
+msgid "MODIFIER"
+msgstr ""
+
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:264
 msgid "MODIFY"
 msgstr ""
@@ -6264,7 +6261,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:665
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3206
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3207
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -6312,7 +6309,7 @@ msgstr ""
 msgid "NUCLEUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1865
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1866
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -6336,8 +6333,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:25
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:35
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:45
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3020
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3032
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3021
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3033
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
 #: ../src/microbe_stage/MicrobeHUD.cs:654
 msgid "N_A"
@@ -6367,6 +6364,11 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:589
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:400
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:501
+msgid "OFFSET"
 msgstr ""
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:16
@@ -6626,13 +6628,13 @@ msgstr ""
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:882
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:890
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:432
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:884
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:892
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:380
 msgid "OXYGEN_RESISTANCE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:883
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:885
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -6805,10 +6807,10 @@ msgstr ""
 #: ../src/gui_common/menus/PlanetStatistics.cs:113
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:568
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:101
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:879
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:726
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.cs:98
-#: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:157
-#: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:237
+#: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:172
+#: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:259
 #: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.cs:54
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:510
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:586
@@ -6988,7 +6990,7 @@ msgstr ""
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3039
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3040
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -7028,9 +7030,9 @@ msgstr ""
 msgid "PRESET_VERY_LOW"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:864
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:872
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:290
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:865
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:873
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:234
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:196
 msgid "PRESSURE"
 msgstr ""
@@ -7039,7 +7041,7 @@ msgstr ""
 msgid "PRESSURE_SHORT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:865
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:866
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -8529,7 +8531,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:855
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:451
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:529
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:160
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:90
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:170
 msgid "TEMPERATURE"
 msgstr ""
@@ -8849,14 +8851,14 @@ msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:856
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:873
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:891
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:908
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:874
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:893
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:910
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:222
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:377
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:179
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:323
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
 
@@ -8868,12 +8870,13 @@ msgstr ""
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:414
-msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr ""
-
 #: ../src/gui_common/PatchNotesList.cs:277
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr ""
+
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:415
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:516
+msgid "TOTAL"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1080
@@ -9494,13 +9497,13 @@ msgstr ""
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:899
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:907
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:505
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:901
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:909
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:481
 msgid "UV_PROTECTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:900
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:902
 msgid "UV_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -9530,7 +9533,7 @@ msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:311
 #: ../src/gui_common/menus/PlanetStatistics.cs:114
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:878
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:725
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:514
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:590
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:374
