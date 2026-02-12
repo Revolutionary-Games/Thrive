@@ -60,14 +60,15 @@ public partial class ToleranceRangeDisplay : HSlider
 
     public override void _Draw()
     {
-        var mainLineStartPos = new Vector2(0, Size.Y / 2);
-        var mainLineEndPos = new Vector2(Size.X, Size.Y / 2);
+        var mainLineStartPos = new Vector2(0, Size.Y * 0.5f);
+        var mainLineEndPos = new Vector2(Size.X, Size.Y * 0.5f);
 
-        var lowerBoundCenter = new Vector2(lowerBoundPos + LINE_WIDTH / 2, Size.Y / 2);
-        var upperBoundCenter = new Vector2(upperBoundPos + LINE_WIDTH / 2, Size.Y / 2);
-        var middleBoundCenter = new Vector2((float)(Size.X * (Value - MinValue) / (MaxValue - MinValue)), Size.Y / 2);
+        var lowerBoundCenter = new Vector2(lowerBoundPos + LINE_WIDTH * 0.5f, Size.Y * 0.5f);
+        var upperBoundCenter = new Vector2(upperBoundPos + LINE_WIDTH * 0.5f, Size.Y * 0.5f);
+        var middleBoundCenter =
+            new Vector2((float)(Size.X * (Value - MinValue) / (MaxValue - MinValue)), Size.Y * 0.5f);
 
-        var boundOffset = new Vector2(0, Constants.TOLERANCE_DISPLAY_BOUND_HEIGHT / 2);
+        var boundOffset = new Vector2(0, Constants.TOLERANCE_DISPLAY_BOUND_HEIGHT * 0.5f);
 
         // Lower bound
         DrawLine(lowerBoundCenter, lowerBoundCenter + boundOffset, rangeColor, LINE_WIDTH);
@@ -80,7 +81,7 @@ public partial class ToleranceRangeDisplay : HSlider
         // Middle
         if (showMiddleMarker)
         {
-            var middleOffset = new Vector2(0, Constants.TOLERANCE_DISPLAY_MIDDLE_HEIGHT / 2);
+            var middleOffset = new Vector2(0, Constants.TOLERANCE_DISPLAY_MIDDLE_HEIGHT * 0.5f);
             DrawLine(middleBoundCenter + middleOffset, middleBoundCenter - middleOffset, rangeColor,
                 LINE_WIDTH);
         }
