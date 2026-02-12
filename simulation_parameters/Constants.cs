@@ -1999,7 +1999,7 @@ public static class Constants
 
     public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 350000;
 
-    public const float TOLERANCE_INITIAL_PRESSURE_RANGE = 1200000;
+    public const float TOLERANCE_INITIAL_PRESSURE_RANGE = 2400000;
     public const float TOLERANCE_PRESSURE_RANGE_MAX = 16000000;
 
     /// <summary>

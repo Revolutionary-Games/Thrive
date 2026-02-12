@@ -185,6 +185,7 @@ layout_mode = 2
 [node name="TemperatureRange" type="HSlider" parent="Temperature/HBoxContainer3" unique_id=2116332655]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 mouse_filter = 1
 max_value = 50.0
 value = 10.0
@@ -329,6 +330,7 @@ layout_mode = 2
 [node name="PressureRange" type="HSlider" parent="Pressure/HBoxContainer4" unique_id=229624719]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 mouse_filter = 1
 min_value = 200000.0
 max_value = 16000000.0
