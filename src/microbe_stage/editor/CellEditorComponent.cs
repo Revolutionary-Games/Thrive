@@ -174,7 +174,8 @@ public partial class CellEditorComponent :
     private AnimationPlayer tutorialAnimationPlayer = null!;
 
     [Export]
-    private LabelSettings toleranceWarningsFont = null!;
+    private PackedScene customRichTextLabelScene = null!;
+
 #pragma warning restore CA2213
 
     private OrganelleDefinition nucleus = null!;
@@ -1255,7 +1256,7 @@ public partial class CellEditorComponent :
         if (!IsMulticellularEditor)
         {
             // Refresh tolerances data for the new patch
-            tolerancesEditor.OnDataTolerancesDependOnChanged();
+            tolerancesEditor.OnDataTolerancesDependOnChanged(false);
             OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
             UpdateEndosymbiosisSpeciesData();
         }
@@ -2508,7 +2509,7 @@ public partial class CellEditorComponent :
         {
             // Tolerances are now affected by organelle changes, so re-trigger calculating them
             OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
-            tolerancesEditor.OnDataTolerancesDependOnChanged();
+            tolerancesEditor.OnDataTolerancesDependOnChanged(true);
         }
 
         UpdateCellVisualization();

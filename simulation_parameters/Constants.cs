@@ -1967,21 +1967,40 @@ public static class Constants
 
     public const float PATCH_GENERATION_CHANCE_BANANA_BIOME = 0.03f;
 
+    public const float TOLERANCE_DISPLAY_BOUND_HEIGHT = 15.0f;
+    public const float TOLERANCE_DISPLAY_MIDDLE_HEIGHT = 6.0f;
+    public const float TOLERANCE_DISPLAY_MARKER_WIDTH = 2.0f;
+    public const float TOLERANCE_DISPLAY_MAIN_LINE_WIDTH = 4.0f;
+    public const float TOLERANCE_DISPLAY_CONNECTOR_BEND_Y_OFFSET = 1.5f;
+
+    /// <summary>
+    ///   The vertical distance in pixels from the top of each <see cref="ToleranceRangeDisplay"/> to the center of
+    ///   the grabber of the related slider.
+    /// </summary>
+    public const float TOLERANCE_DISPLAY_SLIDER_GRABBER_Y_OFFSET = 28.0f;
+
     public const float TOLERANCE_INITIAL_TEMPERATURE_RANGE = 10;
     public const float TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE = 2;
     public const float TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE = 40;
     public const float TOLERANCE_PERFECT_TEMPERATURE_SCORE = 0.1f;
 
     public const float TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE = 4000000;
-    public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 350000;
+    public const float TOLERANCE_PERFECT_PRESSURE_SCORE = 0.1f;
 
-    // These are chosen to be symmetric so that the pressure tolerance range ends up easier to show correctly in the
-    // GUI
+    // These are chosen to be symmetric so that the pressure tolerance range ends up easier to show correctly in the GUI
     public const float TOLERANCE_INITIAL_PRESSURE_MIN_FRACTION = 0.8f;
     public const float TOLERANCE_INITIAL_PRESSURE_MAX_FRACTION = 1.2f;
 
-    public const float TOLERANCE_PRESSURE_RANGE_MAX = 2000000;
-    public const float TOLERANCE_PERFECT_PRESSURE_SCORE = 0.1f;
+    /// <summary>
+    ///   Maximum pressure.
+    ///   Should be equal to the maximum value of <see cref="TolerancesEditorSubComponent.pressureSlider"/>.
+    /// </summary>
+    public const float TOLERANCE_PRESSURE_MAX = 80000000;
+
+    public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 350000;
+
+    public const float TOLERANCE_INITIAL_PRESSURE_RANGE = 1200000;
+    public const float TOLERANCE_PRESSURE_RANGE_MAX = 16000000;
 
     /// <summary>
     ///   UV effects only appear once this amount of UV is in a patch
@@ -2011,9 +2030,7 @@ public static class Constants
     /// </summary>
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE = 0.000002;
 
-    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_INVERTED = 1.0f / TOLERANCE_CHANGE_MP_PER_PRESSURE;
-
-    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00005;
+    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00001;
 
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE =
         TOLERANCE_CHANGE_MP_PER_PRESSURE + TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE;
