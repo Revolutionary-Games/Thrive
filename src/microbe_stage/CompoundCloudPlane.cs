@@ -1,5 +1,10 @@
-﻿using System;
+﻿// Toggles using cached to world shift vectors or recalculating them each time
+
+#define CACHE_WORLD_COORDINATES
+
+using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Godot;
@@ -9,13 +14,17 @@ using Vector2 = Godot.Vector2;
 using Vector3 = Godot.Vector3;
 using Vector4 = System.Numerics.Vector4;
 
+#if CACHE_WORLD_COORDINATES
+using System.Collections.Frozen;
+#endif
+
 /// <summary>
 ///   A single compound cloud plane that handles fluid simulation for 4 compound types at a single grid square location
 ///   (can be repositioned as the player moves)
 /// </summary>
 public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     /// <summary>
     ///   The current densities of compounds. This uses custom writing, so this is ignored.
@@ -37,6 +46,21 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     private readonly StringName brightnessParameterName = new("BrightnessMultiplier");
     private readonly StringName uvOffsetParameterName = new("UVOffset");
 
+#if CACHE_WORLD_COORDINATES
+    /// <summary>
+    ///   Precalculated cache of world shift vectors. This dictionary contains 81 values.
+    ///   And is filled in _Ready once the cloud size is known.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This could be reimplemented as a 256-element flat array, but that actually loses in most tests to the
+    ///     frozen dictionary and only in very specific optimizer scenarios it wins. See:
+    ///     https://forum.revolutionarygamesstudio.com/t/improving-cloud-performance-with-caching/1232/4
+    ///   </para>
+    /// </remarks>
+    private FrozenDictionary<int, Vector2> cachedWorldShiftVectors = null!;
+#endif
+
     private CompoundDefinition?[] compoundDefinitions = null!;
 
     private Image? image;
@@ -53,7 +77,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     /// <summary>
     ///   To allow multithreaded operations, a cached world position is needed
     /// </summary>
-    private Vector3 cachedWorldPosition;
+    private Vector2 cachedWorldPosition;
 
     public int CloudResolution { get; private set; }
 
@@ -84,7 +108,16 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
         instance.Compounds = reader.ReadObject<Compound[]>();
         instance.playersPosition = reader.ReadVector2I();
-        instance.cachedWorldPosition = reader.ReadVector3();
+        if (version <= 1)
+        {
+            var oldPosition = reader.ReadVector3();
+            instance.cachedWorldPosition = new Vector2(oldPosition.X, oldPosition.Z);
+        }
+        else
+        {
+            instance.cachedWorldPosition = reader.ReadVector2();
+        }
+
         instance.CloudResolution = reader.ReadInt32();
         instance.PlaneSize = reader.ReadInt32();
         instance.Position = reader.ReadVector3();
@@ -235,6 +268,10 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             OldDensity = new Vector4[PlaneSize, PlaneSize];
             SetMaterialUVForPosition();
         }
+
+#if CACHE_WORLD_COORDINATES
+        cachedWorldShiftVectors = PrecalculateWorldShiftVectors();
+#endif
     }
 
     /// <summary>
@@ -290,7 +327,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
     public void UpdatePosition(Vector2I newPosition)
     {
-        cachedWorldPosition = Position;
+        cachedWorldPosition = new Vector2(Position.X, Position.Z);
 
         int newX = newPosition.X.PositiveModulo(Constants.CLOUD_PLANE_SQUARES_PER_SIDE);
         int newY = newPosition.Y.PositiveModulo(Constants.CLOUD_PLANE_SQUARES_PER_SIDE);
@@ -329,7 +366,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
     /// <summary>
     ///   Updates the edge concentrations of this cloud before the rest of the cloud.
-    ///   This is not ran in parallel.
+    ///   This is not run in parallel.
     /// </summary>
     public void DiffuseEdges(float delta)
     {
@@ -338,23 +375,23 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
         int edgeWidth = Constants.CLOUD_PLANE_EDGE_WIDTH;
         int halfEdgeWidth = edgeWidth / 2;
-        int cellSize = PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
+        int planeChunkSize = PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
 
         // Vertical edge columns
         PartialDiffuse(0, 0, halfEdgeWidth, PlaneSize, delta);
-        PartialDiffuse(1 * cellSize - halfEdgeWidth, 0, edgeWidth, PlaneSize, delta);
-        PartialDiffuse(2 * cellSize - halfEdgeWidth, 0, edgeWidth, PlaneSize, delta);
-        PartialDiffuse(3 * cellSize - halfEdgeWidth, 0, halfEdgeWidth, PlaneSize, delta);
+        PartialDiffuse(1 * planeChunkSize - halfEdgeWidth, 0, edgeWidth, PlaneSize, delta);
+        PartialDiffuse(2 * planeChunkSize - halfEdgeWidth, 0, edgeWidth, PlaneSize, delta);
+        PartialDiffuse(3 * planeChunkSize - halfEdgeWidth, 0, halfEdgeWidth, PlaneSize, delta);
 
         // Horizontal edge rows
         for (int square = 0; square < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++square)
         {
-            int x = square * cellSize + halfEdgeWidth;
-            int width = cellSize - edgeWidth;
+            int x = square * planeChunkSize + halfEdgeWidth;
+            int width = planeChunkSize - edgeWidth;
 
-            PartialDiffuse(x, 3 * cellSize - halfEdgeWidth, width, halfEdgeWidth, delta);
-            PartialDiffuse(x, 2 * cellSize - halfEdgeWidth, width, edgeWidth, delta);
-            PartialDiffuse(x, 1 * cellSize - halfEdgeWidth, width, edgeWidth, delta);
+            PartialDiffuse(x, 3 * planeChunkSize - halfEdgeWidth, width, halfEdgeWidth, delta);
+            PartialDiffuse(x, 2 * planeChunkSize - halfEdgeWidth, width, edgeWidth, delta);
+            PartialDiffuse(x, 1 * planeChunkSize - halfEdgeWidth, width, edgeWidth, delta);
             PartialDiffuse(x, 0, width, halfEdgeWidth, delta);
         }
     }
@@ -364,22 +401,19 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     /// </summary>
     public void QueueDiffuseCloud(float delta, List<Task> queue)
     {
-        // The diffusion rate seems to have a bigger effect
         delta *= 100.0f;
+        var planeChunkSize = PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
 
-        for (int i = 0; i < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++i)
+        for (var i = 0; i < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++i)
         {
-            for (int j = 0; j < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++j)
+            var x0 = i * planeChunkSize;
+
+            for (var j = 0; j < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++j)
             {
-                var x0 = i;
-                var y0 = j;
+                var y0 = j * planeChunkSize;
 
                 // TODO: fix task allocations
-                var task = new Task(() => PartialDiffuseCenter(x0 * PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE,
-                    y0 * PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE,
-                    PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE,
-                    PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE,
-                    delta));
+                var task = new Task(() => PartialDiffuseCenter(x0, y0, planeChunkSize, delta));
                 queue.Add(task);
             }
         }
@@ -390,22 +424,19 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     /// </summary>
     public void QueueAdvectCloud(float delta, List<Task> queue)
     {
-        // The diffusion rate seems to have a bigger effect
         delta *= 100.0f;
+        var planeChunkSize = PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
 
-        for (int i = 0; i < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++i)
+        for (var i = 0; i < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++i)
         {
-            for (int j = 0; j < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++j)
+            var x0 = i * planeChunkSize;
+
+            for (var j = 0; j < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++j)
             {
-                var x0 = i;
-                var y0 = j;
+                var y0 = j * planeChunkSize;
 
                 // TODO: fix task allocations
-                var task = new Task(() => PartialAdvect(x0 * PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE,
-                    y0 * PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE,
-                    PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE,
-                    PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE,
-                    delta));
+                var task = new Task(() => PartialAdvect(x0, y0, planeChunkSize, delta));
                 queue.Add(task);
             }
         }
@@ -416,19 +447,18 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     /// </summary>
     public void QueueUpdateTextureImage(List<Task> queue)
     {
-        for (int i = 0; i < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++i)
+        var planeChunkSize = PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE;
+
+        for (var i = 0; i < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++i)
         {
-            for (int j = 0; j < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++j)
+            var x0 = i * planeChunkSize;
+
+            for (var j = 0; j < Constants.CLOUD_PLANE_SQUARES_PER_SIDE; ++j)
             {
-                var x0 = i;
-                var y0 = j;
+                var y0 = j * planeChunkSize;
 
                 // TODO: fix task allocations
-                var task = new Task(() => PartialUpdateTextureImage(
-                    x0 * PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE,
-                    y0 * PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE,
-                    PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE,
-                    PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE));
+                var task = new Task(() => PartialUpdateTextureImage(x0, y0, planeChunkSize, planeChunkSize));
                 queue.Add(task);
             }
         }
@@ -451,7 +481,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     }
 
     /// <summary>
-    ///   Interlocked add variant that is thread safe
+    ///   Interlocked add-variant that is thread safe
     /// </summary>
     public void AddCloudInterlocked(Compound compound, int x, int y, float density)
     {
@@ -524,7 +554,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     }
 
     /// <summary>
-    ///   Add cloud variant that ignores unhandled compound types
+    ///   Add-cloud variant that ignores unhandled compound types
     /// </summary>
     /// <returns>True if added, false if this didn't handle the given type</returns>
     public bool AddCloudInterlockedIfHandlesType(Compound compound, int x, int y, float density)
@@ -697,7 +727,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     }
 
     /// <summary>
-    ///   Checks if position is in this cloud, also returns relative coordinates
+    ///   Checks if the position is in this cloud, also returns relative coordinates
     /// </summary>
     public bool ContainsPosition(Vector3 worldPosition, out int x, out int y)
     {
@@ -714,24 +744,26 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     {
         if (worldPosition.X + radius < cachedWorldPosition.X - Constants.CLOUD_SIZE ||
             worldPosition.X - radius >= cachedWorldPosition.X + Constants.CLOUD_SIZE ||
-            worldPosition.Z + radius < cachedWorldPosition.Z - Constants.CLOUD_SIZE ||
-            worldPosition.Z - radius >= cachedWorldPosition.Z + Constants.CLOUD_SIZE)
+            worldPosition.Z + radius < cachedWorldPosition.Y - Constants.CLOUD_SIZE ||
+            worldPosition.Z - radius >= cachedWorldPosition.Y + Constants.CLOUD_SIZE)
+        {
             return false;
+        }
 
         return true;
     }
 
     /// <summary>
-    ///   Converts world coordinate to cloud relative (top left) coordinates
+    ///   Converts world coordinate to cloud-relative (top left) coordinates
     /// </summary>
     public void ConvertToCloudLocal(Vector3 worldPosition, out int x, out int y)
     {
-        var topLeftRelative = worldPosition - cachedWorldPosition;
+        var topLeftRelative = new Vector2(worldPosition.X, worldPosition.Z) - cachedWorldPosition;
 
         // Floor is used here because otherwise the last coordinate is wrong
         x = ((int)Math.Floor((topLeftRelative.X + Constants.CLOUD_SIZE) / CloudResolution)
             + playersPosition.X * PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE) % PlaneSize;
-        y = ((int)Math.Floor((topLeftRelative.Z + Constants.CLOUD_SIZE) / CloudResolution)
+        y = ((int)Math.Floor((topLeftRelative.Y + Constants.CLOUD_SIZE) / CloudResolution)
             + playersPosition.Y * PlaneSize / Constants.CLOUD_PLANE_SQUARES_PER_SIDE) % PlaneSize;
     }
 
@@ -745,12 +777,12 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         return new Vector3(cloudX * CloudResolution +
             ((4 - playersPosition.X) % 3 - 1) * CloudResolution * PlaneSize /
             Constants.CLOUD_PLANE_SQUARES_PER_SIDE -
-            Constants.CLOUD_SIZE,
+            Constants.CLOUD_SIZE + cachedWorldPosition.X,
             0,
             cloudY * CloudResolution + ((4 - playersPosition.Y) % 3 - 1) *
             CloudResolution * PlaneSize /
             Constants.CLOUD_PLANE_SQUARES_PER_SIDE -
-            Constants.CLOUD_SIZE) + cachedWorldPosition;
+            Constants.CLOUD_SIZE + cachedWorldPosition.Y);
 
         // ReSharper restore PossibleLossOfFraction
     }
@@ -772,7 +804,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             if (compound == Compound.Invalid)
                 break;
 
-            // Skip if compound is non-useful or disallowed to be absorbed
+            // Skip if the compound is non-useful or disallowed to be absorbed
             if (!compoundDefinitions[i]!.IsAbsorbable
                 || (!storage.IsUseful(compound) && !compoundDefinitions[i]!.AlwaysAbsorbable))
             {
@@ -782,7 +814,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
             // Loop here to retry in case we read stale data
             while (true)
             {
-                // Overestimate of how much compounds we get
+                // Overestimate of how many compounds we get
                 float cloudAmount = HackyAddress(ref Density[localX, localY], i);
                 float generousAmount = cloudAmount * Constants.SKIP_TRYING_TO_ABSORB_RATIO;
 
@@ -799,7 +831,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                     if (freeSpace < 0.0f)
                         throw new InvalidOperationException("Free space for compounds is negative");
 
-                    // Allow partial absorption to allow cells to take from high density clouds
+                    // Allow partial absorption to allow cells to take from high-density clouds
                     multiplier = freeSpace / generousAmount;
                 }
 
@@ -812,7 +844,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
 
                 taken *= Constants.ABSORPTION_RATIO;
 
-                // This should never fail to add the full amount of compounds as we checked the free space above and
+                // This should never fail to add the full amount of compound as we checked the free space above and
                 // scaled the take amount accordingly
                 storage.AddCompound(compound, taken);
 
@@ -861,6 +893,13 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         base.Dispose(disposing);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int GetWorldShiftKey(int x0, int y0, int playerX, int playerY)
+    {
+        // This is safe as long as the values are max 8 bit long, otherwise they will collide
+        return x0 | y0 << 8 | playerX << 16 | playerY << 24;
+    }
+
     /// <summary>
     ///   Calculates the multipliers for the old density to move to new locations
     /// </summary>
@@ -877,9 +916,9 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         floorY = (int)Math.Floor(dy);
         ceilY = floorY + 1;
 
-        weightRight = Math.Abs(dx - floorX);
+        weightRight = dx - floorX;
         weightLeft = 1.0f - weightRight;
-        weightBottom = Math.Abs(dy - floorY);
+        weightBottom = dy - floorY;
         weightTop = 1.0f - weightBottom;
     }
 
@@ -894,33 +933,105 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
     private void PartialDiffuse(int x0, int y0, int width, int height, float delta)
     {
         float a = delta * Constants.CLOUD_DIFFUSION_RATE;
+        var cellMultiplier = a * 0.25f;
+        var planeSize = PlaneSize;
 
         for (int x = x0; x < x0 + width; ++x)
         {
+            var xMinus = x == 0 ? planeSize - 1 : x - 1;
+            var xPlus = x == planeSize - 1 ? 0 : x + 1;
+
             for (int y = y0; y < y0 + height; ++y)
             {
+                var yMinus = y == 0 ? planeSize - 1 : y - 1;
+                var yPlus = y == planeSize - 1 ? 0 : y + 1;
+
                 OldDensity[x, y] =
                     Density[x, y] * (1 - a) +
                     (
-                        Density[x, (y - 1 + PlaneSize) % PlaneSize] +
-                        Density[x, (y + 1) % PlaneSize] +
-                        Density[(x - 1 + PlaneSize) % PlaneSize, y] +
-                        Density[(x + 1) % PlaneSize, y]) * (a * 0.25f);
+                        Density[x, yMinus] +
+                        Density[x, yPlus] +
+                        Density[xMinus, y] +
+                        Density[xPlus, y]) * cellMultiplier;
             }
         }
     }
 
-    private Vector3 GetWorldPositionForAdvection(int x0, int y0)
+#if CACHE_WORLD_COORDINATES
+    private FrozenDictionary<int, Vector2> PrecalculateWorldShiftVectors()
     {
+        var shiftCache = new Dictionary<int, Vector2>(81);
         int worldShift = Constants.CLOUD_SIZE / Constants.CLOUD_PLANE_SQUARES_PER_SIDE * CloudResolution;
-        int xShift = GetEdgeShift(x0, playersPosition.X);
-        int yShift = GetEdgeShift(y0, playersPosition.Y);
 
-        var wholePlaneShift = new Vector3(worldShift * ((4 - playersPosition.X) % 3 - 1) - Constants.CLOUD_SIZE, 0,
-            worldShift * ((4 - playersPosition.Y) % 3 - 1) - Constants.CLOUD_SIZE);
-        var edgePlanesShift = new Vector3(xShift * worldShift, 0, yShift * worldShift);
+        int[] planeOffsets = { 0, 100, 200 };
+        int[] playerPositions = { 0, 1, 2 };
+
+        foreach (int x0 in planeOffsets)
+        {
+            foreach (int y0 in planeOffsets)
+            {
+                foreach (int playerX in playerPositions)
+                {
+                    foreach (int playerY in playerPositions)
+                    {
+                        // When not caching equivalent math is in GetWorldPositionForAdvection
+                        int xShift = GetEdgeShift(x0, playerX);
+                        int yShift = GetEdgeShift(y0, playerY);
+
+                        var wholePlaneShift = new Vector2(worldShift * ((4 - playerX) % 3 - 1) - Constants.CLOUD_SIZE,
+                            worldShift * ((4 - playerY) % 3 - 1) - Constants.CLOUD_SIZE);
+
+                        var edgePlanesShift = new Vector2(xShift * worldShift, yShift * worldShift);
+
+                        int key = GetWorldShiftKey(x0, y0, playerX, playerY);
+                        shiftCache[key] = wholePlaneShift + edgePlanesShift;
+                    }
+                }
+            }
+        }
+
+        if (shiftCache.Count != 81)
+            throw new Exception("Logic error in PrecalculateWorldShiftVectors");
+
+        return shiftCache.ToFrozenDictionary();
+    }
+#endif
+
+    private Vector2 GetWorldPositionForAdvection(int x0, int y0)
+    {
+#if CACHE_WORLD_COORDINATES
+        var key = GetWorldShiftKey(x0, y0, playersPosition.X, playersPosition.Y);
+
+        // In benchmarks the null ref or direct try get basically both get wins and losses, but the TryGet wins
+        // slightly more often, so it is used
+        /*ref readonly var cached = ref cachedWorldShiftVectors.GetValueRefOrNullRef(key);
+        if (!Unsafe.IsNullRef(in cached))
+            return cachedWorldPosition + cached;*/
+
+        if (cachedWorldShiftVectors.TryGetValue(key, out var cached))
+            return cachedWorldPosition + cached;
+
+#if DEBUG
+        throw new ArgumentException("Position is impossible for cloud world shift lookup");
+#else
+        return cachedWorldPosition;
+#endif
+#else
+        // Same math as in PrecalculateWorldShiftVectors. This is used when not caching.
+        int worldShift = Constants.CLOUD_SIZE / Constants.CLOUD_PLANE_SQUARES_PER_SIDE * CloudResolution;
+        var playerX = playersPosition.X;
+        var playerY = playersPosition.Y;
+
+        int xShift = GetEdgeShift(x0, playerX);
+        int yShift = GetEdgeShift(y0, playerY);
+
+        var wholePlaneShift = new Vector2(worldShift * ((4 - playerX) % 3 - 1) - Constants.CLOUD_SIZE,
+            worldShift * ((4 - playerY) % 3 - 1) - Constants.CLOUD_SIZE);
+
+        var edgePlanesShift = new Vector2(xShift * worldShift, yShift * worldShift);
 
         return cachedWorldPosition + wholePlaneShift + edgePlanesShift;
+#endif
     }
 
     private int GetEdgeShift(int coord, int playerPos)
@@ -933,21 +1044,28 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         return 0;
     }
 
-    private void PartialAdvect(int x0, int y0, int width, int height, float delta)
+    private void PartialAdvect(int x0, int y0, int size, float delta)
     {
         var resolution = CloudResolution;
         var worldPos = GetWorldPositionForAdvection(x0, y0);
 
-        for (int x = x0; x < x0 + width; ++x)
+        for (int x = x0; x < x0 + size; ++x)
         {
-            for (int y = y0; y < y0 + height; ++y)
+            var worldX = worldPos.X + x * resolution;
+
+            for (int y = y0; y < y0 + size; ++y)
             {
+                var worldY = worldPos.Y + y * resolution;
+
                 var oldDensity = OldDensity[x, y];
-                if (oldDensity.LengthSquared() <= 1)
+
+                // This is better for performance than checking length squared of oldDensity although
+                // might cause issues if for some reason density would end up with negative value
+                if (oldDensity.X + oldDensity.Y + oldDensity.Z + oldDensity.W < 1)
                     continue;
 
                 var velocity =
-                    fluidSystem!.VelocityAt(new Vector2(worldPos.X + x * resolution, worldPos.Z + y * resolution));
+                    fluidSystem!.VelocityAt(new Vector2(worldX, worldY));
 
                 if (MathF.Abs(velocity.X) + MathF.Abs(velocity.Y) <
                     Constants.CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD)
@@ -969,10 +1087,14 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
                 floorY = floorY.PositiveModulo(PlaneSize);
                 ceilY = ceilY.PositiveModulo(PlaneSize);
 
-                Density[floorX, floorY] += oldDensity * decayRates * weightLeft * weightTop;
-                Density[floorX, ceilY] += oldDensity * decayRates * weightLeft * weightBottom;
-                Density[ceilX, floorY] += oldDensity * decayRates * weightRight * weightTop;
-                Density[ceilX, ceilY] += oldDensity * decayRates * weightRight * weightBottom;
+                var oldDensityDecayed = oldDensity * decayRates;
+                var oldDensityDecayedLeft = oldDensityDecayed * weightLeft;
+                var oldDensityDecayedRight = oldDensityDecayed * weightRight;
+
+                Density[floorX, floorY] += oldDensityDecayedLeft * weightTop;
+                Density[floorX, ceilY] += oldDensityDecayedLeft * weightBottom;
+                Density[ceilX, floorY] += oldDensityDecayedRight * weightTop;
+                Density[ceilX, ceilY] += oldDensityDecayedRight * weightBottom;
             }
         }
     }
@@ -1000,10 +1122,10 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked, IA
         }
     }
 
-    private void PartialDiffuseCenter(int x0, int y0, int width, int height, float delta)
+    private void PartialDiffuseCenter(int x0, int y0, int size, float delta)
     {
-        PartialDiffuse(x0 + Constants.CLOUD_PLANE_EDGE_WIDTH / 2, y0 + Constants.CLOUD_PLANE_EDGE_WIDTH / 2, width
-            - Constants.CLOUD_PLANE_EDGE_WIDTH, height - Constants.CLOUD_PLANE_EDGE_WIDTH, delta);
+        PartialDiffuse(x0 + Constants.CLOUD_PLANE_EDGE_WIDTH / 2, y0 + Constants.CLOUD_PLANE_EDGE_WIDTH / 2, size
+            - Constants.CLOUD_PLANE_EDGE_WIDTH, size - Constants.CLOUD_PLANE_EDGE_WIDTH, delta);
     }
 
     private float HackyAddress(ref Vector4 vector, int index)

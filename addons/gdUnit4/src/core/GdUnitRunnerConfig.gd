@@ -43,8 +43,8 @@ func server_port() -> int:
 	return _config.get(SERVER_PORT, -1)
 
 
-func do_fail_fast(is_fail_fast: bool) -> GdUnitRunnerConfig:
-	_config[EXIT_FAIL_FAST] = is_fail_fast
+func do_fail_fast(fail_fast: bool) -> GdUnitRunnerConfig:
+	_config[EXIT_FAIL_FAST] = fail_fast
 	return self
 
 

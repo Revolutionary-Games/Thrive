@@ -63,9 +63,10 @@ func test_before(p_guid: GdUnitGUID) -> GdUnitEvent:
 	return self
 
 
-func test_after(p_guid: GdUnitGUID, p_statistics: Dictionary = {}, p_reports :Array[GdUnitReport] = []) -> GdUnitEvent:
+func test_after(p_guid: GdUnitGUID, name: String, p_statistics: Dictionary = {}, p_reports :Array[GdUnitReport] = []) -> GdUnitEvent:
 	_event_type = TESTCASE_AFTER
 	_guid = p_guid
+	_test_name = name
 	_statistics = p_statistics
 	_reports = p_reports
 	return self
