@@ -21,15 +21,13 @@ public static class MulticellularLayoutHelpers
                 hexTemporaryMemory2);
 
             var direction = new Vector2(0, -1);
-
             if (hexWithData.Position != new Hex(0, 0))
             {
                 direction = new Vector2(hexWithData.Position.Q, hexWithData.Position.R).Normalized();
             }
 
+            // Copy the data to the actual data instance as well (this is important for data consistency)
             hexWithData.Data!.Position = new Hex(0, 0);
-
-            // Remember to also copy rotation
             hexWithData.Data.Orientation = hexWithData.Orientation;
 
             int distance = 0;
