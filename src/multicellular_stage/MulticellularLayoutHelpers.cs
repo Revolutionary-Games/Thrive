@@ -126,7 +126,7 @@ public static class MulticellularLayoutHelpers
             var temp1 = new HashSet<Hex>();
             var temp3 = new Queue<Hex>();
 
-            float moveDistance = 0.7f;
+            float moveDistance = 0.8f;
             int attempts = 0;
 
             while (true)
@@ -156,39 +156,58 @@ public static class MulticellularLayoutHelpers
                     visitedItems.Add(item);
                 }
 
-                // Once collecting all, then move to know exactly what we should move
-                foreach (var item in visitedItems)
+                if (visitedItems.Count < 1)
+                    throw new Exception("Couldn't find items to move");
+
+                // Try moving non-rotated items first and then closest to origin
+                visitedItems.Sort((a, b) =>
                 {
+                    // Put non-rotated (Orientation == 0) items first
+                    var aBucket = a.Orientation == 0 ? 0 : 1;
+                    int bBucket = b.Orientation == 0 ? 0 : 1;
+
+                    int bucketCompare = aBucket.CompareTo(bBucket);
+                    return bucketCompare != 0 ? bucketCompare : a.Position.CompareTo(b.Position);
+                });
+
+                // Once collecting all, then move to know exactly what we should move
+                for (int i = 0; i < visitedItems.Count; ++i)
+                {
+                    var item = visitedItems[i];
+
                     if (!targetGameplayLayout.Remove(item))
                         throw new Exception("Failed to temporarily remove a cell");
 
                     var originalPosition = item.Position;
 
-                    // Try to shift it and place it again
-                    var loopCount = Hex.HexNeighbourOffset.Count + 1;
-
                     bool addedBack = false;
 
-                    for (int i = 0; i < loopCount; ++i)
+                    // Move towards the closest non-island cell
+                    bool hasTarget = false;
+                    float minDistance = float.MaxValue;
+                    Hex targetHex = new Hex(0, 0);
+
+                    foreach (var cellTemplate in targetGameplayLayout)
+                    {
+                        // Don't move towards islands
+                        if (visitedItems.Contains(cellTemplate))
+                            continue;
+
+                        var distance = cellTemplate.Position.DistanceTo(item.Position);
+                        if (distance < minDistance)
+                        {
+                            minDistance = distance;
+                            targetHex = cellTemplate.Position;
+                            hasTarget = true;
+                        }
+                    }
+
+                    if (hasTarget)
                     {
                         var itemPos = new Vector2(item.Position.Q, item.Position.R);
+                        var shift = itemPos.DirectionTo(new Vector2(targetHex.Q, targetHex.R));
 
-                        Vector2 shift;
-                        if (i == 0)
-                        {
-                            var direction = new Vector2(0, -1);
-                            shift = item.Position != new Hex(0, 0) ? itemPos.Normalized() : direction;
-                        }
-                        else
-                        {
-                            // TODO: would it be better to rotate the directions that are tried first?
-                            // Or pick a vector towards another cell?
-                            shift = Hex.NormalizedVectorNeighbourOffset[(Hex.HexSide)i];
-                        }
-
-                        // This is negative to move towards the origin
-                        var newPositionRaw = itemPos - shift * moveDistance;
-
+                        var newPositionRaw = itemPos + shift * moveDistance;
                         var newPosition = new Hex((int)Math.Round(newPositionRaw.X), (int)Math.Round(newPositionRaw.Y));
 
                         item.Position = newPosition;
@@ -196,7 +215,6 @@ public static class MulticellularLayoutHelpers
                         {
                             targetGameplayLayout.AddFast(item, hexTemporaryMemory, hexTemporaryMemory2);
                             addedBack = true;
-                            break;
                         }
                     }
 
@@ -208,6 +226,18 @@ public static class MulticellularLayoutHelpers
                         item.Position = originalPosition;
                         targetGameplayLayout.AddFast(item, hexTemporaryMemory, hexTemporaryMemory2);
                     }
+                    else
+                    {
+                        // As this was successfully moved, this is now a valid move target for other cells
+                        if (visitedItems.Remove(item))
+                        {
+                            --i;
+                        }
+                        else
+                        {
+                            GD.PrintErr("Expected item remove in layout conversion failed");
+                        }
+                    }
                 }
 
                 ++attempts;
@@ -215,7 +245,8 @@ public static class MulticellularLayoutHelpers
                 // As we slowly can shift the cells, we want to use gentle move distance for a bit before increasing it
                 if (attempts > 10)
                 {
-                    moveDistance += 0.7f;
+                    moveDistance += 0.8f;
+                    attempts = 0;
 
                     // Algorithm fails if we just cannot shift things
                     if (moveDistance > 10)
