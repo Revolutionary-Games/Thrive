@@ -115,6 +115,9 @@ public partial class CellBodyPlanEditorComponent :
 
     private IndividualHexLayout<CellTemplate> editedMicrobeCells = null!;
 
+    private List<IReadOnlyOrganelleTemplate> tempAllOrganelles = new();
+    private List<TweakedProcess> tempAllProcesses = new();
+
     /// <summary>
     ///   True, when visuals of already placed things need to be updated
     /// </summary>
@@ -1288,8 +1291,19 @@ public partial class CellBodyPlanEditorComponent :
 
         if (organismStatisticsPanel.ResourceLimitingMode != ResourceLimitingMode.AllResources)
         {
+            tempAllOrganelles.Clear();
+            foreach (var cell in cells)
+            {
+                foreach (var organelle in cell.Data!.CellType.Organelles)
+                {
+                    tempAllOrganelles.Add(organelle);
+                }
+            }
+
+            ProcessSystem.ComputeActiveProcessList(tempAllOrganelles, ref tempAllProcesses);
+
             conditionsData = new BiomeResourceLimiterAdapter(organismStatisticsPanel.ResourceLimitingMode,
-                conditionsData);
+                conditionsData, tempAllProcesses);
         }
 
         energyBalanceInfo = new EnergyBalanceInfoFull();
