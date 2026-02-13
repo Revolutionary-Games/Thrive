@@ -258,6 +258,20 @@ public struct Hex : IEquatable<Hex>, IComparable<Hex>
             + hex.R.PositiveModulo(Constants.HEX_RENDER_PRIORITY_DISTANCE) + 1;
     }
 
+    public float DistanceTo(Hex otherPosition)
+    {
+        // Convert both hexes to cube coordinates
+        var thisCube = AxialToCube(this);
+        var otherCube = AxialToCube(otherPosition);
+
+        // Hex distance formula: (|dx| + |dy| + |dz|) / 2
+        int dx = Math.Abs(thisCube.X - otherCube.X);
+        int dy = Math.Abs(thisCube.Y - otherCube.Y);
+        int dz = Math.Abs(thisCube.Z - otherCube.Z);
+
+        return (dx + dy + dz) / 2.0f;
+    }
+
     public int CompareTo(Hex otherPosition)
     {
         // First sort by hex distance to origin (0,0) in ascending order
