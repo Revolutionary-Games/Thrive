@@ -7,7 +7,7 @@ using Godot;
 ///   2D axial coordinate pair.
 ///   As well as some helper functions for converting to cartesian
 /// </summary>
-public struct Hex : IEquatable<Hex>
+public struct Hex : IEquatable<Hex>, IComparable<Hex>
 {
     /// <summary>
     ///   Maps a hex side to its direct opposite
@@ -258,6 +258,21 @@ public struct Hex : IEquatable<Hex>
             + hex.R.PositiveModulo(Constants.HEX_RENDER_PRIORITY_DISTANCE) + 1;
     }
 
+    public int CompareTo(Hex otherPosition)
+    {
+        // First sort by hex distance to origin (0,0) in ascending order
+        var thisDist = DistanceToOrigin(Q, R);
+        var otherDist = DistanceToOrigin(otherPosition.Q, otherPosition.R);
+
+        var distCompare = thisDist.CompareTo(otherDist);
+        if (distCompare != 0)
+            return distCompare;
+
+        // Then a deterministic ordering for equal-distance hexes
+        var qCompare = Q.CompareTo(otherPosition.Q);
+        return qCompare != 0 ? qCompare : R.CompareTo(otherPosition.R);
+    }
+
     public bool Equals(Hex other)
     {
         return Q == other.Q && R == other.R;
@@ -286,5 +301,18 @@ public struct Hex : IEquatable<Hex>
     public override string ToString()
     {
         return Q + ", " + R;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int DistanceToOrigin(int q, int r)
+    {
+        // Axial -> cube: (x=q, y=r, z=-(q+r))
+        // Hex distance to origin: (|x| + |y| + |z|) / 2
+        int x = q;
+        int y = r;
+        int z = -(q + r);
+
+        // Hopefully, the compiler uses bit shifting here to divide
+        return (Math.Abs(x) + Math.Abs(y) + Math.Abs(z)) / 2;
     }
 }
