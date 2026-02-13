@@ -840,63 +840,30 @@ public class GameWorld : IArchivable
         var stemCellType = new CellType(microbeSpecies, workMemory1, workMemory2);
         multicellularVersion.ModifiableCellTypes.Add(stemCellType);
 
-        multicellularVersion.ModifiableGameplayCells.AddFast(new CellTemplate(stemCellType, new Hex(0, 0), 0),
-            workMemory1, workMemory2);
-
         if (initialBlob)
         {
-            // Create an initial cluster of cells to get multicellular started
-            // For now just 2 cells so that the new win condition can't be fulfilled in the first multicellular
-            // generation
-            var offset = new Hex(-1, 1);
-            var template = new CellTemplate(stemCellType, offset, 0);
-            while (true)
-            {
-                template.Position = offset;
-                if (multicellularVersion.ModifiableGameplayCells.CanPlace(template, workMemory1, workMemory2))
-                {
-                    multicellularVersion.ModifiableGameplayCells.AddFast(template,
-                        workMemory1, workMemory2);
-                    break;
-                }
+            // As it is simpler to use the editor layout, we create that primarily and then rely on the algorithm to
+            // convert it to a gameplay layout
+            var simpleLayout = new IndividualHexLayout<CellTemplate>();
 
-                offset.R += 1;
+            simpleLayout.AddFast(
+                new HexWithData<CellTemplate>(new CellTemplate(stemCellType, new Hex(0, 0), 0), new Hex(0, 0), 0),
+                workMemory1, workMemory2);
+            simpleLayout.AddFast(
+                new HexWithData<CellTemplate>(new CellTemplate(stemCellType, new Hex(-1, 1), 0), new Hex(-1, 1), 0),
+                workMemory1, workMemory2);
+            simpleLayout.AddFast(
+                new HexWithData<CellTemplate>(new CellTemplate(stemCellType, new Hex(1, 0), 0), new Hex(1, 0), 0),
+                workMemory1, workMemory2);
 
-                template.Position = offset;
-                if (multicellularVersion.ModifiableGameplayCells.CanPlace(template, workMemory1, workMemory2))
-                {
-                    multicellularVersion.ModifiableGameplayCells.AddFast(template,
-                        workMemory1, workMemory2);
-                    break;
-                }
-
-                offset.Q -= 1;
-            }
-
-            offset = new Hex(1, 0);
-            template = new CellTemplate(stemCellType, offset, 0);
-            while (true)
-            {
-                template.Position = offset;
-                if (multicellularVersion.ModifiableGameplayCells.CanPlace(template, workMemory1, workMemory2))
-                {
-                    multicellularVersion.ModifiableGameplayCells.AddFast(template,
-                        workMemory1, workMemory2);
-                    break;
-                }
-
-                offset.Q += 1;
-
-                template.Position = offset;
-                if (multicellularVersion.ModifiableGameplayCells.CanPlace(template, workMemory1, workMemory2))
-                {
-                    multicellularVersion.ModifiableGameplayCells.AddFast(template,
-                        workMemory1, workMemory2);
-                    break;
-                }
-
-                offset.R += 1;
-            }
+            MulticellularLayoutHelpers.UpdateGameplayLayout(multicellularVersion.ModifiableGameplayCells,
+                multicellularVersion.ModifiableEditorCells, simpleLayout, AlgorithmQuality.High, workMemory1,
+                workMemory2);
+        }
+        else
+        {
+            multicellularVersion.ModifiableGameplayCells.AddFast(new CellTemplate(stemCellType, new Hex(0, 0), 0),
+                workMemory1, workMemory2);
         }
 
         multicellularVersion.OnEdited();
