@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-02-11 10:29+0200\n"
-"PO-Revision-Date: 2026-02-11 13:45+0000\n"
+"PO-Revision-Date: 2026-02-13 08:03+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
 "Language: da\n"
@@ -7339,6 +7339,11 @@ msgstr ""
 
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr ""
+"En celle skal have en [b][color=#3796e1][url=thriveopedia:nucleus]Cellekerne[/url][/color][/b] for at udvikle [b]Kloroplaster[/b].\n"
+"\n"
+"Hvis organeloplåsninger er aktiveret i spilindstillingerne skal de følgende krav [i]til spillerens celle[/i] være opfyldt:\n"
+"\n"
+"[indent]—   Indeholder mindst[b]5[/b] [b][color=#3796e1][url=thriveopedia:chromatophore]Thylakoider[/url][/color][/b] i minimum [b]7[/b] generationer i træk.[/indent]"
 
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7350,13 +7355,13 @@ msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Ingen opgraderinger."
 
 msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr ""
+msgstr "Kromatofor fotosyntese, glykolyse"
 
 msgid "WIKI_CILIA_EFFECTS"
-msgstr ""
+msgstr "Hver hex [b]cilier[/b] øger cellens rotationshastighed, hvor den forbruger [thrive:compound type=\"atp\"][/thrive:compound] i bytte for ekstra mobilitet. Den nøjagtige forbedring afhænger af organellens placering - De der er placeret længere væk fra cellens centrum, udøver et større inertimoment og giver derfor en større forøgelse af rotationshastigheden."
 
 msgid "WIKI_CILIA_INTRO"
-msgstr ""
+msgstr "Små hår på ydersiden af cellen der bruger [thrive:compound type=\"atp\"][/thrive:compound] til at øge cellens rotationshastighed. Kan opgraderes til at skabe strømme der trækker bytte og andre objekter ind."
 
 msgid "WIKI_CILIA_MODIFICATIONS"
 msgstr "Ingen modifikationer."
@@ -7365,10 +7370,15 @@ msgid "WIKI_CILIA_PROCESSES"
 msgstr "Ingen processer."
 
 msgid "WIKI_CILIA_REQUIREMENTS"
-msgstr ""
+msgstr "En celle skal have en [b][color=#3796e1][url=thriveopedia:nucleus]Cellekerne[/url][/color][/b] for at udvikle [b]cilier[/b]."
 
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
 msgstr ""
+"Ligesom [b][color=#3796e1][url=thriveopedia:flagellum]Flageller[/url][/color][/b] er [b]Cilier[/b] er tynde hår der giver retningsbestemt fremdrift, men de bevæger sig i forskellige konfigurationer, og giver også andre fordele. Mange organismer bruger [b]cilier[/b] til sanseformål, og de kan også skubbe og trække næringsstoffer rundt i større organismer.\n"
+"\n"
+"I virkeligheden dukker [b]cilier[/b] generelt op over hele cellens ydre, ferm for i individuelle klumper. Celler med denne beklædning er kendt som ciliater.\n"
+"\n"
+"Læs mere på denne organels [color=#3796e1][url=https://en.wikipedia.org/wiki/Cilium]Wikipedia side[/url][/color]"
 
 msgid "WIKI_CILIA_STRATEGY"
 msgstr ""
@@ -7377,7 +7387,7 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 msgid "WIKI_COMPOUNDS_BUTTON"
-msgstr ""
+msgstr "Stoffer"
 
 #, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
@@ -7428,15 +7438,14 @@ msgstr ""
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "Ingen opgraderinger."
 
-#, fuzzy
 msgid "WIKI_DEVELOPMENT"
-msgstr "3D Bevægelse"
+msgstr "Udvikling"
 
 msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
-msgstr ""
+msgstr "Udviklingsdetaljer"
 
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
-msgstr ""
+msgstr "Disse sider relaterer til Thrives udvikling, og indeholder information omkring teori og implementationer"
 
 msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr ""

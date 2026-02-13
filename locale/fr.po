@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-02-11 10:29+0200\n"
-"PO-Revision-Date: 2026-02-11 13:45+0000\n"
+"PO-Revision-Date: 2026-02-13 14:04+0000\n"
 "Last-Translator: Shigasaa <altitudes.etrangeres@ikmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -6941,9 +6941,9 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"Afin de vous reproduire vous devez dupliquer tous vos organites. Cela se fait progressivement mais vous pouvez accélérer le processus en collectant assez d'[thrive:compound type=\"ammonia\"][/thrive:compound] et de [thrive:compound type=\"phosphates\"][/thrive:compound].\n"
+"La Vie demande plus de molécules que juste le sucre. Voyez quels autres nuages de composés votre micorbe peut collecter !\n"
 "\n"
-"Les jauges en bas à droite montrent votre progression. Elles deviennent blanches quand vous pouvez vous reproduire."
+"Les barres orange ([thrive:compound type=\"ammonia\"][/thrive:compound]) et violette ([thrive:compound type=\"phosphates\"][/thrive:compound]) montrent votre [b]progression[/b]. Elles deviennent blanches lorsque vous pouvez vous reproduire."
 
 msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
@@ -7705,13 +7705,15 @@ msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr ""
 "Une cellule doit avoir un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour pouvoir développer des [b]chloroplastes[/b].\n"
 "\n"
-"Si le déblocage des organites est activé dans les paramètres du jeu, la condition suivante doit être vraie [i]pour la cellule du joueur[/i] :\n"
+"Si le déblocage des organites est activé dans les paramètres de la partie, la condition suivante doit être vraie [i]pour la cellule du joueur[/i] :\n"
 "\n"
 "[indent]—   Posséder au moins [b]5[/b] [b][color=#3796e1][url=thriveopedia:chromatophore]thylakoïdes[/url][/color][/b] depuis au moins [b]7[/b] générations d'affilée.[/indent]"
 
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "À venir"
+msgstr ""
+"Les [color=#3796e1][url=https://en.wikipedia.org/wiki/Chloroplast]chloroplastes[/url][/color] sont des organites à double membrane trouvés sur Terre dans les cellules des plantes et des algues. Ils proviennent de l'endosymbiose ancestrale d'une cyanobactérie ; à cause de cela, ils ont un génome distinct de celui de la cellule hôte, tout comme les [b]mitochondries[/b]\n"
+"\n"
+"En plus des [b][color=#3796e1][url=thriveopedia:chromatophore]thylakoïdes[/url][/color][/b], les chloroplastes contiennent l'enzyme ribulose-1,5-bisphosphate carboxylase/oxygénase (RuBisCO), qui joue un rôle central dans la photosynthèse en convertissant le dioxyde de carbone atmosphérique en [b]glucose[/b] et autres molécules énergiques. la RuBisCO est une molécule très ancienne, on pense qu'elle a évolué il y a environ quatre milliards d'années, et qu'elle est la molécule la plus abondante sur Terre aujourd'hui. Malgré cela, elle est notoirement inefficace, étant relativement lente à fixer le carbone et encline à réagir avec l'oxygène dans un processus appelé photorespiration qui réduit l'eficacité de la photosynthèse en gaspillant de l'énergie et relâchant le dioxyde de carbone déja fixé. La RuBisCO semble avoir été incapable d'évoluer pour surmonter cela malgré une pression de sélection immense, et les biologistes moléculaires ont beaucoup de mal à la rendre plus efficiente, suggérant que cette limitation est un aspect fondamental de son activité et de sa structure."
 
 msgid "WIKI_CHLOROPLAST_STRATEGY"
 msgstr ""
@@ -8033,17 +8035,21 @@ msgstr ""
 msgid "WIKI_FERROPLAST_EFFECTS"
 msgstr "Pas d'effets."
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_INTRO"
-msgstr "Le thermoplaste est une structure à double membrane contenant des pigments thermosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du thermoplaste sont capables d'utiliser l'énergie des différences de chaleur dans l'environnement pour produire [thrive:compound type=\"atp\"][/thrive:compound] à partir de l'eau dans un processus appelé [b]thermosynthèse[/b]. Le taux de production de [thrive:compound type=\"atp\"][/thrive:compound] varie avec [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr ""
+"Utilise du [thrive:compound type=\"iron\"][/thrive:compound] pour produire de l'[thrive:compound type=\"atp\"][/thrive:compound] grâce à l'[b]oxydation du fer[/b].\n"
+"\n"
+"Un [b]ferroplaste[/b] est une structure de à double membrane lipidique qui contient un réseau de protéines et d'enzymes. C'est un procaryote qui a été assimilé par son hôte eucaryote. Il est beaucoup plus efficace que la [b][color=#3796e1][url=thriveopedia:rusticyanin]rusticyanine[/url][/color][/b]."
 
 #, fuzzy
 msgid "WIKI_FERROPLAST_MODIFICATIONS"
 msgstr "Pas de modifications."
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_PROCESSES"
-msgstr "Produit du [thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnel à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et à la température."
+msgstr ""
+"[b]Oxydation du fer[/b] : [thrive:compound type=\"iron\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Une méthode de production d'énergie sans [thrive:compound type=\"glucose\"][/thrive:compound]. COnsomme du [thrive:compound type=\"iron\"][/thrive:compound]."
 
 msgid "WIKI_FERROPLAST_REQUIREMENTS"
 msgstr ""
@@ -8072,7 +8078,7 @@ msgstr "Chaque [b]flagelle[/b] exerce une poussée en sens inverse de son orient
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_INTRO"
-msgstr "Le flagelle (pluriel : flagelle) est un faisceau de fibres protéiques en forme de fouet s’étendant de la membrane de la cellule qui utilisent l’ATP pour onduler et propulser la cellule dans une direction. La position du flagelle détermine la direction dans laquelle il fournit la poussée pour le mouvement de la cellule. La direction de poussée est opposée à la direction vers laquelle pointe le flagelle, par exemple un flagelle placé sur le côté gauche d’une cellule fournit une poussée lors du déplacement vers la droite."
+msgstr "Les [b]flagelles[/b] sont des filaments à l'éxterieur d'une cellule qui utilisent de l'[thrive:compound type=\"atp\"][/thrive:compound] pour aumenter la vitesse de déplacement d'une cellule dans une direction. La poussée est appliquée dans la direction opposée à la flagelle."
 
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "Pas de modifications."
@@ -8237,16 +8243,11 @@ msgstr "Améliorations"
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "Améliorations"
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
-msgstr "Organites"
-
-#, fuzzy
-msgid "WIKI_HELP_AND_TIPS_BUTTON"
 msgstr ""
-"Les entrailles gluantes d'une cellule. Le [b]cytoplasme[/b] est le mélange de base d'ions, de protéines et d'autres substances dissoutes dans l'eau qui constitue l'intérieur de la cellule.\n"
-"\n"
-"L'une de ses fonctions est la [b]glycolyse du cytoplasme[/b], la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Chez les cellules dépourvues d'organites et dont le métabolisme est moins avancé, il permet de fournir l'énergie dont elles ont besoin. Il est également utilisé pour stocker des molécules dans la cellule et pour augmenter la taille de la cellule."
+
+msgid "WIKI_HELP_AND_TIPS_BUTTON"
+msgstr "Aide et astuces"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
@@ -8271,9 +8272,8 @@ msgstr ""
 "\n"
 "Si votre population tombe à zéro, vous vous éteignez."
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_INTRO"
-msgstr "Le moteur de la cellule. Les [b]mitochondries[/b] réalisent la [b]respiration aérobie[/b], ou la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] en utilisant de l'[thrive:compound type=\"oxygène\"][/thrive:compound]. Les [b]mitochondries[/b] remplissent cette fonction plus efficacement que d'autres organites tels que les [b][color=#3796e1][url=thriveopedia:metabolosome]métabolosomes[/url][/color][/b]."
+msgstr "Cette page présente quelques informations de base sur le gameplay et des astuces génériques."
 
 msgid "WIKI_HELP_AND_TIPS_MICROBE_PARTS"
 msgstr ""
@@ -8396,20 +8396,20 @@ msgstr ""
 msgid "WIKI_HYDROGENASE_EFFECTS"
 msgstr "Pas d'effets."
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_INTRO"
-msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gazeux et l'énergie cellulaire sous forme d'[thrive:compound type=\"atp\"][/thrive:compound] pour produire de l'[thrive:compound type=\"ammoniaque\"][/thrive:compound], un nutriment essentiel à la croissance des cellules. Il s'agit d'un processus appelé [b]fixation anaérobie de l'azote[/b]. Comme la nitrogénase est suspendue directement dans le cytoplasme, le liquide environnant effectue une partie de la [b]glycolyse[/b]."
+msgstr "L'[b]hydrogénase[/b] réalise la [b]fermentation clostridienne[/b], une forme de [b]respiration anaérobie[/b]. Convertit le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. C'est le premier organite consommateur de glucose disponibe et le seul qui est anaérobie."
 
 msgid "WIKI_HYDROGENASE_MODIFICATIONS"
 msgstr "Pas de modifications."
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_PROCESSES"
-msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+msgstr ""
+"[b]Fermentation clostridienne[/b] : [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Une méthode de production d'énergie qui ne demande pas d'[thrive:compound type=\"oxygen\"][/thrive:compound] mais qui devient moins rentable que les [b][color=#3796e1][url=thriveopedia:metabolosome]métabolosomes[/url][/color][/b] quand il est présent. Nécéssite un afflux régulier de [thrive:compound type=\"glucose\"][/thrive:compound]."
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_REQUIREMENTS"
-msgstr "La thermosynthase est une protéine qui utilise la convection thermique pour changer de forme, ce qui lui permet de se replier et de se lier à l'ADP lorsqu'elle est exposée à la chaleur, puis de se déplier et de le recycler en [thrive:compound type=\"atp\"][/thrive:compound] lorsqu'elle est exposée au froid, dans un processus appelé [b]thermosynthèse[/b]. Le taux de production de [thrive:compound type=\"atp\"][/thrive:compound] varie avec [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Organite de base, pas de conditions."
 
 msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -8429,21 +8429,27 @@ msgstr "Pas d'améliorations."
 msgid "WIKI_HYDROGENOSOME_EFFECTS"
 msgstr "Pas d'effets."
 
-#, fuzzy
 msgid "WIKI_HYDROGENOSOME_INTRO"
-msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gazeux et l'énergie cellulaire sous forme d'[thrive:compound type=\"atp\"][/thrive:compound] pour produire de l'[thrive:compound type=\"ammoniaque\"][/thrive:compound], un nutriment essentiel à la croissance des cellules. Il s'agit d'un processus appelé [b]fixation anaérobie de l'azote[/b]. Comme la nitrogénase est suspendue directement dans le cytoplasme, le liquide environnant effectue une partie de la [b]glycolyse[/b]."
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
 msgstr "Pas de modifications."
 
-#, fuzzy
 msgid "WIKI_HYDROGENOSOME_PROCESSES"
-msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+msgstr ""
+"[b]Fermentation clostridienne[/b] : [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Une méthode de production d'énergie qui ne demande pas d'[thrive:compound type=\"oxygen\"][/thrive:compound]. Est plus efficace que l'[b][color=#3796e1][url=thriveopedia:hydrogenase]Hydrogenase[/url][/color][/b] mais moins que l'[b][color=#3796e1][url=thriveopedia:mitochondrion]Mitochondrion[/url][/color][/b] quand une certaine quantité d'oxygène est présente. Nécéssite un afflux régulier de [thrive:compound type=\"glucose\"][/thrive:compound]."
 
-#, fuzzy
 msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
-msgstr "La thermosynthase est une protéine qui utilise la convection thermique pour changer de forme, ce qui lui permet de se replier et de se lier à l'ADP lorsqu'elle est exposée à la chaleur, puis de se déplier et de le recycler en [thrive:compound type=\"atp\"][/thrive:compound] lorsqu'elle est exposée au froid, dans un processus appelé [b]thermosynthèse[/b]. Le taux de production de [thrive:compound type=\"atp\"][/thrive:compound] varie avec [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr ""
+"Une cellule doit posséder un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour évoluer des [b]hydrogénosomes[/b].\n"
+"\n"
+"Si le [i]déverrouillage des organites[/i] est activé dans les paramètres de la partie, l'organite peut être débloqué sans [i]endosymbiose[/i] une fois que les conditions suivantes sont remplies [i]par la cellule du joueur[/i] :\n"
+"\n"
+"[indent]—   Contient au moins [b]4[/b] [b][color=#3796e1][url=thriveopedia:hydrogenase]hydrogénases[/url][/color][/b] pour au moins [b]5[/b] générations d'affilé.[/indent]\n"
+"[indent]—   Produit au moins [b]+10[/b] [thrive:compound type=\"atp\"][/thrive:compound].[/indent]"
 
 #, fuzzy
 msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
