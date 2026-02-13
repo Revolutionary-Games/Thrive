@@ -36,7 +36,7 @@ public partial class DebugConsoleManager : Node
         DebugEntryFactory = new DebugEntryFactory();
     }
 
-    public event EventHandler<EventArgs>? OnHistoryUpdated;
+    public event EventHandler<HistoryUpdatedEventArgs>? OnHistoryUpdated;
 
     public static DebugConsoleManager Instance => instance ?? throw new InstanceNotLoadedYetException();
 
@@ -55,15 +55,18 @@ public partial class DebugConsoleManager : Node
         // We choose to stack equivalent consecutive messages, while forcing separation on different entries.
         const DebugEntryFactory.AddMessageMode addMessageMode = DebugEntryFactory.AddMessageMode.Split;
 
+        int newMessages = 0;
+        int count = inbox.Count;
+
         if (OnHistoryUpdated == null)
             return;
 
         lock (inbox)
         {
-            if (inbox.Count == 0)
+            if (count == 0)
                 return;
 
-            TotalMessageCount += inbox.Count;
+            TotalMessageCount += count;
 
             while (inbox.TryDequeue(out var rawDebugEntry))
             {
@@ -80,6 +83,8 @@ public partial class DebugConsoleManager : Node
                     {
                         var newEntry = DebugEntryFactory.GetDebugEntry(id);
                         history.AddToBack(newEntry);
+
+                        ++newMessages;
                     }
                     else
                     {
@@ -95,7 +100,7 @@ public partial class DebugConsoleManager : Node
                 history.RemoveFromFront();
             }
 
-            OnHistoryUpdated.Invoke(null, EventArgs.Empty);
+            OnHistoryUpdated.Invoke(null, new HistoryUpdatedEventArgs(newMessages));
         }
 
         base._Process(delta);
@@ -229,5 +234,10 @@ public partial class DebugConsoleManager : Node
         {
             return HashCode.Combine(Text, Color, Id);
         }
+    }
+
+    public class HistoryUpdatedEventArgs(int newMessages) : EventArgs
+    {
+        public readonly int NewMessages = newMessages;
     }
 }

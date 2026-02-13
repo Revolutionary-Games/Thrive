@@ -1,18 +1,34 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
+using Nito.Collections;
 
 /// <summary>
 ///   Handles the debug console
 /// </summary>
 public partial class DebugConsole : CustomWindow
 {
+    private const uint MaxPrivateHistorySize = 32;
+
+    /// <summary>
+    ///   This is a local history for private debug messages.
+    /// </summary>
+    private readonly Deque<DebugEntry> privateHistory = [];
+
+    private readonly Deque<EntryView> debugEntryLabels = [];
+    private readonly HashSet<EntryView> liveEntries = [];
+
+    private bool stickToBottom = true;
+
 #pragma warning disable CA2213
     [Export]
-    private DebugEntryList debugEntryList = null!;
+    private VBoxContainer debugEntryList = null!;
 
     [Export]
     private LineEdit commandInput = null!;
+
+    [Export]
+    private Font font = null!;
 #pragma warning restore CA2213
 
     public bool IsConsoleOpen
@@ -50,8 +66,13 @@ public partial class DebugConsole : CustomWindow
 
     public void Clear()
     {
-        debugEntryList.Clear();
-        RefreshLogs();
+        privateHistory.Clear();
+
+        foreach (var node in debugEntryList.GetChildren())
+        {
+            if (node is RichTextLabel label)
+                label.Visible = false;
+        }
     }
 
     protected override void OnHidden()
@@ -85,17 +106,120 @@ public partial class DebugConsole : CustomWindow
 
         commandInput.GrabFocus();
 
-        RefreshLogs();
+        RefreshLogs(DebugConsoleManager.Instance.MessageCountInHistory, privateHistory.Count);
     }
 
-    private void RefreshLogs()
+    private void AddPrivateEntry(DebugEntry entry)
     {
-        debugEntryList.Refresh();
+        privateHistory.AddToBack(entry);
+
+        if (privateHistory.Count > MaxPrivateHistorySize)
+            privateHistory.RemoveFromFront();
+
+        RefreshLogs(0, 1);
     }
 
-    private void RefreshLogs(object? o, EventArgs e)
+    private void RefreshLogs(int newMessages, int newPrivateMessages)
     {
-        RefreshLogs();
+        int size = DebugConsoleManager.Instance.MessageCountInHistory;
+
+        int globalAdded = 0;
+        int localAdded = 0;
+        while (globalAdded < newMessages || localAdded < newPrivateMessages)
+        {
+            DebugEntry entry;
+
+            int globalIndex = size - newMessages + globalAdded;
+            int localIndex = privateHistory.Count - newPrivateMessages + localAdded;
+
+            if (globalIndex == size)
+            {
+                entry = privateHistory[localIndex];
+
+                ++localAdded;
+            }
+            else if (localIndex == privateHistory.Count)
+            {
+                entry = DebugConsoleManager.Instance.GetMessageAt(globalIndex);
+
+                ++globalAdded;
+            }
+            else
+            {
+                var globalEntry = DebugConsoleManager.Instance.GetMessageAt(globalIndex);
+                var localEntry = privateHistory[localIndex];
+
+                if (globalEntry.BeginTimestamp < localEntry.BeginTimestamp)
+                {
+                    entry = DebugConsoleManager.Instance.GetMessageAt(globalIndex);
+                    ++globalAdded;
+                }
+                else
+                {
+                    entry = privateHistory[localIndex];
+                    ++localAdded;
+                }
+            }
+
+            RichTextLabel label;
+            EntryView view;
+            if (debugEntryLabels.Count > DebugConsoleManager.MaxHistorySize)
+            {
+                view = debugEntryLabels.RemoveFromFront();
+                view.Stale = true;
+
+                label = view.Label;
+                label.Visible = true;
+
+                debugEntryList.RemoveChild(label);
+            }
+            else
+            {
+                label = new RichTextLabel();
+                label.FitContent = true;
+                label.BbcodeEnabled = true;
+                label.SizeFlagsVertical = SizeFlags.ShrinkBegin;
+                label.AutowrapMode = TextServer.AutowrapMode.Off;
+                label.AddThemeFontOverride("normal_font", font);
+                label.AddThemeFontSizeOverride("normal_font", 12);
+
+                view = new EntryView(label, entry);
+            }
+
+            debugEntryLabels.AddToBack(view);
+            debugEntryList.AddChild(label);
+
+            label.Text = entry.Text;
+
+            if (!entry.Frozen)
+                liveEntries.Add(view);
+        }
+
+        UpdateLiveEntries();
+    }
+
+    private void UpdateLiveEntries()
+    {
+        liveEntries.RemoveWhere(delegate(EntryView view)
+        {
+            if (view.Stale)
+            {
+                view.Stale = false;
+                return true;
+            }
+
+            var label = view.Label;
+            var entry = view.Content;
+
+            label.Text = entry.Text;
+
+            return entry.Frozen;
+        });
+    }
+
+    private void RefreshLogs(object? o, DebugConsoleManager.HistoryUpdatedEventArgs e)
+    {
+        RefreshLogs(e.NewMessages, 0);
     }
 
     private void CommandSubmitted(string command)
@@ -113,7 +237,7 @@ public partial class DebugConsole : CustomWindow
 
         var entry = debugEntryFactory.GetDebugEntry(executionToken);
 
-        debugEntryList.AddPrivateEntry(entry);
+        AddPrivateEntry(entry);
 
         var context = new CommandContext(this, executionToken);
         var commandMessage = new DebugConsoleManager.RawDebugEntry($"Command > {command}\n", Colors.LightGray,
@@ -129,8 +253,13 @@ public partial class DebugConsole : CustomWindow
         debugConsoleManager.ReleaseCustomDebugEntryId(executionToken);
 
         // Put focus on the command message.
-        debugEntryList.StickToBottom = true;
+        stickToBottom = true;
+    }
 
-        RefreshLogs();
+    private sealed class EntryView(RichTextLabel label, DebugEntry content, bool stale = false)
+    {
+        public readonly RichTextLabel Label = label;
+        public readonly DebugEntry Content = content;
+        public bool Stale = stale;
     }
 }

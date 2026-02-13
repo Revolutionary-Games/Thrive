@@ -12,7 +12,7 @@
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="9_qsaes"]
 [ext_resource type="Script" uid="uid://ctv5goidw0qvu" path="res://src/engine/console/DebugConsole.cs" id="10_syfxw"]
 [ext_resource type="FontVariation" uid="uid://k7u2fkgwhsf0" path="res://assets/fonts/variants/RobotoMono-Regular.tres" id="11_0g2tr"]
-[ext_resource type="PackedScene" uid="uid://bd7s2fq7wrh5x" path="res://src/gui_common/DebugEntryList.tscn" id="11_ja1wl"]
+[ext_resource type="FontFile" uid="uid://cd1sb4ten5fqv" path="res://assets/fonts/RobotoMono-Variable.ttf" id="11_ja1wl"]
 
 [node name="DebugOverlay" type="Control" unique_id=2017744925 node_paths=PackedStringArray("debugCoordinates", "inspectorDialog", "debugPanelDialog", "debugConsole", "fpsCheckBox", "performanceMetricsCheckBox", "inspectorCheckbox", "fpsCounter", "performanceMetrics", "labelsLayer", "fpsDisplayLabel", "fpsLabel", "deltaLabel", "metricsText")]
 layout_mode = 3
@@ -89,7 +89,6 @@ text = "METRICS_CONTENT"
 label_settings = ExtResource("3_fussq")
 
 [node name="DebugConsole" type="Control" parent="." unique_id=677553174 node_paths=PackedStringArray("debugEntryList", "commandInput")]
-visible = false
 anchors_preset = 0
 offset_left = 43.0
 offset_top = 35.0
@@ -98,8 +97,9 @@ offset_bottom = 280.0
 mouse_force_pass_scroll_events = false
 theme = ExtResource("9_qsaes")
 script = ExtResource("10_syfxw")
-debugEntryList = NodePath("VBoxContainer/DebugEntryList")
+debugEntryList = NodePath("VBoxContainer/ScrollContainer/VBoxContainer")
 commandInput = NodePath("VBoxContainer/ConsoleInput")
+font = ExtResource("11_ja1wl")
 WindowTitle = "DEBUG_CONSOLE"
 Resizable = true
 
@@ -112,9 +112,14 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 
-[node name="DebugEntryList" parent="DebugConsole/VBoxContainer" unique_id=1527087407 instance=ExtResource("11_ja1wl")]
+[node name="ScrollContainer" type="ScrollContainer" parent="DebugConsole/VBoxContainer" unique_id=110830120]
 layout_mode = 2
-size_flags_horizontal = 1
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugConsole/VBoxContainer/ScrollContainer" unique_id=319713426]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="ConsoleInput" type="LineEdit" parent="DebugConsole/VBoxContainer" unique_id=929832716]
 layout_mode = 2
