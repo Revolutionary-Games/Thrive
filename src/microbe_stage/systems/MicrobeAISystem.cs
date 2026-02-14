@@ -545,7 +545,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         {
             foreach (var organelle in organelles.Organelles!)
             {
-                if (organelle.Definition.HasPilusComponent)
+                // Has pili or toxins
+                if (organelle.Definition.HasPilusComponent || organelles.AgentVacuoleCount > 0)
                 {
                     signaling.QueuedSignalingCommand = MicrobeSignalCommand.FollowMe;
                     break;
