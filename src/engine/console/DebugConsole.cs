@@ -62,14 +62,6 @@ public partial class DebugConsole : CustomWindow
         base._Ready();
     }
 
-    public override void _Process(double delta)
-    {
-        UpdateLiveEntries();
-        UpdateAutoscroll();
-
-        base._Process(delta);
-    }
-
     public override void _ExitTree()
     {
         // Make sure we unsubscribe from the event handler.
@@ -77,6 +69,14 @@ public partial class DebugConsole : CustomWindow
         Clear();
 
         base._ExitTree();
+    }
+
+    public override void _Process(double delta)
+    {
+        UpdateLiveEntries();
+        UpdateAutoscroll();
+
+        base._Process(delta);
     }
 
     public void Clear()
