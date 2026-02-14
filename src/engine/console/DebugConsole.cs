@@ -180,7 +180,7 @@ public partial class DebugConsole : CustomWindow
             if (debugEntryLabels.Count > DebugConsoleManager.MaxHistorySize)
             {
                 view = debugEntryLabels.RemoveFromFront();
-                view.Stale = true;
+                view.Content = entry;
 
                 label = view.Label;
                 label.Visible = true;
@@ -195,7 +195,7 @@ public partial class DebugConsole : CustomWindow
                 label.SizeFlagsVertical = SizeFlags.ShrinkBegin;
                 label.AutowrapMode = TextServer.AutowrapMode.Off;
                 label.AddThemeFontOverride("normal_font", font);
-                label.AddThemeFontSizeOverride("normal_font", 12);
+                label.AddThemeFontSizeOverride("normal_font", 10);
 
                 view = new EntryView(label, entry);
             }
@@ -219,12 +219,6 @@ public partial class DebugConsole : CustomWindow
 
         liveEntries.RemoveWhere(delegate(EntryView view)
         {
-            if (view.Stale)
-            {
-                view.Stale = false;
-                return true;
-            }
-
             var label = view.Label;
             var entry = view.Content;
 
@@ -269,6 +263,9 @@ public partial class DebugConsole : CustomWindow
         // This updates the debug entry to reflect the final command output, if any, and releases the executionToken.
         debugConsoleManager.ReleaseCustomDebugEntryId(executionToken);
 
+        // Update the labels.
+        UpdateLiveEntries();
+
         // Put focus on the command message.
         stickToBottom = true;
     }
@@ -297,10 +294,9 @@ public partial class DebugConsole : CustomWindow
         scrollBar.Value = scrollBar.MaxValue - scrollBar.Page;
     }
 
-    private sealed class EntryView(RichTextLabel label, DebugEntry content, bool stale = false)
+    private sealed class EntryView(RichTextLabel label, DebugEntry content)
     {
         public readonly RichTextLabel Label = label;
-        public readonly DebugEntry Content = content;
-        public bool Stale = stale;
+        public DebugEntry Content = content;
     }
 }
