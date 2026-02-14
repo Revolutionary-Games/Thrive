@@ -88,7 +88,7 @@ layout_mode = 2
 text = "METRICS_CONTENT"
 label_settings = ExtResource("3_fussq")
 
-[node name="DebugConsole" type="Control" parent="." unique_id=677553174 node_paths=PackedStringArray("debugEntryList", "commandInput")]
+[node name="DebugConsole" type="Control" parent="." unique_id=677553174 node_paths=PackedStringArray("debugEntryList", "commandInput", "scrollContainer")]
 anchors_preset = 0
 offset_left = 43.0
 offset_top = 35.0
@@ -99,6 +99,7 @@ theme = ExtResource("9_qsaes")
 script = ExtResource("10_syfxw")
 debugEntryList = NodePath("VBoxContainer/ScrollContainer/VBoxContainer")
 commandInput = NodePath("VBoxContainer/ConsoleInput")
+scrollContainer = NodePath("VBoxContainer/ScrollContainer")
 font = ExtResource("11_ja1wl")
 WindowTitle = "DEBUG_CONSOLE"
 Resizable = true
@@ -230,6 +231,7 @@ text = "FPS: 0"
 label_settings = ExtResource("6_2giyi")
 
 [connection signal="Canceled" from="PerformanceMetrics" to="." method="OnPerformanceMetricsToggled"]
+[connection signal="resized" from="DebugConsole/VBoxContainer/ScrollContainer" to="DebugConsole" method="OnResized"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/FPSCheckBox" to="." method="OnFpsCheckBoxToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/PerformanceMetricsCheckBox" to="." method="OnPerformanceMetricsCheckBoxToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/CollisionShapeCheckBox" to="." method="OnCollisionShapeCheckBoxToggled"]

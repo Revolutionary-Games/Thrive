@@ -47,6 +47,7 @@ public class DebugEntryFactory
             return false;
 
         // Flush the pipeline by resetting everything.
+        pipeline.DebugEntryCache?.Frozen = true;
         pipeline.DebugEntryCache = null;
         pipeline.RichTextBuilder.Clear();
         pipeline.AmountStringBuilder?.Clear();

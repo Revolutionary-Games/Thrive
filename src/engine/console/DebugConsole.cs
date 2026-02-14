@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
 using Nito.Collections;
+using Range = Godot.Range;
 
 /// <summary>
 ///   Handles the debug console
@@ -28,6 +30,9 @@ public partial class DebugConsole : CustomWindow
     private LineEdit commandInput = null!;
 
     [Export]
+    private ScrollContainer scrollContainer = null!;
+
+    [Export]
     private Font font = null!;
 #pragma warning restore CA2213
 
@@ -51,8 +56,18 @@ public partial class DebugConsole : CustomWindow
     public override void _Ready()
     {
         commandInput.Connect(LineEdit.SignalName.TextSubmitted, new Callable(this, nameof(CommandSubmitted)));
+        scrollContainer.GetVScrollBar()
+            .Connect(ScrollBar.SignalName.Scrolling, new Callable(this, nameof(OnScrolled)));
 
         base._Ready();
+    }
+
+    public override void _Process(double delta)
+    {
+        UpdateLiveEntries();
+        UpdateAutoscroll();
+
+        base._Process(delta);
     }
 
     public override void _ExitTree()
@@ -200,6 +215,9 @@ public partial class DebugConsole : CustomWindow
 
     private void UpdateLiveEntries()
     {
+        if (liveEntries.Count == 0)
+            return;
+
         liveEntries.RemoveWhere(delegate(EntryView view)
         {
             if (view.Stale)
@@ -254,6 +272,30 @@ public partial class DebugConsole : CustomWindow
 
         // Put focus on the command message.
         stickToBottom = true;
+    }
+
+    private void OnScrolled()
+    {
+        var scrollBar = scrollContainer.GetVScrollBar();
+
+        double diff = Math.Abs(scrollBar.Value - scrollBar.MaxValue + scrollBar.Page);
+
+        stickToBottom = diff < 0.1f;
+    }
+
+    private void OnResized()
+    {
+        OnScrolled();
+    }
+
+    private void UpdateAutoscroll()
+    {
+        if (!stickToBottom)
+            return;
+
+        var scrollBar = scrollContainer.GetVScrollBar();
+
+        scrollBar.Value = scrollBar.MaxValue - scrollBar.Page;
     }
 
     private sealed class EntryView(RichTextLabel label, DebugEntry content, bool stale = false)
