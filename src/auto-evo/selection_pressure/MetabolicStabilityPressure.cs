@@ -13,7 +13,6 @@ public class MetabolicStabilityPressure : SelectionPressure
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
     public MetabolicStabilityPressure(float weight) : base(weight, [
-        AddOrganelleAnywhere.ThatCreateCompound(Compound.ATP),
         RemoveOrganelle.ThatUseCompound(Compound.ATP),
         new UpgradeOrganelle(organelle => organelle.HasMovementComponent, new FlagellumUpgrades(-1.0f)),
         new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, -150.0f),
