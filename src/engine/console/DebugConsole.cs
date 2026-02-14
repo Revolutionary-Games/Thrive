@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
 using Nito.Collections;
-using Range = Godot.Range;
 
 /// <summary>
 ///   Handles the debug console
