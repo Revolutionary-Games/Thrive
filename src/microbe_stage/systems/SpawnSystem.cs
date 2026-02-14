@@ -80,7 +80,7 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem, IArch
     private int despawnedCount;
 
     private float spawnRadiusCheck = 5.5f;
-    private int maxDifferentPositionsCheck = 10;
+    private int maxDifferentPositionsCheck = 20;
 
     public SpawnSystem(IWorldSimulation worldSimulation, World world, IsSpawnPositionBad badSpawnPositionCheck) :
         base(world)
