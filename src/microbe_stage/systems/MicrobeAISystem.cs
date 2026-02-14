@@ -286,6 +286,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         float speciesOpportunism = speciesBehaviour.Opportunism;
 
         control.Sprinting = false;
+        control.Fleeing = false;
 
         // If nothing is engulfing me right now, see if there's something that might want to hunt me
         (Entity Entity, Vector3 Position, float EngulfSize)? predator =
@@ -297,9 +298,13 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             if (control.State == MicrobeState.MucocystShield)
                 return;
 
+            control.Fleeing = true;
+
             FleeFromPredators(ref position, ref ai, ref control, ref organelles, ref compoundStorage, entity,
                 predator.Value.Position, predator.Value.Entity, speciesFocus,
                 speciesActivity, speciesAggression, speciesFear, strain, random);
+
+            control.Fleeing = false;
             return;
         }
 
