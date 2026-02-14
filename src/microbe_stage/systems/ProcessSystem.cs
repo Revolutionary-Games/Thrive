@@ -38,6 +38,8 @@ using World = Arch.Core.World;
 [RuntimeCost(26)]
 public partial class ProcessSystem : BaseSystem<World, float>
 {
+    public static OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
 #if CHECK_USED_STATISTICS
     private readonly List<ProcessStatistics> usedStatistics = new();
 #endif
@@ -816,6 +818,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
         int hexCount = 0;
 
+        bool hasNucleus = false;
+
         int organelleCount = organelles.Count;
         for (int i = 0; i < organelleCount; ++i)
         {
@@ -844,9 +848,18 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             // Store hex count
             hexCount += organelle.Definition.HexCount;
+
+            if (organelle.Definition == Nucleus)
+                hasNucleus = true;
         }
 
         var baseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
+
+        if (hasNucleus)
+        {
+            baseMovement *= Constants.NUCLEUS_MOVEMENT_COST_MODIFIER;
+        }
+
         result.BaseMovement += baseMovement;
 
         if (includeMovementCost)
@@ -862,6 +875,11 @@ public partial class ProcessSystem : BaseSystem<World, float>
         // Calculate the osmoregulation
         var osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
             membrane.OsmoregulationFactor;
+
+        if (hasNucleus)
+        {
+            osmoregulation *= Constants.NUCLEUS_OSMOREGULATION_COST_MODIFIER;
+        }
 
 #if DEBUG
         if (environmentTolerances.OsmoregulationModifier <= 0)
