@@ -270,7 +270,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
         result.PerfectUVAdjustment = requiredUVResistance - speciesTolerances.UVResistance;
 
         // Need to get the average pressure value from the max and min to know how much to adjust
-        result.PerfectPressureAdjustment = patchPressure - (speciesTolerances.PressureMinimum + speciesTolerances.PressureTolerance * 0.5f);
+        result.PerfectPressureAdjustment = patchPressure -
+            (speciesTolerances.PressureMinimum + speciesTolerances.PressureTolerance * 0.5f);
 
         // TODO: the root cause of https://github.com/Revolutionary-Games/Thrive/issues/5928 is probably somewhere in
         // the following lines of code
