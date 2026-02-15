@@ -286,6 +286,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         float speciesOpportunism = speciesBehaviour.Opportunism;
 
         control.Sprinting = false;
+        control.Fleeing = false;
 
         // If nothing is engulfing me right now, see if there's something that might want to hunt me
         (Entity Entity, Vector3 Position, float EngulfSize)? predator =
@@ -296,6 +297,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             // If microbe secretes mucus and predator is still there skip taking any action
             if (control.State == MicrobeState.MucocystShield)
                 return;
+
+            control.Fleeing = true;
 
             FleeFromPredators(ref position, ref ai, ref control, ref organelles, ref compoundStorage, entity,
                 predator.Value.Position, predator.Value.Entity, speciesFocus,
@@ -375,6 +378,12 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             }
 
             ai.ATPThreshold = 0.0f;
+        }
+
+        // Use signaling agent if I have any with a chance of 5% per think
+        if (organelles.HasSignalingAgent && random.NextSingle() < Constants.AI_SIGNALING_CHANCE)
+        {
+            UseSignalingAgent(ref organelles, speciesAggression, ref signaling, ref control, random);
         }
 
         // Follow received commands if we have them
@@ -522,6 +531,41 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         {
             // This organism is sessile, and will not act until the environment changes
             control.SetMoveSpeed(0.0f);
+        }
+    }
+
+    private void UseSignalingAgent(ref OrganelleContainer organelles, float speciesAggression,
+        ref CommandSignaler signaling, ref MicrobeControl control, Random random)
+    {
+        var willBeAggressiveThisTime = RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION, random);
+
+        if (organelles.HasBindingAgent)
+        {
+            signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
+        }
+
+        if (willBeAggressiveThisTime)
+        {
+            foreach (var organelle in organelles.Organelles!)
+            {
+                // Has pili or toxins
+                if (organelle.Definition.HasPilusComponent || organelles.AgentVacuoleCount > 0)
+                {
+                    signaling.QueuedSignalingCommand = MicrobeSignalCommand.FollowMe;
+                    break;
+                }
+
+                signaling.QueuedSignalingCommand = MicrobeSignalCommand.None;
+            }
+        }
+        else if (!willBeAggressiveThisTime)
+        {
+            // TOOD
+        }
+
+        if (control.Fleeing)
+        {
+            signaling.QueuedSignalingCommand = MicrobeSignalCommand.FleeFromMe;
         }
     }
 
