@@ -303,8 +303,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             FleeFromPredators(ref position, ref ai, ref control, ref organelles, ref compoundStorage, entity,
                 predator.Value.Position, predator.Value.Entity, speciesFocus,
                 speciesActivity, speciesAggression, speciesFear, strain, random);
-
-            control.Fleeing = false;
             return;
         }
 
