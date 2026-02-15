@@ -89,6 +89,7 @@ text = "METRICS_CONTENT"
 label_settings = ExtResource("3_fussq")
 
 [node name="DebugConsole" type="Control" parent="." unique_id=677553174 node_paths=PackedStringArray("debugEntryList", "commandInput", "scrollContainer")]
+visible = false
 anchors_preset = 0
 offset_left = 43.0
 offset_top = 35.0
@@ -116,6 +117,7 @@ size_flags_horizontal = 3
 [node name="ScrollContainer" type="ScrollContainer" parent="DebugConsole/VBoxContainer" unique_id=110830120]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DebugConsole/VBoxContainer/ScrollContainer" unique_id=319713426]
 layout_mode = 2
