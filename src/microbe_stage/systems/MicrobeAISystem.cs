@@ -385,7 +385,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         // Use signaling agent if I have any with a chance of 5% per think
         if (organelles.HasSignalingAgent && random.NextSingle() < Constants.AI_SIGNALING_CHANCE)
         {
-            UseSignalingAgent(ref organelles, speciesAggression, ref signaling, random);
+            UseSignalingAgent(ref organelles, speciesAggression, ref signaling, ref control, random);
         }
 
         // Follow received commands if we have them
@@ -537,7 +537,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     }
 
     private void UseSignalingAgent(ref OrganelleContainer organelles, float speciesAggression,
-        ref CommandSignaler signaling, Random random)
+        ref CommandSignaler signaling, ref MicrobeControl control, Random random)
     {
         var willBeAggressiveThisTime = RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION, random);
 
@@ -563,6 +563,11 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         else if (!willBeAggressiveThisTime)
         {
             // TOOD
+        }
+
+        if (control.Fleeing)
+        {
+            signaling.QueuedSignalingCommand = MicrobeSignalCommand.FleeFromMe;
         }
     }
 
