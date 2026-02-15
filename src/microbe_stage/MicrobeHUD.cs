@@ -737,8 +737,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
-        if (stage.Player.Get<SpeciesMember>().Species is not MicrobeSpecies ||
-            !stage.CurrentGame!.GameWorld.WorldSettings.IncludeMulticellular || stage.CurrentGame!.FreeBuild)
+        if (stage.Player.Get<SpeciesMember>().Species is not MicrobeSpecies || stage.CurrentGame!.FreeBuild)
         {
             multicellularButton.Visible = false;
             return;

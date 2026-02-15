@@ -62,7 +62,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     ///     list if it is used for unrelated cells before calling this method.
     ///   </para>
     /// </remarks>
-    public static void ComputeActiveProcessList(IReadOnlyList<IPositionedOrganelle> organelles,
+    public static void ComputeActiveProcessList(IReadOnlyList<IReadOnlyPositionedOrganelle> organelles,
         [NotNull] ref List<TweakedProcess>? result)
     {
         result ??= new List<TweakedProcess>();
