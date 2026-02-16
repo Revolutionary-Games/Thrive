@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://ctv5goidw0qvu" path="res://src/engine/console/DebugConsole.cs" id="10_syfxw"]
 [ext_resource type="FontVariation" uid="uid://k7u2fkgwhsf0" path="res://assets/fonts/variants/RobotoMono-Regular.tres" id="11_0g2tr"]
 [ext_resource type="FontFile" uid="uid://cd1sb4ten5fqv" path="res://assets/fonts/RobotoMono-Variable.ttf" id="11_ja1wl"]
+[ext_resource type="Script" uid="uid://mmpexfanrknx" path="res://src/engine/console/CommandInput.cs" id="13_qoetm"]
 
 [node name="DebugOverlay" type="Control" unique_id=2017744925 node_paths=PackedStringArray("debugCoordinates", "inspectorDialog", "debugPanelDialog", "debugConsole", "fpsCheckBox", "performanceMetricsCheckBox", "inspectorCheckbox", "fpsCounter", "performanceMetrics", "labelsLayer", "fpsDisplayLabel", "fpsLabel", "deltaLabel", "metricsText")]
 layout_mode = 3
@@ -130,6 +131,7 @@ theme_override_fonts/font = ExtResource("11_0g2tr")
 placeholder_text = "COMMAND_INPUT_LINE_EDIT"
 keep_editing_on_text_submit = true
 caret_blink = true
+script = ExtResource("13_qoetm")
 
 [node name="DebugPanel" parent="." unique_id=597323497 instance=ExtResource("1")]
 layout_mode = 0
@@ -234,6 +236,8 @@ label_settings = ExtResource("6_2giyi")
 
 [connection signal="Canceled" from="PerformanceMetrics" to="." method="OnPerformanceMetricsToggled"]
 [connection signal="resized" from="DebugConsole/VBoxContainer/ScrollContainer" to="DebugConsole" method="OnResized"]
+[connection signal="text_submitted" from="DebugConsole/VBoxContainer/ConsoleInput" to="DebugConsole" method="CommandSubmitted" flags=3]
+[connection signal="text_submitted" from="DebugConsole/VBoxContainer/ConsoleInput" to="DebugConsole/VBoxContainer/ConsoleInput" method="OnInput"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/FPSCheckBox" to="." method="OnFpsCheckBoxToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/PerformanceMetricsCheckBox" to="." method="OnPerformanceMetricsCheckBoxToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/CollisionShapeCheckBox" to="." method="OnCollisionShapeCheckBoxToggled"]

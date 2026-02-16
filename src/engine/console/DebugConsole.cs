@@ -28,7 +28,7 @@ public partial class DebugConsole : CustomWindow
     private VBoxContainer debugEntryList = null!;
 
     [Export]
-    private LineEdit commandInput = null!;
+    private CommandInput commandInput = null!;
 
     [Export]
     private ScrollContainer scrollContainer = null!;
@@ -36,6 +36,8 @@ public partial class DebugConsole : CustomWindow
     [Export]
     private Font font = null!;
 #pragma warning restore CA2213
+
+    public CommandInput CommandInput => commandInput;
 
     public bool IsConsoleOpen
     {
@@ -56,7 +58,6 @@ public partial class DebugConsole : CustomWindow
 
     public override void _Ready()
     {
-        commandInput.Connect(LineEdit.SignalName.TextSubmitted, new Callable(this, nameof(CommandSubmitted)));
         scrollContainer.GetVScrollBar()
             .Connect(ScrollBar.SignalName.Scrolling, new Callable(this, nameof(OnScrolled)));
 
@@ -207,7 +208,7 @@ public partial class DebugConsole : CustomWindow
                 label.SizeFlagsVertical = SizeFlags.ShrinkBegin;
                 label.AutowrapMode = TextServer.AutowrapMode.Off;
                 label.AddThemeFontOverride(normalFontName, font);
-                label.AddThemeFontSizeOverride(normalFontName, 10);
+                label.AddThemeFontSizeOverride(normalFontName, 8);
 
                 view = new EntryView(label, entry);
             }
@@ -247,12 +248,14 @@ public partial class DebugConsole : CustomWindow
 
     private void CommandSubmitted(string command)
     {
-        commandInput.Clear();
+        if (string.IsNullOrWhiteSpace(command))
+            return;
 
         var debugConsoleManager = DebugConsoleManager.Instance;
         var commandRegistry = CommandRegistry.Instance;
         var debugEntryFactory = debugConsoleManager.DebugEntryFactory;
 
+        // Debug entry setup
         int executionToken = debugConsoleManager.GetAvailableCustomDebugEntryId();
         long executionTimestamp = Stopwatch.GetTimestamp();
 
@@ -262,6 +265,7 @@ public partial class DebugConsole : CustomWindow
 
         AddPrivateEntry(entry);
 
+        // Command setup
         var context = new CommandContext(this, executionToken);
         var commandMessage = new DebugConsoleManager.RawDebugEntry($"Command > {command}\n", Colors.LightGray,
             executionTimestamp, executionToken);

@@ -3,6 +3,8 @@ using Godot;
 
 public class CommandContext(DebugConsole? debugConsole, int executionToken)
 {
+    public DebugConsole? DebugConsole => debugConsole;
+
     public void Clear()
     {
         // Clear only if we're not headless.
