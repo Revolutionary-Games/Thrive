@@ -7,6 +7,8 @@ using System.Linq;
 /// </summary>
 public class SummedProcessStatistics : IProcessDisplayInfo
 {
+    public int ProcessCount;
+
     private readonly Dictionary<Compound, float> summedInputs = new();
 
     private readonly Dictionary<Compound, float> summedEnvironmentalInputs = new();
@@ -99,6 +101,7 @@ public class SummedProcessStatistics : IProcessDisplayInfo
         }
 
         summedSpeed += displayInfo.CurrentSpeed;
+        ++ProcessCount;
 
         Enabled = displayInfo.Enabled;
     }
@@ -106,6 +109,7 @@ public class SummedProcessStatistics : IProcessDisplayInfo
     public void Clear()
     {
         summedSpeed = 0.0f;
+        ProcessCount = 0;
 
         summedInputs.Clear();
         summedOutputs.Clear();
@@ -143,6 +147,6 @@ public class SummedProcessStatistics : IProcessDisplayInfo
 
     public override int GetHashCode()
     {
-        return 3079 ^ summedSpeed.GetHashCode() ^ Process.GetHashCode();
+        return 3079 ^ Process.GetHashCode();
     }
 }
