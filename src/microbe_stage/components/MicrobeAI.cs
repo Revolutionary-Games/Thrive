@@ -101,7 +101,7 @@ public static class MicrobeAIHelpers
             PursuitThreshold = reader.ReadFloat(),
             ATPThreshold = reader.ReadFloat(),
             HasBeenNearPlayer = reader.ReadBool(),
-            Fleeing = reader.ReadBool(),
+            Fleeing = version > 1 && reader.ReadBool(),
         };
 
         if (reader.ReadBool())
