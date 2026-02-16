@@ -380,7 +380,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             ai.ATPThreshold = 0.0f;
         }
 
-        // Use signaling agent if I have any with a chance of 5% per think
+        // Use signaling agent if I have any with a small chance per think
         if (organelles.HasSignalingAgent && random.NextSingle() < Constants.AI_SIGNALING_CHANCE)
         {
             UseSignalingAgent(ref organelles, speciesAggression, ref signaling, ref control, random);
