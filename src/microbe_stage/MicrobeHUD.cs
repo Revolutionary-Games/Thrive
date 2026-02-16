@@ -554,7 +554,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             GD.PrintErr("Player process statistics are uninitialized, can't display them in the process panel");
 
-            return null;
+            yield break;
         }
 
         foreach (var process in playerProcesses)
@@ -603,7 +603,17 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             }
         }
 
-        return organismProgresses.Values;
+        foreach (var process in organismProgresses.ToArray())
+        {
+            if (process.Value.ProcessCount == 0)
+            {
+                organismProgresses.Remove(process.Key);
+            }
+            else
+            {
+                yield return process.Value;
+            }
+        }
     }
 
     protected override void CalculatePlayerReproductionProgress(Dictionary<Compound, float> gatheredCompounds,
