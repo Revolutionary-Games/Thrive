@@ -286,7 +286,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         float speciesOpportunism = speciesBehaviour.Opportunism;
 
         control.Sprinting = false;
-        control.Fleeing = false;
+        ai.Fleeing = false;
 
         // If nothing is engulfing me right now, see if there's something that might want to hunt me
         (Entity Entity, Vector3 Position, float EngulfSize)? predator =
@@ -298,7 +298,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             if (control.State == MicrobeState.MucocystShield)
                 return;
 
-            control.Fleeing = true;
+            ai.Fleeing = true;
 
             FleeFromPredators(ref position, ref ai, ref control, ref organelles, ref compoundStorage, entity,
                 predator.Value.Position, predator.Value.Entity, speciesFocus,
@@ -383,7 +383,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         // Use signaling agent if I have any with a small chance per think
         if (organelles.HasSignalingAgent && random.NextSingle() < Constants.AI_SIGNALING_CHANCE)
         {
-            UseSignalingAgent(ref organelles, speciesAggression, ref signaling, ref control, random);
+            UseSignalingAgent(ref ai, ref organelles, speciesAggression, ref signaling, random);
         }
 
         // Follow received commands if we have them
@@ -534,8 +534,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         }
     }
 
-    private void UseSignalingAgent(ref OrganelleContainer organelles, float speciesAggression,
-        ref CommandSignaler signaling, ref MicrobeControl control, Random random)
+    private void UseSignalingAgent(ref MicrobeAI ai, ref OrganelleContainer organelles, float speciesAggression,
+        ref CommandSignaler signaling, Random random)
     {
         var willBeAggressiveThisTime = RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION, random);
 
@@ -563,7 +563,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             // TOOD
         }
 
-        if (control.Fleeing)
+        if (ai.Fleeing)
         {
             signaling.QueuedSignalingCommand = MicrobeSignalCommand.FleeFromMe;
         }
