@@ -95,11 +95,6 @@ public struct MicrobeControl : IArchivableComponent
     public bool MucocystEffectsApplied;
 
     /// <summary>
-    ///   Whether this microbe is currently fleeing
-    /// </summary>
-    public bool Fleeing;
-
-    /// <summary>
     ///   Constructs an instance with a sensible <see cref="LookAtPoint"/> set
     /// </summary>
     /// <param name="startingPosition">World position this entity is starting at</param>
@@ -116,7 +111,6 @@ public struct MicrobeControl : IArchivableComponent
         SlowedBySlime = false;
         Sprinting = false;
         MucocystEffectsApplied = false;
-        Fleeing = false;
     }
 
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
@@ -139,7 +133,6 @@ public struct MicrobeControl : IArchivableComponent
         writer.Write(OutOfSprint);
         writer.Write(Sprinting);
         writer.Write(MucocystEffectsApplied);
-        writer.Write(Fleeing);
     }
 }
 
@@ -166,7 +159,6 @@ public static class MicrobeControlHelpers
             OutOfSprint = reader.ReadBool(),
             Sprinting = reader.ReadBool(),
             MucocystEffectsApplied = reader.ReadBool(),
-            Fleeing = reader.ReadBool(),
         };
     }
 

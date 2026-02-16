@@ -14,7 +14,7 @@ using Systems;
 /// </summary>
 public struct MicrobeAI : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     public float TimeUntilNextThink;
 
@@ -50,6 +50,11 @@ public struct MicrobeAI : IArchivableComponent
 
     public bool HasBeenNearPlayer;
 
+    /// <summary>
+    ///   Whether this microbe is currently fleeing
+    /// </summary>
+    public bool Fleeing;
+
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentMicrobeAI;
 
@@ -63,6 +68,7 @@ public struct MicrobeAI : IArchivableComponent
         writer.Write(PursuitThreshold);
         writer.Write(ATPThreshold);
         writer.Write(HasBeenNearPlayer);
+        writer.Write(Fleeing);
 
         writer.Write(LastSmelledCompoundPosition.HasValue);
         if (LastSmelledCompoundPosition.HasValue)
@@ -95,6 +101,7 @@ public static class MicrobeAIHelpers
             PursuitThreshold = reader.ReadFloat(),
             ATPThreshold = reader.ReadFloat(),
             HasBeenNearPlayer = reader.ReadBool(),
+            Fleeing = reader.ReadBool(),
         };
 
         if (reader.ReadBool())
