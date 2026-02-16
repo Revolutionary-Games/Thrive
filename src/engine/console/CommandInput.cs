@@ -132,6 +132,14 @@ public partial class CommandInput : LineEdit
             if (command == commandHistory[0])
                 return;
 
+            // We have entered a command that is different from the one selected from the history. So, we go back to
+            // zero and exit the history lookup.
+            if (command != commandHistory[commandHistoryIndex])
+            {
+                commandHistoryLookup = false;
+                commandHistoryIndex = 0;
+            }
+
             if (commandHistory.Count >= MaxCommandHistorySize)
                 commandHistory.RemoveFromBack();
         }
