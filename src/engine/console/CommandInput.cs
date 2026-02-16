@@ -67,9 +67,15 @@ public partial class CommandInput : LineEdit
 
         if (commandHistoryIndex < 0)
         {
+            commandHistoryLookup = false;
             commandHistoryIndex = 0;
+
+            Clear();
+
+            return;
         }
-        else if (commandHistoryIndex >= commandHistory.Count)
+
+        if (commandHistoryIndex >= commandHistory.Count)
         {
             commandHistoryIndex = commandHistory.Count - 1;
         }
