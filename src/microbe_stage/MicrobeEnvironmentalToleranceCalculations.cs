@@ -85,7 +85,10 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 temperatureChange += organelleDefinition.ToleranceModifierTemperatureRange;
                 oxygenChange += organelleDefinition.ToleranceModifierOxygen;
                 uvChange += organelleDefinition.ToleranceModifierUV;
-                pressureMinimumChange -= organelleDefinition.ToleranceModifierPressureRange;
+
+                // Important to + the change here as otherwise this is applied in the wrong direction with the minus
+                // in the actual application step outside the loop.
+                pressureMinimumChange += organelleDefinition.ToleranceModifierPressureRange;
                 pressureMaximumChange += organelleDefinition.ToleranceModifierPressureRange;
             }
         }
