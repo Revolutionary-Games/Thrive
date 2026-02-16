@@ -558,14 +558,19 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 signaling.QueuedSignalingCommand = MicrobeSignalCommand.None;
             }
         }
-        else if (!willBeAggressiveThisTime)
+        else
         {
-            // TOOD
+            // TODO: should probably add more
+            signaling.QueuedSignalingCommand = MicrobeSignalCommand.None;
         }
 
         if (ai.Fleeing)
         {
             signaling.QueuedSignalingCommand = MicrobeSignalCommand.FleeFromMe;
+        }
+        else
+        {
+            signaling.QueuedSignalingCommand = MicrobeSignalCommand.None;
         }
     }
 
