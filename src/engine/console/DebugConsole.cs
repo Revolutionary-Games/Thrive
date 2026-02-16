@@ -217,7 +217,7 @@ public partial class DebugConsole : CustomWindow
         if (liveEntries.Count == 0)
             return;
 
-        liveEntries.RemoveWhere(delegate(EntryView view)
+        liveEntries.RemoveWhere(view =>
         {
             var label = view.Label;
             var entry = view.Content;
