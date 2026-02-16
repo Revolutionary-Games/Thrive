@@ -19,6 +19,8 @@ public partial class DebugConsole : CustomWindow
     private readonly Deque<EntryView> debugEntryLabels = [];
     private readonly HashSet<EntryView> liveEntries = [];
 
+    private readonly StringName normalFontName = new("normal_font");
+
     private bool stickToBottom = true;
 
 #pragma warning disable CA2213
@@ -94,6 +96,16 @@ public partial class DebugConsole : CustomWindow
         DebugConsoleManager.Instance.OnHistoryUpdated -= RefreshLogs;
 
         base.OnHidden();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            normalFontName.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     [Command("clear", false, "Clears this console.")]
@@ -194,8 +206,8 @@ public partial class DebugConsole : CustomWindow
                 label.BbcodeEnabled = true;
                 label.SizeFlagsVertical = SizeFlags.ShrinkBegin;
                 label.AutowrapMode = TextServer.AutowrapMode.Off;
-                label.AddThemeFontOverride("normal_font", font);
-                label.AddThemeFontSizeOverride("normal_font", 10);
+                label.AddThemeFontOverride(normalFontName, font);
+                label.AddThemeFontSizeOverride(normalFontName, 10);
 
                 view = new EntryView(label, entry);
             }
