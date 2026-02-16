@@ -259,6 +259,8 @@ public static class MulticellularLayoutHelpers
 
             if (targetGameplayLayout.Count != count)
                 throw new Exception("We lost a cell somehow in adjusting positions");
+
+            // TODO: need to match the gameplay layout cell order to the editor layout so that growth order is right
         }
 
 #if DEBUG
