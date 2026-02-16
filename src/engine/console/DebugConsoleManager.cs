@@ -20,8 +20,8 @@ public partial class DebugConsoleManager : Node
     private static DebugConsoleManager? instance;
 
     private readonly Deque<DebugEntry> history = [];
+    private readonly Deque<RawDebugEntry> inbox = [];
     private readonly Queue<int> customIdsBucket = [];
-    private readonly Queue<RawDebugEntry> inbox = [];
 
     private int customDebugEntryCounter;
 
@@ -68,8 +68,9 @@ public partial class DebugConsoleManager : Node
 
             TotalMessageCount += count;
 
-            while (inbox.TryDequeue(out var rawDebugEntry))
+            while (inbox.Count > 0)
             {
+                var rawDebugEntry = inbox.RemoveFromFront();
                 int id = rawDebugEntry.Id;
 
                 if (lastProcessed?.Text != rawDebugEntry.Text ||
@@ -145,7 +146,10 @@ public partial class DebugConsoleManager : Node
 
         lock (inbox)
         {
-            inbox.Enqueue(rawDebugEntry);
+            if (inbox.Count > MaxHistorySize)
+                inbox.RemoveFromFront();
+
+            inbox.AddToBack(rawDebugEntry);
         }
     }
 
