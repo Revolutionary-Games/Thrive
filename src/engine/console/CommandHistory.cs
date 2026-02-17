@@ -41,10 +41,7 @@ public class CommandHistory
         }
     }
 
-    public string CurrentCommand
-    {
-        get => LookingUp ? commandHistory[CommandHistoryIndex] : string.Empty;
-    }
+    public string CurrentCommand => LookingUp ? commandHistory[CommandHistoryIndex] : string.Empty;
 
     public void Add(string command)
     {
