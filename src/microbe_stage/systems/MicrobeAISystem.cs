@@ -399,8 +399,13 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                     // was smelled from
                     if (signaling.ReceivedCommandFromEntity.IsAliveAndHas<WorldPosition>())
                     {
-                        ai.MoveToLocation(signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position,
-                            ref control, entity);
+                        var signalerPosition = signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position;
+                        if (position.Position.DistanceSquaredTo(signalerPosition) <
+                            Constants.AI_MOVE_DISTANCE_SQUARED)
+                        {
+                            ai.MoveToLocation(signalerPosition, ref control, entity);
+                        }
+
                         return;
                     }
 
@@ -413,7 +418,9 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                     {
                         var signalerPosition = signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position;
                         if (position.Position.DistanceSquaredTo(signalerPosition) >
-                            Constants.AI_FOLLOW_DISTANCE_SQUARED)
+                            Constants.AI_FOLLOW_DISTANCE_SQUARED &&
+                            position.Position.DistanceSquaredTo(signalerPosition) <
+                            Constants.AI_MOVE_DISTANCE_SQUARED)
                         {
                             ai.MoveToLocation(signalerPosition, ref control, entity);
                         }

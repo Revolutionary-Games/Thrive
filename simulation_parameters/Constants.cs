@@ -1279,6 +1279,7 @@ public static class Constants
 
     public const float AI_FOLLOW_DISTANCE_SQUARED = 60 * 60;
     public const float AI_FLEE_DISTANCE_SQUARED = 85 * 85;
+    public const float AI_MOVE_DISTANCE_SQUARED = 240 * 240;
 
     public const float AI_SIGNALING_CHANCE = 0.05f;
 
