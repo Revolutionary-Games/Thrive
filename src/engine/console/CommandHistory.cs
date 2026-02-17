@@ -51,7 +51,9 @@ public class CommandHistory
         // Update the command history.
         if (commandHistory.Count > 0)
         {
-            // Avoid adding the exact same command to the history.
+            LookingUp = false;
+
+            // Avoid adding the exact same command as the last one executed to the history.
             if (command == commandHistory[0])
                 return;
 
@@ -65,6 +67,9 @@ public class CommandHistory
         }
 
         commandHistory.AddToFront(command);
+
+        if (CommandHistoryIndex > 0)
+            ++CommandHistoryIndex;
     }
 
     [Command("history", false, "Shows the used command history.")]
