@@ -163,7 +163,6 @@ public class ModifyExistingSpecies : IRunStep
                 // Then shuffle and take only as many mutations as we want to try
                 mutationsToTry.Shuffle(random);
 
-
                 step = Step.MutationTest;
                 break;
             }
