@@ -61,6 +61,8 @@ public partial class CommandInput : LineEdit
 
     private void OnInput(string command)
     {
+        _ = command;
+
         Clear();
     }
 }
