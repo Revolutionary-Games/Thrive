@@ -80,6 +80,21 @@ public static class MulticellularLayoutHelpers
             var temp1 = new HashSet<Hex>();
             var temp3 = new Queue<Hex>();
 
+            bool moveOnlyOneStepAtATime = false;
+            bool removeAllIslandsBeforeMoving = true;
+
+            var blobScore = CalculateBlobFactor(source, temp1, hexTemporaryMemory);
+            if (blobScore >= 0.65f || (source.Count > 20 && blobScore >= 0.51f))
+            {
+                GD.Print($"Using more blob-optimized shape for colony (blob score is: {blobScore})");
+                moveOnlyOneStepAtATime = true;
+            }
+
+            if (moveOnlyOneStepAtATime && source.Count > 12)
+            {
+                removeAllIslandsBeforeMoving = false;
+            }
+
             // We run the core algorithm multiple times in case we run into a failure
             while (true)
             {
@@ -93,8 +108,8 @@ public static class MulticellularLayoutHelpers
 
                 // Now we have placed each cell at its wanted position, but we need to next ensure that all cells are
                 // touching without introducing overlaps
-                if (MoveCellsToBeTouching(targetGameplayLayout, visitedItems, islandHexes, temp1, temp3,
-                        hexTemporaryMemory, hexTemporaryMemory2))
+                if (MoveCellsToBeTouching(targetGameplayLayout, moveOnlyOneStepAtATime, removeAllIslandsBeforeMoving,
+                        visitedItems, islandHexes, temp1, temp3, hexTemporaryMemory, hexTemporaryMemory2))
                 {
                     // Success
                     break;
@@ -109,6 +124,12 @@ public static class MulticellularLayoutHelpers
 
             if (targetGameplayLayout.Count != modifiableSource.Count)
                 throw new Exception("Not all cells were added");
+
+            // Apply final positions to the main source data
+            foreach (var hexWithData in modifiableSource)
+            {
+                hexWithData.Position = hexWithData.Data!.Position;
+            }
         }
 
 #if DEBUG
@@ -187,9 +208,9 @@ public static class MulticellularLayoutHelpers
 
                 var originalData = targetEditorLayout[i];
 
+                // This needs to be able to run multiple times, so do not modify the originalData (yet)
                 var checkPosition = originalData.Position * positionMultiplier;
                 hexWithData.Data!.Position = checkPosition;
-                hexWithData.Position = checkPosition;
 
                 if (targetGameplayLayout.CanPlace(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2))
                 {
@@ -216,8 +237,9 @@ public static class MulticellularLayoutHelpers
     }
 
     private static bool MoveCellsToBeTouching(CellLayout<CellTemplate> targetGameplayLayout,
-        List<CellTemplate> visitedItems, List<Hex> islandHexes, HashSet<Hex> temp1, Queue<Hex> temp3,
-        List<Hex> hexTemporaryMemory, List<Hex> hexTemporaryMemory2)
+        bool moveOnlyOneStepAtATime, bool removeAllIslandsBeforeMoving, List<CellTemplate> visitedItems,
+        List<Hex> islandHexes, HashSet<Hex> temp1, Queue<Hex> temp3, List<Hex> hexTemporaryMemory,
+        List<Hex> hexTemporaryMemory2)
     {
         float moveDistance = 0.8f;
         int attempts = 0;
@@ -253,11 +275,14 @@ public static class MulticellularLayoutHelpers
             if (visitedItems.Count < 1)
                 throw new Exception("Couldn't find items to move");
 
-            // Remove all visited items from the layout so that they don't qualify as islands
-            foreach (var item in visitedItems)
+            // Remove all visited items from the layout so that they don't block other moves
+            if (removeAllIslandsBeforeMoving)
             {
-                if (!targetGameplayLayout.Remove(item))
-                    throw new Exception("Failed to temporarily remove a cell");
+                foreach (var item in visitedItems)
+                {
+                    if (!targetGameplayLayout.Remove(item))
+                        throw new Exception("Failed to temporarily remove a cell");
+                }
             }
 
 #if FALSE
@@ -281,6 +306,12 @@ public static class MulticellularLayoutHelpers
             for (int i = 0; i < visitedItems.Count; ++i)
             {
                 var item = visitedItems[i];
+
+                if (!removeAllIslandsBeforeMoving)
+                {
+                    if (!targetGameplayLayout.Remove(item))
+                        throw new Exception("Failed to temporarily remove a cell");
+                }
 
                 var originalPosition = item.Position;
 
@@ -317,35 +348,63 @@ public static class MulticellularLayoutHelpers
                     float effectiveMoveDistance = moveDistance;
                     const float stepSize = 0.8f;
 
-                    bool foundTarget = false;
-                    while (effectiveMoveDistance < 1000)
+                    if (moveOnlyOneStepAtATime)
                     {
-                        var newPositionRaw = itemPos + shift * effectiveMoveDistance;
-                        var newPosition = new Hex((int)Math.Round(newPositionRaw.X), (int)Math.Round(newPositionRaw.Y));
-
-                        item.Position = newPosition;
-                        if (targetGameplayLayout.CanPlace(item, hexTemporaryMemory, hexTemporaryMemory2))
+                        // Increase step size until it results in a difference
+                        while (true)
                         {
-                            if (foundTarget)
+                            var newPositionRaw = itemPos + shift * effectiveMoveDistance;
+                            var newPosition = new Hex((int)Math.Round(newPositionRaw.X),
+                                (int)Math.Round(newPositionRaw.Y));
+
+                            if (newPosition != originalPosition)
                             {
-                                targetGameplayLayout.AddFast(item, hexTemporaryMemory, hexTemporaryMemory2);
-                                addedBack = true;
+                                item.Position = newPosition;
+                                if (targetGameplayLayout.CanPlace(item, hexTemporaryMemory, hexTemporaryMemory2))
+                                {
+                                    targetGameplayLayout.AddFast(item, hexTemporaryMemory, hexTemporaryMemory2);
+                                    addedBack = true;
+                                }
+
                                 break;
                             }
 
                             effectiveMoveDistance += stepSize;
-                            continue;
                         }
-
-                        if (foundTarget)
+                    }
+                    else
+                    {
+                        bool foundTarget = false;
+                        while (effectiveMoveDistance < 1000)
                         {
-                            GD.PrintErr("Moving back a step failed for a cell, this should not happen");
-                            break;
-                        }
+                            var newPositionRaw = itemPos + shift * effectiveMoveDistance;
+                            var newPosition = new Hex((int)Math.Round(newPositionRaw.X),
+                                (int)Math.Round(newPositionRaw.Y));
 
-                        // We are now too far, so move one step back and then place
-                        foundTarget = true;
-                        effectiveMoveDistance -= stepSize;
+                            item.Position = newPosition;
+                            if (targetGameplayLayout.CanPlace(item, hexTemporaryMemory, hexTemporaryMemory2))
+                            {
+                                if (foundTarget)
+                                {
+                                    targetGameplayLayout.AddFast(item, hexTemporaryMemory, hexTemporaryMemory2);
+                                    addedBack = true;
+                                    break;
+                                }
+
+                                effectiveMoveDistance += stepSize;
+                                continue;
+                            }
+
+                            if (foundTarget)
+                            {
+                                GD.PrintErr("Moving back a step failed for a cell, this should not happen");
+                                break;
+                            }
+
+                            // We are now too far, so move one step back and then place
+                            foundTarget = true;
+                            effectiveMoveDistance -= stepSize;
+                        }
                     }
                 }
 
@@ -406,7 +465,7 @@ public static class MulticellularLayoutHelpers
             ++attempts;
 
             // As we slowly can shift the cells, we want to use gentle move distance for a bit before increasing it
-            if (attempts > 10)
+            if (attempts > 20)
             {
                 moveDistance += 0.8f;
                 attempts = 0;
@@ -451,5 +510,52 @@ public static class MulticellularLayoutHelpers
         {
             targetGameplayLayout.AddFast(cellTemplate, hexTemporaryMemory, hexTemporaryMemory2);
         }
+    }
+
+    private static float CalculateBlobFactor(HexLayout<HexWithData<CellTemplate>> modifiableSource, HashSet<Hex> temp1,
+        List<Hex> temp2)
+    {
+        var minQ = int.MaxValue;
+        var maxQ = int.MinValue;
+
+        var minR = int.MaxValue;
+        var maxR = int.MinValue;
+
+        foreach (var hexWithData in modifiableSource)
+        {
+            var pos = hexWithData.Position;
+            minQ = Math.Min(minQ, pos.Q);
+            maxQ = Math.Max(maxQ, pos.Q);
+            minR = Math.Min(minR, pos.R);
+            maxR = Math.Max(maxR, pos.R);
+        }
+
+        int filled = 0;
+        int empty = 0;
+
+        var cache = temp1;
+        modifiableSource.ComputeHexCache(cache, temp2);
+
+        for (int q = minQ; q <= maxQ; ++q)
+        {
+            for (int r = minR; r < maxR; ++r)
+            {
+                var pos = new Hex(q, r);
+
+                if (cache.Contains(pos))
+                {
+                    ++filled;
+                }
+                else
+                {
+                    ++empty;
+                }
+            }
+        }
+
+        if (empty == 0)
+            return 1;
+
+        return (float)filled / (filled + empty);
     }
 }
