@@ -71,7 +71,7 @@ public class CommandHistory
     }
 
     [Command("history", false, "Shows the used command history.")]
-    private static void CommandHistory_(CommandContext context, HistoryCommandMode mode = HistoryCommandMode.Show,
+    private static void CommandManageHistory(CommandContext context, HistoryCommandMode mode = HistoryCommandMode.Show,
         string attribute = "")
     {
         var commandInvoker = context.CommandInvoker;
