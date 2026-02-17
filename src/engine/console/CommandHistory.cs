@@ -56,12 +56,9 @@ public class CommandHistory
                 return;
 
             // We have entered a command that is different from the one selected from the history. So, we go back to
-            // zero and exit the history lookup.
+            // zero.
             if (command != commandHistory[CommandHistoryIndex])
-            {
-                LookingUp = false;
                 CommandHistoryIndex = 0;
-            }
 
             if (commandHistory.Count >= MaxCommandHistorySize)
                 commandHistory.RemoveFromBack();
@@ -89,6 +86,7 @@ public class CommandHistory
                 commandHistory.commandHistory.Clear();
                 break;
             case HistoryCommandMode.Add:
+                commandHistory.CommandHistoryIndex = 0;
                 commandHistory.Add(attribute);
                 break;
             default:

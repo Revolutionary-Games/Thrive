@@ -32,10 +32,7 @@ public partial class CommandInput : LineEdit
         {
             case Key.Up:
                 if (!CommandHistory.LookingUp)
-                {
                     CommandHistory.LookingUp = true;
-                    break;
-                }
 
                 ++CommandHistory.CommandHistoryIndex;
                 break;
@@ -62,6 +59,9 @@ public partial class CommandInput : LineEdit
     private void OnInput(string command)
     {
         _ = command;
+
+        // Ensure we are not looking up the history anymore after executing a command.
+        CommandHistory?.LookingUp = false;
 
         Clear();
     }
