@@ -5,8 +5,6 @@
 /// </summary>
 public partial class CommandInput : LineEdit
 {
-    private bool inputKeyPressed;
-
     public CommandHistory? CommandHistory { get; set; }
 
     public override void _GuiInput(InputEvent @event)
@@ -17,16 +15,8 @@ public partial class CommandInput : LineEdit
         if (CommandHistory.HistoryLength == 0)
             return;
 
-        if (@event is not InputEventKey keyEvent)
+        if (@event is not InputEventKey { Pressed: true } keyEvent)
             return;
-
-        if (inputKeyPressed)
-        {
-            if (!keyEvent.Pressed)
-                inputKeyPressed = false;
-
-            return;
-        }
 
         switch (keyEvent.Keycode)
         {
@@ -45,8 +35,6 @@ public partial class CommandInput : LineEdit
             default:
                 return;
         }
-
-        inputKeyPressed = true;
 
         SetText(CommandHistory.CurrentCommand);
         AcceptEvent();
