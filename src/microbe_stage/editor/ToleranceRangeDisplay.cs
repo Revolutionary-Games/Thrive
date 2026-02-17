@@ -9,8 +9,8 @@ public partial class ToleranceRangeDisplay : HSlider
 {
     private const float LINE_WIDTH = Constants.TOLERANCE_DISPLAY_MARKER_WIDTH;
 
-    private readonly Color mainColor = Color.FromHtml("#11FFD5");
-    private readonly Color mainColorTranslucent = Color.FromHtml("#11FFD5") with { A = 0.5f };
+    private readonly Color mainColor = new(0.0667f, 1f, 0.8353f);
+    private readonly Color mainColorTranslucent = new(0.0667f, 1f, 0.8353f, 0.5f);
 
     [Export]
     private bool showMiddleMarker;
