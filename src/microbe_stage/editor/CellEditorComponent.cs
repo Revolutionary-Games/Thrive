@@ -174,8 +174,7 @@ public partial class CellEditorComponent :
     private AnimationPlayer tutorialAnimationPlayer = null!;
 
     [Export]
-    private PackedScene customRichTextLabelScene = null!;
-
+    private LabelSettings toleranceWarningsFont = null!;
 #pragma warning restore CA2213
 
     private OrganelleDefinition nucleus = null!;
@@ -185,6 +184,8 @@ public partial class CellEditorComponent :
     private OrganelleDefinition chemoSynthesizingProteins = null!;
 
     private EnergyBalanceInfoFull? energyBalanceInfo;
+
+    private List<TweakedProcess> tempAllProcesses = new();
 
     private string? bestPatchName;
 
