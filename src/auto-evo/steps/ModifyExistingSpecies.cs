@@ -164,23 +164,6 @@ public class ModifyExistingSpecies : IRunStep
                 // Then shuffle and take only as many mutations as we want to try
                 mutationsToTry.Shuffle(random);
 
-                // Rename and colour selected mutations
-                foreach (var mutation in mutationsToTry.Take(TotalMutationsToTry))
-                {
-                    MutationLogicFunctions.NameNewMicrobeSpecies(mutation.MutatedSpecies, mutation.ParentSpecies);
-
-                    var oldColour = mutation.MutatedSpecies.Colour;
-
-                    var redShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
-                    var greenShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
-                    var blueShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
-
-                    mutation.MutatedSpecies.Colour = new Color(Math.Clamp((float)(oldColour.R + redShift), 0, 1),
-                        Math.Clamp((float)(oldColour.G + greenShift), 0, 1),
-                        Math.Clamp((float)(oldColour.B + blueShift), 0, 1));
-
-                    mutation.MutatedSpecies.OnEdited();
-                }
 
                 step = Step.MutationTest;
                 break;
