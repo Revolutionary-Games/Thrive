@@ -82,12 +82,18 @@ public static class MulticellularLayoutHelpers
 
             bool moveOnlyOneStepAtATime = false;
             bool removeAllIslandsBeforeMoving = true;
+            bool moveTowardsOrigin = false;
 
             var blobScore = CalculateBlobFactor(source, temp1, hexTemporaryMemory);
             if (blobScore >= 0.65f || (source.Count > 20 && blobScore >= 0.51f))
             {
                 GD.Print($"Using more blob-optimized shape for colony (blob score is: {blobScore})");
                 moveOnlyOneStepAtATime = true;
+            }
+
+            if (blobScore > 0.5f && source.Count > 5)
+            {
+                moveTowardsOrigin = true;
             }
 
             if (moveOnlyOneStepAtATime && source.Count > 12)
@@ -109,7 +115,8 @@ public static class MulticellularLayoutHelpers
                 // Now we have placed each cell at its wanted position, but we need to next ensure that all cells are
                 // touching without introducing overlaps
                 if (MoveCellsToBeTouching(targetGameplayLayout, moveOnlyOneStepAtATime, removeAllIslandsBeforeMoving,
-                        visitedItems, islandHexes, temp1, temp3, hexTemporaryMemory, hexTemporaryMemory2))
+                        moveTowardsOrigin, visitedItems, islandHexes, temp1, temp3, hexTemporaryMemory,
+                        hexTemporaryMemory2))
                 {
                     // Success
                     break;
@@ -237,9 +244,9 @@ public static class MulticellularLayoutHelpers
     }
 
     private static bool MoveCellsToBeTouching(CellLayout<CellTemplate> targetGameplayLayout,
-        bool moveOnlyOneStepAtATime, bool removeAllIslandsBeforeMoving, List<CellTemplate> visitedItems,
-        List<Hex> islandHexes, HashSet<Hex> temp1, Queue<Hex> temp3, List<Hex> hexTemporaryMemory,
-        List<Hex> hexTemporaryMemory2)
+        bool moveOnlyOneStepAtATime, bool removeAllIslandsBeforeMoving, bool moveTowardsOrigin,
+        List<CellTemplate> visitedItems, List<Hex> islandHexes, HashSet<Hex> temp1, Queue<Hex> temp3,
+        List<Hex> hexTemporaryMemory, List<Hex> hexTemporaryMemory2)
     {
         float moveDistance = 0.8f;
         int attempts = 0;
@@ -316,25 +323,36 @@ public static class MulticellularLayoutHelpers
                 var originalPosition = item.Position;
 
                 bool addedBack = false;
-
-                // Move towards the closest non-island cell
                 bool hasTarget = false;
-                float minDistance = float.MaxValue;
                 Hex targetHex = new Hex(0, 0);
 
-                foreach (var cellTemplate in targetGameplayLayout)
+                if (moveTowardsOrigin)
                 {
-                    // Don't move towards islands (this is an extra safety check for now as we removed the islands
-                    // already)
-                    if (visitedItems.Contains(cellTemplate))
-                        continue;
+                    // Move towards the origin
+                    // TODO: should this check if the first cell is actually at origin or not? We can probably assume
+                    // due to layout shifting that it is
+                    hasTarget = true;
+                }
+                else
+                {
+                    // Move towards the closest non-island cell
 
-                    var distance = cellTemplate.Position.DistanceTo(item.Position);
-                    if (distance < minDistance)
+                    float minDistance = float.MaxValue;
+
+                    foreach (var cellTemplate in targetGameplayLayout)
                     {
-                        minDistance = distance;
-                        targetHex = cellTemplate.Position;
-                        hasTarget = true;
+                        // Don't move towards islands (this is an extra safety check for now as we removed the islands
+                        // already)
+                        if (visitedItems.Contains(cellTemplate))
+                            continue;
+
+                        var distance = cellTemplate.Position.DistanceTo(item.Position);
+                        if (distance < minDistance)
+                        {
+                            minDistance = distance;
+                            targetHex = cellTemplate.Position;
+                            hasTarget = true;
+                        }
                     }
                 }
 
