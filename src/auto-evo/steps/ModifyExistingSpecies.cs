@@ -276,7 +276,7 @@ public class ModifyExistingSpecies : IRunStep
 
     private void GetMutationsForSpecies(MicrobeSpecies microbeSpecies)
     {
-        double totalMP = 100 * worldSettings.AIMutationMultiplier;
+        double totalMP = Constants.BASE_MUTATION_POINTS * worldSettings.AIMutationMultiplier;
 
         generateMutationsWorkingMemory.Clear();
         pressureStack.Clear();
