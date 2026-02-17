@@ -459,7 +459,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
                 CurrentTolerances.PressureTolerance + organelleModifiers.PressureTolerance;
 
             MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(
-                Editor.EditedCellOrganelles, ToleranceModifier.PressureRange, tempToleranceModifiers);
+                Editor.EditedCellOrganelles, ToleranceModifier.PressureTolerance, tempToleranceModifiers);
             pressureRangeToolTip.DisplayOrganelleBreakdown(tempToleranceModifiers);
         }
 
@@ -848,7 +848,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             pressureMaxLabel.LabelSettings = originalPressureFont;
             pressureRangeDisplay.SetColorsAndRedraw(optimalDisplayBadColor);
         }
-        else if (patchPressure > Math.Min(CurrentTolerances.PressureMinimum + CurrentTolerances.PressureTolerance,
+        else if (patchPressure > Math.Min(CurrentTolerances.PressureMinimum + pressureToleranceWithOrganelles,
                      Constants.TOLERANCE_PRESSURE_MAX))
         {
             pressureMaxLabel.LabelSettings = badValueFontTiny;

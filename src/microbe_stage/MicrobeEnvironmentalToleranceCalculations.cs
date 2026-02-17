@@ -85,8 +85,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 temperatureChange += organelleDefinition.ToleranceModifierTemperatureRange;
                 oxygenChange += organelleDefinition.ToleranceModifierOxygen;
                 uvChange += organelleDefinition.ToleranceModifierUV;
-                pressureMinimumChange -= organelleDefinition.ToleranceModifierPressureRange;
-                pressureToleranceChange += organelleDefinition.ToleranceModifierPressureRange;
+                pressureToleranceChange += organelleDefinition.ToleranceModifierPressureTolerance;
             }
         }
 
@@ -352,18 +351,18 @@ public static class MicrobeEnvironmentalToleranceCalculations
         }
         else
         {
-            if (speciesTolerances.PressureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
+            if (noExtraEffects.PressureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
             {
                 // Perfectly adapted
                 var perfectionFactor = Constants.TOLERANCE_PERFECT_PRESSURE_SCORE *
-                    (1 - speciesTolerances.PressureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE);
+                    (1 - noExtraEffects.PressureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE);
                 result.PressureScore = 1 + perfectionFactor;
             }
             else
             {
                 // Adequately adapted, but could be made perfect
                 result.PressureRangeSizeAdjustment = Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE -
-                    speciesTolerances.PressureTolerance;
+                    noExtraEffects.PressureTolerance;
 
                 result.PressureScore = 1;
             }

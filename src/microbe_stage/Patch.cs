@@ -624,29 +624,8 @@ public class Patch : IArchivable
         if (organelleEffects.UVResistance < 0)
             result.UVResistance -= organelleEffects.UVResistance * 1.01f;
 
-        if (organelleEffects.PressureTolerance != 0)
-        {
-            result.PressureTolerance -= organelleEffects.PressureTolerance;
-
-            if (result.PressureTolerance < 0 || result.PressureTolerance < result.PressureMinimum)
-                result.PressureTolerance = 0;
-        }
-
-        if (organelleEffects.PressureMinimum != 0)
-        {
-            result.PressureMinimum -= organelleEffects.PressureMinimum;
-
-            if (result.PressureMinimum < 0)
-                result.PressureMinimum = 0;
-
-            // This doesn't guarantee equal range, so the values need to be the same for now in both directions to
-            // actually work correctly
-            if (organelleEffects.PressureTolerance != organelleEffects.PressureMinimum)
-            {
-                GD.PrintErr("This code assumes that pressure minimum and maximum adjustments are always the save, " +
-                    "they aren't now");
-            }
-        }
+        if (organelleEffects.PressureTolerance < 0)
+            result.PressureTolerance -= organelleEffects.PressureTolerance * 1.01f;
 
 #if DEBUG
         result.SanityCheck();
