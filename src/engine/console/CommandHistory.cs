@@ -1,4 +1,4 @@
-using Nito.Collections;
+﻿using Nito.Collections;
 
 public class CommandHistory
 {

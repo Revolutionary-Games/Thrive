@@ -1,4 +1,4 @@
-public interface ICommandInvoker
+﻿public interface ICommandInvoker
 {
     public CommandHistory CommandHistory { get; }
 
