@@ -263,10 +263,14 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
         var compounds = compoundStorage.Compounds;
 
+        var signalerPosition = signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position;
+
         // Adjusted behaviour values (calculated here as these are needed by various methods)
         var speciesBehaviour = ourSpecies.Species.Behaviour;
         float speciesAggression = speciesBehaviour.Aggression *
-            (signaling.ReceivedCommand == MicrobeSignalCommand.BecomeAggressive ? 1.5f : 1.0f);
+            (signaling.ReceivedCommand == MicrobeSignalCommand.BecomeAggressive &&
+             position.Position.DistanceSquaredTo(signalerPosition) < Constants.AI_BECOME_AGGRESSIVE_DISTANCE_SQUARED
+             ? 1.5f : 1.0f);
 
         float speciesFear = speciesBehaviour.Fear *
             (signaling.ReceivedCommand == MicrobeSignalCommand.BecomeAggressive ? 0.75f : 1.0f);
@@ -399,7 +403,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                     // was smelled from
                     if (signaling.ReceivedCommandFromEntity.IsAliveAndHas<WorldPosition>())
                     {
-                        var signalerPosition = signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position;
                         if (position.Position.DistanceSquaredTo(signalerPosition) <
                             Constants.AI_MOVE_DISTANCE_SQUARED)
                         {
@@ -416,7 +419,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 {
                     if (signaling.ReceivedCommandFromEntity.IsAliveAndHas<WorldPosition>())
                     {
-                        var signalerPosition = signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position;
                         if (position.Position.DistanceSquaredTo(signalerPosition) >
                             Constants.AI_FOLLOW_DISTANCE_SQUARED &&
                             position.Position.DistanceSquaredTo(signalerPosition) <
@@ -435,7 +437,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 {
                     if (signaling.ReceivedCommandFromEntity.IsAliveAndHas<WorldPosition>())
                     {
-                        var signalerPosition = signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position;
                         if (position.Position.DistanceSquaredTo(signalerPosition) <
                             Constants.AI_FLEE_DISTANCE_SQUARED)
                         {
