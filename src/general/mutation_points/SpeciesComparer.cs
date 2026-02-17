@@ -35,10 +35,6 @@ public static class SpeciesComparer
         var minimumPressureChange = Math.Abs(oldTolerances.PressureMinimum - newTolerances.PressureMinimum);
         var pressureToleranceChange = Math.Abs(oldTolerances.PressureTolerance - newTolerances.PressureTolerance);
 
-        // As moving one slider can end up changing the other value as well, we take the average of the change to take
-        // that implicit doubled cost into account
-        var totalPressureChangeAverage = (pressureToleranceChange + minimumPressureChange) * 0.5;
-
         // Then add up the costs based on the changes
         // TODO: this can't apply the max single action cost as otherwise *all* tolerance changes could be done at once
         // as long as the player sacrificed all of their MP to do it. To fix this we would need to make it so that a
@@ -49,7 +45,7 @@ public static class SpeciesComparer
 
         return temperatureChange * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE * costMultiplier +
             temperatureToleranceChange * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE * costMultiplier +
-            totalPressureChangeAverage * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE * costMultiplier +
+            minimumPressureChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_MINIMUM * costMultiplier +
             pressureToleranceChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE * costMultiplier +
             oxygenChange * Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN * costMultiplier +
             uvChange * Constants.TOLERANCE_CHANGE_MP_PER_UV * costMultiplier;

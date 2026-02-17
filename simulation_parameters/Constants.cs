@@ -2028,15 +2028,9 @@ public static class Constants
     /// <summary>
     ///   As pressure values are massive, this is a double to get reasonable MP costs
     /// </summary>
-    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE = 0.000002;
+    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_MINIMUM = 0.000002;
 
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00001;
-
-    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE =
-        TOLERANCE_CHANGE_MP_PER_PRESSURE + TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE;
-
-    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE_INVERTED =
-        1.0f / TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE;
 
     // Environmental tolerance debuff / buff tweak variables
     public const float TOLERANCE_TEMPERATURE_SPEED_MODIFIER_MIN = 0.8f;

@@ -274,7 +274,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (pressureToolTip != null)
         {
-            var pressureCost = pressureSlider.Step * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE *
+            var pressureCost = pressureSlider.Step * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_MINIMUM *
                 MPDisplayCostMultiplier;
 
             pressureToolTip.MPCost = (float)pressureCost;

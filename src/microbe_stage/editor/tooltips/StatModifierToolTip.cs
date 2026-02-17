@@ -164,7 +164,7 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
 
     /// <summary>
     ///   Shows a breakdown of values divided based on organelle types. Clears any old data that shouldn't be shown
-    ///   anymore.
+    ///   any more.
     /// </summary>
     /// <param name="itemsAndValues">Data to show</param>
     public void DisplayOrganelleBreakdown(Dictionary<OrganelleDefinition, float> itemsAndValues)
@@ -265,6 +265,12 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
             text = value.ToString(CultureInfo.CurrentCulture);
         }
 
-        valueLabel.Text = $"{valuePrefix ?? string.Empty} {text} {valueSuffix ?? string.Empty}";
+        if (!string.IsNullOrEmpty(valueSuffix))
+            text = $"{text} {valueSuffix}";
+
+        if (!string.IsNullOrEmpty(valuePrefix))
+            text = $"{valuePrefix} {text}";
+
+        valueLabel.Text = text;
     }
 }
