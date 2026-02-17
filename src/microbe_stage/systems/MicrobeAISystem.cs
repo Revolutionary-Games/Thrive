@@ -269,8 +269,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         var speciesBehaviour = ourSpecies.Species.Behaviour;
         float speciesAggression = speciesBehaviour.Aggression *
             (signaling.ReceivedCommand == MicrobeSignalCommand.BecomeAggressive &&
-             position.Position.DistanceSquaredTo(signalerPosition) < Constants.AI_BECOME_AGGRESSIVE_DISTANCE_SQUARED
-             ? 1.5f : 1.0f);
+                position.Position.DistanceSquaredTo(signalerPosition) < Constants.AI_BECOME_AGGRESSIVE_DISTANCE_SQUARED
+                ? 1.5f : 1.0f);
 
         float speciesFear = speciesBehaviour.Fear *
             (signaling.ReceivedCommand == MicrobeSignalCommand.BecomeAggressive ? 0.75f : 1.0f);
