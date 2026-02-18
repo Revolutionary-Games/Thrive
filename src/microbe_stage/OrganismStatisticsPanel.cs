@@ -57,6 +57,9 @@ public partial class OrganismStatisticsPanel : PanelContainer
 #pragma warning disable CA2213
 
     [Export]
+    private Label titleLabel = null!;
+
+    [Export]
     private CellStatsIndicator sizeLabel = null!;
 
     [Export]
@@ -174,6 +177,8 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
         UpdateStatVisibility();
         UpdateATPBalanceText();
+
+        UpdateStageDependentText();
     }
 
     public void OnTranslationsChanged()
@@ -181,6 +186,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
         if (energyBalanceInfo != null)
         {
             UpdateEnergyBalance(energyBalanceInfo);
+            UpdateStageDependentText();
         }
     }
 
@@ -560,6 +566,20 @@ public partial class OrganismStatisticsPanel : PanelContainer
             atpBalanceLabel.Text = Localization.Translate("ATP_PRODUCTION") + " - " +
                 Localization.Translate("ATP_PRODUCTION_TOO_LOW");
             atpBalanceLabel.LabelSettings = ATPBalanceNotEnoughText;
+        }
+    }
+
+    private void UpdateStageDependentText()
+    {
+        if (!IsMulticellularEditor)
+        {
+            titleLabel.Text = Localization.Translate("ORGANISM_STATISTICS_MICROBE");
+            processListButton.Text = Localization.Translate("VIEW_CELL_PROCESSES_MICROBE");
+        }
+        else
+        {
+            titleLabel.Text = Localization.Translate("ORGANISM_STATISTICS");
+            processListButton.Text = Localization.Translate("VIEW_CELL_PROCESSES");
         }
     }
 

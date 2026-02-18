@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-11 10:29+0200\n"
+"POT-Creation-Date: 2026-02-18 11:24+0200\n"
 "PO-Revision-Date: 2026-01-31 08:46+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -4213,6 +4213,10 @@ msgstr "Свободный Многоклеточный Редактор"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Когда ваши клетки поделились веществами, каждой клетке необходимо произвести собственный АТФ. Каждая клетка, в которой он закончится, погибнет."
 
+#, fuzzy
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "(некоторые функции могут быть недоступны как только вы достигнете следующего этапа)"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Многоклеточная стадия"
 
@@ -4631,6 +4635,10 @@ msgstr "(Некоторые органеллы будут обладать оп�
 msgid "ORGANISM_STATISTICS"
 msgstr "Статистика Организма"
 
+#, fuzzy
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "Статистика Организма"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr "или"
 
@@ -4981,7 +4989,15 @@ msgstr "Обработка загруженных объектов"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
+#, fuzzy
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "Клеточные Процессы"
+
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Клеточные Процессы"
+
+#, fuzzy
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Клеточные Процессы"
 
 msgid "PROCESS_SPEED_MODIFIER"
@@ -7016,6 +7032,10 @@ msgid "VIEW_ALL"
 msgstr "Просмотреть всё"
 
 msgid "VIEW_CELL_PROCESSES"
+msgstr "Просмотреть Клеточные Процессы"
+
+#, fuzzy
+msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "Просмотреть Клеточные Процессы"
 
 msgid "VIEW_ONLINE"
@@ -9629,9 +9649,6 @@ msgstr "Уменьшить масштаб"
 
 #~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 #~ msgstr "Включить прототипы поздних стадий игры"
-
-#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-#~ msgstr "(некоторые функции могут быть недоступны как только вы достигнете следующего этапа)"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Использует Harmony автоматически:"

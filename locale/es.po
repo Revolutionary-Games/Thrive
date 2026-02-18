@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-11 10:29+0200\n"
+"POT-Creation-Date: 2026-02-18 11:24+0200\n"
 "PO-Revision-Date: 2026-01-22 03:55+0000\n"
 "Last-Translator: JESUS5PACHECO <jesusxpacheco5@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -4378,6 +4378,10 @@ msgstr "Editor multicelular"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Editor multicelular"
 
+#, fuzzy
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "(ciertas características no estarán disponibles cuando llegues a ciertas etapas)"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Etapa multicelular"
 
@@ -4840,6 +4844,10 @@ msgstr "(ADVERTENCIA: la fotosíntesis se vuelve mucho menos viable)"
 msgid "ORGANISM_STATISTICS"
 msgstr "Estadísticas del Organismo"
 
+#, fuzzy
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "Estadísticas del Organismo"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr "o"
 
@@ -5233,7 +5241,15 @@ msgstr "Procesando objetos cargados"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
+#, fuzzy
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "Procesos celulares"
+
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Procesos celulares"
+
+#, fuzzy
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Procesos celulares"
 
 #, fuzzy
@@ -7461,6 +7477,10 @@ msgid "VIEW_CELL_PROCESSES"
 msgstr "Aumenta la velocidad de rotación de células grandes."
 
 #, fuzzy
+msgid "VIEW_CELL_PROCESSES_MICROBE"
+msgstr "Aumenta la velocidad de rotación de células grandes."
+
+#, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Deshabilitar todo"
 
@@ -9593,9 +9613,6 @@ msgstr "Alejar el zoom"
 
 #~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 #~ msgstr "Incluye prototipos de futuras etapas"
-
-#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-#~ msgstr "(ciertas características no estarán disponibles cuando llegues a ciertas etapas)"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Usa Auto Harmony:"

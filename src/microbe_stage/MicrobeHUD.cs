@@ -32,6 +32,14 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private readonly Dictionary<CompoundDefinition, InspectedEntityLabel> hoveredCompoundControls = new();
 
+    /// <summary>
+    ///   Because of how <see cref="ChildObjectCache{TKey, TNode}"/> works, process stats instances need to remain
+    ///   consistent to reduce update frequency.
+    /// </summary>
+    private readonly Dictionary<TweakedProcess, SummedProcessStatistics> organismProcesses = new();
+
+    private readonly List<TweakedProcess> tempProcesses = new();
+
     [Export]
     private ActionButton bindingModeHotkey = null!;
 
@@ -177,6 +185,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             UpdateMacroscopicButton(stage.Player);
 
             UpdateHeatHelperWidget(stage.Player);
+
+            UpdateProcessPanelStatus(stage.Player);
 
             UpdateProcessPanelExternalSpeedModifier(stage.WorldSimulation.WorldTimeScale);
         }
@@ -536,9 +546,92 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         ingestedMatterBar.UpdateValue(GetPlayerUsedIngestionCapacity(), maxSize);
     }
 
-    protected override ProcessStatistics? GetPlayerProcessStatistics()
+    protected override IEnumerable<IProcessDisplayInfo>? GetPlayerProcessStatistics()
     {
-        return stage!.Player.Get<BioProcesses>().ProcessStatistics;
+        foreach (var process in organismProcesses)
+        {
+            process.Value.Clear();
+            process.Value.Marked = false;
+        }
+
+        var playerProcesses = stage!.Player.Get<BioProcesses>().ProcessStatistics?.Processes;
+
+        if (playerProcesses == null)
+        {
+            GD.PrintErr("Player process statistics are uninitialized, can't display them in the process panel");
+
+            return null;
+        }
+
+        foreach (var process in playerProcesses)
+        {
+            var display = process.Value.ComputeAverageValues();
+
+            if (!organismProcesses.TryGetValue(process.Key, out var stats))
+            {
+                stats = new SummedProcessStatistics(display);
+                organismProcesses[process.Key] = stats;
+            }
+            else
+            {
+                stats.AddProcess(display);
+            }
+
+            stats.Marked = true;
+        }
+
+        if (stage.Player.TryGet<MicrobeColony>(out var colony))
+        {
+            for (int i = 1; i < colony.ColonyMembers.Length; ++i)
+            {
+                var colonyMemberProcesses = colony.ColonyMembers[i].Get<BioProcesses>().ProcessStatistics?.Processes;
+
+                if (colonyMemberProcesses == null)
+                {
+                    GD.PrintErr(
+                        "Colony member process statistics are uninitialized, can't display them in the process panel");
+
+                    continue;
+                }
+
+                foreach (var process in colonyMemberProcesses)
+                {
+                    var display = process.Value.ComputeAverageValues();
+
+                    if (!organismProcesses.TryGetValue(process.Key, out var stats))
+                    {
+                        stats = new SummedProcessStatistics(display);
+                        organismProcesses[process.Key] = stats;
+                    }
+                    else
+                    {
+                        stats.AddProcess(display);
+                    }
+
+                    stats.Marked = true;
+                }
+            }
+        }
+
+        // Clear unmarked items
+        foreach (var entry in organismProcesses)
+        {
+            if (!entry.Value.Marked)
+                tempProcesses.Add(entry.Key);
+        }
+
+        if (tempProcesses.Count > 0)
+        {
+            foreach (var process in tempProcesses)
+            {
+                if (!organismProcesses.Remove(process))
+                    GD.PrintErr("Expected process remove failed");
+            }
+
+            tempProcesses.Clear();
+        }
+
+        return organismProcesses.Values;
     }
 
     protected override void CalculatePlayerReproductionProgress(Dictionary<Compound, float> gatheredCompounds,
@@ -820,6 +913,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
 
         UpdateColonySize(newColonySize);
+    }
+
+    private void UpdateProcessPanelStatus(Entity player)
+    {
+        processPanel.IsMicrobe = !player.Has<MicrobeColony>();
     }
 
     private void UpdateColonySizeForMacroscopic()

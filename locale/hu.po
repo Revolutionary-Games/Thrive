@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-11 10:29+0200\n"
+"POT-Creation-Date: 2026-02-18 11:24+0200\n"
 "PO-Revision-Date: 2026-01-28 22:12+0000\n"
 "Last-Translator: zynskeywolf <istvanszabo314@protonmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -4612,6 +4612,10 @@ msgstr "Többsejtes szerkesztő"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Többsejtes szerkesztő"
 
+#, fuzzy
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "(egyes opciók lehet, hogy elérhetetlenek lesznek a többi fázis elértével)"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Többsejtes fázis"
 
@@ -5070,6 +5074,10 @@ msgstr "(a szerkesztő elhagyása után egy közeli glükózfelhő mellett lesz 
 msgid "ORGANISM_STATISTICS"
 msgstr "Organizmus statisztikái"
 
+#, fuzzy
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "Organizmus statisztikái"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr "vagy"
 
@@ -5443,7 +5451,15 @@ msgstr "Betöltött objektumok feldolgozása"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
+#, fuzzy
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "Sejtfolyamatok"
+
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Sejtfolyamatok"
+
+#, fuzzy
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Sejtfolyamatok"
 
 #, fuzzy
@@ -7608,6 +7624,10 @@ msgid "VIEW_CELL_PROCESSES"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
 
 #, fuzzy
+msgid "VIEW_CELL_PROCESSES_MICROBE"
+msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
+
+#, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Az összes tiltása"
 
@@ -9688,9 +9708,6 @@ msgstr "Távolodás"
 
 #~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 #~ msgstr "Későbbi fázisok prototípusainak engedélyezése"
-
-#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-#~ msgstr "(egyes opciók lehet, hogy elérhetetlenek lesznek a többi fázis elértével)"
 
 #, fuzzy
 #~ msgid "MOD_AUTO_HARMONY"

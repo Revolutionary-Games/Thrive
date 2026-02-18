@@ -79,6 +79,32 @@ public sealed class ProcessStatistics
             return entry;
         }
     }
+
+    public void SumProcessStatistics(ProcessStatistics other)
+    {
+        foreach (var pair in other.Processes)
+        {
+            var process = GetAndMarkUsed(pair.Key);
+
+            if (pair.Value.LimitingCompounds != null)
+            {
+                foreach (var limitingFactor in pair.Value.LimitingCompounds)
+                {
+                    process.AddLimitingFactor(limitingFactor);
+                }
+            }
+
+            foreach (var input in pair.Value.Inputs)
+            {
+                process.AddInputAmount(input.Key, input.Value);
+            }
+
+            foreach (var output in pair.Value.Outputs)
+            {
+                process.AddOutputAmount(output.Key, output.Value);
+            }
+        }
+    }
 }
 
 /// <summary>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-11 10:29+0200\n"
+"POT-Creation-Date: 2026-02-18 11:24+0200\n"
 "PO-Revision-Date: 2026-01-25 06:42+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -4213,6 +4213,10 @@ msgstr "多細胞自由編輯器"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "雖然您的細胞共享化合物，但每個細胞都需要生產自己的[thrive:compound type=\"atp\"][/thrive:compound]。任何耗盡能量的細胞將會死亡。"
 
+#, fuzzy
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "（進入下一階段後，某些功能可能無法使用）"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "多細胞階段"
 
@@ -4631,6 +4635,10 @@ msgstr "（某些細胞器需要滿足特定解鎖條件才能放置）"
 msgid "ORGANISM_STATISTICS"
 msgstr "生物統計"
 
+#, fuzzy
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "生物統計"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr "或"
 
@@ -4981,7 +4989,15 @@ msgstr "處理載入的物件中"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
+#, fuzzy
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "细胞代謝過程"
+
 msgid "PROCESS_PANEL_TITLE"
+msgstr "细胞代謝過程"
+
+#, fuzzy
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "细胞代謝過程"
 
 msgid "PROCESS_SPEED_MODIFIER"
@@ -7016,6 +7032,10 @@ msgid "VIEW_ALL"
 msgstr "查看所有"
 
 msgid "VIEW_CELL_PROCESSES"
+msgstr "查看細胞代謝過程"
+
+#, fuzzy
+msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "查看細胞代謝過程"
 
 msgid "VIEW_ONLINE"
@@ -9627,9 +9647,6 @@ msgstr "縮小"
 
 #~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 #~ msgstr "包括後期階段原型"
-
-#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-#~ msgstr "（進入下一階段後，某些功能可能無法使用）"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "使用自動 Harmony："
