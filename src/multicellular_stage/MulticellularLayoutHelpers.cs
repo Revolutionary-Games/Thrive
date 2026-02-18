@@ -330,7 +330,7 @@ public static class MulticellularLayoutHelpers
                 {
                     // Move towards the origin
                     // TODO: should this check if the first cell is actually at origin or not? We can probably assume
-                    // due to layout shifting that it is
+                    // due to layout shifting that it is.
                     hasTarget = true;
                 }
                 else
@@ -338,11 +338,10 @@ public static class MulticellularLayoutHelpers
                     // Move towards the closest non-island cell
 
                     float minDistance = float.MaxValue;
-
                     foreach (var cellTemplate in targetGameplayLayout)
                     {
-                        // Don't move towards islands (this is an extra safety check for now as we removed the islands
-                        // already)
+                        // Don't move towards islands (this is an extra safety check in cases where we removed all
+                        // islands before moving)
                         if (visitedItems.Contains(cellTemplate))
                             continue;
 
