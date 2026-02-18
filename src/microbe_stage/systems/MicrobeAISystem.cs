@@ -263,7 +263,10 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
         var compounds = compoundStorage.Compounds;
 
-        var signalerPosition = signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position;
+        var signalerPosition =
+            signaling.ReceivedCommand != MicrobeSignalCommand.None && entity.IsAliveAndHas<WorldPosition>() ?
+                signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position :
+                new Vector3(0, 0, 0);
 
         // Adjusted behaviour values (calculated here as these are needed by various methods)
         var speciesBehaviour = ourSpecies.Species.Behaviour;
