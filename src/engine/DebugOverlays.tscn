@@ -9,11 +9,14 @@
 [ext_resource type="LabelSettings" uid="uid://u7fwx3p3shvk" path="res://src/gui_common/fonts/Body-Regular-Small-Shadow.tres" id="6_2giyi"]
 [ext_resource type="LabelSettings" uid="uid://c7r7hod24qer8" path="res://src/gui_common/fonts/Body-Regular-Small-Blue.tres" id="6_05a1v"]
 [ext_resource type="LabelSettings" uid="uid://dj8uej1eg2iuh" path="res://src/gui_common/fonts/Body-Regular-Small-Orange.tres" id="7_8xdu2"]
-[ext_resource type="Theme" uid="uid://b4ywd7vgvnaxb" path="res://src/gui_common/thrive_theme_transparency.tres" id="9_qoetm"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="9_qsaes"]
 [ext_resource type="Script" uid="uid://ctv5goidw0qvu" path="res://src/engine/console/DebugConsole.cs" id="10_syfxw"]
 [ext_resource type="FontVariation" uid="uid://k7u2fkgwhsf0" path="res://assets/fonts/variants/RobotoMono-Regular.tres" id="11_0g2tr"]
 [ext_resource type="FontFile" uid="uid://cd1sb4ten5fqv" path="res://assets/fonts/RobotoMono-Variable.ttf" id="11_ja1wl"]
 [ext_resource type="Script" uid="uid://dh5hhdvm4bnhj" path="res://src/engine/console/CommandInput.cs" id="13_qoetm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qoetm"]
+bg_color = Color(0, 0, 0, 0.5882353)
 
 [node name="DebugOverlay" type="Control" unique_id=2017744925 node_paths=PackedStringArray("debugCoordinates", "inspectorDialog", "debugPanelDialog", "debugConsole", "fpsCheckBox", "performanceMetricsCheckBox", "inspectorCheckbox", "fpsCounter", "performanceMetrics", "labelsLayer", "fpsDisplayLabel", "fpsLabel", "deltaLabel", "metricsText")]
 layout_mode = 3
@@ -97,7 +100,7 @@ offset_top = 35.0
 offset_right = 664.0
 offset_bottom = 280.0
 mouse_force_pass_scroll_events = false
-theme = ExtResource("9_qoetm")
+theme = ExtResource("9_qsaes")
 script = ExtResource("10_syfxw")
 debugEntryList = NodePath("VBoxContainer/ScrollContainer/VBoxContainer")
 commandInput = NodePath("VBoxContainer/ConsoleInput")
@@ -129,6 +132,7 @@ size_flags_vertical = 3
 [node name="ConsoleInput" type="LineEdit" parent="DebugConsole/VBoxContainer" unique_id=929832716]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("11_0g2tr")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qoetm")
 placeholder_text = "COMMAND_INPUT_LINE_EDIT"
 keep_editing_on_text_submit = true
 caret_blink = true

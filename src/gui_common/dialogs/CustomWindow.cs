@@ -227,6 +227,12 @@ public partial class CustomWindow : TopLevelContainer
         }
     }
 
+    public StyleBox CustomPanelOverride { get; set; } = null!;
+    public StyleBox TitleBarPanelOverride { get; set; } = null!;
+
+    public Color TitleColorOverride { get; set; }
+    public Color CloseButtonColorOverride { get; set; }
+
     public override void _EnterTree()
     {
         customPanel = GetThemeStylebox("custom_panel", "Window");
@@ -241,6 +247,11 @@ public partial class CustomWindow : TopLevelContainer
         closeButtonTexture = GetThemeIcon("custom_close", "Window");
         scaleBorderSize = GetThemeConstant("custom_scaleBorder_size", "Window");
         customMargin = decorate ? GetThemeConstant("custom_margin", "Dialogs") : 0;
+
+        CustomPanelOverride = customPanel;
+        TitleBarPanelOverride = titleBarPanel;
+        TitleColorOverride = titleColor;
+        CloseButtonColorOverride = closeButtonColor;
 
         // Make the close button style be fully created when this is initialized
         if (showCloseButton)
@@ -300,10 +311,10 @@ public partial class CustomWindow : TopLevelContainer
             return;
 
         // Draw background panels
-        DrawStyleBox(customPanel,
+        DrawStyleBox(CustomPanelOverride,
             new Rect2(new Vector2(0, -titleBarHeight), new Vector2(Size.X, Size.Y + titleBarHeight)));
 
-        DrawStyleBox(titleBarPanel,
+        DrawStyleBox(TitleBarPanelOverride,
             new Rect2(new Vector2(3, -titleBarHeight + 3), new Vector2(Size.X - 6, titleBarHeight - 3)));
 
         // Draw title in the title bar
@@ -312,7 +323,7 @@ public partial class CustomWindow : TopLevelContainer
         var titlePosition = new Vector2(0, (-titleHeight + fontHeight) * 0.5f);
 
         DrawString(titleFont, titlePosition, translatedWindowTitle, HorizontalAlignment.Center, Size.X,
-            titleFontSize, titleColor);
+            titleFontSize, TitleColorOverride);
 
         // Draw close button (if this window has a close button)
         if (closeButton != null)
@@ -321,7 +332,7 @@ public partial class CustomWindow : TopLevelContainer
 
             // We render this in a custom way because rendering it in a child node causes a bug where render order
             // breaks in some cases: https://github.com/Revolutionary-Games/Thrive/issues/4365
-            DrawTextureRect(closeButtonTexture, closeButtonRect, false, closeButtonColor);
+            DrawTextureRect(closeButtonTexture, closeButtonRect, false, CloseButtonColorOverride);
 
             // Draw close button highlight
             if (closeHovered)
