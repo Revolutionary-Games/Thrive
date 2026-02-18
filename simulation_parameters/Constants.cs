@@ -1996,7 +1996,7 @@ public static class Constants
     public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 350000;
 
     public const float TOLERANCE_INITIAL_PRESSURE_RANGE = 2400000;
-    public const float TOLERANCE_PRESSURE_RANGE_MAX = 12000000;
+    public const float TOLERANCE_PRESSURE_RANGE_MAX = 8000000;
 
     /// <summary>
     ///   UV effects only appear once this amount of UV is in a patch
