@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-17 01:16+0300\n"
+"POT-Creation-Date: 2026-02-18 11:24+0200\n"
 "PO-Revision-Date: 2026-01-25 06:42+0000\n"
 "Last-Translator: Davi Araújo <davi.augusto.araujo@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -2779,12 +2779,6 @@ msgstr "Ignorar outros erros"
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "Arquivos de Imagem Compatíveis"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Incluir protótipos dos estágios seguintes"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr "(alguns recursos podem não estar disponíveis quando você alcançar os próximos estágios)"
 
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Aumentar tamanho do objeto"
@@ -8943,7 +8937,8 @@ msgstr "Janela"
 msgid "WIN_BOX_TITLE"
 msgstr "VOCÊ PROSPEROU!"
 
-msgid "WIN_TEXT"
+#, fuzzy
+msgid "WIN_TEXT_2"
 msgstr "Parabéns! Você terminou esta versão de Thrive! Poderá continuar jogando após esta mensagem desaparecer, ou pode começar um novo jogo em um novo mundo. Também é possível jogar os protótipos dos estágios seguintes adicionando um agente de ligação na sua célula."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -8986,6 +8981,12 @@ msgid "WORLD_GENERAL_STATISTICS"
 msgstr "Estatísticas Gerais do Mundo Atual"
 
 msgid "WORLD_MISC_DETAILS_STRING"
+msgstr ""
+"Incluir os protótipos de estágios posteriores: {0}\n"
+"Incluir easter eggs: {1}"
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
 msgstr ""
 "Incluir os protótipos de estágios posteriores: {0}\n"
 "Incluir easter eggs: {1}"
@@ -9090,17 +9091,8 @@ msgstr "Aumentar o zoom"
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
 
-#, fuzzy
-#~ msgid "PROCESS_PANEL_TITLE_MULTICELLULAR"
-#~ msgstr "Processos"
-
-#, fuzzy
-#~ msgid "ORGANISM_STATISTICS_MULTICELLULAR"
-#~ msgstr "Estatísticas do Organismo"
-
-#, fuzzy
-#~ msgid "VIEW_CELL_PROCESSES_MULTICELLULAR"
-#~ msgstr "Ver Processos Celulares"
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Incluir protótipos dos estágios seguintes"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Usa Auto Harmony:"

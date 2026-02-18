@@ -721,7 +721,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         GD.Print("Disbanding colony and becoming multicellular");
 
-        // Move to multicellular always happens when the player is in a colony, so we force disband that here before
+        // Move to multicellular always happens when the player is in a colony, so we force-disband that here before
         // proceeding
         MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(Player, WorldSimulation);
 
@@ -730,8 +730,6 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         GiveReproductionPopulationBonus();
 
-        CurrentGame!.EnterPrototypes();
-
         var playerSpeciesMicrobes = GetAllPlayerSpeciesMicrobes();
 
         // Re-apply species here so that the player cell knows it is multicellular after this
@@ -739,7 +737,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         // This prevents previous members of the player's colony from immediately being hostile
         bool playerHandled = false;
 
-        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(previousSpecies);
+        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(previousSpecies, true);
         foreach (var microbe in playerSpeciesMicrobes)
         {
             // Direct component setting is safe as we verified above we aren't running during a simulation update
@@ -777,6 +775,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             throw new Exception("failed to keep the current scene root");
         }
 
+        // TODO: allow endosymbiosis in multicellular (if we want to)
         GameWorld.PlayerSpecies.Endosymbiosis.CancelAllEndosymbiosisTargets();
 
         MovingToEditor = false;
@@ -853,11 +852,18 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
 
         // Check win conditions
 
-        if (!CurrentGame!.FreeBuild && GameWorld.PlayerSpecies.Generation >= 20 &&
-            GameWorld.PlayerSpecies.Population >= 300 && !wonOnce)
+        // TODO: remove this entirely once macroscopic stage is no longer a prototype
+        if (!CurrentGame!.FreeBuild && GameWorld.PlayerSpecies.Generation >= 25 &&
+            GameWorld.PlayerSpecies.Population >= 300 &&
+            GameWorld.PlayerSpecies is MulticellularSpecies multicellular && !wonOnce)
         {
-            HUD.ToggleWinBox();
-            wonOnce = true;
+            // To make it less likely for the "you have won" and the multicellular tutorial popups to appear at the
+            // same time require the player to have done some multicellular placing
+            if (multicellular.GameplayCells.Count >= 10)
+            {
+                HUD.ToggleWinBox();
+                wonOnce = true;
+            }
         }
 
         loadSaveAdviceTriggered = false;

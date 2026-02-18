@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-17 01:16+0300\n"
+"POT-Creation-Date: 2026-02-18 11:24+0200\n"
 "PO-Revision-Date: 2025-12-16 19:29+0000\n"
 "Last-Translator: Greggory Lazarov <greggfromdiscord@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -2935,12 +2935,6 @@ msgstr ""
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Видове"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Включване на следващите етапи на играта"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr "(следващите етапи на играта не са завършени и може да не функционират правилно)"
 
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
@@ -9467,7 +9461,8 @@ msgstr ""
 msgid "WIN_BOX_TITLE"
 msgstr "ВАШИТЕ СЪЗДАНИЯ ПРОЦЪФТЯХА!"
 
-msgid "WIN_TEXT"
+#, fuzzy
+msgid "WIN_TEXT_2"
 msgstr "Поздравления, Вие победихте в тази версия на „Thrive“! Може да продължите играта след като този прозорец се затвори или да започнете нова игра в нов свят. Също така, може да използвате свързващия агент за да създадете клетъчна колония и да продължите към следващите етапи на играта."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -9511,6 +9506,12 @@ msgid "WORLD_GENERAL_STATISTICS"
 msgstr "Обща статистика на текущия свят"
 
 msgid "WORLD_MISC_DETAILS_STRING"
+msgstr ""
+"Включване на следващите етапи на играта: {0}\n"
+"Включване на тайните обекти на играта: {1}"
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
 msgstr ""
 "Включване на следващите етапи на играта: {0}\n"
 "Включване на тайните обекти на играта: {1}"
@@ -9639,17 +9640,8 @@ msgstr "Приближаване"
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
 
-#, fuzzy
-#~ msgid "PROCESS_PANEL_TITLE_MULTICELLULAR"
-#~ msgstr "Клетъчни процеси"
-
-#, fuzzy
-#~ msgid "ORGANISM_STATISTICS_MULTICELLULAR"
-#~ msgstr "Характеристика"
-
-#, fuzzy
-#~ msgid "VIEW_CELL_PROCESSES_MULTICELLULAR"
-#~ msgstr "Подлежи на уточняване"
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Включване на следващите етапи на играта"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Използва „Harmony“:"

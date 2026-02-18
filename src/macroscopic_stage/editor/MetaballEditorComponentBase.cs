@@ -143,6 +143,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
     // TODO: implement 3D editor camera position and rotation saving
 
+    // TODO: seems like nothing implements setting this?
     public IEnumerable<(Vector3 Position, TMetaball? Parent)>? MouseHoverPositions
     {
         get => mouseHoverPositions;

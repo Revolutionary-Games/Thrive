@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-17 01:16+0300\n"
+"POT-Creation-Date: 2026-02-18 11:24+0200\n"
 "PO-Revision-Date: 2026-01-10 15:26+0000\n"
 "Last-Translator: Helionky <marfason@seznam.cz>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -2836,12 +2836,6 @@ msgstr ""
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Typy membrán"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Zahrnout prototypy pozdějších období"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr "(některé funkce možná nebudou přístupné jakmile se dostanete do dalších období)"
 
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
@@ -9176,7 +9170,8 @@ msgstr ""
 msgid "WIN_BOX_TITLE"
 msgstr "PROSPERUJEŠ!"
 
-msgid "WIN_TEXT"
+#, fuzzy
+msgid "WIN_TEXT_2"
 msgstr "Gratulace, vyhráli jste tuto verzi Thrive! Po zavření této zprávy můžete pokračovat ve volném hraní, nebo začít novou hru."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -9223,6 +9218,19 @@ msgstr "Statistika organizmu"
 
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
+msgstr ""
+"Přednastavená obtížnost: {0}\n"
+"Násobič ceny mutace: {1}\n"
+"Rychlost mutace AI: {2}\n"
+"Hustota mraku sloučenin: {3}\n"
+"Trest za smrt hráče na populaci: {4}\n"
+"Retence glukózy v prostředí: {5}\n"
+"Násobič nákladů na osmoregulaci: {6}\n"
+"Glukózový mrak při opuštění editoru: {7}\n"
+"Omezit použití růstové sloučeniny: {8}"
 
 #, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE"
@@ -9335,17 +9343,8 @@ msgstr "Přiblížit"
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
 
-#, fuzzy
-#~ msgid "PROCESS_PANEL_TITLE_MULTICELLULAR"
-#~ msgstr "Proces buňky"
-
-#, fuzzy
-#~ msgid "ORGANISM_STATISTICS_MULTICELLULAR"
-#~ msgstr "Statistika organizmu"
-
-#, fuzzy
-#~ msgid "VIEW_CELL_PROCESSES_MULTICELLULAR"
-#~ msgstr "Zobrazit buněčné pochody"
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Zahrnout prototypy pozdějších období"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Používá auto Harmony:"

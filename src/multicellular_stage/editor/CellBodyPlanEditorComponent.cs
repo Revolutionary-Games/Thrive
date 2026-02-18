@@ -115,6 +115,9 @@ public partial class CellBodyPlanEditorComponent :
 
     private IndividualHexLayout<CellTemplate> editedMicrobeCells = null!;
 
+    private List<IReadOnlyOrganelleTemplate> tempAllOrganelles = new();
+    private List<TweakedProcess> tempAllProcesses = new();
+
     /// <summary>
     ///   True, when visuals of already placed things need to be updated
     /// </summary>
@@ -313,9 +316,37 @@ public partial class CellBodyPlanEditorComponent :
 
             if (cellType != null)
             {
+                HashSet<(Hex Hex, int Orientation)> hoveredHexes = new();
+
+                /*if (!componentBottomLeftButtons.SymmetryEnabled)
+                    effectiveSymmetry = HexEditorSymmetry.None;*/
+
                 RunWithSymmetry(q, r,
-                    (finalQ, finalR, rotation) => RenderHighlightedCell(finalQ, finalR, rotation, cellType),
+                    (finalQ, finalR, rotation) =>
+                    {
+                        RenderHighlightedCell(finalQ, finalR, rotation, cellType);
+
+                        var finalHex = new Hex(finalQ, finalR);
+
+                        // Only add unique positions so that duplicate actions are not attempted
+                        bool exists = false;
+                        foreach (var existingHex in hoveredHexes)
+                        {
+                            if (existingHex.Hex == finalHex)
+                            {
+                                exists = true;
+                                break;
+                            }
+                        }
+
+                        if (exists)
+                            return;
+
+                        hoveredHexes.Add((finalHex, rotation));
+                    },
                     effectiveSymmetry);
+
+                MouseHoverPositions = hoveredHexes.ToList();
             }
         }
         else if (forceUpdateCellGraphics)
@@ -451,8 +482,10 @@ public partial class CellBodyPlanEditorComponent :
         // TODO: maybe in the future we want to switch to editing the full hex layout with the entire cells in this
         // editor so this step can be skipped. Or another approach that keeps the shape the player worked on better
         // than this approach that can move around the cells a lot.
+        // This uses high quality as extra time spent doesn't matter here and is even important for the player species.
         MulticellularLayoutHelpers.UpdateGameplayLayout(editedSpecies.ModifiableGameplayCells,
-            editedSpecies.ModifiableEditorCells, editedMicrobeCells, hexTemporaryMemory, hexTemporaryMemory2);
+            editedSpecies.ModifiableEditorCells, editedMicrobeCells, AlgorithmQuality.High, hexTemporaryMemory,
+            hexTemporaryMemory2);
 
         editedSpecies.OnEdited();
 
@@ -747,7 +780,7 @@ public partial class CellBodyPlanEditorComponent :
             return;
 
         // For now a single hex represents entire cells
-        RenderHoveredHex(q, r, new[] { new Hex(0, 0) }, isPlacementProbablyValid,
+        RenderHoveredHex(q, r, [new Hex(0, 0)], isPlacementProbablyValid,
             out bool hadDuplicate);
 
         bool showModel = !hadDuplicate;
@@ -812,6 +845,7 @@ public partial class CellBodyPlanEditorComponent :
                 if (placed != null)
                 {
                     placementActions.Add(placed);
+                    GD.Print($"Trying to place cell \"{cellType.CellTypeName}\" at {hex}");
 
                     usedHexes.Add(hex);
                 }
@@ -1259,8 +1293,19 @@ public partial class CellBodyPlanEditorComponent :
 
         if (organismStatisticsPanel.ResourceLimitingMode != ResourceLimitingMode.AllResources)
         {
+            tempAllOrganelles.Clear();
+            foreach (var cell in cells)
+            {
+                foreach (var organelle in cell.Data!.CellType.Organelles)
+                {
+                    tempAllOrganelles.Add(organelle);
+                }
+            }
+
+            ProcessSystem.ComputeActiveProcessList(tempAllOrganelles, ref tempAllProcesses);
+
             conditionsData = new BiomeResourceLimiterAdapter(organismStatisticsPanel.ResourceLimitingMode,
-                conditionsData);
+                conditionsData, tempAllProcesses);
         }
 
         energyBalanceInfo = new EnergyBalanceInfoFull();
@@ -1432,8 +1477,6 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         var leaderPosition = editedMicrobeCells[0].Position;
-
-        GD.Print(leaderPosition);
 
         foreach (var cell in editedMicrobeCells.AsModifiable())
         {

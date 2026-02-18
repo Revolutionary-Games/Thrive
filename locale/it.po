@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-17 01:16+0300\n"
+"POT-Creation-Date: 2026-02-18 11:24+0200\n"
 "PO-Revision-Date: 2026-01-10 15:26+0000\n"
 "Last-Translator: GalaxyDragon <galaxydragon9@yahoo.it>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -2899,12 +2899,6 @@ msgstr ""
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
 msgstr "Tipi di membrana"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Includi prototipi"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr "(alcune features potrebbero non essere disponibili nelle fasi successive)"
 
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
@@ -9456,7 +9450,8 @@ msgstr ""
 msgid "WIN_BOX_TITLE"
 msgstr "HAI PROSPERATO!"
 
-msgid "WIN_TEXT"
+#, fuzzy
+msgid "WIN_TEXT_2"
 msgstr "Congratulazioni! Hai vinto questa versione di Thrive! Se vuoi, puoi continuare a giocare dopo la chiusura di questo messaggio, oppure avviare una nuova partita in un nuovo mondo. Puoi anche evolvere degli agenti leganti e dare un'occhiata ai prototipi delle fasi successive."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -9500,6 +9495,12 @@ msgid "WORLD_GENERAL_STATISTICS"
 msgstr "Statistiche generiche del Mondo Corrente"
 
 msgid "WORLD_MISC_DETAILS_STRING"
+msgstr ""
+"Includi i prototipi finali: {0}\n"
+"Includi gli Easter eggs: {1}"
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
 msgstr ""
 "Includi i prototipi finali: {0}\n"
 "Includi gli Easter eggs: {1}"
@@ -9632,17 +9633,8 @@ msgstr "Zoom avanti"
 msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
 
-#, fuzzy
-#~ msgid "PROCESS_PANEL_TITLE_MULTICELLULAR"
-#~ msgstr "Processi cellulari"
-
-#, fuzzy
-#~ msgid "ORGANISM_STATISTICS_MULTICELLULAR"
-#~ msgstr "Statistiche dell'organismo"
-
-#, fuzzy
-#~ msgid "VIEW_CELL_PROCESSES_MULTICELLULAR"
-#~ msgstr "Aumentano la velocità di viraggio. Utili per cellule molto grandi."
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Includi prototipi"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Usa Auto Harmony:"

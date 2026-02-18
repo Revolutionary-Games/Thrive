@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-17 01:16+0300\n"
+"POT-Creation-Date: 2026-02-18 11:24+0200\n"
 "PO-Revision-Date: 2026-01-22 03:55+0000\n"
 "Last-Translator: JESUS5PACHECO <jesusxpacheco5@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -2818,12 +2818,6 @@ msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "Archivos de Imagen Soportados"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Incluye prototipos de futuras etapas"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr "(ciertas características no estarán disponibles cuando llegues a ciertas etapas)"
 
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Aumentar tamaño del objeto"
@@ -9432,7 +9426,8 @@ msgstr "Modo ventana"
 msgid "WIN_BOX_TITLE"
 msgstr "¡HAS PROSPERADO!"
 
-msgid "WIN_TEXT"
+#, fuzzy
+msgid "WIN_TEXT_2"
 msgstr "¡Felicitaciones! ¡Has ganado ésta versión de Thrive! Puedes seguir jugando libremente luego de esta notificación, o puedes empezar una nueva partida."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -9479,6 +9474,12 @@ msgid "WORLD_GENERAL_STATISTICS"
 msgstr "Estadísticas del Organismo"
 
 msgid "WORLD_MISC_DETAILS_STRING"
+msgstr ""
+"Incluir prototipos de etapas posteriores: {0}\n"
+"Incluir \"huevos de pascua\": {1}"
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
 msgstr ""
 "Incluir prototipos de etapas posteriores: {0}\n"
 "Incluir \"huevos de pascua\": {1}"
@@ -9610,17 +9611,8 @@ msgstr "Hacer zoom"
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
 
-#, fuzzy
-#~ msgid "PROCESS_PANEL_TITLE_MULTICELLULAR"
-#~ msgstr "Procesos celulares"
-
-#, fuzzy
-#~ msgid "ORGANISM_STATISTICS_MULTICELLULAR"
-#~ msgstr "Estadísticas del Organismo"
-
-#, fuzzy
-#~ msgid "VIEW_CELL_PROCESSES_MULTICELLULAR"
-#~ msgstr "Aumenta la velocidad de rotación de células grandes."
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Incluye prototipos de futuras etapas"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Usa Auto Harmony:"

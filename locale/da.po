@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-17 01:16+0300\n"
-"PO-Revision-Date: 2026-02-04 13:48+0000\n"
+"POT-Creation-Date: 2026-02-18 11:24+0200\n"
+"PO-Revision-Date: 2026-02-13 08:03+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
 "Language: da\n"
@@ -2763,12 +2763,6 @@ msgstr "Ignorer yderligere fejl"
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "Understøttede billedefiler"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Inkluder sen-stadie prototyper"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr "(nogle features bliver måske utilgængelige når du når det næste stadie)"
 
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Forøg objekt størrelse"
@@ -6705,21 +6699,51 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
 msgstr ""
+"Her i [b]processpanelet[/b] can du overvåge dine celleprocesser i realtid. Spinnerne viser hvor hurtigt en process kører, mens tallene viser et gennemsnit af nyligt forbrug eller produktion.\n"
+"\n"
+"Du er en lille [b]cellulær fabrik[/b] der konstant har brug for at producere [thrive:compound type=\"atp\"][/thrive:compound] for at holde sig selv i live. \n"
+"\n"
+"Hvis et tal bliver [color=#ff4d4d]rødt[/color] betyder det at det er den [u]begrænsende faktor[/u]. F.eks. hvis en process der producerer [thrive:compound type=\"atp\"][/thrive:compound] har et [i]input[/i] der bliver rødt, så vil du være i store vanskligheder, og har brug for at finde [b]mere af det stof[/b] før du begynder at dø!\n"
+"\n"
+"Toggle knapperne ved siden af processerne kan bruges til at slå dem fra eller til. Disse kan anvendes til avancerede spiltaktikker.\n"
+"For at prøve at se hvad der sker når du løber tør for stoffer, prøv at slå en process fra, og så [b]med det samme slå den til igen [/b] for at undgå at dø. Vær opmærksom på at spillet ikke skal være pauset."
 
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
+"Liv har brug for flere molekuler end bare sukker. Se hvilke andre skyer din mikrobe kan opsamle!\n"
+"\n"
+"De orange ([thrive:compound type=\"ammonia\"][/thrive:compound]) og lilla ([thrive:compound type=\"phosphates\"][/thrive:compound]) bjælker nederst til højre viser din [b]fremskridt[/b]. De bliver hvide når du er klar til at reproducere."
 
 msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
+"Efter du vender tilbage fra editoren vil din [b]søstercelle[/b] komme til live ved siden af dig.\n"
+"\n"
+"Dine gemte stoffer er blevet [u]delt ligeligt emd din søstercelle[/u] så den også kan overleve.\n"
+"\n"
+"Afhængig af den valgte sværhedsgrad får du muligvis [b]gratis ressourcer[/b] til at toppe din celle af med når du forlader editoren. På [b]normal sværhedsgrad[/b] gives disse bonus ressourcer kun hvis du lige har skiftet til at [u]leve i et nyt område[/u].\n"
+"\n"
+"At ressourcerne bliver delt efter reproduktion gør det til et [b]strategisk valg[/b] hvorvidt du ønsker at reproducere lige så snart det er muligt, [i]eller[/i] spille lidt videre for at fylde op med ressourcer så dit næste liv bliver en smule nemmere."
 
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
+"Du har aktiveret ophæv-binding tilstand. I denne tilstand kan du klikke på kolonimedlemmer for at ophævde deres binding.\n"
+"\n"
+"For at forlade kolonien helt kan du klikke på din egen celle eller tryke på [thrive:input] g_unbind_all[/thrive:input] tasten."
 
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
+"Velkommen til Flercellestadiet!\n"
+"\n"
+"Du er lykkedes med at føre din art gennem encelle fasen.\n"
+"\n"
+"Gameplayet følger de grundlæggende mekanikker fra Mikrobe-stadiet. Du skal stadig blive ved med at gro din organisme for at reproducere og komme til editoren.\n"
+"\n"
+"Men nu kan du designe din kolonis cellelayout i editoren, og du kan specialisere dine celle til at udfylde forskellige roller. Vær opmærksom på at kolonimedlemmer ikke kan dele [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Hvis du bruger knopskydning til reproduktion (standardmetoden) starter du med at kontrollere en lille knop, og skal gro resten af dit cellelayout."
 
 msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
-msgstr ""
+msgstr "Alle vejledninger vil blive vist igen. Når denne indstilling er slået fra er det kun vejledninger der ikke er blevet vist før der vises. Det er sikkert at slå denne idnstilling fra, selv første gang der spilles."
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Vis nu"
@@ -7138,7 +7162,7 @@ msgid "WIKI_AWAKENING_STAGE_FEATURES"
 msgstr "Kommer snart."
 
 msgid "WIKI_AWAKENING_STAGE_INTRO"
-msgstr ""
+msgstr "I en nødeskal: Du starter med et væsen der lige er begyndt at opdage brugen af værktøj, og skal hurtigt forbedre dem for at overleve og udkonkurrere konkurrenterne. Det slutter når du har bygget dit første Samfundscenter."
 
 msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
 msgstr "Opvågningsstadiet er den femte af Thrives ni stadier."
@@ -7172,7 +7196,7 @@ msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 
 msgid "WIKI_AXON_INTRO"
-msgstr ""
+msgstr "Nervefibre mellem neuroner, tilgængeligt fra Flercellestadiet. Påkrævet for at øge din organismes hjernekraft og dermed fortsætte til fremtidige stadier."
 
 msgid "WIKI_AXON_MODIFICATIONS"
 msgstr "Ingen modifikationer."
@@ -7220,10 +7244,10 @@ msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "Ingen opgraderinger."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
-msgstr ""
+msgstr "Celler med [b]Bioluminescerende vakuoler[/b] har en øget ilttolerance."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
-msgstr ""
+msgstr "Skaber [thrive:compound type=\"sunlight\"][/thrive:compound] og øger ilttolerancen for en celle der har den."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
 msgstr "Ingen modifikationer."
@@ -7244,22 +7268,25 @@ msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "Ingen opgraderinger."
 
 msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
-msgstr ""
+msgstr "Kropsplan editor, Celle editor"
 
 msgid "WIKI_CHEMOPLAST_EFFECTS"
-msgstr ""
+msgstr "Ingen effekter."
 
 msgid "WIKI_CHEMOPLAST_INTRO"
-msgstr ""
+msgstr "En eukaryotisk organel brugt til at foretage [b]kemosyntese[/b], en process der omdanner [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] til [thrive:compound type=\"glucose\"][/thrive:compound] ved brug af miljøts [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Den foretager denne process mere effektivt end dens prokaryotiske modpart, [b][color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]Kemosynteserende proteiner[/url][/color][/b]."
 
 msgid "WIKI_CHEMOPLAST_MODIFICATIONS"
 msgstr "Ingen modifikationer."
 
 msgid "WIKI_CHEMOPLAST_PROCESSES"
 msgstr ""
+"[b]Kemosyntese[/b]: [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound] → [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"En måde af [thrive:compound type=\"glucose\"][/thrive:compound]syntese. Kræver [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] og reaktionshastigheden skalerer med miljøets [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Den er overlegen i forhold til den lignende process lavet i [b][color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]Kemosynteserende proteiner[/url][/color][/b]."
 
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "En celle skal have en [b][color=#3796e1][url=thriveopedia:nucleus]Cellekerne[/url][/color][/b] for at udvikle [b]Kemoplaster[/b]."
 
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7283,7 +7310,7 @@ msgid "WIKI_CHEMORECEPTOR_PROCESSES"
 msgstr "Ingen processer."
 
 msgid "WIKI_CHEMORECEPTOR_REQUIREMENTS"
-msgstr ""
+msgstr "Ingen krav"
 
 msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7295,7 +7322,7 @@ msgid "WIKI_CHEMORECEPTOR_UPGRADES"
 msgstr "Ingen opgraderinger."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_EFFECTS"
-msgstr ""
+msgstr "Ingen specielle effekter."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_INTRO"
 msgstr ""
@@ -7307,7 +7334,7 @@ msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_PROCESSES"
 msgstr ""
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
-msgstr ""
+msgstr "Ingen krav."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7319,7 +7346,7 @@ msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
 msgstr "Ingen opgraderinger."
 
 msgid "WIKI_CHLOROPLAST_EFFECTS"
-msgstr ""
+msgstr "Ingen effekter."
 
 msgid "WIKI_CHLOROPLAST_INTRO"
 msgstr ""
@@ -7332,6 +7359,11 @@ msgstr ""
 
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr ""
+"En celle skal have en [b][color=#3796e1][url=thriveopedia:nucleus]Cellekerne[/url][/color][/b] for at udvikle [b]Kloroplaster[/b].\n"
+"\n"
+"Hvis organeloplåsninger er aktiveret i spilindstillingerne skal de følgende krav [i]til spillerens celle[/i] være opfyldt:\n"
+"\n"
+"[indent]—   Indeholder mindst[b]5[/b] [b][color=#3796e1][url=thriveopedia:chromatophore]Thylakoider[/url][/color][/b] i minimum [b]7[/b] generationer i træk.[/indent]"
 
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7343,13 +7375,13 @@ msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Ingen opgraderinger."
 
 msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr ""
+msgstr "Kromatofor fotosyntese, glykolyse"
 
 msgid "WIKI_CILIA_EFFECTS"
-msgstr ""
+msgstr "Hver hex [b]cilier[/b] øger cellens rotationshastighed, hvor den forbruger [thrive:compound type=\"atp\"][/thrive:compound] i bytte for ekstra mobilitet. Den nøjagtige forbedring afhænger af organellens placering - De der er placeret længere væk fra cellens centrum, udøver et større inertimoment og giver derfor en større forøgelse af rotationshastigheden."
 
 msgid "WIKI_CILIA_INTRO"
-msgstr ""
+msgstr "Små hår på ydersiden af cellen der bruger [thrive:compound type=\"atp\"][/thrive:compound] til at øge cellens rotationshastighed. Kan opgraderes til at skabe strømme der trækker bytte og andre objekter ind."
 
 msgid "WIKI_CILIA_MODIFICATIONS"
 msgstr "Ingen modifikationer."
@@ -7358,10 +7390,15 @@ msgid "WIKI_CILIA_PROCESSES"
 msgstr "Ingen processer."
 
 msgid "WIKI_CILIA_REQUIREMENTS"
-msgstr ""
+msgstr "En celle skal have en [b][color=#3796e1][url=thriveopedia:nucleus]Cellekerne[/url][/color][/b] for at udvikle [b]cilier[/b]."
 
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
 msgstr ""
+"Ligesom [b][color=#3796e1][url=thriveopedia:flagellum]Flageller[/url][/color][/b] er [b]Cilier[/b] er tynde hår der giver retningsbestemt fremdrift, men de bevæger sig i forskellige konfigurationer, og giver også andre fordele. Mange organismer bruger [b]cilier[/b] til sanseformål, og de kan også skubbe og trække næringsstoffer rundt i større organismer.\n"
+"\n"
+"I virkeligheden dukker [b]cilier[/b] generelt op over hele cellens ydre, ferm for i individuelle klumper. Celler med denne beklædning er kendt som ciliater.\n"
+"\n"
+"Læs mere på denne organels [color=#3796e1][url=https://en.wikipedia.org/wiki/Cilium]Wikipedia side[/url][/color]"
 
 msgid "WIKI_CILIA_STRATEGY"
 msgstr ""
@@ -7370,7 +7407,7 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 msgid "WIKI_COMPOUNDS_BUTTON"
-msgstr ""
+msgstr "Stoffer"
 
 #, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
@@ -7410,7 +7447,7 @@ msgid "WIKI_CYTOPLASM_PROCESSES"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Ingen krav."
 
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7421,15 +7458,14 @@ msgstr ""
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "Ingen opgraderinger."
 
-#, fuzzy
 msgid "WIKI_DEVELOPMENT"
-msgstr "3D Bevægelse"
+msgstr "Udvikling"
 
 msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
-msgstr ""
+msgstr "Udviklingsdetaljer"
 
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
-msgstr ""
+msgstr "Disse sider relaterer til Thrives udvikling, og indeholder information omkring teori og implementationer"
 
 msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr ""
@@ -7453,7 +7489,7 @@ msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 msgid "WIKI_FERROPLAST_EFFECTS"
-msgstr ""
+msgstr "Ingen effekter."
 
 #, fuzzy
 msgid "WIKI_FERROPLAST_INTRO"
@@ -7651,7 +7687,7 @@ msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
 msgstr "3D Bevægelse"
 
 msgid "WIKI_HYDROGENASE_EFFECTS"
-msgstr ""
+msgstr "Ingen effekter."
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_INTRO"
@@ -7664,7 +7700,7 @@ msgid "WIKI_HYDROGENASE_PROCESSES"
 msgstr ""
 
 msgid "WIKI_HYDROGENASE_REQUIREMENTS"
-msgstr ""
+msgstr "Start del, ingen krav."
 
 msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7675,9 +7711,8 @@ msgstr ""
 msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "Ingen opgraderinger."
 
-#, fuzzy
 msgid "WIKI_HYDROGENOSOME_EFFECTS"
-msgstr "3D Bevægelse"
+msgstr "Ingen effekter."
 
 #, fuzzy
 msgid "WIKI_HYDROGENOSOME_INTRO"
@@ -7780,9 +7815,8 @@ msgstr ""
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_EFFECTS"
-msgstr "3D Bevægelse"
+msgstr "Ingen effekter."
 
 #, fuzzy
 msgid "WIKI_MELANOSOME_INTRO"
@@ -7795,9 +7829,8 @@ msgstr "Ingen modifikationer."
 msgid "WIKI_MELANOSOME_PROCESSES"
 msgstr "3D Bevægelse"
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_REQUIREMENTS"
-msgstr "3D Bevægelse"
+msgstr "Skal modtage strålingsskade ved at være tæt på en radioaktiv klump."
 
 #, fuzzy
 msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
@@ -7811,7 +7844,7 @@ msgid "WIKI_MELANOSOME_UPGRADES"
 msgstr "Ingen opgraderinger."
 
 msgid "WIKI_METABOLOSOMES_EFFECTS"
-msgstr ""
+msgstr "Ingen effekter."
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_INTRO"
@@ -7824,7 +7857,7 @@ msgid "WIKI_METABOLOSOMES_PROCESSES"
 msgstr ""
 
 msgid "WIKI_METABOLOSOMES_REQUIREMENTS"
-msgstr ""
+msgstr "Ingen krav"
 
 msgid "WIKI_METABOLOSOMES_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7854,7 +7887,7 @@ msgid "WIKI_MICROBE_STAGE_INTRO"
 msgstr ""
 
 msgid "WIKI_MITOCHONDRION_EFFECTS"
-msgstr ""
+msgstr "Ingen effekter."
 
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr ""
@@ -7927,7 +7960,7 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Teleportere"
 
 msgid "WIKI_NITROGENASE_EFFECTS"
-msgstr ""
+msgstr "Ingen effekter."
 
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
@@ -7951,7 +7984,7 @@ msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Ingen opgraderinger."
 
 msgid "WIKI_NITROPLAST_EFFECTS"
-msgstr ""
+msgstr "Ingen effekter."
 
 msgid "WIKI_NITROPLAST_INTRO"
 msgstr ""
@@ -7993,7 +8026,7 @@ msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr ""
 
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
-msgstr ""
+msgstr "Ingen krav, bortset fra en masse ekstra plads den kan passe ind i."
 
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -8223,7 +8256,7 @@ msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr "Teleportere"
 
 msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr ""
+msgstr "Ingen effekter."
 
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr ""
@@ -8235,7 +8268,7 @@ msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr ""
 
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Spilleren kan ikke udvikle [b]protoplasma[/b]. Ikke-spiller arter kan uden restriktioner."
 
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -8277,7 +8310,7 @@ msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr ""
 
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
-msgstr ""
+msgstr "Ingen krav."
 
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -8325,7 +8358,7 @@ msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr ""
 
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
-msgstr ""
+msgstr "Ingen krav."
 
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -8443,7 +8476,7 @@ msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr ""
 
 msgid "WIKI_THYLAKOIDS_EFFECTS"
-msgstr ""
+msgstr "Ingen specielle effekter."
 
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr ""
@@ -8491,7 +8524,7 @@ msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "Ingen opgraderinger."
 
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr ""
+msgstr "Ingen effekter."
 
 msgid "WIKI_VACUOLE_INTRO"
 msgstr ""
@@ -8526,7 +8559,8 @@ msgstr "Vindue tilstand"
 msgid "WIN_BOX_TITLE"
 msgstr "DU HAR TRIVEDES!"
 
-msgid "WIN_TEXT"
+#, fuzzy
+msgid "WIN_TEXT_2"
 msgstr "Tillykke, du har vundet denne udgave af Thrive! Hvis du ønsker det kan du fortsætte med at spille efter den her besked forsvinder, eller starte et nyt soil i en ny verden. Du kan også tilføje bindingsagenter for at bygge en cellekoloni, og derefter prøve de senere spilprototyper."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -8569,6 +8603,12 @@ msgid "WORLD_GENERAL_STATISTICS"
 msgstr "Generisk statistik for den nuværende verden"
 
 msgid "WORLD_MISC_DETAILS_STRING"
+msgstr ""
+"Inkluder senere stadiers prototyper: {0}\n"
+"Inkluder påskeæg: {1}"
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
 msgstr ""
 "Inkluder senere stadiers prototyper: {0}\n"
 "Inkluder påskeæg: {1}"
@@ -8671,17 +8711,11 @@ msgstr "Zoom ind"
 msgid "ZOOM_OUT"
 msgstr "Zoom ud"
 
-#, fuzzy
-#~ msgid "PROCESS_PANEL_TITLE_MULTICELLULAR"
-#~ msgstr "Celleprocesser"
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Inkluder sen-stadie prototyper"
 
-#, fuzzy
-#~ msgid "ORGANISM_STATISTICS_MULTICELLULAR"
-#~ msgstr "Organismestatistik"
-
-#, fuzzy
-#~ msgid "VIEW_CELL_PROCESSES_MULTICELLULAR"
-#~ msgstr "Vis celleprocesser"
+#~ msgid "WIN_TEXT"
+#~ msgstr "Tillykke, du har vundet denne udgave af Thrive! Hvis du ønsker det kan du fortsætte med at spille efter den her besked forsvinder, eller starte et nyt soil i en ny verden. Du kan også tilføje bindingsagenter for at bygge en cellekoloni, og derefter prøve de senere spilprototyper."
 
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"

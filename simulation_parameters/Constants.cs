@@ -1309,7 +1309,7 @@ public static class Constants
     // TODO: move all of these into auto-evo_parameters.json
     public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 300;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
-    public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
+    public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.4f;
 
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 4500;

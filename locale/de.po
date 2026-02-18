@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-17 01:16+0300\n"
+"POT-Creation-Date: 2026-02-18 11:24+0200\n"
 "PO-Revision-Date: 2025-12-08 21:28+0000\n"
 "Last-Translator: Matthias Ulbl <matthias.ulbl@gmx.at>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -2793,12 +2793,6 @@ msgstr "Weitere Fehler ignorieren"
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "Membrantypen"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Möglichkeit zum Übergang zur nächsten Stufe des Spiels (Mehrzellig). Verfügbar, sobald du eine ausreichend große Zellkolonie hast."
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr "(einige Funktionen könnten nicht mehr verfügbar sein, wenn Sie die nächsten Stufen erreichen)"
 
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Neu erstellen"
@@ -9259,7 +9253,8 @@ msgstr "Fenstermodus"
 msgid "WIN_BOX_TITLE"
 msgstr "DU HAST DICH ENTWICKELT!"
 
-msgid "WIN_TEXT"
+#, fuzzy
+msgid "WIN_TEXT_2"
 msgstr "Herzlichen Glückwunsch, du hast diese Version von Thrive gewonnen! Wenn du möchtest, kannst du das Spiel nach dem Schließen dieses Fensters fortsetzen oder ein neues Spiel in einer neuen Welt beginnen."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -9303,6 +9298,12 @@ msgid "WORLD_GENERAL_STATISTICS"
 msgstr "Allgemeine Statistiken der aktuellen Welt"
 
 msgid "WORLD_MISC_DETAILS_STRING"
+msgstr ""
+"Prototypen späterer Phasen miteinbeziehen: {0}\n"
+"Easter eggs miteinbeziehen: {1}"
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
 msgstr ""
 "Prototypen späterer Phasen miteinbeziehen: {0}\n"
 "Easter eggs miteinbeziehen: {1}"
@@ -9415,17 +9416,8 @@ msgstr "Hereinzoomen"
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
 
-#, fuzzy
-#~ msgid "PROCESS_PANEL_TITLE_MULTICELLULAR"
-#~ msgstr "Zellprozesse"
-
-#, fuzzy
-#~ msgid "ORGANISM_STATISTICS_MULTICELLULAR"
-#~ msgstr "Organismus-Statistik"
-
-#, fuzzy
-#~ msgid "VIEW_CELL_PROCESSES_MULTICELLULAR"
-#~ msgstr "Zellprozesse anzeigen"
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Möglichkeit zum Übergang zur nächsten Stufe des Spiels (Mehrzellig). Verfügbar, sobald du eine ausreichend große Zellkolonie hast."
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Benutzt Auto Harmony:"

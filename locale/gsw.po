@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-17 01:16+0300\n"
+"POT-Creation-Date: 2026-02-18 11:24+0200\n"
 "PO-Revision-Date: 2025-11-28 09:29+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
@@ -2781,12 +2781,6 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr "Unterstützti Bilddateie"
 
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Prototype vo spöötere Stadie iibezieh"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr "(einigi Funktione chönnd nümme verfüegbar siim, wenn du id nöchschti Stufe chunnsch)"
-
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Objektgrössi erhöhe"
 
@@ -4536,12 +4530,8 @@ msgstr ""
 msgid "ORGANISM_STATISTICS"
 msgstr ""
 
-#, fuzzy
 msgid "ORGANISM_STATISTICS_MICROBE"
 msgstr ""
-"Da werdet Optione zur Berechnig vode ATP-Huushalt aazeiget.\n"
-"D'berechnete Huushält werdet ide Zelltyp-Uuswahl aazeiget.\n"
-"Mit dem untere Dropdown-Menü laht sich simuliere, was passiert, wenn bestimmti Ressource zur ATP-Produktion nöd vorhande wäred."
 
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
@@ -4886,17 +4876,17 @@ msgstr ""
 
 #, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
-msgstr "(einigi Funktione chönnd nümme verfüegbar siim, wenn du id nöchschti Stufe chunnsch)"
+msgstr ""
+"Aggressivi Mikrobe jagged ihri Beuti über grösseri Dischtanze\n"
+"und kämpfed eher gege Aagrifer, wenn sie aagriffe werdet.\n"
+"Friedlichi Mikrobe grifed anderi nöd über grosseri Dischtanze aa\n"
+"und setzed seltener Giftstoff gege Aagrifer i."
 
 msgid "PROCESS_PANEL_TITLE"
 msgstr ""
 
-#, fuzzy
 msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr ""
-"Da werdet Optione zur Berechnig vode ATP-Huushalt aazeiget.\n"
-"D'berechnete Huushält werdet ide Zelltyp-Uuswahl aazeiget.\n"
-"Mit dem untere Dropdown-Menü laht sich simuliere, was passiert, wenn bestimmti Ressource zur ATP-Produktion nöd vorhande wäred."
 
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
@@ -6654,9 +6644,8 @@ msgstr ""
 msgid "VIEW_CELL_PROCESSES"
 msgstr ""
 
-#, fuzzy
 msgid "VIEW_CELL_PROCESSES_MICROBE"
-msgstr "Multizellulär werde ({0}/{1})"
+msgstr ""
 
 msgid "VIEW_ONLINE"
 msgstr ""
@@ -8131,7 +8120,7 @@ msgstr ""
 msgid "WIN_BOX_TITLE"
 msgstr ""
 
-msgid "WIN_TEXT"
+msgid "WIN_TEXT_2"
 msgstr ""
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -8175,6 +8164,19 @@ msgstr ""
 
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
+msgstr ""
+"Schwierigkeitsgrad: {0}\n"
+"Mutationskostemultiplikator: {1}\n"
+"KI Mutationsrate: {2}\n"
+"Wulchedichti: {3}\n"
+"Bevölkerigsstrafe bi Spielertod: {4}\n"
+"Glukoseerhalt ide Umwelt: {5}\n"
+"Osmoregulationskostenmultiplikator: {6}\n"
+"Verfügbari Glukosewulche bi Verlasse vom Editor: {7}\n"
+"Beschränk d'Nutzig vo Wachstums-Substanze: {8}"
 
 msgid "WORLD_OCEANIC_COVERAGE"
 msgstr ""
@@ -8274,12 +8276,8 @@ msgstr ""
 msgid "ZOOM_OUT"
 msgstr ""
 
-#, fuzzy
-#~ msgid "PROCESS_PANEL_TITLE_MULTICELLULAR"
-#~ msgstr ""
-#~ "Da werdet Optione zur Berechnig vode ATP-Huushalt aazeiget.\n"
-#~ "D'berechnete Huushält werdet ide Zelltyp-Uuswahl aazeiget.\n"
-#~ "Mit dem untere Dropdown-Menü laht sich simuliere, was passiert, wenn bestimmti Ressource zur ATP-Produktion nöd vorhande wäred."
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Prototype vo spöötere Stadie iibezieh"
 
 #~ msgid "JSON_DEBUG_MODE"
 #~ msgstr "JSON Debuggingmodus:"

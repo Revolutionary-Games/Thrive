@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-17 01:16+0300\n"
+"POT-Creation-Date: 2026-02-18 11:24+0200\n"
 "PO-Revision-Date: 2026-02-01 06:17+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
@@ -2638,12 +2638,6 @@ msgstr "შემდგომი შეცდომების იგნორ�
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "მხარდაჭერილი გამოსახულების ფაილები"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "შემდეგი ფაზის პროტოტიპების ჩასმა"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr "(ზოგიერთი ფუნქცია, შეიძლება, ხელმისაწვდომი არ იყოს, როცა შემდეგ დონეებს მიაღწევთ)"
 
 msgid "INCREASE_ITEM_SIZE"
 msgstr "ობიექტის ზომის გაზრდა"
@@ -8099,7 +8093,7 @@ msgstr "ფანჯარაში"
 msgid "WIN_BOX_TITLE"
 msgstr "თქვენ აყვავდით!"
 
-msgid "WIN_TEXT"
+msgid "WIN_TEXT_2"
 msgstr ""
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -8142,6 +8136,12 @@ msgid "WORLD_GENERAL_STATISTICS"
 msgstr "მიმდინარე სამყაროს ზოგადი სტატისტიკა"
 
 msgid "WORLD_MISC_DETAILS_STRING"
+msgstr ""
+"გვიანი სტადიის პროტოტიპების ჩასმა: {0}\n"
+"სააღდგომო კვერცხების ჩასმა: {1}"
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
 msgstr ""
 "გვიანი სტადიის პროტოტიპების ჩასმა: {0}\n"
 "სააღდგომო კვერცხების ჩასმა: {1}"
@@ -8244,17 +8244,8 @@ msgstr "გადიდება"
 msgid "ZOOM_OUT"
 msgstr "დაპატარავება"
 
-#, fuzzy
-#~ msgid "PROCESS_PANEL_TITLE_MULTICELLULAR"
-#~ msgstr "უჯრედის პროცესები"
-
-#, fuzzy
-#~ msgid "ORGANISM_STATISTICS_MULTICELLULAR"
-#~ msgstr "ორგანიზმის სტატისტიკები"
-
-#, fuzzy
-#~ msgid "VIEW_CELL_PROCESSES_MULTICELLULAR"
-#~ msgstr "უჯრედის პროცესების ხედი"
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "შემდეგი ფაზის პროტოტიპების ჩასმა"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "იყენებს ავტომატურ ჰარმონიას:"
