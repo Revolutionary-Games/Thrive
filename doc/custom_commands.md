@@ -5,7 +5,7 @@ This feature is to be considered experimental and may be subject to change. New 
 ## How to implement custom commands
 Programmers may want to implement a custom command to quickly test some feature, or introduce a new cheat. Defining a new command is as simple as defining a static method with a special attribute:
 
-```
+```cs
 [Command("test", isCheat, "this is a command")]
 private static void TestCommand()
 {
@@ -22,7 +22,7 @@ Please note that the method **must** be static, or it will be ignored during the
 ### Custom parameters
 
 The command can take parameters:
-```
+```cs
 [Command("test", isCheat, "this is a command")]
 private static void TestCommand(int foo, float bar, string baz)
 {
@@ -30,7 +30,7 @@ private static void TestCommand(int foo, float bar, string baz)
 }
 ```
 Then the command must be executed in the console with the same number and type of the parameters specified by the method signature. In this case the a correct execution of this command from the console is:
-```
+```cs
 > test 123 4.567 "Hello, world!"
 
 Foo is 123, bar is 4.567 and the baz message is Hello, World!
