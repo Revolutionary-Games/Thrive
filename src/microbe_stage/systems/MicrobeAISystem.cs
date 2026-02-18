@@ -309,6 +309,9 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             FleeFromPredators(ref position, ref ai, ref control, ref organelles, ref compoundStorage, entity,
                 predator.Value.Position, predator.Value.Entity, speciesFocus,
                 speciesActivity, speciesAggression, speciesFear, strain, random);
+
+            signaling.QueuedSignalingCommand = MicrobeSignalCommand.FleeFromMe;
+
             return;
         }
 
@@ -574,14 +577,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             signaling.QueuedSignalingCommand = MicrobeSignalCommand.None;
         }
 
-        if (ai.Fleeing)
-        {
-            signaling.QueuedSignalingCommand = MicrobeSignalCommand.FleeFromMe;
-        }
-        else
-        {
-            signaling.QueuedSignalingCommand = MicrobeSignalCommand.None;
-        }
+        signaling.QueuedSignalingCommand = MicrobeSignalCommand.None;
     }
 
     private bool CheckForHuntingConditions(ref MicrobeAI ai, ref WorldPosition position,
