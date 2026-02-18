@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-02-11 10:29+0200\n"
-"PO-Revision-Date: 2026-02-13 08:03+0000\n"
+"PO-Revision-Date: 2026-02-17 15:38+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
 "Language: da\n"
@@ -2314,7 +2314,7 @@ msgid "FERROPLAST"
 msgstr "Ferroplast"
 
 msgid "FERROPLAST_DESCRIPTION"
-msgstr "Et metallisk kraftcenter. Ferropalsten er en doublet membranstruktur fyldt med proteiner og enzymer. Det er en prokaryot der er blevet assimileret af sin eukaryotiske vært. Den er i stand til at ændre [thrive:compound type=\"iron\"][/thrive:compound] fra en kemisk tilstand til en anden langt mere effektivitet end det ville kunne gøre med rusticyanin. Processen, kaldet [b]jern oxidation[/b], frigiver energi som cellen så kan høste."
+msgstr "Et metallisk kraftcenter. Ferroplasten er en dobbelt membranstruktur fyldt med proteiner og enzymer. Det er en prokaryot der er blevet assimileret af sin eukaryotiske vært. Den er i stand til at ændre [thrive:compound type=\"iron\"][/thrive:compound] fra en kemisk tilstand til en anden langt mere effektivitet end det ville kunne gøres med rusticyanin. Processen, kaldet [b]jern oxidation[/b], frigiver energi som cellen så kan høste."
 
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Bruger [thrive:compound type=\"iron\"][/thrive:compound] til at producere [thrive:compound type=\"atp\"][/thrive:compound]."
@@ -5899,7 +5899,7 @@ msgid "STRUCTURE"
 msgstr "Struktur"
 
 msgid "STRUCTURE_ASCENSION_GATE"
-msgstr "Opstandelsesport"
+msgstr "Opstigningsport"
 
 msgid "STRUCTURE_DYSON_SWARM"
 msgstr "Dysonsværm"
@@ -7128,6 +7128,9 @@ msgstr "I en nødeskal: Dette er slutspillet, hvor du kan fare galaksen rundt so
 
 msgid "WIKI_ASCENSION_OVERVIEW"
 msgstr ""
+"Opstigning er et nøglekoncept i Thrive og svarer til at “vinde spillet” i andre videospil. Det er en tilstand hvor en bevidst organisme forvandles til ren energi gennem en opstigningsport, og dermed får gudelignende kræfter ved at udnytte universets egen energi (i praksis mirakler uden pris).\n"
+"\n"
+"Hvad opstigning gør er at hvis du har opfundet gudeværktøjer, så vil der være et nyt \"Gudeværktøjer\" panel tilgængeligt overalt i spillet, der tillader dig at lave hvilke som helst ændringer du ønsker. Fra at skabe hele solsystemer til den mindste bakterie, fra at ødelægge hele civilisationer til at besidde en af dens medlemmer, alt er muligt."
 
 msgid "WIKI_ASCENSION_TRANSITIONS"
 msgstr ""
@@ -7153,9 +7156,8 @@ msgstr ""
 msgid "WIKI_AWAKENING_STAGE_UI"
 msgstr "Kommer snart."
 
-#, fuzzy
 msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
-msgstr "3D Bevægelse"
+msgstr "Udvikling på prototypeniveau af Opvågning og senere stadier er begyndt. Prototyperne er meget grovere end flercelle prototypen, som i sig selv ikke er af den kvalitet vi ønsker det endelige produkt skal være."
 
 msgid "WIKI_AWARE_STAGE_FEATURES"
 msgstr "Kommer snart."
@@ -7389,9 +7391,8 @@ msgstr ""
 msgid "WIKI_COMPOUNDS_BUTTON"
 msgstr "Stoffer"
 
-#, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
-msgstr "3D Bevægelse"
+msgstr "For information om hvad der foregår bag kulisserne og teorien bag stoffer, gå til [color=#3796e1][url=thriveopedia:CompoundSystemDevelopment]Stofsystem udvikling[/url][/color]."
 
 msgid "WIKI_COMPOUNDS_INTRO"
 msgstr ""
@@ -7448,16 +7449,19 @@ msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
 msgstr "Disse sider relaterer til Thrives udvikling, og indeholder information omkring teori og implementationer"
 
 msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
-msgstr ""
+msgstr "Du rykker en [b]Generation[/b] frem hver gang til tilgår en [b]editor[/b] i Thrive. Du kan derefter se statistikker, skift lokation eller foretage andre ændringer til din art. Dette refereres til som en [b]Editor session[/b]."
 
 msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
-msgstr ""
+msgstr "Hovedloopet i Thrive omhandler [color=#3796e1][url=thriveopedia:Reproduction]reproducering[/url][/color] og redigering af din art. Hver gang du reproducerer får du adgang til diverse [b]editors[/b], afhængig af dit stadie. Her vil du vær i stand til at lave ændringer eller [b]mutationer[/b] af din art."
 
 msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
 msgstr ""
+"Enhver modifikation du laver til din art er en [b]Mutation[/b]. Det inkluderer placerin gaf organeller, opgradering af dem, og vigtigt nok [u]selv at fjerne dem[/u].\n"
+"\n"
+"Enhver mutation af din art koster dig [b]Mutationspoint[/b] [thrive:icon]MP[/thrive:icon], ellersomtalt som [b]MP[/b]. Du får altid kun [b]100[/b] mutationspoint per editor session. [u]De kan ikke tages med videre eller på anden måde akkumulere[/u]."
 
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
-msgstr ""
+msgstr "Dette er [color=#3796e1][url=thriveopedia:Compounds]Stoffer[/url][/color] der kun er til stede som procentdele i miljøet. Ligeledes ændrer de på [b]hastigheden[/b] some nogle [b]processer[/b] sker med. De påvirker de fleste organeller."
 
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
 msgstr ""
@@ -7471,9 +7475,11 @@ msgstr ""
 msgid "WIKI_FERROPLAST_EFFECTS"
 msgstr "Ingen effekter."
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_INTRO"
-msgstr "3D Bevægelse"
+msgstr ""
+"Bruger [thrive:compound type=\"iron\"][/thrive:compound] til at producere [thrive:compound type=\"atp\"][/thrive:compound] i en process kaldet [b]Jern oxidation[/b].\n"
+"\n"
+"En [b]Ferroplast[/b] er en dobbelt membranstruktur der indeholder et netværk af proteiner of enzymer. Det er en prokaryot der er blevet assimileret af sin eukaryotiske vært. Den arbejder ved langt højere effektivitet end det ville kunne gøres med [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyanin[/url][/color][/b]."
 
 msgid "WIKI_FERROPLAST_MODIFICATIONS"
 msgstr "Ingen modifikationer."
@@ -7503,10 +7509,14 @@ msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "Ingen modifikationer."
 
 msgid "WIKI_FLAGELLUM_PROCESSES"
-msgstr ""
+msgstr "Ingen processer."
 
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
 msgstr ""
+"Hvis organelopgraderinger er aktiveret i spilindstillingerne [i]skal mindst en[/i] af de følgende krav være opfyldt [i]for spillerens celle[/i]:\n"
+"\n"
+"[indent]—   Har en hastighed under [b]15[/b].[/indent]\n"
+"[indent]—   Producerer mindst [b]+15[/b] [thrive:compound type=\"atp\"][/thrive:compound].[/indent]"
 
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7518,141 +7528,143 @@ msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Ingen opgraderinger."
 
 msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
-msgstr ""
+msgstr "Glykolyse, Anaerob kvælstoffiksering"
 
 msgid "WIKI_HEADING_APPENDICES"
-msgstr ""
+msgstr "Appendikser"
 
 msgid "WIKI_HEADING_BASIC_GAME_MECHANICS"
-msgstr ""
+msgstr "Basale spilmekanismer"
 
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
-msgstr ""
+msgstr "Stofliste"
 
-#, fuzzy
 msgid "WIKI_HEADING_COMPOUND_CLOUDS"
-msgstr "Teleportere"
+msgstr "Stofskyer"
 
 msgid "WIKI_HEADING_CONCEPT_ART"
-msgstr ""
+msgstr "Koncept art"
 
 msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
-msgstr ""
+msgstr "Nuværende udvikling"
 
-#, fuzzy
 msgid "WIKI_HEADING_DEVELOPMENT"
-msgstr "3D Bevægelse"
+msgstr "Udvikling"
 
-#, fuzzy
 msgid "WIKI_HEADING_EDITOR"
-msgstr "Teleportere"
+msgstr "Editor"
 
 msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
+msgstr "Effekter"
 
 msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
-msgstr ""
+msgstr "Miljømæssige gasser"
 
 msgid "WIKI_HEADING_FEATURES"
-msgstr ""
+msgstr "Features"
 
 msgid "WIKI_HEADING_FOG_OF_WAR"
-msgstr ""
+msgstr "Krigens tåge"
 
 msgid "WIKI_HEADING_GAMEPLAY"
-msgstr ""
+msgstr "Gameplay"
 
 msgid "WIKI_HEADING_GDD"
-msgstr ""
+msgstr "SDD"
 
-#, fuzzy
 msgid "WIKI_HEADING_GENERAL_TIPS"
-msgstr "3D Bevægelse"
+msgstr "Generelle råd"
 
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
-msgstr ""
+msgstr "Generationer og editor sessioner"
 
-#, fuzzy
 msgid "WIKI_HEADING_MICROBE_PARTS"
-msgstr "Teleportere"
+msgstr "Mikrobedele"
 
 msgid "WIKI_HEADING_MICROBE_STAGE"
-msgstr ""
+msgstr "Mikrobestadie"
 
-#, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE_TIPS"
-msgstr "Teleportere"
+msgstr "Mikrobestadie råd"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
-msgstr ""
+msgstr "Modifikationer"
 
-#, fuzzy
 msgid "WIKI_HEADING_MORE_GAME_INFO"
-msgstr "Teleportere"
+msgstr "Mere spilinfo"
 
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
-msgstr ""
+msgstr "Mutationer og Mutationspoint"
 
 msgid "WIKI_HEADING_OVERVIEW"
-msgstr ""
+msgstr "Oversigt"
 
 msgid "WIKI_HEADING_PATCHES"
-msgstr ""
+msgstr "Områder"
 
 msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
-msgstr ""
+msgstr "Fysiske tilstande"
 
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "Processer"
 
 msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
-msgstr ""
+msgstr "Reproduktion i Mikrobestadiet"
 
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
+msgstr "Krav"
 
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Videnskabelig baggrund"
 
 msgid "WIKI_HEADING_STRATEGY"
-msgstr ""
+msgstr "Strategi"
 
 msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
-msgstr ""
+msgstr "Dag/nat cyklussen"
 
 msgid "WIKI_HEADING_THE_PATCH_MAP"
-msgstr ""
+msgstr "Områdekortet"
 
 msgid "WIKI_HEADING_TRANSITIONS"
-msgstr ""
+msgstr "Overgange"
 
 msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
-msgstr ""
+msgstr "Stoftyper"
 
 msgid "WIKI_HEADING_UI"
-msgstr ""
+msgstr "UI"
 
 msgid "WIKI_HEADING_UPGRADES"
-msgstr ""
+msgstr "Opgraderinger"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
 msgstr "3D Bevægelse"
 
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
-msgstr ""
+msgstr "Hjælp og råd"
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
-msgstr "3D Bevægelse"
+msgstr ""
+"Disse er brugbare kemikalier der kan dukke op i et område som stofskyer.\n"
+"\n"
+"Hvid – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Gul – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"\n"
+"Orange – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"\n"
+"Lilla – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+"\n"
+"Rød – [thrive:compound type=\"iron\"][/thrive:compound]"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_GENERAL_TIPS"
 msgstr "3D Bevægelse"
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_INTRO"
-msgstr "3D Bevægelse"
+msgstr "Denne side har noget basal gameplay information og generelle råd til hvordan man spiller Thrive."
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MICROBE_PARTS"
@@ -7721,10 +7733,10 @@ msgid "WIKI_HYDROGENOSOME_UPGRADES"
 msgstr "Ingen opgraderinger."
 
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
-msgstr ""
+msgstr "Udvikling er endnu ikke begyndt på dette stadie. Gameplay og teoridesign for dette stadie vil blive relevant så snart der arbejdes på [color=#3796e1][url=thriveopedia:society_stage]Samfundsstadiet[/url][/color]."
 
 msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
-msgstr ""
+msgstr "Kommer snart."
 
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
 msgstr ""
@@ -7736,10 +7748,10 @@ msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
 msgstr ""
 
 msgid "WIKI_INDUSTRIAL_STAGE_UI"
-msgstr ""
+msgstr "Kommer snart."
 
 msgid "WIKI_INJECTISOME_PILUS"
-msgstr ""
+msgstr "Injectisome pilus"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -7752,7 +7764,7 @@ msgid "WIKI_LYSOSOME_MODIFICATIONS"
 msgstr ""
 
 msgid "WIKI_LYSOSOME_PROCESSES"
-msgstr ""
+msgstr "Ingen processer."
 
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
 msgstr ""
@@ -7768,46 +7780,56 @@ msgstr "Ingen opgraderinger."
 
 msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
 msgstr ""
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg]Editor koncept[/url][/color] \t\t\t[/indent]\n"
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/92/Multicolorconcept.png/120px-Multicolorconcept.png]Terræn farve koncept[/url][/color] \t\t\t[/indent]"
 
-#, fuzzy
 msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
-msgstr "3D Bevægelse"
+msgstr "Udvikling på prototype niveau er begyndt for makroskopiskstadiet."
 
 msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
-msgstr "3D Bevægelse"
+msgstr "I det Makroskopiske stadie bliver din cellekoloni til en klump af vævstyper, som eksisterer i et 3D-miljø. Stadiet slutter når dit væsen første gang udvikler et bestemt niveau af bevidsthed."
 
 msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
 msgstr ""
+"Livet florerer i havet. Der vil være en masse diversitet. Verdenen er pludselig blvet meget større for spilleren.\n"
+"\n"
+"Spilleren kontrollerer nu et ordentligt væsen lavet af væv. Skalaen starter centimeter skalaen, og stiger derfra. Individuelle celler er ikke længere synlige eller simuleret i dette stadie."
 
 msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
 msgstr ""
+"Stadiet starter når en flercellet cellekoloni vokser sig stor nok til at den overgår til at være en samling af væv. På nuværende tidspunkt er det planlagt det sker omkring en størrelse på 20 celler.\n"
+"\n"
+"Den slutter når spillerens art udvikler nervesystem (som er kompleks nok)."
 
 msgid "WIKI_MACROSCOPIC_STAGE_UI"
-msgstr ""
+msgstr "Intet er blevet diskuteret."
 
 msgid "WIKI_MECHANICS"
-msgstr ""
+msgstr "Mekanikker"
 
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr ""
+"Disse er de forskellige koncepter der deles af flere stadier eller editorer.\n"
+"\n"
+"Siden nedenunder forklarer de forskellige mekanikker. Du er velkommen til at gennemse siderne for råd og hjælp til spillet."
 
 msgid "WIKI_MELANOSOME_EFFECTS"
 msgstr "Ingen effekter."
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_INTRO"
-msgstr "3D Bevægelse"
+msgstr "[b] Melanosomer[/b] er [color=#3796e1][url=thriveopedia:OrganellesRoot]organeller[/url][/color] der udfører [b]Radiosyntese[/b], der indfanger energi fra stråling ved at absorbere det med brug a melanin."
 
 msgid "WIKI_MELANOSOME_MODIFICATIONS"
 msgstr "Ingen modifikationer."
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_PROCESSES"
-msgstr "3D Bevægelse"
+msgstr ""
+"[b]Radiosyntese[/b]: [b]Stråling[/b] File:RadiationIcon.png → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"En energiproduktions metode der udnytter radioaktivt materiale."
 
 msgid "WIKI_MELANOSOME_REQUIREMENTS"
 msgstr "Skal modtage strålingsskade ved at være tæt på en radioaktiv klump."
@@ -7849,10 +7871,10 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Ingen opgraderinger."
 
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
-msgstr ""
+msgstr "Der er nogle tabeller og andre ting samlet i Mikrobestadiets appendikser"
 
 msgid "WIKI_MICROBE_STAGE_BUTTON"
-msgstr ""
+msgstr "Mikrobestadie"
 
 msgid "WIKI_MICROBE_STAGE_EDITOR"
 msgstr ""
@@ -7894,7 +7916,7 @@ msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
 
 msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
-msgstr ""
+msgstr "Udvikling af Flercellestadiet er påbegyndt, men er ikke særlig uddybet endnu."
 
 msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
 msgstr ""
@@ -7921,13 +7943,13 @@ msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
 msgstr "Ingen modifikationer."
 
 msgid "WIKI_MYOFIBRIL_PROCESSES"
-msgstr ""
+msgstr "Ingen processer."
 
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
 msgstr ""
 
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Mangler at blive tilføjet"
 
 msgid "WIKI_MYOFIBRIL_STRATEGY"
 msgstr ""
@@ -8003,7 +8025,7 @@ msgid "WIKI_NUCLEUS_MODIFICATIONS"
 msgstr "Ingen modifikationer."
 
 msgid "WIKI_NUCLEUS_PROCESSES"
-msgstr ""
+msgstr "Ingen processer."
 
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
 msgstr "Ingen krav, bortset fra en masse ekstra plads den kan passe ind i."
@@ -8036,7 +8058,7 @@ msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr ""
 
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Mangler at blive tilføjet"
 
 msgid "WIKI_OXYTOXISOME_STRATEGY"
 msgstr ""
@@ -8083,9 +8105,8 @@ msgstr ""
 msgid "WIKI_PAGE_COMPOUNDS"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
-msgstr "3D Bevægelse"
+msgstr "Stofsystem udvikling"
 
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr ""
@@ -8217,7 +8238,7 @@ msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
 msgstr "Ingen modifikationer."
 
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
-msgstr ""
+msgstr "Ingen processer."
 
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
 msgstr ""
@@ -8308,10 +8329,10 @@ msgid "WIKI_SIGNALING_AGENT_INTRO"
 msgstr ""
 
 msgid "WIKI_SIGNALING_AGENT_MODIFICATIONS"
-msgstr ""
+msgstr "Ingen processer."
 
 msgid "WIKI_SIGNALING_AGENT_PROCESSES"
-msgstr ""
+msgstr "Ingen processer."
 
 msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
 msgstr ""
@@ -8353,7 +8374,7 @@ msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
-msgstr ""
+msgstr "Kommer snart."
 
 msgid "WIKI_SOCIETY_STAGE_INTRO"
 msgstr ""
@@ -8365,14 +8386,13 @@ msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
 msgstr ""
 
 msgid "WIKI_SOCIETY_STAGE_UI"
-msgstr ""
+msgstr "Kommer snart."
 
-#, fuzzy
 msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
-msgstr "3D Bevægelse"
+msgstr "Arbejde er endnu ikke begyndt på Rumstadiet."
 
 msgid "WIKI_SPACE_STAGE_FEATURES"
-msgstr ""
+msgstr "Kommer snart."
 
 msgid "WIKI_SPACE_STAGE_INTRO"
 msgstr ""
@@ -8384,13 +8404,13 @@ msgid "WIKI_SPACE_STAGE_TRANSITIONS"
 msgstr ""
 
 msgid "WIKI_SPACE_STAGE_UI"
-msgstr ""
+msgstr "Kommer snart."
 
 msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr ""
 
 msgid "WIKI_TBA"
-msgstr ""
+msgstr "Mangler at blive tilføjet"
 
 msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
 msgstr ""
@@ -8495,7 +8515,7 @@ msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
 msgstr ""
 
 msgid "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Mangler at blive tilføjet"
 
 msgid "WIKI_TOXIN_VACUOLE_STRATEGY"
 msgstr ""
@@ -8519,7 +8539,7 @@ msgid "WIKI_VACUOLE_REQUIREMENTS"
 msgstr ""
 
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Mangler at blive tilføjet"
 
 msgid "WIKI_VACUOLE_STRATEGY"
 msgstr ""
@@ -8539,9 +8559,8 @@ msgstr "Vindue tilstand"
 msgid "WIN_BOX_TITLE"
 msgstr "DU HAR TRIVEDES!"
 
-#, fuzzy
 msgid "WIN_TEXT_2"
-msgstr "Tillykke, du har vundet denne udgave af Thrive! Hvis du ønsker det kan du fortsætte med at spille efter den her besked forsvinder, eller starte et nyt soil i en ny verden. Du kan også tilføje bindingsagenter for at bygge en cellekoloni, og derefter prøve de senere spilprototyper."
+msgstr "Tillykke, du har vundet denne version af Thrive! Hvis du ønsker det kan du fortsætte med at spille efter den her besked forsvinder, eller starte et nyt spil i en ny verden. Du kan også bygge din celleplan op, og derefter prøve de senere spilprototyper."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
 msgstr "Genstand ændringsnoter"
@@ -8587,11 +8606,8 @@ msgstr ""
 "Inkluder senere stadiers prototyper: {0}\n"
 "Inkluder påskeæg: {1}"
 
-#, fuzzy
 msgid "WORLD_MISC_DETAILS_STRING_2"
-msgstr ""
-"Inkluder senere stadiers prototyper: {0}\n"
-"Inkluder påskeæg: {1}"
+msgstr "Inkluder påskeæg: {0}"
 
 msgid "WORLD_OCEANIC_COVERAGE"
 msgstr "Oceandække"
