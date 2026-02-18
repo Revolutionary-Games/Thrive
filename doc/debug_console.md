@@ -1,3 +1,5 @@
+The Debug Console is a feature allowing developers and testers to read the Godot console output in-game and execute custom commands. The console can be opened with the default hotkey `F10`.
+
 Custom commands are a way for developers to add methods that can be invoked from the in-game debug console. This is a way to define custom behaviour from just submitting commands during the gameplay, and speed up both development and testing.
 
 This feature is to be considered experimental and may be subject to change. New features will be added in future.
