@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-17 19:19+0100\n"
+"POT-Creation-Date: 2026-02-18 21:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1000,7 +1000,7 @@ msgstr ""
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:650
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:648
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -2692,19 +2692,19 @@ msgstr ""
 msgid "ENERGY_CONSUMPTION_PRESSURE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3176
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3174
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3011
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3009
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3187
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3185
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3180
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3178
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -3152,7 +3152,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3193
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3191
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3274,7 +3274,7 @@ msgstr ""
 msgid "GAME_SYSTEMS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3111
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3109
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1078
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
@@ -4558,7 +4558,7 @@ msgstr ""
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1868
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1866
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -6261,7 +6261,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:665
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3208
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3206
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -6309,7 +6309,7 @@ msgstr ""
 msgid "NUCLEUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1867
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1865
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -6333,8 +6333,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:25
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:35
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:45
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3022
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3034
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3020
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3032
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
 #: ../src/microbe_stage/MicrobeHUD.cs:654
 msgid "N_A"
@@ -6807,7 +6807,7 @@ msgstr ""
 #: ../src/gui_common/menus/PlanetStatistics.cs:113
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:568
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:101
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:726
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:734
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.cs:98
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:172
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:259
@@ -6990,7 +6990,7 @@ msgstr ""
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3041
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3039
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -9533,7 +9533,7 @@ msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:311
 #: ../src/gui_common/menus/PlanetStatistics.cs:114
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:725
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:731
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:514
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:590
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:374
@@ -9542,6 +9542,14 @@ msgstr ""
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:150
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:151
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:732
+msgid "VALUE_WITH_UNIT_PLUS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:733
+msgid "VALUE_WITH_UNIT_PLUS_MINUS"
 msgstr ""
 
 #: ../simulation_parameters/common/achievements.json:79

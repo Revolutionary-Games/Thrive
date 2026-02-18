@@ -1255,7 +1255,7 @@ public partial class CellEditorComponent :
         if (!IsMulticellularEditor)
         {
             // Refresh tolerances data for the new patch
-            tolerancesEditor.OnDataTolerancesDependOnChanged(false);
+            tolerancesEditor.OnDataTolerancesDependOnChanged();
             OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
             UpdateEndosymbiosisSpeciesData();
         }
@@ -2508,7 +2508,7 @@ public partial class CellEditorComponent :
         {
             // Tolerances are now affected by organelle changes, so re-trigger calculating them
             OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
-            tolerancesEditor.OnDataTolerancesDependOnChanged(true);
+            tolerancesEditor.OnDataTolerancesDependOnChanged();
         }
 
         UpdateCellVisualization();
