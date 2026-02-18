@@ -249,7 +249,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         if (Editor.EditedCellOrganelles == null)
             return;
 
-        organelleModifiers = default;
+        organelleModifiers = default(MicrobeEnvironmentalToleranceCalculations.ToleranceValues);
 
         MicrobeEnvironmentalToleranceCalculations.ApplyOrganelleEffectsOnTolerances(Editor.EditedCellOrganelles,
             ref organelleModifiers);
