@@ -165,17 +165,6 @@ public partial class ToleranceRangeDisplay : HSlider
         SetBoundPositions();
     }
 
-    private void SetBoundPositions()
-    {
-        var upperBoundFraction = Math.Clamp((upperValue - MinValue) / (MaxValue - MinValue), 0, 1);
-        var lowerBoundFraction = Math.Clamp((lowerValue - MinValue) / (MaxValue - MinValue), 0, 1);
-
-        lowerBoundPos = Size.X * (float)lowerBoundFraction - 1;
-        upperBoundPos = Size.X * (float)upperBoundFraction - 1;
-
-        QueueRedraw();
-    }
-
     /// <summary>
     ///   Sets the color of the range between the upper and lower bounds and queues a redraw.
     /// </summary>
@@ -190,6 +179,17 @@ public partial class ToleranceRangeDisplay : HSlider
     public void SetColorsAndRedraw()
     {
         SetColorsAndRedraw(mainColor);
+    }
+
+    private void SetBoundPositions()
+    {
+        var upperBoundFraction = Math.Clamp((upperValue - MinValue) / (MaxValue - MinValue), 0, 1);
+        var lowerBoundFraction = Math.Clamp((lowerValue - MinValue) / (MaxValue - MinValue), 0, 1);
+
+        lowerBoundPos = Size.X * (float)lowerBoundFraction - 1;
+        upperBoundPos = Size.X * (float)upperBoundFraction - 1;
+
+        QueueRedraw();
     }
 
     private void OnSliderValueChanged(float value)
