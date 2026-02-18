@@ -67,7 +67,6 @@ public partial class AutoEvoExploringTool
             "Preferred temperature", "Temperature tolerance", "Pressure minimum", "Pressure tolerance",
             "Oxygen resistance", "UV Resistance",
         });
-        header.AddRange(typeof(EnvironmentalTolerances).GetFields().Select(f => f.Name));
 
         header.AddRange(allOrganelles.Select(o => o.UntranslatedName));
         file.StoreCsvLine(header.ToArray());

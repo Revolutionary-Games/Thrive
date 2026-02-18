@@ -139,11 +139,11 @@ public partial class ToleranceRangeDisplay : HSlider
     /// <param name="preferred">The middle of the range</param>
     /// <param name="flexibilityPositive">The offset of the upper bound from the middle</param>
     /// <param name="flexibilityNegative">The offset of the lower bound from the middle</param>
-    public void SetBoundPositions(float preferred, float flexibilityPositive, float? flexibilityNegative = null)
+    public void SetBoundPositions(float preferred, float flexibilityPositive, float flexibilityNegative = float.NaN)
     {
         Value = preferred;
         flexibilityPlus = flexibilityPositive;
-        flexibilityMinus = flexibilityNegative ?? flexibilityPlus;
+        flexibilityMinus = !float.IsNaN(flexibilityNegative) ? flexibilityNegative : flexibilityPlus;
 
         SetBoundPositionsInternal();
     }
@@ -168,13 +168,17 @@ public partial class ToleranceRangeDisplay : HSlider
     /// <summary>
     ///   Sets the color of the range between the upper and lower bounds and queues a redraw.
     /// </summary>
-    /// <param name="color">New color. If null, will default to <see cref="mainColor"/></param>
-    public void SetColorsAndRedraw(Color? color)
+    public void SetColorsAndRedraw(Color color)
     {
-        rangeColor = color ?? mainColor;
+        rangeColor = color;
         rangeColorTranslucent = rangeColor with { A = 0.5f };
 
         QueueRedraw();
+    }
+
+    public void SetColorsAndRedraw()
+    {
+        SetColorsAndRedraw(mainColor);
     }
 
     private void OnSliderValueChanged(float value)

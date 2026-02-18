@@ -185,8 +185,6 @@ public partial class CellEditorComponent :
 
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
-    private List<TweakedProcess> tempAllProcesses = new();
-
     private string? bestPatchName;
 
     // This and worstPatchPopulation used to be displayed but are now kept for potential future use
