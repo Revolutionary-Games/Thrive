@@ -69,6 +69,11 @@ public class SummedProcessStatistics : IProcessDisplayInfo
 
     public bool Enabled { get; set; }
 
+    /// <summary>
+    ///   Used for algorithms that need to know what they have processed already
+    /// </summary>
+    public bool Marked { get; set; }
+
     public bool MatchesUnderlyingProcess(BioProcess process)
     {
         return process == Process.Process;

@@ -36,7 +36,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     ///   Because of how <see cref="ChildObjectCache{TKey, TNode}"/> works, process stats instances need to remain
     ///   consistent to reduce update frequency.
     /// </summary>
-    private readonly Dictionary<TweakedProcess, SummedProcessStatistics> organismProgresses = new();
+    private readonly Dictionary<TweakedProcess, SummedProcessStatistics> organismProcesses = new();
+
+    private readonly List<TweakedProcess> tempProcesses = new();
 
     [Export]
     private ActionButton bindingModeHotkey = null!;
@@ -546,9 +548,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     protected override IEnumerable<IProcessDisplayInfo>? GetPlayerProcessStatistics()
     {
-        foreach (var process in organismProgresses)
+        foreach (var process in organismProcesses)
         {
             process.Value.Clear();
+            process.Value.Marked = false;
         }
 
         var playerProcesses = stage!.Player.Get<BioProcesses>().ProcessStatistics?.Processes;
@@ -557,22 +560,24 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             GD.PrintErr("Player process statistics are uninitialized, can't display them in the process panel");
 
-            yield break;
+            return null;
         }
 
         foreach (var process in playerProcesses)
         {
             var display = process.Value.ComputeAverageValues();
 
-            if (!organismProgresses.TryGetValue(process.Key, out var stats))
+            if (!organismProcesses.TryGetValue(process.Key, out var stats))
             {
                 stats = new SummedProcessStatistics(display);
-                organismProgresses[process.Key] = stats;
+                organismProcesses[process.Key] = stats;
             }
             else
             {
                 stats.AddProcess(display);
             }
+
+            stats.Marked = true;
         }
 
         if (stage.Player.TryGet<MicrobeColony>(out var colony))
@@ -593,30 +598,40 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 {
                     var display = process.Value.ComputeAverageValues();
 
-                    if (!organismProgresses.TryGetValue(process.Key, out var stats))
+                    if (!organismProcesses.TryGetValue(process.Key, out var stats))
                     {
                         stats = new SummedProcessStatistics(display);
-                        organismProgresses[process.Key] = stats;
+                        organismProcesses[process.Key] = stats;
                     }
                     else
                     {
                         stats.AddProcess(display);
                     }
+
+                    stats.Marked = true;
                 }
             }
         }
 
-        foreach (var process in organismProgresses.ToArray())
+        // Clear unmarked items
+        foreach (var entry in organismProcesses)
         {
-            if (process.Value.ProcessCount == 0)
-            {
-                organismProgresses.Remove(process.Key);
-            }
-            else
-            {
-                yield return process.Value;
-            }
+            if (!entry.Value.Marked)
+                tempProcesses.Add(entry.Key);
         }
+
+        if (tempProcesses.Count > 0)
+        {
+            foreach (var process in tempProcesses)
+            {
+                if (!organismProcesses.Remove(process))
+                    GD.PrintErr("Expected process remove failed");
+            }
+
+            tempProcesses.Clear();
+        }
+
+        return organismProcesses.Values;
     }
 
     protected override void CalculatePlayerReproductionProgress(Dictionary<Compound, float> gatheredCompounds,
