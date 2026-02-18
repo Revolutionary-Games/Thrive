@@ -176,7 +176,7 @@ public partial class DebugConsole : CustomWindow, ICommandInvoker
     [Command("echo", false, "Echoes a colored message in this console.")]
     private static void CommandEcho(CommandContext context, string msg, int r, int g, int b)
     {
-        context.Print(msg, new Color(r, g, b));
+        context.Print(msg, Color.Color8((byte)r, (byte)g, (byte)b));
     }
 
     private void Activate()
