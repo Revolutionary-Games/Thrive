@@ -310,7 +310,10 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 predator.Value.Position, predator.Value.Entity, speciesFocus,
                 speciesActivity, speciesAggression, speciesFear, strain, random);
 
-            signaling.QueuedSignalingCommand = MicrobeSignalCommand.FleeFromMe;
+            if (organelles.HasSignalingAgent && random.NextSingle() < Constants.AI_SIGNALING_CHANCE)
+            {
+                signaling.QueuedSignalingCommand = MicrobeSignalCommand.FleeFromMe;
+            }
 
             return;
         }
