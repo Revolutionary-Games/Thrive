@@ -282,12 +282,12 @@ public class CommandRegistry : IDisposable
     }
 
     [Command("help", false, "Shows hints and info about all the registered commands.")]
-    private static void CommandHelp()
+    private static void CommandHelp(CommandContext context)
     {
         var commands = Instance.commands!;
         int count = commands.Values.Sum(v => v.Length);
 
-        GD.Print($"Total registered Commands: {count}");
+        context.Print($"Total registered Commands: {count}");
 
         foreach (var group in commands)
         {
@@ -296,7 +296,7 @@ public class CommandRegistry : IDisposable
                 var paramsInfo = string.Join(", ", command.MethodInfo
                     .GetParameters()
                     .Select(p => p.ParameterType.Name));
-                GD.Print($"{command.CommandName}({paramsInfo}): {command.HelpText}");
+                context.Print($"{command.CommandName}({paramsInfo}): {command.HelpText}");
             }
         }
     }
@@ -325,8 +325,15 @@ public class CommandRegistry : IDisposable
         bool requiresInvoker = parameters.Length > 0 && parameters[0].ParameterType == typeof(CommandContext);
         int paramOffset = requiresInvoker ? 1 : 0;
         int expectedArgs = parameters.Length - paramOffset;
+        int optionalParameters = 0;
 
-        if (rawArgs.Count != expectedArgs)
+        foreach (var parameter in parameters)
+        {
+            if (parameter.IsOptional)
+                ++optionalParameters;
+        }
+
+        if (rawArgs.Count < expectedArgs - optionalParameters || rawArgs.Count > expectedArgs)
         {
             // Argument count mismatch. This candidate is bad.
             return false;
@@ -339,17 +346,30 @@ public class CommandRegistry : IDisposable
 
         for (int i = 0; i < expectedArgs; ++i)
         {
-            var targetType = parameters[i + paramOffset].ParameterType;
-            var (value, isQuoted) = rawArgs[i];
+            var parameter = parameters[i + paramOffset];
+            var targetType = parameter.ParameterType;
 
-            if (!TryParseSpanToType(value.AsSpan(), targetType, isQuoted, ignoreQuoted, out var parsedValue))
+            object? toPass;
+            if (i < rawArgs.Count)
             {
-                // This happens if the parameter conversion fails. We gracefully return false hoping to find a
-                // better candidate for command execution.
-                return false;
+                var (value, isQuoted) = rawArgs[i];
+
+                if (!TryParseSpanToType(value.AsSpan(), targetType, isQuoted, ignoreQuoted, out var parsedValue))
+                {
+                    // This happens if the parameter conversion fails. We gracefully return false hoping to find a
+                    // better candidate for command execution.
+                    return false;
+                }
+
+                toPass = parsedValue;
+            }
+            else
+            {
+                // Fill in optional params.
+                toPass = parameter.DefaultValue;
             }
 
-            invokeArgs[i + paramOffset] = parsedValue;
+            invokeArgs[i + paramOffset] = toPass;
         }
 
         if (command.IsCheat)

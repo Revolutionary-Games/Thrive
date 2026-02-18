@@ -7,7 +7,7 @@ using Nito.Collections;
 /// <summary>
 ///   Handles the debug console
 /// </summary>
-public partial class DebugConsole : CustomWindow
+public partial class DebugConsole : CustomWindow, ICommandInvoker
 {
     private const uint MaxPrivateHistorySize = 32;
 
@@ -28,7 +28,7 @@ public partial class DebugConsole : CustomWindow
     private VBoxContainer debugEntryList = null!;
 
     [Export]
-    private LineEdit commandInput = null!;
+    private CommandInput commandInput = null!;
 
     [Export]
     private ScrollContainer scrollContainer = null!;
@@ -36,6 +36,8 @@ public partial class DebugConsole : CustomWindow
     [Export]
     private Font font = null!;
 #pragma warning restore CA2213
+
+    public CommandHistory CommandHistory { get; } = new();
 
     public bool IsConsoleOpen
     {
@@ -56,9 +58,10 @@ public partial class DebugConsole : CustomWindow
 
     public override void _Ready()
     {
-        commandInput.Connect(LineEdit.SignalName.TextSubmitted, new Callable(this, nameof(CommandSubmitted)));
         scrollContainer.GetVScrollBar()
             .Connect(ScrollBar.SignalName.Scrolling, new Callable(this, nameof(OnScrolled)));
+
+        commandInput.CommandHistory = CommandHistory;
 
         base._Ready();
     }
@@ -89,6 +92,56 @@ public partial class DebugConsole : CustomWindow
             if (node is RichTextLabel label)
                 label.Visible = false;
         }
+    }
+
+    public void Print(DebugConsoleManager.RawDebugEntry entry)
+    {
+        var debugEntryFactory = DebugConsoleManager.Instance.DebugEntryFactory;
+
+        debugEntryFactory.TryAddMessage(entry.Id, entry, DebugEntryFactory.AddMessageMode.NoStacking);
+        debugEntryFactory.UpdateDebugEntry(entry.Id);
+    }
+
+    public void SubmitCommand(string command)
+    {
+        if (string.IsNullOrWhiteSpace(command))
+            return;
+
+        CommandHistory.Add(command);
+
+        var debugConsoleManager = DebugConsoleManager.Instance;
+        var commandRegistry = CommandRegistry.Instance;
+        var debugEntryFactory = debugConsoleManager.DebugEntryFactory;
+
+        // Debug entry setup
+        int executionToken = debugConsoleManager.GetAvailableCustomDebugEntryId();
+        long executionTimestamp = Stopwatch.GetTimestamp();
+
+        debugEntryFactory.ResetTimestamp(executionToken, executionTimestamp);
+
+        var entry = debugEntryFactory.GetDebugEntry(executionToken);
+
+        AddPrivateEntry(entry);
+
+        // Command setup
+        var context = new CommandContext(this, executionToken);
+        var commandMessage = new DebugConsoleManager.RawDebugEntry($"Command > {command}\n", Colors.LightGray,
+            executionTimestamp, executionToken);
+
+        // Prints command in console and updates the entry to immediately show what command is being executed.
+        context.Print(commandMessage);
+        debugEntryFactory.UpdateDebugEntry(executionToken);
+
+        commandRegistry.Execute(context, command);
+
+        // This updates the debug entry to reflect the final command output, if any, and releases the executionToken.
+        debugConsoleManager.ReleaseCustomDebugEntryId(executionToken);
+
+        // Update the labels.
+        UpdateLiveEntries();
+
+        // Put focus on the command message.
+        stickToBottom = true;
     }
 
     protected override void OnHidden()
@@ -207,7 +260,7 @@ public partial class DebugConsole : CustomWindow
                 label.SizeFlagsVertical = SizeFlags.ShrinkBegin;
                 label.AutowrapMode = TextServer.AutowrapMode.Off;
                 label.AddThemeFontOverride(normalFontName, font);
-                label.AddThemeFontSizeOverride(normalFontName, 10);
+                label.AddThemeFontSizeOverride(normalFontName, 8);
 
                 view = new EntryView(label, entry);
             }
@@ -247,39 +300,7 @@ public partial class DebugConsole : CustomWindow
 
     private void CommandSubmitted(string command)
     {
-        commandInput.Clear();
-
-        var debugConsoleManager = DebugConsoleManager.Instance;
-        var commandRegistry = CommandRegistry.Instance;
-        var debugEntryFactory = debugConsoleManager.DebugEntryFactory;
-
-        int executionToken = debugConsoleManager.GetAvailableCustomDebugEntryId();
-        long executionTimestamp = Stopwatch.GetTimestamp();
-
-        debugEntryFactory.ResetTimestamp(executionToken, executionTimestamp);
-
-        var entry = debugEntryFactory.GetDebugEntry(executionToken);
-
-        AddPrivateEntry(entry);
-
-        var context = new CommandContext(this, executionToken);
-        var commandMessage = new DebugConsoleManager.RawDebugEntry($"Command > {command}\n", Colors.LightGray,
-            executionTimestamp, executionToken);
-
-        // Prints command in console and updates the entry to immediately show what command is being executed.
-        context.Print(commandMessage);
-        debugEntryFactory.UpdateDebugEntry(executionToken);
-
-        commandRegistry.Execute(context, command);
-
-        // This updates the debug entry to reflect the final command output, if any, and releases the executionToken.
-        debugConsoleManager.ReleaseCustomDebugEntryId(executionToken);
-
-        // Update the labels.
-        UpdateLiveEntries();
-
-        // Put focus on the command message.
-        stickToBottom = true;
+        SubmitCommand(command);
     }
 
     private void OnScrolled()

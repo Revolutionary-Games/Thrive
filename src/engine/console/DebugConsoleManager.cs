@@ -11,7 +11,7 @@ using Environment = System.Environment;
 ///   System output is transferred to this manager by the LogInterceptor.
 /// </summary>
 [GodotAutoload]
-public partial class DebugConsoleManager : Node
+public partial class DebugConsoleManager : Node, ICommandInvoker
 {
     public const uint MaxHistorySize = 255;
 
@@ -39,6 +39,11 @@ public partial class DebugConsoleManager : Node
     public event EventHandler<HistoryUpdatedEventArgs>? OnHistoryUpdated;
 
     public static DebugConsoleManager Instance => instance ?? throw new InstanceNotLoadedYetException();
+
+    /// <summary>
+    ///   The headless command history.
+    /// </summary>
+    public CommandHistory CommandHistory { get; } = new();
 
     public int TotalMessageCount { get; private set; }
     public int MessageCountInHistory => history.Count;
@@ -164,6 +169,36 @@ public partial class DebugConsoleManager : Node
     public void Clear()
     {
         history.Clear();
+    }
+
+    /// <summary>
+    ///   Submits a headless command. Headless commands log their results directly to the global console history, and
+    ///   their execution is visible to all the DebugConsole instances.
+    /// </summary>
+    public void SubmitCommand(string command)
+    {
+        if (string.IsNullOrWhiteSpace(command))
+            return;
+
+        CommandHistory.Add(command);
+
+        var commandRegistry = CommandRegistry.Instance;
+
+        // We hold an execution token, but we don't use it to create a debug entry, as the headless context prints
+        // directly to the global history.
+        int executionToken = GetAvailableCustomDebugEntryId();
+
+        // Command setup
+        var context = new CommandContext(this, executionToken);
+        var commandMessage = new RawDebugEntry($"Command > {command}\n", Colors.LightGray, Stopwatch.GetTimestamp(),
+            executionToken);
+
+        context.Print(commandMessage);
+
+        commandRegistry.Execute(context, command);
+
+        // This still needs to be released to avoid leaking the token, even though the pipeline hasn't been touched.
+        ReleaseCustomDebugEntryId(executionToken);
     }
 
     public void ReleaseCustomDebugEntryId(int id)
