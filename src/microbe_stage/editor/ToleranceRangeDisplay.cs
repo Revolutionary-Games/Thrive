@@ -31,6 +31,9 @@ public partial class ToleranceRangeDisplay : HSlider
     private float upperBoundPos;
     private float lowerBoundPos;
 
+    private float upperValue;
+    private float lowerValue;
+
     private float flexibilityPlus;
     private float flexibilityMinus;
 
@@ -156,8 +159,16 @@ public partial class ToleranceRangeDisplay : HSlider
     /// <param name="upper">Position of the upper bound</param>
     public void SetBoundPositionsManual(float lower, float upper)
     {
-        var upperBoundFraction = Math.Clamp((upper - MinValue) / (MaxValue - MinValue), 0, 1);
-        var lowerBoundFraction = Math.Clamp((lower - MinValue) / (MaxValue - MinValue), 0, 1);
+        upperValue = upper;
+        lowerValue = lower;
+
+        SetBoundPositions();
+    }
+
+    private void SetBoundPositions()
+    {
+        var upperBoundFraction = Math.Clamp((upperValue - MinValue) / (MaxValue - MinValue), 0, 1);
+        var lowerBoundFraction = Math.Clamp((lowerValue - MinValue) / (MaxValue - MinValue), 0, 1);
 
         lowerBoundPos = Size.X * (float)lowerBoundFraction - 1;
         upperBoundPos = Size.X * (float)upperBoundFraction - 1;
@@ -199,6 +210,13 @@ public partial class ToleranceRangeDisplay : HSlider
 
     private void SetBoundPositionsInternal()
     {
-        SetBoundPositionsManual((float)(Value - flexibilityMinus), (float)(Value + flexibilityPlus));
+        if (flexibilityMinus > 0 || flexibilityPlus > 0)
+        {
+            SetBoundPositionsManual((float)(Value - flexibilityMinus), (float)(Value + flexibilityPlus));
+        }
+        else
+        {
+            SetBoundPositions();
+        }
     }
 }
