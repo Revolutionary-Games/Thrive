@@ -10,12 +10,10 @@ using Vector3 = Godot.Vector3;
 /// </summary>
 public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
         cachedFillTimes = new();
-
-    private IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate>? readonlyLayout;
 
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
@@ -141,13 +139,18 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     /// </summary>
     public string? SplitFromTypeName => null;
 
+    /// <summary>
+    ///   Cached specialization bonus for this species.
+    /// </summary>
+    public float SpecializationBonus { get; set; }
+
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public override ArchiveObjectType ArchiveObjectType => (ArchiveObjectType)ThriveArchiveObjectType.MicrobeSpecies;
 
     // TODO: sadly I found no way to finagle the interfaces to line up fully, so a very light adapter class is needed
     // here
     IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> IReadOnlyCellDefinition.Organelles =>
-        readonlyLayout ??=
+        field ??=
             new ReadonlyOrganelleLayoutAdapter<IReadOnlyOrganelleTemplate, OrganelleTemplate>(Organelles);
 
     public static bool StateHasStabilizedImpl(IWorldSimulation worldSimulation)
@@ -176,6 +179,9 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         instance.Organelles = reader.ReadObject<OrganelleLayout<OrganelleTemplate>>();
         instance.BaseRotationSpeed = reader.ReadFloat();
 
+        if (version > 1)
+            instance.BaseRotationSpeed = reader.ReadFloat();
+
         return instance;
     }
 
@@ -189,6 +195,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
         writer.WriteObject(Organelles);
         writer.Write(BaseRotationSpeed);
+        writer.Write(SpecializationBonus);
     }
 
     public void UpdateIsBacteria()
@@ -225,6 +232,10 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         }
 
         cachedFillTimes.Clear();
+
+        SpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(Organelles,
+                new Dictionary<OrganelleDefinition, int>());
     }
 
     public override bool RepositionToOrigin()
@@ -257,7 +268,8 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         };
 
         // False is passed here until we can make the initial compounds patch specific
-        ProcessSystem.ComputeCompoundBalance(Organelles, biomeConditions, environmentalTolerances,
+        // We don't take specialization into account here, so we overestimate how much stuff is needed
+        ProcessSystem.ComputeCompoundBalance(Organelles, biomeConditions, environmentalTolerances, 1,
             CompoundAmountType.Biome, false, compoundBalances);
 
         bool giveBonusGlucose = Organelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
@@ -349,6 +361,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         IsBacteria = casted.IsBacteria;
         MembraneType = casted.MembraneType;
         MembraneRigidity = casted.MembraneRigidity;
+        SpecializationBonus = casted.SpecializationBonus;
 
         cachedFillTimes.Clear();
     }
@@ -387,6 +400,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         result.IsBacteria = IsBacteria;
         result.MembraneType = MembraneType;
         result.MembraneRigidity = MembraneRigidity;
+        result.SpecializationBonus = SpecializationBonus;
 
         if (cloneOrganelles)
         {

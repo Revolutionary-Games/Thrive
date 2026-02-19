@@ -214,8 +214,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
             ProcessSpeedModifier = 1,
         };
 
+        // We don't take specialization into account here, so we overestimate how much stuff is needed
         ProcessSystem.ComputeCompoundBalance(ModifiableGameplayCells[0].ModifiableOrganelles,
-            biomeConditions, environmentalTolerances, CompoundAmountType.Biome, false, compoundBalances);
+            biomeConditions, environmentalTolerances, 1, CompoundAmountType.Biome, false, compoundBalances);
         var storageCapacity =
             MicrobeInternalCalculations.CalculateCapacity(ModifiableGameplayCells[0].ModifiableOrganelles);
 
@@ -304,6 +305,18 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         }
 
         return totalOrganelles;
+    }
+
+    /// <summary>
+    ///   Calculates the adjacency bonus of efficiency for a cell in the body plan of this species
+    /// </summary>
+    /// <param name="cellIndexInBodyPlan">Index of the cell in the body plan we want the bonus for</param>
+    /// <returns>The calculated bonus (or 1, if it can't be calculated)</returns>
+    public float GetAdjacencySpecializationBonus(int cellIndexInBodyPlan)
+    {
+        // TODO: implement this method!
+        _ = cellIndexInBodyPlan;
+        return 1;
     }
 
     public void SetupWorldEntities(IWorldSimulation worldSimulation)

@@ -669,6 +669,11 @@ public static class Constants
     public const float DEFAULT_MICROBE_VENT_THRESHOLD = 2.0f;
 
     /// <summary>
+    ///   A cell needs to have this many organelles for specialization to apply to it
+    /// </summary>
+    public const int CELL_SPECIALIZATION_APPLIES_AFTER_SIZE = 5;
+
+    /// <summary>
     ///   If more chunks exist at once than this, then some are forced to despawn immediately. In reality the effective
     ///   value is higher as spawned and microbe corpse chunks have now their individual limits (so the real limit is
     ///   double this)

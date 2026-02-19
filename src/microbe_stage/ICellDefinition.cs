@@ -29,7 +29,7 @@ public interface ICellDefinition : IReadOnlyCellDefinition, ISimulationPhotograp
     public string FormattedName { get; }
 
     /// <summary>
-    ///   Repositions the cell to the origin and recalculates any properties dependant on its position.
+    ///   Repositions the cell to the origin and recalculates any properties dependent on its position.
     /// </summary>
     /// <returns>True when changes were made, false if everything was positioned well already</returns>
     public bool RepositionToOrigin();
@@ -61,6 +61,12 @@ public interface IReadOnlyCellTypeDefinition : IReadOnlyCellDefinition
     ///   If known from what cell type this cell was split from, this is the name of that type.
     /// </summary>
     public string? SplitFromTypeName { get; }
+
+    /// <summary>
+    ///   A multiplier starting from 1 and going up based on how specialized this cell type is. This is eventually
+    ///   applied to <see cref="Components.BioProcesses.OverallSpeedModifier"/>
+    /// </summary>
+    public float SpecializationBonus { get; }
 }
 
 /// <summary>
