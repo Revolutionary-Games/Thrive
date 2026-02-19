@@ -147,6 +147,11 @@ public partial class OsmoregulationAndHealingSystem : BaseSystem<World, float>
             osmoregulationCost *= 20.0f / (20.0f + colonySize);
         }
 
+        if (!cellProperties.IsBacteria)
+        {
+            osmoregulationCost *= Constants.NUCLEUS_OSMOREGULATION_COST_MODIFIER;
+        }
+
         var environmentalMultiplier = environmentalEffects.OsmoregulationMultiplier;
 
         // TODO: remove this safety check once it is no longer possible for this problem to happen
