@@ -64,13 +64,13 @@ public partial class DebugConsole : CustomWindow, ICommandInvoker
         // Make backgrounds more transparent
         var customPanelOverride = (StyleBoxFlat)PanelStyle.Duplicate(false);
         var color = customPanelOverride.BgColor;
-        color.A = 0.58f;
+        color.A = 0.48f;
         customPanelOverride.BgColor = color;
         PanelStyle = customPanelOverride;
 
         var titlebarPanelOverride = (StyleBoxFlat)TitleBarPanelStyle.Duplicate(false);
         color = titlebarPanelOverride.BgColor;
-        color.A = 0.78f;
+        color.A = 0.60f;
         titlebarPanelOverride.BgColor = color;
         TitleBarPanelStyle = titlebarPanelOverride;
 
