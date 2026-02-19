@@ -61,6 +61,19 @@ public partial class DebugConsole : CustomWindow, ICommandInvoker
         scrollContainer.GetVScrollBar()
             .Connect(ScrollBar.SignalName.Scrolling, new Callable(this, nameof(OnScrolled)));
 
+        // Make backgrounds more transparent
+        var customPanelOverride = (StyleBoxFlat)PanelStyle.Duplicate(false);
+        var color = customPanelOverride.BgColor;
+        color.A = 0.48f;
+        customPanelOverride.BgColor = color;
+        PanelStyle = customPanelOverride;
+
+        var titlebarPanelOverride = (StyleBoxFlat)TitleBarPanelStyle.Duplicate(false);
+        color = titlebarPanelOverride.BgColor;
+        color.A = 0.60f;
+        titlebarPanelOverride.BgColor = color;
+        TitleBarPanelStyle = titlebarPanelOverride;
+
         commandInput.CommandHistory = CommandHistory;
 
         base._Ready();

@@ -15,6 +15,54 @@
 [ext_resource type="FontFile" uid="uid://cd1sb4ten5fqv" path="res://assets/fonts/RobotoMono-Variable.ttf" id="11_ja1wl"]
 [ext_resource type="Script" uid="uid://dh5hhdvm4bnhj" path="res://src/engine/console/CommandInput.cs" id="13_qoetm"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qoetm"]
+content_margin_left = 10.0
+content_margin_top = 1.0
+content_margin_right = 10.0
+content_margin_bottom = 1.0
+bg_color = Color(0, 0, 0, 0.54901963)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 0.588235)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b12na"]
+content_margin_left = 10.0
+content_margin_top = 1.0
+content_margin_right = 10.0
+content_margin_bottom = 1.0
+bg_color = Color(0.16470589, 0.21568628, 0.23529412, 0.78431374)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.396078, 0.623529, 0.584314, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bm8aj"]
+content_margin_left = 10.0
+content_margin_top = 1.0
+content_margin_right = 10.0
+content_margin_bottom = 1.0
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="DebugOverlay" type="Control" unique_id=2017744925 node_paths=PackedStringArray("debugCoordinates", "inspectorDialog", "debugPanelDialog", "debugConsole", "fpsCheckBox", "performanceMetricsCheckBox", "inspectorCheckbox", "fpsCounter", "performanceMetrics", "labelsLayer", "fpsDisplayLabel", "fpsLabel", "deltaLabel", "metricsText")]
 layout_mode = 3
 anchors_preset = 0
@@ -129,6 +177,9 @@ size_flags_vertical = 3
 [node name="ConsoleInput" type="LineEdit" parent="DebugConsole/VBoxContainer" unique_id=929832716]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("11_0g2tr")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qoetm")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_b12na")
+theme_override_styles/focus = SubResource("StyleBoxFlat_bm8aj")
 placeholder_text = "COMMAND_INPUT_LINE_EDIT"
 keep_editing_on_text_submit = true
 caret_blink = true
