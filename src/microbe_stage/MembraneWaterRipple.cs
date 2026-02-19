@@ -64,7 +64,7 @@ public partial class MembraneWaterRipple : Node
     ///   Minimal movement threshold
     /// </summary>
     [Export]
-    public float MovementThresholdSqr = 16.0f;
+    public float MovementThresholdSqr = 9.0f;
 
     /// <summary>
     ///   Threshold for resuming movement
