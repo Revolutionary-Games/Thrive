@@ -559,6 +559,11 @@ public partial class CellEditorComponent :
 
         ApplySelectionMenuTab();
         RegisterTooltips();
+
+        if (IsMulticellularEditor)
+        {
+            organismStatisticsPanel.IsForCellType = true;
+        }
     }
 
     public override void Init(ICellEditorData owningEditor, bool fresh)

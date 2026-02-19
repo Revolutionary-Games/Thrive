@@ -11,6 +11,7 @@ using Godot;
 public partial class OrganismStatisticsPanel : PanelContainer
 {
     [Export]
+    [ExportCategory("Configuration")]
     public bool IsMulticellularEditor;
 
     [Export]
@@ -57,6 +58,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
 #pragma warning disable CA2213
 
     [Export]
+    [ExportCategory("Internal")]
     private CellStatsIndicator sizeLabel = null!;
 
     [Export]
@@ -129,6 +131,10 @@ public partial class OrganismStatisticsPanel : PanelContainer
     private Button processListButton = null!;
 
     [Export]
+    private Label titleLabel = null!;
+
+    [Export]
+    [ExportCategory("Other Editor Parts")]
     private ProcessList processList = null!;
 
     [Export]
@@ -164,6 +170,19 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     public bool CalculateBalancesWhenMoving => calculateBalancesWhenMoving.ButtonPressed;
 
+    public bool IsForCellType
+    {
+        get;
+        set
+        {
+            if (value == field)
+                return;
+
+            field = value;
+            UpdateTitle();
+        }
+    }
+
     public override void _Ready()
     {
         base._Ready();
@@ -174,6 +193,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
         UpdateStatVisibility();
         UpdateATPBalanceText();
+        UpdateTitle();
     }
 
     public void OnTranslationsChanged()
@@ -182,6 +202,8 @@ public partial class OrganismStatisticsPanel : PanelContainer
         {
             UpdateEnergyBalance(energyBalanceInfo);
         }
+
+        UpdateTitle();
     }
 
     public void UpdateStatVisibility()
@@ -201,6 +223,13 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
         ammoniaCostLabel.Visible = ShowOrganellesCostStat;
         phosphatesCostLabel.Visible = ShowOrganellesCostStat;
+    }
+
+    public void UpdateTitle()
+    {
+        titleLabel.Text = IsForCellType ?
+            Localization.Translate("CELL_STATISTICS") :
+            Localization.Translate("ORGANISM_STATISTICS");
     }
 
     public void SendObjectsToTutorials(TutorialState tutorial, MicrobeEditorTutorialGUI gui)
