@@ -84,8 +84,8 @@ public static class CommonMutationFunctions
             if (mutation == null)
                 break;
 
-            mutated = mutation.Item1;
-            mp -= mutation.Item2;
+            mutated = mutation.Species;
+            mp -= mutation.MP;
 
             MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutated);
         }
@@ -435,4 +435,6 @@ public static class CommonMutationFunctions
 
         return TraversalOrder8;
     }
+
+    public record Mutant(MicrobeSpecies Species, double MP);
 }

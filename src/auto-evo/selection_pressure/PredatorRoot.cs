@@ -17,6 +17,29 @@ public class PredatorRoot : SelectionPressure
 
     public PredatorRoot(float weight) : base(weight, [
         AddOrganelleAnywhere.ThatConvertBetweenCompounds(Compound.Glucose, Compound.ATP),
+        new AddOrganelleAnywhere(organelle => organelle.MPCost < 30),
+        new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent, CommonMutationFunctions.Direction.Front),
+        new AddOrganelleAnywhere(organelle => organelle.HasLysosomeComponent),
+        new UpgradeToxinOrganelle(organelle => organelle.HasAgentVacuoleComponent, "oxytoxy", false,
+            UpgradeToxinOrganelle.MutationDirection.Both),
+        new UpgradeToxinOrganelle(organelle => organelle.HasAgentVacuoleComponent, "none", true,
+            UpgradeToxinOrganelle.MutationDirection.Both),
+        new UpgradeToxinOrganelle(organelle => organelle.HasAgentVacuoleComponent, "macrolide", false,
+            UpgradeToxinOrganelle.MutationDirection.Both),
+        new UpgradeToxinOrganelle(organelle => organelle.HasAgentVacuoleComponent, "channel", false,
+            UpgradeToxinOrganelle.MutationDirection.Both),
+        new UpgradeToxinOrganelle(organelle => organelle.HasAgentVacuoleComponent,
+            "oxygen_inhibitor", false, UpgradeToxinOrganelle.MutationDirection.Both),
+        new UpgradeOrganelle(organelle => organelle.HasCiliaComponent, "pull", true),
+        new UpgradeOrganelle(organelle => organelle.HasLysosomeComponent,
+            new LysosomeUpgrades(SimulationParameters.Instance.GetEnzyme(Constants.CHITINASE_ENZYME))),
+        new UpgradeOrganelle(organelle => organelle.HasLysosomeComponent,
+            new LysosomeUpgrades(SimulationParameters.Instance.GetEnzyme(Constants.CELLULASE_ENZYME))),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, 150.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, 150.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, 150.0f),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, -150.0f),
+        new ChangeMembraneType("single"),
     ])
     {
     }

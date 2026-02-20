@@ -49,13 +49,13 @@ public class AutoEvoGlobalCache
     {
         RootPressure = new RootPressure();
         MetabolicStabilityPressure = new MetabolicStabilityPressure(10.0f);
-        GeneralAvoidPredationSelectionPressure = new GeneralAvoidPredationSelectionPressure(1.4f);
-        EnergyConsumptionPressure = new EnergyConsumptionPressure(0.5f);
-        EnvironmentalTolerancesPressure = new EnvironmentalTolerancePressure(4);
+        GeneralAvoidPredationSelectionPressure = new GeneralAvoidPredationSelectionPressure(1.5f);
+        EnergyConsumptionPressure = new EnergyConsumptionPressure(0.3f);
+        EnvironmentalTolerancesPressure = new EnvironmentalTolerancePressure(3);
 
         PhosphatePressure = new ReproductionCompoundPressure(
-            Compound.Phosphates, worldSettings.DayNightCycleEnabled, 0.3f);
-        AmmoniaPressure = new ReproductionCompoundPressure(Compound.Ammonia, worldSettings.DayNightCycleEnabled, 0.3f);
+            Compound.Phosphates, worldSettings.DayNightCycleEnabled, 0.03f);
+        AmmoniaPressure = new ReproductionCompoundPressure(Compound.Ammonia, worldSettings.DayNightCycleEnabled, 0.03f);
 
         MinorGlucoseConversionEfficiencyPressure =
             new CompoundConversionEfficiencyPressure(Compound.Glucose, Compound.ATP, true, 0.45f);

@@ -2,9 +2,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 using Xoshiro.PRNG64;
+using static CommonMutationFunctions;
 
 /// <summary>
 ///   Uses miches to create a mutation for an existing species. Also creates new species from existing ones as
@@ -34,21 +34,15 @@ public class ModifyExistingSpecies : IRunStep
     private readonly List<Miche> predatorCalculationMemory2 = new();
     private readonly List<Species> predatorPressuresTemporary = new();
 
-    private readonly List<IMutationStrategy<MicrobeSpecies>> tempMutationStrategies = new();
-
-    // TODO: switch to named tuple elements
-    private readonly List<Tuple<MicrobeSpecies, double>> temporaryMutations1 = new();
-    private readonly List<Tuple<MicrobeSpecies, double>> temporaryMutations2 = new();
+    private readonly List<Mutant> temporaryMutations1 = new();
+    private readonly List<Mutant> temporaryMutations2 = new();
 
     private readonly List<MicrobeSpecies> lastGeneratedMutations = new();
 
-    private readonly List<Miche> currentTraversal = new();
-
-    private readonly List<SelectionPressure> temporaryPressures = new();
-
-    private readonly List<Tuple<MicrobeSpecies, double>> temporaryResultForTopMutations = new();
+    private readonly Stack<SelectionPressure> pressureStack = new();
 
     private readonly MutationSorter mutationSorter;
+    private readonly GenerateMutationsWorkingMemory generateMutationsWorkingMemory = new();
     private readonly Random random;
 
     private readonly List<Mutation> mutationsToTry = new();
@@ -169,16 +163,6 @@ public class ModifyExistingSpecies : IRunStep
                 // Then shuffle and take only as many mutations as we want to try
                 mutationsToTry.Shuffle(random);
 
-                while (mutationsToTry.Count > TotalMutationsToTry)
-                {
-                    mutationsToTry.RemoveAt(mutationsToTry.Count - 1);
-                }
-
-                foreach (var mutation in mutationsToTry)
-                {
-                    mutation.MutatedSpecies.OnEdited();
-                }
-
                 step = Step.MutationTest;
                 break;
             }
@@ -243,16 +227,17 @@ public class ModifyExistingSpecies : IRunStep
         return false;
     }
 
-    private static void PruneMutations(List<Tuple<MicrobeSpecies, double>> addResultsTo, MicrobeSpecies baseSpecies,
-        List<Tuple<MicrobeSpecies, double>> mutated, Patch patch, SimulationCache cache,
-        List<SelectionPressure> selectionPressures)
+    private static void PruneMutations(List<Mutant> addResultsTo, MicrobeSpecies baseSpecies,
+        List<Mutant> mutated, Patch patch, SimulationCache cache,
+        Stack<SelectionPressure> selectionPressures)
     {
         foreach (var potentialVariant in mutated)
         {
             var combinedScores = 0.0;
             foreach (var pastPressure in selectionPressures)
             {
-                var newScore = cache.GetPressureScore(pastPressure, patch, potentialVariant.Item1);
+                // Caching a score for a species very likely to be pruned wastes memory
+                var newScore = pastPressure.Score(potentialVariant.Species, patch, cache);
                 var oldScore = cache.GetPressureScore(pastPressure, patch, baseSpecies);
 
                 // Break if the mutation fails a new pressure check
@@ -265,19 +250,21 @@ public class ModifyExistingSpecies : IRunStep
                 combinedScores += pastPressure.WeightedComparedScores(newScore, oldScore);
             }
 
-            if (combinedScores > 0)
+            // Not pruning species that don't affect the score can inject more
+            // variety into the species generated
+            if (combinedScores >= 0)
             {
                 addResultsTo.Add(potentialVariant);
             }
         }
     }
 
-    private static void GetTopMutations(List<Tuple<MicrobeSpecies, double>> result,
-        List<Tuple<MicrobeSpecies, double>> mutated, int amount, MutationSorter sorter)
+    private static void GetTopMutations(List<Mutant> result,
+        List<Mutant> mutated, int amount, MutationSorter sorter)
     {
         result.Clear();
 
-        mutated.Sort(sorter);
+        mutated.Sort((a, b) => sorter.Compare(b, a));
 
         foreach (var tuple in mutated)
         {
@@ -289,55 +276,15 @@ public class ModifyExistingSpecies : IRunStep
 
     private void GetMutationsForSpecies(MicrobeSpecies microbeSpecies)
     {
-        // The traversal end up being re-calculated quite many times, but this way we avoid quite a lot of memory
-        // allocations
+        double totalMP = Constants.BASE_MUTATION_POINTS * worldSettings.AIMutationMultiplier;
 
-        foreach (var nonEmptyLeaf in nonEmptyLeafNodes)
-        {
-            if (nonEmptyLeaf.Occupant == microbeSpecies)
-                continue;
+        generateMutationsWorkingMemory.Clear();
+        pressureStack.Clear();
 
-            currentTraversal.Clear();
-            nonEmptyLeaf.BackTraversal(currentTraversal);
+        var inputSpecies = generateMutationsWorkingMemory.GetMutationsAtDepth(0);
+        inputSpecies.Add(new Mutant(microbeSpecies, totalMP));
 
-            temporaryPressures.Clear();
-            foreach (var traversalMiche in currentTraversal)
-            {
-                temporaryPressures.Add(traversalMiche.Pressure);
-            }
-
-            var variants = GenerateMutations(microbeSpecies,
-                worldSettings.AutoEvoConfiguration.MutationsPerSpecies, temporaryPressures);
-
-            foreach (var variant in variants)
-            {
-                mutationsToTry.Add(new Mutation(microbeSpecies, variant,
-                    RunResults.NewSpeciesType.SplitDueToMutation));
-            }
-        }
-
-        // This section of the code tries to mutate species into unfilled miches
-        // Not exactly realistic, but more diversity is more fun for the player
-        // TODO: Make this an auto-evo option
-        foreach (var emptyLeafNode in emptyLeafNodes)
-        {
-            currentTraversal.Clear();
-            emptyLeafNode.BackTraversal(currentTraversal);
-
-            temporaryPressures.Clear();
-            foreach (var traversalMiche in currentTraversal)
-            {
-                temporaryPressures.Add(traversalMiche.Pressure);
-            }
-
-            var variants = GenerateMutations(microbeSpecies,
-                worldSettings.AutoEvoConfiguration.MutationsPerSpecies, temporaryPressures);
-
-            foreach (var variant in variants)
-            {
-                mutationsToTry.Add(new Mutation(microbeSpecies, variant, RunResults.NewSpeciesType.FillNiche));
-            }
-        }
+        GenerateMutations(microbeSpecies, miche!, 1);
     }
 
     /// <summary>
@@ -370,89 +317,61 @@ public class ModifyExistingSpecies : IRunStep
     }
 
     /// <summary>
-    ///   Returns a new list of all possible species that might emerge in response to the provided pressures,
-    ///   as well as a copy of the original species.
+    ///   Adds a new list of all possible species that might emerge in response to the provided pressures,
+    ///   as well as a copy of the original species to <see cref="mutationsToTry"/>.
     /// </summary>
-    /// <returns>List of viable variants and the provided species</returns>
-    private List<MicrobeSpecies> GenerateMutations(MicrobeSpecies baseSpecies, int amount,
-        List<SelectionPressure> selectionPressures)
+    private void GenerateMutations(MicrobeSpecies baseSpecies, Miche currentMiche, int depth)
     {
-        double totalMP = 100 * worldSettings.AIMutationMultiplier;
+        var inputSpecies = generateMutationsWorkingMemory.GetMutationsAtDepth(depth - 1);
 
-        temporaryMutations1.Clear();
-        temporaryMutations1.Add(Tuple.Create(baseSpecies, totalMP));
-        var viableVariants = temporaryMutations1;
+        var outputSpecies = generateMutationsWorkingMemory.GetMutationsAtDepth(depth);
+        outputSpecies.Clear();
+        outputSpecies.AddRange(inputSpecies);
 
-        // Auto-evo assumes that the order mutations are applied doesn't matter when it actually can affect
-        // results quite a bit. Maybe they should have weights?
-        tempMutationStrategies.Clear();
+        pressureStack.Push(currentMiche.Pressure);
+        mutationSorter.Setup(baseSpecies, pressureStack);
 
-        // Collect and shuffle unique strategies
-        foreach (var selectionPressure in selectionPressures)
-        {
-            foreach (var mutation in selectionPressure.Mutations)
-            {
-                if (!tempMutationStrategies.Contains(mutation))
-                    tempMutationStrategies.Add(mutation);
-            }
-        }
-
+        var mutations = currentMiche.Pressure.Mutations;
         bool lawk = worldSettings.LAWK;
 
-        mutationSorter.Setup(baseSpecies, selectionPressures);
-
-        tempMutationStrategies.Shuffle(random);
-
-        foreach (var mutationStrategy in tempMutationStrategies)
+        foreach (var mutationStrategy in mutations)
         {
-            var inputSpecies = viableVariants;
+            temporaryMutations1.Clear();
+            temporaryMutations1.AddRange(outputSpecies);
 
             for (int i = 0; i < Constants.AUTO_EVO_MAX_MUTATION_RECURSIONS; ++i)
             {
                 temporaryMutations2.Clear();
 
-                foreach (var speciesTuple in inputSpecies)
+                foreach (var speciesTuple in temporaryMutations1)
                 {
                     // TODO: this seems like the longest part, so splitting this into multiple steps (maybe bundling
                     // up mutation strategies) would be good to have the auto-evo steps flow more smoothly
-                    var mutated = mutationStrategy.MutationsOf(speciesTuple.Item1, speciesTuple.Item2, lawk, random,
+                    var mutated = mutationStrategy.MutationsOf(speciesTuple.Species, speciesTuple.MP, lawk, random,
                         patch.Biome);
 
                     if (mutated != null)
                     {
-                        PruneMutations(temporaryMutations2, speciesTuple.Item1, mutated, patch, cache,
-                            selectionPressures);
+                        PruneMutations(temporaryMutations2, speciesTuple.Species, mutated, patch, cache,
+                            pressureStack);
                     }
                 }
 
-                // TODO: Make these a performance setting?
-                if (temporaryMutations2.Count > Constants.MAX_VARIANTS_PER_MUTATION)
-                {
-                    GetTopMutations(temporaryResultForTopMutations, temporaryMutations2,
-                        Constants.MAX_VARIANTS_PER_MUTATION / 2, mutationSorter);
+                temporaryMutations1.Clear();
+                PruneMutations(temporaryMutations1, baseSpecies, temporaryMutations2, patch, cache, pressureStack);
 
-                    // TODO: switch to a set of rotating buffers to avoid memory allocations here
-                    inputSpecies = temporaryResultForTopMutations.ToList();
-                }
-                else
-                {
-                    // TODO: switch to a set of rotating buffers to avoid memory allocations here
-                    inputSpecies = new List<Tuple<MicrobeSpecies, double>>();
-                    PruneMutations(inputSpecies, baseSpecies, temporaryMutations2, patch, cache, selectionPressures);
-                }
+                outputSpecies.AddRange(temporaryMutations1);
 
-                viableVariants.AddRange(inputSpecies);
-
-                if (viableVariants.Count > Constants.MAX_VARIANTS_IN_MUTATIONS)
+                if (outputSpecies.Count > Constants.MAX_VARIANTS_IN_MUTATIONS)
                 {
-                    GetTopMutations(temporaryResultForTopMutations, viableVariants,
+                    GetTopMutations(temporaryMutations2, outputSpecies,
                         Constants.MAX_VARIANTS_IN_MUTATIONS / 2, mutationSorter);
 
-                    // TODO: switch to a set of rotating buffers to avoid memory allocations here
-                    viableVariants = temporaryResultForTopMutations.ToList();
+                    outputSpecies.Clear();
+                    outputSpecies.AddRange(temporaryMutations2);
                 }
 
-                if (temporaryMutations2.Count == 0)
+                if (temporaryMutations1.Count == 0)
                     break;
 
                 if (!mutationStrategy.Repeatable)
@@ -460,34 +379,89 @@ public class ModifyExistingSpecies : IRunStep
             }
         }
 
-        lastGeneratedMutations.Clear();
-
-        GetTopMutations(temporaryResultForTopMutations, viableVariants, amount, mutationSorter);
-        foreach (var topMutation in temporaryResultForTopMutations)
+        if (currentMiche.IsLeafNode())
         {
-            lastGeneratedMutations.Add(topMutation.Item1);
-        }
+            lastGeneratedMutations.Clear();
 
-        return lastGeneratedMutations;
+            GetTopMutations(temporaryMutations1, outputSpecies, worldSettings.AutoEvoConfiguration.MutationsPerSpecies,
+                mutationSorter);
+            foreach (var topMutation in temporaryMutations1)
+            {
+                lastGeneratedMutations.Add(topMutation.Species);
+            }
+
+            var resultType = (currentMiche.Occupant == baseSpecies) ?
+                RunResults.NewSpeciesType.SplitDueToMutation :
+                RunResults.NewSpeciesType.FillNiche;
+
+            foreach (var species in lastGeneratedMutations)
+            {
+                mutationsToTry.Add(new Mutation(baseSpecies, species, resultType));
+            }
+        }
+        else
+        {
+            // Prune out any results that don't improve this branch
+            temporaryMutations1.Clear();
+            PruneMutations(temporaryMutations1, baseSpecies, outputSpecies, patch, cache, pressureStack);
+            outputSpecies.Clear();
+            outputSpecies.AddRange(temporaryMutations1);
+
+            if (outputSpecies.Count != 0)
+            {
+                foreach (var child in currentMiche.Children)
+                {
+                    GenerateMutations(baseSpecies, child, depth + 1);
+                }
+            }
+
+            pressureStack.Pop();
+        }
     }
 
     private record struct Mutation(MicrobeSpecies ParentSpecies, MicrobeSpecies MutatedSpecies,
         RunResults.NewSpeciesType AddType);
 
-    private class MutationSorter(Patch patch, SimulationCache cache) : IComparer<Tuple<MicrobeSpecies, double>>
+    /// <summary>
+    ///   Working memory used to reduce memory allocations in <see cref="GenerateMutations"/>.
+    /// </summary>
+    private class GenerateMutationsWorkingMemory
+    {
+        private readonly List<List<Mutant>> currentSpecies = new();
+
+        public List<Mutant> GetMutationsAtDepth(int depth)
+        {
+            while (currentSpecies.Count <= depth)
+                currentSpecies.Add(new List<Mutant>());
+
+            var result = currentSpecies[depth];
+
+            return result;
+        }
+
+        public void Clear()
+        {
+            foreach (var speciesList in currentSpecies)
+            {
+                speciesList.Clear();
+            }
+        }
+    }
+
+    private class MutationSorter(Patch patch, SimulationCache cache) : IComparer<Mutant>
     {
         // This isn't the cleanest, but this class is just optimized for performance, so if someone forgets to set up
         // this, then bad things will happen
-        private List<SelectionPressure> pressures = null!;
+        private IEnumerable<SelectionPressure> pressures = null!;
         private MicrobeSpecies baseSpecies = null!;
 
-        public void Setup(MicrobeSpecies species, List<SelectionPressure> selectionPressures)
+        public void Setup(MicrobeSpecies species, IEnumerable<SelectionPressure> selectionPressures)
         {
             pressures = selectionPressures;
             baseSpecies = species;
         }
 
-        public int Compare(Tuple<MicrobeSpecies, double>? x, Tuple<MicrobeSpecies, double>? y)
+        public int Compare(Mutant? x, Mutant? y)
         {
             if (ReferenceEquals(x, y))
                 return 0;
@@ -501,10 +475,10 @@ public class ModifyExistingSpecies : IRunStep
 
             foreach (var pressure in pressures)
             {
-                strengthX += cache.GetPressureScore(pressure, patch, x.Item1) /
+                strengthX += cache.GetPressureScore(pressure, patch, x.Species) /
                     cache.GetPressureScore(pressure, patch, baseSpecies) * pressure.Weight;
 
-                strengthY += cache.GetPressureScore(pressure, patch, y.Item1) /
+                strengthY += cache.GetPressureScore(pressure, patch, y.Species) /
                     cache.GetPressureScore(pressure, patch, baseSpecies) * pressure.Weight;
             }
 
@@ -514,13 +488,11 @@ public class ModifyExistingSpecies : IRunStep
             if (strengthY > strengthX)
                 return -1;
 
-            // Second float in tuple is apparently compared in ascending order
-            // TODO: switch to named tuples to figure out what is going on here
-            if (x.Item2 > y.Item2)
-                return -1;
-
-            if (x.Item2 < y.Item2)
+            if (x.MP > y.MP)
                 return 1;
+
+            if (x.MP < y.MP)
+                return -1;
 
             return 0;
         }

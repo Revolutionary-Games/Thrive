@@ -1216,7 +1216,7 @@ public static class Constants
 
     // Mutation Variables
     public const int MAX_VARIANTS_PER_MUTATION = 50;
-    public const int MAX_VARIANTS_IN_MUTATIONS = 100;
+    public const int MAX_VARIANTS_IN_MUTATIONS = 250;
     public const float MUTATION_BACTERIA_TO_EUKARYOTE = 0.01f;
     public const float MUTATION_CREATION_RATE = 0.25f;
     public const float MUTATION_NEW_ORGANELLE_CHANCE = 0.25f;
@@ -1308,8 +1308,8 @@ public static class Constants
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.4f;
 
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
-    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 4500;
-    public const float AUTO_EVO_PILUS_DEFENSE_SCORE = 3000;
+    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 5000;
+    public const float AUTO_EVO_PILUS_DEFENSE_SCORE = 2000;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 90000;
     public const float AUTO_EVO_TOXIN_ENGULFMENT_DEFENSE_MODIFIER = 0.007f;
     public const float AUTO_EVO_TOXIN_AFFECTED_PROPORTION_SCALING = 0.00008f;
