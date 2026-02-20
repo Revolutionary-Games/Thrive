@@ -180,7 +180,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         instance.BaseRotationSpeed = reader.ReadFloat();
 
         if (version > 1)
-            instance.BaseRotationSpeed = reader.ReadFloat();
+            instance.SpecializationBonus = reader.ReadFloat();
 
         return instance;
     }
