@@ -107,7 +107,7 @@ alignment = 1
 
 [node name="ModifierLabel" type="Label" parent="Temperature/HBoxContainer2/Modifier" unique_id=844561313]
 layout_mode = 2
-text = "MODIFIER"
+text = "VALUE_MODIFIER"
 label_settings = ExtResource("11_5y3m2")
 
 [node name="ModifierValue" type="Label" parent="Temperature/HBoxContainer2/Modifier" unique_id=286277501]
@@ -162,6 +162,7 @@ relatedSlider = NodePath("../TemperatureSlider")
 [node name="TemperatureSlider" type="HSlider" parent="Temperature/RangeDisplayContainer/VBoxContainer" unique_id=544048993]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_next = NodePath("../../../HBoxContainer3/TemperatureRange")
 theme_override_constants/center_grabber = 1
 theme_override_styles/slider = SubResource("StyleBoxEmpty_3r1ho")
 min_value = -10.0
@@ -186,6 +187,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+focus_next = NodePath("../../../Pressure/RangeDisplayContainer/VBoxContainer/PressureSlider")
+focus_previous = NodePath("../../RangeDisplayContainer/VBoxContainer/TemperatureSlider")
 mouse_filter = 1
 max_value = 50.0
 value = 10.0
@@ -252,7 +255,7 @@ alignment = 1
 
 [node name="ModifierLabel" type="Label" parent="Pressure/HBoxContainer2/Modifier" unique_id=814653716]
 layout_mode = 2
-text = "MODIFIER"
+text = "VALUE_MODIFIER"
 label_settings = ExtResource("11_5y3m2")
 
 [node name="ModifierValue" type="Label" parent="Pressure/HBoxContainer2/Modifier" unique_id=1411367675]
@@ -306,9 +309,12 @@ relatedSlider = NodePath("../PressureSlider")
 [node name="PressureSlider" type="HSlider" parent="Pressure/RangeDisplayContainer/VBoxContainer" unique_id=691339473]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_next = NodePath("../../../HBoxContainer4/PressureRange")
+focus_previous = NodePath("../../../../Temperature/HBoxContainer3/TemperatureRange")
 theme_override_constants/center_grabber = 1
 theme_override_styles/slider = SubResource("StyleBoxEmpty_n6u17")
 max_value = 80000000.0
+step = 200000.0
 value = 40000000.0
 
 [node name="Spacer2" type="Control" parent="Pressure/RangeDisplayContainer" unique_id=1570659681]
@@ -331,10 +337,12 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+focus_next = NodePath("../../../Oxygen/RangeDisplayContainer/VBoxContainer/OxygenResistanceSlider")
+focus_previous = NodePath("../../RangeDisplayContainer/VBoxContainer/PressureSlider")
 mouse_filter = 1
 min_value = 200000.0
 max_value = 8000000.0
-step = 100.0
+step = 200000.0
 value = 200000.0
 rounded = true
 scrollable = false
@@ -399,7 +407,7 @@ alignment = 1
 
 [node name="ModifierLabel" type="Label" parent="Oxygen/HBoxContainer2/Modifier" unique_id=630875760]
 layout_mode = 2
-text = "OFFSET"
+text = "VALUE_OFFSET"
 label_settings = ExtResource("11_5y3m2")
 
 [node name="ModifierValue" type="Label" parent="Oxygen/HBoxContainer2/Modifier" unique_id=2066518976]
@@ -414,7 +422,7 @@ alignment = 1
 
 [node name="TotalLabel" type="Label" parent="Oxygen/HBoxContainer2/Total" unique_id=1710113848]
 layout_mode = 2
-text = "TOTAL"
+text = "VALUE_TOTAL"
 label_settings = ExtResource("11_5y3m2")
 
 [node name="TotalValue" type="Label" parent="Oxygen/HBoxContainer2/Total" unique_id=1665914544]
@@ -449,6 +457,8 @@ relatedSlider = NodePath("../OxygenResistanceSlider")
 [node name="OxygenResistanceSlider" type="HSlider" parent="Oxygen/RangeDisplayContainer/VBoxContainer" unique_id=967114038]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_next = NodePath("../../../../UV/RangeDisplayContainer/VBoxContainer/UVResistanceSlider")
+focus_previous = NodePath("../../../../Pressure/HBoxContainer4/PressureRange")
 theme_override_constants/center_grabber = 1
 theme_override_styles/slider = SubResource("StyleBoxEmpty_evsrs")
 max_value = 1.0
@@ -500,7 +510,7 @@ alignment = 1
 
 [node name="ModiferLabel" type="Label" parent="UV/HBoxContainer2/Modifier" unique_id=873935643]
 layout_mode = 2
-text = "OFFSET"
+text = "VALUE_OFFSET"
 label_settings = ExtResource("11_5y3m2")
 
 [node name="ModiferValue" type="Label" parent="UV/HBoxContainer2/Modifier" unique_id=141061237]
@@ -515,7 +525,7 @@ alignment = 1
 
 [node name="TotalLabel" type="Label" parent="UV/HBoxContainer2/Total" unique_id=363816910]
 layout_mode = 2
-text = "TOTAL"
+text = "VALUE_TOTAL"
 label_settings = ExtResource("11_5y3m2")
 
 [node name="TotalValue" type="Label" parent="UV/HBoxContainer2/Total" unique_id=288202943]
@@ -550,6 +560,7 @@ relatedSlider = NodePath("../UVResistanceSlider")
 [node name="UVResistanceSlider" type="HSlider" parent="UV/RangeDisplayContainer/VBoxContainer" unique_id=142203687]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_previous = NodePath("../../../../Oxygen/RangeDisplayContainer/VBoxContainer/OxygenResistanceSlider")
 theme_override_constants/center_grabber = 1
 theme_override_styles/slider = SubResource("StyleBoxEmpty_jstjb")
 max_value = 1.0

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-18 21:30+0100\n"
+"POT-Creation-Date: 2026-02-20 19:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5595,11 +5595,6 @@ msgstr ""
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:110
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:255
-msgid "MODIFIER"
-msgstr ""
-
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:264
 msgid "MODIFY"
 msgstr ""
@@ -6366,11 +6361,6 @@ msgstr ""
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:402
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:503
-msgid "OFFSET"
-msgstr ""
-
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:16
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:80
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:92
@@ -6807,7 +6797,7 @@ msgstr ""
 #: ../src/gui_common/menus/PlanetStatistics.cs:113
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:568
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:101
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:734
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:738
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.cs:98
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:172
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:259
@@ -8874,11 +8864,6 @@ msgstr ""
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:417
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:518
-msgid "TOTAL"
-msgstr ""
-
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1080
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr ""
@@ -9531,9 +9516,24 @@ msgstr ""
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr ""
 
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:110
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:255
+msgid "VALUE_MODIFIER"
+msgstr ""
+
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:402
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:503
+msgid "VALUE_OFFSET"
+msgstr ""
+
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:417
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:518
+msgid "VALUE_TOTAL"
+msgstr ""
+
 #: ../src/gui_common/CompoundAmount.cs:311
 #: ../src/gui_common/menus/PlanetStatistics.cs:114
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:731
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:735
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:514
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:590
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:374
@@ -9544,11 +9544,11 @@ msgstr ""
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:732
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:736
 msgid "VALUE_WITH_UNIT_PLUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:733
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:737
 msgid "VALUE_WITH_UNIT_PLUS_MINUS"
 msgstr ""
 
