@@ -38,9 +38,8 @@ public static class NativeInterop
 
     private static int version = -1;
 
-    private static bool printedDistributableWarning;
-
 #if DEBUG
+    private static bool printedDistributableWarning;
     private static bool printedSteamLibName;
 #endif
 

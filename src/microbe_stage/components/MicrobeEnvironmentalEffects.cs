@@ -4,6 +4,10 @@ using System;
 using System.Diagnostics;
 using SharedBase.Archive;
 
+#if !DEBUG
+using Godot;
+#endif
+
 /// <summary>
 ///   Has most of the variables controlling environmental effects on gameplay microbes
 /// </summary>
