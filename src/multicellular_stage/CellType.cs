@@ -140,9 +140,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         CalculateRotationSpeed();
 
         // We don't have another on-edit callback, so we do this update here
-        SpecializationBonus =
-            MicrobeInternalCalculations.CalculateSpecializationBonus(ModifiableOrganelles,
-                new Dictionary<OrganelleDefinition, int>());
+        CalculateSpecialization();
 
         return changes;
     }
@@ -186,6 +184,13 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         }
 
         return false;
+    }
+
+    public void CalculateSpecialization()
+    {
+        SpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(ModifiableOrganelles,
+                new Dictionary<OrganelleDefinition, int>());
     }
 
     public void SetupWorldEntities(IWorldSimulation worldSimulation)

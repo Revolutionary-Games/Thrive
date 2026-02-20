@@ -519,6 +519,9 @@ public partial class CellBodyPlanEditorComponent :
 
     public void OnCellTypeEdited(CellType changedType)
     {
+        // Make sure specialization is calculated
+        changedType.CalculateSpecialization();
+
         // Update all cell graphics holders
         forceUpdateCellGraphics = true;
 

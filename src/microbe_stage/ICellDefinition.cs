@@ -123,8 +123,14 @@ public static class GeneralCellPropertiesHelpers
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
 
-        new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), definition, workMemory1,
-            workMemory2).SetupWorldEntities(worldSimulation);
+        var species = new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), definition,
+            workMemory1, workMemory2)
+        {
+            // For visualization the bonus doesn't matter, but we need to set a valid value
+            SpecializationBonus = 1,
+        };
+
+        species.SetupWorldEntities(worldSimulation);
     }
 
     public static Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
