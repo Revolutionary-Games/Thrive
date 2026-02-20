@@ -2221,11 +2221,16 @@ public partial class CellEditorComponent :
 
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
 
+        var specialization =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles, tempMemory3);
+
+        var speedModifier = tolerances.ProcessSpeedModifier * specialization;
+
         foreach (var process in processes)
         {
             // This requires the inputs to be in the biome to give a realistic prediction of how fast the processes
             // *might* run once swimming around in the stage.
-            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, tolerances.ProcessSpeedModifier,
+            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, speedModifier,
                 biome, CompoundAmountType.Current, true);
 
             // If produces more ATP than consumes, lower down production for inputs and for outputs,
