@@ -557,15 +557,13 @@ public partial class Jukebox : Node
 
         if (random.NextFloat() <= Constants.CONTEXTUAL_ONLY_MUSIC_CHANCE)
         {
-            var contextMusicOnly = list.GetTracksForContexts(activeContexts).Where(c => c.ExclusiveToContexts != null)
+            var contextMusicOnly = list.GetTracksForContexts(activeContexts)
+                .Where(c => c.ExclusiveToContexts != null && !c.PlayedOnce)
                 .ToArray();
 
             if (contextMusicOnly.Length > 0)
             {
                 tracks = contextMusicOnly;
-
-                // TODO: it would be nice to ensure that contextual track doesn't cause the same track to play in a row
-                // Currently it is way more likely as most contexts only have one track for them.
             }
         }
 
