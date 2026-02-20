@@ -144,7 +144,7 @@ public partial class ExtinctionBox : CustomWindow
             continueButton.Visible = true;
             continueText.ExtendedBbcode = Localization.Translate("CONTINUE_AS_SPECIES")
                 .FormatSafe(ShowContinueAs.FormattedNameBbCode,
-                    StringUtils.ThreeDigitFormat(ShowContinueAs.Population));
+                    $"{ShowContinueAs.Population} {Constants.MICROBE_POPULATION_SUFFIX}");
             continueText.Visible = true;
         }
         else
