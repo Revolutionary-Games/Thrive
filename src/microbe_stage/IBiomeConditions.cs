@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 /// <summary>
 ///   Conditions of a microbe biome environment
@@ -30,4 +31,32 @@ public interface IBiomeConditions
     /// <param name="compound">Compound type to check</param>
     /// <returns>True if the compound varies</returns>
     public bool IsVaryingCompound(Compound compound);
+}
+
+public static class BiomeConditionsHelpers
+{
+    extension(IBiomeConditions conditions)
+    {
+        public float CalculateOxygenResistanceFactor()
+        {
+            // TODO: maybe would be nicer to have some kind of exponential or other non-linear relationship here?
+            var oxygen = Math.Clamp(conditions.GetCompound(Compound.Oxygen, CompoundAmountType.Biome).Ambient, 0, 1);
+
+            if (oxygen <= Constants.TOLERANCE_OXYGEN_APPLY_AFTER)
+                return 0;
+
+            return oxygen;
+        }
+
+        public float CalculateUVFactor()
+        {
+            // Assume it is directly related to sunlight
+            var light = Math.Clamp(conditions.GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient, 0, 1);
+
+            if (light <= Constants.TOLERANCE_UV_APPLY_AFTER)
+                return 0;
+
+            return light;
+        }
+    }
 }

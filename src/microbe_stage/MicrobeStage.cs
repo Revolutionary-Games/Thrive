@@ -897,10 +897,20 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             ref var earlySpeciesType = ref Player.Get<MulticellularSpeciesMember>();
 
             // TODO: multicellular tolerances
+            var resolvedTolerances = new ResolvedMicrobeTolerances
+            {
+                OsmoregulationModifier = 1,
+                HealthModifier = 1,
+                ProcessSpeedModifier = 1,
+            };
 
             // Allow updating the first cell type to reproduce (reproduction order changed)
             earlySpeciesType.MulticellularCellType =
                 earlySpeciesType.Species.ModifiableGameplayCells[0].ModifiableCellType;
+
+            environmentalEffects.ApplyEffects(resolvedTolerances,
+                earlySpeciesType.MulticellularCellType.SpecializationBonus *
+                earlySpeciesType.Species.GetAdjacencySpecializationBonus(0), ref bioProcesses);
 
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
                 earlySpeciesType.MulticellularCellType, earlySpeciesType.Species, WorldSimulation, workData1,
@@ -913,7 +923,8 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
                 MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(species.Species, CurrentBiome));
 
-            environmentalEffects.ApplyEffects(resolvedTolerances, ref bioProcesses);
+            environmentalEffects.ApplyEffects(resolvedTolerances, species.Species.SpecializationBonus,
+                ref bioProcesses);
 
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
                 species.Species, species.Species, WorldSimulation,

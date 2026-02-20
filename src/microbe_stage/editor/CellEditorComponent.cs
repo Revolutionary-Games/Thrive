@@ -186,6 +186,7 @@ public partial class CellEditorComponent :
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
     private List<TweakedProcess> tempAllProcesses = new();
+    private Dictionary<OrganelleDefinition, int> tempMemory3 = new();
 
     private string? bestPatchName;
 
@@ -1316,9 +1317,13 @@ public partial class CellEditorComponent :
     {
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
 
+        // We probably do not want to use actual current bonuses here, so we use 1 as the specialization bonus
+        // As it might be confusing for the tooltips to change based on what has been placed already?
+        var specialization = 1;
+
         var result =
             ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, Editor.CurrentPatch.Biome,
-                CalculateLatestTolerances(), CompoundAmountType.Current);
+                CalculateLatestTolerances(), specialization, CompoundAmountType.Current);
 
         UpdateOrganelleEfficiencies(result);
     }
@@ -1802,6 +1807,9 @@ public partial class CellEditorComponent :
         {
             // Force large normal size (instead of showing bacteria as a smaller scale than the editor hexes)
             IsBacteria = false,
+
+            // Doesn't matter for visualization, but we want to set a valid value
+            SpecializationBonus = 1,
         };
 
         previewMicrobe = previewSimulation.CreateVisualisationMicrobe(previewMicrobeSpecies);
@@ -2137,8 +2145,11 @@ public partial class CellEditorComponent :
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organelles);
 
-        ProcessSystem.ComputeEnergyBalanceFull(organelles, conditionsData, CalculateLatestTolerances(), membrane,
-            maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3);
+
+        var tolerances = CalculateLatestTolerances();
+        ProcessSystem.ComputeEnergyBalanceFull(organelles, conditionsData, tolerances, specialization,
+            membrane, maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
             organismStatisticsPanel.CompoundAmountType, null, energyBalanceInfo);
 
         organismStatisticsPanel.UpdateEnergyBalance(energyBalanceInfo);
@@ -2156,14 +2167,14 @@ public partial class CellEditorComponent :
         var compoundBalanceData =
             CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
                 organismStatisticsPanel.CompoundAmountType, organelles, conditionsData, energyBalanceInfo,
-                ref specificStorages, ref nominalStorage);
+                ref specificStorages, ref nominalStorage, tolerances, specialization);
 
         UpdateCompoundBalances(compoundBalanceData);
 
         // TODO: should this skip on being affected by the resource limited?
         var nightBalanceData = CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
             CompoundAmountType.Minimum, organelles, conditionsData, energyBalanceInfo, ref specificStorages,
-            ref nominalStorage);
+            ref nominalStorage, tolerances, specialization);
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
@@ -2174,17 +2185,17 @@ public partial class CellEditorComponent :
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
         CompoundAmountType amountType, IReadOnlyList<OrganelleTemplate> organelles, IBiomeConditions biome,
         EnergyBalanceInfoFull energyBalance, ref Dictionary<Compound, float>? specificStorages,
-        ref float nominalStorage)
+        ref float nominalStorage, in ResolvedMicrobeTolerances tolerances, float specializationBonus)
     {
         var compoundBalanceData = new Dictionary<Compound, CompoundBalance>();
         switch (calculationType)
         {
             case BalanceDisplayType.MaxSpeed:
-                ProcessSystem.ComputeCompoundBalance(organelles, biome, CalculateLatestTolerances(), amountType, true,
-                    compoundBalanceData);
+                ProcessSystem.ComputeCompoundBalance(organelles, biome, tolerances, specializationBonus, amountType,
+                    true, compoundBalanceData);
                 break;
             case BalanceDisplayType.EnergyEquilibrium:
-                ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome, CalculateLatestTolerances(),
+                ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome, tolerances, specializationBonus,
                     amountType, energyBalance, compoundBalanceData);
                 break;
             default:
@@ -2210,11 +2221,16 @@ public partial class CellEditorComponent :
 
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
 
+        var specialization =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles, tempMemory3);
+
+        var speedModifier = tolerances.ProcessSpeedModifier * specialization;
+
         foreach (var process in processes)
         {
             // This requires the inputs to be in the biome to give a realistic prediction of how fast the processes
             // *might* run once swimming around in the stage.
-            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, tolerances.ProcessSpeedModifier,
+            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, speedModifier,
                 biome, CompoundAmountType.Current, true);
 
             // If produces more ATP than consumes, lower down production for inputs and for outputs,
@@ -2526,6 +2542,8 @@ public partial class CellEditorComponent :
         UpdateOrganelleUnlockTooltips(false);
 
         UpdateGrowthOrderUI();
+
+        UpdateSpecializationDisplay();
     }
 
     /// <summary>

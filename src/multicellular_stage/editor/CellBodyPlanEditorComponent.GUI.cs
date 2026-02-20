@@ -51,9 +51,15 @@ public partial class CellBodyPlanEditorComponent
 
             ProcessSystem.ComputeActiveProcessList(cellType.Key.ModifiableOrganelles, ref newProcesses);
 
+            var specialization =
+                MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.Key.ModifiableOrganelles,
+                    tempMemory3);
+
             for (int i = 0; i < newProcesses.Count; ++i)
             {
-                newProcesses[i] = new TweakedProcess(newProcesses[i].Process, newProcesses[i].Rate * cellType.Value)
+                // Apply specialization here to approximate it in this editor
+                newProcesses[i] = new TweakedProcess(newProcesses[i].Process,
+                    newProcesses[i].Rate * cellType.Value * specialization)
                 {
                     SpeedMultiplier = newProcesses[i].SpeedMultiplier,
                 };
@@ -76,6 +82,7 @@ public partial class CellBodyPlanEditorComponent
         {
             // This requires the inputs to be in the biome to give a realistic prediction of how fast the processes
             // *might* run once swimming around in the stage.
+            // This uses just environmental factor as we put the specialization into the above loop.
             var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process,
                 environmentalTolerances.ProcessSpeedModifier, biome, CompoundAmountType.Current, true);
 

@@ -117,6 +117,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private List<IReadOnlyOrganelleTemplate> tempAllOrganelles = new();
     private List<TweakedProcess> tempAllProcesses = new();
+    private Dictionary<OrganelleDefinition, int> tempMemory3 = new();
 
     /// <summary>
     ///   True, when visuals of already placed things need to be updated
@@ -518,6 +519,9 @@ public partial class CellBodyPlanEditorComponent :
 
     public void OnCellTypeEdited(CellType changedType)
     {
+        // Make sure specialization is calculated
+        changedType.CalculateSpecialization();
+
         // Update all cell graphics holders
         forceUpdateCellGraphics = true;
 
@@ -1142,15 +1146,18 @@ public partial class CellBodyPlanEditorComponent :
         var maximumMovementDirection =
             MicrobeInternalCalculations.MaximumSpeedDirection(cellType.ModifiableOrganelles);
 
+        var specialization =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.ModifiableOrganelles, tempMemory3);
+
         ProcessSystem.ComputeEnergyBalanceFull(cellType.ModifiableOrganelles, Editor.CurrentPatch.Biome,
-            environmentalTolerances,
+            environmentalTolerances, specialization,
             cellType.MembraneType,
             maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
             organismStatisticsPanel.CompoundAmountType, null, energyBalanceInfo);
 
         AddCellTypeCompoundBalance(balances, cellType.ModifiableOrganelles, organismStatisticsPanel.BalanceDisplayType,
             organismStatisticsPanel.CompoundAmountType, Editor.CurrentPatch.Biome, energyBalanceInfo,
-            environmentalTolerances);
+            environmentalTolerances, specialization);
 
         tooltip.DisplayName = cellType.CellTypeName;
         tooltip.MutationPointCost = Math.Min(cellType.MPCost * Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier,
@@ -1327,8 +1334,13 @@ public partial class CellBodyPlanEditorComponent :
         // TODO: improve performance by calculating the balance per cell type
         foreach (var hex in cells)
         {
-            ProcessSystem.ComputeEnergyBalanceFull(hex.Data!.ModifiableOrganelles, conditionsData,
-                environmentalTolerances, hex.Data.MembraneType,
+            var specialization =
+                MicrobeInternalCalculations.CalculateSpecializationBonus(hex.Data!.ModifiableOrganelles, tempMemory3);
+
+            // TODO: adjacency bonuses from body plan (GetAdjacencySpecializationBonus)
+
+            ProcessSystem.ComputeEnergyBalanceFull(hex.Data.ModifiableOrganelles, conditionsData,
+                environmentalTolerances, specialization, hex.Data.MembraneType,
                 maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
                 organismStatisticsPanel.CompoundAmountType, null, energyBalanceInfo);
         }
@@ -1375,9 +1387,14 @@ public partial class CellBodyPlanEditorComponent :
         Dictionary<Compound, CompoundBalance> compoundBalanceData = new();
         foreach (var cell in cells)
         {
-            AddCellTypeCompoundBalance(compoundBalanceData,
-                GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType).ModifiableOrganelles, calculationType,
-                amountType, biome, energyBalance, environmentalTolerances);
+            var organelles = GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType).ModifiableOrganelles;
+            var specialization =
+                MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3);
+
+            // TODO: efficiency from cell layout positions (GetAdjacencySpecializationBonus)
+
+            AddCellTypeCompoundBalance(compoundBalanceData, organelles, calculationType,
+                amountType, biome, energyBalance, environmentalTolerances, specialization);
         }
 
         specificStorages ??= CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells.Select(o => o.Data!),
@@ -1388,17 +1405,18 @@ public partial class CellBodyPlanEditorComponent :
 
     private void AddCellTypeCompoundBalance(Dictionary<Compound, CompoundBalance> compoundBalanceData,
         IEnumerable<OrganelleTemplate> organelles, BalanceDisplayType calculationType, CompoundAmountType amountType,
-        IBiomeConditions biome, EnergyBalanceInfoFull energyBalance, ResolvedMicrobeTolerances tolerances)
+        IBiomeConditions biome, EnergyBalanceInfoFull energyBalance, ResolvedMicrobeTolerances tolerances,
+        float specializationFactor)
     {
         switch (calculationType)
         {
             case BalanceDisplayType.MaxSpeed:
-                ProcessSystem.ComputeCompoundBalance(organelles, biome, tolerances,
+                ProcessSystem.ComputeCompoundBalance(organelles, biome, tolerances, specializationFactor,
                     amountType, true, compoundBalanceData);
                 break;
             case BalanceDisplayType.EnergyEquilibrium:
                 ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
-                    tolerances, amountType, energyBalance, compoundBalanceData);
+                    tolerances, specializationFactor, amountType, energyBalance, compoundBalanceData);
                 break;
             default:
                 GD.PrintErr("Unknown compound balance type: ", organismStatisticsPanel.BalanceDisplayType);

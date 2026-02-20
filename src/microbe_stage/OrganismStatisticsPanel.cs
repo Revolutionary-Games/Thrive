@@ -11,6 +11,7 @@ using Godot;
 public partial class OrganismStatisticsPanel : PanelContainer
 {
     [Export]
+    [ExportCategory("Configuration")]
     public bool IsMulticellularEditor;
 
     [Export]
@@ -57,9 +58,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
 #pragma warning disable CA2213
 
     [Export]
-    private Label titleLabel = null!;
-
-    [Export]
+    [ExportCategory("Internal")]
     private CellStatsIndicator sizeLabel = null!;
 
     [Export]
@@ -132,6 +131,16 @@ public partial class OrganismStatisticsPanel : PanelContainer
     private Button processListButton = null!;
 
     [Export]
+    private Label titleLabel = null!;
+
+    [Export]
+    private Label specializationValueLabel = null!;
+
+    [Export]
+    private Label specializationTitleLabel = null!;
+
+    [Export]
+    [ExportCategory("Other Editor Parts")]
     private ProcessList processList = null!;
 
     [Export]
@@ -186,8 +195,9 @@ public partial class OrganismStatisticsPanel : PanelContainer
         if (energyBalanceInfo != null)
         {
             UpdateEnergyBalance(energyBalanceInfo);
-            UpdateStageDependentText();
         }
+
+        UpdateStageDependentText();
     }
 
     public void UpdateStatVisibility()
@@ -207,6 +217,30 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
         ammoniaCostLabel.Visible = ShowOrganellesCostStat;
         phosphatesCostLabel.Visible = ShowOrganellesCostStat;
+    }
+
+    public void UpdateSpecialization(float specializationFactor, int maxOrganelles, string mostCommonOrganelle)
+    {
+        // Show the bonus as the amount that is above 1 in the factor as a multiplier of 1 does nothing and a bigger
+        // value helps
+        var bonus = Math.Round((specializationFactor - 1) * 100, 1);
+
+        var bonusStr = bonus.ToString(CultureInfo.CurrentCulture);
+        if (bonus >= 1)
+        {
+            specializationValueLabel.Text = "+" + Localization.Translate("PERCENTAGE_VALUE").FormatSafe(bonusStr);
+        }
+        else
+        {
+            specializationValueLabel.Text = Localization.Translate("PERCENTAGE_VALUE").FormatSafe(bonusStr);
+        }
+
+        var tooltip = Localization.Translate("CELL_SPECIALIZATION_TOOLTIP").FormatSafe(bonusStr, maxOrganelles,
+            mostCommonOrganelle, Constants.CELL_SPECIALIZATION_APPLIES_AFTER_SIZE,
+            Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT);
+
+        specializationValueLabel.TooltipText = tooltip;
+        specializationTitleLabel.TooltipText = tooltip;
     }
 
     public void SendObjectsToTutorials(TutorialState tutorial, MicrobeEditorTutorialGUI gui)

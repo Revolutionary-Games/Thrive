@@ -8,9 +8,7 @@ using SharedBase.Archive;
 /// </summary>
 public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable, IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 2;
-
-    private IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate>? readonlyLayout;
+    public const ushort SERIALIZATION_VERSION = 3;
 
     public CellType(OrganelleLayout<OrganelleTemplate> organelles, MembraneType membraneType)
     {
@@ -48,7 +46,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
     }
 
     // TODO: avoid this adapter object allocation
-    public IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> Organelles => readonlyLayout ??=
+    public IReadOnlyOrganelleLayout<IReadOnlyOrganelleTemplate> Organelles => field ??=
         new ReadonlyOrganelleLayoutAdapter<IReadOnlyOrganelleTemplate, OrganelleTemplate>(ModifiableOrganelles);
 
     public OrganelleLayout<OrganelleTemplate> ModifiableOrganelles { get; }
@@ -57,6 +55,11 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
     public int MPCost { get; set; } = 15;
 
     public string? SplitFromTypeName { get; set; }
+
+    /// <summary>
+    ///   Cached specialization bonus for this cell type.
+    /// </summary>
+    public float SpecializationBonus { get; set; }
 
     public MembraneType MembraneType { get; set; }
     public float MembraneRigidity { get; set; }
@@ -101,6 +104,16 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         if (version > 1)
             result.SplitFromTypeName = reader.ReadString();
 
+        if (version > 2)
+        {
+            result.SpecializationBonus = reader.ReadFloat();
+        }
+        else
+        {
+            // Just like microbes, older cell types will get eventually updated by something to have a valid value
+            result.SpecializationBonus = 1;
+        }
+
         return result;
     }
 
@@ -117,12 +130,18 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         writer.Write(BaseRotationSpeed);
 
         writer.Write(SplitFromTypeName);
+
+        writer.Write(SpecializationBonus);
     }
 
     public bool RepositionToOrigin()
     {
         var changes = ModifiableOrganelles.RepositionToOrigin();
         CalculateRotationSpeed();
+
+        // We don't have another on-edit callback, so we do this update here
+        CalculateSpecialization();
+
         return changes;
     }
 
@@ -165,6 +184,13 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         }
 
         return false;
+    }
+
+    public void CalculateSpecialization()
+    {
+        SpecializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(ModifiableOrganelles,
+                new Dictionary<OrganelleDefinition, int>());
     }
 
     public void SetupWorldEntities(IWorldSimulation worldSimulation)
@@ -214,6 +240,8 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
         MembraneType = otherType.MembraneType;
         Colour = otherType.Colour;
         MembraneRigidity = otherType.MembraneRigidity;
+
+        SpecializationBonus = otherType.SpecializationBonus;
     }
 
     public object Clone()
@@ -225,6 +253,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
             MembraneRigidity = MembraneRigidity,
             Colour = Colour,
             IsBacteria = IsBacteria,
+            SpecializationBonus = SpecializationBonus,
         };
 
         var workMemory1 = new List<Hex>();

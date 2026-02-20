@@ -1,6 +1,12 @@
 ﻿namespace Components;
 
+using System;
+using System.Diagnostics;
 using SharedBase.Archive;
+
+#if !DEBUG
+using Godot;
+#endif
 
 /// <summary>
 ///   Has most of the variables controlling environmental effects on gameplay microbes
@@ -16,7 +22,7 @@ public struct MicrobeEnvironmentalEffects : IArchivableComponent
 
     /// <summary>
     ///   This is a copy of <see cref="BioProcesses.OverallSpeedModifier"/> to be able to transfer this data along
-    ///   easily
+    ///   easily. Note that this can have specialization applied on top, so isn't the raw environmental speed modifier.
     /// </summary>
     public float ProcessSpeedModifier;
 
@@ -48,19 +54,36 @@ public static class MicrobeEnvironmentalEffectsHelpers
 
     /// <summary>
     ///   Applies data from calculated tolerance data to components. Note that this doesn't refresh maximum health in
-    ///   case that changes (if it has been initialised already)
+    ///   case that changes (if it has been initialized already). Also applies specialization bonus as these both want
+    ///   to write to the same thing. So that's why this needs that info.
     /// </summary>
     /// <param name="effects">Where to put the primary data on the effects</param>
     /// <param name="toleRanceData">Resolved tolerance data</param>
+    /// <param name="specializationFactor">
+    ///   Specialization factor for this cell. <see cref="MicrobeInternalCalculations.CalculateSpecializationBonus"/>
+    /// </param>
     /// <param name="bioProcesses">Additional state is applied here</param>
     public static void ApplyEffects(this ref MicrobeEnvironmentalEffects effects,
-        in ResolvedMicrobeTolerances toleRanceData, ref BioProcesses bioProcesses)
+        in ResolvedMicrobeTolerances toleRanceData, float specializationFactor, ref BioProcesses bioProcesses)
     {
+        if (specializationFactor <= 0)
+        {
+#if DEBUG
+            if (Debugger.IsAttached)
+                Debugger.Break();
+
+            throw new ArgumentException("Specialization factor must be positive", nameof(specializationFactor));
+#else
+            GD.PrintErr("Specialization factor must be positive, uninitialized species?");
+#endif
+        }
+
         effects.OsmoregulationMultiplier = toleRanceData.OsmoregulationModifier;
 
         effects.HealthMultiplier = toleRanceData.HealthModifier;
 
-        effects.ProcessSpeedModifier = toleRanceData.ProcessSpeedModifier;
-        bioProcesses.OverallSpeedModifier = toleRanceData.ProcessSpeedModifier;
+        // Apply all speed modifier effects (and store the result)
+        effects.ProcessSpeedModifier = toleRanceData.ProcessSpeedModifier * specializationFactor;
+        bioProcesses.OverallSpeedModifier = effects.ProcessSpeedModifier;
     }
 }
