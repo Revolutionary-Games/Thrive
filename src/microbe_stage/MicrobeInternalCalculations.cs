@@ -837,6 +837,7 @@ public static class MicrobeInternalCalculations
         Dictionary<OrganelleDefinition, int> tempWorkMemory)
     {
         int totalOrganelles = 0;
+        tempWorkMemory.Clear();
 
         var count = organelles.Count;
         for (int i = 0; i < count; ++i)
