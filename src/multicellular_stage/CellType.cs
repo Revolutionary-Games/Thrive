@@ -105,7 +105,14 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
             result.SplitFromTypeName = reader.ReadString();
 
         if (version > 2)
+        {
             result.SpecializationBonus = reader.ReadFloat();
+        }
+        else
+        {
+            // Just like microbes, older cell types will get eventually updated by something to have a valid value
+            result.SpecializationBonus = 1;
+        }
 
         return result;
     }

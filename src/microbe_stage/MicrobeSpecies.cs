@@ -180,7 +180,15 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         instance.BaseRotationSpeed = reader.ReadFloat();
 
         if (version > 1)
+        {
             instance.SpecializationBonus = reader.ReadFloat();
+        }
+        else
+        {
+            // Assume older microbes won't have specialization for now. And the next editor / auto-evo cycle can sort
+            // them out.
+            instance.SpecializationBonus = 1;
+        }
 
         return instance;
     }
