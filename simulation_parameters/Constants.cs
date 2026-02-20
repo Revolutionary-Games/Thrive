@@ -671,7 +671,19 @@ public static class Constants
     /// <summary>
     ///   A cell needs to have this many organelles for specialization to apply to it
     /// </summary>
-    public const int CELL_SPECIALIZATION_APPLIES_AFTER_SIZE = 5;
+    public const int CELL_SPECIALIZATION_APPLIES_AFTER_SIZE = 6;
+
+    /// <summary>
+    ///   How many organelles a cell needs to have to be considered fully specialized. (i.e. the full specialization
+    ///   bonus is granted)
+    /// </summary>
+    public const int CELL_SPECIALIZATION_STRENGTH_FULL_AT = 20;
+
+    /// <summary>
+    ///   Controls how strong the cell specialization effect is (this is a flat multiplier right now but we could use
+    ///   something like a power curve or another function for diminishing returns)
+    /// </summary>
+    public const float CELL_SPECIALIZATION_STRENGTH_MULTIPLIER = 0.8f;
 
     /// <summary>
     ///   If more chunks exist at once than this, then some are forced to despawn immediately. In reality the effective

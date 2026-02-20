@@ -855,7 +855,7 @@ public static class MicrobeInternalCalculations
         if (totalOrganelles < 1)
             return 1;
 
-        if (totalOrganelles <= Constants.CELL_SPECIALIZATION_APPLIES_AFTER_SIZE)
+        if (totalOrganelles < Constants.CELL_SPECIALIZATION_APPLIES_AFTER_SIZE)
             return 1;
 
         int maxOrganelleCount = 0;
@@ -868,7 +868,17 @@ public static class MicrobeInternalCalculations
             }
         }
 
-        return 1 + (float)maxOrganelleCount / totalOrganelles;
+        // The raw bonus is just the ratio of the main organelle type
+        var bonus = (float)maxOrganelleCount / totalOrganelles;
+
+        // Calculate a strength factor that adjusts things
+        var strength =
+            Math.Min(((float)totalOrganelles - Constants.CELL_SPECIALIZATION_APPLIES_AFTER_SIZE + 1) /
+                (Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT - Constants.CELL_SPECIALIZATION_APPLIES_AFTER_SIZE), 1);
+        strength *= Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
+
+        // Then return the final result as the bonus being anything above 1
+        return 1 + bonus * strength;
     }
 
     private static float MovementForce(float movementForce, float directionFactor)
