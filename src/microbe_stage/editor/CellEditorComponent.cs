@@ -2539,6 +2539,8 @@ public partial class CellEditorComponent :
         UpdateOrganelleUnlockTooltips(false);
 
         UpdateGrowthOrderUI();
+
+        UpdateSpecializationDisplay();
     }
 
     /// <summary>

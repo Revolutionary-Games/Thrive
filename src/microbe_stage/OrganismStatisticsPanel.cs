@@ -134,6 +134,12 @@ public partial class OrganismStatisticsPanel : PanelContainer
     private Label titleLabel = null!;
 
     [Export]
+    private Label specializationValueLabel = null!;
+
+    [Export]
+    private Label specializationTitleLabel = null!;
+
+    [Export]
     [ExportCategory("Other Editor Parts")]
     private ProcessList processList = null!;
 
@@ -230,6 +236,29 @@ public partial class OrganismStatisticsPanel : PanelContainer
         titleLabel.Text = IsForCellType ?
             Localization.Translate("CELL_STATISTICS") :
             Localization.Translate("ORGANISM_STATISTICS");
+    }
+
+    public void UpdateSpecialization(float specializationFactor, int maxOrganelles, string mostCommonOrganelle)
+    {
+        // Show the bonus as the amount that is above 1 in the factor as a multiplier of 1 does nothing and a bigger
+        // value helps
+        var bonus = Math.Round((specializationFactor - 1) * 100, 1);
+
+        var bonusStr = bonus.ToString(CultureInfo.CurrentCulture);
+        if (bonus >= 1)
+        {
+            specializationValueLabel.Text = "+" + Localization.Translate("PERCENTAGE_VALUE").FormatSafe(bonusStr);
+        }
+        else
+        {
+            specializationValueLabel.Text = Localization.Translate("PERCENTAGE_VALUE").FormatSafe(bonusStr);
+        }
+
+        var tooltip = Localization.Translate("CELL_SPECIALIZATION_TOOLTIP").FormatSafe(bonusStr, maxOrganelles,
+            mostCommonOrganelle, Constants.CELL_SPECIALIZATION_APPLIES_AFTER_SIZE);
+
+        specializationValueLabel.TooltipText = tooltip;
+        specializationTitleLabel.TooltipText = tooltip;
     }
 
     public void SendObjectsToTutorials(TutorialState tutorial, MicrobeEditorTutorialGUI gui)
