@@ -176,20 +176,6 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     public bool CalculateBalancesWhenMoving => calculateBalancesWhenMoving.ButtonPressed;
 
-    public bool IsForCellType
-    {
-        get;
-        set
-        {
-            if (value == field)
-                return;
-
-            // TODO: check this
-            field = value;
-            UpdateStageDependentText();
-        }
-    }
-
     public override void _Ready()
     {
         base._Ready();
