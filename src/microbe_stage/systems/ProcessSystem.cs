@@ -986,7 +986,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
                     $"ProcessSystem: process speed modifier is invalid for entity {entity}: {overallSpeedModifier}");
                 overallSpeedModifier = 1.0f;
 
-                // Reset the data to not keep printing the error
+                // Reset the source data to not keep printing the error when it gets set back
                 microbeEnvironmentalEffects.ProcessSpeedModifier = 1.0f;
             }
         }

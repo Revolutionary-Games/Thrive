@@ -18,7 +18,7 @@ public struct MicrobeEnvironmentalEffects : IArchivableComponent
 
     /// <summary>
     ///   This is a copy of <see cref="BioProcesses.OverallSpeedModifier"/> to be able to transfer this data along
-    ///   easily
+    ///   easily. Note that this can have specialization applied on top, so isn't the raw environmental speed modifier.
     /// </summary>
     public float ProcessSpeedModifier;
 
@@ -78,8 +78,8 @@ public static class MicrobeEnvironmentalEffectsHelpers
 
         effects.HealthMultiplier = toleRanceData.HealthModifier;
 
-        effects.ProcessSpeedModifier = toleRanceData.ProcessSpeedModifier;
-
-        bioProcesses.OverallSpeedModifier = toleRanceData.ProcessSpeedModifier * specializationFactor;
+        // Apply all speed modifier effects (and store the result)
+        effects.ProcessSpeedModifier = toleRanceData.ProcessSpeedModifier * specializationFactor;
+        bioProcesses.OverallSpeedModifier = effects.ProcessSpeedModifier;
     }
 }
