@@ -872,9 +872,7 @@ public static class MicrobeInternalCalculations
         var bonus = (float)maxOrganelleCount / totalOrganelles;
 
         // Calculate a strength factor that adjusts things
-        var strength =
-            Math.Min(((float)totalOrganelles - Constants.CELL_SPECIALIZATION_APPLIES_AFTER_SIZE + 1) /
-                (Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT - Constants.CELL_SPECIALIZATION_APPLIES_AFTER_SIZE), 1);
+        var strength = Math.Min((float)totalOrganelles / Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT, 1);
         strength *= Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
 
         // Then return the final result as the bonus being anything above 1
