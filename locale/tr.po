@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-11 10:29+0200\n"
-"PO-Revision-Date: 2026-02-12 10:49+0000\n"
+"POT-Creation-Date: 2026-02-18 11:24+0200\n"
+"PO-Revision-Date: 2026-02-19 21:56+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -4212,6 +4212,9 @@ msgstr "Serbest Çok Hücreli Yapım Editörü"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Hücreleriniz bileşikleri paylaşsa da, her hücrenin kendi [thrive:compound type=\"atp\"]ATP'sini[/thrive:compound] üretmesi gerekir. Herhangi bir hücre, bu molekülden yoksun kalırsa ölür."
 
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "Bu panel, koloninizin tüm hücrelerinin toplamını veren birleştirilmiş işlemleri gösterir. Diğer bileşiklerin aksine, ATP'nin hücreler arasında paylaşılmadığını unutmayın."
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Çok Hücreli Evresi"
 
@@ -4630,6 +4633,9 @@ msgstr "(bazı organelleri yerleştirmek için gerekli olan kilit açma koşulla
 msgid "ORGANISM_STATISTICS"
 msgstr "Organizma İstatistikleri"
 
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "Hücre İstatistikleri"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr "veya"
 
@@ -4980,7 +4986,13 @@ msgstr "Yüklenen nesneler işleniyor"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "Organizma İşlem Paneli Açıklaması"
+
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Organizma İşlemleri"
+
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Hücre İşlemleri"
 
 msgid "PROCESS_SPEED_MODIFIER"
@@ -7015,6 +7027,9 @@ msgid "VIEW_ALL"
 msgstr "Tümünü Görüntüle"
 
 msgid "VIEW_CELL_PROCESSES"
+msgstr "Organizma İşlemlerini İncele"
+
+msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "Hücre İşlemlerini İncele"
 
 msgid "VIEW_ONLINE"
@@ -9621,9 +9636,6 @@ msgstr "Uzaklaştır"
 
 #~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 #~ msgstr "Sonraki evre prototiplerini dahil et"
-
-#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-#~ msgstr "(sonraki evrelere ulaştığında, bazı özellikler mevcut olmayabilir)"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Oto Harmony Kullanır:"

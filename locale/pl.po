@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-11 10:29+0200\n"
-"PO-Revision-Date: 2026-01-13 20:27+0000\n"
-"Last-Translator: Marcy L <marcythebeast@proton.me>\n"
+"POT-Creation-Date: 2026-02-18 11:24+0200\n"
+"PO-Revision-Date: 2026-02-18 15:14+0000\n"
+"Last-Translator: Maksymilian Adamski <gyhat.yt@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.15.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -4385,6 +4385,10 @@ msgstr "Edytor Wielokomórkowca"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Edytor Wielokomórkowca"
 
+#, fuzzy
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "(niektóre funkcje mogą być niedostępne gdy dotrzesz to następnych etapów)"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Etap Wielokomórkowca"
 
@@ -4823,6 +4827,10 @@ msgstr "(Niektóre organelle będą mieć warunki odblokowania wymagane by je po
 msgid "ORGANISM_STATISTICS"
 msgstr "Statystyki Organizmu"
 
+#, fuzzy
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "Statystyki Organizmu"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr "lub"
 
@@ -5199,7 +5207,16 @@ msgstr "Przetwarzanie wczytanych obiektów"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
+#, fuzzy
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "Procesy Komórki"
+
+#, fuzzy
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Procesy Komórki"
+
+#, fuzzy
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Procesy Komórki"
 
 #, fuzzy
@@ -7324,6 +7341,10 @@ msgid "VIEW_CELL_PROCESSES"
 msgstr "Zwiększa prędkość obrotu większych komórek."
 
 #, fuzzy
+msgid "VIEW_CELL_PROCESSES_MICROBE"
+msgstr "Zwiększa prędkość obrotu większych komórek."
+
+#, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Wyłącz wszystko"
 
@@ -9373,9 +9394,6 @@ msgstr "Oddal"
 
 #~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 #~ msgstr "Zawiera prototypy późniejszych etapów"
-
-#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-#~ msgstr "(niektóre funkcje mogą być niedostępne gdy dotrzesz to następnych etapów)"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Używa Auto Harmonii:"

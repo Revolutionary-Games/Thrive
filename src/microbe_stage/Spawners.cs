@@ -614,7 +614,7 @@ public static class SpawnHelpers
     {
         var recorder = worldSimulation.StartRecordingEntityCommands();
         return (recorder, SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species, location,
-            aiControlled, multicellularData, recorder, out entity, multicellularSpawnState, true, random));
+            aiControlled, multicellularData, recorder, out entity, multicellularSpawnState, true, false, random));
     }
 
     public static float SpawnMicrobeWithoutFinalizing(IWorldSimulation worldSimulation,
@@ -622,7 +622,7 @@ public static class SpawnHelpers
         Vector3 location, bool aiControlled, (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
         CommandBuffer recorder, out Entity entity,
         MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud,
-        bool giveInitialCompounds = true, Random? random = null)
+        bool giveInitialCompounds = true, bool forceBioProcessStatistics = false, Random? random = null)
     {
         // If this method is modified, it must be ensured that CellPropertiesHelpers.ReApplyCellTypeProperties and
         // MicrobeVisualOnlySimulation microbe update methods are also up to date
@@ -700,7 +700,7 @@ public static class SpawnHelpers
 
         var bioProcesses = new BioProcesses
         {
-            ProcessStatistics = aiControlled ? null : new ProcessStatistics(),
+            ProcessStatistics = !aiControlled || forceBioProcessStatistics ? new ProcessStatistics() : null,
         };
 
         if (species is MulticellularSpecies multicellularSpecies)

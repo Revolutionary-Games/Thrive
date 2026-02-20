@@ -61,6 +61,19 @@ public partial class DebugConsole : CustomWindow, ICommandInvoker
         scrollContainer.GetVScrollBar()
             .Connect(ScrollBar.SignalName.Scrolling, new Callable(this, nameof(OnScrolled)));
 
+        // Make backgrounds more transparent
+        var customPanelOverride = (StyleBoxFlat)PanelStyle.Duplicate(false);
+        var color = customPanelOverride.BgColor;
+        color.A = 0.48f;
+        customPanelOverride.BgColor = color;
+        PanelStyle = customPanelOverride;
+
+        var titlebarPanelOverride = (StyleBoxFlat)TitleBarPanelStyle.Duplicate(false);
+        color = titlebarPanelOverride.BgColor;
+        color.A = 0.60f;
+        titlebarPanelOverride.BgColor = color;
+        TitleBarPanelStyle = titlebarPanelOverride;
+
         commandInput.CommandHistory = CommandHistory;
 
         base._Ready();
@@ -176,7 +189,7 @@ public partial class DebugConsole : CustomWindow, ICommandInvoker
     [Command("echo", false, "Echoes a colored message in this console.")]
     private static void CommandEcho(CommandContext context, string msg, int r, int g, int b)
     {
-        context.Print(msg, new Color(r, g, b));
+        context.Print(msg, Color.Color8((byte)r, (byte)g, (byte)b));
     }
 
     private void Activate()

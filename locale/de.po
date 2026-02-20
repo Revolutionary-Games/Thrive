@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-11 10:29+0200\n"
-"PO-Revision-Date: 2025-12-08 21:28+0000\n"
+"POT-Creation-Date: 2026-02-18 11:24+0200\n"
+"PO-Revision-Date: 2026-02-18 15:14+0000\n"
 "Last-Translator: Matthias Ulbl <matthias.ulbl@gmx.at>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.15.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -4267,6 +4267,10 @@ msgstr "Mehrzelliger Editor"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Deine Zellen teilen sich zwar Substanzen, aber jede Zelle muss ihr eigenes [thrive:compound type=\"atp\"][/thrive:compound] produzieren, sonst wird sie sterben."
 
+#, fuzzy
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "(einige Funktionen könnten nicht mehr verfügbar sein, wenn Sie die nächsten Stufen erreichen)"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Mehrzelliges Stadium"
 
@@ -4696,6 +4700,10 @@ msgstr "(WARNUNG: Photosynthese wird wesentlich weniger effizient)"
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismus-Statistik"
 
+#, fuzzy
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "Organismus-Statistik"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr "oder"
 
@@ -5067,7 +5075,16 @@ msgstr "Verarbeitung geladener Objekte"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
+#, fuzzy
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "Zellprozesse"
+
+#, fuzzy
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Zellprozesse"
+
+#, fuzzy
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Zellprozesse"
 
 msgid "PROCESS_SPEED_MODIFIER"
@@ -7182,7 +7199,12 @@ msgstr "Beobachter"
 msgid "VIEW_ALL"
 msgstr "Alle anzeigen"
 
+#, fuzzy
 msgid "VIEW_CELL_PROCESSES"
+msgstr "Zellprozesse anzeigen"
+
+#, fuzzy
+msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "Zellprozesse anzeigen"
 
 msgid "VIEW_ONLINE"
@@ -9398,9 +9420,6 @@ msgstr "Herauszoomen"
 
 #~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 #~ msgstr "Möglichkeit zum Übergang zur nächsten Stufe des Spiels (Mehrzellig). Verfügbar, sobald du eine ausreichend große Zellkolonie hast."
-
-#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-#~ msgstr "(einige Funktionen könnten nicht mehr verfügbar sein, wenn Sie die nächsten Stufen erreichen)"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Benutzt Auto Harmony:"
