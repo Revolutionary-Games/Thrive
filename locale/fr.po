@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-02-18 11:24+0200\n"
-"PO-Revision-Date: 2026-02-18 13:34+0000\n"
+"PO-Revision-Date: 2026-02-20 12:35+0000\n"
 "Last-Translator: Shigasaa <altitudes.etrangeres@ikmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -862,7 +862,7 @@ msgid "CLIMATE_INSTABILITY"
 msgstr "Instabilité du climat"
 
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr "(influence la fréquence et l'intensité des événements comme la glaciation mondiale)"
+msgstr "(influence la fréquence et l'intensité des évènements comme la glaciation mondiale)"
 
 msgid "CLIMATE_STABILITY_AVERAGE"
 msgstr "Moyenne"
@@ -5165,6 +5165,7 @@ msgstr "@"
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr "Processus cellulaires"
 
+#, fuzzy
 msgid "PROCESS_PANEL_TITLE"
 msgstr "Processus cellulaires"
 
@@ -7280,9 +7281,8 @@ msgstr "La vacuole stockera {0} unités du composé sélectionné"
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#, fuzzy
 msgid "VENTS_ARE_HOME"
-msgstr "Aucun évènement enregistré"
+msgstr "Les cheminées sont ma maison"
 
 msgid "VERSION_COLON"
 msgstr "Version :"
@@ -7613,7 +7613,7 @@ msgstr "Bien qu'il n'existe pas de microbes Terriens avec des organites appelés
 
 msgid "WIKI_CHEMOPLAST_STRATEGY"
 msgstr ""
-"Tout comme les [b][color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]protéines chimiosynthétiques[/url][/color][/b], cet organite permet à une cellule d'exploiter le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] présent en abondance dans certains secteurs. Comme les concentrations de [thrive:compound type=\"glucose\"][/thrive:compound] ambiant diminuent tout au long du jeu, il est conseillé de trouver d'autres sources d'énergie, et le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] pourrait bien être une source appropriée pour votre cellule si vous restez près d'un cratère volcanique.\n"
+"Tout comme les [b][color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]protéines chimiosynthétiques[/url][/color][/b], cet organite permet à une cellule d'exploiter le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] présent en abondance dans certains secteurs. Comme les concentrations de [thrive:compound type=\"glucose\"][/thrive:compound] ambiant diminuent tout au long du jeu, il est conseillé de trouver d'autres sources d'énergie, et le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] pourrait bien être une source appropriée pour votre cellule si vous restez dans une cheminée volcanique.\n"
 "\n"
 "Il est conseillé de remplacer les [b][color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]protéines chimiosynthétiques[/url][/color][/b] par des [b]chimioplastes[/b] après avoir évolué un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b], ces derniers étant plus performants."
 
@@ -7692,7 +7692,7 @@ msgstr ""
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_STRATEGY"
 msgstr ""
-"Avec les [b]protéines chimiosynthétiques[/b], les cellules ont accès à l'une des sources d'énergie les plus abondantes et les plus fiables dans les cratères volcaniques, le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]. Celui-ci peut être stocké et transformé régulièrement en [thrive:compound type=\"glucose\"][/thrive:compound], et permet de conserver des réserves d'énergie.\n"
+"Avec les [b]protéines chimiosynthétiques[/b], les cellules ont accès à l'une des sources d'énergie les plus abondantes et les plus fiables dans les cheminées volcaniques, le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]. Celui-ci peut être stocké et transformé régulièrement en [thrive:compound type=\"glucose\"][/thrive:compound], et permet de conserver des réserves d'énergie.\n"
 "\n"
 "Pour développer une bactérie chimiosynthétique efficace, il suffit d'avoir suffisamment de [b]protéines chimiosynthétiques[/b] pour générer une augmentation nette de [thrive:compound type=\"glucose\"][/thrive:compound] à l'intérieur de la cellule. Une bonne façon de commencer est de placer deux [b]protéines chimiosynthétiques[/b] dans la première génération, suivi de [b][color=#3796e1][url=thriveopedia:metabolosome]métabolosomes[/url][/color][/b] et de n'importe quel élément que vous souhaitez développer dans la génération suivante. Par la suite, il est généralement conseillé de ne placer qu'un hexagone supplémentaire de [b]Protéines chimiosynthétiques[/b] pour deux autres parties.\n"
 "\n"
@@ -8731,16 +8731,8 @@ msgstr ""
 msgid "WIKI_MICROBE_STAGE_GDD"
 msgstr "Phase microbienne"
 
-#, fuzzy
 msgid "WIKI_MICROBE_STAGE_INTRO"
 msgstr ""
-"Sur une planète distante et étrangère, des éternités d'activité volcanique et d'impacts de météores ont abouti au développement d'un nouveau phénomène dans l'univers.\n"
-"\n"
-"La vie.\n"
-"\n"
-"Simple microbe résidant dans les régions abyssales de l'océan, vous êtes le dernier ancêtre commun de tous les êtres vivants (LUCA) de cette planète.\n"
-"\n"
-"Pour survivre dans ce monde hostile, vous aurez besoin de collecter tous les composés que vous pourrez trouver et d'évoluer au cours de vos générations, dans une féroce compétition avec les autres espèces de microbes, qui peupleront bientôt ces océans..."
 
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Pas d'effets."
@@ -9223,16 +9215,20 @@ msgstr "Respiration aérobie"
 msgid "WIKI_PROTOPLASM_EFFECTS"
 msgstr "Pas d'effets."
 
-#, fuzzy
 msgid "WIKI_PROTOPLASM_INTRO"
-msgstr "Protoplasme"
+msgstr ""
+"Une version améliorée du [b][color=#3796e1][url=thriveopedia:cytoplasm]cytoplasme[/url][/color][/b] pour augmenter les réserves des espèces de l'ordinateur. Ne peut pas être ajouté aux cellules du joueur, mais peut être présent dans les espèces qie le joueurs a fossilisé.\n"
+"\n"
+"est visuellement identique au [b][color=#3796e1][url=thriveopedia:cytoplasm]cytoplasme[/url][/color][/b] et hérite de la plupart de ses caractéristiques."
 
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
 msgstr "Pas de modifications."
 
-#, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr ""
+"[b]Glycolyse[/b] : [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Version améliorée de la [b]glycolyse cytoplasmique[/b] avec un rendement différent."
 
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
 msgstr "Le joueur ne peut pas faire évoluer le [b]Protoplasme[/b]. Les espèces non-joueur peuvent le faire sans restrictions."
@@ -9260,9 +9256,8 @@ msgstr "Cils"
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "Protoplasme"
 
-#, fuzzy
 msgid "WIKI_REPRODUCTION_INTRO"
-msgstr "Protoplasme"
+msgstr "Pour progresser dans Thrive, vous devez évoluer votre espèce dans des [b]éditeurs[/b] et éviter de disparaitre. Pour cela, vous devez vous [b]reproduire[/b]."
 
 msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
@@ -9304,9 +9299,11 @@ msgstr ""
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr "Pas de conditions."
 
-#, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
-msgstr "À venir"
+msgstr ""
+"La [b]rusticyanine[/b] est une protéine qui peut être trouvée dans les membranes de certaines archées et bactéries. Elle oxyde le [b]fer[/b] qui touche la membrane, lui prenant des électrons dans le cadre d'une chaine de transport d'électrons. La charge créée sur la membrane est ensuite uilisée pour attirer des ions [b]hydrogène[/b] dans la cellule. Les électrons et ions supplémentaires aident à convertir des molécules d'[b]ADP[/b] en [b]ATP[/b] puis pour réinitialiser les différentes protéines impliquées pour que le cycle puisse recommencer.\n"
+"\n"
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Rusticyanin]https://en.wikipedia.org/wiki/Rusticyanin[/url][/color]"
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_STRATEGY"
@@ -9320,9 +9317,17 @@ msgstr ""
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "Pas d'améliorations."
 
-#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_EFFECTS"
-msgstr "Agent de signalisation"
+msgstr ""
+"Si la cellule du joueur a des [b]agents de signalisation[/b], le joueur peut appuyer sur une touche ([b]V[/b] par défaut) pour ouvrir le panneau d'émission d'ordres et émettre un ordre à tous les membre de l'espèce. Chaque ordre persiste jusqu'au prochain ordre. Les options sont :\n"
+"\n"
+"[indent]—   Pas d'ordre.[/indent]\n"
+"[indent]—   Venez à moi. Les cellules de l'ordinateur de l'espèce du joueur submergent le joueur.[/indent]\n"
+"[indent]—   Suivez-moi. Les cellules de l'ordinateur de l'espèce du joueur s'approchent du joueur mais gardent une certaine distance.[/indent]\n"
+"[indent]—   Fuyez-moi. Les cellules de l'ordinateur de l'espèce du joueur s'éloignent du joueur.[/indent]\n"
+"[indent]—   Devenez aggressifs. Les cellules de l'ordinateur de l'espèce du joueur deviennent bien plus susceptibles d'attaquer et de pourchasser les cellules autour d'elles.[/indent]\n"
+"\n"
+"Quand ceci a été écrit, les cellules de l'ordinateur avec des [b]agents de signalisation[/b] ne les utilisaient pas."
 
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_INTRO"
@@ -9334,42 +9339,50 @@ msgstr "Pas de processus."
 msgid "WIKI_SIGNALING_AGENT_PROCESSES"
 msgstr "Pas de processus."
 
-#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
-msgstr "Les agents de signalisation permettent aux cellules de créer des substances chimiques auxquelles d'autres cellules peuvent réagir. Les substances chimiques de signalisation peuvent être utilisées pour attirer d'autres cellules ou les avertir d'un danger pour les faire fuir."
+msgstr "Une cellule doit posséder un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour développer les [b]agents de signalisation[/b]."
 
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
-#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_STRATEGY"
-msgstr "Agent de signalisation"
+msgstr ""
+"Bien que dispensable, les [b]agents de signalisation[/b] sont une bonne option si vouis voulez devenir un organisme multicellulaire et commencer la phase multicellulaire. En émettant l'ordre « Venez à moi », vous pouvez rapidement assembler des cellules avec lesquelles vous lier, en supposant que vous avez aussi un [b][color=#3796e1][url=thriveopedia:bindingAgent]agent liant[/url][/color][/b].\n"
+"\n"
+"Ou, en alternant les ordres « Devenez aggressifs » et « Suivez-moi », vous pouvez vous constituer une armée personnelle pour vous défendre des prédateurs."
 
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr "Pas d'améliorations."
 
-#, fuzzy
 msgid "WIKI_SLIME_JET_EFFECTS"
-msgstr "De nombreux organismes produisent des substances polysaccharidiques gluantes, et le mucilage est l'un de ces polysaccharides. Si de nombreuses espèces utilisent la bave pour se déplacer, certains types de bactéries éjectent ces substances à haute pression dans leur sillage. Ces jets de bave agissent comme des moteurs de fusée, poussant les cellules en avant à une vitesse incroyable. La bave est également utilisée pour faire obstacle aux prédateurs, en les piégeant dans une substance que seuls les organismes dotés de jets peuvent diriger."
+msgstr ""
+"Perment a une cellule d'expulser du [thrive:compound type=\"mucilage\"][/thrive:compound] pour se propulser. Expulser du [thrive:compound type=\"mucilage\"][/thrive:compound] fournit beaucoup de vitesse pour un court laps de temps. Le jet peut être maintenu plus ou moins longtemps selon la quantité de [thrive:compound type=\"mucilage\"][/thrive:compound] disponible.\n"
+"\n"
+"Une cellule sans [b]jet de mucus[/b] qui entre dans du [thrive:compound type=\"mucilage\"][/thrive:compound] est ralentie."
 
-#, fuzzy
 msgid "WIKI_SLIME_JET_INTRO"
-msgstr "De nombreux organismes produisent des substances polysaccharidiques gluantes, et le mucilage est l'un de ces polysaccharides. Si de nombreuses espèces utilisent la bave pour se déplacer, certains types de bactéries éjectent ces substances à haute pression dans leur sillage. Ces jets de bave agissent comme des moteurs de fusée, poussant les cellules en avant à une vitesse incroyable. La bave est également utilisée pour faire obstacle aux prédateurs, en les piégeant dans une substance que seuls les organismes dotés de jets peuvent diriger."
+msgstr ""
+"Synthétise un polymère visqueux appelé [thrive:compound type=\"mucilage\"][/thrive:compound] à partir de [thrive:compound type=\"glucose\"][/thrive:compound]. Permet à la cellule d'expulser du [thrive:compound type=\"mucilage\"][/thrive:compound] pour se propulser tout en ralentissant les créatures qui entrent dans la substance expulsée.\n"
+"\n"
+"Contrairement au [b][color=#3796e1][url=thriveopedia:flagellum]flagelle[/url][/color][/b], il fournit une accélération rapide, utile pour éviter les prédateurs ou pour rattraper des proies."
 
 msgid "WIKI_SLIME_JET_MODIFICATIONS"
 msgstr "Pas de modifications."
 
 #, fuzzy
 msgid "WIKI_SLIME_JET_PROCESSES"
-msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"mucilage\"][/thrive:compound]. Appuyez sur [thrive:input]g_secrete_slime[/thrive:input] pour libérer le [thrive:compound type=\"mucilage\"][/thrive:compound] stockés, augmentant la vitesse de cette cellule et ralentissant les prédateurs."
+msgstr ""
+"[b]Synthèse de mucilage[/b] : [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"mucilage\"][/thrive:compound]\n"
+"\n"
+"Crée du [thrive:compound type=\"mucilage\"][/thrive:compound] pour être expulsé pour de la propulsion."
 
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr "Pas de conditions."
 
 #, fuzzy
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
-msgstr "À venir"
+msgstr "Des bactéries et autres microbes peuvent produire des jets de « slime » de polysaccharides comme l'une des forms de [color=#3796e1][url=https://en.wikipedia.org/wiki/Gliding_motility]motilité glissante (en)[/url][/color], poussant la cellule dans la direction opposée au jet et laissant une trace de [b]mucilage[/b] derrière."
 
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
@@ -9390,9 +9403,8 @@ msgstr "Prochainement."
 msgid "WIKI_SOCIETY_STAGE_INTRO"
 msgstr "De nombreux organismes produisent des substances polysaccharidiques gluantes, et le mucilage est l'un de ces polysaccharides. Si de nombreuses espèces utilisent la bave pour se déplacer, certains types de bactéries éjectent ces substances à haute pression dans leur sillage. Ces jets de bave agissent comme des moteurs de fusée, poussant les cellules en avant à une vitesse incroyable. La bave est également utilisée pour faire obstacle aux prédateurs, en les piégeant dans une substance que seuls les organismes dotés de jets peuvent diriger."
 
-#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
-msgstr "Phase sociétale"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
@@ -9438,20 +9450,25 @@ msgstr "À venir"
 msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
 msgstr "Editeur de corps, éditeur de cellule"
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
-msgstr "Pas d'effets."
+msgstr "Active la [i]vision thermique[/i], qui peut être activée et désactivée. Superpose la température relative de l'eau à l'écran. Les zones plus chaudes apparaissent plus rouges."
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_INTRO"
-msgstr "Le thermoplaste est une structure à double membrane contenant des pigments thermosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du thermoplaste sont capables d'utiliser l'énergie des différences de chaleur dans l'environnement pour produire [thrive:compound type=\"atp\"][/thrive:compound] à partir de l'eau dans un processus appelé [b]thermosynthèse[/b]. Le taux de production de [thrive:compound type=\"atp\"][/thrive:compound] varie avec [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr ""
+"Produit du [thrive:compound type=\"glucose\"][/thrive:compound] en utilisant les gradients de [thrive:compound type=\"temperature\"][/thrive:compound] de l'environnement. Forme eucaryote de la moins efficiente [b][color=#3796e1][url=thriveopedia:thermosynthase]Thermosynthase[/url][/color][/b].\n"
+"\n"
+"Organite spéculatif inexistant sur Terre. Indisponible dans les parties avec [i]LAWK[/i] activé.\n"
+"\n"
+"C'est un organite membranaire contenant des enzymes thermosensibles dans des compartiments. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les enzymes sont capables d'utiliser l'énergie de la montée en [thrive:compound type=\"temperature\"][/thrive:compound] de leurs environs pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] grâce à un processus appelé [i]thermosynthèse[/i]."
 
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "Pas de modifications."
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_PROCESSES"
-msgstr "Produit du [thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnel à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et à la température."
+msgstr ""
+"[b]Thermosynthèse[/b] : [i]augmentation[/i] de la [thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Génère de l'énergie à partir de l'augmentation de la [thrive:compound type=\"temperature\"][/thrive:compound]. Les enzymes thermosensibles changent de forme quand la [thrive:compound type=\"temperature\"][/thrive:compound] s'élève, permettant la conversion de divers composés en [thrive:compound type=\"glucose\"][/thrive:compound]. Lorsque la cellule refroidit, les enzymes reprennent leur forme originale, permettant de recommencer un cycle. Version plus efficiente de la [i]thermosynthèse bactérienne[/i] réalisé par la [b][color=#3796e1][url=thriveopedia:thermosynthase]Thermosynthase[/url][/color][/b]. Le taux de production de glucose est proportionnel au [i]discriminant[/i] de la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
@@ -9465,39 +9482,38 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
-msgstr "Le thermoplaste est une structure à double membrane contenant des pigments thermosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du thermoplaste sont capables d'utiliser l'énergie des différences de chaleur dans l'environnement pour produire [thrive:compound type=\"atp\"][/thrive:compound] à partir de l'eau dans un processus appelé [b]thermosynthèse[/b]. Le taux de production de [thrive:compound type=\"atp\"][/thrive:compound] varie avec [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr ""
+"Probablement la forme la plus mobile d'autotrophie, la [b]thermosynthèse[/b] exige d'être constamment en mouvement. Vous devez vous aller de zones froides vers des zones chaude et inversement. Après que la température de la cellule a cessé d'augmenter, la production de [thrive:compound type=\"glucose\"][/thrive:compound] chute à zéro. Il est pertinent d'activer la [i]vision thermique[/i] pour voir les zones chaudes et froides et vous y déplacer efficacement. Les thermoplastes sont plus efficaces dans les secteurs plus chauds, et sont donc plus utiles dans les cheminées volcaniques.\n"
+"\n"
+"Si le déblocage des organites est activé, la condition selon laquelle un joueur doit se reproduire plusieurs fois en possédant de la [b][color=#3796e1][url=thriveopedia:thermosynthase]thermosynthase[/url][/color][/b] signifie qu'un joueur qui évolue les [b]thermoplastes[/b] s'est probablement déja spécialisé pour la [b]thermosythèse[/b] avant d'obtenir les [b]thermoplastes[/b]."
 
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "Pas d'améliorations."
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
-msgstr "Pas d'effets."
+msgstr "Active la [i]vision thermique[/i], qui peut être activée et désactivée. Superpose la températire relative à l'écran. Les zones plus chaudes apparaissent plus rouge."
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_INTRO"
-msgstr "Thermosynthase"
+msgstr ""
 
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "Pas de modifications."
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
-msgstr "Produit l'[thrive:compound type=\"atp\"][/thrive:compound] en utilisant les gradients de température. Le taux varie en fonction de la [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr ""
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
-msgstr "La thermosynthase est une protéine qui utilise la convection thermique pour changer de forme, ce qui lui permet de se replier et de se lier à l'ADP lorsqu'elle est exposée à la chaleur, puis de se déplier et de le recycler en [thrive:compound type=\"atp\"][/thrive:compound] lorsqu'elle est exposée au froid, dans un processus appelé [b]thermosynthèse[/b]. Le taux de production de [thrive:compound type=\"atp\"][/thrive:compound] varie avec [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr ""
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
-msgstr "À venir"
+msgstr ""
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
-msgstr "La thermosynthase est une protéine qui utilise la convection thermique pour changer de forme, ce qui lui permet de se replier et de se lier à l'ADP lorsqu'elle est exposée à la chaleur, puis de se déplier et de le recycler en [thrive:compound type=\"atp\"][/thrive:compound] lorsqu'elle est exposée au froid, dans un processus appelé [b]thermosynthèse[/b]. Le taux de production de [thrive:compound type=\"atp\"][/thrive:compound] varie avec [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr ""
+"Probablement la forme la plus mobile d'autotrophie, la [b]thermosynthèse[/b] exige d'être constamment en mouvement. Vous devez aller de zones froides vers des zones chaude et inversement. Après que la température de la cellule a cessé d'augmenter, la production de [thrive:compound type=\"glucose\"][/thrive:compound] chute à zéro. Il est pertinent d'activer la [i]vision thermique[/i] pour voir les zones chaudes et froides et vous y déplacer efficacement. La thermosynthase est plus efficace dans les secteurs plus chauds, et est donc plus utile dans les cheminées volcaniques.\n"
+"\n"
+"Les [b][color=#3796e1][url=thriveopedia:thermoplast]thermoplastes[/url][/color][/b] sont encore plus efficaces et deviennent disponible une fois que la cellule évolue un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b]. Comme avec tous les organites procaryotes qui ont un homologue eucaryote, il est recommandé de remplacer la [b]thermosynthase[/b] par des [b][color=#3796e1][url=thriveopedia:thermoplast]thermoplastes[/url][/color][/b] quand ce sera possible."
 
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "Pas d'améliorations."
@@ -9510,13 +9526,11 @@ msgstr ""
 "\n"
 "Lorsqu'il est réglé sur [b]intense[/b], [b]seulement[/b] les zones où le joueur est allé seront visibles. Les zones adjacentes seront visibles mais leur type et les informations sur les composés seront cachées"
 
-#, fuzzy
 msgid "WIKI_THE_PATCH_MAP_INTRO"
-msgstr "Le thermoplaste est une structure à double membrane contenant des pigments thermosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du thermoplaste sont capables d'utiliser l'énergie des différences de chaleur dans l'environnement pour produire [thrive:compound type=\"atp\"][/thrive:compound] à partir de l'eau dans un processus appelé [b]thermosynthèse[/b]. Le taux de production de [thrive:compound type=\"atp\"][/thrive:compound] varie avec [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr ""
 
-#, fuzzy
 msgid "WIKI_THE_PATCH_MAP_PATCHES"
-msgstr "Pas d'améliorations."
+msgstr ""
 
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr "La [b]Carte des zones[/b] est une représentation de votre planète. Elle est composée de [b]Zones[/b] et de [b]Régions[/b] (expliquées ci-dessous). Chaque région contient plusieurs zones connectées (ou adjacentes) et est reliée à d'autres régions."
@@ -9549,9 +9563,8 @@ msgstr ""
 "\n"
 "[indent]— Se trouve dans une zone avec au moins [b]20%[/b] de [thrive:compound type=\"sunlight\"][/thrive:compound].[/indent]"
 
-#, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
-msgstr "À venir"
+msgstr ""
 
 msgid "WIKI_THYLAKOIDS_STRATEGY"
 msgstr ""
@@ -9564,9 +9577,8 @@ msgstr ""
 msgid "WIKI_THYLAKOIDS_UPGRADES"
 msgstr "Pas d'améliorations."
 
-#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
-msgstr "."
+msgstr ""
 
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr ""
@@ -9592,13 +9604,11 @@ msgstr "Pas d'améliorations."
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr "Pas d'effets."
 
-#, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
-msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines oxytoxy. La vitesse de production et sécrétion augmente proportionellement au nombre de vacuoles à toxines."
+msgstr ""
 
-#, fuzzy
 msgid "WIKI_VACUOLE_MODIFICATIONS"
-msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines oxytoxy. La vitesse de production et sécrétion augmente proportionellement au nombre de vacuoles à toxines."
+msgstr ""
 
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "Pas de processus"
