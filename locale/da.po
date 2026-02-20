@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-02-18 11:24+0200\n"
-"PO-Revision-Date: 2026-02-17 15:38+0000\n"
+"PO-Revision-Date: 2026-02-19 21:56+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
 "Language: da\n"
@@ -4213,9 +4213,8 @@ msgstr "Flercellet fribyg editor"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Mens dine celler deler stoffer mellem sig, så skal hver celle producere sin egen [thrive:compound type=\"atp\"][/thrive:compound]. En celle der løber tør for det vil dø."
 
-#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
-msgstr "(nogle features bliver måske utilgængelige når du når det næste stadie)"
+msgstr "Dette panel viser din kolonis samlede processer på tværs af alle celler. Bemærk at ulig andre stoffer, så deles ATP ikke mellem celler."
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Flercellestadiet"
@@ -4635,9 +4634,8 @@ msgstr "(nogle organeller har oplåsnings krav som skal mødes før de kan place
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismestatistik"
 
-#, fuzzy
 msgid "ORGANISM_STATISTICS_MICROBE"
-msgstr "Organismestatistik"
+msgstr "Cellestatistik"
 
 msgid "OR_UNLOCK_CONDITION"
 msgstr "eller"
@@ -4989,12 +4987,11 @@ msgstr "Behandler indlæste objekter"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
-#, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
-msgstr "Celleprocesser"
+msgstr "Organisme processpanel forklaring"
 
 msgid "PROCESS_PANEL_TITLE"
-msgstr "Celleprocesser"
+msgstr "Organismeprocesser"
 
 #, fuzzy
 msgid "PROCESS_PANEL_TITLE_MICROBE"
@@ -7032,7 +7029,7 @@ msgid "VIEW_ALL"
 msgstr "Vis alle"
 
 msgid "VIEW_CELL_PROCESSES"
-msgstr "Vis celleprocesser"
+msgstr "Vis organismeprocesser"
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES_MICROBE"
@@ -8416,18 +8413,38 @@ msgstr "Kommer snart."
 
 msgid "WIKI_SPACE_STAGE_INTRO"
 msgstr ""
+"I en nødeskal: Dette stadie ser spilleren udforske kosmosen og opnå store teknologiske fremskridt.\n"
+"\n"
+"Rumstadiet er det næstsidste stadie i Thrive. Efter en [color=#3796e1][url=thriveopedia:industrial_stage]Industrielstadie[/url][/color] nation bliver avanceret nok til at bygge rumskibe kan de begynde at udvide mod stjernerne. I det øjeblik er spilleren nået til Rumstadiet.\n"
+"\n"
+"Spillerens race har allerde opfundet mange forskellige teknologier, men det er her science-fiction (scifi) teknologier begynder at komme i spil. Spilerens race kan møde og interagere med liv på andre planeter og udvide i kosmosen. Yderligere teknologiske fremskridt vil til sidst låse op for kombinationen af Gud-værktøjer og [color=#3796e1][url=thriveopedia:ascension_stage]Opstigning[/url][/color]. Nogle spillere vil måske ikke kunne lide scifi i et eller videnskabsbaseret spil, og derfor vil vi tilføje et afskæringspunkt hvor spilleren kan vælge ikke at fortsætte til scifi teknologier, på bekostning af aldrig at kunne opnå [color=#3796e1][url=thriveopedia:ascension_stage]Opstigning[/url][/color]. Dette vil essentielt låse spilleren til det tidlige Rumstadie."
 
 msgid "WIKI_SPACE_STAGE_OVERVIEW"
 msgstr ""
+"Det tidlige Rumstadie begynder ved spillerens arts første rumflyvninger. Denne del fokuserer på at udvikle rumfart og udforskning af spillerens eget solsystem. De første satellitopsendelser og de første forsøg på at nå hjemplanetens måner markerer gameplayet for det tidlige Rumstadie. Ellers vil gameplayet ligne Industrielstadiet meget på dette tidspunkt, men spilleren kan zoome hele vejen ud for at se deres solsystem samt kommandere deres rumskibe oven i at de stadig styrer udviklingen af deres planet.\n"
+"\n"
+"Et andet hovedpunkt for det tidlige Rumstadie er foreningen af spillerens verden, for hvis den ikke forenes kan andre nationer på spillerens planet fortsat blande sig og angribe spilleren. Det vil være meget sværere (og vi vil måske ønske at gøre det umuligt) at opretholde et rumimperium, når din hjemmeverden konstant risikerer at synke ned i planetomspændende kaos.\n"
+"\n"
+"Senere i Rumstadiet vil spilleren udvikle kapaciteten til at udforske andre solsystemer. det er her Thrive bliver til et scifi (videnskabelig spekulation) spil med opfindelsen af overlyshastighed (FTL) rejsemetoden. Et muligt valg her er at give muligheden for at deaktivere scifi aspekterne i spillet, hvor udforskningen af nogle få nærliggende solsystemer vil udgøre enden på spillet. Hvis scifi er slået til vil spilleren være i stand til at kolonisere mange solsystemer og etablere et interstellært rumimperium, og dermed nå den sidste del af rumstadiet. Her vil spilleren interagere med andre rumimperier, udvikler meget avanceret teknologi og rumflåder. Planetstyring vil blive forenklet så spilleren ikke skal bebyrdes med at mikrostyre snesvis af planeter. Stadiet kulminerer med at spilleren bygger mange mega-projekter, såsom Dyson-kugler, med den endelige værende Opstigningsporten, som vil tage tonsvis af energi og tid for at bruge. Da opstigningsprocessen giver ubegrænset magt til det imperium der først opnår det, skal spilleren holde alle de andre imperier væk men de bygger deres opstigningsport.\n"
+"\n"
+"Da Thrive er et videnskabligt baseret spil vil de scifi troper der inkluderes i spillet udvælges med henblik på brugbarhed og en vis grad af realisme (ved at basere dem på spekulerede plausible teknologier). Spillet sigter efter kun at vælge scifi teknologier der er nødvendige for at få rumstadiet til at fungere. FTL vil være essentiel, men eksotiske våben, energikilder, eller materialer der menes at være på nuværende tidspunkt umulige kan ekskluderes uden at umuliggøre resten af spillet planer omkring rumimperier. Dette vil reducere mængden af sci-fi-håndviften der behøves at blive tilføjet til spillet."
 
 msgid "WIKI_SPACE_STAGE_TRANSITIONS"
 msgstr ""
+"Stadiet starter når spilleren første gang når rummet med en primitiv raket.\n"
+"\n"
+"Stadiet slutter når spilleren har bygget og givet strøm til en Opstigningsport, med kæmpemæssige mængder af ressourcer og forskning."
 
 msgid "WIKI_SPACE_STAGE_UI"
 msgstr "Kommer snart."
 
 msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr ""
+"Dette er alle de stadier der er i spillet. Alt i alt er der 8 stadier, hver med deres eget tildels særpræget gameplay.\n"
+"\n"
+"Efterhånden som du gør fremskridt i Thrive, bevæger du dig gennem de forskellige stadier og får til sidst mulighed for at opnå opstigning.\n"
+"\n"
+"Du begynder spillet som en encellet organisme, udvikler senere organer og væv, bliver derefter klogere og opbygger et samfund, der til sidst fører til erobringen af rummet."
 
 msgid "WIKI_TBA"
 msgstr "Mangler at blive tilføjet"
@@ -8502,7 +8519,7 @@ msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr ""
 
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
-msgstr ""
+msgstr "Ingen modifikationer"
 
 msgid "WIKI_THYLAKOIDS_PROCESSES"
 msgstr ""
