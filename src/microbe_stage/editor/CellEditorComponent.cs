@@ -1812,6 +1812,9 @@ public partial class CellEditorComponent :
         {
             // Force large normal size (instead of showing bacteria as a smaller scale than the editor hexes)
             IsBacteria = false,
+
+            // Doesn't matter for visualization, but we want to set a valid value
+            SpecializationBonus = 1,
         };
 
         previewMicrobe = previewSimulation.CreateVisualisationMicrobe(previewMicrobeSpecies);
