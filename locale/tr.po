@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-20 15:03+0200\n"
+"POT-Creation-Date: 2026-02-21 23:50+0100\n"
 "PO-Revision-Date: 2026-02-19 21:56+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.15.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -2986,12 +2986,6 @@ msgstr "Temmuz"
 msgid "JUNE"
 msgstr "Haziran"
 
-msgid "KEEP_CURRENT_SHORT"
-msgstr "Mevcut Olanı tut"
-
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "Minimum ve maksimum kaydırma butonlarını hareket ettirirken mevcut basınç tolerans aralığını tut"
-
 msgid "KEEP_MIGRATION"
 msgstr "Göçü Sürdür"
 
@@ -4996,7 +4990,7 @@ msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr "Organizma İşlem Paneli Açıklaması"
 
 msgid "PROCESS_PANEL_TITLE"
-msgstr "Organizma İşlemleri"
+msgstr "Hücre İşlemleri"
 
 msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Hücre İşlemleri"
@@ -6334,9 +6328,6 @@ msgstr "Araçlar"
 msgid "TOOL_HAND_AXE"
 msgstr "El Baltası"
 
-msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr "Basınç aralığı çok geniş"
-
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr "Çok fazla sürüm olduğundan bütün son sürümler gösterilemiyor"
 
@@ -7009,7 +7000,26 @@ msgstr "Hücrenin depo alanını arttırır."
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Koful, seçili bileşikten {0} birim depolayacak"
 
+#, fuzzy
+msgid "VALUE_MODIFIER"
+msgstr "Sağlık Çarpanı"
+
+msgid "VALUE_OFFSET"
+msgstr ""
+
+#, fuzzy
+msgid "VALUE_TOTAL"
+msgstr "Toplam kaydetme:"
+
 msgid "VALUE_WITH_UNIT"
+msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VALUE_WITH_UNIT_PLUS"
+msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VALUE_WITH_UNIT_PLUS_MINUS"
 msgstr "{0} {1}"
 
 msgid "VENTS_ARE_HOME"
@@ -7037,7 +7047,7 @@ msgid "VIEW_ALL"
 msgstr "Tümünü Görüntüle"
 
 msgid "VIEW_CELL_PROCESSES"
-msgstr "Organizma İşlemlerini İncele"
+msgstr "Hücre İşlemlerini İncele"
 
 msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "Hücre İşlemlerini İncele"
@@ -9646,6 +9656,22 @@ msgstr "Uzaklaştır"
 
 #~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 #~ msgstr "Sonraki evre prototiplerini dahil et"
+
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
+#~ msgstr "(sonraki evrelere ulaştığında, bazı özellikler mevcut olmayabilir)"
+
+#, fuzzy
+#~ msgid "MODIFIER"
+#~ msgstr "Değişiklik Yap"
+
+#~ msgid "KEEP_CURRENT_SHORT"
+#~ msgstr "Mevcut Olanı tut"
+
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr "Minimum ve maksimum kaydırma butonlarını hareket ettirirken mevcut basınç tolerans aralığını tut"
+
+#~ msgid "TOO_LARGE_PRESSURE_RANGE"
+#~ msgstr "Basınç aralığı çok geniş"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Oto Harmony Kullanır:"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-20 15:03+0200\n"
+"POT-Creation-Date: 2026-02-21 23:50+0100\n"
 "PO-Revision-Date: 2026-02-20 12:35+0000\n"
 "Last-Translator: Shigasaa <altitudes.etrangeres@ikmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -731,9 +731,9 @@ msgstr ""
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
 "Capacité de stockage de la cellule. Une capacité de stockage plus élevée permet de stocker davantage de composés à la fois.\n"
-"Les cellules avec de grandes réserves peuvent utiliser une stratégie où elles ne peuvent ne pas se déplacer indéfiniment, mais doivent remplir leurs réserves d'ATP avant de pouvoir se déplacer.\n"
-"Notez qu'une faible capacité de stockage peut entrainer des pénuries d'ATP même si la balance ATP est positive. Ces problèmes peuvent être aggravés par des pics de latence\n"
-"ou par des performances globalement basses du jeu. L'augmentation de la capacité de stockage supplémentaire permet de remédier à ces problèmes."
+"Les cellules à haute capacité de stockage peuvent utiliser une stratégie dans laquelle elles ne peuvent pas se déplacer indéfiniment, mais doivent recharger leurs réserves d'ATP pendant un certain temps avant de pouvoir se déplacer.\n"
+"Notez qu'une faible capacité de stockage peut entraîner des pénuries d'ATP même si la balance ATP est positive. Ces problèmes peuvent être aggravés par des pics de latence\n"
+"ou par les performances globalement faibles du jeu. L'ajout d'une capacité de stockage supplémentaire permet de remédier à ces problèmes."
 
 msgid "CELL_TYPE_NAME"
 msgstr "Nom du type de cellule"
@@ -835,7 +835,7 @@ msgid "CHROMATIC_ABERRATION"
 msgstr "Aberration chromatique :"
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
-msgstr "Produit du [thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnel à la concentration en [thrive:compound type=\"carbondioxide\"][/thrive:compound] et [thrive:compound type=\"sunlight\"][/thrive:compound]."
+msgstr "Produit [thrive:compound type=\"glucose\"][/thrive:compound]. Effet proportionnel avec la concentration en [thrive:compound type=\"carbondioxide\"][/thrive:compound] et l'[thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 msgid "CHUNK_CELL_CORPSE_PART"
 msgstr "Fragment de cellule morte"
@@ -868,7 +868,7 @@ msgid "CLIMATE_INSTABILITY"
 msgstr "Instabilité du climat"
 
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr "(influence la fréquence et l'intensité des évènements comme la glaciation mondiale)"
+msgstr "(influence la fréquence et l'intensité des événements comme la glaciation mondiale)"
 
 msgid "CLIMATE_STABILITY_AVERAGE"
 msgstr "Moyenne"
@@ -899,7 +899,7 @@ msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Intervalle minimal de simulation des nuages :"
 
 msgid "CLOUD_SIMULATION_MULTIPLIER"
-msgstr "Multiplicateur de la simulation :"
+msgstr "Multiplicateur de la simulation :"
 
 msgid "COASTAL"
 msgstr "Littoral"
@@ -1517,7 +1517,7 @@ msgid "CYTOPLASM"
 msgstr "Cytoplasme"
 
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr "Les entrailles gluantes d'une cellule. Le cytoplasme est le mélange basique d'ions, de protéines et d'autres substances dissoutes dans l'eau qui remplit l'intérieur de la cellule. L'une de ses fonctions est la [b]glycolyse[/b], la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Pour les cellules dépourvues d'organites aux métabolismes plus avancés, c'est ce qui leur permet d'obtenir de l'énergie. Elle est également utilisée pour stocker des molécules dans la cellule et pour accroitre la taille de la cellule."
+msgstr "Les entrailles gluantes d'une cellule. Le cytoplasme est le mélange basique d'ions, de protéines et d'autres substances dissoutes dans l'eau qui remplit l'intérieur de la cellule. L'une de ses fonctions est la [b]glycolyse[/b], la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Pour les cellules dépourvues d'organites aux métabolismes plus avancés, c'est ce qui leur permet d'obtenir de l'énergie. Elle est également utilisée pour stocker des molécules dans la cellule et pour accroître la taille de la cellule."
 
 msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr "Glycolyse cytoplasmique"
@@ -1779,7 +1779,7 @@ msgstr "Popups désactivées :"
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 "Ceci indique le nombre de fenêtres contextuelles qui ont été définitivement désactivées par l'utilisateur.\n"
-"Si certaines popups, qui sont en fait souhaitées, ont été désactivées, le bouton situé à côté peut être utilisé pour pouvoir les faire réapparaitre."
+"Si certaines fenêtres contextuelles, qui sont en fait souhaitées, ont été désactivées, le bouton situé à côté peut être utilisé pour faire réapparaître toutes les fenêtres contextuelles désactivées."
 
 msgid "DISMISS_INFORMATION_PERMANENTLY"
 msgstr "Ne plus montrer"
@@ -2106,7 +2106,7 @@ msgid "ENVIRONMENT"
 msgstr "Environnement"
 
 msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
-msgstr "Conditions environnementales"
+msgstr "Conditions environementales"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Rétention environnementale de glucose"
@@ -2193,14 +2193,14 @@ msgstr ""
 msgid "EVENT_METEOR_RADIOACTIVE"
 msgstr ""
 "Impact de météorite radioactive\n"
-"Augmente le niveau de dioxide de carbone.\n"
-"Fait apparaitre des fragments radioactifs."
+"Augmente le niveau de dioxide de carbone\n"
+"Fait apparaître des fragments radioactifs."
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 "Impact de météorite de soufre\n"
-"Augmente les niveaux de souffre et de dioxide de carbone.\n"
-"Fait apparaitre des fragments de soufre."
+"Augmente les niveaux de souffre et de dioxide de carbone\n"
+"Fait apparaître des fragments de soufre."
 
 msgid "EVENT_RUNOFF_TOOLTIP"
 msgstr ""
@@ -2446,7 +2446,7 @@ msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
 msgstr "(les secteurs où le joueur s'est rendu et les secteurs adjacents seront révélés)"
 
 msgid "FOOD_CHAIN"
-msgstr "Chaine alimentaire"
+msgstr "Chaîne alimentaire"
 
 #, fuzzy
 msgid "FOOD_SOURCE_ENERGY_INFO"
@@ -2781,7 +2781,7 @@ msgstr "Hydrogénase"
 
 #, fuzzy
 msgid "HYDROGENASE_DESCRIPTION"
-msgstr "Fermente du [thrive:compound type=\\\"glucose\\\"][/thrive:compound] pour produire de l'énergie et des sous-produits comme l'hydrogène. Plus efficace a des niveaux d'[thrive:compound type=\\\"oxygène\\\"][/thrive:compound] bas que les métabolosomes. De nombreux organismes d'environnements anoxiques l'utilisent comme source principale d'énergie."
+msgstr "Fermente du [thrive:compound type=\\\"glucose\\\"][/thrive:compound] pour produire de l'énergie et des sous-produits comme l'hydrogène. Plus efficace a des niveaux d'[thrive:compound type=\\\"oxygène\\\"][/thrive:compound] bas que les métabolosomes. De nombreux organismes d'environements anoxiques l'utilisent comme source principale d'énergie."
 
 #, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
@@ -2792,7 +2792,7 @@ msgstr "Hydrogénosome"
 
 #, fuzzy
 msgid "HYDROGENOSOME_DESCRIPTION"
-msgstr "Fermente du [thrive:compound type=\\\"glucose\\\"][/thrive:compound] pour produire de l'énergie et des sous-produits comme l'hydrogène. L'hydrogénosome est un organite membranaire rempli de protéines et d'enzymes. C'est un procaryote qui a été absorbé pour être utilisé par son hôte eucaryote. Plus efficace que l'hydrogénase et plus efficace a des niveaux d'[thrive:compound type=\\\"oxygène\\\"][/thrive:compound] bas que la mitochondrie. De nombreux organismes d'environnements anoxiques en utilisent comme source principale d'énergie."
+msgstr "Fermente du [thrive:compound type=\\\"glucose\\\"][/thrive:compound] pour produire de l'énergie et des sous-produits comme l'hydrogène. L'hydrogénosome est un organite membranaire rempli de protéines et d'enzymes. C'est un procaryote qui a été absorbé pour être utilisé par son hôte eucaryote. Plus efficace que l'hydrogénase et plus efficace a des niveaux d'[thrive:compound type=\\\"oxygène\\\"][/thrive:compound] bas que la mitochondrie. De nombreux organismes d'environements anoxiques en utilisent comme source principale d'énergie."
 
 #, fuzzy
 msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
@@ -3063,13 +3063,6 @@ msgstr "Juillet"
 
 msgid "JUNE"
 msgstr "Juin"
-
-#, fuzzy
-msgid "KEEP_CURRENT_SHORT"
-msgstr "Garder"
-
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "Garder la plage de tolérance à la pression actuelle lors du déplacement des potards maximum et minimum"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3537,7 +3530,7 @@ msgstr "Faibles performances détectées"
 
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr ""
-"Votre nombre d'images par secondes moyen est très bas.\n"
+"Votre taux de rafraîchissement moyen est très bas.\n"
 "Les arrières-plans 3D du menu sont activés, cela peut utiliser une grande partie des ressources du système. Désactiver cette option peut améliorer considérablement les performances.\n"
 "Voulez-vous le faire maintenant ?"
 
@@ -3866,16 +3859,16 @@ msgid "MICROBE_LOADING_TIP_22"
 msgstr "Chaque visite à l'éditeur pendant la phase microbienne représente [thrive:constant]EDITOR_TIME_JUMP_MILLIONS_YEARS[/thrive:constant] millions d'années d'évolution."
 
 msgid "MICROBE_LOADING_TIP_3"
-msgstr "Vous pouvez ingérer des fragment de matière flottante, qu'ils soit organiques ou non."
+msgstr "Vous pouvez ingérer des fragment de matière flottante, qu'il soit organiques ou non."
 
 msgid "MICROBE_LOADING_TIP_4"
-msgstr "Préparez-vous avant d'ajouter un noyau. Ces trucs coutent cher, tant à l'achat qu'à l'entretien !"
+msgstr "Préparez-vous avant d'ajouter un noyau. Ces trucs coutent cher, tant à l'achat qu'à l'entretien !"
 
 msgid "MICROBE_LOADING_TIP_5"
 msgstr "Les toxines peuvent être utilisées pour repousser d'autres toxines si vous êtes assez rapide."
 
 msgid "MICROBE_LOADING_TIP_6"
-msgstr "Si une cellule fait moins de la moitié de la votre, vous pouvez l'ingérer."
+msgstr "Si une cellule fait moins de la moitié de la vôtre, vous pouvez l'ingérer."
 
 msgid "MICROBE_LOADING_TIP_7"
 msgstr "Les biomes sont plus que simplement des arrière-plans différents. Les composés et fragments apparaisent en proportions différentes."
@@ -3884,7 +3877,7 @@ msgid "MICROBE_LOADING_TIP_8"
 msgstr "Placez les flagelles ou les jets de mucus symétriquement à l'arrière de votre cellule. Sinon, vous gaspillerez de l'énergie."
 
 msgid "MICROBE_LOADING_TIP_9"
-msgstr "L'emplacement des organites est important. La forme de votre cellule a un impact sur vos vitesses de déplacement et de rotation."
+msgstr "L'emplacement des pièces est important. La forme de votre cellule a un impact sur votre vitesse de déplacement et de rotation."
 
 msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
 msgstr "{0} : Trouvée dans {1} des espèces"
@@ -5171,7 +5164,6 @@ msgstr "@"
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr "Processus cellulaires"
 
-#, fuzzy
 msgid "PROCESS_PANEL_TITLE"
 msgstr "Processus cellulaires"
 
@@ -5279,7 +5271,7 @@ msgid "REDO_THE_LAST_ACTION"
 msgstr "Répéter la dernière action"
 
 msgid "REFRESH"
-msgstr "Rafraichir"
+msgstr "Rafraîchir"
 
 #, fuzzy
 msgid "REGENERATE_BUTTON"
@@ -6150,7 +6142,7 @@ msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr "{0} (Pas assez pour commencer : {1}, total : {2})"
 
 msgid "STRUCTURE_SOCIETY_CENTER"
-msgstr "Centre de société"
+msgstr "Centre de la société"
 
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Usine à vapeur"
@@ -6403,7 +6395,7 @@ msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Les thylakoïdes sont des amas de protéines et de pigments photosensibles. Les pigments sont capables d'utiliser l'énergie de la [thrive:compound type=\"sunlight\"][/thrive:compound] pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir d'eau et de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux dans un processus appelé [b]photosynthèse[/b]. Ce sont également ces pigments qui leur donnent une couleur distinctive. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]. Comme les thylakoïdes sont suspendus directement dans le cytoplasme, le fluide environnant effectue une partie de la [b]glycolyse[/b]."
 
 msgid "TIDEPOOL"
-msgstr "Flaque tidale"
+msgstr "Flaque"
 
 msgid "TIMELINE"
 msgstr "Chronologie"
@@ -6515,7 +6507,7 @@ msgstr "Afficher/cacher les performances"
 
 #, fuzzy
 msgid "TOGGLE_MUCOCYST_DEFENCE"
-msgstr "Activer/Désactiver le bouclier de mucocyste"
+msgstr "Plein écran"
 
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "Activer/désactiver l'arbre de navigation"
@@ -6577,9 +6569,6 @@ msgstr "Outils"
 msgid "TOOL_HAND_AXE"
 msgstr "Biface"
 
-msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr "Plage de pression trop large"
-
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr "Toutes les versions récentes ne sont pas affichées car il y en a trop"
 
@@ -6593,7 +6582,7 @@ msgid "TOXIN_CHANNEL_INHIBITOR"
 msgstr "Inhibiteur de canal"
 
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
-msgstr "Inhibe la production d'ATP des cellules affectées, ce qui les empêche de se déplacer rapidement et peut entrainer la mort des cellules dont la production d'ATP n'a pas beaucoup d'excédent."
+msgstr "Inhibe la production d'ATP des cellules affectées, ce qui les empêche de se déplacer rapidement et peut entraîner la mort des cellules dont la production d'ATP n'a pas beaucoup d'excédent."
 
 #, fuzzy
 msgid "TOXIN_COMPOUND"
@@ -6790,7 +6779,7 @@ msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
 "Vous pouvez [b]modifier[/b] cet organite. Cela débloquera de [b]nouvelles fonctions[/b] ou des [b]améliorations[/b] pour cet organite.\n"
 "\n"
-"Pour cela, faites un clic droit sur l'organite pour faire apparaitre le [b]menu contextuel de l'organite[/b], et appuyez sur le bouton \"Modifier\".\n"
+"Pour cela, faites un clic droit sur l'organite pour faire apparaître le [b]menu contextuel de l'organite[/b], et appuyez sur le bouton \"Modifier\".\n"
 "\n"
 "En cherchant des organites qui peuvent être modifiées vous pouvez trouver de nouvelles façons de jouer.\n"
 "\n"
@@ -6871,7 +6860,7 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
 msgstr ""
-"L'éditeur des tolérances permet de changer les [b]conditions environnementales auxquelles votre espèce est adaptée[/b]. Ça inclut la [thrive:compound type=\"temperature\"][/thrive:compound] et la [b]pression[/b] [thrive:icon]Pressure[/thrive:icon] du secteur occupé.\n"
+"L'éditeur des tolérances permet de changer les [b]conditions environementales auxquelles votre espèce est adaptée[/b]. Ça inclut la [thrive:compound type=\"temperature\"][/thrive:compound] et la [b]pression[/b] [thrive:icon]Pressure[/thrive:icon] du secteur occupé.\n"
 "\n"
 "Lorsque vous migrer vers un secteur auquel vou n'êtes pas adapté, vous subirez [b]différents effets négatifs[/b]. Ajuster les curseurs pour corriger soit les conditions préférées, soit l'amplitude de tolérance selon les conditions du nouveau secteur pour retirer ces effets. Les conditions inadéquates sont affichées en rouge.\n"
 "\n"
@@ -6879,7 +6868,7 @@ msgstr ""
 "\n"
 "Le compromis d'une adaptation parfaite est de ne pas pouvoir survivre dans une large gamme de secteurs. Prévoir d'augmenter l'amplitude de tolérance avant de migrer est une bonne stratégie si [b]il vous reste des PM[/b] [thrive:icon]MP[/thrive:icon] à utiliser avant de quitter l'éditeur.\n"
 "\n"
-"Changez une des tolérances environnementales pour fermer ce tutoriel."
+"Changez une des tolérances environementales pour fermer ce tutoriel."
 
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -6912,7 +6901,7 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
 msgstr ""
-"Les condition sont affichées dand l'[b]encadré environnement[/b] sur la gauche de l'écran.\n"
+"Les condition sont affichées dand l'[b]encadré environement[/b] sur la gauche de l'écran.\n"
 "\n"
 "Les yeux n'ont peut-être pas encore évolué, mais des espèces peuvent déja utiliser la lumière (ou la température) pour produire de la nourriture. Si c'est votre cas, soyez attentif !\n"
 "\n"
@@ -6956,21 +6945,16 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
 msgstr ""
-"Ici, dans le [b]panneau des processus[/b] vous pouvez monitorer vos processus métaboliques en temps réel. Les icones représentent la vitesse des processus et les chiffres une moyenne des consommation et production récentes.\n"
+"Afin de vous reproduire vous devez dupliquer tous vos organites. Cela se fait progressivement mais vous pouvez accélérer le processus en collectant assez d'[thrive:compound type=\"ammonia\"][/thrive:compound] et de [thrive:compound type=\"phosphates\"][/thrive:compound].\n"
 "\n"
-"Vous êtes comme une [b]usine cellulaire[/b] qui a constamment besoin de produire de l'[thrive:compound type=\"atp\"][/thrive:compound] pour rester en vie.\n"
-"\n"
-"Si un chiffre devient [color=#ff4d4d]rouge[/color], cela veut dire que c'est le [u]facteur limitant[/u]. Par exemple, si un processus qui produit de l'[thrive:compound type=\"atp\"][/thrive:compound] a un [i]intrant[/i] qui devient rouge, vous serez en danger et devrez trouvez [b]plus de ce composé[/b] avant que vous commenciez a mourrir !\n"
-"\n"
-"Vous pouvez activer ou désactiver les processus grâce au bouton sur leur coté. Ceux-ci peuvent être utilisés pour des tactiques de jeu avancées.\n"
-"Pour voir ce qui arrive lorsque vous manquez d'un composé, désactivez un des processus puis [b]réactivez-le immédiatement[/b] pour ne pas mourir. Le jeu ne doit pas être en pause."
+"Les jauges en bas à droite montrent votre progression. Elles deviennent blanches quand vous pouvez vous reproduire."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"La Vie demande plus de molécules que juste le sucre. Voyez quels autres nuages de composés votre micorbe peut collecter !\n"
+"Afin de vous reproduire vous devez dupliquer tous vos organites. Cela se fait progressivement mais vous pouvez accélérer le processus en collectant assez d'[thrive:compound type=\"ammonia\"][/thrive:compound] et de [thrive:compound type=\"phosphates\"][/thrive:compound].\n"
 "\n"
-"Les barres orange ([thrive:compound type=\"ammonia\"][/thrive:compound]) et violette ([thrive:compound type=\"phosphates\"][/thrive:compound]) montrent votre [b]progression[/b]. Elles deviennent blanches lorsque vous pouvez vous reproduire."
+"Les jauges en bas à droite montrent votre progression. Elles deviennent blanches quand vous pouvez vous reproduire."
 
 msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
@@ -6995,11 +6979,11 @@ msgstr ""
 "\n"
 "Vous avez réussi à guider votre espèce à travers la phase unicellulaire.\n"
 "\n"
-"Le gameplay suit les mécanismes de base de la phase microbienne. Vous devez toujours faire croitre votre organisme pour vous reproduire et atteindre l'éditeur.\n"
+"Le gameplay suit les mécanismes de base de la phase microbienne. Vous devez toujours faire croître votre organisme pour vous reproduire et atteindre l'éditeur.\n"
 "\n"
-"Cependant, vous pouvez maintenant modifier la disposition des cellules de votre colonie dans l'éditeur et spécialiser vos cellules pour diverse tâches. N'oubliez pas que les membres de la colonie ne peuvent pas partager l'[thrive:compound type=\"atp\"][/thrive:compound].\n"
+"Cependant, vous pouvez maintenant concevoir la disposition des cellules de votre colonie dans l'éditeur et vous pouvez spécialiser vos cellules pour divers rôles. N'oubliez pas que les membres de la colonie ne peuvent pas partager l'[thrive:compound type=\"atp\"][/thrive:compound].\n"
 "\n"
-"Si vous utilisez la reproduction par bourgeonnement (la méthode par défaut), vous commencez par contrôler un petit bourgeon et devez faire croitre le reste de la disposition des cellules."
+"Si vous utilisez la reproduction par bourgeonnement (la méthode par défaut), vous commencez par contrôler un petit bourgeon et devez faire croître le reste de la disposition des cellules."
 
 #, fuzzy
 msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
@@ -7201,7 +7185,7 @@ msgstr "Mucocyste"
 
 #, fuzzy
 msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
-msgstr "Transforme le jet de mucus en mucocyste, qui créé une enveloppe protectrice de mucilage autour de la cellule. Lorsqu'il est activé, il procure une immunité temporaire à toutes les sources de dégats."
+msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"mucilage\"][/thrive:compound]. Appuyez sur [thrive:input]g_secrete_slime[/thrive:input] pour libérer le [thrive:compound type=\"mucilage\"][/thrive:compound] stocké, augmentant la vitesse de cette cellule et ralentissant les prédateurs."
 
 #, fuzzy
 msgid "UPLOAD"
@@ -7288,7 +7272,26 @@ msgstr "Augmente l'espace de stockage de la cellule."
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "La vacuole stockera {0} unités du composé sélectionné"
 
+#, fuzzy
+msgid "VALUE_MODIFIER"
+msgstr "Modifier"
+
+msgid "VALUE_OFFSET"
+msgstr ""
+
+#, fuzzy
+msgid "VALUE_TOTAL"
+msgstr "Nombre de sauvegardes :"
+
 msgid "VALUE_WITH_UNIT"
+msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VALUE_WITH_UNIT_PLUS"
+msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VALUE_WITH_UNIT_PLUS_MINUS"
 msgstr "{0} {1}"
 
 msgid "VENTS_ARE_HOME"
@@ -7477,7 +7480,7 @@ msgstr "Prochainement."
 
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_INTRO"
-msgstr "La phase éveillée commence quand l'espèce du joueur vient de développer un système nerveux et acquérir la sentience. Elle connaitra de nombreuses générations d'évolution pour atteindre la sapience."
+msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gazeux et l'énergie cellulaire sous forme d'[thrive:compound type=\"atp\"][/thrive:compound] pour produire de l'[thrive:compound type=\"ammoniaque\"][/thrive:compound], un nutriment essentiel à la croissance des cellules. Il s'agit d'un processus appelé [b]fixation anaérobie de l'azote[/b]. Comme la nitrogénase est suspendue directement dans le cytoplasme, le liquide environnant effectue une partie de la [b]glycolyse[/b]."
 
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_OVERVIEW"
@@ -7623,7 +7626,7 @@ msgstr "Bien qu'il n'existe pas de microbes Terriens avec des organites appelés
 
 msgid "WIKI_CHEMOPLAST_STRATEGY"
 msgstr ""
-"Tout comme les [b][color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]protéines chimiosynthétiques[/url][/color][/b], cet organite permet à une cellule d'exploiter le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] présent en abondance dans certains secteurs. Comme les concentrations de [thrive:compound type=\"glucose\"][/thrive:compound] ambiant diminuent tout au long du jeu, il est conseillé de trouver d'autres sources d'énergie, et le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] pourrait bien être une source appropriée pour votre cellule si vous restez dans une cheminée volcanique.\n"
+"Tout comme les [b][color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]protéines chimiosynthétiques[/url][/color][/b], cet organite permet à une cellule d'exploiter le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] présent en abondance dans certains secteurs. Comme les concentrations de [thrive:compound type=\"glucose\"][/thrive:compound] ambiant diminuent tout au long du jeu, il est conseillé de trouver d'autres sources d'énergie, et le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] pourrait bien être une source appropriée pour votre cellule si vous restez près d'un cratère volcanique.\n"
 "\n"
 "Il est conseillé de remplacer les [b][color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]protéines chimiosynthétiques[/url][/color][/b] par des [b]chimioplastes[/b] après avoir évolué un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b], ces derniers étant plus performants."
 
@@ -7692,17 +7695,17 @@ msgstr "Pas de conditions."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
 msgstr ""
-"Sur Terre, la [color=#3796e1][url=https://fr.wikipedia.org/wiki/Chimiotrophie]chimiosynthèse[/url][/color] est un processus métabolique présent dans de nombreux microbes, où elle sert principalement d'alternative à la photosynthèse. Alors que la photosynthèse utilise les photons de la lumière du soleil pour fournir l'énergie nécessaire aux réactions chimiques, la chimiosynthèse utilise plutôt l'oxydation de composés inorganiques tels que le fer ou le sulfure d'hydrogène pour fournir cette énergie.\n"
+"[color=#3796e1][url=https://fr.wikipedia.org/wiki/Chimiotrophie]La chimiosynthèse[/url][/color] est un processus métabolique présent chez de nombreux microbes dans le monde réel, où elle sert essentiellement d'alternative à la photosynthèse. Alors que la photosynthèse utilise les photons de la lumière solaire pour fournir l'énergie nécessaire aux réactions chimiques, la chimiosynthèse utilise plutôt l'oxydation de composés inorganiques tels que le fer ou le sulfure d'hydrogène pour fournir cette énergie.\n"
 "\n"
-"Par exemple, la chimiosynthèse du sulfure d'hydrogène peut être résumée par l'équation chimique suivante :\n"
+"À titre d'exemple, la chimiosynthèse du sulfure d'hydrogène peut être résumée par l'équation chimique suivante :\n"
 "\n"
 "18H<sub>2</sub>S + 6CO<sub>2</sub> + 3O<sub>2</sub> → C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> (carbohydrate) + 12H<sub>2</sub>O + 18S\n"
 "\n"
-"Dans la réaction ci-dessus, le sulfure d'hydrogène sert de source d'électrons lorsqu'il réagit avec le dioxyde de carbone et l'oxygène, ce qui entraîne la formation d'une molécule de glucide ainsi que d'eau et d'atomes de soufre libres. Ainsi, alors que la photosynthèse entraine la libération d'oxygène gazeux, la chimiosynthèse à base de sulfure d'hydrogène produit du soufre, qui s'agrège généralement en globules solides."
+"Dans la réaction ci-dessus, le sulfure d'hydrogène sert de source d'électrons lorsqu'il réagit avec le dioxyde de carbone et l'oxygène, ce qui entraîne la formation d'une molécule de glucide ainsi que d'eau et d'atomes de soufre libres. Ainsi, alors que la photosynthèse entraîne la libération d'oxygène gazeux, la chimiosynthèse à base de sulfure d'hydrogène produit du soufre, qui s'agrège généralement en globules solides."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_STRATEGY"
 msgstr ""
-"Avec les [b]protéines chimiosynthétiques[/b], les cellules ont accès à l'une des sources d'énergie les plus abondantes et les plus fiables dans les cheminées volcaniques, le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]. Celui-ci peut être stocké et transformé régulièrement en [thrive:compound type=\"glucose\"][/thrive:compound], et permet de conserver des réserves d'énergie.\n"
+"Avec les [b]protéines chimiosynthétiques[/b], les cellules ont accès à l'une des sources d'énergie les plus abondantes et les plus fiables dans les cratères volcaniques, le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]. Celui-ci peut être stocké et transformé régulièrement en [thrive:compound type=\"glucose\"][/thrive:compound], et permet de conserver des réserves d'énergie.\n"
 "\n"
 "Pour développer une bactérie chimiosynthétique efficace, il suffit d'avoir suffisamment de [b]protéines chimiosynthétiques[/b] pour générer une augmentation nette de [thrive:compound type=\"glucose\"][/thrive:compound] à l'intérieur de la cellule. Une bonne façon de commencer est de placer deux [b]protéines chimiosynthétiques[/b] dans la première génération, suivi de [b][color=#3796e1][url=thriveopedia:metabolosome]métabolosomes[/url][/color][/b] et de n'importe quel élément que vous souhaitez développer dans la génération suivante. Par la suite, il est généralement conseillé de ne placer qu'un hexagone supplémentaire de [b]Protéines chimiosynthétiques[/b] pour deux autres parties.\n"
 "\n"
@@ -7720,7 +7723,7 @@ msgstr ""
 "\n"
 "Comme la [b]photosynthèse[/b] nécessite du [thrive:compound type=\"sunlight\"][/thrive:compound] pour fonctionner, elle n'est efficace qu'en surface.\n"
 "\n"
-"Cet organite est l'équivalent eucaryote des [b][color=#3796e1][url=thriveopedia:chromatophore]thylakoïdes[/url][/color][/b]."
+"Cet organite est un équivalent eucaryote des [b][color=#3796e1][url=thriveopedia:chromatophore]thylakoïdes[/url][/color][/b]."
 
 msgid "WIKI_CHLOROPLAST_MODIFICATIONS"
 msgstr "Pas de modifications."
@@ -7735,7 +7738,7 @@ msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr ""
 "Une cellule doit avoir un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour pouvoir développer des [b]chloroplastes[/b].\n"
 "\n"
-"Si le déblocage des organites est activé dans les paramètres de la partie, la condition suivante doit être vraie [i]pour la cellule du joueur[/i] :\n"
+"Si le déblocage des organites est activé dans les paramètres du jeu, la condition suivante doit être vraie [i]pour la cellule du joueur[/i] :\n"
 "\n"
 "[indent]—   Posséder au moins [b]5[/b] [b][color=#3796e1][url=thriveopedia:chromatophore]thylakoïdes[/url][/color][/b] depuis au moins [b]7[/b] générations d'affilée.[/indent]"
 
@@ -7959,7 +7962,7 @@ msgstr ""
 "[code]soft(x) = 2 * sigmoid(x * PROCESS_CAPACITY_DEMAND_MULTIPLIER) - 1[/code]\n"
 "\n"
 "[indent]— Les processus avec une capacité de 0 n'affectent pas le système.[/indent]\n"
-"[indent]— C’est terminé ! :D[/indent]"
+"[indent]— C’est terminé ! :D"
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
@@ -8095,7 +8098,7 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_FERROPLAST_STRATEGY"
 msgstr ""
-"Dans des environnement pleins de [thrive:compound type=\"iron\"][thrive:compound], les [b]ferroplastes[/b] sont d'excellentes sources d'énergie. Dans de nombreux secteurs, le [thrive:compound type=\"iron\"][thrive:compound] peut être trouvé de façon plus fiable que le [thrive:compound type=\"glucose\"][thrive:compound] puisque de gros fragments de minerai de [thrive:compound type=\"iron\"][thrive:compound] peuvent rester près de la cellule éternellement. Sachez que les concentrations de [thrive:compound type=\"iron\"][thrive:compound] peuvent diminuer en avançant dans le jeu, nous recommandons donc d'utiliser d'autres sources d'énergie avant que votre cellule ne s'affame.\n"
+"Dans des environement pleins de [thrive:compound type=\"iron\"][thrive:compound], les [b]ferroplastes[/b] sont d'excellentes sources d'énergie. Dans de nombreux secteurs, le [thrive:compound type=\"iron\"][thrive:compound] peut être trouvé de façon plus fiable que le [thrive:compound type=\"glucose\"][thrive:compound] puisque de gros fragments de minerai de [thrive:compound type=\"iron\"][thrive:compound] peuvent rester près de la cellule éternellement. Sachez que les concentrations de [thrive:compound type=\"iron\"][thrive:compound] peuvent diminuer en avançant dans le jeu, nous recommandons donc d'utiliser d'autres sources d'énergie avant que votre cellule ne s'affame.\n"
 "\n"
 "Nous recommandons aussi de remplacer vos paires de [b][color=#3796e1][url=thriveopedia:rusticyanin]rusticyanine[/url][/color][/b] par des [b]ferroplastes[/b] après avoir évolué un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour une bien meilleure efficacité."
 
@@ -8108,7 +8111,7 @@ msgstr "Chaque [b]flagelle[/b] exerce une poussée en sens inverse de son orient
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_INTRO"
-msgstr "Les [b]flagelles[/b] sont des filaments à l'éxterieur d'une cellule qui utilisent de l'[thrive:compound type=\"atp\"][/thrive:compound] pour aumenter la vitesse de déplacement d'une cellule dans une direction. La poussée est appliquée dans la direction opposée à la flagelle."
+msgstr "Le flagelle (pluriel : flagelle) est un faisceau de fibres protéiques en forme de fouet s’étendant de la membrane de la cellule qui utilisent l’ATP pour onduler et propulser la cellule dans une direction. La position du flagelle détermine la direction dans laquelle il fournit la poussée pour le mouvement de la cellule. La direction de poussée est opposée à la direction vers laquelle pointe le flagelle, par exemple un flagelle placé sur le côté gauche d’une cellule fournit une poussée lors du déplacement vers la droite."
 
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "Pas de modifications."
@@ -8271,14 +8274,16 @@ msgstr "Améliorations"
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "Améliorations"
 
+#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
-msgstr ""
+msgstr "Organites"
 
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
 msgstr "Aide et astuces"
 
+#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
-msgstr ""
+msgstr "Processus"
 
 msgid "WIKI_HELP_AND_TIPS_GENERAL_TIPS"
 msgstr ""
@@ -8409,13 +8414,13 @@ msgstr ""
 
 msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
 msgstr ""
-"À chaque génération, vous avez 100 points de mutation (PM) à dépenser, et chaque changement (ou mutation) coutera un certain nombre de ces PM. Ajouter et retirer des organites coute des PM. Cependant, retirer des organelles placées dans la session actuelle de l'éditeur rembourse les PM pour cette organelle. Vous pouvez déplacer (et faire pivoter) ou retirer une organite en faisant un clic droit dessus et en sélectionnant dans le menu contextuel.\n"
+"À chaque génération, vous avez 100 points de mutation (PM) à dépenser, et chaque changement (ou mutation) coutera un certain nombre de ces PM. Ajouter et retirer des organelles coute des PM. Cependant, retirer des organelles placées dans la session actuelle de l'éditeur rembourse les PM pour cette organelle. Vous pouvez déplacer (et faire pivoter) ou retirer une organelle en faisant un clic droit dessus et en sélectionnant dans le menu contextuel.\n"
 "\n"
-"Les principales façons pour les cellules de gagner de l'énergie sont de se nourrir de l'environnement autour d'elles - ce qu'on appelle [b]l'autotrophie[/b] - et de se nourrir d'autres cellules ou de parties de cellules mortes - ce qu'on appelle [b]l'hétérotrophie[/b]. Les deux sont des éléments importants de la [b]chaine alimentaire[/b].\n"
+"Les principales façons pour les cellules de gagner de l'énergie sont de se nourrir de l'environnement autour d'elles - ce qu'on appelle [b]l'autotrophie[/b] - et de se nourrir d'autres cellules ou de parties de cellules mortes - ce qu'on appelle [b]l'hétérotrophie[/b]. Les deux sont des éléments importants de la [b]chaîne alimentaire[/b].\n"
 "\n"
-"Les parois cellulaires en [b]cellulose[/b] et en [b]chitine[/b] ne peuvent pas être digérées sans les enzymes capables de les décomposer au préalable. Ces enzymes sont produites par les [color=#3796e1][url=thriveopedia:lysosome]lysosomes[/url][/color], qui sont exclusifs aux eucaryotes. Les procaryotes n'ont pas de tels organites et digèrent leur nourriture de manière moins efficace. Pour les petites cellules, cela ne pose pas de problème, mais pour les cellules plus grandes, ne pas avoir de [color=#3796e1][url=thriveopedia:lysosome]lysosomes[/url][/color] peut être un grand désavantage.\n"
+"Les parois cellulaires en [b]cellulose[/b] et en [b]chitine[/b] ne peuvent pas être digérées sans les enzymes capables de les décomposer au préalable. Ces enzymes sont produites par les [color=#3796e1][url=thriveopedia:lysosome]lysosomes[/url][/color], qui sont exclusifs aux eucaryotes. Les procaryotes n'ont pas de telles organites et digèrent leur nourriture de manière moins efficace. Pour les petites cellules, cela ne pose pas de problème, mais pour les cellules plus grandes, ne pas avoir de [color=#3796e1][url=thriveopedia:lysosome]lysosomes[/url][/color] peut être un grand désavantage.\n"
 "\n"
-"L'[color=#3796e1][url=thriveopedia:bindingAgent]agent de liaison[/url][/color] permet à votre cellule et à d'autres cellules de votre espèce de former une [b]colonie cellulaire[/b] où les cellules partagent les composés qu'elles absorbent et produisent entre elles. En étant dans une colonie, vous ne pouvez pas entrer dans l'éditeur. Pour cela, vous devez quitter la colonie en appuyant sur la touche [b]Tout délier[/b]. Les grandes colonies cellulaires sont la voie vers la [b]multicellularité[/b] et la fin de la phase unicellulaire.\n"
+"L'[color=#3796e1][url=thriveopedia:bindingAgent]agent de liaison[/url][/color] permet à votre cellule et à d'autres cellules de sa espèce de former une [b]colonie cellulaire[/b] où les cellules partagent les composés qu'elles absorbent et produisent entre elles. En étant dans une colonie, vous ne pouvez pas entrer dans l'éditeur. Pour cela, vous devez quitter la colonie en appuyant sur la touche [b]Tout délier[/b]. Les grandes colonies cellulaires sont la voie vers la [b]multicellularité[/b] et la fin de la phase unicellulaire.\n"
 "\n"
 "Si vous survivez pendant vingt générations avec une population de 300, vous êtes considéré comme ayant \"gagné\" le jeu actuel. Vous pouvez toujours continuer à jouer comme vous le souhaitez."
 
@@ -8442,11 +8447,11 @@ msgstr ""
 
 msgid "WIKI_HYDROGENASE_STRATEGY"
 msgstr ""
-"Un organite de base, l'hydrogénase est l'organite fondamental de transformation du glucose dans une atmosphère anoxygénique, permettant aux joueurs de tirer parti des nuages de glucose initialement abondants. Sa production d'énergie constante, qui n'est limitée par aucun composé atmosphérique, en fait un élément très polyvalent et important pour les procaryotes à faible consommation d'énergie. Les joueurs qui souhaitent utiliser le glucose devraient généralement adopter à la fermentation clostridienne.\n"
+"Au départ, l'hydrogénase sera l'élément fondamental du traitement du glucose dans une atmosphère anoxygénique, permettant aux joueurs de tirer parti des nuages de glucose initialement abondants. Sa production d'énergie constante, qui n'est limitée par aucun composé atmosphérique, en fait un élément très polyvalent et important pour les procaryotes à faible consommation d'énergie. Les joueurs qui souhaitent utiliser le glucose doivent généralement s'adapter à la fermentation clostridienne. \n"
 "\n"
-"À terme, il est probablement préférable que l'hydrogénase commence à être remplacée par des métabolosomes. Comme ils sont aérobies, les métabolosomes sont beaucoup plus efficaces que l'hydrogénase, et tirer parti de l'oxygène est une étape importante pour progresser vers le stade d'eucaryote, puis finalement de multicellulaire.\n"
+"À terme, il est probablement préférable que l'hydrogénase commence à être remplacée par des métabolosomes. En raison de leur nature aérobie, les métabolosomes sont beaucoup plus efficaces que l'hydrogénase, et tirer parti de l'oxygène est un élément important pour progresser vers le stade d'eucaryote, puis finalement de multicellulaire.\n"
 "\n"
-"Il est important de garder à l'esprit que vous devrez probablement remplacer les hydrogénases une fois que votre monde sera oxygéné. La possession d'hydrogénases pourrait causer plusieurs générations de suppression/remplacement d'éléments quand votre monde s'oxygènera. Ainsi, associer certaines hydrogénases à un autre processus métabolique, tel que la chimiosynthèse, ou garder un organisme relativement peu énergivore pourrait être une stratégie bénéfique. À mesure que le monde s'oxygène, l'hydrogénase fonctionnera probablement mieux dans des secteurs plus profonds et moins riches en oxygène."
+"Il est important de garder à l'esprit que vous devrez probablement remplacer les hydrogénases une fois que votre monde sera oxygéné. Le spam d'hydrogénases pourrait entraîner plusieurs générations de suppression/remplacement d'éléments une fois que votre monde sera oxygéné. Ainsi, associer certaines hydrogénases à un autre processus métabolique, tel que la chimiosynthèse, ou maintenir un organisme relativement peu énergivore pourrait être une stratégie bénéfique. À mesure que le monde s'oxygène, l'hydrogénase fonctionnerait probablement mieux dans des zones plus profondes et moins riches en oxygène."
 
 msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "Pas d'améliorations."
@@ -8455,8 +8460,9 @@ msgstr "Pas d'améliorations."
 msgid "WIKI_HYDROGENOSOME_EFFECTS"
 msgstr "Pas d'effets."
 
+#, fuzzy
 msgid "WIKI_HYDROGENOSOME_INTRO"
-msgstr ""
+msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gazeux et l'énergie cellulaire sous forme d'[thrive:compound type=\"atp\"][/thrive:compound] pour produire de l'[thrive:compound type=\"ammoniaque\"][/thrive:compound], un nutriment essentiel à la croissance des cellules. Il s'agit d'un processus appelé [b]fixation anaérobie de l'azote[/b]. Comme la nitrogénase est suspendue directement dans le cytoplasme, le liquide environnant effectue une partie de la [b]glycolyse[/b]."
 
 #, fuzzy
 msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
@@ -8497,8 +8503,12 @@ msgstr "Le développement de cette phase n'a pas encore commencé. La conception
 msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
 msgstr "Prochainement."
 
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
 msgstr ""
+"Permet à une cellule de se réunir avec d'autres cellules de son espèce pour former une colonie cellulaire. Une fois liées dans une colonie, les cellules se déplacent comme une seule et même entité et partagent leurs composés. Les cellules doivent se détacher d'une colonie avant d'entrer dans l'éditeur et de se diviser.\n"
+"\n"
+"La formation de colonies cellulaires est la première étape vers la multicellularité, et les [b]agents liants[/b] sont donc essentiels pour passer à la phase suivante."
 
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
@@ -8741,8 +8751,16 @@ msgstr ""
 msgid "WIKI_MICROBE_STAGE_GDD"
 msgstr "Phase microbienne"
 
+#, fuzzy
 msgid "WIKI_MICROBE_STAGE_INTRO"
 msgstr ""
+"Sur une planète distante et étrangère, des éternités d'activité volcanique et d'impacts de météores ont abouti au développement d'un nouveau phénomène dans l'univers.\n"
+"\n"
+"La vie.\n"
+"\n"
+"Simple microbe résidant dans les régions abyssales de l'océan, vous êtes le dernier ancêtre commun de tous les êtres vivants (LUCA) de cette planète.\n"
+"\n"
+"Pour survivre dans ce monde hostile, vous aurez besoin de collecter tous les composés que vous pourrez trouver et d'évoluer au cours de vos générations, dans une féroce compétition avec les autres espèces de microbes, qui peupleront bientôt ces océans..."
 
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Pas d'effets."
@@ -8870,7 +8888,7 @@ msgstr "La [color=#3796e1][url=https://fr.wikipedia.org/wiki/Nitrog%C3%A9nase]Ni
 
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr ""
-"L'[thrive:compound type=\"ammonia\"][/thrive:compound] produit par la [b]nitrogénase[/b] contribue à accumuler des resources pour la reproduction. Les cellules ayant de la [b]nitrogénase[/b] doivent donc uniquement trouver du [thrive:compound type=\"phosphates\"][/thrive:compound] dans l'environnement pour se reproduire plus vite que la normale (la normale étant zéro si la reproduction passive est désactivée dans les paramètres de la partie). Une bonne stratégie est de chercher des fragments de [thrive:compound type=\"phosphates\"][/thrive:compound] à ingérer ou auxquels se coller.\n"
+"L'[thrive:compound type=\"ammonia\"][/thrive:compound] produit par la [b]nitrogénase[/b] contribue à accumuler des resources pour la reproduction. Les cellules ayant de la [b]nitrogénase[/b] doivent donc uniquement trouver du [thrive:compound type=\"phosphates\"][/thrive:compound] dans l'environement pour se reproduire plus vite que la normale (la normale étant zéro si la reproduction passive est désactivée dans les paramètres de la partie). Une bonne stratégie est de chercher des fragments de [thrive:compound type=\"phosphates\"][/thrive:compound] à ingérer ou auxquels se coller.\n"
 "\n"
 "Puisque la [b]fixation anaérobie de l'azote[/b] consomme de l'[thrive compound type=\"atp\"][/thrive:compound], vous devriez avoir des réserves d'[thrive compound type=\"atp\"][/thrive:compound] disponibles avant d'ajouter cet organite. Le peu de [b]gycolyse[/b] effectuée par la [b]nitrogénase[/b] n'est pas suffisant pour compenser son propre cout d'osmorégulation."
 
@@ -9203,8 +9221,12 @@ msgstr ""
 "[indent]—   A ingéré au moins [b]5[/b] cellules, toutes générations confondues.[/indent]\n"
 "[indent]—   Est mort au moins [b]5[/b] fois parmi toutes les générations.[/indent]"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
+"Les pili (singulier : pilus) se trouvent à la surface de nombreux micro-organismes et ressemblent à de fins poils. Des dizaines, voire des centaines de pili peuvent être présents à la surface d'un micro-organisme et remplir plusieurs fonctions, notamment celle de prédation. Les micro-organismes pathogènes utilisent les pili de façon agressive, soit pour s'attacher et se lier aux tissus de l'hôte, soit pour percer leur membrane externe afin d'accéder au cytoplasme. Il existe de nombreux pili similaires, mais ils ne sont pas apparentés d'un point de vue évolutif et résultent d'une évolution convergente. Un même organisme peut développer plusieurs types de pili et ceux qui sont présents à la surface sont constamment modifiés et remplacés.\n"
+"\n"
+"Pour en savoir plus, consultez la [color=#3796e1][url=https://en.wikipedia.org/wiki/Pilus]page Wikipedia[/url][/color] de cet organite."
 
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
 msgstr ""
@@ -9251,9 +9273,9 @@ msgstr ""
 
 msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
-"Il n'est pas possible d'utiliser le [b]protoplasme[/b] dans les parties normales. Le joueur ne peut l'utiliser que s'il joue en mode de construction libre avec une espèce non-joueur qu'il a fossilisée dans une partie précédente et qui a évolué cette organelle.\n"
+"Il n'est pas possible d'utiliser le [b]Protoplasme[/b] dans les jeux réguliers. Le joueur ne peut l'utiliser que s'il joue en mode de construction libre avec une espèce non-joueur qu'il a fossilisée dans une partie précédente et qui a évolué cette organelle.\n"
 "\n"
-"Lorsque le [b]protoplasme[/b] apparait, il est stratégiquement équivalent au [b][color=#3796e1][url=thriveopedia:cytoplasm]cytoplasme[/url][/color][/b], mais avec une capacité de stockage bienplus élevée et une production de [thrive:compound type=\"atp\"][/thrive:compound] plus lente. Les cellules avec du [b]protoplasme[/b] peuvent généralement survivre beaucoup plus longtemps sans trouver de nuages de composés ou consommer de proies."
+"Lorsque le [b]Protoplasme[/b] apparaît, il est stratégiquement équivalent au [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasme[/url][/color][/b], mais avec une capacité de stockage notablement augmentée et une production de [thrive:compound type=\"atp\"][/thrive:compound] plus lente. Les cellules avec [b]Protoplasme[/b] peuvent généralement survivre beaucoup plus longtemps sans trouver des nuages de composés ou consommer des proies."
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr "Pas d'améliorations."
@@ -9382,17 +9404,14 @@ msgstr "Pas de modifications."
 
 #, fuzzy
 msgid "WIKI_SLIME_JET_PROCESSES"
-msgstr ""
-"[b]Synthèse de mucilage[/b] : [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"mucilage\"][/thrive:compound]\n"
-"\n"
-"Crée du [thrive:compound type=\"mucilage\"][/thrive:compound] pour être expulsé pour de la propulsion."
+msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"mucilage\"][/thrive:compound]. Appuyez sur [thrive:input]g_secrete_slime[/thrive:input] pour libérer le [thrive:compound type=\"mucilage\"][/thrive:compound] stockés, augmentant la vitesse de cette cellule et ralentissant les prédateurs."
 
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr "Pas de conditions."
 
 #, fuzzy
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
-msgstr "Des bactéries et autres microbes peuvent produire des jets de « slime » de polysaccharides comme l'une des forms de [color=#3796e1][url=https://en.wikipedia.org/wiki/Gliding_motility]motilité glissante (en)[/url][/color], poussant la cellule dans la direction opposée au jet et laissant une trace de [b]mucilage[/b] derrière."
+msgstr "À venir"
 
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
@@ -9413,8 +9432,9 @@ msgstr "Prochainement."
 msgid "WIKI_SOCIETY_STAGE_INTRO"
 msgstr "De nombreux organismes produisent des substances polysaccharidiques gluantes, et le mucilage est l'un de ces polysaccharides. Si de nombreuses espèces utilisent la bave pour se déplacer, certains types de bactéries éjectent ces substances à haute pression dans leur sillage. Ces jets de bave agissent comme des moteurs de fusée, poussant les cellules en avant à une vitesse incroyable. La bave est également utilisée pour faire obstacle aux prédateurs, en les piégeant dans une substance que seuls les organismes dotés de jets peuvent diriger."
 
+#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
-msgstr ""
+msgstr "Phase sociétale"
 
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
@@ -9504,20 +9524,24 @@ msgstr "Pas d'améliorations."
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "Active la [i]vision thermique[/i], qui peut être activée et désactivée. Superpose la températire relative à l'écran. Les zones plus chaudes apparaissent plus rouge."
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_INTRO"
-msgstr ""
+msgstr "Thermosynthase"
 
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "Pas de modifications."
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
-msgstr ""
+msgstr "Produit l'[thrive:compound type=\"atp\"][/thrive:compound] en utilisant les gradients de température. Le taux varie en fonction de la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
-msgstr ""
+msgstr "La thermosynthase est une protéine qui utilise la convection thermique pour changer de forme, ce qui lui permet de se replier et de se lier à l'ADP lorsqu'elle est exposée à la chaleur, puis de se déplier et de le recycler en [thrive:compound type=\"atp\"][/thrive:compound] lorsqu'elle est exposée au froid, dans un processus appelé [b]thermosynthèse[/b]. Le taux de production de [thrive:compound type=\"atp\"][/thrive:compound] varie avec [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "À venir"
 
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr ""
@@ -9536,11 +9560,13 @@ msgstr ""
 "\n"
 "Lorsqu'il est réglé sur [b]intense[/b], [b]seulement[/b] les zones où le joueur est allé seront visibles. Les zones adjacentes seront visibles mais leur type et les informations sur les composés seront cachées"
 
+#, fuzzy
 msgid "WIKI_THE_PATCH_MAP_INTRO"
-msgstr ""
+msgstr "Le thermoplaste est une structure à double membrane contenant des pigments thermosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du thermoplaste sont capables d'utiliser l'énergie des différences de chaleur dans l'environnement pour produire [thrive:compound type=\"atp\"][/thrive:compound] à partir de l'eau dans un processus appelé [b]thermosynthèse[/b]. Le taux de production de [thrive:compound type=\"atp\"][/thrive:compound] varie avec [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_THE_PATCH_MAP_PATCHES"
-msgstr ""
+msgstr "Pas d'améliorations."
 
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr "La [b]Carte des zones[/b] est une représentation de votre planète. Elle est composée de [b]Zones[/b] et de [b]Régions[/b] (expliquées ci-dessous). Chaque région contient plusieurs zones connectées (ou adjacentes) et est reliée à d'autres régions."
@@ -9559,13 +9585,13 @@ msgstr "Pas de modifications"
 
 msgid "WIKI_THYLAKOIDS_PROCESSES"
 msgstr ""
-"[b]Photosynthèse chromatophorienne :[/b] [thrive:compound type=\"sunlight\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound] → [thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound]\n"
+"[b]Photosynthèse de chromatophore :[/b] [thrive:compound type=\"sunlight\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound] → [thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound]\n"
 "\n"
-"Maintenant, vous pouvez manger de la [thrive:compound type=\"sunlight\"][/thrive:compound]. Goutez au soleil. Notez que les [b]thylakoïdes[/b] ne peuvent pas effectuer la [b]photosynthèse chromatophorienne[/b] dans les zones sombres, et plus une cellule se rapproche de la surface, plus ce processus devient efficace.\n"
+"Maintenant, vous pouvez manger de la [thrive:compound type=\"sunlight\"][/thrive:compound]. Goutez au soleil. Notez que les [b]thylakoïdes[/b] ne peuvent pas effectuer la [b]Photosynthèse de chromatophore[/b] dans les zones sombres, et plus une cellule se rapproche de la surface, plus ce processus devient efficace.\n"
 "\n"
 "[b]Glycolyse :[/b] [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Comme les [b]thylakoïdes[/b] sont suspendus directement dans le [b][color=#3796e1][url=thriveopedia:cytoplasm]cytoplasme[/url][/color][/b], le fluide environnant effectue de la [b]glycolyse[/b]."
+"Comme les [b]thylakoïdes[/b] sont suspendus directement dans le [b][color=#3796e1][url=thriveopedia:cytoplasm]cytoplasme[/url][/color][/b], le fluide environnant effectue la [b]glycolyse[/b]."
 
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
 msgstr ""
@@ -9573,8 +9599,9 @@ msgstr ""
 "\n"
 "[indent]— Se trouve dans une zone avec au moins [b]20%[/b] de [thrive:compound type=\"sunlight\"][/thrive:compound].[/indent]"
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "À venir"
 
 msgid "WIKI_THYLAKOIDS_STRATEGY"
 msgstr ""
@@ -9587,8 +9614,9 @@ msgstr ""
 msgid "WIKI_THYLAKOIDS_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
-msgstr ""
+msgstr "."
 
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr ""
@@ -9614,11 +9642,13 @@ msgstr "Pas d'améliorations."
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr "Pas d'effets."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
-msgstr ""
+msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines oxytoxy. La vitesse de production et sécrétion augmente proportionellement au nombre de vacuoles à toxines."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_MODIFICATIONS"
-msgstr ""
+msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines oxytoxy. La vitesse de production et sécrétion augmente proportionellement au nombre de vacuoles à toxines."
 
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "Pas de processus"
@@ -9630,7 +9660,7 @@ msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
 msgid "WIKI_VACUOLE_STRATEGY"
-msgstr "Bien que le stockage supplémentaire soit utile dans toutes les situations, une [b]vacuole[/b] est particulièrement utile pour les organismes qui utilisent la [b]photosynthèse[/b] (cellules avec des [b][color=#3796e1][url=thriveopedia:chromatophore]thylakoïdes[/url][/color][/b] ou des [b][color=#3796e1][url=thriveopedia:chloroplast]chloroplastes[/url][/color][/b]). Si le cycle jour/nuit est activé dans les paramètres du jeu, les cellules photosynthétiques doivent avoir suffisamment d'espace pour stocker le [thrive:compound type=\"glucose\"][/thrive:compound] nécessaire pour survivre pendant la nuit."
+msgstr "Bien que le stockage supplémentaire soit utile dans toutes les situations, une [b]Vacuole[/b] est particulièrement utile pour les organismes qui utilisent la [b]Photosynthèse[/b] (cellules avec des [b][color=#3796e1][url=thriveopedia:chromatophore]Thylakoïdes[/url][/color][/b] ou des [b][color=#3796e1][url=thriveopedia:chloroplast]Chloroplastes[/url][/color][/b]). Si le cycle jour/nuit est activé dans les paramètres du jeu, les cellules photosynthétiques doivent avoir suffisamment d'espace pour stocker le [thrive:compound type=\"glucose\"][/thrive:compound] nécessaire pour survivre pendant la nuit."
 
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr "Pas d'améliorations."
@@ -9805,7 +9835,7 @@ msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
 msgstr "Le contenu de cette page n'est pas entièrement implimentée dans le jeu et risque de changer."
 
 msgid "YOUTUBE_TOOLTIP"
-msgstr "Visitez notre chaine YouTube"
+msgstr "Visitez notre chaîne YouTube"
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
@@ -9826,6 +9856,19 @@ msgstr "Dézoomer"
 
 #~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 #~ msgstr "Inclure les prototypes des phases avancées"
+
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
+#~ msgstr "(certaines fonctionnalités peuvent être indisponibles une fois les phases suivantes atteintes)"
+
+#, fuzzy
+#~ msgid "KEEP_CURRENT_SHORT"
+#~ msgstr "Garder"
+
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr "Garder la plage de tolérance à la pression actuelle lors du déplacement des potards maximum et minimum"
+
+#~ msgid "TOO_LARGE_PRESSURE_RANGE"
+#~ msgstr "Plage de pression trop large"
 
 #~ msgid "WIN_TEXT"
 #~ msgstr "Félicitations, vous avez gagné cette version de Thrive ! Vous pouvez continuer à jouer après la disparition de ce message si vous le souhaitez, ou commencer une nouvelle partie dans un nouveau monde. Vous pouvez également ajouter des agents liants pour construire une colonie cellulaire et essayer les prototypes de jeu ultérieurs."

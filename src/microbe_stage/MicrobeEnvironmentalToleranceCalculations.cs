@@ -31,7 +31,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
     }
 
     public static ToleranceResult CalculateTolerances(IReadOnlyEnvironmentalTolerances speciesTolerances,
-        IReadOnlyList<OrganelleTemplate> organelles, IBiomeConditions environment)
+        IReadOnlyList<OrganelleTemplate> organelles, IBiomeConditions environment, bool excludePositiveBuffs = false)
     {
         var result = new ToleranceResult();
 
@@ -40,7 +40,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             PreferredTemperature = speciesTolerances.PreferredTemperature,
             TemperatureTolerance = speciesTolerances.TemperatureTolerance,
             PressureMinimum = speciesTolerances.PressureMinimum,
-            PressureMaximum = speciesTolerances.PressureMaximum,
+            PressureTolerance = speciesTolerances.PressureTolerance,
             OxygenResistance = speciesTolerances.OxygenResistance,
             UVResistance = speciesTolerances.UVResistance,
         };
@@ -60,7 +60,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         if (resolvedTolerances.UVResistance < 0)
             resolvedTolerances.UVResistance = 0;
 
-        CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, result);
+        CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, result, excludePositiveBuffs);
 
         return result;
     }
@@ -72,7 +72,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         float oxygenChange = 0;
         float uvChange = 0;
         float pressureMinimumChange = 0;
-        float pressureMaximumChange = 0;
+        float pressureToleranceChange = 0;
 
         int organelleCount = organelles.Count;
         for (int i = 0; i < organelleCount; ++i)
@@ -85,11 +85,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 temperatureChange += organelleDefinition.ToleranceModifierTemperatureRange;
                 oxygenChange += organelleDefinition.ToleranceModifierOxygen;
                 uvChange += organelleDefinition.ToleranceModifierUV;
-
-                // Important to + the change here as otherwise this is applied in the wrong direction with the minus
-                // in the actual application step outside the loop.
-                pressureMinimumChange += organelleDefinition.ToleranceModifierPressureRange;
-                pressureMaximumChange += organelleDefinition.ToleranceModifierPressureRange;
+                pressureToleranceChange += organelleDefinition.ToleranceModifierPressureTolerance;
             }
         }
 
@@ -98,7 +94,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         tolerances.OxygenResistance += oxygenChange;
         tolerances.UVResistance += uvChange;
         tolerances.PressureMinimum -= pressureMinimumChange;
-        tolerances.PressureMaximum += pressureMaximumChange;
+        tolerances.PressureTolerance += pressureToleranceChange;
     }
 
     public static void GenerateToleranceEffectSummariesByOrganelle(IReadOnlyList<OrganelleTemplate> organelles,
@@ -258,7 +254,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
     }
 
     private static void CalculateTolerancesInternal(in ToleranceValues speciesTolerances,
-        in ToleranceValues noExtraEffects, IBiomeConditions environment, ToleranceResult result)
+        in ToleranceValues noExtraEffects, IBiomeConditions environment, ToleranceResult result,
+        bool excludePositiveBuffs = false)
     {
         var patchTemperature = environment.GetCompound(Compound.Temperature, CompoundAmountType.Biome).Ambient;
         var patchPressure = environment.Pressure;
@@ -272,9 +269,9 @@ public static class MicrobeEnvironmentalToleranceCalculations
         result.PerfectOxygenAdjustment = requiredOxygenResistance - speciesTolerances.OxygenResistance;
         result.PerfectUVAdjustment = requiredUVResistance - speciesTolerances.UVResistance;
 
-        // Need to get the average pressure value from the max and min to know how much to adjust
-        result.PerfectPressureAdjustment =
-            patchPressure - (speciesTolerances.PressureMaximum + speciesTolerances.PressureMinimum) * 0.5f;
+        // Need to get minimum pressure a little bit below perfect pressure to make sure microbes can adjust perfectly
+        result.PerfectPressureAdjustment = patchPressure - speciesTolerances.PressureMinimum -
+            Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE * 0.5f;
 
         // TODO: the root cause of https://github.com/Revolutionary-Games/Thrive/issues/5928 is probably somewhere in
         // the following lines of code
@@ -298,7 +295,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
             missingSomething = true;
         }
-        else if (noExtraEffects.TemperatureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE)
+        else if (noExtraEffects.TemperatureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE &&
+                 !excludePositiveBuffs)
         {
             // Perfect adaptation ranges are calculated without the effects of organelles as they would otherwise
             // be really hard to apply
@@ -317,19 +315,21 @@ public static class MicrobeEnvironmentalToleranceCalculations
             result.TemperatureScore = 1;
         }
 
+        var pressureMaximum = speciesTolerances.PressureMinimum + speciesTolerances.PressureTolerance;
+
         // Pressure
-        if (patchPressure > speciesTolerances.PressureMaximum)
+        if (patchPressure > pressureMaximum)
         {
             // Too high pressure
 
-            if (patchPressure - speciesTolerances.PressureMaximum >
+            if (patchPressure - pressureMaximum >
                 Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE)
             {
                 result.PressureScore = 0;
             }
             else
             {
-                result.PressureScore = 1 - (patchPressure - speciesTolerances.PressureMaximum) /
+                result.PressureScore = 1 - (patchPressure - pressureMaximum) /
                     Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE;
             }
 
@@ -353,20 +353,19 @@ public static class MicrobeEnvironmentalToleranceCalculations
         }
         else
         {
-            var range = Math.Abs(noExtraEffects.PressureMaximum - noExtraEffects.PressureMinimum);
-
-            if (range <=
-                Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
+            if (noExtraEffects.PressureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE &&
+                !excludePositiveBuffs)
             {
                 // Perfectly adapted
                 var perfectionFactor = Constants.TOLERANCE_PERFECT_PRESSURE_SCORE *
-                    (1 - (range / Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE));
+                    (1 - noExtraEffects.PressureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE);
                 result.PressureScore = 1 + perfectionFactor;
             }
             else
             {
                 // Adequately adapted, but could be made perfect
-                result.PressureRangeSizeAdjustment = Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE - range;
+                result.PressureRangeSizeAdjustment = Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE -
+                    noExtraEffects.PressureTolerance;
 
                 result.PressureScore = 1;
             }
@@ -447,19 +446,9 @@ public static class MicrobeEnvironmentalToleranceCalculations
         public float PreferredTemperature;
         public float TemperatureTolerance;
         public float PressureMinimum;
-        public float PressureMaximum;
+        public float PressureTolerance;
         public float OxygenResistance;
         public float UVResistance;
-
-        public void CopyFrom(EnvironmentalTolerances tolerances)
-        {
-            PreferredTemperature = tolerances.PreferredTemperature;
-            TemperatureTolerance = tolerances.TemperatureTolerance;
-            PressureMinimum = tolerances.PressureMinimum;
-            PressureMaximum = tolerances.PressureMaximum;
-            OxygenResistance = tolerances.OxygenResistance;
-            UVResistance = tolerances.UVResistance;
-        }
     }
 }
 

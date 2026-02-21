@@ -2114,10 +2114,10 @@ public partial class CellEditorComponent :
         return MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(CalculateRawTolerances());
     }
 
-    private ToleranceResult CalculateRawTolerances()
+    private ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
     {
         return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
-            editedMicrobeOrganelles, Editor.CurrentPatch.Biome);
+            editedMicrobeOrganelles, Editor.CurrentPatch.Biome, excludePositiveBuffs);
     }
 
     /// <summary>

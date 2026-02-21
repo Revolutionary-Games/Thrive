@@ -312,7 +312,7 @@ public class OrganelleDefinition : RegistryType
     // Easy access to precalculated total tolerance modifiers
     public float ToleranceModifierOxygen { get; private set; }
     public float ToleranceModifierUV { get; private set; }
-    public float ToleranceModifierPressureRange { get; private set; }
+    public float ToleranceModifierPressureTolerance { get; private set; }
     public float ToleranceModifierTemperatureRange { get; private set; }
 
     /// <summary>
@@ -867,7 +867,7 @@ public class OrganelleDefinition : RegistryType
     {
         ToleranceModifierOxygen = 0;
         ToleranceModifierUV = 0;
-        ToleranceModifierPressureRange = 0;
+        ToleranceModifierPressureTolerance = 0;
         ToleranceModifierTemperatureRange = 0;
 
         foreach (var toleranceEffect in ToleranceEffects)
@@ -883,8 +883,8 @@ public class OrganelleDefinition : RegistryType
                 case ToleranceModifier.TemperatureRange:
                     ToleranceModifierTemperatureRange += toleranceEffect.Value;
                     break;
-                case ToleranceModifier.PressureRange:
-                    ToleranceModifierPressureRange += toleranceEffect.Value;
+                case ToleranceModifier.PressureTolerance:
+                    ToleranceModifierPressureTolerance += toleranceEffect.Value;
                     break;
                 default:
                     GD.PrintErr("Unknown tolerance type for organelle to effect: ", toleranceEffect.Key);
@@ -893,7 +893,7 @@ public class OrganelleDefinition : RegistryType
         }
 
         AffectsTolerances = ToleranceModifierOxygen != 0 || ToleranceModifierUV != 0 ||
-            ToleranceModifierTemperatureRange != 0 || ToleranceModifierPressureRange != 0;
+            ToleranceModifierTemperatureRange != 0 || ToleranceModifierPressureTolerance != 0;
     }
 
     private bool TryGetGraphicsForUpgrade(IReadOnlyOrganelleUpgrades? upgrades,

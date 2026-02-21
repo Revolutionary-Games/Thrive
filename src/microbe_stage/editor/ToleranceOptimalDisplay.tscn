@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://duf1lf5lp4v5p"]
+
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_xdmne"]
+[ext_resource type="Script" uid="uid://dnh1i83gmsmxd" path="res://src/microbe_stage/editor/ToleranceRangeDisplay.cs" id="2_telfv"]
+[ext_resource type="PackedScene" uid="uid://dccswprlmgtel" path="res://src/microbe_stage/editor/ToleranceOptimalMarker.tscn" id="2_xdmne"]
+
+[sub_resource type="Gradient" id="Gradient_xmghy"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3r1ho"]
+gradient = SubResource("Gradient_xmghy")
+width = 1
+height = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xdmne"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_telfv"]
+
+[node name="ToleranceOptimalDisplay" type="HSlider" node_paths=PackedStringArray("optimalValueMarker")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+theme = ExtResource("1_xdmne")
+theme_override_icons/grabber_disabled = SubResource("GradientTexture2D_3r1ho")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_xdmne")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_telfv")
+value = 60.0
+editable = false
+scrollable = false
+script = ExtResource("2_telfv")
+optimalValueMarker = NodePath("ToleranceInfo")
+
+[node name="ToleranceInfo" parent="." instance=ExtResource("2_xdmne")]
+layout_mode = 1
+offset_top = -15.0
+
+[connection signal="resized" from="." to="." method="SetBoundPositionsInternal"]

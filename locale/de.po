@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-20 15:03+0200\n"
+"POT-Creation-Date: 2026-02-21 23:50+0100\n"
 "PO-Revision-Date: 2026-02-18 15:14+0000\n"
 "Last-Translator: Matthias Ulbl <matthias.ulbl@gmx.at>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -3025,12 +3025,6 @@ msgstr "Juli"
 msgid "JUNE"
 msgstr "Juni"
 
-msgid "KEEP_CURRENT_SHORT"
-msgstr "Aktuelle Welt"
-
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "Besuche unsere Patreon Seite"
-
 msgid "KEEP_MIGRATION"
 msgstr "Aerobe Atmung"
 
@@ -5085,7 +5079,6 @@ msgstr "@"
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr "Zellprozesse"
 
-#, fuzzy
 msgid "PROCESS_PANEL_TITLE"
 msgstr "Zellprozesse"
 
@@ -6490,9 +6483,6 @@ msgstr "Werkzeuge"
 msgid "TOOL_HAND_AXE"
 msgstr "Beil"
 
-msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr "Druck-Schwankungsbreite zu groß"
-
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr "Es werden nicht alle aktuellen Versionen angezeigt, da es zu viele gibt"
 
@@ -7181,7 +7171,26 @@ msgstr "Vergrößert den Speicherplatz in der Zelle."
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Die Vakuole speichert {0} Einheiten der gewählten Substanz"
 
+#, fuzzy
+msgid "VALUE_MODIFIER"
+msgstr "Verändern"
+
+msgid "VALUE_OFFSET"
+msgstr ""
+
+#, fuzzy
+msgid "VALUE_TOTAL"
+msgstr "Gesamtspeicherungen:"
+
 msgid "VALUE_WITH_UNIT"
+msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VALUE_WITH_UNIT_PLUS"
+msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VALUE_WITH_UNIT_PLUS_MINUS"
 msgstr "{0} {1}"
 
 #, fuzzy
@@ -7209,7 +7218,6 @@ msgstr "Beobachter"
 msgid "VIEW_ALL"
 msgstr "Alle anzeigen"
 
-#, fuzzy
 msgid "VIEW_CELL_PROCESSES"
 msgstr "Zellprozesse anzeigen"
 
@@ -9430,6 +9438,18 @@ msgstr "Herauszoomen"
 
 #~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 #~ msgstr "Möglichkeit zum Übergang zur nächsten Stufe des Spiels (Mehrzellig). Verfügbar, sobald du eine ausreichend große Zellkolonie hast."
+
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
+#~ msgstr "(einige Funktionen könnten nicht mehr verfügbar sein, wenn Sie die nächsten Stufen erreichen)"
+
+#~ msgid "KEEP_CURRENT_SHORT"
+#~ msgstr "Aktuelle Welt"
+
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr "Besuche unsere Patreon Seite"
+
+#~ msgid "TOO_LARGE_PRESSURE_RANGE"
+#~ msgstr "Druck-Schwankungsbreite zu groß"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Benutzt Auto Harmony:"

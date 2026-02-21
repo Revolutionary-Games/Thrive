@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-20 15:03+0200\n"
+"POT-Creation-Date: 2026-02-21 23:50+0100\n"
 "PO-Revision-Date: 2026-02-20 14:49+0000\n"
 "Last-Translator: Søren Hansen <pjuske4life@gmail.com>\n"
 "Language-Team: Danish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/da/>\n"
@@ -2320,7 +2320,7 @@ msgid "FERROPLAST"
 msgstr "Ferroplast"
 
 msgid "FERROPLAST_DESCRIPTION"
-msgstr "Et metallisk kraftcenter. Ferroplasten er en dobbelt membranstruktur fyldt med proteiner og enzymer. Det er en prokaryot der er blevet assimileret af sin eukaryotiske vært. Den er i stand til at ændre [thrive:compound type=\"iron\"][/thrive:compound] fra en kemisk tilstand til en anden langt mere effektivitet end det ville kunne gøres med rusticyanin. Processen, kaldet [b]jern oxidation[/b], frigiver energi som cellen så kan høste."
+msgstr "Et metallisk kraftcenter. Ferropalsten er en doublet membranstruktur fyldt med proteiner og enzymer. Det er en prokaryot der er blevet assimileret af sin eukaryotiske vært. Den er i stand til at ændre [thrive:compound type=\"iron\"][/thrive:compound] fra en kemisk tilstand til en anden langt mere effektivitet end det ville kunne gøre med rusticyanin. Processen, kaldet [b]jern oxidation[/b], frigiver energi som cellen så kan høste."
 
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Bruger [thrive:compound type=\"iron\"][/thrive:compound] til at producere [thrive:compound type=\"atp\"][/thrive:compound]."
@@ -2986,12 +2986,6 @@ msgstr "Juli"
 
 msgid "JUNE"
 msgstr "Juni"
-
-msgid "KEEP_CURRENT_SHORT"
-msgstr "Behold nuværende"
-
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "Behold det nuværende tryktoleransområde, mens du flytter min- og max-skyderne"
 
 msgid "KEEP_MIGRATION"
 msgstr "Behold migration"
@@ -4997,7 +4991,7 @@ msgid "PROCESS_PANEL_EXPLANATION_TITLE"
 msgstr "Organisme processpanel forklaring"
 
 msgid "PROCESS_PANEL_TITLE"
-msgstr "Organismeprocesser"
+msgstr "Celleprocesser"
 
 msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Celleprocesser"
@@ -5921,7 +5915,7 @@ msgid "STRUCTURE"
 msgstr "Struktur"
 
 msgid "STRUCTURE_ASCENSION_GATE"
-msgstr "Opstigningsport"
+msgstr "Opstandelsesport"
 
 msgid "STRUCTURE_DYSON_SWARM"
 msgstr "Dysonsværm"
@@ -6334,9 +6328,6 @@ msgstr "Værktøj"
 
 msgid "TOOL_HAND_AXE"
 msgstr "Håndøkse"
-
-msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr "Trykspændet er for bredt"
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr "Viser ikke alle nylige versioner, da der er for mange"
@@ -7010,7 +7001,26 @@ msgstr "Øger lagerpladsen i cellen."
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Vakuolen vil lagre {0} enheder af det valgte stof"
 
+#, fuzzy
+msgid "VALUE_MODIFIER"
+msgstr "Modificer"
+
+msgid "VALUE_OFFSET"
+msgstr ""
+
+#, fuzzy
+msgid "VALUE_TOTAL"
+msgstr "Antal lagringer:"
+
 msgid "VALUE_WITH_UNIT"
+msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VALUE_WITH_UNIT_PLUS"
+msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VALUE_WITH_UNIT_PLUS_MINUS"
 msgstr "{0} {1}"
 
 msgid "VENTS_ARE_HOME"
@@ -7038,7 +7048,7 @@ msgid "VIEW_ALL"
 msgstr "Vis alle"
 
 msgid "VIEW_CELL_PROCESSES"
-msgstr "Vis organismeprocesser"
+msgstr "Vis celleprocesser"
 
 msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "Vis celleprocesser"
@@ -8754,6 +8764,18 @@ msgstr "Zoom ud"
 
 #~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 #~ msgstr "Inkluder sen-stadie prototyper"
+
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
+#~ msgstr "(nogle features bliver måske utilgængelige når du når det næste stadie)"
+
+#~ msgid "KEEP_CURRENT_SHORT"
+#~ msgstr "Behold nuværende"
+
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr "Behold det nuværende tryktoleransområde, mens du flytter min- og max-skyderne"
+
+#~ msgid "TOO_LARGE_PRESSURE_RANGE"
+#~ msgstr "Trykspændet er for bredt"
 
 #~ msgid "WIN_TEXT"
 #~ msgstr "Tillykke, du har vundet denne udgave af Thrive! Hvis du ønsker det kan du fortsætte med at spille efter den her besked forsvinder, eller starte et nyt soil i en ny verden. Du kan også tilføje bindingsagenter for at bygge en cellekoloni, og derefter prøve de senere spilprototyper."
