@@ -61,6 +61,8 @@ public class SimulationCache
 
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), bool> cachedUsesVaryingCompounds = new();
 
+    private readonly Dictionary<OrganelleDefinition, int> workMemory1 = new();
+
     public SimulationCache(WorldGenerationSettings worldSettings)
     {
         this.worldSettings = worldSettings;
@@ -118,9 +120,12 @@ public class SimulationCache
         // TODO: check if caching instances of these objects would be better than always recreating
         var cached = new EnergyBalanceInfoSimple();
 
+        // Assume here that the species specialization factor may not be up to date, so recalculate here
+        var specialization = MicrobeInternalCalculations.CalculateSpecializationBonus(species.Organelles, workMemory1);
+
         // Auto-evo uses the average values of compound during the course of a simulated day
         ProcessSystem.ComputeEnergyBalanceSimple(species.Organelles, biomeConditions,
-            GetEnvironmentalTolerances(species, biomeConditions), species.MembraneType,
+            GetEnvironmentalTolerances(species, biomeConditions), specialization, species.MembraneType,
             maximumMovementDirection, true, species.PlayerSpecies, worldSettings, CompoundAmountType.Average, this,
             cached);
 

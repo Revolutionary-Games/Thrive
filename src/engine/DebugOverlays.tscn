@@ -10,8 +10,58 @@
 [ext_resource type="LabelSettings" uid="uid://c7r7hod24qer8" path="res://src/gui_common/fonts/Body-Regular-Small-Blue.tres" id="6_05a1v"]
 [ext_resource type="LabelSettings" uid="uid://dj8uej1eg2iuh" path="res://src/gui_common/fonts/Body-Regular-Small-Orange.tres" id="7_8xdu2"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="9_qsaes"]
-[ext_resource type="Script" uid="uid://ctv5goidw0qvu" path="res://src/engine/DebugConsole.cs" id="10_syfxw"]
+[ext_resource type="Script" uid="uid://ctv5goidw0qvu" path="res://src/engine/console/DebugConsole.cs" id="10_syfxw"]
 [ext_resource type="FontVariation" uid="uid://k7u2fkgwhsf0" path="res://assets/fonts/variants/RobotoMono-Regular.tres" id="11_0g2tr"]
+[ext_resource type="FontFile" uid="uid://cd1sb4ten5fqv" path="res://assets/fonts/RobotoMono-Variable.ttf" id="11_ja1wl"]
+[ext_resource type="Script" uid="uid://dh5hhdvm4bnhj" path="res://src/engine/console/CommandInput.cs" id="13_qoetm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qoetm"]
+content_margin_left = 10.0
+content_margin_top = 1.0
+content_margin_right = 10.0
+content_margin_bottom = 1.0
+bg_color = Color(0, 0, 0, 0.54901963)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 0.588235)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b12na"]
+content_margin_left = 10.0
+content_margin_top = 1.0
+content_margin_right = 10.0
+content_margin_bottom = 1.0
+bg_color = Color(0.16470589, 0.21568628, 0.23529412, 0.78431374)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.396078, 0.623529, 0.584314, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bm8aj"]
+content_margin_left = 10.0
+content_margin_top = 1.0
+content_margin_right = 10.0
+content_margin_bottom = 1.0
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="DebugOverlay" type="Control" unique_id=2017744925 node_paths=PackedStringArray("debugCoordinates", "inspectorDialog", "debugPanelDialog", "debugConsole", "fpsCheckBox", "performanceMetricsCheckBox", "inspectorCheckbox", "fpsCounter", "performanceMetrics", "labelsLayer", "fpsDisplayLabel", "fpsLabel", "deltaLabel", "metricsText")]
 layout_mode = 3
@@ -87,52 +137,53 @@ layout_mode = 2
 text = "METRICS_CONTENT"
 label_settings = ExtResource("3_fussq")
 
-[node name="DebugConsole" type="Control" parent="." unique_id=1631909424 node_paths=PackedStringArray("consoleArea", "commandInput")]
+[node name="DebugConsole" type="Control" parent="." unique_id=677553174 node_paths=PackedStringArray("debugEntryList", "commandInput", "scrollContainer")]
 visible = false
 anchors_preset = 0
 offset_left = 43.0
 offset_top = 35.0
-offset_right = 659.0
-offset_bottom = 337.0
+offset_right = 664.0
+offset_bottom = 280.0
+mouse_force_pass_scroll_events = false
 theme = ExtResource("9_qsaes")
 script = ExtResource("10_syfxw")
-consoleArea = NodePath("VBoxContainer/ConsoleOutput")
+debugEntryList = NodePath("VBoxContainer/ScrollContainer/VBoxContainer")
 commandInput = NodePath("VBoxContainer/ConsoleInput")
+scrollContainer = NodePath("VBoxContainer/ScrollContainer")
+font = ExtResource("11_ja1wl")
 WindowTitle = "DEBUG_CONSOLE"
 Resizable = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DebugConsole" unique_id=1681933144]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -163.5
-offset_top = -148.0
-offset_right = 163.5
-offset_bottom = 148.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 2
+size_flags_horizontal = 3
 
-[node name="ConsoleOutput" type="RichTextLabel" parent="DebugConsole/VBoxContainer" unique_id=1707645718]
+[node name="ScrollContainer" type="ScrollContainer" parent="DebugConsole/VBoxContainer" unique_id=110830120]
 layout_mode = 2
 size_flags_vertical = 3
-focus_mode = 2
+mouse_filter = 0
 mouse_force_pass_scroll_events = false
-theme_override_fonts/normal_font = ExtResource("11_0g2tr")
-bbcode_enabled = true
-scroll_following = true
-autowrap_mode = 0
-selection_enabled = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugConsole/VBoxContainer/ScrollContainer" unique_id=319713426]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="ConsoleInput" type="LineEdit" parent="DebugConsole/VBoxContainer" unique_id=929832716]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("11_0g2tr")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qoetm")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_b12na")
+theme_override_styles/focus = SubResource("StyleBoxFlat_bm8aj")
 placeholder_text = "COMMAND_INPUT_LINE_EDIT"
 keep_editing_on_text_submit = true
 caret_blink = true
+script = ExtResource("13_qoetm")
 
 [node name="DebugPanel" parent="." unique_id=597323497 instance=ExtResource("1")]
 layout_mode = 0
@@ -236,6 +287,9 @@ text = "FPS: 0"
 label_settings = ExtResource("6_2giyi")
 
 [connection signal="Canceled" from="PerformanceMetrics" to="." method="OnPerformanceMetricsToggled"]
+[connection signal="resized" from="DebugConsole/VBoxContainer/ScrollContainer" to="DebugConsole" method="OnResized"]
+[connection signal="text_submitted" from="DebugConsole/VBoxContainer/ConsoleInput" to="DebugConsole" method="CommandSubmitted" flags=3]
+[connection signal="text_submitted" from="DebugConsole/VBoxContainer/ConsoleInput" to="DebugConsole/VBoxContainer/ConsoleInput" method="OnInput"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/FPSCheckBox" to="." method="OnFpsCheckBoxToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/PerformanceMetricsCheckBox" to="." method="OnPerformanceMetricsCheckBoxToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/Checkboxes/CollisionShapeCheckBox" to="." method="OnCollisionShapeCheckBoxToggled"]

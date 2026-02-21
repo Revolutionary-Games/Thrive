@@ -21,8 +21,9 @@
 [ext_resource type="Texture2D" uid="uid://nckpuxkhcb0u" path="res://assets/textures/gui/bevel/Phosphates.svg" id="15_ytqp8"]
 [ext_resource type="PackedScene" uid="uid://sxqf3o1pkl0n" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" id="16_wlbdy"]
 [ext_resource type="PackedScene" uid="uid://doveokjve1v3t" path="res://src/microbe_stage/editor/CompoundStorageStatistics.tscn" id="17_pca5e"]
+[ext_resource type="LabelSettings" uid="uid://deaqhtet373fq" path="res://src/gui_common/fonts/Body-Regular-AlmostSmall-Yellow.tres" id="19_lhi3n"]
 
-[node name="OrganismStatisticsPanel" type="PanelContainer" unique_id=1690124975 node_paths=PackedStringArray("sizeLabel", "speedLabel", "rotationSpeedLabel", "hpLabel", "storageLabel", "digestionSpeedLabel", "digestionEfficiencyLabel", "ammoniaCostLabel", "phosphatesCostLabel", "digestionStatsSeparator", "generationLabel", "atpBalancePanel", "atpBalanceBarContainer", "atpBalanceLabel", "atpProductionLabel", "atpConsumptionLabel", "atpProductionBar", "atpConsumptionBar", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "processListButton")]
+[node name="OrganismStatisticsPanel" type="PanelContainer" unique_id=1690124975 node_paths=PackedStringArray("sizeLabel", "speedLabel", "rotationSpeedLabel", "hpLabel", "storageLabel", "digestionSpeedLabel", "digestionEfficiencyLabel", "ammoniaCostLabel", "phosphatesCostLabel", "digestionStatsSeparator", "generationLabel", "atpBalancePanel", "atpBalanceBarContainer", "atpBalanceLabel", "atpProductionLabel", "atpConsumptionLabel", "atpProductionBar", "atpConsumptionBar", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "processListButton", "titleLabel", "specializationValueLabel", "specializationTitleLabel")]
 size_flags_vertical = 3
 mouse_filter = 1
 theme = ExtResource("1_ca4to")
@@ -53,6 +54,9 @@ notEnoughStorageWarning = NodePath("VBoxContainer/Body/ScrollContainer/MarginCon
 calculateBalancesAsIfDay = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersAtDay")
 calculateBalancesWhenMoving = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersWhenMoving")
 processListButton = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ProcessListButton")
+titleLabel = NodePath("VBoxContainer/Header/Title")
+specializationValueLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SpecializationValue")
+specializationTitleLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SpecializationTitle")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=188876858]
 layout_mode = 2
@@ -269,6 +273,29 @@ Description = "DIGESTION_SPEED_COLON"
 layout_mode = 2
 Icon = ExtResource("10_l6acm")
 Description = "DIGESTION_EFFICIENCY_COLON"
+
+[node name="HSeparator6" type="HSeparator" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=888886249]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1717299048]
+layout_mode = 2
+
+[node name="SpecializationTitle" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1520445102]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "CELL_SPECIALIZATION_TOOLTIP"
+mouse_filter = 1
+text = "SPECIALIZATION_COLON"
+label_settings = ExtResource("11_bfneb")
+
+[node name="SpecializationValue" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=202352160]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+tooltip_text = "CELL_SPECIALIZATION_TOOLTIP"
+mouse_filter = 1
+text = "0%"
+label_settings = ExtResource("19_lhi3n")
 
 [node name="HSeparator4" type="HSeparator" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=544545899]
 custom_minimum_size = Vector2(0, 10)

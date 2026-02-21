@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -15,12 +15,35 @@ public partial class ProcessPanel : CustomWindow
 
     [Export]
     private Container closeButtonContainer = null!;
+
+    [Export]
+    private Container helpButtonContainer = null!;
+
+    [Export]
+    private CustomWindow multicellularProcessPanelExplanation = null!;
 #pragma warning restore CA2213
+
+    private bool isMicrobe;
 
     [Signal]
     public delegate void ToggleProcessPressedEventHandler(ChemicalEquation equation);
 
-    public ProcessStatistics? ShownData { get; set; }
+    public IEnumerable<IProcessDisplayInfo>? ShownData { get; set; }
+
+    public bool IsMicrobe
+    {
+        get => isMicrobe;
+
+        set
+        {
+            if (isMicrobe == value)
+                return;
+
+            isMicrobe = value;
+
+            UpdateMulticellularStatus();
+        }
+    }
 
     public float ExternalSpeedModifier
     {
@@ -35,6 +58,8 @@ public partial class ProcessPanel : CustomWindow
 
         // To make sure processes refresh when the game is paused
         ProcessMode = ProcessModeEnum.Always;
+
+        UpdateMulticellularStatus();
     }
 
     public override void _Process(double delta)
@@ -42,19 +67,25 @@ public partial class ProcessPanel : CustomWindow
         if (!IsVisibleInTree())
             return;
 
-        if (ShownData != null)
-        {
-            // Update the list object
-            processList.ProcessesToShow = ShownData.Processes.Select(p => p.Value.ComputeAverageValues());
-        }
-        else
-        {
-            processList.ProcessesToShow = null;
-        }
+        processList.ProcessesToShow = ShownData;
+    }
+
+    public void OnHelpButtonPressed()
+    {
+        multicellularProcessPanelExplanation.PopupCenteredShrink();
     }
 
     private void ToggleProcessToggled(ChemicalEquation equation, bool enabled)
     {
         EmitSignal(SignalName.ToggleProcessPressed, equation, enabled);
+    }
+
+    private void UpdateMulticellularStatus()
+    {
+        helpButtonContainer.Visible = !isMicrobe;
+
+        WindowTitle = isMicrobe ?
+            Localization.Translate("PROCESS_PANEL_TITLE_MICROBE") :
+            Localization.Translate("PROCESS_PANEL_TITLE");
     }
 }
