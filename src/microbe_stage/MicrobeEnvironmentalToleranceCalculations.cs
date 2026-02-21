@@ -295,7 +295,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
             missingSomething = true;
         }
-        else if (noExtraEffects.TemperatureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE && !excludePositiveBuffs)
+        else if (noExtraEffects.TemperatureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE &&
+                 !excludePositiveBuffs)
         {
             // Perfect adaptation ranges are calculated without the effects of organelles as they would otherwise
             // be really hard to apply
@@ -352,7 +353,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
         }
         else
         {
-            if (noExtraEffects.PressureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE && !excludePositiveBuffs)
+            if (noExtraEffects.PressureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE &&
+                !excludePositiveBuffs)
             {
                 // Perfectly adapted
                 var perfectionFactor = Constants.TOLERANCE_PERFECT_PRESSURE_SCORE *
