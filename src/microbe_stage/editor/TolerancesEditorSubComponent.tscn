@@ -155,6 +155,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = -10.0
+hasTwoBounds = true
 showMiddleMarker = true
 beginConnectorFromMarker = 1
 relatedSlider = NodePath("../TemperatureSlider")
@@ -304,6 +305,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 max_value = 80000000.0
 value = 0.0
+hasTwoBounds = true
 relatedSlider = NodePath("../PressureSlider")
 
 [node name="PressureSlider" type="HSlider" parent="Pressure/RangeDisplayContainer/VBoxContainer" unique_id=691339473]

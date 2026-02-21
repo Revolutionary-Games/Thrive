@@ -772,7 +772,7 @@ public partial class CellEditorComponent
         // the warnings (once they are done)
         if (!IsMulticellularEditor)
         {
-            var tolerances = CalculateRawTolerances();
+            var tolerances = CalculateRawTolerances(true);
 
             void AddToleranceWarning(string text)
             {

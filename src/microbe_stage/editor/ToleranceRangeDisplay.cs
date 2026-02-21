@@ -13,6 +13,9 @@ public partial class ToleranceRangeDisplay : HSlider
     private readonly Color mainColorTranslucent = new(0.0667f, 1.0f, 0.8353f, 0.5f);
 
     [Export]
+    private bool hasTwoBounds;
+
+    [Export]
     private bool showMiddleMarker;
 
     [Export]
@@ -210,7 +213,7 @@ public partial class ToleranceRangeDisplay : HSlider
 
     private void SetBoundPositionsInternal()
     {
-        if (flexibilityMinus > 0 || flexibilityPlus > 0)
+        if (hasTwoBounds)
         {
             SetBoundPositionsManual((float)(Value - flexibilityMinus), (float)(Value + flexibilityPlus));
         }

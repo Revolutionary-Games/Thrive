@@ -31,7 +31,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
     }
 
     public static ToleranceResult CalculateTolerances(IReadOnlyEnvironmentalTolerances speciesTolerances,
-        IReadOnlyList<OrganelleTemplate> organelles, BiomeConditions environment)
+        IReadOnlyList<OrganelleTemplate> organelles, BiomeConditions environment, bool excludePositiveBuffs = false)
     {
         var result = new ToleranceResult();
 
@@ -60,7 +60,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         if (resolvedTolerances.UVResistance < 0)
             resolvedTolerances.UVResistance = 0;
 
-        CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, result);
+        CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, result, excludePositiveBuffs);
 
         return result;
     }
@@ -254,7 +254,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
     }
 
     private static void CalculateTolerancesInternal(in ToleranceValues speciesTolerances,
-        in ToleranceValues noExtraEffects, BiomeConditions environment, ToleranceResult result)
+        in ToleranceValues noExtraEffects, BiomeConditions environment, ToleranceResult result,
+        bool excludePositiveBuffs = false)
     {
         var patchTemperature = environment.GetCompound(Compound.Temperature, CompoundAmountType.Biome).Ambient;
         var patchPressure = environment.Pressure;
@@ -294,7 +295,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
             missingSomething = true;
         }
-        else if (noExtraEffects.TemperatureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE)
+        else if (noExtraEffects.TemperatureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE && !excludePositiveBuffs)
         {
             // Perfect adaptation ranges are calculated without the effects of organelles as they would otherwise
             // be really hard to apply
@@ -351,7 +352,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         }
         else
         {
-            if (noExtraEffects.PressureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
+            if (noExtraEffects.PressureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE && !excludePositiveBuffs)
             {
                 // Perfectly adapted
                 var perfectionFactor = Constants.TOLERANCE_PERFECT_PRESSURE_SCORE *
