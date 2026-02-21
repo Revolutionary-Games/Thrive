@@ -28,7 +28,7 @@ region_rect = Rect2(0, 0, 258, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jstjb"]
 
-[node name="TolerancesEditorSubComponent" type="VBoxContainer" unique_id=1336617322 node_paths=PackedStringArray("temperatureToolTipContainer", "pressureToolTipContainer", "oxygenResistanceToolTipContainer", "uvResistanceToolTipContainer", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureSlider", "pressureToleranceRangeSlider", "oxygenResistanceSlider", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "temperatureModifierLabel", "temperatureRangeDisplay", "pressureMinLabel", "pressureMaxLabel", "pressureToleranceLabel", "pressureModifierLabel", "pressureRangeDisplay", "oxygenResistanceModifierLabel", "oxygenResistanceTotalLabel", "oxygenResistanceRangeDisplay", "uvResistanceModifierLabel", "uvResistanceTotalLabel", "uvResistanceRangeDisplay")]
+[node name="TolerancesEditorSubComponent" type="VBoxContainer" unique_id=1336617322 node_paths=PackedStringArray("temperatureToolTipContainer", "pressureToolTipContainer", "oxygenResistanceToolTipContainer", "uvResistanceToolTipContainer", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureSlider", "pressureToleranceRangeSlider", "oxygenResistanceSlider", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "temperatureModifierLabel", "temperatureRangeDisplay", "temperatureLabelContainer", "pressureMinLabel", "pressureMaxLabel", "pressureToleranceLabel", "pressureModifierLabel", "pressureRangeDisplay", "pressureLabelContainer", "oxygenResistanceModifierLabel", "oxygenResistanceTotalLabel", "oxygenResistanceRangeDisplay", "oxygenResistanceLabelContainer", "uvResistanceModifierLabel", "uvResistanceTotalLabel", "uvResistanceRangeDisplay", "uvResistanceLabelContainer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -51,17 +51,21 @@ temperatureMaxLabel = NodePath("Temperature/HBoxContainer2/Total/TemperatureMaxi
 temperatureToleranceLabel = NodePath("Temperature/HBoxContainer3/MarginContainer/TemperatureRangeValue")
 temperatureModifierLabel = NodePath("Temperature/HBoxContainer2/Modifier/ModifierValue")
 temperatureRangeDisplay = NodePath("Temperature/RangeDisplayContainer/VBoxContainer/TemperatureRangeDisplay")
+temperatureLabelContainer = NodePath("Temperature/TemperatureLabelContainer")
 pressureMinLabel = NodePath("Pressure/HBoxContainer2/Total/PressureMinimum")
 pressureMaxLabel = NodePath("Pressure/HBoxContainer2/Total/PressureMaximum")
 pressureToleranceLabel = NodePath("Pressure/HBoxContainer4/MarginContainer/PressureRangeValue")
 pressureModifierLabel = NodePath("Pressure/HBoxContainer2/Modifier/ModifierValue")
 pressureRangeDisplay = NodePath("Pressure/RangeDisplayContainer/VBoxContainer/PressureRangeDisplay")
+pressureLabelContainer = NodePath("Pressure/PressureLabelContainer")
 oxygenResistanceModifierLabel = NodePath("Oxygen/HBoxContainer2/Modifier/ModifierValue")
 oxygenResistanceTotalLabel = NodePath("Oxygen/HBoxContainer2/Total/TotalValue")
 oxygenResistanceRangeDisplay = NodePath("Oxygen/RangeDisplayContainer/VBoxContainer/OxygenRangeDisplay")
+oxygenResistanceLabelContainer = NodePath("Oxygen/OxygenLabelContainer")
 uvResistanceModifierLabel = NodePath("UV/HBoxContainer2/Modifier/ModiferValue")
 uvResistanceTotalLabel = NodePath("UV/HBoxContainer2/Total/TotalValue")
 uvResistanceRangeDisplay = NodePath("UV/RangeDisplayContainer/VBoxContainer/UVRangeDisplay")
+uvResistanceLabelContainer = NodePath("UV/UVLabelContainer")
 badValueFontTiny = ExtResource("5_evsrs")
 perfectValueFontTiny = ExtResource("6_jstjb")
 modifierBadFont = ExtResource("5_evsrs")
@@ -73,10 +77,10 @@ optimalDisplayGoodColor = Color(0, 1, 0, 1)
 layout_mode = 2
 mouse_filter = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Temperature" unique_id=947665022]
+[node name="TemperatureLabelContainer" type="HBoxContainer" parent="Temperature" unique_id=947665022]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Temperature/HBoxContainer" unique_id=306437172]
+[node name="TextureRect" type="TextureRect" parent="Temperature/TemperatureLabelContainer" unique_id=306437172]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -85,12 +89,12 @@ texture = ExtResource("6_ki8q3")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="TemperatureTitle" type="Label" parent="Temperature/HBoxContainer" unique_id=1714564901]
+[node name="TemperatureTitle" type="Label" parent="Temperature/TemperatureLabelContainer" unique_id=1714564901]
 layout_mode = 2
 text = "TEMPERATURE"
 label_settings = ExtResource("8_3r1ho")
 
-[node name="HSeparator" type="HSeparator" parent="Temperature/HBoxContainer" unique_id=759960385]
+[node name="HSeparator" type="HSeparator" parent="Temperature/TemperatureLabelContainer" unique_id=759960385]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -222,10 +226,10 @@ layout_mode = 2
 layout_mode = 2
 mouse_filter = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Pressure" unique_id=1689175287]
+[node name="PressureLabelContainer" type="HBoxContainer" parent="Pressure" unique_id=1689175287]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Pressure/HBoxContainer" unique_id=1334078672]
+[node name="TextureRect" type="TextureRect" parent="Pressure/PressureLabelContainer" unique_id=1334078672]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -234,12 +238,12 @@ texture = ExtResource("10_xmghy")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Title" type="Label" parent="Pressure/HBoxContainer" unique_id=1999799535]
+[node name="Title" type="Label" parent="Pressure/PressureLabelContainer" unique_id=1999799535]
 layout_mode = 2
 text = "PRESSURE"
 label_settings = ExtResource("8_3r1ho")
 
-[node name="HSeparator" type="HSeparator" parent="Pressure/HBoxContainer" unique_id=1660904341]
+[node name="HSeparator" type="HSeparator" parent="Pressure/PressureLabelContainer" unique_id=1660904341]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -375,10 +379,10 @@ layout_mode = 2
 layout_mode = 2
 mouse_filter = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Oxygen" unique_id=1599818343]
+[node name="OxygenLabelContainer" type="HBoxContainer" parent="Oxygen" unique_id=1599818343]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Oxygen/HBoxContainer" unique_id=805478282]
+[node name="TextureRect" type="TextureRect" parent="Oxygen/OxygenLabelContainer" unique_id=805478282]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -387,12 +391,12 @@ texture = ExtResource("12_3r1ho")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Title" type="Label" parent="Oxygen/HBoxContainer" unique_id=609546402]
+[node name="Title" type="Label" parent="Oxygen/OxygenLabelContainer" unique_id=609546402]
 layout_mode = 2
 text = "OXYGEN_RESISTANCE"
 label_settings = ExtResource("8_3r1ho")
 
-[node name="HSeparator" type="HSeparator" parent="Oxygen/HBoxContainer" unique_id=976862976]
+[node name="HSeparator" type="HSeparator" parent="Oxygen/OxygenLabelContainer" unique_id=976862976]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -478,10 +482,10 @@ layout_mode = 2
 layout_mode = 2
 mouse_filter = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UV" unique_id=1347798283]
+[node name="UVLabelContainer" type="HBoxContainer" parent="UV" unique_id=1347798283]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="UV/HBoxContainer" unique_id=160344017]
+[node name="TextureRect" type="TextureRect" parent="UV/UVLabelContainer" unique_id=160344017]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -490,12 +494,12 @@ texture = ExtResource("14_n6u17")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Title" type="Label" parent="UV/HBoxContainer" unique_id=1083041992]
+[node name="Title" type="Label" parent="UV/UVLabelContainer" unique_id=1083041992]
 layout_mode = 2
 text = "UV_PROTECTION"
 label_settings = ExtResource("8_3r1ho")
 
-[node name="HSeparator" type="HSeparator" parent="UV/HBoxContainer" unique_id=768590993]
+[node name="HSeparator" type="HSeparator" parent="UV/UVLabelContainer" unique_id=768590993]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1

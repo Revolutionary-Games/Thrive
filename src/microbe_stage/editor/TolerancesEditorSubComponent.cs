@@ -70,6 +70,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private ToleranceRangeDisplay temperatureRangeDisplay = null!;
 
     [Export]
+    private HBoxContainer temperatureLabelContainer = null!;
+
+    [Export]
     private Label pressureMinLabel = null!;
 
     [Export]
@@ -85,6 +88,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private ToleranceRangeDisplay pressureRangeDisplay = null!;
 
     [Export]
+    private HBoxContainer pressureLabelContainer = null!;
+
+    [Export]
     private Label oxygenResistanceModifierLabel = null!;
 
     [Export]
@@ -94,6 +100,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private ToleranceRangeDisplay oxygenResistanceRangeDisplay = null!;
 
     [Export]
+    private HBoxContainer oxygenResistanceLabelContainer = null!;
+
+    [Export]
     private Label uvResistanceModifierLabel = null!;
 
     [Export]
@@ -101,6 +110,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     [Export]
     private ToleranceRangeDisplay uvResistanceRangeDisplay = null!;
+
+    [Export]
+    private HBoxContainer uvResistanceLabelContainer = null!;
 
     [Export]
     [ExportCategory("Style")]
@@ -386,19 +398,32 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     {
         base.RegisterTooltips();
 
+        temperatureLabelContainer.RegisterToolTipForControl("temperature", "tolerances");
         temperatureToolTipContainer.RegisterToolTipForControl("temperature", "tolerances");
-        pressureToolTipContainer.RegisterToolTipForControl("pressure", "tolerances");
-        oxygenResistanceToolTipContainer.RegisterToolTipForControl("oxygenResistance", "tolerances");
-        uvResistanceToolTipContainer.RegisterToolTipForControl("uvResistance", "tolerances");
+        temperatureSlider.RegisterToolTipForControl("temperature", "tolerances");
+        temperatureToleranceRangeSlider.RegisterToolTipForControl("temperature", "tolerances");
+        temperatureRangeDisplay.RegisterToolTipForControl("temperature", "tolerances");
 
-        temperatureModifierLabelParent
-            .RegisterToolTipForControl("temperatureRangeModifier", "tolerances");
-        pressureModifierLabelParent
-            .RegisterToolTipForControl("pressureRangeModifier", "tolerances");
-        oxygenResistanceModifierLabelParent
-            .RegisterToolTipForControl("oxygenResistanceModifier", "tolerances");
-        uvResistanceModifierLabelParent
-            .RegisterToolTipForControl("uvResistanceModifier", "tolerances");
+        pressureLabelContainer.RegisterToolTipForControl("pressure", "tolerances");
+        pressureToolTipContainer.RegisterToolTipForControl("pressure", "tolerances");
+        pressureSlider.RegisterToolTipForControl("pressure", "tolerances");
+        pressureToleranceRangeSlider.RegisterToolTipForControl("pressure", "tolerances");
+        pressureRangeDisplay.RegisterToolTipForControl("pressure", "tolerances");
+
+        oxygenResistanceLabelContainer.RegisterToolTipForControl("oxygenResistance", "tolerances");
+        oxygenResistanceToolTipContainer.RegisterToolTipForControl("oxygenResistance", "tolerances");
+        oxygenResistanceSlider.RegisterToolTipForControl("oxygenResistance", "tolerances");
+        oxygenResistanceRangeDisplay.RegisterToolTipForControl("oxygenResistance", "tolerances");
+
+        uvResistanceLabelContainer.RegisterToolTipForControl("uvResistance", "tolerances");
+        uvResistanceToolTipContainer.RegisterToolTipForControl("uvResistance", "tolerances");
+        uvResistanceSlider.RegisterToolTipForControl("uvResistance", "tolerances");
+        oxygenResistanceRangeDisplay.RegisterToolTipForControl("uvResistance", "tolerances");
+
+        temperatureModifierLabelParent.RegisterToolTipForControl("temperatureRangeModifier", "tolerances");
+        pressureModifierLabelParent.RegisterToolTipForControl("pressureRangeModifier", "tolerances");
+        oxygenResistanceModifierLabelParent.RegisterToolTipForControl("oxygenResistanceModifier", "tolerances");
+        uvResistanceModifierLabelParent.RegisterToolTipForControl("uvResistanceModifier", "tolerances");
 
         var toolTipManager = ToolTipManager.Instance;
         temperatureToolTip = toolTipManager.GetToolTip<EnvironmentalToleranceToolTip>("temperature", "tolerances");
