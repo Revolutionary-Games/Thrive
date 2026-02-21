@@ -269,7 +269,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="MicrobeHUD" type="Control" unique_id=1404145423 node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "siderophoreHotkey", "multicellularButton", "multicellularConfirmPopup", "previousSaveLoadAdvicePopup", "macroscopicButton", "heatAccumulationBar", "mouseHoverPanel", "environmentPanel", "compoundsPanel", "editorButton", "mucocystHotkey", "engulfHotkey", "secreteSlimeHotkey", "ejectEngulfedHotkey", "signalingAgentsHotkey", "atpBar", "healthBar", "atpLabel", "hpLabel", "populationLabel", "hintText", "packControlRadial", "bottomLeftBar", "sprintHotkey", "strainBar", "damageScreenEffect", "hotBar", "fireToxinHotkey", "processPanel", "pausePrompt", "pauseInfo", "hudMessages")]
+[node name="MicrobeHUD" type="Control" unique_id=1404145423 node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "siderophoreHotkey", "multicellularButton", "multicellularConfirmPopup", "previousSaveLoadAdvicePopup", "macroscopicButton", "heatAccumulationBar", "mouseHoverPanel", "environmentPanel", "compoundsPanel", "editorButton", "mucocystHotkey", "engulfHotkey", "secreteSlimeHotkey", "ejectEngulfedHotkey", "signalingAgentsHotkey", "atpBar", "healthBar", "atpLabel", "hpLabel", "populationLabel", "hintText", "packControlRadial", "bottomLeftBar", "processPanel", "sprintHotkey", "strainBar", "damageScreenEffect", "hotBar", "fireToxinHotkey", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -313,12 +313,12 @@ populationLabel = NodePath("BottomRight/VBoxContainer/PopulationData/Value")
 hintText = NodePath("HintText")
 packControlRadial = NodePath("RadialPopup")
 bottomLeftBar = NodePath("BottomLeft/HUDBottomBar")
+processPanel = NodePath("ProcessPanel")
 sprintHotkey = NodePath("ScrollContainer/HotBar/Sprint")
 strainBar = NodePath("Strain")
 damageScreenEffect = NodePath("DamageEffect")
 hotBar = NodePath("ScrollContainer/HotBar")
 fireToxinHotkey = NodePath("ScrollContainer/HotBar/FireToxin")
-processPanel = NodePath("ProcessPanel")
 strainBarRedFill = SubResource("StyleBoxFlat_b2vtv")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
@@ -374,9 +374,9 @@ ShowAgents = false
 [node name="HUDBottomBar" parent="BottomLeft" unique_id=1653640078 instance=ExtResource("59")]
 layout_mode = 1
 offset_left = 2.0
-offset_top = -46.0
-offset_right = 447.0
-offset_bottom = -3.0
+offset_top = -43.0
+offset_right = 457.0
+offset_bottom = -8.0
 
 [node name="CompoundsPanelAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1502267964]
 libraries/ = SubResource("AnimationLibrary_bjeaw")
@@ -644,7 +644,7 @@ size_flags_horizontal = 4
 text = "REVERT_TO_EDITOR"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=324593058]
-custom_minimum_size = Vector2(415, 69)
+custom_minimum_size = Vector2(415, 79)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
