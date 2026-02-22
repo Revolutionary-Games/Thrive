@@ -186,7 +186,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
         ref var parentPosition = ref entity.Get<WorldPosition>();
 
-        for (int i = Math.Max(bodyPlanIndex + members, species.Species.ModifiableGameplayCells.Count - 1); i > 0; --i)
+        for (int i = Math.Min(bodyPlanIndex + members, species.Species.ModifiableGameplayCells.Count - 1); i > 0; --i)
         {
             CreateDelayAttachedMicrobe(ref parentPosition, entity, bodyPlanIndex++,
                 species.Species.ModifiableGameplayCells[i], species.Species, worldSimulation, spawnEnvironment,
