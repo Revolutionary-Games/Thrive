@@ -1,7 +1,6 @@
 ﻿namespace Systems;
 
 using System;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using Arch.Buffer;
 using Arch.Core;
