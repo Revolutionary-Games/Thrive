@@ -1,7 +1,6 @@
 ﻿namespace Systems;
 
 using System;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using Arch.Buffer;
 using Arch.Core;
@@ -183,14 +182,14 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         ref var species = ref entity.Get<MulticellularSpeciesMember>();
 
         bool added = false;
-        var cellsToGrow = species.Species.ModifiableGameplayCells.Skip(bodyPlanIndex).Take(members);
 
         ref var parentPosition = ref entity.Get<WorldPosition>();
 
-        foreach (var cellTemplate in cellsToGrow)
+        for (int i = Math.Min(bodyPlanIndex + members, species.Species.ModifiableGameplayCells.Count - 1); i > 0; --i)
         {
-            CreateDelayAttachedMicrobe(ref parentPosition, entity, bodyPlanIndex++, cellTemplate, species.Species,
-                worldSimulation, spawnEnvironment, recorder, spawnSystem, true);
+            CreateDelayAttachedMicrobe(ref parentPosition, entity, bodyPlanIndex++,
+                species.Species.ModifiableGameplayCells[i], species.Species, worldSimulation, spawnEnvironment,
+                recorder, spawnSystem, true);
 
             added = true;
         }
