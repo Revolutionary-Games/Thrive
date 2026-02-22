@@ -100,5 +100,6 @@ text = "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
 label_settings = ExtResource("7_o8k0d")
 autowrap_mode = 2
 
+[connection signal="ToggleProcessPressed" from="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ProcessList" to="." method="ToggleProcessToggled"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HelpButtonContainer/TextureButton" to="." method="OnHelpButtonPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomButtonContainer/Button" to="." method="OnCloseButtonPressed"]
