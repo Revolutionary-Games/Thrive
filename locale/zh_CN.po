@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-02-20 15:03+0200\n"
-"PO-Revision-Date: 2026-02-18 15:14+0000\n"
-"Last-Translator: Bi2Nb9O3 <1022780532@qq.com>\n"
+"PO-Revision-Date: 2026-02-20 21:46+0000\n"
+"Last-Translator: 归灵祈昱 <guilingqiyu@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -293,11 +293,11 @@ msgstr "ATP 开支"
 
 msgid "ATP_BALANCE_TOOLTIP"
 msgstr ""
-"这个区域显示了目前细胞 ATP（能量）的总平衡情况\n"
-"如果想要生存，这个数值应该是正的。对于没有运动需求的细胞，可以不考虑移动所消耗的 ATP。\n"
-"下面的下拉菜单可以用来检查各种资源短缺时会发生的情况。\n"
-"比如，有些细胞只有在同时拥有好几种类型的化合物时才可以使 ATP 收支平衡。\n"
-"这些细胞将更难存活，因为它们需要收集更多的化合物。"
+"本区域显示了当前细胞的总 ATP（能量）收支状况。\n"
+"为了生存，该收支必须为正值。对于固着细胞（没有运动需求），只要在排除移动消耗后收支为正，即可视为满足条件。\n"
+"您可以使用下方的下拉菜单，查看当细胞缺乏某种可用于合成 ATP 的资源时会发生什么。\n"
+"例如，某些细胞只有在同时拥有多种化合物来合成 ATP 时，才能维持正向的 ATP 收支。\n"
+"游玩这类细胞的难度更高，因为它们需要同时储存多种化合物才能生存。"
 
 msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr ""
@@ -551,7 +551,7 @@ msgid "BINDING_AGENT"
 msgstr "聚合器"
 
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr "允许与其他细胞黏附聚合。这是迈向多细胞的第一步。在聚合形成的细胞群中，资源是共享的。在细胞群中您无法进入细胞编辑器，您需要在收集足够的化合物后离开细胞群再分裂。"
+msgstr "允许与其他细胞黏附聚合。这是迈向多细胞的第一步。当您的细胞与其他成员聚合形成细胞群，化合物就变成了共享的。在细胞群中您无法进入细胞编辑器，您需要在收集足够的化合物后离开细胞群再分裂。"
 
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "按[thrive:input]g_toggle_binding[/thrive:input]来切换聚合模式。在聚合模式中，通过接触同种细胞，您可以让它成为您的细胞群的一员。要离开细胞群，按[thrive:input]g_unbind_all[/thrive:input]。"
@@ -709,11 +709,13 @@ msgstr "纤维素"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是物防。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。[b]纤维素酶可以消化这层墙[/b]，使其容易被捕食者吞噬。"
 
-#, fuzzy
 msgid "CELL_SPECIALIZATION_TOOLTIP"
 msgstr ""
-"细胞旋转速率。更大的细胞旋转更慢，但增加纤毛可以补偿。\n"
-"细胞器放置距离中心越远，影响越大。"
+"将细胞专精于单一类型的细胞器，可获得生物代谢过程速度加成。\n"
+"当前加成为 {0}%（该加成仅在放置 {3} 个细胞器后才会生效，并随数量增加而提升，直至达到 {4} 个）。\n"
+"当前加成由 {1} 个 {2} 细胞器提供。\n"
+"放置更多该主要类型的细胞器可进一步提升加成。\n"
+"若细胞已达到最大尺寸，则需要用该主要类型的细胞器替换掉其他细胞器，才能继续提升加成。"
 
 msgid "CELL_STAT_ROTATION_TOOLTIP"
 msgstr ""
@@ -4219,9 +4221,8 @@ msgstr "多细胞生物自由编辑器"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "虽然细胞之间会共享化合物，但每个细胞都需要自行产生 [thrive:compound type=\"atp\"][/thrive:compound]。任何耗尽这种它的细胞都会死亡。"
 
-#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
-msgstr "（当您进入测试阶段，一些功能可能无法使用）"
+msgstr "该面板显示了您的群落的综合代谢过程，即所有细胞的代谢总和。请注意，与其他化合物不同，ATP 无法在细胞间共享。"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "多细胞阶段"
@@ -4641,9 +4642,8 @@ msgstr "（一些细胞器需要前置解锁条件来放置）"
 msgid "ORGANISM_STATISTICS"
 msgstr "生物数据"
 
-#, fuzzy
 msgid "ORGANISM_STATISTICS_MICROBE"
-msgstr "生物数据"
+msgstr "细胞数据"
 
 msgid "OR_UNLOCK_CONDITION"
 msgstr "或"
@@ -4995,15 +4995,12 @@ msgstr "处理载入的物体中"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
-#, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
-msgstr "细胞代谢过程"
+msgstr "生物代谢过程面板说明"
 
-#, fuzzy
 msgid "PROCESS_PANEL_TITLE"
-msgstr "细胞代谢过程"
+msgstr "生物代谢过程"
 
-#, fuzzy
 msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "细胞代谢过程"
 
@@ -5718,9 +5715,8 @@ msgstr "生成葡萄糖"
 msgid "SPAWN_PHOSPHATES"
 msgstr "生成磷酸盐"
 
-#, fuzzy
 msgid "SPECIALIZATION_COLON"
-msgstr "种群数量："
+msgstr "专业化："
 
 msgid "SPECIAL_MOUSE_1"
 msgstr "鼠标侧键1"
@@ -6314,7 +6310,7 @@ msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr "紫外线(UV) 防护过低，需要提高 {0}%"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-msgstr "不适用当前环境条件。渗透调节成本 {0}%，生物过程速度 {1}%，生命值 {2}%"
+msgstr "不适应当前环境条件。渗透调节成本 {0}%，代谢速度 {1}%，生命值 {2}%"
 
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
@@ -7042,11 +7038,9 @@ msgstr "查看器"
 msgid "VIEW_ALL"
 msgstr "查看所有"
 
-#, fuzzy
 msgid "VIEW_CELL_PROCESSES"
-msgstr "查看细胞代谢过程"
+msgstr "查看生物代谢过程"
 
-#, fuzzy
 msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "查看细胞代谢过程"
 
