@@ -30,6 +30,19 @@ public static class MicrobeEnvironmentalToleranceCalculations
         return CalculateTolerances(species.Tolerances, species.Organelles, environment);
     }
 
+    /// <summary>
+    ///   Calculates effective tolerances given the species tolerances, organelles, and environmental conditions.
+    /// </summary>
+    /// <param name="speciesTolerances">Configured tolerances</param>
+    /// <param name="organelles">Organelles that may affect the tolerances</param>
+    /// <param name="environment">Environment that the tolerances need to match to not get debuffs</param>
+    /// <param name="excludePositiveBuffs">
+    ///   If true, excludes perfect adaptation bonuses. This is used to show debuffs in a way that no buffs can get
+    ///   mixed in. Note that for the tooltips we separately generate "good enough" tolerances to not get bonuses or
+    ///   debuffs instead of using this flag. So TODO: it would be nice to combine these two approaches that are almost
+    ///   the same. But to get the new tolerance GUI visuals done, these two systems were left as separate (for now).
+    /// </param>
+    /// <returns>Calculated tolerance result</returns>
     public static ToleranceResult CalculateTolerances(IReadOnlyEnvironmentalTolerances speciesTolerances,
         IReadOnlyList<OrganelleTemplate> organelles, IBiomeConditions environment, bool excludePositiveBuffs = false)
     {
@@ -255,7 +268,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
     private static void CalculateTolerancesInternal(in ToleranceValues speciesTolerances,
         in ToleranceValues noExtraEffects, IBiomeConditions environment, ToleranceResult result,
-        bool excludePositiveBuffs = false)
+        bool excludePositiveBuffs)
     {
         var patchTemperature = environment.GetCompound(Compound.Temperature, CompoundAmountType.Biome).Ambient;
         var patchPressure = environment.Pressure;
@@ -295,16 +308,22 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
             missingSomething = true;
         }
-        else if (noExtraEffects.TemperatureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE &&
-                 !excludePositiveBuffs)
+        else if (noExtraEffects.TemperatureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE)
         {
-            // Perfect adaptation ranges are calculated without the effects of organelles as they would otherwise
-            // be really hard to apply
+            if (!excludePositiveBuffs)
+            {
+                // Perfect adaptation ranges are calculated without the effects of organelles as they would otherwise
+                // be really hard to apply
 
-            // Perfectly adapted
-            var perfectionFactor = Constants.TOLERANCE_PERFECT_TEMPERATURE_SCORE *
-                (1 - (noExtraEffects.TemperatureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE));
-            result.TemperatureScore = 1 + perfectionFactor;
+                // Perfectly adapted
+                var perfectionFactor = Constants.TOLERANCE_PERFECT_TEMPERATURE_SCORE *
+                    (1 - (noExtraEffects.TemperatureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE));
+                result.TemperatureScore = 1 + perfectionFactor;
+            }
+            else
+            {
+                result.TemperatureScore = 1;
+            }
         }
         else
         {
@@ -353,13 +372,19 @@ public static class MicrobeEnvironmentalToleranceCalculations
         }
         else
         {
-            if (noExtraEffects.PressureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE &&
-                !excludePositiveBuffs)
+            if (noExtraEffects.PressureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
             {
                 // Perfectly adapted
-                var perfectionFactor = Constants.TOLERANCE_PERFECT_PRESSURE_SCORE *
-                    (1 - noExtraEffects.PressureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE);
-                result.PressureScore = 1 + perfectionFactor;
+                if (!excludePositiveBuffs)
+                {
+                    var perfectionFactor = Constants.TOLERANCE_PERFECT_PRESSURE_SCORE *
+                        (1 - noExtraEffects.PressureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE);
+                    result.PressureScore = 1 + perfectionFactor;
+                }
+                else
+                {
+                    result.PressureScore = 1;
+                }
             }
             else
             {

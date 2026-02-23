@@ -696,9 +696,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     }
 
     /// <summary>
-    ///   Calculates the extremeties of a slider movement when cost is the limiting factor.
+    ///   Calculates the extremities of a slider movement when cost is the limiting factor.
     /// </summary>
-    /// <param name="costPerAction">How much MP does changing this value cost? Inverted</param>
+    /// <param name="costPerAction">How much MP does change of this value cost? Inverted</param>
     /// <param name="sliderValue">What the slider value currently is at</param>
     /// <param name="originalValue">What the slider value was originally at</param>
     /// <param name="step">The size of each jump on the slider</param>
