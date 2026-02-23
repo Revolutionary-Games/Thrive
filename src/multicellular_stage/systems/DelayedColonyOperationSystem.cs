@@ -1,6 +1,7 @@
 ﻿namespace Systems;
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Arch.Buffer;
 using Arch.Core;
@@ -25,6 +26,10 @@ using Godot;
 [RuntimeCost(0.25f)]
 public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 {
+    public static readonly object AttachLock = new();
+
+    private static readonly List<DelayedMicrobeColony> ToAttach = new List<DelayedMicrobeColony>();
+
     private readonly IWorldSimulation worldSimulation;
     private readonly IMicrobeSpawnEnvironment spawnEnvironment;
     private readonly ISpawnSystem spawnSystem;
@@ -75,7 +80,14 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
         recorder.Add(member, attachPosition);
 
-        recorder.Add(member, new DelayedMicrobeColony(colonyEntity, colonyTargetIndex));
+        var delayed = new DelayedMicrobeColony(colonyEntity, colonyTargetIndex);
+
+        recorder.Add(member, delayed);
+
+        lock (AttachLock)
+        {
+            ToAttach.Add(delayed);
+        }
 
         // Ensure no physics is created before the attach-operation completes
         recorder.Set(member, PhysicsHelpers.CreatePhysicsForMicrobe(true));
@@ -97,6 +109,8 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
     {
         var recorder = worldSimulation.StartRecordingEntityCommands();
 
+        bool processed = true;
+
         if (delayed.GrowAdditionalMembers > 0)
         {
             GrowColonyMembers(entity, recorder, delayed.GrowAdditionalMembers);
@@ -111,8 +125,15 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
                     lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
                     {
-                        CompleteDelayedColonyAttach(ref colony, delayed.FinishAttachingToColony, entity,
-                            recorder, delayed.AttachIndex);
+                        if (GetLowestAttachmentOrder() == delayed.AttachIndex)
+                        {
+                            CompleteDelayedColonyAttach(ref colony, delayed.FinishAttachingToColony, entity,
+                                recorder, delayed.AttachIndex);
+                        }
+                        else
+                        {
+                            processed = false;
+                        }
                     }
                 }
                 else
@@ -130,8 +151,16 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
             GD.PrintErr("Unknown operation for delayed microbe colony action");
         }
 
-        // Remove the component now that it is processed
-        recorder.Remove<DelayedMicrobeColony>(entity);
+        if (processed)
+        {
+            // Remove the component now that it is processed
+            recorder.Remove<DelayedMicrobeColony>(entity);
+
+            lock (AttachLock)
+            {
+                ToAttach.Remove(delayed);
+            }
+        }
 
         worldSimulation.FinishRecordingEntityCommands(recorder);
     }
@@ -185,7 +214,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
         ref var parentPosition = ref entity.Get<WorldPosition>();
 
-        for (int i = Math.Min(bodyPlanIndex + members, species.Species.ModifiableGameplayCells.Count - 1); i > 0; --i)
+        for (int i = bodyPlanIndex; i < bodyPlanIndex + members && i < species.Species.ModifiableGameplayCells.Count; ++i)
         {
             CreateDelayAttachedMicrobe(ref parentPosition, entity, bodyPlanIndex++,
                 species.Species.ModifiableGameplayCells[i], species.Species, worldSimulation, spawnEnvironment,
@@ -206,5 +235,20 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
     {
         var parentIndex = colony.CalculateSensibleParentIndexForMulticellular(ref entity.Get<AttachedToEntity>());
         colony.FinishQueuedMemberAdd(colonyEntity, parentIndex, entity, targetMemberIndex, recorder);
+    }
+
+    private int GetLowestAttachmentOrder()
+    {
+        int min = int.MaxValue;
+
+        lock (AttachLock)
+        {
+            for (int i = 0; i < ToAttach.Count; ++i)
+            {
+                min = Math.Min(ToAttach[i].AttachIndex, min);
+            }
+        }
+
+        return min;
     }
 }
