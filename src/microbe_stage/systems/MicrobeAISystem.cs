@@ -263,10 +263,17 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
         var compounds = compoundStorage.Compounds;
 
-        var signalerPosition =
-            signaling.ReceivedCommand != MicrobeSignalCommand.None && entity.IsAliveAndHas<WorldPosition>() ?
-                signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position :
-                new Vector3(0, 0, 0);
+        bool signalExists = signaling.ReceivedCommand != MicrobeSignalCommand.None;
+        Vector3 signalerPosition = default;
+
+        if (signaling.ReceivedCommand != MicrobeSignalCommand.None && entity.IsAliveAndHas<WorldPosition>())
+        {
+            signalerPosition = signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position;
+        }
+        else
+        {
+            signalExists = false;
+        }
 
         // Adjusted behaviour values (calculated here as these are needed by various methods)
         var speciesBehaviour = ourSpecies.Species.Behaviour;
@@ -399,7 +406,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         }
 
         // Follow received commands if we have them
-        if (organelles.HasSignalingAgent && signaling.ReceivedCommand != MicrobeSignalCommand.None)
+        if (organelles.HasSignalingAgent && signalExists)
         {
             // TODO: tweak the balance between following commands and doing normal behaviours
             // TODO: and also probably we want to add some randomness to the positions and speeds based on distance
