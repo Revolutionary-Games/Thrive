@@ -28,7 +28,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 {
     public static readonly object AttachLock = new();
 
-    private static readonly List<DelayedMicrobeColony> ToAttach = new List<DelayedMicrobeColony>();
+    private static readonly Queue<int> AttachmentOrder = new();
 
     private readonly IWorldSimulation worldSimulation;
     private readonly IMicrobeSpawnEnvironment spawnEnvironment;
@@ -80,14 +80,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
         recorder.Add(member, attachPosition);
 
-        var delayed = new DelayedMicrobeColony(colonyEntity, colonyTargetIndex);
-
-        recorder.Add(member, delayed);
-
-        lock (AttachLock)
-        {
-            ToAttach.Add(delayed);
-        }
+        recorder.Add(member, new DelayedMicrobeColony(colonyEntity, colonyTargetIndex));
 
         // Ensure no physics is created before the attach-operation completes
         recorder.Set(member, PhysicsHelpers.CreatePhysicsForMicrobe(true));
@@ -125,14 +118,19 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
                     lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
                     {
-                        if (GetLowestAttachmentOrder() == delayed.AttachIndex)
+                        lock (AttachLock)
                         {
-                            CompleteDelayedColonyAttach(ref colony, delayed.FinishAttachingToColony, entity,
-                                recorder, delayed.AttachIndex);
-                        }
-                        else
-                        {
-                            processed = false;
+                            if (delayed.AttachIndex == AttachmentOrder.Peek())
+                            {
+                                AttachmentOrder.Dequeue();
+
+                                CompleteDelayedColonyAttach(ref colony, delayed.FinishAttachingToColony, entity,
+                                    recorder, delayed.AttachIndex);
+                            }
+                            else
+                            {
+                                processed = false;
+                            }
                         }
                     }
                 }
@@ -155,11 +153,6 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         {
             // Remove the component now that it is processed
             recorder.Remove<DelayedMicrobeColony>(entity);
-
-            lock (AttachLock)
-            {
-                ToAttach.Remove(delayed);
-            }
         }
 
         worldSimulation.FinishRecordingEntityCommands(recorder);
@@ -216,6 +209,11 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
         for (int i = bodyPlanIndex; i < bodyPlanIndex + members && i < species.Species.ModifiableGameplayCells.Count; ++i)
         {
+            lock (AttachLock)
+            {
+                AttachmentOrder.Enqueue(i);
+            }
+
             CreateDelayAttachedMicrobe(ref parentPosition, entity, bodyPlanIndex++,
                 species.Species.ModifiableGameplayCells[i], species.Species, worldSimulation, spawnEnvironment,
                 recorder, spawnSystem, true);
@@ -235,20 +233,5 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
     {
         var parentIndex = colony.CalculateSensibleParentIndexForMulticellular(ref entity.Get<AttachedToEntity>());
         colony.FinishQueuedMemberAdd(colonyEntity, parentIndex, entity, targetMemberIndex, recorder);
-    }
-
-    private int GetLowestAttachmentOrder()
-    {
-        int min = int.MaxValue;
-
-        lock (AttachLock)
-        {
-            for (int i = 0; i < ToAttach.Count; ++i)
-            {
-                min = Math.Min(ToAttach[i].AttachIndex, min);
-            }
-        }
-
-        return min;
     }
 }
