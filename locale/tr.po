@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-20 15:03+0200\n"
+"POT-Creation-Date: 2026-02-23 12:21+0100\n"
 "PO-Revision-Date: 2026-02-19 21:56+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -2985,12 +2985,6 @@ msgstr "Temmuz"
 
 msgid "JUNE"
 msgstr "Haziran"
-
-msgid "KEEP_CURRENT_SHORT"
-msgstr "Mevcut Olanı tut"
-
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "Minimum ve maksimum kaydırma butonlarını hareket ettirirken mevcut basınç tolerans aralığını tut"
 
 msgid "KEEP_MIGRATION"
 msgstr "Göçü Sürdür"
@@ -6334,9 +6328,6 @@ msgstr "Araçlar"
 msgid "TOOL_HAND_AXE"
 msgstr "El Baltası"
 
-msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr "Basınç aralığı çok geniş"
-
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr "Çok fazla sürüm olduğundan bütün son sürümler gösterilemiyor"
 
@@ -7009,7 +7000,26 @@ msgstr "Hücrenin depo alanını arttırır."
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Koful, seçili bileşikten {0} birim depolayacak"
 
+#, fuzzy
+msgid "VALUE_MODIFIER"
+msgstr "Sağlık Çarpanı"
+
+msgid "VALUE_OFFSET"
+msgstr ""
+
+#, fuzzy
+msgid "VALUE_TOTAL"
+msgstr "Ham:"
+
 msgid "VALUE_WITH_UNIT"
+msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VALUE_WITH_UNIT_PLUS"
+msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VALUE_WITH_UNIT_PLUS_MINUS"
 msgstr "{0} {1}"
 
 msgid "VENTS_ARE_HOME"
@@ -9643,6 +9653,15 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#~ msgid "KEEP_CURRENT_SHORT"
+#~ msgstr "Mevcut Olanı tut"
+
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr "Minimum ve maksimum kaydırma butonlarını hareket ettirirken mevcut basınç tolerans aralığını tut"
+
+#~ msgid "TOO_LARGE_PRESSURE_RANGE"
+#~ msgstr "Basınç aralığı çok geniş"
 
 #~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 #~ msgstr "Sonraki evre prototiplerini dahil et"
