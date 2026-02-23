@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-22 16:04+0200\n"
-"PO-Revision-Date: 2025-12-16 19:29+0000\n"
-"Last-Translator: Greggory Lazarov <greggfromdiscord@gmail.com>\n"
+"POT-Creation-Date: 2026-02-20 15:03+0200\n"
+"PO-Revision-Date: 2026-02-18 15:14+0000\n"
+"Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.15.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -730,6 +730,10 @@ msgstr "Целулозна"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Това е мембрана със стена, която осигурява по-добра цялостна защита и се нуждае от по-малко енергия за да не се деформира. Недостатъците ѝ са, че клетката става още по-бавна, както и усвояването на хранителните вещества. [b]Целулазата[/b] може да разгради стената на тази мембрана."
+
+#, fuzzy
+msgid "CELL_SPECIALIZATION_TOOLTIP"
+msgstr "Идентификаторът трябва да е положително цяло число"
 
 #, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
@@ -2936,12 +2940,6 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr "Видове"
 
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Включване на следващите етапи на играта"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr "(следващите етапи на играта не са завършени и може да не функционират правилно)"
-
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Създаване на нов"
@@ -4547,6 +4545,10 @@ msgstr "Многоклетъчен редактор"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Многоклетъчен редактор"
 
+#, fuzzy
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "(следващите етапи на играта не са завършени и може да не функционират правилно)"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Многоклетъчен етап"
 
@@ -4989,6 +4991,10 @@ msgstr "(ВНИМАНИЕ: понижава ефективността на фо
 msgid "ORGANISM_STATISTICS"
 msgstr "Характеристика"
 
+#, fuzzy
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "Характеристика"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr "или"
 
@@ -5362,7 +5368,16 @@ msgstr "Обработка на заредените обекти"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "при"
 
+#, fuzzy
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "Клетъчни процеси"
+
+#, fuzzy
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Клетъчни процеси"
+
+#, fuzzy
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Клетъчни процеси"
 
 #, fuzzy
@@ -6106,6 +6121,10 @@ msgstr "Създаване на глюкоза"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr "Създаване на фосфат"
+
+#, fuzzy
+msgid "SPECIALIZATION_COLON"
+msgstr "популация:"
 
 msgid "SPECIAL_MOUSE_1"
 msgstr "Специален бутон №1"
@@ -7524,6 +7543,10 @@ msgstr "Всички версии"
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "Подлежи на уточняване"
 
 #, fuzzy
@@ -9447,7 +9470,8 @@ msgstr ""
 msgid "WIN_BOX_TITLE"
 msgstr "ВАШИТЕ СЪЗДАНИЯ ПРОЦЪФТЯХА!"
 
-msgid "WIN_TEXT"
+#, fuzzy
+msgid "WIN_TEXT_2"
 msgstr "Поздравления, Вие победихте в тази версия на „Thrive“! Може да продължите играта след като този прозорец се затвори или да започнете нова игра в нов свят. Също така, може да използвате свързващия агент за да създадете клетъчна колония и да продължите към следващите етапи на играта."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -9491,6 +9515,12 @@ msgid "WORLD_GENERAL_STATISTICS"
 msgstr "Обща статистика на текущия свят"
 
 msgid "WORLD_MISC_DETAILS_STRING"
+msgstr ""
+"Включване на следващите етапи на играта: {0}\n"
+"Включване на тайните обекти на играта: {1}"
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
 msgstr ""
 "Включване на следващите етапи на играта: {0}\n"
 "Включване на тайните обекти на играта: {1}"
@@ -9618,6 +9648,9 @@ msgstr "Приближаване"
 
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
+
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Включване на следващите етапи на играта"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Използва „Harmony“:"

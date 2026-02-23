@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-22 16:04+0200\n"
-"PO-Revision-Date: 2026-01-28 22:12+0000\n"
-"Last-Translator: zynskeywolf <istvanszabo314@protonmail.com>\n"
+"POT-Creation-Date: 2026-02-20 15:03+0200\n"
+"PO-Revision-Date: 2026-02-18 15:13+0000\n"
+"Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.15.2\n"
 "Generated-By: Babel 2.9.1\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -717,6 +717,10 @@ msgstr "Cellulóz"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ez a membrán egy fallal rendelkezik, ami jobb védelmet jelent a sérülések ellen, főleg a fizikai sérülések ellen. Kevesebb energia szükséges neki formája megtartásához, viszont nem képes bekebelezése és lassítja magát a sejtet is. [b]Cellulóz képes megemészteni ezt a falat[/b] így a sejt sebezhetővé válik a ragadozók általi bekebelezésre."
+
+#, fuzzy
+msgid "CELL_SPECIALIZATION_TOOLTIP"
+msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
 
 #, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
@@ -2982,12 +2986,6 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr "Membrán típusok"
 
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Későbbi fázisok prototípusainak engedélyezése"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr "(egyes opciók lehet, hogy elérhetetlenek lesznek a többi fázis elértével)"
-
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Új létrehozása"
@@ -4618,6 +4616,10 @@ msgstr "Többsejtes szerkesztő"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Többsejtes szerkesztő"
 
+#, fuzzy
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "(egyes opciók lehet, hogy elérhetetlenek lesznek a többi fázis elértével)"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Többsejtes fázis"
 
@@ -5076,6 +5078,10 @@ msgstr "(a szerkesztő elhagyása után egy közeli glükózfelhő mellett lesz 
 msgid "ORGANISM_STATISTICS"
 msgstr "Organizmus statisztikái"
 
+#, fuzzy
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "Organizmus statisztikái"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr "vagy"
 
@@ -5449,7 +5455,16 @@ msgstr "Betöltött objektumok feldolgozása"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
+#, fuzzy
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "Sejtfolyamatok"
+
+#, fuzzy
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Sejtfolyamatok"
+
+#, fuzzy
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Sejtfolyamatok"
 
 #, fuzzy
@@ -6221,6 +6236,10 @@ msgstr "Glükóz létrehozása"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr "Foszfát létrehozása"
+
+#, fuzzy
+msgid "SPECIALIZATION_COLON"
+msgstr "Populáció:"
 
 msgid "SPECIAL_MOUSE_1"
 msgstr "Speciál egér 1"
@@ -7611,6 +7630,10 @@ msgstr "Az összes tiltása"
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
+msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
+
+#, fuzzy
+msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
 
 #, fuzzy
@@ -9517,7 +9540,8 @@ msgstr ""
 msgid "WIN_BOX_TITLE"
 msgstr "TÚLÉLTÉL!"
 
-msgid "WIN_TEXT"
+#, fuzzy
+msgid "WIN_TEXT_2"
 msgstr "Gratulálok, a Thrive ezen verzióját végigvitted! Ha akarsz, még játszhatsz tovább, miután ez az ablak bezárul, vagy egy új játékot is kezdhetsz."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -9565,6 +9589,10 @@ msgstr "Organizmus statisztikái"
 
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
+msgstr "Előre beállított nehézség"
 
 #, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE"
@@ -9686,6 +9714,9 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Későbbi fázisok prototípusainak engedélyezése"
 
 #, fuzzy
 #~ msgid "MOD_AUTO_HARMONY"

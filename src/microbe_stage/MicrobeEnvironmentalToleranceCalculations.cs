@@ -25,13 +25,13 @@ public static class MicrobeEnvironmentalToleranceCalculations
         return score.OverallScore;
     }
 
-    public static ToleranceResult CalculateTolerances(MicrobeSpecies species, BiomeConditions environment)
+    public static ToleranceResult CalculateTolerances(MicrobeSpecies species, IBiomeConditions environment)
     {
         return CalculateTolerances(species.Tolerances, species.Organelles, environment);
     }
 
     public static ToleranceResult CalculateTolerances(IReadOnlyEnvironmentalTolerances speciesTolerances,
-        IReadOnlyList<OrganelleTemplate> organelles, BiomeConditions environment)
+        IReadOnlyList<OrganelleTemplate> organelles, IBiomeConditions environment)
     {
         var result = new ToleranceResult();
 
@@ -85,7 +85,10 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 temperatureChange += organelleDefinition.ToleranceModifierTemperatureRange;
                 oxygenChange += organelleDefinition.ToleranceModifierOxygen;
                 uvChange += organelleDefinition.ToleranceModifierUV;
-                pressureMinimumChange -= organelleDefinition.ToleranceModifierPressureRange;
+
+                // Important to + the change here as otherwise this is applied in the wrong direction with the minus
+                // in the actual application step outside the loop.
+                pressureMinimumChange += organelleDefinition.ToleranceModifierPressureRange;
                 pressureMaximumChange += organelleDefinition.ToleranceModifierPressureRange;
             }
         }
@@ -255,7 +258,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
     }
 
     private static void CalculateTolerancesInternal(in ToleranceValues speciesTolerances,
-        in ToleranceValues noExtraEffects, BiomeConditions environment, ToleranceResult result)
+        in ToleranceValues noExtraEffects, IBiomeConditions environment, ToleranceResult result)
     {
         var patchTemperature = environment.GetCompound(Compound.Temperature, CompoundAmountType.Biome).Ambient;
         var patchPressure = environment.Pressure;

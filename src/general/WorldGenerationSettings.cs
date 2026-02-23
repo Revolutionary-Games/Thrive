@@ -280,11 +280,6 @@ public class WorldGenerationSettings : IArchivable
     public float DaytimeFraction { get; set; }
 
     /// <summary>
-    ///   Whether the player can enter the Multicellular Stage in this game
-    /// </summary>
-    public bool IncludeMulticellular { get; set; } = true;
-
-    /// <summary>
     ///   Whether Easter eggs are enabled in this game
     /// </summary>
     public bool EasterEggs { get; set; } = true;
@@ -329,7 +324,10 @@ public class WorldGenerationSettings : IArchivable
         instance.DayLength = reader.ReadInt32();
         instance.HoursPerDay = reader.ReadFloat();
         instance.DaytimeFraction = reader.ReadFloat();
-        instance.IncludeMulticellular = reader.ReadBool();
+
+        // Old include multicellular flag
+        _ = reader.ReadBool();
+
         instance.EasterEggs = reader.ReadBool();
 
         return instance;
@@ -359,7 +357,10 @@ public class WorldGenerationSettings : IArchivable
         writer.Write(DayLength);
         writer.Write(HoursPerDay);
         writer.Write(DaytimeFraction);
-        writer.Write(IncludeMulticellular);
+
+        // Old include multicellular flag
+        writer.Write(true);
+
         writer.Write(EasterEggs);
     }
 
@@ -400,8 +401,7 @@ public class WorldGenerationSettings : IArchivable
     /// </summary>
     public string GetTranslatedMiscString()
     {
-        return Localization.Translate("WORLD_MISC_DETAILS_STRING").FormatSafe(
-            TranslationHelper.TranslateFeatureFlag(IncludeMulticellular),
+        return Localization.Translate("WORLD_MISC_DETAILS_STRING_2").FormatSafe(
             TranslationHelper.TranslateFeatureFlag(EasterEggs));
     }
 
@@ -415,7 +415,6 @@ public class WorldGenerationSettings : IArchivable
             $", Size: {WorldSize}" +
             $", Day/night cycle enabled: {DayNightCycleEnabled}" +
             $", Day length: {DayLength}" +
-            $", Include multicellular: {IncludeMulticellular}" +
             $", Easter eggs: {EasterEggs}" +
             "]";
     }

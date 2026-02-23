@@ -12,6 +12,7 @@ public class BiomeResourceLimiterAdapter : IBiomeConditions
     private readonly ResourceLimitingMode limitingMode;
     private readonly IBiomeConditions baseConditions;
     private readonly Lazy<Dictionary<string, ChunkConfiguration>> filteredChunks;
+    private readonly HashSet<Compound>? cellProducedCompounds;
 
     public BiomeResourceLimiterAdapter(ResourceLimitingMode limitingMode, IBiomeConditions baseConditions)
     {
@@ -19,6 +20,19 @@ public class BiomeResourceLimiterAdapter : IBiomeConditions
         this.baseConditions = baseConditions;
 
         filteredChunks = new Lazy<Dictionary<string, ChunkConfiguration>>(FilterChunks);
+    }
+
+    public BiomeResourceLimiterAdapter(ResourceLimitingMode limitingMode, IBiomeConditions baseConditions,
+        List<TweakedProcess> activeProcesses) : this(limitingMode, baseConditions)
+    {
+        cellProducedCompounds = new HashSet<Compound>();
+        foreach (var activeProcess in activeProcesses)
+        {
+            foreach (var output in activeProcess.Process.Outputs)
+            {
+                cellProducedCompounds.Add(output.Key.ID);
+            }
+        }
     }
 
     [JsonIgnore]
@@ -83,10 +97,21 @@ public class BiomeResourceLimiterAdapter : IBiomeConditions
             case ResourceLimitingMode.WithoutHydrogenSulfide:
                 return compound != Compound.Hydrogensulfide;
             case ResourceLimitingMode.NoExternalResources:
-                return false;
+                return IsAmbientCompound(compound) || (cellProducedCompounds != null &&
+                    cellProducedCompounds.Contains(compound));
             default:
                 throw new ArgumentOutOfRangeException(nameof(limitingMode), "unimplemented limiting mode");
         }
+    }
+
+    private bool IsAmbientCompound(Compound compound)
+    {
+        if (baseConditions.TryGetCompound(compound, CompoundAmountType.Average, out var result))
+        {
+            return result.Ambient != 0;
+        }
+
+        return false;
     }
 
     private Dictionary<string, ChunkConfiguration> FilterChunks()

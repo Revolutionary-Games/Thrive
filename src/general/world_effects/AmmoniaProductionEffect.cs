@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Godot;
 using SharedBase.Archive;
 using Systems;
 
@@ -36,6 +37,42 @@ public class AmmoniaProductionEffect : IWorldEffect
         return new AmmoniaProductionEffect(reader.ReadObject<GameWorld>());
     }
 
+    public static float GetSpeciesModifiersForEffect(Species species, out ResolvedMicrobeTolerances resolvedTolerances,
+        out float specialization, List<TweakedProcess> microbeProcesses, IBiomeConditions biome,
+        WorldGenerationSettings worldGenerationSettings)
+    {
+        resolvedTolerances = new ResolvedMicrobeTolerances
+        {
+            ProcessSpeedModifier = 1,
+            OsmoregulationModifier = 1,
+            HealthModifier = 1,
+        };
+
+        specialization = 1;
+
+        // TODO: multicellular environmental tolerances
+        if (species is MicrobeSpecies microbeSpecies)
+        {
+            resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(microbeSpecies, biome));
+
+            specialization = microbeSpecies.SpecializationBonus;
+
+            if (specialization <= 0)
+            {
+                GD.PrintErr("Uninitialized species specialization in a world effect");
+            }
+        }
+        else if (species is MulticellularSpecies)
+        {
+            // specialization = ?
+        }
+
+        // TODO: this also doesn't work for multicellular species!
+        return ProcessSystem.CalculateSpeciesActiveProcessListForEffect(species,
+            microbeProcesses, biome, resolvedTolerances, specialization, worldGenerationSettings);
+    }
+
     public void WriteToArchive(ISArchiveWriter writer)
     {
         writer.WriteObject(targetWorld);
@@ -68,22 +105,8 @@ public class AmmoniaProductionEffect : IWorldEffect
 
             foreach (var species in patch.SpeciesInPatch)
             {
-                var resolvedTolerances = new ResolvedMicrobeTolerances
-                {
-                    ProcessSpeedModifier = 1,
-                    OsmoregulationModifier = 1,
-                    HealthModifier = 1,
-                };
-
-                // TODO: multicellular environmental tolerances
-                if (species.Key is MicrobeSpecies microbeSpecies)
-                {
-                    resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
-                        MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(microbeSpecies, patch.Biome));
-                }
-
-                var balanceModifier = ProcessSystem.CalculateSpeciesActiveProcessListForEffect(species.Key,
-                    microbeProcesses, patch.Biome, resolvedTolerances, targetWorld.WorldSettings);
+                var balanceModifier = GetSpeciesModifiersForEffect(species.Key, out var resolvedTolerances,
+                    out var specialization, microbeProcesses, patch.Biome, targetWorld.WorldSettings);
 
                 // Ammonia consumption of this species based on reproduction cost of all individuals
                 ammoniaBalance -= (float)(Constants.AMMONIA_ENVIRONMENT_CONSUMPTION_MULTIPLIER * species.Value *
@@ -98,12 +121,12 @@ public class AmmoniaProductionEffect : IWorldEffect
 
                     var effectiveSpeed =
                         ProcessSystem.CalculateEffectiveProcessSpeedForEffect(process, balanceModifier, patch.Biome,
-                            resolvedTolerances.ProcessSpeedModifier);
+                            resolvedTolerances.ProcessSpeedModifier, specialization);
 
                     if (effectiveSpeed <= 0)
                         continue;
 
-                    // Currently no processes have Ammonia as input
+                    // Currently, no processes have Ammonia as input
 
                     // Outputs generate the given compounds
                     foreach (var output in process.Process.Outputs)

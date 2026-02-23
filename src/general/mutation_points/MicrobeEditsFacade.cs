@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Godot;
 
@@ -89,6 +90,9 @@ public class MicrobeEditsFacade : SpeciesEditsFacade, IReadOnlyMicrobeSpecies,
     ///   This returns null (at least currently), but for completeness we forward this
     /// </summary>
     public string? SplitFromTypeName => microbeSpecies.SplitFromTypeName;
+
+    public float SpecializationBonus =>
+        throw new NotSupportedException("This class doesn't dynamically recalculate the specialization bonus");
 
     public int Count
     {

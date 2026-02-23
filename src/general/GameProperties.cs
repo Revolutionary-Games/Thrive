@@ -118,9 +118,7 @@ public class GameProperties : IArchivable
         // Modify the player species to actually make sense to be in the multicellular stage
         var playerSpecies = MakePlayerOrganellesMakeSenseForMulticellular(game);
 
-        game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies);
-
-        game.EnterPrototypes();
+        game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies, !freebuild);
 
         // TODO: generate multicellular species for freebuild
         if (freebuild)
@@ -147,7 +145,7 @@ public class GameProperties : IArchivable
 
         var playerSpecies = MakePlayerOrganellesMakeSenseForMulticellular(game);
 
-        var earlySpecies = game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies);
+        var earlySpecies = game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies, false);
         MakeCellPlacementMakeSenseForMacroscopic(earlySpecies);
         game.GameWorld.ChangeSpeciesToMacroscopic(earlySpecies);
 

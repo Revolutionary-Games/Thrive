@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-22 16:04+0200\n"
-"PO-Revision-Date: 2026-01-13 20:27+0000\n"
-"Last-Translator: Marcy L <marcythebeast@proton.me>\n"
+"POT-Creation-Date: 2026-02-20 15:03+0200\n"
+"PO-Revision-Date: 2026-02-18 15:14+0000\n"
+"Last-Translator: Maksymilian Adamski <gyhat.yt@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.15.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -712,6 +712,12 @@ msgstr "Celulozowa"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ta błona posiada ścianę która zapewnia lepszą ochronę przed obrażeniami a zwłaszcza przed obrażeniami fizycznymi. Kosztuje też mniej energii, ale spowalnia absorpcje zasobów i spowalnia komórkę. [b]Celulaza może strawić tę ścianę[/b] sprawiając, że jest ona wrażliwa na wchłonięcie przez drapieżniki."
+
+#, fuzzy
+msgid "CELL_SPECIALIZATION_TOOLTIP"
+msgstr ""
+"Tempo obrotu komórki. Większe komórki obracają się wolniej, jednak rzęski pozwalają na zmniejszenie efektu.\n"
+"Rozmieszczenie organelli wpływa na obrót komórki; im dalej od centrum, tym wolniej będzie obracać się komórka."
 
 msgid "CELL_STAT_ROTATION_TOOLTIP"
 msgstr ""
@@ -2815,12 +2821,6 @@ msgstr "Pomiń pozostałe błędy"
 msgid "IMAGE_FILE_TYPES"
 msgstr "Rodzaje błony lub ściany komórkowej"
 
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Zawiera prototypy późniejszych etapów"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr "(niektóre funkcje mogą być niedostępne gdy dotrzesz to następnych etapów)"
-
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Stwórz Nowy"
@@ -4391,6 +4391,10 @@ msgstr "Edytor Wielokomórkowca"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Edytor Wielokomórkowca"
 
+#, fuzzy
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "(niektóre funkcje mogą być niedostępne gdy dotrzesz to następnych etapów)"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Etap Wielokomórkowca"
 
@@ -4829,6 +4833,10 @@ msgstr "(Niektóre organelle będą mieć warunki odblokowania wymagane by je po
 msgid "ORGANISM_STATISTICS"
 msgstr "Statystyki Organizmu"
 
+#, fuzzy
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "Statystyki Organizmu"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr "lub"
 
@@ -5205,7 +5213,16 @@ msgstr "Przetwarzanie wczytanych obiektów"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
+#, fuzzy
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "Procesy Komórki"
+
+#, fuzzy
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Procesy Komórki"
+
+#, fuzzy
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Procesy Komórki"
 
 #, fuzzy
@@ -5944,6 +5961,10 @@ msgstr "Stwórz glukozę"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr "Stwórz fosforany"
+
+#, fuzzy
+msgid "SPECIALIZATION_COLON"
+msgstr "populacja:"
 
 msgid "SPECIAL_MOUSE_1"
 msgstr "Mysz Specjalny 1"
@@ -7327,6 +7348,10 @@ msgstr "Wyłącz wszystko"
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
+msgstr "Zwiększa prędkość obrotu większych komórek."
+
+#, fuzzy
+msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "Zwiększa prędkość obrotu większych komórek."
 
 #, fuzzy
@@ -9204,7 +9229,8 @@ msgstr "Okno"
 msgid "WIN_BOX_TITLE"
 msgstr "PRZETRWAŁEŚ!"
 
-msgid "WIN_TEXT"
+#, fuzzy
+msgid "WIN_TEXT_2"
 msgstr "Gratulację, udało ci się przejść tą wersję Thrive! Jeśli chcesz, możesz kontynuować grę po zniknięciu tej wiadomości lub rozpocząć nową grę w nowym świecie. Możesz również dodać czynniki wiążące by zbudować kolonię komórek i wypróbować prototypy późniejszych etapów."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -9249,6 +9275,20 @@ msgstr "Ogólne statystyki obecnego świata"
 
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
+msgstr ""
+"Ogólny poziom trudności: {0}\n"
+"Mnożnik kosztów mutacji: {1}\n"
+"Tempo mutacji SI: {2}\n"
+"Gęstość chmur związków: {3}\n"
+"Zmniejszenie populacji przez śmierć gracza: {4}\n"
+"Zachowanie środowiskowej glukozy: {5}\n"
+"Mnożnik kosztu osmoregulacji: {6}\n"
+"Chmura glukozy po wyjściu z edytora: {7}\n"
+"Pasywny przyrost postępu reprodukcji: {8}\n"
+"Ograniczenie użycia związków do wzrostu: {9}"
 
 #, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE"
@@ -9361,6 +9401,9 @@ msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
+
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Zawiera prototypy późniejszych etapów"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Używa Auto Harmonii:"

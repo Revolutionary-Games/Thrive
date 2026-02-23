@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-22 16:04+0200\n"
+"POT-Creation-Date: 2026-02-20 15:03+0200\n"
 "PO-Revision-Date: 2025-04-26 10:58+0000\n"
 "Last-Translator: Samuel Haššo <snurka1999@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -725,6 +725,10 @@ msgstr "Celulóza"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "CELL_SPECIALIZATION_TOOLTIP"
+msgstr "Hodnota, ktorá sa používa pri generovaní sveta (musí kladné byť číslo)"
 
 #, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
@@ -2837,12 +2841,6 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr "Typy membrán"
 
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Zahrnúť prototypy neskoršej fázy"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr "(akonáhle sa dostaneš do ďalšej fázy, niektoré funkcie môžu byť nedostupné)"
-
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Vytvoriť nový"
@@ -4361,6 +4359,10 @@ msgstr "Editor Mnohobunkovcov"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Editor Mnohobunkovcov"
 
+#, fuzzy
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "(akonáhle sa dostaneš do ďalšej fázy, niektoré funkcie môžu byť nedostupné)"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Fáza Mnohobunkovcov"
 
@@ -4800,6 +4802,10 @@ msgstr "(začni s oblakom glukózy v blízkosti každou generáciou)"
 msgid "ORGANISM_STATISTICS"
 msgstr "Štatistika organizmu"
 
+#, fuzzy
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "Štatistika organizmu"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5179,7 +5185,15 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 #, fuzzy
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "Bunkové procesy"
+
+#, fuzzy
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Bunkové procesy"
+
+#, fuzzy
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Bunkové procesy"
 
 #, fuzzy
@@ -5936,6 +5950,10 @@ msgstr "Umiestniť glukózu"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr "Umiestniť fosfát"
+
+#, fuzzy
+msgid "SPECIALIZATION_COLON"
+msgstr "populácia:"
 
 msgid "SPECIAL_MOUSE_1"
 msgstr "Špeciálne tlačidlo myši 1"
@@ -7142,6 +7160,10 @@ msgstr "Zakázať všetko"
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
+msgstr "Zvyšuje rýchlosť otáčania veľkých buniek."
+
+#, fuzzy
+msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "Zvyšuje rýchlosť otáčania veľkých buniek."
 
 #, fuzzy
@@ -8939,7 +8961,7 @@ msgstr ""
 msgid "WIN_BOX_TITLE"
 msgstr ""
 
-msgid "WIN_TEXT"
+msgid "WIN_TEXT_2"
 msgstr ""
 
 #, fuzzy
@@ -8987,6 +9009,10 @@ msgstr "Štatistika organizmu"
 
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
+msgstr "Nastavenie obtiažnosti"
 
 #, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE"
@@ -9105,6 +9131,9 @@ msgstr "Priblížiť"
 
 msgid "ZOOM_OUT"
 msgstr "Oddialiť"
+
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Zahrnúť prototypy neskoršej fázy"
 
 #, fuzzy
 #~ msgid "REPRODUCTION_COMPOUND_USAGE"

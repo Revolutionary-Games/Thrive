@@ -19,24 +19,7 @@ public static class Constants
     /// </summary>
     public const float SIMULATION_MAX_DELTA_TIME = 0.2f;
 
-    /// <summary>
-    ///   Controls the number of threads used by the entity systems. The number of cells is divided by this,
-    ///   and that is the max number of threads.
-    /// </summary>
-    public const int SIMULATION_CELLS_PER_THREAD_ESTIMATE = 25;
-
     public const float SIMULATION_REQUIRED_FAST_MODE_SUCCESS_RATE = 0.45f;
-
-    // The following variables define the number of entities each thread running a system of that category needs to be
-    // able to process for threading to be used at all. For example, if there are 40 entities and 4 threads to be used
-    // and a system specifies 10 entities per thread, that system will run multithreaded (4 * 10 {40} <= 40).
-    // But if there was a system that wanted at least 15 entities per thread, that would run purely *single threaded*
-    // (4 * 15 {60} <= 40)
-    public const int SYSTEM_LOW_ENTITIES_PER_THREAD = 8;
-    public const int SYSTEM_NORMAL_ENTITIES_PER_THREAD = 12;
-    public const int SYSTEM_HIGHER_ENTITIES_PER_THREAD = 18;
-    public const int SYSTEM_HIGH_ENTITIES_PER_THREAD = 24;
-    public const int SYSTEM_EXTREME_ENTITIES_PER_THREAD = 40;
 
     /// <summary>
     ///   Makes sure that at least this many task threads are left idle when creating membrane generation background
@@ -441,10 +424,6 @@ public static class Constants
     public const int INITIAL_FREEBUILD_POPULATION_VARIANCE_MIN = 0;
     public const int INITIAL_FREEBUILD_POPULATION_VARIANCE_MAX = 400;
 
-    // Right now these are used for species split from the player
-    public const int INITIAL_SPLIT_POPULATION_MIN = 600;
-    public const int INITIAL_SPLIT_POPULATION_MAX = 2000;
-
     public const string MICROBE_MOVEMENT_SOUND = "res://assets/sounds/soundeffects/microbe-movement-ambience.ogg";
     public const string MICROBE_ENGULFING_MODE_SOUND = "res://assets/sounds/soundeffects/engulfment.ogg";
     public const string MICROBE_BINDING_MODE_SOUND = "res://assets/sounds/soundeffects/binding.ogg";
@@ -688,6 +667,23 @@ public static class Constants
     public const float COMPOUNDS_TO_VENT_PER_SECOND = 5.0f;
 
     public const float DEFAULT_MICROBE_VENT_THRESHOLD = 2.0f;
+
+    /// <summary>
+    ///   A cell needs to have this many organelles for specialization to apply to it
+    /// </summary>
+    public const int CELL_SPECIALIZATION_APPLIES_AFTER_SIZE = 6;
+
+    /// <summary>
+    ///   How many organelles a cell needs to have to be considered fully specialized. (i.e. the full specialization
+    ///   bonus is granted)
+    /// </summary>
+    public const int CELL_SPECIALIZATION_STRENGTH_FULL_AT = 20;
+
+    /// <summary>
+    ///   Controls how strong the cell specialization effect is (this is a flat multiplier right now but we could use
+    ///   something like a power curve or another function for diminishing returns)
+    /// </summary>
+    public const float CELL_SPECIALIZATION_STRENGTH_MULTIPLIER = 0.8f;
 
     /// <summary>
     ///   If more chunks exist at once than this, then some are forced to despawn immediately. In reality the effective
@@ -1309,7 +1305,7 @@ public static class Constants
     // TODO: move all of these into auto-evo_parameters.json
     public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 300;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
-    public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
+    public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.4f;
 
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 4500;

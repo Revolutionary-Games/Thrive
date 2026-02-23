@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-22 16:04+0200\n"
-"PO-Revision-Date: 2026-01-22 14:23+0000\n"
+"POT-Creation-Date: 2026-02-20 15:03+0200\n"
+"PO-Revision-Date: 2026-02-19 21:56+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.15.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -708,6 +708,12 @@ msgstr "Selüloz"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Bu hücre zarı, genel hasara ve özellikle fiziksel hasara karşı daha iyi dayanıklılık sağlayan bir duvara sahip. Ayrıca şeklini korumak için daha az enerjiye mal olur. Ama kaynakları çabucak ememez ve daha yavaştır. [b]Selülaz, bu duvarı sindirebilir.[/b] Böylece bu duvarı yırtıcılara karşı savunmasız hale getirir."
+
+#, fuzzy
+msgid "CELL_SPECIALIZATION_TOOLTIP"
+msgstr ""
+"Hücrenin dönme hızı. Hücreler ne kadar büyükse, o kadar yavaş döner. Ancak, siller bunu karşılamak için eklenebilir.\n"
+"Organel yerleşimi, dönmeyi etkiler; merkezden daha uzakta bulunan organeller, dönmeyi daha fazla azaltır."
 
 msgid "CELL_STAT_ROTATION_TOOLTIP"
 msgstr ""
@@ -2763,12 +2769,6 @@ msgstr "Ek hataları yoksay"
 msgid "IMAGE_FILE_TYPES"
 msgstr "Desteklenen Resim Dosyaları"
 
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Sonraki evre prototiplerini dahil et"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr "(sonraki evrelere ulaştığında, bazı özellikler mevcut olmayabilir)"
-
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Nesne büyüklüğünü arttır"
 
@@ -4218,6 +4218,9 @@ msgstr "Serbest Çok Hücreli Yapım Editörü"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Hücreleriniz bileşikleri paylaşsa da, her hücrenin kendi [thrive:compound type=\"atp\"]ATP'sini[/thrive:compound] üretmesi gerekir. Herhangi bir hücre, bu molekülden yoksun kalırsa ölür."
 
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "Bu panel, koloninizin tüm hücrelerinin toplamını veren birleştirilmiş işlemleri gösterir. Diğer bileşiklerin aksine, ATP'nin hücreler arasında paylaşılmadığını unutmayın."
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Çok Hücreli Evresi"
 
@@ -4636,6 +4639,9 @@ msgstr "(bazı organelleri yerleştirmek için gerekli olan kilit açma koşulla
 msgid "ORGANISM_STATISTICS"
 msgstr "Organizma İstatistikleri"
 
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "Hücre İstatistikleri"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr "veya"
 
@@ -4986,7 +4992,13 @@ msgstr "Yüklenen nesneler işleniyor"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "Organizma İşlem Paneli Açıklaması"
+
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Organizma İşlemleri"
+
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Hücre İşlemleri"
 
 msgid "PROCESS_SPEED_MODIFIER"
@@ -5699,6 +5711,10 @@ msgstr "Glukoz oluştur"
 
 msgid "SPAWN_PHOSPHATES"
 msgstr "Fosfat oluştur"
+
+#, fuzzy
+msgid "SPECIALIZATION_COLON"
+msgstr "popülasyonu:"
 
 msgid "SPECIAL_MOUSE_1"
 msgstr "Özel Fare Tuşu 1"
@@ -7021,6 +7037,9 @@ msgid "VIEW_ALL"
 msgstr "Tümünü Görüntüle"
 
 msgid "VIEW_CELL_PROCESSES"
+msgstr "Organizma İşlemlerini İncele"
+
+msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "Hücre İşlemlerini İncele"
 
 msgid "VIEW_ONLINE"
@@ -9477,8 +9496,8 @@ msgstr "Pencere modu"
 msgid "WIN_BOX_TITLE"
 msgstr "GELİŞTİN VE BAŞARDIN!"
 
-msgid "WIN_TEXT"
-msgstr "Tebrikler, Thrive'ın bu sürümünde kazanmayı başardınız! Dilerseniz, bu mesaj gittikten sonra da oynamaya devam edebilir veya yeni bir dünyada, yeni bir oyun başlatabilirsiniz. Ayrıca bir hücre kolonisi kurmak ve sonraki oyun prototiplerini denemek için bağlayıcı ajanlar ekleyebilirsiniz."
+msgid "WIN_TEXT_2"
+msgstr "Tebrikler, Thrive'ın bu sürümünde kazanmayı başardınız! Dilerseniz, bu mesaj gittikten sonra da oynamaya devam edebilir veya yeni bir dünyada, yeni bir oyun başlatabilirsiniz. Ayrıca bir hücre beden planı geliştirebilir ve sonraki oyun prototiplerini deneyebilirsiniz."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
 msgstr "Öğe Değişiklik Notları"
@@ -9523,6 +9542,9 @@ msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 "Sonraki evre prototiplerini dahil et: {0}\n"
 "Sürpriz yumurtaları dahil et: {1}"
+
+msgid "WORLD_MISC_DETAILS_STRING_2"
+msgstr "Sürpriz yumurtaları dahil et: {0}"
 
 msgid "WORLD_OCEANIC_COVERAGE"
 msgstr "Okyanus kapsamı"
@@ -9621,6 +9643,9 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Sonraki evre prototiplerini dahil et"
 
 #~ msgid "MOD_AUTO_HARMONY"
 #~ msgstr "Oto Harmony Kullanır:"
