@@ -114,8 +114,6 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
             {
                 if (delayed.FinishAttachingToColony.Has<MicrobeColony>())
                 {
-                    ref var colony = ref delayed.FinishAttachingToColony.Get<MicrobeColony>();
-
                     lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
                     {
                         lock (AttachLock)
@@ -124,8 +122,8 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
                             {
                                 AttachmentOrder.Dequeue();
 
-                                CompleteDelayedColonyAttach(ref colony, delayed.FinishAttachingToColony, entity,
-                                    recorder, delayed.AttachIndex);
+                                CompleteDelayedColonyAttach(ref delayed.FinishAttachingToColony.Get<MicrobeColony>(),
+                                    delayed.FinishAttachingToColony, entity, recorder, delayed.AttachIndex);
                             }
                             else
                             {
@@ -207,7 +205,8 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
         ref var parentPosition = ref entity.Get<WorldPosition>();
 
-        for (int i = bodyPlanIndex; i < bodyPlanIndex + members && i < species.Species.ModifiableGameplayCells.Count; ++i)
+        for (int i = bodyPlanIndex; i < bodyPlanIndex + members && i < species.Species.ModifiableGameplayCells.Count;
+            ++i)
         {
             lock (AttachLock)
             {
