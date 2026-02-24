@@ -25,86 +25,110 @@
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Collapse"
-length = 0.5
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/PageTree:custom_minimum_size")
+tracks/0/path = NodePath("../..:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Vector2(213, 300), Vector2(0, 300)]
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("..:visible")
+tracks/1/path = NodePath("../..:custom_minimum_size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 1,
-"values": [true, false]
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(231, 0), Vector2(0, 0)]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../../../../..")
+tracks/2/path = NodePath("../../../../../..")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.5),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"OnTreeCollapseStateChanged"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../..:theme_override_constants/separation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [15, 0]
 }
 
 [sub_resource type="Animation" id="2"]
 resource_name = "Expand"
-length = 0.5
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/PageTree:custom_minimum_size")
+tracks/0/path = NodePath("../..:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Vector2(0, 300), Vector2(213, 300)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("..:visible")
+tracks/1/path = NodePath("../..:custom_minimum_size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(0.5),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(231, 0)]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../../../../..")
+tracks/2/path = NodePath("../../../../../..")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.5),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"OnTreeCollapseStateChanged"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../..:theme_override_constants/separation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.23333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [15]
 }
 
 [sub_resource type="Animation" id="3"]
@@ -112,38 +136,38 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/PageTree:custom_minimum_size")
+tracks/0/path = NodePath("../..:custom_minimum_size")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(213, 300)]
+"values": [Vector2(231, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
+tracks/1/path = NodePath("../..:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("..:visible")
+tracks/2/path = NodePath("../../..:theme_override_constants/separation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [true]
+"update": 1,
+"values": [15]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4nf6r"]
@@ -165,11 +189,11 @@ script = ExtResource("1")
 backButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/BackButton")
 forwardButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/ForwardButton")
 pageContainer = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer")
-pageTreeContainer = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2")
-pageTreeContainerAnim = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/AnimationPlayer")
+pageTreeContainer = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/Control/PanelContainer")
+pageTreeContainerAnim = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/AnimationPlayer")
 pageTitle = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/PageTitle")
 viewOnlineButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/ViewOnlineButton")
-pageTree = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
+pageTree = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/Control/PanelContainer/MarginContainer/VBoxContainer/PageTree")
 homePage = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer/ThriveopediaHomePage")
 
 [node name="Overlay" type="ColorRect" parent="." unique_id=80300234]
@@ -201,9 +225,10 @@ layout_mode = 2
 tooltip_text = "TOGGLE_NAVIGATION_TREE"
 focus_neighbor_left = NodePath(".")
 focus_neighbor_right = NodePath("../BackButton")
-focus_neighbor_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
+focus_neighbor_bottom = NodePath("../../HBoxContainer3/Control/PanelContainer/MarginContainer/VBoxContainer/PageTree")
 focus_next = NodePath("../BackButton")
-focus_previous = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
+focus_previous = NodePath("../../HBoxContainer3/Control/PanelContainer/MarginContainer/VBoxContainer/PageTree")
+toggle_mode = true
 texture_normal = ExtResource("22")
 texture_pressed = ExtResource("24")
 texture_hover = ExtResource("23")
@@ -221,7 +246,7 @@ layout_mode = 2
 tooltip_text = "PAGE_BACK"
 focus_neighbor_left = NodePath("../CollapseTreeButton")
 focus_neighbor_right = NodePath("../ForwardButton")
-focus_neighbor_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
+focus_neighbor_bottom = NodePath("../../HBoxContainer3/Control/PanelContainer/MarginContainer/VBoxContainer/PageTree")
 focus_next = NodePath("../ForwardButton")
 focus_previous = NodePath("../CollapseTreeButton")
 disabled = true
@@ -239,7 +264,7 @@ layout_mode = 2
 tooltip_text = "PAGE_FORWARD"
 focus_neighbor_left = NodePath("../BackButton")
 focus_neighbor_right = NodePath("../HomeButton")
-focus_neighbor_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
+focus_neighbor_bottom = NodePath("../../HBoxContainer3/Control/PanelContainer/MarginContainer/VBoxContainer/PageTree")
 focus_next = NodePath("../HomeButton")
 focus_previous = NodePath("../BackButton")
 disabled = true
@@ -257,7 +282,7 @@ layout_mode = 2
 tooltip_text = "HOME"
 focus_neighbor_left = NodePath("../ForwardButton")
 focus_neighbor_right = NodePath("../CloseButton")
-focus_neighbor_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
+focus_neighbor_bottom = NodePath("../../HBoxContainer3/Control/PanelContainer/MarginContainer/VBoxContainer/PageTree")
 focus_next = NodePath("../CloseButton")
 focus_previous = NodePath("../ForwardButton")
 texture_normal = ExtResource("4")
@@ -310,47 +335,54 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
-[node name="MarginContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1329499393]
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1410260961]
+clip_contents = true
+custom_minimum_size = Vector2(231, 0)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2" unique_id=1865354755]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/Control" unique_id=272087503]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/Control/PanelContainer" unique_id=1129873015]
 layout_mode = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer" unique_id=2085682721]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/Control/PanelContainer/MarginContainer" unique_id=1548215666]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer" unique_id=1291493738]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=1136068124]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/MarginContainer" unique_id=172398948]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/Control/PanelContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=1984160325]
 layout_mode = 2
 
-[node name="SearchInput" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1998893549]
+[node name="SearchInput" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer3/Control/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=271496853]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "SEARCH_PLACEHOLDER"
 
-[node name="PageTree" type="Tree" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer" unique_id=1555543593]
-custom_minimum_size = Vector2(213, 300)
+[node name="PageTree" type="Tree" parent="MarginContainer/VBoxContainer/HBoxContainer3/Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=1388514730]
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("2")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer" unique_id=728535929]
-libraries/ = SubResource("AnimationLibrary_4nf6r")
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1564292021]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3" unique_id=826284593]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -358,12 +390,16 @@ size_flags_vertical = 3
 [node name="ThriveopediaHomePage" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer" unique_id=87115576 instance=ExtResource("6")]
 layout_mode = 2
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1985909970]
+root_node = NodePath("../Control/PanelContainer/MarginContainer")
+libraries/ = SubResource("AnimationLibrary_4nf6r")
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/CollapseTreeButton" to="." method="OnCollapseTreePressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/BackButton" to="." method="OnBackPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/ForwardButton" to="." method="OnForwardPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/HomeButton" to="." method="OnHomePressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/ViewOnlineButton" to="." method="OnViewOnlinePressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/CloseButton" to="." method="OnClosePressed"]
-[connection signal="text_changed" from="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/SearchInput" to="." method="OnSearchUpdated"]
-[connection signal="cell_selected" from="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree" to="." method="OnPageSelectedFromPageTree"]
-[connection signal="item_edited" from="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree" to="." method="OnSelectedStageUpdated" binds= [true]]
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/HBoxContainer3/Control/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/SearchInput" to="." method="OnSearchUpdated"]
+[connection signal="cell_selected" from="MarginContainer/VBoxContainer/HBoxContainer3/Control/PanelContainer/MarginContainer/VBoxContainer/PageTree" to="." method="OnPageSelectedFromPageTree"]
+[connection signal="item_edited" from="MarginContainer/VBoxContainer/HBoxContainer3/Control/PanelContainer/MarginContainer/VBoxContainer/PageTree" to="." method="OnSelectedStageUpdated" binds= [true]]
