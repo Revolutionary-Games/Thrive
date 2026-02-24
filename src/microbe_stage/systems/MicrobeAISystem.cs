@@ -266,7 +266,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         bool signalExists = signaling.ReceivedCommand != MicrobeSignalCommand.None;
         Vector3 signalerPosition = default;
 
-        if (signaling.ReceivedCommand != MicrobeSignalCommand.None && entity.IsAliveAndHas<WorldPosition>())
+        if (signalExists && entity.IsAliveAndHas<WorldPosition>())
         {
             signalerPosition = signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position;
         }
