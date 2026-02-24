@@ -30,6 +30,11 @@ public static class MicrobeEnvironmentalToleranceCalculations
         return CalculateTolerances(species.Tolerances, species.Organelles, environment);
     }
 
+    public static ToleranceResult CalculateTolerances(MulticellularSpecies species, IBiomeConditions environment)
+    {
+        return CalculateTolerances(species.Tolerances, species.ModifiableEditorCells, environment);
+    }
+
     /// <summary>
     ///   Calculates effective tolerances given the species tolerances, organelles, and environmental conditions.
     /// </summary>
@@ -128,6 +133,12 @@ public static class MicrobeEnvironmentalToleranceCalculations
         }
     }
 
+    public static ToleranceResult CalculateTolerances(IReadOnlyEnvironmentalTolerances speciesTolerances,
+        IndividualHexLayout<CellTemplate> cells, IBiomeConditions environment, bool excludePositiveBuffs = false)
+    {
+        throw new NotImplementedException();
+    }
+
     public static void GenerateToleranceProblemList(ToleranceResult data, in ResolvedMicrobeTolerances problemNumbers,
         Action<string> resultCallback)
     {
@@ -180,6 +191,53 @@ public static class MicrobeEnvironmentalToleranceCalculations
         {
             resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_UV_PROTECTION")
                 .FormatSafe(Math.Round(data.PerfectUVAdjustment * 100, 1)));
+        }
+    }
+
+    public static void ManageToleranceProblemListGUI(ref int usedToleranceWarnings, List<Label> activeToleranceWarnings,
+        ToleranceResult tolerances, in ResolvedMicrobeTolerances problemNumbers, Container toleranceWarningContainer,
+        LabelSettings toleranceWarningsFont, int maxToleranceWarnings = 5)
+    {
+        usedToleranceWarnings = 0;
+
+        int tempWarnings = usedToleranceWarnings;
+
+        void AddToleranceWarning(string text)
+        {
+            if (tempWarnings < activeToleranceWarnings.Count)
+            {
+                var warning = activeToleranceWarnings[tempWarnings];
+                warning.Text = text;
+            }
+            else if (tempWarnings < maxToleranceWarnings)
+            {
+                var warning = new Label
+                {
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    AutowrapMode = TextServer.AutowrapMode.WordSmart,
+                    CustomMinimumSize = new Vector2(150, 0),
+                    LabelSettings = toleranceWarningsFont,
+                };
+
+                warning.Text = text;
+                activeToleranceWarnings.Add(warning);
+                toleranceWarningContainer.AddChild(warning);
+            }
+
+            ++tempWarnings;
+        }
+
+        // This allocates a delegate, but it's probably not a significant amount of garbage
+        GenerateToleranceProblemList(tolerances, problemNumbers, AddToleranceWarning);
+
+        usedToleranceWarnings = tempWarnings;
+
+        // Remove excess text that is no longer used
+        while (usedToleranceWarnings < activeToleranceWarnings.Count)
+        {
+            var last = activeToleranceWarnings[^1];
+            last.QueueFree();
+            activeToleranceWarnings.RemoveAt(activeToleranceWarnings.Count - 1);
         }
     }
 

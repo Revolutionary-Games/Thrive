@@ -276,6 +276,16 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         base.Undo();
     }
 
+    public ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
+    {
+        return bodyPlanEditorTab.CalculateRawTolerances(excludePositiveBuffs);
+    }
+
+    public void OnTolerancesChanged(EnvironmentalTolerances newTolerances)
+    {
+        cellEditorTab.OnTolerancesChanged(newTolerances);
+    }
+
     protected override void ResolveDerivedTypeNodeReferences()
     {
     }

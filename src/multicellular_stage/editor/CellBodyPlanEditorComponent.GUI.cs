@@ -9,6 +9,10 @@ using Systems;
 /// </summary>
 public partial class CellBodyPlanEditorComponent
 {
+    private readonly List<Label> activeToleranceWarnings = new();
+
+    private int usedToleranceWarnings;
+
     protected override void OnTranslationsChanged()
     {
         organismStatisticsPanel.OnTranslationsChanged();
@@ -196,7 +200,7 @@ public partial class CellBodyPlanEditorComponent
             {
                 if (ReferenceEquals(orderList[j], cell.Data!))
                 {
-                    // +1 to be user readable numbers
+                    // +1 to be user-readable numbers
                     order = j + 1;
                     break;
                 }
@@ -210,5 +214,27 @@ public partial class CellBodyPlanEditorComponent
     private void OnGrowthOrderCoordinatesToggled(bool show)
     {
         growthOrderGUI.ShowCoordinates = show;
+    }
+
+    private void CalculateAndDisplayToleranceWarnings()
+    {
+        // We exclude bonuses here so that the warnings display doesn't have a partial line about a debuff and then
+        // inexplicably also a bonus percentage as that would be very confusing to see.
+        var tolerances = CalculateRawTolerances(true);
+
+        MicrobeEnvironmentalToleranceCalculations.ManageToleranceProblemListGUI(ref usedToleranceWarnings,
+            activeToleranceWarnings, tolerances,
+            MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), toleranceWarningContainer,
+            toleranceWarningsFont, MaxToleranceWarnings);
+
+        if (usedToleranceWarnings > 0)
+        {
+            tolerancesTabButton.Visible = true;
+        }
+    }
+
+    private void OnTolerancesEditorChangedData()
+    {
+        OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
     }
 }

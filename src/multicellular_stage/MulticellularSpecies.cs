@@ -307,8 +307,26 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         return totalOrganelles;
     }
 
+    public float CalculateAverageSpecialization()
+    {
+        float score = 0;
+        int count = ModifiableGameplayCells.Count;
+
+        if (count < 1)
+            return 1;
+
+        for (int i = 0; i < count; ++i)
+        {
+            var cell = ModifiableGameplayCells[i];
+            score += cell.CellType.SpecializationBonus * GetAdjacencySpecializationBonus(i);
+        }
+
+        return score / count;
+    }
+
     /// <summary>
-    ///   Calculates the adjacency bonus of efficiency for a cell in the body plan of this species
+    ///   Calculates the adjacency bonus of efficiency for a cell in the body plan of this species. This is meant to
+    ///   be applied by multiplying into the base specialization bonus.
     /// </summary>
     /// <param name="cellIndexInBodyPlan">Index of the cell in the body plan we want the bonus for</param>
     /// <returns>The calculated bonus (or 1, if it can't be calculated)</returns>

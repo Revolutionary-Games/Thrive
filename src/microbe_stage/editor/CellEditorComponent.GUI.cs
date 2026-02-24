@@ -800,44 +800,18 @@ public partial class CellEditorComponent
 
     private void CalculateAndDisplayToleranceWarnings()
     {
-        usedToleranceWarnings = 0;
-
         // Tolerances with the cell editor are not used in multicellular, rather the body plan editor will display
-        // the warnings (once they are done)
+        // the warnings
         if (!IsMulticellularEditor)
         {
             // We exclude bonuses here so that the warnings display doesn't have a partial line about a debuff and then
             // inexplicably also a bonus percentage as that would be very confusing to see.
             var tolerances = CalculateRawTolerances(true);
 
-            void AddToleranceWarning(string text)
-            {
-                if (usedToleranceWarnings < activeToleranceWarnings.Count)
-                {
-                    var warning = activeToleranceWarnings[usedToleranceWarnings];
-                    warning.Text = text;
-                }
-                else if (usedToleranceWarnings < MaxToleranceWarnings)
-                {
-                    var warning = new Label
-                    {
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                        AutowrapMode = TextServer.AutowrapMode.WordSmart,
-                        CustomMinimumSize = new Vector2(150, 0),
-                        LabelSettings = toleranceWarningsFont,
-                    };
-
-                    warning.Text = text;
-                    activeToleranceWarnings.Add(warning);
-                    toleranceWarningContainer.AddChild(warning);
-                }
-
-                ++usedToleranceWarnings;
-            }
-
-            // This allocates a delegate, but it's probably not a significant amount of garbage
-            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceProblemList(tolerances,
-                MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), AddToleranceWarning);
+            MicrobeEnvironmentalToleranceCalculations.ManageToleranceProblemListGUI(ref usedToleranceWarnings,
+                activeToleranceWarnings, tolerances,
+                MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), toleranceWarningContainer,
+                toleranceWarningsFont, MaxToleranceWarnings);
 
             if (usedToleranceWarnings > 0)
             {
@@ -845,13 +819,15 @@ public partial class CellEditorComponent
                 toleranceTabButton.Visible = true;
             }
         }
-
-        // Remove excess text that is no longer used
-        while (usedToleranceWarnings < activeToleranceWarnings.Count)
+        else
         {
-            var last = activeToleranceWarnings[^1];
-            last.QueueFree();
-            activeToleranceWarnings.RemoveAt(activeToleranceWarnings.Count - 1);
+            usedToleranceWarnings = 0;
+            while (usedToleranceWarnings < activeToleranceWarnings.Count)
+            {
+                var last = activeToleranceWarnings[^1];
+                last.QueueFree();
+                activeToleranceWarnings.RemoveAt(activeToleranceWarnings.Count - 1);
+            }
         }
     }
 

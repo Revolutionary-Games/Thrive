@@ -217,6 +217,16 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
             c.CellTypeName.Equals(newName, StringComparison.InvariantCultureIgnoreCase));
     }
 
+    public ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
+    {
+        return bodyPlanEditorTab.CalculateRawTolerances(excludePositiveBuffs);
+    }
+
+    public void OnTolerancesChanged(EnvironmentalTolerances newTolerances)
+    {
+        cellEditorTab.OnTolerancesChanged(newTolerances);
+    }
+
     protected override void ResolveDerivedTypeNodeReferences()
     {
     }

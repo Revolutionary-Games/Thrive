@@ -226,6 +226,16 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         // Microbe editor doesn't require any context data in actions
     }
 
+    public ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
+    {
+        return cellEditorTab.CalculateRawTolerances(excludePositiveBuffs);
+    }
+
+    public void OnTolerancesChanged(EnvironmentalTolerances newTolerances)
+    {
+        cellEditorTab.OnTolerancesChanged(newTolerances);
+    }
+
     protected override void ResolveDerivedTypeNodeReferences()
     {
         tutorialGUI = GetNode<MicrobeEditorTutorialGUI>("TutorialGUI");

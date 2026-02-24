@@ -12,7 +12,10 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IArchiveUpdatable
 {
-    public const ushort SERIALIZATION_VERSION = 3;
+    public const ushort SERIALIZATION_VERSION = 4;
+
+    [Export]
+    public int MaxToleranceWarnings = 3;
 
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
@@ -52,6 +55,9 @@ public partial class CellBodyPlanEditorComponent :
     private Button growthOrderTabButton = null!;
 
     [Export]
+    private Button tolerancesTabButton = null!;
+
+    [Export]
     private PanelContainer structureTab = null!;
 
     [Export]
@@ -68,6 +74,15 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private CheckBox showGrowthOrderCoordinates = null!;
+
+    [Export]
+    private TolerancesEditorSubComponent tolerancesEditor = null!;
+
+    [Export]
+    private PanelContainer toleranceTab = null!;
+
+    [Export]
+    private Container toleranceWarningContainer = null!;
 
     [Export]
     private CollapsibleList cellTypeSelectionList = null!;
@@ -109,6 +124,9 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private CustomConfirmationDialog wrongGrowthOrderPopup = null!;
+
+    [Export]
+    private LabelSettings toleranceWarningsFont = null!;
 #pragma warning restore CA2213
 
     private string newName = "unset";
@@ -123,6 +141,8 @@ public partial class CellBodyPlanEditorComponent :
     ///   True, when visuals of already placed things need to be updated
     /// </summary>
     private bool cellDataDirty = true;
+
+    private bool refreshTolerancesWarnings = true;
 
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
@@ -143,6 +163,7 @@ public partial class CellBodyPlanEditorComponent :
         Reproduction,
         Behaviour,
         GrowthOrder,
+        Tolerances,
     }
 
     public override bool HasIslands =>
@@ -222,6 +243,7 @@ public partial class CellBodyPlanEditorComponent :
     {
         base.Init(owningEditor, fresh);
         behaviourEditor.Init(owningEditor, fresh);
+        tolerancesEditor.Init(owningEditor, fresh);
 
         var newLayout = new IndividualHexLayout<CellTemplate>(OnCellAdded, OnCellRemoved);
 
@@ -249,6 +271,8 @@ public partial class CellBodyPlanEditorComponent :
             UpdateCellTypeSelections();
 
             newName = Editor.EditedSpecies.FormattedName;
+
+            tolerancesEditor.OnEditorSpeciesSetup(Editor.EditedBaseSpecies);
         }
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
@@ -276,6 +300,20 @@ public partial class CellBodyPlanEditorComponent :
         {
             OnCellsChanged();
             cellDataDirty = false;
+        }
+
+        if (refreshTolerancesWarnings)
+        {
+            refreshTolerancesWarnings = false;
+
+            // These are all also affected by the environmental tolerances
+            CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+            UpdateCellTypesSecondaryInfo();
+
+            // Health is also affected
+            UpdateStats();
+
+            CalculateAndDisplayToleranceWarnings();
         }
 
         // Show the cell that is about to be placed
@@ -373,6 +411,8 @@ public partial class CellBodyPlanEditorComponent :
         writer.WriteObject(editedMicrobeCells);
         writer.Write((int)selectedSelectionMenuTab);
         writer.WriteObjectProperties(growthOrderGUI);
+
+        writer.WriteObjectProperties(tolerancesEditor);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -417,6 +457,11 @@ public partial class CellBodyPlanEditorComponent :
         {
             reader.ReadObjectProperties(growthOrderGUI);
         }
+
+        if (version >= 4)
+        {
+            reader.ReadObjectProperties(tolerancesEditor);
+        }
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -424,6 +469,7 @@ public partial class CellBodyPlanEditorComponent :
         UpdateCellTypeSelections();
 
         behaviourEditor.OnEditorSpeciesSetup(species);
+        tolerancesEditor.OnEditorSpeciesSetup(species);
 
         foreach (var cell in Editor.EditedSpecies.ModifiableEditorCells.AsModifiable())
         {
@@ -437,6 +483,9 @@ public partial class CellBodyPlanEditorComponent :
         UpdateGUIAfterLoadingSpecies(species);
 
         UpdateArrow(false);
+
+        // Make sure initial tolerance warnings are shown
+        OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
     }
 
     public override void OnFinishEditing()
@@ -493,6 +542,7 @@ public partial class CellBodyPlanEditorComponent :
         editedSpecies.UpdateNameIfValid(newName);
 
         behaviourEditor.OnFinishEditing();
+        tolerancesEditor.OnFinishEditing();
     }
 
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
@@ -590,6 +640,27 @@ public partial class CellBodyPlanEditorComponent :
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
             Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
+
+        tolerancesEditor.OnDataTolerancesDependOnChanged();
+        OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+    }
+
+    /// <summary>
+    ///   Call when tolerance data changes
+    /// </summary>
+    /// <param name="newTolerances">New tolerance data</param>
+    public void OnTolerancesChanged(EnvironmentalTolerances newTolerances)
+    {
+        // Need to show new tolerances warnings (and refresh a few other things)
+        refreshTolerancesWarnings = true;
+
+        Editor.OnTolerancesChanged(newTolerances);
+    }
+
+    public ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
+    {
+        return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
+            editedMicrobeCells, Editor.CurrentPatch.Biome, excludePositiveBuffs);
     }
 
     public override void OnLightLevelChanged(float dayLightFraction)
@@ -1269,6 +1340,9 @@ public partial class CellBodyPlanEditorComponent :
         UpdateFinishButtonWarningVisibility();
 
         UpdateGrowthOrderUI();
+
+        OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+        tolerancesEditor.OnDataTolerancesDependOnChanged();
     }
 
     private void UpdateStats()
@@ -1749,6 +1823,7 @@ public partial class CellBodyPlanEditorComponent :
         reproductionTab.Hide();
         behaviourEditor.Hide();
         growthOrderTab.Hide();
+        toleranceTab.Hide();
 
         ShowGrowthOrder = selectedSelectionMenuTab is SelectionMenuTab.GrowthOrder;
 
@@ -1782,6 +1857,13 @@ public partial class CellBodyPlanEditorComponent :
                 growthOrderTabButton.ButtonPressed = true;
 
                 UpdateGrowthOrderUI();
+                break;
+            }
+
+            case SelectionMenuTab.Tolerances:
+            {
+                toleranceTab.Show();
+                tolerancesTabButton.ButtonPressed = true;
                 break;
             }
 

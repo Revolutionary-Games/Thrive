@@ -705,13 +705,7 @@ public static class SpawnHelpers
 
         if (species is MulticellularSpecies multicellularSpecies)
         {
-            // TODO: multicellular tolerances
-            var dummyTolerances = new ResolvedMicrobeTolerances
-            {
-                HealthModifier = 1,
-                OsmoregulationModifier = 1,
-                ProcessSpeedModifier = 1,
-            };
+            var multicellularTolerances = spawnEnvironment.GetSpeciesTolerances(multicellularSpecies);
 
             multicellular = multicellularSpecies;
             CellType resolvedCellType;
@@ -732,7 +726,7 @@ public static class SpawnHelpers
                 membraneType = properties.MembraneType;
                 recorder.Set(entity, properties);
 
-                environmentalEffects.ApplyEffects(dummyTolerances,
+                environmentalEffects.ApplyEffects(multicellularTolerances,
                     resolvedCellType.SpecializationBonus *
                     multicellularSpecies.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex),
                     ref bioProcesses);
@@ -758,7 +752,7 @@ public static class SpawnHelpers
                 // this one more variable)
                 recorder.Add(entity, new MulticellularGrowth(multicellularSpecies));
 
-                environmentalEffects.ApplyEffects(dummyTolerances,
+                environmentalEffects.ApplyEffects(multicellularTolerances,
                     resolvedCellType.SpecializationBonus *
                     multicellularSpecies.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex),
                     ref bioProcesses);

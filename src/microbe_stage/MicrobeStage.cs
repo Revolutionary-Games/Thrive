@@ -18,6 +18,7 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     public const int SERIALIZATION_VERSION = 1;
 
     private readonly Dictionary<MicrobeSpecies, ResolvedMicrobeTolerances> resolvedTolerancesCache = new();
+    private readonly Dictionary<MulticellularSpecies, ResolvedMicrobeTolerances> resolvedMulticellularTolerances = new();
 
     private OrganelleDefinition cytoplasm = null!;
 
@@ -618,6 +619,25 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         }
     }
 
+    public ResolvedMicrobeTolerances GetSpeciesTolerances(MulticellularSpecies multicellularSpecies)
+    {
+        // Use caching to speed up spawning
+        lock (resolvedMulticellularTolerances)
+        {
+            if (resolvedMulticellularTolerances.TryGetValue(multicellularSpecies, out var cached))
+                return cached;
+
+            var tolerances =
+                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(multicellularSpecies, CurrentBiome);
+
+            cached = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances);
+
+            resolvedMulticellularTolerances[multicellularSpecies] = cached;
+
+            return cached;
+        }
+    }
+
     /// <summary>
     ///   Switches to the editor
     /// </summary>
@@ -896,13 +916,9 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         {
             ref var earlySpeciesType = ref Player.Get<MulticellularSpeciesMember>();
 
-            // TODO: multicellular tolerances
-            var resolvedTolerances = new ResolvedMicrobeTolerances
-            {
-                OsmoregulationModifier = 1,
-                HealthModifier = 1,
-                ProcessSpeedModifier = 1,
-            };
+            var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(earlySpeciesType.Species,
+                    CurrentBiome));
 
             // Allow updating the first cell type to reproduce (reproduction order changed)
             earlySpeciesType.MulticellularCellType =
@@ -1984,6 +2000,11 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
         lock (resolvedTolerancesCache)
         {
             resolvedTolerancesCache.Clear();
+        }
+
+        lock (resolvedMulticellularTolerances)
+        {
+            resolvedMulticellularTolerances.Clear();
         }
     }
 
