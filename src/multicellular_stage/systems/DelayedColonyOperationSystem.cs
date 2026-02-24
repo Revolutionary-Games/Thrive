@@ -118,8 +118,6 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
                 CompleteDelayedColonyAttach(ref pair.Delayed.FinishAttachingToColony.Get<MicrobeColony>(),
                     pair.Delayed.FinishAttachingToColony, pair.Cell, recorder, pair.Delayed.AttachIndex);
-
-                recorder.Remove<DelayedMicrobeColony>(pair.Cell);
             }
 
             attachmentOrder.Clear();
@@ -133,8 +131,6 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
     private void Update(ref DelayedMicrobeColony delayed, in Entity entity)
     {
         var recorder = worldSimulation.StartRecordingEntityCommands();
-
-        bool processed = true;
 
         if (delayed.GrowAdditionalMembers > 0)
         {
@@ -152,11 +148,8 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
             GD.PrintErr("Unknown operation for delayed microbe colony action");
         }
 
-        if (processed)
-        {
-            // Remove the component now that it is processed
-            recorder.Remove<DelayedMicrobeColony>(entity);
-        }
+        // Remove the component now that it is processed
+        recorder.Remove<DelayedMicrobeColony>(entity);
 
         worldSimulation.FinishRecordingEntityCommands(recorder);
     }
