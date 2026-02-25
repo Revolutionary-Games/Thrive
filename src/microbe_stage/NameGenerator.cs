@@ -3,7 +3,6 @@ using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Godot;
 using Xoshiro.PRNG64;
 
 public class NameGenerator(SpeciesNameConfig config)
@@ -78,7 +77,7 @@ public class NameGenerator(SpeciesNameConfig config)
 
         if (speciesOld?.NamingState is null)
         {
-            GenerateFreshGenusName(random, stringBuilder, speciesNew, out newRoot, out newGender);
+            GenerateFreshGenusName(random, stringBuilder, speciesNew, out newRoot, out newGender, out isProto);
 
             isNumbered = false;
             isProto = false;
@@ -93,8 +92,6 @@ public class NameGenerator(SpeciesNameConfig config)
         var newOrganelles = species2UniqueOrganelles.Except(species1UniqueOrganelles).ToHashSet();
 
         // var lostOrganelles = species1UniqueOrganelles.Except(species2UniqueOrganelles).ToHashSet();
-
-        GD.Print($"generating a new name with {newOrganelles.Count} new organelle defs");
 
         if (newOrganelles.Count == 0 && speciesOld.NamingState is { GenusIsNumbered: false })
         {
@@ -340,7 +337,7 @@ public class NameGenerator(SpeciesNameConfig config)
     }
 
     private void GenerateFreshGenusName(Random random, StringBuilder stringBuilder, MicrobeSpecies species,
-        out string root, out GrammaticalGender gender)
+        out string root, out GrammaticalGender gender, out bool isProto)
     {
         var speciesUniqueOrganelles = species.Organelles.Select(o => o.Definition).ToHashSet();
 
@@ -348,7 +345,7 @@ public class NameGenerator(SpeciesNameConfig config)
 
         int organelleCount = species.Organelles.Count(organelle => organelle.Definition == randomOrganelle);
 
-        bool isProto = false;
+        isProto = false;
         bool isNumbered = false;
 
         if (random.Next(100) < 50)
