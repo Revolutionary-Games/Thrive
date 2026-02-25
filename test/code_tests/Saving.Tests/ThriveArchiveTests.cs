@@ -400,6 +400,16 @@ public class ThriveArchiveTests
 
         public bool CanBeReferencedInArchive => true;
 
+        public static bool operator ==(TestReadableNameBaseInterface? left, TestReadableNameBaseInterface? right)
+        {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(TestReadableNameBaseInterface? left, TestReadableNameBaseInterface? right)
+        {
+            return !Equals(left, right);
+        }
+
         public static TestReadableNameBaseInterface ReadFromArchive(ISArchiveReader reader, ushort version,
             int referenceId)
         {
@@ -444,16 +454,6 @@ public class ThriveArchiveTests
         public override int GetHashCode()
         {
             return Index;
-        }
-
-        public static bool operator ==(TestReadableNameBaseInterface? left, TestReadableNameBaseInterface? right)
-        {
-            return Equals(left, right);
-        }
-
-        public static bool operator !=(TestReadableNameBaseInterface? left, TestReadableNameBaseInterface? right)
-        {
-            return !Equals(left, right);
         }
     }
 }
