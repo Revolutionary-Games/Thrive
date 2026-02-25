@@ -97,6 +97,8 @@ public partial class CellEditorComponent
         UpdateOsmoregulationTooltips();
         UpdateMPCost();
 
+        UpdateSpecializationDisplay();
+
         refreshTolerancesWarnings = true;
     }
 
@@ -473,6 +475,38 @@ public partial class CellEditorComponent
         UpdateOrganelleButtons(activeActionName);
     }
 
+    private void UpdateSpecializationDisplay()
+    {
+        var specializationBonus =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedMicrobeOrganelles, tempMemory3);
+
+        // Calculate the most common organelle to show what we should recommend the player place more
+        var temp = tempMemory3;
+        temp.Clear();
+        var organelles = editedMicrobeOrganelles;
+
+        var count = organelles.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            var definition = organelles[i].Definition;
+
+            temp.TryGetValue(definition, out var existingCount);
+            temp[definition] = existingCount + 1;
+        }
+
+        // And then with all the info, update the tooltip and display
+        if (organelles.Count < 1)
+        {
+            organismStatisticsPanel.UpdateSpecialization(specializationBonus, 0, Localization.Translate("NONE"));
+            return;
+        }
+
+        var mostCommonOrganelle = temp.MaxBy(t => t.Value);
+
+        organismStatisticsPanel.UpdateSpecialization(specializationBonus, mostCommonOrganelle.Value,
+            mostCommonOrganelle.Key.Name);
+    }
+
     private SelectionMenuToolTip? GetSelectionTooltip(string name, string group)
     {
         return (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip(name, group);
@@ -772,7 +806,9 @@ public partial class CellEditorComponent
         // the warnings (once they are done)
         if (!IsMulticellularEditor)
         {
-            var tolerances = CalculateRawTolerances();
+            // We exclude bonuses here so that the warnings display doesn't have a partial line about a debuff and then
+            // inexplicably also a bonus percentage as that would be very confusing to see.
+            var tolerances = CalculateRawTolerances(true);
 
             void AddToleranceWarning(string text)
             {

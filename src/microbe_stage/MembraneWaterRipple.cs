@@ -60,11 +60,15 @@ public partial class MembraneWaterRipple : Node
     [Export]
     public float RippleFormationDelay = 0.2f;
 
+    // TODO: we need some system to only trigger the ripple when a cell moves by itself and not carried by a current
+    // https://github.com/Revolutionary-Games/Thrive/issues/6726
+    // Increasing the movement threshold does not seem like a suitable solution to the issue.
+
     /// <summary>
     ///   Minimal movement threshold
     /// </summary>
     [Export]
-    public float MovementThresholdSqr = 0.1f;
+    public float MovementThresholdSqr = 0.2f;
 
     /// <summary>
     ///   Threshold for resuming movement

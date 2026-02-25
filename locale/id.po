@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-22 16:04+0200\n"
-"PO-Revision-Date: 2025-05-25 15:00+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-02-23 12:21+0100\n"
+"PO-Revision-Date: 2026-02-18 15:13+0000\n"
+"Last-Translator: Nozt <alib.athq@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.15.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -767,6 +767,10 @@ msgstr "Selulosa"
 #, fuzzy
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Membran ini memiliki dinding, mengakibatkan perlindungan yang lebih baik terhadap kerusakan secara keseluruhan dan khususnya terhadap kerusakan fisik. Juga memerlukan lebih sedikit energi untuk mempertahankan bentuknya, tetapi tidak dapat menyerap sumber daya dengan cepat dan juga memperlambat sel."
+
+#, fuzzy
+msgid "CELL_SPECIALIZATION_TOOLTIP"
+msgstr "Lanjutkan"
 
 #, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
@@ -2989,13 +2993,6 @@ msgid "IMAGE_FILE_TYPES"
 msgstr "Jenis Membran"
 
 #, fuzzy
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Letakkan organel"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr ""
-
-#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Buat Save Baru"
 
@@ -3245,14 +3242,6 @@ msgstr ""
 
 msgid "JUNE"
 msgstr ""
-
-#, fuzzy
-msgid "KEEP_CURRENT_SHORT"
-msgstr "Pengembang Masa Ini"
-
-#, fuzzy
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "Tambah keybind baru"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -4625,6 +4614,10 @@ msgstr "Editor Multiseluler"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Editor Multiseluler"
 
+#, fuzzy
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "Tahapan Multiseluler"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "Tahapan Multiseluler"
 
@@ -5078,6 +5071,10 @@ msgstr "Tusuk sel lain dengan ini."
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika Organisme"
 
+#, fuzzy
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "Statistika Organisme"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5471,7 +5468,16 @@ msgstr "Memproses obyek yang termuat"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
+#, fuzzy
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "Proses Sel"
+
+#, fuzzy
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Proses Sel"
+
+#, fuzzy
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Proses Sel"
 
 #, fuzzy
@@ -6266,6 +6272,10 @@ msgstr "Munculkan glukosa"
 msgid "SPAWN_PHOSPHATES"
 msgstr "Munculkan fosfat"
 
+#, fuzzy
+msgid "SPECIALIZATION_COLON"
+msgstr "populasi:"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr ""
 
@@ -6933,9 +6943,6 @@ msgid "TOOLS"
 msgstr "Alat"
 
 msgid "TOOL_HAND_AXE"
-msgstr ""
-
-msgid "TOO_LARGE_PRESSURE_RANGE"
 msgstr ""
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
@@ -7661,7 +7668,23 @@ msgstr "Menambah ruang penyimpanan sel."
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Menambah ruang penyimpanan sel."
 
+msgid "VALUE_MODIFIER"
+msgstr ""
+
+msgid "VALUE_OFFSET"
+msgstr ""
+
+#, fuzzy
+msgid "VALUE_TOTAL"
+msgstr "Nama Baru:"
+
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VALUE_WITH_UNIT_PLUS"
+msgstr ""
+
+msgid "VALUE_WITH_UNIT_PLUS_MINUS"
 msgstr ""
 
 msgid "VENTS_ARE_HOME"
@@ -7693,6 +7716,10 @@ msgstr ""
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
+msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]"
+
+#, fuzzy
+msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]"
 
 #, fuzzy
@@ -9548,7 +9575,8 @@ msgstr ""
 msgid "WIN_BOX_TITLE"
 msgstr "KAMU TELAH BERKEMBANG!"
 
-msgid "WIN_TEXT"
+#, fuzzy
+msgid "WIN_TEXT_2"
 msgstr "Selamat kamu telah memenangkan Thrive versi sekarang! Kamu bisa lanjut bermain setelah tampilan ini tutup atau memulai permainan baru di dunia baru."
 
 #, fuzzy
@@ -9598,6 +9626,10 @@ msgstr "Statistika Organisme"
 
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
+msgstr "Pilihan"
 
 #, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE"
@@ -9718,6 +9750,18 @@ msgstr "Perbesar"
 
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
+
+#, fuzzy
+#~ msgid "KEEP_CURRENT_SHORT"
+#~ msgstr "Pengembang Masa Ini"
+
+#, fuzzy
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr "Tambah keybind baru"
+
+#, fuzzy
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Letakkan organel"
 
 #, fuzzy
 #~ msgid "USE_AUTO_HARMONY_TOOLTIP"

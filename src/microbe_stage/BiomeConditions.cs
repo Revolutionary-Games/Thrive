@@ -472,28 +472,6 @@ public class BiomeConditions : IBiomeConditions, ICloneable, IArchivable
         return true;
     }
 
-    public float CalculateOxygenResistanceFactor()
-    {
-        // TODO: maybe would be nicer to have some kind of exponential or other non-linear relationship here?
-        var oxygen = Math.Clamp(GetCompound(Compound.Oxygen, CompoundAmountType.Biome).Ambient, 0, 1);
-
-        if (oxygen <= Constants.TOLERANCE_OXYGEN_APPLY_AFTER)
-            return 0;
-
-        return oxygen;
-    }
-
-    public float CalculateUVFactor()
-    {
-        // Assume it is directly related to sunlight
-        var light = Math.Clamp(GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient, 0, 1);
-
-        if (light <= Constants.TOLERANCE_UV_APPLY_AFTER)
-            return 0;
-
-        return light;
-    }
-
     public void Check(string name)
     {
         if (compounds == null)

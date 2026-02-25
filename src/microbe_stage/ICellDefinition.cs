@@ -29,7 +29,7 @@ public interface ICellDefinition : IReadOnlyCellDefinition, ISimulationPhotograp
     public string FormattedName { get; }
 
     /// <summary>
-    ///   Repositions the cell to the origin and recalculates any properties dependant on its position.
+    ///   Repositions the cell to the origin and recalculates any properties dependent on its position.
     /// </summary>
     /// <returns>True when changes were made, false if everything was positioned well already</returns>
     public bool RepositionToOrigin();
@@ -61,6 +61,12 @@ public interface IReadOnlyCellTypeDefinition : IReadOnlyCellDefinition
     ///   If known from what cell type this cell was split from, this is the name of that type.
     /// </summary>
     public string? SplitFromTypeName { get; }
+
+    /// <summary>
+    ///   A multiplier starting from 1 and going up based on how specialized this cell type is. This is eventually
+    ///   applied to <see cref="Components.BioProcesses.OverallSpeedModifier"/>
+    /// </summary>
+    public float SpecializationBonus { get; }
 }
 
 /// <summary>
@@ -117,8 +123,14 @@ public static class GeneralCellPropertiesHelpers
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
 
-        new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), definition, workMemory1,
-            workMemory2).SetupWorldEntities(worldSimulation);
+        var species = new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), definition,
+            workMemory1, workMemory2)
+        {
+            // For visualization the bonus doesn't matter, but we need to set a valid value
+            SpecializationBonus = 1,
+        };
+
+        species.SetupWorldEntities(worldSimulation);
     }
 
     public static Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)

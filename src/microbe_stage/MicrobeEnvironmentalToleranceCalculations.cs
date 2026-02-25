@@ -25,13 +25,26 @@ public static class MicrobeEnvironmentalToleranceCalculations
         return score.OverallScore;
     }
 
-    public static ToleranceResult CalculateTolerances(MicrobeSpecies species, BiomeConditions environment)
+    public static ToleranceResult CalculateTolerances(MicrobeSpecies species, IBiomeConditions environment)
     {
         return CalculateTolerances(species.Tolerances, species.Organelles, environment);
     }
 
+    /// <summary>
+    ///   Calculates effective tolerances given the species tolerances, organelles, and environmental conditions.
+    /// </summary>
+    /// <param name="speciesTolerances">Configured tolerances</param>
+    /// <param name="organelles">Organelles that may affect the tolerances</param>
+    /// <param name="environment">Environment that the tolerances need to match to not get debuffs</param>
+    /// <param name="excludePositiveBuffs">
+    ///   If true, excludes perfect adaptation bonuses. This is used to show debuffs in a way that no buffs can get
+    ///   mixed in. Note that for the tooltips we separately generate "good enough" tolerances to not get bonuses or
+    ///   debuffs instead of using this flag. So TODO: it would be nice to combine these two approaches that are almost
+    ///   the same. But to get the new tolerance GUI visuals done, these two systems were left as separate (for now).
+    /// </param>
+    /// <returns>Calculated tolerance result</returns>
     public static ToleranceResult CalculateTolerances(IReadOnlyEnvironmentalTolerances speciesTolerances,
-        IReadOnlyList<OrganelleTemplate> organelles, BiomeConditions environment)
+        IReadOnlyList<OrganelleTemplate> organelles, IBiomeConditions environment, bool excludePositiveBuffs = false)
     {
         var result = new ToleranceResult();
 
@@ -40,7 +53,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             PreferredTemperature = speciesTolerances.PreferredTemperature,
             TemperatureTolerance = speciesTolerances.TemperatureTolerance,
             PressureMinimum = speciesTolerances.PressureMinimum,
-            PressureMaximum = speciesTolerances.PressureMaximum,
+            PressureTolerance = speciesTolerances.PressureTolerance,
             OxygenResistance = speciesTolerances.OxygenResistance,
             UVResistance = speciesTolerances.UVResistance,
         };
@@ -60,7 +73,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         if (resolvedTolerances.UVResistance < 0)
             resolvedTolerances.UVResistance = 0;
 
-        CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, result);
+        CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, result, excludePositiveBuffs);
 
         return result;
     }
@@ -72,7 +85,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         float oxygenChange = 0;
         float uvChange = 0;
         float pressureMinimumChange = 0;
-        float pressureMaximumChange = 0;
+        float pressureToleranceChange = 0;
 
         int organelleCount = organelles.Count;
         for (int i = 0; i < organelleCount; ++i)
@@ -85,8 +98,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 temperatureChange += organelleDefinition.ToleranceModifierTemperatureRange;
                 oxygenChange += organelleDefinition.ToleranceModifierOxygen;
                 uvChange += organelleDefinition.ToleranceModifierUV;
-                pressureMinimumChange -= organelleDefinition.ToleranceModifierPressureRange;
-                pressureMaximumChange += organelleDefinition.ToleranceModifierPressureRange;
+                pressureToleranceChange += organelleDefinition.ToleranceModifierPressureTolerance;
             }
         }
 
@@ -95,7 +107,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         tolerances.OxygenResistance += oxygenChange;
         tolerances.UVResistance += uvChange;
         tolerances.PressureMinimum -= pressureMinimumChange;
-        tolerances.PressureMaximum += pressureMaximumChange;
+        tolerances.PressureTolerance += pressureToleranceChange;
     }
 
     public static void GenerateToleranceEffectSummariesByOrganelle(IReadOnlyList<OrganelleTemplate> organelles,
@@ -255,7 +267,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
     }
 
     private static void CalculateTolerancesInternal(in ToleranceValues speciesTolerances,
-        in ToleranceValues noExtraEffects, BiomeConditions environment, ToleranceResult result)
+        in ToleranceValues noExtraEffects, IBiomeConditions environment, ToleranceResult result,
+        bool excludePositiveBuffs)
     {
         var patchTemperature = environment.GetCompound(Compound.Temperature, CompoundAmountType.Biome).Ambient;
         var patchPressure = environment.Pressure;
@@ -269,9 +282,9 @@ public static class MicrobeEnvironmentalToleranceCalculations
         result.PerfectOxygenAdjustment = requiredOxygenResistance - speciesTolerances.OxygenResistance;
         result.PerfectUVAdjustment = requiredUVResistance - speciesTolerances.UVResistance;
 
-        // Need to get the average pressure value from the max and min to know how much to adjust
-        result.PerfectPressureAdjustment =
-            patchPressure - (speciesTolerances.PressureMaximum + speciesTolerances.PressureMinimum) * 0.5f;
+        // Need to get minimum pressure a little bit below perfect pressure to make sure microbes can adjust perfectly
+        result.PerfectPressureAdjustment = patchPressure - speciesTolerances.PressureMinimum -
+            Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE * 0.5f;
 
         // TODO: the root cause of https://github.com/Revolutionary-Games/Thrive/issues/5928 is probably somewhere in
         // the following lines of code
@@ -297,13 +310,20 @@ public static class MicrobeEnvironmentalToleranceCalculations
         }
         else if (noExtraEffects.TemperatureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE)
         {
-            // Perfect adaptation ranges are calculated without the effects of organelles as they would otherwise
-            // be really hard to apply
+            if (!excludePositiveBuffs)
+            {
+                // Perfect adaptation ranges are calculated without the effects of organelles as they would otherwise
+                // be really hard to apply
 
-            // Perfectly adapted
-            var perfectionFactor = Constants.TOLERANCE_PERFECT_TEMPERATURE_SCORE *
-                (1 - (noExtraEffects.TemperatureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE));
-            result.TemperatureScore = 1 + perfectionFactor;
+                // Perfectly adapted
+                var perfectionFactor = Constants.TOLERANCE_PERFECT_TEMPERATURE_SCORE *
+                    (1 - (noExtraEffects.TemperatureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE));
+                result.TemperatureScore = 1 + perfectionFactor;
+            }
+            else
+            {
+                result.TemperatureScore = 1;
+            }
         }
         else
         {
@@ -314,19 +334,21 @@ public static class MicrobeEnvironmentalToleranceCalculations
             result.TemperatureScore = 1;
         }
 
+        var pressureMaximum = speciesTolerances.PressureMinimum + speciesTolerances.PressureTolerance;
+
         // Pressure
-        if (patchPressure > speciesTolerances.PressureMaximum)
+        if (patchPressure > pressureMaximum)
         {
             // Too high pressure
 
-            if (patchPressure - speciesTolerances.PressureMaximum >
+            if (patchPressure - pressureMaximum >
                 Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE)
             {
                 result.PressureScore = 0;
             }
             else
             {
-                result.PressureScore = 1 - (patchPressure - speciesTolerances.PressureMaximum) /
+                result.PressureScore = 1 - (patchPressure - pressureMaximum) /
                     Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE;
             }
 
@@ -350,20 +372,25 @@ public static class MicrobeEnvironmentalToleranceCalculations
         }
         else
         {
-            var range = Math.Abs(noExtraEffects.PressureMaximum - noExtraEffects.PressureMinimum);
-
-            if (range <=
-                Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
+            if (noExtraEffects.PressureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
             {
                 // Perfectly adapted
-                var perfectionFactor = Constants.TOLERANCE_PERFECT_PRESSURE_SCORE *
-                    (1 - (range / Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE));
-                result.PressureScore = 1 + perfectionFactor;
+                if (!excludePositiveBuffs)
+                {
+                    var perfectionFactor = Constants.TOLERANCE_PERFECT_PRESSURE_SCORE *
+                        (1 - noExtraEffects.PressureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE);
+                    result.PressureScore = 1 + perfectionFactor;
+                }
+                else
+                {
+                    result.PressureScore = 1;
+                }
             }
             else
             {
                 // Adequately adapted, but could be made perfect
-                result.PressureRangeSizeAdjustment = Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE - range;
+                result.PressureRangeSizeAdjustment = Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE -
+                    noExtraEffects.PressureTolerance;
 
                 result.PressureScore = 1;
             }
@@ -444,19 +471,9 @@ public static class MicrobeEnvironmentalToleranceCalculations
         public float PreferredTemperature;
         public float TemperatureTolerance;
         public float PressureMinimum;
-        public float PressureMaximum;
+        public float PressureTolerance;
         public float OxygenResistance;
         public float UVResistance;
-
-        public void CopyFrom(EnvironmentalTolerances tolerances)
-        {
-            PreferredTemperature = tolerances.PreferredTemperature;
-            TemperatureTolerance = tolerances.TemperatureTolerance;
-            PressureMinimum = tolerances.PressureMinimum;
-            PressureMaximum = tolerances.PressureMaximum;
-            OxygenResistance = tolerances.OxygenResistance;
-            UVResistance = tolerances.UVResistance;
-        }
     }
 }
 

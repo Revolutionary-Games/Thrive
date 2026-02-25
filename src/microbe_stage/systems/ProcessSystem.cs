@@ -62,7 +62,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     ///     list if it is used for unrelated cells before calling this method.
     ///   </para>
     /// </remarks>
-    public static void ComputeActiveProcessList(IReadOnlyList<IPositionedOrganelle> organelles,
+    public static void ComputeActiveProcessList(IReadOnlyList<IReadOnlyPositionedOrganelle> organelles,
         [NotNull] ref List<TweakedProcess>? result)
     {
         result ??= new List<TweakedProcess>();
@@ -193,9 +193,14 @@ public partial class ProcessSystem : BaseSystem<World, float>
     /// </summary>
     public static Dictionary<string, OrganelleEfficiency> ComputeOrganelleProcessEfficiencies(
         IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome,
-        ResolvedMicrobeTolerances environmentTolerances, CompoundAmountType amountType)
+        ResolvedMicrobeTolerances environmentTolerances, float specializationFactor, CompoundAmountType amountType)
     {
+        if (specializationFactor <= 0)
+            throw new ArgumentException("Specialization factor must be positive", nameof(specializationFactor));
+
         var result = new Dictionary<string, OrganelleEfficiency>();
+
+        var speedModifier = environmentTolerances.ProcessSpeedModifier * specializationFactor;
 
         foreach (var organelle in organelles)
         {
@@ -203,8 +208,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             foreach (var process in organelle.RunnableProcesses)
             {
-                info.Processes.Add(CalculateProcessMaximumSpeed(process, environmentTolerances.ProcessSpeedModifier,
-                    biome, amountType, false));
+                info.Processes.Add(CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType, false));
             }
 
             result[organelle.InternalName] = info;
@@ -219,6 +223,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     /// <param name="organelles">The organelles to compute the balance with</param>
     /// <param name="biome">The conditions the organelles are simulated in</param>
     /// <param name="environmentTolerances">Environmental tolerances that affect the processes</param>
+    /// <param name="specializationFactor">Cell type specialization factor (1 is default)</param>
     /// <param name="membrane">The membrane type to adjust the energy balance with</param>
     /// <param name="onlyMovementInDirection">
     ///   Only movement organelles that can move in this (cell origin relative) direction are calculated. Other
@@ -227,7 +232,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     /// <param name="includeMovementCost">
     ///   Only when true are movement-related energy costs included in the calculation. When false base movement data
     ///   is provided, but it is not taken into account in the sums, but total movement cost is not calculated. If that
-    ///   is required then include movement cost parameter should be set to true and from the result the variables
+    ///   is required, then include movement cost parameter should be set to true, and from the result the variables
     ///   giving balance without movement should be used as an alternative to setting this false.
     /// </param>
     /// <param name="isPlayerSpecies">Whether this microbe is a member of the player's species</param>
@@ -238,8 +243,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
     ///   The resulting energy balance.
     /// </param>
     public static void ComputeEnergyBalanceSimple(IReadOnlyList<OrganelleTemplate> organelles,
-        IBiomeConditions biome, in ResolvedMicrobeTolerances environmentTolerances, MembraneType membrane,
-        Vector3 onlyMovementInDirection,
+        IBiomeConditions biome, in ResolvedMicrobeTolerances environmentTolerances, float specializationFactor,
+        MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, SimulationCache? cache,
         EnergyBalanceInfoSimple result)
@@ -255,8 +260,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
         }
 #endif
 
-        CalculateSimplePartOfEnergyBalance(organelles, biome, environmentTolerances, membrane, onlyMovementInDirection,
-            includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, result);
+        CalculateSimplePartOfEnergyBalance(organelles, biome, environmentTolerances, specializationFactor, membrane,
+            onlyMovementInDirection, includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, result);
     }
 
     /// <summary>
@@ -265,6 +270,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     /// <param name="organelles">The organelles to compute the balance with</param>
     /// <param name="biome">The conditions the organelles are simulated in</param>
     /// <param name="environmentTolerances">Environmental tolerances that affect this</param>
+    /// <param name="specializationFactor">Cell type specialization factor (1 is default)</param>
     /// <param name="membrane">The membrane type to adjust the energy balance with</param>
     /// <param name="onlyMovementInDirection">
     ///   Only movement organelles that can move in this (cell origin relative) direction are calculated. Other
@@ -282,13 +288,13 @@ public partial class ProcessSystem : BaseSystem<World, float>
     /// <param name="cache">Auto-Evo Cache for speeding up the function</param>
     /// <param name="result">The resulting energy balance.</param>
     public static void ComputeEnergyBalanceFull(IReadOnlyList<OrganelleTemplate> organelles,
-        IBiomeConditions biome, ResolvedMicrobeTolerances environmentTolerances, MembraneType membrane,
-        Vector3 onlyMovementInDirection,
+        IBiomeConditions biome, ResolvedMicrobeTolerances environmentTolerances, float specializationFactor,
+        MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfoFull result)
     {
-        CalculateSimplePartOfEnergyBalance(organelles, biome, environmentTolerances, membrane, onlyMovementInDirection,
-            includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, result);
+        CalculateSimplePartOfEnergyBalance(organelles, biome, environmentTolerances, specializationFactor, membrane,
+            onlyMovementInDirection, includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, result);
 
         // Once simple balance is calculated we add the extra info on top, this approach loops the organelles twice
         // but reduces code duplication
@@ -298,7 +304,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
         {
             var organelle = organelles[i];
 
-            AddOrganelleATPTracking(organelle, biome, environmentTolerances, amountType, cache, result);
+            AddOrganelleATPTracking(organelle, biome, environmentTolerances, specializationFactor, amountType, cache,
+                result);
 
             // Take special cell components that take energy into account
             if (TryGetMovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection, out var cost))
@@ -325,7 +332,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     }
 
     /// <summary>
-    ///   Computes the compound balances for given organelle list in a patch and at a given time during the day (or
+    ///   Computes the compound balances for the given organelle list in a patch and at a given time during the day (or
     ///   using longer timespan values)
     /// </summary>
     /// <remarks>
@@ -336,9 +343,12 @@ public partial class ProcessSystem : BaseSystem<World, float>
     ///   </para>
     /// </remarks>
     public static void ComputeCompoundBalance(IEnumerable<OrganelleDefinition> organelles, IBiomeConditions biome,
-        ResolvedMicrobeTolerances environmentTolerances, CompoundAmountType amountType,
+        ResolvedMicrobeTolerances environmentTolerances, float specializationFactor, CompoundAmountType amountType,
         bool requireInputCompoundsInBiome, Dictionary<Compound, CompoundBalance> result)
     {
+        if (specializationFactor <= 0)
+            throw new ArgumentException("Specialization factor must be positive", nameof(specializationFactor));
+
         void MakeSureResultExists(Compound compound)
         {
             if (!result.ContainsKey(compound))
@@ -347,12 +357,14 @@ public partial class ProcessSystem : BaseSystem<World, float>
             }
         }
 
+        float speedModifier = environmentTolerances.ProcessSpeedModifier * specializationFactor;
+
         foreach (var organelle in organelles)
         {
             foreach (var process in organelle.RunnableProcesses)
             {
                 var speedAdjusted =
-                    CalculateProcessMaximumSpeed(process, environmentTolerances.ProcessSpeedModifier, biome, amountType,
+                    CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType,
                         requireInputCompoundsInBiome);
 
                 foreach (var input in speedAdjusted.Inputs)
@@ -371,15 +383,15 @@ public partial class ProcessSystem : BaseSystem<World, float>
     }
 
     public static void ComputeCompoundBalance(IEnumerable<OrganelleTemplate> organelles, IBiomeConditions biome,
-        ResolvedMicrobeTolerances environmentTolerances, CompoundAmountType amountType,
+        ResolvedMicrobeTolerances environmentTolerances, float specializationFactor, CompoundAmountType amountType,
         bool requireInputCompoundsInBiome, Dictionary<Compound, CompoundBalance> result)
     {
-        ComputeCompoundBalance(organelles.Select(o => o.Definition), biome, environmentTolerances, amountType,
-            requireInputCompoundsInBiome, result);
+        ComputeCompoundBalance(organelles.Select(o => o.Definition), biome, environmentTolerances, specializationFactor,
+            amountType, requireInputCompoundsInBiome, result);
     }
 
     /// <summary>
-    ///   Computes the compound balances for given organelle list in a patch and at a given time during the day (or
+    ///   Computes the compound balances for the given organelle list in a patch and at a given time during the day (or
     ///   using longer timespan values)
     /// </summary>
     /// <remarks>
@@ -389,9 +401,13 @@ public partial class ProcessSystem : BaseSystem<World, float>
     ///   </para>
     /// </remarks>
     public static void ComputeCompoundBalanceAtEquilibrium(IEnumerable<OrganelleDefinition> organelles,
-        IBiomeConditions biome, ResolvedMicrobeTolerances environmentTolerances, CompoundAmountType amountType,
-        EnergyBalanceInfoSimple energyBalance, Dictionary<Compound, CompoundBalance> result)
+        IBiomeConditions biome, ResolvedMicrobeTolerances environmentTolerances, float specializationFactor,
+        CompoundAmountType amountType, EnergyBalanceInfoSimple energyBalance,
+        Dictionary<Compound, CompoundBalance> result)
     {
+        if (specializationFactor <= 0)
+            throw new ArgumentException("Specialization factor must be positive", nameof(specializationFactor));
+
         void MakeSureResultExists(Compound compound)
         {
             if (!result.ContainsKey(compound))
@@ -401,13 +417,13 @@ public partial class ProcessSystem : BaseSystem<World, float>
         }
 
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
+        float speedModifier = environmentTolerances.ProcessSpeedModifier * specializationFactor;
 
         foreach (var organelle in organelles)
         {
             foreach (var process in organelle.RunnableProcesses)
             {
-                var speedAdjusted = CalculateProcessMaximumSpeed(process, environmentTolerances.ProcessSpeedModifier,
-                    biome, amountType, true);
+                var speedAdjusted = CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType, true);
 
                 // If the cell produces more ATP than it needs, its ATP producing processes need to be toned down
                 bool useRatio = speedAdjusted.Outputs.ContainsKey(Compound.ATP) && consumptionProductionRatio < 1.0f;
@@ -444,11 +460,12 @@ public partial class ProcessSystem : BaseSystem<World, float>
     }
 
     public static void ComputeCompoundBalanceAtEquilibrium(IEnumerable<OrganelleTemplate> organelles,
-        IBiomeConditions biome, ResolvedMicrobeTolerances environmentTolerances, CompoundAmountType amountType,
-        EnergyBalanceInfoSimple energyBalance, Dictionary<Compound, CompoundBalance> result)
+        IBiomeConditions biome, ResolvedMicrobeTolerances environmentTolerances, float specializationFactor,
+        CompoundAmountType amountType, EnergyBalanceInfoSimple energyBalance,
+        Dictionary<Compound, CompoundBalance> result)
     {
         ComputeCompoundBalanceAtEquilibrium(organelles.Select(o => o.Definition), biome, environmentTolerances,
-            amountType, energyBalance, result);
+            specializationFactor, amountType, energyBalance, result);
     }
 
     /// <summary>
@@ -479,8 +496,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     ///   input compounds present in the biome can run)
     /// </summary>
     public static (float Production, float Consumption) CalculateOrganelleATPBalance(OrganelleTemplate organelle,
-        IBiomeConditions biome, CompoundAmountType amountType, float speedModifier,
-        SimulationCache? cache)
+        IBiomeConditions biome, CompoundAmountType amountType, float speedModifier, SimulationCache? cache)
     {
         float processATPProduction = 0.0f;
         float processATPConsumption = 0.0f;
@@ -514,20 +530,24 @@ public partial class ProcessSystem : BaseSystem<World, float>
     ///   <see cref="biome"/> (so only processes with input compounds present in the biome can run)
     /// </summary>
     public static void AddOrganelleATPTracking(OrganelleTemplate organelle,
-        IBiomeConditions biome, ResolvedMicrobeTolerances environmentTolerances, CompoundAmountType amountType,
-        SimulationCache? cache, EnergyBalanceInfoFull result)
+        IBiomeConditions biome, ResolvedMicrobeTolerances environmentTolerances, float specializationFactor,
+        CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfoFull result)
     {
+        if (specializationFactor <= 0)
+            throw new ArgumentException("Specialization factor must be positive", nameof(specializationFactor));
+
+        var speedModifier = environmentTolerances.ProcessSpeedModifier * specializationFactor;
+
         foreach (var process in organelle.Definition.RunnableProcesses)
         {
             ProcessSpeedInformation processData;
             if (cache != null && amountType == CompoundAmountType.Average)
             {
-                processData = cache.GetProcessMaximumSpeed(process, environmentTolerances.ProcessSpeedModifier, biome);
+                processData = cache.GetProcessMaximumSpeed(process, speedModifier, biome);
             }
             else
             {
-                processData = CalculateProcessMaximumSpeed(process, environmentTolerances.ProcessSpeedModifier, biome,
-                    amountType, true);
+                processData = CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType, true);
             }
 
             var amount = processData.ATPConsumption;
@@ -543,12 +563,12 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
     /// <summary>
     ///   Calculates the maximum speed a process can run at in a biome based on the environmental compounds.
-    ///   Can be switched between the average, maximum etc. conditions that occur in the span of an in-game day.
+    ///   Can be switched between the average, maximum, etc. conditions that occur in the span of an in-game day.
     /// </summary>
     /// <remarks>
     ///   <para>
     ///     If <see cref="requireInputCompoundsInBiome"/> is true then this method checks that the process inputs
-    ///     (except ATP) is present in <see cref="biome"/> and if some input is not available then the process is
+    ///     (except ATP) are present in <see cref="biome"/> and if some input is not available, then the process is
     ///     calculated to have <b>0</b> speed.
     ///   </para>
     /// </remarks>
@@ -615,7 +635,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             // Environmental compound that can limit the rate
             var availableInEnvironment = GetAmbientInBiome(inputCompound, biome, pointInTimeType);
 
-            // Is a serious limit if there is none of the compound
+            // It is a serious limit if there is none of the compound
             if (availableInEnvironment <= 0)
             {
                 result.WritableLimitingCompounds.Add(input.Key.ID);
@@ -641,7 +661,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
         speedFactor *= process.Rate;
 
-        // Note that we don't consider storage constraints here so we don't use spaceConstraintModifier calculations
+        // Note that we don't consider storage constraints here, so we don't use spaceConstraintModifier calculations
 
         // To not claim the output is the limiting factor when no inputs could be taken at all, track if any inputs
         // are added
@@ -705,30 +725,33 @@ public partial class ProcessSystem : BaseSystem<World, float>
     ///   Balance modifier that is to be passed to <see cref="CalculateEffectiveProcessSpeedForEffect"/>
     /// </returns>
     public static float CalculateSpeciesActiveProcessListForEffect(Species species,
-        List<TweakedProcess> processesResult, BiomeConditions conditions,
-        ResolvedMicrobeTolerances environmentTolerances, WorldGenerationSettings worldGenerationSettings,
-        SimulationCache? cache = null)
+        List<TweakedProcess> processesResult, IBiomeConditions conditions,
+        ResolvedMicrobeTolerances environmentTolerances, float specializationFactor,
+        WorldGenerationSettings worldGenerationSettings, SimulationCache? cache = null)
     {
         // Only microbial species can currently be handled
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
 
+        if (specializationFactor <= 0)
+            throw new ArgumentException("Specialization factor must be positive", nameof(specializationFactor));
+
         var balance = new EnergyBalanceInfoSimple();
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(microbeSpecies.Organelles);
 
-        ComputeEnergyBalanceSimple(microbeSpecies.Organelles, conditions, environmentTolerances,
+        ComputeEnergyBalanceSimple(microbeSpecies.Organelles, conditions, environmentTolerances, specializationFactor,
             microbeSpecies.MembraneType, maximumMovementDirection, false, false, worldGenerationSettings,
             CompoundAmountType.Average, cache, balance);
 
         float balanceModifier = 1;
 
-        // Scale processes to not consume excess oxygen than what is actually needed. Though, see below which
+        // Scale processes to not consume more excess oxygen than what is actually needed. Though, see below which
         // actual processes use this modifier.
         if (balance.TotalConsumption < balance.TotalProduction)
             balanceModifier = balance.TotalConsumption / balance.TotalProduction;
 
         // Cleared for efficiency (not strictly required before calling ComputeActiveProcessList, but the way this is
-        // called time would be wasted on trying to match up processes between different species which is unlikely to
+        // called time would be wasted on trying to match up processes between different species, which is unlikely to
         // work)
         processesResult.Clear();
         ComputeActiveProcessList(microbeSpecies.Organelles, ref processesResult);
@@ -737,10 +760,13 @@ public partial class ProcessSystem : BaseSystem<World, float>
     }
 
     public static float CalculateEffectiveProcessSpeedForEffect(TweakedProcess process, float balanceModifier,
-        BiomeConditions conditions, float environmentalToleranceModifier)
+        BiomeConditions conditions, float environmentalToleranceModifier, float specializationFactor)
     {
-        var rate = CalculateProcessMaximumSpeed(process, environmentalToleranceModifier, conditions,
-            CompoundAmountType.Biome, true);
+        if (specializationFactor < 0)
+            throw new ArgumentException("Specialization factor must be positive", nameof(specializationFactor));
+
+        var rate = CalculateProcessMaximumSpeed(process, environmentalToleranceModifier * specializationFactor,
+            conditions, CompoundAmountType.Biome, true);
 
         // Skip checking processes that cannot run
         if (rate.CurrentSpeed <= 0)
@@ -805,16 +831,21 @@ public partial class ProcessSystem : BaseSystem<World, float>
     }
 
     private static void CalculateSimplePartOfEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
-        IBiomeConditions biome, in ResolvedMicrobeTolerances environmentTolerances, MembraneType membrane,
-        Vector3 onlyMovementInDirection, bool includeMovementCost, bool isPlayerSpecies,
+        IBiomeConditions biome, in ResolvedMicrobeTolerances environmentTolerances, float specializationFactor,
+        MembraneType membrane, Vector3 onlyMovementInDirection, bool includeMovementCost, bool isPlayerSpecies,
         WorldGenerationSettings worldSettings, CompoundAmountType amountType,
         SimulationCache? cache, EnergyBalanceInfoSimple result)
     {
+        if (specializationFactor <= 0)
+            throw new ArgumentException("Uninitialized specialization factor value", nameof(specializationFactor));
+
         var processATPProduction = 0.0f;
         var processATPConsumption = 0.0f;
         var movementATPConsumption = 0.0f;
 
         int hexCount = 0;
+
+        var speedModifier = environmentTolerances.ProcessSpeedModifier * specializationFactor;
 
         int organelleCount = organelles.Count;
         for (int i = 0; i < organelleCount; ++i)
@@ -822,7 +853,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             var organelle = organelles[i];
 
             var (production, consumption) = CalculateOrganelleATPBalance(organelle, biome, amountType,
-                environmentTolerances.ProcessSpeedModifier, cache);
+                speedModifier, cache);
 
             processATPProduction += production;
             processATPConsumption += consumption;
@@ -955,7 +986,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
                     $"ProcessSystem: process speed modifier is invalid for entity {entity}: {overallSpeedModifier}");
                 overallSpeedModifier = 1.0f;
 
-                // Reset the data to not keep printing the error
+                // Reset the source data to not keep printing the error when it gets set back
                 microbeEnvironmentalEffects.ProcessSpeedModifier = 1.0f;
             }
         }

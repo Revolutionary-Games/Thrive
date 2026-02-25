@@ -6,5 +6,5 @@ public enum ToleranceModifier
     Oxygen,
     UV,
     TemperatureRange,
-    PressureRange,
+    PressureTolerance,
 }

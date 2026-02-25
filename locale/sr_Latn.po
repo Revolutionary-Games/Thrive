@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-22 16:04+0200\n"
+"POT-Creation-Date: 2026-02-23 12:21+0100\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (Latin script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
@@ -752,6 +752,10 @@ msgstr "Celuloza"
 #, fuzzy
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ova membrana ima zid, što rezultira boljom zaštitom od ukupnih oštećenja, a posebno od fizičkih oštećenja. Takođe košta manje energije da bi zadržao oblik, ali ne može brzo da apsorbuje resurse i sporiji je."
+
+#, fuzzy
+msgid "CELL_SPECIALIZATION_TOOLTIP"
+msgstr "Nastaviti"
 
 #, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
@@ -2899,13 +2903,6 @@ msgid "IMAGE_FILE_TYPES"
 msgstr "Vrste Membrana"
 
 #, fuzzy
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Postavite organelu"
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr ""
-
-#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Napravite novi mikrob"
 
@@ -3147,14 +3144,6 @@ msgstr ""
 
 msgid "JUNE"
 msgstr ""
-
-#, fuzzy
-msgid "KEEP_CURRENT_SHORT"
-msgstr "Temp."
-
-#, fuzzy
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "Dodajte novo vezivanje tastera"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -4427,6 +4416,10 @@ msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Učitavanje Uređivača Mikroba"
 
 #, fuzzy
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "Postavite organelu"
+
+#, fuzzy
 msgid "MULTICELLULAR_STAGE"
 msgstr "Postavite organelu"
 
@@ -4877,6 +4870,10 @@ msgstr "Izbodite druge ćelije sa ovo."
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika Organizma"
 
+#, fuzzy
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr "Statistika Organizma"
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5261,7 +5258,14 @@ msgstr ""
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
+#, fuzzy
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
 msgid "PROCESS_PANEL_TITLE"
+msgstr ""
+
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr ""
 
 msgid "PROCESS_SPEED_MODIFIER"
@@ -6061,6 +6065,10 @@ msgstr "Postavite glukozu"
 msgid "SPAWN_PHOSPHATES"
 msgstr "Stavite fosfat"
 
+#, fuzzy
+msgid "SPECIALIZATION_COLON"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr ""
 
@@ -6699,9 +6707,6 @@ msgstr "Alati"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr ""
-
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
@@ -7256,7 +7261,23 @@ msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladište
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
+msgid "VALUE_MODIFIER"
+msgstr ""
+
+msgid "VALUE_OFFSET"
+msgstr ""
+
+#, fuzzy
+msgid "VALUE_TOTAL"
+msgstr "Brzina:"
+
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VALUE_WITH_UNIT_PLUS"
+msgstr ""
+
+msgid "VALUE_WITH_UNIT_PLUS_MINUS"
 msgstr ""
 
 msgid "VENTS_ARE_HOME"
@@ -7288,6 +7309,10 @@ msgstr ""
 
 #, fuzzy
 msgid "VIEW_CELL_PROCESSES"
+msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
+
+#, fuzzy
+msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
 
 #, fuzzy
@@ -9146,7 +9171,7 @@ msgstr ""
 msgid "WIN_BOX_TITLE"
 msgstr ""
 
-msgid "WIN_TEXT"
+msgid "WIN_TEXT_2"
 msgstr ""
 
 #, fuzzy
@@ -9193,6 +9218,9 @@ msgid "WORLD_GENERAL_STATISTICS"
 msgstr "Statistika Organizma"
 
 msgid "WORLD_MISC_DETAILS_STRING"
+msgstr ""
+
+msgid "WORLD_MISC_DETAILS_STRING_2"
 msgstr ""
 
 #, fuzzy
@@ -9310,6 +9338,18 @@ msgstr "Zumirati"
 
 msgid "ZOOM_OUT"
 msgstr "Odzumirati"
+
+#, fuzzy
+#~ msgid "KEEP_CURRENT_SHORT"
+#~ msgstr "Temp."
+
+#, fuzzy
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
+#~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+#~ msgstr "Postavite organelu"
 
 #, fuzzy
 #~ msgid "USE_AUTO_HARMONY_TOOLTIP"

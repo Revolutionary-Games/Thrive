@@ -202,7 +202,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             ProcessSpeedModifier = 1,
         };
 
-        // Do a full update apply with the general code method
+        // Perform a full update apply with the general code method.
         ref var cellProperties = ref microbe.Get<CellProperties>();
         cellProperties.ReApplyCellTypeProperties(ref dummyEffects, microbe, species,
             species, this, hexWorkData1, hexWorkData2);

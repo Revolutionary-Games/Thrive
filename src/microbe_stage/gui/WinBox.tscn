@@ -74,7 +74,7 @@ autowrap_mode = 2
 [node name="Message" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" index="1" unique_id=1410622191]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-text = "WIN_TEXT"
+text = "WIN_TEXT_2"
 label_settings = ExtResource("3_bvn5i")
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -84,6 +84,7 @@ libraries/ = SubResource("AnimationLibrary_4wi48")
 autoplay = &"FadeIn"
 
 [node name="Timer" type="Timer" parent="." index="2" unique_id=1872786694]
+process_mode = 1
 wait_time = 15.0
 one_shot = true
 autostart = true

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-22 16:04+0200\n"
+"POT-Creation-Date: 2026-02-23 12:21+0100\n"
 "PO-Revision-Date: 2026-01-08 20:20+0000\n"
 "Last-Translator: khalid <khalid50540@gmail.com>\n"
 "Language-Team: Arabic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ar/>\n"
@@ -708,6 +708,10 @@ msgstr "السليولوز"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "CELL_SPECIALIZATION_TOOLTIP"
+msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 #, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
@@ -2642,12 +2646,6 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr ""
 
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr ""
-
-msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr ""
-
 msgid "INCREASE_ITEM_SIZE"
 msgstr ""
 
@@ -2883,13 +2881,6 @@ msgstr ""
 
 msgid "JUNE"
 msgstr ""
-
-msgid "KEEP_CURRENT_SHORT"
-msgstr ""
-
-#, fuzzy
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -4130,6 +4121,10 @@ msgstr "فترة الكائنات متعددة الخلايا"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "فترة الكائنات متعددة الخلايا"
 
+#, fuzzy
+msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
+msgstr "فترة الكائنات متعددة الخلايا"
+
 msgid "MULTICELLULAR_STAGE"
 msgstr "فترة الكائنات متعددة الخلايا"
 
@@ -4530,6 +4525,9 @@ msgstr ""
 msgid "ORGANISM_STATISTICS"
 msgstr ""
 
+msgid "ORGANISM_STATISTICS_MICROBE"
+msgstr ""
+
 msgid "OR_UNLOCK_CONDITION"
 msgstr "او"
 
@@ -4876,7 +4874,18 @@ msgstr ""
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
+#, fuzzy
+msgid "PROCESS_PANEL_EXPLANATION_TITLE"
+msgstr ""
+"تطارد الميكروبات العدوانية فرائسها عبر مسافات أبعد،\n"
+"وتميل إلى قتال المفترسين عند تعرضها للهجوم.\n"
+"تتجنب الميكروبات المسالمة الاشتباك عن بعد،\n"
+"ونادرًا ما تستخدم السموم ضد المفترسين."
+
 msgid "PROCESS_PANEL_TITLE"
+msgstr ""
+
+msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr ""
 
 msgid "PROCESS_SPEED_MODIFIER"
@@ -5574,6 +5583,10 @@ msgstr ""
 msgid "SPAWN_PHOSPHATES"
 msgstr ""
 
+#, fuzzy
+msgid "SPECIALIZATION_COLON"
+msgstr "الوصف:"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr ""
 
@@ -6200,9 +6213,6 @@ msgstr ""
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr ""
-
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
@@ -6692,7 +6702,22 @@ msgstr ""
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr ""
 
+msgid "VALUE_MODIFIER"
+msgstr ""
+
+msgid "VALUE_OFFSET"
+msgstr ""
+
+msgid "VALUE_TOTAL"
+msgstr ""
+
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VALUE_WITH_UNIT_PLUS"
+msgstr ""
+
+msgid "VALUE_WITH_UNIT_PLUS_MINUS"
 msgstr ""
 
 msgid "VENTS_ARE_HOME"
@@ -6720,6 +6745,9 @@ msgid "VIEW_ALL"
 msgstr ""
 
 msgid "VIEW_CELL_PROCESSES"
+msgstr ""
+
+msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr ""
 
 msgid "VIEW_ONLINE"
@@ -8617,7 +8645,7 @@ msgstr ""
 msgid "WIN_BOX_TITLE"
 msgstr "لقد ازدهرت بنجاح!"
 
-msgid "WIN_TEXT"
+msgid "WIN_TEXT_2"
 msgstr ""
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -8661,6 +8689,10 @@ msgstr ""
 
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
+
+#, fuzzy
+msgid "WORLD_MISC_DETAILS_STRING_2"
+msgstr "مخصص"
 
 msgid "WORLD_OCEANIC_COVERAGE"
 msgstr ""
@@ -8762,6 +8794,10 @@ msgstr "تقريب الشاشة"
 
 msgid "ZOOM_OUT"
 msgstr "ابعاد الشاشة"
+
+#, fuzzy
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 #, fuzzy
 #~ msgid "REPRODUCTION_COMPOUND_USAGE"
