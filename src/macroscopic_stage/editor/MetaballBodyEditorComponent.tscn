@@ -330,7 +330,7 @@ _data = {
 &"show": SubResource("19")
 }
 
-[node name="MetaballBodyEditorComponent" type="Control" unique_id=1870871702 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "appearanceTabButton", "structureTab", "reproductionTab", "appearanceTab", "behaviourEditor", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "metaballPopupMenu", "cannotReduceBrainPowerPopup", "metaballResizeScroll", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
+[node name="MetaballBodyEditorComponent" type="Control" unique_id=1870871702 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "appearanceTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "appearanceTab", "behaviourEditor", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "metaballPopupMenu", "cannotReduceBrainPowerPopup", "metaballResizeScroll", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -343,6 +343,7 @@ structureTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer
 reproductionTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction")
 behaviourTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour")
 appearanceTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Appearance")
+tolerancesTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerance")
 structureTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
 reproductionTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction")
 appearanceTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance")
@@ -359,6 +360,7 @@ duplicateCellTypeDialog = NodePath("NewTissueTypeSetup")
 duplicateCellTypeName = NodePath("NewTissueTypeSetup/VBoxContainer2/NewName")
 metaballPopupMenu = NodePath("MetaballPopupMenu")
 cannotReduceBrainPowerPopup = NodePath("CannotReduceBrainPowerStage")
+toleranceWarningsFont = ExtResource("7_ck2k0")
 metaballResizeScroll = NodePath("MetaballSizeControls/MetaballSize")
 islandPopup = NodePath("IslandError")
 componentBottomLeftButtons = NodePath("EditorComponentBottomLeftButtons")

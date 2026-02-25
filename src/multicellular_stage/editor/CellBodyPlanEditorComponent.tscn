@@ -332,7 +332,7 @@ _data = {
 &"show": SubResource("44")
 }
 
-[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "negativeAtpPopup", "wrongGrowthOrderPopup", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
+[node name="CellBodyPlanEditorComponent" type="Control" unique_id=2093309640 node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "growthOrderTabButton", "tolerancesTabButton", "structureTab", "reproductionTab", "behaviourEditor", "growthOrderTab", "growthOrderGUI", "showGrowthOrderCoordinates", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "negativeAtpPopup", "wrongGrowthOrderPopup", "floatingLabelContainer", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -345,6 +345,7 @@ structureTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer
 reproductionTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction")
 behaviourTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour")
 growthOrderTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Growth")
+tolerancesTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerance")
 structureTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
 reproductionTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction")
 behaviourEditor = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
@@ -365,6 +366,7 @@ cellPopupMenu = NodePath("CellPopupMenu")
 organismStatisticsPanel = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel")
 negativeAtpPopup = NodePath("NegativeAtpWarning")
 wrongGrowthOrderPopup = NodePath("WrongGrowthOrderError")
+toleranceWarningsFont = ExtResource("6_pwhoj")
 floatingLabelContainer = NodePath("GrowthOrderNumberContainer")
 islandPopup = NodePath("IslandError")
 componentBottomLeftButtons = NodePath("EditorComponentBottomLeftButtons")
@@ -908,7 +910,7 @@ ShowToggles = false
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction" to="." method="SetSelectionMenuTab" binds= ["Reproduction"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour" to="." method="SetSelectionMenuTab" binds= ["Behaviour"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Growth" to="." method="SetSelectionMenuTab" binds= ["GrowthOrder"]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerance" to="." method="SetSelectionMenuTab" binds= ["Tolerances"]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerance" to="." method="SetSelectionMenuTab" binds= ["Tolerance"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify" to="." method="OnModifyCurrentCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete" to="." method="OnDeleteCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate" to="." method="OnTypeDuplicateStartPressed"]
