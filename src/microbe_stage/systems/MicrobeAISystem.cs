@@ -266,31 +266,27 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         bool signalExists = signaling.ReceivedCommand != MicrobeSignalCommand.None &&
             entity.IsAliveAndHas<WorldPosition>();
         Vector3 signalerPosition = default;
-        float squaredDistanceToSignaler = default;
+        float signalerDistanceSquared = default;
 
         if (signalExists)
         {
             signalerPosition = signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position;
-            squaredDistanceToSignaler = position.Position.DistanceSquaredTo(signalerPosition);
-        }
-        else
-        {
-            signalExists = false;
+            signalerDistanceSquared = position.Position.DistanceSquaredTo(signalerPosition);
         }
 
         // Adjusted behaviour values (calculated here as these are needed by various methods)
         var speciesBehaviour = ourSpecies.Species.Behaviour;
-        var willAdjustBehaviourValues = signaling.ReceivedCommand == MicrobeSignalCommand.BecomeAggressive &&
-                squaredDistanceToSignaler < Constants.AI_BECOME_AGGRESSIVE_DISTANCE_SQUARED;
+        var adjustBehaviourValues = signaling.ReceivedCommand == MicrobeSignalCommand.BecomeAggressive &&
+            signalerDistanceSquared < Constants.AI_BECOME_AGGRESSIVE_DISTANCE_SQUARED;
 
         float speciesAggression = speciesBehaviour.Aggression *
-            (willAdjustBehaviourValues ? 1.5f : 1.0f);
+            (adjustBehaviourValues ? 1.5f : 1.0f);
 
         float speciesFear = speciesBehaviour.Fear *
-            (willAdjustBehaviourValues ? 0.75f : 1.0f);
+            (adjustBehaviourValues ? 0.75f : 1.0f);
 
         float speciesActivity = speciesBehaviour.Activity *
-            (willAdjustBehaviourValues ? 1.25f : 1.0f);
+            (adjustBehaviourValues ? 1.25f : 1.0f);
 
         // Adjust activity for night if it is currently night
         // TODO: also check if the current species relies on varying compounds (otherwise it shouldn't react to it
@@ -420,7 +416,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                     // was smelled from
                     if (signaling.ReceivedCommandFromEntity.IsAliveAndHas<WorldPosition>())
                     {
-                        if (squaredDistanceToSignaler < Constants.AI_MOVE_DISTANCE_SQUARED)
+                        if (signalerDistanceSquared < Constants.AI_MOVE_DISTANCE_SQUARED)
                         {
                             ai.MoveToLocation(signalerPosition, ref control, entity);
                         }
@@ -435,8 +431,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 {
                     if (signaling.ReceivedCommandFromEntity.IsAliveAndHas<WorldPosition>())
                     {
-                        if (squaredDistanceToSignaler > Constants.AI_FOLLOW_DISTANCE_SQUARED &&
-                            squaredDistanceToSignaler < Constants.AI_MOVE_DISTANCE_SQUARED)
+                        if (signalerDistanceSquared > Constants.AI_FOLLOW_DISTANCE_SQUARED &&
+                            signalerDistanceSquared < Constants.AI_MOVE_DISTANCE_SQUARED)
                         {
                             ai.MoveToLocation(signalerPosition, ref control, entity);
                         }
@@ -451,7 +447,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 {
                     if (signaling.ReceivedCommandFromEntity.IsAliveAndHas<WorldPosition>())
                     {
-                        if (squaredDistanceToSignaler < Constants.AI_FLEE_DISTANCE_SQUARED)
+                        if (signalerDistanceSquared < Constants.AI_FLEE_DISTANCE_SQUARED)
                         {
                             control.SetStateColonyAware(entity, MicrobeState.Normal);
                             control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
@@ -558,14 +554,14 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     private void UseSignalingAgent(ref OrganelleContainer organelles, float speciesAggression,
         ref CommandSignaler signaling, Random random)
     {
-        var willBeAggressiveThisTime = RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION, random);
+        var shouldBeAggressive = RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION, random);
 
         if (organelles.HasBindingAgent)
         {
             signaling.QueuedSignalingCommand = MicrobeSignalCommand.MoveToMe;
         }
 
-        if (willBeAggressiveThisTime)
+        if (shouldBeAggressive)
         {
             foreach (var organelle in organelles.Organelles!)
             {
