@@ -32,6 +32,12 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IReadOn
 
     public bool CanBeReferencedInArchive => true;
 
+    public new IReadOnlyHexWithData<TData> this[int index]
+    {
+        get => existingHexes[index];
+        set => existingHexes[index] = (HexWithData<TData>)value;
+    }
+
     public static void WriteToArchive(ISArchiveWriter writer, ArchiveObjectType type, object obj)
     {
         if (type != (ArchiveObjectType)ThriveArchiveObjectType.ExtendedIndividualHexLayout)
