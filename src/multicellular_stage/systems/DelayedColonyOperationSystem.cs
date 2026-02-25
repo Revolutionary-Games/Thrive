@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using Arch.Buffer;
 using Arch.Core;
@@ -98,13 +97,13 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
     public override void AfterUpdate(in float t)
     {
-        if (attachmentOrder.Count == 0)
-            return;
-
-        var recorder = worldSimulation.StartRecordingEntityCommands();
-
         lock (attachLock)
         {
+            if (attachmentOrder.Count == 0)
+                return;
+
+            var recorder = worldSimulation.StartRecordingEntityCommands();
+
             attachmentOrder.Sort(new CellOrderComparison());
 
             foreach (var pair in attachmentOrder)
@@ -123,9 +122,9 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
             }
 
             attachmentOrder.Clear();
-        }
 
-        worldSimulation.FinishRecordingEntityCommands(recorder);
+            worldSimulation.FinishRecordingEntityCommands(recorder);
+        }
     }
 
     [Query]
@@ -206,7 +205,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         ref var parentPosition = ref entity.Get<WorldPosition>();
 
         for (int i = bodyPlanIndex; i < bodyPlanIndex + members && i < species.Species.ModifiableGameplayCells.Count;
-            ++i)
+             ++i)
         {
             CreateDelayAttachedMicrobe(ref parentPosition, entity, bodyPlanIndex++,
                 species.Species.ModifiableGameplayCells[i], species.Species, worldSimulation, spawnEnvironment,
