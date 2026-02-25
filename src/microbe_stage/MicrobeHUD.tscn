@@ -364,14 +364,7 @@ mouse_filter = 2
 theme_override_constants/separation = 5
 alignment = 2
 
-[node name="EnvironmentPanel" parent="BottomLeft/LeftPanels" unique_id=100842504 instance=ExtResource("13_wltm2")]
-layout_mode = 2
-
-[node name="SmoothPopup" type="Control" parent="BottomLeft/LeftPanels" unique_id=1510339781]
-visible = false
-layout_mode = 2
-
-[node name="CompoundPanels" parent="BottomLeft/LeftPanels" unique_id=475659213 instance=ExtResource("14_hlko5")]
+[node name="CompoundPanels" parent="BottomLeft/LeftPanels" unique_id=775237346 instance=ExtResource("14_hlko5")]
 layout_mode = 2
 ShowAgents = false
 
