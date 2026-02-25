@@ -107,7 +107,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         {
             attachmentOrder.Sort(new CellOrderComparison());
 
-            foreach (var pair in attachmentOrder.OrderBy(a => a.Delayed.AttachIndex))
+            foreach (var pair in attachmentOrder)
             {
                 if (!pair.Delayed.FinishAttachingToColony.IsAlive())
                 {
