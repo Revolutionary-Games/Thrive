@@ -18,7 +18,9 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
     public const int SERIALIZATION_VERSION = 1;
 
     private readonly Dictionary<MicrobeSpecies, ResolvedMicrobeTolerances> resolvedTolerancesCache = new();
-    private readonly Dictionary<MulticellularSpecies, ResolvedMicrobeTolerances> resolvedMulticellularTolerances = new();
+
+    private readonly Dictionary<MulticellularSpecies, ResolvedMicrobeTolerances>
+        resolvedMulticellularTolerances = new();
 
     private OrganelleDefinition cytoplasm = null!;
 

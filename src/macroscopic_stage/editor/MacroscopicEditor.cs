@@ -251,7 +251,8 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
             toleranceCategory, result);*/
     }
 
-    public void CalculateBodyEffectOnTolerances(ref MicrobeEnvironmentalToleranceCalculations.ToleranceValues modifiedTolerances)
+    public void CalculateBodyEffectOnTolerances(
+        ref MicrobeEnvironmentalToleranceCalculations.ToleranceValues modifiedTolerances)
     {
         // TODO: metaballs affecting tolerances
     }
