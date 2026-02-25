@@ -167,7 +167,7 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
     ///   any more.
     /// </summary>
     /// <param name="itemsAndValues">Data to show</param>
-    public void DisplayOrganelleBreakdown(Dictionary<OrganelleDefinition, float> itemsAndValues)
+    public void DisplayOrganelleBreakdown(IDictionary<IPlayerReadableName, float> itemsAndValues)
     {
         var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
 
@@ -202,7 +202,7 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
                 (title, value) = shownStats[usedIndex];
             }
 
-            title.Text = pair.Key.Name;
+            title.Text = pair.Key.ReadableName;
 
             double valueToShow = pair.Value;
 

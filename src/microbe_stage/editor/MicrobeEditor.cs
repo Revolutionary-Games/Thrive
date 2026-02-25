@@ -236,6 +236,31 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         cellEditorTab.OnTolerancesChanged(newTolerances);
     }
 
+    public EnvironmentalTolerances GetOptimalTolerancesForCurrentPatch()
+    {
+        return CurrentPatch.GenerateTolerancesForMicrobe(EditedCellOrganelles);
+    }
+
+    public ToleranceResult CalculateCurrentTolerances(EnvironmentalTolerances calculationTolerances)
+    {
+        return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(calculationTolerances,
+            EditedCellOrganelles, CurrentPatch.Biome);
+    }
+
+    public void GetCurrentToleranceSummaryByElement(ToleranceModifier toleranceCategory,
+        Dictionary<IPlayerReadableName, float> result)
+    {
+        MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(EditedCellOrganelles,
+            toleranceCategory, result);
+    }
+
+    public void CalculateBodyEffectOnTolerances(
+        ref MicrobeEnvironmentalToleranceCalculations.ToleranceValues modifiedTolerances)
+    {
+        MicrobeEnvironmentalToleranceCalculations.ApplyOrganelleEffectsOnTolerances(EditedCellOrganelles,
+            ref modifiedTolerances);
+    }
+
     protected override void ResolveDerivedTypeNodeReferences()
     {
         tutorialGUI = GetNode<MicrobeEditorTutorialGUI>("TutorialGUI");

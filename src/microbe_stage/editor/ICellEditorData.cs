@@ -7,7 +7,7 @@ using UnlockConstraints;
 public interface ICellEditorData : IHexEditor, IEditorWithPatches, IEditorWithActions
 {
     /// <summary>
-    ///   Properties of the edited cell. Note that organelles aren't updated while edit is in progress, for that see
+    ///   Properties of the edited cell. Note that organelles aren't updated while an edit is in progress, for that see
     ///   <see cref="EditedCellOrganelles"/>
     /// </summary>
     public ICellDefinition? EditedCellProperties { get; }
@@ -36,4 +36,33 @@ public interface ICellEditorData : IHexEditor, IEditorWithPatches, IEditorWithAc
     /// </summary>
     /// <param name="newTolerances">The new tolerance values that were just updated</param>
     public void OnTolerancesChanged(EnvironmentalTolerances newTolerances);
+
+    /// <summary>
+    ///   Needs to calculate the optimal tolerances for the currently selected patch. Required by the tolerance editor
+    ///   component to function. This method throws if called before the editor is fully initialized.
+    /// </summary>
+    /// <returns>Calculated tolerances for the currently selected patch</returns>
+    public EnvironmentalTolerances GetOptimalTolerancesForCurrentPatch();
+
+    /// <summary>
+    ///   Get current tolerance status with the edits and current patch. Needed for tolerance GUI.
+    /// </summary>
+    /// <param name="calculationTolerances">Tolerances that are used in the calculation as a base</param>
+    /// <returns>Just the normal tolerance result</returns>
+    public ToleranceResult CalculateCurrentTolerances(EnvironmentalTolerances calculationTolerances);
+
+    /// <summary>
+    ///   Generate a breakdown for the tolerance GUI to show to the player
+    /// </summary>
+    /// <param name="toleranceCategory">Category of tolerance values</param>
+    /// <param name="result">Results on what affect this are placed here</param>
+    public void GetCurrentToleranceSummaryByElement(ToleranceModifier toleranceCategory,
+        Dictionary<IPlayerReadableName, float> result);
+
+    /// <summary>
+    ///   Get the tolerance effects from organelles (or equivalents in a later editor)
+    /// </summary>
+    /// <param name="modifiedTolerances">Tolerances to put the modifications in</param>
+    public void CalculateBodyEffectOnTolerances(
+        ref MicrobeEnvironmentalToleranceCalculations.ToleranceValues modifiedTolerances);
 }

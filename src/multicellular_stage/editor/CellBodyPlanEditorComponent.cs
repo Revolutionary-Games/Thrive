@@ -589,6 +589,16 @@ public partial class CellBodyPlanEditorComponent :
     }
 
     /// <summary>
+    ///   Gets the current body plan that is being edited. For calculating stats etc. based on this in other editor
+    ///   parts.
+    /// </summary>
+    /// <returns>Current cells. Should not be edited directly.</returns>
+    public IndividualHexLayout<CellTemplate> GetCurrentCells()
+    {
+        return editedMicrobeCells;
+    }
+
+    /// <summary>
     ///   Show options for the cell under the cursor
     /// </summary>
     [RunOnKeyDown("e_secondary")]

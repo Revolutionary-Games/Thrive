@@ -227,6 +227,35 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         cellEditorTab.OnTolerancesChanged(newTolerances);
     }
 
+    public EnvironmentalTolerances GetOptimalTolerancesForCurrentPatch()
+    {
+        // TODO: macroscopic tolerance effects from the body plan
+        return CurrentPatch.GenerateOptimalTolerances(MicrobeEnvironmentalToleranceCalculations.ToleranceValues
+            .MakeEmpty());
+    }
+
+    public ToleranceResult CalculateCurrentTolerances(EnvironmentalTolerances calculationTolerances)
+    {
+        // TODO: macroscopic tolerance effects from metaballs
+        return MicrobeEnvironmentalToleranceCalculations.CalculateTolerancesWithoutOrganelleModifiers(
+            calculationTolerances,
+            CurrentPatch.Biome);
+    }
+
+    public void GetCurrentToleranceSummaryByElement(ToleranceModifier toleranceCategory,
+        Dictionary<IPlayerReadableName, float> result)
+    {
+        // TODO: macroscopic tolerance effects
+        result.Clear();
+        /*MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(EditedCellOrganelles,
+            toleranceCategory, result);*/
+    }
+
+    public void CalculateBodyEffectOnTolerances(ref MicrobeEnvironmentalToleranceCalculations.ToleranceValues modifiedTolerances)
+    {
+        // TODO: metaballs affecting tolerances
+    }
+
     protected override void ResolveDerivedTypeNodeReferences()
     {
     }

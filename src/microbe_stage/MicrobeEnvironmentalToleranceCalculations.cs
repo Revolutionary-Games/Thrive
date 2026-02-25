@@ -74,6 +74,34 @@ public static class MicrobeEnvironmentalToleranceCalculations
         return result;
     }
 
+    /// <summary>
+    ///   Variant used as a placeholder for stages that have no organelle-equivalent things affecting tolerances
+    /// </summary>
+    public static ToleranceResult CalculateTolerancesWithoutOrganelleModifiers(
+        IReadOnlyEnvironmentalTolerances speciesTolerances, IBiomeConditions environment,
+        bool excludePositiveBuffs = false)
+    {
+        var result = new ToleranceResult();
+
+        var resolvedTolerances = new ToleranceValues
+        {
+            PreferredTemperature = speciesTolerances.PreferredTemperature,
+            TemperatureTolerance = speciesTolerances.TemperatureTolerance,
+            PressureMinimum = speciesTolerances.PressureMinimum,
+            PressureTolerance = speciesTolerances.PressureTolerance,
+            OxygenResistance = speciesTolerances.OxygenResistance,
+            UVResistance = speciesTolerances.UVResistance,
+        };
+
+        var noExtraEffects = resolvedTolerances;
+
+        ApplyResultMinimums(ref resolvedTolerances);
+
+        CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, result, excludePositiveBuffs);
+
+        return result;
+    }
+
     public static void ApplyOrganelleEffectsOnTolerances(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
         ref ToleranceValues tolerances)
     {
@@ -141,7 +169,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
     }
 
     public static void GenerateToleranceEffectSummariesByOrganelle(IReadOnlyList<OrganelleTemplate> organelles,
-        ToleranceModifier modifier, Dictionary<OrganelleDefinition, float> result)
+        ToleranceModifier modifier, Dictionary<IPlayerReadableName, float> result)
     {
         result.Clear();
 
@@ -155,6 +183,38 @@ public static class MicrobeEnvironmentalToleranceCalculations
             result.TryGetValue(organelleDefinition, out var existingValue);
 
             result[organelleDefinition] = existingValue + value;
+        }
+    }
+
+    public static void GenerateToleranceEffectSummariesByCell(IndividualHexLayout<CellTemplate> cells,
+        ToleranceModifier modifier, Dictionary<IPlayerReadableName, float> result)
+    {
+        result.Clear();
+
+        // TODO: should we sum things by cell or show by organelle?
+        int cellCount = cells.Count;
+        for (int i = 0; i < cellCount; ++i)
+        {
+            var cellType = cells[i].Data!.CellType;
+
+            float totalEffect = 0;
+
+            foreach (var organelleTemplate in cellType.Organelles)
+            {
+                var organelleDefinition = organelleTemplate.Definition;
+
+                if (!organelleDefinition.ToleranceEffects.TryGetValue(modifier, out var value))
+                    continue;
+
+                totalEffect += value;
+            }
+
+            if (totalEffect == 0)
+                continue;
+
+            result.TryGetValue(cellType, out var existingValue);
+
+            result[cellType] = existingValue + totalEffect;
         }
     }
 
@@ -175,6 +235,18 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         var noExtraEffects = resolvedTolerances;
 
+        ApplyCellEffectsOnTolerances(cells, ref resolvedTolerances);
+
+        ApplyResultMinimums(ref resolvedTolerances);
+
+        CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, result, excludePositiveBuffs);
+
+        return result;
+    }
+
+    public static void ApplyCellEffectsOnTolerances(IndividualHexLayout<CellTemplate> cells,
+        ref ToleranceValues tolerances)
+    {
         // For now in multicellular we just apply each cell's organelles one by one to the tolerance results
         int cellCount = cells.Count;
         for (int i = 0; i < cellCount; ++i)
@@ -190,14 +262,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
             typeTolerances.ScaleEffectsBy(Constants.TOLERANCE_ORGANELLE_EFFECT_MULTIPLIER_IN_MULTICELLULAR);
 
-            resolvedTolerances.CopyChangesFrom(typeTolerances);
+            tolerances.CopyChangesFrom(typeTolerances);
         }
-
-        ApplyResultMinimums(ref resolvedTolerances);
-
-        CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, result, excludePositiveBuffs);
-
-        return result;
     }
 
     public static void GenerateToleranceProblemList(ToleranceResult data, in ResolvedMicrobeTolerances problemNumbers,
