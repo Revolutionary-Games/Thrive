@@ -35,9 +35,9 @@ public class NameGenerator(SpeciesNameConfig config)
         random ??= new XoShiRo256starstar();
 
         GenerateGenusNameInternal(random, stringBuilder, speciesOld, speciesNew, out var isNumbered, out var isProto,
-            out var newRoot, out var newGender);
+            out var newRoot, out var newGender, out var numberedOrganelle);
 
-        speciesNew.NamingState = new NamingState(isNumbered, isProto, newRoot, newGender);
+        speciesNew.NamingState = new NamingState(isNumbered, isProto, newRoot, newGender, numberedOrganelle);
 
         stringBuilder[0] = char.ToUpperInvariant(stringBuilder[0]);
 
@@ -72,8 +72,10 @@ public class NameGenerator(SpeciesNameConfig config)
 
     private void GenerateGenusNameInternal(Random random, StringBuilder stringBuilder,
         MicrobeSpecies? speciesOld, MicrobeSpecies speciesNew, out bool isNumbered, out bool isProto,
-        out string newRoot, out GrammaticalGender newGender)
+        out string newRoot, out GrammaticalGender newGender, out OrganelleDefinition? numberedOrganelle)
     {
+        numberedOrganelle = null;
+
         if (speciesOld?.NamingState is null)
         {
             GenerateFreshGenusName(random, stringBuilder, speciesNew, out newRoot, out newGender);
@@ -115,7 +117,7 @@ public class NameGenerator(SpeciesNameConfig config)
             isNumbered = false;
             isProto = false;
             newRoot = namingState.GenusRoot;
-            newGender = namingState.Gender;
+            newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender);
 
             return;
         }
@@ -128,7 +130,7 @@ public class NameGenerator(SpeciesNameConfig config)
             isNumbered = namingState.GenusIsNumbered;
             isProto = false;
             newRoot = namingState.GenusRoot;
-            newGender = namingState.Gender;
+            newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender);
 
             return;
         }
@@ -138,7 +140,7 @@ public class NameGenerator(SpeciesNameConfig config)
 
         int organelleCount = speciesNew.Organelles.Count(organelle => organelle.Definition == randomOrganelle);
 
-        if (namingState.GenusIsNumbered)
+        if (namingState.GenusIsNumbered && randomOrganelle == namingState.NumberedOrganelle)
         {
             // Override other rules: we increment the organelle count to maintain consistency in the naming system.
             if (!config.Quantity.TryGetValue(organelleCount.ToString(), out var quantity))
@@ -165,6 +167,9 @@ public class NameGenerator(SpeciesNameConfig config)
 
         GenerateGenusRoot(random, stringBuilder, randomOrganelle, organelleCount, out isNumbered, out var root);
         var gender = GenerateGenderedSuffix(random, stringBuilder, null);
+
+        if (isNumbered)
+            numberedOrganelle = randomOrganelle;
 
         newRoot = root;
         newGender = gender;
@@ -559,11 +564,12 @@ public class NameGenerator(SpeciesNameConfig config)
     }
 
     public record NamingState(bool GenusIsNumbered = false, bool GenusIsProto = false, string GenusRoot = "",
-        GrammaticalGender Gender = GrammaticalGender.Neuter)
+        GrammaticalGender Gender = GrammaticalGender.Neuter, OrganelleDefinition? NumberedOrganelle = null)
     {
         public bool GenusIsNumbered = GenusIsNumbered;
         public bool GenusIsProto = GenusIsProto;
         public string GenusRoot = GenusRoot;
         public GrammaticalGender Gender = Gender;
+        public OrganelleDefinition? NumberedOrganelle = NumberedOrganelle;
     }
 }
