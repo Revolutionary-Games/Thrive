@@ -51,7 +51,7 @@ public interface ICellTypeDefinition : ICellDefinition, IReadOnlyCellTypeDefinit
     public new int MPCost { get; set; }
 }
 
-public interface IReadOnlyCellTypeDefinition : IReadOnlyCellDefinition
+public interface IReadOnlyCellTypeDefinition : IReadOnlyCellDefinition, IPlayerReadableName
 {
     public int MPCost { get; }
 

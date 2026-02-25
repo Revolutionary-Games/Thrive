@@ -8,7 +8,7 @@ using SharedBase.Archive;
 ///   When the layout is instantiated in a cell, the PlacedOrganelle class is used.
 /// </summary>
 public class OrganelleTemplate : IReadOnlyOrganelleTemplate, IPositionedOrganelle, IActionHex, IPlayerReadableName,
-    ICloneable
+    ICloneable, IArchivable
 {
     public const ushort SERIALIZATION_VERSION = 2;
 

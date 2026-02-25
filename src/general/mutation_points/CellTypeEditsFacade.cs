@@ -29,7 +29,6 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
     private bool overrideMembraneRigidity;
 
     private bool overrideColour;
-    private Color newColour;
 
     public CellTypeEditsFacade(IReadOnlyCellTypeDefinition originalCell,
         OrganelleDefinition? nucleusDefinition = null)
@@ -60,11 +59,11 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
 
     public Color Colour
     {
-        get => overrideColour ? newColour : originalCell.Colour;
+        get => overrideColour ? field : originalCell.Colour;
         set
         {
             overrideColour = true;
-            newColour = value;
+            field = value;
         }
     }
 
@@ -88,6 +87,7 @@ public class CellTypeEditsFacade : EditsFacadeBase, IReadOnlyCellTypeDefinition,
 
     public int MPCost => originalCell.MPCost;
     public string CellTypeName => originalCell.CellTypeName;
+    public string ReadableName => CellTypeName;
 
     /// <summary>
     ///   For now, there's no action that changes what a type was split from, so we just forward this
