@@ -99,7 +99,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         }
     }
 
-    public override void AfterUpdate(in float t)
+    public override void AfterUpdate(in float delta)
     {
         lock (attachLock)
         {
@@ -115,10 +115,13 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
                 if (!pair.Delayed.FinishAttachingToColony.IsAlive())
                 {
                     GD.PrintErr("Delayed attach target entity is dead, ignoring attach request");
+                    continue;
                 }
-                else if (!pair.Delayed.FinishAttachingToColony.Has<MicrobeColony>())
+
+                if (!pair.Delayed.FinishAttachingToColony.Has<MicrobeColony>())
                 {
                     GD.PrintErr("Delayed attach target entity is missing colony, ignoring attach request");
+                    continue;
                 }
 
                 CompleteDelayedColonyAttach(ref pair.Delayed.FinishAttachingToColony.Get<MicrobeColony>(),
