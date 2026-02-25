@@ -214,7 +214,9 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
             result.TryGetValue(cellType, out var existingValue);
 
-            result[cellType] = existingValue + totalEffect;
+            // Need to apply the multiplier so that this matches the actual calculation method
+            result[cellType] = existingValue +
+                totalEffect * Constants.TOLERANCE_ORGANELLE_EFFECT_MULTIPLIER_IN_MULTICELLULAR;
         }
     }
 
