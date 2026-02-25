@@ -137,8 +137,9 @@ public partial class FossilisationDialog : CustomWindow
         GUICommon.Instance.PlayButtonPressSound();
 
         var nameGenerator = SimulationParameters.Instance.NameGenerator;
-        var randomizedName = nameGenerator.GenerateNameSection() + " " +
-            nameGenerator.GenerateNameSection(null, true);
+
+        // TODO: proper randomization
+        var randomizedName = "Todous Todorum";
 
         speciesNameEdit.Text = randomizedName;
         OnNameTextChanged(randomizedName);

@@ -137,6 +137,11 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     public string CellTypeName => FormattedName;
 
     /// <summary>
+    ///   A property used by the NameGenerator to keep trace of the naming state.
+    /// </summary>
+    public NameGenerator.NamingState? NamingState { get; set; } = null;
+
+    /// <summary>
     ///   Microbes are never split from any cell type
     /// </summary>
     public string? SplitFromTypeName => null;
