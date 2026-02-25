@@ -418,7 +418,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         uvResistanceLabelContainer.RegisterToolTipForControl("uvResistance", "tolerances");
         uvResistanceToolTipContainer.RegisterToolTipForControl("uvResistance", "tolerances");
         uvResistanceSlider.RegisterToolTipForControl("uvResistance", "tolerances");
-        oxygenResistanceRangeDisplay.RegisterToolTipForControl("uvResistance", "tolerances");
+        uvResistanceRangeDisplay.RegisterToolTipForControl("uvResistance", "tolerances");
 
         temperatureModifierLabelParent.RegisterToolTipForControl("temperatureRangeModifier", "tolerances");
         pressureModifierLabelParent.RegisterToolTipForControl("pressureRangeModifier", "tolerances");
