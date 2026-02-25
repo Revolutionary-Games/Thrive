@@ -199,30 +199,32 @@ public class NameGenerator(SpeciesNameConfig config)
         int ruleSelector = random.Next(100);
         bool isNumbered;
         string quantityPrefix;
-        switch (ruleSelector)
+        if (ruleSelector < 5)
         {
-            case < 5:
-                if (count < 1)
-                    goto default;
-
+            if (count < 1)
+            {
+                quantityPrefix = string.Empty;
+                isNumbered = false;
+            }
+            else
+            {
                 // Rule 1: use explicit quantity prefix.
                 quantityPrefix = config.Quantity[count.ToString()].Random(random);
                 isNumbered = true;
-                break;
-            case < 10:
-                if (count < 1)
-                    goto default;
-
-                // Rule 2: use approximate quantifier for multiple organelles.
-                bool single = count == 1;
-                quantityPrefix = config.Quantity[single ? "1" : "multiple"].Random(random);
-                isNumbered = single;
-                break;
-            default:
-                // Do not use any quantifier.
-                quantityPrefix = string.Empty;
-                isNumbered = false;
-                break;
+            }
+        }
+        else if (ruleSelector < 10 + 2 * count)
+        {
+            // Rule 2: use approximate quantifier for multiple organelles.
+            bool single = count == 1;
+            quantityPrefix = config.Quantity[single ? "1" : "multiple"].Random(random);
+            isNumbered = single;
+        }
+        else
+        {
+            // Do not use any quantifier.
+            quantityPrefix = string.Empty;
+            isNumbered = false;
         }
 
         root = stringBuilder.ToString();
