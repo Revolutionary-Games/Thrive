@@ -126,7 +126,7 @@ public class NameGenerator(SpeciesNameConfig config)
             PhonotacticsFriendlyAppend(stringBuilder, namingState.GenusRoot);
 
             isNumbered = namingState.GenusIsNumbered;
-            isProto = namingState.GenusIsProto;
+            isProto = false;
             newRoot = namingState.GenusRoot;
             newGender = namingState.Gender;
 
@@ -163,7 +163,7 @@ public class NameGenerator(SpeciesNameConfig config)
 
         isProto = false;
 
-        var root = GenerateGenusRoot(random, stringBuilder, randomOrganelle, organelleCount, out isNumbered);
+        GenerateGenusRoot(random, stringBuilder, randomOrganelle, organelleCount, out isNumbered, out var root);
         var gender = GenerateGenderedSuffix(random, stringBuilder, null);
 
         newRoot = root;
@@ -366,7 +366,7 @@ public class NameGenerator(SpeciesNameConfig config)
                 PhonotacticsFriendlyAppend(stringBuilder, "prim");
                 break;
             default:
-                root = GenerateGenusRoot(random, stringBuilder, randomOrganelle, organelleCount, out isNumbered);
+                GenerateGenusRoot(random, stringBuilder, randomOrganelle, organelleCount, out isNumbered, out root);
                 break;
         }
 
@@ -378,11 +378,10 @@ public class NameGenerator(SpeciesNameConfig config)
         gender = GenerateGenderedSuffix(random, stringBuilder, null);
     }
 
-    private string GenerateGenusRoot(Random random, StringBuilder stringBuilder, OrganelleDefinition randomOrganelle,
-        int organelleCount, out bool isNumbered)
+    private void GenerateGenusRoot(Random random, StringBuilder stringBuilder, OrganelleDefinition randomOrganelle,
+        int organelleCount, out bool isNumbered, out string root)
     {
         isNumbered = false;
-        string root;
 
         var randomOrganelleProcesses = randomOrganelle.RunnableProcesses;
 
@@ -416,12 +415,9 @@ public class NameGenerator(SpeciesNameConfig config)
             default:
                 // Rule 3: easter egg naming
                 PhonotacticsFriendlyAppend(stringBuilder, config.PrefixCofix.Random(random));
+                root = stringBuilder.ToString();
                 break;
         }
-
-        root = stringBuilder.ToString();
-
-        return root;
     }
 
     private GrammaticalGender GenerateGenderedSuffix(Random random, StringBuilder stringBuilder, GrammaticalGender?
