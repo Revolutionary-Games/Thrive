@@ -29,6 +29,8 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
     private readonly object attachLock = new();
     private readonly List<(Entity Cell, DelayedMicrobeColony Delayed)> attachmentOrder = new();
 
+    private readonly IComparer<(Entity Cell, DelayedMicrobeColony Delayed)> attachmentOrderComparer;
+
     private readonly IWorldSimulation worldSimulation;
     private readonly IMicrobeSpawnEnvironment spawnEnvironment;
     private readonly ISpawnSystem spawnSystem;
@@ -40,6 +42,8 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         this.worldSimulation = worldSimulation;
         this.spawnEnvironment = spawnEnvironment;
         this.spawnSystem = spawnSystem;
+
+        attachmentOrderComparer = new AttachmentOrderComparer();
     }
 
     public static void CreateDelayAttachedMicrobe(ref WorldPosition colonyPosition, in Entity colonyEntity,
@@ -104,7 +108,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
             var recorder = worldSimulation.StartRecordingEntityCommands();
 
-            attachmentOrder.Sort(new CellOrderComparison());
+            attachmentOrder.Sort(attachmentOrderComparer);
 
             foreach (var pair in attachmentOrder)
             {
@@ -228,7 +232,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         colony.FinishQueuedMemberAdd(colonyEntity, parentIndex, entity, targetMemberIndex, recorder);
     }
 
-    private class CellOrderComparison : IComparer<(Entity Cell, DelayedMicrobeColony Delayed)>
+    private class AttachmentOrderComparer : IComparer<(Entity Cell, DelayedMicrobeColony Delayed)>
     {
         public int Compare((Entity Cell, DelayedMicrobeColony Delayed) first,
             (Entity Cell, DelayedMicrobeColony Delayed) second)
