@@ -80,7 +80,6 @@ public class NameGenerator(SpeciesNameConfig config)
             GenerateFreshGenusName(random, stringBuilder, speciesNew, out newRoot, out newGender, out isProto);
 
             isNumbered = false;
-            isProto = false;
 
             return;
         }
