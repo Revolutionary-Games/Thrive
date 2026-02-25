@@ -67,23 +67,14 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         ApplyOrganelleEffectsOnTolerances(organelles, ref resolvedTolerances);
 
-        // Tolerances can't go below minimum values.
-        // Otherwise, species adding hydrogenosomes in the vents can be too negatively protected against oxygen.
-        if (resolvedTolerances.PressureMinimum < 0)
-            resolvedTolerances.PressureMinimum = 0;
-
-        if (resolvedTolerances.OxygenResistance < 0)
-            resolvedTolerances.OxygenResistance = 0;
-
-        if (resolvedTolerances.UVResistance < 0)
-            resolvedTolerances.UVResistance = 0;
+        ApplyResultMinimums(ref resolvedTolerances);
 
         CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, result, excludePositiveBuffs);
 
         return result;
     }
 
-    public static void ApplyOrganelleEffectsOnTolerances(IReadOnlyList<OrganelleTemplate> organelles,
+    public static void ApplyOrganelleEffectsOnTolerances(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
         ref ToleranceValues tolerances)
     {
         float temperatureChange = 0;
@@ -96,6 +87,40 @@ public static class MicrobeEnvironmentalToleranceCalculations
         for (int i = 0; i < organelleCount; ++i)
         {
             var organelleDefinition = organelles[i].Definition;
+
+            if (organelleDefinition.AffectsTolerances)
+            {
+                // Buffer all changes so that float rounding doesn't cause us issues
+                temperatureChange += organelleDefinition.ToleranceModifierTemperatureRange;
+                oxygenChange += organelleDefinition.ToleranceModifierOxygen;
+                uvChange += organelleDefinition.ToleranceModifierUV;
+                pressureToleranceChange += organelleDefinition.ToleranceModifierPressureTolerance;
+            }
+        }
+
+        // Then apply all at once
+        tolerances.TemperatureTolerance += temperatureChange;
+        tolerances.OxygenResistance += oxygenChange;
+        tolerances.UVResistance += uvChange;
+        tolerances.PressureMinimum -= pressureMinimumChange;
+        tolerances.PressureTolerance += pressureToleranceChange;
+    }
+
+    public static void ApplyOrganelleEffectsOnTolerances(IReadOnlyCollection<IReadOnlyOrganelleTemplate> organelles,
+        ref ToleranceValues tolerances)
+    {
+        // This is a separate overload as this uses an extra enumerator call (and putting in the indexer requirement
+        // to the base-read-only cell layout would require quite expensive operations in facade types).
+
+        float temperatureChange = 0;
+        float oxygenChange = 0;
+        float uvChange = 0;
+        float pressureMinimumChange = 0;
+        float pressureToleranceChange = 0;
+
+        foreach (var organelle in organelles)
+        {
+            var organelleDefinition = organelle.Definition;
 
             if (organelleDefinition.AffectsTolerances)
             {
@@ -136,7 +161,43 @@ public static class MicrobeEnvironmentalToleranceCalculations
     public static ToleranceResult CalculateTolerances(IReadOnlyEnvironmentalTolerances speciesTolerances,
         IndividualHexLayout<CellTemplate> cells, IBiomeConditions environment, bool excludePositiveBuffs = false)
     {
-        throw new NotImplementedException();
+        var result = new ToleranceResult();
+
+        var resolvedTolerances = new ToleranceValues
+        {
+            PreferredTemperature = speciesTolerances.PreferredTemperature,
+            TemperatureTolerance = speciesTolerances.TemperatureTolerance,
+            PressureMinimum = speciesTolerances.PressureMinimum,
+            PressureTolerance = speciesTolerances.PressureTolerance,
+            OxygenResistance = speciesTolerances.OxygenResistance,
+            UVResistance = speciesTolerances.UVResistance,
+        };
+
+        var noExtraEffects = resolvedTolerances;
+
+        // For now in multicellular we just apply each cell's organelles one by one to the tolerance results
+        int cellCount = cells.Count;
+        for (int i = 0; i < cellCount; ++i)
+        {
+            var cell = cells[i];
+
+            var type = cell.Data!.CellType;
+
+            // Make a temporary object so that we can scale the effect for multicellular
+            var typeTolerances = ToleranceValues.MakeEmpty();
+
+            ApplyOrganelleEffectsOnTolerances(type.Organelles, ref typeTolerances);
+
+            typeTolerances.ScaleEffectsBy(Constants.TOLERANCE_ORGANELLE_EFFECT_MULTIPLIER_IN_MULTICELLULAR);
+
+            resolvedTolerances.CopyChangesFrom(typeTolerances);
+        }
+
+        ApplyResultMinimums(ref resolvedTolerances);
+
+        CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, result, excludePositiveBuffs);
+
+        return result;
     }
 
     public static void GenerateToleranceProblemList(ToleranceResult data, in ResolvedMicrobeTolerances problemNumbers,
@@ -322,6 +383,23 @@ public static class MicrobeEnvironmentalToleranceCalculations
 #endif
 
         return result;
+    }
+
+    private static void ApplyResultMinimums(ref ToleranceValues resolvedTolerances)
+    {
+        // Apply minimums.
+        // Otherwise, species adding hydrogenosomes in the vents can be too negatively protected against oxygen.
+        if (resolvedTolerances.PressureMinimum < 0)
+            resolvedTolerances.PressureMinimum = 0;
+
+        if (resolvedTolerances.PressureTolerance < 0)
+            resolvedTolerances.PressureTolerance = 0;
+
+        if (resolvedTolerances.OxygenResistance < 0)
+            resolvedTolerances.OxygenResistance = 0;
+
+        if (resolvedTolerances.UVResistance < 0)
+            resolvedTolerances.UVResistance = 0;
     }
 
     private static void CalculateTolerancesInternal(in ToleranceValues speciesTolerances,
@@ -532,12 +610,43 @@ public static class MicrobeEnvironmentalToleranceCalculations
         public float PressureTolerance;
         public float OxygenResistance;
         public float UVResistance;
+
+        public static ToleranceValues MakeEmpty()
+        {
+            return new ToleranceValues
+            {
+                PreferredTemperature = 0,
+                TemperatureTolerance = 0,
+                PressureMinimum = 0,
+                PressureTolerance = 0,
+                OxygenResistance = 0,
+                UVResistance = 0,
+            };
+        }
+
+        public void ScaleEffectsBy(float factor)
+        {
+            TemperatureTolerance *= factor;
+            PressureTolerance *= factor;
+            OxygenResistance *= factor;
+            UVResistance *= factor;
+        }
+
+        public void CopyChangesFrom(ToleranceValues other)
+        {
+            PreferredTemperature += other.PreferredTemperature;
+            TemperatureTolerance += other.TemperatureTolerance;
+            PressureMinimum += other.PressureMinimum;
+            PressureTolerance += other.PressureTolerance;
+            OxygenResistance += other.OxygenResistance;
+            UVResistance += other.UVResistance;
+        }
     }
 }
 
 public class ToleranceResult
 {
-    // The scores are doubles to avoid rounding problems where score is 1 but something is missing
+    // The scores are doubles to avoid rounding problems where the score is 1 but something is missing
     public double OverallScore;
 
     public double TemperatureScore;
