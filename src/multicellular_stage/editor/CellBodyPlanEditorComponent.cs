@@ -163,7 +163,7 @@ public partial class CellBodyPlanEditorComponent :
         Reproduction,
         Behaviour,
         GrowthOrder,
-        Tolerances,
+        Tolerance,
     }
 
     public override bool HasIslands =>
@@ -1860,7 +1860,7 @@ public partial class CellBodyPlanEditorComponent :
                 break;
             }
 
-            case SelectionMenuTab.Tolerances:
+            case SelectionMenuTab.Tolerance:
             {
                 toleranceTab.Show();
                 tolerancesTabButton.ButtonPressed = true;

@@ -115,7 +115,7 @@ public partial class MetaballBodyEditorComponent :
         Reproduction,
         Behaviour,
         Appearance,
-        Tolerances,
+        Tolerance,
     }
 
     public override bool HasIslands => editedMetaballs.GetMetaballsNotTouchingParents().Any();
@@ -1249,7 +1249,7 @@ public partial class MetaballBodyEditorComponent :
                 break;
             }
 
-            case SelectionMenuTab.Tolerances:
+            case SelectionMenuTab.Tolerance:
             {
                 toleranceTab.Show();
                 tolerancesTabButton.ButtonPressed = true;
