@@ -105,6 +105,8 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
         lock (attachLock)
         {
+            attachmentOrder.Sort(new CellOrderComparison());
+
             foreach (var pair in attachmentOrder.OrderBy(a => a.Delayed.AttachIndex))
             {
                 if (!pair.Delayed.FinishAttachingToColony.IsAlive())
@@ -225,5 +227,14 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
     {
         var parentIndex = colony.CalculateSensibleParentIndexForMulticellular(ref entity.Get<AttachedToEntity>());
         colony.FinishQueuedMemberAdd(colonyEntity, parentIndex, entity, targetMemberIndex, recorder);
+    }
+
+    private class CellOrderComparison : IComparer<(Entity Cell, DelayedMicrobeColony Delayed)>
+    {
+        public int Compare((Entity Cell, DelayedMicrobeColony Delayed) first,
+            (Entity Cell, DelayedMicrobeColony Delayed) second)
+        {
+            return first.Delayed.AttachIndex.CompareTo(second.Delayed.AttachIndex);
+        }
     }
 }
