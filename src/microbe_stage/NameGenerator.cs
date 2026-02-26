@@ -421,7 +421,7 @@ public partial class NameGenerator(SpeciesNameConfig config)
         string genderedSuffix;
         if (useBacteria)
         {
-            genderedSuffix = config.SuffixesBacteria.TryGetValue(genderName, out var suffixes) ?
+            genderedSuffix = config.BacteriaShapes.Random(random)!.TryGetValue(genderName, out var suffixes) ?
                 suffixes.Random(random) :
                 config.Suffixes[genderName].Random(random);
         }

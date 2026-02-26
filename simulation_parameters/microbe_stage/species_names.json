@@ -873,15 +873,50 @@
       "upala"
     ]
   },
-  "suffixesBacteria": {
-    "masculine": [
-      "bacter",
-      "coccus"
-    ],
-    "feminine": [
-      "sphaera",
-      "monas"
-    ]
+  "bacteriaShapes": {
+    "coccus": {
+      "masculine": [
+        "bacter",
+        "coccus"
+      ],
+      "feminine": [
+        "sphaera",
+        "monas"
+      ],
+      "neuter": [
+        "coccum",
+        "sphaerium"
+      ]
+    },
+    "bacillus": {
+      "masculine": [
+        "bacillus",
+        "bacter"
+      ],
+      "feminine": [
+        "virgula",
+        "bacilla",
+        "monas"
+      ],
+      "neuter": [
+        "bacterium",
+        "baculum",
+        "bactrum"
+      ]
+    },
+    "vibrio": {
+      "masculine": [
+        "bacter",
+        "vibrio",
+        "virgula"
+      ]
+    },
+    "fusiform": {
+      "masculine": [
+        "fuso",
+        "clostri"
+      ]
+    }
   },
   "suffixes": {
     "masculine": [
