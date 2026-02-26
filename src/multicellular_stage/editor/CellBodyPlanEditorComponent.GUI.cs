@@ -74,19 +74,14 @@ public partial class CellBodyPlanEditorComponent
 
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
 
-        // TODO: environmental tolerances for multicellular
-        var environmentalTolerances = new ResolvedMicrobeTolerances
-        {
-            HealthModifier = 1,
-            OsmoregulationModifier = 1,
-            ProcessSpeedModifier = 1,
-        };
+        var environmentalTolerances =
+            MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(Editor.CalculateRawTolerances());
 
         foreach (var process in processes)
         {
             // This requires the inputs to be in the biome to give a realistic prediction of how fast the processes
             // *might* run once swimming around in the stage.
-            // This uses just environmental factor as we put the specialization into the above loop.
+            // This uses just environmental factors as we put the specialization into the above loop.
             var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process,
                 environmentalTolerances.ProcessSpeedModifier, biome, CompoundAmountType.Current, true);
 

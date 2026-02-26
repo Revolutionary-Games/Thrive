@@ -50,7 +50,6 @@ public class AmmoniaProductionEffect : IWorldEffect
 
         specialization = 1;
 
-        // TODO: multicellular environmental tolerances
         if (species is MicrobeSpecies microbeSpecies)
         {
             resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(

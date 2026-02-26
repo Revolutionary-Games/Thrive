@@ -1402,13 +1402,8 @@ public partial class CellBodyPlanEditorComponent :
             MicrobeInternalCalculations.MaximumSpeedDirection(
                 GetEditedCellDataIfEdited(cells[0].Data!.ModifiableCellType).ModifiableOrganelles);
 
-        // TODO: environmental tolerances for multicellular
-        var environmentalTolerances = new ResolvedMicrobeTolerances
-        {
-            HealthModifier = 1,
-            OsmoregulationModifier = 1,
-            ProcessSpeedModifier = 1,
-        };
+        var environmentalTolerances =
+            MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(Editor.CalculateRawTolerances());
 
         // TODO: improve performance by calculating the balance per cell type
         foreach (var hex in cells)
@@ -1433,14 +1428,14 @@ public partial class CellBodyPlanEditorComponent :
             CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
                 organismStatisticsPanel.CompoundAmountType,
                 cells, conditionsData, energyBalanceInfo,
-                ref specificStorages, ref nominalStorage);
+                ref specificStorages, ref nominalStorage, environmentalTolerances);
 
         UpdateCompoundBalances(compoundBalanceData);
 
         // TODO: should this skip on being affected by the resource limited?
         var nightBalanceData = CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
             CompoundAmountType.Minimum, cells, conditionsData, energyBalanceInfo, ref specificStorages,
-            ref nominalStorage);
+            ref nominalStorage, environmentalTolerances);
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
@@ -1453,16 +1448,9 @@ public partial class CellBodyPlanEditorComponent :
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
         CompoundAmountType amountType,
         IReadOnlyList<HexWithData<CellTemplate>> cells, IBiomeConditions biome, EnergyBalanceInfoFull energyBalance,
-        ref Dictionary<Compound, float>? specificStorages, ref float nominalStorage)
+        ref Dictionary<Compound, float>? specificStorages, ref float nominalStorage,
+        in ResolvedMicrobeTolerances tolerances)
     {
-        // TODO: environmental tolerances for multicellular
-        var environmentalTolerances = new ResolvedMicrobeTolerances
-        {
-            HealthModifier = 1,
-            OsmoregulationModifier = 1,
-            ProcessSpeedModifier = 1,
-        };
-
         Dictionary<Compound, CompoundBalance> compoundBalanceData = new();
         foreach (var cell in cells)
         {
@@ -1473,7 +1461,7 @@ public partial class CellBodyPlanEditorComponent :
             // TODO: efficiency from cell layout positions (GetAdjacencySpecializationBonus)
 
             AddCellTypeCompoundBalance(compoundBalanceData, organelles, calculationType,
-                amountType, biome, energyBalance, environmentalTolerances, specialization);
+                amountType, biome, energyBalance, tolerances, specialization);
         }
 
         specificStorages ??= CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells.Select(o => o.Data!),

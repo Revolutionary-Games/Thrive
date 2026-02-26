@@ -324,7 +324,6 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         if (spawnEnvironment is not IMicrobeSpawnEnvironment microbeSpawnEnvironment)
             throw new ArgumentException("Microbes must have microbe spawn environment info");
 
-        // TODO: cache the data
         var biome = microbeSpawnEnvironment.CurrentBiome;
 
         Dictionary<Compound, (float TimeToFill, float Storage)>? compoundTimes;

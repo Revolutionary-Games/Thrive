@@ -12,6 +12,9 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 {
     public const ushort SERIALIZATION_VERSION = 2;
 
+    private readonly Dictionary<BiomeConditions, Dictionary<Compound, (float TimeToFill, float Storage)>>
+        cachedFillTimes = new();
+
     private ReadonlyCellLayoutAdapter<IReadOnlyCellTemplate, CellTemplate>? readonlyCellLayoutAdapter;
     private ReadonlyIndividualLayoutAdapter<CellTemplate, IReadOnlyCellTemplate>? readonlyIndividualLayoutAdapter;
 
@@ -138,6 +141,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         RepositionToOrigin();
         UpdateInitialCompounds();
 
+        cachedFillTimes.Clear();
+
         // Make certain these are all up to date
         foreach (var cellType in ModifiableCellTypes)
         {
@@ -206,7 +211,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 
         var compoundBalances = new Dictionary<Compound, CompoundBalance>();
 
-        // TODO: environmental tolerances for multicellular
+        // TODO: figure out a way to use the real patch environmental tolerances
         var environmentalTolerances = new ResolvedMicrobeTolerances
         {
             HealthModifier = 1,
@@ -248,23 +253,31 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         if (spawnEnvironment is not IMicrobeSpawnEnvironment microbeSpawnEnvironment)
             throw new ArgumentException("Multicellular species must have microbe spawn environment info");
 
+        var biome = microbeSpawnEnvironment.CurrentBiome;
+
         // TODO: this would be excellent to match the actual cell type being used for spawning
         var cellType = ModifiableGameplayCells[0].ModifiableCellType;
 
-        // TODO: environmental tolerances for multicellular
-        var environmentalTolerances = new ResolvedMicrobeTolerances
-        {
-            HealthModifier = 1,
-            OsmoregulationModifier = 1,
-            ProcessSpeedModifier = 1,
-        };
+        // TODO: can we do caching somehow here?
+        var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(this, microbeSpawnEnvironment.CurrentBiome));
 
-        // TODO: CACHING IS MISSING from here (but microbe has it)
-        // TODO: should moving be false in some cases?
-        var compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(
-            cellType.ModifiableOrganelles, cellType.MembraneType, true, PlayerSpecies,
-            microbeSpawnEnvironment.CurrentBiome, environmentalTolerances,
-            microbeSpawnEnvironment.WorldSettings);
+        Dictionary<Compound, (float TimeToFill, float Storage)>? compoundTimes;
+
+        // This lock is here to allow multiple microbe spawns to happen in parallel. Lock is not used on clear as no
+        // spawns should be allowed to happen while species are being modified
+        lock (cachedFillTimes)
+        {
+            if (!cachedFillTimes.TryGetValue(biome, out compoundTimes))
+            {
+                // TODO: should moving be false in some cases?
+                compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(
+                    cellType.ModifiableOrganelles, cellType.MembraneType, true, PlayerSpecies,
+                    microbeSpawnEnvironment.CurrentBiome, resolvedTolerances,
+                    microbeSpawnEnvironment.WorldSettings);
+                cachedFillTimes[biome] = compoundTimes;
+            }
+        }
 
         MicrobeInternalCalculations.GiveNearNightInitialCompoundBuff(targetStorage, compoundTimes,
             spawnEnvironment.DaylightInfo);
@@ -292,6 +305,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
         {
             ModifiableCellTypes.Add((CellType)cellType.Clone());
         }
+
+        cachedFillTimes.Clear();
     }
 
     public override float GetPredationTargetSizeFactor()

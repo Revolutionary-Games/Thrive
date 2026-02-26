@@ -762,13 +762,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         var energyBalance = new EnergyBalanceInfoSimple();
 
-        // TODO: replace with actual tolerances once they are implemented for this stage
-        var tolerances = new ResolvedMicrobeTolerances
-        {
-            ProcessSpeedModifier = 1.0f,
-            HealthModifier = 1.0f,
-            OsmoregulationModifier = 1.0f,
-        };
+        var tolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(editedSpecies, CurrentPatch.Biome));
 
         foreach (var cellType in editedSpecies.ModifiableCellTypes)
         {
