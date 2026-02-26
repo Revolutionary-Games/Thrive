@@ -9,6 +9,7 @@ public class NameGenerator(SpeciesNameConfig config)
 {
     private static readonly HashSet<char> Vocals = ['a', 'e', 'i', 'o', 'u'];
     private static readonly HashSet<char> Bilabials = ['p', 'b', 'm'];
+
     private static readonly FrozenDictionary<(char, char), char> VocalicTransitions = new Dictionary<(char, char), char>
     {
         { ('o', 'a'), 'o' },
@@ -131,7 +132,8 @@ public class NameGenerator(SpeciesNameConfig config)
             return;
         }
 
-        var randomOrganelle = newOrganelles.Count == 0 ? species2UniqueOrganelles.Random(random) :
+        var randomOrganelle = newOrganelles.Count == 0 ?
+            species2UniqueOrganelles.Random(random) :
             newOrganelles.Random(random);
 
         int organelleCount = speciesNew.Organelles.Count(organelle => organelle.Definition == randomOrganelle);
