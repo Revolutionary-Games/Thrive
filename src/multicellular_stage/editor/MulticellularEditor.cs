@@ -288,27 +288,27 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     public EnvironmentalTolerances GetOptimalTolerancesForCurrentPatch()
     {
-        return CurrentPatch.GenerateTolerancesForMicrobe(bodyPlanEditorTab.GetCurrentCells());
+        return CurrentPatch.GenerateTolerancesForMicrobe(bodyPlanEditorTab.GetCurrentCellsWithLatestTypes());
     }
 
     public ToleranceResult CalculateCurrentTolerances(EnvironmentalTolerances calculationTolerances)
     {
         return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(calculationTolerances,
-            bodyPlanEditorTab.GetCurrentCells(), CurrentPatch.Biome);
+            bodyPlanEditorTab.GetCurrentCellsWithLatestTypes(), CurrentPatch.Biome);
     }
 
     public void GetCurrentToleranceSummaryByElement(ToleranceModifier toleranceCategory,
         Dictionary<IPlayerReadableName, float> result)
     {
         MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByCell(
-            bodyPlanEditorTab.GetCurrentCells(), toleranceCategory, result);
+            bodyPlanEditorTab.GetCurrentCellsWithLatestTypes(), toleranceCategory, result);
     }
 
     public void CalculateBodyEffectOnTolerances(
         ref MicrobeEnvironmentalToleranceCalculations.ToleranceValues modifiedTolerances)
     {
-        MicrobeEnvironmentalToleranceCalculations.ApplyCellEffectsOnTolerances(bodyPlanEditorTab.GetCurrentCells(),
-            ref modifiedTolerances);
+        MicrobeEnvironmentalToleranceCalculations.ApplyCellEffectsOnTolerances(
+            bodyPlanEditorTab.GetCurrentCellsWithLatestTypes(), ref modifiedTolerances);
     }
 
     protected override void ResolveDerivedTypeNodeReferences()

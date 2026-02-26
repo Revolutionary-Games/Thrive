@@ -21,6 +21,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
+    private readonly IndividualHexLayout<CellTemplate> tempFreshlyUpdatedCells = new();
+
     private readonly List<Hex> hexTemporaryMemory = new();
     private readonly List<Hex> hexTemporaryMemory2 = new();
     private readonly List<Hex> islandResults = new();
@@ -307,7 +309,7 @@ public partial class CellBodyPlanEditorComponent :
             refreshTolerancesWarnings = false;
 
             // These are all also affected by the environmental tolerances
-            CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+            CalculateEnergyAndCompoundBalance(GetCurrentCellsWithLatestTypes());
             UpdateCellTypesSecondaryInfo();
 
             // Health is also affected
@@ -537,6 +539,7 @@ public partial class CellBodyPlanEditorComponent :
             editedSpecies.ModifiableEditorCells, editedMicrobeCells, AlgorithmQuality.High, hexTemporaryMemory,
             hexTemporaryMemory2);
 
+        tempFreshlyUpdatedCells.Clear();
         editedSpecies.OnEdited();
 
         editedSpecies.UpdateNameIfValid(newName);
@@ -584,18 +587,35 @@ public partial class CellBodyPlanEditorComponent :
         RegenerateCellTypeIcon(changedType);
 
         UpdateStats();
+        tolerancesEditor.OnDataTolerancesDependOnChanged();
 
         UpdateFinishButtonWarningVisibility();
     }
 
     /// <summary>
     ///   Gets the current body plan that is being edited. For calculating stats etc. based on this in other editor
-    ///   parts.
+    ///   parts. This also makes sure the latest cell types are applied to the layout, so this is a bit of an expensive
+    ///   method to call.
     /// </summary>
     /// <returns>Current cells. Should not be edited directly.</returns>
-    public IndividualHexLayout<CellTemplate> GetCurrentCells()
+    public IndividualHexLayout<CellTemplate> GetCurrentCellsWithLatestTypes()
     {
-        return editedMicrobeCells;
+        tempFreshlyUpdatedCells.Clear();
+
+        foreach (var editedMicrobeCell in editedMicrobeCells)
+        {
+            if (editedMicrobeCell.Data == null)
+                throw new InvalidOperationException("Layout to edit should not have cells with no data");
+
+            var dataToAdd = new CellTemplate(GetEditedCellDataIfEdited(editedMicrobeCell.Data.ModifiableCellType),
+                editedMicrobeCell.Position, editedMicrobeCell.Orientation);
+
+            tempFreshlyUpdatedCells.AddFast(
+                new HexWithData<CellTemplate>(dataToAdd, dataToAdd.Position, dataToAdd.Orientation), hexTemporaryMemory,
+                hexTemporaryMemory2);
+        }
+
+        return tempFreshlyUpdatedCells;
     }
 
     /// <summary>
@@ -644,7 +664,7 @@ public partial class CellBodyPlanEditorComponent :
 
     public void OnCurrentPatchUpdated(Patch patch)
     {
-        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+        CalculateEnergyAndCompoundBalance(GetCurrentCellsWithLatestTypes());
 
         UpdateCellTypesSecondaryInfo();
 
@@ -670,14 +690,14 @@ public partial class CellBodyPlanEditorComponent :
     public ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
     {
         return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
-            editedMicrobeCells, Editor.CurrentPatch.Biome, excludePositiveBuffs);
+            GetCurrentCellsWithLatestTypes(), Editor.CurrentPatch.Biome, excludePositiveBuffs);
     }
 
     public override void OnLightLevelChanged(float dayLightFraction)
     {
         UpdateVisualLightLevel(dayLightFraction, Editor.CurrentPatch);
 
-        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+        CalculateEnergyAndCompoundBalance(GetCurrentCellsWithLatestTypes());
 
         UpdateCellTypesSecondaryInfo();
     }
@@ -1316,7 +1336,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnEnergyBalanceOptionsChanged()
     {
-        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+        CalculateEnergyAndCompoundBalance(GetCurrentCellsWithLatestTypes());
 
         UpdateCellTypesSecondaryInfo();
 
@@ -1325,7 +1345,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnResourceLimitingModeChanged()
     {
-        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+        CalculateEnergyAndCompoundBalance(GetCurrentCellsWithLatestTypes());
 
         UpdateCellTypesSecondaryInfo();
 
@@ -1352,15 +1372,17 @@ public partial class CellBodyPlanEditorComponent :
 
     private void UpdateStats()
     {
+        var latestTypes = GetCurrentCellsWithLatestTypes();
+
         organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
-        organismStatisticsPanel.UpdateSpeed(CellBodyPlanInternalCalculations.CalculateSpeed(editedMicrobeCells));
+        organismStatisticsPanel.UpdateSpeed(CellBodyPlanInternalCalculations.CalculateSpeed(latestTypes));
         organismStatisticsPanel.UpdateRotationSpeed(
-            CellBodyPlanInternalCalculations.CalculateRotationSpeed(editedMicrobeCells));
+            CellBodyPlanInternalCalculations.CalculateRotationSpeed(latestTypes));
         var (ammoniaCost, phosphatesCost) =
-            CellBodyPlanInternalCalculations.CalculateOrganellesCost(editedMicrobeCells);
+            CellBodyPlanInternalCalculations.CalculateOrganellesCost(latestTypes);
         organismStatisticsPanel.UpdateOrganellesCost(ammoniaCost, phosphatesCost);
 
-        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+        CalculateEnergyAndCompoundBalance(latestTypes);
 
         UpdateCellTypesSecondaryInfo();
     }
@@ -1572,7 +1594,7 @@ public partial class CellBodyPlanEditorComponent :
 
     /// <summary>
     ///   This destroys and creates again entities to represent all the currently placed cells. Call this whenever
-    ///   editedMicrobeCells is changed.
+    ///   editedMicrobeCells-variable is changed.
     /// </summary>
     private void UpdateAlreadyPlacedVisuals()
     {
