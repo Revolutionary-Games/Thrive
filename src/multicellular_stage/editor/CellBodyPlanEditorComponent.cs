@@ -1183,6 +1183,9 @@ public partial class CellBodyPlanEditorComponent :
 
         hasNegativeATPCells = false;
 
+        var tolerances = Editor.CalculateCurrentTolerances(tolerancesEditor.CurrentTolerances);
+        var environmentalTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances);
+
         foreach (var button in cellTypeSelectionButtons.Values)
         {
             var cellType = button.CellType;
@@ -1194,14 +1197,6 @@ public partial class CellBodyPlanEditorComponent :
                 GD.PrintErr($"Tooltip not found for species' cell type: {cellType.CellTypeName}");
                 continue;
             }
-
-            // TODO: get actual tolerances once they are added to the multicellular stage
-            var environmentalTolerances = new ResolvedMicrobeTolerances
-            {
-                HealthModifier = 1,
-                OsmoregulationModifier = 1,
-                ProcessSpeedModifier = 1,
-            };
 
             cellTypesCount.TryGetValue(cellType, out var count);
 
