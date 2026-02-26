@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo;
 
+using System;
 using SharedBase.Archive;
 
 public class CompoundConversionEfficiencyPressure : SelectionPressure
@@ -65,7 +66,10 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
 
-        return cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies);
+        var compoundGenerated = cache.GetCompoundGeneratedFrom(FromCompound, ToCompound, microbeSpecies, patch.Biome);
+
+        return cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies) *
+            MathF.Sqrt(compoundGenerated);
     }
 
     public override float GetEnergy(Patch patch)
