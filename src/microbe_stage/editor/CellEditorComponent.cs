@@ -1162,7 +1162,7 @@ public partial class CellEditorComponent :
         behaviourTabButton.Visible = false;
         appearanceTabButton.Visible = false;
     }
-    
+
     public void HideAdvancedTabs()
     {
         // Hide the most advanced tabs
