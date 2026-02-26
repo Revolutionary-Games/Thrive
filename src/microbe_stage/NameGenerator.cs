@@ -347,7 +347,7 @@ public class NameGenerator(SpeciesNameConfig config)
         isProto = false;
         bool isNumbered = false;
 
-        if (random.Next(100) < 50)
+        if (random.Next(100) < 15)
         {
             PhonotacticsFriendlyAppend(stringBuilder, config.QualityRoots["first"].Random(random));
 
@@ -360,11 +360,11 @@ public class NameGenerator(SpeciesNameConfig config)
 
         switch (ruleSelector)
         {
-            case < 20:
+            case < 10:
                 // Rule 1: cell root is "Cyto".
                 PhonotacticsFriendlyAppend(stringBuilder, "cyto");
                 break;
-            case < 50:
+            case < 25:
                 // Rule 2: cell root is "Prim".
                 PhonotacticsFriendlyAppend(stringBuilder, "prim");
                 break;
