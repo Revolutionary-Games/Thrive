@@ -191,6 +191,9 @@ public static class MicrobeEnvironmentalToleranceCalculations
     {
         result.Clear();
 
+        // Apply the same averaging as the real ApplyCellEffectsOnTolerances method
+        double inverseCellCount = 1.0 / cells.Count;
+
         // TODO: should we sum things by cell or show by organelle?
         int cellCount = cells.Count;
         for (int i = 0; i < cellCount; ++i)
@@ -215,8 +218,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
             result.TryGetValue(cellType, out var existingValue);
 
             // Need to apply the multiplier so that this matches the actual calculation method
-            result[cellType] = existingValue +
-                totalEffect * Constants.TOLERANCE_ORGANELLE_EFFECT_MULTIPLIER_IN_MULTICELLULAR;
+            result[cellType] = (float)(existingValue +
+                totalEffect * inverseCellCount * Constants.TOLERANCE_ORGANELLE_EFFECT_MULTIPLIER_IN_MULTICELLULAR);
         }
     }
 
@@ -249,6 +252,12 @@ public static class MicrobeEnvironmentalToleranceCalculations
     public static void ApplyCellEffectsOnTolerances(IndividualHexLayout<CellTemplate> cells,
         ref ToleranceValues tolerances)
     {
+        // For averaging we need to divide by the total count, but for float speed we calculate an inverse factor
+        double inverseCellCount = 1.0 / cells.Count;
+
+        // Make a temporary object so that we can scale the effect for multicellular
+        var typeTolerances = ToleranceValues.MakeEmpty();
+
         // For now in multicellular we just apply each cell's organelles one by one to the tolerance results
         int cellCount = cells.Count;
         for (int i = 0; i < cellCount; ++i)
@@ -257,15 +266,14 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
             var type = cell.Data!.CellType;
 
-            // Make a temporary object so that we can scale the effect for multicellular
-            var typeTolerances = ToleranceValues.MakeEmpty();
-
             ApplyOrganelleEffectsOnTolerances(type.Organelles, ref typeTolerances);
-
-            typeTolerances.ScaleEffectsBy(Constants.TOLERANCE_ORGANELLE_EFFECT_MULTIPLIER_IN_MULTICELLULAR);
-
-            tolerances.CopyChangesFrom(typeTolerances);
         }
+
+        // We apply the averaging here at the end to preserve more precision
+        typeTolerances.ScaleEffectsBy(inverseCellCount *
+            Constants.TOLERANCE_ORGANELLE_EFFECT_MULTIPLIER_IN_MULTICELLULAR);
+
+        tolerances.CopyChangesFrom(typeTolerances);
     }
 
     public static void GenerateToleranceProblemList(ToleranceResult data, in ResolvedMicrobeTolerances problemNumbers,
@@ -698,6 +706,14 @@ public static class MicrobeEnvironmentalToleranceCalculations
             PressureTolerance *= factor;
             OxygenResistance *= factor;
             UVResistance *= factor;
+        }
+
+        public void ScaleEffectsBy(double factor)
+        {
+            TemperatureTolerance = (float)(TemperatureTolerance * factor);
+            PressureTolerance = (float)(PressureTolerance * factor);
+            OxygenResistance = (float)(OxygenResistance * factor);
+            UVResistance = (float)(UVResistance * factor);
         }
 
         public void CopyChangesFrom(ToleranceValues other)

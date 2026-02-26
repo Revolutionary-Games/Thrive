@@ -2041,7 +2041,10 @@ public static class Constants
     public const float TOLERANCE_UV_HEALTH_MIN = 0.5f;
     public const float TOLERANCE_UV_OSMOREGULATION_MAX = 1.5f;
 
-    public const float TOLERANCE_ORGANELLE_EFFECT_MULTIPLIER_IN_MULTICELLULAR = 0.5f;
+    /// <summary>
+    ///   This is an additional modifier on top of the averaging effect applied to make the values less extreme.
+    /// </summary>
+    public const float TOLERANCE_ORGANELLE_EFFECT_MULTIPLIER_IN_MULTICELLULAR = 1.0f;
 
     /// <summary>
     ///   If set to true, then physics debug draw gets enabled when the game starts
