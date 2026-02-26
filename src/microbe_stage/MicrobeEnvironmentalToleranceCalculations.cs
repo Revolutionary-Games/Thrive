@@ -273,7 +273,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         typeTolerances.ScaleEffectsBy(inverseCellCount *
             Constants.TOLERANCE_ORGANELLE_EFFECT_MULTIPLIER_IN_MULTICELLULAR);
 
-        tolerances.CopyChangesFrom(typeTolerances);
+        tolerances.AddValuesFrom(typeTolerances);
     }
 
     public static void GenerateToleranceProblemList(ToleranceResult data, in ResolvedMicrobeTolerances problemNumbers,
@@ -716,7 +716,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             UVResistance = (float)(UVResistance * factor);
         }
 
-        public void CopyChangesFrom(ToleranceValues other)
+        public void AddValuesFrom(ToleranceValues other)
         {
             PreferredTemperature += other.PreferredTemperature;
             TemperatureTolerance += other.TemperatureTolerance;
