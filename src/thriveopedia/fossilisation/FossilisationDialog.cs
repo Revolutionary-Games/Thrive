@@ -138,11 +138,18 @@ public partial class FossilisationDialog : CustomWindow
 
         var nameGenerator = SimulationParameters.Instance.NameGenerator;
 
-        // TODO: proper randomization
-        var randomizedName = "Todous Todorum";
+        if (selectedSpecies is MicrobeSpecies microbeSpecies)
+        {
+            var randomizedName = nameGenerator.GenerateGenusName(null, null, microbeSpecies) +
+                nameGenerator.GenerateEpithetName(null, null, microbeSpecies);
 
-        speciesNameEdit.Text = randomizedName;
-        OnNameTextChanged(randomizedName);
+            speciesNameEdit.Text = randomizedName;
+            OnNameTextChanged(randomizedName);
+        }
+        else
+        {
+            throw new Exception("Name generation for the selected species has not been implemented yet.");
+        }
     }
 
     private void OnCancelPressed()

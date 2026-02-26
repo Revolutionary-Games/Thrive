@@ -1162,7 +1162,7 @@ public partial class CellEditorComponent :
         behaviourTabButton.Visible = false;
         appearanceTabButton.Visible = false;
     }
-
+    
     public void HideAdvancedTabs()
     {
         // Hide the most advanced tabs
@@ -1229,6 +1229,19 @@ public partial class CellEditorComponent :
             return;
 
         tutorialAnimationPlayer.Play("ShowAutoEvoPrediction");
+    }
+
+    public string GenerateRandomName()
+    {
+        var nameGenerator = SimulationParameters.Instance.NameGenerator;
+
+        if (previewMicrobeSpecies is not null)
+        {
+            return nameGenerator.GenerateGenusName(null, null, previewMicrobeSpecies) + " " +
+                nameGenerator.GenerateEpithetName(null, null, previewMicrobeSpecies);
+        }
+
+        return string.Empty;
     }
 
     /// <summary>
