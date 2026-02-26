@@ -11,6 +11,9 @@ public class SpeciesNameConfig : IRegistryType
     public Dictionary<string, List<string>> Suffixes = null!;
 
     [JsonRequired]
+    public Dictionary<string, List<string>> SuffixesBacteria = null!;
+
+    [JsonRequired]
     public Dictionary<string, List<string>> Quantity = null!;
 
     [JsonRequired]
@@ -58,6 +61,12 @@ public class SpeciesNameConfig : IRegistryType
         {
             throw new InvalidRegistryDataException("SpeciesNameConfig", GetType().Name,
                 "Suffixes is empty");
+        }
+
+        if (SuffixesBacteria.Count < 1)
+        {
+            throw new InvalidRegistryDataException("SpeciesNameConfig", GetType().Name,
+                "SuffixesBacteria is empty");
         }
 
         if (Quantity.Count < 1)

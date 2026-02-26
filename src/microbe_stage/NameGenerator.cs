@@ -55,7 +55,7 @@ public class NameGenerator(SpeciesNameConfig config)
         var gender = speciesNew.NamingState.Gender;
 
         ModifiedLegacyGenerateNameRoot(random, stringBuilder);
-        GenerateGenderedSuffix(random, stringBuilder, gender);
+        GenerateGenderedSuffix(random, stringBuilder, gender, false);
 
         stringBuilder[0] = char.ToLowerInvariant(stringBuilder[0]);
 
@@ -68,6 +68,59 @@ public class NameGenerator(SpeciesNameConfig config)
 
         stringBuffer.Length = 0;
         return stringBuffer;
+    }
+
+    private static T GetRandomElement<T>(Random random, T[] array)
+    {
+        return array[random.Next(array.Length)];
+    }
+
+    private static void PhonotacticsFriendlyAppend(StringBuilder stringBuilder, string data)
+    {
+        if (stringBuilder.Length == 0)
+        {
+            stringBuilder.Append(data);
+            return;
+        }
+
+        var next = data[0];
+        var previous = stringBuilder[^1];
+
+        if (Vocals.Contains(next) && Vocals.Contains(previous))
+        {
+            // Both are vocals
+            if (next == previous)
+            {
+                --stringBuilder.Length;
+            }
+            else if (VocalicTransitions.TryGetValue((previous, next), out var vocal))
+            {
+                --stringBuilder.Length;
+                stringBuilder.Append(vocal);
+                stringBuilder.Append(data, 1, data.Length - 1);
+
+                return;
+            }
+        }
+        else if (!Vocals.Contains(next) && !Vocals.Contains(previous))
+        {
+            switch (previous)
+            {
+                // Both are consonants
+                case 'n' when Bilabials.Contains(next):
+                    // n before bilabial becomes m
+                    --stringBuilder.Length;
+                    stringBuilder.Append('m');
+                    break;
+                case 'n' when next is 'r' or 'l':
+                    // n before liquid gets assimilated
+                    --stringBuilder.Length;
+                    stringBuilder.Append(next);
+                    break;
+            }
+        }
+
+        stringBuilder.Append(data);
     }
 
     private void GenerateGenusNameInternal(Random random, StringBuilder stringBuilder,
@@ -93,6 +146,8 @@ public class NameGenerator(SpeciesNameConfig config)
 
         // var lostOrganelles = species1UniqueOrganelles.Except(species2UniqueOrganelles).ToHashSet();
 
+        bool useBacteriaSuffix = random.Next(100) < 10 && speciesNew.IsBacteria;
+
         if (newOrganelles.Count == 0 && speciesOld.NamingState is { GenusIsNumbered: false })
         {
             // We don't need to create a new genus name, so we return the old one.
@@ -114,7 +169,7 @@ public class NameGenerator(SpeciesNameConfig config)
             isNumbered = false;
             isProto = false;
             newRoot = namingState.GenusRoot;
-            newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender);
+            newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender, useBacteriaSuffix);
 
             return;
         }
@@ -127,7 +182,7 @@ public class NameGenerator(SpeciesNameConfig config)
             isNumbered = namingState.GenusIsNumbered;
             isProto = false;
             newRoot = namingState.GenusRoot;
-            newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender);
+            newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender, useBacteriaSuffix);
 
             return;
         }
@@ -156,7 +211,7 @@ public class NameGenerator(SpeciesNameConfig config)
 
             isProto = false;
             newRoot = namingState.GenusRoot;
-            newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender);
+            newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender, useBacteriaSuffix);
 
             return;
         }
@@ -164,7 +219,7 @@ public class NameGenerator(SpeciesNameConfig config)
         isProto = false;
 
         GenerateGenusRoot(random, stringBuilder, randomOrganelle, organelleCount, out isNumbered, out var root);
-        var gender = GenerateGenderedSuffix(random, stringBuilder, null);
+        var gender = GenerateGenderedSuffix(random, stringBuilder, null, useBacteriaSuffix);
 
         if (isNumbered)
             numberedOrganelle = randomOrganelle;
@@ -347,7 +402,6 @@ public class NameGenerator(SpeciesNameConfig config)
         int organelleCount = species.Organelles.Count(organelle => organelle.Definition == randomOrganelle);
 
         isProto = false;
-        bool isNumbered = false;
 
         if (random.Next(100) < 15)
         {
@@ -371,16 +425,15 @@ public class NameGenerator(SpeciesNameConfig config)
                 PhonotacticsFriendlyAppend(stringBuilder, "prim");
                 break;
             default:
-                GenerateGenusRoot(random, stringBuilder, randomOrganelle, organelleCount, out isNumbered, out root);
+                GenerateGenusRoot(random, stringBuilder, randomOrganelle, organelleCount, out _, out root);
                 break;
         }
 
         if (root == string.Empty)
             root = stringBuilder.ToString();
 
-        species.NamingState = new NamingState(isNumbered, isProto, root, GrammaticalGender.Neuter);
-
-        gender = GenerateGenderedSuffix(random, stringBuilder, null);
+        gender = GenerateGenderedSuffix(random, stringBuilder, null, random.Next(100) < 10 &&
+            species.IsBacteria);
     }
 
     private void GenerateGenusRoot(Random random, StringBuilder stringBuilder, OrganelleDefinition randomOrganelle,
@@ -426,13 +479,24 @@ public class NameGenerator(SpeciesNameConfig config)
     }
 
     private GrammaticalGender GenerateGenderedSuffix(Random random, StringBuilder stringBuilder, GrammaticalGender?
-        parent)
+        parent, bool useBacteria)
     {
         var gender = parent ?? GetRandomElement(random, (GrammaticalGender[])
             Enum.GetValuesAsUnderlyingType<GrammaticalGender>());
 
         var genderName = gender.ToString().ToLowerInvariant();
-        var genderedSuffix = config.Suffixes[genderName].Random(random);
+
+        string genderedSuffix;
+        if (useBacteria)
+        {
+            genderedSuffix = config.SuffixesBacteria.TryGetValue(genderName, out var suffixes) ?
+                suffixes.Random(random) :
+                config.Suffixes[genderName].Random(random);
+        }
+        else
+        {
+            genderedSuffix = config.Suffixes[genderName].Random(random);
+        }
 
         PhonotacticsFriendlyAppend(stringBuilder, genderedSuffix);
 
@@ -492,54 +556,6 @@ public class NameGenerator(SpeciesNameConfig config)
         }
     }
 
-    private void PhonotacticsFriendlyAppend(StringBuilder stringBuilder, string data)
-    {
-        if (stringBuilder.Length == 0)
-        {
-            stringBuilder.Append(data);
-            return;
-        }
-
-        var next = data[0];
-        var previous = stringBuilder[^1];
-
-        if (Vocals.Contains(next) && Vocals.Contains(previous))
-        {
-            // Both are vocals
-            if (next == previous)
-            {
-                --stringBuilder.Length;
-            }
-            else if (VocalicTransitions.TryGetValue((previous, next), out var vocal))
-            {
-                --stringBuilder.Length;
-                stringBuilder.Append(vocal);
-                stringBuilder.Append(data, 1, data.Length - 1);
-
-                return;
-            }
-        }
-        else if (!Vocals.Contains(next) && !Vocals.Contains(previous))
-        {
-            switch (previous)
-            {
-                // Both are consonants
-                case 'n' when Bilabials.Contains(next):
-                    // n before bilabial becomes m
-                    --stringBuilder.Length;
-                    stringBuilder.Append('m');
-                    break;
-                case 'n' when next is 'r' or 'l':
-                    // n before liquid gets assimilated
-                    --stringBuilder.Length;
-                    stringBuilder.Append(next);
-                    break;
-            }
-        }
-
-        stringBuilder.Append(data);
-    }
-
     /*
     private string GetColorByGender(ColorAdjective color, GrammaticalGender gender)
     {
@@ -556,11 +572,6 @@ public class NameGenerator(SpeciesNameConfig config)
     private T GetRandomElement<T>(Random random, IList<T> list)
     {
         return list[random.Next(list.Count)];
-    }
-
-    private T GetRandomElement<T>(Random random, T[] array)
-    {
-        return array[random.Next(array.Length)];
     }
 
     public record NamingState(bool GenusIsNumbered = false, bool GenusIsProto = false, string GenusRoot = "",
