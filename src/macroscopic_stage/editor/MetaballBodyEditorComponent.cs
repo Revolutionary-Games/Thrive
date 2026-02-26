@@ -378,6 +378,8 @@ public partial class MetaballBodyEditorComponent :
         UpdateCellTypeSelections();
 
         RegenerateCellTypeIcon(changedType);
+
+        tolerancesEditor.OnDataTolerancesDependOnChanged();
     }
 
     [RunOnKeyDown("e_secondary")]
