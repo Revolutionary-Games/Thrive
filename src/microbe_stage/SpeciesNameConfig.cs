@@ -5,9 +5,6 @@ using ThriveScriptsShared;
 public class SpeciesNameConfig : IRegistryType
 {
     [JsonRequired]
-    public Dictionary<string, List<string>> MarkovTransitions = null!;
-
-    [JsonRequired]
     public List<string> PrefixCofix = null!;
 
     [JsonRequired]
@@ -55,12 +52,6 @@ public class SpeciesNameConfig : IRegistryType
         {
             throw new InvalidRegistryDataException("SpeciesNameConfig", GetType().Name,
                 "PrefixCofix is empty");
-        }
-
-        if (MarkovTransitions.Count < 1)
-        {
-            throw new InvalidRegistryDataException("SpeciesNameConfig", GetType().Name,
-                "MarkovTransitions is empty");
         }
 
         if (Suffixes.Count < 1)
