@@ -481,8 +481,19 @@ public class NameGenerator(SpeciesNameConfig config)
     private GrammaticalGender GenerateGenderedSuffix(Random random, StringBuilder stringBuilder, GrammaticalGender?
         parent, bool useBacteria)
     {
-        var gender = parent ?? GetRandomElement(random, (GrammaticalGender[])
-            Enum.GetValuesAsUnderlyingType<GrammaticalGender>());
+        GrammaticalGender gender;
+
+        // If the parent gender is ambiguous, we can consistently reroll the wanted grammatical gender for the new
+        // generation.
+        if (parent == GrammaticalGender.Ambiguous)
+        {
+            gender = GetRandomElement(random, (GrammaticalGender[])Enum.GetValuesAsUnderlyingType<GrammaticalGender>());
+        }
+        else
+        {
+            gender = parent ?? GetRandomElement(random,
+                (GrammaticalGender[])Enum.GetValuesAsUnderlyingType<GrammaticalGender>());
+        }
 
         var genderName = gender.ToString().ToLowerInvariant();
 
