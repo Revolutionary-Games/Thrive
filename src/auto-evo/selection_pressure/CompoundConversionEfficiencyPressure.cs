@@ -66,10 +66,7 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
 
-        var compoundGenerated = cache.GetCompoundGeneratedFrom(FromCompound, ToCompound, microbeSpecies, patch.Biome);
-
-        return cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies) *
-            MathF.Sqrt(compoundGenerated);
+        return cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies);
     }
 
     public override float GetEnergy(Patch patch)
