@@ -167,7 +167,17 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         }
     }
 
-    public bool Enabled => Process.SpeedMultiplier > 0;
+    public bool Enabled
+    {
+        get => LatestSnapshot?.Enabled ?? false;
+        set
+        {
+            if (LatestSnapshot == null)
+                throw new InvalidOperationException("No snapshot set");
+
+            LatestSnapshot.Enabled = value;
+        }
+    }
 
     public IReadOnlyList<Compound>? LimitingCompounds => LatestSnapshot?.LimitingCompounds;
 
@@ -378,6 +388,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         public readonly List<Compound> LimitingCompounds = new();
         public float CurrentSpeed;
         public float Delta;
+        public bool Enabled;
 
         /// <summary>
         ///   Prepares this for reuse
@@ -386,6 +397,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         {
             CurrentSpeed = 0;
             Delta = 0;
+            Enabled = false;
             Inputs.Clear();
             Outputs.Clear();
             LimitingCompounds.Clear();

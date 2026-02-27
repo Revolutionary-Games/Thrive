@@ -1132,6 +1132,9 @@ public static class MicrobeColonyHelpers
         control.QueuedSlimeSecretionTime = 0;
 
         ReportReproductionStatusOnAddToColony(addedEntity);
+
+        ref var processes = ref addedEntity.Get<BioProcesses>();
+        processes.DisabledProcesses = colony.Leader.Get<BioProcesses>().DisabledProcesses;
     }
 
     /// <summary>

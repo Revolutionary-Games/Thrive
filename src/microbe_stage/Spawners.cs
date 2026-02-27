@@ -700,7 +700,8 @@ public static class SpawnHelpers
 
         var bioProcesses = new BioProcesses
         {
-            ProcessStatistics = !aiControlled || forceBioProcessStatistics ? new ProcessStatistics() : null,
+            ProcessStatistics = !aiControlled || forceBioProcessStatistics ? new() : null,
+            DisabledProcesses = !aiControlled ? new() : null,
         };
 
         if (species is MulticellularSpecies multicellularSpecies)

@@ -1106,48 +1106,75 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
-        if (stage.Player.Has<MicrobeColony>())
-        {
-            ref var colony = ref stage.Player.Get<MicrobeColony>();
+        ref var bioProcesses = ref stage!.Player.Get<BioProcesses>();
 
-            foreach (var colonyMember in colony.ColonyMembers)
-            {
-                ref var bioProcesses = ref colonyMember.Get<BioProcesses>();
-                ToggleProcessOnEntity(equation, enabled, ref bioProcesses);
-            }
-        }
-        else
-        {
-            ref var bioProcesses = ref stage.Player.Get<BioProcesses>();
-            ToggleProcessOnEntity(equation, enabled, ref bioProcesses);
+        var foundProcess = FindToggledProcessInEntity(equation.EquationFromProcess, bioProcesses);
 
+        if (foundProcess != null)
+        {
             if (enabled)
             {
-                stage?.CurrentGame?.TutorialState.SendEvent(TutorialEventType.ProcessPanelProcessEnabled,
-                    EventArgs.Empty, this);
+                bioProcesses.DisabledProcesses!.Remove(foundProcess);
             }
+            else
+            {
+                bioProcesses.DisabledProcesses!.Add(foundProcess);
+            }
+        }
+
+        if (enabled)
+        {
+            stage?.CurrentGame?.TutorialState.SendEvent(TutorialEventType.ProcessPanelProcessEnabled,
+                EventArgs.Empty, this);
         }
     }
 
-    private void ToggleProcessOnEntity(ChemicalEquation equation, bool enabled, ref BioProcesses bioProcesses)
+    private BioProcess? FindToggledProcessInEntity(IProcessDisplayInfo display, BioProcesses bioProcesses)
     {
-        var activeProcesses = bioProcesses.ActiveProcesses;
+        var disabled = bioProcesses.DisabledProcesses;
 
-        if (activeProcesses == null)
-            return;
+        if (disabled == null)
+            return null;
 
-        var processesCount = activeProcesses.Count;
+        if (bioProcesses.ActiveProcesses == null)
+            return null;
 
-        for (int i = 0; i < processesCount; ++i)
+        var foundProcess = FindToggledProcessInList(display, bioProcesses.ActiveProcesses);
+
+        if (foundProcess != null)
+            return foundProcess;
+
+        if (stage!.Player.TryGet<MicrobeColony>(out var colony))
         {
-            // Update speed of the process controlled by the GUI control that signaled this change
-            if (equation.EquationFromProcess!.MatchesUnderlyingProcess(activeProcesses[i].Process))
+            for (int i = 1; i < colony.ColonyMembers.Length; i++)
             {
-                var process = activeProcesses[i];
-                process.SpeedMultiplier = enabled ? 1 : 0;
-                activeProcesses[i] = process;
+                if (!colony.ColonyMembers[i].TryGet<BioProcesses>(out var colonyMemberProcesses))
+                    continue;
+
+                if (colonyMemberProcesses.ActiveProcesses == null)
+                    continue;
+
+                foundProcess = FindToggledProcessInList(display, colonyMemberProcesses.ActiveProcesses);
+
+                if (foundProcess != null)
+                    return foundProcess;
             }
         }
+
+        return null;
+    }
+
+    private BioProcess? FindToggledProcessInList(IProcessDisplayInfo display, List<TweakedProcess> processes)
+    {
+        for (int i = 0; i < processes.Count; i++)
+        {
+            if (display.MatchesUnderlyingProcess(processes[i].Process))
+            {
+                return processes[i].Process;
+            }
+        }
+
+        return null;
     }
 
     private void OnRevertPromptClosed()

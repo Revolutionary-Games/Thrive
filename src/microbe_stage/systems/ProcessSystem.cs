@@ -157,7 +157,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
                         // Add without copying the base rate as that is outdated data we don't want to add to
                         result[j] = new TweakedProcess(processKey, process.Rate)
                         {
-                            SpeedMultiplier = replacedEntry.SpeedMultiplier,
                             Marked = true,
                         };
                     }
@@ -166,7 +165,6 @@ public partial class ProcessSystem : BaseSystem<World, float>
                         // Add to the existing rate. As TweakedProcess is a struct, this doesn't allocate memory
                         result[j] = new TweakedProcess(processKey, process.Rate + replacedEntry.Rate)
                         {
-                            SpeedMultiplier = replacedEntry.SpeedMultiplier,
                             Marked = true,
                         };
                     }
@@ -1125,13 +1123,14 @@ public partial class ProcessSystem : BaseSystem<World, float>
         if (environmentModifier <= MathUtils.EPSILON)
             canDoProcess = false;
 
-        if (process.SpeedMultiplier <= 0)
+        if (processorInfo.DisabledProcesses != null && processorInfo.DisabledProcesses.Contains(processData))
         {
             canDoProcess = false;
+            currentProcessStatistics?.Enabled = false;
         }
-        else if (process.SpeedMultiplier > 1)
+        else
         {
-            process.SpeedMultiplier = 1;
+            currentProcessStatistics?.Enabled = true;
         }
 
         // Compute spaceConstraintModifier before updating the final use and input amounts
@@ -1142,8 +1141,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             var inputCompound = entry.Key.ID;
 
-            var inputRemoved = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier *
-                overallSpeedModifier;
+            var inputRemoved = entry.Value * process.Rate * environmentModifier * overallSpeedModifier;
 
             // currentProcessStatistics?.AddInputAmount(entry.Key, 0);
             // We don't multiply by delta here because we report the per-second values anyway. In the actual
@@ -1190,8 +1188,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             // For now, lets assume compounds we produce are also useful
             bag.SetUseful(outputCompound);
 
-            var outputAdded = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier *
-                overallSpeedModifier;
+            var outputAdded = entry.Value * process.Rate * environmentModifier * overallSpeedModifier;
 
             // currentProcessStatistics?.AddOutputAmount(entry.Key, 0);
             currentProcessStatistics?.AddOutputAmount(outputCompound, outputAdded);
@@ -1240,8 +1237,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
             return;
         }
 
-        float totalModifier = process.Rate * delta * environmentModifier * spaceConstraintModifier *
-            process.SpeedMultiplier * overallSpeedModifier;
+        float totalModifier = process.Rate * delta * environmentModifier * spaceConstraintModifier
+            * overallSpeedModifier;
 
         // Apply ATP production speed cap if in effect
         if (isATPProducer && processorInfo.ATPProductionSpeedModifier != 0)
@@ -1260,8 +1257,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
         // TODO: should the overall speed modifier be included in here? It already has scaled the inputs and
         // outputs
-        currentProcessStatistics?.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier *
-            process.SpeedMultiplier * overallSpeedModifier;
+        currentProcessStatistics?.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier * overallSpeedModifier;
 
         // Consume inputs
         foreach (var entry in processData.Inputs)

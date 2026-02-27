@@ -65,10 +65,7 @@ public partial class CellBodyPlanEditorComponent
             {
                 // Apply specialization here to approximate it in this editor
                 newProcesses[i] = new TweakedProcess(newProcesses[i].Process,
-                    newProcesses[i].Rate * cellType.Value * specialization)
-                {
-                    SpeedMultiplier = newProcesses[i].SpeedMultiplier,
-                };
+                    newProcesses[i].Rate * cellType.Value * specialization);
             }
 
             ProcessSystem.MergeProcessLists(processes, newProcesses);

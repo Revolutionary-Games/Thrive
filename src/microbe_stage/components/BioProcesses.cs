@@ -22,6 +22,8 @@ public struct BioProcesses : IArchivableComponent
     /// </remarks>
     public List<TweakedProcess>? ActiveProcesses;
 
+    public HashSet<BioProcess>? DisabledProcesses;
+
     /// <summary>
     ///   If set to not-null process statistics are gathered here
     /// </summary>

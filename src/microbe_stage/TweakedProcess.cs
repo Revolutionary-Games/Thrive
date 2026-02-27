@@ -18,8 +18,6 @@ public struct TweakedProcess : IEquatable<TweakedProcess>, IArchivable
 
     public float Rate;
 
-    public float SpeedMultiplier = 1;
-
     /// <summary>
     ///   Indicates if this process is marked for a specific operation.
     /// </summary>
@@ -63,10 +61,7 @@ public struct TweakedProcess : IEquatable<TweakedProcess>, IArchivable
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        return new TweakedProcess(reader.ReadObject<BioProcess>(), reader.ReadFloat())
-        {
-            SpeedMultiplier = reader.ReadFloat(),
-        };
+        return new TweakedProcess(reader.ReadObject<BioProcess>(), reader.ReadFloat());
     }
 
     public static object ReadFromArchiveBoxed(ISArchiveReader reader, ushort version, int referenceId)
@@ -78,7 +73,6 @@ public struct TweakedProcess : IEquatable<TweakedProcess>, IArchivable
     {
         writer.WriteObject(Process);
         writer.Write(Rate);
-        writer.Write(SpeedMultiplier);
     }
 
     public override bool Equals(object? obj)
@@ -114,9 +108,6 @@ public struct TweakedProcess : IEquatable<TweakedProcess>, IArchivable
 
     public override string ToString()
     {
-        if (SpeedMultiplier != 1)
-            return $"{Process} at {Rate}x (mult: {SpeedMultiplier})";
-
         return $"{Process} at {Rate}x";
     }
 }
