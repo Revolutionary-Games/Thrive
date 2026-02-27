@@ -1,6 +1,5 @@
 ﻿namespace AutoEvo;
 
-using System;
 using SharedBase.Archive;
 
 public class CompoundConversionEfficiencyPressure : SelectionPressure
