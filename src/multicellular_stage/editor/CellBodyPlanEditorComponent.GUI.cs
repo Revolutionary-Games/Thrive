@@ -16,6 +16,8 @@ public partial class CellBodyPlanEditorComponent
     protected override void OnTranslationsChanged()
     {
         organismStatisticsPanel.OnTranslationsChanged();
+
+        UpdateSpecializationDisplay();
     }
 
     private void ConfirmFinishEditingWithNegativeATPPressed()
@@ -231,5 +233,38 @@ public partial class CellBodyPlanEditorComponent
     private void OnTolerancesEditorChangedData()
     {
         OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+    }
+
+    private void UpdateSpecializationDisplay()
+    {
+        double totalSpecialization = 0;
+        float maxSpecialization = -1;
+        string mostSpecializedCellName = Localization.Translate("NONE");
+
+        var cells = editedMicrobeCells;
+
+        var count = cells.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            var type = GetEditedCellDataIfEdited(cells[i].Data!.ModifiableCellType);
+
+            var specialization =
+                MicrobeInternalCalculations.CalculateSpecializationBonus(type.ModifiableOrganelles, tempMemory3);
+
+            // TODO: calculate adjacency specialization values
+            // https://github.com/Revolutionary-Games/Thrive/issues/6764
+            // totalSpecialization += specialization * adjacencySpecialization;
+
+            totalSpecialization += specialization;
+
+            if (specialization > maxSpecialization)
+            {
+                maxSpecialization = specialization;
+                mostSpecializedCellName = type.CellTypeName;
+            }
+        }
+
+        organismStatisticsPanel.UpdateCellBodyPlanSpecialization((float)(totalSpecialization / count), count,
+            maxSpecialization, mostSpecializedCellName);
     }
 }

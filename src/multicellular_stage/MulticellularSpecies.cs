@@ -347,7 +347,7 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     /// <returns>The calculated bonus (or 1, if it can't be calculated)</returns>
     public float GetAdjacencySpecializationBonus(int cellIndexInBodyPlan)
     {
-        // TODO: implement this method!
+        // TODO: implement this https://github.com/Revolutionary-Games/Thrive/issues/6764
         _ = cellIndexInBodyPlan;
         return 1;
     }

@@ -380,6 +380,8 @@ public partial class MetaballBodyEditorComponent :
         RegenerateCellTypeIcon(changedType);
 
         tolerancesEditor.OnDataTolerancesDependOnChanged();
+
+        // TODO: do we want specialization in macroscopic?
     }
 
     [RunOnKeyDown("e_secondary")]
@@ -429,6 +431,7 @@ public partial class MetaballBodyEditorComponent :
 
     protected override void OnTranslationsChanged()
     {
+        // TODO: do we want specialization in macroscopic?
     }
 
     protected override double CalculateCurrentActionCost()
@@ -1044,6 +1047,8 @@ public partial class MetaballBodyEditorComponent :
 
         OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
         tolerancesEditor.OnDataTolerancesDependOnChanged();
+
+        // TODO: do we want specialization in macroscopic?
     }
 
     private void OnSpeciesNameChanged(string newText)

@@ -590,6 +590,8 @@ public partial class CellBodyPlanEditorComponent :
         tolerancesEditor.OnDataTolerancesDependOnChanged();
 
         UpdateFinishButtonWarningVisibility();
+
+        UpdateSpecializationDisplay();
     }
 
     /// <summary>
@@ -1368,6 +1370,8 @@ public partial class CellBodyPlanEditorComponent :
 
         OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
         tolerancesEditor.OnDataTolerancesDependOnChanged();
+
+        UpdateSpecializationDisplay();
     }
 
     private void UpdateStats()
