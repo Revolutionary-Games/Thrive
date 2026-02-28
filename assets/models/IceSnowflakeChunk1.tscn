@@ -27,6 +27,5 @@ shader_parameter/outlineWidth = 0.0
 
 [node name="SnowflakeChunk1" unique_id=168656086 instance=ExtResource("1_11gvl")]
 
-[node name="snowflake1" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.091214895, -0.07145882, -0.054758072)
+[node name="snowflake1" parent="." index="0" unique_id=213776687]
 material_override = SubResource("ShaderMaterial_11gvl")
