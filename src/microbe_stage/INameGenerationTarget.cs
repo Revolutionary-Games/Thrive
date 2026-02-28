@@ -1,1 +1,1 @@
-public interface INameGenerationTarget;
+﻿public interface INameGenerationTarget;

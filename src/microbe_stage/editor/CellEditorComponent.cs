@@ -1236,6 +1236,8 @@ public partial class CellEditorComponent :
 
         if (previewMicrobeSpecies is not null)
         {
+            CopyEditedPropertiesToSpecies(previewMicrobeSpecies);
+
             return nameGenerator.GenerateGenusName(null, null, previewMicrobeSpecies) + " " +
                 nameGenerator.GenerateEpithetName(null, null, previewMicrobeSpecies);
         }
