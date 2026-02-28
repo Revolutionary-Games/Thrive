@@ -1257,7 +1257,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
         // TODO: should the overall speed modifier be included in here? It already has scaled the inputs and
         // outputs
-        currentProcessStatistics?.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier * overallSpeedModifier;
+        currentProcessStatistics?.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier
+            * overallSpeedModifier;
 
         // Consume inputs
         foreach (var entry in processData.Inputs)

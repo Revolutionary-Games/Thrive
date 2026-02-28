@@ -1146,7 +1146,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         if (stage!.Player.TryGet<MicrobeColony>(out var colony))
         {
-            for (int i = 1; i < colony.ColonyMembers.Length; i++)
+            for (int i = 1; i < colony.ColonyMembers.Length; ++i)
             {
                 if (!colony.ColonyMembers[i].TryGet<BioProcesses>(out var colonyMemberProcesses))
                     continue;
@@ -1166,7 +1166,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private BioProcess? FindToggledProcessInList(IProcessDisplayInfo display, List<TweakedProcess> processes)
     {
-        for (int i = 0; i < processes.Count; i++)
+        for (int i = 0; i < processes.Count; ++i)
         {
             if (display.MatchesUnderlyingProcess(processes[i].Process))
             {
