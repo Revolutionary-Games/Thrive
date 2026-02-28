@@ -8,7 +8,7 @@ using SharedBase.Archive;
 /// </summary>
 public struct BioProcesses : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     /// <summary>
     ///   The active processes that ProcessSystem handles
@@ -48,6 +48,7 @@ public struct BioProcesses : IArchivableComponent
     public void WriteToArchive(ISArchiveWriter writer)
     {
         writer.WriteObjectOrNull(ActiveProcesses);
+        writer.WriteObjectOrNull(DisabledProcesses);
         writer.Write(ProcessStatistics != null);
         writer.Write(ATPProductionSpeedModifier);
         writer.Write(OverallSpeedModifier);
@@ -64,6 +65,7 @@ public static class BioProcessesHelpers
         return new BioProcesses
         {
             ActiveProcesses = reader.ReadObjectOrNull<List<TweakedProcess>>(),
+            DisabledProcesses = reader.ReadObjectOrNull<HashSet<BioProcess>>(),
             ProcessStatistics = reader.ReadBool() ? new ProcessStatistics() : null,
             ATPProductionSpeedModifier = reader.ReadFloat(),
             OverallSpeedModifier = reader.ReadFloat(),
