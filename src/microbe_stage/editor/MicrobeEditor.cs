@@ -47,6 +47,8 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     private bool checkingTabVisibility;
     private double tabCheckVisibilityTimer = 10;
 
+    private Dictionary<OrganelleDefinition, int> tempMemory1 = new();
+
     public override bool CanCancelAction => cellEditorTab.Visible && cellEditorTab.CanCancelAction;
 
     public override Species EditedBaseSpecies =>
@@ -222,6 +224,41 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     public override void AddContextToAction(CombinableActionData editorActions)
     {
         // Microbe editor doesn't require any context data in actions
+    }
+
+    public ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
+    {
+        return cellEditorTab.CalculateRawTolerances(excludePositiveBuffs);
+    }
+
+    public void OnTolerancesChanged(EnvironmentalTolerances newTolerances)
+    {
+        cellEditorTab.OnTolerancesChanged(newTolerances);
+    }
+
+    public EnvironmentalTolerances GetOptimalTolerancesForCurrentPatch()
+    {
+        return CurrentPatch.GenerateTolerancesForMicrobe(EditedCellOrganelles);
+    }
+
+    public ToleranceResult CalculateCurrentTolerances(EnvironmentalTolerances calculationTolerances)
+    {
+        return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(calculationTolerances,
+            EditedCellOrganelles, CurrentPatch.Biome);
+    }
+
+    public void GetCurrentToleranceSummaryByElement(ToleranceModifier toleranceCategory,
+        Dictionary<IPlayerReadableName, float> result)
+    {
+        MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(EditedCellOrganelles,
+            toleranceCategory, result);
+    }
+
+    public void CalculateBodyEffectOnTolerances(
+        ref MicrobeEnvironmentalToleranceCalculations.ToleranceValues modifiedTolerances)
+    {
+        MicrobeEnvironmentalToleranceCalculations.ApplyOrganelleEffectsOnTolerances(EditedCellOrganelles,
+            ref modifiedTolerances);
     }
 
     protected override void ResolveDerivedTypeNodeReferences()
@@ -592,8 +629,12 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         var tolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
             MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(editedSpecies, CurrentPatch.Biome));
 
+        var specialization =
+            MicrobeInternalCalculations.CalculateSpecializationBonus(editedSpecies.ModifiableOrganelles.Organelles,
+                tempMemory1);
+
         ProcessSystem.ComputeEnergyBalanceSimple(editedSpecies.ModifiableOrganelles.Organelles,
-            CurrentPatch.Biome, in tolerances, editedSpecies.MembraneType, Vector3.Zero, false, true,
+            CurrentPatch.Biome, in tolerances, specialization, editedSpecies.MembraneType, Vector3.Zero, false, true,
             CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Maximum, null, energyBalance);
 
         return new MicrobeUnlocksData(editedSpecies, energyBalance);

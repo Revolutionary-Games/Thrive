@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-18 11:24+0200\n"
+"POT-Creation-Date: 2026-02-27 14:48+0200\n"
 "PO-Revision-Date: 2025-11-23 10:05+0000\n"
 "Last-Translator: Ariadna Gorosterrazu Ghezzi <ariadnagorosterrazu@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -744,6 +744,14 @@ msgstr "Celulosa"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
+msgstr "Activar/Desactivar engullir"
+
+#, fuzzy
+msgid "CELL_SPECIALIZATION_TOOLTIP"
+msgstr "Activar/Desactivar engullir"
 
 #, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
@@ -3060,18 +3068,6 @@ msgstr ""
 
 msgid "JUNE"
 msgstr ""
-
-msgid "KEEP_CURRENT_SHORT"
-msgstr ""
-
-#, fuzzy
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr ""
-"Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
-"Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
-"El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
-"Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
-"Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -5963,6 +5959,10 @@ msgstr "Spawnear glucosa"
 msgid "SPAWN_PHOSPHATES"
 msgstr "Spawnear fosfato"
 
+#, fuzzy
+msgid "SPECIALIZATION_COLON"
+msgstr "población:"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr ""
 
@@ -6617,9 +6617,6 @@ msgstr "Herramientas"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr ""
-
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
@@ -7225,7 +7222,23 @@ msgstr ""
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "población:"
 
+msgid "VALUE_MODIFIER"
+msgstr ""
+
+msgid "VALUE_OFFSET"
+msgstr ""
+
+#, fuzzy
+msgid "VALUE_TOTAL"
+msgstr "Nuevo Juego"
+
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VALUE_WITH_UNIT_PLUS"
+msgstr ""
+
+msgid "VALUE_WITH_UNIT_PLUS_MINUS"
 msgstr ""
 
 msgid "VENTS_ARE_HOME"
@@ -9495,6 +9508,15 @@ msgstr "Acercar la pantalla"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar la pantalla"
+
+#, fuzzy
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr ""
+#~ "Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
+#~ "Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
+#~ "El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
+#~ "Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
+#~ "Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
 
 #, fuzzy
 #~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"

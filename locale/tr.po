@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-18 11:24+0200\n"
-"PO-Revision-Date: 2026-02-12 10:49+0000\n"
+"POT-Creation-Date: 2026-02-27 14:48+0200\n"
+"PO-Revision-Date: 2026-02-25 18:02+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -708,6 +708,23 @@ msgstr "Selüloz"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Bu hücre zarı, genel hasara ve özellikle fiziksel hasara karşı daha iyi dayanıklılık sağlayan bir duvara sahip. Ayrıca şeklini korumak için daha az enerjiye mal olur. Ama kaynakları çabucak ememez ve daha yavaştır. [b]Selülaz, bu duvarı sindirebilir.[/b] Böylece bu duvarı yırtıcılara karşı savunmasız hale getirir."
+
+#, fuzzy
+msgid "CELL_LAYOUT_AVERAGE_SPECIALIZATION_TOOLTIP"
+msgstr ""
+"Bir hücrenin yalnızca bir organel türüne özel hale getirilmesi, o hücreye biyoişlem hızı bonusları sağlar.\n"
+"Mevcut bonus %{0} değerindedir (bonus yalnızca {3} organel yerleştirildikten sonra görünür ve {4} tane eklenene kadar gücü artar).\n"
+"Mevcut bonus, {1} adet {2} organeli bulunduğu için verilmekte.\n"
+"Bonus, en yaygın organel türünden daha fazlası yerleştirildikçe artar.\n"
+"Eğer bonus tam gücüne ulaşırsa, bonusu arttırmak için diğer organellerin yaygın organel türü ile değiştirilmesi gerekir."
+
+msgid "CELL_SPECIALIZATION_TOOLTIP"
+msgstr ""
+"Bir hücrenin yalnızca bir organel türüne özel hale getirilmesi, o hücreye biyoişlem hızı bonusları sağlar.\n"
+"Mevcut bonus %{0} değerindedir (bonus yalnızca {3} organel yerleştirildikten sonra görünür ve {4} tane eklenene kadar gücü artar).\n"
+"Mevcut bonus, {1} adet {2} organeli bulunduğu için verilmekte.\n"
+"Bonus, en yaygın organel türünden daha fazlası yerleştirildikçe artar.\n"
+"Eğer bonus tam gücüne ulaşırsa, bonusu arttırmak için diğer organellerin yaygın organel türü ile değiştirilmesi gerekir."
 
 msgid "CELL_STAT_ROTATION_TOOLTIP"
 msgstr ""
@@ -2980,12 +2997,6 @@ msgstr "Temmuz"
 msgid "JUNE"
 msgstr "Haziran"
 
-msgid "KEEP_CURRENT_SHORT"
-msgstr "Mevcut Olanı tut"
-
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "Minimum ve maksimum kaydırma butonlarını hareket ettirirken mevcut basınç tolerans aralığını tut"
-
 msgid "KEEP_MIGRATION"
 msgstr "Göçü Sürdür"
 
@@ -4212,9 +4223,8 @@ msgstr "Serbest Çok Hücreli Yapım Editörü"
 msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Hücreleriniz bileşikleri paylaşsa da, her hücrenin kendi [thrive:compound type=\"atp\"]ATP'sini[/thrive:compound] üretmesi gerekir. Herhangi bir hücre, bu molekülden yoksun kalırsa ölür."
 
-#, fuzzy
 msgid "MULTICELLULAR_PROCESS_PANEL_EXPLANATION"
-msgstr "(sonraki evrelere ulaştığında, bazı özellikler mevcut olmayabilir)"
+msgstr "Bu panel, koloninizin tüm hücrelerinin toplamını veren birleştirilmiş işlemleri gösterir. Diğer bileşiklerin aksine, ATP'nin hücreler arasında paylaşılmadığını unutmayın."
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Çok Hücreli Evresi"
@@ -4634,9 +4644,8 @@ msgstr "(bazı organelleri yerleştirmek için gerekli olan kilit açma koşulla
 msgid "ORGANISM_STATISTICS"
 msgstr "Organizma İstatistikleri"
 
-#, fuzzy
 msgid "ORGANISM_STATISTICS_MICROBE"
-msgstr "Organizma İstatistikleri"
+msgstr "Hücre İstatistikleri"
 
 msgid "OR_UNLOCK_CONDITION"
 msgstr "veya"
@@ -4988,14 +4997,12 @@ msgstr "Yüklenen nesneler işleniyor"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
-#, fuzzy
 msgid "PROCESS_PANEL_EXPLANATION_TITLE"
-msgstr "Hücre İşlemleri"
+msgstr "Organizma İşlem Paneli Açıklaması"
 
 msgid "PROCESS_PANEL_TITLE"
-msgstr "Hücre İşlemleri"
+msgstr "Organizma İşlemleri"
 
-#, fuzzy
 msgid "PROCESS_PANEL_TITLE_MICROBE"
 msgstr "Hücre İşlemleri"
 
@@ -5710,6 +5717,9 @@ msgstr "Glukoz oluştur"
 msgid "SPAWN_PHOSPHATES"
 msgstr "Fosfat oluştur"
 
+msgid "SPECIALIZATION_COLON"
+msgstr "Özelleşme:"
+
 msgid "SPECIAL_MOUSE_1"
 msgstr "Özel Fare Tuşu 1"
 
@@ -6327,9 +6337,6 @@ msgstr "Araçlar"
 
 msgid "TOOL_HAND_AXE"
 msgstr "El Baltası"
-
-msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr "Basınç aralığı çok geniş"
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr "Çok fazla sürüm olduğundan bütün son sürümler gösterilemiyor"
@@ -7003,8 +7010,23 @@ msgstr "Hücrenin depo alanını arttırır."
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Koful, seçili bileşikten {0} birim depolayacak"
 
+msgid "VALUE_MODIFIER"
+msgstr "Çarpan"
+
+msgid "VALUE_OFFSET"
+msgstr "Sapma"
+
+msgid "VALUE_TOTAL"
+msgstr "Toplam"
+
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
+
+msgid "VALUE_WITH_UNIT_PLUS"
+msgstr "+{0} {1}"
+
+msgid "VALUE_WITH_UNIT_PLUS_MINUS"
+msgstr "±{0} {1}"
 
 msgid "VENTS_ARE_HOME"
 msgstr "Bacalar Benim Evim"
@@ -7031,9 +7053,8 @@ msgid "VIEW_ALL"
 msgstr "Tümünü Görüntüle"
 
 msgid "VIEW_CELL_PROCESSES"
-msgstr "Hücre İşlemlerini İncele"
+msgstr "Organizma İşlemlerini İncele"
 
-#, fuzzy
 msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr "Hücre İşlemlerini İncele"
 
@@ -9638,6 +9659,15 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#~ msgid "KEEP_CURRENT_SHORT"
+#~ msgstr "Mevcut Olanı tut"
+
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr "Minimum ve maksimum kaydırma butonlarını hareket ettirirken mevcut basınç tolerans aralığını tut"
+
+#~ msgid "TOO_LARGE_PRESSURE_RANGE"
+#~ msgstr "Basınç aralığı çok geniş"
 
 #~ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 #~ msgstr "Sonraki evre prototiplerini dahil et"

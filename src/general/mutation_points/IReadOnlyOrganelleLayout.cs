@@ -26,6 +26,12 @@ public class ReadonlyOrganelleLayoutAdapter<TReadOnly, TUnderlying> : IReadOnlyO
 
     public int Count => wrappedLayout.Count;
 
+    public TReadOnly this[int index]
+    {
+        get => wrappedLayout[index];
+        set => throw new NotSupportedException();
+    }
+
     public TReadOnly? GetElementAt(Hex location, List<Hex> temporaryHexesStorage)
     {
         return wrappedLayout.GetElementAt(location, temporaryHexesStorage);

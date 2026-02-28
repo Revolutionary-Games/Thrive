@@ -418,14 +418,14 @@ public partial class CellEditorComponent
 
     private void OnTolerancesEditorChangedData()
     {
-        OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+        TriggerOnTolerancesChanged(tolerancesEditor.CurrentTolerances);
 
         tutorialState?.SendEvent(TutorialEventType.MicrobeEditorTolerancesModified, EventArgs.Empty, this);
     }
 
     /// <summary>
     ///   In the case of the multicellular editor, some actions need to work even if the editor has been reinitialized
-    ///   in the meantime since they were performed. For sanity checking sake, we throw an exception in those cases
+    ///   in the meantime since they were performed. For sanity checking's sake, we throw an exception in those cases
     ///   if they are reached in non-multicellular editor mode.
     /// </summary>
     /// <exception cref="InvalidOperationException">The exception thrown if we aren't in multicellular</exception>

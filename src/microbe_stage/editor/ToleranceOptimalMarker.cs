@@ -58,7 +58,7 @@ public partial class ToleranceOptimalMarker : Control
     /// </summary>
     public void UpdateMarker()
     {
-        optimalValueMarker.Position = new Vector2((Size.X - optimalValueMarker.Size.X + 0.5f) * optimalValue - 0.5f,
+        optimalValueMarker.Position = new Vector2(Size.X * optimalValue - optimalValueMarker.Size.X * 0.5f,
             optimalValueMarker.Position.Y);
     }
 }

@@ -19,7 +19,7 @@ using UnlockConstraints;
 ///   </para>
 /// </remarks>
 #pragma warning disable CA1001 // Owns Godot resource that is fine to stay for the program lifetime
-public class OrganelleDefinition : RegistryType, INameGenerationTarget
+public class OrganelleDefinition : RegistryType, INameGenerationTarget, IPlayerReadableName
 #pragma warning restore CA1001
 {
     /// <summary>
@@ -259,8 +259,11 @@ public class OrganelleDefinition : RegistryType, INameGenerationTarget
     [JsonIgnore]
     public string NameWithoutSpecialCharacters => Name.Replace('\n', ' ');
 
+    [JsonIgnore]
+    public string ReadableName => Name;
+
     /// <summary>
-    ///   The total amount of compounds in InitialComposition
+    ///   The sum of all compound values in InitialComposition
     /// </summary>
     [JsonIgnore]
     public float OrganelleCost { get; private set; }
@@ -312,7 +315,7 @@ public class OrganelleDefinition : RegistryType, INameGenerationTarget
     // Easy access to precalculated total tolerance modifiers
     public float ToleranceModifierOxygen { get; private set; }
     public float ToleranceModifierUV { get; private set; }
-    public float ToleranceModifierPressureRange { get; private set; }
+    public float ToleranceModifierPressureTolerance { get; private set; }
     public float ToleranceModifierTemperatureRange { get; private set; }
 
     /// <summary>
@@ -867,7 +870,7 @@ public class OrganelleDefinition : RegistryType, INameGenerationTarget
     {
         ToleranceModifierOxygen = 0;
         ToleranceModifierUV = 0;
-        ToleranceModifierPressureRange = 0;
+        ToleranceModifierPressureTolerance = 0;
         ToleranceModifierTemperatureRange = 0;
 
         foreach (var toleranceEffect in ToleranceEffects)
@@ -883,8 +886,8 @@ public class OrganelleDefinition : RegistryType, INameGenerationTarget
                 case ToleranceModifier.TemperatureRange:
                     ToleranceModifierTemperatureRange += toleranceEffect.Value;
                     break;
-                case ToleranceModifier.PressureRange:
-                    ToleranceModifierPressureRange += toleranceEffect.Value;
+                case ToleranceModifier.PressureTolerance:
+                    ToleranceModifierPressureTolerance += toleranceEffect.Value;
                     break;
                 default:
                     GD.PrintErr("Unknown tolerance type for organelle to effect: ", toleranceEffect.Key);
@@ -893,7 +896,7 @@ public class OrganelleDefinition : RegistryType, INameGenerationTarget
         }
 
         AffectsTolerances = ToleranceModifierOxygen != 0 || ToleranceModifierUV != 0 ||
-            ToleranceModifierTemperatureRange != 0 || ToleranceModifierPressureRange != 0;
+            ToleranceModifierTemperatureRange != 0 || ToleranceModifierPressureTolerance != 0;
     }
 
     private bool TryGetGraphicsForUpgrade(IReadOnlyOrganelleUpgrades? upgrades,

@@ -19,24 +19,7 @@ public static class Constants
     /// </summary>
     public const float SIMULATION_MAX_DELTA_TIME = 0.2f;
 
-    /// <summary>
-    ///   Controls the number of threads used by the entity systems. The number of cells is divided by this,
-    ///   and that is the max number of threads.
-    /// </summary>
-    public const int SIMULATION_CELLS_PER_THREAD_ESTIMATE = 25;
-
     public const float SIMULATION_REQUIRED_FAST_MODE_SUCCESS_RATE = 0.45f;
-
-    // The following variables define the number of entities each thread running a system of that category needs to be
-    // able to process for threading to be used at all. For example, if there are 40 entities and 4 threads to be used
-    // and a system specifies 10 entities per thread, that system will run multithreaded (4 * 10 {40} <= 40).
-    // But if there was a system that wanted at least 15 entities per thread, that would run purely *single threaded*
-    // (4 * 15 {60} <= 40)
-    public const int SYSTEM_LOW_ENTITIES_PER_THREAD = 8;
-    public const int SYSTEM_NORMAL_ENTITIES_PER_THREAD = 12;
-    public const int SYSTEM_HIGHER_ENTITIES_PER_THREAD = 18;
-    public const int SYSTEM_HIGH_ENTITIES_PER_THREAD = 24;
-    public const int SYSTEM_EXTREME_ENTITIES_PER_THREAD = 40;
 
     /// <summary>
     ///   Makes sure that at least this many task threads are left idle when creating membrane generation background
@@ -441,10 +424,6 @@ public static class Constants
     public const int INITIAL_FREEBUILD_POPULATION_VARIANCE_MIN = 0;
     public const int INITIAL_FREEBUILD_POPULATION_VARIANCE_MAX = 400;
 
-    // Right now these are used for species split from the player
-    public const int INITIAL_SPLIT_POPULATION_MIN = 600;
-    public const int INITIAL_SPLIT_POPULATION_MAX = 2000;
-
     public const string MICROBE_MOVEMENT_SOUND = "res://assets/sounds/soundeffects/microbe-movement-ambience.ogg";
     public const string MICROBE_ENGULFING_MODE_SOUND = "res://assets/sounds/soundeffects/engulfment.ogg";
     public const string MICROBE_BINDING_MODE_SOUND = "res://assets/sounds/soundeffects/binding.ogg";
@@ -688,6 +667,23 @@ public static class Constants
     public const float COMPOUNDS_TO_VENT_PER_SECOND = 5.0f;
 
     public const float DEFAULT_MICROBE_VENT_THRESHOLD = 2.0f;
+
+    /// <summary>
+    ///   A cell needs to have this many organelles for specialization to apply to it
+    /// </summary>
+    public const int CELL_SPECIALIZATION_APPLIES_AFTER_SIZE = 6;
+
+    /// <summary>
+    ///   How many organelles a cell needs to have to be considered fully specialized. (i.e. the full specialization
+    ///   bonus is granted)
+    /// </summary>
+    public const int CELL_SPECIALIZATION_STRENGTH_FULL_AT = 20;
+
+    /// <summary>
+    ///   Controls how strong the cell specialization effect is (this is a flat multiplier right now but we could use
+    ///   something like a power curve or another function for diminishing returns)
+    /// </summary>
+    public const float CELL_SPECIALIZATION_STRENGTH_MULTIPLIER = 0.8f;
 
     /// <summary>
     ///   If more chunks exist at once than this, then some are forced to despawn immediately. In reality the effective
@@ -1967,21 +1963,36 @@ public static class Constants
 
     public const float PATCH_GENERATION_CHANCE_BANANA_BIOME = 0.03f;
 
+    public const float TOLERANCE_DISPLAY_BOUND_HEIGHT = 15.0f;
+    public const float TOLERANCE_DISPLAY_MIDDLE_HEIGHT = 6.0f;
+    public const float TOLERANCE_DISPLAY_MARKER_WIDTH = 2.0f;
+    public const float TOLERANCE_DISPLAY_MAIN_LINE_WIDTH = 4.0f;
+    public const float TOLERANCE_DISPLAY_CONNECTOR_BEND_Y_OFFSET = 1.5f;
+
+    /// <summary>
+    ///   The vertical distance in pixels from the top of each <see cref="ToleranceRangeDisplay"/> to the center of
+    ///   the grabber of the related slider.
+    /// </summary>
+    public const float TOLERANCE_DISPLAY_SLIDER_GRABBER_Y_OFFSET = 28.0f;
+
     public const float TOLERANCE_INITIAL_TEMPERATURE_RANGE = 10;
     public const float TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE = 2;
     public const float TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE = 40;
     public const float TOLERANCE_PERFECT_TEMPERATURE_SCORE = 0.1f;
 
     public const float TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE = 4000000;
+    public const float TOLERANCE_PERFECT_PRESSURE_SCORE = 0.1f;
+
+    /// <summary>
+    ///   Maximum pressure.
+    ///   Should be equal to the maximum value of <see cref="TolerancesEditorSubComponent.pressureSlider"/>.
+    /// </summary>
+    public const float TOLERANCE_PRESSURE_MAX = 80000000;
+
     public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 350000;
 
-    // These are chosen to be symmetric so that the pressure tolerance range ends up easier to show correctly in the
-    // GUI
-    public const float TOLERANCE_INITIAL_PRESSURE_MIN_FRACTION = 0.8f;
-    public const float TOLERANCE_INITIAL_PRESSURE_MAX_FRACTION = 1.2f;
-
+    public const float TOLERANCE_INITIAL_PRESSURE_RANGE = 2400000;
     public const float TOLERANCE_PRESSURE_RANGE_MAX = 2000000;
-    public const float TOLERANCE_PERFECT_PRESSURE_SCORE = 0.1f;
 
     /// <summary>
     ///   UV effects only appear once this amount of UV is in a patch
@@ -2009,17 +2020,9 @@ public static class Constants
     /// <summary>
     ///   As pressure values are massive, this is a double to get reasonable MP costs
     /// </summary>
-    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE = 0.000002;
+    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_MINIMUM = 0.000002;
 
-    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_INVERTED = 1.0f / TOLERANCE_CHANGE_MP_PER_PRESSURE;
-
-    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00005;
-
-    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE =
-        TOLERANCE_CHANGE_MP_PER_PRESSURE + TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE;
-
-    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE_INVERTED =
-        1.0f / TOLERANCE_CHANGE_MP_PER_PRESSURE_AND_TOLERANCE;
+    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00001;
 
     // Environmental tolerance debuff / buff tweak variables
     public const float TOLERANCE_TEMPERATURE_SPEED_MODIFIER_MIN = 0.8f;
@@ -2037,6 +2040,11 @@ public static class Constants
 
     public const float TOLERANCE_UV_HEALTH_MIN = 0.5f;
     public const float TOLERANCE_UV_OSMOREGULATION_MAX = 1.5f;
+
+    /// <summary>
+    ///   This is an additional modifier on top of the averaging effect applied to make the values less extreme.
+    /// </summary>
+    public const float TOLERANCE_ORGANELLE_EFFECT_MULTIPLIER_IN_MULTICELLULAR = 1.0f;
 
     /// <summary>
     ///   If set to true, then physics debug draw gets enabled when the game starts

@@ -705,7 +705,7 @@ public static class SpawnHelpers
 
         if (species is MulticellularSpecies multicellularSpecies)
         {
-            // TODO: multicellular tolerances
+            var multicellularTolerances = spawnEnvironment.GetSpeciesTolerances(multicellularSpecies);
 
             multicellular = multicellularSpecies;
             CellType resolvedCellType;
@@ -725,6 +725,11 @@ public static class SpawnHelpers
                 var properties = new CellProperties(multicellularData.MulticellularCellType);
                 membraneType = properties.MembraneType;
                 recorder.Set(entity, properties);
+
+                environmentalEffects.ApplyEffects(multicellularTolerances,
+                    resolvedCellType.SpecializationBonus *
+                    multicellularSpecies.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex),
+                    ref bioProcesses);
 
                 // TODO: should this also be given MulticellularGrowth to allow this to grow fully if the colony splits
             }
@@ -746,6 +751,11 @@ public static class SpawnHelpers
                 // TODO: determine if this has negative effects and the signature should be adjusted (to split on
                 // this one more variable)
                 recorder.Add(entity, new MulticellularGrowth(multicellularSpecies));
+
+                environmentalEffects.ApplyEffects(multicellularTolerances,
+                    resolvedCellType.SpecializationBonus *
+                    multicellularSpecies.GetAdjacencySpecializationBonus(multicellularData.CellBodyPlanIndex),
+                    ref bioProcesses);
             }
 
 #if DEBUG
@@ -760,7 +770,8 @@ public static class SpawnHelpers
         }
         else if (species is MicrobeSpecies microbeSpecies)
         {
-            environmentalEffects.ApplyEffects(spawnEnvironment.GetSpeciesTolerances(microbeSpecies), ref bioProcesses);
+            environmentalEffects.ApplyEffects(spawnEnvironment.GetSpeciesTolerances(microbeSpecies),
+                microbeSpecies.SpecializationBonus, ref bioProcesses);
 
             recorder.Set(entity, new MicrobeSpeciesMember
             {

@@ -41,10 +41,8 @@ custom_minimum_size = Vector2(0, 35)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -37.0
-offset_right = 434.0
-offset_bottom = -2.0
+offset_top = -35.0
+offset_right = 449.0
 grow_vertical = 0
 script = ExtResource("26")
 pauseButton = NodePath("PauseButtonMargin/PlayButton")
@@ -57,7 +55,7 @@ suicideButton = NodePath("SuicideButton")
 ProcessPanelButtonControl = NodePath("ChemicalButton")
 
 [node name="OpenMenu" type="TextureButton" parent="." unique_id=474376962]
-custom_minimum_size = Vector2(50, 35)
+custom_minimum_size = Vector2(46, 35)
 layout_mode = 2
 tooltip_text = "STAGE_MENU_BUTTON_TOOLTIP"
 texture_normal = ExtResource("4")
