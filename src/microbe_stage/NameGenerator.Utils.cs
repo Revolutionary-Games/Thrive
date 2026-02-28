@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -187,12 +187,12 @@ public partial class NameGenerator
     }
 
     public record NamingState(bool GenusIsNumbered = false, bool GenusIsProto = false, string GenusRoot = "",
-        GrammaticalGender Gender = GrammaticalGender.Neuter, OrganelleDefinition? NumberedOrganelle = null)
+        GrammaticalGender Gender = GrammaticalGender.Neuter, INameGenerationTarget? Target = null)
     {
         public bool GenusIsNumbered = GenusIsNumbered;
         public bool GenusIsProto = GenusIsProto;
         public string GenusRoot = GenusRoot;
         public GrammaticalGender Gender = Gender;
-        public OrganelleDefinition? NumberedOrganelle = NumberedOrganelle;
+        public INameGenerationTarget? Target = Target;
     }
 }

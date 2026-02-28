@@ -17,13 +17,15 @@ public partial class NameGenerator(SpeciesNameConfig config)
         random ??= new XoShiRo256starstar();
 
         GenerateGenusNameInternal(random, stringBuilder, speciesOld, speciesNew, out var isNumbered, out var isProto,
-            out var newRoot, out var newGender, out var numberedOrganelle);
+            out var newRoot, out var newGender, out var target);
 
-        speciesNew.NamingState = new NamingState(isNumbered, isProto, newRoot, newGender, numberedOrganelle);
+        speciesNew.NamingState = new NamingState(isNumbered, isProto, newRoot, newGender, target);
 
         stringBuilder[0] = char.ToUpperInvariant(stringBuilder[0]);
 
-        return stringBuilder.ToString();
+        var name = stringBuilder.ToString();
+
+        return name;
     }
 
     public string GenerateEpithetName(Random? random, MicrobeSpecies? speciesOld, MicrobeSpecies speciesNew)
@@ -46,13 +48,14 @@ public partial class NameGenerator(SpeciesNameConfig config)
 
     private void GenerateGenusNameInternal(Random random, StringBuilder stringBuilder,
         MicrobeSpecies? speciesOld, MicrobeSpecies speciesNew, out bool isNumbered, out bool isProto,
-        out string newRoot, out GrammaticalGender newGender, out OrganelleDefinition? numberedOrganelle)
+        out string newRoot, out GrammaticalGender newGender, out INameGenerationTarget? target)
     {
-        numberedOrganelle = null;
+        target = null;
 
         if (speciesOld?.NamingState is null)
         {
-            GenerateFreshGenusName(random, stringBuilder, speciesNew, out newRoot, out newGender, out isProto);
+            GenerateFreshGenusName(random, stringBuilder, speciesNew, out target, out newRoot, out newGender,
+                out isProto);
 
             isNumbered = false;
 
@@ -64,48 +67,61 @@ public partial class NameGenerator(SpeciesNameConfig config)
         var species1UniqueOrganelles = speciesOld.Organelles.Select(o => o.Definition).ToHashSet();
         var species2UniqueOrganelles = speciesNew.Organelles.Select(o => o.Definition).ToHashSet();
         var newOrganelles = species2UniqueOrganelles.Except(species1UniqueOrganelles).ToHashSet();
-
-        // var lostOrganelles = species1UniqueOrganelles.Except(species2UniqueOrganelles).ToHashSet();
+        var lostOrganelles = species1UniqueOrganelles.Except(species2UniqueOrganelles).ToHashSet();
 
         bool useBacteriaSuffix = random.Next(100) < 10 && speciesNew.IsBacteria;
 
-        if (newOrganelles.Count == 0 && speciesOld.NamingState is { GenusIsNumbered: false })
-        {
-            // We don't need to create a new genus name, so we return the old one.
-            if (!namingState.GenusIsProto)
-            {
-                stringBuilder.Append(speciesOld.Genus);
+        // Without too many headaches, we regenerate the genus root when we lose at least one organelle.
+        // This ensures having a new unique name that is unrelated to the lost organelle or processes without comparing
+        // all the new processes to the old target.
+        bool regenerateRoot = lostOrganelles.Count > 0;
 
-                isNumbered = namingState.GenusIsNumbered;
-                isProto = namingState.GenusIsProto;
+        if (namingState.Target == null || !regenerateRoot)
+        {
+            if (newOrganelles.Count == 0 && speciesOld.NamingState is { GenusIsNumbered: false })
+            {
+                // We don't need to create a new genus name, so we return the old one.
+                if (!namingState.GenusIsProto)
+                {
+                    stringBuilder.Append(speciesOld.Genus);
+
+                    isNumbered = namingState.GenusIsNumbered;
+                    isProto = namingState.GenusIsProto;
+                    newRoot = namingState.GenusRoot;
+                    newGender = namingState.Gender;
+
+                    return;
+                }
+
+                PhonotacticsFriendlyAppend(stringBuilder, "Eu");
+                PhonotacticsFriendlyAppend(stringBuilder, namingState.GenusRoot);
+
+                isNumbered = false;
+                isProto = false;
                 newRoot = namingState.GenusRoot;
-                newGender = namingState.Gender;
+                newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender, useBacteriaSuffix);
 
                 return;
             }
 
-            PhonotacticsFriendlyAppend(stringBuilder, "Eu");
-            PhonotacticsFriendlyAppend(stringBuilder, namingState.GenusRoot);
+            if (namingState.GenusIsProto && random.Next(3) == 0)
+            {
+                PhonotacticsFriendlyAppend(stringBuilder, config.QualityRoots["new"].Random(random));
+                PhonotacticsFriendlyAppend(stringBuilder, namingState.GenusRoot);
 
-            isNumbered = false;
-            isProto = false;
-            newRoot = namingState.GenusRoot;
-            newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender, useBacteriaSuffix);
+                isNumbered = namingState.GenusIsNumbered;
+                isProto = false;
+                newRoot = namingState.GenusRoot;
+                newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender, useBacteriaSuffix);
 
-            return;
-        }
+                // Force genus change on the old species to acquire the "Eu-" prefix.
+                speciesOld.Genus = GenerateGenusName(random, speciesOld, speciesOld);
+                speciesOld.Epithet = GenerateEpithetName(random, speciesOld, speciesOld);
 
-        if (namingState.GenusIsProto && random.Next(3) == 0)
-        {
-            PhonotacticsFriendlyAppend(stringBuilder, config.QualityRoots["new"].Random(random));
-            PhonotacticsFriendlyAppend(stringBuilder, namingState.GenusRoot);
+                return;
+            }
 
-            isNumbered = namingState.GenusIsNumbered;
-            isProto = false;
-            newRoot = namingState.GenusRoot;
-            newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender, useBacteriaSuffix);
-
-            return;
+            target = null;
         }
 
         var randomOrganelle = newOrganelles.Count == 0 ?
@@ -114,7 +130,7 @@ public partial class NameGenerator(SpeciesNameConfig config)
 
         int organelleCount = speciesNew.Organelles.Count(organelle => organelle.Definition == randomOrganelle);
 
-        if (namingState.GenusIsNumbered && randomOrganelle == namingState.NumberedOrganelle)
+        if (namingState.GenusIsNumbered && randomOrganelle == namingState.Target)
         {
             // Override other rules: we increment the organelle count to maintain consistency in the naming system.
             if (!config.Quantity.TryGetValue(organelleCount.ToString(), out var quantity))
@@ -139,11 +155,9 @@ public partial class NameGenerator(SpeciesNameConfig config)
 
         isProto = false;
 
-        GenerateGenusRoot(random, stringBuilder, randomOrganelle, organelleCount, out isNumbered, out var root);
+        GenerateGenusRoot(random, stringBuilder, randomOrganelle, organelleCount, out target, out isNumbered,
+            out var root);
         var gender = GenerateGenderedSuffix(random, stringBuilder, null, useBacteriaSuffix);
-
-        if (isNumbered)
-            numberedOrganelle = randomOrganelle;
 
         newRoot = root;
         newGender = gender;
@@ -314,8 +328,10 @@ public partial class NameGenerator(SpeciesNameConfig config)
     }
 
     private void GenerateFreshGenusName(Random random, StringBuilder stringBuilder, MicrobeSpecies species,
-        out string root, out GrammaticalGender gender, out bool isProto)
+        out INameGenerationTarget? target, out string root, out GrammaticalGender gender, out bool isProto)
     {
+        target = null;
+
         var speciesUniqueOrganelles = species.Organelles.Select(o => o.Definition).ToHashSet();
 
         var randomOrganelle = speciesUniqueOrganelles.Random(random);
@@ -346,7 +362,7 @@ public partial class NameGenerator(SpeciesNameConfig config)
                 PhonotacticsFriendlyAppend(stringBuilder, "prim");
                 break;
             default:
-                GenerateGenusRoot(random, stringBuilder, randomOrganelle, organelleCount, out _, out root);
+                GenerateGenusRoot(random, stringBuilder, randomOrganelle, organelleCount, out target, out _, out root);
                 break;
         }
 
@@ -358,9 +374,10 @@ public partial class NameGenerator(SpeciesNameConfig config)
     }
 
     private void GenerateGenusRoot(Random random, StringBuilder stringBuilder, OrganelleDefinition randomOrganelle,
-        int organelleCount, out bool isNumbered, out string root)
+        int organelleCount, out INameGenerationTarget target, out bool isNumbered, out string root)
     {
         isNumbered = false;
+        target = randomOrganelle;
 
         var randomOrganelleProcesses = randomOrganelle.RunnableProcesses;
 
@@ -381,8 +398,11 @@ public partial class NameGenerator(SpeciesNameConfig config)
                 else
                 {
                     // Rule 2: use the process definition naming system
-                    isNumbered = GenerateProcessBasedName(random, stringBuilder,
-                        randomOrganelleProcesses.Random(random).Process, out root);
+                    var process = randomOrganelleProcesses.Random(random).Process;
+
+                    isNumbered = GenerateProcessBasedName(random, stringBuilder, process, out root);
+
+                    target = process;
                 }
 
                 break;

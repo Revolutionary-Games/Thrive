@@ -19,7 +19,7 @@ using UnlockConstraints;
 ///   </para>
 /// </remarks>
 #pragma warning disable CA1001 // Owns Godot resource that is fine to stay for the program lifetime
-public class OrganelleDefinition : RegistryType
+public class OrganelleDefinition : RegistryType, INameGenerationTarget
 #pragma warning restore CA1001
 {
     /// <summary>
