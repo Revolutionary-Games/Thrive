@@ -52,7 +52,7 @@ public partial class NameGenerator(SpeciesNameConfig config)
     {
         target = null;
 
-        if (speciesOld?.NamingState is null)
+        if (speciesOld is null)
         {
             GenerateFreshGenusName(random, stringBuilder, speciesNew, out target, out newRoot, out newGender,
                 out isProto);
@@ -62,12 +62,16 @@ public partial class NameGenerator(SpeciesNameConfig config)
             return;
         }
 
-        var namingState = speciesOld.NamingState!;
-
         var species1UniqueOrganelles = speciesOld.Organelles.Select(o => o.Definition).ToHashSet();
         var species2UniqueOrganelles = speciesNew.Organelles.Select(o => o.Definition).ToHashSet();
         var newOrganelles = species2UniqueOrganelles.Except(species1UniqueOrganelles).ToHashSet();
         var lostOrganelles = species1UniqueOrganelles.Except(species2UniqueOrganelles).ToHashSet();
+
+        var randomOrganelle = newOrganelles.Count == 0 ?
+            species2UniqueOrganelles.Random(random) :
+            newOrganelles.Random(random);
+
+        int organelleCount = speciesNew.Organelles.Count(organelle => organelle.Definition == randomOrganelle);
 
         bool useBacteriaSuffix = random.Next(100) < 10 && speciesNew.IsBacteria;
 
@@ -76,81 +80,80 @@ public partial class NameGenerator(SpeciesNameConfig config)
         // all the new processes to the old target.
         bool regenerateRoot = lostOrganelles.Count > 0;
 
-        if (namingState.Target == null || !regenerateRoot)
+        if (speciesOld.NamingState is not null)
         {
-            if (newOrganelles.Count == 0 && speciesOld.NamingState is { GenusIsNumbered: false })
-            {
-                // We don't need to create a new genus name, so we return the old one.
-                if (!namingState.GenusIsProto)
-                {
-                    stringBuilder.Append(speciesOld.Genus);
+            var namingState = speciesOld.NamingState!;
 
-                    isNumbered = namingState.GenusIsNumbered;
-                    isProto = namingState.GenusIsProto;
+            if (namingState.Target == null || !regenerateRoot)
+            {
+                if (newOrganelles.Count == 0 && speciesOld.NamingState is { GenusIsNumbered: false })
+                {
+                    // We don't need to create a new genus name, so we return the old one.
+                    if (!namingState.GenusIsProto)
+                    {
+                        stringBuilder.Append(speciesOld.Genus);
+
+                        isNumbered = namingState.GenusIsNumbered;
+                        isProto = namingState.GenusIsProto;
+                        newRoot = namingState.GenusRoot;
+                        newGender = namingState.Gender;
+
+                        return;
+                    }
+
+                    PhonotacticsFriendlyAppend(stringBuilder, "Eu");
+                    PhonotacticsFriendlyAppend(stringBuilder, namingState.GenusRoot);
+
+                    isNumbered = false;
+                    isProto = false;
                     newRoot = namingState.GenusRoot;
-                    newGender = namingState.Gender;
+                    newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender, useBacteriaSuffix);
 
                     return;
                 }
 
-                PhonotacticsFriendlyAppend(stringBuilder, "Eu");
+                if (namingState.GenusIsProto && random.Next(3) == 0)
+                {
+                    PhonotacticsFriendlyAppend(stringBuilder, config.QualityRoots["new"].Random(random));
+                    PhonotacticsFriendlyAppend(stringBuilder, namingState.GenusRoot);
+
+                    isNumbered = namingState.GenusIsNumbered;
+                    isProto = false;
+                    newRoot = namingState.GenusRoot;
+                    newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender, useBacteriaSuffix);
+
+                    // Force genus change on the old species to acquire the "Eu-" prefix.
+                    speciesOld.Genus = GenerateGenusName(random, speciesOld, speciesOld);
+                    speciesOld.Epithet = GenerateEpithetName(random, speciesOld, speciesOld);
+
+                    return;
+                }
+
+                target = null;
+            }
+
+            if (namingState.GenusIsNumbered && randomOrganelle == namingState.Target)
+            {
+                // Override other rules: we increment the organelle count to maintain consistency in the naming system.
+                if (!config.Quantity.TryGetValue(organelleCount.ToString(), out var quantity))
+                {
+                    quantity = config.Quantity["multiple"];
+                    isNumbered = false;
+                }
+                else
+                {
+                    isNumbered = true;
+                }
+
+                PhonotacticsFriendlyAppend(stringBuilder, quantity.Random(random));
                 PhonotacticsFriendlyAppend(stringBuilder, namingState.GenusRoot);
 
-                isNumbered = false;
                 isProto = false;
                 newRoot = namingState.GenusRoot;
                 newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender, useBacteriaSuffix);
 
                 return;
             }
-
-            if (namingState.GenusIsProto && random.Next(3) == 0)
-            {
-                PhonotacticsFriendlyAppend(stringBuilder, config.QualityRoots["new"].Random(random));
-                PhonotacticsFriendlyAppend(stringBuilder, namingState.GenusRoot);
-
-                isNumbered = namingState.GenusIsNumbered;
-                isProto = false;
-                newRoot = namingState.GenusRoot;
-                newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender, useBacteriaSuffix);
-
-                // Force genus change on the old species to acquire the "Eu-" prefix.
-                speciesOld.Genus = GenerateGenusName(random, speciesOld, speciesOld);
-                speciesOld.Epithet = GenerateEpithetName(random, speciesOld, speciesOld);
-
-                return;
-            }
-
-            target = null;
-        }
-
-        var randomOrganelle = newOrganelles.Count == 0 ?
-            species2UniqueOrganelles.Random(random) :
-            newOrganelles.Random(random);
-
-        int organelleCount = speciesNew.Organelles.Count(organelle => organelle.Definition == randomOrganelle);
-
-        if (namingState.GenusIsNumbered && randomOrganelle == namingState.Target)
-        {
-            // Override other rules: we increment the organelle count to maintain consistency in the naming system.
-            if (!config.Quantity.TryGetValue(organelleCount.ToString(), out var quantity))
-            {
-                quantity = config.Quantity["multiple"];
-                isNumbered = false;
-            }
-            else
-            {
-                isNumbered = true;
-            }
-
-            PhonotacticsFriendlyAppend(stringBuilder, quantity.Random(random));
-            PhonotacticsFriendlyAppend(stringBuilder, namingState.GenusRoot);
-
-            isProto = false;
-            newRoot = namingState.GenusRoot;
-            newGender = GenerateGenderedSuffix(random, stringBuilder, namingState.Gender, useBacteriaSuffix);
-
-            return;
         }
 
         isProto = false;

@@ -135,6 +135,11 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
     /// </summary>
     public string FormattedNameBbCodeUnstyled => $"[url=species:{ID}]{FormattedName}[/url]";
 
+    /// <summary>
+    ///   A property used by the NameGenerator to keep trace of the naming state.
+    /// </summary>
+    public NameGenerator.NamingState? NamingState { get; set; }
+
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 
     public bool IsExtinct => Population <= 0;
@@ -238,6 +243,8 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
         SpeciesColour = mutation.SpeciesColour;
 
         cachedBaseReproductionCost = null;
+
+        NamingState = mutation.NamingState;
 
         // These don't mutate for a species
         // genus;
