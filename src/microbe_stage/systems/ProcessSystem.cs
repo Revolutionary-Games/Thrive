@@ -1002,11 +1002,19 @@ public partial class ProcessSystem : BaseSystem<World, float>
         }
 #endif
 
-        ProcessNode(ref processes, ref storage, overallSpeedModifier, delta);
+        var speedConfiguredProcesses = processes.SpeedConfiguredProcesses;
+
+        if (entity.TryGet<MicrobeColonyMember>(out var member)
+            && member.ColonyLeader.TryGet<BioProcesses>(out var leaderProcesses))
+        {
+            speedConfiguredProcesses ??= leaderProcesses.SpeedConfiguredProcesses;
+        }
+
+        ProcessNode(ref processes, ref storage, speedConfiguredProcesses, overallSpeedModifier, delta);
     }
 
-    private void ProcessNode(ref BioProcesses processor, ref CompoundStorage storage, float overallSpeedModifier,
-        float delta)
+    private void ProcessNode(ref BioProcesses processor, ref CompoundStorage storage,
+        Dictionary<BioProcess, float>? speedConfiguredProcesses, float overallSpeedModifier, float delta)
     {
         var bag = storage.Compounds;
 
@@ -1061,12 +1069,13 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
                         currentProcessStatistics.BeginFrame(delta);
                         RunProcess(delta, processData, bag, process, ref processor, overallSpeedModifier,
-                            currentProcessStatistics);
+                            currentProcessStatistics, speedConfiguredProcesses);
                     }
                 }
                 else
                 {
-                    RunProcess(delta, processData, bag, process, ref processor, overallSpeedModifier, null);
+                    RunProcess(delta, processData, bag, process, ref processor, overallSpeedModifier, null,
+                        speedConfiguredProcesses);
                 }
             }
         }
@@ -1078,7 +1087,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
     }
 
     private void RunProcess(float delta, BioProcess processData, CompoundBag bag, TweakedProcess process,
-        ref BioProcesses processorInfo, float overallSpeedModifier, SingleProcessStatistics? currentProcessStatistics)
+        ref BioProcesses processorInfo, float overallSpeedModifier, SingleProcessStatistics? currentProcessStatistics,
+        Dictionary<BioProcess, float>? speedConfiguredProcesses)
     {
         // Bool for can your cell do the process
         bool canDoProcess = true;
@@ -1123,10 +1133,21 @@ public partial class ProcessSystem : BaseSystem<World, float>
         if (environmentModifier <= MathUtils.EPSILON)
             canDoProcess = false;
 
-        if (processorInfo.DisabledProcesses != null && processorInfo.DisabledProcesses.Contains(processData))
+        float speedMultiplier = 1.0f;
+
+        if (speedConfiguredProcesses != null && speedConfiguredProcesses.ContainsKey(processData))
         {
-            canDoProcess = false;
-            currentProcessStatistics?.Enabled = false;
+            speedMultiplier = speedConfiguredProcesses[processData];
+
+            if (speedMultiplier == 0.0f)
+            {
+                currentProcessStatistics?.Enabled = false;
+                canDoProcess = false;
+            }
+            else
+            {
+                currentProcessStatistics?.Enabled = true;
+            }
         }
         else
         {
@@ -1141,7 +1162,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
             var inputCompound = entry.Key.ID;
 
-            var inputRemoved = entry.Value * process.Rate * environmentModifier * overallSpeedModifier;
+            var inputRemoved = entry.Value * process.Rate * environmentModifier * speedMultiplier
+                * overallSpeedModifier;
 
             // currentProcessStatistics?.AddInputAmount(entry.Key, 0);
             // We don't multiply by delta here because we report the per-second values anyway. In the actual
@@ -1188,7 +1210,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
             // For now, lets assume compounds we produce are also useful
             bag.SetUseful(outputCompound);
 
-            var outputAdded = entry.Value * process.Rate * environmentModifier * overallSpeedModifier;
+            var outputAdded = entry.Value * process.Rate * environmentModifier * speedMultiplier
+                * overallSpeedModifier;
 
             // currentProcessStatistics?.AddOutputAmount(entry.Key, 0);
             currentProcessStatistics?.AddOutputAmount(outputCompound, outputAdded);
@@ -1237,7 +1260,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
             return;
         }
 
-        float totalModifier = process.Rate * delta * environmentModifier * spaceConstraintModifier
+        float totalModifier = process.Rate * delta * environmentModifier * spaceConstraintModifier * speedMultiplier
             * overallSpeedModifier;
 
         // Apply ATP production speed cap if in effect
@@ -1258,7 +1281,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
         // TODO: should the overall speed modifier be included in here? It already has scaled the inputs and
         // outputs
         currentProcessStatistics?.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier
-            * overallSpeedModifier;
+            * speedMultiplier * overallSpeedModifier;
 
         // Consume inputs
         foreach (var entry in processData.Inputs)

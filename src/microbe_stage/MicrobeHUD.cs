@@ -1114,11 +1114,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             if (enabled)
             {
-                bioProcesses.DisabledProcesses!.Remove(foundProcess);
+                bioProcesses.SpeedConfiguredProcesses!.Remove(foundProcess);
             }
             else
             {
-                bioProcesses.DisabledProcesses!.Add(foundProcess);
+                bioProcesses.SpeedConfiguredProcesses!.TryAdd(foundProcess, 0.0f);
             }
         }
 
@@ -1131,9 +1131,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private BioProcess? FindToggledProcessInEntity(IProcessDisplayInfo display, BioProcesses bioProcesses)
     {
-        var disabled = bioProcesses.DisabledProcesses;
+        var speedConfigured = bioProcesses.SpeedConfiguredProcesses;
 
-        if (disabled == null)
+        if (speedConfigured == null)
             return null;
 
         if (bioProcesses.ActiveProcesses == null)

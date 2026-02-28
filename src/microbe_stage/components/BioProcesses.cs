@@ -22,7 +22,11 @@ public struct BioProcesses : IArchivableComponent
     /// </remarks>
     public List<TweakedProcess>? ActiveProcesses;
 
-    public HashSet<BioProcess>? DisabledProcesses;
+    /// <summary>
+    ///   Processes that the player turned off or slowed down. If a process isn't added here, it's assumed to run at
+    ///   full speed
+    /// </summary>
+    public Dictionary<BioProcess, float>? SpeedConfiguredProcesses;
 
     /// <summary>
     ///   If set to not-null process statistics are gathered here
@@ -48,10 +52,18 @@ public struct BioProcesses : IArchivableComponent
     public void WriteToArchive(ISArchiveWriter writer)
     {
         writer.WriteObjectOrNull(ActiveProcesses);
-        writer.WriteObjectOrNull(DisabledProcesses);
         writer.Write(ProcessStatistics != null);
         writer.Write(ATPProductionSpeedModifier);
         writer.Write(OverallSpeedModifier);
+
+        if (SpeedConfiguredProcesses == null)
+        {
+            writer.WriteNullObject();
+        }
+        else
+        {
+            writer.WriteObject(SpeedConfiguredProcesses);
+        }
     }
 }
 
@@ -65,10 +77,10 @@ public static class BioProcessesHelpers
         return new BioProcesses
         {
             ActiveProcesses = reader.ReadObjectOrNull<List<TweakedProcess>>(),
-            DisabledProcesses = reader.ReadObjectOrNull<HashSet<BioProcess>>(),
             ProcessStatistics = reader.ReadBool() ? new ProcessStatistics() : null,
             ATPProductionSpeedModifier = reader.ReadFloat(),
             OverallSpeedModifier = reader.ReadFloat(),
+            SpeedConfiguredProcesses = reader.ReadObjectOrNull<Dictionary<BioProcess, float>>(),
         };
     }
 }
