@@ -12,7 +12,7 @@ using SharedBase.Archive;
 /// </remarks>
 public struct TweakedProcess : IEquatable<TweakedProcess>, IArchivable
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     public readonly BioProcess Process;
 
