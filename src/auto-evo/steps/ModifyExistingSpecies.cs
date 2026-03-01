@@ -132,7 +132,7 @@ public class ModifyExistingSpecies : IRunStep
                     step = Step.MutationFilter;
 
                     // Reset this for another enumeration later
-                    speciesEnumerator = patch.SpeciesInPatch.GetEnumerator();https://suggestions.revolutionarygamesstudio.com/posts/761/cell-categorys
+                    speciesEnumerator = patch.SpeciesInPatch.GetEnumerator();
 
                     // Just for safety generate any mutations still missing in case the miche data and species in patch
                     // are not in sync
