@@ -294,7 +294,7 @@ public class ModifyExistingSpecies : IRunStep
         var inputSpecies = generateMutationsWorkingMemory.GetMutationsAtDepth(0);
         inputSpecies.Add(new Mutant(microbeSpecies, totalMP));
 
-        GenerateMutations(microbeSpecies, miche!, 1);
+        GenerateMutations(microbeSpecies, miche!, 1, false);
     }
 
     /// <summary>
@@ -330,7 +330,7 @@ public class ModifyExistingSpecies : IRunStep
     ///   Adds a new list of all possible species that might emerge in response to the provided pressures,
     ///   as well as a copy of the original species to <see cref="mutationsToTry"/>.
     /// </summary>
-    private void GenerateMutations(MicrobeSpecies baseSpecies, Miche currentMiche, int depth)
+    private void GenerateMutations(MicrobeSpecies baseSpecies, Miche currentMiche, int depth, bool lastChild)
     {
         var inputSpecies = generateMutationsWorkingMemory.GetMutationsAtDepth(depth - 1);
 
@@ -389,6 +389,10 @@ public class ModifyExistingSpecies : IRunStep
             }
         }
 
+        if(lastChild) {
+            generateMutationsWorkingMemory.ClearDepth(depth - 1);
+        }
+
         if (currentMiche.IsLeafNode())
         {
             lastGeneratedMutations.Clear();
@@ -419,9 +423,14 @@ public class ModifyExistingSpecies : IRunStep
 
             if (outputSpecies.Count != 0)
             {
+                int childCount = currentMiche.Children.Count;
+                int index = 0;
+
                 foreach (var child in currentMiche.Children)
                 {
-                    GenerateMutations(baseSpecies, child, depth + 1);
+                    bool isLast = (index == count - 1);
+                    GenerateMutations(baseSpecies, child, depth + 1, isLast);
+                    index++;
                 }
             }
 
@@ -447,6 +456,11 @@ public class ModifyExistingSpecies : IRunStep
             var result = currentSpecies[depth];
 
             return result;
+        }
+
+        public void ClearDepth(int depth)
+        {
+            currentSpecies[depth].Clear();
         }
 
         public void Clear()
