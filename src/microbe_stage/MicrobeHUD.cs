@@ -36,9 +36,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     ///   Because of how <see cref="ChildObjectCache{TKey, TNode}"/> works, process stats instances need to remain
     ///   consistent to reduce update frequency.
     /// </summary>
-    private readonly Dictionary<TweakedProcess, SummedProcessStatistics> organismProcesses = new();
+    private readonly Dictionary<BioProcess, SummedProcessStatistics> organismProcesses = new();
 
-    private readonly List<TweakedProcess> tempProcesses = new();
+    private readonly List<BioProcess> tempProcesses = new();
 
     [Export]
     private ActionButton bindingModeHotkey = null!;
@@ -567,10 +567,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             var display = process.Value.ComputeAverageValues();
 
-            if (!organismProcesses.TryGetValue(process.Key, out var stats))
+            if (!organismProcesses.TryGetValue(process.Key.Process, out var stats))
             {
                 stats = new SummedProcessStatistics(display);
-                organismProcesses[process.Key] = stats;
+                organismProcesses[process.Key.Process] = stats;
             }
             else
             {
@@ -598,10 +598,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 {
                     var display = process.Value.ComputeAverageValues();
 
-                    if (!organismProcesses.TryGetValue(process.Key, out var stats))
+                    if (!organismProcesses.TryGetValue(process.Key.Process, out var stats))
                     {
                         stats = new SummedProcessStatistics(display);
-                        organismProcesses[process.Key] = stats;
+                        organismProcesses[process.Key.Process] = stats;
                     }
                     else
                     {
