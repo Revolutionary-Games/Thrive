@@ -132,7 +132,7 @@ public class ModifyExistingSpecies : IRunStep
                     step = Step.MutationFilter;
 
                     // Reset this for another enumeration later
-                    speciesEnumerator = patch.SpeciesInPatch.GetEnumerator();
+                    speciesEnumerator = patch.SpeciesInPatch.GetEnumerator();https://suggestions.revolutionarygamesstudio.com/posts/761/cell-categorys
 
                     // Just for safety generate any mutations still missing in case the miche data and species in patch
                     // are not in sync
@@ -389,9 +389,8 @@ public class ModifyExistingSpecies : IRunStep
             }
         }
 
-        if(lastChild) {
+        if (lastChild)
             generateMutationsWorkingMemory.ClearDepth(depth - 1);
-        }
 
         if (currentMiche.IsLeafNode())
         {
@@ -428,9 +427,9 @@ public class ModifyExistingSpecies : IRunStep
 
                 foreach (var child in currentMiche.Children)
                 {
-                    bool isLast = (index == count - 1);
+                    bool isLast = index == childCount - 1;
                     GenerateMutations(baseSpecies, child, depth + 1, isLast);
-                    index++;
+                    ++index;
                 }
             }
 
