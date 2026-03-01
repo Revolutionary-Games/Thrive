@@ -10,7 +10,10 @@ using SharedBase.Archive;
 public partial class MetaballBodyEditorComponent :
     MetaballEditorComponentBase<MacroscopicEditor, CombinedEditorAction, EditorAction, MacroscopicMetaball>
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
+
+    [Export]
+    public int MaxToleranceWarnings = 3;
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
@@ -30,6 +33,9 @@ public partial class MetaballBodyEditorComponent :
     private Button appearanceTabButton = null!;
 
     [Export]
+    private Button tolerancesTabButton = null!;
+
+    [Export]
     private PanelContainer structureTab = null!;
 
     [Export]
@@ -40,6 +46,15 @@ public partial class MetaballBodyEditorComponent :
 
     [Export]
     private BehaviourEditorSubComponent behaviourEditor = null!;
+
+    [Export]
+    private TolerancesEditorSubComponent tolerancesEditor = null!;
+
+    [Export]
+    private PanelContainer toleranceTab = null!;
+
+    [Export]
+    private Container toleranceWarningContainer = null!;
 
     [Export]
     private CollapsibleList cellTypeSelectionList = null!;
@@ -72,6 +87,9 @@ public partial class MetaballBodyEditorComponent :
     [Export]
     private CustomConfirmationDialog cannotReduceBrainPowerPopup = null!;
 
+    [Export]
+    private LabelSettings toleranceWarningsFont = null!;
+
     private PackedScene visualMetaballDisplayerScene = null!;
 
     private PackedScene structuralMetaballDisplayerScene = null!;
@@ -84,6 +102,8 @@ public partial class MetaballBodyEditorComponent :
     /// </summary>
     private bool metaballDisplayDataDirty = true;
 
+    private bool refreshTolerancesWarnings = true;
+
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
     [Signal]
@@ -95,6 +115,7 @@ public partial class MetaballBodyEditorComponent :
         Reproduction,
         Behaviour,
         Appearance,
+        Tolerance,
     }
 
     public override bool HasIslands => editedMetaballs.GetMetaballsNotTouchingParents().Any();
@@ -124,10 +145,13 @@ public partial class MetaballBodyEditorComponent :
     {
         base.Init(owningEditor, fresh);
         behaviourEditor.Init(owningEditor, fresh);
+        tolerancesEditor.Init(owningEditor, fresh);
 
         if (!fresh)
         {
             UpdateGUIAfterLoadingSpecies();
+
+            tolerancesEditor.OnEditorSpeciesSetup(Editor.EditedBaseSpecies);
         }
 
         UpdateCancelButtonVisibility();
@@ -152,6 +176,15 @@ public partial class MetaballBodyEditorComponent :
         {
             OnMetaballsChanged();
             metaballDisplayDataDirty = false;
+        }
+
+        if (refreshTolerancesWarnings)
+        {
+            refreshTolerancesWarnings = false;
+
+            // TODO: refresh ATP balance etc. if added to this editor
+
+            CalculateAndDisplayToleranceWarnings();
         }
 
         // Show the ball that is about to be placed
@@ -192,6 +225,8 @@ public partial class MetaballBodyEditorComponent :
         writer.WriteObjectProperties(behaviourEditor);
         writer.Write(newName);
         writer.Write((int)selectedSelectionMenuTab);
+
+        writer.WriteObjectProperties(tolerancesEditor);
     }
 
     public override void ReadPropertiesFromArchive(ISArchiveReader reader, ushort version)
@@ -204,6 +239,11 @@ public partial class MetaballBodyEditorComponent :
         reader.ReadObjectProperties(behaviourEditor);
         newName = reader.ReadString() ?? throw new NullArchiveObjectException();
         selectedSelectionMenuTab = (SelectionMenuTab)reader.ReadInt32();
+
+        if (version >= 2)
+        {
+            reader.ReadObjectProperties(tolerancesEditor);
+        }
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -211,6 +251,7 @@ public partial class MetaballBodyEditorComponent :
         UpdateCellTypeSelections();
 
         behaviourEditor.OnEditorSpeciesSetup(species);
+        tolerancesEditor.OnEditorSpeciesSetup(species);
 
         var metaballMapping = new Dictionary<Metaball, MacroscopicMetaball>();
 
@@ -228,6 +269,9 @@ public partial class MetaballBodyEditorComponent :
         UpdateGUIAfterLoadingSpecies();
 
         UpdateArrow(false);
+
+        // Make sure initial tolerance warnings are shown
+        OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
     }
 
     public override void OnFinishEditing()
@@ -278,6 +322,7 @@ public partial class MetaballBodyEditorComponent :
         editedSpecies.UpdateNameIfValid(newName);
 
         behaviourEditor.OnFinishEditing();
+        tolerancesEditor.OnFinishEditing();
     }
 
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
@@ -307,6 +352,24 @@ public partial class MetaballBodyEditorComponent :
         return true;
     }
 
+    /// <summary>
+    ///   Call when tolerance data changes
+    /// </summary>
+    /// <param name="newTolerances">New tolerance data</param>
+    public void OnTolerancesChanged(EnvironmentalTolerances newTolerances)
+    {
+        // Need to show new tolerances warnings (and refresh a few other things)
+        refreshTolerancesWarnings = true;
+
+        Editor.OnTolerancesChanged(newTolerances);
+    }
+
+    public ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
+    {
+        return MacroscopicEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
+            editedMetaballs, Editor.CurrentPatch.Biome, excludePositiveBuffs);
+    }
+
     public void OnTissueTypeEdited(CellType changedType)
     {
         // TODO: check that undo/redo while in a different tab doesn't cause this to make unintended things visible
@@ -315,6 +378,10 @@ public partial class MetaballBodyEditorComponent :
         UpdateCellTypeSelections();
 
         RegenerateCellTypeIcon(changedType);
+
+        tolerancesEditor.OnDataTolerancesDependOnChanged();
+
+        // TODO: do we want specialization in macroscopic?
     }
 
     [RunOnKeyDown("e_secondary")]
@@ -364,6 +431,7 @@ public partial class MetaballBodyEditorComponent :
 
     protected override void OnTranslationsChanged()
     {
+        // TODO: do we want specialization in macroscopic?
     }
 
     protected override double CalculateCurrentActionCost()
@@ -976,6 +1044,11 @@ public partial class MetaballBodyEditorComponent :
         UpdateAlreadyPlacedVisuals();
 
         UpdateArrow();
+
+        OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+        tolerancesEditor.OnDataTolerancesDependOnChanged();
+
+        // TODO: do we want specialization in macroscopic?
     }
 
     private void OnSpeciesNameChanged(string newText)
@@ -1146,6 +1219,7 @@ public partial class MetaballBodyEditorComponent :
         reproductionTab.Hide();
         behaviourEditor.Hide();
         appearanceTab.Hide();
+        toleranceTab.Hide();
 
         // Show selected
         switch (selectedSelectionMenuTab)
@@ -1179,6 +1253,14 @@ public partial class MetaballBodyEditorComponent :
                 appearanceTab.Show();
                 appearanceTabButton.ButtonPressed = true;
                 PreviewMode = true;
+                break;
+            }
+
+            case SelectionMenuTab.Tolerance:
+            {
+                toleranceTab.Show();
+                tolerancesTabButton.ButtonPressed = true;
+                PreviewMode = false;
                 break;
             }
 

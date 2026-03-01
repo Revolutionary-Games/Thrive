@@ -276,6 +276,41 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         base.Undo();
     }
 
+    public ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
+    {
+        return bodyPlanEditorTab.CalculateRawTolerances(excludePositiveBuffs);
+    }
+
+    public void OnTolerancesChanged(EnvironmentalTolerances newTolerances)
+    {
+        cellEditorTab.OnTolerancesChanged(newTolerances);
+    }
+
+    public EnvironmentalTolerances GetOptimalTolerancesForCurrentPatch()
+    {
+        return CurrentPatch.GenerateTolerancesForMicrobe(bodyPlanEditorTab.GetCurrentCellsWithLatestTypes());
+    }
+
+    public ToleranceResult CalculateCurrentTolerances(EnvironmentalTolerances calculationTolerances)
+    {
+        return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(calculationTolerances,
+            bodyPlanEditorTab.GetCurrentCellsWithLatestTypes(), CurrentPatch.Biome);
+    }
+
+    public void GetCurrentToleranceSummaryByElement(ToleranceModifier toleranceCategory,
+        Dictionary<IPlayerReadableName, float> result)
+    {
+        MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByCell(
+            bodyPlanEditorTab.GetCurrentCellsWithLatestTypes(), toleranceCategory, result);
+    }
+
+    public void CalculateBodyEffectOnTolerances(
+        ref MicrobeEnvironmentalToleranceCalculations.ToleranceValues modifiedTolerances)
+    {
+        MicrobeEnvironmentalToleranceCalculations.ApplyCellEffectsOnTolerances(
+            bodyPlanEditorTab.GetCurrentCellsWithLatestTypes(), ref modifiedTolerances);
+    }
+
     protected override void ResolveDerivedTypeNodeReferences()
     {
     }
@@ -727,13 +762,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         var energyBalance = new EnergyBalanceInfoSimple();
 
-        // TODO: replace with actual tolerances once they are implemented for this stage
-        var tolerances = new ResolvedMicrobeTolerances
-        {
-            ProcessSpeedModifier = 1.0f,
-            HealthModifier = 1.0f,
-            OsmoregulationModifier = 1.0f,
-        };
+        var tolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(editedSpecies, CurrentPatch.Biome));
 
         foreach (var cellType in editedSpecies.ModifiableCellTypes)
         {

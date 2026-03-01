@@ -144,32 +144,7 @@ public class GameWorld : IArchivable
         if (applyInitialTolerances)
         {
             // Make player species tolerant to the patch conditions they are starting in
-            // The fallback shouldn't be necessary except in very special cases, so it is fine to allocate a lambda
-            var patch = Map.CurrentPatch ??
-                Map.Patches.Values.FirstOrDefault(p => p.GetSpeciesSimulationPopulation(PlayerSpecies) > 0);
-
-            if (patch != null)
-            {
-                if (PlayerSpecies is MicrobeSpecies microbeSpecies)
-                {
-                    PlayerSpecies.ModifiableTolerances.CopyFrom(
-                        patch.GenerateTolerancesForMicrobe(microbeSpecies.Organelles));
-                }
-                else if (PlayerSpecies is MulticellularSpecies multicellularSpecies)
-                {
-                    PlayerSpecies.ModifiableTolerances.CopyFrom(patch.GenerateTolerancesForMicrobe(multicellularSpecies
-                        .ModifiableGameplayCells[0].ModifiableOrganelles));
-                }
-                else
-                {
-                    // TODO: need to implement this once macroscopic has tolerances
-                    GD.PrintErr("Cannot set initial tolerances from a species that isn't MicrobeSpecies");
-                }
-            }
-            else
-            {
-                GD.PrintErr("Cannot set initial tolerances for player species, no patch with population found");
-            }
+            SetSpeciesInitialTolerances(PlayerSpecies, Map, null);
         }
 
         // Create the initial generation by adding only the player species
@@ -269,6 +244,34 @@ public class GameWorld : IArchivable
             new Hex(0, 0), 0), workMemory1, workMemory2);
 
         species.OnEdited();
+    }
+
+    public static void SetSpeciesInitialTolerances(Species species, PatchMap map, Patch? patch)
+    {
+        // The fallback shouldn't be necessary except in very special cases, so it is fine to allocate a lambda
+        patch ??= map.CurrentPatch ??
+            map.Patches.Values.FirstOrDefault(p => p.GetSpeciesSimulationPopulation(species) > 0);
+
+        if (patch == null)
+        {
+            GD.PrintErr("Cannot set initial tolerances for species, no patch with population found");
+            return;
+        }
+
+        if (species is MicrobeSpecies microbeSpecies)
+        {
+            species.ModifiableTolerances.CopyFrom(patch.GenerateTolerancesForMicrobe(microbeSpecies.Organelles));
+        }
+        else if (species is MulticellularSpecies multicellularSpecies)
+        {
+            species.ModifiableTolerances.CopyFrom(
+                patch.GenerateTolerancesForMicrobe(multicellularSpecies.ModifiableEditorCells));
+        }
+        else
+        {
+            // TODO: need to implement this once macroscopic has tolerances
+            GD.PrintErr($"Cannot set initial tolerances from a species that is: {species.GetType().Name}");
+        }
     }
 
     public static GameWorld ReadFromArchive(ISArchiveReader reader, ushort version, int referenceId)

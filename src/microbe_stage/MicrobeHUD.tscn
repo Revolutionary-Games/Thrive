@@ -353,15 +353,15 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = -0.139
 anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = 2.848
-offset_right = 258.0
-offset_bottom = -53.0
+offset_left = 8.0
+offset_top = 5.8479996
+offset_right = 264.0
+offset_bottom = -50.0
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 5
 alignment = 2
 
 [node name="EnvironmentPanel" parent="BottomLeft/LeftPanels" unique_id=100842504 instance=ExtResource("13_wltm2")]
@@ -373,9 +373,9 @@ ShowAgents = false
 
 [node name="HUDBottomBar" parent="BottomLeft" unique_id=1653640078 instance=ExtResource("59")]
 layout_mode = 1
-offset_left = 2.0
+offset_left = 8.0
 offset_top = -43.0
-offset_right = 457.0
+offset_right = 463.0
 offset_bottom = -8.0
 
 [node name="CompoundsPanelAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1502267964]

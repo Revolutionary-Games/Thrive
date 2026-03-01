@@ -277,8 +277,6 @@ public partial class CellEditorComponent :
 
     private bool showGrowthOrderNumbers;
 
-    private bool multicellularTolerancesPrinted;
-
     private TutorialState? tutorialState;
 
     private bool lightLevelChangeQueued;
@@ -1027,7 +1025,7 @@ public partial class CellEditorComponent :
         if (!IsMulticellularEditor)
         {
             // Make sure initial tolerance warnings are shown
-            OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+            TriggerOnTolerancesChanged(tolerancesEditor.CurrentTolerances);
         }
     }
 
@@ -1120,8 +1118,8 @@ public partial class CellEditorComponent :
             return false;
         }
 
-        // Show a warning popup if trying to exit with negative atp production
-        // Not shown in multicellular as the popup would happen in kind of weird place
+        // Show a warning popup if trying to exit with negative ATP production.
+        // This is not shown in multicellular as the popup would happen in kind of weird place.
         if (!IsMulticellularEditor && IsNegativeAtpProduction() &&
             !editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
         {
@@ -1259,7 +1257,7 @@ public partial class CellEditorComponent :
         {
             // Refresh tolerances data for the new patch
             tolerancesEditor.OnDataTolerancesDependOnChanged();
-            OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+            TriggerOnTolerancesChanged(tolerancesEditor.CurrentTolerances);
             UpdateEndosymbiosisSpeciesData();
         }
 
@@ -1281,10 +1279,6 @@ public partial class CellEditorComponent :
         suggestionDirty = true;
     }
 
-    /// <summary>
-    ///   Call when tolerance data changes, re-triggers simulations and updates the GUI warnings
-    /// </summary>
-    /// <param name="newTolerances">New tolerance data</param>
     public void OnTolerancesChanged(EnvironmentalTolerances newTolerances)
     {
         autoEvoPredictionDirty = true;
@@ -1292,6 +1286,18 @@ public partial class CellEditorComponent :
 
         // Need to show new tolerances warnings (and refresh a few other things)
         refreshTolerancesWarnings = true;
+    }
+
+    public ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
+    {
+        if (IsMulticellularEditor)
+        {
+            throw new InvalidOperationException(
+                "In multicellular, the cell editor is not responsible for tolerances data");
+        }
+
+        return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
+            editedMicrobeOrganelles, Editor.CurrentPatch.Biome, excludePositiveBuffs);
     }
 
     public void UpdatePatchDependentBalanceData()
@@ -1742,6 +1748,16 @@ public partial class CellEditorComponent :
         UpdatePatchDependentBalanceData();
     }
 
+    /// <summary>
+    ///   Call when tolerance data changes, re-triggers simulations and updates the GUI warnings
+    /// </summary>
+    /// <param name="newTolerances">New tolerance data</param>
+    private void TriggerOnTolerancesChanged(EnvironmentalTolerances newTolerances)
+    {
+        // We trigger things through the editor as that makes this code path the same for later editors
+        Editor.OnTolerancesChanged(newTolerances);
+    }
+
     private bool PerformEndosymbiosisPlace(int q, int r)
     {
         if (PendingEndosymbiontPlace == null)
@@ -2095,38 +2111,10 @@ public partial class CellEditorComponent :
     {
         if (IsMulticellularEditor)
         {
-            if (!multicellularTolerancesPrinted)
-            {
-                GD.Print("TODO: implement tolerances data coming from the multicellular editor");
-                multicellularTolerancesPrinted = true;
-            }
-
-            // TODO: this should use info from the cell body plan editor regarding tolerances and remove this dummy
-            // return
-            return new ResolvedMicrobeTolerances
-            {
-                HealthModifier = 1,
-                OsmoregulationModifier = 1,
-                ProcessSpeedModifier = 1,
-            };
+            return MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(Editor.CalculateRawTolerances());
         }
 
         return MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(CalculateRawTolerances());
-    }
-
-    /// <summary>
-    ///   Calculates the plain tolerance result with the current organelles and edited tolerances.
-    /// </summary>
-    /// <param name="excludePositiveBuffs">
-    ///   If set to true, perfect adaptation bonuses will be excluded from the result. This is used to display
-    ///   tolerance-related debuffs in a more sensible way where partial bonuses are not allowed to leak into the
-    ///   results.
-    /// </param>
-    /// <returns>The calculated tolerance values</returns>
-    private ToleranceResult CalculateRawTolerances(bool excludePositiveBuffs = false)
-    {
-        return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
-            editedMicrobeOrganelles, Editor.CurrentPatch.Biome, excludePositiveBuffs);
     }
 
     /// <summary>
@@ -2536,7 +2524,7 @@ public partial class CellEditorComponent :
         if (!IsMulticellularEditor)
         {
             // Tolerances are now affected by organelle changes, so re-trigger calculating them
-            OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+            TriggerOnTolerancesChanged(tolerancesEditor.CurrentTolerances);
             tolerancesEditor.OnDataTolerancesDependOnChanged();
         }
 

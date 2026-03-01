@@ -19,7 +19,7 @@ using UnlockConstraints;
 ///   </para>
 /// </remarks>
 #pragma warning disable CA1001 // Owns Godot resource that is fine to stay for the program lifetime
-public class OrganelleDefinition : RegistryType
+public class OrganelleDefinition : RegistryType, IPlayerReadableName
 #pragma warning restore CA1001
 {
     /// <summary>
@@ -259,8 +259,11 @@ public class OrganelleDefinition : RegistryType
     [JsonIgnore]
     public string NameWithoutSpecialCharacters => Name.Replace('\n', ' ');
 
+    [JsonIgnore]
+    public string ReadableName => Name;
+
     /// <summary>
-    ///   The total amount of compounds in InitialComposition
+    ///   The sum of all compound values in InitialComposition
     /// </summary>
     [JsonIgnore]
     public float OrganelleCost { get; private set; }

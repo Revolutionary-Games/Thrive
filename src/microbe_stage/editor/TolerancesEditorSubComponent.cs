@@ -16,7 +16,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     [ExportCategory("Config")]
     public bool ShowZeroModifiers;
 
-    private readonly Dictionary<OrganelleDefinition, float> tempToleranceModifiers = new();
+    private readonly Dictionary<IPlayerReadableName, float> tempToleranceModifiers = new();
 
     private CompoundDefinition temperature = null!;
 
@@ -157,6 +157,10 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     private bool wasFreshInit;
 
+#if DEBUG
+    private bool enableMicrobeDebugCode;
+#endif
+
     /// <summary>
     ///   Reusable tolerances object for checking things until it is consumed by using it up in an action
     /// </summary>
@@ -199,6 +203,13 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     public override void Init(ICellEditorData owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
+
+#if DEBUG
+        if (owningEditor is MicrobeEditor)
+        {
+            enableMicrobeDebugCode = true;
+        }
+#endif
 
         wasFreshInit = fresh;
     }
@@ -258,13 +269,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     public void CalculateOrganelleModifiers()
     {
-        if (Editor.EditedCellOrganelles == null)
-            return;
-
         organelleModifiers = default(MicrobeEnvironmentalToleranceCalculations.ToleranceValues);
-
-        MicrobeEnvironmentalToleranceCalculations.ApplyOrganelleEffectsOnTolerances(Editor.EditedCellOrganelles,
-            ref organelleModifiers);
+        Editor.CalculateBodyEffectOnTolerances(ref organelleModifiers);
     }
 
     public void ResetToCurrentSpeciesTolerances()
@@ -318,15 +324,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     public void UpdateToolTipStats()
     {
-        if (Editor.EditedCellOrganelles == null)
-        {
-            GD.PrintErr("No cell edited organelles set, tolerances editor cannot update!");
-            return;
-        }
-
         // Calculate one stat at a time to get the individual changes per type instead of all being combined.
         // And for that we need an optimal baseline that guarantees no other stat-related debuffs / buffs are mixed in.
-        var optimal = Editor.CurrentPatch.GenerateTolerancesForMicrobe(Editor.EditedCellOrganelles);
+        var optimal = Editor.GetOptimalTolerancesForCurrentPatch();
 
         // Set huge ranges so that there is no threat of optimal bonuses triggering with the default calculations
         optimal.PressureTolerance += Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE * 2;
@@ -335,17 +335,21 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         var tempTolerances = CurrentTolerances.Clone();
 
 #if DEBUG
-        tempTolerances.CopyFrom(optimal);
-        var optimalTest =
-            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tempTolerances,
-                Editor.EditedCellOrganelles ?? throw new Exception("Organelles not set"), Editor.CurrentPatch.Biome);
-
-        if (optimalTest.OverallScore is < 1 or > 1 + MathUtils.EPSILON)
+        if (enableMicrobeDebugCode)
         {
-            GD.PrintErr("Optimal tolerance calculation failed, score: " + optimalTest.OverallScore);
+            tempTolerances.CopyFrom(optimal);
+            var optimalTest =
+                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tempTolerances,
+                    Editor.EditedCellOrganelles ?? throw new Exception("Organelles not set"),
+                    Editor.CurrentPatch.Biome);
 
-            if (Debugger.IsAttached)
-                Debugger.Break();
+            if (optimalTest.OverallScore is < 1 or > 1 + MathUtils.EPSILON)
+            {
+                GD.PrintErr("Optimal tolerance calculation failed, score: " + optimalTest.OverallScore);
+
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+            }
         }
 #endif
 
@@ -418,7 +422,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         uvResistanceLabelContainer.RegisterToolTipForControl("uvResistance", "tolerances");
         uvResistanceToolTipContainer.RegisterToolTipForControl("uvResistance", "tolerances");
         uvResistanceSlider.RegisterToolTipForControl("uvResistance", "tolerances");
-        oxygenResistanceRangeDisplay.RegisterToolTipForControl("uvResistance", "tolerances");
+        uvResistanceRangeDisplay.RegisterToolTipForControl("uvResistance", "tolerances");
 
         temperatureModifierLabelParent.RegisterToolTipForControl("temperatureRangeModifier", "tolerances");
         pressureModifierLabelParent.RegisterToolTipForControl("pressureRangeModifier", "tolerances");
@@ -453,15 +457,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private void CalculateStatsAndShow(EnvironmentalTolerances calculationTolerances,
         EnvironmentalToleranceToolTip toolTip)
     {
-        if (Editor.EditedCellOrganelles == null)
-        {
-            GD.PrintErr("No cell edited organelles set, tolerances editor cannot update!");
-            return;
-        }
-
-        var rawTolerances =
-            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(calculationTolerances,
-                Editor.EditedCellOrganelles, Editor.CurrentPatch.Biome);
+        var rawTolerances = Editor.CalculateCurrentTolerances(calculationTolerances);
 
         var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(rawTolerances);
 
@@ -470,20 +466,13 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     private void UpdateTotalValuesInToolTips()
     {
-        if (Editor.EditedCellOrganelles == null)
-        {
-            GD.PrintErr("no cell edited organelles set, cannot update effective value tooltips");
-            return;
-        }
-
         if (temperatureRangeToolTip != null)
         {
             temperatureRangeToolTip.DisplayedValue =
                 CurrentTolerances.TemperatureTolerance + organelleModifiers.TemperatureTolerance;
 
             // Calculate organelle summaries so that the info can be shown in the tooltips
-            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(
-                Editor.EditedCellOrganelles, ToleranceModifier.TemperatureRange, tempToleranceModifiers);
+            Editor.GetCurrentToleranceSummaryByElement(ToleranceModifier.TemperatureRange, tempToleranceModifiers);
 
             temperatureRangeToolTip.DisplayOrganelleBreakdown(tempToleranceModifiers);
         }
@@ -493,8 +482,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             pressureRangeToolTip.DisplayedValue =
                 CurrentTolerances.PressureTolerance + organelleModifiers.PressureTolerance;
 
-            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(
-                Editor.EditedCellOrganelles, ToleranceModifier.PressureTolerance, tempToleranceModifiers);
+            Editor.GetCurrentToleranceSummaryByElement(ToleranceModifier.PressureTolerance, tempToleranceModifiers);
             pressureRangeToolTip.DisplayOrganelleBreakdown(tempToleranceModifiers);
         }
 
@@ -503,8 +491,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             oxygenResistanceModifierToolTip.DisplayedValue =
                 CurrentTolerances.OxygenResistance + organelleModifiers.OxygenResistance;
 
-            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(
-                Editor.EditedCellOrganelles, ToleranceModifier.Oxygen, tempToleranceModifiers);
+            Editor.GetCurrentToleranceSummaryByElement(ToleranceModifier.Oxygen, tempToleranceModifiers);
             oxygenResistanceModifierToolTip.DisplayOrganelleBreakdown(tempToleranceModifiers);
         }
 
@@ -513,8 +500,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             uvResistanceModifierToolTip.DisplayedValue =
                 CurrentTolerances.UVResistance + organelleModifiers.UVResistance;
 
-            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(
-                Editor.EditedCellOrganelles, ToleranceModifier.UV, tempToleranceModifiers);
+            Editor.GetCurrentToleranceSummaryByElement(ToleranceModifier.UV, tempToleranceModifiers);
             uvResistanceModifierToolTip.DisplayOrganelleBreakdown(tempToleranceModifiers);
         }
     }

@@ -3,7 +3,7 @@ using Godot;
 using SharedBase.Archive;
 
 public class CellTemplate : IPositionedCell, ICloneable, IReadOnlyHexWithData<IReadOnlyCellTemplate>,
-    IPlayerReadableName
+    IPlayerReadableName, IArchivable
 {
     public const ushort SERIALIZATION_VERSION = 1;
 

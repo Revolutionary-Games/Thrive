@@ -14,10 +14,11 @@ public static class CompatibleSaveVersions
         KnownVersionCompatibilityMapping = new()
         {
             {
-                "1.0.1.0-alpha", [
+                "1.0.1.0-rc1", [
                     ("0.9.0.0", false), ("0.9.0.1", false),
                     ("0.9.1.0", true), ("0.9.1.1", true),
                     ("0.9.2.0", true), ("1.0.0.0", true),
+                    ("1.0.1.0-alpha", true),
                 ]
             },
         };

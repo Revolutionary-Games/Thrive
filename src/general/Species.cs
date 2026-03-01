@@ -120,6 +120,8 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
 
     public string FormattedName => Genus + " " + Epithet;
 
+    public string ReadableName => FormattedName;
+
     /// <summary>
     ///   Returns <see cref="FormattedName"/> but includes bbcode tags for styling and hover-over tooltips. Player's
     ///   species will be emphasized with bolding.

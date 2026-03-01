@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 public interface IReadOnlyCellLayout<T> : IReadOnlyHexLayout<T>
@@ -18,6 +19,12 @@ public class ReadonlyCellLayoutAdapter<TReadOnly, TUnderlying> : IReadOnlyCellLa
     }
 
     public int Count => wrappedLayout.Count;
+
+    public TReadOnly this[int index]
+    {
+        get => wrappedLayout[index];
+        set => throw new NotSupportedException();
+    }
 
     public IEnumerator<TReadOnly> GetEnumerator()
     {

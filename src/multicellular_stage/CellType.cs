@@ -69,6 +69,7 @@ public class CellType : ICellDefinition, IReadOnlyCellTypeDefinition, ICloneable
     public bool CanEngulf { get; }
 
     public string FormattedName => CellTypeName;
+    public string ReadableName => FormattedName;
 
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;

@@ -605,27 +605,7 @@ public class Patch : IArchivable
 
         MicrobeEnvironmentalToleranceCalculations.ApplyOrganelleEffectsOnTolerances(organelles, ref organelleEffects);
 
-        var result = new EnvironmentalTolerances
-        {
-            OxygenResistance = GetAmbientCompound(Compound.Oxygen, CompoundAmountType.Biome),
-            UVResistance = GetAmbientCompound(Compound.Sunlight, CompoundAmountType.Biome),
-            PressureMinimum = Math.Max(Biome.Pressure - Constants.TOLERANCE_INITIAL_PRESSURE_RANGE * 0.5f, 0),
-            PressureTolerance = Constants.TOLERANCE_INITIAL_PRESSURE_RANGE,
-            PreferredTemperature = GetAmbientCompound(Compound.Temperature, CompoundAmountType.Biome) -
-                organelleEffects.PreferredTemperature * 1.01f,
-            TemperatureTolerance = Constants.TOLERANCE_INITIAL_TEMPERATURE_RANGE,
-        };
-
-        // Apply the reverse of the negative effects to balance things out (and slightly exaggerate to not run into
-        // rounding issues)
-        if (organelleEffects.OxygenResistance < 0)
-            result.OxygenResistance -= organelleEffects.OxygenResistance * 1.01f;
-
-        if (organelleEffects.UVResistance < 0)
-            result.UVResistance -= organelleEffects.UVResistance * 1.01f;
-
-        if (organelleEffects.PressureTolerance < 0)
-            result.PressureTolerance -= organelleEffects.PressureTolerance * 1.01f;
+        var result = GenerateOptimalTolerances(organelleEffects);
 
 #if DEBUG
         result.SanityCheck();
@@ -636,6 +616,66 @@ public class Patch : IArchivable
         if (optimalTest.OverallScore is < 1 or > 1 + MathUtils.EPSILON)
         {
             GD.PrintErr("Optimal tolerance creation failed, score: " + optimalTest.OverallScore);
+
+            if (Debugger.IsAttached)
+                Debugger.Break();
+        }
+#endif
+
+        return result;
+    }
+
+    /// <summary>
+    ///   Base variant of good tolerance value calculations. Can be used for species types that don't have an overload
+    ///   of this operation.
+    /// </summary>
+    /// <param name="externalModifiers">External modifiers that this balances the optimal tolerances against</param>
+    /// <returns>Optimal tolerances to live in this patch</returns>
+    public EnvironmentalTolerances GenerateOptimalTolerances(
+        MicrobeEnvironmentalToleranceCalculations.ToleranceValues externalModifiers)
+    {
+        var result = new EnvironmentalTolerances
+        {
+            OxygenResistance = GetAmbientCompound(Compound.Oxygen, CompoundAmountType.Biome),
+            UVResistance = GetAmbientCompound(Compound.Sunlight, CompoundAmountType.Biome),
+            PressureMinimum = Math.Max(Biome.Pressure - Constants.TOLERANCE_INITIAL_PRESSURE_RANGE * 0.5f, 0),
+            PressureTolerance = Constants.TOLERANCE_INITIAL_PRESSURE_RANGE,
+            PreferredTemperature = GetAmbientCompound(Compound.Temperature, CompoundAmountType.Biome) -
+                externalModifiers.PreferredTemperature * 1.01f,
+            TemperatureTolerance = Constants.TOLERANCE_INITIAL_TEMPERATURE_RANGE,
+        };
+
+        // Apply the reverse of the negative effects to balance things out (and slightly exaggerate to not run into
+        // rounding issues)
+        if (externalModifiers.OxygenResistance < 0)
+            result.OxygenResistance -= externalModifiers.OxygenResistance * 1.01f;
+
+        if (externalModifiers.UVResistance < 0)
+            result.UVResistance -= externalModifiers.UVResistance * 1.01f;
+
+        if (externalModifiers.PressureTolerance < 0)
+            result.PressureTolerance -= externalModifiers.PressureTolerance * 1.01f;
+
+        return result;
+    }
+
+    public EnvironmentalTolerances GenerateTolerancesForMicrobe(IndividualHexLayout<CellTemplate> cells)
+    {
+        var organelleEffects = default(MicrobeEnvironmentalToleranceCalculations.ToleranceValues);
+
+        MicrobeEnvironmentalToleranceCalculations.ApplyCellEffectsOnTolerances(cells, ref organelleEffects);
+
+        var result = GenerateOptimalTolerances(organelleEffects);
+
+#if DEBUG
+        result.SanityCheck();
+
+        var optimalTest =
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(result, cells, currentSnapshot.Biome);
+
+        if (optimalTest.OverallScore is < 1 or > 1 + MathUtils.EPSILON)
+        {
+            GD.PrintErr("Optimal tolerance creation failed for multicellular, score: " + optimalTest.OverallScore);
 
             if (Debugger.IsAttached)
                 Debugger.Break();

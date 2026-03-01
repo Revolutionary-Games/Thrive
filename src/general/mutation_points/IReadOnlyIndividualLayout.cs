@@ -21,6 +21,12 @@ public class ReadonlyIndividualLayoutAdapter<T, T2> : IReadOnlyIndividualLayout<
 
     public int Count => wrappedLayout.Count;
 
+    public IReadOnlyHexWithData<T2> this[int index]
+    {
+        get => wrappedLayout[index].Data ?? throw new InvalidOperationException("No data with this hex");
+        set => throw new NotSupportedException();
+    }
+
     public IEnumerator<IReadOnlyHexWithData<T2>> GetEnumerator()
     {
         return new LayoutEnumeratorConverter(wrappedLayout);

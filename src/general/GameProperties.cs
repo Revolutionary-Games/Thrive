@@ -118,7 +118,10 @@ public class GameProperties : IArchivable
         // Modify the player species to actually make sense to be in the multicellular stage
         var playerSpecies = MakePlayerOrganellesMakeSenseForMulticellular(game);
 
-        game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies, !freebuild);
+        var finalSpecies = game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies, !freebuild);
+
+        // Make the player species match tolerances as they may have changed due to the species change
+        GameWorld.SetSpeciesInitialTolerances(finalSpecies, game.GameWorld.Map, null);
 
         // TODO: generate multicellular species for freebuild
         if (freebuild)
@@ -147,7 +150,9 @@ public class GameProperties : IArchivable
 
         var earlySpecies = game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies, false);
         MakeCellPlacementMakeSenseForMacroscopic(earlySpecies);
-        game.GameWorld.ChangeSpeciesToMacroscopic(earlySpecies);
+        var finalSpecies = game.GameWorld.ChangeSpeciesToMacroscopic(earlySpecies);
+
+        GameWorld.SetSpeciesInitialTolerances(finalSpecies, game.GameWorld.Map, null);
 
         game.EnterPrototypes();
 
@@ -201,6 +206,9 @@ public class GameProperties : IArchivable
         if (playerSpecies.MacroscopicType != MacroscopicSpeciesType.Aware)
             throw new Exception("Adding enough brain power to reach aware stage failed");
 
+        // TODO: macroscopic tolerances
+        // GameWorld.SetSpeciesInitialTolerances(playerSpecies, game.GameWorld.Map, null);
+
         return game;
     }
 
@@ -208,7 +216,7 @@ public class GameProperties : IArchivable
     {
         var game = StartNewAwareStageGame(settings);
 
-        // Further modify the player species to qualify for awakening stage
+        // Further modify the player species to qualify for the awakening stage
         var playerSpecies = (MacroscopicSpecies)game.GameWorld.PlayerSpecies;
 
         while (MacroscopicSpecies.CalculateMacroscopicTypeFromLayout(playerSpecies.ModifiableBodyLayout,
@@ -221,6 +229,9 @@ public class GameProperties : IArchivable
 
         if (playerSpecies.MacroscopicType != MacroscopicSpeciesType.Awakened)
             throw new Exception("Adding enough brain power to reach awakening stage failed");
+
+        // TODO: macroscopic tolerances
+        // GameWorld.SetSpeciesInitialTolerances(playerSpecies, game.GameWorld.Map, null);
 
         return game;
     }

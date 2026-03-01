@@ -50,25 +50,28 @@ public class AmmoniaProductionEffect : IWorldEffect
 
         specialization = 1;
 
-        // TODO: multicellular environmental tolerances
         if (species is MicrobeSpecies microbeSpecies)
         {
             resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
                 MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(microbeSpecies, biome));
 
             specialization = microbeSpecies.SpecializationBonus;
-
-            if (specialization <= 0)
-            {
-                GD.PrintErr("Uninitialized species specialization in a world effect");
-            }
         }
-        else if (species is MulticellularSpecies)
+        else if (species is MulticellularSpecies multicellularSpecies)
         {
-            // specialization = ?
+            resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(multicellularSpecies, biome));
+
+            specialization = multicellularSpecies.CalculateAverageSpecialization();
+        }
+
+        if (specialization <= 0)
+        {
+            GD.PrintErr("Uninitialized species specialization in a world effect");
         }
 
         // TODO: this also doesn't work for multicellular species!
+        // TODO: https://github.com/Revolutionary-Games/Thrive/issues/6758
         return ProcessSystem.CalculateSpeciesActiveProcessListForEffect(species,
             microbeProcesses, biome, resolvedTolerances, specialization, worldGenerationSettings);
     }
