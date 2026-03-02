@@ -1,12 +1,13 @@
 ﻿namespace Components;
 
-using System;
-using System.Collections.Generic;
 using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
 using SharedBase.Archive;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 /// <summary>
 ///   Microbe colony newMember. This component is added to the colony lead cell. This contains the overall info
@@ -1132,6 +1133,11 @@ public static class MicrobeColonyHelpers
         control.QueuedSlimeSecretionTime = 0;
 
         ReportReproductionStatusOnAddToColony(addedEntity);
+
+        if (addedEntity.TryGet<BioProcesses>(out var bioProcesses))
+        {
+            addedEntity.Get<BioProcesses>().ProcessStatistics = new();
+        }
 
         var processes = addedEntity.Get<BioProcesses>().ActiveProcesses;
 
