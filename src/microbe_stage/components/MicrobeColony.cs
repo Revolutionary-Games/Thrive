@@ -1133,11 +1133,13 @@ public static class MicrobeColonyHelpers
 
         ReportReproductionStatusOnAddToColony(addedEntity);
 
-        if (!addedEntity.TryGet<BioProcesses>(out var bioProcesses))
+        if (!addedEntity.Has<BioProcesses>())
         {
             GD.PrintErr("A newly added colony member has no BioProcesses set");
             return;
         }
+
+        ref var bioProcesses = ref addedEntity.Get<BioProcesses>();
 
         if (colony.Leader.Get<BioProcesses>().ProcessStatistics != null)
         {
