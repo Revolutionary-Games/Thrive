@@ -1,13 +1,12 @@
 ﻿namespace Components;
 
+using System;
+using System.Collections.Generic;
 using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Godot;
 using SharedBase.Archive;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 /// <summary>
 ///   Microbe colony newMember. This component is added to the colony lead cell. This contains the overall info
@@ -1134,12 +1133,15 @@ public static class MicrobeColonyHelpers
 
         ReportReproductionStatusOnAddToColony(addedEntity);
 
-        if (addedEntity.TryGet<BioProcesses>(out var bioProcesses))
+        if (!addedEntity.TryGet<BioProcesses>(out var bioProcesses))
         {
-            addedEntity.Get<BioProcesses>().ProcessStatistics = new();
+            GD.PrintErr("A newly added colony member has no BioProcesses set");
+            return;
         }
 
-        var processes = addedEntity.Get<BioProcesses>().ActiveProcesses;
+        bioProcesses.ProcessStatistics ??= new ProcessStatistics();
+
+        var processes = bioProcesses.ActiveProcesses;
 
         if (processes == null)
         {
@@ -1148,7 +1150,7 @@ public static class MicrobeColonyHelpers
             return;
         }
 
-        for (int i = 0; i < processes.Count; i++)
+        for (int i = 0; i < processes.Count; ++i)
         {
             var process = processes[i];
 
