@@ -284,6 +284,19 @@ public class ModifyExistingSpecies : IRunStep
         }
     }
 
+    private void AddRandomMutations(List<Mutant> result,
+        List<Mutant> mutated, int amount)
+    {
+        mutated.Shuffle(random);
+
+        foreach (var tuple in mutated)
+        {
+            result.Add(tuple);
+            if (result.Count >= amount)
+                break;
+        }
+    }
+
     private void GetMutationsForSpecies(MicrobeSpecies microbeSpecies)
     {
         double totalMP = Constants.BASE_MUTATION_POINTS * worldSettings.AIMutationMultiplier;
@@ -376,6 +389,8 @@ public class ModifyExistingSpecies : IRunStep
                 {
                     GetTopMutations(temporaryMutations2, outputSpecies,
                         Constants.MAX_VARIANTS_IN_MUTATIONS / 2, mutationSorter);
+                    AddRandomMutations(temporaryMutations2, outputSpecies,
+                        Constants.MAX_VARIANTS_IN_MUTATIONS / 2);
 
                     outputSpecies.Clear();
                     outputSpecies.AddRange(temporaryMutations2);
