@@ -1167,11 +1167,11 @@ public static class MicrobeColonyHelpers
                 if (memberProcesses == null)
                     continue;
 
-                foreach (var process1 in memberProcesses)
+                foreach (var memberProcess in memberProcesses)
                 {
-                    if (process1.Process == process.Process)
+                    if (memberProcess.Process == process.Process)
                     {
-                        enabled = process1.SpeedMultiplier > 0.0f;
+                        enabled = memberProcess.SpeedMultiplier > 0.0f;
                         found = true;
                         break;
                     }
