@@ -1132,6 +1132,50 @@ public static class MicrobeColonyHelpers
         control.QueuedSlimeSecretionTime = 0;
 
         ReportReproductionStatusOnAddToColony(addedEntity);
+
+        var processes = addedEntity.Get<BioProcesses>().ActiveProcesses;
+
+        if (processes == null)
+        {
+            GD.PrintErr(
+                "Couldn't apply process settings to a new colony member because of its ActiveProcesses being unset");
+            return;
+        }
+
+        for (int i = 0; i < processes.Count; i++)
+        {
+            var process = processes[i];
+
+            bool enabled = true;
+            bool found = false;
+
+            foreach (var member in colony.ColonyMembers)
+            {
+                if (member == addedEntity)
+                    continue;
+
+                var memberProcesses = member.Get<BioProcesses>().ActiveProcesses;
+
+                if (memberProcesses == null)
+                    continue;
+
+                foreach (var process1 in memberProcesses)
+                {
+                    if (process1.Process == process.Process)
+                    {
+                        enabled = process1.SpeedMultiplier > 0.0f;
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found)
+                    break;
+            }
+
+            process.SpeedMultiplier = enabled ? 1.0f : 0.0f;
+            processes[i] = process;
+        }
     }
 
     /// <summary>
