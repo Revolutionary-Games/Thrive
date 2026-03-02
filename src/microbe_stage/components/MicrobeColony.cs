@@ -1139,7 +1139,10 @@ public static class MicrobeColonyHelpers
             return;
         }
 
-        bioProcesses.ProcessStatistics ??= new ProcessStatistics();
+        if (colony.Leader.Get<BioProcesses>().ProcessStatistics != null)
+        {
+            bioProcesses.ProcessStatistics ??= new ProcessStatistics();
+        }
 
         var processes = bioProcesses.ActiveProcesses;
 
