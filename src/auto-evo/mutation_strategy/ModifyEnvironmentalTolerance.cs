@@ -213,7 +213,10 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
 
         var newScore = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(newSpecies, biomeToConsider);
 
-        if (newScore.OverallScore < score.OverallScore - MathUtils.EPSILON)
+        // As auto-evo can evolve to *reduce* perfect adaptability, only check that the score improved if the scores
+        // are below 1.
+        if ((newScore.OverallScore < 1 || score.OverallScore < 1) &&
+            (newScore.OverallScore < score.OverallScore - MathUtils.EPSILON))
         {
             GD.PrintErr($"Tolerance change in auto-evo caused score to get worse from: {score.OverallScore} " +
                 $"to {newScore.OverallScore}");
