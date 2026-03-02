@@ -1144,6 +1144,12 @@ public static class MicrobeColonyHelpers
             bioProcesses.ProcessStatistics ??= new ProcessStatistics();
         }
 
+        ApplyColonyProcessStatuses(ref colony, addedEntity, ref bioProcesses);
+    }
+
+    private static void ApplyColonyProcessStatuses(ref MicrobeColony colony, in Entity addedEntity,
+        ref BioProcesses bioProcesses)
+    {
         var processes = bioProcesses.ActiveProcesses;
 
         if (processes == null)

@@ -20,6 +20,7 @@ using Godot;
 [WritesToComponent(typeof(CellProperties))]
 [WritesToComponent(typeof(Physics))]
 [WritesToComponent(typeof(OrganelleContainer))]
+[WritesToComponent(typeof(BioProcesses))]
 [ReadsComponent(typeof(MulticellularSpeciesMember))]
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(ColonyBindingSystem))]
