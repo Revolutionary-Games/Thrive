@@ -879,7 +879,7 @@ public class GameWorld : IArchivable
     /// </summary>
     /// <param name="species">
     ///   The species to convert to a macroscopic one. No checks are done to make sure the species is
-    ///   actually a valid multicellular one.
+    ///   actually valid multicellular.
     /// </param>
     public MacroscopicSpecies ChangeSpeciesToMacroscopic(Species species)
     {
@@ -891,7 +891,7 @@ public class GameWorld : IArchivable
         var lateVersion = new MacroscopicSpecies(species.ID, species.Genus, species.Epithet);
         species.CopyDataToConvertedSpecies(lateVersion);
 
-        // Copy all the cell types, even ones that are unused so the player doesn't lose any when moving stages
+        // Copy all the cell types, even ones that are unused, so the player doesn't lose any when moving stages
         // in case they want to place them later
         lateVersion.ModifiableCellTypes.AddRange(earlySpecies.ModifiableCellTypes);
 

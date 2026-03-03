@@ -535,6 +535,8 @@ public partial class CellBodyPlanEditorComponent :
         // editor so this step can be skipped. Or another approach that keeps the shape the player worked on better
         // than this approach that can move around the cells a lot.
         // This uses high quality as extra time spent doesn't matter here and is even important for the player species.
+
+        // TODO: as this is a long operation, it would be very nice to be able to run this in a background thread
         MulticellularLayoutHelpers.UpdateGameplayLayout(editedSpecies.ModifiableGameplayCells,
             editedSpecies.ModifiableEditorCells, editedMicrobeCells, AlgorithmQuality.High, hexTemporaryMemory,
             hexTemporaryMemory2);
