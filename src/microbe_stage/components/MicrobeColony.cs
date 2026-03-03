@@ -1139,10 +1139,17 @@ public static class MicrobeColonyHelpers
             return;
         }
 
+        if (!colony.Leader.IsAliveAndHas<BioProcesses>())
+        {
+            GD.PrintErr("Cell added to a colony with invalid leader (has no BioProcesses set)");
+            return;
+        }
+
         ref var bioProcesses = ref addedEntity.Get<BioProcesses>();
 
         if (colony.Leader.Get<BioProcesses>().ProcessStatistics != null)
         {
+            // Make colony members also track processes if the leader is tracking processes
             bioProcesses.ProcessStatistics ??= new ProcessStatistics();
         }
 
@@ -1161,6 +1168,9 @@ public static class MicrobeColonyHelpers
             return;
         }
 
+        // This remembers the last member we read processes from for slightly reduced process component reading
+        List<TweakedProcess>? memberProcesses = null;
+
         for (int i = 0; i < processes.Count; ++i)
         {
             var process = processes[i];
@@ -1168,16 +1178,9 @@ public static class MicrobeColonyHelpers
             bool enabled = true;
             bool found = false;
 
-            foreach (var member in colony.ColonyMembers)
+            // If we already know a member where we found good data, check again first in there
+            if (memberProcesses != null)
             {
-                if (member == addedEntity)
-                    continue;
-
-                var memberProcesses = member.Get<BioProcesses>().ActiveProcesses;
-
-                if (memberProcesses == null)
-                    continue;
-
                 foreach (var memberProcess in memberProcesses)
                 {
                     if (memberProcess.Process == process.Process)
@@ -1187,9 +1190,36 @@ public static class MicrobeColonyHelpers
                         break;
                     }
                 }
+            }
 
-                if (found)
-                    break;
+            if (!found)
+            {
+                foreach (var member in colony.ColonyMembers)
+                {
+                    if (member == addedEntity)
+                        continue;
+
+                    memberProcesses = member.Get<BioProcesses>().ActiveProcesses;
+
+                    if (memberProcesses == null)
+                        continue;
+
+                    foreach (var memberProcess in memberProcesses)
+                    {
+                        if (memberProcess.Process == process.Process)
+                        {
+                            enabled = memberProcess.SpeedMultiplier > 0.0f;
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (found)
+                        break;
+                }
+
+                if (!found)
+                    memberProcesses = null;
             }
 
             process.SpeedMultiplier = enabled ? 1.0f : 0.0f;
