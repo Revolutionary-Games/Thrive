@@ -1330,7 +1330,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
     private bool CanShootToxin(CompoundBag compounds, float speciesFocus)
     {
-        return compounds.GetCompoundAmount(Compound.Oxytoxy) >=
+        return compounds.GetCompoundAmount(Compound.Oxytoxy) >
             Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * speciesFocus / Constants.MAX_SPECIES_FOCUS;
     }
 
