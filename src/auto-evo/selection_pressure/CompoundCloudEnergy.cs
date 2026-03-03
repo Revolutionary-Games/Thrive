@@ -3,13 +3,13 @@
 using System;
 using SharedBase.Archive;
 
-public class CompoundCloudPressure : SelectionPressure
+public class CompoundCloudEnergy : SelectionPressure
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    private static readonly LocalizedString NameString = new LocalizedString("MICHE_COMPOUND_CLOUD_PRESSURE");
+    private static readonly LocalizedString NameString = new LocalizedString("MICHE_COMPOUND_CLOUD_ENERGY");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
@@ -17,9 +17,7 @@ public class CompoundCloudPressure : SelectionPressure
 
     private readonly CompoundDefinition compoundDefinition;
 
-    private readonly bool isDayNightCycleEnabled;
-
-    public CompoundCloudPressure(Compound compound, bool isDayNightCycleEnabled, float weight) :
+    public CompoundCloudEnergy(Compound compound, float weight) :
         base(weight, [
             new AddOrganelleAnywhere(organelle => organelle.HasChemoreceptorComponent),
             new UpgradeOrganelle(organelle => organelle.HasChemoreceptorComponent,
@@ -33,7 +31,6 @@ public class CompoundCloudPressure : SelectionPressure
             throw new ArgumentException("Given compound to cloud pressure is not of cloud type");
 
         this.compound = compound;
-        this.isDayNightCycleEnabled = isDayNightCycleEnabled;
     }
 
     public override LocalizedString Name => NameString;
@@ -41,15 +38,15 @@ public class CompoundCloudPressure : SelectionPressure
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
     public override ArchiveObjectType ArchiveObjectType =>
-        (ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudPressure;
+        (ArchiveObjectType)ThriveArchiveObjectType.CompoundCloudEnergy;
 
-    public static CompoundCloudPressure ReadFromArchive(ISArchiveReader reader, ushort version,
+    public static CompoundCloudEnergy ReadFromArchive(ISArchiveReader reader, ushort version,
         int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var instance = new CompoundCloudPressure((Compound)reader.ReadInt32(), reader.ReadBool(), reader.ReadFloat());
+        var instance = new CompoundCloudEnergy((Compound)reader.ReadInt32(), reader.ReadFloat());
 
         instance.ReadBasePropertiesFromArchive(reader, 1);
         return instance;
@@ -58,52 +55,27 @@ public class CompoundCloudPressure : SelectionPressure
     public override void WriteToArchive(ISArchiveWriter writer)
     {
         writer.Write((int)compound);
-        writer.Write(isDayNightCycleEnabled);
         base.WriteToArchive(writer);
     }
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
-            return 0;
-
-        var score = MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.6f);
-
-        var activity = microbeSpecies.Behaviour.Activity;
-
-        // Species that are less active during the night get a small penalty here based on their activity
-        if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome))
-        {
-            var multiplier = activity / Constants.AI_ACTIVITY_TO_BE_FULLY_ACTIVE_DURING_NIGHT;
-
-            // Make the multiplier less extreme
-            multiplier *= Constants.AUTO_EVO_NIGHT_SESSILITY_COLLECTING_PENALTY_MULTIPLIER;
-
-            multiplier = Math.Max(multiplier, Constants.AUTO_EVO_MAX_NIGHT_SESSILITY_COLLECTING_PENALTY);
-
-            if (multiplier <= 1)
-                score *= multiplier;
-        }
-
-        var chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compoundDefinition, patch.Biome);
-
-        // modify score by activity
-        var activityFraction = activity / Constants.MAX_SPECIES_ACTIVITY;
-
-        score = (score + chemoreceptorScore) * activityFraction
-            + score * (1 - activityFraction) * Constants.AUTO_EVO_PASSIVE_COMPOUND_COLLECTION_FRACTION;
-
-        return score;
+        return 1;
     }
 
     public override float GetEnergy(Patch patch)
     {
-        return 0;
+        if (patch.Biome.AverageCompounds.TryGetValue(compound, out var compoundData))
+        {
+            return compoundData.Density * compoundData.Amount * Constants.AUTO_EVO_COMPOUND_ENERGY_AMOUNT;
+        }
+
+        return 0.0f;
     }
 
     public override LocalizedString GetDescription()
     {
-        return new LocalizedString("COMPOUND_FOOD_SOURCE",
+        return new LocalizedString("COMPOUND_FOOD_SOURCE_ENERGY",
             new LocalizedString(compoundDefinition.GetUntranslatedName()));
     }
 

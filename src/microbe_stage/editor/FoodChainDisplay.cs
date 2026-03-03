@@ -421,28 +421,28 @@ public partial class FoodChainDisplay : Control
             // Process this miche for the species
             switch (miche.Pressure)
             {
-                case ChunkCompoundPressure chunkCompoundPressure:
-                    LinkToCompoundNode(ourNode, chunkCompoundPressure.GetUsedCompoundType(),
+                case ChunkCompoundEnergy chunkCompoundEnergy:
+                    LinkToCompoundNode(ourNode, chunkCompoundEnergy.GetUsedCompoundType(),
                         GraphNode.NodeType.CompoundChunk);
                     break;
 
-                case CompoundCloudPressure compoundCloudPressure:
-                    LinkToCompoundNode(ourNode, compoundCloudPressure.GetUsedCompoundType(),
+                case CompoundCloudEnergy compoundCloudEnergy:
+                    LinkToCompoundNode(ourNode, compoundCloudEnergy.GetUsedCompoundType(),
                         GraphNode.NodeType.CompoundCloud);
                     break;
 
-                case EnvironmentalCompoundPressure environmentalCompoundPressure:
-                    LinkToCompoundNode(ourNode, environmentalCompoundPressure.GetUsedCompoundType(),
+                case EnvironmentalCompoundEnergy environmentalCompoundEnergy:
+                    LinkToCompoundNode(ourNode, environmentalCompoundEnergy.GetUsedCompoundType(),
                         GraphNode.NodeType.EnvironmentalCompound);
                     break;
 
-                case PredationEffectivenessPressure predationEffectivenessPressure:
+                case PredationEnergy predationEnergy:
                 {
                     bool found = false;
 
                     foreach (var node in graphNodes)
                     {
-                        if (node.Species == predationEffectivenessPressure.Prey)
+                        if (node.Species == predationEnergy.Prey)
                         {
                             ourNode.Links.Add(node);
                             found = true;
@@ -452,7 +452,7 @@ public partial class FoodChainDisplay : Control
                     if (!found)
                     {
                         // Can predate on an extinct species that didn't get a miche for itself
-                        var node = new GraphNode(predationEffectivenessPressure.Prey, true);
+                        var node = new GraphNode(predationEnergy.Prey, true);
                         graphNodes.Add(node);
 
                         ourNode.Links.Add(node);
@@ -463,6 +463,12 @@ public partial class FoodChainDisplay : Control
 
                 // Pressures that aren't really food sources so can just be skipped
                 case AvoidPredationSelectionPressure:
+                case GeneralAvoidPredationSelectionPressure:
+                case PredationEffectivenessPressure:
+                case ChunkCompoundPressure:
+                case CompoundCloudPressure:
+                case EnvironmentalCompoundPressure:
+                case ReproductionCompoundPressure:
                 case CompoundConversionEfficiencyPressure:
                 case MaintainCompoundPressure:
                 case MetabolicStabilityPressure:

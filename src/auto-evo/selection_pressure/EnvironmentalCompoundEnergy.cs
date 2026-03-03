@@ -3,24 +3,23 @@
 using System;
 using SharedBase.Archive;
 
-public class EnvironmentalCompoundPressure : SelectionPressure
+public class EnvironmentalCompoundEnergy : SelectionPressure
 {
     public const ushort SERIALIZATION_VERSION = 1;
 
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    private static readonly LocalizedString NameString = new LocalizedString("MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE");
+    private static readonly LocalizedString NameString = new LocalizedString("MICHE_ENVIRONMENTAL_COMPOUND_ENERGY");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
     private readonly CompoundDefinition atp = SimulationParameters.GetCompound(Compound.ATP);
 
-    private readonly CompoundDefinition createdCompound;
     private readonly CompoundDefinition compound;
 
     private readonly float energyMultiplier;
 
-    public EnvironmentalCompoundPressure(Compound compound, Compound createdCompound, float energyMultiplier,
+    public EnvironmentalCompoundEnergy(Compound compound, float energyMultiplier,
         float weight) :
         base(weight, [
             AddOrganelleAnywhere.ThatUseCompound(compound),
@@ -31,12 +30,6 @@ public class EnvironmentalCompoundPressure : SelectionPressure
         if (this.compound.IsCloud)
             throw new ArgumentException("Given compound to environmental pressure is a cloud type");
 
-        if (createdCompound != Compound.ATP && createdCompound != Compound.Glucose)
-        {
-            throw new ArgumentException("Unhandled created compound");
-        }
-
-        this.createdCompound = SimulationParameters.GetCompound(createdCompound);
         this.energyMultiplier = energyMultiplier;
     }
 
@@ -45,16 +38,16 @@ public class EnvironmentalCompoundPressure : SelectionPressure
     public override ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
 
     public override ArchiveObjectType ArchiveObjectType =>
-        (ArchiveObjectType)ThriveArchiveObjectType.EnvironmentalCompoundPressure;
+        (ArchiveObjectType)ThriveArchiveObjectType.EnvironmentalCompoundEnergy;
 
-    public static EnvironmentalCompoundPressure ReadFromArchive(ISArchiveReader reader, ushort version,
+    public static EnvironmentalCompoundEnergy ReadFromArchive(ISArchiveReader reader, ushort version,
         int referenceId)
     {
         if (version is > SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, SERIALIZATION_VERSION);
 
-        var instance = new EnvironmentalCompoundPressure((Compound)reader.ReadInt32(), (Compound)reader.ReadInt32(),
-            reader.ReadFloat(), reader.ReadFloat());
+        var instance = new EnvironmentalCompoundEnergy((Compound)reader.ReadInt32(), reader.ReadFloat(),
+            reader.ReadFloat());
 
         instance.ReadBasePropertiesFromArchive(reader, 1);
         return instance;
@@ -63,38 +56,23 @@ public class EnvironmentalCompoundPressure : SelectionPressure
     public override void WriteToArchive(ISArchiveWriter writer)
     {
         writer.Write((int)compound.ID);
-        writer.Write((int)createdCompound.ID);
         writer.Write(energyMultiplier);
         base.WriteToArchive(writer);
     }
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
-            return 0;
-
-        var amountCreated = cache.GetCompoundGeneratedFrom(compound, createdCompound, microbeSpecies, patch.Biome);
-
-        if (createdCompound.ID == Compound.Glucose)
-        {
-            amountCreated *=
-                cache.GetCompoundConversionScoreForSpecies(createdCompound, atp, microbeSpecies);
-        }
-
-        var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
-
-        // Penalize Species that cannot rely exclusively on this compound
-        return MathF.Min(amountCreated / energyBalance.TotalConsumption, 1);
+        return 1;
     }
 
     public override float GetEnergy(Patch patch)
     {
-        return 0;
+        return patch.Biome.AverageCompounds[compound.ID].Ambient * energyMultiplier;
     }
 
     public override LocalizedString GetDescription()
     {
-        return new LocalizedString("DISSOLVED_COMPOUND_FOOD_SOURCE",
+        return new LocalizedString("DISSOLVED_COMPOUND_FOOD_SOURCE_ENERGY",
             new LocalizedString(compound.GetUntranslatedName()));
     }
 

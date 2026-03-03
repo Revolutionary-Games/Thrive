@@ -73,10 +73,7 @@ public class PredationEffectivenessPressure : SelectionPressure
 
     public override float GetEnergy(Patch patch)
     {
-        if (!patch.SpeciesInPatch.TryGetValue(Prey, out long population) || population <= 0)
-            return 0;
-
-        return population * Prey.GetPredationTargetSizeFactor() * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
+        return 0;
     }
 
     public override LocalizedString GetDescription()
