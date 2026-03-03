@@ -378,6 +378,9 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
         // Preserve an endosymbiosis progress object as the same, as this is meant to be used when converting species
         // types
         species.Endosymbiosis = Endosymbiosis;
+
+        // Preserve configured tolerances to not lose them when converting species types
+        species.ModifiableTolerances.CopyFrom(Tolerances);
     }
 
     /// <summary>
