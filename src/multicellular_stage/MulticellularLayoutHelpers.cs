@@ -234,6 +234,13 @@ public static class MulticellularLayoutHelpers
 
             positionMultiplier += 1;
 
+            if (positionMultiplier % 5 == 1)
+            {
+                GD.Print("Multicellular layout determination is taking a bit of time, please wait...");
+            }
+
+            // TODO: this safety cutoff is probably a bit too long as it already takes a few seconds to get to
+            // multiplier 10
             if (positionMultiplier > 10000)
             {
                 GD.PrintErr("Cannot find a cell layout where all are touching");
@@ -392,6 +399,7 @@ public static class MulticellularLayoutHelpers
                     else
                     {
                         bool foundTarget = false;
+                        bool foundPlaceable = false;
                         while (effectiveMoveDistance < 1000)
                         {
                             var newPositionRaw = itemPos + shift * effectiveMoveDistance;
@@ -401,6 +409,7 @@ public static class MulticellularLayoutHelpers
                             item.Position = newPosition;
                             if (targetGameplayLayout.CanPlace(item, hexTemporaryMemory, hexTemporaryMemory2))
                             {
+                                foundPlaceable = true;
                                 if (foundTarget)
                                 {
                                     targetGameplayLayout.AddFast(item, hexTemporaryMemory, hexTemporaryMemory2);
@@ -414,6 +423,13 @@ public static class MulticellularLayoutHelpers
 
                             if (foundTarget)
                             {
+                                // If didn't find a placeable location yet, then this move is a dud as we want to find
+                                // a valid position followed by an invalid one and then step back from there. If we
+                                // haven't found an empty position yet, then it means the algorithm cannot work at the
+                                // current position.
+                                if (!foundPlaceable)
+                                    break;
+
                                 GD.PrintErr("Moving back a step failed for a cell, this should not happen");
                                 break;
                             }
