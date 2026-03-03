@@ -88,7 +88,6 @@ public class GenerateMiche : IRunStep
                 energyConsumptionMiche.AddChild(new Miche(globalCache.SmallIronChunkEnergy));
             }
 
-
             if (hasBigIronChunk)
             {
                 var bigIronChunkMiche = new Miche(globalCache.BigIronChunkPressure);
@@ -293,11 +292,13 @@ public class GenerateMiche : IRunStep
         {
             // Predation Miches
             var predationEffectiveness = new Miche(new PredationEffectivenessPressure(targetSpecies.Key, 7.0f));
+            var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
             var predationGlucose = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
             var energyConsumptionMiche = new Miche(globalCache.EnergyConsumptionPressure);
 
             predationRoot.AddChild(predationEffectiveness);
-            predationEffectiveness.AddChild(predationGlucose);
+            predationEffectiveness.AddChild(avoidPredationMiche);
+            avoidPredationMiche.AddChild(predationGlucose);
             predationGlucose.AddChild(energyConsumptionMiche);
             energyConsumptionMiche.AddChild(new Miche(new PredationEnergy(targetSpecies.Key, 0.1f)));
 
