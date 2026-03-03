@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-27 14:48+0200\n"
+"POT-Creation-Date: 2026-03-03 11:51+0100\n"
 "PO-Revision-Date: 2026-02-18 15:13+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
@@ -536,6 +536,10 @@ msgstr "რკინის დიდი ნაჭერი"
 msgid "BIG_IRON_CHUNK_BANANA"
 msgstr "დიდი რკინის ბანანის ნაგლეჯი"
 
+#, fuzzy
+msgid "BIG_IRON_CHUNK_ENERGY"
+msgstr "რკინის დიდი ნაჭერი"
+
 msgid "BIG_PHOSPHATE_CHUNK"
 msgstr "დიდი ფოსფატის ნაჭერი"
 
@@ -830,6 +834,10 @@ msgstr "უჯრედის გვამის ნაგლეჯი"
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} მოხმარება"
 
+#, fuzzy
+msgid "CHUNK_FOOD_SOURCE_ENERGY"
+msgstr "{0} მოხმარება"
+
 msgid "CILIA"
 msgstr "წამწამი"
 
@@ -1016,6 +1024,10 @@ msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr "{0}-ის კონცენტრაცია შემცირდა მნიშვნელობით {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
+msgstr "{0} მოხმარება"
+
+#, fuzzy
+msgid "COMPOUND_FOOD_SOURCE_ENERGY"
 msgstr "{0} მოხმარება"
 
 msgid "COMPOUND_HANDLE_KEEP"
@@ -1723,6 +1735,10 @@ msgid "DISPLAY_SELECTION"
 msgstr "ეკრანი:"
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
+msgstr "{0}-ის საჭმლის წყაროს ერთგვაროვანი განაწილება გარემოში"
+
+#, fuzzy
+msgid "DISSOLVED_COMPOUND_FOOD_SOURCE_ENERGY"
 msgstr "{0}-ის საჭმლის წყაროს ერთგვაროვანი განაწილება გარემოში"
 
 msgid "DOES_NOT_USE_FEATURE"
@@ -3037,6 +3053,10 @@ msgstr "ეს თარგმანი დაუსრულებელია 
 msgid "LARGE_SULFUR_CHUNK"
 msgstr "დიდი გოგირდის ნაგლეჯი"
 
+#, fuzzy
+msgid "LARGE_SULFUR_CHUNK_ENERGY"
+msgstr "დიდი გოგირდის ნაგლეჯი"
+
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "ბოლო ორგანელას ვერ წაშლით"
 
@@ -3418,6 +3438,10 @@ msgstr "MediaStop"
 msgid "MEDIUM_SULFUR_CHUNK"
 msgstr "გოგირდის პატარა ნაჭერი"
 
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK_ENERGY"
+msgstr "გოგირდის პატარა ნაჭერი"
+
 msgid "MEGA_YEARS"
 msgstr "მილ. წ"
 
@@ -3484,8 +3508,16 @@ msgstr "მიშეები ბიომისთვის {0}"
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "მტაცებლობის არჩევნის წნევის თავიდან აცილება"
 
+#, fuzzy
+msgid "MICHE_CHUNK_ENERGY"
+msgstr "ნაგლეჯის წნევა"
+
 msgid "MICHE_CHUNK_PRESSURE"
 msgstr "ნაგლეჯის წნევა"
+
+#, fuzzy
+msgid "MICHE_COMPOUND_CLOUD_ENERGY"
+msgstr "ნაერთის ღრუბლის წნევა"
 
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
 msgstr "ნაერთის ღრუბლის წნევა"
@@ -3505,6 +3537,10 @@ msgstr ""
 msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
 msgstr "ენდოსიმბიოზის არჩევნის წნევა"
 
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_ENERGY"
+msgstr "გარემოს ნაერთის წნევა"
+
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr "გარემოს ნაერთის წნევა"
 
@@ -3521,6 +3557,10 @@ msgid "MICHE_NO_OP_PRESSURE"
 msgstr "წნევა ოპერაციის გარეშე"
 
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr "მტაცებლობის ეფექტურობის წნევა"
+
+#, fuzzy
+msgid "MICHE_PREDATION_ENERGY"
 msgstr "მტაცებლობის ეფექტურობის წნევა"
 
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
@@ -4726,6 +4766,10 @@ msgstr "{0},"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "{0}-ის ამოწყვეტა"
 
+#, fuzzy
+msgid "PREDATION_FOOD_SOURCE_ENERGY"
+msgstr "{0}-ის ამოწყვეტა"
+
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "დეტალები პროგნოზის ფუძეში არსებული ინფორმაციის შესახებ"
 
@@ -4834,6 +4878,10 @@ msgid "RADIATION_LEVELS"
 msgstr "რადიაციის დონე"
 
 msgid "RADIOACTIVE_CHUNK"
+msgstr "რადიაქტიური ქვის ნატეხი"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK_ENERGY"
 msgstr "რადიაქტიური ქვის ნატეხი"
 
 msgid "RADIOSYNTHESIS"
@@ -5414,6 +5462,10 @@ msgstr "რკინის პატარა ნაჭერი"
 msgid "SMALL_IRON_CHUNK_BANANA"
 msgstr "პატარა რკინის ბანანის ნაჭერი"
 
+#, fuzzy
+msgid "SMALL_IRON_CHUNK_ENERGY"
+msgstr "რკინის პატარა ნაჭერი"
+
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "პატარა ფოსფატის ნაგლეჯი"
 
@@ -5421,6 +5473,10 @@ msgid "SMALL_PHOSPHATE_CHUNK_BANANA"
 msgstr "პატარა ფოსფატის ბანანის ნაგლეჯი"
 
 msgid "SMALL_SULFUR_CHUNK"
+msgstr "გოგირდის პატარა ნაჭერი"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK_ENERGY"
 msgstr "გოგირდის პატარა ნაჭერი"
 
 msgid "SNOWFLAKE"
