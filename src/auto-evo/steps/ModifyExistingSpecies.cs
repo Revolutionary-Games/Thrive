@@ -239,9 +239,10 @@ public class ModifyExistingSpecies : IRunStep
 
     private static void PruneMutations(List<Mutant> addResultsTo, MicrobeSpecies baseSpecies,
         List<Mutant> mutated, Patch patch, SimulationCache cache,
-        Stack<SelectionPressure> selectionPressures, float toleranceThreshold = 0.0f)
+        Stack<SelectionPressure> selectionPressures)
     {
         var pressureStackSize = selectionPressures.Count;
+        var toleranceThreshold = Constants.MUTATION_PRUNING_THRESHOLD;
 
         foreach (var potentialVariant in mutated)
         {
@@ -380,28 +381,21 @@ public class ModifyExistingSpecies : IRunStep
                     if (mutated != null)
                     {
                         PruneMutations(temporaryMutations2, speciesTuple.Species, mutated, patch, cache,
-                            pressureStack, Constants.MUTATION_PRUNING_THRESHOLD);
+                            pressureStack);
                     }
                 }
 
                 temporaryMutations1.Clear();
-                PruneMutations(temporaryMutations1, baseSpecies, temporaryMutations2, patch, cache,
-                    pressureStack, Constants.MUTATION_PRUNING_THRESHOLD);
+                PruneMutations(temporaryMutations1, baseSpecies, temporaryMutations2, patch, cache, pressureStack);
 
                 outputSpecies.AddRange(temporaryMutations1);
 
-                // If the number of mutants is over the limit,
-                // take the top, and random grabs of passing and passing + barely failing mutants for the next round
                 if (outputSpecies.Count > Constants.MAX_VARIANTS_IN_MUTATIONS)
                 {
                     GetTopMutations(temporaryMutations2, outputSpecies,
-                        Constants.MAX_VARIANTS_IN_MUTATIONS / 3, mutationSorter);
+                        Constants.MAX_VARIANTS_IN_MUTATIONS / 2, mutationSorter);
                     AddRandomMutations(temporaryMutations2, outputSpecies,
-                        Constants.MAX_VARIANTS_IN_MUTATIONS / 3);
-                    PruneMutations(temporaryMutations1, baseSpecies, temporaryMutations2, patch, cache,
-                        pressureStack);
-                    AddRandomMutations(temporaryMutations2, temporaryMutations1,
-                        Constants.MAX_VARIANTS_IN_MUTATIONS / 3);
+                        Constants.MAX_VARIANTS_IN_MUTATIONS / 2);
 
                     outputSpecies.Clear();
                     outputSpecies.AddRange(temporaryMutations2);
