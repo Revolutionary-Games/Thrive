@@ -89,7 +89,7 @@ public class EnvironmentalCompoundPressure : SelectionPressure
 
     public override float GetEnergy(Patch patch)
     {
-        return 0;
+        return patch.Biome.AverageCompounds[compound.ID].Ambient * energyMultiplier;
     }
 
     public override LocalizedString GetDescription()

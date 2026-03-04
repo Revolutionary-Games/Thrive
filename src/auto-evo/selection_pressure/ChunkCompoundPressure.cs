@@ -126,7 +126,22 @@ public class ChunkCompoundPressure : SelectionPressure
 
     public override float GetEnergy(Patch patch)
     {
-        return 0;
+        if (!patch.Biome.Chunks.TryGetValue(chunkType, out var chunk))
+            throw new ArgumentException("Chunk does not exist in patch");
+
+        if (chunk.Compounds?.TryGetValue(compound.ID, out var compoundAmount) != true)
+            throw new ArgumentException("Chunk does not contain compound");
+
+        // This computation nerfs big chunks with a large amount,
+        // by adding an "accessibility" component to total energy.
+        // Since most cells will rely on bigger chunks by exploiting the venting,
+        // this technically makes it a less efficient food source than small chunks, despite a larger amount.
+        // We thus account for venting also in the total energy from the source,
+        // by adding a volume-to-surface radius exponent ratio (e.g. 2/3 for a sphere).
+        // This logic doesn't match with the rest of auto-evo (which doesn't account for accessibility).
+        // TODO: extend this approach or find another nerf.
+        var ventedEnergy = MathF.Pow(compoundAmount.Amount, Constants.AUTO_EVO_CHUNK_AMOUNT_NERF);
+        return ventedEnergy * chunk.Density * Constants.AUTO_EVO_CHUNK_ENERGY_AMOUNT;
     }
 
     public Compound GetUsedCompoundType()

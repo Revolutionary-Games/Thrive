@@ -98,7 +98,12 @@ public class CompoundCloudPressure : SelectionPressure
 
     public override float GetEnergy(Patch patch)
     {
-        return 0;
+        if (patch.Biome.AverageCompounds.TryGetValue(compound, out var compoundData))
+        {
+            return compoundData.Density * compoundData.Amount * Constants.AUTO_EVO_COMPOUND_ENERGY_AMOUNT;
+        }
+
+        return 0.0f;
     }
 
     public override LocalizedString GetDescription()
