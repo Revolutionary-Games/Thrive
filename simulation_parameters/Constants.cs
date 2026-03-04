@@ -1216,7 +1216,7 @@ public static class Constants
 
     // Mutation Variables
     public const int MAX_VARIANTS_PER_MUTATION = 50;
-    public const int MAX_VARIANTS_IN_MUTATIONS = 10;
+    public const int MAX_VARIANTS_IN_MUTATIONS = 30;
     public const float MUTATION_PRUNING_THRESHOLD = -0.1f;
     public const float MUTATION_BACTERIA_TO_EUKARYOTE = 0.01f;
     public const float MUTATION_CREATION_RATE = 0.25f;
