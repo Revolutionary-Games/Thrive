@@ -361,8 +361,6 @@ public class ModifyExistingSpecies : IRunStep
         var mutations = currentMiche.Pressure.Mutations;
         bool lawk = worldSettings.LAWK;
 
-        var sampleSize = Constants.MAX_VARIANTS_IN_MUTATIONS / pressureStack.Count;
-
         foreach (var mutationStrategy in mutations)
         {
             temporaryMutations1.Clear();
@@ -394,16 +392,16 @@ public class ModifyExistingSpecies : IRunStep
 
                 // If the number of mutants is over the limit,
                 // take the top, and random grabs of passing and passing + barely failing mutants for the next round
-                if (outputSpecies.Count > sampleSize)
+                if (outputSpecies.Count > Constants.MAX_VARIANTS_IN_MUTATIONS)
                 {
                     GetTopMutations(temporaryMutations2, outputSpecies,
-                        sampleSize / 3, mutationSorter);
+                        Constants.MAX_VARIANTS_IN_MUTATIONS / 3, mutationSorter);
                     AddRandomMutations(temporaryMutations2, outputSpecies,
-                        sampleSize / 3);
+                        Constants.MAX_VARIANTS_IN_MUTATIONS / 3);
                     PruneMutations(temporaryMutations1, baseSpecies, temporaryMutations2, patch, cache,
                         pressureStack);
                     AddRandomMutations(temporaryMutations2, temporaryMutations1,
-                        sampleSize / 3);
+                        Constants.MAX_VARIANTS_IN_MUTATIONS / 3);
 
                     outputSpecies.Clear();
                     outputSpecies.AddRange(temporaryMutations2);
@@ -444,8 +442,7 @@ public class ModifyExistingSpecies : IRunStep
         {
             // Prune out any results that don't improve this branch
             temporaryMutations1.Clear();
-            PruneMutations(temporaryMutations1, baseSpecies, outputSpecies, patch, cache,
-                pressureStack, Constants.MUTATION_PRUNING_THRESHOLD);
+            PruneMutations(temporaryMutations1, baseSpecies, outputSpecies, patch, cache, pressureStack);
             outputSpecies.Clear();
             outputSpecies.AddRange(temporaryMutations1);
 
