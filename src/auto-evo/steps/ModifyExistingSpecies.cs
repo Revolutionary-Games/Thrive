@@ -241,9 +241,6 @@ public class ModifyExistingSpecies : IRunStep
         List<Mutant> mutated, Patch patch, SimulationCache cache,
         Stack<SelectionPressure> selectionPressures)
     {
-        var pressureStackSize = selectionPressures.Count;
-        var toleranceThreshold = Constants.MUTATION_PRUNING_THRESHOLD;
-
         foreach (var potentialVariant in mutated)
         {
             var combinedScores = 0.0;
@@ -263,11 +260,9 @@ public class ModifyExistingSpecies : IRunStep
                 combinedScores += pastPressure.WeightedComparedScores(newScore, oldScore);
             }
 
-            combinedScores /= pressureStackSize;
-
-            // Not pruning species that only slightly slower score can inject more
+            // Not pruning species that don't affect the score can inject more
             // variety into the species generated
-            if (combinedScores >= toleranceThreshold)
+            if (combinedScores >= 0)
             {
                 addResultsTo.Add(potentialVariant);
             }
