@@ -49,7 +49,7 @@ public class AutoEvoGlobalCache
     {
         RootPressure = new RootPressure();
         MetabolicStabilityPressure = new MetabolicStabilityPressure(10.0f);
-        GeneralAvoidPredationSelectionPressure = new GeneralAvoidPredationSelectionPressure(1.5f);
+        GeneralAvoidPredationSelectionPressure = new GeneralAvoidPredationSelectionPressure(1.0f);
         EnergyConsumptionPressure = new EnergyConsumptionPressure(0.3f);
         EnvironmentalTolerancesPressure = new EnvironmentalTolerancePressure(3);
 
@@ -68,20 +68,20 @@ public class AutoEvoGlobalCache
         IronConversionEfficiencyPressure =
             new CompoundConversionEfficiencyPressure(Compound.Iron, Compound.ATP, true, 1.5f);
         SmallIronChunkPressure = new ChunkCompoundPressure("ironSmallChunk", new LocalizedString("SMALL_IRON_CHUNK"),
-            Compound.Iron, Compound.ATP, 1.0f);
+            Compound.Iron, Compound.ATP, 2.0f);
         BigIronChunkPressure = new ChunkCompoundPressure("ironBigChunk", new LocalizedString("BIG_IRON_CHUNK"),
-            Compound.Iron, Compound.ATP, 1.0f);
+            Compound.Iron, Compound.ATP, 2.0f);
 
         HydrogenSulfideConversionEfficiencyPressure = new CompoundConversionEfficiencyPressure(Compound.Hydrogensulfide,
-            Compound.Glucose, true, 1.0f);
+            Compound.Glucose, true, 1.5f);
         HydrogenSulfideCloudPressure = new CompoundCloudPressure(Compound.Hydrogensulfide,
             worldSettings.DayNightCycleEnabled, 1.0f);
         SmallSulfurChunkPressure = new ChunkCompoundPressure("sulfurSmallChunk",
-            new LocalizedString("SMALL_SULFUR_CHUNK"), Compound.Hydrogensulfide, Compound.Glucose, 1.0f);
+            new LocalizedString("SMALL_SULFUR_CHUNK"), Compound.Hydrogensulfide, Compound.Glucose, 2.0f);
         MediumSulfurChunkPressure = new ChunkCompoundPressure("sulfurMediumChunk",
-            new LocalizedString("MEDIUM_SULFUR_CHUNK"), Compound.Hydrogensulfide, Compound.Glucose, 1.0f);
+            new LocalizedString("MEDIUM_SULFUR_CHUNK"), Compound.Hydrogensulfide, Compound.Glucose, 2.0f);
         LargeSulfurChunkPressure = new ChunkCompoundPressure("sulfurLargeChunk",
-            new LocalizedString("LARGE_SULFUR_CHUNK"), Compound.Hydrogensulfide, Compound.Glucose, 1.0f);
+            new LocalizedString("LARGE_SULFUR_CHUNK"), Compound.Hydrogensulfide, Compound.Glucose, 2.0f);
 
         SunlightConversionEfficiencyPressure =
             new CompoundConversionEfficiencyPressure(Compound.Sunlight, Compound.Glucose, true, 1.0f);
@@ -93,12 +93,12 @@ public class AutoEvoGlobalCache
             new LocalizedString("RADIOACTIVE_CHUNK"), Compound.Radiation, Compound.ATP, 1.0f);
 
         TemperatureConversionEfficiencyPressure =
-            new CompoundConversionEfficiencyPressure(Compound.Temperature, Compound.Glucose, true, 1.0f);
+            new CompoundConversionEfficiencyPressure(Compound.Temperature, Compound.Glucose, true, 1.5f);
         TemperatureCompoundPressure = new EnvironmentalCompoundPressure(Compound.Temperature, Compound.Glucose,
-            100, 1.0f);
+            100, 2.0f);
         HasTemperature = !worldSettings.LAWK;
 
-        PredatorRoot = new PredatorRoot(1.0f);
+        PredatorRoot = new PredatorRoot(2.0f);
 
         TemperatureSessilityPressure = new TemperatureSessilityPressure(1.0f);
     }
