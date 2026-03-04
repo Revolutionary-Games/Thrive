@@ -32,64 +32,56 @@ public class GenerateMiche : IRunStep
     {
         var rootMiche = new Miche(globalCache.RootPressure);
         var metabolicRoot = new Miche(globalCache.MetabolicStabilityPressure);
-
+        var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
+        var energyConsumptionMiche = new Miche(globalCache.EnergyConsumptionPressure);
         var generatedMiche = new Miche(globalCache.EnvironmentalTolerancesPressure);
 
         rootMiche.AddChild(metabolicRoot);
-        metabolicRoot.AddChild(generatedMiche);
+        metabolicRoot.AddChild(avoidPredationMiche);
+        avoidPredationMiche.AddChild(energyConsumptionMiche);
+        energyConsumptionMiche.AddChild(generatedMiche);
 
-        var lastGeneralMiche = generatedMiche;
+        // "Autotrophic" Miches
+        var phosphateMiche = new Miche(globalCache.PhosphatePressure);
+        var ammoniaMiche = new Miche(globalCache.AmmoniaPressure);
+
+        generatedMiche.AddChild(phosphateMiche);
+        phosphateMiche.AddChild(ammoniaMiche);
+
+        var lastGeneralMiche = ammoniaMiche;
 
         // Glucose
         if (patch.Biome.TryGetCompound(Compound.Glucose, CompoundAmountType.Biome, out var glucoseAmount) &&
             glucoseAmount.Amount > 0)
         {
             var glucoseMiche = new Miche(globalCache.GlucoseConversionEfficiencyPressure);
-            var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
-            var phosphateMiche = new Miche(globalCache.PhosphatePressure);
-            var ammoniaMiche = new Miche(globalCache.AmmoniaPressure);
-            var energyConsumptionMiche = new Miche(globalCache.EnergyConsumptionPressure);
+            glucoseMiche.AddChild(new Miche(globalCache.GlucoseCloudPressure));
 
             lastGeneralMiche.AddChild(glucoseMiche);
-            glucoseMiche.AddChild(avoidPredationMiche);
-            avoidPredationMiche.AddChild(phosphateMiche);
-            phosphateMiche.AddChild(ammoniaMiche);
-            ammoniaMiche.AddChild(energyConsumptionMiche);
-
-            energyConsumptionMiche.AddChild(new Miche(globalCache.GlucoseCloudPressure));
         }
 
-        // Iron
         var hasSmallIronChunk =
             patch.Biome.Chunks.TryGetValue("ironSmallChunk", out var smallChunk) && smallChunk.Density > 0;
 
         var hasBigIronChunk = patch.Biome.Chunks.TryGetValue("ironBigChunk", out var bigChunk) && bigChunk.Density > 0;
 
+        // Iron
         if (hasSmallIronChunk || hasBigIronChunk)
         {
             var ironMiche = new Miche(globalCache.IronConversionEfficiencyPressure);
-            var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
-            var phosphateMiche = new Miche(globalCache.PhosphatePressure);
-            var ammoniaMiche = new Miche(globalCache.AmmoniaPressure);
-            var energyConsumptionMiche = new Miche(globalCache.EnergyConsumptionPressure);
-
-            lastGeneralMiche.AddChild(ironMiche);
-            ironMiche.AddChild(avoidPredationMiche);
-            avoidPredationMiche.AddChild(phosphateMiche);
-            phosphateMiche.AddChild(ammoniaMiche);
-            ammoniaMiche.AddChild(energyConsumptionMiche);
 
             if (hasSmallIronChunk)
-                energyConsumptionMiche.AddChild(new Miche(globalCache.SmallIronChunkPressure));
+                ironMiche.AddChild(new Miche(globalCache.SmallIronChunkPressure));
 
             if (hasBigIronChunk)
-                energyConsumptionMiche.AddChild(new Miche(globalCache.BigIronChunkPressure));
+                ironMiche.AddChild(new Miche(globalCache.BigIronChunkPressure));
 
             // TODO: maybe allowing direct iron in a patch should also be considered (though not currently used by
             // any biome in the game)?
+
+            lastGeneralMiche.AddChild(ironMiche);
         }
 
-        // Hydrogen Sulfide
         var hasSmallSulfurChunk =
             patch.Biome.Chunks.TryGetValue("sulfurSmallChunk", out var smallSulfurChunk) &&
             smallSulfurChunk.Density > 0;
@@ -100,58 +92,43 @@ public class GenerateMiche : IRunStep
         var hasLargeSulfurChunk = patch.Biome.Chunks.TryGetValue("sulfurLargeChunk", out var largeSulfurChunk) &&
             largeSulfurChunk.Density > 0;
 
+        // Hydrogen Sulfide
         if ((patch.Biome.TryGetCompound(Compound.Hydrogensulfide, CompoundAmountType.Biome,
                     out var hydrogenSulfideAmount) &&
                 hydrogenSulfideAmount.Amount > 0) || hasSmallSulfurChunk || hasMediumSulfurChunk || hasLargeSulfurChunk)
         {
             var hydrogenSulfideMiche = new Miche(globalCache.HydrogenSulfideConversionEfficiencyPressure);
-            var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
-            var phosphateMiche = new Miche(globalCache.PhosphatePressure);
-            var ammoniaMiche = new Miche(globalCache.AmmoniaPressure);
             var generateATP = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
             var maintainGlucose = new Miche(globalCache.MaintainGlucose);
-            var energyConsumptionMiche = new Miche(globalCache.EnergyConsumptionPressure);
-
-            lastGeneralMiche.AddChild(hydrogenSulfideMiche);
-            hydrogenSulfideMiche.AddChild(avoidPredationMiche);
-            avoidPredationMiche.AddChild(phosphateMiche);
-            phosphateMiche.AddChild(ammoniaMiche);
-            ammoniaMiche.AddChild(generateATP);
-            generateATP.AddChild(maintainGlucose);
-            maintainGlucose.AddChild(energyConsumptionMiche);
 
             if (hydrogenSulfideAmount.Amount > 0)
-                energyConsumptionMiche.AddChild(new Miche(globalCache.HydrogenSulfideCloudPressure));
+                maintainGlucose.AddChild(new Miche(globalCache.HydrogenSulfideCloudPressure));
 
             if (hasSmallSulfurChunk)
-                energyConsumptionMiche.AddChild(new Miche(globalCache.SmallSulfurChunkPressure));
+                maintainGlucose.AddChild(new Miche(globalCache.SmallSulfurChunkPressure));
 
             if (hasMediumSulfurChunk)
-                energyConsumptionMiche.AddChild(new Miche(globalCache.MediumSulfurChunkPressure));
+                maintainGlucose.AddChild(new Miche(globalCache.MediumSulfurChunkPressure));
 
             if (hasLargeSulfurChunk)
-                energyConsumptionMiche.AddChild(new Miche(globalCache.LargeSulfurChunkPressure));
+                maintainGlucose.AddChild(new Miche(globalCache.LargeSulfurChunkPressure));
+
+            generateATP.AddChild(maintainGlucose);
+            hydrogenSulfideMiche.AddChild(generateATP);
+            lastGeneralMiche.AddChild(hydrogenSulfideMiche);
         }
 
-        // Radioactive Chunk
         var hasRadioactiveChunk =
             patch.Biome.Chunks.TryGetValue("radioactiveChunk", out var radioactiveChunk) &&
             radioactiveChunk.Density > 0;
 
+        // Radioactive Chunk
         if (hasRadioactiveChunk)
         {
             var radiationMiche = new Miche(globalCache.RadiationConversionEfficiencyPressure);
-            var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
-            var phosphateMiche = new Miche(globalCache.PhosphatePressure);
-            var ammoniaMiche = new Miche(globalCache.AmmoniaPressure);
-            var energyConsumptionMiche = new Miche(globalCache.EnergyConsumptionPressure);
+            radiationMiche.AddChild(new Miche(globalCache.RadioactiveChunkPressure));
 
             lastGeneralMiche.AddChild(radiationMiche);
-            radiationMiche.AddChild(avoidPredationMiche);
-            avoidPredationMiche.AddChild(phosphateMiche);
-            phosphateMiche.AddChild(ammoniaMiche);
-            ammoniaMiche.AddChild(energyConsumptionMiche);
-            energyConsumptionMiche.AddChild(new Miche(globalCache.RadioactiveChunkPressure));
         }
 
         // Sunlight
@@ -160,22 +137,14 @@ public class GenerateMiche : IRunStep
             sunlightAmount.Ambient >= 0.25f)
         {
             var sunlightMiche = new Miche(globalCache.SunlightConversionEfficiencyPressure);
-            var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
-            var phosphateMiche = new Miche(globalCache.PhosphatePressure);
-            var ammoniaMiche = new Miche(globalCache.AmmoniaPressure);
             var generateATP = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
             var maintainGlucose = new Miche(globalCache.MaintainGlucose);
-            var energyConsumptionMiche = new Miche(globalCache.EnergyConsumptionPressure);
             var envPressure = new Miche(globalCache.SunlightCompoundPressure);
 
-            lastGeneralMiche.AddChild(sunlightMiche);
-            sunlightMiche.AddChild(avoidPredationMiche);
-            avoidPredationMiche.AddChild(phosphateMiche);
-            phosphateMiche.AddChild(ammoniaMiche);
-            ammoniaMiche.AddChild(generateATP);
+            maintainGlucose.AddChild(envPressure);
             generateATP.AddChild(maintainGlucose);
-            maintainGlucose.AddChild(energyConsumptionMiche);
-            energyConsumptionMiche.AddChild(envPressure);
+            sunlightMiche.AddChild(generateATP);
+            lastGeneralMiche.AddChild(sunlightMiche);
         }
 
         // Heat
@@ -186,24 +155,16 @@ public class GenerateMiche : IRunStep
             temperatureAmount.Ambient > 60 && globalCache.HasTemperature)
         {
             var tempMiche = new Miche(globalCache.TemperatureConversionEfficiencyPressure);
-            var avoidPredationMiche = new Miche(globalCache.GeneralAvoidPredationSelectionPressure);
-            var phosphateMiche = new Miche(globalCache.PhosphatePressure);
-            var ammoniaMiche = new Miche(globalCache.AmmoniaPressure);
+            var tempSessilityMiche = new Miche(globalCache.TemperatureSessilityPressure);
             var generateATP = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
             var maintainGlucose = new Miche(globalCache.MaintainGlucose);
-            var tempSessilityMiche = new Miche(globalCache.TemperatureSessilityPressure);
-            var energyConsumptionMiche = new Miche(globalCache.EnergyConsumptionPressure);
             var tempCompPressure = new Miche(globalCache.TemperatureCompoundPressure);
 
-            lastGeneralMiche.AddChild(tempMiche);
-            tempMiche.AddChild(avoidPredationMiche);
-            avoidPredationMiche.AddChild(phosphateMiche);
-            phosphateMiche.AddChild(ammoniaMiche);
-            ammoniaMiche.AddChild(generateATP);
-            generateATP.AddChild(maintainGlucose);
+            tempSessilityMiche.AddChild(tempCompPressure);
             maintainGlucose.AddChild(tempSessilityMiche);
-            tempSessilityMiche.AddChild(energyConsumptionMiche);
-            energyConsumptionMiche.AddChild(tempCompPressure);
+            generateATP.AddChild(maintainGlucose);
+            tempMiche.AddChild(generateATP);
+            lastGeneralMiche.AddChild(tempMiche);
         }
 
         var predationRoot = new Miche(globalCache.PredatorRoot);
