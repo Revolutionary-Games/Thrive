@@ -1330,9 +1330,10 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
     private bool CanShootToxin(CompoundBag compounds, float speciesFocus)
     {
-        // Ensure there is no multiply by 0
+        // Ensure that zero focus species don't constantly think they can fire toxins
         return compounds.GetCompoundAmount(Compound.Oxytoxy) >
-            Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * (speciesFocus + 1) / Constants.MAX_SPECIES_FOCUS;
+            Math.Min(Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * speciesFocus / Constants.MAX_SPECIES_FOCUS,
+                Constants.MINIMUM_AGENT_EMISSION_AMOUNT);
     }
 
     private void CleanMicrobeCache()
