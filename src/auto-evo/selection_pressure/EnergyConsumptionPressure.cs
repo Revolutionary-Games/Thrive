@@ -16,12 +16,7 @@ public class EnergyConsumptionPressure : SelectionPressure
         base(weight, [
             new AddOrganelleAnywhere(organelle => organelle.HasBindingFeature),
             new AddOrganelleAnywhere(organelle => organelle.HasSignalingFeature),
-            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, -150.0f),
-            new ChangeMembraneType("double"),
-            new ChangeMembraneType("cellulose"),
-            new ChangeMembraneType("chitin"),
-            new ChangeMembraneType("calciumCarbonate"),
-            new ChangeMembraneType("silica"),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, -50.0f),
         ])
     {
     }
