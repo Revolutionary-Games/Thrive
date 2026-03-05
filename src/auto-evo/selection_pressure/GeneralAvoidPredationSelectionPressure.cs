@@ -15,6 +15,7 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
 
     public GeneralAvoidPredationSelectionPressure(float weight) : base(weight, [
         AddOrganelleAnywhere.ThatCreateCompound(Compound.Oxytoxy),
+        new AddOrganelleAnywhere(organelle => organelle.InternalName == "nucleus"),
         new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent,
             CommonMutationFunctions.Direction.Rear),
         new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,

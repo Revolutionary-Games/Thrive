@@ -84,8 +84,8 @@ public class AutoEvoGlobalCache
             new LocalizedString("LARGE_SULFUR_CHUNK"), Compound.Hydrogensulfide, Compound.Glucose, 2.0f);
 
         SunlightConversionEfficiencyPressure =
-            new CompoundConversionEfficiencyPressure(Compound.Sunlight, Compound.Glucose, true, 1.0f);
-        SunlightCompoundPressure = new EnvironmentalCompoundPressure(Compound.Sunlight, Compound.Glucose, 20000, 1.0f);
+            new CompoundConversionEfficiencyPressure(Compound.Sunlight, Compound.Glucose, true, 1.5f);
+        SunlightCompoundPressure = new EnvironmentalCompoundPressure(Compound.Sunlight, Compound.Glucose, 20000, 2.0f);
 
         RadiationConversionEfficiencyPressure =
             new CompoundConversionEfficiencyPressure(Compound.Radiation, Compound.ATP, true, 1.0f);
