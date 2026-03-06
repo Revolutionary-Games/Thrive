@@ -167,7 +167,7 @@ public static class CellBodyPlanInternalCalculations
         foreach (var cell in bodyPlan)
         {
             if (cellInBodyPlan!.CellType == cell.Data!.CellType
-                && cell.Position.DistanceTo(cellInBodyPlan!.Position) == 1)
+                && cell.Position.DistanceTo(cellInBodyPlan.Position) == 1)
             {
                 bonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS;
             }
