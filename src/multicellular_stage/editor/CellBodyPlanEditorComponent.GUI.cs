@@ -250,12 +250,10 @@ public partial class CellBodyPlanEditorComponent
 
             var specialization =
                 MicrobeInternalCalculations.CalculateSpecializationBonus(type.ModifiableOrganelles, tempMemory3);
+            var adjacencySpecialization =
+                CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromIndexAndPlan(i, cells);
 
-            // TODO: calculate adjacency specialization values
-            // https://github.com/Revolutionary-Games/Thrive/issues/6764
-            // totalSpecialization += specialization * adjacencySpecialization;
-
-            totalSpecialization += specialization;
+            totalSpecialization += specialization * adjacencySpecialization;
 
             if (specialization > maxSpecialization)
             {

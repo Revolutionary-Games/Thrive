@@ -1438,11 +1438,13 @@ public partial class CellBodyPlanEditorComponent :
         {
             var specialization =
                 MicrobeInternalCalculations.CalculateSpecializationBonus(hex.Data!.ModifiableOrganelles, tempMemory3);
+            var adjacencySpecialization =
+                CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromIndexAndPlan(hex.Data, cells);
 
-            // TODO: adjacency bonuses from body plan (GetAdjacencySpecializationBonus)
+            var totalSpecialization = specialization * adjacencySpecialization;
 
             ProcessSystem.ComputeEnergyBalanceFull(hex.Data.ModifiableOrganelles, conditionsData,
-                environmentalTolerances, specialization, hex.Data.MembraneType,
+                environmentalTolerances, totalSpecialization, hex.Data.MembraneType,
                 maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
                 organismStatisticsPanel.CompoundAmountType, null, energyBalanceInfo);
         }
@@ -1485,11 +1487,13 @@ public partial class CellBodyPlanEditorComponent :
             var organelles = GetEditedCellDataIfEdited(cell.Data!.ModifiableCellType).ModifiableOrganelles;
             var specialization =
                 MicrobeInternalCalculations.CalculateSpecializationBonus(organelles, tempMemory3);
+            var adjacencySpecialization =
+                CellBodyPlanInternalCalculations.GetAdjacencySpecializationBonusFromIndexAndPlan(cell.Data, cells);
 
-            // TODO: efficiency from cell layout positions (GetAdjacencySpecializationBonus)
+            var totalSpecialization = specialization * adjacencySpecialization;
 
             AddCellTypeCompoundBalance(compoundBalanceData, organelles, calculationType,
-                amountType, biome, energyBalance, tolerances, specialization);
+                amountType, biome, energyBalance, tolerances, totalSpecialization);
         }
 
         specificStorages ??= CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells.Select(o => o.Data!),

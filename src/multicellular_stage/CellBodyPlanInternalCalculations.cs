@@ -141,4 +141,56 @@ public static class CellBodyPlanInternalCalculations
 
         return colonyRotation / cells.Count;
     }
+
+    public static float GetAdjacencySpecializationBonusFromIndexAndPlan(int cellIndexInBodyPlan,
+        CellLayout<CellTemplate> bodyPlan)
+    {
+        var bonus = 0.0f;
+        var cellInBodyPlan = bodyPlan[cellIndexInBodyPlan];
+
+        foreach (var cell in bodyPlan)
+        {
+            if (cellInBodyPlan.CellType == cell.CellType && cell.Position.DistanceTo(cellInBodyPlan.Position) == 1)
+            {
+                bonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS;
+            }
+        }
+
+        return 1 + bonus;
+    }
+
+    public static float GetAdjacencySpecializationBonusFromIndexAndPlan(CellTemplate? cellInBodyPlan,
+        IReadOnlyList<HexWithData<CellTemplate>> bodyPlan)
+    {
+        var bonus = 0.0f;
+
+        foreach (var cell in bodyPlan)
+        {
+            if (cellInBodyPlan!.CellType == cell.Data!.CellType
+                && cell.Position.DistanceTo(cellInBodyPlan!.Position) == 1)
+            {
+                bonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS;
+            }
+        }
+
+        return 1 + bonus;
+    }
+
+    public static float GetAdjacencySpecializationBonusFromIndexAndPlan(int cellIndexInBodyPlan,
+        IndividualHexLayout<CellTemplate> bodyPlan)
+    {
+        var bonus = 0.0f;
+        var cellInBodyPlan = bodyPlan[cellIndexInBodyPlan];
+
+        foreach (var cell in bodyPlan)
+        {
+            if (cellInBodyPlan.Data!.CellType == cell.Data!.CellType
+                && cell.Position.DistanceTo(cellInBodyPlan.Position) == 1)
+            {
+                bonus += Constants.CELL_ADJACENCY_SPECIALIZATION_BONUS;
+            }
+        }
+
+        return 1 + bonus;
+    }
 }
