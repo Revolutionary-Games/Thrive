@@ -1,7 +1,9 @@
-# This file has all of the newer Thrive release patch notes so that they can
+# This file has all the newer Thrive release patch notes so that they can
 # be displayed in the game. This file must be manually updated before each
 # release.
+# yamllint disable rule:line-length
 
+---
 0.6.1:
   IntroductionText: |
     The highlights of this release are the new pulling cilia upgrade (and finished general upgrades framework), new movement mode selectable in the options along with further work towards full controller support, a microbe benchmarking tool, showing our news feed and new patch notes in the game, additional features for the auto-evo exploring tool, and of course various smaller bug fixes and tweaks.
@@ -172,7 +174,7 @@
   ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.6.4
   PatchNotes:
     - Refactored the entire microbe gameplay code to use an Entity Component System (ECS) architecture and a different physics engine (Jolt). This took up the vast majority of the time spent on this release. As a result of this many things in the game will feel slightly different and there will definitely be new bugs that have slipped past us. We will attempt to quickly fix any new bugs introduced with this change.
-    - The game performance is now 20-100% better than before thanks to the ECS and physics rework (different benchmark parts have different improvements, and different gameplay conditions also have different performance gains) 
+    - The game performance is now 20-100% better than before thanks to the ECS and physics rework (different benchmark parts have different improvements, and different gameplay conditions also have different performance gains)
     - Improved auto-evo performance by about 50%
     - Added a native C++ library for Thrive that has the physics engine integration for now but we can in the future move computation heavy parts of the game there that might benefit performance
     - Added two new context specific microbe tracks that can play instead of the normal microbe ambiance when in those specific patch types
@@ -488,8 +490,8 @@
     - Changed compilation options for the fallback native library that should now work on older CPUs that only have SSE 4.2 and no newer instructions
     - Fixed the game getting stuck when selecting 32 native executor threads
     - Re-enabled Harmony mod loading as this no longer seems to cause the game to get stuck on start up with Godot 4
-    - Reduced unnecessary StringName allocations related to key prompt icons and checking pressed inputs 
-    - Updated YamlDotNet from 15.1.6 to 15.3.0 
+    - Reduced unnecessary StringName allocations related to key prompt icons and checking pressed inputs
+    - Updated YamlDotNet from 15.1.6 to 15.3.0
     - Updated Jolt Physics Engine version
     - Updated translations
 
@@ -1146,7 +1148,7 @@
 
 0.9.2:
   IntroductionText: |
-    To prepare for the 1.0.0 (microbe stage completion) release, this is the second of the smaller releases leading up to it. Hopefully this will be a lot more stable than 0.9.1 was, but please keep testing and reporting any issues with this release so that we can fix the remaining problems in time for 1.0. This release is mostly continuing with the fixes that didn't make it into the previous patch. In terms of new features we mostly have just upgrades to auto-evo, which now finally takes multiple new factors into account. Besides that we got a pilus rebalance and improvements to the terrain visuals. 
+    To prepare for the 1.0.0 (microbe stage completion) release, this is the second of the smaller releases leading up to it. Hopefully this will be a lot more stable than 0.9.1 was, but please keep testing and reporting any issues with this release so that we can fix the remaining problems in time for 1.0. This release is mostly continuing with the fixes that didn't make it into the previous patch. In terms of new features we mostly have just upgrades to auto-evo, which now finally takes multiple new factors into account. Besides that we got a pilus rebalance and improvements to the terrain visuals.
   ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.9.2
   PatchNotes:
     - Added ambient occlusion textures for terrain chunks to improve their visuals
@@ -1208,4 +1210,111 @@
     - Updated System.Text.Json from 10.0.0 to 10.0.1
     - Updated System.IO.Hashing from 10.0.0 to 10.0.1
     - Updated our code checking tools
+    - Updated translations
+
+1.0.1:
+  IntroductionText: |
+    This is the first release of the multicellular development era, now our main focus is finishing the multicellular stage. To get started this release has some noticeable multicellular new features and improvements, but not yet anything truly major as a lot of fixing of things has been needed after the 1.0 release. The main highlights are improved tolerances GUI and it being implemented for multicellular as well as a cell specialization system. This release also has multicellular fixes like better body plan following, GUI to change cell growth order and some fixes to colony spawning.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v1.0.1
+  PatchNotes:
+    - Overhauled the tolerances editing GUI entirely
+    - Implemented tolerances for the multicellular stage
+    - Implemented selecting growth order and the bud cell in the multicellular editor
+    - Added microbe and cell type specialization that grants a bonus for cells that mostly consist of a single organelle type
+    - Made the specialization feature show average specialization in the multicellular editor
+    - Updated to Godot Engine 4.6
+    - Added an option to change the GUI scale (mostly meant for reducing the scale)
+    - Initial multicellular body plan now consists of 3 cells
+    - Marked multicellular as no longer a prototype
+    - Moved the game win condition to the multicellular stage from microbe
+    - Updated biome current settings to have much more varied currents across different patches
+    - Water current strengths have been increased to make the max effect more noticeable
+    - Multicellular freebuild now starts with the world oxygenated and the starting patch is on the surface
+    - Fixed initial microbe tolerances not being always calculated correctly when starting directly in the multicellular stage
+    - Fixed realism bug with ATP transferring between the cells of a colony (and in multicellular)
+    - Created a new cell layout algorithm for multicellular that tries to  preserve cell positions more closely
+    - The process panel now shows all processes in a microbe colony
+    - Fixed straight edges appearing in compound clouds
+    - Improved compound cloud performance by adjusting the math
+    - Improved compound cloud performance with world shift coordinate caching
+    - Added big ice snowflakes to the ice shelf
+    - Buffed multicellular and colony rotation speeds
+    - Buffed meteor impact events by adding a rare new bigger size
+    - Made balance changes to various patch events
+    - General balancing and other improvements to auto-evo
+    - Reduced migration sizes in auto-evo
+    - Multicellular growth rate is now not limited to the same value as in the microbe stage, instead it is multiple times higher like it was supposed to be set originally
+    - Enabled organelle unlocks for the multicellular stage
+    - Improved multicellular MP calculation by tracking which type each cell type was split from to allow better changes detection
+    - Added 2 new macroscopic music tracks
+    - Forced any species splitting from the player to pick a new colour before it was only likely to happen or the new colour may have been quite similar
+    - The hover panel now displays other cell's health
+    - Added a tooltip for the run auto-evo during gameplay option as some people misunderstood what it did
+    - Improved auto-evo performance by implementing custom species score key hashes
+    - Improved auto-evo performance by removing useless data caches and improving cache lookup efficiency
+    - Microbe initial compounds now take specific storage capacities into account
+    - Microbe AI in control of colonies, where just other members of the colony can engulf, is able to now use engulfing
+    - Added slight randomness to microbe AI think interval
+    - Made sure AI cells cannot look for mucilage thinking it is useful
+    - The option to show ATP balance without external resources now allows compounds that the cell itself can generate
+    - Added a debug console to the game (default hotkey is F10)
+    - Added a console command to directly load any scene or stage, there's also a command history and a few utility commands
+    - Implemented editor cheats for the multicellular editor
+    - Disabled evolutionary tree rebuild if it is not required to make saves with a long history load much faster
+    - Small GUI tweaks to organelle popup menu and the microbe HUD
+    - Small tweaks to the Thriveopedia GUI and a fix to the side panel collapse animation
+    - Stopped species with 0 focus from always thinking they could fire toxins (even if they had none)
+    - Added a safety check in eject engulfed object to address a bug report but it is unknown what the effect of this is as the original problem is very rare
+    - Fixed not being able to place even a single part when mutation cost difficulty setting was set too high. Now each edit costs always at most 100 MP.
+    - Fixed not being able to properly control mucocyst state in multicellular colonies with different kinds of cells
+    - Fixed incorrect organelle position calculations for rotated multicellular cells which was able to cause various different errors in the editor
+    - Fixed the save list items continuing to load in the background even after closing the menu. Now they cancel the load once that menu is closed. This should fix a problem where loading a stage waited for a long time before starting due to the load queue being full.
+    - Fixed vacuole tolerance bonus effect not being calculated correctly
+    - Fixed multiple places in the GUI with too long text in some languages
+    - Fixed incorrect tooltip on temperature symbol in the planet configuration screen
+    - Fixed the cell statistics panel in multicellular editor referring to the organism as a whole
+    - Fixed weird connection lines appearing in multicellular colonies that were spawned fully grown
+    - Fixed auto-evo prediction not predicting any energy gain from miches that were empty originally
+    - Fixed MP calculation error when using symmetry mode and the hover hexes overlapped
+    - Fixed not updating the species details text if the species was visually the same in the evolutionary tree
+    - Fixed loading saves with custom auto-evo configuration
+    - Fixed the heat accumulation bar not being anchored to the bottom right of the game window
+    - Fixed an error in the editor caused by a few operations trying to trigger too early
+    - Fixed population indicator circles not being correctly centered on the patch icons (instead they were in the top left)
+    - Fixed the multicellular editor not updating editor hover positions which was incorrect but didn't cause visible bugs yet with the MP system
+    - Prevented root metaball deletion in macroscopic and fixed a debug check error when deleting many other metaballs
+    - Fixed macroscopic editor allowing deleting an in-use cell type
+    - Fixed changing selected stage in the main menu Thriveopedia triggering an error
+    - Fixed duplicate texture name where they only differed by case
+    - Removed the option to disable the prototypes on new game
+    - Suppressed popup error about missing monitors, which could be caused by configuring the game for a specific monitor and then removing the monitor
+    - Added ignoring for more release mode signal disconnect errors so that they aren't reported as the recent reports have not been useful at all about them
+    - In languages that want to customize percentage format, the percentage symbol is now hidden from the MP bar(as it is pending a bigger improvement to make placement of the percentage symbol more flexible)
+    - Fixed a desync between water current visuals and simulation
+    - Fixed a bug in the direct multicellular stage starter causing an error when trying to use it
+    - Adjusted auto-evo tolerance change debug code to not trigger in situations where perfect adaptation was reduced
+    - Added safety check code for the cheapest possible organelle
+    - Added automatic check against files being added in the future that differ only by case
+    - Improved the hashing algorithm for shape caching to fix conflicts
+    - Improved efficiency of our input manager registration
+    - Updated to .NET 10
+    - Fixed some new code warnings caused by the C# update
+    - Fixed new null propagation warnings in the code
+    - Updated copyright year to 2026 in the code
+    - Updated translations failed check to no longer mention Babel, which was a tool we last used multiple years ago
+    - Fixed our SimpleBarrier implementation
+    - Improved the code for the SimpleBarrier class by increasing its memory padding
+    - Changed our thread short wait for ARM to use a C# command to request that the current thread doesn't eat as much CPU time, though this operation may not be implemented for all CPUs so we likely need to do further changes related to this.
+    - Switched to our SimpleBarrier and re-enabled ThreadLocal data for slight performance optimization
+    - Some code improvements
+    - Improved some code comments and fixed a few problems
+    - Added some missing periods to our README file
+    - Added developer documentation for the console
+    - Updated the visual studio code setup instructions
+    - Updated gdUnit to 6.1.1
+    - Updated System.IO.Hashing from 10.0.1 to 10.0.3
+    - Updated Microsoft.CodeAnalysis.NetAnalyzers from 10.0.101 to 10.0.102
+    - Updated dependency packages
+    - Updated code checking tools
+    - Updated Thriveopedia text
     - Updated translations
