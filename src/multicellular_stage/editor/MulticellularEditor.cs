@@ -769,13 +769,16 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         {
             var cellEnergyBalance = new EnergyBalanceInfoSimple();
 
-            // TODO: specialization from positions (GetAdjacencySpecializationBonus)
             var specialization =
                 MicrobeInternalCalculations.CalculateSpecializationBonus(cellType.ModifiableOrganelles.Organelles,
                     tempMemory1);
+            var adjacencySpecialization = editedSpecies.CalculateAverageSpecialization()
+                / editedSpecies.ModifiableCellTypes.Count;
+
+            var totalSpecialization = specialization * adjacencySpecialization;
 
             ProcessSystem.ComputeEnergyBalanceSimple(cellType.ModifiableOrganelles.Organelles, CurrentPatch.Biome,
-                in tolerances, specialization, cellType.MembraneType, Vector3.Zero, false, true,
+                in tolerances, totalSpecialization, cellType.MembraneType, Vector3.Zero, false, true,
                 CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Maximum, null, cellEnergyBalance);
 
             GetBestEnergyBalanceProperties(energyBalance, cellEnergyBalance);
