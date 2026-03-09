@@ -238,8 +238,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
     {
         // TODO: macroscopic tolerance effects from metaballs
         return MicrobeEnvironmentalToleranceCalculations.CalculateTolerancesWithoutOrganelleModifiers(
-            calculationTolerances,
-            CurrentPatch.Biome);
+            calculationTolerances, CurrentPatch.Biome);
     }
 
     public void GetCurrentToleranceSummaryByElement(ToleranceModifier toleranceCategory,
