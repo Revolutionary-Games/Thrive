@@ -1257,7 +1257,7 @@ public class SimulationCache
     }
 
     // helper for GetPredationToolsRawScores
-    public record PredationToolsRawScores(float PilusScore,
+    public readonly record struct PredationToolsRawScores(float PilusScore,
         float InjectisomeScore,
         float DefensivePilusScore,
         float DefensiveInjectisomeScore,
