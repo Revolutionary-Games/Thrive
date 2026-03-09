@@ -8,7 +8,7 @@ using SharedBase.Archive;
 /// </summary>
 public struct DelayedMicrobeColony : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     /// <summary>
     ///   If not default, then this entity wants to attach to a colony after initialization. Note that this entity
@@ -65,6 +65,7 @@ public struct DelayedMicrobeColony : IArchivableComponent
         writer.WriteAnyRegisteredValueAsObject(FinishAttachingToColony);
         writer.Write(AttachIndex);
         writer.Write(GrowAdditionalMembers);
+        writer.Write(PlayAnimation);
     }
 }
 
@@ -80,6 +81,7 @@ public static class DelayedMicrobeColonyHelpers
             FinishAttachingToColony = reader.ReadObject<Entity>(),
             AttachIndex = reader.ReadInt32(),
             GrowAdditionalMembers = reader.ReadInt32(),
+            PlayAnimation = reader.ReadBool(),
         };
     }
 }
