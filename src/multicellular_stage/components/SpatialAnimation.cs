@@ -16,16 +16,6 @@ public struct SpatialAnimation : IArchivableComponent
     public float AnimationTime;
     public float TimeSpent;
 
-    public SpatialAnimation(Vector3 initialPosition, Vector3 finalPosition, Vector3 initialScale, Vector3 finalScale)
-    {
-        InitialPosition = initialPosition;
-        FinalPosition = finalPosition;
-        InitialScale = initialScale;
-        FinalScale = finalScale;
-
-        AnimationTime = 1.0f;
-    }
-
     public ushort CurrentArchiveVersion => SERIALIZATION_VERSION;
     public ThriveArchiveObjectType ArchiveObjectType => ThriveArchiveObjectType.ComponentSpatialAnimation;
 

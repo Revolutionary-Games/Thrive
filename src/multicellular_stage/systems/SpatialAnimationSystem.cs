@@ -34,6 +34,8 @@ public partial class SpatialAnimationSystem : BaseSystem<World, float>
             return;
         }
 
+        progress *= progress;
+
         spatialInstance.VisualScale = spatialAnimation.InitialScale * (1.0f - progress)
             + spatialAnimation.FinalScale * progress;
         spatialInstance.ApplyVisualScale = true;
