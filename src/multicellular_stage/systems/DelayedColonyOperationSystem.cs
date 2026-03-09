@@ -89,7 +89,10 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         // Ensure no physics is created before the attach-operation completes
         recorder.Set(member, PhysicsHelpers.CreatePhysicsForMicrobe(true));
 
-        recorder.Add(member, new SpatialAnimation((Vector3.Zero + attachPosition.RelativePosition) * 0.8f, attachPosition.RelativePosition, Vector3.Zero, Vector3.One));
+        recorder.Add(member,
+            new SpatialAnimation(
+                (Vector3.Zero + attachPosition.RelativePosition) * 0.8f,
+                attachPosition.RelativePosition, Vector3.Zero, Vector3.One));
 
         if (colonyEntity.Has<MicrobeEventCallbacks>())
         {

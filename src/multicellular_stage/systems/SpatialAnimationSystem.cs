@@ -1,11 +1,9 @@
 ﻿namespace Systems;
 
-using System;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
 using Components;
-using Godot;
 using World = Arch.Core.World;
 
 /// <summary>
@@ -23,8 +21,8 @@ public partial class SpatialAnimationSystem : BaseSystem<World, float>
 
     [Query]
     [All<SpatialAnimation, SpatialInstance>]
-    private void Update([Data] in float delta, ref SpatialAnimation spatialAnimation, ref SpatialInstance spatialInstance,
-        in Entity entity)
+    private void Update([Data] in float delta, ref SpatialAnimation spatialAnimation,
+        ref SpatialInstance spatialInstance, in Entity entity)
     {
         spatialAnimation.TimeSpent += delta;
 
