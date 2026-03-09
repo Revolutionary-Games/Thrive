@@ -101,12 +101,19 @@ public static class MulticellularLayoutHelpers
                 removeAllIslandsBeforeMoving = false;
             }
 
+            int firstPositionMultiplier = -1;
+            bool firstLoop = true;
+
             // We run the core algorithm multiple times in case we run into a failure
             while (true)
             {
                 // First, find when cells no longer overlap given a specific multiplier
-                FindPositionMultiplierWithNoOverlaps(ref positionMultiplier, targetGameplayLayout, targetEditorLayout,
+                FindPositionMultiplierWithNoOverlaps(ref positionMultiplier, firstLoop, targetGameplayLayout,
+                    targetEditorLayout,
                     modifiableSource, hexTemporaryMemory, hexTemporaryMemory2);
+
+                if (firstPositionMultiplier < 0)
+                    firstPositionMultiplier = positionMultiplier;
 
                 // Sanity check before the next step
                 if (targetGameplayLayout.Count != modifiableSource.Count)
@@ -122,8 +129,45 @@ public static class MulticellularLayoutHelpers
                     break;
                 }
 
+                firstLoop = false;
+
                 // If failed, use a bigger position multiplier and then try again
                 ++positionMultiplier;
+
+                var elapsed = positionMultiplier - firstPositionMultiplier;
+
+                if (moveTowardsOrigin && elapsed >= 5)
+                {
+                    GD.Print("Adjusting cell layout algorithm (not moving towards origin)");
+                    moveTowardsOrigin = false;
+                }
+
+                if ((moveTowardsOrigin || removeAllIslandsBeforeMoving) && elapsed >= 9)
+                {
+                    GD.Print("Adjusting cell layout algorithm more as it seems stuck");
+                    moveTowardsOrigin = false;
+                    removeAllIslandsBeforeMoving = false;
+                }
+
+                // If waited a really long time, we likely failed
+                // TODO: in some cases falling back to the old algorithm would actually result in better layouts...
+                if (elapsed > 20)
+                {
+                    GD.PrintErr("New cell layout algorithm is stuck! Falling back to the old algorithm");
+
+                    // As we have changed the source layout, we need to restore positions
+                    modifiableSource.Clear();
+
+                    foreach (var hexWithData in targetEditorLayout.AsModifiable())
+                    {
+                        modifiableSource.AddFast(hexWithData, hexTemporaryMemory, hexTemporaryMemory2);
+                    }
+
+                    // And then re-run the algorithm
+                    UpdateGameplayLayout(targetGameplayLayout, targetEditorLayout, source, AlgorithmQuality.Low,
+                        hexTemporaryMemory, hexTemporaryMemory2);
+                    return;
+                }
             }
 
             // Need to match the order so that the growth order is right after we have adjusted things
@@ -197,7 +241,7 @@ public static class MulticellularLayoutHelpers
         }
     }
 
-    private static void FindPositionMultiplierWithNoOverlaps(ref int positionMultiplier,
+    private static void FindPositionMultiplierWithNoOverlaps(ref int positionMultiplier, bool firstRun,
         CellLayout<CellTemplate> targetGameplayLayout, IndividualHexLayout<CellTemplate> targetEditorLayout,
         HexLayout<HexWithData<CellTemplate>> modifiableSource, List<Hex> hexTemporaryMemory,
         List<Hex> hexTemporaryMemory2)
@@ -230,14 +274,20 @@ public static class MulticellularLayoutHelpers
             }
 
             if (fitAll)
-                break;
+            {
+                // If this is not the first run, we want to actually force the position multiplier to be higher at
+                // by one, as otherwise the algorithm will just retry the same thing infinitely and never finish
+                if (!firstRun)
+                    break;
+            }
 
-            positionMultiplier += 1;
-
-            if (positionMultiplier % 5 == 1)
+            if (positionMultiplier % 5 == 0)
             {
                 GD.Print("Multicellular layout determination is taking a bit of time, please wait...");
             }
+
+            positionMultiplier += 1;
+            firstRun = false;
 
             // TODO: this safety cutoff is probably a bit too long as it already takes a few seconds to get to
             // multiplier 10
