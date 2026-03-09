@@ -20,6 +20,8 @@ public struct DelayedMicrobeColony : IArchivableComponent
 
     public int GrowAdditionalMembers;
 
+    public bool PlayAnimation;
+
     // This doesn't have an applied field as this component is always removed after operating on it because this
     // component only is used once on each entity
 
@@ -29,12 +31,14 @@ public struct DelayedMicrobeColony : IArchivableComponent
     /// <param name="growAdditionalMembers">
     ///   How many members to add (should be one less than the multicellular body plan count for fully grown colony)
     /// </param>
-    public DelayedMicrobeColony(int growAdditionalMembers)
+    public DelayedMicrobeColony(int growAdditionalMembers, bool playAnimation = true)
     {
         GrowAdditionalMembers = growAdditionalMembers;
 
         FinishAttachingToColony = Entity.Null;
         AttachIndex = 0;
+
+        PlayAnimation = playAnimation;
     }
 
     /// <summary>
