@@ -84,7 +84,7 @@ public static class DelayedMicrobeColonyHelpers
             FinishAttachingToColony = reader.ReadObject<Entity>(),
             AttachIndex = reader.ReadInt32(),
             GrowAdditionalMembers = reader.ReadInt32(),
-            PlayAnimation = reader.ReadBool(),
+            PlayAnimation = DelayedMicrobeColony.SERIALIZATION_VERSION > 1 ? reader.ReadBool() : true,
         };
     }
 }
