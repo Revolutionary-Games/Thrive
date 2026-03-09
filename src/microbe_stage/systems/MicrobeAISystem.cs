@@ -400,7 +400,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         // Use signaling agent if I have any with a small chance per think method call
         if (organelles.HasSignalingAgent && random.NextSingle() < Constants.AI_SIGNALING_CHANCE)
         {
-            UseSignalingAgent(ref organelles, speciesAggression, ref signaling, random);
+            UseSignalingAgent(ref position, ref organelles, speciesAggression, ref signaling, random, ref ourSpecies);
         }
 
         // Follow received commands if we have them
@@ -551,10 +551,11 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         }
     }
 
-    private void UseSignalingAgent(ref OrganelleContainer organelles, float speciesAggression,
-        ref CommandSignaler signaling, Random random)
+    private void UseSignalingAgent(ref WorldPosition position, ref OrganelleContainer organelles,
+        float speciesAggression, ref CommandSignaler signaling, Random random, ref SpeciesMember ourSpecies)
     {
         var shouldBeAggressive = RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION, random);
+        var speciesMembers = GetSpeciesMembers(ourSpecies.Species);
 
         if (organelles.HasBindingAgent)
         {
@@ -568,6 +569,24 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 // Has pili or toxins
                 if (organelle.Definition.HasPilusComponent || organelles.AgentVacuoleCount > 0)
                 {
+                    var membersNearEnough = 0;
+                    var enoughMembers = (int)speciesAggression / 100;
+
+                    foreach (var member in speciesMembers!)
+                    {
+                        if (position.Position.DistanceSquaredTo(member.Position)
+                            < Constants.AI_BECOME_AGGRESSIVE_DISTANCE_SQUARED)
+                        {
+                            ++membersNearEnough;
+                        }
+                    }
+
+                    if (membersNearEnough >= enoughMembers)
+                    {
+                        signaling.QueuedSignalingCommand = MicrobeSignalCommand.BecomeAggressive;
+                        break;
+                    }
+
                     signaling.QueuedSignalingCommand = MicrobeSignalCommand.FollowMe;
                     break;
                 }
