@@ -13,6 +13,7 @@ using World = Arch.Core.World;
 /// </summary>
 [WritesToComponent(typeof(SpatialAnimation))]
 [WritesToComponent(typeof(SpatialInstance))]
+[WritesToComponent(typeof(AttachedToEntity))]
 [RuntimeCost(0.25f)]
 public partial class SpatialAnimationSystem : BaseSystem<World, float>
 {
@@ -31,12 +32,15 @@ public partial class SpatialAnimationSystem : BaseSystem<World, float>
 
         if (progress > 1.0f)
         {
-            //entity.Remove<SpatialAnimation>();
+            entity.Remove<SpatialAnimation>();
             return;
         }
 
         spatialInstance.VisualScale = spatialAnimation.InitialScale * (1.0f - progress)
             + spatialAnimation.FinalScale * progress;
         spatialInstance.ApplyVisualScale = true;
+
+        entity.Get<AttachedToEntity>().RelativePosition = spatialAnimation.InitialPosition * (1.0f - progress)
+            + spatialAnimation.FinalPosition * progress;
     }
 }
