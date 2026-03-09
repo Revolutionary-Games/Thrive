@@ -31,6 +31,9 @@ public struct DelayedMicrobeColony : IArchivableComponent
     /// <param name="growAdditionalMembers">
     ///   How many members to add (should be one less than the multicellular body plan count for fully grown colony)
     /// </param>
+    /// <param name="playAnimation">
+    ///   Whether or not should the growing animation (<see cref="SpatialAnimation"/>) be played in this colony
+    /// </param>
     public DelayedMicrobeColony(int growAdditionalMembers, bool playAnimation = true)
     {
         GrowAdditionalMembers = growAdditionalMembers;
