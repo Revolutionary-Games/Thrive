@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -28,6 +29,8 @@ public class AutoEvoRun
     private readonly Queue<IRunStep> runSteps = new();
 
     private readonly List<Task> concurrentStepTasks = new();
+
+    private readonly ConcurrentStack<SimulationCache> simulationCaches = new();
 
     private volatile RunStage state = RunStage.GatheringInfo;
 
@@ -398,11 +401,9 @@ public class AutoEvoRun
 
         var allSpecies = new HashSet<Species>();
 
-        var generateMicheCache = new SimulationCache(worldSettings);
-
         foreach (var entry in map.Patches)
         {
-            steps.Enqueue(new GenerateMiche(entry.Value, generateMicheCache, globalCache));
+            steps.Enqueue(new GenerateMiche(entry.Value, globalCache));
 
             foreach (var species in entry.Value.SpeciesInPatch)
             {
@@ -412,13 +413,12 @@ public class AutoEvoRun
 
         foreach (var entry in map.Patches)
         {
-            steps.Enqueue(new ModifyExistingSpecies(entry.Value, new SimulationCache(worldSettings), worldSettings,
-                random));
+            steps.Enqueue(new ModifyExistingSpecies(entry.Value, worldSettings, random));
         }
 
         foreach (var species in allSpecies)
         {
-            steps.Enqueue(new MigrateSpecies(species, map, worldSettings, new SimulationCache(worldSettings), random));
+            steps.Enqueue(new MigrateSpecies(species, map, worldSettings, random));
         }
 
         // The new populations don't depend on the mutations but will take into account changes in the miche tree.
@@ -436,7 +436,7 @@ public class AutoEvoRun
     }
 
     /// <summary>
-    ///   Adds a step that adjusts the player species population results
+    ///   Adds a step that adjusts the player species' population results
     /// </summary>
     /// <param name="steps">The list of steps to add the adjustment step to</param>
     /// <param name="map">Used to get a list of patches to act on</param>
@@ -486,9 +486,9 @@ public class AutoEvoRun
     /// <summary>
     ///   Single step run wrapper that handles checking timing if needed
     /// </summary>
-    /// <returns>Returns true when step is complete and can be discarded</returns>
+    /// <returns>Returns true when the step is complete and can be discarded</returns>
     [SuppressMessage("ReSharper", "HeuristicUnreachableCode", Justification = "False positive due to Constant bool")]
-    private static bool RunSingleStep(IRunStep step, RunResults results)
+    private static bool RunSingleStep(IRunStep step, RunResults results, SimulationCache cache)
     {
         DateTime startTime;
 
@@ -496,7 +496,7 @@ public class AutoEvoRun
         if (Constants.AUTO_EVO_TRACK_STEP_TIME)
             startTime = DateTime.Now;
 
-        var result = step.RunStep(results);
+        var result = step.RunStep(results, cache);
 
         if (Constants.AUTO_EVO_TRACK_STEP_TIME)
         {
@@ -595,7 +595,7 @@ public class AutoEvoRun
 
                         if (concurrentStepTasks.Count < 1)
                         {
-                            // No steps that can run concurrently, need to run just a normal run
+                            // No steps that can run concurrently need to run just a normal run
                             NormalRunPartOfNextStep();
                         }
                         else
@@ -627,27 +627,49 @@ public class AutoEvoRun
 
     private void NormalRunPartOfNextStep()
     {
-        if (RunSingleStep(runSteps.Peek(), results))
+        var cache = GetCache();
+        if (RunSingleStep(runSteps.Peek(), results, cache))
             runSteps.Dequeue();
 
         Interlocked.Increment(ref completeSteps);
+
+        ReturnCache(cache);
     }
 
     private void RunSingleStepToCompletion(IRunStep step)
     {
         int steps = 0;
 
+        var cache = GetCache();
+
         // This condition is here to allow abandoning auto-evo runs quickly
         while (!Aborted)
         {
             ++steps;
 
-            if (RunSingleStep(step, results))
+            if (RunSingleStep(step, results, cache))
                 break;
         }
 
         // Doing the steps counting this way is slightly faster than an increment after each step
         Interlocked.Add(ref completeSteps, steps);
+
+        ReturnCache(cache);
+    }
+
+    private SimulationCache GetCache()
+    {
+        if (simulationCaches.TryPop(out var cache))
+            return cache;
+
+        return new SimulationCache(Parameters.World.WorldSettings);
+    }
+
+    private void ReturnCache(SimulationCache cache)
+    {
+        cache.OnAfterUse();
+
+        simulationCaches.Push(cache);
     }
 
     private void UpdateMap(bool playerCantGoExtinct)

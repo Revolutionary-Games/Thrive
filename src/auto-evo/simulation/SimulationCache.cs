@@ -23,12 +23,6 @@ using Systems;
 ///     caching is moved to a higher level in the auto-evo, that needs to be considered.
 ///   </para>
 /// </remarks>
-/// <remarks>
-///   <para>
-///     TODO: would be better to reuse instances of this class after clearing them for next use (there's now a Clear
-///     method for this future usecase)
-///   </para>
-/// </remarks>
 public class SimulationCache
 {
     private readonly CompoundDefinition oxytoxy = SimulationParameters.GetCompound(Compound.Oxytoxy);
@@ -1231,6 +1225,14 @@ public class SimulationCache
         var result = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances);
 
         return result;
+    }
+
+    /// <summary>
+    ///   Called after being used for an auto-evo step. This performs cleanup and readies this for the next use
+    /// </summary>
+    public void OnAfterUse()
+    {
+        Clear();
     }
 
     /// <summary>

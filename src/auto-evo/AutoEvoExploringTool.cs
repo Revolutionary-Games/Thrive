@@ -761,7 +761,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         var selectedPatch = world.GameProperties.GameWorld.Map.Patches.Values
             .First(p => p.Name.ToString() == patchName);
 
-        // Get current snapshot
+        // Get the current snapshot
         var patch = new Patch(selectedPatch.Name, 0, selectedPatch.BiomeTemplate, selectedPatch.BiomeType,
             world.PatchHistoryList[generationDisplayed][selectedPatch.ID], selectedPatch.DynamicDataSeed)
         {
@@ -788,10 +788,10 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
             var cache = new SimulationCache(world.WorldSettings);
             var globalCache = new AutoEvoGlobalCache(world.WorldSettings);
 
-            var generateMiche = new GenerateMiche(patch, cache, globalCache);
+            var generateMiche = new GenerateMiche(patch, globalCache);
             var newMiche = generateMiche.GenerateMicheTree(globalCache);
 
-            generateMiche.PopulateMiche(newMiche);
+            generateMiche.PopulateMiche(newMiche, cache);
 
             micheTree.SetMiche(newMiche);
         }

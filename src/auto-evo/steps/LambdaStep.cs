@@ -23,7 +23,7 @@ public class LambdaStep : IRunStep
     /// </summary>
     public bool CanRunConcurrently { get; set; }
 
-    public bool RunStep(RunResults results)
+    public bool RunStep(RunResults results, SimulationCache cache)
     {
         operation(results);
         return true;
