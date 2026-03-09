@@ -26,7 +26,7 @@ using Systems;
 /// <remarks>
 ///   <para>
 ///     TODO: would be better to reuse instances of this class after clearing them for next use (there's now a Clear
-///     method for this future usecase)
+///     method for this future use case). See: https://github.com/Revolutionary-Games/Thrive/issues/6664
 ///   </para>
 /// </remarks>
 public class SimulationCache
@@ -41,25 +41,25 @@ public class SimulationCache
 
     private readonly Dictionary<ulong, EnergyBalanceInfoSimple> cachedSimpleEnergyBalances = [];
 #else
-    private readonly Dictionary<(Species, SelectionPressure, Patch), float> cachedPressureScores = new();
+    private readonly Dictionary<(int, SelectionPressure, Patch), float> cachedPressureScores = new();
 
-    private readonly Dictionary<(MicrobeSpecies, IBiomeConditions), EnergyBalanceInfoSimple>
+    private readonly Dictionary<(int, IBiomeConditions), EnergyBalanceInfoSimple>
         cachedSimpleEnergyBalances = [];
 #endif
 
-    private readonly Dictionary<MicrobeSpecies, float> cachedBaseSpeeds = new();
-    private readonly Dictionary<MicrobeSpecies, float> cachedBaseHexSizes = new();
+    private readonly Dictionary<int, float> cachedBaseSpeeds = new();
+    private readonly Dictionary<int, float> cachedBaseHexSizes = new();
 
-    private readonly Dictionary<(MicrobeSpecies, MicrobeSpecies, IBiomeConditions), float> predationScores = new();
+    private readonly Dictionary<(int, int, IBiomeConditions), float> predationScores = new();
 
     private readonly Dictionary<ulong, ProcessSpeedInformation> cachedProcessSpeeds = new();
 
-    private readonly Dictionary<MicrobeSpecies, PredationToolsRawScores>
+    private readonly Dictionary<int, PredationToolsRawScores>
         cachedPredationToolsRawScores = new();
 
-    private readonly Dictionary<MicrobeSpecies, List<TweakedProcess>> cachedProcessLists = new();
+    private readonly Dictionary<int, List<TweakedProcess>> cachedProcessLists = new();
 
-    private readonly Dictionary<(MicrobeSpecies, BiomeConditions), bool> cachedUsesVaryingCompounds = new();
+    private readonly Dictionary<(int, BiomeConditions), bool> cachedUsesVaryingCompounds = new();
 
     private readonly Dictionary<OrganelleDefinition, int> workMemory1 = new();
 
@@ -83,7 +83,7 @@ public class SimulationCache
 
         key *= 13900709095051265681;
 #else
-        var key = (species, pressure, patch);
+        var key = (species.GetHashCode(), pressure, patch);
 #endif
 
         ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(cachedPressureScores, key);
@@ -107,7 +107,7 @@ public class SimulationCache
 #if USE_HASHED_SCORE_KEYS
         var key = (ulong)(uint)biomeConditions.GetHashCode() << 32 | (uint)species.GetHashCode();
 #else
-        var key = (species, biomeConditions);
+        var key = (species.GetHashCode(), biomeConditions);
 #endif
         ref var balance = ref CollectionsMarshal.GetValueRefOrNullRef(cachedSimpleEnergyBalances, key);
         if (!Unsafe.IsNullRef(ref balance))
@@ -137,7 +137,9 @@ public class SimulationCache
     // And also *not* caching them at all is much slower (so if not cached in species, they must be cached here)
     public float GetSpeedForSpecies(MicrobeSpecies species)
     {
-        ref var speed = ref CollectionsMarshal.GetValueRefOrNullRef(cachedBaseSpeeds, species);
+        var key = species.GetHashCode();
+
+        ref var speed = ref CollectionsMarshal.GetValueRefOrNullRef(cachedBaseSpeeds, key);
         if (!Unsafe.IsNullRef(ref speed))
         {
             return speed;
@@ -146,13 +148,15 @@ public class SimulationCache
         var cached = MicrobeInternalCalculations.CalculateSpeed(species.Organelles.Organelles, species.MembraneType,
             species.MembraneRigidity, species.IsBacteria, true);
 
-        cachedBaseSpeeds.Add(species, cached);
+        cachedBaseSpeeds.Add(key, cached);
         return cached;
     }
 
     public float GetBaseHexSizeForSpecies(MicrobeSpecies species)
     {
-        ref var size = ref CollectionsMarshal.GetValueRefOrNullRef(cachedBaseHexSizes, species);
+        var key = species.GetHashCode();
+
+        ref var size = ref CollectionsMarshal.GetValueRefOrNullRef(cachedBaseHexSizes, key);
         if (!Unsafe.IsNullRef(ref size))
         {
             return size;
@@ -160,7 +164,7 @@ public class SimulationCache
 
         var cached = species.BaseHexSize;
 
-        cachedBaseHexSizes.Add(species, cached);
+        cachedBaseHexSizes.Add(key, cached);
         return cached;
     }
 
@@ -310,7 +314,7 @@ public class SimulationCache
             return 0.0f;
         }
 
-        var key = (microbeSpecies: predator, prey, biomeConditions);
+        var key = (microbeSpecies: predator.GetHashCode(), prey.GetHashCode(), biomeConditions);
 
         ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(predationScores, key);
         if (!Unsafe.IsNullRef(ref score))
@@ -830,7 +834,7 @@ public class SimulationCache
     public bool GetUsesVaryingCompoundsForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions)
     {
         // Disabling this cache makes this ever so slightly slower
-        var key = (species, biomeConditions);
+        var key = (species.GetHashCode(), biomeConditions);
 
         ref var usesVarying = ref CollectionsMarshal.GetValueRefOrNullRef(cachedUsesVaryingCompounds, key);
         if (!Unsafe.IsNullRef(ref usesVarying))
@@ -937,7 +941,8 @@ public class SimulationCache
 
     public List<TweakedProcess> GetActiveProcessList(MicrobeSpecies microbeSpecies)
     {
-        if (cachedProcessLists.TryGetValue(microbeSpecies, out var cached))
+        var key = microbeSpecies.GetHashCode();
+        if (cachedProcessLists.TryGetValue(key, out var cached))
         {
             return cached;
         }
@@ -945,7 +950,7 @@ public class SimulationCache
         // TODO: a buffer of process lists (to make small list allocations rarer) (as cached is null here if not found)
         ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref cached);
 
-        cachedProcessLists.Add(microbeSpecies, cached);
+        cachedProcessLists.Add(key, cached);
         return cached;
     }
 
@@ -953,7 +958,8 @@ public class SimulationCache
     {
         // Seems like this takes twice the amount of time from the predation score calculation if this is not cached,
         // so this should definitely use caching.
-        ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(cachedPredationToolsRawScores, microbeSpecies);
+        var key = microbeSpecies.GetHashCode();
+        ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(cachedPredationToolsRawScores, key);
         if (!Unsafe.IsNullRef(ref score))
         {
             return score;
@@ -1169,7 +1175,7 @@ public class SimulationCache
             defensiveInjectisomeScore, averageToxicity, oxytoxyScore, cytotoxinScore, macrolideScore,
             channelInhibitorScore, oxygenMetabolismInhibitorScore, slimeJetScore, mucocystsScore, pullingCiliaModifier);
 
-        cachedPredationToolsRawScores.Add(microbeSpecies, predationToolsRawScores);
+        cachedPredationToolsRawScores.Add(key, predationToolsRawScores);
         return predationToolsRawScores;
     }
 
@@ -1251,7 +1257,7 @@ public class SimulationCache
     }
 
     // helper for GetPredationToolsRawScores
-    public readonly record struct PredationToolsRawScores(float PilusScore,
+    public record PredationToolsRawScores(float PilusScore,
         float InjectisomeScore,
         float DefensivePilusScore,
         float DefensiveInjectisomeScore,
