@@ -151,7 +151,7 @@ public static class MulticellularLayoutHelpers
 
                 // If waited a really long time, we likely failed
                 // TODO: in some cases falling back to the old algorithm would actually result in better layouts...
-                if (elapsed > 20)
+                if (elapsed > 15)
                 {
                     GD.PrintErr("New cell layout algorithm is stuck! Falling back to the old algorithm");
 
