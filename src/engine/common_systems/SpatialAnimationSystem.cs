@@ -45,9 +45,9 @@ public partial class SpatialAnimationSystem : BaseSystem<World, float>
             + spatialAnimation.FinalScale * progress;
         spatialInstance.ApplyVisualScale = true;
 
-        if (entity.TryGet<AttachedToEntity>(out var attachedToEntity))
+        if (entity.Has<AttachedToEntity>())
         {
-            attachedToEntity.RelativePosition = spatialAnimation.InitialPosition * (1.0f - progress)
+            entity.Get<AttachedToEntity>().RelativePosition = spatialAnimation.InitialPosition * (1.0f - progress)
                 + spatialAnimation.FinalPosition * progress;
         }
     }
