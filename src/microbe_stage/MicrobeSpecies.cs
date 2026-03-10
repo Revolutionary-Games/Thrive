@@ -228,9 +228,8 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     {
         base.OnEdited();
 
+        // TODO: do we need to reposition for auto-evo?
         RepositionToOrigin();
-        UpdateInitialCompounds();
-        UpdateIsBacteria();
 
         // Reset endosymbiont status so that they aren't free to move / delete in the next editor cycle
         var count = Organelles.Organelles.Count;
@@ -238,6 +237,14 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
         {
             ModifiableOrganelles.Organelles[i].IsEndosymbiont = false;
         }
+    }
+
+    public override void OnAttemptedInAutoEvo(bool refreshCache)
+    {
+        base.OnAttemptedInAutoEvo(refreshCache);
+
+        UpdateInitialCompounds();
+        UpdateIsBacteria();
 
         cachedFillTimes.Clear();
 
