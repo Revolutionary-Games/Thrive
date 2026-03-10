@@ -15,8 +15,11 @@ using World = Arch.Core.World;
 [RuntimeCost(0.25f)]
 public partial class SpatialAnimationSystem : BaseSystem<World, float>
 {
-    public SpatialAnimationSystem(World world) : base(world)
+    private readonly IWorldSimulation worldSimulation;
+
+    public SpatialAnimationSystem(IWorldSimulation worldSimulation, World world) : base(world)
     {
+        this.worldSimulation = worldSimulation;
     }
 
     [Query]
@@ -30,7 +33,9 @@ public partial class SpatialAnimationSystem : BaseSystem<World, float>
 
         if (progress > 1.0f)
         {
-            entity.Remove<SpatialAnimation>();
+            var recorder = worldSimulation.StartRecordingEntityCommands();
+            recorder.Remove<SpatialAnimation>(entity);
+            worldSimulation.FinishRecordingEntityCommands(recorder);
             return;
         }
 
