@@ -40,7 +40,10 @@ public partial class SpatialAnimationSystem : BaseSystem<World, float>
             + spatialAnimation.FinalScale * progress;
         spatialInstance.ApplyVisualScale = true;
 
-        entity.Get<AttachedToEntity>().RelativePosition = spatialAnimation.InitialPosition * (1.0f - progress)
-            + spatialAnimation.FinalPosition * progress;
+        if (entity.TryGet<AttachedToEntity>(out var attachedToEntity))
+        {
+            attachedToEntity.RelativePosition = spatialAnimation.InitialPosition * (1.0f - progress)
+                + spatialAnimation.FinalPosition * progress;
+        }
     }
 }
