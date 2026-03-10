@@ -244,6 +244,7 @@ public class ModifyExistingSpecies : IRunStep
         foreach (var potentialVariant in mutated)
         {
             var combinedScores = 0.0;
+            var noPruning = false;
             foreach (var pastPressure in selectionPressures)
             {
                 // Caching a score for a species very likely to be pruned wastes memory
@@ -253,8 +254,16 @@ public class ModifyExistingSpecies : IRunStep
                 // Break if the mutation fails a new pressure check
                 if (newScore <= 0 && oldScore > 0)
                 {
+                    noPruning = false;
                     combinedScores = -1;
                     break;
+                }
+
+                // Never prune if the mutation succeeds a new pressure check
+                // Because the score cannot be compared with a parent that does not fill the same niche
+                if (newScore > 0 && oldScore <= 0)
+                {
+                    noPruning = true;
                 }
 
                 combinedScores += pastPressure.WeightedComparedScores(newScore, oldScore);
@@ -262,7 +271,7 @@ public class ModifyExistingSpecies : IRunStep
 
             // Not pruning species that don't affect the score can inject more
             // variety into the species generated
-            if (combinedScores >= 0)
+            if (combinedScores >= 0 || noPruning)
             {
                 addResultsTo.Add(potentialVariant);
             }
