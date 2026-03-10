@@ -55,8 +55,11 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
     private volatile int runningMembraneTaskCount;
 
-    public MicrobeVisualsSystem(World world) : base(world)
+    private FluidCurrentsSystem? fluidCurrentsSystem;
+
+    public MicrobeVisualsSystem(World world, FluidCurrentsSystem? fluidCurrentsSystem) : base(world)
     {
+        this.fluidCurrentsSystem = fluidCurrentsSystem;
     }
 
     public bool HasPendingOperations()
@@ -176,6 +179,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
             spatialInstance.GraphicalInstance.AddChild(membrane);
             cellProperties.CreatedMembrane = membrane;
+
+            membrane.FluidCurrentsSystem = fluidCurrentsSystem;
         }
         else
         {

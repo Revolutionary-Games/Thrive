@@ -50,7 +50,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         // This is not used for intensive use, and even is used in the background of normal gameplay
         // TODO: but we cannot prevent this entity world from using multithreading
 
-        microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem);
+        microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem, null);
 #pragma warning disable SA1115
         simulationSystems = new Group<float>(simulationSystems.Name,
             microbeVisualsSystem,

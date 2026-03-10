@@ -1,5 +1,6 @@
 ﻿using System;
 using Godot;
+using Systems;
 
 /// <summary>
 ///   Membrane for microbes
@@ -18,6 +19,8 @@ public partial class Membrane : MeshInstance3D
 
     [Export]
     public ShaderMaterial? MucocystShaderMaterial;
+
+    public FluidCurrentsSystem? FluidCurrentsSystem;
 
     private readonly StringName healthParameterName = new("healthFraction");
     private readonly StringName wigglynessParameterName = new("wigglyNess");
@@ -179,6 +182,8 @@ public partial class Membrane : MeshInstance3D
 
         waterRipple.FollowTargetNode = this;
         SetMesh();
+
+        waterRipple.FluidCurrentsSystem = FluidCurrentsSystem;
     }
 
     public override void _EnterTree()

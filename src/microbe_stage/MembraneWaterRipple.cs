@@ -2,6 +2,7 @@
 using Godot;
 using Godot.Collections;
 using Newtonsoft.Json;
+using Systems;
 
 /// <summary>
 ///   Manages spawning and processing ripple effect for a single microbe
@@ -75,6 +76,8 @@ public partial class MembraneWaterRipple : Node
     /// </summary>
     [Export]
     public float ResumeMovementThresholdSqr = 0.3f;
+
+    public FluidCurrentsSystem? FluidCurrentsSystem;
 
     /// <summary>
     ///   Maximum delta time to prevent jitter
@@ -594,7 +597,10 @@ public partial class MembraneWaterRipple : Node
 
         // Calculates movement since the last frame
         var currentPos = FollowTargetNode.GlobalPosition;
-        var movement = currentPos - lastPosition;
+        var waterVelocity = FluidCurrentsSystem == null ?
+            Vector2.Zero : FluidCurrentsSystem.VelocityAt(new Vector2(currentPos.X, currentPos.Z)) * 0.5f;
+
+        var movement = currentPos - lastPosition - new Vector3(waterVelocity.X, 0.0f, waterVelocity.Y);
         float movementSqr = movement.LengthSquared() / delta;
         averageMovementSqr = Mathf.Lerp(averageMovementSqr, movementSqr, 0.2f);
         bool significantMovement;
@@ -773,6 +779,9 @@ public partial class MembraneWaterRipple : Node
         // Transforms world positions to local XZ offsets for shader
         int targetPositionsCount = 0;
 
+        var waterVelocity = FluidCurrentsSystem == null ?
+            Vector2.Zero : FluidCurrentsSystem.VelocityAt(new Vector2(currentPos.X, currentPos.Z)) * 0.5f;
+
         for (int i = 0; i < count; i += step)
         {
             int index = (currentPositionIndex - 1 - i).PositiveModulo(MAX_POSITION_HISTORY);
@@ -782,8 +791,8 @@ public partial class MembraneWaterRipple : Node
             int targetIndex = i / step;
             if (targetIndex < MAX_POSITION_HISTORY && targetIndex < pastPositionCount)
             {
-                pastPositions[targetIndex] = position;
-                godotPastPositions[targetIndex] = position;
+                pastPositions[targetIndex] = position - waterVelocity * (1.0f + i);
+                godotPastPositions[targetIndex] = position - waterVelocity * (1.0f + i);
                 targetPositionsCount = targetIndex + 1;
             }
             else
