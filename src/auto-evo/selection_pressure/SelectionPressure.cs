@@ -42,17 +42,17 @@ public abstract class SelectionPressure : IArchivable
 
         if (oldScore == 0)
         {
-            return newScore > 0 ? (newScore * Weight * 10) : 0;
+            return newScore > 0 ? Weight : 0;
         }
 
         if (newScore > oldScore)
         {
-            return newScore / oldScore * Weight;
+            return 1 - oldScore / newScore * Weight;
         }
 
         if (oldScore > newScore)
         {
-            return -(oldScore / newScore) * Weight;
+            return -(1 - newScore / oldScore) * Weight;
         }
 
         return 0;
