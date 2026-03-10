@@ -1519,6 +1519,6 @@ public static class MicrobeColonyHelpers
     private static void SetupColonyWithMembersDelayed(Entity entity, int membersAfterLeader,
         CommandBuffer commandBuffer)
     {
-        commandBuffer.Add(entity, new DelayedMicrobeColony(membersAfterLeader));
+        commandBuffer.Add(entity, new DelayedMicrobeColony(membersAfterLeader, false));
     }
 }
