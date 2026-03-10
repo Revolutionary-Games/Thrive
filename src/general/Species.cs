@@ -200,6 +200,13 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
             return;
 
         AutoEvoAttemptCache = ModifyExistingSpecies.GetNextAutoEvoAttemptCacheNumber();
+
+        // Avoid problems with 0
+        if (AutoEvoAttemptCache == 0)
+        {
+            GD.Print("Auto-evo cache numbers have rolled around");
+            AutoEvoAttemptCache = ModifyExistingSpecies.GetNextAutoEvoAttemptCacheNumber();
+        }
     }
 
     /// <summary>
@@ -271,6 +278,8 @@ public abstract class Species : ICloneable, IArchivable, IReadOnlySpecies
         // genus;
         // epithet;
         // endosymbiosis
+
+        // And very important to not copy AutoEvoAttemptCache as that will mess up a future auto-evo run, potentially.
     }
 
     /// <summary>
