@@ -93,7 +93,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         {
             recorder.Add(member, new SpatialAnimation
             {
-                InitialPosition = (Vector3.Zero + attachPosition.RelativePosition) * 0.8f,
+                InitialPosition = attachPosition.RelativePosition * 0.8f,
                 FinalPosition = attachPosition.RelativePosition,
                 InitialScale = Vector3.Zero,
                 FinalScale = Vector3.One,
