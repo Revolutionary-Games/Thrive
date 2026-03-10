@@ -1,4 +1,5 @@
 ﻿using System;
+using Components;
 using Godot;
 
 /// <summary>
@@ -53,6 +54,18 @@ public partial class Membrane : MeshInstance3D
     private double engulfFade;
 
     private bool mucocystEffectEnabled;
+
+    private MicrobeControl microbeControl;
+
+    public MicrobeControl MicrobeControl
+    {
+        private get => microbeControl;
+        set
+        {
+            waterRipple.MicrobeControl = value;
+            microbeControl = value;
+        }
+    }
 
     /// <summary>
     ///   When true, the material properties need to be reapplied
@@ -199,6 +212,8 @@ public partial class Membrane : MeshInstance3D
 
     public override void _Process(double delta)
     {
+        waterRipple.MicrobeControl = MicrobeControl;
+
         if (!Dirty)
             return;
 
