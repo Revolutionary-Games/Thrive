@@ -375,6 +375,11 @@ public class ModifyExistingSpecies : IRunStep
 
                     if (mutated != null)
                     {
+                        foreach (var mutation in mutated)
+                        {
+                            mutation.Species.OnEdited();
+                        }
+
                         PruneMutations(temporaryMutations2, speciesTuple.Species, mutated, patch, cache,
                             pressureStack);
                     }
