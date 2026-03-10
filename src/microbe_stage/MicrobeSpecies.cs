@@ -83,7 +83,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
     public float BaseRotationSpeed { get; set; }
 
     /// <summary>
-    ///   This is the base size of this species. Meaning that this is the engulf size of microbes of this species when
+    ///   This is the base size of this species. Meaning that this is the engulf-size of microbes of this species when
     ///   they haven't duplicated any organelles. This is related to <see cref="Components.Engulfer.EngulfingSize"/>
     ///   (as well as the size this takes up as an <see cref="Components.Engulfable"/>) and the math should always
     ///   match between these two.
@@ -440,7 +440,7 @@ public class MicrobeSpecies : Species, IReadOnlyMicrobeSpecies, ICellDefinition
 
         for (int i = 0; i < count; ++i)
         {
-            // Organelles in different order don't matter (in terms of visuals) so we don't apply any loop specific
+            // Organelles in different order don't matter (in terms of visuals), so we don't apply any loop-specific
             // stuff here
             unchecked
             {
