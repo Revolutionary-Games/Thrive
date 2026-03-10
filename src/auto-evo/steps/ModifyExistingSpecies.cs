@@ -431,6 +431,8 @@ public class ModifyExistingSpecies : IRunStep
             {
                 mutationsToTry.Add(new Mutation(baseSpecies, species, resultType));
             }
+
+            pressureStack.Pop();
         }
         else
         {
