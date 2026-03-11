@@ -42,7 +42,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
 
     public HexLayout(List<T> hexes)
     {
-        existingHexes = new HexLayoutView(hexes, true, false);
+        existingHexes = new HexLayoutView(hexes, true, true);
     }
 
     /// <summary>
@@ -325,18 +325,16 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
         return existingHexes.Contains(item);
     }
 
-    public void Approve(bool isApproved = true)
+    public void Approve()
     {
-        if (isApproved)
-        {
-            existingHexes.Commit(false);
-        }
-        else
-        {
-            // This species will probably be discarded by auto-evo in this situation, so this returns the allocated
-            // memory to the pool.
-            existingHexes.Drop();
-        }
+        existingHexes.Commit(false);
+    }
+
+    public void Reject()
+    {
+        // This species will probably be discarded by auto-evo in this situation, so this returns the allocated
+        // memory to the pool.
+        existingHexes.Drop();
     }
 
     // TODO: remove this bit of boxing here. https://nede.dev/blog/preventing-unnecessary-allocation-in-net-collections
@@ -488,12 +486,11 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
         private const int MEMORY_ALLOC_SIZE = 16;
 
         private T?[]? diffHexes;
-        private int diffIndex;
+        private int diffIndex = 0;
 
         public HexLayoutView(List<T> parent, bool shared, bool initDiffHexes = false)
         {
             MainHexes = parent;
-
             Shared = shared;
 
             if (initDiffHexes)
@@ -516,8 +513,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
                     {
                         var item = diffHexes[pendingIndex];
 
-                        return item is null ? throw new ArgumentOutOfRangeException(nameof(index), "Out of range.") :
-                            diffHexes[pendingIndex]!;
+                        return item ?? throw new ArgumentOutOfRangeException(nameof(index), "Out of range.");
                     }
                 }
 
@@ -550,19 +546,15 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
             if (diffHexes == null)
             {
                 // No diff hexes, so we add directly to the layout.
-                if (Shared)
-                {
-                    // This is a shared hex layout. Since we're diverging from it, we need to allocate a brand-new list.
 
-                    MainHexes = [];
-                    Shared = false;
-                }
+                // This is a shared hex layout. Since we're diverging from it, we need to allocate a brand-new list.
+                IsolateIfShared();
 
                 MainHexes.Add(item);
                 return;
             }
 
-            if (diffIndex == diffHexes.Length - 1)
+            if (diffIndex == diffHexes.Length)
             {
                 ArrayPool<T?>.Shared.Resize(ref diffHexes, diffHexes.Length + MEMORY_ALLOC_SIZE);
             }
@@ -572,53 +564,40 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
 
         public void Remove(T item)
         {
-            if (diffHexes == null)
+            if (diffHexes != null)
             {
-                if (Shared)
+                for (int i = 0; i < diffIndex; ++i)
                 {
-                    MainHexes = [];
-                    Shared = false;
+                    if (!ReferenceEquals(item, diffHexes[i]))
+                        continue;
+
+                    diffHexes[i] = diffHexes[--diffIndex];
+                    diffHexes[diffIndex] = null;
+                    return;
                 }
-
-                MainHexes.Remove(item);
-                return;
             }
 
-            for (int i = 0; i < diffIndex; ++i)
-            {
-                var toTest = diffHexes[i];
+            IsolateIfShared();
 
-                if (!ReferenceEquals(item, toTest))
-                    continue;
-
-                diffHexes[i] = diffHexes[--diffIndex];
-                diffHexes[diffIndex] = null;
-
-                break;
-            }
+            MainHexes.Remove(item);
         }
 
         /// <summary>
         ///   This method clears the diff layout and loads the modifications into the permanent layout.
         /// </summary>
         /// <remarks>
-        /// <para>
-        ///   This is the method that allocates memory. Only when this is called and the diff is not empty the
-        ///   organelles get deep cloned.
-        /// </para>
-        /// </remarks>>
-        /// <returns>true if this layout was in diff mode.</returns>>
+        ///   <para>
+        ///     This is the method that allocates memory. Only when this is called and the diff is not empty the
+        ///     organelles get deep cloned.
+        ///   </para>
+        /// </remarks>
+        /// <returns>true if this layout was in diff mode.</returns>
         public bool Commit(bool reallocate)
         {
             if (diffHexes is null || diffIndex == 0)
                 return false;
 
-            if (Shared)
-            {
-                // Mark this not as shared now and allocate a new list.
-                MainHexes = new List<T>(MainHexes);
-                Shared = false;
-            }
+            IsolateIfShared();
 
             for (int i = 0; i < diffIndex; ++i)
             {
@@ -644,12 +623,32 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
             return true;
         }
 
+        public void IsolateIfShared()
+        {
+            if (!Shared)
+                return;
+
+            var count = MainHexes.Count;
+            var newList = new List<T>(count);
+
+            for (int i = 0; i < count; ++i)
+            {
+                newList.Add((T)((ICloneable)MainHexes[i]).Clone());
+            }
+
+            MainHexes = newList;
+            Shared = false;
+        }
+
         public void Drop()
         {
             if (diffHexes is null)
                 return;
 
             ArrayPool<T?>.Shared.Return(diffHexes, true);
+
+            diffHexes = null;
+            diffIndex = 0;
         }
 
         public IEnumerator<T> GetEnumerator()
@@ -662,7 +661,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
             if (diffHexes == null)
                 yield break;
 
-            for (int i = 0; i < diffHexes.Length; ++i)
+            for (int i = 0; i < diffIndex; ++i)
             {
                 var item = diffHexes[i];
 

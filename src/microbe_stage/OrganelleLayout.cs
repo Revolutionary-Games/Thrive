@@ -10,7 +10,7 @@ using SharedBase.Archive;
 /// </summary>
 /// <typeparam name="T">The type of organelle contained in this layout</typeparam>
 public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleLayout<T>
-    where T : class, IPositionedOrganelle, ICloneable
+    where T : class, IPositionedOrganelle
 {
     public OrganelleLayout(Action<T> onAdded, Action<T>? onRemoved = null) : base(onAdded, onRemoved)
     {
@@ -155,6 +155,12 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleL
         // Skip if the center of mass is already correct
         if (centerOfMass.Q == 0 && centerOfMass.R == 0)
             return false;
+
+        // The following repositioning is unsafe to share, so let's isolate.
+        // TODO:
+        // Maybe, instead of this, use an offset Hex in the iterator and adjust the positions on-fly instead of
+        // allocating?
+        existingHexes.IsolateIfShared();
 
         foreach (var organelle in Organelles)
         {

@@ -28,18 +28,20 @@ internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
         var workMemory2 = new List<Hex>();
         var workMemory3 = new HashSet<Hex>();
 
-        foreach (OrganelleTemplate organelle in baseSpecies.Organelles.Where(x => allOrganelles.Contains(x.Definition)))
+        int organelleCount = baseSpecies.Organelles.Count;
+        for (int i = 0; i < organelleCount; ++i)
         {
-            MicrobeSpecies newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+            var organelle = baseSpecies.Organelles[i];
 
+            if (!allOrganelles.Contains(organelle.Definition))
+                continue;
+
+            MicrobeSpecies newSpecies = (MicrobeSpecies)baseSpecies.Clone();
             newSpecies.Organelles.Remove(organelle);
 
             if (CommonMutationFunctions.AddOrganelle(organelle.Definition, CommonMutationFunctions.Direction.Rear,
                     newSpecies, workMemory1, workMemory2, workMemory3, random))
             {
-                // Add mutation attempt only if was able to place the organelle
-                // TODO: maybe this should add the attempt anyway as this may act as a separate remove organelle step
-                // for things that cannot be moved?
                 mutated.Add(Tuple.Create(newSpecies, mp - Constants.ORGANELLE_MOVE_COST));
             }
         }

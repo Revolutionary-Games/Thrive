@@ -440,6 +440,9 @@ public class RunResults : IArchivable
 
             if (!skipMutations && entry.Value.MutatedProperties != null)
             {
+                if (entry.Key is MicrobeSpecies microbe)
+                    microbe.Organelles.Approve();
+
                 entry.Key.ApplyMutation(entry.Value.MutatedProperties);
             }
 

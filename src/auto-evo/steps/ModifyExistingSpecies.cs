@@ -169,7 +169,7 @@ public class ModifyExistingSpecies : IRunStep
                     bool isEqual = m.ParentSpecies == m.MutatedSpecies;
 
                     if (isEqual)
-                        m.MutatedSpecies.Organelles.Approve(false);
+                        m.MutatedSpecies.Organelles.Reject();
 
                     return isEqual;
                 });
@@ -180,7 +180,7 @@ public class ModifyExistingSpecies : IRunStep
                 while (mutationsToTry.Count > TotalMutationsToTry)
                 {
                     var toRemove = mutationsToTry[^1];
-                    toRemove.MutatedSpecies.Organelles.Approve(false);
+                    toRemove.MutatedSpecies.Organelles.Reject();
 
                     mutationsToTry.RemoveAt(mutationsToTry.Count - 1);
                 }
@@ -241,10 +241,12 @@ public class ModifyExistingSpecies : IRunStep
                             new KeyValuePair<Patch, long>(patch, newPopulation), mutation.AddType,
                             mutation.ParentSpecies);
 
-                        mutation.MutatedSpecies.Organelles.Approve(true);
+                        mutation.MutatedSpecies.Organelles.Approve();
                     }
-
-                    mutation.MutatedSpecies.Organelles.Approve(false);
+                    else
+                    {
+                        mutation.MutatedSpecies.Organelles.Reject();
+                    }
                 }
 
                 return true;
