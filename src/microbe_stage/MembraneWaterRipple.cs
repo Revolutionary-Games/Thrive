@@ -612,7 +612,8 @@ public partial class MembraneWaterRipple : Node
         }
 
         var waterVelocity = FluidCurrentsSystem == null ?
-            Vector2.Zero : FluidCurrentsSystem.VelocityAt(new Vector2(currentPos.X, currentPos.Z));
+            Vector2.Zero :
+            FluidCurrentsSystem.VelocityAt(new Vector2(currentPos.X, currentPos.Z));
 
         significantMovement &= new Vector3(waterVelocity.X, 0.0f, waterVelocity.Y).Dot(movement) <= 0.75f;
 
