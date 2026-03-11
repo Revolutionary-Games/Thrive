@@ -598,9 +598,9 @@ public partial class MembraneWaterRipple : Node
         // Calculates movement since the last frame
         var currentPos = FollowTargetNode.GlobalPosition;
         var waterVelocity = FluidCurrentsSystem == null ?
-            Vector2.Zero : FluidCurrentsSystem.VelocityAt(new Vector2(currentPos.X, currentPos.Z)) * 0.5f;
+            Vector2.Zero : FluidCurrentsSystem.VelocityAt(new Vector2(currentPos.X, currentPos.Z));
 
-        var movement = currentPos - lastPosition - new Vector3(waterVelocity.X, 0.0f, waterVelocity.Y);
+        var movement = currentPos - lastPosition;
         float movementSqr = movement.LengthSquared() / delta;
         averageMovementSqr = Mathf.Lerp(averageMovementSqr, movementSqr, 0.2f);
         bool significantMovement;
@@ -613,6 +613,8 @@ public partial class MembraneWaterRipple : Node
         {
             significantMovement = averageMovementSqr > ResumeMovementThresholdSqr;
         }
+
+        significantMovement &= new Vector3(waterVelocity.X, 0.0f, waterVelocity.Y).Dot(movement) <= 0.75f;
 
         // Update stillness tracking
         if (significantMovement)
