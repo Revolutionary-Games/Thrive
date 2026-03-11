@@ -597,9 +597,6 @@ public partial class MembraneWaterRipple : Node
 
         // Calculates movement since the last frame
         var currentPos = FollowTargetNode.GlobalPosition;
-        var waterVelocity = FluidCurrentsSystem == null ?
-            Vector2.Zero : FluidCurrentsSystem.VelocityAt(new Vector2(currentPos.X, currentPos.Z));
-
         var movement = currentPos - lastPosition;
         float movementSqr = movement.LengthSquared() / delta;
         averageMovementSqr = Mathf.Lerp(averageMovementSqr, movementSqr, 0.2f);
@@ -613,6 +610,9 @@ public partial class MembraneWaterRipple : Node
         {
             significantMovement = averageMovementSqr > ResumeMovementThresholdSqr;
         }
+
+        var waterVelocity = FluidCurrentsSystem == null ?
+            Vector2.Zero : FluidCurrentsSystem.VelocityAt(new Vector2(currentPos.X, currentPos.Z));
 
         significantMovement &= new Vector3(waterVelocity.X, 0.0f, waterVelocity.Y).Dot(movement) <= 0.75f;
 
@@ -781,9 +781,6 @@ public partial class MembraneWaterRipple : Node
         // Transforms world positions to local XZ offsets for shader
         int targetPositionsCount = 0;
 
-        var waterVelocity = FluidCurrentsSystem == null ?
-            Vector2.Zero : FluidCurrentsSystem.VelocityAt(new Vector2(currentPos.X, currentPos.Z)) * 0.5f;
-
         for (int i = 0; i < count; i += step)
         {
             int index = (currentPositionIndex - 1 - i).PositiveModulo(MAX_POSITION_HISTORY);
@@ -793,8 +790,8 @@ public partial class MembraneWaterRipple : Node
             int targetIndex = i / step;
             if (targetIndex < MAX_POSITION_HISTORY && targetIndex < pastPositionCount)
             {
-                pastPositions[targetIndex] = position - waterVelocity * (1.0f + i);
-                godotPastPositions[targetIndex] = position - waterVelocity * (1.0f + i);
+                pastPositions[targetIndex] = position;
+                godotPastPositions[targetIndex] = position;
                 targetPositionsCount = targetIndex + 1;
             }
             else
