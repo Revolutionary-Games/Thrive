@@ -363,7 +363,9 @@ public class ModifyExistingSpecies : IRunStep
         pressureStack.Push(currentMiche.Pressure);
         mutationSorter.Setup(baseSpecies, pressureStack);
 
-        var mutations = currentMiche.Pressure.Mutations;
+        var mutations = currentMiche.Pressure.Mutations.ToArray();
+        mutations.Shuffle(random);
+
         bool lawk = worldSettings.LAWK;
         var maxVariants = Constants.MAX_VARIANTS_IN_MUTATIONS;
         var halfMaxVariants = maxVariants / 2;
