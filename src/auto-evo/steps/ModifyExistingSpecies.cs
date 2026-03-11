@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Godot;
 using Xoshiro.PRNG64;
 
@@ -16,7 +17,6 @@ public class ModifyExistingSpecies : IRunStep
     private const int TotalMutationsToTry = 20;
 
     private readonly Patch patch;
-    private readonly SimulationCache cache;
 
     private readonly WorldGenerationSettings worldSettings;
 
@@ -48,7 +48,6 @@ public class ModifyExistingSpecies : IRunStep
 
     private readonly List<Tuple<MicrobeSpecies, double>> temporaryResultForTopMutations = new();
 
-    private readonly MutationSorter mutationSorter;
     private readonly Random random;
 
     private readonly List<Mutation> mutationsToTry = new();
@@ -59,20 +58,18 @@ public class ModifyExistingSpecies : IRunStep
     private readonly List<Miche> nonEmptyLeafNodes = new();
     private readonly List<Miche> emptyLeafNodes = new();
 
+    private MutationSorter? mutationSorter;
+
     private Dictionary<Species, long>.Enumerator speciesEnumerator;
 
     private Miche? miche;
 
     private Step step;
 
-    public ModifyExistingSpecies(Patch patch, SimulationCache cache, WorldGenerationSettings worldSettings,
-        Random randomSeed)
+    public ModifyExistingSpecies(Patch patch, WorldGenerationSettings worldSettings, Random randomSeed)
     {
         this.patch = patch;
-        this.cache = cache;
         this.worldSettings = worldSettings;
-
-        mutationSorter = new MutationSorter(patch, cache);
 
         random = new XoShiRo256starstar(randomSeed.NextInt64());
 
@@ -102,8 +99,13 @@ public class ModifyExistingSpecies : IRunStep
 
     public bool CanRunConcurrently => true;
 
-    public bool RunStep(RunResults results)
+    public bool RunStep(RunResults results, SimulationCache cache)
     {
+        if (mutationSorter == null || !mutationSorter.UsesCache(cache))
+        {
+            mutationSorter = new MutationSorter(patch, cache);
+        }
+
         // Setup miche data if missing
         if (miche == null)
         {
@@ -129,7 +131,7 @@ public class ModifyExistingSpecies : IRunStep
 
                     if (species is MicrobeSpecies microbeSpecies)
                     {
-                        GetMutationsForSpecies(microbeSpecies);
+                        GetMutationsForSpecies(microbeSpecies, cache);
                     }
                 }
                 else
@@ -153,7 +155,7 @@ public class ModifyExistingSpecies : IRunStep
 
                         if (species is MicrobeSpecies microbeSpecies)
                         {
-                            GetMutationsForSpecies(microbeSpecies);
+                            GetMutationsForSpecies(microbeSpecies, cache);
                         }
                     }
                 }
@@ -287,7 +289,7 @@ public class ModifyExistingSpecies : IRunStep
         }
     }
 
-    private void GetMutationsForSpecies(MicrobeSpecies microbeSpecies)
+    private void GetMutationsForSpecies(MicrobeSpecies microbeSpecies, SimulationCache cache)
     {
         // The traversal end up being re-calculated quite many times, but this way we avoid quite a lot of memory
         // allocations
@@ -307,7 +309,7 @@ public class ModifyExistingSpecies : IRunStep
             }
 
             var variants = GenerateMutations(microbeSpecies,
-                worldSettings.AutoEvoConfiguration.MutationsPerSpecies, temporaryPressures);
+                worldSettings.AutoEvoConfiguration.MutationsPerSpecies, temporaryPressures, cache);
 
             foreach (var variant in variants)
             {
@@ -331,7 +333,7 @@ public class ModifyExistingSpecies : IRunStep
             }
 
             var variants = GenerateMutations(microbeSpecies,
-                worldSettings.AutoEvoConfiguration.MutationsPerSpecies, temporaryPressures);
+                worldSettings.AutoEvoConfiguration.MutationsPerSpecies, temporaryPressures, cache);
 
             foreach (var variant in variants)
             {
@@ -375,8 +377,15 @@ public class ModifyExistingSpecies : IRunStep
     /// </summary>
     /// <returns>List of viable variants and the provided species</returns>
     private List<MicrobeSpecies> GenerateMutations(MicrobeSpecies baseSpecies, int amount,
-        List<SelectionPressure> selectionPressures)
+        List<SelectionPressure> selectionPressures, SimulationCache cache)
     {
+#if DEBUG
+
+        // Check if methods are called in the wrong order
+        if (mutationSorter == null)
+            throw new InvalidOperationException("Mutation sorter is null");
+#endif
+
         double totalMP = 100 * worldSettings.AIMutationMultiplier;
 
         temporaryMutations1.Clear();
@@ -399,7 +408,7 @@ public class ModifyExistingSpecies : IRunStep
 
         bool lawk = worldSettings.LAWK;
 
-        mutationSorter.Setup(baseSpecies, selectionPressures);
+        mutationSorter!.Setup(baseSpecies, selectionPressures);
 
         tempMutationStrategies.Shuffle(random);
 
@@ -523,6 +532,12 @@ public class ModifyExistingSpecies : IRunStep
                 return 1;
 
             return 0;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool UsesCache(SimulationCache simulationCache)
+        {
+            return cache == simulationCache;
         }
     }
 }

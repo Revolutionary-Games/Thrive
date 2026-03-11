@@ -12,15 +12,13 @@ public class MigrateSpecies : IRunStep
     private readonly Species species;
     private readonly PatchMap map;
     private readonly WorldGenerationSettings worldSettings;
-    private readonly SimulationCache cache;
+
     private readonly Random random;
     private readonly Miche.InsertWorkingMemory insertWorkingMemory = new();
 
-    public MigrateSpecies(Species species, PatchMap map, WorldGenerationSettings worldSettings, SimulationCache cache,
-        Random randomSource)
+    public MigrateSpecies(Species species, PatchMap map, WorldGenerationSettings worldSettings, Random randomSource)
     {
         this.species = species;
-        this.cache = cache;
         this.map = map;
         this.worldSettings = worldSettings;
 
@@ -31,7 +29,7 @@ public class MigrateSpecies : IRunStep
 
     public bool CanRunConcurrently => true;
 
-    public bool RunStep(RunResults results)
+    public bool RunStep(RunResults results, SimulationCache cache)
     {
         // Player has a separate GUI to control their migrations purposefully so auto-evo doesn't do it automatically
         if (species.PlayerSpecies)

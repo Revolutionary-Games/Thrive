@@ -12,16 +12,19 @@ using Xoshiro.PRNG64;
 /// </summary>
 public static class MichePopulation
 {
-    public static void Simulate(SimulationConfiguration parameters, SimulationCache? existingCache,
+    public static void Simulate(SimulationConfiguration parameters, ref SimulationCache? existingCache,
         Random randomSource)
     {
         if (existingCache?.MatchesSettings(parameters.WorldSettings) == false)
             throw new ArgumentException("Given cache doesn't match world settings");
 
-        // This only seems to help a bit, so caching entirely in an auto-evo task by adding the cache parameter
-        // to IRunStep.RunStep might not be worth the effort at all
-        var cache = existingCache ?? new SimulationCache(parameters.WorldSettings);
+        existingCache ??= new SimulationCache(parameters.WorldSettings);
+        Simulate(parameters, existingCache, randomSource);
+    }
 
+    public static void Simulate(SimulationConfiguration parameters, SimulationCache cache,
+        Random randomSource)
+    {
         var insertWorkMemory = new Miche.InsertWorkingMemory();
 
         var random = new XoShiRo256starstar(randomSource.NextInt64());
@@ -30,7 +33,7 @@ public static class MichePopulation
 
         IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate = parameters.OriginalMap.Patches;
 
-        // Skip patches not configured to be simulated in order to run faster
+        // Skip patches that aren't configured to be simulated in order to run faster
         if (parameters.PatchesToRun.Count > 0)
         {
             patchesToSimulate = patchesToSimulate.Where(p => parameters.PatchesToRun.Contains(p.Value));

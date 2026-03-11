@@ -6,13 +6,11 @@
 public class GenerateMiche : IRunStep
 {
     private readonly Patch patch;
-    private readonly SimulationCache cache;
     private readonly AutoEvoGlobalCache globalCache;
 
-    public GenerateMiche(Patch patch, SimulationCache cache, AutoEvoGlobalCache globalCache)
+    public GenerateMiche(Patch patch, AutoEvoGlobalCache globalCache)
     {
         this.patch = patch;
-        this.cache = cache;
         this.globalCache = globalCache;
     }
 
@@ -20,10 +18,10 @@ public class GenerateMiche : IRunStep
 
     public bool CanRunConcurrently => false;
 
-    public bool RunStep(RunResults results)
+    public bool RunStep(RunResults results, SimulationCache cache)
     {
         var generatedMiche = GenerateMicheTree(globalCache);
-        results.AddNewMicheForPatch(patch, PopulateMiche(generatedMiche));
+        results.AddNewMicheForPatch(patch, PopulateMiche(generatedMiche, cache));
 
         return true;
     }
@@ -193,7 +191,7 @@ public class GenerateMiche : IRunStep
         return rootMiche;
     }
 
-    public Miche PopulateMiche(Miche miche)
+    public Miche PopulateMiche(Miche miche, SimulationCache cache)
     {
         // If no species, don't need to do anything
         if (patch.SpeciesInPatch.Count < 1)

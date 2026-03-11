@@ -421,9 +421,9 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
 
         // Create a miche tree to only find species that would actually survive in the target patch
         var cache = new SimulationCache(world.WorldSettings);
-        var generation = new GenerateMiche(patch, cache, world.AutoEvoGlobalCache);
+        var generation = new GenerateMiche(patch, world.AutoEvoGlobalCache);
         var miche = generation.GenerateMicheTree(world.AutoEvoGlobalCache);
-        generation.PopulateMiche(miche);
+        generation.PopulateMiche(miche, cache);
 
         Species? foundSpecies = null;
 

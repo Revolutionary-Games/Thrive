@@ -14,7 +14,7 @@ public class RemoveInvalidMigrations : IRunStep
     public int TotalSteps => 1;
     public bool CanRunConcurrently => false;
 
-    public bool RunStep(RunResults results)
+    public bool RunStep(RunResults results, SimulationCache cache)
     {
         foreach (var species in speciesToCheck)
         {

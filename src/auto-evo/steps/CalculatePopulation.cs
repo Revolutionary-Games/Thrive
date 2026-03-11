@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Xoshiro.PRNG64;
 
 /// <summary>
-///   Step that calculate the populations for all species
+///   Step that calculates the populations for all species
 /// </summary>
 public class CalculatePopulation : IRunStep
 {
@@ -34,7 +34,7 @@ public class CalculatePopulation : IRunStep
     /// </summary>
     public Dictionary<Patch, Species>? EnsurePatchesHaveSpecies { get; set; }
 
-    public bool RunStep(RunResults results)
+    public bool RunStep(RunResults results, SimulationCache cache)
     {
         // ReSharper disable RedundantArgumentDefaultValue
         var config = new SimulationConfiguration(configuration, map, worldSettings)
@@ -58,7 +58,7 @@ public class CalculatePopulation : IRunStep
 
         // TODO: allow passing in a random seed
 
-        MichePopulation.Simulate(config, null, new XoShiRo256starstar());
+        MichePopulation.Simulate(config, cache, new XoShiRo256starstar());
 
         return true;
     }
