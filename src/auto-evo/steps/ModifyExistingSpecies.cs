@@ -364,7 +364,6 @@ public class ModifyExistingSpecies : IRunStep
         mutationSorter.Setup(baseSpecies, pressureStack);
 
         var mutations = currentMiche.Pressure.Mutations;
-        mutations.Shuffle(random);
         bool lawk = worldSettings.LAWK;
 
         foreach (var mutationStrategy in mutations)
