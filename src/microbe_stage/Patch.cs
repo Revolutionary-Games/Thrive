@@ -686,7 +686,6 @@ public class Patch : IArchivable
         MicrobeEnvironmentalToleranceCalculations.ApplyCellEffectsOnTolerances(cells, ref organelleEffects);
 
         var result = GenerateOptimalTolerances(organelleEffects);
-        GD.Print("!!!! ", result.OxygenResistance);
 
 #if DEBUG
         result.SanityCheck();
