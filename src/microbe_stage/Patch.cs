@@ -654,7 +654,7 @@ public class Patch : IArchivable
         else
         {
             result.OxygenResistance -= externalModifiers.OxygenResistance;
-            
+
             // due to rounding make sure the tolerance is always in appropriate range
             result.OxygenResistance += Constants.TOLERANCE_OXYGEN_STEP;
             result.OxygenResistance = Math.Max(0, result.OxygenResistance);
@@ -667,7 +667,7 @@ public class Patch : IArchivable
         else
         {
             result.UVResistance -= externalModifiers.UVResistance;
-            
+
             // due to rounding make sure the tolerance is always in appropriate range
             result.UVResistance += Constants.TOLERANCE_UV_STEP;
             result.UVResistance = Math.Max(0, result.UVResistance);
