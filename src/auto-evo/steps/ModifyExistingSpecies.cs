@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Godot;
 using Xoshiro.PRNG64;
 
@@ -14,6 +15,8 @@ public class ModifyExistingSpecies : IRunStep
 {
     // TODO: Possibly make this a performance setting?
     private const int TotalMutationsToTry = 20;
+
+    private static int autoEvoCacheCounter;
 
     private readonly Patch patch;
     private readonly SimulationCache cache;
@@ -102,6 +105,13 @@ public class ModifyExistingSpecies : IRunStep
 
     public bool CanRunConcurrently => true;
 
+    public static int GetNextAutoEvoAttemptCacheNumber()
+    {
+        // This wraps around after 4 billion species tries, which should at most cause a small glitch in auto-evo
+        // score caching
+        return Interlocked.Increment(ref autoEvoCacheCounter);
+    }
+
     public bool RunStep(RunResults results)
     {
         // Setup miche data if missing
@@ -177,6 +187,11 @@ public class ModifyExistingSpecies : IRunStep
                 foreach (var mutation in mutationsToTry)
                 {
                     mutation.MutatedSpecies.OnEdited();
+
+#if DEBUG
+                    if (mutation.MutatedSpecies.AutoEvoAttemptCache == 0)
+                        throw new Exception("Mutation has no cache number, so missing a call to OnAttemptedInAutoEvo");
+#endif
                 }
 
                 step = Step.MutationTest;
@@ -420,6 +435,21 @@ public class ModifyExistingSpecies : IRunStep
 
                     if (mutated != null)
                     {
+                        // Make sure the species stats are up to date as pruning will calculate scores etc.
+                        foreach (var tuple in mutated)
+                        {
+#if DEBUG
+                            if (tuple.Item1.AutoEvoAttemptCache != 0)
+                                throw new Exception("Mutation shouldn't have a cache number yet");
+#endif
+
+                            tuple.Item1.OnAttemptedInAutoEvo(true);
+
+                            // If the visual hash of a species needs to be consistent while in the cache, then this
+                            // would need to be called
+                            // tuple.Item1.OnEdited();
+                        }
+
                         PruneMutations(temporaryMutations2, speciesTuple.Item1, mutated, patch, cache,
                             selectionPressures);
                     }
