@@ -602,8 +602,10 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
         ///   This method clears the diff layout and loads the modifications into the permanent layout.
         /// </summary>
         /// <remarks>
+        /// <para>
         ///   This is the method that allocates memory. Only when this is called and the diff is not empty the
         ///   organelles get deep cloned.
+        /// </para>
         /// </remarks>>
         /// <returns>true if this layout was in diff mode.</returns>>
         public bool Commit(bool reallocate)
@@ -618,7 +620,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
                 Shared = false;
             }
 
-            for (int i = 0; i < diffIndex; i++)
+            for (int i = 0; i < diffIndex; ++i)
             {
                 var diff = diffHexes[i];
 
