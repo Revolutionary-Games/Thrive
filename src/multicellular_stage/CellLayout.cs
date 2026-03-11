@@ -71,7 +71,7 @@ public class CellLayout<T> : HexLayout<T>, IReadOnlyCellLayout<T>, IArchivable
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.WriteObject(existingHexes);
+        writer.WriteObject(existingHexes.MainHexes);
         writer.WriteDelegateOrNull(onAdded);
         writer.WriteDelegateOrNull(onRemoved);
     }

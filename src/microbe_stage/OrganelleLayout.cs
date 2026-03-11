@@ -20,6 +20,10 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleL
     {
     }
 
+    internal OrganelleLayout(List<T> existingData) : base(existingData)
+    {
+    }
+
     internal OrganelleLayout(List<T> existingData, Action<T>? onAdded, Action<T>? onRemoved) : base(existingData,
         onAdded, onRemoved)
     {
@@ -86,7 +90,7 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleL
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
-        writer.WriteObject(existingHexes);
+        writer.WriteObject(existingHexes.MainHexes);
         writer.WriteDelegateOrNull(onAdded);
         writer.WriteDelegateOrNull(onRemoved);
     }
@@ -246,18 +250,20 @@ public class OrganelleLayout<T> : HexLayout<T>, IArchivable, IReadOnlyOrganelleL
     }
 
     /// <summary>
-    ///   Deep clones this organelle layout as a new layout in a more efficient way than copying organelles from here
+    ///   Clones this organelle layout as a new layout in a more efficient way than copying organelles from here
     ///   to a new instance
     /// </summary>
-    /// <returns>Cloned instance with deep copied organelle instances</returns>
     public OrganelleLayout<T> Clone()
     {
-        var result = new OrganelleLayout<T>();
+        // This now creates a new identical organelle layout that uses organelles shared with this layout.
+        // The layouts will automatically create their own new instances whenever there's a modification of such layout.
+        // This layout is also unlikely to change now, so we don't reallocate memory.
+        existingHexes.Commit(false);
 
-        foreach (var existingHex in existingHexes)
-        {
-            result.existingHexes.Add((T)existingHex.Clone());
-        }
+        var result = new OrganelleLayout<T>(existingHexes.MainHexes);
+
+        // Now this layout is shared as well, so if we diverge from it in this instance, we must allocate a new list.
+        existingHexes.Shared = true;
 
         return result;
     }

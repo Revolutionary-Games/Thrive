@@ -164,13 +164,24 @@ public class ModifyExistingSpecies : IRunStep
             case Step.MutationFilter:
             {
                 // Disregard "mutations" that result in identical species"
-                mutationsToTry.RemoveAll(m => m.ParentSpecies == m.MutatedSpecies);
+                mutationsToTry.RemoveAll(m =>
+                {
+                    bool isEqual = m.ParentSpecies == m.MutatedSpecies;
+
+                    if (isEqual)
+                        m.MutatedSpecies.Organelles.Approve(false);
+
+                    return isEqual;
+                });
 
                 // Then shuffle and take only as many mutations as we want to try
                 mutationsToTry.Shuffle(random);
 
                 while (mutationsToTry.Count > TotalMutationsToTry)
                 {
+                    var toRemove = mutationsToTry[^1];
+                    toRemove.MutatedSpecies.Organelles.Approve(false);
+
                     mutationsToTry.RemoveAt(mutationsToTry.Count - 1);
                 }
 
@@ -229,7 +240,11 @@ public class ModifyExistingSpecies : IRunStep
                         results.AddPossibleMutation(mutation.MutatedSpecies,
                             new KeyValuePair<Patch, long>(patch, newPopulation), mutation.AddType,
                             mutation.ParentSpecies);
+
+                        mutation.MutatedSpecies.Organelles.Approve(true);
                     }
+
+                    mutation.MutatedSpecies.Organelles.Approve(false);
                 }
 
                 return true;
