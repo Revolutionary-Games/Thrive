@@ -55,17 +55,10 @@ public partial class Membrane : MeshInstance3D
 
     private bool mucocystEffectEnabled;
 
-    private MicrobeControl microbeControl;
-
-    public MicrobeControl MicrobeControl
-    {
-        private get => microbeControl;
-        set
-        {
-            waterRipple.MicrobeControl = value;
-            microbeControl = value;
-        }
-    }
+    /// <summary>
+    ///   True if this microbe's AI/player is making it move.
+    /// </summary>
+    private bool isMicrobeMoving;
 
     /// <summary>
     ///   When true, the material properties need to be reapplied
@@ -212,14 +205,18 @@ public partial class Membrane : MeshInstance3D
 
     public override void _Process(double delta)
     {
-        waterRipple.MicrobeControl = MicrobeControl;
-
         if (!Dirty)
             return;
 
         Dirty = false;
         ApplyAllMaterialParameters();
         waterRipple.EffectRadius = EncompassingCircleRadius;
+    }
+
+    public void ReportMicrobeMovementStatus(bool isMoving)
+    {
+        isMicrobeMoving = isMoving;
+        waterRipple.ReportMovementStatus(isMoving);
     }
 
     /// <summary>

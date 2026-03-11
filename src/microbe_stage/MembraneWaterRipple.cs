@@ -61,8 +61,6 @@ public partial class MembraneWaterRipple : Node
     [Export]
     public float RippleFormationDelay = 0.2f;
 
-    public MicrobeControl MicrobeControl;
-
     /// <summary>
     ///   Maximum delta time to prevent jitter
     /// </summary>
@@ -91,6 +89,11 @@ public partial class MembraneWaterRipple : Node
     private readonly StringName stillnessFactorParam = new("StillnessFactor");
     private readonly StringName membraneRadiusParam = new("MembraneRadius");
     private readonly StringName globalAlphaParam = new("GlobalAlpha");
+
+    /// <summary>
+    ///   True if this microbe's AI/player is making it move.
+    /// </summary>
+    private bool isMicrobeMoving;
 
     /// <summary>
     ///   Fade-in speed multiplier (higher = faster fade-in)
@@ -301,6 +304,11 @@ public partial class MembraneWaterRipple : Node
         timeAccumulator += clampedDelta * timeScale;
         waterMaterial.SetShaderParameter(timeOffsetParam, timeAccumulator);
         UpdateMovementParameters(clampedDelta);
+    }
+
+    public void ReportMovementStatus(bool isMoving)
+    {
+        isMicrobeMoving = isMoving;
     }
 
     protected override void Dispose(bool disposing)
@@ -585,10 +593,8 @@ public partial class MembraneWaterRipple : Node
         float movementSqr = movement.LengthSquared() / delta;
         averageMovementSqr = Mathf.Lerp(averageMovementSqr, movementSqr, 0.2f);
 
-        bool significantMovement = MicrobeControl.MovementDirection.LengthSquared() > MathUtils.EPSILON;
-
         // Update stillness tracking
-        if (significantMovement)
+        if (isMicrobeMoving)
         {
             // Reset stillness timer when moving
             stillnessTimer = 0.0f;
@@ -640,7 +646,7 @@ public partial class MembraneWaterRipple : Node
         // Direction and speed calculation
         directionChangeTimer += delta;
 
-        if (significantMovement)
+        if (isMicrobeMoving)
         {
             Vector2 direction;
             float calculatedSpeed;
