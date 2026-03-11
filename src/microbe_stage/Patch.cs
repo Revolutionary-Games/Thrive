@@ -646,12 +646,32 @@ public class Patch : IArchivable
         };
 
         // Apply the reverse of the negative effects to balance things out (and slightly exaggerate to not run into
-        // rounding issues)
+        // rounding issues). If the effects are positive reduce the tolerance values
         if (externalModifiers.OxygenResistance < 0)
+        {
             result.OxygenResistance -= externalModifiers.OxygenResistance * 1.01f;
+        }
+        else
+        {
+            result.OxygenResistance -= externalModifiers.OxygenResistance;
+            
+            // due to rounding make sure the tolerance is always in appropriate range
+            result.OxygenResistance += Constants.TOLERANCE_OXYGEN_STEP;
+            result.OxygenResistance = Math.Max(0, result.OxygenResistance);
+        }
 
         if (externalModifiers.UVResistance < 0)
+        {
             result.UVResistance -= externalModifiers.UVResistance * 1.01f;
+        }
+        else
+        {
+            result.UVResistance -= externalModifiers.UVResistance;
+            
+            // due to rounding make sure the tolerance is always in appropriate range
+            result.UVResistance += Constants.TOLERANCE_UV_STEP;
+            result.UVResistance = Math.Max(0, result.UVResistance);
+        }
 
         if (externalModifiers.PressureTolerance < 0)
             result.PressureTolerance -= externalModifiers.PressureTolerance * 1.01f;
@@ -666,6 +686,7 @@ public class Patch : IArchivable
         MicrobeEnvironmentalToleranceCalculations.ApplyCellEffectsOnTolerances(cells, ref organelleEffects);
 
         var result = GenerateOptimalTolerances(organelleEffects);
+        GD.Print("!!!! ", result.OxygenResistance);
 
 #if DEBUG
         result.SanityCheck();
