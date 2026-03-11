@@ -421,7 +421,10 @@ public class ModifyExistingSpecies : IRunStep
                     }
                     else
                     {
-                        AddRandomMutations(temporaryMutations2, temporaryMutations1, halfMaxVariants);
+                        AddRandomMutations(temporaryMutations2, temporaryMutations1, halfMaxVariants / 2);
+                        temporaryMutations1.Clear();
+                        GetTopMutations(temporaryMutations1, outputSpecies, halfMaxVariants / 2, mutationSorter);
+                        temporaryMutations2.AddRange(temporaryMutations1);
                     }
 
                     outputSpecies.Clear();
