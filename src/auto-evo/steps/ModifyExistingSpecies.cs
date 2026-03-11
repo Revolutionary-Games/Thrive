@@ -365,6 +365,8 @@ public class ModifyExistingSpecies : IRunStep
 
         var mutations = currentMiche.Pressure.Mutations;
         bool lawk = worldSettings.LAWK;
+        var maxVariants = Constants.MAX_VARIANTS_IN_MUTATIONS;
+        var halfMaxVariants = maxVariants / 2;
 
         foreach (var mutationStrategy in mutations)
         {
@@ -397,17 +399,35 @@ public class ModifyExistingSpecies : IRunStep
                 temporaryMutations1.Clear();
                 PruneMutations(temporaryMutations1, baseSpecies, temporaryMutations2, patch, cache, pressureStack);
 
-                outputSpecies.AddRange(temporaryMutations1);
-
-                if (outputSpecies.Count > Constants.MAX_VARIANTS_IN_MUTATIONS)
+                // This section is complicated to look at, but essentially:
+                // If the number of temporary species going into the next round would be too many,
+                // prune also the pre-mutation species, and then select the top + a random selection of all species
+                // But, if the number of species falls too low after pruning,
+                // fall back to selecting pre-pruning, pre-mutation species
+                if (temporaryMutations1.Count + outputSpecies.Count > maxVariants)
                 {
-                    GetTopMutations(temporaryMutations2, outputSpecies,
-                        Constants.MAX_VARIANTS_IN_MUTATIONS / 2, mutationSorter);
-                    AddRandomMutations(temporaryMutations2, outputSpecies,
-                        Constants.MAX_VARIANTS_IN_MUTATIONS / 2);
+                    PruneMutations(temporaryMutations1, baseSpecies, outputSpecies, patch, cache, pressureStack);
+                    GetTopMutations(temporaryMutations2, temporaryMutations1, halfMaxVariants, mutationSorter);
+
+                    var remainingVariants = halfMaxVariants - temporaryMutations1.Count;
+                    if (remainingVariants > 0)
+                    {
+                        temporaryMutations1.Clear();
+                        GetTopMutations(temporaryMutations1, outputSpecies, remainingVariants, mutationSorter);
+                        temporaryMutations2.AddRange(temporaryMutations1);
+                        AddRandomMutations(temporaryMutations2, outputSpecies, halfMaxVariants);
+                    }
+                    else
+                    {
+                        AddRandomMutations(temporaryMutations2, temporaryMutations1, halfMaxVariants);
+                    }
 
                     outputSpecies.Clear();
                     outputSpecies.AddRange(temporaryMutations2);
+                }
+                else
+                {
+                    outputSpecies.AddRange(temporaryMutations1);
                 }
 
                 if (temporaryMutations1.Count == 0)
