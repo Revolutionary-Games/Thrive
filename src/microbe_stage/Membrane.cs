@@ -20,8 +20,6 @@ public partial class Membrane : MeshInstance3D
     [Export]
     public ShaderMaterial? MucocystShaderMaterial;
 
-    public FluidCurrentsSystem? FluidCurrentsSystem;
-
     private readonly StringName healthParameterName = new("healthFraction");
     private readonly StringName wigglynessParameterName = new("wigglyNess");
     private readonly StringName movementWigglynessParameterName = new("movementWigglyNess");
@@ -46,6 +44,8 @@ public partial class Membrane : MeshInstance3D
     private MembranePointData membraneData = null!;
 #pragma warning restore CA2213
 
+    private FluidCurrentsSystem? fluidCurrentsSystem;
+
     private string? currentlyLoadedAlbedoTexture;
 
     private float healthFraction = 1.0f;
@@ -56,6 +56,16 @@ public partial class Membrane : MeshInstance3D
     private double engulfFade;
 
     private bool mucocystEffectEnabled;
+
+    public FluidCurrentsSystem? FluidCurrentsSystem
+    {
+        get => fluidCurrentsSystem;
+        set
+        {
+            fluidCurrentsSystem = value;
+            waterRipple.FluidCurrentsSystem = value;
+        }
+    }
 
     /// <summary>
     ///   When true, the material properties need to be reapplied
@@ -182,8 +192,6 @@ public partial class Membrane : MeshInstance3D
 
         waterRipple.FollowTargetNode = this;
         SetMesh();
-
-        waterRipple.FluidCurrentsSystem = FluidCurrentsSystem;
     }
 
     public override void _EnterTree()
