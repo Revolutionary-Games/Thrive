@@ -368,9 +368,6 @@ public class ModifyExistingSpecies : IRunStep
     /// </summary>
     private void GenerateMutations(MicrobeSpecies baseSpecies, Miche currentMiche, int depth, bool lastChild)
     {
-        var baseSpeciesMutant = new Mutant(baseSpecies,
-            Constants.BASE_MUTATION_POINTS * worldSettings.AIMutationMultiplier);
-
         var inputSpecies = generateMutationsWorkingMemory.GetMutationsAtDepth(depth - 1);
 
         var outputSpecies = generateMutationsWorkingMemory.GetMutationsAtDepth(depth);
@@ -391,7 +388,6 @@ public class ModifyExistingSpecies : IRunStep
         {
             temporaryMutations1.Clear();
             temporaryMutations1.AddRange(outputSpecies);
-            temporaryMutations1.Add(baseSpeciesMutant);
 
             for (int i = 0; i < Constants.AUTO_EVO_MAX_MUTATION_RECURSIONS; ++i)
             {
