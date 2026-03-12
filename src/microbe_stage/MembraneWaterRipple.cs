@@ -1,5 +1,4 @@
 ﻿using System;
-using Components;
 using Godot;
 using Godot.Collections;
 using Newtonsoft.Json;
@@ -94,6 +93,8 @@ public partial class MembraneWaterRipple : Node
     ///   True if this microbe's AI/player is making it move.
     /// </summary>
     private bool isMicrobeMoving;
+
+    private bool isPlayer;
 
     /// <summary>
     ///   Fade-in speed multiplier (higher = faster fade-in)
@@ -309,6 +310,7 @@ public partial class MembraneWaterRipple : Node
     public void ReportMovementStatus(bool isMoving)
     {
         isMicrobeMoving = isMoving;
+        isPlayer = true;
     }
 
     protected override void Dispose(bool disposing)
@@ -503,12 +505,13 @@ public partial class MembraneWaterRipple : Node
             return;
         }
 
-        // Set target alpha based on movement
-        targetAlpha = wasMovingLastFrame ? fullAlpha : minAlpha;
-        targetStillness = wasMovingLastFrame ? 0.0f : 1.0f;
-
-        // Apply fade delay when stopping
-        if (!wasMovingLastFrame && stillnessTimer > StillnessFadeDelay)
+        // Set target alpha based on movement and whether or not the fade delay has been reached
+        if (wasMovingLastFrame || stillnessTimer <= StillnessFadeDelay)
+        {
+            targetAlpha = fullAlpha;
+            targetStillness = 0.0f;
+        }
+        else
         {
             targetAlpha = minAlpha;
             targetStillness = 1.0f;
@@ -521,6 +524,13 @@ public partial class MembraneWaterRipple : Node
 
         // Apply non-linear scaling
         float scaledAlpha = ApplyNonLinearAlphaScaling(currentAlpha);
+
+        if (isPlayer)
+        {
+            GD.Print($"Params:");
+            GD.Print($"Stillness {stillnessValue} -> {targetStillness}");
+            GD.Print($"Alpha {currentAlpha} -> {targetAlpha}");
+        }
 
         // Update shader parameters with the global alpha multiplier
         waterMaterial.SetShaderParameter(globalAlphaParam, scaledAlpha);
