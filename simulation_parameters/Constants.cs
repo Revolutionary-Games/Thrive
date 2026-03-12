@@ -1995,7 +1995,7 @@ public static class Constants
     public const float TOLERANCE_PRESSURE_RANGE_MAX = 2000000;
 
     // These values must be the same as in the editor
-    public const float TOLERANCE_OXYGEN_RANGE_MAX = 0.08f;
+    public const float TOLERANCE_OXYGEN_RANGE_MAX = 0.1f;
     public const float TOLERANCE_OXYGEN_STEP = 0.01f;
     public const float TOLERANCE_UV_STEP = 0.05f;
 
