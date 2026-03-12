@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using Godot;
 using Xoshiro.PRNG64;
@@ -407,19 +406,19 @@ public class ModifyExistingSpecies : IRunStep
                         foreach (var tuple in mutated)
                         {
 #if DEBUG
-                            if (tuple.Item1.AutoEvoAttemptCache != 0)
+                            if (tuple.Species.AutoEvoAttemptCache != 0)
                                 throw new Exception("Mutation shouldn't have a cache number yet");
 #endif
 
-                            tuple.Item1.OnAttemptedInAutoEvo(true);
+                            tuple.Species.OnAttemptedInAutoEvo(true);
 
                             // If the visual hash of a species needs to be consistent while in the cache, then this
                             // would need to be called
                             // tuple.Item1.OnEdited();
                         }
 
-                        PruneMutations(temporaryMutations2, speciesTuple.Item1, mutated, patch, cache,
-                            selectionPressures);
+                        PruneMutations(temporaryMutations2, speciesTuple.Species, mutated, patch, cache,
+                            pressureStack);
                     }
                 }
 
