@@ -653,11 +653,13 @@ public class Patch : IArchivable
         }
         else
         {
-            result.OxygenResistance -= externalModifiers.OxygenResistance;
+            // auto-evo is run and oxygen levels might decrease a bit so make sure the tolerance is high enough
+            result.OxygenResistance -= externalModifiers.OxygenResistance * 0.80f;
 
             // due to rounding make sure the tolerance is always in appropriate range
-            result.OxygenResistance += Constants.TOLERANCE_OXYGEN_STEP;
-            result.OxygenResistance = Math.Max(0, result.OxygenResistance);
+            result.OxygenResistance = Math.Max(result.OxygenResistance, 0);
+            result.OxygenResistance = (float)(Math.Ceiling(result.OxygenResistance / Constants.TOLERANCE_OXYGEN_STEP) *
+                Constants.TOLERANCE_OXYGEN_STEP);
         }
 
         if (externalModifiers.UVResistance < 0)
@@ -669,8 +671,9 @@ public class Patch : IArchivable
             result.UVResistance -= externalModifiers.UVResistance;
 
             // due to rounding make sure the tolerance is always in appropriate range
-            result.UVResistance += Constants.TOLERANCE_UV_STEP;
             result.UVResistance = Math.Max(0, result.UVResistance);
+            result.UVResistance = (float)(Math.Ceiling(result.UVResistance / Constants.TOLERANCE_UV_STEP) *
+                Constants.TOLERANCE_UV_STEP);
         }
 
         if (externalModifiers.PressureTolerance < 0)
