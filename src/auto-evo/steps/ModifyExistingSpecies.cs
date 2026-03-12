@@ -414,7 +414,7 @@ public class ModifyExistingSpecies : IRunStep
 
                             // If the visual hash of a species needs to be consistent while in the cache, then this
                             // would need to be called
-                            // tuple.Item1.OnEdited();
+                            // tuple.Species.OnEdited();
                         }
 
                         PruneMutations(temporaryMutations2, speciesTuple.Species, mutated, patch, cache,
