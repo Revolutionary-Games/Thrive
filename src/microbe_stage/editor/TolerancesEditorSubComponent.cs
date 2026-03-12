@@ -242,8 +242,10 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
             // Allow for bigger max oxygen tolerance range when loading older save or species that were
             // created to fit into world with higher oxygen level
+            var oxygenMaxValue = (float)(Math.Ceiling(CurrentTolerances.OxygenResistance / Constants.TOLERANCE_OXYGEN_STEP) *
+                Constants.TOLERANCE_OXYGEN_STEP);
             oxygenResistanceSlider.MaxValue =
-                Math.Max(Constants.TOLERANCE_OXYGEN_RANGE_MAX, CurrentTolerances.OxygenResistance);
+                Math.Max(Constants.TOLERANCE_OXYGEN_RANGE_MAX, oxygenMaxValue);
             ApplyCurrentValuesToGUI();
         }
         else
@@ -254,8 +256,10 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
             // Allow for bigger max oxygen tolerance range when loading older save or species that were
             // created to fit into world with higher oxygen level
+            var oxygenMaxValue = (float)(Math.Ceiling(CurrentTolerances.OxygenResistance / Constants.TOLERANCE_OXYGEN_STEP) *
+                Constants.TOLERANCE_OXYGEN_STEP);
             oxygenResistanceSlider.MaxValue =
-                Math.Max(Constants.TOLERANCE_OXYGEN_RANGE_MAX, CurrentTolerances.OxygenResistance);
+                Math.Max(Constants.TOLERANCE_OXYGEN_RANGE_MAX, oxygenMaxValue);
             ResetToCurrentSpeciesTolerances();
         }
 
