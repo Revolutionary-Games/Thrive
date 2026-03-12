@@ -103,8 +103,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
     {
         ref var cellProperties = ref entity.Get<CellProperties>();
 
-        cellProperties.CreatedMembrane?.ReportMicrobeMovementStatus(
-            entity.Get<MicrobeControl>().MovementDirection != Vector3.Zero);
+        cellProperties.CreatedMembrane?.ReportMicrobeMovementStatus(entity.Get<MicrobeControl>().MovementDirection !=
+            Vector3.Zero);
 
         if (organelleContainer.OrganelleVisualsCreated)
             return;
