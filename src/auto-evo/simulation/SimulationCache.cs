@@ -5,6 +5,14 @@
 // Some extra debug stuff that should be disabled in most cases
 // #define VERIFY_PROCESS_SPEED_CACHE_RETURNS
 
+// If set, enables checking GetHashCode is likely not causing serious duplicate cache value sharing problems
+// This uses a ton of extra memory and time to verify things, so only use when debugging that
+// #define CHECK_HASH_CODE_REUSED_INSTANCES
+
+// Turning this off has false positives due to OnEdited being called after first caching, so the visual hash will change
+// due to re-centering of the cell layout
+#define CHECK_CACHE_STORE_INSTANCES
+
 namespace AutoEvo;
 
 using System;
@@ -26,7 +34,7 @@ using Systems;
 /// <remarks>
 ///   <para>
 ///     TODO: would be better to reuse instances of this class after clearing them for next use (there's now a Clear
-///     method for this future usecase)
+///     method for this future use case). See: https://github.com/Revolutionary-Games/Thrive/issues/6664
 ///   </para>
 /// </remarks>
 public class SimulationCache
@@ -41,27 +49,39 @@ public class SimulationCache
 
     private readonly Dictionary<ulong, EnergyBalanceInfoSimple> cachedSimpleEnergyBalances = [];
 #else
-    private readonly Dictionary<(Species, SelectionPressure, Patch), float> cachedPressureScores = new();
+    private readonly Dictionary<(int, SelectionPressure, Patch), float> cachedPressureScores = new();
 
-    private readonly Dictionary<(MicrobeSpecies, IBiomeConditions), EnergyBalanceInfoSimple>
+    private readonly Dictionary<(int, IBiomeConditions), EnergyBalanceInfoSimple>
         cachedSimpleEnergyBalances = [];
 #endif
 
-    private readonly Dictionary<MicrobeSpecies, float> cachedBaseSpeeds = new();
-    private readonly Dictionary<MicrobeSpecies, float> cachedBaseHexSizes = new();
+    private readonly Dictionary<int, float> cachedBaseSpeeds = new();
+    private readonly Dictionary<int, float> cachedBaseHexSizes = new();
 
-    private readonly Dictionary<(MicrobeSpecies, MicrobeSpecies, IBiomeConditions), float> predationScores = new();
+    private readonly Dictionary<(int, int, IBiomeConditions), float> predationScores = new();
 
     private readonly Dictionary<ulong, ProcessSpeedInformation> cachedProcessSpeeds = new();
 
-    private readonly Dictionary<MicrobeSpecies, PredationToolsRawScores>
+    private readonly Dictionary<int, PredationToolsRawScores>
         cachedPredationToolsRawScores = new();
 
-    private readonly Dictionary<MicrobeSpecies, List<TweakedProcess>> cachedProcessLists = new();
+    private readonly Dictionary<int, List<TweakedProcess>> cachedProcessLists = new();
 
-    private readonly Dictionary<(MicrobeSpecies, BiomeConditions), bool> cachedUsesVaryingCompounds = new();
+    private readonly Dictionary<(int, BiomeConditions), bool> cachedUsesVaryingCompounds = new();
 
     private readonly Dictionary<OrganelleDefinition, int> workMemory1 = new();
+
+#if CHECK_HASH_CODE_REUSED_INSTANCES
+    /// <summary>
+    ///   Used to check if GetHashCode returns the same value that the species is likely the same. If not, then this can
+    ///   eventually catch duplicate hash problems.
+    /// </summary>
+#if CHECK_CACHE_STORE_INSTANCES
+    private readonly Dictionary<int, MicrobeSpecies> microbeHashCheckValues = new();
+#else
+    private readonly Dictionary<int, ulong> microbeHashCheckValues = new();
+#endif
+#endif
 
     public SimulationCache(WorldGenerationSettings worldSettings)
     {
@@ -74,7 +94,7 @@ public class SimulationCache
 
         // TODO: even better would be if pressure scores had unique IDs and we could use the species ID +
         // some modification marker as the hash input here
-        var key = (ulong)(uint)pressure.GetHashCode() << 32 | (uint)species.GetHashCode();
+        var key = (ulong)(uint)pressure.GetHashCode() << 32 | (uint)GetSpeciesCacheKey(species);
 
         // Use a big prime to shuffle the hash to hopefully avoid collisions
         key *= 11265003396083139817;
@@ -83,7 +103,7 @@ public class SimulationCache
 
         key *= 13900709095051265681;
 #else
-        var key = (species, pressure, patch);
+        var key = (GetSpeciesCacheKey(species), pressure, patch);
 #endif
 
         ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(cachedPressureScores, key);
@@ -105,9 +125,9 @@ public class SimulationCache
         // different species but with same organelles to be able to use the same cache value) would be nice here
 
 #if USE_HASHED_SCORE_KEYS
-        var key = (ulong)(uint)biomeConditions.GetHashCode() << 32 | (uint)species.GetHashCode();
+        var key = (ulong)(uint)biomeConditions.GetHashCode() << 32 | (uint)GetSpeciesCacheKey(species);
 #else
-        var key = (species, biomeConditions);
+        var key = (GetSpeciesCacheKey(species), biomeConditions);
 #endif
         ref var balance = ref CollectionsMarshal.GetValueRefOrNullRef(cachedSimpleEnergyBalances, key);
         if (!Unsafe.IsNullRef(ref balance))
@@ -137,7 +157,13 @@ public class SimulationCache
     // And also *not* caching them at all is much slower (so if not cached in species, they must be cached here)
     public float GetSpeedForSpecies(MicrobeSpecies species)
     {
-        ref var speed = ref CollectionsMarshal.GetValueRefOrNullRef(cachedBaseSpeeds, species);
+#if CHECK_HASH_CODE_REUSED_INSTANCES
+        CheckSpecies(species);
+#endif
+
+        var key = GetSpeciesCacheKey(species);
+
+        ref var speed = ref CollectionsMarshal.GetValueRefOrNullRef(cachedBaseSpeeds, key);
         if (!Unsafe.IsNullRef(ref speed))
         {
             return speed;
@@ -146,13 +172,19 @@ public class SimulationCache
         var cached = MicrobeInternalCalculations.CalculateSpeed(species.Organelles.Organelles, species.MembraneType,
             species.MembraneRigidity, species.IsBacteria, true);
 
-        cachedBaseSpeeds.Add(species, cached);
+        cachedBaseSpeeds.Add(key, cached);
         return cached;
     }
 
     public float GetBaseHexSizeForSpecies(MicrobeSpecies species)
     {
-        ref var size = ref CollectionsMarshal.GetValueRefOrNullRef(cachedBaseHexSizes, species);
+#if CHECK_HASH_CODE_REUSED_INSTANCES
+        CheckSpecies(species);
+#endif
+
+        var key = GetSpeciesCacheKey(species);
+
+        ref var size = ref CollectionsMarshal.GetValueRefOrNullRef(cachedBaseHexSizes, key);
         if (!Unsafe.IsNullRef(ref size))
         {
             return size;
@@ -160,7 +192,7 @@ public class SimulationCache
 
         var cached = species.BaseHexSize;
 
-        cachedBaseHexSizes.Add(species, cached);
+        cachedBaseHexSizes.Add(key, cached);
         return cached;
     }
 
@@ -310,7 +342,13 @@ public class SimulationCache
             return 0.0f;
         }
 
-        var key = (microbeSpecies: predator, prey, biomeConditions);
+#if CHECK_HASH_CODE_REUSED_INSTANCES
+        CheckSpecies(predator);
+        CheckSpecies(prey);
+#endif
+
+        var key = (microbeSpecies: GetSpeciesCacheKey(predator), GetSpeciesCacheKey(prey),
+            biomeConditions);
 
         ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(predationScores, key);
         if (!Unsafe.IsNullRef(ref score))
@@ -830,8 +868,12 @@ public class SimulationCache
 
     public bool GetUsesVaryingCompoundsForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions)
     {
+#if CHECK_HASH_CODE_REUSED_INSTANCES
+        CheckSpecies(species);
+#endif
+
         // Disabling this cache makes this ever so slightly slower
-        var key = (species, biomeConditions);
+        var key = (GetSpeciesCacheKey(species), biomeConditions);
 
         ref var usesVarying = ref CollectionsMarshal.GetValueRefOrNullRef(cachedUsesVaryingCompounds, key);
         if (!Unsafe.IsNullRef(ref usesVarying))
@@ -938,7 +980,12 @@ public class SimulationCache
 
     public List<TweakedProcess> GetActiveProcessList(MicrobeSpecies microbeSpecies)
     {
-        if (cachedProcessLists.TryGetValue(microbeSpecies, out var cached))
+#if CHECK_HASH_CODE_REUSED_INSTANCES
+        CheckSpecies(microbeSpecies);
+#endif
+
+        var key = GetSpeciesCacheKey(microbeSpecies);
+        if (cachedProcessLists.TryGetValue(key, out var cached))
         {
             return cached;
         }
@@ -946,7 +993,7 @@ public class SimulationCache
         // TODO: a buffer of process lists (to make small list allocations rarer) (as cached is null here if not found)
         ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref cached);
 
-        cachedProcessLists.Add(microbeSpecies, cached);
+        cachedProcessLists.Add(key, cached);
         return cached;
     }
 
@@ -954,7 +1001,8 @@ public class SimulationCache
     {
         // Seems like this takes twice the amount of time from the predation score calculation if this is not cached,
         // so this should definitely use caching.
-        ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(cachedPredationToolsRawScores, microbeSpecies);
+        var key = GetSpeciesCacheKey(microbeSpecies);
+        ref var score = ref CollectionsMarshal.GetValueRefOrNullRef(cachedPredationToolsRawScores, key);
         if (!Unsafe.IsNullRef(ref score))
         {
             return score;
@@ -1170,7 +1218,7 @@ public class SimulationCache
             defensiveInjectisomeScore, averageToxicity, oxytoxyScore, cytotoxinScore, macrolideScore,
             channelInhibitorScore, oxygenMetabolismInhibitorScore, slimeJetScore, mucocystsScore, pullingCiliaModifier);
 
-        cachedPredationToolsRawScores.Add(microbeSpecies, predationToolsRawScores);
+        cachedPredationToolsRawScores.Add(key, predationToolsRawScores);
         return predationToolsRawScores;
     }
 
@@ -1250,6 +1298,95 @@ public class SimulationCache
         // If degrees are higher than 40, then return 0
         return angleCos >= 0.75 ? angleCos : 0;
     }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private int GetSpeciesCacheKey(Species species)
+    {
+        // Apparently, rather than a custom implementation of a hash combine, just using the one cache-method that
+        // is present is better
+        var knownCache = species.AutoEvoAttemptCache;
+
+        if (knownCache != 0)
+            return knownCache;
+
+        // Assume everything that doesn't have a key set will be a long-lived object with a persistent hash code
+        // return species.GetHashCode();
+        // return RuntimeHelpers.GetHashCode(species);
+
+        // Apparently the above is still quite bad for conflicts when not keeping the instances, so we need to do some
+        // stuff here
+        unchecked
+        {
+            var hash = RuntimeHelpers.GetHashCode(species);
+            hash = HashCode.Combine(hash, species.Epithet.GetHashCode() * 6686041);
+
+            if (hash < 40000 && hash >= 0)
+                GD.Print("Got a low hash: " + hash + $"\t {species}");
+            return hash;
+        }
+
+        // This is the variant that still causes cache conflicts
+        /*unchecked
+        {
+            var rawHash = species.GetHashCode();
+            rawHash *= 6686041;
+            rawHash += species.AutoEvoAttemptCache;
+
+            rawHash = int.RotateLeft(rawHash, 7);
+
+            rawHash += species.ID.GetHashCode();
+            rawHash *= 8144639;
+            return rawHash;
+        }*/
+    }
+
+#if CHECK_HASH_CODE_REUSED_INSTANCES
+    private void CheckSpecies(MicrobeSpecies species)
+    {
+        var visual = species.GetVisualHashCode();
+
+        var key = GetSpeciesCacheKey(species);
+
+        if (!microbeHashCheckValues.TryGetValue(key, out var existing))
+        {
+#if CHECK_CACHE_STORE_INSTANCES
+            microbeHashCheckValues[key] = species;
+#else
+            microbeHashCheckValues[key] = visual;
+#endif
+            return;
+        }
+
+        // Species has been modified, which is not optimal but technically not a fault of the cache
+#if CHECK_CACHE_STORE_INSTANCES
+        if (species == existing)
+            return;
+#endif
+
+#if CHECK_CACHE_STORE_INSTANCES
+        var visualHash = existing.GetVisualHashCode();
+        var oldKey = GetSpeciesCacheKey(existing);
+
+        if (visualHash != visual)
+#else
+        if (existing != visual)
+#endif
+        {
+            GD.PrintErr($"Hash code reused for different species. Key: {key}, Visual: {visual}, Existing: {existing}");
+        }
+
+#if CHECK_CACHE_STORE_INSTANCES
+        if (oldKey == key)
+        {
+            GD.PrintErr($"Hash code reused for different species. Key: {key}, Existing: {existing}");
+        }
+
+        microbeHashCheckValues[key] = species;
+#else
+        microbeHashCheckValues[key] = visual;
+#endif
+    }
+#endif
 
     // helper for GetPredationToolsRawScores
     public readonly record struct PredationToolsRawScores(float PilusScore,

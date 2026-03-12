@@ -1132,6 +1132,99 @@ public static class MicrobeColonyHelpers
         control.QueuedSlimeSecretionTime = 0;
 
         ReportReproductionStatusOnAddToColony(addedEntity);
+
+        if (!addedEntity.Has<BioProcesses>())
+        {
+            GD.PrintErr("A newly added colony member has no BioProcesses set");
+            return;
+        }
+
+        if (!colony.Leader.IsAliveAndHas<BioProcesses>())
+        {
+            GD.PrintErr("Cell added to a colony with invalid leader (has no BioProcesses set)");
+            return;
+        }
+
+        ref var bioProcesses = ref addedEntity.Get<BioProcesses>();
+
+        if (colony.Leader.Get<BioProcesses>().ProcessStatistics != null)
+        {
+            // Make colony members also track processes if the leader is tracking processes
+            bioProcesses.ProcessStatistics ??= new ProcessStatistics();
+        }
+
+        ApplyColonyProcessStatuses(ref colony, addedEntity, ref bioProcesses);
+    }
+
+    private static void ApplyColonyProcessStatuses(ref MicrobeColony colony, in Entity addedEntity,
+        ref BioProcesses bioProcesses)
+    {
+        var processes = bioProcesses.ActiveProcesses;
+
+        if (processes == null)
+        {
+            GD.PrintErr(
+                "Couldn't apply process settings to a new colony member because of its ActiveProcesses being unset");
+            return;
+        }
+
+        // This remembers the last member we read processes from for slightly reduced process component reading
+        List<TweakedProcess>? memberProcesses = null;
+
+        for (int i = 0; i < processes.Count; ++i)
+        {
+            var process = processes[i];
+
+            bool enabled = true;
+            bool found = false;
+
+            // If we already know a member where we found good data, check again first in there
+            if (memberProcesses != null)
+            {
+                foreach (var memberProcess in memberProcesses)
+                {
+                    if (memberProcess.Process == process.Process)
+                    {
+                        enabled = memberProcess.SpeedMultiplier > 0.0f;
+                        found = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!found)
+            {
+                foreach (var member in colony.ColonyMembers)
+                {
+                    if (member == addedEntity)
+                        continue;
+
+                    memberProcesses = member.Get<BioProcesses>().ActiveProcesses;
+
+                    if (memberProcesses == null)
+                        continue;
+
+                    foreach (var memberProcess in memberProcesses)
+                    {
+                        if (memberProcess.Process == process.Process)
+                        {
+                            enabled = memberProcess.SpeedMultiplier > 0.0f;
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (found)
+                        break;
+                }
+
+                if (!found)
+                    memberProcesses = null;
+            }
+
+            process.SpeedMultiplier = enabled ? 1.0f : 0.0f;
+            processes[i] = process;
+        }
     }
 
     /// <summary>
@@ -1426,6 +1519,6 @@ public static class MicrobeColonyHelpers
     private static void SetupColonyWithMembersDelayed(Entity entity, int membersAfterLeader,
         CommandBuffer commandBuffer)
     {
-        commandBuffer.Add(entity, new DelayedMicrobeColony(membersAfterLeader));
+        commandBuffer.Add(entity, new DelayedMicrobeColony(membersAfterLeader, false));
     }
 }

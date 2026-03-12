@@ -15,6 +15,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(MicrobeColonyMember))]
 [ReadsComponent(typeof(SpatialInstance))]
 [ReadsComponent(typeof(CellProperties))]
+[ReadsComponent(typeof(SpatialAnimation))]
 [RuntimeCost(0.25f)]
 [RunsOnMainThread]
 public partial class IntercellularMatrixSystem : BaseSystem<World, float>
@@ -56,6 +57,11 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
 
             targetRelativePos = -ourAttachedPosition.RelativePosition;
             ourRotation = ourAttachedPosition.RelativeRotation;
+
+            if (entity.TryGet<SpatialAnimation>(out var animation))
+            {
+                targetRelativePos = -animation.FinalPosition;
+            }
         }
         else
         {
@@ -67,6 +73,18 @@ public partial class IntercellularMatrixSystem : BaseSystem<World, float>
 
             ourRotation = ourAttachedPosition.RelativeRotation;
             targetRotation = targetAttachedPosition.RelativeRotation;
+
+            if (entity.TryGet<SpatialAnimation>(out var animation))
+            {
+                if (parentEntity.TryGet<SpatialAnimation>(out var parentAnimation))
+                {
+                    targetRelativePos = parentAnimation.FinalPosition - animation.FinalPosition;
+                }
+                else
+                {
+                    targetRelativePos = targetAttachedPosition.RelativePosition - animation.FinalPosition;
+                }
+            }
         }
 
         Vector3 pointA, pointB;

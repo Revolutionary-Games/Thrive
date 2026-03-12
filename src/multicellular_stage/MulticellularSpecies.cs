@@ -138,10 +138,8 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
     {
         base.OnEdited();
 
+        // TODO: do we need to reposition for auto-evo?
         RepositionToOrigin();
-        UpdateInitialCompounds();
-
-        cachedFillTimes.Clear();
 
         // Make certain these are all up to date
         foreach (var cellType in ModifiableCellTypes)
@@ -186,6 +184,15 @@ public class MulticellularSpecies : Species, IReadOnlyMulticellularSpecies, ISim
 #if DEBUG
         ModifiableGameplayCells.ThrowIfCellsOverlap();
 #endif
+    }
+
+    public override void OnAttemptedInAutoEvo(bool refreshCache)
+    {
+        base.OnAttemptedInAutoEvo(refreshCache);
+
+        UpdateInitialCompounds();
+
+        cachedFillTimes.Clear();
     }
 
     public override bool RepositionToOrigin()

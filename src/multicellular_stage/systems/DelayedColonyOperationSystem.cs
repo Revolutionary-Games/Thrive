@@ -20,6 +20,7 @@ using Godot;
 [WritesToComponent(typeof(CellProperties))]
 [WritesToComponent(typeof(Physics))]
 [WritesToComponent(typeof(OrganelleContainer))]
+[WritesToComponent(typeof(BioProcesses))]
 [ReadsComponent(typeof(MulticellularSpeciesMember))]
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(ColonyBindingSystem))]
@@ -49,7 +50,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
     public static void CreateDelayAttachedMicrobe(ref WorldPosition colonyPosition, in Entity colonyEntity,
         int colonyTargetIndex, CellTemplate cellTemplate, MulticellularSpecies species,
         IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
-        CommandBuffer recorder, ISpawnSystem notifySpawnTo, bool giveStartingCompounds)
+        CommandBuffer recorder, ISpawnSystem notifySpawnTo, bool giveStartingCompounds, bool playAnimation = true)
     {
         if (colonyTargetIndex == 0)
             throw new ArgumentException("Cannot delay add the root colony cell");
@@ -75,7 +76,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         var weight = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species,
             colonyPosition.Position + colonyPosition.Rotation * attachPosition.RelativePosition, true,
             (cellTemplate.ModifiableCellType, bodyPlanIndex), recorder, out var member, MulticellularSpawnState.Bud,
-            giveStartingCompounds, colonyEntity.Has<PlayerMarker>());
+            giveStartingCompounds);
 
         // Register with the spawn system to allow this entity to despawn if it gets cut off from the colony later
         // or attaching fails
@@ -87,6 +88,18 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
         // Ensure no physics is created before the attach-operation completes
         recorder.Set(member, PhysicsHelpers.CreatePhysicsForMicrobe(true));
+
+        if (playAnimation)
+        {
+            recorder.Add(member, new SpatialAnimation
+            {
+                InitialPosition = attachPosition.RelativePosition * 0.8f,
+                FinalPosition = attachPosition.RelativePosition,
+                InitialScale = Vector3.Zero,
+                FinalScale = Vector3.One,
+                AnimationTime = 0.5f,
+            });
+        }
 
         if (colonyEntity.Has<MicrobeEventCallbacks>())
         {
@@ -142,7 +155,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
         if (delayed.GrowAdditionalMembers > 0)
         {
-            GrowColonyMembers(entity, recorder, delayed.GrowAdditionalMembers);
+            GrowColonyMembers(entity, recorder, delayed.GrowAdditionalMembers, delayed.PlayAnimation);
         }
         else if (delayed.FinishAttachingToColony != Entity.Null)
         {
@@ -162,7 +175,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         worldSimulation.FinishRecordingEntityCommands(recorder);
     }
 
-    private void GrowColonyMembers(in Entity entity, CommandBuffer recorder, int members)
+    private void GrowColonyMembers(in Entity entity, CommandBuffer recorder, int members, bool playAnimation = true)
     {
         if (!entity.Has<MulticellularSpeciesMember>())
         {
@@ -216,7 +229,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         {
             CreateDelayAttachedMicrobe(ref parentPosition, entity, bodyPlanIndex++,
                 species.Species.ModifiableGameplayCells[i], species.Species, worldSimulation, spawnEnvironment,
-                recorder, spawnSystem, true);
+                recorder, spawnSystem, true, playAnimation);
 
             added = true;
         }
