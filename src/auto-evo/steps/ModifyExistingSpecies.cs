@@ -369,8 +369,6 @@ public class ModifyExistingSpecies : IRunStep
     private void GenerateMutations(MicrobeSpecies baseSpecies, Miche currentMiche, int depth, bool lastChild)
     {
         var inputSpecies = generateMutationsWorkingMemory.GetMutationsAtDepth(depth - 1);
-        inputSpecies.Add(new Mutant(baseSpecies,
-            Constants.BASE_MUTATION_POINTS * worldSettings.AIMutationMultiplier));
 
         var outputSpecies = generateMutationsWorkingMemory.GetMutationsAtDepth(depth);
         outputSpecies.Clear();
@@ -389,7 +387,6 @@ public class ModifyExistingSpecies : IRunStep
         foreach (var mutationStrategy in mutations)
         {
             temporaryMutations1.Clear();
-            temporaryMutations1.AddRange(inputSpecies);
             temporaryMutations1.AddRange(outputSpecies);
 
             for (int i = 0; i < Constants.AUTO_EVO_MAX_MUTATION_RECURSIONS; ++i)
@@ -427,22 +424,39 @@ public class ModifyExistingSpecies : IRunStep
 
                 temporaryMutations1.Clear();
                 PruneMutations(temporaryMutations1, baseSpecies, temporaryMutations2, patch, cache, pressureStack);
-                outputSpecies.AddRange(temporaryMutations1);
 
                 // This section is complicated to look at, but essentially:
                 // If the number of temporary species going into the next round would be too many,
                 // prune also the pre-mutation species, and then select the top + a random selection of all species
                 // But, if the number of species falls too low after pruning,
                 // fall back to selecting pre-pruning, pre-mutation species
-                if (outputSpecies.Count > maxVariants)
+                if (temporaryMutations1.Count + outputSpecies.Count > maxVariants)
                 {
-                    temporaryMutations2.Clear();
-                    GetTopMutations(temporaryMutations2, outputSpecies, halfMaxVariants, mutationSorter);
+                    PruneMutations(temporaryMutations1, baseSpecies, outputSpecies, patch, cache, pressureStack);
+                    GetTopMutations(temporaryMutations2, temporaryMutations1, halfMaxVariants, mutationSorter);
 
-                    AddRandomMutations(temporaryMutations2, outputSpecies, halfMaxVariants);
+                    var remainingVariants = halfMaxVariants - temporaryMutations1.Count;
+                    if (remainingVariants > 0)
+                    {
+                        temporaryMutations1.Clear();
+                        GetTopMutations(temporaryMutations1, outputSpecies, remainingVariants, mutationSorter);
+                        temporaryMutations2.AddRange(temporaryMutations1);
+                        AddRandomMutations(temporaryMutations2, outputSpecies, halfMaxVariants);
+                    }
+                    else
+                    {
+                        AddRandomMutations(temporaryMutations2, temporaryMutations1, halfMaxVariants / 2);
+                        temporaryMutations1.Clear();
+                        GetTopMutations(temporaryMutations1, outputSpecies, halfMaxVariants / 2, mutationSorter);
+                        temporaryMutations2.AddRange(temporaryMutations1);
+                    }
 
                     outputSpecies.Clear();
                     outputSpecies.AddRange(temporaryMutations2);
+                }
+                else
+                {
+                    outputSpecies.AddRange(temporaryMutations1);
                 }
 
                 if (temporaryMutations1.Count == 0)
@@ -459,7 +473,6 @@ public class ModifyExistingSpecies : IRunStep
         if (currentMiche.IsLeafNode())
         {
             lastGeneratedMutations.Clear();
-            PruneMutations(outputSpecies, baseSpecies, inputSpecies, patch, cache, pressureStack);
 
             GetTopMutations(temporaryMutations1, outputSpecies, worldSettings.AutoEvoConfiguration.MutationsPerSpecies,
                 mutationSorter);
