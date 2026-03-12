@@ -506,15 +506,27 @@ public partial class CellBodyPlanEditorComponent :
             CellTypeVisualsOverride.ApplyChanges();
         }
 
+        bool neededTwoShifts = false;
+
         // Note that for the below calculations to work, all cell types need to be positioned correctly. So we need
         // to force that to happen here first. This also ensures that the skipped positioning to the origin of the cell
         // editor component (that is used as a special mode in multicellular) is performed.
         foreach (var cellType in editedSpecies.ModifiableCellTypes)
         {
-            cellType.RepositionToOrigin();
+            if (cellType.RepositionToOrigin())
+            {
+                // It seems like in very rare cases a cell type requires two shifts of the layout to fix it, and then
+                // it stops shifting. So we take the slight performance hit here and try to shift everything twice
+                // in case some type needs it.
+                if (cellType.RepositionToOrigin())
+                {
+                    GD.Print($"Did a second shift for cell type: {cellType.CellTypeName}");
+                    neededTwoShifts = true;
+                }
+            }
         }
 
-        // Safety check against cell layouts that forever want to shift
+        // Safety check against cell layouts that forever want to shift (this causes layout overlap errors)
         foreach (var cellType in editedSpecies.ModifiableCellTypes)
         {
             if (cellType.RepositionToOrigin())
@@ -526,6 +538,11 @@ public partial class CellBodyPlanEditorComponent :
                     "Please include a save or screenshot of your species' cell types with the report");
                 break;
             }
+        }
+
+        if (neededTwoShifts)
+        {
+            GD.Print("Some cell types required two shifts to get organelles centered around the origin");
         }
 
         ApplyGrowthOrderToCells();

@@ -39,6 +39,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private SoundListenerSystem soundListenerSystem = null!;
     private SpatialAttachSystem spatialAttachSystem = null!;
     private SpatialPositionSystem spatialPositionSystem = null!;
+    private SpatialAnimationSystem spatialAnimationSystem = null!;
 
     // Microbe systems
     private AllCompoundsVentingSystem allCompoundsVentingSystem = null!;
@@ -216,6 +217,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         soundListenerSystem = new SoundListenerSystem(visualsParent, EntitySystem);
         spatialAttachSystem = new SpatialAttachSystem(visualsParent, EntitySystem);
         spatialPositionSystem = new SpatialPositionSystem(EntitySystem);
+        spatialAnimationSystem = new SpatialAnimationSystem(this, EntitySystem);
 
         allCompoundsVentingSystem = new AllCompoundsVentingSystem(cloudSystem, this, EntitySystem);
         cellBurstEffectSystem = new CellBurstEffectSystem(EntitySystem);
@@ -463,6 +465,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 soundListenerSystem.Dispose();
                 spatialAttachSystem.Dispose();
                 spatialPositionSystem.Dispose();
+                spatialAnimationSystem.Dispose();
 
                 allCompoundsVentingSystem.Dispose();
                 cellBurstEffectSystem.Dispose();

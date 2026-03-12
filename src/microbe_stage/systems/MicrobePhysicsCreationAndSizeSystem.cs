@@ -27,6 +27,7 @@ using World = Arch.Core.World;
 [WritesToComponent(typeof(CurrentAffected))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(AttachedToEntity))]
+[ReadsComponent(typeof(SpatialAnimation))]
 [RunsAfter(typeof(MicrobeVisualsSystem))]
 [RunsBefore(typeof(PhysicsBodyCreationSystem))]
 [RunsBefore(typeof(MicrobeReproductionSystem))]
@@ -326,13 +327,19 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
 
                 ref var attached = ref member.Get<AttachedToEntity>();
 
+                var relativePosition = attached.RelativePosition;
+                if (member.TryGet<SpatialAnimation>(out var animation))
+                {
+                    relativePosition = animation.FinalPosition;
+                }
+
                 memberOrganelles.Add((currentMemberOrganelles.Organelles ??
-                    throw new Exception("Colony member has no organelles but it had a membrane"),
-                    attached.RelativePosition, attached.RelativeRotation));
+                    throw new Exception("Colony member has no organelles but it had a membrane"), relativePosition,
+                    attached.RelativeRotation));
 
                 combinedData.Add((
                     CreateColonyMemberBaseShape(ref extraData, ref currentMemberOrganelles, membrane, isBacteria),
-                    attached.RelativePosition, attached.RelativeRotation));
+                    relativePosition, attached.RelativeRotation));
             }
         }
 

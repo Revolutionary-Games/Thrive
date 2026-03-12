@@ -51,8 +51,6 @@ public static class MicrobeEnvironmentalToleranceCalculations
     public static ToleranceResult CalculateTolerances(IReadOnlyEnvironmentalTolerances speciesTolerances,
         IReadOnlyList<OrganelleTemplate> organelles, IBiomeConditions environment, bool excludePositiveBuffs = false)
     {
-        var result = new ToleranceResult();
-
         var resolvedTolerances = new ToleranceValues
         {
             PreferredTemperature = speciesTolerances.PreferredTemperature,
@@ -69,9 +67,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         ApplyResultMinimums(ref resolvedTolerances);
 
-        CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, result, excludePositiveBuffs);
-
-        return result;
+        return CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, excludePositiveBuffs);
     }
 
     /// <summary>
@@ -81,8 +77,6 @@ public static class MicrobeEnvironmentalToleranceCalculations
         IReadOnlyEnvironmentalTolerances speciesTolerances, IBiomeConditions environment,
         bool excludePositiveBuffs = false)
     {
-        var result = new ToleranceResult();
-
         var resolvedTolerances = new ToleranceValues
         {
             PreferredTemperature = speciesTolerances.PreferredTemperature,
@@ -97,9 +91,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         ApplyResultMinimums(ref resolvedTolerances);
 
-        CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, result, excludePositiveBuffs);
-
-        return result;
+        return CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, excludePositiveBuffs);
     }
 
     public static void ApplyOrganelleEffectsOnTolerances(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
@@ -226,8 +218,6 @@ public static class MicrobeEnvironmentalToleranceCalculations
     public static ToleranceResult CalculateTolerances(IReadOnlyEnvironmentalTolerances speciesTolerances,
         IndividualHexLayout<CellTemplate> cells, IBiomeConditions environment, bool excludePositiveBuffs = false)
     {
-        var result = new ToleranceResult();
-
         var resolvedTolerances = new ToleranceValues
         {
             PreferredTemperature = speciesTolerances.PreferredTemperature,
@@ -244,9 +234,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         ApplyResultMinimums(ref resolvedTolerances);
 
-        CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, result, excludePositiveBuffs);
-
-        return result;
+        return CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, excludePositiveBuffs);
     }
 
     public static void ApplyCellEffectsOnTolerances(IndividualHexLayout<CellTemplate> cells,
@@ -378,7 +366,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         }
     }
 
-    public static ResolvedMicrobeTolerances ResolveToleranceValues(ToleranceResult data)
+    public static ResolvedMicrobeTolerances ResolveToleranceValues(in ToleranceResult data)
     {
         var result = default(ResolvedMicrobeTolerances);
 
@@ -478,9 +466,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
             resolvedTolerances.UVResistance = 0;
     }
 
-    private static void CalculateTolerancesInternal(in ToleranceValues speciesTolerances,
-        in ToleranceValues noExtraEffects, IBiomeConditions environment, ToleranceResult result,
-        bool excludePositiveBuffs)
+    private static ToleranceResult CalculateTolerancesInternal(in ToleranceValues speciesTolerances,
+        in ToleranceValues noExtraEffects, IBiomeConditions environment, bool excludePositiveBuffs)
     {
         var patchTemperature = environment.GetCompound(Compound.Temperature, CompoundAmountType.Biome).Ambient;
         var patchPressure = environment.Pressure;
@@ -488,6 +475,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
         var requiredUVResistance = environment.CalculateUVFactor();
 
         bool missingSomething = false;
+
+        var result = default(ToleranceResult);
 
         // Always write the targets for becoming perfectly adapted
         result.PerfectTemperatureAdjustment = patchTemperature - speciesTolerances.PreferredTemperature;
@@ -649,7 +638,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
             // If that fixed it, then return immediately without further necessary adjustments
             if (result.OverallScore < 1)
-                return;
+                return result;
 
             // Find the stat that is slightly off due to tiny value rounding and apply a bit of penalty
             if (speciesTolerances.OxygenResistance < requiredOxygenResistance)
@@ -673,6 +662,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 result.OverallScore -= MathUtils.EPSILON;
             }
         }
+
+        return result;
     }
 
     /// <summary>
@@ -726,32 +717,4 @@ public static class MicrobeEnvironmentalToleranceCalculations
             UVResistance += other.UVResistance;
         }
     }
-}
-
-public class ToleranceResult
-{
-    // The scores are doubles to avoid rounding problems where the score is 1 but something is missing
-    public double OverallScore;
-
-    public double TemperatureScore;
-
-    /// <summary>
-    ///   How to adjust the preferred temperature to get to the exact value in the biome
-    /// </summary>
-    public float PerfectTemperatureAdjustment;
-
-    /// <summary>
-    ///   How to adjust the tolerance range of temperature to qualify as perfectly adapted
-    /// </summary>
-    public float TemperatureRangeSizeAdjustment;
-
-    public double PressureScore;
-    public float PerfectPressureAdjustment;
-    public float PressureRangeSizeAdjustment;
-
-    public double OxygenScore;
-    public float PerfectOxygenAdjustment;
-
-    public double UVScore;
-    public float PerfectUVAdjustment;
 }
