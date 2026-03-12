@@ -151,7 +151,7 @@ public partial class DebugConsoleManager : Node, ICommandInvoker
 
         lock (inbox)
         {
-            if (inbox.Count > MaxHistorySize)
+            if (inbox.Count >= MaxHistorySize)
                 inbox.RemoveFromFront();
 
             inbox.AddToBack(rawDebugEntry);
