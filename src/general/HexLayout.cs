@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using CommunityToolkit.HighPerformance;
+using Godot;
 using JetBrains.Annotations;
 
 /// <summary>
@@ -674,6 +675,9 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
 
         IEnumerator IEnumerable.GetEnumerator()
         {
+            GD.PrintErr("Using a boxed enumerator with the Hex Layout." +
+                "Please switch to a type-specific enumerator.");
+
             return GetEnumerator();
         }
     }
