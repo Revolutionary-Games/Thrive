@@ -94,8 +94,6 @@ public partial class MembraneWaterRipple : Node
     /// </summary>
     private bool isMicrobeMoving;
 
-    private bool isPlayer;
-
     /// <summary>
     ///   Fade-in speed multiplier (higher = faster fade-in)
     /// </summary>
@@ -310,7 +308,6 @@ public partial class MembraneWaterRipple : Node
     public void ReportMovementStatus(bool isMoving)
     {
         isMicrobeMoving = isMoving;
-        isPlayer = true;
     }
 
     protected override void Dispose(bool disposing)
@@ -505,7 +502,7 @@ public partial class MembraneWaterRipple : Node
             return;
         }
 
-        // Set target alpha based on movement and whether or not the fade delay has been reached
+        // Set target alpha based on movement and whether or not has the fade delay finished
         if (wasMovingLastFrame || stillnessTimer <= StillnessFadeDelay)
         {
             targetAlpha = fullAlpha;
@@ -524,13 +521,6 @@ public partial class MembraneWaterRipple : Node
 
         // Apply non-linear scaling
         float scaledAlpha = ApplyNonLinearAlphaScaling(currentAlpha);
-
-        if (isPlayer)
-        {
-            GD.Print($"Params:");
-            GD.Print($"Stillness {stillnessValue} -> {targetStillness}");
-            GD.Print($"Alpha {currentAlpha} -> {targetAlpha}");
-        }
 
         // Update shader parameters with the global alpha multiplier
         waterMaterial.SetShaderParameter(globalAlphaParam, scaledAlpha);
