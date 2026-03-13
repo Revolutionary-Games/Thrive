@@ -21,12 +21,13 @@ public class CompoundCloudPressure : SelectionPressure
 
     public CompoundCloudPressure(Compound compound, bool isDayNightCycleEnabled, float weight) :
         base(weight, [
+            RemoveOrganelle.ThatCreateCompound(Compound.Glucose),
+            AddOrganelleAnywhere.ThatUseCompound(compound),
             new AddOrganelleAnywhere(organelle => organelle.HasChemoreceptorComponent),
-            new ChangeMembraneRigidity(true),
             new UpgradeOrganelle(organelle => organelle.HasChemoreceptorComponent,
                 new ChemoreceptorUpgrades(compound, null, Constants.CHEMORECEPTOR_RANGE_DEFAULT,
                     Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, SimulationParameters.GetCompound(compound).Colour)),
-            new ChangeMembraneType("single"),
+            new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, 150.0f),
         ])
     {
         compoundDefinition = SimulationParameters.GetCompound(compound);

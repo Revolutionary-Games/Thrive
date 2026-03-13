@@ -84,8 +84,8 @@ public static class CommonMutationFunctions
             if (mutation == null)
                 break;
 
-            mutated = mutation.Item1;
-            mp -= mutation.Item2;
+            mutated = mutation.Species;
+            mp -= mutation.MP;
 
             MutationLogicFunctions.ColourNewMicrobeSpecies(random, mutated);
         }
@@ -435,4 +435,8 @@ public static class CommonMutationFunctions
 
         return TraversalOrder8;
     }
+
+    // TODO: this would be really nice to convert into a struct record as the mutation strategies generate a lot of
+    // these, which in turn makes a lot of small objects just to hold the species reference and one double.
+    public record Mutant(MicrobeSpecies Species, double MP);
 }
