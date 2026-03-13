@@ -36,6 +36,9 @@ public partial class OrganismStatisticsPanel : PanelContainer
     public bool ShowDigestionEfficiencyStat;
 
     [Export]
+    public bool ShowHydrogenSulfideProtectionStat;
+
+    [Export]
     public bool ShowATPBalanceBars;
 
     [Export]
@@ -215,6 +218,8 @@ public partial class OrganismStatisticsPanel : PanelContainer
         digestionSpeedLabel.Visible = ShowDigestionSpeedStat;
         digestionEfficiencyLabel.Visible = ShowDigestionEfficiencyStat;
         digestionStatsSeparator.Visible = ShowDigestionSpeedStat || ShowDigestionEfficiencyStat || ShowSizeStat;
+
+        hydrogenSulfideProtectionLabel.Visible = ShowHydrogenSulfideProtectionStat;
 
         atpBalanceBarContainer.Visible = ShowATPBalanceBars;
 
