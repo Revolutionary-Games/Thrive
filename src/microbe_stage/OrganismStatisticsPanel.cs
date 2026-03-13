@@ -529,10 +529,25 @@ public partial class OrganismStatisticsPanel : PanelContainer
         }
     }
 
-    public void UpdateHydrogenSulfideProtection(float protection)
+    public void UpdateHydrogenSulfideProtection(float tolerance, float capacity)
     {
+        var protection = Math.Min(tolerance / capacity, 1);
+        capacity = (float)Math.Round(capacity, 1);
+        tolerance = Math.Min((float)Math.Round(tolerance, 1), capacity);
+
         hydrogenSulfideProtectionLabel.Format = Localization.Translate("PERCENTAGE_VALUE");
         hydrogenSulfideProtectionLabel.Value = (float)Math.Round(protection * 100);
+
+        var tooltip = ToolTipManager.Instance.GetToolTip("hydrogenSulfideProtection", "editor");
+        if (tooltip != null)
+        {
+            tooltip.Description =
+                new LocalizedString("HYDROGEN_SULFIDE_PROTECTION_TOOLTIP", tolerance, capacity).ToString();
+        }
+        else
+        {
+            GD.PrintErr("Can't update hydrogen sulfide protection tooltip");
+        }
     }
 
     public void UpdateOrganellesCost(int ammoniaCost, int phosphatesCost)

@@ -420,7 +420,8 @@ public static class MicrobeInternalCalculations
         return result;
     }
 
-    public static float CalculateHydrogenSulfideProtection(IEnumerable<OrganelleTemplate> organelles)
+    public static (float Tolerance, float Capacity) CalculateHydrogenSulfideProtection(
+        IEnumerable<OrganelleTemplate> organelles)
     {
         float hydrogenSulfideProtection = Constants.HYDROGEN_SULFIDE_DEFAULT_PROTECTION;
         float hydrogenSulfideStorage = 0;
@@ -445,7 +446,7 @@ public static class MicrobeInternalCalculations
             }
         }
 
-        return Math.Min(hydrogenSulfideProtection / hydrogenSulfideStorage, 1);
+        return (hydrogenSulfideProtection, hydrogenSulfideStorage);
     }
 
     public static (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCosts(
