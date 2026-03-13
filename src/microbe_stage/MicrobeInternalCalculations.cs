@@ -836,7 +836,7 @@ public static class MicrobeInternalCalculations
     public static float CalculateSpecializationBonus(IReadOnlyList<IReadOnlyOrganelleTemplate> organelles,
         Dictionary<OrganelleDefinition, int> tempWorkMemory)
     {
-        int totalOrganelles = 0;
+        int totalHexCount = 0;
         tempWorkMemory.Clear();
 
         var count = organelles.Count;
@@ -846,33 +846,38 @@ public static class MicrobeInternalCalculations
 
             var definition = organelle.Definition;
 
-            tempWorkMemory.TryGetValue(definition, out var existingCount);
-            tempWorkMemory[definition] = existingCount + 1;
+            // Don't count the nucleus, because of its omnipresence and large size
+            if (definition.InternalName == "nucleus")
+            {
+                continue;
+            }
 
-            ++totalOrganelles;
+            var hexCount = definition.HexCount;
+
+            tempWorkMemory.TryGetValue(definition, out var existingCount);
+            tempWorkMemory[definition] = existingCount + hexCount;
+
+            totalHexCount += hexCount;
         }
 
-        if (totalOrganelles < 1)
+        if (totalHexCount < 1)
             return 1;
 
-        if (totalOrganelles < Constants.CELL_SPECIALIZATION_APPLIES_AFTER_SIZE)
-            return 1;
-
-        int maxOrganelleCount = 0;
+        int maxHexCount = 0;
 
         foreach (var entry in tempWorkMemory)
         {
-            if (entry.Value > maxOrganelleCount)
+            if (entry.Value > maxHexCount)
             {
-                maxOrganelleCount = entry.Value;
+                maxHexCount = entry.Value;
             }
         }
 
         // The raw bonus is just the ratio of the main organelle type
-        var bonus = (float)maxOrganelleCount / totalOrganelles;
+        var bonus = (float)maxHexCount / totalHexCount;
 
         // Calculate a strength factor that adjusts things
-        var strength = Math.Min((float)totalOrganelles / Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT, 1);
+        var strength = Math.Min((float)totalHexCount / Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT, 1);
         strength *= Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
 
         // Then return the final result as the bonus being anything above 1
