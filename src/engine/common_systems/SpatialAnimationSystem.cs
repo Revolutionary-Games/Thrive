@@ -49,7 +49,6 @@ public partial class SpatialAnimationSystem : BaseSystem<World, float>
             var recorder = worldSimulation.StartRecordingEntityCommands();
             recorder.Remove<SpatialAnimation>(entity);
             worldSimulation.FinishRecordingEntityCommands(recorder);
-            return;
         }
     }
 }
