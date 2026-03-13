@@ -97,7 +97,8 @@ public partial class OsmoregulationAndHealingSystem : BaseSystem<World, float>
         if (hydrogenSulfideDamageTrigger
             && compounds.GetCompoundAmount(Compound.Hydrogensulfide) > organelleContainer.HydrogenSulfideProtection)
         {
-            compounds.TakeCompound(Compound.Hydrogensulfide, Constants.HYDROGEN_SULFIDE_DAMAGE_COMPOUND_DRAIN_PER_HEX * organelleContainer.HexCount);
+            compounds.TakeCompound(Compound.Hydrogensulfide,
+                Constants.HYDROGEN_SULFIDE_DAMAGE_COMPOUND_DRAIN_PER_HEX * organelleContainer.HexCount);
 
             health.DealMicrobeDamage(ref cellProperties, entity, Constants.HYDROGEN_SULFIDE_DAMAGE, "hydrogenSulfide",
                 HealthHelpers.GetInstantKillProtectionThreshold(entity));
