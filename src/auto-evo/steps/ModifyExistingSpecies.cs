@@ -35,7 +35,6 @@ public class ModifyExistingSpecies : IRunStep
     private readonly Miche.InsertWorkingMemory insertWorkingMemory = new();
 
     private readonly List<Miche> predatorCalculationMemory2 = new();
-    private readonly List<Species> predatorPressuresTemporary = new();
 
     private readonly List<Mutant> temporaryMutations1 = new();
     private readonly List<Mutant> temporaryMutations2 = new();
@@ -50,8 +49,6 @@ public class ModifyExistingSpecies : IRunStep
 
     private readonly List<Mutation> mutationsToTry = new();
     private readonly HashSet<MicrobeSpecies> handledMutations = new();
-
-    private readonly int expectedSpeciesCount;
 
     private readonly List<Miche> nonEmptyLeafNodes = new();
     private readonly List<Miche> emptyLeafNodes = new();
@@ -74,7 +71,7 @@ public class ModifyExistingSpecies : IRunStep
         random = new XoShiRo256starstar(randomSeed.NextInt64());
 
         // Patch species count is used to know how many steps there are to perform
-        expectedSpeciesCount = patch.SpeciesInPatch.Count;
+        TotalSteps = patch.SpeciesInPatch.Count;
         speciesEnumerator = patch.SpeciesInPatch.GetEnumerator();
     }
 
@@ -95,7 +92,7 @@ public class ModifyExistingSpecies : IRunStep
     /// <summary>
     ///   See <see cref="Step"/> for explanation on the step count
     /// </summary>
-    public int TotalSteps => 4 + expectedSpeciesCount;
+    public int TotalSteps => 4 + field;
 
     public bool CanRunConcurrently => true;
 
@@ -144,8 +141,8 @@ public class ModifyExistingSpecies : IRunStep
                     // Reset this for another enumeration later
                     speciesEnumerator = patch.SpeciesInPatch.GetEnumerator();
 
-                    // Just for safety generate any mutations still missing in case the miche data and species in patch
-                    // are not in sync
+                    // Just for safety, generate any mutations still missing in case the miche data and species in
+                    // the patch are not in sync
                     foreach (var species in speciesWorkMemory)
                     {
                         if (patch.SpeciesInPatch.ContainsKey(species))
@@ -380,6 +377,8 @@ public class ModifyExistingSpecies : IRunStep
         pressureStack.Push(currentMiche.Pressure);
         mutationSorter.Setup(baseSpecies, pressureStack);
 
+        // TODO: avoid this temporary memory allocation somehow (this is slightly tricky as this method is called
+        // recursively)
         var mutations = currentMiche.Pressure.Mutations.ToArray();
         mutations.Shuffle(random);
 
@@ -559,10 +558,12 @@ public class ModifyExistingSpecies : IRunStep
     {
         // This isn't the cleanest, but this class is just optimized for performance, so if someone forgets to set up
         // this, then bad things will happen
-        private IEnumerable<SelectionPressure> pressures = null!;
+
+        // This directly references to the stack type to avoid an enumerator allocation in the foreach loop in Compare
+        private Stack<SelectionPressure> pressures = null!;
         private MicrobeSpecies baseSpecies = null!;
 
-        public void Setup(MicrobeSpecies species, IEnumerable<SelectionPressure> selectionPressures)
+        public void Setup(MicrobeSpecies species, Stack<SelectionPressure> selectionPressures)
         {
             pressures = selectionPressures;
             baseSpecies = species;
