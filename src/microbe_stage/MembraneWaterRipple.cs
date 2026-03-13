@@ -61,15 +61,11 @@ public partial class MembraneWaterRipple : Node
     [Export]
     public float RippleFormationDelay = 0.2f;
 
-    // TODO: we need some system to only trigger the ripple when a cell moves by itself and not carried by a current
-    // https://github.com/Revolutionary-Games/Thrive/issues/6726
-    // Increasing the movement threshold does not seem like a suitable solution to the issue.
-
     /// <summary>
     ///   Minimal movement threshold
     /// </summary>
     [Export]
-    public float MovementThresholdSqr = 0.2f;
+    public float MovementThresholdSqr = 0.1f;
 
     /// <summary>
     ///   Threshold for resuming movement
@@ -618,10 +614,16 @@ public partial class MembraneWaterRipple : Node
         var waterVelocity3D = new Vector3(waterVelocity.X, 0.0f, waterVelocity.Y);
         var dotProduct = waterVelocity3D.Dot(movement);
 
+        var waterVelocityMagnitudeSquared = waterVelocity3D.LengthSquared();
+        var cellVelocityMagnitudeSquared = movement.LengthSquared();
+
         // Basically make sure that the cosine of the angle between current movement and our microbe's movement
         // is less than 0.75, i.e. make sure that the two vectors point into different directions
         significantMovement &= dotProduct * dotProduct * MathF.Sign(dotProduct) <=
-            waterVelocity3D.LengthSquared() * movement.LengthSquared() * 0.75f * 0.75f;
+            waterVelocityMagnitudeSquared * cellVelocityMagnitudeSquared * 0.75f * 0.75f;
+
+        significantMovement &= cellVelocityMagnitudeSquared >= waterVelocityMagnitudeSquared * 0.25f &&
+            cellVelocityMagnitudeSquared <= waterVelocityMagnitudeSquared * 1.25f;
 
         // Update stillness tracking
         if (significantMovement)
