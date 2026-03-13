@@ -654,7 +654,8 @@ public class Patch : IArchivable
         else
         {
             // auto-evo is run and oxygen levels might decrease a bit so make sure the tolerance is high enough
-            result.OxygenResistance -= externalModifiers.OxygenResistance * 0.80f;
+            result.OxygenResistance *= 1.2f;
+            result.OxygenResistance -= externalModifiers.OxygenResistance;
 
             // due to rounding make sure the tolerance is always in appropriate range
             result.OxygenResistance = Math.Max(result.OxygenResistance, 0);

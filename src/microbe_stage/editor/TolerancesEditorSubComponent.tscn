@@ -476,7 +476,7 @@ focus_next = NodePath("../../../../UV/RangeDisplayContainer/VBoxContainer/UVResi
 focus_previous = NodePath("../../../../Pressure/HBoxContainer4/PressureRange")
 theme_override_constants/center_grabber = 1
 theme_override_styles/slider = SubResource("StyleBoxEmpty_evsrs")
-max_value = 0.08
+max_value = 0.1
 step = 0.01
 
 [node name="Spacer2" type="Control" parent="Oxygen/RangeDisplayContainer" unique_id=1372406449]
