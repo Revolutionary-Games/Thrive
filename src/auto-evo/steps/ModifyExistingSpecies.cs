@@ -297,7 +297,7 @@ public class ModifyExistingSpecies : IRunStep
     {
         result.Clear();
 
-        mutated.Sort((a, b) => sorter.Compare(b, a));
+        mutated.Sort(sorter);
 
         foreach (var tuple in mutated)
         {
@@ -573,9 +573,9 @@ public class ModifyExistingSpecies : IRunStep
             if (ReferenceEquals(x, y))
                 return 0;
             if (y is null)
-                return 1;
-            if (x is null)
                 return -1;
+            if (x is null)
+                return 1;
 
             var strengthX = 0.0f;
             var strengthY = 0.0f;
@@ -590,16 +590,16 @@ public class ModifyExistingSpecies : IRunStep
             }
 
             if (strengthX > strengthY)
-                return 1;
+                return -1;
 
             if (strengthY > strengthX)
-                return -1;
-
-            if (x.MP > y.MP)
                 return 1;
 
-            if (x.MP < y.MP)
+            if (x.MP > y.MP)
                 return -1;
+
+            if (x.MP < y.MP)
+                return 1;
 
             return 0;
         }
