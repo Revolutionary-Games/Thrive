@@ -20,7 +20,7 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera, 
     ///   How fast the camera zooming is
     /// </summary>
     [Export]
-    public float ZoomSpeed = 1.4f;
+    public float ZoomSpeed = 50.4f;
 
     /// <summary>
     ///   The height at which the camera starts at

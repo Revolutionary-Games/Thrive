@@ -5,6 +5,12 @@ using Newtonsoft.Json;
 using SharedBase.Archive;
 using ThriveScriptsShared;
 
+public enum TerrainSpawnStrategy
+{
+    Single,
+    Vent,
+}
+
 /// <summary>
 ///   Configures how microbe terrain is spawned for a patch
 /// </summary>
@@ -88,7 +94,7 @@ public class TerrainConfiguration : RegistryType
         public readonly float Radius;
 
         [JsonProperty]
-        public readonly Vector3 RelativePosition;
+        public readonly Vector3 RelativePosition = Vector3.Zero;
 
         [JsonProperty]
         public readonly Quaternion DefaultRotation = Quaternion.Identity;
@@ -127,14 +133,12 @@ public class TerrainConfiguration : RegistryType
         public readonly List<TerrainChunkConfiguration> Chunks = new();
 
         [JsonProperty]
-        public readonly Vector3 RelativePosition;
+        public readonly Vector3 RelativePosition = Vector3.Zero;
 
         [JsonProperty]
         public readonly bool RandomizeRotation;
 
         public float Radius;
-
-        public float OtherTerrainPreventionRadius;
 
         public void Check(string name)
         {
@@ -160,10 +164,6 @@ public class TerrainConfiguration : RegistryType
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     "Terrain calculated radius is less than 1");
             }
-
-            // If the other terrain prevention radius is not set, set it automatically
-            if (OtherTerrainPreventionRadius < 1)
-                OtherTerrainPreventionRadius = Radius;
         }
     }
 
@@ -185,8 +185,8 @@ public class TerrainConfiguration : RegistryType
         [JsonProperty]
         public readonly bool SlideToFit = true;
 
-        public float OverallRadius;
-        public float OverallOverlapRadius;
+        [JsonProperty]
+        public readonly TerrainSpawnStrategy SpawnStrategy = TerrainSpawnStrategy.Single;
 
         public void Check(string name)
         {
@@ -198,22 +198,9 @@ public class TerrainConfiguration : RegistryType
             if (RelativeChance < 1)
                 throw new InvalidRegistryDataException(name, GetType().Name, "RelativeChance must be above 0");
 
-            OverallRadius = 0;
-            OverallOverlapRadius = 0;
-
             foreach (var group in TerrainGroups)
             {
                 group.Check(name);
-
-                var groupPositionFactor = group.RelativePosition.Length();
-                var currentRadius = groupPositionFactor + group.Radius;
-
-                if (currentRadius > OverallRadius)
-                    OverallRadius = currentRadius;
-
-                var overlapRadius = groupPositionFactor + group.OtherTerrainPreventionRadius;
-                if (overlapRadius > OverallOverlapRadius)
-                    OverallOverlapRadius = overlapRadius;
             }
         }
     }
