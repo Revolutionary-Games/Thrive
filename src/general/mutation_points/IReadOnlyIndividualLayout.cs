@@ -59,7 +59,7 @@ public class ReadonlyIndividualLayoutAdapter<T, T2> : IReadOnlyIndividualLayout<
 
         public bool MoveNext()
         {
-            index++;
+            ++index;
             return index < wrappedLayout.Count;
         }
 

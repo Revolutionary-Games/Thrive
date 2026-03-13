@@ -689,8 +689,11 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
         public ref struct Enumerator(List<T> mainHexes, T?[]? diffHexes, int diffIndex)
         {
             private readonly ReadOnlySpan<T> mainSpan = CollectionsMarshal.AsSpan(mainHexes);
+
             private readonly ReadOnlySpan<T?> diffSpan = diffHexes != null ?
-                new ReadOnlySpan<T?>(diffHexes, 0, diffIndex) : default;
+                new ReadOnlySpan<T?>(diffHexes, 0, diffIndex) :
+                default;
+
             private int index = -1;
 
             public T Current
@@ -706,7 +709,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
 
             public bool MoveNext()
             {
-                index++;
+                ++index;
                 return index < mainSpan.Length + diffSpan.Length;
             }
         }
