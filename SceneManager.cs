@@ -1,0 +1,319 @@
+﻿using System;
+using Godot;
+using LauncherThriveShared;
+
+/// <summary>
+///   Singleton managing changing game scenes
+/// </summary>
+[GodotAutoload]
+public partial class SceneManager : Node
+{
+    private static SceneManager? instance;
+
+    private static bool alreadyQuit;
+    private static bool shouldQuitSoon;
+
+#pragma warning disable CA2213
+    private Node internalRootNode = null!;
+
+    private PostShutdownActions shutdownActions;
+#pragma warning restore CA2213
+
+    private SceneManager()
+    {
+        shutdownActions = new PostShutdownActions();
+
+        if (Engine.IsEditorHint())
+            return;
+
+        instance = this;
+    }
+
+    public static SceneManager Instance => instance ?? throw new InstanceNotLoadedYetException();
+
+    public static bool QuitOrQuitting => alreadyQuit || shouldQuitSoon;
+
+    public static void QuitDueToProblem(Node callingNode)
+    {
+        NotifyEarlyQuit();
+        GD.PrintErr("Closing Thrive \"normally\" due to a detected problem");
+
+        if (instance == null)
+        {
+            callingNode.GetTree().Quit();
+        }
+        else
+        {
+            instance.GetTree().Quit();
+        }
+
+        alreadyQuit = true;
+    }
+
+    /// <summary>
+    ///   Notify that <see cref="QuitDueToProblem"/> is going to be called soon
+    /// </summary>
+    public static void NotifyEarlyQuit()
+    {
+        shouldQuitSoon = true;
+    }
+
+    public override void _Ready()
+    {
+        if (Engine.IsEditorHint())
+            return;
+
+        internalRootNode = GetTree().Root;
+
+        // Need to do this with a delay to avoid a problem with the node setup
+        Invoke.Instance.Perform(() =>
+        {
+            internalRootNode.AddChild(shutdownActions);
+            EnsureShutdownIsLastChild();
+        });
+    }
+
+    /// <summary>
+    ///   Switches to a game state
+    /// </summary>
+    /// <param name="state">The game state to switch to, this automatically looks up the right scene</param>
+    /// <returns>The scene that was switched to</returns>
+    public Node SwitchToScene(MainGameState state)
+    {
+        var scenePath = GetScenePath(state);
+        var scene = SceneLoadHelpers.LoadAndInstantiate<Node>(scenePath, $"switching to state {state}");
+
+        if (scene == null)
+            throw new InvalidOperationException($"Failed to instantiate scene for state {state} ({scenePath})");
+
+        SwitchToScene(scene);
+
+        return scene;
+    }
+
+    public Node SwitchToScene(string scenePath)
+    {
+        var scene = SceneLoadHelpers.LoadAndInstantiate<Node>(scenePath, "switching to a specific scene path");
+
+        if (scene == null)
+            throw new InvalidOperationException($"Failed to instantiate scene at path {scenePath}");
+
+        SwitchToScene(scene);
+
+        return scene;
+    }
+
+    /// <summary>
+    ///   Switched to a new scene
+    /// </summary>
+    /// <param name="newSceneRoot">The new scene root</param>
+    /// <param name="keepOldRoot">If true the old root is preserved (not freed)</param>
+    /// <returns>
+    ///   When keeping the old root, this will be a reference to the old scene. When not null this must be switched
+    ///   back to later or freed manually by the code calling this.
+    /// </returns>
+    public Node? SwitchToScene(Node newSceneRoot, bool keepOldRoot = false)
+    {
+        var oldRoot = GetTree().CurrentScene;
+        GetTree().CurrentScene = null;
+
+        if (oldRoot != null)
+        {
+            internalRootNode.RemoveChild(oldRoot);
+        }
+
+        internalRootNode.AddChild(newSceneRoot);
+        GetTree().CurrentScene = newSceneRoot;
+        ModLoader.ModInterface.TriggerOnSceneChanged(newSceneRoot);
+
+        EnsureShutdownIsLastChild();
+
+        if (!keepOldRoot)
+        {
+            oldRoot?.QueueFree();
+            return null;
+        }
+
+        return oldRoot;
+    }
+
+    /// <summary>
+    ///   Switches a scene to the main menu
+    /// </summary>
+    public void ReturnToMenu()
+    {
+        var mainMenu = SceneLoadHelpers.LoadAndInstantiate<MainMenu>("res://src/general/MainMenu.tscn",
+            "returning to main menu");
+
+        if (mainMenu == null)
+            throw new InvalidOperationException("Failed to instantiate main menu scene");
+
+        mainMenu.IsReturningToMenu = true;
+
+        SwitchToScene(mainMenu);
+    }
+
+    /// <summary>
+    ///   Adds the specified scene to the scene tree and then removes it
+    /// </summary>
+    public void AttachAndDetachScene(Node scene)
+    {
+        AttachScene(scene);
+        DetachScene(scene);
+    }
+
+    public void AttachScene(Node scene)
+    {
+        internalRootNode.AddChild(scene);
+
+        EnsureShutdownIsLastChild();
+    }
+
+    public void DetachScene(Node scene)
+    {
+        internalRootNode.RemoveChild(scene);
+    }
+
+    /// <summary>
+    ///   Detaches the current scene without attaching a new one
+    /// </summary>
+    public void DetachCurrentScene()
+    {
+        var oldRoot = GetTree().CurrentScene;
+        GetTree().CurrentScene = null;
+
+        if (oldRoot != null)
+        {
+            internalRootNode.RemoveChild(oldRoot);
+        }
+
+        oldRoot?.QueueFree();
+    }
+
+    public PackedScene LoadScene(MainGameState state)
+    {
+        return LoadScene(GetScenePath(state));
+    }
+
+    public PackedScene LoadScene(string scenePath)
+    {
+        return GD.Load<PackedScene>(scenePath);
+    }
+
+    public PackedScene LoadScene(SceneLoadedClassAttribute? sceneLoaded)
+    {
+        if (string.IsNullOrEmpty(sceneLoaded?.ScenePath))
+        {
+            throw new ArgumentException(
+                "The specified class to load a scene for didn't have SceneLoadedClassAttribute");
+        }
+
+        return LoadScene(sceneLoaded.ScenePath);
+    }
+
+    /// <summary>
+    ///   Use this method when closing the game. This is needed to do the necessary actions when quitting.
+    /// </summary>
+    public void QuitThrive()
+    {
+        if (!alreadyQuit)
+            GD.Print(ThriveLauncherSharedConstants.USER_REQUESTED_QUIT);
+
+        GetTree().Quit();
+
+        alreadyQuit = true;
+    }
+
+    public void QuitDueToError()
+    {
+        if (!alreadyQuit)
+            GD.PrintErr("Exiting Thrive due to a serious error");
+
+        GetTree().Quit();
+
+        alreadyQuit = true;
+    }
+
+    public bool QuittingRequested()
+    {
+        return alreadyQuit;
+    }
+
+    [Command("load", true, "Switches to the specified game state.")]
+    private static void CommandLoadScene(MainGameState state)
+    {
+        CheatManager.OnCheatsDisabled();
+        AchievementsManager.ReportNewGameStarted(true);
+
+        Instance.SwitchToScene(state);
+    }
+
+    [Command("load", true, "Switches to the specified scene, given its resource path.")]
+    private static bool CommandLoadScene(string scenePath)
+    {
+        bool overrideGameStartAgain = false;
+
+        if (scenePath.Equals("multicellular", StringComparison.OrdinalIgnoreCase) ||
+            scenePath.Equals("MulticellularStage", StringComparison.OrdinalIgnoreCase))
+        {
+            scenePath = "res://src/stage_starters/MulticellularStageStarter.tscn";
+            overrideGameStartAgain = true;
+        }
+        else if (!ResourceLoader.Exists(scenePath))
+        {
+            GD.PrintErr("Load command: the resource at the specified path does not exist.");
+            return false;
+        }
+
+        CheatManager.OnCheatsDisabled();
+        AchievementsManager.ReportNewGameStarted(true);
+
+        Instance.SwitchToScene(scenePath);
+
+        // When using a scene starter, we need to report a second new game start to get the cheated flags updated
+        if (overrideGameStartAgain)
+        {
+            // Due to the way the scene switch works, this needs a bunch of delay
+            Invoke.Instance.Delay(() => { AchievementsManager.ReportNewGameStarted(true); }, 1);
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    ///   Ensures the shutdown node is last in tree order; this is needed for it to actually execute last
+    /// </summary>
+    private void EnsureShutdownIsLastChild()
+    {
+        var index = internalRootNode.GetChildCount();
+
+        internalRootNode.MoveChild(shutdownActions, index);
+    }
+
+    private string GetScenePath(MainGameState state)
+    {
+        switch (state)
+        {
+            case MainGameState.MicrobeStage:
+                return "res://src/microbe_stage/MicrobeStage.tscn";
+            case MainGameState.MicrobeEditor:
+                return "res://src/microbe_stage/editor/MicrobeEditor.tscn";
+            case MainGameState.MulticellularEditor:
+                return "res://src/multicellular_stage/editor/MulticellularEditor.tscn";
+            case MainGameState.MacroscopicStage:
+                return "res://src/macroscopic_stage/MacroscopicStage.tscn";
+            case MainGameState.MacroscopicEditor:
+                return "res://src/macroscopic_stage/editor/MacroscopicEditor.tscn";
+            case MainGameState.SocietyStage:
+                return "res://src/society_stage/SocietyStage.tscn";
+            case MainGameState.IndustrialStage:
+                return "res://src/industrial_stage/IndustrialStage.tscn";
+            case MainGameState.SpaceStage:
+                return "res://src/space_stage/SpaceStage.tscn";
+            case MainGameState.AscensionCeremony:
+                return "res://src/ascension_stage/AscensionCeremony.tscn";
+            default:
+                throw new ArgumentException("unknown scene path for given game state");
+        }
+    }
+}
