@@ -615,7 +615,7 @@ public partial class MembraneWaterRipple : Node
             Vector2.Zero :
             FluidCurrentsSystem.VelocityAt(new Vector2(currentPos.X, currentPos.Z));
 
-        significantMovement &= new Vector3(waterVelocity.X, 0.0f, waterVelocity.Y).Dot(movement) <= 0.75f;
+        significantMovement &= new Vector3(waterVelocity.X, 0.0f, waterVelocity.Y).Normalized().Dot(movement.Normalized()) <= 0.75f;
 
         // Update stillness tracking
         if (significantMovement)
