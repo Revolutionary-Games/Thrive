@@ -876,12 +876,8 @@ public static class MicrobeInternalCalculations
         // The raw bonus is just the ratio of the main organelle type
         var bonus = (float)maxHexCount / totalHexCount;
 
-        // Calculate a strength factor that adjusts things
-        var strength = Math.Min((float)totalHexCount / Constants.CELL_SPECIALIZATION_STRENGTH_FULL_AT, 1);
-        strength *= Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
-
         // Then return the final result as the bonus being anything above 1
-        return 1 + bonus * strength;
+        return 1 + bonus * Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
     }
 
     private static float MovementForce(float movementForce, float directionFactor)

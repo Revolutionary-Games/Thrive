@@ -683,7 +683,7 @@ public static class Constants
     ///   Controls how strong the cell specialization effect is (this is a flat multiplier right now but we could use
     ///   something like a power curve or another function for diminishing returns)
     /// </summary>
-    public const float CELL_SPECIALIZATION_STRENGTH_MULTIPLIER = 0.8f;
+    public const float CELL_SPECIALIZATION_STRENGTH_MULTIPLIER = 0.3f;
 
     /// <summary>
     ///   If more chunks exist at once than this, then some are forced to despawn immediately. In reality the effective
