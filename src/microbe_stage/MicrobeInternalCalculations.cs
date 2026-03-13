@@ -863,21 +863,15 @@ public static class MicrobeInternalCalculations
         if (totalHexCount < 1)
             return 1;
 
-        int maxHexCount = 0;
+        float concentration = 0f;
 
         foreach (var entry in tempWorkMemory)
         {
-            if (entry.Value > maxHexCount)
-            {
-                maxHexCount = entry.Value;
-            }
+            float proportion = (float)entry.Value / totalHexCount;
+            concentration += proportion * proportion;
         }
 
-        // The raw bonus is just the ratio of the main organelle type
-        var bonus = (float)maxHexCount / totalHexCount;
-
-        // Then return the final result as the bonus being anything above 1
-        return 1 + bonus * Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
+        return 1 + concentration * Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
     }
 
     private static float MovementForce(float movementForce, float directionFactor)
