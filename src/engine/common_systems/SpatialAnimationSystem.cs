@@ -44,7 +44,7 @@ public partial class SpatialAnimationSystem : BaseSystem<World, float>
                 + spatialAnimation.FinalPosition * progress;
         }
 
-        if (progress > 1.0f)
+        if (progress >= 1.0f)
         {
             var recorder = worldSimulation.StartRecordingEntityCommands();
             recorder.Remove<SpatialAnimation>(entity);
