@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-03-13 21:12+0100\n"
+"POT-Creation-Date: 2026-03-13 22:39+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -127,7 +127,7 @@ msgstr ""
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:783
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:790
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -339,7 +339,7 @@ msgstr ""
 
 #: ../src/gui_common/menus/OptionsMenu.tscn:1889
 #: ../src/gui_common/menus/OptionsMenu.tscn:1898
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:801
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:808
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
@@ -390,12 +390,12 @@ msgstr ""
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:623
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:628
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:624
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:629
 msgid "ATP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:629
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:630
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
@@ -604,12 +604,12 @@ msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:166
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:269
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:316
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:363
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:422
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:481
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:535
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:276
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:323
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:370
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:429
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:488
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:542
 msgid "BASE_MOBILITY"
 msgstr ""
 
@@ -845,11 +845,11 @@ msgid "CACHING_TITLE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:77
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:467
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:474
 msgid "CALCIUM_CARBONATE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:468
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:475
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -891,10 +891,10 @@ msgstr ""
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:388
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:447
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:506
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:560
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:395
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:454
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:513
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:567
 msgid "CANNOT_ENGULF"
 msgstr ""
 
@@ -977,11 +977,11 @@ msgid "CELLULASE_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:349
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:356
 msgid "CELLULOSE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:350
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:357
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -1105,7 +1105,7 @@ msgid "CHEMO_SYNTHESIS"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:58
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:408
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:415
 msgid "CHITIN"
 msgstr ""
 
@@ -1117,7 +1117,7 @@ msgstr ""
 msgid "CHITINASE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:409
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:416
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -2430,7 +2430,7 @@ msgid "DOT_DOT_DOT"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:302
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:309
 msgid "DOUBLE"
 msgstr ""
 
@@ -2438,7 +2438,7 @@ msgstr ""
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:303
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:310
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -3521,7 +3521,7 @@ msgstr ""
 
 #: ../src/gui_common/menus/OptionsMenu.tscn:1272
 #: ../src/gui_common/menus/OptionsMenu.tscn:1279
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:795
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:802
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 
@@ -3542,12 +3542,12 @@ msgid "GUI_VOLUME"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:171
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:279
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:326
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:373
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:432
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:491
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:545
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:286
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:333
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:380
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:439
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:498
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:552
 msgid "HEALTH"
 msgstr ""
 
@@ -3667,7 +3667,7 @@ msgstr ""
 msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:543
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:544
 msgid "HYDROGEN_SULFIDE_PROTECTION_TOOLTIP"
 msgstr ""
 
@@ -6188,11 +6188,11 @@ msgid "NONE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:255
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:262
 msgid "NORMAL"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:256
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:263
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -6563,12 +6563,12 @@ msgstr ""
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:643
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:644
 #: ../src/microbe_stage/OrganismStatisticsPanel.tscn:75
 msgid "ORGANISM_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:638
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:639
 msgid "ORGANISM_STATISTICS_MICROBE"
 msgstr ""
 
@@ -6641,13 +6641,13 @@ msgstr ""
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:882
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:890
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:889
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:897
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:403
 msgid "OXYGEN_RESISTANCE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:883
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:890
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -6730,7 +6730,7 @@ msgstr ""
 msgid "PATCH_MAP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:833
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:840
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr ""
 
@@ -6835,9 +6835,9 @@ msgstr ""
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:157
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:492
 #: ../src/microbe_stage/OrganismStatisticsPanel.cs:518
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:536
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:657
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:661
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:537
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:658
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:662
 #: ../src/society_stage/gui/ResearchScreen.cs:34
 msgid "PERCENTAGE_VALUE"
 msgstr ""
@@ -6890,12 +6890,12 @@ msgstr ""
 msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:284
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:331
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:378
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:437
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:496
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:550
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:291
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:338
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:385
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:444
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:503
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:557
 msgid "PHYSICAL_RESISTANCE"
 msgstr ""
 
@@ -7046,8 +7046,8 @@ msgstr ""
 msgid "PRESET_VERY_LOW"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:864
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:872
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:871
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:879
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:246
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:196
 msgid "PRESSURE"
@@ -7057,7 +7057,7 @@ msgstr ""
 msgid "PRESSURE_SHORT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:865
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:872
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -7348,8 +7348,8 @@ msgstr ""
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:394
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:453
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:401
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:460
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
@@ -7361,12 +7361,12 @@ msgstr ""
 msgid "RESOLUTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:274
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:321
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:368
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:427
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:486
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:540
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:281
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:328
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:375
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:434
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:493
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:547
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr ""
 
@@ -7814,7 +7814,7 @@ msgstr ""
 msgid "SESSILE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:789
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:796
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
@@ -7879,7 +7879,7 @@ msgstr ""
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:806
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:813
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 
@@ -7932,11 +7932,11 @@ msgid "SIGNAL_TO_EMIT"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:521
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:528
 msgid "SILICA"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:522
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:529
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -8422,7 +8422,7 @@ msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:209
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:823
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:830
 #: ../src/microbe_stage/editor/LightConfigurationPanel.tscn:98
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:536
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:222
@@ -8555,9 +8555,9 @@ msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:228
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:818
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:847
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:855
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:825
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:854
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:862
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:451
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:529
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:94
@@ -8569,7 +8569,7 @@ msgstr ""
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:848
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:855
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -8879,10 +8879,10 @@ msgstr ""
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:856
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:873
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:891
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:908
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:863
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:880
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:898
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:915
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr ""
 
@@ -8981,12 +8981,12 @@ msgstr ""
 msgid "TOXIN_PROPERTIES_HEADING"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:289
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:336
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:383
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:442
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:501
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:555
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:296
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:343
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:390
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:449
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:508
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:562
 msgid "TOXIN_RESISTANCE"
 msgstr ""
 
@@ -9521,13 +9521,13 @@ msgstr ""
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:899
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:907
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:906
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:914
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:508
 msgid "UV_PROTECTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:900
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:907
 msgid "UV_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -9627,12 +9627,12 @@ msgstr ""
 msgid "VIEW_ALL"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:644
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:645
 #: ../src/microbe_stage/OrganismStatisticsPanel.tscn:256
 msgid "VIEW_CELL_PROCESSES"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:639
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:640
 msgid "VIEW_CELL_PROCESSES_MICROBE"
 msgstr ""
 

@@ -532,8 +532,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
     public void UpdateHydrogenSulfideProtection(float tolerance, float capacity)
     {
         var protection = Math.Min(tolerance / capacity, 1);
-        capacity = (float)Math.Round(capacity, 1);
-        tolerance = Math.Min((float)Math.Round(tolerance, 1), capacity);
+        tolerance = (float)Math.Round(Math.Min(tolerance, capacity), 1);
 
         hydrogenSulfideProtectionLabel.Format = Localization.Translate("PERCENTAGE_VALUE");
         hydrogenSulfideProtectionLabel.Value = (float)Math.Round(protection * 100);
@@ -542,7 +541,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
         if (tooltip != null)
         {
             tooltip.Description =
-                new LocalizedString("HYDROGEN_SULFIDE_PROTECTION_TOOLTIP", tolerance, capacity).ToString();
+                new LocalizedString("HYDROGEN_SULFIDE_PROTECTION_TOOLTIP", tolerance).ToString();
         }
         else
         {
