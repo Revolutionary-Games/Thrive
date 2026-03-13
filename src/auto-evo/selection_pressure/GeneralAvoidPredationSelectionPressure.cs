@@ -15,7 +15,7 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
 
     public GeneralAvoidPredationSelectionPressure(float weight) : base(weight, [
         AddOrganelleAnywhere.ThatCreateCompound(Compound.Oxytoxy),
-        new AddOrganelleAnywhere(organelle => organelle.InternalName == "nucleus"),
+        new AddOrganelleAnywhere(organelle => organelle.InternalName == CommonMutationFunctions.Nucleus.InternalName),
         new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent,
             CommonMutationFunctions.Direction.Rear),
         new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,
@@ -26,7 +26,7 @@ public class GeneralAvoidPredationSelectionPressure : SelectionPressure
         new MoveOrganelleBack(organelle => organelle.HasPilusComponent),
         new MoveOrganelleBack(organelle => organelle.HasSlimeJetComponent),
         new MoveOrganelleBack(organelle => organelle.HasMovementComponent),
-        new UpgradeOrganelle(organelle => organelle.HasPilusComponent, "injectisome", true),
+        new UpgradeOrganelle(organelle => organelle.HasPilusComponent, Constants.PILUS_INJECTISOME_UPGRADE_NAME, true),
         new UpgradeOrganelle(organelle => organelle.HasSlimeJetComponent, SlimeJetComponent.MUCOCYST_UPGRADE_NAME,
             true),
         new UpgradeOrganelle(organelle => organelle.HasMovementComponent, new FlagellumUpgrades(0.5f)),
