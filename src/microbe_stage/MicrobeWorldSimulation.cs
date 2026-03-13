@@ -249,7 +249,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         microbeShaderSystem = new MicrobeShaderSystem(EntitySystem);
         microbeTemporaryEffectsSystem = new MicrobeTemporaryEffectsSystem(EntitySystem);
 
-        microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem);
+        microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem, FluidCurrentsSystem);
         organelleComponentFetchSystem = new OrganelleComponentFetchSystem(EntitySystem);
         organelleTickSystem = new OrganelleTickSystem(this, EntitySystem);
         osmoregulationAndHealingSystem = new OsmoregulationAndHealingSystem(EntitySystem);

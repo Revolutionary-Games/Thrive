@@ -31,6 +31,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
     private readonly StringName tintParameterName = new("tint");
 
+    private readonly FluidCurrentsSystem? fluidCurrentsSystem;
+
     private readonly List<ShaderMaterial> tempMaterialsList = new();
     private readonly List<PlacedOrganelle> tempVisualsToDelete = new();
 
@@ -55,8 +57,9 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
     private volatile int runningMembraneTaskCount;
 
-    public MicrobeVisualsSystem(World world) : base(world)
+    public MicrobeVisualsSystem(World world, FluidCurrentsSystem? fluidCurrentsSystem) : base(world)
     {
+        this.fluidCurrentsSystem = fluidCurrentsSystem;
     }
 
     public bool HasPendingOperations()
@@ -176,6 +179,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
             spatialInstance.GraphicalInstance.AddChild(membrane);
             cellProperties.CreatedMembrane = membrane;
+
+            membrane.FluidCurrentsSystem = fluidCurrentsSystem;
         }
         else
         {

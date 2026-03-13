@@ -2,6 +2,7 @@
 using Godot;
 using Godot.Collections;
 using Newtonsoft.Json;
+using Systems;
 
 /// <summary>
 ///   Manages spawning and processing ripple effect for a single microbe
@@ -60,21 +61,19 @@ public partial class MembraneWaterRipple : Node
     [Export]
     public float RippleFormationDelay = 0.2f;
 
-    // TODO: we need some system to only trigger the ripple when a cell moves by itself and not carried by a current
-    // https://github.com/Revolutionary-Games/Thrive/issues/6726
-    // Increasing the movement threshold does not seem like a suitable solution to the issue.
-
     /// <summary>
     ///   Minimal movement threshold
     /// </summary>
     [Export]
-    public float MovementThresholdSqr = 0.2f;
+    public float MovementThresholdSqr = 0.1f;
 
     /// <summary>
     ///   Threshold for resuming movement
     /// </summary>
     [Export]
     public float ResumeMovementThresholdSqr = 0.3f;
+
+    public FluidCurrentsSystem? FluidCurrentsSystem;
 
     /// <summary>
     ///   Maximum delta time to prevent jitter
@@ -594,7 +593,13 @@ public partial class MembraneWaterRipple : Node
 
         // Calculates movement since the last frame
         var currentPos = FollowTargetNode.GlobalPosition;
-        var movement = currentPos - lastPosition;
+
+        var waterVelocity = FluidCurrentsSystem == null ?
+            Vector2.Zero :
+            FluidCurrentsSystem.VelocityAt(new Vector2(currentPos.X, currentPos.Z));
+        var waterVelocityToApply = new Vector3(waterVelocity.X, 0.0f, waterVelocity.Y) * delta * 10.0f;
+
+        var movement = currentPos - lastPosition - waterVelocityToApply;
         float movementSqr = movement.LengthSquared() / delta;
         averageMovementSqr = Mathf.Lerp(averageMovementSqr, movementSqr, 0.2f);
         bool significantMovement;
