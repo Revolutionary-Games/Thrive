@@ -31,6 +31,8 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
     private readonly StringName tintParameterName = new("tint");
 
+    private readonly FluidCurrentsSystem? fluidCurrentsSystem;
+
     private readonly List<ShaderMaterial> tempMaterialsList = new();
     private readonly List<PlacedOrganelle> tempVisualsToDelete = new();
 
@@ -54,8 +56,6 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
     private bool pendingMembraneGenerations;
 
     private volatile int runningMembraneTaskCount;
-
-    private FluidCurrentsSystem? fluidCurrentsSystem;
 
     public MicrobeVisualsSystem(World world, FluidCurrentsSystem? fluidCurrentsSystem) : base(world)
     {
