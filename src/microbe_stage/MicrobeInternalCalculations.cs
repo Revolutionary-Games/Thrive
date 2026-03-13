@@ -846,6 +846,12 @@ public static class MicrobeInternalCalculations
 
             var definition = organelle.Definition;
 
+            // Don't count the nucleus, because of its omnipresence and large size
+            if (definition.InternalName == "nucleus")
+            {
+                continue;
+            }
+
             tempWorkMemory.TryGetValue(definition, out var existingCount);
             tempWorkMemory[definition] = existingCount + 1;
 
