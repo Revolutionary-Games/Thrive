@@ -49,6 +49,13 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>, IReadOn
 
     public void WriteToArchive(ISArchiveWriter writer)
     {
+        // We ensure that this organism is up-to-date and has an isolated layout for safety.
+        if (existingHexes.Shared)
+        {
+            if (!existingHexes.Commit(false))
+                existingHexes.IsolateIfShared();
+        }
+
         writer.WriteObject(existingHexes.MainHexes);
         writer.WriteDelegateOrNull(onAdded);
         writer.WriteDelegateOrNull(onRemoved);
