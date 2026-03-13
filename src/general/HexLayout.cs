@@ -3,8 +3,8 @@ using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using CommunityToolkit.HighPerformance;
-using Godot;
 using JetBrains.Annotations;
 
 /// <summary>
@@ -338,19 +338,24 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
         existingHexes.Drop();
     }
 
+    public HexLayoutView.Enumerator GetEnumerator()
+    {
+        return existingHexes.GetEnumerator();
+    }
+
     // TODO: remove this bit of boxing here. https://nede.dev/blog/preventing-unnecessary-allocation-in-net-collections
     // Need to switch this from ICollection to just IEnumerable<T> (which hopefully doesn't break saving or can be
     // worked around with a custom converter) and directly return a list typed enumerator.
     [MustDisposeResource]
-    public IEnumerator<T> GetEnumerator()
+    IEnumerator<T> IEnumerable<T>.GetEnumerator()
     {
-        return existingHexes.GetEnumerator();
+        return existingHexes.FallbackEnumerator();
     }
 
     [MustDisposeResource]
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return existingHexes.GetEnumerator();
+        return existingHexes.FallbackEnumerator();
     }
 
     /// <summary>
@@ -479,7 +484,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
         }
     }
 
-    protected struct HexLayoutView : IReadOnlyList<T>
+    public struct HexLayoutView : IReadOnlyList<T>
     {
         internal List<T> MainHexes;
         internal bool Shared;
@@ -612,9 +617,8 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
 
             if (reallocate)
             {
-                // We don't even bother reallocating. We can just set the first item as null and it works.
+                Array.Clear(diffHexes, 0, diffIndex);
                 diffIndex = 0;
-                diffHexes[0] = null;
             }
             else
             {
@@ -646,39 +650,77 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>, IReadOnly
             if (diffHexes is null)
                 return;
 
-            ArrayPool<T?>.Shared.Return(diffHexes, true);
+            Array.Clear(diffHexes, 0, diffIndex);
+            ArrayPool<T?>.Shared.Return(diffHexes, false);
 
             diffHexes = null;
             diffIndex = 0;
         }
 
-        public IEnumerator<T> GetEnumerator()
+        public ReadOnlyEnumerator GetReadOnlyEnumerator()
         {
-            foreach (var hex in MainHexes)
-            {
-                yield return hex;
-            }
+            return new ReadOnlyEnumerator(GetEnumerator());
+        }
 
-            if (diffHexes == null)
-                yield break;
+        public Enumerator GetEnumerator()
+        {
+            return new Enumerator(MainHexes, diffHexes, diffIndex);
+        }
 
-            for (int i = 0; i < diffIndex; ++i)
-            {
-                var item = diffHexes[i];
-
-                if (item is null)
-                    yield break;
-
-                yield return item;
-            }
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            return FallbackEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            GD.PrintErr("Using a boxed enumerator with the Hex Layout." +
-                "Please switch to a type-specific enumerator.");
+            return FallbackEnumerator();
+        }
 
-            return GetEnumerator();
+        internal IEnumerator<T> FallbackEnumerator()
+        {
+            int count = Count;
+            for (int i = 0; i < count; ++i)
+            {
+                yield return this[i];
+            }
+        }
+
+        public ref struct Enumerator(List<T> mainHexes, T?[]? diffHexes, int diffIndex)
+        {
+            private readonly ReadOnlySpan<T> mainSpan = CollectionsMarshal.AsSpan(mainHexes);
+            private readonly ReadOnlySpan<T?> diffSpan = diffHexes != null ?
+                new ReadOnlySpan<T?>(diffHexes, 0, diffIndex) : default;
+            private int index = -1;
+
+            public T Current
+            {
+                get
+                {
+                    if (index < mainSpan.Length)
+                        return mainSpan[index];
+
+                    return diffSpan[index - mainSpan.Length]!;
+                }
+            }
+
+            public bool MoveNext()
+            {
+                index++;
+                return index < mainSpan.Length + diffSpan.Length;
+            }
+        }
+
+        public ref struct ReadOnlyEnumerator(Enumerator baseEnumerator)
+        {
+            private Enumerator baseEnumerator = baseEnumerator;
+
+            public IReadOnlyPositionedHex Current => baseEnumerator.Current;
+
+            public bool MoveNext()
+            {
+                return baseEnumerator.MoveNext();
+            }
         }
     }
 }

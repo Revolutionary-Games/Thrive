@@ -47,33 +47,29 @@ public class ReadonlyIndividualLayoutAdapter<T, T2> : IReadOnlyIndividualLayout<
         return wrappedLayout.GetByExactElementRootPosition(location)?.Data;
     }
 
-    private class LayoutEnumeratorConverter : IEnumerator<IReadOnlyHexWithData<T2>>
+    private class LayoutEnumeratorConverter(IndividualHexLayout<T> wrappedLayout)
+        : IEnumerator<IReadOnlyHexWithData<T2>>
     {
-        private readonly IEnumerator<IReadOnlyHexWithData<T>> wrappedEnumerator;
+        private int index = -1;
 
-        public LayoutEnumeratorConverter(IndividualHexLayout<T> wrappedLayout)
-        {
-            wrappedEnumerator = wrappedLayout.GetEnumerator();
-        }
+        public IReadOnlyHexWithData<T2> Current =>
+            wrappedLayout[index].Data ?? throw new Exception("No data with this hex");
 
-        IReadOnlyHexWithData<T2> IEnumerator<IReadOnlyHexWithData<T2>>.Current =>
-            wrappedEnumerator.Current.Data ?? throw new Exception("No data with this hex");
-
-        object? IEnumerator.Current => wrappedEnumerator.Current.Data;
+        object IEnumerator.Current => Current;
 
         public bool MoveNext()
         {
-            return wrappedEnumerator.MoveNext();
+            index++;
+            return index < wrappedLayout.Count;
         }
 
         public void Reset()
         {
-            wrappedEnumerator.Reset();
+            index = -1;
         }
 
         public void Dispose()
         {
-            wrappedEnumerator.Dispose();
         }
     }
 }
