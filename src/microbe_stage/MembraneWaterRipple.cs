@@ -618,6 +618,8 @@ public partial class MembraneWaterRipple : Node
         var waterVelocity3D = new Vector3(waterVelocity.X, 0.0f, waterVelocity.Y);
         var dotProduct = waterVelocity3D.Dot(movement);
 
+        // Basically make sure that the cosine of the angle between current movement and our microbe's movement
+        // is less than 0.75, i.e. make sure that the two vectors point into different directions
         significantMovement &= dotProduct * dotProduct * MathF.Sign(dotProduct)
             <= waterVelocity3D.LengthSquared() * movement.LengthSquared() * 0.75f * 0.75f;
 
