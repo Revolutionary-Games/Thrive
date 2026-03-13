@@ -595,7 +595,8 @@ public partial class MembraneWaterRipple : Node
         var currentPos = FollowTargetNode.GlobalPosition;
 
         var waterVelocity = FluidCurrentsSystem == null ?
-            Vector2.Zero : FluidCurrentsSystem.VelocityAt(new Vector2(currentPos.X, currentPos.Z));
+            Vector2.Zero :
+            FluidCurrentsSystem.VelocityAt(new Vector2(currentPos.X, currentPos.Z));
         var waterVelocityToApply = new Vector3(waterVelocity.X, 0.0f, waterVelocity.Y) * delta * 10.0f;
 
         var movement = currentPos - lastPosition - waterVelocityToApply;
