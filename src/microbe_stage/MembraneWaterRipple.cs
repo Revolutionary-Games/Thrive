@@ -65,7 +65,7 @@ public partial class MembraneWaterRipple : Node
     ///   Minimal movement threshold
     /// </summary>
     [Export]
-    public float MovementThresholdSqr = 0.1f;
+    public float MovementThresholdSqr = 0.3f;
 
     /// <summary>
     ///   Threshold for resuming movement
@@ -593,7 +593,12 @@ public partial class MembraneWaterRipple : Node
 
         // Calculates movement since the last frame
         var currentPos = FollowTargetNode.GlobalPosition;
-        var movement = currentPos - lastPosition;
+
+        var waterVelocity = FluidCurrentsSystem == null ?
+            Vector2.Zero : FluidCurrentsSystem.VelocityAt(new Vector2(currentPos.X, currentPos.Z));
+        var waterVelocityToApply = new Vector3(waterVelocity.X, 0.0f, waterVelocity.Y) * delta;
+
+        var movement = currentPos - lastPosition - waterVelocityToApply;
         float movementSqr = movement.LengthSquared() / delta;
         averageMovementSqr = Mathf.Lerp(averageMovementSqr, movementSqr, 0.2f);
         bool significantMovement;
@@ -606,24 +611,6 @@ public partial class MembraneWaterRipple : Node
         {
             significantMovement = averageMovementSqr > ResumeMovementThresholdSqr;
         }
-
-        var waterVelocity = FluidCurrentsSystem == null ?
-            Vector2.Zero :
-            FluidCurrentsSystem.VelocityAt(new Vector2(currentPos.X, currentPos.Z));
-
-        var waterVelocity3D = new Vector3(waterVelocity.X, 0.0f, waterVelocity.Y);
-        var dotProduct = waterVelocity3D.Dot(movement);
-
-        var waterVelocityMagnitudeSquared = waterVelocity3D.LengthSquared();
-        var cellVelocityMagnitudeSquared = movement.LengthSquared();
-
-        // Basically make sure that the cosine of the angle between current movement and our microbe's movement
-        // is less than 0.75, i.e. make sure that the two vectors point into different directions
-        significantMovement &= dotProduct * dotProduct * MathF.Sign(dotProduct) <=
-            waterVelocityMagnitudeSquared * cellVelocityMagnitudeSquared * 0.75f * 0.75f;
-
-        significantMovement &= cellVelocityMagnitudeSquared >= waterVelocityMagnitudeSquared * 0.25f &&
-            cellVelocityMagnitudeSquared <= waterVelocityMagnitudeSquared * 1.25f;
 
         // Update stillness tracking
         if (significantMovement)
