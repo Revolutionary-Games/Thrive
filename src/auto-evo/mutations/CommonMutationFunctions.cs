@@ -94,8 +94,8 @@ public static class CommonMutationFunctions
 
         // Override the default species starting name to have more variability in the names
         var nameGenerator = SimulationParameters.Instance.NameGenerator;
-        mutated.Epithet = nameGenerator.GenerateNameSection(random, true);
-        mutated.Genus = nameGenerator.GenerateNameSection(random);
+        mutated.Genus = nameGenerator.GenerateGenusName(random, null, mutated);
+        mutated.Epithet = nameGenerator.GenerateEpithetName(random, null, mutated);
 
         mutated.OnEdited();
 

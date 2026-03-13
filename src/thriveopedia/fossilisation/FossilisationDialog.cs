@@ -137,11 +137,19 @@ public partial class FossilisationDialog : CustomWindow
         GUICommon.Instance.PlayButtonPressSound();
 
         var nameGenerator = SimulationParameters.Instance.NameGenerator;
-        var randomizedName = nameGenerator.GenerateNameSection() + " " +
-            nameGenerator.GenerateNameSection(null, true);
 
-        speciesNameEdit.Text = randomizedName;
-        OnNameTextChanged(randomizedName);
+        if (selectedSpecies is MicrobeSpecies microbeSpecies)
+        {
+            var randomizedName = nameGenerator.GenerateGenusName(null, null, microbeSpecies) +
+                nameGenerator.GenerateEpithetName(null, null, microbeSpecies);
+
+            speciesNameEdit.Text = randomizedName;
+            OnNameTextChanged(randomizedName);
+        }
+        else
+        {
+            throw new Exception("Name generation for the selected species has not been implemented yet.");
+        }
     }
 
     private void OnCancelPressed()

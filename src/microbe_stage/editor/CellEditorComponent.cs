@@ -1230,6 +1230,21 @@ public partial class CellEditorComponent :
         tutorialAnimationPlayer.Play("ShowAutoEvoPrediction");
     }
 
+    public string GenerateRandomName()
+    {
+        var nameGenerator = SimulationParameters.Instance.NameGenerator;
+
+        if (previewMicrobeSpecies is not null)
+        {
+            CopyEditedPropertiesToSpecies(previewMicrobeSpecies);
+
+            return nameGenerator.GenerateGenusName(null, null, previewMicrobeSpecies) + " " +
+                nameGenerator.GenerateEpithetName(null, null, previewMicrobeSpecies);
+        }
+
+        return string.Empty;
+    }
+
     /// <summary>
     ///   Allows access to the latest edited organelles by this component. Shouldn't be modified but just read.
     /// </summary>

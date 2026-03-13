@@ -73,6 +73,7 @@ public partial class SimulationParameters : Node
 
     public IAutoEvoConfiguration AutoEvoConfiguration => autoEvoConfiguration;
 
+    public SpeciesNameConfig SpeciesNameConfig { get; private set; } = null!;
     public NameGenerator NameGenerator { get; private set; } = null!;
     public PatchMapNameGenerator PatchMapNameGenerator { get; private set; } = null!;
 
@@ -147,7 +148,9 @@ public partial class SimulationParameters : Node
         bioProcesses = LoadRegistry<BioProcess>("res://simulation_parameters/microbe_stage/bio_processes.json");
         meteors = LoadRegistry<Meteor>("res://simulation_parameters/microbe_stage/meteors.json");
 
-        NameGenerator = LoadDirectObject<NameGenerator>("res://simulation_parameters/microbe_stage/species_names.json");
+        SpeciesNameConfig = LoadDirectObject<SpeciesNameConfig>(
+            "res://simulation_parameters/microbe_stage/species_names.json");
+        NameGenerator = new NameGenerator(SpeciesNameConfig);
 
         musicCategories = LoadRegistry<MusicCategory>("res://simulation_parameters/common/music_tracks.json");
 
@@ -826,7 +829,7 @@ public partial class SimulationParameters : Node
         CheckRegistryType(visualResources);
         CheckRegistryType(stageResources);
 
-        NameGenerator.Check(string.Empty);
+        SpeciesNameConfig.Check(string.Empty);
         PatchMapNameGenerator.Check(string.Empty);
         autoEvoConfiguration.Check(string.Empty);
         autoEvoConfiguration.InternalName = AUTO_EVO_CONFIGURATION_NAME;
@@ -908,7 +911,7 @@ public partial class SimulationParameters : Node
             entry.Value.Resolve(this);
         }
 
-        NameGenerator.Resolve(this);
+        SpeciesNameConfig.Resolve(this);
 
         visualResourceByIdentifier = visualResources.ToDictionary(t => t.Value.VisualIdentifier, t => t.Value);
         stageResourcesByEnum = stageResources.ToDictionary(t => t.Value.Stage, t => t.Value);

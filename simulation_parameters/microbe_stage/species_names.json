@@ -1,40 +1,1224 @@
 ﻿{
   "prefixCofix": [
-    "Untrust",
-    "Kines",
-    "Atrox",
-    "Hhyyrylain",
-    "Whal",
-    "Crodn",
-    "Kraken",
-    "Creat",
-    "Narotiz",
-    "Minegam",
-    "Monti",
-    "Nick",
-    "Sporef",
-    "Dickinson",
-    "Wigglesworth",
-    "Glossin",
-    "Oliver",
-    "Irritat",
-    "Quantum",
-    "Crab",
-    "Oliv",
-    "River",
-    "Prim",
-    "Prem",
-    "Kapp",
-    "Vip",
-    "Viper",
-    "Spik",
-    "Vuper",
-    "Fuj",
-    "Thim",
-    "Maxonov",
-    "Kemik",
-    "Tak"
+    "untrust",
+    "kines",
+    "atrox",
+    "hhyyrylain",
+    "whal",
+    "crodn",
+    "kraken",
+    "creat",
+    "narotiz",
+    "minegam",
+    "monti",
+    "nick",
+    "sporef",
+    "dickinson",
+    "wigglesworth",
+    "glossin",
+    "oliver",
+    "irritat",
+    "quantum",
+    "crab",
+    "oliv",
+    "river",
+    "prim",
+    "prem",
+    "kapp",
+    "vip",
+    "viper",
+    "spik",
+    "vuper",
+    "fuj",
+    "thim",
+    "maxonov",
+    "kemik",
+    "tak"
   ],
+  "quantity": {
+    "1": [
+      "mono",
+      "uni",
+      "eka"
+    ],
+    "2": [
+      "bi",
+      "di"
+    ],
+    "3": [
+      "tri"
+    ],
+    "4": [
+      "tetra",
+      "quadri",
+      "quater",
+      "quadra",
+      "catur"
+    ],
+    "5": [
+      "penta",
+      "quinti",
+      "quinque",
+      "panca"
+    ],
+    "6": [
+      "hexa",
+      "sat",
+      "sexa"
+    ],
+    "7": [
+      "septa",
+      "septi",
+      "septem",
+      "hepta"
+    ],
+    "8": [
+      "octo"
+    ],
+    "9": [
+      "nono",
+      "enna"
+    ],
+    "10": [
+      "deca"
+    ],
+    "multiple": [
+      "multi",
+      "pluri",
+      "poli",
+      "poly"
+    ]
+  },
+  "qualityRoots": {
+    "new": [
+      "neo"
+    ],
+    "first": [
+      "proto",
+      "primi",
+      "archi"
+    ],
+    "old": [
+      "paleo",
+      "archaeo"
+    ],
+    "slow": [
+      "brady",
+      "tardi",
+      "manda"
+    ],
+    "fast": [
+      "celeri",
+      "veloci",
+      "tachy",
+      "tachia",
+      "sighra",
+      "asu",
+      "tivra"
+    ],
+    "hot": [
+      "calori",
+      "fervi",
+      "calidi",
+      "thermo",
+      "pyro",
+      "usna",
+      "tapa"
+    ],
+    "cold": [
+      "frigi",
+      "gel",
+      "cryo",
+      "psychro",
+      "sita",
+      "hima"
+    ],
+    "big": [
+      "magni",
+      "maxi",
+      "grand",
+      "macro",
+      "mega",
+      "giga",
+      "megalo",
+      "maha",
+      "brhat"
+    ],
+    "small": [
+      "mini",
+      "parvi",
+      "micro",
+      "nano",
+      "alpa",
+      "suksma"
+    ],
+    "very": [
+      "per",
+      "hyper",
+      "poly",
+      "ati",
+      "su"
+    ],
+    "little": [
+      "pauci",
+      "sub",
+      "hypo",
+      "oligo",
+      "isat",
+      "kincit"
+    ],
+    "liking": [
+      "ama",
+      "amo",
+      "philo",
+      "kama",
+      "priya",
+      "raga"
+    ],
+    "disliking": [
+      "odi",
+      "miso"
+    ],
+    "mutation": [
+      "trans",
+      "muta",
+      "meta",
+      "allo",
+      "pari"
+    ],
+    "consuming": [
+      "voro",
+      "vora",
+      "phago",
+      "bhaksa",
+      "grasa"
+    ],
+    "producing": [
+      "geno",
+      "creo",
+      "poio",
+      "jana",
+      "srsti"
+    ]
+  },
+  "qualitySuffixes": {
+    "small": [
+      "ulus",
+      "culus",
+      "olus",
+      "ellus",
+      "ion",
+      "iskos",
+      "ka",
+      "la"
+    ],
+    "very": [
+      "issimus",
+      "istos",
+      "tama"
+    ],
+    "little": [
+      "ulus",
+      "culus",
+      "olus",
+      "ellus",
+      "ion",
+      "iskos",
+      "ka",
+      "la"
+    ],
+    "liking": [
+      "amans",
+      "phila",
+      "kama",
+      "priya"
+    ],
+    "disliking": [
+      "phobo",
+      "miso",
+      "dviso"
+    ],
+    "mutation": [
+      "ficans",
+      "morpho"
+    ],
+    "consuming": [
+      "vore",
+      "vorus",
+      "phagus",
+      "phago",
+      "ada"
+    ],
+    "producing": [
+      "parous",
+      "fic",
+      "geno",
+      "poio",
+      "ja",
+      "kara"
+    ]
+  },
+  "colours": {
+    "red": [
+      "rubri",
+      "rufo",
+      "erythro",
+      "rhodo",
+      "rakta",
+      "lohita"
+    ],
+    "blue": [
+      "caeruleo",
+      "livid",
+      "cyano",
+      "glauco",
+      "nila"
+    ],
+    "yellow": [
+      "flavi",
+      "luteo",
+      "xantho",
+      "xantho",
+      "chryso",
+      "pita"
+    ],
+    "green": [
+      "viridi",
+      "chloro",
+      "harita"
+    ],
+    "black": [
+      "atri",
+      "atro",
+      "melano",
+      "opaco",
+      "krsna",
+      "syama"
+    ],
+    "white": [
+      "albi",
+      "candi",
+      "leuco",
+      "sveta",
+      "sukla"
+    ]
+  },
+  "organelles": {
+    "binding_agent": {
+      "prefixes": [
+        "bandha",
+        "coeno",
+        "collo",
+        "desmo",
+        "gano",
+        "glutino",
+        "gregi",
+        "nexo",
+        "sango",
+        "symplo",
+        "syndi",
+        "copulo",
+        "fascio",
+        "haesi",
+        "harmo",
+        "jalo",
+        "linio",
+        "nodi",
+        "tacto",
+        "vinculo",
+        "yuji",
+        "con",
+        "dictyum",
+        "gregia",
+        "koinia",
+        "pagus",
+        "plexus",
+        "samaja",
+        "sorus",
+        "yuga"
+      ]
+    },
+    "bioluminescent_vacuole": {
+      "prefixes": [
+        "luci",
+        "luxo",
+        "jyoti",
+        "fulguri",
+        "lampo",
+        "photo",
+        "fulgo"
+      ],
+      "suffixes": [
+        "vacuo",
+        "cysto"
+      ]
+    },
+    "chemoplast": {
+      "prefixes": [
+        "thio",
+        "gandhako",
+        "litho",
+        "capno",
+        "sulpho",
+        "sulfo",
+        "chemo",
+        "tantalo",
+        "prometheo",
+        "niobo",
+        "helio",
+        "seleno",
+        "tello",
+        "phlogo",
+        "anthro",
+        "ioeido",
+        "sulbari",
+        "sphati",
+        "alkimi",
+        "alkemo",
+        "aether"
+      ],
+      "suffixes": [
+        "glyca",
+        "sacchara",
+        "madhua",
+        "dulcia",
+        "muta"
+      ]
+    },
+    "chloroplast": {
+      "prefixes": [
+        "chloro",
+        "photo",
+        "helio",
+        "harito",
+        "luci",
+        "thylako",
+        "prasio",
+        "beryllo",
+        "smaragdo",
+        "virido",
+        "malvo",
+        "herbo",
+        "marakato",
+        "kamsyo",
+        "krypto",
+        "leovirido",
+        "gronno",
+        "sun",
+        "star"
+      ],
+      "suffixes": [
+        "capto",
+        "prana",
+        "plasto",
+        "karo",
+        "grano"
+      ]
+    },
+    "cilia": {
+      "prefixes": [
+        "cilio",
+        "kineto",
+        "mastigo",
+        "roma",
+        "tricho",
+        "pecto",
+        "pectino",
+        "saeta",
+        "penicillo",
+        "kteis",
+        "cteis",
+        "cto",
+        "cteno",
+        "stlengo",
+        "ortho",
+        "kankato",
+        "kurco",
+        "circe",
+        "sampo",
+        "bifrosto",
+        "comb"
+      ],
+      "suffixes": [
+        "pulso",
+        "remo",
+        "spando",
+        "tubulo",
+        "gati",
+        "phora",
+        "scopa"
+      ]
+    },
+    "cytoplasm": {
+      "prefixes": [
+        "cyto",
+        "keno",
+        "hyalo",
+        "proto",
+        "vacuo",
+        "hydro",
+        "shunya",
+        "cysto",
+        "nudo",
+        "choro",
+        "puro",
+        "vasculo",
+        "cell"
+      ],
+      "suffixes": [
+        "angea",
+        "cava",
+        "kosha",
+        "sacca",
+        "simplex"
+      ]
+    },
+    "ferroplast": {
+      "prefixes": [
+        "ferroplasto",
+        "rusti",
+        "rusticyano",
+        "ferrocyano",
+        "sidero",
+        "hemato",
+        "erythro",
+        "magneto",
+        "ayas",
+        "mjolnir",
+        "robigo",
+        "rubigo",
+        "aerugo",
+        "chalybs",
+        "sara",
+        "ukku",
+        "wootz",
+        "ferro",
+        "cupro",
+        "iron"
+      ]
+    },
+    "flagellum": {
+      "prefixes": [
+        "caudo",
+        "dino",
+        "mastigo",
+        "kasha",
+        "uro",
+        "scutica",
+        "februa",
+        "mastix",
+        "kenthro",
+        "kasa",
+        "whip",
+        "frusta"
+      ],
+      "suffixes": [
+        "pulso",
+        "remo",
+        "spando",
+        "tubulo",
+        "gati",
+        "kinesis",
+        "natrico",
+        "phora",
+        "scopa",
+        "rotato",
+        "helico",
+        "chalano",
+        "droma",
+        "nator",
+        "pello",
+        "plania",
+        "yana"
+      ]
+    },
+    "hydrogenosome": {
+      "prefixes": [
+        "physo",
+        "anoxo",
+        "hydro",
+        "vata",
+        "pneumo",
+        "aquo",
+        "hydor",
+        "apas",
+        "abzu",
+        "fervo",
+        "zymo",
+        "kinva",
+        "soma",
+        "fermento",
+        "protio",
+        "phlogisto",
+        "protono",
+        "acido",
+        "amalo",
+        "vitriol",
+        "dagda",
+        "hydra",
+        "amrita",
+        "aceto"
+      ],
+      "suffixes": [
+        "somo",
+        "zymo",
+        "schizo",
+        "fumo",
+        "paco",
+        "bullio",
+        "ergo",
+        "flato",
+        "mukto",
+        "bato"
+      ]
+    },
+    "lysosome": {
+      "prefixes": [
+        "lyso",
+        "digesto",
+        "solvo",
+        "amla",
+        "oxy",
+        "purgo",
+        "pepto",
+        "pepso",
+        "coctio",
+        "paka",
+        "xaro",
+        "ksaro",
+        "puter",
+        "mastico",
+        "dialyso",
+        "agni",
+        "cerridwen",
+        "trito"
+      ],
+      "suffixes": [
+        "phago",
+        "pepto",
+        "bhanja",
+        "scindo",
+        "voro",
+        "clasto",
+        "hara",
+        "soma",
+        "lytes",
+        "macero"
+      ]
+    },
+    "melanosome": {
+      "prefixes": [
+        "aura",
+        "melano",
+        "radio",
+        "urano",
+        "ray",
+        "fluoro",
+        "pho",
+        "akto",
+        "acto",
+        "aethero",
+        "kirana",
+        "arcis",
+        "prabha",
+        "oganess"
+      ]
+    },
+    "mitochondrion": {
+      "prefixes": [
+        "mito",
+        "chondro",
+        "aero",
+        "oxy",
+        "shvaso",
+        "foco",
+        "prana",
+        "vayu",
+        "spiro",
+        "respiro",
+        "anapno",
+        "kyano",
+        "energia",
+        "ergo",
+        "calor",
+        "ojas",
+        "eitipi",
+        "draco"
+      ],
+      "suffixes": [
+        "cremato",
+        "tejo",
+        "ergo",
+        "chromo",
+        "dynamia",
+        "motrix",
+        "shakti",
+        "dota",
+        "furnax"
+      ]
+    },
+    "nitroplast": {
+      "prefixes": [
+        "ammono",
+        "ammo",
+        "ammino",
+        "amino",
+        "ammonio",
+        "amido",
+        "azoto",
+        "nitro",
+        "fertili",
+        "urvara",
+        "saphala",
+        "navasadara"
+      ],
+      "suffixes": [
+        "nitro",
+        "fixo",
+        "azo",
+        "azoto",
+        "ammono",
+        "amino",
+        "ferax",
+        "posha"
+      ]
+    },
+    "nucleus": {
+      "prefixes": [
+        "karyo",
+        "nucleo",
+        "bijo",
+        "centro",
+        "mulo",
+        "eukaryo",
+        "neokaryo",
+        "kernel",
+        "codex",
+        "gnosis",
+        "liber",
+        "biblo",
+        "pustaka",
+        "grapho",
+        "sutra",
+        "recipe",
+        "formula",
+        "kalpa",
+        "grimoire",
+        "nux",
+        "cor",
+        "coro",
+        "cordo",
+        "kokko",
+        "kentro",
+        "bija",
+        "garbha",
+        "mono",
+        "monax",
+        "silmaril",
+        "linux",
+        "core"
+      ]
+    },
+    "toxisome": {
+      "prefixes": [
+        "toxi",
+        "oxytoxi",
+        "veneno",
+        "veno",
+        "visha",
+        "viro",
+        "noxo",
+        "noxio",
+        "mors",
+        "thanato",
+        "kala",
+        "caedo",
+        "phono",
+        "marana",
+        "basilisk",
+        "cyano",
+        "morso",
+        "venom"
+      ],
+      "suffixes": [
+        "cysto",
+        "fundo",
+        "noxo",
+        "noxio",
+        "ghata",
+        "plaga",
+        "bolia",
+        "cido"
+      ]
+    },
+    "pilus": {
+      "prefixes": [
+        "pilo",
+        "belono",
+        "shulo",
+        "perono",
+        "hasto",
+        "cnido",
+        "trypo",
+        "foro",
+        "puncto",
+        "viddho",
+        "tubulo",
+        "syringo",
+        "bhedia",
+        "aculeo",
+        "fuso",
+        "aco",
+        "rhaphi",
+        "belemno",
+        "atrakto",
+        "suci",
+        "tarku",
+        "vejaka",
+        "spindl",
+        "needl"
+      ]
+    },
+    "signaling_agent": {
+      "prefixes": [
+        "sema",
+        "hormo",
+        "nuntio",
+        "duta",
+        "para",
+        "signo",
+        "commo",
+        "indico",
+        "phero",
+        "phanero",
+        "pheromo",
+        "angello",
+        "angelo",
+        "tele",
+        "sema",
+        "samketa",
+        "dhvani",
+        "sandesa",
+        "qualia",
+        "senso",
+        "beacon",
+        "hermeto",
+        "hermes",
+        "iris",
+        "iridi",
+        "gondor"
+      ],
+      "suffixes": [
+        "crino",
+        "mitto",
+        "prero",
+        "fundo",
+        "cysto",
+        "pompo",
+        "vocans",
+        "tropia",
+        "naya",
+        "kinesis",
+        "tacto"
+      ]
+    },
+    "slime_jet": {
+      "prefixes": [
+        "muco",
+        "myxo",
+        "blenno",
+        "sleshmo",
+        "phlegmo",
+        "gluto",
+        "glutino",
+        "visco",
+        "limo",
+        "kolla",
+        "colla",
+        "guggulu",
+        "plasmo",
+        "tar",
+        "polymero"
+      ],
+      "suffixes": [
+        "ejacto",
+        "blyso",
+        "truso",
+        "sravo",
+        "jaculo",
+        "rhoea",
+        "dhara",
+        "klysta",
+        "tracta",
+        "fusio"
+      ]
+    },
+    "thermoplast": {
+      "prefixes": [
+        "thermo",
+        "calori",
+        "pyro",
+        "tapo",
+        "thalpo",
+        "fervo",
+        "ebullio",
+        "bullo",
+        "zein",
+        "kvatha",
+        "ignis",
+        "pur",
+        "agni",
+        "fornax",
+        "camino",
+        "crucible",
+        "crucibo",
+        "hearth",
+        "hestia",
+        "prometheo",
+        "torch",
+        "phoenix",
+        "phlego",
+        "magma"
+      ],
+      "suffixes": [
+        "plasto",
+        "cysto",
+        "kauma",
+        "tapa",
+        "calens",
+        "therma",
+        "furna"
+      ]
+    },
+    "chemoreceptor": {
+      "prefixes": [
+        "osmo",
+        "capto",
+        "olfacto",
+        "chemo",
+        "philo",
+        "amo",
+        "noso",
+        "nosophor",
+        "nosofer",
+        "odor",
+        "nasus",
+        "naso",
+        "fragro",
+        "aistheto",
+        "rho",
+        "rhino",
+        "rhinophor",
+        "rhinofer",
+        "ghrana",
+        "gandha",
+        "smell"
+      ]
+    },
+    "vacuole": {
+      "prefixes": [
+        "vacuo",
+        "asco",
+        "kumbo",
+        "kysto",
+        "cysto",
+        "vesico",
+        "cisterna",
+        "sacca",
+        "otre",
+        "cella",
+        "cista",
+        "theke",
+        "angos",
+        "kosa",
+        "kumba",
+        "asaya",
+        "box",
+        "chest",
+        "storo"
+      ],
+      "suffixes": [
+        "turgo",
+        "dharo",
+        "choro",
+        "pieso",
+        "recepto",
+        "vaha"
+      ]
+    }
+  },
+  "organelleMap": {
+    "chemosynthesizing_proteins": "chemoplast",
+    "thylakoids": "chloroplast",
+    "nitrogenase": "nitroplast",
+    "protoplasm": "cytoplasm",
+    "hydrogenase": "hydrogenosome",
+    "rusticyanin": "ferroplast",
+    "thermosynthase": "thermoplast",
+    "toxin_vacuole": "vacuole",
+    "metabolosomes": "mitochondrion",
+    "perforator_pilus": "pilus"
+  },
+  "processes": {
+    "generic": [
+      "chymo",
+      "chemo",
+      "nido",
+      "osmo",
+      "rasa",
+      "sapio"
+    ],
+    "glucose": [
+      "glyco",
+      "saccharo",
+      "madhua",
+      "dulci"
+    ],
+    "sulphur": [
+      "thio",
+      "gandhako",
+      "litho",
+      "sulfo",
+      "sulpho",
+      "mercapto",
+      "thiono",
+      "tio"
+    ],
+    "iron": [
+      "ferro",
+      "rusti",
+      "rusticyano",
+      "ferrocyano",
+      "sidero",
+      "siderocyano",
+      "hemato",
+      "erythros",
+      "magneto"
+    ],
+    "phosphate": [
+      "phospho",
+      "fosfo",
+      "phosphoro",
+      "fosforo"
+    ],
+    "nitrogen": [
+      "nitro",
+      "aero",
+      "osmo",
+      "azoto"
+    ],
+    "ammonia": [
+      "ammono",
+      "ammo",
+      "ammino",
+      "amino",
+      "ammonio",
+      "amido",
+      "azoto",
+      "nitro",
+      "fertili",
+      "urvara",
+      "saphala",
+      "navasadara"
+    ],
+    "temperature": [
+      "calori",
+      "fervi",
+      "calidi",
+      "thermo",
+      "pyro",
+      "usna",
+      "tapa"
+    ],
+    "sunlight": [
+      "calori",
+      "calidi",
+      "photo",
+      "helio",
+      "harito",
+      "luci"
+    ],
+    "oxytoxy": [
+      "toxi",
+      "oxytoxi",
+      "veneno",
+      "veno",
+      "visha",
+      "viro",
+      "noxo",
+      "noxio"
+    ],
+    "radiation": [
+      "melano",
+      "radio",
+      "urano",
+      "thor",
+      "ergo",
+      "pyro",
+      "hephaisto"
+    ],
+    "carbondioxide": [
+      "capno",
+      "carboxy",
+      "fumo",
+      "fumi",
+      "dhuma",
+      "dhumaka"
+    ],
+    "oxygen": [
+      "oxy",
+      "oxido",
+      "aero",
+      "oxo",
+      "vayu",
+      "amla",
+      "hydro",
+      "osmo",
+      "eolo"
+    ],
+    "luciferase": [
+      "luci",
+      "luxo",
+      "jyoti",
+      "fulguri",
+      "lampo",
+      "photo",
+      "fulgo",
+      "lucifer"
+    ]
+  },
+  "membranes": {
+    "double": [
+      "bimembrano",
+      "bipelli",
+      "diplolemmo",
+      "diplohymeno",
+      "dvyavarana"
+    ],
+    "cellulose": [
+      "ligni",
+      "xylo",
+      "valkala"
+    ],
+    "chitin": [
+      "tunic",
+      "loric",
+      "chitino",
+      "chito",
+      "varman"
+    ],
+    "calcium_carbonate": [
+      "calci",
+      "creta",
+      "titano",
+      "sudha"
+    ],
+    "silica": [
+      "silici",
+      "silico",
+      "psammo",
+      "chalico",
+      "sikata",
+      "upala"
+    ]
+  },
+  "bacteriaShapes": {
+    "coccus": {
+      "masculine": [
+        "bacter",
+        "coccus"
+      ],
+      "feminine": [
+        "sphaera",
+        "monas"
+      ],
+      "neuter": [
+        "coccum",
+        "sphaerium"
+      ]
+    },
+    "bacillus": {
+      "masculine": [
+        "bacillus",
+        "bacter"
+      ],
+      "feminine": [
+        "virgula",
+        "bacilla",
+        "monas"
+      ],
+      "neuter": [
+        "bacterium",
+        "baculum",
+        "bactrum"
+      ]
+    },
+    "vibrio": {
+      "masculine": [
+        "bacter",
+        "vibrio",
+        "virgula"
+      ]
+    },
+    "fusiform": {
+      "masculine": [
+        "fuso",
+        "clostri"
+      ]
+    }
+  },
+  "suffixes": {
+    "masculine": [
+      "us",
+      "olus",
+      "rius",
+      "canus",
+      "tus",
+      "tor",
+      "ster",
+      "ili",
+      "o"
+    ],
+    "feminine": [
+      "olera",
+      "ilia",
+      "idia",
+      "ila",
+      "ola",
+      "ala",
+      "ela",
+      "ula",
+      "ia",
+      "sia",
+      "sia",
+      "ella",
+      "nea",
+      "ra",
+      "dae",
+      "mia",
+      "a"
+    ],
+    "neuter": [
+      "ium",
+      "um",
+      "trum",
+      "alia",
+      "data",
+      "en",
+      "os",
+      "on"
+    ],
+    "ambiguous": [
+      "is",
+      "as",
+      "es",
+      "ex",
+      "ax",
+      "ix",
+      "ox",
+      "ux"
+    ]
+  },
   "prefixesV": [
     "Ni",
     "Pi",
@@ -284,85 +1468,5 @@
     "mon",
     "yt",
     "yn"
-  ],
-  "suffixesV": [
-    "olera",
-    "ilia",
-    "idia",
-    "ium",
-    "um",
-    "un",
-    "an",
-    "on",
-    "en",
-    "in",
-    "ion",
-    "ien",
-    "ian",
-    "iem",
-    "iom",
-    "is",
-    "as",
-    "es",
-    "os",
-    "us",
-    "olus",
-    "ila",
-    "ola",
-    "ala",
-    "ela",
-    "ula",
-    "ex",
-    "ax",
-    "ix",
-    "ox",
-    "ux",
-    "ia",
-    "sia",
-    "an",
-    "alia",
-    "ite",
-    "ili",
-    "ian",
-    "ales",
-    "ella",
-    "ens",
-    "opsis",
-    "upsis",
-    "epsis",
-    "apsis",
-    "ipsis",
-    "ansis",
-    "ensis",
-    "insis",
-    "onsis",
-    "unsis"
-  ],
-  "suffixesC": [
-    "pien",
-    "pion",
-    "pian",
-    "piun",
-    "rius",
-    "nien",
-    "ster",
-    "stir",
-    "canus",
-    "tus",
-    "cys",
-    "trum",
-    "nea",
-    "ceae",
-    "ra",
-    "tor",
-    "sia",
-    "data",
-    "dae",
-    "mia",
-    "quito",
-    "hin",
-    "guar",
-    "yes",
-    "ko"
   ]
 }

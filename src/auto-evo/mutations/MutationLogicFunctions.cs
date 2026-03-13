@@ -14,16 +14,11 @@ public class MutationLogicFunctions
             return;
         }
 
-        if (MicrobeSpeciesIsNewGenus(newSpecies, parentSpecies))
-        {
-            newSpecies.Genus = SimulationParameters.Instance.NameGenerator.GenerateNameSection();
-        }
-        else
-        {
-            newSpecies.Genus = parentSpecies.Genus;
-        }
-
-        newSpecies.Epithet = SimulationParameters.Instance.NameGenerator.GenerateNameSection(null, true);
+        // Genus check is now handled inside GenerateGenusName
+        newSpecies.Genus = SimulationParameters.Instance.NameGenerator.GenerateGenusName(null, parentSpecies,
+            newSpecies);
+        newSpecies.Epithet = SimulationParameters.Instance.NameGenerator.GenerateEpithetName(null, parentSpecies,
+            newSpecies);
     }
 
     public static void ColourNewMicrobeSpecies(Random random, MicrobeSpecies newSpecies,
