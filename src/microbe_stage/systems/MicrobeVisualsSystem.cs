@@ -101,6 +101,11 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update(ref OrganelleContainer organelleContainer, in Entity entity)
     {
+        ref var cellProperties = ref entity.Get<CellProperties>();
+
+        cellProperties.CreatedMembrane?.ReportMicrobeMovementStatus(entity.Get<MicrobeControl>().MovementDirection !=
+            Vector3.Zero);
+
         if (organelleContainer.OrganelleVisualsCreated)
             return;
 
@@ -110,8 +115,6 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
             GD.PrintErr("Missing organelles list for MicrobeVisualsSystem");
             return;
         }
-
-        ref var cellProperties = ref entity.Get<CellProperties>();
 
         ref var spatialInstance = ref entity.Get<SpatialInstance>();
 

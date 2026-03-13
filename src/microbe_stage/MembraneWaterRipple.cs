@@ -60,22 +60,6 @@ public partial class MembraneWaterRipple : Node
     [Export]
     public float RippleFormationDelay = 0.2f;
 
-    // TODO: we need some system to only trigger the ripple when a cell moves by itself and not carried by a current
-    // https://github.com/Revolutionary-Games/Thrive/issues/6726
-    // Increasing the movement threshold does not seem like a suitable solution to the issue.
-
-    /// <summary>
-    ///   Minimal movement threshold
-    /// </summary>
-    [Export]
-    public float MovementThresholdSqr = 0.2f;
-
-    /// <summary>
-    ///   Threshold for resuming movement
-    /// </summary>
-    [Export]
-    public float ResumeMovementThresholdSqr = 0.3f;
-
     /// <summary>
     ///   Maximum delta time to prevent jitter
     /// </summary>
@@ -104,6 +88,11 @@ public partial class MembraneWaterRipple : Node
     private readonly StringName stillnessFactorParam = new("StillnessFactor");
     private readonly StringName membraneRadiusParam = new("MembraneRadius");
     private readonly StringName globalAlphaParam = new("GlobalAlpha");
+
+    /// <summary>
+    ///   True if this microbe's AI/player is making it move.
+    /// </summary>
+    private bool isMicrobeMoving;
 
     /// <summary>
     ///   Fade-in speed multiplier (higher = faster fade-in)
@@ -316,6 +305,11 @@ public partial class MembraneWaterRipple : Node
         UpdateMovementParameters(clampedDelta);
     }
 
+    public void ReportMovementStatus(bool isMoving)
+    {
+        isMicrobeMoving = isMoving;
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -508,12 +502,13 @@ public partial class MembraneWaterRipple : Node
             return;
         }
 
-        // Set target alpha based on movement
-        targetAlpha = wasMovingLastFrame ? fullAlpha : minAlpha;
-        targetStillness = wasMovingLastFrame ? 0.0f : 1.0f;
-
-        // Apply fade delay when stopping
-        if (!wasMovingLastFrame && stillnessTimer > StillnessFadeDelay)
+        // Set target alpha based on movement and whether or not has the fade delay finished
+        if (wasMovingLastFrame || stillnessTimer <= StillnessFadeDelay)
+        {
+            targetAlpha = fullAlpha;
+            targetStillness = 0.0f;
+        }
+        else
         {
             targetAlpha = minAlpha;
             targetStillness = 1.0f;
@@ -597,19 +592,9 @@ public partial class MembraneWaterRipple : Node
         var movement = currentPos - lastPosition;
         float movementSqr = movement.LengthSquared() / delta;
         averageMovementSqr = Mathf.Lerp(averageMovementSqr, movementSqr, 0.2f);
-        bool significantMovement;
-
-        if (wasMovingLastFrame)
-        {
-            significantMovement = averageMovementSqr > MovementThresholdSqr;
-        }
-        else
-        {
-            significantMovement = averageMovementSqr > ResumeMovementThresholdSqr;
-        }
 
         // Update stillness tracking
-        if (significantMovement)
+        if (isMicrobeMoving)
         {
             // Reset stillness timer when moving
             stillnessTimer = 0.0f;
@@ -661,7 +646,7 @@ public partial class MembraneWaterRipple : Node
         // Direction and speed calculation
         directionChangeTimer += delta;
 
-        if (significantMovement)
+        if (isMicrobeMoving)
         {
             Vector2 direction;
             float calculatedSpeed;

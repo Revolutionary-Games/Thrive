@@ -55,6 +55,11 @@ public partial class Membrane : MeshInstance3D
     private bool mucocystEffectEnabled;
 
     /// <summary>
+    ///   True if this microbe's AI/player is making it move.
+    /// </summary>
+    private bool isMicrobeMoving;
+
+    /// <summary>
     ///   When true, the material properties need to be reapplied
     /// </summary>
     public bool Dirty { get; set; } = true;
@@ -205,6 +210,12 @@ public partial class Membrane : MeshInstance3D
         Dirty = false;
         ApplyAllMaterialParameters();
         waterRipple.EffectRadius = EncompassingCircleRadius;
+    }
+
+    public void ReportMicrobeMovementStatus(bool isMoving)
+    {
+        isMicrobeMoving = isMoving;
+        waterRipple.ReportMovementStatus(isMoving);
     }
 
     /// <summary>
