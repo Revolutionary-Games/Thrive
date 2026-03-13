@@ -863,9 +863,6 @@ public static class MicrobeInternalCalculations
         if (totalHexCount < 1)
             return 1;
 
-        if (totalHexCount < Constants.CELL_SPECIALIZATION_APPLIES_AFTER_SIZE)
-            return 1;
-
         int maxHexCount = 0;
 
         foreach (var entry in tempWorkMemory)
