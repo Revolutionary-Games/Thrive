@@ -85,11 +85,19 @@ public partial class OsmoregulationAndHealingSystem : BaseSystem<World, float>
 
         HandleOsmoregulationDamage(entity, ref status, ref health, ref cellProperties, compounds, delta);
 
+        TakeHydrogenSulfideDamage(ref health, ref cellProperties, organelleContainer, entity, compounds);
+
+        // There used to be the engulfing mode ATP handling here, but it is now in EngulfingSystem as it makes more
+        // sense to be in there
+    }
+
+    private void TakeHydrogenSulfideDamage(ref Health health, ref CellProperties cellProperties,
+        OrganelleContainer organelleContainer, Entity entity, CompoundBag compounds)
+    {
         if (hydrogenSulfideDamageTrigger
-            && compounds.GetCompoundAmount(Compound.Hydrogensulfide) > Constants.HYDROGEN_SULFIDE_DAMAGE_THESHOLD
-            && !organelleContainer.HydrogenSulfideProtection)
+            && compounds.GetCompoundAmount(Compound.Hydrogensulfide) > organelleContainer.HydrogenSulfideProtection)
         {
-            compounds.TakeCompound(Compound.Hydrogensulfide, Constants.HYDROGEN_SULFIDE_DAMAGE_COMPOUND_DRAIN);
+            compounds.TakeCompound(Compound.Hydrogensulfide, Constants.HYDROGEN_SULFIDE_DAMAGE_COMPOUND_DRAIN_PER_HEX * organelleContainer.HexCount);
 
             health.DealMicrobeDamage(ref cellProperties, entity, Constants.HYDROGEN_SULFIDE_DAMAGE, "hydrogenSulfide",
                 HealthHelpers.GetInstantKillProtectionThreshold(entity));
@@ -97,9 +105,6 @@ public partial class OsmoregulationAndHealingSystem : BaseSystem<World, float>
             entity.SendNoticeIfPossible(() =>
                 new SimpleHUDMessage(Localization.Translate("NOTICE_HYDROGEN_SULFIDE_DAMAGE"), DisplayDuration.Short));
         }
-
-        // There used to be the engulfing mode ATP handling here, but it is now in EngulfingSystem as it makes more
-        // sense to be in there
     }
 
     private void HandleOsmoregulationDamage(in Entity entity, ref MicrobeStatus status, ref Health health,

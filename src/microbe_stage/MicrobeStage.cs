@@ -388,9 +388,13 @@ public sealed partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorl
             if (Player.Has<CompoundStorage>())
             {
                 var storage = Player.Get<CompoundStorage>();
+                var organelles = Player.Get<OrganelleContainer>();
                 var compounds = storage.Compounds;
+
                 HUD.UpdateRadiationBar(compounds.GetCompoundAmount(Compound.Radiation),
                     compounds.GetCapacityForCompound(Compound.Radiation), Constants.RADIATION_WARNING);
+                HUD.UpdateHydrogenSulfideBarBar(compounds.GetCompoundAmount(Compound.Hydrogensulfide),
+                    organelles.HydrogenSulfideProtection);
             }
 
             elapsedSinceEntityPositionCheck += delta;

@@ -80,6 +80,9 @@ public partial class OrganismStatisticsPanel : PanelContainer
     private CellStatsIndicator digestionEfficiencyLabel = null!;
 
     [Export]
+    private CellStatsIndicator hydrogenSulfideProtectionLabel = null!;
+
+    [Export]
     private CellStatsIndicator ammoniaCostLabel = null!;
 
     [Export]
@@ -390,6 +393,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
     public void RegisterTooltips()
     {
         digestionEfficiencyLabel.RegisterToolTipForControl("digestionEfficiencyDetails", "editor");
+        hydrogenSulfideProtectionLabel.RegisterToolTipForControl("hydrogenSulfideProtection", "editor");
         storageLabel.RegisterToolTipForControl("storageDetails", "editor");
 
         if (!IsMulticellularEditor)
@@ -518,6 +522,12 @@ public partial class OrganismStatisticsPanel : PanelContainer
         {
             GD.PrintErr("Can't update digestion efficiency tooltip");
         }
+    }
+
+    public void UpdateHydrogenSulfideProtection(float protection)
+    {
+        hydrogenSulfideProtectionLabel.Format = Localization.Translate("PERCENTAGE_VALUE");
+        hydrogenSulfideProtectionLabel.Value = (float)Math.Round(protection * 100);
     }
 
     public void UpdateOrganellesCost(int ammoniaCost, int phosphatesCost)

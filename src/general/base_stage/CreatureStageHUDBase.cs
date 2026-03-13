@@ -605,6 +605,14 @@ public abstract partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICr
         }
     }
 
+    public void UpdateHydrogenSulfideBarBar(float sulfide, float warningThreshold)
+    {
+        if (sulfide >= warningThreshold)
+        {
+            hydrogenSulfideBar.Flash();
+        }
+    }
+
     public override void PauseButtonPressed(bool buttonState)
     {
         base.PauseButtonPressed(buttonState);

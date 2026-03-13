@@ -14,7 +14,7 @@ using Systems;
 /// </summary>
 public struct OrganelleContainer : IArchivableComponent
 {
-    public const ushort SERIALIZATION_VERSION = 1;
+    public const ushort SERIALIZATION_VERSION = 2;
 
     /// <summary>
     ///   Instances of all the organelles in this entity. This is saved but components are not saved. This means
@@ -90,7 +90,7 @@ public struct OrganelleContainer : IArchivableComponent
     /// <summary>
     ///   Do the organelles provide hydrogen sulfide immunity
     /// </summary>
-    public bool HydrogenSulfideProtection;
+    public float HydrogenSulfideProtection;
 
     /// <summary>
     ///   How many heat-collecting organelles this container has
@@ -213,24 +213,51 @@ public static class OrganelleContainerHelpers
         if (version is > OrganelleContainer.SERIALIZATION_VERSION or <= 0)
             throw new InvalidArchiveVersionException(version, OrganelleContainer.SERIALIZATION_VERSION);
 
+        var organelles = reader.ReadObjectOrNull<OrganelleLayout<PlacedOrganelle>>();
+        var availableEnzymes = reader.ReadObjectOrNull<Dictionary<Enzyme, int>>();
+        var availableToxinTypes = reader.ReadObjectOrNull<Dictionary<ToxinType, int>>();
+        var agentVacuoleCount = reader.ReadInt32();
+        var ironBreakdownEfficiency = reader.ReadInt32();
+        var mucocystCount = reader.ReadInt32();
+        var radiationProtection = reader.ReadInt32();
+
+        var hydrogenSulfideProtection = Constants.HYDROGEN_SULFIDE_DEFAULT_PROTECTION;
+        if (version <= 1)
+        {
+            reader.ReadBool();
+        }
+        else
+        {
+            hydrogenSulfideProtection = reader.ReadFloat();
+        }
+
+        var heatCollection = reader.ReadInt32();
+        var organellesCapacity = reader.ReadFloat();
+        var averageToxinToxicity = reader.ReadFloat();
+        var hexCount = reader.ReadInt32();
+        var oxygenUsingOrganelles = reader.ReadInt32();
+        var rotationSpeed = reader.ReadFloat();
+        var hasSignalingAgent = reader.ReadBool();
+        var hasBindingAgent = reader.ReadBool();
+
         return new OrganelleContainer
         {
-            Organelles = reader.ReadObjectOrNull<OrganelleLayout<PlacedOrganelle>>(),
-            AvailableEnzymes = reader.ReadObjectOrNull<Dictionary<Enzyme, int>>(),
-            AvailableToxinTypes = reader.ReadObjectOrNull<Dictionary<ToxinType, int>>(),
-            AgentVacuoleCount = reader.ReadInt32(),
-            IronBreakdownEfficiency = reader.ReadInt32(),
-            MucocystCount = reader.ReadInt32(),
-            RadiationProtection = reader.ReadInt32(),
-            HydrogenSulfideProtection = reader.ReadBool(),
-            HeatCollection = reader.ReadInt32(),
-            OrganellesCapacity = reader.ReadFloat(),
-            AverageToxinToxicity = reader.ReadFloat(),
-            HexCount = reader.ReadInt32(),
-            OxygenUsingOrganelles = reader.ReadInt32(),
-            RotationSpeed = reader.ReadFloat(),
-            HasSignalingAgent = reader.ReadBool(),
-            HasBindingAgent = reader.ReadBool(),
+            Organelles = organelles,
+            AvailableEnzymes = availableEnzymes,
+            AvailableToxinTypes = availableToxinTypes,
+            AgentVacuoleCount = agentVacuoleCount,
+            IronBreakdownEfficiency = ironBreakdownEfficiency,
+            MucocystCount = mucocystCount,
+            RadiationProtection = radiationProtection,
+            HydrogenSulfideProtection = hydrogenSulfideProtection,
+            HeatCollection = heatCollection,
+            OrganellesCapacity = organellesCapacity,
+            AverageToxinToxicity = averageToxinToxicity,
+            HexCount = hexCount,
+            OxygenUsingOrganelles = oxygenUsingOrganelles,
+            RotationSpeed = rotationSpeed,
+            HasSignalingAgent = hasSignalingAgent,
+            HasBindingAgent = hasBindingAgent,
         };
     }
 
@@ -570,7 +597,7 @@ public static class OrganelleContainerHelpers
         container.OrganellesCapacity = 0;
         container.HasSignalingAgent = false;
         container.HasBindingAgent = false;
-        container.HydrogenSulfideProtection = false;
+        container.HydrogenSulfideProtection = Constants.HYDROGEN_SULFIDE_DEFAULT_PROTECTION;
         container.HeatCollection = 0;
         container.OxygenUsingOrganelles = 0;
         container.RadiationProtection = 0;
@@ -652,9 +679,6 @@ public static class OrganelleContainerHelpers
             if (organelleDefinition.HasBindingFeature)
                 container.HasBindingAgent = true;
 
-            if (organelleDefinition.HasHydrogenSulfideProtection)
-                container.HydrogenSulfideProtection = true;
-
             if (organelleDefinition.HasRadiationProtection)
                 ++container.RadiationProtection;
 
@@ -663,6 +687,7 @@ public static class OrganelleContainerHelpers
                 ++container.HeatCollection;
 
             container.IronBreakdownEfficiency += organelleDefinition.IronBreakdownEfficiency;
+            container.HydrogenSulfideProtection += organelleDefinition.HydrogenSulfideProtection;
 
             container.OrganellesCapacity +=
                 MicrobeInternalCalculations.GetNominalCapacityForOrganelle(organelleDefinition,

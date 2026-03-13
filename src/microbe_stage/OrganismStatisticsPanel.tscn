@@ -21,9 +21,10 @@
 [ext_resource type="Texture2D" uid="uid://nckpuxkhcb0u" path="res://assets/textures/gui/bevel/Phosphates.svg" id="15_ytqp8"]
 [ext_resource type="PackedScene" uid="uid://sxqf3o1pkl0n" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" id="16_wlbdy"]
 [ext_resource type="PackedScene" uid="uid://doveokjve1v3t" path="res://src/microbe_stage/editor/CompoundStorageStatistics.tscn" id="17_pca5e"]
+[ext_resource type="Texture2D" uid="uid://dui1qqyh4jn7t" path="res://assets/textures/gui/bevel/HydrogenSulfide.svg" id="19_8sfn6"]
 [ext_resource type="LabelSettings" uid="uid://deaqhtet373fq" path="res://src/gui_common/fonts/Body-Regular-AlmostSmall-Yellow.tres" id="19_lhi3n"]
 
-[node name="OrganismStatisticsPanel" type="PanelContainer" unique_id=1690124975 node_paths=PackedStringArray("sizeLabel", "speedLabel", "rotationSpeedLabel", "hpLabel", "storageLabel", "digestionSpeedLabel", "digestionEfficiencyLabel", "ammoniaCostLabel", "phosphatesCostLabel", "digestionStatsSeparator", "generationLabel", "atpBalancePanel", "atpBalanceBarContainer", "atpBalanceLabel", "atpProductionLabel", "atpConsumptionLabel", "atpProductionBar", "atpConsumptionBar", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "processListButton", "titleLabel", "specializationValueLabel", "specializationTitleLabel")]
+[node name="OrganismStatisticsPanel" type="PanelContainer" unique_id=1690124975 node_paths=PackedStringArray("sizeLabel", "speedLabel", "rotationSpeedLabel", "hpLabel", "storageLabel", "digestionSpeedLabel", "digestionEfficiencyLabel", "hydrogenSulfideProtectionLabel", "ammoniaCostLabel", "phosphatesCostLabel", "digestionStatsSeparator", "generationLabel", "atpBalancePanel", "atpBalanceBarContainer", "atpBalanceLabel", "atpProductionLabel", "atpConsumptionLabel", "atpProductionBar", "atpConsumptionBar", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "processListButton", "titleLabel", "specializationValueLabel", "specializationTitleLabel")]
 size_flags_vertical = 3
 mouse_filter = 1
 theme = ExtResource("1_ca4to")
@@ -37,6 +38,7 @@ hpLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxConta
 storageLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Storage")
 digestionSpeedLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/DigestionSpeed")
 digestionEfficiencyLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/DigestionEfficiency")
+hydrogenSulfideProtectionLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/SulfideProtection")
 ammoniaCostLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/AmmoniaCost")
 phosphatesCostLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/PhosphatesCost")
 digestionStatsSeparator = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HSeparator4")
@@ -273,6 +275,11 @@ Description = "DIGESTION_SPEED_COLON"
 layout_mode = 2
 Icon = ExtResource("10_l6acm")
 Description = "DIGESTION_EFFICIENCY_COLON"
+
+[node name="SulfideProtection" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=27221530 instance=ExtResource("3_mvl7o")]
+layout_mode = 2
+Icon = ExtResource("19_8sfn6")
+Description = "HYDROGENSULFIDE_PROTECTION"
 
 [node name="HSeparator4" type="HSeparator" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" unique_id=544545899]
 custom_minimum_size = Vector2(0, 10)

@@ -90,6 +90,11 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
     /// </summary>
     public int IronBreakdownEfficiency;
 
+    /// <summary>
+    ///   How much hydrogen sulfide damage protection this organelle provides
+    /// </summary>
+    public float HydrogenSulfideProtection;
+
     public OrganelleComponentFactoryInfo Components = new();
 
     /// <summary>
@@ -284,8 +289,6 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
     public bool HasPilusComponent { get; private set; }
     public bool HasMovementComponent { get; private set; }
     public bool HasCiliaComponent { get; private set; }
-
-    public bool HasHydrogenSulfideProtection { get; private set; }
 
     /// <summary>
     ///   True if this is an agent vacuole. The number of agent vacuoles determines how often a cell can shoot toxins.
@@ -842,7 +845,6 @@ public class OrganelleDefinition : RegistryType, IPlayerReadableName
         HasBindingFeature = HasFeatureTag(OrganelleFeatureTag.BindingAgent);
         HasSignalingFeature = HasFeatureTag(OrganelleFeatureTag.SignalingAgent);
         HasRadiationProtection = HasFeatureTag(OrganelleFeatureTag.RadiationBlock);
-        HasHydrogenSulfideProtection = HasFeatureTag(OrganelleFeatureTag.HydrogenSulfideProtection);
         HasHeatCollection = HasFeatureTag(OrganelleFeatureTag.HeatCollecting);
     }
 

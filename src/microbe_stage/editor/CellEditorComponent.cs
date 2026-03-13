@@ -1532,6 +1532,11 @@ public partial class CellEditorComponent :
         return MicrobeInternalCalculations.CalculateDigestionEfficiencies(editedMicrobeOrganelles);
     }
 
+    public float CalculateHydrogenSulfideProtection()
+    {
+        return MicrobeInternalCalculations.CalculateHydrogenSulfideProtection(editedMicrobeOrganelles);
+    }
+
     public (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCosts()
     {
         return MicrobeInternalCalculations.CalculateOrganellesCosts(editedMicrobeOrganelles);
@@ -2457,6 +2462,7 @@ public partial class CellEditorComponent :
         organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
         organismStatisticsPanel.UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
         organismStatisticsPanel.UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
+        organismStatisticsPanel.UpdateHydrogenSulfideProtection(CalculateHydrogenSulfideProtection());
         var (ammoniaCost, phosphatesCost) = CalculateOrganellesCosts();
         organismStatisticsPanel.UpdateOrganellesCost(ammoniaCost, phosphatesCost);
     }

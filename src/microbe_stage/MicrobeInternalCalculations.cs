@@ -420,6 +420,34 @@ public static class MicrobeInternalCalculations
         return result;
     }
 
+    public static float CalculateHydrogenSulfideProtection(IEnumerable<OrganelleTemplate> organelles)
+    {
+        float hydrogenSulfideProtection = Constants.HYDROGEN_SULFIDE_DEFAULT_PROTECTION;
+        float hydrogenSulfideStorage = 0;
+
+        foreach (var organelle in organelles)
+        {
+            hydrogenSulfideProtection += organelle.Definition.HydrogenSulfideProtection;
+
+            if (organelle.Definition.Components.Storage != null)
+            {
+                var baseCapacity = organelle.Definition.Components.Storage.Capacity;
+                var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
+
+                if (specificCapacity.Compound != Compound.Hydrogensulfide)
+                {
+                    hydrogenSulfideStorage += baseCapacity;
+                }
+                else
+                {
+                    hydrogenSulfideStorage += specificCapacity.Capacity;
+                }
+            }
+        }
+
+        return Math.Min(hydrogenSulfideProtection / hydrogenSulfideStorage, 1);
+    }
+
     public static (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCosts(
         IEnumerable<OrganelleTemplate> organelles)
     {

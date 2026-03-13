@@ -762,11 +762,11 @@ public static class Constants
 
     public const float HYDROGEN_SULFIDE_DAMAGE_INTERVAL = 0.75f;
 
-    public const float HYDROGEN_SULFIDE_DAMAGE_THESHOLD = 0.05f;
+    public const float HYDROGEN_SULFIDE_DEFAULT_PROTECTION = 0.1f;
 
     public const float HYDROGEN_SULFIDE_DAMAGE = 2.0f;
 
-    public const float HYDROGEN_SULFIDE_DAMAGE_COMPOUND_DRAIN = 0.2f;
+    public const float HYDROGEN_SULFIDE_DAMAGE_COMPOUND_DRAIN_PER_HEX = 0.04f;
 
     public const float RADIATION_STRENGTH_MULTIPLIER = 0.02f;
 

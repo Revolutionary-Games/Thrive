@@ -93,6 +93,7 @@ public partial class CellEditorComponent
         organismStatisticsPanel.OnTranslationsChanged();
         organismStatisticsPanel.UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
         organismStatisticsPanel.UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
+        organismStatisticsPanel.UpdateHydrogenSulfideProtection(CalculateHydrogenSulfideProtection());
 
         UpdateOsmoregulationTooltips();
         UpdateMPCost();
