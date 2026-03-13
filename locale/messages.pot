@@ -9,7 +9,8 @@ msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-05-08 16:35+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE
+"\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1213,8 +1214,8 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1381
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:123
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:606
-#: ../src/microbe_stage/ProcessPanel.tscn:122 ../src/modding/ModManager.tscn:698
-#: ../src/thriveopedia/Thriveopedia.tscn:322
+#: ../src/microbe_stage/ProcessPanel.tscn:122
+#: ../src/modding/ModManager.tscn:698 ../src/thriveopedia/Thriveopedia.tscn:322
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:223
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:319
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:436
@@ -2235,7 +2236,8 @@ msgstr ""
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:465 ../src/microbe_stage/MicrobeHUD.cs:470
+#: ../src/microbe_stage/MicrobeHUD.cs:465
+#: ../src/microbe_stage/MicrobeHUD.cs:470
 msgid "DEVOURED"
 msgstr ""
 
@@ -7491,7 +7493,8 @@ msgstr ""
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:694 ../src/general/PauseMenu.cs:476
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:694
+#: ../src/general/PauseMenu.cs:476
 #: ../src/gui_common/menus/PlanetCustomizerTool.tscn:194
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -12238,3 +12241,26 @@ msgstr ""
 msgid "ZOOM_OUT"
 msgstr ""
 
+#: ../simulation_parameters/microbe_stage/bio_processes.json:171
+msgid "AEROBIC_NITROGEN_FIXING"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/bio_processes.json:182
+msgid "ANAEROBIC_NITROGEN_FIXATION"
+msgstr ""
+
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:282
+msgid "HYDROGENSULFIDE_PROTECTION"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:615
+msgid "OSMOREGULATION_COST_MULTIPLIER"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:646
+msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+msgstr ""
+
+#: ../src/gui_common/ChemicalEquation.tscn:60
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr ""
