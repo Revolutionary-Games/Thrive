@@ -646,12 +646,36 @@ public class Patch : IArchivable
         };
 
         // Apply the reverse of the negative effects to balance things out (and slightly exaggerate to not run into
-        // rounding issues)
+        // rounding issues). If the effects are positive reduce the tolerance values
         if (externalModifiers.OxygenResistance < 0)
+        {
             result.OxygenResistance -= externalModifiers.OxygenResistance * 1.01f;
+        }
+        else
+        {
+            // auto-evo is run and oxygen levels might decrease a bit so make sure the tolerance is high enough
+            result.OxygenResistance *= 1.2f;
+            result.OxygenResistance -= externalModifiers.OxygenResistance;
+
+            // due to rounding make sure the tolerance is always in appropriate range
+            result.OxygenResistance = Math.Max(result.OxygenResistance, 0);
+            result.OxygenResistance = (float)(Math.Ceiling(result.OxygenResistance / Constants.TOLERANCE_OXYGEN_STEP) *
+                Constants.TOLERANCE_OXYGEN_STEP);
+        }
 
         if (externalModifiers.UVResistance < 0)
+        {
             result.UVResistance -= externalModifiers.UVResistance * 1.01f;
+        }
+        else
+        {
+            result.UVResistance -= externalModifiers.UVResistance;
+
+            // due to rounding make sure the tolerance is always in appropriate range
+            result.UVResistance = Math.Max(0, result.UVResistance);
+            result.UVResistance = (float)(Math.Ceiling(result.UVResistance / Constants.TOLERANCE_UV_STEP) *
+                Constants.TOLERANCE_UV_STEP);
+        }
 
         if (externalModifiers.PressureTolerance < 0)
             result.PressureTolerance -= externalModifiers.PressureTolerance * 1.01f;
