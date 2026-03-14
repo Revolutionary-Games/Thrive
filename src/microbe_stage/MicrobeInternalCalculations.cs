@@ -871,6 +871,7 @@ public static class MicrobeInternalCalculations
             concentration += proportion * proportion;
         }
 
+        // Then return the final result as the bonus being anything above 1
         return 1 + concentration * Constants.CELL_SPECIALIZATION_STRENGTH_MULTIPLIER;
     }
 
